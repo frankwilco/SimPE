@@ -105,7 +105,7 @@ namespace SimPe
 			}
 			#endregion
 
-			FixPackage(package, prefix+modelname, ver);
+			FixPackage(package, prefix+modelname,  ver);
 			return true;
 		}
 		#endregion

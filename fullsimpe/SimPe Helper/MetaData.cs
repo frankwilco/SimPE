@@ -785,7 +785,7 @@ namespace SimPe.Data
 												  new TypeAlias(false, "PTBP", 0x50544250, "Package Text"),
 												  new TypeAlias(false, "RTEX", 0xACE46235, "Road Texture"),
 												  new TypeAlias(false, "SDBA", 0x8CC0A14B, Localization.Manager.GetString("unk")+": 0x8CC0A14B", false),
-												  new TypeAlias(false, "SDMP", 0xEBFEE33F, "Sim DNA"),
+												  new TypeAlias(false, "SDNA", 0xEBFEE33F, "Sim DNA"),
 												  new TypeAlias(false, "SHPE", SHPE, "Shape", "5sh"),
 												  new TypeAlias(false, "SIMI", 0x53494D49, "Sim Information"),
 												  new TypeAlias(false, "SK3D", 0xAC506764, "Skin 3D Model?"),

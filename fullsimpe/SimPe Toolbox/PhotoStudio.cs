@@ -785,6 +785,14 @@ namespace SimPe.Plugin
 			}
 		}
 
+		static string BuildName(string name, string unique)
+		{
+			name = Hashes.StripHashFromName(name);
+			name = RenameForm.ReplaceOldUnique(name, unique, true);
+
+			return name;
+		}
+
 		/// <summary>
 		/// Creates a new Picture using the passed Template and the passed Image
 		/// </summary>
@@ -807,6 +815,7 @@ namespace SimPe.Plugin
 			pkg.FileName = filename;
 
 			string family = System.Guid.NewGuid().ToString();
+			string unique = RenameForm.GetUniqueName();
 
 			SimPe.Packages.GeneratableFile tpkg = new SimPe.Packages.GeneratableFile(template.Package.FileName);
 
@@ -817,7 +826,7 @@ namespace SimPe.Plugin
 			{
 				mmat.ProcessData(pfd, tpkg);
 				mmat.GetSaveItem("family").StringValue = family;
-				if (rename) mmat.GetSaveItem("name").StringValue = "##0x1c050000!"+Hashes.StripHashFromName(template.MatdFile)+"_"+family;
+				if (rename) mmat.GetSaveItem("name").StringValue = "##0x1c050000!"+BuildName(template.MatdFile, unique);
 
 				mmat.SynchronizeUserData();
 				pkg.Add(mmat.FileDescriptor);
@@ -830,10 +839,10 @@ namespace SimPe.Plugin
 			if (pfd!=null) 
 			{
 				matd.ProcessData(pfd, tpkg);
-				if (rename) matd.FileName = "##0x1c050000!"+Hashes.StripHashFromName(template.MatdFile)+"_"+family+"_txmt";
+				if (rename) matd.FileName = "##0x1c050000!"+BuildName(template.MatdFile, unique)+"_txmt";
 				SimPe.Plugin.MaterialDefinition md = (SimPe.Plugin.MaterialDefinition)matd.Blocks[0];
-				if (rename) md.GetProperty("stdMatBaseTextureName").Value = "##0x1c050000!"+Hashes.StripHashFromName(template.TxtrFile)+"_"+family;
-				if (rename) md.Listing[0] = "##0x1c050000!"+Hashes.StripHashFromName(template.TxtrFile)+"_"+family;
+				if (rename) md.GetProperty("stdMatBaseTextureName").Value = "##0x1c050000!"+BuildName(template.TxtrFile, unique);
+				if (rename) md.Listing[0] = md.GetProperty("stdMatBaseTextureName").Value;
 
 				matd.FileDescriptor = new Packages.PackedFileDescriptor();
 				matd.FileDescriptor.Type = 0x49596978; //TXMT
@@ -851,7 +860,7 @@ namespace SimPe.Plugin
 			if (pfd!=null) 
 			{
 				txtr.ProcessData(pfd, tpkg);
-				if (rename) txtr.FileName = "##0x1c050000!"+Hashes.StripHashFromName(template.TxtrFile)+"_"+family+"_txtr";
+				if (rename) txtr.FileName = "##0x1c050000!"+BuildName(template.TxtrFile, unique)+"_txtr";
 
 				SimPe.Plugin.ImageData id = (SimPe.Plugin.ImageData)txtr.Blocks[0];
 				SimPe.Plugin.MipMapBlock mmp = id.MipMapBlocks[0];

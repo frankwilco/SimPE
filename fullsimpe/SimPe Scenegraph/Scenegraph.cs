@@ -23,6 +23,19 @@ namespace SimPe.Plugin
 		/// </summary>
 		ArrayList itemlist;
 
+		/// <summary>
+		/// List of all References that should not be followed
+		/// </summary>
+		ArrayList exclude;
+
+		/// <summary>
+		/// Returns a List of a References that should be excluded
+		/// </summary>
+		public ArrayList ExcludedReferences
+		{
+			get { return exclude; }
+		}
+
 
 		/// <summary>
 		/// Create a clone of the Descriptor, so changes won't affect the source Package anymore!
@@ -144,6 +157,8 @@ namespace SimPe.Plugin
 			Hashtable map = rcol.ReferenceChains;
 			foreach (string s in map.Keys) 
 			{
+				if (exclude.Contains(s)) continue;
+
 				ArrayList descs = (ArrayList)map[s];
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in descs) 
 				{				
@@ -170,7 +185,7 @@ namespace SimPe.Plugin
 		{
 			string[] modelnames = new string[1];
 			modelnames[0] = modelname;
-			Init(modelnames);
+			Init(modelnames, new ArrayList());
 		}
 
 		/// <summary>
@@ -179,15 +194,28 @@ namespace SimPe.Plugin
 		/// <param name="modelnames">Name of all Models</param>
 		public Scenegraph(string[] modelnames)
 		{
-			Init(modelnames);
+			Init(modelnames, new ArrayList());
 		}
 
 		/// <summary>
 		/// Create a new Instance and build the CRES chain
 		/// </summary>
 		/// <param name="modelnames">Name of all Models</param>
-		public void Init(string[] modelnames)
+		/// <param name="ex">List of all ReferenceNames that should be excluded from the chain</param>
+		public Scenegraph(string[] modelnames, ArrayList ex)
+		{
+			Init(modelnames, ex);
+			
+		}
+
+		/// <summary>
+		/// Create a new Instance and build the CRES chain
+		/// </summary>
+		/// <param name="modelnames">Name of all Models</param>
+		/// <param name="ex">List of all ReferenceNames that should be excluded from the chain</param>
+		public void Init(string[] modelnames, ArrayList ex)
 		{						
+			exclude = ex;
 			this.modelnames = new ArrayList();
 			ArrayList cres = LoadCres(modelnames);
 
@@ -218,7 +246,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="pkg"></param>
 		/// <param name="onlydefault">true, if you only want to read default MMATS</param>
-		/// <param name="subitems">true, if you also want to load MMAT Files that reference Files ouside the passed packag</param>
+		/// <param name="subitems">true, if you also want to load MMAT Files that reference Files ouside the passed package</param>
 		/// <param name="exception">true if you want to throw an exception when something goes wrong</param>
 		/// <returns>List of all referenced GUIDs</returns>
 		public void AddMaterialOverrides(SimPe.Interfaces.Files.IPackageFile pkg, bool onlydefault, bool subitems, bool exception)

@@ -78,6 +78,16 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		/// <summary>
+		/// Add a new CPF Item
+		/// </summary>
+		/// <param name="item">The item you want to add</param>
+		public void AddItem(CpfItem item) 
+		{
+			if (item!=null) 
+				items = (CpfItem[])Helper.Add(items, item);
+		}
+
+		/// <summary>
 		/// returns the Item with the given Name o rnull if not found
 		/// </summary>
 		/// <param name="name"></param>

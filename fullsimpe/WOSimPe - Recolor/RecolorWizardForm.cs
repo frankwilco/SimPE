@@ -1039,7 +1039,7 @@ namespace SimPe.Wizards
 				}
 			}
 
-			npackage.Reader.Close();
+			//npackage.Reader.Close();
 		}
 
 		private void ChangeText(object sender, System.EventArgs e)

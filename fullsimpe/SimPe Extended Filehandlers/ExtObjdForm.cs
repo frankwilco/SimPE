@@ -849,7 +849,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		private void UpdateMMAT(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			if (wrapper.Guid!=initialguid)
+			if ((wrapper.Guid!=initialguid) || (cball.Checked))
 			{
 				SimPe.Plugin.FixGuid fg = new SimPe.Plugin.FixGuid(wrapper.Package);
 				if (cball.Checked) 

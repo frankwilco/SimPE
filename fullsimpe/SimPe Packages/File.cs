@@ -190,7 +190,12 @@ namespace SimPe.Packages
 		#region Lock handling
 		protected void OpenReader()
 		{			
-			if (persistent) return;
+			if (persistent) 
+			{
+				StreamItem si = StreamFactory.UseStream(flname, FileAccess.Read);
+				si.SetFileAccess(FileAccess.Read);
+				return;
+			}
 			if (type == PackageBaseType.Filename)
 			{
 				CloseReader();	

@@ -779,6 +779,7 @@ namespace SimPe.Plugin
 							reffile.ProcessData(idr[0]);
 
 							ListViewItem lvi = new ListViewItem(skin.GetSaveItem("name").StringValue);
+							if (Helper.DebugMode) lvi.Text += " ("+skin.GetSaveItem("skintone").StringValue+")";
 							lvi.Tag = skin.GetSaveItem("skintone").StringValue;
 							foreach (Interfaces.Files.IPackedFileDescriptor pfd in reffile.Items) 
 							{								

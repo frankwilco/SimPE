@@ -154,6 +154,7 @@ namespace SimPe.Plugin
 						gi.Properties["Available"] = "extern";
 						gi.Properties["File"] = items.Package.FileName;
 						gi.Size = new Size(gi.Size.Width, 70);
+						gi.BackgroundColor = Color.Black;
 					}
 				}
 				#endregion
@@ -207,6 +208,8 @@ namespace SimPe.Plugin
 					{
 						gi.BackgroundColor = Color.DarkRed;
 						gi.ForegroundColor = Color.White;
+
+						if ((string)gi.Properties["Available"]=="extern") gi.BackgroundColor = Color.Black;
 					}
 				}
 				
