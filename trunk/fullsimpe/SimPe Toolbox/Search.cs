@@ -116,6 +116,8 @@ namespace SimPe.Plugin
 			this.tbsimname = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.tbpropval = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.rbcont = new System.Windows.Forms.RadioButton();
 			this.rbend = new System.Windows.Forms.RadioButton();
 			this.rbstart = new System.Windows.Forms.RadioButton();
@@ -131,8 +133,6 @@ namespace SimPe.Plugin
 			this.btopen = new System.Windows.Forms.Button();
 			this.pb = new System.Windows.Forms.ProgressBar();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.tbpropval = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
@@ -335,6 +335,26 @@ namespace SimPe.Plugin
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "Property Set";
 			// 
+			// tbpropval
+			// 
+			this.tbpropval.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.tbpropval.Location = new System.Drawing.Point(288, 8);
+			this.tbpropval.Name = "tbpropval";
+			this.tbpropval.Size = new System.Drawing.Size(256, 21);
+			this.tbpropval.TabIndex = 16;
+			this.tbpropval.Text = "";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label7.Location = new System.Drawing.Point(240, 16);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(44, 17);
+			this.label7.TabIndex = 15;
+			this.label7.Text = "Value:";
+			// 
 			// rbcont
 			// 
 			this.rbcont.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -475,33 +495,13 @@ namespace SimPe.Plugin
 			// 
 			// pb
 			// 
-			this.pb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.pb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.pb.Location = new System.Drawing.Point(8, 304);
 			this.pb.Maximum = 1000;
 			this.pb.Name = "pb";
 			this.pb.Size = new System.Drawing.Size(480, 16);
 			this.pb.TabIndex = 3;
-			// 
-			// tbpropval
-			// 
-			this.tbpropval.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tbpropval.Location = new System.Drawing.Point(288, 8);
-			this.tbpropval.Name = "tbpropval";
-			this.tbpropval.Size = new System.Drawing.Size(256, 21);
-			this.tbpropval.TabIndex = 16;
-			this.tbpropval.Text = "";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label7.Location = new System.Drawing.Point(240, 16);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(44, 17);
-			this.label7.TabIndex = 15;
-			this.label7.Text = "Value:";
 			// 
 			// Search
 			// 

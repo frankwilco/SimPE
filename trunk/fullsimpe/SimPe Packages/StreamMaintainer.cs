@@ -94,7 +94,7 @@ namespace SimPe.Packages
 				
 				string name = fs.Name;
 				fs = null;
-				fs = new FileStream(name, System.IO.FileMode.Open, fa, StreamFactory.GetFileShare(fa));
+				fs = new FileStream(name, System.IO.FileMode.Open, fa);
 			} 
 			catch (Exception ex){
 				if (Helper.DebugMode) Helper.ExceptionMessage("", ex);
@@ -143,7 +143,7 @@ namespace SimPe.Packages
 		/// </summary>
 		/// <param name="fa">The Acces Mode</param>
 		/// <returns>The Suggeste Share Mode</returns>
-		public static FileShare GetFileShare(FileAccess fa)
+		/*public static FileShare GetFileShare(FileAccess fa)
 		{
 			switch (fa) 
 			{
@@ -156,7 +156,7 @@ namespace SimPe.Packages
 					return FileShare.Read;
 				}
 			}
-		}
+		}*/
 
 		/// <summary>
 		/// Returns a valid stream Item for the passed Filename
@@ -229,7 +229,7 @@ namespace SimPe.Packages
 
 			if (si.StreamState==StreamState.Removed) 
 			{
-				FileStream fs = new FileStream(filename, FileMode.Open, fa, StreamFactory.GetFileShare(fa));
+				FileStream fs = new FileStream(filename, FileMode.Open, fa);
 				si.SetFileStream(fs);
 			} 
 			else 

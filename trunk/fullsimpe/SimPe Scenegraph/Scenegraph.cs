@@ -9,6 +9,33 @@ namespace SimPe.Plugin
 	public class Scenegraph
 	{
 		/// <summary>
+		/// A List of Files you the Reference Check should exclude
+		/// </summary>
+		static ArrayList excludefiles = new ArrayList();
+
+		/// <summary>
+		/// A List of Files the SceneGraph will ignore when following a Reference
+		/// </summary>
+		public static ArrayList FileExcludeList
+		{
+			get { return excludefiles; }		
+			set { excludefiles = value; }
+		}
+
+		/// <summary>
+		/// The Default List for FileExcludeList
+		/// </summary>
+		public static ArrayList DefaultFileExcludeList 
+		{
+			get 
+			{
+				ArrayList ret = new ArrayList();
+				ret.Add("simple_mirror_reflection_txmt");								
+				return ret;
+			}
+		}
+
+		/// <summary>
 		/// Contains the base Modelnames
 		/// </summary>
 		ArrayList modelnames;	
@@ -172,6 +199,9 @@ namespace SimPe.Plugin
 						{
 							SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
 							sub.ProcessData(subitem.FileDescriptor, subitem.Package);
+
+							if (Scenegraph.excludefiles.Contains(sub.FileName.Trim().ToLower())) continue;
+
 							if (recursive) LoadReferenced(modelnames, exclude, list, itemlist, sub, subitem, true);
 						}
 					}

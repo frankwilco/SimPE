@@ -209,6 +209,8 @@ namespace SimPe.Plugin
 		{
 			if (modelnames==null) return;
 
+			Scenegraph.FileExcludeList = Scenegraph.DefaultFileExcludeList;
+
 			SimPe.FileTable.FileIndex.Load();
 			WaitingScreen.UpdateMessage("Walking Scenegraph");
 			Scenegraph sg = new Scenegraph(modelnames, exclude);

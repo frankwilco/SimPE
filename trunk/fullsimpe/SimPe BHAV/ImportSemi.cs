@@ -37,10 +37,9 @@ namespace SimPe
 		private System.Windows.Forms.CheckedListBox lbfiles;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.LinkLabel linkLabel1;
-		/// <summary>
-		/// Erforderliche Designervariable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+		private System.Windows.Forms.CheckBox cbfix;
+		private System.Windows.Forms.ToolTip toolTip1;
+		private System.ComponentModel.IContainer components;
 
 		public ImportSemi()
 		{
@@ -62,7 +61,7 @@ namespace SimPe
 				if (ct%17==0) WaitingScreen.UpdateMessage(ct.ToString()+max);
 				ct++;
 
-				SimPe.Plugin.Glob glob = new SimPe.Plugin.Glob();
+				SimPe.Plugin.NamedGlob glob = new SimPe.Plugin.NamedGlob();
 				glob.ProcessData(item.FileDescriptor, item.Package);
 
 				if (!names.Contains(glob.SemiGlobalName.Trim().ToLower())) 
@@ -98,6 +97,7 @@ namespace SimPe
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.btimport = new System.Windows.Forms.Button();
 			this.cbsemi = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
@@ -105,6 +105,8 @@ namespace SimPe
 			this.lbfiles = new System.Windows.Forms.CheckedListBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+			this.cbfix = new System.Windows.Forms.CheckBox();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.SuspendLayout();
 			// 
 			// btimport
@@ -182,17 +184,28 @@ namespace SimPe
 			this.linkLabel1.Text = "uncheck all";
 			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
 			// 
+			// cbfix
+			// 
+			this.cbfix.Location = new System.Drawing.Point(256, 360);
+			this.cbfix.Name = "cbfix";
+			this.cbfix.Size = new System.Drawing.Size(176, 24);
+			this.cbfix.TabIndex = 8;
+			this.cbfix.Text = "Fix Package References";
+			this.toolTip1.SetToolTip(this.cbfix, "Check this Option if you want to Fix references form TTABs and BHAVs in this pack" +
+				"age to the imported SemiGLobals.");
+			// 
 			// ImportSemi
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
 			this.ClientSize = new System.Drawing.Size(522, 392);
+			this.Controls.Add(this.cbfix);
 			this.Controls.Add(this.lbfiles);
 			this.Controls.Add(this.llscan);
+			this.Controls.Add(this.linkLabel1);
 			this.Controls.Add(this.cbsemi);
 			this.Controls.Add(this.btimport);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.linkLabel1);
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.Name = "ImportSemi";
@@ -227,7 +240,7 @@ namespace SimPe
 
 			try 
 			{
-				SimPe.Plugin.Glob glob = (SimPe.Plugin.Glob)cbsemi.Items[cbsemi.SelectedIndex];
+				SimPe.Plugin.NamedGlob glob = (SimPe.Plugin.NamedGlob)cbsemi.Items[cbsemi.SelectedIndex];
 				Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFileByGroup(glob.SemiGlobalGroup);
 				
 				lbfiles.Sorted = false;
@@ -330,6 +343,27 @@ namespace SimPe
 
 					ttabs.Add(ttab);
 				}	
+			}
+
+			if (cbfix.Checked) 
+			{
+				pfds = package.FindFiles(Data.MetaData.BHAV_FILE);
+				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+				{
+					SimPe.Plugin.Bhav bhav = new SimPe.Plugin.Bhav(prov.OpcodeProvider);
+					bhav.ProcessData(pfd, package);
+
+					bhavs.Add(bhav);
+				}
+
+				pfds = package.FindFiles(0x54544142);
+				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+				{
+					SimPe.Plugin.Ttab ttab = new SimPe.Plugin.Ttab(prov.OpcodeProvider);
+					ttab.ProcessData(pfd, package);
+
+					ttabs.Add(ttab);
+				}
 			}
 
 			//Relink all SemiGlobals in imported BHAV's

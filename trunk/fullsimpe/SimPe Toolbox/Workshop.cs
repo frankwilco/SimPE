@@ -1060,7 +1060,23 @@ namespace SimPe.Plugin
 			string[] modelname = BaseClone(pfd, localgroup, package);
 			ObjectCloner objclone = new ObjectCloner(package);
 			ArrayList exclude = new ArrayList();
-			if ((!this.cbparent.Checked) && (!this.rbColor.Checked)) exclude.Add("tsMaterialsMeshName");
+
+			//for clones only when cbparent is not checked
+			if ((!this.cbparent.Checked) && (!this.rbColor.Checked)) 
+			{
+				exclude.Add("tsMaterialsMeshName");
+				exclude.Add("stdMatEnvCubeTextureName");
+				exclude.Add("TXTR");
+			} 
+
+			//allways for recolors
+			if (this.rbColor.Checked) 
+			{
+				exclude.Add("stdMatEnvCubeTextureName");
+				exclude.Add("TXTR");
+			}
+
+			//do the recolor
 			objclone.RcolModelClone(modelname, onlydefault, onlydefault, true, exclude);
 		}
 

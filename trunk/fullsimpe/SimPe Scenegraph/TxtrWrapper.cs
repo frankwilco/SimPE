@@ -56,7 +56,7 @@ namespace SimPe.Plugin
 				"TXTR Wrapper",
 				"Pumuckl, Quaxi",
 				"---",
-				12
+				13
 				); 
 		}
 		#endregion
