@@ -125,6 +125,8 @@ namespace SimPe.Packages
 				System.IO.File.Delete(tmpfile);
 				throw ex;
 			}
+
+			StreamItem si = StreamFactory.UseStream(flname, FileAccess.Read);
 		}
 
 		/// <summary>

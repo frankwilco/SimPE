@@ -691,7 +691,15 @@ namespace SimPe.Plugin
 		public IScenegraphFileIndexItem FindFileByName(string filename, uint type, uint defgroup, bool betolerant)
 		{
 			Interfaces.Files.IPackedFileDescriptor pfd = SimPe.Plugin.ScenegraphHelper.BuildPfd(filename, type, defgroup);
-			return FindSingleFile(pfd, betolerant);
+			IScenegraphFileIndexItem ret = FindSingleFile(pfd, betolerant);
+
+			if ((ret==null) && betolerant)
+			{
+				pfd.SubType = 0;
+				ret = FindSingleFile(pfd, betolerant);
+			} 
+
+			return ret;
 		}
 
 		/// <summary>

@@ -46,11 +46,13 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label lbpatlife;
 		private System.Windows.Forms.Label lbarchlife;
 		private System.Windows.Forms.Label lbarchname;
-		private System.Windows.Forms.CheckBox cbface;
-		private System.Windows.Forms.CheckBox cbskin;
 		private System.Windows.Forms.LinkLabel llexport;
 		private System.Windows.Forms.SaveFileDialog sfd;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.CheckBox cbskin;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.ListView lvskin;
+		private System.Windows.Forms.ImageList iskin;
 		private System.ComponentModel.IContainer components;
 
 		public Surgery()
@@ -60,9 +62,7 @@ namespace SimPe.Plugin
 			//
 			InitializeComponent();
 
-			//
-			// TODO: Fügen Sie den Konstruktorcode nach dem Aufruf von InitializeComponent hinzu
-			//
+			LoadSkins();
 		}
 
 		/// <summary>
@@ -94,6 +94,7 @@ namespace SimPe.Plugin
 			this.button1 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.llexport = new System.Windows.Forms.LinkLabel();
 			this.lbpatlife = new System.Windows.Forms.Label();
 			this.lbpatname = new System.Windows.Forms.Label();
 			this.pbpatient = new System.Windows.Forms.PictureBox();
@@ -105,13 +106,15 @@ namespace SimPe.Plugin
 			this.llusearche = new System.Windows.Forms.LinkLabel();
 			this.pbarche = new System.Windows.Forms.PictureBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.cbface = new System.Windows.Forms.CheckBox();
-			this.cbskin = new System.Windows.Forms.CheckBox();
-			this.llexport = new System.Windows.Forms.LinkLabel();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.cbskin = new System.Windows.Forms.CheckBox();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.lvskin = new System.Windows.Forms.ListView();
+			this.iskin = new System.Windows.Forms.ImageList(this.components);
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// ilist
@@ -141,6 +144,7 @@ namespace SimPe.Plugin
 			this.lv.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lv.RightToLeft")));
 			this.lv.Size = ((System.Drawing.Size)(resources.GetObject("lv.Size")));
 			this.lv.SmallImageList = this.ilist;
+			this.lv.Sorting = System.Windows.Forms.SortOrder.Ascending;
 			this.lv.StateImageList = this.ilist;
 			this.lv.TabIndex = ((int)(resources.GetObject("lv.TabIndex")));
 			this.lv.Text = resources.GetString("lv.Text");
@@ -223,6 +227,32 @@ namespace SimPe.Plugin
 			this.groupBox1.Text = resources.GetString("groupBox1.Text");
 			this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
 			this.groupBox1.Visible = ((bool)(resources.GetObject("groupBox1.Visible")));
+			// 
+			// llexport
+			// 
+			this.llexport.AccessibleDescription = resources.GetString("llexport.AccessibleDescription");
+			this.llexport.AccessibleName = resources.GetString("llexport.AccessibleName");
+			this.llexport.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llexport.Anchor")));
+			this.llexport.AutoSize = ((bool)(resources.GetObject("llexport.AutoSize")));
+			this.llexport.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llexport.Dock")));
+			this.llexport.Enabled = ((bool)(resources.GetObject("llexport.Enabled")));
+			this.llexport.Font = ((System.Drawing.Font)(resources.GetObject("llexport.Font")));
+			this.llexport.Image = ((System.Drawing.Image)(resources.GetObject("llexport.Image")));
+			this.llexport.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llexport.ImageAlign")));
+			this.llexport.ImageIndex = ((int)(resources.GetObject("llexport.ImageIndex")));
+			this.llexport.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llexport.ImeMode")));
+			this.llexport.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llexport.LinkArea")));
+			this.llexport.Location = ((System.Drawing.Point)(resources.GetObject("llexport.Location")));
+			this.llexport.Name = "llexport";
+			this.llexport.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llexport.RightToLeft")));
+			this.llexport.Size = ((System.Drawing.Size)(resources.GetObject("llexport.Size")));
+			this.llexport.TabIndex = ((int)(resources.GetObject("llexport.TabIndex")));
+			this.llexport.TabStop = true;
+			this.llexport.Text = resources.GetString("llexport.Text");
+			this.llexport.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llexport.TextAlign")));
+			this.toolTip1.SetToolTip(this.llexport, resources.GetString("llexport.ToolTip"));
+			this.llexport.Visible = ((bool)(resources.GetObject("llexport.Visible")));
+			this.llexport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Export);
 			// 
 			// lbpatlife
 			// 
@@ -488,31 +518,16 @@ namespace SimPe.Plugin
 			this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
 			this.label3.Visible = ((bool)(resources.GetObject("label3.Visible")));
 			// 
-			// cbface
+			// sfd
 			// 
-			this.cbface.AccessibleDescription = resources.GetString("cbface.AccessibleDescription");
-			this.cbface.AccessibleName = resources.GetString("cbface.AccessibleName");
-			this.cbface.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbface.Anchor")));
-			this.cbface.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbface.Appearance")));
-			this.cbface.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbface.BackgroundImage")));
-			this.cbface.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbface.CheckAlign")));
-			this.cbface.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbface.Dock")));
-			this.cbface.Enabled = ((bool)(resources.GetObject("cbface.Enabled")));
-			this.cbface.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbface.FlatStyle")));
-			this.cbface.Font = ((System.Drawing.Font)(resources.GetObject("cbface.Font")));
-			this.cbface.Image = ((System.Drawing.Image)(resources.GetObject("cbface.Image")));
-			this.cbface.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbface.ImageAlign")));
-			this.cbface.ImageIndex = ((int)(resources.GetObject("cbface.ImageIndex")));
-			this.cbface.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbface.ImeMode")));
-			this.cbface.Location = ((System.Drawing.Point)(resources.GetObject("cbface.Location")));
-			this.cbface.Name = "cbface";
-			this.cbface.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbface.RightToLeft")));
-			this.cbface.Size = ((System.Drawing.Size)(resources.GetObject("cbface.Size")));
-			this.cbface.TabIndex = ((int)(resources.GetObject("cbface.TabIndex")));
-			this.cbface.Text = resources.GetString("cbface.Text");
-			this.cbface.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbface.TextAlign")));
-			this.toolTip1.SetToolTip(this.cbface, resources.GetString("cbface.ToolTip"));
-			this.cbface.Visible = ((bool)(resources.GetObject("cbface.Visible")));
+			this.sfd.Filter = resources.GetString("sfd.Filter");
+			this.sfd.Title = resources.GetString("sfd.Title");
+			// 
+			// toolTip1
+			// 
+			this.toolTip1.AutoPopDelay = 30000;
+			this.toolTip1.InitialDelay = 500;
+			this.toolTip1.ReshowDelay = 100;
 			// 
 			// cbskin
 			// 
@@ -539,43 +554,60 @@ namespace SimPe.Plugin
 			this.cbskin.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbskin.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbskin, resources.GetString("cbskin.ToolTip"));
 			this.cbskin.Visible = ((bool)(resources.GetObject("cbskin.Visible")));
+			this.cbskin.CheckedChanged += new System.EventHandler(this.cbskin_CheckedChanged);
 			// 
-			// llexport
+			// groupBox3
 			// 
-			this.llexport.AccessibleDescription = resources.GetString("llexport.AccessibleDescription");
-			this.llexport.AccessibleName = resources.GetString("llexport.AccessibleName");
-			this.llexport.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llexport.Anchor")));
-			this.llexport.AutoSize = ((bool)(resources.GetObject("llexport.AutoSize")));
-			this.llexport.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llexport.Dock")));
-			this.llexport.Enabled = ((bool)(resources.GetObject("llexport.Enabled")));
-			this.llexport.Font = ((System.Drawing.Font)(resources.GetObject("llexport.Font")));
-			this.llexport.Image = ((System.Drawing.Image)(resources.GetObject("llexport.Image")));
-			this.llexport.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llexport.ImageAlign")));
-			this.llexport.ImageIndex = ((int)(resources.GetObject("llexport.ImageIndex")));
-			this.llexport.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llexport.ImeMode")));
-			this.llexport.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llexport.LinkArea")));
-			this.llexport.Location = ((System.Drawing.Point)(resources.GetObject("llexport.Location")));
-			this.llexport.Name = "llexport";
-			this.llexport.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llexport.RightToLeft")));
-			this.llexport.Size = ((System.Drawing.Size)(resources.GetObject("llexport.Size")));
-			this.llexport.TabIndex = ((int)(resources.GetObject("llexport.TabIndex")));
-			this.llexport.TabStop = true;
-			this.llexport.Text = resources.GetString("llexport.Text");
-			this.llexport.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llexport.TextAlign")));
-			this.toolTip1.SetToolTip(this.llexport, resources.GetString("llexport.ToolTip"));
-			this.llexport.Visible = ((bool)(resources.GetObject("llexport.Visible")));
-			this.llexport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Export);
+			this.groupBox3.AccessibleDescription = resources.GetString("groupBox3.AccessibleDescription");
+			this.groupBox3.AccessibleName = resources.GetString("groupBox3.AccessibleName");
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox3.Anchor")));
+			this.groupBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox3.BackgroundImage")));
+			this.groupBox3.Controls.Add(this.lvskin);
+			this.groupBox3.Controls.Add(this.cbskin);
+			this.groupBox3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("groupBox3.Dock")));
+			this.groupBox3.Enabled = ((bool)(resources.GetObject("groupBox3.Enabled")));
+			this.groupBox3.Font = ((System.Drawing.Font)(resources.GetObject("groupBox3.Font")));
+			this.groupBox3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("groupBox3.ImeMode")));
+			this.groupBox3.Location = ((System.Drawing.Point)(resources.GetObject("groupBox3.Location")));
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("groupBox3.RightToLeft")));
+			this.groupBox3.Size = ((System.Drawing.Size)(resources.GetObject("groupBox3.Size")));
+			this.groupBox3.TabIndex = ((int)(resources.GetObject("groupBox3.TabIndex")));
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = resources.GetString("groupBox3.Text");
+			this.toolTip1.SetToolTip(this.groupBox3, resources.GetString("groupBox3.ToolTip"));
+			this.groupBox3.Visible = ((bool)(resources.GetObject("groupBox3.Visible")));
 			// 
-			// sfd
+			// lvskin
 			// 
-			this.sfd.Filter = resources.GetString("sfd.Filter");
-			this.sfd.Title = resources.GetString("sfd.Title");
+			this.lvskin.AccessibleDescription = resources.GetString("lvskin.AccessibleDescription");
+			this.lvskin.AccessibleName = resources.GetString("lvskin.AccessibleName");
+			this.lvskin.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lvskin.Alignment")));
+			this.lvskin.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lvskin.Anchor")));
+			this.lvskin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lvskin.BackgroundImage")));
+			this.lvskin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.lvskin.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lvskin.Dock")));
+			this.lvskin.Enabled = ((bool)(resources.GetObject("lvskin.Enabled")));
+			this.lvskin.Font = ((System.Drawing.Font)(resources.GetObject("lvskin.Font")));
+			this.lvskin.HideSelection = false;
+			this.lvskin.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lvskin.ImeMode")));
+			this.lvskin.LabelWrap = ((bool)(resources.GetObject("lvskin.LabelWrap")));
+			this.lvskin.LargeImageList = this.iskin;
+			this.lvskin.Location = ((System.Drawing.Point)(resources.GetObject("lvskin.Location")));
+			this.lvskin.MultiSelect = false;
+			this.lvskin.Name = "lvskin";
+			this.lvskin.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lvskin.RightToLeft")));
+			this.lvskin.Size = ((System.Drawing.Size)(resources.GetObject("lvskin.Size")));
+			this.lvskin.TabIndex = ((int)(resources.GetObject("lvskin.TabIndex")));
+			this.lvskin.Text = resources.GetString("lvskin.Text");
+			this.toolTip1.SetToolTip(this.lvskin, resources.GetString("lvskin.ToolTip"));
+			this.lvskin.Visible = ((bool)(resources.GetObject("lvskin.Visible")));
 			// 
-			// toolTip1
+			// iskin
 			// 
-			this.toolTip1.AutoPopDelay = 30000;
-			this.toolTip1.InitialDelay = 500;
-			this.toolTip1.ReshowDelay = 100;
+			this.iskin.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+			this.iskin.ImageSize = ((System.Drawing.Size)(resources.GetObject("iskin.ImageSize")));
+			this.iskin.TransparentColor = System.Drawing.Color.Transparent;
 			// 
 			// Surgery
 			// 
@@ -587,13 +619,12 @@ namespace SimPe.Plugin
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
-			this.Controls.Add(this.cbskin);
-			this.Controls.Add(this.cbface);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.lv);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.groupBox3);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -610,6 +641,7 @@ namespace SimPe.Plugin
 			this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
+			this.groupBox3.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -669,16 +701,98 @@ namespace SimPe.Plugin
 			lv.Items.Add(lvi);
 		}
 
+		void LoadSkins()
+		{
+			WaitingScreen.Wait();
+			try 
+			{
+				iskin.Images.Add(new Bitmap(iskin.ImageSize.Width, iskin.ImageSize.Height));
+				ListViewItem lvia = new ListViewItem("* from Archetype");
+				lvia.ImageIndex = 0;
+				this.lvskin.Items.Add(lvia);
+				lvia.Selected = true;
+
+				FileTable.FileIndex.Load();
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.GZPS, true);
+				ArrayList families = new ArrayList();
+				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
+				{
+					SimPe.PackedFiles.Wrapper.Cpf skin = new SimPe.PackedFiles.Wrapper.Cpf();
+					skin.ProcessData(item);
+
+					if ((skin.GetSaveItem("override0subset").StringValue=="top") && (skin.GetSaveItem("type").StringValue=="skin") && ((skin.GetSaveItem("category").UIntegerValue&(uint)Data.SkinCategories.Skin)==(uint)Data.SkinCategories.Skin))
+					{
+						WaitingScreen.UpdateMessage(skin.GetSaveItem("name").StringValue);
+
+						if (families.Contains(skin.GetSaveItem("skintone").StringValue)) continue;
+						families.Add(skin.GetSaveItem("skintone").StringValue);
+
+						SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] idr = FileTable.FileIndex.FindFile(0xAC506764, item.FileDescriptor.Group, item.FileDescriptor.LongInstance);
+						if (idr.Length>0) 
+						{
+							SimPe.Plugin.RefFile reffile = new RefFile(null);
+							reffile.ProcessData(idr[0]);
+
+							ListViewItem lvi = new ListViewItem(skin.GetSaveItem("name").StringValue);
+							lvi.Tag = skin.GetSaveItem("skintone").StringValue;
+							foreach (Interfaces.Files.IPackedFileDescriptor pfd in reffile.Items) 
+							{								
+								if (pfd.Type == Data.MetaData.TXMT) 
+								{
+									SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] txmts = FileTable.FileIndex.FindFile(pfd);
+									if (txmts.Length>0) 
+									{
+										SimPe.Plugin.Rcol rcol = new GenericRcol(null, false);
+										rcol.ProcessData(txmts[0]);
+
+										MaterialDefinition md = (MaterialDefinition)rcol.Blocks[0];
+										string txtrname = md.FindProperty("stdMatBaseTextureName").Value+"_txtr";
+
+										SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem txtri = FileTable.FileIndex.FindFileByName(txtrname, Data.MetaData.TXTR, Data.MetaData.LOCAL_GROUP, true);
+										if (txtri!=null) 
+										{
+											rcol = new GenericRcol(null, false);
+											rcol.ProcessData(txtri);
+
+											ImageData id = (ImageData)rcol.Blocks[0];
+											MipMap mm = id.GetLargestTexture(iskin.ImageSize);
+
+											if (mm!=null) 
+											{
+												iskin.Images.Add(ImageLoader.Preview(mm.Texture, iskin.ImageSize));
+												lvi.ImageIndex = iskin.Images.Count-1;
+											}
+										}
+									
+									}
+								}
+							} //foreach reffile.Items
+							
+							lvskin.Items.Add(lvi);
+						} //if idr
+					}
+				} //foreach items
+			} 
+			finally 
+			{
+				WaitingScreen.Stop();
+			}
+		}
+
 		SimPe.Interfaces.Files.IPackedFileDescriptor pfd;
 		Interfaces.IProviderRegistry prov;
+		SimPe.Interfaces.Files.IPackageFile ngbh;
 		public Interfaces.Plugin.IToolResult Execute(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package, Interfaces.IProviderRegistry prov) 
 		{
 			this.Cursor = Cursors.WaitCursor;
 			
 			this.pfd = null;
 			this.prov = prov;
+			this.ngbh = package;
 			ilist.Images.Clear();
 			lv.Items.Clear();
+
+			
 
 			Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE);
 			foreach(Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
@@ -709,11 +823,29 @@ namespace SimPe.Plugin
 		{
 			if ((pbpatient.Image==null) || (pbarche.Image==null)) return;
 			
-			if ((!this.cbface.Checked) && (!this.cbskin.Checked)) PractiseSurgery();
 
-			if (this.cbskin.Checked) SkinToneSurgery();
-			if (this.cbface.Checked) FaceSurgery();
-			Close();
+			SimPe.Packages.File patient = new SimPe.Packages.File(spatient.CharacterFileName);
+			SimPe.Packages.File archetype = new SimPe.Packages.File(sarche.CharacterFileName);
+			SimPe.Packages.GeneratableFile newpackage = null;
+			PlasticSurgery ps = new PlasticSurgery(ngbh, patient, spatient, archetype, sarche);
+
+			if (!this.cbskin.Checked) newpackage = ps.CloneSim();
+
+			if (this.cbskin.Checked) 
+			{
+				if (lvskin.SelectedItems.Count==0) return;
+				string skin = (string)lvskin.SelectedItems[0].Tag;
+				if (skin==null) newpackage = ps.CloneSkinTone();
+				else newpackage = ps.CloneSkinTone(skin);
+			}
+			
+
+			if (newpackage != null) 
+			{
+				newpackage.Save(spatient.CharacterFileName);
+				prov.SimNameProvider.StoredData = null;
+				Close();
+			}
 		}
 
 		private void SelectSim(object sender, System.EventArgs e)
@@ -748,6 +880,9 @@ namespace SimPe.Plugin
 		{
 			if (lv.SelectedItems.Count==0) return;
 			if (lv.SelectedItems[0].ImageIndex>=0) this.pbarche.Image = ilist.Images[lv.SelectedItems[0].ImageIndex];
+
+			iskin.Images[0] = ImageLoader.Preview(pbarche.Image, iskin.ImageSize);
+			lvskin.Refresh();
 
 			this.lbarchname.Text = lv.SelectedItems[0].Text;
 			
@@ -1024,6 +1159,11 @@ namespace SimPe.Plugin
 				Helper.ExceptionMessage("", ex);
 			}
 			
+		}
+
+		private void cbskin_CheckedChanged(object sender, System.EventArgs e)
+		{
+			lvskin.Enabled = this.cbskin.Checked;
 		}
 	}
 }

@@ -38,14 +38,14 @@ namespace SimPe
 		}
 
 		#region Fix
-		public static void FixPackage(string flname, string modelname)
+		public static void FixPackage(string flname, string modelname, FixVersion ver)
 		{
 			if (System.IO.File.Exists(flname))
 			{
 				SimPe.Packages.GeneratableFile pkg = new SimPe.Packages.GeneratableFile(flname);
 
 				System.Collections.Hashtable map = RenameForm.GetNames((modelname.Trim()!=""), pkg, null, modelname);
-				FixObject fo = new FixObject(pkg);
+				FixObject fo = new FixObject(pkg, ver);
 				fo.Fix(map, false);
 				fo.CleanUp();
 				fo.FixGroup();
@@ -61,6 +61,7 @@ namespace SimPe
 			string modelname = "";
 			string prefix = "";
 			string package = "";
+			FixVersion ver = FixVersion.UniversityReady2;
 
 			#region Parse Arguments
 			for (int i=0; i<args.Length; i++) 
@@ -91,10 +92,20 @@ namespace SimPe
 						continue;
 					}
 				}
+
+				if (args[i]=="-fixversion") 
+				{
+					if (args.Length>i+1) 
+					{
+						if (args[++i].Trim().ToLower()=="uni1") ver = FixVersion.UniversityReady;
+						else if (args[++i].Trim().ToLower()=="uni2") ver = FixVersion.UniversityReady2;
+						continue;
+					}
+				}
 			}
 			#endregion
 
-			FixPackage(package, prefix+modelname);
+			FixPackage(package, prefix+modelname, ver);
 			return true;
 		}
 		#endregion

@@ -199,11 +199,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Elements.af.resx"
-                    DependentUpon = "Elements.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "Elements.de.resx"
                     DependentUpon = "Elements.cs"
                     BuildAction = "EmbeddedResource"
@@ -222,12 +217,7 @@
                     RelPath = "Elements2.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Elements2.af.resx"
-                    DependentUpon = "Elements2.cs"
-                    BuildAction = "EmbeddedResource"
-                />
+                />  
                 <File
                     RelPath = "Elements2.de.resx"
                     DependentUpon = "Elements2.cs"

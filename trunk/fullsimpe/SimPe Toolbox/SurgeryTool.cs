@@ -57,10 +57,11 @@ namespace SimPe.Plugin
 			
 		}
 
+		Surgery surg;
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
 		{
 			if (package==null) return new Plugin.ToolResult(false, false);
-			Surgery surg = new Surgery();
+			if (surg==null) surg = new Surgery();
 			surg.Text = "Sims Surgery Tool";
 
 			return surg.Execute(ref pfd, ref package, prov);

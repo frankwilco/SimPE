@@ -166,6 +166,7 @@ namespace SimPe.Packages
 		public static StreamItem GetStreamItem(string filename, bool createnew) 
 		{
 			InitTable();
+			if (filename==null) filename="";
 			filename = filename.Trim().ToLower();
 			StreamItem si = (StreamItem)streams[filename];
 			if ((si==null) && createnew)
@@ -214,8 +215,10 @@ namespace SimPe.Packages
 			else 
 			{
 				si.SetFileAccess(fa);
+				
 			}
 
+			si.FileStream.Seek(0, SeekOrigin.Begin);
 			return si;
 		}
 
@@ -249,6 +252,18 @@ namespace SimPe.Packages
 				catch {}
 			}
 			return false;
+		}
+
+		/// <summary>
+		/// Closes all opened Streams
+		/// </summary>
+		public static void CloseAll()
+		{
+			InitTable();
+			foreach (StreamItem si in streams.Values) 
+			{
+				si.Close();
+			}
 		}
 	}
 }

@@ -167,12 +167,7 @@
                     RelPath = "Elements2.de-DE.resx"
                     DependentUpon = "Elements2.cs"
                     BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Elements2.div.resx"
-                    DependentUpon = "Elements2.cs"
-                    BuildAction = "EmbeddedResource"
-                />
+                />                
                 <File
                     RelPath = "Elements2.resx"
                     DependentUpon = "Elements2.cs"

@@ -1128,7 +1128,7 @@ namespace SimPe.Plugin
 
 					try 
 					{
-						SimPe.Commandline.FixPackage(filename, mname);
+						SimPe.Commandline.FixPackage(filename, mname, FixVersion.UniversityReady2);
 					} 
 					catch (Exception ex)
 					{

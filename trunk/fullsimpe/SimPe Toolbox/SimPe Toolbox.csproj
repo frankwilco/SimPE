@@ -318,6 +318,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "PlasticSurgery.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Search.cs"
                     SubType = "Form"
                     BuildAction = "Compile"

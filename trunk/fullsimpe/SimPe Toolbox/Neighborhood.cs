@@ -360,21 +360,34 @@ namespace SimPe.Plugin
 		{
 			if (lv.SelectedItems.Count<=0) return;
 
+			SimPe.Packages.StreamFactory.CloseAll();
 			string path = System.IO.Path.GetDirectoryName(lv.SelectedItems[0].SubItems[1].Text).Trim();
 			
 			//if a File in the current Neighborhood is opened - close it!
 			CloseIfOpened(path);
 
 			this.Cursor = Cursors.WaitCursor;
-			//create a Backup Folder
-			string name = System.IO.Path.GetFileName(path);
+			WaitingScreen.Wait();
+			try 
+			{
+				//create a Backup Folder
+				string name = System.IO.Path.GetFileName(path);
 			
-			string backuppath = System.IO.Path.Combine(NeighborhoodTool.WindowsRegistry.BackupFolder, name);
-			backuppath = System.IO.Path.Combine(backuppath, DateTime.Now.ToString().Replace("\\", "/").Replace(":", "-"));
-			if (!System.IO.Directory.Exists(backuppath)) System.IO.Directory.CreateDirectory(backuppath);
+				string backuppath = System.IO.Path.Combine(NeighborhoodTool.WindowsRegistry.BackupFolder, name);
+				backuppath = System.IO.Path.Combine(backuppath, DateTime.Now.ToString().Replace("\\", "/").Replace(":", "-"));
+				if (!System.IO.Directory.Exists(backuppath)) System.IO.Directory.CreateDirectory(backuppath);
 
-			Helper.CopyDirectory(path, backuppath, true);
-			this.Cursor = Cursors.Default;
+				Helper.CopyDirectory(path, backuppath, true);
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage("", ex);
+			}
+			finally 
+			{
+				WaitingScreen.Stop();
+				this.Cursor = Cursors.Default;
+			}
 		}
 
 		private void NgbRestoreBackup(object sender, System.EventArgs e)

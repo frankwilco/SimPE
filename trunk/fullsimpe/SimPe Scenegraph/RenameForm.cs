@@ -19,6 +19,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.TextBox tbname;
 		private System.Windows.Forms.LinkLabel llname;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.CheckBox cbv2;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -67,6 +68,7 @@ namespace SimPe.Plugin
 			this.tbname = new System.Windows.Forms.TextBox();
 			this.llname = new System.Windows.Forms.LinkLabel();
 			this.button1 = new System.Windows.Forms.Button();
+			this.cbv2 = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// lv
@@ -146,10 +148,20 @@ namespace SimPe.Plugin
 			this.button1.Text = "OK";
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
+			// cbv2
+			// 
+			this.cbv2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbv2.Location = new System.Drawing.Point(16, 304);
+			this.cbv2.Name = "cbv2";
+			this.cbv2.Size = new System.Drawing.Size(280, 24);
+			this.cbv2.TabIndex = 6;
+			this.cbv2.Text = "University Ready v2 (sug. by Numenor)";
+			// 
 			// RenameForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
 			this.ClientSize = new System.Drawing.Size(712, 332);
+			this.Controls.Add(this.cbv2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.llname);
 			this.Controls.Add(this.tbname);
@@ -262,22 +274,28 @@ namespace SimPe.Plugin
 		}
 
 		SimPe.Interfaces.Files.IPackageFile package;
-		public static Hashtable Execute(SimPe.Interfaces.Files.IPackageFile package, bool uniquename) 
+		public static Hashtable Execute(SimPe.Interfaces.Files.IPackageFile package, bool uniquename, ref FixVersion ver) 
 		{						
 			RenameForm rf = new RenameForm();
 			rf.ok = false;
 			rf.package = package;
+			rf.cbv2.Checked = (ver==FixVersion.UniversityReady2);
 
 			string old = Hashes.StripHashFromName(FindMainOldName(package).ToLower().Trim());
 			if (old.IndexOf("_cres")==old.Length-5) old = old.Substring(0, old.Length-5);
-			if (uniquename) rf.tbname.Text = old+"__"+System.Guid.NewGuid().ToString();
+			if (uniquename) rf.tbname.Text = old+"-"+System.Guid.NewGuid().ToString();
 			else rf.tbname.Text = old;
 
 			GetNames(uniquename, package, rf.lv, rf.tbname.Text);
 			rf.ShowDialog();
 
+
 			if (rf.ok)
+			{
+				if (rf.cbv2.Checked) ver = FixVersion.UniversityReady2;
+				else ver = FixVersion.UniversityReady;
 				return rf.GetReplacementMap();
+			}
 			else 
 				return null;
 		}

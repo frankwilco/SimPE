@@ -435,7 +435,7 @@ namespace SimPe.Packages
 		/// </summary>
 		/// <param name="position">
 		/// the number of the fileindex you want to load from the File (0-based). 
-		/// This Parameter will only affect the position of the Item within 
+		/// This Parameter will only effect the position of the Item within 
 		/// the File:fileindex Attribute. The data will be loaded from the current 
 		/// position of the File:reader.
 		/// </param>
