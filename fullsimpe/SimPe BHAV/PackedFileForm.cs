@@ -4750,8 +4750,8 @@ namespace SimPe.Plugin
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
-			this.Controls.Add(this.TtabPanel);
 			this.Controls.Add(this.wrapperPanel);
+			this.Controls.Add(this.TtabPanel);
 			this.Controls.Add(this.bconPanel);
 			this.Controls.Add(this.pnGlob);
 			this.Controls.Add(this.ObjfPanel);
@@ -5065,6 +5065,7 @@ namespace SimPe.Plugin
 		{
 			llcommit.Enabled = false;
 			lldel.Enabled = false;
+			SetReadOnly(true);
 			try 
 			{
 				internalchg = true;
@@ -5077,6 +5078,8 @@ namespace SimPe.Plugin
 				DrawConnectors();
 				llcommit.Enabled = (csel!=-1);
 				lldel.Enabled = (csel!=-1);
+
+				SetReadOnly(!lldel.Enabled);
 
 				//load referenced Bhav
 				Bhav b = null;
@@ -6494,6 +6497,40 @@ namespace SimPe.Plugin
 				else label45.Text = "lines down";
 			} 
 			catch {}
+		}
+
+		internal void SetReadOnly(bool state) 
+		{
+			this.tbo0.ReadOnly = state;
+			this.tbo1.ReadOnly = state;
+			this.tbo2.ReadOnly = state;
+			this.tbo3.ReadOnly = state;
+			this.tbo4.ReadOnly = state;
+			this.tbo5.ReadOnly = state;
+			this.tbo6.ReadOnly = state;
+			this.tbo7.ReadOnly = state;
+			
+			this.tbu0.ReadOnly = state;
+			this.tbu1.ReadOnly = state;
+			this.tbu2.ReadOnly = state;
+			this.tbu3.ReadOnly = state;
+			this.tbu4.ReadOnly = state;
+			this.tbu5.ReadOnly = state;
+			this.tbu6.ReadOnly = state;
+			this.tbu7.ReadOnly = state;
+
+			tbopcode.ReadOnly = state;
+			tbres.ReadOnly = state;
+
+			tba1.Enabled = !state;
+			tba2.Enabled = !state;
+
+			tbmv.ReadOnly = state;
+
+			btwiz.Enabled = !state;
+			button4.Enabled = !state;
+
+			llmove.Enabled = !state;
 		}
 	}
 }

@@ -782,7 +782,7 @@ namespace SimPe.Plugin
 			{
 				WaitingScreen.Wait();
 				SimPe.FileTable.FileIndex.Load();
-				WaitingScreen.Stop();
+				WaitingScreen.Stop(this);
 
 				lblist.Items.Clear();
 				SimPe.Packages.PackedFileDescriptor pfd = new SimPe.Packages.PackedFileDescriptor();

@@ -221,7 +221,7 @@ namespace SimPe.Packages
 			Byte cc2 = 0;
 			Byte cc3 = 0;
 			int source;
-			System.IO.StreamWriter sw = new System.IO.StreamWriter(@"c:\decomp1.txt");
+			//System.IO.StreamWriter sw = new System.IO.StreamWriter(@"c:\decomp1.txt");
 			try 
 			{
 				while ((index<data.Length) && (data[index] < 0xfc))
@@ -259,7 +259,7 @@ namespace SimPe.Packages
 						copyoffset = 0;				
 					}
 
-					sw.WriteLine("pc="+plaincount+", cc="+copycount+", co="+copyoffset+", id="+cc);
+					//sw.WriteLine("pc="+plaincount+", cc="+copycount+", co="+copyoffset+", id="+cc);
 					for (int i=0; i<plaincount; i++) uncdata[uncindex++] = data[index++];
 
 					source = uncindex - copyoffset;	
@@ -271,7 +271,7 @@ namespace SimPe.Packages
 			{
 				Helper.ExceptionMessage("", ex);
 			}
-			sw.Close();
+			//sw.Close();
 
 			if (index<data.Length) 
 			{

@@ -39,6 +39,18 @@ namespace SimPe.Packages
 		public ExtractableFile(string flname) : base(flname) {}
 
 		/// <summary>
+		/// Init the Clone for this Package
+		/// </summary>
+		/// <returns>An INstance of this Class</returns>
+		protected override Interfaces.Files.IPackageFile NewCloneBase() 
+		{
+			ExtractableFile fl = new ExtractableFile((BinaryReader)null);
+			fl.header = this.header;
+			
+			return fl;
+		}
+
+		/// <summary>
 		/// Extracts the Content of a Packed File and returs them as a MemoryStream
 		/// </summary>
 		/// <param name="pfd">The PackedFileDescriptor</param>

@@ -329,7 +329,7 @@ namespace SimPe.Plugin
 			{
 				uname = uname.Replace(" ", "-").Replace("_", "-").Replace("~", "-").Replace("!", ".").Replace("#", ".").Replace("[", "(");
 				DateTime now = DateTime.Now;
-				string time = now.Date.ToShortDateString()+"-"+now.Hour.ToString("x")+now.Minute.ToString("x")+now.Second.ToString("x");
+				string time = now.Day.ToString()+"."+now.Month.ToString()+"."+now.Year.ToString()+"-"+now.Hour.ToString("x")+now.Minute.ToString("x")+now.Second.ToString("x");
 				uname += "-"+time;				
 			}
 	

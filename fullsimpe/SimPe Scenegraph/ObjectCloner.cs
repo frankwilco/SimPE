@@ -190,7 +190,7 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
-		/// Clone a InGane Object based on the relations of the RCOL Files
+		/// Clone a InGame Object based on the relations of the RCOL Files
 		/// </summary>
 		/// <param name="modelnames">The Name of the Model</param>
 		/// <param name="loadparent">true if you want to load Parent Objects</param>
@@ -210,13 +210,24 @@ namespace SimPe.Plugin
 			if (modelnames==null) return;
 
 			SimPe.FileTable.FileIndex.Load();
+			WaitingScreen.UpdateMessage("Walking Scenegraph");
 			Scenegraph sg = new Scenegraph(modelnames, exclude);
+			WaitingScreen.UpdateMessage("Collect Slave TXMTs");
+			sg.AddSlaveTxmts(sg.GetSlaveSubsets());
+			
+			WaitingScreen.UpdateMessage("Building Package");
+			sg.BuildPackage(package);
+			WaitingScreen.UpdateMessage("Collect MMAT Files");
+			sg.AddMaterialOverrides(package, onlydefault, true, exception);
+			WaitingScreen.UpdateMessage("Collect Slave TXMTs");
+			Scenegraph.AddSlaveTxmts(package, Scenegraph.GetSlaveSubsets(package));
 			
 
-			sg.BuildPackage(package);
-			sg.AddMaterialOverrides(package, onlydefault, true, exception);
-
-			if (updateguid) this.UpdateMMATGuids(this.GetGuidList(), this.GetPrimaryGuid());			
+			if (updateguid) 
+			{
+				WaitingScreen.UpdateMessage("Fixing MMAT Files");
+				this.UpdateMMATGuids(this.GetGuidList(), this.GetPrimaryGuid());			
+			}
 		}
 	}
 }

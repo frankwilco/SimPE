@@ -1657,7 +1657,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get
 			{
-				return "GUID=0x"+Helper.HexString(this.SimId)+", Name="+this.SimName+" "+this.SimFamilyName+", Age="+this.CharacterDescription.LifeSection.ToString()+", Job="+this.CharacterDescription.Career.ToString()+", Zodiac="+this.CharacterDescription.ZodiacSign.ToString()+", Major="+this.University.Major+", Grade="+this.CharacterDescription.Grade.ToString();
+				return "GUID=0x"+Helper.HexString(this.SimId)+", Filename="+this.CharacterFileName+", Name="+this.SimName+" "+this.SimFamilyName+", Age="+this.CharacterDescription.LifeSection.ToString()+", Job="+this.CharacterDescription.Career.ToString()+", Zodiac="+this.CharacterDescription.ZodiacSign.ToString()+", Major="+this.University.Major+", Grade="+this.CharacterDescription.Grade.ToString();
 			}
 		}
 
@@ -1711,6 +1711,19 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				if (addonmajor==null) addonmajor = Data.Alias.LoadFromXml(System.IO.Path.Combine(Helper.SimPeDataPath, "additional_majors.xml"));
 				return addonmajor;
+			}
+		}
+
+		static SimPe.Interfaces.IAlias[] addonschool;
+		/// <summary>
+		/// Returns a List of Userdefined AddOnCareers
+		/// </summary>
+		public static SimPe.Interfaces.IAlias[] AddonSchools
+		{
+			get 
+			{
+				if (addonschool==null) addonschool = Data.Alias.LoadFromXml(System.IO.Path.Combine(Helper.SimPeDataPath, "additional_schools.xml"));
+				return addonschool;
 			}
 		}
 		#endregion
