@@ -68,11 +68,13 @@ namespace SimPe.Plugin
 		{
 			get
 			{
-				string str = "references=";
+				string str = "filename=";
+				str += this.FileName;
+				str += ", references=";
 				Hashtable map = this.ReferenceChains;
 				foreach (string s in map.Keys) 
 				{
-					str += s+":";
+					str += s+": ";
 					foreach (Interfaces.Files.IPackedFileDescriptor pfd in (ArrayList)map[s])
 					{
 						str += pfd.Filename+" ("+pfd.ToString()+") | ";						

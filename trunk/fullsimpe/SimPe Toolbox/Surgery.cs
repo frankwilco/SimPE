@@ -54,6 +54,8 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ListView lvskin;
 		private System.Windows.Forms.ImageList iskin;
 		private System.Windows.Forms.CheckBox cbface;
+		private System.Windows.Forms.CheckBox cbmakeup;
+		private System.Windows.Forms.CheckBox cbeye;
 		private System.ComponentModel.IContainer components;
 
 		public Surgery()
@@ -95,6 +97,8 @@ namespace SimPe.Plugin
 			this.button1 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.cbeye = new System.Windows.Forms.CheckBox();
+			this.cbmakeup = new System.Windows.Forms.CheckBox();
 			this.llexport = new System.Windows.Forms.LinkLabel();
 			this.lbpatlife = new System.Windows.Forms.Label();
 			this.lbpatname = new System.Windows.Forms.Label();
@@ -209,6 +213,8 @@ namespace SimPe.Plugin
 			this.groupBox1.AccessibleName = resources.GetString("groupBox1.AccessibleName");
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox1.Anchor")));
 			this.groupBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox1.BackgroundImage")));
+			this.groupBox1.Controls.Add(this.cbeye);
+			this.groupBox1.Controls.Add(this.cbmakeup);
 			this.groupBox1.Controls.Add(this.llexport);
 			this.groupBox1.Controls.Add(this.lbpatlife);
 			this.groupBox1.Controls.Add(this.lbpatname);
@@ -230,6 +236,60 @@ namespace SimPe.Plugin
 			this.groupBox1.Text = resources.GetString("groupBox1.Text");
 			this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
 			this.groupBox1.Visible = ((bool)(resources.GetObject("groupBox1.Visible")));
+			// 
+			// cbeye
+			// 
+			this.cbeye.AccessibleDescription = resources.GetString("cbeye.AccessibleDescription");
+			this.cbeye.AccessibleName = resources.GetString("cbeye.AccessibleName");
+			this.cbeye.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbeye.Anchor")));
+			this.cbeye.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbeye.Appearance")));
+			this.cbeye.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbeye.BackgroundImage")));
+			this.cbeye.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbeye.CheckAlign")));
+			this.cbeye.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbeye.Dock")));
+			this.cbeye.Enabled = ((bool)(resources.GetObject("cbeye.Enabled")));
+			this.cbeye.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbeye.FlatStyle")));
+			this.cbeye.Font = ((System.Drawing.Font)(resources.GetObject("cbeye.Font")));
+			this.cbeye.Image = ((System.Drawing.Image)(resources.GetObject("cbeye.Image")));
+			this.cbeye.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbeye.ImageAlign")));
+			this.cbeye.ImageIndex = ((int)(resources.GetObject("cbeye.ImageIndex")));
+			this.cbeye.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbeye.ImeMode")));
+			this.cbeye.Location = ((System.Drawing.Point)(resources.GetObject("cbeye.Location")));
+			this.cbeye.Name = "cbeye";
+			this.cbeye.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbeye.RightToLeft")));
+			this.cbeye.Size = ((System.Drawing.Size)(resources.GetObject("cbeye.Size")));
+			this.cbeye.TabIndex = ((int)(resources.GetObject("cbeye.TabIndex")));
+			this.cbeye.Text = resources.GetString("cbeye.Text");
+			this.cbeye.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbeye.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbeye, resources.GetString("cbeye.ToolTip"));
+			this.cbeye.Visible = ((bool)(resources.GetObject("cbeye.Visible")));
+			this.cbeye.CheckedChanged += new System.EventHandler(this.cbskin_CheckedChanged);
+			// 
+			// cbmakeup
+			// 
+			this.cbmakeup.AccessibleDescription = resources.GetString("cbmakeup.AccessibleDescription");
+			this.cbmakeup.AccessibleName = resources.GetString("cbmakeup.AccessibleName");
+			this.cbmakeup.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbmakeup.Anchor")));
+			this.cbmakeup.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbmakeup.Appearance")));
+			this.cbmakeup.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbmakeup.BackgroundImage")));
+			this.cbmakeup.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbmakeup.CheckAlign")));
+			this.cbmakeup.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbmakeup.Dock")));
+			this.cbmakeup.Enabled = ((bool)(resources.GetObject("cbmakeup.Enabled")));
+			this.cbmakeup.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbmakeup.FlatStyle")));
+			this.cbmakeup.Font = ((System.Drawing.Font)(resources.GetObject("cbmakeup.Font")));
+			this.cbmakeup.Image = ((System.Drawing.Image)(resources.GetObject("cbmakeup.Image")));
+			this.cbmakeup.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbmakeup.ImageAlign")));
+			this.cbmakeup.ImageIndex = ((int)(resources.GetObject("cbmakeup.ImageIndex")));
+			this.cbmakeup.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbmakeup.ImeMode")));
+			this.cbmakeup.Location = ((System.Drawing.Point)(resources.GetObject("cbmakeup.Location")));
+			this.cbmakeup.Name = "cbmakeup";
+			this.cbmakeup.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbmakeup.RightToLeft")));
+			this.cbmakeup.Size = ((System.Drawing.Size)(resources.GetObject("cbmakeup.Size")));
+			this.cbmakeup.TabIndex = ((int)(resources.GetObject("cbmakeup.TabIndex")));
+			this.cbmakeup.Text = resources.GetString("cbmakeup.Text");
+			this.cbmakeup.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbmakeup.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbmakeup, resources.GetString("cbmakeup.ToolTip"));
+			this.cbmakeup.Visible = ((bool)(resources.GetObject("cbmakeup.Visible")));
+			this.cbmakeup.CheckedChanged += new System.EventHandler(this.cbskin_CheckedChanged);
 			// 
 			// llexport
 			// 
@@ -401,6 +461,7 @@ namespace SimPe.Plugin
 			this.cbface.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbface.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbface, resources.GetString("cbface.ToolTip"));
 			this.cbface.Visible = ((bool)(resources.GetObject("cbface.Visible")));
+			this.cbface.CheckedChanged += new System.EventHandler(this.cbskin_CheckedChanged);
 			// 
 			// groupBox2
 			// 
@@ -835,15 +896,31 @@ namespace SimPe.Plugin
 			this.pfd = null;
 			this.prov = prov;
 			this.ngbh = package;
+
+			this.pbarche.Image = null;
+			this.pbpatient.Image = null;
+
+			this.lbpatlife.Text = "Lifestage";
+			this.lbpatname.Text = "Name";
+
+			this.lbarchlife.Text = "Lifestage";
+			this.lbarchname.Text = "Name";
+
+			this.spatient = null;
+			this.sarche = null;
+
+			button1.Enabled = CanDo();
+
 			ilist.Images.Clear();
 			lv.Items.Clear();
 
 			
 
 			Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE);
+			WaitingScreen.Wait();
 			foreach(Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
 			{
-				WaitingScreen.Wait();
+				
 				PackedFiles.Wrapper.SDesc sdesc = new SimPe.PackedFiles.Wrapper.SDesc(prov.SimNameProvider, prov.SimFamilynameProvider, null);
 				sdesc.ProcessData(spfd, package);
 				
@@ -858,7 +935,9 @@ namespace SimPe.Plugin
 			button1.Enabled = false;
 			if (lv.Items.Count>0) lv.Items[0].Selected = true;
 
-			WaitingScreen.Stop();
+					
+			
+			WaitingScreen.Stop(this);
 			ShowDialog();
 
 			if (this.pfd!=null) pfd = this.pfd;
@@ -867,7 +946,7 @@ namespace SimPe.Plugin
 
 		private void Open(object sender, System.EventArgs e)
 		{
-			if ((pbpatient.Image==null) || (pbarche.Image==null)) return;
+			if (!CanDo())  return;
 			
 
 			SimPe.Packages.File patient = new SimPe.Packages.File(spatient.CharacterFileName);
@@ -875,7 +954,7 @@ namespace SimPe.Plugin
 			SimPe.Packages.GeneratableFile newpackage = null;
 			PlasticSurgery ps = new PlasticSurgery(ngbh, patient, spatient, archetype, sarche);
 
-			if (!this.cbskin.Checked && !this.cbface.Checked) newpackage = ps.CloneSim();
+			if (!this.cbskin.Checked && !this.cbface.Checked && !this.cbmakeup.Checked && !this.cbeye.Checked) newpackage = ps.CloneSim();
 
 			if (this.cbskin.Checked) 
 			{
@@ -889,6 +968,18 @@ namespace SimPe.Plugin
 			{
 				if (this.cbskin.Checked) ps = new PlasticSurgery(ngbh, newpackage, spatient, archetype, sarche);
 				newpackage = ps.CloneFace();
+			}
+
+			if (this.cbmakeup.Checked) 
+			{
+				if ((this.cbskin.Checked) || (this.cbface.Checked)) ps = new PlasticSurgery(ngbh, newpackage, spatient, archetype, sarche);
+				newpackage = ps.CloneMakeup(false, true);
+			}
+
+			if (this.cbeye.Checked) 
+			{
+				if ((this.cbskin.Checked) || (this.cbface.Checked) || (this.cbmakeup.Checked)) ps = new PlasticSurgery(ngbh, newpackage, spatient, archetype, sarche);
+				newpackage = ps.CloneMakeup(true, false);
 			}
 			
 
@@ -1033,6 +1124,30 @@ namespace SimPe.Plugin
 							Interfaces.Files.IPackedFile file = source.Read(pfd);
 							pfd.UserData = file.UncompressedData;
 							patient.Add(pfd);
+
+							if ((pfd.Type == Data.MetaData.GZPS) || (pfd.Type == 0xAC598EAC)) //property set and 3IDR
+							{
+								SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
+								cpf.ProcessData(pfd, patient);
+
+								SimPe.PackedFiles.Wrapper.CpfItem ci = new SimPe.PackedFiles.Wrapper.CpfItem();
+								ci.Name = "product";
+								ci.UIntegerValue = 0;
+								cpf.AddItem(ci, false);
+
+								ci = cpf.GetItem("version");
+								if (ci==null) 
+								{
+									ci = new SimPe.PackedFiles.Wrapper.CpfItem();
+									ci.Name = "version";
+									if ((cpf.GetSaveItem("age").UIntegerValue&(uint)Data.Ages.YoungAdult)!=0) ci.UIntegerValue = 2;
+									else ci.UIntegerValue = 1;
+									cpf.AddItem(ci);
+								}
+								
+
+								cpf.SynchronizeUserData();
+							}
 						}
 					}
 
@@ -1046,32 +1161,36 @@ namespace SimPe.Plugin
 			
 		}
 
+		bool CanDo()
+		{
+			if (spatient == null) return false;
+
+			bool ret = true;
+			if (cbskin.Checked)
+			{
+				ret = (lvskin.SelectedItems.Count==1);
+				if (ret) if (lv.Items[0].Selected && (sarche == null)) ret=false;
+				
+			} 
+			
+			if (!cbskin.Checked || cbface.Checked || cbmakeup.Checked || cbeye.Checked)
+			{
+				ret = ret && (sarche != null);
+			}
+
+			return ret;
+		}
+
 		private void cbskin_CheckedChanged(object sender, System.EventArgs e)
 		{
 			lvskin.Enabled = this.cbskin.Checked;
 			lvskin_SelectedIndexChanged(null, null);
+			button1.Enabled = CanDo();
 		}
 
 		private void lvskin_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			if (spatient == null) 
-			{
-				button1.Enabled = false;
-				return;
-			}
-
-			if (lvskin.Enabled) 
-			{
-				button1.Enabled = (lvskin.SelectedItems.Count==1);
-				if (button1.Enabled) 
-				{
-					if (lv.Items[0].Selected && (sarche == null)) button1.Enabled=false;
-				}
-			} 
-			else 
-			{
-				button1.Enabled = (sarche != null);
-			}
+			button1.Enabled = CanDo();
 		}
 	}
 }

@@ -307,7 +307,8 @@ namespace SimPe.Plugin
 								} 
 								else 
 								{
-									if (exception) throw new ScenegraphException("Invalid Scenegraph Link", new ScenegraphException("Unable to find Referenced File "+name+"_txmt.", mmat.FileDescriptor), mmat.FileDescriptor);
+									continue;
+									//if (exception) throw new ScenegraphException("Invalid Scenegraph Link", new ScenegraphException("Unable to find Referenced File "+name+"_txmt.", mmat.FileDescriptor), mmat.FileDescriptor);
 								}
 							} 
 							else 

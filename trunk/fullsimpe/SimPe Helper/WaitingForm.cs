@@ -35,6 +35,7 @@ namespace SimPe
 		internal System.Windows.Forms.Timer timer1;
 		internal System.Windows.Forms.Label lbwait;
 		private System.Windows.Forms.Label lbmsg;
+		internal System.Windows.Forms.PictureBox pbsimpe;
 		private System.ComponentModel.IContainer components;
 
 		public WaitingForm()
@@ -48,6 +49,7 @@ namespace SimPe
 			cycles = 20;
 			alpha = 0xff;
 			//timer1.Enabled = true;
+
 		}
 
 		/// <summary>
@@ -78,6 +80,7 @@ namespace SimPe
 			this.lbmsg = new System.Windows.Forms.Label();
 			this.lbwait = new System.Windows.Forms.Label();
 			this.pb = new System.Windows.Forms.PictureBox();
+			this.pbsimpe = new System.Windows.Forms.PictureBox();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -95,6 +98,7 @@ namespace SimPe
 			this.panel1.Controls.Add(this.lbmsg);
 			this.panel1.Controls.Add(this.lbwait);
 			this.panel1.Controls.Add(this.pb);
+			this.panel1.Controls.Add(this.pbsimpe);
 			this.panel1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel1.Dock")));
 			this.panel1.Enabled = ((bool)(resources.GetObject("panel1.Enabled")));
 			this.panel1.Font = ((System.Drawing.Font)(resources.GetObject("panel1.Font")));
@@ -174,6 +178,27 @@ namespace SimPe
 			this.pb.Text = resources.GetString("pb.Text");
 			this.pb.Visible = ((bool)(resources.GetObject("pb.Visible")));
 			// 
+			// pbsimpe
+			// 
+			this.pbsimpe.AccessibleDescription = resources.GetString("pbsimpe.AccessibleDescription");
+			this.pbsimpe.AccessibleName = resources.GetString("pbsimpe.AccessibleName");
+			this.pbsimpe.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pbsimpe.Anchor")));
+			this.pbsimpe.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbsimpe.BackgroundImage")));
+			this.pbsimpe.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pbsimpe.Dock")));
+			this.pbsimpe.Enabled = ((bool)(resources.GetObject("pbsimpe.Enabled")));
+			this.pbsimpe.Font = ((System.Drawing.Font)(resources.GetObject("pbsimpe.Font")));
+			this.pbsimpe.Image = ((System.Drawing.Image)(resources.GetObject("pbsimpe.Image")));
+			this.pbsimpe.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pbsimpe.ImeMode")));
+			this.pbsimpe.Location = ((System.Drawing.Point)(resources.GetObject("pbsimpe.Location")));
+			this.pbsimpe.Name = "pbsimpe";
+			this.pbsimpe.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pbsimpe.RightToLeft")));
+			this.pbsimpe.Size = ((System.Drawing.Size)(resources.GetObject("pbsimpe.Size")));
+			this.pbsimpe.SizeMode = ((System.Windows.Forms.PictureBoxSizeMode)(resources.GetObject("pbsimpe.SizeMode")));
+			this.pbsimpe.TabIndex = ((int)(resources.GetObject("pbsimpe.TabIndex")));
+			this.pbsimpe.TabStop = false;
+			this.pbsimpe.Text = resources.GetString("pbsimpe.Text");
+			this.pbsimpe.Visible = ((bool)(resources.GetObject("pbsimpe.Visible")));
+			// 
 			// timer1
 			// 
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
@@ -182,12 +207,14 @@ namespace SimPe
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
 			this.AccessibleName = resources.GetString("$this.AccessibleName");
+			this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
 			this.AutoScaleBaseSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScaleBaseSize")));
 			this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(102)), ((System.Byte)(102)), ((System.Byte)(153)));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.CausesValidation = false;
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.panel1);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
@@ -238,7 +265,7 @@ namespace SimPe
 
 			lbwait.ForeColor = Color.FromArgb(alpha, lbwait.ForeColor);
 		}
-
+	
 		internal bool defimg;
 		internal long cycles;
 		internal int alpha;
@@ -251,7 +278,9 @@ namespace SimPe
 				if (pb.Tag!=null) PicAlpha(alpha+10);
 				else PicAlpha(alpha-10);
 				//System.Windows.Forms.Application.DoEvents();
-			}
+			}			
 		}
+ 
+		
 	}
 }

@@ -304,7 +304,7 @@ namespace SimPe.Plugin
 			{				
 				AddNeighborhood(dir);
 			}
-			WaitingScreen.Stop();				
+			WaitingScreen.Stop(this);				
 		}
 
 		string sourcepath;
@@ -319,6 +319,7 @@ namespace SimPe.Plugin
 			UpdateList();
 			this.Cursor = Cursors.Default;
 
+			
 			ShowDialog();
 			if (this.package!=null) package=this.package;
 			return new Plugin.ToolResult(false, ((this.package!=null) || (changed)));
@@ -384,7 +385,7 @@ namespace SimPe.Plugin
 			}
 			finally 
 			{
-				WaitingScreen.Stop();
+				WaitingScreen.Stop(this);
 				this.Cursor = Cursors.Default;
 			}
 		}

@@ -83,8 +83,30 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <param name="item">The item you want to add</param>
 		public void AddItem(CpfItem item) 
 		{
+			AddItem(item, true);
+		}
+
+		/// <summary>
+		/// Add a new CPF Item
+		/// </summary>
+		/// <param name="item">The item you want to add</param>
+		/// <param name="duplicate">true if you want to add the item even if a similar one already exists</param>
+		public void AddItem(CpfItem item, bool duplicate) 
+		{
 			if (item!=null) 
-				items = (CpfItem[])Helper.Add(items, item);
+			{
+				CpfItem ex = null;
+				if (!duplicate) ex = this.GetItem(item.Name);
+				if (ex!=null) 
+				{
+					ex.Datatype = item.Datatype;					
+					ex.Value = item.Value;
+				} 
+				else 
+				{
+					items = (CpfItem[])Helper.Add(items, item);
+				}
+			}
 		}
 
 		/// <summary>
