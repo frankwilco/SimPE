@@ -105,6 +105,45 @@ namespace SimPe.Plugin
 			}
 			return new MaterialDefinitionProperty();*/
 		}
+
+		/// <summary>
+		/// Add a new Property
+		/// </summary>
+		/// <param name="prop">The propery to add</param>
+		/// <remarks>If the property already exists, it's value will be overwritten</remarks>
+		public void Add(MaterialDefinitionProperty prop)
+		{
+			Add(prop, false);
+		}
+
+		/// <summary>
+		/// Add a new Property
+		/// </summary>
+		/// <param name="prop">The propery to add</param>
+		/// <param name="duplicate">true, if you want to allow two occurences of the same Property</param>
+		/// <remarks>If duplicate is false, and the property already exists, it's value will be overwritten</remarks>
+		public void Add(MaterialDefinitionProperty prop, bool duplicate)
+		{
+			if (!duplicate) 
+			{
+				MaterialDefinitionProperty ex = null;
+				foreach (MaterialDefinitionProperty mdp in properties) 
+				{
+					if (mdp.Name.Trim().ToLower()==prop.Name.Trim().ToLower()) 
+					{
+						ex = mdp;
+						break;
+					}
+				}
+
+				if (ex!=null) ex.Value = prop.Value;
+				else this.properties = (MaterialDefinitionProperty[])Helper.Add(properties, prop);
+			} 
+			else 
+			{
+				this.properties = (MaterialDefinitionProperty[])Helper.Add(properties, prop);
+			}
+		}
 		
 		#region IRcolBlock Member
 
@@ -283,16 +322,11 @@ namespace SimPe.Plugin
 			refmap["baseTexture"] = list;
 			for (int i=0; i<count; i++)
 			{
-				refname = this.GetProperty("baseTexture"+i.ToString()).Value;
-				if (refname.Trim()!="")
+				refname = this.GetProperty("baseTexture"+i.ToString()).Value.Trim();
+				if (refname!="")
 				{
-					
-					string name = refname.Replace("-", "_");
-					string[] parts = name.Split("~".ToCharArray(), 3);
-					name = parts[0];
-					if (parts.Length>1) name+="~"+parts[1];
-
-					list.Add(ScenegraphHelper.BuildPfd(name+"_txmt", SimPe.Plugin.ScenegraphHelper.TXMT, parentgroup));					
+					if (!refname.EndsWith("_txtr")) refname+="_txtr";
+					list.Add(ScenegraphHelper.BuildPfd(refname, SimPe.Plugin.ScenegraphHelper.TXTR, parentgroup));					
 				}
 			}						
 		}

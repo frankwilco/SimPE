@@ -707,7 +707,7 @@ namespace SimPe.Plugin
 					WaitingScreen.UpdateImage(SimPe.Plugin.ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
 					AddSim(sdesc);
 				} //foreach
-				WaitingScreen.Stop();
+				WaitingScreen.Stop(this);
 			}
 
 			this.Cursor = Cursors.Default;

@@ -363,7 +363,7 @@ namespace SimPe.Plugin
 				tv.Sorted = true;
 				tv.EndUpdate();
 				lbobj.EndUpdate();				
-				WaitingScreen.Stop();
+				WaitingScreen.Stop(this);
 				TimeSpan dur = DateTime.Now.Subtract(start);
 				if ((Helper.WindowsRegistry.HiddenMode) || (Helper.DebugMode)) Text = "sek="+dur.Seconds.ToString()+", min="+dur.Minutes.ToString();
 			}
@@ -777,7 +777,6 @@ namespace SimPe.Plugin
 
 			if (!Helper.WindowsRegistry.LoadOWFast) BuildListing();
 			else tabControl2.SelectedIndex = 2;
-
 			this.ShowDialog();
 
 			WaitingScreen.Stop();
@@ -834,7 +833,7 @@ namespace SimPe.Plugin
 						WaitingScreen.Wait();
 						this.RecolorClone(pfd, localgroup, this.cbdefault.Checked);
 						//else this.Clone(pfd);
-						WaitingScreen.Stop();
+						WaitingScreen.Stop(this);
 					} 
 					
 
@@ -873,7 +872,7 @@ namespace SimPe.Plugin
 						if (this.cbfix.Checked) package.Save();
 					}
 
-					WaitingScreen.Stop();
+					WaitingScreen.Stop(this);
 				}
 				else //if Recolor
 				{
@@ -908,7 +907,7 @@ namespace SimPe.Plugin
 			}
 			finally 
 			{
-				WaitingScreen.Stop();			
+				WaitingScreen.Stop(this);			
 				this.Cursor = Cursors.Default;
 			}
 		}
@@ -1098,7 +1097,7 @@ namespace SimPe.Plugin
 			WaitingScreen.Wait();
 			WaitingScreen.UpdateMessage("Collecting needed Files");
 			if ((package==null) && (pfd!=null)) RecolorClone(pfd, localgroup, false);
-			WaitingScreen.Stop();
+			WaitingScreen.Stop(this);
 
 			cbgid.Checked = old;
 			
@@ -1159,7 +1158,7 @@ namespace SimPe.Plugin
 			} 
 			catch (Exception) {}
 
-			WaitingScreen.Stop();
+			WaitingScreen.Stop(this);
 #if DEBUG
 #else
 			if (package!=npackage) package = null;			

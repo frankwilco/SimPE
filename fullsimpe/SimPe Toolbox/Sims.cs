@@ -437,7 +437,7 @@ namespace SimPe.Plugin
 
 			lv.Sort();
 			this.Cursor = Cursors.Default;
-			WaitingScreen.Stop();
+			WaitingScreen.Stop(this);
 			ShowDialog();
 
 			if (this.pfd!=null) pfd = this.pfd;

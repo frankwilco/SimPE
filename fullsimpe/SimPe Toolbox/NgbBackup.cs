@@ -210,6 +210,7 @@ namespace SimPe.Plugin
 
 			UpdateList();
 
+			
 			ShowDialog();
 		}
 
@@ -259,7 +260,7 @@ namespace SimPe.Plugin
 					Helper.CopyDirectory(source, path, true);
 
 					UpdateList();
-					WaitingScreen.Stop();
+					WaitingScreen.Stop(this);
 					MessageBox.Show("The backup was restored succesfully!");
 				} 
 				catch (Exception ex) 

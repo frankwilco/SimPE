@@ -252,6 +252,21 @@ namespace SimPe.Plugin
 			reffile.SynchronizeUserData();
 		}
 
+		string FindTxtrName(string name)
+		{
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(name, Data.MetaData.TXTR, 0xffffffff, true);
+			if (item!=null) 
+			{
+				Rcol txtr = new GenericRcol(null, false);
+				txtr.ProcessData(item);
+				name = txtr.FileName.Trim();
+				if (name.ToLower().EndsWith("_txtr")) name = name.Substring(0, name.Length-5);
+				if (name.StartsWith("#")) name = "_"+name;
+			} name = name.Replace("-", "_");
+
+			return name;
+		}
+
 		/// <summary>
 		/// Updates the SkinTone References in the 3IDR Files
 		/// </summary>
@@ -262,8 +277,8 @@ namespace SimPe.Plugin
 		void UpdateSkintone(MaterialDefinition md, string targetskin, Hashtable skinfiles)
 		{
 			uint age = (uint)Data.MetaData.AgeTranslation((Data.MetaData.LifeSections)spatient.CharacterDescription.Age);
-			try { age = (uint)Math.Pow(2, Convert.ToInt32(md.FindProperty("paramAge")));}  catch {}
-			try { patientgender = Convert.ToUInt32(md.FindProperty("paramGender"));}  catch {}
+			try { age = (uint)Math.Pow(2, Convert.ToInt32(md.FindProperty("paramAge").Value));}  catch {}
+			try { patientgender = Convert.ToUInt32(md.FindProperty("paramGender").Value);}  catch {}
 
 			foreach (Cpf newcpf in (ArrayList)skinfiles[targetskin]) 
 			{
@@ -271,66 +286,50 @@ namespace SimPe.Plugin
 					if ((newcpf.GetSaveItem("age").UIntegerValue & age) == age) 					
 						if ((newcpf.GetSaveItem("gender").UIntegerValue & patientgender) == patientgender) 
 						{
+
+							SimPe.Plugin.SkinChain sc = new SkinChain(newcpf);
 							Interfaces.Files.IPackedFileDescriptor[] pfds = newcpf.Package.FindFile(0xAC506764, newcpf.FileDescriptor.SubType, newcpf.FileDescriptor.Instance);
 
-							if (pfds.Length>0) 
-							{
-								RefFile reffile = new RefFile();
-								reffile.ProcessData(pfds[0], newcpf.Package);
+							Rcol txmt = sc.TXMT;
+							Rcol txtr = sc.TXTR;
+							if (txtr!=null) 
+							{																		
+								string txmtname = txmt.FileName.Trim();
+								if (txmtname.ToLower().EndsWith("_txmt")) txmtname = txmtname.Substring(0, txmtname.Length-5);
 
-								foreach (Interfaces.Files.IPackedFileDescriptor pfd in reffile.Items) 
+								string basename = txtr.FileName.Trim();
+								if (basename.ToLower().EndsWith("_txtr")) basename = basename.Substring(0, basename.Length-5);
+											
+								if (txmtname.IndexOf("#")==0) txmtname = "_"+txmtname;								
+											
+								int count = 0;
+								try { count = Convert.ToInt32(md.FindProperty("numTexturesToComposite").Value); } 
+								catch {}
+
+								if (count>0) 
 								{
-									if (pfd.Type == Data.MetaData.TXMT) 
+									md.FindProperty("baseTexture0").Value = basename;												
+									md.FindProperty("stdMatBaseTextureName").Value = basename;
+																					
+									for (int i=1; i<count; i++)
 									{
-										Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(pfd);
-										if (items.Length>0) 
-										{
-											Rcol rcol = new GenericRcol(null, false);
-											rcol.ProcessData(items[0]);
-
-											string name = rcol.FileName.Trim();
-											if (name.ToLower().EndsWith("_txmt")) name = name.Substring(0, name.Length-5);
-
-											string basename = name;
-											
-											if (basename.IndexOf("#")==0) 
-											{
-												basename+="~stdMatBaseTextureName";
-												name = "_"+name;
-											}
-											else 
-											{
-												//while (name.Split("_").Length<2) name = "_"+name;
-												basename = basename.Replace("_", "-");
-											}											
-											
-
-											int count = 0;
-											try { count = Convert.ToInt32(md.FindProperty("numTexturesToComposite").Value); } 
-											catch {}
-
-											if (count>0) 
-											{
-												md.FindProperty("baseTexture0").Value = basename;												
-												md.FindProperty("stdMatBaseTextureName").Value = basename;
-												
-												string txtrname = name;
-												for (int i=1; i<count; i++)
-												{
-													if (i!=0) txtrname += "_";
-													txtrname += md.FindProperty("baseTexture"+i.ToString()).Value.Replace("-", "_");
-												}
-
-												md.FindProperty("compositeBaseTextureName").Value = txtrname;
-												if (md.Listing.Length==1) md.Listing[0] = txtrname;
-											}
-										}
+										string name = md.FindProperty("baseTexture"+i.ToString()).Value.Trim();
+										if (!name.ToLower().EndsWith("_txtr")) name += "_txtr";
+										name = this.FindTxtrName(name);
+										
+										if (i!=0) txmtname += "_";
+										txmtname += name;
 									}
-								} //foreach reffile item
+
+									md.FindProperty("compositeBaseTextureName").Value = txmtname;
+									string[] list = new string[1];
+									list[0] = txmtname;
+									md.Listing = list;
+								}
 							}
-							
 						}
-			}			
+			
+			}		
 		}
 
 		/// <summary>
@@ -485,6 +484,133 @@ namespace SimPe.Plugin
 				}
 			}			
 			
+			return ret;
+		}
+		#endregion
+
+		#region Makeup Only
+		/// <summary>
+		/// Updates the SkinTone References in the 3IDR Files
+		/// </summary>
+		/// <param name="md">The Metreial Definition</param>
+		/// <param name="eyecolor">true, if you want to alter the eyecolor</param>
+		/// <param name="makeups">true, if you want to alter the makeup</param>
+		void UpdateMakeup(MaterialDefinition md, bool eyecolor, bool makeups)
+		{
+			string age = md.FindProperty("paramAge").Value;
+			string gender = md.FindProperty("paramGender").Value;
+
+			//find a matching Package in the arechtype
+			Interfaces.Files.IPackedFileDescriptor[] pfds = this.archetype.FindFiles(Data.MetaData.TXMT);
+			SimPe.Plugin.Rcol atxmt =  new GenericRcol(null, false);
+			MaterialDefinition amd = null;
+
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+			{
+				atxmt.ProcessData(pfd, this.archetype);
+
+				amd = (MaterialDefinition)atxmt.Blocks[0];
+				if ((amd.FindProperty("paramAge").Value==age) && (amd.FindProperty("paramGender").Value==gender)) break;
+			}
+
+			if (amd!=null) 
+			{
+				int count = 0;
+				md.Add(amd.FindProperty("numTexturesToComposite"));
+				try{ count = Convert.ToInt32(md.FindProperty("numTexturesToComposite").Value); } catch {}
+
+				string txmtname = "";
+				for (int i=0; i<count; i++)
+				{
+					MaterialDefinitionProperty val = amd.FindProperty("baseTexture"+i.ToString());
+					if (i!=0) md.Add(val);
+					if (i==1) if (eyecolor) md.Add(val);
+					else if (makeups) md.Add(val);					
+
+					string name = val.Value.Trim();
+					if (!name.ToLower().EndsWith("_txtr")) name += "_txtr";
+					name = this.FindTxtrName(name);
+
+					if (i!=0) txmtname += "_";
+					txmtname += name;
+				}
+
+				md.FindProperty("compositeBaseTextureName").Value = txmtname;
+				string[] list = new string[1];
+				list[0] = txmtname;
+				md.Listing = list;
+
+				if (makeups)
+				{
+					count = 0;
+					md.Add(amd.FindProperty("cafNumOverlays"));
+					try{ count = Convert.ToInt32(md.FindProperty("cafNumOverlays").Value); } 
+					catch {}
+
+					for (int i=0; i<count; i++)
+					{
+						MaterialDefinitionProperty val = amd.FindProperty("cafOverlay"+i.ToString());
+						md.Add(val);
+					}
+				}
+			}
+				
+		}
+
+		/// <summary>
+		/// Clone the Makeup of a Sim
+		/// </summary>
+		/// <returns>the new Package for the patient Sim</returns>
+		/// <param name="eyecolor">true, if you want to alter the eyecolor</param>
+		/// <param name="makeups">true, if you want to alter the makeup</param>
+		public SimPe.Packages.GeneratableFile CloneMakeup(bool eyecolor, bool makeups)
+		{
+			SimPe.Packages.GeneratableFile ret = new SimPe.Packages.GeneratableFile((string)null);
+			
+			ArrayList list = new ArrayList();
+			list.Add((uint)0xE86B1EEF); //make sure the compressed Directory won't be copied!
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in patient.Index) 
+			{
+				if (!list.Contains(pfd.Type)) 
+				{
+					Interfaces.Files.IPackedFile fl = patient.Read(pfd);
+
+					Interfaces.Files.IPackedFileDescriptor newpfd = ret.NewDescriptor(pfd.Type, pfd.SubType, pfd.Group, pfd.Instance);
+					newpfd.UserData = fl.UncompressedData;
+					ret.Add(newpfd);
+				}
+			}	
+		
+			//Update TXMT Files for the Face
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = ret.FindFiles(Data.MetaData.TXMT);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+			{
+				SimPe.Plugin.Rcol rcol = new GenericRcol(null, false);
+				rcol.ProcessData(pfd, ret);
+
+				MaterialDefinition md = (MaterialDefinition)rcol.Blocks[0];
+				this.UpdateMakeup(md, eyecolor, makeups);
+
+				rcol.SynchronizeUserData();
+			}
+			
+			if (eyecolor) 
+			{
+				//Update DNA File
+				Interfaces.Files.IPackedFileDescriptor dna = ngbh.FindFile(0xEBFEE33F, 0, Data.MetaData.LOCAL_GROUP, spatient.Instance);
+				Interfaces.Files.IPackedFileDescriptor adna = ngbh.FindFile(0xEBFEE33F, 0, Data.MetaData.LOCAL_GROUP, sarchetype.Instance);
+				if ((dna!=null) && (adna!=null))
+				{				
+					SimPe.PackedFiles.Wrapper.Cpf cpf = new Cpf();
+					cpf.ProcessData(dna, ngbh);
+
+					SimPe.PackedFiles.Wrapper.Cpf acpf = new Cpf();
+					acpf.ProcessData(adna, ngbh);
+					cpf.GetSaveItem("3").StringValue = acpf.GetSaveItem("3").StringValue;
+
+					cpf.SynchronizeUserData();
+				}
+			}
 			return ret;
 		}
 		#endregion

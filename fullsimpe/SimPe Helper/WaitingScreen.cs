@@ -19,26 +19,90 @@
  ***************************************************************************/
 using System;
 using System.Threading;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace SimPe
 {
+	/// <summary>
+	/// Determins the Kind of Update the USer has Requested
+	/// </summary>
+	enum WSUpdate : byte 
+	{
+		Nothing = 0x0,
+		Image = 0x01,
+		Message = 0x02,
+		Both = 0x03
+	}
+
+	/// <summary>
+	/// Determins the current State of the WaitingScreen
+	/// </summary>
+	public enum WSState : byte
+	{
+		Inactive = 0x00,
+		Initializing = 0x01,
+		Running = 0x02,
+		Updating = 0x03,
+		WaitFinalizing = 0x04,
+		Finalized = 0x05
+	}
+
+	/// <summary>
+	/// Describes one Event that the user had requested
+	/// </summary>
+	class WSEvent 
+	{
+		internal WSEvent()
+		{
+			kind = WSUpdate.Nothing;
+		}
+
+		WSUpdate kind;
+		internal WSUpdate Kind 
+		{
+			get { return kind; }
+			set {kind = value; }
+		}
+
+		string msg;
+		internal string Message
+		{
+			get { return msg; }
+			set {msg = value; }
+		}
+
+		Image img;
+		internal Image Image
+		{
+			get { return img; }
+			set {img = value; }
+		}
+	}
 	/// <summary>
 	/// Use this class to show a Waiting Screen.
 	/// </summary>
 	public class WaitingScreen
 	{
-		static System.Threading.Thread thread;
-		static WaitingForm wf;
-		static bool waitend;
-		static bool startup;
-		
-		static bool run;
+		static System.Threading.Thread thread = null;
+		static WSState state = WSState.Inactive;
+		static WSEvent nextevent = new WSEvent();
+		static TimeSpan ts = new TimeSpan(0, 0, 0, 0, 100);
+
 		/// <summary>
 		/// True if the WaitingScreen is available at the Moment
 		/// </summary>
 		public static bool Running
 		{
-			get {return run;}
+			get {return ((state == WSState.Running) || (state == WSState.Updating) || (state == WSState.Initializing));}
+		}
+
+		/// <summary>
+		/// Returns the current State of the WaitingScreen
+		/// </summary>
+		public static WSState State 
+		{
+			get { return state; }
 		}
 
 		/// <summary>
@@ -46,131 +110,148 @@ namespace SimPe
 		/// </summary>
 		public static void Wait()
 		{
-			Monitor.Enter(run);
-			if ((waitend) || (startup))
+			if (!Helper.WindowsRegistry.WaitingScreen) return;
+
+			Monitor.Enter(state);
+			if (!Running) 
 			{
-				Monitor.Exit(run);
-				return;
-			}
-
-			Monitor.Enter(waitend);			
-			if ((!run) && (Helper.WindowsRegistry.WaitingScreen)) 
-			{	
-				if (thread!=null) 
+				//Wait until the WaitingScreen is inactive
+				if (state!=WSState.Inactive) 
 				{
-					try 
+					Monitor.Exit(state);
+					while (true) 
 					{
-						thread.Abort();
+						Monitor.Enter(state);
+						if (state==WSState.Inactive) break;
+						Monitor.Exit(state);
 					}
-					catch {}
-					finally { thread=null; }
 				}
-				thread = new System.Threading.Thread(new System.Threading.ThreadStart(WaitingScreen.Start));
-				thread.Priority = System.Threading.ThreadPriority.Normal;
 
-				startup = true;
-				thread.Start();	
-
-				DateTime start = DateTime.Now;
-				TimeSpan waittime = new TimeSpan(0,0,0,60,0);
-				while (startup) {
-					if (DateTime.Now.Subtract(start) > waittime) break;
-				}										
-			} 
-
-			Monitor.Exit(run);
-			Monitor.Exit(waitend);
+				state = WSState.Initializing;
+				
+				thread = new Thread(new ThreadStart(Start));
+				thread.IsBackground = true;
+				thread.ApartmentState = ApartmentState.STA;
+				thread.Start();		
+			}
+			Monitor.Exit(state);
 		}
 
+		/// <summary>
+		/// Stop the WaitingScreen ad focus the given Form
+		/// </summary>
+		/// <param name="form">The form you want to focus</param>
+		public static void Stop(Form form) 
+		{
+			form.Activate();	
+			Stop();
+		}
+
+		/// <summary>
+		/// Stop the Waiting Thread
+		/// </summary>
+		public static void Stop()
+		{
+			Application.DoEvents();
+			while ((state!=WSState.Finalized) && (state!=WSState.Inactive))
+			{
+				Monitor.Enter(state);
+				state = WSState.WaitFinalizing;
+				Monitor.Exit(state);
+				Thread.CurrentThread.Join(ts);
+			}
+
+			Monitor.Enter(state);			
+			thread = null;
+			state = WSState.Inactive;
+			
+			Monitor.Exit(state);			
+		}
 		
 		/// <summary>
 		/// Internal Method to start the Thread
 		/// </summary>
-		protected static void Start()
-		{		
-			Monitor.Enter(startup);
-			run = true;
-			Monitor.Enter(run);
-			if (wf==null) wf = new WaitingForm();		
-			wf.TopLevel = true;
-			wf.timer1.Enabled = true;
-			
-			try 
+		internal static void Start()
+		{					
+			Monitor.Enter(state);
+			if (state==WSState.Initializing) 
 			{
-				if (!wf.Visible) wf.Show();
-			} 
-			catch (Exception ex)
-			{
-				if (Helper.DebugMode) Helper.ExceptionMessage("", ex);
-			}
-			
-			Monitor.Exit(run);
+				state = WSState.Running;	
+				WaitingForm wf = new WaitingForm();							
+				wf.timer1.Enabled = true;
 
-			startup = false;
-			Monitor.Exit(startup);
-			StartUpdates();
-			
-			Monitor.Enter(waitend);
-			try 
-			{
-				wf.timer1.Enabled = false;
-				thread.Priority = System.Threading.ThreadPriority.Highest;
-				wf.Focus();
-				wf.Close();
+				nextevent.Message = "";
+				nextevent.Image = wf.pbsimpe.Image;
+				nextevent.Kind = WSUpdate.Both;
+								
+				wf.Visible = true;						
+				wf.Update();	
+				System.Windows.Forms.Application.DoEvents();
+				Monitor.Exit(state);
+										
+				StartUpdates(wf);
+
+				Monitor.Enter(state);									
+				state = WSState.Finalized;
+				if (wf!=null)wf.Visible = false;
 				wf = null;
+				Monitor.Exit(state);
 			} 
-			catch (Exception ex)
-			{
-				if (Helper.DebugMode) Helper.ExceptionMessage("", ex);
+			else 
+			{			
+				state = WSState.Finalized;
+				Monitor.Exit(state);
+				return;
 			}
-			finally 
-			{
-				wf = null;
-				waitend = false;				
-			}
-			Monitor.Exit(waitend);
 		}
 
 		/// <summary>
 		/// Updates to indicate activity are triggered by an additional Thread started where
 		/// </summary>
-		protected static void StartUpdates()
+		internal static void StartUpdates(WaitingForm wf)
 		{
-			while (run) {				
-				if (run) 
+			while (true) 
+			{
+				Monitor.Enter(state);
+				if (state != WSState.Running) 
 				{
-					Monitor.Enter(waitend);
-					Monitor.Enter(run);		
-					if (wf!=null) 
-					{
-						wf.timer1_Tick(null, null);
-						wf.Update();	
-					}
-					Monitor.Exit(run);
-					Monitor.Exit(waitend);
-
-					if (thread!=null) thread.Join(new TimeSpan(0, 0, 0, 0, 100));										
+					Monitor.Exit(state);
+					return;
 				}
+
+				state = WSState.Updating;
+				Monitor.Exit(state);
+
+				Monitor.Enter(nextevent);
+				if (((byte)nextevent.Kind & (byte)WSUpdate.Image) != 0) wf.ChangeImage(nextevent.Image);
+				if (((byte)nextevent.Kind & (byte)WSUpdate.Message) != 0) wf.ChangeMessage(nextevent.Message);
+				nextevent.Kind = WSUpdate.Nothing;
+				Monitor.Exit(nextevent);
+
+				wf.Update();
+				System.Windows.Forms.Application.DoEvents();								
+
+				Monitor.Enter(state);
+				if (state == WSState.Updating) state = WSState.Running;
+				else 
+				{
+					Monitor.Exit(state);
+					return;
+				}
+				Monitor.Exit(state);	
+				thread.Join(ts);
 			}
 		}
 
+		
 		/// <summary>
 		/// Show another Image
 		/// </summary>
 		/// <param name="image">the image to show</param>
 		public static void UpdateImage(System.Drawing.Image image)
 		{
-			Monitor.Enter(run);
-			Monitor.Enter(waitend);
-			Monitor.Enter(startup);
-			if ((run) && (wf!=null))
-			{				
-				wf.ChangeImage(image);
-				wf.Update();
-			}
-			Monitor.Exit(startup);
-			Monitor.Exit(waitend);
-			Monitor.Exit(run);
+			nextevent.Image = image;
+			nextevent.Kind = (WSUpdate)((byte)nextevent.Kind | (byte)WSUpdate.Image);
 		}
 
 		/// <summary>
@@ -179,18 +260,9 @@ namespace SimPe
 		/// <param name="image">the image to show</param>
 		public static void Update(System.Drawing.Image image, string message)
 		{
-			Monitor.Enter(run);
-			Monitor.Enter(waitend);
-			Monitor.Enter(startup);
-			if ((run) && (wf!=null))
-			{				
-				if (message!=null) wf.ChangeMessage(message);
-				wf.ChangeImage(image);
-				wf.Update();
-			}
-			Monitor.Exit(startup);
-			Monitor.Exit(waitend);
-			Monitor.Exit(run);
+			nextevent.Message = message;
+			nextevent.Image = image;
+			nextevent.Kind = WSUpdate.Both;
 		}
 
 		/// <summary>
@@ -199,56 +271,11 @@ namespace SimPe
 		/// <param name="msg">The Message you want to show</param>
 		public static void UpdateMessage(string msg)
 		{
-			Monitor.Enter(run);
-			Monitor.Enter(waitend);
-			Monitor.Enter(startup);
-			if ((run) && (wf!=null))
-			{				
-				wf.ChangeMessage(msg);
-				wf.Update();
-			}
-			Monitor.Exit(startup);
-			Monitor.Exit(waitend);
-			Monitor.Exit(run);
+			nextevent.Message = msg;
+			nextevent.Kind = (WSUpdate)((byte)nextevent.Kind | (byte)WSUpdate.Message);
 		}
 
-		/// <summary>
-		/// Stop the Waiting Thread
-		/// </summary>
-		public static void Stop()
-		{
-			//if (!run) return;	
-			Monitor.Enter(startup);
-			Monitor.Enter(run);	
-			Monitor.Exit(startup);
-			if (run) waitend = true;
-			run = false;
-			if (wf!=null)
-			{
-				wf.timer1.Enabled = false;
-				
-
-				DateTime start = DateTime.Now;
-				TimeSpan waittime = new TimeSpan(0,0,0,10,0);
-				TimeSpan waittime2 = new TimeSpan(0,0,0,59,0);
-				while (waitend) {
-					if ((run) && (DateTime.Now.Subtract(start) > waittime)) 
-					{
-						run=false;
-						Monitor.Exit(run);
-						run=false;
-						Monitor.Enter(run);
-						run=false;
-					}
-					if (DateTime.Now.Subtract(start) > waittime2) 
-					{
-						break;
-					}
-				}
-			}
-			
-			Monitor.Exit(run);
-		}
+		
 
 		/// <summary>
 		/// Returns the Size of the Dispalyed Image
