@@ -287,9 +287,22 @@ namespace SimPe.Plugin
 		/// Remove all Files that are referenced by a SHPE and belong to a subset as named in the esclude List
 		/// </summary>
 		/// <param name="exclude">List of subset names</param>
-		public void RemoveSubsetReferences(ArrayList exclude)
+		/// <param name="modelnames">null or a List of allowed Modelnames. If a List is passed, only references to files 
+		/// starting with one of the passed Modelnames will be keept</param>
+		public void RemoveSubsetReferences(ArrayList exclude, string[] modelnames)
 		{
 			WaitingScreen.UpdateMessage("Removing unwanted Subsets");
+			//Build the ModelName List
+			ArrayList mn = new ArrayList();
+			if (modelnames!=null) 
+			{				
+				foreach (string s in modelnames) 
+				{
+					string n = s;
+					if (s.EndsWith("_cres")) n=s.Substring(0, s.Length-5);
+					mn.Add(n);
+				}
+			}
 
 			bool deleted = false;
 			Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.SHPE);
@@ -299,9 +312,25 @@ namespace SimPe.Plugin
 				rcol.ProcessData(pfd, package);
 
 				foreach (ShapePart p in ((Shape)rcol.Blocks[0]).Parts) 
-				{
+				{					
 					string s = p.Subset.Trim().ToLower();
-					if (exclude.Contains(s)) 
+					bool remove = exclude.Contains(s) ;
+
+					if ((modelnames!=null) && !remove)
+					{
+						remove = true;
+						string fl = p.FileName.Trim().ToLower();
+						foreach (string n in mn) 
+						{
+							if (fl.StartsWith(n)) 
+							{
+								remove = false;
+								continue;
+							}
+						}
+					}
+					
+					if (remove) 
 					{
 						string n = p.FileName.Trim().ToLower();
 						if (!n.EndsWith("_txmt")) n += "_txmt";

@@ -87,6 +87,12 @@ namespace SimPe.Interfaces.Scenegraph
 		void AddIndexFromPfd(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package, uint localgroup);
 
 		/// <summary>
+		/// Removes an Item from the Table
+		/// </summary>
+		/// <param name="item">The item you want to remove</param>
+		void RemoveItem(Interfaces.Scenegraph.IScenegraphFileIndexItem item);
+
+		/// <summary>
 		/// Return all matching FileIndexItems
 		/// </summary>
 		/// <param name="pfd">The File you are looking for</param>

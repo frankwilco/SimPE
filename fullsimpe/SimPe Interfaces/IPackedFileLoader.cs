@@ -69,7 +69,33 @@ namespace SimPe.Interfaces.Plugin.Internal
 		/// <param name="pfd">Description of the sent File</param>
 		/// <param name="package">The Package containing the File</param>
 		/// <remarks>The Files's data must be read from the package</remarks>		
-		void ProcessData(IPackedFileDescriptor pfd, IPackageFile package);		
+		void ProcessData(IPackedFileDescriptor pfd, IPackageFile package);
+
+		/// <summary>
+		/// Processe the Data stored in the sent File
+		/// </summary>
+		/// <param name="item">Contains a Scenegraph Item (which combines a FileDescriptor with a Package)</param>
+		/// <param name="catchex">true, if the Method should handle all occuring Exceptions</param>
+		void ProcessData(Interfaces.Scenegraph.IScenegraphFileIndexItem item, bool catchex);
+	
+		/// <summary>
+		/// Processe the Data stored in the sent File
+		/// </summary>
+		/// <param name="pfd">Description of the sent File</param>
+		/// <param name="package">The Package containing the File</param>
+		/// <param name="file">The data of the file (if null, the Method must try to read it from the packge!)</param>
+		/// <param name="catchex">true, if the Method should handle all occuring Exceptions</param>
+		void ProcessData(IPackedFileDescriptor pfd, IPackageFile package, IPackedFile file, bool catchex);
+
+
+		/// <summary>
+		/// Processe the Data stored in the described File
+		/// </summary>
+		/// <param name="pfd">Description of the sent File</param>
+		/// <param name="package">The Package containing the File</param>
+		/// <remarks>The Files's data must be read from the package</remarks>	
+		/// <param name="catchex">true, if the Method should handle all occuring Exceptions</param>	
+		void ProcessData(IPackedFileDescriptor pfd, IPackageFile package, bool catchex);		
 
 		/// <summary>
 		/// Will return current Data

@@ -206,15 +206,26 @@ namespace SimPe.Packages
 				PackedFile pf = null;
 				if (pfd.HasUserdata && pfd.MarkForReCompress) 
 				{
-					pf = new PackedFile(PackedFile.Compress(pfd.UserData));
-					pf.size = pf.data.Length;
-					pf.uncsize = (uint)pfd.UserData.Length;
-					pf.signature = Data.MetaData.COMPRESS_SIGNATURE;
-					pf.headersize = 9;
-					newpfd.size = pf.data.Length;									
+					try 
+					{
+						pf = new PackedFile(PackedFile.Compress(pfd.UserData));
+						pf.size = pf.data.Length;
+						pf.uncsize = (uint)pfd.UserData.Length;
+						pf.signature = Data.MetaData.COMPRESS_SIGNATURE;
+						pf.headersize = 9;
+						newpfd.size = pf.data.Length;
 
-					//recreate the FileList
-					filelist = null;
+						//recreate the FileList
+						filelist = null;
+					} 
+					catch (Exception ex) 
+					{
+						pf = (PackedFile)this.Read(pfd);
+						newpfd.size = pf.data.Length;
+						newpfd.UserData = pfd.UserData;
+
+						if (Helper.DebugMode) Helper.ExceptionMessage("", ex);
+					}																			
 				} 
 				else 
 				{

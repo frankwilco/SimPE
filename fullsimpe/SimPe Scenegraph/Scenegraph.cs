@@ -197,12 +197,19 @@ namespace SimPe.Plugin
 					{
 						if (!itemlist.Contains(subitem)) 
 						{
-							SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
-							sub.ProcessData(subitem.FileDescriptor, subitem.Package);
+							try 
+							{
+								SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
+								sub.ProcessData(subitem.FileDescriptor, subitem.Package, false);
 
-							if (Scenegraph.excludefiles.Contains(sub.FileName.Trim().ToLower())) continue;
+								if (Scenegraph.excludefiles.Contains(sub.FileName.Trim().ToLower())) continue;
 
-							if (recursive) LoadReferenced(modelnames, exclude, list, itemlist, sub, subitem, true);
+								if (recursive) LoadReferenced(modelnames, exclude, list, itemlist, sub, subitem, true);
+							}
+							catch (Exception ex) 
+							{
+								Helper.ExceptionMessage("", new CorruptedFileException(subitem, ex));								
+							}
 						}
 					}
 				}
@@ -454,12 +461,21 @@ namespace SimPe.Plugin
 									SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem txmtitem = SimPe.FileTable.FileIndex.FindFileByName(mmat.GetSaveItem("name").StringValue+"_txmt", Data.MetaData.TXMT, Data.MetaData.LOCAL_GROUP, true);
 									if (txmtitem!=null) 
 									{
-										SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
-										sub.ProcessData(txmtitem.FileDescriptor, txmtitem.Package);
-										ArrayList newfiles = new ArrayList();
-										LoadReferenced(this.modelnames, this.exclude, newfiles, itemlist, sub, txmtitem, true);
-						
-										BuildPackage(newfiles, pkg);
+										
+										try 
+										{
+											SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
+											sub.ProcessData(txmtitem.FileDescriptor, txmtitem.Package, false);
+											ArrayList newfiles = new ArrayList();
+											LoadReferenced(this.modelnames, this.exclude, newfiles, itemlist, sub, txmtitem, true);
+											BuildPackage(newfiles, pkg);
+										} 
+										catch (Exception ex) 
+										{
+											Helper.ExceptionMessage("", new CorruptedFileException(txmtitem, ex));
+										}						
+										
+
 									} 
 									else 
 									{

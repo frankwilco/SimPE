@@ -157,8 +157,8 @@ namespace SimPe.PackedFiles.UserInterface
 		internal System.Windows.Forms.RadioButton rbmale;
 		private System.Windows.Forms.Label label49;
 		internal System.Windows.Forms.Label lbfilename;
-		private System.Windows.Forms.LinkLabel linkLabel1;
-		private System.Windows.Forms.LinkLabel linkLabel3;
+		private Skybound.VisualStyles.VisualStyleLinkLabel linkLabel1;
+		private Skybound.VisualStyles.VisualStyleLinkLabel linkLabel3;
 		internal System.Windows.Forms.TabControl tcsdesc;
 		private System.Windows.Forms.TabPage tpinterests;
 		private System.Windows.Forms.TabPage tbcharacter;
@@ -180,8 +180,8 @@ namespace SimPe.PackedFiles.UserInterface
 		internal System.Windows.Forms.TextBox tbshortterm;
 		private System.Windows.Forms.Label label57;
 		private System.Windows.Forms.Label label58;
-		private System.Windows.Forms.LinkLabel llrelcommit;
-		internal System.Windows.Forms.LinkLabel llsimrelcommit;
+		private Skybound.VisualStyles.VisualStyleLinkLabel llrelcommit;
+		internal Skybound.VisualStyles.VisualStyleLinkLabel llsimrelcommit;
 		internal System.Windows.Forms.ComboBox cbzodiac;
 		private System.Windows.Forms.CheckBox cboutenemy;
 		private System.Windows.Forms.CheckBox cboutfriend;
@@ -239,7 +239,7 @@ namespace SimPe.PackedFiles.UserInterface
 		internal System.Windows.Forms.Button btaddtie;
 		internal System.Windows.Forms.ListBox lbties;
 		internal System.Windows.Forms.ComboBox cballtieablesims;
-		private System.Windows.Forms.LinkLabel llcommitties;
+		private Skybound.VisualStyles.VisualStyleLinkLabel llcommitties;
 		internal System.Windows.Forms.Button btnewtie;
 		internal System.Windows.Forms.ComboBox cballrelsims;
 		internal System.Windows.Forms.GroupBox gb;
@@ -248,7 +248,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label14;
 		internal System.Windows.Forms.TextBox tblottype;
 		private System.Windows.Forms.Label label65;
-		private System.Windows.Forms.LinkLabel llcommitobjd;
+		private Skybound.VisualStyles.VisualStyleLinkLabel llcommitobjd;
 		private System.Windows.Forms.Label label66;
 		internal System.Windows.Forms.ProgressBar pbman;
 		private System.Windows.Forms.TextBox tbman;
@@ -260,7 +260,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.GroupBox gbelements;
 		internal System.Windows.Forms.Panel pnelements;
-		private System.Windows.Forms.LinkLabel llgetGUID;
+		private Skybound.VisualStyles.VisualStyleLinkLabel llgetGUID;
 		private System.Windows.Forms.TabPage tbskills;
 		private System.Windows.Forms.GroupBox gbskills;
 		internal System.Windows.Forms.ProgressBar pbcooking;
@@ -287,7 +287,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label24;
 		private System.Windows.Forms.Label label23;
 		private System.Windows.Forms.Label label22;
-		private System.Windows.Forms.LinkLabel linkLabel2;
+		private Skybound.VisualStyles.VisualStyleLinkLabel linkLabel2;
 		private System.Windows.Forms.GroupBox gbgencharacter;
 		internal System.Windows.Forms.ProgressBar pbgenneat;
 		private System.Windows.Forms.TextBox tbgennice;
@@ -299,7 +299,7 @@ namespace SimPe.PackedFiles.UserInterface
 		internal System.Windows.Forms.ProgressBar pbgenplayful;
 		internal System.Windows.Forms.ProgressBar pbgenactive;
 		internal System.Windows.Forms.ProgressBar pbgenoutgoing;
-		private System.Windows.Forms.LinkLabel linkLabel4;
+		private Skybound.VisualStyles.VisualStyleLinkLabel linkLabel4;
 		private System.Windows.Forms.TextBox tbromance;
 		internal System.Windows.Forms.ProgressBar pbromance;
 		private System.Windows.Forms.Label label76;
@@ -365,7 +365,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.CheckBox cboutbest;
 		internal System.Windows.Forms.CheckBox cbfamily;
 		internal System.Windows.Forms.CheckBox cbbest;
-		private System.Windows.Forms.LinkLabel llsrelcommit;
+		private Skybound.VisualStyles.VisualStyleLinkLabel llsrelcommit;
 		internal System.Windows.Forms.TextBox tbsimdescfamname;
 		internal System.Windows.Forms.ComboBox cbinfamtype;
 		internal System.Windows.Forms.ComboBox cboutfamtype;
@@ -412,13 +412,14 @@ namespace SimPe.PackedFiles.UserInterface
 		internal System.Windows.Forms.TextBox tbinfluence;
 		internal System.Windows.Forms.ProgressBar pbunitime;
 		private System.Windows.Forms.TextBox tbunitime;
-		private System.Windows.Forms.LinkLabel llfam;
-		private System.Windows.Forms.LinkLabel linkLabel5;
-		private System.Windows.Forms.LinkLabel llcloth;
-		private System.Windows.Forms.LinkLabel lldna;
+		private Skybound.VisualStyles.VisualStyleLinkLabel llfam;
+		private Skybound.VisualStyles.VisualStyleLinkLabel linkLabel5;
+		private Skybound.VisualStyles.VisualStyleLinkLabel llcloth;
+		private Skybound.VisualStyles.VisualStyleLinkLabel lldna;
 		internal System.Windows.Forms.TextBox tbsubhood;
 		private System.Windows.Forms.Label label89;
-		private System.Windows.Forms.LinkLabel linkLabel6;
+		private Skybound.VisualStyles.VisualStyleLinkLabel linkLabel6;
+		private Skybound.VisualStyles.VisualStyleProvider visualStyleProvider1;
 
 
 		internal SimPe.Interfaces.Plugin.IFileWrapperSaveExtension wrapper = null;
@@ -472,7 +473,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.rtb = new System.Windows.Forms.RichTextBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
-			this.visualStyleLinkLabel2 = new System.Windows.Forms.LinkLabel();
+			this.visualStyleLinkLabel2 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.objdPanel = new System.Windows.Forms.Panel();
 			this.cbupdate = new System.Windows.Forms.CheckBox();
 			this.label63 = new System.Windows.Forms.Label();
@@ -480,10 +481,10 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label97 = new System.Windows.Forms.Label();
 			this.tborgguid = new System.Windows.Forms.TextBox();
 			this.lbtypename = new System.Windows.Forms.Label();
-			this.llgetGUID = new System.Windows.Forms.LinkLabel();
+			this.llgetGUID = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.gbelements = new System.Windows.Forms.GroupBox();
 			this.pnelements = new System.Windows.Forms.Panel();
-			this.llcommitobjd = new System.Windows.Forms.LinkLabel();
+			this.llcommitobjd = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.tblottype = new System.Windows.Forms.TextBox();
 			this.label65 = new System.Windows.Forms.Label();
 			this.tbsimname = new System.Windows.Forms.TextBox();
@@ -502,7 +503,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lbties = new System.Windows.Forms.ListBox();
 			this.btdeletetie = new System.Windows.Forms.Button();
 			this.btaddtie = new System.Windows.Forms.Button();
-			this.llcommitties = new System.Windows.Forms.LinkLabel();
+			this.llcommitties = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.cbtiesims = new System.Windows.Forms.ComboBox();
 			this.bttiecommit = new System.Windows.Forms.Button();
 			this.label64 = new System.Windows.Forms.Label();
@@ -539,7 +540,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label15 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.sdescPanel = new System.Windows.Forms.Panel();
-			this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+			this.linkLabel6 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.tcsdesc = new System.Windows.Forms.TabControl();
 			this.tpinterests = new System.Windows.Forms.TabPage();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -605,7 +606,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbtravel = new System.Windows.Forms.ProgressBar();
 			this.label32 = new System.Windows.Forms.Label();
 			this.pbcrime = new System.Windows.Forms.ProgressBar();
-			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+			this.linkLabel1 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.tbcharacter = new System.Windows.Forms.TabPage();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.cbignoretraversal = new System.Windows.Forms.CheckBox();
@@ -648,7 +649,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label18 = new System.Windows.Forms.Label();
 			this.label17 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
-			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+			this.linkLabel3 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.gbgencharacter = new System.Windows.Forms.GroupBox();
 			this.label71 = new System.Windows.Forms.Label();
 			this.label72 = new System.Windows.Forms.Label();
@@ -665,7 +666,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbgenplayful = new System.Windows.Forms.ProgressBar();
 			this.pbgenactive = new System.Windows.Forms.ProgressBar();
 			this.pbgenoutgoing = new System.Windows.Forms.ProgressBar();
-			this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+			this.linkLabel4 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.gbschool = new System.Windows.Forms.GroupBox();
 			this.cbschooltype = new System.Windows.Forms.ComboBox();
 			this.cbgrade = new System.Windows.Forms.ComboBox();
@@ -678,7 +679,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.btaddrelation = new System.Windows.Forms.Button();
 			this.btdeleterelation = new System.Windows.Forms.Button();
 			this.label14 = new System.Windows.Forms.Label();
-			this.llsimrelcommit = new System.Windows.Forms.LinkLabel();
+			this.llsimrelcommit = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.gbout = new System.Windows.Forms.GroupBox();
 			this.cboutfamtype = new System.Windows.Forms.ComboBox();
 			this.cboutbest = new System.Windows.Forms.CheckBox();
@@ -741,7 +742,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label24 = new System.Windows.Forms.Label();
 			this.label23 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
-			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+			this.linkLabel2 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.tbext = new System.Windows.Forms.TabPage();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.cbfit = new System.Windows.Forms.CheckBox();
@@ -802,9 +803,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbmajor = new System.Windows.Forms.ComboBox();
 			this.label98 = new System.Windows.Forms.Label();
 			this.tbmajor = new System.Windows.Forms.TextBox();
-			this.lldna = new System.Windows.Forms.LinkLabel();
-			this.llcloth = new System.Windows.Forms.LinkLabel();
-			this.llfam = new System.Windows.Forms.LinkLabel();
+			this.lldna = new Skybound.VisualStyles.VisualStyleLinkLabel();
+			this.llcloth = new Skybound.VisualStyles.VisualStyleLinkLabel();
+			this.llfam = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.tbsimdescfamname = new System.Windows.Forms.TextBox();
 			this.tbfaminst = new System.Windows.Forms.TextBox();
 			this.cbzodiac = new System.Windows.Forms.ComboBox();
@@ -826,12 +827,12 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.lbfilename = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
-			this.linkLabel5 = new System.Windows.Forms.LinkLabel();
+			this.linkLabel5 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.realPanel = new System.Windows.Forms.Panel();
 			this.label91 = new System.Windows.Forms.Label();
 			this.cbfamtype = new System.Windows.Forms.ComboBox();
-			this.llsrelcommit = new System.Windows.Forms.LinkLabel();
+			this.llsrelcommit = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.gbrelation = new System.Windows.Forms.GroupBox();
 			this.cbbest = new System.Windows.Forms.CheckBox();
 			this.cbfamily = new System.Windows.Forms.CheckBox();
@@ -849,8 +850,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label58 = new System.Windows.Forms.Label();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.label56 = new System.Windows.Forms.Label();
-			this.llrelcommit = new System.Windows.Forms.LinkLabel();
+			this.llrelcommit = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
 			this.JpegPanel.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.xmlPanel.SuspendLayout();
@@ -919,6 +921,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.JpegPanel.Text = resources.GetString("JpegPanel.Text");
 			this.toolTip1.SetToolTip(this.JpegPanel, resources.GetString("JpegPanel.ToolTip"));
 			this.JpegPanel.Visible = ((bool)(resources.GetObject("JpegPanel.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.JpegPanel, true);
 			// 
 			// pb
 			// 
@@ -941,6 +944,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pb.Text = resources.GetString("pb.Text");
 			this.toolTip1.SetToolTip(this.pb, resources.GetString("pb.ToolTip"));
 			this.pb.Visible = ((bool)(resources.GetObject("pb.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.pb, true);
 			// 
 			// panel2
 			// 
@@ -966,6 +970,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel2.Text = resources.GetString("panel2.Text");
 			this.toolTip1.SetToolTip(this.panel2, resources.GetString("panel2.ToolTip"));
 			this.panel2.Visible = ((bool)(resources.GetObject("panel2.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.panel2, true);
 			// 
 			// banner
 			// 
@@ -989,6 +994,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.banner.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("banner.TextAlign")));
 			this.toolTip1.SetToolTip(this.banner, resources.GetString("banner.ToolTip"));
 			this.banner.Visible = ((bool)(resources.GetObject("banner.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.banner, true);
 			// 
 			// xmlPanel
 			// 
@@ -1014,6 +1020,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.xmlPanel.Text = resources.GetString("xmlPanel.Text");
 			this.toolTip1.SetToolTip(this.xmlPanel, resources.GetString("xmlPanel.ToolTip"));
 			this.xmlPanel.Visible = ((bool)(resources.GetObject("xmlPanel.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.xmlPanel, true);
 			// 
 			// rtb
 			// 
@@ -1066,6 +1073,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel3.Text = resources.GetString("panel3.Text");
 			this.toolTip1.SetToolTip(this.panel3, resources.GetString("panel3.ToolTip"));
 			this.panel3.Visible = ((bool)(resources.GetObject("panel3.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.panel3, true);
 			// 
 			// label1
 			// 
@@ -1089,6 +1097,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label1.TextAlign")));
 			this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
 			this.label1.Visible = ((bool)(resources.GetObject("label1.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label1, true);
 			// 
 			// visualStyleLinkLabel2
 			// 
@@ -1153,6 +1162,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.objdPanel.Text = resources.GetString("objdPanel.Text");
 			this.toolTip1.SetToolTip(this.objdPanel, resources.GetString("objdPanel.ToolTip"));
 			this.objdPanel.Visible = ((bool)(resources.GetObject("objdPanel.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.objdPanel, true);
 			// 
 			// cbupdate
 			// 
@@ -1181,6 +1191,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbupdate.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbupdate.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbupdate, resources.GetString("cbupdate.ToolTip"));
 			this.cbupdate.Visible = ((bool)(resources.GetObject("cbupdate.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbupdate, true);
 			// 
 			// label63
 			// 
@@ -1204,6 +1215,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label63.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label63.TextAlign")));
 			this.toolTip1.SetToolTip(this.label63, resources.GetString("label63.ToolTip"));
 			this.label63.Visible = ((bool)(resources.GetObject("label63.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label63, true);
 			// 
 			// tbproxguid
 			// 
@@ -1229,6 +1241,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbproxguid.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbproxguid.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbproxguid, resources.GetString("tbproxguid.ToolTip"));
 			this.tbproxguid.Visible = ((bool)(resources.GetObject("tbproxguid.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbproxguid, true);
 			this.tbproxguid.WordWrap = ((bool)(resources.GetObject("tbproxguid.WordWrap")));
 			// 
 			// label97
@@ -1253,6 +1266,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label97.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label97.TextAlign")));
 			this.toolTip1.SetToolTip(this.label97, resources.GetString("label97.ToolTip"));
 			this.label97.Visible = ((bool)(resources.GetObject("label97.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label97, true);
 			// 
 			// tborgguid
 			// 
@@ -1278,6 +1292,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tborgguid.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tborgguid.TextAlign")));
 			this.toolTip1.SetToolTip(this.tborgguid, resources.GetString("tborgguid.ToolTip"));
 			this.tborgguid.Visible = ((bool)(resources.GetObject("tborgguid.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tborgguid, true);
 			this.tborgguid.WordWrap = ((bool)(resources.GetObject("tborgguid.WordWrap")));
 			// 
 			// lbtypename
@@ -1302,6 +1317,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lbtypename.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbtypename.TextAlign")));
 			this.toolTip1.SetToolTip(this.lbtypename, resources.GetString("lbtypename.ToolTip"));
 			this.lbtypename.Visible = ((bool)(resources.GetObject("lbtypename.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.lbtypename, true);
 			// 
 			// llgetGUID
 			// 
@@ -1350,6 +1366,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbelements.Text = resources.GetString("gbelements.Text");
 			this.toolTip1.SetToolTip(this.gbelements, resources.GetString("gbelements.ToolTip"));
 			this.gbelements.Visible = ((bool)(resources.GetObject("gbelements.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbelements, true);
 			// 
 			// pnelements
 			// 
@@ -1372,6 +1389,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnelements.Text = resources.GetString("pnelements.Text");
 			this.toolTip1.SetToolTip(this.pnelements, resources.GetString("pnelements.ToolTip"));
 			this.pnelements.Visible = ((bool)(resources.GetObject("pnelements.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.pnelements, true);
 			// 
 			// llcommitobjd
 			// 
@@ -1423,6 +1441,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tblottype.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tblottype.TextAlign")));
 			this.toolTip1.SetToolTip(this.tblottype, resources.GetString("tblottype.ToolTip"));
 			this.tblottype.Visible = ((bool)(resources.GetObject("tblottype.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tblottype, true);
 			this.tblottype.WordWrap = ((bool)(resources.GetObject("tblottype.WordWrap")));
 			// 
 			// label65
@@ -1447,6 +1466,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label65.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label65.TextAlign")));
 			this.toolTip1.SetToolTip(this.label65, resources.GetString("label65.ToolTip"));
 			this.label65.Visible = ((bool)(resources.GetObject("label65.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label65, true);
 			// 
 			// tbsimname
 			// 
@@ -1472,6 +1492,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsimname.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsimname.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbsimname, resources.GetString("tbsimname.ToolTip"));
 			this.tbsimname.Visible = ((bool)(resources.GetObject("tbsimname.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbsimname, true);
 			this.tbsimname.WordWrap = ((bool)(resources.GetObject("tbsimname.WordWrap")));
 			// 
 			// label9
@@ -1496,6 +1517,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label9.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label9.TextAlign")));
 			this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
 			this.label9.Visible = ((bool)(resources.GetObject("label9.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label9, true);
 			// 
 			// tbsimid
 			// 
@@ -1521,6 +1543,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsimid.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsimid.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbsimid, resources.GetString("tbsimid.ToolTip"));
 			this.tbsimid.Visible = ((bool)(resources.GetObject("tbsimid.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbsimid, true);
 			this.tbsimid.WordWrap = ((bool)(resources.GetObject("tbsimid.WordWrap")));
 			// 
 			// label8
@@ -1545,6 +1568,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label8.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label8.TextAlign")));
 			this.toolTip1.SetToolTip(this.label8, resources.GetString("label8.ToolTip"));
 			this.label8.Visible = ((bool)(resources.GetObject("label8.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label8, true);
 			// 
 			// panel6
 			// 
@@ -1570,6 +1594,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel6.Text = resources.GetString("panel6.Text");
 			this.toolTip1.SetToolTip(this.panel6, resources.GetString("panel6.ToolTip"));
 			this.panel6.Visible = ((bool)(resources.GetObject("panel6.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.panel6, true);
 			// 
 			// label12
 			// 
@@ -1593,6 +1618,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label12.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label12.TextAlign")));
 			this.toolTip1.SetToolTip(this.label12, resources.GetString("label12.ToolTip"));
 			this.label12.Visible = ((bool)(resources.GetObject("label12.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label12, true);
 			// 
 			// tabControl1
 			// 
@@ -1622,6 +1648,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tabControl1.Text = resources.GetString("tabControl1.Text");
 			this.toolTip1.SetToolTip(this.tabControl1, resources.GetString("tabControl1.ToolTip"));
 			this.tabControl1.Visible = ((bool)(resources.GetObject("tabControl1.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabControl1, true);
 			// 
 			// tabPage4
 			// 
@@ -1647,6 +1674,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tabPage4, resources.GetString("tabPage4.ToolTip"));
 			this.tabPage4.ToolTipText = resources.GetString("tabPage4.ToolTipText");
 			this.tabPage4.Visible = ((bool)(resources.GetObject("tabPage4.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage4, true);
 			// 
 			// familytiePanel
 			// 
@@ -1674,6 +1702,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.familytiePanel.Text = resources.GetString("familytiePanel.Text");
 			this.toolTip1.SetToolTip(this.familytiePanel, resources.GetString("familytiePanel.ToolTip"));
 			this.familytiePanel.Visible = ((bool)(resources.GetObject("familytiePanel.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.familytiePanel, true);
 			// 
 			// gbties
 			// 
@@ -1702,6 +1731,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbties.Text = resources.GetString("gbties.Text");
 			this.toolTip1.SetToolTip(this.gbties, resources.GetString("gbties.ToolTip"));
 			this.gbties.Visible = ((bool)(resources.GetObject("gbties.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbties, true);
 			// 
 			// btnewtie
 			// 
@@ -1726,6 +1756,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.btnewtie.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnewtie.TextAlign")));
 			this.toolTip1.SetToolTip(this.btnewtie, resources.GetString("btnewtie.ToolTip"));
 			this.btnewtie.Visible = ((bool)(resources.GetObject("btnewtie.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.btnewtie, true);
 			this.btnewtie.Click += new System.EventHandler(this.AddSimToTiesClick);
 			// 
 			// cballtieablesims
@@ -1825,6 +1856,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.btdeletetie.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btdeletetie.TextAlign")));
 			this.toolTip1.SetToolTip(this.btdeletetie, resources.GetString("btdeletetie.ToolTip"));
 			this.btdeletetie.Visible = ((bool)(resources.GetObject("btdeletetie.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.btdeletetie, true);
 			this.btdeletetie.Click += new System.EventHandler(this.DeleteTieClick);
 			// 
 			// btaddtie
@@ -1850,6 +1882,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.btaddtie.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btaddtie.TextAlign")));
 			this.toolTip1.SetToolTip(this.btaddtie, resources.GetString("btaddtie.ToolTip"));
 			this.btaddtie.Visible = ((bool)(resources.GetObject("btaddtie.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.btaddtie, true);
 			this.btaddtie.Click += new System.EventHandler(this.AddTieClick);
 			// 
 			// llcommitties
@@ -1926,6 +1959,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.bttiecommit.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("bttiecommit.TextAlign")));
 			this.toolTip1.SetToolTip(this.bttiecommit, resources.GetString("bttiecommit.ToolTip"));
 			this.bttiecommit.Visible = ((bool)(resources.GetObject("bttiecommit.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.bttiecommit, true);
 			this.bttiecommit.Click += new System.EventHandler(this.CommitTieClick);
 			// 
 			// label64
@@ -1950,6 +1984,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label64.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label64.TextAlign")));
 			this.toolTip1.SetToolTip(this.label64, resources.GetString("label64.ToolTip"));
 			this.label64.Visible = ((bool)(resources.GetObject("label64.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label64, true);
 			// 
 			// panel8
 			// 
@@ -1975,6 +2010,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel8.Text = resources.GetString("panel8.Text");
 			this.toolTip1.SetToolTip(this.panel8, resources.GetString("panel8.ToolTip"));
 			this.panel8.Visible = ((bool)(resources.GetObject("panel8.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.panel8, true);
 			// 
 			// label68
 			// 
@@ -1998,6 +2034,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label68.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label68.TextAlign")));
 			this.toolTip1.SetToolTip(this.label68, resources.GetString("label68.ToolTip"));
 			this.label68.Visible = ((bool)(resources.GetObject("label68.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label68, true);
 			// 
 			// tabPage1
 			// 
@@ -2023,6 +2060,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tabPage1, resources.GetString("tabPage1.ToolTip"));
 			this.tabPage1.ToolTipText = resources.GetString("tabPage1.ToolTipText");
 			this.tabPage1.Visible = ((bool)(resources.GetObject("tabPage1.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage1, true);
 			// 
 			// famiPanel
 			// 
@@ -2067,6 +2105,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.famiPanel.Text = resources.GetString("famiPanel.Text");
 			this.toolTip1.SetToolTip(this.famiPanel, resources.GetString("famiPanel.ToolTip"));
 			this.famiPanel.Visible = ((bool)(resources.GetObject("famiPanel.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.famiPanel, true);
 			// 
 			// tbsubhood
 			// 
@@ -2092,6 +2131,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsubhood.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsubhood.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbsubhood, resources.GetString("tbsubhood.ToolTip"));
 			this.tbsubhood.Visible = ((bool)(resources.GetObject("tbsubhood.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbsubhood, true);
 			this.tbsubhood.WordWrap = ((bool)(resources.GetObject("tbsubhood.WordWrap")));
 			// 
 			// label89
@@ -2116,6 +2156,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label89.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label89.TextAlign")));
 			this.toolTip1.SetToolTip(this.label89, resources.GetString("label89.ToolTip"));
 			this.label89.Visible = ((bool)(resources.GetObject("label89.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label89, true);
 			// 
 			// groupBox4
 			// 
@@ -2141,6 +2182,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.groupBox4.Text = resources.GetString("groupBox4.Text");
 			this.toolTip1.SetToolTip(this.groupBox4, resources.GetString("groupBox4.ToolTip"));
 			this.groupBox4.Visible = ((bool)(resources.GetObject("groupBox4.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.groupBox4, true);
 			// 
 			// cbcomputer
 			// 
@@ -2167,6 +2209,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbcomputer.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbcomputer.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbcomputer, resources.GetString("cbcomputer.ToolTip"));
 			this.cbcomputer.Visible = ((bool)(resources.GetObject("cbcomputer.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbcomputer, true);
 			this.cbcomputer.CheckedChanged += new System.EventHandler(this.ChangeFlags);
 			// 
 			// cblot
@@ -2194,6 +2237,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cblot.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cblot.TextAlign")));
 			this.toolTip1.SetToolTip(this.cblot, resources.GetString("cblot.ToolTip"));
 			this.cblot.Visible = ((bool)(resources.GetObject("cblot.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cblot, true);
 			this.cblot.CheckedChanged += new System.EventHandler(this.ChangeFlags);
 			// 
 			// cbbaby
@@ -2221,6 +2265,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbbaby.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbbaby.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbbaby, resources.GetString("cbbaby.ToolTip"));
 			this.cbbaby.Visible = ((bool)(resources.GetObject("cbbaby.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbbaby, true);
 			this.cbbaby.CheckedChanged += new System.EventHandler(this.ChangeFlags);
 			// 
 			// cbphone
@@ -2248,6 +2293,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbphone.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbphone.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbphone, resources.GetString("cbphone.ToolTip"));
 			this.cbphone.Visible = ((bool)(resources.GetObject("cbphone.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbphone, true);
 			this.cbphone.CheckedChanged += new System.EventHandler(this.ChangeFlags);
 			// 
 			// tbalbum
@@ -2274,6 +2320,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbalbum.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbalbum.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbalbum, resources.GetString("tbalbum.ToolTip"));
 			this.tbalbum.Visible = ((bool)(resources.GetObject("tbalbum.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbalbum, true);
 			this.tbalbum.WordWrap = ((bool)(resources.GetObject("tbalbum.WordWrap")));
 			// 
 			// label93
@@ -2298,6 +2345,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label93.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label93.TextAlign")));
 			this.toolTip1.SetToolTip(this.label93, resources.GetString("label93.ToolTip"));
 			this.label93.Visible = ((bool)(resources.GetObject("label93.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label93, true);
 			// 
 			// tbflag
 			// 
@@ -2323,6 +2371,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbflag.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbflag.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbflag, resources.GetString("tbflag.ToolTip"));
 			this.tbflag.Visible = ((bool)(resources.GetObject("tbflag.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbflag, true);
 			this.tbflag.WordWrap = ((bool)(resources.GetObject("tbflag.WordWrap")));
 			this.tbflag.TextChanged += new System.EventHandler(this.FlagChanged);
 			// 
@@ -2348,6 +2397,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label92.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label92.TextAlign")));
 			this.toolTip1.SetToolTip(this.label92, resources.GetString("label92.ToolTip"));
 			this.label92.Visible = ((bool)(resources.GetObject("label92.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label92, true);
 			// 
 			// tblotinst
 			// 
@@ -2373,6 +2423,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tblotinst.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tblotinst.TextAlign")));
 			this.toolTip1.SetToolTip(this.tblotinst, resources.GetString("tblotinst.ToolTip"));
 			this.tblotinst.Visible = ((bool)(resources.GetObject("tblotinst.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tblotinst, true);
 			this.tblotinst.WordWrap = ((bool)(resources.GetObject("tblotinst.WordWrap")));
 			// 
 			// llFamiDeleteSim
@@ -2398,6 +2449,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.llFamiDeleteSim.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llFamiDeleteSim.TextAlign")));
 			this.toolTip1.SetToolTip(this.llFamiDeleteSim, resources.GetString("llFamiDeleteSim.ToolTip"));
 			this.llFamiDeleteSim.Visible = ((bool)(resources.GetObject("llFamiDeleteSim.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.llFamiDeleteSim, true);
 			this.llFamiDeleteSim.Click += new System.EventHandler(this.FamiDeleteSimClick);
 			// 
 			// llFamiAddSim
@@ -2423,6 +2475,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.llFamiAddSim.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llFamiAddSim.TextAlign")));
 			this.toolTip1.SetToolTip(this.llFamiAddSim, resources.GetString("llFamiAddSim.ToolTip"));
 			this.llFamiAddSim.Visible = ((bool)(resources.GetObject("llFamiAddSim.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.llFamiAddSim, true);
 			this.llFamiAddSim.Click += new System.EventHandler(this.FamiSimAddClick);
 			// 
 			// button1
@@ -2448,6 +2501,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.button1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.TextAlign")));
 			this.toolTip1.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
 			this.button1.Visible = ((bool)(resources.GetObject("button1.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.button1, true);
 			this.button1.Click += new System.EventHandler(this.CommitFamiClick);
 			// 
 			// cbsims
@@ -2524,6 +2578,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbname.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbname.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbname, resources.GetString("tbname.ToolTip"));
 			this.tbname.Visible = ((bool)(resources.GetObject("tbname.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbname, true);
 			this.tbname.WordWrap = ((bool)(resources.GetObject("tbname.WordWrap")));
 			// 
 			// label6
@@ -2548,6 +2603,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label6.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label6.TextAlign")));
 			this.toolTip1.SetToolTip(this.label6, resources.GetString("label6.ToolTip"));
 			this.label6.Visible = ((bool)(resources.GetObject("label6.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label6, true);
 			// 
 			// tbfamily
 			// 
@@ -2573,6 +2629,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbfamily.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbfamily.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbfamily, resources.GetString("tbfamily.ToolTip"));
 			this.tbfamily.Visible = ((bool)(resources.GetObject("tbfamily.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbfamily, true);
 			this.tbfamily.WordWrap = ((bool)(resources.GetObject("tbfamily.WordWrap")));
 			// 
 			// tbmoney
@@ -2599,6 +2656,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbmoney.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbmoney.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbmoney, resources.GetString("tbmoney.ToolTip"));
 			this.tbmoney.Visible = ((bool)(resources.GetObject("tbmoney.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbmoney, true);
 			this.tbmoney.WordWrap = ((bool)(resources.GetObject("tbmoney.WordWrap")));
 			// 
 			// label5
@@ -2623,6 +2681,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label5.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label5.TextAlign")));
 			this.toolTip1.SetToolTip(this.label5, resources.GetString("label5.ToolTip"));
 			this.label5.Visible = ((bool)(resources.GetObject("label5.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label5, true);
 			// 
 			// label4
 			// 
@@ -2646,6 +2705,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label4.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label4.TextAlign")));
 			this.toolTip1.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
 			this.label4.Visible = ((bool)(resources.GetObject("label4.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label4, true);
 			// 
 			// label3
 			// 
@@ -2669,6 +2729,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label3.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label3.TextAlign")));
 			this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
 			this.label3.Visible = ((bool)(resources.GetObject("label3.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label3, true);
 			// 
 			// panel4
 			// 
@@ -2694,6 +2755,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel4.Text = resources.GetString("panel4.Text");
 			this.toolTip1.SetToolTip(this.panel4, resources.GetString("panel4.ToolTip"));
 			this.panel4.Visible = ((bool)(resources.GetObject("panel4.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.panel4, true);
 			// 
 			// label2
 			// 
@@ -2717,6 +2779,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.TextAlign")));
 			this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
 			this.label2.Visible = ((bool)(resources.GetObject("label2.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label2, true);
 			// 
 			// label15
 			// 
@@ -2740,6 +2803,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label15.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label15.TextAlign")));
 			this.toolTip1.SetToolTip(this.label15, resources.GetString("label15.ToolTip"));
 			this.label15.Visible = ((bool)(resources.GetObject("label15.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label15, true);
 			// 
 			// tabPage2
 			// 
@@ -2765,6 +2829,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tabPage2, resources.GetString("tabPage2.ToolTip"));
 			this.tabPage2.ToolTipText = resources.GetString("tabPage2.ToolTipText");
 			this.tabPage2.Visible = ((bool)(resources.GetObject("tabPage2.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage2, true);
 			// 
 			// sdescPanel
 			// 
@@ -2812,6 +2877,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.sdescPanel.Text = resources.GetString("sdescPanel.Text");
 			this.toolTip1.SetToolTip(this.sdescPanel, resources.GetString("sdescPanel.ToolTip"));
 			this.sdescPanel.Visible = ((bool)(resources.GetObject("sdescPanel.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.sdescPanel, true);
 			// 
 			// linkLabel6
 			// 
@@ -2869,6 +2935,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tcsdesc.Text = resources.GetString("tcsdesc.Text");
 			this.toolTip1.SetToolTip(this.tcsdesc, resources.GetString("tcsdesc.ToolTip"));
 			this.tcsdesc.Visible = ((bool)(resources.GetObject("tcsdesc.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tcsdesc, true);
 			// 
 			// tpinterests
 			// 
@@ -2957,6 +3024,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tpinterests, resources.GetString("tpinterests.ToolTip"));
 			this.tpinterests.ToolTipText = resources.GetString("tpinterests.ToolTipText");
 			this.tpinterests.Visible = ((bool)(resources.GetObject("tpinterests.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tpinterests, true);
 			// 
 			// panel1
 			// 
@@ -2980,6 +3048,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel1.Text = resources.GetString("panel1.Text");
 			this.toolTip1.SetToolTip(this.panel1, resources.GetString("panel1.ToolTip"));
 			this.panel1.Visible = ((bool)(resources.GetObject("panel1.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.panel1, true);
 			// 
 			// label70
 			// 
@@ -3004,6 +3073,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label70.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label70.TextAlign")));
 			this.toolTip1.SetToolTip(this.label70, resources.GetString("label70.ToolTip"));
 			this.label70.Visible = ((bool)(resources.GetObject("label70.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label70, true);
 			// 
 			// label69
 			// 
@@ -3028,6 +3098,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label69.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label69.TextAlign")));
 			this.toolTip1.SetToolTip(this.label69, resources.GetString("label69.ToolTip"));
 			this.label69.Visible = ((bool)(resources.GetObject("label69.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label69, true);
 			// 
 			// label67
 			// 
@@ -3051,6 +3122,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label67.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label67.TextAlign")));
 			this.toolTip1.SetToolTip(this.label67, resources.GetString("label67.ToolTip"));
 			this.label67.Visible = ((bool)(resources.GetObject("label67.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label67, true);
 			// 
 			// pbwoman
 			// 
@@ -3101,6 +3173,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbwoman.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbwoman.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbwoman, resources.GetString("tbwoman.ToolTip"));
 			this.tbwoman.Visible = ((bool)(resources.GetObject("tbwoman.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbwoman, true);
 			this.tbwoman.WordWrap = ((bool)(resources.GetObject("tbwoman.WordWrap")));
 			this.tbwoman.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbwoman.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3127,6 +3200,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label66.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label66.TextAlign")));
 			this.toolTip1.SetToolTip(this.label66, resources.GetString("label66.ToolTip"));
 			this.label66.Visible = ((bool)(resources.GetObject("label66.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label66, true);
 			// 
 			// pbman
 			// 
@@ -3177,6 +3251,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbman.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbman.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbman, resources.GetString("tbman.ToolTip"));
 			this.tbman.Visible = ((bool)(resources.GetObject("tbman.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbman, true);
 			this.tbman.WordWrap = ((bool)(resources.GetObject("tbman.WordWrap")));
 			this.tbman.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbman.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3251,6 +3326,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label38.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label38.TextAlign")));
 			this.toolTip1.SetToolTip(this.label38, resources.GetString("label38.ToolTip"));
 			this.label38.Visible = ((bool)(resources.GetObject("label38.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label38, true);
 			// 
 			// label37
 			// 
@@ -3274,6 +3350,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label37.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label37.TextAlign")));
 			this.toolTip1.SetToolTip(this.label37, resources.GetString("label37.ToolTip"));
 			this.label37.Visible = ((bool)(resources.GetObject("label37.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label37, true);
 			// 
 			// tbscifi
 			// 
@@ -3300,6 +3377,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbscifi.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbscifi.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbscifi, resources.GetString("tbscifi.ToolTip"));
 			this.tbscifi.Visible = ((bool)(resources.GetObject("tbscifi.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbscifi, true);
 			this.tbscifi.WordWrap = ((bool)(resources.GetObject("tbscifi.WordWrap")));
 			this.tbscifi.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbscifi.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3326,6 +3404,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label28.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label28.TextAlign")));
 			this.toolTip1.SetToolTip(this.label28, resources.GetString("label28.ToolTip"));
 			this.label28.Visible = ((bool)(resources.GetObject("label28.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label28, true);
 			// 
 			// label36
 			// 
@@ -3349,6 +3428,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label36.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label36.TextAlign")));
 			this.toolTip1.SetToolTip(this.label36, resources.GetString("label36.ToolTip"));
 			this.label36.Visible = ((bool)(resources.GetObject("label36.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label36, true);
 			// 
 			// label35
 			// 
@@ -3372,6 +3452,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label35.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label35.TextAlign")));
 			this.toolTip1.SetToolTip(this.label35, resources.GetString("label35.ToolTip"));
 			this.label35.Visible = ((bool)(resources.GetObject("label35.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label35, true);
 			// 
 			// pbhealth
 			// 
@@ -3419,6 +3500,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label34.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label34.TextAlign")));
 			this.toolTip1.SetToolTip(this.label34, resources.GetString("label34.ToolTip"));
 			this.label34.Visible = ((bool)(resources.GetObject("label34.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label34, true);
 			// 
 			// pbpolitics
 			// 
@@ -3613,6 +3695,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbtoys.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbtoys.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbtoys, resources.GetString("tbtoys.ToolTip"));
 			this.tbtoys.Visible = ((bool)(resources.GetObject("tbtoys.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbtoys, true);
 			this.tbtoys.WordWrap = ((bool)(resources.GetObject("tbtoys.WordWrap")));
 			this.tbtoys.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbtoys.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3642,6 +3725,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbschool.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbschool.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbschool, resources.GetString("tbschool.ToolTip"));
 			this.tbschool.Visible = ((bool)(resources.GetObject("tbschool.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbschool, true);
 			this.tbschool.WordWrap = ((bool)(resources.GetObject("tbschool.WordWrap")));
 			this.tbschool.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbschool.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3671,6 +3755,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbanimals.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbanimals.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbanimals, resources.GetString("tbanimals.ToolTip"));
 			this.tbanimals.Visible = ((bool)(resources.GetObject("tbanimals.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbanimals, true);
 			this.tbanimals.WordWrap = ((bool)(resources.GetObject("tbanimals.WordWrap")));
 			this.tbanimals.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbanimals.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3700,6 +3785,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbweather.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbweather.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbweather, resources.GetString("tbweather.ToolTip"));
 			this.tbweather.Visible = ((bool)(resources.GetObject("tbweather.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbweather, true);
 			this.tbweather.WordWrap = ((bool)(resources.GetObject("tbweather.WordWrap")));
 			this.tbweather.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbweather.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3726,6 +3812,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label33.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label33.TextAlign")));
 			this.toolTip1.SetToolTip(this.label33, resources.GetString("label33.ToolTip"));
 			this.label33.Visible = ((bool)(resources.GetObject("label33.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label33, true);
 			// 
 			// tbwork
 			// 
@@ -3752,6 +3839,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbwork.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbwork.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbwork, resources.GetString("tbwork.ToolTip"));
 			this.tbwork.Visible = ((bool)(resources.GetObject("tbwork.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbwork, true);
 			this.tbwork.WordWrap = ((bool)(resources.GetObject("tbwork.WordWrap")));
 			this.tbwork.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbwork.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3778,6 +3866,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label29.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label29.TextAlign")));
 			this.toolTip1.SetToolTip(this.label29, resources.GetString("label29.ToolTip"));
 			this.label29.Visible = ((bool)(resources.GetObject("label29.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label29, true);
 			// 
 			// label43
 			// 
@@ -3801,6 +3890,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label43.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label43.TextAlign")));
 			this.toolTip1.SetToolTip(this.label43, resources.GetString("label43.ToolTip"));
 			this.label43.Visible = ((bool)(resources.GetObject("label43.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label43, true);
 			// 
 			// tbtravel
 			// 
@@ -3827,6 +3917,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbtravel.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbtravel.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbtravel, resources.GetString("tbtravel.ToolTip"));
 			this.tbtravel.Visible = ((bool)(resources.GetObject("tbtravel.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbtravel, true);
 			this.tbtravel.WordWrap = ((bool)(resources.GetObject("tbtravel.WordWrap")));
 			this.tbtravel.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbtravel.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3853,6 +3944,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label42.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label42.TextAlign")));
 			this.toolTip1.SetToolTip(this.label42, resources.GetString("label42.ToolTip"));
 			this.label42.Visible = ((bool)(resources.GetObject("label42.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label42, true);
 			// 
 			// label40
 			// 
@@ -3876,6 +3968,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label40.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label40.TextAlign")));
 			this.toolTip1.SetToolTip(this.label40, resources.GetString("label40.ToolTip"));
 			this.label40.Visible = ((bool)(resources.GetObject("label40.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label40, true);
 			// 
 			// label41
 			// 
@@ -3899,6 +3992,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label41.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label41.TextAlign")));
 			this.toolTip1.SetToolTip(this.label41, resources.GetString("label41.ToolTip"));
 			this.label41.Visible = ((bool)(resources.GetObject("label41.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label41, true);
 			// 
 			// tbcrime
 			// 
@@ -3925,6 +4019,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbcrime.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbcrime.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbcrime, resources.GetString("tbcrime.ToolTip"));
 			this.tbcrime.Visible = ((bool)(resources.GetObject("tbcrime.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbcrime, true);
 			this.tbcrime.WordWrap = ((bool)(resources.GetObject("tbcrime.WordWrap")));
 			this.tbcrime.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbcrime.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3954,6 +4049,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsports.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsports.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbsports, resources.GetString("tbsports.ToolTip"));
 			this.tbsports.Visible = ((bool)(resources.GetObject("tbsports.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbsports, true);
 			this.tbsports.WordWrap = ((bool)(resources.GetObject("tbsports.WordWrap")));
 			this.tbsports.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbsports.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -3983,6 +4079,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbfashion.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbfashion.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbfashion, resources.GetString("tbfashion.ToolTip"));
 			this.tbfashion.Visible = ((bool)(resources.GetObject("tbfashion.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbfashion, true);
 			this.tbfashion.WordWrap = ((bool)(resources.GetObject("tbfashion.WordWrap")));
 			this.tbfashion.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbfashion.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4012,6 +4109,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbhealth.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbhealth.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbhealth, resources.GetString("tbhealth.ToolTip"));
 			this.tbhealth.Visible = ((bool)(resources.GetObject("tbhealth.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbhealth, true);
 			this.tbhealth.WordWrap = ((bool)(resources.GetObject("tbhealth.WordWrap")));
 			this.tbhealth.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbhealth.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4041,6 +4139,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbfood.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbfood.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbfood, resources.GetString("tbfood.ToolTip"));
 			this.tbfood.Visible = ((bool)(resources.GetObject("tbfood.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbfood, true);
 			this.tbfood.WordWrap = ((bool)(resources.GetObject("tbfood.WordWrap")));
 			this.tbfood.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbfood.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4070,6 +4169,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbpolitics.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbpolitics.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbpolitics, resources.GetString("tbpolitics.ToolTip"));
 			this.tbpolitics.Visible = ((bool)(resources.GetObject("tbpolitics.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbpolitics, true);
 			this.tbpolitics.WordWrap = ((bool)(resources.GetObject("tbpolitics.WordWrap")));
 			this.tbpolitics.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbpolitics.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4096,6 +4196,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label31.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label31.TextAlign")));
 			this.toolTip1.SetToolTip(this.label31, resources.GetString("label31.ToolTip"));
 			this.label31.Visible = ((bool)(resources.GetObject("label31.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label31, true);
 			// 
 			// tbmonei
 			// 
@@ -4122,6 +4223,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbmonei.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbmonei.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbmonei, resources.GetString("tbmonei.ToolTip"));
 			this.tbmonei.Visible = ((bool)(resources.GetObject("tbmonei.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbmonei, true);
 			this.tbmonei.WordWrap = ((bool)(resources.GetObject("tbmonei.WordWrap")));
 			this.tbmonei.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbmonei.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4148,6 +4250,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label30.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label30.TextAlign")));
 			this.toolTip1.SetToolTip(this.label30, resources.GetString("label30.ToolTip"));
 			this.label30.Visible = ((bool)(resources.GetObject("label30.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label30, true);
 			// 
 			// tbculture
 			// 
@@ -4174,6 +4277,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbculture.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbculture.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbculture, resources.GetString("tbculture.ToolTip"));
 			this.tbculture.Visible = ((bool)(resources.GetObject("tbculture.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbculture, true);
 			this.tbculture.WordWrap = ((bool)(resources.GetObject("tbculture.WordWrap")));
 			this.tbculture.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbculture.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4203,6 +4307,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbentertainment.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbentertainment.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbentertainment, resources.GetString("tbentertainment.ToolTip"));
 			this.tbentertainment.Visible = ((bool)(resources.GetObject("tbentertainment.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbentertainment, true);
 			this.tbentertainment.WordWrap = ((bool)(resources.GetObject("tbentertainment.WordWrap")));
 			this.tbentertainment.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbentertainment.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4232,6 +4337,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbparanormal.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbparanormal.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbparanormal, resources.GetString("tbparanormal.ToolTip"));
 			this.tbparanormal.Visible = ((bool)(resources.GetObject("tbparanormal.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbparanormal, true);
 			this.tbparanormal.WordWrap = ((bool)(resources.GetObject("tbparanormal.WordWrap")));
 			this.tbparanormal.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbparanormal.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4261,6 +4367,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbenvironment.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbenvironment.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbenvironment, resources.GetString("tbenvironment.ToolTip"));
 			this.tbenvironment.Visible = ((bool)(resources.GetObject("tbenvironment.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbenvironment, true);
 			this.tbenvironment.WordWrap = ((bool)(resources.GetObject("tbenvironment.WordWrap")));
 			this.tbenvironment.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbenvironment.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4358,6 +4465,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label45.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label45.TextAlign")));
 			this.toolTip1.SetToolTip(this.label45, resources.GetString("label45.ToolTip"));
 			this.label45.Visible = ((bool)(resources.GetObject("label45.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label45, true);
 			// 
 			// pbanimals
 			// 
@@ -4429,6 +4537,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label44.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label44.TextAlign")));
 			this.toolTip1.SetToolTip(this.label44, resources.GetString("label44.ToolTip"));
 			this.label44.Visible = ((bool)(resources.GetObject("label44.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label44, true);
 			// 
 			// pbenvironment
 			// 
@@ -4476,6 +4585,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label39.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label39.TextAlign")));
 			this.toolTip1.SetToolTip(this.label39, resources.GetString("label39.ToolTip"));
 			this.label39.Visible = ((bool)(resources.GetObject("label39.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label39, true);
 			// 
 			// pbtravel
 			// 
@@ -4523,6 +4633,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label32.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label32.TextAlign")));
 			this.toolTip1.SetToolTip(this.label32, resources.GetString("label32.ToolTip"));
 			this.label32.Visible = ((bool)(resources.GetObject("label32.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label32, true);
 			// 
 			// pbcrime
 			// 
@@ -4603,6 +4714,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tbcharacter, resources.GetString("tbcharacter.ToolTip"));
 			this.tbcharacter.ToolTipText = resources.GetString("tbcharacter.ToolTipText");
 			this.tbcharacter.Visible = ((bool)(resources.GetObject("tbcharacter.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbcharacter, true);
 			// 
 			// groupBox2
 			// 
@@ -4629,6 +4741,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.groupBox2.Text = resources.GetString("groupBox2.Text");
 			this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
 			this.groupBox2.Visible = ((bool)(resources.GetObject("groupBox2.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.groupBox2, true);
 			// 
 			// cbignoretraversal
 			// 
@@ -4655,6 +4768,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbignoretraversal.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbignoretraversal.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbignoretraversal, resources.GetString("cbignoretraversal.ToolTip"));
 			this.cbignoretraversal.Visible = ((bool)(resources.GetObject("cbignoretraversal.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbignoretraversal, true);
 			// 
 			// cbpasspeople
 			// 
@@ -4681,6 +4795,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbpasspeople.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbpasspeople.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbpasspeople, resources.GetString("cbpasspeople.ToolTip"));
 			this.cbpasspeople.Visible = ((bool)(resources.GetObject("cbpasspeople.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbpasspeople, true);
 			// 
 			// cbpasswalls
 			// 
@@ -4707,6 +4822,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbpasswalls.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbpasswalls.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbpasswalls, resources.GetString("cbpasswalls.ToolTip"));
 			this.cbpasswalls.Visible = ((bool)(resources.GetObject("cbpasswalls.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbpasswalls, true);
 			// 
 			// cbpassobject
 			// 
@@ -4733,6 +4849,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbpassobject.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbpassobject.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbpassobject, resources.GetString("cbpassobject.ToolTip"));
 			this.cbpassobject.Visible = ((bool)(resources.GetObject("cbpassobject.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbpassobject, true);
 			// 
 			// cbisghost
 			// 
@@ -4759,6 +4876,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbisghost.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbisghost.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbisghost, resources.GetString("cbisghost.ToolTip"));
 			this.cbisghost.Visible = ((bool)(resources.GetObject("cbisghost.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbisghost, true);
 			// 
 			// gbcareer
 			// 
@@ -4789,6 +4907,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbcareer.Text = resources.GetString("gbcareer.Text");
 			this.toolTip1.SetToolTip(this.gbcareer, resources.GetString("gbcareer.ToolTip"));
 			this.gbcareer.Visible = ((bool)(resources.GetObject("gbcareer.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbcareer, true);
 			// 
 			// pbjobperformance
 			// 
@@ -4839,6 +4958,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbjobperformance.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbjobperformance.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbjobperformance, resources.GetString("tbjobperformance.ToolTip"));
 			this.tbjobperformance.Visible = ((bool)(resources.GetObject("tbjobperformance.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbjobperformance, true);
 			this.tbjobperformance.WordWrap = ((bool)(resources.GetObject("tbjobperformance.WordWrap")));
 			this.tbjobperformance.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbjobperformance.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4865,6 +4985,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label88.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label88.TextAlign")));
 			this.toolTip1.SetToolTip(this.label88, resources.GetString("label88.ToolTip"));
 			this.label88.Visible = ((bool)(resources.GetObject("label88.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label88, true);
 			// 
 			// pbcarrerlevel
 			// 
@@ -4915,6 +5036,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbcarrerlevel.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbcarrerlevel.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbcarrerlevel, resources.GetString("tbcarrerlevel.ToolTip"));
 			this.tbcarrerlevel.Visible = ((bool)(resources.GetObject("tbcarrerlevel.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbcarrerlevel, true);
 			this.tbcarrerlevel.WordWrap = ((bool)(resources.GetObject("tbcarrerlevel.WordWrap")));
 			this.tbcarrerlevel.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbcarrerlevel.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -4941,6 +5063,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label61.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label61.TextAlign")));
 			this.toolTip1.SetToolTip(this.label61, resources.GetString("label61.ToolTip"));
 			this.label61.Visible = ((bool)(resources.GetObject("label61.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label61, true);
 			// 
 			// tbcareervalue
 			// 
@@ -4967,6 +5090,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbcareervalue.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbcareervalue.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbcareervalue, resources.GetString("tbcareervalue.ToolTip"));
 			this.tbcareervalue.Visible = ((bool)(resources.GetObject("tbcareervalue.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbcareervalue, true);
 			this.tbcareervalue.WordWrap = ((bool)(resources.GetObject("tbcareervalue.WordWrap")));
 			// 
 			// cbcareer
@@ -5016,6 +5140,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label50.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label50.TextAlign")));
 			this.toolTip1.SetToolTip(this.label50, resources.GetString("label50.ToolTip"));
 			this.label50.Visible = ((bool)(resources.GetObject("label50.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label50, true);
 			// 
 			// gblifeline
 			// 
@@ -5045,6 +5170,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gblifeline.Text = resources.GetString("gblifeline.Text");
 			this.toolTip1.SetToolTip(this.gblifeline, resources.GetString("gblifeline.ToolTip"));
 			this.gblifeline.Visible = ((bool)(resources.GetObject("gblifeline.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gblifeline, true);
 			// 
 			// pblifelinepoints
 			// 
@@ -5092,6 +5218,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label62.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label62.TextAlign")));
 			this.toolTip1.SetToolTip(this.label62, resources.GetString("label62.ToolTip"));
 			this.label62.Visible = ((bool)(resources.GetObject("label62.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label62, true);
 			// 
 			// tblifelinepoints
 			// 
@@ -5118,6 +5245,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tblifelinepoints.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tblifelinepoints.TextAlign")));
 			this.toolTip1.SetToolTip(this.tblifelinepoints, resources.GetString("tblifelinepoints.ToolTip"));
 			this.tblifelinepoints.Visible = ((bool)(resources.GetObject("tblifelinepoints.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tblifelinepoints, true);
 			this.tblifelinepoints.WordWrap = ((bool)(resources.GetObject("tblifelinepoints.WordWrap")));
 			this.tblifelinepoints.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tblifelinepoints.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -5147,6 +5275,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tblifelinescore.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tblifelinescore.TextAlign")));
 			this.toolTip1.SetToolTip(this.tblifelinescore, resources.GetString("tblifelinescore.ToolTip"));
 			this.tblifelinescore.Visible = ((bool)(resources.GetObject("tblifelinescore.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tblifelinescore, true);
 			this.tblifelinescore.WordWrap = ((bool)(resources.GetObject("tblifelinescore.WordWrap")));
 			// 
 			// label60
@@ -5171,6 +5300,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label60.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label60.TextAlign")));
 			this.toolTip1.SetToolTip(this.label60, resources.GetString("label60.ToolTip"));
 			this.label60.Visible = ((bool)(resources.GetObject("label60.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label60, true);
 			// 
 			// pbblizlifelinepoints
 			// 
@@ -5218,6 +5348,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label59.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label59.TextAlign")));
 			this.toolTip1.SetToolTip(this.label59, resources.GetString("label59.ToolTip"));
 			this.label59.Visible = ((bool)(resources.GetObject("label59.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label59, true);
 			// 
 			// tbblizlifelinepoints
 			// 
@@ -5244,6 +5375,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbblizlifelinepoints.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbblizlifelinepoints.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbblizlifelinepoints, resources.GetString("tbblizlifelinepoints.ToolTip"));
 			this.tbblizlifelinepoints.Visible = ((bool)(resources.GetObject("tbblizlifelinepoints.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbblizlifelinepoints, true);
 			this.tbblizlifelinepoints.WordWrap = ((bool)(resources.GetObject("tbblizlifelinepoints.WordWrap")));
 			this.tbblizlifelinepoints.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbblizlifelinepoints.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -5284,6 +5416,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbcharacter.Text = resources.GetString("gbcharacter.Text");
 			this.toolTip1.SetToolTip(this.gbcharacter, resources.GetString("gbcharacter.ToolTip"));
 			this.gbcharacter.Visible = ((bool)(resources.GetObject("gbcharacter.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbcharacter, true);
 			// 
 			// pbneat
 			// 
@@ -5334,6 +5467,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbnice.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbnice.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbnice, resources.GetString("tbnice.ToolTip"));
 			this.tbnice.Visible = ((bool)(resources.GetObject("tbnice.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbnice, true);
 			this.tbnice.WordWrap = ((bool)(resources.GetObject("tbnice.WordWrap")));
 			this.tbnice.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbnice.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -5363,6 +5497,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbplayful.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbplayful.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbplayful, resources.GetString("tbplayful.ToolTip"));
 			this.tbplayful.Visible = ((bool)(resources.GetObject("tbplayful.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbplayful, true);
 			this.tbplayful.WordWrap = ((bool)(resources.GetObject("tbplayful.WordWrap")));
 			this.tbplayful.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbplayful.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -5392,6 +5527,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbactive.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbactive.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbactive, resources.GetString("tbactive.ToolTip"));
 			this.tbactive.Visible = ((bool)(resources.GetObject("tbactive.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbactive, true);
 			this.tbactive.WordWrap = ((bool)(resources.GetObject("tbactive.WordWrap")));
 			this.tbactive.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbactive.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -5421,6 +5557,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tboutgoing.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tboutgoing.TextAlign")));
 			this.toolTip1.SetToolTip(this.tboutgoing, resources.GetString("tboutgoing.ToolTip"));
 			this.tboutgoing.Visible = ((bool)(resources.GetObject("tboutgoing.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tboutgoing, true);
 			this.tboutgoing.WordWrap = ((bool)(resources.GetObject("tboutgoing.WordWrap")));
 			this.tboutgoing.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tboutgoing.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -5450,6 +5587,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbneat.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbneat.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbneat, resources.GetString("tbneat.ToolTip"));
 			this.tbneat.Visible = ((bool)(resources.GetObject("tbneat.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbneat, true);
 			this.tbneat.WordWrap = ((bool)(resources.GetObject("tbneat.WordWrap")));
 			this.tbneat.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbneat.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -5572,6 +5710,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label20.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label20.TextAlign")));
 			this.toolTip1.SetToolTip(this.label20, resources.GetString("label20.ToolTip"));
 			this.label20.Visible = ((bool)(resources.GetObject("label20.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label20, true);
 			// 
 			// label19
 			// 
@@ -5595,6 +5734,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label19.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label19.TextAlign")));
 			this.toolTip1.SetToolTip(this.label19, resources.GetString("label19.ToolTip"));
 			this.label19.Visible = ((bool)(resources.GetObject("label19.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label19, true);
 			// 
 			// label18
 			// 
@@ -5618,6 +5758,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label18.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label18.TextAlign")));
 			this.toolTip1.SetToolTip(this.label18, resources.GetString("label18.ToolTip"));
 			this.label18.Visible = ((bool)(resources.GetObject("label18.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label18, true);
 			// 
 			// label17
 			// 
@@ -5641,6 +5782,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label17.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label17.TextAlign")));
 			this.toolTip1.SetToolTip(this.label17, resources.GetString("label17.ToolTip"));
 			this.label17.Visible = ((bool)(resources.GetObject("label17.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label17, true);
 			// 
 			// label16
 			// 
@@ -5664,6 +5806,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label16.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label16.TextAlign")));
 			this.toolTip1.SetToolTip(this.label16, resources.GetString("label16.ToolTip"));
 			this.label16.Visible = ((bool)(resources.GetObject("label16.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label16, true);
 			// 
 			// linkLabel3
 			// 
@@ -5727,6 +5870,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbgencharacter.Text = resources.GetString("gbgencharacter.Text");
 			this.toolTip1.SetToolTip(this.gbgencharacter, resources.GetString("gbgencharacter.ToolTip"));
 			this.gbgencharacter.Visible = ((bool)(resources.GetObject("gbgencharacter.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbgencharacter, true);
 			// 
 			// label71
 			// 
@@ -5750,6 +5894,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label71.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label71.TextAlign")));
 			this.toolTip1.SetToolTip(this.label71, resources.GetString("label71.ToolTip"));
 			this.label71.Visible = ((bool)(resources.GetObject("label71.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label71, true);
 			// 
 			// label72
 			// 
@@ -5773,6 +5918,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label72.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label72.TextAlign")));
 			this.toolTip1.SetToolTip(this.label72, resources.GetString("label72.ToolTip"));
 			this.label72.Visible = ((bool)(resources.GetObject("label72.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label72, true);
 			// 
 			// label73
 			// 
@@ -5796,6 +5942,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label73.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label73.TextAlign")));
 			this.toolTip1.SetToolTip(this.label73, resources.GetString("label73.ToolTip"));
 			this.label73.Visible = ((bool)(resources.GetObject("label73.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label73, true);
 			// 
 			// label74
 			// 
@@ -5819,6 +5966,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label74.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label74.TextAlign")));
 			this.toolTip1.SetToolTip(this.label74, resources.GetString("label74.ToolTip"));
 			this.label74.Visible = ((bool)(resources.GetObject("label74.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label74, true);
 			// 
 			// label75
 			// 
@@ -5842,6 +5990,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label75.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label75.TextAlign")));
 			this.toolTip1.SetToolTip(this.label75, resources.GetString("label75.ToolTip"));
 			this.label75.Visible = ((bool)(resources.GetObject("label75.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label75, true);
 			// 
 			// pbgenneat
 			// 
@@ -5892,6 +6041,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbgennice.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbgennice.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbgennice, resources.GetString("tbgennice.ToolTip"));
 			this.tbgennice.Visible = ((bool)(resources.GetObject("tbgennice.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbgennice, true);
 			this.tbgennice.WordWrap = ((bool)(resources.GetObject("tbgennice.WordWrap")));
 			this.tbgennice.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbgennice.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -5921,6 +6071,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbgenplayful.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbgenplayful.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbgenplayful, resources.GetString("tbgenplayful.ToolTip"));
 			this.tbgenplayful.Visible = ((bool)(resources.GetObject("tbgenplayful.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbgenplayful, true);
 			this.tbgenplayful.WordWrap = ((bool)(resources.GetObject("tbgenplayful.WordWrap")));
 			this.tbgenplayful.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbgenplayful.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -5950,6 +6101,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbgenactive.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbgenactive.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbgenactive, resources.GetString("tbgenactive.ToolTip"));
 			this.tbgenactive.Visible = ((bool)(resources.GetObject("tbgenactive.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbgenactive, true);
 			this.tbgenactive.WordWrap = ((bool)(resources.GetObject("tbgenactive.WordWrap")));
 			this.tbgenactive.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbgenactive.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -5979,6 +6131,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbgenoutgoing.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbgenoutgoing.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbgenoutgoing, resources.GetString("tbgenoutgoing.ToolTip"));
 			this.tbgenoutgoing.Visible = ((bool)(resources.GetObject("tbgenoutgoing.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbgenoutgoing, true);
 			this.tbgenoutgoing.WordWrap = ((bool)(resources.GetObject("tbgenoutgoing.WordWrap")));
 			this.tbgenoutgoing.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbgenoutgoing.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -6008,6 +6161,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbgenneat.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbgenneat.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbgenneat, resources.GetString("tbgenneat.ToolTip"));
 			this.tbgenneat.Visible = ((bool)(resources.GetObject("tbgenneat.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbgenneat, true);
 			this.tbgenneat.WordWrap = ((bool)(resources.GetObject("tbgenneat.WordWrap")));
 			this.tbgenneat.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbgenneat.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -6159,6 +6313,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbschool.Text = resources.GetString("gbschool.Text");
 			this.toolTip1.SetToolTip(this.gbschool, resources.GetString("gbschool.ToolTip"));
 			this.gbschool.Visible = ((bool)(resources.GetObject("gbschool.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbschool, true);
 			// 
 			// cbschooltype
 			// 
@@ -6230,6 +6385,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label77.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label77.TextAlign")));
 			this.toolTip1.SetToolTip(this.label77, resources.GetString("label77.ToolTip"));
 			this.label77.Visible = ((bool)(resources.GetObject("label77.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label77, true);
 			// 
 			// tbschooltype
 			// 
@@ -6256,6 +6412,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbschooltype.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbschooltype.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbschooltype, resources.GetString("tbschooltype.ToolTip"));
 			this.tbschooltype.Visible = ((bool)(resources.GetObject("tbschooltype.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbschooltype, true);
 			this.tbschooltype.WordWrap = ((bool)(resources.GetObject("tbschooltype.WordWrap")));
 			// 
 			// label78
@@ -6280,6 +6437,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label78.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label78.TextAlign")));
 			this.toolTip1.SetToolTip(this.label78, resources.GetString("label78.ToolTip"));
 			this.label78.Visible = ((bool)(resources.GetObject("label78.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label78, true);
 			// 
 			// tbrelations
 			// 
@@ -6309,6 +6467,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tbrelations, resources.GetString("tbrelations.ToolTip"));
 			this.tbrelations.ToolTipText = resources.GetString("tbrelations.ToolTipText");
 			this.tbrelations.Visible = ((bool)(resources.GetObject("tbrelations.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbrelations, true);
 			// 
 			// gb
 			// 
@@ -6334,6 +6493,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gb.Text = resources.GetString("gb.Text");
 			this.toolTip1.SetToolTip(this.gb, resources.GetString("gb.ToolTip"));
 			this.gb.Visible = ((bool)(resources.GetObject("gb.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gb, true);
 			// 
 			// cballrelsims
 			// 
@@ -6383,6 +6543,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.btaddrelation.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btaddrelation.TextAlign")));
 			this.toolTip1.SetToolTip(this.btaddrelation, resources.GetString("btaddrelation.ToolTip"));
 			this.btaddrelation.Visible = ((bool)(resources.GetObject("btaddrelation.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.btaddrelation, true);
 			this.btaddrelation.Click += new System.EventHandler(this.AddRelationClicked);
 			// 
 			// btdeleterelation
@@ -6408,6 +6569,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.btdeleterelation.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btdeleterelation.TextAlign")));
 			this.toolTip1.SetToolTip(this.btdeleterelation, resources.GetString("btdeleterelation.ToolTip"));
 			this.btdeleterelation.Visible = ((bool)(resources.GetObject("btdeleterelation.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.btdeleterelation, true);
 			this.btdeleterelation.Click += new System.EventHandler(this.DeleteRelationClicked);
 			// 
 			// label14
@@ -6433,6 +6595,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label14.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label14.TextAlign")));
 			this.toolTip1.SetToolTip(this.label14, resources.GetString("label14.ToolTip"));
 			this.label14.Visible = ((bool)(resources.GetObject("label14.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label14, true);
 			// 
 			// llsimrelcommit
 			// 
@@ -6496,6 +6659,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbout.Text = resources.GetString("gbout.Text");
 			this.toolTip1.SetToolTip(this.gbout, resources.GetString("gbout.ToolTip"));
 			this.gbout.Visible = ((bool)(resources.GetObject("gbout.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbout, true);
 			// 
 			// cboutfamtype
 			// 
@@ -6547,6 +6711,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboutbest.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboutbest.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboutbest, resources.GetString("cboutbest.ToolTip"));
 			this.cboutbest.Visible = ((bool)(resources.GetObject("cboutbest.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboutbest, true);
 			// 
 			// cboutfamily
 			// 
@@ -6573,6 +6738,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboutfamily.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboutfamily.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboutfamily, resources.GetString("cboutfamily.ToolTip"));
 			this.cboutfamily.Visible = ((bool)(resources.GetObject("cboutfamily.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboutfamily, true);
 			// 
 			// cboutmarried
 			// 
@@ -6599,6 +6765,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboutmarried.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboutmarried.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboutmarried, resources.GetString("cboutmarried.ToolTip"));
 			this.cboutmarried.Visible = ((bool)(resources.GetObject("cboutmarried.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboutmarried, true);
 			// 
 			// cboutengaged
 			// 
@@ -6625,6 +6792,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboutengaged.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboutengaged.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboutengaged, resources.GetString("cboutengaged.ToolTip"));
 			this.cboutengaged.Visible = ((bool)(resources.GetObject("cboutengaged.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboutengaged, true);
 			// 
 			// cboutsteady
 			// 
@@ -6651,6 +6819,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboutsteady.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboutsteady.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboutsteady, resources.GetString("cboutsteady.ToolTip"));
 			this.cboutsteady.Visible = ((bool)(resources.GetObject("cboutsteady.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboutsteady, true);
 			// 
 			// cboutlove
 			// 
@@ -6677,6 +6846,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboutlove.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboutlove.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboutlove, resources.GetString("cboutlove.ToolTip"));
 			this.cboutlove.Visible = ((bool)(resources.GetObject("cboutlove.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboutlove, true);
 			// 
 			// cboutcrush
 			// 
@@ -6703,6 +6873,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboutcrush.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboutcrush.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboutcrush, resources.GetString("cboutcrush.ToolTip"));
 			this.cboutcrush.Visible = ((bool)(resources.GetObject("cboutcrush.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboutcrush, true);
 			// 
 			// cboutbuddie
 			// 
@@ -6729,6 +6900,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboutbuddie.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboutbuddie.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboutbuddie, resources.GetString("cboutbuddie.ToolTip"));
 			this.cboutbuddie.Visible = ((bool)(resources.GetObject("cboutbuddie.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboutbuddie, true);
 			// 
 			// cboutfriend
 			// 
@@ -6755,6 +6927,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboutfriend.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboutfriend.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboutfriend, resources.GetString("cboutfriend.ToolTip"));
 			this.cboutfriend.Visible = ((bool)(resources.GetObject("cboutfriend.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboutfriend, true);
 			// 
 			// cboutenemy
 			// 
@@ -6781,6 +6954,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboutenemy.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboutenemy.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboutenemy, resources.GetString("cboutenemy.ToolTip"));
 			this.cboutenemy.Visible = ((bool)(resources.GetObject("cboutenemy.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboutenemy, true);
 			// 
 			// tboutrellong
 			// 
@@ -6807,6 +6981,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tboutrellong.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tboutrellong.TextAlign")));
 			this.toolTip1.SetToolTip(this.tboutrellong, resources.GetString("tboutrellong.ToolTip"));
 			this.tboutrellong.Visible = ((bool)(resources.GetObject("tboutrellong.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tboutrellong, true);
 			this.tboutrellong.WordWrap = ((bool)(resources.GetObject("tboutrellong.WordWrap")));
 			// 
 			// tboutrelshort
@@ -6834,6 +7009,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tboutrelshort.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tboutrelshort.TextAlign")));
 			this.toolTip1.SetToolTip(this.tboutrelshort, resources.GetString("tboutrelshort.ToolTip"));
 			this.tboutrelshort.Visible = ((bool)(resources.GetObject("tboutrelshort.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tboutrelshort, true);
 			this.tboutrelshort.WordWrap = ((bool)(resources.GetObject("tboutrelshort.WordWrap")));
 			// 
 			// label53
@@ -6858,6 +7034,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label53.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label53.TextAlign")));
 			this.toolTip1.SetToolTip(this.label53, resources.GetString("label53.ToolTip"));
 			this.label53.Visible = ((bool)(resources.GetObject("label53.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label53, true);
 			// 
 			// label52
 			// 
@@ -6881,6 +7058,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label52.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label52.TextAlign")));
 			this.toolTip1.SetToolTip(this.label52, resources.GetString("label52.ToolTip"));
 			this.label52.Visible = ((bool)(resources.GetObject("label52.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label52, true);
 			// 
 			// lbrelations
 			// 
@@ -6942,6 +7120,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbin.Text = resources.GetString("gbin.Text");
 			this.toolTip1.SetToolTip(this.gbin, resources.GetString("gbin.ToolTip"));
 			this.gbin.Visible = ((bool)(resources.GetObject("gbin.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbin, true);
 			// 
 			// cbinfamtype
 			// 
@@ -6992,6 +7171,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbinbest.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbinbest.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbinbest, resources.GetString("cbinbest.ToolTip"));
 			this.cbinbest.Visible = ((bool)(resources.GetObject("cbinbest.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbinbest, true);
 			// 
 			// cbinfamily
 			// 
@@ -7018,6 +7198,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbinfamily.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbinfamily.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbinfamily, resources.GetString("cbinfamily.ToolTip"));
 			this.cbinfamily.Visible = ((bool)(resources.GetObject("cbinfamily.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbinfamily, true);
 			// 
 			// cbinmarried
 			// 
@@ -7044,6 +7225,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbinmarried.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbinmarried.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbinmarried, resources.GetString("cbinmarried.ToolTip"));
 			this.cbinmarried.Visible = ((bool)(resources.GetObject("cbinmarried.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbinmarried, true);
 			// 
 			// cbinengaged
 			// 
@@ -7070,6 +7252,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbinengaged.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbinengaged.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbinengaged, resources.GetString("cbinengaged.ToolTip"));
 			this.cbinengaged.Visible = ((bool)(resources.GetObject("cbinengaged.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbinengaged, true);
 			// 
 			// cbinsteady
 			// 
@@ -7096,6 +7279,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbinsteady.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbinsteady.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbinsteady, resources.GetString("cbinsteady.ToolTip"));
 			this.cbinsteady.Visible = ((bool)(resources.GetObject("cbinsteady.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbinsteady, true);
 			// 
 			// cbinlove
 			// 
@@ -7122,6 +7306,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbinlove.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbinlove.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbinlove, resources.GetString("cbinlove.ToolTip"));
 			this.cbinlove.Visible = ((bool)(resources.GetObject("cbinlove.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbinlove, true);
 			// 
 			// cbincrush
 			// 
@@ -7148,6 +7333,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbincrush.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbincrush.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbincrush, resources.GetString("cbincrush.ToolTip"));
 			this.cbincrush.Visible = ((bool)(resources.GetObject("cbincrush.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbincrush, true);
 			// 
 			// cbinbuddie
 			// 
@@ -7174,6 +7360,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbinbuddie.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbinbuddie.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbinbuddie, resources.GetString("cbinbuddie.ToolTip"));
 			this.cbinbuddie.Visible = ((bool)(resources.GetObject("cbinbuddie.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbinbuddie, true);
 			// 
 			// cbinfriend
 			// 
@@ -7200,6 +7387,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbinfriend.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbinfriend.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbinfriend, resources.GetString("cbinfriend.ToolTip"));
 			this.cbinfriend.Visible = ((bool)(resources.GetObject("cbinfriend.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbinfriend, true);
 			// 
 			// cbinenemy
 			// 
@@ -7226,6 +7414,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbinenemy.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbinenemy.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbinenemy, resources.GetString("cbinenemy.ToolTip"));
 			this.cbinenemy.Visible = ((bool)(resources.GetObject("cbinenemy.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbinenemy, true);
 			// 
 			// tbinrellong
 			// 
@@ -7252,6 +7441,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbinrellong.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbinrellong.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbinrellong, resources.GetString("tbinrellong.ToolTip"));
 			this.tbinrellong.Visible = ((bool)(resources.GetObject("tbinrellong.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbinrellong, true);
 			this.tbinrellong.WordWrap = ((bool)(resources.GetObject("tbinrellong.WordWrap")));
 			// 
 			// tbinrelshort
@@ -7279,6 +7469,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbinrelshort.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbinrelshort.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbinrelshort, resources.GetString("tbinrelshort.ToolTip"));
 			this.tbinrelshort.Visible = ((bool)(resources.GetObject("tbinrelshort.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbinrelshort, true);
 			this.tbinrelshort.WordWrap = ((bool)(resources.GetObject("tbinrelshort.WordWrap")));
 			// 
 			// label54
@@ -7303,6 +7494,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label54.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label54.TextAlign")));
 			this.toolTip1.SetToolTip(this.label54, resources.GetString("label54.ToolTip"));
 			this.label54.Visible = ((bool)(resources.GetObject("label54.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label54, true);
 			// 
 			// label55
 			// 
@@ -7326,6 +7518,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label55.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label55.TextAlign")));
 			this.toolTip1.SetToolTip(this.label55, resources.GetString("label55.ToolTip"));
 			this.label55.Visible = ((bool)(resources.GetObject("label55.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label55, true);
 			// 
 			// tbskills
 			// 
@@ -7351,6 +7544,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tbskills, resources.GetString("tbskills.ToolTip"));
 			this.tbskills.ToolTipText = resources.GetString("tbskills.ToolTipText");
 			this.tbskills.Visible = ((bool)(resources.GetObject("tbskills.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbskills, true);
 			// 
 			// gbskills
 			// 
@@ -7400,6 +7594,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbskills.Text = resources.GetString("gbskills.Text");
 			this.toolTip1.SetToolTip(this.gbskills, resources.GetString("gbskills.ToolTip"));
 			this.gbskills.Visible = ((bool)(resources.GetObject("gbskills.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbskills, true);
 			this.gbskills.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.gbskills.Leave += new System.EventHandler(this.ProgressBarTextLeave);
 			// 
@@ -7428,6 +7623,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbromance.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbromance.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbromance, resources.GetString("tbromance.ToolTip"));
 			this.tbromance.Visible = ((bool)(resources.GetObject("tbromance.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbromance, true);
 			this.tbromance.WordWrap = ((bool)(resources.GetObject("tbromance.WordWrap")));
 			this.tbromance.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbromance.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -7478,6 +7674,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label76.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label76.TextAlign")));
 			this.toolTip1.SetToolTip(this.label76, resources.GetString("label76.ToolTip"));
 			this.label76.Visible = ((bool)(resources.GetObject("label76.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label76, true);
 			// 
 			// pbcooking
 			// 
@@ -7525,6 +7722,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label21.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label21.TextAlign")));
 			this.toolTip1.SetToolTip(this.label21, resources.GetString("label21.ToolTip"));
 			this.label21.Visible = ((bool)(resources.GetObject("label21.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label21, true);
 			// 
 			// tbfatness
 			// 
@@ -7551,6 +7749,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbfatness.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbfatness.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbfatness, resources.GetString("tbfatness.ToolTip"));
 			this.tbfatness.Visible = ((bool)(resources.GetObject("tbfatness.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbfatness, true);
 			this.tbfatness.WordWrap = ((bool)(resources.GetObject("tbfatness.WordWrap")));
 			this.tbfatness.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbfatness.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -7601,6 +7800,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label51.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label51.TextAlign")));
 			this.toolTip1.SetToolTip(this.label51, resources.GetString("label51.ToolTip"));
 			this.label51.Visible = ((bool)(resources.GetObject("label51.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label51, true);
 			// 
 			// tbcleaning
 			// 
@@ -7627,6 +7827,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbcleaning.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbcleaning.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbcleaning, resources.GetString("tbcleaning.ToolTip"));
 			this.tbcleaning.Visible = ((bool)(resources.GetObject("tbcleaning.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbcleaning, true);
 			this.tbcleaning.WordWrap = ((bool)(resources.GetObject("tbcleaning.WordWrap")));
 			this.tbcleaning.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbcleaning.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -7656,6 +7857,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbcreativity.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbcreativity.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbcreativity, resources.GetString("tbcreativity.ToolTip"));
 			this.tbcreativity.Visible = ((bool)(resources.GetObject("tbcreativity.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbcreativity, true);
 			this.tbcreativity.WordWrap = ((bool)(resources.GetObject("tbcreativity.WordWrap")));
 			this.tbcreativity.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbcreativity.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -7685,6 +7887,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tblogic.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tblogic.TextAlign")));
 			this.toolTip1.SetToolTip(this.tblogic, resources.GetString("tblogic.ToolTip"));
 			this.tblogic.Visible = ((bool)(resources.GetObject("tblogic.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tblogic, true);
 			this.tblogic.WordWrap = ((bool)(resources.GetObject("tblogic.WordWrap")));
 			this.tblogic.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tblogic.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -7714,6 +7917,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbbody.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbbody.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbbody, resources.GetString("tbbody.ToolTip"));
 			this.tbbody.Visible = ((bool)(resources.GetObject("tbbody.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbbody, true);
 			this.tbbody.WordWrap = ((bool)(resources.GetObject("tbbody.WordWrap")));
 			this.tbbody.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbbody.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -7743,6 +7947,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbcharisma.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbcharisma.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbcharisma, resources.GetString("tbcharisma.ToolTip"));
 			this.tbcharisma.Visible = ((bool)(resources.GetObject("tbcharisma.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbcharisma, true);
 			this.tbcharisma.WordWrap = ((bool)(resources.GetObject("tbcharisma.WordWrap")));
 			this.tbcharisma.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbcharisma.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -7772,6 +7977,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbmechanical.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbmechanical.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbmechanical, resources.GetString("tbmechanical.ToolTip"));
 			this.tbmechanical.Visible = ((bool)(resources.GetObject("tbmechanical.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbmechanical, true);
 			this.tbmechanical.WordWrap = ((bool)(resources.GetObject("tbmechanical.WordWrap")));
 			this.tbmechanical.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbmechanical.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -7801,6 +8007,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbcooking.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbcooking.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbcooking, resources.GetString("tbcooking.ToolTip"));
 			this.tbcooking.Visible = ((bool)(resources.GetObject("tbcooking.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbcooking, true);
 			this.tbcooking.WordWrap = ((bool)(resources.GetObject("tbcooking.WordWrap")));
 			this.tbcooking.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbcooking.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -7971,6 +8178,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label27.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label27.TextAlign")));
 			this.toolTip1.SetToolTip(this.label27, resources.GetString("label27.ToolTip"));
 			this.label27.Visible = ((bool)(resources.GetObject("label27.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label27, true);
 			// 
 			// label26
 			// 
@@ -7994,6 +8202,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label26.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label26.TextAlign")));
 			this.toolTip1.SetToolTip(this.label26, resources.GetString("label26.ToolTip"));
 			this.label26.Visible = ((bool)(resources.GetObject("label26.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label26, true);
 			// 
 			// label25
 			// 
@@ -8017,6 +8226,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label25.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label25.TextAlign")));
 			this.toolTip1.SetToolTip(this.label25, resources.GetString("label25.ToolTip"));
 			this.label25.Visible = ((bool)(resources.GetObject("label25.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label25, true);
 			// 
 			// label24
 			// 
@@ -8040,6 +8250,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label24.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label24.TextAlign")));
 			this.toolTip1.SetToolTip(this.label24, resources.GetString("label24.ToolTip"));
 			this.label24.Visible = ((bool)(resources.GetObject("label24.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label24, true);
 			// 
 			// label23
 			// 
@@ -8063,6 +8274,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label23.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label23.TextAlign")));
 			this.toolTip1.SetToolTip(this.label23, resources.GetString("label23.ToolTip"));
 			this.label23.Visible = ((bool)(resources.GetObject("label23.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label23, true);
 			// 
 			// label22
 			// 
@@ -8086,6 +8298,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label22.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label22.TextAlign")));
 			this.toolTip1.SetToolTip(this.label22, resources.GetString("label22.ToolTip"));
 			this.label22.Visible = ((bool)(resources.GetObject("label22.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label22, true);
 			// 
 			// linkLabel2
 			// 
@@ -8139,6 +8352,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tbext, resources.GetString("tbext.ToolTip"));
 			this.tbext.ToolTipText = resources.GetString("tbext.ToolTipText");
 			this.tbext.Visible = ((bool)(resources.GetObject("tbext.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbext, true);
 			// 
 			// groupBox3
 			// 
@@ -8165,6 +8379,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.groupBox3.Text = resources.GetString("groupBox3.Text");
 			this.toolTip1.SetToolTip(this.groupBox3, resources.GetString("groupBox3.ToolTip"));
 			this.groupBox3.Visible = ((bool)(resources.GetObject("groupBox3.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.groupBox3, true);
 			// 
 			// cbfit
 			// 
@@ -8191,6 +8406,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbfit.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbfit.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbfit, resources.GetString("cbfit.ToolTip"));
 			this.cbfit.Visible = ((bool)(resources.GetObject("cbfit.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbfit, true);
 			// 
 			// cbpreginv
 			// 
@@ -8217,6 +8433,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbpreginv.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbpreginv.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbpreginv, resources.GetString("cbpreginv.ToolTip"));
 			this.cbpreginv.Visible = ((bool)(resources.GetObject("cbpreginv.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbpreginv, true);
 			// 
 			// cbpreghalf
 			// 
@@ -8243,6 +8460,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbpreghalf.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbpreghalf.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbpreghalf, resources.GetString("cbpreghalf.ToolTip"));
 			this.cbpreghalf.Visible = ((bool)(resources.GetObject("cbpreghalf.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbpreghalf, true);
 			// 
 			// cbpregfull
 			// 
@@ -8269,6 +8487,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbpregfull.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbpregfull.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbpregfull, resources.GetString("cbpregfull.ToolTip"));
 			this.cbpregfull.Visible = ((bool)(resources.GetObject("cbpregfull.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbpregfull, true);
 			// 
 			// cbfat
 			// 
@@ -8295,6 +8514,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbfat.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbfat.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbfat, resources.GetString("cbfat.ToolTip"));
 			this.cbfat.Visible = ((bool)(resources.GetObject("cbfat.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbfat, true);
 			// 
 			// groupBox1
 			// 
@@ -8328,6 +8548,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.groupBox1.Text = resources.GetString("groupBox1.Text");
 			this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
 			this.groupBox1.Visible = ((bool)(resources.GetObject("groupBox1.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.groupBox1, true);
 			// 
 			// label96
 			// 
@@ -8351,6 +8572,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label96.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label96.TextAlign")));
 			this.toolTip1.SetToolTip(this.label96, resources.GetString("label96.ToolTip"));
 			this.label96.Visible = ((bool)(resources.GetObject("label96.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label96, true);
 			// 
 			// tbunlinked
 			// 
@@ -8377,6 +8599,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbunlinked.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbunlinked.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbunlinked, resources.GetString("tbunlinked.ToolTip"));
 			this.tbunlinked.Visible = ((bool)(resources.GetObject("tbunlinked.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbunlinked, true);
 			this.tbunlinked.WordWrap = ((bool)(resources.GetObject("tbunlinked.WordWrap")));
 			// 
 			// label95
@@ -8401,6 +8624,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label95.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label95.TextAlign")));
 			this.toolTip1.SetToolTip(this.label95, resources.GetString("label95.ToolTip"));
 			this.label95.Visible = ((bool)(resources.GetObject("label95.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label95, true);
 			// 
 			// tbagedur
 			// 
@@ -8427,6 +8651,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbagedur.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbagedur.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbagedur, resources.GetString("tbagedur.ToolTip"));
 			this.tbagedur.Visible = ((bool)(resources.GetObject("tbagedur.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbagedur, true);
 			this.tbagedur.WordWrap = ((bool)(resources.GetObject("tbagedur.WordWrap")));
 			// 
 			// tbprevdays
@@ -8454,6 +8679,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbprevdays.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbprevdays.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbprevdays, resources.GetString("tbprevdays.ToolTip"));
 			this.tbprevdays.Visible = ((bool)(resources.GetObject("tbprevdays.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbprevdays, true);
 			this.tbprevdays.WordWrap = ((bool)(resources.GetObject("tbprevdays.WordWrap")));
 			// 
 			// label94
@@ -8478,6 +8704,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label94.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label94.TextAlign")));
 			this.toolTip1.SetToolTip(this.label94, resources.GetString("label94.ToolTip"));
 			this.label94.Visible = ((bool)(resources.GetObject("label94.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label94, true);
 			// 
 			// tbvoice
 			// 
@@ -8504,6 +8731,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbvoice.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbvoice.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbvoice, resources.GetString("tbvoice.ToolTip"));
 			this.tbvoice.Visible = ((bool)(resources.GetObject("tbvoice.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbvoice, true);
 			this.tbvoice.WordWrap = ((bool)(resources.GetObject("tbvoice.WordWrap")));
 			// 
 			// label90
@@ -8528,6 +8756,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label90.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label90.TextAlign")));
 			this.toolTip1.SetToolTip(this.label90, resources.GetString("label90.ToolTip"));
 			this.label90.Visible = ((bool)(resources.GetObject("label90.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label90, true);
 			// 
 			// tbnpc
 			// 
@@ -8554,6 +8783,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbnpc.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbnpc.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbnpc, resources.GetString("tbnpc.ToolTip"));
 			this.tbnpc.Visible = ((bool)(resources.GetObject("tbnpc.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbnpc, true);
 			this.tbnpc.WordWrap = ((bool)(resources.GetObject("tbnpc.WordWrap")));
 			// 
 			// label87
@@ -8578,6 +8808,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label87.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label87.TextAlign")));
 			this.toolTip1.SetToolTip(this.label87, resources.GetString("label87.ToolTip"));
 			this.label87.Visible = ((bool)(resources.GetObject("label87.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label87, true);
 			// 
 			// tbautonomy
 			// 
@@ -8604,6 +8835,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbautonomy.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbautonomy.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbautonomy, resources.GetString("tbautonomy.ToolTip"));
 			this.tbautonomy.Visible = ((bool)(resources.GetObject("tbautonomy.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbautonomy, true);
 			this.tbautonomy.WordWrap = ((bool)(resources.GetObject("tbautonomy.WordWrap")));
 			// 
 			// label86
@@ -8628,6 +8860,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label86.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label86.TextAlign")));
 			this.toolTip1.SetToolTip(this.label86, resources.GetString("label86.ToolTip"));
 			this.label86.Visible = ((bool)(resources.GetObject("label86.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label86, true);
 			// 
 			// gbdecay
 			// 
@@ -8669,6 +8902,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbdecay.Text = resources.GetString("gbdecay.Text");
 			this.toolTip1.SetToolTip(this.gbdecay, resources.GetString("gbdecay.ToolTip"));
 			this.gbdecay.Visible = ((bool)(resources.GetObject("gbdecay.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbdecay, true);
 			// 
 			// pbfun
 			// 
@@ -8717,6 +8951,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label85.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label85.TextAlign")));
 			this.toolTip1.SetToolTip(this.label85, resources.GetString("label85.ToolTip"));
 			this.label85.Visible = ((bool)(resources.GetObject("label85.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label85, true);
 			// 
 			// tbfun
 			// 
@@ -8743,6 +8978,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbfun.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbfun.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbfun, resources.GetString("tbfun.ToolTip"));
 			this.tbfun.Visible = ((bool)(resources.GetObject("tbfun.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbfun, true);
 			this.tbfun.WordWrap = ((bool)(resources.GetObject("tbfun.WordWrap")));
 			this.tbfun.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbfun.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -8794,6 +9030,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label84.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label84.TextAlign")));
 			this.toolTip1.SetToolTip(this.label84, resources.GetString("label84.ToolTip"));
 			this.label84.Visible = ((bool)(resources.GetObject("label84.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label84, true);
 			// 
 			// tbsocial
 			// 
@@ -8820,6 +9057,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsocial.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsocial.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbsocial, resources.GetString("tbsocial.ToolTip"));
 			this.tbsocial.Visible = ((bool)(resources.GetObject("tbsocial.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbsocial, true);
 			this.tbsocial.WordWrap = ((bool)(resources.GetObject("tbsocial.WordWrap")));
 			this.tbsocial.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbsocial.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -8871,6 +9109,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label83.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label83.TextAlign")));
 			this.toolTip1.SetToolTip(this.label83, resources.GetString("label83.ToolTip"));
 			this.label83.Visible = ((bool)(resources.GetObject("label83.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label83, true);
 			// 
 			// tbhygiene
 			// 
@@ -8897,6 +9136,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbhygiene.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbhygiene.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbhygiene, resources.GetString("tbhygiene.ToolTip"));
 			this.tbhygiene.Visible = ((bool)(resources.GetObject("tbhygiene.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbhygiene, true);
 			this.tbhygiene.WordWrap = ((bool)(resources.GetObject("tbhygiene.WordWrap")));
 			this.tbhygiene.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbhygiene.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -8948,6 +9188,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label82.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label82.TextAlign")));
 			this.toolTip1.SetToolTip(this.label82, resources.GetString("label82.ToolTip"));
 			this.label82.Visible = ((bool)(resources.GetObject("label82.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label82, true);
 			// 
 			// tbenergy
 			// 
@@ -8974,6 +9215,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbenergy.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbenergy.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbenergy, resources.GetString("tbenergy.ToolTip"));
 			this.tbenergy.Visible = ((bool)(resources.GetObject("tbenergy.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbenergy, true);
 			this.tbenergy.WordWrap = ((bool)(resources.GetObject("tbenergy.WordWrap")));
 			this.tbenergy.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbenergy.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -9025,6 +9267,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label81.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label81.TextAlign")));
 			this.toolTip1.SetToolTip(this.label81, resources.GetString("label81.ToolTip"));
 			this.label81.Visible = ((bool)(resources.GetObject("label81.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label81, true);
 			// 
 			// tbbladder
 			// 
@@ -9051,6 +9294,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbbladder.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbbladder.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbbladder, resources.GetString("tbbladder.ToolTip"));
 			this.tbbladder.Visible = ((bool)(resources.GetObject("tbbladder.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbbladder, true);
 			this.tbbladder.WordWrap = ((bool)(resources.GetObject("tbbladder.WordWrap")));
 			this.tbbladder.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbbladder.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -9102,6 +9346,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label80.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label80.TextAlign")));
 			this.toolTip1.SetToolTip(this.label80, resources.GetString("label80.ToolTip"));
 			this.label80.Visible = ((bool)(resources.GetObject("label80.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label80, true);
 			// 
 			// tbcomfort
 			// 
@@ -9128,6 +9373,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbcomfort.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbcomfort.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbcomfort, resources.GetString("tbcomfort.ToolTip"));
 			this.tbcomfort.Visible = ((bool)(resources.GetObject("tbcomfort.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbcomfort, true);
 			this.tbcomfort.WordWrap = ((bool)(resources.GetObject("tbcomfort.WordWrap")));
 			this.tbcomfort.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbcomfort.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -9179,6 +9425,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label79.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label79.TextAlign")));
 			this.toolTip1.SetToolTip(this.label79, resources.GetString("label79.ToolTip"));
 			this.label79.Visible = ((bool)(resources.GetObject("label79.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label79, true);
 			// 
 			// tbhunger
 			// 
@@ -9205,6 +9452,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbhunger.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbhunger.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbhunger, resources.GetString("tbhunger.ToolTip"));
 			this.tbhunger.Visible = ((bool)(resources.GetObject("tbhunger.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbhunger, true);
 			this.tbhunger.WordWrap = ((bool)(resources.GetObject("tbhunger.WordWrap")));
 			this.tbhunger.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbhunger.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -9249,6 +9497,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tbuni, resources.GetString("tbuni.ToolTip"));
 			this.tbuni.ToolTipText = resources.GetString("tbuni.ToolTipText");
 			this.tbuni.Visible = ((bool)(resources.GetObject("tbuni.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbuni, true);
 			this.tbuni.Click += new System.EventHandler(this.tbuni_Click);
 			// 
 			// pbunitime
@@ -9300,6 +9549,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbunitime.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbunitime.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbunitime, resources.GetString("tbunitime.ToolTip"));
 			this.tbunitime.Visible = ((bool)(resources.GetObject("tbunitime.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbunitime, true);
 			this.tbunitime.WordWrap = ((bool)(resources.GetObject("tbunitime.WordWrap")));
 			this.tbunitime.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbunitime.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -9328,6 +9578,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbinfluence.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbinfluence.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbinfluence, resources.GetString("tbinfluence.ToolTip"));
 			this.tbinfluence.Visible = ((bool)(resources.GetObject("tbinfluence.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbinfluence, true);
 			this.tbinfluence.WordWrap = ((bool)(resources.GetObject("tbinfluence.WordWrap")));
 			// 
 			// tbsemester
@@ -9354,6 +9605,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsemester.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsemester.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbsemester, resources.GetString("tbsemester.ToolTip"));
 			this.tbsemester.Visible = ((bool)(resources.GetObject("tbsemester.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbsemester, true);
 			this.tbsemester.WordWrap = ((bool)(resources.GetObject("tbsemester.WordWrap")));
 			// 
 			// pblastgrade
@@ -9407,6 +9659,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tblastgrade.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tblastgrade.TextAlign")));
 			this.toolTip1.SetToolTip(this.tblastgrade, resources.GetString("tblastgrade.ToolTip"));
 			this.tblastgrade.Visible = ((bool)(resources.GetObject("tblastgrade.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tblastgrade, true);
 			this.tblastgrade.WordWrap = ((bool)(resources.GetObject("tblastgrade.WordWrap")));
 			this.tblastgrade.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tblastgrade.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -9460,6 +9713,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbeffort.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbeffort.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbeffort, resources.GetString("tbeffort.ToolTip"));
 			this.tbeffort.Visible = ((bool)(resources.GetObject("tbeffort.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbeffort, true);
 			this.tbeffort.WordWrap = ((bool)(resources.GetObject("tbeffort.WordWrap")));
 			this.tbeffort.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
 			this.tbeffort.Leave += new System.EventHandler(this.ProgressBarTextLeave);
@@ -9486,6 +9740,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label103.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label103.TextAlign")));
 			this.toolTip1.SetToolTip(this.label103, resources.GetString("label103.ToolTip"));
 			this.label103.Visible = ((bool)(resources.GetObject("label103.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label103, true);
 			// 
 			// label102
 			// 
@@ -9509,6 +9764,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label102.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label102.TextAlign")));
 			this.toolTip1.SetToolTip(this.label102, resources.GetString("label102.ToolTip"));
 			this.label102.Visible = ((bool)(resources.GetObject("label102.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label102, true);
 			// 
 			// label101
 			// 
@@ -9532,6 +9788,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label101.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label101.TextAlign")));
 			this.toolTip1.SetToolTip(this.label101, resources.GetString("label101.ToolTip"));
 			this.label101.Visible = ((bool)(resources.GetObject("label101.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label101, true);
 			// 
 			// label100
 			// 
@@ -9555,6 +9812,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label100.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label100.TextAlign")));
 			this.toolTip1.SetToolTip(this.label100, resources.GetString("label100.ToolTip"));
 			this.label100.Visible = ((bool)(resources.GetObject("label100.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label100, true);
 			// 
 			// cboncampus
 			// 
@@ -9581,6 +9839,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cboncampus.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cboncampus.TextAlign")));
 			this.toolTip1.SetToolTip(this.cboncampus, resources.GetString("cboncampus.ToolTip"));
 			this.cboncampus.Visible = ((bool)(resources.GetObject("cboncampus.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cboncampus, true);
 			// 
 			// label99
 			// 
@@ -9604,6 +9863,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label99.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label99.TextAlign")));
 			this.toolTip1.SetToolTip(this.label99, resources.GetString("label99.ToolTip"));
 			this.label99.Visible = ((bool)(resources.GetObject("label99.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label99, true);
 			// 
 			// cbmajor
 			// 
@@ -9652,6 +9912,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label98.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label98.TextAlign")));
 			this.toolTip1.SetToolTip(this.label98, resources.GetString("label98.ToolTip"));
 			this.label98.Visible = ((bool)(resources.GetObject("label98.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label98, true);
 			// 
 			// tbmajor
 			// 
@@ -9678,6 +9939,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbmajor.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbmajor.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbmajor, resources.GetString("tbmajor.ToolTip"));
 			this.tbmajor.Visible = ((bool)(resources.GetObject("tbmajor.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbmajor, true);
 			this.tbmajor.WordWrap = ((bool)(resources.GetObject("tbmajor.WordWrap")));
 			// 
 			// lldna
@@ -9782,6 +10044,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsimdescfamname.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsimdescfamname.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbsimdescfamname, resources.GetString("tbsimdescfamname.ToolTip"));
 			this.tbsimdescfamname.Visible = ((bool)(resources.GetObject("tbsimdescfamname.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbsimdescfamname, true);
 			this.tbsimdescfamname.WordWrap = ((bool)(resources.GetObject("tbsimdescfamname.WordWrap")));
 			this.tbsimdescfamname.TextChanged += new System.EventHandler(this.SimNameChanged);
 			// 
@@ -9809,6 +10072,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbfaminst.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbfaminst.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbfaminst, resources.GetString("tbfaminst.ToolTip"));
 			this.tbfaminst.Visible = ((bool)(resources.GetObject("tbfaminst.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbfaminst, true);
 			this.tbfaminst.WordWrap = ((bool)(resources.GetObject("tbfaminst.WordWrap")));
 			// 
 			// cbzodiac
@@ -9857,6 +10121,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label49.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label49.TextAlign")));
 			this.toolTip1.SetToolTip(this.label49, resources.GetString("label49.ToolTip"));
 			this.label49.Visible = ((bool)(resources.GetObject("label49.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label49, true);
 			// 
 			// rbmale
 			// 
@@ -9883,6 +10148,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.rbmale.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("rbmale.TextAlign")));
 			this.toolTip1.SetToolTip(this.rbmale, resources.GetString("rbmale.ToolTip"));
 			this.rbmale.Visible = ((bool)(resources.GetObject("rbmale.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.rbmale, true);
 			// 
 			// rbfemale
 			// 
@@ -9909,6 +10175,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.rbfemale.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("rbfemale.TextAlign")));
 			this.toolTip1.SetToolTip(this.rbfemale, resources.GetString("rbfemale.ToolTip"));
 			this.rbfemale.Visible = ((bool)(resources.GetObject("rbfemale.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.rbfemale, true);
 			// 
 			// label48
 			// 
@@ -9932,6 +10199,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label48.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label48.TextAlign")));
 			this.toolTip1.SetToolTip(this.label48, resources.GetString("label48.ToolTip"));
 			this.label48.Visible = ((bool)(resources.GetObject("label48.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label48, true);
 			// 
 			// cblifesection
 			// 
@@ -9979,6 +10247,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label47.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label47.TextAlign")));
 			this.toolTip1.SetToolTip(this.label47, resources.GetString("label47.ToolTip"));
 			this.label47.Visible = ((bool)(resources.GetObject("label47.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label47, true);
 			// 
 			// cbaspiration
 			// 
@@ -10026,6 +10295,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label46.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label46.TextAlign")));
 			this.toolTip1.SetToolTip(this.label46, resources.GetString("label46.ToolTip"));
 			this.label46.Visible = ((bool)(resources.GetObject("label46.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label46, true);
 			// 
 			// pbImage
 			// 
@@ -10049,6 +10319,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbImage.Text = resources.GetString("pbImage.Text");
 			this.toolTip1.SetToolTip(this.pbImage, resources.GetString("pbImage.ToolTip"));
 			this.pbImage.Visible = ((bool)(resources.GetObject("pbImage.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.pbImage, true);
 			// 
 			// llsdesccommit
 			// 
@@ -10073,6 +10344,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.llsdesccommit.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llsdesccommit.TextAlign")));
 			this.toolTip1.SetToolTip(this.llsdesccommit, resources.GetString("llsdesccommit.ToolTip"));
 			this.llsdesccommit.Visible = ((bool)(resources.GetObject("llsdesccommit.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.llsdesccommit, true);
 			this.llsdesccommit.Click += new System.EventHandler(this.CommitSDescClick);
 			// 
 			// tbsimdescname
@@ -10099,6 +10371,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsimdescname.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsimdescname.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbsimdescname, resources.GetString("tbsimdescname.ToolTip"));
 			this.tbsimdescname.Visible = ((bool)(resources.GetObject("tbsimdescname.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbsimdescname, true);
 			this.tbsimdescname.WordWrap = ((bool)(resources.GetObject("tbsimdescname.WordWrap")));
 			this.tbsimdescname.TextChanged += new System.EventHandler(this.SimNameChanged);
 			// 
@@ -10124,6 +10397,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label13.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label13.TextAlign")));
 			this.toolTip1.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
 			this.label13.Visible = ((bool)(resources.GetObject("label13.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label13, true);
 			// 
 			// tbsim
 			// 
@@ -10149,6 +10423,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsim.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsim.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbsim, resources.GetString("tbsim.ToolTip"));
 			this.tbsim.Visible = ((bool)(resources.GetObject("tbsim.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbsim, true);
 			this.tbsim.WordWrap = ((bool)(resources.GetObject("tbsim.WordWrap")));
 			// 
 			// tbage
@@ -10175,6 +10450,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbage.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbage.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbage, resources.GetString("tbage.ToolTip"));
 			this.tbage.Visible = ((bool)(resources.GetObject("tbage.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbage, true);
 			this.tbage.WordWrap = ((bool)(resources.GetObject("tbage.WordWrap")));
 			// 
 			// label10
@@ -10199,6 +10475,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label10.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label10.TextAlign")));
 			this.toolTip1.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
 			this.label10.Visible = ((bool)(resources.GetObject("label10.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label10, true);
 			// 
 			// panel5
 			// 
@@ -10225,6 +10502,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel5.Text = resources.GetString("panel5.Text");
 			this.toolTip1.SetToolTip(this.panel5, resources.GetString("panel5.ToolTip"));
 			this.panel5.Visible = ((bool)(resources.GetObject("panel5.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.panel5, true);
 			// 
 			// lbfilename
 			// 
@@ -10248,6 +10526,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lbfilename.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbfilename.TextAlign")));
 			this.toolTip1.SetToolTip(this.lbfilename, resources.GetString("lbfilename.ToolTip"));
 			this.lbfilename.Visible = ((bool)(resources.GetObject("lbfilename.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.lbfilename, true);
 			this.lbfilename.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FileNameMouseUp);
 			// 
 			// label11
@@ -10272,6 +10551,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label11.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label11.TextAlign")));
 			this.toolTip1.SetToolTip(this.label11, resources.GetString("label11.ToolTip"));
 			this.label11.Visible = ((bool)(resources.GetObject("label11.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label11, true);
 			// 
 			// linkLabel5
 			// 
@@ -10326,6 +10606,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tabPage3, resources.GetString("tabPage3.ToolTip"));
 			this.tabPage3.ToolTipText = resources.GetString("tabPage3.ToolTipText");
 			this.tabPage3.Visible = ((bool)(resources.GetObject("tabPage3.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage3, true);
 			// 
 			// realPanel
 			// 
@@ -10358,6 +10639,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.realPanel.Text = resources.GetString("realPanel.Text");
 			this.toolTip1.SetToolTip(this.realPanel, resources.GetString("realPanel.ToolTip"));
 			this.realPanel.Visible = ((bool)(resources.GetObject("realPanel.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.realPanel, true);
 			// 
 			// label91
 			// 
@@ -10381,6 +10663,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label91.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label91.TextAlign")));
 			this.toolTip1.SetToolTip(this.label91, resources.GetString("label91.ToolTip"));
 			this.label91.Visible = ((bool)(resources.GetObject("label91.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label91, true);
 			// 
 			// cbfamtype
 			// 
@@ -10462,6 +10745,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.gbrelation.Text = resources.GetString("gbrelation.Text");
 			this.toolTip1.SetToolTip(this.gbrelation, resources.GetString("gbrelation.ToolTip"));
 			this.gbrelation.Visible = ((bool)(resources.GetObject("gbrelation.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbrelation, true);
 			// 
 			// cbbest
 			// 
@@ -10488,6 +10772,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbbest.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbbest.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbbest, resources.GetString("cbbest.ToolTip"));
 			this.cbbest.Visible = ((bool)(resources.GetObject("cbbest.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbbest, true);
 			// 
 			// cbfamily
 			// 
@@ -10514,6 +10799,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbfamily.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbfamily.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbfamily, resources.GetString("cbfamily.ToolTip"));
 			this.cbfamily.Visible = ((bool)(resources.GetObject("cbfamily.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbfamily, true);
 			// 
 			// cbmarried
 			// 
@@ -10540,6 +10826,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbmarried.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbmarried.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbmarried, resources.GetString("cbmarried.ToolTip"));
 			this.cbmarried.Visible = ((bool)(resources.GetObject("cbmarried.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbmarried, true);
 			// 
 			// cbengaged
 			// 
@@ -10566,6 +10853,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbengaged.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbengaged.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbengaged, resources.GetString("cbengaged.ToolTip"));
 			this.cbengaged.Visible = ((bool)(resources.GetObject("cbengaged.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbengaged, true);
 			// 
 			// cbsteady
 			// 
@@ -10592,6 +10880,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbsteady.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbsteady.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbsteady, resources.GetString("cbsteady.ToolTip"));
 			this.cbsteady.Visible = ((bool)(resources.GetObject("cbsteady.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbsteady, true);
 			// 
 			// cblove
 			// 
@@ -10618,6 +10907,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cblove.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cblove.TextAlign")));
 			this.toolTip1.SetToolTip(this.cblove, resources.GetString("cblove.ToolTip"));
 			this.cblove.Visible = ((bool)(resources.GetObject("cblove.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cblove, true);
 			// 
 			// cbcrush
 			// 
@@ -10644,6 +10934,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbcrush.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbcrush.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbcrush, resources.GetString("cbcrush.ToolTip"));
 			this.cbcrush.Visible = ((bool)(resources.GetObject("cbcrush.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbcrush, true);
 			// 
 			// cbbuddie
 			// 
@@ -10670,6 +10961,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbbuddie.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbbuddie.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbbuddie, resources.GetString("cbbuddie.ToolTip"));
 			this.cbbuddie.Visible = ((bool)(resources.GetObject("cbbuddie.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbbuddie, true);
 			// 
 			// cbfriend
 			// 
@@ -10696,6 +10988,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbfriend.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbfriend.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbfriend, resources.GetString("cbfriend.ToolTip"));
 			this.cbfriend.Visible = ((bool)(resources.GetObject("cbfriend.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbfriend, true);
 			// 
 			// cbenemy
 			// 
@@ -10722,6 +11015,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbenemy.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbenemy.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbenemy, resources.GetString("cbenemy.ToolTip"));
 			this.cbenemy.Visible = ((bool)(resources.GetObject("cbenemy.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbenemy, true);
 			// 
 			// tblongterm
 			// 
@@ -10747,6 +11041,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tblongterm.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tblongterm.TextAlign")));
 			this.toolTip1.SetToolTip(this.tblongterm, resources.GetString("tblongterm.ToolTip"));
 			this.tblongterm.Visible = ((bool)(resources.GetObject("tblongterm.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tblongterm, true);
 			this.tblongterm.WordWrap = ((bool)(resources.GetObject("tblongterm.WordWrap")));
 			// 
 			// tbshortterm
@@ -10773,6 +11068,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbshortterm.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbshortterm.TextAlign")));
 			this.toolTip1.SetToolTip(this.tbshortterm, resources.GetString("tbshortterm.ToolTip"));
 			this.tbshortterm.Visible = ((bool)(resources.GetObject("tbshortterm.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbshortterm, true);
 			this.tbshortterm.WordWrap = ((bool)(resources.GetObject("tbshortterm.WordWrap")));
 			// 
 			// label57
@@ -10797,6 +11093,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label57.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label57.TextAlign")));
 			this.toolTip1.SetToolTip(this.label57, resources.GetString("label57.ToolTip"));
 			this.label57.Visible = ((bool)(resources.GetObject("label57.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label57, true);
 			// 
 			// label58
 			// 
@@ -10820,6 +11117,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label58.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label58.TextAlign")));
 			this.toolTip1.SetToolTip(this.label58, resources.GetString("label58.ToolTip"));
 			this.label58.Visible = ((bool)(resources.GetObject("label58.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label58, true);
 			// 
 			// panel7
 			// 
@@ -10845,6 +11143,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel7.Text = resources.GetString("panel7.Text");
 			this.toolTip1.SetToolTip(this.panel7, resources.GetString("panel7.ToolTip"));
 			this.panel7.Visible = ((bool)(resources.GetObject("panel7.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.panel7, true);
 			// 
 			// label56
 			// 
@@ -10868,6 +11167,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label56.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label56.TextAlign")));
 			this.toolTip1.SetToolTip(this.label56, resources.GetString("label56.ToolTip"));
 			this.label56.Visible = ((bool)(resources.GetObject("label56.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label56, true);
 			// 
 			// llrelcommit
 			// 

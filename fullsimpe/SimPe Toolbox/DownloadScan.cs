@@ -1106,17 +1106,22 @@ namespace SimPe.Plugin
 			{
 				string filename = System.IO.Path.Combine(lbdir.Text, lvi.Text+".package");
 				string target = System.IO.Path.Combine(lbdir.Text, lvi.Text+".simpedis");
+
+				SimPe.Packages.StreamItem si = SimPe.Packages.StreamFactory.GetStreamItem(filename, false);
+				if (si!=null) si.Close();				
+				si = SimPe.Packages.StreamFactory.GetStreamItem(target, false);
+				if (si!=null) si.Close();
 				try 
 				{
 					if (System.IO.File.Exists(filename)) 
 					{
 						System.IO.File.Move(filename, target);
-						lvi.SubItems[2].Text = "no";
+						lvi.SubItems[3].Text = "no";
 					}
 					else 
 					{
 						System.IO.File.Move(target, filename);
-						lvi.SubItems[2].Text = "yes";
+						lvi.SubItems[3].Text = "yes";
 					}
 				} 
 				catch (Exception ex){

@@ -1,3 +1,6 @@
+#if DEBUG
+//#define LOG
+#endif
 /***************************************************************************
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
@@ -23,6 +26,7 @@ using SimPe.Interfaces.Plugin.Internal;
 using SimPe.Interfaces;
 using SimPe.Interfaces.Files;
 using System.Collections;
+
 
 namespace SimPe.Packages
 {
@@ -148,6 +152,14 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// Returns the Plain File Data (might be compressed)
+		/// </summary>
+		public Byte[] PlainData
+		{
+			get { return data; }
+		}
+
+		/// <summary>
 		/// Returns the Plain File Data. If the Packed File is compress it will be decompressed
 		/// </summary>
 		public Byte[] UncompressedData
@@ -208,14 +220,25 @@ namespace SimPe.Packages
 			Byte cc3 = 0;
 			int source;
 			
+#if LOG
+			System.IO.StreamWriter sw = new System.IO.StreamWriter(@"c:\decomp.txt", false);
+			string kind = "";
+			int lineoffset = 0;
+#endif
 			try 
 			{
 				while ((index<data.Length) && (data[index] < 0xfc))
 				{
+#if LOG
+					lineoffset = index;
+#endif
 					cc = data[index++];
 				
 					if ((cc&0x80)==0)
 					{
+#if LOG
+						kind = "0x00400";
+#endif
 						cc1 = data[index++];
 						plaincount = (cc & 0x03);
 						copycount = ((cc & 0x1C) >> 2) + 3;
@@ -223,6 +246,9 @@ namespace SimPe.Packages
 					} 
 					else if ((cc&0x40)==0)
 					{
+#if LOG
+						kind = "0x04000";
+#endif
 						cc1 = data[index++];
 						cc2 = data[index++];
 						plaincount = (cc1 & 0xC0) >> 6 ; 
@@ -231,6 +257,9 @@ namespace SimPe.Packages
 					} 
 					else if ((cc&0x20)==0)
 					{
+#if LOG
+						kind = "0x20000";
+#endif
 						cc1 = data[index++];
 						cc2 = data[index++];
 						cc3 = data[index++];
@@ -239,7 +268,10 @@ namespace SimPe.Packages
 						copyoffset = ((cc & 0x10) << 12) + (cc1 << 8) + cc2 +1;
 					} 
 					else 
-					{												
+					{		
+#if LOG
+						kind = "0x0";
+#endif										
 						plaincount = (cc - 0xDF) << 2; 
 						copycount = 0;
 						copyoffset = 0;				
@@ -249,12 +281,21 @@ namespace SimPe.Packages
 
 					source = uncindex - copyoffset;	
 					for (int i=0; i<copycount; i++) uncdata[uncindex++] = uncdata[source++];
-							
+						
+#if LOG
+					sw.WriteLine("offset="+Helper.HexString(lineoffset)+", plainc="+Helper.HexString(plaincount)+", copyc="+Helper.HexString(copycount)+", copyo="+Helper.HexString(copyoffset)+", type="+Helper.HexString(cc)+", kind="+kind);
+#endif
 				}//while
 			} //try
 			catch(Exception ex)
 			{
 				Helper.ExceptionMessage("", ex);
+			} 
+			finally 
+			{
+				#if LOG
+					sw.Close();
+				#endif
 			}
 
 			if (index<data.Length) 
@@ -274,7 +315,7 @@ namespace SimPe.Packages
 		//some Compression Data
 		const int MAX_OFFSET = 0x20000;
 		const int MAX_COPY_COUNT = 0x404;
-		//used to finetune the lookup
+		//used to finetune the lookup (small values increase the compression for Big Files)
 		const int MAX_LOOP_COUNT = 0x81;
 
 		/// <summary>
@@ -285,6 +326,7 @@ namespace SimPe.Packages
 		/// <returns>the compressed Data (including the header)</returns>
 		public static byte[] Compress(byte[] data)
 		{			
+			//return Comp(data, true);
 			#region Init Variables
 			//contains the latest offset for a combination of two characters
 			ArrayList[] cmpmap = new ArrayList[0x1000000];
@@ -300,7 +342,9 @@ namespace SimPe.Packages
 			int copycount = 0;	
 			writeindex = 0;
 			int index = -1;
-			lastreadindex = 0;	
+			lastreadindex = 0;
+			byte[] retdata;
+			bool end = false;
 			#endregion
 
 			//begin main Compression Loop			
@@ -310,7 +354,11 @@ namespace SimPe.Packages
 				do 
 				{
 					index++;
-					if (index >= data.Length-2) break;
+					if (index >= data.Length-2) 
+					{
+						end = true;
+						break;
+					}
 					int mapindex = data[index] | (data[index+1]<<0x08) | (data[index+2]<<0x10);
 
 					indexlist = cmpmap[mapindex];
@@ -321,6 +369,8 @@ namespace SimPe.Packages
 					}
 					indexlist.Add(index);									
 				} while (index < lastreadindex);
+				if (end) break;
+
 				#endregion
 
 				#region find the longest repeating byte sequence in the index List (for offset copy)
@@ -338,29 +388,21 @@ namespace SimPe.Packages
 										
 					if (copycount > offsetcopycount)
 					{
-						int cof = index - foundindex;
-						/*if (copycount < 3) copycount = 0;			
-						else if ((copycount < 4) && (copyoffset > 0x400)) copycount = 0;
-						else if ((copycount < 5) && (copyoffset > 0x4000)) copycount = 0;
-
-						if (copycount > offsetcopycount) */
-					{
+						int cof = index - foundindex;						
 						offsetcopycount = copycount;
-						copyoffset = index - foundindex;						
-					}
+						copyoffset = index - foundindex;											
 					}					
 				}
 				#endregion
 
 				#region Compression
-				//make sure we don't copy more bytes then available
-				//if (offsetcopycount > (data.Length - index)) offsetcopycount = index - data.Length;
 				
 				//check if we can compress this
 				if (offsetcopycount < 3) offsetcopycount = 0;			
 				else if ((offsetcopycount < 4) && (copyoffset > 0x400)) offsetcopycount = 0;
 				else if ((offsetcopycount < 5) && (copyoffset > 0x4000)) offsetcopycount = 0;
 
+				
 				//this is compressable? so do the compression
 				if (offsetcopycount > 0)
 				{
@@ -368,7 +410,7 @@ namespace SimPe.Packages
 					while ((index - lastreadindex) > 3)
 					{
 						copycount = (index - lastreadindex) ;
-						while (copycount>0x71) copycount -= 0x71;
+						while (copycount>0x70) copycount -= 0x70;
 						copycount = copycount & 0xfc;
 						int realcopycount = (copycount >> 2);
 						
@@ -379,7 +421,7 @@ namespace SimPe.Packages
 					//offsetcopy
 					copycount = index - lastreadindex;
 					copyoffset--;
-					if ((offsetcopycount <= 10) && (copyoffset < 0x400))
+					if ((offsetcopycount <= 0xa) && (copyoffset < 0x400))
 					{
 						cdata[writeindex++] = (byte) ((((copyoffset >> 3) & 0x60) | ((offsetcopycount - 3) << 2)) | copycount);
 						cdata[writeindex++] = (byte) (copyoffset & 0xff);
@@ -413,10 +455,11 @@ namespace SimPe.Packages
 			#region Add remaining Data
 			//add the End Record
 			index = data.Length;
+			lastreadindex = Math.Min(index, lastreadindex);
 			while ((index - lastreadindex) > 3)
 			{
 				copycount = (index - lastreadindex) ;
-				while (copycount>0x71) copycount -= 0x71;
+				while (copycount>0x70) copycount -= 0x70;
 				copycount = copycount & 0xfc;
 				int realcopycount = (copycount >> 2);
 						
@@ -428,14 +471,14 @@ namespace SimPe.Packages
 			cdata[writeindex++] = (byte) (0xfc + copycount);
 			for (int i=0; i<copycount; i++) cdata[writeindex++] = data[lastreadindex++];
 			//add this as an End Mark
-			cdata[writeindex++] = (byte) (0xfc);
+			//cdata[writeindex++] = (byte) (0xfc);
 			#endregion
 
 			#region Trim Data & and add Header
 			//make a resulting Array of the apropriate size
-			byte[] retdata = new byte[writeindex+9];
+			retdata = new byte[writeindex+9];
 
-			byte[] sz = BitConverter.GetBytes((uint)retdata.Length);
+			byte[] sz = BitConverter.GetBytes((uint)(retdata.Length));
 			for (int i=0; i<4; i++) retdata[i] = sz[i];
 			sz = BitConverter.GetBytes(SimPe.Data.MetaData.COMPRESS_SIGNATURE);
 			for (int i=0; i<2; i++) retdata[i+4] = sz[i];	

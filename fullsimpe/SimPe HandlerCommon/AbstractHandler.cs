@@ -261,6 +261,21 @@ namespace SimPe.Interfaces.Plugin
 
 		public void ProcessData(IPackedFileDescriptor pfd, IPackageFile package, IPackedFile file)
 		{			
+			ProcessData(pfd, package, file, true);	
+		}
+
+		public void ProcessData(Interfaces.Scenegraph.IScenegraphFileIndexItem item) 
+		{
+			ProcessData(item, true);
+		}
+
+		public void ProcessData(IPackedFileDescriptor pfd, IPackageFile package)
+		{
+			ProcessData(pfd, package, true);
+		}
+
+		public void ProcessData(IPackedFileDescriptor pfd, IPackageFile package, IPackedFile file, bool catchex)
+		{			
 			changed = false;
 			if (pfd==null) return;
 			if (package==null) return;
@@ -280,17 +295,18 @@ namespace SimPe.Interfaces.Plugin
 			} 
 			catch (Exception ex) 
 			{
-				ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
+				if (catchex) ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
+				else throw ex;
 			}
 			
 		}
 
-		public void ProcessData(Interfaces.Scenegraph.IScenegraphFileIndexItem item) 
+		public void ProcessData(Interfaces.Scenegraph.IScenegraphFileIndexItem item, bool catchex) 
 		{
-			ProcessData(item.FileDescriptor, item.Package);
+			ProcessData(item.FileDescriptor, item.Package, catchex);
 		}
 
-		public void ProcessData(IPackedFileDescriptor pfd, IPackageFile package)
+		public void ProcessData(IPackedFileDescriptor pfd, IPackageFile package, bool catchex)
 		{
 			if (pfd==null) return;
 			if (package==null) return;
@@ -302,7 +318,8 @@ namespace SimPe.Interfaces.Plugin
 			}
 			catch (Exception ex) 
 			{
-				ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
+				if (catchex) ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
+				else throw ex;
 			}
 		}
 
