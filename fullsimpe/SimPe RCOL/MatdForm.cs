@@ -1,0 +1,728 @@
+/***************************************************************************
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
+using System;
+using System.Drawing;
+using System.Collections;
+using System.ComponentModel;
+using System.Windows.Forms;
+using SimPe.Interfaces.Plugin;
+
+namespace SimPe.Plugin
+{
+	/// <summary>
+	/// Zusammenfassung für MatdForm.
+	/// </summary>
+	public class MatdForm : System.Windows.Forms.Form
+	{
+		/// <summary>
+		/// Erforderliche Designervariable.
+		/// </summary>
+		private System.ComponentModel.Container components = null;
+
+		public MatdForm()
+		{
+			//
+			// Erforderlich für die Windows Form-Designerunterstützung
+			//
+			InitializeComponent();
+
+			//
+			// TODO: Fügen Sie den Konstruktorcode nach dem Aufruf von InitializeComponent hinzu
+			//
+		}
+
+		/// <summary>
+		/// Die verwendeten Ressourcen bereinigen.
+		/// </summary>
+		protected override void Dispose( bool disposing )
+		{
+			if( disposing )
+			{
+				if(components != null)
+				{
+					components.Dispose();
+				}
+			}
+			base.Dispose( disposing );
+		}
+
+		#region Vom Windows Form-Designer generierter Code
+		/// <summary>
+		/// Erforderliche Methode für die Designerunterstützung. 
+		/// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.label5 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.tbtype = new System.Windows.Forms.TextBox();
+			this.tbdsc = new System.Windows.Forms.TextBox();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.lbprop = new System.Windows.Forms.ListBox();
+			this.gbprop = new System.Windows.Forms.GroupBox();
+			this.lldel = new System.Windows.Forms.LinkLabel();
+			this.lladd = new System.Windows.Forms.LinkLabel();
+			this.tbval = new System.Windows.Forms.TextBox();
+			this.tbname = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+			this.tblistfile = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.lbfl = new System.Windows.Forms.ListBox();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.groupBox10 = new System.Windows.Forms.GroupBox();
+			this.tb_ver = new System.Windows.Forms.TextBox();
+			this.label28 = new System.Windows.Forms.Label();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			this.gbprop.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			this.tabPage3.SuspendLayout();
+			this.groupBox10.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label5.Location = new System.Drawing.Point(48, 72);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(37, 17);
+			this.label5.TabIndex = 16;
+			this.label5.Text = "Type:";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label4.Location = new System.Drawing.Point(12, 48);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(73, 17);
+			this.label4.TabIndex = 15;
+			this.label4.Text = "Description:";
+			// 
+			// tbtype
+			// 
+			this.tbtype.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.tbtype.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbtype.Location = new System.Drawing.Point(88, 72);
+			this.tbtype.Name = "tbtype";
+			this.tbtype.Size = new System.Drawing.Size(624, 21);
+			this.tbtype.TabIndex = 14;
+			this.tbtype.Text = "";
+			this.tbtype.TextChanged += new System.EventHandler(this.FileNameChanged);
+			// 
+			// tbdsc
+			// 
+			this.tbdsc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.tbdsc.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbdsc.Location = new System.Drawing.Point(88, 48);
+			this.tbdsc.Name = "tbdsc";
+			this.tbdsc.Size = new System.Drawing.Size(624, 21);
+			this.tbdsc.TabIndex = 13;
+			this.tbdsc.Text = "";
+			this.tbdsc.TextChanged += new System.EventHandler(this.FileNameChanged);
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Location = new System.Drawing.Point(16, 32);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(752, 264);
+			this.tabControl1.TabIndex = 21;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.BackColor = System.Drawing.Color.White;
+			this.tabPage1.Controls.Add(this.lbprop);
+			this.tabPage1.Controls.Add(this.gbprop);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Size = new System.Drawing.Size(744, 238);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Properties";
+			// 
+			// lbprop
+			// 
+			this.lbprop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lbprop.IntegralHeight = false;
+			this.lbprop.Location = new System.Drawing.Point(8, 8);
+			this.lbprop.Name = "lbprop";
+			this.lbprop.Size = new System.Drawing.Size(416, 224);
+			this.lbprop.TabIndex = 3;
+			this.lbprop.SelectedIndexChanged += new System.EventHandler(this.SelectItem);
+			// 
+			// gbprop
+			// 
+			this.gbprop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.gbprop.Controls.Add(this.lldel);
+			this.gbprop.Controls.Add(this.lladd);
+			this.gbprop.Controls.Add(this.tbval);
+			this.gbprop.Controls.Add(this.tbname);
+			this.gbprop.Controls.Add(this.label2);
+			this.gbprop.Controls.Add(this.label1);
+			this.gbprop.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.gbprop.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.gbprop.Location = new System.Drawing.Point(432, 8);
+			this.gbprop.Name = "gbprop";
+			this.gbprop.Size = new System.Drawing.Size(296, 104);
+			this.gbprop.TabIndex = 4;
+			this.gbprop.TabStop = false;
+			this.gbprop.Text = "Property";
+			// 
+			// lldel
+			// 
+			this.lldel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.lldel.AutoSize = true;
+			this.lldel.Location = new System.Drawing.Point(244, 80);
+			this.lldel.Name = "lldel";
+			this.lldel.Size = new System.Drawing.Size(44, 17);
+			this.lldel.TabIndex = 5;
+			this.lldel.TabStop = true;
+			this.lldel.Text = "delete";
+			this.lldel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DeletItem);
+			// 
+			// lladd
+			// 
+			this.lladd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.lladd.AutoSize = true;
+			this.lladd.Location = new System.Drawing.Point(208, 80);
+			this.lladd.Name = "lladd";
+			this.lladd.Size = new System.Drawing.Size(28, 17);
+			this.lladd.TabIndex = 4;
+			this.lladd.TabStop = true;
+			this.lladd.Text = "add";
+			this.lladd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddItem);
+			// 
+			// tbval
+			// 
+			this.tbval.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.tbval.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbval.Location = new System.Drawing.Point(64, 48);
+			this.tbval.Name = "tbval";
+			this.tbval.Size = new System.Drawing.Size(224, 21);
+			this.tbval.TabIndex = 3;
+			this.tbval.Text = "";
+			this.tbval.TextChanged += new System.EventHandler(this.AutoChange);
+			// 
+			// tbname
+			// 
+			this.tbname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.tbname.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbname.Location = new System.Drawing.Point(64, 24);
+			this.tbname.Name = "tbname";
+			this.tbname.Size = new System.Drawing.Size(224, 21);
+			this.tbname.TabIndex = 2;
+			this.tbname.Text = "";
+			this.tbname.TextChanged += new System.EventHandler(this.AutoChange);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label2.Location = new System.Drawing.Point(16, 56);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(41, 17);
+			this.label2.TabIndex = 1;
+			this.label2.Text = "Value:";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label1.Location = new System.Drawing.Point(16, 32);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(42, 17);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Name:";
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.BackColor = System.Drawing.Color.White;
+			this.tabPage2.Controls.Add(this.linkLabel4);
+			this.tabPage2.Controls.Add(this.linkLabel3);
+			this.tabPage2.Controls.Add(this.tblistfile);
+			this.tabPage2.Controls.Add(this.label6);
+			this.tabPage2.Controls.Add(this.lbfl);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Size = new System.Drawing.Size(744, 238);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "File List";
+			// 
+			// linkLabel4
+			// 
+			this.linkLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.linkLabel4.AutoSize = true;
+			this.linkLabel4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel4.Location = new System.Drawing.Point(656, 48);
+			this.linkLabel4.Name = "linkLabel4";
+			this.linkLabel4.Size = new System.Drawing.Size(28, 17);
+			this.linkLabel4.TabIndex = 8;
+			this.linkLabel4.TabStop = true;
+			this.linkLabel4.Text = "add";
+			this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Add);
+			// 
+			// linkLabel3
+			// 
+			this.linkLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.linkLabel3.AutoSize = true;
+			this.linkLabel3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel3.Location = new System.Drawing.Point(692, 48);
+			this.linkLabel3.Name = "linkLabel3";
+			this.linkLabel3.Size = new System.Drawing.Size(44, 17);
+			this.linkLabel3.TabIndex = 7;
+			this.linkLabel3.TabStop = true;
+			this.linkLabel3.Text = "delete";
+			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Delete);
+			// 
+			// tblistfile
+			// 
+			this.tblistfile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.tblistfile.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tblistfile.Location = new System.Drawing.Point(440, 24);
+			this.tblistfile.Name = "tblistfile";
+			this.tblistfile.Size = new System.Drawing.Size(296, 21);
+			this.tblistfile.TabIndex = 6;
+			this.tblistfile.Text = "";
+			this.tblistfile.TextChanged += new System.EventHandler(this.ChangeListFile);
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label6.Location = new System.Drawing.Point(432, 8);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(67, 17);
+			this.label6.TabIndex = 5;
+			this.label6.Text = "Filename:";
+			// 
+			// lbfl
+			// 
+			this.lbfl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left)));
+			this.lbfl.HorizontalScrollbar = true;
+			this.lbfl.IntegralHeight = false;
+			this.lbfl.Location = new System.Drawing.Point(8, 8);
+			this.lbfl.Name = "lbfl";
+			this.lbfl.Size = new System.Drawing.Size(416, 224);
+			this.lbfl.TabIndex = 4;
+			this.lbfl.SelectedIndexChanged += new System.EventHandler(this.SelectListFile);
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.BackColor = System.Drawing.Color.White;
+			this.tabPage3.Controls.Add(this.groupBox10);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Size = new System.Drawing.Size(744, 238);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "cMeterialDefinition";
+			// 
+			// groupBox10
+			// 
+			this.groupBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox10.Controls.Add(this.tb_ver);
+			this.groupBox10.Controls.Add(this.label28);
+			this.groupBox10.Controls.Add(this.label4);
+			this.groupBox10.Controls.Add(this.tbtype);
+			this.groupBox10.Controls.Add(this.tbdsc);
+			this.groupBox10.Controls.Add(this.label5);
+			this.groupBox10.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.groupBox10.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.groupBox10.Location = new System.Drawing.Point(8, 8);
+			this.groupBox10.Name = "groupBox10";
+			this.groupBox10.Size = new System.Drawing.Size(720, 104);
+			this.groupBox10.TabIndex = 17;
+			this.groupBox10.TabStop = false;
+			this.groupBox10.Text = "Settings";
+			// 
+			// tb_ver
+			// 
+			this.tb_ver.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_ver.Location = new System.Drawing.Point(88, 24);
+			this.tb_ver.Name = "tb_ver";
+			this.tb_ver.Size = new System.Drawing.Size(88, 21);
+			this.tb_ver.TabIndex = 24;
+			this.tb_ver.Text = "0x00000000";
+			this.tb_ver.TextChanged += new System.EventHandler(this.FileNameChanged);
+			// 
+			// label28
+			// 
+			this.label28.AutoSize = true;
+			this.label28.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label28.Location = new System.Drawing.Point(33, 24);
+			this.label28.Name = "label28";
+			this.label28.Size = new System.Drawing.Size(52, 17);
+			this.label28.TabIndex = 23;
+			this.label28.Text = "Version:";
+			// 
+			// MatdForm
+			// 
+			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
+			this.ClientSize = new System.Drawing.Size(792, 518);
+			this.Controls.Add(this.tabControl1);
+			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.Name = "MatdForm";
+			this.Text = "MatdForm";
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.gbprop.ResumeLayout(false);
+			this.tabPage2.ResumeLayout(false);
+			this.tabPage3.ResumeLayout(false);
+			this.groupBox10.ResumeLayout(false);
+			this.ResumeLayout(false);
+
+		}
+		#endregion
+
+		internal System.Windows.Forms.ListBox lbprop;
+		internal System.Windows.Forms.GroupBox gbprop;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
+		internal System.Windows.Forms.TextBox tbname;
+		private System.Windows.Forms.TextBox tbval;
+		private System.Windows.Forms.LinkLabel lladd;
+		internal System.Windows.Forms.LinkLabel lldel;
+		internal System.Windows.Forms.TextBox tbdsc;
+		internal System.Windows.Forms.TextBox tbtype;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TabControl tabControl1;
+		internal System.Windows.Forms.TabPage tabPage1;
+		internal System.Windows.Forms.TabPage tabPage2;
+		internal System.Windows.Forms.ListBox lbfl;
+		private System.Windows.Forms.TextBox tblistfile;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.LinkLabel linkLabel3;
+		private System.Windows.Forms.LinkLabel linkLabel4;
+		private System.Windows.Forms.GroupBox groupBox10;
+		internal System.Windows.Forms.TextBox tb_ver;
+		private System.Windows.Forms.Label label28;
+		internal System.Windows.Forms.TabPage tabPage3;
+
+
+		private void SelectItem(object sender, System.EventArgs e)
+		{
+			lldel.Enabled = false;
+			if (lbprop.SelectedIndex<0) return;
+			lldel.Enabled = true;
+
+			try 
+			{
+				tbname.Tag = true;
+				SimPe.Plugin.MaterialDefinitionProperty prop = (SimPe.Plugin.MaterialDefinitionProperty)lbprop.Items[lbprop.SelectedIndex];
+				this.tbname.Text = prop.Name;
+				this.tbval.Text = prop.Value;
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
+			} 
+			finally 
+			{
+				tbname.Tag = null;
+			}
+		}
+
+		protected void Change()
+		{
+			if (this.tabPage3.Tag==null) return;
+			if (this.lbprop.SelectedIndex<0) return;
+			try 
+			{
+				tbname.Tag = true;								
+				SimPe.Plugin.MaterialDefinitionProperty prop = (SimPe.Plugin.MaterialDefinitionProperty)lbprop.Items[lbprop.SelectedIndex];
+
+				prop.Name = tbname.Text;
+				prop.Value = tbval.Text;
+
+				lbprop.Items[lbprop.SelectedIndex] = prop;
+
+				MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+				md.Changed = true;
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
+			} 
+			finally 
+			{
+				tbname.Tag = null;
+			}
+		}
+
+		private void AutoChange(object sender, System.EventArgs e)
+		{
+			if (tbname.Tag!=null) return;
+			if (this.lbprop.SelectedIndex>=0) Change();
+
+		}
+
+		private void AddItem(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (this.tabPage3.Tag==null) return;
+			SimPe.Plugin.MaterialDefinitionProperty prop = new MaterialDefinitionProperty();
+			lbprop.Items.Add(prop);
+
+			MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+			md.Properties = (MaterialDefinitionProperty[])Helper.Add(md.Properties, prop);
+
+			md.Changed = true;
+		}
+
+		private void DeletItem(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (this.tabPage3.Tag==null) return;
+			if (lbprop.SelectedIndex<0) return;
+
+			MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+			md.Properties = (MaterialDefinitionProperty[])Helper.Delete(md.Properties, lbprop.Items[lbprop.SelectedIndex]);
+			md.Changed = true;
+			lbprop.Items.Remove(lbprop.Items[lbprop.SelectedIndex]);
+
+			
+		}
+
+		/*private void Commit(object sender, System.EventArgs e)
+		{
+			try 
+			{
+				Matd wrp = (Matd)wrapper;
+
+				SimPe.Plugin.MaterialDefinitionProperty[] items = new MaterialDefinitionProperty[lbprop.Items.Count];
+				for (int i=0; i<items.Length; i++)
+				{
+					items[i] = (SimPe.Plugin.MaterialDefinitionProperty)lbprop.Items[i];
+				}
+
+				string[] lists = new string[lbfl.Items.Count];
+				for (int i=0; i<lists.Length; i++)
+				{
+					lists[i] = (string)lbfl.Items[i];
+				}
+
+				if (wrp.Blocks.Length<1) 
+				{
+					wrp.Blocks = new MaterialDefinition[1];
+					wrp.Blocks[0] = new MaterialDefinition(null, wrp);
+				}
+
+				((MaterialDefinition)wrp.Blocks[0]).Properties = items;				
+				((MaterialDefinition)wrp.Blocks[0]).Listing = lists;
+
+				wrp.SynchronizeUserData();
+
+				MessageBox.Show(Localization.Manager.GetString("commited"));
+			}
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage(Localization.Manager.GetString("errwritingfile"), ex);
+			}
+		}*/
+
+		/*private void SelectFile(object sender, System.EventArgs e)
+		{
+			if (cbitem.Tag!=null) return;
+			this.lbprop.Items.Clear();	
+			lbfl.Items.Clear();
+			if (cbitem.SelectedIndex<0) return;
+			try 
+			{
+				cbitem.Tag = true;
+				MaterialDefinition md = (MaterialDefinition)cbitem.Items[cbitem.SelectedIndex];
+				foreach (MaterialDefinitionProperty mdp in md.Properties) lbprop.Items.Add(mdp);
+				
+				tbflname.Text = md.NameResource.FileName;
+				tbdsc.Text = md.FileDescription;
+				tbtype.Text = md.MatterialType;
+
+				foreach (string fl in md.Listing) lbfl.Items.Add(fl);
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
+			} 
+			finally 
+			{
+				cbitem.Tag = null;
+			}
+			
+		}*/
+
+		private void FileNameChanged(object sender, System.EventArgs e)
+		{
+			if (this.tabPage3.Tag==null) return;
+			if (tbname.Tag!=null) return;
+			try 
+			{
+				tbname.Tag = true;
+				MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+				
+				md.Version = Convert.ToUInt32(this.tb_ver.Text, 16);
+				md.FileDescription = tbdsc.Text;
+				md.MatterialType = tbtype.Text;
+
+				md.Changed = true;
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
+			}
+			
+			finally 
+			{
+				tbname.Tag = null;
+			}
+		}
+
+		/*protected MaterialDefinition SelectedMaterialDefinition()
+		{
+			//add a MipMapBlock if it doesnt already exist
+			MaterialDefinition md = null;
+			if (cbitem.SelectedIndex<0) 
+			{
+				Matd wrp = (Matd)wrapper;
+				md = new MaterialDefinition(wrp.Provider, wrp);
+				md.NameResource.FileName = "Unknown";
+
+				IRcolBlock[] irc = new IRcolBlock[wrp.Blocks.Length+1];
+				wrp.Blocks.CopyTo(irc, 0);
+				irc[irc.Length-1] = md;
+				wrp.Blocks = irc;
+				cbitem.Items.Add(md);
+				cbitem.SelectedIndex = cbitem.Items.Count-1;
+			} 
+			else 
+			{
+				md = (MaterialDefinition)cbitem.Items[cbitem.SelectedIndex];
+			}
+
+			return md;
+		}
+
+		protected void UpdateMimMaps()
+		{
+			MaterialDefinition md = SelectedMaterialDefinition();
+			
+			MaterialDefinitionProperty[] mm = new MaterialDefinitionProperty[lbprop.Items.Count];
+			for (int i=0; i<mm.Length; i++)
+			{
+				mm[i] = (MaterialDefinitionProperty)lbprop.Items[i];
+			}
+			md.Properties = mm;
+		}*/
+
+		private void SelectListFile(object sender, System.EventArgs e)
+		{
+			if (tblistfile.Tag!=null) return;
+			if (lbfl.SelectedIndex<0) return;
+			
+			try 
+			{
+				tblistfile.Tag = true;
+				tblistfile.Text = (string)lbfl.Items[lbfl.SelectedIndex];
+			} 
+			catch (Exception) {}
+			finally 
+			{
+				tblistfile.Tag = null;
+			}
+		}
+
+		private void ChangeListFile(object sender, System.EventArgs e)
+		{
+			if (this.tabPage3.Tag==null) return;
+			if (tblistfile.Tag!=null) return;
+			if (lbfl.SelectedIndex<0) return;
+			
+			try 
+			{
+				tblistfile.Tag = true;
+				lbfl.Items[lbfl.SelectedIndex] = tblistfile.Text;
+
+				MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+				md.Listing[lbfl.SelectedIndex] = tblistfile.Text;
+
+				md.Changed = true;
+			} 
+			catch (Exception) {}
+			finally 
+			{
+				tblistfile.Tag = null;
+			}
+		}
+		
+		/*private void BuildFilename(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			string fl = Hashes.StripHashFromName(this.tbflname.Text);
+			this.tbflname.Text = Hashes.AssembleHashedFileName(wrapper.Package.FileGroupHash, fl);
+		}
+
+		private void FixTGI(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			string fl = Hashes.StripHashFromName(this.tbflname.Text);
+			wrapper.FileDescriptor.Instance = Hashes.InstanceHash(fl);
+			wrapper.FileDescriptor.SubType = Hashes.SubTypeHash(fl);
+		}*/
+
+		private void Delete(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (this.tabPage3.Tag==null) return;
+			if (lbfl.SelectedIndex<0) return;
+			MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+			md.Listing = (string[])Helper.Delete(md.Listing, lbfl.Items[lbfl.SelectedIndex]);
+
+			lbfl.Items.Remove(lbfl.Items[lbfl.SelectedIndex]);
+
+			md.Changed = true;			
+		}
+
+		private void Add(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (this.tabPage3.Tag==null) return;
+			lbfl.Items.Add(tblistfile.Text);
+			lbfl.SelectedIndex = lbfl.Items.Count-1;
+
+			MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+			md.Listing = (string[])Helper.Add(md.Listing, tblistfile.Text);
+
+			md.Changed = true;
+		}
+	}
+}

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="ResMimeType">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="Version">
+		<value>1.0.0.0</value>
+	</resheader>
+	<resheader name="Reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="Writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="unk">
+		<value>UNB</value>
+	</data>
+	<data name="userdefined">
+		<value>Benutzer definiert</value>
+	</data>
+	<data name="sdesc">
+		<value>Sim Beschreibung</value>
+	</data>
+	<data name="srel">
+		<value>Sim Beziehung</value>
+	</data>
+	<data name="famt">
+		<value>Familienstammbaum</value>
+	</data>
+	<data name="str">
+		<value>Text Listen</value>
+	</data>
+	<data name="realsize">
+		<value>Tatsächliche Größe</value>
+	</data>
+	<data name="none">
+		<value>keiner</value>
+	</data>
+	<data name="err000">
+		<value>Fehler beim laden einer eingebetteten Datei!</value>
+	</data>
+	<data name="proceed">
+		<value>Fortfahren?</value>
+	</data>
+	<data name="ask000">
+		<value>Soll der Vorgang abgebrochen werden?</value>
+	</data>
+	<data name="errwritingfile">
+		<value>Fehler beim schreiben der Datei</value>
+	</data>
+	<data name="err001">
+		<value>Fehler beim schreiben der Packet Beschreibung</value>
+	</data>
+	<data name="nfo000">
+		<value>{0} Dateien entpackt</value>
+	</data>
+	<data name="err002">
+		<value>Fehler beim Entpacken nach </value>
+	</data>
+	<data name="err003">
+		<value>Fehler beim veruch eine eingebettete Datei mit {0} zu ersetzen.</value>
+	</data>
+	<data name="erropenfile">
+		<value>Fehler beim öffnen der Datei </value>
+	</data>
+	<data name="err004">
+		<value>Fehler beim erneuten laden einer Datei.</value>
+	</data>
+	<data name="errregistry">
+		<value>Fehler beim zugrif auf die Registry.</value>
+	</data>
+	<data name="delete?">
+		<value>Löschen?</value>
+	</data>
+	<data name="askdelete">
+		<value>Sollen die ausgewählten Dateien wirklich gelöscht werden?</value>
+	</data>
+	<data name="err005">
+		<value>Fehler beim löschen einer eingebetteten Datei</value>
+	</data>
+	<data name="err006">
+		<value>Fehler beim hinzufügen einer eingebetteten Datei</value>
+	</data>
+	<data name="err007">
+		<value>Es konnten nicht alle interessen aller Sims maximiert werden!</value>
+	</data>
+	<data name="commited">
+		<value>Die Änderungen wurden übernommen.</value>
+	</data>
+	<data name="cantcommitfami">
+		<value>Kann die Familiendatei nicht übernehmen.</value>
+	</data>
+	<data name="cantcommitsdesc">
+		<value>Kann die Beschreibung nicht übernehmen.</value>
+	</data>
+	<data name="cantcommitfamt">
+		<value>Kann die Verwanschaftsdatei nicht übernehmen</value>
+	</data>
+	<data name="cantcommittie">
+		<value>Kann die aktuelle Verwandschaftsbeziehung nicht übernehmen.</value>
+	</data>
+	<data name="cantaddrelation">
+		<value>Kann die Beziehungen nicht hinzufügen</value>
+	</data>
+	<data name="cantcommitrelation">
+		<value>Kann die Beziehungsdaten nicht übernehmen.</value>
+	</data>
+	<data name="cantdeleterelation">
+		<value>Kann die Beziehung nicht löschen.</value>
+	</data>
+	<data name="filenotfound">
+		<value>Datei wurde nicht gefunden</value>
+	</data>
+	<data name="rightclickcopy">
+		<value>Rechts click: in die Zwischenablage</value>
+	</data>
+	<data name="viewer">
+		<value>Betrachter</value>
+	</data>
+	<data name="Nothing">
+		<value>Nichts</value>
+	</data>
+	<data name="Romance">
+		<value>Romantik</value>
+	</data>
+	<data name="Family">
+		<value>Familie</value>
+	</data>
+	<data name="Fortune">
+		<value>Berühmt sein</value>
+	</data>
+	<data name="Reputation">
+		<value>Ruf</value>
+	</data>
+	<data name="Knowledge">
+		<value>Wissen</value>
+	</data>
+	<data name="Growup">
+		<value>Groß werden</value>
+	</data>
+	<data name="Aries">
+		<value>Widder</value>
+	</data>
+	<data name="Taurus">
+		<value>Stier</value>
+	</data>
+	<data name="Gemini">
+		<value>Zwilling</value>
+	</data>
+	<data name="Cancer">
+		<value>Krebs</value>
+	</data>
+	<data name="Leo">
+		<value>Löwe</value>
+	</data>
+	<data name="Virgo">
+		<value>Jungfrau</value>
+	</data>
+	<data name="Libra">
+		<value>Waage</value>
+	</data>
+	<data name="Scorpio">
+		<value>Skorpion</value>
+	</data>
+	<data name="Sagittarius">
+		<value>Schütze</value>
+	</data>
+	<data name="Capricorn">
+		<value>Steinbock</value>
+	</data>
+	<data name="Aquarius">
+		<value>Wassermann</value>
+	</data>
+	<data name="Toddler">
+		<value>Kleinkind</value>
+	</data>
+	<data name="Child">
+		<value>Kind</value>
+	</data>
+	<data name="Teen">
+		<value>Teenager</value>
+	</data>
+	<data name="Adult">
+		<value>Erwachsen</value>
+	</data>
+	<data name="Elder">
+		<value>Greis</value>
+	</data>
+	<data name="Unemployed">
+		<value>Arbeitslos</value>
+	</data>
+	<data name="Military">
+		<value>Militär</value>
+	</data>
+	<data name="Politics">
+		<value>Politik</value>
+	</data>
+	<data name="Science">
+		<value>Wissenschaft</value>
+	</data>
+	<data name="Medical">
+		<value>Medizin</value>
+	</data>
+	<data name="Athletic">
+		<value>Sport</value>
+	</data>
+	<data name="Business">
+		<value>Wirtschaft</value>
+	</data>
+	<data name="LawEnforcement">
+		<value>Gesetzeshüter</value>
+	</data>
+	<data name="Culinary">
+		<value>Koch</value>
+	</data>
+	<data name="Slacker">
+		<value>Faulenzer</value>
+	</data>
+	<data name="Criminal">
+		<value>Krimineller</value>
+	</data>
+	<data name="cantaddtie">
+		<value>Dieser Sim kann nicht in die Verwandschaft aufgenommen werden.</value>
+	</data>
+	<data name="MyMotherIs">
+		<value>Elternteil A ist</value>
+	</data>
+	<data name="MyFatherIs">
+		<value>Elternteil B ist</value>
+	</data>
+	<data name="ImMarriedTo">
+		<value>Mein Ehepartner ist</value>
+	</data>
+	<data name="MySiblingIs">
+		<value>Mein Geschwister ist</value>
+	</data>
+	<data name="MyChildIs">
+		<value>Mein Kind ist</value>
+	</data>
+	<data name="cantcommitobjd">
+		<value>Kann die Objekt Daten nicht übernehmen</value>
+	</data>
+	<data name="unnamed">
+		<value>Unbenannt</value>
+	</data>
+	<data name="byteviewerror">
+		<value>Fehler beim Anzeigen der Byte Ansicht.</value>
+	</data>
+	<data name="usebigfile?">
+		<value>Dies Datei ist größer als 10kb. Soll sie dennoch geladen werden? (Der ladevorgang wird einige Minuten dauern!)</value>
+	</data>
+	<data name="confirm">
+		<value>Bestätigung</value>
+	</data>
+	<data name="English">
+		<value>Englisch</value>
+	</data>
+	<data name="English_uk">
+		<value>Englisch (uk)</value>
+	</data>
+	<data name="French">
+		<value>Französisch</value>
+	</data>
+	<data name="German">
+		<value>Deutsch</value>
+	</data>
+	<data name="Grade_Unknown">
+		<value>Keine Note</value>
+	</data>
+	<data name="Grade_F">
+		<value>5</value>
+	</data>
+	<data name="Grade_DMinus">
+		<value>4-</value>
+	</data>
+	<data name="Grade_D">
+		<value>4</value>
+	</data>
+	<data name="Grade_DPlus">
+		<value>4+</value>
+	</data>
+	<data name="Grade_CMinus">
+		<value>3-</value>
+	</data>
+	<data name="Grade_C">
+		<value>3</value>
+	</data>
+	<data name="Grade_CPlus">
+		<value>3+</value>
+	</data>
+	<data name="Grade_BMinus">
+		<value>2-</value>
+	</data>
+	<data name="Grade_B">
+		<value>2</value>
+	</data>
+	<data name="Grade_BPlus">
+		<value>2+</value>
+	</data>
+	<data name="Grade_AMinus">
+		<value>1-</value>
+	</data>
+	<data name="Grade_A">
+		<value>1</value>
+	</data>
+	<data name="Grade_APlus">
+		<value>1+</value>
+	</data>
+	<data name="PublicSchool">
+		<value>Öffentliche Schule</value>
+	</data>
+	<data name="PrivateSchool">
+		<value>Privatschule</value>
+	</data>
+	<data name="Unknown">
+		<value>Unbekannt</value>
+	</data>
+	<data name="errconvert">
+		<value>Zuweisungsfehler</value>
+	</data>
+	<data name="simsbrowser">
+		<value>Sim auswählen</value>
+	</data>
+	<data name="neighborhoodbrowser">
+		<value>Nachbarschaft auswählen</value>
+	</data>
+	<data name="backuprestore">
+		<value>Soll die Nachbarschaft vor dem widerherstellen des Backups gesichert werden?</value>
+	</data>
+	<data name="backupdelete">
+		<value>Sind sie sicher dass alle Dateien in {0} gelöscht werden sollen?</value>
+	</data>
+	<data name="backup?">
+		<value>Sicherung erstellen?</value>
+	</data>
+	<data name="disclaimer">
+		<value>SimPE ist ein Tool das tief in die Interna von "Die Sims 2" eingreifen kann.
+		
+Viele Anwender verwenden SimPE bereits ohne Probleme. Wenn es allerdings unsachgemäß verwendet wird können schäden am Spiel sowie am gesammten System entstehen. SimPE darf nur dann verwendet werden wenn sie diese Risiko akzeptieren. Bedenken sie dass SimPE noch im alpha Stadium ist!
+Es wird dringend empfohlen vor dem Start ein Backup des Verzeicnisses "Eigene Dateien\EA Games\Die Sims 2\" anzufertigen!
+		
+Soll SimPE gestartet werden?</value>
+	</data>
+	<data name="savechanges?">
+		<value>Änderungen speichern?</value>
+	</data>
+	<data name="savechanges">
+		<value>Sollen die Änderungen am aktuellen Package gesichert werden?</value>
+	</data>
+	<data name="unsavedchanges">
+		<value>Das geöffnete Package enthält nicht gespeicherte Daten die verloren gehen wenn sie eine neue Nachbarschaft öffnen. 
+		
+Möchten sie fortfahren?</value>
+	</data>
+	<data name="errunsupportedimage">
+		<value>Das Bildformat wird nicht unterstützt.</value>
+	</data>
+	<data name="Brazilian">
+		<value>Portugiesisch (Brasilien)</value>
+	</data>
+	<data name="savewrapperchanges">
+		<value>Sollen die Änderungen am aktuellen Datei gesichert werden?</value>
+	</data>
+	<data name="RT_Unset_Unknown">
+		<value>Nicht definiert oder unbekannt</value>
+	</data>
+	<data name="RT_Nice_Nephew">
+		<value>Nichte oder Neffe</value>
+	</data>
+	<data name="RT_Parent">
+		<value>Elternteil</value>
+	</data>
+	<data name="RT_Child">
+		<value>Kind</value>
+	</data>
+	<data name="RT_Sibling">
+		<value>Geschwister</value>
+	</data>
+	<data name="RT_Gradparent">
+		<value>Großmutter oder Großvater</value>
+	</data>
+	<data name="RT_Grandchild">
+		<value>Enkel</value>
+	</data>
+	<data name="RT_Aunt">
+		<value>Tante oder Onkel</value>
+	</data>
+	<data name="RT_Cousin">
+		<value>Kusine oder Kusin</value>
+	</data>
+	<data name="RT_Spouses">
+		<value>Ehepartner</value>
+	</data>
+	<data name="OW_Warning">
+		<value>Damit diese Tool auch mit Objekten Funktioniert deren Farbalternativen nicht standardmäßig aktiviert sind muss noch das Colour Options Enabler Paket von http://sims.ambertation.de/download.shtml heruntergeladen und instaliert werden.
+		
+		Der Object Workshop ist noch immer in der testphase, deswegen sollten alle damit erstellten Farbalternativen einen deutlischen Hinweis auf den Beta Status tragen. Für einige der erstellten Farbalternativen ist es auch notwendig das die Benutzer den Colour Options Enabler installieren!\n\nTrotzdem weitermachen?</value>
+	</data>
+	<data name="Pisces">
+		<value>Fische</value>
+	</data>
+	<data name="YoungAdult">
+		<value>Junger Erwachener</value>
+	</data>
+	<data name="yes">
+		<value>Ja</value>
+	</data>
+	<data name="no">
+		<value>Nein</value>
+	</data>
+	<data name="question">
+		<value>Frage</value>
+	</data>
+	<data name="open_wnt_from_sdsc">
+		<value>Sollen die Einstellungen für diese Sim übernommen werden bevor die Ängset und Wünsche angezeigt werden?</value>
+	</data>
+	<data name="open_fami_from_sdsc">
+		<value>Sollen die Einstellungen für diese Sim übernommen werden bevor die Familien Information angezeigt wird?</value>
+	</data>
+</root>
