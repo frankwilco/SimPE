@@ -84,7 +84,7 @@ namespace SimPe.Providers
 			{
 				try 
 				{
-					SimPe.Plugin.RefFile reffile = new SimPe.Plugin.RefFile(null);
+					SimPe.Plugin.RefFile reffile = new SimPe.Plugin.RefFile();
 					reffile.ProcessData(pfd, package);
 					refs.Add(reffile);
 				} 

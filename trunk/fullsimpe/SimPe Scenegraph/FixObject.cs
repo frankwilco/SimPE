@@ -341,6 +341,7 @@ namespace SimPe.Plugin
 				
 
 				bool RCOLcheck = types.Contains(pfd.Type);
+				if (ver == FixVersion.UniversityReady) RCOLcheck = Data.MetaData.RcolList.Contains(pfd.Type);
 				//foreach (uint tp in RCOLs) if (tp==pfd.Type) { RCOLcheck=true; break; }
 
 				if (Data.MetaData.RcolList.Contains(pfd.Type)) 
@@ -357,27 +358,22 @@ namespace SimPe.Plugin
 						} 
 						else 
 						{
-							p.Group = Data.MetaData.CUSTOM_GROUP;
+							if (Data.MetaData.RcolList.Contains(p.Type)) p.Group = Data.MetaData.CUSTOM_GROUP;
+							else p.Group = Data.MetaData.LOCAL_GROUP;
 						}
 					}
 					rcol.SynchronizeUserData();
 				}
 
-				if (ver == FixVersion.UniversityReady2) 
-				{
-					if (RCOLcheck) 
-					{
-						pfd.Group = Data.MetaData.CUSTOM_GROUP;
-					}
-					else 
-					{
-						pfd.Group = Data.MetaData.LOCAL_GROUP;
-					}
-				} 
-				else 
+				if (RCOLcheck) 
 				{
 					pfd.Group = Data.MetaData.CUSTOM_GROUP;
 				}
+				else 
+				{
+					pfd.Group = Data.MetaData.LOCAL_GROUP;
+				}
+				
 			}
 		}
 

@@ -875,6 +875,14 @@ namespace SimPe.PackedFiles.UserInterface
 		Ambertation.PropertyObjectBuilder pob;
 		ArrayList names;
 		bool propchanged;
+		string GetName(int i)
+		{
+			string name = "0x"+Helper.HexString((ushort)i) + ": ";
+			name += (string)names[i];
+
+			return name;
+		}
+
 		void ShowData()
 		{
 			propchanged = false;
@@ -886,9 +894,7 @@ namespace SimPe.PackedFiles.UserInterface
 			Hashtable ht = new Hashtable();
 			for (int i=0; i<Math.Min(names.Count, wrapper.Data.Length); i++)
 			{
-				string name = "0x"+Helper.HexString((ushort)i) + ": ";
-				name += (string)names[i];
-				if (name.Trim()=="") name = "Unknwon";
+				string name = GetName(i);				
 				if (!ht.Contains(name)) ht.Add(name, wrapper.Data[i]);
 			}
 
@@ -907,8 +913,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 				for (int i=0; i<Math.Min(names.Count, wrapper.Data.Length); i++)
 				{
-					string name = (string)names[i];
-					if (name.Trim()=="") name = "Unknwon 0x"+Helper.HexString(i);
+					string name = GetName(i);	
 					if (ht.Contains(name)) wrapper.Data[i] = (short)ht[name];
 				}
 

@@ -709,9 +709,14 @@ namespace SimPe.Plugin
 		protected void AddFiles(string[] files, string note, int count, int offset) 
 		{			
 			ArrayList guids = new ArrayList();
+			ArrayList aguids = new ArrayList();
 			if ((this.cbguid.Checked) && (this.prov!=null))
-			{
-				foreach(uint g in prov.OpcodeProvider.StoredMemories.Keys) guids.Add(g);
+			{				
+				foreach(uint g in prov.OpcodeProvider.StoredMemories.Keys) 
+				{
+					if (aguids.Contains(g)) guids.Add(g);
+					else aguids.Add(g);
+				}
 			}
 			
 			foreach (string file in files)
