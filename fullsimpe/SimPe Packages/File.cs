@@ -328,6 +328,23 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// Removes all FileDescripotrs that are marked for Deletion
+		/// </summary>
+		public void RemoveMarked()
+		{
+			ArrayList list = new ArrayList();
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in fileindex) 
+			{
+				if (!pfd.MarkForDelete) list.Add(pfd);
+			}
+
+			Interfaces.Files.IPackedFileDescriptor[] pfds = new Interfaces.Files.IPackedFileDescriptor[list.Count];
+			list.CopyTo(pfds);
+			fileindex = pfds;
+			header.index.count = fileindex.Length;
+		}
+
+		/// <summary>
 		/// Ads a new Descriptor to the Index
 		/// </summary>
 		/// <param name="type">The Type of the new File</param>

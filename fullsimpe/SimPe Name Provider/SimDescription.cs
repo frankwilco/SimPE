@@ -34,11 +34,33 @@ namespace SimPe.Providers
 		/// Holds all Descriptions by SimId
 		/// </summary>
 		Hashtable bysimid;
+		/// <summary>
+		/// Returns availabl SDSC Files by SimGUID
+		/// </summary>
+		public Hashtable SimGuidMap
+		{
+			get 
+			{
+				if (bysimid==null) LoadDescriptions();
+				return bysimid;
+			}
+		}
 
 		/// <summary>
 		/// Holds all Descriptions by Instance
 		/// </summary>
 		Hashtable byinstance;
+		/// <summary>
+		/// Returns availabl SDSC Files by Instance
+		/// </summary>
+		public Hashtable SimInstance
+		{
+			get 
+			{
+				if (byinstance==null) LoadDescriptions();
+				return byinstance;
+			}
+		}
 
 		/// <summary>
 		/// Null or a Nameprovider

@@ -211,6 +211,12 @@ namespace SimPe.Plugin
 		/// </summary>
 		bool duplicates;
 
+		public bool Duplicates
+		{
+			get { return duplicates; }
+			set { duplicates = value; }
+		}
+
 
 		/// <summary>
 		/// Create a new Instance
@@ -277,9 +283,20 @@ namespace SimPe.Plugin
 		/// <returns>the local Group</returns>
 		public static uint GetLocalGroup(SimPe.Interfaces.Files.IPackageFile package)
 		{
+			string flname = package.FileName;
+			return GetLocalGroup(flname);
+		}
+
+		/// <summary>
+		/// Return the suggested local Group for the passed package
+		/// </summary>
+		/// <param name="flname">The filename of the package</param>
+		/// <returns>the local Group</returns>
+		public static uint GetLocalGroup(string flname)
+		{
 			if (localGroupMap==null) localGroupMap = new Hashtable();
 
-			string flname = package.FileName;
+			
 			if (flname==null) flname="memoryfile";
 			flname = flname.Trim().ToLower();
 

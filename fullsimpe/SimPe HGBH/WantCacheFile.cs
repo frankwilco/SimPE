@@ -18,57 +18,83 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.IO;
 using System.Collections;
+using SimPe;
+using SimPe.Plugin;
 
-namespace SimPe.Interfaces.Providers
+
+namespace SimPe.Cache
 {
 	/// <summary>
-	/// Interface to obtain all SimDescriptions available in a Package
+	/// Contains an Instance of a CacheFile
 	/// </summary>
-	public interface ISimDescriptions : ICommonPackage
+	public class WantCacheFile: CacheFile
 	{
 		/// <summary>
-		/// Find the Description of a Sim using the Instance Number
+		/// Creaet a new Instance for an empty File
 		/// </summary>
-		/// <param name="instance">The Instance Id of the sim</param>
-		/// <returns>null or a ISDesc Object</returns>
-		Wrapper.ISDesc FindSim(ushort instance);
-
-		/// <summary>
-		/// Find the Description of a Sim using the Sim ID
-		/// </summary>
-		/// <param name="simid">The Sim ID</param>
-		/// <returns>null or a ISDesc Object</returns>
-		Wrapper.ISDesc FindSim(uint simid);
-
-		/// <summary>
-		/// returns the Instance Id for the given Sim
-		/// </summary>
-		/// <param name="simid">ID of the Sim</param>
-		/// <returns>0xffff or a valid Instance Number</returns>
-		ushort GetInstance(uint simid);
-
-		/// <summary>
-		/// returns the Sim Id for the given Sim
-		/// </summary>
-		/// <param name="instance">Instance Number of the Sim</param>
-		/// <returns>0xffffffff or a valid Sim ID</returns>
-		uint GetSimId(ushort instance);
-
-		/// <summary>
-		/// Returns availabl SDSC Files by SimGUID
-		/// </summary>
-		Hashtable SimGuidMap
+		public WantCacheFile() : base()
 		{
-			get;
+			DEFAULT_TYPE = ContainerType.Want;
+		}		
+
+		/// <summary>
+		/// Add a MaterialOverride to the Cache
+		/// </summary>
+		/// <param name="want">The Want File</param>
+		public void AddItem(WantInformation want) 
+		{
+			CacheContainer mycc = this.UseConatiner(ContainerType.Want, want.XWant.Package.FileName);
+			
+			WantCacheItem wci = new WantCacheItem();	
+			wci.FileDescriptor = want.XWant.FileDescriptor;
+			wci.Folder = want.XWant.Folder;
+			wci.Guid = want.Guid;
+			wci.Icon = want.Icon;
+			wci.Influence = want.XWant.Influence;
+			wci.Name = want.Name;
+			wci.ObjectType = want.XWant.ObjectType;
+			wci.Score = want.XWant.Score;			
+
+			mycc.Items.Add(wci);
+		}
+
+		Hashtable map;
+		/// <summary>
+		/// Return the FileIndex represented by the Cached Files
+		/// </summary>
+		public Hashtable Map 
+		{
+			get { 
+				if (map==null) LoadWants();
+				return map; 
+			}
 		}
 
 		/// <summary>
-		/// Returns availabl SDSC Files by Instance
+		/// Creates a FileIndex with all available MMAT Files
 		/// </summary>
-		Hashtable SimInstance
+		/// <returns>the FileIndex</returns>
+		/// <remarks>
+		/// The Tags of the FileDescriptions contain the MMATCachItem Object, 
+		/// the FileNames of the FileDescriptions contain the Name of the package File
+		/// </remarks>
+		public void LoadWants()
 		{
-			get;
-		}
+			map = new Hashtable();
+			
+
+			foreach (CacheContainer cc in Containers) 
+			{
+				if (cc.Type==ContainerType.Want && cc.Valid) 
+				{
+					foreach (WantCacheItem wci in cc.Items) 
+					{
+						map[wci.Guid] = wci;
+					}
+				}
+			}//foreach
+		}		
 	}
 }

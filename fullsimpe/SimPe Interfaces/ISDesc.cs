@@ -90,6 +90,15 @@ namespace SimPe.Interfaces.Wrapper
 		}
 
 		/// <summary>
+		/// Returns the FamilyName of a Sim that is stored in the current Package
+		/// </summary>
+		/// <remarks>If no SimFamilyName Provider is available, '---' will be delivered</remarks>
+		string HouseholdName
+		{
+			get;
+		}
+
+		/// <summary>
 		/// Returns the Filedescriptor used to obtain the current Data
 		/// </summary>
 		Files.IPackedFileDescriptor FileDescriptor 

@@ -40,6 +40,11 @@ namespace SimPe.Cache
 		/// </summary>
 		public const byte VERSION = 1;
 
+		/// <summary>
+		/// The default type for this container
+		/// </summary>
+		protected ContainerType DEFAULT_TYPE = ContainerType.None;
+
 
 		/// <summary>
 		/// Creaet a new Instance for an empty File
@@ -77,7 +82,7 @@ namespace SimPe.Cache
 
 				for (int i=0; i<count; i++) 
 				{
-					CacheContainer cc = new CacheContainer(ContainerType.None);
+					CacheContainer cc = new CacheContainer(DEFAULT_TYPE);
 					cc.Load(reader);
 					containers.Add(cc);
 				}
@@ -145,11 +150,50 @@ namespace SimPe.Cache
 		CacheContainers containers;
 
 		/// <summary>
+		/// Returns the Version of the File
+		/// </summary>
+		public byte Version 
+		{
+			get { return version; }
+		}
+
+		/// <summary>
 		/// Returns all Available Containers
 		/// </summary>
 		public CacheContainers Containers 
 		{
 			get { return containers; }
+		}
+
+		/// <summary>
+		/// Returns a container for the passed type and File
+		/// </summary>
+		/// <param name="ct">The Container Type</param>
+		/// <param name="name">The name of the FIle</param>
+		/// <remarks>If no container is Found, a new one will be created for this File and Type!</remarks>
+		public CacheContainer UseConatiner(ContainerType ct, string name) 
+		{
+			if (name==null) name = "";
+			name = name.Trim().ToLower();
+
+			CacheContainer mycc = null;
+			foreach (CacheContainer cc in containers) 
+			{
+				if (cc.Type == ct && cc.Valid && cc.FileName==name)
+				{
+					mycc = cc;
+					break;
+				}
+			} //foreach
+
+			if (mycc==null) 
+			{
+				mycc = new CacheContainer(ct);
+				mycc.FileName = name;
+				containers.Add(mycc);
+			}
+
+			return mycc;
 		}
 	}
 }

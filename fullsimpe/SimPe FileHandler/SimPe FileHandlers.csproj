@@ -217,7 +217,7 @@
                     RelPath = "Elements2.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
-                />  
+                />
                 <File
                     RelPath = "Elements2.de.resx"
                     DependentUpon = "Elements2.cs"
@@ -307,6 +307,16 @@
                     RelPath = "SimRelations.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SimRelinkForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SimRelinkForm.resx"
+                    DependentUpon = "SimRelinkForm.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "SRel.cs"

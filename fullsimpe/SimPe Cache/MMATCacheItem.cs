@@ -27,29 +27,27 @@ namespace SimPe.Cache
 	/// <summary>
 	/// Contains one ObjectCacheItem
 	/// </summary>
-	public class ObjectCacheItem : ICacheItem
+	public class MMATCacheItem : ICacheItem
 	{
 		/// <summary>
 		/// The current Version
 		/// </summary>
 		public const byte VERSION = 1;
 
-		public ObjectCacheItem()
+		public MMATCacheItem()
 		{			
 			version = VERSION;
-			name = "";
 			modelname = "";
+			family = "";
+			def = false;
 			pfd = new Packages.PackedFileDescriptor();
 		}
 
 		byte version;
-		string name;
 		string modelname;
+		string family;
+		bool def;
 		Interfaces.Files.IPackedFileDescriptor pfd;
-		uint localgroup;
-		Image thumb;
-		ushort objtype;
-		short objfuncsort;
 
 		/// <summary>
 		/// Returns an (unitialized) FileDescriptor
@@ -66,37 +64,11 @@ namespace SimPe.Cache
 		/// <summary>
 		/// Returns the Type Field of the Object
 		/// </summary>
-		public ushort ObjectType
+		public bool Default
 		{
-			get { return objtype; }
-			set { objtype = value; }
-		}
-
-		/// <summary>
-		/// Returns the FunctionSort Field of the Object
-		/// </summary>
-		public short ObjectFunctionSort
-		{
-			get { return objfuncsort; }
-			set { objfuncsort = value; }
-		}
-		/// <summary>
-		/// Returns the LocalGroup
-		/// </summary>
-		public uint LocalGroup
-		{
-			get { return localgroup; }
-			set { localgroup = value; }
-		}
-
-		/// <summary>
-		/// Returns the Name of this Object
-		/// </summary>
-		public string Name
-		{
-			get { return name; }
-			set { name = value; }
-		}
+			get { return def; }
+			set { def = value; }
+		}				
 
 		/// <summary>
 		/// Returns the ModeName for this Object
@@ -108,18 +80,20 @@ namespace SimPe.Cache
 		}
 
 		/// <summary>
-		/// Returns the Thumbnail
+		/// Returns the Familyname for this Object
 		/// </summary>
-		public Image Thumbnail 
+		public string Family
 		{
-			get { return thumb; }
-			set { thumb = value; }
+			get { return family; }
+			set { family = value; }
 		}
+		
 
 		public override string ToString()
 		{
-			return "Object: name="+Name;
+			return "MaterialOverride: modelname="+ModelName+", family="+family;
 		}
+
 
 		#region ICacheItem Member
 
@@ -127,59 +101,26 @@ namespace SimPe.Cache
 		{
 			version = reader.ReadByte();
 			if (version>VERSION) throw new CacheException("Unknown CacheItem Version.", null, version);
-							
-			name = reader.ReadString();
+										
 			modelname = reader.ReadString();
+			family = reader.ReadString();
+			def = reader.ReadBoolean();
 			pfd = new Packages.PackedFileDescriptor();
 			pfd.Type = reader.ReadUInt32();
 			pfd.Group = reader.ReadUInt32();
-			localgroup = reader.ReadUInt32();
-			pfd.LongInstance = reader.ReadUInt64();
-			
-
-			int size = reader.ReadInt32();
-			if (size==0) 
-			{
-				thumb = null;
-			} 
-			else 
-			{
-				byte[] data = reader.ReadBytes(size);
-				MemoryStream ms = new MemoryStream(data);
-
-				thumb = Image.FromStream(ms);				
-			}
-
-			objtype = reader.ReadUInt16();
-			objfuncsort = reader.ReadInt16();
+			pfd.LongInstance = reader.ReadUInt64();			
 		}
 
 		public void Save(System.IO.BinaryWriter writer) 
 		{
 			version = VERSION;
 			writer.Write(version);
-			writer.Write(name);
-			writer.Write(modelname);			
+			writer.Write(modelname);
+			writer.Write(family);
+			writer.Write(def);
 			writer.Write(pfd.Type);
 			writer.Write(pfd.Group);
-			writer.Write(localgroup);
-			writer.Write(pfd.LongInstance);
-
-			if (thumb==null) 
-			{
-				writer.Write((int)0);
-			} 
-			else 
-			{
-				MemoryStream ms = new MemoryStream();
-				thumb.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-				byte[] data = ms.ToArray();
-				writer.Write(data.Length);
-				writer.Write(data);
-			}
-
-			writer.Write(objtype);
-			writer.Write(objfuncsort);
+			writer.Write(pfd.LongInstance);			
 		}
 
 		public byte Version

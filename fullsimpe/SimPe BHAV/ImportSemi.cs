@@ -98,6 +98,7 @@ namespace SimPe
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ImportSemi));
 			this.btimport = new System.Windows.Forms.Button();
 			this.cbsemi = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
@@ -186,6 +187,8 @@ namespace SimPe
 			// 
 			// cbfix
 			// 
+			this.cbfix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cbfix.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbfix.Location = new System.Drawing.Point(256, 360);
 			this.cbfix.Name = "cbfix";
 			this.cbfix.Size = new System.Drawing.Size(176, 24);
@@ -208,8 +211,8 @@ namespace SimPe
 			this.Controls.Add(this.label2);
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ImportSemi";
-			this.ShowInTaskbar = false;
 			this.Text = "Import SemiGlobals";
 			this.ResumeLayout(false);
 

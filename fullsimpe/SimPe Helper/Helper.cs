@@ -270,6 +270,22 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Returns the Name of the Cache File for the current Language
+		/// </summary>
+		public static string SimPeLanguageCache 
+		{
+			get { return System.IO.Path.Combine(Helper.SimPeDataPath, "objcache_"+Helper.HexString((byte)Helper.WindowsRegistry.LanguageCode)+".simpepkg"); }
+		}
+
+		/// <summary>
+		/// Returns the Name of the Language independent Cache File
+		/// </summary>
+		public static string SimPeCache 
+		{
+			get { return System.IO.Path.Combine(Helper.SimPeDataPath, "objcache.simpepkg"); }
+		}
+
+		/// <summary>
 		/// Returns the Path additional SimPe Files are located in
 		/// </summary>
 		public static string SimPeDataPath 

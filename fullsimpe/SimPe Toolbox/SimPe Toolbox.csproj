@@ -293,6 +293,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ObjectCacheFile.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "PhotoStudio.cs"
                     SubType = "Form"
                     BuildAction = "Compile"

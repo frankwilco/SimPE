@@ -199,6 +199,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "MMATCacheFile.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MmatListCompare.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

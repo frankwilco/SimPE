@@ -149,6 +149,16 @@
                     Project = "{74517907-2236-4C45-80ED-E188D5E5CE0E}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe Cache"
+                    Project = "{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe Scenegraph"
+                    Project = "{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
@@ -227,6 +237,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "WantCacheFile.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "WantItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -238,6 +253,11 @@
                 />
                 <File
                     RelPath = "WantLoader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "WantNameLoader.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -66,6 +66,11 @@ namespace SimPe.Interfaces.Files
 		void Remove(IPackedFileDescriptor pfd);
 
 		/// <summary>
+		/// Removes all FileDescriptors that are marked for Deletion
+		/// </summary>
+		void RemoveMarked();
+
+		/// <summary>
 		/// Ads a list of Descriptors to the Index
 		/// </summary>
 		/// <param name="pfds">List of Descriptors</param>
