@@ -48,7 +48,7 @@ namespace SimPe.Interfaces.Files
 		/// <summary>
 		/// Returns the Size of the File
 		/// </summary>
-		int Signature
+		ushort Signature
 		{
 			get;
 		}

@@ -88,6 +88,25 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// true, if user wants to activate the Cache
+		/// </summary>
+		public  bool UseCache
+		{
+			get 
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				object o = rkf.GetValue("UseCache");
+				if (o==null) return true;
+				else return Convert.ToBoolean(o);
+			}
+			set
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				rkf.SetValue("UseCache", value);
+			}
+		}
+
+		/// <summary>
 		/// true, if the user wanted to use the HexViewer
 		/// </summary>
 		public  bool HexViewState 

@@ -1202,6 +1202,8 @@ namespace SimPe.Plugin
 						{
 							SimPe.Interfaces.Files.IPackedFile file = pkg.Read(pfd);
 							pfd.UserData = file.UncompressedData;
+
+							pfd.MarkForReCompress = (file.IsCompressed || Data.MetaData.CompressionCandidates.Contains(pfd.Type));							
 						}
 
 						pkg.Save();

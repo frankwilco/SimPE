@@ -174,7 +174,7 @@ namespace SimPe.Interfaces.Files
 		bool HasUserdata
 		{
 			get;
-		}
+		}		
 
 		/// <summary>
 		/// Puts Userdefined Data into the File
@@ -186,9 +186,18 @@ namespace SimPe.Interfaces.Files
 		}
 
 		/// <summary>
-		/// Returns/set if this file should be keept in the Index for the next Save
+		/// Returns/sets if this file should be keept in the Index for the next Save
 		/// </summary>
 		bool MarkForDelete  
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Returns/sets if this File should be Recompressed during the next Save Operation
+		/// </summary>
+		bool MarkForReCompress
 		{
 			get;
 			set;

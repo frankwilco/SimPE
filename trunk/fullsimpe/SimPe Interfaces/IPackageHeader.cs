@@ -58,6 +58,14 @@ namespace SimPe.Interfaces.Files
 		}
 
 		/// <summary>
+		/// Returns the Overall Version of this Package
+		/// </summary>
+		long Version 
+		{
+			get;
+		}
+
+		/// <summary>
 		/// Returns or Sets the Type of the Package
 		/// </summary>
 		Data.MetaData.IndexTypes IndexType

@@ -175,7 +175,16 @@ namespace SimPe.Packages
 			System.IO.MemoryStream ms = new MemoryStream(10000);
 			System.IO.BinaryWriter writer = new BinaryWriter(ms);
 
-			//now save the stuff
+			
+			//make sure we write the correct Version!
+			if ((header.majorversion==1) && (header.minorversion==0))
+			{
+				header.minorversion = 1;
+				header.majorversion = 1;
+				filelist = null;
+			}
+
+			//now save the stuff	
 			header.Save(writer);
 
 			//now save the files
@@ -188,15 +197,37 @@ namespace SimPe.Packages
 
 				//we write the filelist as last File
 				if (pfd==this.filelist) continue;
+				if (pfd.Type == Data.MetaData.DIRECTORY_FILE) continue;
 				if (pfd.MarkForDelete) continue;
 
-				PackedFile pf = (PackedFile)this.Read(pfd);
-
-				PackedFileDescriptor newpfd = (PackedFileDescriptor)pfd.Clone();
+				PackedFileDescriptor newpfd = (PackedFileDescriptor)pfd.Clone();				
 				newpfd.offset = (uint)writer.BaseStream.Position;
-				newpfd.size = pf.data.Length;
-				newpfd.UserData = pfd.UserData;
+
+				PackedFile pf = null;
+				if (pfd.HasUserdata && pfd.MarkForReCompress) 
+				{
+					pf = new PackedFile(PackedFile.Compress(pfd.UserData));
+					pf.size = pf.data.Length;
+					pf.uncsize = (uint)pfd.UserData.Length;
+					pf.signature = Data.MetaData.COMPRESS_SIGNATURE;
+					pf.headersize = 9;
+					newpfd.size = pf.data.Length;									
+
+					//recreate the FileList
+					filelist = null;
+				} 
+				else 
+				{
+					pf = (PackedFile)this.Read(pfd);
+					newpfd.size = pf.data.Length;
+					newpfd.UserData = pfd.UserData;
+				}
+				
 				newpfd.Changed = false;
+				newpfd.MarkForReCompress = false;
+				newpfd.fldata = pf;
+				
+				
 
 				tmpcmp.Add(pf.IsCompressed);
 				tmpindex.Add(newpfd);		
@@ -236,41 +267,7 @@ namespace SimPe.Packages
 		}
 
 		#region Index and Hole Writing
-		/// <summary>
-		/// Removes all userfiles from the Compressed File Index
-		/// </summary>
-		/// <param name="writer">The BinaryWriter to use</param>
-		/// <param name="userfiles">List of Files containing Userdate (and are therefor uncompressed!)</param>
-		protected SimPe.PackedFiles.Wrapper.CompressedFileList UpdateFileList(ArrayList userfiles)
-		{
-			long streampos = reader.BaseStream.Position;
-			if (this.filelist==null) return this.FileListFile;
-
-			//we use the fact, taht packed files that were altered by SimPe will not be compressed, 
-			//so we only need to delete entries in the Filelist that do not exist any longer. The Size 
-			//won't change!
-			byte[] b = this.Read(filelist).UncompressedData;
-			//SimPe.PackedFiles.Wrapper.DirectoryList fl = new SimPe.PackedFiles.Wrapper.DirectoryList(filelist, this);
-			SimPe.PackedFiles.Wrapper.CompressedFileList fl = this.FileListFile;
-			SimPe.PackedFiles.Wrapper.CompressedFileList newfl = new SimPe.PackedFiles.Wrapper.CompressedFileList(this.Header.IndexType);
-			newfl.IndexType = this.Header.IndexType;
-
-			foreach (IPackedFileDescriptor pfd in fileindex) 
-			{
-				int pos = fl.FindFile(pfd);
-				if (pos!=-1) 
-				{
-					SimPe.PackedFiles.Wrapper.ClstItem fi = (SimPe.PackedFiles.Wrapper.ClstItem)fl.Items[pos];
-					//only add Files that do not have user Data
-					if (!userfiles.Contains(pfd)) 
-						newfl.Add(fi);
-				}
-			}	
 		
-			this.filelistfile = newfl;
-			reader.BaseStream.Seek(streampos, SeekOrigin.Begin);
-			return newfl;
-		}
 		/// <summary>
 		/// Writes the Index to the Package File
 		/// </summary>
@@ -279,16 +276,23 @@ namespace SimPe.Packages
 		/// <param name="tmpindex">listing of the compressin state for each packed File</param>
 		protected void WriteFileList(BinaryWriter writer, ref ArrayList tmpindex, ArrayList tmpcmp)
 		{
-			if (this.filelist==null) return;
+			if (this.filelist==null) 
+			{
+				filelist = new PackedFileDescriptor();
+				filelist.instance = 0x286B1F03;
+				filelist.Group = Data.MetaData.DIRECTORY_FILE;
+				filelist.Type = Data.MetaData.DIRECTORY_FILE;
+			}
 
 			//we use the fact, taht packed files that were altered by SimPe will not be compressed, 
 			//so we only need to delete entries in the Filelist that do not exist any longer. The Size 
 			//won't change!
 			byte[] b = this.Read(filelist).UncompressedData;
-			SimPe.PackedFiles.Wrapper.CompressedFileList fl = new SimPe.PackedFiles.Wrapper.CompressedFileList(filelist, this);
+			SimPe.PackedFiles.Wrapper.CompressedFileList fl = new SimPe.PackedFiles.Wrapper.CompressedFileList(filelist, this);			
 			if (filelist.MarkForDelete) fl.Items = new SimPe.PackedFiles.Wrapper.ClstItem[0];
 
 			SimPe.PackedFiles.Wrapper.CompressedFileList newfl = new SimPe.PackedFiles.Wrapper.CompressedFileList(this.Header.IndexType);
+			newfl.FileDescriptor = filelist;
 
 			for (int i=0; i<tmpcmp.Count; i++)
 			{
@@ -303,37 +307,32 @@ namespace SimPe.Packages
 					} 
 					else //the file is new but compressed
 					{						
-						IPackedFile pf = this.Read((IPackedFileDescriptor)tmpindex[i]);
+						//IPackedFile pf = this.Read((IPackedFileDescriptor)tmpindex[i]);
 						SimPe.PackedFiles.Wrapper.ClstItem fi = new SimPe.PackedFiles.Wrapper.ClstItem(newfl.IndexType);
-						fi.Type = ((IPackedFileDescriptor)tmpindex[i]).Type;
-						fi.Group = ((IPackedFileDescriptor)tmpindex[i]).Group;
-						fi.Instance = ((IPackedFileDescriptor)tmpindex[i]).Instance;
-						fi.SubType = ((IPackedFileDescriptor)tmpindex[i]).SubType;
-						byte[]uncdata = pf.UncompressedData;
-						fi.UncompressedSize = (uint)pf.UncompressedData.Length;
+						PackedFileDescriptor pfd = (PackedFileDescriptor)tmpindex[i];
+						fi.Type = pfd.Type;
+						fi.Group = pfd.Group;
+						fi.Instance = pfd.Instance;
+						fi.SubType = pfd.SubType;
+						fi.UncompressedSize = (uint)pfd.fldata.UncompressedSize;
 						newfl.Add(fi);
 					}
 				}
 			}
 
-			filelist.offset = (uint)writer.BaseStream.Position;				
-			filelist.size = newfl.Save(writer);	
+			
 			
 			//no compressed Files, so remove the (empty) Filelist
-			if (newfl.Items.Length==0) 
-			{
-				/*if (tmpindex.Length>0) 
-				{
-					//remove the FileList from the Index
-					PackedFileDescriptor[] pfds = new PackedFileDescriptor[tmpindex.Length-1];
-					for (int i=0; i<pfds.Length; i++) pfds[i] = tmpindex[i];
-					tmpindex = pfds;								
-				}*/
-			}  
-			else 
+			if (newfl.Items.Length!=0) 
 			{
 				//tmpindex[tmpindex.Length-1] = filelist;	
 				tmpindex.Add(filelist);
+
+				newfl.SynchronizeUserData();					
+				filelist.offset = (uint)writer.BaseStream.Position;					
+				filelist.size = filelist.UserData.Length;
+				writer.Write(filelist.UserData);
+				filelist.Changed = false;
 			}
 
 			this.filelistfile = newfl;

@@ -552,17 +552,20 @@ namespace SimPe.Plugin
 
 				foreach (SimPe.PackedFiles.Wrapper.StrItem i in str.Items) 
 				{
-					string name = Hashes.StripHashFromName(i.Title.Trim().ToLower());
+					string name = Hashes.StripHashFromName(i.Title.Trim().ToLower());					
 					
-					if (!name.EndsWith("_cres")) name += "_cres";
+					if (pfd.Instance == 0x88) if (!name.EndsWith("_txmt")) name += "_txmt";
+					else if (pfd.Instance == 0x85) if (!name.EndsWith("_cres")) name += "_cres";
+					else continue;
+
 					string newref = (string)map[name];
 					if (newref!=null) i.Title = Hashes.StripHashFromName(newref.Substring(0, newref.Length-5));
-					else i.Title = Hashes.StripHashFromName(i.Title);
+					else i.Title = name;//Hashes.StripHashFromName(i.Title);
 
 					if ((i.Title.Trim()!="") && (ver == FixVersion.UniversityReady))  i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+i.Title;
 					
 					if ((modelname==null) && (i.Title.Trim()!="") && (i.Language.Id==1) && (pfd.Instance==0x85)) 
-						modelname = Hashes.StripHashFromName(i.Title).ToUpper().Replace("-", "_");
+						modelname = name.ToUpper().Replace("-", "_");
 				}
 				
 				str.SynchronizeUserData();

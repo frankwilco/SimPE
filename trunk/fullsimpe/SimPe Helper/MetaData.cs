@@ -231,7 +231,7 @@ namespace SimPe.Data
 		/// <summary>
 		/// Signature identifying a compressed PackedFile
 		/// </summary>
-		public const int COMPRESS_SIGNATURE = -1264;
+		public const ushort COMPRESS_SIGNATURE = 0xFB10;
 
 		public const uint GZPS = 0xEBCF3E27;
 		public const uint XWNT = 0xED7D7B4D;
@@ -899,6 +899,7 @@ namespace SimPe.Data
 
 		#region Map's
 		static ArrayList rcollist;
+		static ArrayList complist;
 		static Hashtable agelist;
 
 		//Returns a List of all RCOl Compatible File Types
@@ -925,6 +926,24 @@ namespace SimPe.Data
 				}
 
 				return rcollist;
+			}
+		}
+
+		//Returns a List of File Types that should be compressed
+		public static ArrayList CompressionCandidates 
+		{
+			get 
+			{
+				if (complist==null) 
+				{
+					complist = RcolList;
+									
+					complist.Add(MetaData.STRING_FILE);
+					complist.Add((uint)0x0C560F39); //Binary Index
+					complist.Add((uint)0xAC506764); //3D IDR
+				}
+
+				return complist;
 			}
 		}
 
