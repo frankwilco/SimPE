@@ -47,7 +47,7 @@ namespace SimPe.Plugin
 			{
 				// TODO:  You can add more Wrappers here
 				IWrapper[] wrappers = {
-										  new RefFile(this.LinkedProvider),
+										  new RefFile(),
 										  new Nmap(this.LinkedProvider)
 									  };
 				return wrappers;

@@ -53,6 +53,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.ListView lvskin;
 		private System.Windows.Forms.ImageList iskin;
+		private System.Windows.Forms.CheckBox cbface;
 		private System.ComponentModel.IContainer components;
 
 		public Surgery()
@@ -100,6 +101,7 @@ namespace SimPe.Plugin
 			this.pbpatient = new System.Windows.Forms.PictureBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.llusepatient = new System.Windows.Forms.LinkLabel();
+			this.cbface = new System.Windows.Forms.CheckBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.lbarchlife = new System.Windows.Forms.Label();
 			this.lbarchname = new System.Windows.Forms.Label();
@@ -213,6 +215,7 @@ namespace SimPe.Plugin
 			this.groupBox1.Controls.Add(this.pbpatient);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.llusepatient);
+			this.groupBox1.Controls.Add(this.cbface);
 			this.groupBox1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("groupBox1.Dock")));
 			this.groupBox1.Enabled = ((bool)(resources.GetObject("groupBox1.Enabled")));
 			this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -372,6 +375,32 @@ namespace SimPe.Plugin
 			this.toolTip1.SetToolTip(this.llusepatient, resources.GetString("llusepatient.ToolTip"));
 			this.llusepatient.Visible = ((bool)(resources.GetObject("llusepatient.Visible")));
 			this.llusepatient.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.UsePatient);
+			// 
+			// cbface
+			// 
+			this.cbface.AccessibleDescription = resources.GetString("cbface.AccessibleDescription");
+			this.cbface.AccessibleName = resources.GetString("cbface.AccessibleName");
+			this.cbface.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbface.Anchor")));
+			this.cbface.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbface.Appearance")));
+			this.cbface.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbface.BackgroundImage")));
+			this.cbface.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbface.CheckAlign")));
+			this.cbface.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbface.Dock")));
+			this.cbface.Enabled = ((bool)(resources.GetObject("cbface.Enabled")));
+			this.cbface.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbface.FlatStyle")));
+			this.cbface.Font = ((System.Drawing.Font)(resources.GetObject("cbface.Font")));
+			this.cbface.Image = ((System.Drawing.Image)(resources.GetObject("cbface.Image")));
+			this.cbface.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbface.ImageAlign")));
+			this.cbface.ImageIndex = ((int)(resources.GetObject("cbface.ImageIndex")));
+			this.cbface.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbface.ImeMode")));
+			this.cbface.Location = ((System.Drawing.Point)(resources.GetObject("cbface.Location")));
+			this.cbface.Name = "cbface";
+			this.cbface.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbface.RightToLeft")));
+			this.cbface.Size = ((System.Drawing.Size)(resources.GetObject("cbface.Size")));
+			this.cbface.TabIndex = ((int)(resources.GetObject("cbface.TabIndex")));
+			this.cbface.Text = resources.GetString("cbface.Text");
+			this.cbface.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbface.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbface, resources.GetString("cbface.ToolTip"));
+			this.cbface.Visible = ((bool)(resources.GetObject("cbface.Visible")));
 			// 
 			// groupBox2
 			// 
@@ -562,8 +591,8 @@ namespace SimPe.Plugin
 			this.groupBox3.AccessibleName = resources.GetString("groupBox3.AccessibleName");
 			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox3.Anchor")));
 			this.groupBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox3.BackgroundImage")));
-			this.groupBox3.Controls.Add(this.lvskin);
 			this.groupBox3.Controls.Add(this.cbskin);
+			this.groupBox3.Controls.Add(this.lvskin);
 			this.groupBox3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("groupBox3.Dock")));
 			this.groupBox3.Enabled = ((bool)(resources.GetObject("groupBox3.Enabled")));
 			this.groupBox3.Font = ((System.Drawing.Font)(resources.GetObject("groupBox3.Font")));
@@ -602,6 +631,7 @@ namespace SimPe.Plugin
 			this.lvskin.Text = resources.GetString("lvskin.Text");
 			this.toolTip1.SetToolTip(this.lvskin, resources.GetString("lvskin.ToolTip"));
 			this.lvskin.Visible = ((bool)(resources.GetObject("lvskin.Visible")));
+			this.lvskin.SelectedIndexChanged += new System.EventHandler(this.lvskin_SelectedIndexChanged);
 			// 
 			// iskin
 			// 
@@ -635,7 +665,6 @@ namespace SimPe.Plugin
 			this.MinimumSize = ((System.Drawing.Size)(resources.GetObject("$this.MinimumSize")));
 			this.Name = "Surgery";
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
-			this.ShowInTaskbar = false;
 			this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
 			this.Text = resources.GetString("$this.Text");
 			this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
@@ -701,11 +730,14 @@ namespace SimPe.Plugin
 			lv.Items.Add(lvi);
 		}
 
+		Hashtable skinfiles;
 		void LoadSkins()
 		{
 			WaitingScreen.Wait();
 			try 
 			{
+				skinfiles = new Hashtable();
+				ArrayList tones = new ArrayList();
 				iskin.Images.Add(new Bitmap(iskin.ImageSize.Width, iskin.ImageSize.Height));
 				ListViewItem lvia = new ListViewItem("* from Archetype");
 				lvia.ImageIndex = 0;
@@ -713,24 +745,37 @@ namespace SimPe.Plugin
 				lvia.Selected = true;
 
 				FileTable.FileIndex.Load();
-				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.GZPS, true);
-				ArrayList families = new ArrayList();
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.GZPS, true);				
 				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
 				{
 					SimPe.PackedFiles.Wrapper.Cpf skin = new SimPe.PackedFiles.Wrapper.Cpf();
 					skin.ProcessData(item);
 
+					//Maintain a List of all availabe SkinsFiles per skintone
+					ArrayList files = null;
+					string st = skin.GetSaveItem("skintone").StringValue;
+					if (skinfiles.ContainsKey(st)) 
+					{
+						files = (ArrayList)skinfiles[st];
+					}
+					else 
+					{
+						files = new ArrayList();
+						skinfiles[st] = files;
+					}
+					files.Add(skin);
+
 					if ((skin.GetSaveItem("override0subset").StringValue=="top") && (skin.GetSaveItem("type").StringValue=="skin") && ((skin.GetSaveItem("category").UIntegerValue&(uint)Data.SkinCategories.Skin)==(uint)Data.SkinCategories.Skin))
 					{
 						WaitingScreen.UpdateMessage(skin.GetSaveItem("name").StringValue);
 
-						if (families.Contains(skin.GetSaveItem("skintone").StringValue)) continue;
-						families.Add(skin.GetSaveItem("skintone").StringValue);
+						if (tones.Contains(st)) continue;
+						else tones.Add(st);
 
 						SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] idr = FileTable.FileIndex.FindFile(0xAC506764, item.FileDescriptor.Group, item.FileDescriptor.LongInstance);
 						if (idr.Length>0) 
 						{
-							SimPe.Plugin.RefFile reffile = new RefFile(null);
+							SimPe.Plugin.RefFile reffile = new RefFile();
 							reffile.ProcessData(idr[0]);
 
 							ListViewItem lvi = new ListViewItem(skin.GetSaveItem("name").StringValue);
@@ -829,14 +874,20 @@ namespace SimPe.Plugin
 			SimPe.Packages.GeneratableFile newpackage = null;
 			PlasticSurgery ps = new PlasticSurgery(ngbh, patient, spatient, archetype, sarche);
 
-			if (!this.cbskin.Checked) newpackage = ps.CloneSim();
+			if (!this.cbskin.Checked && !this.cbface.Checked) newpackage = ps.CloneSim();
 
 			if (this.cbskin.Checked) 
 			{
 				if (lvskin.SelectedItems.Count==0) return;
 				string skin = (string)lvskin.SelectedItems[0].Tag;
-				if (skin==null) newpackage = ps.CloneSkinTone();
-				else newpackage = ps.CloneSkinTone(skin);
+				if (skin==null) newpackage = ps.CloneSkinTone(skinfiles);
+				else newpackage = ps.CloneSkinTone(skin, skinfiles);
+			}
+
+			if (this.cbface.Checked) 
+			{
+				if (this.cbskin.Checked) ps = new PlasticSurgery(ngbh, newpackage, spatient, archetype, sarche);
+				newpackage = ps.CloneFace();
 			}
 			
 
@@ -932,173 +983,6 @@ namespace SimPe.Plugin
 			}
 		}
 
-		protected void SkinToneSurgery()
-		{
-			try 
-			{
-				SimPe.Packages.GeneratableFile patient = new SimPe.Packages.GeneratableFile(spatient.CharacterFileName);
-				SimPe.Packages.File archetype = new SimPe.Packages.File(sarche.CharacterFileName);
-
-				//get SkinTone Value from the age Data in the archetype
-				Interfaces.Files.IPackedFileDescriptor[] ageds = archetype.FindFiles(0xAC598EAC);
-				if (ageds.Length==0) return;
-				SimPe.PackedFiles.Wrapper.Cpf aged = new SimPe.PackedFiles.Wrapper.Cpf();
-				aged.ProcessData(ageds[0], archetype);
-				SimPe.PackedFiles.Wrapper.CpfItem skintone = aged.GetItem("skincolor");
-				if (skintone==null) return;
-
-				//set Siknintone in Property sets and Age Data of patient
-				Interfaces.Files.IPackedFileDescriptor[] pageds = patient.FindFiles(0xAC598EAC);
-				Interfaces.Files.IPackedFileDescriptor[] pprops = patient.FindFiles(0xEBCF3E27);
-
-				foreach (Interfaces.Files.IPackedFileDescriptor paged in pageds) 
-				{
-					SimPe.PackedFiles.Wrapper.Cpf flaged = new SimPe.PackedFiles.Wrapper.Cpf();
-					flaged.ProcessData(paged, patient);
-
-					SimPe.PackedFiles.Wrapper.CpfItem item = flaged.GetItem("skincolor");
-					if (item!=null) item.StringValue = skintone.StringValue;
-					flaged.SynchronizeUserData();
-				}
-
-				foreach (Interfaces.Files.IPackedFileDescriptor pprop in pprops) 
-				{
-					SimPe.PackedFiles.Wrapper.Cpf flprop = new SimPe.PackedFiles.Wrapper.Cpf();
-					flprop.ProcessData(pprop, patient);
-
-					SimPe.PackedFiles.Wrapper.CpfItem item = flprop.GetItem("skintone");
-					if (item!=null) item.StringValue = skintone.StringValue;
-					flprop.SynchronizeUserData();
-				}
-
-				//now we need to load the Refernce File (3IDR)
-				SimPe.Plugin.RefFile aref = new SimPe.Plugin.RefFile(this.prov);
-				Interfaces.Files.IPackedFileDescriptor apfd = archetype.FindFile(0xAC506764, 0, 0xffffffff, 0x1);
-				aref.ProcessData(apfd, archetype);
-
-				SimPe.Plugin.RefFile pref = new SimPe.Plugin.RefFile(this.prov);
-				Interfaces.Files.IPackedFileDescriptor ppfd = patient.FindFile(0xAC506764, 0, 0xffffffff, 0x1);
-				pref.ProcessData(ppfd, patient);
-
-				//remove all unneeded skins and replace the first found skins with the one from the archetype
-				int index = 0;
-				for (int i=0; i<pref.Items.Length; i++) 
-				{
-					SimPe.Packages.PackedFileDescriptor pfd = (SimPe.Packages.PackedFileDescriptor)pref.Items[i];
-					SimPe.Plugin.RefFileItem item = new SimPe.Plugin.RefFileItem(pfd, pref);
-
-					//found a matching Skin
-					if ((item.Category & 0x80) == 0x80) 
-					{
-						int found = 0;
-						bool check = false;
-						for (int k=0; k<aref.Items.Length; k++) 
-						{
-							SimPe.Plugin.RefFileItem aitem = new SimPe.Plugin.RefFileItem(aref.Items[k], aref);
-							if ((aitem.Category & 0x80) == 0x80) 
-							{
-								if (found==index) 
-								{
-									item.Group = aitem.Group;
-									item.SubType = aitem.SubType;
-									item.Type = aitem.Type;
-									item.Instance = aitem.Instance;
-
-									pfd.Group = aitem.Group;
-									pfd.SubType = aitem.SubType;
-									pfd.Type = aitem.Type;
-									pfd.Instance = aitem.Instance;
-									check = true;
-									break;
-								} 
-								else 
-								{
-									found++;
-								}
-							}
-						} // for k
-						if ((index>=3) && (!check)) 
-						{
-							item.Group = 0;
-							item.SubType = 0;
-							item.Type = 0;
-							item.Instance = 0;
-						}
-						index++;
-					}
-				}//for i
-
-				pref.SynchronizeUserData();
-				//System.IO.MemoryStream ms = patient.Build();
-				//patient.Reader.Close();
-				patient.Save(spatient.CharacterFileName);
-			} 
-			catch (Exception ex)
-			{
-				Helper.ExceptionMessage("Unable to update the new Character Package.", ex);
-			}
-		}
-
-		protected void PractiseSurgery()
-		{
-			try 
-			{
-				//open and create all needed Packages
-				SimPe.Packages.GeneratableFile newpackage = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
-				SimPe.Packages.File patient = new SimPe.Packages.File(spatient.CharacterFileName);
-				SimPe.Packages.File archetype = new SimPe.Packages.File(sarche.CharacterFileName);
-
-				//list of all Files top copy from the Archetype
-				ArrayList list = new ArrayList();
-				list.Add((uint)0xAC506764); //3IDR
-				list.Add((uint)0xE519C933); //CRES
-				list.Add((uint)0xEBCF3E27); //GZPS, Property Set
-				list.Add((uint)0xAC598EAC); //AGED
-				list.Add((uint)0xCCCEF852); //LxNR, Face
-				list.Add((uint)0x856DDBAC); //IMG
-				list.Add((uint)0x534C4F54); //SLOT
-				list.Add((uint)0xAC4F8687); //GMDC
-				list.Add((uint)0x7BA3838C); //GMND				
-				list.Add((uint)0x49596978); //MATD
-				list.Add((uint)0xFC6EB1F7); //SHPE
-
-				//get all Files of the above group from the archetype to the new
-				foreach (uint type in list)
-				{
-					Interfaces.Files.IPackedFileDescriptor[] pfds = archetype.FindFiles(type);
-					foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds)
-					{
-						SimPe.Interfaces.Files.IPackedFile file = archetype.Read(pfd);
-						pfd.UserData = file.UncompressedData;
-						newpackage.Add(pfd);
-					}
-				}
-				
-				//do not copy the compresed File Dir 
-				list.Add((uint)0xE86B1EEF);	//Compressed File Directory
-
-				//now get everything else from the Patient
-				foreach (Interfaces.Files.IPackedFileDescriptor pfd in patient.Index)
-				{
-					if (!list.Contains((uint)pfd.Type)) 
-					{
-						SimPe.Interfaces.Files.IPackedFile file = patient.Read(pfd);
-						pfd.UserData = file.UncompressedData;
-						newpackage.Add(pfd);
-					}
-				}
-
-				//patient.Reader.Close();
-				patient = null;
-				newpackage.Save(/*newpackage.Build(),*/ spatient.CharacterFileName);
-				prov.SimNameProvider.StoredData = null;
-			} 
-			catch (Exception ex)
-			{
-				Helper.ExceptionMessage("Unable to create the new Character Package.", ex);
-			}
-		}
-
 		private void Export(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			if (spatient==null) return;
@@ -1164,6 +1048,29 @@ namespace SimPe.Plugin
 		private void cbskin_CheckedChanged(object sender, System.EventArgs e)
 		{
 			lvskin.Enabled = this.cbskin.Checked;
+			lvskin_SelectedIndexChanged(null, null);
+		}
+
+		private void lvskin_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (spatient == null) 
+			{
+				button1.Enabled = false;
+				return;
+			}
+
+			if (lvskin.Enabled) 
+			{
+				button1.Enabled = (lvskin.SelectedItems.Count==1);
+				if (button1.Enabled) 
+				{
+					if (lv.Items[0].Selected && (sarche == null)) button1.Enabled=false;
+				}
+			} 
+			else 
+			{
+				button1.Enabled = (sarche != null);
+			}
 		}
 	}
 }

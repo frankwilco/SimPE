@@ -66,6 +66,19 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
+		
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public MaterialDefinition(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		{
+			properties = new MaterialDefinitionProperty[0];
+			listing = new String[0];
+			sgres = new SGResource(provider, null);
+			BlockID = 0x49596978;
+		}
+
 		/// <summary>
 		/// Returns the Property Item 
 		/// </summary>
@@ -82,25 +95,15 @@ namespace SimPe.Plugin
 			return new MaterialDefinitionProperty();
 		}
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public MaterialDefinition(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
-		{
-			properties = new MaterialDefinitionProperty[0];
-			listing = new String[0];
-			sgres = new SGResource(provider, null);
-			BlockID = 0x49596978;
-		}
-
 		public MaterialDefinitionProperty GetProperty(string name) 
 		{
-			name = name.ToLower();
+			return FindProperty(name);
+			/*name = name.ToLower();
 			foreach (MaterialDefinitionProperty mdp in properties)
 			{
 				if (name==mdp.Name.ToLower()) return mdp;
 			}
-			return new MaterialDefinitionProperty();
+			return new MaterialDefinitionProperty();*/
 		}
 		
 		#region IRcolBlock Member
@@ -268,54 +271,30 @@ namespace SimPe.Plugin
 				refmap["stdMatEnvCubeTextureName"] = list;
 			}
 
+
 			//for characters
-			refname = this.GetProperty("baseTexture0").Value;
-			if (refname.Trim()!="")
+			int count = 0;
+			try 
 			{
-				list = new ArrayList();
-				list.Add(ScenegraphHelper.BuildPfd(refname+"_txtr", SimPe.Plugin.ScenegraphHelper.TXTR, parentgroup));
-				refmap["baseTexture0"] = list;
-			}
+				count = Convert.ToInt32(this.GetProperty("numTexturesToComposite").Value);
+			} 
+			catch {}
+			list = new ArrayList();	
+			refmap["baseTexture"] = list;
+			for (int i=0; i<count; i++)
+			{
+				refname = this.GetProperty("baseTexture"+i.ToString()).Value;
+				if (refname.Trim()!="")
+				{
+					
+					string name = refname.Replace("-", "_");
+					string[] parts = name.Split("~".ToCharArray(), 3);
+					name = parts[0];
+					if (parts.Length>1) name+="~"+parts[1];
 
-			refname = this.GetProperty("baseTexture1").Value;
-			if (refname.Trim()!="")
-			{
-				list = new ArrayList();
-				list.Add(ScenegraphHelper.BuildPfd(refname+"_txtr", SimPe.Plugin.ScenegraphHelper.TXTR, parentgroup));
-				refmap["baseTexture1"] = list;
-			}
-
-			refname = this.GetProperty("baseTexture2").Value;
-			if (refname.Trim()!="")
-			{
-				list = new ArrayList();
-				list.Add(ScenegraphHelper.BuildPfd(refname+"_txtr", SimPe.Plugin.ScenegraphHelper.TXTR, parentgroup));
-				refmap["baseTexture2"] = list;
-			}
-
-			refname = this.GetProperty("baseTexture3").Value;
-			if (refname.Trim()!="")
-			{
-				list = new ArrayList();
-				list.Add(ScenegraphHelper.BuildPfd(refname+"_txtr", SimPe.Plugin.ScenegraphHelper.TXTR, parentgroup));
-				refmap["baseTexture3"] = list;
-			}
-
-			refname = this.GetProperty("baseTexture4").Value;
-			if (refname.Trim()!="")
-			{
-				list = new ArrayList();
-				list.Add(ScenegraphHelper.BuildPfd(refname+"_txtr", SimPe.Plugin.ScenegraphHelper.TXTR, parentgroup));
-				refmap["baseTexture4"] = list;
-			}
-
-			refname = this.GetProperty("compositeBaseTextureName").Value;
-			if (refname.Trim()!="")
-			{
-				list = new ArrayList();
-				list.Add(ScenegraphHelper.BuildPfd(refname+"_txtr", SimPe.Plugin.ScenegraphHelper.TXTR, parentgroup));
-				refmap["compositeBaseTextureName"] = list;
-			}
+					list.Add(ScenegraphHelper.BuildPfd(name+"_txmt", SimPe.Plugin.ScenegraphHelper.TXMT, parentgroup));					
+				}
+			}						
 		}
 
 		#endregion

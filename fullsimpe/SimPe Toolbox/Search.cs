@@ -615,7 +615,7 @@ namespace SimPe.Plugin
 			uint inst = Hashes.InstanceHash(flname);
 			uint st = Hashes.SubTypeHash(flname);
 
-			if ( (pfd.Instance == inst) && (pfd.SubType == st) )
+			if ( (pfd.Instance == inst) && ((pfd.SubType == st) || pfd.SubType==0))
 			{
 				SimPe.Plugin.Rcol rcol = new GenericRcol(prov, false);
 				rcol.ProcessData(pfd, package);
@@ -791,6 +791,13 @@ namespace SimPe.Plugin
 
 				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFileByInstance(pfd.LongInstance);
 
+				//short Index
+				if (items.Length==0) 
+				{
+					pfd.SubType = 0;
+					items = FileTable.FileIndex.FindFileByInstance(pfd.LongInstance);
+				}
+
 				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
 				{
 					lblist.Items.Add(item.Package.FileName);
@@ -800,6 +807,7 @@ namespace SimPe.Plugin
 			} 
 			else 
 			{
+				
 				this.StartSearch(new SeekerFunction(this.RcolSearch), package.FindFile(Hashes.StripHashFromName(tbflname.Text)));
 			}
 		}

@@ -1129,6 +1129,22 @@ namespace SimPe.Plugin
 
 				SimPe.FileTable.FileIndex.Load();
 				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(pfd);
+				if (items.Length == 0) 
+				{
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(pfd.Filename, pfd.Type, pfd.Group, true);
+					if (item!=null) {
+						items = new SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[1];
+						items[0] = item;
+					}
+				}
+				if (items.Length==0) 
+				{
+					Interfaces.Files.IPackedFileDescriptor npfd = (Interfaces.Files.IPackedFileDescriptor)pfd.Clone();
+					npfd.SubType = 0;
+					items = FileTable.FileIndex.FindFile(npfd);
+				}
+
+				
 				if (items.Length>0) 
 				{
 					tbfile.Text = items[0].Package.FileName;

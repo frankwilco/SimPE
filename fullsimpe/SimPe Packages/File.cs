@@ -694,7 +694,9 @@ namespace SimPe.Packages
 			uint inst = Hashes.InstanceHash(filename);
 			uint st = Hashes.SubTypeHash(filename);
 
-			return FindFile(st, inst);
+			IPackedFileDescriptor[] ret = FindFile(st, inst);
+			if (ret.Length==0) ret = FindFile(0, inst);
+			return ret;
 		}
 
 		/// <summary>
@@ -708,7 +710,9 @@ namespace SimPe.Packages
 			uint inst = Hashes.InstanceHash(filename);
 			uint st = Hashes.SubTypeHash(filename);
 
-			return FindFile(type, st, inst);
+			IPackedFileDescriptor[] ret = FindFile(type, st, inst);
+			if (ret.Length==0) ret = FindFile(type, 0, inst);
+			return ret;
 		}
 
 		/// <summary>

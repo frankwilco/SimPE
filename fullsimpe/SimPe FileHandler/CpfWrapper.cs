@@ -297,7 +297,8 @@ namespace SimPe.PackedFiles.Wrapper
 								   	0xEBCF3E27, //Property Set
 									0x0C560F39, //Binary Index
 									//0x4C697E5A, //MMAT
-									0xEBFEE33F
+									0xEBFEE33F,
+									0x2C1FD8A1
 							   };
 			
 				return types;
