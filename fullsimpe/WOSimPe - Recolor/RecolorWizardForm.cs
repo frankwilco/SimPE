@@ -984,12 +984,16 @@ namespace SimPe.Wizards
 
 			ofd.Filter = "PNG Image (*.png)|*.png|Bitmap (*.bmp)|*.bmp|GIF Image (*.gif)|*.gif|Jpeg Image (*.jpg)|*.jpg|All Files (*.*)|*.*";
 			if (ofd.ShowDialog() == DialogResult.OK) 
-			{
-				SimPe.Plugin.Rcol txtr = (SimPe.Plugin.Rcol)lv.SelectedItems[0].Tag;	
+			{				
+				SimPe.Plugin.Rcol txtr = (SimPe.Plugin.Rcol)lv.SelectedItems[0].Tag;					
 				SimPe.Plugin.ImageData oldid = (SimPe.Plugin.ImageData)txtr.Blocks[0];
 
 				//build TXTR File
 				SimPe.Plugin.ImageData id = new SimPe.Plugin.ImageData(null, null);
+				id.NameResource = oldid.NameResource;
+				id.Version = oldid.Version;
+				id.BlockID = oldid.BlockID;
+				id.BlockName = oldid.BlockName;
 
 				if ((System.IO.File.Exists(Helper.WindowsRegistry.NvidiaDDSTool)) && ((oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT1Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT3Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT5Format)))
 				{
@@ -1000,6 +1004,7 @@ namespace SimPe.Wizards
 					SimPe.Commandline.LoadTXTR(id, ofd.FileName, oldid.TextureSize, (int)oldid.MipMapLevels, oldid.Format);
 				}
 
+				
 				txtr.Blocks[0] = id;
 				txtr.SynchronizeUserData();
 

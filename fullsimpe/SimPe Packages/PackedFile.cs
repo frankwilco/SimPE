@@ -22,6 +22,7 @@ using SimPe.Interfaces.Plugin;
 using SimPe.Interfaces.Plugin.Internal;
 using SimPe.Interfaces;
 using SimPe.Interfaces.Files;
+using System.Collections;
 
 namespace SimPe.Packages
 {
@@ -42,7 +43,7 @@ namespace SimPe.Packages
 			headersize = 0;
 			uncdata = null;
 		}
-
+		
 		/// <summary>
 		/// The Size of the PackedFile Header
 		/// </summary>
@@ -79,12 +80,12 @@ namespace SimPe.Packages
 		/// <summary>
 		/// Compression Signature
 		/// </summary>		
-		internal Int16 signature;
+		internal ushort signature;
 
 		/// <summary>
 		/// Returns the Size of the File
 		/// </summary>
-		public int Signature
+		public ushort Signature
 		{
 			get 
 			{
@@ -176,8 +177,7 @@ namespace SimPe.Packages
 			return Uncompress(data, (uint)size, this.headersize);
 		}
 
-		#region decompression
-
+		#region decompression		
 		/// <summary>
 		/// Uncompresses the File Data passed
 		/// </summary>
@@ -270,6 +270,183 @@ namespace SimPe.Packages
 		}		
 		#endregion		
 
-		
+		#region compression		
+		//some Compression Data
+		const int MAX_OFFSET = 0x20000;
+		const int MAX_COPY_COUNT = 0x404;
+		//used to finetune the lookup
+		const int MAX_LOOP_COUNT = 0x81;
+
+		/// <summary>
+		/// Compresses the passed content
+		/// </summary>
+		/// <param name="data">The content</param>
+		/// <param name="pkgver">The Version of the package the compressed Data will be stored in</param>
+		/// <returns>the compressed Data (including the header)</returns>
+		public static byte[] Compress(byte[] data)
+		{			
+			#region Init Variables
+			//contains the latest offset for a combination of two characters
+			ArrayList[] cmpmap = new ArrayList[0x1000000];
+			
+			//will contain the compressed Data
+			byte[] cdata = new byte[data.Length];
+			
+			//init some vars
+			int writeindex = 0;			
+			int lastreadindex = 0;
+			ArrayList indexlist = null;
+			int copyoffset = 0;
+			int copycount = 0;	
+			writeindex = 0;
+			int index = -1;
+			lastreadindex = 0;	
+			#endregion
+
+			//begin main Compression Loop			
+			while (index < data.Length-3)
+			{
+				#region get all Compression Candidates (list of offsets for all occurances of the current 3 bytes)
+				do 
+				{
+					index++;
+					if (index >= data.Length-2) break;
+					int mapindex = data[index] | (data[index+1]<<0x08) | (data[index+2]<<0x10);
+
+					indexlist = cmpmap[mapindex];
+					if (indexlist==null) 
+					{
+						indexlist = new ArrayList();
+						cmpmap[mapindex] = indexlist;
+					}
+					indexlist.Add(index);									
+				} while (index < lastreadindex);
+				#endregion
+
+				#region find the longest repeating byte sequence in the index List (for offset copy)
+				int offsetcopycount = 0;
+				int loopcount = 1;
+				while ((loopcount<indexlist.Count) && (loopcount < MAX_LOOP_COUNT))
+				{
+					int foundindex = (int)indexlist[(indexlist.Count-1)-loopcount];
+					if ((index - foundindex) >= MAX_OFFSET) break;
+
+					loopcount++;
+					copycount = 3;
+					while ((data.Length>index + copycount) && (data[index + copycount] == data[foundindex + copycount]) && (copycount < MAX_COPY_COUNT)) 
+						copycount++;
+										
+					if (copycount > offsetcopycount)
+					{
+						int cof = index - foundindex;
+						/*if (copycount < 3) copycount = 0;			
+						else if ((copycount < 4) && (copyoffset > 0x400)) copycount = 0;
+						else if ((copycount < 5) && (copyoffset > 0x4000)) copycount = 0;
+
+						if (copycount > offsetcopycount) */
+					{
+						offsetcopycount = copycount;
+						copyoffset = index - foundindex;						
+					}
+					}					
+				}
+				#endregion
+
+				#region Compression
+				//make sure we don't copy more bytes then available
+				//if (offsetcopycount > (data.Length - index)) offsetcopycount = index - data.Length;
+				
+				//check if we can compress this
+				if (offsetcopycount < 3) offsetcopycount = 0;			
+				else if ((offsetcopycount < 4) && (copyoffset > 0x400)) offsetcopycount = 0;
+				else if ((offsetcopycount < 5) && (copyoffset > 0x4000)) offsetcopycount = 0;
+
+				//this is compressable? so do the compression
+				if (offsetcopycount > 0)
+				{
+					//plaincopy
+					while ((index - lastreadindex) > 3)
+					{
+						copycount = (index - lastreadindex) ;
+						while (copycount>0x71) copycount -= 0x71;
+						copycount = copycount & 0xfc;
+						int realcopycount = (copycount >> 2);
+						
+						cdata[writeindex++] = (byte) (0xdf + realcopycount);						
+						for (int i=0; i<copycount; i++) cdata[writeindex++] = data[lastreadindex++];						
+					}
+
+					//offsetcopy
+					copycount = index - lastreadindex;
+					copyoffset--;
+					if ((offsetcopycount <= 10) && (copyoffset < 0x400))
+					{
+						cdata[writeindex++] = (byte) ((((copyoffset >> 3) & 0x60) | ((offsetcopycount - 3) << 2)) | copycount);
+						cdata[writeindex++] = (byte) (copyoffset & 0xff);
+					}
+					else if ((offsetcopycount <= 0x43) && (copyoffset < 0x4000))
+					{
+						cdata[writeindex++] = (byte) (0x80 | (offsetcopycount - 4));
+						cdata[writeindex++] = (byte) ((copycount << 6) | (copyoffset >> 8));
+						cdata[writeindex++] = (byte) (copyoffset & 0xff);
+					}
+					else if ((offsetcopycount <= MAX_COPY_COUNT) && (copyoffset < MAX_OFFSET))
+					{
+						cdata[writeindex++] = (byte) (((0xc0 | ((copyoffset >> 0x0c) & 0x10)) + (((offsetcopycount - 5) >> 6) & 0x0c)) | copycount);
+						cdata[writeindex++] = (byte) ((copyoffset >> 8) & 0xff);
+						cdata[writeindex++] = (byte) (copyoffset & 0xff);
+						cdata[writeindex++] = (byte) ((offsetcopycount - 5) & 0xff);						
+					} 
+					else 
+					{
+						copycount = 0;
+						offsetcopycount = 0;
+					}
+
+					//do the offset copy
+					for (int i=0; i<copycount; i++) cdata[writeindex++] = data[lastreadindex++];
+					lastreadindex += offsetcopycount;
+				} 
+				#endregion
+			} //while (main Loop)
+
+			#region Add remaining Data
+			//add the End Record
+			index = data.Length;
+			while ((index - lastreadindex) > 3)
+			{
+				copycount = (index - lastreadindex) ;
+				while (copycount>0x71) copycount -= 0x71;
+				copycount = copycount & 0xfc;
+				int realcopycount = (copycount >> 2);
+						
+				cdata[writeindex++] = (byte) (0xdf + realcopycount);						
+				for (int i=0; i<copycount; i++) cdata[writeindex++] = data[lastreadindex++];	
+			}
+
+			copycount = index - lastreadindex;
+			cdata[writeindex++] = (byte) (0xfc + copycount);
+			for (int i=0; i<copycount; i++) cdata[writeindex++] = data[lastreadindex++];
+			//add this as an End Mark
+			cdata[writeindex++] = (byte) (0xfc);
+			#endregion
+
+			#region Trim Data & and add Header
+			//make a resulting Array of the apropriate size
+			byte[] retdata = new byte[writeindex+9];
+
+			byte[] sz = BitConverter.GetBytes((uint)retdata.Length);
+			for (int i=0; i<4; i++) retdata[i] = sz[i];
+			sz = BitConverter.GetBytes(SimPe.Data.MetaData.COMPRESS_SIGNATURE);
+			for (int i=0; i<2; i++) retdata[i+4] = sz[i];	
+	
+			sz = BitConverter.GetBytes((uint)data.Length);
+			for (int i=0; i<3; i++) retdata[i+6] = sz[2-i];		
+
+			for (int i=0; i<writeindex; i++) retdata[i+9] = cdata[i];							
+			#endregion
+			return retdata;
+		}
+		#endregion
 	}
 }

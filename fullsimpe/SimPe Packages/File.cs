@@ -636,25 +636,18 @@ namespace SimPe.Packages
 				{
 					reader.BaseStream.Seek(pfd.Offset, System.IO.SeekOrigin.Begin);
 					pf.size = reader.ReadInt32();
-					pf.signature = reader.ReadInt16();			
-					Byte[] dummy = new Byte[3];
-					for (int i=0; i<dummy.Length; i++) dummy[i] = reader.ReadByte();		
-					pf.uncsize = (uint)((((dummy[0]*0xff) + dummy[1] ) * 0xff ) + dummy[2]);
-					if ((pf.Size == pfd.Size) && (pf.Signature==MetaData.COMPRESS_SIGNATURE)) pf.headersize = 9;
+					pf.signature = reader.ReadUInt16();			
+					Byte[] dummy = reader.ReadBytes(3);
+					pf.uncsize = (uint)((dummy[0]<< 0x10) | (dummy[1] << 0x08) | + dummy[2]);
+					if ((pf.Size == pfd.Size) && (pf.Signature==MetaData.COMPRESS_SIGNATURE)) pf.headersize = 9;											
 
 					if ((filelistfile!=null) && (pfd.Type!=File.FILELIST_TYPE))
 					{
 						int pos = filelistfile.FindFile(pfd);
 						if (pos!=-1) 
 						{
-							SimPe.PackedFiles.Wrapper.ClstItem fi = (ClstItem)filelistfile.Items[pos];
-							
-							if (fi.UncompressedSize<=pf.size) pf.uncsize *= 0x4;
-							else pf.uncsize = fi.UncompressedSize;
-						} 
-						else 
-						{
-							pf.uncsize *= 0x4;
+							SimPe.PackedFiles.Wrapper.ClstItem fi = (ClstItem)filelistfile.Items[pos];							
+							if (header.Version==0x100000001) pf.uncsize = fi.UncompressedSize;
 						}
 					} 
 				} 

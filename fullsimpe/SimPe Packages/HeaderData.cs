@@ -107,6 +107,17 @@ namespace SimPe.Packages
 			}
 		}
 
+		/// <summary>
+		/// Returns the Overall Version of this Package
+		/// </summary>
+		public long Version 
+		{
+			get 
+			{
+				return ((long)MajorVersion << 0x20) | (long)MinorVersion;
+			}
+		}
+
 
 		/// <summary>
 		/// 3 dwords of reserved Data
@@ -207,7 +218,7 @@ namespace SimPe.Packages
 		{
 			get 
 			{
-				return ((majorversion>1) || ((majorversion==1) && (minorversion>=1)));
+				return (Version>=0x100000001);//((majorversion>1) || ((majorversion==1) && (minorversion>=1)));
 			}
 		}
 
