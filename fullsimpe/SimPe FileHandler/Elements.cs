@@ -522,7 +522,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbflag = new System.Windows.Forms.TextBox();
 			this.label92 = new System.Windows.Forms.Label();
 			this.tblotinst = new System.Windows.Forms.TextBox();
-			this.label15 = new System.Windows.Forms.Label();
 			this.llFamiDeleteSim = new System.Windows.Forms.Button();
 			this.llFamiAddSim = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -537,6 +536,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.sdescPanel = new System.Windows.Forms.Panel();
 			this.tcsdesc = new System.Windows.Forms.TabControl();
@@ -2375,29 +2375,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tblotinst.Visible = ((bool)(resources.GetObject("tblotinst.Visible")));
 			this.tblotinst.WordWrap = ((bool)(resources.GetObject("tblotinst.WordWrap")));
 			// 
-			// label15
-			// 
-			this.label15.AccessibleDescription = resources.GetString("label15.AccessibleDescription");
-			this.label15.AccessibleName = resources.GetString("label15.AccessibleName");
-			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label15.Anchor")));
-			this.label15.AutoSize = ((bool)(resources.GetObject("label15.AutoSize")));
-			this.label15.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label15.Dock")));
-			this.label15.Enabled = ((bool)(resources.GetObject("label15.Enabled")));
-			this.label15.Font = ((System.Drawing.Font)(resources.GetObject("label15.Font")));
-			this.label15.Image = ((System.Drawing.Image)(resources.GetObject("label15.Image")));
-			this.label15.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label15.ImageAlign")));
-			this.label15.ImageIndex = ((int)(resources.GetObject("label15.ImageIndex")));
-			this.label15.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label15.ImeMode")));
-			this.label15.Location = ((System.Drawing.Point)(resources.GetObject("label15.Location")));
-			this.label15.Name = "label15";
-			this.label15.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label15.RightToLeft")));
-			this.label15.Size = ((System.Drawing.Size)(resources.GetObject("label15.Size")));
-			this.label15.TabIndex = ((int)(resources.GetObject("label15.TabIndex")));
-			this.label15.Text = resources.GetString("label15.Text");
-			this.label15.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label15.TextAlign")));
-			this.toolTip1.SetToolTip(this.label15, resources.GetString("label15.ToolTip"));
-			this.label15.Visible = ((bool)(resources.GetObject("label15.Visible")));
-			// 
 			// llFamiDeleteSim
 			// 
 			this.llFamiDeleteSim.AccessibleDescription = resources.GetString("llFamiDeleteSim.AccessibleDescription");
@@ -2740,6 +2717,29 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.TextAlign")));
 			this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
 			this.label2.Visible = ((bool)(resources.GetObject("label2.Visible")));
+			// 
+			// label15
+			// 
+			this.label15.AccessibleDescription = resources.GetString("label15.AccessibleDescription");
+			this.label15.AccessibleName = resources.GetString("label15.AccessibleName");
+			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label15.Anchor")));
+			this.label15.AutoSize = ((bool)(resources.GetObject("label15.AutoSize")));
+			this.label15.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label15.Dock")));
+			this.label15.Enabled = ((bool)(resources.GetObject("label15.Enabled")));
+			this.label15.Font = ((System.Drawing.Font)(resources.GetObject("label15.Font")));
+			this.label15.Image = ((System.Drawing.Image)(resources.GetObject("label15.Image")));
+			this.label15.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label15.ImageAlign")));
+			this.label15.ImageIndex = ((int)(resources.GetObject("label15.ImageIndex")));
+			this.label15.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label15.ImeMode")));
+			this.label15.Location = ((System.Drawing.Point)(resources.GetObject("label15.Location")));
+			this.label15.Name = "label15";
+			this.label15.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label15.RightToLeft")));
+			this.label15.Size = ((System.Drawing.Size)(resources.GetObject("label15.Size")));
+			this.label15.TabIndex = ((int)(resources.GetObject("label15.TabIndex")));
+			this.label15.Text = resources.GetString("label15.Text");
+			this.label15.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label15.TextAlign")));
+			this.toolTip1.SetToolTip(this.label15, resources.GetString("label15.ToolTip"));
+			this.label15.Visible = ((bool)(resources.GetObject("label15.Visible")));
 			// 
 			// tabPage2
 			// 
@@ -9245,6 +9245,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbunitime.Text = resources.GetString("pbunitime.Text");
 			this.toolTip1.SetToolTip(this.pbunitime, resources.GetString("pbunitime.ToolTip"));
 			this.pbunitime.Visible = ((bool)(resources.GetObject("pbunitime.Visible")));
+			this.pbunitime.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ProgressBarMouseUp);
+			this.pbunitime.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ProgressBarMouseMove);
+			this.pbunitime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ProgressBarMouseDown);
 			// 
 			// tbunitime
 			// 
@@ -9272,6 +9275,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.tbunitime, resources.GetString("tbunitime.ToolTip"));
 			this.tbunitime.Visible = ((bool)(resources.GetObject("tbunitime.Visible")));
 			this.tbunitime.WordWrap = ((bool)(resources.GetObject("tbunitime.WordWrap")));
+			this.tbunitime.TextChanged += new System.EventHandler(this.ProgressBarTextChanged);
+			this.tbunitime.Leave += new System.EventHandler(this.ProgressBarTextLeave);
 			// 
 			// tbinfluence
 			// 

@@ -35,6 +35,34 @@ namespace SimPe.Plugin
 		/// </summary>
 		private BhavForm form;
 
+		static System.Collections.ArrayList globs = null;
+		static void BuildGlobList() 
+		{
+			if (globs!=null) return;
+			globs = new System.Collections.ArrayList();
+
+			FileTable.FileIndex.Load();
+			Interfaces.Scenegraph.IScenegraphFileIndexItem[] iglobs = FileTable.FileIndex.FindFile(Data.MetaData.GLOB_FILE, true);
+			System.Collections.ArrayList names = new System.Collections.ArrayList();
+			string max = " / "+iglobs.Length.ToString();
+			int ct = 0;
+			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in iglobs) 
+			{
+				WaitingScreen.UpdateMessage(ct.ToString()+max);
+				ct++;
+
+				SimPe.Plugin.NamedGlob glob = new SimPe.Plugin.NamedGlob();
+				glob.ProcessData(item.FileDescriptor, item.Package);
+
+				if (!names.Contains(glob.SemiGlobalName.Trim().ToLower())) 
+				{
+					Data.SemiGlobalAlias g = new SimPe.Data.SemiGlobalAlias(true, glob.SemiGlobalGroup, glob.SemiGlobalName);
+					globs.Add(g);
+					names.Add(glob.SemiGlobalName.Trim().ToLower());
+				}
+			}
+		}
+
 		/// <summary>
 		/// Constructor for the Class
 		/// </summary>
@@ -43,7 +71,8 @@ namespace SimPe.Plugin
 			form = WrapperFactory.form;
 
 			form.cbseminame.Items.Clear();
-			foreach (Data.SemiGlobalAlias a in Data.MetaData.SemiGlobals) if (a.Known) form.cbseminame.Items.Add(a);
+			BuildGlobList();
+			foreach (Data.SemiGlobalAlias a in globs) if (a.Known) form.cbseminame.Items.Add(a);
 		}
 		#endregion
 

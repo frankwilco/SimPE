@@ -94,7 +94,8 @@ namespace SimPe.Plugin
 		{
 			get 
 			{
-				if (img == null) img = ImageLoader.Load(size, data.Length, format, new System.IO.BinaryReader(new System.IO.MemoryStream(data)), level, count);
+				if (img == null) 
+					img = ImageLoader.Load(size, data.Length, format, new System.IO.BinaryReader(new System.IO.MemoryStream(data)), -1, count);
 				return img;
 			}
 		}
@@ -151,14 +152,15 @@ namespace SimPe.Plugin
 				else throw new Exception("Unknown DXT Format "+sig);
 
 				fs.Seek(0x80, System.IO.SeekOrigin.Begin);
+				int blocksize = 0x10;
+				if (format == TxtrFormats.DXT1Format) blocksize = 0x8;
 				for (int i=0; i<maps.Length; i++) 
 				{
 					byte [] d = reader.ReadBytes(firstsize);
 					maps[i] = new DDSData(d, sz, format, (maps.Length-(i+1)), maps.Length);
-					firstsize /= 4;	//width and height devided by 2
 
-					if (format == TxtrFormats.DXT1Format) firstsize = Math.Max(0x08, firstsize);
-					else firstsize = Math.Max(0x10, firstsize);
+					sz = new Size(Math.Max(1, sz.Width / 2), Math.Max(1, sz.Height / 2));					
+					firstsize = Math.Max(1, sz.Width / 4) * Math.Max(1, sz.Height / 4) * blocksize;	
 				}
 			} 
 			finally 
@@ -339,114 +341,115 @@ namespace SimPe.Plugin
 		//
 		public static Image DXT3Parser(Size parentsize, TxtrFormats format, int imgsize, System.IO.BinaryReader reader, int wd, int hg)
 		{						
-			Bitmap bm;			
-			
-			double ration =	((double) parentsize.Width) / 
-				((double) parentsize.Height);
+			Bitmap bm = null;			
+			try 
+			{
+				double ration =	((double) parentsize.Width) / 
+					((double) parentsize.Height);
 
-			if ((format == TxtrFormats.DXT3Format) || (format == TxtrFormats.DXT5Format) /* || (format == DXT1 RGBA) */)
-			{
-				//hg = Convert.ToInt32(Math.Sqrt(((double) imgsize) / ration));
-				//wd = Convert.ToInt32((double) (hg * ration));
-				if ((wd == 0) || (hg == 0))
+				if ((format == TxtrFormats.DXT3Format) || (format == TxtrFormats.DXT5Format) /* || (format == DXT1 RGBA) */)
 				{
-					return new Bitmap(Math.Max(1, wd), Math.Max(1, hg));
+					//hg = Convert.ToInt32(Math.Sqrt(((double) imgsize) / ration));
+					//wd = Convert.ToInt32((double) (hg * ration));
+					if ((wd == 0) || (hg == 0))
+					{
+						return new Bitmap(Math.Max(1, wd), Math.Max(1, hg));
+					}
+					bm = new Bitmap(wd, hg, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 				}
-				bm = new Bitmap(wd, hg, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-			}
-			else
-			{
-				//hg = Convert.ToInt32(Math.Sqrt(((double) (2 * imgsize)) / ration));
-				//wd = Convert.ToInt32((double) (hg * ration));
-				if ((wd == 0) || (hg == 0))
+				else
 				{
-					return new Bitmap(Math.Max(1, wd), Math.Max(1, hg));
+					//hg = Convert.ToInt32(Math.Sqrt(((double) (2 * imgsize)) / ration));
+					//wd = Convert.ToInt32((double) (hg * ration));
+					if ((wd == 0) || (hg == 0))
+					{
+						return new Bitmap(Math.Max(1, wd), Math.Max(1, hg));
+					}
+					bm = new Bitmap(wd, hg, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
 				}
-				bm = new Bitmap(wd, hg, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-			}
 			
-			//
-			int[] Alpha = new int[16]; // FH: für Alpha reicht hier [4 * 4] !!!!
-			for (int y = 0; y < bm.Height; y += 4) // DXT encodes 4x4 blocks of pixel
-			{
-				for (int x = 0; x < bm.Width; x += 4)
+				//
+				int[] Alpha = new int[16]; // FH: für Alpha reicht hier [4 * 4] !!!!
+				for (int y = 0; y < bm.Height; y += 4) // DXT encodes 4x4 blocks of pixel
 				{
-					// decode the alpha data (DXT3)
-					if (format == TxtrFormats.DXT3Format) 
+					for (int x = 0; x < bm.Width; x += 4)
 					{
-						long abits = reader.ReadInt64();
-						// 16 alpha values are here, one for each pixel, each 4 bits long
-						for (int i = 0; i < 16; i++)
+						// decode the alpha data (DXT3)
+						if (format == TxtrFormats.DXT3Format) 
 						{
-							Alpha[i] = (int) ((abits & 0xf) * 0x11);	// je 4 bit herausschieben
-							abits >>= 4;
-						} // for by
-					} 					
-					else if (format == TxtrFormats.DXT5Format) // DXT5
-					{
-						int alpha1 = reader.ReadByte();
-						int alpha2 = reader.ReadByte();
-						long abits = (long)reader.ReadUInt32() | ((long)reader.ReadUInt16() << 32);
-						int[] alphas = new int[8]; // holds the calculated alpha values
-						alphas[0] = alpha1;
-						alphas[1] = alpha2;
-						if (alpha1 > alpha2)
+							long abits = reader.ReadInt64();
+							// 16 alpha values are here, one for each pixel, each 4 bits long
+							for (int i = 0; i < 16; i++)
+							{
+								Alpha[i] = (int) ((abits & 0xf) * 0x11);	// je 4 bit herausschieben
+								abits >>= 4;
+							} // for by
+						} 					
+						else if (format == TxtrFormats.DXT5Format) // DXT5
 						{
-							alphas[2] = (6 * alpha1 + alpha2) / 7;
-							alphas[3] = (5 * alpha1 + 2 * alpha2) / 7;
-							alphas[4] = (4 * alpha1 + 3 * alpha2) / 7;
-							alphas[5] = (3 * alpha1 + 4 * alpha2) / 7;
-							alphas[6] = (2 * alpha1 + 5 * alpha2) / 7;
-							alphas[7] = (alpha1 + 6 * alpha2) / 7;							
+							int alpha1 = reader.ReadByte();
+							int alpha2 = reader.ReadByte();
+							long abits = (long)reader.ReadUInt32() | ((long)reader.ReadUInt16() << 32);
+							int[] alphas = new int[8]; // holds the calculated alpha values
+							alphas[0] = alpha1;
+							alphas[1] = alpha2;
+							if (alpha1 > alpha2)
+							{
+								alphas[2] = (6 * alpha1 + alpha2) / 7;
+								alphas[3] = (5 * alpha1 + 2 * alpha2) / 7;
+								alphas[4] = (4 * alpha1 + 3 * alpha2) / 7;
+								alphas[5] = (3 * alpha1 + 4 * alpha2) / 7;
+								alphas[6] = (2 * alpha1 + 5 * alpha2) / 7;
+								alphas[7] = (alpha1 + 6 * alpha2) / 7;							
+							} 
+							else 
+							{
+								alphas[2] = (4 * alpha1 + alpha2) / 5;
+								alphas[3] = (3 * alpha1 + 2 * alpha2) / 5;
+								alphas[4] = (2 * alpha1 + 3 * alpha2) / 5;
+								alphas[5] = (1 * alpha1 + 4 * alpha2) / 5;
+								alphas[6] = 0;
+								alphas[7] = 0xff;
+							}
+							for (int i = 0; i < 16; i++)
+							{
+								Alpha[i] = alphas[abits & 7];	// je 3 bit als Code herausschieben
+								abits >>= 3;
+							}						
+						} // if format..
+				
+						// decode the DXT1 RGB data
+						// two 16 bit encoded colors (red 5, green 6, blue 5 bits)
+			
+						int c1packed16 = reader.ReadUInt16(); 
+						int c2packed16 = reader.ReadUInt16(); 
+						// separate R,G,B
+						int color1r = Convert.ToByte(((c1packed16 >> 11) & 0x1F) * 8.2258064516129032258064516129032);
+						int color1g = Convert.ToByte(((c1packed16 >> 5) & 0x3F) * 4.047619047619047619047619047619);
+						int color1b = Convert.ToByte((c1packed16 & 0x1F) * 8.2258064516129032258064516129032);
+					
+						int color2r = Convert.ToByte(((c2packed16 >> 11) & 0x1F) * 8.2258064516129032258064516129032);
+						int color2g = Convert.ToByte(((c2packed16 >> 5) & 0x3F) * 4.047619047619047619047619047619);
+						int color2b = Convert.ToByte((c2packed16 & 0x1F) * 8.2258064516129032258064516129032);
+				
+						// FH: colors definieren wir gleich als Color
+						Color[] colors = new Color[4];
+						// colors 0 and 1 point to the two 16 bit colors we read in
+						colors[0] = Color.FromArgb(color1r, color1g, color1b);
+						colors[1] = Color.FromArgb(color2r, color2g, color2b);
+					
+						// FH: DXT1 RGB? Reihenfolge wichtig!
+						/*if ((format == TxtrFormats.DXT1Format) && (c1packed16 <= c2packed16)) 
+						{
+							// 1/2 color 1, 1/2 color2					
+							colors[2] = Color.FromArgb(
+								((color1r + color2r) >> 1) & 0xff,
+								((color1g + color2g) >> 1) & 0xff,
+								((color1b + color2b) >> 1) & 0xff);
+							// BLACK
+							colors[3] = Color.Black;
 						} 
-						else 
-						{
-							alphas[2] = (4 * alpha1 + alpha2) / 5;
-							alphas[3] = (3 * alpha1 + 2 * alpha2) / 5;
-							alphas[4] = (2 * alpha1 + 3 * alpha2) / 5;
-							alphas[5] = (1 * alpha1 + 4 * alpha2) / 5;
-							alphas[6] = 0;
-							alphas[7] = 0xff;
-						}
-						for (int i = 0; i < 16; i++)
-						{
-							Alpha[i] = alphas[abits & 7];	// je 3 bit als Code herausschieben
-							abits >>= 3;
-						}						
-					} // if format..
-				
-					// decode the DXT1 RGB data
-					// two 16 bit encoded colors (red 5, green 6, blue 5 bits)
-			
-					int c1packed16 = reader.ReadUInt16(); 
-					int c2packed16 = reader.ReadUInt16(); 
-					// separate R,G,B
-					int color1r = Convert.ToByte(((c1packed16 >> 11) & 0x1F) * 8.2258064516129032258064516129032);
-					int color1g = Convert.ToByte(((c1packed16 >> 5) & 0x3F) * 4.047619047619047619047619047619);
-					int color1b = Convert.ToByte((c1packed16 & 0x1F) * 8.2258064516129032258064516129032);
-					
-					int color2r = Convert.ToByte(((c2packed16 >> 11) & 0x1F) * 8.2258064516129032258064516129032);
-					int color2g = Convert.ToByte(((c2packed16 >> 5) & 0x3F) * 4.047619047619047619047619047619);
-					int color2b = Convert.ToByte((c2packed16 & 0x1F) * 8.2258064516129032258064516129032);
-				
-					// FH: colors definieren wir gleich als Color
-					Color[] colors = new Color[4];
-					// colors 0 and 1 point to the two 16 bit colors we read in
-					colors[0] = Color.FromArgb(color1r, color1g, color1b);
-					colors[1] = Color.FromArgb(color2r, color2g, color2b);
-					
-					// FH: DXT1 RGB? Reihenfolge wichtig!
-					/*if ((format == TxtrFormats.DXT1Format) && (c1packed16 <= c2packed16)) 
-					{
-						// 1/2 color 1, 1/2 color2					
-						colors[2] = Color.FromArgb(
-							((color1r + color2r) >> 1) & 0xff,
-							((color1g + color2g) >> 1) & 0xff,
-							((color1b + color2b) >> 1) & 0xff);
-						// BLACK
-						colors[3] = Color.Black;
-					} 
-					else // Alle anderen*/
+						else // Alle anderen*/
 					{
 						// 2/3 color 1, 1/3 color2					
 						colors[2] = Color.FromArgb(
@@ -461,46 +464,53 @@ namespace SimPe.Plugin
 							(((color2b << 1) + color1b) / 3) & 0xff);					
 					}
 			
-					// read in the color code bits, 16 values, each 2 bits long
-					// then look up the color in the color table we built
-					uint cbits = reader.ReadUInt32(); 
-					for (int by = 0; by < 4; by++)
-					{
-						for (int bx = 0; bx < 4; bx++)
+						// read in the color code bits, 16 values, each 2 bits long
+						// then look up the color in the color table we built
+						uint cbits = reader.ReadUInt32(); 
+						for (int by = 0; by < 4; by++)
 						{
-							try
+							for (int bx = 0; bx < 4; bx++)
 							{
-								if (((x + bx) < wd) && ((y + by) < hg))
+								try
 								{
-									uint code = (cbits >> (((by << 2) + bx) << 1)) & 3;
-									if ((format == TxtrFormats.DXT3Format) || (format == TxtrFormats.DXT5Format))
+									if (((x + bx) < wd) && ((y + by) < hg))
 									{
-										bm.SetPixel(x + bx, y + by, Color.FromArgb(Alpha[(by << 2) + bx], colors[code]));
-									}
-									else
-									{
-										// if (format == DXT1_RGBA)
-										// {
-										//	if ((c1packed16 <= c2packed16) && (code == 3))
-										//	{
-										//		bm.SetPixel(x + bx, y + by, Color.FromArgb(0, colors[code]);
-										//	} else {
-										//		bm.SetPixel(x + bx, y + by, Color.FromArgb(255, colors[code]);
-										//	}
-										// } else {
-										bm.SetPixel(x + bx, y + by, colors[code]);
-										// }
+										uint code = (cbits >> (((by << 2) + bx) << 1)) & 3;
+										if ((format == TxtrFormats.DXT3Format) || (format == TxtrFormats.DXT5Format))
+										{
+											bm.SetPixel(x + bx, y + by, Color.FromArgb(Alpha[(by << 2) + bx], colors[code]));
+										}
+										else
+										{
+											// if (format == DXT1_RGBA)
+											// {
+											//	if ((c1packed16 <= c2packed16) && (code == 3))
+											//	{
+											//		bm.SetPixel(x + bx, y + by, Color.FromArgb(0, colors[code]);
+											//	} else {
+											//		bm.SetPixel(x + bx, y + by, Color.FromArgb(255, colors[code]);
+											//	}
+											// } else {
+											bm.SetPixel(x + bx, y + by, colors[code]);
+											// }
+										}
 									}
 								}
+								catch (Exception exception1)
+								{
+									Helper.ExceptionMessage("", exception1);
+								}
 							}
-							catch (Exception exception1)
-							{
-								Helper.ExceptionMessage("", exception1);
-							}
-						}
-					} // for by
-				} // for x
-			} // for y
+						} // for by
+					} // for x
+				} // for y
+				
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage("", ex);
+			}
+
 			return bm;
 		}
 

@@ -779,6 +779,7 @@ namespace SimPe.Plugin
 				for (int i=0; i<mmp.MipMaps.Length; i++)
 				{
 					MipMap mm = mmp.MipMaps[i];
+					mm.ReloadTexture();
 					this.lbimg.Items.Add(mm);
 					if (mm.Texture != null) minindex = i;
 				}
@@ -1272,9 +1273,10 @@ namespace SimPe.Plugin
 					for (int i=data.Length-1; i>=0; i--)
 					{
 						DDSData item = data[i];
-						MipMap mm = new MipMap(id);
+						MipMap mm = new MipMap(id);	
 						mm.Texture = item.Texture;
 						mm.Data = item.Data;
+						
 
 						lbimg.Items.Add(mm);
 					}

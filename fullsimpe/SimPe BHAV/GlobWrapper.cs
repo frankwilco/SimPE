@@ -24,6 +24,17 @@ using SimPe.Interfaces.Plugin;
 namespace SimPe.Plugin
 {
 	/// <summary>
+	/// Named Glob File
+	/// </summary>
+	public class NamedGlob : Glob 
+	{
+		public override string ToString()
+		{
+			return this.SemiGlobalName;
+		}
+	}
+
+	/// <summary>
 	/// This is the actual FileWrapper
 	/// </summary>
 	/// <remarks>
@@ -91,10 +102,10 @@ namespace SimPe.Plugin
 			filename = new byte[64];
 		}
 
-		public new string ToString()
+		/*public new string ToString()
 		{
 			return this.SemiGlobalName;
-		}
+		}*/
 
 
 		#region IPackedFileProperties Member

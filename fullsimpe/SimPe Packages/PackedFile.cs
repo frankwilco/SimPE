@@ -189,20 +189,6 @@ namespace SimPe.Packages
 			Byte[] uncdata = null;
 			int index = offset;			
 
-			/*if (uncdata==null) 
-			{
-				try 
-				{
-					uncdata = new Byte[Convert.ToInt32(Math.Round(1.2*Math.Max(targetSize, data.Length)))];
-				} 
-				catch(Exception) {}
-			}
-
-			if (uncdata==null) 
-			{
-				uncdata = new Byte[Math.Max(targetSize, data.Length)];
-			}*/
-
 			try 
 			{
 				uncdata = new Byte[targetSize];
@@ -221,7 +207,7 @@ namespace SimPe.Packages
 			Byte cc2 = 0;
 			Byte cc3 = 0;
 			int source;
-			//System.IO.StreamWriter sw = new System.IO.StreamWriter(@"c:\decomp1.txt");
+			
 			try 
 			{
 				while ((index<data.Length) && (data[index] < 0xfc))
@@ -259,7 +245,6 @@ namespace SimPe.Packages
 						copyoffset = 0;				
 					}
 
-					//sw.WriteLine("pc="+plaincount+", cc="+copycount+", co="+copyoffset+", id="+cc);
 					for (int i=0; i<plaincount; i++) uncdata[uncindex++] = data[index++];
 
 					source = uncindex - copyoffset;	
@@ -271,7 +256,6 @@ namespace SimPe.Packages
 			{
 				Helper.ExceptionMessage("", ex);
 			}
-			//sw.Close();
 
 			if (index<data.Length) 
 			{
@@ -281,18 +265,9 @@ namespace SimPe.Packages
 					if (uncindex>=uncdata.Length) break;
 					uncdata[uncindex++] = data[index++];
 				}
-			}			
-			/*if (uncdata.Length > uncindex) 
-			{
-				Byte[] ret = new Byte[uncindex-1];
-				for (int i=0; i<ret.Length; i++) ret[i]=uncdata[i];
-				return ret;
-			} 
-			else 
-			{*/
-				return uncdata;
-			//}
-		}
+			}
+			return uncdata;
+		}		
 		#endregion		
 
 		

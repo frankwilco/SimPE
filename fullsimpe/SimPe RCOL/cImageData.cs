@@ -52,13 +52,24 @@ namespace SimPe.Plugin
 			get{ return datatype; }
 		}
 
+		/// <summary>
+		/// Force a Reload of the Texture
+		/// </summary>
+		public void ReloadTexture()
+		{
+			if ((datatype!=MipMapType.LifoReference) && (data!=null)) 
+			{
+				System.IO.BinaryReader sr = new System.IO.BinaryReader(new System.IO.MemoryStream(data));
+				img = ImageLoader.Load(this.parent.TextureSize, data.Length, this.parent.Format, sr, index, mapcount);
+			}
+		}
+
 		public Image Texture 
 		{
 			get { 				
-				if ((img==null) && (datatype!=MipMapType.LifoReference) && (data!=null))
+				if (img==null) 
 				{
-					System.IO.BinaryReader sr = new System.IO.BinaryReader(new System.IO.MemoryStream(data));
-					img = ImageLoader.Load(this.parent.TextureSize, data.Length, this.parent.Format, sr, index, mapcount);
+					ReloadTexture();
 				}
 				return img; 
 			}
