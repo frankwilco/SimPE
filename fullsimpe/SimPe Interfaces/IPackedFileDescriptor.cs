@@ -209,5 +209,14 @@ namespace SimPe.Interfaces.Files
 		/// <param name="obj"></param>
 		/// <returns></returns>
 		bool Equals(object obj);
+
+		/// <summary>
+		/// additional Data
+		/// </summary>
+		object Tag 
+		{
+			get;
+			set;
+		}
 	}
 }
