@@ -94,7 +94,9 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		private uint[] sims; 
 
-		private byte[] reserved_01;
+		private uint id;
+		private uint version;
+		private uint unknown;
 		private uint flags;
 		private uint albumGUID;
 		
@@ -185,6 +187,13 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get { return lotinstance; }
 			set { lotinstance = value; }
+		}
+
+		uint subhood;
+		public uint SubHoodNumber
+		{
+			get { return subhood; }
+			set { subhood = value; }
 		}
 
 		/// <summary>
@@ -298,14 +307,18 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public Fami(SimPe.Interfaces.Providers.ISimNames names) : base()
 		{
-			reserved_01 = new byte[12];
+			id = 0x46414D49;
+			version = 0x0000004E;
+			unknown = 0;
 			nameprovider = names;
 			flags = 0x04;
 		}
 
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{						
-			this.reserved_01 = reader.ReadBytes(12);
+			id = reader.ReadUInt32();
+			version = reader.ReadUInt32();
+			unknown = reader.ReadUInt32();
 			lotinstance = reader.ReadUInt32();
 			strinstance = reader.ReadUInt32();
 			money = reader.ReadInt32();
@@ -318,12 +331,15 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				sims[i] = reader.ReadUInt32();
 			}
-			this.albumGUID =reader.ReadUInt32(); //relations??
+			this.albumGUID = reader.ReadUInt32(); //relations??
+			if (version==0x4f) this.subhood = reader.ReadUInt32();
 		}
 
 		protected override void Serialize(System.IO.BinaryWriter writer) 
 		{		
-			writer.Write(this.reserved_01);
+			writer.Write(id);
+			writer.Write(version);
+			writer.Write(unknown);
 			writer.Write(lotinstance);
 			writer.Write(strinstance);
 			writer.Write(money);
@@ -336,6 +352,8 @@ namespace SimPe.PackedFiles.Wrapper
 				writer.Write((uint)sims[i]);
 			}
 			writer.Write(this.albumGUID);
+
+			if (version==0x4f) writer.Write(this.subhood);
 		}
 		#endregion
 

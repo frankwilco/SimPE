@@ -76,6 +76,8 @@ namespace SimPe.Plugin
 		public static string GetUniqueTxmtName(string name, string unique, string subsetname, bool ext)
 		{
 			name = name.Trim();
+			name = RenameForm.ReplaceOldUnique(name, "", false);
+
 			if (name.ToLower().EndsWith("_txmt") ) name = name.Substring(0, name.Length-5);
 
 			string[] parts = name.Split("_".ToCharArray());
@@ -559,7 +561,7 @@ namespace SimPe.Plugin
 
 					if ((i.Title.Trim()!="") && (ver == FixVersion.UniversityReady))  i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+i.Title;
 					
-					if ((modelname==null) && (i.Title!="")) 
+					if ((modelname==null) && (i.Title.Trim()!="") && (i.Language.Id==1) && (pfd.Instance==0x85)) 
 						modelname = Hashes.StripHashFromName(i.Title).ToUpper().Replace("-", "_");
 				}
 				
@@ -567,6 +569,7 @@ namespace SimPe.Plugin
 			}
 
 			//Now change the NREF
+
 			if (modelname!=null) 
 			{
 				mpfds = package.FindFiles(0x4E524546);	

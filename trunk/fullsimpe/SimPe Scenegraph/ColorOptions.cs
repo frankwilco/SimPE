@@ -531,7 +531,7 @@ namespace SimPe.Plugin
 			AddSlavesSubsets(map, fullmap);
 
 			uint inst = 0x6000;
-			string unique = null;
+			string unique = RenameForm.GetUniqueName(true);
 			foreach (Hashtable ht in map.Values) 
 			{
 				foreach (ArrayList list in ht.Values) 
@@ -572,13 +572,15 @@ namespace SimPe.Plugin
 								name = txtr.FileName.Trim();
 								if (name.ToLower().EndsWith("_txtr")) name = name.Substring(0, name.Length-5);
 
-								txtr.FileName = /*"##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+*/name+"_"+unique+"_txtr";							
+								string tname = RenameForm.ReplaceOldUnique(name, unique, true);
+								txtr.FileName = tname+"_txtr";							
+								
 								txtr.FileDescriptor = ScenegraphHelper.BuildPfd(txtr.FileName, Data.MetaData.TXTR, Data.MetaData.CUSTOM_GROUP);	
 
 								MaterialDefinition md = (MaterialDefinition)txmt.Blocks[0];
 								for (int i=0; i<md.Listing.Length; i++) 
 								{
-									if (Hashes.StripHashFromName(md.Listing[i].Trim().ToLower())==old) md.Listing[i] = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+name+"_"+unique;
+									if (Hashes.StripHashFromName(md.Listing[i].Trim().ToLower())==old) md.Listing[i] = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+tname;
 								}
 								
 								//update References
@@ -587,7 +589,7 @@ namespace SimPe.Plugin
 									if (k=="TXTR" || k=="Generic") continue;
 									string thisname = Hashes.StripHashFromName(md.FindProperty(k).Value.Trim().ToLower());
 									if (thisname==old)
-										md.FindProperty(k).Value = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+name+"_"+unique;
+										md.FindProperty(k).Value = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+tname;
 								}	
 								md.FileDescription = Hashes.StripHashFromName(txmt.FileName).Trim();
 								if (md.FileDescription.ToLower().EndsWith("_txmt")) md.FileDescription = md.FileDescription.Substring(0, md.FileDescription.Length-5);

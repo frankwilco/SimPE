@@ -444,4 +444,10 @@ Möchten sie fortfahren?</value>
 	<data name="open_fami_from_sdsc">
 		<value>Sollen die Einstellungen für diese Sim übernommen werden bevor die Familien Information angezeigt wird?</value>
 	</data>
+	<data name="open_dna_from_sdsc">
+		<value>Sollen die Einstellungen für diese Sim übernommen werden bevor seine DNS angezeigt wird?</value>
+	</data>
+	<data name="open_cloth_from_sdsc">
+		<value>Sollen die Einstellungen für diese Sim übernommen werden bevor seine Kleidung angezeigt wird?</value>
+	</data>
 </root>

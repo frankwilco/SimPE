@@ -195,7 +195,7 @@ namespace SimPe.Plugin
 		/// <param name="modelnames">The Name of the Model</param>
 		/// <param name="loadparent">true if you want to load Parent Objects</param>
 		public void RcolModelClone(string[] modelnames, bool onlydefault) {
-			RcolModelClone(modelnames, onlydefault, onlydefault, true);
+			RcolModelClone(modelnames, onlydefault, onlydefault, true, new ArrayList());
 		}
 
 		/// <summary>
@@ -204,12 +204,14 @@ namespace SimPe.Plugin
 		/// <param name="onlydefault">true if you only want default MMAT Files</param>
 		/// <param name="updateguid">update the GUIDs in the MMAT Files</param>
 		/// <param name="exception">true if you want to load Parent Objects</param>
-		public void RcolModelClone(string[] modelnames, bool onlydefault, bool updateguid, bool exception) 
+		/// <param name="exclude">List of ReferenceNames that should be excluded</param>
+		public void RcolModelClone(string[] modelnames, bool onlydefault, bool updateguid, bool exception, ArrayList exclude) 
 		{
 			if (modelnames==null) return;
 
 			SimPe.FileTable.FileIndex.Load();
-			Scenegraph sg = new Scenegraph(modelnames);
+			Scenegraph sg = new Scenegraph(modelnames, exclude);
+			
 
 			sg.BuildPackage(package);
 			sg.AddMaterialOverrides(package, onlydefault, true, exception);

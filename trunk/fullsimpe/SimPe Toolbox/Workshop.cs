@@ -73,6 +73,7 @@ namespace SimPe.Plugin
 		TreeNode tvimemory;
 		TreeNode tvitemplate;
 		private System.Windows.Forms.ImageList ilist;
+		private System.Windows.Forms.CheckBox cbparent;
 		TreeNode tviwindow;
 
 		public Workshop()
@@ -418,6 +419,7 @@ namespace SimPe.Plugin
 			this.button1 = new System.Windows.Forms.Button();
 			this.tbflname = new System.Windows.Forms.TextBox();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
+			this.cbparent = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tClone.SuspendLayout();
@@ -518,6 +520,7 @@ namespace SimPe.Plugin
 			// 
 			// tClone
 			// 
+			this.tClone.Controls.Add(this.cbparent);
 			this.tClone.Controls.Add(this.cbclean);
 			this.tClone.Controls.Add(this.cbfix);
 			this.tClone.Controls.Add(this.cbdefault);
@@ -705,6 +708,15 @@ namespace SimPe.Plugin
 			// ofd
 			// 
 			this.ofd.Filter = "Package File (*.package)|*.package|All Files (*.*)|*.*";
+			// 
+			// cbparent
+			// 
+			this.cbparent.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbparent.Location = new System.Drawing.Point(8, 88);
+			this.cbparent.Name = "cbparent";
+			this.cbparent.Size = new System.Drawing.Size(120, 24);
+			this.cbparent.TabIndex = 7;
+			this.cbparent.Text = "Load parent data";
 			// 
 			// Workshop
 			// 
@@ -1049,7 +1061,9 @@ namespace SimPe.Plugin
 			//Get the Base Object Data from the Objects.package File
 			string[] modelname = BaseClone(pfd, localgroup, package);
 			ObjectCloner objclone = new ObjectCloner(package);
-			objclone.RcolModelClone(modelname, onlydefault);
+			ArrayList exclude = new ArrayList();
+			if ((!this.cbparent.Checked) && (!this.rbColor.Checked)) exclude.Add("tsMaterialsMeshName");
+			objclone.RcolModelClone(modelname, onlydefault, onlydefault, true, exclude);
 		}
 
 		protected void ReColor(Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup) 
@@ -1232,7 +1246,7 @@ namespace SimPe.Plugin
 
 		private void cbRCOLClone_CheckedChanged(object sender, System.EventArgs e)
 		{
-			//cbpar.Enabled = cbRCOLClone.Checked;
+			//cbparent.Enabled = cbRCOLClone.Checked;
 		}
 
 		private void cbfix_CheckedChanged(object sender, System.EventArgs e)

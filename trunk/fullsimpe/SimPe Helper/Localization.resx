@@ -256,6 +256,12 @@ Do you want to continue anyway?</value>
 	<data name="open_fami_from_sdsc">
 		<value>Do you want to commit the changes for this Sim before you open the Family Information?"</value>
 	</data>
+	<data name="open_dna_from_sdsc">
+		<value>Do you want to commit the changes for this Sim before you open the DNA Information?"</value>
+	</data>
+	<data name="open_cloth_from_sdsc">
+		<value>Do you want to commit the changes for this Sim before you open the Clothing File?"</value>
+	</data>
 	<data name="question">
 		<value>Question</value>
 	</data>
