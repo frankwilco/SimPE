@@ -266,9 +266,8 @@ namespace SimPe.Plugin
 		}
 
 
-		#region Cache Handling
-		FileIndex cachefileindex;
-		SimPe.Cache.CacheFile cachefile;
+		#region Cache Handling		
+		SimPe.Cache.ObjectCacheFile cachefile;
 		bool cachechg;
 
 		/// <summary>
@@ -276,10 +275,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		string CacheFileName 
 		{
-			get 
-			{
-				return System.IO.Path.Combine(Helper.SimPeDataPath, "objcache_"+Helper.HexString((byte)Helper.WindowsRegistry.LanguageCode)+".simpepkg");
-			}
+			get {return Helper.SimPeLanguageCache;}
 		}
 
 		/// <summary>
@@ -287,11 +283,10 @@ namespace SimPe.Plugin
 		/// </summary>
 		void LoadCachIndex()
 		{
-			if (cachefileindex!=null) return;
+			if (cachefile!=null) return;
 			
 			cachechg = false;
-			cachefileindex = new FileIndex(new ArrayList());
-			cachefile = new SimPe.Cache.CacheFile();	
+			cachefile = new SimPe.Cache.ObjectCacheFile();
 		
 			if (!Helper.WindowsRegistry.UseCache) return;
 			WaitingScreen.UpdateMessage("Loading Cache");
@@ -302,21 +297,9 @@ namespace SimPe.Plugin
 			catch (Exception ex) 
 			{
 				Helper.ExceptionMessage("", ex);
-			}
+			}			
 
-			
-			foreach (SimPe.Cache.CacheContainer cc in cachefile.Containers) 
-			{
-				if ((cc.Type == SimPe.Cache.ContainerType.Object) && cc.Valid)
-				{
-					foreach (SimPe.Cache.ObjectCacheItem oci in cc.Items) 
-					{
-						Interfaces.Files.IPackedFileDescriptor pfd = oci.FileDescriptor;
-						pfd.Filename = cc.FileName;
-						cachefileindex.AddIndexFromPfd(pfd, null, oci.LocalGroup);
-					}
-				}
-			}
+			cachefile.LoadObjects();
 		}
 
 		/// <summary>
@@ -329,39 +312,7 @@ namespace SimPe.Plugin
 			WaitingScreen.UpdateMessage("Saving Cache");
 
 			cachefile.Save(CacheFileName);
-		}
-
-		/// <summary>
-		/// Add a Cache Item
-		/// </summary>
-		/// <param name="oci">The Item you want to add</param>
-		/// <param name="filename">The name of the File</param>
-		void AddCacheItem(SimPe.Cache.ObjectCacheItem oci, string filename) 
-		{
-			if (!Helper.WindowsRegistry.UseCache) return;
-			filename = filename.Trim().ToLower();
-			SimPe.Cache.CacheContainer mycc = null;
-			foreach (SimPe.Cache.CacheContainer cc in cachefile.Containers) 
-			{
-				if ((cc.Type == SimPe.Cache.ContainerType.Object) && cc.Valid)
-				{
-					if (cc.FileName == filename) 
-					{
-						mycc = cc;
-						break;
-					}
-				}
-			}
-
-			if (mycc==null) 
-			{
-				mycc = new SimPe.Cache.CacheContainer(SimPe.Cache.ContainerType.Object);
-				mycc.FileName = filename;
-				cachefile.Containers.Add(mycc);
-			}
-
-			mycc.Items.Add(oci);
-		}
+		}		
 		#endregion
 
 		void BuildListing()
@@ -400,10 +351,25 @@ namespace SimPe.Plugin
 					pitems.Add(nrefitem);
 					groups.Add(nrefitem.LocalGroup);
 
-					Interfaces.Scenegraph.IScenegraphFileIndexItem[] cacheitems = cachefileindex.FindFile(nrefitem.FileDescriptor);
-					if (cacheitems.Length>0) //found in the cache
+					Interfaces.Scenegraph.IScenegraphFileIndexItem[] cacheitems = cachefile.FileIndex.FindFile(nrefitem.FileDescriptor);
+
+					//find the correct File
+					int cindex = -1;
+					string pname = nrefitem.Package.FileName.Trim().ToLower();
+					for (int i=0; i<cacheitems.Length; i++)
 					{
-						SimPe.Cache.ObjectCacheItem oci = (SimPe.Cache.ObjectCacheItem)cacheitems[0].FileDescriptor.Tag;
+						Interfaces.Scenegraph.IScenegraphFileIndexItem citem = cacheitems[i];
+						
+						if (citem.FileDescriptor.Filename == pname) 
+						{
+							cindex=i;
+							break;
+						}
+					}
+
+					if (cindex!=-1) //found in the cache
+					{
+						SimPe.Cache.ObjectCacheItem oci = (SimPe.Cache.ObjectCacheItem)cacheitems[cindex].FileDescriptor.Tag;
 
 #if DEBUG
 						Data.Alias a = new Data.Alias(oci.FileDescriptor.Group, "---");//, "{name} ({id}: {1}, {2}) ");
@@ -423,6 +389,8 @@ namespace SimPe.Plugin
 						//if (img!=null) WaitingScreen.UpdateImage(img);
 
 						PutItemToTree(a, img, (SimPe.Data.ObjectTypes)oci.ObjectType, new SimPe.PackedFiles.Wrapper.ObjFunctionSort(oci.ObjectFunctionSort), cacheitems[0].FileDescriptor.Filename, cacheitems[0].FileDescriptor.Group);
+
+						if (img!=null) a.Name = "* "+a.Name;
 						lbobj.Items.Add(a);
 					} 
 					else //not found in chache 
@@ -479,9 +447,7 @@ namespace SimPe.Plugin
 					
 						PutItemToTree(a, img, objd.Type, objd.FunctionSort, objd.Package.FileName, objd.FileDescriptor.Group);
 
-						if (a.Name.Trim()=="") a.Name = objd.FileName;
-						if (img!=null) a.Name = "* "+a.Name;
-						lbobj.Items.Add(a);
+						if (a.Name.Trim()=="") a.Name = objd.FileName;												
 
 						//create a cache Item
 						cachechg = true;
@@ -494,7 +460,10 @@ namespace SimPe.Plugin
 						oci.ObjectType = (ushort)objd.Type;
 						oci.ObjectFunctionSort = (short)objd.FunctionSort.Value;
 
-						this.AddCacheItem(oci, nrefitem.Package.FileName);
+						cachefile.AddItem(oci, nrefitem.Package.FileName);
+
+						if (img!=null) a.Name = "* "+a.Name;
+						lbobj.Items.Add(a);
 					} // if not in cache
 				} //foreach txt
  
@@ -673,17 +642,19 @@ namespace SimPe.Plugin
 			// 
 			// cbparent
 			// 
+			this.cbparent.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbparent.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbparent.Location = new System.Drawing.Point(8, 88);
 			this.cbparent.Name = "cbparent";
-			this.cbparent.Size = new System.Drawing.Size(120, 24);
+			this.cbparent.Size = new System.Drawing.Size(192, 24);
 			this.cbparent.TabIndex = 7;
-			this.cbparent.Text = "Load parent data";
+			this.cbparent.Text = "Create a stand-alone object";
 			// 
 			// cbclean
 			// 
 			this.cbclean.Checked = true;
 			this.cbclean.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbclean.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbclean.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbclean.Location = new System.Drawing.Point(24, 48);
 			this.cbclean.Name = "cbclean";
@@ -695,6 +666,7 @@ namespace SimPe.Plugin
 			// 
 			this.cbfix.Checked = true;
 			this.cbfix.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbfix.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbfix.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbfix.Location = new System.Drawing.Point(8, 28);
 			this.cbfix.Name = "cbfix";
@@ -707,6 +679,7 @@ namespace SimPe.Plugin
 			// 
 			this.cbdefault.Checked = true;
 			this.cbdefault.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbdefault.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbdefault.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbdefault.Location = new System.Drawing.Point(8, 68);
 			this.cbdefault.Name = "cbdefault";
@@ -719,6 +692,7 @@ namespace SimPe.Plugin
 			// 
 			this.cbgid.Checked = true;
 			this.cbgid.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbgid.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbgid.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbgid.Location = new System.Drawing.Point(8, 8);
 			this.cbgid.Name = "cbgid";
@@ -740,6 +714,7 @@ namespace SimPe.Plugin
 			// 
 			this.cbColorExt.Checked = true;
 			this.cbColorExt.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbColorExt.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbColorExt.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbColorExt.Location = new System.Drawing.Point(8, 8);
 			this.cbColorExt.Name = "cbColorExt";
@@ -749,6 +724,7 @@ namespace SimPe.Plugin
 			// 
 			// cbColor
 			// 
+			this.cbColor.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbColor.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbColor.Location = new System.Drawing.Point(8, 28);
 			this.cbColor.Name = "cbColor";
@@ -970,8 +946,7 @@ namespace SimPe.Plugin
 					if (tabControl2.SelectedIndex<2) 
 					{
 						WaitingScreen.Wait();
-						this.RecolorClone(pfd, localgroup, this.cbdefault.Checked);
-						//else this.Clone(pfd);
+						this.RecolorClone(pfd, localgroup, this.cbdefault.Checked);						
 						WaitingScreen.Stop(this);
 					} 
 					
@@ -1201,23 +1176,45 @@ namespace SimPe.Plugin
 			ObjectCloner objclone = new ObjectCloner(package);
 			ArrayList exclude = new ArrayList();
 
-			//for clones only when cbparent is not checked
-			if ((!this.cbparent.Checked) && (!this.rbColor.Checked)) 
-			{
-				exclude.Add("tsMaterialsMeshName");
-				exclude.Add("stdMatEnvCubeTextureName");
-				exclude.Add("TXTR");
-			} 
+			
 
 			//allways for recolors
 			if (this.rbColor.Checked) 
 			{
 				exclude.Add("stdMatEnvCubeTextureName");
 				exclude.Add("TXTR");
+			} 
+			else 
+			{
+				exclude.Add("tsMaterialsMeshName");
+
+				//for clones only when cbparent is not checked
+				if (!this.cbparent.Checked) 
+				{					
+					exclude.Add("stdMatEnvCubeTextureName");
+					exclude.Add("TXTR");
+				} 
 			}
 
 			//do the recolor
 			objclone.RcolModelClone(modelname, onlydefault, onlydefault, true, exclude);
+
+			//for clones only when cbparent is checked
+			if ((this.cbparent.Checked) && (!this.rbColor.Checked)) 
+			{
+				string[] names = Scenegraph.LoadParentModelNames(package, true);
+				SimPe.Packages.File pkg = new SimPe.Packages.File(null);
+
+				ObjectCloner pobj = new ObjectCloner(pkg);
+				pobj.RcolModelClone(names, onlydefault, onlydefault, true, exclude);
+				pobj.AddParentFiles(modelname, package);				
+			}
+
+			//for clones only when cbparent is not checked
+			if ((!this.cbparent.Checked) && (!this.rbColor.Checked)) 
+			{
+				objclone.RemoveSubsetReferences(Scenegraph.GetParentSubsets(package));
+			}
 		}
 
 		protected void ReColor(Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup) 
@@ -1229,22 +1226,7 @@ namespace SimPe.Plugin
 				if (MessageBox.Show(Localization.Manager.GetString("OW_Warning"), "Warning", MessageBoxButtons.YesNo)==DialogResult.No) return;
 			}
 
-			if (this.cbColorExt.Checked) if (sfd.ShowDialog()!=DialogResult.OK) return;
-
-			//Release FileHandles
-			if (simpe_pkg!=null)
-			{
-				if (simpe_pkg.FileName!=null) 
-				{
-					try 
-					{
-						//if (simpe_pkg.FileName.Trim().ToLower()==GMND_PACKAGE.Trim().ToLower()) simpe_pkg.Reader.Close();
-						//if (simpe_pkg.FileName.Trim().ToLower()==MMAT_PACKAGE.Trim().ToLower()) simpe_pkg.Reader.Close();
-						//if ((cbColorExt.Checked) && (simpe_pkg.FileName.Trim().ToLower()==sfd.FileName.Trim().ToLower())) simpe_pkg.Reader.Close();
-					} 
-					catch (Exception) {}
-				}
-			}
+			if (this.cbColorExt.Checked) if (sfd.ShowDialog()!=DialogResult.OK) return;			
 
 			//create a Cloned Object to get all needed Files for the Process
 			bool old = cbgid.Checked;
@@ -1260,14 +1242,10 @@ namespace SimPe.Plugin
 			{
 				ObjectRecolor or = new ObjectRecolor(package);
 				or.EnableColorOptions();
-				or.LoadReferencedMATDs();
-
-				//or.MMATPackage.Reader.Close();
-				//or.GMNDPackage.Reader.Close();
+				or.LoadReferencedMATDs();				
 
 				//load all Pending Textures
-				ObjectCloner oc = new ObjectCloner(package);
-				//oc.GetTextureImages(package.FindFiles(0x49596978));
+				ObjectCloner oc = new ObjectCloner(package);				
 			}
 
 			SimPe.Packages.GeneratableFile dn_pkg = null;
@@ -1282,21 +1260,7 @@ namespace SimPe.Plugin
 			//Create the Templae for an additional MMAT
 			if (this.cbColorExt.Checked) 
 			{
-#if FAST
-				package = new SimPe.Packages.GeneratableFile("C:\\Dokumente und Einstellungen\\Frank\\Desktop\\Package\\table.package");
-#else
-				/*
-				//load all Pending References too
-				ObjectRecolor or = new ObjectRecolor(package);
-				or.LoadReferencedMATDs();
-
-				//load all Pending Textures
-				ObjectCloner oc = new ObjectCloner(package);
-				oc.GetTextureImages(package.FindFiles(0x49596978));
-				*/
-#endif
-
-				
+	
 				npackage.FileName = sfd.FileName;	
 
 				ColorOptions cs = new ColorOptions(package);
@@ -1304,14 +1268,7 @@ namespace SimPe.Plugin
 
 				npackage.Save();
 				package = npackage;
-			}
-
-			try 
-			{
-				//dn_pkg.Reader.Close();
-				//gm_pkg.Reader.Close();
-			} 
-			catch (Exception) {}
+			}			
 
 			WaitingScreen.Stop(this);
 #if DEBUG
@@ -1343,25 +1300,25 @@ namespace SimPe.Plugin
 			tbseek.Tag = true;
 			try 
 			{
-				string name = tbseek.Text.Trim().ToLower();
+				string name = tbseek.Text.TrimStart().ToLower();
 				if (lbobj.SelectionMode != SelectionMode.One) lbobj.ClearSelected();
 				for (int i=0; i<lbobj.Items.Count; i++)
 				{
 					IAlias a = (IAlias)lbobj.Items[i];
 					if (a.Name!=null) 
 					{
-						if (a.Name.Trim().ToLower().StartsWith(name))
+						if (a.Name.TrimStart().ToLower().StartsWith(name))
 						{
-							tbseek.Text = a.Name.Trim();
+							tbseek.Text = a.Name.TrimStart();
 							tbseek.SelectionStart = name.Length;
 							tbseek.SelectionLength = Math.Max(0, tbseek.Text.Length - name.Length);
 							lbobj.SelectedIndex = i;
 							break;
 						}
 
-						if (a.Name.Trim().ToLower().StartsWith("* "+name))
+						if (a.Name.TrimStart().ToLower().StartsWith("* "+name))
 						{
-							tbseek.Text = a.Name.Trim();
+							tbseek.Text = a.Name.TrimStart();
 							tbseek.SelectionStart = name.Length+2;
 							tbseek.SelectionLength = Math.Max(0, tbseek.Text.Length - (name.Length+2));
 							lbobj.SelectedIndex = i;

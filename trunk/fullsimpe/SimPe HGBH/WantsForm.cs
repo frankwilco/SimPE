@@ -73,6 +73,7 @@ namespace SimPe.Plugin
 		internal System.Windows.Forms.ImageList itv;
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.CheckBox cblock;
+		private System.Windows.Forms.ComboBox cbsel;
 		private System.ComponentModel.IContainer components;
 
 		public WantsForm()
@@ -151,6 +152,7 @@ namespace SimPe.Plugin
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.lbsimname = new System.Windows.Forms.Label();
 			this.label27 = new System.Windows.Forms.Label();
+			this.cbsel = new System.Windows.Forms.ComboBox();
 			this.wantsPanel.SuspendLayout();
 			this.gbprop.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -191,6 +193,7 @@ namespace SimPe.Plugin
 			this.gbprop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
+			this.gbprop.Controls.Add(this.cbsel);
 			this.gbprop.Controls.Add(this.cblock);
 			this.gbprop.Controls.Add(this.tv);
 			this.gbprop.Controls.Add(this.cbtype);
@@ -229,7 +232,7 @@ namespace SimPe.Plugin
 			this.cblock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cblock.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.cblock.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cblock.Location = new System.Drawing.Point(272, 256);
+			this.cblock.Location = new System.Drawing.Point(272, 184);
 			this.cblock.Name = "cblock";
 			this.cblock.Size = new System.Drawing.Size(72, 24);
 			this.cblock.TabIndex = 22;
@@ -246,7 +249,7 @@ namespace SimPe.Plugin
 			this.tv.ImageList = this.itv;
 			this.tv.Location = new System.Drawing.Point(8, 80);
 			this.tv.Name = "tv";
-			this.tv.Size = new System.Drawing.Size(224, 196);
+			this.tv.Size = new System.Drawing.Size(224, 168);
 			this.tv.TabIndex = 21;
 			this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SelectWant);
 			// 
@@ -258,20 +261,21 @@ namespace SimPe.Plugin
 			// 
 			// cbtype
 			// 
-			this.cbtype.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cbtype.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.cbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbtype.Enabled = false;
 			this.cbtype.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbtype.Location = new System.Drawing.Point(328, 80);
+			this.cbtype.Location = new System.Drawing.Point(56, 256);
 			this.cbtype.Name = "cbtype";
 			this.cbtype.Size = new System.Drawing.Size(88, 21);
 			this.cbtype.TabIndex = 19;
+			this.cbtype.SelectedIndexChanged += new System.EventHandler(this.ChangeType);
 			// 
 			// tbpoints
 			// 
 			this.tbpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbpoints.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbpoints.Location = new System.Drawing.Point(328, 232);
+			this.tbpoints.Location = new System.Drawing.Point(328, 160);
 			this.tbpoints.Name = "tbpoints";
 			this.tbpoints.Size = new System.Drawing.Size(88, 21);
 			this.tbpoints.TabIndex = 18;
@@ -282,7 +286,7 @@ namespace SimPe.Plugin
 			// 
 			this.tbunknown2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbunknown2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbunknown2.Location = new System.Drawing.Point(328, 208);
+			this.tbunknown2.Location = new System.Drawing.Point(328, 136);
 			this.tbunknown2.Name = "tbunknown2";
 			this.tbunknown2.Size = new System.Drawing.Size(88, 21);
 			this.tbunknown2.TabIndex = 17;
@@ -293,7 +297,7 @@ namespace SimPe.Plugin
 			// 
 			this.tbunknown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbunknown1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbunknown1.Location = new System.Drawing.Point(328, 184);
+			this.tbunknown1.Location = new System.Drawing.Point(328, 104);
 			this.tbunknown1.Name = "tbunknown1";
 			this.tbunknown1.ReadOnly = true;
 			this.tbunknown1.Size = new System.Drawing.Size(56, 21);
@@ -304,7 +308,7 @@ namespace SimPe.Plugin
 			// 
 			this.tbindex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbindex.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbindex.Location = new System.Drawing.Point(328, 160);
+			this.tbindex.Location = new System.Drawing.Point(328, 80);
 			this.tbindex.Name = "tbindex";
 			this.tbindex.ReadOnly = true;
 			this.tbindex.Size = new System.Drawing.Size(88, 21);
@@ -324,20 +328,20 @@ namespace SimPe.Plugin
 			// 
 			// tbprop
 			// 
-			this.tbprop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbprop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbprop.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbprop.Location = new System.Drawing.Point(328, 128);
+			this.tbprop.Location = new System.Drawing.Point(328, 232);
 			this.tbprop.Name = "tbprop";
-			this.tbprop.ReadOnly = true;
-			this.tbprop.Size = new System.Drawing.Size(56, 21);
+			this.tbprop.Size = new System.Drawing.Size(88, 21);
 			this.tbprop.TabIndex = 13;
 			this.tbprop.Text = "0";
+			this.tbprop.TextChanged += new System.EventHandler(this.ChangedText);
 			// 
 			// tbval
 			// 
-			this.tbval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbval.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbval.Location = new System.Drawing.Point(328, 104);
+			this.tbval.Location = new System.Drawing.Point(328, 256);
 			this.tbval.Name = "tbval";
 			this.tbval.Size = new System.Drawing.Size(88, 21);
 			this.tbval.TabIndex = 12;
@@ -369,7 +373,7 @@ namespace SimPe.Plugin
 			// 
 			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label10.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label10.Location = new System.Drawing.Point(248, 208);
+			this.label10.Location = new System.Drawing.Point(248, 136);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(72, 24);
 			this.label10.TabIndex = 9;
@@ -380,7 +384,7 @@ namespace SimPe.Plugin
 			// 
 			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label9.Location = new System.Drawing.Point(248, 184);
+			this.label9.Location = new System.Drawing.Point(248, 104);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(72, 24);
 			this.label9.TabIndex = 8;
@@ -391,7 +395,7 @@ namespace SimPe.Plugin
 			// 
 			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label8.Location = new System.Drawing.Point(264, 232);
+			this.label8.Location = new System.Drawing.Point(264, 160);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(56, 24);
 			this.label8.TabIndex = 7;
@@ -402,7 +406,7 @@ namespace SimPe.Plugin
 			// 
 			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label7.Location = new System.Drawing.Point(272, 160);
+			this.label7.Location = new System.Drawing.Point(272, 80);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(48, 24);
 			this.label7.TabIndex = 6;
@@ -411,22 +415,22 @@ namespace SimPe.Plugin
 			// 
 			// label6
 			// 
-			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.label6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label6.Location = new System.Drawing.Point(248, 128);
+			this.label6.Location = new System.Drawing.Point(248, 232);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(72, 24);
 			this.label6.TabIndex = 5;
-			this.label6.Text = "Property:";
+			this.label6.Text = "Amount:";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// label4
 			// 
-			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label4.Location = new System.Drawing.Point(232, 80);
+			this.label4.Location = new System.Drawing.Point(8, 256);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(88, 24);
+			this.label4.Size = new System.Drawing.Size(40, 24);
 			this.label4.TabIndex = 3;
 			this.label4.Text = "Type:";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -474,11 +478,11 @@ namespace SimPe.Plugin
 			// 
 			// label5
 			// 
-			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label5.Location = new System.Drawing.Point(248, 104);
+			this.label5.Location = new System.Drawing.Point(144, 256);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(72, 24);
+			this.label5.Size = new System.Drawing.Size(48, 24);
 			this.label5.TabIndex = 4;
 			this.label5.Text = "Value:";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -650,6 +654,18 @@ namespace SimPe.Plugin
 			this.label27.TabIndex = 0;
 			this.label27.Text = "Wants and Fears Viewer for";
 			// 
+			// cbsel
+			// 
+			this.cbsel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.cbsel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbsel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbsel.Location = new System.Drawing.Point(200, 256);
+			this.cbsel.Name = "cbsel";
+			this.cbsel.Size = new System.Drawing.Size(120, 21);
+			this.cbsel.TabIndex = 23;
+			this.cbsel.SelectedIndexChanged += new System.EventHandler(this.cbsel_SelectedIndexChanged);
+			// 
 			// WantsForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -805,6 +821,26 @@ namespace SimPe.Plugin
 			this.Tag = null;
 		}
 
+		private void cbsel_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (cbsel.SelectedIndex<0) return;
+			Data.Alias a = (Data.Alias)cbsel.Items[cbsel.SelectedIndex];
+			tbval.Text = "0x"+Helper.HexString(a.Id);
+		}
+
+		private void ChangeType(object sender, System.EventArgs e)
+		{
+			this.cbsel.Items.Clear();
+			ArrayList list = WantLoader.WantNameLoader.GetNames((WantType)cbtype.Items[cbtype.SelectedIndex]);
+			int ct=0;
+			foreach (Data.Alias a in list) 
+			{
+				cbsel.Items.Add(a);
+				if (lastwi!=null) if (a.Id == lastwi.Value) cbsel.SelectedIndex=ct;
+				ct++;
+			}
+		}
+
 		private void lbsimname_Click(object sender, System.EventArgs e)
 		{
 			try 
@@ -846,6 +882,8 @@ namespace SimPe.Plugin
 
 				lastwi.Flag.Locked = cblock.Checked;
 				wrapper.Changed = true;
+
+				if (this.lastlvi!=null) lastlvi.Text = lastwi.ToString();
 			} 
 			catch {}
 			finally 
@@ -962,7 +1000,7 @@ namespace SimPe.Plugin
 					lastlvi.ListView.LargeImageList.Images[lastlvi.ImageIndex] = ImageLoader.Preview(wi.Icon, lastlvi.ListView.LargeImageList.ImageSize);
 				lastlvi.Text = wi.Name;
 
-				lastlvi.ListView.Refresh();
+				
 			}
 
 			if (lastwi!=null) 
@@ -971,11 +1009,14 @@ namespace SimPe.Plugin
 				lastwi.Type = wi.XWant.WantType;
 				lastwi.Influence = wi.XWant.Influence;
 				lastwi.Score = wi.XWant.Score;
+				lastlvi.Text = lastwi.ToString();
 
 				wrapper.Changed = true;
 
 				this.ShowWantItem(lastwi);
 			}
+
+			if (lastlvi!=null)  lastlvi.ListView.Refresh();
 		}
 	}
 

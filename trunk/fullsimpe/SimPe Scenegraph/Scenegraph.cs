@@ -350,6 +350,22 @@ namespace SimPe.Plugin
 			}
 		}
 
+		#region Cache Handling
+		static SimPe.Cache.MMATCacheFile cachefile;
+		static void LoadCache()
+		{
+			if (cachefile!=null) return;
+			
+			cachefile = new SimPe.Cache.MMATCacheFile();
+			if (Helper.WindowsRegistry.UseCache) cachefile.Load(Helper.SimPeCache);
+		}
+
+		static void SaveCache() 
+		{
+			if (Helper.WindowsRegistry.UseCache) cachefile.Save(Helper.SimPeCache);
+		}
+		#endregion
+
 		/// <summary>
 		/// Adds all know MMATs that reference one of the models;
 		/// </summary>
@@ -360,83 +376,114 @@ namespace SimPe.Plugin
 		/// <returns>List of all referenced GUIDs</returns>
 		public void AddMaterialOverrides(SimPe.Interfaces.Files.IPackageFile pkg, bool onlydefault, bool subitems, bool exception)
 		{			
+			LoadCache();
+
 			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.MMAT, true);
 			ArrayList itemlist = new ArrayList();
 			ArrayList contentlist = new ArrayList();
 			ArrayList defaultfam = new ArrayList();
 			ArrayList guids = new ArrayList();
 
+			//create an UpTo Date Cache
+			bool chgcache = false;
+			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
+			{
+				string pname = item.Package.FileName.Trim().ToLower();
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] citems = cachefile.FileIndex.FindFile(item.FileDescriptor);
+				bool have=false;
+				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem citem in citems) 
+				{
+					if (citem.FileDescriptor.Filename == pname) 
+					{
+						have = true;
+						break;
+					}
+				}
+
+				//Not in cache, so add that File
+				if (!have) 
+				{
+					SimPe.Plugin.MmatWrapper mmat = new MmatWrapper();
+					mmat.ProcessData(item.FileDescriptor, item.Package);
+
+					cachefile.AddItem(mmat);
+					chgcache = true;
+				}
+			}
+			if (chgcache) SaveCache();
+
 			//collect a list of Default Material Override family values first
 			if (onlydefault) 
 			{
-				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
-				{
-					SimPe.PackedFiles.Wrapper.Cpf mmat = new SimPe.PackedFiles.Wrapper.Cpf();
-					mmat.ProcessData(item.FileDescriptor, item.Package);					
-
-					if (!mmat.GetSaveItem("defaultMaterial").BooleanValue) continue;
-					defaultfam.Add(mmat.GetSaveItem("family").StringValue);
-				}
+				foreach (SimPe.Cache.MMATCacheItem mci in (SimPe.Cache.CacheItems)cachefile.DefaultMap[true])
+					defaultfam.Add(mci.Family);				
 			}
 
 			//now do the real collect
-			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
+			foreach (string k in modelnames) 
 			{
-				if (!itemlist.Contains(item)) 
+				SimPe.Cache.CacheItems list = (SimPe.Cache.CacheItems)cachefile.ModelMap[k.Trim().ToLower()];
+				if (list!=null)				
 				{
-					SimPe.PackedFiles.Wrapper.Cpf mmat = new SimPe.PackedFiles.Wrapper.Cpf();
-					mmat.ProcessData(item.FileDescriptor, item.Package);					
-
-					if (onlydefault && !defaultfam.Contains(mmat.GetSaveItem("family").StringValue)) continue;
-
-					string name = mmat.GetSaveItem("modelName").StringValue.Trim().ToLower();
-					if (this.modelnames.Contains(name)) 
+					foreach (SimPe.Cache.MMATCacheItem mci in list) 
 					{
-						string content = Scenegraph.MmatContent(mmat);
-						content = content.Trim().ToLower();
-						if (!contentlist.Contains(content)) 
+						if (onlydefault && !defaultfam.Contains(mci.Family)) continue;
+
+						string name = k;
+						items = FileTable.FileIndex.FindFile(mci.FileDescriptor);						
+
+						foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
 						{
-							mmat.FileDescriptor = Clone(mmat.FileDescriptor);
-							mmat.SynchronizeUserData();						
+							if (itemlist.Contains(item)) continue;
+							itemlist.Add(item);
+							SimPe.Plugin.MmatWrapper mmat = new MmatWrapper();
+							mmat.ProcessData(item);
 
-							if (subitems) 
+							string content = Scenegraph.MmatContent(mmat);
+							content = content.Trim().ToLower();
+							if (!contentlist.Contains(content)) 
 							{
-								if (pkg.FindFile(mmat.FileDescriptor)==null)
-									pkg.Add(mmat.FileDescriptor);
+								mmat.FileDescriptor = Clone(mmat.FileDescriptor);
+								mmat.SynchronizeUserData();						
 
-								SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem txmtitem = SimPe.FileTable.FileIndex.FindFileByName(mmat.GetSaveItem("name").StringValue+"_txmt", Data.MetaData.TXMT, Data.MetaData.LOCAL_GROUP, true);
-								if (txmtitem!=null) 
+								if (subitems) 
 								{
-									SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
-									sub.ProcessData(txmtitem.FileDescriptor, txmtitem.Package);
-									ArrayList newfiles = new ArrayList();
-									LoadReferenced(this.modelnames, this.exclude, newfiles, itemlist, sub, txmtitem, true);
+									if (pkg.FindFile(mmat.FileDescriptor)==null)
+										pkg.Add(mmat.FileDescriptor);
+
+									SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem txmtitem = SimPe.FileTable.FileIndex.FindFileByName(mmat.GetSaveItem("name").StringValue+"_txmt", Data.MetaData.TXMT, Data.MetaData.LOCAL_GROUP, true);
+									if (txmtitem!=null) 
+									{
+										SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
+										sub.ProcessData(txmtitem.FileDescriptor, txmtitem.Package);
+										ArrayList newfiles = new ArrayList();
+										LoadReferenced(this.modelnames, this.exclude, newfiles, itemlist, sub, txmtitem, true);
 						
-									BuildPackage(newfiles, pkg);
+										BuildPackage(newfiles, pkg);
+									} 
+									else 
+									{
+										continue;
+										//if (exception) throw new ScenegraphException("Invalid Scenegraph Link", new ScenegraphException("Unable to find Referenced File "+name+"_txmt.", mmat.FileDescriptor), mmat.FileDescriptor);
+									}
 								} 
 								else 
 								{
-									continue;
-									//if (exception) throw new ScenegraphException("Invalid Scenegraph Link", new ScenegraphException("Unable to find Referenced File "+name+"_txmt.", mmat.FileDescriptor), mmat.FileDescriptor);
-								}
-							} 
-							else 
-							{
-								if (pkg.FindFile(mmat.FileDescriptor)==null) 
-								{
-									string txmtname = mmat.GetSaveItem("name").StringValue.Trim();
-									if (!txmtname.EndsWith("_txmt")) txmtname += "_txmt";
-									if (pkg.FindFile(txmtname, Data.MetaData.TXMT).Length>0) 
+									if (pkg.FindFile(mmat.FileDescriptor)==null) 
 									{
-										pkg.Add(mmat.FileDescriptor);
+										string txmtname = mmat.GetSaveItem("name").StringValue.Trim();
+										if (!txmtname.EndsWith("_txmt")) txmtname += "_txmt";
+										if (pkg.FindFile(txmtname, Data.MetaData.TXMT).Length>0) 
+										{
+											pkg.Add(mmat.FileDescriptor);
+										}
 									}
 								}
-							}
-							contentlist.Add(content);
-						} //if contentlist
-					}//if modelname						
-					itemlist.Add(item);
-				} // if itemlist
+								contentlist.Add(content);
+							} //if contentlist
+						} //foreach item
+					} //foreach MMATCacheItem
+				} // if list !=null
 			}
 		}
 
@@ -444,10 +491,31 @@ namespace SimPe.Plugin
 		/// Will return a List of all SubSets that can be recolored
 		/// </summary>
 		/// <param name="pkg"></param>
-		/// <returns></returns>
+		/// <returns>a List of Subset Names</returns>
 		public static ArrayList GetRecolorableSubsets(SimPe.Interfaces.Files.IPackageFile pkg)
 		{
+			return GetSubsets(pkg, "tsdesignmodeenabled");
+		}
+
+		/// <summary>
+		/// Will return a List of all SubSets that are borrowed from a Parent Object
+		/// </summary>
+		/// <param name="pkg"></param>
+		/// <returns>a List of Subset Names</returns>
+		public static ArrayList GetParentSubsets(SimPe.Interfaces.Files.IPackageFile pkg)
+		{
+			return GetSubsets(pkg, "tsMaterialsMeshName");
+		}
+
+		/// <summary>
+		/// Will return a List of all SubSets that can be recolored
+		/// </summary>
+		/// <param name="pkg"></param>
+		/// <returns>a List of Subset Names</returns>
+		public static ArrayList GetSubsets(SimPe.Interfaces.Files.IPackageFile pkg, string blockname)
+		{
 			ArrayList list = new ArrayList();
+			blockname = blockname.Trim().ToLower();
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] gmnds = pkg.FindFiles(Data.MetaData.GMND);
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in gmnds) 
 			{
@@ -459,7 +527,7 @@ namespace SimPe.Plugin
 					if (irb.BlockName == "cDataListExtension") 
 					{
 						DataListExtension dle = (DataListExtension)irb;
-						if (dle.Extension.VarName.Trim().ToLower() == "tsdesignmodeenabled") 
+						if (dle.Extension.VarName.Trim().ToLower() == blockname) 
 						{
 							foreach (ExtensionItem ei in dle.Extension.Items) 
 							{
@@ -471,6 +539,7 @@ namespace SimPe.Plugin
 			}
 			return list;
 		}
+
 
 		/// <summary>
 		/// Adds the Slave definitions of the passed gmnd to the passed map
@@ -609,6 +678,52 @@ namespace SimPe.Plugin
 				if (pkg.FindFile(rcol.FileDescriptor)==null)
 					pkg.Add(rcol.FileDescriptor);
 			}
+		}
+
+		/// <summary>
+		/// Loads the ModelNames of the Objects referenced in all tsMaterialsMeshName Block
+		/// </summary>
+		/// <param name="pkg"></param>
+		/// <param name="delete">true, if the tsMaterialsMeshName Blocks should get cleared</param>
+		/// <returns>A List of Modelnames</returns>		
+		public static string[] LoadParentModelNames(SimPe.Interfaces.Files.IPackageFile pkg, bool delete)
+		{
+			WaitingScreen.UpdateMessage("Loading Parent Modelnames");
+			ArrayList list = new ArrayList();
+
+			Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.GMND);
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+			{
+				Rcol rcol = new GenericRcol(null, false);
+				rcol.ProcessData(pfd, pkg);
+
+				foreach (IRcolBlock irb in rcol.Blocks) 
+				{
+					if (irb.BlockName.Trim().ToLower() == "cdatalistextension") 
+					{
+						DataListExtension dle = (DataListExtension)irb;
+						if (dle.Extension.VarName.Trim().ToLower()=="tsmaterialsmeshname") 
+						{
+							foreach (ExtensionItem ei in dle.Extension.Items) 
+							{
+								string mname = ei.String.Trim().ToLower();
+								if (mname.EndsWith("_cres")) mname+="_cres";
+
+								if (!list.Contains(mname)) list.Add(mname);
+							}
+
+							dle.Extension.Items = new ExtensionItem[0];
+							rcol.SynchronizeUserData();
+							break;
+						}
+					}
+				}
+			}
+
+			string[] ret = new string[list.Count];
+			list.CopyTo(ret);
+
+			return ret;
 		}
 	}
 }

@@ -72,7 +72,6 @@ namespace SimPe.PackedFiles.UserInterface
 		internal System.Windows.Forms.TextBox tbsimdescname;
 		private System.Windows.Forms.Label label13;
 		internal System.Windows.Forms.TextBox tbsim;
-		private System.Windows.Forms.Label label7;
 		internal System.Windows.Forms.TextBox tbage;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Panel panel5;
@@ -419,6 +418,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.LinkLabel lldna;
 		internal System.Windows.Forms.TextBox tbsubhood;
 		private System.Windows.Forms.Label label89;
+		private System.Windows.Forms.LinkLabel linkLabel6;
 
 
 		internal SimPe.Interfaces.Plugin.IFileWrapperSaveExtension wrapper = null;
@@ -539,6 +539,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label15 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.sdescPanel = new System.Windows.Forms.Panel();
+			this.linkLabel6 = new System.Windows.Forms.LinkLabel();
 			this.tcsdesc = new System.Windows.Forms.TabControl();
 			this.tpinterests = new System.Windows.Forms.TabPage();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -820,7 +821,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsimdescname = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.tbsim = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
 			this.tbage = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
@@ -2775,6 +2775,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.sdescPanel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("sdescPanel.AutoScrollMargin")));
 			this.sdescPanel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("sdescPanel.AutoScrollMinSize")));
 			this.sdescPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("sdescPanel.BackgroundImage")));
+			this.sdescPanel.Controls.Add(this.linkLabel6);
 			this.sdescPanel.Controls.Add(this.tcsdesc);
 			this.sdescPanel.Controls.Add(this.lldna);
 			this.sdescPanel.Controls.Add(this.llcloth);
@@ -2795,7 +2796,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.sdescPanel.Controls.Add(this.tbsimdescname);
 			this.sdescPanel.Controls.Add(this.label13);
 			this.sdescPanel.Controls.Add(this.tbsim);
-			this.sdescPanel.Controls.Add(this.label7);
 			this.sdescPanel.Controls.Add(this.tbage);
 			this.sdescPanel.Controls.Add(this.label10);
 			this.sdescPanel.Controls.Add(this.panel5);
@@ -2812,6 +2812,32 @@ namespace SimPe.PackedFiles.UserInterface
 			this.sdescPanel.Text = resources.GetString("sdescPanel.Text");
 			this.toolTip1.SetToolTip(this.sdescPanel, resources.GetString("sdescPanel.ToolTip"));
 			this.sdescPanel.Visible = ((bool)(resources.GetObject("sdescPanel.Visible")));
+			// 
+			// linkLabel6
+			// 
+			this.linkLabel6.AccessibleDescription = resources.GetString("linkLabel6.AccessibleDescription");
+			this.linkLabel6.AccessibleName = resources.GetString("linkLabel6.AccessibleName");
+			this.linkLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("linkLabel6.Anchor")));
+			this.linkLabel6.AutoSize = ((bool)(resources.GetObject("linkLabel6.AutoSize")));
+			this.linkLabel6.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("linkLabel6.Dock")));
+			this.linkLabel6.Enabled = ((bool)(resources.GetObject("linkLabel6.Enabled")));
+			this.linkLabel6.Font = ((System.Drawing.Font)(resources.GetObject("linkLabel6.Font")));
+			this.linkLabel6.Image = ((System.Drawing.Image)(resources.GetObject("linkLabel6.Image")));
+			this.linkLabel6.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("linkLabel6.ImageAlign")));
+			this.linkLabel6.ImageIndex = ((int)(resources.GetObject("linkLabel6.ImageIndex")));
+			this.linkLabel6.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("linkLabel6.ImeMode")));
+			this.linkLabel6.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("linkLabel6.LinkArea")));
+			this.linkLabel6.Location = ((System.Drawing.Point)(resources.GetObject("linkLabel6.Location")));
+			this.linkLabel6.Name = "linkLabel6";
+			this.linkLabel6.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("linkLabel6.RightToLeft")));
+			this.linkLabel6.Size = ((System.Drawing.Size)(resources.GetObject("linkLabel6.Size")));
+			this.linkLabel6.TabIndex = ((int)(resources.GetObject("linkLabel6.TabIndex")));
+			this.linkLabel6.TabStop = true;
+			this.linkLabel6.Text = resources.GetString("linkLabel6.Text");
+			this.linkLabel6.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("linkLabel6.TextAlign")));
+			this.toolTip1.SetToolTip(this.linkLabel6, resources.GetString("linkLabel6.ToolTip"));
+			this.linkLabel6.Visible = ((bool)(resources.GetObject("linkLabel6.Visible")));
+			this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Relink);
 			// 
 			// tcsdesc
 			// 
@@ -10125,29 +10151,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsim.Visible = ((bool)(resources.GetObject("tbsim.Visible")));
 			this.tbsim.WordWrap = ((bool)(resources.GetObject("tbsim.WordWrap")));
 			// 
-			// label7
-			// 
-			this.label7.AccessibleDescription = resources.GetString("label7.AccessibleDescription");
-			this.label7.AccessibleName = resources.GetString("label7.AccessibleName");
-			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label7.Anchor")));
-			this.label7.AutoSize = ((bool)(resources.GetObject("label7.AutoSize")));
-			this.label7.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label7.Dock")));
-			this.label7.Enabled = ((bool)(resources.GetObject("label7.Enabled")));
-			this.label7.Font = ((System.Drawing.Font)(resources.GetObject("label7.Font")));
-			this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
-			this.label7.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label7.ImageAlign")));
-			this.label7.ImageIndex = ((int)(resources.GetObject("label7.ImageIndex")));
-			this.label7.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label7.ImeMode")));
-			this.label7.Location = ((System.Drawing.Point)(resources.GetObject("label7.Location")));
-			this.label7.Name = "label7";
-			this.label7.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label7.RightToLeft")));
-			this.label7.Size = ((System.Drawing.Size)(resources.GetObject("label7.Size")));
-			this.label7.TabIndex = ((int)(resources.GetObject("label7.TabIndex")));
-			this.label7.Text = resources.GetString("label7.Text");
-			this.label7.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label7.TextAlign")));
-			this.toolTip1.SetToolTip(this.label7, resources.GetString("label7.ToolTip"));
-			this.label7.Visible = ((bool)(resources.GetObject("label7.Visible")));
-			// 
 			// tbage
 			// 
 			this.tbage.AccessibleDescription = resources.GetString("tbage.AccessibleDescription");
@@ -12031,6 +12034,13 @@ namespace SimPe.PackedFiles.UserInterface
 			{
 				Helper.ExceptionMessage("", ex);
 			}
+		}
+
+		private void Relink(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+
+			SimPe.PackedFiles.Wrapper.SDesc wrp = (SimPe.PackedFiles.Wrapper.SDesc)wrapper;
+			this.tbsim.Text = "0x"+Helper.HexString(SimRelinkForm.Execute(wrp));
 		}
 
 		

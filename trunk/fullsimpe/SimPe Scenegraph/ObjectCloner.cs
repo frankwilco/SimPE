@@ -218,7 +218,7 @@ namespace SimPe.Plugin
 			sg.AddSlaveTxmts(sg.GetSlaveSubsets());
 			
 			WaitingScreen.UpdateMessage("Building Package");
-			sg.BuildPackage(package);
+			sg.BuildPackage(package);			
 			WaitingScreen.UpdateMessage("Collect MMAT Files");
 			sg.AddMaterialOverrides(package, onlydefault, true, exception);
 			WaitingScreen.UpdateMessage("Collect Slave TXMTs");
@@ -230,6 +230,110 @@ namespace SimPe.Plugin
 				WaitingScreen.UpdateMessage("Fixing MMAT Files");
 				this.UpdateMMATGuids(this.GetGuidList(), this.GetPrimaryGuid());			
 			}
+		}
+
+		/// <summary>
+		/// Add all Files that could be borrowed from the current package by the passed one, to the passed package
+		/// </summary>
+		/// <param name="orgmodelnames">List of available modelnames in this package</param>
+		/// <param name="pkg">The package that should receive the Files</param>
+		/// <remarks>Simply Copies MMAT, LIFO, TXTR and TXMT Files</remarks>
+		public void AddParentFiles(string[] orgmodelnames, SimPe.Interfaces.Files.IPackageFile pkg) 
+		{
+			WaitingScreen.UpdateMessage("Loading Parent Files");
+			ArrayList names = new ArrayList();
+			foreach (string s in orgmodelnames) names.Add(s);
+
+			ArrayList types = new ArrayList();
+			types.Add(Data.MetaData.MMAT);
+			types.Add(Data.MetaData.TXMT);
+			types.Add(Data.MetaData.TXTR);
+			types.Add(Data.MetaData.LIFO);
+
+			foreach (uint type in types) 
+			{
+				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(type);
+				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+				{
+					if (pkg.FindFile(pfd)!=null) continue;
+
+					SimPe.Interfaces.Files.IPackedFile file = package.Read(pfd);
+					pfd.UserData = file.UncompressedData;
+
+					//Update the modeName in the MMAT
+					if ((pfd.Type==Data.MetaData.MMAT) && (names.Count>0))
+					{
+						SimPe.Plugin.MmatWrapper mmat = new MmatWrapper();
+						mmat.ProcessData(pfd, package);
+
+						string n = mmat.ModelName.Trim().ToLower();
+						if (!n.EndsWith("_cres")) n+= "_cres";
+
+						if (!names.Contains(n))
+						{
+							n = names[0].ToString();
+							//n = n.Substring(0, n.Length-5);
+							mmat.ModelName = n;
+							mmat.SynchronizeUserData();
+						}
+					}
+
+					pkg.Add(pfd);					
+				}
+			} //foreach type
+		}
+
+		/// <summary>
+		/// Remove all Files that are referenced by a SHPE and belong to a subset as named in the esclude List
+		/// </summary>
+		/// <param name="exclude">List of subset names</param>
+		public void RemoveSubsetReferences(ArrayList exclude)
+		{
+			WaitingScreen.UpdateMessage("Removing unwanted Subsets");
+
+			bool deleted = false;
+			Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.SHPE);
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+			{
+				Rcol rcol = new GenericRcol(null, false);
+				rcol.ProcessData(pfd, package);
+
+				foreach (ShapePart p in ((Shape)rcol.Blocks[0]).Parts) 
+				{
+					string s = p.Subset.Trim().ToLower();
+					if (exclude.Contains(s)) 
+					{
+						string n = p.FileName.Trim().ToLower();
+						if (!n.EndsWith("_txmt")) n += "_txmt";
+
+						ArrayList names = new ArrayList();
+						Interfaces.Files.IPackedFileDescriptor[] rpfds = package.FindFile(n, Data.MetaData.TXMT);
+						foreach (Interfaces.Files.IPackedFileDescriptor rpfd in rpfds) names.Add(rpfd);
+						int pos = 0;
+						while (pos<names.Count) 
+						{
+							Interfaces.Files.IPackedFileDescriptor rpfd = (Interfaces.Files.IPackedFileDescriptor)names[pos++];
+							rpfd = package.FindFile(rpfd);
+							
+							if (rpfd!=null) 
+							{
+								rpfd.MarkForDelete = true;
+								deleted = true;
+								GenericRcol fl = new GenericRcol(null, false);
+								fl.ProcessData(rpfd, package);
+							
+								Hashtable ht = fl.ReferenceChains;
+								foreach(string k in ht.Keys) 
+									foreach (Interfaces.Files.IPackedFileDescriptor lpfd in (ArrayList)ht[k]) 
+										if (!names.Contains(lpfd)) names.Add(lpfd);								
+							}
+						} //while
+					}
+				} //foreach p
+			} //foreach SHPE
+
+			//now remova all deleted Files from the Index
+			if (deleted) package.RemoveMarked();
 		}
 	}
 }

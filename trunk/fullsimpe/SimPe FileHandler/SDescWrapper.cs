@@ -1286,6 +1286,17 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		/// <summary>
+		/// Change the links to the Providers
+		/// </summary>
+		/// <param name="prov">A Provider Registry</param>
+		public void SetProviders(SimPe.Interfaces.IProviderRegistry prov) 
+		{
+			nameprovider = prov.SimNameProvider;
+			familynameprovider = prov.SimFamilynameProvider;
+			sdescprovider = prov.SimDescriptionProvider;
+		}
+
+		/// <summary>
 		/// Creates a new Instance
 		/// </summary>
 		/// <param name="names">null, or a Sim Name Provider</param>

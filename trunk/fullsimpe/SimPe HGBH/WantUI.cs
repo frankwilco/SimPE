@@ -33,7 +33,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Holds a reference to the Form containing the UI Panel
 		/// </summary>
-		internal WantsForm form;
+		internal static WantsForm form;
 
 		/// <summary>
 		/// Constructor for the Class
@@ -41,15 +41,20 @@ namespace SimPe.Plugin
 		public WantsUI()
 		{
 			//form = WrapperFactory.form;
-			form = new WantsForm();
+			if (form==null) 
+			{
+				form = new WantsForm();
 			
-			form.cbtype.Items.Add(WantType.Undefined);			
-			form.cbtype.Items.Add(WantType.None);
-			form.cbtype.Items.Add(WantType.Sim);
-			form.cbtype.Items.Add(WantType.Object);
-			form.cbtype.Items.Add(WantType.Category);
-			form.cbtype.Items.Add(WantType.Skill);
-			form.cbtype.Items.Add(WantType.Career);
+				form.cbtype.Items.Add(WantType.Undefined);			
+				form.cbtype.Items.Add(WantType.None);
+				form.cbtype.Items.Add(WantType.Sim);
+				form.cbtype.Items.Add(WantType.Object);
+				form.cbtype.Items.Add(WantType.Category);
+				form.cbtype.Items.Add(WantType.Skill);
+				form.cbtype.Items.Add(WantType.Career);
+
+				form.ListWants();
+			}
 		}
 		#endregion
 
@@ -66,6 +71,24 @@ namespace SimPe.Plugin
 			}
 		}
 
+		static string oldpkg = "";
+		/// <summary>
+		/// true if the package was changed since the last run
+		/// </summary>
+		/// <param name="wrp">The File that will be loaded (contains a valid Package witha FileName)</param>
+		/// <returns>true, if the package Name changed</returns>
+		public static bool ChangedNeighborhood(Want wrp) 
+		{
+			string newpkg = wrp.Package.FileName.Trim().ToString();
+			if (newpkg!=oldpkg) 
+			{
+				oldpkg = newpkg;
+				return true;
+			}
+
+			return false;
+		}
+
 		/// <summary>
 		/// Is called by SimPe (through the Wrapper) when the Panel is going to be displayed, so
 		/// you should updatet the Data displayed by the Panel with the Attributes stored in the
@@ -80,13 +103,15 @@ namespace SimPe.Plugin
 
 			try 
 			{
+				if (ChangedNeighborhood(wrp)) WantLoader.WantNameLoader.AddSimNames();
+
 				SimPe.Interfaces.Wrapper.ISDesc sdsc = wrp.SimDescription;
 				if (sdsc!=null)
 					form.lbsimname.Text = sdsc.SimName + " " + sdsc.SimFamilyName;
 				else 
 					form.lbsimname.Text = Localization.Manager.GetString("Unknown");
 
-				form.ListWants();
+				
 				form.lastwi = null;
 				form.lastlvi = null;
 
@@ -123,7 +148,10 @@ namespace SimPe.Plugin
 						form.tabControl1.TabPages.Remove(form.tblife);
 						form.tabControl1.SelectedIndex = 0;
 					}
-				}				
+				}	
+			
+				
+				WantInformation.SaveCache();
 			} 
 			catch (Exception ex) 
 			{

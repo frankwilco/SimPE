@@ -554,17 +554,20 @@ namespace SimPe.Plugin
 				{
 					string name = Hashes.StripHashFromName(i.Title.Trim().ToLower());					
 					
-					if (pfd.Instance == 0x88) if (!name.EndsWith("_txmt")) name += "_txmt";
-					else if (pfd.Instance == 0x85) if (!name.EndsWith("_cres")) name += "_cres";
+					if (name=="") continue;
+					if (pfd.Instance == 0x88) {if (!name.EndsWith("_txmt")) name += "_txmt";}
+					else if (pfd.Instance == 0x85) {if (!name.EndsWith("_cres")) name += "_cres";}
+					else if (pfd.Instance == 0x86) {if (!name.EndsWith("_anim")) name += "_anim";}
 					else continue;
+					
 
 					string newref = (string)map[name];
 					if (newref!=null) i.Title = Hashes.StripHashFromName(newref.Substring(0, newref.Length-5));
-					else i.Title = name;//Hashes.StripHashFromName(i.Title);
+					else i.Title = Hashes.StripHashFromName(i.Title);
 
-					if ((i.Title.Trim()!="") && (ver == FixVersion.UniversityReady))  i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+i.Title;
+					if (((ver == FixVersion.UniversityReady) || (pfd.Instance == 0x88)) && (newref!=null)) i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+i.Title;
 					
-					if ((modelname==null) && (i.Title.Trim()!="") && (i.Language.Id==1) && (pfd.Instance==0x85)) 
+					if ((modelname==null) && (i.Language.Id==1) && (pfd.Instance==0x85)) 
 						modelname = name.ToUpper().Replace("-", "_");
 				}
 				

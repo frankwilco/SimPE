@@ -28,7 +28,9 @@ namespace SimPe.Cache
 	public enum ContainerType :byte
 	{
 		None = 0x00,
-		Object = 0x01
+		Object = 0x01,
+		MaterialOverride = 0x02,
+		Want = 0x03
 	};
 
 	/// <summary>
@@ -62,6 +64,22 @@ namespace SimPe.Cache
 		DateTime added;
 		string filename;
 
+		/// <summary>
+		/// Returns the Version of the File
+		/// </summary>
+		public byte Version 
+		{
+			get { return version; }
+		}
+
+		/// <summary>
+		/// Returns the Version of the File
+		/// </summary>
+		public DateTime Added 
+		{
+			get { return added; }
+		}
+		
 		CacheItems items;
 		/// <summary>
 		/// Return all available Items
@@ -115,33 +133,55 @@ namespace SimPe.Cache
 				if (version<=VERSION) 
 				{
 					reader.BaseStream.Seek(offset, System.IO.SeekOrigin.Begin);
-					switch (type) 
+					added = DateTime.FromFileTime(reader.ReadInt64());
+					filename = reader.ReadString();
+
+					if (System.IO.File.Exists(filename)) 
 					{
-						case ContainerType.Object:
+						DateTime mod = System.IO.File.GetLastWriteTime(filename);
+						valid = (mod<=added);
+					}
+
+					if (valid) 
+					{
+						switch (type) 
 						{
-							
-							added = DateTime.FromFileTime(reader.ReadInt64());
-							filename = reader.ReadString();
-
-							if (System.IO.File.Exists(filename)) 
-							{
-								DateTime mod = System.IO.File.GetLastWriteTime(filename);
-								valid = (mod<=added);
-							}
-
-							if (valid) 
-							{
+							case ContainerType.Object:
+							{	
 								for (int i=0; i<count; i++) 
 								{
 									ObjectCacheItem oci = new ObjectCacheItem();
 									oci.Load(reader);
 									items.Add(oci);
 								}
+							
+								break;
 							}
-							break;
-						}						
-					}
-				}
+							case ContainerType.MaterialOverride:
+							{														
+								for (int i=0; i<count; i++) 
+								{
+									MMATCacheItem oci = new MMATCacheItem();
+									oci.Load(reader);
+									items.Add(oci);
+								}
+							
+								break;
+							}	
+							case ContainerType.Want:
+							{														
+								for (int i=0; i<count; i++) 
+								{
+									WantCacheItem oci = new WantCacheItem();
+									oci.Load(reader);
+									items.Add(oci);
+								}
+							
+								break;
+							}	
+						}
+					} // if valid
+				} //if VERSION
 			} 
 			finally 
 			{
@@ -168,15 +208,9 @@ namespace SimPe.Cache
 			else //Item writing Phase
 			{
 				writer.Seek(offset, System.IO.SeekOrigin.Begin);
-				switch (type) 
-				{
-					case ContainerType.Object:
-					{
-						writer.Write(added.ToFileTime());
-						writer.Write(filename);
-						break;
-					}
-				}
+				writer.Write(added.ToFileTime());
+				writer.Write(filename);
+				
 				for (int i=0; i<items.Count; i++) items[i].Save(writer);				
 			}
 		}

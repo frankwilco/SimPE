@@ -229,8 +229,35 @@ namespace SimPe.Plugin
 		}
 
 		public override string ToString()
-		{			
-			return Information.Name;
+		{		
+			string n = Information.Name;
+			n = n.Replace("$Value", this.Property.ToString());
+			n = n.Replace("$Money", this.Property.ToString());
+			string c = WantLoader.WantNameLoader.FindName(Type, this.Value);
+
+			if (this.Type==WantType.Career) 
+			{				
+				if (c!=null) n = n.Replace("$JobTitle", c);
+				if (c!=null) n = n.Replace("$CareerTrack", c);
+			} 
+			else if (this.Type==WantType.Skill) 
+			{
+				if (c!=null) n = n.Replace("$Skill", c);
+			} 
+			else if (this.Type==WantType.Category) 
+			{				  
+				if (c!=null) n = n.Replace("$ObjectType", c);
+			} 
+			else if (this.Type==WantType.Object) 
+			{				
+				if (c!=null) n = n.Replace("$Object", c);
+			}  
+			else if (this.Type==WantType.Sim)
+			{
+				if (c!=null) n = n.Replace("$Neighbor", c);
+			} 
+
+			return n;
 		}
 
 	}

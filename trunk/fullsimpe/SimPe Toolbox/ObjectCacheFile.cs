@@ -18,57 +18,76 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.IO;
 using System.Collections;
+using SimPe;
+using SimPe.Plugin;
 
-namespace SimPe.Interfaces.Providers
+
+namespace SimPe.Cache
 {
 	/// <summary>
-	/// Interface to obtain all SimDescriptions available in a Package
+	/// Contains an Instance of a CacheFile
 	/// </summary>
-	public interface ISimDescriptions : ICommonPackage
+	public class ObjectCacheFile: CacheFile
 	{
 		/// <summary>
-		/// Find the Description of a Sim using the Instance Number
+		/// Creaet a new Instance for an empty File
 		/// </summary>
-		/// <param name="instance">The Instance Id of the sim</param>
-		/// <returns>null or a ISDesc Object</returns>
-		Wrapper.ISDesc FindSim(ushort instance);
-
-		/// <summary>
-		/// Find the Description of a Sim using the Sim ID
-		/// </summary>
-		/// <param name="simid">The Sim ID</param>
-		/// <returns>null or a ISDesc Object</returns>
-		Wrapper.ISDesc FindSim(uint simid);
-
-		/// <summary>
-		/// returns the Instance Id for the given Sim
-		/// </summary>
-		/// <param name="simid">ID of the Sim</param>
-		/// <returns>0xffff or a valid Instance Number</returns>
-		ushort GetInstance(uint simid);
-
-		/// <summary>
-		/// returns the Sim Id for the given Sim
-		/// </summary>
-		/// <param name="instance">Instance Number of the Sim</param>
-		/// <returns>0xffffffff or a valid Sim ID</returns>
-		uint GetSimId(ushort instance);
-
-		/// <summary>
-		/// Returns availabl SDSC Files by SimGUID
-		/// </summary>
-		Hashtable SimGuidMap
+		public ObjectCacheFile() : base()
 		{
-			get;
+			DEFAULT_TYPE = ContainerType.Object;
+		}		
+
+		/// <summary>
+		/// Add a Object Item to the Cache
+		/// </summary>
+		/// <param name="oci">The Cache Item</param>
+		/// <param name="filename">name of the package File where the Object was in</param>
+		public void AddItem(ObjectCacheItem oci, string filename) 
+		{
+			CacheContainer mycc = this.UseConatiner(ContainerType.Object, filename);						
+			mycc.Items.Add(oci);
+		}
+
+		FileIndex fi;
+		/// <summary>
+		/// Return the FileIndex represented by the Cached Files
+		/// </summary>
+		public FileIndex FileIndex 
+		{
+			get { 
+				if (fi==null) LoadObjects();
+				return fi; 
+			}
 		}
 
 		/// <summary>
-		/// Returns availabl SDSC Files by Instance
+		/// Creates a FileIndex with all available MMAT Files
 		/// </summary>
-		Hashtable SimInstance
+		/// <returns>the FileIndex</returns>
+		/// <remarks>
+		/// The Tags of the FileDescriptions contain the MMATCachItem Object, 
+		/// the FileNames of the FileDescriptions contain the Name of the package File
+		/// </remarks>
+		public void LoadObjects()
 		{
-			get;
+			fi = new FileIndex(new ArrayList());
+			fi.Duplicates = true;
+			
+			foreach (CacheContainer cc in Containers) 
+			{
+				if (cc.Type==ContainerType.Object && cc.Valid) 
+				{
+					foreach (ObjectCacheItem mci in cc.Items) 
+					{
+						Interfaces.Files.IPackedFileDescriptor pfd = mci.FileDescriptor;
+						pfd.Filename = cc.FileName;
+						fi.AddIndexFromPfd(pfd, null, FileIndex.GetLocalGroup(pfd.Filename));
+					}
+				}
+			}//foreach
 		}
+
 	}
 }

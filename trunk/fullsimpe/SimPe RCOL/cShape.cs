@@ -416,14 +416,14 @@ namespace SimPe.Plugin
 			{
 				list.Add(SimPe.Plugin.ScenegraphHelper.BuildPfd(part.FileName.Trim()+"_txmt", SimPe.Plugin.ScenegraphHelper.TXMT, parentgroup));
 			}
-			refmap["TXMT"] = list;
+			refmap["Subsets"] = list;
 
 			list = new ArrayList();
 			foreach (ShapeItem item in Items) 
 			{
 				list.Add(SimPe.Plugin.ScenegraphHelper.BuildPfd(item.FileName.Trim(), SimPe.Plugin.ScenegraphHelper.GMND, parentgroup));
 			}
-			refmap["GMDN"] = list;
+			refmap["Models"] = list;
 		}
 
 		#endregion

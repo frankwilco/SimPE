@@ -27,29 +27,25 @@ namespace SimPe.Cache
 	/// <summary>
 	/// Contains one ObjectCacheItem
 	/// </summary>
-	public class ObjectCacheItem : ICacheItem
+	public class WantCacheItem : ICacheItem
 	{
 		/// <summary>
 		/// The current Version
 		/// </summary>
 		public const byte VERSION = 1;
 
-		public ObjectCacheItem()
+		public WantCacheItem()
 		{			
 			version = VERSION;
 			name = "";
-			modelname = "";
+			type = "";
+			folder = "";
 			pfd = new Packages.PackedFileDescriptor();
 		}
 
-		byte version;
-		string name;
-		string modelname;
+		byte version;		
 		Interfaces.Files.IPackedFileDescriptor pfd;
-		uint localgroup;
-		Image thumb;
-		ushort objtype;
-		short objfuncsort;
+		
 
 		/// <summary>
 		/// Returns an (unitialized) FileDescriptor
@@ -63,62 +59,59 @@ namespace SimPe.Cache
 			set { pfd = value; }
 		}
 
-		/// <summary>
-		/// Returns the Type Field of the Object
-		/// </summary>
-		public ushort ObjectType
+		uint guid;
+		public uint Guid
 		{
-			get { return objtype; }
-			set { objtype = value; }
+			get { return guid; }
+			set { guid = value; }
 		}
 
-		/// <summary>
-		/// Returns the FunctionSort Field of the Object
-		/// </summary>
-		public short ObjectFunctionSort
+		string folder;
+		public string Folder
 		{
-			get { return objfuncsort; }
-			set { objfuncsort = value; }
-		}
-		/// <summary>
-		/// Returns the LocalGroup
-		/// </summary>
-		public uint LocalGroup
-		{
-			get { return localgroup; }
-			set { localgroup = value; }
+			get { return folder; }
+			set { folder = value; }
 		}
 
-		/// <summary>
-		/// Returns the Name of this Object
-		/// </summary>
+		int score;
+		public int Score
+		{
+			get { return score; }
+			set { score = value; }
+		}
+
+		int influence;
+		public int Influence
+		{
+			get { return influence; }
+			set { influence = value; }
+		}
+
+		string type;
+		public string ObjectType
+		{
+			get { return type; }
+			set { type = value; }
+		}
+
+		string name;
 		public string Name
 		{
 			get { return name; }
 			set { name = value; }
 		}
 
-		/// <summary>
-		/// Returns the ModeName for this Object
-		/// </summary>
-		public string ModelName
-		{
-			get { return modelname; }
-			set { modelname = value; }
-		}
-
-		/// <summary>
-		/// Returns the Thumbnail
-		/// </summary>
-		public Image Thumbnail 
+		Image thumb;
+		public Image Icon
 		{
 			get { return thumb; }
 			set { thumb = value; }
 		}
 
+
 		public override string ToString()
 		{
-			return "Object: name="+Name;
+			return "Want: name="+Name;
 		}
 
 		#region ICacheItem Member
@@ -129,12 +122,15 @@ namespace SimPe.Cache
 			if (version>VERSION) throw new CacheException("Unknown CacheItem Version.", null, version);
 							
 			name = reader.ReadString();
-			modelname = reader.ReadString();
+			type = reader.ReadString();
 			pfd = new Packages.PackedFileDescriptor();
 			pfd.Type = reader.ReadUInt32();
-			pfd.Group = reader.ReadUInt32();
-			localgroup = reader.ReadUInt32();
+			pfd.Group = reader.ReadUInt32();			
 			pfd.LongInstance = reader.ReadUInt64();
+			influence = reader.ReadInt32();
+			score = reader.ReadInt32();
+			guid = reader.ReadUInt32();
+			folder = reader.ReadString();
 			
 
 			int size = reader.ReadInt32();
@@ -149,9 +145,6 @@ namespace SimPe.Cache
 
 				thumb = Image.FromStream(ms);				
 			}
-
-			objtype = reader.ReadUInt16();
-			objfuncsort = reader.ReadInt16();
 		}
 
 		public void Save(System.IO.BinaryWriter writer) 
@@ -159,11 +152,14 @@ namespace SimPe.Cache
 			version = VERSION;
 			writer.Write(version);
 			writer.Write(name);
-			writer.Write(modelname);			
+			writer.Write(type);			
 			writer.Write(pfd.Type);
 			writer.Write(pfd.Group);
-			writer.Write(localgroup);
 			writer.Write(pfd.LongInstance);
+			writer.Write(influence);
+			writer.Write(score);
+			writer.Write(guid);
+			writer.Write(folder);
 
 			if (thumb==null) 
 			{
@@ -172,14 +168,11 @@ namespace SimPe.Cache
 			else 
 			{
 				MemoryStream ms = new MemoryStream();
-				thumb.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+				thumb.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
 				byte[] data = ms.ToArray();
 				writer.Write(data.Length);
 				writer.Write(data);
 			}
-
-			writer.Write(objtype);
-			writer.Write(objfuncsort);
 		}
 
 		public byte Version

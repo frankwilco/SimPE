@@ -21,19 +21,86 @@ using System;
 using System.Collections;
 using SimPe.Interfaces.Plugin;
 using System.Windows.Forms;
+using SimPe.Cache;
 
 
 namespace SimPe.Plugin
 {
 	/// <summary>
+	/// This basically is a Class describing the Wants (loaded from the Cache)
+	/// </summary>
+	public class WantCacheInformation  : WantInformation
+	{
+		/// <summary>
+		/// Use WantInformation::LoadWant() to create a new Instance
+		/// </summary>
+		/// <param name="guid">The guid of the Want</param>
+		WantCacheInformation(uint guid):base(guid)
+		{
+			name = "";
+		}
+
+		/// <summary>
+		/// Use WantInformation::LoadWant() to create a new Instance
+		/// </summary>
+		WantCacheInformation():base()
+		{
+			name = "";
+		}
+
+		/// <summary>
+		/// Load Informations about a specific Want
+		/// </summary>
+		/// <param name="guid">The GUID of the want</param>
+		/// <returns>A Want Information Structure</returns>
+		public static WantCacheInformation LoadWant(SimPe.Cache.WantCacheItem wci) 
+		{
+			WantCacheInformation ret = new WantCacheInformation();
+			ret.icon = wci.Icon;
+			ret.name = wci.Name;
+			ret.guid = wci.Guid;
+
+			XWant w = new XWant();
+			SimPe.PackedFiles.Wrapper.CpfItem i = new SimPe.PackedFiles.Wrapper.CpfItem(); i.Name = "id"; i.UIntegerValue = wci.Guid; w.AddItem(i, true);
+			i = new SimPe.PackedFiles.Wrapper.CpfItem(); i.Name = "folder"; i.StringValue = wci.Folder; w.AddItem(i, true);
+			i = new SimPe.PackedFiles.Wrapper.CpfItem(); i.Name = "score"; i.IntegerValue = wci.Score; w.AddItem(i, true);
+			i = new SimPe.PackedFiles.Wrapper.CpfItem(); i.Name = "influence"; i.IntegerValue = wci.Influence; w.AddItem(i, true);
+			i = new SimPe.PackedFiles.Wrapper.CpfItem(); i.Name = "objectType"; i.StringValue = wci.ObjectType; w.AddItem(i, true);
+
+			ret.wnt = w;
+			
+			return ret;
+		}
+
+		System.Drawing.Image icon;
+		public override System.Drawing.Image Icon
+		{
+			get
+			{
+				return icon;
+			}
+		}
+
+		string name;
+		public override string Name
+		{
+			get
+			{
+				return name;
+			}
+		}
+
+	}
+
+	/// <summary>
 	/// This basically is a Class describing the Wants
 	/// </summary>
 	public class WantInformation 
 	{
-		XWant wnt;
+		protected XWant wnt;
 		SimPe.PackedFiles.Wrapper.Str str;
 		SimPe.PackedFiles.Wrapper.Picture primicon;
-		uint guid;
+		protected uint guid;
 		internal string prefix="";
 
 		static Hashtable wantcache;
@@ -41,15 +108,53 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Use WantInformation::LoadWant() to create a new Instance
 		/// </summary>
+		protected WantInformation() 
+		{
+		}
+
+		/// <summary>
+		/// Use WantInformation::LoadWant() to create a new Instance
+		/// </summary>
 		/// <param name="guid">The guid of the Want</param>
-		WantInformation(uint guid)
+		protected WantInformation(uint guid)
 		{
 			this.guid = guid;
 			
 			wnt = WantLoader.GetWant(guid);
 			str = WantLoader.LoadText(wnt);
-			primicon = WantLoader.LoadIcon(wnt);				 	
+			primicon = WantLoader.LoadIcon(wnt);				 				
 		}
+
+		#region Cache 
+		static WantCacheFile cachefile;
+
+		static void LoadCache()
+		{
+			if (cachefile!=null) return;
+
+			cachefile = new WantCacheFile();
+			if (!Helper.WindowsRegistry.UseCache) return;
+			try 
+			{
+				cachefile.Load(Helper.SimPeLanguageCache);
+			} 
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage("", ex);
+			}
+		}
+
+		/// <summary>
+		/// Save the Cache to the FileSystem
+		/// </summary>
+		public static void SaveCache()
+		{
+			if (!Helper.WindowsRegistry.UseCache) return;
+			if (cachefile==null) return;
+
+			cachefile.Save(Helper.SimPeLanguageCache);
+		}
+		#endregion
 
 		/// <summary>
 		/// Load Informations about a specific Want
@@ -58,17 +163,25 @@ namespace SimPe.Plugin
 		/// <returns>A Want Information Structure</returns>
 		public static WantInformation LoadWant(uint guid) 
 		{
-			if (wantcache == null) wantcache = new Hashtable();
+			LoadCache();
+			if (wantcache == null) wantcache = cachefile.Map;
 
 			if (wantcache.ContainsKey(guid)) 
 			{
-				WantInformation wf = (WantInformation)wantcache[guid];
+				object o = wantcache[guid];
+				WantInformation wf;
+				if (o.GetType()==typeof(WantInformation)) 
+					 wf = (WantInformation)o;
+				else 
+					wf = WantCacheInformation.LoadWant((WantCacheItem)o);
+
 				return wf;
 			}  
 			else 
 			{
 				WantInformation wf = new WantInformation(guid);
 				wantcache[guid] = wf;
+				cachefile.AddItem(wf);
 				return wf;
 			}
 		}
@@ -85,7 +198,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns the Name of this Want
 		/// </summary>
-		public string Name 
+		public virtual string Name 
 		{
 			get 
 			{
@@ -97,7 +210,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns Icon for this want or null
 		/// </summary>
-		public System.Drawing.Image Icon
+		public virtual System.Drawing.Image Icon
 		{
 			get 
 			{
@@ -129,6 +242,7 @@ namespace SimPe.Plugin
 	{
 		static Hashtable wants = null;
 		static SimPe.Packages.File txtpkg = null;
+		static WantNameLoader wnl;
 
 		/// <summary>
 		/// Returns a Hashtable of all available Wants
@@ -140,6 +254,18 @@ namespace SimPe.Plugin
 			{
 				if (wants==null) LoadWants();
 				return wants;
+			}
+		}
+
+		/// <summary>
+		/// Returns a WantNameLoader ou can use to determin Names
+		/// </summary>
+		public static WantNameLoader WantNameLoader 
+		{
+			get 
+			{
+				if (wnl==null) wnl = new WantNameLoader();
+				return wnl;
 			}
 		}
 
@@ -253,4 +379,5 @@ namespace SimPe.Plugin
 			return null;
 		}
 	}
+
 }
