@@ -32,13 +32,15 @@ namespace SimPe.Cache
 		/// <summary>
 		/// The current Version
 		/// </summary>
-		public const byte VERSION = 1;
+		public const byte VERSION = 2;
 
 		public ObjectCacheItem()
 		{			
 			version = VERSION;
 			name = "";
 			modelname = "";
+			objname = "";
+			use = true;
 			pfd = new Packages.PackedFileDescriptor();
 		}
 
@@ -49,7 +51,9 @@ namespace SimPe.Cache
 		uint localgroup;
 		Image thumb;
 		ushort objtype;
+		string objname;
 		short objfuncsort;
+		bool use;
 
 		/// <summary>
 		/// Returns an (unitialized) FileDescriptor
@@ -96,6 +100,24 @@ namespace SimPe.Cache
 		{
 			get { return name; }
 			set { name = value; }
+		}
+
+		/// <summary>
+		/// Returns the Name of this Object
+		/// </summary>
+		public string ObjectFileName
+		{
+			get { return objname; }
+			set { objname = value; }
+		}
+
+		/// <summary>
+		/// Returns the Name of this Object
+		/// </summary>
+		public bool Useable
+		{
+			get { return use; }
+			set { use = value; }
 		}
 
 		/// <summary>
@@ -152,6 +174,17 @@ namespace SimPe.Cache
 
 			objtype = reader.ReadUInt16();
 			objfuncsort = reader.ReadInt16();
+
+			if (version==2) 
+			{
+				objname = reader.ReadString();
+				use = reader.ReadBoolean();
+			} 
+			else 
+			{
+				objname = modelname;
+				use = true;
+			}
 		}
 
 		public void Save(System.IO.BinaryWriter writer) 
@@ -180,6 +213,9 @@ namespace SimPe.Cache
 
 			writer.Write(objtype);
 			writer.Write(objfuncsort);
+
+			writer.Write(objname);
+			writer.Write(use);
 		}
 
 		public byte Version

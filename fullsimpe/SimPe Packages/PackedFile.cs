@@ -315,8 +315,18 @@ namespace SimPe.Packages
 		//some Compression Data
 		const int MAX_OFFSET = 0x20000;
 		const int MAX_COPY_COUNT = 0x404;
-		//used to finetune the lookup (small values increase the compression for Big Files)
-		const int MAX_LOOP_COUNT = 0x81;
+
+		//used to finetune the lookup (small values increase the compression for Big Files)		
+		static int compstrength = 0x81;
+
+		/// <summary>
+		/// Returns /Sets the compression Strength
+		/// </summary>
+		public static int CompressionStrength 
+		{
+			get { return compstrength; }
+			set { compstrength = value; }
+		}
 
 		/// <summary>
 		/// Compresses the passed content
@@ -376,7 +386,7 @@ namespace SimPe.Packages
 				#region find the longest repeating byte sequence in the index List (for offset copy)
 				int offsetcopycount = 0;
 				int loopcount = 1;
-				while ((loopcount<indexlist.Count) && (loopcount < MAX_LOOP_COUNT))
+				while ((loopcount<indexlist.Count) && (loopcount < compstrength))
 				{
 					int foundindex = (int)indexlist[(indexlist.Count-1)-loopcount];
 					if ((index - foundindex) >= MAX_OFFSET) break;
@@ -403,14 +413,14 @@ namespace SimPe.Packages
 				else if ((offsetcopycount < 5) && (copyoffset > 0x4000)) offsetcopycount = 0;
 
 				
-				//this is compressable? so do the compression
+				//this is offset-compressable? so do the compression
 				if (offsetcopycount > 0)
 				{
 					//plaincopy
 					while ((index - lastreadindex) > 3)
 					{
 						copycount = (index - lastreadindex) ;
-						while (copycount>0x70) copycount -= 0x70;
+						while (copycount>0x71) copycount -= 0x71;
 						copycount = copycount & 0xfc;
 						int realcopycount = (copycount >> 2);
 						
@@ -459,7 +469,7 @@ namespace SimPe.Packages
 			while ((index - lastreadindex) > 3)
 			{
 				copycount = (index - lastreadindex) ;
-				while (copycount>0x70) copycount -= 0x70;
+				while (copycount>0x71) copycount -= 0x71;
 				copycount = copycount & 0xfc;
 				int realcopycount = (copycount >> 2);
 						
@@ -470,8 +480,6 @@ namespace SimPe.Packages
 			copycount = index - lastreadindex;
 			cdata[writeindex++] = (byte) (0xfc + copycount);
 			for (int i=0; i<copycount; i++) cdata[writeindex++] = data[lastreadindex++];
-			//add this as an End Mark
-			//cdata[writeindex++] = (byte) (0xfc);
 			#endregion
 
 			#region Trim Data & and add Header

@@ -39,6 +39,7 @@ namespace SimPe
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.CheckBox cbfix;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.CheckBox cbname;
 		private System.ComponentModel.IContainer components;
 
 		public ImportSemi()
@@ -108,6 +109,7 @@ namespace SimPe
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.cbfix = new System.Windows.Forms.CheckBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.cbname = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// btimport
@@ -197,10 +199,23 @@ namespace SimPe
 			this.toolTip1.SetToolTip(this.cbfix, "Check this Option if you want to Fix references form TTABs and BHAVs in this pack" +
 				"age to the imported SemiGLobals.");
 			// 
+			// cbname
+			// 
+			this.cbname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cbname.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbname.Location = new System.Drawing.Point(120, 360);
+			this.cbname.Name = "cbname";
+			this.cbname.Size = new System.Drawing.Size(128, 24);
+			this.cbname.TabIndex = 9;
+			this.cbname.Text = "Add name Prefix";
+			this.toolTip1.SetToolTip(this.cbname, "Check this Option if you want to Fix references form TTABs and BHAVs in this pack" +
+				"age to the imported SemiGLobals.");
+			// 
 			// ImportSemi
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
 			this.ClientSize = new System.Drawing.Size(522, 392);
+			this.Controls.Add(this.cbname);
 			this.Controls.Add(this.cbfix);
 			this.Controls.Add(this.lbfiles);
 			this.Controls.Add(this.llscan);
@@ -323,7 +338,7 @@ namespace SimPe
 
 					SimPe.Plugin.Bhav bhav = new SimPe.Plugin.Bhav(prov.OpcodeProvider);
 					bhav.ProcessData(npfd, package);
-					bhav.FileName = "["+cbsemi.Text+"] "+bhav.FileName;
+					if (cbname.Checked)	bhav.FileName = "["+cbsemi.Text+"] "+bhav.FileName;
 					bhav.SynchronizeUserData();
 
 					bhavs.Add(bhav);
@@ -336,7 +351,7 @@ namespace SimPe
 
 					SimPe.Plugin.Bcon bcon = new SimPe.Plugin.Bcon();
 					bcon.ProcessData(npfd, package);
-					bcon.FileName = "["+cbsemi.Text+"] "+bcon.FileName;
+					if (cbname.Checked)	bcon.FileName = "["+cbsemi.Text+"] "+bcon.FileName;
 					bcon.SynchronizeUserData();
 				} 
 				else if  (npfd.Type == 0x54544142) //TTAB

@@ -107,6 +107,25 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// true, if user wants to show the OBJD Filenames in OW
+		/// </summary>
+		public  bool ShowObjdNames
+		{
+			get 
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				object o = rkf.GetValue("ShowObjdNames");
+				if (o==null) return false;
+				else return Convert.ToBoolean(o);
+			}
+			set
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				rkf.SetValue("ShowObjdNames", value);
+			}
+		}
+
+		/// <summary>
 		/// true, if user wants to activate the Cache
 		/// </summary>
 		public  bool XPStyle
@@ -273,6 +292,32 @@ namespace SimPe
 			{
 				RegistryKey rkf = rk.CreateSubKey("Settings");
 				rkf.SetValue("Version", value);
+			}
+		}
+
+		/// <summary>
+		/// Returns the Thumbnail Size for Treeview Items in OW
+		/// </summary>
+		public int OWThumbSize
+		{
+			get 
+			{
+				try 
+				{
+					RegistryKey rkf = rk.CreateSubKey("Settings");
+					object o = rkf.GetValue("OWThumbSize");
+					if (o==null) return 16;
+					else return (int)o;
+				} 
+				catch (Exception) 
+				{
+					return 16;
+				}
+			}
+			set
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				rkf.SetValue("OWThumbSize", value);
 			}
 		}
 
