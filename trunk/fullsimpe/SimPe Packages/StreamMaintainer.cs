@@ -94,7 +94,7 @@ namespace SimPe.Packages
 				
 				string name = fs.Name;
 				fs = null;
-				fs = new FileStream(name, System.IO.FileMode.Open, fa);
+				fs = new FileStream(name, System.IO.FileMode.OpenOrCreate, fa);
 			} 
 			catch (Exception ex){
 				if (Helper.DebugMode) Helper.ExceptionMessage("", ex);
@@ -217,12 +217,28 @@ namespace SimPe.Packages
 		/// <returns>a StreamItem (StreamState is Removed if the File did not exits!</returns>
 		public static StreamItem UseStream(string filename, FileAccess fa) 
 		{
+			return UseStream(filename, fa, false);
+		}
+
+		/// <summary>
+		/// Returns a Usable Stream for that File
+		/// </summary>
+		/// <param name="filename">The name of the File</param>
+		/// <param name="fa">The Acces Attributes</param>
+		/// <param name="create">true if the file should be created if not available</param>
+		/// <returns>a StreamItem (StreamState is Removed if the File did not exits!</returns>
+		public static StreamItem UseStream(string filename, FileAccess fa, bool create) 
+		{
 			StreamItem si = GetStreamItem(filename);
 			//File does not exists, so set State to removed
 			if (!System.IO.File.Exists(filename)) 
 			{
 				if (si.StreamState == StreamState.Opened) si.FileStream.Close();
-				si.SetFileStream(null);
+
+				if (create) 
+				{
+					si.SetFileStream(new FileStream(filename, System.IO.FileMode.OpenOrCreate, fa));
+				} else si.SetFileStream(null);
 
 				return si;
 			}

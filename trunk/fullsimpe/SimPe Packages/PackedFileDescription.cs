@@ -351,7 +351,12 @@ namespace SimPe.Packages
 		}*/
 		#endregion
 
-
+		object tag;
+		public object Tag 
+		{
+			get {return tag;}
+			set {tag = value;}
+		}
 
 		#region UserData Extensions
 		/// <summary>

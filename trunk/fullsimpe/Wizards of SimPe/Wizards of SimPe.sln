@@ -3,10 +3,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards of SimPe", "Wizards
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPe - DemoWizard", "..\WOSimPe - DemoWizard\WOSimPe - DemoWizard.csproj", "{55A67A5D-43E8-4290-B52F-230233B1439D}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPE - Interfaces", "..\WOSimPE - Interfaces\WOSimPE - Interfaces.csproj", "{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
@@ -91,6 +87,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Scenegraph", "..\SimP
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Cache", "..\SimPe Cache\SimPe Cache.csproj", "{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -104,12 +104,6 @@ Global
 		{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}.Debug Txtr.Build.0 = Debug|.NET
 		{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}.Release.ActiveCfg = Release|.NET
 		{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}.Release.Build.0 = Release|.NET
-		{55A67A5D-43E8-4290-B52F-230233B1439D}.Debug.ActiveCfg = Debug|.NET
-		{55A67A5D-43E8-4290-B52F-230233B1439D}.Debug.Build.0 = Debug|.NET
-		{55A67A5D-43E8-4290-B52F-230233B1439D}.Debug Txtr.ActiveCfg = Debug|.NET
-		{55A67A5D-43E8-4290-B52F-230233B1439D}.Debug Txtr.Build.0 = Debug|.NET
-		{55A67A5D-43E8-4290-B52F-230233B1439D}.Release.ActiveCfg = Release|.NET
-		{55A67A5D-43E8-4290-B52F-230233B1439D}.Release.Build.0 = Release|.NET
 		{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}.Debug.ActiveCfg = Debug|.NET
 		{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}.Debug.Build.0 = Debug|.NET
 		{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}.Debug Txtr.ActiveCfg = Debug|.NET
@@ -236,6 +230,12 @@ Global
 		{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}.Debug Txtr.Build.0 = Debug|.NET
 		{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}.Release.ActiveCfg = Release|.NET
 		{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}.Release.Build.0 = Release|.NET
+		{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}.Debug.ActiveCfg = Debug|.NET
+		{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}.Debug.Build.0 = Debug|.NET
+		{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}.Debug Txtr.ActiveCfg = Debug|.NET
+		{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}.Debug Txtr.Build.0 = Debug|.NET
+		{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}.Release.ActiveCfg = Release|.NET
+		{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
