@@ -40,6 +40,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.PictureBox pb;
+		private System.Windows.Forms.LinkLabel llopen;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -84,6 +85,7 @@ namespace SimPe.Plugin
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.pb = new System.Windows.Forms.PictureBox();
+			this.llopen = new System.Windows.Forms.LinkLabel();
 			this.panel2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -103,6 +105,7 @@ namespace SimPe.Plugin
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.BackColor = System.Drawing.Color.White;
+			this.groupBox1.Controls.Add(this.llopen);
 			this.groupBox1.Controls.Add(this.cbrefnames);
 			this.groupBox1.Controls.Add(this.tbflname);
 			this.groupBox1.Controls.Add(this.label2);
@@ -178,6 +181,17 @@ namespace SimPe.Plugin
 			this.pb.TabIndex = 4;
 			this.pb.TabStop = false;
 			// 
+			// llopen
+			// 
+			this.llopen.AutoSize = true;
+			this.llopen.Location = new System.Drawing.Point(88, 0);
+			this.llopen.Name = "llopen";
+			this.llopen.Size = new System.Drawing.Size(35, 17);
+			this.llopen.TabIndex = 4;
+			this.llopen.TabStop = true;
+			this.llopen.Text = "open";
+			this.llopen.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenPfd);
+			// 
 			// ScenegraphForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -188,10 +202,9 @@ namespace SimPe.Plugin
 			this.DockPadding.Left = 8;
 			this.DockPadding.Top = 8;
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ScenegraphForm";
-			this.Text = "Scenegraph";
+			this.Text = "Scenegrapher";
 			this.panel2.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
@@ -199,13 +212,14 @@ namespace SimPe.Plugin
 
 		}
 		#endregion
-
 		
 		
 		public void GraphItemClick(object sender, EventArgs e) 
 		{
 			GraphItem gi = (GraphItem)sender;
 			Hashtable ht = null;
+			llopen.Enabled = false;
+			selpfd = null;
 			if (gi.Tag.GetType()==typeof(string)) 
 			{				
 				this.tbflname.Text = (string)gi.Tag;
@@ -219,15 +233,21 @@ namespace SimPe.Plugin
 				this.cbrefnames.Items.Clear();
 				cbrefnames.Text = "";
 				ht = rcol.ReferenceChains;
+
+				if (rcol.Package.FileName==open_pkg.FileName) selpfd = rcol.FileDescriptor;
 			} 
 			else if (gi.Tag.GetType()==typeof(SimPe.Plugin.MmatWrapper))
 			{
 				SimPe.Plugin.MmatWrapper mmat = (SimPe.Plugin.MmatWrapper)gi.Tag;
-				this.tbflname.Text = mmat.GetSaveItem("subsetName").StringValue;				
+				this.tbflname.Text = mmat.SubsetName;				
 				this.cbrefnames.Items.Clear();
 				cbrefnames.Text = "";
 				ht = mmat.ReferenceChains;
+
+				if (mmat.Package.FileName==open_pkg.FileName) selpfd = mmat.FileDescriptor;
 			}
+
+			llopen.Enabled = (selpfd!=null);
 
 			if (ht!=null)
 				foreach (string s in ht.Keys) 
@@ -240,15 +260,20 @@ namespace SimPe.Plugin
 		}
 
 		
+		SimPe.Interfaces.Files.IPackedFileDescriptor pfd, selpfd;
+		SimPe.Interfaces.Files.IPackageFile open_pkg;
 		/// <summary>
 		/// Build the SceneGraph
 		/// </summary>
 		/// <param name="prov"></param>
 		/// <param name="simpe_pkg"></param>
-		public void Execute(IProviderRegistry prov, SimPe.Interfaces.Files.IPackageFile simpe_pkg) 
+		public void Execute(IProviderRegistry prov, SimPe.Interfaces.Files.IPackageFile simpe_pkg, ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd) 
 		{
+			this. pfd = pfd;
+			this.open_pkg = simpe_pkg;
 			try 
 			{
+				llopen.Enabled = false;
 				WaitingScreen.Wait();
 				SimPe.Interfaces.Files.IPackageFile orgpkg = simpe_pkg;
 
@@ -282,6 +307,8 @@ namespace SimPe.Plugin
 				if (Helper.WindowsRegistry.HiddenMode)
 					Text = "Runtime: "+runtime.TotalSeconds+" sek. = " + runtime.TotalMinutes+ " min.";
 				ShowDialog();
+
+				pfd = this.pfd;
 			} 
 			catch (Exception ex)
 			{
@@ -295,6 +322,12 @@ namespace SimPe.Plugin
 
 		private void button1_Click(object sender, System.EventArgs e)
 		{
+			Close();
+		}
+
+		private void OpenPfd(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			pfd = selpfd;
 			Close();
 		}
 	}

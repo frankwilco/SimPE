@@ -25,25 +25,44 @@ using SimPe.Interfaces.Files;
 namespace SimPe.Plugin
 {
 	/// <summary>
+	/// Availalbe Fix Version
+	/// </summary>
+	public enum FixVersion :byte 
+	{
+		UniversityReady = 0x00,
+		UniversityReady2 = 0x01
+	}
+
+	/// <summary>
 	/// This class can Fix the Integrity of cloned Objects
 	/// </summary>
 	public class FixObject : FixGuid
 	{
 
-		ArrayList types;
+		static ArrayList types;
+		FixVersion ver;
+		public FixVersion FixVersion 
+		{
+			get {return ver; }
+			set {ver = value; }
+		}
 
 		/// <summary>
 		/// Creates a new Instance of this class
 		/// </summary>
 		/// <param name="package">The package you want to fix the Integrity in</param>
-		public FixObject(IPackageFile package) : base (package)
+		public FixObject(IPackageFile package, FixVersion ver) : base (package)
 		{
-			types = new ArrayList();
-			types.Add(Data.MetaData.TXMT);
-			types.Add(Data.MetaData.TXTR);
-			types.Add(Data.MetaData.LIFO);
-			types.Add(Data.MetaData.GMND);
-			//types.Add(Data.MetaData.MMAT);
+			this.ver = ver;
+			if (types==null) 
+			{
+				types = new ArrayList();
+				types.Add(Data.MetaData.TXMT);
+				types.Add(Data.MetaData.TXTR);
+				types.Add(Data.MetaData.LIFO);
+				types.Add(Data.MetaData.GMND);
+				//types.Add(Data.MetaData.MMAT);
+			}
 		}
 
 		/// <summary>
@@ -156,13 +175,13 @@ namespace SimPe.Plugin
 					foreach (ShapeItem item in shp.Items) 
 					{
 						string newref = (string)map[Hashes.StripHashFromName(item.FileName.Trim().ToLower())];
-						if (newref!=null) item.FileName = "##0x1c050000!"+newref;
+						if (newref!=null) item.FileName = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+newref;
 					}
 
 					foreach (ShapePart part in shp.Parts) 
 					{
 						string newref = (string)map[Hashes.StripHashFromName(part.FileName.Trim().ToLower())+"_txmt"];
-						if (newref!=null) part.FileName = "##0x1c050000!"+newref.Substring(0, newref.Length-5);
+						if (newref!=null) part.FileName = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+newref.Substring(0, newref.Length-5);
 					}
 					break;
 				}
@@ -191,8 +210,8 @@ namespace SimPe.Plugin
 								} 
 								else 
 								{
-									string newref = (string)map[mm.LifoFile.Trim().ToLower()];
-									if (newref!=null) mm.LifoFile = newref;
+									string newref = Hashes.StripHashFromName((string)map[mm.LifoFile.Trim().ToLower()]);
+									if (newref!=null) mm.LifoFile = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+newref;
 								}
 							}
 						}
@@ -204,7 +223,11 @@ namespace SimPe.Plugin
 				{
 					ResourceNode rn = (ResourceNode)rcol.Blocks[0];
 					string name = Hashes.StripHashFromName(rcol.FileName);
-					rn.GraphNode.FileName = /*"##0x1c050000!"+*/name;
+
+					if (ver==FixVersion.UniversityReady2)
+						rn.GraphNode.FileName = name;
+					else if (ver==FixVersion.UniversityReady)
+						rn.GraphNode.FileName = "##0x1c050000!"+name;
 
 					break;
 				}
@@ -213,7 +236,11 @@ namespace SimPe.Plugin
 				{
 					GeometryNode gn = (GeometryNode)rcol.Blocks[0];
 					string name = Hashes.StripHashFromName(rcol.FileName);
-					gn.ObjectGraphNode.FileName = /*"##0x1c050000!"+*/name;
+
+					if (ver==FixVersion.UniversityReady2)
+						gn.ObjectGraphNode.FileName = name;
+					else if (ver==FixVersion.UniversityReady)
+						gn.ObjectGraphNode.FileName = "##0x1c050000!"+name;
 
 					break;
 				}
@@ -313,7 +340,7 @@ namespace SimPe.Plugin
 			{
 				
 
-				bool RCOLcheck = this.types.Contains(pfd.Type);
+				bool RCOLcheck = types.Contains(pfd.Type);
 				//foreach (uint tp in RCOLs) if (tp==pfd.Type) { RCOLcheck=true; break; }
 
 				if (Data.MetaData.RcolList.Contains(pfd.Type)) 
@@ -323,19 +350,33 @@ namespace SimPe.Plugin
 
 					foreach (Interfaces.Files.IPackedFileDescriptor p in rcol.ReferencedFiles) 
 					{
-						if (types.Contains(p.Type)) p.Group = Data.MetaData.CUSTOM_GROUP;
-						else p.Group = Data.MetaData.LOCAL_GROUP;
+						if (ver == FixVersion.UniversityReady2) 
+						{
+							if (types.Contains(p.Type)) p.Group = Data.MetaData.CUSTOM_GROUP;
+							else p.Group = Data.MetaData.LOCAL_GROUP;
+						} 
+						else 
+						{
+							p.Group = Data.MetaData.CUSTOM_GROUP;
+						}
 					}
 					rcol.SynchronizeUserData();
 				}
 
-				if (RCOLcheck) 
+				if (ver == FixVersion.UniversityReady2) 
 				{
-					pfd.Group = Data.MetaData.CUSTOM_GROUP;
-				}
+					if (RCOLcheck) 
+					{
+						pfd.Group = Data.MetaData.CUSTOM_GROUP;
+					}
+					else 
+					{
+						pfd.Group = Data.MetaData.LOCAL_GROUP;
+					}
+				} 
 				else 
 				{
-					pfd.Group = Data.MetaData.LOCAL_GROUP;
+					pfd.Group = Data.MetaData.CUSTOM_GROUP;
 				}
 			}
 		}
@@ -347,7 +388,7 @@ namespace SimPe.Plugin
 		/// <returns></returns>
 		public Hashtable GetNameMap(bool uniquename) 
 		{
-			return RenameForm.Execute(package, uniquename);
+			return RenameForm.Execute(package, uniquename, ref ver);
 		}
 
 		/// <summary>
@@ -358,7 +399,7 @@ namespace SimPe.Plugin
 		/// <param name="uniquefamily">change the family values in the MMAT Files</param>
 		public void Fix(Hashtable map, bool uniquefamily)
 		{
-			string grouphash = "##0x1c050000!";//"#0x"+Helper.HexString(package.FileGroupHash)+"!";
+			string grouphash = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!";//"#0x"+Helper.HexString(package.FileGroupHash)+"!";
 			
 
 			Hashtable refmap = new Hashtable();
@@ -375,8 +416,8 @@ namespace SimPe.Plugin
 					SimPe.Plugin.Rcol rcol = new GenericRcol(null, false);
 					rcol.ProcessData(pfd, package);
 
-					//rcol.FileName = Hashes.StripHashFromName(rcol.FileName);
-					/*if (types.Contains(pfd.Type)) rcol.FileName = Hashes.StripHashFromName(rcol.FileName);
+					//rcol.FileName = Hashes.StripHashFromName(rcol.);
+					/*if (types.Contains(pfd.Type)) rcol. = Hashes.StripHashFromName(rcol.);
 					else rcol.FileName = grouphash + Hashes.StripHashFromName(rcol.FileName);*/
 
 					foreach (Interfaces.Files.IPackedFileDescriptor rpfd in rcol.ReferencedFiles) 
@@ -400,7 +441,7 @@ namespace SimPe.Plugin
 					SimPe.Plugin.Rcol rcol = new GenericRcol(null, false);
 					rcol.ProcessData(pfd, package);
 
-					//rcol.FileName = grouphash + Hashes.StripHashFromName(rcol.FileName);
+					//rcol.FileName = grouphash + Hashes.StripHashFromName(rcol.);
 					rcol.FileDescriptor.Instance = Hashes.InstanceHash(Hashes.StripHashFromName(rcol.FileName));
 					rcol.FileDescriptor.SubType = Hashes.SubTypeHash(Hashes.StripHashFromName(rcol.FileName));
 
@@ -423,8 +464,15 @@ namespace SimPe.Plugin
 					{
 						string refstr = Helper.HexString(rpfd.Group)+Helper.HexString(rpfd.Type)+Helper.HexString(rpfd.Instance)+Helper.HexString(rpfd.SubType);
 
-						if (types.Contains(rpfd.Type)) rpfd.Group = Data.MetaData.CUSTOM_GROUP;
-						else rpfd.Group = Data.MetaData.LOCAL_GROUP;
+						if (ver == FixVersion.UniversityReady2) 
+						{
+							if (types.Contains(rpfd.Type)) rpfd.Group = Data.MetaData.CUSTOM_GROUP;
+							else rpfd.Group = Data.MetaData.LOCAL_GROUP;
+						}
+						else 
+						{
+							rpfd.Group = Data.MetaData.CUSTOM_GROUP;
+						}
 
 						if (refmap.Contains(refstr)) 
 						{
@@ -443,7 +491,7 @@ namespace SimPe.Plugin
 
 			//Now Fix the MMAT
 			WaitingScreen.UpdateMessage("Udating Material Overrides");
-			Interfaces.Files.IPackedFileDescriptor[] mpfds = package.FindFiles(0x4C697E5A);	//MMAT
+			Interfaces.Files.IPackedFileDescriptor[] mpfds = package.FindFiles(Data.MetaData.MMAT);	//MMAT
 			Hashtable familymap = new Hashtable();
 			uint mininst = 0x5000;
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in mpfds) 
@@ -489,6 +537,8 @@ namespace SimPe.Plugin
 				}
 				else mmat.GetSaveItem("modelName").StringValue = Hashes.StripHashFromName(mmat.GetSaveItem("modelName").StringValue);
 
+				if (ver == FixVersion.UniversityReady)  mmat.GetSaveItem("modelName").StringValue = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+mmat.GetSaveItem("modelName").StringValue;
+
 				//mmat.FileDescriptor.Group = Data.MetaData.LOCAL_GROUP;
 				mmat.SynchronizeUserData();
 			}
@@ -508,8 +558,10 @@ namespace SimPe.Plugin
 					
 					if (!name.EndsWith("_cres")) name += "_cres";
 					string newref = (string)map[name];
-					if (newref!=null) i.Title = /*"##0x1c050000!"+*/Hashes.StripHashFromName(newref.Substring(0, newref.Length-5));
+					if (newref!=null) i.Title = Hashes.StripHashFromName(newref.Substring(0, newref.Length-5));
 					else i.Title = Hashes.StripHashFromName(i.Title);
+
+					if ((i.Title.Trim()!="") && (ver == FixVersion.UniversityReady))  i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+i.Title;
 					
 					if ((modelname==null) && (i.Title!="")) 
 						modelname = Hashes.StripHashFromName(i.Title).ToUpper().Replace("-", "_");
@@ -526,7 +578,10 @@ namespace SimPe.Plugin
 				{
 					SimPe.PackedFiles.Wrapper.Nref nref = new SimPe.PackedFiles.Wrapper.Nref();
 					nref.ProcessData(pfd, package);
-					nref.FileName = "SIMPE_v2_"+modelname;
+					if (ver==FixVersion.UniversityReady)
+						nref.FileName = "SIMPE_"+modelname;
+					else
+						nref.FileName = "SIMPE_v2_"+modelname;
 
 					nref.SynchronizeUserData();
 				}

@@ -223,38 +223,54 @@ namespace SimPe.Plugin
 		{
 			if (lbdirs.SelectedIndex < 0) return;
 
+			
+
 			prov.SimDescriptionProvider.BasePackage = null;
 			prov.SimFamilynameProvider.BasePackage = null;
 			prov.SimNameProvider.BaseFolder = null;
 			DialogResult dr = MessageBox.Show(Localization.Manager.GetString("backuprestore"), Localization.Manager.GetString("backup?"), MessageBoxButtons.YesNoCancel);
 			if (dr!=DialogResult.Cancel) 
 			{
+				SimPe.Packages.StreamFactory.CloseAll();
 				this.Cursor = Cursors.WaitCursor;
+				WaitingScreen.Wait();
 				
-				string source = System.IO.Path.Combine(backuppath, lbdirs.Items[lbdirs.SelectedIndex].ToString());
-
-				if (dr==DialogResult.Yes) 
-				{
-					//create backup of current
-					string newback= System.IO.Path.Combine(backuppath, "(automatic) "+DateTime.Now.ToString().Replace("\\", "-").Replace(":", "-").Replace(".", "-"));
-					if (!System.IO.Directory.Exists(newback)) System.IO.Directory.CreateDirectory(newback);
-					Helper.CopyDirectory(path, newback, true);
-				}
-
-				//remove the Neighborhood
 				try 
 				{
-					System.IO.Directory.Delete(path, true);
+					string source = System.IO.Path.Combine(backuppath, lbdirs.Items[lbdirs.SelectedIndex].ToString());
+
+					if (dr==DialogResult.Yes) 
+					{
+						//create backup of current
+						string newback= System.IO.Path.Combine(backuppath, "(automatic) "+DateTime.Now.ToString().Replace("\\", "-").Replace(":", "-").Replace(".", "-"));
+						if (!System.IO.Directory.Exists(newback)) System.IO.Directory.CreateDirectory(newback);
+						Helper.CopyDirectory(path, newback, true);
+					}
+
+					//remove the Neighborhood
+					try 
+					{
+						System.IO.Directory.Delete(path, true);
+					} 
+					catch (Exception) {}
+
+					//copy the backup
+					System.IO.Directory.CreateDirectory(path);
+					Helper.CopyDirectory(source, path, true);
+
+					UpdateList();
+					WaitingScreen.Stop();
+					MessageBox.Show("The backup was restored succesfully!");
 				} 
-				catch (Exception) {}
-
-				//copy the backup
-				System.IO.Directory.CreateDirectory(path);
-				Helper.CopyDirectory(source, path, true);
-
-				UpdateList();
-				MessageBox.Show("The backup was restored succesfully!");
-				this.Cursor = Cursors.Default;
+				catch (Exception ex) 
+				{
+					Helper.ExceptionMessage("", ex);
+				}
+				finally 
+				{
+					WaitingScreen.Stop();
+					this.Cursor = Cursors.Default;
+				}
 			}
 		}
 

@@ -152,12 +152,7 @@
                     RelPath = "ExceptionForm.de.resx"
                     DependentUpon = "ExceptionForm.cs"
                     BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "ExceptionForm.de-AT.resx"
-                    DependentUpon = "ExceptionForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
+                />                
                 <File
                     RelPath = "ExceptionForm.de-DE.resx"
                     DependentUpon = "ExceptionForm.cs"

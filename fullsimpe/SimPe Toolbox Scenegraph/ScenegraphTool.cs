@@ -49,9 +49,14 @@ namespace SimPe.Plugin
 
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
 		{
+			SimPe.Interfaces.Files.IPackedFileDescriptor opfd = pfd;
+			sg.Execute(prov, package, ref pfd);
+
+			if ((pfd==null) && (opfd==null)) return new ToolResult(false, false);
+			if ((pfd!=null) && (opfd==null)) return new ToolResult(true, false);
+			return new ToolResult(!pfd.Equals(opfd), false);
 			
-			sg.Execute(prov, package);
-			return new ToolResult(false, false);
+			
 		}
 
 		public override string ToString()
