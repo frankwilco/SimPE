@@ -45,6 +45,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private System.Windows.Forms.ColumnHeader columnHeader6;
 		private System.ComponentModel.IContainer components;
 
 		public Sims()
@@ -90,6 +91,7 @@ namespace SimPe.Plugin
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
 			this.iListSmall = new System.Windows.Forms.ImageList(this.components);
 			this.button1 = new System.Windows.Forms.Button();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -118,7 +120,8 @@ namespace SimPe.Plugin
 																				 this.columnHeader2,
 																				 this.columnHeader3,
 																				 this.columnHeader4,
-																				 this.columnHeader5});
+																				 this.columnHeader5,
+																				 this.columnHeader6});
 			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
 			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
 			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
@@ -171,6 +174,12 @@ namespace SimPe.Plugin
 			this.columnHeader5.Text = resources.GetString("columnHeader5.Text");
 			this.columnHeader5.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader5.TextAlign")));
 			this.columnHeader5.Width = ((int)(resources.GetObject("columnHeader5.Width")));
+			// 
+			// columnHeader6
+			// 
+			this.columnHeader6.Text = resources.GetString("columnHeader6.Text");
+			this.columnHeader6.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader6.TextAlign")));
+			this.columnHeader6.Width = ((int)(resources.GetObject("columnHeader6.Width")));
 			// 
 			// iListSmall
 			// 
@@ -335,8 +344,8 @@ namespace SimPe.Plugin
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.label1);
+			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.lv);
@@ -417,6 +426,15 @@ namespace SimPe.Plugin
 			lvi.SubItems.Add(new Data.LocalizedLifeSections(sdesc.CharacterDescription.LifeSection).ToString());
 			if (sdesc.University.OnCampus==0x1) lvi.SubItems.Add(Localization.Manager.GetString("yes")); else lvi.SubItems.Add(Localization.Manager.GetString("no"));
 			lvi.SubItems.Add("0x"+Helper.HexString(sdesc.FileDescriptor.Instance));
+
+			string avl = "";
+			if (!sdesc.AvailableCharacterData) avl += "no Character File";
+			if (sdesc.Unlinked!=0x00) 
+			{
+				if (avl!="") avl+=", ";
+				avl += "Unlinked";
+			}
+			lvi.SubItems.Add(avl);
 		
 			
 			//toolTip1.SetToolTip(lvi, sdesc.CharacterFileName);

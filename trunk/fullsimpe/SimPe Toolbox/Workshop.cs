@@ -86,6 +86,7 @@ namespace SimPe.Plugin
 
 			
 			btclone.Enabled = false;
+			btclone.Refresh();
 			this.tabControl1.SelectedIndex = 1;
 			if (!Helper.WindowsRegistry.HiddenMode) 
 			{
@@ -320,9 +321,10 @@ namespace SimPe.Plugin
 		{
 			//build Object List
 			if (lbobj.Items.Count==0) 
-			{				
-				DateTime start = DateTime.Now;		
+			{								
+				DateTime start = DateTime.Now;						
 				WaitingScreen.Wait();
+				this.ilist.ImageSize = new Size(Helper.WindowsRegistry.OWThumbSize,Helper.WindowsRegistry.OWThumbSize);
 				LoadCachIndex();
 				lbobj.BeginUpdate();
 				tv.BeginUpdate();
@@ -348,9 +350,7 @@ namespace SimPe.Plugin
 
 					if (nrefitem.LocalGroup == Data.MetaData.LOCAL_GROUP) continue;
 					if (pitems.Contains(nrefitem)) continue;
-					if (groups.Contains(nrefitem.LocalGroup)) continue;
-					pitems.Add(nrefitem);
-					groups.Add(nrefitem.LocalGroup);
+					if (groups.Contains(nrefitem.LocalGroup)) continue;					
 
 					Interfaces.Scenegraph.IScenegraphFileIndexItem[] cacheitems = cachefile.FileIndex.FindFile(nrefitem.FileDescriptor);
 
@@ -372,6 +372,10 @@ namespace SimPe.Plugin
 					{
 						SimPe.Cache.ObjectCacheItem oci = (SimPe.Cache.ObjectCacheItem)cacheitems[cindex].FileDescriptor.Tag;
 
+						if (!oci.Useable) continue;
+						pitems.Add(nrefitem);
+						groups.Add(nrefitem.LocalGroup);
+
 #if DEBUG
 						Data.Alias a = new Data.Alias(oci.FileDescriptor.Group, "---");//, "{name} ({id}: {1}, {2}) ");
 #else
@@ -383,8 +387,9 @@ namespace SimPe.Plugin
 						o[2] = oci.ModelName;
 
 						a.Tag = o;
-						
-						a.Name = oci.Name;
+
+						if (Helper.WindowsRegistry.ShowObjdNames) a.Name = oci.ObjectFileName;	
+						else a.Name = oci.Name;
 						a.Name +=  " (cached)";
 						Image img = oci.Thumbnail;
 						//if (img!=null) WaitingScreen.UpdateImage(img);
@@ -395,13 +400,29 @@ namespace SimPe.Plugin
 						lbobj.Items.Add(a);
 					} 
 					else //not found in chache 
-					{										
+					{								
+		
 						SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
 						nrefitem.FileDescriptor.UserData = nrefitem.Package.Read(nrefitem.FileDescriptor).UncompressedData;
 						objd.ProcessData(nrefitem);
 
+						SimPe.Cache.ObjectCacheItem oci = new SimPe.Cache.ObjectCacheItem();
+						oci.FileDescriptor = nrefitem.FileDescriptor;
+						oci.LocalGroup = nrefitem.LocalGroup;							
+						oci.ObjectType = (ushort)objd.Type;
+						oci.ObjectFunctionSort = (short)objd.FunctionSort.Value;
+						oci.ObjectFileName = objd.FileName;
+						oci.Useable = true;
 						//this is needed, so that objects get sorted into the right categories
-						if (objd.Type == Data.ObjectTypes.Normal && objd.CTSSInstance==0) continue;
+						if (objd.Type == Data.ObjectTypes.Normal && objd.CTSSInstance==0) 
+						{
+							cachechg = true;
+							oci.Useable = false;
+							cachefile.AddItem(oci, nrefitem.Package.FileName);
+							continue;
+						}
+						pitems.Add(nrefitem);
+						groups.Add(nrefitem.LocalGroup);
 										
 #if DEBUG
 						Data.Alias a = new Data.Alias(nrefitem.FileDescriptor.Group, "---");//, "{name} ({id}: {1}, {2}) ");
@@ -445,25 +466,21 @@ namespace SimPe.Plugin
 
 						a.Tag = o;
 						Image img = GetThumbnail(nrefitem.FileDescriptor.Group, (string)a.Tag[2], ct.ToString() + len);										
-					
-						PutItemToTree(a, img, objd.Type, objd.FunctionSort, objd.Package.FileName, objd.FileDescriptor.Group);
-
+											
 						if (a.Name.Trim()=="") a.Name = objd.FileName;												
 
 						//create a cache Item
 						cachechg = true;
-						SimPe.Cache.ObjectCacheItem oci = new SimPe.Cache.ObjectCacheItem();
-						oci.FileDescriptor = nrefitem.FileDescriptor;
-						oci.LocalGroup = nrefitem.LocalGroup;	
 						oci.Name = a.Name;						
 						oci.ModelName = (string)o[2];
 						oci.Thumbnail = img;
-						oci.ObjectType = (ushort)objd.Type;
-						oci.ObjectFunctionSort = (short)objd.FunctionSort.Value;
 
 						cachefile.AddItem(oci, nrefitem.Package.FileName);
 
+						if (Helper.WindowsRegistry.ShowObjdNames) a.Name = oci.ObjectFileName;																	 
 						if (img!=null) a.Name = "* "+a.Name;
+
+						PutItemToTree(a, img, objd.Type, objd.FunctionSort, objd.Package.FileName, objd.FileDescriptor.Group);
 						lbobj.Items.Add(a);
 					} // if not in cache
 				} //foreach txt
@@ -475,7 +492,11 @@ namespace SimPe.Plugin
 				lbobj.EndUpdate();				
 				WaitingScreen.Stop(this);
 				TimeSpan dur = DateTime.Now.Subtract(start);
-				if ((Helper.WindowsRegistry.HiddenMode) || (Helper.DebugMode)) Text = "sek="+dur.Seconds.ToString()+", min="+dur.Minutes.ToString();
+				if ((Helper.WindowsRegistry.HiddenMode) || (Helper.DebugMode)) 
+				{
+					Text = "sek="+dur.Seconds.ToString()+", min="+dur.Minutes.ToString();
+					Text += " ("+lbobj.Items.Count.ToString()+" Objects)";
+				}
 			}
 		}
 
@@ -659,6 +680,7 @@ namespace SimPe.Plugin
 			this.cbparent.TabIndex = 7;
 			this.cbparent.Text = "Create a stand-alone object";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.cbparent, true);
+			this.cbparent.CheckedChanged += new System.EventHandler(this.cbfix_CheckedChanged);
 			// 
 			// cbclean
 			// 
@@ -901,8 +923,8 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.PictureBox pb;
 		IProviderRegistry prov;
 		SimPe.Interfaces.Files.IPackageFile simpe_pkg;
-		public Interfaces.Files.IPackageFile Execute(IProviderRegistry prov, SimPe.Interfaces.Files.IPackageFile simpe_pkg) 
-		{
+		public Interfaces.Files.IPackageFile Execute(IProviderRegistry prov, SimPe.Interfaces.Files.IPackageFile simpe_pkg) 		
+		{			 
 			this.prov = prov;
 			this.simpe_pkg = simpe_pkg;
 
@@ -927,8 +949,10 @@ namespace SimPe.Plugin
 		{
 			if (tbseek.Tag != null) return;
 			btclone.Enabled = false;
+			btclone.Refresh();
 			if (lbobj.SelectedIndex<0) return;
 			btclone.Enabled = true;
+			btclone.Refresh();
 
 			IAlias a = (IAlias)lbobj.Items[lbobj.SelectedIndex];
 			tbseek.Tag = true;
@@ -1378,6 +1402,7 @@ namespace SimPe.Plugin
 				package = new SimPe.Packages.GeneratableFile(ofd.FileName);
 				tbflname.Text = ofd.FileName;
 				this.btclone.Enabled = System.IO.File.Exists(tbflname.Text);
+				btclone.Refresh();
 			}
 		}
 
@@ -1388,15 +1413,18 @@ namespace SimPe.Plugin
 
 		private void cbfix_CheckedChanged(object sender, System.EventArgs e)
 		{
-			cbclean.Enabled = cbfix.Checked;
+			cbclean.Enabled = (cbfix.Checked || cbparent.Checked);
+			cbclean.Refresh();
 		}
 
 		private void SelectTv(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		{
 			btclone.Enabled = false;
+			btclone.Refresh();
 			if (tv.SelectedNode==null) return;
 			if (tv.SelectedNode.Tag == null) return;
 			btclone.Enabled = true;
+			btclone.Refresh();
 
 			IAlias a = (IAlias)tv.SelectedNode.Tag;
 			
@@ -1409,6 +1437,7 @@ namespace SimPe.Plugin
 			if (tabControl2.SelectedIndex==0) {BuildListing(); this.Select(null, null);}
 			else if (tabControl2.SelectedIndex==1) {BuildListing(); this.SelectTv(null, null);}
 			else this.btclone.Enabled = System.IO.File.Exists(tbflname.Text);
+			btclone.Refresh();
 		}
 
 		
