@@ -97,13 +97,13 @@ namespace SimPe.Plugin
 			this.button1 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.cbeye = new System.Windows.Forms.CheckBox();
 			this.cbmakeup = new System.Windows.Forms.CheckBox();
 			this.llexport = new System.Windows.Forms.LinkLabel();
 			this.lbpatlife = new System.Windows.Forms.Label();
 			this.lbpatname = new System.Windows.Forms.Label();
 			this.pbpatient = new System.Windows.Forms.PictureBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.llusepatient = new System.Windows.Forms.LinkLabel();
 			this.cbface = new System.Windows.Forms.CheckBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -213,13 +213,13 @@ namespace SimPe.Plugin
 			this.groupBox1.AccessibleName = resources.GetString("groupBox1.AccessibleName");
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox1.Anchor")));
 			this.groupBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox1.BackgroundImage")));
+			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.cbeye);
 			this.groupBox1.Controls.Add(this.cbmakeup);
 			this.groupBox1.Controls.Add(this.llexport);
 			this.groupBox1.Controls.Add(this.lbpatlife);
 			this.groupBox1.Controls.Add(this.lbpatname);
 			this.groupBox1.Controls.Add(this.pbpatient);
-			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.llusepatient);
 			this.groupBox1.Controls.Add(this.cbface);
 			this.groupBox1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("groupBox1.Dock")));
@@ -236,6 +236,30 @@ namespace SimPe.Plugin
 			this.groupBox1.Text = resources.GetString("groupBox1.Text");
 			this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
 			this.groupBox1.Visible = ((bool)(resources.GetObject("groupBox1.Visible")));
+			// 
+			// label2
+			// 
+			this.label2.AccessibleDescription = resources.GetString("label2.AccessibleDescription");
+			this.label2.AccessibleName = resources.GetString("label2.AccessibleName");
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label2.Anchor")));
+			this.label2.AutoSize = ((bool)(resources.GetObject("label2.AutoSize")));
+			this.label2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label2.Dock")));
+			this.label2.Enabled = ((bool)(resources.GetObject("label2.Enabled")));
+			this.label2.Font = ((System.Drawing.Font)(resources.GetObject("label2.Font")));
+			this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
+			this.label2.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.ImageAlign")));
+			this.label2.ImageIndex = ((int)(resources.GetObject("label2.ImageIndex")));
+			this.label2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label2.ImeMode")));
+			this.label2.Location = ((System.Drawing.Point)(resources.GetObject("label2.Location")));
+			this.label2.Name = "label2";
+			this.label2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label2.RightToLeft")));
+			this.label2.Size = ((System.Drawing.Size)(resources.GetObject("label2.Size")));
+			this.label2.TabIndex = ((int)(resources.GetObject("label2.TabIndex")));
+			this.label2.Text = resources.GetString("label2.Text");
+			this.label2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.TextAlign")));
+			this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
+			this.label2.Visible = ((bool)(resources.GetObject("label2.Visible")));
 			// 
 			// cbeye
 			// 
@@ -385,30 +409,6 @@ namespace SimPe.Plugin
 			this.pbpatient.Text = resources.GetString("pbpatient.Text");
 			this.toolTip1.SetToolTip(this.pbpatient, resources.GetString("pbpatient.ToolTip"));
 			this.pbpatient.Visible = ((bool)(resources.GetObject("pbpatient.Visible")));
-			// 
-			// label2
-			// 
-			this.label2.AccessibleDescription = resources.GetString("label2.AccessibleDescription");
-			this.label2.AccessibleName = resources.GetString("label2.AccessibleName");
-			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label2.Anchor")));
-			this.label2.AutoSize = ((bool)(resources.GetObject("label2.AutoSize")));
-			this.label2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label2.Dock")));
-			this.label2.Enabled = ((bool)(resources.GetObject("label2.Enabled")));
-			this.label2.Font = ((System.Drawing.Font)(resources.GetObject("label2.Font")));
-			this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
-			this.label2.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.ImageAlign")));
-			this.label2.ImageIndex = ((int)(resources.GetObject("label2.ImageIndex")));
-			this.label2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label2.ImeMode")));
-			this.label2.Location = ((System.Drawing.Point)(resources.GetObject("label2.Location")));
-			this.label2.Name = "label2";
-			this.label2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label2.RightToLeft")));
-			this.label2.Size = ((System.Drawing.Size)(resources.GetObject("label2.Size")));
-			this.label2.TabIndex = ((int)(resources.GetObject("label2.TabIndex")));
-			this.label2.Text = resources.GetString("label2.Text");
-			this.label2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.TextAlign")));
-			this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
-			this.label2.Visible = ((bool)(resources.GetObject("label2.Visible")));
 			// 
 			// llusepatient
 			// 

@@ -94,7 +94,7 @@ namespace SimPe.Packages
 				
 				string name = fs.Name;
 				fs = null;
-				fs = new FileStream(name, System.IO.FileMode.OpenOrCreate, fa);
+				fs = new FileStream(name, System.IO.FileMode.Open, fa, StreamFactory.GetFileShare(fa));
 			} 
 			catch (Exception ex){
 				if (Helper.DebugMode) Helper.ExceptionMessage("", ex);
@@ -136,6 +136,26 @@ namespace SimPe.Packages
 		static void InitTable()
 		{
 			if (streams==null) streams = new Hashtable();
+		}
+
+		/// <summary>
+		/// Returns the Suggested ShareMode for the passed Access Mode
+		/// </summary>
+		/// <param name="fa">The Acces Mode</param>
+		/// <returns>The Suggeste Share Mode</returns>
+		public static FileShare GetFileShare(FileAccess fa)
+		{
+			switch (fa) 
+			{
+				case FileAccess.Read:
+				{
+					return FileShare.Read;
+				}
+				default:
+				{
+					return FileShare.Read;
+				}
+			}
 		}
 
 		/// <summary>
@@ -209,13 +229,12 @@ namespace SimPe.Packages
 
 			if (si.StreamState==StreamState.Removed) 
 			{
-				FileStream fs = new FileStream(filename, FileMode.OpenOrCreate, fa);
+				FileStream fs = new FileStream(filename, FileMode.Open, fa, StreamFactory.GetFileShare(fa));
 				si.SetFileStream(fs);
 			} 
 			else 
 			{
-				si.SetFileAccess(fa);
-				
+				si.SetFileAccess(fa);				
 			}
 
 			si.FileStream.Seek(0, SeekOrigin.Begin);

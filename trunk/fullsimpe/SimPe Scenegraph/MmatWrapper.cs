@@ -111,6 +111,51 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Load a Texture belonging to a TXMT
+		/// </summary>
+		/// <param name="txmt">a valid txmt</param>
+		/// <returns>the Texture or null</returns>
+		public GenericRcol GetTxtr(GenericRcol txmt) 
+		{
+			if (txmt==null) return null;
+			Hashtable refs = txmt.ReferenceChains;
+			ArrayList txtrs = (ArrayList)refs["stdMatBaseTextureName"];//["TXTR"];
+			if (txtrs!=null) 
+			{
+				if (txtrs.Count>0) 
+				{
+					Interfaces.Files.IPackedFileDescriptor pfd = package.FindFile((Interfaces.Files.IPackedFileDescriptor)txtrs[0]);
+					if (pfd==null) //fallback code
+					{
+						Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFile(((Interfaces.Files.IPackedFileDescriptor)txtrs[0]).Filename, Data.MetaData.TXTR);
+						if (pfds.Length>0) pfd = pfds[0];
+					}							
+					if (pfd!=null) 
+					{
+						GenericRcol txtr = new GenericRcol(null, false);
+						txtr.ProcessData(pfd, package);
+
+						return txtr;
+					}
+
+					if (pfd==null) //FileTable fallback code
+					{
+						Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)txtrs[0]);
+						if (items.Length>0) 
+						{
+							GenericRcol txtr = new GenericRcol(null, false);
+							txtr.ProcessData(items[0].FileDescriptor, items[0].Package);
+
+							return txtr;
+						}
+					}
+				}
+			}
+
+			return null;
+		}
+
+		/// <summary>
 		/// Load and return the referenced TXTR File (through the TXMT, null if none was available)
 		/// </summary>
 		/// <remarks>
@@ -122,43 +167,8 @@ namespace SimPe.Plugin
 			get 
 			{
 				GenericRcol txmt = this.TXMT;
-				if (txmt!=null) 
-				{
-					Hashtable refs = txmt.ReferenceChains;
-					ArrayList txtrs = (ArrayList)refs["stdMatBaseTextureName"];//["TXTR"];
-					if (txtrs!=null) 
-					{
-						if (txtrs.Count>0) 
-						{
-							Interfaces.Files.IPackedFileDescriptor pfd = package.FindFile((Interfaces.Files.IPackedFileDescriptor)txtrs[0]);
-							if (pfd==null) //fallback code
-							{
-								Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFile(((Interfaces.Files.IPackedFileDescriptor)txtrs[0]).Filename, Data.MetaData.TXTR);
-								if (pfds.Length>0) pfd = pfds[0];
-							}							
-							if (pfd!=null) 
-							{
-								GenericRcol txtr = new GenericRcol(null, false);
-								txtr.ProcessData(pfd, package);
-
-								return txtr;
-							}
-
-							if (pfd==null) //FileTable fallback code
-							{
-								Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)txtrs[0]);
-								if (items.Length>0) 
-								{
-									GenericRcol txtr = new GenericRcol(null, false);
-									txtr.ProcessData(items[0].FileDescriptor, items[0].Package);
-
-									return txtr;
-								}
-							}
-						}
-					}
-				}
-				return null;
+				return GetTxtr(txmt);
+				
 			}
 		}
 

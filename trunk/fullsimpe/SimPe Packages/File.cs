@@ -185,6 +185,35 @@ namespace SimPe.Packages
 				OpenByStream(null);
 			}
 		}
+
+		/// <summary>
+		/// Init the Clone for this Package
+		/// </summary>
+		/// <returns>An INstance of this Class</returns>
+		protected virtual Interfaces.Files.IPackageFile NewCloneBase() 
+		{
+			File fl = new File((BinaryReader)null);
+			fl.header = this.header;
+			
+			return fl;
+		}
+
+		/// <summary>
+		/// Create a Clone of this Package File
+		/// </summary>
+		/// <returns>the new Package File</returns>
+		public Interfaces.Files.IPackageFile Clone()
+		{
+			Interfaces.Files.IPackageFile fl = NewCloneBase();
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in this.Index) 
+			{
+				Interfaces.Files.IPackedFileDescriptor npfd = (Interfaces.Files.IPackedFileDescriptor)pfd.Clone();
+				npfd.UserData = Read(pfd).UncompressedData;
+				fl.Add(npfd);
+			}
+
+			return fl;
+		}
 		
 
 		#region Lock handling

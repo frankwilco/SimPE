@@ -741,7 +741,9 @@ namespace SimPe.PackedFiles.UserInterface
 				reg.Password = form.tbpassword.Text;
 				this.tbguid.Text = "0x"+Helper.HexString(guid);				
 			} 
-			catch (Exception) {}
+			catch (Exception ex) {
+				if (Helper.DebugMode) Helper.ExceptionMessage("", ex);
+			}
 		}
 
 		private void ChangeType(object sender, System.EventArgs e)

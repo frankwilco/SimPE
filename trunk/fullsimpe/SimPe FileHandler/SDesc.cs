@@ -146,9 +146,9 @@ namespace SimPe.PackedFiles.UserInterface
 			foreach (Data.Majors c in majors) form.cbmajor.Items.Add(c);
 
 			form.cbschooltype.Items.Clear();
-			form.cbschooltype.Items.Add(new LocalizedSchoolType(Data.MetaData.SchoolTypes.Unknown));
-			form.cbschooltype.Items.Add(new LocalizedSchoolType(Data.MetaData.SchoolTypes.PublicSchool));
-			form.cbschooltype.Items.Add(new LocalizedSchoolType(Data.MetaData.SchoolTypes.PrivateSchool));
+			System.Array schools = System.Enum.GetValues(typeof(Data.MetaData.SchoolTypes));
+			foreach (Data.MetaData.SchoolTypes c in schools) form.cbschooltype.Items.Add(new LocalizedSchoolType(c));
+			foreach (SimPe.Interfaces.IAlias a in Wrapper.SDesc.AddonSchools) form.cbschooltype.Items.Add(a);
 
 			form.gbout.Enabled = false;
 			form.gbin.Enabled = false;
@@ -287,7 +287,10 @@ namespace SimPe.PackedFiles.UserInterface
 			form.cbgrade.SelectedIndex = 0;
 			for(int i=0; i<form.cbgrade.Items.Count; i++)
 			{
-				Data.LocalizedGrades grade = (Data.LocalizedGrades)form.cbgrade.Items[i];
+				Data.MetaData.Grades grade;
+				object o = form.cbgrade.Items[i];
+				if (o.GetType()==typeof(Alias)) grade = (Data.LocalizedGrades)((uint)((Alias)o).Id); 
+				else grade = (Data.LocalizedGrades)o;
 				if (sdesc.CharacterDescription.Grade == (Data.MetaData.Grades)grade) 
 				{
 					form.cbgrade.SelectedIndex = i;
@@ -335,7 +338,11 @@ namespace SimPe.PackedFiles.UserInterface
 			form.tbschooltype.Visible = Helper.WindowsRegistry.HiddenMode;
 			for(int i=0; i<form.cbschooltype.Items.Count; i++)
 			{
-				Data.LocalizedSchoolType type = (Data.LocalizedSchoolType)form.cbschooltype.Items[i];
+				Data.LocalizedSchoolType type;
+				object o = form.cbschooltype.Items[i];
+				if (o.GetType()==typeof(Alias)) type = (Data.LocalizedSchoolType)((uint)((Alias)o).Id); 
+				else type = (Data.LocalizedSchoolType)o;
+				
 				if (sdesc.CharacterDescription.SchoolType == (Data.MetaData.SchoolTypes)type) 
 				{
 					form.cbschooltype.SelectedIndex = i;

@@ -70,6 +70,7 @@ namespace SimPe.Plugin
 
 			Bhav mywrapper = (Bhav) wrapper;
 
+			form.SetReadOnly(true);
 			form.internalchg = true;
 			form.csel = -1;
 			form.pnflowcontainer.AutoScrollPosition = new System.Drawing.Point(0, 0);
@@ -80,7 +81,7 @@ namespace SimPe.Plugin
 			form.btwiz.Enabled = false;
 			
 
-			form.tbopcode.Text = "0x0000";
+			//form.tbopcode.Text = "0x0000";
 			form.tbargc.Text = mywrapper.Header.ArgumentCount.ToString();
 			form.tbflags.Text = "0x"+Helper.HexString(mywrapper.Header.Flags);
 			form.tbformat.Text = "0x"+Helper.HexString(mywrapper.Header.Format);

@@ -11041,7 +11041,14 @@ namespace SimPe.PackedFiles.UserInterface
 						sdesc.FamilyInstance = Convert.ToUInt16(this.tbfaminst.Text, 16);
 						sdesc.CharacterDescription.LifelineScore = Convert.ToUInt32(tblifelinescore.Text); 
 						if (this.cbschooltype.SelectedIndex==0) sdesc.CharacterDescription.SchoolType = (Data.MetaData.SchoolTypes)Convert.ToUInt32(tbschooltype.Text, 16);
-						else if (cbschooltype.SelectedIndex>0)sdesc.CharacterDescription.SchoolType = (Data.LocalizedSchoolType)cbschooltype.Items[cbschooltype.SelectedIndex];
+						else if (cbschooltype.SelectedIndex>0) 
+						{
+							Data.MetaData.SchoolTypes type;
+							object o = cbschooltype.Items[cbschooltype.SelectedIndex];
+							if (o.GetType()==typeof(Data.Alias)) type = (Data.LocalizedSchoolType)((uint)((Data.Alias)o).Id); 
+							else type = (Data.LocalizedSchoolType)o;
+							sdesc.CharacterDescription.SchoolType = type;
+						}
 						sdesc.CharacterDescription.CareerLevel = Convert.ToUInt16(this.tbcarrerlevel.Text);
 
 						if (cbgrade.SelectedIndex>=0) sdesc.CharacterDescription.Grade = (Data.LocalizedGrades)cbgrade.Items[cbgrade.SelectedIndex];

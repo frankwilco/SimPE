@@ -45,6 +45,12 @@ namespace SimPe.Interfaces.Files
 			set;
 		}
 
+		/// <summary>
+		/// Create a Clone of this Package File
+		/// </summary>
+		/// <returns>the new Package File</returns>
+		Interfaces.Files.IPackageFile Clone();
+
 		#region FileIndex Handling
 		/// <summary>
 		/// Returns the FileIndexItem for the given File
@@ -94,6 +100,8 @@ namespace SimPe.Interfaces.Files
 		/// </summary>
 		/// <returns>the new File descriptor</returns>
 		IPackedFileDescriptor NewDescriptor(uint type, uint subtype, uint group, uint instance);
+
+
 		#endregion
 
 		#region Find Files

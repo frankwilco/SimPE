@@ -94,18 +94,18 @@ namespace SimPe.Plugin
 
 					if (foundsubset && !addedunique) 
 					{
-						name += "-"+unique;
+						name += unique;
 						addedunique = true;
 					}
 					
 					if (parts[i].ToLower()==subsetname) foundsubset=true;
 					
 				}
-				if (!addedunique) name += "-"+unique;				
+				if (!addedunique) name += unique;				
 			} 
 			else 
 			{
-				name += "-"+unique;				
+				name += unique;				
 			}
 
 			if (ext) name += "_txmt";

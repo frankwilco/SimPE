@@ -69,6 +69,25 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// true, if the user wants the Pescado Mode
+		/// </summary>
+		public  bool Silent
+		{
+			get 
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				object o = rkf.GetValue("PescadoMode");
+				if (o==null) return false;
+				else return Convert.ToBoolean(o);
+			}
+			set
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				rkf.SetValue("PescadoMode", value);
+			}
+		}
+
+		/// <summary>
 		/// true, if the user wanted to use the HexViewer
 		/// </summary>
 		public  bool HexViewState 

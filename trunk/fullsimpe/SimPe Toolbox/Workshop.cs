@@ -401,6 +401,7 @@ namespace SimPe.Plugin
 			this.rbClone = new System.Windows.Forms.RadioButton();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tClone = new System.Windows.Forms.TabPage();
+			this.cbparent = new System.Windows.Forms.CheckBox();
 			this.cbclean = new System.Windows.Forms.CheckBox();
 			this.cbfix = new System.Windows.Forms.CheckBox();
 			this.cbdefault = new System.Windows.Forms.CheckBox();
@@ -419,7 +420,6 @@ namespace SimPe.Plugin
 			this.button1 = new System.Windows.Forms.Button();
 			this.tbflname = new System.Windows.Forms.TextBox();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
-			this.cbparent = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tClone.SuspendLayout();
@@ -530,6 +530,15 @@ namespace SimPe.Plugin
 			this.tClone.Size = new System.Drawing.Size(320, 118);
 			this.tClone.TabIndex = 0;
 			this.tClone.Text = "Clone Settings";
+			// 
+			// cbparent
+			// 
+			this.cbparent.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbparent.Location = new System.Drawing.Point(8, 88);
+			this.cbparent.Name = "cbparent";
+			this.cbparent.Size = new System.Drawing.Size(120, 24);
+			this.cbparent.TabIndex = 7;
+			this.cbparent.Text = "Load parent data";
 			// 
 			// cbclean
 			// 
@@ -709,15 +718,6 @@ namespace SimPe.Plugin
 			// 
 			this.ofd.Filter = "Package File (*.package)|*.package|All Files (*.*)|*.*";
 			// 
-			// cbparent
-			// 
-			this.cbparent.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbparent.Location = new System.Drawing.Point(8, 88);
-			this.cbparent.Name = "cbparent";
-			this.cbparent.Size = new System.Drawing.Size(120, 24);
-			this.cbparent.TabIndex = 7;
-			this.cbparent.Text = "Load parent data";
-			// 
 			// Workshop
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -729,7 +729,6 @@ namespace SimPe.Plugin
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(520, 320);
 			this.Name = "Workshop";
-			this.ShowInTaskbar = false;
 			this.Text = "Object Workshop (biggest thanks to RGiles and Numenor)";
 			this.groupBox1.ResumeLayout(false);
 			this.tabControl1.ResumeLayout(false);
@@ -779,7 +778,7 @@ namespace SimPe.Plugin
 			else tabControl2.SelectedIndex = 2;
 			this.ShowDialog();
 
-			WaitingScreen.Stop();
+			WaitingScreen.Stop(this);
 			return package;
 		}
 	

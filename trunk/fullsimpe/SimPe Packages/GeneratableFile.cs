@@ -46,6 +46,18 @@ namespace SimPe.Packages
 		public GeneratableFile(string flname) : base(flname) {}
 
 		/// <summary>
+		/// Init the Clone for this Package
+		/// </summary>
+		/// <returns>An INstance of this Class</returns>
+		protected override Interfaces.Files.IPackageFile NewCloneBase() 
+		{
+			GeneratableFile fl = new GeneratableFile((BinaryReader)null);
+			fl.header = this.header;
+			
+			return fl;
+		}
+
+		/// <summary>
 		/// Compiles a new Package File from the currently stored Information
 		/// </summary>
 		/// <param name="flname">Filename for the Package</param>

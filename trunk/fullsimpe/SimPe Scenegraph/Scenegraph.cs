@@ -140,12 +140,14 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Load all File referenced by the passed rcol File
 		/// </summary>
-		/// <param name="list">A List containing all pfd Files</param>
+		/// <param name="modelnames">The Modulenames</param>
+		/// <param name="exclude">The Exclude List</param>
+		/// <param name="list">A List containing all Rcol Files</param>
 		/// <param name="itemlist">A List of all FileIndexItems already added</param>
 		/// <param name="rcol">The Rcol File (Scenegraph Resource)</param>
 		/// <param name="item">The Item that was used to load the rcol</param>
 		/// <param name="recursive">true if you want to add all sub Rcols</param>
-		protected void LoadReferenced(ArrayList list, ArrayList itemlist, SimPe.Plugin.GenericRcol rcol, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item, bool recursive) 
+		protected static void LoadReferenced(ArrayList modelnames, ArrayList exclude, ArrayList list, ArrayList itemlist, SimPe.Plugin.GenericRcol rcol, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item, bool recursive) 
 		{
 			//if we load a CRES, we also have to add the Modelname!
 			if (rcol.FileDescriptor.Type == Data.MetaData.CRES) 
@@ -170,12 +172,14 @@ namespace SimPe.Plugin
 						{
 							SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
 							sub.ProcessData(subitem.FileDescriptor, subitem.Package);
-							if (recursive) LoadReferenced(list, itemlist, sub, subitem, true);
+							if (recursive) LoadReferenced(modelnames, exclude, list, itemlist, sub, subitem, true);
 						}
 					}
 				}
 			}
 		}
+
+		
 
 		/// <summary>
 		/// Create a new Instance and build the CRES chain
@@ -196,6 +200,7 @@ namespace SimPe.Plugin
 		{
 			Init(modelnames, new ArrayList());
 		}
+		
 
 		/// <summary>
 		/// Create a new Instance and build the CRES chain
@@ -216,7 +221,7 @@ namespace SimPe.Plugin
 		public void Init(string[] modelnames, ArrayList ex)
 		{						
 			exclude = ex;
-			this.modelnames = new ArrayList();
+			this.modelnames = new ArrayList();			
 			ArrayList cres = LoadCres(modelnames);
 
 			files = new ArrayList();
@@ -224,11 +229,11 @@ namespace SimPe.Plugin
 			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in cres) 
 			{
 				SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
-				sub.ProcessData(item.FileDescriptor, item.Package);
-				LoadReferenced(files, itemlist, sub, item, true);
+				sub.ProcessData(item);
+				LoadReferenced(this.modelnames, ex, files, itemlist, sub, item, true);
 			}
-			
 			foreach (string s in modelnames) this.modelnames.Add(s);
+			
 		}
 
 		/// <summary>
@@ -239,6 +244,80 @@ namespace SimPe.Plugin
 		public static string MmatContent(SimPe.PackedFiles.Wrapper.Cpf mmat)
 		{
 			return mmat.GetSaveItem("modelName").StringValue/*+mmat.GetSaveItem("family").StringValue*/+mmat.GetSaveItem("subsetName").StringValue+mmat.GetSaveItem("name").StringValue+Helper.HexString(mmat.GetSaveItem("objectStateIndex").UIntegerValue)+Helper.HexString(mmat.GetSaveItem("materialStateFlags").UIntegerValue)+Helper.HexString(mmat.GetSaveItem("objectGUID").UIntegerValue);
+		}
+
+		/// <summary>
+		/// Loads Slave TXMTs by name Replacement
+		/// </summary>
+		/// <param name="rcol">a TXMT File</param>
+		/// <param name="pkg">the package File with the base TXMTs</param>
+		/// <param name="slaves">The Hashtable holding als Slave Subsets</param>
+		public static void AddSlaveTxmts(ArrayList modelnames, ArrayList ex, ArrayList list, ArrayList itemlist, Rcol rcol, Hashtable slaves) 
+		{
+			string name = rcol.FileName.Trim().ToLower();
+			foreach (string k in slaves.Keys)
+				foreach (string sub in (ArrayList)slaves[k])
+				{
+					string slavename = name.Replace("_"+k+"_", "_"+sub+"_");
+					if (slavename!=name) 
+					{
+						SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(slavename, Data.MetaData.TXMT, Data.MetaData.LOCAL_GROUP, true);
+						if (item!=null) 
+						{
+							GenericRcol txmt = new GenericRcol(null, false);
+							txmt.ProcessData(item);
+							txmt.FileDescriptor = (Interfaces.Files.IPackedFileDescriptor)item.FileDescriptor.Clone();														
+							
+							LoadReferenced(modelnames, ex, list, itemlist, txmt, item, true);
+						}
+					}
+				}
+		}
+
+		/// <summary>
+		/// Loads Slave TXMTs by name Replacement
+		/// </summary>
+		/// <param name="slaves">The Hashtable holding als Slave Subsets</param>
+		public  void AddSlaveTxmts(Hashtable slaves)
+		{
+			for (int i=files.Count-1; i>=0; i--)
+			{
+				GenericRcol rcol = (GenericRcol) files[i];
+
+				if (rcol.FileDescriptor.Type == Data.MetaData.TXMT)				
+					AddSlaveTxmts(this.modelnames, this.exclude, files, itemlist, rcol, slaves);				
+			}
+		}
+
+		/// <summary>
+		/// Loads Slave TXMTs by name Replacement
+		/// </summary>
+		/// <param name="pkg">the package File with the base TXMTs</param>
+		/// <param name="slaves">The Hashtable holding als Slave Subsets</param>
+		public static void AddSlaveTxmts(SimPe.Interfaces.Files.IPackageFile pkg, Hashtable slaves)
+		{
+			ArrayList files = new ArrayList();
+			ArrayList items = new ArrayList();
+
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.TXMT);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+			{
+				GenericRcol rcol = new GenericRcol(null, false);
+				rcol.ProcessData(pfd, pkg);
+
+				if (rcol.FileDescriptor.Type == Data.MetaData.TXMT)				
+					AddSlaveTxmts(new ArrayList(), new ArrayList(), files, items, rcol, slaves);				
+			}
+
+			foreach (GenericRcol rcol in files) 
+			{
+				if (pkg.FindFile(rcol.FileDescriptor)==null)
+				{
+					rcol.FileDescriptor = rcol.FileDescriptor.Clone();
+					rcol.SynchronizeUserData();
+					pkg.Add(rcol.FileDescriptor);
+				}
+			}
 		}
 
 		/// <summary>
@@ -301,7 +380,7 @@ namespace SimPe.Plugin
 									SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
 									sub.ProcessData(txmtitem.FileDescriptor, txmtitem.Package);
 									ArrayList newfiles = new ArrayList();
-									LoadReferenced(newfiles, itemlist, sub, txmtitem, true);
+									LoadReferenced(this.modelnames, this.exclude, newfiles, itemlist, sub, txmtitem, true);
 						
 									BuildPackage(newfiles, pkg);
 								} 
@@ -364,6 +443,47 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Adds the Slave definitions of the passed gmnd to the passed map
+		/// </summary>
+		/// <param name="gmnd">the GMND File</param>
+		/// <param name="map">the Map Table (key=master subset name, value= ArrayList of slave subsets</param>
+		public static void GetSlaveSubsets(SimPe.Plugin.GenericRcol gmnd, Hashtable map)
+		{
+			foreach (IRcolBlock irb in gmnd.Blocks) 
+			{
+				if (irb.BlockName == "cDataListExtension") 
+				{
+					DataListExtension dle = (DataListExtension)irb;
+					if (dle.Extension.VarName.Trim().ToLower() == "tsdesignmodeslavesubsets") 
+					{
+						foreach (ExtensionItem ei in dle.Extension.Items) 
+						{
+							string[] slaves = ei.String.Split(",".ToCharArray());
+							ArrayList slavelist = new ArrayList();
+							foreach (string s in slaves) slavelist.Add(s.Trim().ToLower());
+
+							map[ei.Name.Trim().ToLower()] = slavelist;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Will return a Hashtable (key = subset name) of ArrayLists (slave subset names)
+		/// </summary>
+		/// <returns>The Hashtable</returns>
+		public Hashtable GetSlaveSubsets()
+		{			
+			Hashtable map = new Hashtable();
+			foreach (SimPe.Plugin.GenericRcol gmnd in files) 
+			{
+				if (gmnd.FileDescriptor.Type == Data.MetaData.GMND) GetSlaveSubsets(gmnd, map);
+			}
+			return map;
+		}
+
+		/// <summary>
 		/// Will return a Hashtable (key = subset name) of ArrayLists (slave subset names)
 		/// </summary>
 		/// <param name="pkg"></param>
@@ -377,24 +497,7 @@ namespace SimPe.Plugin
 				SimPe.Plugin.GenericRcol gmnd = new GenericRcol(null, false);
 				gmnd.ProcessData(pfd, pkg);
 
-				foreach (IRcolBlock irb in gmnd.Blocks) 
-				{
-					if (irb.BlockName == "cDataListExtension") 
-					{
-						DataListExtension dle = (DataListExtension)irb;
-						if (dle.Extension.VarName.Trim().ToLower() == "tsdesignmodeslavesubsets") 
-						{
-							foreach (ExtensionItem ei in dle.Extension.Items) 
-							{
-								string[] slaves = ei.String.Split(",".ToCharArray());
-								ArrayList slavelist = new ArrayList();
-								foreach (string s in slaves) slavelist.Add(s.Trim().ToLower());
-
-								map[ei.Name.Trim().ToLower()] = slavelist;
-							}
-						}
-					}
-				}
+				GetSlaveSubsets(gmnd, map);
 			}
 			return map;
 		}
@@ -406,6 +509,8 @@ namespace SimPe.Plugin
 		/// <returns>The Hashtable</returns>
 		public static Hashtable GetMMATMap(SimPe.Interfaces.Files.IPackageFile pkg)
 		{
+			if (pkg==null) return new Hashtable();
+
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] mmats = pkg.FindFiles(Data.MetaData.MMAT);
 			Hashtable ht = new Hashtable();
 
