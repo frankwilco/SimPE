@@ -74,6 +74,7 @@ namespace SimPe.Plugin
 		TreeNode tvitemplate;
 		private System.Windows.Forms.ImageList ilist;
 		private System.Windows.Forms.CheckBox cbparent;
+		private Skybound.VisualStyles.VisualStyleProvider visualStyleProvider1;
 		TreeNode tviwindow;
 
 		public Workshop()
@@ -529,6 +530,7 @@ namespace SimPe.Plugin
 			this.button1 = new System.Windows.Forms.Button();
 			this.tbflname = new System.Windows.Forms.TextBox();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
+			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tClone.SuspendLayout();
@@ -561,6 +563,7 @@ namespace SimPe.Plugin
 			this.btclone.Name = "btclone";
 			this.btclone.TabIndex = 1;
 			this.btclone.Text = "Start";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.btclone, true);
 			this.btclone.Click += new System.EventHandler(this.Start);
 			// 
 			// groupBox1
@@ -579,6 +582,7 @@ namespace SimPe.Plugin
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Settings";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.groupBox1, true);
 			// 
 			// pb
 			// 
@@ -589,6 +593,7 @@ namespace SimPe.Plugin
 			this.pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pb.TabIndex = 6;
 			this.pb.TabStop = false;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.pb, true);
 			// 
 			// rbColor
 			// 
@@ -601,6 +606,7 @@ namespace SimPe.Plugin
 			this.rbColor.TabIndex = 5;
 			this.rbColor.TabStop = true;
 			this.rbColor.Text = "Color Options";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.rbColor, true);
 			this.rbColor.CheckedChanged += new System.EventHandler(this.rbColor_CheckedChanged);
 			// 
 			// rbClone
@@ -612,6 +618,7 @@ namespace SimPe.Plugin
 			this.rbClone.Size = new System.Drawing.Size(120, 24);
 			this.rbClone.TabIndex = 4;
 			this.rbClone.Text = "Clone";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.rbClone, true);
 			this.rbClone.CheckedChanged += new System.EventHandler(this.rbClone_CheckedChanged);
 			// 
 			// tabControl1
@@ -625,6 +632,7 @@ namespace SimPe.Plugin
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(328, 144);
 			this.tabControl1.TabIndex = 3;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabControl1, true);
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabChanged);
 			// 
 			// tClone
@@ -639,6 +647,7 @@ namespace SimPe.Plugin
 			this.tClone.Size = new System.Drawing.Size(320, 118);
 			this.tClone.TabIndex = 0;
 			this.tClone.Text = "Clone Settings";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tClone, true);
 			// 
 			// cbparent
 			// 
@@ -649,6 +658,7 @@ namespace SimPe.Plugin
 			this.cbparent.Size = new System.Drawing.Size(192, 24);
 			this.cbparent.TabIndex = 7;
 			this.cbparent.Text = "Create a stand-alone object";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbparent, true);
 			// 
 			// cbclean
 			// 
@@ -661,6 +671,7 @@ namespace SimPe.Plugin
 			this.cbclean.Size = new System.Drawing.Size(272, 24);
 			this.cbclean.TabIndex = 6;
 			this.cbclean.Text = "Remove useless Files (sug. by.  Numenor)";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbclean, true);
 			// 
 			// cbfix
 			// 
@@ -673,6 +684,7 @@ namespace SimPe.Plugin
 			this.cbfix.Size = new System.Drawing.Size(224, 24);
 			this.cbfix.TabIndex = 5;
 			this.cbfix.Text = "Fix Cloned Files (sug. by.  wes_h)";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbfix, true);
 			this.cbfix.CheckedChanged += new System.EventHandler(this.cbfix_CheckedChanged);
 			// 
 			// cbdefault
@@ -686,6 +698,7 @@ namespace SimPe.Plugin
 			this.cbdefault.Size = new System.Drawing.Size(224, 24);
 			this.cbdefault.TabIndex = 3;
 			this.cbdefault.Text = "Pull only default Color";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbdefault, true);
 			this.cbdefault.CheckedChanged += new System.EventHandler(this.cbRCOLClone_CheckedChanged);
 			// 
 			// cbgid
@@ -699,6 +712,7 @@ namespace SimPe.Plugin
 			this.cbgid.Size = new System.Drawing.Size(248, 24);
 			this.cbgid.TabIndex = 2;
 			this.cbgid.Text = "Set Custom Group ID (0x1c050000)";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbgid, true);
 			// 
 			// tColor
 			// 
@@ -709,6 +723,7 @@ namespace SimPe.Plugin
 			this.tColor.Size = new System.Drawing.Size(320, 118);
 			this.tColor.TabIndex = 1;
 			this.tColor.Text = "Color Options";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tColor, true);
 			// 
 			// cbColorExt
 			// 
@@ -721,6 +736,7 @@ namespace SimPe.Plugin
 			this.cbColorExt.Size = new System.Drawing.Size(224, 24);
 			this.cbColorExt.TabIndex = 4;
 			this.cbColorExt.Text = "Create Color Extension Package";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbColorExt, true);
 			// 
 			// cbColor
 			// 
@@ -731,6 +747,7 @@ namespace SimPe.Plugin
 			this.cbColor.Size = new System.Drawing.Size(224, 24);
 			this.cbColor.TabIndex = 3;
 			this.cbColor.Text = "Enable All Color Options";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbColor, true);
 			// 
 			// sfd
 			// 
@@ -746,6 +763,7 @@ namespace SimPe.Plugin
 			this.tbseek.Size = new System.Drawing.Size(464, 21);
 			this.tbseek.TabIndex = 3;
 			this.tbseek.Text = "";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbseek, true);
 			this.tbseek.TextChanged += new System.EventHandler(this.SeekItem);
 			// 
 			// tabControl2
@@ -761,6 +779,7 @@ namespace SimPe.Plugin
 			this.tabControl2.SelectedIndex = 1;
 			this.tabControl2.Size = new System.Drawing.Size(488, 248);
 			this.tabControl2.TabIndex = 4;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabControl2, true);
 			this.tabControl2.SelectedIndexChanged += new System.EventHandler(this.TabChange);
 			// 
 			// tabPage1
@@ -772,6 +791,7 @@ namespace SimPe.Plugin
 			this.tabPage1.Size = new System.Drawing.Size(480, 222);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Object Listing";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage1, true);
 			// 
 			// tabPage3
 			// 
@@ -781,6 +801,7 @@ namespace SimPe.Plugin
 			this.tabPage3.Size = new System.Drawing.Size(480, 222);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Grouped Objects";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage3, true);
 			// 
 			// tv
 			// 
@@ -810,6 +831,7 @@ namespace SimPe.Plugin
 			this.tabPage2.Size = new System.Drawing.Size(480, 222);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Load Object";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage2, true);
 			// 
 			// button1
 			// 
@@ -818,6 +840,7 @@ namespace SimPe.Plugin
 			this.button1.Name = "button1";
 			this.button1.TabIndex = 1;
 			this.button1.Text = "Browse...";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.button1, true);
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// tbflname
@@ -829,6 +852,7 @@ namespace SimPe.Plugin
 			this.tbflname.Size = new System.Drawing.Size(464, 21);
 			this.tbflname.TabIndex = 0;
 			this.tbflname.Text = "";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbflname, true);
 			// 
 			// ofd
 			// 
@@ -1213,7 +1237,9 @@ namespace SimPe.Plugin
 			//for clones only when cbparent is not checked
 			if ((!this.cbparent.Checked) && (!this.rbColor.Checked)) 
 			{
-				objclone.RemoveSubsetReferences(Scenegraph.GetParentSubsets(package));
+				string[] modelnames = modelname;
+				if (!cbclean.Checked) modelnames = null;
+				objclone.RemoveSubsetReferences(Scenegraph.GetParentSubsets(package), modelnames);
 			}
 		}
 

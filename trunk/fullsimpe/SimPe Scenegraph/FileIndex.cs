@@ -488,6 +488,43 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Removes an Item from the Table
+		/// </summary>
+		/// <param name="item">The item you want to remove</param>
+		public void RemoveItem(Interfaces.Scenegraph.IScenegraphFileIndexItem item)
+		{
+			Interfaces.Files.IPackedFileDescriptor pfd = item.FileDescriptor;
+			ArrayList list = new ArrayList();
+
+			if (index.ContainsKey(pfd.Type)) 
+			{
+				Hashtable groups = (Hashtable)index[pfd.Type];
+				if (groups.ContainsKey(pfd.Group)) 
+				{
+					Hashtable instances = (Hashtable)groups[pfd.Group];
+					if (instances.ContainsKey(pfd.LongInstance)) 
+					{
+						list = (ArrayList)instances[pfd.LongInstance];
+						list.Remove(item);
+					}
+				}
+
+				if (pfd.Group==Data.MetaData.LOCAL_GROUP) 
+				{
+					if (groups.ContainsKey(item.LocalGroup)) 
+					{
+						Hashtable instances = (Hashtable)groups[item.LocalGroup];
+						if (instances.ContainsKey(pfd.LongInstance)) 
+						{
+							list = (ArrayList)instances[pfd.LongInstance];
+							list.Remove(item);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
 		/// Returns all matching FileIndexItems
 		/// </summary>
 		/// <param name="pfd">The File you are looking for</param>

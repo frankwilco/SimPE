@@ -3,7 +3,31 @@ using System;
 namespace SimPe.Plugin
 {
 	/// <summary>
-	/// Zusammenfassung für ScenegraphException.
+	/// SimPe was unable to load a File
+	/// </summary>
+	public class CorruptedFileException : Exception 
+	{
+		static string GetFileName(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item)
+		{
+			if (item==null) return "";
+			if (item.Package==null) return "";
+			if (item.Package.FileName == null) return "";
+
+			return item.Package.FileName;
+		}
+
+		public CorruptedFileException(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item, Exception inner)
+			:base (
+					"A corrupted PackedFile was found.", 
+					new Exception("The File '"+GetFileName(item)+"' contains a Corrupted File ("+item.FileDescriptor.ToString()+").\n\n SimPE will Ignore this File, but the resulting Package might be broken!", inner)
+			)
+		{
+			FileTable.FileIndex.RemoveItem(item);
+		}
+	}
+
+	/// <summary>
+	/// En Error occurd during the attempt of walking the Scenegraph
 	/// </summary>
 	public class ScenegraphException : Exception
 	{

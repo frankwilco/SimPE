@@ -74,6 +74,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.CheckBox cblock;
 		private System.Windows.Forms.ComboBox cbsel;
+		private Skybound.VisualStyles.VisualStyleProvider visualStyleProvider1;
 		private System.ComponentModel.IContainer components;
 
 		public WantsForm()
@@ -112,6 +113,7 @@ namespace SimPe.Plugin
 			this.wantsPanel = new System.Windows.Forms.Panel();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.gbprop = new System.Windows.Forms.GroupBox();
+			this.cbsel = new System.Windows.Forms.ComboBox();
 			this.cblock = new System.Windows.Forms.CheckBox();
 			this.tv = new System.Windows.Forms.TreeView();
 			this.itv = new System.Windows.Forms.ImageList(this.components);
@@ -152,7 +154,7 @@ namespace SimPe.Plugin
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.lbsimname = new System.Windows.Forms.Label();
 			this.label27 = new System.Windows.Forms.Label();
-			this.cbsel = new System.Windows.Forms.ComboBox();
+			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
 			this.wantsPanel.SuspendLayout();
 			this.gbprop.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -174,6 +176,7 @@ namespace SimPe.Plugin
 			this.wantsPanel.Name = "wantsPanel";
 			this.wantsPanel.Size = new System.Drawing.Size(768, 344);
 			this.wantsPanel.TabIndex = 20;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.wantsPanel, true);
 			// 
 			// linkLabel1
 			// 
@@ -226,6 +229,19 @@ namespace SimPe.Plugin
 			this.gbprop.TabIndex = 2;
 			this.gbprop.TabStop = false;
 			this.gbprop.Text = "Properties:";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.gbprop, true);
+			// 
+			// cbsel
+			// 
+			this.cbsel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.cbsel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbsel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbsel.Location = new System.Drawing.Point(200, 256);
+			this.cbsel.Name = "cbsel";
+			this.cbsel.Size = new System.Drawing.Size(120, 21);
+			this.cbsel.TabIndex = 23;
+			this.cbsel.SelectedIndexChanged += new System.EventHandler(this.cbsel_SelectedIndexChanged);
 			// 
 			// cblock
 			// 
@@ -237,6 +253,7 @@ namespace SimPe.Plugin
 			this.cblock.Size = new System.Drawing.Size(72, 24);
 			this.cblock.TabIndex = 22;
 			this.cblock.Text = "Locked:";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cblock, true);
 			this.cblock.CheckedChanged += new System.EventHandler(this.ChangedText);
 			// 
 			// tv
@@ -280,6 +297,7 @@ namespace SimPe.Plugin
 			this.tbpoints.Size = new System.Drawing.Size(88, 21);
 			this.tbpoints.TabIndex = 18;
 			this.tbpoints.Text = "0";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbpoints, true);
 			this.tbpoints.TextChanged += new System.EventHandler(this.ChangedText);
 			// 
 			// tbunknown2
@@ -291,6 +309,7 @@ namespace SimPe.Plugin
 			this.tbunknown2.Size = new System.Drawing.Size(88, 21);
 			this.tbunknown2.TabIndex = 17;
 			this.tbunknown2.Text = "0";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbunknown2, true);
 			this.tbunknown2.TextChanged += new System.EventHandler(this.ChangedText);
 			// 
 			// tbunknown1
@@ -303,6 +322,7 @@ namespace SimPe.Plugin
 			this.tbunknown1.Size = new System.Drawing.Size(56, 21);
 			this.tbunknown1.TabIndex = 16;
 			this.tbunknown1.Text = "0x00";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbunknown1, true);
 			// 
 			// tbindex
 			// 
@@ -314,6 +334,7 @@ namespace SimPe.Plugin
 			this.tbindex.Size = new System.Drawing.Size(88, 21);
 			this.tbindex.TabIndex = 15;
 			this.tbindex.Text = "0x00000000";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbindex, true);
 			// 
 			// tbsiminst
 			// 
@@ -325,6 +346,7 @@ namespace SimPe.Plugin
 			this.tbsiminst.Size = new System.Drawing.Size(56, 21);
 			this.tbsiminst.TabIndex = 14;
 			this.tbsiminst.Text = "0x0000";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbsiminst, true);
 			// 
 			// tbprop
 			// 
@@ -335,6 +357,7 @@ namespace SimPe.Plugin
 			this.tbprop.Size = new System.Drawing.Size(88, 21);
 			this.tbprop.TabIndex = 13;
 			this.tbprop.Text = "0";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbprop, true);
 			this.tbprop.TextChanged += new System.EventHandler(this.ChangedText);
 			// 
 			// tbval
@@ -346,6 +369,7 @@ namespace SimPe.Plugin
 			this.tbval.Size = new System.Drawing.Size(88, 21);
 			this.tbval.TabIndex = 12;
 			this.tbval.Text = "0x00000000";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbval, true);
 			this.tbval.TextChanged += new System.EventHandler(this.ChangedText);
 			// 
 			// tbguid
@@ -357,6 +381,7 @@ namespace SimPe.Plugin
 			this.tbguid.Size = new System.Drawing.Size(88, 21);
 			this.tbguid.TabIndex = 11;
 			this.tbguid.Text = "0x00000000";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbguid, true);
 			// 
 			// tbversion
 			// 
@@ -368,6 +393,7 @@ namespace SimPe.Plugin
 			this.tbversion.Size = new System.Drawing.Size(88, 21);
 			this.tbversion.TabIndex = 10;
 			this.tbversion.Text = "0x00000000";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbversion, true);
 			// 
 			// label10
 			// 
@@ -379,6 +405,7 @@ namespace SimPe.Plugin
 			this.label10.TabIndex = 9;
 			this.label10.Text = "Influence:";
 			this.label10.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label10, true);
 			// 
 			// label9
 			// 
@@ -390,6 +417,7 @@ namespace SimPe.Plugin
 			this.label9.TabIndex = 8;
 			this.label9.Text = "Flags:";
 			this.label9.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label9, true);
 			// 
 			// label8
 			// 
@@ -401,6 +429,7 @@ namespace SimPe.Plugin
 			this.label8.TabIndex = 7;
 			this.label8.Text = "Points:";
 			this.label8.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label8, true);
 			// 
 			// label7
 			// 
@@ -412,6 +441,7 @@ namespace SimPe.Plugin
 			this.label7.TabIndex = 6;
 			this.label7.Text = "Index:";
 			this.label7.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label7, true);
 			// 
 			// label6
 			// 
@@ -423,6 +453,7 @@ namespace SimPe.Plugin
 			this.label6.TabIndex = 5;
 			this.label6.Text = "Amount:";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label6, true);
 			// 
 			// label4
 			// 
@@ -434,6 +465,7 @@ namespace SimPe.Plugin
 			this.label4.TabIndex = 3;
 			this.label4.Text = "Type:";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label4, true);
 			// 
 			// label3
 			// 
@@ -444,6 +476,7 @@ namespace SimPe.Plugin
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Want GUID:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label3, true);
 			// 
 			// label2
 			// 
@@ -455,6 +488,7 @@ namespace SimPe.Plugin
 			this.label2.TabIndex = 1;
 			this.label2.Text = "Sim Inst.:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label2, true);
 			// 
 			// label1
 			// 
@@ -466,6 +500,7 @@ namespace SimPe.Plugin
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Version:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label1, true);
 			// 
 			// pb
 			// 
@@ -475,6 +510,7 @@ namespace SimPe.Plugin
 			this.pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pb.TabIndex = 20;
 			this.pb.TabStop = false;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.pb, true);
 			// 
 			// label5
 			// 
@@ -486,6 +522,7 @@ namespace SimPe.Plugin
 			this.label5.TabIndex = 4;
 			this.label5.Text = "Value:";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label5, true);
 			// 
 			// tabControl1
 			// 
@@ -500,6 +537,7 @@ namespace SimPe.Plugin
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(320, 304);
 			this.tabControl1.TabIndex = 1;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabControl1, true);
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.SelectTab);
 			// 
 			// tbwant
@@ -510,6 +548,7 @@ namespace SimPe.Plugin
 			this.tbwant.Size = new System.Drawing.Size(312, 278);
 			this.tbwant.TabIndex = 1;
 			this.tbwant.Text = "Wants";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbwant, true);
 			// 
 			// lvwant
 			// 
@@ -539,6 +578,7 @@ namespace SimPe.Plugin
 			this.tbfear.Size = new System.Drawing.Size(312, 278);
 			this.tbfear.TabIndex = 2;
 			this.tbfear.Text = "Fears";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbfear, true);
 			// 
 			// lvfear
 			// 
@@ -568,6 +608,7 @@ namespace SimPe.Plugin
 			this.tbhist.Size = new System.Drawing.Size(312, 278);
 			this.tbhist.TabIndex = 3;
 			this.tbhist.Text = "History";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbhist, true);
 			// 
 			// tvhist
 			// 
@@ -596,6 +637,7 @@ namespace SimPe.Plugin
 			this.tblife.Size = new System.Drawing.Size(312, 278);
 			this.tblife.TabIndex = 0;
 			this.tblife.Text = "Lifetime Wants";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tblife, true);
 			// 
 			// lvlife
 			// 
@@ -630,6 +672,7 @@ namespace SimPe.Plugin
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(768, 24);
 			this.panel2.TabIndex = 0;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.panel2, true);
 			// 
 			// lbsimname
 			// 
@@ -642,6 +685,7 @@ namespace SimPe.Plugin
 			this.lbsimname.Size = new System.Drawing.Size(23, 19);
 			this.lbsimname.TabIndex = 1;
 			this.lbsimname.Text = "---";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.lbsimname, true);
 			this.lbsimname.Click += new System.EventHandler(this.lbsimname_Click);
 			// 
 			// label27
@@ -653,18 +697,7 @@ namespace SimPe.Plugin
 			this.label27.Size = new System.Drawing.Size(214, 19);
 			this.label27.TabIndex = 0;
 			this.label27.Text = "Wants and Fears Viewer for";
-			// 
-			// cbsel
-			// 
-			this.cbsel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.cbsel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbsel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbsel.Location = new System.Drawing.Point(200, 256);
-			this.cbsel.Name = "cbsel";
-			this.cbsel.Size = new System.Drawing.Size(120, 21);
-			this.cbsel.TabIndex = 23;
-			this.cbsel.SelectedIndexChanged += new System.EventHandler(this.cbsel_SelectedIndexChanged);
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label27, true);
 			// 
 			// WantsForm
 			// 

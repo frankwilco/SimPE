@@ -473,6 +473,7 @@ namespace SimPe.Plugin
 
 
 		private bool oneEnglish, englishOnly;
+		private Skybound.VisualStyles.VisualStyleProvider visualStyleProvider1;
 
 		public CareerEditor()
 		{
@@ -793,6 +794,7 @@ namespace SimPe.Plugin
 			this.menuItem3 = new System.Windows.Forms.MenuItem();
 			this.menuItem4 = new System.Windows.Forms.MenuItem();
 			this.menuItem5 = new System.Windows.Forms.MenuItem();
+			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
 			this.tabPage4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ChanceCurrentLevel)).BeginInit();
 			this.tabControl2.SuspendLayout();
@@ -949,6 +951,7 @@ namespace SimPe.Plugin
 			this.tabPage4.Size = new System.Drawing.Size(880, 582);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "Chance Cards";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage4, true);
 			// 
 			// ChanceCopy
 			// 
@@ -970,6 +973,7 @@ namespace SimPe.Plugin
 			this.label65.Size = new System.Drawing.Size(80, 16);
 			this.label65.TabIndex = 89;
 			this.label65.Text = "Current Level";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label65, true);
 			// 
 			// ChanceCurrentLevel
 			// 
@@ -992,6 +996,7 @@ namespace SimPe.Plugin
 																			 0,
 																			 0,
 																			 0});
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChanceCurrentLevel, true);
 			this.ChanceCurrentLevel.ValueChanged += new System.EventHandler(this.ChanceCurrentLevel_ValueChanged);
 			// 
 			// label52
@@ -1001,6 +1006,7 @@ namespace SimPe.Plugin
 			this.label52.Size = new System.Drawing.Size(104, 16);
 			this.label52.TabIndex = 87;
 			this.label52.Text = "Text Female";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label52, true);
 			// 
 			// label51
 			// 
@@ -1009,6 +1015,7 @@ namespace SimPe.Plugin
 			this.label51.Size = new System.Drawing.Size(104, 16);
 			this.label51.TabIndex = 86;
 			this.label51.Text = "Text Male";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label51, true);
 			// 
 			// label50
 			// 
@@ -1017,6 +1024,7 @@ namespace SimPe.Plugin
 			this.label50.Size = new System.Drawing.Size(144, 16);
 			this.label50.TabIndex = 85;
 			this.label50.Text = "Chance of Happening %";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label50, true);
 			// 
 			// label43
 			// 
@@ -1025,6 +1033,7 @@ namespace SimPe.Plugin
 			this.label43.Size = new System.Drawing.Size(56, 16);
 			this.label43.TabIndex = 84;
 			this.label43.Text = "Cleaning";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label43, true);
 			// 
 			// label44
 			// 
@@ -1033,6 +1042,7 @@ namespace SimPe.Plugin
 			this.label44.Size = new System.Drawing.Size(40, 16);
 			this.label44.TabIndex = 83;
 			this.label44.Text = "Logic";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label44, true);
 			// 
 			// label45
 			// 
@@ -1041,6 +1051,7 @@ namespace SimPe.Plugin
 			this.label45.Size = new System.Drawing.Size(64, 16);
 			this.label45.TabIndex = 82;
 			this.label45.Text = "Creativity";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label45, true);
 			// 
 			// label46
 			// 
@@ -1049,6 +1060,7 @@ namespace SimPe.Plugin
 			this.label46.Size = new System.Drawing.Size(64, 16);
 			this.label46.TabIndex = 81;
 			this.label46.Text = "Charisma";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label46, true);
 			// 
 			// label47
 			// 
@@ -1057,6 +1069,7 @@ namespace SimPe.Plugin
 			this.label47.Size = new System.Drawing.Size(64, 16);
 			this.label47.TabIndex = 80;
 			this.label47.Text = "Body";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label47, true);
 			// 
 			// label48
 			// 
@@ -1065,6 +1078,7 @@ namespace SimPe.Plugin
 			this.label48.Size = new System.Drawing.Size(72, 16);
 			this.label48.TabIndex = 79;
 			this.label48.Text = "Mechanical";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label48, true);
 			// 
 			// label49
 			// 
@@ -1073,6 +1087,7 @@ namespace SimPe.Plugin
 			this.label49.Size = new System.Drawing.Size(56, 16);
 			this.label49.TabIndex = 78;
 			this.label49.Text = "Cooking";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label49, true);
 			// 
 			// label42
 			// 
@@ -1081,6 +1096,7 @@ namespace SimPe.Plugin
 			this.label42.Size = new System.Drawing.Size(56, 16);
 			this.label42.TabIndex = 77;
 			this.label42.Text = "ChoiceB";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label42, true);
 			// 
 			// label12
 			// 
@@ -1089,6 +1105,7 @@ namespace SimPe.Plugin
 			this.label12.Size = new System.Drawing.Size(56, 16);
 			this.label12.TabIndex = 76;
 			this.label12.Text = "ChoiceA";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label12, true);
 			// 
 			// tabControl2
 			// 
@@ -1101,6 +1118,7 @@ namespace SimPe.Plugin
 			this.tabControl2.SelectedIndex = 0;
 			this.tabControl2.Size = new System.Drawing.Size(856, 288);
 			this.tabControl2.TabIndex = 74;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabControl2, true);
 			// 
 			// tabPage5
 			// 
@@ -1133,6 +1151,7 @@ namespace SimPe.Plugin
 			this.tabPage5.Size = new System.Drawing.Size(848, 262);
 			this.tabPage5.TabIndex = 0;
 			this.tabPage5.Text = "Pass A";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage5, true);
 			// 
 			// label2
 			// 
@@ -1141,6 +1160,7 @@ namespace SimPe.Plugin
 			this.label2.Size = new System.Drawing.Size(72, 16);
 			this.label2.TabIndex = 134;
 			this.label2.Text = "Job Levels";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label2, true);
 			// 
 			// label11
 			// 
@@ -1149,6 +1169,7 @@ namespace SimPe.Plugin
 			this.label11.Size = new System.Drawing.Size(48, 16);
 			this.label11.TabIndex = 133;
 			this.label11.Text = "Money";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label11, true);
 			// 
 			// label17
 			// 
@@ -1157,6 +1178,7 @@ namespace SimPe.Plugin
 			this.label17.Size = new System.Drawing.Size(56, 16);
 			this.label17.TabIndex = 132;
 			this.label17.Text = "Cleaning";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label17, true);
 			// 
 			// label53
 			// 
@@ -1165,6 +1187,7 @@ namespace SimPe.Plugin
 			this.label53.Size = new System.Drawing.Size(40, 16);
 			this.label53.TabIndex = 131;
 			this.label53.Text = "Logic";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label53, true);
 			// 
 			// label54
 			// 
@@ -1173,6 +1196,7 @@ namespace SimPe.Plugin
 			this.label54.Size = new System.Drawing.Size(64, 16);
 			this.label54.TabIndex = 130;
 			this.label54.Text = "Creativity";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label54, true);
 			// 
 			// label55
 			// 
@@ -1181,6 +1205,7 @@ namespace SimPe.Plugin
 			this.label55.Size = new System.Drawing.Size(64, 16);
 			this.label55.TabIndex = 129;
 			this.label55.Text = "Charisma";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label55, true);
 			// 
 			// label56
 			// 
@@ -1189,6 +1214,7 @@ namespace SimPe.Plugin
 			this.label56.Size = new System.Drawing.Size(64, 16);
 			this.label56.TabIndex = 128;
 			this.label56.Text = "Body";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label56, true);
 			// 
 			// label57
 			// 
@@ -1197,6 +1223,7 @@ namespace SimPe.Plugin
 			this.label57.Size = new System.Drawing.Size(72, 16);
 			this.label57.TabIndex = 127;
 			this.label57.Text = "Mechanical";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label57, true);
 			// 
 			// label58
 			// 
@@ -1205,6 +1232,7 @@ namespace SimPe.Plugin
 			this.label58.Size = new System.Drawing.Size(56, 16);
 			this.label58.TabIndex = 126;
 			this.label58.Text = "Cooking";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label58, true);
 			// 
 			// PassACopy
 			// 
@@ -1226,6 +1254,7 @@ namespace SimPe.Plugin
 			this.PassAFemaleText.Size = new System.Drawing.Size(416, 168);
 			this.PassAFemaleText.TabIndex = 107;
 			this.PassAFemaleText.Text = "textBox2";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassAFemaleText, true);
 			// 
 			// PassAMaleText
 			// 
@@ -1235,6 +1264,7 @@ namespace SimPe.Plugin
 			this.PassAMaleText.Size = new System.Drawing.Size(416, 168);
 			this.PassAMaleText.TabIndex = 106;
 			this.PassAMaleText.Text = "textBox1";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassAMaleText, true);
 			// 
 			// label63
 			// 
@@ -1243,6 +1273,7 @@ namespace SimPe.Plugin
 			this.label63.Size = new System.Drawing.Size(104, 16);
 			this.label63.TabIndex = 105;
 			this.label63.Text = "Text Female";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label63, true);
 			// 
 			// label64
 			// 
@@ -1251,6 +1282,7 @@ namespace SimPe.Plugin
 			this.label64.Size = new System.Drawing.Size(104, 16);
 			this.label64.TabIndex = 104;
 			this.label64.Text = "Text Male";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label64, true);
 			// 
 			// label62
 			// 
@@ -1259,6 +1291,7 @@ namespace SimPe.Plugin
 			this.label62.Size = new System.Drawing.Size(56, 16);
 			this.label62.TabIndex = 103;
 			this.label62.Text = "Effect";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label62, true);
 			// 
 			// PassAJobLevel
 			// 
@@ -1271,6 +1304,7 @@ namespace SimPe.Plugin
 			this.PassAJobLevel.Name = "PassAJobLevel";
 			this.PassAJobLevel.Size = new System.Drawing.Size(48, 21);
 			this.PassAJobLevel.TabIndex = 100;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassAJobLevel, true);
 			// 
 			// PassAMoney
 			// 
@@ -1288,6 +1322,7 @@ namespace SimPe.Plugin
 			this.PassAMoney.Name = "PassAMoney";
 			this.PassAMoney.Size = new System.Drawing.Size(80, 21);
 			this.PassAMoney.TabIndex = 99;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassAMoney, true);
 			// 
 			// PassACleaning
 			// 
@@ -1305,6 +1340,7 @@ namespace SimPe.Plugin
 			this.PassACleaning.Name = "PassACleaning";
 			this.PassACleaning.Size = new System.Drawing.Size(48, 21);
 			this.PassACleaning.TabIndex = 91;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassACleaning, true);
 			// 
 			// PassALogic
 			// 
@@ -1322,6 +1358,7 @@ namespace SimPe.Plugin
 			this.PassALogic.Name = "PassALogic";
 			this.PassALogic.Size = new System.Drawing.Size(48, 21);
 			this.PassALogic.TabIndex = 90;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassALogic, true);
 			// 
 			// PassACreativity
 			// 
@@ -1339,6 +1376,7 @@ namespace SimPe.Plugin
 			this.PassACreativity.Name = "PassACreativity";
 			this.PassACreativity.Size = new System.Drawing.Size(48, 21);
 			this.PassACreativity.TabIndex = 89;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassACreativity, true);
 			// 
 			// PassABody
 			// 
@@ -1356,6 +1394,7 @@ namespace SimPe.Plugin
 			this.PassABody.Name = "PassABody";
 			this.PassABody.Size = new System.Drawing.Size(48, 21);
 			this.PassABody.TabIndex = 88;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassABody, true);
 			// 
 			// PassACharisma
 			// 
@@ -1373,6 +1412,7 @@ namespace SimPe.Plugin
 			this.PassACharisma.Name = "PassACharisma";
 			this.PassACharisma.Size = new System.Drawing.Size(48, 21);
 			this.PassACharisma.TabIndex = 87;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassACharisma, true);
 			// 
 			// PassAMechanical
 			// 
@@ -1390,6 +1430,7 @@ namespace SimPe.Plugin
 			this.PassAMechanical.Name = "PassAMechanical";
 			this.PassAMechanical.Size = new System.Drawing.Size(48, 21);
 			this.PassAMechanical.TabIndex = 86;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassAMechanical, true);
 			// 
 			// PassACooking
 			// 
@@ -1407,6 +1448,7 @@ namespace SimPe.Plugin
 			this.PassACooking.Name = "PassACooking";
 			this.PassACooking.Size = new System.Drawing.Size(48, 21);
 			this.PassACooking.TabIndex = 85;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassACooking, true);
 			// 
 			// tabPage6
 			// 
@@ -1439,6 +1481,7 @@ namespace SimPe.Plugin
 			this.tabPage6.Size = new System.Drawing.Size(848, 262);
 			this.tabPage6.TabIndex = 1;
 			this.tabPage6.Text = "Fail A";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage6, true);
 			// 
 			// FailACopy
 			// 
@@ -1460,6 +1503,7 @@ namespace SimPe.Plugin
 			this.FailAFemaleText.Size = new System.Drawing.Size(416, 168);
 			this.FailAFemaleText.TabIndex = 130;
 			this.FailAFemaleText.Text = "textBox2";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailAFemaleText, true);
 			// 
 			// FailAMaleText
 			// 
@@ -1469,6 +1513,7 @@ namespace SimPe.Plugin
 			this.FailAMaleText.Size = new System.Drawing.Size(416, 168);
 			this.FailAMaleText.TabIndex = 129;
 			this.FailAMaleText.Text = "textBox1";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailAMaleText, true);
 			// 
 			// label66
 			// 
@@ -1477,6 +1522,7 @@ namespace SimPe.Plugin
 			this.label66.Size = new System.Drawing.Size(104, 16);
 			this.label66.TabIndex = 128;
 			this.label66.Text = "Text Female";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label66, true);
 			// 
 			// label67
 			// 
@@ -1485,6 +1531,7 @@ namespace SimPe.Plugin
 			this.label67.Size = new System.Drawing.Size(104, 16);
 			this.label67.TabIndex = 127;
 			this.label67.Text = "Text Male";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label67, true);
 			// 
 			// label68
 			// 
@@ -1493,6 +1540,7 @@ namespace SimPe.Plugin
 			this.label68.Size = new System.Drawing.Size(56, 16);
 			this.label68.TabIndex = 126;
 			this.label68.Text = "Effect";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label68, true);
 			// 
 			// label69
 			// 
@@ -1501,6 +1549,7 @@ namespace SimPe.Plugin
 			this.label69.Size = new System.Drawing.Size(72, 16);
 			this.label69.TabIndex = 125;
 			this.label69.Text = "Job Levels";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label69, true);
 			// 
 			// label70
 			// 
@@ -1509,6 +1558,7 @@ namespace SimPe.Plugin
 			this.label70.Size = new System.Drawing.Size(48, 16);
 			this.label70.TabIndex = 124;
 			this.label70.Text = "Money";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label70, true);
 			// 
 			// FailAJobLevel
 			// 
@@ -1521,6 +1571,7 @@ namespace SimPe.Plugin
 			this.FailAJobLevel.Name = "FailAJobLevel";
 			this.FailAJobLevel.Size = new System.Drawing.Size(48, 21);
 			this.FailAJobLevel.TabIndex = 123;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailAJobLevel, true);
 			// 
 			// FailAMoney
 			// 
@@ -1538,6 +1589,7 @@ namespace SimPe.Plugin
 			this.FailAMoney.Name = "FailAMoney";
 			this.FailAMoney.Size = new System.Drawing.Size(80, 21);
 			this.FailAMoney.TabIndex = 122;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailAMoney, true);
 			// 
 			// label71
 			// 
@@ -1546,6 +1598,7 @@ namespace SimPe.Plugin
 			this.label71.Size = new System.Drawing.Size(56, 16);
 			this.label71.TabIndex = 121;
 			this.label71.Text = "Cleaning";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label71, true);
 			// 
 			// label72
 			// 
@@ -1554,6 +1607,7 @@ namespace SimPe.Plugin
 			this.label72.Size = new System.Drawing.Size(40, 16);
 			this.label72.TabIndex = 120;
 			this.label72.Text = "Logic";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label72, true);
 			// 
 			// label73
 			// 
@@ -1562,6 +1616,7 @@ namespace SimPe.Plugin
 			this.label73.Size = new System.Drawing.Size(64, 16);
 			this.label73.TabIndex = 119;
 			this.label73.Text = "Creativity";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label73, true);
 			// 
 			// label74
 			// 
@@ -1570,6 +1625,7 @@ namespace SimPe.Plugin
 			this.label74.Size = new System.Drawing.Size(64, 16);
 			this.label74.TabIndex = 118;
 			this.label74.Text = "Charisma";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label74, true);
 			// 
 			// label75
 			// 
@@ -1578,6 +1634,7 @@ namespace SimPe.Plugin
 			this.label75.Size = new System.Drawing.Size(64, 16);
 			this.label75.TabIndex = 117;
 			this.label75.Text = "Body";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label75, true);
 			// 
 			// label76
 			// 
@@ -1586,6 +1643,7 @@ namespace SimPe.Plugin
 			this.label76.Size = new System.Drawing.Size(72, 16);
 			this.label76.TabIndex = 116;
 			this.label76.Text = "Mechanical";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label76, true);
 			// 
 			// label77
 			// 
@@ -1594,6 +1652,7 @@ namespace SimPe.Plugin
 			this.label77.Size = new System.Drawing.Size(56, 16);
 			this.label77.TabIndex = 115;
 			this.label77.Text = "Cooking";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label77, true);
 			// 
 			// FailACleaning
 			// 
@@ -1611,6 +1670,7 @@ namespace SimPe.Plugin
 			this.FailACleaning.Name = "FailACleaning";
 			this.FailACleaning.Size = new System.Drawing.Size(48, 21);
 			this.FailACleaning.TabIndex = 114;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailACleaning, true);
 			// 
 			// FailALogic
 			// 
@@ -1628,6 +1688,7 @@ namespace SimPe.Plugin
 			this.FailALogic.Name = "FailALogic";
 			this.FailALogic.Size = new System.Drawing.Size(48, 21);
 			this.FailALogic.TabIndex = 113;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailALogic, true);
 			// 
 			// FailACreativity
 			// 
@@ -1645,6 +1706,7 @@ namespace SimPe.Plugin
 			this.FailACreativity.Name = "FailACreativity";
 			this.FailACreativity.Size = new System.Drawing.Size(48, 21);
 			this.FailACreativity.TabIndex = 112;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailACreativity, true);
 			// 
 			// FailABody
 			// 
@@ -1662,6 +1724,7 @@ namespace SimPe.Plugin
 			this.FailABody.Name = "FailABody";
 			this.FailABody.Size = new System.Drawing.Size(48, 21);
 			this.FailABody.TabIndex = 111;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailABody, true);
 			// 
 			// FailACharisma
 			// 
@@ -1679,6 +1742,7 @@ namespace SimPe.Plugin
 			this.FailACharisma.Name = "FailACharisma";
 			this.FailACharisma.Size = new System.Drawing.Size(48, 21);
 			this.FailACharisma.TabIndex = 110;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailACharisma, true);
 			// 
 			// FailAMechanical
 			// 
@@ -1696,6 +1760,7 @@ namespace SimPe.Plugin
 			this.FailAMechanical.Name = "FailAMechanical";
 			this.FailAMechanical.Size = new System.Drawing.Size(48, 21);
 			this.FailAMechanical.TabIndex = 109;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailAMechanical, true);
 			// 
 			// FailACooking
 			// 
@@ -1713,6 +1778,7 @@ namespace SimPe.Plugin
 			this.FailACooking.Name = "FailACooking";
 			this.FailACooking.Size = new System.Drawing.Size(48, 21);
 			this.FailACooking.TabIndex = 108;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailACooking, true);
 			// 
 			// tabPage7
 			// 
@@ -1745,6 +1811,7 @@ namespace SimPe.Plugin
 			this.tabPage7.Size = new System.Drawing.Size(848, 262);
 			this.tabPage7.TabIndex = 2;
 			this.tabPage7.Text = "Pass B";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage7, true);
 			// 
 			// label59
 			// 
@@ -1753,6 +1820,7 @@ namespace SimPe.Plugin
 			this.label59.Size = new System.Drawing.Size(72, 16);
 			this.label59.TabIndex = 140;
 			this.label59.Text = "Job Levels";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label59, true);
 			// 
 			// label60
 			// 
@@ -1761,6 +1829,7 @@ namespace SimPe.Plugin
 			this.label60.Size = new System.Drawing.Size(48, 16);
 			this.label60.TabIndex = 139;
 			this.label60.Text = "Money";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label60, true);
 			// 
 			// label61
 			// 
@@ -1769,6 +1838,7 @@ namespace SimPe.Plugin
 			this.label61.Size = new System.Drawing.Size(56, 16);
 			this.label61.TabIndex = 138;
 			this.label61.Text = "Cleaning";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label61, true);
 			// 
 			// label81
 			// 
@@ -1777,6 +1847,7 @@ namespace SimPe.Plugin
 			this.label81.Size = new System.Drawing.Size(40, 16);
 			this.label81.TabIndex = 137;
 			this.label81.Text = "Logic";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label81, true);
 			// 
 			// label82
 			// 
@@ -1785,6 +1856,7 @@ namespace SimPe.Plugin
 			this.label82.Size = new System.Drawing.Size(64, 16);
 			this.label82.TabIndex = 136;
 			this.label82.Text = "Creativity";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label82, true);
 			// 
 			// label83
 			// 
@@ -1793,6 +1865,7 @@ namespace SimPe.Plugin
 			this.label83.Size = new System.Drawing.Size(64, 16);
 			this.label83.TabIndex = 135;
 			this.label83.Text = "Charisma";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label83, true);
 			// 
 			// label84
 			// 
@@ -1801,6 +1874,7 @@ namespace SimPe.Plugin
 			this.label84.Size = new System.Drawing.Size(64, 16);
 			this.label84.TabIndex = 134;
 			this.label84.Text = "Body";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label84, true);
 			// 
 			// label85
 			// 
@@ -1809,6 +1883,7 @@ namespace SimPe.Plugin
 			this.label85.Size = new System.Drawing.Size(72, 16);
 			this.label85.TabIndex = 133;
 			this.label85.Text = "Mechanical";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label85, true);
 			// 
 			// label86
 			// 
@@ -1817,6 +1892,7 @@ namespace SimPe.Plugin
 			this.label86.Size = new System.Drawing.Size(56, 16);
 			this.label86.TabIndex = 132;
 			this.label86.Text = "Cooking";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label86, true);
 			// 
 			// PassBCopy
 			// 
@@ -1838,6 +1914,7 @@ namespace SimPe.Plugin
 			this.PassBFemaleText.Size = new System.Drawing.Size(416, 168);
 			this.PassBFemaleText.TabIndex = 130;
 			this.PassBFemaleText.Text = "textBox2";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBFemaleText, true);
 			// 
 			// PassBMaleText
 			// 
@@ -1847,6 +1924,7 @@ namespace SimPe.Plugin
 			this.PassBMaleText.Size = new System.Drawing.Size(416, 168);
 			this.PassBMaleText.TabIndex = 129;
 			this.PassBMaleText.Text = "textBox1";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBMaleText, true);
 			// 
 			// label78
 			// 
@@ -1855,6 +1933,7 @@ namespace SimPe.Plugin
 			this.label78.Size = new System.Drawing.Size(104, 16);
 			this.label78.TabIndex = 128;
 			this.label78.Text = "Text Female";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label78, true);
 			// 
 			// label79
 			// 
@@ -1863,6 +1942,7 @@ namespace SimPe.Plugin
 			this.label79.Size = new System.Drawing.Size(104, 16);
 			this.label79.TabIndex = 127;
 			this.label79.Text = "Text Male";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label79, true);
 			// 
 			// label80
 			// 
@@ -1871,6 +1951,7 @@ namespace SimPe.Plugin
 			this.label80.Size = new System.Drawing.Size(56, 16);
 			this.label80.TabIndex = 126;
 			this.label80.Text = "Effect";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label80, true);
 			// 
 			// PassBJobLevel
 			// 
@@ -1883,6 +1964,7 @@ namespace SimPe.Plugin
 			this.PassBJobLevel.Name = "PassBJobLevel";
 			this.PassBJobLevel.Size = new System.Drawing.Size(48, 21);
 			this.PassBJobLevel.TabIndex = 123;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBJobLevel, true);
 			// 
 			// PassBMoney
 			// 
@@ -1900,6 +1982,7 @@ namespace SimPe.Plugin
 			this.PassBMoney.Name = "PassBMoney";
 			this.PassBMoney.Size = new System.Drawing.Size(80, 21);
 			this.PassBMoney.TabIndex = 122;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBMoney, true);
 			// 
 			// PassBCleaning
 			// 
@@ -1917,6 +2000,7 @@ namespace SimPe.Plugin
 			this.PassBCleaning.Name = "PassBCleaning";
 			this.PassBCleaning.Size = new System.Drawing.Size(48, 21);
 			this.PassBCleaning.TabIndex = 114;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBCleaning, true);
 			// 
 			// PassBLogic
 			// 
@@ -1934,6 +2018,7 @@ namespace SimPe.Plugin
 			this.PassBLogic.Name = "PassBLogic";
 			this.PassBLogic.Size = new System.Drawing.Size(48, 21);
 			this.PassBLogic.TabIndex = 113;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBLogic, true);
 			// 
 			// PassBCreativity
 			// 
@@ -1951,6 +2036,7 @@ namespace SimPe.Plugin
 			this.PassBCreativity.Name = "PassBCreativity";
 			this.PassBCreativity.Size = new System.Drawing.Size(48, 21);
 			this.PassBCreativity.TabIndex = 112;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBCreativity, true);
 			// 
 			// PassBBody
 			// 
@@ -1968,6 +2054,7 @@ namespace SimPe.Plugin
 			this.PassBBody.Name = "PassBBody";
 			this.PassBBody.Size = new System.Drawing.Size(48, 21);
 			this.PassBBody.TabIndex = 111;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBBody, true);
 			// 
 			// PassBCharisma
 			// 
@@ -1985,6 +2072,7 @@ namespace SimPe.Plugin
 			this.PassBCharisma.Name = "PassBCharisma";
 			this.PassBCharisma.Size = new System.Drawing.Size(48, 21);
 			this.PassBCharisma.TabIndex = 110;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBCharisma, true);
 			// 
 			// PassBMechanical
 			// 
@@ -2002,6 +2090,7 @@ namespace SimPe.Plugin
 			this.PassBMechanical.Name = "PassBMechanical";
 			this.PassBMechanical.Size = new System.Drawing.Size(48, 21);
 			this.PassBMechanical.TabIndex = 109;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBMechanical, true);
 			// 
 			// PassBCooking
 			// 
@@ -2019,6 +2108,7 @@ namespace SimPe.Plugin
 			this.PassBCooking.Name = "PassBCooking";
 			this.PassBCooking.Size = new System.Drawing.Size(48, 21);
 			this.PassBCooking.TabIndex = 108;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PassBCooking, true);
 			// 
 			// tabPage8
 			// 
@@ -2051,6 +2141,7 @@ namespace SimPe.Plugin
 			this.tabPage8.Size = new System.Drawing.Size(848, 262);
 			this.tabPage8.TabIndex = 3;
 			this.tabPage8.Text = "Fail B";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage8, true);
 			// 
 			// label87
 			// 
@@ -2059,6 +2150,7 @@ namespace SimPe.Plugin
 			this.label87.Size = new System.Drawing.Size(72, 16);
 			this.label87.TabIndex = 140;
 			this.label87.Text = "Job Levels";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label87, true);
 			// 
 			// label88
 			// 
@@ -2067,6 +2159,7 @@ namespace SimPe.Plugin
 			this.label88.Size = new System.Drawing.Size(48, 16);
 			this.label88.TabIndex = 139;
 			this.label88.Text = "Money";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label88, true);
 			// 
 			// label89
 			// 
@@ -2075,6 +2168,7 @@ namespace SimPe.Plugin
 			this.label89.Size = new System.Drawing.Size(56, 16);
 			this.label89.TabIndex = 138;
 			this.label89.Text = "Cleaning";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label89, true);
 			// 
 			// label93
 			// 
@@ -2083,6 +2177,7 @@ namespace SimPe.Plugin
 			this.label93.Size = new System.Drawing.Size(40, 16);
 			this.label93.TabIndex = 137;
 			this.label93.Text = "Logic";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label93, true);
 			// 
 			// label94
 			// 
@@ -2091,6 +2186,7 @@ namespace SimPe.Plugin
 			this.label94.Size = new System.Drawing.Size(64, 16);
 			this.label94.TabIndex = 136;
 			this.label94.Text = "Creativity";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label94, true);
 			// 
 			// label95
 			// 
@@ -2099,6 +2195,7 @@ namespace SimPe.Plugin
 			this.label95.Size = new System.Drawing.Size(64, 16);
 			this.label95.TabIndex = 135;
 			this.label95.Text = "Charisma";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label95, true);
 			// 
 			// label96
 			// 
@@ -2107,6 +2204,7 @@ namespace SimPe.Plugin
 			this.label96.Size = new System.Drawing.Size(64, 16);
 			this.label96.TabIndex = 134;
 			this.label96.Text = "Body";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label96, true);
 			// 
 			// label97
 			// 
@@ -2115,6 +2213,7 @@ namespace SimPe.Plugin
 			this.label97.Size = new System.Drawing.Size(72, 16);
 			this.label97.TabIndex = 133;
 			this.label97.Text = "Mechanical";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label97, true);
 			// 
 			// label98
 			// 
@@ -2123,6 +2222,7 @@ namespace SimPe.Plugin
 			this.label98.Size = new System.Drawing.Size(56, 16);
 			this.label98.TabIndex = 132;
 			this.label98.Text = "Cooking";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label98, true);
 			// 
 			// FailBCopy
 			// 
@@ -2144,6 +2244,7 @@ namespace SimPe.Plugin
 			this.FailBFemaleText.Size = new System.Drawing.Size(416, 168);
 			this.FailBFemaleText.TabIndex = 130;
 			this.FailBFemaleText.Text = "textBox2";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBFemaleText, true);
 			// 
 			// FailBMaleText
 			// 
@@ -2153,6 +2254,7 @@ namespace SimPe.Plugin
 			this.FailBMaleText.Size = new System.Drawing.Size(416, 168);
 			this.FailBMaleText.TabIndex = 129;
 			this.FailBMaleText.Text = "textBox1";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBMaleText, true);
 			// 
 			// label90
 			// 
@@ -2161,6 +2263,7 @@ namespace SimPe.Plugin
 			this.label90.Size = new System.Drawing.Size(104, 16);
 			this.label90.TabIndex = 128;
 			this.label90.Text = "Text Female";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label90, true);
 			// 
 			// label91
 			// 
@@ -2169,6 +2272,7 @@ namespace SimPe.Plugin
 			this.label91.Size = new System.Drawing.Size(104, 16);
 			this.label91.TabIndex = 127;
 			this.label91.Text = "Text Male";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label91, true);
 			// 
 			// label92
 			// 
@@ -2177,6 +2281,7 @@ namespace SimPe.Plugin
 			this.label92.Size = new System.Drawing.Size(56, 16);
 			this.label92.TabIndex = 126;
 			this.label92.Text = "Effect";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label92, true);
 			// 
 			// FailBJobLevel
 			// 
@@ -2189,6 +2294,7 @@ namespace SimPe.Plugin
 			this.FailBJobLevel.Name = "FailBJobLevel";
 			this.FailBJobLevel.Size = new System.Drawing.Size(48, 21);
 			this.FailBJobLevel.TabIndex = 123;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBJobLevel, true);
 			// 
 			// FailBMoney
 			// 
@@ -2206,6 +2312,7 @@ namespace SimPe.Plugin
 			this.FailBMoney.Name = "FailBMoney";
 			this.FailBMoney.Size = new System.Drawing.Size(80, 21);
 			this.FailBMoney.TabIndex = 122;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBMoney, true);
 			// 
 			// FailBCleaning
 			// 
@@ -2223,6 +2330,7 @@ namespace SimPe.Plugin
 			this.FailBCleaning.Name = "FailBCleaning";
 			this.FailBCleaning.Size = new System.Drawing.Size(48, 21);
 			this.FailBCleaning.TabIndex = 114;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBCleaning, true);
 			// 
 			// FailBLogic
 			// 
@@ -2240,6 +2348,7 @@ namespace SimPe.Plugin
 			this.FailBLogic.Name = "FailBLogic";
 			this.FailBLogic.Size = new System.Drawing.Size(48, 21);
 			this.FailBLogic.TabIndex = 113;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBLogic, true);
 			// 
 			// FailBCreativity
 			// 
@@ -2257,6 +2366,7 @@ namespace SimPe.Plugin
 			this.FailBCreativity.Name = "FailBCreativity";
 			this.FailBCreativity.Size = new System.Drawing.Size(48, 21);
 			this.FailBCreativity.TabIndex = 112;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBCreativity, true);
 			// 
 			// FailBBody
 			// 
@@ -2274,6 +2384,7 @@ namespace SimPe.Plugin
 			this.FailBBody.Name = "FailBBody";
 			this.FailBBody.Size = new System.Drawing.Size(48, 21);
 			this.FailBBody.TabIndex = 111;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBBody, true);
 			// 
 			// FailBCharisma
 			// 
@@ -2291,6 +2402,7 @@ namespace SimPe.Plugin
 			this.FailBCharisma.Name = "FailBCharisma";
 			this.FailBCharisma.Size = new System.Drawing.Size(48, 21);
 			this.FailBCharisma.TabIndex = 110;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBCharisma, true);
 			// 
 			// FailBMechanical
 			// 
@@ -2308,6 +2420,7 @@ namespace SimPe.Plugin
 			this.FailBMechanical.Name = "FailBMechanical";
 			this.FailBMechanical.Size = new System.Drawing.Size(48, 21);
 			this.FailBMechanical.TabIndex = 109;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBMechanical, true);
 			// 
 			// FailBCooking
 			// 
@@ -2325,6 +2438,7 @@ namespace SimPe.Plugin
 			this.FailBCooking.Name = "FailBCooking";
 			this.FailBCooking.Size = new System.Drawing.Size(48, 21);
 			this.FailBCooking.TabIndex = 108;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FailBCooking, true);
 			// 
 			// ChanceTextFemale
 			// 
@@ -2334,6 +2448,7 @@ namespace SimPe.Plugin
 			this.ChanceTextFemale.Size = new System.Drawing.Size(432, 128);
 			this.ChanceTextFemale.TabIndex = 73;
 			this.ChanceTextFemale.Text = "textBox4";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChanceTextFemale, true);
 			// 
 			// ChanceTextMale
 			// 
@@ -2343,6 +2458,7 @@ namespace SimPe.Plugin
 			this.ChanceTextMale.Size = new System.Drawing.Size(432, 128);
 			this.ChanceTextMale.TabIndex = 72;
 			this.ChanceTextMale.Text = "textBox3";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChanceTextMale, true);
 			// 
 			// ChoiceB
 			// 
@@ -2351,6 +2467,7 @@ namespace SimPe.Plugin
 			this.ChoiceB.Size = new System.Drawing.Size(88, 21);
 			this.ChoiceB.TabIndex = 53;
 			this.ChoiceB.Text = "ChoiceB";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceB, true);
 			// 
 			// ChoiceA
 			// 
@@ -2359,6 +2476,7 @@ namespace SimPe.Plugin
 			this.ChoiceA.Size = new System.Drawing.Size(88, 21);
 			this.ChoiceA.TabIndex = 52;
 			this.ChoiceA.Text = "ChoiceA";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceA, true);
 			// 
 			// ChoiceBCleaning
 			// 
@@ -2371,6 +2489,7 @@ namespace SimPe.Plugin
 			this.ChoiceBCleaning.Name = "ChoiceBCleaning";
 			this.ChoiceBCleaning.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceBCleaning.TabIndex = 32;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceBCleaning, true);
 			// 
 			// ChoiceBLogic
 			// 
@@ -2383,6 +2502,7 @@ namespace SimPe.Plugin
 			this.ChoiceBLogic.Name = "ChoiceBLogic";
 			this.ChoiceBLogic.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceBLogic.TabIndex = 31;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceBLogic, true);
 			// 
 			// ChoiceBCreativity
 			// 
@@ -2395,6 +2515,7 @@ namespace SimPe.Plugin
 			this.ChoiceBCreativity.Name = "ChoiceBCreativity";
 			this.ChoiceBCreativity.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceBCreativity.TabIndex = 30;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceBCreativity, true);
 			// 
 			// ChoiceBBody
 			// 
@@ -2407,6 +2528,7 @@ namespace SimPe.Plugin
 			this.ChoiceBBody.Name = "ChoiceBBody";
 			this.ChoiceBBody.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceBBody.TabIndex = 29;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceBBody, true);
 			// 
 			// ChoiceBCharisma
 			// 
@@ -2419,6 +2541,7 @@ namespace SimPe.Plugin
 			this.ChoiceBCharisma.Name = "ChoiceBCharisma";
 			this.ChoiceBCharisma.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceBCharisma.TabIndex = 28;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceBCharisma, true);
 			// 
 			// ChoiceBMechanical
 			// 
@@ -2431,6 +2554,7 @@ namespace SimPe.Plugin
 			this.ChoiceBMechanical.Name = "ChoiceBMechanical";
 			this.ChoiceBMechanical.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceBMechanical.TabIndex = 27;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceBMechanical, true);
 			// 
 			// ChoiceBCooking
 			// 
@@ -2443,6 +2567,7 @@ namespace SimPe.Plugin
 			this.ChoiceBCooking.Name = "ChoiceBCooking";
 			this.ChoiceBCooking.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceBCooking.TabIndex = 26;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceBCooking, true);
 			// 
 			// ChoiceACleaning
 			// 
@@ -2455,6 +2580,7 @@ namespace SimPe.Plugin
 			this.ChoiceACleaning.Name = "ChoiceACleaning";
 			this.ChoiceACleaning.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceACleaning.TabIndex = 24;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceACleaning, true);
 			// 
 			// ChoiceALogic
 			// 
@@ -2467,6 +2593,7 @@ namespace SimPe.Plugin
 			this.ChoiceALogic.Name = "ChoiceALogic";
 			this.ChoiceALogic.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceALogic.TabIndex = 23;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceALogic, true);
 			// 
 			// ChoiceACreativity
 			// 
@@ -2479,6 +2606,7 @@ namespace SimPe.Plugin
 			this.ChoiceACreativity.Name = "ChoiceACreativity";
 			this.ChoiceACreativity.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceACreativity.TabIndex = 22;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceACreativity, true);
 			// 
 			// ChoiceABody
 			// 
@@ -2491,6 +2619,7 @@ namespace SimPe.Plugin
 			this.ChoiceABody.Name = "ChoiceABody";
 			this.ChoiceABody.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceABody.TabIndex = 21;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceABody, true);
 			// 
 			// ChoiceACharisma
 			// 
@@ -2503,6 +2632,7 @@ namespace SimPe.Plugin
 			this.ChoiceACharisma.Name = "ChoiceACharisma";
 			this.ChoiceACharisma.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceACharisma.TabIndex = 20;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceACharisma, true);
 			// 
 			// ChoiceAMechanical
 			// 
@@ -2515,6 +2645,7 @@ namespace SimPe.Plugin
 			this.ChoiceAMechanical.Name = "ChoiceAMechanical";
 			this.ChoiceAMechanical.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceAMechanical.TabIndex = 19;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceAMechanical, true);
 			// 
 			// ChoiceACooking
 			// 
@@ -2527,6 +2658,7 @@ namespace SimPe.Plugin
 			this.ChoiceACooking.Name = "ChoiceACooking";
 			this.ChoiceACooking.Size = new System.Drawing.Size(48, 21);
 			this.ChoiceACooking.TabIndex = 18;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChoiceACooking, true);
 			// 
 			// ChancePercent
 			// 
@@ -2534,6 +2666,7 @@ namespace SimPe.Plugin
 			this.ChancePercent.Name = "ChancePercent";
 			this.ChancePercent.Size = new System.Drawing.Size(48, 21);
 			this.ChancePercent.TabIndex = 0;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ChancePercent, true);
 			// 
 			// tabPage3
 			// 
@@ -2544,6 +2677,7 @@ namespace SimPe.Plugin
 			this.tabPage3.Size = new System.Drawing.Size(880, 582);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Promotion";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage3, true);
 			// 
 			// PromoBox
 			// 
@@ -2571,6 +2705,7 @@ namespace SimPe.Plugin
 			this.PromoBox.TabIndex = 20;
 			this.PromoBox.TabStop = false;
 			this.PromoBox.Text = "Current Level";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PromoBox, true);
 			// 
 			// label41
 			// 
@@ -2580,6 +2715,7 @@ namespace SimPe.Plugin
 			this.label41.Size = new System.Drawing.Size(88, 16);
 			this.label41.TabIndex = 25;
 			this.label41.Text = "Family Friends";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label41, true);
 			// 
 			// label40
 			// 
@@ -2589,6 +2725,7 @@ namespace SimPe.Plugin
 			this.label40.Size = new System.Drawing.Size(64, 16);
 			this.label40.TabIndex = 24;
 			this.label40.Text = "Cleaning";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label40, true);
 			// 
 			// label39
 			// 
@@ -2598,6 +2735,7 @@ namespace SimPe.Plugin
 			this.label39.Size = new System.Drawing.Size(64, 16);
 			this.label39.TabIndex = 23;
 			this.label39.Text = "Logic";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label39, true);
 			// 
 			// label38
 			// 
@@ -2607,6 +2745,7 @@ namespace SimPe.Plugin
 			this.label38.Size = new System.Drawing.Size(64, 16);
 			this.label38.TabIndex = 22;
 			this.label38.Text = "Creativity";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label38, true);
 			// 
 			// label37
 			// 
@@ -2616,6 +2755,7 @@ namespace SimPe.Plugin
 			this.label37.Size = new System.Drawing.Size(64, 16);
 			this.label37.TabIndex = 21;
 			this.label37.Text = "Charisma";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label37, true);
 			// 
 			// label36
 			// 
@@ -2625,6 +2765,7 @@ namespace SimPe.Plugin
 			this.label36.Size = new System.Drawing.Size(64, 16);
 			this.label36.TabIndex = 20;
 			this.label36.Text = "Body";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label36, true);
 			// 
 			// label35
 			// 
@@ -2634,6 +2775,7 @@ namespace SimPe.Plugin
 			this.label35.Size = new System.Drawing.Size(72, 16);
 			this.label35.TabIndex = 19;
 			this.label35.Text = "Mechanical";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label35, true);
 			// 
 			// label34
 			// 
@@ -2643,6 +2785,7 @@ namespace SimPe.Plugin
 			this.label34.Size = new System.Drawing.Size(64, 16);
 			this.label34.TabIndex = 18;
 			this.label34.Text = "Cooking";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label34, true);
 			// 
 			// PromoFriends
 			// 
@@ -2656,6 +2799,7 @@ namespace SimPe.Plugin
 			this.PromoFriends.Name = "PromoFriends";
 			this.PromoFriends.Size = new System.Drawing.Size(48, 21);
 			this.PromoFriends.TabIndex = 17;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PromoFriends, true);
 			this.PromoFriends.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
 			this.PromoFriends.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
 			// 
@@ -2671,6 +2815,7 @@ namespace SimPe.Plugin
 			this.PromoCleaning.Name = "PromoCleaning";
 			this.PromoCleaning.Size = new System.Drawing.Size(48, 21);
 			this.PromoCleaning.TabIndex = 16;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PromoCleaning, true);
 			this.PromoCleaning.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
 			this.PromoCleaning.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
 			// 
@@ -2686,6 +2831,7 @@ namespace SimPe.Plugin
 			this.PromoLogic.Name = "PromoLogic";
 			this.PromoLogic.Size = new System.Drawing.Size(48, 21);
 			this.PromoLogic.TabIndex = 15;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PromoLogic, true);
 			this.PromoLogic.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
 			this.PromoLogic.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
 			// 
@@ -2701,6 +2847,7 @@ namespace SimPe.Plugin
 			this.PromoCreativity.Name = "PromoCreativity";
 			this.PromoCreativity.Size = new System.Drawing.Size(48, 21);
 			this.PromoCreativity.TabIndex = 14;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PromoCreativity, true);
 			this.PromoCreativity.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
 			this.PromoCreativity.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
 			// 
@@ -2716,6 +2863,7 @@ namespace SimPe.Plugin
 			this.PromoCharisma.Name = "PromoCharisma";
 			this.PromoCharisma.Size = new System.Drawing.Size(48, 21);
 			this.PromoCharisma.TabIndex = 13;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PromoCharisma, true);
 			this.PromoCharisma.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
 			this.PromoCharisma.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
 			// 
@@ -2731,6 +2879,7 @@ namespace SimPe.Plugin
 			this.PromoBody.Name = "PromoBody";
 			this.PromoBody.Size = new System.Drawing.Size(48, 21);
 			this.PromoBody.TabIndex = 12;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PromoBody, true);
 			this.PromoBody.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
 			this.PromoBody.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
 			// 
@@ -2746,6 +2895,7 @@ namespace SimPe.Plugin
 			this.PromoMechanical.Name = "PromoMechanical";
 			this.PromoMechanical.Size = new System.Drawing.Size(48, 21);
 			this.PromoMechanical.TabIndex = 11;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PromoMechanical, true);
 			this.PromoMechanical.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
 			this.PromoMechanical.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
 			// 
@@ -2761,6 +2911,7 @@ namespace SimPe.Plugin
 			this.PromoCooking.Name = "PromoCooking";
 			this.PromoCooking.Size = new System.Drawing.Size(48, 21);
 			this.PromoCooking.TabIndex = 10;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PromoCooking, true);
 			this.PromoCooking.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
 			this.PromoCooking.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
 			// 
@@ -2775,6 +2926,7 @@ namespace SimPe.Plugin
 			this.groupBox6.TabIndex = 19;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Job Levels";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.groupBox6, true);
 			// 
 			// PromoList
 			// 
@@ -2855,6 +3007,7 @@ namespace SimPe.Plugin
 			this.tabPage2.Size = new System.Drawing.Size(880, 582);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Hours & Wages";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage2, true);
 			// 
 			// HoursWagesBox
 			// 
@@ -2882,6 +3035,7 @@ namespace SimPe.Plugin
 			this.HoursWagesBox.TabIndex = 18;
 			this.HoursWagesBox.TabStop = false;
 			this.HoursWagesBox.Text = "Current Level";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.HoursWagesBox, true);
 			// 
 			// WorkSaturday
 			// 
@@ -2892,6 +3046,7 @@ namespace SimPe.Plugin
 			this.WorkSaturday.Size = new System.Drawing.Size(48, 16);
 			this.WorkSaturday.TabIndex = 19;
 			this.WorkSaturday.Text = "Sat";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkSaturday, true);
 			this.WorkSaturday.CheckedChanged += new System.EventHandler(this.Workday_CheckedChanged);
 			// 
 			// WorkFriday
@@ -2903,6 +3058,7 @@ namespace SimPe.Plugin
 			this.WorkFriday.Size = new System.Drawing.Size(48, 16);
 			this.WorkFriday.TabIndex = 18;
 			this.WorkFriday.Text = "Fri";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkFriday, true);
 			this.WorkFriday.CheckedChanged += new System.EventHandler(this.Workday_CheckedChanged);
 			// 
 			// WorkThursday
@@ -2914,6 +3070,7 @@ namespace SimPe.Plugin
 			this.WorkThursday.Size = new System.Drawing.Size(48, 16);
 			this.WorkThursday.TabIndex = 17;
 			this.WorkThursday.Text = "Thu";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkThursday, true);
 			this.WorkThursday.CheckedChanged += new System.EventHandler(this.Workday_CheckedChanged);
 			// 
 			// WorkWednesday
@@ -2925,6 +3082,7 @@ namespace SimPe.Plugin
 			this.WorkWednesday.Size = new System.Drawing.Size(48, 16);
 			this.WorkWednesday.TabIndex = 16;
 			this.WorkWednesday.Text = "Wed";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkWednesday, true);
 			this.WorkWednesday.CheckedChanged += new System.EventHandler(this.Workday_CheckedChanged);
 			// 
 			// WorkTuesday
@@ -2936,6 +3094,7 @@ namespace SimPe.Plugin
 			this.WorkTuesday.Size = new System.Drawing.Size(48, 16);
 			this.WorkTuesday.TabIndex = 15;
 			this.WorkTuesday.Text = "Tue";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkTuesday, true);
 			this.WorkTuesday.CheckedChanged += new System.EventHandler(this.Workday_CheckedChanged);
 			// 
 			// WorkMonday
@@ -2947,6 +3106,7 @@ namespace SimPe.Plugin
 			this.WorkMonday.Size = new System.Drawing.Size(48, 16);
 			this.WorkMonday.TabIndex = 14;
 			this.WorkMonday.Text = "Mon";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkMonday, true);
 			this.WorkMonday.CheckedChanged += new System.EventHandler(this.Workday_CheckedChanged);
 			// 
 			// WorkSunday
@@ -2958,6 +3118,7 @@ namespace SimPe.Plugin
 			this.WorkSunday.Size = new System.Drawing.Size(48, 16);
 			this.WorkSunday.TabIndex = 13;
 			this.WorkSunday.Text = "Sun";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkSunday, true);
 			this.WorkSunday.CheckedChanged += new System.EventHandler(this.Workday_CheckedChanged);
 			// 
 			// label16
@@ -2968,6 +3129,7 @@ namespace SimPe.Plugin
 			this.label16.Size = new System.Drawing.Size(48, 16);
 			this.label16.TabIndex = 12;
 			this.label16.Text = "Wages";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label16, true);
 			// 
 			// label15
 			// 
@@ -2977,6 +3139,7 @@ namespace SimPe.Plugin
 			this.label15.Size = new System.Drawing.Size(40, 16);
 			this.label15.TabIndex = 11;
 			this.label15.Text = "Finish";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label15, true);
 			// 
 			// label14
 			// 
@@ -2986,6 +3149,7 @@ namespace SimPe.Plugin
 			this.label14.Size = new System.Drawing.Size(40, 16);
 			this.label14.TabIndex = 10;
 			this.label14.Text = "Hours";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label14, true);
 			// 
 			// label13
 			// 
@@ -2995,6 +3159,7 @@ namespace SimPe.Plugin
 			this.label13.Size = new System.Drawing.Size(56, 16);
 			this.label13.TabIndex = 9;
 			this.label13.Text = "Start";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label13, true);
 			// 
 			// WorkWages
 			// 
@@ -3008,6 +3173,7 @@ namespace SimPe.Plugin
 			this.WorkWages.Name = "WorkWages";
 			this.WorkWages.Size = new System.Drawing.Size(128, 21);
 			this.WorkWages.TabIndex = 8;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkWages, true);
 			this.WorkWages.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkWages.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3025,6 +3191,7 @@ namespace SimPe.Plugin
 			this.WorkFinishHour.ReadOnly = true;
 			this.WorkFinishHour.Size = new System.Drawing.Size(48, 21);
 			this.WorkFinishHour.TabIndex = 7;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkFinishHour, true);
 			// 
 			// WorkHoursWorked
 			// 
@@ -3048,6 +3215,7 @@ namespace SimPe.Plugin
 																		  0,
 																		  0,
 																		  0});
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkHoursWorked, true);
 			this.WorkHoursWorked.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkHoursWorked.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3063,6 +3231,7 @@ namespace SimPe.Plugin
 			this.WorkStartHour.Name = "WorkStartHour";
 			this.WorkStartHour.Size = new System.Drawing.Size(48, 21);
 			this.WorkStartHour.TabIndex = 5;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkStartHour, true);
 			this.WorkStartHour.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkStartHour.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3120,6 +3289,7 @@ namespace SimPe.Plugin
 			this.groupBox9.TabIndex = 12;
 			this.groupBox9.TabStop = false;
 			this.groupBox9.Text = "Motives";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.groupBox9, true);
 			// 
 			// label27
 			// 
@@ -3129,6 +3299,7 @@ namespace SimPe.Plugin
 			this.label27.Size = new System.Drawing.Size(64, 16);
 			this.label27.TabIndex = 64;
 			this.label27.Text = "* NoHours";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label27, true);
 			// 
 			// label24
 			// 
@@ -3138,6 +3309,7 @@ namespace SimPe.Plugin
 			this.label24.Size = new System.Drawing.Size(64, 16);
 			this.label24.TabIndex = 41;
 			this.label24.Text = "* NoHours";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label24, true);
 			// 
 			// ComfortHours
 			// 
@@ -3158,6 +3330,7 @@ namespace SimPe.Plugin
 			this.ComfortHours.ReadOnly = true;
 			this.ComfortHours.Size = new System.Drawing.Size(48, 21);
 			this.ComfortHours.TabIndex = 29;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ComfortHours, true);
 			// 
 			// HygieneTotal
 			// 
@@ -3178,6 +3351,7 @@ namespace SimPe.Plugin
 			this.HygieneTotal.ReadOnly = true;
 			this.HygieneTotal.Size = new System.Drawing.Size(48, 21);
 			this.HygieneTotal.TabIndex = 31;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.HygieneTotal, true);
 			// 
 			// BladderTotal
 			// 
@@ -3198,6 +3372,7 @@ namespace SimPe.Plugin
 			this.BladderTotal.ReadOnly = true;
 			this.BladderTotal.Size = new System.Drawing.Size(48, 21);
 			this.BladderTotal.TabIndex = 30;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.BladderTotal, true);
 			// 
 			// label21
 			// 
@@ -3207,6 +3382,7 @@ namespace SimPe.Plugin
 			this.label21.Size = new System.Drawing.Size(56, 16);
 			this.label21.TabIndex = 38;
 			this.label21.Text = "Hygiene";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label21, true);
 			// 
 			// WorkBladder
 			// 
@@ -3225,6 +3401,7 @@ namespace SimPe.Plugin
 			this.WorkBladder.Name = "WorkBladder";
 			this.WorkBladder.Size = new System.Drawing.Size(48, 21);
 			this.WorkBladder.TabIndex = 24;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkBladder, true);
 			this.WorkBladder.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkBladder.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3236,6 +3413,7 @@ namespace SimPe.Plugin
 			this.label23.Size = new System.Drawing.Size(64, 16);
 			this.label23.TabIndex = 40;
 			this.label23.Text = "PerHour";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label23, true);
 			// 
 			// label19
 			// 
@@ -3245,6 +3423,7 @@ namespace SimPe.Plugin
 			this.label19.Size = new System.Drawing.Size(56, 16);
 			this.label19.TabIndex = 36;
 			this.label19.Text = "Hunger";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label19, true);
 			// 
 			// WorkComfort
 			// 
@@ -3263,6 +3442,7 @@ namespace SimPe.Plugin
 			this.WorkComfort.Name = "WorkComfort";
 			this.WorkComfort.Size = new System.Drawing.Size(48, 21);
 			this.WorkComfort.TabIndex = 22;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkComfort, true);
 			this.WorkComfort.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkComfort.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3285,6 +3465,7 @@ namespace SimPe.Plugin
 			this.HungerHours.ReadOnly = true;
 			this.HungerHours.Size = new System.Drawing.Size(48, 21);
 			this.HungerHours.TabIndex = 27;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.HungerHours, true);
 			// 
 			// EnergyHours
 			// 
@@ -3305,6 +3486,7 @@ namespace SimPe.Plugin
 			this.EnergyHours.ReadOnly = true;
 			this.EnergyHours.Size = new System.Drawing.Size(48, 21);
 			this.EnergyHours.TabIndex = 50;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.EnergyHours, true);
 			// 
 			// label25
 			// 
@@ -3314,6 +3496,7 @@ namespace SimPe.Plugin
 			this.label25.Size = new System.Drawing.Size(56, 16);
 			this.label25.TabIndex = 42;
 			this.label25.Text = "= Total";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label25, true);
 			// 
 			// label18
 			// 
@@ -3323,6 +3506,7 @@ namespace SimPe.Plugin
 			this.label18.Size = new System.Drawing.Size(56, 16);
 			this.label18.TabIndex = 35;
 			this.label18.Text = "Thirst";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label18, true);
 			// 
 			// WorkPublic
 			// 
@@ -3341,6 +3525,7 @@ namespace SimPe.Plugin
 			this.WorkPublic.Name = "WorkPublic";
 			this.WorkPublic.Size = new System.Drawing.Size(48, 21);
 			this.WorkPublic.TabIndex = 45;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkPublic, true);
 			this.WorkPublic.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkPublic.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3361,6 +3546,7 @@ namespace SimPe.Plugin
 			this.WorkHunger.Name = "WorkHunger";
 			this.WorkHunger.Size = new System.Drawing.Size(48, 21);
 			this.WorkHunger.TabIndex = 20;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkHunger, true);
 			this.WorkHunger.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkHunger.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3383,6 +3569,7 @@ namespace SimPe.Plugin
 			this.EnvironmentTotal.ReadOnly = true;
 			this.EnvironmentTotal.Size = new System.Drawing.Size(48, 21);
 			this.EnvironmentTotal.TabIndex = 53;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.EnvironmentTotal, true);
 			// 
 			// BladderHours
 			// 
@@ -3403,6 +3590,7 @@ namespace SimPe.Plugin
 			this.BladderHours.ReadOnly = true;
 			this.BladderHours.Size = new System.Drawing.Size(48, 21);
 			this.BladderHours.TabIndex = 25;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.BladderHours, true);
 			// 
 			// ComfortTotal
 			// 
@@ -3423,6 +3611,7 @@ namespace SimPe.Plugin
 			this.ComfortTotal.ReadOnly = true;
 			this.ComfortTotal.Size = new System.Drawing.Size(48, 21);
 			this.ComfortTotal.TabIndex = 34;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ComfortTotal, true);
 			// 
 			// label22
 			// 
@@ -3432,6 +3621,7 @@ namespace SimPe.Plugin
 			this.label22.Size = new System.Drawing.Size(56, 16);
 			this.label22.TabIndex = 39;
 			this.label22.Text = "Bladder";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label22, true);
 			// 
 			// HungerTotal
 			// 
@@ -3452,6 +3642,7 @@ namespace SimPe.Plugin
 			this.HungerTotal.ReadOnly = true;
 			this.HungerTotal.Size = new System.Drawing.Size(48, 21);
 			this.HungerTotal.TabIndex = 32;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.HungerTotal, true);
 			// 
 			// HygieneHours
 			// 
@@ -3472,6 +3663,7 @@ namespace SimPe.Plugin
 			this.HygieneHours.ReadOnly = true;
 			this.HygieneHours.Size = new System.Drawing.Size(48, 21);
 			this.HygieneHours.TabIndex = 26;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.HygieneHours, true);
 			// 
 			// ThirstHours
 			// 
@@ -3492,6 +3684,7 @@ namespace SimPe.Plugin
 			this.ThirstHours.ReadOnly = true;
 			this.ThirstHours.Size = new System.Drawing.Size(48, 21);
 			this.ThirstHours.TabIndex = 28;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ThirstHours, true);
 			// 
 			// WorkEnergy
 			// 
@@ -3510,6 +3703,7 @@ namespace SimPe.Plugin
 			this.WorkEnergy.Name = "WorkEnergy";
 			this.WorkEnergy.Size = new System.Drawing.Size(48, 21);
 			this.WorkEnergy.TabIndex = 43;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkEnergy, true);
 			this.WorkEnergy.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkEnergy.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3530,6 +3724,7 @@ namespace SimPe.Plugin
 			this.WorkFun.Name = "WorkFun";
 			this.WorkFun.Size = new System.Drawing.Size(48, 21);
 			this.WorkFun.TabIndex = 44;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkFun, true);
 			this.WorkFun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkFun.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3550,6 +3745,7 @@ namespace SimPe.Plugin
 			this.WorkThirst.Name = "WorkThirst";
 			this.WorkThirst.Size = new System.Drawing.Size(48, 21);
 			this.WorkThirst.TabIndex = 21;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkThirst, true);
 			this.WorkThirst.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkThirst.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3570,6 +3766,7 @@ namespace SimPe.Plugin
 			this.WorkFamily.Name = "WorkFamily";
 			this.WorkFamily.Size = new System.Drawing.Size(48, 21);
 			this.WorkFamily.TabIndex = 46;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkFamily, true);
 			this.WorkFamily.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkFamily.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3590,6 +3787,7 @@ namespace SimPe.Plugin
 			this.WorkEnvironment.Name = "WorkEnvironment";
 			this.WorkEnvironment.Size = new System.Drawing.Size(48, 21);
 			this.WorkEnvironment.TabIndex = 47;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkEnvironment, true);
 			this.WorkEnvironment.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkEnvironment.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3612,6 +3810,7 @@ namespace SimPe.Plugin
 			this.PublicHours.ReadOnly = true;
 			this.PublicHours.Size = new System.Drawing.Size(48, 21);
 			this.PublicHours.TabIndex = 52;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PublicHours, true);
 			// 
 			// label20
 			// 
@@ -3621,6 +3820,7 @@ namespace SimPe.Plugin
 			this.label20.Size = new System.Drawing.Size(56, 16);
 			this.label20.TabIndex = 37;
 			this.label20.Text = "Comfort";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label20, true);
 			// 
 			// FamilyTotal
 			// 
@@ -3641,6 +3841,7 @@ namespace SimPe.Plugin
 			this.FamilyTotal.ReadOnly = true;
 			this.FamilyTotal.Size = new System.Drawing.Size(48, 21);
 			this.FamilyTotal.TabIndex = 54;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FamilyTotal, true);
 			// 
 			// EnergyTotal
 			// 
@@ -3661,6 +3862,7 @@ namespace SimPe.Plugin
 			this.EnergyTotal.ReadOnly = true;
 			this.EnergyTotal.Size = new System.Drawing.Size(48, 21);
 			this.EnergyTotal.TabIndex = 55;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.EnergyTotal, true);
 			// 
 			// FunTotal
 			// 
@@ -3681,6 +3883,7 @@ namespace SimPe.Plugin
 			this.FunTotal.ReadOnly = true;
 			this.FunTotal.Size = new System.Drawing.Size(48, 21);
 			this.FunTotal.TabIndex = 56;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FunTotal, true);
 			// 
 			// PublicTotal
 			// 
@@ -3701,6 +3904,7 @@ namespace SimPe.Plugin
 			this.PublicTotal.ReadOnly = true;
 			this.PublicTotal.Size = new System.Drawing.Size(48, 21);
 			this.PublicTotal.TabIndex = 57;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.PublicTotal, true);
 			// 
 			// label33
 			// 
@@ -3710,6 +3914,7 @@ namespace SimPe.Plugin
 			this.label33.Size = new System.Drawing.Size(72, 16);
 			this.label33.TabIndex = 58;
 			this.label33.Text = "Fun";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label33, true);
 			// 
 			// label32
 			// 
@@ -3719,6 +3924,7 @@ namespace SimPe.Plugin
 			this.label32.Size = new System.Drawing.Size(72, 16);
 			this.label32.TabIndex = 59;
 			this.label32.Text = "Energy";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label32, true);
 			// 
 			// label31
 			// 
@@ -3728,6 +3934,7 @@ namespace SimPe.Plugin
 			this.label31.Size = new System.Drawing.Size(80, 16);
 			this.label31.TabIndex = 60;
 			this.label31.Text = "Social Public";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label31, true);
 			// 
 			// label30
 			// 
@@ -3737,6 +3944,7 @@ namespace SimPe.Plugin
 			this.label30.Size = new System.Drawing.Size(80, 16);
 			this.label30.TabIndex = 61;
 			this.label30.Text = "Social Family";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label30, true);
 			// 
 			// label29
 			// 
@@ -3746,6 +3954,7 @@ namespace SimPe.Plugin
 			this.label29.Size = new System.Drawing.Size(80, 16);
 			this.label29.TabIndex = 62;
 			this.label29.Text = "Environment";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label29, true);
 			// 
 			// label28
 			// 
@@ -3755,6 +3964,7 @@ namespace SimPe.Plugin
 			this.label28.Size = new System.Drawing.Size(56, 16);
 			this.label28.TabIndex = 63;
 			this.label28.Text = "PerHour";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label28, true);
 			// 
 			// label26
 			// 
@@ -3764,6 +3974,7 @@ namespace SimPe.Plugin
 			this.label26.Size = new System.Drawing.Size(48, 16);
 			this.label26.TabIndex = 65;
 			this.label26.Text = "= Total";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label26, true);
 			// 
 			// FunHours
 			// 
@@ -3784,6 +3995,7 @@ namespace SimPe.Plugin
 			this.FunHours.ReadOnly = true;
 			this.FunHours.Size = new System.Drawing.Size(48, 21);
 			this.FunHours.TabIndex = 51;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FunHours, true);
 			// 
 			// WorkHygiene
 			// 
@@ -3802,6 +4014,7 @@ namespace SimPe.Plugin
 			this.WorkHygiene.Name = "WorkHygiene";
 			this.WorkHygiene.Size = new System.Drawing.Size(48, 21);
 			this.WorkHygiene.TabIndex = 23;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.WorkHygiene, true);
 			this.WorkHygiene.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
 			this.WorkHygiene.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
 			// 
@@ -3824,6 +4037,7 @@ namespace SimPe.Plugin
 			this.FamilyHours.ReadOnly = true;
 			this.FamilyHours.Size = new System.Drawing.Size(48, 21);
 			this.FamilyHours.TabIndex = 49;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.FamilyHours, true);
 			// 
 			// EnvironmentHours
 			// 
@@ -3844,6 +4058,7 @@ namespace SimPe.Plugin
 			this.EnvironmentHours.ReadOnly = true;
 			this.EnvironmentHours.Size = new System.Drawing.Size(48, 21);
 			this.EnvironmentHours.TabIndex = 48;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.EnvironmentHours, true);
 			// 
 			// ThirstTotal
 			// 
@@ -3864,6 +4079,7 @@ namespace SimPe.Plugin
 			this.ThirstTotal.ReadOnly = true;
 			this.ThirstTotal.Size = new System.Drawing.Size(48, 21);
 			this.ThirstTotal.TabIndex = 33;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.ThirstTotal, true);
 			// 
 			// groupBox4
 			// 
@@ -3876,6 +4092,7 @@ namespace SimPe.Plugin
 			this.groupBox4.TabIndex = 17;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Job Levels";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.groupBox4, true);
 			// 
 			// HoursWagesList
 			// 
@@ -3970,6 +4187,7 @@ namespace SimPe.Plugin
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(888, 608);
 			this.tabControl1.TabIndex = 0;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabControl1, true);
 			// 
 			// tabPage1
 			// 
@@ -3980,6 +4198,7 @@ namespace SimPe.Plugin
 			this.tabPage1.Size = new System.Drawing.Size(880, 582);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Job Details";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage1, true);
 			// 
 			// JobDetailsBox
 			// 
@@ -4004,6 +4223,7 @@ namespace SimPe.Plugin
 			this.JobDetailsBox.TabIndex = 16;
 			this.JobDetailsBox.TabStop = false;
 			this.JobDetailsBox.Text = "Current Level";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.JobDetailsBox, true);
 			// 
 			// JobDetailsCopy
 			// 
@@ -4025,6 +4245,7 @@ namespace SimPe.Plugin
 			this.label9.Size = new System.Drawing.Size(80, 16);
 			this.label9.TabIndex = 12;
 			this.label9.Text = "Vehicle";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label9, true);
 			// 
 			// label8
 			// 
@@ -4034,6 +4255,7 @@ namespace SimPe.Plugin
 			this.label8.Size = new System.Drawing.Size(64, 16);
 			this.label8.TabIndex = 11;
 			this.label8.Text = "Outfit";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label8, true);
 			// 
 			// Vehicle
 			// 
@@ -4064,6 +4286,7 @@ namespace SimPe.Plugin
 			this.JobDescFemale.Size = new System.Drawing.Size(344, 144);
 			this.JobDescFemale.TabIndex = 7;
 			this.JobDescFemale.Text = "JobDescFemale";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.JobDescFemale, true);
 			this.JobDescFemale.TextChanged += new System.EventHandler(this.JobDescFemale_TextChanged);
 			// 
 			// JobTitleFemale
@@ -4074,6 +4297,7 @@ namespace SimPe.Plugin
 			this.JobTitleFemale.Size = new System.Drawing.Size(344, 21);
 			this.JobTitleFemale.TabIndex = 6;
 			this.JobTitleFemale.Text = "JobTitleFemale";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.JobTitleFemale, true);
 			this.JobTitleFemale.TextChanged += new System.EventHandler(this.JobTitleFemale_TextChanged);
 			// 
 			// label6
@@ -4084,6 +4308,7 @@ namespace SimPe.Plugin
 			this.label6.Size = new System.Drawing.Size(80, 24);
 			this.label6.TabIndex = 5;
 			this.label6.Text = "Desc Female";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label6, true);
 			// 
 			// label7
 			// 
@@ -4093,6 +4318,7 @@ namespace SimPe.Plugin
 			this.label7.Size = new System.Drawing.Size(88, 16);
 			this.label7.TabIndex = 4;
 			this.label7.Text = "Title Female";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label7, true);
 			// 
 			// JobDescMale
 			// 
@@ -4103,6 +4329,7 @@ namespace SimPe.Plugin
 			this.JobDescMale.Size = new System.Drawing.Size(344, 144);
 			this.JobDescMale.TabIndex = 3;
 			this.JobDescMale.Text = "JobDescMale";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.JobDescMale, true);
 			this.JobDescMale.TextChanged += new System.EventHandler(this.JobDescMale_TextChanged);
 			// 
 			// JobTitleMale
@@ -4113,6 +4340,7 @@ namespace SimPe.Plugin
 			this.JobTitleMale.Size = new System.Drawing.Size(344, 21);
 			this.JobTitleMale.TabIndex = 2;
 			this.JobTitleMale.Text = "JobTitleMale";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.JobTitleMale, true);
 			this.JobTitleMale.TextChanged += new System.EventHandler(this.JobTitleMale_TextChanged);
 			// 
 			// label5
@@ -4123,6 +4351,7 @@ namespace SimPe.Plugin
 			this.label5.Size = new System.Drawing.Size(72, 24);
 			this.label5.TabIndex = 1;
 			this.label5.Text = "Desc Male";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label5, true);
 			// 
 			// label4
 			// 
@@ -4132,6 +4361,7 @@ namespace SimPe.Plugin
 			this.label4.Size = new System.Drawing.Size(80, 16);
 			this.label4.TabIndex = 0;
 			this.label4.Text = "Title Male";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label4, true);
 			// 
 			// groupBox1
 			// 
@@ -4144,6 +4374,7 @@ namespace SimPe.Plugin
 			this.groupBox1.TabIndex = 15;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Job Levels";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.groupBox1, true);
 			// 
 			// JobDetailList
 			// 
@@ -4199,6 +4430,7 @@ namespace SimPe.Plugin
 			this.CareerLvls.ReadOnly = true;
 			this.CareerLvls.Size = new System.Drawing.Size(48, 21);
 			this.CareerLvls.TabIndex = 14;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.CareerLvls, true);
 			// 
 			// label1
 			// 
@@ -4207,6 +4439,7 @@ namespace SimPe.Plugin
 			this.label1.Size = new System.Drawing.Size(64, 16);
 			this.label1.TabIndex = 12;
 			this.label1.Text = "Career Lvls";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label1, true);
 			// 
 			// CareerTitle
 			// 
@@ -4215,6 +4448,7 @@ namespace SimPe.Plugin
 			this.CareerTitle.Size = new System.Drawing.Size(152, 21);
 			this.CareerTitle.TabIndex = 11;
 			this.CareerTitle.Text = "";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.CareerTitle, true);
 			this.CareerTitle.TextChanged += new System.EventHandler(this.CareerTitle_TextChanged);
 			// 
 			// label3
@@ -4224,6 +4458,7 @@ namespace SimPe.Plugin
 			this.label3.Size = new System.Drawing.Size(80, 16);
 			this.label3.TabIndex = 10;
 			this.label3.Text = "Career Title";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label3, true);
 			// 
 			// Language
 			// 
@@ -4241,6 +4476,7 @@ namespace SimPe.Plugin
 			this.label10.Size = new System.Drawing.Size(64, 16);
 			this.label10.TabIndex = 16;
 			this.label10.Text = "Language";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label10, true);
 			// 
 			// label102
 			// 
@@ -4249,6 +4485,7 @@ namespace SimPe.Plugin
 			this.label102.Size = new System.Drawing.Size(48, 16);
 			this.label102.TabIndex = 18;
 			this.label102.Text = "Reward";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label102, true);
 			// 
 			// CareerReward
 			// 

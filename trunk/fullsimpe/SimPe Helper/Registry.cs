@@ -107,6 +107,25 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// true, if user wants to activate the Cache
+		/// </summary>
+		public  bool XPStyle
+		{
+			get 
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				object o = rkf.GetValue("XPStyle");
+				if (o==null) return true;
+				else return Convert.ToBoolean(o);
+			}
+			set
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				rkf.SetValue("XPStyle", value);
+			}
+		}
+
+		/// <summary>
 		/// true, if the user wanted to use the HexViewer
 		/// </summary>
 		public  bool HexViewState 

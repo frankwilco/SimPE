@@ -159,6 +159,11 @@
                     Project = "{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "skybound.visualstyles"
+                    AssemblyName = "skybound.visualstyles"
+                    HintPath = "..\..\..\skybound visualstyles\skybound.visualstyles.dll"
+                />
             </References>
         </Build>
         <Files>
