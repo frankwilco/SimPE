@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="ResMimeType">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="Version">
+		<value>1.0.0.0</value>
+	</resheader>
+	<resheader name="Reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="Writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="unknown">
+		<value>Unknown</value>
+	</data>
+	<data name="unk">
+		<value>UNK</value>
+	</data>
+	<data name="userdefined">
+		<value>User Defined</value>
+	</data>
+	<data name="sdesc">
+		<value>Sim Description</value>
+	</data>
+	<data name="srel">
+		<value>Sim Relations</value>
+	</data>
+	<data name="famt">
+		<value>Family Ties</value>
+	</data>
+	<data name="str">
+		<value>Text Lists</value>
+	</data>
+	<data name="realsize">
+		<value>Real Size</value>
+	</data>
+	<data name="none">
+		<value>None</value>
+	</data>
+	<data name="err000">
+		<value>Error while loading a Packed File.</value>
+	</data>
+	<data name="proceed">
+		<value>Proceed?</value>
+	</data>
+	<data name="ask000">
+		<value>Do you want to stop the Extraction?</value>
+	</data>
+	<data name="errwritingfile">
+		<value>Error while writing to File</value>
+	</data>
+	<data name="err001">
+		<value>Error while writing Package Descriptor</value>
+	</data>
+	<data name="nfo000">
+		<value>Extracted {0} Files</value>
+	</data>
+	<data name="err002">
+		<value>Cannot extract to </value>
+	</data>
+	<data name="err003">
+		<value>Error while trying to replace a packed File with {0}.</value>
+	</data>
+	<data name="erropenfile">
+		<value>Error while trying to open </value>
+	</data>
+	<data name="err004">
+		<value>Error while trying to open a recent File.</value>
+	</data>
+	<data name="errregistry">
+		<value>Error while trying to access the Registry</value>
+	</data>
+	<data name="delete?">
+		<value>Delete?</value>
+	</data>
+	<data name="askdelete">
+		<value>Do you really want to delete the selected Files?</value>
+	</data>
+	<data name="err005">
+		<value>Error while trying to delete a Packed File</value>
+	</data>
+	<data name="err006">
+		<value>Error while tyring to add a Packed File</value>
+	</data>
+	<data name="err007">
+		<value>Unable to Maximize Interesst of all Sims</value>
+	</data>
+	<data name="commited">
+		<value>Changes were comitted</value>
+	</data>
+	<data name="cantcommitfami">
+		<value>Can't commit the Family File</value>
+	</data>
+	<data name="cantcommitsdesc">
+		<value>Can't commit Sim Description.</value>
+	</data>
+	<data name="cantcommitfamt">
+		<value>Can't commit the Family Tie File.</value>
+	</data>
+	<data name="cantcommittie">
+		<value>Can't commit the changes for the current Tie.</value>
+	</data>
+	<data name="cantaddrelation">
+		<value>Can't add the Relation</value>
+	</data>
+	<data name="cantcommitrelation">
+		<value>Can't comitt the current Relation.</value>
+	</data>
+	<data name="cantdeleterelation">
+		<value>Can't delete the Relation.</value>
+	</data>
+	<data name="filenotfound">
+		<value>File not found</value>
+	</data>
+	<data name="rightclickcopy">
+		<value>Right click: copy to Clipboard</value>
+	</data>
+	<data name="viewver">
+		<value>Viewer</value>
+	</data>
+	<data name="cantaddtie">
+		<value>Can't add this Sime to the Tie List</value>
+	</data>
+	<data name="MyMotherIs">
+		<value>Parent A is</value>
+	</data>
+	<data name="MyFatherIs">
+		<value>Parent B is</value>
+	</data>
+	<data name="ImMarriedTo">
+		<value>I'm married to</value>
+	</data>
+	<data name="MySiblingIs">
+		<value>My Sibling is</value>
+	</data>
+	<data name="MyChildIs">
+		<value>My Child is</value>
+	</data>
+	<data name="cantcommitobjd">
+		<value>Can't commit the changes to the Object Data File.</value>
+	</data>
+	<data name="unnamed">
+		<value>Unnamed</value>
+	</data>
+	<data name="byteviewerror">
+		<value>Error while displaying the Byte View</value>
+	</data>
+	<data name="usebigfile?">
+		<value>This File is bigger than 10kb, load it anyway? (This will take a While!)</value>
+	</data>
+	<data name="confirm">
+		<value>Confirmation</value>
+	</data>
+	<data name="English_uk">
+		<value>English (uk)</value>
+	</data>
+	<data name="errconvert">
+		<value>Error Assigning a Value</value>
+	</data>
+	<data name="neighborhoodbrowser">
+		<value>Neighborhood Browser</value>
+	</data>
+	<data name="simsbrowser">
+		<value>Sim Browser</value>
+	</data>
+	<data name="backuprestore">
+		<value>Would you like to create a copy of the current Neighborhood before you overwrite it with this Backup?</value>
+	</data>
+	<data name="backupdelete">
+		<value>Do you really want to delete all Files stored in {0}?</value>
+	</data>
+	<data name="backup?">
+		<value>Create Copy?</value>
+	</data>
+	<data name="disclaimer">
+		<value>SimPE is a Tool that can be used to change the internal Data of "The Sims 2". 
+		
+Many People have used SimPE without problems. However, if you are not carefull this Tool can damage your Game or even your System. Do not use SimPE if you don't want to take that Risk! Remeber SimPE is in its alpha Stage!
+Please make sure you have a working backup copy of "My Documents\EA Games\The Sims 2\" before you start SimPE.
+
+Start SimPE now?</value>
+	</data>
+	<data name="savechanges?">
+		<value>Save changes?</value>
+	</data>
+	<data name="savechanges">
+		<value>Do you want to save the Changes made to this Package?</value>
+	</data>
+	<data name="unsavedchanges">
+		<value>Some Files in the Package have unsaved changes which will be lost when you open a new neighborhood. 
+		
+Do you want to continue anyway?</value>
+	</data>
+	<data name="errunsupportedimage">
+		<value>The Imagetype is not supported</value>
+	</data>
+	<data name="Brazilian">
+		<value>Portuguese (Brazil)</value>
+	</data>
+	<data name="savewrapperchanges">
+		<value>Do you want to save the Changes made to this Packed File?</value>
+	</data>
+	<data name="RT_Unset_Unknown">
+		<value>Not defined or Unknown</value>
+	</data>
+	<data name="RT_Nice_Nephew">
+		<value>Nice or Nephew</value>
+	</data>
+	<data name="RT_Aunt">
+		<value>Aunt or Uncle</value>
+	</data>
+	<data name="OW_Warning">
+		<value>In order for this Feature to work on Objects that are not yet Color Enabled, you need two download and install the Colour Options Enabler from http://sims.ambertation.de/download.shtml .\n\nThis Feature is still in the Beta Testing Stages and might no work correct. Please don't distribute Recolors created with this Tool without mentioning that it is Testing or Beta Release, and don't forget that the USers of the Recolors will also need the Colour Options Enabler!\n\nContinue anyway?</value>
+	</data>
+	<data name="YoungAdult">
+		<value>Young Adult</value>
+	</data>
+	<data name="yes">
+		<value>Yes</value>
+	</data>
+	<data name="no">
+		<value>No</value>
+	</data>
+	<data name="open_wnt_from_sdsc">
+		<value>Do you want to commit the changes for this Sim before you open the Wants &amp; Fears?"</value>
+	</data>
+	<data name="open_fami_from_sdsc">
+		<value>Do you want to commit the changes for this Sim before you open the Family Information?"</value>
+	</data>
+	<data name="question">
+		<value>Question</value>
+	</data>
+</root>
