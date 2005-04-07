@@ -30,8 +30,21 @@ namespace SimPe.Cache
 		None = 0x00,
 		Object = 0x01,
 		MaterialOverride = 0x02,
-		Want = 0x03
+		Want = 0x03,
+		Memory = 0x04,
+		Package = 0x05
 	};
+
+	/// <summary>
+	/// Detailed Information about the Valid State of the Container 
+	/// </summary>
+	public enum ContainerValid : byte
+	{
+		Yes = 0x04,
+		FileNotFound = 0x01,
+		Modified = 0x02,
+		UnknownVersion = 0x03
+	}
 
 	/// <summary>
 	/// Contains one or more CacheItems
@@ -52,14 +65,14 @@ namespace SimPe.Cache
 			this.type = type;
 			added = DateTime.Now;
 			filename = "";
-			valid = true;
+			valid = ContainerValid.Yes;
 
 			items = new CacheItems();
 		}		
 
 		byte version;
 		ContainerType type;
-		bool valid;
+		ContainerValid valid;
 		
 		DateTime added;
 		string filename;
@@ -78,6 +91,7 @@ namespace SimPe.Cache
 		public DateTime Added 
 		{
 			get { return added; }
+			set { added = value; }
 		}
 		
 		CacheItems items;
@@ -102,7 +116,12 @@ namespace SimPe.Cache
 		/// </summary>
 		public bool Valid 
 		{
-			get { return valid; }
+			get { return (valid==ContainerValid.Yes); }
+		}
+
+		public ContainerValid ValidState 
+		{
+			get {return valid; }
 		}
 
 		/// <summary>
@@ -111,7 +130,7 @@ namespace SimPe.Cache
 		public string FileName
 		{
 			get { return filename; }
-			set { filename = value; }
+			set { filename = value.Trim().ToLower(); }
 		}
 
 		/// <summary>
@@ -120,7 +139,7 @@ namespace SimPe.Cache
 		/// <param name="reader">the Stream Reader</param>
 		internal void Load(System.IO.BinaryReader reader) 
 		{
-			valid = false;
+			valid = ContainerValid.FileNotFound;
 			items.Clear();
 			int offset = reader.ReadInt32();
 			version = reader.ReadByte();
@@ -139,10 +158,11 @@ namespace SimPe.Cache
 					if (System.IO.File.Exists(filename)) 
 					{
 						DateTime mod = System.IO.File.GetLastWriteTime(filename);
-						valid = (mod<=added);
+						if (mod<=added) valid = ContainerValid.Yes;
+						else valid = ContainerValid.Modified;
 					}
 
-					if (valid) 
+					if (valid == ContainerValid.Yes) 
 					{
 						switch (type) 
 						{
@@ -179,9 +199,36 @@ namespace SimPe.Cache
 							
 								break;
 							}	
-						}
+							case ContainerType.Memory:
+							{														
+								for (int i=0; i<count; i++) 
+								{
+									MemoryCacheItem oci = new MemoryCacheItem();
+									oci.Load(reader);
+									oci.ParentCacheContainer = this;
+									items.Add(oci);
+								}
+							
+								break;
+							}	
+							case ContainerType.Package:
+							{														
+								for (int i=0; i<count; i++) 
+								{
+									PackageCacheItem oci = new PackageCacheItem();
+									oci.Load(reader);
+									items.Add(oci);
+								}
+							
+								break;
+							}	
+						} //switch
 					} // if valid
 				} //if VERSION
+				else 
+				{
+					valid = ContainerValid.UnknownVersion;
+				}
 			} 
 			finally 
 			{

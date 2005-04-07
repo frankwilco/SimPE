@@ -26,6 +26,16 @@ using System.IO;
 
 namespace SimPe.PackedFiles.Wrapper
 {
+	/// <summary>
+	/// known Versions for SDSC Files
+	/// </summary>
+	public enum SDescVersions : int
+	{
+		Unknown = 0,
+		OriginalGame = 0x20,
+		University = 0x22
+	}
+
 	#region Ghost Flags
 	/// <summary>
 	/// Ghost Flag class
@@ -868,9 +878,9 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Teh Version of this File
 		/// </summary>
-		public int Version 
+		public SDescVersions Version 
 		{
-			get { return version; }
+			get { return (SDescVersions)version; }
 		}
 
 		/// <summary>
@@ -952,7 +962,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Returns University Specific Data
 		/// </summary>
-		/// <remarks>Only valid if Version == 0x22</remarks>
+		/// <remarks>Only valid if Version == SDescVersions.University</remarks>
 		public SdscUniversity University
 		{
 			get { return uni; }
@@ -1359,7 +1369,7 @@ namespace SimPe.PackedFiles.Wrapper
 			reader.BaseStream.Seek(startpos + 0x04, System.IO.SeekOrigin.Begin);
 			version = reader.ReadInt32();
 
-			if (version==0x22) 
+			if (version>=(int)SDescVersions.University) 
 			{
 				reader.BaseStream.Seek(startpos + 0x172, System.IO.SeekOrigin.Begin);
 				instancenumber = reader.ReadUInt16();
@@ -1450,7 +1460,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 			//available Relationships
 			reader.BaseStream.Seek(startpos + 0x16A, System.IO.SeekOrigin.Begin);
-			if (version==0x22) reader.BaseStream.Seek(0x12, System.IO.SeekOrigin.Current);
+			if (version>=(int)SDescVersions.University) reader.BaseStream.Seek(0x12, System.IO.SeekOrigin.Current);
 			relations.SimInstances = new ushort[reader.ReadUInt16()];
 
 			for (int i=0; i<relations.SimInstances.Length; i++)
@@ -1495,7 +1505,7 @@ namespace SimPe.PackedFiles.Wrapper
 			interests.Scifi = reader.ReadUInt16();
 
 			//university only Items
-			if (version==0x22) 
+			if (version>=(int)SDescVersions.University) 
 			{				
 				uni.Serialize(reader);
 			}
@@ -1522,7 +1532,7 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.BaseStream.Seek(startpos + 0x04, System.IO.SeekOrigin.Begin);
 			writer.Write(version); //Version Number
 
-			if (version==0x22) 
+			if (version>=(int)SDescVersions.University) 
 			{
 				writer.BaseStream.Seek(startpos + 0x172, System.IO.SeekOrigin.Begin);
 				writer.Write(instancenumber);
@@ -1598,7 +1608,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 			//available Relationships
 			writer.BaseStream.Seek(startpos + 0x16A, System.IO.SeekOrigin.Begin);
-			if (version==0x22) writer.BaseStream.Seek(0x12, System.IO.SeekOrigin.Current);
+			if (version>=(int)SDescVersions.University) writer.BaseStream.Seek(0x12, System.IO.SeekOrigin.Current);
 			writer.Write((uint)relations.SimInstances.Length);
 
 			for (int i=0; i<relations.SimInstances.Length; i++)
@@ -1654,7 +1664,7 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write(interests.Scifi);
 
 			//university only Items
-			if (version==0x22) 
+			if (version>=(int)SDescVersions.University) 
 			{				
 				uni.Unserialize(writer);
 			}

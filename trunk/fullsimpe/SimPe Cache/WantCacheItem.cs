@@ -111,7 +111,7 @@ namespace SimPe.Cache
 
 		public override string ToString()
 		{
-			return "Want: name="+Name;
+			return "name="+Name;
 		}
 
 		#region ICacheItem Member

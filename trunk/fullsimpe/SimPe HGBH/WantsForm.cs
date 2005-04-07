@@ -801,8 +801,7 @@ namespace SimPe.Plugin
 			
 			this.tbversion.Text = "0x"+Helper.HexString(wi.Version);
 			this.tbsiminst.Text = "0x"+Helper.HexString(wi.SimInstance);
-			this.tbguid.Text = "0x"+Helper.HexString(wi.Guid);
-			this.tbval.Text = "0x"+Helper.HexString(wi.Value);
+			this.tbguid.Text = "0x"+Helper.HexString(wi.Guid);			
 			this.tbprop.Text = wi.Property.ToString();
 			this.tbindex.Text = "0x"+Helper.HexString(wi.Index);
 			this.tbpoints.Text = wi.Score.ToString();
@@ -822,6 +821,8 @@ namespace SimPe.Plugin
 					break;
 				}
 			}
+
+			this.tbval.Text = "0x"+Helper.HexString(wi.Value);
 
 			//if (this.Tag!=null) return;
 			this.Tag = true;
@@ -864,11 +865,14 @@ namespace SimPe.Plugin
 		private void ChangeType(object sender, System.EventArgs e)
 		{
 			this.cbsel.Items.Clear();
+			cbsel.Sorted = false;
 			ArrayList list = WantLoader.WantNameLoader.GetNames((WantType)cbtype.Items[cbtype.SelectedIndex]);
+			foreach (Data.Alias a in list) cbsel.Items.Add(a);			
+			cbsel.Sorted = true;
+
 			int ct=0;
-			foreach (Data.Alias a in list) 
+			foreach (Data.Alias a in cbsel.Items) 
 			{
-				cbsel.Items.Add(a);
 				if (lastwi!=null) if (a.Id == lastwi.Value) cbsel.SelectedIndex=ct;
 				ct++;
 			}
@@ -912,6 +916,7 @@ namespace SimPe.Plugin
 				lastwi.Influence = Convert.ToInt32(this.tbunknown2.Text);
 				lastwi.Score = Convert.ToInt32(this.tbpoints.Text);
 				lastwi.Value = Convert.ToUInt32(this.tbval.Text, 16);
+				lastwi.Property = Convert.ToUInt16(this.tbprop.Text);
 
 				lastwi.Flag.Locked = cblock.Checked;
 				wrapper.Changed = true;

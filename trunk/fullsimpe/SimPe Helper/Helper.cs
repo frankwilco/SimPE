@@ -270,11 +270,31 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Returns the Name of a Language Cache File with the passed Prefix
+		/// </summary>
+		/// <param name="prefix"></param>
+		/// <returns></returns>
+		public static string GetSimPeLanguageCache(string prefix) 
+		{
+			return System.IO.Path.Combine(Helper.SimPeDataPath, prefix+Helper.HexString((byte)Helper.WindowsRegistry.LanguageCode)+".simpepkg");
+		}
+
+		/// <summary>
 		/// Returns the Name of the Cache File for the current Language
 		/// </summary>
 		public static string SimPeLanguageCache 
 		{
-			get { return System.IO.Path.Combine(Helper.SimPeDataPath, "objcache_"+Helper.HexString((byte)Helper.WindowsRegistry.LanguageCode)+".simpepkg"); }
+			get { return GetSimPeLanguageCache("objcache_"); }
+		}
+
+		/// <summary>
+		/// Returns the Name of a Cache File with the passed Prefix
+		/// </summary>
+		/// <param name="prefix"></param>
+		/// <returns></returns>
+		public static string GetSimPeCache(string prefix) 
+		{
+			return System.IO.Path.Combine(Helper.SimPeDataPath, prefix+".simpepkg");
 		}
 
 		/// <summary>
@@ -282,7 +302,7 @@ namespace SimPe
 		/// </summary>
 		public static string SimPeCache 
 		{
-			get { return System.IO.Path.Combine(Helper.SimPeDataPath, "objcache.simpepkg"); }
+			get { return GetSimPeCache("objcache"); }
 		}
 
 		/// <summary>

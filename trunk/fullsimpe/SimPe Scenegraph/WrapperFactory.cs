@@ -32,12 +32,32 @@ namespace SimPe.Plugin
 	public class WrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory
 	{
 		/// <summary>
+		/// Loads the GroupCache
+		/// </summary>
+		public static void LoadGroupCache()
+		{
+			if (FileTable.GroupCache!=null) return;
+
+			SimPe.PackedFiles.Wrapper.GroupCache gc = new SimPe.PackedFiles.Wrapper.GroupCache();
+			string name = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Groups.cache");
+
+			if (System.IO.File.Exists(name))
+			{
+				SimPe.Packages.File pkg = new SimPe.Packages.File(name);
+				SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pkg.FindFile(0x54535053, 0, 1, 1);
+				if (pfd!=null) gc.ProcessData(pfd, pkg);				
+			}
+
+			FileTable.GroupCache = gc;
+		}
+
+		/// <summary>
 		/// Creates the Class
 		/// </summary>
 		public WrapperFactory() : base() 
 		{
 			//prepare the FileIndex
-			FileTable.FileIndex = new FileIndex();
+			FileTable.FileIndex = new FileIndex();			
 		}
 
 		#region AbstractWrapperFactory Member
@@ -55,7 +75,8 @@ namespace SimPe.Plugin
 										  new Plugin.Lifo(this.LinkedProvider, false),
 										  //new Plugin.Shpe(this.LinkedProvider),
 						                  new Plugin.GenericRcol(this.LinkedProvider, false),
-										  new Plugin.MmatWrapper()
+										  new Plugin.MmatWrapper(),					
+										  new SimPe.PackedFiles.Wrapper.GroupCache()
 									  };
 				return wrappers;
 			}

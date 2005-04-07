@@ -40,7 +40,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label1;
 		internal System.Windows.Forms.RichTextBox rtb;
 		private System.ComponentModel.IContainer components;
-		private LinkLabel visualStyleLinkLabel2;
+		private Skybound.VisualStyles.VisualStyleLinkLabel visualStyleLinkLabel2;
 		internal System.Windows.Forms.TextBox tbsimid;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Panel panel6;
@@ -420,6 +420,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label89;
 		private Skybound.VisualStyles.VisualStyleLinkLabel linkLabel6;
 		private Skybound.VisualStyles.VisualStyleProvider visualStyleProvider1;
+		private Skybound.VisualStyles.VisualStyleLinkLabel llmore;
 
 
 		internal SimPe.Interfaces.Plugin.IFileWrapperSaveExtension wrapper = null;
@@ -853,6 +854,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.llrelcommit = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
+			this.llmore = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.JpegPanel.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.xmlPanel.SuspendLayout();
@@ -2914,10 +2916,10 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tcsdesc.Appearance = ((System.Windows.Forms.TabAppearance)(resources.GetObject("tcsdesc.Appearance")));
 			this.tcsdesc.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tcsdesc.BackgroundImage")));
 			this.tcsdesc.Controls.Add(this.tpinterests);
+			this.tcsdesc.Controls.Add(this.tbext);
 			this.tcsdesc.Controls.Add(this.tbcharacter);
 			this.tcsdesc.Controls.Add(this.tbrelations);
 			this.tcsdesc.Controls.Add(this.tbskills);
-			this.tcsdesc.Controls.Add(this.tbext);
 			this.tcsdesc.Controls.Add(this.tbuni);
 			this.tcsdesc.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tcsdesc.Dock")));
 			this.tcsdesc.Enabled = ((bool)(resources.GetObject("tcsdesc.Enabled")));
@@ -8534,6 +8536,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.groupBox1.Controls.Add(this.label87);
 			this.groupBox1.Controls.Add(this.tbautonomy);
 			this.groupBox1.Controls.Add(this.label86);
+			this.groupBox1.Controls.Add(this.llmore);
 			this.groupBox1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("groupBox1.Dock")));
 			this.groupBox1.Enabled = ((bool)(resources.GetObject("groupBox1.Enabled")));
 			this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -11193,6 +11196,32 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.llrelcommit, resources.GetString("llrelcommit.ToolTip"));
 			this.llrelcommit.Visible = ((bool)(resources.GetObject("llrelcommit.Visible")));
 			// 
+			// llmore
+			// 
+			this.llmore.AccessibleDescription = resources.GetString("llmore.AccessibleDescription");
+			this.llmore.AccessibleName = resources.GetString("llmore.AccessibleName");
+			this.llmore.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llmore.Anchor")));
+			this.llmore.AutoSize = ((bool)(resources.GetObject("llmore.AutoSize")));
+			this.llmore.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llmore.Dock")));
+			this.llmore.Enabled = ((bool)(resources.GetObject("llmore.Enabled")));
+			this.llmore.Font = ((System.Drawing.Font)(resources.GetObject("llmore.Font")));
+			this.llmore.Image = ((System.Drawing.Image)(resources.GetObject("llmore.Image")));
+			this.llmore.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llmore.ImageAlign")));
+			this.llmore.ImageIndex = ((int)(resources.GetObject("llmore.ImageIndex")));
+			this.llmore.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llmore.ImeMode")));
+			this.llmore.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llmore.LinkArea")));
+			this.llmore.Location = ((System.Drawing.Point)(resources.GetObject("llmore.Location")));
+			this.llmore.Name = "llmore";
+			this.llmore.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llmore.RightToLeft")));
+			this.llmore.Size = ((System.Drawing.Size)(resources.GetObject("llmore.Size")));
+			this.llmore.TabIndex = ((int)(resources.GetObject("llmore.TabIndex")));
+			this.llmore.TabStop = true;
+			this.llmore.Text = resources.GetString("llmore.Text");
+			this.llmore.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llmore.TextAlign")));
+			this.toolTip1.SetToolTip(this.llmore, resources.GetString("llmore.ToolTip"));
+			this.llmore.Visible = ((bool)(resources.GetObject("llmore.Visible")));
+			this.llmore.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SdscShowMore);
+			// 
 			// Elements
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -12149,7 +12178,7 @@ namespace SimPe.PackedFiles.UserInterface
 			try 
 			{
 				uint oldguid = Convert.ToUInt32(tbsimid.Text, 16);
-				uint guid = form.GetNewGUID(reg.Username, reg.Password);
+				uint guid = form.GetNewGUID(reg.Username, reg.Password, oldguid);
 
 				reg.Username = form.tbusername.Text;
 				reg.Password = form.tbpassword.Text;
@@ -12341,6 +12370,12 @@ namespace SimPe.PackedFiles.UserInterface
 
 			SimPe.PackedFiles.Wrapper.SDesc wrp = (SimPe.PackedFiles.Wrapper.SDesc)wrapper;
 			this.tbsim.Text = "0x"+Helper.HexString(SimRelinkForm.Execute(wrp));
+		}
+
+		private void SdscShowMore(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			SimPe.PackedFiles.Wrapper.SDesc wrp = (SimPe.PackedFiles.Wrapper.SDesc)wrapper;
+			if (SdscExtendedForm.Execute(wrp)) wrp.UIHandler.UpdateGUI(wrp);			
 		}
 
 		

@@ -61,7 +61,7 @@ namespace SimPe
 			string modelname = "";
 			string prefix = "";
 			string package = "";
-			FixVersion ver = FixVersion.UniversityReady2;
+			FixVersion ver = FixVersion.UniversityReady;
 
 			#region Parse Arguments
 			for (int i=0; i<args.Length; i++) 

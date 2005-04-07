@@ -39,6 +39,8 @@ namespace SimPe.Plugin
 		{
 			InitializeComponent();
 
+			this.cbtype.SelectedIndex = cbtype.Items.Count-1;
+
 #if DEBUG
 #else
 			/*this.lbdata.Visible = false;
@@ -105,6 +107,7 @@ namespace SimPe.Plugin
 			this.ilist = new System.Windows.Forms.ImageList(this.components);
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.label27 = new System.Windows.Forms.Label();
+			this.cbtype = new System.Windows.Forms.ComboBox();
 			this.ngbhPanel.SuspendLayout();
 			this.gbmem.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -119,6 +122,7 @@ namespace SimPe.Plugin
 			this.ngbhPanel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("ngbhPanel.AutoScrollMargin")));
 			this.ngbhPanel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("ngbhPanel.AutoScrollMinSize")));
 			this.ngbhPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ngbhPanel.BackgroundImage")));
+			this.ngbhPanel.Controls.Add(this.cbtype);
 			this.ngbhPanel.Controls.Add(this.lbname);
 			this.ngbhPanel.Controls.Add(this.button1);
 			this.ngbhPanel.Controls.Add(this.gbmem);
@@ -845,6 +849,37 @@ namespace SimPe.Plugin
 			this.label27.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label27.TextAlign")));
 			this.label27.Visible = ((bool)(resources.GetObject("label27.Visible")));
 			// 
+			// cbtype
+			// 
+			this.cbtype.AccessibleDescription = resources.GetString("cbtype.AccessibleDescription");
+			this.cbtype.AccessibleName = resources.GetString("cbtype.AccessibleName");
+			this.cbtype.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbtype.Anchor")));
+			this.cbtype.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbtype.BackgroundImage")));
+			this.cbtype.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbtype.Dock")));
+			this.cbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbtype.Enabled = ((bool)(resources.GetObject("cbtype.Enabled")));
+			this.cbtype.Font = ((System.Drawing.Font)(resources.GetObject("cbtype.Font")));
+			this.cbtype.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbtype.ImeMode")));
+			this.cbtype.IntegralHeight = ((bool)(resources.GetObject("cbtype.IntegralHeight")));
+			this.cbtype.ItemHeight = ((int)(resources.GetObject("cbtype.ItemHeight")));
+			this.cbtype.Items.AddRange(new object[] {
+														resources.GetString("cbtype.Items"),
+														resources.GetString("cbtype.Items1"),
+														resources.GetString("cbtype.Items2"),
+														resources.GetString("cbtype.Items3"),
+														resources.GetString("cbtype.Items4"),
+														resources.GetString("cbtype.Items5")});
+			this.cbtype.Location = ((System.Drawing.Point)(resources.GetObject("cbtype.Location")));
+			this.cbtype.MaxDropDownItems = ((int)(resources.GetObject("cbtype.MaxDropDownItems")));
+			this.cbtype.MaxLength = ((int)(resources.GetObject("cbtype.MaxLength")));
+			this.cbtype.Name = "cbtype";
+			this.cbtype.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbtype.RightToLeft")));
+			this.cbtype.Size = ((System.Drawing.Size)(resources.GetObject("cbtype.Size")));
+			this.cbtype.TabIndex = ((int)(resources.GetObject("cbtype.TabIndex")));
+			this.cbtype.Text = resources.GetString("cbtype.Text");
+			this.cbtype.Visible = ((bool)(resources.GetObject("cbtype.Visible")));
+			this.cbtype.SelectedIndexChanged += new System.EventHandler(this.SelectSim);
+			// 
 			// NgbhForm
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -906,6 +941,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.LinkLabel linkLabel2;
 		internal System.Windows.Forms.Button btdown;
 		internal System.Windows.Forms.Button btup;
+		private System.Windows.Forms.ComboBox cbtype;
 
 		internal IFileWrapperSaveExtension wrapper;
 
@@ -1053,10 +1089,19 @@ namespace SimPe.Plugin
 				lbmem.Items.Clear();
 			
 				Ngbh wrp = (Ngbh)wrapper;
-				NgbhSlot slot = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
+				NgbhSlot slot;
+				if (cbtype.SelectedIndex==0 || cbtype.SelectedIndex==1)
+					slot = wrp.GetSlot(wrp.SlotsA, sdesc.Instance);
+				else if (cbtype.SelectedIndex==2 || cbtype.SelectedIndex==3)
+					slot = wrp.GetSlot(wrp.SlotsB, sdesc.Instance);
+				else 
+					slot = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
 				if (slot!=null) 
 				{
-					foreach (NgbhItem item in slot.ItemsB) this.AddItem(item);
+					if (cbtype.SelectedIndex%2==1)
+						foreach (NgbhItem item in slot.ItemsB) this.AddItem(item);
+					else
+						foreach (NgbhItem item in slot.ItemsA) this.AddItem(item);
 				}
 
 				if (lbmem.Items.Count>0) lbmem.Items[0].Selected = true;

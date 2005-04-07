@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#define QUAXI
 using System;
 using System.Drawing;
 using System.Collections;
@@ -31,6 +32,7 @@ namespace SimPe.Plugin
 	/// </summary>
 	public class BhavForm : System.Windows.Forms.Form
 	{
+      #region Form variables
 		internal System.Windows.Forms.Panel wrapperPanel;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Label label1;
@@ -206,7 +208,8 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label45;
 		internal System.Windows.Forms.TextBox tbmv;
 		private System.ComponentModel.IContainer components;
-
+      #endregion
+       
 		public BhavForm()
 		{
 			//
@@ -5215,7 +5218,6 @@ namespace SimPe.Plugin
 			cb.Text = "0x"+Helper.HexString((ushort)sel);
 		}
 
-		
 		private void ItemMouseMove(object sender, MouseEventArgs e)
 		{
 			if (e.Button == MouseButtons.Left) 
@@ -5358,7 +5360,6 @@ namespace SimPe.Plugin
 			DrawConnectors();
 			ShowActivePanel();
 		}
-
 
 		protected void DrawConnectors()
 		{			
@@ -5545,6 +5546,7 @@ namespace SimPe.Plugin
 			}
 		}
 
+#if QUAXI
 		private void SortInstructions(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			ushort last = 0;
@@ -5588,6 +5590,212 @@ namespace SimPe.Plugin
 			CreateFlowPanel(InstructionItem.Instructions(flowitems));
 			wrapper.Changed = true;
 		}
+#endif
+
+      internal class treeNode
+      {
+         public treeNode(treeNode p, Instruction i)
+         {
+            instruction = i;
+            parent = p;
+            TrueChild = null;
+            FalseChild = null;
+         }
+         public Instruction instruction;
+         public treeNode parent;
+         private bool refTrueTarget;
+         private bool refFalseTarget;
+         private treeNode trueChild;
+         public treeNode TrueChild
+         {
+            get
+            {
+               if (refTrueTarget) return null;
+               if (instruction.Target1 >= 0xfffc) return null;
+               return trueChild;
+            }
+            set
+            {
+               trueChild = value;
+               refTrueTarget = (trueChild == null);
+            }
+         }
+         private treeNode falseChild;
+         public treeNode FalseChild
+         {
+            get
+            {
+               if (refFalseTarget) return null;
+               if (instruction.Target2 >= 0xfffc) return null;
+               return falseChild;
+            }
+            set
+            {
+               falseChild = value;
+               refFalseTarget = (falseChild == null);
+            }
+         }
+         protected void removeChild(treeNode child)
+         {
+            if ((trueChild != null) && trueChild.Equals(child))
+               TrueChild = null;
+            if ((falseChild != null) && falseChild.Equals(child))
+               FalseChild = null;
+            child.parent = null;
+         }
+
+         protected treeNode findInTree(treeNode root, ushort target)
+         {
+            if (root == null)
+               return null;
+            if (root.instruction.Index == target)
+               return root;
+            treeNode child;
+            child = findInTree(root.TrueChild, target);
+            if (child != null) return child;
+            child = findInTree(root.FalseChild, target);
+            if (child != null) return child;
+            return null;
+         }
+
+         public void fillTree(treeNode treeRoot, InstructionItem[] flowitems)
+         {
+            if (instruction == null) return;
+
+            if (instruction.Target1 < 0xfffc)
+            {
+               treeNode child = findInTree(treeRoot, instruction.Target1);
+               if (child == null)
+               {
+                  TrueChild = new treeNode(this, flowitems[instruction.Target1].instruction);
+                  TrueChild.fillTree(treeRoot, flowitems);
+               }
+               else
+               {
+                  if (!child.Equals(this) && (child.parent != null))
+                  {
+                     child.parent.removeChild(child);
+                     TrueChild = child;
+                     TrueChild.parent = this;
+                  }
+               }
+            }
+
+            if (instruction.Target2 < 0xfffc)
+            {
+               treeNode child = findInTree(treeRoot, instruction.Target2);
+               if (child == null)
+               {
+                  FalseChild = new treeNode(this, flowitems[instruction.Target2].instruction);
+                  FalseChild.fillTree(treeRoot, flowitems);
+               }
+               else
+               {
+                  if (!child.Equals(this) && (child.parent != null))
+                  {
+                     child.parent.removeChild(child);
+                     FalseChild = child;
+                     FalseChild.parent = this;
+                  }
+               }
+            }
+         }
+      }
+
+      private bool findInstruction(InstructionItem[] tree, ushort last, ushort target, ushort current)
+      {
+         for (ushort i = 0; i <= last; i++)
+            if ((i != current) && (tree[i].index == target))
+               return true;
+         for (ushort i = 0; i <= last; i++)
+            if (i != current)
+            {
+               if (tree[i].instruction.Target1 == target)
+                  return true;
+               if (tree[i].instruction.Target2 == target)
+                  return true;
+            }
+         return false;
+      }
+
+      private ushort treeWalk(InstructionItem[] newFlowItems, ushort last, treeNode root)
+      {
+         if (root == null) return last;
+
+         newFlowItems[last] = new InstructionItem();
+         newFlowItems[last].instruction = root.instruction;
+         if (root.TrueChild != null)
+            last = treeWalk(newFlowItems, (ushort)(last+1), root.TrueChild);
+         if (root.FalseChild != null)
+            last = treeWalk(newFlowItems, (ushort)(last+1), root.FalseChild);
+
+         return last;
+      }
+
+      private ushort findItem(InstructionItem[] iis, ushort target)
+      {
+         for(ushort i = 0; i < iis.Length; i++)
+            if (iis[i].instruction.Index == target) return i;
+         return (ushort)iis.Length;
+      }
+
+#if QUAXI
+#else
+      private void SortInstructions(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+      {
+		 
+		  
+         treeNode treeRoot = new treeNode(null, flowitems[0].instruction);
+         treeRoot.fillTree(treeRoot, flowitems);
+
+         InstructionItem[] newFlowItems = new InstructionItem[flowitems.Length];
+         ushort last = treeWalk(newFlowItems, 0, treeRoot);
+
+         // That may have missed some entries because they're not used, so...
+         foreach(InstructionItem item in flowitems)
+         {
+            bool found = false;
+            if (item != null)
+               for (ushort j = 0; !found && (j < newFlowItems.Length); j++)
+               {
+                  InstructionItem jtem = newFlowItems[j];
+                  if ((jtem != null) && (item.instruction.Equals(jtem.instruction))) found = true;
+               }
+            if (!found)
+            {
+               last++;
+               newFlowItems[last] = new InstructionItem();
+               newFlowItems[last].instruction = item.instruction;
+            }
+         }
+         // Now, if (last+1) != newFlowItems.Length we have a problem!
+         for(ushort i = 0; i < newFlowItems.Length; i++)
+         {
+            if (newFlowItems[i].instruction.Target1 < 0xfffc)
+               newFlowItems[i].instruction.Target1 = findItem(newFlowItems, newFlowItems[i].instruction.Target1);
+            if (newFlowItems[i].instruction.Target2 < 0xfffc)
+               newFlowItems[i].instruction.Target2 = findItem(newFlowItems, newFlowItems[i].instruction.Target2);
+            Instruction x = newFlowItems[i].instruction;
+            newFlowItems[i] = new InstructionItem();
+            newFlowItems[i].instruction = x;
+         }
+
+         for(ushort i = 0; i < newFlowItems.Length; i++)
+         {
+            newFlowItems[i].instruction.Index = (ushort)i;
+            newFlowItems[i].index = (ushort)i;
+         }
+
+		 Bhav wrp = (Bhav)wrapper;		  
+		 for (ushort i=0; i<flowitems.Length; i++) wrp.Instructions[i] = flowitems[i].instruction;
+
+         csel = -1;
+         this.llcommit.Enabled = false;
+         this.lldel.Enabled = false;
+         CreateFlowPanel(InstructionItem.Instructions(newFlowItems));
+         wrapper.Changed = true;		 
+      }
+#endif
 
 		private void OpenOperandWiz(object sender, System.EventArgs e)
 		{

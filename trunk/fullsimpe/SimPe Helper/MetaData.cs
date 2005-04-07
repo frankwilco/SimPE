@@ -24,6 +24,21 @@ using System.Collections;
 namespace SimPe.Data
 {
 	/// <summary>
+	/// Determins the concrete Type of an Overlay Item (texture or mesh overlay)
+	/// </summary>
+	public enum TextureOverlayTypes : uint
+	{
+		Beard = 0x00,
+		EyeBrow = 0x01,
+		Lipstick = 0x02,
+        Eye = 0x03,
+		Mask = 0x04,
+		Glasses = 0x05,
+		Blush = 0x06,
+        EyeShadow = 0x07
+	}
+	
+	/// <summary>
 	/// Ages used for Property Sets (Character Data, Skins)
 	/// </summary>
 	public enum Ages:uint
@@ -235,6 +250,7 @@ namespace SimPe.Data
 
 		public const uint GZPS = 0xEBCF3E27;
 		public const uint XWNT = 0xED7D7B4D;
+		public const uint REF_FILE = 0xAC506764;
 
 		public const uint GMND = 0x7BA3838C;
 		public const uint TXMT = 0x49596978;
@@ -779,7 +795,7 @@ namespace SimPe.Data
 												  new TypeAlias(false, "OBJX", 0x6C4F359D, "Object Index"),
 												  new TypeAlias(false, "OBJX", 0x0C560F39, "Object Index"),
 												  new TypeAlias(false, "PALT", 0x50414C54, "Image Color Palette (Version 1)"),
-												  new TypeAlias(false, "3IDR", 0xAC506764, "3D ID Referencing File"),
+												  new TypeAlias(false, "3IDR", REF_FILE, "3D ID Referencing File"),
 												  new TypeAlias(false, "POSI", 0x504F5349, "Stack Script"),
 												  new TypeAlias(false, "MATSHAD", 0xCD7FE87A, "Maxis Material Shader", "matshad"),
 												  new TypeAlias(false, "PTBP", 0x50544250, "Package Text"),
@@ -858,6 +874,7 @@ namespace SimPe.Data
 												  new TypeAlias(false, "THUB", 0xCC44B5EC, "Modular Stair Thumbnail", "jpg"),
 												  new TypeAlias(false, "THUB", 0xCC489E46, "Roof Thumbnail", "jpg"),
 												  new TypeAlias(false, "THUB", 0xCC48C51F, "Chimney Thumbnail", "jpg"),
+												  new TypeAlias(false, "GROP", 0x54535053, "Groups Cache")
 		};
 		#endregion
 

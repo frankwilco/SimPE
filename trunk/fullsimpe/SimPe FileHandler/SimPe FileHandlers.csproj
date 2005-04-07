@@ -166,8 +166,13 @@
                 />
                 <Reference
                     Name = "skybound.visualstyles"
-                    AssemblyName = "skybound.visualstyles"
+                    AssemblyName = "Skybound.VisualStyles"
                     HintPath = "..\..\..\skybound visualstyles\skybound.visualstyles.dll"
+                />
+                <Reference
+                    Name = "SimPe Cache"
+                    Project = "{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
         </Build>
@@ -309,6 +314,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "SdscExtendedForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SdscExtendedForm.resx"
+                    DependentUpon = "SdscExtendedForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "SimRelations.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -335,6 +350,11 @@
                 />
                 <File
                     RelPath = "UIBase.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "WantNameLoader.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

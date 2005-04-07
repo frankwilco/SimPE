@@ -91,7 +91,7 @@ namespace SimPe.Cache
 
 		public override string ToString()
 		{
-			return "MaterialOverride: modelname="+ModelName+", family="+family;
+			return "modelname="+ModelName+", family="+family;
 		}
 
 

@@ -134,12 +134,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "MemoryCacheItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MMATCacheItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "ObjectCacheItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PackageCacheItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

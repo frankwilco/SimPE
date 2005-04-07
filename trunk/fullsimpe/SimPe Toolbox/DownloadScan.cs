@@ -1152,7 +1152,7 @@ namespace SimPe.Plugin
 				int pos = 0;
 				foreach (ListViewItem lvi in lv.SelectedItems) 
 				{
-					//only not EP Ready packages
+					//only non EP Ready packages
 					if ((!Helper.WindowsRegistry.HiddenMode) && (lvi.SubItems[4].Text != STR_NOT_EP)) continue;
 
 					string filename = System.IO.Path.Combine(lbdir.Text, lvi.Text+".package");

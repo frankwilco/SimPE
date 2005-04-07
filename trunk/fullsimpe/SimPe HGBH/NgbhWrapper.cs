@@ -164,7 +164,7 @@ namespace SimPe.Plugin
 				"Neighborhood/Memory Wrapper",
 				"Quaxi",
 				"---",
-				6
+				7
 				); 
 		}
 
