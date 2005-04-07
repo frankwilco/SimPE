@@ -409,7 +409,7 @@ namespace SimPe.Plugin
 						SimPe.Cache.ObjectCacheItem oci = new SimPe.Cache.ObjectCacheItem();
 						oci.FileDescriptor = nrefitem.FileDescriptor;
 						oci.LocalGroup = nrefitem.LocalGroup;							
-						oci.ObjectType = (ushort)objd.Type;
+						oci.ObjectType = objd.Type;
 						oci.ObjectFunctionSort = (short)objd.FunctionSort.Value;
 						oci.ObjectFileName = objd.FileName;
 						oci.Useable = true;
@@ -999,7 +999,7 @@ namespace SimPe.Plugin
 					} 
 					
 
-					FixObject fo = new FixObject(package, FixVersion.UniversityReady2);
+					FixObject fo = new FixObject(package, FixVersion.UniversityReady);
 					System.Collections.Hashtable map = null;
 					
 					if (this.cbfix.Checked) 

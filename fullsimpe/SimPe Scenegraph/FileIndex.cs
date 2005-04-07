@@ -294,13 +294,15 @@ namespace SimPe.Plugin
 		/// <returns>the local Group</returns>
 		public static uint GetLocalGroup(string flname)
 		{
+			if (FileTable.GroupCache == null) WrapperFactory.LoadGroupCache();
 			if (localGroupMap==null) localGroupMap = new Hashtable();
 
 			
 			if (flname==null) flname="memoryfile";
 			flname = flname.Trim().ToLower();
 
-			uint local = 0;
+			SimPe.Interfaces.Wrapper.IGroupCacheItem gci = FileTable.GroupCache.GetItem(flname);
+			/*uint local = 0;
 			if (localGroupMap.ContainsKey(flname)) local = (uint)localGroupMap[flname];
 			else 
 			{
@@ -308,7 +310,8 @@ namespace SimPe.Plugin
 				localGroupMap[flname] = local;
 			}
 
-			return local;
+			return local;*/
+			return gci.LocalGroup;
 		}
 
 		/// <summary>
@@ -320,7 +323,7 @@ namespace SimPe.Plugin
 		/// becuase the Files changed)
 		/// </remarks>
 		public void Load() 
-		{
+		{			
 			if (index.Count>0) return;
 			ForceReload();
 		}
@@ -335,6 +338,7 @@ namespace SimPe.Plugin
 		/// </remarks>
 		public void ForceReload()
 		{
+			WrapperFactory.LoadGroupCache();
 			addedfilenames.Clear();
 			bool wasrunning = WaitingScreen.Running;
 			WaitingScreen.Wait();

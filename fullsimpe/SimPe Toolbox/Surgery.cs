@@ -950,7 +950,10 @@ namespace SimPe.Plugin
 			
 
 			SimPe.Packages.File patient = new SimPe.Packages.File(spatient.CharacterFileName);
-			SimPe.Packages.File archetype = new SimPe.Packages.File(sarche.CharacterFileName);
+			SimPe.Packages.File archetype = null;
+			if (sarche!=null) archetype = new SimPe.Packages.File(sarche.CharacterFileName);
+			else archetype = new SimPe.Packages.File(null);
+
 			SimPe.Packages.GeneratableFile newpackage = null;
 			PlasticSurgery ps = new PlasticSurgery(ngbh, patient, spatient, archetype, sarche);
 

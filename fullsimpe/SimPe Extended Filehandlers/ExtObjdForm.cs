@@ -735,7 +735,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 			try 
 			{
-				uint guid = form.GetNewGUID(reg.Username, reg.Password);
+				uint guid = form.GetNewGUID(reg.Username, reg.Password, this.wrapper.Guid);
 
 				reg.Username = form.tbusername.Text;
 				reg.Password = form.tbpassword.Text;

@@ -223,6 +223,8 @@ namespace SimPe.Packages
 			{
 				StreamItem si = StreamFactory.UseStream(flname, FileAccess.Read);
 				si.SetFileAccess(FileAccess.Read);
+				//if (si.StreamState==StreamState.Removed) throw new Exception ("The File was moved or deleted whil SimPe was running.", new Exception("Unable to find "+this.FileName));
+				if (si.StreamState!=StreamState.Removed) reader = new System.IO.BinaryReader(si.FileStream);
 				return;
 			}
 			if (type == PackageBaseType.Filename)
@@ -621,7 +623,7 @@ namespace SimPe.Packages
 			{
 				#region Reload Stream
 				OpenReader();
-				if (reader==null) 
+				/*if (reader==null) 
 				{
 					if (this.flname!=null) if (System.IO.File.Exists(flname)) reader = new System.IO.BinaryReader(System.IO.File.OpenRead(flname));						
 				}
@@ -633,7 +635,7 @@ namespace SimPe.Packages
 				if (reader.BaseStream==null) 
 				{
 					if (this.flname!=null) if (System.IO.File.Exists(flname)) reader = new System.IO.BinaryReader(System.IO.File.OpenRead(flname));
-				}
+				}*/
 				if (reader==null) return new PackedFile(new byte[0]);
 				if (reader.BaseStream==null) 
 				{

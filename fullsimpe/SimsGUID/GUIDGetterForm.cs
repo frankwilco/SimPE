@@ -307,10 +307,11 @@ namespace Sims.GUID
 			return (uint)(((userguid<<8)&0xffffff00) + (objguid&0x000000ff));
 		}
 
-		public uint GetNewGUID(string user, string password) 
+		public uint GetNewGUID(string user, string password, uint defguid) 
 		{
 			lluse.Enabled = false;
-
+			this.retguid = defguid;
+			
 			service = new Sims.GUID.Service.SimGUIDService();
 			this.tbusername.Text = user;
 			this.tbpassword.Text = password;			
@@ -322,41 +323,54 @@ namespace Sims.GUID
 
 		private void UpdateGUID(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			
-			uint userguid = 0xf000000;
-			if (tbusername.Text!="") userguid = (uint)service.loginUser(tbusername.Text, tbpassword.Text);
-
-			this.lbnames.Items.Clear();
-			if (userguid!=0xf000000) 
+			try 
 			{
-				this.tbUserGUID.Text = "0x"+userguid.ToString("X");
+				uint userguid = 0xf000000;
+				if (tbusername.Text!="") userguid = (uint)service.loginUser(tbusername.Text, tbpassword.Text);
 
-				string res = service.listRegistredObjects(tbusername.Text, tbpassword.Text);
-				System.Collections.Hashtable ht = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
+				this.lbnames.Items.Clear();
+				if (userguid!=0xf000000) 
+				{
+					this.tbUserGUID.Text = "0x"+userguid.ToString("X");
+
+					string res = service.listRegistredObjects(tbusername.Text, tbpassword.Text);
+					System.Collections.Hashtable ht = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
 				
 
-				foreach (Int32 guid in ht.Values) 
-				{
-					res = service.describeRegistredObjects(tbusername.Text, tbpassword.Text, guid);
-					System.Collections.Hashtable data = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
-					uint objguid = Convert.ToUInt32(data["guid"]);
-					objguid = BuildGUID(userguid, objguid);
-					this.lbnames.Items.Add(new ObjectListItem(objguid, data["name"].ToString()));
-					Application.DoEvents();
+					foreach (Int32 guid in ht.Values) 
+					{
+						res = service.describeRegistredObjects(tbusername.Text, tbpassword.Text, guid);
+						System.Collections.Hashtable data = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
+						uint objguid = Convert.ToUInt32(data["guid"]);
+						objguid = BuildGUID(userguid, objguid);
+						this.lbnames.Items.Add(new ObjectListItem(objguid, data["name"].ToString()));
+						Application.DoEvents();
+					}
 				}
-			}
-			else this.tbUserGUID.Text = "0x0";
+				else this.tbUserGUID.Text = "0x0";
 
+			} 
+			catch (Exception ex)
+			{
+				SimPe.Helper.ExceptionMessage("", ex);
+			}
 
 		}
 
 		private void RegisterNewUser(object sender, System.EventArgs e)
 		{
-			bool res = this.service.registerUser(tbusername.Text, tbpassword.Text);
-			if (!res) System.Windows.Forms.MessageBox.Show("Could not Register the specified User!\n\nPlease try another Username.");
-			else MessageBox.Show("Welcome "+tbusername.Text+".");
+			try 
+			{
+				bool res = this.service.registerUser(tbusername.Text, tbpassword.Text);
+				if (!res) System.Windows.Forms.MessageBox.Show("Could not Register the specified User!\n\nPlease try another Username.");
+				else MessageBox.Show("Welcome "+tbusername.Text+".");
 
-			UpdateGUID(null, null);
+				UpdateGUID(null, null);
+			} 
+			catch (Exception ex) 
+			{
+				SimPe.Helper.ExceptionMessage("", ex);
+			}
 		}
 
 		private void UseSelection(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
@@ -376,24 +390,31 @@ namespace Sims.GUID
 
 		private void RegisterObject(object sender, System.EventArgs e)
 		{
-			uint userguid = 0xf000000;
-			if (tbusername.Text!="") userguid = (uint)service.loginUser(tbusername.Text, tbpassword.Text);
+			try 
+			{
+				uint userguid = 0xf000000;
+				if (tbusername.Text!="") userguid = (uint)service.loginUser(tbusername.Text, tbpassword.Text);
 
 			
-			if (userguid==0xf000000) 
-			{
-				MessageBox.Show("Your Login Data was not accepted by the GUID Database!");
-				return;
-			}
-			uint res = (uint)this.service.registerObject(tbusername.Text, tbpassword.Text, this.tbobject.Text, false);
-			if (res == 0xf00) 
-			{
-				MessageBox.Show("Failed to register a new Object.\n\nMaybe you have already Regsitred 256 Objects for this User?");
-				return;
-			}
+				if (userguid==0xf000000) 
+				{
+					MessageBox.Show("Your Login Data was not accepted by the GUID Database!");
+					return;
+				}
+				uint res = (uint)this.service.registerObject(tbusername.Text, tbpassword.Text, this.tbobject.Text, false);
+				if (res == 0xf00) 
+				{
+					MessageBox.Show("Failed to register a new Object.\n\nMaybe you have already Regsitred 256 Objects for this User?");
+					return;
+				}
 
-			this.retguid = BuildGUID(userguid, res);
-			Close();
+				this.retguid = BuildGUID(userguid, res);
+				Close();
+			} 
+			catch (Exception ex) 
+			{
+				SimPe.Helper.ExceptionMessage("", ex);
+			}
 		}
 
 		private void GUIDGetterForm_Load(object sender, System.EventArgs e)

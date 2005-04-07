@@ -109,29 +109,17 @@ namespace SimPe.Plugin
 			{
 				if (objd!=null) return objd;
 
-				if (parent!=null) 
-				{
-					if (parent.Provider!=null) 
-					{
-						if (parent.Provider.OpcodeProvider!=null) 
-						{
-							Interfaces.IAlias a = parent.Provider.OpcodeProvider.FindMemory(guid);
-							if (a.Tag!=null) 
-							{
-								if (a.Tag.Length>0) 
-								{
-									Interfaces.Files.IPackedFileDescriptor pfd = (Interfaces.Files.IPackedFileDescriptor)a.Tag[0];
-									objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
-									parent.Provider.OpcodeProvider.LoadPackage();
-									objd.ProcessData(pfd, parent.Provider.OpcodeProvider.BasePackage);
-									return objd;
-								}
-							} 
-						} //parent.Provider.OpcodeProvider
-					} //parent.Provider
-				} //parent
-
 				this.objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+
+				SimPe.Cache.MemoryCacheItem mci = NgbhUI.ObjectCache.FindItem(guid);
+				if (mci!=null) 
+				{
+					objd.Type = mci.ObjectType;
+					objd.Guid = mci.Guid;
+					objd.FileName = Localization.Manager.GetString("unknown");
+				}
+
+				
 				return this.objd;
 			}
 		}
@@ -143,25 +131,8 @@ namespace SimPe.Plugin
 				
 				try 
 				{
-					if (parent!=null) 
-					{
-						if (parent.Provider!=null) 
-						{
-							if (parent.Provider.OpcodeProvider!=null) 
-							{
-								Interfaces.IAlias a = parent.Provider.OpcodeProvider.FindMemory(guid);
-								return a.Name;
-							} //parent.Provider.OpcodeProvider
-						} //parent.Provider
-					} //parent
-
-					/*SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
-					Interfaces.Files.IPackedFileDescriptor pfd = parent.Provider.OpcodeProvider.BasePackage.FindFile(SimPe.Data.MetaData.CTSS_FILE, ObjectDataFile.FileDescriptor.SubType, ObjectDataFile.FileDescriptor.Group, ObjectDataFile.CTSSId);
-					if (pfd!=null) 
-					{
-						str.ProcessData(pfd, parent.Provider.OpcodeProvider.BasePackage);
-						return str.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode)[0].Title;
-					}*/
+					SimPe.Cache.MemoryCacheItem mci = NgbhUI.ObjectCache.FindItem(guid);
+					if (mci!=null) return mci.Name;
 				} 
 				catch (Exception) {}
 
@@ -179,14 +150,8 @@ namespace SimPe.Plugin
 			{
 				try 
 				{
-					Interfaces.IAlias a = parent.Provider.OpcodeProvider.FindMemory(guid);
-					if (a.Tag!=null) 
-					{
-						if (a.Tag.Length>2) 
-						{
-							return (System.Drawing.Image)a.Tag[2];
-						}
-					} 
+					SimPe.Cache.MemoryCacheItem mci = NgbhUI.ObjectCache.FindItem(guid);
+					if (mci!=null) return mci.Icon;
 				} 
 				catch (Exception) {}
 				return new System.Drawing.Bitmap(1, 1);

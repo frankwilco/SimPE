@@ -22,20 +22,6 @@ using System;
 namespace SimPe.Plugin
 {
 	/// <summary>
-	/// Possible want types
-	/// </summary>
-	public enum WantType : byte
-	{
-		Undefined = 0xff,
-		None = 0,
-		Sim = 1,
-		Object = 2,
-		Category = 3,
-		Skill = 4,
-		Career = 5
-	}
-
-	/// <summary>
 	/// Meanings of the Want Bits
 	/// </summary>
 	public enum WantFlagValues : byte 

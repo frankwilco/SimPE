@@ -173,6 +173,15 @@ namespace SimPe.Interfaces.Plugin
 
 		#region IPackedFileSaveExtension Member
 
+		public System.IO.MemoryStream CurrentStateData
+		{
+			get 
+			{
+				System.IO.MemoryStream ms = new System.IO.MemoryStream();
+				Serialize(new System.IO.BinaryWriter(ms));
+				return ms;
+			}
+		}
 		public void SynchronizeUserData()
 		{
 			if (pfd==null) 
@@ -182,10 +191,8 @@ namespace SimPe.Interfaces.Plugin
 			}
 
 			try 
-			{
-				System.IO.MemoryStream ms = new System.IO.MemoryStream();
-				Serialize(new System.IO.BinaryWriter(ms));
-				pfd.UserData = ms.ToArray();
+			{				
+				pfd.UserData = CurrentStateData.ToArray();
 				changed = false;
 			}
 			catch (Exception ex) 

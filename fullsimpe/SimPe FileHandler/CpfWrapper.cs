@@ -330,7 +330,8 @@ namespace SimPe.PackedFiles.Wrapper
 									0x0C560F39, //Binary Index
 									//0x4C697E5A, //MMAT
 									0xEBFEE33F,
-									0x2C1FD8A1
+									0x2C1FD8A1,
+									0xCCA8E925 //Object XML
 							   };
 			
 				return types;

@@ -199,6 +199,9 @@ namespace SimPe.PackedFiles.UserInterface
 			form.wrapper = sdesc;
 			ResetUI(sdesc);
 
+			form.tbmajor.Visible = true;
+			form.tbmajor.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
+
 			//Relations
 			form.lbrelations.Items.Clear();
 
@@ -299,7 +302,7 @@ namespace SimPe.PackedFiles.UserInterface
 			}
 
 			//University
-			if (sdesc.Version==0x22) 
+			if (sdesc.Version==SimPe.PackedFiles.Wrapper.SDescVersions.University) 
 			{
 				if (!form.tcsdesc.TabPages.Contains(form.tbuni)) form.tcsdesc.TabPages.Add(form.tbuni);
 				form.cbmajor.SelectedIndex = 0;

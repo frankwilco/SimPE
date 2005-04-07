@@ -54,6 +54,8 @@ namespace SimPe.Plugin
 				form.cbtype.Items.Add(WantType.Career);
 
 				form.ListWants();
+
+				WantLoader.WantNameLoader.AddObjects(NgbhUI.ObjectCache.List);
 			}
 		}
 		#endregion

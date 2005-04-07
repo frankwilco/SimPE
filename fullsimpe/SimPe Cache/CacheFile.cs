@@ -94,7 +94,15 @@ namespace SimPe.Cache
 		}
 
 		/// <summary>
-		/// Load a Cache File from the Disk
+		/// Save a Cache File to the Disk
+		/// </summary>
+		public void Save() 
+		{
+			Save(filename);
+		}
+
+		/// <summary>
+		/// Save a Cache File to the Disk
 		/// </summary>
 		/// <param name="flname">the name of the File</param>
 		public void Save(string flname) 
@@ -155,6 +163,14 @@ namespace SimPe.Cache
 		public byte Version 
 		{
 			get { return version; }
+		}
+
+		/// <summary>
+		/// The last used FileName (can be null)
+		/// </summary>
+		public string FileName
+		{
+			get { return filename; }
 		}
 
 		/// <summary>

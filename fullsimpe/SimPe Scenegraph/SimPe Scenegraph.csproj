@@ -169,6 +169,31 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "GroupCacheForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "GroupCacheForm.resx"
+                    DependentUpon = "GroupCacheForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "GroupCacheItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "GroupCacheUI.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "GroupCacheWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LifoForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -197,6 +222,11 @@
                     RelPath = "Listing.resx"
                     DependentUpon = "Listing.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "MemoryCacheFile.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "MMATCacheFile.cs"

@@ -41,6 +41,18 @@ namespace SimPe.Interfaces.Plugin.Internal
 		}
 
 		/// <summary>
+		/// Returns the current Stream (the Data that is stored in the Attributes of the wrapper)
+		/// </summary>
+		/// <remarks>
+		/// This Property is used to process the SynchronizeUserData() Command, and returns 
+		/// the BinaryStream representation of the current State of this Wrapper.
+		/// </remarks>
+		System.IO.MemoryStream CurrentStateData 
+		{
+			get;
+		}
+
+		/// <summary>
 		/// Used to update the UserData contained in a Packed File
 		/// </summary>
 		void SynchronizeUserData();

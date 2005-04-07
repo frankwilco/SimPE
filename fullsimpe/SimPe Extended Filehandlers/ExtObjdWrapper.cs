@@ -396,7 +396,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get
 			{
-				return "FileName="+this.FileName+",GUID=0x"+Helper.HexString(this.Guid);
+				return "FileName="+this.FileName+",GUID=0x"+Helper.HexString(this.Guid)+",Type="+this.Type.ToString();
 			}
 		}
 

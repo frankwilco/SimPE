@@ -21,6 +21,7 @@ using System;
 using SimPe.Interfaces.Plugin;
 using System.Windows.Forms;
 using System.Drawing;
+using SimPe.Cache;
 
 namespace SimPe.Plugin
 {
@@ -29,20 +30,67 @@ namespace SimPe.Plugin
 	/// </summary>
 	public class NgbhUI : IPackedFileUI
 	{
+		static MemoryCacheFile cachefile;
+
+		/// <summary>
+		/// Returns the MemoryObject Cache
+		/// </summary>
+		internal static MemoryCacheFile ObjectCache 
+		{
+			get 
+			{
+				if (cachefile==null) cachefile = MemoryCacheFile.InitCacheFile();				
+
+				return cachefile;
+			}
+		}
 		#region Code to Startup the UI
 
 		/// <summary>
 		/// Holds a reference to the Form containing the UI Panel
 		/// </summary>
-		internal NgbhForm form;
+		internal static NgbhForm form;
 
 		/// <summary>
 		/// Constructor for the Class
 		/// </summary>
 		public NgbhUI()
 		{
+			
+
 			//form = WrapperFactory.form;
-			form = new NgbhForm();
+			if (form==null) 
+			{
+				form = new NgbhForm();
+				form.cbguid.Items.Clear();
+				form.cbguid.Sorted = false;
+
+				form.cbguid.Items.Add(new Data.Alias(0, "-: "+Localization.Manager.GetString("Unknown"), "{name}"));
+							
+
+				WaitingScreen.UpdateMessage("Load Memories from Cache");
+				foreach (MemoryCacheItem mci in ObjectCache.List) 
+				{
+					Data.Alias a = new SimPe.Data.Alias(mci.Guid, mci.Name);
+					object[] o = new object[3];
+					o[0] = mci.FileDescriptor;
+					o[1] = mci.ObjectType;
+					o[2] = mci.Icon;
+
+					a.Tag = o;
+
+					if (mci.ObjectType == Data.ObjectTypes.Memory) 
+					{
+						form.cbguid.Items.Add(a);
+					}
+					else if (mci.ObjectType == Data.ObjectTypes.Normal) 
+					{
+						if (a.Name.ToLower().IndexOf("token")!=-1) form.cbguid.Items.Add(a);
+					}
+				}
+
+				form.cbguid.Sorted = true;
+			}			
 		}
 		#endregion
 
@@ -166,26 +214,7 @@ namespace SimPe.Plugin
 			form.cbown.Sorted = true;
 			form.lv.Sort();
 			form.lv.EndUpdate();
-
-			form.cbguid.Items.Clear();
-			form.cbguid.Sorted = false;
-
-			form.cbguid.Items.Add(new Data.Alias(0, "-: "+Localization.Manager.GetString("Unknown"), "{name}"));
-			foreach (Interfaces.IAlias a in wrp.Provider.OpcodeProvider.StoredMemories.Values) 
-			{
-				if (a.Tag==null) continue;
-				Data.ObjectTypes o = (Data.ObjectTypes)a.Tag[1];
-				if (o == Data.ObjectTypes.Memory) 
-				{
-					form.cbguid.Items.Add(a);
-				}
-				else  if (o == Data.ObjectTypes.Normal) 
-				{
-					if (a.Name.ToLower().IndexOf("token")!=-1) form.cbguid.Items.Add(a);
-				}
-			}
-			form.cbguid.Sorted = true;
-
+			
 			WaitingScreen.Stop();
 		}		
 

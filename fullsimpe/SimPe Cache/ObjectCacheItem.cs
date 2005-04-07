@@ -50,7 +50,7 @@ namespace SimPe.Cache
 		Interfaces.Files.IPackedFileDescriptor pfd;
 		uint localgroup;
 		Image thumb;
-		ushort objtype;
+		Data.ObjectTypes objtype;
 		string objname;
 		short objfuncsort;
 		bool use;
@@ -70,7 +70,7 @@ namespace SimPe.Cache
 		/// <summary>
 		/// Returns the Type Field of the Object
 		/// </summary>
-		public ushort ObjectType
+		public Data.ObjectTypes ObjectType
 		{
 			get { return objtype; }
 			set { objtype = value; }
@@ -140,7 +140,7 @@ namespace SimPe.Cache
 
 		public override string ToString()
 		{
-			return "Object: name="+Name;
+			return Name +" (0x"+Helper.HexString(LocalGroup)+")";
 		}
 
 		#region ICacheItem Member
@@ -172,7 +172,7 @@ namespace SimPe.Cache
 				thumb = Image.FromStream(ms);				
 			}
 
-			objtype = reader.ReadUInt16();
+			objtype = (Data.ObjectTypes)reader.ReadUInt16();
 			objfuncsort = reader.ReadInt16();
 
 			if (version==2) 
@@ -211,7 +211,7 @@ namespace SimPe.Cache
 				writer.Write(data);
 			}
 
-			writer.Write(objtype);
+			writer.Write((ushort)objtype);
 			writer.Write(objfuncsort);
 
 			writer.Write(objname);
