@@ -25,40 +25,66 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// Zusammenfassung für ImportSemiTool.
 	/// </summary>
-	internal class ScanerTool : Interfaces.ITool
+	public class FixUidTool : Interfaces.ITool
 	{
-		static ScannerForm ds;
-
-		internal ScanerTool() 
-		{		
-
-			
+		
+		internal FixUidTool() 
+		{
+		
 		}
 
 		#region ITool Member
 
 		public bool IsEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
-		{
+		{			
 			return true;
 		}
 
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
-		{
-			if (ds==null) ds = new ScannerForm();
-			ds.ShowDialog();
+		{		
+			System.Windows.Forms.DialogResult dr = 
+				System.Windows.Forms.MessageBox.Show("Using this Tool can serioulsy mess up all of your Neighborhoods. However if some of your Neighborhoods are missing in the Neighborhood Selection of the Game, this Tool might help fixing it.\n\nMake sure you have a Backup of ALL your Neighborhoods befor starting this Tool!\n\nDo you want to start this Tool?", "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
 
-			if (ds.FileName==null) return new ToolResult(false, false);
-			else 
+
+			if (dr == System.Windows.Forms.DialogResult.Yes) 
 			{
-				SimPe.Packages.GeneratableFile gf = new SimPe.Packages.GeneratableFile(ds.FileName);
-				package = gf;
-				return new ToolResult(false, true);
+				WaitingScreen.Wait();
+				try 
+				{
+					System.Collections.Hashtable ht = Idno.FindUids(Helper.WindowsRegistry.SimSavegameFolder, true);
+					foreach (string file in ht.Keys) 
+					{
+						WaitingScreen.UpdateMessage(file);
+
+						SimPe.Packages.GeneratableFile fl = new SimPe.Packages.GeneratableFile(file);
+						SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = fl.FindFiles(Data.MetaData.IDNO);
+						foreach (SimPe.Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
+						{
+							Idno idno = new Idno();
+							idno.ProcessData(spfd, fl);
+							idno.MakeUnique(ht);
+
+							idno.SynchronizeUserData();
+						}
+
+						fl.Save();
+					}
+				}
+				catch (Exception ex) 
+				{
+					Helper.ExceptionMessage("", ex);
+				}
+				finally 
+				{
+					WaitingScreen.Stop();
+				}
 			}
+			return new ToolResult(false, false);
 		}
 
 		public override string ToString()
 		{
-			return "Scan Folders...";
+			return "Fix Neighborhood Uid's";
 		}
 
 		#endregion

@@ -72,8 +72,10 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			int ct = reader.ReadInt32();
 			flname = "";
-			char[] cs = reader.ReadChars(ct);
-			for (int i=0; i<cs.Length; i++) flname += cs[i];		
+			/*char[] cs = reader.ReadChars(ct);
+			for (int i=0; i<cs.Length; i++) flname += cs[i];		*/
+			byte[] bs = reader.ReadBytes(ct);
+			flname = Helper.ToString(bs);
 			unknown1 = reader.ReadUInt32();
 			localgroup = reader.ReadUInt32();			
 			unknown2 = new uint[reader.ReadUInt32()];
@@ -90,9 +92,10 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </remarks>
 		internal void Serialize(System.IO.BinaryWriter writer)
 		{		
-			int ct = flname.Length;
-			writer.Write(ct);
-			writer.Write(flname.ToCharArray());
+			int ct = flname.Length;			
+			byte[] bs = Helper.ToBytes(flname, 0);
+			writer.Write((int)bs.Length);
+			writer.Write(bs);
 			writer.Write(unknown1);
 			writer.Write(localgroup);
 			for (int i=0; i<unknown2.Length; i++) writer.Write(unknown2[i]);			

@@ -21,13 +21,14 @@ using System;
 using SimPe.Cache;
 using SimPe.PackedFiles.Wrapper;
 using System.Collections;
+using SimPe.Interfaces.Plugin.Scanner;
 
 namespace SimPe.Plugin.Scanner
 {
 	/// <summary>
 	/// This class is retriving the Name of a Package
 	/// </summary>
-	internal class CompressionScanner : AbstractScanner, SimPe.Plugin.IScanner
+	internal class CompressionScanner : AbstractScanner, IScanner
 	{		
 		public enum CompressionState : uint 
 		{
@@ -38,7 +39,20 @@ namespace SimPe.Plugin.Scanner
 			WrongDirectory = 0x08
 		}
 
-		public CompressionScanner (byte uid, System.Windows.Forms.ListView lv) : base (uid, lv) { }
+		public CompressionScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+
+		
+		#region IScannerBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 400; }
+		}
+		#endregion
 
 		#region IScanner Member
 

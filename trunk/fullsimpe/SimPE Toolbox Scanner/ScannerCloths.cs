@@ -23,15 +23,28 @@ using SimPe.PackedFiles.Wrapper;
 using System.Collections;
 using System.Windows.Forms;
 using System.Drawing;
+using SimPe.Interfaces.Plugin.Scanner;
 
 namespace SimPe.Plugin.Scanner
 {
 	/// <summary>
 	/// This class is retriving the Name of a Package
 	/// </summary>
-	internal class ClothingScanner : AbstractScanner, SimPe.Plugin.IScanner
+	internal class ClothingScanner : AbstractScanner, IScanner
 	{		
-		public ClothingScanner (byte uid, System.Windows.Forms.ListView lv) : base (uid, lv) { }
+		public ClothingScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+
+	    #region IScannerBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 600; }
+		}
+		#endregion
 
 		#region IScanner Member
 

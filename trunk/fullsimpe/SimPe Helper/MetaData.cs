@@ -251,6 +251,8 @@ namespace SimPe.Data
 		public const uint GZPS = 0xEBCF3E27;
 		public const uint XWNT = 0xED7D7B4D;
 		public const uint REF_FILE = 0xAC506764;
+		public const uint IDNO = 0xAC8A7A2E;
+		public const uint HOUS = 0x484F5553;
 
 		public const uint GMND = 0x7BA3838C;
 		public const uint TXMT = 0x49596978;
@@ -765,8 +767,8 @@ namespace SimPe.Data
 												  new TypeAlias(false, "GMDC", GMDC, "Geometric Data Container", "5gd"),
 												  new TypeAlias(false, "GMND", GMND, "Geometric Node", "5gn"),
 												  new TypeAlias(false, "GZPS", GZPS, "Property Set"),
-												  new TypeAlias(false, "HOUS", 0x484F5553, "House Descriptor"),
-												  new TypeAlias(false, "IDNO", 0xAC8A7A2E, "ID Number"),
+												  new TypeAlias(false, "HOUS", HOUS, "House Descriptor"),
+												  new TypeAlias(false, "IDNO", IDNO, "ID Number"),
 												  new TypeAlias(false, "JPG", 0x0C7E9A76, "JPEG Image", "jpg"),
 												  new TypeAlias(false, "JPG", 0x4D533EDD, "JPEG Image", "jpg"),
 												  new TypeAlias(false, "JPG", 0x8C3CE95A, "JPEG Image", "jpg"),
@@ -811,7 +813,7 @@ namespace SimPe.Data
 												  new TypeAlias(true, "SPR2", 0x53505232, "Sprites"),
 												  new TypeAlias(false, "MP3", 0x2026960B, "mp3 or xa Sound File", "mp3"),
 												  new TypeAlias(true, "STR#", STRING_FILE, Localization.Manager.GetString("str")),
-												  new TypeAlias(false, "TATT", 0x54415454, Localization.Manager.GetString("unk")+": 0x54415454", false),
+												  new TypeAlias(false, "TATT", 0x54415454, "TATT: 0x54415454", false),
 												  new TypeAlias(false, "TPRP", 0x54505250, "Edith Simantics Behaviour Labels"),
 												  new TypeAlias(true, "TREE", 0x54524545, "Edith Flowchart Trees"),
 												  new TypeAlias(false, "TRKS", 0x0B9EB87E, "Track Settings"),
@@ -874,7 +876,8 @@ namespace SimPe.Data
 												  new TypeAlias(false, "THUB", 0xCC44B5EC, "Modular Stair Thumbnail", "jpg"),
 												  new TypeAlias(false, "THUB", 0xCC489E46, "Roof Thumbnail", "jpg"),
 												  new TypeAlias(false, "THUB", 0xCC48C51F, "Chimney Thumbnail", "jpg"),
-												  new TypeAlias(false, "GROP", 0x54535053, "Groups Cache")
+												  new TypeAlias(false, "GROP", 0x54535053, "Groups Cache"),
+												  new TypeAlias(false, "POPS", 0x2C310F46, "Popups")
 		};
 		#endregion
 

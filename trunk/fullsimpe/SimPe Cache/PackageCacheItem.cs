@@ -90,7 +90,15 @@ namespace SimPe.Cache
 		Mask = 0x405,		
 		Blush = 0x406,
 		EyeShadow = 0x407,
-		Glasses = 0x801
+		Glasses = 0x801,
+		/// <summary>
+		/// Contains a Neighborhood
+		/// </summary>
+		Neighborhood = 0x2000,
+		/// <summary>
+		/// Contains a Lot
+		/// </summary>
+		Lot = 0x4000
 	}
 
 	/// <summary>
@@ -112,11 +120,11 @@ namespace SimPe.Cache
 	/// </remarks>
 	public class PackageState 
 	{
-		byte uid;
+		uint uid;
 		TriState state;
 		string info;
 		uint[] data;
-		public PackageState(byte uid, TriState state, string info) 
+		public PackageState(uint uid, TriState state, string info) 
 		{
 			this.uid = uid;
 			this.state = state;
@@ -136,7 +144,7 @@ namespace SimPe.Cache
 			set { state = value; }
 		}
 
-		public byte Uid 
+		public uint Uid 
 		{
 			get { return uid; }
 			set { uid = value; }
@@ -160,7 +168,7 @@ namespace SimPe.Cache
 		internal virtual void Load(System.IO.BinaryReader reader) 
 		{
 			state = (TriState)reader.ReadByte();
-			uid = reader.ReadByte();
+			uid = reader.ReadUInt32();
 			info = reader.ReadString();
 			byte ct = reader.ReadByte();
 			data = new uint[ct];
@@ -305,7 +313,7 @@ namespace SimPe.Cache
 		/// <param name="uid">the unique ID of the state</param>
 		/// <param name="create">true if you want to create a new state (and add it) if it did not exist</param>
 		/// <returns></returns>
-		public PackageState FindState(byte uid, bool create) 
+		public PackageState FindState(uint uid, bool create) 
 		{
 			foreach (PackageState ps in states) 
 			{

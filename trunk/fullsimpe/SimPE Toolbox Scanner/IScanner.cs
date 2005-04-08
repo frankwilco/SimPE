@@ -19,13 +19,15 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces.Files;
+using SimPe.Plugin;
 
-namespace SimPe.Plugin
+
+namespace SimPe.Interfaces.Plugin.Scanner
 {
 	/// <summary>
 	/// Implements one scanner
 	/// </summary>
-	internal interface IScanner
+	public interface IScanner : IScannerPluginBase
 	{		
 		/// <summary>
 		/// Set the Delegate that should be called when a ControlClick (from an OperationControl) was executed
@@ -63,7 +65,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// The uid that was assigned to the scanner
 		/// </summary>
-		byte Uid 
+		uint Uid 
 		{
 			get;
 		}
@@ -72,6 +74,14 @@ namespace SimPe.Plugin
 		/// Returns true, if this scanner should be activated by Default
 		/// </summary>
 		bool IsActiveByDefault
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns true, if this Scanner should be listed on the Top of the List
+		/// </summary>
+		bool OnTop 
 		{
 			get;
 		}
