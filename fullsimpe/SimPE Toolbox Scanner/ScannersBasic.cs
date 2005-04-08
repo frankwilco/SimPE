@@ -21,17 +21,31 @@ using System;
 using SimPe.Cache;
 using SimPe.PackedFiles.Wrapper;
 using System.Collections;
+using SimPe.Interfaces.Plugin.Scanner;
 
 namespace SimPe.Plugin.Scanner
 {
 	/// <summary>
 	/// Abstract Base class for all Scanners
 	/// </summary>
-	internal abstract class AbstractScanner 
+	public abstract class AbstractScanner 
 	{
 		public delegate void UpdateList(bool savecache, bool rescan);
 
 		#region Static Methods
+		static System.Drawing.Size sz;
+		/// <summary>
+		/// Returns the suggested Size for Thumbnails
+		/// </summary>
+		public static System.Drawing.Size ThumbnailSize 
+		{
+			get 
+			{
+				if (sz.Width == 0) sz =  new System.Drawing.Size(96, 96);
+				return sz;
+			}
+		}
+
 		/// <summary>
 		/// Add a new Column to a ListView
 		/// </summary>
@@ -94,15 +108,35 @@ namespace SimPe.Plugin.Scanner
 
 		#endregion
 
-		#region IScanner Implementations
+		#region IScannerPluginBase Member
+		public ScannerPluginType PluginType 
+		{
+			get { return ScannerPluginType.Scanner; }
+		}
+		#endregion
 
-		byte uid;
+		#region IScanner Implementations		
+
+		uint uid;
 		/// <summary>
 		/// Returns the uid assigned to this specific Scanner
 		/// </summary>
-		public byte Uid
+		/// <remarks>
+		/// the uid is calulated using the Filename, class name, namespace 
+		/// and visible Name of the Scanner. Changing either one of the, will 
+		/// result in a new uid and force a rescan of the State
+		/// </remarks>
+		public uint Uid
 		{
 			get { return uid; }
+		}
+
+		/// <summary>
+		/// Returns true, if this Scanner should be listed on the Top of the List
+		/// </summary>
+		public virtual bool OnTop
+		{
+			get { return false; }
 		}
 
 		int startcolumn;
@@ -123,9 +157,10 @@ namespace SimPe.Plugin.Scanner
 			get { return lv; }
 		}
 
-		protected AbstractScanner(byte uid, System.Windows.Forms.ListView lv) 
+		protected AbstractScanner(System.Windows.Forms.ListView lv) 
 		{
-			this.uid = uid;
+			byte[] b = Helper.ToBytes(this.UniqueName);
+			this.uid = BitConverter.ToUInt32(Hashes.Crc32.ComputeHash(b, 0 , b.Length), 0);
 			this.startcolumn = lv.Columns.Count;
 			this.lv = lv;
 		}
@@ -187,6 +222,21 @@ namespace SimPe.Plugin.Scanner
 		}
 		#endregion
 
+		protected string UniqueName
+		{
+			get 
+			{
+				Type t = GetType();
+				string[] parts = t.Assembly.FullName.Split(",".ToCharArray(), 2);
+
+				string ret = ToString()+";"+t.Namespace+"."+t.Name+".";
+				if (parts.Length>0) ret += ";"+parts[0];
+
+				return ret;
+			}
+		}
+			
+
 		protected virtual System.Windows.Forms.Control CreateOperationControl()
 		{
 			return null;
@@ -197,11 +247,28 @@ namespace SimPe.Plugin.Scanner
 	/// <summary>
 	/// This class is retriving the Name of a Package
 	/// </summary>
-	internal class NameScanner : AbstractScanner, SimPe.Plugin.IScanner
+	internal class NameScanner : AbstractScanner, IScanner
 	{
-		public NameScanner (byte uid, System.Windows.Forms.ListView lv) : base (uid, lv) {}
+		public NameScanner (System.Windows.Forms.ListView lv) : base (lv) {}
+
+		
+		#region IScannerBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 100; }
+		}
+		#endregion
 
 		#region IScanner Member
+		public override bool OnTop
+		{
+			get { return true; }
+		}
 
 		protected override void DoInitScan()
 		{
@@ -277,11 +344,28 @@ namespace SimPe.Plugin.Scanner
 	/// <summary>
 	/// This class is retriving the Name of a Package
 	/// </summary>
-	internal class ImageScanner : AbstractScanner, SimPe.Plugin.IScanner
+	internal class ImageScanner : AbstractScanner, IScanner
 	{
-		public ImageScanner (byte uid, System.Windows.Forms.ListView lv) : base (uid, lv) { }
+		public ImageScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+
+		
+		#region IScannerBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 200; }
+		}
+		#endregion
 
 		#region IScanner Member
+		public override bool OnTop
+		{
+			get { return true; }
+		}
 
 		protected override void DoInitScan()
 		{
@@ -291,7 +375,7 @@ namespace SimPe.Plugin.Scanner
 
 		public void ScanPackage(ScannerItem si, SimPe.Cache.PackageState ps, System.Windows.Forms.ListViewItem lvi)
 		{
-			System.Drawing.Size sz = new System.Drawing.Size(96, 96);
+			System.Drawing.Size sz = AbstractScanner.ThumbnailSize;
 			if (si.PackageCacheItem.Type == PackageType.Object || si.PackageCacheItem.Type == PackageType.MaxisObject || si.PackageCacheItem.Type == PackageType.Recolor) 
 			{
 				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = si.Package.FindFiles(Data.MetaData.OBJD_FILE);
@@ -404,10 +488,22 @@ namespace SimPe.Plugin.Scanner
 	/// <summary>
 	/// This class is retriving the Name of a Package
 	/// </summary>
-	internal class GuidScanner : AbstractScanner, SimPe.Plugin.IScanner
+	internal class GuidScanner : AbstractScanner, IScanner
 	{
 		static SimPe.Cache.MemoryCacheFile cachefile;
-		public GuidScanner (byte uid, System.Windows.Forms.ListView lv) : base (uid, lv) { }
+		public GuidScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+
+		#region IScannerBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 300; }
+		}
+		#endregion
 
 		#region IScanner Member
 

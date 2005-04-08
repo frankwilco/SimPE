@@ -28,7 +28,7 @@ namespace SimPe.Plugin.Scanner
 	/// <summary>
 	/// Zusammenfassung für ScannerPanelForm.
 	/// </summary>
-	public class ScannerPanelForm : System.Windows.Forms.Form
+	internal class ScannerPanelForm : System.Windows.Forms.Form
 	{
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;

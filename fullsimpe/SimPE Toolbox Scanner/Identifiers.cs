@@ -18,15 +18,60 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using SimPe.Interfaces.Plugin.Scanner;
 
 namespace SimPe.Plugin.Identifiers
 {
+	/// <summary>
+	/// Comapers two IIdentifierBase Instances
+	/// </summary>
+	internal class PluginScannerBaseComparer : System.Collections.IComparer
+	{
+		#region IComparer Member
+
+		public int Compare(object x, object y)
+		{
+			if (x==null) 
+			{
+				if (y==null) return 0;
+				else return 1;
+			}
+
+			IScannerPluginBase ix = (IScannerPluginBase)x;
+			IScannerPluginBase iy = (IScannerPluginBase)y;
+
+			return ix.Index-iy.Index;
+		}
+
+		#endregion
+
+	}
+
 
 	/// <summary>
 	/// Identifies a Recolor Package
 	/// </summary>
-	internal class CepIdentifier : SimPe.Plugin.IIdentifier
+	internal class CepIdentifier : IIdentifier
 	{
+		public CepIdentifier(System.Windows.Forms.ListView lv) {}
+
+		#region IIdentifierBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 100; }
+		}
+
+		public ScannerPluginType PluginType 
+		{
+			get { return ScannerPluginType.Identifier; }
+		}
+		#endregion
+
 		#region IIdentifier Member
 
 		public SimPe.Cache.PackageType GetType(SimPe.Interfaces.Files.IPackageFile pkg)
@@ -45,8 +90,27 @@ namespace SimPe.Plugin.Identifiers
 	/// <summary>
 	/// Identifies a Recolor Package
 	/// </summary>
-	internal class SimIdentifier : SimPe.Plugin.IIdentifier
+	internal class SimIdentifier : IIdentifier
 	{
+		public SimIdentifier(System.Windows.Forms.ListView lv) {}
+
+		#region IIdentifierBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 300; }
+		}
+
+		public ScannerPluginType PluginType 
+		{
+			get { return ScannerPluginType.Identifier; }
+		}
+		#endregion
+
 		#region IIdentifier Member
 
 		public SimPe.Cache.PackageType GetType(SimPe.Interfaces.Files.IPackageFile pkg)
@@ -61,8 +125,27 @@ namespace SimPe.Plugin.Identifiers
 	/// <summary>
 	/// Identifies a Recolor Package
 	/// </summary>
-	internal class ObjectIdentifier : SimPe.Plugin.IIdentifier
+	internal class ObjectIdentifier : IIdentifier
 	{
+		public ObjectIdentifier(System.Windows.Forms.ListView lv) {}
+
+		#region IIdentifierBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 600; }
+		}
+
+		public ScannerPluginType PluginType 
+		{
+			get { return ScannerPluginType.Identifier; }
+		}
+		#endregion
+
 		#region IIdentifier Member
 
 		public SimPe.Cache.PackageType GetType(SimPe.Interfaces.Files.IPackageFile pkg)
@@ -79,8 +162,27 @@ namespace SimPe.Plugin.Identifiers
 	/// <summary>
 	/// Identifies a Recolor Package
 	/// </summary>
-	internal class CpfIdentifier : SimPe.Plugin.IIdentifier
+	internal class CpfIdentifier : IIdentifier
 	{
+		public CpfIdentifier(System.Windows.Forms.ListView lv) {}
+
+		#region IIdentifierBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 400; }
+		}
+
+		public ScannerPluginType PluginType 
+		{
+			get { return ScannerPluginType.Identifier; }
+		}
+		#endregion
+
 		#region IIdentifier Member
 
 		public SimPe.Cache.PackageType GetType(SimPe.Interfaces.Files.IPackageFile pkg)
@@ -146,8 +248,27 @@ namespace SimPe.Plugin.Identifiers
 	/// <summary>
 	/// Identifies a Recolor Package
 	/// </summary>
-	internal class ReColorIdentifier : SimPe.Plugin.IIdentifier
+	internal class ReColorIdentifier : IIdentifier
 	{
+		public ReColorIdentifier(System.Windows.Forms.ListView lv) {}
+
+		#region IIdentifierBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 200; }
+		}
+
+		public ScannerPluginType PluginType 
+		{
+			get { return ScannerPluginType.Identifier; }
+		}
+		#endregion
+
 		#region IIdentifier Member
 
 		public SimPe.Cache.PackageType GetType(SimPe.Interfaces.Files.IPackageFile pkg)
@@ -173,5 +294,5 @@ namespace SimPe.Plugin.Identifiers
 		}
 
 		#endregion
-	}
+	}	
 }

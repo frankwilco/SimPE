@@ -18,62 +18,43 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
-using SimPe.Cache;
+using SimPe.Interfaces.Plugin.Scanner;
 
 namespace SimPe.Plugin
 {
 	/// <summary>
-	/// An Instance of this class represents one scanned Package
+	/// Identifies a Recolor Package
 	/// </summary>
-	public class ScannerItem 	{
-		PackageCacheItem pci;
-		public PackageCacheItem PackageCacheItem
-		{
-			get { return pci; }
-		}
-		
-		string filename;
+	internal class NeighborhoodIdentifier : IIdentifier
+	{
+		public NeighborhoodIdentifier(System.Windows.Forms.ListView lv) {}
 
-		/// <summary>
-		/// The FileName of the Package File
-		/// </summary>
-		public string FileName 
+		#region IIdentifierBase Member
+		public uint Version 
 		{
-			get { return filename; }
-			set { 
-				if (filename.Trim().ToLower() != value.Trim().ToLower()) pkg = null;
-				filename = value; 
-			}
+			get { return 1; }
 		}
 
-		SimPe.Cache.CacheContainer cc;
-		public SimPe.Cache.CacheContainer ParentContainer 
+		public int Index 
 		{
-			get { return cc; }
+			get { return 500; }
 		}
 
-		SimPe.Packages.GeneratableFile pkg = null;
-		/// <summary>
-		/// Returns the Package Instance fo the given FileNmae
-		/// </summary>
-		public SimPe.Packages.GeneratableFile Package 
+		public ScannerPluginType PluginType 
 		{
-			get { 
-				if (pkg==null) 
-				{
-					pkg = new SimPe.Packages.GeneratableFile(FileName);
-				}
+			get { return ScannerPluginType.Identifier; }
+		}
+		#endregion
 
-				return pkg;
-			}
-			set { pkg = value; }
+		#region IIdentifier Member
+
+		public SimPe.Cache.PackageType GetType(SimPe.Interfaces.Files.IPackageFile pkg)
+		{
+			if (pkg.FindFiles(Data.MetaData.IDNO).Length!=0) return SimPe.Cache.PackageType.Neighborhood;
+			if (pkg.FindFiles(Data.MetaData.HOUS).Length!=0) return SimPe.Cache.PackageType.Lot;
+			return SimPe.Cache.PackageType.Unknown;
 		}
 
-		public ScannerItem(PackageCacheItem pci, SimPe.Cache.CacheContainer cc) 
-		{
-			this.pci = pci;
-			this.cc = cc;
-			filename = "";
-		}
+		#endregion
 	}
 }

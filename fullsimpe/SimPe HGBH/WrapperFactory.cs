@@ -29,7 +29,7 @@ namespace SimPe.Plugin
 	/// GetWrappers() has to return a list of all Plugins provided by this Library. 
 	/// If a Plugin isn't returned, SimPe won't recognize it!
 	/// </remarks>
-	public class WrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory
+	public class WrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory, SimPe.Interfaces.Plugin.IToolFactory
 	{
 		#region AbstractWrapperFactory Member
 		/// <summary>
@@ -44,7 +44,8 @@ namespace SimPe.Plugin
 										  new Plugin.Ngbh(this.LinkedProvider),
 										  new Plugin.Ltxt(this.LinkedProvider),
 										  new Plugin.Want(this.LinkedProvider),
-										  new Plugin.XWant()
+										  new Plugin.XWant(),
+										  new Plugin.Idno()
 									  };
 				return wrappers;
 			}
@@ -52,5 +53,24 @@ namespace SimPe.Plugin
 
 		#endregion
 
+		#region IToolFactory Member
+
+
+		public ITool[] KnownTools
+		{
+			get
+			{
+				if (Helper.WindowsRegistry.HiddenMode) 
+				{
+					ITool[] tools = {
+										new Plugin.FixUidTool()
+									};
+					return tools;
+				}
+				return null;
+			}
+		}		
+
+		#endregion
 	}
 }

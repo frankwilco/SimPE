@@ -246,7 +246,11 @@ namespace SimPe
 
 			//lbwait.ForeColor = Color.AliceBlue;
 			//PicAlpha(0xff);
-			pb.Image = img;
+			try 
+			{
+				pb.Image = img;
+			} 
+			catch {}
 		}
 
 		internal void ChangeMessage(string msg)
