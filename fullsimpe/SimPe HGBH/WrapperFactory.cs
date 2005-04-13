@@ -60,14 +60,13 @@ namespace SimPe.Plugin
 		{
 			get
 			{
-				if (Helper.WindowsRegistry.HiddenMode) 
-				{
-					ITool[] tools = {
-										new Plugin.FixUidTool()
-									};
-					return tools;
-				}
-				return null;
+				ITool[] tools = {
+										 new Plugin.FixUidTool()
+									 };
+				if (Helper.WindowsRegistry.HiddenMode) return tools;
+
+				tools = new ITool[0];
+				return tools;
 			}
 		}		
 

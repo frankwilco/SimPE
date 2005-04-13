@@ -39,9 +39,10 @@ namespace SimPe.PackedFiles.Wrapper.Factory
 										  new SimPe.PackedFiles.Wrapper.Ttab(),
 										  new SimPe.PackedFiles.Wrapper.CpfG(),
 										  new SimPe.PackedFiles.Wrapper.NeighborhoodData(this.LinkedProvider),
+										  //new SimPe.PackedFiles.Wrapper.Cres(),
 #endif
 										  new SimPe.PackedFiles.Wrapper.Tree(),
-										  new SimPe.PackedFiles.Wrapper.Cres()
+										  
 										  //new SimPe.PackedFiles.Wrapper.DirectoryList(),										  
 										  
 										  

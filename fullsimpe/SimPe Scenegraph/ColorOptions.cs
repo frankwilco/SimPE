@@ -282,9 +282,11 @@ namespace SimPe.Plugin
 				}
 			}
 
-			if (newmap.Count>0) AddSlavesSubsets(newmap, fullmap);
+			Hashtable nmap = new Hashtable();
+			foreach (string k in newmap.Keys) if (!map.ContainsKey(k)) nmap[k] = newmap[k];
 
-			foreach (string k in newmap.Keys) map[k] = newmap[k];
+			if (newmap.Count>0) AddSlavesSubsets(nmap, fullmap);
+			foreach (string k in nmap.Keys) map[k] = nmap[k];
 		}
 
 		public delegate void CreateSelectionCallback(SubsetSelectForm ssf, bool userselect, Hashtable fullmap);

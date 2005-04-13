@@ -137,7 +137,7 @@
                 <Reference
                     Name = "Skybound.VisualStyles"
                     AssemblyName = "Skybound.VisualStyles"
-                    HintPath = "..\..\..\Skybound VisualStyles\Skybound.VisualStyles.dll"
+                    HintPath = "..\Skybound.VisualStyles.dll"
                 />
             </References>
         </Build>

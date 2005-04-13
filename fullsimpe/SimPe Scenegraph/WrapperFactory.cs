@@ -76,7 +76,8 @@ namespace SimPe.Plugin
 										  //new Plugin.Shpe(this.LinkedProvider),
 						                  new Plugin.GenericRcol(this.LinkedProvider, false),
 										  new Plugin.MmatWrapper(),					
-										  new SimPe.PackedFiles.Wrapper.GroupCache()
+										  new SimPe.PackedFiles.Wrapper.GroupCache(),
+										  new SimPe.PackedFiles.Wrapper.Slot()
 									  };
 				return wrappers;
 			}

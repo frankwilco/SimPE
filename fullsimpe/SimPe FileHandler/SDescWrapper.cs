@@ -1463,10 +1463,21 @@ namespace SimPe.PackedFiles.Wrapper
 			if (version>=(int)SDescVersions.University) reader.BaseStream.Seek(0x12, System.IO.SeekOrigin.Current);
 			relations.SimInstances = new ushort[reader.ReadUInt16()];
 
+			int ct = 0;
 			for (int i=0; i<relations.SimInstances.Length; i++)
 			{
+				if (reader.BaseStream.Length - reader.BaseStream.Position < 4) continue;
 				reader.ReadUInt16();			//yet unknown
 				relations.SimInstances[i] = reader.ReadUInt16();
+				ct++;
+			}
+
+			//something went wrong while reading the SimInstances
+			if (ct != relations.SimInstances.Length) 
+			{
+				ushort[] old = relations.SimInstances;
+				relations.SimInstances = new ushort[ct];
+				for (int i=0; i<ct; i++) relations.SimInstances[i] = old[i];
 			}
 
 			//character (Genetic)

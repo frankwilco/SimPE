@@ -21,6 +21,58 @@ using System;
 
 namespace SimPe.Plugin
 {
+	public class AnimBlock1 
+	{
+		uint[] datai;
+		short[] datas;
+		string name;
+
+		internal AnimBlock1() 
+		{
+			datai = new uint[5];
+			datas = new short[4];
+			name = "";
+		}
+
+		/// <summary>
+		/// Unserializes a BinaryStream into the Attributes of this Instance
+		/// </summary>
+		/// <param name="reader">The Stream that contains the FileData</param>
+		internal int UnserializeData(System.IO.BinaryReader reader)
+		{
+			datai[0] = reader.ReadUInt32();
+			datai[1] = reader.ReadUInt32();
+
+			datas[0] = reader.ReadInt16();
+			datas[1] = reader.ReadInt16();
+			datas[2] = reader.ReadInt16();
+			datas[3] = reader.ReadInt16();
+
+			datai[2] = reader.ReadUInt32();
+			datai[3] = reader.ReadUInt32();
+			datai[4] = reader.ReadUInt32();
+
+			return datas[1];
+		}
+
+		/// <summary>
+		/// Unserializes a BinaryStream into the Attributes of this Instance
+		/// </summary>
+		/// <param name="reader">The Stream that contains the FileData</param>
+		internal int UnserializeName(System.IO.BinaryReader reader)
+		{
+			name = "";
+			while (true)
+			{
+				char ch = reader.ReadChar();
+				if (ch==0) break;
+				name += ch;
+			}
+
+			return name.Length;
+		}
+	}
+
 	/// <summary>
 	/// Zusammenfassung für cAnimResourceConst.
 	/// </summary>
@@ -35,6 +87,16 @@ namespace SimPe.Plugin
 			get { return data; }
 			set { data = value; }
 		}
+
+		short unknown1;
+		byte[] headerb;
+		uint[] headeri;
+		float[] headerf;
+
+		string objname;
+		string objmod;
+
+		AnimBlock1[] ab1;
 		#endregion
 		
 
@@ -46,6 +108,15 @@ namespace SimPe.Plugin
 			sgres = new SGResource(provider, null);
 			data = new byte[0];
 			BlockID = 0xfb00791e;
+
+			headerb = new byte[6];
+			headeri = new uint[4];
+			headerf = new float[9];
+
+			objname = "";
+			objmod = "";
+
+			ab1 = new AnimBlock1[0];
 		}
 		
 		#region IRcolBlock Member
@@ -65,6 +136,46 @@ namespace SimPe.Plugin
 
 			int len = reader.ReadInt32();
 			data = reader.ReadBytes(len);
+
+			//now read the Data
+			System.IO.BinaryReader br = new System.IO.BinaryReader(new System.IO.MemoryStream(data));
+			UnserializeData(br);
+		}
+
+		static void AlignReader(System.IO.BinaryReader reader, int ct)
+		{
+			int add = (ct%4);
+			while (add-->0) reader.ReadByte();
+		}
+
+		public void UnserializeData(System.IO.BinaryReader reader)
+		{
+			unknown1 = reader.ReadInt16();
+			short ct1 = reader.ReadInt16();
+			short ct2 = reader.ReadInt16();
+
+			headerb = reader.ReadBytes(headerb.Length);
+			for (int i=0;i<headeri.Length; i++) headeri[i] = reader.ReadUInt32();
+			for (int i=0;i<headerf.Length; i++) headerf[i] = reader.ReadUInt32();
+			
+			objname = Helper.ToString(reader.ReadBytes(headerb[5]));
+			objmod = Helper.ToString(reader.ReadBytes(headerb[0]));
+
+			//align reader
+			int ct = headerb[0] + headerb[5];
+			AlignReader(reader, ct);
+			
+			//--- part1 ---
+			ab1 = new AnimBlock1[ct1];
+			int len = 0;
+			int ct3 = 0;
+			for (int i=0; i<ab1.Length; i++) 
+			{
+				ab1[i] = new AnimBlock1();
+				ct3 += ab1[i].UnserializeData(reader);
+			}
+			for (int i=0; i<ab1.Length; i++) len += ab1[i].UnserializeName(reader);
+			AlignReader(reader, len);
 		}
 
 		/// <summary>

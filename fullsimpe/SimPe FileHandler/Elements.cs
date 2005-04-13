@@ -11877,6 +11877,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.llsimrelcommit.Enabled = true;
 			gbout.Enabled = true;
 			gbin.Enabled = true;
+			gbout.Refresh();
+			gbin.Refresh();
 			btdeleterelation.Enabled = true;
 
 			SimRelations rels = (SimRelations)lb.Items[lb.SelectedIndex];

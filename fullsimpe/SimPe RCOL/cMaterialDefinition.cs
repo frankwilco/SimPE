@@ -323,7 +323,8 @@ namespace SimPe.Plugin
 			int count = 0;
 			try 
 			{
-				count = Convert.ToInt32(this.GetProperty("numTexturesToComposite").Value);
+				string s = this.GetProperty("numTexturesToComposite").Value;
+				if (s!="") count = Convert.ToInt32(this.GetProperty("numTexturesToComposite").Value);
 			} 
 			catch {}
 			list = new ArrayList();	

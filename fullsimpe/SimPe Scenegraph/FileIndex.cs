@@ -344,8 +344,8 @@ namespace SimPe.Plugin
 			WaitingScreen.Wait();
 			index.Clear();
 
-			foreach (string path in folders)
-				AddIndexFromFolder(path);
+			foreach (FileTableItem fti in folders)
+				AddIndexFromFolder(fti);
 
 			if (!wasrunning) WaitingScreen.Stop();
 		}
@@ -353,31 +353,33 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Add all Files stored in all the packages found in the passed Folder
 		/// </summary>
+		/// <param name="fti">A FileTableItem describing the Location</param>
+		public void AddIndexFromFolder(FileTableItem fti)
+		{
+			string[] files = fti.GetFiles();
+			
+			foreach (string afile in files)
+				AddIndexFromPackage(afile);
+			
+			if (fti.IsRecursive) 
+			{
+				string[] folders = System.IO.Directory.GetDirectories(fti.Name);
+				foreach (string folder in folders)
+					AddIndexFromFolder(":"+folder);
+			}
+		}
+
+		/// <summary>
+		/// Add all Files stored in all the packages found in the passed Folder
+		/// </summary>
 		/// <param name="path">The Folder you want to scan</param>
-		/// <remarks>If the first character in Path is &, the Folder will be scanned recursive</remarks>
 		public void AddIndexFromFolder(string path)
 		{
 			path = path.Trim();
 			if (path=="") return;
 
-
-			bool recursive = false;
-			if (path.StartsWith("&")) 
-			{
-				path = path.Substring(1, path.Length-1);
-				recursive = true;
-			}
-
-			string[] files = System.IO.Directory.GetFiles(path, "*.package");
-			foreach (string file in files)
-				AddIndexFromPackage(file);
-			
-			if (recursive) 
-			{
-				string[] folders = System.IO.Directory.GetDirectories(path);
-				foreach (string folder in folders)
-					AddIndexFromFolder("&"+folder);
-			}
+			FileTableItem fti = new FileTableItem(path);
+			AddIndexFromFolder(fti);
 		}
 
 		/// <summary>

@@ -165,14 +165,14 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "skybound.visualstyles"
-                    AssemblyName = "Skybound.VisualStyles"
-                    HintPath = "..\..\..\skybound visualstyles\skybound.visualstyles.dll"
-                />
-                <Reference
                     Name = "SimPe Cache"
                     Project = "{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "Skybound.VisualStyles"
+                    AssemblyName = "Skybound.VisualStyles"
+                    HintPath = "..\Skybound.VisualStyles.dll"
                 />
             </References>
         </Build>

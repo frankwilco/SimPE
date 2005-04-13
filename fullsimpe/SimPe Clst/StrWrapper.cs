@@ -351,7 +351,14 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get
 			{
-				return "filename="+this.FileName+", languages="+this.Languages.Length.ToString()+", lines="+this.Items.Length.ToString();
+				string n = "filename="+this.FileName+", languages="+this.Languages.Length.ToString()+", lines="+this.Items.Length.ToString();
+				StrItemList list = this.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode);
+				foreach (StrItem i in list) 
+				{
+					n +=", first="+i.Title;
+					if (i.Title!="") break;
+				}
+				return n;
 			}
 		}
 		/// <summary>

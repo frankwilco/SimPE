@@ -139,6 +139,11 @@
                     Project = "{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "skybound.visualstyles"
+                    AssemblyName = "skybound.visualstyles"
+                    HintPath = "..\skybound.visualstyles.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -285,6 +290,31 @@
                 />
                 <File
                     RelPath = "ShpeWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SlotForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SlotForm.resx"
+                    DependentUpon = "SlotForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "SlotItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SlotUI.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SlotWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
