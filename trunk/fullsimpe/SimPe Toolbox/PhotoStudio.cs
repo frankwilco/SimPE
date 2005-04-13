@@ -51,6 +51,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.PictureBox pbpreview;
 		private System.Windows.Forms.CheckBox cbprev;
 		private System.Windows.Forms.CheckBox cbflip;
+		private Skybound.VisualStyles.VisualStyleProvider visualStyleProvider1;
 		private System.ComponentModel.IContainer components;
 
 		public PhotoStudio()
@@ -156,6 +157,7 @@ namespace SimPe.Plugin
 			this.cbflip = new System.Windows.Forms.CheckBox();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
+			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
@@ -193,6 +195,7 @@ namespace SimPe.Plugin
 			this.tabControl1.Text = resources.GetString("tabControl1.Text");
 			this.toolTip1.SetToolTip(this.tabControl1, resources.GetString("tabControl1.ToolTip"));
 			this.tabControl1.Visible = ((bool)(resources.GetObject("tabControl1.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabControl1, true);
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.lvbase_SelectedIndexChanged);
 			// 
 			// tabPage1
@@ -222,6 +225,7 @@ namespace SimPe.Plugin
 			this.toolTip1.SetToolTip(this.tabPage1, resources.GetString("tabPage1.ToolTip"));
 			this.tabPage1.ToolTipText = resources.GetString("tabPage1.ToolTipText");
 			this.tabPage1.Visible = ((bool)(resources.GetObject("tabPage1.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage1, true);
 			// 
 			// lbsize
 			// 
@@ -245,6 +249,7 @@ namespace SimPe.Plugin
 			this.lbsize.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbsize.TextAlign")));
 			this.toolTip1.SetToolTip(this.lbsize, resources.GetString("lbsize.ToolTip"));
 			this.lbsize.Visible = ((bool)(resources.GetObject("lbsize.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.lbsize, true);
 			// 
 			// lbname
 			// 
@@ -268,6 +273,7 @@ namespace SimPe.Plugin
 			this.lbname.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbname.TextAlign")));
 			this.toolTip1.SetToolTip(this.lbname, resources.GetString("lbname.ToolTip"));
 			this.lbname.Visible = ((bool)(resources.GetObject("lbname.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.lbname, true);
 			// 
 			// btopen
 			// 
@@ -292,6 +298,7 @@ namespace SimPe.Plugin
 			this.btopen.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btopen.TextAlign")));
 			this.toolTip1.SetToolTip(this.btopen, resources.GetString("btopen.ToolTip"));
 			this.btopen.Visible = ((bool)(resources.GetObject("btopen.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.btopen, true);
 			this.btopen.Click += new System.EventHandler(this.OpenImage);
 			// 
 			// pb
@@ -316,6 +323,7 @@ namespace SimPe.Plugin
 			this.pb.Text = resources.GetString("pb.Text");
 			this.toolTip1.SetToolTip(this.pb, resources.GetString("pb.ToolTip"));
 			this.pb.Visible = ((bool)(resources.GetObject("pb.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.pb, true);
 			// 
 			// tabPage2
 			// 
@@ -341,6 +349,7 @@ namespace SimPe.Plugin
 			this.toolTip1.SetToolTip(this.tabPage2, resources.GetString("tabPage2.ToolTip"));
 			this.tabPage2.ToolTipText = resources.GetString("tabPage2.ToolTipText");
 			this.tabPage2.Visible = ((bool)(resources.GetObject("tabPage2.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage2, true);
 			// 
 			// lv
 			// 
@@ -387,6 +396,7 @@ namespace SimPe.Plugin
 			this.label1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label1.TextAlign")));
 			this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
 			this.label1.Visible = ((bool)(resources.GetObject("label1.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label1, true);
 			// 
 			// llcreate
 			// 
@@ -436,6 +446,7 @@ namespace SimPe.Plugin
 			this.label2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.TextAlign")));
 			this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
 			this.label2.Visible = ((bool)(resources.GetObject("label2.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label2, true);
 			// 
 			// cbquality
 			// 
@@ -518,6 +529,7 @@ namespace SimPe.Plugin
 			this.pbpreview.Text = resources.GetString("pbpreview.Text");
 			this.toolTip1.SetToolTip(this.pbpreview, resources.GetString("pbpreview.ToolTip"));
 			this.pbpreview.Visible = ((bool)(resources.GetObject("pbpreview.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.pbpreview, true);
 			this.pbpreview.Click += new System.EventHandler(this.pbpreview_Click);
 			// 
 			// cbprev
@@ -545,6 +557,7 @@ namespace SimPe.Plugin
 			this.cbprev.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbprev.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbprev, resources.GetString("cbprev.ToolTip"));
 			this.cbprev.Visible = ((bool)(resources.GetObject("cbprev.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbprev, false);
 			this.cbprev.CheckedChanged += new System.EventHandler(this.lvbase_SelectedIndexChanged);
 			// 
 			// cbflip
@@ -574,6 +587,7 @@ namespace SimPe.Plugin
 			this.cbflip.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbflip.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbflip, resources.GetString("cbflip.ToolTip"));
 			this.cbflip.Visible = ((bool)(resources.GetObject("cbflip.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbflip, false);
 			this.cbflip.CheckedChanged += new System.EventHandler(this.lvbase_SelectedIndexChanged);
 			// 
 			// ofd

@@ -155,7 +155,7 @@ namespace SimPe.Interfaces.Plugin
 			return WrapperDescription.Name + " (Author="
 				+WrapperDescription.Author +", Version="
 				+WrapperDescription.Version.ToString()+", GUID="
-				+Helper.HexString(WrapperDescription.UID)+", FileName"
+				+Helper.HexString(WrapperDescription.UID)+", FileName="
 				+FileName+", Type="
 				+this.GetType()+")";
 		}

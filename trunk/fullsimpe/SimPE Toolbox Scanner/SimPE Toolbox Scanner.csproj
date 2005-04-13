@@ -145,13 +145,18 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "skybound.visualstyles"
-                    AssemblyName = "Skybound.VisualStyles"
-                    HintPath = "..\..\..\skybound visualstyles\skybound.visualstyles.dll"
-                />
-                <Reference
                     Name = "SimPe Commandline"
                     Project = "{0D63B13E-F41B-456C-92D0-C0BB3FE8744F}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "Skybound.VisualStyles"
+                    AssemblyName = "Skybound.VisualStyles"
+                    HintPath = "..\Skybound.VisualStyles.dll"
+                />
+                <Reference
+                    Name = "SimPe 3IDR"
+                    Project = "{37D97490-DC9F-4DB7-9215-998C6BC06078}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
@@ -230,6 +235,11 @@
                 />
                 <File
                     RelPath = "ScannersBasic.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ScannerSkins.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

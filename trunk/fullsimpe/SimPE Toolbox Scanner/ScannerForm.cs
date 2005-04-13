@@ -210,6 +210,7 @@ namespace SimPe.Plugin
 			this.lbid = new System.Windows.Forms.ListBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.gbinfo = new System.Windows.Forms.GroupBox();
+			this.lbprop = new System.Windows.Forms.ComboBox();
 			this.tbflname = new System.Windows.Forms.TextBox();
 			this.cbenable = new System.Windows.Forms.CheckBox();
 			this.lbtype = new System.Windows.Forms.Label();
@@ -217,7 +218,6 @@ namespace SimPe.Plugin
 			this.llopen = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.thumb = new System.Windows.Forms.PictureBox();
 			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
-			this.lbprop = new System.Windows.Forms.ComboBox();
 			this.tabControl1.SuspendLayout();
 			this.tbscanners.SuspendLayout();
 			this.tboperations.SuspendLayout();
@@ -378,7 +378,7 @@ namespace SimPe.Plugin
 			this.cbrec.Size = new System.Drawing.Size(80, 24);
 			this.cbrec.TabIndex = 7;
 			this.cbrec.Text = "Recursive";
-			this.visualStyleProvider1.SetVisualStyleSupport(this.cbrec, false);
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbrec, true);
 			// 
 			// tboperations
 			// 
@@ -396,6 +396,8 @@ namespace SimPe.Plugin
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.pnop.AutoScroll = true;
+			this.pnop.BackColor = System.Drawing.SystemColors.Window;
+			this.pnop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnop.Location = new System.Drawing.Point(8, 8);
 			this.pnop.Name = "pnop";
 			this.pnop.Size = new System.Drawing.Size(384, 160);
@@ -549,6 +551,17 @@ namespace SimPe.Plugin
 			this.gbinfo.Text = "Information";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.gbinfo, false);
 			// 
+			// lbprop
+			// 
+			this.lbprop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.lbprop.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lbprop.Location = new System.Drawing.Point(112, 96);
+			this.lbprop.MaxDropDownItems = 15;
+			this.lbprop.Name = "lbprop";
+			this.lbprop.Size = new System.Drawing.Size(224, 21);
+			this.lbprop.Sorted = true;
+			this.lbprop.TabIndex = 10;
+			// 
 			// tbflname
 			// 
 			this.tbflname.Location = new System.Drawing.Point(8, 136);
@@ -596,7 +609,7 @@ namespace SimPe.Plugin
 			this.llopen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.llopen.AutoSize = true;
 			this.llopen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.llopen.Location = new System.Drawing.Point(296, 136);
+			this.llopen.Location = new System.Drawing.Point(296, 140);
 			this.llopen.Name = "llopen";
 			this.llopen.Size = new System.Drawing.Size(35, 17);
 			this.llopen.TabIndex = 8;
@@ -613,17 +626,6 @@ namespace SimPe.Plugin
 			this.thumb.TabIndex = 0;
 			this.thumb.TabStop = false;
 			this.visualStyleProvider1.SetVisualStyleSupport(this.thumb, true);
-			// 
-			// lbprop
-			// 
-			this.lbprop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.lbprop.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lbprop.Location = new System.Drawing.Point(112, 96);
-			this.lbprop.MaxDropDownItems = 15;
-			this.lbprop.Name = "lbprop";
-			this.lbprop.Size = new System.Drawing.Size(224, 21);
-			this.lbprop.Sorted = true;
-			this.lbprop.TabIndex = 10;
 			// 
 			// ScannerForm
 			// 
@@ -740,6 +742,7 @@ namespace SimPe.Plugin
 			lb.AutoSize = true;
 			lb.Text = scanner.ToString()+":";
 			lb.Font = new Font(Font.Name, Font.Size, FontStyle.Bold);
+			lb.ForeColor = this.gbinfo.ForeColor;
 			this.visualStyleProvider1.SetVisualStyleSupport(lb, true);
 
 			Panel pn = new Panel();

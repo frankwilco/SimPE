@@ -360,17 +360,21 @@ namespace SimPe
 		{
 			get 
 			{
-				try 
+				if (this.EPInstalled>=1) 
 				{
-					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 University");
-					object o = rk.GetValue("Install Dir");
-					if (o==null) return "";
-					else return o.ToString();
-				} 
-				catch (Exception) 
-				{
-					return "";
+					try 
+					{
+						RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 University");
+						object o = rk.GetValue("Install Dir");
+						if (o==null) return "";
+						else return o.ToString();
+					} 
+					catch (Exception) 
+					{
+						return "";
+					}
 				}
+				return "";
 			}
 		}
 
@@ -382,7 +386,7 @@ namespace SimPe
 			get 
 			{
 				try 
-				{
+				{					
 					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2");
 					object o = rk.GetValue("EPsInstalled");
 					if (o==null) return 0;

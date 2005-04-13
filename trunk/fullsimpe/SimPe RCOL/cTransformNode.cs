@@ -85,11 +85,52 @@ namespace SimPe.Plugin
 			set { items = value; }
 		}
 
-		byte[] data;
-		public byte[] Data 
+		float tx, ty, tz;
+		float rx, ry, rz, rw;
+		int unknown;
+
+		public float TransformX 
 		{
-			get { return data; }
-			set { data = value; }
+			get { return tx; }
+			set { tx = value; }
+		}
+		public float TransformY 
+		{
+			get { return ty; }
+			set { ty = value; }
+		}
+		public float TransformZ 
+		{
+			get { return tz; }
+			set { tz = value; }
+		}
+
+		
+		public float RotationX 
+		{
+			get { return rx; }
+			set { rx = value; }
+		}
+		public float RotationY 
+		{
+			get { return ry; }
+			set { ry = value; }
+		}
+		public float RotationZ 
+		{
+			get { return rz; }
+			set { rz = value; }
+		}
+		public float RotationW 
+		{
+			get { return rw; }
+			set { rw = value; }
+		}
+
+		public int Unknown 
+		{
+			get { return unknown; }
+			set { unknown = value; }
 		}
 		#endregion
 		
@@ -103,7 +144,7 @@ namespace SimPe.Plugin
 			ogn = new ObjectGraphNode(provider, parent);
 
 			items = new TransformNodeItem[0];
-			data = new byte[0x20];
+
 
 			version = 0x07;
 			BlockID = 0x65246462;
@@ -136,7 +177,16 @@ namespace SimPe.Plugin
 				items[i].Unserialize(reader);
 			}
 
-			data = reader.ReadBytes(0x20);
+			tx = reader.ReadSingle();
+			ty = reader.ReadSingle();
+			tz = reader.ReadSingle();
+
+			rx = reader.ReadSingle();
+			ry = reader.ReadSingle();
+			rz = reader.ReadSingle();
+			rw = reader.ReadSingle();
+
+			unknown = reader.ReadInt32();
 		}
 
 		/// <summary>
@@ -165,7 +215,16 @@ namespace SimPe.Plugin
 				items[i].Serialize(writer);
 			}
 
-			writer.Write(data);
+			writer.Write(tx);
+			writer.Write(ty);
+			writer.Write(tz);
+
+			writer.Write(rx);
+			writer.Write(ry);
+			writer.Write(rz);
+			writer.Write(rw);
+
+			writer.Write(unknown);
 		}
 
 		fShapeRefNode form = null;
@@ -189,8 +248,17 @@ namespace SimPe.Plugin
 			form.lb_tn.Items.Clear();
 			for(int i=0; i<this.items.Length; i++) form.lb_tn.Items.Add(items[i]);
 
-			form.tb_tn_data.Text = Helper.BytesToHexList(this.data);
 			form.tb_tn_ver.Text = "0x"+Helper.HexString(this.version);
+			form.tb_tn_ukn.Text = "0x"+Helper.HexString(this.unknown);
+
+			form.tb_tn_tx.Text = this.tx.ToString();
+			form.tb_tn_ty.Text = this.ty.ToString();
+			form.tb_tn_tz.Text = this.tz.ToString();
+
+			form.tb_tn_rx.Text = this.rx.ToString();
+			form.tb_tn_ry.Text = this.ry.ToString();
+			form.tb_tn_rz.Text = this.rz.ToString();
+			form.tb_tn_rw.Text = this.rw.ToString();
 		}
 
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)

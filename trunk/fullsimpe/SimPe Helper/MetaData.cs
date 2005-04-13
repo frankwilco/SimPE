@@ -253,6 +253,7 @@ namespace SimPe.Data
 		public const uint REF_FILE = 0xAC506764;
 		public const uint IDNO = 0xAC8A7A2E;
 		public const uint HOUS = 0x484F5553;
+		public const uint SLOT = 0x534C4F54;
 
 		public const uint GMND = 0x7BA3838C;
 		public const uint TXMT = 0x49596978;
@@ -808,7 +809,7 @@ namespace SimPe.Data
 												  new TypeAlias(false, "SIMI", 0x53494D49, "Sim Information"),
 												  new TypeAlias(false, "SK3D", 0xAC506764, "Skin 3D Model?"),
 												  new TypeAlias(false, "SKNX", 0xEBCF3E27, "Skin Index"),
-												  new TypeAlias(true, "SLOT", 0x534C4F54, "Slot File", false),
+												  new TypeAlias(true, "SLOT", SLOT, "Slot File", false),
 												  new TypeAlias(false, "SMAP", 0xCAC4FC40, "String Map"),
 												  new TypeAlias(true, "SPR2", 0x53505232, "Sprites"),
 												  new TypeAlias(false, "MP3", 0x2026960B, "mp3 or xa Sound File", "mp3"),
