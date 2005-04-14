@@ -485,21 +485,20 @@ namespace SimPe
 				{
 					RegistryKey rkf = rk.CreateSubKey("Settings");
 					object o = rkf.GetValue("SimsPath");
-					if (o==null) o = rkf.GetValue("SimsApplication");	//this key is obsolete!
+					//if (o==null) o = rkf.GetValue("SimsApplication");	//this key is obsolete!
 					if (o==null) return RealGamePath;
 					else 
 					{
 						string fl = o.ToString().Trim().ToLower();
-						if (fl.EndsWith(".exe")) 
-						{
-							fl = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(fl), "..");
-						}
+						if (fl.EndsWith(".exe")) fl = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(fl), "..");
+
+						if (!System.IO.Directory.Exists(fl)) return this.RealGamePath;
 						return fl;
 					}
 				} 
 				catch (Exception) 
 				{
-					return "";
+					return this.RealGamePath;;
 				}
 			}
 			set
@@ -516,7 +515,7 @@ namespace SimPe
 		{
 			get 
 			{
-				/*try 
+				try 
 				{
 					RegistryKey rkf = rk.CreateSubKey("Settings");
 					object o = rkf.GetValue("SimsEP1Path");
@@ -524,19 +523,20 @@ namespace SimPe
 					else 
 					{
 						string fl = o.ToString().Trim().ToLower();
+
+						if (!System.IO.Directory.Exists(fl)) return this.RealEP1GamePath;
 						return fl;
 					}
 				} 
 				catch (Exception) 
 				{
-					return "";
-				}*/
-				return this.RealEP1GamePath;
+					return this.RealEP1GamePath;
+				}
 			}
 			set
 			{
-				/*RegistryKey rkf = rk.CreateSubKey("Settings");
-				rkf.SetValue("SimsEP1Path", value);*/
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				rkf.SetValue("SimsEP1Path", value);
 			}
 		}
 
@@ -574,12 +574,14 @@ namespace SimPe
 					}
 					else 
 					{
-						return o.ToString();
+						string fl = o.ToString();
+						if (!System.IO.Directory.Exists(fl)) return this.RealSavegamePath;
+						return fl;
 					}
 				} 
 				catch (Exception) 
 				{
-					return "";
+					return this.RealSavegamePath;
 				}
 			}
 			set 
