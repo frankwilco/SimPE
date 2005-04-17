@@ -1109,7 +1109,7 @@
     <value />
   </data>
   <data name="llsort.Text">
-    <value>exerimental sort</value>
+    <value>experimental sort</value>
   </data>
   <data name="cbunk2.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -4334,7 +4334,7 @@
     <value />
   </data>
   <data name="llsort.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>12, 4</value>
+    <value>13, 4</value>
   </data>
   <data name="tbdelta.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

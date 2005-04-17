@@ -229,15 +229,16 @@ namespace SimPe.PackedFiles.Wrapper
 				{
 					IPackedFileDescriptor pfd = package.FindFile(Data.MetaData.STRING_FILE, 0, this.FileDescriptor.Group, this.FileDescriptor.Instance);
 
-					//foudn a Text Resource
+					// found a Text Resource
 					if (pfd!=null) 
 					{
 						SimPe.PackedFiles.Wrapper.Str str = new Str();
 						str.ProcessData(pfd, package);
 
-						foreach(SimPe.PackedFiles.Wrapper.StrItem item in str.Items) 
+						foreach(SimPe.PackedFiles.Wrapper.StrLanguage lng in str.Languages)
 						{
-							if (item.Index==0x00) item.Title = value;
+							if (lng == null) continue;
+							if (str.LanguageItems(lng)[0x0] != null) str.LanguageItems(lng)[0x0].Title = value;
 						}
 
 						str.SynchronizeUserData();
