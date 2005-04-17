@@ -198,9 +198,10 @@ namespace SimPe.PackedFiles.UserInterface
 						SimPe.PackedFiles.Wrapper.StrItemList list = str.LanguageItems(1);
 						string xml = "<wantSimulator>"+Helper.lbr;
 						xml += "  <persondata>"+Helper.lbr;
-						foreach (SimPe.PackedFiles.Wrapper.StrItem si in list) 
+						for (int sid=0; sid<list.Length; sid++)
 						{
-							xml += "    <persondata id=\""+(si.Index+1).ToString()+"\" name=\""+si.Title+"\" /> "+Helper.lbr;
+							SimPe.PackedFiles.Wrapper.StrItem si = list[sid];
+							xml += "    <persondata id=\""+(sid+1).ToString()+"\" name=\""+si.Title+"\" /> "+Helper.lbr;
 						}
 						xml += "  </persondata>"+Helper.lbr;
 						xml += "</wantSimulator>"+Helper.lbr;

@@ -11492,10 +11492,11 @@ namespace SimPe.PackedFiles.UserInterface
 							{
 								SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 								str.ProcessData(pfds[0], file);
-								foreach (SimPe.PackedFiles.Wrapper.StrItem item in str.Items) 
+								foreach (SimPe.PackedFiles.Wrapper.StrLanguage lng in str.Languages)
 								{
-									if (item.Index == 0x0) item.Title = this.tbsimdescname.Text;
-									if (item.Index == 0x2) item.Title = this.tbsimdescfamname.Text;
+									if (lng == null) continue;
+									if (str.LanguageItems(lng)[0x0] != null) str.LanguageItems(lng)[0x0].Title = this.tbsimdescname.Text;
+									if (str.LanguageItems(lng)[0x2] != null) str.LanguageItems(lng)[0x2].Title = this.tbsimdescfamname.Text;
 								}
 								str.SynchronizeUserData();
 								file.Save();

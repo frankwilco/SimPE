@@ -1,6 +1,8 @@
 /***************************************************************************
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
+ *   Copyright (C) 2005 by Peter L Jones (blame me for string bugs!)       *
+ *   peter@drealm.info                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -23,198 +25,114 @@ using System.IO;
 
 namespace SimPe.PackedFiles.Wrapper
 {
+	#region StrLanguage
+	/// <summary>
+	/// This class exists:
+	/// - to provide access to Language Names given a Language ID
+	/// - to make Language IDs comparable so that StrLanguageLists can be sorted
+	/// </summary>
 	public class StrLanguage : System.Collections.IComparer
 	{
+		/// <summary>
+		/// Language ID
+		/// </summary>
+		byte lid;
 
 		/// <summary>
 		/// Constructor
+		/// This is the only way to set the Language ID
 		/// </summary>
-		/// <param name="lid">The Language eID</param>
+		/// <param name="lid">The Language ID</param>
 		public StrLanguage(byte lid) 
 		{
 			this.lid = lid;
 		}
 
 
-		byte lid;
+		#region Accessor methods
 		/// <summary>
-		/// Retusn the Language Id
+		/// Returns/Sets the Language Id
 		/// </summary>
 		public byte Id
 		{
 			get { return lid;}
-			set { lid = value; }
 		}
 
+		/// <summary>
+		/// Returns the Language Name
+		/// </summary>
+		public string Name
+		{
+			get
+			{
+				string enumName = ((Data.MetaData.Languages)lid).ToString();
+				string s = Localization.Manager.GetString( enumName );
+				if (s != null) return s;
+				return enumName;
+			}
+		}
+		#endregion
+
+		#region Cast methods
 		public override string ToString()
 		{
-			string txt = "0x"+Helper.HexString(lid)+" - ";
-			string s = Localization.Manager.GetString(((Data.MetaData.Languages)lid).ToString());
-			if (s!=null) return txt+s;
-			else return txt+((Data.MetaData.Languages)lid).ToString();			
+			return "0x" + Helper.HexString(lid) + " - " + this.Name;
 		}
 
+		// Enable casting byte to StrLanguage
 		public static implicit operator StrLanguage(byte val)
 		{
 			return new StrLanguage(val);
 		}
 
+		// Enable casting StrLanguage to byte
 		public static implicit operator byte(StrLanguage val)
 		{
 			return val.Id;
 		}
+		#endregion
 
 		public override bool Equals(object obj)
 		{
-			if (obj.GetType()==typeof(StrLanguage)) 
-			{
-				StrLanguage sl = (StrLanguage)obj;
-				return (Id==sl.Id);
-			} else	return base.Equals (obj);
+			if (obj.GetType() == typeof(StrLanguage)) 
+				return (lid == ((StrLanguage)obj).Id);
+			return base.Equals(obj);
 		}
 
 		public override int GetHashCode()
 		{
-			return base.GetHashCode ();
+			return base.GetHashCode();
 		}
 
 		#region IComparer Member
-
+		/// <summary>
+		/// Allow StrLanguage and byte objects to be compared
+		/// </summary>
+		/// <param name="x">First item (StrLanguage, byte)</param>
+		/// <param name="y">Second Item (StrLanguage, byte)</param>
+		/// <returns>Comparison value or "equal" if invalid object types passed</returns>
 		public int Compare(object x, object y)
 		{
-			if ((x.GetType()==typeof(StrLanguage)) && (y.GetType()==typeof(StrLanguage)))
-			{
-				StrLanguage sl1 = (StrLanguage)x;
-				StrLanguage sl2 = (StrLanguage)y;
-				return sl2.Id-sl1.Id;
-			}
-			if ((x.GetType()==typeof(byte)) && (y.GetType()==typeof(byte)))
-			{
-				return (int)y-(int)x;
-			}
-			return 0;
-		}
+			int a, b;
 
+			if (x.GetType() == typeof(StrLanguage))	a = ((StrLanguage)x).Id;
+			else if (x.GetType()==typeof(byte))		a = (byte)x;
+			else									return 0;
+
+			if (y.GetType() == typeof(StrLanguage))	b = ((StrLanguage)y).Id;
+			else if (y.GetType()==typeof(byte))		b = (byte)y;
+			else									return 0;
+
+			return b - a;
+		}
 		#endregion
 	}
+	#endregion
 
+
+	#region StrLanguageList
 	/// <summary>
-	/// An Item stored in a STR# File
-	/// </summary>
-	public class StrItem 
-	{
-		public StrItem() 
-		{
-			this.title = "";
-			this.desc = "";
-			this.lid = new StrLanguage(1);
-			index = 0;
-		}
-
-		StrLanguage lid;
-		/// <summary>
-		/// Retusn the Language Id
-		/// </summary>
-		public StrLanguage Language
-		{
-			get { return lid;}
-			set { lid = value; }
-		}
-
-		string title;
-		/// <summary>
-		/// Returns the Title String
-		/// </summary>
-		public string Title 
-		{
-			get { return title;}
-			set { title = value; }
-		}
-
-		string desc;
-		/// <summary>
-		/// Returns the Description String
-		/// </summary>
-		public string Description 
-		{
-			get { return desc;}
-			set { desc = value; }
-		}		
-		
-
-		int index;
-		/// <summary>
-		/// Returns or sets the Index of this Item in the current language
-		/// </summary>
-		public int Index
-		{
-			get { return index;}
-			set { index = value; }
-		}
-
-		public override string ToString()
-		{
-			return "0x"+index.ToString("X")+": "+Title;
-		}
-
-		internal void MakeValid()		
-		{
-			if (Title==null) Title = "";
-			if (Description==null) Description = "";		
-		}
-
-		internal void Unserialize(BinaryReader reader, Hashtable lines)
-		{
-			this.Language = reader.ReadByte();
-				
-			StrItemList lng = (StrItemList)lines[this.Language.Id];
-			if (lng==null) 
-			{
-				lng = new StrItemList();
-				lines[this.Language.Id] = lng;
-			}
-
-			this.Index = lng.Count;			
-
-			this.Title = "";
-			char b = (char)0;
-			if (reader.BaseStream.Position<reader.BaseStream.Length) b = reader.ReadChar();
-			else b = (char)0;
-			while (b!=0) 
-			{				
-				this.Title += b.ToString();	
-				if (reader.BaseStream.Position<reader.BaseStream.Length) b = reader.ReadChar();
-				else b = (char)0;
-			}
-
-			this.Description = "";
-			if (reader.BaseStream.Position<reader.BaseStream.Length) b = reader.ReadChar();
-			else b = (char)0;
-
-			while (b!=0)
-			{		
-				this.Description += b.ToString();
-				if (reader.BaseStream.Position<reader.BaseStream.Length) b = reader.ReadChar();
-				else b = (char)0;
-			}
-
-			lng.Add(this);
-		}
-
-		internal void Serialize(BinaryWriter writer)
-		{
-			MakeValid();
-			writer.Write(this.Language.Id);
-				
-			foreach (char c in this.Title) writer.Write(c);
-			writer.Write((char)0);
-			foreach (char c in this.Description) writer.Write(c);
-			writer.Write((char)0);
-		}
-	}
-
-	/// <summary>
-	/// Typesave ArrayList for StrIte Objects
+	/// Typesave ArrayList for StrItem Objects
 	/// </summary>
 	public class StrLanguageList : ArrayList 
 	{
@@ -255,9 +173,127 @@ namespace SimPe.PackedFiles.Wrapper
 			base.Sort(sl);
 		}
 	}
+	#endregion
 
+
+	#region StrItem
 	/// <summary>
-	/// Typesave ArrayList for StrIte Objects
+	/// An Item stored in a STR# File
+	/// </summary>
+	public class StrItem 
+	{
+		StrLanguage lid;
+		string title;
+		string desc;
+		/// <summary>
+		/// Indicates whether the object has been updated since creation (can't be cleared!)
+		/// </summary>
+		bool dirty;
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="lid">Language ID (byte)</param>
+		/// <param name="title">Item Title</param>
+		/// <param name="desc">Item Description</param>
+		public StrItem(byte lid, string title, string desc)
+		{
+			this.lid = new StrLanguage(lid);
+			this.title = title;
+			this.desc = desc;
+			dirty = false;
+		}
+
+
+		#region Accessor methods
+		/// <summary>
+		/// Language is read-only
+		/// </summary>
+		public StrLanguage Language
+		{
+			get { return lid; }
+		}
+
+		public string Title 
+		{
+			get { return title; }
+			set { if (title != value) { title = value; dirty = true; } }
+		}
+
+		public string Description 
+		{
+			get { return desc; }
+			set { if (desc != value) { desc = value; dirty = true; } }
+		}
+
+		/// <summary>
+		/// Dirty is read-only
+		/// </summary>
+		public bool IsDirty
+		{
+			get { return dirty; }
+		}
+		#endregion
+
+
+		#region Serialize / Unserialize
+		/*
+		 * File format is:
+		 * byte - Language ID
+		 * char[]\0 - Title
+		 * char[]\0 - Description
+		 */
+		internal static string UnserializeStringZero(BinaryReader r)
+		// This should be in Helpers - it's a function, not a method
+		{
+			char b = r.ReadChar();
+			string s = "";
+			while (b != 0 && r.BaseStream.Position <= r.BaseStream.Length)
+			{
+				s += b;
+				b = r.ReadChar();
+			}
+			return s;
+		}
+		internal static void Unserialize(BinaryReader reader, Hashtable lines)
+		{
+			StrLanguage lid = new StrLanguage(reader.ReadByte());
+			string title = UnserializeStringZero(reader);
+			string desc = UnserializeStringZero(reader);
+
+			if (lines[lid.Id] == null) lines[lid.Id] = new StrItemList(); // Add a new StrItemList if needed
+
+			((StrItemList)lines[lid.Id]).Add(new StrItem(lid, title, desc));
+		}
+
+		internal static void SerializeStringZero(BinaryWriter w, string s)
+		// This should be in Helpers - it's a function, not a method
+		{
+			foreach (char c in s) w.Write(c);
+			w.Write((char)0);
+		}
+		internal void Serialize(BinaryWriter writer)
+		{
+			if (lid   != null) writer.Write(lid.Id); else writer.Write((byte)0);
+			if (title != null) SerializeStringZero(writer, title); else SerializeStringZero(writer, "");
+			if (desc  != null) SerializeStringZero(writer, desc); else SerializeStringZero(writer, "");
+//			dirty = false;
+			// Mmm, "dirty" means what?  OK, so I added it...
+		}
+		#endregion
+
+		public override string ToString()
+		{
+			return this.Title;
+		}
+
+	}
+	#endregion
+
+
+	#region StrItemList
+	/// <summary>
+	/// Typesave ArrayList for StrItem Objects
 	/// </summary>
 	public class StrItemList : ArrayList 
 	{
@@ -307,4 +343,5 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 	}
+	#endregion
 }

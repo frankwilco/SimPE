@@ -180,10 +180,9 @@ namespace SimPe.PackedFiles.Wrapper
 		public StrItem FallbackedLanguageItem(Data.MetaData.Languages l, int index)
 		{
 			StrItemList list = this.LanguageItems(l);
-			StrItem name = null;
+			StrItem name;
 			if (list.Length>index) name = list[index];
-
-			if (name==null) name = new StrItem();
+			else name = new StrItem(0, "", "");
 			 
 			if (name.Title.Trim()=="") 
 			{
@@ -208,36 +207,13 @@ namespace SimPe.PackedFiles.Wrapper
 			StrItemList real = (StrItemList)LanguageItems(l).Clone();
 			StrItemList fallback = LanguageItems(Data.MetaData.Languages.English);			
 
-			int ct = Math.Min(real.Length, fallback.Length);
 			for (int i=0; i<fallback.Length; i++) 
-			{
-				if (real.Length<=i) real.Add(null);
-	
-				if (real[i]==null)
-				{
-					StrItem item = new StrItem();
-					item.Language = new StrLanguage((byte)l);
-					item.Index = i;
-					real[i] = item;
-				}			
-
-				if (real[i].Title.Trim()=="") 
-				{
-					real[i] = fallback[i];					
-				}
-			}
-
+				if (real.Length <= i) real.Add(fallback[i]);
+				else if ((real[i] == null) || (real[i].Title.Trim() == ""))
+					real[i] = fallback[i];
 			return real;
 		}
 		
-
-		/// <summary>
-		/// Ensures that all String Items are Valid
-		/// </summary>
-		public void MakeValid()		
-		{
-			foreach (StrItem i in this.Items)i.MakeValid();			
-		}
 
 		/// <summary>
 		/// Adds a new String Item
@@ -301,20 +277,19 @@ namespace SimPe.PackedFiles.Wrapper
 			lines = new Hashtable();
 			if (reader.BaseStream.Length <= 0x40) return;
 			
-			filename = reader.ReadBytes(0x40);
-			format = (SimPe.Data.MetaData.FormatCode) reader.ReadUInt16();
+			byte[] fi = reader.ReadBytes(0x40);
 
-			if (format!=Data.MetaData.FormatCode.normal) return;
+			SimPe.Data.MetaData.FormatCode fo = (SimPe.Data.MetaData.FormatCode)reader.ReadUInt16();
+			if (fo != Data.MetaData.FormatCode.normal) return;
 
 			ushort count = reader.ReadUInt16();
-			for (int i=0; i<count; i++) 
-			{
-				StrItem item = new StrItem();
-				item.Unserialize(reader, lines);
-				
-				//load a limited Number
-				if (limit!=0) if (i+1>=limit) return;
-			}									
+
+			filename = fi;
+			format = fo;
+			lines = new Hashtable();
+
+			if ((limit != 0) && (count > limit)) count = (ushort)limit;	// limit number of StrItem entries loaded
+			for (int i = 0; i < count; i++) StrItem.Unserialize(reader, lines);
 		}
 
 		/// <summary>

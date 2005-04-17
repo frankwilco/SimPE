@@ -355,24 +355,11 @@ namespace SimPe.Packages
 			str.Languages = lng;
 
 			if (guid==null) guid = System.Guid.NewGuid().ToString();
-			SimPe.PackedFiles.Wrapper.StrItemList items = new SimPe.PackedFiles.Wrapper.StrItemList();
-			items.Add(new SimPe.PackedFiles.Wrapper.StrItem());
-			items[0].Language = lng[0];
-			items[0].Title = guid;
-			items[0].Description = gameguid;
-
-			items.Add(new SimPe.PackedFiles.Wrapper.StrItem());
-			items[1].Language = lng[0];
-			items[1].Title = author;
-			items[1].Description = contact;
-
-			items.Add(new SimPe.PackedFiles.Wrapper.StrItem());
-			items[2].Language = lng[0];
-			items[2].Title = name;
-			items[2].Description = "";
-
+			str.Items = new SimPe.PackedFiles.Wrapper.StrItemList();
+			str.Items.Add(new SimPe.PackedFiles.Wrapper.StrItem(lng[0], guid, gameguid));
+			str.Items.Add(new SimPe.PackedFiles.Wrapper.StrItem(lng[0], author, contact));
+			str.Items.Add(new SimPe.PackedFiles.Wrapper.StrItem(lng[0], name, ""));
 			
-			str.Items = items;
 			str.SynchronizeUserData();
 		}
 
@@ -425,40 +412,11 @@ namespace SimPe.Packages
 			}
 
 			SimPe.PackedFiles.Wrapper.StrItemList items = str.LanguageItems(1);
-			if (items.Length==0) 
-			{
-				SimPe.PackedFiles.Wrapper.StrItem item = new SimPe.PackedFiles.Wrapper.StrItem();
-				item.Language = lng[0];
-				item.Title = title;
-				item.Description = "";
-				str.Add(item);
+			if (str.Items.Length>0)	str.Items[0].Title = title;
+			else					str.Add(new SimPe.PackedFiles.Wrapper.StrItem(lng[0], title, ""));
 
-				item.Title = description;
-				item.Description = "";
-				str.Add(item);
-			} 
-			else 
-			{
-				if (str.Items.Length>0) str.Items[0].Title = title;
-				else 
-				{
-					SimPe.PackedFiles.Wrapper.StrItem item = new SimPe.PackedFiles.Wrapper.StrItem();
-					item.Language = lng[0];
-					item.Title = title;
-					item.Description = "";
-					str.Add(item);
-				}
-
-				if (str.Items.Length>1) str.Items[1].Title = description;
-				else 
-				{
-					SimPe.PackedFiles.Wrapper.StrItem item = new SimPe.PackedFiles.Wrapper.StrItem();
-					item.Language = lng[0];
-					item.Title = description;
-					item.Description = "";
-					str.Add(item);
-				}
-			}
+			if (str.Items.Length>1) str.Items[1].Title = description;
+			else					str.Add(new SimPe.PackedFiles.Wrapper.StrItem(lng[0], description, ""));
 
 			str.SynchronizeUserData();
 		}

@@ -5899,11 +5899,7 @@ namespace SimPe.Plugin
 			{
 				SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(jobTitles.Languages[i].Id);
 				for (int j = 0; j < 4; j++)
-				{
-					SimPe.PackedFiles.Wrapper.StrItem item = new SimPe.PackedFiles.Wrapper.StrItem();
-					item.Language = l;
-					jobTitles.Add(item);
-				}
+					jobTitles.Add(new SimPe.PackedFiles.Wrapper.StrItem(l, "", ""));
 				if ((l.Id != 2) && (l.Id != 12) && (l.Id != 13))
 				{
 					SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(l);
@@ -5928,11 +5924,7 @@ namespace SimPe.Plugin
 			{
 				SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(chanceCardsText.Languages[i].Id);
 				for (int j = 0; j < 12; j++)
-				{
-					SimPe.PackedFiles.Wrapper.StrItem item = new SimPe.PackedFiles.Wrapper.StrItem();
-					item.Language = l;
-					chanceCardsText.Add(item);
-				}
+					chanceCardsText.Add(new SimPe.PackedFiles.Wrapper.StrItem(l, "", ""));
 			}
 			usitems = chanceCardsText.LanguageItems(us);
 

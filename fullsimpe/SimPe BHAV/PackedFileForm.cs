@@ -5590,8 +5590,8 @@ namespace SimPe.Plugin
 			CreateFlowPanel(InstructionItem.Instructions(flowitems));
 			wrapper.Changed = true;
 		}
-#endif
 
+#else
       internal class treeNode
       {
          public treeNode(treeNode p, Instruction i)
@@ -5739,8 +5739,6 @@ namespace SimPe.Plugin
          return (ushort)iis.Length;
       }
 
-#if QUAXI
-#else
       private void SortInstructions(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
       {
 		 
@@ -5786,13 +5784,12 @@ namespace SimPe.Plugin
             newFlowItems[i].index = (ushort)i;
          }
 
-		 Bhav wrp = (Bhav)wrapper;		  
-		 for (ushort i=0; i<flowitems.Length; i++) wrp.Instructions[i] = flowitems[i].instruction;
 
          csel = -1;
          this.llcommit.Enabled = false;
          this.lldel.Enabled = false;
          CreateFlowPanel(InstructionItem.Instructions(newFlowItems));
+		 ((Bhav)wrapper).Instructions = InstructionItem.Instructions(newFlowItems);
          wrapper.Changed = true;		 
       }
 #endif
