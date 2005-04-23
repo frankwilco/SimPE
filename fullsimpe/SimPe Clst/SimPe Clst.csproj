@@ -174,9 +174,29 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "StrForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "StrForm.resx"
+                    DependentUpon = "StrForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "StrItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "StrListViewer.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "StrListViewer.resx"
+                    DependentUpon = "StrListViewer.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "StrUI.cs"
