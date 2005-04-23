@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#define QUAXI
 using System;
 using System.Collections;
 using SimPe.Interfaces.Plugin;
@@ -38,55 +39,55 @@ namespace SimPe.PackedFiles.Wrapper
 	{
 		#region Attributes
 		/// <summary>
-		/// Maximum Number of Lines to load
-		/// </summary>
-		int limit;
-
-		/// <summary>
 		/// Contains the Filename
 		/// </summary>
-		byte[] filename;	
-	
-		/// <summary>
-		/// Returns the Filename
-		/// </summary>
-		public string FileName 
-		{
-			get { return Helper.ToString(filename); }
-		}
+		byte[] filename;
 
 		/// <summary>
 		/// Format Code of the FIle
 		/// </summary>
 		SimPe.Data.MetaData.FormatCode format;
 
-			/// <summary>
+		/// <summary>
+		/// Contains all StrItems by Language
+		/// </summary>
+		Hashtable lines;
+
+		/// <summary>
+		/// Maximum Number of Lines to load
+		/// </summary>
+		int limit;
+		#endregion
+
+		#region Accessor methods
+		/// <summary>
+		/// Returns the Filename
+		/// </summary>
+		public string FileName 
+		{
+			get { return Helper.ToString(filename); }
+			set
+			{
+				if (value.Length < 64)
+				{
+					char[] cs = value.ToCharArray();
+					for (int i = 0; i < value.Length; i++)
+						filename[i] = (byte)cs[i];
+					for (int i = value.Length; i < 64; i++)
+						filename[i] = 0;
+				}
+			}
+		}
+
+		/// <summary>
 		/// Returns /Sets the Format Code
 		/// </summary>
 		public SimPe.Data.MetaData.FormatCode Format
 		{
 			get { return format; }			
-			set { format = value; }
+			set { format = value; } // should check it's valid
 		}
 		
-		/// <summary>
-		/// Returns/Sets the Constants
-		/// </summary>
-		public StrItemList Items
-		{
-			get { 
-				StrItemList items = new StrItemList();
-				StrLanguageList lngs = Languages;
-				foreach (StrLanguage k in lngs) items.AddRange((StrItemList)lines[k.Id]);
-
-				return items;
-			}			
-			set {
-				lines = new Hashtable();
-				foreach (StrItem i in value) this.Add(i);
-			}
-		}
-
 		/// <summary>
 		/// Returns/Sets all stored lines
 		/// </summary>
@@ -96,10 +97,14 @@ namespace SimPe.PackedFiles.Wrapper
 			get { return lines; }
 			set { lines = value; }
 		}
+		#endregion
+
+		#region Extended accessor methods
 
 		/// <summary>
-		/// Returns the list of Languages
+		/// Gets or Sets the list of languages in the file
 		/// </summary>
+		/// <remarks>Adds empty lists when setting for missing languages</remarks>
 		public StrLanguageList Languages 
 		{
 			get 
@@ -119,36 +124,56 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 
-		/// <summary>
-		/// Contains all StrItems by Language
-		/// </summary>
-		Hashtable lines;
-		#endregion
 
 		/// <summary>
-		/// Constructor
+		/// Adds a new String Item
 		/// </summary>
-		public Str(int limit) : base()
-		{		
-			filename = new byte[64];
-			format = SimPe.Data.MetaData.FormatCode.normal;
-			lines = new Hashtable();
-			this.limit = limit;
+		/// <param name="item">The Item you want to add</param>
+		public void Add(StrItem item)
+		{
+			StrItemList lng = (StrItemList)lines[item.Language.Id];
+			if (lng == null) 
+			{
+				lng = new StrItemList();
+				lines[item.Language.Id] = lng;
+			}
+
+			lng.Add(item);
+		}		
+
+		/// <summary>
+		/// Removes this Item From the List
+		/// </summary>
+		/// <param name="item">The Item you want to remove</param>
+		public void Remove(StrItem item)
+		{
+			StrItemList lng = (StrItemList)lines[item.Language.Id];
+			if (lng != null) lng.Remove(item);
+		}
+
+
+		/// <summary>
+		/// StrItemList interface to the lines hashtable
+		/// </summary>
+		public StrItemList Items
+		{
+			get 
+			{ 
+				StrItemList items = new StrItemList();
+				StrLanguageList lngs = Languages;
+				foreach (StrLanguage k in lngs) items.AddRange((StrItemList)lines[k.Id]);
+
+				return items;
+			}			
+			set 
+			{
+				lines = new Hashtable();
+				foreach (StrItem i in value) this.Add(i);
+			}
 		}
 
 		/// <summary>
-		/// Constructor
-		/// </summary>
-		public Str() : base()
-		{		
-			filename = new byte[64];
-			format = SimPe.Data.MetaData.FormatCode.normal;
-			lines = new Hashtable();
-			this.limit = 0;
-		}
-
-		/// <summary>
-		/// Returns all Langugae specific Strings
+		/// Returns all Language-specific Strings
 		/// </summary>
 		/// <param name="l">the Language</param>
 		/// <returns>List of Strings</returns>
@@ -159,7 +184,7 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		/// <summary>
-		/// Returns all Langugae specific Strings
+		/// Returns all Language-specific Strings
 		/// </summary>
 		/// <param name="l">the Language</param>
 		/// <returns>List of Strings</returns>
@@ -171,6 +196,7 @@ namespace SimPe.PackedFiles.Wrapper
 			
 			return items;
 		}
+
 
 		/// <summary>
 		/// Returns a Language String (if available in the passed Language)
@@ -215,31 +241,30 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 		
 
-		/// <summary>
-		/// Adds a new String Item
-		/// </summary>
-		/// <param name="item">The Item you want to add</param>
-		public void Add(StrItem item)
-		{
-			StrItemList lng = (StrItemList)lines[item.Language.Id];
-			if (lng == null) 
-			{
-				lng = new StrItemList();
-				lines[item.Language.Id] = lng;
-			}
-
-			lng.Add(item);
-		}		
+		#endregion
 
 		/// <summary>
-		/// Removes this Item From the List
+		/// Constructor
 		/// </summary>
-		/// <param name="item">The Item you want to remove</param>
-		public void Remove(StrItem item)
-		{
-			StrItemList lng = (StrItemList)lines[item.Language.Id];
-			if (lng != null) lng.Remove(item);
+		public Str(int limit) : base()
+		{		
+			filename = new byte[64];
+			format = SimPe.Data.MetaData.FormatCode.normal;
+			lines = new Hashtable();
+			this.limit = limit;
 		}
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public Str() : base()
+		{		
+			filename = new byte[64];
+			format = SimPe.Data.MetaData.FormatCode.normal;
+			lines = new Hashtable();
+			this.limit = 0;
+		}
+
 
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
@@ -251,7 +276,11 @@ namespace SimPe.PackedFiles.Wrapper
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
+#if QUAXI
 			return new UserInterface.StrUI();
+#else
+			return new UserInterface.StrForm();
+#endif
 		}
 
 		/// <summary>
@@ -260,12 +289,21 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <returns>Human Readable Description</returns>
 		protected override IWrapperInfo CreateWrapperInfo()
 		{
+#if QUAXI
 			return new AbstractWrapperInfo(
 				"Text List Wrapper",
 				"Quaxi",
 				"---",
 				9
 				);  
+#else
+			return new AbstractWrapperInfo(
+				"String Item Wrapper",
+				"Peter L Jones",
+				"Table-based editor for string items",
+				1
+				);
+#endif
 		}
 
 		/// <summary>
@@ -327,13 +365,10 @@ namespace SimPe.PackedFiles.Wrapper
 			get
 			{
 				string n = "filename="+this.FileName+", languages="+this.Languages.Length.ToString()+", lines="+this.Items.Length.ToString();
-				StrItemList list = this.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode);
-				foreach (StrItem i in list) 
-				{
-					n +=", first="+i.Title;
-					if (i.Title!="") break;
-				}
-				return n;
+				foreach (StrItem i in this.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode))
+					if (i.Title != "")
+						return n + ", first=" + i.Title;
+				return n + " (no strings)";
 			}
 		}
 		/// <summary>
@@ -348,7 +383,7 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		/// <summary>
-		/// Returns a list of File Type this Plugin can process
+		/// Returns a list of File Types this Plugin can process
 		/// </summary>
 		public uint[] AssignableTypes
 		{
@@ -356,8 +391,8 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				uint[] types = {
 								   0x53545223,  //STR#
-								   0x54544173,  //Pie String
-								   0x43545353  //CTSS	
+								   0x54544173,  //Pie String (TTAB)
+								   0x43545353   //CTSS
 							   };
 			
 				return types;
