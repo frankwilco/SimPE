@@ -19,8 +19,9 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces.Plugin;
+using SimPe.PackedFiles.Wrapper;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.UserInterface
 {
 	/// <summary>
 	/// This class is used to fill the UI for this FileType with Data
@@ -39,7 +40,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public TtabUI()
 		{
-			form = WrapperFactory.form;
+			form = SimPe.Plugin.WrapperFactory.form;
 		}
 		#endregion
 

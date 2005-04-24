@@ -21,7 +21,7 @@ using System;
 using System.Collections;
 using SimPe.Interfaces.Plugin;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.Wrapper
 {
 	/// <summary>
 	/// Named Glob File
@@ -159,7 +159,7 @@ namespace SimPe.Plugin
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new GlobUI();
+			return new UserInterface.GlobUI();
 		}
 
 		/// <summary>

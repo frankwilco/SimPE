@@ -20,7 +20,7 @@
 using System;
 using SimPe.Interfaces.Plugin;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.Wrapper
 {
 	/// <summary>
 	/// Names for the Ttab Motive Groups
@@ -178,7 +178,7 @@ namespace SimPe.Plugin
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new TtabUI();
+			return new UserInterface.TtabUI();
 		}
 
 		/// <summary>

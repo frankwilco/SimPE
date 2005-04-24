@@ -22,8 +22,9 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using SimPe.PackedFiles.Wrapper;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.UserInterface
 {
 	/// <summary>
 	/// Zusammenfassung für BhavInstruction.
@@ -179,16 +180,16 @@ namespace SimPe.Plugin
 
 		private void FormLoad()
 		{
-			if (WrapperFactory.Provider==null) return;
+			if (SimPe.Plugin.WrapperFactory.Provider==null) return;
 
-			foreach (string s in WrapperFactory.Provider.OpcodeProvider.StoredExpressionOperators) this.cboperand.Items.Add(s);
-			foreach (string s in WrapperFactory.Provider.OpcodeProvider.StoredDataNames) 
+			foreach (string s in SimPe.Plugin.WrapperFactory.Provider.OpcodeProvider.StoredExpressionOperators) this.cboperand.Items.Add(s);
+			foreach (string s in SimPe.Plugin.WrapperFactory.Provider.OpcodeProvider.StoredDataNames) 
 			{
 				this.cbtype1.Items.Add(s);
 				this.cbtype2.Items.Add(s);
 			}
 
-			foreach (string s in WrapperFactory.Provider.OpcodeProvider.StoredMotives) 
+			foreach (string s in SimPe.Plugin.WrapperFactory.Provider.OpcodeProvider.StoredMotives) 
 			{
 				this.cbmotiv1.Items.Add(s);
 			}

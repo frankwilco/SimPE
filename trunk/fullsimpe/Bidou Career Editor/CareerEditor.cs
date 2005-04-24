@@ -7,6 +7,7 @@ using System.Data;
 using SimPe;
 using SimPe.Data;
 using SimPe.Interfaces;
+using SimPe.PackedFiles.Wrapper;
 
 
 namespace SimPe.Plugin
@@ -312,42 +313,42 @@ namespace SimPe.Plugin
 
 		private ushort femaleOffset, noLevels, currentLevel;
 		
-		private SimPe.PackedFiles.Wrapper.StrLanguage currentLanguage;
+		private StrLanguage currentLanguage;
 
-		private SimPe.PackedFiles.Wrapper.Str catalogueDesc;
+		private Str catalogueDesc;
 
-		private SimPe.PackedFiles.Wrapper.Str jobTitles;
-		private SimPe.PackedFiles.Wrapper.Str chanceCardsText;
+		private Str jobTitles;
+		private Str chanceCardsText;
 
-		private SimPe.Plugin.Bhav BHavReward;
+		private Bhav BHavReward;
 
-		private SimPe.Plugin.Bcon vehicleGUID;
-		private SimPe.Plugin.Bcon outfitGUID;
+		private Bcon vehicleGUID;
+		private Bcon outfitGUID;
 
-		private SimPe.Plugin.Bcon startHour;
-		private SimPe.Plugin.Bcon hoursWorked;
-		private SimPe.Plugin.Bcon daysWorked;
-		private SimPe.Plugin.Bcon wages;
+		private Bcon startHour;
+		private Bcon hoursWorked;
+		private Bcon daysWorked;
+		private Bcon wages;
 
-		private SimPe.Plugin.Bcon[] skillReq;
-		private SimPe.Plugin.Bcon friends;
+		private Bcon[] skillReq;
+		private Bcon friends;
 
-		private SimPe.Plugin.Bcon[] motiveDeltas;
+		private Bcon[] motiveDeltas;
 
-		private SimPe.Plugin.Bcon tuning;
+		private Bcon tuning;
 
-		private SimPe.Plugin.Bcon[] chanceASkills;
-		private SimPe.Plugin.Bcon[] chanceAGood;
-		private SimPe.Plugin.Bcon[] chanceABad;
+		private Bcon[] chanceASkills;
+		private Bcon[] chanceAGood;
+		private Bcon[] chanceABad;
 
-		private SimPe.Plugin.Bcon[] chanceBSkills;
-		private SimPe.Plugin.Bcon[] chanceBGood;
-		private SimPe.Plugin.Bcon[] chanceBBad;
+		private Bcon[] chanceBSkills;
+		private Bcon[] chanceBGood;
+		private Bcon[] chanceBBad;
 
-		private SimPe.Plugin.Bcon chanceChance;
+		private Bcon chanceChance;
 
-		private SimPe.Plugin.Bcon lifeScore;
-		private SimPe.Plugin.Bcon PTO;
+		private Bcon lifeScore;
+		private Bcon PTO;
 
 		#region constants
 		private const byte COOKING = 0;
@@ -5219,10 +5220,10 @@ namespace SimPe.Plugin
 			Vehicle.SelectedIndex = index;
 		}
 
-		private SimPe.Plugin.Bcon getBcon(uint instance)
+		private Bcon getBcon(uint instance)
 		{
 			Interfaces.Files.IPackedFileDescriptor pfd = package.FindFile(0x42434F4E, 0, groupId, instance);
-			SimPe.Plugin.Bcon bcon = new Bcon();
+			Bcon bcon = new Bcon();
 			bcon.ProcessData(pfd, package);
 			return bcon;
 		}
@@ -5355,7 +5356,7 @@ namespace SimPe.Plugin
 			PTO = getBcon(0x1054);
 
 			Interfaces.Files.IPackedFileDescriptor pfd = package.FindFile(0x42484156, 0, groupId, 0x1001);
-			BHavReward = new SimPe.Plugin.Bhav(null);
+			BHavReward = new Bhav(null);
 			BHavReward.ProcessData(pfd, package);
 		}
 

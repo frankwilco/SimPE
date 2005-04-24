@@ -24,8 +24,9 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using SimPe.Interfaces.Plugin;
+using SimPe.PackedFiles.Wrapper;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.UserInterface
 {
 	/// <summary>
 	/// Zusammenfassung für MyPackedFileForm.
@@ -76,19 +77,6 @@ namespace SimPe.Plugin
 		internal System.Windows.Forms.LinkLabel llcommit;
 		private System.Windows.Forms.GroupBox gbopcodes;
 		private System.Windows.Forms.LinkLabel lladd;
-		private System.Windows.Forms.Label label22;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.Label label27;
-		private System.Windows.Forms.Label label28;
-		internal System.Windows.Forms.TextBox tbconstflag;
-		internal System.Windows.Forms.ListBox constants;
-		internal System.Windows.Forms.Panel bconPanel;
-		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.LinkLabel llcadd;
-		internal System.Windows.Forms.LinkLabel llccommit;
-		internal System.Windows.Forms.TextBox tbvalue;
-		private System.Windows.Forms.Label label18;
 		internal System.Windows.Forms.Panel pnflowcontainer;
 		internal System.Windows.Forms.LinkLabel lldel;
 		private System.Windows.Forms.ComboBox tba1;
@@ -198,11 +186,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Button btobjaction;
 		private System.Windows.Forms.Button btobjguard;
 		internal System.Windows.Forms.LinkLabel lldelttab;
-		internal System.Windows.Forms.LinkLabel llcdel;
 		internal System.Windows.Forms.Button btwiz;
-		internal System.Windows.Forms.TextBox tbdec;
-		private System.Windows.Forms.Label label44;
-		internal System.Windows.Forms.TextBox lbcon;
 		private System.Windows.Forms.TextBox lbtext;
 		internal System.Windows.Forms.LinkLabel llmove;
 		private System.Windows.Forms.Label label45;
@@ -302,23 +286,6 @@ namespace SimPe.Plugin
 			this.btcommit = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
-			this.bconPanel = new System.Windows.Forms.Panel();
-			this.label44 = new System.Windows.Forms.Label();
-			this.lbcon = new System.Windows.Forms.TextBox();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.tbdec = new System.Windows.Forms.TextBox();
-			this.llcdel = new System.Windows.Forms.LinkLabel();
-			this.llcadd = new System.Windows.Forms.LinkLabel();
-			this.llccommit = new System.Windows.Forms.LinkLabel();
-			this.tbvalue = new System.Windows.Forms.TextBox();
-			this.label18 = new System.Windows.Forms.Label();
-			this.tbconstflag = new System.Windows.Forms.TextBox();
-			this.label22 = new System.Windows.Forms.Label();
-			this.constants = new System.Windows.Forms.ListBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.label27 = new System.Windows.Forms.Label();
-			this.label28 = new System.Windows.Forms.Label();
 			this.ObjfPanel = new System.Windows.Forms.Panel();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.btobjaction = new System.Windows.Forms.Button();
@@ -421,9 +388,6 @@ namespace SimPe.Plugin
 			this.pnflowcontainer.SuspendLayout();
 			this.gbopcodes.SuspendLayout();
 			this.panel3.SuspendLayout();
-			this.bconPanel.SuspendLayout();
-			this.groupBox1.SuspendLayout();
-			this.panel2.SuspendLayout();
 			this.ObjfPanel.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.panel4.SuspendLayout();
@@ -1941,423 +1905,6 @@ namespace SimPe.Plugin
 			this.label1.Text = resources.GetString("label1.Text");
 			this.label1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label1.TextAlign")));
 			this.label1.Visible = ((bool)(resources.GetObject("label1.Visible")));
-			// 
-			// bconPanel
-			// 
-			this.bconPanel.AccessibleDescription = resources.GetString("bconPanel.AccessibleDescription");
-			this.bconPanel.AccessibleName = resources.GetString("bconPanel.AccessibleName");
-			this.bconPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("bconPanel.Anchor")));
-			this.bconPanel.AutoScroll = ((bool)(resources.GetObject("bconPanel.AutoScroll")));
-			this.bconPanel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("bconPanel.AutoScrollMargin")));
-			this.bconPanel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("bconPanel.AutoScrollMinSize")));
-			this.bconPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bconPanel.BackgroundImage")));
-			this.bconPanel.Controls.Add(this.label44);
-			this.bconPanel.Controls.Add(this.lbcon);
-			this.bconPanel.Controls.Add(this.groupBox1);
-			this.bconPanel.Controls.Add(this.tbconstflag);
-			this.bconPanel.Controls.Add(this.label22);
-			this.bconPanel.Controls.Add(this.constants);
-			this.bconPanel.Controls.Add(this.button1);
-			this.bconPanel.Controls.Add(this.panel2);
-			this.bconPanel.Controls.Add(this.label28);
-			this.bconPanel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("bconPanel.Dock")));
-			this.bconPanel.Enabled = ((bool)(resources.GetObject("bconPanel.Enabled")));
-			this.bconPanel.Font = ((System.Drawing.Font)(resources.GetObject("bconPanel.Font")));
-			this.bconPanel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("bconPanel.ImeMode")));
-			this.bconPanel.Location = ((System.Drawing.Point)(resources.GetObject("bconPanel.Location")));
-			this.bconPanel.Name = "bconPanel";
-			this.bconPanel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("bconPanel.RightToLeft")));
-			this.bconPanel.Size = ((System.Drawing.Size)(resources.GetObject("bconPanel.Size")));
-			this.bconPanel.TabIndex = ((int)(resources.GetObject("bconPanel.TabIndex")));
-			this.bconPanel.Text = resources.GetString("bconPanel.Text");
-			this.bconPanel.Visible = ((bool)(resources.GetObject("bconPanel.Visible")));
-			// 
-			// label44
-			// 
-			this.label44.AccessibleDescription = resources.GetString("label44.AccessibleDescription");
-			this.label44.AccessibleName = resources.GetString("label44.AccessibleName");
-			this.label44.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label44.Anchor")));
-			this.label44.AutoSize = ((bool)(resources.GetObject("label44.AutoSize")));
-			this.label44.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label44.Dock")));
-			this.label44.Enabled = ((bool)(resources.GetObject("label44.Enabled")));
-			this.label44.Font = ((System.Drawing.Font)(resources.GetObject("label44.Font")));
-			this.label44.Image = ((System.Drawing.Image)(resources.GetObject("label44.Image")));
-			this.label44.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label44.ImageAlign")));
-			this.label44.ImageIndex = ((int)(resources.GetObject("label44.ImageIndex")));
-			this.label44.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label44.ImeMode")));
-			this.label44.Location = ((System.Drawing.Point)(resources.GetObject("label44.Location")));
-			this.label44.Name = "label44";
-			this.label44.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label44.RightToLeft")));
-			this.label44.Size = ((System.Drawing.Size)(resources.GetObject("label44.Size")));
-			this.label44.TabIndex = ((int)(resources.GetObject("label44.TabIndex")));
-			this.label44.Text = resources.GetString("label44.Text");
-			this.label44.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label44.TextAlign")));
-			this.label44.Visible = ((bool)(resources.GetObject("label44.Visible")));
-			// 
-			// lbcon
-			// 
-			this.lbcon.AccessibleDescription = resources.GetString("lbcon.AccessibleDescription");
-			this.lbcon.AccessibleName = resources.GetString("lbcon.AccessibleName");
-			this.lbcon.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbcon.Anchor")));
-			this.lbcon.AutoSize = ((bool)(resources.GetObject("lbcon.AutoSize")));
-			this.lbcon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lbcon.BackgroundImage")));
-			this.lbcon.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbcon.Dock")));
-			this.lbcon.Enabled = ((bool)(resources.GetObject("lbcon.Enabled")));
-			this.lbcon.Font = ((System.Drawing.Font)(resources.GetObject("lbcon.Font")));
-			this.lbcon.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbcon.ImeMode")));
-			this.lbcon.Location = ((System.Drawing.Point)(resources.GetObject("lbcon.Location")));
-			this.lbcon.MaxLength = ((int)(resources.GetObject("lbcon.MaxLength")));
-			this.lbcon.Multiline = ((bool)(resources.GetObject("lbcon.Multiline")));
-			this.lbcon.Name = "lbcon";
-			this.lbcon.PasswordChar = ((char)(resources.GetObject("lbcon.PasswordChar")));
-			this.lbcon.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbcon.RightToLeft")));
-			this.lbcon.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("lbcon.ScrollBars")));
-			this.lbcon.Size = ((System.Drawing.Size)(resources.GetObject("lbcon.Size")));
-			this.lbcon.TabIndex = ((int)(resources.GetObject("lbcon.TabIndex")));
-			this.lbcon.Text = resources.GetString("lbcon.Text");
-			this.lbcon.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("lbcon.TextAlign")));
-			this.lbcon.Visible = ((bool)(resources.GetObject("lbcon.Visible")));
-			this.lbcon.WordWrap = ((bool)(resources.GetObject("lbcon.WordWrap")));
-			this.lbcon.TextChanged += new System.EventHandler(this.BconFilename);
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.AccessibleDescription = resources.GetString("groupBox1.AccessibleDescription");
-			this.groupBox1.AccessibleName = resources.GetString("groupBox1.AccessibleName");
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox1.Anchor")));
-			this.groupBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox1.BackgroundImage")));
-			this.groupBox1.Controls.Add(this.tbdec);
-			this.groupBox1.Controls.Add(this.llcdel);
-			this.groupBox1.Controls.Add(this.llcadd);
-			this.groupBox1.Controls.Add(this.llccommit);
-			this.groupBox1.Controls.Add(this.tbvalue);
-			this.groupBox1.Controls.Add(this.label18);
-			this.groupBox1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("groupBox1.Dock")));
-			this.groupBox1.Enabled = ((bool)(resources.GetObject("groupBox1.Enabled")));
-			this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox1.Font = ((System.Drawing.Font)(resources.GetObject("groupBox1.Font")));
-			this.groupBox1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("groupBox1.ImeMode")));
-			this.groupBox1.Location = ((System.Drawing.Point)(resources.GetObject("groupBox1.Location")));
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("groupBox1.RightToLeft")));
-			this.groupBox1.Size = ((System.Drawing.Size)(resources.GetObject("groupBox1.Size")));
-			this.groupBox1.TabIndex = ((int)(resources.GetObject("groupBox1.TabIndex")));
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = resources.GetString("groupBox1.Text");
-			this.groupBox1.Visible = ((bool)(resources.GetObject("groupBox1.Visible")));
-			// 
-			// tbdec
-			// 
-			this.tbdec.AccessibleDescription = resources.GetString("tbdec.AccessibleDescription");
-			this.tbdec.AccessibleName = resources.GetString("tbdec.AccessibleName");
-			this.tbdec.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbdec.Anchor")));
-			this.tbdec.AutoSize = ((bool)(resources.GetObject("tbdec.AutoSize")));
-			this.tbdec.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbdec.BackgroundImage")));
-			this.tbdec.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbdec.Dock")));
-			this.tbdec.Enabled = ((bool)(resources.GetObject("tbdec.Enabled")));
-			this.tbdec.Font = ((System.Drawing.Font)(resources.GetObject("tbdec.Font")));
-			this.tbdec.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbdec.ImeMode")));
-			this.tbdec.Location = ((System.Drawing.Point)(resources.GetObject("tbdec.Location")));
-			this.tbdec.MaxLength = ((int)(resources.GetObject("tbdec.MaxLength")));
-			this.tbdec.Multiline = ((bool)(resources.GetObject("tbdec.Multiline")));
-			this.tbdec.Name = "tbdec";
-			this.tbdec.PasswordChar = ((char)(resources.GetObject("tbdec.PasswordChar")));
-			this.tbdec.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbdec.RightToLeft")));
-			this.tbdec.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbdec.ScrollBars")));
-			this.tbdec.Size = ((System.Drawing.Size)(resources.GetObject("tbdec.Size")));
-			this.tbdec.TabIndex = ((int)(resources.GetObject("tbdec.TabIndex")));
-			this.tbdec.Text = resources.GetString("tbdec.Text");
-			this.tbdec.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbdec.TextAlign")));
-			this.tbdec.Visible = ((bool)(resources.GetObject("tbdec.Visible")));
-			this.tbdec.WordWrap = ((bool)(resources.GetObject("tbdec.WordWrap")));
-			this.tbdec.TextChanged += new System.EventHandler(this.BConDecValueChanged);
-			// 
-			// llcdel
-			// 
-			this.llcdel.AccessibleDescription = resources.GetString("llcdel.AccessibleDescription");
-			this.llcdel.AccessibleName = resources.GetString("llcdel.AccessibleName");
-			this.llcdel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llcdel.Anchor")));
-			this.llcdel.AutoSize = ((bool)(resources.GetObject("llcdel.AutoSize")));
-			this.llcdel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llcdel.Dock")));
-			this.llcdel.Enabled = ((bool)(resources.GetObject("llcdel.Enabled")));
-			this.llcdel.Font = ((System.Drawing.Font)(resources.GetObject("llcdel.Font")));
-			this.llcdel.Image = ((System.Drawing.Image)(resources.GetObject("llcdel.Image")));
-			this.llcdel.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcdel.ImageAlign")));
-			this.llcdel.ImageIndex = ((int)(resources.GetObject("llcdel.ImageIndex")));
-			this.llcdel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llcdel.ImeMode")));
-			this.llcdel.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llcdel.LinkArea")));
-			this.llcdel.Location = ((System.Drawing.Point)(resources.GetObject("llcdel.Location")));
-			this.llcdel.Name = "llcdel";
-			this.llcdel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llcdel.RightToLeft")));
-			this.llcdel.Size = ((System.Drawing.Size)(resources.GetObject("llcdel.Size")));
-			this.llcdel.TabIndex = ((int)(resources.GetObject("llcdel.TabIndex")));
-			this.llcdel.TabStop = true;
-			this.llcdel.Text = resources.GetString("llcdel.Text");
-			this.llcdel.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcdel.TextAlign")));
-			this.llcdel.Visible = ((bool)(resources.GetObject("llcdel.Visible")));
-			this.llcdel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DeleteConstantClicked);
-			// 
-			// llcadd
-			// 
-			this.llcadd.AccessibleDescription = resources.GetString("llcadd.AccessibleDescription");
-			this.llcadd.AccessibleName = resources.GetString("llcadd.AccessibleName");
-			this.llcadd.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llcadd.Anchor")));
-			this.llcadd.AutoSize = ((bool)(resources.GetObject("llcadd.AutoSize")));
-			this.llcadd.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llcadd.Dock")));
-			this.llcadd.Enabled = ((bool)(resources.GetObject("llcadd.Enabled")));
-			this.llcadd.Font = ((System.Drawing.Font)(resources.GetObject("llcadd.Font")));
-			this.llcadd.Image = ((System.Drawing.Image)(resources.GetObject("llcadd.Image")));
-			this.llcadd.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcadd.ImageAlign")));
-			this.llcadd.ImageIndex = ((int)(resources.GetObject("llcadd.ImageIndex")));
-			this.llcadd.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llcadd.ImeMode")));
-			this.llcadd.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llcadd.LinkArea")));
-			this.llcadd.Location = ((System.Drawing.Point)(resources.GetObject("llcadd.Location")));
-			this.llcadd.Name = "llcadd";
-			this.llcadd.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llcadd.RightToLeft")));
-			this.llcadd.Size = ((System.Drawing.Size)(resources.GetObject("llcadd.Size")));
-			this.llcadd.TabIndex = ((int)(resources.GetObject("llcadd.TabIndex")));
-			this.llcadd.TabStop = true;
-			this.llcadd.Text = resources.GetString("llcadd.Text");
-			this.llcadd.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcadd.TextAlign")));
-			this.llcadd.Visible = ((bool)(resources.GetObject("llcadd.Visible")));
-			this.llcadd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddConstantClicked);
-			// 
-			// llccommit
-			// 
-			this.llccommit.AccessibleDescription = resources.GetString("llccommit.AccessibleDescription");
-			this.llccommit.AccessibleName = resources.GetString("llccommit.AccessibleName");
-			this.llccommit.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llccommit.Anchor")));
-			this.llccommit.AutoSize = ((bool)(resources.GetObject("llccommit.AutoSize")));
-			this.llccommit.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llccommit.Dock")));
-			this.llccommit.Enabled = ((bool)(resources.GetObject("llccommit.Enabled")));
-			this.llccommit.Font = ((System.Drawing.Font)(resources.GetObject("llccommit.Font")));
-			this.llccommit.Image = ((System.Drawing.Image)(resources.GetObject("llccommit.Image")));
-			this.llccommit.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llccommit.ImageAlign")));
-			this.llccommit.ImageIndex = ((int)(resources.GetObject("llccommit.ImageIndex")));
-			this.llccommit.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llccommit.ImeMode")));
-			this.llccommit.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llccommit.LinkArea")));
-			this.llccommit.Location = ((System.Drawing.Point)(resources.GetObject("llccommit.Location")));
-			this.llccommit.Name = "llccommit";
-			this.llccommit.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llccommit.RightToLeft")));
-			this.llccommit.Size = ((System.Drawing.Size)(resources.GetObject("llccommit.Size")));
-			this.llccommit.TabIndex = ((int)(resources.GetObject("llccommit.TabIndex")));
-			this.llccommit.TabStop = true;
-			this.llccommit.Text = resources.GetString("llccommit.Text");
-			this.llccommit.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llccommit.TextAlign")));
-			this.llccommit.Visible = ((bool)(resources.GetObject("llccommit.Visible")));
-			this.llccommit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CommitConstantClicked);
-			// 
-			// tbvalue
-			// 
-			this.tbvalue.AccessibleDescription = resources.GetString("tbvalue.AccessibleDescription");
-			this.tbvalue.AccessibleName = resources.GetString("tbvalue.AccessibleName");
-			this.tbvalue.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbvalue.Anchor")));
-			this.tbvalue.AutoSize = ((bool)(resources.GetObject("tbvalue.AutoSize")));
-			this.tbvalue.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbvalue.BackgroundImage")));
-			this.tbvalue.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbvalue.Dock")));
-			this.tbvalue.Enabled = ((bool)(resources.GetObject("tbvalue.Enabled")));
-			this.tbvalue.Font = ((System.Drawing.Font)(resources.GetObject("tbvalue.Font")));
-			this.tbvalue.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbvalue.ImeMode")));
-			this.tbvalue.Location = ((System.Drawing.Point)(resources.GetObject("tbvalue.Location")));
-			this.tbvalue.MaxLength = ((int)(resources.GetObject("tbvalue.MaxLength")));
-			this.tbvalue.Multiline = ((bool)(resources.GetObject("tbvalue.Multiline")));
-			this.tbvalue.Name = "tbvalue";
-			this.tbvalue.PasswordChar = ((char)(resources.GetObject("tbvalue.PasswordChar")));
-			this.tbvalue.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbvalue.RightToLeft")));
-			this.tbvalue.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbvalue.ScrollBars")));
-			this.tbvalue.Size = ((System.Drawing.Size)(resources.GetObject("tbvalue.Size")));
-			this.tbvalue.TabIndex = ((int)(resources.GetObject("tbvalue.TabIndex")));
-			this.tbvalue.Text = resources.GetString("tbvalue.Text");
-			this.tbvalue.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbvalue.TextAlign")));
-			this.tbvalue.Visible = ((bool)(resources.GetObject("tbvalue.Visible")));
-			this.tbvalue.WordWrap = ((bool)(resources.GetObject("tbvalue.WordWrap")));
-			this.tbvalue.TextChanged += new System.EventHandler(this.AutoChangeConst);
-			// 
-			// label18
-			// 
-			this.label18.AccessibleDescription = resources.GetString("label18.AccessibleDescription");
-			this.label18.AccessibleName = resources.GetString("label18.AccessibleName");
-			this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label18.Anchor")));
-			this.label18.AutoSize = ((bool)(resources.GetObject("label18.AutoSize")));
-			this.label18.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label18.Dock")));
-			this.label18.Enabled = ((bool)(resources.GetObject("label18.Enabled")));
-			this.label18.Font = ((System.Drawing.Font)(resources.GetObject("label18.Font")));
-			this.label18.Image = ((System.Drawing.Image)(resources.GetObject("label18.Image")));
-			this.label18.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label18.ImageAlign")));
-			this.label18.ImageIndex = ((int)(resources.GetObject("label18.ImageIndex")));
-			this.label18.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label18.ImeMode")));
-			this.label18.Location = ((System.Drawing.Point)(resources.GetObject("label18.Location")));
-			this.label18.Name = "label18";
-			this.label18.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label18.RightToLeft")));
-			this.label18.Size = ((System.Drawing.Size)(resources.GetObject("label18.Size")));
-			this.label18.TabIndex = ((int)(resources.GetObject("label18.TabIndex")));
-			this.label18.Text = resources.GetString("label18.Text");
-			this.label18.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label18.TextAlign")));
-			this.label18.Visible = ((bool)(resources.GetObject("label18.Visible")));
-			// 
-			// tbconstflag
-			// 
-			this.tbconstflag.AccessibleDescription = resources.GetString("tbconstflag.AccessibleDescription");
-			this.tbconstflag.AccessibleName = resources.GetString("tbconstflag.AccessibleName");
-			this.tbconstflag.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbconstflag.Anchor")));
-			this.tbconstflag.AutoSize = ((bool)(resources.GetObject("tbconstflag.AutoSize")));
-			this.tbconstflag.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbconstflag.BackgroundImage")));
-			this.tbconstflag.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbconstflag.Dock")));
-			this.tbconstflag.Enabled = ((bool)(resources.GetObject("tbconstflag.Enabled")));
-			this.tbconstflag.Font = ((System.Drawing.Font)(resources.GetObject("tbconstflag.Font")));
-			this.tbconstflag.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbconstflag.ImeMode")));
-			this.tbconstflag.Location = ((System.Drawing.Point)(resources.GetObject("tbconstflag.Location")));
-			this.tbconstflag.MaxLength = ((int)(resources.GetObject("tbconstflag.MaxLength")));
-			this.tbconstflag.Multiline = ((bool)(resources.GetObject("tbconstflag.Multiline")));
-			this.tbconstflag.Name = "tbconstflag";
-			this.tbconstflag.PasswordChar = ((char)(resources.GetObject("tbconstflag.PasswordChar")));
-			this.tbconstflag.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbconstflag.RightToLeft")));
-			this.tbconstflag.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbconstflag.ScrollBars")));
-			this.tbconstflag.Size = ((System.Drawing.Size)(resources.GetObject("tbconstflag.Size")));
-			this.tbconstflag.TabIndex = ((int)(resources.GetObject("tbconstflag.TabIndex")));
-			this.tbconstflag.Text = resources.GetString("tbconstflag.Text");
-			this.tbconstflag.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbconstflag.TextAlign")));
-			this.tbconstflag.Visible = ((bool)(resources.GetObject("tbconstflag.Visible")));
-			this.tbconstflag.WordWrap = ((bool)(resources.GetObject("tbconstflag.WordWrap")));
-			this.tbconstflag.TextChanged += new System.EventHandler(this.BconFilename);
-			// 
-			// label22
-			// 
-			this.label22.AccessibleDescription = resources.GetString("label22.AccessibleDescription");
-			this.label22.AccessibleName = resources.GetString("label22.AccessibleName");
-			this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label22.Anchor")));
-			this.label22.AutoSize = ((bool)(resources.GetObject("label22.AutoSize")));
-			this.label22.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label22.Dock")));
-			this.label22.Enabled = ((bool)(resources.GetObject("label22.Enabled")));
-			this.label22.Font = ((System.Drawing.Font)(resources.GetObject("label22.Font")));
-			this.label22.Image = ((System.Drawing.Image)(resources.GetObject("label22.Image")));
-			this.label22.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label22.ImageAlign")));
-			this.label22.ImageIndex = ((int)(resources.GetObject("label22.ImageIndex")));
-			this.label22.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label22.ImeMode")));
-			this.label22.Location = ((System.Drawing.Point)(resources.GetObject("label22.Location")));
-			this.label22.Name = "label22";
-			this.label22.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label22.RightToLeft")));
-			this.label22.Size = ((System.Drawing.Size)(resources.GetObject("label22.Size")));
-			this.label22.TabIndex = ((int)(resources.GetObject("label22.TabIndex")));
-			this.label22.Text = resources.GetString("label22.Text");
-			this.label22.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label22.TextAlign")));
-			this.label22.Visible = ((bool)(resources.GetObject("label22.Visible")));
-			// 
-			// constants
-			// 
-			this.constants.AccessibleDescription = resources.GetString("constants.AccessibleDescription");
-			this.constants.AccessibleName = resources.GetString("constants.AccessibleName");
-			this.constants.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("constants.Anchor")));
-			this.constants.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("constants.BackgroundImage")));
-			this.constants.ColumnWidth = ((int)(resources.GetObject("constants.ColumnWidth")));
-			this.constants.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("constants.Dock")));
-			this.constants.Enabled = ((bool)(resources.GetObject("constants.Enabled")));
-			this.constants.Font = ((System.Drawing.Font)(resources.GetObject("constants.Font")));
-			this.constants.HorizontalExtent = ((int)(resources.GetObject("constants.HorizontalExtent")));
-			this.constants.HorizontalScrollbar = ((bool)(resources.GetObject("constants.HorizontalScrollbar")));
-			this.constants.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("constants.ImeMode")));
-			this.constants.IntegralHeight = ((bool)(resources.GetObject("constants.IntegralHeight")));
-			this.constants.ItemHeight = ((int)(resources.GetObject("constants.ItemHeight")));
-			this.constants.Location = ((System.Drawing.Point)(resources.GetObject("constants.Location")));
-			this.constants.Name = "constants";
-			this.constants.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("constants.RightToLeft")));
-			this.constants.ScrollAlwaysVisible = ((bool)(resources.GetObject("constants.ScrollAlwaysVisible")));
-			this.constants.Size = ((System.Drawing.Size)(resources.GetObject("constants.Size")));
-			this.constants.TabIndex = ((int)(resources.GetObject("constants.TabIndex")));
-			this.constants.Visible = ((bool)(resources.GetObject("constants.Visible")));
-			this.constants.SelectedIndexChanged += new System.EventHandler(this.ConstantCHanged);
-			// 
-			// button1
-			// 
-			this.button1.AccessibleDescription = resources.GetString("button1.AccessibleDescription");
-			this.button1.AccessibleName = resources.GetString("button1.AccessibleName");
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("button1.Anchor")));
-			this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-			this.button1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("button1.Dock")));
-			this.button1.Enabled = ((bool)(resources.GetObject("button1.Enabled")));
-			this.button1.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("button1.FlatStyle")));
-			this.button1.Font = ((System.Drawing.Font)(resources.GetObject("button1.Font")));
-			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-			this.button1.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.ImageAlign")));
-			this.button1.ImageIndex = ((int)(resources.GetObject("button1.ImageIndex")));
-			this.button1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("button1.ImeMode")));
-			this.button1.Location = ((System.Drawing.Point)(resources.GetObject("button1.Location")));
-			this.button1.Name = "button1";
-			this.button1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("button1.RightToLeft")));
-			this.button1.Size = ((System.Drawing.Size)(resources.GetObject("button1.Size")));
-			this.button1.TabIndex = ((int)(resources.GetObject("button1.TabIndex")));
-			this.button1.Text = resources.GetString("button1.Text");
-			this.button1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.TextAlign")));
-			this.button1.Visible = ((bool)(resources.GetObject("button1.Visible")));
-			this.button1.Click += new System.EventHandler(this.ConstnatCommitClicked);
-			// 
-			// panel2
-			// 
-			this.panel2.AccessibleDescription = resources.GetString("panel2.AccessibleDescription");
-			this.panel2.AccessibleName = resources.GetString("panel2.AccessibleName");
-			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel2.Anchor")));
-			this.panel2.AutoScroll = ((bool)(resources.GetObject("panel2.AutoScroll")));
-			this.panel2.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel2.AutoScrollMargin")));
-			this.panel2.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel2.AutoScrollMinSize")));
-			this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-			this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
-			this.panel2.Controls.Add(this.label27);
-			this.panel2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel2.Dock")));
-			this.panel2.Enabled = ((bool)(resources.GetObject("panel2.Enabled")));
-			this.panel2.Font = ((System.Drawing.Font)(resources.GetObject("panel2.Font")));
-			this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.panel2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("panel2.ImeMode")));
-			this.panel2.Location = ((System.Drawing.Point)(resources.GetObject("panel2.Location")));
-			this.panel2.Name = "panel2";
-			this.panel2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("panel2.RightToLeft")));
-			this.panel2.Size = ((System.Drawing.Size)(resources.GetObject("panel2.Size")));
-			this.panel2.TabIndex = ((int)(resources.GetObject("panel2.TabIndex")));
-			this.panel2.Text = resources.GetString("panel2.Text");
-			this.panel2.Visible = ((bool)(resources.GetObject("panel2.Visible")));
-			// 
-			// label27
-			// 
-			this.label27.AccessibleDescription = resources.GetString("label27.AccessibleDescription");
-			this.label27.AccessibleName = resources.GetString("label27.AccessibleName");
-			this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label27.Anchor")));
-			this.label27.AutoSize = ((bool)(resources.GetObject("label27.AutoSize")));
-			this.label27.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label27.Dock")));
-			this.label27.Enabled = ((bool)(resources.GetObject("label27.Enabled")));
-			this.label27.Font = ((System.Drawing.Font)(resources.GetObject("label27.Font")));
-			this.label27.Image = ((System.Drawing.Image)(resources.GetObject("label27.Image")));
-			this.label27.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label27.ImageAlign")));
-			this.label27.ImageIndex = ((int)(resources.GetObject("label27.ImageIndex")));
-			this.label27.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label27.ImeMode")));
-			this.label27.Location = ((System.Drawing.Point)(resources.GetObject("label27.Location")));
-			this.label27.Name = "label27";
-			this.label27.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label27.RightToLeft")));
-			this.label27.Size = ((System.Drawing.Size)(resources.GetObject("label27.Size")));
-			this.label27.TabIndex = ((int)(resources.GetObject("label27.TabIndex")));
-			this.label27.Text = resources.GetString("label27.Text");
-			this.label27.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label27.TextAlign")));
-			this.label27.Visible = ((bool)(resources.GetObject("label27.Visible")));
-			// 
-			// label28
-			// 
-			this.label28.AccessibleDescription = resources.GetString("label28.AccessibleDescription");
-			this.label28.AccessibleName = resources.GetString("label28.AccessibleName");
-			this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label28.Anchor")));
-			this.label28.AutoSize = ((bool)(resources.GetObject("label28.AutoSize")));
-			this.label28.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label28.Dock")));
-			this.label28.Enabled = ((bool)(resources.GetObject("label28.Enabled")));
-			this.label28.Font = ((System.Drawing.Font)(resources.GetObject("label28.Font")));
-			this.label28.Image = ((System.Drawing.Image)(resources.GetObject("label28.Image")));
-			this.label28.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label28.ImageAlign")));
-			this.label28.ImageIndex = ((int)(resources.GetObject("label28.ImageIndex")));
-			this.label28.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label28.ImeMode")));
-			this.label28.Location = ((System.Drawing.Point)(resources.GetObject("label28.Location")));
-			this.label28.Name = "label28";
-			this.label28.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label28.RightToLeft")));
-			this.label28.Size = ((System.Drawing.Size)(resources.GetObject("label28.Size")));
-			this.label28.TabIndex = ((int)(resources.GetObject("label28.TabIndex")));
-			this.label28.Text = resources.GetString("label28.Text");
-			this.label28.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label28.TextAlign")));
-			this.label28.Visible = ((bool)(resources.GetObject("label28.Visible")));
 			// 
 			// ObjfPanel
 			// 
@@ -4755,7 +4302,6 @@ namespace SimPe.Plugin
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.wrapperPanel);
 			this.Controls.Add(this.TtabPanel);
-			this.Controls.Add(this.bconPanel);
 			this.Controls.Add(this.pnGlob);
 			this.Controls.Add(this.ObjfPanel);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
@@ -4775,9 +4321,6 @@ namespace SimPe.Plugin
 			this.pnflowcontainer.ResumeLayout(false);
 			this.gbopcodes.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);
-			this.bconPanel.ResumeLayout(false);
-			this.groupBox1.ResumeLayout(false);
-			this.panel2.ResumeLayout(false);
 			this.ObjfPanel.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.panel4.ResumeLayout(false);
@@ -4809,7 +4352,7 @@ namespace SimPe.Plugin
 				bhav.Package = wrp.Package;
 				bhav.FileDescriptor = wrp.FileDescriptor;
 				
-				ushort opcode = WrapperFactory.BhavWizardForm.Execute(bhav, this);
+				ushort opcode = SimPe.Plugin.WrapperFactory.BhavWizardForm.Execute(bhav, this);
 
 				tbopcode.Text = "0x"+Helper.HexString(opcode);
 			} 
@@ -5031,7 +4574,7 @@ namespace SimPe.Plugin
 				ui.form.lldel.Visible = false;
 				ui.form.llcommit.Visible = false;
 				ui.form.Text = b.FileName;				
-				ui.form.Controls.Remove(ui.form.bconPanel);
+/*				ui.form.Controls.Remove(ui.form.bconPanel);*/ // I've no idea what that used to do! PLJ
 				ui.form.wrapperPanel.Dock = DockStyle.Fill;
 
 				b.UpdateUI();					
@@ -5862,200 +5405,6 @@ namespace SimPe.Plugin
 		
 		#endregion
 
-		#region BCON
-
-		private void DeleteConstantClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			if (constants.SelectedIndex<0) return;
-			constants.Items.Remove(constants.Items[constants.SelectedIndex]);
-
-			for(int i=0; i<constants.Items.Count; i++)
-			{
-				BconItem bi = (BconItem)constants.Items[i];
-				bi.Index = i;
-			}
-
-			wrapper.Changed = true;
-		}
-
-		private void BconFilename(object sender, System.EventArgs e)
-		{
-			if (lbcon.Tag != null) return;
-
-			try 
-			{
-				lbcon.Tag = true;
-				Bcon wrp = (Bcon)wrapper;				
-
-				wrp.FileName = lbcon.Text;
-				wrp.Flag = Convert.ToByte(tbconstflag.Text, 16);
-				wrp.Changed = true;
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
-			} 
-			finally 
-			{
-				lbcon.Tag = null;
-			}
-		}
-
-		private void BConDecValueChanged(object sender, System.EventArgs e)
-		{
-			if (tbdec.Tag != null) return;
-
-			try 
-			{
-				tbdec.Tag = true;
-				tbvalue.Text = "0x"+Helper.HexString((ushort)Convert.ToInt16(tbdec.Text));
-			} 
-			catch (Exception) 
-			{
-			}
-			finally
-			{
-				tbdec.Tag = null;
-			}
-		}
-
-		private void AutoChangeConst(object sender, System.EventArgs e)
-		{
-			if (constants.SelectedIndex>=0) CommitConstantClicked(null, null);
-
-			if (tbdec.Tag != null) return;
-			try 
-			{
-				tbdec.Tag = true;
-				tbdec.Text = Convert.ToInt16(tbvalue.Text, 16).ToString();
-			} 
-			catch (Exception) {}
-			finally 
-			{
-				tbdec.Tag = null;
-			}
-		}
-
-		private void ConstnatCommitClicked(object sender, System.EventArgs e)
-		{
-			try 
-			{
-				Bcon wrp = (Bcon)wrapper;				
-
-				wrp.Flag = Convert.ToByte(this.tbconstflag.Text, 16);
-				
-				BconItem[] con = new BconItem[constants.Items.Count];
-				for (int i=0; i< con.Length; i++)
-				{
-					con[i] = (BconItem)constants.Items[i];
-				}
-				wrp.Constants = con;
-
-				wrapper.SynchronizeUserData();
-				MessageBox.Show(Localization.Manager.GetString("commited"));
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage(Localization.Manager.GetString("errwritingfile"), ex);
-			}		
-		}
-
-		private void ConstantSelected(object sender, System.EventArgs e)
-		{
-			llccommit.Enabled = false;
-			if (constants.SelectedIndex <0) return;
-			llccommit.Enabled = true;
-
-			try 
-			{
-				ushort con = (ushort)constants.Items[constants.SelectedIndex];
-
-				this.tbvalue.Text = "0x"+Helper.HexString(con);				
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
-			}
-		}
-
-		private void AddConstantClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			constants.SelectedIndex = -1;
-			CommitConstantClicked(sender, e);
-			constants.SelectedIndex = constants.Items.Count-1;
-			llccommit.Enabled = (constants.SelectedIndex>=0);
-		}
-
-		private void CommitConstantClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			llccommit.Enabled = false;
-
-			//creat new Constant if non is selected
-			BconItem con = new BconItem(0, constants.Items.Count, (Bcon)wrapper);
-			try 
-			{
-				if (constants.SelectedIndex >=0) 
-				{
-					con = (BconItem)constants.Items[constants.SelectedIndex];
-					llccommit.Enabled = true;
-				}
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
-				return;
-			}
-			
-
-			try 
-			{
-				Bcon wrp = (Bcon)wrapper;
-				wrp.Changed = true;
-				con.Value = Convert.ToInt16(tbvalue.Text, 16);				
-				constants.Update();
-
-				this.internalchg = true;
-				if (constants.SelectedIndex <0) 
-				{
-					constants.Items.Add(con);
-				} 
-				else 
-				{
-					constants.Items[constants.SelectedIndex] = con;
-				}
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
-			}
-			finally 
-			{
-				this.internalchg = false;
-			}
-		}		
-
-		private void ConstantCHanged(object sender, System.EventArgs e)
-		{
-			if (this.internalchg) return;
-
-			llccommit.Enabled = false;
-			llcdel.Enabled = false;
-			if (constants.SelectedIndex <0) return;
-			llccommit.Enabled = true;
-			llcdel.Enabled = true;
-
-			try 
-			{
-				BconItem con = (BconItem)constants.Items[constants.SelectedIndex];
-				this.tbvalue.Text = "0x"+Helper.HexString((ushort)con.Value);				
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
-			}
-		}
-		#endregion		
-
 		#region OBJf
 		private void GetObjfGuard(object sender, System.EventArgs e)
 		{
@@ -6066,7 +5415,7 @@ namespace SimPe.Plugin
 				bhav.Package = wrp.Package;
 				bhav.FileDescriptor = wrp.FileDescriptor;
 				
-				ushort opcode = WrapperFactory.BhavWizardForm.Execute(bhav, this);
+				ushort opcode = SimPe.Plugin.WrapperFactory.BhavWizardForm.Execute(bhav, this);
 
 				tbguard.Text = "0x"+Helper.HexString(opcode);
 			} 
@@ -6087,7 +5436,7 @@ namespace SimPe.Plugin
 				bhav.Package = wrp.Package;
 				bhav.FileDescriptor = wrp.FileDescriptor;
 				
-				ushort opcode = WrapperFactory.BhavWizardForm.Execute(bhav, this);
+				ushort opcode = SimPe.Plugin.WrapperFactory.BhavWizardForm.Execute(bhav, this);
 
 				tbaction.Text = "0x"+Helper.HexString(opcode);
 			} 
@@ -6255,7 +5604,7 @@ namespace SimPe.Plugin
 				bhav.Package = wrp.Package;
 				bhav.FileDescriptor = wrp.FileDescriptor;
 				
-				ushort opcode = WrapperFactory.BhavWizardForm.Execute(bhav, this);
+				ushort opcode = SimPe.Plugin.WrapperFactory.BhavWizardForm.Execute(bhav, this);
 
 				tbttabguard.Text = "0x"+Helper.HexString(opcode);
 			} 
@@ -6276,7 +5625,7 @@ namespace SimPe.Plugin
 				bhav.Package = wrp.Package;
 				bhav.FileDescriptor = wrp.FileDescriptor;
 				
-				ushort opcode = WrapperFactory.BhavWizardForm.Execute(bhav, this);
+				ushort opcode = SimPe.Plugin.WrapperFactory.BhavWizardForm.Execute(bhav, this);
 
 				tbttabaction.Text = "0x"+Helper.HexString(opcode);
 			} 
