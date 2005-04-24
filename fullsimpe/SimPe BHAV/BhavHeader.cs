@@ -21,7 +21,7 @@ using System;
 using System.IO;
 
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.Wrapper
 {
 	/// <summary>
 	/// Class containing a BHAV Header

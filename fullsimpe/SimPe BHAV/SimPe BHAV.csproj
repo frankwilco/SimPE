@@ -159,12 +159,17 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "BconItem.cs"
-                    SubType = "Code"
+                    RelPath = "BconForm.cs"
+                    SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "BconUI.cs"
+                    RelPath = "BconForm.resx"
+                    DependentUpon = "BconForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "BconItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

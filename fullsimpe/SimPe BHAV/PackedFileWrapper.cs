@@ -20,7 +20,7 @@
 using System;
 using SimPe.Interfaces.Plugin;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.Wrapper
 {
 	/// <summary>
 	/// This is the actual FileWrapper
@@ -42,6 +42,23 @@ namespace SimPe.Plugin
 		byte[] filename;
 
 		/// <summary>
+		/// Stores the Header
+		/// </summary>
+		private BhavHeader header;
+
+		/// <summary>
+		/// Contains all available Instruction 
+		/// </summary>		
+		private Instruction[] instructions;
+
+		/// <summary>
+		/// Contains an Opcode Provider
+		/// </summary>
+		SimPe.Interfaces.Providers.IOpcodeProvider opcodes;
+		#endregion
+
+		#region Accessor methods
+		/// <summary>
 		/// Returns the Filename
 		/// </summary>
 		public string FileName 
@@ -49,11 +66,6 @@ namespace SimPe.Plugin
 			get { return Helper.ToString(filename); }
 			set { filename = Helper.ToBytes(value, 0x40); }
 		}
-
-		/// <summary>
-		/// Stores the Header
-		/// </summary>
-		private BhavHeader header;
 
 		/// <summary>
 		/// Returns / Sets the Header
@@ -65,11 +77,6 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
-		/// Contains all available Instruction 
-		/// </summary>		
-		private Instruction[] instructions;
-
-		/// <summary>
 		/// Returns/Sets the Instructions
 		/// </summary>
 		public Instruction[] Instructions
@@ -77,12 +84,6 @@ namespace SimPe.Plugin
 			get { return instructions;	}			
 			set { instructions = value; }
 		}
-		#endregion
-
-		/// <summary>
-		/// Contains an Opcode Provider
-		/// </summary>
-		SimPe.Interfaces.Providers.IOpcodeProvider opcodes;
 
 		/// <summary>
 		/// Opcode Provider
@@ -91,6 +92,7 @@ namespace SimPe.Plugin
 		{
 			get { return opcodes; }
 		}
+		#endregion
 
 		/// <summary>
 		/// Constructor
@@ -105,6 +107,7 @@ namespace SimPe.Plugin
 			filename = new byte[64];
 			this.opcodes = opcodes;
 		}
+
 
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
@@ -123,7 +126,7 @@ namespace SimPe.Plugin
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new BhavUI();
+			return new UserInterface.BhavUI();
 		}
 
 		/// <summary>

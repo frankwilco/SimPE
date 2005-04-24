@@ -19,8 +19,9 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces.Plugin;
+using SimPe.PackedFiles.Wrapper;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.UserInterface
 {
 	
 	/// <summary>
@@ -51,7 +52,7 @@ namespace SimPe.Plugin
 				WaitingScreen.UpdateMessage(ct.ToString()+max);
 				ct++;
 
-				SimPe.Plugin.NamedGlob glob = new SimPe.Plugin.NamedGlob();
+				NamedGlob glob = new NamedGlob();
 				glob.ProcessData(item.FileDescriptor, item.Package);
 
 				if (!names.Contains(glob.SemiGlobalName.Trim().ToLower())) 
@@ -68,7 +69,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public GlobUI()
 		{
-			form = WrapperFactory.form;
+			form = SimPe.Plugin.WrapperFactory.form;
 
 			form.cbseminame.Items.Clear();
 			BuildGlobList();

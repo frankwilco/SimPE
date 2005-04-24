@@ -24,8 +24,9 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using SimPe.Interfaces.Plugin;
 using SimPe.Plugin;
+using SimPe.PackedFiles.Wrapper;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.UserInterface
 {
 	/// <summary>
 	/// Zusammenfassung für TrcnForm.
@@ -305,9 +306,9 @@ namespace SimPe.Plugin
 			try 
 			{
 				tbname.Tag = true;
-				SimPe.Plugin.TrcnItem prop;
+				TrcnItem prop;
 				if (this.lbprop.SelectedIndex<0) prop = new TrcnItem((Trcn)wrapper);
-				else prop = (SimPe.Plugin.TrcnItem)lbprop.Items[lbprop.SelectedIndex];
+				else prop = (TrcnItem)lbprop.Items[lbprop.SelectedIndex];
 
 				prop.Name = tbname.Text;
 				prop.LineNumber = Convert.ToInt32(tbval.Text, 16)+1;
@@ -353,11 +354,11 @@ namespace SimPe.Plugin
 			try 
 			{
 				Trcn wrp = (Trcn)wrapper;
-				SimPe.Plugin.TrcnItem[] items = new TrcnItem[lbprop.Items.Count];
+				TrcnItem[] items = new TrcnItem[lbprop.Items.Count];
 
 				for (int i=0; i<items.Length; i++)
 				{
-					items[i] = (SimPe.Plugin.TrcnItem)lbprop.Items[i];
+					items[i] = (TrcnItem)lbprop.Items[i];
 				}
 
 				wrp.Labels = items;

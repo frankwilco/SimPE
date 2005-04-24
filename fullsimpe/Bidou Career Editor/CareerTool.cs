@@ -48,7 +48,7 @@ namespace SimPe.Plugin
 			if (package==null) return false;
 			Interfaces.Files.IPackedFileDescriptor[] globals  = package.FindFiles(Data.MetaData.GLOB_FILE); //global data
 			if (globals.Length!=1) return false;
-			SimPe.Plugin.Glob glob = new Glob();
+			SimPe.PackedFiles.Wrapper.Glob glob = new SimPe.PackedFiles.Wrapper.Glob();
 			glob.ProcessData(globals[0], package);
 			return (glob.SemiGlobalName == "JobDataGlobals");
 		}

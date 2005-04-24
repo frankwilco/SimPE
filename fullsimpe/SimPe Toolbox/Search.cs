@@ -22,6 +22,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using SimPe.PackedFiles.Wrapper;
 
 namespace SimPe.Plugin
 {
@@ -588,10 +589,10 @@ namespace SimPe.Plugin
 				if (pfd.Group!=group) return null;
 			}
 
-			SimPe.Plugin.Bhav bhav = new Bhav(prov.OpcodeProvider);
+			Bhav bhav = new Bhav(prov.OpcodeProvider);
 			bhav.ProcessData(pfd, package);
 
-			foreach (SimPe.Plugin.Instruction i in bhav.Instructions)
+			foreach (Instruction i in bhav.Instructions)
 			{
 				if (i.OpCode == opcode) 
 				{

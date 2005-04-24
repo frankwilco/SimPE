@@ -19,7 +19,7 @@
  ***************************************************************************/
 using System;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.Wrapper
 {
 	/// <summary>
 	/// Class Providing a Package and an Ocode Provider

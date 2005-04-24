@@ -20,7 +20,7 @@
 using System;
 using System.Collections;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.Wrapper
 {
 	public class TtabFlags : FlagBase
 	{

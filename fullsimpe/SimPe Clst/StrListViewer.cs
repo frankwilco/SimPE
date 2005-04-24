@@ -29,7 +29,7 @@ using SimPe.Data;
 using SimPe.PackedFiles.Wrapper;
 using SimPe.Interfaces.Plugin;
 
-namespace SimPe.PackedFiles.Wrapper
+namespace SimPe.PackedFiles.UserInterface
 {
 	/// <summary>
 	/// Summary description for StrListViewer.
