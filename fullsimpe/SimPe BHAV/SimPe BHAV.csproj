@@ -164,6 +164,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "BconForm.de.resx"
+                    DependentUpon = "BconForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "BconForm.de-DE.resx"
+                    DependentUpon = "BconForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "BconForm.resx"
                     DependentUpon = "BconForm.cs"
                     BuildAction = "EmbeddedResource"
