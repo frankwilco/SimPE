@@ -17,7 +17,6 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#define QUAXI
 using System;
 using System.Drawing;
 using System.Collections;
@@ -5089,52 +5088,7 @@ namespace SimPe.PackedFiles.UserInterface
 			}
 		}
 
-#if QUAXI
-		private void SortInstructions(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			ushort last = 0;
-			for (ushort i=0; i<flowitems.Length-1; i++) 
-			{
-				if (flowitems[i].instruction.Target1 > i+1) 
-				{
-					/*for (ushort k=0; k<flowitems.Length-1; k++) 
-					{
-						if (flowitems[k].instruction.Target2 > last) 
-						{
-							if (flowitems[k].instruction.Target2 < 0xfffc) SortSwap(flowitems[k].instruction.Target2, last);
-							last++;
-						}
-					}*/
-
-					if (flowitems[i].instruction.Target1 < 0xfffc) SortSwap(flowitems[i].instruction.Target1, (ushort)(i+1));
-					else 
-					{
-						if (flowitems[i].instruction.Target2 > i+1) 
-						{
-							if (flowitems[i].instruction.Target2 < 0xfffc) SortSwap(flowitems[i].instruction.Target2, (ushort)(i+1));
-						}
-					}
-					last = i;
-				}
-			}
-
-			for (ushort i=0; i<flowitems.Length-1; i++) 
-			{
-				if (flowitems[i].instruction.Target2 > last) 
-				{
-					if (flowitems[i].instruction.Target2 < 0xfffc) SortSwap(flowitems[i].instruction.Target2, last);
-					last++;
-				}
-			}
-
-			csel = -1;
-			this.llcommit.Enabled = false;
-			this.lldel.Enabled = false;
-			CreateFlowPanel(InstructionItem.Instructions(flowitems));
-			wrapper.Changed = true;
-		}
-
-#else
+#if PLJ
       internal class treeNode
       {
          public treeNode(treeNode p, Instruction i)
@@ -5335,6 +5289,51 @@ namespace SimPe.PackedFiles.UserInterface
 		 ((Bhav)wrapper).Instructions = InstructionItem.Instructions(newFlowItems);
          wrapper.Changed = true;		 
       }
+#else
+		private void SortInstructions(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			ushort last = 0;
+			for (ushort i=0; i<flowitems.Length-1; i++) 
+			{
+				if (flowitems[i].instruction.Target1 > i+1) 
+				{
+					/*for (ushort k=0; k<flowitems.Length-1; k++) 
+					{
+						if (flowitems[k].instruction.Target2 > last) 
+						{
+							if (flowitems[k].instruction.Target2 < 0xfffc) SortSwap(flowitems[k].instruction.Target2, last);
+							last++;
+						}
+					}*/
+
+					if (flowitems[i].instruction.Target1 < 0xfffc) SortSwap(flowitems[i].instruction.Target1, (ushort)(i+1));
+					else 
+					{
+						if (flowitems[i].instruction.Target2 > i+1) 
+						{
+							if (flowitems[i].instruction.Target2 < 0xfffc) SortSwap(flowitems[i].instruction.Target2, (ushort)(i+1));
+						}
+					}
+					last = i;
+				}
+			}
+
+			for (ushort i=0; i<flowitems.Length-1; i++) 
+			{
+				if (flowitems[i].instruction.Target2 > last) 
+				{
+					if (flowitems[i].instruction.Target2 < 0xfffc) SortSwap(flowitems[i].instruction.Target2, last);
+					last++;
+				}
+			}
+
+			csel = -1;
+			this.llcommit.Enabled = false;
+			this.lldel.Enabled = false;
+			CreateFlowPanel(InstructionItem.Instructions(flowitems));
+			wrapper.Changed = true;
+		}
+
 #endif
 
 		private void OpenOperandWiz(object sender, System.EventArgs e)
