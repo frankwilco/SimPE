@@ -182,6 +182,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// </summary>
 	public class StrItem 
 	{
+		int index;
 		StrLanguage lid;
 		string title;
 		string desc;
@@ -193,11 +194,13 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Constructor
 		/// </summary>
+		/// <param name="index">hack to give line numbers</param>
 		/// <param name="lid">Language ID (byte)</param>
 		/// <param name="title">Item Title</param>
 		/// <param name="desc">Item Description</param>
-		public StrItem(byte lid, string title, string desc)
+		public StrItem(int index, byte lid, string title, string desc)
 		{
+			this.index = index;
 			this.lid = new StrLanguage(lid);
 			this.title = title;
 			this.desc = desc;
@@ -263,7 +266,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 			if (lines[lid.Id] == null) lines[lid.Id] = new StrItemList(); // Add a new StrItemList if needed
 
-			((StrItemList)lines[lid.Id]).Add(new StrItem(lid, title, desc));
+			((StrItemList)lines[lid.Id]).Add(new StrItem(((StrItemList)lines[lid.Id]).Count, lid, title, desc));
 		}
 
 		internal static void SerializeStringZero(BinaryWriter w, string s)
@@ -284,7 +287,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public override string ToString()
 		{
-			return this.Title;
+			return "0x" + index.ToString("X") + " - " + this.Title;
 		}
 
 	}
