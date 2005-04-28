@@ -208,7 +208,7 @@ namespace SimPe.PackedFiles.Wrapper
 			StrItemList list = this.LanguageItems(l);
 			StrItem name;
 			if (list.Length>index) name = list[index];
-			else name = new StrItem(0, "", "");
+			else name = new StrItem(0, 0, "", "");
 			 
 			if (name.Title.Trim()=="") 
 			{
