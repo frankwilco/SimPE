@@ -276,10 +276,10 @@ namespace SimPe.PackedFiles.Wrapper
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-#if QUAXI
-			return new UserInterface.StrUI();
-#else
+#if PLJ
 			return new UserInterface.StrForm();
+#else
+			return new UserInterface.StrUI();
 #endif
 		}
 
@@ -289,21 +289,12 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <returns>Human Readable Description</returns>
 		protected override IWrapperInfo CreateWrapperInfo()
 		{
-#if QUAXI
 			return new AbstractWrapperInfo(
 				"Text List Wrapper",
 				"Quaxi",
 				"---",
 				9
 				);  
-#else
-			return new AbstractWrapperInfo(
-				"String Item Wrapper",
-				"Peter L Jones",
-				"Table-based editor for string items",
-				1
-				);
-#endif
 		}
 
 		/// <summary>
