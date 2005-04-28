@@ -88,7 +88,7 @@
                     BaseAddress = "285212672"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
+                    DefineConstants = "TRACE PLJ"
                     DocumentationFile = ""
                     DebugSymbols = "false"
                     FileAlignment = "4096"
@@ -191,16 +191,6 @@
                 <File
                     RelPath = "Elements2.resx"
                     DependentUpon = "Elements2.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "StrForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "StrForm.resx"
-                    DependentUpon = "StrForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
