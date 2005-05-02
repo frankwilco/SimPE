@@ -1,4 +1,6 @@
 /***************************************************************************
+ *   Copyright (C) 2005 by Peter L Jones                                   *
+ *   peter@drealm.info                                                     *
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
  *                                                                         *
@@ -17,7 +19,6 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#define QUAXI
 using System;
 using System.Collections;
 using SimPe.Interfaces.Plugin;
@@ -276,11 +277,7 @@ namespace SimPe.PackedFiles.Wrapper
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-#if PLJ
 			return new UserInterface.StrForm();
-#else
-			return new UserInterface.StrUI();
-#endif
 		}
 
 		/// <summary>
