@@ -39,8 +39,18 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Contains the Filename
 		/// </summary>
-		byte[] filename;	
-	
+		private byte[] filename;	
+		/// <summary>
+		/// Contains all available Constants 
+		/// </summary>		
+		private BconItem[] values;
+		/// <summary>
+		/// Just A Flag
+		/// </summary>
+		private byte flag;
+		#endregion
+
+		#region Accessor methods
 		/// <summary>
 		/// Returns the Filename
 		/// </summary>
@@ -51,9 +61,13 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		/// <summary>
-		/// Just A Flag
+		/// Returns/Sets the Constants
 		/// </summary>
-		byte flag;
+		public BconItem[] Constants
+		{
+			get { return values;	}			
+			set { values = value; }
+		}
 
 		/// <summary>
 		/// Returns /Sets the Flag
@@ -63,20 +77,6 @@ namespace SimPe.PackedFiles.Wrapper
 			get { return flag;	}			
 			set { flag = value; }
 		}
-
-		/// <summary>
-		/// Contains all available Constants 
-		/// </summary>		
-		private BconItem[] values;
-
-		/// <summary>
-		/// Returns/Sets the Constants
-		/// </summary>
-		public BconItem[] Constants
-		{
-			get { return values;	}			
-			set { values = value; }
-		}
 		#endregion
 
 		/// <summary>
@@ -84,9 +84,11 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		public Bcon() : base()
 		{
-			values = new BconItem[0];			
 			filename = new byte[64];
+			values = new BconItem[0];			
+			flag = 0x00;
 		}
+
 
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
@@ -114,9 +116,6 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <returns>Human Readable Description</returns>
 		protected override IWrapperInfo CreateWrapperInfo()
 		{
-			///
-			/// TODO: Change the Description passed here
-			/// 
 			return new AbstractWrapperInfo(
 				"BCON Wrapper",
 				"Quaxi",
