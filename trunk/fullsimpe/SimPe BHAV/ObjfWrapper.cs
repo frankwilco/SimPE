@@ -114,7 +114,7 @@ namespace SimPe.PackedFiles.Wrapper
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new UserInterface.ObjfUI();
+			return new UserInterface.ObjfForm();
 		}
 
 		/// <summary>
