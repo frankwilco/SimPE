@@ -24,17 +24,6 @@ using SimPe.Interfaces.Plugin;
 namespace SimPe.PackedFiles.Wrapper
 {
 	/// <summary>
-	/// Named Glob File
-	/// </summary>
-	public class NamedGlob : Glob 
-	{
-		public override string ToString()
-		{
-			return this.SemiGlobalName;
-		}
-	}
-
-	/// <summary>
 	/// This is the actual FileWrapper
 	/// </summary>
 	/// <remarks>
@@ -52,24 +41,25 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Contains the Filename
 		/// </summary>
 		byte[] filename;	
+		/// <summary>
+		/// Just A Flag
+		/// </summary>
+		byte[] semiglobal;
+		#endregion
 	
+		#region Accessor methods
 		/// <summary>
 		/// Returns the Filename
 		/// </summary>
-		public string FileName 
+		public string FileName
 		{
 			get { return Helper.ToString(filename); }
 		}
 
 		/// <summary>
-		/// Just A Flag
-		/// </summary>
-		byte[] semiglobal;
-
-		/// <summary>
 		/// Returns /Sets the Flag
 		/// </summary>
-		public string SemiGlobalName 
+		public string SemiGlobalName
 		{
 			get { return Helper.ToString(semiglobal);	}			
 			set { 
@@ -98,49 +88,10 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			items = new IPackedFileProperties[0];
 			attributes = new Hashtable();
-			semiglobal = new byte[0];			
+			semiglobal = new byte[0];
 			filename = new byte[64];
 		}
 
-		/*public new string ToString()
-		{
-			return this.SemiGlobalName;
-		}*/
-
-
-		#region IPackedFileProperties Member
-		IPackedFileProperties[] items;
-		Hashtable attributes;
-
-		/// <summary>
-		/// Returns all Attributes tored in the File.
-		/// </summary>
-		/// <remarks>Each Attribute is unique!</remarks>
-		public Hashtable Attributes
-		{
-			get
-			{
-				return attributes;
-			}
-		}
-
-		/// <summary>
-		/// Returns all Items stored in the File (can be null)
-		/// </summary>
-		/// <remarks>
-		/// All Items returned here have the same structure, 
-		/// however each Item can have SubItmes of it's own.
-		/// 
-		/// If null is returned, no Items are provided by this File
-		/// </remarks>
-		public IPackedFileProperties[] Items 
-		{
-			get
-			{
-				return items;
-			}
-		}
-		#endregion
 
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
@@ -159,7 +110,7 @@ namespace SimPe.PackedFiles.Wrapper
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new UserInterface.GlobUI();
+			return new UserInterface.GlobForm();
 		}
 
 		/// <summary>
@@ -244,5 +195,50 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		#endregion		
+
+		#region IPackedFileProperties Member
+		IPackedFileProperties[] items;
+		Hashtable attributes;
+
+		/// <summary>
+		/// Returns all Attributes tored in the File.
+		/// </summary>
+		/// <remarks>Each Attribute is unique!</remarks>
+		public Hashtable Attributes
+		{
+			get
+			{
+				return attributes;
+			}
+		}
+
+		/// <summary>
+		/// Returns all Items stored in the File (can be null)
+		/// </summary>
+		/// <remarks>
+		/// All Items returned here have the same structure, 
+		/// however each Item can have SubItmes of it's own.
+		/// 
+		/// If null is returned, no Items are provided by this File
+		/// </remarks>
+		public IPackedFileProperties[] Items 
+		{
+			get
+			{
+				return items;
+			}
+		}
+		#endregion
+	}
+
+	/// <summary>
+	/// Named Glob File
+	/// </summary>
+	public class NamedGlob : Glob 
+	{
+		public override string ToString()
+		{
+			return this.SemiGlobalName;
+		}
 	}
 }
