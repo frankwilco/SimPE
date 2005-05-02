@@ -102,6 +102,26 @@
                     TreatWarningsAsErrors = "false"
                     WarningLevel = "4"
                 />
+                <Config
+                    Name = "Debug PLJ"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "DEBUG;TRACE PLJ"
+                    DocumentationFile = ""
+                    DebugSymbols = "true"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "true"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "false"
+                    OutputPath = "bin\Debug\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
             </Settings>
             <References>
                 <Reference
@@ -214,7 +234,32 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "BhavForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BhavForm.de.resx"
+                    DependentUpon = "BhavForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "BhavForm.de-DE.resx"
+                    DependentUpon = "BhavForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "BhavForm.resx"
+                    DependentUpon = "BhavForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "BhavHeader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BhavInst.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -227,6 +272,11 @@
                     RelPath = "BhavInstruction.resx"
                     DependentUpon = "BhavInstruction.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "BhavInstructionName.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "BhavWizard.cs"
@@ -249,6 +299,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "BhavWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "button_cancel.png"
                     BuildAction = "EmbeddedResource"
                 />
@@ -262,9 +317,24 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "GlobUI.cs"
-                    SubType = "Code"
+                    RelPath = "GlobForm.cs"
+                    SubType = "Form"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "GlobForm.de.resx"
+                    DependentUpon = "GlobForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "GlobForm.de-DE.resx"
+                    DependentUpon = "GlobForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "GlobForm.resx"
+                    DependentUpon = "GlobForm.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "GlobWrapper.cs"
@@ -287,14 +357,24 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Instruction.cs"
-                    SubType = "Code"
+                    RelPath = "ObjfForm.cs"
+                    SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "InstructionName.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
+                    RelPath = "ObjfForm.de.resx"
+                    DependentUpon = "ObjfForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ObjfForm.de-DE.resx"
+                    DependentUpon = "ObjfForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ObjfForm.resx"
+                    DependentUpon = "ObjfForm.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "ObjfItem.cs"
@@ -302,42 +382,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ObjfUI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "ObjfWrapper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PackedFileForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PackedFileForm.de.resx"
-                    DependentUpon = "PackedFileForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "PackedFileForm.de-DE.resx"
-                    DependentUpon = "PackedFileForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "PackedFileForm.resx"
-                    DependentUpon = "PackedFileForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "PackedFileUI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PackedFileWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -357,22 +402,32 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "TrcnUI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "TrcnWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "TtabItem.cs"
-                    SubType = "Code"
+                    RelPath = "TtabForm.cs"
+                    SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "TtabUI.cs"
+                    RelPath = "TtabForm.de.resx"
+                    DependentUpon = "TtabForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "TtabForm.de-DE.resx"
+                    DependentUpon = "TtabForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "TtabForm.resx"
+                    DependentUpon = "TtabForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "TtabItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
