@@ -178,7 +178,7 @@ namespace SimPe.PackedFiles.Wrapper
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new UserInterface.TtabUI();
+			return new UserInterface.TtabForm();
 		}
 
 		/// <summary>
