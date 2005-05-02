@@ -154,12 +154,27 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ClstItem.cs"
-                    SubType = "Code"
+                    RelPath = "ClstForm.cs"
+                    SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ClstUI.cs"
+                    RelPath = "ClstForm.de.resx"
+                    DependentUpon = "ClstForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ClstForm.de-DE.resx"
+                    DependentUpon = "ClstForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ClstForm.resx"
+                    DependentUpon = "ClstForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ClstItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -174,23 +189,23 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Elements2.cs"
+                    RelPath = "StrForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Elements2.de.resx"
-                    DependentUpon = "Elements2.cs"
+                    RelPath = "StrForm.de.resx"
+                    DependentUpon = "StrForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "Elements2.de-DE.resx"
-                    DependentUpon = "Elements2.cs"
+                    RelPath = "StrForm.de-DE.resx"
+                    DependentUpon = "StrForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "Elements2.resx"
-                    DependentUpon = "Elements2.cs"
+                    RelPath = "StrForm.resx"
+                    DependentUpon = "StrForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -207,11 +222,6 @@
                     RelPath = "StrListViewer.resx"
                     DependentUpon = "StrListViewer.cs"
                     BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "StrUI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "StrWrapper.cs"
