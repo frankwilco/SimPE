@@ -116,7 +116,7 @@ namespace SimPe.Plugin
 				if (parent!=null) if (left<parent.Location.X) left = parent.Location.X;
 			} while (left>gc.Parent.Width);
 
-			GraphItem gi = new GraphItem(Hashes.StripHashFromName(pfd.Filename), new Hashtable());
+			GraphItem gi = new GraphItem(gc, Hashes.StripHashFromName(pfd.Filename), new Hashtable());
 			gi.BeginUpdate();
 			gi.Location = new Point(left, top);
 			gi.Click = click;
@@ -261,7 +261,7 @@ namespace SimPe.Plugin
 			{
 				if ((pfd.Type == Data.MetaData.MMAT) || (Data.MetaData.RcolList.Contains(pfd.Type)))
 				{
-					GraphItem gi = new GraphItem(Hashes.StripHashFromName(pfd.Filename), new Hashtable());
+					GraphItem gi = new GraphItem(gc, Hashes.StripHashFromName(pfd.Filename), new Hashtable());
 					gi.BeginUpdate();
 					gi.Location = new Point(left, top);
 					gi.Click = click;
