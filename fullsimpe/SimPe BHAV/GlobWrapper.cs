@@ -51,7 +51,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Returns the Filename
 		/// </summary>
-		public string FileName
+		public new string FileName
 		{
 			get { return Helper.ToString(filename); }
 		}
