@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace SimPe.Plugin
 {
@@ -13,6 +14,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns / Sets the cSGResource of this Block, or null if none is avilable
 		/// </summary>
+		[BrowsableAttribute(false)]
 		public SGResource NameResource
 		{
 			get { return sgres; }
@@ -20,12 +22,14 @@ namespace SimPe.Plugin
 		}
 
 		protected Interfaces.IProviderRegistry provider; 
+		[BrowsableAttribute(false)]
 		public Interfaces.IProviderRegistry Provider 
 		{
 			get { return provider; }
 		}
 
 		protected uint version;
+		[ReadOnly(true)]
 		public uint Version 
 		{
 			get { return version; }
@@ -33,6 +37,7 @@ namespace SimPe.Plugin
 		}
 
 		protected Rcol parent;
+		[BrowsableAttribute(false)]
 		public Rcol Parent 
 		{
 			get { return parent; }
@@ -52,6 +57,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Data was changed
 		/// </summary>
+		[BrowsableAttribute(false)]
 		public bool Changed 
 		{
 			get { return parent.Changed; }
@@ -154,6 +160,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns the ID used for this Block
 		/// </summary>
+		[BrowsableAttribute(false)]
 		public uint BlockID
 		{
 			get{ return blockid; }
@@ -165,6 +172,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// if not null this is the default name for the Block in the Rcol
 		/// </summary>
+		[BrowsableAttribute(false)]
 		public virtual string BlockName 
 		{
 			get 
@@ -181,6 +189,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns a tabPage that contains a GUI for this Element
 		/// </summary>
+		[BrowsableAttribute(false)]
 		public virtual System.Windows.Forms.TabPage TabPage 
 		{
 			get { return null; }
