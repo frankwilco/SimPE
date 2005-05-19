@@ -224,12 +224,42 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "cGeometryDataContainerExt.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "cGeometryNode.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "cGmdcElements.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cGmdcGroups.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cGmdcHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cGmdcLinks.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cGmdcModel.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cGmdcSubset.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -380,6 +410,16 @@
                 />
                 <File
                     RelPath = "GeneralRcolWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "GmdcExportToX.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IGmdcExport.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
