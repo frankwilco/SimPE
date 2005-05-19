@@ -90,7 +90,7 @@ namespace Ambertation
 	/// This is a class that can present short Values in diffrent Ways
 	/// </summary>
 	[TypeConverterAttribute(typeof(HexTypeConverter)),
-	DescriptionAttribute("Expand to see the spelling options for the application.")]
+	DescriptionAttribute("This Values can be displayed in Dec, Hex and Bin")]
 	public class BaseChangeShort 
 	{
 		static int digitbase = 16;
@@ -141,15 +141,26 @@ namespace Ambertation
 			return new BaseChangeShort(val);
 		}
 
-		short val;
+		int val;
 
-		internal BaseChangeShort(short v) { val = v;	}
+		public BaseChangeShort(int v) { val = v;	}
+		public BaseChangeShort(uint v) { val = (int)v;	}
+		public BaseChangeShort(short v) { val = v;	}
 		internal BaseChangeShort() { val = 0; }
 
 		/// <summary>
-		/// The actual Value
+		/// The actual Value (as short)
 		/// </summary>
 		public short Value 
+		{
+			get { return (short)(val & 0xffff); ; }
+			set { val = (short)(value & 0xffff); }
+		}
+
+		/// <summary>
+		/// The actual Value (as Integer)
+		/// </summary>
+		public int IntegerValue 
 		{
 			get { return val; }
 			set { val = value; }

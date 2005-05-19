@@ -179,6 +179,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "cAnimResourceConst_Parts.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "cBoneDataExtension.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -331,6 +336,16 @@
                 <File
                     RelPath = "DDSTool.resx"
                     DependentUpon = "DDSTool.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "fAnimResourceConst.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "fAnimResourceConst.resx"
+                    DependentUpon = "fAnimResourceConst.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

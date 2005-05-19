@@ -127,12 +127,6 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label36;
 		internal System.Windows.Forms.TextBox tb_gn_uk1;
 		private System.Windows.Forms.Label label37;
-		internal System.Windows.Forms.TabPage tAnimResourceConst;
-		private System.Windows.Forms.GroupBox groupBox12;
-		internal System.Windows.Forms.TextBox tb_arc_ver;
-		private System.Windows.Forms.Label label30;
-		internal System.Windows.Forms.TextBox tb_arc_data;
-		private System.Windows.Forms.Label label31;
 		private System.Windows.Forms.ToolTip toolTip1;
 		internal System.Windows.Forms.TabPage tDirectionalLight;
 		private System.Windows.Forms.GroupBox groupBox13;
@@ -182,14 +176,6 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label54;
 		internal System.Windows.Forms.TextBox tb_tn_rw;
 		private System.Windows.Forms.Label label55;
-		private System.Windows.Forms.GroupBox groupBox17;
-		private System.Windows.Forms.Label label56;
-		private System.Windows.Forms.Label label57;
-		internal System.Windows.Forms.ListBox tb_arc_lb1;
-		internal System.Windows.Forms.ListBox tb_arc_lb2;
-		internal System.Windows.Forms.PropertyGrid tb_arc_pg;
-		internal System.Windows.Forms.ListBox tb_arc_lb3;
-		private System.Windows.Forms.Label label58;
 		private System.ComponentModel.IContainer components;
 
 		public fShapeRefNode()
@@ -342,18 +328,6 @@ namespace SimPe.Plugin
 			this.label21 = new System.Windows.Forms.Label();
 			this.lb_ogn = new System.Windows.Forms.ListBox();
 			this.ll_ogn_delete = new System.Windows.Forms.LinkLabel();
-			this.tAnimResourceConst = new System.Windows.Forms.TabPage();
-			this.groupBox17 = new System.Windows.Forms.GroupBox();
-			this.tb_arc_pg = new System.Windows.Forms.PropertyGrid();
-			this.tb_arc_lb2 = new System.Windows.Forms.ListBox();
-			this.tb_arc_lb1 = new System.Windows.Forms.ListBox();
-			this.label57 = new System.Windows.Forms.Label();
-			this.label56 = new System.Windows.Forms.Label();
-			this.groupBox12 = new System.Windows.Forms.GroupBox();
-			this.tb_arc_data = new System.Windows.Forms.TextBox();
-			this.label31 = new System.Windows.Forms.Label();
-			this.tb_arc_ver = new System.Windows.Forms.TextBox();
-			this.label30 = new System.Windows.Forms.Label();
 			this.tDirectionalLight = new System.Windows.Forms.TabPage();
 			this.groupBox13 = new System.Windows.Forms.GroupBox();
 			this.tb_l_9 = new System.Windows.Forms.TextBox();
@@ -385,8 +359,6 @@ namespace SimPe.Plugin
 			this.tb_lt_ver = new System.Windows.Forms.TextBox();
 			this.label47 = new System.Windows.Forms.Label();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.tb_arc_lb3 = new System.Windows.Forms.ListBox();
-			this.label58 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tGenericRcol.SuspendLayout();
 			this.groupBox10.SuspendLayout();
@@ -407,9 +379,6 @@ namespace SimPe.Plugin
 			this.tObjectGraphNode.SuspendLayout();
 			this.groupBox8.SuspendLayout();
 			this.groupBox9.SuspendLayout();
-			this.tAnimResourceConst.SuspendLayout();
-			this.groupBox17.SuspendLayout();
-			this.groupBox12.SuspendLayout();
 			this.tDirectionalLight.SuspendLayout();
 			this.groupBox13.SuspendLayout();
 			this.tLightT.SuspendLayout();
@@ -424,7 +393,6 @@ namespace SimPe.Plugin
 			this.tabControl1.Controls.Add(this.tResourceNode);
 			this.tabControl1.Controls.Add(this.tTransformNode);
 			this.tabControl1.Controls.Add(this.tObjectGraphNode);
-			this.tabControl1.Controls.Add(this.tAnimResourceConst);
 			this.tabControl1.Controls.Add(this.tDirectionalLight);
 			this.tabControl1.Controls.Add(this.tLightT);
 			this.tabControl1.Location = new System.Drawing.Point(8, 8);
@@ -438,9 +406,9 @@ namespace SimPe.Plugin
 			// 
 			this.tGenericRcol.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.tGenericRcol.Controls.Add(this.groupBox10);
-			this.tGenericRcol.Location = new System.Drawing.Point(4, 40);
+			this.tGenericRcol.Location = new System.Drawing.Point(4, 22);
 			this.tGenericRcol.Name = "tGenericRcol";
-			this.tGenericRcol.Size = new System.Drawing.Size(792, 244);
+			this.tGenericRcol.Size = new System.Drawing.Size(792, 262);
 			this.tGenericRcol.TabIndex = 4;
 			this.tGenericRcol.Text = "GenericRcol";
 			// 
@@ -1750,155 +1718,6 @@ namespace SimPe.Plugin
 			this.ll_ogn_delete.Text = "delete";
 			this.ll_ogn_delete.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OGNItemsDelete);
 			// 
-			// tAnimResourceConst
-			// 
-			this.tAnimResourceConst.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.tAnimResourceConst.Controls.Add(this.groupBox17);
-			this.tAnimResourceConst.Controls.Add(this.groupBox12);
-			this.tAnimResourceConst.Location = new System.Drawing.Point(4, 40);
-			this.tAnimResourceConst.Name = "tAnimResourceConst";
-			this.tAnimResourceConst.Size = new System.Drawing.Size(792, 244);
-			this.tAnimResourceConst.TabIndex = 6;
-			this.tAnimResourceConst.Text = "AnimResourceConst";
-			// 
-			// groupBox17
-			// 
-			this.groupBox17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox17.Controls.Add(this.tb_arc_lb3);
-			this.groupBox17.Controls.Add(this.label58);
-			this.groupBox17.Controls.Add(this.tb_arc_pg);
-			this.groupBox17.Controls.Add(this.tb_arc_lb2);
-			this.groupBox17.Controls.Add(this.tb_arc_lb1);
-			this.groupBox17.Controls.Add(this.label57);
-			this.groupBox17.Controls.Add(this.label56);
-			this.groupBox17.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox17.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox17.Location = new System.Drawing.Point(440, 8);
-			this.groupBox17.Name = "groupBox17";
-			this.groupBox17.Size = new System.Drawing.Size(344, 230);
-			this.groupBox17.TabIndex = 13;
-			this.groupBox17.TabStop = false;
-			this.groupBox17.Text = "Dump";
-			// 
-			// tb_arc_pg
-			// 
-			this.tb_arc_pg.CommandsBackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.tb_arc_pg.CommandsVisibleIfAvailable = true;
-			this.tb_arc_pg.HelpVisible = false;
-			this.tb_arc_pg.LargeButtons = false;
-			this.tb_arc_pg.LineColor = System.Drawing.SystemColors.ScrollBar;
-			this.tb_arc_pg.Location = new System.Drawing.Point(144, 24);
-			this.tb_arc_pg.Name = "tb_arc_pg";
-			this.tb_arc_pg.PropertySort = System.Windows.Forms.PropertySort.Alphabetical;
-			this.tb_arc_pg.Size = new System.Drawing.Size(192, 200);
-			this.tb_arc_pg.TabIndex = 31;
-			this.tb_arc_pg.Text = "pganim";
-			this.tb_arc_pg.ToolbarVisible = false;
-			this.tb_arc_pg.ViewBackColor = System.Drawing.SystemColors.Window;
-			this.tb_arc_pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
-			// 
-			// tb_arc_lb2
-			// 
-			this.tb_arc_lb2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_arc_lb2.Location = new System.Drawing.Point(16, 112);
-			this.tb_arc_lb2.Name = "tb_arc_lb2";
-			this.tb_arc_lb2.Size = new System.Drawing.Size(120, 56);
-			this.tb_arc_lb2.TabIndex = 30;
-			this.tb_arc_lb2.SelectedIndexChanged += new System.EventHandler(this.ARCSelectAnimBlock);
-			// 
-			// tb_arc_lb1
-			// 
-			this.tb_arc_lb1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_arc_lb1.Location = new System.Drawing.Point(16, 40);
-			this.tb_arc_lb1.Name = "tb_arc_lb1";
-			this.tb_arc_lb1.Size = new System.Drawing.Size(120, 56);
-			this.tb_arc_lb1.TabIndex = 29;
-			this.tb_arc_lb1.SelectedIndexChanged += new System.EventHandler(this.ARCSelectAnimBlock);
-			// 
-			// label57
-			// 
-			this.label57.AutoSize = true;
-			this.label57.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label57.Location = new System.Drawing.Point(8, 96);
-			this.label57.Name = "label57";
-			this.label57.Size = new System.Drawing.Size(53, 17);
-			this.label57.TabIndex = 28;
-			this.label57.Text = "Block II:";
-			// 
-			// label56
-			// 
-			this.label56.AutoSize = true;
-			this.label56.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label56.Location = new System.Drawing.Point(8, 24);
-			this.label56.Name = "label56";
-			this.label56.Size = new System.Drawing.Size(48, 17);
-			this.label56.TabIndex = 27;
-			this.label56.Text = "Block I:";
-			// 
-			// groupBox12
-			// 
-			this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox12.Controls.Add(this.tb_arc_data);
-			this.groupBox12.Controls.Add(this.label31);
-			this.groupBox12.Controls.Add(this.tb_arc_ver);
-			this.groupBox12.Controls.Add(this.label30);
-			this.groupBox12.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox12.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox12.Location = new System.Drawing.Point(8, 8);
-			this.groupBox12.Name = "groupBox12";
-			this.groupBox12.Size = new System.Drawing.Size(232, 230);
-			this.groupBox12.TabIndex = 12;
-			this.groupBox12.TabStop = false;
-			this.groupBox12.Text = "Settings";
-			// 
-			// tb_arc_data
-			// 
-			this.tb_arc_data.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tb_arc_data.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_arc_data.Location = new System.Drawing.Point(16, 88);
-			this.tb_arc_data.Multiline = true;
-			this.tb_arc_data.Name = "tb_arc_data";
-			this.tb_arc_data.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tb_arc_data.Size = new System.Drawing.Size(208, 134);
-			this.tb_arc_data.TabIndex = 26;
-			this.tb_arc_data.Text = "";
-			this.tb_arc_data.TextChanged += new System.EventHandler(this.ARCSettingsChange);
-			// 
-			// label31
-			// 
-			this.label31.AutoSize = true;
-			this.label31.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label31.Location = new System.Drawing.Point(8, 72);
-			this.label31.Name = "label31";
-			this.label31.Size = new System.Drawing.Size(36, 17);
-			this.label31.TabIndex = 25;
-			this.label31.Text = "Data:";
-			// 
-			// tb_arc_ver
-			// 
-			this.tb_arc_ver.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_arc_ver.Location = new System.Drawing.Point(16, 40);
-			this.tb_arc_ver.Name = "tb_arc_ver";
-			this.tb_arc_ver.Size = new System.Drawing.Size(88, 21);
-			this.tb_arc_ver.TabIndex = 24;
-			this.tb_arc_ver.Text = "0x00000000";
-			this.tb_arc_ver.TextChanged += new System.EventHandler(this.ARCSettingsChange);
-			// 
-			// label30
-			// 
-			this.label30.AutoSize = true;
-			this.label30.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label30.Location = new System.Drawing.Point(8, 24);
-			this.label30.Name = "label30";
-			this.label30.Size = new System.Drawing.Size(52, 17);
-			this.label30.TabIndex = 23;
-			this.label30.Text = "Version:";
-			// 
 			// tDirectionalLight
 			// 
 			this.tDirectionalLight.BackColor = System.Drawing.Color.White;
@@ -2235,25 +2054,6 @@ namespace SimPe.Plugin
 			this.label47.TabIndex = 23;
 			this.label47.Text = "Version:";
 			// 
-			// tb_arc_lb3
-			// 
-			this.tb_arc_lb3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_arc_lb3.Location = new System.Drawing.Point(16, 184);
-			this.tb_arc_lb3.Name = "tb_arc_lb3";
-			this.tb_arc_lb3.Size = new System.Drawing.Size(120, 56);
-			this.tb_arc_lb3.TabIndex = 33;
-			this.tb_arc_lb3.SelectedIndexChanged += new System.EventHandler(this.ARCSelectAnimBlock);
-			// 
-			// label58
-			// 
-			this.label58.AutoSize = true;
-			this.label58.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label58.Location = new System.Drawing.Point(8, 168);
-			this.label58.Name = "label58";
-			this.label58.Size = new System.Drawing.Size(58, 17);
-			this.label58.TabIndex = 32;
-			this.label58.Text = "Block III:";
-			// 
 			// fShapeRefNode
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -2282,9 +2082,6 @@ namespace SimPe.Plugin
 			this.tObjectGraphNode.ResumeLayout(false);
 			this.groupBox8.ResumeLayout(false);
 			this.groupBox9.ResumeLayout(false);
-			this.tAnimResourceConst.ResumeLayout(false);
-			this.groupBox17.ResumeLayout(false);
-			this.groupBox12.ResumeLayout(false);
 			this.tDirectionalLight.ResumeLayout(false);
 			this.groupBox13.ResumeLayout(false);
 			this.tLightT.ResumeLayout(false);
@@ -2946,25 +2743,7 @@ namespace SimPe.Plugin
 			{
 				//Helper.ExceptionMessage("", ex);
 			}
-		}
-
-		private void ARCSettingsChange(object sender, System.EventArgs e)
-		{
-			if (this.tAnimResourceConst.Tag==null) return;
-			try 
-			{
-				AnimResourceConst arb = (AnimResourceConst)tAnimResourceConst.Tag;
-
-				arb.Version = Convert.ToUInt32(tb_arc_ver.Text, 16);
-				arb.Data = Helper.HexListToBytes(tb_arc_data.Text);
-
-				arb.Changed = true;
-			} 
-			catch (Exception) 
-			{
-				//Helper.ExceptionMessage("", ex);
-			}
-		}
+		}		
 
 		private void LSettingsChanged(object sender, System.EventArgs e)
 		{
@@ -3023,14 +2802,6 @@ namespace SimPe.Plugin
 			{
 				//Helper.ExceptionMessage("", ex);
 			}
-		}
-
-		private void ARCSelectAnimBlock(object sender, System.EventArgs e)
-		{
-			ListBox lb = (ListBox)sender;
-			if (lb.SelectedIndex<0) return;
-
-			this.tb_arc_pg.SelectedObject = lb.Items[lb.SelectedIndex];
 		}
 
 
