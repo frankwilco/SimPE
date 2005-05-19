@@ -123,7 +123,12 @@ namespace SimPe.Plugin
 			RenderableNode rnnn = new RenderableNode(provider, this);
 			BoundedNode bn = new BoundedNode(provider, this);
 			GeometryNode gnn = new GeometryNode(provider, this);
-			GeometryDataContainer gdc = new GeometryDataContainer(provider, this);
+#if DEBUG
+			//GeometryDataContainer gdc = new GeometryDataContainer(provider, this);
+			GeometryDataContainerExt gdc = new GeometryDataContainerExt(provider, this);
+#else
+			GeometryDataContainer gdc = new GeometryDataContainer(provider, this);			
+#endif
 			AnimResourceConst arc = new AnimResourceConst(provider, this);
 			CinematicScene cs = new CinematicScene(provider, this);
 			LightRefNode lrf = new LightRefNode(provider, this);
