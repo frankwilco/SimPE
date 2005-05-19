@@ -60,16 +60,16 @@ namespace SimPe.Plugin
 		{
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tAnimResourceConst = new System.Windows.Forms.TabPage();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.pg = new System.Windows.Forms.PropertyGrid();
+			this.tv = new System.Windows.Forms.TreeView();
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
 			this.tb_arc_ver = new System.Windows.Forms.TextBox();
 			this.label30 = new System.Windows.Forms.Label();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.tv = new System.Windows.Forms.TreeView();
-			this.pg = new System.Windows.Forms.PropertyGrid();
 			this.tabControl1.SuspendLayout();
 			this.tAnimResourceConst.SuspendLayout();
-			this.groupBox12.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			this.groupBox12.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -93,6 +93,53 @@ namespace SimPe.Plugin
 			this.tAnimResourceConst.TabIndex = 6;
 			this.tAnimResourceConst.Text = "AnimResourceConst";
 			this.tAnimResourceConst.Visible = false;
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.pg);
+			this.groupBox2.Controls.Add(this.tv);
+			this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.groupBox2.Location = new System.Drawing.Point(136, 8);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(648, 248);
+			this.groupBox2.TabIndex = 39;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Content";
+			// 
+			// pg
+			// 
+			this.pg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.pg.CommandsBackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.pg.CommandsVisibleIfAvailable = true;
+			this.pg.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.pg.LargeButtons = false;
+			this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
+			this.pg.Location = new System.Drawing.Point(312, 24);
+			this.pg.Name = "pg";
+			this.pg.Size = new System.Drawing.Size(328, 216);
+			this.pg.TabIndex = 1;
+			this.pg.Text = "pg";
+			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
+			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
+			// 
+			// tv
+			// 
+			this.tv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left)));
+			this.tv.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tv.ImageIndex = -1;
+			this.tv.Location = new System.Drawing.Point(8, 24);
+			this.tv.Name = "tv";
+			this.tv.SelectedImageIndex = -1;
+			this.tv.Size = new System.Drawing.Size(296, 216);
+			this.tv.TabIndex = 0;
+			this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
 			// 
 			// groupBox12
 			// 
@@ -129,52 +176,6 @@ namespace SimPe.Plugin
 			this.label30.TabIndex = 23;
 			this.label30.Text = "Version:";
 			// 
-			// groupBox2
-			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left)));
-			this.groupBox2.Controls.Add(this.pg);
-			this.groupBox2.Controls.Add(this.tv);
-			this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox2.Location = new System.Drawing.Point(136, 8);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(648, 248);
-			this.groupBox2.TabIndex = 39;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Content";
-			// 
-			// tv
-			// 
-			this.tv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left)));
-			this.tv.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tv.ImageIndex = -1;
-			this.tv.Location = new System.Drawing.Point(8, 24);
-			this.tv.Name = "tv";
-			this.tv.SelectedImageIndex = -1;
-			this.tv.Size = new System.Drawing.Size(296, 216);
-			this.tv.TabIndex = 0;
-			this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
-			// 
-			// pg
-			// 
-			this.pg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.pg.CommandsBackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.pg.CommandsVisibleIfAvailable = true;
-			this.pg.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.pg.LargeButtons = false;
-			this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
-			this.pg.Location = new System.Drawing.Point(312, 24);
-			this.pg.Name = "pg";
-			this.pg.Size = new System.Drawing.Size(328, 216);
-			this.pg.TabIndex = 1;
-			this.pg.Text = "pg";
-			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
-			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
-			// 
 			// fAnimResourceConst
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -184,8 +185,8 @@ namespace SimPe.Plugin
 			this.Text = "fAnimResourceConst";
 			this.tabControl1.ResumeLayout(false);
 			this.tAnimResourceConst.ResumeLayout(false);
-			this.groupBox12.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
+			this.groupBox12.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

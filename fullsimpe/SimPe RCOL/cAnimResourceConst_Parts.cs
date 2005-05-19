@@ -59,6 +59,18 @@ namespace SimPe.Plugin
 			return name.Length+1;
 		}
 
+		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal int SerializeName(System.IO.BinaryWriter writer)
+		{
+			foreach (char c in name) writer.Write(c);
+			writer.Write((byte)0);
+
+			return name.Length+1;
+		}
+
 		public override string ToString()
 		{
 			return name;
@@ -184,6 +196,25 @@ namespace SimPe.Plugin
 		}	
 
 		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializeData(System.IO.BinaryWriter writer)
+		{
+			writer.Write(datai[0]);
+			writer.Write(datai[1]);
+
+			writer.Write(datas[0]);
+			writer.Write(datas[1]);
+			writer.Write(datas[2]);
+			writer.Write(datas[3]);
+
+			writer.Write(datai[2]);
+			writer.Write(datai[3]);
+			writer.Write(datai[4]);
+		}
+
+		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
 		/// </summary>
 		/// <param name="reader">The Stream that contains the FileData</param>
@@ -198,6 +229,15 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializePart2Data(System.IO.BinaryWriter writer)
+		{
+			for (int i=0; i<ab2.Length; i++) ab2[i].SerializeData(writer);
+		}
+
+		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
 		/// </summary>
 		/// <param name="reader">The Stream that contains the FileData</param>
@@ -205,6 +245,17 @@ namespace SimPe.Plugin
 		{
 			int len = 0;
 			for (int i=0; i<ab2.Length; i++) len += ab2[i].UnserializeName(reader);
+			return len;
+		}
+
+		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal int SerializePart2Name(System.IO.BinaryWriter writer)
+		{
+			int len = 0;
+			for (int i=0; i<ab2.Length; i++) len += ab2[i].SerializeName(writer);
 			return len;
 		}
 
@@ -218,12 +269,30 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializePart3Data(System.IO.BinaryWriter writer)
+		{
+			for (int i=0; i<ab2.Length; i++) ab2[i].SerializePart3Data(writer);
+		}
+
+		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
 		/// </summary>
 		/// <param name="reader">The Stream that contains the FileData</param>
 		internal void UnserializePart3AddonData(System.IO.BinaryReader reader)
 		{						
 			for (int i=0; i<ab2.Length; i++) ab2[i].UnserializePart3AddonData(reader);
+		}
+
+		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializePart3AddonData(System.IO.BinaryWriter writer)
+		{
+			for (int i=0; i<ab2.Length; i++) ab2[i].SerializePart3AddonData(writer);
 		}
 
 		/// <summary>
@@ -241,12 +310,30 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializePart4Data(System.IO.BinaryWriter writer)
+		{
+			for (int i=0; i<ab4.Length; i++) ab4[i].SerializeData(writer);
+		}
+
+		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
 		/// </summary>
 		/// <param name="reader">The Stream that contains the FileData</param>
 		internal void UnserializePart5Data(System.IO.BinaryReader reader)
 		{			
 			for (int i=0; i<ab4.Length; i++) ab4[i].UnserializePart5Data(reader);
+		}
+
+		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializePart5Data(System.IO.BinaryWriter writer)
+		{
+			for (int i=0; i<ab4.Length; i++) ab4[i].SerializePart5Data(writer);
 		}
 	
 		/// <summary>
@@ -257,6 +344,15 @@ namespace SimPe.Plugin
 		{
 			return (datas[1]);
 		}
+
+		/// <summary>
+		/// Set the count for Part 5 Items
+		/// </summary>
+		/// <param name="ct">The New Count</param>
+		void SetPart2Count(int ct) 
+		{
+			datas[1] = (short)ct;
+		}
 		
 		/// <summary>
 		/// Returns the Number of Items for Part 4 assigned to this Object
@@ -265,6 +361,19 @@ namespace SimPe.Plugin
 		int GetPart4Count()
 		{
 			return (datas[2] & 0x3f);
+		}
+
+		/// <summary>
+		/// Set the count for Part 5 Items
+		/// </summary>
+		/// <param name="ct">The New Count</param>
+		void SetPart4Count(int ct) 
+		{
+			if (ct>0x3f) ct = 0x3f;
+			ct = ct & 0x3f;
+
+			datas[2] = (short)((int)datas[2] & 0x0000FFC0);
+			datas[2] = (short)((ushort)datas[2] | (ushort)ct);
 		}
 	}
 
@@ -345,6 +454,22 @@ namespace SimPe.Plugin
 			datai[4] = reader.ReadUInt32(); // contains the part3 count and unknown data
 			datai[5] = reader.ReadUInt32();			
 		}	
+
+		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializeData(System.IO.BinaryWriter writer)
+		{
+			this.SetPart3Count(ab3.Length);
+
+			writer.Write(datai[0]);
+			writer.Write(datai[1]);
+			writer.Write(datai[2]);
+			writer.Write(datai[3]);
+			writer.Write(datai[4]);
+			writer.Write(datai[5]);
+		}
 	
 		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
@@ -361,6 +486,15 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializePart3Data(System.IO.BinaryWriter writer)
+		{
+			for (int i=0; i<ab3.Length; i++) ab3[i].SerializeData(writer);			
+		}
+
+		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
 		/// </summary>
 		/// <param name="reader">The Stream that contains the FileData</param>
@@ -370,6 +504,16 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializePart3AddonData(System.IO.BinaryWriter writer)
+		{
+			for (int i=0; i<ab3.Length; i++) ab3[i].SerializeAddonData(writer);	
+		}
+
+
+		/// <summary>
 		/// Returns the Number of Items for Part 3 assigned to this Object
 		/// </summary>
 		/// <returns>Number of Items</returns>
@@ -377,6 +521,20 @@ namespace SimPe.Plugin
 		{
 			//using highest 3-Bits xxx00000000000000000000000000000
 			return ((int)datai[4] >> 0x1D) & 0x7;
+		}
+
+		/// <summary>
+		/// Set the count for Part 5 Items
+		/// </summary>
+		/// <param name="ct">The New Count</param>
+		void SetPart3Count(int ct) 
+		{
+			if (ct>7) ct=7;
+			ct = ct & 0x00000007;
+			ct = ct << 0x1D;
+			datai[4] = datai[4] & 0x1FFFFFFF;
+
+			datai[4] = (uint)((ulong)datai[4] | (uint)ct);
 		}
 	}
 
@@ -388,7 +546,7 @@ namespace SimPe.Plugin
 	{
 		#region Attributes
 		uint[] datai;
-		[DescriptionAttribute("Lower 16 Bits contain the count, Bit 16-18 contain the size of the assigned AddonData.")]				
+		[DescriptionAttribute("Lower 16 Bits contain the count, Bit 16-18 contain the type of the assigned AddonData.")]				
 		public uint Unknown1 
 		{
 			get { return datai[0]; }
@@ -405,6 +563,34 @@ namespace SimPe.Plugin
 		public short[] AddonData 
 		{
 			get { return datas; }
+		}
+
+		byte type;
+		[DescriptionAttribute("Propbably some sort of Type Identifier"), CategoryAttribute("Information")]				
+		public byte AddonTokenType 
+		{
+			get { return type; }
+		}
+
+		[DescriptionAttribute("Size (in Bytes) of one Addon Token"), CategoryAttribute("Information")]				
+		public byte AddonTokenSize 
+		{
+			get 
+			{
+				byte size = 0;
+
+				if (type==0) size=1;
+				else if (type==1) size=3;
+				else size=4;
+
+				return size;
+			}
+		}
+
+		[DescriptionAttribute("Number of Tokens stored in the Addon Data"), CategoryAttribute("Information")]				
+		public int AddonTokenCount 
+		{
+			get { return this.datas.Length / AddonTokenSize; }
 		}
 		#endregion
 
@@ -425,6 +611,17 @@ namespace SimPe.Plugin
 		}	
 
 		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializeData(System.IO.BinaryWriter writer)
+		{
+			this.SetCount(datas.Length);
+			writer.Write(datai[0]);
+			writer.Write(datai[1]);
+		}
+
+		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
 		/// </summary>
 		/// <param name="reader">The Stream that contains the FileData</param>
@@ -433,6 +630,15 @@ namespace SimPe.Plugin
 			datas = new short[GetCount()];
 			for (int i=0; i<datas.Length; i++) datas[i] = reader.ReadInt16();
 		}	
+
+		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializeAddonData(System.IO.BinaryWriter writer)
+		{
+			for (int i=0; i<datas.Length; i++) writer.Write(datas[i]);
+		}
 	
 		public override string ToString()
 		{
@@ -447,13 +653,24 @@ namespace SimPe.Plugin
 		{	
 			short dum = (short)((int)datai[0] >> 0x10);
 			short count = (short)(datai[0] & 0xffff);
-			int size = dum&3;
-
-			if (size==0) size=1;
-			else if (size==1) size=3;
-			else size=4;
+			type = (byte)(dum&3);
+			int size = AddonTokenSize;			
 						
 			return (count * size);
+		}
+
+		/// <summary>
+		/// Set the count for Part 5 Items
+		/// </summary>
+		/// <param name="ct">The New Count</param>
+		void SetCount(int ct) 
+		{
+			int size = AddonTokenSize;
+			int count = ct / size;
+
+			count = (type << 0x10) | count;
+
+			datai[0] = (uint)(((ulong)datai[0] & 0xFFFC0000) | ((ulong)count & 0x0007FFFF));		
 		}
 	}
 
@@ -530,7 +747,21 @@ namespace SimPe.Plugin
 				reader.BaseStream.Seek(pos, System.IO.SeekOrigin.Begin);
 				return;
 			}
-		}		
+		}	
+	
+		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializeData(System.IO.BinaryWriter writer)
+		{
+			this.SetPart5Count(ab5.Length);
+
+			writer.Write(datai[0]);
+			writer.Write(datai[1]);	
+			writer.Write(data);
+			writer.Write(datai[2]);
+		}
 
 		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
@@ -547,12 +778,31 @@ namespace SimPe.Plugin
 		}		
 
 		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializePart5Data(System.IO.BinaryWriter writer)
+		{
+			for (int i=0; i<ab5.Length; i++) ab5[i] = new AnimBlock5();				
+		}
+
+		/// <summary>
 		/// Returns the Number of Items for Part 5 assigned to this Object
 		/// </summary>
 		/// <returns>Number of Items</returns>
 		int GetPart5Count()
 		{
 			return (data[2]);
+		}
+
+		/// <summary>
+		/// Set the count for Part 5 Items
+		/// </summary>
+		/// <param name="ct">The New Count</param>
+		void SetPart5Count(int ct) 
+		{
+			if (ct>0xff) ct=0xff;
+			data[2] = (byte)(ct & 0xff);
 		}
 	}
 
@@ -609,7 +859,18 @@ namespace SimPe.Plugin
 				reader.BaseStream.Seek(pos, System.IO.SeekOrigin.Begin);
 				return;
 			}
-		}		
+		}
+		
+		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializeData(System.IO.BinaryWriter writer)
+		{
+			writer.Write(datai[0]);
+			writer.Write(datai[1]);	
+			writer.Write(data);
+		}
 	}
 
 
@@ -670,7 +931,22 @@ namespace SimPe.Plugin
 			datas[2] = reader.ReadInt16();
 		
 			datai[1] = reader.ReadUInt32();
-		}		
+		}
+		
+		/// <summary>
+		/// Serializes to a BinaryStream from the Attributes of this Instance
+		/// </summary>
+		/// <param name="writer">The Stream that receives the Data</param>
+		internal void SerializeData(System.IO.BinaryWriter writer)
+		{
+			writer.Write(datai[0]);
+
+			writer.Write(datas[0]);
+			writer.Write(datas[1]);
+			writer.Write(datas[2]);
+		
+			writer.Write(datai[1]);
+		}
 	}
 
 }
