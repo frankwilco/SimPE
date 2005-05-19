@@ -31,11 +31,11 @@ namespace SimPe.Plugin
 	{
 		#region Attributes
 
-		byte[] data;
+		byte[] unknowndata;
 		internal byte[] Data 
 		{
-			get { return data; }
-			set { data = value; }
+			get { return unknowndata; }
+			set { unknowndata = value; }
 		}
 
 		short unknown1;
@@ -49,6 +49,7 @@ namespace SimPe.Plugin
 			get { return new Ambertation.BaseChangeShort(unknown1); }
 		}
 		byte[] headerb;
+		[DescriptionAttribute("Index 0 and 5 contain string Lengths.")]
 		public byte[] HeaderBytes
 		{
 			get { return headerb; }
@@ -88,7 +89,7 @@ namespace SimPe.Plugin
 		public AnimResourceConst(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
 		{
 			sgres = new SGResource(provider, null);
-			data = new byte[0];
+			unknowndata = new byte[0];
 			BlockID = 0xfb00791e;
 
 			headerb = new byte[6];
@@ -118,90 +119,11 @@ namespace SimPe.Plugin
 			sgres.BlockID = myid;
 
 			int len = reader.ReadInt32();
-			data = reader.ReadBytes(len);
+			byte[] data = reader.ReadBytes(len);
 
 			//now read the Data
 			System.IO.BinaryReader br = new System.IO.BinaryReader(new System.IO.MemoryStream(data));
 			UnserializeData(br);			
-		}
-
-		/// <summary>
-		/// Make sure the String Data is alligned
-		/// </summary>
-		/// <param name="reader">The reader you want to align</param>
-		/// <param name="ct">Number of Characters that were read (including terminating 0)</param>
-		static void AlignReader(System.IO.BinaryReader reader, int ct)
-		{
-			int add = 0;
-			if (ct%2==0) //even
-			{
-				add = (ct%4);
-			} 
-			else //uneven
-			{
-				add = ct%2;
-				if (((add+ct)%4)==0) add += 2;
-			}
-			
-			while (add-->0) reader.ReadByte();
-		}
-
-		public void UnserializeData(System.IO.BinaryReader reader)
-		{
-			unknown1 = reader.ReadInt16();
-			short ct1 = reader.ReadInt16();
-			short ct2 = reader.ReadInt16();
-
-			headerb = reader.ReadBytes(headerb.Length);
-			for (int i=0;i<headeri.Length; i++) headeri[i] = reader.ReadUInt32();
-			for (int i=0;i<headerf.Length; i++) headerf[i] = reader.ReadSingle();
-			
-			objname = Helper.ToString(reader.ReadBytes(headerb[5]));
-			reader.ReadByte(); //read the terminating 0
-			objmod = Helper.ToString(reader.ReadBytes(headerb[0]));
-			reader.ReadByte(); //read the terminating 0
-
-			int ct = headerb[0] + headerb[5];
-			AlignReader(reader, ct+2);
-			
-			//--- part1 ---
-			ab1 = new AnimBlock1[ct1];
-			int len = 0;	
-			for (int i=0; i<ab1.Length; i++) 
-			{
-				ab1[i] = new AnimBlock1();
-				ab1[i].UnserializeData(reader);
-			}
-			for (int i=0; i<ab1.Length; i++) len += ab1[i].UnserializeName(reader);
-			AlignReader(reader, len);
-
-			//--- part2 ---
-			len = 0;
-			for (int i=0; i<ab1.Length; i++) ab1[i].UnserializePart2Data(reader);
-			for (int i=0; i<ab1.Length; i++) len += ab1[i].UnserializePart2Name(reader);						
-			AlignReader(reader, len);
-
-			//--- part3 ---
-			for (int i=0; i<ab1.Length; i++) ab1[i].UnserializePart3Data(reader);
-			for (int i=0; i<ab1.Length; i++) ab1[i].UnserializePart3AddonData(reader);
-
-			//--- part4 ---
-			for (int i=0; i<ab1.Length; i++) ab1[i].UnserializePart4Data(reader);
-			
-			//--- part5 ---
-			for (int i=0; i<ab1.Length; i++) ab1[i].UnserializePart5Data(reader);
-
-			//--- part6 ---
-			ab6 = new AnimBlock6[ct2];
-			len = 0;
-			for (int i=0; i<ab6.Length; i++) 
-			{
-				ab6[i] = new AnimBlock6();
-				ab6[i].UnserializeData(reader);
-			}
-			for (int i=0; i<ab6.Length; i++) len += ab6[i].UnserializeName(reader);	
-		
-			//data = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));
 		}
 
 		/// <summary>
@@ -220,9 +142,176 @@ namespace SimPe.Plugin
 			writer.Write(sgres.BlockID);
 			sgres.Serialize(writer);
 
+
+			//now read the Data
+			System.IO.BinaryWriter bw = new System.IO.BinaryWriter(new System.IO.MemoryStream());
+			SerializeData(bw);	
+			byte[] data = ((System.IO.MemoryStream)bw.BaseStream).ToArray();
+
 			writer.Write((int)data.Length);
 			writer.Write(data);
 		}
+
+		#region Alignment
+		/// <summary>
+		/// Calulates how many bytes we need to align the Stream
+		/// </summary>
+		/// <param name="ct">NUmber of bytes written</param>
+		/// <returns>Number of Bytes needed to align</returns>
+		static int Align(int ct)
+		{
+			int add = 0;
+			if (ct%2==0) //even
+			{
+				add = (ct%4);
+			} 
+			else //uneven
+			{
+				add = ct%2;
+				if (((add+ct)%4)==0) add += 2;
+			}
+
+			return add;
+		}
+
+		/// <summary>
+		/// Make sure the String Data is alligned
+		/// </summary>
+		/// <param name="reader">The reader you want to align</param>
+		/// <param name="ct">Number of Characters that were read (including terminating 0)</param>
+		static void Align(System.IO.BinaryReader reader, int ct)
+		{			
+			int add = Align(ct);
+			for (int i=0; i<add; i++) reader.ReadByte();
+		}
+
+		/// <summary>
+		/// Make sure the String Data is alligned
+		/// </summary>
+		/// <param name="reader">The reader you want to align</param>
+		/// <param name="ct">Number of Characters that were read (including terminating 0)</param>
+		static void Align(System.IO.BinaryWriter writer, int ct)
+		{
+			int add = Align(ct);
+			for (int i=0; i<add; i++) writer.Write((byte)i);
+		}
+		#endregion
+
+		public void UnserializeData(System.IO.BinaryReader reader)
+		{
+			unknown1 = reader.ReadInt16();
+			short ct1 = reader.ReadInt16();
+			short ct2 = reader.ReadInt16();
+
+			headerb = reader.ReadBytes(headerb.Length);
+			for (int i=0;i<headeri.Length; i++) headeri[i] = reader.ReadUInt32();
+			for (int i=0;i<headerf.Length; i++) headerf[i] = reader.ReadSingle();
+			
+			objname = Helper.ToString(reader.ReadBytes(headerb[5]));
+			reader.ReadByte(); //read the terminating 0
+			objmod = Helper.ToString(reader.ReadBytes(headerb[0]));
+			reader.ReadByte(); //read the terminating 0
+
+			int ct = headerb[0] + headerb[5];
+			Align(reader, ct+2);
+			
+			//--- part1 ---
+			ab1 = new AnimBlock1[ct1];
+			int len = 0;	
+			for (int i=0; i<ab1.Length; i++) 
+			{
+				ab1[i] = new AnimBlock1();
+				ab1[i].UnserializeData(reader);
+			}
+			for (int i=0; i<ab1.Length; i++) len += ab1[i].UnserializeName(reader);
+			Align(reader, len);
+
+			//--- part2 ---
+			len = 0;
+			for (int i=0; i<ab1.Length; i++) ab1[i].UnserializePart2Data(reader);
+			for (int i=0; i<ab1.Length; i++) len += ab1[i].UnserializePart2Name(reader);						
+			Align(reader, len);
+
+			try 
+			{
+				//--- part3 ---
+				for (int i=0; i<ab1.Length; i++) ab1[i].UnserializePart3Data(reader);
+				for (int i=0; i<ab1.Length; i++) ab1[i].UnserializePart3AddonData(reader);
+
+				//--- part4 ---
+				for (int i=0; i<ab1.Length; i++) ab1[i].UnserializePart4Data(reader);
+			
+				//--- part5 ---
+				for (int i=0; i<ab1.Length; i++) ab1[i].UnserializePart5Data(reader);
+
+				//--- part6 ---
+				ab6 = new AnimBlock6[ct2];
+				len = 0;
+				for (int i=0; i<ab6.Length; i++) 
+				{
+					ab6[i] = new AnimBlock6();
+					ab6[i].UnserializeData(reader);
+				}
+				for (int i=0; i<ab6.Length; i++) len += ab6[i].UnserializeName(reader);	
+			} 
+			catch {}
+		
+			unknowndata = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));
+		}
+
+		public void SerializeData(System.IO.BinaryWriter writer)
+		{
+			writer.Write(unknown1);
+			writer.Write((short)ab1.Length);
+			writer.Write((short)ab6.Length);
+
+			writer.Write(headerb);
+
+			//write lengths to the Header
+			byte[] bobjname = Helper.ToBytes(objname);
+			byte[] bobjmod = Helper.ToBytes(objmod);
+			headerb[0] = (byte)bobjmod.Length;
+			headerb[5] = (byte)bobjname.Length;
+
+			for (int i=0;i<headeri.Length; i++) writer.Write(headeri[i]);
+			for (int i=0;i<headerf.Length; i++) writer.Write(headerf[i]);
+			
+			foreach (byte b in bobjname) writer.Write(b);
+			writer.Write((byte)0);
+			foreach (byte b in bobjmod) writer.Write(b);
+			writer.Write((byte)0);			
+
+			int ct = headerb[0] + headerb[5];
+			Align(writer, ct+2);
+			
+			//--- part1 ---
+			int len = 0;	
+			for (int i=0; i<ab1.Length; i++) ab1[i].SerializeData(writer);
+			for (int i=0; i<ab1.Length; i++) len += ab1[i].SerializeName(writer);
+			Align(writer, len);
+
+			//--- part2 ---
+			len = 0;
+			for (int i=0; i<ab1.Length; i++) ab1[i].SerializePart2Data(writer);
+			for (int i=0; i<ab1.Length; i++) len += ab1[i].SerializePart2Name(writer);						
+			Align(writer, len);
+
+			//--- part3 ---
+			for (int i=0; i<ab1.Length; i++) ab1[i].SerializePart3Data(writer);
+			for (int i=0; i<ab1.Length; i++) ab1[i].SerializePart3AddonData(writer);
+
+			//--- part4 ---
+			for (int i=0; i<ab1.Length; i++) ab1[i].SerializePart4Data(writer);
+			
+			//--- part5 ---
+			for (int i=0; i<ab1.Length; i++) ab1[i].SerializePart5Data(writer);
+
+			//--- part6 ---
+			for (int i=0; i<ab6.Length; i++) ab6[i].SerializeData(writer);
+			for (int i=0; i<ab6.Length; i++) ab6[i].SerializeName(writer);	
+		
+			writer.Write(unknowndata);
+		}		
 
 
 		fAnimResourceConst form = null;
