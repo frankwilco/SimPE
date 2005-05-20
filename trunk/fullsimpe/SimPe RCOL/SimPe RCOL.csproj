@@ -159,6 +159,11 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "AbstractGmdcExporter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AbstractRcolBlock.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -220,11 +225,6 @@
                 />
                 <File
                     RelPath = "cGeometryDataContainer.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cGeometryDataContainerExt.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -369,6 +369,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ExporterLoader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "fAnimResourceConst.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -410,11 +415,6 @@
                 />
                 <File
                     RelPath = "GeneralRcolWrapper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GmdcExportToX.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

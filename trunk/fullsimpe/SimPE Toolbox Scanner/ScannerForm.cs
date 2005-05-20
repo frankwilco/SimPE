@@ -654,7 +654,7 @@ namespace SimPe.Plugin
 		#endregion
 
 		/// <summary>
-		/// Load all available Scanners in the plugins Folder
+		/// Load all available Scanners in the plugins Folder (everything with the Extension *.plugin.dll)
 		/// </summary>
 		void LoadScanners() 
 		{

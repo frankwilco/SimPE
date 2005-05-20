@@ -135,7 +135,7 @@ namespace SimPe.Plugin
 								gmdc.ProcessData(pfd, pkg);
 
 								GeometryDataContainer gdc = (GeometryDataContainer)gmdc.Blocks[0];
-								foreach (SimPe.Plugin.GeometryDataContainerItem3 gdc3 in gdc.P3Model) 
+								foreach (SimPe.Plugin.Gmdc.GmdcGroup gdc3 in gdc.Groups) 
 								{
 									//found a mesh File
 									if (gdc3.Name.Trim().ToLower()==subset) 
@@ -146,7 +146,7 @@ namespace SimPe.Plugin
 										txtrmap = tl.GetLargestImages(txtrmap);
 
 										WaitingScreen.UpdateMessage("Build Mesh");
-										System.IO.Stream xfile = gdc.GenerateX();
+										System.IO.Stream xfile = gdc.GenerateX(gdc.Groups);
 											
 										try 
 										{

@@ -420,6 +420,7 @@ namespace Ambertation
 					return;
 				if (pause)
 					return;
+				if (meshMaterials==null) return;
 
 				//Clear the backbuffer to a blue color 
 				device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, this.BackColor, 1.0f, 0);
@@ -512,6 +513,8 @@ namespace Ambertation
 		/// </summary>
 		void SetupMatrices()
 		{
+			if (vp==null) vp = new ViewportSetting();
+
 			device.Transform.View =  Matrix.Multiply(Matrix.Scaling(vp.Scale, vp.Scale, vp.Scale),
 				Matrix.Multiply(Matrix.Translation(vp.X, vp.Y, vp.Z),
 				Matrix.Multiply(Matrix.RotationX( vp.AngelX ), 
