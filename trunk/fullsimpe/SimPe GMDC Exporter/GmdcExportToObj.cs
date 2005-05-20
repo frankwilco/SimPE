@@ -109,10 +109,9 @@ namespace SimPe.Plugin.Gmdc
 			{
 				vertexcount++;					
 				writer.WriteLine("v " + 
-					VertexElement.Values[i].Data[0].ToString("N6", CultureInfo.InvariantCulture) + " "+
-					VertexElement.Values[i].Data[1].ToString("N6", CultureInfo.InvariantCulture) + " "+
-					VertexElement.Values[i].Data[2].ToString("N6", CultureInfo.InvariantCulture) /*+ " "+
-					"# " + (i + vertexoffset)*/);
+					VertexElement.Values[i].Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+					VertexElement.Values[i].Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+					VertexElement.Values[i].Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture) );
 			}			
 			
 			//Add a MeshNormal Section if available
@@ -121,12 +120,13 @@ namespace SimPe.Plugin.Gmdc
 				for (int i = 0; i < NormalElement.Values.Length; i++)
 				{
 					writer.WriteLine("vn " + 
-						VertexElement.Values[i].Data[0].ToString("N6", CultureInfo.InvariantCulture) + " "+
-						VertexElement.Values[i].Data[1].ToString("N6", CultureInfo.InvariantCulture) + " "+
-						VertexElement.Values[i].Data[2].ToString("N6", CultureInfo.InvariantCulture)/* + " " +
-						"# " + i*/);
+						VertexElement.Values[i].Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+						VertexElement.Values[i].Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+						VertexElement.Values[i].Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture));
 				}				
 			}
+			
+			
 
 			//now the Texture Cords //iv available
 			if (this.UVCoordinateElement!=null) 
@@ -134,9 +134,8 @@ namespace SimPe.Plugin.Gmdc
 				for (int i = 0; i < UVCoordinateElement.Values.Length; i++)
 				{
 					writer.WriteLine("vt " + 
-						VertexElement.Values[i].Data[0].ToString("N6", CultureInfo.InvariantCulture) + " "+
-						(-VertexElement.Values[i].Data[1]).ToString("N6", CultureInfo.InvariantCulture)/* + " "+
-						"# " + i*/);
+						VertexElement.Values[i].Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+						(-VertexElement.Values[i].Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture));
 				}
 			}
 			

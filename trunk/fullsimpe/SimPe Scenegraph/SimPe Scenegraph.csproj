@@ -164,6 +164,11 @@
                     AssemblyName = "Skybound.VisualStyles"
                     HintPath = "..\skybound.visualstyles.dll"
                 />
+                <Reference
+                    Name = "SimPe GMDC Exporter Base"
+                    Project = "{76D6A8B3-10DF-4948-9028-C63A416AB00E}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
