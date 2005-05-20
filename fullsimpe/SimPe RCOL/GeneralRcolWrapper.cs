@@ -57,7 +57,7 @@ namespace SimPe.Plugin
 				"Generic Rcol Wrapper",
 				"Quaxi",
 				"---",
-				1
+				3
 				); 
 		}
 		#endregion

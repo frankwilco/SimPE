@@ -159,11 +159,6 @@
         <Files>
             <Include>
                 <File
-                    RelPath = "AbstractGmdcExporter.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "AbstractRcolBlock.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -420,6 +415,11 @@
                 />
                 <File
                     RelPath = "IGmdcExport.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IGmdcImport.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
