@@ -72,7 +72,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Filename of the First Block (or an empty string)
 		/// </summary>
-		public string FileName 
+		public new string FileName 
 		{
 			get 
 			{
@@ -123,12 +123,7 @@ namespace SimPe.Plugin
 			RenderableNode rnnn = new RenderableNode(provider, this);
 			BoundedNode bn = new BoundedNode(provider, this);
 			GeometryNode gnn = new GeometryNode(provider, this);
-#if DEBUG
-			//GeometryDataContainer gdc = new GeometryDataContainer(provider, this);
-			GeometryDataContainerExt gdc = new GeometryDataContainerExt(provider, this);
-#else
-			GeometryDataContainer gdc = new GeometryDataContainer(provider, this);			
-#endif
+			GeometryDataContainer gdc = new GeometryDataContainer(provider, this);
 			AnimResourceConst arc = new AnimResourceConst(provider, this);
 			CinematicScene cs = new CinematicScene(provider, this);
 			LightRefNode lrf = new LightRefNode(provider, this);
