@@ -252,6 +252,35 @@ namespace SimPe.Plugin
 			return ret;
 		}
 
+		#region StoreState
+		ArrayList oldnames;
+		Hashtable oldindex;
+		bool olddup;
+
+		/// <summary>
+		/// Stores the current State of the FileIndex.
+		/// 
+		/// You can revert to the last stored state by calling RestoreLastState()
+		/// </summary>
+		public void StoreCurrentState()
+		{
+			oldnames = (ArrayList)this.addedfilenames.Clone();
+			oldindex = (Hashtable)this.index.Clone();
+			olddup = duplicates;
+		}
+
+		/// <summary>
+		/// Restores the last stored state (if one is available)
+		/// </summary>
+		public void RestoreLastState()
+		{
+			addedfilenames = oldnames;
+			index = oldindex;
+			duplicates = olddup;
+		}
+
+		#endregion
+
 		/// <summary>
 		/// Initialize the instance Data
 		/// </summary>
@@ -259,7 +288,7 @@ namespace SimPe.Plugin
 		protected void Init(ArrayList folders)
 		{	
 			addedfilenames = new ArrayList();
-			duplicates = false;
+			duplicates = false;			
 
 			//Add alternate Groups
 			if (alternaiveGroups==null) 
@@ -271,6 +300,7 @@ namespace SimPe.Plugin
 			}
 
 			index = new Hashtable();
+			StoreCurrentState();
 
 			if (folders==null) folders = FileTable.DefaultFolders;
 			this.folders = folders;
