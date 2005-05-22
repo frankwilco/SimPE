@@ -182,5 +182,17 @@ namespace SimPe.Interfaces.Scenegraph
 		/// </summary>
 		/// <param name="files">The Files you want to sort</param>
 		IScenegraphFileIndexItem[] Sort(IScenegraphFileIndexItem[] files);
+
+		/// <summary>
+		/// Stores the current State of the FileIndex.
+		/// 
+		/// You can revert to the last stored state by calling RestoreLastState()
+		/// </summary>
+		void StoreCurrentState();
+
+		/// <summary>
+		/// Restores the last stored state (if one is available)
+		/// </summary>
+		void RestoreLastState();
 	}
 }

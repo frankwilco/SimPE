@@ -119,15 +119,16 @@ namespace SimPe.Plugin.Gmdc
 					
 			//firts, write the availabel Vertices
 			int vertexcount = 0;
-			writer.WriteLine(Math.Min(VertexElement.Values.Length, Link.ReferencedSize).ToString() + "; //Vertex Count");
-			for (int i = 0; i < VertexElement.Values.Length; i++)
+			writer.WriteLine(Link.ReferencedSize.ToString() + "; //Vertex Count");
+			int nr = Link.GetElementNr(VertexElement);
+			for (int i = 0; i < Link.ReferencedSize; i++)
 			{
 				vertexcount++;					
 				if (i!=0) writer.WriteLine(",");
 				writer.Write(
-					VertexElement.Values[i].Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
-					VertexElement.Values[i].Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
-					VertexElement.Values[i].Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture) + "; "
+					Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
+					Link.GetValue(nr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
+					Link.GetValue(nr, i).Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture) + "; "
 					);
 			}
 			writer.WriteLine(";");
@@ -157,16 +158,18 @@ namespace SimPe.Plugin.Gmdc
 			{				
 				vertexcount = 0;
 				writer.WriteLine("MeshNormals {");
-				writer.WriteLine(Math.Min(NormalElement.Values.Length, Link.ReferencedSize).ToString() + "; //Vertex Count");
-				for (int i = 0; i < NormalElement.Values.Length; i++)
+				writer.WriteLine(Link.ReferencedSize.ToString() + "; //Vertex Count");
+				nr = Link.GetElementNr(NormalElement);
+				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
 					vertexcount++;					
 					if (i!=0) writer.WriteLine(",");
 					writer.Write(
-						NormalElement.Values[i].Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
-						NormalElement.Values[i].Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
-						NormalElement.Values[i].Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"
-						);
+						Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
+						Link.GetValue(nr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
+						Link.GetValue(nr, i).Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"
+					);
+					
 				}
 				writer.WriteLine(";");
 				writer.WriteLine(faces);
@@ -188,14 +191,14 @@ namespace SimPe.Plugin.Gmdc
 			writer.WriteLine(";;");
 			//add a Meterial
 			writer.WriteLine("Material {");
-			writer.WriteLine("0.300000;0.300000;0.300000;1.000000;;");
+			writer.WriteLine("0.300000;0.300000;0.300000;"+((float)(Group.Opacity&0xff)).ToString("N6", AbstractGmdcExporter.DefaultCulture)+";;");
 			writer.WriteLine("0.300000;");
 			writer.WriteLine("1.000000;1.000000;1.000000;;");
 			writer.WriteLine("0.100000;0.100000;0.100000;;");
 			if ((txtrname!=null) && (this.UVCoordinateElement!=null))
 			{
 				///
-				///TODO: Remove the following Line if you found a way how to texture two subsets with te same name
+				///TODO: Remove the following Line if you found out how to texture two subsets with te same name
 				///
 				txtrname = umodelname;
 				writer.WriteLine("TextureFilename{\""+txtrname.Replace("\\", "\\\\")+"\";}");
@@ -207,12 +210,13 @@ namespace SimPe.Plugin.Gmdc
 			if (this.UVCoordinateElement!=null) 
 			{								
 				writer.WriteLine("MeshTextureCoords {");
-				writer.WriteLine(Math.Min(UVCoordinateElement.Values.Length, Link.ReferencedSize).ToString() + "; //Vertex Count");
-				for (int i = 0; i < UVCoordinateElement.Values.Length; i++)
+				writer.WriteLine(Link.ReferencedSize.ToString() + "; //Vertex Count");
+				nr = Link.GetElementNr(UVCoordinateElement);
+				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
 					writer.WriteLine(
-						UVCoordinateElement.Values[i].Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
-						UVCoordinateElement.Values[i].Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"
+						Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
+						Link.GetValue(nr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"
 						);
 				}
 				writer.WriteLine(";");

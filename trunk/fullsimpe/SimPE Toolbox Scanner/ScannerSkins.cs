@@ -142,8 +142,13 @@ namespace SimPe.Plugin.Scanner
 			SimPe.Packages.GeneratableFile pkg = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
 
 			WaitingScreen.Wait();
+			//Save the old FileTable and the source File
+			FileTable.FileIndex.Load();
+			FileTable.FileIndex.StoreCurrentState();			
+			FileTable.FileIndex.AddIndexFromPackage(src);
 			try 
 			{
+				//find al description Files that belong to the Skintone that should be replaced
 				ArrayList basecpf = new ArrayList();
 				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.GZPS, true);
 				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
@@ -168,12 +173,18 @@ namespace SimPe.Plugin.Scanner
 				compare.Add("override0resourcekeyidx");
 				compare.Add("shapekeyidx");
 
+				//now select matching Files
 				Interfaces.Files.IPackedFileDescriptor[] pfds = src.FindFiles(Data.MetaData.GZPS);
+
+				
+				
 				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{
+					//load a description File for the new Skintone
 					SimPe.PackedFiles.Wrapper.Cpf cpf = new Cpf();
 					cpf.ProcessData(pfd, src);
 
+					//check if File is a match
 					foreach (SimPe.Plugin.SkinChain sc in basecpf)
 					{
 						bool use = true;
@@ -187,6 +198,7 @@ namespace SimPe.Plugin.Scanner
 							}
 						}
 
+						//yes, yes :D this is a match
 						if (use) 
 						{
 							SkinChain newsc = new SkinChain(cpf);
@@ -221,7 +233,7 @@ namespace SimPe.Plugin.Scanner
 						}
 					}
 				
-				}
+				}				
 
 				SimPe.PackedFiles.Wrapper.Str str = new Str();
 				str.Add(new StrItem(0, 0, "SimPE Skin Override: "+skintone+" (from "+sitem.PackageCacheItem.Name+")", ""));
@@ -236,6 +248,8 @@ namespace SimPe.Plugin.Scanner
 			} 
 			finally 
 			{
+				//restore the Previous FileTable
+				FileTable.FileIndex.RestoreLastState();
 				WaitingScreen.Stop();
 			}
 

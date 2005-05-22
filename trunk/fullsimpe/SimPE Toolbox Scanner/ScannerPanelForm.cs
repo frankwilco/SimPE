@@ -165,13 +165,13 @@ namespace SimPe.Plugin.Scanner
 			this.visualStyleLinkLabel1 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.pnskin = new System.Windows.Forms.Panel();
+			this.cbtxtr = new System.Windows.Forms.CheckBox();
+			this.cbtxmt = new System.Windows.Forms.CheckBox();
 			this.cbskins = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.visualStyleLinkLabel2 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
-			this.cbtxmt = new System.Windows.Forms.CheckBox();
-			this.cbtxtr = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.pncloth.SuspendLayout();
@@ -521,6 +521,29 @@ namespace SimPe.Plugin.Scanner
 			this.pnskin.TabIndex = 1;
 			this.visualStyleProvider1.SetVisualStyleSupport(this.pnskin, true);
 			// 
+			// cbtxtr
+			// 
+			this.cbtxtr.Checked = true;
+			this.cbtxtr.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbtxtr.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbtxtr.Location = new System.Drawing.Point(136, 48);
+			this.cbtxtr.Name = "cbtxtr";
+			this.cbtxtr.TabIndex = 42;
+			this.cbtxtr.Text = "override TXTR";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbtxtr, false);
+			// 
+			// cbtxmt
+			// 
+			this.cbtxmt.Checked = true;
+			this.cbtxmt.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbtxmt.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbtxmt.Location = new System.Drawing.Point(16, 48);
+			this.cbtxmt.Name = "cbtxmt";
+			this.cbtxmt.Size = new System.Drawing.Size(112, 24);
+			this.cbtxmt.TabIndex = 41;
+			this.cbtxmt.Text = "override TXMT";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbtxmt, false);
+			// 
 			// cbskins
 			// 
 			this.cbskins.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -561,29 +584,6 @@ namespace SimPe.Plugin.Scanner
 			// 
 			this.sfd.Filter = "Package File (*.package)|*.package|All Files (*.*)|*.*";
 			this.sfd.Title = "Skin Override";
-			// 
-			// cbtxmt
-			// 
-			this.cbtxmt.Checked = true;
-			this.cbtxmt.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbtxmt.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbtxmt.Location = new System.Drawing.Point(16, 48);
-			this.cbtxmt.Name = "cbtxmt";
-			this.cbtxmt.Size = new System.Drawing.Size(112, 24);
-			this.cbtxmt.TabIndex = 41;
-			this.cbtxmt.Text = "override TXMT";
-			this.visualStyleProvider1.SetVisualStyleSupport(this.cbtxmt, false);
-			// 
-			// cbtxtr
-			// 
-			this.cbtxtr.Checked = true;
-			this.cbtxtr.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbtxtr.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbtxtr.Location = new System.Drawing.Point(136, 48);
-			this.cbtxtr.Name = "cbtxtr";
-			this.cbtxtr.TabIndex = 42;
-			this.cbtxtr.Text = "override TXTR";
-			this.visualStyleProvider1.SetVisualStyleSupport(this.cbtxtr, false);
 			// 
 			// ScannerPanelForm
 			// 

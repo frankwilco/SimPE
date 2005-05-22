@@ -337,9 +337,11 @@ namespace Ambertation
 				device.RenderState.ZBufferEnable = true; //Have Depth
 				device.RenderState.Lighting = true;    // Make sure lighting is enabled
 				device.RenderState.AlphaBlendEnable = true;
-				device.RenderState.AlphaBlendOperation = BlendOperation.Add;
+				device.RenderState.AlphaBlendOperation = BlendOperation.RevSubtract;
+				device.RenderState.AlphaSourceBlend = Blend.SourceAlpha;
+				device.RenderState.AlphaDestinationBlend = Blend.InvSourceAlpha;
 				device.RenderState.LocalViewer = false;
-				device.RenderState.Ambient = Color.White;				
+				device.RenderState.Ambient = Color.White;
 
 				pause = false;
 			}
@@ -381,7 +383,9 @@ namespace Ambertation
 				{
 					meshMaterials[i] = materials[i].Material3D;
 					// Set the ambient color for the material (D3DX does not do this)
-					meshMaterials[i].Ambient = meshMaterials[i].Diffuse;
+					meshMaterials[i].Ambient = Color.Black;					
+					meshMaterials[i].Diffuse = Color.Silver;
+					meshMaterials[i].Specular = Color.White;
      
 					// Create the texture
 					string txtrname = materials[i].TextureFilename;
@@ -398,7 +402,7 @@ namespace Ambertation
 					else 
 					{
 						meshTextures[i] = TextureLoader.FromStream(dev, (Stream)mapped);
-					}
+					}					
 				}
 			}
 			
@@ -480,11 +484,11 @@ namespace Ambertation
 			// Note that many lights may be active at a time (but each one slows down
 			// the rendering of the scene). However, here just one is used.
 			device.Lights[0].Type = LightType.Point;
-			device.Lights[0].Attenuation0 = 0.05f;
+			device.Lights[0].Attenuation0 = 0.4f;
 			device.Lights[0].Falloff =0.5f;
 			device.Lights[0].Diffuse = System.Drawing.Color.Silver;
 			device.Lights[0].Specular = System.Drawing.Color.White;
-			device.Lights[0].Range = 50000;
+			device.Lights[0].Range = 5000;
 			device.Lights[0].Position = new Vector3( 10.0f, 25.0f, -5.0f );
 			device.Lights[0].Direction = new Vector3( 0.0f, -3.0f, 5.0f );
 			device.Lights[0].Enabled = true; // Turn it on

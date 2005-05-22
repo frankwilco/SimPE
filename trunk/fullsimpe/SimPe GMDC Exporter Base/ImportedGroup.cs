@@ -65,6 +65,13 @@ namespace SimPe.Plugin.Gmdc
 			set { action = value; }
 		}
 
+		float scale;
+		public float Scale
+		{
+			get { return scale; }
+			set { scale = value; }
+		}
+
 		/// <summary>
 		/// Create a new Instance
 		/// </summary>
@@ -72,6 +79,7 @@ namespace SimPe.Plugin.Gmdc
 		public GmdcGroupImporterAction()
 		{		
 			action = GmdcImporterAction.Add;
+			scale = (float)1.0;
 		}
 	}
 
@@ -96,6 +104,42 @@ namespace SimPe.Plugin.Gmdc
 		public GmdcElements Elements
 		{
 			get { return elements; }
+		}
+
+		/// <summary>
+		/// Returns the Number of faces stored in the Group
+		/// </summary>
+		public int VertexCount 
+		{
+			get 
+			{
+				int vc = 0;
+				foreach (int i in Link.ReferencedElement) if (Elements[i].Identity == ElementIdentity.Vertex) vc += Elements[i].Values.Count;
+				return vc;
+			}
+		}
+
+		/// <summary>
+		/// Returns the Number of stored Faces
+		/// </summary>
+		/// <returns></returns>
+		public int FaceCount
+		{
+			get {return this.Group.Faces.Length / 3; }
+		}
+
+		/// <summary>
+		/// Returns the color that should be used to display this Group in the "Import Groups" ListView
+		/// </summary>
+		public System.Drawing.Color MarkColor 
+		{
+			get 
+			{
+				if (Action==GmdcImporterAction.Nothing) return System.Drawing.Color.Silver;
+				if (VertexCount>AbstractGmdcImporter.CRITICAL_VERTEX_AMOUNT) return System.Drawing.Color.Red;
+				if (FaceCount>AbstractGmdcImporter.CRITICAL_FACE_AMOUNT) return System.Drawing.Color.Red;
+				return System.Drawing.SystemColors.WindowText;
+			}
 		}
 
 

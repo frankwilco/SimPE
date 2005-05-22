@@ -52,6 +52,16 @@ namespace SimPe.Plugin.Gmdc
 		}
 
 		/// <summary>
+		/// Good Objects should not have more than this number of Faces
+		/// </summary>
+		public const int CRITICAL_FACE_AMOUNT = 10000;
+
+		/// <summary>
+		/// Good Objects should not have more than this number of Vertices
+		/// </summary>
+		public const int CRITICAL_VERTEX_AMOUNT = CRITICAL_FACE_AMOUNT;
+
+		/// <summary>
 		/// Returns a Version Number for the used Interface
 		/// </summary>
 		public int Version 
@@ -176,10 +186,10 @@ namespace SimPe.Plugin.Gmdc
 		/// <param name="g"></param>
 		protected virtual void AddGroup(ImportedGroup g)
 		{			
-			for (int i=0; i<g.Link.Items1.Count; i++) 
+			for (int i=0; i<g.Link.ReferencedElement.Count; i++) 
 			{
-				gmdc.Elements.Add(g.Elements[g.Link.Items1[i]]);
-				g.Link.Items1[i] = gmdc.Elements.Length-1;				
+				gmdc.Elements.Add(g.Elements[g.Link.ReferencedElement[i]]);
+				g.Link.ReferencedElement[i] = gmdc.Elements.Length-1;				
 			}
 			g.Group.LinkIndex = gmdc.Links.Length;
 			gmdc.Links.Add(g.Link);

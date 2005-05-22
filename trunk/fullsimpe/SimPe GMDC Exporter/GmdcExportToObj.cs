@@ -105,24 +105,26 @@ namespace SimPe.Plugin.Gmdc
 					
 			//first, write the availabel Vertices
 			int vertexcount = 0;
-			for (int i = 0; i < VertexElement.Values.Length; i++)
+			int nr = Link.GetElementNr(VertexElement);
+			for (int i = 0; i < Link.ReferencedSize; i++)
 			{
 				vertexcount++;					
 				writer.WriteLine("v " + 
-					VertexElement.Values[i].Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-					VertexElement.Values[i].Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-					VertexElement.Values[i].Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture) );
+					Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+					Link.GetValue(nr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+					Link.GetValue(nr, i).Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture) );
 			}			
 			
 			//Add a MeshNormal Section if available
 			if (this.NormalElement!=null) 
 			{				
-				for (int i = 0; i < NormalElement.Values.Length; i++)
+				nr = Link.GetElementNr(NormalElement);
+				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
 					writer.WriteLine("vn " + 
-						VertexElement.Values[i].Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						VertexElement.Values[i].Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						VertexElement.Values[i].Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture));
+						Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+						Link.GetValue(nr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+						Link.GetValue(nr, i).Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture));
 				}				
 			}
 			
@@ -130,12 +132,13 @@ namespace SimPe.Plugin.Gmdc
 
 			//now the Texture Cords //iv available
 			if (this.UVCoordinateElement!=null) 
-			{								
-				for (int i = 0; i < UVCoordinateElement.Values.Length; i++)
+			{			
+				nr = Link.GetElementNr(UVCoordinateElement);	
+				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
 					writer.WriteLine("vt " + 
-						VertexElement.Values[i].Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						(-VertexElement.Values[i].Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture));
+						Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+						(-Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture));
 				}
 			}
 			

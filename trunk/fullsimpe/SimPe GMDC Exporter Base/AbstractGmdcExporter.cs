@@ -205,7 +205,7 @@ namespace SimPe.Plugin.Gmdc
 			if (group.LinkIndex<Gmdc.Links.Length) 
 			{
 				link = Gmdc.Links[group.LinkIndex];
-				foreach (int i in link.Items1) 
+				foreach (int i in link.ReferencedElement) 
 				{
 					if (i<Gmdc.Elements.Length) 
 					{
