@@ -20,16 +20,32 @@
 using System;
 using System.IO;
 using System.Globalization;
+using SimPe.Plugin.Gmdc;
 
-namespace SimPe.Plugin.Gmdc
+namespace SimPe.Plugin.Gmdc.Exporter
 {
 	/// <summary>
 	/// This class provides the functionality to Export Data to the .obj FileFormat
 	/// </summary>
 	public class GmdcExportToObj : AbstractGmdcExporter
 	{
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="gmdc">The Gmdc File the Export is based on</param>
+		/// <param name="groups">The list of Groups you want to export</param>
+		/// <remarks><see cref="AbstractGmdcExporter.FileContent"/> will contain the Exported .obj File</remarks>
 		public GmdcExportToObj(GeometryDataContainer gmdc, GmdcGroups groups) : base(gmdc, groups) {}
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="gmdc">The Gmdc File the Export is based on</param>
+		/// <remarks><see cref="AbstractGmdcExporter.FileContent"/> will contain the Exported .obj File</remarks>
 		public GmdcExportToObj(GeometryDataContainer gmdc) : base(gmdc) {}
+		/// <summary>
+		/// Default Constructor
+		/// </summary>
+		/// <remarks>The export has to be started Manual through a call to <see cref="AbstractGmdcExporter.Process"/></remarks>
 		public GmdcExportToObj() : base() {}
 
 		int modelnr, vertexoffset;
@@ -110,9 +126,9 @@ namespace SimPe.Plugin.Gmdc
 			{
 				vertexcount++;					
 				writer.WriteLine("v " + 
-					Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-					Link.GetValue(nr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-					Link.GetValue(nr, i).Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture) );
+					(Link.GetValue(nr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+					(Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+					(Link.GetValue(nr, i).Data[2]).ToString("N6", AbstractGmdcExporter.DefaultCulture) );
 			}			
 			
 			//Add a MeshNormal Section if available
@@ -122,9 +138,9 @@ namespace SimPe.Plugin.Gmdc
 				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
 					writer.WriteLine("vn " + 
-						Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						Link.GetValue(nr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						Link.GetValue(nr, i).Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture));
+						(Link.GetValue(nr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+						(Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+						(Link.GetValue(nr, i).Data[2]).ToString("N6", AbstractGmdcExporter.DefaultCulture));
 				}				
 			}
 			
@@ -183,7 +199,8 @@ namespace SimPe.Plugin.Gmdc
 		/// <remarks>you should use this to write Footer Informations. 
 		/// Use the writer member to write to the File</remarks>
 		protected override void FinishFile()
-		{				
+		{		
+			//nothing to do here
 		}
 	}
 }

@@ -38,10 +38,10 @@ namespace SimPe.Plugin
 		#region Attributes
 	
 		#endregion
-		public Rcol Parent 
+		/*public Rcol Parent 
 		{
 			get { return parent; }
-		}
+		}*/
 
 		/// <summary>
 		/// Constructor

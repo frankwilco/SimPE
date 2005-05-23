@@ -108,10 +108,10 @@ namespace SimPe.Plugin
 			set { filename = value; }
 		}
 		#endregion
-		public Rcol Parent 
+		/*public Rcol Parent 
 		{
 			get { return parent; }
-		}
+		}*/
 
 		/// <summary>
 		/// Constructor

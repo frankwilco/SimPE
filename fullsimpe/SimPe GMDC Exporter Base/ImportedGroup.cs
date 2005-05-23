@@ -28,19 +28,19 @@ namespace SimPe.Plugin.Gmdc
 	public enum GmdcImporterAction : byte
 	{
 		/// <summary>
-		/// Ignor this Group
+		/// Ignore the Mesh-Group
 		/// </summary>
 		Nothing = 0x00,
 		/// <summary>
-		/// Replace the existing Group with an imported Group
+		/// Replace the existing Group with the one stored in the <see cref="ImportedGroup.Group"/> Member
 		/// </summary>
 		Replace = 0x01,
 		/// <summary>
-		/// Add an imported Group
+		/// Add the Group stored in the <see cref="ImportedGroup.Group"/> Member
 		/// </summary>
 		Add = 0x02,
 		/// <summary>
-		/// Add an imported Group and give a new Name
+		/// Add the Group stored in <see cref="ImportedGroup.Group"/> and assign a new Name.
 		/// </summary>
 		Rename = 0x03
 	}
@@ -51,21 +51,42 @@ namespace SimPe.Plugin.Gmdc
 	/// </summary>
 	public class GmdcGroupImporterAction 
 	{
+		/// <summary>
+		/// internal Attribute
+		/// </summary>
 		string newname;
+
+		/// <summary>
+		/// If action is <see cref="GmdcImporterAction.Replace"/> or 
+		/// <see cref="GmdcImporterAction.Rename"/>, this Member stores the 
+		/// new Name for the current Group. (read/write)
+		/// </summary>
 		public string TargetName 
 		{
 			get { return newname; }
 			set { newname = value; }
 		}
 
+		/// <summary>
+		/// internal Attribute
+		/// </summary>
 		GmdcImporterAction action;
+		/// <summary>
+		/// Returns/Sets the action that should be performed
+		/// </summary>
 		public GmdcImporterAction Action 
 		{
 			get { return action; }
 			set { action = value; }
 		}
 
+		/// <summary>
+		/// internal Attribute
+		/// </summary>
 		float scale;
+		/// <summary>
+		/// Returns/Sets the scale Factor that should be applied to this group
+		/// </summary>
 		public float Scale
 		{
 			get { return scale; }
@@ -75,7 +96,6 @@ namespace SimPe.Plugin.Gmdc
 		/// <summary>
 		/// Create a new Instance
 		/// </summary>
-		/// <param name="currentname">The current Name of the Group</param>
 		public GmdcGroupImporterAction()
 		{		
 			action = GmdcImporterAction.Add;
@@ -89,18 +109,27 @@ namespace SimPe.Plugin.Gmdc
 	public class ImportedGroup : GmdcGroupImporterAction
 	{
 		GmdcGroup group;
+		/// <summary>
+		/// The new MeshGroup
+		/// </summary>
 		public GmdcGroup Group
 		{
 			get { return group; }
 		}
 
-		GmdcLink link;		
+		GmdcLink link;	
+		/// <summary>
+		/// The new Link Section
+		/// </summary>
 		public GmdcLink Link
 		{
 			get { return link; }
 		}
 
 		GmdcElements elements;
+		/// <summary>
+		/// All Elements used by this Group
+		/// </summary>
 		public GmdcElements Elements
 		{
 			get { return elements; }
@@ -157,47 +186,79 @@ namespace SimPe.Plugin.Gmdc
 
 	#region Container
 	/// <summary>
-	/// Typesave ArrayList for GmdcLink Objects
+	/// Typesave ArrayList for <see cref="ImportedGroup"/> Objects
 	/// </summary>
 	public class ImportedGroups : ArrayList 
 	{
+		/// <summary>
+		/// Integer Indexer
+		/// </summary>
 		public new ImportedGroup this[int index]
 		{
 			get { return ((ImportedGroup)base[index]); }
 			set { base[index] = value; }
 		}
 
+		/// <summary>
+		/// unsigned Integer Indexer
+		/// </summary>
 		public ImportedGroup this[uint index]
 		{
 			get { return ((ImportedGroup)base[(int)index]); }
 			set { base[(int)index] = value; }
 		}
 
+		/// <summary>
+		/// add a new Element
+		/// </summary>
+		/// <param name="item">The object you want to add</param>
+		/// <returns>The index it was added on</returns>
 		public int Add(ImportedGroup item)
 		{
 			return base.Add(item);
 		}
 
+		/// <summary>
+		/// insert a new Element
+		/// </summary>
+		/// <param name="index">The Index where the Element should be stored</param>
+		/// <param name="item">The object that should be inserted</param>
 		public void Insert(int index, ImportedGroup item)
 		{
 			base.Insert(index, item);
 		}
 
+		/// <summary>
+		/// remove an Element
+		/// </summary>
+		/// <param name="item">The object that should be removed</param>
 		public void Remove(ImportedGroup item)
 		{
 			base.Remove(item);
 		}
 
+		/// <summary>
+		/// Checks wether or not the object is already stored in the List
+		/// </summary>
+		/// <param name="item">The Object you are looking for</param>
+		/// <returns>true, if it was found</returns>
 		public bool Contains(ImportedGroup item)
 		{
 			return base.Contains(item);
 		}		
 
+		/// <summary>
+		/// Number of stored Elements
+		/// </summary>
 		public int Length 
 		{
 			get { return this.Count; }
 		}
 
+		/// <summary>
+		/// Create a clone of this Object
+		/// </summary>
+		/// <returns>The clone</returns>
 		public override object Clone()
 		{
 			ImportedGroups list = new ImportedGroups();

@@ -451,7 +451,7 @@ namespace SimPe.Packages
 				XmlNode node = XMLData.Item(i);
 				foreach (XmlNode pfile in node) 
 				{
-					///a New FileItem
+					//a New FileItem
 					if (pfile.LocalName == "PackagedFile") 
 					{
 						list.Add(ParesPackedFile(reader, pfile, offset));

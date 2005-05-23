@@ -24,8 +24,10 @@ using System.Globalization;
 namespace SimPe.Plugin.Gmdc
 {
 	/// <summary>
-	/// This class is the base for all Importers that want to reuse the Default 
-	/// SimPE Import Dialog.
+	/// Implement this abstract class to create a new Gmdc Importer Plugin, however 
+	/// you can also base your new Importer on <see cref="GmdcImporterBase"/>, which 
+	/// offers a more simple Interface, as you only have to implement the
+	/// reading of the vertice, normals... Data
 	/// </summary>
 	/// <remarks>
 	/// SimPE offers diffrent Importer Abstraction classes. The most common 
@@ -34,7 +36,7 @@ namespace SimPe.Plugin.Gmdc
 	/// rest of the Gmdc File alone.
 	/// 
 	/// However, if you want to create a complete new (or altered) gmdc File
-	/// you need to implement the IGmdcReplacementImporter.
+	/// you need to implement the IGmdcReplacementImporter.	
 	/// </remarks>
 	public abstract class AbstractGmdcImporter : IGmdcImporter
 	{				
@@ -104,7 +106,11 @@ namespace SimPe.Plugin.Gmdc
 		protected abstract ImportedGroups LoadGroups();
 		#endregion
 
+		/// <summary>
+		/// stores the Error Message that should be presented
+		/// </summary>
 		protected string error;
+
 		/// <summary>
 		/// Returns the Error Message Produced by the Last Parsing attempt
 		/// </summary>

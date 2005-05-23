@@ -564,7 +564,7 @@ namespace SimPe.Plugin
 				}
 
 				abits = abits << 3;
-				abits = abits | (long)index;
+				abits = abits | (int)index;
 			}
 
 			ushort abits1 = (ushort)((abits >> 32) & 0x0000ffff);

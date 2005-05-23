@@ -25,13 +25,13 @@ using System.Collections;
 namespace SimPe.Plugin.Gmdc
 {
 	/// <summary>
-	/// This class provides the functionality to Import vertex, normal and uvcoord Data. If 
-	/// you use this class as a base for your Importer, you only have to read in List of Vertices, 
-	/// this implementation will take care of actually creating Groups from the vertex, normal, 
-	/// uvcoord Data.
+	/// Implement this abstract class to create a new Gmdc Importer Plugin.
 	/// </summary>
 	public abstract class GmdcImporterBase : AbstractGmdcImporter
 	{		
+		/// <summary>
+		/// default Constructor
+		/// </summary>		
 		public GmdcImporterBase() : base() {}
 
 		#region AbstractGmdcImporter Implementation
@@ -75,11 +75,27 @@ namespace SimPe.Plugin.Gmdc
 		}
 		#endregion
 
+		/// <summary>
+		/// stores the List of parsed Vertices (as SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat)
+		/// </summary>		
 		protected ArrayList vertices;
+		/// <summary>
+		/// stores the List of parsed Normals (as SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat)
+		/// </summary>
 		protected ArrayList normals;
+		/// <summary>
+		/// stores the List of parsed UVCoordinates (as SimPe.Plugin.Gmdc.GmdcElementValueTwoFloat)
+		/// </summary>
 		protected ArrayList uvmaps;
-		protected ArrayList faces;
+
+		/// <summary>
+		/// Keys=GroupNames, values = faces List
+		/// </summary>
 		protected Hashtable groups;
+		/// <summary>
+		/// Contains the Faces List for the current Group (as SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat)
+		/// </summary>
+		protected ArrayList faces;
 
 		/// <summary>
 		/// Use the Members, that wer initialized with LoadLists() to create

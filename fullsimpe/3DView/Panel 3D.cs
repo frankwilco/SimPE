@@ -384,8 +384,10 @@ namespace Ambertation
 					meshMaterials[i] = materials[i].Material3D;
 					// Set the ambient color for the material (D3DX does not do this)
 					meshMaterials[i].Ambient = Color.Black;					
-					meshMaterials[i].Diffuse = Color.Silver;
-					meshMaterials[i].Specular = Color.White;
+					meshMaterials[i].Diffuse = Color.DarkGray;
+					meshMaterials[i].Specular = Color.Silver;
+					meshMaterials[i].Emissive = Color.Black;
+					meshMaterials[i].SpecularSharpness = (float)100.0;
      
 					// Create the texture
 					string txtrname = materials[i].TextureFilename;
@@ -484,11 +486,11 @@ namespace Ambertation
 			// Note that many lights may be active at a time (but each one slows down
 			// the rendering of the scene). However, here just one is used.
 			device.Lights[0].Type = LightType.Point;
-			device.Lights[0].Attenuation0 = 0.4f;
-			device.Lights[0].Falloff =0.5f;
-			device.Lights[0].Diffuse = System.Drawing.Color.Silver;
+			device.Lights[0].Attenuation0 = 0.05f;
+			device.Lights[0].Falloff =0.6f;
+			device.Lights[0].Diffuse = System.Drawing.Color.DarkGray;
 			device.Lights[0].Specular = System.Drawing.Color.White;
-			device.Lights[0].Range = 5000;
+			device.Lights[0].Range = 30000;
 			device.Lights[0].Position = new Vector3( 10.0f, 25.0f, -5.0f );
 			device.Lights[0].Direction = new Vector3( 0.0f, -3.0f, 5.0f );
 			device.Lights[0].Enabled = true; // Turn it on
@@ -498,7 +500,7 @@ namespace Ambertation
 			device.Lights[1].Falloff =device.Lights[0].Falloff;
 			device.Lights[1].Diffuse = device.Lights[0].Diffuse;
 			device.Lights[1].Specular = device.Lights[0].Specular;
-			device.Lights[1].Range = device.Lights[0].Range;
+			device.Lights[1].Range = device.Lights[0].Range/2;
 			device.Lights[1].Position = new Vector3( -300.0f, -350.0f, 200.0f );
 			device.Lights[1].Direction = new Vector3( 0.0f, +3.0f, -5.0f );
 			device.Lights[1].Enabled = true; // Turn it on
@@ -507,7 +509,7 @@ namespace Ambertation
     
 			// Finally, turn on some ambient light.
 			// Ambient light is light that scatters and lights all objects evenly.
-			device.RenderState.Ambient = System.Drawing.Color.White;
+			device.RenderState.Ambient = System.Drawing.Color.Gray;
 		}
 		#endregion
 
@@ -597,7 +599,7 @@ namespace Ambertation
 		}
 
 		static bool render;
-		static bool panelaccess;
+		static bool panelaccess = false;
 		protected static void StartThread()
 		{
 			render = false;
