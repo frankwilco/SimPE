@@ -155,6 +155,11 @@ namespace SimPe.Data
 			LocalizedRelationshipTypes op = (LocalizedRelationshipTypes)op1;
 			return (op.data != op2.data);
 		}
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode ();
+		}		
 	}
 
 	/// <summary>

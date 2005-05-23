@@ -24,7 +24,7 @@ using System.Globalization;
 namespace SimPe.Plugin.Gmdc
 {
 	/// <summary>
-	/// This Interface must be implemented by GmdcExport Subroutines
+	/// Implement this abstract class to create a new Gmdc Exporter Plugin
 	/// </summary>
 	public abstract class AbstractGmdcExporter : IGmdcExporter
 	{
@@ -217,8 +217,12 @@ namespace SimPe.Plugin.Gmdc
 				} //foreach
 			}
 		}
-		
+
+		/// <summary>
+		/// internal Attribute
+		/// </summary>
 		protected System.IO.StreamWriter writer;
+
 		/// <summary>
 		/// Returns the Content of the File base on the last loaded GroupSet
 		/// </summary>

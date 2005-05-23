@@ -21,19 +21,23 @@ using System;
 using System.IO;
 using System.Globalization;
 using System.Collections;
+using SimPe.Plugin.Gmdc;
 
-namespace SimPe.Plugin.Gmdc
+namespace SimPe.Plugin.Gmdc.Importer
 {
 	/// <summary>
 	/// This class provides the functionality to Export Data to the .obj FileFormat
-	/// </summary>
+	/// </summary>	
 	public class GmdcImportFromObj : GmdcImporterBase
 	{		
+		/// <summary>
+		/// Default Constructor
+		/// </summary>
 		public GmdcImportFromObj() : base() {}
 
 		
-		protected string lineerror;	
-		protected string groupname;
+		string lineerror;	
+		string groupname;
 
 		/// <summary>
 		/// Initializes the Group, face, vertex, normals and uv Lists
@@ -138,7 +142,7 @@ namespace SimPe.Plugin.Gmdc
 				{
 					for (int i=0; i<2; i++) data[i] = Convert.ToSingle(tokens[i], AbstractGmdcImporter.DefaultCulture);
 
-					SimPe.Plugin.Gmdc.GmdcElementValueTwoFloat v = new GmdcElementValueTwoFloat(data[0], data[1]);
+					SimPe.Plugin.Gmdc.GmdcElementValueTwoFloat v = new GmdcElementValueTwoFloat(data[0], -data[1]);
 					list.Add(v);
 				} 
 				catch

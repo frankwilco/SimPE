@@ -230,9 +230,7 @@ namespace SimPe.PackedFiles.UserInterface
 			} 
 			catch ( Exception ex) 
 			{
-#if DEBUG
-				form.listBanner.Text += " ["+ex.Message+"]";
-#endif
+				if (Helper.DebugMode) form.listBanner.Text += " ["+ex.Message+"]";
 			}
 			
 			//form.listList.Sort();

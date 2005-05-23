@@ -91,10 +91,10 @@ namespace SimPe.Plugin
 		#endregion
 
 		//Rcol parent;
-		public Rcol Parent 
+		/*public Rcol Parent 
 		{
 			get { return parent; }
-		}
+		}*/
 
 		/// <summary>
 		/// Constructor

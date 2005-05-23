@@ -8,9 +8,9 @@ using System.Data;
 namespace SimPe.Plugin.Gmdc
 {
 	/// <summary>
-	/// Zusammenfassung für ImportGmdcGroupsForm.
+	/// The Form that is displayed when a Meshgroup is imported
 	/// </summary>
-	public class ImportGmdcGroupsForm : System.Windows.Forms.Form
+	internal class ImportGmdcGroupsForm : System.Windows.Forms.Form
 	{
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ColumnHeader chName;
@@ -32,10 +32,13 @@ namespace SimPe.Plugin.Gmdc
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ComboBox cbopacity;
 		/// <summary>
-		/// Erforderliche Designervariable.
+		/// Needed Designervar.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
+		/// <summary>
+		/// Default Constructor
+		/// </summary>
 		public ImportGmdcGroupsForm()
 		{
 			//

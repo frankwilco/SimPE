@@ -114,7 +114,7 @@ namespace SimPe.Packages
 		{
 			get 
 			{
-				return ((long)MajorVersion << 0x20) | (long)MinorVersion;
+				return (long)((ulong)MajorVersion << 0x20) | (uint)MinorVersion;
 			}
 		}
 
