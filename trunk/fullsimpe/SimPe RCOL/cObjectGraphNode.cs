@@ -116,7 +116,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public ObjectGraphNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public ObjectGraphNode(Rcol parent) : base(parent)
 		{
 			items = new ObjectGraphNodeItem[0];
 			filename = this.BlockName;

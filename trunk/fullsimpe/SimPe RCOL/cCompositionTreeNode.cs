@@ -37,7 +37,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public CompositionTreeNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public CompositionTreeNode(Rcol parent) : base(parent)
 		{
 			version = 0xb;
 		}

@@ -264,6 +264,7 @@ namespace SimPe.Wizards
 		[STAThread]			
 		static void Main() 
 		{
+			SimPe.Plugin.WrapperFactory.InitRcolBlocks();
 			form1 = new Form1();
 			Application.Run(form1);
 		}

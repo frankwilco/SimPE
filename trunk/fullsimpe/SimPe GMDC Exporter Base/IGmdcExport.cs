@@ -18,98 +18,72 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
-using System.Collections;
-using System.Windows.Forms;
-using SimPe.Plugin;
+using System.IO;
 
-namespace SimPe.Interfaces.Scenegraph
+namespace SimPe.Plugin.Gmdc
 {
 	/// <summary>
-	/// You need to implement is to provide a new RCOL Block
+	/// This Interface must be implemented by Exporter Plugins
 	/// </summary>
-	public interface IRcolBlock
+	/// <remarks>
+	/// It is probably a good Idea, to not implement this Interface 
+	/// direct, but reuse the AbstractGmdcExporter class.
+	/// </remarks>
+	public interface IGmdcExporter
 	{
 		/// <summary>
-		/// Unserializes a BinaryStream into the Attributes of this Instance
+		/// Create the export for all available Groups
 		/// </summary>
-		/// <param name="reader">The Stream that contains the FileData</param>
-		void Unserialize(System.IO.BinaryReader reader);
+		/// <param name="gmdc"></param>
+		/// <returns>The created Stream</returns>
+		System.IO.Stream Process(GeometryDataContainer gmdc);
 
 		/// <summary>
-		/// Serializes a the Attributes stored in this Instance to the BinaryStream
+		/// Create the export for the given Groups
 		/// </summary>
-		/// <param name="writer">The Stream the Data should be stored to</param>
-		/// <remarks>
-		/// Be sure that the Position of the stream is Proper on 
-		/// return (i.e. must point to the first Byte after your actual File)
-		/// </remarks>
-		void Serialize(System.IO.BinaryWriter writer);
-
+		/// <param name="gmdc"></param>
+		/// <param name="groups"></param>
+		/// <returns>The created Stream</returns>
+		System.IO.Stream Process(GeometryDataContainer gmdc, GmdcGroups groups);
+		
 		/// <summary>
-		/// Creates a new Instance
+		/// Returns the Content of the File base on the last loaded GroupSet
 		/// </summary>
-		IRcolBlock Create(uint id);
-
-		/// <summary>
-		/// Creates a new Instance with the default Block ID
-		/// </summary>
-		IRcolBlock Create();
-
-		/// <summary>
-		/// Registers the Object in the given Hashtable
-		/// </summary>
-		/// <param name="listing"></param>
-		/// <returns>The Name of the Class Type</returns>
-		string Register(Hashtable listing);
-
-		/// <summary>
-		/// Name of the Block containing the Object
-		/// </summary>
-		string BlockName 
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Returns the ID used for this Block
-		/// </summary>
-		uint BlockID
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Returns / Sets the cSGResource of this Block, or null if none is avilable
-		/// </summary>
-		SGResource NameResource
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Returns a tabPage that contains a GUI for this Element
-		/// </summary>
-		TabPage TabPage 
+		System.IO.StreamWriter FileContent 
 		{
 			get;
 		}
 
 		/// <summary>
-		/// Adds more TabPages (which are needed to process the Class) to the Control
+		/// Returns a Version Number for the used Interface
 		/// </summary>
-		/// <param name="tc">The TabControl the Pages will be added to</param>
-		void ExtendTabControl(TabControl tc);
-
-		/// <summary>
-		/// Data was changed
-		/// </summary>
-		bool Changed 
+		int Version 
 		{
 			get;
-			set;
+		}
+
+		/// <summary>
+		/// Returns the suggested File Extension (including the . like .obj or .3ds)
+		/// </summary>
+		string FileExtension
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns the File Description (the Name of the exported FileType)
+		/// </summary>
+		string FileDescription
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns the name of the Author
+		/// </summary>
+		string Author
+		{
+			get;
 		}
 	}
 }

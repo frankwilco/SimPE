@@ -34,30 +34,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>		
 		public GmdcImporterBase() : base() {}
 
-		#region AbstractGmdcImporter Implementation
-		/// <summary>
-		/// Returns the suggested File Extension (including the . like .obj or .3ds)
-		/// </summary>
-		public override string FileExtension
-		{
-			get {return ".obj";}
-		}
-
-		/// <summary>
-		/// Returns the File Description (the Name of the exported FileType)
-		/// </summary>
-		public override string FileDescription
-		{
-			get {return "Maya Object File";}
-		}		
-
-		/// <summary>
-		/// Returns the name of the Author
-		/// </summary>
-		public override string Author
-		{
-			get {return "Quaxi";}
-		}
+		#region AbstractGmdcImporter Implementation	
 
 		/// <summary>
 		/// This Method is called during the Import to process the input Data and 
@@ -111,32 +88,8 @@ namespace SimPe.Plugin.Gmdc
 				//ignore empty groups
 				if (faces.Count==0) continue;
 
-				ImportedGroup g = new ImportedGroup(Gmdc);
-				
-				//Vertex Element-----
-				GmdcElement e = new GmdcElement(Gmdc);
-				g.Elements.Add(e);
-				e.Identity = ElementIdentity.Vertex;
-				e.BlockFormat = BlockFormat.ThreeFloat;
-				e.SetFormat = SetFormat.Secondary;
-
-				//Normal Element-----
-				e = new GmdcElement(Gmdc);
-				g.Elements.Add(e);
-				e.Identity = ElementIdentity.Normal;
-				e.BlockFormat = BlockFormat.ThreeFloat;
-				e.SetFormat = SetFormat.Normals;
-
-				//UVCoord Element-----
-				e = new GmdcElement(Gmdc);
-				g.Elements.Add(e);
-				e.Identity = ElementIdentity.UVCoordinate;
-				e.BlockFormat = BlockFormat.TwoFloat;
-				e.SetFormat = SetFormat.Mapping;				
-				
+				ImportedGroup g = PrepareGroup();								
 				g.Group.Name = k;
-				g.Group.PrimitiveType = 0x2;
-				g.Group.Opacity = 0xffffffff;
 				BuildGroup(g);
 
 				grps.Add(g);
@@ -304,7 +257,7 @@ namespace SimPe.Plugin.Gmdc
 				}
 			}
 
-			int size = int.MaxValue;
+			/*int size = int.MaxValue;
 			//if we have an empty map, we will not add that section to the Link Element!
 			if (g.Elements[0].Values.Count>0) 
 			{
@@ -329,18 +282,19 @@ namespace SimPe.Plugin.Gmdc
 			g.Elements[0].Number = g.Elements[0].Values.Count;
 			g.Elements[1].Number = g.Elements[1].Values.Count;
 			g.Elements[2].Number = g.Elements[2].Values.Count;
+			*/
 		}
 
 		/// <summary>
-		/// Initializes the Group, face, vertex, normals and uv Lists
+		/// Initializes the <see cref="groups"/>, <see cref="vertices"/>, <see cref="normals"/> and <see cref="uvmaps"/> Lists
 		/// </summary>
-		/// <remarks>The vertex (SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat), 
-		/// normals (SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat) and 
-		/// uvmaps (SimPe.Plugin.Gmdc.GmdcElementValueTwoFloat) Lists contain 
+		/// <remarks>The <see cref="vertices"/> (SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat), 
+		/// <see cref="normals"/> (SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat) and 
+		/// <see cref="uvmaps"/> (SimPe.Plugin.Gmdc.GmdcElementValueTwoFloat) Lists contain 
 		/// the actual Coordinates for the vertices, normals and uvcoordinates.
 		/// 
-		/// The Groups Hashtable (key=name of a Meshgroup, 
-		/// value = faces (SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat) List) contains 
+		/// The <see cref="groups"/> Hashtable (key=name of a Meshgroup, 
+		/// value = <see cref="faces"/> (SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat) List) contains 
 		/// the Listing of all available faces in a Group.
 		/// 
 		/// The SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat Members of the faces List 

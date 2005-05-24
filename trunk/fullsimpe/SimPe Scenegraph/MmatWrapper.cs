@@ -25,6 +25,15 @@ namespace SimPe.Plugin
 			refmap["TXMT"] = list;
 		}
 
+		/// <summary>
+		/// Registers the Object in the given Hashtable
+		/// </summary>
+		/// <param name="listing"></param>
+		/// <returns>The Name of the Class Type</returns>
+		public string Register(Hashtable listing)
+		{
+			return "";
+		}
 		#endregion
 
 		protected override SimPe.Interfaces.Plugin.IPackedFileUI CreateDefaultUIHandler()

@@ -138,10 +138,10 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public TransformNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public TransformNode(Rcol parent) : base(parent)
 		{
-			ctn = new CompositionTreeNode(provider, parent);
-			ogn = new ObjectGraphNode(provider, parent);
+			ctn = new CompositionTreeNode(parent);
+			ogn = new ObjectGraphNode(parent);
 
 			items = new TransformNodeItem[0];
 

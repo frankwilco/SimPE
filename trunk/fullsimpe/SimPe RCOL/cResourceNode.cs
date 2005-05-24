@@ -125,11 +125,11 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public ResourceNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public ResourceNode(Rcol parent) : base(parent)
 		{
-			sgres = new SGResource(provider, null);
-			ogn = new ObjectGraphNode(provider, null);
-			ctn = new CompositionTreeNode(provider, null);
+			sgres = new SGResource(null);
+			ogn = new ObjectGraphNode(null);
+			ctn = new CompositionTreeNode(null);
 			items = new ResourceNodeItem[0];
 
 			version = 0x07;

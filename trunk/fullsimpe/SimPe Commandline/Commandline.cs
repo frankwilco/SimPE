@@ -1,6 +1,7 @@
 using System;
 using SimPe.Plugin;
 using System.Drawing;
+using SimPe.Interfaces.Scenegraph;
 
 namespace SimPe
 {
@@ -422,7 +423,7 @@ namespace SimPe
 			}
 
 			//build TXTR File
-			ImageData id = new SimPe.Plugin.ImageData(null, null);
+			ImageData id = new SimPe.Plugin.ImageData(null);
 
 			if ((System.IO.File.Exists(Helper.WindowsRegistry.NvidiaDDSTool)) && ((format == ImageLoader.TxtrFormats.DXT1Format) || (format == ImageLoader.TxtrFormats.DXT3Format) || (format == ImageLoader.TxtrFormats.DXT5Format)))
 			{
@@ -436,7 +437,7 @@ namespace SimPe
 			Rcol rcol = new GenericRcol(null, false);
 			rcol.FileName = texturename;
 			rcol.FileDescriptor = new SimPe.Packages.PackedFileDescriptor();
-			rcol.Blocks = new SimPe.Plugin.IRcolBlock[1];
+			rcol.Blocks = new IRcolBlock[1];
 			rcol.Blocks[0] = id;
 
 			rcol.SynchronizeUserData();

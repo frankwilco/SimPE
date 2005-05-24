@@ -47,7 +47,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public SGResource(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public SGResource(Rcol parent) : base(parent)
 		{
 			version = 0x02;
 			flname = "";

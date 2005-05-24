@@ -104,12 +104,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "GmdcExportToMilkShapeAscii.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "GmdcExportToObj.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "GmdcExportToX.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "GmdcImportFromMilkShapeAscii.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

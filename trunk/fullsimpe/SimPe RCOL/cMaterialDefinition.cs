@@ -71,11 +71,11 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public MaterialDefinition(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public MaterialDefinition(Rcol parent) : base(parent)
 		{
 			properties = new MaterialDefinitionProperty[0];
 			listing = new String[0];
-			sgres = new SGResource(provider, null);
+			sgres = new SGResource(null);
 			BlockID = 0x49596978;
 		}
 

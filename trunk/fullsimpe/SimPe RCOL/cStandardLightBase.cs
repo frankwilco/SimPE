@@ -30,7 +30,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public StandardLightBase(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public StandardLightBase(Rcol parent) : base(parent)
 		{
 			version = 11;
 			BlockID = 0;

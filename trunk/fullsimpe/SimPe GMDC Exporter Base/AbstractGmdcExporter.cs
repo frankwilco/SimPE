@@ -269,7 +269,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <remarks>
 		/// you should use this to write Header Informations. 
-		/// Use the writer member to write to the File
+		/// Use the <see cref="writer"/> member to write to the File
 		/// </remarks>
 		protected abstract void InitFile();
 
@@ -277,14 +277,14 @@ namespace SimPe.Plugin.Gmdc
 		/// This is called whenever a Group (=subSet) needs to processed
 		/// </summary>
 		/// <remarks>
-		/// You can use the UVCoordinateElement, NormalElement, 
-		/// VertexElement, Group and Link Members in this Method. 
+		/// You can use the <see cref="UVCoordinateElement"/>,  <see cref="NormalElement"/>, 
+		///  <see cref="VertexElement"/>,  <see cref="Group"/> and  <see cref="Link"/> Members in this Method. 
 		/// 
-		/// This Method is only called, when the Group, Link and 
+		/// This Method is only called, when the <see cref="Group"/>, <see cref="Link"/> and 
 		/// Vertex Members are set (not null). The other still can 
 		/// be Null!
 		/// 
-		/// Use the writer member to write to the File.
+		/// Use the <see cref="writer"/> member to write to the File.
 		/// </remarks>
 		protected abstract void ProcessGroup();
 
@@ -292,7 +292,7 @@ namespace SimPe.Plugin.Gmdc
 		/// Called when the export was finished
 		/// </summary>
 		/// <remarks>you should use this to write Footer Informations. 
-		/// Use the writer member to write to the File</remarks>
+		/// Use the <see cref="writer"/> member to write to the File</remarks>
 		protected abstract void FinishFile();
 		#endregion
 	}

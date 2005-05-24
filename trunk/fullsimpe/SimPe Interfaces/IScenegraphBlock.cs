@@ -14,7 +14,6 @@ namespace SimPe.Interfaces.Scenegraph
 		/// <param name="refmap"></param>
 		/// <param name="parentgroup"></param>
 		/// <remarks>The Key is the name of the Reference Type, the value is an ArrayList containing all ReferencedFiles</remarks>
-		void ReferencedItems(Hashtable refmap, uint parentgroup);
-		
+		void ReferencedItems(Hashtable refmap, uint parentgroup);				
 	}
 }

@@ -99,11 +99,11 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public LevelInfo(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public LevelInfo(Rcol parent) : base(parent)
 		{
 			texturesize = new Size(0, 0);
 			zlevel =0;
-			sgres = new SGResource(provider, null);
+			sgres = new SGResource(null);
 			BlockID = 0xED534136;
 			data = new byte[0];
 			datatype = MipMapType.SimPE_PlainData;

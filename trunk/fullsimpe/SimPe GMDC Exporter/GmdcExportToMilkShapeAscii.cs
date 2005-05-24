@@ -25,28 +25,28 @@ using SimPe.Plugin.Gmdc;
 namespace SimPe.Plugin.Gmdc.Exporter
 {
 	/// <summary>
-	/// This class provides the functionality to Export Data to the .obj FileFormat
+	/// This class provides the functionality to Export Data to the .txt FileFormat
 	/// </summary>
-	public class GmdcExportToObj : AbstractGmdcExporter
+	public class GmdcExportToMilkShapeAscii : AbstractGmdcExporter
 	{
 		/// <summary>
 		/// Constructor
 		/// </summary>
 		/// <param name="gmdc">The Gmdc File the Export is based on</param>
 		/// <param name="groups">The list of Groups you want to export</param>
-		/// <remarks><see cref="AbstractGmdcExporter.FileContent"/> will contain the Exported .obj File</remarks>
-		public GmdcExportToObj(GeometryDataContainer gmdc, GmdcGroups groups) : base(gmdc, groups) {}
+		/// <remarks><see cref="AbstractGmdcExporter.FileContent"/> will contain the Exported .txt File</remarks>
+		public GmdcExportToMilkShapeAscii(GeometryDataContainer gmdc, GmdcGroups groups) : base(gmdc, groups) {}
 		/// <summary>
 		/// Constructor
 		/// </summary>
 		/// <param name="gmdc">The Gmdc File the Export is based on</param>
-		/// <remarks><see cref="AbstractGmdcExporter.FileContent"/> will contain the Exported .obj File</remarks>
-		public GmdcExportToObj(GeometryDataContainer gmdc) : base(gmdc) {}
+		/// <remarks><see cref="AbstractGmdcExporter.FileContent"/> will contain the Exported .txt File</remarks>
+		public GmdcExportToMilkShapeAscii(GeometryDataContainer gmdc) : base(gmdc) {}
 		/// <summary>
 		/// Default Constructor
 		/// </summary>
 		/// <remarks>The export has to be started Manual through a call to <see cref="AbstractGmdcExporter.Process"/></remarks>
-		public GmdcExportToObj() : base() {}
+		public GmdcExportToMilkShapeAscii() : base() {}
 
 		int modelnr, vertexoffset;
 
@@ -55,7 +55,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		/// </summary>
 		public override string FileExtension
 		{
-			get {return ".obj";}
+			get {return ".txt";}
 		}
 
 		/// <summary>
@@ -63,7 +63,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		/// </summary>
 		public override string FileDescription
 		{
-			get {return "Maya Object File";}
+			get {return "Milkshape ASCII File";}
 		}		
 
 		/// <summary>
@@ -71,7 +71,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		/// </summary>
 		public override string Author
 		{
-			get {return "Delphy";}
+			get {return "Quaxi";}
 		}
 
 		/// <summary>
@@ -85,7 +85,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		{
 			modelnr = 0;
 			vertexoffset = 0;
-			writer.WriteLine("# File based on the GMDC plugin by Delphy");
+			writer.WriteLine("Meshes: "+Gmdc.Groups.Count.ToString());
 		}
 
 		/// <summary>
@@ -103,82 +103,86 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		/// </remarks>
 		protected override void ProcessGroup()
 		{	
-			//Find the Vertex Reference Number
-			int vertref = Link.GetElementNr(VertexElement);				
+			//Find the BoneAssignment
+			GmdcElement boneelement = this.Link.FindElementType(ElementIdentity.BoneAssignment);
+							
 
-			writer.WriteLine("# Object number: " + modelnr);
-			writer.WriteLine("# VertexList ref: " + vertref);
-			writer.WriteLine("g " + Group.Name);
+			writer.WriteLine("\""+Group.Name+"\" 0 -1");
 
 					
 			//first, write the availabel Vertices
 			int vertexcount = 0;
 			int nr = Link.GetElementNr(VertexElement);
+			int nnr = -1;
+			if (this.NormalElement!=null) nnr = Link.GetElementNr(UVCoordinateElement);
+			writer.WriteLine(Link.ReferencedSize.ToString());
 			for (int i = 0; i < Link.ReferencedSize; i++)
-			{
-				vertexcount++;					
-				writer.WriteLine("v " + 
+			{				
+				writer.Write("0 " + 
 					(Link.GetValue(nr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
 					(Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-					(Link.GetValue(nr, i).Data[2]).ToString("N6", AbstractGmdcExporter.DefaultCulture) );
+					(Link.GetValue(nr, i).Data[2]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " ");
+
+				if (nnr!=-1) 
+				{
+					writer.Write(
+						Link.GetValue(nnr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+						Link.GetValue(nnr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture )+ " ");
+				} 
+				else 
+				{
+					writer.Write(" 0.000000 0.000000");
+				}
+
+
+				if (boneelement==null) 
+				{
+					writer.WriteLine("-1");
+				} 
+				else 
+				{
+					int bnr = Link.GetRealIndex(nr, i);
+					if (bnr==-1) writer.WriteLine("-1");
+					else 
+					{
+						bnr = ((SimPe.Plugin.Gmdc.GmdcElementValueOneInt)boneelement.Values[bnr]).Value;
+						if (bnr == -1) writer.WriteLine("-1");
+						else writer.WriteLine((bnr&0xff).ToString());
+					}
+						
+				}
 			}			
 			
 			//Add a MeshNormal Section if available
 			if (this.NormalElement!=null) 
 			{				
 				nr = Link.GetElementNr(NormalElement);
+				writer.WriteLine(Link.ReferencedSize.ToString());
 				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
-					writer.WriteLine("vn " + 
+					writer.WriteLine( 
 						(Link.GetValue(nr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
 						(Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
 						(Link.GetValue(nr, i).Data[2]).ToString("N6", AbstractGmdcExporter.DefaultCulture));
 				}				
-			}
-			
-			
-
-			//now the Texture Cords //iv available
-			if (this.UVCoordinateElement!=null) 
-			{			
-				nr = Link.GetElementNr(UVCoordinateElement);	
-				for (int i = 0; i < Link.ReferencedSize; i++)
-				{
-					writer.WriteLine("vt " + 
-						Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						(-Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture));
-				}
-			}
-			
-
-			writer.WriteLine("# number of polygons: " + (Group.Faces.Count / 3));
-			if (modelnr > 0) writer.WriteLine("# vertsSoFar: " + ((vertexoffset+vertexcount) - 2).ToString());
-			else writer.WriteLine("# vertsSoFar: 0");			
-			writer.WriteLine("# totalVertices: " + (vertexoffset+vertexcount));
-			writer.WriteLine("# vertGroupStart: " + vertexoffset);
-
-			for (int i = 0; i < Group.Faces.Count; i++)
+			} 
+			else 
 			{
-				int vertexnr = Group.Faces[i] + 1 + vertexoffset;
-				if (i%3 == 0)
-				{
-					writer.Write("f " +
-						vertexnr.ToString() +  "/" + 
-						vertexnr.ToString() +  "/" + 
-						vertexnr.ToString());
-				} 
-				else if (i%3 == 1)
-				{
-					writer.Write(" " + vertexnr.ToString() +  "/" + 
-						vertexnr.ToString() +  "/" + 
-						vertexnr.ToString());
-				} 
-				else 
-				{
-					writer.WriteLine(" " + vertexnr.ToString() +  "/" + 
-						vertexnr.ToString() +  "/" + 
-						vertexnr.ToString());
-				}
+				writer.WriteLine("0");
+			}
+						
+			
+			//Export Faces
+			writer.WriteLine(Group.FaceCount.ToString());
+			for (int i = 0; i < Group.Faces.Count; i +=3)
+			{
+				writer.WriteLine("0 " + 
+					Group.Faces[i+0].ToString() + " " +
+					Group.Faces[i+1].ToString() + " " +
+					Group.Faces[i+2].ToString() + " " +
+					Group.Faces[i+0].ToString() + " " +
+					Group.Faces[i+1].ToString() + " " +
+					Group.Faces[i+2].ToString() + " 1");
 			}			
 			
 			vertexoffset += vertexcount;
@@ -192,7 +196,35 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		/// Use the writer member to write to the File</remarks>
 		protected override void FinishFile()
 		{		
-			//nothing to do here
+			writer.WriteLine("Materials: 0");
+			
+			//Export Bones
+			writer.WriteLine("Bones: "+Gmdc.Bones.Count.ToString());
+			for (int i=0; i<Gmdc.Bones.Length; i++)
+			{
+				if (i>=Gmdc.Model.Rotations.Length || i>=Gmdc.Model.Transformations.Length) break;
+	
+				writer.WriteLine("\"Joint"+i.ToString()+"\"");
+				writer.WriteLine("\"\"");
+				writer.WriteLine("0 " + 
+					Gmdc.Model.Transformations[i].X.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
+					Gmdc.Model.Transformations[i].Y.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
+					Gmdc.Model.Transformations[i].Z.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
+					Gmdc.Model.Rotations[i].X.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
+					Gmdc.Model.Rotations[i].X.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
+					Gmdc.Model.Rotations[i].X.ToString("N6", AbstractGmdcExporter.DefaultCulture));
+
+				writer.WriteLine("1");
+				writer.WriteLine("1.000000 0.000000 0.000000 0.000000");
+				writer.WriteLine("1");
+				writer.WriteLine("1.000000 0.000000 0.000000 0.000000");
+			}
+
+			//Write Footer
+			writer.WriteLine("GroupComments: 0");
+			writer.WriteLine("MaterialComments: 0");
+			writer.WriteLine("BoneComments: 0");
+			writer.WriteLine("ModelComment: 0");
 		}
 	}
 }

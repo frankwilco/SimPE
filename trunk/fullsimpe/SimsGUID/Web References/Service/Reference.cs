@@ -105,6 +105,29 @@ namespace Sims.GUID.Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://sims.ambertation.de/GUID/EnumerateRegistredObjects", RequestNamespace="http://sims.ambertation.de/", ResponseNamespace="http://sims.ambertation.de/")]
+        [return: System.Xml.Serialization.SoapElementAttribute("return")]
+        public string enumerateRegistredObjects(string username, string password) {
+            object[] results = this.Invoke("enumerateRegistredObjects", new object[] {
+                        username,
+                        password});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginenumerateRegistredObjects(string username, string password, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("enumerateRegistredObjects", new object[] {
+                        username,
+                        password}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public string EndenumerateRegistredObjects(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://sims.ambertation.de/GUID/DescribeRegistredObjects", RequestNamespace="http://sims.ambertation.de/", ResponseNamespace="http://sims.ambertation.de/")]
         [return: System.Xml.Serialization.SoapElementAttribute("return")]
         public string describeRegistredObjects(string username, string password, int update) {

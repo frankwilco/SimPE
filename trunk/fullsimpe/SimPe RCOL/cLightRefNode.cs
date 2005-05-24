@@ -42,14 +42,14 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public LightRefNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public LightRefNode(Rcol parent) : base(parent)
 		{
 			version = 0xa;
 			BlockID = 0x253d2018;
 
-			rn = new RenderableNode(provider, null);
-			bn = new BoundedNode(provider, null);
-			tn= new TransformNode(provider, null);
+			rn = new RenderableNode(null);
+			bn = new BoundedNode(null);
+			tn= new TransformNode(null);
 
 			items = new string[0];
 			unknown2 = new byte[13];

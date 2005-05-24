@@ -31,6 +31,19 @@ namespace SimPe.Plugin
 	/// </remarks>
 	public class WrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory
 	{
+		static bool inited = false;
+		/// <summary>
+		/// Add all other default RCol Extensions
+		/// </summary>
+		public static void InitRcolBlocks()
+		{
+			if (!inited) 
+			{
+				Rcol.TokenAssemblies.Add(typeof(SimPe.Plugin.GeometryDataContainer).Assembly);
+				inited = true;
+			}
+		}
+
 		/// <summary>
 		/// Loads the GroupCache
 		/// </summary>
@@ -68,7 +81,8 @@ namespace SimPe.Plugin
 		public override SimPe.Interfaces.IWrapper[] KnownWrappers
 		{
 			get 
-			{
+			{			
+				InitRcolBlocks();
 				IWrapper[] wrappers = {
 										  new Plugin.Txtr(this.LinkedProvider, false),
 										  //new Plugin.Matd(this.LinkedProvider, false),

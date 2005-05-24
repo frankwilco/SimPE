@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Windows.Forms;
 using System.ComponentModel;
+using SimPe.Interfaces.Scenegraph;
 
 namespace SimPe.Plugin
 {
 	/// <summary>
 	/// You need to implement is to provide a new RCOL Block
 	/// </summary>
-	public abstract class AbstractRcolBlock:IRcolBlock
+	public abstract class AbstractRcolBlock : IRcolBlock
 	{
 		protected SGResource sgres;
 		/// <summary>
@@ -19,14 +20,7 @@ namespace SimPe.Plugin
 		{
 			get { return sgres; }
 			set { sgres = value; }
-		}
-
-		protected Interfaces.IProviderRegistry provider; 
-		[BrowsableAttribute(false)]
-		public Interfaces.IProviderRegistry Provider 
-		{
-			get { return provider; }
-		}
+		}		
 
 		protected uint version;
 		[ReadOnly(true)]
@@ -44,11 +38,17 @@ namespace SimPe.Plugin
 			set { parent = value; }
 		}
 
-		public AbstractRcolBlock(Interfaces.IProviderRegistry provider, Rcol parent)
+		public AbstractRcolBlock()
 		{
-			this.parent = parent;
-			this.provider = provider;
-			if (parent!=null) this.Register(parent.Tokens);
+			sgres = null;
+			blockid = 0;
+			version = 0;
+		}
+
+		public AbstractRcolBlock(Rcol parent)
+		{			
+			this.parent = (Rcol)parent;
+			if (parent!=null) this.Register(Rcol.Tokens);
 			sgres = null;
 			blockid = 0;
 			version = 0;
@@ -126,10 +126,27 @@ namespace SimPe.Plugin
 		/// </summary>
 		public IRcolBlock Create()
 		{
-			object[] args = new object[2];
-			args[0] = this.provider;
-			args[1] = this.parent;
-			IRcolBlock irb = (IRcolBlock)Activator.CreateInstance(this.GetType(), args);
+			return Create(this.GetType(), this.parent);
+		}
+
+		/// <summary>
+		/// Creates a new Instance
+		/// </summary>
+		public static IRcolBlock Create(Type type, Rcol parent)
+		{
+			object[] args = new object[1];
+			args[0] = parent;
+			IRcolBlock irb = (IRcolBlock)Activator.CreateInstance(type, args);
+			return irb;
+		}
+
+		/// <summary>
+		/// Creates a new Instance
+		/// </summary>
+		public static IRcolBlock Create(Type type, Rcol parent, uint id)
+		{
+			IRcolBlock irb = Create(type, parent);
+			irb.BlockID = id;
 			return irb;
 		}
 
@@ -138,9 +155,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public IRcolBlock Create(uint id)
 		{
-			IRcolBlock irb = Create();
-			irb.BlockID = id;
-			return irb;
+			return Create(this.GetType(), this.parent, id);
 		}
 
 		/// <summary>
@@ -151,7 +166,7 @@ namespace SimPe.Plugin
 		public string Register(Hashtable listing)
 		{
 			string name = BlockName;
-			if (listing!=null) if (!listing.ContainsKey(name)) listing.Add(name, this);
+			if (listing!=null) if (!listing.ContainsKey(name)) listing.Add(name, this.GetType());
 			return name;
 		}
 

@@ -31,6 +31,7 @@ namespace SimPe.Plugin.Gmdc
 		private System.Windows.Forms.TextBox tbscale;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ComboBox cbopacity;
+		private System.Windows.Forms.ColumnHeader chBones;
 		/// <summary>
 		/// Needed Designervar.
 		/// </summary>
@@ -81,6 +82,10 @@ namespace SimPe.Plugin.Gmdc
 			this.chFace = new System.Windows.Forms.ColumnHeader();
 			this.label1 = new System.Windows.Forms.Label();
 			this.gbsettings = new System.Windows.Forms.GroupBox();
+			this.cbopacity = new System.Windows.Forms.ComboBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.tbscale = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.cbaction = new System.Windows.Forms.ComboBox();
 			this.lbname = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
@@ -88,10 +93,7 @@ namespace SimPe.Plugin.Gmdc
 			this.cbnames = new System.Windows.Forms.ComboBox();
 			this.tbname = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.tbscale = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.cbopacity = new System.Windows.Forms.ComboBox();
+			this.chBones = new System.Windows.Forms.ColumnHeader();
 			this.gbsettings.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -105,7 +107,8 @@ namespace SimPe.Plugin.Gmdc
 																				 this.chAction,
 																				 this.chTarget,
 																				 this.chVertex,
-																				 this.chFace});
+																				 this.chFace,
+																				 this.chBones});
 			this.lv.FullRowSelect = true;
 			this.lv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.lv.HideSelection = false;
@@ -119,7 +122,7 @@ namespace SimPe.Plugin.Gmdc
 			// chName
 			// 
 			this.chName.Text = "Name";
-			this.chName.Width = 154;
+			this.chName.Width = 131;
 			// 
 			// chAction
 			// 
@@ -129,7 +132,7 @@ namespace SimPe.Plugin.Gmdc
 			// chTarget
 			// 
 			this.chTarget.Text = "Target";
-			this.chTarget.Width = 123;
+			this.chTarget.Width = 114;
 			// 
 			// chVertex
 			// 
@@ -138,6 +141,7 @@ namespace SimPe.Plugin.Gmdc
 			// chFace
 			// 
 			this.chFace.Text = "Faces";
+			this.chFace.Width = 49;
 			// 
 			// label1
 			// 
@@ -170,6 +174,51 @@ namespace SimPe.Plugin.Gmdc
 			this.gbsettings.TabIndex = 2;
 			this.gbsettings.TabStop = false;
 			this.gbsettings.Text = "Group Settings:";
+			// 
+			// cbopacity
+			// 
+			this.cbopacity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbopacity.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbopacity.Items.AddRange(new object[] {
+														   "Opaque (Normal)",
+														   "Shadow",
+														   "Invisible"});
+			this.cbopacity.Location = new System.Drawing.Point(112, 72);
+			this.cbopacity.Name = "cbopacity";
+			this.cbopacity.Size = new System.Drawing.Size(160, 21);
+			this.cbopacity.TabIndex = 9;
+			this.cbopacity.SelectedIndexChanged += new System.EventHandler(this.textBox1_TextChanged);
+			// 
+			// label5
+			// 
+			this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label5.Location = new System.Drawing.Point(16, 72);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(88, 23);
+			this.label5.TabIndex = 8;
+			this.label5.Text = "Opacity:";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
+			// tbscale
+			// 
+			this.tbscale.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbscale.Location = new System.Drawing.Point(112, 48);
+			this.tbscale.Name = "tbscale";
+			this.tbscale.ReadOnly = true;
+			this.tbscale.Size = new System.Drawing.Size(136, 21);
+			this.tbscale.TabIndex = 7;
+			this.tbscale.Text = "1";
+			this.tbscale.TextChanged += new System.EventHandler(this.tbscale_TextChanged);
+			// 
+			// label4
+			// 
+			this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label4.Location = new System.Drawing.Point(16, 48);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(88, 23);
+			this.label4.TabIndex = 6;
+			this.label4.Text = "Scale:";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// cbaction
 			// 
@@ -243,50 +292,10 @@ namespace SimPe.Plugin.Gmdc
 			this.button1.Text = "OK";
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
-			// label4
+			// chBones
 			// 
-			this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label4.Location = new System.Drawing.Point(16, 48);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(88, 23);
-			this.label4.TabIndex = 6;
-			this.label4.Text = "Scale:";
-			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-			// 
-			// tbscale
-			// 
-			this.tbscale.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbscale.Location = new System.Drawing.Point(112, 48);
-			this.tbscale.Name = "tbscale";
-			this.tbscale.ReadOnly = true;
-			this.tbscale.Size = new System.Drawing.Size(136, 21);
-			this.tbscale.TabIndex = 7;
-			this.tbscale.Text = "1";
-			this.tbscale.TextChanged += new System.EventHandler(this.tbscale_TextChanged);
-			// 
-			// label5
-			// 
-			this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label5.Location = new System.Drawing.Point(16, 72);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(88, 23);
-			this.label5.TabIndex = 8;
-			this.label5.Text = "Opacity:";
-			this.label5.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-			// 
-			// cbopacity
-			// 
-			this.cbopacity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbopacity.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbopacity.Items.AddRange(new object[] {
-														   "Opaque (Normal)",
-														   "Shadow",
-														   "Invisible"});
-			this.cbopacity.Location = new System.Drawing.Point(112, 72);
-			this.cbopacity.Name = "cbopacity";
-			this.cbopacity.Size = new System.Drawing.Size(160, 21);
-			this.cbopacity.TabIndex = 9;
-			this.cbopacity.SelectedIndexChanged += new System.EventHandler(this.textBox1_TextChanged);
+			this.chBones.Text = "Bones";
+			this.chBones.Width = 52;
 			// 
 			// ImportGmdcGroupsForm
 			// 
@@ -371,6 +380,7 @@ namespace SimPe.Plugin.Gmdc
 				lvi.SubItems.Add(a.TargetName);				
 				lvi.SubItems.Add(a.VertexCount.ToString());
 				lvi.SubItems.Add(a.FaceCount.ToString());
+				lvi.SubItems.Add(a.Group.UsedBones.Count.ToString());
 				lvi.Tag = a;
 				lvi.ForeColor = a.MarkColor;
 

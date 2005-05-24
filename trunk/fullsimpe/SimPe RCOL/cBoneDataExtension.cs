@@ -49,9 +49,9 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public BoneDataExtension(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public BoneDataExtension(Rcol parent) : base( parent)
 		{
-			ext = new Extension(provider, null);
+			ext = new Extension(null);
 			version = 0x01;
 			BlockID = 0xe9075bc5;
 		}

@@ -396,7 +396,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Extension(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public Extension(Rcol parent) : base( parent)
 		{
 			items = new ExtensionItem[0];
 			version = 0x03;

@@ -21,6 +21,7 @@ using System;
 using System.Collections;
 using SimPe.Packages;
 using SimPe.Interfaces.Files;
+using SimPe.Interfaces.Scenegraph;
 
 namespace SimPe.Plugin
 {
@@ -130,7 +131,7 @@ namespace SimPe.Plugin
 			{
 				SimPe.Plugin.Rcol gmnd = new GenericRcol(null, false);
 				gmnd.ProcessData(pfd, package);
-				foreach (SimPe.Plugin.IRcolBlock rb in gmnd.Blocks) 
+				foreach (IRcolBlock rb in gmnd.Blocks) 
 				{
 					if (rb.BlockName=="cDataListExtension") 
 					{
@@ -247,7 +248,7 @@ namespace SimPe.Plugin
 		{
 			ArrayList list = new ArrayList();
 			ArrayList localsubsets = new ArrayList();
-			DataListExtension dle = new DataListExtension(null, gmnd);
+			DataListExtension dle = new DataListExtension(gmnd);
 			uint index = (uint)(gm_pkg.FindFiles(0x4C697E5A).Length+1);
 			
 			foreach (SimPe.Plugin.Rcol shpe in shpes) 

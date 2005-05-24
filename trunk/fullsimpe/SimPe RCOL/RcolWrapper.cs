@@ -20,6 +20,7 @@
 using System;
 using System.Collections;
 using SimPe.Interfaces.Plugin;
+using SimPe.Interfaces.Scenegraph;
 
 namespace SimPe.Plugin
 {
@@ -57,10 +58,13 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
-		Hashtable tokens;
-		public Hashtable Tokens 
+		static Hashtable tokens;
+		public static Hashtable Tokens 
 		{
-			get { return tokens; }
+			get { 
+				if (tokens==null) LoadTokens();
+				return tokens; 
+			}
 		}
 
 		Interfaces.IProviderRegistry provider;
@@ -94,20 +98,43 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
-		/// Constructor
+		/// Loads all Tokens in the assemblies given in the <see cref="TokenAssemblies"/> List
 		/// </summary>
-		public Rcol(Interfaces.IProviderRegistry provider, bool fast) : base()
+		static void LoadTokens() 
 		{
-			this.fast = fast;
-			this.provider = provider;
-			reffiles = new Interfaces.Files.IPackedFileDescriptor[0];
-			index = new uint[0];
-			blocks = new IRcolBlock[0];
-			oversize = new byte[0];
-
-			//add Token Handlers
 			tokens = new Hashtable();
-			ImageData cid = new ImageData(provider, this);
+			foreach (System.Reflection.Assembly a in assemblies) LoadTokens(a);
+		}
+
+		static ArrayList assemblies;
+		/// <summary>
+		/// keeps a List of all <see cref="System.Reflection.Assembly"/>, SimPE should use to look for Tokens
+		/// </summary>
+		public static ArrayList TokenAssemblies
+		{
+			get 
+			{
+				if (assemblies==null) 
+				{
+					assemblies = new ArrayList();
+					assemblies.Add(typeof(Rcol).Assembly);
+				}
+				return assemblies;
+			}
+		}
+
+		/// <summary>
+		/// Creates the Tokenlist for the given Assembly
+		/// </summary>
+		static void LoadTokens(System.Reflection.Assembly a)
+		{
+			if (tokens==null) tokens = new Hashtable();
+			
+			object[] args = new object[1]; args[0] = null;
+			object[] statics = SimPe.LoadFileWrappers.LoadPlugins(a, typeof(SimPe.Interfaces.Scenegraph.IRcolBlock), args);
+			foreach (SimPe.Interfaces.Scenegraph.IRcolBlock isb in statics) isb.Register(tokens);
+			
+			/*ImageData cid = new ImageData(provider, this);
 			SGResource csgr = new SGResource(provider, this);
 			MaterialDefinition cmd = new MaterialDefinition(provider, this);
 			LevelInfo li = new LevelInfo(provider, this);
@@ -133,7 +160,23 @@ namespace SimPe.Plugin
 			DirectionalLight dl = new DirectionalLight(provider, this);
 			AmbientLight al = new AmbientLight(provider, this);
 			PointLight pl = new PointLight(provider, this);
-			SpotLight sl = new SpotLight(provider, this);
+			SpotLight sl = new SpotLight(provider, this);*/
+		}
+		
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public Rcol(Interfaces.IProviderRegistry provider, bool fast) : base()
+		{
+			this.fast = fast;
+			this.provider = provider;
+			reffiles = new Interfaces.Files.IPackedFileDescriptor[0];
+			index = new uint[0];
+			blocks = new IRcolBlock[0];
+			oversize = new byte[0];
+
+			//add Token Handlers
+			//LoadTokens();
 		}
 
 		#region IWrapper member
@@ -218,10 +261,10 @@ namespace SimPe.Plugin
 				if (myid==0xffffffff) break;
 				if (id!=myid) throw new Exception("Not matching ID Field in RCOL File.\n\nID=0x"+Helper.HexString(myid)+"\nLooked for=0x"+Helper.HexString(id)+"\nOffset=0x"+Helper.HexString((uint)(reader.BaseStream.Position-4)));
 
-				IRcolBlock wrp = (IRcolBlock)tokens[s];
-				if (wrp==null) throw new Exception("Unknown embedded RCOL Block "+s+".\n\nOffset=0x"+Helper.HexString(reader.BaseStream.Length-4));
+				Type tp = (Type)Tokens[s];
+				if (tp==null) throw new Exception("Unknown embedded RCOL Block "+s+".\n\nOffset=0x"+Helper.HexString(reader.BaseStream.Length-4));
 
-				wrp = wrp.Create(myid);
+				IRcolBlock  wrp = AbstractRcolBlock.Create(tp, this, myid);
 				wrp.Unserialize(reader);
 				blocks[i] = wrp;
 			}
@@ -357,5 +400,5 @@ namespace SimPe.Plugin
 		}
 
 		#endregion		
-	}
+	}	
 }

@@ -107,16 +107,16 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public DirectionalLight(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public DirectionalLight(Rcol parent) : base(parent)
 		{
 			version = 1;
 			BlockID = 0xC9C81BA3;
 
-			slb = new StandardLightBase(provider, null);
-			sgres = new SGResource(provider, null);
-			lt = new LightT(provider, null);
-			rn = new ReferentNode(provider, null);
-			ogn = new ObjectGraphNode(provider, null);
+			slb = new StandardLightBase(null);
+			sgres = new SGResource(null);
+			lt = new LightT(null);
+			rn = new ReferentNode(null);
+			ogn = new ObjectGraphNode(null);
 
 			unknown2 = "";
 		}

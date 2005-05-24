@@ -36,7 +36,7 @@ namespace SimPe.Plugin
 			/// <summary>
 			/// Constructor
 			/// </summary>
-			public ViewerRefNodeBase(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+			public ViewerRefNodeBase(Rcol parent) : base( parent)
 			{
 				version = 0x5;
 				BlockID = 0;

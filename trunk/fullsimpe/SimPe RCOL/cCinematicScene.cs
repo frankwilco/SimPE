@@ -94,9 +94,9 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public CinematicScene(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public CinematicScene(Rcol parent) : base(parent)
 		{
-			sgres = new SGResource(provider, null);
+			sgres = new SGResource(null);
 			desc = "";
 
 			items = new CinematicSceneItem[0];

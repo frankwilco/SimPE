@@ -91,6 +91,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Cache", "..\SimPe Cac
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe GMDC Exporter Base", "..\SimPe GMDC Exporter Base\SimPe GMDC Exporter Base.csproj", "{76D6A8B3-10DF-4948-9028-C63A416AB00E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -236,6 +240,12 @@ Global
 		{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}.Debug Txtr.Build.0 = Debug|.NET
 		{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}.Release.ActiveCfg = Release|.NET
 		{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}.Release.Build.0 = Release|.NET
+		{76D6A8B3-10DF-4948-9028-C63A416AB00E}.Debug.ActiveCfg = Debug|.NET
+		{76D6A8B3-10DF-4948-9028-C63A416AB00E}.Debug.Build.0 = Debug|.NET
+		{76D6A8B3-10DF-4948-9028-C63A416AB00E}.Debug Txtr.ActiveCfg = Debug|.NET
+		{76D6A8B3-10DF-4948-9028-C63A416AB00E}.Debug Txtr.Build.0 = Debug|.NET
+		{76D6A8B3-10DF-4948-9028-C63A416AB00E}.Release.ActiveCfg = Release|.NET
+		{76D6A8B3-10DF-4948-9028-C63A416AB00E}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

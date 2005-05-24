@@ -185,11 +185,11 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public ShapeRefNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public ShapeRefNode(Rcol parent) : base(parent)
 		{
-			rn = new RenderableNode(provider, null);
-			bn = new BoundedNode(provider, null);
-			tn = new TransformNode(provider, null);
+			rn = new RenderableNode(null);
+			bn = new BoundedNode(null);
+			tn = new TransformNode(null);
 
 			itemsa = new ShapeRefNodeItem_A[0];
 			itemsb = new ShapeRefNodeItem_B[0];

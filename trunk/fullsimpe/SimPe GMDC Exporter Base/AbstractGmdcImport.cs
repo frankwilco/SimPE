@@ -163,6 +163,31 @@ namespace SimPe.Plugin.Gmdc
 		/// diffrent Import Dialog</remarks>
 		protected virtual bool ValidateImportedGroups(ImportedGroups grps)
 		{
+			foreach (ImportedGroup g in grps) 
+			{
+				int minct = int.MaxValue;
+				//add all populated Element Lists
+				for (int k=0; k<g.Elements.Count; k++) 
+				{
+					g.Elements[k].Number = g.Elements[k].Values.Count;
+					if (g.Elements[k].Values.Length>0) 
+					{
+						minct = Math.Min(minct, g.Elements[k].Values.Count);
+
+						g.Link.ReferencedElement.Add(k);
+					}
+				} // for k
+				if (minct==int.MaxValue) minct=0;
+
+				g.Link.ReferencedSize = minct;
+				g.Link.ActiveElements = g.Link.ReferencedElement.Count;
+
+				//If we have AliasLists, the we need that Number as Reference Count!
+				minct = int.MaxValue;
+				for (int i=0; i<g.Link.AliasValues.Length; i++) if (g.Link.AliasValues[i].Length>0) minct = Math.Min(minct, g.Link.AliasValues[i].Length);
+				if (minct!=int.MaxValue) g.Link.ReferencedSize = minct;
+			}
+
 			return ImportGmdcGroupsForm.Execute(gmdc, grps) == System.Windows.Forms.DialogResult.OK;
 		}
 
@@ -230,6 +255,44 @@ namespace SimPe.Plugin.Gmdc
 		{
 			g.Group.Name = g.TargetName;
 			AddGroup(g);
+		}
+
+		/// <summary>
+		/// Creates a new <see cref="ImportedGroup"/> Instance with Default Settings
+		/// </summary>
+		/// <returns>a new Container for an Imported MeshGroup</returns>
+		/// <remarks>
+		/// You should use this whenever you have to add a new Group!
+		/// </remarks>
+		protected ImportedGroup PrepareGroup()
+		{
+			ImportedGroup g = new ImportedGroup(Gmdc);
+				
+			//Vertex Element-----
+			GmdcElement e = new GmdcElement(Gmdc);
+			g.Elements.Add(e);
+			e.Identity = ElementIdentity.Vertex;
+			e.BlockFormat = BlockFormat.ThreeFloat;
+			e.SetFormat = SetFormat.Secondary;
+
+			//Normal Element-----
+			e = new GmdcElement(Gmdc);
+			g.Elements.Add(e);
+			e.Identity = ElementIdentity.Normal;
+			e.BlockFormat = BlockFormat.ThreeFloat;
+			e.SetFormat = SetFormat.Normals;
+
+			//UVCoord Element-----
+			e = new GmdcElement(Gmdc);
+			g.Elements.Add(e);
+			e.Identity = ElementIdentity.UVCoordinate;
+			e.BlockFormat = BlockFormat.TwoFloat;
+			e.SetFormat = SetFormat.Mapping;				
+				
+			g.Group.PrimitiveType = PrimitiveType.Triangle;
+			g.Group.Opacity = 0xffffffff;
+
+			return g;
 		}
 	}
 }
