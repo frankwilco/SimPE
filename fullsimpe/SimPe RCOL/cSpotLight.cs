@@ -46,7 +46,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public SpotLight(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public SpotLight(Rcol parent) : base(parent)
 		{
 			version = 1;
 			BlockID = 0xc9c81bad;

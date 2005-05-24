@@ -544,11 +544,11 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public ImageData(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public ImageData(Rcol parent) : base(parent)
 		{
 			texturesize = new Size(0, 0);
 			mipmapblocks = new MipMapBlock[0];
-			sgres = new SGResource(provider, null);
+			sgres = new SGResource(null);
 			BlockID = 0x1c4a276c;
 			filenamerep = "";
 			this.version = 0x09;

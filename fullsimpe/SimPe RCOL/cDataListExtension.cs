@@ -50,9 +50,9 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public DataListExtension(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public DataListExtension(Rcol parent) : base(parent)
 		{
-			ext = new Extension(provider, null);
+			ext = new Extension(null);
 			version = 0x01;
 			BlockID = 0x6a836d56;
 		}

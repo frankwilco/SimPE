@@ -44,6 +44,10 @@
       <input message="tns:RegisterUserRequest" />
       <output message="tns:ListRegistredObjectsResponse" />
     </operation>
+    <operation name="enumerateRegistredObjects">
+      <input message="tns:RegisterUserRequest" />
+      <output message="tns:ListRegistredObjectsResponse" />
+    </operation>
     <operation name="describeRegistredObjects">
       <input message="tns:DescribeRegistredObjectsRequest" />
       <output message="tns:ListRegistredObjectsResponse" />
@@ -70,6 +74,15 @@
     </operation>
     <operation name="registerObject">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/RegisterObject" />
+      <input>
+        <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="enumerateRegistredObjects">
+      <soap:operation soapAction="http://sims.ambertation.de/GUID/EnumerateRegistredObjects" />
       <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </input>

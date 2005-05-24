@@ -60,12 +60,12 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public ViewerRefNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public ViewerRefNode( Rcol parent) : base(parent)
 		{
-			vrnb = new ViewerRefNodeBase(provider, null);
-			rn = new RenderableNode(provider, null);
-			bn = new BoundedNode(provider, null);
-			tn = new TransformNode(provider, null);
+			vrnb = new ViewerRefNodeBase(null);
+			rn = new RenderableNode(null);
+			bn = new BoundedNode(null);
+			tn = new TransformNode(null);
 
 			names = new string[0];
 			unknown2 = new byte[0xA0];

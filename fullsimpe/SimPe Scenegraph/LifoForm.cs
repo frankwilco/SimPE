@@ -23,6 +23,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using SimPe.Interfaces.Plugin;
+using SimPe.Interfaces.Scenegraph;
 
 namespace SimPe.Plugin
 {
@@ -584,7 +585,7 @@ namespace SimPe.Plugin
 			if (cbitem.SelectedIndex<0) 
 			{
 				Lifo wrp = (Lifo)wrapper;
-				li = new LevelInfo(wrp.Provider, wrp);
+				li = new LevelInfo(wrp);
 				li.NameResource.FileName = "Unknown";
 
 				IRcolBlock[] irc = new IRcolBlock[wrp.Blocks.Length+1];

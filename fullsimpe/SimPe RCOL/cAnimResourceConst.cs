@@ -86,9 +86,9 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public AnimResourceConst(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public AnimResourceConst(Rcol parent) : base(parent)
 		{
-			sgres = new SGResource(provider, null);
+			sgres = new SGResource(null);
 			unknowndata = new byte[0];
 			BlockID = 0xfb00791e;
 

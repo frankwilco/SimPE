@@ -18,21 +18,65 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.IO;
 
-namespace SimPe.Plugin
+namespace SimPe.Plugin.Gmdc
 {
 	/// <summary>
-	/// Zusammenfassung für StandardLightBase.
+	/// This Interface is the base for all Importers
 	/// </summary>
-	public class AmbientLight : DirectionalLight
-	{
+	/// <remarks>
+	/// It is probably a good Idea, to not implement this Interface 
+	/// direct, but reuse the GmdcImporterBase class.
+	/// </remarks>
+	public interface IGmdcImporter
+	{				
 		/// <summary>
-		/// Constructor
+		/// Returns a Version Number for the used Interface
 		/// </summary>
-		public AmbientLight(Rcol parent) : base(parent)
+		int Version 
 		{
-			version = 1;
-			BlockID = 0xc9c81b9b;
-		}		
+			get;
+		}
+
+		/// <summary>
+		/// Returns the suggested File Extension (including the . like .obj or .3ds)
+		/// </summary>
+		string FileExtension
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns the File Description (the Name of the exported FileType)
+		/// </summary>
+		string FileDescription
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns the name of the Author
+		/// </summary>
+		string Author
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns the Error Message Produced by the Last Parsing attempt
+		/// </summary>
+		string ErrorMessage
+		{
+			get;
+		}
+
+	
+		/// <summary>
+		/// Process the Data stored in the passed Stream, and change/replace the passed Gmdc
+		/// </summary>
+		/// <param name="input">A Stream with the Input Data</param>
+		/// <param name="gmdc">The Gmdc that should receive the Data</param>
+		void Process(System.IO.Stream input, GeometryDataContainer gmdc);
 	}
 }

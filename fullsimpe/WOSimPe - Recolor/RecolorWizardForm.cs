@@ -989,7 +989,7 @@ namespace SimPe.Wizards
 				SimPe.Plugin.ImageData oldid = (SimPe.Plugin.ImageData)txtr.Blocks[0];
 
 				//build TXTR File
-				SimPe.Plugin.ImageData id = new SimPe.Plugin.ImageData(null, null);
+				SimPe.Plugin.ImageData id = new SimPe.Plugin.ImageData(null);
 				id.NameResource = oldid.NameResource;
 				id.Version = oldid.Version;
 				id.BlockID = oldid.BlockID;

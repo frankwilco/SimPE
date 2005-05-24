@@ -26,7 +26,7 @@ using SimPe.Plugin.Gmdc;
 namespace SimPe.Plugin.Gmdc.Importer
 {
 	/// <summary>
-	/// This class provides the functionality to Export Data to the .obj FileFormat
+	/// This class provides the functionality to Import Data from the .obj FileFormat
 	/// </summary>	
 	public class GmdcImportFromObj : GmdcImporterBase
 	{		
@@ -35,6 +35,31 @@ namespace SimPe.Plugin.Gmdc.Importer
 		/// </summary>
 		public GmdcImportFromObj() : base() {}
 
+		#region AbstractGmdcImporter Implementation
+		/// <summary>
+		/// Returns the suggested File Extension (including the . like .obj or .3ds)
+		/// </summary>
+		public override string FileExtension
+		{
+			get {return ".obj";}
+		}
+
+		/// <summary>
+		/// Returns the File Description (the Name of the exported FileType)
+		/// </summary>
+		public override string FileDescription
+		{
+			get {return "Maya Object File";}
+		}		
+
+		/// <summary>
+		/// Returns the name of the Author
+		/// </summary>
+		public override string Author
+		{
+			get {return "Quaxi";}
+		}
+		#endregion
 		
 		string lineerror;	
 		string groupname;

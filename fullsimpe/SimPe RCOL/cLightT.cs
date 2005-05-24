@@ -34,12 +34,12 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public LightT(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public LightT(Rcol parent) : base(parent)
 		{
 			version = 11;
 			BlockID = 0;
 
-			sgres = new SGResource(provider, null);
+			sgres = new SGResource(null);
 		}
 		
 		#region IRcolBlock Member

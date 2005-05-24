@@ -228,6 +228,7 @@ namespace Sims.GUID
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(360, 176);
 			this.tabControl1.TabIndex = 5;
+			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
 			// tabPage1
 			// 
@@ -314,7 +315,8 @@ namespace Sims.GUID
 			
 			service = new Sims.GUID.Service.SimGUIDService();
 			this.tbusername.Text = user;
-			this.tbpassword.Text = password;			
+			this.tbpassword.Text = password;	
+			this.tabControl1.SelectedIndex=1;
 						
 			this.ShowDialog();
 
@@ -333,18 +335,24 @@ namespace Sims.GUID
 				{
 					this.tbUserGUID.Text = "0x"+userguid.ToString("X");
 
-					string res = service.listRegistredObjects(tbusername.Text, tbpassword.Text);
+				//	string res = service.listRegistredObjects(tbusername.Text, tbpassword.Text);					
+					string res = service.enumerateRegistredObjects(tbusername.Text, tbpassword.Text);
 					System.Collections.Hashtable ht = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
 				
 
-					foreach (Int32 guid in ht.Values) 
+					foreach (string s in ht.Values) 
 					{
-						res = service.describeRegistredObjects(tbusername.Text, tbpassword.Text, guid);
-						System.Collections.Hashtable data = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
-						uint objguid = Convert.ToUInt32(data["guid"]);
-						objguid = BuildGUID(userguid, objguid);
-						this.lbnames.Items.Add(new ObjectListItem(objguid, data["name"].ToString()));
-						Application.DoEvents();
+						string[] parts = s.Split(" ".ToCharArray(), 3);
+						if (parts.Length==3) 
+						{
+							//res = service.describeRegistredObjects(tbusername.Text, tbpassword.Text, guid);
+							System.Collections.Hashtable data = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
+							uint objguid = Convert.ToUInt32(parts[0]);
+							objguid = BuildGUID(userguid, objguid);
+							this.lbnames.Items.Add(new ObjectListItem(objguid, parts[2]));
+							Application.DoEvents();
+						} else throw new Exception("Invalid Result while retriving Object Informations.");
+						
 					}
 				}
 				else this.tbUserGUID.Text = "0x0";
@@ -419,7 +427,15 @@ namespace Sims.GUID
 
 		private void GUIDGetterForm_Load(object sender, System.EventArgs e)
 		{
-			this.BeginInvoke(new LinkLabelLinkClickedEventHandler(UpdateGUID), new object[2]);
+			
+		}
+
+		private void tabControl1_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (tabControl1.SelectedIndex==0 && lbnames.Items.Count==0) 
+			{
+				this.BeginInvoke(new LinkLabelLinkClickedEventHandler(UpdateGUID), new object[2]);
+			}
 		}
 	}
 }

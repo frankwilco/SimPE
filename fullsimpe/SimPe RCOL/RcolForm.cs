@@ -22,6 +22,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using SimPe.Interfaces.Scenegraph;
 
 namespace SimPe.Plugin
 {
@@ -1020,11 +1021,12 @@ namespace SimPe.Plugin
 				foreach(IRcolBlock irb in wrapper.Blocks) lbblocks.Items.Add(irb);
 
 				this.cbblocks.Items.Clear();
-				foreach (string s in wrapper.Tokens.Keys)
+				foreach (string s in Rcol.Tokens.Keys)
 				{
 					try 
 					{					
-						IRcolBlock irb = (IRcolBlock)wrapper.Tokens[s];
+						Type t = (Type)Rcol.Tokens[s];
+						IRcolBlock irb = AbstractRcolBlock.Create(t, null);
 						cbblocks.Items.Add(irb);
 					}
 					catch (Exception ex) 

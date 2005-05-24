@@ -46,7 +46,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public ReferentNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public ReferentNode(Rcol parent) : base(parent)
 		{
 		}
 		

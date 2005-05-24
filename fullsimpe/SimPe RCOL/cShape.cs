@@ -260,11 +260,11 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Shape(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public Shape(Rcol parent) : base(parent)
 		{
-			sgres = new SGResource(provider, null);
-			refnode = new ReferentNode(provider, null);
-			ogn = new ObjectGraphNode(provider, null);
+			sgres = new SGResource(null);
+			refnode = new ReferentNode(null);
+			ogn = new ObjectGraphNode(null);
 
 			unknown = new uint[0];
 			items = new ShapeItem[0];

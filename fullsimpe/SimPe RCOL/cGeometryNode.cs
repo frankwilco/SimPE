@@ -70,10 +70,10 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public GeometryNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public GeometryNode( Rcol parent) : base(parent)
 		{
-			ogn = new ObjectGraphNode(provider, null);
-			this.sgres = new SGResource(provider, null);
+			ogn = new ObjectGraphNode(null);
+			this.sgres = new SGResource(null);
 
 			version = 0x0c;
 			BlockID = 0x7BA3838C;

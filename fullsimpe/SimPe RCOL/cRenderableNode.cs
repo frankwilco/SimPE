@@ -36,7 +36,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public RenderableNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public RenderableNode(Rcol parent) : base(parent)
 		{
 			version = 0x5;
 		}

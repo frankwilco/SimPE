@@ -36,7 +36,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public BoundedNode(Interfaces.IProviderRegistry provider, Rcol parent) : base(provider, parent)
+		public BoundedNode(Rcol parent) : base(parent)
 		{
 			version = 0x5;
 			BlockID = 0;

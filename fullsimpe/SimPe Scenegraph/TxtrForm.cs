@@ -23,6 +23,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using SimPe.Interfaces.Plugin;
+using SimPe.Interfaces.Scenegraph;
 
 namespace SimPe.Plugin
 {
@@ -866,7 +867,7 @@ namespace SimPe.Plugin
 			if (cbitem.SelectedIndex<0) 
 			{
 				Txtr wrp = (Txtr)wrapper;
-				id = new ImageData(wrp.Provider, wrp);
+				id = new ImageData(wrp);
 				id.NameResource.FileName = "Unknown";
 
 				IRcolBlock[] irc = new IRcolBlock[wrp.Blocks.Length+1];
