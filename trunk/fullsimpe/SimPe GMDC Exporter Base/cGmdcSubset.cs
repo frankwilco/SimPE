@@ -21,13 +21,14 @@ using System;
 using System.IO;
 using System.Globalization;
 using System.Collections;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin.Gmdc
 {
 	/// <summary>
 	/// Contains the Subset Section of a GMDC
 	/// </summary>
-	public class GmdcBone : GmdcLinkBlock
+	public class GmdcJoint : GmdcLinkBlock
 	{
 		#region Attributes	
 		/// <summary>
@@ -38,11 +39,11 @@ namespace SimPe.Plugin.Gmdc
 			get { return verts.Length; }
 		}
 
-		Vectors3i verts;
+		Vectors3f verts;
 		/// <summary>
 		/// Vertex Definitions for this SubSet
 		/// </summary>
-		public Vectors3i Vertices 
+		public Vectors3f Vertices 
 		{
 			get { return verts; }
 			set { verts = value; }
@@ -62,9 +63,9 @@ namespace SimPe.Plugin.Gmdc
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public GmdcBone(GeometryDataContainer parent) : base(parent)
+		public GmdcJoint(GeometryDataContainer parent) : base(parent)
 		{
-			verts = new Vectors3i();
+			verts = new Vectors3f();
 			items = new IntArrayList();
 		}
 
@@ -84,7 +85,7 @@ namespace SimPe.Plugin.Gmdc
 					verts.Clear();
 					for (int i=0; i<vcount; i++)
 					{
-						Vector3i f = new Vector3i();
+						Vector3f f = new Vector3f();
 						f.Unserialize(reader);
 						verts.Add(f);
 					}
@@ -120,6 +121,72 @@ namespace SimPe.Plugin.Gmdc
 		}
 
 		/// <summary>
+		/// Adjusts the Vertex List, from all Elements Vertices that are assigned to this joint
+		/// </summary>
+		public void CollectVertices()
+		{
+			//first get my Number in the Parent
+			int index = -1;
+			for (int i=0; i<parent.Joints.Count; i++) 
+			{
+				if (parent.Joints[i]==this) 
+				{
+					index = i;
+					break;
+				}
+			}
+
+			this.Vertices.Clear();
+			this.Items.Clear();
+
+			if (index==-1) return; //not within Parent!
+
+			//scan all Groups in the Parent for Joint Assignements
+			foreach (GmdcGroup g in parent.Groups) 
+			{
+				GmdcLink l = parent.Links[g.LinkIndex];
+				GmdcElement joints = l.FindElementType(ElementIdentity.BoneAssignment);
+				
+				GmdcElement vertices = l.FindElementType(ElementIdentity.Vertex);
+				int vindex = l.GetElementNr(vertices);
+
+				if (joints==null || vertices==null) continue;
+				for (int i=0; i<g.UsedJoints.Count; i++) 
+				{
+					//this Bone is a Match, so add all assigned vertices
+					if (g.UsedJoints[i]==index) 
+					{
+						Hashtable indices = new Hashtable();
+
+						//load the vertices
+						for (int k=0; k<joints.Values.Count; k++)						 
+						{							
+							GmdcElementValueOneInt voi = (GmdcElementValueOneInt)joints.Values[k];
+							if (voi.Bytes[0]==(byte)i) 
+							{
+								indices.Add(k, this.Vertices.Count);
+								this.Vertices.Add(new Vector3f(vertices.Values[k].Data[0], vertices.Values[k].Data[1], vertices.Values[k].Data[2]));
+							}
+						}
+
+						//now all faces that are completley assigned to the Bone
+						for (int f=0; f<g.Faces.Count-2; f+=3) 
+						{
+							if (indices.ContainsKey(l.GetRealIndex(vindex, g.Faces[f])) &&
+								indices.ContainsKey(l.GetRealIndex(vindex, g.Faces[f+1])) &&
+								indices.ContainsKey(l.GetRealIndex(vindex, g.Faces[f+2])) ) 
+							{
+								this.Items.Add((int)indices[l.GetRealIndex(vindex, g.Faces[f])]);
+								this.Items.Add((int)indices[l.GetRealIndex(vindex, g.Faces[f+1])]);
+								this.Items.Add((int)indices[l.GetRealIndex(vindex, g.Faces[f+2])]);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
 		/// This output is used in the ListBox View
 		/// </summary>
 		/// <returns>A String Describing the Data</returns>
@@ -132,25 +199,25 @@ namespace SimPe.Plugin.Gmdc
 	
 	#region Container
 	/// <summary>
-	/// Typesave ArrayList for GmdcBone Objects
+	/// Typesave ArrayList for GmdcJoint Objects
 	/// </summary>
-	public class GmdcBones : ArrayList 
+	public class GmdcJoints : ArrayList 
 	{
 		/// <summary>
 		/// Integer Indexer
 		/// </summary>
-		public new GmdcBone this[int index]
+		public new GmdcJoint this[int index]
 		{
-			get { return ((GmdcBone)base[index]); }
+			get { return ((GmdcJoint)base[index]); }
 			set { base[index] = value; }
 		}
 
 		/// <summary>
 		/// unsigned Integer Indexer
 		/// </summary>
-		public GmdcBone this[uint index]
+		public GmdcJoint this[uint index]
 		{
-			get { return ((GmdcBone)base[(int)index]); }
+			get { return ((GmdcJoint)base[(int)index]); }
 			set { base[(int)index] = value; }
 		}
 
@@ -159,7 +226,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="item">The object you want to add</param>
 		/// <returns>The index it was added on</returns>
-		public int Add(GmdcBone item)
+		public int Add(GmdcJoint item)
 		{
 			return base.Add(item);
 		}
@@ -169,7 +236,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="index">The Index where the Element should be stored</param>
 		/// <param name="item">The object that should be inserted</param>
-		public void Insert(int index, GmdcBone item)
+		public void Insert(int index, GmdcJoint item)
 		{
 			base.Insert(index, item);
 		}
@@ -178,7 +245,7 @@ namespace SimPe.Plugin.Gmdc
 		/// remove an Element
 		/// </summary>
 		/// <param name="item">The object that should be removed</param>
-		public void Remove(GmdcBone item)
+		public void Remove(GmdcJoint item)
 		{
 			base.Remove(item);
 		}
@@ -188,7 +255,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="item">The Object you are looking for</param>
 		/// <returns>true, if it was found</returns>
-		public bool Contains(GmdcBone item)
+		public bool Contains(GmdcJoint item)
 		{
 			return base.Contains(item);
 		}		
@@ -207,8 +274,8 @@ namespace SimPe.Plugin.Gmdc
 		/// <returns>The clone</returns>
 		public override object Clone()
 		{
-			GmdcBones list = new GmdcBones();
-			foreach (GmdcBone item in this) list.Add(item);
+			GmdcJoints list = new GmdcJoints();
+			foreach (GmdcJoint item in this) list.Add(item);
 
 			return list;
 		}

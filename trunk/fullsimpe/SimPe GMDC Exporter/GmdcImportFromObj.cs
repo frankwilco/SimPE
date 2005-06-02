@@ -57,7 +57,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 		/// </summary>
 		public override string Author
 		{
-			get {return "Quaxi";}
+			get {return "Emily";}
 		}
 		#endregion
 		

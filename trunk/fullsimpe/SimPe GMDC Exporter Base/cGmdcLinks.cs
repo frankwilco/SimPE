@@ -237,6 +237,32 @@ namespace SimPe.Plugin.Gmdc
 				return -1;
 			}
 		}
+
+		/// <summary>
+		/// Returns the value for <see cref="ReferencedSize"/> for the current Settings
+		/// </summary>
+		/// <returns>The suggested value for <see cref="ReferencedSize"/></returns>
+		public int GetReferencedSize()
+		{
+			int minct = int.MaxValue;
+			//add all populated Element Lists
+			for (int k=0; k<this.items1.Count; k++) 
+			{
+				int id = items1[k];
+				if (parent.Elements[id].Values.Length>0)
+					minct = Math.Min(minct, parent.Elements[id].Values.Count);
+			} // for k
+			if (minct==int.MaxValue) minct=0;
+
+			int res = minct;
+
+			//If we have AliasLists, the we need that Number as Reference Count!
+			minct = int.MaxValue;
+			for (int i=0; i<AliasValues.Length; i++) if (AliasValues[i].Length>0) minct = Math.Min(minct, AliasValues[i].Length);
+			if (minct!=int.MaxValue) res = minct;
+
+			return res;
+		}
 	}
 
 	#region Container

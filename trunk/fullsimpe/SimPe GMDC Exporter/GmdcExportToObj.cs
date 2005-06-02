@@ -63,7 +63,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		/// </summary>
 		public override string FileDescription
 		{
-			get {return "Maya Object File";}
+			get {return "Maya Object";}
 		}		
 
 		/// <summary>

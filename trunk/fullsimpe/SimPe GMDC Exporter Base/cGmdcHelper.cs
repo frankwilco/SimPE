@@ -150,7 +150,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		BoneWeights=0x3BD70105,
 		/// <summary>
-		/// The assigned Bones
+		/// The assigned Joints
 		/// </summary>
 		BoneAssignment=0xFBD70111,
 		/// <summary>

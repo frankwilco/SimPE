@@ -176,6 +176,15 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label54;
 		internal System.Windows.Forms.TextBox tb_tn_rw;
 		private System.Windows.Forms.Label label55;
+		private System.Windows.Forms.GroupBox groupBox12;
+		internal System.Windows.Forms.TextBox tb_tn_a;
+		private System.Windows.Forms.Label label30;
+		internal System.Windows.Forms.TextBox tb_tn_az;
+		private System.Windows.Forms.Label label31;
+		internal System.Windows.Forms.TextBox tb_tn_ay;
+		private System.Windows.Forms.Label label56;
+		internal System.Windows.Forms.TextBox tb_tn_ax;
+		private System.Windows.Forms.Label label57;
 		private System.ComponentModel.IContainer components;
 
 		public fShapeRefNode()
@@ -312,6 +321,15 @@ namespace SimPe.Plugin
 			this.label53 = new System.Windows.Forms.Label();
 			this.tb_tn_rx = new System.Windows.Forms.TextBox();
 			this.label54 = new System.Windows.Forms.Label();
+			this.groupBox12 = new System.Windows.Forms.GroupBox();
+			this.tb_tn_a = new System.Windows.Forms.TextBox();
+			this.label30 = new System.Windows.Forms.Label();
+			this.tb_tn_az = new System.Windows.Forms.TextBox();
+			this.label31 = new System.Windows.Forms.Label();
+			this.tb_tn_ay = new System.Windows.Forms.TextBox();
+			this.label56 = new System.Windows.Forms.Label();
+			this.tb_tn_ax = new System.Windows.Forms.TextBox();
+			this.label57 = new System.Windows.Forms.Label();
 			this.tObjectGraphNode = new System.Windows.Forms.TabPage();
 			this.groupBox8 = new System.Windows.Forms.GroupBox();
 			this.tb_ogn_ver = new System.Windows.Forms.TextBox();
@@ -376,6 +394,7 @@ namespace SimPe.Plugin
 			this.groupBox6.SuspendLayout();
 			this.groupBox15.SuspendLayout();
 			this.groupBox16.SuspendLayout();
+			this.groupBox12.SuspendLayout();
 			this.tObjectGraphNode.SuspendLayout();
 			this.groupBox8.SuspendLayout();
 			this.groupBox9.SuspendLayout();
@@ -388,9 +407,9 @@ namespace SimPe.Plugin
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tGenericRcol);
-			this.tabControl1.Controls.Add(this.tGeometryNode);
-			this.tabControl1.Controls.Add(this.tShapeRefNode);
 			this.tabControl1.Controls.Add(this.tResourceNode);
+			this.tabControl1.Controls.Add(this.tShapeRefNode);
+			this.tabControl1.Controls.Add(this.tGeometryNode);
 			this.tabControl1.Controls.Add(this.tTransformNode);
 			this.tabControl1.Controls.Add(this.tObjectGraphNode);
 			this.tabControl1.Controls.Add(this.tDirectionalLight);
@@ -921,7 +940,7 @@ namespace SimPe.Plugin
 			this.groupBox1.Size = new System.Drawing.Size(256, 120);
 			this.groupBox1.TabIndex = 4;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Unknown List A:";
+			this.groupBox1.Text = "Shape Reference Index:";
 			// 
 			// linkLabel3
 			// 
@@ -1108,7 +1127,7 @@ namespace SimPe.Plugin
 			this.groupBox4.Size = new System.Drawing.Size(256, 248);
 			this.groupBox4.TabIndex = 5;
 			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "Unknown List:";
+			this.groupBox4.Text = "Child Nodes:";
 			// 
 			// ll_rn_add
 			// 
@@ -1193,6 +1212,7 @@ namespace SimPe.Plugin
 			this.tTransformNode.Controls.Add(this.groupBox6);
 			this.tTransformNode.Controls.Add(this.groupBox15);
 			this.tTransformNode.Controls.Add(this.groupBox16);
+			this.tTransformNode.Controls.Add(this.groupBox12);
 			this.tTransformNode.Location = new System.Drawing.Point(4, 22);
 			this.tTransformNode.Name = "tTransformNode";
 			this.tTransformNode.Size = new System.Drawing.Size(792, 262);
@@ -1267,12 +1287,12 @@ namespace SimPe.Plugin
 			this.groupBox6.Controls.Add(this.ll_tn_delete);
 			this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox6.Location = new System.Drawing.Point(312, 8);
+			this.groupBox6.Location = new System.Drawing.Point(464, 8);
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.Size = new System.Drawing.Size(256, 248);
 			this.groupBox6.TabIndex = 6;
 			this.groupBox6.TabStop = false;
-			this.groupBox6.Text = "Unknown List:";
+			this.groupBox6.Text = "Child Nodes:";
 			// 
 			// ll_tn_add
 			// 
@@ -1365,7 +1385,7 @@ namespace SimPe.Plugin
 			this.groupBox15.Size = new System.Drawing.Size(144, 104);
 			this.groupBox15.TabIndex = 25;
 			this.groupBox15.TabStop = false;
-			this.groupBox15.Text = "Transformation:";
+			this.groupBox15.Text = "Translation:";
 			// 
 			// tb_tn_tz
 			// 
@@ -1444,7 +1464,7 @@ namespace SimPe.Plugin
 			this.groupBox16.Size = new System.Drawing.Size(144, 128);
 			this.groupBox16.TabIndex = 26;
 			this.groupBox16.TabStop = false;
-			this.groupBox16.Text = "Rotation:";
+			this.groupBox16.Text = "Quaternion:";
 			// 
 			// tb_tn_rw
 			// 
@@ -1525,6 +1545,105 @@ namespace SimPe.Plugin
 			this.label54.Size = new System.Drawing.Size(17, 17);
 			this.label54.TabIndex = 33;
 			this.label54.Text = "X:";
+			// 
+			// groupBox12
+			// 
+			this.groupBox12.Controls.Add(this.tb_tn_a);
+			this.groupBox12.Controls.Add(this.label30);
+			this.groupBox12.Controls.Add(this.tb_tn_az);
+			this.groupBox12.Controls.Add(this.label31);
+			this.groupBox12.Controls.Add(this.tb_tn_ay);
+			this.groupBox12.Controls.Add(this.label56);
+			this.groupBox12.Controls.Add(this.tb_tn_ax);
+			this.groupBox12.Controls.Add(this.label57);
+			this.groupBox12.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.groupBox12.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.groupBox12.Location = new System.Drawing.Point(312, 88);
+			this.groupBox12.Name = "groupBox12";
+			this.groupBox12.Size = new System.Drawing.Size(144, 128);
+			this.groupBox12.TabIndex = 41;
+			this.groupBox12.TabStop = false;
+			this.groupBox12.Text = "Rotation:";
+			// 
+			// tb_tn_a
+			// 
+			this.tb_tn_a.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_tn_a.Location = new System.Drawing.Point(64, 96);
+			this.tb_tn_a.Name = "tb_tn_a";
+			this.tb_tn_a.Size = new System.Drawing.Size(64, 21);
+			this.tb_tn_a.TabIndex = 40;
+			this.tb_tn_a.Text = "0";
+			this.tb_tn_a.TextChanged += new System.EventHandler(this.TNChangedQuaternion);
+			// 
+			// label30
+			// 
+			this.label30.AutoSize = true;
+			this.label30.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label30.Location = new System.Drawing.Point(16, 104);
+			this.label30.Name = "label30";
+			this.label30.Size = new System.Drawing.Size(41, 17);
+			this.label30.TabIndex = 39;
+			this.label30.Text = "Angle:";
+			// 
+			// tb_tn_az
+			// 
+			this.tb_tn_az.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_tn_az.Location = new System.Drawing.Point(40, 72);
+			this.tb_tn_az.Name = "tb_tn_az";
+			this.tb_tn_az.Size = new System.Drawing.Size(88, 21);
+			this.tb_tn_az.TabIndex = 38;
+			this.tb_tn_az.Text = "0";
+			this.tb_tn_az.TextChanged += new System.EventHandler(this.TNChangedQuaternion);
+			// 
+			// label31
+			// 
+			this.label31.AutoSize = true;
+			this.label31.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label31.Location = new System.Drawing.Point(16, 80);
+			this.label31.Name = "label31";
+			this.label31.Size = new System.Drawing.Size(17, 17);
+			this.label31.TabIndex = 37;
+			this.label31.Text = "Z:";
+			// 
+			// tb_tn_ay
+			// 
+			this.tb_tn_ay.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_tn_ay.Location = new System.Drawing.Point(40, 48);
+			this.tb_tn_ay.Name = "tb_tn_ay";
+			this.tb_tn_ay.Size = new System.Drawing.Size(88, 21);
+			this.tb_tn_ay.TabIndex = 36;
+			this.tb_tn_ay.Text = "0";
+			this.tb_tn_ay.TextChanged += new System.EventHandler(this.TNChangedQuaternion);
+			// 
+			// label56
+			// 
+			this.label56.AutoSize = true;
+			this.label56.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label56.Location = new System.Drawing.Point(16, 56);
+			this.label56.Name = "label56";
+			this.label56.Size = new System.Drawing.Size(16, 17);
+			this.label56.TabIndex = 35;
+			this.label56.Text = "Y:";
+			// 
+			// tb_tn_ax
+			// 
+			this.tb_tn_ax.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_tn_ax.Location = new System.Drawing.Point(40, 24);
+			this.tb_tn_ax.Name = "tb_tn_ax";
+			this.tb_tn_ax.Size = new System.Drawing.Size(88, 21);
+			this.tb_tn_ax.TabIndex = 34;
+			this.tb_tn_ax.Text = "0";
+			this.tb_tn_ax.TextChanged += new System.EventHandler(this.TNChangedQuaternion);
+			// 
+			// label57
+			// 
+			this.label57.AutoSize = true;
+			this.label57.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label57.Location = new System.Drawing.Point(16, 32);
+			this.label57.Name = "label57";
+			this.label57.Size = new System.Drawing.Size(17, 17);
+			this.label57.TabIndex = 33;
+			this.label57.Text = "X:";
 			// 
 			// tObjectGraphNode
 			// 
@@ -2079,6 +2198,7 @@ namespace SimPe.Plugin
 			this.groupBox6.ResumeLayout(false);
 			this.groupBox15.ResumeLayout(false);
 			this.groupBox16.ResumeLayout(false);
+			this.groupBox12.ResumeLayout(false);
 			this.tObjectGraphNode.ResumeLayout(false);
 			this.groupBox8.ResumeLayout(false);
 			this.groupBox9.ResumeLayout(false);
@@ -2457,7 +2577,8 @@ namespace SimPe.Plugin
 
 		private void TNChangeSettings(object sender, System.EventArgs e)
 		{
-			if (tTransformNode .Tag==null) return;
+			if (this.tb_tn_a.Tag!=null) return;
+			if (tTransformNode.Tag==null) return;
 			try 
 			{
 				TransformNode tn = (TransformNode)tTransformNode.Tag;
@@ -2473,8 +2594,26 @@ namespace SimPe.Plugin
 				tn.RotationY = Convert.ToSingle(tb_tn_ry.Text);
 				tn.RotationZ = Convert.ToSingle(tb_tn_rz.Text);
 				tn.RotationW = Convert.ToSingle(tb_tn_rw.Text);
+
+				//set Angles
+				  
+				
+				SimPe.Geometry.Quaternion q = tn.Quaternion;
+				this.tb_tn_a.Tag = true;
+				try 
+				{
+					this.tb_tn_ax.Text = q.Axis.X.ToString("N6");
+					this.tb_tn_ay.Text = q.Axis.Y.ToString("N6");
+					this.tb_tn_az.Text = q.Axis.Z.ToString("N6");
+					this.tb_tn_a.Text = SimPe.Geometry.Quaternion.RadToDeg(q.Angle).ToString("N6");
+				} 
+				finally 
+				{
+					this.tb_tn_a.Tag = null;
+				}
+				
 				tn.Changed = true;
-			} 
+			}
 			catch (Exception) 
 			{
 				//Helper.ExceptionMessage("", ex);
@@ -2801,6 +2940,36 @@ namespace SimPe.Plugin
 			catch (Exception) 
 			{
 				//Helper.ExceptionMessage("", ex);
+			}
+		}
+
+		private void TNChangedQuaternion(object sender, System.EventArgs e)
+		{
+			if (this.tb_tn_a.Tag!=null) return;
+			if (tTransformNode.Tag==null) return;
+			try 
+			{
+				TransformNode tn = (TransformNode)tTransformNode.Tag;
+				SimPe.Geometry.Quaternion q = new SimPe.Geometry.Quaternion(
+					new SimPe.Geometry.Vector3f(
+					Convert.ToSingle(tb_tn_ax.Text),
+					Convert.ToSingle(tb_tn_ay.Text),
+					Convert.ToSingle(tb_tn_az.Text)), 
+					SimPe.Geometry.Quaternion.DegToRad(Convert.ToSingle(tb_tn_a.Text)));
+			
+				tn.Quaternion = q;
+
+				//set Angles
+				this.tb_tn_a.Tag = true;
+				this.tb_tn_rx.Text = q.X.ToString("N6");
+				this.tb_tn_ry.Text = q.Y.ToString("N6");
+				this.tb_tn_rz.Text = q.Z.ToString("N6");
+				this.tb_tn_rw.Text = q.W.ToString("N6");
+			} 
+			catch {}
+			finally 
+			{
+				this.tb_tn_a.Tag = null;
 			}
 		}
 
