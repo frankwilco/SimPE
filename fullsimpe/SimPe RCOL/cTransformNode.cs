@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin
 {
@@ -85,46 +86,52 @@ namespace SimPe.Plugin
 			set { items = value; }
 		}
 
-		float tx, ty, tz;
-		float rx, ry, rz, rw;
+		Vector3f trans;
+		Quaternion q;
 		int unknown;
 
 		public float TransformX 
 		{
-			get { return tx; }
-			set { tx = value; }
+			get { return trans.X; }
+			set { trans.X = value; }
 		}
 		public float TransformY 
 		{
-			get { return ty; }
-			set { ty = value; }
+			get { return trans.Y; }
+			set { trans.Y = value; }
 		}
 		public float TransformZ 
 		{
-			get { return tz; }
-			set { tz = value; }
+			get { return trans.Z; }
+			set { trans.Z = value; }
 		}
 
 		
 		public float RotationX 
 		{
-			get { return rx; }
-			set { rx = value; }
+			get { return q.X; }
+			set { q.X = value; }
 		}
 		public float RotationY 
 		{
-			get { return ry; }
-			set { ry = value; }
+			get { return q.Y; }
+			set { q.Y = value; }
 		}
 		public float RotationZ 
 		{
-			get { return rz; }
-			set { rz = value; }
+			get { return q.Z; }
+			set { q.Z = value; }
 		}
 		public float RotationW 
 		{
-			get { return rw; }
-			set { rw = value; }
+			get { return q.W; }
+			set { q.W = value; }
+		}
+
+		public Quaternion Quaternion 
+		{
+			get { return q; }
+			set { q= value; }
 		}
 
 		public int Unknown 
@@ -145,6 +152,8 @@ namespace SimPe.Plugin
 
 			items = new TransformNodeItem[0];
 
+			trans = new Vector3f();
+			q = new Quaternion();
 
 			version = 0x07;
 			BlockID = 0x65246462;
@@ -177,14 +186,8 @@ namespace SimPe.Plugin
 				items[i].Unserialize(reader);
 			}
 
-			tx = reader.ReadSingle();
-			ty = reader.ReadSingle();
-			tz = reader.ReadSingle();
-
-			rx = reader.ReadSingle();
-			ry = reader.ReadSingle();
-			rz = reader.ReadSingle();
-			rw = reader.ReadSingle();
+			trans.Unserialize(reader);
+			q.Unserialize(reader);
 
 			unknown = reader.ReadInt32();
 		}
@@ -215,14 +218,8 @@ namespace SimPe.Plugin
 				items[i].Serialize(writer);
 			}
 
-			writer.Write(tx);
-			writer.Write(ty);
-			writer.Write(tz);
-
-			writer.Write(rx);
-			writer.Write(ry);
-			writer.Write(rz);
-			writer.Write(rw);
+			trans.Serialize(writer);
+			q.Serialize(writer);
 
 			writer.Write(unknown);
 		}
@@ -244,6 +241,7 @@ namespace SimPe.Plugin
 		protected override void InitTabPage() 
 		{
 			if (form==null) form = new fShapeRefNode(); 
+			form.tb_tn_a.Tag = true;
 			
 			form.lb_tn.Items.Clear();
 			for(int i=0; i<this.items.Length; i++) form.lb_tn.Items.Add(items[i]);
@@ -251,14 +249,21 @@ namespace SimPe.Plugin
 			form.tb_tn_ver.Text = "0x"+Helper.HexString(this.version);
 			form.tb_tn_ukn.Text = "0x"+Helper.HexString(this.unknown);
 
-			form.tb_tn_tx.Text = this.tx.ToString();
-			form.tb_tn_ty.Text = this.ty.ToString();
-			form.tb_tn_tz.Text = this.tz.ToString();
+			form.tb_tn_tx.Text = trans.X.ToString("N6");
+			form.tb_tn_ty.Text = trans.Y.ToString("N6");
+			form.tb_tn_tz.Text = trans.Z.ToString("N6");
 
-			form.tb_tn_rx.Text = this.rx.ToString();
-			form.tb_tn_ry.Text = this.ry.ToString();
-			form.tb_tn_rz.Text = this.rz.ToString();
-			form.tb_tn_rw.Text = this.rw.ToString();
+			form.tb_tn_rx.Text = q.X.ToString("N6");
+			form.tb_tn_ry.Text = q.Y.ToString("N6");
+			form.tb_tn_rz.Text = q.Z.ToString("N6");
+			form.tb_tn_rw.Text = q.W.ToString("N6");
+
+			form.tb_tn_ax.Text = q.Axis.X.ToString("N6");
+			form.tb_tn_ay.Text = q.Axis.Y.ToString("N6");
+			form.tb_tn_az.Text = q.Axis.Z.ToString("N6");
+			form.tb_tn_a.Text = q.Angle.ToString("N6");
+
+			form.tb_tn_a.Tag = null;
 		}
 
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)

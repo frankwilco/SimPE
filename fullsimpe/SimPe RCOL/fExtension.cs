@@ -661,9 +661,9 @@ namespace SimPe.Plugin
 					}
 					case ExtensionItem.ItemTypes.Translation: 
 					{
-						tbtrans1.Text = ei.Translation.X.ToString();
-						tbtrans2.Text = ei.Translation.Y.ToString();
-						tbtrans3.Text = ei.Translation.Z.ToString();
+						tbtrans1.Text = ei.Translation.X.ToString("N6");
+						tbtrans2.Text = ei.Translation.Y.ToString("N6");
+						tbtrans3.Text = ei.Translation.Z.ToString("N6");
 						ShowGroup(this.gbtrans);
 						break;
 					}
@@ -675,10 +675,10 @@ namespace SimPe.Plugin
 					}
 					case ExtensionItem.ItemTypes.Rotation: 
 					{
-						tbrot1.Text = ei.Rotation.X.ToString();
-						tbrot2.Text = ei.Rotation.Y.ToString();
-						tbrot3.Text = ei.Rotation.Z.ToString();
-						tbrot4.Text = ei.Rotation.R.ToString();
+						tbrot1.Text = ei.Rotation.X.ToString("N6");
+						tbrot2.Text = ei.Rotation.Y.ToString("N6");
+						tbrot3.Text = ei.Rotation.Z.ToString("N6");
+						tbrot4.Text = ei.Rotation.W.ToString("N6");
 						ShowGroup(this.gbrot);
 						break;
 					}
@@ -855,9 +855,9 @@ namespace SimPe.Plugin
 			{
 				tb_itemname.Tag = true;
 				ExtensionItem ei = (ExtensionItem)lb_items.Items[lb_items.SelectedIndex];
-				ei.Translation.X = Convert.ToInt32(tbtrans1.Text);
-				ei.Translation.Y = Convert.ToInt32(tbtrans2.Text);
-				ei.Translation.Z = Convert.ToInt32(tbtrans3.Text);
+				ei.Translation.X = Convert.ToSingle(tbtrans1.Text);
+				ei.Translation.Y = Convert.ToSingle(tbtrans2.Text);
+				ei.Translation.Z = Convert.ToSingle(tbtrans3.Text);
 
 				lb_items.Items[lb_items.SelectedIndex] = ei;
 			}
@@ -876,10 +876,10 @@ namespace SimPe.Plugin
 			{
 				tb_itemname.Tag = true;
 				ExtensionItem ei = (ExtensionItem)lb_items.Items[lb_items.SelectedIndex];
-				ei.Rotation.X = Convert.ToInt32(tbrot1.Text);
-				ei.Rotation.Y = Convert.ToInt32(tbrot2.Text);
-				ei.Rotation.Z = Convert.ToInt32(tbrot3.Text);
-				ei.Rotation.R = Convert.ToInt32(tbrot4.Text);
+				ei.Rotation.X = Convert.ToSingle(tbrot1.Text);
+				ei.Rotation.Y = Convert.ToSingle(tbrot2.Text);
+				ei.Rotation.Z = Convert.ToSingle(tbrot3.Text);
+				ei.Rotation.W = Convert.ToSingle(tbrot4.Text);
 
 				lb_items.Items[lb_items.SelectedIndex] = ei;
 			}

@@ -20,44 +20,23 @@
 using System;
 using System.Collections;
 using SimPe.Interfaces.Plugin;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin
 {
-	public class Point3D 
+	/*public class Point3D : SimPe.Geometry.Vector3i
 	{
-		int x, y, z;
-		public Point3D(int x, int y, int z) 
-		{
-			this.x = x;
-			this.y = y;
-			this.z = z;
+		public Point3D(int x, int y, int z) : base (x, y, z)
+		{			
 		}
 
-		internal Point3D() 
+		internal Point3D() : base ()
 		{
-		}
-
-		public int X 
-		{
-			get { return x; }
-			set { x = value; }
-		}
-
-		public int Y 
-		{
-			get { return y; }
-			set { y = value; }
-		}
-
-		public int Z 
-		{
-			get { return z; }
-			set { z = value; }
-		}
+		}	
 
 		public override string ToString()
 		{
-			return x.ToString()+"/"+y.ToString()+"/"+z.ToString();
+			return X.ToString()+"/"+Y.ToString()+"/"+Z.ToString();
 		}
 
 	}
@@ -82,7 +61,7 @@ namespace SimPe.Plugin
 		{
 			return X.ToString()+"/"+Y.ToString()+"/"+Z.ToString()+"/"+r.ToString();
 		}
-	}
+	}*/
 
 	public class ExtensionItem 
 	{
@@ -127,8 +106,8 @@ namespace SimPe.Plugin
 			set { single = value; }
 		}
 
-		Point3D translation;
-		public Point3D Translation
+		Vector3f translation;
+		public Vector3f Translation
 		{
 			get { return translation; }
 			set { translation = value; }
@@ -148,8 +127,8 @@ namespace SimPe.Plugin
 			set { ei = value; }
 		}
 
-		Point4D rotation;
-		public Point4D Rotation
+		Quaternion rotation;
+		public Quaternion Rotation
 		{
 			get { return rotation; }
 			set { rotation = value; }
@@ -167,10 +146,10 @@ namespace SimPe.Plugin
 		public ExtensionItem()
 		{
 			varname = "";
-			translation = new Point3D();
+			translation = new Vector3f();
 			single = 0;
 			ei = new ExtensionItem[0];
-			rotation = new Point4D();
+			rotation = new Quaternion();
 			data = new byte[0];
 			str = "";
 		}
@@ -198,9 +177,7 @@ namespace SimPe.Plugin
 				}
 				case ItemTypes.Translation: 
 				{
-					translation.X = reader.ReadInt32();
-					translation.Y = reader.ReadInt32();
-					translation.Z = reader.ReadInt32();
+					translation.Unserialize(reader);
 					break;
 				}
 				case ItemTypes.String: 
@@ -220,10 +197,7 @@ namespace SimPe.Plugin
 				}
 				case ItemTypes.Rotation: 
 				{
-					rotation.X = reader.ReadInt32();
-					rotation.Y = reader.ReadInt32();
-					rotation.Z = reader.ReadInt32();
-					rotation.R = reader.ReadInt32();
+					rotation.Unserialize(reader);
 					break;
 				}
 				case ItemTypes.Binary: 
@@ -266,9 +240,7 @@ namespace SimPe.Plugin
 				}
 				case ItemTypes.Translation: 
 				{
-					writer.Write(translation.X);
-					writer.Write(translation.Y);
-					writer.Write(translation.Z);
+					translation.Serialize(writer);
 					break;
 				}
 				case ItemTypes.String: 
@@ -287,10 +259,7 @@ namespace SimPe.Plugin
 				}
 				case ItemTypes.Rotation: 
 				{
-					writer.Write(rotation.X);
-					writer.Write(rotation.Y);
-					writer.Write(rotation.Z);
-					writer.Write(rotation.R);
+					rotation.Serialize(writer);
 					break;
 				}
 				case ItemTypes.Binary: 

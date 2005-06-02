@@ -72,7 +72,7 @@ namespace SimPe.Plugin
 			form.wrapper = wrp;
 
 			form.cbitem.Items.Clear();
-			foreach (IRcolBlock rb in wrp.Blocks) form.cbitem.Items.Add(rb);
+			foreach (IRcolBlock rb in wrp.Blocks) SimPe.CountedListItem.Add(form.cbitem, rb);
 			if (form.cbitem.Items.Count>0) form.cbitem.SelectedIndex = 0;
 			else form.BuildChildTabControl(null);
 

@@ -154,6 +154,11 @@
                     Project = "{F2CCCDBC-B05F-4C9C-B57F-27A07ACEF9BE}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe Geometry"
+                    Project = "{60367A6D-8FF1-4289-B546-C68A2C395843}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>

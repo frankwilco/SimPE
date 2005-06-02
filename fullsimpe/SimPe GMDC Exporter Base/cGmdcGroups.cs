@@ -83,9 +83,9 @@ namespace SimPe.Plugin.Gmdc
 
 		IntArrayList items2;
 		/// <summary>
-		/// List all Bones used by this Group
+		/// List all Joints used by this Group
 		/// </summary>
-		public IntArrayList UsedBones 
+		public IntArrayList UsedJoints 
 		{
 			get { return items2; }
 			set { items2 = value; }

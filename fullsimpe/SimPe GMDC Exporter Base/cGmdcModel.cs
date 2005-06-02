@@ -21,249 +21,11 @@ using System;
 using System.IO;
 using System.Globalization;
 using System.Collections;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin.Gmdc
 {
-	#region Vectors
-	/// <summary>
-	/// Contains the a 3D Vector
-	/// </summary>
-	public class Vector3f 
-	{
-		float x, y, z;
-		
-		/// <summary>
-		/// The X Coordinate of teh Vector
-		/// </summary>
-		public float X 
-		{
-			get { return x; }
-			set { x = value; }
-		}
-		/// <summary>
-		/// The Y Coordinate of teh Vector
-		/// </summary>
-		public float Y 
-		{
-			get { return y; }
-			set { y = value; }
-		}
-		/// <summary>
-		/// The Z Coordinate of teh Vector
-		/// </summary>
-		public float Z 
-		{
-			get { return z; }
-			set { z = value; }
-		}
-
-		internal Vector3f ()
-		{
-			x = 0; y = 0; z = 0;
-		}
-
-		/// <summary>
-		/// Creates new Vector Instance
-		/// </summary>
-		/// <param name="x">X-Coordinate</param>
-		/// <param name="y">Y-Coordinate</param>
-		/// <param name="z">Z-Coordinate</param>
-		public Vector3f (float x, float y, float z)
-		{
-			this.x = x;
-			this.y = y;
-			this.z = z;
-		}
-
-		/// <summary>
-		/// Unserializes a BinaryStream into the Attributes of this Instance
-		/// </summary>
-		/// <param name="reader">The Stream that contains the FileData</param>
-		internal virtual void Unserialize(System.IO.BinaryReader reader)
-		{
-			x = reader.ReadSingle();			
-			y = reader.ReadSingle();
-			z = reader.ReadSingle();
-		}
-
-		/// <summary>
-		/// Serializes a the Attributes stored in this Instance to the BinaryStream
-		/// </summary>
-		/// <param name="writer">The Stream the Data should be stored to</param>
-		/// <remarks>
-		/// Be sure that the Position of the stream is Proper on 
-		/// return (i.e. must point to the first Byte after your actual File)
-		/// </remarks>
-		internal virtual void Serialize(System.IO.BinaryWriter writer)
-		{
-			writer.Write(x);
-			writer.Write(y);
-			writer.Write(z);
-		}
-
-		/// <summary>
-		/// This output is used in the ListBox View
-		/// </summary>
-		/// <returns>A String Describing the Data</returns>
-		public override string ToString()
-		{
-			return x.ToString("N6")+", "+y.ToString("N6")+", "+z.ToString("N6");
-		}
-	}
-
-	/// <summary>
-	/// Contains the a 3D Vector
-	/// </summary>
-	public class Vector3i 
-	{
-		int x, y, z;
-		
-		/// <summary>
-		/// The X Coordinate of the Vector
-		/// </summary>
-		public int X 
-		{
-			get { return x; }
-			set { x = value; }
-		}
-		/// <summary>
-		/// The Y Coordinate of the Vector
-		/// </summary>
-		public int Y 
-		{
-			get { return y; }
-			set { y = value; }
-		}
-		/// <summary>
-		/// The Z Coordinate of the Vector
-		/// </summary>
-		public int Z 
-		{
-			get { return z; }
-			set { z = value; }
-		}
-
-		internal Vector3i ()
-		{
-			x = 0; y = 0; z = 0;
-		}
-
-		/// <summary>
-		/// Creates new Vector Instance
-		/// </summary>
-		/// <param name="x">X-Coordinate</param>
-		/// <param name="y">Y-Coordinate</param>
-		/// <param name="z">Z-Coordinate</param>
-		public Vector3i (int x, int y, int z)
-		{
-			this.x = x;
-			this.y = y;
-			this.z = z;
-		}
-
-		/// <summary>
-		/// Unserializes a BinaryStream into the Attributes of this Instance
-		/// </summary>
-		/// <param name="reader">The Stream that contains the FileData</param>
-		internal virtual void Unserialize(System.IO.BinaryReader reader)
-		{
-			x = reader.ReadInt32();
-			y = reader.ReadInt32();
-			z = reader.ReadInt32();
-		}
-
-		/// <summary>
-		/// Serializes a the Attributes stored in this Instance to the BinaryStream
-		/// </summary>
-		/// <param name="writer">The Stream the Data should be stored to</param>
-		/// <remarks>
-		/// Be sure that the Position of the stream is Proper on 
-		/// return (i.e. must point to the first Byte after your actual File)
-		/// </remarks>
-		internal virtual void Serialize(System.IO.BinaryWriter writer)
-		{
-			writer.Write(x);
-			writer.Write(y);
-			writer.Write(z);
-		}
-
-		/// <summary>
-		/// This output is used in the ListBox View
-		/// </summary>
-		/// <returns>A String Describing the Data</returns>
-		public override string ToString()
-		{
-			return Helper.HexString(x) + ", " + Helper.HexString(y) + ", " + Helper.HexString(z);
-		}
-
-	}
-
-	/// <summary>
-	/// Contains the a 4D Vector
-	/// </summary>
-	public class Vector4f : Vector3f
-	{
-		float w;
-		/// <summary>
-		/// The 4th Component of an Vector (often used as focal Point)
-		/// </summary>
-		public float W
-		{
-			get { return w; }
-			set { w = value; }
-		}
-
-		internal Vector4f () : base()
-		{
-			w = 0;
-		}
-
-		/// <summary>
-		/// Creates new Vector Instance
-		/// </summary>
-		/// <param name="x">X-Coordinate</param>
-		/// <param name="y">Y-Coordinate</param>
-		/// <param name="z">Z-Coordinate</param>
-		/// <param name="w">4th-Coordinate (often the focal Point)</param>
-		public Vector4f (float x, float y, float z, float w) : base(x, y, z)
-		{
-			this.w = w;
-		}
-
-		/// <summary>
-		/// Unserializes a BinaryStream into the Attributes of this Instance
-		/// </summary>
-		/// <param name="reader">The Stream that contains the FileData</param>
-		internal override void Unserialize(System.IO.BinaryReader reader)
-		{
-			base.Unserialize(reader);
-			w = reader.ReadSingle();				
-		}
-
-		/// <summary>
-		/// Serializes a the Attributes stored in this Instance to the BinaryStream
-		/// </summary>
-		/// <param name="writer">The Stream the Data should be stored to</param>
-		/// <remarks>
-		/// Be sure that the Position of the stream is Proper on 
-		/// return (i.e. must point to the first Byte after your actual File)
-		/// </remarks>
-		internal override void Serialize(System.IO.BinaryWriter writer)
-		{
-			base.Serialize(writer);
-			writer.Write(w);
-		}
-
-		/// <summary>
-		/// This output is used in the ListBox View
-		/// </summary>
-		/// <returns>A String Describing the Data</returns>
-		public override string ToString()
-		{
-			return base.ToString()+", "+w.ToString("N6");
-		}
-	}
-	#endregion
+	
 
 	/// <summary>
 	/// Stores two String Items
@@ -361,17 +123,17 @@ namespace SimPe.Plugin.Gmdc
 			set {transforms = value; }
 		}
 
-		Vectors4f rotations;
+		Quaternions quats;
 		/// <summary>
 		/// Set of Rotatins
 		/// </summary>
 		/// <remarks>Number of Items stored in <see cref="Transformations"/> 
 		/// and <see cref="Rotations"/> must be the same. If one of them Contains 
 		/// more Items, those will be cut off during the Save</remarks>
-		public Vectors4f Rotations 
+		public Quaternions Quaternions 
 		{
-			get { return rotations; }
-			set {rotations = value; }
+			get { return quats; }
+			set {quats = value; }
 		}
 
 		GmdcNamePairs names;
@@ -384,11 +146,11 @@ namespace SimPe.Plugin.Gmdc
 			set {names = value; }
 		}		
 
-		GmdcBone subset;
+		GmdcJoint subset;
 		/// <summary>
 		/// Some SubSet Data (yet unknown)
 		/// </summary>
-		public GmdcBone Bone
+		public GmdcJoint Bone
 		{
 			get { return subset; }
 			set { subset = value; }
@@ -401,11 +163,11 @@ namespace SimPe.Plugin.Gmdc
 		public GmdcModel(GeometryDataContainer parent) : base(parent)
 		{
 			transforms = new Vectors3f();
-			rotations = new Vectors4f();
+			quats = new Quaternions();
 
 			names = new GmdcNamePairs();
 
-			subset = new GmdcBone(parent);
+			subset = new GmdcJoint(parent);
 		}
 
 		/// <summary>
@@ -416,12 +178,12 @@ namespace SimPe.Plugin.Gmdc
 		{
 			int count = reader.ReadInt32();
 			transforms.Clear();
-			rotations.Clear();
+			quats.Clear();
 			for (int i=0; i<count; i++)
 			{
-				Vector4f r = new Vector4f();
+				Quaternion r = new Quaternion();
 				r.Unserialize(reader);
-				rotations.Add(r);
+				quats.Add(r);
 
 				Vector3f t = new Vector3f();
 				t.Unserialize(reader);
@@ -450,11 +212,11 @@ namespace SimPe.Plugin.Gmdc
 		/// </remarks>
 		public  void Serialize(System.IO.BinaryWriter writer)
 		{
-			int count = Math.Min(rotations.Length, transforms.Length);
+			int count = Math.Min(quats.Length, transforms.Length);
 			writer.Write((int)count);
 			for (int i=0; i<count; i++)
 			{
-				rotations[i].Serialize(writer);
+				quats[i].Serialize(writer);
 				transforms[i].Serialize(writer);
 			}
 
@@ -547,256 +309,7 @@ namespace SimPe.Plugin.Gmdc
 
 			return list;
 		}
-	}
-
-	/// <summary>
-	/// Typesave ArrayList for Vector3i Objects
-	/// </summary>
-	public class Vectors3i : ArrayList 
-	{
-		/// <summary>
-		/// Integer Indexer
-		/// </summary>
-		public new Vector3i this[int index]
-		{
-			get { return ((Vector3i)base[index]); }
-			set { base[index] = value; }
-		}
-
-		/// <summary>
-		/// unsigned Integer Indexer
-		/// </summary>
-		public Vector3i this[uint index]
-		{
-			get { return ((Vector3i)base[(int)index]); }
-			set { base[(int)index] = value; }
-		}
-
-		/// <summary>
-		/// add a new Element
-		/// </summary>
-		/// <param name="item">The object you want to add</param>
-		/// <returns>The index it was added on</returns>
-		public int Add(Vector3i item)
-		{
-			return base.Add(item);
-		}
-
-		/// <summary>
-		/// insert a new Element
-		/// </summary>
-		/// <param name="index">The Index where the Element should be stored</param>
-		/// <param name="item">The object that should be inserted</param>
-		public void Insert(int index, Vector3i item)
-		{
-			base.Insert(index, item);
-		}
-
-		/// <summary>
-		/// remove an Element
-		/// </summary>
-		/// <param name="item">The object that should be removed</param>
-		public void Remove(Vector3i item)
-		{
-			base.Remove(item);
-		}
-
-		/// <summary>
-		/// Checks wether or not the object is already stored in the List
-		/// </summary>
-		/// <param name="item">The Object you are looking for</param>
-		/// <returns>true, if it was found</returns>
-		public bool Contains(Vector3i item)
-		{
-			return base.Contains(item);
-		}		
-
-		/// <summary>
-		/// Number of stored Elements
-		/// </summary>
-		public int Length 
-		{
-			get { return this.Count; }
-		}
-
-		/// <summary>
-		/// Create a clone of this Object
-		/// </summary>
-		/// <returns>The clone</returns>
-		public override object Clone()
-		{
-			Vectors3i list = new Vectors3i();
-			foreach (Vector3i item in this) list.Add(item);
-
-			return list;
-		}
-	}
-
-	/// <summary>
-	/// Typesave ArrayList for Vector3f Objects
-	/// </summary>
-	public class Vectors3f : ArrayList 
-	{
-		/// <summary>
-		/// Integer Indexer
-		/// </summary>
-		public new Vector3f this[int index]
-		{
-			get { return ((Vector3f)base[index]); }
-			set { base[index] = value; }
-		}
-
-		/// <summary>
-		/// unsigned Integer Indexer
-		/// </summary>
-		public Vector3f this[uint index]
-		{
-			get { return ((Vector3f)base[(int)index]); }
-			set { base[(int)index] = value; }
-		}
-
-		/// <summary>
-		/// add a new Element
-		/// </summary>
-		/// <param name="item">The object you want to add</param>
-		/// <returns>The index it was added on</returns>
-		public int Add(Vector3f item)
-		{
-			return base.Add(item);
-		}
-
-		/// <summary>
-		/// insert a new Element
-		/// </summary>
-		/// <param name="index">The Index where the Element should be stored</param>
-		/// <param name="item">The object that should be inserted</param>
-		public void Insert(int index, Vector3f item)
-		{
-			base.Insert(index, item);
-		}
-
-		/// <summary>
-		/// remove an Element
-		/// </summary>
-		/// <param name="item">The object that should be removed</param>
-		public void Remove(Vector3f item)
-		{
-			base.Remove(item);
-		}
-
-		/// <summary>
-		/// Checks wether or not the object is already stored in the List
-		/// </summary>
-		/// <param name="item">The Object you are looking for</param>
-		/// <returns>true, if it was found</returns>
-		public bool Contains(Vector3f item)
-		{
-			return base.Contains(item);
-		}		
-
-		/// <summary>
-		/// Number of stored Elements
-		/// </summary>
-		public int Length 
-		{
-			get { return this.Count; }
-		}
-
-		/// <summary>
-		/// Create a clone of this Object
-		/// </summary>
-		/// <returns>The clone</returns>
-		public override object Clone()
-		{
-			Vectors3f list = new Vectors3f();
-			foreach (Vector3f item in this) list.Add(item);
-
-			return list;
-		}
-	}
-
-	/// <summary>
-	/// Typesave ArrayList for Vector4f Objects
-	/// </summary>
-	public class Vectors4f : ArrayList 
-	{
-		/// <summary>
-		/// Integer Indexer
-		/// </summary>
-		public new Vector4f this[int index]
-		{
-			get { return ((Vector4f)base[index]); }
-			set { base[index] = value; }
-		}
-
-		/// <summary>
-		/// unsigned Integer Indexer
-		/// </summary>
-		public Vector4f this[uint index]
-		{
-			get { return ((Vector4f)base[(int)index]); }
-			set { base[(int)index] = value; }
-		}
-
-		/// <summary>
-		/// add a new Element
-		/// </summary>
-		/// <param name="item">The object you want to add</param>
-		/// <returns>The index it was added on</returns>
-		public int Add(Vector4f item)
-		{
-			return base.Add(item);
-		}
-
-		/// <summary>
-		/// insert a new Element
-		/// </summary>
-		/// <param name="index">The Index where the Element should be stored</param>
-		/// <param name="item">The object that should be inserted</param>
-		public void Insert(int index, Vector4f item)
-		{
-			base.Insert(index, item);
-		}
-
-		/// <summary>
-		/// remove an Element
-		/// </summary>
-		/// <param name="item">The object that should be removed</param>
-		public void Remove(Vector4f item)
-		{
-			base.Remove(item);
-		}
-
-		/// <summary>
-		/// Checks wether or not the object is already stored in the List
-		/// </summary>
-		/// <param name="item">The Object you are looking for</param>
-		/// <returns>true, if it was found</returns>
-		public bool Contains(Vector4f item)
-		{
-			return base.Contains(item);
-		}		
-
-		/// <summary>
-		/// Number of stored Elements
-		/// </summary>
-		public int Length 
-		{
-			get { return this.Count; }
-		}
-
-		/// <summary>
-		/// Create a clone of this Object
-		/// </summary>
-		/// <returns>The clone</returns>
-		public override object Clone()
-		{
-			Vectors4f list = new Vectors4f();
-			foreach (Vector4f item in this) list.Add(item);
-
-			return list;
-		}
-	}
+	}	
 
 	/// <summary>
 	/// Typesave ArrayList for GmdcNamePair Objects

@@ -19,58 +19,16 @@
  ***************************************************************************/
 using System;
 using System.Collections;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin.Gmdc
 {
+	
 	/// <summary>
-	/// Enumerates possible action for Mesh Groups
+	/// This class contains all Data Needed to import one Bone (Joint)
 	/// </summary>
-	public enum GmdcImporterAction : byte
+	public class ImportedBone
 	{
-		/// <summary>
-		/// Ignore the Mesh-Group
-		/// </summary>
-		Nothing = 0x00,
-		/// <summary>
-		/// Replace the existing Group with the one stored in the <see cref="ImportedGroup.Group"/> Member
-		/// </summary>
-		Replace = 0x01,
-		/// <summary>
-		/// Add the Group stored in the <see cref="ImportedGroup.Group"/> Member
-		/// </summary>
-		Add = 0x02,
-		/// <summary>
-		/// Add the Group stored in <see cref="ImportedGroup.Group"/> and assign a new Name.
-		/// </summary>
-		Rename = 0x03,
-		/// <summary>
-		/// Will only change the newly Imported Data in the stored <see cref="ImportedGroup.Group"/>.
-		/// </summary>
-		Update = 0x04
-	}
-
-	/// <summary>
-	/// This class is generated for each available and imported Group, 
-	/// and determins the Behaviour during the Import
-	/// </summary>
-	public class GmdcGroupImporterAction 
-	{
-		/// <summary>
-		/// internal Attribute
-		/// </summary>
-		string newname;
-
-		/// <summary>
-		/// If action is <see cref="GmdcImporterAction.Replace"/>, <see cref="GmdcImporterAction.Update"/> or 
-		/// <see cref="GmdcImporterAction.Rename"/>, this Member stores the 
-		/// new Name for the current Group. (read/write)
-		/// </summary>
-		public string TargetName 
-		{
-			get { return newname; }
-			set { newname = value; }
-		}
-
 		/// <summary>
 		/// internal Attribute
 		/// </summary>
@@ -82,83 +40,60 @@ namespace SimPe.Plugin.Gmdc
 		{
 			get { return action; }
 			set { action = value; }
+		}		
+
+		int index;
+		/// <summary>
+		/// If action is <see cref="GmdcImporterAction.Replace"/> or 
+		/// <see cref="GmdcImporterAction.Update"/> this Member stores the 
+		/// Index of the Target Joint (read/write)
+		/// </summary>
+		public int TargetIndex 
+		{
+			get { return index; }
+			set { index = value; }
 		}
 
 		/// <summary>
 		/// internal Attribute
 		/// </summary>
-		float scale;
-		/// <summary>
-		/// Returns/Sets the scale Factor that should be applied to this group
-		/// </summary>
-		public float Scale
-		{
-			get { return scale; }
-			set { scale = value; }
-		}
+		string name;
 
 		/// <summary>
-		/// Create a new Instance
+		/// The name of the Imported Bone		
 		/// </summary>
-		public GmdcGroupImporterAction()
-		{		
-			action = GmdcImporterAction.Add;
-			scale = (float)1.0;
-		}
-	}
-
-	/// <summary>
-	/// This class contains all Data Needed to import one Mesh Group
-	/// </summary>
-	public class ImportedGroup : GmdcGroupImporterAction
-	{
-		GmdcGroup group;
-		/// <summary>
-		/// The new MeshGroup
-		/// </summary>
-		public GmdcGroup Group
+		public string ImportedName 
 		{
-			get { return group; }
+			get { return name; }
+			set { name = value; }
 		}
 
-		GmdcLink link;	
+		GmdcJoint bone;
 		/// <summary>
-		/// The new Link Section
+		/// The new Bone
 		/// </summary>
-		public GmdcLink Link
+		public GmdcJoint Bone
 		{
-			get { return link; }
+			get { return bone; }
 		}
 
-		GmdcElements elements;
+		Quaternion q;	
 		/// <summary>
-		/// All Elements used by this Group
+		/// The initial Rotation (as Quaternion)
 		/// </summary>
-		public GmdcElements Elements
+		public Quaternion Quaternion
 		{
-			get { return elements; }
+			get { return q; }
+			set { q = value; }
 		}
 
+		Vector3f trans;	
 		/// <summary>
-		/// Returns the Number of faces stored in the Group
+		/// The initial Translation
 		/// </summary>
-		public int VertexCount 
+		public Vector3f Translation
 		{
-			get 
-			{
-				int vc = 0;
-				foreach (int i in Link.ReferencedElement) if (Elements[i].Identity == ElementIdentity.Vertex) vc += Elements[i].Values.Count;
-				return vc;
-			}
-		}
-
-		/// <summary>
-		/// Returns the Number of stored Faces
-		/// </summary>
-		/// <returns></returns>
-		public int FaceCount
-		{
-			get {return this.Group.Faces.Length / 3; }
+			get { return trans; }
 		}
 
 		/// <summary>
@@ -169,9 +104,7 @@ namespace SimPe.Plugin.Gmdc
 			get 
 			{
 				if (Action==GmdcImporterAction.Nothing) return System.Drawing.Color.Silver;
-				if (VertexCount>AbstractGmdcImporter.CRITICAL_VERTEX_AMOUNT) return System.Drawing.Color.Red;
-				if (FaceCount>AbstractGmdcImporter.CRITICAL_FACE_AMOUNT) return System.Drawing.Color.Red;
-				return System.Drawing.SystemColors.WindowText;
+				return System.Drawing.Color.DarkBlue;
 			}
 		}
 
@@ -180,11 +113,14 @@ namespace SimPe.Plugin.Gmdc
 		/// Create a new Instance
 		/// </summary>
 		/// <param name="parent">The gmdc that should act as Parent</param>
-		public ImportedGroup(GeometryDataContainer parent) : base()
+		public ImportedBone(GeometryDataContainer parent)
 		{
-			group = new GmdcGroup(parent);
-			link = new GmdcLink(parent);
-			elements = new GmdcElements();
+			bone = new GmdcJoint(parent);			
+			name = "";
+			index = -1;
+			action = GmdcImporterAction.Add;
+			q = new Quaternion();
+			trans = new Vector3f();
 		}
 	}
 
@@ -192,23 +128,23 @@ namespace SimPe.Plugin.Gmdc
 	/// <summary>
 	/// Typesave ArrayList for <see cref="ImportedGroup"/> Objects
 	/// </summary>
-	public class ImportedGroups : ArrayList 
+	public class ImportedBones : ArrayList 
 	{
 		/// <summary>
 		/// Integer Indexer
 		/// </summary>
-		public new ImportedGroup this[int index]
+		public new ImportedBone this[int index]
 		{
-			get { return ((ImportedGroup)base[index]); }
+			get { return ((ImportedBone)base[index]); }
 			set { base[index] = value; }
 		}
 
 		/// <summary>
 		/// unsigned Integer Indexer
 		/// </summary>
-		public ImportedGroup this[uint index]
+		public ImportedBone this[uint index]
 		{
-			get { return ((ImportedGroup)base[(int)index]); }
+			get { return ((ImportedBone)base[(int)index]); }
 			set { base[(int)index] = value; }
 		}
 
@@ -217,7 +153,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="item">The object you want to add</param>
 		/// <returns>The index it was added on</returns>
-		public int Add(ImportedGroup item)
+		public int Add(ImportedBone item)
 		{
 			return base.Add(item);
 		}
@@ -227,7 +163,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="index">The Index where the Element should be stored</param>
 		/// <param name="item">The object that should be inserted</param>
-		public void Insert(int index, ImportedGroup item)
+		public void Insert(int index, ImportedBone item)
 		{
 			base.Insert(index, item);
 		}
@@ -236,7 +172,7 @@ namespace SimPe.Plugin.Gmdc
 		/// remove an Element
 		/// </summary>
 		/// <param name="item">The object that should be removed</param>
-		public void Remove(ImportedGroup item)
+		public void Remove(ImportedBone item)
 		{
 			base.Remove(item);
 		}
@@ -246,7 +182,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="item">The Object you are looking for</param>
 		/// <returns>true, if it was found</returns>
-		public bool Contains(ImportedGroup item)
+		public bool Contains(ImportedBone item)
 		{
 			return base.Contains(item);
 		}		
@@ -265,8 +201,8 @@ namespace SimPe.Plugin.Gmdc
 		/// <returns>The clone</returns>
 		public override object Clone()
 		{
-			ImportedGroups list = new ImportedGroups();
-			foreach (ImportedGroup item in this) list.Add(item);
+			ImportedBones list = new ImportedBones();
+			foreach (ImportedBone item in this) list.Add(item);
 
 			return list;
 		}

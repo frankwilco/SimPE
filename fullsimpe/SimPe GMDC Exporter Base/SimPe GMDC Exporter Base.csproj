@@ -114,6 +114,11 @@
                     Project = "{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe Geometry"
+                    Project = "{60367A6D-8FF1-4289-B546-C68A2C395843}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
@@ -199,6 +204,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ImportedBone.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ImportedGroup.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -212,6 +222,11 @@
                     RelPath = "ImportGmdcGroups.resx"
                     DependentUpon = "ImportGmdcGroups.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ImportOptions.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
             </Include>
         </Files>

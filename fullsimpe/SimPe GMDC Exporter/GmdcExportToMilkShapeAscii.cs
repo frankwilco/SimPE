@@ -63,7 +63,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		/// </summary>
 		public override string FileDescription
 		{
-			get {return "Milkshape ASCII File";}
+			get {return "Milkshape 3D ASCII";}
 		}		
 
 		/// <summary>
@@ -71,7 +71,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		/// </summary>
 		public override string Author
 		{
-			get {return "Quaxi";}
+			get {return "Emily";}
 		}
 
 		/// <summary>
@@ -85,7 +85,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		{
 			modelnr = 0;
 			vertexoffset = 0;
-			writer.WriteLine("Meshes: "+Gmdc.Groups.Count.ToString());
+			writer.WriteLine("Meshes: "+this.Groups.Count.ToString());
 		}
 
 		/// <summary>
@@ -147,7 +147,12 @@ namespace SimPe.Plugin.Gmdc.Exporter
 					{
 						bnr = ((SimPe.Plugin.Gmdc.GmdcElementValueOneInt)boneelement.Values[bnr]).Value;
 						if (bnr == -1) writer.WriteLine("-1");
-						else writer.WriteLine((bnr&0xff).ToString());
+						else 
+						{
+							bnr = bnr&0xff;
+							bnr = Group.UsedJoints[bnr];
+							writer.WriteLine(bnr.ToString());
+						}
 					}
 						
 				}
@@ -199,10 +204,10 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			writer.WriteLine("Materials: 0");
 			
 			//Export Bones
-			writer.WriteLine("Bones: "+Gmdc.Bones.Count.ToString());
-			for (int i=0; i<Gmdc.Bones.Length; i++)
+			writer.WriteLine("Bones: "+Gmdc.Joints.Count.ToString());
+			for (int i=0; i<Gmdc.Joints.Length; i++)
 			{
-				if (i>=Gmdc.Model.Rotations.Length || i>=Gmdc.Model.Transformations.Length) break;
+				if (i>=Gmdc.Model.Quaternions.Length || i>=Gmdc.Model.Transformations.Length) break;
 	
 				writer.WriteLine("\"Joint"+i.ToString()+"\"");
 				writer.WriteLine("\"\"");
@@ -210,9 +215,9 @@ namespace SimPe.Plugin.Gmdc.Exporter
 					Gmdc.Model.Transformations[i].X.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
 					Gmdc.Model.Transformations[i].Y.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
 					Gmdc.Model.Transformations[i].Z.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
-					Gmdc.Model.Rotations[i].X.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
-					Gmdc.Model.Rotations[i].X.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
-					Gmdc.Model.Rotations[i].X.ToString("N6", AbstractGmdcExporter.DefaultCulture));
+					Gmdc.Model.Quaternions[i].Axis.X.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
+					Gmdc.Model.Quaternions[i].Axis.Y.ToString("N6", AbstractGmdcExporter.DefaultCulture) + " " +
+					Gmdc.Model.Quaternions[i].Axis.Z.ToString("N6", AbstractGmdcExporter.DefaultCulture));
 
 				writer.WriteLine("1");
 				writer.WriteLine("1.000000 0.000000 0.000000 0.000000");

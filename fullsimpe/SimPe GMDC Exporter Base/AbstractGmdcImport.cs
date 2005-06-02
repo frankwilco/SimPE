@@ -20,6 +20,7 @@
 using System;
 using System.IO;
 using System.Globalization;
+using System.Collections;
 
 namespace SimPe.Plugin.Gmdc
 {
@@ -101,9 +102,21 @@ namespace SimPe.Plugin.Gmdc
 		/// generate a vaild Groups ArrayList.
 		/// </summary>
 		/// <returns>A List of all available Groups</returns>
-		/// <remarks>You can use the Input and Gmdc Member to acces the Stream and 
+		/// <remarks>You can use the <see cref="Input"/> and <see cref="Gmdc"/> Member to acces the Stream and 
 		/// the Gmdc File that should be changed</remarks>
 		protected abstract ImportedGroups LoadGroups();
+
+		/// <summary>
+		/// This Method is called during the Import to process the input Data and 
+		/// showl generate a List of all Joints that should be Imported.
+		/// </summary>
+		/// <returns>A List of all available Joints</returns>
+		/// <remarks>You can use the <see cref="Input"/> and <see cref="Gmdc"/> Member to acces the Stream and 
+		/// the Gmdc File that should be changed. This Method is allways called AFTER <see cref="LoadGroups"/>.</remarks>
+		protected virtual ImportedBones LoadBones() 
+		{
+			return new ImportedBones();
+		}
 		#endregion
 
 		/// <summary>
@@ -150,67 +163,124 @@ namespace SimPe.Plugin.Gmdc
 			if (gmdc==null || input==null) return;
 
 			ImportedGroups g = LoadGroups();
-			if (ValidateImportedGroups(g)) ChangeGmdc(g);
+			ImportedBones b = LoadBones();
+			if (ValidateImportedGroups(g, b)) ChangeGmdc(g, b);
+		}
+
+		ImportOptions importoptionsresult;
+		/// <summary>
+		/// Returns Global Import Options
+		/// </summary>
+		/// <remarks>
+		/// This Member is usually set in the <see cref="ValidateImportedGroups"/> Method
+		/// </remarks>
+		protected ImportOptions Options 
+		{
+			get 
+			{
+				if (importoptionsresult==null) importoptionsresult = new ImportOptions(System.Windows.Forms.DialogResult.Cancel, false, false);
+				return importoptionsresult;
+			}
+			set 
+			{
+				importoptionsresult = value;
+			}
 		}
 
 		/// <summary>
 		/// This is called after the Groups were Imported to validate the Content
 		/// </summary>
 		/// <param name="grps">The imported Groups</param>
-		/// <returns></returns>
+		/// <param name="bns">The imported Joints</param>
+		/// <returns>true, if the Import should be continued</returns>
 		/// <remarks>This Implementation will show the ImportGmdcGroups Dialog to 
 		/// let the User validate the Content. Override this Method, if you want a 
 		/// diffrent Import Dialog</remarks>
-		protected virtual bool ValidateImportedGroups(ImportedGroups grps)
+		protected virtual bool ValidateImportedGroups(ImportedGroups grps, ImportedBones bns)
 		{
 			foreach (ImportedGroup g in grps) 
 			{
-				int minct = int.MaxValue;
 				//add all populated Element Lists
 				for (int k=0; k<g.Elements.Count; k++) 
 				{
 					g.Elements[k].Number = g.Elements[k].Values.Count;
-					if (g.Elements[k].Values.Length>0) 
-					{
-						minct = Math.Min(minct, g.Elements[k].Values.Count);
-
-						g.Link.ReferencedElement.Add(k);
-					}
+					if (g.Elements[k].Values.Length>0)  g.Link.ReferencedElement.Add(k);					
 				} // for k
-				if (minct==int.MaxValue) minct=0;
-
-				g.Link.ReferencedSize = minct;
-				g.Link.ActiveElements = g.Link.ReferencedElement.Count;
-
-				//If we have AliasLists, the we need that Number as Reference Count!
-				minct = int.MaxValue;
-				for (int i=0; i<g.Link.AliasValues.Length; i++) if (g.Link.AliasValues[i].Length>0) minct = Math.Min(minct, g.Link.AliasValues[i].Length);
-				if (minct!=int.MaxValue) g.Link.ReferencedSize = minct;
+				//if (minct==int.MaxValue) minct=0;							
 			}
 
-			return ImportGmdcGroupsForm.Execute(gmdc, grps) == System.Windows.Forms.DialogResult.OK;
+			importoptionsresult = ImportGmdcGroupsForm.Execute(gmdc, grps, bns);
+			return importoptionsresult.Result == System.Windows.Forms.DialogResult.OK;
 		}
 
+		
 		/// <summary>
 		/// This Method is called when the Imported Data should be written to the 
 		/// passed Gmdc File
 		/// </summary>
 		/// <param name="grps">The imported Groups</param>
+		/// <param name="bns">The imported Joints</param>
 		/// <remarks>
 		/// Override This Method if you want a diffrent Behaviour when writing the Data
 		/// to the Gmdc. Override AddGroup(), ReplaceGroup() or RenameGroup() if you just 
 		/// want to alter a specific Behaviuour.
 		/// </remarks>
-		protected virtual void ChangeGmdc(ImportedGroups grps)
+		protected virtual void ChangeGmdc(ImportedGroups grps, ImportedBones bns)
 		{
+			//remove all existing Groups and Elements
+			if (this.Options.CleanGroups) 
+			{
+				for (int i=Gmdc.Groups.Length-1; i>=0; i--) Gmdc.RemoveGroup(i);
+			}
+
+			//Add the Joints
+			Hashtable boneIndexMap = new Hashtable(); 
+			for (int i=0; i<bns.Length; i++)
+			{
+				ImportedBone b = bns[i];
+				if (b.Action == GmdcImporterAction.Add) boneIndexMap[i] = AddBone(grps, b, i);
+				else if (b.Action == GmdcImporterAction.Rename) boneIndexMap[i] = AddBone(grps, b, i);
+				else if (b.Action == GmdcImporterAction.Replace) boneIndexMap[i] = ReplaceBone(grps, b, i);
+				else if (b.Action == GmdcImporterAction.Update) boneIndexMap[i] = UpdateBone(grps, b, i);
+				else boneIndexMap[i] = NothingBone(grps, b, i);
+
+				//make sure the Target Index is set correct, and the parrent is set up
+				b.TargetIndex = (int)boneIndexMap[i];
+				b.Bone.Parent = Gmdc;
+			}
+
+			//Update the Boned Indices
+			foreach (ImportedGroup g in grps)
+			{
+				for(int i=0; i<g.Group.UsedJoints.Length; i++) 
+				{
+					int index = g.Group.UsedJoints[i];
+					if (boneIndexMap.ContainsKey(index)) g.Group.UsedJoints[i] = (int)boneIndexMap[index];				
+				}
+			}
+
+			//Add the Groups
 			foreach (ImportedGroup g in grps) 
 			{
 				if (g.Action == GmdcImporterAction.Add) AddGroup(g);
 				else if (g.Action == GmdcImporterAction.Rename) RenameGroup(g);
-				else if (g.Action == GmdcImporterAction.Replace) ReplaceGroup(g);				
+				else if (g.Action == GmdcImporterAction.Replace) ReplaceGroup(g);
+				else if (g.Action == GmdcImporterAction.Update) UpdateGroup(g);
+			}	
+		
+			//Make sure the Elements are assigned to the correct Bones
+			for (int i=0; i<bns.Length; i++)
+			{
+				ImportedBone b = bns[i];
+				if (b.Action == GmdcImporterAction.Add || b.Action == GmdcImporterAction.Rename || b.Action == GmdcImporterAction.Replace) 
+				{
+					b.Bone.CollectVertices();
+				}				
 			}
+			if (this.Options.CleanBones) Gmdc.CleanupBones();
 		}
 
+		#region Mesh
 		/// <summary>
 		/// Add the passed Group to the Gmdc
 		/// </summary>
@@ -225,7 +295,12 @@ namespace SimPe.Plugin.Gmdc
 			g.Group.LinkIndex = gmdc.Links.Length;
 			gmdc.Links.Add(g.Link);
 			gmdc.Groups.Add(g.Group);
+
+			g.Link.ReferencedSize = g.Link.GetReferencedSize();
+			g.Link.ActiveElements = g.Link.ReferencedElement.Count;
 		}
+
+		
 
 		/// <summary>
 		/// Replace an existing Group with  the passed Group in the current Gmdc
@@ -233,18 +308,46 @@ namespace SimPe.Plugin.Gmdc
 		/// <param name="g"></param>
 		protected virtual void ReplaceGroup(ImportedGroup g)
 		{
-			int index = -1;
-			for (int i=0; i<gmdc.Groups.Count; i++)
+			int index = Gmdc.FindGroupByName(g.TargetName);
+			if (index>=0) gmdc.RemoveGroup(index);
+			RenameGroup(g);
+		}
+
+		/// <summary>
+		/// RUpdate an existing Group with  the passed Group in the current Gmdc
+		/// </summary>
+		/// <param name="g"></param>
+		protected virtual void UpdateGroup(ImportedGroup g)
+		{
+			int index = Gmdc.FindGroupByName(g.TargetName);
+
+			GmdcGroup grp = Gmdc.Groups[index];
+			GmdcLink lnk = Gmdc.Links[grp.LinkIndex];
+
+			g.Group.LinkIndex = grp.LinkIndex;
+			
+
+			for (int i=0; i<g.Link.ReferencedElement.Count; i++) 
 			{
-				if (gmdc.Groups[i].Name == g.TargetName) 
+				GmdcElement e = g.Elements[g.Link.ReferencedElement[i]];
+				GmdcElement old = lnk.FindElementType(e.Identity);
+
+				//found an existing Element?
+				if (old == null) 
 				{
-					index = i;
-					break;
+					gmdc.Elements.Add(e);
+					lnk.ReferencedElement.Add(gmdc.Elements.Length-1);					
+				} 
+				else 
+				{
+					int id = lnk.GetElementNr(old);					
+					Gmdc.Elements[lnk.ReferencedElement[id]] = e;
 				}
 			}
 
-			if (index>=0) gmdc.RemoveGroup(index);
-			RenameGroup(g);
+			Gmdc.Groups[index] = g.Group;
+			lnk.ReferencedSize = lnk.GetReferencedSize();
+			lnk.ActiveElements = lnk.ReferencedElement.Count;	
 		}
 
 		/// <summary>
@@ -256,6 +359,68 @@ namespace SimPe.Plugin.Gmdc
 			g.Group.Name = g.TargetName;
 			AddGroup(g);
 		}
+		#endregion
+
+		#region Bone
+		/// <summary>
+		/// Add the passed Bone to the Gmdc and Fix the UseBone Indices to apropriate Values
+		/// </summary>
+		/// <param name="grps">List of all Imported Groups (needed to fix the UseBone Indices)</param>
+		/// <param name="b"></param>
+		/// <param name="index">The Number of the Bone that should be added</param>
+		/// <returns>the real Bone Index</returns>
+		protected virtual int AddBone(ImportedGroups grps, ImportedBone b, int index)
+		{			
+			int nindex = gmdc.Joints.Length;
+			gmdc.Joints.Add(b.Bone);
+			gmdc.Model.Quaternions.Add(b.Quaternion);
+			gmdc.Model.Transformations.Add(b.Translation);			
+
+			return nindex;
+		}
+
+		/// <summary>
+		/// Replace an exiting bone with the passed one
+		/// </summary>
+		/// <param name="grps">List of all Imported Groups (needed to fix the UseBone Indices)</param>
+		/// <param name="b"></param>
+		/// <param name="index">The Number of the Bone that should be added</param>
+		/// <returns>the real Bone Index</returns>
+		protected virtual int ReplaceBone(ImportedGroups grps, ImportedBone b, int index)
+		{			
+			int nindex = b.TargetIndex;
+			gmdc.Joints[nindex] = b.Bone;
+			gmdc.Model.Quaternions[nindex] = b.Quaternion;
+			gmdc.Model.Transformations[nindex] = b.Translation;
+
+			return nindex;
+		}
+
+		/// <summary>
+		/// Replace an exiting bone with the passed one
+		/// </summary>
+		/// <param name="grps">List of all Imported Groups (needed to fix the UseBone Indices)</param>
+		/// <param name="b"></param>
+		/// <param name="index">The Number of the Bone that should be added</param>
+		/// <returns>the real Bone Index</returns>
+		protected virtual int UpdateBone(ImportedGroups grps, ImportedBone b, int index)
+		{			
+			int nindex = b.TargetIndex;						
+			return nindex;
+		}
+
+		/// <summary>
+		/// Remove the Links to the NothingBones
+		/// </summary>
+		/// <param name="grps">List of all Imported Groups (needed to fix the UseBone Indices)</param>
+		/// <param name="b"></param>
+		/// <param name="index">The Number of the Bone that should be added</param>
+		/// <returns>the real Bone Index</returns>
+		protected virtual int NothingBone(ImportedGroups grps, ImportedBone b, int index)
+		{			
+			return -1;
+		}
+		#endregion
 
 		/// <summary>
 		/// Creates a new <see cref="ImportedGroup"/> Instance with Default Settings

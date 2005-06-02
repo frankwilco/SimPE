@@ -236,6 +236,7 @@ namespace SimPe.Plugin
 			this.childtc.SelectedIndex = 0;
 			this.childtc.Size = new System.Drawing.Size(720, 176);
 			this.childtc.TabIndex = 20;
+			this.childtc.SelectedIndexChanged += new System.EventHandler(this.childtc_SelectedIndexChanged);
 			// 
 			// tbflname
 			// 
@@ -751,7 +752,8 @@ namespace SimPe.Plugin
 			try 
 			{
 				cbitem.Tag = true;
-				AbstractRcolBlock rb = (AbstractRcolBlock)cbitem.Items[cbitem.SelectedIndex];
+				SimPe.CountedListItem cli = (SimPe.CountedListItem)cbitem.Items[cbitem.SelectedIndex];
+				AbstractRcolBlock rb = (AbstractRcolBlock)cli.Object;
 				tbflname.Enabled = (rb.NameResource!=null);
 				llhash.Enabled = tbflname.Enabled;
 				llfix.Enabled = tbflname.Enabled;
@@ -777,13 +779,14 @@ namespace SimPe.Plugin
 			if (cbitem.SelectedIndex<0) return;
 			try 
 			{
-				cbitem.Tag = true;
-				AbstractRcolBlock rb = (AbstractRcolBlock)cbitem.Items[cbitem.SelectedIndex];
+				cbitem.Tag = true;				
+				SimPe.CountedListItem cli = (SimPe.CountedListItem)cbitem.Items[cbitem.SelectedIndex];
+				AbstractRcolBlock rb = (AbstractRcolBlock)cli.Object;
 				if (rb.NameResource!=null) 
 				{
 					rb.NameResource.FileName = tbflname.Text;
-					cbitem.Items[cbitem.SelectedIndex] = rb;
-					cbitem.Text = rb.ToString();
+					cbitem.Items[cbitem.SelectedIndex] = cli;
+					cbitem.Text = cli.ToString();
 				}
 			} 
 			catch (Exception ex) 
@@ -1007,7 +1010,7 @@ namespace SimPe.Plugin
 
 			this.tbflname.Text = "";
 			this.childtc.TabPages.Clear();
-			foreach (object o in this.lbblocks.Items) cbitem.Items.Add(o);
+			foreach (SimPe.CountedListItem o in this.lbblocks.Items) cbitem.Items.Add(o);
 
 			if (cbitem.Items.Count>0) cbitem.SelectedIndex = 0;
 		}
@@ -1018,7 +1021,7 @@ namespace SimPe.Plugin
 			if (tabControl1.TabPages[tabControl1.SelectedIndex] == this.tabPage3) 
 			{
 				this.lbblocks.Items.Clear();
-				foreach(IRcolBlock irb in wrapper.Blocks) lbblocks.Items.Add(irb);
+				foreach(IRcolBlock irb in wrapper.Blocks) SimPe.CountedListItem.Add(lbblocks, irb);
 
 				this.cbblocks.Items.Clear();
 				foreach (string s in Rcol.Tokens.Keys)
@@ -1084,8 +1087,9 @@ namespace SimPe.Plugin
 		{
 			try 
 			{
+				//SimPe.CountedListItem cli = (SimPe.CountedListItem);
 				IRcolBlock irb = ((IRcolBlock)cbblocks.Items[cbblocks.SelectedIndex]).Create();
-				this.lbblocks.Items.Add(irb);
+				SimPe.CountedListItem.Add(this.lbblocks, irb);
 				wrapper.Blocks = (IRcolBlock[])Helper.Add(wrapper.Blocks, irb, typeof(IRcolBlock));
 				UpdateComboBox();
 			} 
@@ -1109,8 +1113,9 @@ namespace SimPe.Plugin
 			if (lbblocks.SelectedIndex<0) return;
 			try 
 			{
-				IRcolBlock irb = ((IRcolBlock)lbblocks.Items[lbblocks.SelectedIndex]);
-				this.lbblocks.Items.Remove(irb);
+				SimPe.CountedListItem cli = (SimPe.CountedListItem)lbblocks.Items[lbblocks.SelectedIndex];
+				IRcolBlock irb = ((IRcolBlock)cli.Object);
+				this.lbblocks.Items.Remove(cli);
 				wrapper.Blocks = (IRcolBlock[])Helper.Delete(wrapper.Blocks, irb, typeof(IRcolBlock));
 
 				UpdateComboBox();
@@ -1163,6 +1168,11 @@ namespace SimPe.Plugin
 			WaitingScreen.Wait();
 			SimPe.FileTable.FileIndex.ForceReload();
 			WaitingScreen.Stop();
+		}
+
+		private void childtc_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+		
 		}
 
 		/*private void childtc_SelectedIndexChanged(object sender, System.EventArgs e)

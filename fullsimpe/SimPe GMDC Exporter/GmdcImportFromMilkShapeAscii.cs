@@ -49,7 +49,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 		/// </summary>
 		public override string FileDescription
 		{
-			get {return "Milkshape ASCII File";}
+			get {return "Milkshape 3D ASCII";}
 		}		
 
 		/// <summary>
@@ -57,7 +57,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 		/// </summary>
 		public override string Author
 		{
-			get {return "Quaxi";}
+			get {return "Emily";}
 		}
 
 		/// <summary>
@@ -70,8 +70,22 @@ namespace SimPe.Plugin.Gmdc.Importer
 		protected override ImportedGroups LoadGroups()
 		{
 			ImportedGroups grps = new ImportedGroups();
+			bones = new ImportedBones();
 			LineParser(grps);
 			return grps;
+		}
+
+		ImportedBones bones;
+		/// <summary>
+		/// This Method is called during the Import to process the input Data and 
+		/// showl generate a List of all Bones that should be Imported.
+		/// </summary>
+		/// <returns>A List of all available Bones</returns>
+		/// <remarks>You can use the <see cref="Input"/> and <see cref="Gmdc"/> Member to acces the Stream and 
+		/// the Gmdc File that should be changed</remarks>
+		protected override ImportedBones LoadBones() 
+		{
+			return bones;
 		}
 		#endregion
 
@@ -231,9 +245,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 				int facecount = ReadCount();
 				for (int k=0; k<facecount; k++) ReadFaceData(g);
-
 				
-				
+				RemoveDuplicates(g);
 				grps.Add(g);
 			}
 		}
@@ -269,9 +282,23 @@ namespace SimPe.Plugin.Gmdc.Importer
 				float v = Convert.ToSingle(linetoks[5], AbstractGmdcImporter.DefaultCulture);
 				int b = Convert.ToInt32(linetoks[6]);
 				if (b!=-1) 
-				{
-					b += Gmdc.Bones.Count;
-					if (!g.Group.UsedBones.Contains(b)) g.Group.UsedBones.Add(b);
+				{					
+					if (!g.Group.UsedJoints.Contains(b)) 
+					{
+						g.Group.UsedJoints.Add(b);
+						//get real Bone Index
+						b = g.Group.UsedJoints.Length-1;
+					} 
+					else 
+					{
+						//get real Bone Index
+						for (int i=0; i< g.Group.UsedJoints.Length; i++)
+							if (g.Group.UsedJoints[i] == b) 
+							{
+								b = i;
+								break;
+							}
+					}
 				}
 
 				b = b&0xFF;
@@ -361,20 +388,22 @@ namespace SimPe.Plugin.Gmdc.Importer
 		{
 			for (int i=0; i<ct; i++)
 			{
-				ImportedGroup g = new ImportedGroup(Gmdc);
+				ImportedBone b = new ImportedBone(Gmdc);
 				//Read the Bones Data
-				ReadJointDescription(g);
-				ReadJointData(g);
+				ReadJointDescription(b);
+				ReadJointData(b);
 
 				int poscount = ReadCount();
-				for (int k=0; k<poscount; k++) ReadJointPosPhase(g);
+				for (int k=0; k<poscount; k++) ReadJointPosPhase(b);
 
 				int rotcount = ReadCount();
-				for (int k=0; k<rotcount; k++) ReadJointRotPhase(g);
+				for (int k=0; k<rotcount; k++) ReadJointRotPhase(b);
+
+				bones.Add(b);
 			}
 		}
 
-		void ReadJointDescription(ImportedGroup g)
+		void ReadJointDescription(ImportedBone b)
 		{
 			string[] linetoks = GetNonEmptyTokens();
 			if (linetoks.Length<1) 
@@ -383,6 +412,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 				return;
 			}
 			linetoks[0] = linetoks[0].Replace("\"", "");
+			b.ImportedName = linetoks[0];
 
 			linetoks = GetNonEmptyTokens();
 			if (linetoks.Length<1) 
@@ -392,7 +422,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			}
 		}	
 
-		void ReadJointData(ImportedGroup g)
+		void ReadJointData(ImportedBone b)
 		{
 			string[] linetoks = GetNonEmptyTokens();
 			if (linetoks.Length<7) 
@@ -410,9 +440,11 @@ namespace SimPe.Plugin.Gmdc.Importer
 				float ry = Convert.ToSingle(linetoks[5], AbstractGmdcImporter.DefaultCulture);
 				float rz = Convert.ToSingle(linetoks[6], AbstractGmdcImporter.DefaultCulture);	
 				
-				Gmdc.Model.Rotations.Add(new Vector4f(rx, ry, rz, (float)1.0));
-				Gmdc.Model.Transformations.Add(new Vector3f(x, y, z));
-				Gmdc.Bones.Add(new GmdcBone(Gmdc));
+				b.Quaternion = new SimPe.Geometry.Quaternion(new SimPe.Geometry.Vector3f(rx, ry, rz), (float)1.0);				
+
+				b.Translation.X = x;
+				b.Translation.Y = y;
+				b.Translation.Z = z;
 			} 
 			catch 
 			{
@@ -420,7 +452,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			}
 		}
 
-		void ReadJointPosPhase(ImportedGroup g)
+		void ReadJointPosPhase(ImportedBone b)
 		{
 			string[] linetoks = GetNonEmptyTokens();
 			if (linetoks.Length<4) 
@@ -442,7 +474,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			}
 		}
 
-		void ReadJointRotPhase(ImportedGroup g)
+		void ReadJointRotPhase(ImportedBone b)
 		{
 			string[] linetoks = GetNonEmptyTokens();
 			if (linetoks.Length<4) 
@@ -461,6 +493,160 @@ namespace SimPe.Plugin.Gmdc.Importer
 			catch 
 			{
 				lineerror = "Unable to Convert to Number";
+			}
+		}
+		#endregion
+
+		#region Optimize
+		/// <summary>
+		/// True if the values stored in the three AliasMaps at 
+		/// the passed indices are the same
+		/// </summary>
+		/// <param name="g">The Group</param>
+		/// <param name="i1">first Index</param>
+		/// <param name="i2">second Index</param>
+		/// <returns>true if they are the same</returns>
+		bool EqualIndices(ImportedGroup g, int i1, int i2)
+		{
+			for (int i=0; i<g.Link.AliasValues.Length; i++)
+				if (g.Link.AliasValues[i][i1]!=g.Link.AliasValues[i][i2]) return false;
+
+			return true;
+		}
+
+		/// <summary>
+		/// Checks if we have to use the Alias Table
+		/// </summary>
+		/// <param name="g"></param>
+		/// <returns>true, if we need it</returns>
+		bool UseAliasTables(ImportedGroup g)
+		{
+			for (int k=1; k<g.Link.AliasValues.Length; k++) 			
+				for (int i=0; i<g.Link.AliasValues[0].Length; i++) 
+					if (g.Link.AliasValues[k-1][i]!=g.Link.AliasValues[k][i]) return true;
+								
+			return false;
+		}
+
+		/// <summary>
+		/// Removes the AliasTables and replaces them with direct Indexing
+		/// </summary>
+		/// <param name="g"></param>
+		void RemoveAliasTables(ImportedGroup g) 
+		{
+			for (int i=0; i<g.Group.Faces.Length; i++)
+			{
+				int k = g.Group.Faces[i];
+				k = g.Link.AliasValues[0][k];
+
+				g.Group.Faces[i] = k;
+			}
+
+			for (int k=0; k<g.Link.AliasValues.Length; k++) 
+				g.Link.AliasValues[k].Clear();
+		}
+
+		/// <summary>
+		/// This will reduce the Vertex Count
+		/// </summary>
+		/// <param name="g"></param>
+		void RemoveDuplicates(ImportedGroup g)
+		{			
+			//list the old index an the new one
+			Hashtable map = new Hashtable();
+
+			//contains a List of all location where equal coords are stored
+			Hashtable eqmap = new Hashtable();
+			//keeps the real indices for the new List
+			Hashtable offsetmap = new Hashtable();
+
+			//stores a list of all Indices that should be removed
+			ArrayList remove = new ArrayList();
+#if DEBUG
+			System.IO.StreamWriter sw = System.IO.File.CreateText("g:\\debug_"+g.Group.Name+".txt");
+#endif
+			int offset = 0;
+			for (int i=0; i<g.Link.AliasValues[0].Length; i++)
+			{
+				int v = g.Link.AliasValues[0][i];
+				int vn = g.Link.AliasValues[1][i];
+				int vt = g.Link.AliasValues[2][i];
+
+				ulong hash = ( (((uint)v & 0x3FFFFF) << 21) | ((uint)vn & 0x3FFFFF) << 21) | ((uint)vt & 0x3FFFFF);
+
+				ArrayList list = null;
+				bool found = false;
+				if (!eqmap.ContainsKey(hash)) 
+				{
+					list = new ArrayList();
+					eqmap.Add(hash, list);
+				}
+				else 
+				{
+					list = (ArrayList)eqmap[hash];
+
+					foreach(int k in list) 
+					{
+						if (EqualIndices(g, i, k)) 
+						{
+							remove.Add(i);							
+							map[i] = k+(int)offsetmap[k];
+							//make sure each entry is only added once
+							found = true;
+							//keep following indices in sync.
+							offset--;
+						}
+					}
+				}
+			
+				if (!found) 
+				{
+					list.Add(i);
+					if (offset!=0) map[i] = i+offset;
+					offsetmap[i] = offset;
+				}
+
+#if DEBUG
+				sw.WriteLine(i.ToString()+": "+offset.ToString());				
+#endif
+			}
+
+			//remove the unused references
+			for (int k=0; k<g.Link.AliasValues.Length; k++) 
+			{
+				for (int j=remove.Count-1; j>=0; j--)
+				{				
+					int i = (int)remove[j];
+					g.Link.AliasValues[k].RemoveAt(i);
+				}
+			}
+
+#if DEBUG
+			try 
+			{
+				foreach (int i in map.Keys) sw.WriteLine(i.ToString()+" --> "+map[i].ToString());
+			} 
+			finally 
+			{
+				sw.Close();
+			}
+#endif
+
+
+			//Adjust the face List
+			for (int i=0; i<g.Group.Faces.Count; i++) 
+			{
+				if (map.ContainsKey((int)g.Group.Faces[i])) 
+				{
+					int v = (int)map[(int)g.Group.Faces[i]];
+					g.Group.Faces[i] = v;
+				}
+			}	
+			
+			//Check if we can remove the Alias Tables
+			if (!UseAliasTables(g)) 
+			{
+				RemoveAliasTables(g);
 			}
 		}
 		#endregion

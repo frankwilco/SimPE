@@ -21,6 +21,8 @@ using System;
 using System.IO;
 using System.Globalization;
 using SimPe.Plugin.Gmdc;
+using System.Collections;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin
 {
@@ -72,14 +74,14 @@ namespace SimPe.Plugin
 			set { model = value; }
 		}
 
-		GmdcBones subsets;
+		GmdcJoints joints;
 		/// <summary>
-		/// Returns a List of stored Subsets
+		/// Returns a List of stored Joints
 		/// </summary>
-		public GmdcBones Bones 
+		public GmdcJoints Joints 
 		{
-			get { return subsets; }
-			set { subsets = value; }
+			get { return joints; }
+			set { joints = value; }
 		}
 		#endregion
 				
@@ -99,7 +101,7 @@ namespace SimPe.Plugin
 
 			model = new GmdcModel(this);
 
-			subsets = new GmdcBones();		
+			joints = new GmdcJoints();		
 		}
 		
 		#region IRcolBlock Member
@@ -147,12 +149,12 @@ namespace SimPe.Plugin
 			model.Unserialize(reader);
 			
 			count = reader.ReadInt32();
-			subsets.Clear();
+			joints.Clear();
 			for (int i=0; i<count; i++)
 			{
-				GmdcBone s = new GmdcBone(this);
+				GmdcJoint s = new GmdcJoint(this);
 				s.Unserialize(reader);
-				subsets.Add(s);
+				joints.Add(s);
 			}
 
 		}
@@ -197,11 +199,11 @@ namespace SimPe.Plugin
 			model.Parent = this;
 			model.Serialize(writer);
 			
-			writer.Write((int)subsets.Length);
-			for (int i=0; i<subsets.Length; i++) 
+			writer.Write((int)joints.Length);
+			for (int i=0; i<joints.Length; i++) 
 			{
-				subsets[i].Parent = this;
-				subsets[i].Serialize(writer);			
+				joints[i].Parent = this;
+				joints[i].Serialize(writer);			
 			}
 		}
 
@@ -257,9 +259,9 @@ namespace SimPe.Plugin
 				form.list_groups.Items.Clear();
 				foreach(GmdcGroup g in groups) SimPe.CountedListItem.Add(form.list_groups, g);
 
-				form.label_subsets.Text = "Subsets: "+subsets.Length.ToString();
+				form.label_subsets.Text = "Joints: "+joints.Length.ToString();
 				form.list_subsets.Items.Clear();
-				foreach(GmdcBone s in subsets) SimPe.CountedListItem.Add(form.list_subsets, s);
+				foreach(GmdcJoint s in joints) SimPe.CountedListItem.Add(form.list_subsets, s);
 			}
 
 			try 
@@ -289,7 +291,7 @@ namespace SimPe.Plugin
 				form.lb_subsets.Items.Clear();
 				form.lb_sub_faces.Items.Clear();
 				form.lb_sub_items.Items.Clear();
-				foreach (GmdcBone i in this.subsets) SimPe.CountedListItem.Add(form.lb_subsets, i);
+				foreach (GmdcJoint i in this.joints) SimPe.CountedListItem.Add(form.lb_subsets, i);
 
 				form.lb_model_faces.Items.Clear();
 				foreach (Vector3i i in this.model.Bone.Vertices) SimPe.CountedListItem.Add(form.lb_model_faces, i);
@@ -298,7 +300,7 @@ namespace SimPe.Plugin
 				form.lb_model_names.Items.Clear();
 				foreach (GmdcNamePair i in this.model.BlendGroupDefinition) SimPe.CountedListItem.Add(form.lb_model_names, i);
 				form.lb_model_rots.Items.Clear();
-				foreach (Vector4f i in this.model.Rotations) SimPe.CountedListItem.Add(form.lb_model_rots, i);
+				foreach (Quaternion i in this.model.Quaternions) SimPe.CountedListItem.Add(form.lb_model_rots, i);
 				form.lb_model_trans.Items.Clear();
 				foreach (Vector3f i in this.model.Transformations) SimPe.CountedListItem.Add(form.lb_model_trans, i);
 			} 
@@ -360,12 +362,15 @@ namespace SimPe.Plugin
 		/// <param name="index">The index of the Element</param>
 		public void RemoveGroup(int index)
 		{
-			GmdcGroup g = groups[index];
-			int n = g.LinkIndex;
-			g.LinkIndex = -1;
-			RemoveLink(n);
+			if (index<groups.Count) 
+			{
+				GmdcGroup g = groups[index];
+				int n = g.LinkIndex;
+				g.LinkIndex = -1;
+				RemoveLink(n);
 
-			groups.RemoveAt(index);
+				groups.RemoveAt(index);
+			}
 		}
 		
 		/// <summary>
@@ -461,6 +466,88 @@ namespace SimPe.Plugin
 
 				return ct;
 			}
+		}
+
+		/// <summary>
+		/// Call this Method to remove all unreferenced Joints
+		/// </summary>
+		public void CleanupBones()
+		{
+			ArrayList usebones = new ArrayList();
+
+			///Assemble a List of used Joints
+			foreach (GmdcElement e in elements) 
+			{
+				if (e.Identity == ElementIdentity.BoneAssignment) 
+					foreach (GmdcElementValueOneInt v in e.Values) 
+					{
+						if (!usebones.Contains(v.Value&0xff)) usebones.Add(v.Value&0xff);
+					}
+			}
+
+			for (int i=joints.Length-1; i>=0; i--)
+			{
+				if (!usebones.Contains(i)) RemoveBone(i);
+			}
+		}
+
+		/// <summary>
+		/// Removes a Bone from this File
+		/// </summary>
+		/// <remarks>Vertices referencing this Bone will be unassigned! </remarks>
+		/// <param name="index"></param>
+		public void RemoveBone(int index) 
+		{
+			//Update the Assignments 
+			foreach (GmdcElement e in elements) 
+			{
+				if (e.Identity == ElementIdentity.BoneAssignment) 
+					foreach (GmdcElementValueOneInt v in e.Values) 
+					{						
+						if ((int)v.Bytes[0]==index) 
+						{
+							byte[]b = v.Bytes;
+							b[0] = 0xff;
+							v.Bytes = b;
+						}
+						/*else if ((int)v.Bytes[0]>index) 
+						{
+							byte[]b = v.Bytes;
+							b[0]--;
+							v.Bytes = b;
+						}*/
+					}
+			}
+
+			//Update the Bone List in the Groups Section
+			foreach (GmdcGroup g in groups) 
+			{
+				for (int i=g.UsedJoints.Count-1; i>=0; i--)
+				{
+					if (g.UsedJoints[i]==index) g.UsedJoints.RemoveAt(i);
+					else if (g.UsedJoints[i]>index) g.UsedJoints[i]--;
+				}
+			}
+
+			model.Quaternions.RemoveAt(index);
+			model.Transformations.RemoveAt(index);
+			joints.RemoveAt(index);
+		}
+
+		/// <summary>
+		/// Returns the Index of the Group in <see cref="Groups"/>.
+		/// </summary>
+		/// <param name="name">The name of the Group</param>
+		/// <returns>-1 if the Grou is not foudn or the Index in <see cref="Groups"/></returns>
+		public int FindGroupByName(string name) 
+		{
+			name = name.Trim().ToLower();
+			for (int i=0; i<Groups.Count; i++)
+			{
+				if (Groups[i].Name.Trim().ToLower() == name) return i;				
+			}
+
+			return -1;
 		}
 	}
 }

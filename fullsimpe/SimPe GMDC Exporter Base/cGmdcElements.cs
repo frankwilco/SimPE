@@ -28,8 +28,9 @@ namespace SimPe.Plugin.Gmdc
 	/// <summary>
 	/// Contains a SingleFloat Value
 	/// </summary>
-	public abstract class GmdcElementValueBase
+	public class GmdcElementValueBase
 	{
+
 		float[] data;		
 
 		/// <summary>
@@ -49,7 +50,7 @@ namespace SimPe.Plugin.Gmdc
 			get {return 0;}
 		}
 
-		internal GmdcElementValueBase()
+		public GmdcElementValueBase()
 		{
 			data = new float[Size];
 		}
@@ -95,7 +96,10 @@ namespace SimPe.Plugin.Gmdc
 		/// Create a Clone of this Object
 		/// </summary>
 		/// <returns>The Clone</returns>
-		public abstract GmdcElementValueBase Clone();
+		public virtual GmdcElementValueBase Clone()
+		{
+			return this;
+		}
 
 		/// <summary>
 		/// This Method supports the Internal process of creating a Clone
@@ -211,7 +215,7 @@ namespace SimPe.Plugin.Gmdc
 			Clone(dest);
 			return dest;
 		}
-	}
+	}	
 
 	/// <summary>
 	/// Contains a two gloat Value
@@ -239,8 +243,29 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		public int Value 
 		{
-			get {return (int)Data[0];}
+			get {
+				return (int)Data[0];
+			}
 			set {Data[0] = (float)value;}
+		}
+
+		/// <summary>
+		/// Returns / Sets the Bytes that are stored as one Dword Value
+		/// </summary>
+		/// <remarks>
+		/// Changein one of the passed Bytes will NOT effect the stored Value, you have to 
+		/// write a complete Array back into this Property to change the stored Value!
+		/// </remarks>
+		public byte[] Bytes 
+		{
+			get 
+			{				
+				return BitConverter.GetBytes(Value);
+			}
+			set 
+			{
+				Value = BitConverter.ToInt32(value, 0);
+			}
 		}
 
 		/// <summary>
@@ -249,7 +274,11 @@ namespace SimPe.Plugin.Gmdc
 		/// <returns>A String Describing the Data</returns>
 		public override string ToString()
 		{
-			return Value.ToString() + " ("+(Value&0xff).ToString()+")";
+			string s = Value.ToString() + " (";
+			byte[] b = Bytes;
+			for (int i=0; i<b.Length; i++) s += b[i].ToString()+ " ";
+			s = s.Trim() + ")";
+			return s;
 		}
 
 		internal override void Serialize(BinaryWriter writer)

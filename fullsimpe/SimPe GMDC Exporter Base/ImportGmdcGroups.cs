@@ -32,6 +32,15 @@ namespace SimPe.Plugin.Gmdc
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ComboBox cbopacity;
 		private System.Windows.Forms.ColumnHeader chBones;
+		private System.Windows.Forms.GroupBox gbbones;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.ComboBox cbboneaction;
+		private System.Windows.Forms.Label lbbonename;
+		private System.Windows.Forms.ComboBox cbbones;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.CheckBox cbcleanbn;
+		private System.Windows.Forms.CheckBox cbcleangrp;
 		/// <summary>
 		/// Needed Designervar.
 		/// </summary>
@@ -49,6 +58,11 @@ namespace SimPe.Plugin.Gmdc
 
 			GmdcImporterAction[] actions = (GmdcImporterAction[])System.Enum.GetValues(typeof(GmdcImporterAction));
 			foreach (GmdcImporterAction a in actions) this.cbaction.Items.Add(a);
+
+			//cbboneaction.Items.Add(GmdcImporterAction.Nothing);
+			cbboneaction.Items.Add(GmdcImporterAction.Add);
+			cbboneaction.Items.Add(GmdcImporterAction.Replace);			
+			cbboneaction.Items.Add(GmdcImporterAction.Update);
 		}
 
 		/// <summary>
@@ -80,6 +94,7 @@ namespace SimPe.Plugin.Gmdc
 			this.chTarget = new System.Windows.Forms.ColumnHeader();
 			this.chVertex = new System.Windows.Forms.ColumnHeader();
 			this.chFace = new System.Windows.Forms.ColumnHeader();
+			this.chBones = new System.Windows.Forms.ColumnHeader();
 			this.label1 = new System.Windows.Forms.Label();
 			this.gbsettings = new System.Windows.Forms.GroupBox();
 			this.cbopacity = new System.Windows.Forms.ComboBox();
@@ -93,8 +108,18 @@ namespace SimPe.Plugin.Gmdc
 			this.cbnames = new System.Windows.Forms.ComboBox();
 			this.tbname = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
-			this.chBones = new System.Windows.Forms.ColumnHeader();
+			this.gbbones = new System.Windows.Forms.GroupBox();
+			this.cbboneaction = new System.Windows.Forms.ComboBox();
+			this.lbbonename = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.cbbones = new System.Windows.Forms.ComboBox();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.cbcleanbn = new System.Windows.Forms.CheckBox();
+			this.cbcleangrp = new System.Windows.Forms.CheckBox();
 			this.gbsettings.SuspendLayout();
+			this.gbbones.SuspendLayout();
+			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lv
@@ -114,7 +139,7 @@ namespace SimPe.Plugin.Gmdc
 			this.lv.HideSelection = false;
 			this.lv.Location = new System.Drawing.Point(8, 32);
 			this.lv.Name = "lv";
-			this.lv.Size = new System.Drawing.Size(488, 280);
+			this.lv.Size = new System.Drawing.Size(488, 392);
 			this.lv.TabIndex = 0;
 			this.lv.View = System.Windows.Forms.View.Details;
 			this.lv.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -143,6 +168,11 @@ namespace SimPe.Plugin.Gmdc
 			this.chFace.Text = "Faces";
 			this.chFace.Width = 49;
 			// 
+			// chBones
+			// 
+			this.chBones.Text = "Joints";
+			this.chBones.Width = 52;
+			// 
 			// label1
 			// 
 			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -168,7 +198,7 @@ namespace SimPe.Plugin.Gmdc
 			this.gbsettings.Enabled = false;
 			this.gbsettings.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.gbsettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.gbsettings.Location = new System.Drawing.Point(504, 56);
+			this.gbsettings.Location = new System.Drawing.Point(504, 128);
 			this.gbsettings.Name = "gbsettings";
 			this.gbsettings.Size = new System.Drawing.Size(280, 152);
 			this.gbsettings.TabIndex = 2;
@@ -237,7 +267,7 @@ namespace SimPe.Plugin.Gmdc
 			this.lbname.Name = "lbname";
 			this.lbname.Size = new System.Drawing.Size(160, 23);
 			this.lbname.TabIndex = 2;
-			this.lbname.Text = "label4";
+			this.lbname.Text = "---";
 			this.lbname.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// label3
@@ -284,33 +314,135 @@ namespace SimPe.Plugin.Gmdc
 			// 
 			// button1
 			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button1.Location = new System.Drawing.Point(712, 288);
+			this.button1.Location = new System.Drawing.Point(712, 408);
 			this.button1.Name = "button1";
 			this.button1.TabIndex = 3;
 			this.button1.Text = "OK";
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
-			// chBones
+			// gbbones
 			// 
-			this.chBones.Text = "Bones";
-			this.chBones.Width = 52;
+			this.gbbones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.gbbones.Controls.Add(this.cbboneaction);
+			this.gbbones.Controls.Add(this.lbbonename);
+			this.gbbones.Controls.Add(this.label9);
+			this.gbbones.Controls.Add(this.label10);
+			this.gbbones.Controls.Add(this.cbbones);
+			this.gbbones.Enabled = false;
+			this.gbbones.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.gbbones.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.gbbones.Location = new System.Drawing.Point(504, 288);
+			this.gbbones.Name = "gbbones";
+			this.gbbones.Size = new System.Drawing.Size(280, 104);
+			this.gbbones.TabIndex = 10;
+			this.gbbones.TabStop = false;
+			this.gbbones.Text = "Bone Settings:";
+			// 
+			// cbboneaction
+			// 
+			this.cbboneaction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbboneaction.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbboneaction.Location = new System.Drawing.Point(112, 48);
+			this.cbboneaction.Name = "cbboneaction";
+			this.cbboneaction.Size = new System.Drawing.Size(160, 21);
+			this.cbboneaction.TabIndex = 3;
+			this.cbboneaction.SelectedIndexChanged += new System.EventHandler(this.cbboneaction_SelectedIndexChanged);
+			// 
+			// lbbonename
+			// 
+			this.lbbonename.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lbbonename.Location = new System.Drawing.Point(112, 24);
+			this.lbbonename.Name = "lbbonename";
+			this.lbbonename.Size = new System.Drawing.Size(160, 23);
+			this.lbbonename.TabIndex = 2;
+			this.lbbonename.Text = "---";
+			this.lbbonename.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			// 
+			// label9
+			// 
+			this.label9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label9.Location = new System.Drawing.Point(16, 48);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(88, 23);
+			this.label9.TabIndex = 1;
+			this.label9.Text = "Action:";
+			this.label9.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
+			// label10
+			// 
+			this.label10.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label10.Location = new System.Drawing.Point(16, 24);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(88, 23);
+			this.label10.TabIndex = 0;
+			this.label10.Text = "Bone Name:";
+			this.label10.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
+			// cbbones
+			// 
+			this.cbbones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbbones.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbbones.Location = new System.Drawing.Point(112, 72);
+			this.cbbones.Name = "cbbones";
+			this.cbbones.Size = new System.Drawing.Size(160, 21);
+			this.cbbones.TabIndex = 5;
+			this.cbbones.Visible = false;
+			this.cbbones.SelectedIndexChanged += new System.EventHandler(this.cbbones_SelectedIndexChanged);
+			// 
+			// groupBox1
+			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.cbcleanbn);
+			this.groupBox1.Controls.Add(this.cbcleangrp);
+			this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.groupBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.groupBox1.Location = new System.Drawing.Point(504, 40);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(280, 80);
+			this.groupBox1.TabIndex = 11;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Global Settings:";
+			// 
+			// cbcleanbn
+			// 
+			this.cbcleanbn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbcleanbn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbcleanbn.Location = new System.Drawing.Point(16, 48);
+			this.cbcleanbn.Name = "cbcleanbn";
+			this.cbcleanbn.Size = new System.Drawing.Size(256, 24);
+			this.cbcleanbn.TabIndex = 1;
+			this.cbcleanbn.Text = "Remove unref. Joints after Import";
+			// 
+			// cbcleangrp
+			// 
+			this.cbcleangrp.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbcleangrp.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbcleangrp.Location = new System.Drawing.Point(16, 24);
+			this.cbcleangrp.Name = "cbcleangrp";
+			this.cbcleangrp.Size = new System.Drawing.Size(224, 24);
+			this.cbcleangrp.TabIndex = 0;
+			this.cbcleangrp.Text = "Remove all Groups before Import";
 			// 
 			// ImportGmdcGroupsForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-			this.ClientSize = new System.Drawing.Size(792, 318);
+			this.ClientSize = new System.Drawing.Size(792, 436);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.gbsettings);
 			this.Controls.Add(this.lv);
 			this.Controls.Add(this.label1);
+			this.Controls.Add(this.gbbones);
+			this.Controls.Add(this.groupBox1);
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ImportGmdcGroupsForm";
 			this.Text = "Mesh Group Importer";
 			this.gbsettings.ResumeLayout(false);
+			this.gbbones.ResumeLayout(false);
+			this.groupBox1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -325,40 +457,88 @@ namespace SimPe.Plugin.Gmdc
 			Application.Run(new ImportGmdcGroupsForm());
 		}
 
+		/// <summary>
+		/// A Group was selected
+		/// </summary>
+		void SelectGroup() 
+		{
+			gbsettings.Enabled = true;
+			this.Tag = true;
+			try 
+			{
+				ImportedGroup a = (ImportedGroup)lv.SelectedItems[0].Tag;
+
+				this.lbname.Text = a.Group.Name;
+				cbaction.SelectedIndex = 0;
+				for (int i=0; i<cbaction.Items.Count; i++)
+				{
+					GmdcImporterAction ea = (GmdcImporterAction)cbaction.Items[i];
+					if (ea==a.Action) 
+					{
+						cbaction.SelectedIndex = i;
+						break;
+					}
+				}
+				tbname.Text = a.TargetName;		
+				tbscale.Text = a.Scale.ToString("N9");
+
+				if (a.Group.Opacity>=0x10) cbopacity.SelectedIndex = 0;
+				else if (a.Group.Opacity>0) cbopacity.SelectedIndex = 1;
+				else cbopacity.SelectedIndex = 2;
+			} 
+			finally 
+			{
+				this.Tag = null;
+			}
+		}
+
+		/// <summary>
+		/// A Bone was selected
+		/// </summary>
+		void SelectBone() 
+		{
+			gbbones.Enabled = true;
+			this.Tag = true;
+			try 
+			{
+				ImportedBone a = (ImportedBone)lv.SelectedItems[0].Tag;
+
+				cbboneaction.SelectedIndex = 0;
+				for (int i=0; i<cbboneaction.Items.Count; i++)
+				{
+					GmdcImporterAction ea = (GmdcImporterAction)cbboneaction.Items[i];
+					if (ea==a.Action) 
+					{
+						cbboneaction.SelectedIndex = i;
+						break;
+					}
+				}
+				lbbonename.Text = a.ImportedName;
+				try 
+				{
+					cbbones.SelectedIndex = a.TargetIndex;
+				} 
+				catch 
+				{
+					cbbones.SelectedIndex = cbbones.Items.Count-1;
+				}
+			} 
+			finally 
+			{
+				this.Tag = null;
+			}
+		}
+
 		private void listView1_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			gbsettings.Enabled = false;
+			gbbones.Enabled = false;
 			if (lv.SelectedItems.Count>0) 
 			{
-				gbsettings.Enabled = true;
-				this.Tag = true;
-				try 
-				{
-					ImportedGroup a = (ImportedGroup)lv.SelectedItems[0].Tag;
-
-					this.lbname.Text = a.Group.Name;
-					cbaction.SelectedIndex = 0;
-					for (int i=0; i<cbaction.Items.Count; i++)
-					{
-						GmdcImporterAction ea = (GmdcImporterAction)cbaction.Items[i];
-						if (ea==a.Action) 
-						{
-							cbaction.SelectedIndex = i;
-							break;
-						}
-					}
-					tbname.Text = a.TargetName;		
-					tbscale.Text = a.Scale.ToString("N9");
-
-					if (a.Group.Opacity>=0x10) cbopacity.SelectedIndex = 0;
-					else if (a.Group.Opacity>0) cbopacity.SelectedIndex = 1;
-					else cbopacity.SelectedIndex = 2;
-				} 
-				finally 
-				{
-					this.Tag = null;
-				}
-			}			
+				object o = lv.SelectedItems[0].Tag;
+				if (o.GetType()==typeof(ImportedGroup)) SelectGroup();
+				else SelectBone();
+			}	
 		}
 
 		/// <summary>
@@ -366,11 +546,13 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="gmdc">The Target Gmdc File</param>
 		/// <param name="actions">An array containing all wanted Import Actions</param>
+		/// <param name="joints">An array of all Joints that should be imported</param>
 		/// <returns>DialogResult.OK or DialogResult.Cancel</returns>
-		public static DialogResult Execute(SimPe.Plugin.GeometryDataContainer gmdc, ImportedGroups actions)
+		public static ImportOptions Execute(SimPe.Plugin.GeometryDataContainer gmdc, ImportedGroups actions, ImportedBones joints)
 		{
 			ImportGmdcGroupsForm f = new ImportGmdcGroupsForm();			
 			foreach (GmdcGroup g in gmdc.Groups) f.cbnames.Items.Add(g.Name);
+			for (int i=0; i<gmdc.Joints.Length; i++) f.cbbones.Items.Add("Bone "+i.ToString());				
 
 			foreach (ImportedGroup a in actions)
 			{
@@ -380,7 +562,29 @@ namespace SimPe.Plugin.Gmdc
 				lvi.SubItems.Add(a.TargetName);				
 				lvi.SubItems.Add(a.VertexCount.ToString());
 				lvi.SubItems.Add(a.FaceCount.ToString());
-				lvi.SubItems.Add(a.Group.UsedBones.Count.ToString());
+				lvi.SubItems.Add(a.Group.UsedJoints.Count.ToString());
+				lvi.Tag = a;
+				lvi.ForeColor = a.MarkColor;
+
+				f.lv.Items.Add(lvi);
+			}
+
+			int ct = 0;
+			foreach (ImportedBone a in joints)
+			{
+				if (ct<gmdc.Joints.Length && a.TargetIndex==-1) 
+				{
+					a.TargetIndex = ct;
+					a.Action = GmdcImporterAction.Update;
+				}
+				ct++;
+
+				ListViewItem lvi = new ListViewItem("(Bone) "+a.ImportedName);
+				lvi.SubItems.Add(a.Action.ToString());
+				lvi.SubItems.Add("Bone "+a.TargetIndex.ToString());				
+				lvi.SubItems.Add("-");
+				lvi.SubItems.Add("-");
+				lvi.SubItems.Add("-");
 				lvi.Tag = a;
 				lvi.ForeColor = a.MarkColor;
 
@@ -391,21 +595,45 @@ namespace SimPe.Plugin.Gmdc
 			f.ok = false;
 			f.ShowDialog();
 
-			if (f.ok) return DialogResult.OK;
+			//Builk the Result
+			DialogResult dr = DialogResult.Cancel;
+			if (f.ok) dr =  DialogResult.OK;
+			ImportOptions io = new ImportOptions(dr, f.cbcleangrp.Checked, f.cbcleanbn.Checked);
+			return io;
+		}
 
-			return DialogResult.Cancel;
+		void SetMostLikeName(ImportedGroup a)
+		{
+			if (a.TargetName==null) a.TargetName="";
+			if (a.TargetName.Trim()!="") return;
+
+			for (int i=0; i<cbnames.Items.Count; i++) 
+			{
+				string s = (string)cbnames.Items[i];
+				s = s.Trim();
+				if (a.Group.Name.ToLower().Trim()==s.ToLower()) 
+				{
+					a.TargetName = s;
+					cbnames.SelectedIndex = i;
+					break;
+				}
+			}
+			
 		}
 
 		private void cbaction_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			if (lv.SelectedItems.Count>0) 
 			{				
-				try 
-				{					
-					if (this.Tag==null) 
+									
+				if (this.Tag==null) 
+				{
+					try 
 					{
 						for (int i=0; i<lv.SelectedItems.Count; i++)
 						{
+							object o = lv.SelectedItems[i].Tag;
+							if (o.GetType()!=typeof(ImportedGroup)) continue;
 							ImportedGroup a = (ImportedGroup)lv.SelectedItems[i].Tag;
 
 							a.Action = (GmdcImporterAction)cbaction.Items[cbaction.SelectedIndex];
@@ -418,6 +646,7 @@ namespace SimPe.Plugin.Gmdc
 							{
 								switch (a.Action) 
 								{
+									case GmdcImporterAction.Update:
 									case GmdcImporterAction.Replace: 
 									{
 										tbname.Visible = false;
@@ -438,12 +667,20 @@ namespace SimPe.Plugin.Gmdc
 									}
 								} //switch
 							} //if i==0
+							
+							//try to find a likley Group for the Replace/Update
+							if (a.Action==GmdcImporterAction.Replace || a.Action==GmdcImporterAction.Update) 
+							{
+								SetMostLikeName(a);
+								lv.SelectedItems[i].SubItems[2].Text = cbnames.Text;
+							}
 						} //for i
-					} //if Tag					
-				} //try
-				finally { this.Tag = null; }
+					}//try
+					finally { this.Tag = null; }
+				} //if Tag													
 			}
 		}
+	
 
 
 		private void tbname_TextChanged(object sender, System.EventArgs e)
@@ -455,6 +692,8 @@ namespace SimPe.Plugin.Gmdc
 				{
 					for (int i=0; i<lv.SelectedItems.Count; i++)
 					{
+						object o = lv.SelectedItems[i].Tag;
+						if (o.GetType()!=typeof(ImportedGroup)) continue;
 						GmdcGroupImporterAction a = (GmdcGroupImporterAction)lv.SelectedItems[i].Tag;					
 						a.TargetName = tbname.Text;
 
@@ -474,6 +713,8 @@ namespace SimPe.Plugin.Gmdc
 				{
 					for (int i=0; i<lv.SelectedItems.Count; i++)
 					{
+						object o = lv.SelectedItems[i].Tag;
+						if (o.GetType()!=typeof(ImportedGroup)) continue;
 						GmdcGroupImporterAction a = (GmdcGroupImporterAction)lv.SelectedItems[i].Tag;					
 						a.TargetName = cbnames.Text;					
 
@@ -500,6 +741,8 @@ namespace SimPe.Plugin.Gmdc
 				{
 					for (int i=0; i<lv.SelectedItems.Count; i++)
 					{
+						object o = lv.SelectedItems[i].Tag;
+						if (o.GetType()!=typeof(ImportedGroup)) continue;
 						GmdcGroupImporterAction a = (GmdcGroupImporterAction)lv.SelectedItems[i].Tag;					
 						a.Scale = Convert.ToSingle(tbscale.Text);
 
@@ -520,6 +763,8 @@ namespace SimPe.Plugin.Gmdc
 				{
 					for (int i=0; i<lv.SelectedItems.Count; i++)
 					{
+						object o = lv.SelectedItems[i].Tag;
+						if (o.GetType()!=typeof(ImportedGroup)) continue;
 						ImportedGroup a = (ImportedGroup)lv.SelectedItems[i].Tag;	
 				
 						if (cbopacity.SelectedIndex==0) a.Group.Opacity = 0xffffffff;
@@ -530,6 +775,82 @@ namespace SimPe.Plugin.Gmdc
 					}
 				} 
 				catch {}
+				finally { this.Tag = null; }
+			}
+		}
+
+		private void cbboneaction_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (lv.SelectedItems.Count>0) 
+			{		
+				if (this.Tag==null) 
+				{
+					try 
+					{					
+					
+						for (int i=0; i<lv.SelectedItems.Count; i++)
+						{
+							object o = lv.SelectedItems[i].Tag;
+							if (o.GetType()!=typeof(ImportedBone)) continue;
+
+							ImportedBone a = (ImportedBone)o;
+
+							a.Action = (GmdcImporterAction)cbboneaction.Items[cbboneaction.SelectedIndex];
+							lv.SelectedItems[i].SubItems[1].Text = a.Action.ToString();
+
+							lv.SelectedItems[i].ForeColor = a.MarkColor;
+
+							this.Tag = true;
+							if (i==0)  //change Display ony on the first Selected Item
+							{
+								switch (a.Action) 
+								{
+									case GmdcImporterAction.Update:
+									case GmdcImporterAction.Replace: 
+									{										
+										cbbones.Visible = true;
+										break;
+									}									
+									default:
+									{										
+										cbbones.Visible = false;
+										break;
+									}
+								} //switch
+							} //if i==0
+							
+							//try to find a likley Group for the Replace/Update
+							/*if (a.Action==GmdcImporterAction.Replace || a.Action==GmdcImporterAction.Update) 
+							{
+								SetMostLikeName(a);
+								lv.SelectedItems[i].SubItems[2].Text = cbnames.Text;
+							}*/
+						} //for i
+								
+					} //try
+					finally { this.Tag = null; }
+				} //if Tag		
+			}
+		}
+
+		private void cbbones_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (this.Tag!=null) return;
+			if (lv.SelectedItems.Count>0) 
+			{				
+				try 
+				{
+					for (int i=0; i<lv.SelectedItems.Count; i++)
+					{
+						object o = lv.SelectedItems[i].Tag;
+						if (o.GetType()!=typeof(ImportedBone)) continue;
+
+						ImportedBone a = (ImportedBone)o;				
+						a.TargetIndex = cbbones.SelectedIndex;					
+
+						lv.SelectedItems[i].SubItems[2].Text = "Bone "+a.TargetIndex.ToString();
+					}
+				} 
 				finally { this.Tag = null; }
 			}
 		}
