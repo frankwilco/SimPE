@@ -26,6 +26,64 @@ using SimPe.Interfaces.Scenegraph;
 namespace SimPe.Plugin
 {
 	/// <summary>
+	/// Determins the basic Settings for the <see cref="ObjectCloner"/>.
+	/// </summary>
+	public class CloneSettings 
+	{
+		bool includeWallmask;
+		bool onlydefault;
+		bool updateguid;
+		bool exception;
+
+		/// <summary>
+		/// true, if the clone should include Wallmasks
+		/// </summary>
+		public bool IncludeWallmask
+		{
+			get { return includeWallmask; }
+			set { includeWallmask = value; }
+		}
+
+		/// <summary>
+		/// true if you only want default MMAT Files
+		/// </summary>
+		public bool OnlyDefaultMmats
+		{
+			get { return onlydefault; }
+			set { onlydefault = value; }
+		}
+
+		/// <summary>
+		/// update the GUIDs in the MMAT Files
+		/// </summary>
+		public bool UpdateMmatGuids
+		{
+			get { return updateguid; }
+			set { updateguid = value; }
+		}
+
+		/// <summary>
+		/// true if you want to throw an exception when something goes wrong
+		/// </summary>
+		public bool ThrowExceptions
+		{
+			get { return exception; }
+			set { exception = value; }
+		}
+		
+		/// <summary>
+		/// Create a new Instance and set everything to default
+		/// </summary>
+		public CloneSettings()
+		{
+			includeWallmask = true;
+			exception = true;
+			updateguid = true;
+			onlydefault = true;
+		}
+	}
+
+	/// <summary>
 	/// This Class provides Methods to clone ingame Objects
 	/// </summary>
 	public class ObjectCloner
@@ -43,6 +101,15 @@ namespace SimPe.Plugin
 			get { return package; }
 		}
 
+		CloneSettings setup;
+
+		/// <summary>
+		/// The Settings for this Cloner
+		/// </summary>
+		public CloneSettings Setup 
+		{
+			get { return setup; }
+		}
 		/// <summary>
 		/// Creates a new Isntance based on an existing Package
 		/// </summary>
@@ -50,6 +117,7 @@ namespace SimPe.Plugin
 		public ObjectCloner(IPackageFile package) 
 		{
 			this.package = package;
+			setup = new CloneSettings();
 		}
 
 		/// <summary>
@@ -58,6 +126,7 @@ namespace SimPe.Plugin
 		public ObjectCloner() 
 		{
 			package = new GeneratableFile((System.IO.BinaryReader)null);
+			setup = new CloneSettings();
 		}
 
 		/// <summary>
@@ -175,37 +244,34 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
-		/// Clone a InGane Object based on the relations of the RCOL Files
+		/// Clone a InGame Object based on the relations of the RCOL Files
 		/// </summary>
-		/// <param name="pkg">The package that should contain the Clone</param>
 		/// <param name="modelname">The Name of the Model</param>
-		/// <param name="loadparent">true if you want to load Parent Objects</param>
-		public void RcolModelClone(string modelname, bool onlydefault) 
+		/// <param name="onlydefault">true if you want to load Parent Objects</param>
+		public void RcolModelClone(string modelname) 
 		{
 			if (modelname==null) return;
 
 			string[] ms = new string[1];
 			ms[0] = modelname;
-			RcolModelClone(ms, onlydefault);
+			RcolModelClone(ms);
 		}
 
 		/// <summary>
 		/// Clone a InGame Object based on the relations of the RCOL Files
 		/// </summary>
 		/// <param name="modelnames">The Name of the Model</param>
-		/// <param name="loadparent">true if you want to load Parent Objects</param>
-		public void RcolModelClone(string[] modelnames, bool onlydefault) {
-			RcolModelClone(modelnames, onlydefault, onlydefault, true, new ArrayList());
+		/// <param name="onlydefault">true if you only want default MMAT Files</param>
+		public void RcolModelClone(string[] modelnames) {
+			RcolModelClone(modelnames, new ArrayList());
 		}
 
 		/// <summary>
 		/// Clone a InGane Object based on the relations of the RCOL Files
 		/// </summary>
 		/// <param name="onlydefault">true if you only want default MMAT Files</param>
-		/// <param name="updateguid">update the GUIDs in the MMAT Files</param>
-		/// <param name="exception">true if you want to load Parent Objects</param>
 		/// <param name="exclude">List of ReferenceNames that should be excluded</param>
-		public void RcolModelClone(string[] modelnames, bool onlydefault, bool updateguid, bool exception, ArrayList exclude) 
+		public void RcolModelClone(string[] modelnames, ArrayList exclude) 
 		{
 			if (modelnames==null) return;
 
@@ -214,18 +280,23 @@ namespace SimPe.Plugin
 			SimPe.FileTable.FileIndex.Load();
 			WaitingScreen.UpdateMessage("Walking Scenegraph");
 			Scenegraph sg = new Scenegraph(modelnames, exclude);
+			if (Setup.IncludeWallmask) 
+			{
+				WaitingScreen.UpdateMessage("Scanning for Wallmasks");
+				sg.AddWallmasks(modelnames);
+			}
 			WaitingScreen.UpdateMessage("Collect Slave TXMTs");
 			sg.AddSlaveTxmts(sg.GetSlaveSubsets());
 			
 			WaitingScreen.UpdateMessage("Building Package");
 			sg.BuildPackage(package);			
 			WaitingScreen.UpdateMessage("Collect MMAT Files");
-			sg.AddMaterialOverrides(package, onlydefault, true, exception);
+			sg.AddMaterialOverrides(package, setup.OnlyDefaultMmats, true, setup.ThrowExceptions);
 			WaitingScreen.UpdateMessage("Collect Slave TXMTs");
 			Scenegraph.AddSlaveTxmts(package, Scenegraph.GetSlaveSubsets(package));
 			
 
-			if (updateguid) 
+			if (setup.UpdateMmatGuids) 
 			{
 				WaitingScreen.UpdateMessage("Fixing MMAT Files");
 				this.UpdateMMATGuids(this.GetGuidList(), this.GetPrimaryGuid());			

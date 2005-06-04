@@ -583,5 +583,84 @@ namespace SimPe.Plugin.Scanner
 		}
 	}
 
+	/// <summary>
+	/// This class checks if the Base CRES for the Recolor is still available
+	/// </summary>
+	internal class RecolorBasemeshScanner : AbstractScanner, IScanner
+	{
+		static SimPe.Cache.MemoryCacheFile cachefile;
+		public RecolorBasemeshScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+
+		#region IScannerBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 900; }
+		}
+		#endregion
+
+		#region IScanner Member
+
+		protected override void DoInitScan()
+		{
+			if (cachefile==null) cachefile = MemoryCacheFile.InitCacheFile();
+			
+			AbstractScanner.AddColumn(ListView, "Found Base", 180);
+		}
+
+
+		public void ScanPackage(ScannerItem si, SimPe.Cache.PackageState ps, System.Windows.Forms.ListViewItem lvi)
+		{			
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = si.Package.FindFiles(Data.MetaData.MMAT);
+			ArrayList list = new ArrayList();
+
+			ps.State = TriState.True;
+			FileTable.FileIndex.StoreCurrentState();
+			FileTable.FileIndex.AddIndexFromPackage(si.Package);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+			{
+				SimPe.Plugin.MmatWrapper mmat = new MmatWrapper();
+				mmat.ProcessData(pfd, si.Package);
+
+				string m = mmat.ModelName.Trim().ToLower();
+				if (!m.EndsWith("_cres")) m += "_cres";
+
+				//Add the current package				
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(m, Data.MetaData.CRES, Data.MetaData.LOCAL_GROUP, true);				
+
+				if (item==null) ps.State = TriState.False;
+			}		
+			FileTable.FileIndex.RestoreLastState();	
+
+			UpdateState(si, ps, lvi);
+		}
+
+		public void UpdateState(ScannerItem si, SimPe.Cache.PackageState ps, System.Windows.Forms.ListViewItem lvi)
+		{	
+			
+
+			string text = "yes";
+			if (ps.State == TriState.False) text = "no";
+			AbstractScanner.SetSubItem(lvi, this.StartColum, text, ps);		
+		}
+
+		public void FinishScan() { }
+
+		public override bool IsActiveByDefault
+		{
+			get { return false; }
+		}		
+		#endregion
+
+		public override string ToString()
+		{
+			return "Recolor-Basemesh Scanner";
+		}
+	}
+
 	
 }
