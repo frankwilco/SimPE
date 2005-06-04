@@ -164,6 +164,8 @@ namespace SimPe.Plugin
 
 			return cres;
 		}
+
+		
 		
 		/// <summary>
 		/// Load all File referenced by the passed rcol File
@@ -741,6 +743,62 @@ namespace SimPe.Plugin
 			list.CopyTo(ret);
 
 			return ret;
+		}
+
+		/// <summary>
+		/// Load all pending Wallmask Files
+		/// </summary>
+		/// <param name="modelname"></param>
+		/// <returns></returns>
+		protected ArrayList LoadWallmask(string modelname)
+		{
+			ArrayList txmt = new ArrayList();
+
+			//known types (based on a List created by Numenor)
+			string[] list = { 
+								"0_0_0_n",		//for all the straight doors/windows/arches
+								"0_1s_0_s",		//for all the straight doors/windows/arches
+								"1e_0_0_n",		//in addition to them, the 2-tile straight doors/windows/arches
+								"1e_1s_0_s",	//in addition to them, the 2-tile straight doors/windows/arches
+								"0_0_0_nw",		//all the diagonal doors/window/arches have
+								"0_0_0_se",		//all the diagonal doors/window/arches have
+								"1e_1n_0_nw",	// in addition to them, the 2-tile diagonals have
+								"1e_1n_0_se"	// in addition to them, the 2-tile diagonals have
+							};
+
+			modelname =modelname.Trim().ToLower();
+			if (modelname.EndsWith("_cres")) modelname = modelname.Substring(0, modelname.Length-5);
+				
+			foreach (string s in list)
+			{
+				modelname += "_" + s + "_wallmask_txmt";
+
+				Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(modelname, Data.MetaData.TXMT, Data.MetaData.LOCAL_GROUP, true);
+
+				if (item!=null) txmt.Add(item);
+			}
+
+			return txmt;
+		}
+
+		/// <summary>
+		/// Add Wallmasks (if available) to the Clone
+		/// </summary>
+		/// <param name="modelnames"></param>
+		/// <remarks>based on Instructions By Numenor</remarks>
+		public void AddWallmasks(string[] modelnames)
+		{			
+			foreach (string s in modelnames) 
+			{
+				ArrayList txmt = LoadWallmask(s);
+
+				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in txmt) 
+				{
+					SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
+					sub.ProcessData(item);
+					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true);
+				}
+			}			
 		}
 	}
 }

@@ -889,7 +889,9 @@ namespace SimPe.Wizards
 			WaitingScreen.UpdateMessage("Collecting needed Files");
 			string[] modelnames = SimPe.Plugin.Workshop.BaseClone(objd.FileDescriptor, objd.FileDescriptor.Group, pkg);
 			SimPe.Plugin.ObjectCloner objclone = new SimPe.Plugin.ObjectCloner(pkg);
-			objclone.RcolModelClone(modelnames, false);
+			objclone.Setup.OnlyDefaultMmats = false;
+			objclone.Setup.UpdateMmatGuids = false;
+			objclone.RcolModelClone(modelnames);
 
 			WaitingScreen.UpdateMessage("Loading additional References");
 			SimPe.Plugin.ObjectRecolor or = new SimPe.Plugin.ObjectRecolor(pkg);
