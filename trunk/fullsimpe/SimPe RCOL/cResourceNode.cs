@@ -78,7 +78,7 @@ namespace SimPe.Plugin
 	/// a BinaryStream and translates the data into some userdefine Attributes.
 	/// </remarks>
 	public class ResourceNode
-		: AbstractRcolBlock
+		: AbstractCresChildren
 	{
 		#region Attributes
 		byte typecode;
@@ -136,6 +136,48 @@ namespace SimPe.Plugin
 			typecode = 0x01;
 			BlockID = 0xE519C933;
 		}
+
+		#region AbstractCresChildren Member
+		/// <summary>
+		/// Returns a List of all Child Blocks referenced by this Element
+		/// </summary>
+		public override IntArrayList ChildBlocks 
+		{
+			get 
+			{
+				IntArrayList l = new IntArrayList();
+				foreach (ResourceNodeItem rni in items) 
+				{
+					l.Add((rni.Unknown2 >> 24) & 0xff);
+				}
+				return l;
+			}
+		}	
+
+		/// <summary>
+		/// Add a ChildNode (and all it's subChilds) to a TreeNode
+		/// </summary>
+		/// <param name="parent">The parent TreeNode</param>
+		/// <param name="index">The Index of the Child Block in the Parent</param>
+		/// <param name="child">The ChildBlock (can be null)</param>
+		protected void AddChildNode(System.Windows.Forms.TreeNodeCollection parent, int index, SimPe.Interfaces.Scenegraph.ICresChildren child) 
+		{
+			//Make the user aware, that a Node was left out!
+			if (child==null) 
+			{
+				System.Windows.Forms.TreeNode unode = new System.Windows.Forms.TreeNode("[Error: Unsupported Child on Index "+index.ToString()+"]");
+				unode.Tag = -1;
+				parent.Add(unode);
+				return;
+			}
+
+			System.Windows.Forms.TreeNode node = new System.Windows.Forms.TreeNode(index.ToString()+": "+child.ToString());
+			node.Tag = index;
+			parent.Add(node);
+
+			foreach (int i in child.ChildBlocks) AddChildNode(node.Nodes, i, child.GetBlock(i));
+		}
+		#endregion
 		
 		#region IRcolBlock Member
 
@@ -247,7 +289,29 @@ namespace SimPe.Plugin
 				return form.tResourceNode;
 			}
 		}
+
+		public override System.Windows.Forms.TabPage ResourceTabPage
+		{
+			get
+			{
+				if (form==null) form = new fShapeRefNode(); 
+				return form.tCres;
+			}
+		}
+
 		#endregion
+
+		/// <summary>
+		/// Init the Ressource Cres
+		/// </summary>
+		protected override void InitResourceTabPage()
+		{
+			if (form==null) form = new fShapeRefNode();
+
+			form.cres_tv.Nodes.Clear();
+			AddChildNode(form.cres_tv.Nodes, 0, this);
+			form.cres_tv.ExpandAll();
+		}
 
 		/// <summary>
 		/// You can use this to setop the Controls on a TabPage befor it is dispplayed

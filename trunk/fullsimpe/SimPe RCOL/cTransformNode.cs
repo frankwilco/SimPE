@@ -19,6 +19,7 @@
  ***************************************************************************/
 using System;
 using SimPe.Geometry;
+using System.ComponentModel;
 
 namespace SimPe.Plugin
 {
@@ -72,7 +73,7 @@ namespace SimPe.Plugin
 	/// Zusammenfassung für cTransformNode.
 	/// </summary>
 	public class TransformNode
-		: AbstractRcolBlock
+		: AbstractCresChildren
 	{
 		#region Attributes
 		
@@ -86,45 +87,55 @@ namespace SimPe.Plugin
 			set { items = value; }
 		}
 
+		public ObjectGraphNode ObjectGraphNode 
+		{
+			get { return ogn; }
+		}
+
+		public CompositionTreeNode CompositionTreeNode 
+		{
+			get { return ctn; }
+		}
+
 		Vector3f trans;
 		Quaternion q;
 		int unknown;
 
 		public float TransformX 
 		{
-			get { return trans.X; }
+			get { return (float)trans.X; }
 			set { trans.X = value; }
 		}
 		public float TransformY 
 		{
-			get { return trans.Y; }
+			get { return (float)trans.Y; }
 			set { trans.Y = value; }
 		}
 		public float TransformZ 
 		{
-			get { return trans.Z; }
+			get { return (float)trans.Z; }
 			set { trans.Z = value; }
 		}
 
 		
 		public float RotationX 
 		{
-			get { return q.X; }
+			get { return (float)q.X; }
 			set { q.X = value; }
 		}
 		public float RotationY 
 		{
-			get { return q.Y; }
+			get { return (float)q.Y; }
 			set { q.Y = value; }
 		}
 		public float RotationZ 
 		{
-			get { return q.Z; }
+			get { return (float)q.Z; }
 			set { q.Z = value; }
 		}
 		public float RotationW 
 		{
-			get { return q.W; }
+			get { return (float)q.W; }
 			set { q.W = value; }
 		}
 
@@ -141,7 +152,6 @@ namespace SimPe.Plugin
 		}
 		#endregion
 		
-
 		/// <summary>
 		/// Constructor
 		/// </summary>
@@ -158,6 +168,25 @@ namespace SimPe.Plugin
 			version = 0x07;
 			BlockID = 0x65246462;
 		}
+
+		#region AbstractCresChildren Member
+		/// <summary>
+		/// Returns a List of all Child Blocks referenced by this Element
+		/// </summary>
+		[BrowsableAttribute(false)]
+		public override IntArrayList ChildBlocks 
+		{
+			get 
+			{
+				IntArrayList l = new IntArrayList();
+				foreach (TransformNodeItem tni in items) 
+				{
+					l.Add(tni.Unknown2);
+				}
+				return l;
+			}
+		}	
+		#endregion
 		
 		#region IRcolBlock Member
 
@@ -261,7 +290,7 @@ namespace SimPe.Plugin
 			form.tb_tn_ax.Text = q.Axis.X.ToString("N6");
 			form.tb_tn_ay.Text = q.Axis.Y.ToString("N6");
 			form.tb_tn_az.Text = q.Axis.Z.ToString("N6");
-			form.tb_tn_a.Text = q.Angle.ToString("N6");
+			form.tb_tn_a.Text = Quaternion.RadToDeg(q.Angle).ToString("N6");
 
 			form.tb_tn_a.Tag = null;
 		}
@@ -270,6 +299,15 @@ namespace SimPe.Plugin
 		{
 			base.ExtendTabControl (tc);
 			this.ogn.AddToTabControl(tc);
+			this.ctn.AddToTabControl(tc);
+		}
+
+		public override string ToString()
+		{
+			string s =  this.ogn.FileName;
+			if (this.unknown!=0x7fffffff) s += " Joint"+this.unknown.ToString();
+			s += ": Trans="+trans.ToString() + "     Rot=" + q.ToString() + " ("+base.ToString ()+")";
+			return s;
 		}
 	}
 }

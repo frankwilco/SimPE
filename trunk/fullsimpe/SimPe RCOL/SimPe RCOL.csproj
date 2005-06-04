@@ -164,6 +164,11 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "AbstractCresChildren.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AbstractRcolBlock.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -199,7 +204,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "cBoundingVolumeBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "cCinematicScene.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cCompactorBuilder.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -224,12 +239,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "cGeometryBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "cGeometryNode.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "cImageData.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cIndexedMeshBuilder.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -260,6 +285,11 @@
                 />
                 <File
                     RelPath = "cPointLight.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cProcessDeformationsBuilder.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -304,7 +334,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "cTagExtension.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cTangentSpaceBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "cTransformNode.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cTSFaceGeometryBuilder.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -365,6 +410,11 @@
                 />
                 <File
                     RelPath = "GeneralRcolWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ICresChildren.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -289,7 +289,10 @@ namespace SimPe.Plugin.Gmdc
 		{			
 			for (int i=0; i<g.Link.ReferencedElement.Count; i++) 
 			{
-				gmdc.Elements.Add(g.Elements[g.Link.ReferencedElement[i]]);
+				GmdcElement e = g.Elements[g.Link.ReferencedElement[i]];
+				//foreach (GmdcElementValueBase evb in e.Values) evb *= g.Scale;
+
+				gmdc.Elements.Add(e);
 				g.Link.ReferencedElement[i] = gmdc.Elements.Length-1;				
 			}
 			g.Group.LinkIndex = gmdc.Links.Length;
@@ -330,6 +333,7 @@ namespace SimPe.Plugin.Gmdc
 			for (int i=0; i<g.Link.ReferencedElement.Count; i++) 
 			{
 				GmdcElement e = g.Elements[g.Link.ReferencedElement[i]];
+				//foreach (GmdcElementValueBase evb in e.Values) evb *= g.Scale;
 				GmdcElement old = lnk.FindElementType(e.Identity);
 
 				//found an existing Element?
@@ -420,7 +424,7 @@ namespace SimPe.Plugin.Gmdc
 		{			
 			return -1;
 		}
-		#endregion
+		#endregion		
 
 		/// <summary>
 		/// Creates a new <see cref="ImportedGroup"/> Instance with Default Settings

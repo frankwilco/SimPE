@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.ComponentModel;
 
 namespace SimPe.Plugin
 {
@@ -25,7 +26,7 @@ namespace SimPe.Plugin
 	/// Zusammenfassung für cBoundedNode.
 	/// </summary>
 	public class LightRefNode
-		: AbstractRcolBlock
+		: AbstractCresChildren
 	{
 		#region Attributes
 
@@ -33,9 +34,27 @@ namespace SimPe.Plugin
 		BoundedNode bn;
 		TransformNode tn;
 
+
 		short unknown1;
+		public short Unknown1 
+		{
+			get { return unknown1; }
+			set { unknown1 = value; }
+		}
+
 		string[] items;
+		public string[] Strings 
+		{
+			get { return items; }
+			set { items = value; }
+		}
+
 		byte[] unknown2;
+		public byte[] Unknown2 
+		{
+			get { return unknown2; }
+			//set { unknown2 = value; }
+		}
 		#endregion
 		
 
@@ -54,6 +73,20 @@ namespace SimPe.Plugin
 			items = new string[0];
 			unknown2 = new byte[13];
 		}
+
+		#region AbstractCresChildren Member
+		/// <summary>
+		/// Returns a List of all Child Blocks referenced by this Element
+		/// </summary>
+		[BrowsableAttribute(false)]
+		public override IntArrayList ChildBlocks 
+		{
+			get 
+			{
+				return tn.ChildBlocks;
+			}
+		}	
+		#endregion
 		
 		#region IRcolBlock Member
 
@@ -142,6 +175,20 @@ namespace SimPe.Plugin
 		{
 			if (form==null) form = new fShapeRefNode(); 
 			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
+			form.gen_pg.SelectedObject = this;
+		}
+
+		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
+		{
+			base.ExtendTabControl (tc);
+			this.rn.AddToTabControl(tc);
+			this.bn.AddToTabControl(tc);
+			this.tn.AddToTabControl(tc);
+		}
+
+		public override string ToString()
+		{
+			return this.tn.ObjectGraphNode.FileName + " ("+base.ToString ()+")";
 		}
 	}
 }

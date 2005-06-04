@@ -53,6 +53,7 @@ namespace SimPe.Plugin
 			blockid = 0;
 			version = 0;
 		}
+		
 
 		/// <summary>
 		/// Data was changed
@@ -68,10 +69,50 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
-		/// You can use this to setop the Controls on a TabPage befor it is dispplayed
+		/// Refresh the Display
+		/// </summary>
+		public void Refresh() 
+		{
+			InitTabPage(); 
+			InitResourceTabPage();
+		}
+
+
+		/// <summary>
+		/// You can use this to setop the Controls on a TabPage before it is displayed
 		/// </summary>
 		protected virtual void InitTabPage() 
 		{
+		}
+
+		/// <summary>
+		/// You can use this to setop the Controls on a ResourceTabPage before it is displayed
+		/// </summary>
+		protected virtual void InitResourceTabPage() 
+		{
+		}
+
+		/// <summary>
+		/// Adds the Ressource TabPage to the Form
+		/// </summary>
+		/// <param name="tc">The TabControl you want to add the resourceTabPage to</param>
+		/// <param name="cb">The ComboBox that selects the SubBlocks</param>
+		/// <returns></returns>
+		internal virtual void AddToResourceTabControl(TabControl tc, ComboBox cb) 
+		{		
+			tc.Tag = cb;
+
+			//remove all additional Pages
+			for (int i=tc.TabPages.Count-1; i>=0; i--) 
+				if (tc.TabPages[i].Tag!=null) tc.TabPages.RemoveAt(i);
+
+			if (ResourceTabPage!=null) 
+			{
+				ResourceTabPage.Tag = null;
+				InitResourceTabPage();
+				ResourceTabPage.Tag = this;
+				tc.TabPages.Add(ResourceTabPage);
+			}
 		}
 
 		/// <summary>
@@ -211,6 +252,16 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Returns a tabPage that will be displayed in the top TabControl on the Rcol 
+		/// Page if the Block is is the first one
+		/// </summary>
+		[BrowsableAttribute(false)]
+		public virtual System.Windows.Forms.TabPage ResourceTabPage 
+		{
+			get { return null; }
+		}
+
+		/// <summary>
 		/// Adds more TabPages (which are needed to process the Class) to the Control
 		/// </summary>
 		/// <param name="tc">The TabControl the Pages will be added to</param>
@@ -227,6 +278,37 @@ namespace SimPe.Plugin
 			{
 				return sgres.FileName + " ("+this.BlockName+")";
 			}
+		}
+
+		/// <summary>
+		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
+		/// </summary>
+		/// <param name="type">the Type of the ressource youar looking for</param>
+		/// <returns>null or the RCOl Ressource</returns>
+		public Rcol FindReferencingParent(uint type)
+		{
+			FileTable.FileIndex.Load();
+			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(type, true);
+			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item  in items) 
+			{
+				Rcol r = new GenericRcol(null, false);
+				r.ProcessData(item);
+
+				foreach (Interfaces.Files.IPackedFileDescriptor pfd in r.ReferencedFiles) 
+				{
+					if (
+						pfd.Type==this.Parent.FileDescriptor.Type && 
+						pfd.Group==this.Parent.FileDescriptor.Group && 
+						pfd.SubType==this.Parent.FileDescriptor.SubType &&
+						pfd.Instance==this.Parent.FileDescriptor.Instance
+						) 
+					{
+						return r;
+					}
+				}
+			}
+
+			return null;
 		}
 	}
 }

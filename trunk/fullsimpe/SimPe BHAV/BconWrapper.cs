@@ -20,7 +20,7 @@
 using System;
 using SimPe.Interfaces.Plugin;
 
-namespace SimPe.PackedFiles.Wrapper
+namespace SimPe.Plugin
 {
 	/// <summary>
 	/// This is the actual FileWrapper
@@ -39,18 +39,8 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Contains the Filename
 		/// </summary>
-		private byte[] filename;	
-		/// <summary>
-		/// Contains all available Constants 
-		/// </summary>		
-		private BconItem[] values;
-		/// <summary>
-		/// Just A Flag
-		/// </summary>
-		private byte flag;
-		#endregion
-
-		#region Accessor methods
+		byte[] filename;	
+	
 		/// <summary>
 		/// Returns the Filename
 		/// </summary>
@@ -61,13 +51,9 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		/// <summary>
-		/// Returns/Sets the Constants
+		/// Just A Flag
 		/// </summary>
-		public BconItem[] Constants
-		{
-			get { return values;	}			
-			set { values = value; }
-		}
+		byte flag;
 
 		/// <summary>
 		/// Returns /Sets the Flag
@@ -77,6 +63,20 @@ namespace SimPe.PackedFiles.Wrapper
 			get { return flag;	}			
 			set { flag = value; }
 		}
+
+		/// <summary>
+		/// Contains all available Constants 
+		/// </summary>		
+		private BconItem[] values;
+
+		/// <summary>
+		/// Returns/Sets the Constants
+		/// </summary>
+		public BconItem[] Constants
+		{
+			get { return values;	}			
+			set { values = value; }
+		}
 		#endregion
 
 		/// <summary>
@@ -84,11 +84,9 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		public Bcon() : base()
 		{
-			filename = new byte[64];
 			values = new BconItem[0];			
-			flag = 0x00;
+			filename = new byte[64];
 		}
-
 
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
@@ -107,7 +105,7 @@ namespace SimPe.PackedFiles.Wrapper
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new UserInterface.BconForm();
+			return new BconUI();
 		}
 
 		/// <summary>
@@ -116,6 +114,9 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <returns>Human Readable Description</returns>
 		protected override IWrapperInfo CreateWrapperInfo()
 		{
+			///
+			/// TODO: Change the Description passed here
+			/// 
 			return new AbstractWrapperInfo(
 				"BCON Wrapper",
 				"Quaxi",

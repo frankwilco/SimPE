@@ -19,7 +19,7 @@
  ***************************************************************************/
 using System;
 
-namespace SimPe.PackedFiles.Wrapper
+namespace SimPe.Plugin
 {
 	/// <summary>
 	/// An Item stored in an OBJf

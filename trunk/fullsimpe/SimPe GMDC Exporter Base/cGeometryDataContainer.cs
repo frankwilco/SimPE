@@ -230,14 +230,6 @@ namespace SimPe.Plugin
 		#endregion
 
 		/// <summary>
-		/// Refresh the Display
-		/// </summary>
-		internal void Refresh() 
-		{
-			InitTabPage(); 
-		}
-
-		/// <summary>
 		/// You can use this to setop the Controls on a TabPage befor it is dispplayed
 		/// </summary>
 		protected override void InitTabPage() 
@@ -294,7 +286,7 @@ namespace SimPe.Plugin
 				foreach (GmdcJoint i in this.joints) SimPe.CountedListItem.Add(form.lb_subsets, i);
 
 				form.lb_model_faces.Items.Clear();
-				foreach (Vector3i i in this.model.Bone.Vertices) SimPe.CountedListItem.Add(form.lb_model_faces, i);
+				foreach (Vector3f i in this.model.Bone.Vertices) SimPe.CountedListItem.Add(form.lb_model_faces, i);
 				form.lb_model_items.Items.Clear();
 				foreach (int i in this.model.Bone.Items) SimPe.CountedListItem.Add(form.lb_model_items, i);
 				form.lb_model_names.Items.Clear();
@@ -549,5 +541,48 @@ namespace SimPe.Plugin
 
 			return -1;
 		}
+
+		#region LinkedCRES
+
+		/// <summary>
+		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
+		/// </summary>
+		/// <returns>null or the RCOl Ressource</returns>
+		public Rcol FindReferencingCRES()
+		{			
+			FileTable.FileIndex.Load();
+			FileTable.FileIndex.StoreCurrentState();
+			FileTable.FileIndex.AddIndexFromPackage(this.Parent.Package);
+			WaitingScreen.Wait();			
+
+			WaitingScreen.UpdateMessage("Loading Geometry Node");
+			Rcol step = FindReferencingParent(Data.MetaData.GMND);
+			if (step==null) 
+			{
+				WaitingScreen.Stop();
+				return null;
+			}
+
+			WaitingScreen.UpdateMessage("Loading Shape");
+			step = ((GeometryNode)step.Blocks[0]).FindReferencingSHPE();
+			if (step==null) 
+			{
+				WaitingScreen.Stop();
+				return null;
+			}
+			
+			WaitingScreen.UpdateMessage("Loading ResourceNode");
+			step = step.Blocks[0].FindReferencingParent(Data.MetaData.CRES);
+			if (step==null) 
+			{
+				WaitingScreen.Stop();
+				return null;
+			}
+			
+			FileTable.FileIndex.RestoreLastState();
+			WaitingScreen.Stop();
+			return step;
+		}
+		#endregion
 	}
 }

@@ -56,6 +56,12 @@ namespace SimPe.Plugin
 			get { return blocks; }
 			set { blocks = value;} 
 		}
+
+		uint type;
+		public uint Type 
+		{
+			get {return type;}
+		}
 		#endregion
 
 		static Hashtable tokens;
@@ -209,8 +215,46 @@ namespace SimPe.Plugin
 				"RCOL Wrapper",
 				"Quaxi",
 				"---",
-				4
+				6
 				); 
+		}
+
+		/// <summary>
+		/// Read a RCOl Block
+		/// </summary>
+		/// <param name="id">expected ID</param>
+		/// <param name="reader">the reader</param>
+		internal IRcolBlock ReadBlock(uint id, System.IO.BinaryReader reader)
+		{
+			/*byte len = reader.ReadByte();
+				string s = Helper.ToString(reader.ReadBytes(len));*/
+			string s = reader.ReadString();
+			uint myid = reader.ReadUInt32();
+			if (myid==0xffffffff) return null;
+			if (id!=myid) throw new Exception("Not matching ID Field in RCOL File.\n\nID=0x"+Helper.HexString(myid)+"\nLooked for=0x"+Helper.HexString(id)+"\nOffset=0x"+Helper.HexString((uint)(reader.BaseStream.Position-4)));
+
+			Type tp = (Type)Tokens[s];
+			if (tp==null) throw new Exception("Unknown embedded RCOL Block "+s+".\n\nOffset=0x"+Helper.HexString(reader.BaseStream.Length-4));
+
+			IRcolBlock  wrp = AbstractRcolBlock.Create(tp, this, myid);
+			wrp.Unserialize(reader);
+			return wrp;
+		}
+
+		/// <summary>
+		/// Write a Rcol Block
+		/// </summary>
+		/// <param name="id">The Id that should be written</param>
+		/// <param name="wrp">The content of the Block</param>
+		/// <param name="writer">the writer</param>
+		internal void WriteBlock(uint id, IRcolBlock wrp, System.IO.BinaryWriter writer)
+		{
+			/*writer.Write((byte)wrp.Register(null).Length);
+				writer.Write(Helper.ToBytes(wrp.Register(null), 0));*/
+			writer.Write(wrp.BlockName);
+			writer.Write(id);
+
+			wrp.Serialize(writer);
 		}
 
 		/// <summary>
@@ -219,7 +263,7 @@ namespace SimPe.Plugin
 		/// <param name="reader">The Stream that contains the FileData</param>
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{
-			uint type = reader.ReadUInt32();
+			type = reader.ReadUInt32();
 			uint count = type; 
 			if (type==0xffff0001) 
 			{
@@ -254,18 +298,8 @@ namespace SimPe.Plugin
 			for (int i=0; i<index.Length; i++)
 			{
 				uint id = index[i];
-				/*byte len = reader.ReadByte();
-				string s = Helper.ToString(reader.ReadBytes(len));*/
-				string s = reader.ReadString();
-				uint myid = reader.ReadUInt32();
-				if (myid==0xffffffff) break;
-				if (id!=myid) throw new Exception("Not matching ID Field in RCOL File.\n\nID=0x"+Helper.HexString(myid)+"\nLooked for=0x"+Helper.HexString(id)+"\nOffset=0x"+Helper.HexString((uint)(reader.BaseStream.Position-4)));
-
-				Type tp = (Type)Tokens[s];
-				if (tp==null) throw new Exception("Unknown embedded RCOL Block "+s+".\n\nOffset=0x"+Helper.HexString(reader.BaseStream.Length-4));
-
-				IRcolBlock  wrp = AbstractRcolBlock.Create(tp, this, myid);
-				wrp.Unserialize(reader);
+				IRcolBlock  wrp = ReadBlock(id, reader);	
+				if (wrp==null) break;
 				blocks[i] = wrp;
 			}
 
@@ -314,12 +348,7 @@ namespace SimPe.Plugin
 			for (int i=0; i<index.Length; i++)
 			{
 				IRcolBlock wrp = blocks[i];
-				/*writer.Write((byte)wrp.Register(null).Length);
-				writer.Write(Helper.ToBytes(wrp.Register(null), 0));*/
-				writer.Write(wrp.BlockName);
-				writer.Write(index[i]);
-
-				wrp.Serialize(writer);
+				WriteBlock(index[i], wrp, writer);
 			}
 
 			writer.Write(oversize);

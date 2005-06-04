@@ -19,72 +19,91 @@
  ***************************************************************************/
 using System;
 using System.Collections;
-using SimPe.Interfaces.Plugin;
 
-namespace SimPe.Plugin
+namespace SimPe
 {
+	#region Container
 	/// <summary>
-	/// This is the actual FileWrapper
+	/// Typesave ArrayList for int Objects
 	/// </summary>
-	/// <remarks>
-	/// The wrapper is used to (un)serialize the Data of a file into it's Attributes. So Basically it reads 
-	/// a BinaryStream and translates the data into some userdefine Attributes.
-	/// </remarks>
-	public class CompositionTreeNode
-		: AbstractRcolBlock
+	public class IntArrayList : ArrayList 
 	{
-
 		/// <summary>
-		/// Constructor
+		/// Integer Indexer
 		/// </summary>
-		public CompositionTreeNode(Rcol parent) : base(parent)
+		public new int this[int index]
 		{
-			version = 0xb;
-		}
-		
-		#region IRcolBlock Member
-
-		/// <summary>
-		/// Unserializes a BinaryStream into the Attributes of this Instance
-		/// </summary>
-		/// <param name="reader">The Stream that contains the FileData</param>
-		public override void Unserialize(System.IO.BinaryReader reader)
-		{
-			version = reader.ReadUInt32();
+			get { return ((int)base[index]); }
+			set { base[index] = value; }
 		}
 
 		/// <summary>
-		/// Serializes a the Attributes stored in this Instance to the BinaryStream
+		/// unsigned Integer Indexer
 		/// </summary>
-		/// <param name="writer">The Stream the Data should be stored to</param>
-		/// <remarks>
-		/// Be sure that the Position of the stream is Proper on 
-		/// return (i.e. must point to the first Byte after your actual File)
-		/// </remarks>
-		public override void Serialize(System.IO.BinaryWriter writer)
+		public int this[uint index]
 		{
-			writer.Write(version);
+			get { return ((int)base[(int)index]); }
+			set { base[(int)index] = value; }
 		}
-
-		fShapeRefNode form = null;
-		public override System.Windows.Forms.TabPage TabPage
-		{
-			get
-			{
-				if (form==null) form = new fShapeRefNode(); 
-				return form.tGenericRcol;
-			}
-		}
-		#endregion
 
 		/// <summary>
-		/// You can use this to setop the Controls on a TabPage befor it is dispplayed
+		/// add a new Element
 		/// </summary>
-		protected override void InitTabPage() 
+		/// <param name="item">The object you want to add</param>
+		/// <returns>The index it was added on</returns>
+		public int Add(int item)
 		{
-			if (form==null) form = new fShapeRefNode(); 
-			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
-			form.gen_pg.SelectedObject = this;
+			return base.Add(item);
+		}
+
+		/// <summary>
+		/// insert a new Element
+		/// </summary>
+		/// <param name="index">The Index where the Element should be stored</param>
+		/// <param name="item">The object that should be inserted</param>
+		public void Insert(int index, int item)
+		{
+			base.Insert(index, item);
+		}
+
+		/// <summary>
+		/// remove an Element
+		/// </summary>
+		/// <param name="item">The object that should be removed</param>
+		public void Remove(int item)
+		{
+			base.Remove(item);
+		}
+
+		/// <summary>
+		/// Checks wether or not the object is already stored in the List
+		/// </summary>
+		/// <param name="item">The Object you are looking for</param>
+		/// <returns>true, if it was found</returns>
+		public bool Contains(int item)
+		{
+			return base.Contains(item);
+		}		
+
+		/// <summary>
+		/// Number of stored Elements
+		/// </summary>
+		public int Length 
+		{
+			get { return this.Count; }
+		}
+
+		/// <summary>
+		/// Create a clone of this Object
+		/// </summary>
+		/// <returns>The clone</returns>
+		public override object Clone()
+		{
+			IntArrayList list = new IntArrayList();
+			foreach (int item in this) list.Add(item);
+
+			return list;
 		}
 	}
+	#endregion
 }

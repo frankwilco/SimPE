@@ -108,6 +108,19 @@ namespace SimPe.Plugin.Gmdc
 			}
 		}
 
+		/// <summary>
+		/// internal Attribute
+		/// </summary>
+		float scale;
+		/// <summary>
+		/// Returns/Sets the scale Factor that should be applied to this group
+		/// </summary>
+		public float Scale
+		{
+			get { return scale; }
+			set { scale = value; }
+		}
+
 
 		/// <summary>
 		/// Create a new Instance
@@ -121,6 +134,8 @@ namespace SimPe.Plugin.Gmdc
 			action = GmdcImporterAction.Add;
 			q = new Quaternion();
 			trans = new Vector3f();
+			
+			scale = (float)(1.0/AbstractGmdcExporter.SCALE);
 		}
 	}
 

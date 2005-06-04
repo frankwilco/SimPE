@@ -18,27 +18,39 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.ComponentModel;
+using SimPe.Geometry;
+using System.Collections;
 
 namespace SimPe.Plugin
-{
+{	
+
 	/// <summary>
-	/// Zusammenfassung für cRenderableNode.
+	/// Zusammenfassung für cTangentSpaceBuilder.
 	/// </summary>
-	public class RenderableNode
+	public class TangentSpaceBuilder
 		: AbstractRcolBlock
 	{
 		#region Attributes
+		GeometryBuilder gb;
 		
 		
+		int u1;						
+		public int Unknown1 
+		{
+			get { return u1; }
+			set { u1 = value; }
+		}
 		#endregion
 		
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public RenderableNode(Rcol parent) : base(parent)
+		public TangentSpaceBuilder(Rcol parent) : base(parent)
 		{
-			version = 0x5;
+			gb = new GeometryBuilder(null);			
+			BlockID = 0x5d054225;
 		}
 		
 		#region IRcolBlock Member
@@ -50,6 +62,14 @@ namespace SimPe.Plugin
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
 			version = reader.ReadUInt32();
+
+			string name = reader.ReadString();
+			uint myid = reader.ReadUInt32();		
+			gb.Unserialize(reader);
+			gb.BlockID = myid;
+
+		
+			u1 = reader.ReadInt32();
 		}
 
 		/// <summary>
@@ -63,6 +83,12 @@ namespace SimPe.Plugin
 		public override void Serialize(System.IO.BinaryWriter writer)
 		{
 			writer.Write(version);
+
+			writer.Write(gb.BlockName);
+			writer.Write(gb.BlockID);
+			gb.Serialize(writer);
+
+			writer.Write(u1);
 		}
 
 		fShapeRefNode form = null;
@@ -85,5 +111,13 @@ namespace SimPe.Plugin
 			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
 			form.gen_pg.SelectedObject = this;
 		}
+
+		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
+		{
+			base.ExtendTabControl (tc);
+			this.gb.AddToTabControl(tc);
+		}
+
 	}
+
 }

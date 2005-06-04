@@ -40,7 +40,6 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Label label27;
 		private System.Windows.Forms.Button btcommit;
-		internal System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
 		internal System.Windows.Forms.ListBox lbref;
@@ -77,6 +76,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox tbfile;
 		private System.Windows.Forms.LinkLabel linkLabel1;
+		internal System.Windows.Forms.TabControl tbResource;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -118,7 +118,7 @@ namespace SimPe.Plugin
 		private void InitializeComponent()
 		{
 			this.RcolPanel = new System.Windows.Forms.Panel();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tbResource = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.label1 = new System.Windows.Forms.Label();
 			this.childtc = new System.Windows.Forms.TabControl();
@@ -164,7 +164,7 @@ namespace SimPe.Plugin
 			this.label27 = new System.Windows.Forms.Label();
 			this.btcommit = new System.Windows.Forms.Button();
 			this.RcolPanel.SuspendLayout();
-			this.tabControl1.SuspendLayout();
+			this.tbResource.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.gbtypes.SuspendLayout();
@@ -177,28 +177,28 @@ namespace SimPe.Plugin
 			// 
 			// RcolPanel
 			// 
-			this.RcolPanel.Controls.Add(this.tabControl1);
+			this.RcolPanel.Controls.Add(this.tbResource);
 			this.RcolPanel.Controls.Add(this.panel2);
 			this.RcolPanel.Location = new System.Drawing.Point(40, 35);
 			this.RcolPanel.Name = "RcolPanel";
 			this.RcolPanel.Size = new System.Drawing.Size(768, 301);
 			this.RcolPanel.TabIndex = 20;
 			// 
-			// tabControl1
+			// tbResource
 			// 
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.tbResource.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Controls.Add(this.tabPage3);
-			this.tabControl1.Controls.Add(this.tpref);
-			this.tabControl1.Location = new System.Drawing.Point(8, 32);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(752, 261);
-			this.tabControl1.TabIndex = 20;
-			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+			this.tbResource.Controls.Add(this.tabPage1);
+			this.tbResource.Controls.Add(this.tabPage2);
+			this.tbResource.Controls.Add(this.tabPage3);
+			this.tbResource.Controls.Add(this.tpref);
+			this.tbResource.Location = new System.Drawing.Point(8, 32);
+			this.tbResource.Name = "tbResource";
+			this.tbResource.SelectedIndex = 0;
+			this.tbResource.Size = new System.Drawing.Size(752, 261);
+			this.tbResource.TabIndex = 20;
+			this.tbResource.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
 			// tabPage1
 			// 
@@ -721,7 +721,7 @@ namespace SimPe.Plugin
 			this.Name = "RcolForm";
 			this.Text = "RcolForm";
 			this.RcolPanel.ResumeLayout(false);
-			this.tabControl1.ResumeLayout(false);
+			this.tbResource.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage2.ResumeLayout(false);
 			this.gbtypes.ResumeLayout(false);
@@ -1018,7 +1018,7 @@ namespace SimPe.Plugin
 		private void tabControl1_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			//Display the Block Editor
-			if (tabControl1.TabPages[tabControl1.SelectedIndex] == this.tabPage3) 
+			if (tbResource.TabPages[tbResource.SelectedIndex] == this.tabPage3) 
 			{
 				this.lbblocks.Items.Clear();
 				foreach(IRcolBlock irb in wrapper.Blocks) SimPe.CountedListItem.Add(lbblocks, irb);
@@ -1050,11 +1050,12 @@ namespace SimPe.Plugin
 				lbblocks.Items[lbblocks.SelectedIndex-1] = lbblocks.Items[lbblocks.SelectedIndex];
 				lbblocks.Items[lbblocks.SelectedIndex] = o;
 
-				wrapper.Blocks[lbblocks.SelectedIndex] = (AbstractRcolBlock)lbblocks.Items[lbblocks.SelectedIndex];
-				wrapper.Blocks[lbblocks.SelectedIndex-1] = (AbstractRcolBlock)lbblocks.Items[lbblocks.SelectedIndex-1];
+				wrapper.Blocks[lbblocks.SelectedIndex] = (AbstractRcolBlock)((SimPe.CountedListItem)lbblocks.Items[lbblocks.SelectedIndex]).Object;
+				wrapper.Blocks[lbblocks.SelectedIndex-1] = (AbstractRcolBlock)((SimPe.CountedListItem)lbblocks.Items[lbblocks.SelectedIndex-1]).Object;
 				lbblocks.SelectedIndex--;
 
 				UpdateComboBox();
+
 			} 
 			catch (Exception ex) 
 			{
@@ -1071,8 +1072,8 @@ namespace SimPe.Plugin
 				object o = lbblocks.Items[lbblocks.SelectedIndex+1];
 				lbblocks.Items[lbblocks.SelectedIndex+1] = lbblocks.Items[lbblocks.SelectedIndex];
 				lbblocks.Items[lbblocks.SelectedIndex] = o;
-				wrapper.Blocks[lbblocks.SelectedIndex] = (AbstractRcolBlock)lbblocks.Items[lbblocks.SelectedIndex];
-				wrapper.Blocks[lbblocks.SelectedIndex+1] = (AbstractRcolBlock)lbblocks.Items[lbblocks.SelectedIndex+1];
+				wrapper.Blocks[lbblocks.SelectedIndex] = (AbstractRcolBlock)((SimPe.CountedListItem)lbblocks.Items[lbblocks.SelectedIndex]).Object;
+				wrapper.Blocks[lbblocks.SelectedIndex+1] = (AbstractRcolBlock)((SimPe.CountedListItem)lbblocks.Items[lbblocks.SelectedIndex+1]).Object;
 				lbblocks.SelectedIndex++;
 
 				UpdateComboBox();

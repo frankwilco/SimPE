@@ -18,27 +18,41 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.ComponentModel;
+using SimPe.Geometry;
+using System.Collections;
 
 namespace SimPe.Plugin
-{
+{	
+
 	/// <summary>
-	/// Zusammenfassung für cRenderableNode.
+	/// Zusammenfassung für cBoundingVolumeBuilder.
 	/// </summary>
-	public class RenderableNode
+	public class BoundingVolumeBuilder
 		: AbstractRcolBlock
 	{
 		#region Attributes
+		GeometryBuilder gb;
 		
 		
+		byte[] u1;
+		public byte[] Unknown1 
+		{
+			get { return u1; }
+			set { u1 = value; }
+		}
 		#endregion
 		
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public RenderableNode(Rcol parent) : base(parent)
+		public BoundingVolumeBuilder(Rcol parent) : base(parent)
 		{
-			version = 0x5;
+			gb = new GeometryBuilder(null);			
+			BlockID = 0x1cfeceb8;
+
+			u1 = new byte[5];
 		}
 		
 		#region IRcolBlock Member
@@ -50,6 +64,14 @@ namespace SimPe.Plugin
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
 			version = reader.ReadUInt32();
+
+			string name = reader.ReadString();
+			uint myid = reader.ReadUInt32();		
+			gb.Unserialize(reader);
+			gb.BlockID = myid;
+
+		
+			if (version>=0x2) u1 = reader.ReadBytes(u1.Length);
 		}
 
 		/// <summary>
@@ -63,6 +85,12 @@ namespace SimPe.Plugin
 		public override void Serialize(System.IO.BinaryWriter writer)
 		{
 			writer.Write(version);
+
+			writer.Write(gb.BlockName);
+			writer.Write(gb.BlockID);
+			gb.Serialize(writer);
+
+			if (version>=0x2) writer.Write(u1);
 		}
 
 		fShapeRefNode form = null;
@@ -85,5 +113,12 @@ namespace SimPe.Plugin
 			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
 			form.gen_pg.SelectedObject = this;
 		}
+
+		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
+		{
+			base.ExtendTabControl (tc);
+			this.gb.AddToTabControl(tc);
+		}
 	}
+
 }

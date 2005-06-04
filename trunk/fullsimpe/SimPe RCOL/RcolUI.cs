@@ -80,11 +80,11 @@ namespace SimPe.Plugin
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in wrp.ReferencedFiles) form.lbref.Items.Add(pfd);
 			if (form.lbref.Items.Count>0) form.lbref.SelectedIndex = 0;
 
-			form.tabControl1.TabPages.Remove(form.tpref);
+			form.tbResource.TabPages.Remove(form.tpref);
 			form.tv.Nodes.Clear();
 			if (typeof(IScenegraphItem)==wrp.GetType().GetInterface("IScenegraphItem")) 
 			{
-				form.tabControl1.TabPages.Add(form.tpref);
+				form.tbResource.TabPages.Add(form.tpref);
 				System.Collections.Hashtable refmap = ((IScenegraphItem)wrp).ReferenceChains;
 				foreach (string k in refmap.Keys) 
 				{
@@ -101,9 +101,9 @@ namespace SimPe.Plugin
 					form.tv.Nodes.Add(node);
 				}
 			} 
-			form.tabControl1.SelectedIndex = 0;
+			form.tbResource.SelectedIndex = 0;
 
-			
+			if (wrp.Blocks.Length>0) ((AbstractRcolBlock)wrp.Blocks[0]).AddToResourceTabControl(form.tbResource, form.cbitem);
 			
 		}		
 

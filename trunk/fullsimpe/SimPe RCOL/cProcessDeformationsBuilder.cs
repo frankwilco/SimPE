@@ -18,27 +18,47 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.ComponentModel;
+using SimPe.Geometry;
+using System.Collections;
 
 namespace SimPe.Plugin
-{
+{	
+
 	/// <summary>
-	/// Zusammenfassung für cRenderableNode.
+	/// Zusammenfassung für cProcessDeformationsBuilder.
 	/// </summary>
-	public class RenderableNode
+	public class ProcessDeformationsBuilder
 		: AbstractRcolBlock
 	{
 		#region Attributes
-		
-		
+		GeometryBuilder gb;
+		SimPe.Interfaces.Files.IPackedFileDescriptor pfd;
+		short u1;						
+		public short Unknown1 
+		{
+			get { return u1; }
+			set { u1 = value; }
+		}
+
+		int u2;						
+		public int Unknown2 
+		{
+			get { return u2; }
+			set { u2 = value; }
+		}
 		#endregion
 		
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public RenderableNode(Rcol parent) : base(parent)
+		public ProcessDeformationsBuilder(Rcol parent) : base(parent)
 		{
-			version = 0x5;
+			gb = new GeometryBuilder(null);			
+			BlockID = 0x5ce7e026;
+
+			pfd = new SimPe.Packages.PackedFileDescriptor();
 		}
 		
 		#region IRcolBlock Member
@@ -50,6 +70,19 @@ namespace SimPe.Plugin
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
 			version = reader.ReadUInt32();
+
+			string name = reader.ReadString();
+			uint myid = reader.ReadUInt32();		
+			gb.Unserialize(reader);
+			gb.BlockID = myid;
+
+			pfd.Group = reader.ReadUInt32();
+			pfd.Instance = reader.ReadUInt32();
+			if (Parent.Type==0xffff0001) pfd.SubType = reader.ReadUInt32();
+			pfd.Type = reader.ReadUInt32();
+
+			u1 = reader.ReadInt16();
+			u2 = reader.ReadInt32();
 		}
 
 		/// <summary>
@@ -63,6 +96,18 @@ namespace SimPe.Plugin
 		public override void Serialize(System.IO.BinaryWriter writer)
 		{
 			writer.Write(version);
+
+			writer.Write(gb.BlockName);
+			writer.Write(gb.BlockID);
+			gb.Serialize(writer);
+
+			writer.Write(pfd.Group);
+			writer.Write(pfd.Instance);
+			if (Parent.Type==0xffff0001) writer.Write(pfd.SubType);
+			writer.Write(pfd.Type);
+
+			writer.Write(u1);
+			writer.Write(u2);
 		}
 
 		fShapeRefNode form = null;
@@ -84,6 +129,15 @@ namespace SimPe.Plugin
 			if (form==null) form = new fShapeRefNode(); 
 			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
 			form.gen_pg.SelectedObject = this;
+
+			
 		}
+
+		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
+		{
+			base.ExtendTabControl (tc);
+			this.gb.AddToTabControl(tc);
+		}
+
 	}
 }

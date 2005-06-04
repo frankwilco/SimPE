@@ -121,20 +121,52 @@ namespace SimPe.Plugin.Gmdc
 		}
 
 		/// <summary>
+		/// Applies the initial Joint Transformation to the passed Vertex
+		/// </summary>
+		/// <param name="index">Index of the current Joint withi itÄs parent</param>
+		/// <param name="v">The Vertex you want to Transform</param>
+		/// <returns>Transformed Vertex</returns>
+		protected Vector3f Transform(int index, Vector3f v) 
+		{
+			//no Parent -> no Transform
+			if (parent==null) return v;
+
+			Vector3f trans = parent.Model.Transformations[index];
+			Quaternion rot = parent.Model.Quaternions[index];
+
+			v = rot.Rotate(v);
+			return v + trans;
+		}
+
+		/// <summary>
+		/// The Index of this Joint in the Parent's joint List (-1 indicates 
+		/// that the Joint was not found within the Parent)
+		/// </summary>
+		public int Index 
+		{
+			get 
+			{
+				int index = -1;
+				for (int i=0; i<parent.Joints.Count; i++) 
+				{
+					if (parent.Joints[i]==this) 
+					{
+						index = i;
+						break;
+					}
+				}
+
+				return index;
+			}
+		}
+
+		/// <summary>
 		/// Adjusts the Vertex List, from all Elements Vertices that are assigned to this joint
 		/// </summary>
 		public void CollectVertices()
 		{
 			//first get my Number in the Parent
-			int index = -1;
-			for (int i=0; i<parent.Joints.Count; i++) 
-			{
-				if (parent.Joints[i]==this) 
-				{
-					index = i;
-					break;
-				}
-			}
+			int index = Index;
 
 			this.Vertices.Clear();
 			this.Items.Clear();
@@ -157,28 +189,50 @@ namespace SimPe.Plugin.Gmdc
 					if (g.UsedJoints[i]==index) 
 					{
 						Hashtable indices = new Hashtable();
+						Hashtable empty = new Hashtable();
 
 						//load the vertices
 						for (int k=0; k<joints.Values.Count; k++)						 
 						{							
 							GmdcElementValueOneInt voi = (GmdcElementValueOneInt)joints.Values[k];
-							if (voi.Bytes[0]==(byte)i) 
+
+							//All vertices either are within the empty or indices map
+							if (voi.Bytes[0]==(byte)i)  
 							{
 								indices.Add(k, this.Vertices.Count);
-								this.Vertices.Add(new Vector3f(vertices.Values[k].Data[0], vertices.Values[k].Data[1], vertices.Values[k].Data[2]));
+								this.Vertices.Add(Transform(index, new Vector3f(vertices.Values[k].Data[0], vertices.Values[k].Data[1], vertices.Values[k].Data[2])));
+							} 
+							else //all unassigned Vertices get 0
+							{
+								empty.Add(k, this.Vertices.Count);
+								this.Vertices.Add(new Vector3f(0, 0, 0));
 							}
 						}
 
-						//now all faces that are completley assigned to the Bone
+						//now all faces where at least one vertex is assigned to a Bone
 						for (int f=0; f<g.Faces.Count-2; f+=3) 
 						{
-							if (indices.ContainsKey(l.GetRealIndex(vindex, g.Faces[f])) &&
-								indices.ContainsKey(l.GetRealIndex(vindex, g.Faces[f+1])) &&
+							if (indices.ContainsKey(l.GetRealIndex(vindex, g.Faces[f])) ||
+								indices.ContainsKey(l.GetRealIndex(vindex, g.Faces[f+1])) ||
 								indices.ContainsKey(l.GetRealIndex(vindex, g.Faces[f+2])) ) 
 							{
-								this.Items.Add((int)indices[l.GetRealIndex(vindex, g.Faces[f])]);
-								this.Items.Add((int)indices[l.GetRealIndex(vindex, g.Faces[f+1])]);
-								this.Items.Add((int)indices[l.GetRealIndex(vindex, g.Faces[f+2])]);
+								for (int k=0; k<3; k++) 
+								{
+									int nr = l.GetRealIndex(vindex, g.Faces[f+k]);
+									int face_index = -1;
+
+									//this Vertex was empty and is now needed, 
+									//so add it to the available List
+									if (!indices.ContainsKey(nr)) 
+									{
+										face_index = (int)empty[nr];
+										indices.Add(nr, face_index);
+										this.Vertices[face_index] = Transform(index, new Vector3f(vertices.Values[nr].Data[0], vertices.Values[nr].Data[1], vertices.Values[nr].Data[2]));
+									}
+									
+									face_index = (int)indices[nr];									
+									this.Items.Add(face_index);
+								}
 							}
 						}
 					}
