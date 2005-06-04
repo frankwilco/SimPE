@@ -21,78 +21,67 @@ using System;
 using System.IO;
 
 
-namespace SimPe.PackedFiles.Wrapper
+namespace SimPe.Plugin
 {
 	/// <summary>
 	/// Class containing a BHAV Header
 	/// </summary>
 	public class BhavHeader
 	{
-		#region Attributes
-		ushort format;
-		uint count;
-		byte reserved_00;
-		byte type;
-		byte argc;
-		ushort locals;
-		ushort flags;
-		ushort zero;
-		#endregion
+		public BhavHeader()
+		{
+			format = 0x8007;
+		}
 
-		#region Accessor methods
+		ushort format;
 		public ushort Format 
 		{
 			get { return format; }
 			set {format = value; }
 		}
 
+		uint count;
 		public uint InstructionCount
 		{
 			get { return count; }
 			set {count = value; }
 		}
 
+		byte reserved_00;
+
+		byte type;
 		public byte Type 
 		{
 			get { return type; }
 			set {type = value; }
 		}
 
+		byte argc;
 		public byte ArgumentCount 
 		{
 			get { return argc; }
 			set {argc = value; }
 		}
 
+		ushort locals;
 		public ushort LocalVarCount 
 		{
 			get { return locals; }
 			set {locals = value; }
 		}
 
+		ushort flags;
 		public ushort Flags 
 		{
 			get { return flags; }
 			set {flags = value; }
 		}
 
+		ushort zero;
 		public ushort Zero 
 		{
 			get { return zero; }
 			set {zero = value; }
-		}
-		#endregion
-
-		public BhavHeader()
-		{
-			format = 0;
-			count = 0;
-			reserved_00 = 0;
-			type = 0;
-			argc = 0;
-			locals = 0;
-			flags = 0;
-			zero = 0;
 		}
 
 
@@ -105,12 +94,12 @@ namespace SimPe.PackedFiles.Wrapper
 			format = reader.ReadUInt16();
 			switch (format) 
 			{
-				case 0x8000:
-				case 0x8001:
-				case 0x8002:
+                case 0x8000:
+				case 0x8001: 
+				case 0x8002: 
 				case 0x8004:
-				case 0x8005:
-				case 0x8006:
+				case 0x8006: 
+				case 0x8005: 
 				case 0x8007: 
 				{					
 					count = (uint)reader.ReadUInt16();
@@ -149,12 +138,12 @@ namespace SimPe.PackedFiles.Wrapper
 			switch (format) 
 			{
 				case 0x8000:
-				case 0x8001:
-				case 0x8002:
+				case 0x8001: 
+				case 0x8002: 
 				case 0x8004:
-				case 0x8005:
-				case 0x8006:
-				case 0x8007:
+				case 0x8006: 
+				case 0x8005: 
+				case 0x8007: 
 				{					
 					writer.Write((ushort)count);
 					writer.Write(type);

@@ -37,7 +37,7 @@ namespace Ambertation
 
 		internal ViewportSetting()
 		{
-			Reset();
+			Reset();			
 		}
 
 

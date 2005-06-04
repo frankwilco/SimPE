@@ -149,6 +149,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Containers.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "CountedListItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

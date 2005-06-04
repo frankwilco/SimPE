@@ -98,6 +98,19 @@ namespace SimPe.Interfaces.Scenegraph
 		}
 
 		/// <summary>
+		/// Returns a tabPage that contains a GUI for the first Block in a RCOL Resource
+		/// </summary>
+		TabPage ResourceTabPage 
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Update the displayed Data
+		/// </summary>
+		void Refresh();
+
+		/// <summary>
 		/// Adds more TabPages (which are needed to process the Class) to the Control
 		/// </summary>
 		/// <param name="tc">The TabControl the Pages will be added to</param>
@@ -111,5 +124,12 @@ namespace SimPe.Interfaces.Scenegraph
 			get;
 			set;
 		}
+		/// <summary>
+		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
+		/// </summary>
+		/// <param name="type">the Type of the ressource youar looking for</param>
+		/// <returns>null or the RCOl Ressource</returns>
+		Rcol FindReferencingParent(uint type);
+
 	}
 }

@@ -19,15 +19,14 @@
  ***************************************************************************/
 using System;
 using System.Windows.Forms;
-using SimPe.PackedFiles.Wrapper;
 
-namespace SimPe.PackedFiles.UserInterface
+namespace SimPe.Plugin
 {
 	internal class InstructionItem 
 	{
 		public const int Height = 32;
 		public Label lable;
-		public Wrapper.Instruction instruction;
+		public SimPe.Plugin.Instruction instruction;
 		public int index;
 		public Connector TrueConnect 
 		{

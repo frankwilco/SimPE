@@ -19,8 +19,6 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces;
-using SimPe.PackedFiles.UserInterface;
-using SimPe.PackedFiles.Wrapper;
 
 namespace SimPe.Plugin
 {
@@ -69,6 +67,10 @@ namespace SimPe.Plugin
 			}
 		}
 
+		/// <summary>
+		/// Holds a reference to the Form containing the UI Panel
+		/// </summary>
+		internal static BhavForm form = new BhavForm();
 		#region AbstractWrapperFactory Member
 		/// <summary>
 		/// Returns a List of all available Plugins in this Package

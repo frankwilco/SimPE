@@ -370,6 +370,7 @@ namespace SimPe.Plugin
 			if (form==null) form = new fShapeRefNode(); 
 			if (sform==null) sform = new ShpeForm();
 			form.tb_ver.Text = "0x"+Helper.HexString(this.version);	
+			form.gen_pg.SelectedObject = this;
 		
 			sform.lbunk.Items.Clear();
 			sform.lbitem.Items.Clear();

@@ -254,7 +254,7 @@ namespace SimPe.Plugin
 			form.tbname.Tag = true;
 			try 
 			{
-				form.tb_ver.Text = "0x"+Helper.HexString(this.version);	
+				form.tb_ver.Text = "0x"+Helper.HexString(this.version);
 		
 				form.lldel.Enabled = false;
 				form.lbprop.Items.Clear();

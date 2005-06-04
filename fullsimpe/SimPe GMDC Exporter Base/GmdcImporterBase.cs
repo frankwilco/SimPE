@@ -104,13 +104,14 @@ namespace SimPe.Plugin.Gmdc
 		/// <param name="val">the Value you want to add</param>
 		void AddElement(ImportedGroup g, int index, object val) 
 		{
-			if (g.Scale==1) g.Elements[index].Values.Add(val);
-			else 
+			//if (g.Scale==1) 
+				g.Elements[index].Values.Add(val);
+			/*else 
 			{
 				GmdcElementValueBase nval = ((GmdcElementValueBase)val).Clone();
 				for (int i=0; i<nval.Data.Length; i++) nval.Data[i] *= g.Scale;
 				g.Elements[index].Values.Add(nval);
-			}
+			}*/
 			
 		}
 

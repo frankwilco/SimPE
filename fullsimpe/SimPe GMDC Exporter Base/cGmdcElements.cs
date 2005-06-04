@@ -31,6 +31,30 @@ namespace SimPe.Plugin.Gmdc
 	public class GmdcElementValueBase
 	{
 
+		/// <summary>
+		/// Scalar Multiplication
+		/// </summary>
+		/// <param name="evb">First Value</param>
+		/// <param name="d">Scalar Factor</param>
+		/// <returns>The resulting Value</returns>
+		public static GmdcElementValueBase operator *(GmdcElementValueBase evb, double d) 
+		{
+			GmdcElementValueBase n = evb.Clone();
+			for (int i=0; i<n.data.Length; i++) n.data[i] = (float)(n.data[i] * d);
+			return n;
+		}
+
+		/// <summary>
+		/// Scalar Multiplication
+		/// </summary>
+		/// <param name="evb">First Value</param>
+		/// <param name="d">Scalar Factor</param>
+		/// <returns>The resulting Value</returns>
+		public static GmdcElementValueBase operator *(double d, GmdcElementValueBase evb) 
+		{
+			return evb*d;
+		}
+
 		float[] data;		
 
 		/// <summary>

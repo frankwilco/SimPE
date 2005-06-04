@@ -232,7 +232,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 				e = new GmdcElement(Gmdc);
 				g.Elements.Add(e);
 				e.Identity = ElementIdentity.BoneWeights;
-				e.BlockFormat = BlockFormat.OneDword;
+				e.BlockFormat = BlockFormat.TwoFloat;
 				e.SetFormat = SetFormat.Secondary;
 
 				//Read the Mesh Data
@@ -307,7 +307,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 				g.Elements[0].Values.Add(new Gmdc.GmdcElementValueThreeFloat(x, y, z));
 				g.Elements[2].Values.Add(new Gmdc.GmdcElementValueTwoFloat(u, v));	
 				g.Elements[3].Values.Add(new Gmdc.GmdcElementValueOneInt(b));
-				g.Elements[4].Values.Add(new Gmdc.GmdcElementValueOneFloat((float)1.0));			
+				g.Elements[4].Values.Add(new Gmdc.GmdcElementValueTwoFloat((float)1.0, 0));			
 			} 
 			catch 
 			{
@@ -440,7 +440,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 				float ry = Convert.ToSingle(linetoks[5], AbstractGmdcImporter.DefaultCulture);
 				float rz = Convert.ToSingle(linetoks[6], AbstractGmdcImporter.DefaultCulture);	
 				
-				b.Quaternion = new SimPe.Geometry.Quaternion(new SimPe.Geometry.Vector3f(rx, ry, rz), (float)1.0);				
+				//Quaternion from Euler Angles
+				b.Quaternion = new SimPe.Geometry.Quaternion(new SimPe.Geometry.Vector3f(rx, ry, rz));				
 
 				b.Translation.X = x;
 				b.Translation.Y = y;
@@ -466,7 +467,14 @@ namespace SimPe.Plugin.Gmdc.Importer
 				float t = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
 				float x = Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture);
 				float y = Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture);
-				float z = Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture);									
+				float z = Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture);	
+				
+				if (t==1) 
+				{
+					b.Translation.X = x;
+					b.Translation.Y = y;
+					b.Translation.Z = z;
+				}
 			} 
 			catch 
 			{
@@ -488,7 +496,13 @@ namespace SimPe.Plugin.Gmdc.Importer
 				float t = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
 				float x = Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture);
 				float y = Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture);
-				float z = Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture);									
+				float z = Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture);	
+				
+				if (t==1) 
+				{
+					//Quaternion from Euler Angles
+					b.Quaternion = new SimPe.Geometry.Quaternion(new SimPe.Geometry.Vector3f(x, y, z));				
+				}
 			} 
 			catch 
 			{

@@ -92,6 +92,7 @@ namespace SimPe.Plugin
 		{
 			if (form==null) form = new fShapeRefNode(); 
 			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
+			form.gen_pg.SelectedObject = this;
 		}
 
 		public override string ToString()

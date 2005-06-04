@@ -18,27 +18,43 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.ComponentModel;
+using SimPe.Geometry;
+using System.Collections;
 
 namespace SimPe.Plugin
-{
+{	
+
 	/// <summary>
-	/// Zusammenfassung für cRenderableNode.
+	/// Zusammenfassung für cTagExtension.
 	/// </summary>
-	public class RenderableNode
+	public class TagExtension
 		: AbstractRcolBlock
 	{
 		#region Attributes
-		
-		
+		string en;
+		uint eid;
+		uint ever;
+
+		string s1;
+		public string Name 
+		{
+			get { return s1; }
+			set { s1 = value; }
+		}
 		#endregion
 		
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public RenderableNode(Rcol parent) : base(parent)
+		public TagExtension(Rcol parent) : base(parent)
 		{
-			version = 0x5;
+			en = "cExtension";
+			eid = 0;
+			ever = 3;
+			BlockID = 0x9a809646;
+			s1 = "";
 		}
 		
 		#region IRcolBlock Member
@@ -50,6 +66,11 @@ namespace SimPe.Plugin
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
 			version = reader.ReadUInt32();
+
+			en = reader.ReadString();
+			eid = reader.ReadUInt32();		
+			ever = reader.ReadUInt32();
+			s1 = reader.ReadString();
 		}
 
 		/// <summary>
@@ -63,6 +84,11 @@ namespace SimPe.Plugin
 		public override void Serialize(System.IO.BinaryWriter writer)
 		{
 			writer.Write(version);
+
+			writer.Write(en);
+			writer.Write(eid);
+			writer.Write(ever);
+			writer.Write(s1);
 		}
 
 		fShapeRefNode form = null;
@@ -85,5 +111,8 @@ namespace SimPe.Plugin
 			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
 			form.gen_pg.SelectedObject = this;
 		}
+
 	}
+
+
 }

@@ -19,8 +19,6 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces;
-using SimPe.PackedFiles.Wrapper;
-using SimPe.PackedFiles.UserInterface;
 
 namespace SimPe.Plugin
 {

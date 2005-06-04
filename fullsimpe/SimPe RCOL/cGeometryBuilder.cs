@@ -22,69 +22,64 @@ using System;
 namespace SimPe.Plugin
 {
 	/// <summary>
-	/// Zusammenfassung für cViewerRefNodeBase.
+	/// Zusammenfassung für cGeometryBuilder.
 	/// </summary>
-	public class ViewerRefNodeBase
-			: AbstractRcolBlock
+	public class GeometryBuilder
+		: AbstractRcolBlock
+	{
+		
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public GeometryBuilder(Rcol parent) : base(parent)
 		{
-			#region Attributes
-
+			version = 0x3;
+		}
 		
-			#endregion
-		
+		#region IRcolBlock Member
 
-			/// <summary>
-			/// Constructor
-			/// </summary>
-			public ViewerRefNodeBase(Rcol parent) : base( parent)
-			{
-				version = 0x5;
-				BlockID = 0;
-			}
-		
-			#region IRcolBlock Member
+		/// <summary>
+		/// Unserializes a BinaryStream into the Attributes of this Instance
+		/// </summary>
+		/// <param name="reader">The Stream that contains the FileData</param>
+		public override void Unserialize(System.IO.BinaryReader reader)
+		{
+			version = reader.ReadUInt32();
+		}
 
-			/// <summary>
-			/// Unserializes a BinaryStream into the Attributes of this Instance
-			/// </summary>
-			/// <param name="reader">The Stream that contains the FileData</param>
-			public override void Unserialize(System.IO.BinaryReader reader)
-			{
-				version = reader.ReadUInt32();
-			}
+		/// <summary>
+		/// Serializes a the Attributes stored in this Instance to the BinaryStream
+		/// </summary>
+		/// <param name="writer">The Stream the Data should be stored to</param>
+		/// <remarks>
+		/// Be sure that the Position of the stream is Proper on 
+		/// return (i.e. must point to the first Byte after your actual File)
+		/// </remarks>
+		public override void Serialize(System.IO.BinaryWriter writer)
+		{
+			writer.Write(version);
+		}
 
-			/// <summary>
-			/// Serializes a the Attributes stored in this Instance to the BinaryStream
-			/// </summary>
-			/// <param name="writer">The Stream the Data should be stored to</param>
-			/// <remarks>
-			/// Be sure that the Position of the stream is Proper on 
-			/// return (i.e. must point to the first Byte after your actual File)
-			/// </remarks>
-			public override void Serialize(System.IO.BinaryWriter writer)
-			{
-				writer.Write(version);
-			}
-
-			fShapeRefNode form = null;
-			public override System.Windows.Forms.TabPage TabPage
-			{
-				get
-				{
-					if (form==null) form = new fShapeRefNode(); 
-					return form.tGenericRcol;
-				}
-			}
-			#endregion
-
-			/// <summary>
-			/// You can use this to setop the Controls on a TabPage befor it is dispplayed
-			/// </summary>
-			protected override void InitTabPage() 
+		fShapeRefNode form = null;
+		public override System.Windows.Forms.TabPage TabPage
+		{
+			get
 			{
 				if (form==null) form = new fShapeRefNode(); 
-				form.tb_ver.Text = "0x"+Helper.HexString(this.version);
-				form.gen_pg.SelectedObject = this;
+				return form.tGenericRcol;
 			}
 		}
+		#endregion
+
+		/// <summary>
+		/// You can use this to setop the Controls on a TabPage befor it is dispplayed
+		/// </summary>
+		protected override void InitTabPage() 
+		{
+			if (form==null) form = new fShapeRefNode(); 
+			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
+			form.gen_pg.SelectedObject = this;
+		}
+	}
 }

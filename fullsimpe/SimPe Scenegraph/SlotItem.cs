@@ -32,8 +32,9 @@ namespace SimPe.PackedFiles.Wrapper
 	{
 		Container = 0,
 		Location = 1,
-		Routing = 2,
-		Target = 3
+		Unknown = 2,
+		Routing = 3,
+		Target = 4
 	}
 
 	/// <summary>

@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.ComponentModel;
 
 namespace SimPe.Plugin
 {
@@ -103,7 +104,7 @@ namespace SimPe.Plugin
 	/// Zusammenfassung für cShapeRefNode.
 	/// </summary>
 	public class ShapeRefNode
-		: AbstractRcolBlock
+		: AbstractCresChildren
 	{
 		#region Attributes
 		RenderableNode rn;
@@ -330,6 +331,20 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
+		#region AbstractCresChildren Member
+		/// <summary>
+		/// Returns a List of all Child Blocks referenced by this Element
+		/// </summary>
+		[BrowsableAttribute(false)]
+		public override IntArrayList ChildBlocks 
+		{
+			get 
+			{
+				return tn.ChildBlocks;
+			}
+		}	
+		#endregion
+
 		/// <summary>
 		/// You can use this to setop the Controls on a TabPage befor it is dispplayed
 		/// </summary>
@@ -362,6 +377,11 @@ namespace SimPe.Plugin
 			this.rn.AddToTabControl(tc);
 			this.bn.AddToTabControl(tc);
 			this.tn.AddToTabControl(tc);
+		}
+
+		public override string ToString()
+		{
+			return name + " ("+base.ToString ()+")";
 		}
 
 	}

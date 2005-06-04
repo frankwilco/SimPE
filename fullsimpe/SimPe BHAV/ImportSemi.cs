@@ -22,9 +22,8 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
-using SimPe.PackedFiles.Wrapper;
 
-namespace SimPe.PackedFiles.UserInterface 
+namespace SimPe
 {
 	/// <summary>
 	/// Zusammenfassung für ImportSemi.
@@ -63,7 +62,7 @@ namespace SimPe.PackedFiles.UserInterface
 				if (ct%17==0) WaitingScreen.UpdateMessage(ct.ToString()+max);
 				ct++;
 
-				NamedGlob glob = new NamedGlob();
+				SimPe.Plugin.NamedGlob glob = new SimPe.Plugin.NamedGlob();
 				glob.ProcessData(item.FileDescriptor, item.Package);
 
 				if (!names.Contains(glob.SemiGlobalName.Trim().ToLower())) 
@@ -259,7 +258,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 			try 
 			{
-				NamedGlob glob = (NamedGlob)cbsemi.Items[cbsemi.SelectedIndex];
+				SimPe.Plugin.NamedGlob glob = (SimPe.Plugin.NamedGlob)cbsemi.Items[cbsemi.SelectedIndex];
 				Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFileByGroup(glob.SemiGlobalGroup);
 				
 				lbfiles.Sorted = false;
@@ -267,7 +266,7 @@ namespace SimPe.PackedFiles.UserInterface
 				{
 					if (item.FileDescriptor.Type == Data.MetaData.BHAV_FILE) 
 					{
-						Bhav bhav = new Bhav(null);
+						SimPe.Plugin.Bhav bhav = new SimPe.Plugin.Bhav(null);
 						bhav.ProcessData(item);
 						item.FileDescriptor.Filename = item.FileDescriptor.TypeName.shortname + ": " + bhav.FileName + " ("+item.FileDescriptor.ToString()+")";
 					} 
@@ -279,7 +278,7 @@ namespace SimPe.PackedFiles.UserInterface
 					} 
 					else if (item.FileDescriptor.Type == 0x42434F4E)  //BCON
 					{
-						Bcon bcon = new Bcon();
+						SimPe.Plugin.Bcon bcon = new SimPe.Plugin.Bcon();
 						bcon.ProcessData(item);
 						item.FileDescriptor.Filename = item.FileDescriptor.TypeName.shortname + ": " + bcon.FileName + " ("+item.FileDescriptor.ToString()+")";
 					}
@@ -337,7 +336,7 @@ namespace SimPe.PackedFiles.UserInterface
 					bhavalias[(ushort)npfd.Instance] = (ushort)maxbhavinst;
 					npfd.Instance = maxbhavinst;
 
-					Bhav bhav = new Bhav(prov.OpcodeProvider);
+					SimPe.Plugin.Bhav bhav = new SimPe.Plugin.Bhav(prov.OpcodeProvider);
 					bhav.ProcessData(npfd, package);
 					if (cbname.Checked)	bhav.FileName = "["+cbsemi.Text+"] "+bhav.FileName;
 					bhav.SynchronizeUserData();
@@ -350,14 +349,14 @@ namespace SimPe.PackedFiles.UserInterface
 					npfd.Group = 0xffffffff;
 					bconalias[(ushort)npfd.Instance] = (ushort)npfd.Instance;
 
-					Bcon bcon = new Bcon();
+					SimPe.Plugin.Bcon bcon = new SimPe.Plugin.Bcon();
 					bcon.ProcessData(npfd, package);
 					if (cbname.Checked)	bcon.FileName = "["+cbsemi.Text+"] "+bcon.FileName;
 					bcon.SynchronizeUserData();
 				} 
 				else if  (npfd.Type == 0x54544142) //TTAB
 				{
-					Ttab ttab = new Ttab(prov.OpcodeProvider);
+					SimPe.Plugin.Ttab ttab = new SimPe.Plugin.Ttab(prov.OpcodeProvider);
 					ttab.ProcessData(npfd, package);
 
 					ttabs.Add(ttab);
@@ -369,7 +368,7 @@ namespace SimPe.PackedFiles.UserInterface
 				pfds = package.FindFiles(Data.MetaData.BHAV_FILE);
 				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{
-					Bhav bhav = new Bhav(prov.OpcodeProvider);
+					SimPe.Plugin.Bhav bhav = new SimPe.Plugin.Bhav(prov.OpcodeProvider);
 					bhav.ProcessData(pfd, package);
 
 					bhavs.Add(bhav);
@@ -378,7 +377,7 @@ namespace SimPe.PackedFiles.UserInterface
 				pfds = package.FindFiles(0x54544142);
 				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{
-					Ttab ttab = new Ttab(prov.OpcodeProvider);
+					SimPe.Plugin.Ttab ttab = new SimPe.Plugin.Ttab(prov.OpcodeProvider);
 					ttab.ProcessData(pfd, package);
 
 					ttabs.Add(ttab);
@@ -386,9 +385,9 @@ namespace SimPe.PackedFiles.UserInterface
 			}
 
 			//Relink all SemiGlobals in imported BHAV's
-			foreach (Bhav bhav in bhavs) 
+			foreach (SimPe.Plugin.Bhav bhav in bhavs) 
 			{
-				foreach (Instruction i in bhav.Instructions)
+				foreach (SimPe.Plugin.Instruction i in bhav.Instructions)
 				{
 					if (bhavalias.Contains(i.OpCode)) i.OpCode = (ushort)bhavalias[i.OpCode];
 				}
@@ -396,9 +395,9 @@ namespace SimPe.PackedFiles.UserInterface
 			}
 
 			//Relink all TTAbs
-			foreach (Ttab ttab in ttabs) 
+			foreach (SimPe.Plugin.Ttab ttab in ttabs) 
 			{
-				foreach (TtabItem item in ttab.Items)
+				foreach (SimPe.Plugin.TtabItem item in ttab.Items)
 				{
 					if (bhavalias.Contains(item.Guardian)) item.Guardian = (ushort)bhavalias[item.Guardian];
 					if (bhavalias.Contains(item.Action)) item.Action = (ushort)bhavalias[item.Action];

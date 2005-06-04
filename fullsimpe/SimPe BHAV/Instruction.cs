@@ -20,7 +20,7 @@
 using System;
 using System.IO;
 
-namespace SimPe.PackedFiles.Wrapper
+namespace SimPe.Plugin
 {
 	/// <summary>
 	/// Class representing an Instruction

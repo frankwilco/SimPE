@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using SimPe.Interfaces.Scenegraph;
 
 namespace SimPe.Plugin
 {
@@ -57,13 +58,16 @@ namespace SimPe.Plugin
 			set { unknown3 = value; }
 		}
 
-		int count;
+		IRcolBlock[] data;
 		public int Count 
 		{
-			get { return count; }
-			set { count = value; }
+			get { return data.Length; }
 		}
-		
+		public IRcolBlock[] Blocks 
+		{
+			get { return data; }
+			set { data = value; }
+		}
 		#endregion
 		
 
@@ -77,6 +81,8 @@ namespace SimPe.Plugin
 
 			version = 0x0c;
 			BlockID = 0x7BA3838C;
+
+			data = new IRcolBlock[0];
 		}
 		
 		#region IRcolBlock Member
@@ -110,7 +116,13 @@ namespace SimPe.Plugin
 				unknown3 = reader.ReadByte();
 			}
 
-			count = reader.ReadInt32();
+			int count = reader.ReadInt32();
+			data = new IRcolBlock[count];
+			for (int i=0; i<count; i++)
+			{
+				uint id = reader.ReadUInt32();
+				data[i] = Parent.ReadBlock(id, reader);
+			}
 		}
 
 		/// <summary>
@@ -144,7 +156,12 @@ namespace SimPe.Plugin
 				writer.Write(unknown3);
 			}
 
-			writer.Write(count);
+			writer.Write((int)data.Length);
+			for (int i=0; i<data.Length; i++)
+			{
+				writer.Write(data[i].BlockID);
+				Parent.WriteBlock(data[i].BlockID, data[i], writer);				
+			}
 		}
 
 		fShapeRefNode form = null;
@@ -171,7 +188,13 @@ namespace SimPe.Plugin
 			form.tb_gn_uk2.Text = "0x"+Helper.HexString((ushort)this.unknown2);
 			form.tb_gn_uk3.Text = "0x"+Helper.HexString(this.unknown3);
 
-			form.tb_gn_count.Text = this.count.ToString();
+			form.tb_gn_count.Text = Count.ToString();
+
+			form.cb_gn_list.Items.Clear();
+			
+			foreach (IRcolBlock irb in this.data) SimPe.CountedListItem.Add(form.cb_gn_list, irb);
+			if (form.cb_gn_list.Items.Count>0) form.cb_gn_list.SelectedIndex = 0;
+			else form.BuildChildTabControl(null);
 		}
 
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
@@ -180,6 +203,32 @@ namespace SimPe.Plugin
 			this.ogn.AddToTabControl(tc);
 		}
 
+		#region ReferencingShape
+		/// <summary>
+		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
+		/// </summary>
+		/// <returns>null or the RCOl Ressource</returns>
+		public Rcol FindReferencingSHPE()
+		{
+			FileTable.FileIndex.Load();
+			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(SimPe.Data.MetaData.SHPE, true);
+			string mn = Hashes.StripHashFromName(this.Parent.FileName.Trim().ToLower());
+			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item  in items) 
+			{
+				Rcol r = new GenericRcol(null, false);
+				r.ProcessData(item);
 
+				Shape s = (Shape)r.Blocks[0];
+				
+				foreach (ShapeItem i in s.Items) 
+				{
+					string n = Hashes.StripHashFromName(i.FileName).Trim().ToLower();
+					if (n==mn) return r;
+				}
+			}
+
+			return null;
+		}
+		#endregion
 	}
 }

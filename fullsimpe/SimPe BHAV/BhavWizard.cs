@@ -22,9 +22,8 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
-using SimPe.PackedFiles.Wrapper;
 
-namespace SimPe.PackedFiles.UserInterface
+namespace SimPe.Plugin
 {
 	/// <summary>
 	/// Zusammenfassung für BhavWizard.

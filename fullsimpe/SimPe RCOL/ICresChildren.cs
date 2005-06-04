@@ -18,72 +18,38 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.Collections;
+using System.Windows.Forms;
+using SimPe.Plugin;
 
-namespace SimPe.Plugin
+namespace SimPe.Interfaces.Scenegraph
 {
 	/// <summary>
-	/// Zusammenfassung für cRenderableNode.
+	/// Implemented by Blocks available in a CRES Hirarchy to link to child Blocks
 	/// </summary>
-	public class RenderableNode
-		: AbstractRcolBlock
+	public interface ICresChildren
 	{
-		#region Attributes
-		
-		
-		#endregion
-		
-
 		/// <summary>
-		/// Constructor
+		/// Returns a List of all Child Blocks referenced by this Element
 		/// </summary>
-		public RenderableNode(Rcol parent) : base(parent)
+		IntArrayList ChildBlocks 
 		{
-			version = 0x5;
+			get;
 		}
 		
-		#region IRcolBlock Member
-
 		/// <summary>
-		/// Unserializes a BinaryStream into the Attributes of this Instance
+		/// Returns the parent RCol Container
 		/// </summary>
-		/// <param name="reader">The Stream that contains the FileData</param>
-		public override void Unserialize(System.IO.BinaryReader reader)
+		Rcol Parent 
 		{
-			version = reader.ReadUInt32();
+			get;
 		}
 
 		/// <summary>
-		/// Serializes a the Attributes stored in this Instance to the BinaryStream
+		/// Returns the Child Block with the given Index from the Parent Rcol
 		/// </summary>
-		/// <param name="writer">The Stream the Data should be stored to</param>
-		/// <remarks>
-		/// Be sure that the Position of the stream is Proper on 
-		/// return (i.e. must point to the first Byte after your actual File)
-		/// </remarks>
-		public override void Serialize(System.IO.BinaryWriter writer)
-		{
-			writer.Write(version);
-		}
-
-		fShapeRefNode form = null;
-		public override System.Windows.Forms.TabPage TabPage
-		{
-			get
-			{
-				if (form==null) form = new fShapeRefNode(); 
-				return form.tGenericRcol;
-			}
-		}
-		#endregion
-
-		/// <summary>
-		/// You can use this to setop the Controls on a TabPage befor it is dispplayed
-		/// </summary>
-		protected override void InitTabPage() 
-		{
-			if (form==null) form = new fShapeRefNode(); 
-			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
-			form.gen_pg.SelectedObject = this;
-		}
+		/// <param name="index"></param>
+		/// <returns></returns>
+		ICresChildren GetBlock(int index);
 	}
 }
