@@ -78,5 +78,14 @@ namespace SimPe.Plugin.Gmdc
 		/// <param name="input">A Stream with the Input Data</param>
 		/// <param name="gmdc">The Gmdc that should receive the Data</param>
 		void Process(System.IO.Stream input, GeometryDataContainer gmdc);
+
+		/// <summary>
+		/// Which Order is used for the Components (determins the Transformation that should be applied on import)
+		/// </summary>
+		ElementOrder Component 
+		{
+			get;
+			set;
+		}
 	}
 }

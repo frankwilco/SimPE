@@ -28,14 +28,7 @@ namespace SimPe.Plugin.Gmdc
 	/// </summary>
 	public abstract class AbstractGmdcExporter : IGmdcExporter
 	{
-#if DEBUG
-		public const double SCALE = 20;
-#else
-		/// <summary>
-		/// just for testing purposes, do not change!
-		/// </summary>
-		public const double SCALE = 1;
-#endif
+
 		static CultureInfo expcult;
 		/// <summary>
 		/// Returns the Culture that should be used during the Export
@@ -118,25 +111,33 @@ namespace SimPe.Plugin.Gmdc
 			get { return group; }
 		}
 
+		ElementOrder order;
 		/// <summary>
-		/// Create a new Instance
+		/// Which Order is used for the Components
 		/// </summary>
-		/// <param name="gmdc">The gmdc File you want to use</param>
-		/// <param name="groups"></param>
-		public AbstractGmdcExporter(GeometryDataContainer gmdc, GmdcGroups groups)
+		public ElementOrder Component 
 		{
-			this.gmdc = gmdc;
-			LoadGroups(groups);
+			get { return order; }
+			set { order = value; }
 		}
 
 		/// <summary>
 		/// Create a new Instance
 		/// </summary>
 		/// <param name="gmdc">The gmdc File you want to use</param>
-		public AbstractGmdcExporter(GeometryDataContainer gmdc)
+		/// <param name="groups"></param>
+		public AbstractGmdcExporter(GeometryDataContainer gmdc, GmdcGroups groups) : this()
 		{
 			this.gmdc = gmdc;
-			LoadGroups(gmdc.Groups);
+			LoadGroups(groups);			
+		}
+
+		/// <summary>
+		/// Create a new Instance
+		/// </summary>
+		/// <param name="gmdc">The gmdc File you want to use</param>
+		public AbstractGmdcExporter(GeometryDataContainer gmdc) : this(gmdc, gmdc.Groups)
+		{
 		}
 
 		/// <summary>
@@ -145,6 +146,7 @@ namespace SimPe.Plugin.Gmdc
 		public AbstractGmdcExporter()
 		{
 			this.gmdc = null;
+			this.order = new ElementOrder(ElementSorting.XZY);
 		}
 
 		/// <summary>
@@ -245,57 +247,7 @@ namespace SimPe.Plugin.Gmdc
 		public int Version 
 		{
 			get {return 1;}
-		}
-
-		/// <summary>
-		/// Build the Parent Map
-		/// </summary>
-		/// <param name="parentmap">Hasttable that will contain the Child (key) -> Parent (value) Relation</param>
-		/// <param name="parent">the current Parent id (-1=none)</param>
-		/// <param name="c">the current Block we process</param>
-		protected virtual void LoadJointRelationRec(System.Collections.Hashtable parentmap, int parent, SimPe.Interfaces.Scenegraph.ICresChildren c)
-		{
-			if (c==null) return;
-
-			if (c.GetType()==typeof(TransformNode))
-			{
-				TransformNode tn = (TransformNode)c;
-				if (tn.Unknown!=0x7fffffff) 
-				{
-					parentmap[tn.Unknown] = parent;
-					parent = tn.Unknown;
-				}
-			}
-
-			//process the childs of this Block
-			foreach (int i in c.ChildBlocks)
-			{
-				SimPe.Interfaces.Scenegraph.ICresChildren cl = c.GetBlock(i);
-				LoadJointRelationRec(parentmap, parent, cl);
-			}
-			
-		}
-
-		/// <summary>
-		/// Creates a Map, that contains a mapping from each Joint to it's parent
-		/// </summary>
-		/// <returns>The JointRelation Map</returns>
-		/// <remarks>key=ChildJoint ID, value=ParentJoint ID (-1=top Level Joint)</remarks>
-		protected virtual System.Collections.Hashtable LoadJointRelationMap()
-		{
-			//Get the Cres for the Bone Hirarchy
-			Rcol cres = Gmdc.FindReferencingCRES();
-
-			System.Collections.Hashtable parentmap = new System.Collections.Hashtable();
-			if (cres==null) System.Windows.Forms.MessageBox.Show("The parent CRES was not found. \n\nThis measn, that SimPe is unable to build the Joint Hirarchy, and will export them flat.", "Information", System.Windows.Forms.MessageBoxButtons.OK);
-			else 
-			{
-				ResourceNode rn = (ResourceNode)cres.Blocks[0];
-				LoadJointRelationRec(parentmap, -1, rn);
-			}
-
-			return parentmap;
-		}
+		}		
 
 		#region Abstract Methods
 		/// <summary>

@@ -51,5 +51,20 @@ namespace SimPe.Interfaces.Scenegraph
 		/// <param name="index"></param>
 		/// <returns></returns>
 		ICresChildren GetBlock(int index);
+
+		/// <summary>
+		/// Returns the Index of the Image that should be displayed in the TreeView
+		/// </summary>
+		/// <remarks>
+		/// 0 = Nothing
+		/// 1 = Joint
+		/// 2 = Light
+		/// 3 = Shape
+		/// 4 = Error
+		/// </remarks>
+		int ImageIndex 
+		{
+			get;
+		}
 	}
 }

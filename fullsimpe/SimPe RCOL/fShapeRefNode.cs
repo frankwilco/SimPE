@@ -191,6 +191,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.GroupBox groupBox17;
 		internal System.Windows.Forms.ComboBox cb_gn_list;
 		internal System.Windows.Forms.TabControl tc_gn;
+		private System.Windows.Forms.ImageList iCres;
 		private System.ComponentModel.IContainer components;
 
 		public fShapeRefNode()
@@ -226,6 +227,7 @@ namespace SimPe.Plugin
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(fShapeRefNode));
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tGenericRcol = new System.Windows.Forms.TabPage();
 			this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -387,6 +389,7 @@ namespace SimPe.Plugin
 			this.tCres = new System.Windows.Forms.TabPage();
 			this.cres_tv = new System.Windows.Forms.TreeView();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.iCres = new System.Windows.Forms.ImageList(this.components);
 			this.tabControl1.SuspendLayout();
 			this.tGenericRcol.SuspendLayout();
 			this.groupBox10.SuspendLayout();
@@ -1115,9 +1118,9 @@ namespace SimPe.Plugin
 			this.tGeometryNode.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.tGeometryNode.Controls.Add(this.groupBox11);
 			this.tGeometryNode.Controls.Add(this.groupBox17);
-			this.tGeometryNode.Location = new System.Drawing.Point(4, 40);
+			this.tGeometryNode.Location = new System.Drawing.Point(4, 22);
 			this.tGeometryNode.Name = "tGeometryNode";
-			this.tGeometryNode.Size = new System.Drawing.Size(792, 244);
+			this.tGeometryNode.Size = new System.Drawing.Size(792, 262);
 			this.tGeometryNode.TabIndex = 5;
 			this.tGeometryNode.Text = "GeometryNode";
 			// 
@@ -1253,7 +1256,7 @@ namespace SimPe.Plugin
 			this.groupBox17.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox17.Location = new System.Drawing.Point(240, 8);
 			this.groupBox17.Name = "groupBox17";
-			this.groupBox17.Size = new System.Drawing.Size(544, 232);
+			this.groupBox17.Size = new System.Drawing.Size(544, 250);
 			this.groupBox17.TabIndex = 23;
 			this.groupBox17.TabStop = false;
 			this.groupBox17.Text = "Embedded Blocks:";
@@ -1267,7 +1270,7 @@ namespace SimPe.Plugin
 			this.tc_gn.Location = new System.Drawing.Point(8, 56);
 			this.tc_gn.Name = "tc_gn";
 			this.tc_gn.SelectedIndex = 0;
-			this.tc_gn.Size = new System.Drawing.Size(528, 168);
+			this.tc_gn.Size = new System.Drawing.Size(528, 186);
 			this.tc_gn.TabIndex = 10;
 			// 
 			// cb_gn_list
@@ -2254,9 +2257,9 @@ namespace SimPe.Plugin
 			// 
 			this.tCres.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.tCres.Controls.Add(this.cres_tv);
-			this.tCres.Location = new System.Drawing.Point(4, 22);
+			this.tCres.Location = new System.Drawing.Point(4, 40);
 			this.tCres.Name = "tCres";
-			this.tCres.Size = new System.Drawing.Size(792, 262);
+			this.tCres.Size = new System.Drawing.Size(792, 244);
 			this.tCres.TabIndex = 9;
 			this.tCres.Text = "CRES Hirachy";
 			// 
@@ -2267,13 +2270,19 @@ namespace SimPe.Plugin
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.cres_tv.FullRowSelect = true;
 			this.cres_tv.HideSelection = false;
-			this.cres_tv.ImageIndex = -1;
+			this.cres_tv.ImageList = this.iCres;
 			this.cres_tv.Location = new System.Drawing.Point(8, 8);
 			this.cres_tv.Name = "cres_tv";
-			this.cres_tv.SelectedImageIndex = -1;
-			this.cres_tv.Size = new System.Drawing.Size(776, 250);
+			this.cres_tv.Size = new System.Drawing.Size(776, 232);
 			this.cres_tv.TabIndex = 0;
 			this.cres_tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SelectCresTv);
+			// 
+			// iCres
+			// 
+			this.iCres.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+			this.iCres.ImageSize = new System.Drawing.Size(16, 16);
+			this.iCres.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iCres.ImageStream")));
+			this.iCres.TransparentColor = System.Drawing.Color.Transparent;
 			// 
 			// fShapeRefNode
 			// 
@@ -2688,7 +2697,7 @@ namespace SimPe.Plugin
 				TransformNode tn = (TransformNode)tTransformNode.Tag;
 
 				tn.Version = Convert.ToUInt32(tb_tn_ver.Text, 16);
-				tn.Unknown = Convert.ToInt32(tb_tn_ukn.Text, 16);
+				tn.JointReference = Convert.ToInt32(tb_tn_ukn.Text, 16);
 
 				tn.TransformX = Convert.ToSingle(tb_tn_tx.Text);
 				tn.TransformY = Convert.ToSingle(tb_tn_ty.Text);

@@ -575,7 +575,7 @@ namespace SimPe.Plugin.Gmdc
 				if (ct<gmdc.Joints.Length && a.TargetIndex==-1) 
 				{
 					a.TargetIndex = ct;
-					a.Action = GmdcImporterAction.Update;
+					a.Action = GmdcImporterAction.Replace;
 				}
 				ct++;
 

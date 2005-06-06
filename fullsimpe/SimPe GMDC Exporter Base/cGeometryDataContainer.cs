@@ -292,9 +292,12 @@ namespace SimPe.Plugin
 				form.lb_model_names.Items.Clear();
 				foreach (GmdcNamePair i in this.model.BlendGroupDefinition) SimPe.CountedListItem.Add(form.lb_model_names, i);
 				form.lb_model_rots.Items.Clear();
-				foreach (Quaternion i in this.model.Quaternions) SimPe.CountedListItem.Add(form.lb_model_rots, i);
 				form.lb_model_trans.Items.Clear();
-				foreach (Vector3f i in this.model.Transformations) SimPe.CountedListItem.Add(form.lb_model_trans, i);
+				foreach (VectorTransformation i in this.model.Transformations) 
+				{
+					SimPe.CountedListItem.Add(form.lb_model_rots, i.Rotation);
+					SimPe.CountedListItem.Add(form.lb_model_trans, i.Translation);
+				}
 			} 
 			catch (Exception ex)
 			{
@@ -338,10 +341,10 @@ namespace SimPe.Plugin
 		/// <returns>The content of the x File</returns>
 		public MemoryStream GenerateX(GmdcGroups models)
 		{
-			IGmdcExporter exporter = ExporterLoader.FindExporterByExtension(".x");
-
+			IGmdcExporter exporter = ExporterLoader.FindExporterByExtension(".x");			
 			if (exporter==null) throw new Exception("No valid Direct X Exporter plugin was found!");
 
+			exporter.Component.Sorting = ElementSorting.XZY;
 			exporter.Process(this, models);
 			return (MemoryStream)exporter.FileContent.BaseStream;
 		}
@@ -521,7 +524,6 @@ namespace SimPe.Plugin
 				}
 			}
 
-			model.Quaternions.RemoveAt(index);
 			model.Transformations.RemoveAt(index);
 			joints.RemoveAt(index);
 		}
@@ -543,6 +545,20 @@ namespace SimPe.Plugin
 		}
 
 		#region LinkedCRES
+
+		Rcol cres;
+
+		/// <summary>
+		/// Get the attached ResourceNode
+		/// </summary>
+		public  ResourceNode ParentResourceNode 
+		{
+			get { 
+				if (cres==null) cres = FindReferencingCRES();
+				if (cres==null) return null;
+				return (ResourceNode) cres.Blocks[0]; 
+			}
+		}
 
 		/// <summary>
 		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
@@ -582,6 +598,52 @@ namespace SimPe.Plugin
 			FileTable.FileIndex.RestoreLastState();
 			WaitingScreen.Stop();
 			return step;
+		}
+
+		/// <summary>
+		/// Build the Parent Map
+		/// </summary>
+		/// <param name="parentmap">Hasttable that will contain the Child (key) -> Parent (value) Relation</param>
+		/// <param name="parent">the current Parent id (-1=none)</param>
+		/// <param name="c">the current Block we process</param>
+		protected void LoadJointRelationRec(System.Collections.Hashtable parentmap, int parent, SimPe.Interfaces.Scenegraph.ICresChildren c)
+		{
+			if (c==null) return;
+
+			if (c.GetType()==typeof(TransformNode))
+			{
+				TransformNode tn = (TransformNode)c;
+				if (tn.JointReference!=TransformNode.NO_JOINT) 
+				{
+					parentmap[tn.JointReference] = parent;
+					parent = tn.JointReference;
+				}
+			}
+
+			//process the childs of this Block
+			foreach (int i in c.ChildBlocks)
+			{
+				SimPe.Interfaces.Scenegraph.ICresChildren cl = c.GetBlock(i);
+				LoadJointRelationRec(parentmap, parent, cl);
+			}
+			
+		}
+
+		/// <summary>
+		/// Creates a Map, that contains a mapping from each Joint to it's parent
+		/// </summary>
+		/// <returns>The JointRelation Map</returns>
+		/// <remarks>key=ChildJoint ID, value=ParentJoint ID (-1=top Level Joint)</remarks>
+		public virtual System.Collections.Hashtable LoadJointRelationMap()
+		{
+			//Get the Cres for the Bone Hirarchy
+			ResourceNode rn = this.ParentResourceNode;
+
+			System.Collections.Hashtable parentmap = new System.Collections.Hashtable();
+			if (rn==null) System.Windows.Forms.MessageBox.Show("The parent CRES was not found. \n\nThis measn, that SimPe is unable to build the Joint Hirarchy.", "Information", System.Windows.Forms.MessageBoxButtons.OK);
+			else LoadJointRelationRec(parentmap, -1, rn);
+
+			return parentmap;
 		}
 		#endregion
 	}

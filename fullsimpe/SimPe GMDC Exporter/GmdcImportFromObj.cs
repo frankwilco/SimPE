@@ -22,6 +22,7 @@ using System.IO;
 using System.Globalization;
 using System.Collections;
 using SimPe.Plugin.Gmdc;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin.Gmdc.Importer
 {
@@ -112,7 +113,9 @@ namespace SimPe.Plugin.Gmdc.Importer
 				else if (line == "g") StartGroup(content);  // new Group
 				else if (line == "f") ProcessFaceList(content); // Face
 				else if (line == "s") { ; }//smoothing Group;
-				else if (Helper.WindowsRegistry.HiddenMode) lineerror = "Unknown token.";
+				else if (line == "mtllib") { ; }//material file;
+				else if (line == "usemtl") { ; }//material assignement;
+				else if (Helper.WindowsRegistry.HiddenMode) lineerror = "[Warning:] Unknown token. (will be ignored)";
 
 
 				if (lineerror!=null) 
@@ -139,7 +142,9 @@ namespace SimPe.Plugin.Gmdc.Importer
 					for (int i=0; i<3; i++) 
 						data[i] = Convert.ToSingle(tokens[i], AbstractGmdcImporter.DefaultCulture);
 
-					SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat v = new GmdcElementValueThreeFloat(data[0], data[1], data[2]);
+					Vector3f vec = new Vector3f(data[0], data[1], data[2]);
+					vec = Component.InverseTransform(vec);
+					SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat v = new GmdcElementValueThreeFloat((float)vec.X, (float)vec.Y, (float)vec.Z);
 					list.Add(v);
 				} 
 				catch 
@@ -208,7 +213,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 		void ProcessFaceList(string content)
 		{
 			string[] tokens = content.Split(" ".ToCharArray());
-			if (tokens.Length==4) //process a Quad (only concave quads are supported)
+			if (tokens.Length==4) //process a Quad (only convex quads are supported)
 			{
 				string s = tokens[0] + " " + tokens[1] + " " + tokens[2];
 				ProcessFaceList(s);

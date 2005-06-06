@@ -387,7 +387,7 @@ namespace SimPe.Geometry
 		/// <summary>
 		/// Integer Indexer
 		/// </summary>
-		public new double this[int index]
+		public double this[int index]
 		{
 			get { return GetComponent(index); }
 			set { SetComponent(index,value); }

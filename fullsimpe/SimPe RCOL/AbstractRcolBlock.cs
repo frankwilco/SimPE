@@ -73,6 +73,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public void Refresh() 
 		{
+			parent.CallWhenTabPageChanged = null;
 			InitTabPage(); 
 			InitResourceTabPage();
 		}
@@ -121,6 +122,7 @@ namespace SimPe.Plugin
 		/// <param name="tc">The tabControl the Page will be added to</param>
 		public void AddToTabControl(TabControl tc)
 		{
+			parent.CallWhenTabPageChanged = null;
 			if (TabPage!=null) 
 			{
 				TabPage.Tag = null;

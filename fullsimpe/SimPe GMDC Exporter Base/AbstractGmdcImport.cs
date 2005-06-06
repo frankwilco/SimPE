@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using System.Globalization;
 using System.Collections;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin.Gmdc
 {
@@ -70,6 +71,24 @@ namespace SimPe.Plugin.Gmdc
 		public int Version 
 		{
 			get { return 1; }
+		}
+
+		ElementOrder order;
+		/// <summary>
+		/// Which Order is used for the Components
+		/// </summary>
+		public ElementOrder Component 
+		{
+			get { return order; }
+			set { order = value; }
+		}
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public AbstractGmdcImporter()
+		{
+			order = new ElementOrder(ElementSorting.XZY);
 		}
 
 		#region abstract Methods
@@ -377,8 +396,12 @@ namespace SimPe.Plugin.Gmdc
 		{			
 			int nindex = gmdc.Joints.Length;
 			gmdc.Joints.Add(b.Bone);
-			gmdc.Model.Quaternions.Add(b.Quaternion);
-			gmdc.Model.Transformations.Add(b.Translation);			
+
+			VectorTransformation t = new VectorTransformation(VectorTransformation.TransformOrder.RotateTranslate);
+			t.Rotation = b.Quaternion;
+			t.Translation = b.Translation;
+
+			gmdc.Model.Transformations.Add(t);
 
 			return nindex;
 		}
@@ -394,8 +417,12 @@ namespace SimPe.Plugin.Gmdc
 		{			
 			int nindex = b.TargetIndex;
 			gmdc.Joints[nindex] = b.Bone;
-			gmdc.Model.Quaternions[nindex] = b.Quaternion;
-			gmdc.Model.Transformations[nindex] = b.Translation;
+			
+			VectorTransformation t = new VectorTransformation(VectorTransformation.TransformOrder.RotateTranslate);
+			t.Rotation = b.Quaternion;
+			t.Translation = b.Translation;
+
+			gmdc.Model.Transformations[nindex] = t;
 
 			return nindex;
 		}

@@ -126,6 +126,25 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// true, if user wants to show the Name of a Joint in the GMDC Plugin
+		/// </summary>
+		public  bool ShowJointNames
+		{
+			get 
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				object o = rkf.GetValue("ShowJointNames");
+				if (o==null) return true;
+				else return Convert.ToBoolean(o);
+			}
+			set
+			{
+				RegistryKey rkf = rk.CreateSubKey("Settings");
+				rkf.SetValue("ShowJointNames", value);
+			}
+		}
+
+		/// <summary>
 		/// true, if user wants to activate the Cache
 		/// </summary>
 		public  bool XPStyle

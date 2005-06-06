@@ -110,12 +110,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Matrices.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Quaternion.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Vectors.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "VectorTransformations.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

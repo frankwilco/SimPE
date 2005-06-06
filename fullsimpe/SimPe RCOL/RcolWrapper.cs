@@ -64,6 +64,20 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
+		/// <summary>
+		/// contains null or a delegate that should be called when the TabPage did change
+		/// </summary>
+		protected System.EventHandler tabpagechanged;
+
+		/// <summary>
+		/// contains null or a delegate that should be called when the TabPage did change
+		/// </summary>
+		public System.EventHandler CallWhenTabPageChanged 
+		{
+			get { return tabpagechanged; }
+			set { tabpagechanged = value; }
+		}
+
 		static Hashtable tokens;
 		public static Hashtable Tokens 
 		{

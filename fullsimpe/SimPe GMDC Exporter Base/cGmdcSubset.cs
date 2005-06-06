@@ -121,24 +121,6 @@ namespace SimPe.Plugin.Gmdc
 		}
 
 		/// <summary>
-		/// Applies the initial Joint Transformation to the passed Vertex
-		/// </summary>
-		/// <param name="index">Index of the current Joint withi itÄs parent</param>
-		/// <param name="v">The Vertex you want to Transform</param>
-		/// <returns>Transformed Vertex</returns>
-		protected Vector3f Transform(int index, Vector3f v) 
-		{
-			//no Parent -> no Transform
-			if (parent==null) return v;
-
-			Vector3f trans = parent.Model.Transformations[index];
-			Quaternion rot = parent.Model.Quaternions[index];
-
-			v = rot.Rotate(v);
-			return v + trans;
-		}
-
-		/// <summary>
 		/// The Index of this Joint in the Parent's joint List (-1 indicates 
 		/// that the Joint was not found within the Parent)
 		/// </summary>
@@ -159,6 +141,84 @@ namespace SimPe.Plugin.Gmdc
 				return index;
 			}
 		}
+
+		TransformNode reftn;
+		/// <summary>
+		/// Returns the first TransformNode assigned to this Node or null if none was found
+		/// </summary>
+		public TransformNode AssignedTransformNode
+		{
+			get 
+			{
+				if (reftn==null) reftn=GetAssignedTransformNode(Index);
+				return reftn;
+			}
+		}
+
+		/// <summary>
+		/// Reads the Name from the TransformNode or generates a default Name based on the Index
+		/// </summary>
+		public string Name 
+		{
+			get 
+			{
+				if (AssignedTransformNode!=null) return AssignedTransformNode.ObjectGraphNode.FileName;
+				return "Joint"+Index.ToString();
+			}
+		}
+		
+		/// <summary>
+		/// Returns the assigned TransformNode
+		/// </summary>
+		/// <param name="index">the Index of this Joint within the Parent</param>
+		/// <returns>null or a TransformNode</returns>
+		protected TransformNode GetAssignedTransformNode(int index)
+		{
+			if  (parent.ParentResourceNode==null) return null;
+			Rcol cres = parent.ParentResourceNode.Parent;
+
+			foreach (SimPe.Interfaces.Scenegraph.IRcolBlock irb in cres.Blocks) 
+			{
+				if (irb.GetType()==typeof(TransformNode)) 
+				{
+					TransformNode tn = (TransformNode)irb;
+					if (tn.JointReference==index) return tn;
+				}
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Applies the initial Joint Transformation to the passed Vertex
+		/// </summary>
+		/// <param name="index">Index of the current Joint withi itÄs parent</param>
+		/// <param name="v">The Vertex you want to Transform</param>
+		/// <returns>Transformed Vertex</returns>
+		protected Vector3f Transform(int index, Vector3f v) 
+		{
+			//no Parent -> no Transform
+			if (parent==null) return v;
+
+			//Hashtable map = parent.LoadJointRelationMap();
+			//TransformNode tn = AssignedTransformNode(index);
+
+			//Get the Transformation Hirarchy
+			VectorTransformations t = new VectorTransformations();
+			t.Add(parent.Model.Transformations[index]);
+			/*
+			while (index>=0) 
+			{
+				t.Add(parent.Model.Transformations[index]);
+				if (map.ContainsKey(index)) index = (int)map[index];
+				else index = -1;
+			}*/
+
+			//Apply Transformations
+			for (int i=t.Count-1; i>=0; i--) v = t[i].Transform(v);
+			
+			return v;
+		}		
 
 		/// <summary>
 		/// Adjusts the Vertex List, from all Elements Vertices that are assigned to this joint
@@ -246,7 +306,11 @@ namespace SimPe.Plugin.Gmdc
 		/// <returns>A String Describing the Data</returns>
 		public override string ToString()
 		{
-			return this.Vertices.Count.ToString()+", "+this.Items.Count.ToString();
+			string s = "";
+			if (Helper.WindowsRegistry.ShowJointNames) s += this.Name+": ";
+			s += this.Vertices.Count.ToString()+", "+this.Items.Count.ToString();
+
+			return s;
 		}
 
 	}

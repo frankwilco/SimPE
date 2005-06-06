@@ -85,5 +85,14 @@ namespace SimPe.Plugin.Gmdc
 		{
 			get;
 		}
+
+		/// <summary>
+		/// Which Order is used for the Components (determins the Transformation that should be applied on export)
+		/// </summary>
+		ElementOrder Component 
+		{
+			get;
+			set;
+		}
 	}
 }

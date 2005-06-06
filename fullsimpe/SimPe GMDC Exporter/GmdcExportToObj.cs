@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using System.Globalization;
 using SimPe.Plugin.Gmdc;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin.Gmdc.Exporter
 {
@@ -116,11 +117,13 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			int nr = Link.GetElementNr(VertexElement);
 			for (int i = 0; i < Link.ReferencedSize; i++)
 			{
-				vertexcount++;					
+				vertexcount++;	
+				Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
+				v = Component.Transform(v);
 				writer.WriteLine("v " + 
-					(Link.GetValue(nr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-					(Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-					(Link.GetValue(nr, i).Data[2]).ToString("N6", AbstractGmdcExporter.DefaultCulture) );
+					v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
+					v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
+					v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture) );
 			}			
 			
 			//Add a MeshNormal Section if available
@@ -129,10 +132,12 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				nr = Link.GetElementNr(NormalElement);
 				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
+					Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
+					v = Component.Transform(v);
 					writer.WriteLine("vn " + 
-						(Link.GetValue(nr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						(Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						(Link.GetValue(nr, i).Data[2]).ToString("N6", AbstractGmdcExporter.DefaultCulture));
+						v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
+						v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
+						v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture) );
 				}				
 			}
 			
