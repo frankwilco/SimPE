@@ -110,31 +110,15 @@ namespace SimPe.Plugin.Gmdc
 	public class GmdcModel : GmdcLinkBlock
 	{
 		#region Attributes
-		Vectors3f transforms;
+		VectorTransformations transforms;
 		/// <summary>
 		/// Set of Transformations
 		/// </summary>
-		/// <remarks>Number of Items stored in <see cref="Transformations"/> 
-		/// and <see cref="Rotations"/> must be the same. If one of them Contains 
-		/// more Items, those will be cut off during the Save</remarks>
-		public Vectors3f Transformations 
+		public VectorTransformations Transformations 
 		{
 			get { return transforms; }
 			set {transforms = value; }
-		}
-
-		Quaternions quats;
-		/// <summary>
-		/// Set of Rotatins
-		/// </summary>
-		/// <remarks>Number of Items stored in <see cref="Transformations"/> 
-		/// and <see cref="Rotations"/> must be the same. If one of them Contains 
-		/// more Items, those will be cut off during the Save</remarks>
-		public Quaternions Quaternions 
-		{
-			get { return quats; }
-			set {quats = value; }
-		}
+		}		
 
 		GmdcNamePairs names;
 		/// <summary>
@@ -162,11 +146,8 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		public GmdcModel(GeometryDataContainer parent) : base(parent)
 		{
-			transforms = new Vectors3f();
-			quats = new Quaternions();
-
+			transforms = new VectorTransformations();
 			names = new GmdcNamePairs();
-
 			subset = new GmdcJoint(parent);
 		}
 
@@ -178,14 +159,9 @@ namespace SimPe.Plugin.Gmdc
 		{
 			int count = reader.ReadInt32();
 			transforms.Clear();
-			quats.Clear();
 			for (int i=0; i<count; i++)
 			{
-				Quaternion r = new Quaternion();
-				r.Unserialize(reader);
-				quats.Add(r);
-
-				Vector3f t = new Vector3f();
+				VectorTransformation t = new VectorTransformation(VectorTransformation.TransformOrder.RotateTranslate);
 				t.Unserialize(reader);
 				transforms.Add(t);
 			}
@@ -212,14 +188,13 @@ namespace SimPe.Plugin.Gmdc
 		/// </remarks>
 		public  void Serialize(System.IO.BinaryWriter writer)
 		{
-			int count = Math.Min(quats.Length, transforms.Length);
+			int count = transforms.Length;
 			writer.Write((int)count);
-			for (int i=0; i<count; i++)
+			for (int i=0; i<count; i++) 
 			{
-				quats[i].Serialize(writer);
+				transforms[i].Order = VectorTransformation.TransformOrder.RotateTranslate;
 				transforms[i].Serialize(writer);
 			}
-
 			writer.Write((int)names.Length);
 			for (int i=0; i<names.Length; i++) names[i].Serialize(writer);
 
@@ -227,7 +202,8 @@ namespace SimPe.Plugin.Gmdc
 		}
 	}
 	
-	#region Container
+	#region Container	
+
 	/// <summary>
 	/// Typesave ArrayList for GmdcModel Objects
 	/// </summary>

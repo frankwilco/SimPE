@@ -61,6 +61,11 @@ namespace SimPe.Plugin
 		public abstract IntArrayList ChildBlocks 
 		{
 			get;
-		}		
+		}	
+	
+		public abstract int ImageIndex 
+		{
+			get;
+		}
 	}
 }

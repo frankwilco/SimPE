@@ -75,6 +75,11 @@ namespace SimPe.Plugin
 	public class TransformNode
 		: AbstractCresChildren
 	{
+		/// <summary>
+		/// this value in Joint Reference tells us that the 
+		/// Node is not directly linked to a joint
+		/// </summary>
+		public const uint NO_JOINT= 0x7fffffff;
 		#region Attributes
 		
 		CompositionTreeNode ctn;
@@ -97,55 +102,59 @@ namespace SimPe.Plugin
 			get { return ctn; }
 		}
 
-		Vector3f trans;
-		Quaternion q;
+		VectorTransformation trans;
 		int unknown;
+
+		public Vector3f Translation 
+		{
+			get { return trans.Translation; }			
+		}
 
 		public float TransformX 
 		{
-			get { return (float)trans.X; }
-			set { trans.X = value; }
+			get { return (float)trans.Translation.X; }
+			set { trans.Translation.X = value; }
 		}
 		public float TransformY 
 		{
-			get { return (float)trans.Y; }
-			set { trans.Y = value; }
+			get { return (float)trans.Translation.Y; }
+			set { trans.Translation.Y = value; }
 		}
 		public float TransformZ 
 		{
-			get { return (float)trans.Z; }
-			set { trans.Z = value; }
+			get { return (float)trans.Translation.Z; }
+			set { trans.Translation.Z = value; }
 		}
 
 		
 		public float RotationX 
 		{
-			get { return (float)q.X; }
-			set { q.X = value; }
+			get { return (float)trans.Rotation.X; }
+			set { trans.Rotation.X = value; }
 		}
 		public float RotationY 
 		{
-			get { return (float)q.Y; }
-			set { q.Y = value; }
+			get { return (float)trans.Rotation.Y; }
+			set { trans.Rotation.Y = value; }
 		}
 		public float RotationZ 
 		{
-			get { return (float)q.Z; }
-			set { q.Z = value; }
+			get { return (float)trans.Rotation.Z; }
+			set { trans.Rotation.Z = value; }
 		}
 		public float RotationW 
 		{
-			get { return (float)q.W; }
-			set { q.W = value; }
+			get { return (float)trans.Rotation.W; }
+			set { trans.Rotation.W = value; }
 		}
 
 		public Quaternion Quaternion 
 		{
-			get { return q; }
-			set { q= value; }
+			get { return trans.Rotation; }
+			set { trans.Rotation= value; }
 		}
 
-		public int Unknown 
+		public int JointReference 
 		{
 			get { return unknown; }
 			set { unknown = value; }
@@ -162,8 +171,7 @@ namespace SimPe.Plugin
 
 			items = new TransformNodeItem[0];
 
-			trans = new Vector3f();
-			q = new Quaternion();
+			trans = new VectorTransformation(VectorTransformation.TransformOrder.TranslateRotate);
 
 			version = 0x07;
 			BlockID = 0x65246462;
@@ -185,7 +193,16 @@ namespace SimPe.Plugin
 				}
 				return l;
 			}
-		}	
+		}
+	
+		[BrowsableAttribute(false)]
+		public override int ImageIndex 
+		{
+			get { 
+				if (unknown==NO_JOINT) return 0; //clear
+				return 1; //bone
+			}
+		}
 		#endregion
 		
 		#region IRcolBlock Member
@@ -215,8 +232,8 @@ namespace SimPe.Plugin
 				items[i].Unserialize(reader);
 			}
 
+			trans.Order = VectorTransformation.TransformOrder.TranslateRotate;
 			trans.Unserialize(reader);
-			q.Unserialize(reader);
 
 			unknown = reader.ReadInt32();
 		}
@@ -247,8 +264,8 @@ namespace SimPe.Plugin
 				items[i].Serialize(writer);
 			}
 
+			trans.Order = VectorTransformation.TransformOrder.TranslateRotate;
 			trans.Serialize(writer);
-			q.Serialize(writer);
 
 			writer.Write(unknown);
 		}
@@ -278,19 +295,19 @@ namespace SimPe.Plugin
 			form.tb_tn_ver.Text = "0x"+Helper.HexString(this.version);
 			form.tb_tn_ukn.Text = "0x"+Helper.HexString(this.unknown);
 
-			form.tb_tn_tx.Text = trans.X.ToString("N6");
-			form.tb_tn_ty.Text = trans.Y.ToString("N6");
-			form.tb_tn_tz.Text = trans.Z.ToString("N6");
+			form.tb_tn_tx.Text = trans.Translation.X.ToString("N6");
+			form.tb_tn_ty.Text = trans.Translation.Y.ToString("N6");
+			form.tb_tn_tz.Text = trans.Translation.Z.ToString("N6");
 
-			form.tb_tn_rx.Text = q.X.ToString("N6");
-			form.tb_tn_ry.Text = q.Y.ToString("N6");
-			form.tb_tn_rz.Text = q.Z.ToString("N6");
-			form.tb_tn_rw.Text = q.W.ToString("N6");
+			form.tb_tn_rx.Text = trans.Rotation.X.ToString("N6");
+			form.tb_tn_ry.Text = trans.Rotation.Y.ToString("N6");
+			form.tb_tn_rz.Text = trans.Rotation.Z.ToString("N6");
+			form.tb_tn_rw.Text = trans.Rotation.W.ToString("N6");
 
-			form.tb_tn_ax.Text = q.Axis.X.ToString("N6");
-			form.tb_tn_ay.Text = q.Axis.Y.ToString("N6");
-			form.tb_tn_az.Text = q.Axis.Z.ToString("N6");
-			form.tb_tn_a.Text = Quaternion.RadToDeg(q.Angle).ToString("N6");
+			form.tb_tn_ax.Text = trans.Rotation.Axis.X.ToString("N6");
+			form.tb_tn_ay.Text = trans.Rotation.Axis.Y.ToString("N6");
+			form.tb_tn_az.Text = trans.Rotation.Axis.Z.ToString("N6");
+			form.tb_tn_a.Text = Quaternion.RadToDeg(trans.Rotation.Angle).ToString("N6");
 
 			form.tb_tn_a.Tag = null;
 		}
@@ -304,9 +321,11 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			string s =  this.ogn.FileName;
-			if (this.unknown!=0x7fffffff) s += " Joint"+this.unknown.ToString();
-			s += ": Trans="+trans.ToString() + "     Rot=" + q.ToString() + " ("+base.ToString ()+")";
+			string s ="";
+			if (this.unknown!=NO_JOINT) s += "[Joint"+this.unknown.ToString()+"] - ";
+			s += this.ogn.FileName;
+			
+			s += ": "+trans.ToString() + " ("+base.ToString ()+")";
 			return s;
 		}
 	}

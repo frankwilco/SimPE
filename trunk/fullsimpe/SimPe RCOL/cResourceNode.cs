@@ -20,6 +20,7 @@
 using System;
 using System.Collections;
 using SimPe.Interfaces.Plugin;
+using System.ComponentModel;
 
 namespace SimPe.Plugin
 {
@@ -154,6 +155,15 @@ namespace SimPe.Plugin
 			}
 		}	
 
+		[BrowsableAttribute(false)]
+		public override int ImageIndex 
+		{
+			get 
+			{ 
+				return 3; //mesh 
+			}
+		}
+
 		/// <summary>
 		/// Add a ChildNode (and all it's subChilds) to a TreeNode
 		/// </summary>
@@ -166,13 +176,17 @@ namespace SimPe.Plugin
 			if (child==null) 
 			{
 				System.Windows.Forms.TreeNode unode = new System.Windows.Forms.TreeNode("[Error: Unsupported Child on Index "+index.ToString()+"]");
-				unode.Tag = -1;
+				unode.Tag = index;
+				unode.ImageIndex = 4;
+				unode.SelectedImageIndex = 4;
 				parent.Add(unode);
 				return;
 			}
 
 			System.Windows.Forms.TreeNode node = new System.Windows.Forms.TreeNode(index.ToString()+": "+child.ToString());
 			node.Tag = index;
+			node.ImageIndex = child.ImageIndex;
+			node.SelectedImageIndex = node.ImageIndex;
 			parent.Add(node);
 
 			foreach (int i in child.ChildBlocks) AddChildNode(node.Nodes, i, child.GetBlock(i));

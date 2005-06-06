@@ -86,6 +86,15 @@ namespace SimPe.Plugin
 				return tn.ChildBlocks;
 			}
 		}	
+
+		[BrowsableAttribute(false)]
+		public override int ImageIndex 
+		{
+			get 
+			{ 
+				return 2;  //light
+			}
+		}
 		#endregion
 		
 		#region IRcolBlock Member

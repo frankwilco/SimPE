@@ -146,6 +146,11 @@
                     DependentUpon = "Panel 3D.cs"
                     BuildAction = "EmbeddedResource"
                 />
+                <File
+                    RelPath = "ViewportSettings.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
             </Include>
         </Files>
     </CSHARP>

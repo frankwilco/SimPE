@@ -265,6 +265,11 @@ namespace SimPe.Plugin
 
 				form.lbfl.Items.Clear();
 				foreach (string fl in Listing) form.lbfl.Items.Add(fl);
+
+				if (Helper.WindowsRegistry.HiddenMode) 
+				{
+					form.SetupGrid(this);
+				}				
 			} 
 			finally 
 			{
@@ -280,7 +285,14 @@ namespace SimPe.Plugin
 			form.tabPage2.Tag = this;
 			tc.TabPages.Add(form.tabPage2);
 
-			tc.SelectedIndex = 1;
+			if (Helper.WindowsRegistry.HiddenMode) 
+			{
+				form.tGrid.Tag = this;
+				tc.TabPages.Add(form.tGrid);
+			}
+
+			tc.SelectedIndex = 1;			
+			parent.CallWhenTabPageChanged = new System.EventHandler(form.TxmtChangeTab);
 		}
 
 		#region IScenegraphBlock Member
@@ -338,6 +350,23 @@ namespace SimPe.Plugin
 					list.Add(ScenegraphHelper.BuildPfd(refname, SimPe.Plugin.ScenegraphHelper.TXTR, parentgroup));					
 				}
 			}						
+		}
+
+		#endregion
+
+		#region Property Grid
+		static SimPe.Plugin.Txmt.TxmtPropertyParser tpp;
+
+		/// <summary>
+		/// Return a PropertyParser, that enumerates all known Properties as <see cref="Ambertation.PropertyDescription"/> Objects
+		/// </summary>
+		public static SimPe.Plugin.Txmt.TxmtPropertyParser PropertyParser
+		{
+			get 
+			{
+				if (tpp==null) tpp = new SimPe.Plugin.Txmt.TxmtPropertyParser(System.IO.Path.Combine(Helper.SimPeDataPath, "txmtdefinition.xml"));
+				return tpp;
+			}
 		}
 
 		#endregion

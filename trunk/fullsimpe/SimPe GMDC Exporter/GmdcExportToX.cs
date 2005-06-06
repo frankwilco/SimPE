@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using System.Globalization;
 using SimPe.Plugin.Gmdc;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin.Gmdc.Exporter
 {
@@ -141,10 +142,12 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			{
 				vertexcount++;					
 				if (i!=0) writer.WriteLine(",");
+				Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
+				v = Component.Transform(v);
 				writer.Write(
-					Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
-					Link.GetValue(nr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
-					Link.GetValue(nr, i).Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture) + "; "
+					v.X.ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
+					v.Y.ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
+					v.Z.ToString("N6", AbstractGmdcExporter.DefaultCulture) + "; "
 					);
 			}
 			writer.WriteLine(";");
@@ -180,10 +183,12 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				{
 					vertexcount++;					
 					if (i!=0) writer.WriteLine(",");
+					Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
+					v = Component.Transform(v);
 					writer.Write(
-						Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
-						Link.GetValue(nr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
-						Link.GetValue(nr, i).Data[2].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"
+						v.X.ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
+						v.Y.ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
+						v.Z.ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"
 					);
 					
 				}
@@ -231,8 +236,8 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
 					writer.WriteLine(
-						Link.GetValue(nr, i).Data[0].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
-						Link.GetValue(nr, i).Data[1].ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"
+						(Link.GetValue(nr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"+
+						(Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + ";"
 						);
 				}
 				writer.WriteLine(";");

@@ -254,6 +254,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "PropertyObjectBuilderExt.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Registry.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

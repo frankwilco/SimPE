@@ -103,7 +103,7 @@ namespace SimPe.Plugin.Gmdc
 		public GmdcGroupImporterAction()
 		{		
 			action = GmdcImporterAction.Add;
-			scale = (float)(1.0/AbstractGmdcExporter.SCALE);
+			scale = (float)(1.0);
 		}
 	}
 

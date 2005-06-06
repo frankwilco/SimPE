@@ -22,6 +22,7 @@ using System.IO;
 using System.Globalization;
 using SimPe.Plugin.Gmdc;
 using System.Collections;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin.Gmdc.Exporter
 {
@@ -115,20 +116,25 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			int vertexcount = 0;
 			int nr = Link.GetElementNr(VertexElement);
 			int nnr = -1;
-			if (this.NormalElement!=null) nnr = Link.GetElementNr(UVCoordinateElement);
+			if (this.UVCoordinateElement!=null) nnr = Link.GetElementNr(UVCoordinateElement);
 			writer.WriteLine(Link.ReferencedSize.ToString());
+
 			for (int i = 0; i < Link.ReferencedSize; i++)
-			{				
+			{	
+				//Make sure we transform to the desired Coordinate-System
+				Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
+				v = Component.Transform(v);
+
 				writer.Write("0 " + 
-					(AbstractGmdcExporter.SCALE*Link.GetValue(nr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-					(AbstractGmdcExporter.SCALE*Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-					(AbstractGmdcExporter.SCALE*Link.GetValue(nr, i).Data[2]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " ");
+					v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
+					v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
+					v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " ");
 
 				if (nnr!=-1) 
 				{
 					writer.Write(
-						(AbstractGmdcExporter.SCALE*Link.GetValue(nnr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						(AbstractGmdcExporter.SCALE*Link.GetValue(nnr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture )+ " ");
+						(Link.GetValue(nnr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
+						(Link.GetValue(nnr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture )+ " ");
 				} 
 				else 
 				{
@@ -166,10 +172,12 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				writer.WriteLine(Link.ReferencedSize.ToString());
 				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
+					Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
+					v = Component.Transform(v);
 					writer.WriteLine( 
-						(AbstractGmdcExporter.SCALE*Link.GetValue(nr, i).Data[0]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						(AbstractGmdcExporter.SCALE*Link.GetValue(nr, i).Data[1]).ToString("N6", AbstractGmdcExporter.DefaultCulture) + " "+
-						(AbstractGmdcExporter.SCALE*Link.GetValue(nr, i).Data[2]).ToString("N6", AbstractGmdcExporter.DefaultCulture));
+						v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
+						v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
+						v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
 				}				
 			} 
 			else 
@@ -205,43 +213,56 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		protected override void FinishFile()
 		{		
 			writer.WriteLine("Materials: 0");
-			Hashtable relationmap = LoadJointRelationMap();
+			Hashtable relationmap = Gmdc.LoadJointRelationMap();
 			
 			//Export Bones
 			writer.WriteLine("Bones: "+Gmdc.Joints.Count.ToString());
 			for (int i=0; i<Gmdc.Joints.Length; i++)
 			{
-				if (i>=Gmdc.Model.Quaternions.Length || i>=Gmdc.Model.Transformations.Length) break;
+				if (i>=Gmdc.Model.Transformations.Length) break;
 	
-				writer.WriteLine("\"Joint"+i.ToString()+"\"");
+				writer.WriteLine("\""+Gmdc.Joints[i].Name+"\"");
 
 				if (relationmap.ContainsKey(i)) 
 				{
 					int parent = (int)relationmap[i];
-					writer.WriteLine("\"Joint"+parent.ToString()+"\"");
+					if (parent!=-1) writer.WriteLine("\""+Gmdc.Joints[parent].Name+"\"");
+					else writer.WriteLine("\"\"");
 				} else writer.WriteLine("\"\"");
 
-				SimPe.Geometry.Vector3f euler = Gmdc.Model.Quaternions[i].GetEulerAngles();
+				SimPe.Geometry.Vector3f euler = Gmdc.Model.Transformations[i].Rotation.GetEulerAngles();
+				
+				/*if (Gmdc.Joints[i].AssignedTransformNode!=null) 
+				{			
+					Vector3f t = Component.Transform(Gmdc.Joints[i].AssignedTransformNode.Translation);
+					Vector3f r = Component.Transform(euler);	
+					writer.WriteLine("8 " + 
+						t.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+						t.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+						t.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+						r.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+						r.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+						t.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
+				} else*/ writer.WriteLine("8 0 0 0 0 0 0");
 
-				writer.WriteLine("8 0 0 0 0 0 0");
-				/*writer.WriteLine("0 " + 
-					Gmdc.Model.Transformations[i].X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					Gmdc.Model.Transformations[i].Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					Gmdc.Model.Transformations[i].Z.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					euler.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					euler.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					euler.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));*/
+				
+				
 
+				Vector3f v = Gmdc.Model.Transformations[i].Translation;
+				v = Component.Transform(v);
 				writer.WriteLine("1");
 				writer.WriteLine("1 " + 
-					(AbstractGmdcExporter.SCALE*Gmdc.Model.Transformations[i].X).ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					(AbstractGmdcExporter.SCALE*Gmdc.Model.Transformations[i].Y).ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					(AbstractGmdcExporter.SCALE*Gmdc.Model.Transformations[i].Z).ToString("N12", AbstractGmdcExporter.DefaultCulture));				
+					v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+					v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+					v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));				
+
+				v = euler;
+				v = Component.Transform(v);
 				writer.WriteLine("1");
 				writer.WriteLine("1 " + 
-					euler.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					euler.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					euler.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
+					v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+					v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+					v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
 			}
 
 			//Write Footer

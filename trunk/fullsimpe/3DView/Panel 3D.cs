@@ -28,65 +28,7 @@ using System.Threading;
 
 namespace Ambertation
 {
-	/// <summary>
-	/// Contains attributes tha determin the location of the Object in the Viewport
-	/// </summary>
-	public class ViewportSetting 
-	{
-		float angx, angy, posx, posy, posz, scale;
-
-		internal ViewportSetting()
-		{
-			Reset();			
-		}
-
-
-		/// <summary>
-		/// Reset the Parameters
-		/// </summary>
-		public void Reset()
-		{
-			angx = angy = 0;
-			posx = posy = posz = 0;
-			scale = 1;
-		}
-
-		public float AngelX
-		{
-			get { return angx; }
-			set { angx = value; }
-		}
-
-		public float AngelY
-		{
-			get { return angy; }
-			set { angy = value; }
-		}
-
-		public float X
-		{
-			get { return posx; }
-			set { posx = value; }
-		}
-
-		public float Y
-		{
-			get { return posy; }
-			set { posy = value; }
-		}
-
-		public float Z
-		{
-			get { return posz; }
-			set { posz = value; }
-		}
-
-		public float Scale
-		{
-			get { return scale; }
-			set { scale = value; }
-		}
-	}
+	
 	/// <summary>
 	/// Zusammenfassung für Panel3D.
 	/// </summary>
@@ -307,7 +249,7 @@ namespace Ambertation
 				presentParams.Windowed = true;
 				presentParams.SwapEffect = SwapEffect.Discard;
 				presentParams.EnableAutoDepthStencil = true;
-				presentParams.AutoDepthStencilFormat = DepthFormat.D16;
+				presentParams.AutoDepthStencilFormat = DepthFormat.D16;				
 				
 
 				// Test some formats				
@@ -337,9 +279,9 @@ namespace Ambertation
 				device.RenderState.ZBufferEnable = true; //Have Depth
 				device.RenderState.Lighting = true;    // Make sure lighting is enabled
 				device.RenderState.AlphaBlendEnable = true;
-				device.RenderState.AlphaBlendOperation = BlendOperation.RevSubtract;
+				device.RenderState.AlphaBlendOperation = BlendOperation.Add;
 				device.RenderState.AlphaSourceBlend = Blend.SourceAlpha;
-				device.RenderState.AlphaDestinationBlend = Blend.InvSourceAlpha;
+				device.RenderState.AlphaDestinationBlend = Blend.One;
 				device.RenderState.LocalViewer = false;
 				device.RenderState.Ambient = Color.White;
 
@@ -370,8 +312,9 @@ namespace Ambertation
 			// Turn on ambient lighting 
 			dev.RenderState.Ambient = System.Drawing.Color.White;				
 			mesh = Mesh.FromStream(this.xfile, MeshFlags.SystemMemory, device, out materials);
-				
+			
 
+			ResetDefaultViewport();
 			SetupLights();
 
 			if (meshTextures == null)
@@ -445,6 +388,16 @@ namespace Ambertation
         
 					// Draw the mesh subset
 					mesh.DrawSubset(i);
+
+					if (bbox!=null) 
+					{
+						Material myMaterial = new Material();
+						myMaterial.Diffuse = myMaterial.Ambient = Color.Red;
+						myMaterial.Diffuse = Color.FromArgb(0x20, 0x20, 0x40, 0x30);
+						device.Material = myMaterial;
+						device.SetTexture(0, null);
+						bbox.DrawSubset(0);
+					}
 				}
 
 				//End the scene
@@ -491,8 +444,8 @@ namespace Ambertation
 			device.Lights[0].Diffuse = System.Drawing.Color.DarkGray;
 			device.Lights[0].Specular = System.Drawing.Color.White;
 			device.Lights[0].Range = 30000;
-			device.Lights[0].Position = new Vector3( 10.0f, 25.0f, -5.0f );
-			device.Lights[0].Direction = new Vector3( 0.0f, -3.0f, 5.0f );
+			device.Lights[0].Position = vp.CameraPosition;;
+			device.Lights[0].Direction = vp.CameraTarget - device.Lights[0].Position ;
 			device.Lights[0].Enabled = true; // Turn it on
 
 			device.Lights[1].Type = device.Lights[0].Type;
@@ -514,6 +467,62 @@ namespace Ambertation
 		#endregion
 
 		#region camera Control
+		Mesh bbox;
+		public void ResetDefaultViewport() 
+		{
+			if (vp==null) vp = new ViewportSetting();
+			vp.Reset();
+
+			int[] rank = {mesh.NumberVertices};
+		
+			Vector3[] vertices = (Vector3[])mesh.LockVertexBuffer(typeof(Vector3), LockFlags.None, rank);
+			
+			Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+			Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+			
+			foreach (Vector3 v in vertices) 
+			{
+				if (v.X<min.X) min.X = v.X;
+				if (v.Y<min.Y) min.Y = v.Y;
+				if (v.Z<min.Z) min.Z = v.Z;
+
+				if (v.X>max.X) max.X = v.X;
+				if (v.Y>max.Y) max.Y = v.Y;
+				if (v.Z>max.Z) max.Z = v.Z;
+			}
+			
+
+
+			Vector3 center = new Vector3((float)((max.X+min.X)/2.0), (float)((max.Y+min.Y)/2.0), (float)((max.Z+min.Z)/2.0));
+			vp.Aspect = this.Size.Width / this.Size.Height;			
+			
+			Vector3 boundingSphereRadius = new Vector3(min.X-center.X, min.Y-center.Y, min.Z-center.Z);
+			double radius = boundingSphereRadius.Length() / vp.Aspect;
+			double dist = radius / Math.Sin(vp.FoV);
+
+			//foreach (Vector3 v in vertices) v.Subtract(center);
+			vp.X = center.X;
+			vp.Y = center.Y;
+			vp.Z = center.Z;
+			vp.CameraTarget = new Vector3(0,0,0);
+			vp.CameraPosition = new Vector3(
+				center.X,
+				center.Y,
+				(float)dist + center.Z);
+			vp.NearPlane = (float)(dist-radius);
+			vp.FarPlane = (float)(dist+radius);
+			
+			
+			//bbox = Mesh.Box(device, max.X-min.X, max.Y-min.Y, max.Z-min.Z);
+#if DEBUG
+			bbox = Mesh.Sphere(device, 0.05f, 12, 4);			
+#endif
+
+			//Unlock the buffer
+			mesh.UnlockVertexBuffer();
+
+			SetupMatrices();
+		}
 		/// <summary>
 		/// Used to Transfor the View of the Scene
 		/// </summary>
@@ -521,12 +530,28 @@ namespace Ambertation
 		{
 			if (vp==null) vp = new ViewportSetting();
 
-			device.Transform.View =  Matrix.Multiply(Matrix.Scaling(vp.Scale, vp.Scale, vp.Scale),
-				Matrix.Multiply(Matrix.Translation(vp.X, vp.Y, vp.Z),
-				Matrix.Multiply(Matrix.RotationX( vp.AngelX ), 
-				Matrix.Multiply(Matrix.RotationY( vp.AngelY ), Matrix.LookAtLH(new Vector3( 0.0f, 3.0f,-5.0f ), 
-				new Vector3( 0.0f, 0.0f, 0.0f ), 
-				new Vector3( 0.0f, 1.0f, 0.0f ))))));
+
+			device.Transform.World =  Matrix.Multiply(
+				Matrix.RotationX( vp.AngelX ),
+				Matrix.Multiply(
+					Matrix.RotationY( vp.AngelY ),
+					Matrix.Multiply(
+						Matrix.Scaling(vp.Scale, vp.Scale, vp.Scale), 
+						Matrix.Translation(vp.X, vp.Y, vp.Z)
+					)
+				)
+			);
+
+			device.Transform.View = Matrix.Multiply(
+				Matrix.RotationX(-0.8f),
+				Matrix.Multiply(
+					Matrix.RotationY(0),
+					Matrix.Multiply(
+						Matrix.RotationZ(0),
+						Matrix.LookAtLH(vp.CameraPosition, vp.CameraTarget, vp.CameraUpVector)
+					)
+				)
+			);
 
 			// For the projection matrix, we set up a perspective transform (which
 			// transforms geometry from 3D view space to 2D viewport space, with
@@ -534,7 +559,7 @@ namespace Ambertation
 			// a perpsective transform, we need the field of view (1/4 pi is common),
 			// the aspect ratio, and the near and far clipping planes (which define at
 			// what distances geometry should be no longer be rendered).
-			device.Transform.Projection = Matrix.PerspectiveFovLH( (float)(Math.PI / 4), 1.0f, 1.0f, 100.0f );
+			device.Transform.Projection = Matrix.PerspectiveFovLH( vp.FoV, vp.Aspect, vp.NearPlane, vp.FarPlane );
 		}
 
 		System.Windows.Forms.MouseEventArgs last;
@@ -567,7 +592,7 @@ namespace Ambertation
 
 				if (e.Button == MouseButtons.Left) 
 				{
-					vp.X -= (dx / 100.0f);
+					vp.X += (dx / 100.0f);
 					vp.Y += (dy / 100.0f);					
 				}
 

@@ -23,6 +23,117 @@ using System.Collections;
 namespace SimPe.Plugin.Gmdc
 {
 	/// <summary>
+	/// Describes the Order how Vectors should be Exported/read from a 3d-File
+	/// </summary>
+	public enum ElementSorting: byte 
+	{
+		/// <summary>
+		/// Normal X, Y, Z Order
+		/// </summary>
+		XYZ = 0,
+		/// <summary>
+		/// Flipped Depth with width (X, Z, Y)
+		/// </summary>
+		XZY = 1
+	}
+
+	/// <summary>
+	/// Helper Class that is used to determin the Element Order
+	/// </summary>
+	public class ElementOrder 
+	{
+		static byte[,] components = null;
+		ElementSorting s;
+		public ElementSorting Sorting 
+		{
+			get { return s; }
+			set { 
+				s = value; 
+				if (s==ElementSorting.XZY) 
+				{
+					//rotate 90° around X-Axis
+					m = new SimPe.Geometry.Matrixd(3, 3);
+					m[0,0] = 1;			m[0,1] = 0;			m[0,2] = 0;
+					m[1,0] = 0;			m[1,1] = 0;			m[1,2] = -1;
+					m[2,0] = 0;			m[2,1] = 1;			m[2,2] = 0;
+				}
+				else m=SimPe.Geometry.Matrixd.GetIdentity(3, 3);				
+			}
+		}
+		SimPe.Geometry.Matrixd m;
+
+		/// <summary>
+		/// Create a new Class with the given Sorting
+		/// </summary>
+		/// <param name="sorting">the sorting that should be used</param>
+		public ElementOrder(ElementSorting sorting) 
+		{
+			Sorting = sorting;
+
+			if (components == null) 
+			{
+				components = new byte[2,3];
+
+				//XYZ-Order
+				components[0,0] = 0;
+				components[0,1] = 1;
+				components[0,2] = 2;
+
+				//XZY-Order
+				components[1,0] = 0;
+				components[1,1] = 2;
+				components[1,2] = 1;
+			}
+
+			
+		}
+
+		/// <summary>
+		/// Index of the X-Components
+		/// </summary>
+		public int X
+		{
+			get { return components[(int)s, 0]; }
+		}
+
+		/// <summary>
+		/// Index of the Y-Components
+		/// </summary>
+		public int Y
+		{
+			get { return components[(int)s, 1]; }
+		}
+
+		/// <summary>
+		/// Index of the Z-Components
+		/// </summary>
+		public int Z
+		{
+			get { return components[(int)s, 2]; }
+		}
+
+		/// <summary>
+		/// Transform the passed vetor to fit into the specified Coordinate System
+		/// </summary>
+		/// <param name="v"></param>
+		/// <returns></returns>
+		public SimPe.Geometry.Vector3f Transform(SimPe.Geometry.Vector3f v) 
+		{
+			return m*v;
+		}
+
+		/// <summary>
+		/// the inveres to <see cref="Transform()"/>
+		/// </summary>
+		/// <param name="v"></param>
+		/// <returns></returns>
+		public SimPe.Geometry.Vector3f InverseTransform(SimPe.Geometry.Vector3f v) 
+		{
+			return m.GetTranspose()*v;
+		}
+	}
+
+	/// <summary>
 	/// Sets the Typf of the Items stored in <see cref="GmdcElement.Values"/>.
 	/// </summary>
 	public enum BlockFormat : uint

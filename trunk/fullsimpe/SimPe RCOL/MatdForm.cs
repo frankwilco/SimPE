@@ -43,9 +43,7 @@ namespace SimPe.Plugin
 			//
 			InitializeComponent();
 
-			//
-			// TODO: Fügen Sie den Konstruktorcode nach dem Aufruf von InitializeComponent hinzu
-			//
+			llscan.Visible = Helper.DebugMode;
 		}
 
 		/// <summary>
@@ -76,6 +74,7 @@ namespace SimPe.Plugin
 			this.tbdsc = new System.Windows.Forms.TextBox();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.llscan = new System.Windows.Forms.LinkLabel();
 			this.lbprop = new System.Windows.Forms.ListBox();
 			this.gbprop = new System.Windows.Forms.GroupBox();
 			this.lldel = new System.Windows.Forms.LinkLabel();
@@ -94,12 +93,15 @@ namespace SimPe.Plugin
 			this.groupBox10 = new System.Windows.Forms.GroupBox();
 			this.tb_ver = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
+			this.tGrid = new System.Windows.Forms.TabPage();
+			this.pg = new System.Windows.Forms.PropertyGrid();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.gbprop.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.groupBox10.SuspendLayout();
+			this.tGrid.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label5
@@ -154,15 +156,18 @@ namespace SimPe.Plugin
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Controls.Add(this.tGrid);
 			this.tabControl1.Location = new System.Drawing.Point(16, 32);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(752, 264);
 			this.tabControl1.TabIndex = 21;
+			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TxmtChangeTab);
 			// 
 			// tabPage1
 			// 
 			this.tabPage1.BackColor = System.Drawing.Color.White;
+			this.tabPage1.Controls.Add(this.llscan);
 			this.tabPage1.Controls.Add(this.lbprop);
 			this.tabPage1.Controls.Add(this.gbprop);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -170,6 +175,16 @@ namespace SimPe.Plugin
 			this.tabPage1.Size = new System.Drawing.Size(744, 238);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Properties";
+			// 
+			// llscan
+			// 
+			this.llscan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.llscan.Location = new System.Drawing.Point(432, 208);
+			this.llscan.Name = "llscan";
+			this.llscan.TabIndex = 5;
+			this.llscan.TabStop = true;
+			this.llscan.Text = "scan";
+			this.llscan.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llscan_LinkClicked);
 			// 
 			// lbprop
 			// 
@@ -392,6 +407,34 @@ namespace SimPe.Plugin
 			this.label28.TabIndex = 23;
 			this.label28.Text = "Version:";
 			// 
+			// tGrid
+			// 
+			this.tGrid.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.tGrid.Controls.Add(this.pg);
+			this.tGrid.Location = new System.Drawing.Point(4, 22);
+			this.tGrid.Name = "tGrid";
+			this.tGrid.Size = new System.Drawing.Size(744, 238);
+			this.tGrid.TabIndex = 3;
+			this.tGrid.Text = "Categorized Properties";
+			// 
+			// pg
+			// 
+			this.pg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.pg.CommandsBackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.pg.CommandsVisibleIfAvailable = true;
+			this.pg.LargeButtons = false;
+			this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
+			this.pg.Location = new System.Drawing.Point(8, 8);
+			this.pg.Name = "pg";
+			this.pg.Size = new System.Drawing.Size(728, 224);
+			this.pg.TabIndex = 0;
+			this.pg.Text = "MaterialDefinition Properties";
+			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
+			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
+			this.pg.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.pg_PropertyValueChanged);
+			// 
 			// MatdForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -406,6 +449,7 @@ namespace SimPe.Plugin
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
 			this.groupBox10.ResumeLayout(false);
+			this.tGrid.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -434,6 +478,9 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.GroupBox groupBox10;
 		internal System.Windows.Forms.TextBox tb_ver;
 		private System.Windows.Forms.Label label28;
+		private System.Windows.Forms.LinkLabel llscan;
+		private System.Windows.Forms.PropertyGrid pg;
+		internal System.Windows.Forms.TabPage tGrid;
 		internal System.Windows.Forms.TabPage tabPage3;
 
 
@@ -519,72 +566,6 @@ namespace SimPe.Plugin
 			
 		}
 
-		/*private void Commit(object sender, System.EventArgs e)
-		{
-			try 
-			{
-				Matd wrp = (Matd)wrapper;
-
-				SimPe.Plugin.MaterialDefinitionProperty[] items = new MaterialDefinitionProperty[lbprop.Items.Count];
-				for (int i=0; i<items.Length; i++)
-				{
-					items[i] = (SimPe.Plugin.MaterialDefinitionProperty)lbprop.Items[i];
-				}
-
-				string[] lists = new string[lbfl.Items.Count];
-				for (int i=0; i<lists.Length; i++)
-				{
-					lists[i] = (string)lbfl.Items[i];
-				}
-
-				if (wrp.Blocks.Length<1) 
-				{
-					wrp.Blocks = new MaterialDefinition[1];
-					wrp.Blocks[0] = new MaterialDefinition(null, wrp);
-				}
-
-				((MaterialDefinition)wrp.Blocks[0]).Properties = items;				
-				((MaterialDefinition)wrp.Blocks[0]).Listing = lists;
-
-				wrp.SynchronizeUserData();
-
-				MessageBox.Show(Localization.Manager.GetString("commited"));
-			}
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage(Localization.Manager.GetString("errwritingfile"), ex);
-			}
-		}*/
-
-		/*private void SelectFile(object sender, System.EventArgs e)
-		{
-			if (cbitem.Tag!=null) return;
-			this.lbprop.Items.Clear();	
-			lbfl.Items.Clear();
-			if (cbitem.SelectedIndex<0) return;
-			try 
-			{
-				cbitem.Tag = true;
-				MaterialDefinition md = (MaterialDefinition)cbitem.Items[cbitem.SelectedIndex];
-				foreach (MaterialDefinitionProperty mdp in md.Properties) lbprop.Items.Add(mdp);
-				
-				tbflname.Text = md.NameResource.FileName;
-				tbdsc.Text = md.FileDescription;
-				tbtype.Text = md.MatterialType;
-
-				foreach (string fl in md.Listing) lbfl.Items.Add(fl);
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
-			} 
-			finally 
-			{
-				cbitem.Tag = null;
-			}
-			
-		}*/
-
 		private void FileNameChanged(object sender, System.EventArgs e)
 		{
 			if (this.tabPage3.Tag==null) return;
@@ -610,43 +591,6 @@ namespace SimPe.Plugin
 				tbname.Tag = null;
 			}
 		}
-
-		/*protected MaterialDefinition SelectedMaterialDefinition()
-		{
-			//add a MipMapBlock if it doesnt already exist
-			MaterialDefinition md = null;
-			if (cbitem.SelectedIndex<0) 
-			{
-				Matd wrp = (Matd)wrapper;
-				md = new MaterialDefinition(wrp.Provider, wrp);
-				md.NameResource.FileName = "Unknown";
-
-				IRcolBlock[] irc = new IRcolBlock[wrp.Blocks.Length+1];
-				wrp.Blocks.CopyTo(irc, 0);
-				irc[irc.Length-1] = md;
-				wrp.Blocks = irc;
-				cbitem.Items.Add(md);
-				cbitem.SelectedIndex = cbitem.Items.Count-1;
-			} 
-			else 
-			{
-				md = (MaterialDefinition)cbitem.Items[cbitem.SelectedIndex];
-			}
-
-			return md;
-		}
-
-		protected void UpdateMimMaps()
-		{
-			MaterialDefinition md = SelectedMaterialDefinition();
-			
-			MaterialDefinitionProperty[] mm = new MaterialDefinitionProperty[lbprop.Items.Count];
-			for (int i=0; i<mm.Length; i++)
-			{
-				mm[i] = (MaterialDefinitionProperty)lbprop.Items[i];
-			}
-			md.Properties = mm;
-		}*/
 
 		private void SelectListFile(object sender, System.EventArgs e)
 		{
@@ -687,19 +631,6 @@ namespace SimPe.Plugin
 				tblistfile.Tag = null;
 			}
 		}
-		
-		/*private void BuildFilename(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			string fl = Hashes.StripHashFromName(this.tbflname.Text);
-			this.tbflname.Text = Hashes.AssembleHashedFileName(wrapper.Package.FileGroupHash, fl);
-		}
-
-		private void FixTGI(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			string fl = Hashes.StripHashFromName(this.tbflname.Text);
-			wrapper.FileDescriptor.Instance = Hashes.InstanceHash(fl);
-			wrapper.FileDescriptor.SubType = Hashes.SubTypeHash(fl);
-		}*/
 
 		private void Delete(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
@@ -723,6 +654,112 @@ namespace SimPe.Plugin
 			md.Listing = (string[])Helper.Add(md.Listing, tblistfile.Text);
 
 			md.Changed = true;
+		}
+
+		private void llscan_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+#if DEBUG
+			FileTable.FileIndex.Load();
+
+			System.IO.StreamWriter sw = System.IO.File.CreateText(@"G:\txmt.txt");
+			Hashtable ht = new Hashtable();
+			FileTable.FileIndex.AddIndexFromFolder(@":G:\EA Games\Die Sims 2\");
+			try 
+			{
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.TXMT, true);
+				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
+				{
+					Rcol txmt = new GenericRcol(null, false);
+					txmt.ProcessData(item);
+					MaterialDefinition md = (MaterialDefinition)txmt.Blocks[0];
+					foreach (MaterialDefinitionProperty mdp in md.Properties) 
+					{
+						if (!ht.ContainsKey(mdp.Name)) ht.Add(mdp.Name, "| " + mdp.Value + " | ");
+						else 
+						{
+							string s = (string)ht[mdp.Name];
+							if (s.IndexOf("| "+mdp.Value+" |")==-1) 
+							{
+								s += mdp.Value + " | ";
+								ht[mdp.Name] = s;
+							}
+						}
+					}
+				}
+
+				
+				
+
+				foreach (string k in ht.Keys) 
+				{
+					//if (!MaterialDefinition.PropertyParser.Properties.ContainsKey(k)) 
+					{
+						string v = (string)ht[k];
+						string[] parts = v.Split("|".ToCharArray(), 3);
+						sw.Write(k+"; ");
+						sw.WriteLine((string)ht[k]);
+						/*sw.WriteLine("    <property type=\"string\">");
+						sw.WriteLine("        <name>"+k+"</name>");
+						sw.WriteLine("        <help></help>");
+						sw.WriteLine("        <default>"+parts[1].Trim()+"</default>");
+						sw.WriteLine("    </property>");
+						sw.WriteLine();*/
+					}
+			}
+			} 
+			finally 
+			{
+				sw.Close();
+			}
+#endif
+		}
+
+		internal void SetupGrid(MaterialDefinition md)
+		{
+			pg.SelectedObject = null;
+			/*if (this.tGrid.Tag==null) return;
+			MaterialDefinition md = (MaterialDefinition)this.tGrid.Tag;*/
+
+			//Build the table for the current MMAT
+			Hashtable ht = new Hashtable();
+
+			foreach (MaterialDefinitionProperty mdp in md.Properties) 
+			{
+				if (MaterialDefinition.PropertyParser.Properties.ContainsKey(mdp.Name)) 
+				{
+					Ambertation.PropertyDescription pd = ((Ambertation.PropertyDescription)MaterialDefinition.PropertyParser.Properties[mdp.Name]).Clone();
+					pd.Property = mdp.Value;
+					ht[mdp.Name] = pd;
+				} 
+				else 
+				{
+					ht[mdp.Name] = mdp.Value;
+				}
+			}
+
+			Ambertation.PropertyObjectBuilderExt pob = new Ambertation.PropertyObjectBuilderExt(ht);
+			pg.SelectedObject = pob.Instance;
+		}
+
+		private void pg_PropertyValueChanged(object s, System.Windows.Forms.PropertyValueChangedEventArgs e)
+		{
+			if (this.tabPage3.Tag==null) return;
+			MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+			md.GetProperty(e.ChangedItem.Label).Value = e.ChangedItem.Value.ToString();
+		}
+
+		internal void TxmtChangeTab(object sender, System.EventArgs e)
+		{
+			if (this.tabPage3.Tag==null) return;
+			MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+			if (((TabControl)tGrid.Parent).SelectedTab == tGrid) 
+			{
+				md.Refresh();
+			} 
+			else if (((TabControl)tGrid.Parent).SelectedTab == this.tabPage1) 
+			{
+				md.Refresh();
+			}
 		}
 	}
 }

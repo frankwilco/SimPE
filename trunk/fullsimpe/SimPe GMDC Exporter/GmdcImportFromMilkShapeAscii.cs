@@ -22,6 +22,7 @@ using System.IO;
 using System.Globalization;
 using System.Collections;
 using SimPe.Plugin.Gmdc;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin.Gmdc.Importer
 {
@@ -151,30 +152,52 @@ namespace SimPe.Plugin.Gmdc.Importer
 				{
 					//Now this is our queue :)
 					if (linetoks[0].ToLower() == "meshes:") 
-					{
+					{		
+						int ct = 0;
 						try 
 						{
-							int ct = Convert.ToInt32(linetoks[1]);
-							ParseMeshSection(grps, ct);
+							ct = Convert.ToInt32(linetoks[1]);							
 						} 
 						catch 
 						{
-							lineerror = "Unable to Convert to Number";
+							lineerror = "Unable to Convert to Number (LineParser:meshes)";
+							return ;
+						}
+
+						try 
+						{
+							ParseMeshSection(grps, ct);
+						}
+						catch(Exception ex) 
+						{
+							lineerror = ex.Message;
 						}
 					}
 
 					//Now this is our queue :)
 					if (linetoks[0].ToLower() == "bones:") 
 					{
+						int ct = 0;
 						try 
 						{
-							int ct = Convert.ToInt32(linetoks[1]);
-							ParseBonesSection(grps, ct);
+							ct = Convert.ToInt32(linetoks[1]);
+							
 						} 
 						catch 
 						{
-							lineerror = "Unable to Convert to Number";
+							lineerror = "Unable to Convert to Number (LineParser:bones)";
+							return;
 						}
+
+						try 
+						{
+							ParseBonesSection(grps, ct);
+						} 
+						catch(Exception ex) 
+						{
+							lineerror = ex.Message;
+						}
+
 					}
 				}
 
@@ -202,7 +225,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			} 
 			catch 
 			{
-				lineerror = "Unable to Convert to Number";
+				lineerror = "Unable to Convert to Number (ReadCount)";
 			}
 			
 			return 0;
@@ -275,9 +298,13 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 			try 
 			{
-				float x = Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture);
-				float y = Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture);
-				float z = Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture);
+				Vector3f coord = new Vector3f(
+						Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture),
+						Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture),
+						Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture)
+					);
+				coord = Component.InverseTransform(coord);
+
 				float u = Convert.ToSingle(linetoks[4], AbstractGmdcImporter.DefaultCulture);
 				float v = Convert.ToSingle(linetoks[5], AbstractGmdcImporter.DefaultCulture);
 				int b = Convert.ToInt32(linetoks[6]);
@@ -304,14 +331,14 @@ namespace SimPe.Plugin.Gmdc.Importer
 				b = b&0xFF;
 				b = (int)((uint)b|0xFFFFFF00);
 				
-				g.Elements[0].Values.Add(new Gmdc.GmdcElementValueThreeFloat(x, y, z));
+				g.Elements[0].Values.Add(new Gmdc.GmdcElementValueThreeFloat((float)coord.X, (float)coord.Y, (float)coord.Z));
 				g.Elements[2].Values.Add(new Gmdc.GmdcElementValueTwoFloat(u, v));	
 				g.Elements[3].Values.Add(new Gmdc.GmdcElementValueOneInt(b));
 				g.Elements[4].Values.Add(new Gmdc.GmdcElementValueTwoFloat((float)1.0, 0));			
 			} 
 			catch 
 			{
-				lineerror = "Unable to Convert to Number";
+				lineerror = "Unable to Convert to Number (ReadVertexData)";
 			}
 		}
 
@@ -326,15 +353,18 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 			try 
 			{
-				float x = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
-				float y = Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture);
-				float z = Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture);
+				Vector3f coord = new Vector3f(
+					Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture),
+					Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture),
+					Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture)
+					);
+				coord = Component.InverseTransform(coord);
 				
-				g.Elements[1].Values.Add(new Gmdc.GmdcElementValueThreeFloat(x, y, z));
+				g.Elements[1].Values.Add(new Gmdc.GmdcElementValueThreeFloat((float)coord.X, (float)coord.Y, (float)coord.Z));
 			} 
 			catch 
 			{
-				lineerror = "Unable to Convert to Number";
+				lineerror = "Unable to Convert to Number (ReadVertexNormalData)";
 			}
 		}
 
@@ -373,7 +403,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			} 
 			catch 
 			{
-				lineerror = "Unable to Convert to Number";
+				lineerror = "Unable to Convert to Number (ReadFaceData)";
 			}
 		}
 		#endregion
@@ -433,23 +463,28 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 			try 
 			{
-				float x = Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture);
-				float y = Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture);
-				float z = Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture);
-				float rx = Convert.ToSingle(linetoks[4], AbstractGmdcImporter.DefaultCulture);
-				float ry = Convert.ToSingle(linetoks[5], AbstractGmdcImporter.DefaultCulture);
-				float rz = Convert.ToSingle(linetoks[6], AbstractGmdcImporter.DefaultCulture);	
+				Vector3f trans = new Vector3f(
+					Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture),
+					Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture),
+					Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture)
+					);
+				trans = Component.InverseTransform(trans);
 				
+				Vector3f rot = new Vector3f(
+					Convert.ToSingle(linetoks[4], AbstractGmdcImporter.DefaultCulture),
+					Convert.ToSingle(linetoks[5], AbstractGmdcImporter.DefaultCulture),
+					Convert.ToSingle(linetoks[6], AbstractGmdcImporter.DefaultCulture)
+					);
+				rot = Component.InverseTransform(rot);
+				
+							
 				//Quaternion from Euler Angles
-				b.Quaternion = new SimPe.Geometry.Quaternion(new SimPe.Geometry.Vector3f(rx, ry, rz));				
-
-				b.Translation.X = x;
-				b.Translation.Y = y;
-				b.Translation.Z = z;
+				b.Quaternion = new SimPe.Geometry.Quaternion(rot);				
+				b.Translation = trans;
 			} 
 			catch 
 			{
-				lineerror = "Unable to Convert to Number";
+				lineerror = "Unable to Convert to Number(ReadJointData)";
 			}
 		}
 
@@ -465,20 +500,22 @@ namespace SimPe.Plugin.Gmdc.Importer
 			try 
 			{
 				float t = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
-				float x = Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture);
-				float y = Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture);
-				float z = Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture);	
+				Vector3f trans = new Vector3f(
+					Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture),
+					Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture),
+					Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture)
+					);
+				trans = Component.InverseTransform(trans);
+					
 				
 				if (t==1) 
 				{
-					b.Translation.X = x;
-					b.Translation.Y = y;
-					b.Translation.Z = z;
+					b.Translation = trans;
 				}
 			} 
 			catch 
 			{
-				lineerror = "Unable to Convert to Number";
+				lineerror = "Unable to Convert to Number (ReadJointPosPhase)";
 			}
 		}
 
@@ -494,19 +531,22 @@ namespace SimPe.Plugin.Gmdc.Importer
 			try 
 			{
 				float t = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
-				float x = Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture);
-				float y = Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture);
-				float z = Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture);	
+				Vector3f rot = new Vector3f(
+					Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture),
+					Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture),
+					Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture)
+					);
+				rot = Component.InverseTransform(rot);
 				
 				if (t==1) 
 				{
 					//Quaternion from Euler Angles
-					b.Quaternion = new SimPe.Geometry.Quaternion(new SimPe.Geometry.Vector3f(x, y, z));				
+					b.Quaternion = new SimPe.Geometry.Quaternion(rot);				
 				}
 			} 
 			catch 
 			{
-				lineerror = "Unable to Convert to Number";
+				lineerror = "Unable to Convert to Number (ReadJointRotPhase)";
 			}
 		}
 		#endregion

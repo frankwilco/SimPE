@@ -19,148 +19,152 @@
  ***************************************************************************/
 using System;
 using System.Collections;
-using SimPe.Geometry;
 
-namespace SimPe.Plugin.Gmdc
+namespace SimPe.Geometry
 {
-	
 	/// <summary>
-	/// This class contains all Data Needed to import one Bone (Joint)
+	/// One basic Vector Transformation
 	/// </summary>
-	public class ImportedBone
+	public class VectorTransformation 
 	{
 		/// <summary>
-		/// internal Attribute
+		/// What Order should the Transformation be applied
 		/// </summary>
-		GmdcImporterAction action;
-		/// <summary>
-		/// Returns/Sets the action that should be performed
-		/// </summary>
-		public GmdcImporterAction Action 
+		public enum TransformOrder : byte 
 		{
-			get { return action; }
-			set { action = value; }
-		}		
+			RotateTranslate = 0,
+			TranslateRotate = 1
+		};
 
-		int index;
+		#region Attributes
+		TransformOrder o;
 		/// <summary>
-		/// If action is <see cref="GmdcImporterAction.Replace"/> or 
-		/// <see cref="GmdcImporterAction.Update"/> this Member stores the 
-		/// Index of the Target Joint (read/write)
+		/// Returns / Sets the current Order
 		/// </summary>
-		public int TargetIndex 
+		public TransformOrder Order
 		{
-			get { return index; }
-			set { index = value; }
+			get { return o; }
+			set { o = value; }
 		}
-
+		Vector3f trans;
 		/// <summary>
-		/// internal Attribute
-		/// </summary>
-		string name;
-
-		/// <summary>
-		/// The name of the Imported Bone		
-		/// </summary>
-		public string ImportedName 
-		{
-			get { return name; }
-			set { name = value; }
-		}
-
-		GmdcJoint bone;
-		/// <summary>
-		/// The new Bone
-		/// </summary>
-		public GmdcJoint Bone
-		{
-			get { return bone; }
-		}
-
-		Quaternion q;	
-		/// <summary>
-		/// The initial Rotation (as Quaternion)
-		/// </summary>
-		public Quaternion Quaternion
-		{
-			get { return q; }
-			set { q = value; }
-		}
-
-		Vector3f trans;	
-		/// <summary>
-		/// The initial Translation
+		/// The Translation
 		/// </summary>
 		public Vector3f Translation
 		{
 			get { return trans; }
-			set { trans = value; }
+			set {trans = value; }
 		}
 
+		Quaternion quat;
 		/// <summary>
-		/// Returns the color that should be used to display this Group in the "Import Groups" ListView
+		/// The Rotation
 		/// </summary>
-		public System.Drawing.Color MarkColor 
+		public Quaternion Rotation  
 		{
-			get 
-			{
-				if (Action==GmdcImporterAction.Nothing) return System.Drawing.Color.Silver;
-				return System.Drawing.Color.DarkBlue;
-			}
+			get { return quat; }
+			set {quat = value; }
 		}
-
-		/// <summary>
-		/// internal Attribute
-		/// </summary>
-		float scale;
-		/// <summary>
-		/// Returns/Sets the scale Factor that should be applied to this group
-		/// </summary>
-		public float Scale
-		{
-			get { return scale; }
-			set { scale = value; }
-		}
-
+		#endregion
 
 		/// <summary>
 		/// Create a new Instance
 		/// </summary>
-		/// <param name="parent">The gmdc that should act as Parent</param>
-		public ImportedBone(GeometryDataContainer parent)
+		/// <param name="o">The order of the Transform</param>
+		public VectorTransformation(TransformOrder o) 
 		{
-			bone = new GmdcJoint(parent);			
-			name = "";
-			index = -1;
-			action = GmdcImporterAction.Add;
-			q = new Quaternion();
+			this.o = o;
 			trans = new Vector3f();
-			
-			scale = (float)(1.0);
+			quat = new Quaternion();
 		}
+
+		public override string ToString()
+		{
+			return "trans="+trans.ToString()+"    rot="+quat.ToString();
+		}
+
+		/// <summary>
+		/// Unserializes a BinaryStream into the Attributes of this Instance
+		/// </summary>
+		/// <param name="reader">The Stream that contains the FileData</param>
+		public virtual void Unserialize(System.IO.BinaryReader reader)
+		{
+			if (o==TransformOrder.RotateTranslate) 
+			{
+				quat.Unserialize(reader);
+				trans.Unserialize(reader);
+			} 
+			else 
+			{
+				trans.Unserialize(reader);
+				quat.Unserialize(reader);				
+			}
+		}
+
+		/// <summary>
+		/// Serializes a the Attributes stored in this Instance to the BinaryStream
+		/// </summary>
+		/// <param name="writer">The Stream the Data should be stored to</param>
+		/// <remarks>
+		/// Be sure that the Position of the stream is Proper on 
+		/// return (i.e. must point to the first Byte after your actual File)
+		/// </remarks>
+		public virtual void Serialize(System.IO.BinaryWriter writer)
+		{
+			if (o==TransformOrder.RotateTranslate) 
+			{
+				quat.Serialize(writer);
+				trans.Serialize(writer);
+			} 
+			else 
+			{
+				trans.Serialize(writer);
+				quat.Serialize(writer);
+			}
+		}
+
+		/// <summary>
+		/// Applies the Transformation to the passed Vertex
+		/// </summary>
+		/// <param name="v">The Vertex you want to Transform</param>
+		/// <returns>Transformed Vertex</returns>
+		public Vector3f Transform(Vector3f v) 
+		{
+			if (o==TransformOrder.RotateTranslate) 
+			{
+				v = quat.Rotate(v);
+				return v + trans;
+			} 
+			else 
+			{
+				v += trans;
+				return quat.Rotate(v);
+			}
+		}	
+
 	}
 
-	#region Container
+	#region container
 	/// <summary>
-	/// Typesave ArrayList for <see cref="ImportedGroup"/> Objects
+	/// Typesave ArrayList for VectorTransformation Objects
 	/// </summary>
-	public class ImportedBones : ArrayList 
+	public class VectorTransformations : ArrayList 
 	{
 		/// <summary>
 		/// Integer Indexer
 		/// </summary>
-		public new ImportedBone this[int index]
+		public new VectorTransformation this[int index]
 		{
-			get { return ((ImportedBone)base[index]); }
+			get { return ((VectorTransformation)base[index]); }
 			set { base[index] = value; }
 		}
 
 		/// <summary>
 		/// unsigned Integer Indexer
 		/// </summary>
-		public ImportedBone this[uint index]
+		public VectorTransformation this[uint index]
 		{
-			get { return ((ImportedBone)base[(int)index]); }
+			get { return ((VectorTransformation)base[(int)index]); }
 			set { base[(int)index] = value; }
 		}
 
@@ -169,7 +173,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="item">The object you want to add</param>
 		/// <returns>The index it was added on</returns>
-		public int Add(ImportedBone item)
+		public int Add(VectorTransformation item)
 		{
 			return base.Add(item);
 		}
@@ -179,7 +183,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="index">The Index where the Element should be stored</param>
 		/// <param name="item">The object that should be inserted</param>
-		public void Insert(int index, ImportedBone item)
+		public void Insert(int index, VectorTransformation item)
 		{
 			base.Insert(index, item);
 		}
@@ -188,7 +192,7 @@ namespace SimPe.Plugin.Gmdc
 		/// remove an Element
 		/// </summary>
 		/// <param name="item">The object that should be removed</param>
-		public void Remove(ImportedBone item)
+		public void Remove(VectorTransformation item)
 		{
 			base.Remove(item);
 		}
@@ -198,7 +202,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="item">The Object you are looking for</param>
 		/// <returns>true, if it was found</returns>
-		public bool Contains(ImportedBone item)
+		public bool Contains(VectorTransformation item)
 		{
 			return base.Contains(item);
 		}		
@@ -217,8 +221,8 @@ namespace SimPe.Plugin.Gmdc
 		/// <returns>The clone</returns>
 		public override object Clone()
 		{
-			ImportedBones list = new ImportedBones();
-			foreach (ImportedBone item in this) list.Add(item);
+			VectorTransformations list = new VectorTransformations();
+			foreach (VectorTransformation item in this) list.Add(item);
 
 			return list;
 		}

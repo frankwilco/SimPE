@@ -236,7 +236,7 @@ namespace SimPe.Plugin
 			this.childtc.SelectedIndex = 0;
 			this.childtc.Size = new System.Drawing.Size(720, 176);
 			this.childtc.TabIndex = 20;
-			this.childtc.SelectedIndexChanged += new System.EventHandler(this.childtc_SelectedIndexChanged);
+			this.childtc.SelectedIndexChanged += new System.EventHandler(this.ChildTabPageChanged);
 			// 
 			// tbflname
 			// 
@@ -1171,12 +1171,13 @@ namespace SimPe.Plugin
 			WaitingScreen.Stop();
 		}
 
-		private void childtc_SelectedIndexChanged(object sender, System.EventArgs e)
+		private void ChildTabPageChanged(object sender, System.EventArgs e)
 		{
-		
+			if (wrapper.CallWhenTabPageChanged!=null) 
+				wrapper.CallWhenTabPageChanged(sender, e);	
 		}
 
-		/*private void childtc_SelectedIndexChanged(object sender, System.EventArgs e)
+		/*private void ChildTabPageChanged(object sender, System.EventArgs e)
 		{
 			if (lbblocks.SelectedIndex<0) return;
 			try 

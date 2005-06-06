@@ -343,6 +343,15 @@ namespace SimPe.Plugin
 				return tn.ChildBlocks;
 			}
 		}	
+
+		[BrowsableAttribute(false)]
+		public override int ImageIndex 
+		{
+			get 
+			{ 
+				return 3; //mesh
+			}
+		}
 		#endregion
 
 		/// <summary>
