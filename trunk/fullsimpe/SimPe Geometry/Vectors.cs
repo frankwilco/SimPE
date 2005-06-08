@@ -101,6 +101,16 @@ namespace SimPe.Geometry
 		{
 			return x.ToString("N2")+", "+y.ToString("N2");
 		}
+
+		/// <summary>
+		/// Create a clone of this Vector
+		/// </summary>
+		/// <returns></returns>
+		public Vector2f Clone() 
+		{
+			Vector2f v = new Vector2f(this.X, this.Y);
+			return v;
+		}
 	}
 
 	/// <summary>
@@ -206,11 +216,22 @@ namespace SimPe.Geometry
 		}
 
 		/// <summary>
+		/// Create the Inverse of a Vector
+		/// </summary>
+		/// <param name="v">The Vector you want to Invert</param>
+		/// <returns>The inverted Vector</returns>
+		public static Vector3f operator !(Vector3f v)
+		{
+			return v.GetInverse();
+		}
+
+		/// <summary>
 		/// Returns the Inverse Vector
 		/// </summary>
-		public Vector3f Inverse 
+		/// <returns>The Inverse of this Vector</returns>
+		public Vector3f GetInverse()
 		{
-			get { return this * (double)(-1.0);}
+			return this * (double)(-1.0);
 		}
 
 		/// <summary>
@@ -392,6 +413,16 @@ namespace SimPe.Geometry
 			get { return GetComponent(index); }
 			set { SetComponent(index,value); }
 		}
+
+		/// <summary>
+		/// Create a clone of this Vector
+		/// </summary>
+		/// <returns></returns>
+		public new Vector3f Clone() 
+		{
+			Vector3f v = new Vector3f(this.X, this.Y, this.Z);
+			return v;
+		}
 	}
 
 	/// <summary>
@@ -572,6 +603,16 @@ namespace SimPe.Geometry
 		{
 			base.SetComponent(index, val);
 			if (index==3)  W = val;
+		}
+
+		/// <summary>
+		/// Create a clone of this Vector
+		/// </summary>
+		/// <returns></returns>
+		public new Vector4f Clone() 
+		{
+			Vector4f v = new Vector4f(this.X, this.Y, this.Z, this.W);
+			return v;
 		}
 	}
 	#endregion

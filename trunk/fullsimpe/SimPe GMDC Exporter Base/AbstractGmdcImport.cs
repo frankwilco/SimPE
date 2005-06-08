@@ -43,6 +43,10 @@ namespace SimPe.Plugin.Gmdc
 	public abstract class AbstractGmdcImporter : IGmdcImporter
 	{				
 		/// <summary>
+		/// what is a small Number?
+		/// </summary>
+		public const double SMALLNUMBER = 1e-300;
+		/// <summary>
 		/// Returns the Culture that should be used during the Import
 		/// </summary>
 		/// <remarks>The Culure is needed whenever you read floatingpoint 
@@ -71,6 +75,19 @@ namespace SimPe.Plugin.Gmdc
 		public int Version 
 		{
 			get { return 1; }
+		}
+
+		/// <summary>
+		/// Convert the passed string to a double Value
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns></returns>
+		protected static double ToDouble(string s) 
+		{
+			double d = Convert.ToDouble(s, AbstractGmdcImporter.DefaultCulture);
+			if (Math.Abs(d)<SMALLNUMBER) 
+				d = 0;
+			return d;
 		}
 
 		ElementOrder order;
@@ -257,9 +274,9 @@ namespace SimPe.Plugin.Gmdc
 			for (int i=0; i<bns.Length; i++)
 			{
 				ImportedBone b = bns[i];
-				if (b.Action == GmdcImporterAction.Add) boneIndexMap[i] = AddBone(grps, b, i);
-				else if (b.Action == GmdcImporterAction.Rename) boneIndexMap[i] = AddBone(grps, b, i);
-				else if (b.Action == GmdcImporterAction.Replace) boneIndexMap[i] = ReplaceBone(grps, b, i);
+				if (b.Action == GmdcImporterAction.Add) boneIndexMap[i] = AddBone(grps, bns, b, i);
+				else if (b.Action == GmdcImporterAction.Rename) boneIndexMap[i] = AddBone(grps, bns, b, i);
+				else if (b.Action == GmdcImporterAction.Replace) boneIndexMap[i] = ReplaceBone(grps, bns, b, i);
 				else if (b.Action == GmdcImporterAction.Update) boneIndexMap[i] = UpdateBone(grps, b, i);
 				else boneIndexMap[i] = NothingBone(grps, b, i);
 
@@ -294,6 +311,10 @@ namespace SimPe.Plugin.Gmdc
 				if (b.Action == GmdcImporterAction.Add || b.Action == GmdcImporterAction.Rename || b.Action == GmdcImporterAction.Replace) 
 				{
 					b.Bone.CollectVertices();
+
+					//Update the effective Transformation
+					TransformNode tn = gmdc.Joints[b.TargetIndex].AssignedTransformNode;
+					if (tn!=null) gmdc.Model.Transformations[b.TargetIndex] = tn.GetEffectiveTransformation();
 				}				
 			}
 			if (this.Options.CleanBones) Gmdc.CleanupBones();
@@ -389,17 +410,19 @@ namespace SimPe.Plugin.Gmdc
 		/// Add the passed Bone to the Gmdc and Fix the UseBone Indices to apropriate Values
 		/// </summary>
 		/// <param name="grps">List of all Imported Groups (needed to fix the UseBone Indices)</param>
+		/// <param name="bns">List of all Bones</param>
 		/// <param name="b"></param>
 		/// <param name="index">The Number of the Bone that should be added</param>
 		/// <returns>the real Bone Index</returns>
-		protected virtual int AddBone(ImportedGroups grps, ImportedBone b, int index)
+		protected virtual int AddBone(ImportedGroups grps, ImportedBones bns, ImportedBone b, int index)
 		{			
 			int nindex = gmdc.Joints.Length;
 			gmdc.Joints.Add(b.Bone);
 
 			VectorTransformation t = new VectorTransformation(VectorTransformation.TransformOrder.RotateTranslate);
-			t.Rotation = b.Quaternion;
-			t.Translation = b.Translation;
+			
+			//t.Rotation = b.SourceTransformation.Rotation;
+			//t.Translation = b.SourceTransformation.Translation;
 
 			gmdc.Model.Transformations.Add(t);
 
@@ -410,17 +433,19 @@ namespace SimPe.Plugin.Gmdc
 		/// Replace an exiting bone with the passed one
 		/// </summary>
 		/// <param name="grps">List of all Imported Groups (needed to fix the UseBone Indices)</param>
+		/// <param name="bns">List of all Bones</param>
 		/// <param name="b"></param>
 		/// <param name="index">The Number of the Bone that should be added</param>
 		/// <returns>the real Bone Index</returns>
-		protected virtual int ReplaceBone(ImportedGroups grps, ImportedBone b, int index)
+		protected virtual int ReplaceBone(ImportedGroups grps, ImportedBones bns, ImportedBone b, int index)
 		{			
 			int nindex = b.TargetIndex;
 			gmdc.Joints[nindex] = b.Bone;
 			
 			VectorTransformation t = new VectorTransformation(VectorTransformation.TransformOrder.RotateTranslate);
-			t.Rotation = b.Quaternion;
-			t.Translation = b.Translation;
+			
+			//t.Rotation = b.SourceTransformation.Rotation;
+			//t.Translation = b.SourceTransformation.Translation;
 
 			gmdc.Model.Transformations[nindex] = t;
 

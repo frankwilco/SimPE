@@ -119,7 +119,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			{
 				vertexcount++;	
 				Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
-				v = Component.Transform(v);
+				v = Component.TransformScaled(v);
 				writer.WriteLine("v " + 
 					v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
 					v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
@@ -133,7 +133,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
 					Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
-					v = Component.Transform(v);
+					v = Component.TransformNormal(v);
 					writer.WriteLine("vn " + 
 						v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
 						v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+

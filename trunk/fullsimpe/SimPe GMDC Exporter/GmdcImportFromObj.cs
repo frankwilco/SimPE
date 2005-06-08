@@ -107,8 +107,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 				lineerror = null;
 				
-				if (line == "v") ParseTriplets(vertices, content); //Vertex
-				else if (line == "vn") ParseTriplets(normals, content); //Vertex Normal
+				if (line == "v") ParseTriplets(vertices, content, false); //Vertex
+				else if (line == "vn") ParseTriplets(normals, content, true); //Vertex Normal
 				else if (line == "vt") ParsePair(uvmaps, content); // Vertex Texture
 				else if (line == "g") StartGroup(content);  // new Group
 				else if (line == "f") ProcessFaceList(content); // Face
@@ -131,7 +131,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 		/// </summary>
 		/// <param name="list"></param>
 		/// <param name="line"></param>
-		void ParseTriplets(ArrayList list, string line)
+		/// <param name="normal">true, if the triplet represents a Normal Vector</param>
+		void ParseTriplets(ArrayList list, string line, bool normal)
 		{
 			string[] tokens = line.Split(" ".ToCharArray());
 			if (tokens.Length>=3) 
@@ -143,7 +144,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 						data[i] = Convert.ToSingle(tokens[i], AbstractGmdcImporter.DefaultCulture);
 
 					Vector3f vec = new Vector3f(data[0], data[1], data[2]);
-					vec = Component.InverseTransform(vec);
+					if (!normal) vec = Component.InverseTransformScaled(vec);
+					else vec = Component.InverseTransformNormal(vec);
 					SimPe.Plugin.Gmdc.GmdcElementValueThreeFloat v = new GmdcElementValueThreeFloat((float)vec.X, (float)vec.Y, (float)vec.Z);
 					list.Add(v);
 				} 

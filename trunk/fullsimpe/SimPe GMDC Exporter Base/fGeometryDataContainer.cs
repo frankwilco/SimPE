@@ -135,7 +135,6 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.GroupBox groupBox18;
 		private System.Windows.Forms.GroupBox groupBox19;
 		internal System.Windows.Forms.ListBox lb_model_trans;
-		internal System.Windows.Forms.ListBox lb_model_rots;
 		internal System.Windows.Forms.ListBox lb_model_names;
 		internal System.Windows.Forms.ListBox lb_model_faces;
 		internal System.Windows.Forms.ListBox lb_model_items;
@@ -149,6 +148,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.LinkLabel linkLabel5;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.ComboBox cbaxis;
+		private System.Windows.Forms.LinkLabel linkLabel6;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -284,7 +284,6 @@ namespace SimPe.Plugin
 			this.groupBox17 = new System.Windows.Forms.GroupBox();
 			this.lb_model_names = new System.Windows.Forms.ListBox();
 			this.groupBox16 = new System.Windows.Forms.GroupBox();
-			this.lb_model_rots = new System.Windows.Forms.ListBox();
 			this.lb_model_trans = new System.Windows.Forms.ListBox();
 			this.tGeometryDataContainer2 = new System.Windows.Forms.TabPage();
 			this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -322,6 +321,7 @@ namespace SimPe.Plugin
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.cd = new System.Windows.Forms.ColorDialog();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
+			this.linkLabel6 = new System.Windows.Forms.LinkLabel();
 			this.tabControl1.SuspendLayout();
 			this.tGeometryDataContainer.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -700,7 +700,7 @@ namespace SimPe.Plugin
 			this.cbaxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbaxis.Location = new System.Drawing.Point(232, 240);
 			this.cbaxis.Name = "cbaxis";
-			this.cbaxis.Size = new System.Drawing.Size(96, 21);
+			this.cbaxis.Size = new System.Drawing.Size(96, 20);
 			this.cbaxis.TabIndex = 30;
 			// 
 			// label12
@@ -1289,7 +1289,7 @@ namespace SimPe.Plugin
 			// 
 			this.groupBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left)));
-			this.groupBox16.Controls.Add(this.lb_model_rots);
+			this.groupBox16.Controls.Add(this.linkLabel6);
 			this.groupBox16.Controls.Add(this.lb_model_trans);
 			this.groupBox16.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox16.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -1300,20 +1300,6 @@ namespace SimPe.Plugin
 			this.groupBox16.TabStop = false;
 			this.groupBox16.Text = "Model Section - Transformations";
 			// 
-			// lb_model_rots
-			// 
-			this.lb_model_rots.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.lb_model_rots.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lb_model_rots.HorizontalScrollbar = true;
-			this.lb_model_rots.IntegralHeight = false;
-			this.lb_model_rots.Location = new System.Drawing.Point(256, 24);
-			this.lb_model_rots.Name = "lb_model_rots";
-			this.lb_model_rots.Size = new System.Drawing.Size(304, 112);
-			this.lb_model_rots.TabIndex = 23;
-			this.lb_model_rots.SelectedIndexChanged += new System.EventHandler(this.lb_model_rots_SelectedIndexChanged);
-			// 
 			// lb_model_trans
 			// 
 			this.lb_model_trans.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1323,9 +1309,8 @@ namespace SimPe.Plugin
 			this.lb_model_trans.IntegralHeight = false;
 			this.lb_model_trans.Location = new System.Drawing.Point(8, 24);
 			this.lb_model_trans.Name = "lb_model_trans";
-			this.lb_model_trans.Size = new System.Drawing.Size(240, 112);
+			this.lb_model_trans.Size = new System.Drawing.Size(552, 112);
 			this.lb_model_trans.TabIndex = 22;
-			this.lb_model_trans.SelectedIndexChanged += new System.EventHandler(this.lb_model_trans_SelectedIndexChanged);
 			// 
 			// tGeometryDataContainer2
 			// 
@@ -1768,6 +1753,17 @@ namespace SimPe.Plugin
 			// ofd
 			// 
 			this.ofd.Title = "Import Mesh";
+			// 
+			// linkLabel6
+			// 
+			this.linkLabel6.AutoSize = true;
+			this.linkLabel6.Location = new System.Drawing.Point(232, 0);
+			this.linkLabel6.Name = "linkLabel6";
+			this.linkLabel6.Size = new System.Drawing.Size(52, 17);
+			this.linkLabel6.TabIndex = 23;
+			this.linkLabel6.TabStop = true;
+			this.linkLabel6.Text = "Rebuild";
+			this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RebuildAbsTransform);
 			// 
 			// fGeometryDataContainer
 			// 
@@ -2216,6 +2212,50 @@ namespace SimPe.Plugin
 			}
 		}
 
+		private void RebuildAbsTransform(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (this.tMesh.Tag != null)
+			{				
+				GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
+				//VectorTransformations old = (VectorTransformations)gmdc.Model.Transformations.Clone();
+
+				try 
+				{
+					if (this.lb_model_trans.SelectedIndex<0) 
+					{
+						for (int i=0; i<gmdc.Model.Transformations.Count; i++) 
+						{
+							TransformNode tn = gmdc.Joints[i].AssignedTransformNode;
+
+							if (tn!=null) 
+								gmdc.Model.Transformations[i] = tn.GetEffectiveTransformation();
+						}
+					} 
+					else 
+					{
+						TransformNode tn = gmdc.Joints[lb_model_trans.SelectedIndex].AssignedTransformNode;
+
+						if (tn!=null) 
+							gmdc.Model.Transformations[lb_model_trans.SelectedIndex] = tn.GetEffectiveTransformation();
+					}
+				} 
+				catch (Exception ex) 
+				{
+					Helper.ExceptionMessage("", ex);
+				}
+
+				/*string res = "";
+				for (int i=0; i<old.Count; i++) 
+				{
+					if (Math.Abs((float)old[i].Translation.Y-(float)gmdc.Model.Transformations[i].Translation.Y) > 0.01) res += Helper.lbr+i.ToString();
+					else if (Math.Abs((float)old[i].Translation.X-(float)gmdc.Model.Transformations[i].Translation.X) > 0.01) res += Helper.lbr+i.ToString();
+					else if (Math.Abs((float)old[i].Translation.Z-(float)gmdc.Model.Transformations[i].Translation.Z) > 0.01) res += Helper.lbr+i.ToString();
+				}*/
+
+				gmdc.Refresh();
+			}
+		}
+
 		private void fGeometryDataContainer_Load(object sender, System.EventArgs e)
 		{
 		
@@ -2443,7 +2483,7 @@ namespace SimPe.Plugin
 							gmdc.Refresh();
 							gmdc.Changed = true;
 							
-							if (importer.ErrorMessage!="") Helper.ExceptionMessage("Error while parsing the File.", new Exception(importer.ErrorMessage));
+							if (importer.ErrorMessage!="") Helper.ExceptionMessage("", new Warning("Problems while parsing the File.", importer.ErrorMessage));
 						} 
 						finally 
 						{
@@ -2459,15 +2499,7 @@ namespace SimPe.Plugin
 			}
 		}
 
-		private void lb_model_rots_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
-			lb_model_trans.SelectedIndex = lb_model_rots.SelectedIndex;
-		}
-
-		private void lb_model_trans_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
-			lb_model_rots.SelectedIndex = lb_model_trans.SelectedIndex;
-		}
+		
 
 
 

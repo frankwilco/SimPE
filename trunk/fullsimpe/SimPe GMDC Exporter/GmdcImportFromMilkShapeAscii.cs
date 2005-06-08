@@ -303,7 +303,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 						Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture),
 						Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture)
 					);
-				coord = Component.InverseTransform(coord);
+				coord = Component.InverseTransformScaled(coord);
 
 				float u = Convert.ToSingle(linetoks[4], AbstractGmdcImporter.DefaultCulture);
 				float v = Convert.ToSingle(linetoks[5], AbstractGmdcImporter.DefaultCulture);
@@ -358,7 +358,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 					Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture),
 					Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture)
 					);
-				coord = Component.InverseTransform(coord);
+				coord = Component.InverseTransformNormal(coord);
 				
 				g.Elements[1].Values.Add(new Gmdc.GmdcElementValueThreeFloat((float)coord.X, (float)coord.Y, (float)coord.Z));
 			} 
@@ -450,6 +450,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 				lineerror = "Unable to read Joint Description.";
 				return;
 			}
+			linetoks[0] = linetoks[0].Replace("\"", "");
+			b.ParentName = linetoks[0];
 		}	
 
 		void ReadJointData(ImportedBone b)
@@ -464,23 +466,23 @@ namespace SimPe.Plugin.Gmdc.Importer
 			try 
 			{
 				Vector3f trans = new Vector3f(
-					Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture),
-					Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture),
-					Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture)
+					ToDouble(linetoks[1]),
+					ToDouble(linetoks[2]),
+					ToDouble(linetoks[3])
 					);
-				trans = Component.InverseTransform(trans);
+				trans = Component.InverseScale(trans);
 				
 				Vector3f rot = new Vector3f(
-					Convert.ToSingle(linetoks[4], AbstractGmdcImporter.DefaultCulture),
-					Convert.ToSingle(linetoks[5], AbstractGmdcImporter.DefaultCulture),
-					Convert.ToSingle(linetoks[6], AbstractGmdcImporter.DefaultCulture)
+					ToDouble(linetoks[4]),
+					ToDouble(linetoks[5]),
+					ToDouble(linetoks[6])
 					);
-				rot = Component.InverseTransform(rot);
+				//rot = Component.InverseTransform(rot);
 				
 							
 				//Quaternion from Euler Angles
-				b.Quaternion = new SimPe.Geometry.Quaternion(rot);				
-				b.Translation = trans;
+				b.SourceTransformation.Translation = trans;
+				b.SourceTransformation.Rotation = new SimPe.Geometry.Quaternion(rot);		
 			} 
 			catch 
 			{
@@ -501,17 +503,18 @@ namespace SimPe.Plugin.Gmdc.Importer
 			{
 				float t = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
 				Vector3f trans = new Vector3f(
-					Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture),
-					Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture),
-					Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture)
+					ToDouble(linetoks[1]),
+					ToDouble(linetoks[2]),
+					ToDouble(linetoks[3])
 					);
-				trans = Component.InverseTransform(trans);
+				//trans = Component.InverseTransform(trans);
+				/*trans = Component.InverseScale(trans);
 					
 				
 				if (t==1) 
 				{
-					b.Translation = trans;
-				}
+					b.UnknownTransformation.Translation = trans;
+				}*/
 			} 
 			catch 
 			{
@@ -532,17 +535,17 @@ namespace SimPe.Plugin.Gmdc.Importer
 			{
 				float t = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
 				Vector3f rot = new Vector3f(
-					Convert.ToSingle(linetoks[1], AbstractGmdcImporter.DefaultCulture),
-					Convert.ToSingle(linetoks[2], AbstractGmdcImporter.DefaultCulture),
-					Convert.ToSingle(linetoks[3], AbstractGmdcImporter.DefaultCulture)
+					ToDouble(linetoks[1]),
+					ToDouble(linetoks[2]),
+					ToDouble(linetoks[3])
 					);
-				rot = Component.InverseTransform(rot);
 				
-				if (t==1) 
+				
+				/*if (t==1) 
 				{
 					//Quaternion from Euler Angles
-					b.Quaternion = new SimPe.Geometry.Quaternion(rot);				
-				}
+					b.UnknownTransformation.Rotation = new SimPe.Geometry.Quaternion(rot);				
+				}*/
 			} 
 			catch 
 			{

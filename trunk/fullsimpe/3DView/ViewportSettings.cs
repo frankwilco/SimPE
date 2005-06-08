@@ -54,7 +54,7 @@ namespace Ambertation
 
 			campos = new Vector3( 0.0f, 3.0f, 5.0f );
 			camtarget = new Vector3( 0.0f, 0.0f, 0.0f );
-			camup = new Vector3( 0.0f, -1.0f, 0.0f );
+			camup = new Vector3( 0.0f, 1.0f, 0.0f );
 		}
 
 		public Vector3 CameraUpVector

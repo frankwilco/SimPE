@@ -103,6 +103,11 @@ namespace SimPe.Plugin
 		}
 
 		VectorTransformation trans;
+		public VectorTransformation Transformation 
+		{
+			get { return trans; }
+			set { trans = value; }
+		}
 		int unknown;
 
 		public Vector3f Translation 
@@ -148,7 +153,7 @@ namespace SimPe.Plugin
 			set { trans.Rotation.W = value; }
 		}
 
-		public Quaternion Quaternion 
+		public Quaternion Rotation 
 		{
 			get { return trans.Rotation; }
 			set { trans.Rotation= value; }
@@ -158,6 +163,12 @@ namespace SimPe.Plugin
 		{
 			get { return unknown; }
 			set { unknown = value; }
+		}
+
+		[BrowsableAttribute(false)]
+		public override TransformNode StoredTransformNode
+		{
+			get { return this; }
 		}
 		#endregion
 		
@@ -202,7 +213,7 @@ namespace SimPe.Plugin
 				if (unknown==NO_JOINT) return 0; //clear
 				return 1; //bone
 			}
-		}
+		}		
 		#endregion
 		
 		#region IRcolBlock Member

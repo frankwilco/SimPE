@@ -291,13 +291,9 @@ namespace SimPe.Plugin
 				foreach (int i in this.model.Bone.Items) SimPe.CountedListItem.Add(form.lb_model_items, i);
 				form.lb_model_names.Items.Clear();
 				foreach (GmdcNamePair i in this.model.BlendGroupDefinition) SimPe.CountedListItem.Add(form.lb_model_names, i);
-				form.lb_model_rots.Items.Clear();
 				form.lb_model_trans.Items.Clear();
-				foreach (VectorTransformation i in this.model.Transformations) 
-				{
-					SimPe.CountedListItem.Add(form.lb_model_rots, i.Rotation);
-					SimPe.CountedListItem.Add(form.lb_model_trans, i.Translation);
-				}
+				foreach (VectorTransformation i in this.model.Transformations) SimPe.CountedListItem.Add(form.lb_model_trans, i);
+				
 			} 
 			catch (Exception ex)
 			{

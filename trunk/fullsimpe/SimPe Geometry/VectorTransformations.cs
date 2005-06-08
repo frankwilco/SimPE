@@ -32,7 +32,13 @@ namespace SimPe.Geometry
 		/// </summary>
 		public enum TransformOrder : byte 
 		{
+			/// <summary>
+			/// Rotate then Translate
+			/// </summary>
 			RotateTranslate = 0,
+			/// <summary>
+			/// Translate then Rotate (rigid Body)
+			/// </summary>
 			TranslateRotate = 1
 		};
 
@@ -75,7 +81,15 @@ namespace SimPe.Geometry
 		{
 			this.o = o;
 			trans = new Vector3f();
-			quat = new Quaternion();
+			quat = Quaternion.Identity;
+		}
+
+		/// <summary>
+		/// Create a new Instance
+		/// </summary>
+		/// <remarks>Order is implicit set to <see cref="TransformOrder.TranslateRotate"/></remarks>
+		public VectorTransformation() : this (TransformOrder.TranslateRotate)
+		{
 		}
 
 		public override string ToString()
@@ -142,6 +156,18 @@ namespace SimPe.Geometry
 			}
 		}	
 
+		/// <summary>
+		/// Create a Clone of this Transformation Set
+		/// </summary>
+		/// <returns></returns>
+		public VectorTransformation Clone()
+		{
+			VectorTransformation v = new VectorTransformation(this.Order);
+			v.Rotation = Rotation.Clone();
+			v.Translation = Translation.Clone();
+
+			return v;
+		}
 	}
 
 	#region container

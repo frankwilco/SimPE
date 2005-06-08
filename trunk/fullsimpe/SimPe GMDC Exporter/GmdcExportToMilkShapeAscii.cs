@@ -123,7 +123,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			{	
 				//Make sure we transform to the desired Coordinate-System
 				Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
-				v = Component.Transform(v);
+				v = Component.TransformScaled(v);
 
 				writer.Write("0 " + 
 					v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
@@ -173,7 +173,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				for (int i = 0; i < Link.ReferencedSize; i++)
 				{
 					Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
-					v = Component.Transform(v);
+					v = Component.TransformNormal(v);
 					writer.WriteLine( 
 						v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
 						v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
@@ -228,41 +228,52 @@ namespace SimPe.Plugin.Gmdc.Exporter
 					int parent = (int)relationmap[i];
 					if (parent!=-1) writer.WriteLine("\""+Gmdc.Joints[parent].Name+"\"");
 					else writer.WriteLine("\"\"");
-				} else writer.WriteLine("\"\"");
+				} 
+				else writer.WriteLine("\"\"");
 
-				SimPe.Geometry.Vector3f euler = Gmdc.Model.Transformations[i].Rotation.GetEulerAngles();
 				
-				/*if (Gmdc.Joints[i].AssignedTransformNode!=null) 
-				{			
+	
+				if (Gmdc.Joints[i].AssignedTransformNode!=null) 
+				{		
+
 					Vector3f t = Component.Transform(Gmdc.Joints[i].AssignedTransformNode.Translation);
-					Vector3f r = Component.Transform(euler);	
+					Vector3f r = Component.Transform(Gmdc.Joints[i].AssignedTransformNode.Rotation.GetEulerAngles());
+						
+/*					t = Gmdc.Model.Transformations[i].Translation;
+					r = Gmdc.Model.Transformations[i].Rotation.GetEulerAngles();*/
+
+					t = Component.Scale(t);
 					writer.WriteLine("8 " + 
 						t.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 						t.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 						t.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 						r.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 						r.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-						t.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
-				} else*/ writer.WriteLine("8 0 0 0 0 0 0");
+						r.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
+				} 
+				else writer.WriteLine("8 0 0 0 0 0 0");
 
 				
 				
-
-				Vector3f v = Gmdc.Model.Transformations[i].Translation;
-				v = Component.Transform(v);
+				//those are temporary Absoluet Bone Positions (without hirarchy!)
+				//se we leave it!
+				/*Vector3f v = Gmdc.Model.Transformations[i].Translation;
+				v = Component.Scale(v);
 				writer.WriteLine("1");
 				writer.WriteLine("1 " + 
 					v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 					v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 					v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));				
 
-				v = euler;
-				v = Component.Transform(v);
+				v = Gmdc.Model.Transformations[i].Rotation.GetEulerAngles();
 				writer.WriteLine("1");
 				writer.WriteLine("1 " + 
 					v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 					v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
+					v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));*/
+
+				writer.WriteLine("0");
+				writer.WriteLine("0");				
 			}
 
 			//Write Footer

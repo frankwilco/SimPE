@@ -36,6 +36,33 @@ namespace SimPe.Interfaces.Scenegraph
 		{
 			get;
 		}
+
+		/// <summary>
+		/// Returns the Index of this node within it's Parent (-1 if not found)
+		/// </summary>
+		int Index 
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns a List of all Parent Nodes
+		/// </summary>
+		IntArrayList GetParentBlocks();
+		
+		/// <summary>
+		/// Returns the First Block that is holds this Node as a Child
+		/// </summary>
+		/// <returns></returns>
+		ICresChildren GetFirstParent();
+
+		/// <summary>
+		/// Returns the TransformNode Object of this Node (can be null!)
+		/// </summary>
+		TransformNode StoredTransformNode
+		{
+			get;
+		}
 		
 		/// <summary>
 		/// Returns the parent RCol Container
@@ -66,5 +93,11 @@ namespace SimPe.Interfaces.Scenegraph
 		{
 			get;
 		}
+
+		/// <summary>
+		/// Returns the effective Transformation, that is described by the CresHirarchy
+		/// </summary>
+		/// <returns>Effective Transformation</returns>
+		SimPe.Geometry.VectorTransformation GetEffectiveTransformation();
 	}
 }

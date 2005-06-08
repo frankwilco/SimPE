@@ -394,6 +394,7 @@ namespace SimPe.Plugin
 			{
 				int sz = 16;
 				if ((typecode!=0x03) || (ver==4)) sz += 15;
+				if ((typecode<=0x03) && (version==3)) sz = 15;
 				data = reader.ReadBytes(sz);
 			} 
 			else 

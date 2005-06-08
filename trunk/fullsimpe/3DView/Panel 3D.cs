@@ -586,14 +586,14 @@ namespace Ambertation
 
 				if (e.Button == MouseButtons.Right) 
 				{
-					vp.AngelY += (dx / 100.0f);
+					vp.AngelY -= (dx / 100.0f);
 					vp.AngelX += (dy / 100.0f);
 				}
 
 				if (e.Button == MouseButtons.Left) 
 				{
-					vp.X += (dx / 100.0f);
-					vp.Y += (dy / 100.0f);					
+					vp.X -= (dx / 100.0f);
+					vp.Y -= (dy / 100.0f);					
 				}
 
 				if (e.Button == MouseButtons.Middle) 

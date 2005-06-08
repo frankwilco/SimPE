@@ -161,7 +161,8 @@ namespace SimPe.Plugin.Gmdc
 			// 
 			// chVertex
 			// 
-			this.chVertex.Text = "Vertices";
+			this.chVertex.Text = "Vertices/Parent Bone";
+			this.chVertex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// chFace
 			// 
@@ -582,7 +583,7 @@ namespace SimPe.Plugin.Gmdc
 				ListViewItem lvi = new ListViewItem("(Bone) "+a.ImportedName);
 				lvi.SubItems.Add(a.Action.ToString());
 				lvi.SubItems.Add("Bone "+a.TargetIndex.ToString());				
-				lvi.SubItems.Add("-");
+				lvi.SubItems.Add(a.ParentName);
 				lvi.SubItems.Add("-");
 				lvi.SubItems.Add("-");
 				lvi.Tag = a;
