@@ -120,6 +120,12 @@ namespace SimPe.Plugin
 			get { return unknown2; }
 			set { unknown2 = value; }
 		}
+
+		[BrowsableAttribute(false)]
+		public override TransformNode StoredTransformNode
+		{
+			get { return null; }
+		}
 		#endregion
 		
 

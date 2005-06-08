@@ -2711,7 +2711,7 @@ namespace SimPe.Plugin
 				//set Angles
 				  
 				
-				SimPe.Geometry.Quaternion q = tn.Quaternion;
+				SimPe.Geometry.Quaternion q = tn.Rotation;
 				this.tb_tn_a.Tag = true;
 				try 
 				{
@@ -3071,7 +3071,7 @@ namespace SimPe.Plugin
 					    Convert.ToSingle(tb_tn_az.Text)), 
 					SimPe.Geometry.Quaternion.DegToRad(Convert.ToSingle(tb_tn_a.Text)));
 			
-				tn.Quaternion = q;
+				tn.Rotation = q;
 
 				//set Angles
 				this.tb_tn_a.Tag = true;

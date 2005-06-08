@@ -128,19 +128,27 @@ namespace SimPe.Geometry
 		{
 			get 
 			{
-				return new Quaternion(QuaternionParameterType.ImaginaryReal, this.Imaginary.Inverse, this.W);				
+				return new Quaternion(QuaternionParameterType.ImaginaryReal, !this.Imaginary, this.W);				
 			}
+		}
+
+		/// <summary>
+		/// Create the Inverse of a Quaternion
+		/// </summary>
+		/// <param name="q">The Quaternion you want to Invert</param>
+		/// <returns>The inverted Quaternion</returns>
+		public static Quaternion operator !(Quaternion q)
+		{
+			return q.GetInverse();
 		}
 
 		/// <summary>
 		/// Returns the Inverse of this Quaternion
 		/// </summary>
-		public new Quaternion Inverse 
+		/// <returns>Inverted Quaternion</returns>
+		public new Quaternion GetInverse() 
 		{
-			get 
-			{
-				return Conjugate * (double)(1.0 / this.Norm);
-			}
+			return Conjugate * (double)(1.0 / this.Norm);			
 		}
 
 		/// <summary>
@@ -149,13 +157,10 @@ namespace SimPe.Geometry
 		/// <param name="q1">First Quaternion</param>
 		/// <param name="q2">Second Quaternion</param>
 		/// <returns>The resulting Quaternion</returns>
-		public static Quaternion operator *(Quaternion q1, Quaternion q2) 
+		public static Quaternion operator *(Quaternion q2, Quaternion q1) 
 		{
 			return new Quaternion( 
-				QuaternionParameterType.ImaginaryReal, 
-     			/*q1.W*q2.X + q1.X*q2.W + q1.Y*q2.Z - q1.Z*q2.Y,
-     			q1.W*q2.Y + q1.Y*q2.W + q1.Z*q2.X - q1.X*q2.Z,
-		    	q1.W*q2.Z + q1.Z*q2.W + q1.X*q2.Y - q1.Y*q2.X,*/
+				QuaternionParameterType.ImaginaryReal, 				
 				(q1.Imaginary | q2.Imaginary) + (q2.W*q1.Imaginary) + (q1.W*q2.Imaginary),
 				q1.W*q2.W - ((Vector3f)q1.Imaginary & (Vector3f)q2.Imaginary));			
 		}
@@ -401,8 +406,18 @@ namespace SimPe.Geometry
 		public Vector3f Rotate(Vector3f v) 
 		{
 			Quaternion vq = new Quaternion(QuaternionParameterType.ImaginaryReal, v.X, v.Y, v.Z, 1);			
-			vq = this * vq * this.Inverse;
+			vq = this * vq * this.GetInverse();
 			return new Vector3f(vq.X, vq.Y, vq.Z);
+		}
+
+		/// <summary>
+		/// Create a clone of this Quaternion
+		/// </summary>
+		/// <returns></returns>
+		public new Quaternion Clone() 
+		{
+			Quaternion q = new Quaternion(QuaternionParameterType.ImaginaryReal, this.X, this.Y, this.Z, this.W);
+			return q;
 		}
 	}
 

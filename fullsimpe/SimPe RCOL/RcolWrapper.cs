@@ -245,10 +245,13 @@ namespace SimPe.Plugin
 			string s = reader.ReadString();
 			uint myid = reader.ReadUInt32();
 			if (myid==0xffffffff) return null;
-			if (id!=myid) throw new Exception("Not matching ID Field in RCOL File.\n\nID=0x"+Helper.HexString(myid)+"\nLooked for=0x"+Helper.HexString(id)+"\nOffset=0x"+Helper.HexString((uint)(reader.BaseStream.Position-4)));
+			if (id!=myid) 
+				throw new Exception("Not matching ID Field in RCOL File.", new Exception("ID=0x"+Helper.HexString(myid)+", Looked for=0x"+Helper.HexString(id)+", Offset=0x"+Helper.HexString((uint)(reader.BaseStream.Position-4))));
+			
 
 			Type tp = (Type)Tokens[s];
-			if (tp==null) throw new Exception("Unknown embedded RCOL Block "+s+".\n\nOffset=0x"+Helper.HexString(reader.BaseStream.Length-4));
+			if (tp==null) 
+				throw new Exception("Unknown embedded RCOL Block "+s, new Exception("Offset=0x"+Helper.HexString(reader.BaseStream.Length-4)));
 
 			IRcolBlock  wrp = AbstractRcolBlock.Create(tp, this, myid);
 			wrp.Unserialize(reader);

@@ -466,35 +466,50 @@ namespace SimPe
 
 			frm.lberr.Text= message.Trim();
 
-			string text = @"{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fswiss\fprq2\fcharset0 Verdana;}}";
+			string text = "";
+			text += @"{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fswiss\fprq2\fcharset0 Verdana;}}";
 			text += @"{\colortbl ;\red90\green90\blue90;}";
-			text += @"\viewkind4\uc1\pard\cf1\b\f0\fs16 Message:\b0\par";
-			text += @"\pard\li284 "+message.Trim().Replace("\\", "\\\\")+@"\par" ;
-
-			try 
+			if (ex.GetType()==typeof(Warning)) 
 			{
+				frm.Text = "Warning";
+				frm.lberr.Text = "Warning: "+frm.lberr.Text;
+				frm.linkLabel2.Visible = false;
+				text += @"\viewkind4\uc1\pard\cf1\b\f0\fs16 This is just a Warning. It is supposed to keep you informed about a Problem. Most of the Time this is not a Bug!\b0\par";				
 				text += @"\pard\par";
-				text += @"\b SimPE Version:\par";
-				text += @"\pard\li284\b0 "+Helper.SimPeVersion.ProductMajorPart.ToString()+"."+Helper.SimPeVersion.ProductMinorPart.ToString()+"."+Helper.SimPeVersion.ProductBuildPart.ToString()+"."+Helper.SimPeVersion.ProductPrivatePart.ToString()+"."+@"\par";
+				text += @"\pard\li284 "+((Warning)ex).Details.Trim().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284")+@"\par" ;
 			} 
-			catch {}
-
-			text += @"\pard\par";
-			text += @"\b Exception Stack:\par";
-			text += @"\pard\li284\b0 "+extrace.Trim().Replace("\\", "\\\\")+@"\par";
-
-			if (ex.Source!=null) 
-			{
-				text += @"\pard\par";
-				text += @"\b Source:\par";
-				text += @"\pard\li284\b0 "+ex.Source.Trim().Replace("\\", "\\\\")+@"\par";
-			}
+			else 
+			{				
+				text += @"\viewkind4\uc1\pard\cf1\b\f0\fs16 Message:\b0\par";
+				text += @"\pard\li284 "+message.Trim().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284")+@"\par" ;
 			
-			if (ex.StackTrace!=null) 
-			{
+
+				try 
+				{
+					text += @"\pard\par";
+					text += @"\b SimPE Version:\par";
+					text += @"\pard\li284\b0 "+Helper.SimPeVersion.ProductMajorPart.ToString()+"."+Helper.SimPeVersion.ProductMinorPart.ToString()+"."+Helper.SimPeVersion.ProductBuildPart.ToString()+"."+Helper.SimPeVersion.ProductPrivatePart.ToString()+"."+@"\par";
+				} 
+				catch {}
+
 				text += @"\pard\par";
-				text += @"\b Execution Stack:\par";
-				text += @"\pard\li284\b0 "+ex.StackTrace.Trim().Replace("\\", "\\\\")+@"\par";
+				text += @"\b Exception Stack:\par";
+				text += @"\pard\li284\b0 "+extrace.Trim().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284")+@"\par";
+		
+
+				if (ex.Source!=null) 
+				{
+					text += @"\pard\par";
+					text += @"\b Source:\par";
+					text += @"\pard\li284\b0 "+ex.Source.Trim().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284")+@"\par";
+				}
+			
+				if (ex.StackTrace!=null) 
+				{
+					text += @"\pard\par";
+					text += @"\b Execution Stack:\par";
+					text += @"\pard\li284\b0 "+ex.StackTrace.Trim().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284")+@"\par";
+				}
 			}
 
 			text += @"}";

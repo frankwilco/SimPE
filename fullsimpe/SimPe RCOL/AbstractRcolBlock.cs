@@ -112,7 +112,7 @@ namespace SimPe.Plugin
 				ResourceTabPage.Tag = null;
 				InitResourceTabPage();
 				ResourceTabPage.Tag = this;
-				tc.TabPages.Add(ResourceTabPage);
+				tc.TabPages.Add(ResourceTabPage);				
 			}
 		}
 
@@ -122,7 +122,7 @@ namespace SimPe.Plugin
 		/// <param name="tc">The tabControl the Page will be added to</param>
 		public void AddToTabControl(TabControl tc)
 		{
-			parent.CallWhenTabPageChanged = null;
+			if (parent!=null) parent.CallWhenTabPageChanged = null;
 			if (TabPage!=null) 
 			{
 				TabPage.Tag = null;
@@ -300,7 +300,7 @@ namespace SimPe.Plugin
 				{
 					if (
 						pfd.Type==this.Parent.FileDescriptor.Type && 
-						pfd.Group==this.Parent.FileDescriptor.Group && 
+						(pfd.Group==this.Parent.FileDescriptor.Group || (pfd.Group==Data.MetaData.GLOBAL_GROUP && Parent.FileDescriptor.Group==Data.MetaData.LOCAL_GROUP))&& 
 						pfd.SubType==this.Parent.FileDescriptor.SubType &&
 						pfd.Instance==this.Parent.FileDescriptor.Instance
 						) 
@@ -310,7 +310,7 @@ namespace SimPe.Plugin
 				}
 			}
 
-			return null;
+			throw new Warning("No Parent was found in the Search Path!", "Either there is no Scenegraph Resource that is referencing the File, or the package containing that Resource is not in the FileTable (see Extra->Options)");
 		}
 	}
 }

@@ -68,6 +68,20 @@ namespace SimPe.Plugin.Gmdc
 			set { name = value; }
 		}
 
+		/// <summary>
+		/// internal Attribute
+		/// </summary>
+		string parentname;
+
+		/// <summary>
+		/// The name of the Parent Bone		
+		/// </summary>
+		public string ParentName 
+		{
+			get { return parentname; }
+			set { parentname = value; }
+		}
+
 		GmdcJoint bone;
 		/// <summary>
 		/// The new Bone
@@ -77,21 +91,22 @@ namespace SimPe.Plugin.Gmdc
 			get { return bone; }
 		}
 
-		Quaternion q;	
+		
+		VectorTransformation sourcepos;	
 		/// <summary>
-		/// The initial Rotation (as Quaternion)
+		/// The initial Transformation for this Joint
 		/// </summary>
-		public Quaternion Quaternion
+		public VectorTransformation SourceTransformation
 		{
-			get { return q; }
-			set { q = value; }
+			get { return sourcepos; }
+			set { sourcepos = value; }
 		}
 
-		Vector3f trans;	
+		VectorTransformation trans;	
 		/// <summary>
-		/// The initial Translation
+		/// An unknown Bone Transformation
 		/// </summary>
-		public Vector3f Translation
+		public VectorTransformation UnknownTransformation
 		{
 			get { return trans; }
 			set { trans = value; }
@@ -131,12 +146,31 @@ namespace SimPe.Plugin.Gmdc
 		{
 			bone = new GmdcJoint(parent);			
 			name = "";
+			parentname = "";
 			index = -1;
 			action = GmdcImporterAction.Add;
-			q = new Quaternion();
-			trans = new Vector3f();
+			sourcepos = new VectorTransformation(SimPe.Geometry.VectorTransformation.TransformOrder.TranslateRotate);
+			trans = new VectorTransformation(SimPe.Geometry.VectorTransformation.TransformOrder.TranslateRotate);
 			
 			scale = (float)(1.0);
+		}
+
+		/// <summary>
+		/// Returns the PArent Bone or null if none was found
+		/// </summary>
+		/// <param name="bones">List of Bones, where we should look for Parents</param>
+		/// <returns>null if no Parent is available or the Parent Bone</returns>
+		public ImportedBone GetParentFrom(ImportedBones bones) 
+		{
+			parentname = parentname.Trim();
+			if (parentname.Trim()=="") return null;
+
+			foreach (ImportedBone b in bones) 
+			{
+				if (b.ImportedName.Trim()==parentname) return b;
+			}
+
+			return null;
 		}
 	}
 

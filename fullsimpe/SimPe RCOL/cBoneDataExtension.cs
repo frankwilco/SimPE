@@ -117,5 +117,10 @@ namespace SimPe.Plugin
 			this.ext.AddToTabControl(tc);
 			tc.SelectedIndex = tc.TabPages.Count-1;
 		}
+
+		public override string ToString()
+		{
+			return ext.VarName + " ("+base.ToString ()+")";
+		}
 	}
 }
