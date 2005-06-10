@@ -33,11 +33,13 @@ namespace SimPe.Plugin.Gmdc
 		/// <param name="res">Result of the Import Dialog</param>
 		/// <param name="cg">Want to clean the Groups</param>
 		/// <param name="cb">Want to clean the Joints</param>
-		public ImportOptions(DialogResult res, bool cg, bool cb) 
+		/// <param name="uc">Want to Update the Crew, with the new Bone Hirarchy and Location</param>
+		public ImportOptions(DialogResult res, bool cg, bool cb, bool uc) 
 		{
 			this.res = res;
 			this.cleanbones = cb;
 			this.cleangroups = cg;
+			this.updatecres = uc;
 		}
 
 		DialogResult res;
@@ -67,5 +69,13 @@ namespace SimPe.Plugin.Gmdc
 			get { return cleanbones; }
 		}
 
+		bool updatecres;
+		/// <summary>
+		/// Writes the Bone Locationa and Hirarchy to the CRES
+		/// </summary>
+		public bool UpdateCres 
+		{
+			get {return updatecres; }
+		}
 	}
 }

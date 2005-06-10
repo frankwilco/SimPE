@@ -2746,7 +2746,7 @@ namespace SimPe.Plugin
 				TransformNodeItem b = (TransformNodeItem)lb_tn.Items[lb_tn.SelectedIndex];
 
 				tb_tn_1.Text = "0x"+Helper.HexString((ushort)b.Unknown1);
-				tb_tn_2.Text = "0x"+Helper.HexString((uint)b.Unknown2);
+				tb_tn_2.Text = "0x"+Helper.HexString((uint)b.ChildNode);
 				tn.Changed = true;
 			}
 			catch (Exception) 
@@ -2771,7 +2771,7 @@ namespace SimPe.Plugin
 				TransformNodeItem b = (TransformNodeItem)lb_tn.Items[lb_tn.SelectedIndex];
 
 				b.Unknown1 = Convert.ToUInt16(tb_tn_1.Text, 16);
-				b.Unknown2 = (int)Convert.ToUInt32(tb_tn_2.Text, 16);
+				b.ChildNode = (int)Convert.ToUInt32(tb_tn_2.Text, 16);
 
 				lb_tn.Items[lb_tn.SelectedIndex] = b;
 				tn.Changed = true;
@@ -2796,9 +2796,9 @@ namespace SimPe.Plugin
 				TransformNodeItem b = new TransformNodeItem();
 
 				b.Unknown1 = Convert.ToUInt16(tb_tn_1.Text, 16);
-				b.Unknown2 = (int)Convert.ToUInt32(tb_tn_2.Text, 16);
+				b.ChildNode = (int)Convert.ToUInt32(tb_tn_2.Text, 16);
 
-				tn.Items = (TransformNodeItem[])Helper.Add(tn.Items, b);
+				tn.Items.Add(b);//= (TransformNodeItem[])Helper.Add(tn.Items, b);
 				lb_tn.Items.Add(b);
 				tn.Changed = true;
 			}
@@ -2822,7 +2822,7 @@ namespace SimPe.Plugin
 				TransformNode tn = (TransformNode)tTransformNode.Tag;
 				TransformNodeItem b = (TransformNodeItem)lb_tn.Items[lb_tn.SelectedIndex];
 
-				tn.Items = (TransformNodeItem[])Helper.Delete(tn.Items, b);
+				tn.Items.Remove(b);// = (TransformNodeItem[])Helper.Delete(tn.Items, b);
 				lb_tn.Items.Remove(b);
 				tn.Changed = true;
 			}

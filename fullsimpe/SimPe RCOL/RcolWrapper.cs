@@ -229,7 +229,7 @@ namespace SimPe.Plugin
 				"RCOL Wrapper",
 				"Quaxi",
 				"---",
-				6
+				7
 				); 
 		}
 

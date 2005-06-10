@@ -395,7 +395,13 @@ namespace SimPe.Plugin
 				int sz = 16;
 				if ((typecode!=0x03) || (ver==4)) sz += 15;
 				if ((typecode<=0x03) && (version==3)) sz = 15;
-				data = reader.ReadBytes(sz);
+				if ((typecode<=0x03) && ver==4) sz = 31;
+
+				items = new ExtensionItem[1];
+				ExtensionItem ei = new ExtensionItem();
+				ei.Typecode = ExtensionItem.ItemTypes.Binary;
+				ei.Data = reader.ReadBytes(sz);
+				items[0] = ei;
 			} 
 			else 
 			{
@@ -437,9 +443,14 @@ namespace SimPe.Plugin
 			if (typecode<0x07) 
 			{
 				int sz = 16;
-				if (ver==4) sz += 15;
+				if ((typecode!=0x03) || (ver==4)) sz += 15;
+				if ((typecode<=0x03) && (version==3)) sz = 15;
+				if ((typecode<=0x03) && ver==4) sz = 31;
+
+				if (items.Length>0) data = items[0].Data;
+				
 				data = Helper.SetLength(data, sz);
-				writer.Write(data);
+				writer.Write(data);				
 			} 
 			else 
 			{

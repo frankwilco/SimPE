@@ -234,6 +234,35 @@ namespace Ambertation
 				}
 		}
 
+		void SetupTexture()
+		{
+			device.TextureState[0].ColorOperation = TextureOperation.Modulate2X;
+			device.TextureState[0].ColorArgument1 = TextureArgument.TextureColor;
+			device.TextureState[0].ColorArgument2 = TextureArgument.Diffuse;
+			device.TextureState[0].AlphaOperation = TextureOperation.SelectArg2;
+			device.TextureState[0].AlphaArgument1 = TextureArgument.TextureColor;
+			device.TextureState[0].AlphaArgument2 = TextureArgument.Diffuse;
+							
+			device.TextureState[1].ColorOperation = TextureOperation.Disable;
+			device.TextureState[1].AlphaOperation = TextureOperation.Disable;
+		}
+
+		void SetupRenderstate() 
+		{
+			//device.RenderState.CullMode = Cull.Clockwise;
+			device.RenderState.ZBufferEnable = true;
+			device.RenderState.Lighting = true;
+			device.RenderState.AlphaBlendEnable = true;
+			device.RenderState.SeparateAlphaBlendEnabled = true;
+			device.RenderState.AlphaSourceBlend = Blend.SourceAlpha;
+			device.RenderState.AlphaDestinationBlend = Blend.InvSourceAlpha;			
+			device.RenderState.Lighting = true;    // Make sure lighting is enabled			
+			device.RenderState.AlphaBlendOperation = BlendOperation.Add;
+			device.RenderState.LocalViewer = false;
+			//device.RenderState.Ambient = Color.White;
+			device.RenderState.DiffuseMaterialSource = ColorSource.Material;			
+		}
+
 		/// <summary>
 		/// Setup the DirectX Device
 		/// </summary>
@@ -273,17 +302,10 @@ namespace Ambertation
 				
 
 				// Create the D3DDevice
-				device = new Device(0, DeviceType.Hardware, this, CreateFlags.SoftwareVertexProcessing, presentParams);
+				device = new Device(0, DeviceType.Hardware, this, CreateFlags.HardwareVertexProcessing, presentParams);
 				device.DeviceReset += new System.EventHandler(this.OnResetDevice);
 
-				device.RenderState.ZBufferEnable = true; //Have Depth
-				device.RenderState.Lighting = true;    // Make sure lighting is enabled
-				device.RenderState.AlphaBlendEnable = true;
-				device.RenderState.AlphaBlendOperation = BlendOperation.Add;
-				device.RenderState.AlphaSourceBlend = Blend.SourceAlpha;
-				device.RenderState.AlphaDestinationBlend = Blend.One;
-				device.RenderState.LocalViewer = false;
-				device.RenderState.Ambient = Color.White;
+				SetupRenderstate();
 
 				pause = false;
 			}
@@ -372,11 +394,15 @@ namespace Ambertation
 				if (meshMaterials==null) return;
 
 				//Clear the backbuffer to a blue color 
-				device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, this.BackColor, 1.0f, 0);
+				device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, this.BackColor, 1.0f, 0);				
+
 				//Begin the scene
 				device.BeginScene();
 				// Setup the world, view, and projection matrices
 				SetupMatrices();
+
+				SetupRenderstate();
+				SetupTexture();
            
 				// Meshes are divided into subsets, one for each material. Render them in
 				// a loop
@@ -394,8 +420,12 @@ namespace Ambertation
 						Material myMaterial = new Material();
 						myMaterial.Diffuse = myMaterial.Ambient = Color.Red;
 						myMaterial.Diffuse = Color.FromArgb(0x20, 0x20, 0x40, 0x30);
-						device.Material = myMaterial;
+						myMaterial.Specular = Color.FromArgb(0x20, 0xff, 0xff, 0xff);
+
 						device.SetTexture(0, null);
+						device.Material = myMaterial;	
+						SetupRenderstate();
+						SetupTexture();
 						bbox.DrawSubset(0);
 					}
 				}
@@ -439,24 +469,26 @@ namespace Ambertation
 			// Note that many lights may be active at a time (but each one slows down
 			// the rendering of the scene). However, here just one is used.
 			device.Lights[0].Type = LightType.Point;
-			device.Lights[0].Attenuation0 = 0.05f;
-			device.Lights[0].Falloff =0.6f;
+			device.Lights[0].Attenuation0 = 0.3f;
+			//device.Lights[0].Falloff =0.6f;
 			device.Lights[0].Diffuse = System.Drawing.Color.DarkGray;
 			device.Lights[0].Specular = System.Drawing.Color.White;
-			device.Lights[0].Range = 30000;
-			device.Lights[0].Position = vp.CameraPosition;;
-			device.Lights[0].Direction = vp.CameraTarget - device.Lights[0].Position ;
+			device.Lights[0].Range = vp.FarPlane;
+			device.Lights[0].Position = vp.CameraPosition;
+			device.Lights[0].Direction = device.Lights[0].Position -vp.CameraTarget ;
 			device.Lights[0].Enabled = true; // Turn it on
 
 			device.Lights[1].Type = device.Lights[0].Type;
-			device.Lights[1].Attenuation0 = device.Lights[0].Attenuation0;
+			device.Lights[1].Attenuation0 = 0.2f;
 			device.Lights[1].Falloff =device.Lights[0].Falloff;
 			device.Lights[1].Diffuse = device.Lights[0].Diffuse;
 			device.Lights[1].Specular = device.Lights[0].Specular;
-			device.Lights[1].Range = device.Lights[0].Range/2;
-			device.Lights[1].Position = new Vector3( -300.0f, -350.0f, 200.0f );
+			device.Lights[1].Range = device.Lights[0].Range * 3;
+			device.Lights[1].Position = vp.CameraPosition * 3 + new Vector3(3*vp.CameraPosition.X, -vp.CameraPosition.Y*3, 0);
 			device.Lights[1].Direction = new Vector3( 0.0f, +3.0f, -5.0f );
 			device.Lights[1].Enabled = true; // Turn it on
+
+			
 			
 			
     
@@ -475,13 +507,15 @@ namespace Ambertation
 
 			int[] rank = {mesh.NumberVertices};
 		
-			Vector3[] vertices = (Vector3[])mesh.LockVertexBuffer(typeof(Vector3), LockFlags.None, rank);
+			
+			CustomVertex.PositionNormalTextured[] vertices = (CustomVertex.PositionNormalTextured[])mesh.LockVertexBuffer(typeof(CustomVertex.PositionNormalTextured), LockFlags.None, rank);
 			
 			Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
 			Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
 			
-			foreach (Vector3 v in vertices) 
+			foreach (CustomVertex.PositionNormalTextured v in vertices) 
 			{
+				
 				if (v.X<min.X) min.X = v.X;
 				if (v.Y<min.Y) min.Y = v.Y;
 				if (v.Z<min.Z) min.Z = v.Z;
@@ -500,10 +534,11 @@ namespace Ambertation
 			double radius = boundingSphereRadius.Length() / vp.Aspect;
 			double dist = radius / Math.Sin(vp.FoV);
 
-			//foreach (Vector3 v in vertices) v.Subtract(center);
-			vp.X = center.X;
-			vp.Y = center.Y;
-			vp.Z = center.Z;
+			//for (int i=0; i< mesh.NumberVertices; i++) vertices[i].Subtract(center);
+			
+			vp.X = -center.X;
+			vp.Y = -center.Y;
+			vp.Z = -center.Z;
 			vp.CameraTarget = new Vector3(0,0,0);
 			vp.CameraPosition = new Vector3(
 				center.X,
@@ -531,13 +566,16 @@ namespace Ambertation
 			if (vp==null) vp = new ViewportSetting();
 
 
-			device.Transform.World =  Matrix.Multiply(
-				Matrix.RotationX( vp.AngelX ),
+			device.Transform.World =  Matrix.Multiply(				
+				Matrix.RotationZ( vp.AngelZ ),
 				Matrix.Multiply(
-					Matrix.RotationY( vp.AngelY ),
+					Matrix.RotationX( vp.AngelX ),
 					Matrix.Multiply(
-						Matrix.Scaling(vp.Scale, vp.Scale, vp.Scale), 
-						Matrix.Translation(vp.X, vp.Y, vp.Z)
+						Matrix.RotationY( vp.AngelY ),
+						Matrix.Multiply(
+							Matrix.Scaling(vp.Scale, vp.Scale, vp.Scale), 
+							Matrix.Translation(vp.X, vp.Y, vp.Z)
+						)
 					)
 				)
 			);
@@ -598,8 +636,8 @@ namespace Ambertation
 
 				if (e.Button == MouseButtons.Middle) 
 				{
-					vp.Scale += (dx / 100.0f);
-					vp.Z += (dy / 100.0f);
+					vp.Scale += (dy / 100.0f);
+					vp.AngelZ += (dx / 100.0f);
 				}
 			}
 			last = e;
@@ -620,7 +658,7 @@ namespace Ambertation
 		protected void InitThread()
 		{
 			thread = new System.Threading.Thread(new System.Threading.ThreadStart(StartThread));
-			thread.Start();
+			thread.Start();			
 		}
 
 		static bool render;
@@ -628,10 +666,16 @@ namespace Ambertation
 		protected static void StartThread()
 		{
 			render = false;
+			foreach(Panel3D panel in panels)
+			{
+				panel.SetupRenderstate();
+				//panel.ResetDefaultViewport();
+			}
+			
 			while(panels.Count>0) 
 			{
 				Monitor.Enter(render);
-				render = true;
+				render = true;				
 				foreach(Panel3D panel in panels)
 				{
 					panel.Render();

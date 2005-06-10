@@ -149,6 +149,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.ComboBox cbaxis;
 		private System.Windows.Forms.LinkLabel linkLabel6;
+		private System.Windows.Forms.LinkLabel linkLabel7;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -284,6 +285,7 @@ namespace SimPe.Plugin
 			this.groupBox17 = new System.Windows.Forms.GroupBox();
 			this.lb_model_names = new System.Windows.Forms.ListBox();
 			this.groupBox16 = new System.Windows.Forms.GroupBox();
+			this.linkLabel6 = new System.Windows.Forms.LinkLabel();
 			this.lb_model_trans = new System.Windows.Forms.ListBox();
 			this.tGeometryDataContainer2 = new System.Windows.Forms.TabPage();
 			this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -299,6 +301,7 @@ namespace SimPe.Plugin
 			this.label14 = new System.Windows.Forms.Label();
 			this.lb_itemsb2 = new System.Windows.Forms.ListBox();
 			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.linkLabel7 = new System.Windows.Forms.LinkLabel();
 			this.tb_uk4 = new System.Windows.Forms.TextBox();
 			this.tb_uk6 = new System.Windows.Forms.TextBox();
 			this.label16 = new System.Windows.Forms.Label();
@@ -321,7 +324,6 @@ namespace SimPe.Plugin
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.cd = new System.Windows.Forms.ColorDialog();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
-			this.linkLabel6 = new System.Windows.Forms.LinkLabel();
 			this.tabControl1.SuspendLayout();
 			this.tGeometryDataContainer.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -1300,6 +1302,17 @@ namespace SimPe.Plugin
 			this.groupBox16.TabStop = false;
 			this.groupBox16.Text = "Model Section - Transformations";
 			// 
+			// linkLabel6
+			// 
+			this.linkLabel6.AutoSize = true;
+			this.linkLabel6.Location = new System.Drawing.Point(232, 0);
+			this.linkLabel6.Name = "linkLabel6";
+			this.linkLabel6.Size = new System.Drawing.Size(52, 17);
+			this.linkLabel6.TabIndex = 23;
+			this.linkLabel6.TabStop = true;
+			this.linkLabel6.Text = "Rebuild";
+			this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RebuildAbsTransform);
+			// 
 			// lb_model_trans
 			// 
 			this.lb_model_trans.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1485,6 +1498,7 @@ namespace SimPe.Plugin
 			this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox7.Controls.Add(this.linkLabel7);
 			this.groupBox7.Controls.Add(this.tb_uk4);
 			this.groupBox7.Controls.Add(this.tb_uk6);
 			this.groupBox7.Controls.Add(this.label16);
@@ -1498,6 +1512,16 @@ namespace SimPe.Plugin
 			this.groupBox7.TabIndex = 26;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Link Section";
+			// 
+			// linkLabel7
+			// 
+			this.linkLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.linkLabel7.Location = new System.Drawing.Point(272, 120);
+			this.linkLabel7.Name = "linkLabel7";
+			this.linkLabel7.TabIndex = 26;
+			this.linkLabel7.TabStop = true;
+			this.linkLabel7.Text = "Flatten";
+			this.linkLabel7.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FlattenAliasMap);
 			// 
 			// tb_uk4
 			// 
@@ -1753,17 +1777,6 @@ namespace SimPe.Plugin
 			// ofd
 			// 
 			this.ofd.Title = "Import Mesh";
-			// 
-			// linkLabel6
-			// 
-			this.linkLabel6.AutoSize = true;
-			this.linkLabel6.Location = new System.Drawing.Point(232, 0);
-			this.linkLabel6.Name = "linkLabel6";
-			this.linkLabel6.Size = new System.Drawing.Size(52, 17);
-			this.linkLabel6.TabIndex = 23;
-			this.linkLabel6.TabStop = true;
-			this.linkLabel6.Text = "Rebuild";
-			this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RebuildAbsTransform);
 			// 
 			// fGeometryDataContainer
 			// 
@@ -2212,6 +2225,15 @@ namespace SimPe.Plugin
 			}
 		}
 
+		private void FlattenAliasMap(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (lb_itemsb.SelectedIndex<0) return;
+			GmdcLink item = (GmdcLink)((CountedListItem)lb_itemsb.Items[lb_itemsb.SelectedIndex]).Object;
+			item.Flatten();
+			item.Parent.Changed = true;
+			item.Parent.Refresh();
+		}
+
 		private void RebuildAbsTransform(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			if (this.tMesh.Tag != null)
@@ -2243,6 +2265,8 @@ namespace SimPe.Plugin
 				{
 					Helper.ExceptionMessage("", ex);
 				}
+
+				gmdc.Changed = true;
 
 				/*string res = "";
 				for (int i=0; i<old.Count; i++) 
