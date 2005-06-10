@@ -214,7 +214,7 @@ namespace SimPe.Plugin.Gmdc
 		{
 			get 
 			{
-				if (importoptionsresult==null) importoptionsresult = new ImportOptions(System.Windows.Forms.DialogResult.Cancel, false, false);
+				if (importoptionsresult==null) importoptionsresult = new ImportOptions(System.Windows.Forms.DialogResult.Cancel, false, false, false);
 				return importoptionsresult;
 			}
 			set 
@@ -285,7 +285,7 @@ namespace SimPe.Plugin.Gmdc
 				b.Bone.Parent = Gmdc;
 			}
 
-			//Update the Boned Indices
+			//Update the Bone Indices
 			foreach (ImportedGroup g in grps)
 			{
 				for(int i=0; i<g.Group.UsedJoints.Length; i++) 
@@ -302,6 +302,9 @@ namespace SimPe.Plugin.Gmdc
 				else if (g.Action == GmdcImporterAction.Rename) RenameGroup(g);
 				else if (g.Action == GmdcImporterAction.Replace) ReplaceGroup(g);
 				else if (g.Action == GmdcImporterAction.Update) UpdateGroup(g);
+
+				if (g.Action!=GmdcImporterAction.Nothing) 
+					if (!Helper.WindowsRegistry.HiddenMode) g.Link.Flatten();
 			}	
 		
 			//Make sure the Elements are assigned to the correct Bones
@@ -315,9 +318,32 @@ namespace SimPe.Plugin.Gmdc
 					//Update the effective Transformation
 					TransformNode tn = gmdc.Joints[b.TargetIndex].AssignedTransformNode;
 					if (tn!=null) gmdc.Model.Transformations[b.TargetIndex] = tn.GetEffectiveTransformation();
+
+					//Update the Hirarchy if wanted
+					if (Options.UpdateCres) 
+						if (gmdc.ParentResourceNode!=null && tn!=null && IsLocalCres())
+						{
+							//first delete the reference to this Node from the current parent
+							SimPe.Interfaces.Scenegraph.ICresChildren icc = tn.GetFirstParent();
+							if (icc!=null) 							
+								if (icc.StoredTransformNode!=null) icc.StoredTransformNode.RemoveChild(tn.Index);
+								
+
+							//second, add this Joint to it's new Parent (if one is available)
+							if (b.GetParentFrom(bns)!=null) 
+							{
+								TransformNode np = b.GetParentFrom(bns).Bone.AssignedTransformNode;
+								if (np!=null) np.AddChild(tn.Index);
+							}
+						}
 				}				
 			}
 			if (this.Options.CleanBones) Gmdc.CleanupBones();
+			if (this.Options.UpdateCres) 
+			{
+				if (!IsLocalCres()) this.error += "\n\nThe referenced CRES and this GMDC are not in the same Package File. For security reasons, SimPE did not Update the Bone Hirarchy and locations!";
+				else gmdc.ParentResourceNode.Parent.SynchronizeUserData();
+			}
 		}
 
 		#region Mesh
@@ -326,7 +352,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="g"></param>
 		protected virtual void AddGroup(ImportedGroup g)
-		{			
+		{						
 			for (int i=0; i<g.Link.ReferencedElement.Count; i++) 
 			{
 				GmdcElement e = g.Elements[g.Link.ReferencedElement[i]];
@@ -361,7 +387,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="g"></param>
 		protected virtual void UpdateGroup(ImportedGroup g)
-		{
+		{			
 			int index = Gmdc.FindGroupByName(g.TargetName);
 
 			GmdcGroup grp = Gmdc.Groups[index];
@@ -405,6 +431,17 @@ namespace SimPe.Plugin.Gmdc
 		}
 		#endregion
 
+		/// <summary>
+		/// Is the Cres within the same package than the GMDC is?
+		/// </summary>
+		/// <returns></returns>
+		bool IsLocalCres()
+		{
+			if (gmdc.ParentResourceNode==null) return false;
+			if (gmdc.ParentResourceNode.Parent.Package.FileName.Trim().ToLower()==gmdc.Parent.Package.FileName.Trim().ToLower()) return true;
+			return false;
+		}
+
 		#region Bone
 		/// <summary>
 		/// Add the passed Bone to the Gmdc and Fix the UseBone Indices to apropriate Values
@@ -419,12 +456,26 @@ namespace SimPe.Plugin.Gmdc
 			int nindex = gmdc.Joints.Length;
 			gmdc.Joints.Add(b.Bone);
 
-			VectorTransformation t = new VectorTransformation(VectorTransformation.TransformOrder.RotateTranslate);
-			
-			//t.Rotation = b.SourceTransformation.Rotation;
-			//t.Translation = b.SourceTransformation.Translation;
-
+			VectorTransformation t = new VectorTransformation(VectorTransformation.TransformOrder.RotateTranslate);						
 			gmdc.Model.Transformations.Add(t);
+
+			//Create a TransformNode for the New Bone
+			if (Options.UpdateCres)			
+				if ((gmdc.ParentResourceNode!=null) && (IsLocalCres()))
+				{
+					
+					TransformNode tn = new TransformNode(gmdc.ParentResourceNode.Parent);
+					tn.ObjectGraphNode.FileName = b.ImportedName;
+					tn.Transformation = b.Transformation.Clone();
+					tn.JointReference = nindex;
+
+					gmdc.ParentResourceNode.Parent.Blocks = (SimPe.Interfaces.Scenegraph.IRcolBlock[])Helper.Add(
+						gmdc.ParentResourceNode.Parent.Blocks,
+						tn,
+						typeof(SimPe.Interfaces.Scenegraph.IRcolBlock)
+						);
+				}
+			
 
 			return nindex;
 		}
@@ -442,12 +493,17 @@ namespace SimPe.Plugin.Gmdc
 			int nindex = b.TargetIndex;
 			gmdc.Joints[nindex] = b.Bone;
 			
-			VectorTransformation t = new VectorTransformation(VectorTransformation.TransformOrder.RotateTranslate);
-			
-			//t.Rotation = b.SourceTransformation.Rotation;
-			//t.Translation = b.SourceTransformation.Translation;
-
+			VectorTransformation t = new VectorTransformation(VectorTransformation.TransformOrder.RotateTranslate);			
 			gmdc.Model.Transformations[nindex] = t;
+
+			//Change the TransformNode for the New Bone
+			if (Options.UpdateCres)			
+				if (gmdc.ParentResourceNode!=null) 
+				{
+					TransformNode tn = gmdc.Joints[nindex].AssignedTransformNode;
+					tn.ObjectGraphNode.FileName = b.ImportedName;
+					if (tn!=null) tn.Transformation = b.Transformation.Clone();				
+				}
 
 			return nindex;
 		}

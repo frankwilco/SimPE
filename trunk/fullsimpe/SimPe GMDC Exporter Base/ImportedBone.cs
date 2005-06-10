@@ -96,22 +96,12 @@ namespace SimPe.Plugin.Gmdc
 		/// <summary>
 		/// The initial Transformation for this Joint
 		/// </summary>
-		public VectorTransformation SourceTransformation
+		public VectorTransformation Transformation
 		{
 			get { return sourcepos; }
 			set { sourcepos = value; }
 		}
-
-		VectorTransformation trans;	
-		/// <summary>
-		/// An unknown Bone Transformation
-		/// </summary>
-		public VectorTransformation UnknownTransformation
-		{
-			get { return trans; }
-			set { trans = value; }
-		}
-
+		
 		/// <summary>
 		/// Returns the color that should be used to display this Group in the "Import Groups" ListView
 		/// </summary>
@@ -122,7 +112,7 @@ namespace SimPe.Plugin.Gmdc
 				if (Action==GmdcImporterAction.Nothing) return System.Drawing.Color.Silver;
 				return System.Drawing.Color.DarkBlue;
 			}
-		}
+		}		
 
 		/// <summary>
 		/// internal Attribute
@@ -150,7 +140,6 @@ namespace SimPe.Plugin.Gmdc
 			index = -1;
 			action = GmdcImporterAction.Add;
 			sourcepos = new VectorTransformation(SimPe.Geometry.VectorTransformation.TransformOrder.TranslateRotate);
-			trans = new VectorTransformation(SimPe.Geometry.VectorTransformation.TransformOrder.TranslateRotate);
 			
 			scale = (float)(1.0);
 		}

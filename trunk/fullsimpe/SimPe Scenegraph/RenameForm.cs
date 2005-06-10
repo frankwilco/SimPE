@@ -298,7 +298,14 @@ namespace SimPe.Plugin
 				string ext = "_"+lvi.SubItems[1].Text.Trim().ToLower();
 				if (!newname.ToLower().EndsWith(ext)) newname = newname + ext;
 
-				ht.Add(Hashes.StripHashFromName(oldname), Hashes.StripHashFromName(newname));
+				try 
+				{
+					ht.Add(Hashes.StripHashFromName(oldname), Hashes.StripHashFromName(newname));
+				} 
+				catch (System.ArgumentException ex)
+				{
+					throw new Warning(ex.Message, "Two or more Resources in the package have the same name, which is not allowed! See http://ambertation.de/simpeforum/viewtopic.php?t=1078 for Details.", ex);
+				}
 			}
 
 			return ht;

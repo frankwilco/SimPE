@@ -41,6 +41,7 @@ namespace SimPe.Plugin.Gmdc
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.CheckBox cbcleanbn;
 		private System.Windows.Forms.CheckBox cbcleangrp;
+		private System.Windows.Forms.CheckBox cbupdatecres;
 		/// <summary>
 		/// Needed Designervar.
 		/// </summary>
@@ -115,6 +116,7 @@ namespace SimPe.Plugin.Gmdc
 			this.label10 = new System.Windows.Forms.Label();
 			this.cbbones = new System.Windows.Forms.ComboBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.cbupdatecres = new System.Windows.Forms.CheckBox();
 			this.cbcleanbn = new System.Windows.Forms.CheckBox();
 			this.cbcleangrp = new System.Windows.Forms.CheckBox();
 			this.gbsettings.SuspendLayout();
@@ -139,7 +141,7 @@ namespace SimPe.Plugin.Gmdc
 			this.lv.HideSelection = false;
 			this.lv.Location = new System.Drawing.Point(8, 32);
 			this.lv.Name = "lv";
-			this.lv.Size = new System.Drawing.Size(488, 392);
+			this.lv.Size = new System.Drawing.Size(486, 420);
 			this.lv.TabIndex = 0;
 			this.lv.View = System.Windows.Forms.View.Details;
 			this.lv.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -199,7 +201,7 @@ namespace SimPe.Plugin.Gmdc
 			this.gbsettings.Enabled = false;
 			this.gbsettings.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.gbsettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.gbsettings.Location = new System.Drawing.Point(504, 128);
+			this.gbsettings.Location = new System.Drawing.Point(504, 168);
 			this.gbsettings.Name = "gbsettings";
 			this.gbsettings.Size = new System.Drawing.Size(280, 152);
 			this.gbsettings.TabIndex = 2;
@@ -317,7 +319,7 @@ namespace SimPe.Plugin.Gmdc
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button1.Location = new System.Drawing.Point(712, 408);
+			this.button1.Location = new System.Drawing.Point(710, 436);
 			this.button1.Name = "button1";
 			this.button1.TabIndex = 3;
 			this.button1.Text = "OK";
@@ -334,7 +336,7 @@ namespace SimPe.Plugin.Gmdc
 			this.gbbones.Enabled = false;
 			this.gbbones.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.gbbones.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.gbbones.Location = new System.Drawing.Point(504, 288);
+			this.gbbones.Location = new System.Drawing.Point(504, 328);
 			this.gbbones.Name = "gbbones";
 			this.gbbones.Size = new System.Drawing.Size(280, 104);
 			this.gbbones.TabIndex = 10;
@@ -395,22 +397,34 @@ namespace SimPe.Plugin.Gmdc
 			// groupBox1
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.cbupdatecres);
 			this.groupBox1.Controls.Add(this.cbcleanbn);
 			this.groupBox1.Controls.Add(this.cbcleangrp);
 			this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox1.Location = new System.Drawing.Point(504, 40);
+			this.groupBox1.Location = new System.Drawing.Point(502, 32);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(280, 80);
+			this.groupBox1.Size = new System.Drawing.Size(280, 128);
 			this.groupBox1.TabIndex = 11;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Global Settings:";
+			// 
+			// cbupdatecres
+			// 
+			this.cbupdatecres.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbupdatecres.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbupdatecres.Location = new System.Drawing.Point(16, 72);
+			this.cbupdatecres.Name = "cbupdatecres";
+			this.cbupdatecres.Size = new System.Drawing.Size(260, 48);
+			this.cbupdatecres.TabIndex = 2;
+			this.cbupdatecres.Text = "Also replace initial Bone Location and Hirarchy. (This can potatially change your" +
+				" Original Game Files!)";
 			// 
 			// cbcleanbn
 			// 
 			this.cbcleanbn.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbcleanbn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbcleanbn.Location = new System.Drawing.Point(16, 48);
+			this.cbcleanbn.Location = new System.Drawing.Point(16, 44);
 			this.cbcleanbn.Name = "cbcleanbn";
 			this.cbcleanbn.Size = new System.Drawing.Size(256, 24);
 			this.cbcleanbn.TabIndex = 1;
@@ -429,7 +443,7 @@ namespace SimPe.Plugin.Gmdc
 			// ImportGmdcGroupsForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-			this.ClientSize = new System.Drawing.Size(792, 436);
+			this.ClientSize = new System.Drawing.Size(790, 464);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.gbsettings);
 			this.Controls.Add(this.lv);
@@ -599,7 +613,7 @@ namespace SimPe.Plugin.Gmdc
 			//Builk the Result
 			DialogResult dr = DialogResult.Cancel;
 			if (f.ok) dr =  DialogResult.OK;
-			ImportOptions io = new ImportOptions(dr, f.cbcleangrp.Checked, f.cbcleanbn.Checked);
+			ImportOptions io = new ImportOptions(dr, f.cbcleangrp.Checked, f.cbcleanbn.Checked, f.cbupdatecres.Checked);
 			return io;
 		}
 

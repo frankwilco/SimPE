@@ -292,9 +292,14 @@ namespace SimPe.Plugin
 			FileTable.FileIndex.Load();
 			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(type, true);
 			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item  in items) 
-			{
+			{				
 				Rcol r = new GenericRcol(null, false);
-				r.ProcessData(item);
+
+				//try to open the File in the same package, not in the FileTable Package!
+				if (item.Package.FileName.Trim().ToLower()==parent.Package.FileName.Trim().ToLower()) 
+					r.ProcessData(parent.Package.FindFile(item.FileDescriptor), parent.Package);
+				else
+					r.ProcessData(item);				
 
 				foreach (Interfaces.Files.IPackedFileDescriptor pfd in r.ReferencedFiles) 
 				{

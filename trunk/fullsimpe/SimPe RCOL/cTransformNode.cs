@@ -20,11 +20,18 @@
 using System;
 using SimPe.Geometry;
 using System.ComponentModel;
+using System.Collections;
 
 namespace SimPe.Plugin
 {
 	public class TransformNodeItem 
 	{
+		public TransformNodeItem()
+		{
+			unknown1 = 1;
+			unknown2 = 0;
+		}
+
 		ushort unknown1;
 		public ushort Unknown1 
 		{
@@ -33,7 +40,7 @@ namespace SimPe.Plugin
 		}
 
 		int unknown2;
-		public int Unknown2 
+		public int ChildNode 
 		{
 			get { return unknown2; }
 			set { unknown2= value; }
@@ -79,14 +86,14 @@ namespace SimPe.Plugin
 		/// this value in Joint Reference tells us that the 
 		/// Node is not directly linked to a joint
 		/// </summary>
-		public const uint NO_JOINT= 0x7fffffff;
+		public const int NO_JOINT= 0x7fffffff;
 		#region Attributes
 		
 		CompositionTreeNode ctn;
 		ObjectGraphNode ogn;
 		
-		TransformNodeItem[] items;
-		public TransformNodeItem[] Items 
+		TransformNodeItems items;
+		public TransformNodeItems Items 
 		{
 			get { return items; }
 			set { items = value; }
@@ -180,12 +187,14 @@ namespace SimPe.Plugin
 			ctn = new CompositionTreeNode(parent);
 			ogn = new ObjectGraphNode(parent);
 
-			items = new TransformNodeItem[0];
+			items = new TransformNodeItems();
 
 			trans = new VectorTransformation(VectorTransformation.TransformOrder.TranslateRotate);
 
 			version = 0x07;
 			BlockID = 0x65246462;
+
+			unknown = NO_JOINT;
 		}
 
 		#region AbstractCresChildren Member
@@ -200,7 +209,7 @@ namespace SimPe.Plugin
 				IntArrayList l = new IntArrayList();
 				foreach (TransformNodeItem tni in items) 
 				{
-					l.Add(tni.Unknown2);
+					l.Add(tni.ChildNode);
 				}
 				return l;
 			}
@@ -236,11 +245,14 @@ namespace SimPe.Plugin
 			ogn.Unserialize(reader);
 			ogn.BlockID = myid;
 
-			items = new TransformNodeItem[reader.ReadUInt32()];
-			for(int i=0; i<items.Length; i++)
+			//items = new TransformNodeItem[];
+			uint count = reader.ReadUInt32();
+			items.Clear();
+			for(int i=0; i<count; i++)
 			{
-				items[i] = new TransformNodeItem();
-				items[i].Unserialize(reader);
+				TransformNodeItem tni = new TransformNodeItem();
+				tni.Unserialize(reader);
+				items.Add(tni);
 			}
 
 			trans.Order = VectorTransformation.TransformOrder.TranslateRotate;
@@ -339,5 +351,132 @@ namespace SimPe.Plugin
 			s += ": "+trans.ToString() + " ("+base.ToString ()+")";
 			return s;
 		}
+
+		/// <summary>
+		/// Remove the Child with the given Index from the List
+		/// </summary>
+		/// <param name="index"></param>
+		/// <returns>True, when the Child was found</returns>
+		public bool RemoveChild(int index) 
+		{
+			for (int i=0; i<Items.Length; i++) 
+			{
+				if (Items[i].ChildNode == index) 
+				{
+					Items.RemoveAt(i);
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Add the Child with the given Index from the List
+		/// </summary>
+		/// <param name="index"></param>
+		/// <returns>True, when the Child was added</returns>
+		public bool AddChild(int index) 
+		{
+			for (int i=0; i<Items.Length; i++) 
+			{
+				if (Items[i].ChildNode == index) 
+				{
+					return false;
+				}
+			}
+
+			TransformNodeItem tni = new TransformNodeItem();
+			tni.ChildNode = index;
+			items.Add(tni);
+			return false;
+		}
 	}
+
+	#region Container
+	/// <summary>
+	/// Typesave ArrayList for TransformNodeItem Objects
+	/// </summary>
+	public class TransformNodeItems : ArrayList 
+	{
+		/// <summary>
+		/// Integer Indexer
+		/// </summary>
+		public new TransformNodeItem this[int index]
+		{
+			get { return ((TransformNodeItem)base[index]); }
+			set { base[index] = value; }
+		}
+
+		/// <summary>
+		/// unsigned Integer Indexer
+		/// </summary>
+		public TransformNodeItem this[uint index]
+		{
+			get { return ((TransformNodeItem)base[(int)index]); }
+			set { base[(int)index] = value; }
+		}
+
+		/// <summary>
+		/// add a new Element
+		/// </summary>
+		/// <param name="item">The object you want to add</param>
+		/// <returns>The index it was added on</returns>
+		public int Add(TransformNodeItem item)
+		{
+			return base.Add(item);
+		}
+
+		/// <summary>
+		/// insert a new Element
+		/// </summary>
+		/// <param name="index">The Index where the Element should be stored</param>
+		/// <param name="item">The object that should be inserted</param>
+		public void Insert(int index, TransformNodeItem item)
+		{
+			base.Insert(index, item);
+		}
+
+		/// <summary>
+		/// remove an Element
+		/// </summary>
+		/// <param name="item">The object that should be removed</param>
+		public void Remove(TransformNodeItem item)
+		{
+			base.Remove(item);
+		}
+
+		/// <summary>
+		/// Checks wether or not the object is already stored in the List
+		/// </summary>
+		/// <param name="item">The Object you are looking for</param>
+		/// <returns>true, if it was found</returns>
+		public bool Contains(TransformNodeItem item)
+		{
+			return base.Contains(item);
+		}		
+
+		/// <summary>
+		/// Number of stored Elements
+		/// </summary>
+		public int Length 
+		{
+			get { return this.Count; }
+		}
+
+		/// <summary>
+		/// Create a clone of this Object
+		/// </summary>
+		/// <returns>The clone</returns>
+		public override object Clone()
+		{
+			TransformNodeItems list = new TransformNodeItems();
+			foreach (TransformNodeItem item in this) list.Add(item);
+
+			return list;
+		}
+
+		
+	}
+	#endregion
 }

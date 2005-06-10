@@ -28,8 +28,8 @@ namespace Ambertation
 	/// </summary>
 	public class ViewportSetting 
 	{
-		float angx, angy, posx, posy, posz, scale;
-		Vector3 campos, camtarget, camup;
+		float angx, angy, angz, scale;
+		Vector3 campos, camtarget, camup, pos;
 		float fov, aspect, near, far;
 
 		internal ViewportSetting()
@@ -43,8 +43,8 @@ namespace Ambertation
 		/// </summary>
 		public void Reset()
 		{
-			angx = angy = 0;
-			posx = posy = posz = 0;
+			angx = angy = angz = 0;
+			pos = new Vector3(0, 0, 0);
 			scale = 1;
 
 			fov = (float)(Math.PI / 4);
@@ -105,6 +105,12 @@ namespace Ambertation
 			set { angx = value; }
 		}
 
+		public float AngelZ
+		{
+			get { return angz; }
+			set { angz = value; }
+		}
+
 		public float AngelY
 		{
 			get { return angy; }
@@ -113,20 +119,20 @@ namespace Ambertation
 
 		public float X
 		{
-			get { return posx; }
-			set { posx = value; }
+			get { return pos.X; }
+			set { pos.X = value; }
 		}
 
 		public float Y
 		{
-			get { return posy; }
-			set { posy = value; }
+			get { return pos.Y; }
+			set { pos.Y = value; }
 		}
 
 		public float Z
 		{
-			get { return posz; }
-			set { posz = value; }
+			get { return pos.Z; }
+			set { pos.Z = value; }
 		}
 
 		public float Scale

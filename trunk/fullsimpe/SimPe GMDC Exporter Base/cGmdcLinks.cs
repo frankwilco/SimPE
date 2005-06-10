@@ -160,6 +160,7 @@ namespace SimPe.Plugin.Gmdc
 		/// </returns>
 		public int GetElementNr(GmdcElement e)
 		{
+			if (e==null) return -1;
 			for (int i=0; i<this.items1.Length; i++) 
 				if (parent.Elements[items1[i]]==e) return i;
 			
@@ -262,6 +263,45 @@ namespace SimPe.Plugin.Gmdc
 			if (minct!=int.MaxValue) res = minct;
 
 			return res;
+		}
+
+		/// <summary>
+		/// Makes sure that the Aliaslists are not used!
+		/// </summary>
+		public void Flatten()
+		{
+			GmdcElement v = new GmdcElement(this.parent);
+			GmdcElement vn = new GmdcElement(this.parent);
+			GmdcElement vt = new GmdcElement(this.parent);
+
+			GmdcElement ov = this.FindElementType(ElementIdentity.Vertex);
+			GmdcElement ovn = this.FindElementType(ElementIdentity.Normal);
+			GmdcElement ovt = this.FindElementType(ElementIdentity.UVCoordinate);
+
+			int nv = this.GetElementNr(ov);
+			int nvn = this.GetElementNr(ovn);
+			int nvt = this.GetElementNr(ovt);
+			for (int i=0; i<this.ReferencedSize; i++)
+			{
+				v.Values.Add(ov.Values[this.GetRealIndex(nv, i)]);
+				if (ovn!=null) vn.Values.Add(ovn.Values[this.GetRealIndex(nvn, i)]);
+				if (ovt!=null) vt.Values.Add(ovt.Values[this.GetRealIndex(nvt, i)]);
+			}
+
+			ov.Values = v.Values;
+			ov.Number = ReferencedSize;
+			if (ovn!=null) 
+			{
+				ovn.Values = vn.Values;
+				ovn.Number = ReferencedSize;
+			}
+			if (ovt!=null) 
+			{
+				ovt.Values = vt.Values;
+				ovt.Number = ReferencedSize;
+			}
+
+			for (int i=0; i<this.AliasValues.Length; i++) this.AliasValues[i].Clear();			
 		}
 	}
 

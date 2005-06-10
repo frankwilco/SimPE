@@ -24,6 +24,25 @@ using System.ComponentModel;
 namespace SimPe.Plugin
 {
 	/// <summary>
+	/// What type of Information is stored in the Token
+	/// </summary>
+	public enum AnimationTokenType  :byte
+	{
+		/// <summary>
+		/// Uniform Scaling factors
+		/// </summary>
+		UniformScale = 0,
+		/// <summary>
+		/// Translations
+		/// </summary>
+		Translation = 1,
+		/// <summary>
+		/// Rotations
+		/// </summary>
+		Rotation = 2
+	}
+
+	/// <summary>
 	/// Base Class for common structures in the diffrent AnimBlock Formats
 	/// </summary>
 	public class AnimBlock 
@@ -567,9 +586,9 @@ namespace SimPe.Plugin
 
 		byte type;
 		[DescriptionAttribute("Propbably some sort of Type Identifier"), CategoryAttribute("Information")]				
-		public byte AddonTokenType 
+		public AnimationTokenType AddonTokenType 
 		{
-			get { return type; }
+			get { return (AnimationTokenType)type; }
 		}
 
 		[DescriptionAttribute("Size (in Bytes) of one Addon Token"), CategoryAttribute("Information")]				
@@ -594,6 +613,18 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
+		float ReadFloat(System.IO.BinaryReader reader) 
+		{
+			byte[] tmp = reader.ReadBytes(2);
+			byte[] res = new byte[4];
+			res[0] = tmp[1];
+			res[1] = tmp[0];
+			res[2] = 0;
+			res[3] = 0;
+			float f = BitConverter.ToSingle(res, 0);
+
+			return f;
+		}
 		internal AnimBlock3() 
 		{
 			datai = new uint[2];
@@ -627,6 +658,7 @@ namespace SimPe.Plugin
 		/// <param name="reader">The Stream that contains the FileData</param>
 		internal void UnserializeAddonData(System.IO.BinaryReader reader)
 		{
+
 			datas = new short[GetCount()];
 			for (int i=0; i<datas.Length; i++) datas[i] = reader.ReadInt16();
 		}	

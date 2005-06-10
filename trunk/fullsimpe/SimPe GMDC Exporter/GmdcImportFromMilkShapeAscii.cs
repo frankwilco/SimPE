@@ -255,7 +255,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 				e = new GmdcElement(Gmdc);
 				g.Elements.Add(e);
 				e.Identity = ElementIdentity.BoneWeights;
-				e.BlockFormat = BlockFormat.TwoFloat;
+				e.BlockFormat = BlockFormat.OneFloat;
 				e.SetFormat = SetFormat.Secondary;
 
 				//Read the Mesh Data
@@ -334,7 +334,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 				g.Elements[0].Values.Add(new Gmdc.GmdcElementValueThreeFloat((float)coord.X, (float)coord.Y, (float)coord.Z));
 				g.Elements[2].Values.Add(new Gmdc.GmdcElementValueTwoFloat(u, v));	
 				g.Elements[3].Values.Add(new Gmdc.GmdcElementValueOneInt(b));
-				g.Elements[4].Values.Add(new Gmdc.GmdcElementValueTwoFloat((float)1.0, 0));			
+				g.Elements[4].Values.Add(new Gmdc.GmdcElementValueOneFloat((float)1.0));			
 			} 
 			catch 
 			{
@@ -481,8 +481,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 				
 							
 				//Quaternion from Euler Angles
-				b.SourceTransformation.Translation = trans;
-				b.SourceTransformation.Rotation = new SimPe.Geometry.Quaternion(rot);		
+				b.Transformation.Translation = trans;
+				b.Transformation.Rotation = new SimPe.Geometry.Quaternion(rot);		
 			} 
 			catch 
 			{
