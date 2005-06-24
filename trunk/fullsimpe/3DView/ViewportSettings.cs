@@ -29,7 +29,7 @@ namespace Ambertation
 	public class ViewportSetting 
 	{
 		float angx, angy, angz, scale;
-		Vector3 campos, camtarget, camup, pos;
+		Vector3 campos, camtarget, camup, pos, center;
 		float fov, aspect, near, far;
 
 		internal ViewportSetting()
@@ -45,6 +45,7 @@ namespace Ambertation
 		{
 			angx = angy = angz = 0;
 			pos = new Vector3(0, 0, 0);
+			center = new Vector3(0, 0, 0);
 			scale = 1;
 
 			fov = (float)(Math.PI / 4);
@@ -73,6 +74,12 @@ namespace Ambertation
 		{
 			get { return campos; }
 			set { campos = value; }
+		}
+
+		public Vector3 ObjectCenter
+		{
+			get { return center; }
+			set { center = value; }
 		}
 
 		public float NearPlane
@@ -139,6 +146,30 @@ namespace Ambertation
 		{
 			get { return scale; }
 			set { scale = value; }
+		}
+
+		public float InputTranslationScale 
+		{
+			get 
+			{
+				return 450f; //(float)((NearPlane + FarPlane) / 2.0 * 300);
+			}
+		}
+
+		public float InputRotationScale 
+		{
+			get 
+			{
+				return 100f; //(float)((NearPlane + FarPlane) / 2.0 * 100);
+			}
+		}
+
+		public float InputScaleScale 
+		{
+			get 
+			{
+				return 100f; //(float)((NearPlane + FarPlane) / 2.0 * 100);
+			}
 		}
 	}
 }

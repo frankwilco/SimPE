@@ -483,7 +483,7 @@ namespace SimPe.Plugin
 			//
 			InitializeComponent();
 
-			Microsoft.Win32.RegistryKey rk = Helper.WindowsRegistry.PluginRegistryKey.CreateSubKey("CareerEditor");
+			XmlRegistryKey rk = Helper.WindowsRegistry.PluginRegistryKey.CreateSubKey("CareerEditor");
 
 			oneEnglish = ((string)rk.GetValue("oneEnglish", "True")) == "True";
 			englishOnly = ((string)rk.GetValue("englishOnly", "False")) == "True";
@@ -4716,7 +4716,7 @@ namespace SimPe.Plugin
 			{
 				if (this.package==null) 
 				{
-					this.package = new SimPe.Packages.GeneratableFile(CareerTool.DefaultCareerFile);					
+					this.package = SimPe.Packages.GeneratableFile.LoadFromFile(CareerTool.DefaultCareerFile);					
 					newpackage = true;
 					this.package = (SimPe.Packages.GeneratableFile)this.package.Clone();
 				}
@@ -4800,7 +4800,7 @@ namespace SimPe.Plugin
 				removeEnglishInternational();
 
 			saveFiles();
-			Microsoft.Win32.RegistryKey rk = Helper.WindowsRegistry.PluginRegistryKey.CreateSubKey("CareerEditor");
+			XmlRegistryKey rk = Helper.WindowsRegistry.PluginRegistryKey.CreateSubKey("CareerEditor");
 
 			rk.SetValue("oneEnglish", oneEnglish);
 			rk.SetValue("englishOnly", englishOnly);
