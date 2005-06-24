@@ -213,14 +213,14 @@ namespace SimPe.Providers
 			string file = System.IO.Path.Combine(reg.SimsPath, "TSData\\Res\\Sims3D\\Sims07.package");				
 			if (System.IO.File.Exists(file)) 
 			{
-				SimPe.Interfaces.Files.IPackageFile package = new SimPe.Packages.File(file);
+				SimPe.Interfaces.Files.IPackageFile package = SimPe.Packages.GeneratableFile.LoadFromFile(file);
 				LoadSkinImageFormPackage(package);
 			} 		
 	
 			file = System.IO.Path.Combine(reg.SimsPath, "TSData\\Res\\Sims3D\\Sims02.package");				
 			if (System.IO.File.Exists(file)) 
 			{
-				SimPe.Interfaces.Files.IPackageFile package = new SimPe.Packages.File(file);
+				SimPe.Interfaces.Files.IPackageFile package = SimPe.Packages.GeneratableFile.LoadFromFile(file);
 				LoadSkinImageFormPackage(package);
 			} */		
 		}
@@ -233,7 +233,7 @@ namespace SimPe.Providers
 			string[] files = System.IO.Directory.GetFiles(path, "*.package");
 			foreach (string file in files) 
 			{
-				SimPe.Packages.File package = new SimPe.Packages.File(file);
+				SimPe.Packages.File package = SimPe.Packages.File.LoadFromFile(file);
 				LoadSkinFormPackage(package);
 				//package.Reader.Close();
 			}
@@ -247,7 +247,7 @@ namespace SimPe.Providers
 			string[] files = System.IO.Directory.GetFiles(path, "*.package");
 			foreach (string file in files) 
 			{
-				SimPe.Packages.File package = new SimPe.Packages.File(file);
+				SimPe.Packages.File package = SimPe.Packages.File.LoadFromFile(file);
 				LoadSkinImageFormPackage(package);
 				//package.Reader.Close();
 			}
@@ -260,11 +260,11 @@ namespace SimPe.Providers
 		{
 			if (BasePackage==null) 
 			{
-				Registry reg = new Registry();
+				Registry reg = Helper.WindowsRegistry;
 				string file = System.IO.Path.Combine(reg.SimsPath, "TSData\\Res\\Catalog\\Skins\\Skins.package");				
 				if (System.IO.File.Exists(file)) 
 				{
-					BasePackage = new Packages.File(file);
+					BasePackage = SimPe.Packages.File.LoadFromFile(file);
 				} 
 				else 
 				{
@@ -333,7 +333,7 @@ namespace SimPe.Providers
 			
 			if (System.IO.File.Exists(file)) 
 			{
-				SimPe.Interfaces.Files.IPackageFile package = new SimPe.Packages.File(file);
+				SimPe.Interfaces.Files.IPackageFile package = SimPe.Packages.File.LoadFromFile(file);
 				Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFile(matdname.Replace("CASIE_", ""), 0x49596978);
 				if (pfds.Length==0) pfds = package.FindFile(matdname, 0x49596978);
 				//try another Package
@@ -342,7 +342,7 @@ namespace SimPe.Providers
 					file = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res\\Sims3D\\Sims07.package");				
 					if (System.IO.File.Exists(file)) 
 					{
-						package = new SimPe.Packages.File(file);
+						package = SimPe.Packages.GeneratableFile.LoadFromFile(file);
 						pfds = package.FindFile(matdname, 0x49596978);
 					}
 				}*/
@@ -411,7 +411,7 @@ namespace SimPe.Providers
 			string file = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res\\Sims3D\\Sims07.package");				
 			if (System.IO.File.Exists(file)) 
 			{
-				SimPe.Interfaces.Files.IPackageFile package = new SimPe.Packages.File(file);
+				SimPe.Interfaces.Files.IPackageFile package = SimPe.Packages.File.LoadFromFile(file);
 				Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFile(name, 0x1C4A276C);
 
 				//look for the right one
@@ -438,7 +438,7 @@ namespace SimPe.Providers
 			if (txtr.Fast) 
 			{
 				txtr.Fast = false;
-				SimPe.Packages.File fl = new SimPe.Packages.File(txtr.Package.FileName);
+				SimPe.Packages.File fl = SimPe.Packages.File.LoadFromFile(txtr.Package.FileName);
 				Interfaces.Files.IPackedFileDescriptor pfd = fl.FindFile(txtr.FileDescriptor.Type, txtr.FileDescriptor.SubType, txtr.FileDescriptor.Group, txtr.FileDescriptor.Instance);
 				txtr.ProcessData(pfd, fl);
 				//fl.Reader.Close();

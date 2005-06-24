@@ -96,6 +96,13 @@ namespace SimPe.Interfaces.Files
 		}
 
 		/// <summary>
+		/// Returns the Uncompressed Data
+		/// </summary>
+		/// <param name="maxsize">Maximum Number of Bytes that should be returned</param>
+		/// <returns></returns>
+		Byte[] GetUncompressedData(int maxsize);
+
+		/// <summary>
 		/// Returns a part of the decompresed File
 		/// </summary>
 		/// <param name="size">max number of bytes to decompress</param>

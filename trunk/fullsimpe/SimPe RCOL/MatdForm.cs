@@ -433,6 +433,7 @@ namespace SimPe.Plugin
 			this.pg.Text = "MaterialDefinition Properties";
 			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
 			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
+			this.pg.Click += new System.EventHandler(this.pg_Click);
 			this.pg.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.pg_PropertyValueChanged);
 			// 
 			// MatdForm
@@ -714,6 +715,7 @@ namespace SimPe.Plugin
 #endif
 		}
 
+		Ambertation.PropertyObjectBuilderExt pob;
 		internal void SetupGrid(MaterialDefinition md)
 		{
 			pg.SelectedObject = null;
@@ -737,21 +739,25 @@ namespace SimPe.Plugin
 				}
 			}
 
-			Ambertation.PropertyObjectBuilderExt pob = new Ambertation.PropertyObjectBuilderExt(ht);
+			pob = new Ambertation.PropertyObjectBuilderExt(ht);
 			pg.SelectedObject = pob.Instance;
 		}
 
 		private void pg_PropertyValueChanged(object s, System.Windows.Forms.PropertyValueChangedEventArgs e)
 		{
 			if (this.tabPage3.Tag==null) return;
+			if (pob==null) return;
 			MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
-			md.GetProperty(e.ChangedItem.Label).Value = e.ChangedItem.Value.ToString();
+			md.GetProperty(e.ChangedItem.Label).Value = pob.Properties[e.ChangedItem.Label].ToString();
+
+			md.Parent.Changed = true;
 		}
 
 		internal void TxmtChangeTab(object sender, System.EventArgs e)
 		{
 			if (this.tabPage3.Tag==null) return;
 			MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+			if (tGrid.Parent==null) return;
 			if (((TabControl)tGrid.Parent).SelectedTab == tGrid) 
 			{
 				md.Refresh();
@@ -760,6 +766,11 @@ namespace SimPe.Plugin
 			{
 				md.Refresh();
 			}
+		}
+
+		private void pg_Click(object sender, System.EventArgs e)
+		{
+		
 		}
 	}
 }

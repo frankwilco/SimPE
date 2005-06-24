@@ -25,7 +25,7 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// Zusammenfassung für ImportSemiTool.
 	/// </summary>
-	public class WorkshopTool : Interfaces.ITool
+	public class WorkshopTool : Interfaces.AbstractTool, Interfaces.ITool
 	{
 		/// <summary>
 		/// Windows Registry Link
@@ -45,7 +45,7 @@ namespace SimPe.Plugin
 			this.reg = reg;
 			this.prov = prov;
 
-			if (registry==null) registry = new SimPe.Registry();
+			if (registry==null) registry = Helper.WindowsRegistry;
 
 			ws = new Workshop();
 		}
@@ -80,9 +80,19 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return "Object Workshop...";
+			return "Object Creation\\Object Workshop...";
 		}
 
+		#endregion
+
+		#region IToolExt Member
+		public override System.Windows.Forms.Shortcut Shortcut
+		{
+			get
+			{
+				return System.Windows.Forms.Shortcut.CtrlW;
+			}
+		}
 		#endregion
 	}
 }

@@ -139,6 +139,11 @@
                     Project = "{59E3C353-1350-42D8-A045-CBBAD232F228}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SandBar"
+                    AssemblyName = "SandBar"
+                    HintPath = "..\..\..\httpwww.divil.co.uknet\SandBar.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -164,27 +169,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "FileTable.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "LoadFileWrappers.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "LoadFileWrappers.resx"
-                    DependentUpon = "LoadFileWrappers.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "Remotecontrol.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ToolResult.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

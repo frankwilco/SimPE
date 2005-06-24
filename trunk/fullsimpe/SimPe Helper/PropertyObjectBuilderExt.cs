@@ -25,235 +25,13 @@ using System.Reflection.Emit;
 using System.ComponentModel;
 using System.Globalization;
 using System.Resources;
+using System.Drawing;
 
 namespace Ambertation
 {
-	/// <summary>
-	/// This is a typeconverter for the special Short class
-	/// </summary>
-	public class NumberBaseTypeConverter:TypeConverter
-	{
-		Type type;
-		public override bool CanConvertTo(ITypeDescriptorContext context,
-			System.Type destinationType) 
-		{
-			if (destinationType == typeof(BaseChangeableNumber))
-				return true;
+	
 
-			return base.CanConvertTo(context, destinationType);
-		}
-
-		public override object ConvertTo(ITypeDescriptorContext context,
-			CultureInfo culture, 
-			object value, 
-			System.Type destinationType) 
-		{
-			if (destinationType == typeof(System.String) && 
-				value is BaseChangeableNumber)
-			{
-
-				BaseChangeableNumber so = (BaseChangeableNumber)value;
-				type = so.Type;
-
-				return so.ToString();
-			}
-			return base.ConvertTo(context, culture, value, destinationType);
-		}
-
-		public override bool CanConvertFrom(ITypeDescriptorContext context,
-			System.Type sourceType) 
-		{
-			if (sourceType == typeof(string))
-				return true;
-
-			return base.CanConvertFrom(context, sourceType);
-		}
-
-		public override object ConvertFrom(ITypeDescriptorContext context,
-			CultureInfo culture, object value) 
-		{
-			if (value is string) 
-			{
-				try 
-				{
-					string s = (string) value;					
-					return BaseChangeableNumber.Convert(s, type);
-				}
-				catch 
-				{
-					throw new ArgumentException(
-						"Can not convert '" + (string)value + "'. This is not a valid "+BaseChangeableNumber.BaseName+" Number!");						
-				}
-			}  
-			return base.ConvertFrom(context, culture, value);
-		}
-	}
-
-	/// <summary>
-	/// This is a class that can present short Values in diffrent Ways
-	/// </summary>
-	[TypeConverterAttribute(typeof(NumberBaseTypeConverter)),
-	DescriptionAttribute("This Values can be displayed in Dec, Hex and Bin")]
-	public class BaseChangeableNumber 
-	{
-		/// <summary>
-		/// What kind of number was it to begin with?
-		/// </summary>
-		Type type;
-
-		internal Type Type 
-		{
-			get { return type; }
-		}
-
-		static int digitbase = 16;
-		/// <summary>
-		/// The Number Base used for Display 
-		/// </summary>
-		public static int DigitBase
-		{
-			get { return digitbase; }
-			set { digitbase = value; }
-		}
-
-		/// <summary>
-		/// Name of this Number Representation
-		/// </summary>
-		public static string BaseName 
-		{
-			get 
-			{
-				if (digitbase==16) return "Hexadecimal";
-				if (digitbase==2) return "Binary";
-				return "Decimal";
-			}
-		}
-
-		/// <summary>
-		/// Converts a String Back to a type of this Class
-		/// </summary>
-		/// <param name="s">The string Representation</param>
-		/// <param name="type">the type of the Target Number</param>
-		/// <returns>a new Instance</returns>
-		public static BaseChangeableNumber Convert(string s, Type type)
-		{
-			s = s.Trim().ToLower();
-			long val = 0;
-			if (s.StartsWith("0x")) 
-			{
-				val = System.Convert.ToInt64(s, 16);
-			} 
-			else if (s.StartsWith("b")) 
-			{
-				val = System.Convert.ToInt64(s.Substring(1), 2);
-			}
-			else 
-			{
-				val = System.Convert.ToInt64(s, 10);
-			}
-			
-			return new BaseChangeableNumber(val, type);
-		}
-
-		long val;
-
-		public BaseChangeableNumber(object v) { 
-			ObjectValue = v;
-		}
-
-		internal BaseChangeableNumber(object v, Type t) 
-		{ 
-			SetValue(v, t);
-		}
-
-		internal BaseChangeableNumber() { 
-			val = 0; 
-			type = typeof(int);
-		}
-
-		/// <summary>
-		/// The actual Value (as short)
-		/// </summary>
-		public short Value 
-		{
-			get { return (short)(val & 0xffff); ; }
-			set { val = (short)(value & 0xffff); }
-		}
-
-		/// <summary>
-		/// The actual Value (as Integer)
-		/// </summary>
-		public int IntegerValue 
-		{
-			get { return (int)val; }
-			set { val = value; }
-		}
-
-		/// <summary>
-		/// The actual Value (as Long)
-		/// </summary>
-		public long LongValue 
-		{
-			get { return val; }
-			set { val = value; }
-		}
-
-		internal void SetValue(object o, Type t) 
-		{
-			type = o.GetType();
-			
-			if (type==typeof(int)) val = (int)o;
-			else if (type==typeof(uint)) val = (uint)o;
-			else if (type==typeof(short)) val = (short)o;
-			else if (type==typeof(ushort)) val = (ushort)o;				
-			else if (type==typeof(byte)) val = (byte)o;								
-			else if (type==typeof(ulong)) val = (long)((ulong)o);
-			else val = (long)o;		
-
-			type = t;
-		}
-		/// <summary>
-		/// The actual value (same type as this value was created with, or last set)
-		/// </summary>
-		public object ObjectValue 
-		{
-			set 
-			{
-				SetValue(value, value.GetType());
-			}
-			get 
-			{
-				if (type==typeof(int)) return (int)val;
-				if (type==typeof(uint)) return (uint)val;
-				if (type==typeof(short)) return (short)val;
-				if (type==typeof(ushort)) return (ushort)val;				
-				if (type==typeof(byte)) return (byte)val;								
-				if (type==typeof(ulong)) return (ulong)val;
-				return (long)val;				
-			}
-		}
-
-		/// <summary>
-		/// Return the String Representation of the stored Value
-		/// </summary>
-		/// <returns>A String</returns>
-		public override string ToString()
-		{
-			if (digitbase==16) 
-			{
-				return "0x"+val.ToString("x");
-			} 
-			else if (digitbase==2) 
-			{
-				return "b"+System.Convert.ToString(val, 2);
-			}
-			else 
-			{
-				return val.ToString();
-			}
-		}
-
-	}
+	
 
 	/// <summary>
 	/// Meta Descriptions for a Property
@@ -276,7 +54,7 @@ namespace Ambertation
 		public string Category
 		{
 			get { return cat; }
-		}
+		}		
 
 		object prop;
 		/// <summary>
@@ -296,6 +74,10 @@ namespace Ambertation
 				{
 					return new BaseChangeableNumber(prop);
 				}
+				/*else if (prop.GetType()==typeof(Ambertation.FloatColor)) 
+				{
+					return ((FloatColor)prop).Color;
+				}*/
 				return prop; 
 			}
 			set { 
@@ -314,6 +96,14 @@ namespace Ambertation
 								prop = System.Enum.ToObject(type, System.Convert.ToInt32(value));
 
 						} 
+						else if ((type == typeof(FloatColor)) && (value.GetType()==typeof(string)))
+						{
+							prop = FloatColor.FromString(value.ToString());
+						}
+						else if ((type == typeof(FloatColor)) && (value.GetType()==typeof(Color)))
+						{
+							prop = FloatColor.FromColor((Color)value);
+						}
 						else 
 						{
 							prop = System.Convert.ChangeType(value, type); 
@@ -418,7 +208,11 @@ namespace Ambertation
 				if (o.GetType()==typeof(PropertyDescription)) 
 				{
 					PropertyDescription pd = (PropertyDescription)o;
-					AddProperty(k, myTypeBuilder, pd.Property.GetType(), pd.Description, pd.Category);
+					o = pd.Property;
+					if (o.GetType()== typeof(FloatColor)) 
+						o = ((FloatColor)o).Color;
+
+					AddProperty(k, myTypeBuilder, o.GetType(), pd.Description, pd.Category);
 				} 
 				else 
 				{
@@ -438,6 +232,8 @@ namespace Ambertation
 				{
 					PropertyDescription pd = (PropertyDescription)val;
 					val = pd.Property;
+					if (val.GetType()== typeof(FloatColor)) val = ((FloatColor)val).Color;
+
 				} 
 
 				custDataType.InvokeMember(
@@ -543,7 +339,8 @@ namespace Ambertation
 					object val = custDataType.InvokeMember(k, BindingFlags.GetProperty,
 						null, instance, new object[]{ });
 
-					if (val.GetType()==typeof(BaseChangeableNumber)) val = ((BaseChangeableNumber)val).ObjectValue;				
+					if (val.GetType()==typeof(BaseChangeableNumber)) val = ((BaseChangeableNumber)val).ObjectValue;
+					else if (val is Color) val = FloatColor.FromColor((Color)val);
 					ret[k] = val;
 				}
 				

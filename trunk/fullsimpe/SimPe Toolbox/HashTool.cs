@@ -45,7 +45,7 @@ namespace SimPe.Plugin
 			this.reg = reg;
 			this.prov = prov;
 
-			if (registry==null) registry = new SimPe.Registry();
+			if (registry==null) registry = Helper.WindowsRegistry;
 
 			
 		}
@@ -67,7 +67,7 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return "Hash Generator...";
+			return "Object Tool\\Hash Generator...";
 		}
 
 		#endregion

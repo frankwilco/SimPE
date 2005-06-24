@@ -326,12 +326,19 @@ namespace SimPe.PackedFiles.Wrapper
 			get
 			{
 				uint[] types = {
-								   	0xEBCF3E27, //Property Set
-									0x0C560F39, //Binary Index
-									//0x4C697E5A, //MMAT
-									0xEBFEE33F,
-									0x2C1FD8A1,
-									0xCCA8E925 //Object XML
+								   0xEBCF3E27, //Property Set
+								   0x0C560F39, //Binary Index
+								   //0x4C697E5A, //MMAT
+								   0xEBFEE33F,
+								   0x2C1FD8A1,
+								   0xCCA8E925, //Object XML
+								   0x4C158081, //Skintone XML
+								   0x0C1FE246, //Meshoverlay XML
+								   0x8C1580B5, //Hairtone XML
+								   0x8C93BF6C, //Face Region
+								   0x6C93B566, //Face Neutral
+								   0x0C93E3DE, //Face Modifier
+								   0x8C93E35C //Face Arch
 							   };
 			
 				return types;

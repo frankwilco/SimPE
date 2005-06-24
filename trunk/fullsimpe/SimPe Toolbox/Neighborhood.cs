@@ -261,7 +261,7 @@ namespace SimPe.Plugin
 				ret = true;
 				try 
 				{
-					SimPe.Packages.File pk = new SimPe.Packages.File(name);
+					SimPe.Packages.File pk = SimPe.Packages.File.LoadFromFile(name);
 					try 
 					{
 						SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pk.FindFile(0x43545353, 0, 0xffffffff, 1);
@@ -336,7 +336,7 @@ namespace SimPe.Plugin
 		{
 			if (lv.SelectedItems.Count<=0) return;
 
-			package = new SimPe.Packages.GeneratableFile(lv.SelectedItems[0].SubItems[1].Text);
+			package = SimPe.Packages.GeneratableFile.LoadFromFile(lv.SelectedItems[0].SubItems[1].Text);
 			Close();
 		}
 

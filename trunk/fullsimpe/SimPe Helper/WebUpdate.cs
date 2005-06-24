@@ -1,6 +1,11 @@
 using System;
 using System.Net;
 using System.IO;
+#if MAC
+#else
+using System.Runtime ;
+using System.Runtime.InteropServices ;
+#endif
 
 namespace SimPe
 {
@@ -137,7 +142,7 @@ namespace SimPe
 				WaitingScreen.Wait();
 				WaitingScreen.UpdateMessage("Check for new Updates");
 				WebClient cli = new WebClient();
-				byte[] data = cli.DownloadData("http://sims.ambertation.de/realdownload.shtml");
+				byte[] data = cli.DownloadData("http://sims.ambertation.de/downloadnfo.txt");
 				MemoryStream ms = new MemoryStream(data);
 				StreamReader sr = new StreamReader(ms);
 				string content = sr.ReadToEnd();
@@ -161,10 +166,13 @@ namespace SimPe
 							int build = Convert.ToInt32(vers[2]);
 							int priv = Convert.ToInt32(vers[3]);
 
-							if (Helper.SimPeVersion.FileMajorPart<max) return true;
-							if (Helper.SimPeVersion.FileMinorPart<min) return true;
-							if (Helper.SimPeVersion.FileBuildPart<build) return true;
-							if (Helper.SimPeVersion.FilePrivatePart<priv) return true;
+							if (Helper.SimPeVersion.FileMajorPart<max) res = true;
+							else if (Helper.SimPeVersion.FileMajorPart>max) res = false;
+							else if (Helper.SimPeVersion.FileMinorPart<min) res = true;
+							else if (Helper.SimPeVersion.FileMinorPart>min) res = false;
+							else if (Helper.SimPeVersion.FileBuildPart<build) res = true;
+							else if (Helper.SimPeVersion.FileBuildPart>build) res = false;
+							else if (Helper.SimPeVersion.FilePrivatePart<priv) res = true;
 						}
 					}
 				} 
@@ -190,5 +198,30 @@ namespace SimPe
 
 			return false;
 		}
+
+#if MAC
+		/// <summary>
+		/// Returns true if the System is Connected
+		/// </summary>
+		/// <returns></returns>
+		public static bool IsConnectedToInternet( )
+		{
+			return false;
+		}
+#else
+		[DllImport("wininet.dll")]
+		private extern static bool InternetGetConnectedState( out int Description, int ReservedValue ) ;
+
+		/// <summary>
+		/// Returns true if the System is Connected
+		/// </summary>
+		/// <returns></returns>
+		public static bool IsConnectedToInternet( )
+		{
+
+			int Desc ;
+			return InternetGetConnectedState( out Desc, 0 ) ;
+		}
+#endif
 	}
 }

@@ -213,7 +213,7 @@ Start SimPE now?</value>
 		<value>Save changes?</value>
 	</data>
 	<data name="savechanges">
-		<value>Do you want to save the Changes made to this Package?</value>
+		<value>Do you want to save the Changes made to the Package "{filename}"?</value>
 	</data>
 	<data name="unsavedchanges">
 		<value>Some Files in the Package have unsaved changes which will be lost when you open a new neighborhood. 
@@ -227,7 +227,9 @@ Do you want to continue anyway?</value>
 		<value>Portuguese (Brazil)</value>
 	</data>
 	<data name="savewrapperchanges">
-		<value>Do you want to save the Changes made to this Packed File?</value>
+		<value>Do you want to commit the Changes made to the Resource "{name}"?
+
+Package: {filename}</value>
 	</data>
 	<data name="RT_Unset_Unknown">
 		<value>Not defined or Unknown</value>
@@ -264,5 +266,14 @@ Do you want to continue anyway?</value>
 	</data>
 	<data name="question">
 		<value>Question</value>
+	</data>
+	<data name="cancel">
+		<value>Cancel</value>
+	</data>
+	<data name="ok">
+		<value>OK</value>
+	</data>
+	<data name="object tool">
+		<value>Object Tools</value>
 	</data>
 </root>

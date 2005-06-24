@@ -56,7 +56,7 @@ namespace SimPe.Plugin
 
 			if (System.IO.File.Exists(name))
 			{
-				SimPe.Packages.File pkg = new SimPe.Packages.File(name);
+				SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(name);
 				SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pkg.FindFile(0x54535053, 0, 1, 1);
 				if (pfd!=null) gc.ProcessData(pfd, pkg);				
 			}

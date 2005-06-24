@@ -26,6 +26,7 @@ using SimPe.Interfaces.Plugin.Internal;
 using SimPe.Interfaces;
 using SimPe.Interfaces.Files;
 using SimPe.PackedFiles.Wrapper;
+using SimPe.Events;
 
 namespace SimPe.Packages 
 {
@@ -140,6 +141,14 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// Dispose this Instance
+		/// </summary>
+		~File()
+		{
+			Close(true);
+		}
+
+		/// <summary>
 		/// Opens the Package File represented by a Stream
 		/// </summary>
 		/// <param name="br">The Stream</param>
@@ -168,12 +177,22 @@ namespace SimPe.Packages
 		/// Creats a new Object based on the given File
 		/// </summary>
 		/// <param name="filename"></param>
-		public File(string filename) 
+		internal File(string filename) 
+		{
+			ReloadFromFile(filename);
+		}
+
+		/// <summary>
+		/// Reload the Data from the File
+		/// </summary>
+		/// <param name="filename"></param>
+		internal void ReloadFromFile(string filename) 
 		{
 			persistent = true;
 			StreamItem si = StreamFactory.UseStream(filename, System.IO.FileAccess.Read);
 			
-			if (si.StreamState!=StreamState.Removed) {
+			if (si.StreamState!=StreamState.Removed) 
+			{
 				type = PackageBaseType.Filename;
 				flname = filename;
 				System.IO.BinaryReader br = new System.IO.BinaryReader(si.FileStream);
@@ -185,6 +204,39 @@ namespace SimPe.Packages
 				OpenByStream(null);
 			}
 		}
+
+		/*/// <summary>
+		/// Synchronize the content with Data from the Filesystem
+		/// </summary>
+		internal void Synchronize()
+		{
+			if (type==PackageBaseType.Filename) 
+			{
+				File newfl = new File(this.FileName);
+
+				//Synchronize Descriptors
+				foreach (SimPe.Packages.PackedFileDescriptor newpfd in newfl.Index) 
+				{
+					SimPe.Packages.PackedFileDescriptor pfd = (SimPe.Packages.PackedFileDescriptor)this.FindFile(newpfd);
+					if (pfd!=null) 
+					{
+						pfd.Offset = newpfd.Offset;
+						pfd.Size = newpfd.Size;
+						pfd.Changed = false;
+						pfd.MarkForDelete = false;
+						pfd.UserData = null;
+					} 
+					else this.Add(newpfd);					
+				}	
+			
+				//Remove files that do not exist in the filesystem Version
+				foreach (SimPe.Packages.PackedFileDescriptor pfd in Index) 
+				{
+					SimPe.Packages.PackedFileDescriptor newpfd = (SimPe.Packages.PackedFileDescriptor)newfl.FindFile(pfd);
+					if (newpfd==null) this.Remove(pfd);
+				}
+			}
+		}*/
 
 		/// <summary>
 		/// Init the Clone for this Package
@@ -309,6 +361,7 @@ namespace SimPe.Packages
 			pfd.subtype = subtype;
 			pfd.group = group;
 			pfd.instance = instance;
+			//pfd.ChangedUserData += new SimPe.Events.PackedFileChanged(ResourceChanged);
 
 			return pfd;
 		}
@@ -327,6 +380,10 @@ namespace SimPe.Packages
 			list.CopyTo(newindex);
 			header.index.count = newindex.Length;
 			fileindex = newindex;
+
+			pfd.ChangedUserData = null;
+			pfd.DescriptionChanged -= new EventHandler(ResourceDescriptionChanged);
+			if (IndexChanged!=null) IndexChanged(this, new EventArgs());
 		}
 
 		/// <summary>
@@ -338,6 +395,11 @@ namespace SimPe.Packages
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in fileindex) 
 			{
 				if (!pfd.MarkForDelete) list.Add(pfd);
+				else 
+				{
+					pfd.ChangedUserData = null;
+					pfd.DescriptionChanged -= new EventHandler(ResourceDescriptionChanged);
+				}
 			}
 
 			Interfaces.Files.IPackedFileDescriptor[] pfds = new Interfaces.Files.IPackedFileDescriptor[list.Count];
@@ -395,6 +457,10 @@ namespace SimPe.Packages
 			newindex[newindex.Length-1] = pfd;
 			header.index.count = newindex.Length;
 			fileindex = newindex;
+
+			pfd.ChangedUserData = new SimPe.Events.PackedFileChanged(ResourceChanged);
+			pfd.DescriptionChanged += new EventHandler(ResourceDescriptionChanged);
+			if (IndexChanged!=null) IndexChanged(this, new EventArgs());
 		}
 
 		/// <summary>
@@ -501,7 +567,9 @@ namespace SimPe.Packages
 			item.instance = reader.ReadUInt32();
 			if ((header.IsVersion0101) && (header.index.ItemSize>=24)) item.subtype = reader.ReadUInt32();
 			item.offset = reader.ReadUInt32();
-			item.size = reader.ReadInt32();			
+			item.size = reader.ReadInt32();		
+			item.ChangedUserData = new SimPe.Events.PackedFileChanged(ResourceChanged);
+			item.DescriptionChanged += new EventHandler(ResourceDescriptionChanged);
 
 			fileindex[position] = item;
 
@@ -836,6 +904,31 @@ namespace SimPe.Packages
 		#endregion		
 
 		/// <summary>
+		/// Close this Instance, leaving the FileDescripors valid
+		/// </summary>
+		public void Close()
+		{
+			Close(false);
+		}
+
+		/// <summary>
+		/// Close this Instance
+		/// </summary>
+		/// <param name="total">true, if the FileDescriptors should be marked invalid</param>
+		public void Close(bool total)
+		{
+			if (this.Reader!=null) Reader.Close();
+			if (total) 
+			{
+				if (this.Index != null) 
+				{
+					foreach (Interfaces.Files.IPackedFileDescriptor pfd in this.Index) 
+						if (pfd!=null) pfd.MarkInvalid();	
+				}
+			}
+		}
+
+		/// <summary>
 		/// Converts the given Char Array into a String
 		/// </summary>
 		/// <param name="array">The Char Array</param>
@@ -846,5 +939,109 @@ namespace SimPe.Packages
 			foreach(char c in array) s+=c.ToString();			
 			return s;
 		}
+
+		/// <summary>
+		/// Create a new GeneratableFile
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <returns></returns>
+		public static GeneratableFile LoadFromFile(string flname) 
+		{
+			return PackageMaintainer.Maintainer.LoadPackageFromFile(flname, false);
+		}
+
+		/// <summary>
+		/// Create a new GeneratableFile
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <param name="sync">true, if the content should be synced with the FileSystem</param>
+		/// <returns></returns>
+		public static GeneratableFile LoadFromFile(string flname, bool sync) 
+		{
+			return PackageMaintainer.Maintainer.LoadPackageFromFile(flname, sync);
+		}
+
+		/// <summary>
+		/// Create a new File
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <returns></returns>
+		public static  GeneratableFile LoadFromStream(BinaryReader br) 
+		{
+			return new GeneratableFile(br);
+		}
+
+		public override int GetHashCode()
+		{
+			if (this.FileName==null) 
+			{
+				if (this.Reader==null) return base.GetHashCode ();
+				else return this.Reader.GetHashCode();		
+			}
+			else return FileName.GetHashCode();
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (obj==null) return false;
+			if (!(obj is File)) return false;
+
+			File f = (File)obj;
+
+			if (f.FileName==null) 
+			{
+				if (this.FileName!=null) return false;				
+			} else if (this.FileName==null) return false;
+
+			if (f.FileName==null && this.FileName==null) 
+			{
+				if (this.Reader==null) 
+				{
+					return f.Reader==null;
+				} if (f.Reader==null) return false;
+
+				return this.Reader.Equals(f.Reader);
+			} 
+			else 
+			{
+#if MAC
+			return this.FileName.Trim()==f.FileName.Trim();
+#else
+				return this.FileName.Trim().ToLower()==f.FileName.Trim().ToLower();
+#endif
+			}
+	
+		}
+
+		#region Events
+		/// <summary>
+		/// Called whenever the content represented by this descripotr was changed
+		/// </summary>
+		public event PackedFileChanged ChangedResource;
+
+		/// <summary>
+		/// Pass the Event fired by one of the attached Resources (pfds) to assigned listeners
+		/// </summary>
+		/// <param name="sender"></param>
+		void ResourceChanged(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
+		{
+			if (ChangedResource!=null) ChangedResource(sender);
+		}
+
+		/// <summary>
+		/// Triggered whenever the Content of the Package was changed
+		/// </summary>
+		public event System.EventHandler IndexChanged;
+		
+		/// <summary>
+		/// Fired when a Description gets Changed
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ResourceDescriptionChanged(object sender, EventArgs e)
+		{
+			if (IndexChanged!=null) IndexChanged(this, e);
+		}
+		#endregion
 	}
 }

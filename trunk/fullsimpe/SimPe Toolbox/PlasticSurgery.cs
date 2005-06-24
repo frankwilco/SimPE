@@ -64,7 +64,7 @@ namespace SimPe.Plugin
 		/// <returns>the new Package for the patient Sim</returns>
 		public SimPe.Packages.GeneratableFile CloneSim()
 		{
-			SimPe.Packages.GeneratableFile ret = new SimPe.Packages.GeneratableFile((string)null);
+			SimPe.Packages.GeneratableFile ret = SimPe.Packages.GeneratableFile.LoadFromFile((string)null);
 
 			
 
@@ -352,7 +352,7 @@ namespace SimPe.Plugin
 		/// <returns>the new Package for the patient Sim</returns>
 		public SimPe.Packages.GeneratableFile CloneSkinTone(string skin, Hashtable skinfiles)
 		{
-			SimPe.Packages.GeneratableFile ret = new SimPe.Packages.GeneratableFile((string)null);
+			SimPe.Packages.GeneratableFile ret = SimPe.Packages.GeneratableFile.LoadFromFile((string)null);
 			string pskin = GetSkintone(this.patient);
 
 			ArrayList list = new ArrayList();
@@ -449,7 +449,7 @@ namespace SimPe.Plugin
 		/// <returns>the new Package for the patient Sim</returns>
 		public SimPe.Packages.GeneratableFile CloneFace()
 		{
-			SimPe.Packages.GeneratableFile ret = new SimPe.Packages.GeneratableFile((string)null);
+			SimPe.Packages.GeneratableFile ret = SimPe.Packages.GeneratableFile.LoadFromFile((string)null);
 
 			
 
@@ -565,7 +565,7 @@ namespace SimPe.Plugin
 		/// <param name="makeups">true, if you want to alter the makeup</param>
 		public SimPe.Packages.GeneratableFile CloneMakeup(bool eyecolor, bool makeups)
 		{
-			SimPe.Packages.GeneratableFile ret = new SimPe.Packages.GeneratableFile((string)null);
+			SimPe.Packages.GeneratableFile ret = SimPe.Packages.GeneratableFile.LoadFromFile((string)null);
 			
 			ArrayList list = new ArrayList();
 			list.Add((uint)0xE86B1EEF); //make sure the compressed Directory won't be copied!

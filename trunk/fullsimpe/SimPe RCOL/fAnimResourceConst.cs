@@ -143,8 +143,6 @@ namespace SimPe.Plugin
 			// 
 			// groupBox12
 			// 
-			this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox12.Controls.Add(this.tb_arc_ver);
 			this.groupBox12.Controls.Add(this.label30);
 			this.groupBox12.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -202,6 +200,70 @@ namespace SimPe.Plugin
 			if (e.Node.Tag==null) return;
 
 			pg.SelectedObject = e.Node.Tag;
+
+#if DEBUG
+			if (e.Node.Tag.GetType()==typeof(AnimBlock3)) 
+			{
+				AnimBlock3 ab3 = (AnimBlock3)e.Node.Tag;
+
+				/*WaitingScreen.Wait();
+				for (double d= 1.0; d<100000.0; d+=0.0001) 
+				{	
+					WaitingScreen.UpdateMessage(d.ToString());
+					double rp=0;
+					double rm = 0;
+					bool check = true;					
+					for (int i=0; i<ab3.AddonDataQuaternions.Count; i++) 
+					{
+						if (ab3.AddonDataQuaternions[i].IsComplex(d)) 
+						{
+							check = false;
+							break;
+						}
+						if (i==0)
+						{
+							rp = ab3.AddonDataQuaternions[i].GetMovePlus(d);
+							rm = ab3.AddonDataQuaternions[i].GetMoveMinus(d);
+						}
+
+						if (Math.Abs(rp- ab3.AddonDataQuaternions[i].GetMovePlus(d))>0.0001 || Math.Abs(rm - ab3.AddonDataQuaternions[i].GetMoveMinus(d))>0.0001) 
+						{
+							check = false;
+							break;
+						}
+					}
+
+					if (check) MessageBox.Show(d.ToString());
+				}
+				WaitingScreen.Stop();*/
+
+				System.IO.StreamWriter sw = System.IO.File.CreateText(@"G:\anim.txt");
+				try 
+				{
+					sw.WriteLine(ab3.AddonDataVectors.Count.ToString());
+					for (int i=0; i<ab3.AddonDataVectors.Count; i++) {
+						sw.WriteLine(i.ToString()+" "+
+							ab3.AddonDataVectors[i].X.ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
+							ab3.AddonDataVectors[i].Y.ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
+							ab3.AddonDataVectors[i].Z.ToString("N12", System.Globalization.CultureInfo.InvariantCulture));
+					}
+
+					sw.WriteLine(ab3.AddonDataQuaternions.Count.ToString());
+					for (int i=0; i<ab3.AddonDataQuaternions.Count; i++) 
+					{
+						SimPe.Geometry.Vector3f v = ab3.AddonDataQuaternions[i].Euler;
+						sw.WriteLine(i.ToString()+" "+
+							v.X.ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
+							v.Y.ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
+							v.Z.ToString("N12", System.Globalization.CultureInfo.InvariantCulture));
+					}
+				} 
+				finally
+				{
+					sw.Close();
+				}
+			}
+#endif
 		}
 
 		private void tb_arc_ver_TextChanged(object sender, System.EventArgs e)

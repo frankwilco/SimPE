@@ -11486,7 +11486,7 @@ namespace SimPe.PackedFiles.UserInterface
 					{
 						try 
 						{
-							SimPe.Packages.GeneratableFile file = new SimPe.Packages.GeneratableFile(sdesc.CharacterFileName);
+							SimPe.Packages.GeneratableFile file = SimPe.Packages.GeneratableFile.LoadFromFile(sdesc.CharacterFileName);
 							Interfaces.Files.IPackedFileDescriptor[] pfds = file.FindFiles(Data.MetaData.CTSS_FILE);
 							if (pfds.Length>0) 
 							{
@@ -12176,7 +12176,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private void GetGUIDClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			Sims.GUID.GUIDGetterForm form = new Sims.GUID.GUIDGetterForm();
-			Registry reg = new Registry();
+			Registry reg = Helper.WindowsRegistry;
 
 			try 
 			{
@@ -12352,7 +12352,7 @@ namespace SimPe.PackedFiles.UserInterface
 					}
 
 				
-					SimPe.Packages.GeneratableFile fl = new SimPe.Packages.GeneratableFile(wrp.CharacterFileName);
+					SimPe.Packages.GeneratableFile fl = SimPe.Packages.GeneratableFile.LoadFromFile(wrp.CharacterFileName);
 
 					Interfaces.Files.IPackedFileDescriptor[] pfds = fl.FindFile(0xAC506764, 0, 0x1);
 					if (pfds.Length>0) 

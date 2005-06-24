@@ -44,8 +44,7 @@ namespace SimPe.Plugin
 	public class Glob
 		: AbstractWrapper				//Implements some of the default Behaviur of a Handler, you can Implement yourself if you want more flexibility!
 		, IFileWrapper					//This Interface is used when loading a File
-		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File
-		, IPackedFileProperties			//This Interface can be used by thirdparties to retrive the FIleproperties, however you don't have to implement it!
+		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File		
 	{
 		#region Attributes
 		/// <summary>
@@ -96,7 +95,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public Glob() : base()
 		{
-			items = new IPackedFileProperties[0];
+			//items = new IPackedFileProperties[0];
 			attributes = new Hashtable();
 			semiglobal = new byte[0];			
 			filename = new byte[64];
@@ -109,7 +108,7 @@ namespace SimPe.Plugin
 
 
 		#region IPackedFileProperties Member
-		IPackedFileProperties[] items;
+		//IPackedFileProperties[] items;
 		Hashtable attributes;
 
 		/// <summary>
@@ -124,7 +123,7 @@ namespace SimPe.Plugin
 			}
 		}
 
-		/// <summary>
+		/*/// <summary>
 		/// Returns all Items stored in the File (can be null)
 		/// </summary>
 		/// <remarks>
@@ -139,7 +138,7 @@ namespace SimPe.Plugin
 			{
 				return items;
 			}
-		}
+		}*/
 		#endregion
 
 		#region IWrapper member

@@ -34,6 +34,17 @@ namespace SimPe.Plugin
 		bool onlydefault;
 		bool updateguid;
 		bool exception;
+		bool loadanim;
+		bool use3idr;
+
+		/// <summary>
+		/// true, if you want to load Files referenced by 3IDR Resoures
+		/// </summary>
+		public bool Use3IDRFiles 
+		{
+			get { return use3idr; }
+			set { use3idr = value; }
+		}
 
 		/// <summary>
 		/// true, if the clone should include Wallmasks
@@ -70,6 +81,15 @@ namespace SimPe.Plugin
 			get { return exception; }
 			set { exception = value; }
 		}
+
+		/// <summary>
+		/// true if Animation Resources should be included in the package
+		/// </summary>
+		public bool IncludeAnimationResources
+		{
+			get { return loadanim; }
+			set { loadanim = value; }
+		}
 		
 		/// <summary>
 		/// Create a new Instance and set everything to default
@@ -80,6 +100,8 @@ namespace SimPe.Plugin
 			exception = true;
 			updateguid = true;
 			onlydefault = true;
+			loadanim = false;
+			use3idr = false;
 		}
 	}
 
@@ -125,7 +147,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public ObjectCloner() 
 		{
-			package = new GeneratableFile((System.IO.BinaryReader)null);
+			package = GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 			setup = new CloneSettings();
 		}
 
@@ -267,6 +289,52 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Returns a List of all stored Anim Resources
+		/// </summary>
+		/// <param name="instances">Instances of TextLists that should be searched</param>
+		/// <param name="ext">extension (in lowercase) that should be added (can be null for none)</param>
+		/// <returns>List of found Names</returns>
+		public string[] GetNames(ArrayList instances, string ext) 
+		{
+			ArrayList list = new ArrayList();
+
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = this.Package.FindFiles(Data.MetaData.STRING_FILE);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+			{
+				if (instances.Contains(pfd.Instance)) 
+				{
+					SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+					str.ProcessData(pfd, Package);
+					foreach (SimPe.PackedFiles.Wrapper.StrItem si in str.Items) 
+					{
+						string s = si.Title.Trim();
+						if (s!="") 
+						{
+							if (ext!=null) if (!s.ToLower().EndsWith(ext)) s+=ext;
+							list.Add(s);
+						}
+					}
+				}
+			}
+
+			string[] ret = new string[list.Count];
+			list.CopyTo(ret);
+			return ret;
+		}
+
+		/// <summary>
+		/// Returns a List of all stored Anim Resources
+		/// </summary>
+		/// <returns></returns>
+		public string[] GetAnimNames() 
+		{
+			ArrayList instances = new ArrayList();
+			instances.Add((uint)0x81); instances.Add((uint)0x82); instances.Add((uint)0x86); instances.Add((uint)0x192);
+
+			return GetNames(instances, "_anim");
+		}
+
+		/// <summary>
 		/// Clone a InGane Object based on the relations of the RCOL Files
 		/// </summary>
 		/// <param name="onlydefault">true if you only want default MMAT Files</param>
@@ -280,10 +348,20 @@ namespace SimPe.Plugin
 			SimPe.FileTable.FileIndex.Load();
 			WaitingScreen.UpdateMessage("Walking Scenegraph");
 			Scenegraph sg = new Scenegraph(modelnames, exclude);
+			if (Setup.Use3IDRFiles) 
+			{
+				WaitingScreen.UpdateMessage("Reading 3IDR References");
+				sg.AddFrom3IDR(package);
+			}
 			if (Setup.IncludeWallmask) 
 			{
 				WaitingScreen.UpdateMessage("Scanning for Wallmasks");
 				sg.AddWallmasks(modelnames);
+			}
+			if (Setup.IncludeAnimationResources) 
+			{
+				WaitingScreen.UpdateMessage("Scanning for Animations");
+				sg.AddAnims(this.GetAnimNames());
 			}
 			WaitingScreen.UpdateMessage("Collect Slave TXMTs");
 			sg.AddSlaveTxmts(sg.GetSlaveSubsets());

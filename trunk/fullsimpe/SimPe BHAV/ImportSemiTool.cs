@@ -66,7 +66,7 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return "Import Semi Globals...";
+			return "Object Tool\\Import Semi Globals...";
 		}
 
 		#endregion

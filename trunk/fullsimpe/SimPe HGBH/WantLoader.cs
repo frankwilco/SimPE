@@ -276,11 +276,11 @@ namespace SimPe.Plugin
 		{
 			bool running = WaitingScreen.Running;
 			WaitingScreen.Wait();
-			txtpkg = new SimPe.Packages.File(System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res\\Text\\Wants.package"));
+			txtpkg = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res\\Text\\Wants.package"));
 
 			if (Helper.WindowsRegistry.EPInstalled==0x01) 
 			{
-				SimPe.Packages.File txtpkg2 = new SimPe.Packages.File(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, "TSData\\Res\\Text\\Wants.package"));			
+				SimPe.Packages.File txtpkg2 = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, "TSData\\Res\\Text\\Wants.package"));			
 				txtpkg2.Persistent = true;
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in txtpkg2.Index)
 				{

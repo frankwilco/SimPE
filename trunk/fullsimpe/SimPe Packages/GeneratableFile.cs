@@ -42,8 +42,9 @@ namespace SimPe.Packages
 		/// Cosntructor of the Class
 		/// </summary>
 		/// <param name="br">The BinaryReader representing the Package File</param>
-		public GeneratableFile(BinaryReader br) : base(br) {}	
-		public GeneratableFile(string flname) : base(flname) {}
+		internal GeneratableFile(BinaryReader br) : base(br) {}	
+		internal GeneratableFile(string flname) : base(flname) {}
+
 
 		/// <summary>
 		/// Init the Clone for this Package
@@ -200,8 +201,8 @@ namespace SimPe.Packages
 				if (pfd.Type == Data.MetaData.DIRECTORY_FILE) continue;
 				if (pfd.MarkForDelete) continue;
 
-				PackedFileDescriptor newpfd = (PackedFileDescriptor)pfd.Clone();				
-				newpfd.offset = (uint)writer.BaseStream.Position;
+				//PackedFileDescriptor newpfd = (PackedFileDescriptor)pfd.Clone();				
+				PackedFileDescriptor newpfd = (PackedFileDescriptor)pfd;								
 
 				PackedFile pf = null;
 				if (pfd.HasUserdata && pfd.MarkForReCompress) 
@@ -234,6 +235,7 @@ namespace SimPe.Packages
 					newpfd.UserData = pfd.UserData;
 				}
 				
+				newpfd.offset = (uint)writer.BaseStream.Position;
 				newpfd.Changed = false;
 				newpfd.MarkForReCompress = false;
 				newpfd.fldata = pf;
@@ -387,5 +389,6 @@ namespace SimPe.Packages
 			header.HoleIndex.Size = (int)(writer.BaseStream.Position - pos);
 		}
 		#endregion
+		
 	}
 }

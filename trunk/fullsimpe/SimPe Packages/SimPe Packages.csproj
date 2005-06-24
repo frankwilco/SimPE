@@ -140,16 +140,6 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "SimPe GenericBase"
-                    Project = "{1DD372F9-D6F9-4724-8E7F-12BDE0FFAC74}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe GenericFileHandlers"
-                    Project = "{CE6B173A-B19F-40B6-94A3-D8FB8A3FB74B}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
                     Name = "SimPe HandlerCommon"
                     Project = "{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
@@ -175,6 +165,11 @@
                 />
                 <File
                     RelPath = "File.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FileTableBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -212,6 +207,11 @@
                     RelPath = "PackageFiles.resx"
                     DependentUpon = "PackageFiles.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PackageMaintainer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "PackedFile.cs"

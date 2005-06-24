@@ -61,7 +61,7 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return "Scenegrapher...";
+			return "Object Tool\\Scenegrapher...";
 		}
 
 		#endregion

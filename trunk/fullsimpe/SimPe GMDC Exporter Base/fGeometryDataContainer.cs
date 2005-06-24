@@ -184,6 +184,8 @@ namespace SimPe.Plugin
 				cbaxis.Items.Add(es);
 				if (es == ElementSorting.XZY) cbaxis.SelectedIndex = cbaxis.Items.Count-1;
 			}
+
+			if (this.DefaultSelectedAxisIndex>=0 && this.DefaultSelectedAxisIndex<cbaxis.Items.Count) cbaxis.SelectedIndex = DefaultSelectedAxisIndex;
 		}
 
 		/// <summary>
@@ -702,8 +704,9 @@ namespace SimPe.Plugin
 			this.cbaxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbaxis.Location = new System.Drawing.Point(232, 240);
 			this.cbaxis.Name = "cbaxis";
-			this.cbaxis.Size = new System.Drawing.Size(96, 20);
+			this.cbaxis.Size = new System.Drawing.Size(96, 21);
 			this.cbaxis.TabIndex = 30;
+			this.cbaxis.SelectedIndexChanged += new System.EventHandler(this.ChangedAxis);
 			// 
 			// label12
 			// 
@@ -752,8 +755,8 @@ namespace SimPe.Plugin
 
  Translate Y: left Button + move vertical
  Translate X: left Button + move horizontal
- Translate Z: middle Button + move vertical
- Scale: middle Button + move horizontal
+ Scale: middle Button + move vertical
+ Rotate Z: middle Button + move horizontal
  Rotate X: right Button + move vertical
  Rotate Y: right Button + move horizontal";
 			this.label20.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -2225,6 +2228,28 @@ namespace SimPe.Plugin
 			}
 		}
 
+		public int DefaultSelectedAxisIndex
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = Helper.WindowsRegistry.PluginRegistryKey.CreateSubKey("SceneGraph");
+				object o = rkf.GetValue("DefaultAxis", 1);
+				return Convert.ToInt32(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = Helper.WindowsRegistry.PluginRegistryKey.CreateSubKey("SceneGraph");
+				rkf.SetValue("DefaultAxis", value);
+			}
+		}
+
+		private void ChangedAxis(object sender, System.EventArgs e)
+		{
+			if (this.tMesh.Tag == null) return;
+			ComboBox cb = (ComboBox)sender;
+			DefaultSelectedAxisIndex = cb.SelectedIndex;
+		}
+
 		private void FlattenAliasMap(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			if (lb_itemsb.SelectedIndex<0) return;
@@ -2383,12 +2408,7 @@ namespace SimPe.Plugin
 		private void linkLabel3_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			if (this.tMesh.Tag != null)
-			{			
-				Quaternion q = new Quaternion();		
-				q.SetFromEulerAngles(new Vector3f(Quaternion.DegToRad(0), Quaternion.DegToRad(2), Quaternion.DegToRad(5)));
-				MessageBox.Show(Quaternion.RadToDeg(q.GetEulerAngles().X).ToString()+" "+Quaternion.RadToDeg(q.GetEulerAngles().Y).ToString()+" "+Quaternion.RadToDeg(q.GetEulerAngles().Z).ToString());
-
-				return;
+			{							
 				SimPe.Interfaces.Files.IPackageFile pkg =((GeometryDataContainer)this.tMesh.Tag).Parent.Package;
 
 				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.GMDC);
@@ -2410,11 +2430,6 @@ namespace SimPe.Plugin
 
 					foreach (GmdcGroup g in gmdc.Groups) 
 					{
-						/*if (g.PrimitiveType != 0x2) 
-						{
-							if (MessageBox.Show(pfd.Instance.ToString("X")+"\n\nContinue?", "diff. PrimitiveType", MessageBoxButtons.YesNo)==DialogResult.No) return;							
-						}*/
-
 						if (g.Faces.Length>max) max = g.Faces.Length;
 						if (g.Faces.Length<min) min = g.Faces.Length;	
 						av += g.Faces.Length;
@@ -2423,7 +2438,7 @@ namespace SimPe.Plugin
 
 					foreach (GmdcLink l in gmdc.Links) 
 					{
-						if (l.AliasValues[0].Count + l.AliasValues[1].Count + l.AliasValues[2].Count > 0 && l.AliasValues[2].Count > 0)
+						if (l.AliasValues[0].Count + l.AliasValues[1].Count + l.AliasValues[2].Count > 0 && l.ReferencedElement.Length>2)
 						{
 							if (MessageBox.Show(l.ReferencedElement.Count.ToString()+" "+pfd.Instance.ToString("X")+"\n\nContinue?", "alt. Links", MessageBoxButtons.YesNo)==DialogResult.No) return;
 						}
@@ -2449,7 +2464,7 @@ namespace SimPe.Plugin
 					}
 				}
 
-				MessageBox.Show(min.ToString()+" - ("+(av/ct).ToString()+")"+max.ToString()+" Faces\n"+vmin.ToString()+" - ("+(vav/vct).ToString()+")"+vmax.ToString()+" Vertices");
+				//MessageBox.Show(min.ToString()+" - ("+(av/ct).ToString()+")"+max.ToString()+" Faces\n"+vmin.ToString()+" - ("+(vav/vct).ToString()+")"+vmax.ToString()+" Vertices");
 			}
 		}
 

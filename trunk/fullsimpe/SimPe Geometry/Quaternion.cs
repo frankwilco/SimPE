@@ -132,6 +132,40 @@ namespace SimPe.Geometry
 			}
 		}
 
+#if DEBUG
+		/// <summary>
+		/// returns the Euler Angles
+		/// </summary>
+		public Vector3f Euler 
+		{
+			get 
+			{
+				return this.GetEulerAngles();
+			}
+		}
+
+		public bool IsComplex(double z)
+		{
+			return ((Math.Pow(X+Y+Z+W, 2) - 4.0*(Norm-z)) <0.0);
+		}
+
+		public double GetMovePlus(double z)
+		{
+			double d1 = ((-2.0 * (X+Y+Z+W)) + (2*Math.Sqrt(Math.Pow(X+Y+Z+W, 2) - 4.0*(Norm-z)))) / 8.0;
+			double d2 = ((-2.0 * (X+Y+Z+W)) - (2*Math.Sqrt(Math.Pow(X+Y+Z+W, 2) - 4.0*(Norm-z)))) / 8.0;
+			if (d1<d2) return d2;
+			else return d1;
+		}
+
+		public double GetMoveMinus(double z)
+		{
+			double d1 = ((-2.0 * (X+Y+Z+W)) + (2*Math.Sqrt(Math.Pow(X+Y+Z+W, 2) - 4.0*(Norm-z)))) / 8.0;
+			double d2 = ((-2.0 * (X+Y+Z+W)) - (2*Math.Sqrt(Math.Pow(X+Y+Z+W, 2) - 4.0*(Norm-z)))) / 8.0;
+			if (d1>d2) return d2;
+			else return d1;
+		}
+#endif
+
 		/// <summary>
 		/// Create the Inverse of a Quaternion
 		/// </summary>

@@ -508,115 +508,6 @@ namespace SimPe.Data
 		/// all Known SemiGlobal Groups
 		/// </summary>
 		public static Alias[] SemiGlobals = {
-												#region Old SemiGlobal
-												/*new SemiGlobalAlias(0x7F0136DC , "transport to and from homeGlobals"),
-												new SemiGlobalAlias(true, 0x7F01EC29 , "PersonGlobals"),
-												new SemiGlobalAlias(true, 0x7F026EBD , "dartboardGlobals"),
-												new SemiGlobalAlias(true, 0x7F033984 , "stoveGlobals"),
-												new SemiGlobalAlias(true, 0x7F074B38 , "chattingGlobals"),
-												new SemiGlobalAlias(0x7F0B2AE7 , "video games I think"),
-												new SemiGlobalAlias(true, 0x7F0B61F3 , "chairGlobals"),
-												new SemiGlobalAlias(0x7F0C60C8 , "stair globals. Fixed stairs?"),
-												new SemiGlobalAlias(0x7F1059B4 , "champagne globals?"),
-												new SemiGlobalAlias(0x7F117CD9 , "stair globals. Connecting stairs?"),
-												new SemiGlobalAlias(0x7F119F0A , "toy (from toybox)Globals"),
-												new SemiGlobalAlias(0x7F12A804 , "counter or surfaceGlobals"),
-												new SemiGlobalAlias(true, 0x7F16556B , "toiletGlobals"),
-												new SemiGlobalAlias(true, 0x7F18E0F0 , "easelGlobals"),
-												new SemiGlobalAlias(true, 0x7F1A9ECC , "shrubGlobals"),
-												new SemiGlobalAlias(true, 0x7F20C1E4 , "magazineGlobals"),
-												new SemiGlobalAlias(0x7F23B01B , "some sort of foodGlobals"),
-												new SemiGlobalAlias(true, 0x7F277790 , "toyboxGlobals"),
-												new SemiGlobalAlias(0x7F28EEB6 , "teach to speakGlobals"),
-												new SemiGlobalAlias(true, 0x7F293E85 , "puddleGlobals"),
-												new SemiGlobalAlias(0x7F2FEFCC , "not sure - only 3 BHAVs"),
-												new SemiGlobalAlias(true, 0x7F327BCE , "bookGlobals"),
-												new SemiGlobalAlias(0x7F347DAB , "food spoiling globals?"),
-												new SemiGlobalAlias(0x7F38B8A7 , "urn and graveGlobals"),
-												new SemiGlobalAlias(0x7F39D7FB , "some or other game"),
-												new SemiGlobalAlias(0x7F3C9675 , "some sort of foodGlobals"),
-												new SemiGlobalAlias(true, 0x7F441294 , "computerGlobals"),
-												new SemiGlobalAlias(true, 0x7F4437F2 , "bedGlobals"),
-												new SemiGlobalAlias(0x7F48AF7A , "changing boothGlobals"),
-												new SemiGlobalAlias(0x7F48CA31 , "init floor, init ceiling, init table... what the heck?"),
-												new SemiGlobalAlias(true, 0x7F496A24 , "dancingGlobals"),
-												new SemiGlobalAlias(0x7F4EA230 , "more transportGlobals"),
-												new SemiGlobalAlias(true, 0x7F4F06CA , "stereoGlobals"),
-												new SemiGlobalAlias(true, 0x7F545E8D , "dollshouseGlobals"),
-												new SemiGlobalAlias(0x7F553580 , "not sure"),
-												new SemiGlobalAlias(0x7F575EBF , "something to do with parties"),
-												new SemiGlobalAlias(0x7F5BB15F , "just two BHAVs"),
-												new SemiGlobalAlias(true, 0x7F60C397 , "lampGlobals"),
-												new SemiGlobalAlias(0x7F61CD20 , "TV video games"),
-												new SemiGlobalAlias(0x7F63E3F2 , "event detection - like is someone on the phone. Weird"),
-												new SemiGlobalAlias(0x7F675EF2 , "stuff about Maya models"),
-												new SemiGlobalAlias(0x7F67FE05 , "drinks barGlobals"),
-												new SemiGlobalAlias(true, 0x7F6B7BD0 , "lightningGlobals"),
-												new SemiGlobalAlias(true, 0x7F6E333B , "dishwasherGlobals"),
-												new SemiGlobalAlias(0x7F6E998E , "might be for the grandfather clock"),
-												new SemiGlobalAlias(0x7F70D280 , "buying food at shop"),
-												new SemiGlobalAlias(0x7F7234D0 , "finding somewhere to eat/serve food?"),
-												new SemiGlobalAlias(true, 0x7F7638B3 , "sinkGlobals"),
-												new SemiGlobalAlias(0x7F7A8450 , "guns? Might be a career reward"),
-												new SemiGlobalAlias(0x7F7BA762 , "no idea!!! all about animations and “overlays”"),
-												new SemiGlobalAlias(0x7F7D730B , "toaster globals?"),
-												new SemiGlobalAlias(0x7F7FA83D , "more animations and overlays"),
-												new SemiGlobalAlias(true, 0x7F83411E , "highchairGlobals"),
-												new SemiGlobalAlias(true, 0x7F84A9F4 , "mirrorGlobals"),
-												new SemiGlobalAlias(0x7F85C391 , "something to do with yoga"),
-												new SemiGlobalAlias(0x7F8834C8 , "eating"),
-												new SemiGlobalAlias(true, 0x7F890CAC , "cribGlobals"),
-												new SemiGlobalAlias(0x7F8A5209 , "plant (flowerbed)Globals"),
-												new SemiGlobalAlias(0x7F8B4A08 , "small one bit of sofa bit of kissing"),
-												new SemiGlobalAlias(0x7F8C6EDA , "candy machine globals - reward object?"),
-												new SemiGlobalAlias(0x7F8F4EB6 , "job/schoolGlobals"),
-												new SemiGlobalAlias(0x0000200B , "something you put on and take off and then put on a surface."),
-												new SemiGlobalAlias(0x7F92832C , "TVGlobals"),
-												new SemiGlobalAlias(true, 0x7F9A5330 , "fridgeGlobals"),
-												new SemiGlobalAlias(0x7F9A5831 , "feeding bottle globals?"),
-												new SemiGlobalAlias(true, 0x7F9A625F , "aquariumGlobals"),
-												new SemiGlobalAlias(0x7F9AB517 , "exercise bench globals?"),
-												new SemiGlobalAlias(true, 0x7FA1DF44 , "chessGlobals"),
-												new SemiGlobalAlias(0x7FA3FCFE , "trashcan (outdoor only?)Globals"),
-												new SemiGlobalAlias(true, 0x7FA53DF6 , "pianoGlobals"),
-												new SemiGlobalAlias(0x7FA6640C , "not sure... something you play or play with"),
-												new SemiGlobalAlias(0x7FA815EA , "table globals? some sort of surface anyway"),
-												new SemiGlobalAlias(0x7FACC12B , "no idea but it includes a “throw up” BHAV"),
-												new SemiGlobalAlias(true, 0x7FAE06B0 , "sofaGlobals"),
-												new SemiGlobalAlias(true, 0x7FAF5F74 , "glassesGlobals"),
-												new SemiGlobalAlias(0x7FB01AF3 , "alarm clockGlobals"),
-												new SemiGlobalAlias(true, 0x7FB208FA , "phoneGlobals"),
-												new SemiGlobalAlias(0x7FB81D46 , "just 3 bhavs no idea what"),
-												new SemiGlobalAlias(0x7FBD3903 , "phone lineGlobals"),
-												new SemiGlobalAlias(0x7FBE051B , "educationGlobals"),
-												new SemiGlobalAlias(true, 0x7FC026B4 , "artGlobals"),
-												new SemiGlobalAlias(0x7FC9DC08 , "some game"),
-												new SemiGlobalAlias(0x7FCDD99D , "small one something to do with roses"),
-												new SemiGlobalAlias(0x7FCFF92E , "something you play with and kick"),
-												new SemiGlobalAlias(0x7FD0A90D , "wedding cakeGlobals"),
-												new SemiGlobalAlias(true, 0x7FD0DEBA , "DoorGlobalsNew"),
-												new SemiGlobalAlias(0x7FD178FF , "coffee?"),
-												new SemiGlobalAlias(0x7FD2752D , "small one. Dunno"),
-												new SemiGlobalAlias(0x7FD3AF67 , "weird small one about thoughts"),
-												new SemiGlobalAlias(0x7FD90EDB , "person-to-person interactions and routing"),
-												new SemiGlobalAlias(true, 0x7FDA22BB , "grillGlobals"),
-												new SemiGlobalAlias(0x7FDB80FC , "teddy bearGlobals"),
-												new SemiGlobalAlias(0x7FDE81DC , "cashier stuff"),
-												new SemiGlobalAlias(true, 0x7FE10572 , "dresserGlobals"),
-												new SemiGlobalAlias(true, 0x7FE1C9FB , "microwaveGlobals"),
-												new SemiGlobalAlias(0x7FE49F9B , "swimming poolGlobals"),
-												new SemiGlobalAlias(0x7FE64A8D , "reading books"),
-												new SemiGlobalAlias(0x7FE69E23 , "bath and showerGlobals"),
-												new SemiGlobalAlias(0x7FE6D20D , "playing with child"),
-												new SemiGlobalAlias(0x7FE6EE0D , "just an init BHAV"),
-												new SemiGlobalAlias(0x7FEABABA , "hot tubGlobals"),
-												new SemiGlobalAlias(true, 0x7FEC2140 , "cockroachGlobals"),
-												new SemiGlobalAlias(true, 0x7FF616D0 , "windowGlobals"),
-												new SemiGlobalAlias(0x7FF941DF , "something to do with visibility and emitters and awareness"),
-												new SemiGlobalAlias(0x7FF9DF6B , "clearing up spoiled food?"),
-												new SemiGlobalAlias(true, 0x7FFD4F2D , "fireplaceGlobals"),
-												new SemiGlobalAlias(true, 0x7FFEA664 , "telescopeGlobals")*/
-												#endregion
 												new SemiGlobalAlias(true, 0x7FE6EE0D,"Accessory_Globals"),
 												new SemiGlobalAlias(true, 0x7F9A625F,"AquariumGlobals"),
 												new SemiGlobalAlias(true, 0x7FC026B4,"ArtGlobals"),
@@ -738,7 +629,7 @@ namespace SimPe.Data
 		/// <summary>
 		/// Contains Aliases for the packedFileTypes
 		/// </summary>
-		public static TypeAlias[] FileTypes = {
+		/*public static TypeAlias[] FileTypes = {
 												  new TypeAlias(false, "----", 0xFFFFFFFF, "--- "+Localization.Manager.GetString("userdefined")+" ---", false),
 												  new TypeAlias(false, "2ARY", 0xABCB5DA4, "2D Array"),
 												  new TypeAlias(false, "2ARY", 0x6B943B43, "2D Array"),
@@ -879,7 +770,7 @@ namespace SimPe.Data
 												  new TypeAlias(false, "THUB", 0xCC48C51F, "Chimney Thumbnail", "jpg"),
 												  new TypeAlias(false, "GROP", 0x54535053, "Groups Cache"),
 												  new TypeAlias(false, "POPS", 0x2C310F46, "Popups")
-		};
+		};*/
 		#endregion
 
 		#region Supporting Methods
@@ -890,14 +781,17 @@ namespace SimPe.Data
 		/// <returns>The TypeAlias representing the Type</returns>
 		public static TypeAlias FindTypeAlias(UInt32 type) 
 		{
-			foreach (Data.TypeAlias a in Data.MetaData.FileTypes)
+			Data.TypeAlias a = Helper.TGILoader.GetByType(type);
+			if (a==null) a = new Data.TypeAlias(false, Localization.Manager.GetString("unk")+"", type, "0x"+Helper.HexString(type));
+			return a;
+			/*foreach (Data.TypeAlias a in Data.MetaData.FileTypes)
 			{
 				if (a.Id == type) return a;
 			} //for
 			
 			//unknown Type
 			string t = Helper.HexString(type);			
-			return new Data.TypeAlias(false, Localization.Manager.GetString("unk")+"", type, "0x"+t);
+			return new Data.TypeAlias(false, Localization.Manager.GetString("unk")+"", type, "0x"+t);*/
 		}
 
 		/// <summary>

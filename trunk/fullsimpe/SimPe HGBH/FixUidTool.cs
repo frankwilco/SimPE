@@ -56,7 +56,7 @@ namespace SimPe.Plugin
 					{
 						WaitingScreen.UpdateMessage(file);
 
-						SimPe.Packages.GeneratableFile fl = new SimPe.Packages.GeneratableFile(file);
+						SimPe.Packages.GeneratableFile fl = SimPe.Packages.GeneratableFile.LoadFromFile(file);
 						SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = fl.FindFiles(Data.MetaData.IDNO);
 						foreach (SimPe.Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
 						{
@@ -84,7 +84,7 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return "Fix Neighborhood Uid's";
+			return "Neighborhood\\Fix Neighborhood Uid's";
 		}
 
 		#endregion

@@ -949,10 +949,10 @@ namespace SimPe.Plugin
 			if (!CanDo())  return;
 			
 
-			SimPe.Packages.File patient = new SimPe.Packages.File(spatient.CharacterFileName);
+			SimPe.Packages.File patient = SimPe.Packages.File.LoadFromFile(spatient.CharacterFileName);
 			SimPe.Packages.File archetype = null;
-			if (sarche!=null) archetype = new SimPe.Packages.File(sarche.CharacterFileName);
-			else archetype = new SimPe.Packages.File(null);
+			if (sarche!=null) archetype = SimPe.Packages.File.LoadFromFile(sarche.CharacterFileName);
+			else archetype = SimPe.Packages.File.LoadFromFile(null);
 
 			SimPe.Packages.GeneratableFile newpackage = null;
 			PlasticSurgery ps = new PlasticSurgery(ngbh, patient, spatient, archetype, sarche);
@@ -1043,8 +1043,8 @@ namespace SimPe.Plugin
 		{
 			try 
 			{
-				SimPe.Packages.GeneratableFile patient = new SimPe.Packages.GeneratableFile(spatient.CharacterFileName);
-				SimPe.Packages.File archetype = new SimPe.Packages.File(sarche.CharacterFileName);
+				SimPe.Packages.GeneratableFile patient = SimPe.Packages.GeneratableFile.LoadFromFile(spatient.CharacterFileName);
+				SimPe.Packages.File archetype = SimPe.Packages.File.LoadFromFile(sarche.CharacterFileName);
 
 				//Load Facial Data
 				Interfaces.Files.IPackedFileDescriptor[] apfds = archetype.FindFiles(0xCCCEF852); //LxNR, Face
@@ -1112,10 +1112,10 @@ namespace SimPe.Plugin
 				sfd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "SavedSims");
 				sfd.FileName = System.IO.Path.GetFileNameWithoutExtension(spatient.CharacterFileName);
 
-				SimPe.Packages.GeneratableFile source = new SimPe.Packages.GeneratableFile(spatient.CharacterFileName);
+				SimPe.Packages.GeneratableFile source = SimPe.Packages.GeneratableFile.LoadFromFile(spatient.CharacterFileName);
 				if (sfd.ShowDialog()==DialogResult.OK) 
 				{
-					SimPe.Packages.GeneratableFile patient = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
+					SimPe.Packages.GeneratableFile patient = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 					patient.FileName = "";
 					patient.Add(pfd1);
 					patient.Add(pfd2);

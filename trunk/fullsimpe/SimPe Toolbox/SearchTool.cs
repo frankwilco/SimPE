@@ -49,7 +49,7 @@ namespace SimPe.Plugin
 			sc.prov = prov;
 			flname = "";
 
-			if (registry==null) registry = new SimPe.Registry();
+			if (registry==null) registry = Helper.WindowsRegistry;
 		}
 
 		#region ITool Member

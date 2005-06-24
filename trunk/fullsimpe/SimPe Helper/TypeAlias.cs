@@ -49,11 +49,25 @@ namespace SimPe.Data
 		/// <param name="name">The name</param>
 		/// <param name="extension">proposed File Extension</param>
 		/// <param name="containsflname">true if the first 64 Bytes are the Filename</param>
-		public TypeAlias(bool containsflname, string shortname, uint val, string name, string extension) : base(val, name)
+		/// <param name="known">true if the filetype is known(default)</param>
+		public TypeAlias(bool containsflname, string shortname, uint val, string name, string extension) : this(containsflname, shortname, val, name,extension, true)
+		{
+		}
+
+		/// <summary>
+		/// Cosntructor of the class
+		/// </summary>
+		/// <param name="shortname">The short name</param>
+		/// <param name="val">The id</param>
+		/// <param name="name">The name</param>
+		/// <param name="extension">proposed File Extension</param>
+		/// <param name="containsflname">true if the first 64 Bytes are the Filename</param>
+		/// <param name="known">true if the filetype is known(default)</param>
+		public TypeAlias(bool containsflname, string shortname, uint val, string name, string extension, bool known) : base(val, name)
 		{
 			this.shortname = shortname;
 			this.extension = extension;
-			knowntype = true;
+			this.knowntype = known;
 			this.containsfilename = containsflname;
 		}
 

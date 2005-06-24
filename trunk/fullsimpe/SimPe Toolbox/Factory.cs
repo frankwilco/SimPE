@@ -59,13 +59,13 @@ namespace SimPe.Plugin
 
 		#region IToolFactory Member
 
-		public ITool[] KnownTools
+		public IToolPlugin[] KnownTools
 		{
 			get
 			{
 				reg = this.LinkedRegistry;
 
-				ITool[] tools = {
+				IToolPlugin[] tools = {
 									new NeighborhoodTool(this.LinkedRegistry, this.LinkedProvider),
 									new SimsTool(this.LinkedRegistry, this.LinkedProvider),
 									new SurgeryTool(this.LinkedRegistry, this.LinkedProvider),
@@ -74,12 +74,12 @@ namespace SimPe.Plugin
 									new HashTool(this.LinkedRegistry, this.LinkedProvider),
 									new FixTool(this.LinkedRegistry, this.LinkedProvider),
 									new WorkshopTool(this.LinkedRegistry, this.LinkedProvider),
+									new SkinWorkshopTool(),
 									new PhotoStudioTool(this.LinkedRegistry, this.LinkedProvider)
 								};
 				return tools;
 			}
 		}
-
 		#endregion
 	}
 }

@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using SimPe.Events;
 
 namespace SimPe.Interfaces.Files
 {
@@ -218,5 +219,42 @@ namespace SimPe.Interfaces.Files
 			get;
 			set;
 		}
+
+		/// <summary>
+		/// Close this Descriptor (make it invalid)
+		/// </summary>
+		void MarkInvalid();
+
+		/// <summary>
+		/// true, if this Descriptor is Invalid
+		/// </summary>
+		bool Invalid
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Called whenever the content represented by this descripotr was changed
+		/// </summary>
+		PackedFileChanged ChangedUserData
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Called whenever the Desciptor get's invalid
+		/// </summary>
+		event PackedFileChanged Closed;
+
+		/// <summary>
+		/// Triggered whenever the Content of the Descriptor was changed
+		/// </summary>
+		event System.EventHandler DescriptionChanged;
+
+		/// <summary>
+		/// Triggered whenever the Descriptor get's AMrked for Deletion
+		/// </summary>
+		event System.EventHandler Deleted;
 	}
 }

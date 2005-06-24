@@ -33,10 +33,13 @@ namespace Ambertation.Editors
 		/// The Grid Control
 		/// </summary>
 		private Grid hexgrid;
+#if MAC
+#else
 		/// <summary>
 		/// The Rich Text Control
 		/// </summary>
 		private RichTextBox rtb;
+#endif
 		/// <summary>
 		/// Stores the AutoScroll Location of the Panel
 		/// </summary>
@@ -115,7 +118,8 @@ namespace Ambertation.Editors
 			hexgrid.Selection.SelectionMode = GridSelectionMode.Cell;
 			hexgrid.Selection.EnableMultiSelection = false;
 			hexgrid.Selection.BorderMode = SelectionBorderMode.Selection;
-
+#if MAC
+#else
 			rtb = new RichTextBox();
 			rtb.Parent = panel;			
 			rtb.BorderStyle = BorderStyle.None;			
@@ -124,6 +128,7 @@ namespace Ambertation.Editors
 			rtb.ReadOnly = true;
 			rtb.SelectionChanged += new EventHandler(SelectionChanged);
 			rtb.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
+#endif
 			
 			
 			updateoff = false;
@@ -142,13 +147,20 @@ namespace Ambertation.Editors
 				updateoff = true;
 				offset = 0;
 				hexgrid.Height = 10;
+#if MAC
+#else
 				rtb.Height = 10;
+#endif
+				
 				hexgrid.Parent.Visible = false;
 				FillGrid(value);
 
+#if MAC
+#else
 				rtb.Location = new Point(hexgrid.Location.X + hexgrid.Width + 2, hexgrid.Rows[0].Height);
 				rtb.Height = hexgrid.Height - hexgrid.Rows[0].Height;
 				rtb.Width = Math.Max(hexgrid.Parent.ClientRectangle.Width - (hexgrid.Location.X + hexgrid.Width + 4), columns*8); 
+#endif
 				FillText(value);
 				hexgrid.Parent.Visible = true;
 				updateoff = false;
@@ -184,12 +196,14 @@ namespace Ambertation.Editors
 		protected void SelectionChanged(object sender, EventArgs e)
 		{
 			if (updateoff) return;
-
+#if MAC
+#else
 			int col = rtb.SelectionStart % (columns+1) ;
 			int row = (rtb.SelectionStart - col) / (columns+1) ;
 			offset = (col) + ((row) * (columns));
 
 			GoTo(offset);
+#endif
 		}
 		#endregion
 
@@ -280,10 +294,13 @@ namespace Ambertation.Editors
 		/// <remarks>The TextBox will be cleard before the fill</remarks>
 		protected void FillText(Byte[] data)
 		{
+#if MAC
+#else
 			rtb.Text = "";
 			const string lbr = "\n";
 			
 			uint ct=0;
+
 			if (data!=null)
 			{
 				while (ct<Math.Min(MaxSize, data.Length)) 
@@ -301,6 +318,7 @@ namespace Ambertation.Editors
 					ct++;
 				}//while
 			}
+#endif
 		}
 
 				/// <summary>
@@ -362,8 +380,11 @@ namespace Ambertation.Editors
 
 			//get the offset within the RichTextBox
 			offset = (col) + ((row) * (columns+1));
+#if MAC
+#else
 			rtb.SelectionStart = offset;
 			rtb.SelectionLength = 1;
+#endif
 			
 			//calculate Position of the Selection			
 			int top = 0;

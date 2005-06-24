@@ -270,26 +270,44 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		public void Flatten()
 		{
-			GmdcElement v = new GmdcElement(this.parent);
 			GmdcElement vn = new GmdcElement(this.parent);
 			GmdcElement vt = new GmdcElement(this.parent);
 
-			GmdcElement ov = this.FindElementType(ElementIdentity.Vertex);
 			GmdcElement ovn = this.FindElementType(ElementIdentity.Normal);
-			GmdcElement ovt = this.FindElementType(ElementIdentity.UVCoordinate);
+			GmdcElement ovt = this.FindElementType(ElementIdentity.UVCoordinate);						
 
-			int nv = this.GetElementNr(ov);
+			//contains a List of all additional Elements assigned to this Link, which 
+			//are related to the Vertex Element (like BoneWeights)
+			GmdcElements ovelements = new GmdcElements();
+			GmdcElements velements = new GmdcElements();
+			ovelements.Add(this.FindElementType(ElementIdentity.Vertex));
+			velements.Add(new GmdcElement(this.Parent));
+
+			int nv = this.GetElementNr(ovelements[0]);
 			int nvn = this.GetElementNr(ovn);
 			int nvt = this.GetElementNr(ovt);
+
+			//add all other Elements
+			foreach(int i in this.ReferencedElement)
+			{
+				if (ovelements.Contains(parent.Elements[i]) || parent.Elements[i]==ovn || parent.Elements[i]==ovt) continue;
+				ovelements.Add(parent.Elements[i]);
+				velements.Add(new GmdcElement(this.Parent));
+			}
+
 			for (int i=0; i<this.ReferencedSize; i++)
 			{
-				v.Values.Add(ov.Values[this.GetRealIndex(nv, i)]);
+				for (int j=0; j<velements.Length; j++) velements[j].Values.Add(ovelements[j].Values[this.GetRealIndex(nv, i)]);
+
 				if (ovn!=null) vn.Values.Add(ovn.Values[this.GetRealIndex(nvn, i)]);
 				if (ovt!=null) vt.Values.Add(ovt.Values[this.GetRealIndex(nvt, i)]);
 			}
 
-			ov.Values = v.Values;
-			ov.Number = ReferencedSize;
+			for (int i=0; i<velements.Length; i++) 
+			{
+				ovelements[i].Values = velements[i].Values;
+				ovelements[i].Number = velements[i].Number;
+			}
 			if (ovn!=null) 
 			{
 				ovn.Values = vn.Values;

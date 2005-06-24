@@ -176,7 +176,7 @@ namespace SimPe.Packages
 			ofd.Filter = "Sims 2 Package (*.package)|*.package|All Files (*.*)|*.*";
 			if (ofd.ShowDialog()==DialogResult.OK) 
 			{
-				SimPe.Packages.GeneratableFile package = new GeneratableFile(ofd.FileName);
+				SimPe.Packages.GeneratableFile package = GeneratableFile.LoadFromFile(ofd.FileName);
 				S2CPDescriptorBase s2cpb = new S2CPDescriptorBase(package);
 				if (s2cpb.Guid==null) MessageBox.Show("This Package does not contain a valid GlobalGUID.\nYou can create on by including this File in a diffren Sims2Community Package or by adding a 'Sims2Comunity Identifier' to the Package.");
 				else lblist.Items.Add(s2cpb);

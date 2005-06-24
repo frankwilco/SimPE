@@ -731,7 +731,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private void GetGuid(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			Sims.GUID.GUIDGetterForm form = new Sims.GUID.GUIDGetterForm();
-			Registry reg = new Registry();
+			Registry reg = Helper.WindowsRegistry;
 
 			try 
 			{

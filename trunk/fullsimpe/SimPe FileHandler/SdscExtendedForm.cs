@@ -187,7 +187,7 @@ namespace SimPe.PackedFiles.UserInterface
 				string flname = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, @"TSData\Res\Objects\objects.package");
 				if (System.IO.File.Exists(flname))
 				{
-					SimPe.Packages.File fl = new SimPe.Packages.File(flname);
+					SimPe.Packages.File fl = SimPe.Packages.File.LoadFromFile(flname);
 					Interfaces.Files.IPackedFileDescriptor pfd = fl.FindFile(0x53545223, 0, 0x7FE59FD0, 0xc8);
 
 					if (pfd!=null) 

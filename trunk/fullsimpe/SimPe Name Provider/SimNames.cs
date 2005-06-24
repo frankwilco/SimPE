@@ -116,7 +116,7 @@ namespace SimPe.Providers
 				tags[2] = Localization.Manager.GetString("Unknown");
 				tags[3] = false;
 
-				SimPe.Packages.File fl = new SimPe.Packages.File(file);
+				SimPe.Packages.File fl = SimPe.Packages.File.LoadFromFile(file);
 				Alias a = null;
 				//check if package contains a AgeData File
 				tags[3] = (fl.FindFiles(0xAC598EAC).Length>0);

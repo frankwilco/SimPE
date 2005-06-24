@@ -34,7 +34,7 @@ namespace SimPe.Interfaces.Plugin.Internal
 		IPackageFile Package 
 		{
 			get;
-			set;
+			//set;
 		}	
 
 		/// <summary>
@@ -117,9 +117,22 @@ namespace SimPe.Interfaces.Plugin.Internal
 		}
 
 		/// <summary>
+		/// true, if the UIHandler for this Wrapper is able to display more than one Instance at once
+		/// </summary>
+		bool AllowMultipleInstances
+		{
+			get;
+		}
+
+		/// <summary>
 		/// Sends an Update Request to the assigned UI Handler (if not null)
 		/// </summary>
-		void UpdateUI();		
+		void RefreshUI();
+		
+		/// <summary>
+		/// Initializes the GUI for this Wrapper, and Updates the it's content
+		/// </summary>
+		void LoadUI();
 
 		/// <summary>
 		/// Tries to correct Possible Errors.
@@ -131,6 +144,14 @@ namespace SimPe.Interfaces.Plugin.Internal
 		/// Get a Description for this Package
 		/// </summary>
 		string Description
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Get the Name of a Resource
+		/// </summary>
+		string ResourceName
 		{
 			get;
 		}
@@ -150,5 +171,15 @@ namespace SimPe.Interfaces.Plugin.Internal
 		{
 			get;
 		}
-	}
+
+		/// <summary>
+		/// Allways returns <see cref="this"/> Object.
+		/// </summary>
+		/// <returns>this Object</returns>
+		/// <remarks>
+		/// This Method is Important, when a Wrapper implements <see cref="IMultiplePackedFileWrapper"/>, as
+		/// it will create a new Instance of the Class it was called from.
+		/// </remarks>
+		IFileWrapper Activate();
+	}	
 }

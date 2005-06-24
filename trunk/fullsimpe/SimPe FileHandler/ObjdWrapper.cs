@@ -32,7 +32,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
-	public class Objd : AbstractWrapper, SimPe.Interfaces.Plugin.IFileWrapper, SimPe.Interfaces.Plugin.IFileWrapperSaveExtension, IPackedFileProperties
+	public class Objd : AbstractWrapper, SimPe.Interfaces.Plugin.IFileWrapper, SimPe.Interfaces.Plugin.IFileWrapperSaveExtension
 	{
 		/// <summary>
 		///the stored Filename		
@@ -471,7 +471,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		Hashtable attr;
 		ArrayList items;
-		public IPackedFileProperties[] Items
+		/*public IPackedFileProperties[] Items
 		{
 			get
 			{
@@ -480,7 +480,7 @@ namespace SimPe.PackedFiles.Wrapper
 				items.CopyTo(i);
 				return i;
 			}
-		}
+		}*/
 
 		public System.Collections.Hashtable Attributes
 		{

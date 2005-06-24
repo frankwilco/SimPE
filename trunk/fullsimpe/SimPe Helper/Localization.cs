@@ -49,6 +49,21 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Returns a translated String
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		/// <remarks>If there is no Translation, the passsed string will be returned</remarks>
+		public static string GetString(string name)
+		{
+			string res = Manager.GetString(name);
+			if (res==null) res = Manager.GetString(name.Trim().ToLower());
+			if (res==null) res = name;
+
+			return res;
+		}
+
+		/// <summary>
 		/// Returns the currrent Resource Manager
 		/// </summary>
 		public static ResourceManager Manager 

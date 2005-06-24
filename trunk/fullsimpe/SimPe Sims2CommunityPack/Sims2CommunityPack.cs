@@ -276,14 +276,14 @@ namespace SimPe.Packages
 
 			if (desc.Compressed == CompressionStrength.None) 
 			{
-				SimPe.Packages.GeneratableFile pkg = new GeneratableFile(new BinaryReader(ms));
+				SimPe.Packages.GeneratableFile pkg = GeneratableFile.LoadFromStream(new BinaryReader(ms));
 				return pkg;
 			} 
 			else 
 			{
 				MemoryStream unc = new MemoryStream();
 				Decompress(ms, unc);
-				SimPe.Packages.GeneratableFile pkg = new GeneratableFile(new BinaryReader(unc));
+				SimPe.Packages.GeneratableFile pkg = GeneratableFile.LoadFromStream(new BinaryReader(unc));
 				pkg.FileName = desc.Name;
 				return pkg;
 			}

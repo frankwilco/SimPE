@@ -88,7 +88,7 @@ namespace SimPe.Plugin
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
-			foreach (Interfaces.IAlias alias in Data.MetaData.FileTypes) cbtypes.Items.Add(alias);
+			foreach (Interfaces.IAlias alias in SimPe.Helper.TGILoader.FileTypes) cbtypes.Items.Add(alias);
 #if DEBUG
 #else
 			//this.btcommit.Enabled = false;
@@ -1021,7 +1021,7 @@ namespace SimPe.Plugin
 			if (tbResource.TabPages[tbResource.SelectedIndex] == this.tabPage3) 
 			{
 				this.lbblocks.Items.Clear();
-				foreach(IRcolBlock irb in wrapper.Blocks) SimPe.CountedListItem.Add(lbblocks, irb);
+				foreach(IRcolBlock irb in wrapper.Blocks) SimPe.CountedListItem.AddHex(lbblocks, irb);
 
 				this.cbblocks.Items.Clear();
 				foreach (string s in Rcol.Tokens.Keys)
@@ -1090,7 +1090,7 @@ namespace SimPe.Plugin
 			{
 				//SimPe.CountedListItem cli = (SimPe.CountedListItem);
 				IRcolBlock irb = ((IRcolBlock)cbblocks.Items[cbblocks.SelectedIndex]).Create();
-				SimPe.CountedListItem.Add(this.lbblocks, irb);
+				SimPe.CountedListItem.AddHex(this.lbblocks, irb);
 				wrapper.Blocks = (IRcolBlock[])Helper.Add(wrapper.Blocks, irb, typeof(IRcolBlock));
 				UpdateComboBox();
 			} 

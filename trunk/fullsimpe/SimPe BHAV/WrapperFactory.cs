@@ -96,16 +96,17 @@ namespace SimPe.Plugin
 
 		#region IToolFactory Member
 
-		public ITool[] KnownTools
+		public IToolPlugin[] KnownTools
 		{
 			get
 			{
-				ITool[] tools = {
+				IToolPlugin[] tools = {
 									new ImportSemiTool(this.LinkedRegistry, this.LinkedProvider)
 								};
 				return tools;
 			}
 		}
+
 
 		#endregion
 	}

@@ -507,29 +507,50 @@ namespace SimPe.Plugin.Scanner
 
 		#region IScanner Member
 
+		Hashtable list;
 		protected override void DoInitScan()
 		{
+			if (list==null) list = new Hashtable();
+			else list.Clear();
+
 			if (cachefile==null) cachefile = MemoryCacheFile.InitCacheFile();
 			
 			AbstractScanner.AddColumn(ListView, "GUIDs", 180);
 			AbstractScanner.AddColumn(ListView, "Duplicate GUID", 80);
+			AbstractScanner.AddColumn(ListView, "First found", 80);
+
+			foreach (MemoryCacheItem mci in cachefile.List) 
+			{
+				list[(uint)mci.Guid] = mci.ParentCacheContainer.FileName.Trim().ToLower();
+				/*if (mci.Guid == guid) 
+				{
+					if (mci.ParentCacheContainer!=null) 
+					{
+						if (mci.ParentCacheContainer.FileName.Trim().ToLower() != flname) 
+						{ 
+							ps.State = TriState.False;
+							break;
+						}
+					}
+				}*/
+			}
 		}
 
 
 		public void ScanPackage(ScannerItem si, SimPe.Cache.PackageState ps, System.Windows.Forms.ListViewItem lvi)
 		{			
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = si.Package.FindFiles(Data.MetaData.OBJD_FILE);
-			ArrayList list = new ArrayList();
+			ArrayList mylist = new ArrayList();
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 			{
 				SimPe.PackedFiles.Wrapper.ExtObjd objd = new ExtObjd(null);
 				objd.ProcessData(pfd, si.Package);
 
-				list.Add(objd.Guid);
+				mylist.Add(objd.Guid);
 			}
 
-			uint[] guids = new uint[list.Count];
-			list.CopyTo(guids);
+			uint[] guids = new uint[mylist.Count];
+			mylist.CopyTo(guids);
 			si.PackageCacheItem.Guids = guids;
 			ps.State = TriState.True;
 
@@ -540,13 +561,14 @@ namespace SimPe.Plugin.Scanner
 		{	
 			ps.State = TriState.True;
 			string guids = "";
+			string ff = SimPe.Localization.Manager.GetString("unknown");
 			foreach (uint guid in si.PackageCacheItem.Guids) 
 			{
 				string flname = si.FileName.Trim().ToLower();
 				if (guids!="") guids += ", ";
 				guids += "0x"+Helper.HexString(guid);
 
-				foreach (MemoryCacheItem mci in cachefile.List) 
+				/*foreach (MemoryCacheItem mci in cachefile.List) 
 				{
 					if (mci.Guid == guid) 
 					{
@@ -559,6 +581,22 @@ namespace SimPe.Plugin.Scanner
 							}
 						}
 					}
+				}*/
+
+				string fl = si.Package.FileName.Trim().ToLower();
+				if (list.ContainsKey(guid)) 
+				{ 		
+					string cmp = (string)list[guid];
+					if (cmp!=fl) 
+					{
+						ps.State = TriState.False;
+						ff = cmp;
+					}
+					else ps.State = TriState.True;
+				} 
+				else 
+				{
+					list.Add(guid, fl);
 				}
 			}
 
@@ -567,6 +605,7 @@ namespace SimPe.Plugin.Scanner
 
 			AbstractScanner.SetSubItem(lvi, this.StartColum, guids);	
 			AbstractScanner.SetSubItem(lvi, this.StartColum+1, text, ps);	
+			AbstractScanner.SetSubItem(lvi, this.StartColum+2, ff);	
 		}
 
 		public void FinishScan() { }

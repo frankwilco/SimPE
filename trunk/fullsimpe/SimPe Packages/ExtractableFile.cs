@@ -35,8 +35,8 @@ namespace SimPe.Packages
 		/// Constructor For the Class
 		/// </summary>
 		/// <param name="br">The BinaryReader representing the Package File</param>
-		public ExtractableFile(BinaryReader br) : base(br) {}
-		public ExtractableFile(string flname) : base(flname) {}
+		internal ExtractableFile(BinaryReader br) : base(br) {}
+		internal ExtractableFile(string flname) : base(flname) {}
 
 		/// <summary>
 		/// Init the Clone for this Package

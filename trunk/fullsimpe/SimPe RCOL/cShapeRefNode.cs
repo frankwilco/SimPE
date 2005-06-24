@@ -396,7 +396,7 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return name + " ("+base.ToString ()+")";
+			return name + " - " + tn.ObjectGraphNode.FileName + " ("+base.ToString ()+")";
 		}
 
 	}

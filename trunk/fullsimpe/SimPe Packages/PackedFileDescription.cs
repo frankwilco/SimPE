@@ -22,6 +22,7 @@ using SimPe.Interfaces.Plugin;
 using SimPe.Interfaces.Plugin.Internal;
 using SimPe.Interfaces;
 using SimPe.Interfaces.Files;
+using SimPe.Events;
 
 namespace SimPe.Packages
 {
@@ -30,6 +31,7 @@ namespace SimPe.Packages
 	/// </summary>
 	public class PackedFileDescriptor : HoleIndexItem, IPackedFileDescriptor
 	{
+
 		/// <summary>
 		/// Creates a clone of this Object
 		/// </summary>
@@ -58,6 +60,7 @@ namespace SimPe.Packages
 			markdeleted = false;
 			markcompress = false;
 			changed = false;
+			valid = true;
 		}
 
 		/// <summary>
@@ -101,7 +104,11 @@ namespace SimPe.Packages
 			}
 			set 
 			{
-				type = value;
+				if (type!=value)
+				{
+					type = value;
+					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+				}
 			}
 		}
 
@@ -132,7 +139,11 @@ namespace SimPe.Packages
 			}
 			set 
 			{
-				group = value;
+				if (group!=value) 
+				{
+					group = value;
+					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+				}
 			}
 		}
 
@@ -154,7 +165,11 @@ namespace SimPe.Packages
 			}
 			set 
 			{
-				instance = value;
+				if (instance!=value) 
+				{					
+					instance = value;
+					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+				}
 			}
 		}
 
@@ -178,7 +193,11 @@ namespace SimPe.Packages
 			}
 			set 
 			{
-				subtype = value;
+				if (subtype!=value) 
+				{					
+					subtype = value;
+					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+				}
 			}
 		}
 
@@ -197,8 +216,14 @@ namespace SimPe.Packages
 
 			set
 			{
-				instance = (uint)(value & 0xffffffff);
-				subtype = (uint)((value >> 32) & 0xffffffff);
+				uint ninstance = (uint)(value & 0xffffffff);
+				uint nsubtype = (uint)((value >> 32) & 0xffffffff);
+				if ((ninstance!=instance || nsubtype!=subtype)) 
+				{
+					instance = ninstance;
+					subtype = nsubtype;
+					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+				}
 			}
 		}
 
@@ -370,7 +395,14 @@ namespace SimPe.Packages
 		public bool MarkForDelete 
 		{
 			get { return markdeleted; }
-			set { markdeleted = value; }
+			set { 
+				if (value!=markdeleted) 
+				{
+					markdeleted = value; 
+					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+					if (Deleted!=null && markdeleted) Deleted(this, new EventArgs());
+				}
+			}
 		}
 
 		bool markcompress;
@@ -380,7 +412,13 @@ namespace SimPe.Packages
 		public bool MarkForReCompress
 		{
 			get { return markcompress; }
-			set { markcompress = value; }
+			set { 
+				if (markcompress != value) 
+				{
+					markcompress = value; 
+					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+				}
+			}
 		}
 
 		/// <summary>
@@ -412,7 +450,8 @@ namespace SimPe.Packages
 			set 
 			{
 				changed = true;
-				userdata = value;								
+				userdata = value;	
+				if (ChangedUserData!=null) ChangedUserData(this);					
 			}
 		}
 
@@ -435,5 +474,53 @@ namespace SimPe.Packages
 		/// </summary>
 		internal PackedFile fldata;
 		#endregion 
+
+		bool valid;
+		/// <summary>
+		/// Close this Descriptor (make it invalid)
+		/// </summary>
+		public void MarkInvalid()
+		{
+			if (Closed!=null) Closed(this);
+			valid = false;
+		}
+
+		/// <summary>
+		/// true, if this Descriptor is Invalid
+		/// </summary>
+		public bool Invalid
+		{
+			get 
+			{
+				return !valid;
+			}
+		}
+
+		#region Events
+		PackedFileChanged changedUserData;
+		/// <summary>
+		/// Called whenever the content represented by this descripotr was changed
+		/// </summary>
+		public PackedFileChanged ChangedUserData
+		{
+			get { return changedUserData; }
+			set { changedUserData = value;}
+		}
+
+		/// <summary>
+		/// Called whenever the Desciptor get's invalid
+		/// </summary>
+		public event PackedFileChanged Closed;
+		
+		/// <summary>
+		/// Triggered whenever the Content of the Descriptor was changed
+		/// </summary>
+		public event System.EventHandler DescriptionChanged;
+
+		/// <summary>
+		/// Triggered whenever the Descriptor get's AMrked for Deletion
+		/// </summary>
+		public event System.EventHandler Deleted;
+		#endregion
 	}
 }
