@@ -34,6 +34,11 @@ namespace Ambertation
 	/// </summary>
 	public class Panel3D : Panel
 	{
+		/// <summary>
+		/// string that is starting a Comment
+		/// </summary>
+		public const string COMMENTSTART = "-AMBERTATION";
+
 		Device device = null; // Our rendering device
 		Mesh mesh = null; // Our mesh object in sysmem
 		Microsoft.DirectX.Direct3D.Material[] meshMaterials; // Materials for our mesh
@@ -236,6 +241,7 @@ namespace Ambertation
 
 		void SetupTexture()
 		{
+			return;
 			device.TextureState[0].ColorOperation = TextureOperation.Modulate2X;
 			device.TextureState[0].ColorArgument1 = TextureArgument.TextureColor;
 			device.TextureState[0].ColorArgument2 = TextureArgument.Diffuse;
@@ -302,7 +308,7 @@ namespace Ambertation
 				
 
 				// Create the D3DDevice
-				device = new Device(0, DeviceType.Hardware, this, CreateFlags.HardwareVertexProcessing, presentParams);
+				device = new Device(0, DeviceType.Hardware, this, CreateFlags.SoftwareVertexProcessing, presentParams);
 				device.DeviceReset += new System.EventHandler(this.OnResetDevice);
 
 				SetupRenderstate();
@@ -352,11 +358,14 @@ namespace Ambertation
 					meshMaterials[i].Diffuse = Color.DarkGray;
 					meshMaterials[i].Specular = Color.Silver;
 					meshMaterials[i].Emissive = Color.Black;
-					meshMaterials[i].SpecularSharpness = (float)100.0;
+					meshMaterials[i].SpecularSharpness = (float)100.0;					
      
 					// Create the texture
 					string txtrname = materials[i].TextureFilename;
 					if (txtrname==null) txtrname="";
+					
+					if (txtrname.IndexOf(Panel3D.COMMENTSTART)!=-1)  txtrname = txtrname.Substring(0, txtrname.IndexOf(Panel3D.COMMENTSTART));						
+
 					object mapped = txtrmap[txtrname];
 
 					if (mapped==null) mapped = txtrname;
@@ -368,6 +377,7 @@ namespace Ambertation
 					} 
 					else 
 					{
+						((Stream)mapped).Seek(0, System.IO.SeekOrigin.Begin);
 						meshTextures[i] = TextureLoader.FromStream(dev, (Stream)mapped);
 					}					
 				}
@@ -399,7 +409,7 @@ namespace Ambertation
 				//Begin the scene
 				device.BeginScene();
 				// Setup the world, view, and projection matrices
-				SetupMatrices();
+				SetupMatrices(false);
 
 				SetupRenderstate();
 				SetupTexture();
@@ -413,21 +423,22 @@ namespace Ambertation
 					device.SetTexture(0, meshTextures[i]);
         
 					// Draw the mesh subset
-					mesh.DrawSubset(i);
+					mesh.DrawSubset(i);					
+				}
 
-					if (bbox!=null) 
-					{
-						Material myMaterial = new Material();
-						myMaterial.Diffuse = myMaterial.Ambient = Color.Red;
-						myMaterial.Diffuse = Color.FromArgb(0x20, 0x20, 0x40, 0x30);
-						myMaterial.Specular = Color.FromArgb(0x20, 0xff, 0xff, 0xff);
+				SetupMatrices(true);
+				if (bbox!=null) 
+				{
+					Material myMaterial = new Material();
+					myMaterial.Diffuse = myMaterial.Ambient = Color.Red;
+					myMaterial.Diffuse = Color.FromArgb(0x20, 0x20, 0x40, 0x30);
+					myMaterial.Specular = Color.FromArgb(0x20, 0xff, 0xff, 0xff);
 
-						device.SetTexture(0, null);
-						device.Material = myMaterial;	
-						SetupRenderstate();
-						SetupTexture();
-						bbox.DrawSubset(0);
-					}
+					device.SetTexture(0, null);
+					device.Material = myMaterial;	
+					SetupRenderstate();
+					SetupTexture();
+					bbox.DrawSubset(0);
 				}
 
 				//End the scene
@@ -469,23 +480,23 @@ namespace Ambertation
 			// Note that many lights may be active at a time (but each one slows down
 			// the rendering of the scene). However, here just one is used.
 			device.Lights[0].Type = LightType.Point;
-			device.Lights[0].Attenuation0 = 0.3f;
+			device.Lights[0].Attenuation0 = 0.9f;
 			//device.Lights[0].Falloff =0.6f;
 			device.Lights[0].Diffuse = System.Drawing.Color.DarkGray;
-			device.Lights[0].Specular = System.Drawing.Color.White;
-			device.Lights[0].Range = vp.FarPlane;
+			device.Lights[0].Specular = System.Drawing.Color.White;			
 			device.Lights[0].Position = vp.CameraPosition;
 			device.Lights[0].Direction = device.Lights[0].Position -vp.CameraTarget ;
+			device.Lights[0].Range = 2*(vp.ObjectCenter - device.Lights[0].Position).Length();
 			device.Lights[0].Enabled = true; // Turn it on
 
 			device.Lights[1].Type = device.Lights[0].Type;
-			device.Lights[1].Attenuation0 = 0.2f;
+			device.Lights[1].Attenuation0 = 0.9f;
 			device.Lights[1].Falloff =device.Lights[0].Falloff;
 			device.Lights[1].Diffuse = device.Lights[0].Diffuse;
-			device.Lights[1].Specular = device.Lights[0].Specular;
-			device.Lights[1].Range = device.Lights[0].Range * 3;
-			device.Lights[1].Position = vp.CameraPosition * 3 + new Vector3(3*vp.CameraPosition.X, -vp.CameraPosition.Y*3, 0);
+			device.Lights[1].Specular = device.Lights[0].Specular;			
+			device.Lights[1].Position = vp.CameraPosition * 3 + new Vector3(10*vp.CameraPosition.X, -vp.CameraPosition.Y*10, 0);
 			device.Lights[1].Direction = new Vector3( 0.0f, +3.0f, -5.0f );
+			device.Lights[1].Range = 2*(vp.ObjectCenter - device.Lights[1].Position).Length();
 			device.Lights[1].Enabled = true; // Turn it on
 
 			
@@ -505,85 +516,147 @@ namespace Ambertation
 			if (vp==null) vp = new ViewportSetting();
 			vp.Reset();
 
-			int[] rank = {mesh.NumberVertices};
-		
-			
-			CustomVertex.PositionNormalTextured[] vertices = (CustomVertex.PositionNormalTextured[])mesh.LockVertexBuffer(typeof(CustomVertex.PositionNormalTextured), LockFlags.None, rank);
-			
-			Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-			Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
-			
-			foreach (CustomVertex.PositionNormalTextured v in vertices) 
+			try 
 			{
+				Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+				Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+
+				int[] rank = {mesh.NumberVertices};	
+				if (mesh.VertexBuffer.Description.VertexFormat == (VertexFormats)0x112) 
+				{
+					CustomVertex.PositionNormalTextured[] vertices = (CustomVertex.PositionNormalTextured[])mesh.LockVertexBuffer(typeof(CustomVertex.PositionNormalTextured), LockFlags.None, rank);
+					try 
+					{							
+						foreach (CustomVertex.PositionNormalTextured v in vertices) 
+						{
 				
-				if (v.X<min.X) min.X = v.X;
-				if (v.Y<min.Y) min.Y = v.Y;
-				if (v.Z<min.Z) min.Z = v.Z;
+							if (v.X<min.X) min.X = v.X;
+							if (v.Y<min.Y) min.Y = v.Y;
+							if (v.Z<min.Z) min.Z = v.Z;
 
-				if (v.X>max.X) max.X = v.X;
-				if (v.Y>max.Y) max.Y = v.Y;
-				if (v.Z>max.Z) max.Z = v.Z;
-			}
+							if (v.X>max.X) max.X = v.X;
+							if (v.Y>max.Y) max.Y = v.Y;
+							if (v.Z>max.Z) max.Z = v.Z;
+						}
+					} 
+					finally 
+					{
+						mesh.UnlockVertexBuffer();
+					}
+				} 
+				else if (mesh.VertexBuffer.Description.VertexFormat == VertexFormats.PositionNormal) 
+				{
+					CustomVertex.PositionNormal[] vertices = (CustomVertex.PositionNormal[])mesh.LockVertexBuffer(typeof(CustomVertex.PositionNormalTextured), LockFlags.None, rank);
+					try 
+					{							
+						foreach (CustomVertex.PositionNormal v in vertices) 
+						{
+				
+							if (v.X<min.X) min.X = v.X;
+							if (v.Y<min.Y) min.Y = v.Y;
+							if (v.Z<min.Z) min.Z = v.Z;
+
+							if (v.X>max.X) max.X = v.X;
+							if (v.Y>max.Y) max.Y = v.Y;
+							if (v.Z>max.Z) max.Z = v.Z;
+						}
+					} 
+					finally 
+					{
+						mesh.UnlockVertexBuffer();
+					}
+				} 				
+				
 			
 
 
-			Vector3 center = new Vector3((float)((max.X+min.X)/2.0), (float)((max.Y+min.Y)/2.0), (float)((max.Z+min.Z)/2.0));
-			vp.Aspect = this.Size.Width / this.Size.Height;			
+				Vector3 center = new Vector3((float)((max.X+min.X)/2.0), (float)((max.Y+min.Y)/2.0), (float)((max.Z+min.Z)/2.0));
+				vp.Aspect = this.Size.Width / this.Size.Height;			
 			
-			Vector3 boundingSphereRadius = new Vector3(min.X-center.X, min.Y-center.Y, min.Z-center.Z);
-			double radius = boundingSphereRadius.Length() / vp.Aspect;
-			double dist = radius / Math.Sin(vp.FoV);
+				Vector3 boundingSphereRadius = new Vector3(min.X-center.X, min.Y-center.Y, min.Z-center.Z);
+				double radius = boundingSphereRadius.Length() / vp.Aspect;
+				double dist = radius / Math.Sin(vp.FoV/2.0);
 
-			//for (int i=0; i< mesh.NumberVertices; i++) vertices[i].Subtract(center);
+				//for (int i=0; i< mesh.NumberVertices; i++) vertices[i].Subtract(center);
 			
-			vp.X = -center.X;
-			vp.Y = -center.Y;
-			vp.Z = -center.Z;
-			vp.CameraTarget = new Vector3(0,0,0);
-			vp.CameraPosition = new Vector3(
-				center.X,
-				center.Y,
-				(float)dist + center.Z);
-			vp.NearPlane = (float)(dist-radius);
-			vp.FarPlane = (float)(dist+radius);
+				vp.ObjectCenter = center;
+				vp.X = -center.X;
+				vp.Y = -center.Y;
+				vp.Z = -center.Z;
+				vp.CameraTarget = new Vector3(0,0,0);
+				vp.CameraPosition = new Vector3(
+					0, //center.X,
+					0, //center.Y,
+					(float)dist); // + center.Z);
+				vp.NearPlane = 0.01f;//(float)(dist-radius);
+				vp.FarPlane = (float)((dist+radius));
 			
 			
-			//bbox = Mesh.Box(device, max.X-min.X, max.Y-min.Y, max.Z-min.Z);
+				//bbox = Mesh.Box(device, max.X-min.X, max.Y-min.Y, max.Z-min.Z);
 #if DEBUG
-			bbox = Mesh.Sphere(device, 0.05f, 12, 4);			
+				bbox = Mesh.Sphere(device, 0.05f, 12, 4);			
 #endif
 
-			//Unlock the buffer
-			mesh.UnlockVertexBuffer();
-
-			SetupMatrices();
+				//Unlock the buffer
+				
+			} 
+			catch {}
 		}
 		/// <summary>
 		/// Used to Transfor the View of the Scene
 		/// </summary>
-		void SetupMatrices()
+		void SetupMatrices(bool bb)
 		{
 			if (vp==null) vp = new ViewportSetting();
 
 
-			device.Transform.World =  Matrix.Multiply(				
-				Matrix.RotationZ( vp.AngelZ ),
-				Matrix.Multiply(
-					Matrix.RotationX( vp.AngelX ),
+			if (true || (!bb))
+			{
+				device.Transform.World =  Matrix.Multiply(	
+					
+					Matrix.Translation(-vp.ObjectCenter.X, -vp.ObjectCenter.Y, -vp.ObjectCenter.Z),
 					Matrix.Multiply(
-						Matrix.RotationY( vp.AngelY ),
+						Matrix.Scaling(vp.Scale, vp.Scale, vp.Scale),
 						Matrix.Multiply(
-							Matrix.Scaling(vp.Scale, vp.Scale, vp.Scale), 
-							Matrix.Translation(vp.X, vp.Y, vp.Z)
+							Matrix.RotationZ( vp.AngelZ ),
+							Matrix.Multiply(
+								Matrix.RotationX( vp.AngelX ),
+								Matrix.Multiply(
+									Matrix.RotationY( vp.AngelY ),
+									Matrix.Translation(vp.X+vp.ObjectCenter.X, vp.Y+vp.ObjectCenter.Y, vp.Z+vp.ObjectCenter.Z)									
+								)
+							)
 						)
 					)
-				)
-			);
+				);	
+			} 
+			else 
+			{
+				device.Transform.World =  Matrix.Multiply(	
+					Matrix.Scaling(vp.Scale, vp.Scale, vp.Scale),
+					Matrix.Multiply(
+						Matrix.Translation(-vp.X, -vp.Y, -vp.Z),
+						Matrix.Multiply(
+							Matrix.RotationZ( vp.AngelZ ),
+							Matrix.Multiply(
+								Matrix.RotationX( vp.AngelX ),
+								Matrix.Multiply(
+									Matrix.RotationY( vp.AngelY ),
+									Matrix.Multiply(
+										Matrix.Scaling(vp.Scale, vp.Scale, vp.Scale),
+ 										Matrix.Translation(vp.X, vp.Y, vp.Z)
+									)								
+								)
+							)
+						)
+					)
+				);	
+			}
 
 			device.Transform.View = Matrix.Multiply(
-				Matrix.RotationX(-0.8f),
+				Matrix.RotationX(0.3f),
 				Matrix.Multiply(
-					Matrix.RotationY(0),
+					Matrix.RotationY(-0.2f),
 					Matrix.Multiply(
 						Matrix.RotationZ(0),
 						Matrix.LookAtLH(vp.CameraPosition, vp.CameraTarget, vp.CameraUpVector)
@@ -597,7 +670,7 @@ namespace Ambertation
 			// a perpsective transform, we need the field of view (1/4 pi is common),
 			// the aspect ratio, and the near and far clipping planes (which define at
 			// what distances geometry should be no longer be rendered).
-			device.Transform.Projection = Matrix.PerspectiveFovLH( vp.FoV, vp.Aspect, vp.NearPlane, vp.FarPlane );
+			device.Transform.Projection = Matrix.PerspectiveFovLH( vp.FoV, vp.Aspect, vp.NearPlane, vp.FarPlane*1000f );
 		}
 
 		System.Windows.Forms.MouseEventArgs last;
@@ -624,20 +697,20 @@ namespace Ambertation
 
 				if (e.Button == MouseButtons.Right) 
 				{
-					vp.AngelY -= (dx / 100.0f);
-					vp.AngelX += (dy / 100.0f);
+					vp.AngelY -= (dx / vp.InputRotationScale);
+					vp.AngelX += (dy / vp.InputRotationScale);
 				}
 
 				if (e.Button == MouseButtons.Left) 
 				{
-					vp.X -= (dx / 100.0f);
-					vp.Y -= (dy / 100.0f);					
+					vp.X -= (dx / vp.InputTranslationScale);
+					vp.Y -= (dy / vp.InputTranslationScale);					
 				}
 
 				if (e.Button == MouseButtons.Middle) 
 				{
-					vp.Scale += (dy / 100.0f);
-					vp.AngelZ += (dx / 100.0f);
+					vp.Scale += (dy / vp.InputScaleScale);
+					vp.AngelZ += (dx / vp.InputRotationScale);
 				}
 			}
 			last = e;
@@ -669,7 +742,7 @@ namespace Ambertation
 			foreach(Panel3D panel in panels)
 			{
 				panel.SetupRenderstate();
-				//panel.ResetDefaultViewport();
+				panel.ResetDefaultViewport();
 			}
 			
 			while(panels.Count>0) 
