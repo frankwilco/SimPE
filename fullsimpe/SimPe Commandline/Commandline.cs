@@ -43,7 +43,7 @@ namespace SimPe
 		{
 			if (System.IO.File.Exists(flname))
 			{
-				SimPe.Packages.GeneratableFile pkg = new SimPe.Packages.GeneratableFile(flname);
+				SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromFile(flname);
 
 				System.Collections.Hashtable map = RenameForm.GetNames((modelname.Trim()!=""), pkg, null, modelname);
 				FixObject fo = new FixObject(pkg, ver);
@@ -147,7 +147,7 @@ namespace SimPe
 				return true;
 			}
 
-			SimPe.Packages.GeneratableFile pkg = new SimPe.Packages.GeneratableFile(XmlPackageReader.OpenExtractedPackage(null, input));
+			SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromStream(XmlPackageReader.OpenExtractedPackage(null, input));
 			pkg.Save(output);
 
 			return true;

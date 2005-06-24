@@ -62,12 +62,12 @@ namespace SimPe.Plugin.Gmdc
 		/// <summary>
 		/// Good Objects should not have more than this number of Faces
 		/// </summary>
-		public const int CRITICAL_FACE_AMOUNT = 10000;
+		public const int CRITICAL_FACE_AMOUNT = 5000;
 
 		/// <summary>
 		/// Good Objects should not have more than this number of Vertices
 		/// </summary>
-		public const int CRITICAL_VERTEX_AMOUNT = CRITICAL_FACE_AMOUNT;
+		public const int CRITICAL_VERTEX_AMOUNT = 2000;
 
 		/// <summary>
 		/// Returns a Version Number for the used Interface
@@ -304,7 +304,10 @@ namespace SimPe.Plugin.Gmdc
 				else if (g.Action == GmdcImporterAction.Update) UpdateGroup(g);
 
 				if (g.Action!=GmdcImporterAction.Nothing) 
-					if (!Helper.WindowsRegistry.HiddenMode) g.Link.Flatten();
+#if DEBUG
+					if (!Helper.WindowsRegistry.HiddenMode) 
+#endif
+						g.Link.Flatten();
 			}	
 		
 			//Make sure the Elements are assigned to the correct Bones

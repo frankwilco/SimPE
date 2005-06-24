@@ -76,6 +76,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.CheckBox cbparent;
 		private Skybound.VisualStyles.VisualStyleProvider visualStyleProvider1;
 		private System.Windows.Forms.CheckBox cbwallmask;
+		private System.Windows.Forms.CheckBox cbanim;
 		TreeNode tviwindow;
 
 		public Workshop()
@@ -89,7 +90,7 @@ namespace SimPe.Plugin
 			btclone.Enabled = false;
 			btclone.Refresh();
 			this.tabControl1.SelectedIndex = 1;
-			if (!Helper.WindowsRegistry.HiddenMode) 
+			if ((!Helper.WindowsRegistry.HiddenMode) || (!Helper.DebugMode))
 			{
 				lbobj.SelectionMode = SelectionMode.One;
 				this.cbColor.Visible = false;
@@ -344,7 +345,6 @@ namespace SimPe.Plugin
 				SimPe.Data.MetaData.Languages deflang = Helper.WindowsRegistry.LanguageCode;
 				foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem in nrefitems)
 				{
-					//if (ct==100) break;
 					ct++;
 					if (ct%134==1) WaitingScreen.UpdateMessage(ct.ToString() + len);
 					
@@ -414,6 +414,7 @@ namespace SimPe.Plugin
 						oci.ObjectFunctionSort = (short)objd.FunctionSort.Value;
 						oci.ObjectFileName = objd.FileName;
 						oci.Useable = true;
+						oci.Class = SimPe.Cache.ObjectClass.Object;
 						//this is needed, so that objects get sorted into the right categories
 						if (objd.Type == Data.ObjectTypes.Normal && objd.CTSSInstance==0) 
 						{
@@ -533,6 +534,7 @@ namespace SimPe.Plugin
 			this.rbClone = new System.Windows.Forms.RadioButton();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tClone = new System.Windows.Forms.TabPage();
+			this.cbwallmask = new System.Windows.Forms.CheckBox();
 			this.cbparent = new System.Windows.Forms.CheckBox();
 			this.cbclean = new System.Windows.Forms.CheckBox();
 			this.cbfix = new System.Windows.Forms.CheckBox();
@@ -553,7 +555,7 @@ namespace SimPe.Plugin
 			this.tbflname = new System.Windows.Forms.TextBox();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
 			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
-			this.cbwallmask = new System.Windows.Forms.CheckBox();
+			this.cbanim = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tClone.SuspendLayout();
@@ -582,7 +584,7 @@ namespace SimPe.Plugin
 			this.btclone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btclone.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.btclone.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.btclone.Location = new System.Drawing.Point(408, 196);
+			this.btclone.Location = new System.Drawing.Point(408, 212);
 			this.btclone.Name = "btclone";
 			this.btclone.TabIndex = 1;
 			this.btclone.Text = "Start";
@@ -601,7 +603,7 @@ namespace SimPe.Plugin
 			this.groupBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox1.Location = new System.Drawing.Point(8, 272);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(488, 224);
+			this.groupBox1.Size = new System.Drawing.Size(488, 240);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Settings";
@@ -653,13 +655,14 @@ namespace SimPe.Plugin
 			this.tabControl1.Location = new System.Drawing.Point(150, 24);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(328, 160);
+			this.tabControl1.Size = new System.Drawing.Size(328, 184);
 			this.tabControl1.TabIndex = 3;
 			this.visualStyleProvider1.SetVisualStyleSupport(this.tabControl1, true);
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabChanged);
 			// 
 			// tClone
 			// 
+			this.tClone.Controls.Add(this.cbanim);
 			this.tClone.Controls.Add(this.cbwallmask);
 			this.tClone.Controls.Add(this.cbparent);
 			this.tClone.Controls.Add(this.cbclean);
@@ -668,10 +671,23 @@ namespace SimPe.Plugin
 			this.tClone.Controls.Add(this.cbgid);
 			this.tClone.Location = new System.Drawing.Point(4, 22);
 			this.tClone.Name = "tClone";
-			this.tClone.Size = new System.Drawing.Size(320, 134);
+			this.tClone.Size = new System.Drawing.Size(320, 158);
 			this.tClone.TabIndex = 0;
 			this.tClone.Text = "Clone Settings";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.tClone, true);
+			// 
+			// cbwallmask
+			// 
+			this.cbwallmask.Checked = true;
+			this.cbwallmask.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbwallmask.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbwallmask.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbwallmask.Location = new System.Drawing.Point(8, 108);
+			this.cbwallmask.Name = "cbwallmask";
+			this.cbwallmask.Size = new System.Drawing.Size(272, 24);
+			this.cbwallmask.TabIndex = 8;
+			this.cbwallmask.Text = "Pull Wallmasks (as described by Numenor)";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbwallmask, true);
 			// 
 			// cbparent
 			// 
@@ -745,7 +761,7 @@ namespace SimPe.Plugin
 			this.tColor.Controls.Add(this.cbColor);
 			this.tColor.Location = new System.Drawing.Point(4, 22);
 			this.tColor.Name = "tColor";
-			this.tColor.Size = new System.Drawing.Size(320, 118);
+			this.tColor.Size = new System.Drawing.Size(320, 134);
 			this.tColor.TabIndex = 1;
 			this.tColor.Text = "Color Options";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.tColor, true);
@@ -823,7 +839,7 @@ namespace SimPe.Plugin
 			this.tabPage3.Controls.Add(this.tv);
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Size = new System.Drawing.Size(480, 222);
+			this.tabPage3.Size = new System.Drawing.Size(480, 230);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Grouped Objects";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage3, true);
@@ -837,7 +853,7 @@ namespace SimPe.Plugin
 			this.tv.ImageList = this.ilist;
 			this.tv.Location = new System.Drawing.Point(8, 8);
 			this.tv.Name = "tv";
-			this.tv.Size = new System.Drawing.Size(464, 208);
+			this.tv.Size = new System.Drawing.Size(464, 216);
 			this.tv.TabIndex = 0;
 			this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SelectTv);
 			// 
@@ -853,7 +869,7 @@ namespace SimPe.Plugin
 			this.tabPage2.Controls.Add(this.tbflname);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Size = new System.Drawing.Size(480, 222);
+			this.tabPage2.Size = new System.Drawing.Size(480, 230);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Load Object";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage2, true);
@@ -871,7 +887,7 @@ namespace SimPe.Plugin
 			// tbflname
 			// 
 			this.tbflname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbflname.Location = new System.Drawing.Point(8, 8);
+			this.tbflname.Location = new System.Drawing.Point(8, 12);
 			this.tbflname.Name = "tbflname";
 			this.tbflname.ReadOnly = true;
 			this.tbflname.Size = new System.Drawing.Size(464, 21);
@@ -883,23 +899,21 @@ namespace SimPe.Plugin
 			// 
 			this.ofd.Filter = "Package File (*.package)|*.package|All Files (*.*)|*.*";
 			// 
-			// cbwallmask
+			// cbanim
 			// 
-			this.cbwallmask.Checked = true;
-			this.cbwallmask.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbwallmask.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbwallmask.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbwallmask.Location = new System.Drawing.Point(8, 108);
-			this.cbwallmask.Name = "cbwallmask";
-			this.cbwallmask.Size = new System.Drawing.Size(272, 24);
-			this.cbwallmask.TabIndex = 8;
-			this.cbwallmask.Text = "Pull Wallmasks (as described by Numenor)";
-			this.visualStyleProvider1.SetVisualStyleSupport(this.cbwallmask, true);
+			this.cbanim.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbanim.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbanim.Location = new System.Drawing.Point(8, 128);
+			this.cbanim.Name = "cbanim";
+			this.cbanim.Size = new System.Drawing.Size(120, 24);
+			this.cbanim.TabIndex = 9;
+			this.cbanim.Text = "Pull Animations";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbanim, true);
 			// 
 			// Workshop
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-			this.ClientSize = new System.Drawing.Size(512, 502);
+			this.ClientSize = new System.Drawing.Size(512, 518);
 			this.Controls.Add(this.tabControl2);
 			this.Controls.Add(this.groupBox1);
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -1010,7 +1024,7 @@ namespace SimPe.Plugin
 					if (tabControl2.SelectedIndex<2) 
 					{
 						WaitingScreen.Wait();
-						this.RecolorClone(pfd, localgroup, this.cbdefault.Checked, this.cbwallmask.Checked);						
+						this.RecolorClone(pfd, localgroup, this.cbdefault.Checked, this.cbwallmask.Checked, this.cbanim.Checked);						
 						WaitingScreen.Stop(this);
 					} 
 					
@@ -1128,7 +1142,7 @@ namespace SimPe.Plugin
 			uint inst = ThumbnailHash(group, modelname);
 			if (thumbs==null) 
 			{
-				thumbs = new SimPe.Packages.File(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
+				thumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
 				thumbs.Persistent = true;
 			}
 
@@ -1154,7 +1168,7 @@ namespace SimPe.Plugin
 		//Returns all MMAT Files in a Package containing a reference to the MATD
 		protected static Interfaces.Files.IPackedFileDescriptor[] FindMMAT(SimPe.Plugin.Rcol matd, string filename) 
 		{
-			SimPe.Packages.File pkg = new SimPe.Packages.File(filename);
+			SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(filename);
 
 			ArrayList list = new ArrayList();
 			Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(0x4C697E5A);
@@ -1178,7 +1192,7 @@ namespace SimPe.Plugin
 		}
 
 		
-		SimPe.Packages.File[] objpkgs = null;
+		//SimPe.Packages.File[] objpkgs = null;
 		/// <summary>
 		/// Reads all Data from the Objects.package blonging to the same group as the passed pfd
 		/// </summary>
@@ -1231,9 +1245,9 @@ namespace SimPe.Plugin
 		/// <param name="pfd"></param>
 		/// <param name="localgroup"></param>
 		/// <param name="onlydefault"></param>
-		protected void RecolorClone(Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, bool onlydefault, bool wallmask) 
+		protected void RecolorClone(Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, bool onlydefault, bool wallmask, bool anim) 
 		{
-			package = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
+			package = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 
 			//Get the Base Object Data from the Objects.package File
 			string[] modelname = BaseClone(pfd, localgroup, package);
@@ -1264,18 +1278,20 @@ namespace SimPe.Plugin
 			objclone.Setup.OnlyDefaultMmats = onlydefault;
 			objclone.Setup.UpdateMmatGuids = onlydefault;
 			objclone.Setup.IncludeWallmask = wallmask;
+			objclone.Setup.IncludeAnimationResources = anim;
 			objclone.RcolModelClone(modelname, exclude);
 
 			//for clones only when cbparent is checked
 			if ((this.cbparent.Checked) && (!this.rbColor.Checked)) 
 			{
 				string[] names = Scenegraph.LoadParentModelNames(package, true);
-				SimPe.Packages.File pkg = new SimPe.Packages.File(null);
+				SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(null);
 
 				ObjectCloner pobj = new ObjectCloner(pkg);
 				pobj.Setup.OnlyDefaultMmats = onlydefault;
 				pobj.Setup.UpdateMmatGuids = onlydefault;
 				pobj.Setup.IncludeWallmask = wallmask;
+				pobj.Setup.IncludeAnimationResources = anim;
 				pobj.RcolModelClone(names, exclude);
 				pobj.AddParentFiles(modelname, package);				
 			}
@@ -1305,7 +1321,7 @@ namespace SimPe.Plugin
 			cbgid.Checked = false;
 			WaitingScreen.Wait();
 			WaitingScreen.UpdateMessage("Collecting needed Files");
-			if ((package==null) && (pfd!=null)) RecolorClone(pfd, localgroup, false, false);
+			if ((package==null) && (pfd!=null)) RecolorClone(pfd, localgroup, false, false, false);
 			WaitingScreen.Stop(this);
 
 			cbgid.Checked = old;
@@ -1321,14 +1337,14 @@ namespace SimPe.Plugin
 			}
 
 			SimPe.Packages.GeneratableFile dn_pkg = null;
-			if (System.IO.File.Exists(ScenegraphHelper.GMND_PACKAGE)) dn_pkg = new SimPe.Packages.GeneratableFile(ScenegraphHelper.GMND_PACKAGE);
-			else dn_pkg = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
+			if (System.IO.File.Exists(ScenegraphHelper.GMND_PACKAGE)) dn_pkg = SimPe.Packages.GeneratableFile.LoadFromFile(ScenegraphHelper.GMND_PACKAGE);
+			else dn_pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 
 			SimPe.Packages.GeneratableFile gm_pkg = null;
-			if (System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE)) gm_pkg = new SimPe.Packages.GeneratableFile(ScenegraphHelper.MMAT_PACKAGE);
-			else gm_pkg = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
+			if (System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE)) gm_pkg = SimPe.Packages.GeneratableFile.LoadFromFile(ScenegraphHelper.MMAT_PACKAGE);
+			else gm_pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 			
-			SimPe.Packages.GeneratableFile npackage = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
+			SimPe.Packages.GeneratableFile npackage = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 			//Create the Templae for an additional MMAT
 			if (this.cbColorExt.Checked) 
 			{
@@ -1421,7 +1437,7 @@ namespace SimPe.Plugin
 		{
 			if (ofd.ShowDialog()==DialogResult.OK) 
 			{
-				package = new SimPe.Packages.GeneratableFile(ofd.FileName);
+				package = SimPe.Packages.GeneratableFile.LoadFromFile(ofd.FileName);
 				tbflname.Text = ofd.FileName;
 				this.btclone.Enabled = System.IO.File.Exists(tbflname.Text);
 				btclone.Refresh();

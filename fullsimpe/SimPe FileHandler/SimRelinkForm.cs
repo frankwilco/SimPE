@@ -202,7 +202,7 @@ namespace SimPe.PackedFiles.UserInterface
 			if (srf.ok) 
 			{
 				SimPe.Data.Alias a = (SimPe.Data.Alias)srf.lv.SelectedItems[0].Tag;
-				SimPe.Packages.GeneratableFile pkg = new SimPe.Packages.GeneratableFile((string)a.Tag[0]);
+				SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromFile((string)a.Tag[0]);
 
 				Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.OBJD_FILE);
 				if (pfds.Length==1) 

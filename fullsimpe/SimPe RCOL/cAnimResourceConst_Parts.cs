@@ -20,6 +20,7 @@
 using System;
 using System.Collections;
 using System.ComponentModel;
+using SimPe.Geometry;
 
 namespace SimPe.Plugin
 {
@@ -416,6 +417,17 @@ namespace SimPe.Plugin
 			get { return ab3.Length; }
 		}
 
+		[DescriptionAttribute("Unknown additional Data"), CategoryAttribute("Information")]
+		public string Unknown7 
+		{
+			get { return Helper.HexString((int)datai[4] & 0x1fffffff); }
+		}
+		[DescriptionAttribute("Unknown7 as Float"), CategoryAttribute("Information")]
+		public float Unknown7Float
+		{
+			get { return BitConverter.ToSingle(BitConverter.GetBytes((int)datai[4] & 0x1fffffff), 0); }
+		}
+
 		uint[] datai;
 		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]				
 		public uint Unknown1 
@@ -538,7 +550,7 @@ namespace SimPe.Plugin
 		/// <returns>Number of Items</returns>
 		int GetPart3Count()
 		{
-			//using highest 3-Bits xxx00000000000000000000000000000
+			//using highest 3-Bits xxx0 0000 0000 0000 0000 0000 0000 0000
 			return ((int)datai[4] >> 0x1D) & 0x7;
 		}
 
@@ -579,9 +591,62 @@ namespace SimPe.Plugin
 			set { datai[1] = value; }
 		}	
 		short[] datas;
+		[DescriptionAttribute("Contains the Values of this Node"), CategoryAttribute("Data"), DefaultValueAttribute(0X11BA05F0)]	
 		public short[] AddonData 
 		{
 			get { return datas; }
+		}
+
+		[DescriptionAttribute("AddonData interpreted as Float"), CategoryAttribute("Data"), DefaultValueAttribute(0X11BA05F0)]	
+		public float[] AddonDataFloat
+		{
+			get { 
+				float[] f = new float[datas.Length];
+				for (int i=0; i<f.Length; i++) 
+				{
+					f[i] = (float)datas[i]/(float)short.MaxValue;
+				}
+				return f; 
+			}
+		}
+
+		[DescriptionAttribute("AddonData interpreted as Quaternions (only if Rotation!)"), CategoryAttribute("Data"), DefaultValueAttribute(0X11BA05F0)]	
+		public Quaternions AddonDataQuaternions
+		{
+			get 
+			{ 
+				Quaternions qs = new Quaternions();
+				if (type==2) 
+				{
+					float[] f = AddonDataFloat;
+					for (int i=0; i<f.Length; i+=4) 
+					{
+						Quaternion q = new Quaternion(SimPe.Geometry.QuaternionParameterType.ImaginaryReal, f[i+0], f[i+1], f[i+2], f[i+3]);						
+						//q.MakeUnitQuaternion();
+						qs.Add(q);
+					}
+				}
+				return qs; 
+			}
+		}
+
+		[DescriptionAttribute("AddonData interpreted as Vectors (only if Translation!)"), CategoryAttribute("Data"), DefaultValueAttribute(0X11BA05F0)]	
+		public Vectors3f AddonDataVectors
+		{
+			get 
+			{ 
+				Vectors3f vs = new Vectors3f();
+				if (type==1) 
+				{
+					float[] f = AddonDataFloat;
+					for (int i=0; i<f.Length; i+=3) 
+					{
+						Vector3f v = new Vector3f(f[i+0], f[i+1], f[i+2]);						
+						vs.Add(v);
+					}
+				}
+				return vs; 
+			}
 		}
 
 		byte type;
@@ -603,6 +668,15 @@ namespace SimPe.Plugin
 				else size=4;
 
 				return size;
+			}
+		}
+
+		[DescriptionAttribute("Remaining Information stored in Unknown1"), CategoryAttribute("Information")]				
+		public uint AddonTokenUnknown 
+		{
+			get 
+			{				
+				return Unknown1 >> 0x13;
 			}
 		}
 
@@ -657,8 +731,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="reader">The Stream that contains the FileData</param>
 		internal void UnserializeAddonData(System.IO.BinaryReader reader)
-		{
-
+		{					
 			datas = new short[GetCount()];
 			for (int i=0; i<datas.Length; i++) datas[i] = reader.ReadInt16();
 		}	

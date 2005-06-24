@@ -27,6 +27,8 @@ namespace SimPe
 	public class CountedListItem
 	{
 		object obj;
+		bool hex;
+
 		/// <summary>
 		/// Returns/Sets the stored Object
 		/// </summary>
@@ -37,15 +39,19 @@ namespace SimPe
 		}
 
 		int index;
-		internal CountedListItem(int index, object obj)
+		internal CountedListItem(int index, object obj, bool hex)
 		{
 			this.obj = obj;
 			this.index = index;
+			this.hex = hex;
 		}
 
 		public override string ToString()
 		{
-			return index.ToString()+": "+obj.ToString();
+			if (hex) 
+			{
+				return "0x"+index.ToString("X")+": "+obj.ToString();
+			} else return index.ToString()+": "+obj.ToString();
 		}
 
 
@@ -66,7 +72,7 @@ namespace SimPe
 		/// <param name="obj">The Item you want to add</param>
 		public static void Add(System.Windows.Forms.ComboBox cb, object obj) 
 		{
-			cb.Items.Add(new CountedListItem(cb.Items.Count+offset, obj));
+			cb.Items.Add(new CountedListItem(cb.Items.Count+offset, obj, false));
 		}
 
 		/// <summary>
@@ -76,7 +82,27 @@ namespace SimPe
 		/// <param name="obj">The Item you want to add</param>
 		public static void Add(System.Windows.Forms.ListBox lb, object obj) 
 		{
-			lb.Items.Add(new CountedListItem(lb.Items.Count+offset, obj));
+			lb.Items.Add(new CountedListItem(lb.Items.Count+offset, obj, false));
+		}
+
+		/// <summary>
+		/// Adds an Item to the given ComboBox
+		/// </summary>
+		/// <param name="cb">The ComboBox</param>
+		/// <param name="obj">The Item you want to add</param>
+		public static void AddHex(System.Windows.Forms.ComboBox cb, object obj) 
+		{
+			cb.Items.Add(new CountedListItem(cb.Items.Count+offset, obj, true));
+		}
+
+		/// <summary>
+		/// Adds an Item to the given ListBox
+		/// </summary>
+		/// <param name="lb">The ListBox</param>
+		/// <param name="obj">The Item you want to add</param>
+		public static void AddHex(System.Windows.Forms.ListBox lb, object obj) 
+		{
+			lb.Items.Add(new CountedListItem(lb.Items.Count+offset, obj, true));
 		}
 	}
 }

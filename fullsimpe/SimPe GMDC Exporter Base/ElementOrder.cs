@@ -66,9 +66,9 @@ namespace SimPe.Plugin.Gmdc
 
 
 				ms = new SimPe.Geometry.Matrixd(3, 3);
-				ms[0,0] = 100;			ms[0,1] = 0;			ms[0,2] = 0;
-				ms[1,0] = 0;			ms[1,1] = 100;			ms[1,2] = 0;
-				ms[2,0] = 0;			ms[2,1] = 0;			ms[2,2] = 100;
+				ms[0,0] = Helper.WindowsRegistry.ImportExportScaleFactor;	ms[0,1] = 0;												ms[0,2] = 0;
+				ms[1,0] = 0;												ms[1,1] = Helper.WindowsRegistry.ImportExportScaleFactor;	ms[1,2] = 0;
+				ms[2,0] = 0;												ms[2,1] = 0;												ms[2,2] = Helper.WindowsRegistry.ImportExportScaleFactor;
 				
 				//get the inverse
 				msi = !ms;

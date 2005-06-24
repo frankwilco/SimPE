@@ -228,5 +228,16 @@ namespace SimPe.Interfaces.Files
 		/// <returns>The plain Content of the File</returns>
 		IPackedFile Read(IPackedFileDescriptor pfd);
 		#endregion
+
+		/// <summary>
+		/// Close this Instance, leaving the FileDescripors valid
+		/// </summary>
+		void Close();
+
+		/// <summary>
+		/// Close this Instance
+		/// </summary>
+		/// <param name="total">true, if the FileDescriptors should be marked invalid</param>
+		void Close(bool total);
 	}
 }

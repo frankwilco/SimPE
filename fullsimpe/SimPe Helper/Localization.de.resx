@@ -372,7 +372,7 @@ Soll SimPE gestartet werden?</value>
 		<value>Änderungen speichern?</value>
 	</data>
 	<data name="savechanges">
-		<value>Sollen die Änderungen am aktuellen Package gesichert werden?</value>
+		<value>Sollen die Änderungen am Package "{filename}" gesichert werden?</value>
 	</data>
 	<data name="unsavedchanges">
 		<value>Das geöffnete Package enthält nicht gespeicherte Daten die verloren gehen wenn sie eine neue Nachbarschaft öffnen. 
@@ -386,7 +386,9 @@ Möchten sie fortfahren?</value>
 		<value>Portugiesisch (Brasilien)</value>
 	</data>
 	<data name="savewrapperchanges">
-		<value>Sollen die Änderungen am aktuellen Datei gesichert werden?</value>
+		<value>Möchten Sie die Änderungen an der Resource "{name}" übernehmen?
+
+Package: {filename}</value>
 	</data>
 	<data name="RT_Unset_Unknown">
 		<value>Nicht definiert oder unbekannt</value>
@@ -449,5 +451,62 @@ Möchten sie fortfahren?</value>
 	</data>
 	<data name="open_cloth_from_sdsc">
 		<value>Sollen die Einstellungen für diese Sim übernommen werden bevor seine Kleidung angezeigt wird?</value>
+	</data>
+	<data name="cancel">
+		<value>Abbrechen</value>
+	</data>
+	<data name="ok">
+		<value>OK</value>
+	</data>
+	<data name="neighborhood">
+		<value>&amp;Nachbarschaft</value>
+	</data>
+	<data name="object tool">
+		<value>Objekt &amp;Werkzeuge</value>
+	</data>
+	<data name="object creation">
+		<value>Objekte &amp;Erstellen</value>
+	</data>
+	<data name="sim description">
+		<value>Sim: Beschreibung</value>
+	</data>
+	<data name="Family Information">
+		<value>Familien Information</value>
+	</data>
+	<data name="Family Ties">
+		<value>Stammbaum</value>
+	</data>
+	<data name="Neighborhood/Memory">
+		<value>Nachbarschaft/Erinnerungen</value>
+	</data>
+	<data name="Sim Wants and Fears">
+		<value>Sim: Wünsche und Ängste</value>
+	</data>
+	<data name="Sim Relations">
+		<value>Sim: Beziehungen</value>
+	</data>
+	<data name="sim dna">
+		<value>Sim: DNA</value>
+	</data>
+	<data name="Extract...">
+		<value>Entpacken...</value>
+	</data>
+	<data name="Replace...">
+		<value>Ersetzen...</value>
+	</data>
+	<data name="Delete">
+		<value>Löschen</value>
+	</data>
+	<data name="Create Resource">
+		<value>Neue Resource</value>
+	</data>
+	<data name="Clone">
+		<value>Klonen</value>
+	</data>
+	<data name="Add...">
+		<value>Aufnehmen...</value>
+	</data>
+	<data name="Restore">
+		<value>Widerherstellen</value>
 	</data>
 </root>

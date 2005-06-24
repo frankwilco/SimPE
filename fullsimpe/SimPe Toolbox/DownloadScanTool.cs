@@ -45,7 +45,7 @@ namespace SimPe.Plugin
 			this.reg = reg;
 			this.prov = prov;
 
-			if (registry==null) registry = new SimPe.Registry();
+			if (registry==null) registry = Helper.WindowsRegistry;
 
 			ds = new DownloadScan();
 			ds.prov = this.prov;
@@ -65,7 +65,7 @@ namespace SimPe.Plugin
 			if (ds.FileName==null) return new ToolResult(false, false);
 			else 
 			{
-				SimPe.Packages.GeneratableFile gf = new SimPe.Packages.GeneratableFile(ds.FileName);
+				SimPe.Packages.GeneratableFile gf = SimPe.Packages.GeneratableFile.LoadFromFile(ds.FileName);
 				package = gf;
 				return new ToolResult(false, true);
 			}

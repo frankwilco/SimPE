@@ -719,7 +719,7 @@ namespace SimPe.Packages
 			ofd.Filter = "Sims 2 Package (*.package)|*.package|All Files (*.*)|*.*";
 			if (ofd.ShowDialog()==DialogResult.OK) 
 			{
-				SimPe.Packages.GeneratableFile package = new GeneratableFile(ofd.FileName);
+				SimPe.Packages.GeneratableFile package = GeneratableFile.LoadFromFile(ofd.FileName);
 				S2CPDescriptor s2cp = new S2CPDescriptor(package, "", "", "", "", Sims2CommunityPack.DEFAULT_COMPRESSION_STRENGTH, new S2CPDescriptorBase[0], extension);
 				lblist.Items.Add(s2cp);
 				lblist.SelectedIndex = lblist.Items.Count-1;

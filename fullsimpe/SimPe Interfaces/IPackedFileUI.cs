@@ -52,7 +52,13 @@ namespace SimPe.Interfaces.Plugin
 		/// <remarks>
 		/// The passed dats is definetley uncompressed and represents 
 		/// the Plain Packed File Data
+		/// 
+		/// A UI class can allow Multiple instances, by Implementing 
+		/// <see cref="IMultiplePackedFileUI"/>.
+		/// 
+		/// When Multiple Files are allowed , this Mtehod should only Refresh 
+		/// the GUI Contents, and not create an entire new one.
 		/// </remarks>
-		void UpdateGUI(SimPe.Interfaces.Plugin.IFileWrapper wrapper);		
+		void UpdateGUI(SimPe.Interfaces.Plugin.IFileWrapper wrapper);				
 	}
 }

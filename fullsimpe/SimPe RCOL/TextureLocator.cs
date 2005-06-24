@@ -25,7 +25,7 @@ namespace SimPe.Plugin
 			if (gmdc==null) return null;
 
 			SimPe.Interfaces.Files.IPackageFile lpackage = package;
-			if (flname!=null) lpackage = new SimPe.Packages.File(flname);
+			if (flname!=null) lpackage = SimPe.Packages.File.LoadFromFile(flname);
 
 			Interfaces.Files.IPackedFileDescriptor[] pfds = lpackage.FindFiles(0x7BA3838C);
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds)
@@ -58,7 +58,7 @@ namespace SimPe.Plugin
 			if (gmnd==null) return null;
 
 			SimPe.Interfaces.Files.IPackageFile lpackage = package;
-			if (flname!=null) lpackage = new SimPe.Packages.File(flname);
+			if (flname!=null) lpackage = SimPe.Packages.File.LoadFromFile(flname);
 
 			Interfaces.Files.IPackedFileDescriptor[] pfds = lpackage.FindFiles(0xFC6EB1F7);
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds)
@@ -91,7 +91,7 @@ namespace SimPe.Plugin
 			if (shpe==null) return ht;
 
 			SimPe.Interfaces.Files.IPackageFile lpackage = package;
-			if (flname!=null) lpackage = new SimPe.Packages.File(flname);
+			if (flname!=null) lpackage = SimPe.Packages.File.LoadFromFile(flname);
 
 			Shape shp = (Shape)shpe.Blocks[0];			
 			foreach (ShapePart p in shp.Parts) 
@@ -127,7 +127,7 @@ namespace SimPe.Plugin
 			if (txmts==null) return ht;
 
 			SimPe.Interfaces.Files.IPackageFile lpackage = package;
-			if (flname!=null) lpackage = new SimPe.Packages.File(flname);
+			if (flname!=null) lpackage = SimPe.Packages.File.LoadFromFile(flname);
 
 			foreach (string subset in txmts.Keys)
 			{

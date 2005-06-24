@@ -76,6 +76,7 @@ namespace SimPe.Plugin
 			{
 				WaitingScreen.Wait();
 				FileTable.FileIndex.Load();
+				FileTable.FileIndex.StoreCurrentState();
 				SimPe.Plugin.MmatWrapper mmat = (SimPe.Plugin.MmatWrapper)cmmat;
 
 				string subset = mmat.SubsetName.Trim().ToLower();
@@ -88,20 +89,14 @@ namespace SimPe.Plugin
 				WaitingScreen.UpdateMessage("Walking Scenegraph");
 
 				//add the passed package temporary to the Filetable
-				Interfaces.Scenegraph.IScenegraphFileIndex fi = FileTable.FileIndex.Clone();
-				fi.AddIndexFromPackage(package);
-
-				Interfaces.Scenegraph.IScenegraphFileIndex old = FileTable.FileIndex;
-				FileTable.FileIndex = fi;
-
+				FileTable.FileIndex.AddIndexFromPackage(package);
+				
 				Scenegraph sg = new Scenegraph(modelname);
 				SimPe.Packages.GeneratableFile pkg = sg.BuildPackage();
 				WaitingScreen.UpdateMessage("Loading available Recolors");
 				sg.AddMaterialOverrides(pkg, false, true, false);
 
-				//pkg.Save("c:\\mmat_preview.package");
-
-				FileTable.FileIndex = old;
+				//pkg.Save("c:\\mmat_preview.package");				
 
 				WaitingScreen.UpdateMessage("Loading current Texture");				
 				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFile(Hashes.StripHashFromName(txmtname), Data.MetaData.TXMT);
@@ -181,7 +176,7 @@ namespace SimPe.Plugin
 
 				WaitingScreen.Stop();
 				if (found) pf.ShowDialog();
-				else throw new ScenegraphException("This Item can't be previed! SimPE was unable to build the Scengraph.", null);
+				else throw new SimPe.Warning("This Item can't be previed!", "SimPE was unable to build the Scengraph.");
 
 				if (p3d!=null) 
 				{
@@ -191,6 +186,7 @@ namespace SimPe.Plugin
 			} 
 			finally 
 			{
+				FileTable.FileIndex.RestoreLastState();
 				WaitingScreen.Stop();
 			}
 		}

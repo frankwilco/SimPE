@@ -68,7 +68,7 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return Localization.Manager.GetString("simsbrowser")+"...";
+			return "Neighborhood\\"+Localization.Manager.GetString("simsbrowser")+"...";
 		}
 
 		#endregion

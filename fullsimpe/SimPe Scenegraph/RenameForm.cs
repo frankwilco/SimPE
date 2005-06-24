@@ -245,7 +245,7 @@ namespace SimPe.Plugin
 		public static Hashtable GetNames(bool auto, SimPe.Interfaces.Files.IPackageFile package, ListView lv, string username) 
 		{
 			if (lv!=null) lv.Items.Clear();
-			Hashtable ht = new Hashtable();
+			Hashtable ht = new Hashtable(CaseInsensitiveHashCodeProvider.DefaultInvariant, CaseInsensitiveComparer.DefaultInvariant);
 			string old = Hashes.StripHashFromName(FindMainOldName(package).ToLower().Trim());
 			if (old.EndsWith("_cres")) old = old.Substring(0, old.Length-5);
 
@@ -289,7 +289,7 @@ namespace SimPe.Plugin
 
 		protected  Hashtable GetReplacementMap()
 		{
-			Hashtable ht = new Hashtable();
+			Hashtable ht = new Hashtable(CaseInsensitiveHashCodeProvider.DefaultInvariant, CaseInsensitiveComparer.DefaultInvariant);
 			foreach (ListViewItem lvi in lv.Items)
 			{
 				string oldname = lvi.SubItems[2].Text.Trim().ToLower();

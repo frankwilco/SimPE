@@ -45,4 +45,22 @@ namespace SimPe.Interfaces.Plugin
 			get;
 		}			
 	}
+
+	/// <summary>
+	/// This Interface has to be implemented by Wrappers that allow multiple Instance
+	/// </summary>
+	public interface IMultiplePackedFileWrapper
+	{
+		/// <summary>
+		/// Returns a new Instance of the calling Class
+		/// </summary>
+		/// <returns>a new Instance of the calling Type</returns>
+		IFileWrapper Activate();
+
+		/// <summary>
+		/// Returns a list of Arguments that should be passed to the Constructor during <see cref="Activate"/>.
+		/// </summary>
+		/// <returns></returns>
+		object[] GetConstructorArguments();
+	}
 }

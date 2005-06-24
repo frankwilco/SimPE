@@ -56,11 +56,11 @@ namespace SimPe.Plugin
 		#region IToolFactory Member
 
 
-		public ITool[] KnownTools
+		public IToolPlugin[] KnownTools
 		{
 			get
 			{
-				ITool[] tools = {
+				IToolPlugin[] tools = {
 										 new Plugin.FixUidTool()
 									 };
 				if (Helper.WindowsRegistry.HiddenMode) return tools;
@@ -69,6 +69,7 @@ namespace SimPe.Plugin
 				return tools;
 			}
 		}		
+
 
 		#endregion
 	}

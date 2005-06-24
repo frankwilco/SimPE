@@ -139,7 +139,7 @@ namespace SimPe.Plugin.Scanner
 		public SimPe.Packages.GeneratableFile BuildOverride(ScannerItem sitem, string skintone, SimPe.Interfaces.Files.IPackageFile src, bool addtxmt, bool addtxtr) 
 		{
 			FileTable.FileIndex.Load();
-			SimPe.Packages.GeneratableFile pkg = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
+			SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 
 			WaitingScreen.Wait();
 			//Save the old FileTable and the source File

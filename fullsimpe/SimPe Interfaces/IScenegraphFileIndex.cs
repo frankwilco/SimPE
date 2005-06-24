@@ -69,6 +69,15 @@ namespace SimPe.Interfaces.Scenegraph
 		/// Add all Files stored in the passed package
 		/// </summary>
 		/// <param name="package">The package File</param>
+		/// <param name="overwrite">true, if the file should be 
+		/// added even if it already a Part of the FileIndex</param>
+		void AddIndexFromPackage(SimPe.Interfaces.Files.IPackageFile package, bool overwrite);
+
+		/// <summary>
+		/// Add all Files stored in the passed package
+		/// </summary>
+		/// <param name="package">The package File</param>
+		/// 
 		void AddIndexFromPackage(SimPe.Interfaces.Files.IPackageFile package);
 
 		/// <summary>
@@ -114,6 +123,14 @@ namespace SimPe.Interfaces.Scenegraph
 		/// <param name="group">the Group of the Files</param>
 		/// <returns>all FileIndexItems</returns>
 		IScenegraphFileIndexItem[] FindFile(uint type, uint group);
+
+		/// <summary>
+		/// Return all matching FileIndexItems (by Instance)
+		/// </summary>
+		/// <param name="group">The Group you are looking for</param>
+		/// <param name="instance">The instance you are looking for</param>
+		/// <returns>all FileIndexItems</returns>
+		IScenegraphFileIndexItem[] FindFileByGroupAndInstance(uint group, ulong instance);
 
 		/// <summary>
 		/// Returns all matching FileIndexItems for the passed type

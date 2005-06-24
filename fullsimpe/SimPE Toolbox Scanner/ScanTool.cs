@@ -50,7 +50,7 @@ namespace SimPe.Plugin
 			if (ds.FileName==null) return new ToolResult(false, false);
 			else 
 			{
-				SimPe.Packages.GeneratableFile gf = new SimPe.Packages.GeneratableFile(ds.FileName);
+				SimPe.Packages.GeneratableFile gf = SimPe.Packages.GeneratableFile.LoadFromFile(ds.FileName);
 				package = gf;
 				return new ToolResult(false, true);
 			}

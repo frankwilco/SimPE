@@ -25,6 +25,21 @@ using SimPe;
 namespace SimPe.Cache
 {
 	/// <summary>
+	/// What general class is the Object in
+	/// </summary>
+	/// 
+	public enum ObjectClass : byte
+	{
+		/// <summary>
+		/// It is a real Object (OBJd-Based)
+		/// </summary>
+		Object = 0x00,
+		/// <summary>
+		/// It something like a Skin (cpf based)
+		/// </summary>
+		Skin = 0x01
+	}
+	/// <summary>
 	/// Contains one ObjectCacheItem
 	/// </summary>
 	public class ObjectCacheItem : ICacheItem
@@ -32,7 +47,7 @@ namespace SimPe.Cache
 		/// <summary>
 		/// The current Version
 		/// </summary>
-		public const byte VERSION = 2;
+		public const byte VERSION = 3;
 
 		public ObjectCacheItem()
 		{			
@@ -54,6 +69,7 @@ namespace SimPe.Cache
 		string objname;
 		short objfuncsort;
 		bool use;
+		ObjectClass oclass;
 
 		/// <summary>
 		/// Returns an (unitialized) FileDescriptor
@@ -77,6 +93,15 @@ namespace SimPe.Cache
 		}
 
 		/// <summary>
+		/// The class the Object is assigned to
+		/// </summary>
+		public ObjectClass Class
+		{
+			get { return oclass; }
+			set { oclass = value; }
+		}
+
+		/// <summary>
 		/// Returns the FunctionSort Field of the Object
 		/// </summary>
 		public short ObjectFunctionSort
@@ -84,6 +109,7 @@ namespace SimPe.Cache
 			get { return objfuncsort; }
 			set { objfuncsort = value; }
 		}
+
 		/// <summary>
 		/// Returns the LocalGroup
 		/// </summary>
@@ -175,7 +201,7 @@ namespace SimPe.Cache
 			objtype = (Data.ObjectTypes)reader.ReadUInt16();
 			objfuncsort = reader.ReadInt16();
 
-			if (version==2) 
+			if (version>=2) 
 			{
 				objname = reader.ReadString();
 				use = reader.ReadBoolean();
@@ -185,6 +211,9 @@ namespace SimPe.Cache
 				objname = modelname;
 				use = true;
 			}
+
+			if (version>=3) oclass = (ObjectClass)reader.ReadByte();
+			else oclass = ObjectClass.Object;
 		}
 
 		public void Save(System.IO.BinaryWriter writer) 
@@ -216,6 +245,8 @@ namespace SimPe.Cache
 
 			writer.Write(objname);
 			writer.Write(use);
+
+			writer.Write((byte)oclass);
 		}
 
 		public byte Version

@@ -245,7 +245,7 @@ namespace SimPe.Plugin
 
 			foreach (string name in names) 
 			{
-				SimPe.Packages.File fl = new SimPe.Packages.File(name);
+				SimPe.Packages.File fl = SimPe.Packages.File.LoadFromFile(name);
 				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = fl.FindFiles(Data.MetaData.IDNO);
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{

@@ -368,6 +368,13 @@ namespace SimPe.PackedFiles.Wrapper
 				3
 				); 
 		}
+
+		protected override string GetResourceName(SimPe.Data.TypeAlias ta)
+		{
+			if (!this.Processed) ProcessData(FileDescriptor, Package);
+			return this.Name;
+		}
+
 		#endregion
 
 		#region IPackedFileWrapper Member

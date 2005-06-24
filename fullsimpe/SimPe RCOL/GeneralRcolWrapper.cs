@@ -40,6 +40,8 @@ namespace SimPe.Plugin
 		{
 		}
 
+		public GenericRcol() : base() {}
+
 		
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
@@ -57,7 +59,7 @@ namespace SimPe.Plugin
 				"Generic Rcol Wrapper",
 				"Quaxi",
 				"---",
-				3
+				4
 				); 
 		}
 		#endregion

@@ -57,11 +57,12 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		/// <returns>the unique Name</returns>
 		string GetUniqueGroupName(string name) 
 		{			
+			return name;
 			string oname = name;
 			int i=0;
 			while (modelnames.Contains(name)) 
 			{
-				name = oname+i.ToString();
+				name = oname+Ambertation.Panel3D.COMMENTSTART+i.ToString();
 				i++;
 			}
 

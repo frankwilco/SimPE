@@ -93,7 +93,7 @@ namespace SimPe.Providers
 			memories = new Hashtable();
 			//if (BasePackage==null) return;
 
-			Registry reg = new Registry();
+			Registry reg = Helper.WindowsRegistry;
 			ArrayList list = new ArrayList();
 			Interfaces.Files.IPackedFileDescriptor pfd;					
 			
@@ -251,11 +251,11 @@ namespace SimPe.Providers
 		{
 			if (BasePackage==null) 
 			{
-				Registry reg = new Registry();
+				Registry reg = Helper.WindowsRegistry;
 				string file = System.IO.Path.Combine(reg.SimsPath, "TSData\\Res\\Objects\\objects.package");				
 				if (System.IO.File.Exists(file)) 
 				{
-					BasePackage = new Packages.File(file);
+					BasePackage = SimPe.Packages.File.LoadFromFile(file);
 				} 
 				else 
 				{

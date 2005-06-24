@@ -84,7 +84,7 @@ namespace SimPe.Plugin
 			
 			foreach (string file in files)
 			{
-				SimPe.Packages.File pkg = new SimPe.Packages.File(file);
+				SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(file);
 				PhotoStudioTemplate pst = new PhotoStudioTemplate(pkg);
 
 				ListViewItem lvi = new ListViewItem(pst.ToString());
@@ -825,13 +825,13 @@ namespace SimPe.Plugin
 			SimPe.Plugin.Rcol matd = new GenericRcol(null, false);
 			SimPe.PackedFiles.Wrapper.Cpf mmat = new SimPe.PackedFiles.Wrapper.Cpf();
 
-			SimPe.Packages.GeneratableFile pkg = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
+			SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 			pkg.FileName = filename;
 
 			string family = System.Guid.NewGuid().ToString();
 			string unique = RenameForm.GetUniqueName();
 
-			SimPe.Packages.GeneratableFile tpkg = new SimPe.Packages.GeneratableFile(template.Package.FileName);
+			SimPe.Packages.GeneratableFile tpkg = SimPe.Packages.GeneratableFile.LoadFromFile(template.Package.FileName);
 
 			//load MMAT
 			WaitingScreen.UpdateMessage("Loading Material Override");

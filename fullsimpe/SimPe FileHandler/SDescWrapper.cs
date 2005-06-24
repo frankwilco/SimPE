@@ -1287,6 +1287,12 @@ namespace SimPe.PackedFiles.Wrapper
 				8
 				); 
 		}
+
+		protected override string GetResourceName(SimPe.Data.TypeAlias ta)
+		{
+			if (!this.Processed) ProcessData(FileDescriptor, Package);
+			return this.SimName + " " + this.SimFamilyName;
+		}
 		#endregion
 
 		#region AbstractWrapper Member

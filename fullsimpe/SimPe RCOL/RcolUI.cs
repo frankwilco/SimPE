@@ -47,6 +47,8 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
+		
+
 		#region IPackedFileUI Member
 
 		/// <summary>
@@ -56,6 +58,7 @@ namespace SimPe.Plugin
 		{
 			get
 			{
+				if (form==null) return null;
 				return form.RcolPanel;
 			}
 		}
@@ -67,12 +70,12 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="wrapper">The Attributes of this Wrapper have to be displayed</param>
 		public void UpdateGUI(IFileWrapper wrapper)
-		{
+		{			
 			Rcol wrp = (Rcol) wrapper;
 			form.wrapper = wrp;
 
 			form.cbitem.Items.Clear();
-			foreach (IRcolBlock rb in wrp.Blocks) SimPe.CountedListItem.Add(form.cbitem, rb);
+			foreach (IRcolBlock rb in wrp.Blocks) SimPe.CountedListItem.AddHex(form.cbitem, rb);
 			if (form.cbitem.Items.Count>0) form.cbitem.SelectedIndex = 0;
 			else form.BuildChildTabControl(null);
 

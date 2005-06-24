@@ -191,7 +191,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.GroupBox groupBox17;
 		internal System.Windows.Forms.ComboBox cb_gn_list;
 		internal System.Windows.Forms.TabControl tc_gn;
-		private System.Windows.Forms.ImageList iCres;
+		public System.Windows.Forms.ImageList iCres;
 		private System.ComponentModel.IContainer components;
 
 		public fShapeRefNode()
@@ -234,6 +234,30 @@ namespace SimPe.Plugin
 			this.gen_pg = new System.Windows.Forms.PropertyGrid();
 			this.tb_ver = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
+			this.tDirectionalLight = new System.Windows.Forms.TabPage();
+			this.groupBox13 = new System.Windows.Forms.GroupBox();
+			this.tb_l_9 = new System.Windows.Forms.TextBox();
+			this.label46 = new System.Windows.Forms.Label();
+			this.tb_l_8 = new System.Windows.Forms.TextBox();
+			this.label45 = new System.Windows.Forms.Label();
+			this.tb_l_7 = new System.Windows.Forms.TextBox();
+			this.label44 = new System.Windows.Forms.Label();
+			this.tb_l_5 = new System.Windows.Forms.TextBox();
+			this.label43 = new System.Windows.Forms.Label();
+			this.tb_l_4 = new System.Windows.Forms.TextBox();
+			this.label42 = new System.Windows.Forms.Label();
+			this.tb_l_3 = new System.Windows.Forms.TextBox();
+			this.label41 = new System.Windows.Forms.Label();
+			this.tb_l_2 = new System.Windows.Forms.TextBox();
+			this.label40 = new System.Windows.Forms.Label();
+			this.tb_l_6 = new System.Windows.Forms.TextBox();
+			this.label39 = new System.Windows.Forms.Label();
+			this.tb_l_1 = new System.Windows.Forms.TextBox();
+			this.label38 = new System.Windows.Forms.Label();
+			this.tb_l_name = new System.Windows.Forms.TextBox();
+			this.label34 = new System.Windows.Forms.Label();
+			this.tb_l_ver = new System.Windows.Forms.TextBox();
+			this.label32 = new System.Windows.Forms.Label();
 			this.tResourceNode = new System.Windows.Forms.TabPage();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.tb_rn_ver = new System.Windows.Forms.TextBox();
@@ -356,30 +380,6 @@ namespace SimPe.Plugin
 			this.label21 = new System.Windows.Forms.Label();
 			this.lb_ogn = new System.Windows.Forms.ListBox();
 			this.ll_ogn_delete = new System.Windows.Forms.LinkLabel();
-			this.tDirectionalLight = new System.Windows.Forms.TabPage();
-			this.groupBox13 = new System.Windows.Forms.GroupBox();
-			this.tb_l_9 = new System.Windows.Forms.TextBox();
-			this.label46 = new System.Windows.Forms.Label();
-			this.tb_l_8 = new System.Windows.Forms.TextBox();
-			this.label45 = new System.Windows.Forms.Label();
-			this.tb_l_7 = new System.Windows.Forms.TextBox();
-			this.label44 = new System.Windows.Forms.Label();
-			this.tb_l_5 = new System.Windows.Forms.TextBox();
-			this.label43 = new System.Windows.Forms.Label();
-			this.tb_l_4 = new System.Windows.Forms.TextBox();
-			this.label42 = new System.Windows.Forms.Label();
-			this.tb_l_3 = new System.Windows.Forms.TextBox();
-			this.label41 = new System.Windows.Forms.Label();
-			this.tb_l_2 = new System.Windows.Forms.TextBox();
-			this.label40 = new System.Windows.Forms.Label();
-			this.tb_l_6 = new System.Windows.Forms.TextBox();
-			this.label39 = new System.Windows.Forms.Label();
-			this.tb_l_1 = new System.Windows.Forms.TextBox();
-			this.label38 = new System.Windows.Forms.Label();
-			this.tb_l_name = new System.Windows.Forms.TextBox();
-			this.label34 = new System.Windows.Forms.Label();
-			this.tb_l_ver = new System.Windows.Forms.TextBox();
-			this.label32 = new System.Windows.Forms.Label();
 			this.tLightT = new System.Windows.Forms.TabPage();
 			this.groupBox14 = new System.Windows.Forms.GroupBox();
 			this.tb_lt_name = new System.Windows.Forms.TextBox();
@@ -388,11 +388,13 @@ namespace SimPe.Plugin
 			this.label47 = new System.Windows.Forms.Label();
 			this.tCres = new System.Windows.Forms.TabPage();
 			this.cres_tv = new System.Windows.Forms.TreeView();
-			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.iCres = new System.Windows.Forms.ImageList(this.components);
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.tabControl1.SuspendLayout();
 			this.tGenericRcol.SuspendLayout();
 			this.groupBox10.SuspendLayout();
+			this.tDirectionalLight.SuspendLayout();
+			this.groupBox13.SuspendLayout();
 			this.tResourceNode.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.groupBox4.SuspendLayout();
@@ -412,8 +414,6 @@ namespace SimPe.Plugin
 			this.tObjectGraphNode.SuspendLayout();
 			this.groupBox8.SuspendLayout();
 			this.groupBox9.SuspendLayout();
-			this.tDirectionalLight.SuspendLayout();
-			this.groupBox13.SuspendLayout();
 			this.tLightT.SuspendLayout();
 			this.groupBox14.SuspendLayout();
 			this.tCres.SuspendLayout();
@@ -422,12 +422,12 @@ namespace SimPe.Plugin
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tGenericRcol);
+			this.tabControl1.Controls.Add(this.tDirectionalLight);
 			this.tabControl1.Controls.Add(this.tResourceNode);
 			this.tabControl1.Controls.Add(this.tShapeRefNode);
 			this.tabControl1.Controls.Add(this.tGeometryNode);
 			this.tabControl1.Controls.Add(this.tTransformNode);
 			this.tabControl1.Controls.Add(this.tObjectGraphNode);
-			this.tabControl1.Controls.Add(this.tDirectionalLight);
 			this.tabControl1.Controls.Add(this.tLightT);
 			this.tabControl1.Controls.Add(this.tCres);
 			this.tabControl1.Location = new System.Drawing.Point(8, 8);
@@ -502,6 +502,273 @@ namespace SimPe.Plugin
 			this.label28.Size = new System.Drawing.Size(52, 17);
 			this.label28.TabIndex = 23;
 			this.label28.Text = "Version:";
+			// 
+			// tDirectionalLight
+			// 
+			this.tDirectionalLight.BackColor = System.Drawing.Color.White;
+			this.tDirectionalLight.Controls.Add(this.groupBox13);
+			this.tDirectionalLight.Location = new System.Drawing.Point(4, 22);
+			this.tDirectionalLight.Name = "tDirectionalLight";
+			this.tDirectionalLight.Size = new System.Drawing.Size(792, 262);
+			this.tDirectionalLight.TabIndex = 7;
+			this.tDirectionalLight.Text = "DirectionalLight";
+			// 
+			// groupBox13
+			// 
+			this.groupBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox13.Controls.Add(this.tb_l_9);
+			this.groupBox13.Controls.Add(this.label46);
+			this.groupBox13.Controls.Add(this.tb_l_8);
+			this.groupBox13.Controls.Add(this.label45);
+			this.groupBox13.Controls.Add(this.tb_l_7);
+			this.groupBox13.Controls.Add(this.label44);
+			this.groupBox13.Controls.Add(this.tb_l_5);
+			this.groupBox13.Controls.Add(this.label43);
+			this.groupBox13.Controls.Add(this.tb_l_4);
+			this.groupBox13.Controls.Add(this.label42);
+			this.groupBox13.Controls.Add(this.tb_l_3);
+			this.groupBox13.Controls.Add(this.label41);
+			this.groupBox13.Controls.Add(this.tb_l_2);
+			this.groupBox13.Controls.Add(this.label40);
+			this.groupBox13.Controls.Add(this.tb_l_6);
+			this.groupBox13.Controls.Add(this.label39);
+			this.groupBox13.Controls.Add(this.tb_l_1);
+			this.groupBox13.Controls.Add(this.label38);
+			this.groupBox13.Controls.Add(this.tb_l_name);
+			this.groupBox13.Controls.Add(this.label34);
+			this.groupBox13.Controls.Add(this.tb_l_ver);
+			this.groupBox13.Controls.Add(this.label32);
+			this.groupBox13.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.groupBox13.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.groupBox13.Location = new System.Drawing.Point(8, 8);
+			this.groupBox13.Name = "groupBox13";
+			this.groupBox13.Size = new System.Drawing.Size(776, 176);
+			this.groupBox13.TabIndex = 12;
+			this.groupBox13.TabStop = false;
+			this.groupBox13.Text = "Settings";
+			// 
+			// tb_l_9
+			// 
+			this.tb_l_9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_9.Location = new System.Drawing.Point(528, 144);
+			this.tb_l_9.Name = "tb_l_9";
+			this.tb_l_9.Size = new System.Drawing.Size(66, 21);
+			this.tb_l_9.TabIndex = 44;
+			this.tb_l_9.Text = "0";
+			this.tb_l_9.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label46
+			// 
+			this.label46.AutoSize = true;
+			this.label46.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label46.Location = new System.Drawing.Point(488, 152);
+			this.label46.Name = "label46";
+			this.label46.Size = new System.Drawing.Size(34, 17);
+			this.label46.TabIndex = 43;
+			this.label46.Text = "Val9:";
+			// 
+			// tb_l_8
+			// 
+			this.tb_l_8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_8.Location = new System.Drawing.Point(408, 144);
+			this.tb_l_8.Name = "tb_l_8";
+			this.tb_l_8.Size = new System.Drawing.Size(66, 21);
+			this.tb_l_8.TabIndex = 42;
+			this.tb_l_8.Text = "0";
+			this.tb_l_8.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label45
+			// 
+			this.label45.AutoSize = true;
+			this.label45.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label45.Location = new System.Drawing.Point(368, 152);
+			this.label45.Name = "label45";
+			this.label45.Size = new System.Drawing.Size(34, 17);
+			this.label45.TabIndex = 41;
+			this.label45.Text = "Val8:";
+			// 
+			// tb_l_7
+			// 
+			this.tb_l_7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_7.Location = new System.Drawing.Point(168, 144);
+			this.tb_l_7.Name = "tb_l_7";
+			this.tb_l_7.Size = new System.Drawing.Size(66, 21);
+			this.tb_l_7.TabIndex = 40;
+			this.tb_l_7.Text = "0";
+			this.tb_l_7.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label44
+			// 
+			this.label44.AutoSize = true;
+			this.label44.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label44.Location = new System.Drawing.Point(128, 152);
+			this.label44.Name = "label44";
+			this.label44.Size = new System.Drawing.Size(34, 17);
+			this.label44.TabIndex = 39;
+			this.label44.Text = "Val7:";
+			// 
+			// tb_l_5
+			// 
+			this.tb_l_5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_5.Location = new System.Drawing.Point(528, 120);
+			this.tb_l_5.Name = "tb_l_5";
+			this.tb_l_5.Size = new System.Drawing.Size(66, 21);
+			this.tb_l_5.TabIndex = 38;
+			this.tb_l_5.Text = "0";
+			this.tb_l_5.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label43
+			// 
+			this.label43.AutoSize = true;
+			this.label43.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label43.Location = new System.Drawing.Point(488, 128);
+			this.label43.Name = "label43";
+			this.label43.Size = new System.Drawing.Size(34, 17);
+			this.label43.TabIndex = 37;
+			this.label43.Text = "Val5:";
+			// 
+			// tb_l_4
+			// 
+			this.tb_l_4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_4.Location = new System.Drawing.Point(408, 120);
+			this.tb_l_4.Name = "tb_l_4";
+			this.tb_l_4.Size = new System.Drawing.Size(66, 21);
+			this.tb_l_4.TabIndex = 36;
+			this.tb_l_4.Text = "0";
+			this.tb_l_4.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label42
+			// 
+			this.label42.AutoSize = true;
+			this.label42.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label42.Location = new System.Drawing.Point(368, 128);
+			this.label42.Name = "label42";
+			this.label42.Size = new System.Drawing.Size(34, 17);
+			this.label42.TabIndex = 35;
+			this.label42.Text = "Val4:";
+			// 
+			// tb_l_3
+			// 
+			this.tb_l_3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_3.Location = new System.Drawing.Point(288, 120);
+			this.tb_l_3.Name = "tb_l_3";
+			this.tb_l_3.Size = new System.Drawing.Size(66, 21);
+			this.tb_l_3.TabIndex = 34;
+			this.tb_l_3.Text = "0";
+			this.tb_l_3.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label41
+			// 
+			this.label41.AutoSize = true;
+			this.label41.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label41.Location = new System.Drawing.Point(248, 128);
+			this.label41.Name = "label41";
+			this.label41.Size = new System.Drawing.Size(34, 17);
+			this.label41.TabIndex = 33;
+			this.label41.Text = "Val3:";
+			// 
+			// tb_l_2
+			// 
+			this.tb_l_2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_2.Location = new System.Drawing.Point(168, 120);
+			this.tb_l_2.Name = "tb_l_2";
+			this.tb_l_2.Size = new System.Drawing.Size(66, 21);
+			this.tb_l_2.TabIndex = 32;
+			this.tb_l_2.Text = "0";
+			this.tb_l_2.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label40
+			// 
+			this.label40.AutoSize = true;
+			this.label40.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label40.Location = new System.Drawing.Point(128, 128);
+			this.label40.Name = "label40";
+			this.label40.Size = new System.Drawing.Size(34, 17);
+			this.label40.TabIndex = 31;
+			this.label40.Text = "Val2:";
+			// 
+			// tb_l_6
+			// 
+			this.tb_l_6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_6.Location = new System.Drawing.Point(48, 144);
+			this.tb_l_6.Name = "tb_l_6";
+			this.tb_l_6.Size = new System.Drawing.Size(66, 21);
+			this.tb_l_6.TabIndex = 30;
+			this.tb_l_6.Text = "0";
+			this.tb_l_6.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label39
+			// 
+			this.label39.AutoSize = true;
+			this.label39.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label39.Location = new System.Drawing.Point(8, 152);
+			this.label39.Name = "label39";
+			this.label39.Size = new System.Drawing.Size(34, 17);
+			this.label39.TabIndex = 29;
+			this.label39.Text = "Val6:";
+			// 
+			// tb_l_1
+			// 
+			this.tb_l_1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_1.Location = new System.Drawing.Point(48, 120);
+			this.tb_l_1.Name = "tb_l_1";
+			this.tb_l_1.Size = new System.Drawing.Size(66, 21);
+			this.tb_l_1.TabIndex = 28;
+			this.tb_l_1.Text = "0";
+			this.tb_l_1.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label38
+			// 
+			this.label38.AutoSize = true;
+			this.label38.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label38.Location = new System.Drawing.Point(8, 128);
+			this.label38.Name = "label38";
+			this.label38.Size = new System.Drawing.Size(34, 17);
+			this.label38.TabIndex = 27;
+			this.label38.Text = "Val1:";
+			// 
+			// tb_l_name
+			// 
+			this.tb_l_name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.tb_l_name.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_name.Location = new System.Drawing.Point(16, 88);
+			this.tb_l_name.Name = "tb_l_name";
+			this.tb_l_name.Size = new System.Drawing.Size(752, 21);
+			this.tb_l_name.TabIndex = 26;
+			this.tb_l_name.Text = "";
+			this.tb_l_name.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label34
+			// 
+			this.label34.AutoSize = true;
+			this.label34.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label34.Location = new System.Drawing.Point(8, 72);
+			this.label34.Name = "label34";
+			this.label34.Size = new System.Drawing.Size(42, 17);
+			this.label34.TabIndex = 25;
+			this.label34.Text = "Name:";
+			// 
+			// tb_l_ver
+			// 
+			this.tb_l_ver.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_l_ver.Location = new System.Drawing.Point(16, 40);
+			this.tb_l_ver.Name = "tb_l_ver";
+			this.tb_l_ver.Size = new System.Drawing.Size(88, 21);
+			this.tb_l_ver.TabIndex = 24;
+			this.tb_l_ver.Text = "0x00000000";
+			this.tb_l_ver.TextChanged += new System.EventHandler(this.LSettingsChanged);
+			// 
+			// label32
+			// 
+			this.label32.AutoSize = true;
+			this.label32.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label32.Location = new System.Drawing.Point(8, 24);
+			this.label32.Name = "label32";
+			this.label32.Size = new System.Drawing.Size(52, 17);
+			this.label32.TabIndex = 23;
+			this.label32.Text = "Version:";
 			// 
 			// tResourceNode
 			// 
@@ -1917,273 +2184,6 @@ namespace SimPe.Plugin
 			this.ll_ogn_delete.Text = "delete";
 			this.ll_ogn_delete.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OGNItemsDelete);
 			// 
-			// tDirectionalLight
-			// 
-			this.tDirectionalLight.BackColor = System.Drawing.Color.White;
-			this.tDirectionalLight.Controls.Add(this.groupBox13);
-			this.tDirectionalLight.Location = new System.Drawing.Point(4, 22);
-			this.tDirectionalLight.Name = "tDirectionalLight";
-			this.tDirectionalLight.Size = new System.Drawing.Size(792, 262);
-			this.tDirectionalLight.TabIndex = 7;
-			this.tDirectionalLight.Text = "DirectionalLight";
-			// 
-			// groupBox13
-			// 
-			this.groupBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox13.Controls.Add(this.tb_l_9);
-			this.groupBox13.Controls.Add(this.label46);
-			this.groupBox13.Controls.Add(this.tb_l_8);
-			this.groupBox13.Controls.Add(this.label45);
-			this.groupBox13.Controls.Add(this.tb_l_7);
-			this.groupBox13.Controls.Add(this.label44);
-			this.groupBox13.Controls.Add(this.tb_l_5);
-			this.groupBox13.Controls.Add(this.label43);
-			this.groupBox13.Controls.Add(this.tb_l_4);
-			this.groupBox13.Controls.Add(this.label42);
-			this.groupBox13.Controls.Add(this.tb_l_3);
-			this.groupBox13.Controls.Add(this.label41);
-			this.groupBox13.Controls.Add(this.tb_l_2);
-			this.groupBox13.Controls.Add(this.label40);
-			this.groupBox13.Controls.Add(this.tb_l_6);
-			this.groupBox13.Controls.Add(this.label39);
-			this.groupBox13.Controls.Add(this.tb_l_1);
-			this.groupBox13.Controls.Add(this.label38);
-			this.groupBox13.Controls.Add(this.tb_l_name);
-			this.groupBox13.Controls.Add(this.label34);
-			this.groupBox13.Controls.Add(this.tb_l_ver);
-			this.groupBox13.Controls.Add(this.label32);
-			this.groupBox13.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox13.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox13.Location = new System.Drawing.Point(8, 8);
-			this.groupBox13.Name = "groupBox13";
-			this.groupBox13.Size = new System.Drawing.Size(776, 176);
-			this.groupBox13.TabIndex = 12;
-			this.groupBox13.TabStop = false;
-			this.groupBox13.Text = "Settings";
-			// 
-			// tb_l_9
-			// 
-			this.tb_l_9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_9.Location = new System.Drawing.Point(528, 144);
-			this.tb_l_9.Name = "tb_l_9";
-			this.tb_l_9.Size = new System.Drawing.Size(66, 21);
-			this.tb_l_9.TabIndex = 44;
-			this.tb_l_9.Text = "0";
-			this.tb_l_9.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label46
-			// 
-			this.label46.AutoSize = true;
-			this.label46.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label46.Location = new System.Drawing.Point(488, 152);
-			this.label46.Name = "label46";
-			this.label46.Size = new System.Drawing.Size(34, 17);
-			this.label46.TabIndex = 43;
-			this.label46.Text = "Val9:";
-			// 
-			// tb_l_8
-			// 
-			this.tb_l_8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_8.Location = new System.Drawing.Point(408, 144);
-			this.tb_l_8.Name = "tb_l_8";
-			this.tb_l_8.Size = new System.Drawing.Size(66, 21);
-			this.tb_l_8.TabIndex = 42;
-			this.tb_l_8.Text = "0";
-			this.tb_l_8.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label45
-			// 
-			this.label45.AutoSize = true;
-			this.label45.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label45.Location = new System.Drawing.Point(368, 152);
-			this.label45.Name = "label45";
-			this.label45.Size = new System.Drawing.Size(34, 17);
-			this.label45.TabIndex = 41;
-			this.label45.Text = "Val8:";
-			// 
-			// tb_l_7
-			// 
-			this.tb_l_7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_7.Location = new System.Drawing.Point(168, 144);
-			this.tb_l_7.Name = "tb_l_7";
-			this.tb_l_7.Size = new System.Drawing.Size(66, 21);
-			this.tb_l_7.TabIndex = 40;
-			this.tb_l_7.Text = "0";
-			this.tb_l_7.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label44
-			// 
-			this.label44.AutoSize = true;
-			this.label44.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label44.Location = new System.Drawing.Point(128, 152);
-			this.label44.Name = "label44";
-			this.label44.Size = new System.Drawing.Size(34, 17);
-			this.label44.TabIndex = 39;
-			this.label44.Text = "Val7:";
-			// 
-			// tb_l_5
-			// 
-			this.tb_l_5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_5.Location = new System.Drawing.Point(528, 120);
-			this.tb_l_5.Name = "tb_l_5";
-			this.tb_l_5.Size = new System.Drawing.Size(66, 21);
-			this.tb_l_5.TabIndex = 38;
-			this.tb_l_5.Text = "0";
-			this.tb_l_5.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label43
-			// 
-			this.label43.AutoSize = true;
-			this.label43.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label43.Location = new System.Drawing.Point(488, 128);
-			this.label43.Name = "label43";
-			this.label43.Size = new System.Drawing.Size(34, 17);
-			this.label43.TabIndex = 37;
-			this.label43.Text = "Val5:";
-			// 
-			// tb_l_4
-			// 
-			this.tb_l_4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_4.Location = new System.Drawing.Point(408, 120);
-			this.tb_l_4.Name = "tb_l_4";
-			this.tb_l_4.Size = new System.Drawing.Size(66, 21);
-			this.tb_l_4.TabIndex = 36;
-			this.tb_l_4.Text = "0";
-			this.tb_l_4.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label42
-			// 
-			this.label42.AutoSize = true;
-			this.label42.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label42.Location = new System.Drawing.Point(368, 128);
-			this.label42.Name = "label42";
-			this.label42.Size = new System.Drawing.Size(34, 17);
-			this.label42.TabIndex = 35;
-			this.label42.Text = "Val4:";
-			// 
-			// tb_l_3
-			// 
-			this.tb_l_3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_3.Location = new System.Drawing.Point(288, 120);
-			this.tb_l_3.Name = "tb_l_3";
-			this.tb_l_3.Size = new System.Drawing.Size(66, 21);
-			this.tb_l_3.TabIndex = 34;
-			this.tb_l_3.Text = "0";
-			this.tb_l_3.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label41
-			// 
-			this.label41.AutoSize = true;
-			this.label41.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label41.Location = new System.Drawing.Point(248, 128);
-			this.label41.Name = "label41";
-			this.label41.Size = new System.Drawing.Size(34, 17);
-			this.label41.TabIndex = 33;
-			this.label41.Text = "Val3:";
-			// 
-			// tb_l_2
-			// 
-			this.tb_l_2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_2.Location = new System.Drawing.Point(168, 120);
-			this.tb_l_2.Name = "tb_l_2";
-			this.tb_l_2.Size = new System.Drawing.Size(66, 21);
-			this.tb_l_2.TabIndex = 32;
-			this.tb_l_2.Text = "0";
-			this.tb_l_2.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label40
-			// 
-			this.label40.AutoSize = true;
-			this.label40.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label40.Location = new System.Drawing.Point(128, 128);
-			this.label40.Name = "label40";
-			this.label40.Size = new System.Drawing.Size(34, 17);
-			this.label40.TabIndex = 31;
-			this.label40.Text = "Val2:";
-			// 
-			// tb_l_6
-			// 
-			this.tb_l_6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_6.Location = new System.Drawing.Point(48, 144);
-			this.tb_l_6.Name = "tb_l_6";
-			this.tb_l_6.Size = new System.Drawing.Size(66, 21);
-			this.tb_l_6.TabIndex = 30;
-			this.tb_l_6.Text = "0";
-			this.tb_l_6.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label39
-			// 
-			this.label39.AutoSize = true;
-			this.label39.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label39.Location = new System.Drawing.Point(8, 152);
-			this.label39.Name = "label39";
-			this.label39.Size = new System.Drawing.Size(34, 17);
-			this.label39.TabIndex = 29;
-			this.label39.Text = "Val6:";
-			// 
-			// tb_l_1
-			// 
-			this.tb_l_1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_1.Location = new System.Drawing.Point(48, 120);
-			this.tb_l_1.Name = "tb_l_1";
-			this.tb_l_1.Size = new System.Drawing.Size(66, 21);
-			this.tb_l_1.TabIndex = 28;
-			this.tb_l_1.Text = "0";
-			this.tb_l_1.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label38
-			// 
-			this.label38.AutoSize = true;
-			this.label38.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label38.Location = new System.Drawing.Point(8, 128);
-			this.label38.Name = "label38";
-			this.label38.Size = new System.Drawing.Size(34, 17);
-			this.label38.TabIndex = 27;
-			this.label38.Text = "Val1:";
-			// 
-			// tb_l_name
-			// 
-			this.tb_l_name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tb_l_name.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_name.Location = new System.Drawing.Point(16, 88);
-			this.tb_l_name.Name = "tb_l_name";
-			this.tb_l_name.Size = new System.Drawing.Size(752, 21);
-			this.tb_l_name.TabIndex = 26;
-			this.tb_l_name.Text = "";
-			this.tb_l_name.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label34
-			// 
-			this.label34.AutoSize = true;
-			this.label34.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label34.Location = new System.Drawing.Point(8, 72);
-			this.label34.Name = "label34";
-			this.label34.Size = new System.Drawing.Size(42, 17);
-			this.label34.TabIndex = 25;
-			this.label34.Text = "Name:";
-			// 
-			// tb_l_ver
-			// 
-			this.tb_l_ver.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_ver.Location = new System.Drawing.Point(16, 40);
-			this.tb_l_ver.Name = "tb_l_ver";
-			this.tb_l_ver.Size = new System.Drawing.Size(88, 21);
-			this.tb_l_ver.TabIndex = 24;
-			this.tb_l_ver.Text = "0x00000000";
-			this.tb_l_ver.TextChanged += new System.EventHandler(this.LSettingsChanged);
-			// 
-			// label32
-			// 
-			this.label32.AutoSize = true;
-			this.label32.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label32.Location = new System.Drawing.Point(8, 24);
-			this.label32.Name = "label32";
-			this.label32.Size = new System.Drawing.Size(52, 17);
-			this.label32.TabIndex = 23;
-			this.label32.Text = "Version:";
-			// 
 			// tLightT
 			// 
 			this.tLightT.BackColor = System.Drawing.Color.White;
@@ -2257,11 +2257,11 @@ namespace SimPe.Plugin
 			// 
 			this.tCres.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.tCres.Controls.Add(this.cres_tv);
-			this.tCres.Location = new System.Drawing.Point(4, 40);
+			this.tCres.Location = new System.Drawing.Point(4, 22);
 			this.tCres.Name = "tCres";
-			this.tCres.Size = new System.Drawing.Size(792, 244);
+			this.tCres.Size = new System.Drawing.Size(792, 262);
 			this.tCres.TabIndex = 9;
-			this.tCres.Text = "CRES Hirachy";
+			this.tCres.Text = "CRES Hierarchy";
 			// 
 			// cres_tv
 			// 
@@ -2273,7 +2273,7 @@ namespace SimPe.Plugin
 			this.cres_tv.ImageList = this.iCres;
 			this.cres_tv.Location = new System.Drawing.Point(8, 8);
 			this.cres_tv.Name = "cres_tv";
-			this.cres_tv.Size = new System.Drawing.Size(776, 232);
+			this.cres_tv.Size = new System.Drawing.Size(776, 250);
 			this.cres_tv.TabIndex = 0;
 			this.cres_tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SelectCresTv);
 			// 
@@ -2295,6 +2295,8 @@ namespace SimPe.Plugin
 			this.tabControl1.ResumeLayout(false);
 			this.tGenericRcol.ResumeLayout(false);
 			this.groupBox10.ResumeLayout(false);
+			this.tDirectionalLight.ResumeLayout(false);
+			this.groupBox13.ResumeLayout(false);
 			this.tResourceNode.ResumeLayout(false);
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
@@ -2314,8 +2316,6 @@ namespace SimPe.Plugin
 			this.tObjectGraphNode.ResumeLayout(false);
 			this.groupBox8.ResumeLayout(false);
 			this.groupBox9.ResumeLayout(false);
-			this.tDirectionalLight.ResumeLayout(false);
-			this.groupBox13.ResumeLayout(false);
 			this.tLightT.ResumeLayout(false);
 			this.groupBox14.ResumeLayout(false);
 			this.tCres.ResumeLayout(false);

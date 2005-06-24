@@ -67,10 +67,10 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="pfd">the Descriptor</param>
 		/// <param name="package">the package</param>
-		internal FileIndexItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
+		public FileIndexItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
 		{
 			if (pfd==null) pfd = new SimPe.Packages.PackedFileDescriptor();
-			if (package==null) package = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
+			if (package==null) package = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 			this.pfd = pfd;
 			this.package = package;
 
@@ -85,7 +85,7 @@ namespace SimPe.Plugin
 
 		public override int GetHashCode()
 		{
-			return base.GetHashCode ();
+			return this.FileDescriptor.GetHashCode();
 		}
 
 		public override bool Equals(object obj)
@@ -97,9 +97,37 @@ namespace SimPe.Plugin
 				if (fii.FileDescriptor==null) return this.FileDescriptor==null;
 
 				if (fii.LocalGroup != LocalGroup) return false;
-				return (fii.FileDescriptor.Equals(this.FileDescriptor));
+
+				bool res = fii.FileDescriptor.Equals(this.FileDescriptor);
+
+				//null Values for Packages
+				if (fii.Package==null) 
+				{
+					if (Package!=null) return false;
+					else return res;
+				} else if (Package==null) return false;
+
+				//null Values for FileNames
+				/*if (fii.Package.FileName==null) 
+				{
+					if (Package.FileName!=null) return false;
+					else return true;
+				} else if (Package.FileName==null) return false;*/
+
+				return (res && fii.Package.Equals(this.Package));
 			}
 			else return base.Equals(obj);
+		}
+
+		/// <summary>
+		/// returns a String that can identify this Instance
+		/// </summary>
+		/// <returns></returns>
+		public string GetLongHashCode()
+		{
+			string flname = this.Package.FileName;
+			if (flname==null) flname = "";
+			return this.FileDescriptor.ToString()+"-"+flname;
 		}
 
 		#region IComparer Member
@@ -422,25 +450,34 @@ namespace SimPe.Plugin
 			WaitingScreen.UpdateMessage(System.IO.Path.GetFileNameWithoutExtension(file));
 			try 
 			{
-				SimPe.Interfaces.Files.IPackageFile package = new SimPe.Packages.File(file);
-				AddIndexFromPackage(package);
+				SimPe.Interfaces.Files.IPackageFile package = SimPe.Packages.File.LoadFromFile(file);
+				AddIndexFromPackage(package, false);
 			} 
 			catch (Exception ex) 
 			{
 				Helper.ExceptionMessage("", ex);
 			}			
 		}
+		/// <summary>
+		/// Add all Files stored in the passed package
+		/// </summary>
+		/// <param name="package">The package File</param>
+		public void AddIndexFromPackage(SimPe.Interfaces.Files.IPackageFile package){
+			AddIndexFromPackage(package, false);
+		}
+
 
 		/// <summary>
 		/// Add all Files stored in the passed package
 		/// </summary>
 		/// <param name="package">The package File</param>
-		public void AddIndexFromPackage(SimPe.Interfaces.Files.IPackageFile package)
+		/// <param name="overwrite">true, if an existing Instance of that File should be overwritten</param>
+		public void AddIndexFromPackage(SimPe.Interfaces.Files.IPackageFile package, bool overwrite)
 		{
 			package.Persistent = true;			
 			if (package.FileName!=null) 
 			{
-				if (addedfilenames.Contains(package.FileName)) return;
+				if ((addedfilenames.Contains(package.FileName)) && !overwrite) return;
 				addedfilenames.Add(package.FileName);
 			}
 
@@ -471,6 +508,7 @@ namespace SimPe.Plugin
 		/// <param name="localgroup">use this groupa as replacement for 0xffffffff</param>
 		public void AddIndexFromPfd(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package, uint localgroup)
 		{
+			pfd.Closed += new SimPe.Events.PackedFileChanged(ClosedDescriptor);
 			FileIndexItem item = new FileIndexItem(pfd, package);
 
 			Hashtable groups = null;
@@ -743,6 +781,32 @@ namespace SimPe.Plugin
 		/// Return all matching FileIndexItems (by Instance)
 		/// </summary>
 		/// <param name="group">The Group you are looking for</param>
+		/// <param name="instance">The instance you are looking for</param>
+		/// <returns>all FileIndexItems</returns>
+		public IScenegraphFileIndexItem[] FindFileByGroupAndInstance(uint group, ulong instance)
+		{
+			ArrayList list = new ArrayList();
+
+			foreach (uint type in index.Keys) 
+			{
+				Hashtable groups = (Hashtable)index[type];
+				if (groups.ContainsKey(group))  
+				{
+					Hashtable instances = (Hashtable)groups[group];
+					if (instances.ContainsKey(instance)) list.AddRange((ArrayList)instances[instance]);
+				}
+			}
+			
+			//return the Result
+			FileIndexItem[] files = new FileIndexItem[list.Count];
+			list.CopyTo(files);
+			return files;
+		}
+
+		/// <summary>
+		/// Return all matching FileIndexItems (by Instance)
+		/// </summary>
+		/// <param name="group">The Group you are looking for</param>
 		/// <returns>all FileIndexItems</returns>
 		public IScenegraphFileIndexItem[] FindFileByGroup(uint group)
 		{
@@ -842,6 +906,16 @@ namespace SimPe.Plugin
 			FileIndexItem[] ret = new FileIndexItem[fii.Count];
 			fii.CopyTo(ret);
 			return ret;
+		}
+
+		/// <summary>
+		/// Remove a FileItem from the Tree when it is closed
+		/// </summary>
+		/// <param name="sender"></param>
+		private void ClosedDescriptor(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
+		{
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] sgis = FindFile(sender);
+			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem sgi in sgis) RemoveItem(sgi);			
 		}
 	}
 }

@@ -66,7 +66,7 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return "Photo Studio...";
+			return "Object Creation\\Photo Studio...";
 		}
 
 		#endregion

@@ -216,6 +216,15 @@ namespace SimPe
 		/// Shows an Exception Message for the User
 		/// </summary>
 		/// <param name="ex">The Exception</param>
+		public static void ExceptionMessage(Exception ex) 
+		{
+			ExceptionForm.Execute("", ex);
+		}
+
+		/// <summary>
+		/// Shows an Exception Message for the User
+		/// </summary>
+		/// <param name="ex">The Exception</param>
 		/// <param name="message">An operation Description (when did the Exception occur)</param>
 		public static void ExceptionMessage(string message, Exception ex) 
 		{
@@ -677,6 +686,19 @@ namespace SimPe
 				{
 					return Helper.WindowsRegistry.SimsPath;
 				}
+			}
+		}
+
+		static SimPe.TGILoader tgiload;
+		/// <summary>
+		/// Retrns the TGI Loader Class
+		/// </summary>
+		public static SimPe.TGILoader TGILoader 
+		{
+			get 
+			{
+				if (tgiload==null) tgiload = new TGILoader();
+				return tgiload;
 			}
 		}
 	}

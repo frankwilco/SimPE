@@ -557,7 +557,7 @@ namespace SimPe.Plugin
 					if (name=="") continue;
 					if (pfd.Instance == 0x88) {if (!name.EndsWith("_txmt")) name += "_txmt";}
 					else if (pfd.Instance == 0x85) {if (!name.EndsWith("_cres")) name += "_cres";}
-					else if (pfd.Instance == 0x86) {if (!name.EndsWith("_anim")) name += "_anim";}
+					else if ((pfd.Instance == 0x81) || (pfd.Instance == 0x82) || (pfd.Instance == 0x86) || (pfd.Instance == 0x192)) {if (!name.EndsWith("_anim")) name += "_anim";}
 					else continue;
 					
 

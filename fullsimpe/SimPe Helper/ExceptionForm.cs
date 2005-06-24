@@ -12,7 +12,10 @@ namespace SimPe
 	public class ExceptionForm : System.Windows.Forms.Form
 	{
 		internal System.Windows.Forms.Label lberr;
+#if MAC
+#else
 		private System.Windows.Forms.RichTextBox rtb;
+#endif
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.LinkLabel lldetail;
 		private System.Windows.Forms.Panel panel1;
@@ -65,7 +68,10 @@ namespace SimPe
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ExceptionForm));
 			this.lberr = new System.Windows.Forms.Label();
 			this.gbdetail = new System.Windows.Forms.GroupBox();
+#if MAC
+#else
 			this.rtb = new System.Windows.Forms.RichTextBox();
+#endif
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.lldetail = new System.Windows.Forms.LinkLabel();
@@ -109,7 +115,10 @@ namespace SimPe
 			this.gbdetail.AccessibleName = resources.GetString("gbdetail.AccessibleName");
 			this.gbdetail.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("gbdetail.Anchor")));
 			this.gbdetail.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gbdetail.BackgroundImage")));
+#if MAC
+#else
 			this.gbdetail.Controls.Add(this.rtb);
+#endif
 			this.gbdetail.Controls.Add(this.linkLabel1);
 			this.gbdetail.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("gbdetail.Dock")));
 			this.gbdetail.Enabled = ((bool)(resources.GetObject("gbdetail.Enabled")));
@@ -124,6 +133,8 @@ namespace SimPe
 			this.gbdetail.TabStop = false;
 			this.gbdetail.Text = resources.GetString("gbdetail.Text");
 			this.gbdetail.Visible = ((bool)(resources.GetObject("gbdetail.Visible")));
+#if MAC
+#else
 			// 
 			// rtb
 			// 
@@ -154,6 +165,7 @@ namespace SimPe
 			this.rtb.Visible = ((bool)(resources.GetObject("rtb.Visible")));
 			this.rtb.WordWrap = ((bool)(resources.GetObject("rtb.WordWrap")));
 			this.rtb.ZoomFactor = ((System.Single)(resources.GetObject("rtb.ZoomFactor")));
+#endif
 			// 
 			// linkLabel1
 			// 
@@ -429,7 +441,10 @@ namespace SimPe
 
 		private void CopyToClipboard(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
+#if MAC
+#else
 			Clipboard.SetDataObject(rtb.Text, true);
+#endif
 		}
 
 		private void button1_Click(object sender, System.EventArgs e)
@@ -515,8 +530,10 @@ namespace SimPe
 			text += @"}";
 
 			text = text.Replace("\n", @"\par\pard");
-
+#if MAC
+#else
 			frm.rtb.Rtf = text;
+#endif
 
 			if ((Helper.WindowsRegistry.HiddenMode) || (Helper.DebugMode))
 			{

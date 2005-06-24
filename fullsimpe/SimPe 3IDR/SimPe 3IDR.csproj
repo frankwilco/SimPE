@@ -178,16 +178,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "FileSelect.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "FileSelect.resx"
-                    DependentUpon = "FileSelect.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "NmapForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -219,31 +209,6 @@
                 />
                 <File
                     RelPath = "NmapWrapper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PackedFileForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PackedFileForm.resx"
-                    DependentUpon = "PackedFileForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "PackedFileItem.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PackedFileUI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PackedFileWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

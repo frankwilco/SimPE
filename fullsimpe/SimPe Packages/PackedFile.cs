@@ -177,6 +177,24 @@ namespace SimPe.Packages
 				}
 			}
 		}	
+
+		/// <summary>
+		/// Returns the Uncompressed Data
+		/// </summary>
+		/// <param name="maxsize">Maximum Number of Bytes that should be returned</param>
+		/// <returns></returns>
+		public Byte[] GetUncompressedData(int maxsize) 
+		{
+			if (IsCompressed)
+			{
+				byte[] uncdata = Uncompress(data, UncompressedSize, this.headersize, maxsize);
+				return uncdata;
+			}
+			else 
+			{
+				return Data;
+			}
+		}
 	
 		/// <summary>
 		/// Returns a part of the decompresed File
@@ -189,14 +207,106 @@ namespace SimPe.Packages
 			return Uncompress(data, (uint)size, this.headersize);
 		}
 
-		#region decompression		
+		#region decompression	
 		/// <summary>
 		/// Uncompresses the File Data passed
 		/// </summary>
 		/// <param name="data">Relevant File Data</param>
 		/// <param name="targetSize">Size of the uncompressed Data</param>
+		/// <param name="offset">File offset, where we should start to decompress from</param>
 		/// <returns>The uncompressed FileData</returns>
-		public static Byte[] Uncompress(Byte[] data, uint targetSize, int offset)
+		public static Byte[] Uncompress(Byte[] data, uint targetSize, int offset){
+			Byte[] uncdata = null;
+			int index = offset;			
+
+			try 
+			{
+				uncdata = new Byte[targetSize];
+			} 
+			catch(Exception) 
+			{
+				uncdata = new Byte[0];
+			}
+			
+			int uncindex = 0;
+			int plaincount = 0;
+			int copycount = 0;
+			int copyoffset = 0;
+			Byte cc = 0;
+			Byte cc1 = 0;
+			Byte cc2 = 0;
+			Byte cc3 = 0;
+			int source;
+			
+			try 
+			{
+				while ((index<data.Length) && (data[index] < 0xfc))
+				{
+					cc = data[index++];
+				
+					if ((cc&0x80)==0)
+					{
+						cc1 = data[index++];
+						plaincount = (cc & 0x03);
+						copycount = ((cc & 0x1C) >> 2) + 3;
+						copyoffset = ((cc & 0x60) << 3) + cc1 +1;
+					} 
+					else if ((cc&0x40)==0)
+					{
+						cc1 = data[index++];
+						cc2 = data[index++];
+						plaincount = (cc1 & 0xC0) >> 6 ; 
+						copycount = (cc & 0x3F) + 4 ;
+						copyoffset = ((cc1 & 0x3F) << 8) + cc2 +1;							
+					} 
+					else if ((cc&0x20)==0)
+					{
+						cc1 = data[index++];
+						cc2 = data[index++];
+						cc3 = data[index++];
+						plaincount = (cc & 0x03);
+						copycount = ((cc & 0x0C) << 6) + cc3 + 5;
+						copyoffset = ((cc & 0x10) << 12) + (cc1 << 8) + cc2 +1;
+					} 
+					else 
+					{									
+						plaincount = (cc - 0xDF) << 2; 
+						copycount = 0;
+						copyoffset = 0;				
+					}
+
+					for (int i=0; i<plaincount; i++) uncdata[uncindex++] = data[index++];
+
+					source = uncindex - copyoffset;	
+					for (int i=0; i<copycount; i++) uncdata[uncindex++] = uncdata[source++];
+				}//while
+			} //try
+			catch(Exception ex)
+			{
+				Helper.ExceptionMessage("", ex);
+			} 
+			
+
+			if (index<data.Length) 
+			{
+				plaincount = (data[index++] & 0x03);
+				for (int i=0; i<plaincount; i++) 
+				{
+					if (uncindex>=uncdata.Length) break;
+					uncdata[uncindex++] = data[index++];
+				}
+			}
+			return uncdata;
+		}		
+		/// <summary>
+		/// Uncompresses the File Data passed
+		/// </summary>
+		/// <param name="data">Relevant File Data</param>
+		/// <param name="targetSize">Size of the uncompressed Data</param>
+		/// <param name="size">Maximum number of Bytes that should be read from the Resource</param>
+		/// <param name="offset">File offset, where we should start to decompress from</param>
+		/// <returns>The uncompressed FileData</returns>
+		public static Byte[] Uncompress(Byte[] data, uint targetSize, int offset, int size)
 		{
 			Byte[] uncdata = null;
 			int index = offset;			
@@ -281,6 +391,14 @@ namespace SimPe.Packages
 
 					source = uncindex - copyoffset;	
 					for (int i=0; i<copycount; i++) uncdata[uncindex++] = uncdata[source++];
+
+					if (size!=-1) 
+						if (uncindex>=size) 
+						{
+							byte[] newdata = new byte[uncindex];
+							for (int i=0; i<uncindex; i++) newdata[i] = uncdata[i];
+							return newdata;
+						}
 						
 #if LOG
 					sw.WriteLine("offset="+Helper.HexString(lineoffset)+", plainc="+Helper.HexString(plaincount)+", copyc="+Helper.HexString(copycount)+", copyo="+Helper.HexString(copyoffset)+", type="+Helper.HexString(cc)+", kind="+kind);

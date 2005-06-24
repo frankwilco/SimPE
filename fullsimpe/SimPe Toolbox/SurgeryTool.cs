@@ -44,7 +44,7 @@ namespace SimPe.Plugin
 			this.reg = reg;
 			this.prov = prov;
 
-			if (registry==null) registry = new SimPe.Registry();
+			if (registry==null) registry = Helper.WindowsRegistry;
 		}
 
 		#region ITool Member
@@ -69,7 +69,7 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return "Sims Surgery...";
+			return "Neighborhood\\Sims Surgery...";
 		}
 
 		#endregion

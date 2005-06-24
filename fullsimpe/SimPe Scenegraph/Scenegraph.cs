@@ -668,7 +668,7 @@ namespace SimPe.Plugin
 		/// <returns></returns>
 		public SimPe.Packages.GeneratableFile BuildPackage()
 		{
-			SimPe.Packages.GeneratableFile pkg = new SimPe.Packages.GeneratableFile("simpe_memory");
+			SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromFile("simpe_memory");
 			BuildPackage(pkg);
 
 			return pkg;
@@ -771,9 +771,9 @@ namespace SimPe.Plugin
 				
 			foreach (string s in list)
 			{
-				modelname += "_" + s + "_wallmask_txmt";
+				string nmn = modelname + "_" + s + "_wallmask_txmt";
 
-				Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(modelname, Data.MetaData.TXMT, Data.MetaData.LOCAL_GROUP, true);
+				Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(nmn, Data.MetaData.TXMT, Data.MetaData.LOCAL_GROUP, true);
 
 				if (item!=null) txmt.Add(item);
 			}
@@ -798,6 +798,78 @@ namespace SimPe.Plugin
 					sub.ProcessData(item);
 					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true);
 				}
+			}			
+		}
+
+		/// <summary>
+		/// Load a ANIM Resource
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		protected ArrayList LoadAnim(string name)
+		{
+			ArrayList anim = new ArrayList();
+			
+			name = name.Trim().ToLower();
+			if (!name.EndsWith("_anim")) name += "_anim";
+				
+			Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(name, Data.MetaData.ANIM, Data.MetaData.LOCAL_GROUP, true);
+			if (item!=null) anim.Add(item);			
+
+			return anim;
+		}
+
+		/// <summary>
+		/// Add Anim Resources (if available) to the Clone
+		/// </summary>
+		/// <param name="names"></param>
+		public void AddAnims(string[] names)
+		{			
+			foreach (string s in names) 
+			{
+				ArrayList anim = LoadAnim(s);
+
+				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in anim) 
+				{
+					SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
+					sub.ProcessData(item);
+					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true);
+				}
+			}			
+		}
+		
+
+		/// <summary>
+		/// Add Resources referenced from 3IDR Files
+		/// </summary>
+		/// <param name="names"></param>
+		public void AddFrom3IDR(SimPe.Interfaces.Files.IPackageFile pkg)
+		{			
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.REF_FILE);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+			{
+				SimPe.Plugin.RefFile re = new RefFile();
+				re.ProcessData(pfd, pkg);				
+
+				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor p in re.Items) 
+				{
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(p);
+					foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
+					{
+						try 
+						{
+							SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
+							sub.ProcessData(item);
+							LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true);
+						} 
+						catch (Exception ex)
+						{
+							if (Helper.DebugMode) 
+								Helper.ExceptionMessage("", ex);
+						}
+					}
+				}
+				
 			}			
 		}
 	}

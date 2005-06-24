@@ -754,7 +754,7 @@ namespace SimPe.Plugin
 
 				try 
 				{					
-					SimPe.Packages.File package = new SimPe.Packages.File(file);					
+					SimPe.Packages.File package = SimPe.Packages.File.LoadFromFile(file);					
 
 					//find Texture
 					Interfaces.Files.IPackedFileDescriptor[] pfds = null;
@@ -989,7 +989,7 @@ namespace SimPe.Plugin
 			} 
 			else 
 			{
-				SimPe.Packages.File skin = new SimPe.Packages.File((string)lvi.Tag);
+				SimPe.Packages.File skin = SimPe.Packages.File.LoadFromFile((string)lvi.Tag);
 				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = skin.FindFiles(Data.MetaData.GZPS);
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{
@@ -1010,7 +1010,7 @@ namespace SimPe.Plugin
 			} 
 			else 
 			{
-				SimPe.Packages.File skin = new SimPe.Packages.File((string)lvi.Tag);
+				SimPe.Packages.File skin = SimPe.Packages.File.LoadFromFile((string)lvi.Tag);
 				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = skin.FindFiles(Data.MetaData.TXTR);
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{
@@ -1202,7 +1202,7 @@ namespace SimPe.Plugin
 
 					if (System.IO.File.Exists(filename)) 
 					{
-						SimPe.Packages.GeneratableFile pkg = new SimPe.Packages.GeneratableFile(filename);
+						SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromFile(filename);
 						foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Index) 
 						{
 							SimPe.Interfaces.Files.IPackedFile file = pkg.Read(pfd);
@@ -1258,7 +1258,7 @@ namespace SimPe.Plugin
 					if (lvi.SubItems[1].Text.StartsWith("[skin]"))
 					{
 						string name = (string)lvi.Tag;
-						SimPe.Packages.GeneratableFile skin = new SimPe.Packages.GeneratableFile(name);
+						SimPe.Packages.GeneratableFile skin = SimPe.Packages.GeneratableFile.LoadFromFile(name);
 
 						SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = skin.FindFiles(Data.MetaData.GZPS);
 						foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) 

@@ -189,7 +189,7 @@ namespace SimPe.Plugin
 				return;
 			}
 
-			System.Windows.Forms.TreeNode node = new System.Windows.Forms.TreeNode(index.ToString()+": "+child.ToString());
+			System.Windows.Forms.TreeNode node = new System.Windows.Forms.TreeNode("0x"+index.ToString("X")+": "+child.ToString());
 			node.Tag = index;
 			node.ImageIndex = child.ImageIndex;
 			node.SelectedImageIndex = node.ImageIndex;
@@ -338,7 +338,8 @@ namespace SimPe.Plugin
 		/// </summary>
 		protected override void InitTabPage() 
 		{
-			if (form==null) form = new fShapeRefNode(); 
+			if (form==null) 
+				form = new fShapeRefNode(); 
 			
 			form.lb_rn.Items.Clear();
 			for(int i=0; i<this.items.Length; i++) form.lb_rn.Items.Add(items[i]);

@@ -715,7 +715,7 @@ namespace SimPe.Wizards
 			SimPe.FileTable.FileIndex.Load();
 
 			iObjects.Images.Clear();
-			objects = new SimPe.Packages.File(sourcefile);
+			objects = SimPe.Packages.File.LoadFromFile(sourcefile);
 
 			ArrayList groups = new ArrayList();
 			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] objditems = FileTable.FileIndex.FindFile(Data.MetaData.OBJD_FILE, true);
@@ -882,7 +882,7 @@ namespace SimPe.Wizards
 
 			SimPe.PackedFiles.Wrapper.ExtObjd objd = (SimPe.PackedFiles.Wrapper.ExtObjd)selectedlv.SelectedItems[0].Tag;
 			
-			SimPe.Packages.GeneratableFile pkg = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
+			SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 			pkg.FileName = "WOS";
 
 			//Create the Basic Clone
@@ -902,7 +902,7 @@ namespace SimPe.Wizards
 
 			//Build the Recolor
 			WaitingScreen.UpdateMessage("Building Recolor");
-			npackage = new SimPe.Packages.GeneratableFile((System.IO.BinaryReader)null);
+			npackage = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 			npackage.FileName = "WOS";	
 	
 			cs = new SimPe.Plugin.ColorOptions(pkg);

@@ -59,18 +59,19 @@ namespace SimPe.Plugin
 
 		#region IToolFactory Member
 
-		public ITool[] KnownTools
+		public IToolPlugin[] KnownTools
 		{
 			get
 			{
 				reg = this.LinkedRegistry;
 
-				ITool[] tools = {
+				IToolPlugin[] tools = {
 									new ScanerTool()
 								};
 				return tools;
 			}
 		}
+
 
 		#endregion
 	}

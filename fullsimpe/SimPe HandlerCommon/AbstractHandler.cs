@@ -32,6 +32,15 @@ namespace SimPe.Interfaces.Plugin
 	/// </summary>
 	public abstract class AbstractWrapper : IWrapper, IPackedFileWrapper, IPackedFileSaveExtension
 	{
+		protected bool processed;
+		/// <summary>
+		/// true if <see cref="ProcessData"/> was called once
+		/// </summary>
+		public bool Processed 
+		{
+			get { return processed; }
+		}
+
 		/// <summary>
 		/// Stores the FileDescriptor
 		/// </summary>
@@ -107,6 +116,7 @@ namespace SimPe.Interfaces.Plugin
 		/// </summary>
 		public AbstractWrapper () 
 		{
+			processed = false;
 			changed = false;
 			this.ui = null;
 		}		
@@ -144,7 +154,8 @@ namespace SimPe.Interfaces.Plugin
 
 		public IWrapperInfo WrapperDescription 
 		{
-			get { 
+			get 
+			{ 
 				if (wrapperinfo==null) wrapperinfo = this.CreateWrapperInfo();
 				return wrapperinfo; 
 			}
@@ -247,7 +258,10 @@ namespace SimPe.Interfaces.Plugin
 		public IPackedFileDescriptor FileDescriptor 
 		{
 			get { return pfd; }
-			set { pfd = value; }
+			set { 
+				processed = false;
+				pfd = value; 
+			}
 		}
 
 		public IPackedFileUI UIHandler
@@ -263,7 +277,10 @@ namespace SimPe.Interfaces.Plugin
 		public IPackageFile Package
 		{
 			get { return package; }
-			set { package = value; }
+			set { 
+				processed = false;
+				package = value; 
+			}
 		}
 
 		public void ProcessData(IPackedFileDescriptor pfd, IPackageFile package, IPackedFile file)
@@ -294,6 +311,7 @@ namespace SimPe.Interfaces.Plugin
 					this.package = package;
 					file = package.Read(pfd);
 					Unserialize(new System.IO.BinaryReader(new System.IO.MemoryStream(file.UncompressedData)));
+					processed = true;
 				} 
 				else 
 				{
@@ -322,6 +340,7 @@ namespace SimPe.Interfaces.Plugin
 				this.pfd = pfd;
 				this.package = package;			
 				Unserialize(StoredData);
+				processed = true;
 			}
 			catch (Exception ex) 
 			{
@@ -346,13 +365,28 @@ namespace SimPe.Interfaces.Plugin
 			}
 		}
 
-		public void UpdateUI()
+		public virtual bool AllowMultipleInstances
 		{
-			if (ui!=null) 
+			get 
 			{
-				ui.UpdateGUI((IFileWrapper)this);
+				return (GetType().GetInterface("SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper", false)==typeof(SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper));
 			}
 		}
+		
+
+		public void RefreshUI() 
+		{
+			if (UIHandler!=null) 
+			{
+				UIHandler.UpdateGUI((IFileWrapper)this);
+			}
+		}
+
+		public void LoadUI()
+		{			
+			//if (AllowMultipleInstances) ((SimPe.Interfaces.Plugin.IMultiplePackedFileUI)UIHandler).PrepareGUI((IFileWrapper)this);
+			RefreshUI();
+		}		
 
 		/// <summary>
 		/// The Priority of a Wrapper in the Registry
@@ -364,13 +398,55 @@ namespace SimPe.Interfaces.Plugin
 		}
 
 		/// <summary>
-		/// Get a Description for this Package
+		/// Get a Description for this Resource
 		/// </summary>
 		public virtual string Description
 		{
 			get
 			{
 				return "";
+			}
+		}
+
+		/// <summary>
+		/// Returns the 64 Character Long embedded Filename
+		/// </summary>
+		/// <param name="ta">The Current Type</param>
+		/// <returns></returns>
+		string GetEmbeddedFileName(Data.TypeAlias ta)
+		{
+			if (Package==null) return null;
+			if (FileDescriptor==null) return null;
+			
+			if (ta.containsfilename) 
+				return Helper.ToString(Package.Read(FileDescriptor).GetUncompressedData(0x40));
+			else return null;
+		}
+
+		/// <summary>
+		/// Override this to add your own Implementation for <see cref="ResourceName"/>
+		/// </summary>
+		/// <param name="ta">The Current Type</param>
+		/// <returns>null, if the Default Name should be generated</returns>
+		protected virtual string GetResourceName(Data.TypeAlias ta)
+		{
+			return null;
+		}
+
+		/// <summary>
+		/// Get this Resource
+		/// </summary>
+		public string ResourceName
+		{
+			get
+			{		
+				Data.TypeAlias ta = Helper.TGILoader.GetByType(FileDescriptor.Type);
+				string res = GetResourceName(ta);
+				if (res==null) res = GetEmbeddedFileName(ta);
+				if (res==null) res = FileDescriptor.ToString();
+				else  res = ta.Name+": "+res;				
+				 
+				return res;
 			}
 		}
 
@@ -397,6 +473,28 @@ namespace SimPe.Interfaces.Plugin
 		}
 		#endregion
 
-		
+
+		#region IMultiplePackedFileWrapper Member
+		/// <summary>
+		/// Create a new Instance of the Wrapper
+		/// </summary>
+		/// <returns>the new Instance</returns>
+		public virtual IFileWrapper Activate()
+		{
+			if (!this.AllowMultipleInstances) return (IFileWrapper)this;
+
+			SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper me = (SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper)this;
+			return (IFileWrapper)Activator.CreateInstance(this.GetType(), me.GetConstructorArguments());
+		}
+
+		/// <summary>
+		/// Returns a list of Arguments that should be passed to the Constructor during <see cref="Activate"/>.
+		/// </summary>
+		/// <returns></returns>
+		public virtual object[] GetConstructorArguments()
+		{
+			return new object[0];
+		}
+		#endregion
 	}
 }

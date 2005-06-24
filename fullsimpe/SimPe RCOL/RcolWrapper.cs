@@ -36,6 +36,7 @@ namespace SimPe.Plugin
 		, IFileWrapper					//This Interface is used when loading a File
 		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File
 		//,IPackedFileProperties		//This Interface can be used by thirdparties to retrive the FIleproperties, however you don't have to implement it!
+		, IMultiplePackedFileWrapper	//Allow Multiple Instances
 	{
 		#region Attributes
 		byte[] oversize;
@@ -153,34 +154,6 @@ namespace SimPe.Plugin
 			object[] args = new object[1]; args[0] = null;
 			object[] statics = SimPe.LoadFileWrappers.LoadPlugins(a, typeof(SimPe.Interfaces.Scenegraph.IRcolBlock), args);
 			foreach (SimPe.Interfaces.Scenegraph.IRcolBlock isb in statics) isb.Register(tokens);
-			
-			/*ImageData cid = new ImageData(provider, this);
-			SGResource csgr = new SGResource(provider, this);
-			MaterialDefinition cmd = new MaterialDefinition(provider, this);
-			LevelInfo li = new LevelInfo(provider, this);
-			Shape sh = new Shape(provider, this);
-			ReferentNode rn = new ReferentNode(provider, this);
-			ObjectGraphNode ogn = new ObjectGraphNode(provider, this);
-			ResourceNode rnn = new ResourceNode(provider, this);
-			CompositionTreeNode ctn = new CompositionTreeNode(provider, this);
-			DataListExtension dle = new DataListExtension(provider, this);
-			BoneDataExtension bde = new BoneDataExtension(provider, this);
-			ShapeRefNode srn = new ShapeRefNode(provider, this);
-			TransformNode tn = new TransformNode(provider, this);
-			RenderableNode rnnn = new RenderableNode(provider, this);
-			BoundedNode bn = new BoundedNode(provider, this);
-			GeometryNode gnn = new GeometryNode(provider, this);
-			GeometryDataContainer gdc = new GeometryDataContainer(provider, this);
-			AnimResourceConst arc = new AnimResourceConst(provider, this);
-			CinematicScene cs = new CinematicScene(provider, this);
-			LightRefNode lrf = new LightRefNode(provider, this);
-			ViewerRefNode vrn = new ViewerRefNode(provider, this);
-			ViewerRefNodeBase vrnb = new ViewerRefNodeBase(provider, this);
-			ViewerRefNodeRecursive vrnr = new ViewerRefNodeRecursive(provider, this);
-			DirectionalLight dl = new DirectionalLight(provider, this);
-			AmbientLight al = new AmbientLight(provider, this);
-			PointLight pl = new PointLight(provider, this);
-			SpotLight sl = new SpotLight(provider, this);*/
 		}
 		
 		/// <summary>
@@ -194,10 +167,9 @@ namespace SimPe.Plugin
 			index = new uint[0];
 			blocks = new IRcolBlock[0];
 			oversize = new byte[0];
-
-			//add Token Handlers
-			//LoadTokens();
 		}
+
+		public Rcol() : this(null, false) {	}
 
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
@@ -229,7 +201,7 @@ namespace SimPe.Plugin
 				"RCOL Wrapper",
 				"Quaxi",
 				"---",
-				7
+				8
 				); 
 		}
 
@@ -445,6 +417,28 @@ namespace SimPe.Plugin
 			}
 		}
 
+		/// <summary>
+		/// Override this to add your own Implementation for <see cref="ResourceName"/>
+		/// </summary>
+		/// <returns>null, if the Default Name should be generated</returns>
+		protected override string GetResourceName(Data.TypeAlias ta)
+		{
+			if (!this.Processed) ProcessData(FileDescriptor, Package);
+			return this.FileName;
+		}
+		
+
+
 		#endregion		
+
+		#region IMultiplePackedFileWrapper
+		public override object[] GetConstructorArguments()
+		{
+			object[] o = new object[2];
+			o[0] = this.provider;
+			o[1] = this.fast;
+			return o;
+		}
+		#endregion
 	}	
 }

@@ -71,5 +71,16 @@ namespace SimPe.Interfaces
 		/// <param name="type">The Type of the PackedFile</param>
 		/// <returns>The assigned Handler or null if none was found</returns>
 		Plugin.Internal.IPackedFileWrapper FindHandler(uint type);
+
+		/// <summary>
+		/// Returns the first Handler capable of processing a File
+		/// </summary>
+		/// <param name="data">The Data of the PackedFile</param>
+		/// <returns>The assigned Handler or null if none was found</returns>
+		/// <remarks>
+		/// A handler is assigned if the first bytes of the Data are equal 
+		/// to the signature provided by the Handler
+		/// </remarks>
+		SimPe.Interfaces.Plugin.IFileWrapper FindHandler(Byte[] data);
 	}
 }

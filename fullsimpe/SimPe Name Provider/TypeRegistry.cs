@@ -49,6 +49,16 @@ namespace SimPe.PackedFiles
 		ArrayList tools;
 
 		/// <summary>
+		/// Contains all available dockable Tool Plugins
+		/// </summary>
+		ArrayList dtools;
+
+		/// <summary>
+		/// Contains all available action Tool Plugins
+		/// </summary>
+		ArrayList atools;
+
+		/// <summary>
 		/// Used to access the Windows Registry
 		/// </summary>
 		Registry reg;
@@ -58,7 +68,7 @@ namespace SimPe.PackedFiles
 		/// </summary>
 		public TypeRegistry()
 		{
-			reg = new Registry();
+			reg = Helper.WindowsRegistry;
 			handlers = new ArrayList();		
 			opcodeprovider = new SimPe.Providers.Opcodes();
 			simfamilynames = new SimPe.Providers.SimFamilyNames();
@@ -67,6 +77,8 @@ namespace SimPe.PackedFiles
 			skinprovider = new SimPe.Providers.Skins();
 			
 			tools = new ArrayList();
+			dtools = new ArrayList();
+			atools = new ArrayList();
 		}
 
 		#region IWrapperRegistry Member
@@ -262,19 +274,31 @@ namespace SimPe.PackedFiles
 		#endregion
 
 		#region IToolRegistry Member
-		public void Register(SimPe.Interfaces.ITool tool)
+		public void Register(IToolPlugin tool)
 		{
 			if (tool!=null)
-				if (!tools.Contains(tool)) 
+				if (tool.GetType().GetInterface("SimPe.Interfaces.IDockableTool", true) == typeof(SimPe.Interfaces.IDockableTool)) 
 				{
-					tools.Add((SimPe.Interfaces.ITool)tool);					
+					if (!dtools.Contains(tool)) 					
+						dtools.Add((SimPe.Interfaces.IDockableTool)tool);	
+				} 
+				else if (tool.GetType().GetInterface("SimPe.Interfaces.IToolAction", true) == typeof(SimPe.Interfaces.IToolAction)) 
+				{
+					if (!atools.Contains(tool)) 					
+						atools.Add((SimPe.Interfaces.IToolAction)tool);	
+				} 
+				else 
+				{
+					if (!tools.Contains(tool)) 					
+						tools.Add((SimPe.Interfaces.ITool)tool);					
 				}
-		}
+					
+		}		
 
-		public void Register(ITool[] tools)
+		public void Register(IToolPlugin[] tools)
 		{
 			if (tools!=null)
-				foreach (ITool tool in tools) Register(tool);
+				foreach (IToolPlugin tool in tools) Register(tool);
 		}
 
 		public void Register(IToolFactory factory)
@@ -283,7 +307,7 @@ namespace SimPe.PackedFiles
 			factory.LinkedProvider = this;
 			Register(factory.KnownTools);
 		}
-
+			
 
 		public ITool[] Tools
 		{
@@ -291,6 +315,26 @@ namespace SimPe.PackedFiles
 			{
 				ITool[] rtools = new ITool[tools.Count];
 				tools.CopyTo(rtools);
+				return rtools;
+			}
+		}
+
+		public IDockableTool[] Docks
+		{
+			get
+			{
+				IDockableTool[] rtools = new IDockableTool[dtools.Count];
+				dtools.CopyTo(rtools);
+				return rtools;
+			}
+		}
+
+		public IToolAction[] Actions
+		{
+			get
+			{
+				IToolAction[] rtools = new IToolAction[atools.Count];
+				atools.CopyTo(rtools);
 				return rtools;
 			}
 		}
