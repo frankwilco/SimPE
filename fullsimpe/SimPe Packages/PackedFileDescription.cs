@@ -47,6 +47,7 @@ namespace SimPe.Packages
 			pfd.subtype = subtype;
 			pfd.type = type;
 			pfd.changed = changed;
+			pfd.wascomp = this.wascomp;			
 
 			return (IPackedFileDescriptor)pfd;
 		}
@@ -61,6 +62,7 @@ namespace SimPe.Packages
 			markcompress = false;
 			changed = false;
 			valid = true;
+			wascomp = false;
 		}
 
 		/// <summary>
@@ -421,6 +423,20 @@ namespace SimPe.Packages
 			}
 		}
 
+		bool wascomp;
+		/// <summary>
+		/// Returns true if the Resource was Compressed
+		/// </summary>
+		public bool WasCompressed
+		{
+			get { return wascomp; }
+			set 
+			{ 
+				wascomp = value;
+			}
+		}
+
+
 		/// <summary>
 		/// Returns true, if Userdate is available
 		/// </summary>
@@ -449,10 +465,17 @@ namespace SimPe.Packages
 			}
 			set 
 			{
-				changed = true;
-				userdata = value;	
-				if (ChangedUserData!=null) ChangedUserData(this);					
+				SetUserData(value, true);
 			}
+		}
+
+		public void SetUserData(byte[] data, bool fire)
+		{
+			changed = true;
+			userdata = data;	
+			if (PackageInternalUserDataChange!=null) PackageInternalUserDataChange(this);	
+			if (ChangedUserData!=null && fire) ChangedUserData(this);
+			if (ChangedData!=null) ChangedData(this);
 		}
 
 		/// <summary>
@@ -463,10 +486,17 @@ namespace SimPe.Packages
 		/// <summary>
 		/// Returns true if theis File was changed since the last Save
 		/// </summary>
+		/// <remarks>Fires the <see cref="ChangedData"/> Event</remarks>
 		public bool Changed
 		{
 			get {return changed; }
-			set {changed = value; }
+			set {
+				if (value != changed) 
+				{
+					changed = value; 
+					if (ChangedData!=null) ChangedData(this);
+				}
+			}
 		}
 
 		/// <summary>
@@ -501,11 +531,33 @@ namespace SimPe.Packages
 		/// <summary>
 		/// Called whenever the content represented by this descripotr was changed
 		/// </summary>
-		public PackedFileChanged ChangedUserData
+		/// <remarks>
+		/// This should be used by the Pacakges containing the Descriptor, to 
+		/// get notified on a Change. Every other Listener has to register with <see cref="ChangedUserData"/>
+		/// </remarks>
+		internal PackedFileChanged PackageInternalUserDataChange
 		{
 			get { return changedUserData; }
 			set { changedUserData = value;}
 		}
+
+		/// <summary>
+		/// Called whenever the content represented by this descripotr was changed
+		/// </summary>
+		/// <remarks>
+		/// This is the public Change Listener. Developers can control in 
+		/// <see cref="SetUserData"/>if this Event is fired. This Event will not fire if <see cref="SimPe.Interfaces.Plugin.Internal.SynchronizeUserData"/>
+		/// is called (which changes the UserData).
+		/// </remarks>
+		public event PackedFileChanged ChangedUserData;
+
+		/// <summary>
+		/// Called whenever the content represented by this descripotr was changed
+		/// </summary>
+		/// <remarks>
+		/// This is the public Change Listener. Unlike <see cref="ChangedUserData"/>, this event allways fires when the USerData Changes
+		/// </remarks>
+		public event PackedFileChanged ChangedData;
 
 		/// <summary>
 		/// Called whenever the Desciptor get's invalid

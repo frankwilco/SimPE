@@ -36,7 +36,7 @@ namespace SimPe.Interfaces
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		void ExecuteEventHandler(object sender, ResourceEventArgs[] e, LoadedPackage guipackage);
+		void ExecuteEventHandler(object sender, ResourceEventArgs e);
 
 		/// <summary>
 		/// This EventHandler will be connected to the ChangeResource Event of the Caller, you can set 
@@ -44,6 +44,6 @@ namespace SimPe.Interfaces
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		bool ChangeEnabledStateEventHandler(object sender, ResourceEventArgs[] e, LoadedPackage guipackage);		
+		bool ChangeEnabledStateEventHandler(object sender, ResourceEventArgs e);		
 	}
 }

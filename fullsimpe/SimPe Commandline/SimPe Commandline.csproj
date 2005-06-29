@@ -144,6 +144,11 @@
                     Project = "{97551C0A-6295-4E32-8E15-A4FF456E65A6}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe Workspace Helper"
+                    Project = "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
@@ -155,11 +160,6 @@
                 />
                 <File
                     RelPath = "Commandline.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "XmlPackageReader.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

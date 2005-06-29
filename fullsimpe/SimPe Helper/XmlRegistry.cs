@@ -297,7 +297,9 @@ namespace SimPe
 		{
 			if (subnode.Name=="string") ParseStringValue(subnode, subkey);
 			if (subnode.Name=="int") ParseIntValue(subnode, subkey);
+			if (subnode.Name=="uint") ParseUIntValue(subnode, subkey);
 			if (subnode.Name=="long") ParseLongValue(subnode, subkey);
+			if (subnode.Name=="ulong") ParseULongValue(subnode, subkey);
 			if (subnode.Name=="bool") ParseBoolValue(subnode, subkey);
 			if (subnode.Name=="float") ParseFloatValue(subnode, subkey);
 		}
@@ -367,6 +369,22 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Add an Integer Value
+		/// </summary>
+		/// <param name="node">The current Node</param>
+		/// <param name="key">The current SubTree</param>
+		void ParseUIntValue(XmlNode node, XmlRegistryKey key) 
+		{
+			uint val = 0;
+			try 
+			{
+				val = Convert.ToUInt32(node.InnerText);
+			} 
+			catch {}
+			key.SetValue(node.Attributes["name"].Value, val);
+		}
+
+		/// <summary>
 		/// Add an LongInteger Value
 		/// </summary>
 		/// <param name="node">The current Node</param>
@@ -377,6 +395,22 @@ namespace SimPe
 			try 
 			{
 				val = Convert.ToInt64(node.InnerText);
+			} 
+			catch {}
+			key.SetValue(node.Attributes["name"].Value, val);
+		}
+
+		/// <summary>
+		/// Add an LongInteger Value
+		/// </summary>
+		/// <param name="node">The current Node</param>
+		/// <param name="key">The current SubTree</param>
+		void ParseULongValue(XmlNode node, XmlRegistryKey key) 
+		{
+			ulong val = 0;
+			try 
+			{
+				val = Convert.ToUInt64(node.InnerText);
 			} 
 			catch {}
 			key.SetValue(node.Attributes["name"].Value, val);
@@ -501,8 +535,10 @@ namespace SimPe
 			string tag = "string";
 			string val = o.ToString();
 
-			if (o is Int32 || o is Int16 || o is UInt32 || o is UInt16 || o is byte) { tag = "int"; }
-			else if (o is Int64 || o is UInt64) tag = "long"; 
+			if (o is Int32 || o is Int16 || o is byte) { tag = "int"; }
+			else if (o is UInt32 || o is UInt16) { tag = "uint"; }
+			else if (o is Int64 ) tag = "long"; 
+			else if (o is UInt64) tag = "ulong"; 
 			else if (o is Boolean) 
 			{
 				tag = "bool";

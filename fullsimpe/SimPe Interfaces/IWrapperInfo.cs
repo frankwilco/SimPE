@@ -65,13 +65,5 @@ namespace SimPe.Interfaces.Plugin
 		{
 			get;
 		}
-
-		/// <summary>
-		/// Returns sets the Name of the File where this wrapper is located in
-		/// </summary>
-		string FileName
-		{
-			get;
-		}
 	}
 }

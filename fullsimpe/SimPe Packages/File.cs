@@ -381,9 +381,10 @@ namespace SimPe.Packages
 			header.index.count = newindex.Length;
 			fileindex = newindex;
 
-			pfd.ChangedUserData = null;
+			((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = null;
 			pfd.DescriptionChanged -= new EventHandler(ResourceDescriptionChanged);
-			if (IndexChanged!=null) IndexChanged(this, new EventArgs());
+			if (IndexChanged!=null) IndexChanged(this, new EventArgs());			
+			if (RemovedResource!=null) RemovedResource(this, new EventArgs());
 		}
 
 		/// <summary>
@@ -397,15 +398,20 @@ namespace SimPe.Packages
 				if (!pfd.MarkForDelete) list.Add(pfd);
 				else 
 				{
-					pfd.ChangedUserData = null;
+					((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = null;
 					pfd.DescriptionChanged -= new EventHandler(ResourceDescriptionChanged);
 				}
 			}
 
 			Interfaces.Files.IPackedFileDescriptor[] pfds = new Interfaces.Files.IPackedFileDescriptor[list.Count];
 			list.CopyTo(pfds);
-			fileindex = pfds;
+
+			bool changed = (fileindex.Length != fileindex.Length);
+			fileindex = pfds;			
 			header.index.count = fileindex.Length;
+
+			if (IndexChanged!=null && changed) IndexChanged(this, new EventArgs());			
+			if (RemovedResource!=null && changed) RemovedResource(this, new EventArgs());
 		}
 
 		/// <summary>
@@ -458,9 +464,10 @@ namespace SimPe.Packages
 			header.index.count = newindex.Length;
 			fileindex = newindex;
 
-			pfd.ChangedUserData = new SimPe.Events.PackedFileChanged(ResourceChanged);
+			((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = new SimPe.Events.PackedFileChanged(ResourceChanged);
 			pfd.DescriptionChanged += new EventHandler(ResourceDescriptionChanged);
 			if (IndexChanged!=null) IndexChanged(this, new EventArgs());
+			if (AddedResource!=null) AddedResource(this, new EventArgs());
 		}
 
 		/// <summary>
@@ -550,6 +557,20 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// Reads the Compressed State for the package
+		/// </summary>
+		public void LoadCompressedState()
+		{
+			//Load the File Index File
+			if (FileList != null) 
+			{
+				//setup the compression State
+				foreach (PackedFileDescriptor pfd in fileindex)
+					pfd.WasCompressed = this.GetPackedFile(pfd, new byte[0]).IsCompressed;				
+			}
+		}
+
+		/// <summary>
 		/// Loads the FileIndex from the Package file
 		/// </summary>
 		/// <param name="position">
@@ -568,7 +589,7 @@ namespace SimPe.Packages
 			if ((header.IsVersion0101) && (header.index.ItemSize>=24)) item.subtype = reader.ReadUInt32();
 			item.offset = reader.ReadUInt32();
 			item.size = reader.ReadInt32();		
-			item.ChangedUserData = new SimPe.Events.PackedFileChanged(ResourceChanged);
+			item.PackageInternalUserDataChange = new SimPe.Events.PackedFileChanged(ResourceChanged);
 			item.DescriptionChanged += new EventHandler(ResourceDescriptionChanged);
 
 			fileindex[position] = item;
@@ -676,6 +697,42 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// the packed File Descriptor
+		/// </summary>
+		/// <param name="pfd"></param>
+		/// <returns></returns>
+		PackedFile GetPackedFile(IPackedFileDescriptor pfd, byte[] data)
+		{
+			PackedFile pf = new PackedFile(data);
+			try 
+			{
+				reader.BaseStream.Seek(pfd.Offset, System.IO.SeekOrigin.Begin);
+				pf.size = reader.ReadInt32();
+				pf.signature = reader.ReadUInt16();			
+				Byte[] dummy = reader.ReadBytes(3);
+				pf.uncsize = (uint)((dummy[0]<< 0x10) | (dummy[1] << 0x08) | + dummy[2]);
+				if ((pf.Size == pfd.Size) && (pf.Signature==MetaData.COMPRESS_SIGNATURE)) pf.headersize = 9;											
+
+				if ((filelistfile!=null) && (pfd.Type!=File.FILELIST_TYPE))
+				{
+					int pos = filelistfile.FindFile(pfd);
+					if (pos!=-1) 
+					{
+						SimPe.PackedFiles.Wrapper.ClstItem fi = (ClstItem)filelistfile.Items[pos];							
+						if (header.Version==0x100000001) pf.uncsize = fi.UncompressedSize;
+					}
+				} 
+			} 
+			catch (Exception) 
+			{
+				pf.size = 0;
+				pf.data = new byte[0];
+			}
+			
+			return pf;
+		}
+
+		/// <summary>
 		/// Reads a File specified by a FileIndexItem
 		/// </summary>
 		/// <param name="pfd">The PackedFileDescriptor</param>
@@ -717,7 +774,8 @@ namespace SimPe.Packages
 				Byte[] data = reader.ReadBytes(pfd.Size);
 				//for (int i=0; i<data.Length; i++) data[i] = reader.ReadByte();
 
-				PackedFile pf = new PackedFile(data);
+				PackedFile pf = GetPackedFile(pfd, data);
+				/*new PackedFile(data);
 
 				try 
 				{
@@ -742,7 +800,7 @@ namespace SimPe.Packages
 				{
 					pf.size = 0;
 					pf.data = new byte[0];
-				}
+				}*/
 
 				this.UnLockStream();
 				CloseReader();
@@ -1032,6 +1090,16 @@ namespace SimPe.Packages
 		/// Triggered whenever the Content of the Package was changed
 		/// </summary>
 		public event System.EventHandler IndexChanged;
+
+		/// <summary>
+		/// Triggered whenever a new Resource was added
+		/// </summary>
+		public event System.EventHandler AddedResource;
+
+		/// <summary>
+		/// Triggered whenever a Resource was Removed
+		/// </summary>
+		public event System.EventHandler RemovedResource;
 		
 		/// <summary>
 		/// Fired when a Description gets Changed

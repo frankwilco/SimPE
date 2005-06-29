@@ -68,19 +68,16 @@ namespace SimPe
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ExceptionForm));
 			this.lberr = new System.Windows.Forms.Label();
 			this.gbdetail = new System.Windows.Forms.GroupBox();
-#if MAC
-#else
 			this.rtb = new System.Windows.Forms.RichTextBox();
-#endif
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.lldetail = new System.Windows.Forms.LinkLabel();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.tbsup = new System.Windows.Forms.TextBox();
 			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.button1 = new System.Windows.Forms.Button();
+			this.tbsup = new System.Windows.Forms.TextBox();
 			this.gbdetail.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -92,6 +89,7 @@ namespace SimPe
 			this.lberr.AccessibleName = resources.GetString("lberr.AccessibleName");
 			this.lberr.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lberr.Anchor")));
 			this.lberr.AutoSize = ((bool)(resources.GetObject("lberr.AutoSize")));
+			this.lberr.BackColor = System.Drawing.Color.Transparent;
 			this.lberr.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lberr.Dock")));
 			this.lberr.Enabled = ((bool)(resources.GetObject("lberr.Enabled")));
 			this.lberr.Font = ((System.Drawing.Font)(resources.GetObject("lberr.Font")));
@@ -115,10 +113,7 @@ namespace SimPe
 			this.gbdetail.AccessibleName = resources.GetString("gbdetail.AccessibleName");
 			this.gbdetail.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("gbdetail.Anchor")));
 			this.gbdetail.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gbdetail.BackgroundImage")));
-#if MAC
-#else
 			this.gbdetail.Controls.Add(this.rtb);
-#endif
 			this.gbdetail.Controls.Add(this.linkLabel1);
 			this.gbdetail.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("gbdetail.Dock")));
 			this.gbdetail.Enabled = ((bool)(resources.GetObject("gbdetail.Enabled")));
@@ -133,8 +128,6 @@ namespace SimPe
 			this.gbdetail.TabStop = false;
 			this.gbdetail.Text = resources.GetString("gbdetail.Text");
 			this.gbdetail.Visible = ((bool)(resources.GetObject("gbdetail.Visible")));
-#if MAC
-#else
 			// 
 			// rtb
 			// 
@@ -165,7 +158,6 @@ namespace SimPe
 			this.rtb.Visible = ((bool)(resources.GetObject("rtb.Visible")));
 			this.rtb.WordWrap = ((bool)(resources.GetObject("rtb.WordWrap")));
 			this.rtb.ZoomFactor = ((System.Single)(resources.GetObject("rtb.ZoomFactor")));
-#endif
 			// 
 			// linkLabel1
 			// 
@@ -287,31 +279,6 @@ namespace SimPe
 			this.panel2.Text = resources.GetString("panel2.Text");
 			this.panel2.Visible = ((bool)(resources.GetObject("panel2.Visible")));
 			// 
-			// tbsup
-			// 
-			this.tbsup.AccessibleDescription = resources.GetString("tbsup.AccessibleDescription");
-			this.tbsup.AccessibleName = resources.GetString("tbsup.AccessibleName");
-			this.tbsup.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbsup.Anchor")));
-			this.tbsup.AutoSize = ((bool)(resources.GetObject("tbsup.AutoSize")));
-			this.tbsup.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbsup.BackgroundImage")));
-			this.tbsup.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbsup.Dock")));
-			this.tbsup.Enabled = ((bool)(resources.GetObject("tbsup.Enabled")));
-			this.tbsup.Font = ((System.Drawing.Font)(resources.GetObject("tbsup.Font")));
-			this.tbsup.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbsup.ImeMode")));
-			this.tbsup.Location = ((System.Drawing.Point)(resources.GetObject("tbsup.Location")));
-			this.tbsup.MaxLength = ((int)(resources.GetObject("tbsup.MaxLength")));
-			this.tbsup.Multiline = ((bool)(resources.GetObject("tbsup.Multiline")));
-			this.tbsup.Name = "tbsup";
-			this.tbsup.PasswordChar = ((char)(resources.GetObject("tbsup.PasswordChar")));
-			this.tbsup.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbsup.RightToLeft")));
-			this.tbsup.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbsup.ScrollBars")));
-			this.tbsup.Size = ((System.Drawing.Size)(resources.GetObject("tbsup.Size")));
-			this.tbsup.TabIndex = ((int)(resources.GetObject("tbsup.TabIndex")));
-			this.tbsup.Text = resources.GetString("tbsup.Text");
-			this.tbsup.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsup.TextAlign")));
-			this.tbsup.Visible = ((bool)(resources.GetObject("tbsup.Visible")));
-			this.tbsup.WordWrap = ((bool)(resources.GetObject("tbsup.WordWrap")));
-			// 
 			// linkLabel2
 			// 
 			this.linkLabel2.AccessibleDescription = resources.GetString("linkLabel2.AccessibleDescription");
@@ -382,6 +349,31 @@ namespace SimPe
 			this.button1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.TextAlign")));
 			this.button1.Visible = ((bool)(resources.GetObject("button1.Visible")));
 			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// tbsup
+			// 
+			this.tbsup.AccessibleDescription = resources.GetString("tbsup.AccessibleDescription");
+			this.tbsup.AccessibleName = resources.GetString("tbsup.AccessibleName");
+			this.tbsup.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbsup.Anchor")));
+			this.tbsup.AutoSize = ((bool)(resources.GetObject("tbsup.AutoSize")));
+			this.tbsup.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbsup.BackgroundImage")));
+			this.tbsup.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbsup.Dock")));
+			this.tbsup.Enabled = ((bool)(resources.GetObject("tbsup.Enabled")));
+			this.tbsup.Font = ((System.Drawing.Font)(resources.GetObject("tbsup.Font")));
+			this.tbsup.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbsup.ImeMode")));
+			this.tbsup.Location = ((System.Drawing.Point)(resources.GetObject("tbsup.Location")));
+			this.tbsup.MaxLength = ((int)(resources.GetObject("tbsup.MaxLength")));
+			this.tbsup.Multiline = ((bool)(resources.GetObject("tbsup.Multiline")));
+			this.tbsup.Name = "tbsup";
+			this.tbsup.PasswordChar = ((char)(resources.GetObject("tbsup.PasswordChar")));
+			this.tbsup.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbsup.RightToLeft")));
+			this.tbsup.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbsup.ScrollBars")));
+			this.tbsup.Size = ((System.Drawing.Size)(resources.GetObject("tbsup.Size")));
+			this.tbsup.TabIndex = ((int)(resources.GetObject("tbsup.TabIndex")));
+			this.tbsup.Text = resources.GetString("tbsup.Text");
+			this.tbsup.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbsup.TextAlign")));
+			this.tbsup.Visible = ((bool)(resources.GetObject("tbsup.Visible")));
+			this.tbsup.WordWrap = ((bool)(resources.GetObject("tbsup.WordWrap")));
 			// 
 			// ExceptionForm
 			// 

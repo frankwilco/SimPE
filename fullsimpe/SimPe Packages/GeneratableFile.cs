@@ -205,11 +205,15 @@ namespace SimPe.Packages
 				PackedFileDescriptor newpfd = (PackedFileDescriptor)pfd;								
 
 				PackedFile pf = null;
-				if (pfd.HasUserdata && pfd.MarkForReCompress) 
+				if (pfd.MarkForReCompress) 
 				{
 					try 
 					{
-						pf = new PackedFile(PackedFile.Compress(pfd.UserData));
+						if (pfd.HasUserdata)
+							pf = new PackedFile(PackedFile.Compress(pfd.UserData));
+						else
+							pf = new PackedFile(PackedFile.Compress(((PackedFile)this.Read(pfd)).UncompressedData));;
+
 						pf.size = pf.data.Length;
 						pf.uncsize = (uint)pfd.UserData.Length;
 						pf.signature = Data.MetaData.COMPRESS_SIGNATURE;
@@ -223,16 +227,16 @@ namespace SimPe.Packages
 					{
 						pf = (PackedFile)this.Read(pfd);
 						newpfd.size = pf.data.Length;
-						newpfd.UserData = pfd.UserData;
+						newpfd.SetUserData(pfd.UserData, false);
 
-						if (Helper.DebugMode) Helper.ExceptionMessage("", ex);
+						if (Helper.DebugMode) Helper.ExceptionMessage(ex);
 					}																			
-				} 
+				} 				
 				else 
 				{
 					pf = (PackedFile)this.Read(pfd);
 					newpfd.size = pf.data.Length;
-					newpfd.UserData = pfd.UserData;
+					newpfd.SetUserData(pfd.UserData, false);
 				}
 				
 				newpfd.offset = (uint)writer.BaseStream.Position;

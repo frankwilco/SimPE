@@ -509,4 +509,12 @@ Package: {filename}</value>
 	<data name="Restore">
 		<value>Widerherstellen</value>
 	</data>
+	<data name="changed?">
+		<value>Resource wurde verändert</value>
+	</data>
+	<data name="reschanged">
+		<value>Die Resource "{name}" wurde außerhalb des Editors geändert. Soll sie neu geladen werden?
+
+Package: {filename}</value>
+	</data>
 </root>

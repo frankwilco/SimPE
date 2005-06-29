@@ -80,11 +80,6 @@ namespace SimPe.Interfaces.Plugin
 			get {return version;}
 		}
 
-		public string FileName 
-		{
-			get { return this.GetType().Assembly.FullName+" "+this.GetType().ToString(); }
-		}
-
 		// <summary>
 		/// Returns a Unique ID for this Wrapper
 		/// </summary>

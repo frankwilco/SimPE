@@ -24,7 +24,7 @@ namespace SimPe.Actions.Default
 	/// <summary>
 	/// Zusammenfassung für ExportAction.
 	/// </summary>
-	public class AddAction : AbstractActionDefault
+	public class AddAction : ReplaceAction
 	{
 		public AddAction()
 		{
@@ -32,15 +32,19 @@ namespace SimPe.Actions.Default
 		}
 		#region IToolAction Member		
 
-		public override bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs[] es, LoadedPackage guipackage)
+		public override bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			if (guipackage==null) return false;
-			return guipackage.Loaded;
+			if (es.LoadedPackage==null) return false;
+			return es.LoadedPackage.Loaded;
 		}
 
-		public override void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs[] e, LoadedPackage guipackage)
+		public override void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			Message.Show("Executed Action with "+ e.Length.ToString());
+			if (!ChangeEnabledStateEventHandler(null, es)) return;
+
+			SimPe.Collections.PackedFileDescriptors pfds = this.LoadDescriptors(true);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+				es.LoadedPackage.Package.Add(pfd);
 		}
 
 		#endregion

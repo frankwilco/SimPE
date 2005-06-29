@@ -178,13 +178,25 @@ namespace SimPe.Interfaces.Files
 		}		
 
 		/// <summary>
-		/// Puts Userdefined Data into the File
+		/// Puts Userdefined Data into the File. Setting this Property will fire a <see cref="ChangedUserData"/> Event.
 		/// </summary>
 		byte[] UserData 
 		{
 			get;
 			set;
 		}
+
+		/// <summary>
+		/// Same as <see cref="UserData"/>, but you can decide 
+		/// if the <see cref="ChangedUserData"/> Event get's fired 
+		/// </summary>
+		/// <param name="data">the new UserData</param>
+		/// <param name="fire">true if you want to fire a <see cref="ChangedUserData"/> Event.</param>
+		/// <remarks>
+		/// In Most scenarios you probably want to use <see cref="UserData"/> directly instead of this Method.
+		/// It is basically only called intern by FileWrappers
+		/// </remarks>
+		void SetUserData(byte[] data, bool fire);
 
 		/// <summary>
 		/// Returns/sets if this file should be keept in the Index for the next Save
@@ -202,6 +214,14 @@ namespace SimPe.Interfaces.Files
 		{
 			get;
 			set;
+		}
+
+		/// <summary>
+		/// Returns true if the Resource was Compressed
+		/// </summary>
+		 bool WasCompressed
+		{
+			get;
 		}
 
 		/// <summary>
@@ -236,11 +256,21 @@ namespace SimPe.Interfaces.Files
 		/// <summary>
 		/// Called whenever the content represented by this descripotr was changed
 		/// </summary>
-		PackedFileChanged ChangedUserData
-		{
-			get;
-			set;
-		}
+		/// <remarks>
+		/// This is the public Change Listener. Developers can control in 
+		/// <see cref="SetUserData"/>if this Event is fired. This Event will not fire if <see cref="SimPe.Interfaces.Plugin.Internal.SynchronizeUserData"/>
+		/// is called (which changes the UserData).
+		/// </remarks>
+		event PackedFileChanged ChangedUserData;
+
+		/// <summary>
+		/// Called whenever the content represented by this descripotr was changed
+		/// </summary>
+		/// <remarks>
+		/// This is the public Change Listener. Unlike <see cref="ChangedUserData"/>, this event allways fires when the USerData Changes
+		/// </remarks>
+		event PackedFileChanged ChangedData;
+		
 
 		/// <summary>
 		/// Called whenever the Desciptor get's invalid

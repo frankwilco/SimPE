@@ -29,22 +29,18 @@ namespace SimPe.Actions.Default
 		
 		#region IToolAction Member
 
-		public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs[] es, LoadedPackage guipackage)
+		public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
 			if (es == null) return false;
-			if (guipackage == null) return false;
+			if (es.LoadedPackage == null) return false;
 
-			if (guipackage.Loaded)
-			{				
-				foreach (SimPe.Events.ResourceEventArgs e in es)
-					if (e.Resource!=null) return true;
-				return false;
-			}
+			if (es.LoadedPackage.Loaded)
+				return es.HasResource;							
 
 			return false;
 		}
 
-		public abstract void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs[] e, LoadedPackage guipackage);
+		public abstract void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs e);
 
 		#endregion		
 

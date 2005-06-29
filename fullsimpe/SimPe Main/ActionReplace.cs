@@ -26,15 +26,69 @@ namespace SimPe.Actions.Default
 	/// </summary>
 	public class ReplaceAction : AbstractActionDefault
 	{
+
 		public ReplaceAction()
 		{
 			
 		}
+
+		/// <summary>
+		/// Load a list of FIleDescriptors from the disc
+		/// </summary>
+		/// <param name="add">true if you want to add them lateron</param>
+		/// <returns></returns>
+		protected SimPe.Collections.PackedFileDescriptors LoadDescriptors(bool add) 
+		{
+			System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
+			if (!add) 
+			{
+				ofd.Filter =  ExtensionProvider.BuildFilterString(
+					new SimPe.ExtensionType[] {
+												  SimPe.ExtensionType.ExtractedFile,
+												  SimPe.ExtensionType.ExtractedFileDescriptor,
+												  SimPe.ExtensionType.AllFiles
+											  }
+					);
+			} 
+			else 
+			{
+				ofd.Filter =  ExtensionProvider.BuildFilterString(
+					new SimPe.ExtensionType[] {
+												  SimPe.ExtensionType.ExtractedFileDescriptor,
+												  SimPe.ExtensionType.ExtrackedPackageDescriptor,
+												  SimPe.ExtensionType.ExtractedFile,
+												  SimPe.ExtensionType.Package,
+												  SimPe.ExtensionType.DisabledPackage,
+												  SimPe.ExtensionType.AllFiles
+											  }
+					);
+			}
+
+			ofd.Title = SimPe.Localization.GetString(this.ToString());
+			ofd.Multiselect = add;
+			if (ofd.ShowDialog()==System.Windows.Forms.DialogResult.OK) 
+			{
+				SimPe.Collections.PackedFileDescriptors pfds = LoadedPackage.LoadDescriptorsFromDisk(ofd.FileNames);
+				return pfds;
+			}
+
+			return new SimPe.Collections.PackedFileDescriptors();
+		}
 		#region IToolAction Member		
 
-		public override void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs[] e, LoadedPackage guipackage)
+		public override bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			Message.Show("Executed Action with "+ e.Length.ToString());
+			bool res = base.ChangeEnabledStateEventHandler (sender, es);
+			return (res && es.Count==1);											
+		}		
+
+		public override void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
+		{
+			if (!ChangeEnabledStateEventHandler(null, es)) return;
+
+			SimPe.Collections.PackedFileDescriptors pfds = this.LoadDescriptors(false);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+				es[0].Resource.FileDescriptor.UserData = pfd.UserData;						
 		}
 
 		#endregion

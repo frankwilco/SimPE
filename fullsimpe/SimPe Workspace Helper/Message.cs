@@ -112,8 +112,7 @@ namespace SimPe
 		{
 			try 
 			{
-				Message m = new Message();
-
+				Message m = new Message();				
 				if (mbb==MessageBoxButtons.YesNoCancel) 
 				{
 					m.AddButton(SimPe.Localization.Manager.GetString("cancel"), DialogResult.Cancel);
@@ -161,7 +160,17 @@ namespace SimPe
 
 				FileTable.ThemeManager.Theme(m.panel2);
 				m.panel1.BackColor = FileTable.ThemeManager.ThemeColorDark;
-				m.ShowDialog();
+
+				bool run = WaitingScreen.Running;
+				if (run) WaitingScreen.Stop();
+				try 
+				{
+					m.ShowDialog();
+				} 
+				finally 
+				{
+					if (run) WaitingScreen.Wait();
+				}
 
 				return m.DialogResult;
 			} 

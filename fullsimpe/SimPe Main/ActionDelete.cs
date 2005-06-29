@@ -32,25 +32,24 @@ namespace SimPe.Actions.Default
 		}
 		#region IToolAction Member		
 
-		public override bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs[] es, LoadedPackage guipackage)
+		public override bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			bool res = base.ChangeEnabledStateEventHandler (sender, es, guipackage);
+			bool res = base.ChangeEnabledStateEventHandler (sender, es);
 			if (res) 
 			{
 				res = false;
-				foreach (SimPe.Events.ResourceEventArgs e in es)
-					if (e.Resource!=null) 
-						if (e.Resource.FileDescriptor!=null)
-							if (!e.Resource.FileDescriptor.MarkForDelete) return true;								
+				foreach (SimPe.Events.ResourceContainer e in es)
+					if (e.HasFileDescriptor) 
+						if (!e.Resource.FileDescriptor.MarkForDelete) return true;								
 			}
 			return false;
 		}
 
-		public override void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs[] es, LoadedPackage guipackage)
+		public override void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			if (!ChangeEnabledStateEventHandler(null, es, guipackage)) return;
+			if (!ChangeEnabledStateEventHandler(null, es)) return;
 
-			foreach (SimPe.Events.ResourceEventArgs e in es) 
+			foreach (SimPe.Events.ResourceContainer e in es) 
 				e.Resource.FileDescriptor.MarkForDelete = true;				
 		}
 

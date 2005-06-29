@@ -695,6 +695,24 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// true, if the user should select a Resource with only one click
+		/// </summary>
+		public bool SimpleResourceSelect
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("SimpleResourceSelect", false);
+				return Convert.ToBoolean(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("SimpleResourceSelect", value);
+			}
+		}
+
+		/// <summary>
 		/// true, if the user wantsto use the package Maintainer
 		/// </summary>
 		public byte SelectedTheme
@@ -745,6 +763,24 @@ namespace SimPe
 			{
 				XmlRegistryKey rkf = xrk.CreateSubKey("Layout");
 				rkf.SetValue("SandDock", value);
+			}
+		}
+
+		/// <summary>
+		/// true, if the user want's to control the Tabs like done in FireFox
+		/// </summary>
+		public bool FirefoxTabbing
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("FirefoxTabbing", true);
+				return Convert.ToBoolean(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("FirefoxTabbing", value);
 			}
 		}
 

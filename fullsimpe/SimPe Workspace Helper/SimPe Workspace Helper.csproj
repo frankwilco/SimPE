@@ -119,6 +119,11 @@
                     AssemblyName = "XPCommonControls"
                     HintPath = "..\..\..\XPCommonControls\XPCommonControls.dll"
                 />
+                <Reference
+                    Name = "SimPe HandlerCommon"
+                    Project = "{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
@@ -130,6 +135,11 @@
                 />
                 <File
                     RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ErrorWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -219,12 +229,32 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "PackedFileDescriptorCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ResourceLoader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ThemeManager.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ToolLoader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ToolResult.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "XmlPackageReader.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

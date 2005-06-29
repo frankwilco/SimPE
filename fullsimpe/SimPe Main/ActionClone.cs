@@ -32,9 +32,18 @@ namespace SimPe.Actions.Default
 		}
 		#region IToolAction Member		
 
-		public override void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs[] e, LoadedPackage guipackage)
+		public override void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			Message.Show("Executed Action with "+ e.Length.ToString());
+			if (!ChangeEnabledStateEventHandler(null, es)) return;
+
+			foreach (SimPe.Events.ResourceContainer e in es) 
+			{
+				if (e.HasFileDescriptor)					
+				{
+					SimPe.Interfaces.Files.IPackedFileDescriptor pfd = (SimPe.Interfaces.Files.IPackedFileDescriptor)e.Resource.FileDescriptor.Clone();
+					es.LoadedPackage.Package.Add(pfd);
+				}
+			}
 		}
 
 		#endregion
