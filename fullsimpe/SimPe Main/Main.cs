@@ -39,7 +39,6 @@ namespace SimPe
 		private TD.SandBar.ToolBarContainer topSandBarDock;
 		private TD.SandBar.MenuBar menuBar1;
 		private TD.SandBar.MenuBarItem menuBarItem1;
-		private TD.SandBar.MenuBarItem menuBarItem3;
 		private TD.SandBar.MenuBarItem menuBarItem5;
 		private TD.SandBar.ToolBar toolBar1;
 		private TD.SandDock.DockControl dcPreview;
@@ -105,12 +104,15 @@ namespace SimPe
 		private TD.SandBar.ButtonItem biClose;
 		private TD.SandBar.ButtonItem biSaveAs;
 		private SteepValley.Windows.Forms.ThemedControls.XPTaskBox tbDefaultAction;
-		private SteepValley.Windows.Forms.ThemedControls.XPTaskBox tbExtAction;
 		private TD.SandBar.ContextMenuBarItem miAction;
 		private TD.SandBar.ToolBar tbAction;
 		private TD.SandBar.ButtonItem biNewDc;
 		private TD.SandBar.MenuButtonItem miPref;
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel5;
+		private TD.SandBar.MenuButtonItem miNew;
+		private TD.SandBar.ButtonItem biNew;
+		private SteepValley.Windows.Forms.ThemedControls.XPTaskBox tbExtAction;
+		private SteepValley.Windows.Forms.ThemedControls.XPTaskBox tbPlugAction;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -139,6 +141,7 @@ namespace SimPe
 				tbDefaultAction,
 				miAction,
 				tbExtAction,
+				tbPlugAction,
 				tbAction,
 				dcPlugin);
 			plugger.ClosedToolPlugin += new ToolMenuItemExt.ExternalToolNotify(ClosedToolPlugin);
@@ -196,13 +199,13 @@ namespace SimPe
 			this.topSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.menuBar1 = new TD.SandBar.MenuBar();
 			this.menuBarItem1 = new TD.SandBar.MenuBarItem();
+			this.miNew = new TD.SandBar.MenuButtonItem();
 			this.miOpen = new TD.SandBar.MenuButtonItem();
 			this.miSave = new TD.SandBar.MenuButtonItem();
 			this.miSaveAs = new TD.SandBar.MenuButtonItem();
 			this.miClose = new TD.SandBar.MenuButtonItem();
 			this.miRecent = new TD.SandBar.MenuButtonItem();
 			this.miExit = new TD.SandBar.MenuButtonItem();
-			this.menuBarItem3 = new TD.SandBar.MenuBarItem();
 			this.miExtra = new TD.SandBar.MenuBarItem();
 			this.miMetaInfo = new TD.SandBar.MenuButtonItem();
 			this.miFileNames = new TD.SandBar.MenuButtonItem();
@@ -221,6 +224,7 @@ namespace SimPe
 			this.clOffset = new System.Windows.Forms.ColumnHeader();
 			this.clSize = new System.Windows.Forms.ColumnHeader();
 			this.toolBar1 = new TD.SandBar.ToolBar();
+			this.biNew = new TD.SandBar.ButtonItem();
 			this.biOpen = new TD.SandBar.ButtonItem();
 			this.biSave = new TD.SandBar.ButtonItem();
 			this.biSaveAs = new TD.SandBar.ButtonItem();
@@ -247,6 +251,7 @@ namespace SimPe
 			this.dcAction = new TD.SandDock.DockControl();
 			this.xpGradientPanel2 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.tbExtAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
+			this.tbPlugAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
 			this.tbDefaultAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
 			this.mybottomSandDock = new TD.SandDock.DockContainer();
 			this.dcPlugin = new TD.SandDock.DockControl();
@@ -447,7 +452,6 @@ namespace SimPe
 			this.menuBar1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("menuBar1.ImeMode")));
 			this.menuBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
 																			  this.menuBarItem1,
-																			  this.menuBarItem3,
 																			  this.miExtra,
 																			  this.miTools,
 																			  this.miWindow,
@@ -465,6 +469,7 @@ namespace SimPe
 			// menuBarItem1
 			// 
 			this.menuBarItem1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																				  this.miNew,
 																				  this.miOpen,
 																				  this.miSave,
 																				  this.miSaveAs,
@@ -473,6 +478,16 @@ namespace SimPe
 																				  this.miExit});
 			this.menuBarItem1.Text = resources.GetString("menuBarItem1.Text");
 			this.menuBarItem1.ToolTipText = resources.GetString("menuBarItem1.ToolTipText");
+			// 
+			// miNew
+			// 
+			this.miNew.Image = ((System.Drawing.Image)(resources.GetObject("miNew.Image")));
+			this.miNew.ItemImportance = TD.SandBar.ItemImportance.Low;
+			this.miNew.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNew.Shortcut")));
+			this.miNew.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNew.Shortcut2")));
+			this.miNew.Text = resources.GetString("miNew.Text");
+			this.miNew.ToolTipText = resources.GetString("miNew.ToolTipText");
+			this.miNew.Activate += new System.EventHandler(this.Activate_miNew);
 			// 
 			// miOpen
 			// 
@@ -528,11 +543,6 @@ namespace SimPe
 			this.miExit.ToolTipText = resources.GetString("miExit.ToolTipText");
 			this.miExit.Activate += new System.EventHandler(this.Activate_miExit);
 			// 
-			// menuBarItem3
-			// 
-			this.menuBarItem3.Text = resources.GetString("menuBarItem3.Text");
-			this.menuBarItem3.ToolTipText = resources.GetString("menuBarItem3.ToolTipText");
-			// 
 			// miExtra
 			// 
 			this.miExtra.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
@@ -562,6 +572,7 @@ namespace SimPe
 			// 
 			// miRunSims
 			// 
+			this.miRunSims.Image = ((System.Drawing.Image)(resources.GetObject("miRunSims.Image")));
 			this.miRunSims.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miRunSims.Shortcut")));
 			this.miRunSims.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miRunSims.Shortcut2")));
 			this.miRunSims.Text = resources.GetString("miRunSims.Text");
@@ -641,8 +652,10 @@ namespace SimPe
 			this.lv.Text = resources.GetString("lv.Text");
 			this.lv.View = System.Windows.Forms.View.Details;
 			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
+			this.lv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyDown);
 			this.lv.DoubleClick += new System.EventHandler(this.SelectResourceDBClick);
 			this.lv.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SelectResource);
+			this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
 			this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.SortResourceListClick);
 			this.lv.SelectedIndexChanged += new System.EventHandler(this.SelectResource);
 			// 
@@ -695,6 +708,7 @@ namespace SimPe
 			this.toolBar1.Guid = new System.Guid("450cfa2c-067d-435a-bc20-a98c7b00b268");
 			this.toolBar1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("toolBar1.ImeMode")));
 			this.toolBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																			  this.biNew,
 																			  this.biOpen,
 																			  this.biSave,
 																			  this.biSaveAs,
@@ -708,6 +722,14 @@ namespace SimPe
 			this.toolBar1.TabIndex = ((int)(resources.GetObject("toolBar1.TabIndex")));
 			this.toolBar1.Text = resources.GetString("toolBar1.Text");
 			this.toolBar1.Visible = ((bool)(resources.GetObject("toolBar1.Visible")));
+			// 
+			// biNew
+			// 
+			this.biNew.BuddyMenu = this.miNew;
+			this.biNew.Image = ((System.Drawing.Image)(resources.GetObject("biNew.Image")));
+			this.biNew.ItemImportance = TD.SandBar.ItemImportance.Low;
+			this.biNew.Text = resources.GetString("biNew.Text");
+			this.biNew.ToolTipText = resources.GetString("biNew.ToolTipText");
 			// 
 			// biOpen
 			// 
@@ -796,8 +818,8 @@ namespace SimPe
 			this.myleftSandDock.Guid = new System.Guid("dc0c25ed-38d2-4c6b-9420-2befdae436f2");
 			this.myleftSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("myleftSandDock.ImeMode")));
 			this.myleftSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-																																											   new TD.SandDock.SplitLayoutSystem(228, 251, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-																																																																											   new TD.SandDock.ControlLayoutSystem(228, 251, new TD.SandDock.DockControl[] {
+																																											   new TD.SandDock.SplitLayoutSystem(228, 331, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
+																																																																											   new TD.SandDock.ControlLayoutSystem(228, 331, new TD.SandDock.DockControl[] {
 																																																																																															   this.dcResource}, this.dcResource)})});
 			this.myleftSandDock.Location = ((System.Drawing.Point)(resources.GetObject("myleftSandDock.Location")));
 			this.myleftSandDock.Manager = this.sdm;
@@ -987,7 +1009,7 @@ namespace SimPe
 			this.myrightSandDock.Guid = new System.Guid("645618eb-a628-4136-9e3c-ff24b55d28ba");
 			this.myrightSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("myrightSandDock.ImeMode")));
 			this.myrightSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-																																												new TD.SandDock.ControlLayoutSystem(176, 251, new TD.SandDock.DockControl[] {
+																																												new TD.SandDock.ControlLayoutSystem(176, 331, new TD.SandDock.DockControl[] {
 																																																																this.dcFilter,
 																																																																this.dcPreview,
 																																																																this.dcAction}, this.dcAction)});
@@ -1166,6 +1188,7 @@ namespace SimPe
 			this.xpGradientPanel2.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel2.AutoScrollMinSize")));
 			this.xpGradientPanel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel2.BackgroundImage")));
 			this.xpGradientPanel2.Controls.Add(this.tbExtAction);
+			this.xpGradientPanel2.Controls.Add(this.tbPlugAction);
 			this.xpGradientPanel2.Controls.Add(this.tbDefaultAction);
 			this.xpGradientPanel2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpGradientPanel2.Dock")));
 			this.xpGradientPanel2.DockPadding.Left = 4;
@@ -1223,6 +1246,46 @@ namespace SimPe
 			this.tbExtAction.ThemeFormat.RightHeaderColor = System.Drawing.Color.FromArgb(((System.Byte)(197)), ((System.Byte)(210)), ((System.Byte)(240)));
 			this.tbExtAction.Visible = ((bool)(resources.GetObject("tbExtAction.Visible")));
 			// 
+			// tbPlugAction
+			// 
+			this.tbPlugAction.AccessibleDescription = resources.GetString("tbPlugAction.AccessibleDescription");
+			this.tbPlugAction.AccessibleName = resources.GetString("tbPlugAction.AccessibleName");
+			this.tbPlugAction.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbPlugAction.Anchor")));
+			this.tbPlugAction.AutoScroll = ((bool)(resources.GetObject("tbPlugAction.AutoScroll")));
+			this.tbPlugAction.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("tbPlugAction.AutoScrollMargin")));
+			this.tbPlugAction.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("tbPlugAction.AutoScrollMinSize")));
+			this.tbPlugAction.BackColor = System.Drawing.Color.Transparent;
+			this.tbPlugAction.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbPlugAction.BackgroundImage")));
+			this.tbPlugAction.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbPlugAction.Dock")));
+			this.tbPlugAction.DockPadding.Bottom = 4;
+			this.tbPlugAction.DockPadding.Left = 4;
+			this.tbPlugAction.DockPadding.Right = 4;
+			this.tbPlugAction.DockPadding.Top = 44;
+			this.tbPlugAction.Enabled = ((bool)(resources.GetObject("tbPlugAction.Enabled")));
+			this.tbPlugAction.Font = ((System.Drawing.Font)(resources.GetObject("tbPlugAction.Font")));
+			this.tbPlugAction.HeaderText = resources.GetString("tbPlugAction.HeaderText");
+			this.tbPlugAction.Icon = ((System.Drawing.Icon)(resources.GetObject("tbPlugAction.Icon")));
+			this.tbPlugAction.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbPlugAction.ImeMode")));
+			this.tbPlugAction.Location = ((System.Drawing.Point)(resources.GetObject("tbPlugAction.Location")));
+			this.tbPlugAction.Name = "tbPlugAction";
+			this.tbPlugAction.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbPlugAction.RightToLeft")));
+			this.tbPlugAction.Size = ((System.Drawing.Size)(resources.GetObject("tbPlugAction.Size")));
+			this.tbPlugAction.TabIndex = ((int)(resources.GetObject("tbPlugAction.TabIndex")));
+			this.tbPlugAction.ThemeFormat.BodyColor = System.Drawing.Color.FromArgb(((System.Byte)(197)), ((System.Byte)(210)), ((System.Byte)(240)));
+			this.tbPlugAction.ThemeFormat.BodyFont = new System.Drawing.Font("Tahoma", 8F);
+			this.tbPlugAction.ThemeFormat.BodyTextColor = System.Drawing.Color.FromArgb(((System.Byte)(33)), ((System.Byte)(93)), ((System.Byte)(198)));
+			this.tbPlugAction.ThemeFormat.BorderColor = System.Drawing.Color.White;
+			this.tbPlugAction.ThemeFormat.ChevronDown = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDown1")));
+			this.tbPlugAction.ThemeFormat.ChevronDownHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDownHighlight1")));
+			this.tbPlugAction.ThemeFormat.ChevronUp = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUp1")));
+			this.tbPlugAction.ThemeFormat.ChevronUpHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUpHighlight1")));
+			this.tbPlugAction.ThemeFormat.HeaderFont = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+			this.tbPlugAction.ThemeFormat.HeaderTextColor = System.Drawing.Color.FromArgb(((System.Byte)(33)), ((System.Byte)(93)), ((System.Byte)(198)));
+			this.tbPlugAction.ThemeFormat.HeaderTextHighlightColor = System.Drawing.Color.FromArgb(((System.Byte)(66)), ((System.Byte)(142)), ((System.Byte)(255)));
+			this.tbPlugAction.ThemeFormat.LeftHeaderColor = System.Drawing.Color.White;
+			this.tbPlugAction.ThemeFormat.RightHeaderColor = System.Drawing.Color.FromArgb(((System.Byte)(197)), ((System.Byte)(210)), ((System.Byte)(240)));
+			this.tbPlugAction.Visible = ((bool)(resources.GetObject("tbPlugAction.Visible")));
+			// 
 			// tbDefaultAction
 			// 
 			this.tbDefaultAction.AccessibleDescription = resources.GetString("tbDefaultAction.AccessibleDescription");
@@ -1252,10 +1315,10 @@ namespace SimPe
 			this.tbDefaultAction.ThemeFormat.BodyFont = new System.Drawing.Font("Tahoma", 8F);
 			this.tbDefaultAction.ThemeFormat.BodyTextColor = System.Drawing.Color.FromArgb(((System.Byte)(33)), ((System.Byte)(93)), ((System.Byte)(198)));
 			this.tbDefaultAction.ThemeFormat.BorderColor = System.Drawing.Color.White;
-			this.tbDefaultAction.ThemeFormat.ChevronDown = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDown1")));
-			this.tbDefaultAction.ThemeFormat.ChevronDownHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDownHighlight1")));
-			this.tbDefaultAction.ThemeFormat.ChevronUp = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUp1")));
-			this.tbDefaultAction.ThemeFormat.ChevronUpHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUpHighlight1")));
+			this.tbDefaultAction.ThemeFormat.ChevronDown = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDown2")));
+			this.tbDefaultAction.ThemeFormat.ChevronDownHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDownHighlight2")));
+			this.tbDefaultAction.ThemeFormat.ChevronUp = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUp2")));
+			this.tbDefaultAction.ThemeFormat.ChevronUpHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUpHighlight2")));
 			this.tbDefaultAction.ThemeFormat.HeaderFont = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
 			this.tbDefaultAction.ThemeFormat.HeaderTextColor = System.Drawing.Color.FromArgb(((System.Byte)(33)), ((System.Byte)(93)), ((System.Byte)(198)));
 			this.tbDefaultAction.ThemeFormat.HeaderTextHighlightColor = System.Drawing.Color.FromArgb(((System.Byte)(66)), ((System.Byte)(142)), ((System.Byte)(255)));
@@ -1276,7 +1339,7 @@ namespace SimPe
 			this.mybottomSandDock.Guid = new System.Guid("a20dcccb-ae75-4862-815f-b88456de8319");
 			this.mybottomSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("mybottomSandDock.ImeMode")));
 			this.mybottomSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Vertical, new TD.SandDock.LayoutSystemBase[] {
-																																											   new TD.SandDock.ControlLayoutSystem(924, 268, new TD.SandDock.DockControl[] {
+																																											   new TD.SandDock.ControlLayoutSystem(924, 188, new TD.SandDock.DockControl[] {
 																																																															   this.dcPlugin}, this.dcPlugin)});
 			this.mybottomSandDock.Location = ((System.Drawing.Point)(resources.GetObject("mybottomSandDock.Location")));
 			this.mybottomSandDock.Manager = this.sdm;
@@ -1287,7 +1350,6 @@ namespace SimPe
 			this.mybottomSandDock.TabIndex = ((int)(resources.GetObject("mybottomSandDock.TabIndex")));
 			this.mybottomSandDock.Text = resources.GetString("mybottomSandDock.Text");
 			this.mybottomSandDock.Visible = ((bool)(resources.GetObject("mybottomSandDock.Visible")));
-			
 			// 
 			// dcPlugin
 			// 
@@ -1336,6 +1398,7 @@ namespace SimPe
 			this.dc.TabIndex = ((int)(resources.GetObject("dc.TabIndex")));
 			this.dc.Text = resources.GetString("dc.Text");
 			this.dc.Visible = ((bool)(resources.GetObject("dc.Visible")));
+			this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
 			// 
 			// xpGradientPanel5
 			// 
@@ -1690,7 +1753,13 @@ namespace SimPe
 				args = pargs;
 				Application.EnableVisualStyles();
 				Application.DoEvents();
-				Application.Run(new MainForm());
+
+				Commandline.ImportOldData();
+				if (!Commandline.Start(args))  
+				{
+					Helper.WindowsRegistry.UpdateSimPEDirectory();
+					Application.Run(new MainForm());
+				}
 			} 
 			catch (Exception ex) 
 			{
@@ -1713,7 +1782,7 @@ namespace SimPe
 		/// </summary>
 		void BeforeFileLoad(LoadedPackage sender, FileNameEventArg e)
 		{
-			if (!CloseFile()) e.Cancel=true;
+			if (!ClosePackage()) e.Cancel=true;
 		}
 
 		/// <summary>
@@ -1816,7 +1885,7 @@ namespace SimPe
 		/// Close the currently opened File
 		/// </summary>
 		/// <returns>true, if the File was closed</returns>
-		bool CloseFile()
+		bool ClosePackage()
 		{
 			if (!resloader.Clear()) return false;
 			if (!package.Close()) return false;
@@ -1852,8 +1921,12 @@ namespace SimPe
 		/// <param name="e"></param>
 		void ResetLayout(object sender, EventArgs e) 
 		{
-			Helper.WindowsRegistry.SandBarLayout = sbmdef;
-			Helper.WindowsRegistry.SandDockLayout = sdmdef;
+			Helper.WindowsRegistry.Layout.SandBarLayout = sbmdef;
+			Helper.WindowsRegistry.Layout.SandDockLayout = sdmdef;
+
+			Helper.WindowsRegistry.Layout.PluginActionBoxExpanded = false;
+			Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded = true;
+			Helper.WindowsRegistry.Layout.ToolActionBoxExpanded = false;
 			ReloadLayout();
 		}
 
@@ -1867,8 +1940,14 @@ namespace SimPe
 			if (sdmdef==null) sdmdef = sdm.GetLayout();
 			if (sbmdef==null) sbmdef = sbm.GetLayout(true);
 
-			if (Helper.WindowsRegistry.SandBarLayout!="") sbm.SetLayout(Helper.WindowsRegistry.SandBarLayout);
-			if (Helper.WindowsRegistry.SandDockLayout!="") sdm.SetLayout(Helper.WindowsRegistry.SandDockLayout);
+			if (Helper.WindowsRegistry.Layout.SandBarLayout!="") sbm.SetLayout(Helper.WindowsRegistry.Layout.SandBarLayout);
+			if (Helper.WindowsRegistry.Layout.SandDockLayout!="") sdm.SetLayout(Helper.WindowsRegistry.Layout.SandDockLayout);
+
+			
+			/*this.tbDefaultAction.IsExpanded = Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded;			
+			this.tbPlugAction.IsExpanded = Helper.WindowsRegistry.Layout.PluginActionBoxExpanded;
+			this.tbExtAction.IsExpanded = Helper.WindowsRegistry.Layout.ToolActionBoxExpanded;*/
+			
 
 			UpdateDockMenus();
 		}
@@ -1893,10 +1972,11 @@ namespace SimPe
 				mi.Activate += new EventHandler(Activate_miWindowDocks);
 				mi.Tag = c;
 
-				if (c.Tag != null && firsttool) 
+				if (c.Tag != null) 
 				{
-					mi.BeginGroup = true;
+					mi.BeginGroup = firsttool;
 					firsttool = false;
+					if (c.Tag is System.Windows.Forms.Shortcut) mi.Shortcut = (System.Windows.Forms.Shortcut)c.Tag;
 				}
 
 				c.Closed += new EventHandler(CloseDockControl);
@@ -2148,6 +2228,39 @@ namespace SimPe
 			SelectResource(sender, false, false);
 		}
 
+		private void dc_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+		{
+			if (e.Button==MouseButtons.Middle && Helper.WindowsRegistry.FirefoxTabbing && dc.ActiveDocument!=null) 
+			{
+				resloader.CloseDocument(dc.ActiveDocument);
+			}
+		}		
+
+		bool pressedalt;
+		private void ResourceListKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+		{
+			pressedalt = e.Alt;
+		}
+
+		private void ResourceListKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+		{
+			pressedalt = false;
+			if (e.KeyCode==Keys.A && e.Control) 
+			{
+				lv.Tag = true;
+				foreach (ListViewItem lvi in lv.Items) lvi.Selected = true;
+				lv.Tag = null;
+			}
+		}
+
+		private void Activate_miNew(object sender, System.EventArgs e)
+		{
+			if (this.ClosePackage()) 
+			{
+				package.LoadFromPackage(SimPe.Packages.GeneratableFile.CreateNew());
+			}
+		}
+
 		bool frommiddle = false;
 		/// <summary>
 		/// Selected Resource did change
@@ -2157,11 +2270,13 @@ namespace SimPe
 		/// <param name="fromchg">Select was issued by an internal Change of a pfd Resource</param>
 		/// <remarks>Uses the frommiddle field to determin if the middle Button was clicked</remarks>
 		private void SelectResource(object sender, bool fromdbl, bool fromchg)
-		{
+		{			
 			bool fm = frommiddle;
 			if (!Helper.WindowsRegistry.FirefoxTabbing) fm=true;
 
 			ListView lv = (ListView)sender;
+			
+
 			if (lv.SelectedItems.Count==0) 
 			{
 				plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));
@@ -2177,11 +2292,12 @@ namespace SimPe
 				if (!fromdbl && !Helper.WindowsRegistry.SimpleResourceSelect && !frommiddle) continue;
 
 				//only the first one get's added to the Plugin View				
-				if ((lv.SelectedItems.Count==1 && !fromchg)) resloader.AddResource(lvt.Resource, !fm);
+				if ((lv.SelectedItems.Count==1 && !fromchg && lv.Tag==null)) resloader.AddResource(lvt.Resource, !fm);
 			}
 
 			//notify the Action Tools that the selection was changed
 			plugger.ChangedGuiResourceEventHandler(this, res);
+			lv.Focus();
 		}
 
 		private void ShowPreferences(object sender, System.EventArgs e)
@@ -2203,8 +2319,11 @@ namespace SimPe
 			if (!e.Cancel) 
 			{
 				Ambertation.Panel3D.StopAll();
-				Helper.WindowsRegistry.SandBarLayout = sbm.GetLayout(true);
-				Helper.WindowsRegistry.SandDockLayout = sdm.GetLayout();
+				Helper.WindowsRegistry.Layout.SandBarLayout = sbm.GetLayout(true);
+				Helper.WindowsRegistry.Layout.SandDockLayout = sdm.GetLayout();
+				Helper.WindowsRegistry.Layout.PluginActionBoxExpanded = this.tbPlugAction.IsExpanded;
+				Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded = this.tbDefaultAction.IsExpanded;
+				Helper.WindowsRegistry.Layout.ToolActionBoxExpanded = this.tbExtAction.IsExpanded;
 			}
 		}
 
@@ -2329,7 +2448,7 @@ namespace SimPe
 
 		private void Activate_miClose(object sender, System.EventArgs e)
 		{
-			if (CloseFile())
+			if (ClosePackage())
 			{
 				SimPe.Packages.StreamFactory.CloseAll();
 				this.ShowNewFile();
@@ -2357,7 +2476,7 @@ namespace SimPe
 
 		private void SelectResource(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
-			if (e.Button == MouseButtons.Middle) 
+			if ((e.Button == MouseButtons.Middle) || (e.Button == MouseButtons.Left && pressedalt))
 			{
 				ListViewItem lvi = lv.GetItemAt(e.X, e.Y);
 				if (lvi!=null) 

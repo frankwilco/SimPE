@@ -20,6 +20,7 @@
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using SimPe.Events;
 
 namespace SimPe.Interfaces
 {
@@ -57,5 +58,28 @@ namespace SimPe.Interfaces
 		/// <param name="package">The opened Package or null if none</param>
 		/// <returns>true if this tool is avaliable</returns>
 		bool IsEnabled(Interfaces.Files.IPackedFileDescriptor pfd ,Interfaces.Files.IPackageFile package);
+	}
+
+	/// <summary>
+	/// defines a Action Plugin with the new Interface
+	/// </summary>
+	public interface IToolPlus: IToolPlugin, IToolExt
+	{
+		/// <summary>
+		/// This Eventhandler will be connected to the ExecuteAction Event of the Caller, you should
+		/// perform the Action here. You can notify the caller of Changes when setting the apropriate 
+		/// Attributes in e
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		void Execute(object sender, ResourceEventArgs e);
+
+		/// <summary>
+		/// This EventHandler will be connected to the ChangeResource Event of the Caller, you can set 
+		/// the Enabled State here
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		bool ChangeEnabledStateEventHandler(object sender, ResourceEventArgs e);		
 	}
 }

@@ -9,7 +9,7 @@
             <Settings
                 ApplicationIcon = "img\simpenew.ico"
                 AssemblyKeyContainerName = ""
-                AssemblyName = "SimPe.New"
+                AssemblyName = "SimPe"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"

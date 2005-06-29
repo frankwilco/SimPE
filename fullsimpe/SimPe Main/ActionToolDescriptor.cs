@@ -120,9 +120,10 @@ namespace SimPe
 		/// <param name="e"></param>
 		private void LinkClicked(object sender, EventArgs e)
 		{
-			lp.PauseIndexChangedEvents();
+
+			if (lp!=null) lp.PauseIndexChangedEvents();
 			tool.ExecuteEventHandler(sender, lasteventarg);
-			lp.RestartIndexChangedEvents();
+			if (lp!=null) lp.RestartIndexChangedEvents();
 		}
 	}	
 }

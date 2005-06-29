@@ -16,7 +16,7 @@
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
                 OutputType = "Library"
-                PreBuildEvent = ""
+                PreBuildEvent = 'copy "$(ProjectDir)..\SimPe Main\AssemblyInfo.cs" "$(ProjectDir)AssemblyInfo.cs"'
                 PostBuildEvent = ""
                 RootNamespace = "SimPe"
                 RunPostBuildEvent = "OnBuildSuccess"
@@ -260,6 +260,11 @@
                 />
                 <File
                     RelPath = "IAlias.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRegistry.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

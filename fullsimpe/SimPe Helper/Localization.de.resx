@@ -517,4 +517,25 @@ Package: {filename}</value>
 
 Package: {filename}</value>
 	</data>
+	<data name="Intrigued Neighborhood">
+		<value>Interes. Nachbarschaft</value>
+	</data>
+	<data name="Set TGI Values">
+		<value>TGI aktualisieren</value>
+	</data>
+	<data name="Reload FileTable">
+		<value>FileTable neu laden</value>
+	</data>
+	<data name="Build Namemap">
+		<value>Namemap Erzeugen</value>
+	</data>
+	<data name="Create Description">
+		<value>Erstelle &amp;Beschreibung</value>
+	</data>
+	<data name="from Selection...">
+		<value>aus &amp;Auswahl...</value>
+	</data>
+	<data name="from Package...">
+		<value>aus &amp;Package...</value>
+	</data>
 </root>

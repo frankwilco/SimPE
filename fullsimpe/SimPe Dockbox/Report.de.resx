@@ -97,82 +97,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cbComp.Items">
-    <value>nein</value>
+  <data name="linkLabel1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
   </data>
-  <data name="cbComp.Items1">
-    <value>ja</value>
+  <data name="linkLabel1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0, 12</value>
   </data>
-  <data name="cbComp.Items2">
-    <value>beides</value>
+  <data name="linkLabel1.Text">
+    <value>speichern...</value>
   </data>
-  <data name="label11.Text">
-    <value>Instanz:</value>
-  </data>
-  <data name="label8.Text">
-    <value>Typ:</value>
-  </data>
-  <data name="label9.Text">
-    <value>Instanz (hoch):</value>
-  </data>
-  <data name="label10.Text">
-    <value>Gruppe:</value>
-  </data>
-  <data name="label4.Text">
-    <value>Lücken Index:</value>
-  </data>
-  <data name="dcConvert.TabText">
-    <value>Umrechnung</value>
-  </data>
-  <data name="dcConvert.Text">
-    <value>Hex &lt;-&gt; Dezimal Umrechnung</value>
-  </data>
-  <data name="lbDesc.Text">
-    <value>unb.</value>
-  </data>
-  <data name="lbVersion.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>120, 48</value>
-  </data>
-  <data name="lbVersion.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>30, 17</value>
-  </data>
-  <data name="lbVersion.Text">
-    <value>unb.</value>
-  </data>
-  <data name="lbAuthor.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>120, 32</value>
-  </data>
-  <data name="lbAuthor.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>30, 17</value>
-  </data>
-  <data name="lbAuthor.Text">
-    <value>unb.</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>96, 16</value>
-  </data>
-  <data name="label5.Text">
-    <value>Beschreibung:</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>96, 16</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>96, 16</value>
-  </data>
-  <data name="label1.Text">
-    <value>Autor:</value>
-  </data>
-  <data name="lbName.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>120, 16</value>
-  </data>
-  <data name="lbName.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>30, 17</value>
-  </data>
-  <data name="lbName.Text">
-    <value>unb.</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>96, 16</value>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
   </data>
 </root>

@@ -19,6 +19,7 @@
  ***************************************************************************/
 using System;
 using System.IO;
+using System.ComponentModel;
 
 namespace SimPe.Packages
 {
@@ -59,6 +60,7 @@ namespace SimPe.Packages
 		/// Returns the Identifier of the File
 		/// </summary>
 		/// <remarks>This value should be DBPF</remarks>
+		[DescriptionAttribute("Package Identifier"), DefaultValueAttribute("DBPF")]		
 		public string Identifier
 		{
 			get 
@@ -80,6 +82,7 @@ namespace SimPe.Packages
 		/// Returns the Major Version of The Packages FileFormat
 		/// </summary>
 		/// <remarks>This value should be 1</remarks>
+		[DescriptionAttribute("Major Version Number of this Package"), CategoryAttribute("Version"), DefaultValueAttribute(1)]		
 		public Int32 MajorVersion
 		{
 			get
@@ -99,6 +102,7 @@ namespace SimPe.Packages
 		/// Returns the Minor Version of The Packages FileFormat 
 		/// </summary>
 		/// <remarks>This value should be 0 or 1</remarks>
+		[DescriptionAttribute("Minor Version Number of this Package"), CategoryAttribute("Version"), DefaultValueAttribute(1)]		
 		public Int32 MinorVersion
 		{
 			get
@@ -110,6 +114,7 @@ namespace SimPe.Packages
 		/// <summary>
 		/// Returns the Overall Version of this Package
 		/// </summary>
+		[DescriptionAttribute("Overall Versionnumber of this Package"), CategoryAttribute("Version"), DefaultValueAttribute(4294967297)]		
 		public long Version 
 		{
 			get 
@@ -134,6 +139,12 @@ namespace SimPe.Packages
 		/// </summary>
 #if DEBUG
 		public Int32 created;
+
+		[DescriptionAttribute("Creation Date of the Package"), CategoryAttribute("Debug")]						
+		public Int32 Created 
+		{
+			get { return created; }
+		}
 #else
 		internal Int32 created;
 #endif
@@ -143,6 +154,12 @@ namespace SimPe.Packages
 		/// </summary>
 #if DEBUG
 		public Int32 modified;
+
+		[DescriptionAttribute("Modification Date of the Package"), CategoryAttribute("Debug")]						
+		public Int32 Modified 
+		{
+			get { return modified; }
+		}
 #else
 		internal Int32 modified;
 #endif
@@ -156,6 +173,7 @@ namespace SimPe.Packages
 		/// <summary>
 		/// Returns Index Informations stored in the Header
 		/// </summary>
+		[BrowsableAttribute(false)]
 		public SimPe.Interfaces.Files.IPackageHeaderIndex Index
 		{
 			get 
@@ -172,6 +190,7 @@ namespace SimPe.Packages
 		/// <summary>
 		/// Returns Hole Index Informations stored in the Header
 		/// </summary>
+		[BrowsableAttribute(false)]
 		public SimPe.Interfaces.Files.IPackageHeaderHoleIndex HoleIndex
 		{
 			get
@@ -189,11 +208,12 @@ namespace SimPe.Packages
 		/// <summary>
 		/// Returns or Sets the Type of the Package
 		/// </summary>
+		[DescriptionAttribute("The Indextype used in the Package. ptLongFileIndex allows the use of the \"Instance (high)\" Value."), DefaultValueAttribute(Data.MetaData.IndexTypes.ptLongFileIndex)]				
 		public Data.MetaData.IndexTypes IndexType
 		{
 			get 
 			{
-				return (Data.MetaData.IndexTypes)indextype;
+				return (Data.MetaData.IndexTypes)indextype;				
 			}
 			set 
 			{
@@ -206,6 +226,12 @@ namespace SimPe.Packages
 		/// </summary>
 #if DEBUG
 		public Int32[] reserved_02;
+
+		[DescriptionAttribute("Reserved Values"), CategoryAttribute("Debug")]						
+		public Int32[] Reserved 
+		{
+			get { return reserved_02; }
+		}
 #else
 		internal Int32[] reserved_02;
 #endif
@@ -214,6 +240,7 @@ namespace SimPe.Packages
 		/// <summary>
 		/// true if the version is greater or equal than 1.1
 		/// </summary>
+		[BrowsableAttribute(false)]
 		public bool IsVersion0101
 		{
 			get 

@@ -19,59 +19,68 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces;
-using SimPe.Plugin.Tool.Action;
+using SimPe.Events;
 
-namespace SimPe.Plugin
+namespace SimPe.Plugin.Tool
 {
 	/// <summary>
-	/// Lists all Plugins (=FileType Wrappers) available in this Package
+	/// Zusammenfassung für ImportSemiTool.
 	/// </summary>
-	/// <remarks>
-	/// GetWrappers() has to return a list of all Plugins provided by this Library. 
-	/// If a Plugin isn't returned, SimPe won't recognize it!
-	/// </remarks>
-	public class WrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory, SimPe.Interfaces.Plugin.IToolFactory
+	public class CreateListFromPackageTool : SimPe.Interfaces.IToolPlus	
 	{
-		#region AbstractWrapperFactory Member
-		/// <summary>
-		/// Returns a List of all available Plugins in this Package
-		/// </summary>
-		/// <returns>A List of all provided Plugins (=FileType Wrappers)</returns>
-		public override SimPe.Interfaces.IWrapper[] KnownWrappers
+		internal CreateListFromPackageTool() 
 		{
-			get 
+			
+		}		
+
+		#region ITool Member
+
+		public bool ChangeEnabledStateEventHandler(object sender, ResourceEventArgs e)
+		{
+			return (e.Loaded);
+		}
+
+		public void Execute(object sender, ResourceEventArgs es)
+		{
+			if (!ChangeEnabledStateEventHandler(sender, es)) return;
+
+			SimPe.Events.ResourceContainers c = new ResourceContainers();
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in es.LoadedPackage.Package.Index) 
 			{
-				IWrapper[] wrappers = {
-										  new Plugin.Ngbh(this.LinkedProvider),
-										  new Plugin.Ltxt(this.LinkedProvider),
-										  new Plugin.Want(this.LinkedProvider),
-										  new Plugin.XWant(),
-										  new Plugin.Idno()
-									  };
-				return wrappers;
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = new SimPe.Plugin.FileIndexItem(pfd, es.LoadedPackage.Package);
+				SimPe.Events.ResourceContainer rc = new ResourceContainer(fii);
+				c.Add(rc);
 			}
+
+			CreateListFromSelectionTool.Execute(c);
+		}
+
+		
+
+
+		public override string ToString()
+		{
+			return "Create Description\\from Package...";
 		}
 
 		#endregion
 
-		#region IToolFactory Member
-
-
-		public IToolPlugin[] KnownTools
+		#region IToolExt Member
+		public System.Windows.Forms.Shortcut Shortcut
 		{
 			get
 			{
-				IToolPlugin[] tools = {
-										 new Plugin.FixUidTool(),
-										 new ActionIntriguedNeighborhood()
-									 };
-				if (Helper.WindowsRegistry.HiddenMode) return tools;
-
-				tools = new ITool[0];
-				return tools;
+				return System.Windows.Forms.Shortcut.CtrlShiftD;
 			}
-		}		
+		}
 
+		public System.Drawing.Image Icon
+		{
+			get
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.Tool.Dockable.package.png"));
+			}
+		}
 
 		#endregion
 	}

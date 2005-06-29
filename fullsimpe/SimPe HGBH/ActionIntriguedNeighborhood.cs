@@ -19,74 +19,68 @@
  ***************************************************************************/
 using System;
 
-namespace SimPe.Plugin.Tool.Dockable
+namespace SimPe.Plugin.Tool.Action
 {
 	/// <summary>
-	/// Dockable Tool that displays Package specific Informations
+	/// The Intrigued Neighborhood Action
 	/// </summary>
-	public class PackageDockTool : SimPe.Interfaces.IDockableTool
+	public class ActionIntriguedNeighborhood : SimPe.Interfaces.IToolAction
 	{
-		ResourceDock rd;
-		public PackageDockTool(ResourceDock rd)
+		
+		#region IToolAction Member
+
+		public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			this.rd = rd;
-		}
-
-		#region IDockableTool Member
-
-		public TD.SandDock.DockControl GetDockableControl()
-		{
-			return rd.dcPackage;
-		}
-
-		public event SimPe.Events.ChangedResourceEvent ShowNewResource;
-
-		SimPe.Interfaces.Files.IPackageFile pkg;
-		public void RefreshDock(object sender, SimPe.Events.ResourceEventArgs es)
-		{
-			if (es.LoadedPackage!=null)
-				if (es.LoadedPackage.Loaded) 
-				{
-					bool newpkg = (pkg==null);
-					if (!newpkg) newpkg = !es.LoadedPackage.Package.Equals(pkg);
-			
-					
-					if (newpkg) 
-					{
-						rd.pgHead.SelectedObject = es.LoadedPackage.Package.Header;	
-						pkg = es.LoadedPackage.Package;
+			if (!es.Loaded) return false;
 						
-						rd.lv.Items.Clear();
-						for (uint i=0; i<pkg.Header.HoleIndex.Count; i++) 
-						{
-							System.Windows.Forms.ListViewItem lvi = new System.Windows.Forms.ListViewItem();
-							SimPe.Packages.HoleIndexItem hii = es.LoadedPackage.Package.GetHoleIndex(i);
-							lvi.Text = "0x"+Helper.HexString(hii.Offset);
-							lvi.SubItems.Add("0x"+Helper.HexString(hii.Size));
-							rd.lv.Items.Add(lvi);
-						}
-					}
-					return;
-				}
-
-			pkg = null;
-			rd.pgHead.SelectedObject = null;
-			rd.lv.Items.Clear();
+			return es.LoadedPackage.Package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE).Length>0;
 		}
 
-		#endregion
+		public void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs e)
+		{
+			if (!ChangeEnabledStateEventHandler(null, e)) return;
 
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = e.LoadedPackage.Package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE);
+
+			SimPe.PackedFiles.Wrapper.SDesc sdesc = new SimPe.PackedFiles.Wrapper.SDesc(null, null, null);
+			foreach(SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+			{
+				sdesc.ProcessData(pfd, e.LoadedPackage.Package);
+
+				sdesc.Interests.Animals = 1000;
+				sdesc.Interests.Crime = 1000;
+				sdesc.Interests.Culture = 1000;
+				sdesc.Interests.Entertainment = 1000;
+				sdesc.Interests.Environment = 1000;
+				sdesc.Interests.Fashion = 1000;
+				sdesc.Interests.Food = 1000;
+				sdesc.Interests.Health = 1000;
+				sdesc.Interests.Money = 1000;
+				sdesc.Interests.Paranormal = 1000;
+				sdesc.Interests.Politics = 1000;
+				sdesc.Interests.School = 1000;
+				sdesc.Interests.Scifi = 1000;
+				sdesc.Interests.Sports = 1000;
+				sdesc.Interests.Toys = 1000;
+				sdesc.Interests.Travel = 1000;
+				sdesc.Interests.Weather = 1000;
+				sdesc.Interests.Work = 1000;
+
+				sdesc.SynchronizeUserData();
+			}
+		}
+
+		#endregion		
+
+		
 		#region IToolPlugin Member
-
 		public override string ToString()
 		{
-			return rd.dcPackage.Text;
+			return "Intrigued Neighborhood";
 		}
-
 		#endregion
 
 		#region IToolExt Member
-
 		public System.Windows.Forms.Shortcut Shortcut
 		{
 			get
@@ -99,7 +93,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			get
 			{
-				return rd.dcPackage.TabImage;
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.emoticon.png"));
 			}
 		}
 

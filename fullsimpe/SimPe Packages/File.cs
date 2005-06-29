@@ -1029,6 +1029,15 @@ namespace SimPe.Packages
 			return new GeneratableFile(br);
 		}
 
+		/// <summary>
+		/// Creates a new Empty Package File
+		/// </summary>
+		/// <returns></returns>
+		public static GeneratableFile CreateNew() 
+		{
+			return SimPe.Packages.GeneratableFile.LoadFromStream(new System.IO.BinaryReader(SimPe.Packages.GeneratableFile.LoadFromStream(null).Build()));
+		}
+
 		public override int GetHashCode()
 		{
 			if (this.FileName==null) 

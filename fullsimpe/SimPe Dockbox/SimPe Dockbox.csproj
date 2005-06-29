@@ -139,12 +139,37 @@
                     Project = "{1C6C45BF-FE19-4C23-B327-01F45B0F269C}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe 3IDR"
+                    Project = "{37D97490-DC9F-4DB7-9215-998C6BC06078}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe Scenegraph"
+                    Project = "{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
             <Include>
                 <File
+                    RelPath = "ActionReloadFiletable.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CreateListFromPackageTool.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CreateListFromSelectionTool.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -154,9 +179,37 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "HexDecConverterTool.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "package.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "PackageDockTool.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "recur.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Report.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Report.de.resx"
+                    DependentUpon = "Report.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Report.resx"
+                    DependentUpon = "Report.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "ResourceDock.cs"
@@ -177,6 +230,10 @@
                     RelPath = "ResourceDockTool.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "selected.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "WrapperDockTool.cs"

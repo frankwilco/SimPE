@@ -56,6 +56,15 @@ namespace SimPe
 		/// The Root Registry Key for this Application
 		/// </summary>
 		XmlRegistryKey xrk;
+
+		LayoutRegistry lr;
+		/// <summary>
+		/// Returns the LayoutRegistry
+		/// </summary>
+		public LayoutRegistry Layout 
+		{
+			get {return lr;}
+		}
 		#endregion
 
 		#region Management
@@ -68,9 +77,18 @@ namespace SimPe
 #else
 			rk = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe");
 #endif
+			Reload();
+		}
 
+		/// <summary>
+		/// Reload the SimPe Registry
+		/// </summary>
+		public void Reload()
+		{
+			
 			reg = new XmlRegistry(System.IO.Path.Combine(Helper.SimPeDataPath, "simpe.xreg"), true);
 			xrk = reg.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe");
+			lr = new LayoutRegistry(xrk.CreateSubKey("Layout"));			
 		}
 
 		/// <summary>
@@ -128,6 +146,39 @@ namespace SimPe
 			rkf.SetValue("Path", Helper.SimPePath);
 			rkf.SetValue("DataPath", Helper.SimPeDataPath);
 			rkf.SetValue("PluginPath", Helper.SimPePluginPath);
+			rkf.SetValue("Version", Helper.SimPeVersionLong);
+		}
+
+		/// <summary>
+		/// Returns the DataFolder as set by the last SimPe run
+		/// </summary>
+		public string PreviousDataFolder
+		{
+			get
+			{
+#if MAC
+				return "";
+#else
+				RegistryKey rkf = rk.CreateSubKey("Settings");	
+				return rkf.GetValue("DataPath", "").ToString();
+#endif
+			}
+		}
+
+		/// <summary>
+		/// Returns the DataFolder as set by the last SimPe run
+		/// </summary>
+		public long PreviousVersion
+		{
+			get
+			{
+#if MAC
+				return 0;
+#else
+				RegistryKey rkf = rk.CreateSubKey("Settings");	
+				return Convert.ToInt64(rkf.GetValue("Version", (long)0));
+#endif
+			}
 		}
 
 		/// <summary>
@@ -710,61 +761,7 @@ namespace SimPe
 				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
 				rkf.SetValue("SimpleResourceSelect", value);
 			}
-		}
-
-		/// <summary>
-		/// true, if the user wantsto use the package Maintainer
-		/// </summary>
-		public byte SelectedTheme
-		{
-			get 
-			{
-				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-				object o = rkf.GetValue("ThemeID", (int)1);
-				return (byte)Convert.ToInt32(o);
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				rkf.SetValue("ThemeID", (int)value);
-			}
-		}
-
-		/// <summary>
-		/// Returns the SandBar layout Settings for the main GUI
-		/// </summary>
-		public string SandBarLayout 
-		{
-			get 
-			{
-				XmlRegistryKey  rkf = xrk.CreateSubKey("Layout");
-				object o = rkf.GetValue("SandBar", "");
-				return o.ToString();
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Layout");
-				rkf.SetValue("SandBar", value);
-			}
-		}
-
-		/// <summary>
-		/// Returns the SandDock layout Settings for the main GUI
-		/// </summary>
-		public string SandDockLayout 
-		{
-			get 
-			{
-				XmlRegistryKey  rkf = xrk.CreateSubKey("Layout");
-				object o = rkf.GetValue("SandDock", "");
-				return o.ToString();
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Layout");
-				rkf.SetValue("SandDock", value);
-			}
-		}
+		}		
 
 		/// <summary>
 		/// true, if the user want's to control the Tabs like done in FireFox

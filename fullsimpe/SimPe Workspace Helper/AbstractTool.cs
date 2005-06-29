@@ -23,6 +23,6 @@ namespace SimPe.Interfaces
 			}
 		}
 
-		#endregion		
+		#endregion				
 	}
 }

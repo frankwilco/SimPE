@@ -33,7 +33,8 @@ namespace SimPe
 			LoadedPackage lp,
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox defaultactiontaskbox,
 			TD.SandBar.MenuBarItem defaultactionmenu,
-			SteepValley.Windows.Forms.ThemedControls.XPTaskBox actiontaskbox, 
+			SteepValley.Windows.Forms.ThemedControls.XPTaskBox toolactiontaskbox, 
+			SteepValley.Windows.Forms.ThemedControls.XPTaskBox extactiontaskbox,
 			TD.SandBar.ToolBar actiontoolbar,
 			TD.SandDock.DockControl docktooldc)
 		{
@@ -48,15 +49,14 @@ namespace SimPe
 			this.LoadStaticWrappers();
 			this.LoadDynamicWrappers();
 
-			wloader.AddMenuItems(toolmenu, new ToolMenuItemExt.ExternalToolNotify(ClosedToolPluginHandler));
-			dc.ActiveDocumentChanged += new TD.SandDock.ActiveDocumentEventHandler(wloader.ActiveDocumentChanged);
-
-			lp.AfterFileLoad += new SimPe.Events.PackageFileLoadedEvent(wloader.ChangedPackage);
+			wloader.AddMenuItems(ref ChangedGuiResourceEvent, toolmenu, new ToolMenuItemExt.ExternalToolNotify(ClosedToolPluginHandler));
+			//dc.ActiveDocumentChanged += new TD.SandDock.ActiveDocumentEventHandler(wloader.ActiveDocumentChanged);
+			//lp.AfterFileLoad += new SimPe.Events.PackageFileLoadedEvent(wloader.ChangedPackage);
 
 			
 			LoadActionTools(defaultactiontaskbox, actiontoolbar, defaultactionmenu, GetDefaultActions());
-			LoadActionTools(actiontaskbox, actiontoolbar, defaultactionmenu, LoadExternalTools());
-			LoadActionTools(actiontaskbox, actiontoolbar, null, null);
+			LoadActionTools(toolactiontaskbox, actiontoolbar, defaultactionmenu, LoadExternalTools());
+			LoadActionTools(extactiontaskbox, actiontoolbar, null, null);
 			
 			LoadDocks(docktooldc, lp);
 		}
@@ -201,7 +201,7 @@ namespace SimPe
 					dctrl.PerformDock(dc.LayoutSystem);
 
 					ChangedGuiResourceEvent += new SimPe.Events.ChangedResourceEvent(idt.RefreshDock);
-					dctrl.Tag = idt;
+					dctrl.Tag = idt.Shortcut;
 					idt.RefreshDock(this, new SimPe.Events.ResourceEventArgs(lp));
 				}
 			}

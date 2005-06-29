@@ -19,6 +19,7 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces;
+using SimPe.Plugin.Tool.Action;
 
 namespace SimPe.Plugin.Tool.Dockable
 {
@@ -67,7 +68,11 @@ namespace SimPe.Plugin.Tool.Dockable
 				IToolPlugin[] tools = {
 								    new PackageDockTool(rd),
 									new ResourceDockTool(rd),
-									new WrapperDockTool(rd)
+									new WrapperDockTool(rd),
+									new HexDecConverterTool(rd),
+									new ActionReloadFiletable(),
+									new CreateListFromPackageTool(),
+									new CreateListFromSelectionTool()									
 				};
 				return tools;
 			}

@@ -2123,12 +2123,12 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.hcFileTable);
-			this.Controls.Add(this.hcFolders);
-			this.Controls.Add(this.hcSceneGraph);
 			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
+			this.Controls.Add(this.hcFileTable);
+			this.Controls.Add(this.hcFolders);
+			this.Controls.Add(this.hcSceneGraph);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -2209,7 +2209,7 @@ namespace SimPe
 			}
 
 			//Favorite Theme
-			GuiTheme gt = (GuiTheme)Helper.WindowsRegistry.SelectedTheme;
+			GuiTheme gt = (GuiTheme)Helper.WindowsRegistry.Layout.SelectedTheme;
 			for (int i=0; i<cbThemes.Items.Count; i++) 			
 				if ((GuiTheme)cbThemes.Items[i]==gt) 
 					cbThemes.SelectedIndex = i;
@@ -2238,7 +2238,7 @@ namespace SimPe
 			Helper.WindowsRegistry.CheckForUpdates = cbupdate.Checked;
 			Helper.WindowsRegistry.UsePackageMaintainer = cbpkgmaint.Checked;
 			Helper.WindowsRegistry.MultipleFiles = cbmulti.Checked;
-			Helper.WindowsRegistry.SelectedTheme = (byte)cbThemes.Items[cbThemes.SelectedIndex];
+			Helper.WindowsRegistry.Layout.SelectedTheme = (byte)cbThemes.Items[cbThemes.SelectedIndex];
 			Helper.WindowsRegistry.SimpleResourceSelect = cbSimple.Checked;
 			Helper.WindowsRegistry.FirefoxTabbing = cbFirefox.Checked;
 			
