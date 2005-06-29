@@ -18,60 +18,67 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
-using SimPe.Interfaces;
-using SimPe.Plugin.Tool.Action;
 
-namespace SimPe.Plugin
+namespace SimPe.Plugin.Tool.Action
 {
 	/// <summary>
-	/// Lists all Plugins (=FileType Wrappers) available in this Package
+	/// The Intrigued Neighborhood Action
 	/// </summary>
-	/// <remarks>
-	/// GetWrappers() has to return a list of all Plugins provided by this Library. 
-	/// If a Plugin isn't returned, SimPe won't recognize it!
-	/// </remarks>
-	public class WrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory, SimPe.Interfaces.Plugin.IToolFactory
+	public class ActionGlobalFixTGI : SimPe.Interfaces.IToolAction
 	{
-		#region AbstractWrapperFactory Member
-		/// <summary>
-		/// Returns a List of all available Plugins in this Package
-		/// </summary>
-		/// <returns>A List of all provided Plugins (=FileType Wrappers)</returns>
-		public override SimPe.Interfaces.IWrapper[] KnownWrappers
+		
+		#region IToolAction Member
+
+		public virtual bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			get 
+			return es.Loaded;								
+		}
+
+		public void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs e)
+		{
+			if (!ChangeEnabledStateEventHandler(null, e)) return;
+			
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in e.LoadedPackage.Package.Index)
 			{
-				IWrapper[] wrappers = {
-										  new Plugin.Ngbh(this.LinkedProvider),
-										  new Plugin.Ltxt(this.LinkedProvider),
-										  new Plugin.Want(this.LinkedProvider),
-										  new Plugin.XWant(),
-										  new Plugin.Idno()
-									  };
-				return wrappers;
+				//Do we have a registred handler?
+				SimPe.Interfaces.Plugin.IFileWrapper wrapper = (SimPe.Interfaces.Plugin.IFileWrapper)FileTable.WrapperRegistry.FindHandler(pfd.Type);
+				SimPe.Interfaces.Files.IPackedFile file = e.LoadedPackage.Package.Read(pfd);
+				if (wrapper==null) wrapper = FileTable.WrapperRegistry.FindHandler(file.UncompressedData);
+
+				if (wrapper!=null) 
+				{
+					wrapper.ProcessData(pfd, e.LoadedPackage.Package);
+					wrapper.Fix(FileTable.WrapperRegistry);
+				}
 			}
 		}
 
+		#endregion		
+
+		
+		#region IToolPlugin Member
+		public override string ToString()
+		{
+			return "Set TGI Values";
+		}
 		#endregion
 
-		#region IToolFactory Member
-
-
-		public IToolPlugin[] KnownTools
+		#region IToolExt Member
+		public System.Windows.Forms.Shortcut Shortcut
 		{
 			get
 			{
-				IToolPlugin[] tools = {
-										 new Plugin.FixUidTool(),
-										 new ActionIntriguedNeighborhood()
-									 };
-				if (Helper.WindowsRegistry.HiddenMode) return tools;
-
-				tools = new ITool[0];
-				return tools;
+				return System.Windows.Forms.Shortcut.None;
 			}
-		}		
+		}
 
+		public System.Drawing.Image Icon
+		{
+			get
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.readonlyevent.png"));
+			}
+		}
 
 		#endregion
 	}

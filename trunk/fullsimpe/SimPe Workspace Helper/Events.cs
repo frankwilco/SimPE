@@ -36,7 +36,7 @@ namespace SimPe.Events
 	/// <summary>
 	/// Used by <see cref="ChangedResourceEvent"/>
 	/// </summary>
-	public class ResourceEventArgs : System.EventArgs, IEnumerable
+	public class ResourceEventArgs : System.EventArgs, IEnumerable, SimPe.Interfaces.Plugin.IToolResult
 	{
 		LoadedPackage lp;
 		ResourceContainers list;
@@ -62,7 +62,7 @@ namespace SimPe.Events
 		/// <summary>
 		/// Integer Indexer
 		/// </summary>
-		public new ResourceContainer this[int index]
+		public ResourceContainer this[int index]
 		{
 			get { return list[index]; }
 			set { list[index] = value; }
@@ -130,7 +130,19 @@ namespace SimPe.Events
 				foreach (ResourceContainer r in list) if (r.HasPackage) return true;
 				return false;
 			}
-		}		
+		}	
+	
+		/// <summary>
+		/// true, if a package was loaded
+		/// </summary>
+		public bool Loaded
+		{
+			get 
+			{
+				if (this.lp==null) return false;
+				return lp.Loaded;
+			}
+		}
 
 		/// <summary>
 		/// Number of stored Items
@@ -148,6 +160,39 @@ namespace SimPe.Events
 		}
 
 		#endregion
+
+		#region IToolResult Member
+
+		public bool ChangedPackage
+		{
+			get
+			{
+				foreach (ResourceContainer c in list) 				
+					if (c.ChangedPackage) return true;				
+				return false;
+			}
+		}
+
+		public bool ChangedFile
+		{
+			get
+			{
+				foreach (ResourceContainer c in list) 				
+					if (c.ChangedFile) return true;				
+				return false;
+			}
+		}
+
+		public bool ChangedAny
+		{
+			get
+			{
+				// TODO:  Getter-Implementierung für ResourceEventArgs.ChangedAny hinzufügen
+				return false;
+			}
+		}
+
+		#endregion
 	}
 
 	/// <summary>
@@ -159,6 +204,7 @@ namespace SimPe.Events
 		{
 			this.item = item;
 			cpfd = false;
+			cpkg = false;
 		}
 
 		SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item;
@@ -172,12 +218,13 @@ namespace SimPe.Events
 		}
 
 
-		bool cpfd;
+		bool cpfd, cpkg;
 		#region IToolResult Member
 
 		public bool ChangedPackage 
 		{
-			get { return false;	}			
+			get { return this.cpkg;	}
+			set { cpkg = value; }			
 		}
 
 		public bool ChangedFile 

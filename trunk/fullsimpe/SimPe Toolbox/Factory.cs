@@ -75,7 +75,9 @@ namespace SimPe.Plugin
 									new FixTool(this.LinkedRegistry, this.LinkedProvider),
 									new WorkshopTool(this.LinkedRegistry, this.LinkedProvider),
 									new SkinWorkshopTool(),
-									new PhotoStudioTool(this.LinkedRegistry, this.LinkedProvider)
+									new PhotoStudioTool(this.LinkedRegistry, this.LinkedProvider),
+									new SimPe.Plugin.Tool.Action.ActionGlobalFixTGI(),
+									new SimPe.Plugin.Tool.Action.ActionBuildNameMap()
 								};
 				return tools;
 			}

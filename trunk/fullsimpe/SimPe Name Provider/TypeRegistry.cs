@@ -46,7 +46,7 @@ namespace SimPe.PackedFiles
 		/// <summary>
 		/// Contains all available Tool Plugins
 		/// </summary>
-		ArrayList tools;
+		ArrayList tools, toolsp;
 
 		/// <summary>
 		/// Contains all available dockable Tool Plugins
@@ -77,6 +77,7 @@ namespace SimPe.PackedFiles
 			skinprovider = new SimPe.Providers.Skins();
 			
 			tools = new ArrayList();
+			toolsp = new ArrayList();
 			dtools = new ArrayList();
 			atools = new ArrayList();
 		}
@@ -289,8 +290,17 @@ namespace SimPe.PackedFiles
 				} 
 				else 
 				{
-					if (!tools.Contains(tool)) 					
-						tools.Add((SimPe.Interfaces.ITool)tool);					
+					if  (tool.GetType().GetInterface("SimPe.Interfaces.IToolPlus", true) == typeof(SimPe.Interfaces.IToolPlus)) 
+					{
+						if (!toolsp.Contains(tool)) 					
+							toolsp.Add((SimPe.Interfaces.IToolPlus)tool);	
+					} 
+
+					if  (tool.GetType().GetInterface("SimPe.Interfaces.ITool", true) == typeof(SimPe.Interfaces.ITool)) 
+					{
+						if (!tools.Contains(tool)) 					
+							tools.Add((SimPe.Interfaces.ITool)tool);										  
+					}
 				}
 					
 		}		
@@ -315,6 +325,16 @@ namespace SimPe.PackedFiles
 			{
 				ITool[] rtools = new ITool[tools.Count];
 				tools.CopyTo(rtools);
+				return rtools;
+			}
+		}
+
+		public IToolPlus[] ToolsPlus
+		{
+			get
+			{
+				IToolPlus[] rtools = new IToolPlus[toolsp.Count];
+				toolsp.CopyTo(rtools);
 				return rtools;
 			}
 		}

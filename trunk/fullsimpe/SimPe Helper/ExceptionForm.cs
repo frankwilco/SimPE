@@ -495,7 +495,7 @@ namespace SimPe
 				{
 					text += @"\pard\par";
 					text += @"\b SimPE Version:\par";
-					text += @"\pard\li284\b0 "+Helper.SimPeVersion.ProductMajorPart.ToString()+"."+Helper.SimPeVersion.ProductMinorPart.ToString()+"."+Helper.SimPeVersion.ProductBuildPart.ToString()+"."+Helper.SimPeVersion.ProductPrivatePart.ToString()+"."+@"\par";
+					text += @"\pard\li284\b0 "+Helper.StartedGui.ToString()+" ("+Helper.SimPeVersion.ProductMajorPart.ToString()+"."+Helper.SimPeVersion.ProductMinorPart.ToString()+"."+Helper.SimPeVersion.ProductBuildPart.ToString()+"."+Helper.SimPeVersion.ProductPrivatePart.ToString()+")."+@"\par";
 				} 
 				catch {}
 

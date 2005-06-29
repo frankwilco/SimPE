@@ -23,6 +23,16 @@ using System.IO;
 namespace SimPe
 {
 	/// <summary>
+	/// Determins the Executable that was started
+	/// </summary>
+	public enum Executable : byte 
+	{
+		Classic = 1,
+		Default = 2,
+		WizardsOfSimpe = 3,
+		Other = 4
+	}
+	/// <summary>
 	/// Some Helper Functions frequently used in the handlers
 	/// </summary>
 	public class Helper
@@ -326,11 +336,70 @@ namespace SimPe
 		}
 
 		/// <summary>
-		/// Returns the Version Information about SimPe
+		/// Returns the Version Information for the started Executable
+		/// </summary>
+		public static System.Diagnostics.FileVersionInfo ExecutableVersion 
+		{
+			get 
+			{
+				return System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Windows.Forms.Application.ExecutablePath); 
+			}
+		}
+		/// <summary>
+		/// Returns the the overall SimPe Version
 		/// </summary>
 		public static System.Diagnostics.FileVersionInfo SimPeVersion 
 		{
-			get { return System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Windows.Forms.Application.ExecutablePath); }
+			get { 
+				try 
+				{
+					return System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(Helper).Assembly.Location);
+				} 
+				catch 
+				{
+					return ExecutableVersion;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Returns the long Version Number
+		/// </summary>
+		public static long SimPeVersionLong 
+		{
+			get { 
+				 System.Diagnostics.FileVersionInfo ver = SimPeVersion;
+				long lver = ver.FileMajorPart;
+				lver = (lver << 16) + ver.FileMinorPart;
+				lver = (lver << 16) + ver.FileBuildPart;
+				lver = (lver << 16) + ver.FilePrivatePart;
+				return lver;
+			}
+		}
+
+		/// <summary>
+		/// true if this is a QA Release
+		/// </summary>
+		public static bool QARelease
+		{
+			get 
+			{
+				return ((SimPeVersion.ProductMinorPart % 2)==1);
+			}
+		}
+
+		/// <summary>
+		/// Returnst the Gui that was started
+		/// </summary>
+		public static Executable StartedGui 
+		{
+			get
+			{
+				if (System.Windows.Forms.Application.ExecutablePath.Trim().ToLower().EndsWith("simpe.exe")) return Executable.Default;
+				else if (System.Windows.Forms.Application.ExecutablePath.Trim().ToLower().EndsWith("simpe classic.exe")) return Executable.Classic;
+				else if (System.Windows.Forms.Application.ExecutablePath.Trim().ToLower().EndsWith("wizards of simpe.exe")) return Executable.WizardsOfSimpe;
+				else return Executable.Other;
+			}
 		}
 
 		/// <summary>

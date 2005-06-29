@@ -29,7 +29,7 @@ namespace SimPe
 		{
 			get 
 			{ 
-				if (tm==null) tm = new ThemeManager((GuiTheme)Helper.WindowsRegistry.SelectedTheme);
+				if (tm==null) tm = new ThemeManager((GuiTheme)Helper.WindowsRegistry.Layout.SelectedTheme);
 				return tm;
 			}
 		}

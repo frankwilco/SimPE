@@ -213,12 +213,26 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ActionBuildNameMap.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ActionGlobalFixTGI.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "bin.simpe"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "contents.png"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -361,6 +375,10 @@
                     RelPath = "PlasticSurgery.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "readonlyevent.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "Search.cs"

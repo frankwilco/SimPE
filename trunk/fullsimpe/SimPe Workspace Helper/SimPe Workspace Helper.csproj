@@ -134,9 +134,18 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "AbstractToolPlus.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Create Description.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "ErrorWrapper.cs"
@@ -226,6 +235,18 @@
                 <File
                     RelPath = "Message.resx"
                     DependentUpon = "Message.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Neighborhood.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Object Creation.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Object Tool.png"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

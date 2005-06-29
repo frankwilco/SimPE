@@ -194,9 +194,18 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "ActionIntriguedNeighborhood.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "emoticon.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "FixUidTool.cs"

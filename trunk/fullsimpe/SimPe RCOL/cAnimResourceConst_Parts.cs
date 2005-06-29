@@ -131,31 +131,31 @@ namespace SimPe.Plugin
 		}
 
 		uint[] datai;
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]		
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]		
 		public uint Unknown1 
 		{
 			get { return datai[0]; }
 			set { datai[0] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]		
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]		
 		public uint Unknown2 
 		{
 			get { return datai[1]; }
 			set { datai[1] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]		
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]		
 		public uint Unknown3 
 		{
 			get { return datai[2]; }
 			set { datai[2] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]		
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]		
 		public uint Unknown4 
 		{
 			get { return datai[3]; }
 			set { datai[3] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]		
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]		
 		public uint Unknown5 
 		{
 			get { return datai[4]; }
@@ -429,13 +429,13 @@ namespace SimPe.Plugin
 		}
 
 		uint[] datai;
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]				
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]				
 		public uint Unknown1 
 		{
 			get { return datai[0]; }
 			set { datai[0] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]		
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]		
 		public uint Unknown2 
 		{
 			get { return datai[1]; }
@@ -446,7 +446,7 @@ namespace SimPe.Plugin
 			get { return datai[2]; }
 			set { datai[2] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]		
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]		
 		public uint Unknown4 
 		{
 			get { return datai[3]; }
@@ -458,7 +458,7 @@ namespace SimPe.Plugin
 			get { return datai[4]; }
 			set { datai[4] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]				
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]				
 		public uint Unknown6 
 		{
 			get { return datai[5]; }
@@ -584,20 +584,20 @@ namespace SimPe.Plugin
 			set { datai[0] = value; }
 		}		
 
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]				
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]				
 		public uint Unknown2 
 		{
 			get { return datai[1]; }
 			set { datai[1] = value; }
 		}	
 		short[] datas;
-		[DescriptionAttribute("Contains the Values of this Node"), CategoryAttribute("Data"), DefaultValueAttribute(0X11BA05F0)]	
+		[DescriptionAttribute("Contains the Values of this Node"), CategoryAttribute("Data"), DefaultValueAttribute(0x11BA05F0)]	
 		public short[] AddonData 
 		{
 			get { return datas; }
 		}
 
-		[DescriptionAttribute("AddonData interpreted as Float"), CategoryAttribute("Data"), DefaultValueAttribute(0X11BA05F0)]	
+		[DescriptionAttribute("AddonData interpreted as Float"), CategoryAttribute("Data"), DefaultValueAttribute(0x11BA05F0)]	
 		public float[] AddonDataFloat
 		{
 			get { 
@@ -610,7 +610,7 @@ namespace SimPe.Plugin
 			}
 		}
 
-		[DescriptionAttribute("AddonData interpreted as Quaternions (only if Rotation!)"), CategoryAttribute("Data"), DefaultValueAttribute(0X11BA05F0)]	
+		[DescriptionAttribute("AddonData interpreted as Quaternions (only if Rotation!)"), CategoryAttribute("Data"), DefaultValueAttribute(0x11BA05F0)]	
 		public Quaternions AddonDataQuaternions
 		{
 			get 
@@ -630,7 +630,7 @@ namespace SimPe.Plugin
 			}
 		}
 
-		[DescriptionAttribute("AddonData interpreted as Vectors (only if Translation!)"), CategoryAttribute("Data"), DefaultValueAttribute(0X11BA05F0)]	
+		[DescriptionAttribute("AddonData interpreted as Vectors (only if Translation!)"), CategoryAttribute("Data"), DefaultValueAttribute(0x11BA05F0)]	
 		public Vectors3f AddonDataVectors
 		{
 			get 
@@ -799,19 +799,19 @@ namespace SimPe.Plugin
 		}
 
 		uint[] datai;
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]				
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]				
 		public uint Unknown1 
 		{
 			get { return datai[0]; }
 			set { datai[0] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]				
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]				
 		public uint Unknown2 
 		{
 			get { return datai[1]; }
 			set { datai[1] = value; }
 		}	
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]				
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]				
 		public uint Unknown3 
 		{
 			get { return datai[2]; }
@@ -919,13 +919,13 @@ namespace SimPe.Plugin
 	{		
 		#region Attributes
 		uint[] datai;
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]				
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]				
 		public uint Unknown1 
 		{
 			get { return datai[0]; }
 			set { datai[0] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]				
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]				
 		public uint Unknown2 
 		{
 			get { return datai[1]; }
@@ -959,7 +959,7 @@ namespace SimPe.Plugin
 			datai[1] = reader.ReadUInt32();	
 			data = reader.ReadBytes(data.Length);
 
-			if (datai[0]!=0X11BA05F0 || datai[1]!=0X11BA05F0) 
+			if (datai[0]!=0x11BA05F0 || datai[1]!=0x11BA05F0) 
 			{	
 				reader.BaseStream.Seek(pos, System.IO.SeekOrigin.Begin);
 				return;
@@ -986,13 +986,13 @@ namespace SimPe.Plugin
 	{		
 		#region Attributes
 		uint[] datai;	
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]						
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]						
 		public uint Unknown1 
 		{
 			get { return datai[0]; }
 			set { datai[0] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0X11BA05F0)]						
+		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]						
 		public uint Unknown2 
 		{
 			get { return datai[1]; }

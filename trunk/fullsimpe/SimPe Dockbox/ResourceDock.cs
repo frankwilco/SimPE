@@ -61,10 +61,17 @@ namespace SimPe.Plugin.Tool.Dockable
 		internal System.Windows.Forms.Label lbComp;
 		internal TD.SandDock.DockControl dcPackage;
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel3;
-		/// <summary>
-		/// Erforderliche Designervariable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+		internal System.Windows.Forms.PropertyGrid pgHead;
+		private System.Windows.Forms.Label label4;
+		internal System.Windows.Forms.ListView lv;
+		private System.Windows.Forms.ColumnHeader clOffset;
+		private System.Windows.Forms.ColumnHeader clSize;
+		internal TD.SandDock.DockControl dcConvert;
+		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel4;
+		private SteepValley.Windows.Forms.XPCueBannerExtender xpCueBannerExtender1;
+		private System.Windows.Forms.TextBox tbHex;
+		private System.Windows.Forms.TextBox tbDec;
+		private System.ComponentModel.IContainer components;
 
 		public ResourceDock()
 		{
@@ -105,6 +112,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ResourceDock));
 			this.sandDockManager1 = new TD.SandDock.SandDockManager();
 			this.leftSandDock = new TD.SandDock.DockContainer();
@@ -124,6 +132,17 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.label10 = new System.Windows.Forms.Label();
 			this.tbgroup = new System.Windows.Forms.TextBox();
 			this.cbtypes = new System.Windows.Forms.ComboBox();
+			this.dcPackage = new TD.SandDock.DockControl();
+			this.xpGradientPanel3 = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.lv = new System.Windows.Forms.ListView();
+			this.clOffset = new System.Windows.Forms.ColumnHeader();
+			this.clSize = new System.Windows.Forms.ColumnHeader();
+			this.label4 = new System.Windows.Forms.Label();
+			this.pgHead = new System.Windows.Forms.PropertyGrid();
+			this.dcConvert = new TD.SandDock.DockControl();
+			this.xpGradientPanel4 = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.tbDec = new System.Windows.Forms.TextBox();
+			this.tbHex = new System.Windows.Forms.TextBox();
 			this.dcWrapper = new TD.SandDock.DockControl();
 			this.xpGradientPanel2 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.lbDesc = new System.Windows.Forms.Label();
@@ -135,15 +154,17 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lbName = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.topSandDock = new TD.SandDock.DockContainer();
-			this.dcPackage = new TD.SandDock.DockControl();
-			this.xpGradientPanel3 = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
 			this.bottomSandDock.SuspendLayout();
 			this.dcResource.SuspendLayout();
 			this.xpGradientPanel1.SuspendLayout();
 			this.pntypes.SuspendLayout();
+			this.dcPackage.SuspendLayout();
+			this.xpGradientPanel3.SuspendLayout();
+			this.dcConvert.SuspendLayout();
+			this.xpGradientPanel4.SuspendLayout();
 			this.dcWrapper.SuspendLayout();
 			this.xpGradientPanel2.SuspendLayout();
-			this.dcPackage.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// sandDockManager1
@@ -200,6 +221,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.bottomSandDock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bottomSandDock.BackgroundImage")));
 			this.bottomSandDock.Controls.Add(this.dcResource);
 			this.bottomSandDock.Controls.Add(this.dcPackage);
+			this.bottomSandDock.Controls.Add(this.dcConvert);
 			this.bottomSandDock.Controls.Add(this.dcWrapper);
 			this.bottomSandDock.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("bottomSandDock.Dock")));
 			this.bottomSandDock.Enabled = ((bool)(resources.GetObject("bottomSandDock.Enabled")));
@@ -207,10 +229,11 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.bottomSandDock.Guid = new System.Guid("f2b6c0a5-8de3-4a6e-8133-dd2ab495affc");
 			this.bottomSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("bottomSandDock.ImeMode")));
 			this.bottomSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Vertical, new TD.SandDock.LayoutSystemBase[] {
-																																											 new TD.SandDock.ControlLayoutSystem(632, 244, new TD.SandDock.DockControl[] {
+																																											 new TD.SandDock.ControlLayoutSystem(480, 236, new TD.SandDock.DockControl[] {
 																																																															 this.dcPackage,
 																																																															 this.dcResource,
-																																																															 this.dcWrapper}, this.dcPackage)});
+																																																															 this.dcWrapper,
+																																																															 this.dcConvert}, this.dcConvert)});
 			this.bottomSandDock.Location = ((System.Drawing.Point)(resources.GetObject("bottomSandDock.Location")));
 			this.bottomSandDock.Manager = this.sandDockManager1;
 			this.bottomSandDock.Name = "bottomSandDock";
@@ -302,6 +325,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbComp.AccessibleName = resources.GetString("cbComp.AccessibleName");
 			this.cbComp.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbComp.Anchor")));
 			this.cbComp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbComp.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.cbComp, "");
 			this.cbComp.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbComp.Dock")));
 			this.cbComp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbComp.Enabled = ((bool)(resources.GetObject("cbComp.Enabled")));
@@ -362,6 +386,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbinstance2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbinstance2.Anchor")));
 			this.tbinstance2.AutoSize = ((bool)(resources.GetObject("tbinstance2.AutoSize")));
 			this.tbinstance2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbinstance2.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbinstance2, "");
 			this.tbinstance2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbinstance2.Dock")));
 			this.tbinstance2.Enabled = ((bool)(resources.GetObject("tbinstance2.Enabled")));
 			this.tbinstance2.Font = ((System.Drawing.Font)(resources.GetObject("tbinstance2.Font")));
@@ -389,6 +414,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbinstance.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbinstance.Anchor")));
 			this.tbinstance.AutoSize = ((bool)(resources.GetObject("tbinstance.AutoSize")));
 			this.tbinstance.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbinstance.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbinstance, "");
 			this.tbinstance.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbinstance.Dock")));
 			this.tbinstance.Enabled = ((bool)(resources.GetObject("tbinstance.Enabled")));
 			this.tbinstance.Font = ((System.Drawing.Font)(resources.GetObject("tbinstance.Font")));
@@ -438,6 +464,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbtype.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbtype.Anchor")));
 			this.tbtype.AutoSize = ((bool)(resources.GetObject("tbtype.AutoSize")));
 			this.tbtype.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbtype.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbtype, "");
 			this.tbtype.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbtype.Dock")));
 			this.tbtype.Enabled = ((bool)(resources.GetObject("tbtype.Enabled")));
 			this.tbtype.Font = ((System.Drawing.Font)(resources.GetObject("tbtype.Font")));
@@ -532,6 +559,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbgroup.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbgroup.Anchor")));
 			this.tbgroup.AutoSize = ((bool)(resources.GetObject("tbgroup.AutoSize")));
 			this.tbgroup.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbgroup.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbgroup, "");
 			this.tbgroup.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbgroup.Dock")));
 			this.tbgroup.Enabled = ((bool)(resources.GetObject("tbgroup.Enabled")));
 			this.tbgroup.Font = ((System.Drawing.Font)(resources.GetObject("tbgroup.Font")));
@@ -558,6 +586,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbtypes.AccessibleName = resources.GetString("cbtypes.AccessibleName");
 			this.cbtypes.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbtypes.Anchor")));
 			this.cbtypes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbtypes.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.cbtypes, "");
 			this.cbtypes.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbtypes.Dock")));
 			this.cbtypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbtypes.Enabled = ((bool)(resources.GetObject("cbtypes.Enabled")));
@@ -575,6 +604,253 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbtypes.Text = resources.GetString("cbtypes.Text");
 			this.cbtypes.Visible = ((bool)(resources.GetObject("cbtypes.Visible")));
 			this.cbtypes.SelectedIndexChanged += new System.EventHandler(this.cbtypes_SelectedIndexChanged);
+			// 
+			// dcPackage
+			// 
+			this.dcPackage.AccessibleDescription = resources.GetString("dcPackage.AccessibleDescription");
+			this.dcPackage.AccessibleName = resources.GetString("dcPackage.AccessibleName");
+			this.dcPackage.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dcPackage.Anchor")));
+			this.dcPackage.AutoScroll = ((bool)(resources.GetObject("dcPackage.AutoScroll")));
+			this.dcPackage.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dcPackage.AutoScrollMargin")));
+			this.dcPackage.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dcPackage.AutoScrollMinSize")));
+			this.dcPackage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dcPackage.BackgroundImage")));
+			this.dcPackage.Controls.Add(this.xpGradientPanel3);
+			this.dcPackage.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dcPackage.Dock")));
+			this.dcPackage.Enabled = ((bool)(resources.GetObject("dcPackage.Enabled")));
+			this.dcPackage.Font = ((System.Drawing.Font)(resources.GetObject("dcPackage.Font")));
+			this.dcPackage.Guid = new System.Guid("d259ab3a-94c5-4303-bdfc-c471f471b090");
+			this.dcPackage.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dcPackage.ImeMode")));
+			this.dcPackage.Location = ((System.Drawing.Point)(resources.GetObject("dcPackage.Location")));
+			this.dcPackage.Name = "dcPackage";
+			this.dcPackage.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dcPackage.RightToLeft")));
+			this.dcPackage.Size = ((System.Drawing.Size)(resources.GetObject("dcPackage.Size")));
+			this.dcPackage.TabImage = ((System.Drawing.Image)(resources.GetObject("dcPackage.TabImage")));
+			this.dcPackage.TabIndex = ((int)(resources.GetObject("dcPackage.TabIndex")));
+			this.dcPackage.TabText = resources.GetString("dcPackage.TabText");
+			this.dcPackage.Text = resources.GetString("dcPackage.Text");
+			this.dcPackage.ToolTipText = resources.GetString("dcPackage.ToolTipText");
+			this.dcPackage.Visible = ((bool)(resources.GetObject("dcPackage.Visible")));
+			// 
+			// xpGradientPanel3
+			// 
+			this.xpGradientPanel3.AccessibleDescription = resources.GetString("xpGradientPanel3.AccessibleDescription");
+			this.xpGradientPanel3.AccessibleName = resources.GetString("xpGradientPanel3.AccessibleName");
+			this.xpGradientPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("xpGradientPanel3.Anchor")));
+			this.xpGradientPanel3.AutoScroll = ((bool)(resources.GetObject("xpGradientPanel3.AutoScroll")));
+			this.xpGradientPanel3.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.AutoScrollMargin")));
+			this.xpGradientPanel3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.AutoScrollMinSize")));
+			this.xpGradientPanel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel3.BackgroundImage")));
+			this.xpGradientPanel3.Controls.Add(this.lv);
+			this.xpGradientPanel3.Controls.Add(this.label4);
+			this.xpGradientPanel3.Controls.Add(this.pgHead);
+			this.xpGradientPanel3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpGradientPanel3.Dock")));
+			this.xpGradientPanel3.Enabled = ((bool)(resources.GetObject("xpGradientPanel3.Enabled")));
+			this.xpGradientPanel3.Font = ((System.Drawing.Font)(resources.GetObject("xpGradientPanel3.Font")));
+			this.xpGradientPanel3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpGradientPanel3.ImeMode")));
+			this.xpGradientPanel3.Location = ((System.Drawing.Point)(resources.GetObject("xpGradientPanel3.Location")));
+			this.xpGradientPanel3.Name = "xpGradientPanel3";
+			this.xpGradientPanel3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("xpGradientPanel3.RightToLeft")));
+			this.xpGradientPanel3.Size = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.Size")));
+			this.xpGradientPanel3.TabIndex = ((int)(resources.GetObject("xpGradientPanel3.TabIndex")));
+			this.xpGradientPanel3.Text = resources.GetString("xpGradientPanel3.Text");
+			this.xpGradientPanel3.Visible = ((bool)(resources.GetObject("xpGradientPanel3.Visible")));
+			this.xpGradientPanel3.Watermark = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel3.Watermark")));
+			this.xpGradientPanel3.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.WatermarkSize")));
+			// 
+			// lv
+			// 
+			this.lv.AccessibleDescription = resources.GetString("lv.AccessibleDescription");
+			this.lv.AccessibleName = resources.GetString("lv.AccessibleName");
+			this.lv.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lv.Alignment")));
+			this.lv.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lv.Anchor")));
+			this.lv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lv.BackgroundImage")));
+			this.lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+																				 this.clOffset,
+																				 this.clSize});
+			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
+			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
+			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
+			this.lv.FullRowSelect = true;
+			this.lv.GridLines = true;
+			this.lv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.lv.HideSelection = false;
+			this.lv.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lv.ImeMode")));
+			this.lv.LabelWrap = ((bool)(resources.GetObject("lv.LabelWrap")));
+			this.lv.Location = ((System.Drawing.Point)(resources.GetObject("lv.Location")));
+			this.lv.Name = "lv";
+			this.lv.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lv.RightToLeft")));
+			this.lv.Size = ((System.Drawing.Size)(resources.GetObject("lv.Size")));
+			this.lv.TabIndex = ((int)(resources.GetObject("lv.TabIndex")));
+			this.lv.Text = resources.GetString("lv.Text");
+			this.lv.View = System.Windows.Forms.View.Details;
+			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
+			// 
+			// clOffset
+			// 
+			this.clOffset.Text = resources.GetString("clOffset.Text");
+			this.clOffset.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("clOffset.TextAlign")));
+			this.clOffset.Width = ((int)(resources.GetObject("clOffset.Width")));
+			// 
+			// clSize
+			// 
+			this.clSize.Text = resources.GetString("clSize.Text");
+			this.clSize.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("clSize.TextAlign")));
+			this.clSize.Width = ((int)(resources.GetObject("clSize.Width")));
+			// 
+			// label4
+			// 
+			this.label4.AccessibleDescription = resources.GetString("label4.AccessibleDescription");
+			this.label4.AccessibleName = resources.GetString("label4.AccessibleName");
+			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label4.Anchor")));
+			this.label4.AutoSize = ((bool)(resources.GetObject("label4.AutoSize")));
+			this.label4.BackColor = System.Drawing.Color.Transparent;
+			this.label4.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label4.Dock")));
+			this.label4.Enabled = ((bool)(resources.GetObject("label4.Enabled")));
+			this.label4.Font = ((System.Drawing.Font)(resources.GetObject("label4.Font")));
+			this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
+			this.label4.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label4.ImageAlign")));
+			this.label4.ImageIndex = ((int)(resources.GetObject("label4.ImageIndex")));
+			this.label4.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label4.ImeMode")));
+			this.label4.Location = ((System.Drawing.Point)(resources.GetObject("label4.Location")));
+			this.label4.Name = "label4";
+			this.label4.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label4.RightToLeft")));
+			this.label4.Size = ((System.Drawing.Size)(resources.GetObject("label4.Size")));
+			this.label4.TabIndex = ((int)(resources.GetObject("label4.TabIndex")));
+			this.label4.Text = resources.GetString("label4.Text");
+			this.label4.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label4.TextAlign")));
+			this.label4.Visible = ((bool)(resources.GetObject("label4.Visible")));
+			// 
+			// pgHead
+			// 
+			this.pgHead.AccessibleDescription = resources.GetString("pgHead.AccessibleDescription");
+			this.pgHead.AccessibleName = resources.GetString("pgHead.AccessibleName");
+			this.pgHead.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pgHead.Anchor")));
+			this.pgHead.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pgHead.BackgroundImage")));
+			this.pgHead.CommandsVisibleIfAvailable = true;
+			this.pgHead.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pgHead.Dock")));
+			this.pgHead.Enabled = ((bool)(resources.GetObject("pgHead.Enabled")));
+			this.pgHead.Font = ((System.Drawing.Font)(resources.GetObject("pgHead.Font")));
+			this.pgHead.HelpVisible = ((bool)(resources.GetObject("pgHead.HelpVisible")));
+			this.pgHead.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pgHead.ImeMode")));
+			this.pgHead.LargeButtons = false;
+			this.pgHead.LineColor = System.Drawing.SystemColors.ScrollBar;
+			this.pgHead.Location = ((System.Drawing.Point)(resources.GetObject("pgHead.Location")));
+			this.pgHead.Name = "pgHead";
+			this.pgHead.PropertySort = System.Windows.Forms.PropertySort.Alphabetical;
+			this.pgHead.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pgHead.RightToLeft")));
+			this.pgHead.Size = ((System.Drawing.Size)(resources.GetObject("pgHead.Size")));
+			this.pgHead.TabIndex = ((int)(resources.GetObject("pgHead.TabIndex")));
+			this.pgHead.Text = resources.GetString("pgHead.Text");
+			this.pgHead.ToolbarVisible = false;
+			this.pgHead.ViewBackColor = System.Drawing.SystemColors.Window;
+			this.pgHead.ViewForeColor = System.Drawing.SystemColors.WindowText;
+			this.pgHead.Visible = ((bool)(resources.GetObject("pgHead.Visible")));
+			// 
+			// dcConvert
+			// 
+			this.dcConvert.AccessibleDescription = resources.GetString("dcConvert.AccessibleDescription");
+			this.dcConvert.AccessibleName = resources.GetString("dcConvert.AccessibleName");
+			this.dcConvert.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dcConvert.Anchor")));
+			this.dcConvert.AutoScroll = ((bool)(resources.GetObject("dcConvert.AutoScroll")));
+			this.dcConvert.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dcConvert.AutoScrollMargin")));
+			this.dcConvert.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dcConvert.AutoScrollMinSize")));
+			this.dcConvert.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dcConvert.BackgroundImage")));
+			this.dcConvert.Controls.Add(this.xpGradientPanel4);
+			this.dcConvert.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dcConvert.Dock")));
+			this.dcConvert.Enabled = ((bool)(resources.GetObject("dcConvert.Enabled")));
+			this.dcConvert.FloatingSize = new System.Drawing.Size(152, 59);
+			this.dcConvert.Font = ((System.Drawing.Font)(resources.GetObject("dcConvert.Font")));
+			this.dcConvert.Guid = new System.Guid("8ca80417-63c2-4b3f-ab5b-1a8f15d7026d");
+			this.dcConvert.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dcConvert.ImeMode")));
+			this.dcConvert.Location = ((System.Drawing.Point)(resources.GetObject("dcConvert.Location")));
+			this.dcConvert.Name = "dcConvert";
+			this.dcConvert.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dcConvert.RightToLeft")));
+			this.dcConvert.Size = ((System.Drawing.Size)(resources.GetObject("dcConvert.Size")));
+			this.dcConvert.TabImage = ((System.Drawing.Image)(resources.GetObject("dcConvert.TabImage")));
+			this.dcConvert.TabIndex = ((int)(resources.GetObject("dcConvert.TabIndex")));
+			this.dcConvert.TabText = resources.GetString("dcConvert.TabText");
+			this.dcConvert.Text = resources.GetString("dcConvert.Text");
+			this.dcConvert.ToolTipText = resources.GetString("dcConvert.ToolTipText");
+			this.dcConvert.Visible = ((bool)(resources.GetObject("dcConvert.Visible")));
+			// 
+			// xpGradientPanel4
+			// 
+			this.xpGradientPanel4.AccessibleDescription = resources.GetString("xpGradientPanel4.AccessibleDescription");
+			this.xpGradientPanel4.AccessibleName = resources.GetString("xpGradientPanel4.AccessibleName");
+			this.xpGradientPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("xpGradientPanel4.Anchor")));
+			this.xpGradientPanel4.AutoScroll = ((bool)(resources.GetObject("xpGradientPanel4.AutoScroll")));
+			this.xpGradientPanel4.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel4.AutoScrollMargin")));
+			this.xpGradientPanel4.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel4.AutoScrollMinSize")));
+			this.xpGradientPanel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel4.BackgroundImage")));
+			this.xpGradientPanel4.Controls.Add(this.tbDec);
+			this.xpGradientPanel4.Controls.Add(this.tbHex);
+			this.xpGradientPanel4.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpGradientPanel4.Dock")));
+			this.xpGradientPanel4.Enabled = ((bool)(resources.GetObject("xpGradientPanel4.Enabled")));
+			this.xpGradientPanel4.Font = ((System.Drawing.Font)(resources.GetObject("xpGradientPanel4.Font")));
+			this.xpGradientPanel4.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpGradientPanel4.ImeMode")));
+			this.xpGradientPanel4.Location = ((System.Drawing.Point)(resources.GetObject("xpGradientPanel4.Location")));
+			this.xpGradientPanel4.Name = "xpGradientPanel4";
+			this.xpGradientPanel4.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("xpGradientPanel4.RightToLeft")));
+			this.xpGradientPanel4.Size = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel4.Size")));
+			this.xpGradientPanel4.TabIndex = ((int)(resources.GetObject("xpGradientPanel4.TabIndex")));
+			this.xpGradientPanel4.Text = resources.GetString("xpGradientPanel4.Text");
+			this.xpGradientPanel4.Visible = ((bool)(resources.GetObject("xpGradientPanel4.Visible")));
+			this.xpGradientPanel4.Watermark = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel4.Watermark")));
+			this.xpGradientPanel4.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel4.WatermarkSize")));
+			// 
+			// tbDec
+			// 
+			this.tbDec.AccessibleDescription = resources.GetString("tbDec.AccessibleDescription");
+			this.tbDec.AccessibleName = resources.GetString("tbDec.AccessibleName");
+			this.tbDec.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbDec.Anchor")));
+			this.tbDec.AutoSize = ((bool)(resources.GetObject("tbDec.AutoSize")));
+			this.tbDec.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbDec.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbDec, "Dezimal Wert");
+			this.tbDec.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbDec.Dock")));
+			this.tbDec.Enabled = ((bool)(resources.GetObject("tbDec.Enabled")));
+			this.tbDec.Font = ((System.Drawing.Font)(resources.GetObject("tbDec.Font")));
+			this.tbDec.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbDec.ImeMode")));
+			this.tbDec.Location = ((System.Drawing.Point)(resources.GetObject("tbDec.Location")));
+			this.tbDec.MaxLength = ((int)(resources.GetObject("tbDec.MaxLength")));
+			this.tbDec.Multiline = ((bool)(resources.GetObject("tbDec.Multiline")));
+			this.tbDec.Name = "tbDec";
+			this.tbDec.PasswordChar = ((char)(resources.GetObject("tbDec.PasswordChar")));
+			this.tbDec.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbDec.RightToLeft")));
+			this.tbDec.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbDec.ScrollBars")));
+			this.tbDec.Size = ((System.Drawing.Size)(resources.GetObject("tbDec.Size")));
+			this.tbDec.TabIndex = ((int)(resources.GetObject("tbDec.TabIndex")));
+			this.tbDec.Text = resources.GetString("tbDec.Text");
+			this.tbDec.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbDec.TextAlign")));
+			this.tbDec.Visible = ((bool)(resources.GetObject("tbDec.Visible")));
+			this.tbDec.WordWrap = ((bool)(resources.GetObject("tbDec.WordWrap")));
+			this.tbDec.TextChanged += new System.EventHandler(this.DecChanged);
+			// 
+			// tbHex
+			// 
+			this.tbHex.AccessibleDescription = resources.GetString("tbHex.AccessibleDescription");
+			this.tbHex.AccessibleName = resources.GetString("tbHex.AccessibleName");
+			this.tbHex.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbHex.Anchor")));
+			this.tbHex.AutoSize = ((bool)(resources.GetObject("tbHex.AutoSize")));
+			this.tbHex.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbHex.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbHex, "Hex Wert");
+			this.tbHex.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbHex.Dock")));
+			this.tbHex.Enabled = ((bool)(resources.GetObject("tbHex.Enabled")));
+			this.tbHex.Font = ((System.Drawing.Font)(resources.GetObject("tbHex.Font")));
+			this.tbHex.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbHex.ImeMode")));
+			this.tbHex.Location = ((System.Drawing.Point)(resources.GetObject("tbHex.Location")));
+			this.tbHex.MaxLength = ((int)(resources.GetObject("tbHex.MaxLength")));
+			this.tbHex.Multiline = ((bool)(resources.GetObject("tbHex.Multiline")));
+			this.tbHex.Name = "tbHex";
+			this.tbHex.PasswordChar = ((char)(resources.GetObject("tbHex.PasswordChar")));
+			this.tbHex.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbHex.RightToLeft")));
+			this.tbHex.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbHex.ScrollBars")));
+			this.tbHex.Size = ((System.Drawing.Size)(resources.GetObject("tbHex.Size")));
+			this.tbHex.TabIndex = ((int)(resources.GetObject("tbHex.TabIndex")));
+			this.tbHex.Text = resources.GetString("tbHex.Text");
+			this.tbHex.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbHex.TextAlign")));
+			this.tbHex.Visible = ((bool)(resources.GetObject("tbHex.Visible")));
+			this.tbHex.WordWrap = ((bool)(resources.GetObject("tbHex.WordWrap")));
+			this.tbHex.TextChanged += new System.EventHandler(this.HexChanged);
 			// 
 			// dcWrapper
 			// 
@@ -839,55 +1115,6 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.topSandDock.Text = resources.GetString("topSandDock.Text");
 			this.topSandDock.Visible = ((bool)(resources.GetObject("topSandDock.Visible")));
 			// 
-			// dcPackage
-			// 
-			this.dcPackage.AccessibleDescription = resources.GetString("dcPackage.AccessibleDescription");
-			this.dcPackage.AccessibleName = resources.GetString("dcPackage.AccessibleName");
-			this.dcPackage.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dcPackage.Anchor")));
-			this.dcPackage.AutoScroll = ((bool)(resources.GetObject("dcPackage.AutoScroll")));
-			this.dcPackage.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dcPackage.AutoScrollMargin")));
-			this.dcPackage.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dcPackage.AutoScrollMinSize")));
-			this.dcPackage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dcPackage.BackgroundImage")));
-			this.dcPackage.Controls.Add(this.xpGradientPanel3);
-			this.dcPackage.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dcPackage.Dock")));
-			this.dcPackage.Enabled = ((bool)(resources.GetObject("dcPackage.Enabled")));
-			this.dcPackage.Font = ((System.Drawing.Font)(resources.GetObject("dcPackage.Font")));
-			this.dcPackage.Guid = new System.Guid("d259ab3a-94c5-4303-bdfc-c471f471b090");
-			this.dcPackage.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dcPackage.ImeMode")));
-			this.dcPackage.Location = ((System.Drawing.Point)(resources.GetObject("dcPackage.Location")));
-			this.dcPackage.Name = "dcPackage";
-			this.dcPackage.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dcPackage.RightToLeft")));
-			this.dcPackage.Size = ((System.Drawing.Size)(resources.GetObject("dcPackage.Size")));
-			this.dcPackage.TabImage = ((System.Drawing.Image)(resources.GetObject("dcPackage.TabImage")));
-			this.dcPackage.TabIndex = ((int)(resources.GetObject("dcPackage.TabIndex")));
-			this.dcPackage.TabText = resources.GetString("dcPackage.TabText");
-			this.dcPackage.Text = resources.GetString("dcPackage.Text");
-			this.dcPackage.ToolTipText = resources.GetString("dcPackage.ToolTipText");
-			this.dcPackage.Visible = ((bool)(resources.GetObject("dcPackage.Visible")));
-			// 
-			// xpGradientPanel3
-			// 
-			this.xpGradientPanel3.AccessibleDescription = resources.GetString("xpGradientPanel3.AccessibleDescription");
-			this.xpGradientPanel3.AccessibleName = resources.GetString("xpGradientPanel3.AccessibleName");
-			this.xpGradientPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("xpGradientPanel3.Anchor")));
-			this.xpGradientPanel3.AutoScroll = ((bool)(resources.GetObject("xpGradientPanel3.AutoScroll")));
-			this.xpGradientPanel3.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.AutoScrollMargin")));
-			this.xpGradientPanel3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.AutoScrollMinSize")));
-			this.xpGradientPanel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel3.BackgroundImage")));
-			this.xpGradientPanel3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpGradientPanel3.Dock")));
-			this.xpGradientPanel3.Enabled = ((bool)(resources.GetObject("xpGradientPanel3.Enabled")));
-			this.xpGradientPanel3.Font = ((System.Drawing.Font)(resources.GetObject("xpGradientPanel3.Font")));
-			this.xpGradientPanel3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpGradientPanel3.ImeMode")));
-			this.xpGradientPanel3.Location = ((System.Drawing.Point)(resources.GetObject("xpGradientPanel3.Location")));
-			this.xpGradientPanel3.Name = "xpGradientPanel3";
-			this.xpGradientPanel3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("xpGradientPanel3.RightToLeft")));
-			this.xpGradientPanel3.Size = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.Size")));
-			this.xpGradientPanel3.TabIndex = ((int)(resources.GetObject("xpGradientPanel3.TabIndex")));
-			this.xpGradientPanel3.Text = resources.GetString("xpGradientPanel3.Text");
-			this.xpGradientPanel3.Visible = ((bool)(resources.GetObject("xpGradientPanel3.Visible")));
-			this.xpGradientPanel3.Watermark = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel3.Watermark")));
-			this.xpGradientPanel3.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.WatermarkSize")));
-			// 
 			// ResourceDock
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -918,9 +1145,12 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.dcResource.ResumeLayout(false);
 			this.xpGradientPanel1.ResumeLayout(false);
 			this.pntypes.ResumeLayout(false);
+			this.dcPackage.ResumeLayout(false);
+			this.xpGradientPanel3.ResumeLayout(false);
+			this.dcConvert.ResumeLayout(false);
+			this.xpGradientPanel4.ResumeLayout(false);
 			this.dcWrapper.ResumeLayout(false);
 			this.xpGradientPanel2.ResumeLayout(false);
-			this.dcPackage.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -1084,7 +1314,36 @@ namespace SimPe.Plugin.Tool.Dockable
 			if (e.KeyCode ==  Keys.Enter) this.tbinstance2_TextChanged(sender, null);
 		}
 
-		
+		#region Hex <-> Dec Converter
+		bool sysupdate = false;
+		private void HexChanged(object sender, System.EventArgs e)
+		{
+			if (sysupdate) return;
+			sysupdate = true;
+			try 
+			{
+				this.tbDec.Text = Convert.ToInt64(tbHex.Text, 16).ToString();
+			} 
+			catch (Exception) {
+				this.tbDec.Text = "";
+			}
+			sysupdate = false;
+		}
+
+		private void DecChanged(object sender, System.EventArgs e)
+		{
+			if (sysupdate) return;
+			sysupdate = true;
+			try 
+			{
+				tbHex.Text = "0x"+Helper.HexString((ulong)Convert.ToInt64(tbDec.Text));
+			} 
+			catch (Exception) {
+				this.tbHex.Text = "";
+			}
+			sysupdate = false;
+		}
+		#endregion
 
 		
 

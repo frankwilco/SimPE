@@ -19,59 +19,62 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces;
-using SimPe.Plugin.Tool.Action;
 
-namespace SimPe.Plugin
+namespace SimPe.Plugin.Tool.Dockable
 {
 	/// <summary>
-	/// Lists all Plugins (=FileType Wrappers) available in this Package
+	/// Hex to Decimal Converter Dialog
 	/// </summary>
-	/// <remarks>
-	/// GetWrappers() has to return a list of all Plugins provided by this Library. 
-	/// If a Plugin isn't returned, SimPe won't recognize it!
-	/// </remarks>
-	public class WrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory, SimPe.Interfaces.Plugin.IToolFactory
-	{
-		#region AbstractWrapperFactory Member
-		/// <summary>
-		/// Returns a List of all available Plugins in this Package
-		/// </summary>
-		/// <returns>A List of all provided Plugins (=FileType Wrappers)</returns>
-		public override SimPe.Interfaces.IWrapper[] KnownWrappers
+	public class HexDecConverterTool : SimPe.Interfaces.IDockableTool
+	{		
+		ResourceDock rd;
+		public HexDecConverterTool(ResourceDock rd)
 		{
-			get 
-			{
-				IWrapper[] wrappers = {
-										  new Plugin.Ngbh(this.LinkedProvider),
-										  new Plugin.Ltxt(this.LinkedProvider),
-										  new Plugin.Want(this.LinkedProvider),
-										  new Plugin.XWant(),
-										  new Plugin.Idno()
-									  };
-				return wrappers;
-			}
+			this.rd = rd;
+		}
+
+		#region IDockableTool Member
+
+		public TD.SandDock.DockControl GetDockableControl()
+		{
+			return rd.dcConvert;
+		}
+
+		public event SimPe.Events.ChangedResourceEvent ShowNewResource;
+
+		public void RefreshDock(object sender, SimPe.Events.ResourceEventArgs es)
+		{
+			
 		}
 
 		#endregion
 
-		#region IToolFactory Member
+		#region IToolPlugin Member
 
+		public override string ToString()
+		{
+			return rd.dcConvert.Text;
+		}
 
-		public IToolPlugin[] KnownTools
+		#endregion
+
+		#region IToolExt Member
+
+		public System.Windows.Forms.Shortcut Shortcut
 		{
 			get
 			{
-				IToolPlugin[] tools = {
-										 new Plugin.FixUidTool(),
-										 new ActionIntriguedNeighborhood()
-									 };
-				if (Helper.WindowsRegistry.HiddenMode) return tools;
-
-				tools = new ITool[0];
-				return tools;
+				return System.Windows.Forms.Shortcut.CtrlH;
 			}
-		}		
+		}
 
+		public System.Drawing.Image Icon
+		{
+			get
+			{
+				return rd.dcConvert.TabImage;
+			}
+		}
 
 		#endregion
 	}

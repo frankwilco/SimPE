@@ -56,6 +56,16 @@ namespace SimPe.Interfaces
 			get;
 		}
 
+		// <summary>
+		/// Returns the List of Known Tools
+		/// </summary>
+		/// <remarks>The Tools should be Returned in Order of Priority starting with the lowest!</remarks>
+		IToolPlus[] ToolsPlus 
+		{
+			get;
+		}
+
+
 		/// <summary>
 		/// Returns a List of Know Doackable Tools
 		/// </summary>

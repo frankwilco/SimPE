@@ -23,6 +23,7 @@ using System.Collections;
 using System.IO;
 using SimPe.Interfaces;
 using SimPe.Interfaces.Plugin;
+using SimPe.Events;
 
 namespace SimPe
 {
@@ -32,14 +33,8 @@ namespace SimPe
 		/// Those delegates can be called when a Tool want's to notify the Host Application
 		/// </summary>
 		public delegate void ExternalToolNotify(object sender, PackageArg pk);
-		ITool tool;
-		/// <summary>
-		/// Returns the stored Tool
-		/// </summary>
-		public ITool Tool
-		{
-			get {return tool;}
-		}
+		IToolPlugin tool;
+		
 
 		/// <summary>
 		/// Return null, or the stored extended Tool
@@ -50,6 +45,30 @@ namespace SimPe
 			{
 				//if (tool.GetType().GetInterface("SimPe.Interfaces.IToolExt", true) == typeof(SimPe.Interfaces.IToolExt)) return (SimPe.Interfaces.IToolExt)tool;
 				if (tool is SimPe.Interfaces.IToolExt) return (SimPe.Interfaces.IToolExt)tool;
+				else return null;
+			}
+		}
+
+		/// <summary>
+		/// Return null, or the stored  Tool
+		/// </summary>
+		public ITool Tool 
+		{
+			get 
+			{
+				if (tool is SimPe.Interfaces.ITool) return (SimPe.Interfaces.ITool)tool;
+				else return null;
+			}
+		}
+
+		/// <summary>
+		/// Return null, or the stored ToolPlus Item
+		/// </summary>
+		public IToolPlus ToolPlus 
+		{
+			get 
+			{
+				if (tool is SimPe.Interfaces.IToolPlus) return (SimPe.Interfaces.IToolPlus)tool;
 				else return null;
 			}
 		}
@@ -66,25 +85,27 @@ namespace SimPe
 			set {chghandler = value; }
 		}
 
-		public ToolMenuItemExt(ITool tool, ExternalToolNotify chghnd) : this(tool.ToString(), tool, chghnd)
+		public ToolMenuItemExt(IToolPlus tool, ExternalToolNotify chghnd) : this(tool.ToString(), tool, chghnd)
 		{			
 		}
 
-		public ToolMenuItemExt(string text, ITool tool, ExternalToolNotify chghnd) 
+		public ToolMenuItemExt(string text, IToolPlugin tool, ExternalToolNotify chghnd) 
 		{
 			this.tool = tool;
 			this.Text = text;
+			Activate += new EventHandler(LinkClicked);
 			Activate += new EventHandler(ClickItem);
 			chghandler = chghnd;
 		}
 		
 		private void ClickItem(object sender, System.EventArgs e) 
 		{
+			if (Tool==null) return;
 			try 
 			{
-				if (tool.IsEnabled(pfd, package)) 
+				if (Tool.IsEnabled(pfd, package)) 
 				{
-					SimPe.Interfaces.Plugin.IToolResult tr = tool.ShowDialog(ref pfd, ref package);
+					SimPe.Interfaces.Plugin.IToolResult tr = Tool.ShowDialog(ref pfd, ref package);
 					WaitingScreen.Stop();
 					if (tr.ChangedAny) 
 					{
@@ -101,6 +122,42 @@ namespace SimPe
 				Helper.ExceptionMessage("Unable to Start ToolPlugin.", ex);
 			}
 		}
+
+		#region Event Handler		
+		SimPe.Events.ResourceEventArgs lasteventarg;
+
+		/// <summary>
+		/// Fired when a Resource was changed by a ToolPlugin and the Enabled state needs to be changed
+		/// </summary>
+		internal void ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs e) 
+		{
+			this.Package = AbstractToolPlus.ExtractPackage(e);
+			this.FileDescriptor = AbstractToolPlus.ExtractFileDescriptor(e);
+
+			if (Tool!=null) 
+			{
+				UpdateEnabledState();
+			} 
+			else if (ToolPlus!=null) 
+			{
+				lasteventarg = e;
+				this.Enabled = ToolPlus.ChangeEnabledStateEventHandler(sender, e);					
+			}
+		}
+
+		/// <summary>
+		/// Fired when a Link is clicked
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void LinkClicked(object sender, EventArgs e)
+		{
+			if (ToolPlus==null) return;
+			if (lasteventarg.LoadedPackage!=null) lasteventarg.LoadedPackage.PauseIndexChangedEvents();
+			ToolPlus.Execute(sender, lasteventarg);
+			if (lasteventarg.LoadedPackage!=null) lasteventarg.LoadedPackage.RestartIndexChangedEvents();
+		}
+		#endregion
 
 		public override string ToString()
 		{
@@ -128,11 +185,11 @@ namespace SimPe
 			set { package = value; }
 		}
 
-		public void UpdateEnabledState()
+		void UpdateEnabledState()
 		{
 			try 
 			{
-				Enabled = tool.IsEnabled(pfd, package);
+				Enabled = Tool.IsEnabled(pfd, package);
 			} 
 			catch (Exception)
 			{
@@ -162,8 +219,10 @@ namespace SimPe
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="parts"></param>
-		public void AddMenuItem(TD.SandBar.MenuItemBase.MenuItemCollection parent, ToolMenuItemExt item, string[] parts)
+		public void AddMenuItem(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuItemBase.MenuItemCollection parent, ToolMenuItemExt item, string[] parts)
 		{
+			System.Reflection.Assembly a = this.GetType().Assembly;
+
 			for (int i=0; i<parts.Length-1; i++) 
 			{
 				string name = SimPe.Localization.GetString(parts[i]);
@@ -183,7 +242,13 @@ namespace SimPe
 				if (mi==null) 
 				{
 					mi = new TD.SandBar.MenuButtonItem(name);
-					if (parent!=null) parent.Insert(0, mi);
+					
+					if (parent!=null) 
+					{
+						System.IO.Stream imgstr = a.GetManifestResourceStream("SimPe."+parts[i]+".png");
+						if (imgstr!=null) mi.Image = System.Drawing.Image.FromStream(imgstr);
+						parent.Insert(0, mi);
+					}
 					
 				}
 
@@ -195,7 +260,10 @@ namespace SimPe
 				item.Shortcut = item.ToolExt.Shortcut;
 				item.Image = item.ToolExt.Icon;
 			}
+
 			parent.Add(item);			
+			ev += new SimPe.Events.ChangedResourceEvent(item.ChangeEnabledStateEventHandler);
+			item.ChangeEnabledStateEventHandler(this, new SimPe.Events.ResourceEventArgs(null));
 		}
 
 		TD.SandBar.MenuBarItem mi;
@@ -204,9 +272,20 @@ namespace SimPe
 		/// </summary>
 		/// <param name="mi">The Menu you want to add Items to</param>
 		/// <param name="chghandler">A Function to call when the Package was chaged by a Tool</param>
-		public void AddMenuItems(TD.SandBar.MenuBarItem mi, ToolMenuItemExt.ExternalToolNotify chghandler) 
+		public void AddMenuItems(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuBarItem mi, ToolMenuItemExt.ExternalToolNotify chghandler) 
 		{
 			this.mi = mi;
+			IToolPlus[] toolsp = FileTable.ToolRegistry.ToolsPlus;
+			foreach (IToolPlus tool in toolsp)
+			{
+				string name = tool.ToString();
+				string[] parts = name.Split("\\".ToCharArray());
+				name = SimPe.Localization.GetString(parts[parts.Length-1]);
+				ToolMenuItemExt item = new ToolMenuItemExt(name, tool, chghandler);
+
+				AddMenuItem(ref ev, mi.Items, item, parts);
+			}
+
 			ITool[] tools = FileTable.ToolRegistry.Tools;
 			foreach (ITool tool in tools)
 			{
@@ -215,13 +294,13 @@ namespace SimPe
 				name = SimPe.Localization.GetString(parts[parts.Length-1]);
 				ToolMenuItemExt item = new ToolMenuItemExt(name, tool, chghandler);
 
-				AddMenuItem(mi.Items, item, parts);
+				AddMenuItem(ref ev, mi.Items, item, parts);
 			}
 
-			EnableMenuItems(null);
+			//EnableMenuItems(null);
 		}
 
-		/// <summary>
+		/*/// <summary>
 		/// Used to determin the enabled State of a Tool
 		/// </summary>
 		/// <param name="sender"></param>
@@ -242,9 +321,9 @@ namespace SimPe
 		public void ChangedPackage(LoadedPackage sender) 
 		{
 			EnableMenuItems(null, sender.Package);
-		}
+		}*/
 
-		/// <summary>
+		/*/// <summary>
 		/// Set the Enabled state of the Tool MenuItems
 		/// </summary>
 		/// <param name="mi"></param>
@@ -292,7 +371,7 @@ namespace SimPe
 		{
 			EnableMenuItems(mi.Items, pfd, package);
 		}
-
+		*/
 		
 	}
 }

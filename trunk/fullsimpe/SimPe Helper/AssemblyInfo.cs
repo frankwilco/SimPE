@@ -6,8 +6,8 @@ using System.Runtime.CompilerServices;
 // gesteuert. Ändern Sie diese Attributswerte, um die Informationen zu modifizieren,
 // die mit einer Assembly verknüpft sind.
 //
-[assembly: AssemblyTitle("SimPe Helpers")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("SimPe - Simple Package Editor")]
+[assembly: AssemblyDescription("Package Editor for the Sims 2")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ambertation")]
 #if DEBUG
@@ -30,7 +30,7 @@ using System.Runtime.CompilerServices;
 // Sie können alle Werte oder die standardmäßige Revision und Buildnummer 
 // mit '*' angeben:
 
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("0.41.*")]
 
 //
 // Um die Assembly zu signieren, müssen Sie einen Schlüssel angeben. Weitere Informationen 
