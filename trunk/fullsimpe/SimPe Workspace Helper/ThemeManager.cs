@@ -77,8 +77,23 @@ namespace SimPe
 			parent = null;
 			ctrls = new System.Collections.ArrayList();
 		}
-		#endregion
 
+		~ThemeManager()
+		{
+			Parent = null;
+		}
+	
+		/// <summary>
+		/// Creates a Child Theme Manager and returns it
+		/// </summary>
+		/// <returns></returns>
+		public ThemeManager CreateChild()
+		{
+			ThemeManager tm = new ThemeManager(this.ctheme);
+			tm.Parent = this;
+			return tm;
+		}
+		#endregion
 
 		#region Apply Themes
 		void SetTheme(TD.SandDock.SandDockManager sdm) 
@@ -200,7 +215,7 @@ namespace SimPe
 			{
 				if (parent!=null) parent.ChangedTheme -= new SimPe.Events.ChangedThemeEvent(ThemeWasChanged);
 				parent = value;
-				parent.ChangedTheme += new SimPe.Events.ChangedThemeEvent(ThemeWasChanged);
+				if (parent!=null) parent.ChangedTheme += new SimPe.Events.ChangedThemeEvent(ThemeWasChanged);
 			}
 		}
 

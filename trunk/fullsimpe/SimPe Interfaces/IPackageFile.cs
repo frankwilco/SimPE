@@ -239,5 +239,22 @@ namespace SimPe.Interfaces.Files
 		/// </summary>
 		/// <param name="total">true, if the FileDescriptors should be marked invalid</param>
 		void Close(bool total);
+
+		#region Events
+		/// <summary>
+		/// Triggered whenever a new Resource was added
+		/// </summary>
+		event System.EventHandler AddedResource;
+
+		/// <summary>
+		/// Triggered whenever a Resource was Removed
+		/// </summary>
+		event System.EventHandler RemovedResource;
+
+		/// <summary>
+		/// Triggered whenever the Content of the Package was changed
+		/// </summary>
+		event System.EventHandler IndexChanged;
+		#endregion
 	}
 }

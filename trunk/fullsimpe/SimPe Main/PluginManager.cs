@@ -34,7 +34,8 @@ namespace SimPe
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox defaultactiontaskbox,
 			TD.SandBar.MenuBarItem defaultactionmenu,
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox actiontaskbox, 
-			TD.SandBar.ToolBar actiontoolbar)
+			TD.SandBar.ToolBar actiontoolbar,
+			TD.SandDock.DockControl docktooldc)
 		{
 			SimPe.PackedFiles.TypeRegistry tr = new SimPe.PackedFiles.TypeRegistry();
 
@@ -54,7 +55,10 @@ namespace SimPe
 
 			
 			LoadActionTools(defaultactiontaskbox, actiontoolbar, defaultactionmenu, GetDefaultActions());
+			LoadActionTools(actiontaskbox, actiontoolbar, defaultactionmenu, LoadExternalTools());
 			LoadActionTools(actiontaskbox, actiontoolbar, null, null);
+			
+			LoadDocks(docktooldc, lp);
 		}
 
 		/// <summary>
@@ -95,14 +99,14 @@ namespace SimPe
 		}
 
 		#region Action Tools		
-		event SimPe.Events.ChangedResourceEvent ChangeEnabledStateEvent;
+		event SimPe.Events.ChangedResourceEvent ChangedGuiResourceEvent;
 		
 		/// <summary>
 		/// Fired when a Resource was changed by a ToolPlugin and the Enabled state needs to be changed
 		/// </summary>
-		public void ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs[] e, LoadedPackage guipackage)
+		public void ChangedGuiResourceEventHandler(object sender, SimPe.Events.ResourceEventArgs e)
 		{
-			if (ChangeEnabledStateEvent!=null) ChangeEnabledStateEvent(sender, e, guipackage);
+			if (ChangedGuiResourceEvent!=null) ChangedGuiResourceEvent(sender, e);
 		}
 
 		/// <summary>
@@ -125,16 +129,23 @@ namespace SimPe
 		/// <summary>
 		/// Load all available Action Tools
 		/// </summary>
-		void LoadActionTools(SteepValley.Windows.Forms.ThemedControls.XPTaskBox taskbox, TD.SandBar.ToolBar tb, TD.SandBar.MenuBarItem mi, SimPe.Interfaces.IToolAction[] tools)
+		void LoadActionTools(
+			SteepValley.Windows.Forms.ThemedControls.XPTaskBox taskbox, 
+			TD.SandBar.ToolBar tb, 
+			TD.SandBar.MenuBarItem mi, 
+			SimPe.Interfaces.IToolAction[] tools)
 		{			
 			if (tools==null) tools = FileTable.ToolRegistry.Actions;
 
-			int top = taskbox.ClientRectangle.Top + 4 + taskbox.DockPadding.Top;
-			bool first = true;
+			int top =  4 + taskbox.DockPadding.Top;
+			if (taskbox.Tag!=null) top = (int)taskbox.Tag;
+
+			bool tfirst = true;
+			bool mfirst = true;
 			foreach (SimPe.Interfaces.IToolAction tool in tools) 
 			{
 				ActionToolDescriptor atd = new ActionToolDescriptor(tool);
-				ChangeEnabledStateEvent += new SimPe.Events.ChangedResourceEvent(atd.ChangeEnabledStateEventHandler);				
+				ChangedGuiResourceEvent += new SimPe.Events.ChangedResourceEvent(atd.ChangeEnabledStateEventHandler);				
 
 				if (taskbox!=null) 
 				{
@@ -144,22 +155,56 @@ namespace SimPe
 					atd.LinkLabel.Parent = taskbox;
 					atd.LinkLabel.Visible = taskbox.IsExpanded;
 					atd.LinkLabel.AutoSize = true;
-					//atd.LinkLabel.Width = taskbox.Width - (atd.LinkLabel.Left + 8);
-					//atd.LinkLabel.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-					//atd.LinkLabel.Dock = System.Windows.Forms.DockStyle.Top;
 				}
 
-				if (mi!=null) mi.Items.Add(atd.MenuButton);
+				if (mi!=null) 
+				{
+					mi.Items.Add(atd.MenuButton);
+					atd.MenuButton.BeginGroup = (mfirst && mi.Items.Count!=0);
+					mfirst = false;
+				}
 
 				if (tb!=null && atd.ToolBarButton!=null)
 				{
-					atd.ToolBarButton.BeginGroup = (first && tb.Items.Count!=0);
+					atd.ToolBarButton.BeginGroup = (tfirst && tb.Items.Count!=0);
 					tb.Items.Add(atd.ToolBarButton);
-					first = false;
+					tfirst = false;
 				}
 				
 			}
 			taskbox.Height = top + 4;
+			taskbox.Tag = top;
+		}
+		#endregion
+
+		#region External Program Tools
+		SimPe.Interfaces.IToolAction[] LoadExternalTools()
+		{
+   			ToolLoaderItemExt[] items = ToolLoaderExt.Items;
+			SimPe.Interfaces.IToolAction[] tools = new SimPe.Interfaces.IToolAction[items.Length];
+			for (int i=0; i<items.Length; i++)
+				tools[i] = new SimPe.Actions.Default.StartExternalToolAction(items[i]);
+			
+			return tools;
+		}
+		#endregion
+
+		#region dockable Tools
+		void LoadDocks(TD.SandDock.DockControl dc, LoadedPackage lp)
+		{
+			foreach (SimPe.Interfaces.IDockableTool idt in FileTable.ToolRegistry.Docks)
+			{
+				TD.SandDock.DockControl dctrl = idt.GetDockableControl();
+				if (dctrl!=null) 
+				{
+					dctrl.Manager = dc.Manager;
+					dctrl.PerformDock(dc.LayoutSystem);
+
+					ChangedGuiResourceEvent += new SimPe.Events.ChangedResourceEvent(idt.RefreshDock);
+					dctrl.Tag = idt;
+					idt.RefreshDock(this, new SimPe.Events.ResourceEventArgs(lp));
+				}
+			}
 		}
 		#endregion
 	}

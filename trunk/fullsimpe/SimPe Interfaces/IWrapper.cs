@@ -27,6 +27,14 @@ namespace SimPe.Interfaces
 	public interface IWrapper
 	{
 		/// <summary>
+		/// true, if the UIHandler for this Wrapper is able to display more than one Instance at once
+		/// </summary>
+		bool AllowMultipleInstances
+		{
+			get;
+		}
+
+		/// <summary>
 		/// Registers the Wrapper with the passed Registry
 		/// </summary>		
 		/// <param name="registry">The Registry you want to registre this Wrapper with</param>
@@ -72,7 +80,7 @@ namespace SimPe.Interfaces
 		/// <summary>
 		/// Returns sets the Name of the File where this wrapper is located in
 		/// </summary>
-		string FileName
+		string WrapperFileName
 		{
 			get;
 		}

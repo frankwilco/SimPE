@@ -124,12 +124,33 @@ namespace SimPe
 			map = new Hashtable();
 			map.Add(ExtensionType.Package, new ExtensionDescriptor("DBPF Package", "*.package"));
 			map.Add(ExtensionType.DisabledPackage, new ExtensionDescriptor("Disabled DBPF Package", "*.simpedis"));
-			map.Add(ExtensionType.ExtractedFile, new ExtensionDescriptor("Extracted File", "*.simpe"));
+			map.Add(ExtensionType.ExtractedFile, new ExtensionDescriptor("Extracted File", GetExtractExtensions()));
 			map.Add(ExtensionType.ExtractedFileDescriptor, new ExtensionDescriptor("Extracted File Descriptor", "*.*.xml"));
 			map.Add(ExtensionType.ExtrackedPackageDescriptor, new ExtensionDescriptor("Extracted Package", "package.xml"));
 			map.Add(ExtensionType.Sim2Pack, new ExtensionDescriptor("Packed Objects", "sim2pack"));
 			map.Add(ExtensionType.Sim2PackCommunity, new ExtensionDescriptor("Sims 2 Community Package", "s2cp"));
 			map.Add(ExtensionType.AllFiles, new ExtensionDescriptor("All Files", "*.*"));
+		}
+
+		/// <summary>
+		/// Returns a list of all extractable Extensions
+		/// </summary>
+		/// <returns></returns>
+		static ArrayList GetExtractExtensions()
+		{
+			ArrayList exts = new ArrayList();
+			exts.Add("*.simpe");
+
+			SimPe.Data.TypeAlias[] types = Helper.TGILoader.FileTypes;
+			foreach (SimPe.Data.TypeAlias type in types) 
+			{
+				string ext = type.Extension.Trim().ToLower();
+				if (ext=="") continue;
+				ext = "*."+ext;
+				if (!exts.Contains(ext)) exts.Add(ext);
+			}
+
+			return exts;
 		}
 
 		/// <summary>

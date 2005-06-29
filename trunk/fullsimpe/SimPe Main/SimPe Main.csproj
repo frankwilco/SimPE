@@ -7,7 +7,7 @@
     >
         <Build>
             <Settings
-                ApplicationIcon = "..\SimPe\img\simpe.ico"
+                ApplicationIcon = "img\simpenew.ico"
                 AssemblyKeyContainerName = ""
                 AssemblyName = "SimPe.New"
                 AssemblyOriginatorKeyFile = ""
@@ -282,6 +282,15 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "actionstart.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ActionStartExternalTool.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ActionToolDescriptor.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -306,6 +315,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "disabled.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "enabled.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "error.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "expand.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Main.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -318,6 +343,10 @@
                 <File
                     RelPath = "Main.resx"
                     DependentUpon = "Main.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "multienabled.png"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -346,14 +375,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ResourceLoader.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
+                    RelPath = "shrink.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "ToolLoader.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
+                    RelPath = "smallmultienabled.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "TreeBuilder.cs"

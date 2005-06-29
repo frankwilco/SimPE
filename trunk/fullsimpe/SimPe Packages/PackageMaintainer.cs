@@ -62,6 +62,8 @@ namespace SimPe.Packages
 		/// </remarks>
 		public GeneratableFile LoadPackageFromFile(string filename, bool sync) 
 		{
+			if (filename==null) return new GeneratableFile((System.IO.BinaryReader)null);
+
 			if (!Helper.WindowsRegistry.UsePackageMaintainer)  return new GeneratableFile(filename);
 
 #if MAC

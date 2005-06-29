@@ -40,21 +40,14 @@ namespace SimPe.Interfaces
 		/// <param name="package">The currently opened Package</param>
 		/// <param name="pfd">The currently selected File</param>
 		/// <returns>true, if the package was changed</returns>
-		System.Windows.Forms.Control GetDockableControl();
+		TD.SandDock.DockControl GetDockableControl();
 
 		/// <summary>
-		/// Called, when the DockPanel needs to be Refreshed (i.e. new content)
+		/// This EventHandler will be connected to the ChangeResource Event of the Caller, you can set 
+		/// the Enabled State here
 		/// </summary>
-		/// <param name="guipackage">Represents the package currently opened in the 
-		/// GUI, you can use the included Methods to open a new Package in the Main GUI</param>
-		/// <param name="item">The opened Resource Item (can be null)</param>
-		void RefreshDock(LoadedPackage guipackage, SimPe.Interfaces.Scenegraph.IScenegraphFileIndex item);
-
-		/// <summary>
-		/// Returns true if the Menu Item can be enabled
-		/// </summary>
-		/// <param name="item">The opened Resource Item (can be null)</param>
-		/// <returns>true if this tool is avaliable</returns>
-		bool IsEnabled(SimPe.Interfaces.Scenegraph.IScenegraphFileIndex item);			
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		void RefreshDock(object sender, ResourceEventArgs e);				
 	}
 }

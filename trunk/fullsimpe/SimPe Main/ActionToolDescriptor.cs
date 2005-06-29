@@ -30,7 +30,7 @@ namespace SimPe
 		SteepValley.Windows.Forms.XPLinkedLabelIcon ll;
 		LoadedPackage lp;
 
-		SimPe.Events.ResourceEventArgs[] lasteventarg;
+		SimPe.Events.ResourceEventArgs lasteventarg;
 		
 		/// <summary>
 		/// Returns the generated LinkLabel
@@ -97,16 +97,16 @@ namespace SimPe
 			}
 
 			//Make Sure the Action is disabled on StartUp
-			ChangeEnabledStateEventHandler(null, new SimPe.Events.ResourceEventArgs[0], null);
+			ChangeEnabledStateEventHandler(null, new SimPe.Events.ResourceEventArgs(lp));
 		}
 
 		/// <summary>
 		/// Fired when a Resource was changed by a ToolPlugin and the Enabled state needs to be changed
 		/// </summary>
-		public void ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs[] e, LoadedPackage guipackage) 
+		public void ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs e) 
 		{
-			lp = guipackage;
-			ll.Enabled = tool.ChangeEnabledStateEventHandler(sender, e, guipackage);
+			lp = e.LoadedPackage;
+			ll.Enabled = tool.ChangeEnabledStateEventHandler(sender, e);
 			//if (bi!=null) 
 			mi.Enabled = ll.Enabled;
 
@@ -121,7 +121,7 @@ namespace SimPe
 		private void LinkClicked(object sender, EventArgs e)
 		{
 			lp.PauseIndexChangedEvents();
-			tool.ExecuteEventHandler(sender, lasteventarg, lp);
+			tool.ExecuteEventHandler(sender, lasteventarg);
 			lp.RestartIndexChangedEvents();
 		}
 	}	

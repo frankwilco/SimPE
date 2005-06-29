@@ -76,8 +76,6 @@ namespace SimPe
 		private System.Windows.Forms.LinkLabel lladd;
 		private System.Windows.Forms.LinkLabel lldel;
 		private System.Windows.Forms.LinkLabel lladddown;
-		private System.Windows.Forms.Button btup;
-		private System.Windows.Forms.Button btdn;
 		private System.Windows.Forms.LinkLabel llsetep1;
 		private System.Windows.Forms.CheckBox cbhidden;
 		private System.Windows.Forms.CheckBox cbjointname;
@@ -102,6 +100,18 @@ namespace SimPe
 		private System.Windows.Forms.ComboBox cbThemes;
 		private SteepValley.Windows.Forms.XPBalloonTip baloonTip;
 		private System.Windows.Forms.Button button7;
+		private System.Windows.Forms.CheckBox cbSimple;
+		private TD.Eyefinder.HeaderControl hcPlugins;
+		private Divelements.Navisight.NavigationButton navigationButton1;
+		private Divelements.Navisight.NavigationButton navigationButton2;
+		private Divelements.Navisight.NavigationButton nbPlugins;
+		private System.Windows.Forms.Panel cnt;
+		private System.Windows.Forms.Button btdn;
+		private System.Windows.Forms.Button btup;
+		private System.Windows.Forms.Button btpup;
+		private System.Windows.Forms.Button btpdown;
+		private System.Windows.Forms.GroupBox groupBox6;
+		private System.Windows.Forms.CheckBox cbFirefox;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -178,7 +188,6 @@ namespace SimPe
 			this.tbthumb = new System.Windows.Forms.TextBox();
 			this.button6 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.cbmulti = new System.Windows.Forms.CheckBox();
 			this.cbpkgmaint = new System.Windows.Forms.CheckBox();
 			this.cbupdate = new System.Windows.Forms.CheckBox();
 			this.cbhidden = new System.Windows.Forms.CheckBox();
@@ -188,9 +197,9 @@ namespace SimPe
 			this.cblang = new System.Windows.Forms.ComboBox();
 			this.cbsilent = new System.Windows.Forms.CheckBox();
 			this.cbwait = new System.Windows.Forms.CheckBox();
+			this.cbSimple = new System.Windows.Forms.CheckBox();
+			this.cbmulti = new System.Windows.Forms.CheckBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.btdn = new System.Windows.Forms.Button();
-			this.btup = new System.Windows.Forms.Button();
 			this.lladddown = new System.Windows.Forms.LinkLabel();
 			this.lldel = new System.Windows.Forms.LinkLabel();
 			this.lladd = new System.Windows.Forms.LinkLabel();
@@ -202,11 +211,15 @@ namespace SimPe
 			this.cbjointname = new System.Windows.Forms.CheckBox();
 			this.hcFolders = new TD.Eyefinder.HeaderControl();
 			this.hcSettings = new TD.Eyefinder.HeaderControl();
+			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.cbFirefox = new System.Windows.Forms.CheckBox();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.cbThemes = new System.Windows.Forms.ComboBox();
 			this.button7 = new System.Windows.Forms.Button();
 			this.hcTools = new TD.Eyefinder.HeaderControl();
 			this.hcFileTable = new TD.Eyefinder.HeaderControl();
+			this.btdn = new System.Windows.Forms.Button();
+			this.btup = new System.Windows.Forms.Button();
 			this.hcSceneGraph = new TD.Eyefinder.HeaderControl();
 			this.bb = new Divelements.Navisight.ButtonBar();
 			this.nbFolders = new Divelements.Navisight.NavigationButton();
@@ -214,17 +227,26 @@ namespace SimPe
 			this.nbTools = new Divelements.Navisight.NavigationButton();
 			this.nbFileTable = new Divelements.Navisight.NavigationButton();
 			this.nbSceneGraph = new Divelements.Navisight.NavigationButton();
+			this.nbPlugins = new Divelements.Navisight.NavigationButton();
+			this.hcPlugins = new TD.Eyefinder.HeaderControl();
+			this.btpup = new System.Windows.Forms.Button();
+			this.btpdown = new System.Windows.Forms.Button();
+			this.cnt = new System.Windows.Forms.Panel();
 			this.baloonTip = new SteepValley.Windows.Forms.XPBalloonTip(this.components);
+			this.navigationButton1 = new Divelements.Navisight.NavigationButton();
+			this.navigationButton2 = new Divelements.Navisight.NavigationButton();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.hcFolders.SuspendLayout();
 			this.hcSettings.SuspendLayout();
+			this.groupBox6.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.hcTools.SuspendLayout();
 			this.hcFileTable.SuspendLayout();
 			this.hcSceneGraph.SuspendLayout();
+			this.hcPlugins.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -1025,7 +1047,6 @@ namespace SimPe
 			this.groupBox2.AccessibleName = resources.GetString("groupBox2.AccessibleName");
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox2.Anchor")));
 			this.groupBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox2.BackgroundImage")));
-			this.groupBox2.Controls.Add(this.cbmulti);
 			this.groupBox2.Controls.Add(this.cbpkgmaint);
 			this.groupBox2.Controls.Add(this.cbupdate);
 			this.groupBox2.Controls.Add(this.cbhidden);
@@ -1049,32 +1070,6 @@ namespace SimPe
 			this.groupBox2.Text = resources.GetString("groupBox2.Text");
 			this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
 			this.groupBox2.Visible = ((bool)(resources.GetObject("groupBox2.Visible")));
-			// 
-			// cbmulti
-			// 
-			this.cbmulti.AccessibleDescription = resources.GetString("cbmulti.AccessibleDescription");
-			this.cbmulti.AccessibleName = resources.GetString("cbmulti.AccessibleName");
-			this.cbmulti.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbmulti.Anchor")));
-			this.cbmulti.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbmulti.Appearance")));
-			this.cbmulti.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbmulti.BackgroundImage")));
-			this.cbmulti.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbmulti.CheckAlign")));
-			this.cbmulti.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbmulti.Dock")));
-			this.cbmulti.Enabled = ((bool)(resources.GetObject("cbmulti.Enabled")));
-			this.cbmulti.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbmulti.FlatStyle")));
-			this.cbmulti.Font = ((System.Drawing.Font)(resources.GetObject("cbmulti.Font")));
-			this.cbmulti.Image = ((System.Drawing.Image)(resources.GetObject("cbmulti.Image")));
-			this.cbmulti.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbmulti.ImageAlign")));
-			this.cbmulti.ImageIndex = ((int)(resources.GetObject("cbmulti.ImageIndex")));
-			this.cbmulti.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbmulti.ImeMode")));
-			this.cbmulti.Location = ((System.Drawing.Point)(resources.GetObject("cbmulti.Location")));
-			this.cbmulti.Name = "cbmulti";
-			this.cbmulti.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbmulti.RightToLeft")));
-			this.cbmulti.Size = ((System.Drawing.Size)(resources.GetObject("cbmulti.Size")));
-			this.cbmulti.TabIndex = ((int)(resources.GetObject("cbmulti.TabIndex")));
-			this.cbmulti.Text = resources.GetString("cbmulti.Text");
-			this.cbmulti.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbmulti.TextAlign")));
-			this.toolTip1.SetToolTip(this.cbmulti, resources.GetString("cbmulti.ToolTip"));
-			this.cbmulti.Visible = ((bool)(resources.GetObject("cbmulti.Visible")));
 			// 
 			// cbpkgmaint
 			// 
@@ -1305,6 +1300,59 @@ namespace SimPe
 			this.toolTip1.SetToolTip(this.cbwait, resources.GetString("cbwait.ToolTip"));
 			this.cbwait.Visible = ((bool)(resources.GetObject("cbwait.Visible")));
 			// 
+			// cbSimple
+			// 
+			this.cbSimple.AccessibleDescription = resources.GetString("cbSimple.AccessibleDescription");
+			this.cbSimple.AccessibleName = resources.GetString("cbSimple.AccessibleName");
+			this.cbSimple.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbSimple.Anchor")));
+			this.cbSimple.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbSimple.Appearance")));
+			this.cbSimple.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbSimple.BackgroundImage")));
+			this.cbSimple.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbSimple.CheckAlign")));
+			this.cbSimple.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbSimple.Dock")));
+			this.cbSimple.Enabled = ((bool)(resources.GetObject("cbSimple.Enabled")));
+			this.cbSimple.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbSimple.FlatStyle")));
+			this.cbSimple.Font = ((System.Drawing.Font)(resources.GetObject("cbSimple.Font")));
+			this.cbSimple.Image = ((System.Drawing.Image)(resources.GetObject("cbSimple.Image")));
+			this.cbSimple.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbSimple.ImageAlign")));
+			this.cbSimple.ImageIndex = ((int)(resources.GetObject("cbSimple.ImageIndex")));
+			this.cbSimple.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbSimple.ImeMode")));
+			this.cbSimple.Location = ((System.Drawing.Point)(resources.GetObject("cbSimple.Location")));
+			this.cbSimple.Name = "cbSimple";
+			this.cbSimple.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbSimple.RightToLeft")));
+			this.cbSimple.Size = ((System.Drawing.Size)(resources.GetObject("cbSimple.Size")));
+			this.cbSimple.TabIndex = ((int)(resources.GetObject("cbSimple.TabIndex")));
+			this.cbSimple.Text = resources.GetString("cbSimple.Text");
+			this.cbSimple.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbSimple.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbSimple, resources.GetString("cbSimple.ToolTip"));
+			this.cbSimple.Visible = ((bool)(resources.GetObject("cbSimple.Visible")));
+			// 
+			// cbmulti
+			// 
+			this.cbmulti.AccessibleDescription = resources.GetString("cbmulti.AccessibleDescription");
+			this.cbmulti.AccessibleName = resources.GetString("cbmulti.AccessibleName");
+			this.cbmulti.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbmulti.Anchor")));
+			this.cbmulti.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbmulti.Appearance")));
+			this.cbmulti.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbmulti.BackgroundImage")));
+			this.cbmulti.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbmulti.CheckAlign")));
+			this.cbmulti.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbmulti.Dock")));
+			this.cbmulti.Enabled = ((bool)(resources.GetObject("cbmulti.Enabled")));
+			this.cbmulti.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbmulti.FlatStyle")));
+			this.cbmulti.Font = ((System.Drawing.Font)(resources.GetObject("cbmulti.Font")));
+			this.cbmulti.Image = ((System.Drawing.Image)(resources.GetObject("cbmulti.Image")));
+			this.cbmulti.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbmulti.ImageAlign")));
+			this.cbmulti.ImageIndex = ((int)(resources.GetObject("cbmulti.ImageIndex")));
+			this.cbmulti.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbmulti.ImeMode")));
+			this.cbmulti.Location = ((System.Drawing.Point)(resources.GetObject("cbmulti.Location")));
+			this.cbmulti.Name = "cbmulti";
+			this.cbmulti.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbmulti.RightToLeft")));
+			this.cbmulti.Size = ((System.Drawing.Size)(resources.GetObject("cbmulti.Size")));
+			this.cbmulti.TabIndex = ((int)(resources.GetObject("cbmulti.TabIndex")));
+			this.cbmulti.Text = resources.GetString("cbmulti.Text");
+			this.cbmulti.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbmulti.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbmulti, resources.GetString("cbmulti.ToolTip"));
+			this.cbmulti.Visible = ((bool)(resources.GetObject("cbmulti.Visible")));
+			this.cbmulti.CheckedChanged += new System.EventHandler(this.cbmulti_CheckedChanged);
+			// 
 			// groupBox1
 			// 
 			this.groupBox1.AccessibleDescription = resources.GetString("groupBox1.AccessibleDescription");
@@ -1328,56 +1376,6 @@ namespace SimPe
 			this.groupBox1.Text = resources.GetString("groupBox1.Text");
 			this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
 			this.groupBox1.Visible = ((bool)(resources.GetObject("groupBox1.Visible")));
-			// 
-			// btdn
-			// 
-			this.btdn.AccessibleDescription = resources.GetString("btdn.AccessibleDescription");
-			this.btdn.AccessibleName = resources.GetString("btdn.AccessibleName");
-			this.btdn.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btdn.Anchor")));
-			this.btdn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btdn.BackgroundImage")));
-			this.btdn.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btdn.Dock")));
-			this.btdn.Enabled = ((bool)(resources.GetObject("btdn.Enabled")));
-			this.btdn.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btdn.FlatStyle")));
-			this.btdn.Font = ((System.Drawing.Font)(resources.GetObject("btdn.Font")));
-			this.btdn.Image = ((System.Drawing.Image)(resources.GetObject("btdn.Image")));
-			this.btdn.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btdn.ImageAlign")));
-			this.btdn.ImageIndex = ((int)(resources.GetObject("btdn.ImageIndex")));
-			this.btdn.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btdn.ImeMode")));
-			this.btdn.Location = ((System.Drawing.Point)(resources.GetObject("btdn.Location")));
-			this.btdn.Name = "btdn";
-			this.btdn.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btdn.RightToLeft")));
-			this.btdn.Size = ((System.Drawing.Size)(resources.GetObject("btdn.Size")));
-			this.btdn.TabIndex = ((int)(resources.GetObject("btdn.TabIndex")));
-			this.btdn.Text = resources.GetString("btdn.Text");
-			this.btdn.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btdn.TextAlign")));
-			this.toolTip1.SetToolTip(this.btdn, resources.GetString("btdn.ToolTip"));
-			this.btdn.Visible = ((bool)(resources.GetObject("btdn.Visible")));
-			this.btdn.Click += new System.EventHandler(this.btdn_Click);
-			// 
-			// btup
-			// 
-			this.btup.AccessibleDescription = resources.GetString("btup.AccessibleDescription");
-			this.btup.AccessibleName = resources.GetString("btup.AccessibleName");
-			this.btup.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btup.Anchor")));
-			this.btup.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btup.BackgroundImage")));
-			this.btup.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btup.Dock")));
-			this.btup.Enabled = ((bool)(resources.GetObject("btup.Enabled")));
-			this.btup.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btup.FlatStyle")));
-			this.btup.Font = ((System.Drawing.Font)(resources.GetObject("btup.Font")));
-			this.btup.Image = ((System.Drawing.Image)(resources.GetObject("btup.Image")));
-			this.btup.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btup.ImageAlign")));
-			this.btup.ImageIndex = ((int)(resources.GetObject("btup.ImageIndex")));
-			this.btup.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btup.ImeMode")));
-			this.btup.Location = ((System.Drawing.Point)(resources.GetObject("btup.Location")));
-			this.btup.Name = "btup";
-			this.btup.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btup.RightToLeft")));
-			this.btup.Size = ((System.Drawing.Size)(resources.GetObject("btup.Size")));
-			this.btup.TabIndex = ((int)(resources.GetObject("btup.TabIndex")));
-			this.btup.Text = resources.GetString("btup.Text");
-			this.btup.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btup.TextAlign")));
-			this.toolTip1.SetToolTip(this.btup, resources.GetString("btup.ToolTip"));
-			this.btup.Visible = ((bool)(resources.GetObject("btup.Visible")));
-			this.btup.Click += new System.EventHandler(this.btup_Click);
 			// 
 			// lladddown
 			// 
@@ -1652,6 +1650,7 @@ namespace SimPe
 			this.hcSettings.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hcSettings.AutoScrollMargin")));
 			this.hcSettings.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hcSettings.AutoScrollMinSize")));
 			this.hcSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hcSettings.BackgroundImage")));
+			this.hcSettings.Controls.Add(this.groupBox6);
 			this.hcSettings.Controls.Add(this.groupBox5);
 			this.hcSettings.Controls.Add(this.button6);
 			this.hcSettings.Controls.Add(this.groupBox2);
@@ -1671,6 +1670,56 @@ namespace SimPe
 			this.hcSettings.Text = resources.GetString("hcSettings.Text");
 			this.toolTip1.SetToolTip(this.hcSettings, resources.GetString("hcSettings.ToolTip"));
 			this.hcSettings.Visible = ((bool)(resources.GetObject("hcSettings.Visible")));
+			// 
+			// groupBox6
+			// 
+			this.groupBox6.AccessibleDescription = resources.GetString("groupBox6.AccessibleDescription");
+			this.groupBox6.AccessibleName = resources.GetString("groupBox6.AccessibleName");
+			this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox6.Anchor")));
+			this.groupBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox6.BackgroundImage")));
+			this.groupBox6.Controls.Add(this.cbFirefox);
+			this.groupBox6.Controls.Add(this.cbSimple);
+			this.groupBox6.Controls.Add(this.cbmulti);
+			this.groupBox6.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("groupBox6.Dock")));
+			this.groupBox6.Enabled = ((bool)(resources.GetObject("groupBox6.Enabled")));
+			this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.groupBox6.Font = ((System.Drawing.Font)(resources.GetObject("groupBox6.Font")));
+			this.groupBox6.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("groupBox6.ImeMode")));
+			this.groupBox6.Location = ((System.Drawing.Point)(resources.GetObject("groupBox6.Location")));
+			this.groupBox6.Name = "groupBox6";
+			this.groupBox6.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("groupBox6.RightToLeft")));
+			this.groupBox6.Size = ((System.Drawing.Size)(resources.GetObject("groupBox6.Size")));
+			this.groupBox6.TabIndex = ((int)(resources.GetObject("groupBox6.TabIndex")));
+			this.groupBox6.TabStop = false;
+			this.groupBox6.Text = resources.GetString("groupBox6.Text");
+			this.toolTip1.SetToolTip(this.groupBox6, resources.GetString("groupBox6.ToolTip"));
+			this.groupBox6.Visible = ((bool)(resources.GetObject("groupBox6.Visible")));
+			// 
+			// cbFirefox
+			// 
+			this.cbFirefox.AccessibleDescription = resources.GetString("cbFirefox.AccessibleDescription");
+			this.cbFirefox.AccessibleName = resources.GetString("cbFirefox.AccessibleName");
+			this.cbFirefox.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbFirefox.Anchor")));
+			this.cbFirefox.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbFirefox.Appearance")));
+			this.cbFirefox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbFirefox.BackgroundImage")));
+			this.cbFirefox.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbFirefox.CheckAlign")));
+			this.cbFirefox.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbFirefox.Dock")));
+			this.cbFirefox.Enabled = ((bool)(resources.GetObject("cbFirefox.Enabled")));
+			this.cbFirefox.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbFirefox.FlatStyle")));
+			this.cbFirefox.Font = ((System.Drawing.Font)(resources.GetObject("cbFirefox.Font")));
+			this.cbFirefox.Image = ((System.Drawing.Image)(resources.GetObject("cbFirefox.Image")));
+			this.cbFirefox.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbFirefox.ImageAlign")));
+			this.cbFirefox.ImageIndex = ((int)(resources.GetObject("cbFirefox.ImageIndex")));
+			this.cbFirefox.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbFirefox.ImeMode")));
+			this.cbFirefox.Location = ((System.Drawing.Point)(resources.GetObject("cbFirefox.Location")));
+			this.cbFirefox.Name = "cbFirefox";
+			this.cbFirefox.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbFirefox.RightToLeft")));
+			this.cbFirefox.Size = ((System.Drawing.Size)(resources.GetObject("cbFirefox.Size")));
+			this.cbFirefox.TabIndex = ((int)(resources.GetObject("cbFirefox.TabIndex")));
+			this.cbFirefox.Text = resources.GetString("cbFirefox.Text");
+			this.cbFirefox.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbFirefox.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbFirefox, resources.GetString("cbFirefox.ToolTip"));
+			this.cbFirefox.Visible = ((bool)(resources.GetObject("cbFirefox.Visible")));
 			// 
 			// groupBox5
 			// 
@@ -1801,6 +1850,56 @@ namespace SimPe
 			this.toolTip1.SetToolTip(this.hcFileTable, resources.GetString("hcFileTable.ToolTip"));
 			this.hcFileTable.Visible = ((bool)(resources.GetObject("hcFileTable.Visible")));
 			// 
+			// btdn
+			// 
+			this.btdn.AccessibleDescription = resources.GetString("btdn.AccessibleDescription");
+			this.btdn.AccessibleName = resources.GetString("btdn.AccessibleName");
+			this.btdn.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btdn.Anchor")));
+			this.btdn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btdn.BackgroundImage")));
+			this.btdn.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btdn.Dock")));
+			this.btdn.Enabled = ((bool)(resources.GetObject("btdn.Enabled")));
+			this.btdn.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btdn.FlatStyle")));
+			this.btdn.Font = ((System.Drawing.Font)(resources.GetObject("btdn.Font")));
+			this.btdn.Image = ((System.Drawing.Image)(resources.GetObject("btdn.Image")));
+			this.btdn.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btdn.ImageAlign")));
+			this.btdn.ImageIndex = ((int)(resources.GetObject("btdn.ImageIndex")));
+			this.btdn.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btdn.ImeMode")));
+			this.btdn.Location = ((System.Drawing.Point)(resources.GetObject("btdn.Location")));
+			this.btdn.Name = "btdn";
+			this.btdn.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btdn.RightToLeft")));
+			this.btdn.Size = ((System.Drawing.Size)(resources.GetObject("btdn.Size")));
+			this.btdn.TabIndex = ((int)(resources.GetObject("btdn.TabIndex")));
+			this.btdn.Text = resources.GetString("btdn.Text");
+			this.btdn.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btdn.TextAlign")));
+			this.toolTip1.SetToolTip(this.btdn, resources.GetString("btdn.ToolTip"));
+			this.btdn.Visible = ((bool)(resources.GetObject("btdn.Visible")));
+			this.btdn.Click += new System.EventHandler(this.btdn_Click);
+			// 
+			// btup
+			// 
+			this.btup.AccessibleDescription = resources.GetString("btup.AccessibleDescription");
+			this.btup.AccessibleName = resources.GetString("btup.AccessibleName");
+			this.btup.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btup.Anchor")));
+			this.btup.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btup.BackgroundImage")));
+			this.btup.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btup.Dock")));
+			this.btup.Enabled = ((bool)(resources.GetObject("btup.Enabled")));
+			this.btup.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btup.FlatStyle")));
+			this.btup.Font = ((System.Drawing.Font)(resources.GetObject("btup.Font")));
+			this.btup.Image = ((System.Drawing.Image)(resources.GetObject("btup.Image")));
+			this.btup.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btup.ImageAlign")));
+			this.btup.ImageIndex = ((int)(resources.GetObject("btup.ImageIndex")));
+			this.btup.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btup.ImeMode")));
+			this.btup.Location = ((System.Drawing.Point)(resources.GetObject("btup.Location")));
+			this.btup.Name = "btup";
+			this.btup.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btup.RightToLeft")));
+			this.btup.Size = ((System.Drawing.Size)(resources.GetObject("btup.Size")));
+			this.btup.TabIndex = ((int)(resources.GetObject("btup.TabIndex")));
+			this.btup.Text = resources.GetString("btup.Text");
+			this.btup.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btup.TextAlign")));
+			this.toolTip1.SetToolTip(this.btup, resources.GetString("btup.ToolTip"));
+			this.btup.Visible = ((bool)(resources.GetObject("btup.Visible")));
+			this.btup.Click += new System.EventHandler(this.btup_Click);
+			// 
 			// hcSceneGraph
 			// 
 			this.hcSceneGraph.AccessibleDescription = resources.GetString("hcSceneGraph.AccessibleDescription");
@@ -1839,7 +1938,8 @@ namespace SimPe
 																					  this.nbSettings,
 																					  this.nbTools,
 																					  this.nbFileTable,
-																					  this.nbSceneGraph});
+																					  this.nbSceneGraph,
+																					  this.nbPlugins});
 			this.bb.ButtonSpacing = 16;
 			this.bb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("bb.Dock")));
 			this.bb.Enabled = ((bool)(resources.GetObject("bb.Enabled")));
@@ -1890,9 +1990,125 @@ namespace SimPe
 			this.nbSceneGraph.ToolTipText = resources.GetString("nbSceneGraph.ToolTipText");
 			this.nbSceneGraph.Activate += new System.EventHandler(this.SelectCategory);
 			// 
+			// nbPlugins
+			// 
+			this.nbPlugins.Image = ((System.Drawing.Image)(resources.GetObject("nbPlugins.Image")));
+			this.nbPlugins.Text = resources.GetString("nbPlugins.Text");
+			this.nbPlugins.ToolTipText = resources.GetString("nbPlugins.ToolTipText");
+			this.nbPlugins.Activate += new System.EventHandler(this.SelectCategory);
+			// 
+			// hcPlugins
+			// 
+			this.hcPlugins.AccessibleDescription = resources.GetString("hcPlugins.AccessibleDescription");
+			this.hcPlugins.AccessibleName = resources.GetString("hcPlugins.AccessibleName");
+			this.hcPlugins.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("hcPlugins.Anchor")));
+			this.hcPlugins.AutoScroll = ((bool)(resources.GetObject("hcPlugins.AutoScroll")));
+			this.hcPlugins.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hcPlugins.AutoScrollMargin")));
+			this.hcPlugins.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hcPlugins.AutoScrollMinSize")));
+			this.hcPlugins.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hcPlugins.BackgroundImage")));
+			this.hcPlugins.Controls.Add(this.btpup);
+			this.hcPlugins.Controls.Add(this.btpdown);
+			this.hcPlugins.Controls.Add(this.cnt);
+			this.hcPlugins.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("hcPlugins.Dock")));
+			this.hcPlugins.Enabled = ((bool)(resources.GetObject("hcPlugins.Enabled")));
+			this.hcPlugins.Font = ((System.Drawing.Font)(resources.GetObject("hcPlugins.Font")));
+			this.hcPlugins.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+			this.hcPlugins.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("hcPlugins.ImeMode")));
+			this.hcPlugins.Location = ((System.Drawing.Point)(resources.GetObject("hcPlugins.Location")));
+			this.hcPlugins.Name = "hcPlugins";
+			this.hcPlugins.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("hcPlugins.RightToLeft")));
+			this.hcPlugins.Size = ((System.Drawing.Size)(resources.GetObject("hcPlugins.Size")));
+			this.hcPlugins.TabIndex = ((int)(resources.GetObject("hcPlugins.TabIndex")));
+			this.hcPlugins.Text = resources.GetString("hcPlugins.Text");
+			this.toolTip1.SetToolTip(this.hcPlugins, resources.GetString("hcPlugins.ToolTip"));
+			this.hcPlugins.Visible = ((bool)(resources.GetObject("hcPlugins.Visible")));
+			// 
+			// btpup
+			// 
+			this.btpup.AccessibleDescription = resources.GetString("btpup.AccessibleDescription");
+			this.btpup.AccessibleName = resources.GetString("btpup.AccessibleName");
+			this.btpup.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btpup.Anchor")));
+			this.btpup.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btpup.BackgroundImage")));
+			this.btpup.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btpup.Dock")));
+			this.btpup.Enabled = ((bool)(resources.GetObject("btpup.Enabled")));
+			this.btpup.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btpup.FlatStyle")));
+			this.btpup.Font = ((System.Drawing.Font)(resources.GetObject("btpup.Font")));
+			this.btpup.Image = ((System.Drawing.Image)(resources.GetObject("btpup.Image")));
+			this.btpup.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btpup.ImageAlign")));
+			this.btpup.ImageIndex = ((int)(resources.GetObject("btpup.ImageIndex")));
+			this.btpup.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btpup.ImeMode")));
+			this.btpup.Location = ((System.Drawing.Point)(resources.GetObject("btpup.Location")));
+			this.btpup.Name = "btpup";
+			this.btpup.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btpup.RightToLeft")));
+			this.btpup.Size = ((System.Drawing.Size)(resources.GetObject("btpup.Size")));
+			this.btpup.TabIndex = ((int)(resources.GetObject("btpup.TabIndex")));
+			this.btpup.Text = resources.GetString("btpup.Text");
+			this.btpup.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btpup.TextAlign")));
+			this.toolTip1.SetToolTip(this.btpup, resources.GetString("btpup.ToolTip"));
+			this.btpup.Visible = ((bool)(resources.GetObject("btpup.Visible")));
+			this.btpup.Click += new System.EventHandler(this.btpup_Click);
+			// 
+			// btpdown
+			// 
+			this.btpdown.AccessibleDescription = resources.GetString("btpdown.AccessibleDescription");
+			this.btpdown.AccessibleName = resources.GetString("btpdown.AccessibleName");
+			this.btpdown.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btpdown.Anchor")));
+			this.btpdown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btpdown.BackgroundImage")));
+			this.btpdown.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btpdown.Dock")));
+			this.btpdown.Enabled = ((bool)(resources.GetObject("btpdown.Enabled")));
+			this.btpdown.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btpdown.FlatStyle")));
+			this.btpdown.Font = ((System.Drawing.Font)(resources.GetObject("btpdown.Font")));
+			this.btpdown.Image = ((System.Drawing.Image)(resources.GetObject("btpdown.Image")));
+			this.btpdown.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btpdown.ImageAlign")));
+			this.btpdown.ImageIndex = ((int)(resources.GetObject("btpdown.ImageIndex")));
+			this.btpdown.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btpdown.ImeMode")));
+			this.btpdown.Location = ((System.Drawing.Point)(resources.GetObject("btpdown.Location")));
+			this.btpdown.Name = "btpdown";
+			this.btpdown.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btpdown.RightToLeft")));
+			this.btpdown.Size = ((System.Drawing.Size)(resources.GetObject("btpdown.Size")));
+			this.btpdown.TabIndex = ((int)(resources.GetObject("btpdown.TabIndex")));
+			this.btpdown.Text = resources.GetString("btpdown.Text");
+			this.btpdown.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btpdown.TextAlign")));
+			this.toolTip1.SetToolTip(this.btpdown, resources.GetString("btpdown.ToolTip"));
+			this.btpdown.Visible = ((bool)(resources.GetObject("btpdown.Visible")));
+			this.btpdown.Click += new System.EventHandler(this.btpdown_Click);
+			// 
+			// cnt
+			// 
+			this.cnt.AccessibleDescription = resources.GetString("cnt.AccessibleDescription");
+			this.cnt.AccessibleName = resources.GetString("cnt.AccessibleName");
+			this.cnt.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cnt.Anchor")));
+			this.cnt.AutoScroll = ((bool)(resources.GetObject("cnt.AutoScroll")));
+			this.cnt.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("cnt.AutoScrollMargin")));
+			this.cnt.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("cnt.AutoScrollMinSize")));
+			this.cnt.BackColor = System.Drawing.SystemColors.Window;
+			this.cnt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cnt.BackgroundImage")));
+			this.cnt.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cnt.Dock")));
+			this.cnt.Enabled = ((bool)(resources.GetObject("cnt.Enabled")));
+			this.cnt.Font = ((System.Drawing.Font)(resources.GetObject("cnt.Font")));
+			this.cnt.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cnt.ImeMode")));
+			this.cnt.Location = ((System.Drawing.Point)(resources.GetObject("cnt.Location")));
+			this.cnt.Name = "cnt";
+			this.cnt.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cnt.RightToLeft")));
+			this.cnt.Size = ((System.Drawing.Size)(resources.GetObject("cnt.Size")));
+			this.cnt.TabIndex = ((int)(resources.GetObject("cnt.TabIndex")));
+			this.cnt.Text = resources.GetString("cnt.Text");
+			this.toolTip1.SetToolTip(this.cnt, resources.GetString("cnt.ToolTip"));
+			this.cnt.Visible = ((bool)(resources.GetObject("cnt.Visible")));
+			// 
 			// baloonTip
 			// 
 			this.baloonTip.Enabled = true;
+			// 
+			// navigationButton1
+			// 
+			this.navigationButton1.Text = resources.GetString("navigationButton1.Text");
+			this.navigationButton1.ToolTipText = resources.GetString("navigationButton1.ToolTipText");
+			// 
+			// navigationButton2
+			// 
+			this.navigationButton2.Text = resources.GetString("navigationButton2.Text");
+			this.navigationButton2.ToolTipText = resources.GetString("navigationButton2.ToolTipText");
 			// 
 			// OptionForm
 			// 
@@ -1907,11 +2123,12 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.hcSettings);
-			this.Controls.Add(this.hcTools);
 			this.Controls.Add(this.hcFileTable);
 			this.Controls.Add(this.hcFolders);
 			this.Controls.Add(this.hcSceneGraph);
+			this.Controls.Add(this.hcSettings);
+			this.Controls.Add(this.hcPlugins);
+			this.Controls.Add(this.hcTools);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -1933,16 +2150,18 @@ namespace SimPe
 			this.groupBox4.ResumeLayout(false);
 			this.hcFolders.ResumeLayout(false);
 			this.hcSettings.ResumeLayout(false);
+			this.groupBox6.ResumeLayout(false);
 			this.groupBox5.ResumeLayout(false);
 			this.hcTools.ResumeLayout(false);
 			this.hcFileTable.ResumeLayout(false);
 			this.hcSceneGraph.ResumeLayout(false);
+			this.hcPlugins.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 		#endregion
 
-		public void Execute()
+		void Execute()
 		{
 			//linkLabel3.Enabled = (Helper.WindowsRegistry.EPInstalled>=1);
 			tbgame.Text = Helper.WindowsRegistry.SimsPath;
@@ -1966,6 +2185,8 @@ namespace SimPe
 			cbupdate.Checked = Helper.WindowsRegistry.CheckForUpdates;
 			cbpkgmaint.Checked = Helper.WindowsRegistry.UsePackageMaintainer;
 			cbmulti.Checked = Helper.WindowsRegistry.MultipleFiles;
+			cbSimple.Checked = Helper.WindowsRegistry.SimpleResourceSelect;
+			cbFirefox.Checked = Helper.WindowsRegistry.FirefoxTabbing;
 
 			this.tbep1.ReadOnly = (Helper.WindowsRegistry.EPInstalled<1);
 			this.button5.Enabled = (Helper.WindowsRegistry.EPInstalled>=1);
@@ -1977,7 +2198,7 @@ namespace SimPe
 			}
 
 			lbext.Items.Clear();
-			foreach (ToolLoaderItem tli in ToolLoader.Items) lbext.Items.Add(tli);
+			foreach (ToolLoaderItemExt tli in ToolLoaderExt.Items) lbext.Items.Add(tli);
 
 			//FileTable
 			ArrayList folders = FileTable.DefaultFolders;
@@ -2018,6 +2239,8 @@ namespace SimPe
 			Helper.WindowsRegistry.UsePackageMaintainer = cbpkgmaint.Checked;
 			Helper.WindowsRegistry.MultipleFiles = cbmulti.Checked;
 			Helper.WindowsRegistry.SelectedTheme = (byte)cbThemes.Items[cbThemes.SelectedIndex];
+			Helper.WindowsRegistry.SimpleResourceSelect = cbSimple.Checked;
+			Helper.WindowsRegistry.FirefoxTabbing = cbFirefox.Checked;
 			
 			StoreFoldersXml();
 			try 
@@ -2029,9 +2252,9 @@ namespace SimPe
 
 			
 			
-			ToolLoader.Items = new ToolLoaderItem[0];
-			foreach (ToolLoaderItem tli in lbext.Items) ToolLoader.Add(tli);;
-			ToolLoader.StoreTools();
+			ToolLoaderExt.Items = new ToolLoaderItemExt[0];
+			foreach (ToolLoaderItemExt tli in lbext.Items) ToolLoaderExt.Add(tli);;
+			ToolLoaderExt.StoreTools();
 			Close();
 		}
 
@@ -2044,7 +2267,7 @@ namespace SimPe
 		private void AddExt(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			AddExtTool aet = new AddExtTool();
-			ToolLoaderItem tli = aet.Execute();
+			ToolLoaderItemExt tli = aet.Execute();
 
 			if (tli!=null) lbext.Items.Add(tli);
 		}
@@ -2254,6 +2477,7 @@ namespace SimPe
 			hcTools.Visible = (panel==nbTools);
 			hcFileTable.Visible = (panel==nbFileTable);
 			hcSceneGraph.Visible = (panel==nbSceneGraph);
+			hcPlugins.Visible = (panel==nbPlugins);
 		}
 
 		private void SelectCategory(object sender, System.EventArgs e)
@@ -2269,6 +2493,7 @@ namespace SimPe
 					else if (nb == nbTools) EnablePanel(nbTools);
 					else if (nb == nbFileTable) EnablePanel(nbFileTable);
 					else if (nb == nbSceneGraph) EnablePanel(nbSceneGraph);
+					else if (nb == nbPlugins) EnablePanel(nbPlugins);
 				}
 			}
 		}
@@ -2287,5 +2512,510 @@ namespace SimPe
 		public event SimPe.Events.ChangedThemeEvent NewTheme;
 		public event System.EventHandler ResetLayout;
 		#endregion
+
+		#region Plugins
+		public Image GetImage(SimPe.Interfaces.IWrapper wrapper)
+		{
+			if (uids.Contains(wrapper.WrapperDescription.UID)) 
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.error.png"));
+
+			if (wrapper.Priority>=0) 
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.enabled.png"));
+			
+			return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.disabled.png"));
+		}
+
+		public void  SetPanel(SimPe.Interfaces.IWrapper wrapper, TD.Eyefinder.HeaderControl pn)
+		{
+			if (wrapper.Priority<0) 
+			{
+				pn.Text = "("+wrapper.WrapperDescription.Name+")";
+				pn.ForeColor = SystemColors.ControlDarkDark;
+			}
+			else 
+			{
+				pn.Text = wrapper.WrapperDescription.Name;
+				pn.ForeColor = SystemColors.ControlText;
+			}
+		}
+
+		public Image GetShrinkImage(TD.Eyefinder.HeaderControl pn) 
+		{			
+			if (pn.Height==pn.DisplayRectangle.Top+1) 
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.expand.png"));
+			} 
+			else 
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.shrink.png"));
+			}
+			
+		}
+
+		public bool ThumbnailCallback()
+		{
+			return false;
+		}
+
+
+		System.Collections.ArrayList uids ;
+		System.Collections.ArrayList wrappers;
+#if DEBUG
+		const int height = 148;
+#else
+		const int height = 116;
+#endif
+		public Control BuildPanel(SimPe.Interfaces.IWrapper wrapper, ThemeManager tm, int index)
+		{
+			if (uids == null) uids = new ArrayList();
+			if (wrappers == null) wrappers = new ArrayList();
+
+			if (wrapper.Priority>=0) wrapper.Priority = index+1;
+			else wrapper.Priority = -1 * (index+1);
+		
+
+			
+			const int imgwidth = 22;
+			int top = 4 + index * (height + 4);
+			TD.Eyefinder.HeaderControl pn = new TD.Eyefinder.HeaderControl();
+			pn.Parent = cnt;
+			pn.Top = top;
+			pn.Left = 4;
+			pn.Width = cnt.Width - System.Windows.Forms.SystemInformation.VerticalScrollBarWidth - 2 - 2*pn.Left;
+			pn.Height = height;
+			pn.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+			pn.HeaderStyle = TD.Eyefinder.HeaderStyle.SubHeading;
+			pn.Click += new EventHandler(pn_Click);			
+			pn.LostFocus += new EventHandler(pn_LostFocus);
+			pn.GotFocus += new EventHandler(pn_Focused); 
+			pn.Enter += new EventHandler(pn_Focused); 
+			pn.Leave += new EventHandler(pn_LostFocus);
+			pn_LostFocus(pn, null);
+			SetPanel(wrapper, pn);
+			pn.Tag = wrapper;
+			pn.Dock = DockStyle.Top;
+
+			wrappers.Add(pn);
+			
+			#region Author
+			Label lbauthor = new Label();
+			lbauthor.Parent = pn;
+			lbauthor.Top = pn.DisplayRectangle.Top + 8;
+			lbauthor.Left = 8;
+			lbauthor.Text = "Author:";			
+			lbauthor.Width = 85;
+			lbauthor.Font = new Font(cnt.Font.Name, cnt.Font.Size, FontStyle.Bold, cnt.Font.Unit);
+			lbauthor.Height = (int)lbauthor.Font.SizeInPoints * 2;
+			lbauthor.ForeColor = SystemColors.ControlDarkDark;
+			lbauthor.TextAlign = ContentAlignment.TopRight;	
+			lbauthor.Click += new EventHandler(pn_Click);
+		
+			Label lb = new Label();
+			lb.Parent = pn;
+			lb.Top = lbauthor.Top;
+			lb.Left = lbauthor.Right+4;
+			lb.AutoSize = true;
+			lb.Text = wrapper.WrapperDescription.Author;		
+			lb.Font = new Font(cnt.Font.Name, cnt.Font.Size, FontStyle.Regular, cnt.Font.Unit);
+			lb.Height = lbauthor.Height;
+			lb.ForeColor = lbauthor.ForeColor;
+			lb.Click += new EventHandler(pn_Click);
+			#endregion
+
+			#region Version
+			Label lbversion = new Label();
+			lbversion.Parent = pn;
+			lbversion.Top = lbauthor.Top;
+			lbversion.Left = lb.Right+16;
+			lbversion.Width = lbauthor.Width;
+			lbversion.Height = lbauthor.Height;
+			lbversion.Text = "Version:";
+			lbversion.Font = lbauthor.Font;
+			lbversion.ForeColor = lbauthor.ForeColor;
+			lbversion.TextAlign = lbauthor.TextAlign;
+			lbversion.Click += new EventHandler(pn_Click);
+
+			lb = new Label();
+			lb.Parent = pn;
+			lb.Top = lbversion.Top;
+			lb.Left = lbversion.Right+4;
+			lb.AutoSize = true;
+			lb.Text = wrapper.WrapperDescription.Version.ToString();
+			lb.Font = new Font(cnt.Font.Name, cnt.Font.Size, FontStyle.Regular, cnt.Font.Unit);
+			lb.Height = lbauthor.Height;
+			lb.ForeColor = lbauthor.ForeColor;
+			lb.Click += new EventHandler(pn_Click);
+			#endregion
+
+			#region FileName
+			Label lbfile = new Label();
+			lbfile.Parent = pn;
+			lbfile.Top = lbversion.Bottom;
+			lbfile.Left = lbauthor.Left;
+			lbfile.Width = lbauthor.Width;
+			lbfile.Height = lbauthor.Height;
+			lbfile.Text = "Filename:";
+			lbfile.Font = lbauthor.Font;
+			lbfile.ForeColor = lbauthor.ForeColor;
+			lbfile.TextAlign = lbauthor.TextAlign;
+			lbfile.Click += new EventHandler(pn_Click);
+
+			lb = new Label();
+			lb.Parent = pn;
+			lb.Top = lbfile.Top;
+			lb.Left = lbfile.Right+4;
+			lb.AutoSize = true;
+			lb.Text = wrapper.WrapperFileName;
+			lb.Font = new Font(cnt.Font.Name, cnt.Font.Size, FontStyle.Regular, cnt.Font.Unit);
+			lb.Height = lbauthor.Height;
+			lb.ForeColor = lbauthor.ForeColor;
+			lb.Click += new EventHandler(pn_Click);
+			#endregion
+
+			#region UID
+			Label lbui = new Label();
+			lbui.Parent = pn;
+			lbui.Top = lbfile.Bottom;
+			lbui.Left = lbauthor.Left;
+			lbui.Width = lbauthor.Width;
+			lbui.Height = lbauthor.Height;
+			lbui.Text = "UID:";
+			lbui.Font = lbauthor.Font;
+			lbui.ForeColor = lbauthor.ForeColor;
+			lbui.TextAlign = lbauthor.TextAlign;
+			lbui.Click += new EventHandler(pn_Click);
+
+			lb = new Label();
+			lb.Parent = pn;
+			lb.Top = lbui.Top;
+			lb.Left = lbui.Right+4;
+			lb.AutoSize = true;
+			lb.Text = "0x"+Helper.HexString(wrapper.WrapperDescription.UID);
+			lb.Font = new Font(cnt.Font.Name, cnt.Font.Size, FontStyle.Regular, cnt.Font.Unit);
+			lb.Height = lbauthor.Height;
+			lb.ForeColor = lbauthor.ForeColor;
+			lb.Click += new EventHandler(pn_Click);
+			#endregion			
+
+			#region Description
+			Label lbdesc = new Label();
+			lbdesc.Parent = pn;
+			lbdesc.Top = lbui.Bottom;
+			lbdesc.Left = lbauthor.Left;
+			lbdesc.Width = lbauthor.Width;
+			lbdesc.Height = lbauthor.Height;
+			lbdesc.Text = "Description:";
+			lbdesc.Font = lbauthor.Font;
+			lbdesc.ForeColor = lbauthor.ForeColor;
+			lbdesc.TextAlign = lbauthor.TextAlign;
+			lbdesc.Click += new EventHandler(pn_Click);
+
+			TextBox tb = new TextBox();
+			tb.Parent = pn;
+			tb.Top = lbdesc.Top;
+			tb.Left = lbdesc.Right+4;
+			tb.Width = pn.Width - lb.Left - imgwidth - 12;
+			tb.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
+			tb.Text = wrapper.WrapperDescription.Description;
+#if DEBUG
+			tb.Text +=Helper.lbr+wrapper.GetType().FullName + " " + wrapper.GetType().Assembly.FullName;
+#endif	
+			tb.Multiline = true;
+			tb.WordWrap = true;
+			tb.ScrollBars = ScrollBars.Vertical;
+			tb.BorderStyle = BorderStyle.None;
+			tb.BackColor = pn.BackColor;
+		
+			tb.Font = new Font(cnt.Font.Name, cnt.Font.Size, FontStyle.Regular, cnt.Font.Unit);
+			tb.Height = pn.Height - tb.Top - 8;
+			tb.ForeColor = lbauthor.ForeColor;
+			tb.GotFocus += new EventHandler(tb_GotFocus);
+			tb.Enter += new EventHandler(tb_GotFocus);
+			tb.ReadOnly = true;
+			#endregion					
+
+			PictureBox pb = null;
+
+			if (wrapper.AllowMultipleInstances) 
+			{
+				pb = new PictureBox();
+				pb.Parent = pn;
+				pb.Width = imgwidth;
+				pb.Height = imgwidth;
+				pb.Left = pn.Width - 2*pb.Width - 16;
+				pb.Top = pn.DisplayRectangle.Top + 4; //pn.DisplayRectangle.Top + 4 + pb.Height + 4; //pn.Height - 2*pb.Height -16;
+				pb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+				pb.Image = System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.multienabled.png"));				
+				pb.Click += new EventHandler(pn_Click);
+				this.toolTip1.SetToolTip(pb, "Allows Multiple instance");
+
+				
+				pb = new PictureBox();
+				pb.Parent = pn;
+				pb.Width = pn.DisplayRectangle.Top+1;
+				pb.Height = pn.DisplayRectangle.Top;	
+				pb.SizeMode = PictureBoxSizeMode.CenterImage;
+				pb.Top = (pn.DisplayRectangle.Top + 1 - pb.Height) / 2;
+				pb.Left = pn.Width - 3*pb.Width - pb.Top;
+				pb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+				pb.Image = System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.smallmultienabled.png"));
+				pb.BackColor = Color.Transparent;
+
+				this.toolTip1.SetToolTip(pb, "Allows Multiple instance.");				
+			}	
+		
+			if (wrapper is SimPe.PackedFiles.Wrapper.ErrorWrapper) 
+			{
+				pb = new PictureBox();
+				pb.Parent = pn;
+				pb.Width = pn.DisplayRectangle.Top+1;
+				pb.Height = pn.DisplayRectangle.Top;	
+				pb.SizeMode = PictureBoxSizeMode.CenterImage;
+				pb.Top = (pn.DisplayRectangle.Top + 1 - pb.Height) / 2;
+				if (wrapper.AllowMultipleInstances) pb.Left = pn.Width - 4*pb.Width - pb.Top;
+				else pb.Left = pn.Width - 3*pb.Width - pb.Top;
+				pb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+				pb.Image = System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.error.png")).GetThumbnailImage(16, 16, new Image.GetThumbnailImageAbort(ThumbnailCallback), IntPtr.Zero);;
+				pb.BackColor = Color.Transparent;
+				this.toolTip1.SetToolTip(pb, "This wrapper caused an Error while loading.");
+			}
+
+			PictureBox pbe = new PictureBox();
+			pbe.Parent = pn;
+			pbe.Width = pn.DisplayRectangle.Top+1;
+			pbe.Height = pn.DisplayRectangle.Top;	
+			pbe.SizeMode = PictureBoxSizeMode.CenterImage;
+			pbe.Top = (pn.DisplayRectangle.Top + 1 - pbe.Height) / 2;
+			pbe.Left = pn.Width - pbe.Width - pbe.Top;
+			pbe.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			pbe.Image = GetShrinkImage(pn);
+			pbe.Tag = pn;
+			pbe.BackColor = Color.Transparent;
+			pbe.Click += new EventHandler(pb_ExpandClick);
+			this.toolTip1.SetToolTip(pbe, "Collapse/Expand");
+
+			pb = new PictureBox();
+			pb.Parent = pn;
+			pb.Width = imgwidth;
+			pb.Height = imgwidth;
+			pb.Left = pn.Width - pb.Width - 8;
+			pb.Top = pn.DisplayRectangle.Top + 4; //pn.Height - pb.Height -8;
+			pb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			pb.Image = GetImage(wrapper);
+			pb.Tag = pn;
+			pb.BackColor = Color.Transparent;
+			pb.Click += new EventHandler(pb_Click);	
+			this.toolTip1.SetToolTip(pb, "Enable/Disable");
+
+			pb = new PictureBox();
+			pb.Parent = pn;
+			pb.Width = pn.DisplayRectangle.Top+1;
+			pb.Height = pn.DisplayRectangle.Top;	
+			pb.SizeMode = PictureBoxSizeMode.CenterImage;
+			pb.Top = (pn.DisplayRectangle.Top + 1 - pb.Height) / 2;
+			pb.Left = pn.Width - 2*pb.Width - pb.Top;
+			pb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			pb.Image = GetImage(wrapper).GetThumbnailImage(16, 16, new Image.GetThumbnailImageAbort(ThumbnailCallback), IntPtr.Zero);
+			pb.BackColor = Color.Transparent;
+			pb.Tag = pn;
+			pb.Click += new EventHandler(pb_Click);	
+			this.toolTip1.SetToolTip(pb, "Enable/Disable");	
+
+			Panel pan = new Panel();
+			pan.BackColor = this.cnt.BackColor;
+			pan.Parent = pn;
+			pan.Height = 4;
+			pan.Dock = DockStyle.Bottom;
+
+			uids.Add(wrapper.WrapperDescription.UID);
+			pb_ExpandClick(pbe, null);
+			return pn;
+		}
+
+		public void Execute(Icon icon)
+		{
+			ThemeManager tm = new ThemeManager(FileTable.ThemeManager.CurrentTheme);
+			tm.Parent = FileTable.ThemeManager;
+			
+			OptionForm f = this;
+			if (icon!=null) f.Icon = icon;
+			SimPe.Interfaces.IWrapper[] wrappers = FileTable.WrapperRegistry.AllWrappers;
+					
+			for (int ct=wrappers.Length-1; ct>=0; ct--) 
+			{
+				SimPe.Interfaces.IWrapper wrapper = wrappers[ct];
+				f.cnt.Controls.Add(f.BuildPanel(wrapper, tm, ct));
+			}
+				
+			f.uids.Clear();
+			if (f.cnt.Controls.Count>0) f.cnt.Controls[0].Focus();
+			
+			f.Execute();
+
+			foreach (SimPe.Interfaces.IWrapper wrapper in wrappers) 
+			{
+				if (! (wrapper is SimPe.PackedFiles.Wrapper.ErrorWrapper))
+					Helper.WindowsRegistry.SetWrapperPriority(wrapper.WrapperDescription.UID, wrapper.Priority);
+			}
+		}
+
+		private void pn_Click(object sender, EventArgs e)
+		{
+			if (sender is TD.Eyefinder.HeaderControl) 
+			{
+				TD.Eyefinder.HeaderControl pn = (TD.Eyefinder.HeaderControl)sender;
+				pn.Focus();
+			} 
+			else if (sender is Control) 
+			{
+				TD.Eyefinder.HeaderControl pn = (TD.Eyefinder.HeaderControl)((Control)sender).Parent;
+				pn.Focus();
+			}
+		}
+
+		TD.Eyefinder.HeaderControl lastpn;
+		private void pn_Focused(object sender, EventArgs e)
+		{			
+			TD.Eyefinder.HeaderControl pn = (TD.Eyefinder.HeaderControl)sender;
+			pn.BackColor = SystemColors.Window;
+			pn.Font = new Font(pn.Font.Name, pn.Font.Size, FontStyle.Bold, pn.Font.Unit);
+
+			btpup.Enabled = wrappers[0]!=pn;
+			btpdown.Enabled = wrappers[wrappers.Count-1]!=pn;
+
+			lastpn = pn;
+			if (pn.Controls.Count>9) pn.Controls[9].BackColor = pn.BackColor;
+		}
+
+		private void pn_LostFocus(object sender, EventArgs e)
+		{			
+			TD.Eyefinder.HeaderControl pn = (TD.Eyefinder.HeaderControl)sender;			
+			pn.BackColor = SystemColors.ControlLight;
+			pn.Font = new Font(pn.Font.Name, pn.Font.Size, FontStyle.Regular, pn.Font.Unit);
+			if (pn.Controls.Count>9) pn.Controls[9].BackColor = pn.BackColor;
+		}
+
+		private void pb_Click(object sender, EventArgs e)
+		{
+			PictureBox pb = (PictureBox)sender;
+			TD.Eyefinder.HeaderControl pn = (TD.Eyefinder.HeaderControl)pb.Tag;
+			SimPe.Interfaces.IWrapper wrapper = (SimPe.Interfaces.IWrapper)pn.Tag;
+
+			wrapper.Priority *= -1;
+			SetPanel(wrapper, pn);
+
+			Image i = this.GetImage(wrapper);
+
+			SetBackgroundColor(pn.Controls[pn.Controls.Count-2], i, true);
+			SetBackgroundColor(pn.Controls[pn.Controls.Count-3], i, false);
+		}
+
+		int FindPanelIndex(TD.Eyefinder.HeaderControl pn)
+		{
+			for (int i=0; i<wrappers.Count; i++)
+			{
+				if (wrappers[i]==pn) return i;
+			}
+
+			return -1;
+		}
+
+		void Exchange(int index, int o) 
+		{			
+			TD.Eyefinder.HeaderControl pn1 = (TD.Eyefinder.HeaderControl)wrappers[index];
+			TD.Eyefinder.HeaderControl pn2 = (TD.Eyefinder.HeaderControl)wrappers[index+o];
+
+			int d = pn1.Top;
+			pn1.Top = pn2.Top;
+			pn2.Top = d;		
+			SimPe.Interfaces.IWrapper w1 = (SimPe.Interfaces.IWrapper)pn1.Tag;
+			SimPe.Interfaces.IWrapper w2 = (SimPe.Interfaces.IWrapper)pn2.Tag;
+
+			int p1 = w1.Priority;
+			int p2 = w2.Priority;
+
+			if (p1>=0) w1.Priority = Math.Abs(p2);
+			else w1.Priority = -1 * Math.Abs(p2);
+
+			if (p2>=0) w2.Priority = Math.Abs(p1);
+			else w2.Priority = -1 * Math.Abs(p1);
+
+			wrappers[index] = pn2;
+			wrappers[index+o] = pn1;
+			
+			cnt.Controls.SetChildIndex(pn1, index+o);
+		}
+
+		private void btpup_Click(object sender, System.EventArgs e)
+		{
+			if (lastpn==null) return;
+
+			int index = FindPanelIndex(lastpn);
+			if (index<1) return;
+
+			Exchange(index, -1);
+			
+			lastpn.Focus();
+		}
+
+		private void btpdown_Click(object sender, System.EventArgs e)
+		{
+			if (lastpn==null) return;
+
+			int index = FindPanelIndex(lastpn);
+			if (index<0) return;
+			if (index>=wrappers.Count-1) return;
+
+			Exchange(index, 1);
+
+			lastpn.Focus();
+		}
+		
+		void SetBackgroundColor(object sender, Image i, bool small)
+		{
+			PictureBox pb = (PictureBox)sender;
+			if (small)	pb.Image = i.GetThumbnailImage(16, 16, new Image.GetThumbnailImageAbort(ThumbnailCallback), IntPtr.Zero);
+			else pb.Image = i;
+			/*if (wrapper.Priority<0) pb.BackColor = Color.FromArgb(0x70FF5B60);
+			else pb.BackColor = Color.FromArgb(0x7087D300);*/
+		}
+
+		private void pb_ExpandClick(object sender, EventArgs e)
+		{
+			PictureBox pb = (PictureBox)sender;
+			TD.Eyefinder.HeaderControl pn = (TD.Eyefinder.HeaderControl)pb.Tag;
+
+			if (pn.Height==pn.DisplayRectangle.Top+1) 
+			{
+				pn.Controls[pn.Controls.Count-1].Visible = true;
+				pn.Height = height;
+			}
+			else 
+			{
+				pn.Controls[pn.Controls.Count-1].Visible = false;
+				pn.Height = pn.DisplayRectangle.Top+1;
+			}
+
+
+			pb.Image = GetShrinkImage(pn);
+			SimPe.Interfaces.IWrapper wrapper = (SimPe.Interfaces.IWrapper)pn.Tag;
+			//SetBackgroundColor(pb, wrapper);
+		}
+		
+
+		private void tb_GotFocus(object sender, EventArgs e)
+		{
+			if (lastpn!=null) 
+			{
+				this.pn_Focused(lastpn, null);
+			}
+		}
+
+		#endregion
+
+		private void cbmulti_CheckedChanged(object sender, System.EventArgs e)
+		{
+			cbFirefox.Enabled = cbmulti.Checked;
+		}
 	}
 }

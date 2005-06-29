@@ -20,6 +20,7 @@
 using System;
 using SimPe.Events;
 using System.Windows.Forms;
+using SimPe.Collections;
 
 namespace SimPe
 {
@@ -68,6 +69,16 @@ namespace SimPe
 		/// Triggered whenever the Content of the Package was changed
 		/// </summary>
 		public event System.EventHandler IndexChanged;
+
+		/// <summary>
+		/// Triggered whenever a new Resource was added
+		/// </summary>
+		public event System.EventHandler AddedResource;
+
+		/// <summary>
+		/// Triggered whenever a Resource was Removed
+		/// </summary>
+		public event System.EventHandler RemovedResource;
 		#endregion
 
 		SimPe.Packages.GeneratableFile pkg;
@@ -132,9 +143,19 @@ namespace SimPe
 				if (!run) WaitingScreen.Wait();
 				WaitingScreen.UpdateMessage("Loading File");
 
-				if (pkg!=null) pkg.IndexChanged -= new EventHandler(IndexChangedHandler);
+				if (pkg!=null) 
+				{
+					pkg.IndexChanged -= new EventHandler(IndexChangedHandler);
+					pkg.AddedResource -= new EventHandler(AddedResourceHandler);
+					pkg.RemovedResource -= new EventHandler(RemovedResourcehandler);
+				}
+
 				pkg = SimPe.Packages.File.LoadFromFile(e.FileName, sync);
+				pkg.LoadCompressedState();
+
 				pkg.IndexChanged += new EventHandler(IndexChangedHandler);
+				pkg.AddedResource += new EventHandler(AddedResourceHandler);
+				pkg.RemovedResource += new EventHandler(RemovedResourcehandler);
 				Helper.WindowsRegistry.AddRecentFile(flname);
 
 				if (!run) WaitingScreen.Stop();
@@ -208,9 +229,22 @@ namespace SimPe
 			if (BeforeFileLoad!=null) BeforeFileLoad(this, e);
 			if (e.Cancel) return false;			
 
-			if (pkg!=null) pkg.IndexChanged -= new EventHandler(IndexChangedHandler);
+			if (pkg!=null) 
+			{
+				pkg.IndexChanged -= new EventHandler(IndexChangedHandler);
+				pkg.AddedResource -= new EventHandler(AddedResourceHandler);
+				pkg.RemovedResource -= new EventHandler(RemovedResourcehandler);
+			}
+
 			pkg = newpkg;
-			pkg.IndexChanged += new EventHandler(IndexChangedHandler);
+			pkg.LoadCompressedState();
+
+			if (pkg!=null) 
+			{
+				pkg.IndexChanged += new EventHandler(IndexChangedHandler);
+				pkg.AddedResource += new EventHandler(AddedResourceHandler);
+				pkg.RemovedResource += new EventHandler(RemovedResourcehandler);
+			}
 
 			if (pkg.FileName!=null) Helper.WindowsRegistry.AddRecentFile(pkg.FileName);
 			if (AfterFileLoad!=null) AfterFileLoad(this);
@@ -238,6 +272,8 @@ namespace SimPe
 				}
 				pkg.Close();
 				pkg.IndexChanged -= new EventHandler(IndexChangedHandler);
+				pkg.AddedResource -= new EventHandler(AddedResourceHandler);
+				pkg.RemovedResource -= new EventHandler(RemovedResourcehandler);
 				pkg = null;
 			}
 
@@ -319,6 +355,88 @@ namespace SimPe
 			}
 		}
 
+		#region Statics
+		/// <summary>
+		/// Load FileDescriptors that are stored in the given File
+		/// </summary>
+		/// <param name="flnames">List of FileNames</param>
+		/// <returns></returns>
+		public static PackedFileDescriptors LoadDescriptorsFromDisk(string[] flnames) 
+		{
+			PackedFileDescriptors list = new PackedFileDescriptors();
+			foreach (string flname in flnames) LoadDescriptorsFromDisk(flname, list);
+			return list;
+		}
+
+		/// <summary>
+		/// Load FileDescriptors that are stored in the given File
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <returns></returns>
+		public static PackedFileDescriptors LoadDescriptorsFromDisk(string flname) 
+		{
+			PackedFileDescriptors list = new PackedFileDescriptors();
+			LoadDescriptorsFromDisk(flname, list);
+			return list;
+		}
+
+		/// <summary>
+		/// Load FileDescriptors that are stored in the given File
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <param name="list">null or the list that should be used to add the Items</param>
+		/// <returns></returns>
+		public static void LoadDescriptorsFromDisk(string flname, PackedFileDescriptors list) 
+		{
+			if (list==null) return;
+			bool run = WaitingScreen.Running;
+			if (!run) WaitingScreen.Wait();
+			WaitingScreen.UpdateMessage("Saving File");
+			//list = new PackedFileDescriptors();
+			try 
+			{
+				if (flname.ToLower().EndsWith("package.xml")) 
+				{				
+					SimPe.Packages.File pkg = Packages.GeneratableFile.LoadFromStream(XmlPackageReader.OpenExtractedPackage(null, flname));						
+
+					foreach (Interfaces.Files.IPackedFileDescriptor pfd in pkg.Index) 
+					{
+						Interfaces.Files.IPackedFile file = pkg.Read(pfd);
+						pfd.UserData = file.UncompressedData;
+						if (!list.Contains(pfd)) list.Add(pfd);
+					}
+				} 
+				else if (flname.ToLower().EndsWith(".xml")) 
+				{		
+					Interfaces.Files.IPackedFileDescriptor pfd = XmlPackageReader.OpenExtractedPackedFile(flname);
+					if (!list.Contains(pfd)) list.Add(pfd);					
+				} 
+				else if (flname.ToLower().EndsWith(".package") || flname.ToLower().EndsWith(".simpedis")) 
+				{
+					SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(flname);
+					foreach (Interfaces.Files.IPackedFileDescriptor pfd in pkg.Index) 
+					{
+						Interfaces.Files.IPackedFile file = pkg.Read(pfd);
+						pfd.UserData = file.UncompressedData;
+						if (!list.Contains(pfd)) list.Add(pfd);
+					}
+				}
+				else 
+				{
+					
+					Packages.PackedFileDescriptor pfd = new SimPe.Packages.PackedFileDescriptor();
+					pfd.Type = 0xffffffff;
+					ToolLoaderItemExt.OpenPackedFile(flname, ref pfd);
+					list.Add(pfd);
+				}
+			}
+			finally 
+			{
+				if (!run) WaitingScreen.Stop();
+			}
+		}
+		#endregion
+
 		#region IndexChanged Events
 		/// <summary>
 		/// Triggered whenever the Index of the stored Package was changed
@@ -332,6 +450,8 @@ namespace SimPe
 		}
 
 		object indexChangedHandler;
+		object addedResourceHandler;
+		object removedResourcehandler;
 		bool paused = false;
 		/// <summary>
 		///Blocks IndexChanged Events until <see cref="RestartIndexChangedEvents"/> is called
@@ -339,6 +459,8 @@ namespace SimPe
 		public void PauseIndexChangedEvents()
 		{
 			indexChangedHandler = null;
+			addedResourceHandler = null;
+			removedResourcehandler = null;
 			paused = true;
 		}
 
@@ -350,6 +472,20 @@ namespace SimPe
 		{
 			paused = false;
 			if (indexChangedHandler!=null) IndexChangedHandler(indexChangedHandler, null);
+			if (addedResourceHandler!=null) AddedResourceHandler(addedResourceHandler, null);
+			if (removedResourcehandler!=null) RemovedResourcehandler(removedResourcehandler, null);
+		}		
+
+		private void AddedResourceHandler(object sender, EventArgs e)
+		{
+			if (paused) addedResourceHandler = sender;
+			else if (this.AddedResource!=null) AddedResource(sender, e);
+		}
+
+		private void RemovedResourcehandler(object sender, EventArgs e)
+		{
+			if (paused) removedResourcehandler = sender;
+			else if (this.RemovedResource!=null) RemovedResource(sender, e);
 		}
 		#endregion
 	}

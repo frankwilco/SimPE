@@ -26,7 +26,7 @@ namespace SimPe.Interfaces.Plugin.Internal
 	/// This Interface Implements Methods that must be provided by a PackedFile Wrapper
 	/// </summary>
 	/// <remarks>If you want to Implement a Wrapper you must use the SimPe.Interfaces.Plugin.IFileWrapper</remarks>
-	public interface IPackedFileWrapper
+	public interface IPackedFileWrapper : IWrapper
 	{
 		/// <summary>
 		/// Returns the Package where this File is assigned to (can be null)
@@ -116,13 +116,12 @@ namespace SimPe.Interfaces.Plugin.Internal
 			set;
 		}
 
+		
+
 		/// <summary>
-		/// true, if the UIHandler for this Wrapper is able to display more than one Instance at once
+		/// Processes the stored Data again and Sends an Update Request to the assigned UI Handler (if not null)
 		/// </summary>
-		bool AllowMultipleInstances
-		{
-			get;
-		}
+		void Refresh();
 
 		/// <summary>
 		/// Sends an Update Request to the assigned UI Handler (if not null)

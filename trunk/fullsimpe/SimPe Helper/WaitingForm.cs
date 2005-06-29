@@ -120,7 +120,7 @@ namespace SimPe
 			this.lbmsg.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbmsg.Dock")));
 			this.lbmsg.Enabled = ((bool)(resources.GetObject("lbmsg.Enabled")));
 			this.lbmsg.Font = ((System.Drawing.Font)(resources.GetObject("lbmsg.Font")));
-			this.lbmsg.ForeColor = System.Drawing.Color.Gray;
+			this.lbmsg.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(204)), ((System.Byte)(211)), ((System.Byte)(213)));
 			this.lbmsg.Image = ((System.Drawing.Image)(resources.GetObject("lbmsg.Image")));
 			this.lbmsg.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbmsg.ImageAlign")));
 			this.lbmsg.ImageIndex = ((int)(resources.GetObject("lbmsg.ImageIndex")));
@@ -232,7 +232,7 @@ namespace SimPe
 			this.ShowInTaskbar = false;
 			this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
 			this.Text = resources.GetString("$this.Text");
-			this.TransparencyKey = System.Drawing.Color.FromArgb(((System.Byte)(206)), ((System.Byte)(76)), ((System.Byte)(212)));
+			this.TransparencyKey = System.Drawing.Color.Fuchsia;
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 

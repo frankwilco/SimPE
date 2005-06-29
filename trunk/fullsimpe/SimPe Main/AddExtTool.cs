@@ -242,8 +242,8 @@ namespace SimPe
 		}
 		#endregion
 
-		ToolLoaderItem tli;
-		public ToolLoaderItem Execute() 
+		ToolLoaderItemExt tli;
+		public ToolLoaderItemExt Execute() 
 		{
 			tli = null;
 
@@ -291,7 +291,7 @@ namespace SimPe
 
 		private void button1_Click(object sender, System.EventArgs e)
 		{
-			tli = new ToolLoaderItem(tbname.Text);
+			tli = new ToolLoaderItemExt(tbname.Text);
 			tli.Attributes = tbattr.Text;
 			tli.FileName = tbfile.Text;
 			try 

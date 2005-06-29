@@ -183,7 +183,8 @@ namespace SimPe
 				if (mi==null) 
 				{
 					mi = new TD.SandBar.MenuButtonItem(name);
-					if (parent!=null) parent.Add(mi);
+					if (parent!=null) parent.Insert(0, mi);
+					
 				}
 
 				parent = mi.Items;

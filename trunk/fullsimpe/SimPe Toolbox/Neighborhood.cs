@@ -374,7 +374,8 @@ namespace SimPe.Plugin
 				string name = System.IO.Path.GetFileName(path);
 			
 				string backuppath = System.IO.Path.Combine(NeighborhoodTool.WindowsRegistry.BackupFolder, name);
-				backuppath = System.IO.Path.Combine(backuppath, DateTime.Now.ToString().Replace("\\", "/").Replace(":", "-"));
+				string subname = DateTime.Now.ToString();
+				backuppath = System.IO.Path.Combine(backuppath, subname.Replace("\\", "-").Replace("/", "-").Replace(":", "-"));
 				if (!System.IO.Directory.Exists(backuppath)) System.IO.Directory.CreateDirectory(backuppath);
 
 				Helper.CopyDirectory(path, backuppath, true);

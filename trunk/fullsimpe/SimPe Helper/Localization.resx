@@ -276,4 +276,12 @@ Package: {filename}</value>
 	<data name="object tool">
 		<value>Object Tools</value>
 	</data>
+	<data name="changed?">
+		<value>Resource Changed</value>
+	</data>
+	<data name="reschanged">
+		<value>The Resource "{name}" was changed. Should SimPe reload it?
+
+Package: {filename}</value>
+	</data>
 </root>

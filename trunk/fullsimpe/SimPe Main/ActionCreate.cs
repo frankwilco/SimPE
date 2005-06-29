@@ -32,17 +32,17 @@ namespace SimPe.Actions.Default
 		}
 		#region IToolAction Member		
 
-		public override bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs[] es, LoadedPackage guipackage)
+		public override bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			if (guipackage==null) return false;
-			return guipackage.Loaded;
+			if (es.LoadedPackage==null) return false;
+			return es.LoadedPackage.Loaded;
 		}
 
-		public override void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs[] e, LoadedPackage guipackage)
+		public override void ExecuteEventHandler(object sender, SimPe.Events.ResourceEventArgs e)
 		{
-			if (!ChangeEnabledStateEventHandler(null, e, guipackage)) return;
+			if (!ChangeEnabledStateEventHandler(null, e)) return;
 
-			guipackage.Package.Add(guipackage.Package.NewDescriptor(0xffffffff, 0, Data.MetaData.LOCAL_GROUP, 0));
+			e.LoadedPackage.Package.Add(e.LoadedPackage.Package.NewDescriptor(0xffffffff, 0, Data.MetaData.LOCAL_GROUP, 0));
 		}
 
 		#endregion

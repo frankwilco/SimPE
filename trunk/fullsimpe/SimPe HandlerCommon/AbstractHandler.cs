@@ -167,15 +167,19 @@ namespace SimPe.Interfaces.Plugin
 				+WrapperDescription.Author +", Version="
 				+WrapperDescription.Version.ToString()+", GUID="
 				+Helper.HexString(WrapperDescription.UID)+", FileName="
-				+FileName+", Type="
+				+WrapperFileName+", Type="
 				+this.GetType()+")";
 		}
 
-		public string FileName 
+		public string WrapperFileName 
 		{
 			get 
 			{
-				return this.GetType().Assembly.FullName;
+				string i = this.GetType().Assembly.FullName;
+				string[] p = i.Split(",".ToCharArray(), 2);
+				
+				if (p.Length>0) return p[0].Trim();
+				else return SimPe.Localization.GetString("unknown");
 			}
 		}
 
@@ -203,7 +207,8 @@ namespace SimPe.Interfaces.Plugin
 
 			try 
 			{				
-				pfd.UserData = CurrentStateData.ToArray();
+				//set UserData, but do not fire a change Event!
+				pfd.SetUserData(CurrentStateData.ToArray(), false);
 				changed = false;
 			}
 			catch (Exception ex) 
@@ -381,11 +386,15 @@ namespace SimPe.Interfaces.Plugin
 				UIHandler.UpdateGUI((IFileWrapper)this);
 			}
 		}
+		public void Refresh() 
+		{
+			this.ProcessData(this.FileDescriptor, this.Package);
+			RefreshUI();
+		}
 
 		public void LoadUI()
 		{			
-			//if (AllowMultipleInstances) ((SimPe.Interfaces.Plugin.IMultiplePackedFileUI)UIHandler).PrepareGUI((IFileWrapper)this);
-			RefreshUI();
+			 RefreshUI();
 		}		
 
 		/// <summary>
