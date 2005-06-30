@@ -378,6 +378,46 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Formats the Version and returns it
+		/// </summary>
+		/// <param name="ver"></param>
+		/// <returns></returns>
+		public static string VersionToString(System.Diagnostics.FileVersionInfo ver)
+		{
+			return ver.FileMajorPart+"."+ver.FileMinorPart+"."+ver.FileBuildPart+"."+ver.FilePrivatePart;
+		}
+
+		/// <summary>
+		/// Formats a Long Version Number to a String
+		/// </summary>
+		/// <param name="l"></param>
+		/// <returns></returns>
+		public static string LongVersionToString(long l)
+		{	
+			string res = "";
+			res = (l & 0xffff).ToString();
+			l = l>>16;
+			res = (l & 0xffff).ToString()+"."+res;
+			l = l>>16;
+			res = (l & 0xffff).ToString()+"."+res;
+			l = l>>16;
+			res = (l & 0xffff).ToString()+"."+res;		
+			return res;
+		}
+
+		/// <summary>
+		/// Returns the Version Number as Text
+		/// </summary>
+		public static string SimPeVersionString 
+		{
+			get 
+			{ 
+				System.Diagnostics.FileVersionInfo ver = SimPeVersion;
+				return VersionToString(ver);				
+			}
+		}
+
+		/// <summary>
 		/// true if this is a QA Release
 		/// </summary>
 		public static bool QARelease

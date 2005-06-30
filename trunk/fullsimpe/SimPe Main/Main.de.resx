@@ -263,6 +263,15 @@
   <data name="menuBarItem5.Text">
     <value>&amp;Hilfe</value>
   </data>
+  <data name="miUpdate.Text">
+    <value>&amp;Updates suchen...</value>
+  </data>
+  <data name="miTutorials.Text">
+    <value>Anleitungen...</value>
+  </data>
+  <data name="miAbout.Text">
+    <value>&amp;Info...</value>
+  </data>
   <data name="clType.Text">
     <value>Typ</value>
   </data>
@@ -352,6 +361,9 @@
   </data>
   <data name="biNewDc.ToolTipText">
     <value>Erzeuge neue Dokumenten Ansicht</value>
+  </data>
+  <data name="biUpdate.ToolTipText">
+    <value>Updates suchen</value>
   </data>
   <data name="tbAction.Text">
     <value>Resourcen Aktionen</value>
@@ -579,10 +591,10 @@
     <value>Externe</value>
   </data>
   <data name="tbExtAction.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>4, 184</value>
+    <value>4, 128</value>
   </data>
   <data name="tbExtAction.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>151, 128</value>
+    <value>168, 128</value>
   </data>
   <data name="resource.ChevronDown" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -679,10 +691,7 @@
         RK5CYII=
 </value>
   </data>
-  <data name="tbToolAction.HeaderText">
-    <value>Plugins</value>
-  </data>
-  <data name="tbToolAction.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbPlugAction.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>4, 56</value>
   </data>
   <data name="resource.ChevronDown1" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -784,7 +793,7 @@
     <value>Standard</value>
   </data>
   <data name="tbDefaultAction.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>151, 56</value>
+    <value>168, 56</value>
   </data>
   <data name="resource.ChevronDown2" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -888,6 +897,6 @@
     <value>Dokumenten Ansicht</value>
   </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
+    <value>Inherit</value>
   </data>
 </root>

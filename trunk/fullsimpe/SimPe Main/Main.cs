@@ -113,6 +113,10 @@ namespace SimPe
 		private TD.SandBar.ButtonItem biNew;
 		private SteepValley.Windows.Forms.ThemedControls.XPTaskBox tbExtAction;
 		private SteepValley.Windows.Forms.ThemedControls.XPTaskBox tbPlugAction;
+		private TD.SandBar.MenuButtonItem miAbout;
+		private TD.SandBar.MenuButtonItem miUpdate;
+		private TD.SandBar.MenuButtonItem miTutorials;
+		private TD.SandBar.ButtonItem biUpdate;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -215,6 +219,9 @@ namespace SimPe
 			this.miWindow = new TD.SandBar.MenuBarItem();
 			this.miNewDc = new TD.SandBar.MenuButtonItem();
 			this.menuBarItem5 = new TD.SandBar.MenuBarItem();
+			this.miUpdate = new TD.SandBar.MenuButtonItem();
+			this.miTutorials = new TD.SandBar.MenuButtonItem();
+			this.miAbout = new TD.SandBar.MenuButtonItem();
 			this.miAction = new TD.SandBar.ContextMenuBarItem();
 			this.lv = new System.Windows.Forms.ListView();
 			this.clType = new System.Windows.Forms.ColumnHeader();
@@ -230,6 +237,7 @@ namespace SimPe
 			this.biSaveAs = new TD.SandBar.ButtonItem();
 			this.biClose = new TD.SandBar.ButtonItem();
 			this.biNewDc = new TD.SandBar.ButtonItem();
+			this.biUpdate = new TD.SandBar.ButtonItem();
 			this.tbAction = new TD.SandBar.ToolBar();
 			this.iAnim = new System.Windows.Forms.ImageList(this.components);
 			this.sdm = new TD.SandDock.SandDockManager();
@@ -613,8 +621,40 @@ namespace SimPe
 			// 
 			// menuBarItem5
 			// 
+			this.menuBarItem5.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																				  this.miUpdate,
+																				  this.miTutorials,
+																				  this.miAbout});
 			this.menuBarItem5.Text = resources.GetString("menuBarItem5.Text");
 			this.menuBarItem5.ToolTipText = resources.GetString("menuBarItem5.ToolTipText");
+			// 
+			// miUpdate
+			// 
+			this.miUpdate.Image = ((System.Drawing.Image)(resources.GetObject("miUpdate.Image")));
+			this.miUpdate.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miUpdate.Shortcut")));
+			this.miUpdate.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miUpdate.Shortcut2")));
+			this.miUpdate.Text = resources.GetString("miUpdate.Text");
+			this.miUpdate.ToolTipText = resources.GetString("miUpdate.ToolTipText");
+			this.miUpdate.Activate += new System.EventHandler(this.Activate_miUpdate);
+			// 
+			// miTutorials
+			// 
+			this.miTutorials.Enabled = false;
+			this.miTutorials.Image = ((System.Drawing.Image)(resources.GetObject("miTutorials.Image")));
+			this.miTutorials.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miTutorials.Shortcut")));
+			this.miTutorials.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miTutorials.Shortcut2")));
+			this.miTutorials.Text = resources.GetString("miTutorials.Text");
+			this.miTutorials.ToolTipText = resources.GetString("miTutorials.ToolTipText");
+			// 
+			// miAbout
+			// 
+			this.miAbout.BeginGroup = true;
+			this.miAbout.Image = ((System.Drawing.Image)(resources.GetObject("miAbout.Image")));
+			this.miAbout.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miAbout.Shortcut")));
+			this.miAbout.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miAbout.Shortcut2")));
+			this.miAbout.Text = resources.GetString("miAbout.Text");
+			this.miAbout.ToolTipText = resources.GetString("miAbout.ToolTipText");
+			this.miAbout.Activate += new System.EventHandler(this.Activate_miAbout);
 			// 
 			// miAction
 			// 
@@ -713,7 +753,8 @@ namespace SimPe
 																			  this.biSave,
 																			  this.biSaveAs,
 																			  this.biClose,
-																			  this.biNewDc});
+																			  this.biNewDc,
+																			  this.biUpdate});
 			this.toolBar1.Location = ((System.Drawing.Point)(resources.GetObject("toolBar1.Location")));
 			this.toolBar1.Name = "toolBar1";
 			this.toolBar1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("toolBar1.RightToLeft")));
@@ -770,6 +811,15 @@ namespace SimPe
 			this.biNewDc.Image = ((System.Drawing.Image)(resources.GetObject("biNewDc.Image")));
 			this.biNewDc.Text = resources.GetString("biNewDc.Text");
 			this.biNewDc.ToolTipText = resources.GetString("biNewDc.ToolTipText");
+			// 
+			// biUpdate
+			// 
+			this.biUpdate.BuddyMenu = this.miUpdate;
+			this.biUpdate.Image = ((System.Drawing.Image)(resources.GetObject("biUpdate.Image")));
+			this.biUpdate.ItemImportance = TD.SandBar.ItemImportance.Lowest;
+			this.biUpdate.Text = resources.GetString("biUpdate.Text");
+			this.biUpdate.ToolTipText = resources.GetString("biUpdate.ToolTipText");
+			this.biUpdate.Visible = false;
 			// 
 			// tbAction
 			// 
@@ -1012,7 +1062,7 @@ namespace SimPe
 																																												new TD.SandDock.ControlLayoutSystem(176, 331, new TD.SandDock.DockControl[] {
 																																																																this.dcFilter,
 																																																																this.dcPreview,
-																																																																this.dcAction}, this.dcAction)});
+																																																																this.dcAction}, this.dcPreview)});
 			this.myrightSandDock.Location = ((System.Drawing.Point)(resources.GetObject("myrightSandDock.Location")));
 			this.myrightSandDock.Manager = this.sdm;
 			this.myrightSandDock.MaximumSize = 400;
@@ -1752,9 +1802,10 @@ namespace SimPe
 			{
 				args = pargs;
 				Application.EnableVisualStyles();
-				Application.DoEvents();
+				Application.DoEvents();				
 
-				Commandline.ImportOldData();
+				Commandline.ImportOldData();				
+				
 				if (!Commandline.Start(args))  
 				{
 					Helper.WindowsRegistry.UpdateSimPEDirectory();
@@ -2163,7 +2214,9 @@ namespace SimPe
 				lv.Columns.RemoveAt(lv.Columns.Count-1);
 			}	
 		
-			ReloadLayout();			
+			ReloadLayout();	
+		
+			if (Helper.WindowsRegistry.CheckForUpdates) About.ShowUpdate(false);
 		}
 
 		void Activate_miOpen(object sender, System.EventArgs e)
@@ -2226,6 +2279,16 @@ namespace SimPe
 		private void SelectResource(object sender, System.EventArgs e)
 		{			
 			SelectResource(sender, false, false);
+		}
+
+		private void Activate_miUpdate(object sender, System.EventArgs e)
+		{
+			About.ShowUpdate(true);
+		}
+
+		private void Activate_miAbout(object sender, System.EventArgs e)
+		{
+			About.ShowAbout();
 		}
 
 		private void dc_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)

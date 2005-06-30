@@ -84,6 +84,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			tm.AddControl(this.xpGradientPanel1);
 			tm.AddControl(this.xpGradientPanel2);
 			tm.AddControl(this.xpGradientPanel3);
+			tm.AddControl(this.xpGradientPanel4);
 
 			foreach (SimPe.Data.TypeAlias a in SimPe.Helper.TGILoader.FileTypes) 
 				cbtypes.Items.Add(a);			
