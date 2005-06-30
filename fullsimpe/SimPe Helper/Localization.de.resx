@@ -538,4 +538,10 @@ Package: {filename}</value>
 	<data name="from Package...">
 		<value>aus &amp;Package...</value>
 	</data>
+	<data name="Updates">
+		<value>Aktualisierungen</value>
+	</data>
+	<data name="About">
+		<value>Information</value>
+	</data>
 </root>

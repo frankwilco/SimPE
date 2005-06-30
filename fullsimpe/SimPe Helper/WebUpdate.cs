@@ -10,6 +10,17 @@ using System.Runtime.InteropServices ;
 namespace SimPe
 {
 	/// <summary>
+	/// Update availability state
+	/// </summary>
+	public enum UpdateState:byte
+	{
+		Nothing = 0,
+		NewRelease = 1,
+		NewQARelease = 2,
+		BothNew = 3
+	}
+
+	/// <summary>
 	/// Use this class to Download upDate content
 	/// </summary>
 	public class WebUpdate
@@ -131,15 +142,90 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Returns the Version stored in a specific Tag
+		/// </summary>
+		/// <param name="tag"></param>
+		/// <returns></returns>
+		static long GetVersion(string content, string tag) 
+		{
+			int p1 = content.IndexOf("<!--"+tag+":")+tag.Length+5;
+			if (p1!=-1) 
+			{
+				int p2 = content.IndexOf("-->", p1);
+				if (p2!=-1) 
+				{
+					string ver = content.Substring(p1, p2-p1);
+					long l = Convert.ToInt64(ver);
+
+					return l;
+				}
+			}
+
+			return 0;
+		}
+
+		/// <summary>
+		/// Returns teh ChangeLog for the latest Release
+		/// </summary>
+		/// <returns></returns>
+		public static string GetChangeLog()
+		{
+			if (!IsConnectedToInternet()) return "Unable to load the ChangeLog";
+
+			WebClient Client = new WebClient ();
+			bool run = WaitingScreen.Running;
+			try 
+			{
+				
+				if (!run) WaitingScreen.Wait();
+				WaitingScreen.UpdateMessage("Loading ChangeLog");
+				WebClient cli = new WebClient();
+				byte[] data = cli.DownloadData("http://sims.ambertation.de/rssengine.php?&show=latestplain");
+				MemoryStream ms = new MemoryStream(data);
+				StreamReader sr = new StreamReader(ms);
+				string content = sr.ReadToEnd();								
+				
+				return content;
+
+			} 
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage("Unable to load the ChangeLog.", ex);
+			}
+			finally 
+			{
+				if (!run) WaitingScreen.Stop();
+			}
+
+			return "Unable to load the ChangeLog";
+		}
+
+		/// <summary>
 		/// Install the Photostudio Templates
 		/// </summary>
 		/// <returns>true if success</returns>
-		public static bool CheckUpdate()
+		public static UpdateState CheckUpdate()
 		{
+			long version = 0;
+			long qaversion = 0;
+
+			return CheckUpdate(ref version, ref qaversion);
+		}
+
+		/// <summary>
+		/// Install the Photostudio Templates
+		/// </summary>
+		/// <returns>true if success</returns>
+		public static UpdateState CheckUpdate(ref long version, ref long qaversion)
+		{
+			if (!IsConnectedToInternet()) return UpdateState.Nothing;
+
 			WebClient Client = new WebClient ();
+			bool run = WaitingScreen.Running;
 			try 
 			{
-				WaitingScreen.Wait();
+				
+				if (!run) WaitingScreen.Wait();
 				WaitingScreen.UpdateMessage("Check for new Updates");
 				WebClient cli = new WebClient();
 				byte[] data = cli.DownloadData("http://sims.ambertation.de/downloadnfo.txt");
@@ -149,54 +235,40 @@ namespace SimPe
 
 				//extract the Version String
 				WaitingScreen.UpdateMessage("read latest Version");
-				bool res = false;
+				UpdateState res = UpdateState.Nothing;
 				try 
 				{
-					int p1 = content.IndexOf("<!--version-->")+14;
-					if (p1!=-1) 
-					{
-						int p2 = content.IndexOf("<!--version-->", p1);
-						if (p2!=-1) 
-						{
-							string ver = content.Substring(p1, p2-p1);
-							string[] vers = ver.Split(".".ToCharArray(), 4);
+					version = GetVersion(content, "lversion");
+					qaversion = GetVersion(content, "qaversion");
 
-							int max = Convert.ToInt32(vers[0]);
-							int min = Convert.ToInt32(vers[1]);
-							int build = Convert.ToInt32(vers[2]);
-							int priv = Convert.ToInt32(vers[3]);
+					if (version>Helper.SimPeVersionLong) 
+						res |= UpdateState.NewRelease;					
 
-							if (Helper.SimPeVersion.FileMajorPart<max) res = true;
-							else if (Helper.SimPeVersion.FileMajorPart>max) res = false;
-							else if (Helper.SimPeVersion.FileMinorPart<min) res = true;
-							else if (Helper.SimPeVersion.FileMinorPart>min) res = false;
-							else if (Helper.SimPeVersion.FileBuildPart<build) res = true;
-							else if (Helper.SimPeVersion.FileBuildPart>build) res = false;
-							else if (Helper.SimPeVersion.FilePrivatePart<priv) res = true;
-						}
-					}
+					if (Helper.QARelease) 
+						if (qaversion>Helper.SimPeVersionLong) 
+							res |= UpdateState.NewQARelease;					
 				} 
 				catch (Exception ex) 
 				{
-					WaitingScreen.Stop();
+					if (!run) WaitingScreen.Stop();
 					Helper.ExceptionMessage("", ex);
 				}
 
-				WaitingScreen.Stop();
+				if (!run) WaitingScreen.Stop();
 				
 				return res;
 
 			} 
 			catch (Exception ex)
 			{
-				Helper.ExceptionMessage("Unable to download the instalation File.", ex);
+				Helper.ExceptionMessage("Unable to determin Version.", ex);
 			}
 			finally 
 			{
-				WaitingScreen.Stop();
+				if (!run) WaitingScreen.Stop();
 			}
 
-			return false;
+			return UpdateState.Nothing;
 		}
 
 #if MAC

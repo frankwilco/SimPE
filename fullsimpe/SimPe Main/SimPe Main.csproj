@@ -195,11 +195,6 @@
                     HintPath = "..\..\..\httpwww.divil.co.uknet\eyefinder.dll"
                 />
                 <Reference
-                    Name = "customstatusbar"
-                    AssemblyName = "CustomStatusBar"
-                    HintPath = "..\customstatusbar.dll"
-                />
-                <Reference
                     Name = "3DView"
                     Project = "{F2CCCDBC-B05F-4C9C-B57F-27A07ACEF9BE}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
@@ -213,6 +208,20 @@
         </Build>
         <Files>
             <Include>
+                <File
+                    RelPath = "About.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "About.resx"
+                    DependentUpon = "About.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "about.rtf"
+                    BuildAction = "EmbeddedResource"
+                />
                 <File
                     RelPath = "AbstractActionDefault.cs"
                     SubType = "Code"
