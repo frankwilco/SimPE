@@ -157,7 +157,13 @@ namespace SimPe.Actions.Default
 				} 
 				else //extract multiple Files
 				{
-					ExtractAllFiles(flname, es.LoadedPackage.Package.Index, es.LoadedPackage.Package);
+					SimPe.Collections.PackedFileDescriptors pfds = new SimPe.Collections.PackedFileDescriptors();
+					foreach (SimPe.Events.ResourceContainer e in es)
+						if (e.HasFileDescriptor) pfds.Add(e.Resource.FileDescriptor);
+
+					SimPe.Interfaces.Files.IPackedFileDescriptor[] ar = new SimPe.Interfaces.Files.IPackedFileDescriptor[pfds.Length];
+					pfds.CopyTo(ar);
+					ExtractAllFiles(flname, ar, es.LoadedPackage.Package);
 				}
 			}
 			catch (Exception ex) 

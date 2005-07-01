@@ -108,6 +108,23 @@ namespace SimPe
 			return text+" ("+GetExtensionList()+")|"+GetExtensionList();
 		}
 
+		/// <summary>
+		/// true, fi the passed File has one of the allowe dExtensions
+		/// </summary>
+		/// <param name="filename"></param>
+		/// <returns></returns>
+		public bool AllowedExtension(string filename) 
+		{
+#if MAC
+			filename = filename.Trim();
+#else
+			filename = filename.Trim().ToLower();
+#endif
+			for (int i=0;i<extensions.Count; i++)
+				if (filename.EndsWith(extensions[i].ToString().Replace("*", ""))) return true;			
+
+			return false;
+		}
 	}
 
 	/// <summary>
@@ -122,13 +139,13 @@ namespace SimPe
 		static void BuildMap()
 		{
 			map = new Hashtable();
-			map.Add(ExtensionType.Package, new ExtensionDescriptor("DBPF Package", "*.package"));
+			map.Add(ExtensionType.Package, new ExtensionDescriptor("DBPF Package", "*.package;*.cache;*.template"));
 			map.Add(ExtensionType.DisabledPackage, new ExtensionDescriptor("Disabled DBPF Package", "*.simpedis"));
-			map.Add(ExtensionType.ExtractedFile, new ExtensionDescriptor("Extracted File", GetExtractExtensions()));
-			map.Add(ExtensionType.ExtractedFileDescriptor, new ExtensionDescriptor("Extracted File Descriptor", "*.*.xml"));
+			map.Add(ExtensionType.ExtractedFile, new ExtensionDescriptor("Extracted File", GetExtractExtensions("")));
+			map.Add(ExtensionType.ExtractedFileDescriptor, new ExtensionDescriptor("Extracted File Descriptor", GetExtractExtensions(".xml")));
 			map.Add(ExtensionType.ExtrackedPackageDescriptor, new ExtensionDescriptor("Extracted Package", "package.xml"));
-			map.Add(ExtensionType.Sim2Pack, new ExtensionDescriptor("Packed Objects", "sim2pack"));
-			map.Add(ExtensionType.Sim2PackCommunity, new ExtensionDescriptor("Sims 2 Community Package", "s2cp"));
+			map.Add(ExtensionType.Sim2Pack, new ExtensionDescriptor("Packed Objects", "*.sim2pack"));
+			map.Add(ExtensionType.Sim2PackCommunity, new ExtensionDescriptor("Sims 2 Community Package", "*.s2cp"));
 			map.Add(ExtensionType.AllFiles, new ExtensionDescriptor("All Files", "*.*"));
 		}
 
@@ -136,7 +153,7 @@ namespace SimPe
 		/// Returns a list of all extractable Extensions
 		/// </summary>
 		/// <returns></returns>
-		static ArrayList GetExtractExtensions()
+		static ArrayList GetExtractExtensions(string suffix)
 		{
 			ArrayList exts = new ArrayList();
 			exts.Add("*.simpe");
@@ -146,7 +163,7 @@ namespace SimPe
 			{
 				string ext = type.Extension.Trim().ToLower();
 				if (ext=="") continue;
-				ext = "*."+ext;
+				ext = "*."+ext+suffix;
 				if (!exts.Contains(ext)) exts.Add(ext);
 			}
 
@@ -192,6 +209,22 @@ namespace SimPe
 			}
 
 			return s;
+		}
+
+		/// <summary>
+		/// Returns the Type of the passed File
+		/// </summary>
+		/// <param name="filename">The Filename you want to test</param>
+		/// <returns></returns>
+		public static ExtensionType GetExtension(string filename)
+		{
+			foreach (ExtensionType et in ExtensionMap.Keys) 
+			{
+				ExtensionDescriptor ed = (ExtensionDescriptor)ExtensionMap[et];
+				if (ed.AllowedExtension(filename)) return et;
+			}
+
+			return ExtensionType.AllFiles;
 		}
 	}
 }
