@@ -666,6 +666,7 @@ namespace SimPe
 			this.lv.AccessibleDescription = resources.GetString("lv.AccessibleDescription");
 			this.lv.AccessibleName = resources.GetString("lv.AccessibleName");
 			this.lv.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lv.Alignment")));
+			this.lv.AllowDrop = true;
 			this.lv.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lv.Anchor")));
 			this.lv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lv.BackgroundImage")));
 			this.lv.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -696,6 +697,8 @@ namespace SimPe
 			this.lv.DoubleClick += new System.EventHandler(this.SelectResourceDBClick);
 			this.lv.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SelectResource);
 			this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
+			this.lv.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropFile);
+			this.lv.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnterFile);
 			this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.SortResourceListClick);
 			this.lv.SelectedIndexChanged += new System.EventHandler(this.SelectResource);
 			// 
@@ -1790,18 +1793,17 @@ namespace SimPe
 		}
 		#endregion
 
-		static string[] args;
-
+		static string[] pargs;
 		/// <summary>
 		/// Der Haupteinstiegspunkt für die Anwendung.
 		/// </summary>
 		[STAThread]
-		static void Main(string[] pargs) 
+		static void Main(string[] args) 
 		{
 			try 
 			{
-				args = pargs;
-				Application.EnableVisualStyles();
+				pargs = args;
+				//Application.EnableVisualStyles();
 				Application.DoEvents();				
 
 				Commandline.ImportOldData();				
@@ -2203,8 +2205,93 @@ namespace SimPe
 		}
 		#endregion
 
+		#region Drag&Drop
+
+		/// <summary>
+		/// Returns the Names of the Dropped Files
+		/// </summary>
+		/// <param name="e"></param>
+		/// <returns></returns>
+		string[] DragDropNames(System.Windows.Forms.DragEventArgs e) 
+		{
+			Array a = (Array)e.Data.GetData(DataFormats.FileDrop);
+
+			if ( a != null )
+			{
+				string[] res = new string[a.Length];				
+				for (int i=0; i<a.Length; i++) res[i] = a.GetValue(i).ToString().ToLower();
+				return res;
+			}
+
+			return new string[0];
+		}
+
+		/// <summary>
+		/// Returns the Effect that should be displayed based on the Files
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <returns></returns>
+		DragDropEffects DragDropEffect(string[] names)
+		{
+			if (names.Length==0) return DragDropEffects.None;
+
+			ExtensionType et = ExtensionProvider.GetExtension(names[0]);
+			if (names.Length==1) 
+			{
+				if (et == ExtensionType.Package || et == ExtensionType.DisabledPackage || et == ExtensionType.ExtrackedPackageDescriptor) 
+					return DragDropEffects.Move;
+				else if (et == ExtensionType.ExtractedFile || et == ExtensionType.ExtractedFileDescriptor)
+					return DragDropEffects.Copy;
+			} 
+				
+			return DragDropEffects.Copy;								
+		}
+
+		/// <summary>
+		/// Someone tries to throw a File
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void DragEnterFile(object sender, System.Windows.Forms.DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(DataFormats.FileDrop)) 
+			{
+				try
+				{
+					e.Effect = DragDropEffect(DragDropNames(e));					
+				} 
+				catch (Exception)
+				{
+				}
+				
+			}
+			else 
+			{
+				e.Effect = DragDropEffects.None;
+			}
+		}
+
+		/// <summary>
+		/// A File has been dropped
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void DragDropFile(object sender, System.Windows.Forms.DragEventArgs e)
+		{
+			try
+			{
+				package.LoadOrImportFiles(DragDropNames(e), true);				
+			}
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage(ex);
+			}
+
+		}
+		#endregion
+
 		void LoadForm(object sender, System.EventArgs e)
-		{			
+		{					
 			dcFilter.LayoutSystem.Collapsed = true;
 			dcPreview.LayoutSystem.Collapsed = true;
 
@@ -2217,6 +2304,9 @@ namespace SimPe
 			ReloadLayout();	
 		
 			if (Helper.WindowsRegistry.CheckForUpdates) About.ShowUpdate(false);
+
+			//load Files passed on the commandline
+			package.LoadOrImportFiles(pargs, true);
 		}
 
 		void Activate_miOpen(object sender, System.EventArgs e)

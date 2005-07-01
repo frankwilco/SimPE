@@ -9,7 +9,7 @@
             <Settings
                 ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
-                AssemblyName = "HexEdit"
+                AssemblyName = "NewHexEdit"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"
@@ -149,11 +149,6 @@
                     AssemblyName = "System.Drawing"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
                 />
-                <Reference
-                    Name = "SourceGrid2"
-                    AssemblyName = "SourceGrid2"
-                    HintPath = "..\SourceGrid2.dll"
-                />
             </References>
         </Build>
         <Files>
@@ -164,8 +159,56 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "HexEditor.cs"
+                    RelPath = "b.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "bl.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "br.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "HexEditControl.cs"
+                    SubType = "UserControl"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "HexEditControl.resx"
+                    DependentUpon = "HexEditControl.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "HexViewControl.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "HexViewControl.resx"
+                    DependentUpon = "HexViewControl.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "l.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "r.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "t.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tl.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tr.png"
+                    BuildAction = "EmbeddedResource"
                 />
             </Include>
         </Files>

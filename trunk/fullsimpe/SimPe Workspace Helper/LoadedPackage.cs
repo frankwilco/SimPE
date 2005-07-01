@@ -355,7 +355,44 @@ namespace SimPe
 			}
 		}
 
-		#region Statics
+		/// <summary>
+		/// Load a Package File or add exported Files
+		/// </summary>
+		/// <param name="names">list of FileNames</param>
+		/// <param name="create">true, if you want to create a new Package if none was loaded</param>
+		public void LoadOrImportFiles(string[] names, bool create) 
+		{			
+			if (names.Length==0) return;
+			if (!Loaded && !create) return;
+
+			if (!Loaded && create) this.LoadFromPackage(SimPe.Packages.GeneratableFile.CreateNew());
+
+			ExtensionType et = ExtensionProvider.GetExtension(names[0]);
+			if (names.Length==1 && (et == ExtensionType.Package || et == ExtensionType.DisabledPackage || et == ExtensionType.ExtrackedPackageDescriptor))
+			{
+				if (System.IO.File.Exists(names[0])) this.LoadFromFile(names[0]);
+			}
+			else if (et == ExtensionType.ExtractedFile || et == ExtensionType.ExtractedFileDescriptor || names.Length>1)
+			{
+				this.PauseIndexChangedEvents();
+				try 
+				{
+					for (int i=0; i<names.Length; i++) 					
+						if (System.IO.File.Exists(names[i])) 
+						{
+							PackedFileDescriptors pfds = LoadDescriptorsFromDisk(names[i]);						
+							foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) this.Package.Add(pfd);						
+						}				
+				} 
+				finally 
+				{
+					this.RestartIndexChangedEvents();
+				}
+			}
+		}
+
+		#region Statics		
+
 		/// <summary>
 		/// Load FileDescriptors that are stored in the given File
 		/// </summary>

@@ -234,7 +234,7 @@ namespace SimPe.Plugin.Tool.Dockable
 																																																															 this.dcPackage,
 																																																															 this.dcResource,
 																																																															 this.dcWrapper,
-																																																															 this.dcConvert}, this.dcConvert)});
+																																																															 this.dcConvert}, this.dcResource)});
 			this.bottomSandDock.Location = ((System.Drawing.Point)(resources.GetObject("bottomSandDock.Location")));
 			this.bottomSandDock.Manager = this.sandDockManager1;
 			this.bottomSandDock.Name = "bottomSandDock";
@@ -405,7 +405,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbinstance2.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbinstance2.TextAlign")));
 			this.tbinstance2.Visible = ((bool)(resources.GetObject("tbinstance2.Visible")));
 			this.tbinstance2.WordWrap = ((bool)(resources.GetObject("tbinstance2.WordWrap")));
-			this.tbinstance2.TextChanged += new System.EventHandler(this.tbinstance_TextChanged);
+			this.tbinstance2.TextChanged += new System.EventHandler(this.TextChanged);
+			this.tbinstance2.Leave += new System.EventHandler(this.tbinstance2_TextChanged);
 			this.tbinstance2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbinstance_KeyUp);
 			// 
 			// tbinstance
@@ -433,7 +434,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbinstance.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbinstance.TextAlign")));
 			this.tbinstance.Visible = ((bool)(resources.GetObject("tbinstance.Visible")));
 			this.tbinstance.WordWrap = ((bool)(resources.GetObject("tbinstance.WordWrap")));
-			this.tbinstance.TextChanged += new System.EventHandler(this.tbinstance2_TextChanged);
+			this.tbinstance.TextChanged += new System.EventHandler(this.TextChanged);
+			this.tbinstance.Leave += new System.EventHandler(this.tbinstance_TextChanged);
 			this.tbinstance.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbinstance2_KeyUp);
 			// 
 			// label11
@@ -578,6 +580,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbgroup.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbgroup.TextAlign")));
 			this.tbgroup.Visible = ((bool)(resources.GetObject("tbgroup.Visible")));
 			this.tbgroup.WordWrap = ((bool)(resources.GetObject("tbgroup.WordWrap")));
+			this.tbgroup.TextChanged += new System.EventHandler(this.TextChanged);
 			this.tbgroup.Leave += new System.EventHandler(this.tbgroup_TextChanged);
 			this.tbgroup.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbgroup_KeyUp);
 			// 
@@ -1190,13 +1193,14 @@ namespace SimPe.Plugin.Tool.Dockable
 			}
 
 			cbtypes.SelectedIndex = -1;
-			cbtypes.Tag = null;			
+			cbtypes.Tag = null;	
+			TextChanged(sender, null);
 		}
 
 		private void tbtype_TextChanged2(object sender, System.EventArgs ea)
 		{
-			if (items==null) return;
-
+			if (items==null || ((TextBox)sender).Tag==null) return;
+			((TextBox)sender).Tag = null;
 			guipackage.PauseIndexChangedEvents();
 			foreach (SimPe.Events.ResourceContainer e in items) 
 			{
@@ -1214,7 +1218,8 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		private void tbgroup_TextChanged(object sender, System.EventArgs ea)
 		{
-			if (items==null) return;
+			if (items==null || ((TextBox)sender).Tag==null) return;
+			((TextBox)sender).Tag = null;
 
 			guipackage.PauseIndexChangedEvents();
 			foreach (SimPe.Events.ResourceContainer e in items) 
@@ -1233,7 +1238,8 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		private void tbinstance_TextChanged(object sender, System.EventArgs ea)
 		{
-			if (items==null) return;
+			if (items==null || ((TextBox)sender).Tag==null) return;
+			((TextBox)sender).Tag = null;
 
 			guipackage.PauseIndexChangedEvents();
 			foreach (SimPe.Events.ResourceContainer e in items) 
@@ -1255,7 +1261,8 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		private void tbinstance2_TextChanged(object sender, System.EventArgs ea)
 		{
-			if (items==null) return;
+			if (items==null || ((TextBox)sender).Tag==null) return;
+			((TextBox)sender).Tag = null;
 
 			guipackage.PauseIndexChangedEvents();
 			foreach (SimPe.Events.ResourceContainer e in items) 
@@ -1297,22 +1304,38 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		private void tbtype_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
-			if (e.KeyCode ==  Keys.Enter) this.tbtype_TextChanged(sender, null);
+			if (e.KeyCode ==  Keys.Enter) 
+			{
+				TextChanged(sender, null);
+				this.tbtype_TextChanged(sender, null);
+			}
 		}
 
 		private void tbgroup_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
-			if (e.KeyCode ==  Keys.Enter) this.tbgroup_TextChanged(sender, null);
+			if (e.KeyCode ==  Keys.Enter) 
+			{
+				TextChanged(sender, null);
+				this.tbgroup_TextChanged(sender, null);
+			}
 		}
 
 		private void tbinstance_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
-			if (e.KeyCode ==  Keys.Enter) this.tbinstance_TextChanged(sender, null);
+			if (e.KeyCode ==  Keys.Enter) 
+			{
+				TextChanged(sender, null);
+				this.tbinstance_TextChanged(sender, null);
+			}
 		}
 
 		private void tbinstance2_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
-			if (e.KeyCode ==  Keys.Enter) this.tbinstance2_TextChanged(sender, null);
+			if (e.KeyCode ==  Keys.Enter) 
+			{
+				TextChanged(sender, null);
+				this.tbinstance2_TextChanged(sender, null);
+			}
 		}
 
 		#region Hex <-> Dec Converter
@@ -1345,6 +1368,12 @@ namespace SimPe.Plugin.Tool.Dockable
 			sysupdate = false;
 		}
 		#endregion
+
+		private new void TextChanged(object sender, System.EventArgs e)
+		{
+			if (items==null) return;
+			((TextBox)sender).Tag = true;
+		}
 
 		
 
