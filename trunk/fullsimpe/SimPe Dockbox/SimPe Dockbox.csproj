@@ -149,6 +149,11 @@
                     Project = "{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "newhexedit"
+                    AssemblyName = "newhexedit"
+                    HintPath = "..\hexedit\bin\debug\newhexedit.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -157,6 +162,15 @@
                     RelPath = "ActionReloadFiletable.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ActionUniqueInstance.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "agent.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "AssemblyInfo.cs"
@@ -180,6 +194,11 @@
                 />
                 <File
                     RelPath = "HexDecConverterTool.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "HexDockTool.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

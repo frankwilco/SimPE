@@ -120,8 +120,9 @@ namespace SimPe.Plugin
 			return new AbstractWrapperInfo(
 				"BCON Wrapper",
 				"Quaxi",
-				"---",
-				7
+				"Containst constants used by SimAntic Scripts.",
+				7,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.bcon.png"))
 				); 
 		}
 

@@ -51,14 +51,22 @@ namespace SimPe.Plugin
 		{
 			if (FileTable.GroupCache!=null) return;
 
-			SimPe.PackedFiles.Wrapper.GroupCache gc = new SimPe.PackedFiles.Wrapper.GroupCache();
-			string name = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Groups.cache");
 
-			if (System.IO.File.Exists(name))
+			SimPe.PackedFiles.Wrapper.GroupCache gc = new SimPe.PackedFiles.Wrapper.GroupCache();
+			try 
 			{
-				SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(name);
-				SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pkg.FindFile(0x54535053, 0, 1, 1);
-				if (pfd!=null) gc.ProcessData(pfd, pkg);				
+				string name = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Groups.cache");
+
+				if (System.IO.File.Exists(name))
+				{
+					SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(name);
+					SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pkg.FindFile(0x54535053, 0, 1, 1);
+					if (pfd!=null) gc.ProcessData(pfd, pkg, false);				
+				}
+			}
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage(new Warning("Unable to load groups.cache", ex.Message, ex));
 			}
 
 			FileTable.GroupCache = gc;

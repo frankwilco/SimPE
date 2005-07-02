@@ -47,21 +47,7 @@ namespace SimPe.Plugin
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
 			return new RcolUI();
-		}
-
-		/// <summary>
-		/// Returns a Human Readable Description of this Wrapper
-		/// </summary>
-		/// <returns>Human Readable Description</returns>
-		protected override IWrapperInfo CreateWrapperInfo()
-		{
-			return new AbstractWrapperInfo(
-				"Generic Rcol Wrapper",
-				"Quaxi",
-				"---",
-				4
-				); 
-		}
+		}		
 		#endregion
 
 

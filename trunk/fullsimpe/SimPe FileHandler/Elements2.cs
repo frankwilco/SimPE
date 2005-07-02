@@ -47,6 +47,9 @@ namespace SimPe.PackedFiles.Wrapper
 			//
 			InitializeComponent();
 
+			ThemeManager tm = FileTable.ThemeManager.CreateChild();
+			tm.AddControl(this.NrefPanel);
+			tm.AddControl(this.CpfPanel);
 		}
 
 		
@@ -74,12 +77,7 @@ namespace SimPe.PackedFiles.Wrapper
 		private void InitializeComponent()
 		{
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Elements2));
-			this.CpfPanel = new System.Windows.Forms.Panel();
 			this.btprev = new System.Windows.Forms.Button();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-			this.llcpfadd = new System.Windows.Forms.LinkLabel();
-			this.llcpfchange = new System.Windows.Forms.LinkLabel();
 			this.cbtype = new System.Windows.Forms.ComboBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.rtbcpfname = new System.Windows.Forms.RichTextBox();
@@ -90,46 +88,23 @@ namespace SimPe.PackedFiles.Wrapper
 			this.lbcpf = new System.Windows.Forms.ListBox();
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.label5 = new System.Windows.Forms.Label();
-			this.NrefPanel = new System.Windows.Forms.Panel();
+			this.tbNref = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.tbnrefhash = new System.Windows.Forms.TextBox();
-			this.tbnref = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
+			this.NrefPanel = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.label12 = new System.Windows.Forms.Label();
-			this.CpfPanel.SuspendLayout();
-			this.groupBox2.SuspendLayout();
+			this.CpfPanel = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.llcpfadd = new System.Windows.Forms.LinkLabel();
+			this.llcpfchange = new System.Windows.Forms.LinkLabel();
+			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.panel5.SuspendLayout();
 			this.NrefPanel.SuspendLayout();
 			this.panel4.SuspendLayout();
+			this.CpfPanel.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// CpfPanel
-			// 
-			this.CpfPanel.AccessibleDescription = resources.GetString("CpfPanel.AccessibleDescription");
-			this.CpfPanel.AccessibleName = resources.GetString("CpfPanel.AccessibleName");
-			this.CpfPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("CpfPanel.Anchor")));
-			this.CpfPanel.AutoScroll = ((bool)(resources.GetObject("CpfPanel.AutoScroll")));
-			this.CpfPanel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("CpfPanel.AutoScrollMargin")));
-			this.CpfPanel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("CpfPanel.AutoScrollMinSize")));
-			this.CpfPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CpfPanel.BackgroundImage")));
-			this.CpfPanel.Controls.Add(this.btprev);
-			this.CpfPanel.Controls.Add(this.groupBox2);
-			this.CpfPanel.Controls.Add(this.btcpfcommit);
-			this.CpfPanel.Controls.Add(this.lbcpf);
-			this.CpfPanel.Controls.Add(this.panel5);
-			this.CpfPanel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("CpfPanel.Dock")));
-			this.CpfPanel.Enabled = ((bool)(resources.GetObject("CpfPanel.Enabled")));
-			this.CpfPanel.Font = ((System.Drawing.Font)(resources.GetObject("CpfPanel.Font")));
-			this.CpfPanel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("CpfPanel.ImeMode")));
-			this.CpfPanel.Location = ((System.Drawing.Point)(resources.GetObject("CpfPanel.Location")));
-			this.CpfPanel.Name = "CpfPanel";
-			this.CpfPanel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("CpfPanel.RightToLeft")));
-			this.CpfPanel.Size = ((System.Drawing.Size)(resources.GetObject("CpfPanel.Size")));
-			this.CpfPanel.TabIndex = ((int)(resources.GetObject("CpfPanel.TabIndex")));
-			this.CpfPanel.Text = resources.GetString("CpfPanel.Text");
-			this.CpfPanel.Visible = ((bool)(resources.GetObject("CpfPanel.Visible")));
 			// 
 			// btprev
 			// 
@@ -154,110 +129,6 @@ namespace SimPe.PackedFiles.Wrapper
 			this.btprev.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btprev.TextAlign")));
 			this.btprev.Visible = ((bool)(resources.GetObject("btprev.Visible")));
 			this.btprev.Click += new System.EventHandler(this.btprev_Click);
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.AccessibleDescription = resources.GetString("groupBox2.AccessibleDescription");
-			this.groupBox2.AccessibleName = resources.GetString("groupBox2.AccessibleName");
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox2.Anchor")));
-			this.groupBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox2.BackgroundImage")));
-			this.groupBox2.Controls.Add(this.linkLabel1);
-			this.groupBox2.Controls.Add(this.llcpfadd);
-			this.groupBox2.Controls.Add(this.llcpfchange);
-			this.groupBox2.Controls.Add(this.cbtype);
-			this.groupBox2.Controls.Add(this.label8);
-			this.groupBox2.Controls.Add(this.rtbcpfname);
-			this.groupBox2.Controls.Add(this.label7);
-			this.groupBox2.Controls.Add(this.rtbcpf);
-			this.groupBox2.Controls.Add(this.label6);
-			this.groupBox2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("groupBox2.Dock")));
-			this.groupBox2.Enabled = ((bool)(resources.GetObject("groupBox2.Enabled")));
-			this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox2.Font = ((System.Drawing.Font)(resources.GetObject("groupBox2.Font")));
-			this.groupBox2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("groupBox2.ImeMode")));
-			this.groupBox2.Location = ((System.Drawing.Point)(resources.GetObject("groupBox2.Location")));
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("groupBox2.RightToLeft")));
-			this.groupBox2.Size = ((System.Drawing.Size)(resources.GetObject("groupBox2.Size")));
-			this.groupBox2.TabIndex = ((int)(resources.GetObject("groupBox2.TabIndex")));
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = resources.GetString("groupBox2.Text");
-			this.groupBox2.Visible = ((bool)(resources.GetObject("groupBox2.Visible")));
-			// 
-			// linkLabel1
-			// 
-			this.linkLabel1.AccessibleDescription = resources.GetString("linkLabel1.AccessibleDescription");
-			this.linkLabel1.AccessibleName = resources.GetString("linkLabel1.AccessibleName");
-			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("linkLabel1.Anchor")));
-			this.linkLabel1.AutoSize = ((bool)(resources.GetObject("linkLabel1.AutoSize")));
-			this.linkLabel1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("linkLabel1.Dock")));
-			this.linkLabel1.Enabled = ((bool)(resources.GetObject("linkLabel1.Enabled")));
-			this.linkLabel1.Font = ((System.Drawing.Font)(resources.GetObject("linkLabel1.Font")));
-			this.linkLabel1.Image = ((System.Drawing.Image)(resources.GetObject("linkLabel1.Image")));
-			this.linkLabel1.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("linkLabel1.ImageAlign")));
-			this.linkLabel1.ImageIndex = ((int)(resources.GetObject("linkLabel1.ImageIndex")));
-			this.linkLabel1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("linkLabel1.ImeMode")));
-			this.linkLabel1.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("linkLabel1.LinkArea")));
-			this.linkLabel1.Location = ((System.Drawing.Point)(resources.GetObject("linkLabel1.Location")));
-			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("linkLabel1.RightToLeft")));
-			this.linkLabel1.Size = ((System.Drawing.Size)(resources.GetObject("linkLabel1.Size")));
-			this.linkLabel1.TabIndex = ((int)(resources.GetObject("linkLabel1.TabIndex")));
-			this.linkLabel1.TabStop = true;
-			this.linkLabel1.Text = resources.GetString("linkLabel1.Text");
-			this.linkLabel1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("linkLabel1.TextAlign")));
-			this.linkLabel1.Visible = ((bool)(resources.GetObject("linkLabel1.Visible")));
-			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DeleteCpf);
-			// 
-			// llcpfadd
-			// 
-			this.llcpfadd.AccessibleDescription = resources.GetString("llcpfadd.AccessibleDescription");
-			this.llcpfadd.AccessibleName = resources.GetString("llcpfadd.AccessibleName");
-			this.llcpfadd.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llcpfadd.Anchor")));
-			this.llcpfadd.AutoSize = ((bool)(resources.GetObject("llcpfadd.AutoSize")));
-			this.llcpfadd.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llcpfadd.Dock")));
-			this.llcpfadd.Enabled = ((bool)(resources.GetObject("llcpfadd.Enabled")));
-			this.llcpfadd.Font = ((System.Drawing.Font)(resources.GetObject("llcpfadd.Font")));
-			this.llcpfadd.Image = ((System.Drawing.Image)(resources.GetObject("llcpfadd.Image")));
-			this.llcpfadd.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcpfadd.ImageAlign")));
-			this.llcpfadd.ImageIndex = ((int)(resources.GetObject("llcpfadd.ImageIndex")));
-			this.llcpfadd.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llcpfadd.ImeMode")));
-			this.llcpfadd.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llcpfadd.LinkArea")));
-			this.llcpfadd.Location = ((System.Drawing.Point)(resources.GetObject("llcpfadd.Location")));
-			this.llcpfadd.Name = "llcpfadd";
-			this.llcpfadd.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llcpfadd.RightToLeft")));
-			this.llcpfadd.Size = ((System.Drawing.Size)(resources.GetObject("llcpfadd.Size")));
-			this.llcpfadd.TabIndex = ((int)(resources.GetObject("llcpfadd.TabIndex")));
-			this.llcpfadd.TabStop = true;
-			this.llcpfadd.Text = resources.GetString("llcpfadd.Text");
-			this.llcpfadd.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcpfadd.TextAlign")));
-			this.llcpfadd.Visible = ((bool)(resources.GetObject("llcpfadd.Visible")));
-			this.llcpfadd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddCpf);
-			// 
-			// llcpfchange
-			// 
-			this.llcpfchange.AccessibleDescription = resources.GetString("llcpfchange.AccessibleDescription");
-			this.llcpfchange.AccessibleName = resources.GetString("llcpfchange.AccessibleName");
-			this.llcpfchange.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llcpfchange.Anchor")));
-			this.llcpfchange.AutoSize = ((bool)(resources.GetObject("llcpfchange.AutoSize")));
-			this.llcpfchange.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llcpfchange.Dock")));
-			this.llcpfchange.Enabled = ((bool)(resources.GetObject("llcpfchange.Enabled")));
-			this.llcpfchange.Font = ((System.Drawing.Font)(resources.GetObject("llcpfchange.Font")));
-			this.llcpfchange.Image = ((System.Drawing.Image)(resources.GetObject("llcpfchange.Image")));
-			this.llcpfchange.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcpfchange.ImageAlign")));
-			this.llcpfchange.ImageIndex = ((int)(resources.GetObject("llcpfchange.ImageIndex")));
-			this.llcpfchange.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llcpfchange.ImeMode")));
-			this.llcpfchange.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llcpfchange.LinkArea")));
-			this.llcpfchange.Location = ((System.Drawing.Point)(resources.GetObject("llcpfchange.Location")));
-			this.llcpfchange.Name = "llcpfchange";
-			this.llcpfchange.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llcpfchange.RightToLeft")));
-			this.llcpfchange.Size = ((System.Drawing.Size)(resources.GetObject("llcpfchange.Size")));
-			this.llcpfchange.TabIndex = ((int)(resources.GetObject("llcpfchange.TabIndex")));
-			this.llcpfchange.TabStop = true;
-			this.llcpfchange.Text = resources.GetString("llcpfchange.Text");
-			this.llcpfchange.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcpfchange.TextAlign")));
-			this.llcpfchange.Visible = ((bool)(resources.GetObject("llcpfchange.Visible")));
-			this.llcpfchange.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CpfChange);
 			// 
 			// cbtype
 			// 
@@ -289,6 +160,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.label8.AccessibleName = resources.GetString("label8.AccessibleName");
 			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label8.Anchor")));
 			this.label8.AutoSize = ((bool)(resources.GetObject("label8.AutoSize")));
+			this.label8.BackColor = System.Drawing.Color.Transparent;
 			this.label8.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label8.Dock")));
 			this.label8.Enabled = ((bool)(resources.GetObject("label8.Enabled")));
 			this.label8.Font = ((System.Drawing.Font)(resources.GetObject("label8.Font")));
@@ -339,6 +211,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.label7.AccessibleName = resources.GetString("label7.AccessibleName");
 			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label7.Anchor")));
 			this.label7.AutoSize = ((bool)(resources.GetObject("label7.AutoSize")));
+			this.label7.BackColor = System.Drawing.Color.Transparent;
 			this.label7.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label7.Dock")));
 			this.label7.Enabled = ((bool)(resources.GetObject("label7.Enabled")));
 			this.label7.Font = ((System.Drawing.Font)(resources.GetObject("label7.Font")));
@@ -389,6 +262,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.label6.AccessibleName = resources.GetString("label6.AccessibleName");
 			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label6.Anchor")));
 			this.label6.AutoSize = ((bool)(resources.GetObject("label6.AutoSize")));
+			this.label6.BackColor = System.Drawing.Color.Transparent;
 			this.label6.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label6.Dock")));
 			this.label6.Enabled = ((bool)(resources.GetObject("label6.Enabled")));
 			this.label6.Font = ((System.Drawing.Font)(resources.GetObject("label6.Font")));
@@ -461,7 +335,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.panel5.AutoScroll = ((bool)(resources.GetObject("panel5.AutoScroll")));
 			this.panel5.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel5.AutoScrollMargin")));
 			this.panel5.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel5.AutoScrollMinSize")));
-			this.panel5.BackColor = System.Drawing.SystemColors.AppWorkspace;
+			this.panel5.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(120)), ((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(0)));
 			this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
 			this.panel5.Controls.Add(this.label5);
 			this.panel5.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel5.Dock")));
@@ -483,6 +357,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.label5.AccessibleName = resources.GetString("label5.AccessibleName");
 			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label5.Anchor")));
 			this.label5.AutoSize = ((bool)(resources.GetObject("label5.AutoSize")));
+			this.label5.BackColor = System.Drawing.Color.Transparent;
 			this.label5.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label5.Dock")));
 			this.label5.Enabled = ((bool)(resources.GetObject("label5.Enabled")));
 			this.label5.Font = ((System.Drawing.Font)(resources.GetObject("label5.Font")));
@@ -499,32 +374,30 @@ namespace SimPe.PackedFiles.Wrapper
 			this.label5.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label5.TextAlign")));
 			this.label5.Visible = ((bool)(resources.GetObject("label5.Visible")));
 			// 
-			// NrefPanel
+			// tbNref
 			// 
-			this.NrefPanel.AccessibleDescription = resources.GetString("NrefPanel.AccessibleDescription");
-			this.NrefPanel.AccessibleName = resources.GetString("NrefPanel.AccessibleName");
-			this.NrefPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("NrefPanel.Anchor")));
-			this.NrefPanel.AutoScroll = ((bool)(resources.GetObject("NrefPanel.AutoScroll")));
-			this.NrefPanel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("NrefPanel.AutoScrollMargin")));
-			this.NrefPanel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("NrefPanel.AutoScrollMinSize")));
-			this.NrefPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NrefPanel.BackgroundImage")));
-			this.NrefPanel.Controls.Add(this.label10);
-			this.NrefPanel.Controls.Add(this.tbnrefhash);
-			this.NrefPanel.Controls.Add(this.tbnref);
-			this.NrefPanel.Controls.Add(this.label9);
-			this.NrefPanel.Controls.Add(this.button2);
-			this.NrefPanel.Controls.Add(this.panel4);
-			this.NrefPanel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("NrefPanel.Dock")));
-			this.NrefPanel.Enabled = ((bool)(resources.GetObject("NrefPanel.Enabled")));
-			this.NrefPanel.Font = ((System.Drawing.Font)(resources.GetObject("NrefPanel.Font")));
-			this.NrefPanel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("NrefPanel.ImeMode")));
-			this.NrefPanel.Location = ((System.Drawing.Point)(resources.GetObject("NrefPanel.Location")));
-			this.NrefPanel.Name = "NrefPanel";
-			this.NrefPanel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("NrefPanel.RightToLeft")));
-			this.NrefPanel.Size = ((System.Drawing.Size)(resources.GetObject("NrefPanel.Size")));
-			this.NrefPanel.TabIndex = ((int)(resources.GetObject("NrefPanel.TabIndex")));
-			this.NrefPanel.Text = resources.GetString("NrefPanel.Text");
-			this.NrefPanel.Visible = ((bool)(resources.GetObject("NrefPanel.Visible")));
+			this.tbNref.AccessibleDescription = resources.GetString("tbNref.AccessibleDescription");
+			this.tbNref.AccessibleName = resources.GetString("tbNref.AccessibleName");
+			this.tbNref.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbNref.Anchor")));
+			this.tbNref.AutoSize = ((bool)(resources.GetObject("tbNref.AutoSize")));
+			this.tbNref.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbNref.BackgroundImage")));
+			this.tbNref.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbNref.Dock")));
+			this.tbNref.Enabled = ((bool)(resources.GetObject("tbNref.Enabled")));
+			this.tbNref.Font = ((System.Drawing.Font)(resources.GetObject("tbNref.Font")));
+			this.tbNref.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbNref.ImeMode")));
+			this.tbNref.Location = ((System.Drawing.Point)(resources.GetObject("tbNref.Location")));
+			this.tbNref.MaxLength = ((int)(resources.GetObject("tbNref.MaxLength")));
+			this.tbNref.Multiline = ((bool)(resources.GetObject("tbNref.Multiline")));
+			this.tbNref.Name = "tbNref";
+			this.tbNref.PasswordChar = ((char)(resources.GetObject("tbNref.PasswordChar")));
+			this.tbNref.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbNref.RightToLeft")));
+			this.tbNref.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbNref.ScrollBars")));
+			this.tbNref.Size = ((System.Drawing.Size)(resources.GetObject("tbNref.Size")));
+			this.tbNref.TabIndex = ((int)(resources.GetObject("tbNref.TabIndex")));
+			this.tbNref.Text = resources.GetString("tbNref.Text");
+			this.tbNref.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbNref.TextAlign")));
+			this.tbNref.Visible = ((bool)(resources.GetObject("tbNref.Visible")));
+			this.tbNref.WordWrap = ((bool)(resources.GetObject("tbNref.WordWrap")));
 			// 
 			// label10
 			// 
@@ -532,6 +405,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.label10.AccessibleName = resources.GetString("label10.AccessibleName");
 			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label10.Anchor")));
 			this.label10.AutoSize = ((bool)(resources.GetObject("label10.AutoSize")));
+			this.label10.BackColor = System.Drawing.Color.Transparent;
 			this.label10.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label10.Dock")));
 			this.label10.Enabled = ((bool)(resources.GetObject("label10.Enabled")));
 			this.label10.Font = ((System.Drawing.Font)(resources.GetObject("label10.Font")));
@@ -574,38 +448,13 @@ namespace SimPe.PackedFiles.Wrapper
 			this.tbnrefhash.Visible = ((bool)(resources.GetObject("tbnrefhash.Visible")));
 			this.tbnrefhash.WordWrap = ((bool)(resources.GetObject("tbnrefhash.WordWrap")));
 			// 
-			// tbnref
-			// 
-			this.tbnref.AccessibleDescription = resources.GetString("tbnref.AccessibleDescription");
-			this.tbnref.AccessibleName = resources.GetString("tbnref.AccessibleName");
-			this.tbnref.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbnref.Anchor")));
-			this.tbnref.AutoSize = ((bool)(resources.GetObject("tbnref.AutoSize")));
-			this.tbnref.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbnref.BackgroundImage")));
-			this.tbnref.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbnref.Dock")));
-			this.tbnref.Enabled = ((bool)(resources.GetObject("tbnref.Enabled")));
-			this.tbnref.Font = ((System.Drawing.Font)(resources.GetObject("tbnref.Font")));
-			this.tbnref.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbnref.ImeMode")));
-			this.tbnref.Location = ((System.Drawing.Point)(resources.GetObject("tbnref.Location")));
-			this.tbnref.MaxLength = ((int)(resources.GetObject("tbnref.MaxLength")));
-			this.tbnref.Multiline = ((bool)(resources.GetObject("tbnref.Multiline")));
-			this.tbnref.Name = "tbnref";
-			this.tbnref.PasswordChar = ((char)(resources.GetObject("tbnref.PasswordChar")));
-			this.tbnref.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbnref.RightToLeft")));
-			this.tbnref.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbnref.ScrollBars")));
-			this.tbnref.Size = ((System.Drawing.Size)(resources.GetObject("tbnref.Size")));
-			this.tbnref.TabIndex = ((int)(resources.GetObject("tbnref.TabIndex")));
-			this.tbnref.Text = resources.GetString("tbnref.Text");
-			this.tbnref.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbnref.TextAlign")));
-			this.tbnref.Visible = ((bool)(resources.GetObject("tbnref.Visible")));
-			this.tbnref.WordWrap = ((bool)(resources.GetObject("tbnref.WordWrap")));
-			this.tbnref.TextChanged += new System.EventHandler(this.tbnref_TextChanged);
-			// 
 			// label9
 			// 
 			this.label9.AccessibleDescription = resources.GetString("label9.AccessibleDescription");
 			this.label9.AccessibleName = resources.GetString("label9.AccessibleName");
 			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label9.Anchor")));
 			this.label9.AutoSize = ((bool)(resources.GetObject("label9.AutoSize")));
+			this.label9.BackColor = System.Drawing.Color.Transparent;
 			this.label9.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label9.Dock")));
 			this.label9.Enabled = ((bool)(resources.GetObject("label9.Enabled")));
 			this.label9.Font = ((System.Drawing.Font)(resources.GetObject("label9.Font")));
@@ -646,6 +495,36 @@ namespace SimPe.PackedFiles.Wrapper
 			this.button2.Visible = ((bool)(resources.GetObject("button2.Visible")));
 			this.button2.Click += new System.EventHandler(this.NrefCommit);
 			// 
+			// NrefPanel
+			// 
+			this.NrefPanel.AccessibleDescription = resources.GetString("NrefPanel.AccessibleDescription");
+			this.NrefPanel.AccessibleName = resources.GetString("NrefPanel.AccessibleName");
+			this.NrefPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("NrefPanel.Anchor")));
+			this.NrefPanel.AutoScroll = ((bool)(resources.GetObject("NrefPanel.AutoScroll")));
+			this.NrefPanel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("NrefPanel.AutoScrollMargin")));
+			this.NrefPanel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("NrefPanel.AutoScrollMinSize")));
+			this.NrefPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NrefPanel.BackgroundImage")));
+			this.NrefPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.NrefPanel.Controls.Add(this.panel4);
+			this.NrefPanel.Controls.Add(this.tbnrefhash);
+			this.NrefPanel.Controls.Add(this.button2);
+			this.NrefPanel.Controls.Add(this.tbNref);
+			this.NrefPanel.Controls.Add(this.label9);
+			this.NrefPanel.Controls.Add(this.label10);
+			this.NrefPanel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("NrefPanel.Dock")));
+			this.NrefPanel.Enabled = ((bool)(resources.GetObject("NrefPanel.Enabled")));
+			this.NrefPanel.Font = ((System.Drawing.Font)(resources.GetObject("NrefPanel.Font")));
+			this.NrefPanel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("NrefPanel.ImeMode")));
+			this.NrefPanel.Location = ((System.Drawing.Point)(resources.GetObject("NrefPanel.Location")));
+			this.NrefPanel.Name = "NrefPanel";
+			this.NrefPanel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("NrefPanel.RightToLeft")));
+			this.NrefPanel.Size = ((System.Drawing.Size)(resources.GetObject("NrefPanel.Size")));
+			this.NrefPanel.TabIndex = ((int)(resources.GetObject("NrefPanel.TabIndex")));
+			this.NrefPanel.Text = resources.GetString("NrefPanel.Text");
+			this.NrefPanel.Visible = ((bool)(resources.GetObject("NrefPanel.Visible")));
+			this.NrefPanel.Watermark = ((System.Drawing.Image)(resources.GetObject("NrefPanel.Watermark")));
+			this.NrefPanel.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("NrefPanel.WatermarkSize")));
+			// 
 			// panel4
 			// 
 			this.panel4.AccessibleDescription = resources.GetString("panel4.AccessibleDescription");
@@ -654,7 +533,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.panel4.AutoScroll = ((bool)(resources.GetObject("panel4.AutoScroll")));
 			this.panel4.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel4.AutoScrollMargin")));
 			this.panel4.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel4.AutoScrollMinSize")));
-			this.panel4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+			this.panel4.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(120)), ((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(0)));
 			this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
 			this.panel4.Controls.Add(this.label12);
 			this.panel4.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel4.Dock")));
@@ -676,6 +555,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.label12.AccessibleName = resources.GetString("label12.AccessibleName");
 			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label12.Anchor")));
 			this.label12.AutoSize = ((bool)(resources.GetObject("label12.AutoSize")));
+			this.label12.BackColor = System.Drawing.Color.Transparent;
 			this.label12.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label12.Dock")));
 			this.label12.Enabled = ((bool)(resources.GetObject("label12.Enabled")));
 			this.label12.Font = ((System.Drawing.Font)(resources.GetObject("label12.Font")));
@@ -691,6 +571,121 @@ namespace SimPe.PackedFiles.Wrapper
 			this.label12.Text = resources.GetString("label12.Text");
 			this.label12.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label12.TextAlign")));
 			this.label12.Visible = ((bool)(resources.GetObject("label12.Visible")));
+			// 
+			// CpfPanel
+			// 
+			this.CpfPanel.AccessibleDescription = resources.GetString("CpfPanel.AccessibleDescription");
+			this.CpfPanel.AccessibleName = resources.GetString("CpfPanel.AccessibleName");
+			this.CpfPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("CpfPanel.Anchor")));
+			this.CpfPanel.AutoScroll = ((bool)(resources.GetObject("CpfPanel.AutoScroll")));
+			this.CpfPanel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("CpfPanel.AutoScrollMargin")));
+			this.CpfPanel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("CpfPanel.AutoScrollMinSize")));
+			this.CpfPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CpfPanel.BackgroundImage")));
+			this.CpfPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.CpfPanel.Controls.Add(this.btcpfcommit);
+			this.CpfPanel.Controls.Add(this.lbcpf);
+			this.CpfPanel.Controls.Add(this.panel5);
+			this.CpfPanel.Controls.Add(this.btprev);
+			this.CpfPanel.Controls.Add(this.rtbcpf);
+			this.CpfPanel.Controls.Add(this.llcpfadd);
+			this.CpfPanel.Controls.Add(this.llcpfchange);
+			this.CpfPanel.Controls.Add(this.linkLabel1);
+			this.CpfPanel.Controls.Add(this.rtbcpfname);
+			this.CpfPanel.Controls.Add(this.cbtype);
+			this.CpfPanel.Controls.Add(this.label6);
+			this.CpfPanel.Controls.Add(this.label8);
+			this.CpfPanel.Controls.Add(this.label7);
+			this.CpfPanel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("CpfPanel.Dock")));
+			this.CpfPanel.Enabled = ((bool)(resources.GetObject("CpfPanel.Enabled")));
+			this.CpfPanel.Font = ((System.Drawing.Font)(resources.GetObject("CpfPanel.Font")));
+			this.CpfPanel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("CpfPanel.ImeMode")));
+			this.CpfPanel.Location = ((System.Drawing.Point)(resources.GetObject("CpfPanel.Location")));
+			this.CpfPanel.Name = "CpfPanel";
+			this.CpfPanel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("CpfPanel.RightToLeft")));
+			this.CpfPanel.Size = ((System.Drawing.Size)(resources.GetObject("CpfPanel.Size")));
+			this.CpfPanel.TabIndex = ((int)(resources.GetObject("CpfPanel.TabIndex")));
+			this.CpfPanel.Text = resources.GetString("CpfPanel.Text");
+			this.CpfPanel.Visible = ((bool)(resources.GetObject("CpfPanel.Visible")));
+			this.CpfPanel.Watermark = ((System.Drawing.Image)(resources.GetObject("CpfPanel.Watermark")));
+			this.CpfPanel.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("CpfPanel.WatermarkSize")));
+			// 
+			// llcpfadd
+			// 
+			this.llcpfadd.AccessibleDescription = resources.GetString("llcpfadd.AccessibleDescription");
+			this.llcpfadd.AccessibleName = resources.GetString("llcpfadd.AccessibleName");
+			this.llcpfadd.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llcpfadd.Anchor")));
+			this.llcpfadd.AutoSize = ((bool)(resources.GetObject("llcpfadd.AutoSize")));
+			this.llcpfadd.BackColor = System.Drawing.Color.Transparent;
+			this.llcpfadd.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llcpfadd.Dock")));
+			this.llcpfadd.Enabled = ((bool)(resources.GetObject("llcpfadd.Enabled")));
+			this.llcpfadd.Font = ((System.Drawing.Font)(resources.GetObject("llcpfadd.Font")));
+			this.llcpfadd.Image = ((System.Drawing.Image)(resources.GetObject("llcpfadd.Image")));
+			this.llcpfadd.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcpfadd.ImageAlign")));
+			this.llcpfadd.ImageIndex = ((int)(resources.GetObject("llcpfadd.ImageIndex")));
+			this.llcpfadd.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llcpfadd.ImeMode")));
+			this.llcpfadd.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llcpfadd.LinkArea")));
+			this.llcpfadd.Location = ((System.Drawing.Point)(resources.GetObject("llcpfadd.Location")));
+			this.llcpfadd.Name = "llcpfadd";
+			this.llcpfadd.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llcpfadd.RightToLeft")));
+			this.llcpfadd.Size = ((System.Drawing.Size)(resources.GetObject("llcpfadd.Size")));
+			this.llcpfadd.TabIndex = ((int)(resources.GetObject("llcpfadd.TabIndex")));
+			this.llcpfadd.TabStop = true;
+			this.llcpfadd.Text = resources.GetString("llcpfadd.Text");
+			this.llcpfadd.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcpfadd.TextAlign")));
+			this.llcpfadd.Visible = ((bool)(resources.GetObject("llcpfadd.Visible")));
+			this.llcpfadd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddCpf);
+			// 
+			// llcpfchange
+			// 
+			this.llcpfchange.AccessibleDescription = resources.GetString("llcpfchange.AccessibleDescription");
+			this.llcpfchange.AccessibleName = resources.GetString("llcpfchange.AccessibleName");
+			this.llcpfchange.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llcpfchange.Anchor")));
+			this.llcpfchange.AutoSize = ((bool)(resources.GetObject("llcpfchange.AutoSize")));
+			this.llcpfchange.BackColor = System.Drawing.Color.Transparent;
+			this.llcpfchange.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llcpfchange.Dock")));
+			this.llcpfchange.Enabled = ((bool)(resources.GetObject("llcpfchange.Enabled")));
+			this.llcpfchange.Font = ((System.Drawing.Font)(resources.GetObject("llcpfchange.Font")));
+			this.llcpfchange.Image = ((System.Drawing.Image)(resources.GetObject("llcpfchange.Image")));
+			this.llcpfchange.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcpfchange.ImageAlign")));
+			this.llcpfchange.ImageIndex = ((int)(resources.GetObject("llcpfchange.ImageIndex")));
+			this.llcpfchange.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llcpfchange.ImeMode")));
+			this.llcpfchange.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llcpfchange.LinkArea")));
+			this.llcpfchange.Location = ((System.Drawing.Point)(resources.GetObject("llcpfchange.Location")));
+			this.llcpfchange.Name = "llcpfchange";
+			this.llcpfchange.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llcpfchange.RightToLeft")));
+			this.llcpfchange.Size = ((System.Drawing.Size)(resources.GetObject("llcpfchange.Size")));
+			this.llcpfchange.TabIndex = ((int)(resources.GetObject("llcpfchange.TabIndex")));
+			this.llcpfchange.TabStop = true;
+			this.llcpfchange.Text = resources.GetString("llcpfchange.Text");
+			this.llcpfchange.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llcpfchange.TextAlign")));
+			this.llcpfchange.Visible = ((bool)(resources.GetObject("llcpfchange.Visible")));
+			this.llcpfchange.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CpfChange);
+			// 
+			// linkLabel1
+			// 
+			this.linkLabel1.AccessibleDescription = resources.GetString("linkLabel1.AccessibleDescription");
+			this.linkLabel1.AccessibleName = resources.GetString("linkLabel1.AccessibleName");
+			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("linkLabel1.Anchor")));
+			this.linkLabel1.AutoSize = ((bool)(resources.GetObject("linkLabel1.AutoSize")));
+			this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
+			this.linkLabel1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("linkLabel1.Dock")));
+			this.linkLabel1.Enabled = ((bool)(resources.GetObject("linkLabel1.Enabled")));
+			this.linkLabel1.Font = ((System.Drawing.Font)(resources.GetObject("linkLabel1.Font")));
+			this.linkLabel1.Image = ((System.Drawing.Image)(resources.GetObject("linkLabel1.Image")));
+			this.linkLabel1.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("linkLabel1.ImageAlign")));
+			this.linkLabel1.ImageIndex = ((int)(resources.GetObject("linkLabel1.ImageIndex")));
+			this.linkLabel1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("linkLabel1.ImeMode")));
+			this.linkLabel1.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("linkLabel1.LinkArea")));
+			this.linkLabel1.Location = ((System.Drawing.Point)(resources.GetObject("linkLabel1.Location")));
+			this.linkLabel1.Name = "linkLabel1";
+			this.linkLabel1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("linkLabel1.RightToLeft")));
+			this.linkLabel1.Size = ((System.Drawing.Size)(resources.GetObject("linkLabel1.Size")));
+			this.linkLabel1.TabIndex = ((int)(resources.GetObject("linkLabel1.TabIndex")));
+			this.linkLabel1.TabStop = true;
+			this.linkLabel1.Text = resources.GetString("linkLabel1.Text");
+			this.linkLabel1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("linkLabel1.TextAlign")));
+			this.linkLabel1.Visible = ((bool)(resources.GetObject("linkLabel1.Visible")));
+			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DeleteCpf);
 			// 
 			// Elements2
 			// 
@@ -715,11 +710,10 @@ namespace SimPe.PackedFiles.Wrapper
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
 			this.Text = resources.GetString("$this.Text");
-			this.CpfPanel.ResumeLayout(false);
-			this.groupBox2.ResumeLayout(false);
 			this.panel5.ResumeLayout(false);
 			this.NrefPanel.ResumeLayout(false);
 			this.panel4.ResumeLayout(false);
+			this.CpfPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -727,28 +721,27 @@ namespace SimPe.PackedFiles.Wrapper
 
 		private System.Windows.Forms.Panel panel5;
 		internal System.Windows.Forms.Label label5;
-		internal System.Windows.Forms.Panel CpfPanel;
 		internal System.Windows.Forms.ListBox lbcpf;
-		private System.Windows.Forms.GroupBox groupBox2;
 		internal System.Windows.Forms.RichTextBox rtbcpf;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
 		internal System.Windows.Forms.RichTextBox rtbcpfname;
 		private System.Windows.Forms.Label label8;
 		internal System.Windows.Forms.ComboBox cbtype;
-		internal System.Windows.Forms.LinkLabel llcpfadd;
-		internal System.Windows.Forms.LinkLabel llcpfchange;
 		private System.Windows.Forms.Button btcpfcommit;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Panel panel4;
 		internal System.Windows.Forms.Label label12;
-		internal System.Windows.Forms.TextBox tbnref;
 		internal System.Windows.Forms.Label label9;
-		internal System.Windows.Forms.Panel NrefPanel;
 		internal System.Windows.Forms.TextBox tbnrefhash;
 		internal System.Windows.Forms.Label label10;
-		internal System.Windows.Forms.LinkLabel linkLabel1;
 		internal System.Windows.Forms.Button btprev;
+		internal System.Windows.Forms.TextBox tbNref;
+		internal SteepValley.Windows.Forms.XPGradientPanel NrefPanel;
+		internal SteepValley.Windows.Forms.XPGradientPanel CpfPanel;
+		internal System.Windows.Forms.LinkLabel linkLabel1;
+		internal System.Windows.Forms.LinkLabel llcpfadd;
+		internal System.Windows.Forms.LinkLabel llcpfchange;
 
 		#region Str Attributes
 		internal IFileWrapperSaveExtension wrapper;
@@ -1218,8 +1211,8 @@ namespace SimPe.PackedFiles.Wrapper
 				Nref wrp = (Nref)wrapper;
 				tbnrefhash.Text = "0x"+Helper.HexString(wrp.Group);
 
-				if (tbnref.Tag!=null) return;
-				wrp.FileName = tbnref.Text;
+				if (tbNref.Tag!=null) return;
+				wrp.FileName = tbNref.Text;
 				wrp.Changed = true;
 			} 
 			catch (Exception ex)
@@ -1255,6 +1248,8 @@ namespace SimPe.PackedFiles.Wrapper
 				rtbcpfname.Tag = null;
 			}
 		}
+
+		
 
 		internal SimPe.PackedFiles.UserInterface.CpfUI.ExecutePreview fkt;
 		private void btprev_Click(object sender, System.EventArgs e)

@@ -211,5 +211,14 @@ namespace SimPe.Interfaces.Scenegraph
 		/// Restores the last stored state (if one is available)
 		/// </summary>
 		void RestoreLastState();
+
+		/// <summary>
+		/// Creates a new FileIndexItem
+		/// </summary>
+		/// <param name="pfd"></param>
+		/// <param name="pkg"></param>
+		/// <returns></returns>
+		SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem CreateFileIndexItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg);
+		
 	}
 }

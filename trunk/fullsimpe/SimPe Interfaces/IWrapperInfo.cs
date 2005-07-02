@@ -24,6 +24,10 @@ namespace SimPe.Interfaces.Plugin
 	/// <summary>
 	/// Contains Human Readable Information about a Wrapper
 	/// </summary>
+	/// <remarks>Never Implement a new Version of this Interface, 
+	/// use <see cref="SimPe.Interfaces.Plugin.AbstractWrapperInfo"/> 
+	/// as staring Point for a new Implementation. Otherwise the Loader 
+	/// Wrapper loader won't load the Image Index correct!</remarks>
 	public interface IWrapperInfo
 	{
 		/// <summary>
@@ -62,6 +66,22 @@ namespace SimPe.Interfaces.Plugin
 		/// Returns a Unique ID for this Wrapper
 		/// </summary>
 		ulong UID 
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns a Icon that should be presented for that resource
+		/// </summary>
+		System.Drawing.Image Icon
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns the Index of the Wrapepr icon in the ImageList of the Registry
+		/// </summary>
+		int IconIndex 
 		{
 			get;
 		}

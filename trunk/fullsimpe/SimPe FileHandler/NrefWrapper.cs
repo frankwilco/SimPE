@@ -29,7 +29,7 @@ namespace SimPe.PackedFiles.Wrapper
 		: AbstractWrapper				//Implements some of the default Behaviur of a Handler, you can Implement yourself if you want more flexibility!
 		, IFileWrapper					//This Interface is used when loading a File
 		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File
-		//,IPackedFileProperties		//This Interface can be used by thirdparties to retrive the FIleproperties, however you don't have to implement it!
+		, IMultiplePackedFileWrapper	//Allow Multiple Instances
 	{
 		byte[] data;
 		/// <summary>
@@ -50,10 +50,10 @@ namespace SimPe.PackedFiles.Wrapper
 		protected override IWrapperInfo CreateWrapperInfo()
 		{
 			return  new AbstractWrapperInfo(
-				"Null Reference Wrapper",
+				"Name Reference Wrapper",
 				"Quaxi",
 				"---",
-				1
+				3
 				); 
 		}
 		#endregion
@@ -127,5 +127,13 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		#endregion		
+
+		#region IMultiplePackedFileWrapper
+		public override object[] GetConstructorArguments()
+		{
+			object[] o = new object[0];
+			return o;
+		}
+		#endregion
 	}
 }

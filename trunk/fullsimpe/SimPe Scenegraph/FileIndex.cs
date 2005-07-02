@@ -252,6 +252,7 @@ namespace SimPe.Plugin
 		/// <remarks>Same as a call to FileIndex(null)</remarks>
 		public FileIndex()
 		{
+			loaded = false;
 			Init(null);
 		}
 
@@ -276,6 +277,7 @@ namespace SimPe.Plugin
 			ret.folders = (ArrayList)this.folders.Clone();
 			ret.addedfilenames = (ArrayList)this.addedfilenames.Clone();
 			ret.duplicates = this.duplicates;
+			ret.loaded = this.loaded;
 
 			return ret;
 		}
@@ -372,6 +374,7 @@ namespace SimPe.Plugin
 			return gci.LocalGroup;
 		}
 
+		bool loaded;
 		/// <summary>
 		/// Load the FileIndex if it is not available yet
 		/// </summary>
@@ -382,7 +385,7 @@ namespace SimPe.Plugin
 		/// </remarks>
 		public void Load() 
 		{			
-			if (index.Count>0) return;
+			if (loaded) return;
 			ForceReload();
 		}
 
@@ -396,6 +399,7 @@ namespace SimPe.Plugin
 		/// </remarks>
 		public void ForceReload()
 		{
+			loaded = true;
 			WrapperFactory.LoadGroupCache();
 			addedfilenames.Clear();
 			bool wasrunning = WaitingScreen.Running;
@@ -916,6 +920,17 @@ namespace SimPe.Plugin
 		{
 			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] sgis = FindFile(sender);
 			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem sgi in sgis) RemoveItem(sgi);			
+		}
+
+		/// <summary>
+		/// Creates a new FileIndexItem
+		/// </summary>
+		/// <param name="pfd"></param>
+		/// <param name="pkg"></param>
+		/// <returns></returns>
+		public SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem CreateFileIndexItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg) 
+		{
+			return new SimPe.Plugin.FileIndexItem(pfd, pkg);
 		}
 	}
 }

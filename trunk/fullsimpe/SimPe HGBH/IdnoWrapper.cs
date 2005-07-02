@@ -322,8 +322,9 @@ namespace SimPe.Plugin
 			return new AbstractWrapperInfo(
 				"Neighborhood ID Wrapper",
 				"Quaxi",
-				"---",
-				1
+				"Contains the ID for this Neighborhood. The Neighborhood ID must be Unique for all packages the Game is loading.",
+				1,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.idno.png"))
 				); 
 		}
 

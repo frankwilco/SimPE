@@ -18,7 +18,7 @@
                 OutputType = "Library"
                 PreBuildEvent = ""
                 PostBuildEvent = ""
-                RootNamespace = "SimPe_HandlerCommon"
+                RootNamespace = "SimPe.PackedFiles.Wrapper"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
             >
@@ -165,11 +165,6 @@
                 />
                 <File
                     RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Remotecontrol.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -82,5 +82,13 @@ namespace SimPe.Interfaces
 		/// to the signature provided by the Handler
 		/// </remarks>
 		SimPe.Interfaces.Plugin.IFileWrapper FindHandler(Byte[] data);
+
+		/// <summary>
+		/// Contains a Listing of all available Wrapper Icons
+		/// </summary>
+		System.Windows.Forms.ImageList WrapperImageList
+		{
+			get;
+		}		
 	}
 }

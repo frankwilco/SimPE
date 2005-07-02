@@ -544,4 +544,7 @@ Package: {filename}</value>
 	<data name="About">
 		<value>Information</value>
 	</data>
+	<data name="Unique Instances">
+		<value>Eindeutige Instanzen</value>
+	</data>
 </root>

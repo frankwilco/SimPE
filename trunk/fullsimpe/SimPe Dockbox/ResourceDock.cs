@@ -71,6 +71,11 @@ namespace SimPe.Plugin.Tool.Dockable
 		private SteepValley.Windows.Forms.XPCueBannerExtender xpCueBannerExtender1;
 		private System.Windows.Forms.TextBox tbHex;
 		private System.Windows.Forms.TextBox tbDec;
+		internal TD.SandDock.DockControl dcHex;
+		private Ambertation.Windows.Forms.HexEditControl hexEditControl1;
+		internal Ambertation.Windows.Forms.HexViewControl hvc;
+		private System.Windows.Forms.TextBox tbBin;
+		internal System.Windows.Forms.Button button1;
 		private System.ComponentModel.IContainer components;
 
 		public ResourceDock()
@@ -119,6 +124,10 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.leftSandDock = new TD.SandDock.DockContainer();
 			this.rightSandDock = new TD.SandDock.DockContainer();
 			this.bottomSandDock = new TD.SandDock.DockContainer();
+			this.dcHex = new TD.SandDock.DockControl();
+			this.button1 = new System.Windows.Forms.Button();
+			this.hexEditControl1 = new Ambertation.Windows.Forms.HexEditControl();
+			this.hvc = new Ambertation.Windows.Forms.HexViewControl();
 			this.dcResource = new TD.SandDock.DockControl();
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.lbComp = new System.Windows.Forms.Label();
@@ -142,6 +151,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.pgHead = new System.Windows.Forms.PropertyGrid();
 			this.dcConvert = new TD.SandDock.DockControl();
 			this.xpGradientPanel4 = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.tbBin = new System.Windows.Forms.TextBox();
 			this.tbDec = new System.Windows.Forms.TextBox();
 			this.tbHex = new System.Windows.Forms.TextBox();
 			this.dcWrapper = new TD.SandDock.DockControl();
@@ -157,6 +167,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.topSandDock = new TD.SandDock.DockContainer();
 			this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
 			this.bottomSandDock.SuspendLayout();
+			this.dcHex.SuspendLayout();
 			this.dcResource.SuspendLayout();
 			this.xpGradientPanel1.SuspendLayout();
 			this.pntypes.SuspendLayout();
@@ -220,6 +231,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.bottomSandDock.AccessibleName = resources.GetString("bottomSandDock.AccessibleName");
 			this.bottomSandDock.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("bottomSandDock.Anchor")));
 			this.bottomSandDock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bottomSandDock.BackgroundImage")));
+			this.bottomSandDock.Controls.Add(this.dcHex);
 			this.bottomSandDock.Controls.Add(this.dcResource);
 			this.bottomSandDock.Controls.Add(this.dcPackage);
 			this.bottomSandDock.Controls.Add(this.dcConvert);
@@ -229,12 +241,13 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.bottomSandDock.Font = ((System.Drawing.Font)(resources.GetObject("bottomSandDock.Font")));
 			this.bottomSandDock.Guid = new System.Guid("f2b6c0a5-8de3-4a6e-8133-dd2ab495affc");
 			this.bottomSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("bottomSandDock.ImeMode")));
-			this.bottomSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Vertical, new TD.SandDock.LayoutSystemBase[] {
-																																											 new TD.SandDock.ControlLayoutSystem(480, 236, new TD.SandDock.DockControl[] {
-																																																															 this.dcPackage,
-																																																															 this.dcResource,
-																																																															 this.dcWrapper,
-																																																															 this.dcConvert}, this.dcResource)});
+			this.bottomSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
+																																											   new TD.SandDock.ControlLayoutSystem(856, 376, new TD.SandDock.DockControl[] {
+																																																															   this.dcPackage,
+																																																															   this.dcResource,
+																																																															   this.dcWrapper,
+																																																															   this.dcConvert,
+																																																															   this.dcHex}, this.dcHex)});
 			this.bottomSandDock.Location = ((System.Drawing.Point)(resources.GetObject("bottomSandDock.Location")));
 			this.bottomSandDock.Manager = this.sandDockManager1;
 			this.bottomSandDock.Name = "bottomSandDock";
@@ -243,6 +256,126 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.bottomSandDock.TabIndex = ((int)(resources.GetObject("bottomSandDock.TabIndex")));
 			this.bottomSandDock.Text = resources.GetString("bottomSandDock.Text");
 			this.bottomSandDock.Visible = ((bool)(resources.GetObject("bottomSandDock.Visible")));
+			// 
+			// dcHex
+			// 
+			this.dcHex.AccessibleDescription = resources.GetString("dcHex.AccessibleDescription");
+			this.dcHex.AccessibleName = resources.GetString("dcHex.AccessibleName");
+			this.dcHex.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dcHex.Anchor")));
+			this.dcHex.AutoScroll = ((bool)(resources.GetObject("dcHex.AutoScroll")));
+			this.dcHex.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dcHex.AutoScrollMargin")));
+			this.dcHex.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dcHex.AutoScrollMinSize")));
+			this.dcHex.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dcHex.BackgroundImage")));
+			this.dcHex.Controls.Add(this.button1);
+			this.dcHex.Controls.Add(this.hexEditControl1);
+			this.dcHex.Controls.Add(this.hvc);
+			this.dcHex.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dcHex.Dock")));
+			this.dcHex.Enabled = ((bool)(resources.GetObject("dcHex.Enabled")));
+			this.dcHex.FloatingSize = new System.Drawing.Size(856, 335);
+			this.dcHex.Font = ((System.Drawing.Font)(resources.GetObject("dcHex.Font")));
+			this.dcHex.Guid = new System.Guid("da8908d7-800f-4200-894a-83653dbf5767");
+			this.dcHex.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dcHex.ImeMode")));
+			this.dcHex.Location = ((System.Drawing.Point)(resources.GetObject("dcHex.Location")));
+			this.dcHex.Name = "dcHex";
+			this.dcHex.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dcHex.RightToLeft")));
+			this.dcHex.Size = ((System.Drawing.Size)(resources.GetObject("dcHex.Size")));
+			this.dcHex.TabImage = ((System.Drawing.Image)(resources.GetObject("dcHex.TabImage")));
+			this.dcHex.TabIndex = ((int)(resources.GetObject("dcHex.TabIndex")));
+			this.dcHex.TabText = resources.GetString("dcHex.TabText");
+			this.dcHex.Text = resources.GetString("dcHex.Text");
+			this.dcHex.ToolTipText = resources.GetString("dcHex.ToolTipText");
+			this.dcHex.Visible = ((bool)(resources.GetObject("dcHex.Visible")));
+			// 
+			// button1
+			// 
+			this.button1.AccessibleDescription = resources.GetString("button1.AccessibleDescription");
+			this.button1.AccessibleName = resources.GetString("button1.AccessibleName");
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("button1.Anchor")));
+			this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+			this.button1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("button1.Dock")));
+			this.button1.Enabled = ((bool)(resources.GetObject("button1.Enabled")));
+			this.button1.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("button1.FlatStyle")));
+			this.button1.Font = ((System.Drawing.Font)(resources.GetObject("button1.Font")));
+			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+			this.button1.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.ImageAlign")));
+			this.button1.ImageIndex = ((int)(resources.GetObject("button1.ImageIndex")));
+			this.button1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("button1.ImeMode")));
+			this.button1.Location = ((System.Drawing.Point)(resources.GetObject("button1.Location")));
+			this.button1.Name = "button1";
+			this.button1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("button1.RightToLeft")));
+			this.button1.Size = ((System.Drawing.Size)(resources.GetObject("button1.Size")));
+			this.button1.TabIndex = ((int)(resources.GetObject("button1.TabIndex")));
+			this.button1.Text = resources.GetString("button1.Text");
+			this.button1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.TextAlign")));
+			this.button1.Visible = ((bool)(resources.GetObject("button1.Visible")));
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// hexEditControl1
+			// 
+			this.hexEditControl1.AccessibleDescription = resources.GetString("hexEditControl1.AccessibleDescription");
+			this.hexEditControl1.AccessibleName = resources.GetString("hexEditControl1.AccessibleName");
+			this.hexEditControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("hexEditControl1.Anchor")));
+			this.hexEditControl1.AutoScroll = ((bool)(resources.GetObject("hexEditControl1.AutoScroll")));
+			this.hexEditControl1.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hexEditControl1.AutoScrollMargin")));
+			this.hexEditControl1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hexEditControl1.AutoScrollMinSize")));
+			this.hexEditControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hexEditControl1.BackgroundImage")));
+			this.hexEditControl1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("hexEditControl1.Dock")));
+			this.hexEditControl1.Enabled = ((bool)(resources.GetObject("hexEditControl1.Enabled")));
+			this.hexEditControl1.Font = ((System.Drawing.Font)(resources.GetObject("hexEditControl1.Font")));
+			this.hexEditControl1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("hexEditControl1.ImeMode")));
+			this.hexEditControl1.Location = ((System.Drawing.Point)(resources.GetObject("hexEditControl1.Location")));
+			this.hexEditControl1.Name = "hexEditControl1";
+			this.hexEditControl1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("hexEditControl1.RightToLeft")));
+			this.hexEditControl1.Size = ((System.Drawing.Size)(resources.GetObject("hexEditControl1.Size")));
+			this.hexEditControl1.TabIndex = ((int)(resources.GetObject("hexEditControl1.TabIndex")));
+			this.hexEditControl1.Vertical = false;
+			this.hexEditControl1.View = Ambertation.Windows.Forms.HexViewControl.ViewState.Hex;
+			this.hexEditControl1.Viewer = this.hvc;
+			this.hexEditControl1.Visible = ((bool)(resources.GetObject("hexEditControl1.Visible")));
+			// 
+			// hvc
+			// 
+			this.hvc.AccessibleDescription = resources.GetString("hvc.AccessibleDescription");
+			this.hvc.AccessibleName = resources.GetString("hvc.AccessibleName");
+			this.hvc.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("hvc.Anchor")));
+			this.hvc.AutoScroll = ((bool)(resources.GetObject("hvc.AutoScroll")));
+			this.hvc.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hvc.AutoScrollMargin")));
+			this.hvc.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hvc.AutoScrollMinSize")));
+			this.hvc.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hvc.BackgroundImage")));
+			this.hvc.Blocks = ((System.Byte)(2));
+			this.hvc.CharBoxWidth = 220;
+			this.hvc.CurrentRow = 0;
+			this.hvc.Data = new System.Byte[0];
+			this.hvc.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("hvc.Dock")));
+			this.hvc.Enabled = ((bool)(resources.GetObject("hvc.Enabled")));
+			this.hvc.FocusedForeColor = System.Drawing.Color.FromArgb(((System.Byte)(96)), ((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(0)));
+			this.hvc.Font = ((System.Drawing.Font)(resources.GetObject("hvc.Font")));
+			this.hvc.HeadColor = System.Drawing.Color.DarkOrange;
+			this.hvc.HeadForeColor = System.Drawing.Color.SeaShell;
+			this.hvc.HighlightColor = System.Drawing.SystemColors.Highlight;
+			this.hvc.HighlightForeColor = System.Drawing.SystemColors.HighlightText;
+			this.hvc.HighlightZeor = false;
+			this.hvc.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("hvc.ImeMode")));
+			this.hvc.Location = ((System.Drawing.Point)(resources.GetObject("hvc.Location")));
+			this.hvc.Name = "hvc";
+			this.hvc.OffsetBoxWidth = 83;
+			this.hvc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("hvc.RightToLeft")));
+			this.hvc.SelectedByte = ((System.Byte)(0));
+			this.hvc.SelectedChar = '\0';
+			this.hvc.SelectedDouble = 0;
+			this.hvc.SelectedFloat = 0F;
+			this.hvc.SelectedInt = 0;
+			this.hvc.SelectedLong = ((long)(0));
+			this.hvc.SelectedShort = ((short)(0));
+			// TODO: Beim Generieren des Codes für 'this.hvc.SelectedUInt' ist die Ausnahme 'Ungültiger primitiver Typ: System.UInt32. Es können nur mit CLS kompatible primitive Typen verwendet werden. Verwenden Sie CodeObjectCreateExpression.' aufgetreten.
+			// TODO: Beim Generieren des Codes für 'this.hvc.SelectedULong' ist die Ausnahme 'Ungültiger primitiver Typ: System.UInt64. Es können nur mit CLS kompatible primitive Typen verwendet werden. Verwenden Sie CodeObjectCreateExpression.' aufgetreten.
+			// TODO: Beim Generieren des Codes für 'this.hvc.SelectedUShort' ist die Ausnahme 'Ungültiger primitiver Typ: System.UInt16. Es können nur mit CLS kompatible primitive Typen verwendet werden. Verwenden Sie CodeObjectCreateExpression.' aufgetreten.
+			this.hvc.Selection = new System.Byte[0];
+			this.hvc.Size = ((System.Drawing.Size)(resources.GetObject("hvc.Size")));
+			this.hvc.TabIndex = ((int)(resources.GetObject("hvc.TabIndex")));
+			this.hvc.View = Ambertation.Windows.Forms.HexViewControl.ViewState.Hex;
+			this.hvc.Visible = ((bool)(resources.GetObject("hvc.Visible")));
+			this.hvc.ZeroCellColor = System.Drawing.Color.FromArgb(((System.Byte)(150)), ((System.Byte)(210)), ((System.Byte)(158)), ((System.Byte)(49)));
 			// 
 			// dcResource
 			// 
@@ -786,6 +919,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpGradientPanel4.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel4.AutoScrollMargin")));
 			this.xpGradientPanel4.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel4.AutoScrollMinSize")));
 			this.xpGradientPanel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel4.BackgroundImage")));
+			this.xpGradientPanel4.Controls.Add(this.tbBin);
 			this.xpGradientPanel4.Controls.Add(this.tbDec);
 			this.xpGradientPanel4.Controls.Add(this.tbHex);
 			this.xpGradientPanel4.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpGradientPanel4.Dock")));
@@ -802,6 +936,33 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpGradientPanel4.Watermark = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel4.Watermark")));
 			this.xpGradientPanel4.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel4.WatermarkSize")));
 			// 
+			// tbBin
+			// 
+			this.tbBin.AccessibleDescription = resources.GetString("tbBin.AccessibleDescription");
+			this.tbBin.AccessibleName = resources.GetString("tbBin.AccessibleName");
+			this.tbBin.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbBin.Anchor")));
+			this.tbBin.AutoSize = ((bool)(resources.GetObject("tbBin.AutoSize")));
+			this.tbBin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbBin.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbBin, "Binärwert");
+			this.tbBin.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbBin.Dock")));
+			this.tbBin.Enabled = ((bool)(resources.GetObject("tbBin.Enabled")));
+			this.tbBin.Font = ((System.Drawing.Font)(resources.GetObject("tbBin.Font")));
+			this.tbBin.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbBin.ImeMode")));
+			this.tbBin.Location = ((System.Drawing.Point)(resources.GetObject("tbBin.Location")));
+			this.tbBin.MaxLength = ((int)(resources.GetObject("tbBin.MaxLength")));
+			this.tbBin.Multiline = ((bool)(resources.GetObject("tbBin.Multiline")));
+			this.tbBin.Name = "tbBin";
+			this.tbBin.PasswordChar = ((char)(resources.GetObject("tbBin.PasswordChar")));
+			this.tbBin.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbBin.RightToLeft")));
+			this.tbBin.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbBin.ScrollBars")));
+			this.tbBin.Size = ((System.Drawing.Size)(resources.GetObject("tbBin.Size")));
+			this.tbBin.TabIndex = ((int)(resources.GetObject("tbBin.TabIndex")));
+			this.tbBin.Text = resources.GetString("tbBin.Text");
+			this.tbBin.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbBin.TextAlign")));
+			this.tbBin.Visible = ((bool)(resources.GetObject("tbBin.Visible")));
+			this.tbBin.WordWrap = ((bool)(resources.GetObject("tbBin.WordWrap")));
+			this.tbBin.TextChanged += new System.EventHandler(this.BinChanged);
+			// 
 			// tbDec
 			// 
 			this.tbDec.AccessibleDescription = resources.GetString("tbDec.AccessibleDescription");
@@ -809,7 +970,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbDec.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbDec.Anchor")));
 			this.tbDec.AutoSize = ((bool)(resources.GetObject("tbDec.AutoSize")));
 			this.tbDec.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbDec.BackgroundImage")));
-			this.xpCueBannerExtender1.SetCueBannerText(this.tbDec, "Dezimal Wert");
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbDec, "Dezimalwert");
 			this.tbDec.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbDec.Dock")));
 			this.tbDec.Enabled = ((bool)(resources.GetObject("tbDec.Enabled")));
 			this.tbDec.Font = ((System.Drawing.Font)(resources.GetObject("tbDec.Font")));
@@ -836,7 +997,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbHex.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbHex.Anchor")));
 			this.tbHex.AutoSize = ((bool)(resources.GetObject("tbHex.AutoSize")));
 			this.tbHex.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbHex.BackgroundImage")));
-			this.xpCueBannerExtender1.SetCueBannerText(this.tbHex, "Hex Wert");
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbHex, "Hexadezimalwert");
 			this.tbHex.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbHex.Dock")));
 			this.tbHex.Enabled = ((bool)(resources.GetObject("tbHex.Enabled")));
 			this.tbHex.Font = ((System.Drawing.Font)(resources.GetObject("tbHex.Font")));
@@ -1146,6 +1307,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.Text = resources.GetString("$this.Text");
 			this.Load += new System.EventHandler(this.ResourceDock_Load);
 			this.bottomSandDock.ResumeLayout(false);
+			this.dcHex.ResumeLayout(false);
 			this.dcResource.ResumeLayout(false);
 			this.xpGradientPanel1.ResumeLayout(false);
 			this.pntypes.ResumeLayout(false);
@@ -1340,16 +1502,36 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		#region Hex <-> Dec Converter
 		bool sysupdate = false;
+		private void BinChanged(object sender, System.EventArgs e)
+		{
+			if (sysupdate) return;
+			sysupdate = true;
+			try 
+			{
+				long val = Convert.ToInt64(tbBin.Text, 2);
+				this.tbDec.Text = val.ToString();
+				this.tbHex.Text = Helper.HexString(val);
+			} 
+			catch (Exception) 
+			{
+				this.tbDec.Text = "";
+				this.tbHex.Text = "";
+			}
+			sysupdate = false;
+		}
 		private void HexChanged(object sender, System.EventArgs e)
 		{
 			if (sysupdate) return;
 			sysupdate = true;
 			try 
 			{
-				this.tbDec.Text = Convert.ToInt64(tbHex.Text, 16).ToString();
+				long val = Convert.ToInt64(tbHex.Text, 16);				
+				this.tbBin.Text = Convert.ToString(val, 2);
+				this.tbDec.Text = val.ToString();
 			} 
 			catch (Exception) {
 				this.tbDec.Text = "";
+				this.tbBin.Text = "";
 			}
 			sysupdate = false;
 		}
@@ -1360,20 +1542,31 @@ namespace SimPe.Plugin.Tool.Dockable
 			sysupdate = true;
 			try 
 			{
-				tbHex.Text = "0x"+Helper.HexString((ulong)Convert.ToInt64(tbDec.Text));
+				ulong val = (ulong)Convert.ToInt64(tbDec.Text);				
+				this.tbBin.Text = Convert.ToString((long)val, 2);
+				tbHex.Text = "0x"+Helper.HexString(val);
 			} 
 			catch (Exception) {
 				this.tbHex.Text = "";
+				this.tbBin.Text = "";
 			}
 			sysupdate = false;
 		}
 		#endregion
 
+		internal SimPe.Interfaces.Files.IPackedFileDescriptor hexpfd;
 		private new void TextChanged(object sender, System.EventArgs e)
 		{
 			if (items==null) return;
 			((TextBox)sender).Tag = true;
 		}
+
+		private void button1_Click(object sender, System.EventArgs e)
+		{
+			hexpfd.UserData = hvc.Data;
+		}
+
+		
 
 		
 

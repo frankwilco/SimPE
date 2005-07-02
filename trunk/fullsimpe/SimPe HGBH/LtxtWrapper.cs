@@ -156,8 +156,9 @@ namespace SimPe.Plugin
 			return new AbstractWrapperInfo(
 				"Lot Description Wrapper",
 				"Quaxi",
-				"---",
-				3
+				"This File contains the Description for a Lot.",
+				3,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ltxt.png"))
 				); 
 		}
 

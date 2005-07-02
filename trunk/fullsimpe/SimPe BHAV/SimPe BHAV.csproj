@@ -164,6 +164,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "bcon.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "BconItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -177,6 +181,10 @@
                     RelPath = "BconWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "bhav.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "BhavBaseItem.cs"

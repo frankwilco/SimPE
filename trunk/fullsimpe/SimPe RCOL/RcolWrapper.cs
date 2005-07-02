@@ -200,8 +200,9 @@ namespace SimPe.Plugin
 			return new AbstractWrapperInfo(
 				"RCOL Wrapper",
 				"Quaxi",
-				"---",
-				8
+				"This File is part of the Scenegraph. The Scenegraph is used to build the 3D Objects in \"The Sims 2\".",
+				9,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.resource.png"))
 				); 
 		}
 

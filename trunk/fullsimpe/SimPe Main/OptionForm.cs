@@ -2527,6 +2527,8 @@ namespace SimPe
 
 		public void  SetPanel(SimPe.Interfaces.IWrapper wrapper, TD.Eyefinder.HeaderControl pn)
 		{
+			
+
 			if (wrapper.Priority<0) 
 			{
 				pn.Text = "("+wrapper.WrapperDescription.Name+")";
@@ -2537,6 +2539,8 @@ namespace SimPe
 				pn.Text = wrapper.WrapperDescription.Name;
 				pn.ForeColor = SystemColors.ControlText;
 			}
+			pn.Text = "     "+pn.Text;
+
 		}
 
 		public Image GetShrinkImage(TD.Eyefinder.HeaderControl pn) 
@@ -2597,6 +2601,27 @@ namespace SimPe
 
 			wrappers.Add(pn);
 			
+			
+			PictureBox ipb = new PictureBox();
+			ipb.Parent = pn;
+			ipb.Left = 2;
+			ipb.Top = 1;
+			ipb.BackColor = Color.Transparent;
+			ipb.SizeMode = PictureBoxSizeMode.StretchImage;
+			if (wrapper.WrapperDescription.Icon!=null) 
+			{
+				ipb.Height = Math.Min(wrapper.WrapperDescription.Icon.Height, pn.DisplayRectangle.Top-2);
+				ipb.Width = Math.Min(wrapper.WrapperDescription.Icon.Width, pn.DisplayRectangle.Top-2);			
+				ipb.Image = wrapper.WrapperDescription.Icon;
+			} 
+			else 
+			{
+				ipb.Height = 16;
+				ipb.Width = 16;			
+//				ipb.Image = FileTable.WrapperRegistry.WrapperImageList.Images[1];
+			}
+			
+
 			#region Author
 			Label lbauthor = new Label();
 			lbauthor.Parent = pn;

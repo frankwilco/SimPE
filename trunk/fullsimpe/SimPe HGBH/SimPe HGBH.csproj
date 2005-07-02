@@ -213,6 +213,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "idno.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "IdnoForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -233,6 +237,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ltxt.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "LtxtForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -251,6 +259,10 @@
                     RelPath = "LtxtWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ngbh.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "NgbhForm.cs"

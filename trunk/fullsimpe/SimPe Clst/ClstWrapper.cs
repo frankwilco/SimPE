@@ -158,8 +158,9 @@ namespace SimPe.PackedFiles.Wrapper
 			return new AbstractWrapperInfo(
 				"Compressed File Directory Wrapper",
 				"Quaxi",
-				"---",
-				2
+				"This File contains a List of all compressed Files that are stored within this Package.",
+				2,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.clst.png"))
 				);   
 		}
 

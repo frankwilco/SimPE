@@ -882,7 +882,7 @@ namespace SimPe.Plugin
 		{
 			try 
 			{
-				if (wrapper.Changed) 
+				if (Helper.StartedGui==Executable.Classic && wrapper.Changed) 
 				{
 					if (MessageBox.Show(SimPe.Localization.Manager.GetString("open_wnt_from_sdsc"), SimPe.Localization.Manager.GetString("question"), MessageBoxButtons.YesNo)==DialogResult.Yes)
 						wrapper.SynchronizeUserData();
@@ -892,7 +892,7 @@ namespace SimPe.Plugin
 				
 				Interfaces.Files.IPackedFileDescriptor pfd = wrapper.Package.NewDescriptor(Data.MetaData.SIM_DESCRIPTION_FILE, wrapper.FileDescriptor.SubType, wrapper.FileDescriptor.Group, wrapper.FileDescriptor.Instance); //try a W&f File
 				pfd = wrapper.Package.FindFile(pfd);
-				SimPe.RemoteControl.OpenPackedFile(pfd);
+				SimPe.RemoteControl.OpenPackedFile(pfd, wrapper.Package);
 			}
 			catch (Exception ex) 
 			{

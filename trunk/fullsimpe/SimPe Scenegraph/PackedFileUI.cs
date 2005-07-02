@@ -68,6 +68,7 @@ namespace SimPe.Plugin
 		/// <param name="wrapper">The Attributes of this Wrapper have to be displayed</param>
 		public void UpdateGUI(IFileWrapper wrapper)
 		{
+			FileTable.FileIndex.Load();
 			form.wrapper = (IFileWrapperSaveExtension)wrapper;
 
 			RefFile mywrapper = (RefFile) wrapper;

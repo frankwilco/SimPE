@@ -289,8 +289,9 @@ namespace SimPe.PackedFiles.Wrapper
 			return new AbstractWrapperInfo(
 				"Text List Wrapper",
 				"Quaxi",
-				"---",
-				9
+				"This File contains Text Resources in various Languages.",
+				9,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.txt.png"))
 				);  
 		}
 

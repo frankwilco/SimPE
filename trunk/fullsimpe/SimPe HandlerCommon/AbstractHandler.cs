@@ -111,6 +111,7 @@ namespace SimPe.Interfaces.Plugin
 			this.ui = ui;
 		}*/
 
+		
 		/// <summary>
 		/// Creates a new Instance
 		/// </summary>

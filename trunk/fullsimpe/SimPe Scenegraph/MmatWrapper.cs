@@ -50,8 +50,9 @@ namespace SimPe.Plugin
 			return new SimPe.Interfaces.Plugin.AbstractWrapperInfo(
 				"MMAT Wrapper",
 				"Quaxi",
-				"---",
-				3
+				"This File describes a ColorOption for a Mesh Group / Subset. It is needed to provide an additional Color for Objects.",
+				3,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.mmat.png"))
 				);   
 		}
 

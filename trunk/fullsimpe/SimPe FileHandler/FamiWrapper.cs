@@ -364,8 +364,9 @@ namespace SimPe.PackedFiles.Wrapper
 			return  new AbstractWrapperInfo(
 				"FAMi Wrapper",
 				"Quaxi",
-				"---",
-				3
+				"This File contains Informations about one Sim Family.",
+				3,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.fami.png"))				
 				); 
 		}
 

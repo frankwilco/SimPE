@@ -126,6 +126,7 @@ namespace SimPe
 			//
 			InitializeComponent();
 
+			
 			package = new LoadedPackage();			
 			package.BeforeFileLoad += new PackageFileLoadEvent(BeforeFileLoad);
 			package.AfterFileLoad += new PackageFileLoadedEvent(AfterFileLoad);
@@ -150,7 +151,10 @@ namespace SimPe
 				dcPlugin);
 			plugger.ClosedToolPlugin += new ToolMenuItemExt.ExternalToolNotify(ClosedToolPlugin);
 			
-			resloader = new ResourceLoader(dc, package);			
+			resloader = new ResourceLoader(dc, package);
+
+			remote = new RemoteHandler(package, resloader);
+			remote.LoadedResource += new ChangedResourceEvent(rh_LoadedResource);
 			
 			SetupResourceViewToolBar();
 			package.UpdateRecentFileMenu(this.miRecent);
@@ -163,7 +167,10 @@ namespace SimPe
 			TD.SandDock.SandDockManager sdm2 = new TD.SandDock.SandDockManager();
 			sdm2.OwnerForm = this;
 			FileTable.ThemeManager.AddControl(sdm2);
-			this.dc.Manager = sdm2;			
+			this.dc.Manager = sdm2;	
+		
+			lv.SmallImageList = FileTable.WrapperRegistry.WrapperImageList;
+			this.tvType.ImageList = FileTable.WrapperRegistry.WrapperImageList;
 
 			InitMenuItems();
 		}
@@ -1826,7 +1833,8 @@ namespace SimPe
 		ViewFilter filter;
 		TreeNodeTag lastusedtnt;
 		PluginManager plugger;
-		ResourceLoader resloader;		
+		ResourceLoader resloader;
+		RemoteHandler remote;
 		#endregion
 
 		#region File Handling
@@ -2487,7 +2495,12 @@ namespace SimPe
 			try 
 			{
 				if (pk.Result.ChangedPackage) package.LoadFromPackage((SimPe.Packages.GeneratableFile)pk.Package);	
-				if (pk.Result.ChangedFile) resloader.AddResource(new SimPe.Plugin.FileIndexItem(pk.FileDescriptor, pk.Package), true);															
+				if (pk.Result.ChangedFile) 
+				{
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = new SimPe.Plugin.FileIndexItem(pk.FileDescriptor, pk.Package);
+					resloader.AddResource(fii, true);															
+					remote.FireLoadEvent(fii);
+				}
 			} 
 			catch (Exception ex) 
 			{
@@ -2643,7 +2656,16 @@ namespace SimPe
 					frommiddle = false;
 				}
 			}
-		}		
+		}
+
+		private void rh_LoadedResource(object sender, ResourceEventArgs es)
+		{
+			treebuilder.DeselectAll(lv);
+			foreach (SimPe.Events.ResourceContainer e in es) 
+			{
+				if (e.HasResource) treebuilder.SelectResource(lv, e.Resource);	
+			}
+		}
 	}
 			
 }
