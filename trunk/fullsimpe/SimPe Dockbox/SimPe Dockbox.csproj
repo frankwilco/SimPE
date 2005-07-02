@@ -152,7 +152,7 @@
                 <Reference
                     Name = "newhexedit"
                     AssemblyName = "newhexedit"
-                    HintPath = "..\hexedit\bin\debug\newhexedit.dll"
+                    HintPath = "..\HexEdit\bin\Release\NewHexEdit.dll"
                 />
             </References>
         </Build>

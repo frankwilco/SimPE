@@ -547,4 +547,7 @@ Package: {filename}</value>
 	<data name="Unique Instances">
 		<value>Eindeutige Instanzen</value>
 	</data>
+	<data name="Czech">
+		<value>Tschechisch</value>
+	</data>
 </root>

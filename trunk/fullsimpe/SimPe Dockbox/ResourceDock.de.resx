@@ -97,17 +97,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="dcHex.Text">
+    <value>Hexeditor</value>
+  </data>
+  <data name="hexEditControl1.Text">
+    <value>Werte / Navigation:</value>
+  </data>
+  <data name="hvc.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>744, 152</value>
+  </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>760, 160</value>
+    <value>760, 144</value>
   </data>
   <data name="button1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>88, 23</value>
   </data>
   <data name="button1.Text">
     <value>Übernehmen</value>
-  </data>
-  <data name="hvc.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>744, 180</value>
   </data>
   <data name="cbComp.Items">
     <value>nein</value>

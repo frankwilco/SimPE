@@ -424,7 +424,7 @@ namespace SimPe.Plugin
 		/// <returns>null, if the Default Name should be generated</returns>
 		protected override string GetResourceName(Data.TypeAlias ta)
 		{
-			if (!this.Processed) ProcessData(FileDescriptor, Package);
+			if (!this.Processed) ProcessData(FileDescriptor, Package, false);
 			return this.FileName;
 		}
 		

@@ -1,13 +1,36 @@
+/***************************************************************************
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.ComponentModel;
+using System.ComponentModel.Design;
 
 namespace Ambertation.Windows.Forms
 {
+	
 	/// <summary>
 	/// This is a HexEdit Control
 	/// </summary>
-	public class HexEditControl : UserControl
+	[Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
+	public class HexEditControl : GroupBox
 	{		
 		#region Properties
 		HexViewControl hvc;
@@ -31,6 +54,45 @@ namespace Ambertation.Windows.Forms
 				{
 					hvc.DataChanged += new EventHandler(hvc_DataChanged);
 					hvc.SelectionChanged += new EventHandler(hvc_DataChanged);
+
+					cbgrid.Checked = hvc.ShowGrid;
+					cbzero.Checked = hvc.HighlightZeros;
+					View = hvc.View;
+				}
+			}
+		}
+
+		Font efont;
+		/// <summary>
+		/// Font for the Captions
+		/// </summary>
+		public Font LabelFont
+		{
+			get { return efont; }
+			set { 
+				if (efont!=value) 
+				{
+					efont = value; 
+					ClearInterface();
+					BuildInterface();
+				}
+			}
+		}
+
+		Font tfont;
+		/// <summary>
+		/// Font for the TextBoxes
+		/// </summary>
+		public Font TextBoxFont
+		{
+			get { return tfont; }
+			set 
+			{ 
+				if (tfont!=value) 
+				{
+					tfont = value; 
+					ClearInterface();
+					BuildInterface();
 				}
 			}
 		}
@@ -45,8 +107,8 @@ namespace Ambertation.Windows.Forms
 			set {
 				if (vert!=value) 
 				{
-					CeanInterface();
-					vert = true;
+					ClearInterface();
+					vert = value;
 					BuildInterface();
 				}
 			}
@@ -80,9 +142,34 @@ namespace Ambertation.Windows.Forms
 			vert = false;
 			vs = HexViewControl.ViewState.Hex;
 			edit = false;
+
+			efont = new Font(Font.FontFamily, Font.Size, FontStyle.Bold, Font.Unit);
+			tfont = new Font(Font.FontFamily, Font.Size, FontStyle.Regular, Font.Unit);
 			BuildInterface();
 		}
-		
+		#region Event Override
+
+		protected override void OnResize(EventArgs e)
+		{
+			if (!Visible) 
+			{
+				ClearInterface();
+				BuildInterface();
+			}
+			base.OnResize (e);
+			
+		}
+
+		public override void Refresh()
+		{
+			base.Refresh();
+			ClearInterface();
+			BuildInterface();
+		}
+
+
+		#endregion
+
 		#region GUI	
 		TextBox[] boxes;
 		Label CreateLabel(int left, ref int top, int width, string text, Control parent)
@@ -93,6 +180,26 @@ namespace Ambertation.Windows.Forms
 			lb.Text = text;
 			lb.Left = left;
 			lb.Top = top;
+			lb.Font = this.LabelFont;
+
+			lb.TextAlign = ContentAlignment.BottomRight;
+
+			top += lb.Height;
+			left += lb.Width;
+
+			return lb;
+		}
+
+		LinkLabel CreateLinkLabel(int left, ref int top, int width, string text, Control parent)
+		{
+			LinkLabel lb = new LinkLabel();
+			lb.Parent = parent;
+			lb.Width = width;
+			lb.Text = text;
+			lb.Left = left;
+			lb.Top = top;
+			lb.Font = this.LabelFont;
+			lb.LinkArea = new LinkArea(0, text.Length-1);
 
 			lb.TextAlign = ContentAlignment.BottomRight;
 
@@ -110,7 +217,7 @@ namespace Ambertation.Windows.Forms
 			lb.Text = text;
 			lb.Left = left;
 			lb.Top = bottom - lb.Height;
-			lb.Font = new Font(Font.FontFamily, Font.Size, FontStyle.Regular, Font.Unit);
+			lb.Font = this.TextBoxFont;
 			
 			return lb;
 		}
@@ -123,8 +230,9 @@ namespace Ambertation.Windows.Forms
 			lb.Text = text;
 			lb.Left = left;
 			lb.Top = top;
-			lb.Font = new Font(Font.FontFamily, Font.Size, FontStyle.Regular, Font.Unit);
+			lb.Font = this.LabelFont;
 			lb.FlatStyle = FlatStyle.System;
+			lb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 			
 			top += lb.Height - 4;
 			return lb;
@@ -138,32 +246,38 @@ namespace Ambertation.Windows.Forms
 			lb.Text = text;
 			lb.Left = left;
 			lb.Top = top;
-			lb.Font = new Font(Font.FontFamily, Font.Size, FontStyle.Regular, Font.Unit);
+			lb.Font = this.LabelFont;
 			lb.FlatStyle = FlatStyle.System;
+			lb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			lb.LocationChanged += new EventHandler(lb_LocationChanged);
 			
 			top += lb.Height - 4;
 			return lb;
 		}
 
 
-		void CeanInterface()
+		void ClearInterface()
 		{
 			foreach (Control c in Controls) c.Dispose();
 			this.Controls.Clear();
 		}
 
+		CheckBox cbzero, cbgrid;
 		void BuildInterface()
 		{		
-			boxes = new TextBox[11];
-			GroupBox mgb = new GroupBox();			
+			boxes = new TextBox[12];
+			/*GroupBox mgb = new GroupBox();			
 			mgb.Parent = this;
-			mgb.Dock = DockStyle.Fill;
+			//mgb.Dock = DockStyle.Fill;
+			mgb.Width = Width;
+			mgb.Height = Height;
 			mgb.FlatStyle = FlatStyle.System;
 			mgb.Text = "Selected Values:";
-			mgb.Font = new Font(mgb.Font.FontFamily, mgb.Font.Size, FontStyle.Bold, mgb.Font.Unit);	
+			mgb.Font = new Font(mgb.Font.FontFamily, mgb.Font.Size, FontStyle.Bold, mgb.Font.Unit);	*/
 		
 			Panel gb = new Panel();
-			gb.Parent = mgb;
+			gb.Parent = this;
+			gb.Width = this.Width;
 			gb.Dock = DockStyle.Fill;
 			gb.AutoScroll = true;
 		
@@ -171,6 +285,7 @@ namespace Ambertation.Windows.Forms
 			int top=8;
 			int left=8;
 
+			LinkLabel ll;
 			if (vert) 
 			{
 				Label lb = CreateLabel(left, ref top, 60, "Byte:", gb);
@@ -197,9 +312,14 @@ namespace Ambertation.Windows.Forms
 				boxes[8] = CreateTextBox(left + lb.Width + 4 + (4 + boxes[6].Width)*2, lb.Bottom, boxes[6].Width, "", gb);
 				boxes[9] = CreateTextBox(left + lb.Width + 4 + (4 + boxes[6].Width)*3, lb.Bottom, boxes[6].Width, "", gb);
 
-				/*lb = CreateLabel(left, ref top, 60, "String:", gb);			
-				boxes[10] = CreateTextBox(left + lb.Width + 4, lb.Bottom, this.Width- (left + lb.Width + 12), "", gb);
-				boxes[10].Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;*/
+				top += 8;
+				lb = CreateLabel(left, ref top, 60, "Offset:", gb);			
+				boxes[10] = CreateTextBox(left + lb.Width + 4, lb.Bottom, 80, "", gb);
+				//boxes[10].Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+				ll = CreateLinkLabel(left, ref top, 60, "Highlight:", gb);			
+				boxes[11] = CreateTextBox(left + ll.Width + 4, ll.Bottom, Width- (left + ll.Width + 20), "", gb);
+				boxes[11].Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+				//boxes[11].ReadOnly = true;
 
 				//Height = top + 8 + gb.Top;
 			} 
@@ -220,9 +340,11 @@ namespace Ambertation.Windows.Forms
 				boxes[8] = CreateTextBox(left + lb.Width + 4 + (4 + boxes[6].Width)*2, lb.Bottom, boxes[6].Width, "", gb);
 				boxes[9] = CreateTextBox(left + lb.Width + 4 + (4 + boxes[6].Width)*3, lb.Bottom, boxes[6].Width, "", gb);
 
-				/*lb = CreateLabel(left, ref top, 60, "String:", gb);			
-				boxes[10] = CreateTextBox(left + lb.Width + 4, lb.Bottom, this.Width- (left + lb.Width + 12), "", gb);
-				boxes[10].Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;*/
+				top += 12;
+				int top2 = top;
+				lb = CreateLabel(left, ref top, 60, "Offset:", gb);			
+				boxes[10] = CreateTextBox(left + lb.Width + 4, lb.Bottom, 80, "", gb);
+				//
 				//Height = top + 8 + gb.Top;
 
 				top=8;
@@ -235,9 +357,16 @@ namespace Ambertation.Windows.Forms
 
 				lb = CreateLabel(left, ref top, 60, "Double:", gb);
 				boxes[5] = CreateTextBox(left + lb.Width + 4, lb.Bottom, 155, "", gb);
+
+				ll = CreateLinkLabel(left, ref top2, 60, "Highlight:", gb);			
+				boxes[11] = CreateTextBox(left + ll.Width + 4, ll.Bottom, Width- (left + ll.Width + 20), "", gb);
+				boxes[11].Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+				//boxes[11].ReadOnly = true;
 			}
 
-			top = 8;
+			ll.LinkClicked += new LinkLabelLinkClickedEventHandler(ll_LinkClicked);
+
+			top = 4;
 			RadioButton rb = CreateRadioButton(gb.Width-114, ref top, 110, "Hex", gb);
 			rb.Checked = true;
 			rb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -252,9 +381,15 @@ namespace Ambertation.Windows.Forms
 			rb.CheckedChanged += new EventHandler(rbudec_CheckedChanged);
 
 			top += 8;
-			CheckBox cb = CreateCheckBox(gb.Width-114, ref top, 110, "Highlight Zeros", gb);
-			cb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-			cb.CheckedChanged += new EventHandler(cb_CheckedChanged);
+			cbzero = CreateCheckBox(gb.Width-114, ref top, 110, "Highlight Zeros", gb);
+			cbzero.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			if (hvc!=null) cbzero.Checked = hvc.HighlightZeros;
+			cbzero.CheckedChanged += new EventHandler(cb_CheckedChanged);
+
+			cbgrid = CreateCheckBox(gb.Width-114, ref top, 110, "Show Grid", gb);
+			cbgrid.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			if (hvc!=null) cbgrid.Checked = this.hvc.ShowGrid;
+			cbgrid.CheckedChanged += new EventHandler(cbgrid_CheckedChanged);
 
 			boxes[0].TextChanged += new EventHandler(HexEditControl_TextChanged);
 			boxes[0].Leave += new EventHandler(tbbyte_TextLeave);
@@ -287,6 +422,9 @@ namespace Ambertation.Windows.Forms
 				boxes[i].KeyUp +=new KeyEventHandler(tbbin_KeyUp);
 			}
 
+			boxes[10].TextChanged += new EventHandler(HexEditControl_TextChanged);
+			boxes[10].Leave += new EventHandler(tboffset_TextLeave);
+			boxes[10].KeyUp +=new KeyEventHandler(tboffset_KeyUp);
 		}
 		#endregion
 
@@ -315,6 +453,7 @@ namespace Ambertation.Windows.Forms
 				boxes[1].Text = "0x"+HexViewControl.SetLength(hvc.SelectedUShort.ToString("x"), 4, '0');
 				boxes[2].Text = "0x"+HexViewControl.SetLength(hvc.SelectedUInt.ToString("x"), 8, '0');
 				boxes[3].Text = "0x"+HexViewControl.SetLength(hvc.SelectedULong.ToString("x"), 16, '0');
+				boxes[10].Text = "0x"+HexViewControl.SetLength(hvc.Offset.ToString("x"), 8, '0');
 			} 
 			else if (vs==HexViewControl.ViewState.UnsignedDec) 
 			{
@@ -322,6 +461,7 @@ namespace Ambertation.Windows.Forms
 				boxes[1].Text = hvc.SelectedUShort.ToString();
 				boxes[2].Text = hvc.SelectedUInt.ToString();
 				boxes[3].Text = hvc.SelectedULong.ToString();
+				boxes[10].Text = hvc.Offset.ToString();
 			} 
 			else 
 			{
@@ -329,6 +469,7 @@ namespace Ambertation.Windows.Forms
 				boxes[1].Text = hvc.SelectedShort.ToString();
 				boxes[2].Text = hvc.SelectedInt.ToString();
 				boxes[3].Text = hvc.SelectedLong.ToString();
+				boxes[10].Text = hvc.Offset.ToString();
 			}
 
 			boxes[4].Text = hvc.SelectedFloat.ToString();
@@ -338,6 +479,8 @@ namespace Ambertation.Windows.Forms
 			boxes[7].Text = HexViewControl.SetLength(BinaryString(b[1]), 8, '0');
 			boxes[8].Text = HexViewControl.SetLength(BinaryString(b[2]), 8, '0');
 			boxes[9].Text = HexViewControl.SetLength(BinaryString(b[3]), 8, '0');	
+
+			if (hvc.SelectionLength>0) boxes[11].Text = BitConverter.ToString(hvc.Selection).Replace("-", " ");
 		
 			edit = false;
 		}
@@ -359,7 +502,12 @@ namespace Ambertation.Windows.Forms
 
 		private void cb_CheckedChanged(object sender, EventArgs e)
 		{
-			if (hvc!=null) hvc.HighlightZeor = ((CheckBox)sender).Checked;
+			if (hvc!=null) hvc.HighlightZeros = ((CheckBox)sender).Checked;
+		}
+
+		private void cbgrid_CheckedChanged(object sender, EventArgs e)
+		{
+			if (hvc!=null) hvc.ShowGrid = ((CheckBox)sender).Checked;
 		}
 
 		private void HexEditControl_TextChanged(object sender, EventArgs e)
@@ -549,5 +697,65 @@ namespace Ambertation.Windows.Forms
 		}
 		#endregion
 		
+		#region Offset
+		private void tboffset_TextLeave(object sender, EventArgs e)
+		{
+			if  (((TextBox)sender).Tag == null) return;
+			try 
+			{
+				if (hvc!=null) 
+				{
+					if (vs==HexViewControl.ViewState.Hex) hvc.Offset = Convert.ToInt32(((TextBox)sender).Text, 16);
+					else hvc.Offset = Convert.ToInt32(((TextBox)sender).Text);
+				}
+			} 
+			catch {}
+		}
+
+		private void tboffset_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter) 
+			{
+				((TextBox)sender).Tag = true;
+				tboffset_TextLeave(sender, null);
+			}
+		}
+		#endregion
+
+		private void lb_LocationChanged(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void ll_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			if (hvc==null) return;
+			string s = boxes[11].Text.Trim();
+
+			if (s=="") 
+			{
+				hvc.Highlight(new byte[0]);
+				return;
+			}
+			s = s.Replace("-", " ");
+			while (s.IndexOf("  ") != -1) s.Replace("  ", " ");
+			string[] parts = s.Split(" ".ToCharArray());
+		
+			byte[] data = new byte[parts.Length];
+			for (int i=0; i<parts.Length; i++)
+			{
+				try
+				{
+					data[i] = Convert.ToByte(parts[i], 16);
+				} 
+				catch 
+				{
+					data[i] = 0;
+				}
+			}
+
+			boxes[11].Text = BitConverter.ToString(data).Replace("-", " ");
+			hvc.Highlight(data);
+		}
 	}
 }

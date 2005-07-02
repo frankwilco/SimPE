@@ -286,5 +286,16 @@ namespace SimPe.Interfaces.Files
 		/// Triggered whenever the Descriptor get's AMrked for Deletion
 		/// </summary>
 		event System.EventHandler Deleted;
+
+		/// <summary>
+		/// Derefers <see cref="DescriptionChanged"/> and <see cref="ChangedData"/> 
+		/// until <see cref="EndUpdate"/> is called
+		/// </summary>
+		void BeginUpdate();
+
+		/// <summary>
+		/// Executes Events Derrefered by <see cref="BeginUpdate"/>
+		/// </summary>
+		void EndUpdate();
 	}
 }

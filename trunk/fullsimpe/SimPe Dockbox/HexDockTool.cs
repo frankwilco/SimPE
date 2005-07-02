@@ -44,7 +44,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		public void RefreshDock(object sender, SimPe.Events.ResourceEventArgs es)
 		{
 			rd.button1.Enabled = false;
-			if (!rd.dcHex.Visible) return;
+			if (!rd.dcHex.IsFloating && !rd.dcHex.IsInContainer) return;
 			if (es.HasFileDescriptor) 
 			{
 				foreach (SimPe.Events.ResourceContainer e in es) 
