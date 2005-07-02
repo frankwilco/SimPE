@@ -711,7 +711,7 @@ namespace SimPe.Packages
 				pf.signature = reader.ReadUInt16();			
 				Byte[] dummy = reader.ReadBytes(3);
 				pf.uncsize = (uint)((dummy[0]<< 0x10) | (dummy[1] << 0x08) | + dummy[2]);
-				if ((pf.Size == pfd.Size) && (pf.Signature==MetaData.COMPRESS_SIGNATURE)) pf.headersize = 9;											
+				if (/*(pf.Size == pfd.Size) &&*/ (pf.Signature==MetaData.COMPRESS_SIGNATURE)) pf.headersize = 9;											
 
 				if ((filelistfile!=null) && (pfd.Type!=File.FILELIST_TYPE))
 				{
@@ -1081,6 +1081,17 @@ namespace SimPe.Packages
 		}
 
 		#region Events
+		public void BeginUpdate()
+		{
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in Index)
+				pfd.BeginUpdate();
+		}
+
+		public void EndUpdate()
+		{
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in Index)
+				pfd.EndUpdate();
+		}
 		/// <summary>
 		/// Called whenever the content represented by this descripotr was changed
 		/// </summary>

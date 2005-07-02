@@ -112,6 +112,7 @@ namespace SimPe
 		private System.Windows.Forms.Button btpdown;
 		private System.Windows.Forms.GroupBox groupBox6;
 		private System.Windows.Forms.CheckBox cbFirefox;
+		private System.Windows.Forms.Button button8;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -211,6 +212,7 @@ namespace SimPe
 			this.cbjointname = new System.Windows.Forms.CheckBox();
 			this.hcFolders = new TD.Eyefinder.HeaderControl();
 			this.hcSettings = new TD.Eyefinder.HeaderControl();
+			this.button8 = new System.Windows.Forms.Button();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
 			this.cbFirefox = new System.Windows.Forms.CheckBox();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -1650,6 +1652,7 @@ namespace SimPe
 			this.hcSettings.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hcSettings.AutoScrollMargin")));
 			this.hcSettings.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hcSettings.AutoScrollMinSize")));
 			this.hcSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hcSettings.BackgroundImage")));
+			this.hcSettings.Controls.Add(this.button8);
 			this.hcSettings.Controls.Add(this.groupBox6);
 			this.hcSettings.Controls.Add(this.groupBox5);
 			this.hcSettings.Controls.Add(this.button6);
@@ -1670,6 +1673,31 @@ namespace SimPe
 			this.hcSettings.Text = resources.GetString("hcSettings.Text");
 			this.toolTip1.SetToolTip(this.hcSettings, resources.GetString("hcSettings.ToolTip"));
 			this.hcSettings.Visible = ((bool)(resources.GetObject("hcSettings.Visible")));
+			// 
+			// button8
+			// 
+			this.button8.AccessibleDescription = resources.GetString("button8.AccessibleDescription");
+			this.button8.AccessibleName = resources.GetString("button8.AccessibleName");
+			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("button8.Anchor")));
+			this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
+			this.button8.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("button8.Dock")));
+			this.button8.Enabled = ((bool)(resources.GetObject("button8.Enabled")));
+			this.button8.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("button8.FlatStyle")));
+			this.button8.Font = ((System.Drawing.Font)(resources.GetObject("button8.Font")));
+			this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+			this.button8.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button8.ImageAlign")));
+			this.button8.ImageIndex = ((int)(resources.GetObject("button8.ImageIndex")));
+			this.button8.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("button8.ImeMode")));
+			this.button8.Location = ((System.Drawing.Point)(resources.GetObject("button8.Location")));
+			this.button8.Name = "button8";
+			this.button8.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("button8.RightToLeft")));
+			this.button8.Size = ((System.Drawing.Size)(resources.GetObject("button8.Size")));
+			this.button8.TabIndex = ((int)(resources.GetObject("button8.TabIndex")));
+			this.button8.Text = resources.GetString("button8.Text");
+			this.button8.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button8.TextAlign")));
+			this.toolTip1.SetToolTip(this.button8, resources.GetString("button8.ToolTip"));
+			this.button8.Visible = ((bool)(resources.GetObject("button8.Visible")));
+			this.button8.Click += new System.EventHandler(this.button8_Click);
 			// 
 			// groupBox6
 			// 
@@ -3041,6 +3069,11 @@ namespace SimPe
 		private void cbmulti_CheckedChanged(object sender, System.EventArgs e)
 		{
 			cbFirefox.Enabled = cbmulti.Checked;
+		}
+
+		private void button8_Click(object sender, System.EventArgs e)
+		{
+			Helper.WindowsRegistry.ClearRecentFileList();
 		}
 	}
 }

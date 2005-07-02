@@ -64,8 +64,16 @@ namespace SimPe.Packages
 		/// <param name="flname">Filename for the Package</param>
 		public void Build(string flname)
 		{
-			MemoryStream ms = Build();
-			Save(ms, flname);
+			this.BeginUpdate();
+			try 
+			{
+				MemoryStream ms = Build();
+				Save(ms, flname);
+			} 
+			finally 
+			{
+				this.EndUpdate();
+			}
 		}
 
 		/// <summary>
@@ -84,18 +92,26 @@ namespace SimPe.Packages
 		/// <remarks>This is Experimental and might not work properly</remarks>
 		public void Save(string flname)
 		{
-			//this.IncrementalBuild();						
-			System.IO.MemoryStream ms = this.Build();
-			if (Reader!=null) 
-				this.Reader.Close();
-			this.Save(ms, flname);
+			this.BeginUpdate();
+			try 
+			{
+				//this.IncrementalBuild();						
+				System.IO.MemoryStream ms = this.Build();
+				if (Reader!=null) 
+					this.Reader.Close();
+				this.Save(ms, flname);
 
-			//this.reader =  new System.IO.BinaryReader(System.IO.File.OpenRead(flname));			
-			this.FileName = flname;
-			type = PackageBaseType.Filename;
+				//this.reader =  new System.IO.BinaryReader(System.IO.File.OpenRead(flname));			
+				this.FileName = flname;
+				type = PackageBaseType.Filename;
 
-			this.OpenReader();
-			this.CloseReader();			
+				this.OpenReader();
+				this.CloseReader();	
+			} 
+			finally
+			{
+				this.EndUpdate();
+			}
 		}
 
 		/// <summary>
@@ -171,7 +187,7 @@ namespace SimPe.Packages
 		/// <returns>The MemoryStream representing the new Package File</returns>
 		public MemoryStream Build()
 		{
-			this.LockStream();
+			this.LockStream();			
 			OpenReader();
 			System.IO.MemoryStream ms = new MemoryStream(10000);
 			System.IO.BinaryWriter writer = new BinaryWriter(ms);
@@ -209,16 +225,23 @@ namespace SimPe.Packages
 				{
 					try 
 					{
-						if (pfd.HasUserdata)
+						if (pfd.HasUserdata) 
+						{
 							pf = new PackedFile(PackedFile.Compress(pfd.UserData));
-						else
-							pf = new PackedFile(PackedFile.Compress(((PackedFile)this.Read(pfd)).UncompressedData));;
+							pf.uncsize = (uint)pfd.UserData.Length;
+						}
+						else 
+						{
+							byte[] data = ((PackedFile)this.Read(pfd)).UncompressedData;
+							pf = new PackedFile(PackedFile.Compress(data));
+							pf.uncsize = (uint)pf.data.Length;
+						}
 
 						pf.size = pf.data.Length;
-						pf.uncsize = (uint)pfd.UserData.Length;
 						pf.signature = Data.MetaData.COMPRESS_SIGNATURE;
 						pf.headersize = 9;
 						newpfd.size = pf.data.Length;
+						newpfd.SetUserData(null, false);
 
 						//recreate the FileList
 						filelist = null;
@@ -243,6 +266,7 @@ namespace SimPe.Packages
 				newpfd.Changed = false;
 				newpfd.MarkForReCompress = false;
 				newpfd.fldata = pf;
+				newpfd.WasCompressed = pf.IsCompressed;
 				
 				
 

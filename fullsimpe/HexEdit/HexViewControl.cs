@@ -1,6 +1,26 @@
+/***************************************************************************
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace Ambertation.Windows.Forms
 {
@@ -9,6 +29,17 @@ namespace Ambertation.Windows.Forms
 	/// </summary>
 	public class HexViewControl : UserControl
 	{
+		/// <summary>
+		/// true if COmponent is within the DesignMode
+		/// </summary>
+		internal static bool DesignMode
+		{
+			get 
+			{
+				return (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv");
+			}
+		}
+
 		/// <summary>
 		/// Determins the ViewState of teh Control
 		/// </summary>
@@ -61,7 +92,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// true, if you want to Highlight Zero Values
 		/// </summary>
-		public bool HighlightZeor 
+		public bool HighlightZeros 
 		{
 			get {return hs; }
 			set 
@@ -74,14 +105,16 @@ namespace Ambertation.Windows.Forms
 				}
 			}
 		}
-
+		
 		public override Font Font
 		{
 			get { return base.Font;	}
 			set
 			{
-				base.Font = value;
-				UpdateCharWidth();
+				base.Font = value;				
+				UpdateCharWidth(); 
+				RedrawGraphics();
+				Refresh();
 			}
 		}
 
@@ -95,6 +128,8 @@ namespace Ambertation.Windows.Forms
 			get { return offsetboxwidth; }
 			set { 
 				offsetboxwidth = Math.Abs(value); 
+				 
+				RedrawGraphics();
 				Refresh();
 			}
 		}
@@ -108,6 +143,8 @@ namespace Ambertation.Windows.Forms
 			get { return charboxwidth; }
 			set { 
 				charboxwidth = Math.Abs(value); 
+				 
+				RedrawGraphics();
 				Refresh();
 			}
 		}
@@ -120,7 +157,53 @@ namespace Ambertation.Windows.Forms
 		public Color FocusedForeColor
 		{
 			get { return fcfcol; }
-			set { fcfcol = value; }
+			set { 
+				if (fcfcol!=value) 
+				{
+					fcfcol = value; 
+				 
+					RedrawGraphics();
+					Refresh();
+				}
+			}
+		}
+
+		Color highcol;
+		/// <summary>
+		/// Returns the BorderColor
+		/// </summary>
+		public Color HighlightColor
+		{
+			get { return highcol; }
+			set 
+			{ 
+				if (highcol!=value) 
+				{
+					highcol = value; 
+				 
+					RedrawGraphics();
+					Refresh();
+				}
+			}
+		}
+
+		Color highfcol;
+		/// <summary>
+		/// Returns the BorderColor
+		/// </summary>
+		public Color HighlightForeColor
+		{
+			get { return highfcol; }
+			set 
+			{ 
+				if (highfcol!=value) 
+				{
+					highfcol = value; 
+				 
+					RedrawGraphics();
+					Refresh();
+				}
+			}
 		}
 
 		Color hcol;
@@ -130,7 +213,34 @@ namespace Ambertation.Windows.Forms
 		public Color HeadColor
 		{
 			get {return hcol;}
-			set { hcol = value; }
+			set { 
+				if (hcol!=value) 
+				{
+					hcol = value; 
+				 
+					RedrawGraphics();
+					Refresh();
+				}
+			}
+		}
+
+		Color gcol;
+		/// <summary>
+		/// Save and set the Background Color
+		/// </summary>
+		public Color GridColor
+		{
+			get {return gcol;}
+			set 
+			{ 
+				if (gcol!=value) 
+				{
+					gcol = value; 
+				 
+					RedrawGraphics();
+					Refresh();
+				}
+			}
 		}
 
 		Color hfcol;
@@ -140,17 +250,34 @@ namespace Ambertation.Windows.Forms
 		public Color HeadForeColor
 		{
 			get {return hfcol;}
-			set { hfcol = value; }
+			set { 
+				if (hfcol!=value) 
+				{					
+					hfcol = value; 
+
+					RedrawGraphics();
+					Refresh();
+				}
+			}
 		}
 
 		Color hlcol;
 		/// <summary>
 		/// Save and set the Background Color
 		/// </summary>
-		public Color HighlightColor
+		public Color SelectionColor
 		{
 			get {return hlcol;}
-			set { hlcol = value; }
+			set 
+			{
+				if (hlcol!=value)
+				{
+					hlcol = value;  
+
+					RedrawGraphics();
+					Refresh();
+				}
+			}
 		}
 
 		Color fccol;
@@ -160,17 +287,34 @@ namespace Ambertation.Windows.Forms
 		public Color ZeroCellColor
 		{
 			get {return fccol;}
-			set { fccol = value; }
+			set 
+			{
+				if (fccol!=value) 
+				{
+					fccol = value; 
+
+					RedrawGraphics();
+					Refresh();
+				}
+			}
 		}
 
 		Color hlfcol;
 		/// <summary>
 		/// Save and set the Background Color
 		/// </summary>
-		public Color HighlightForeColor
+		public Color SelectionForeColor
 		{
 			get {return hlfcol;}
-			set { hlfcol = value; }
+			set { 
+				if (hlfcol!=value) 
+				{
+					hlfcol = value;  
+
+					RedrawGraphics();
+					Refresh();
+				}
+			}
 		}
 
 		Color backcol;
@@ -180,7 +324,15 @@ namespace Ambertation.Windows.Forms
 		public override Color BackColor
 		{
 			get {return backcol;}
-			set { backcol = value; }
+			set { 
+				if (backcol != value) 
+				{
+					backcol = value;  
+
+					RedrawGraphics();
+					Refresh();
+				}
+			}
 		}
 
 
@@ -191,7 +343,29 @@ namespace Ambertation.Windows.Forms
 		public byte Blocks 
 		{
 			get {return cols;}
-			set {cols = value; }
+			set {
+				if (cols!=value) 
+				{
+					cols = value; 
+					Refresh();
+				}
+			}
+		}
+
+		bool grid;
+		public bool ShowGrid
+		{
+			get {return grid;}
+			set 
+			{ 
+				if (value!=grid) 
+				{
+					grid = value;
+
+					RedrawGraphics();
+					Refresh();
+				}
+			}
 		}
 
 		Font hfont;
@@ -200,7 +374,9 @@ namespace Ambertation.Windows.Forms
 		/// </summary>
 		public Font HeaderFont
 		{
-			get { return hfont; }
+			get { 
+				return hfont; 
+			}
 		}
 
 		
@@ -221,27 +397,51 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// The Content that should be displayed
 		/// </summary>
+		[Browsable( false )]
 		public byte[] Data 
 		{
 			get { return data; }
 			set { 
 				data = value; 
 				if (data==null) data = new byte[0];
-				UpdateRows();
+				UpdateRows(0);
 				crow = 0;
 
-				BeginUpdate();
-				this.Select(-1, 0);
+				bool pause = this.pause;
+				if (!pause) BeginUpdate();
+
+				selection.Maximum = data.Length;
+				highlights.Clear();
+
+				this.DoSelect(-1, 0);
 				this.Refresh();
-				EndUpdate();
+				if (!pause) EndUpdate();				
 
 				if (DataChanged!=null) DataChanged(this, new EventArgs());
 			}
 		}
 
 		/// <summary>
+		/// Current Offset
+		/// </summary>
+		[Browsable( false )]
+		public int Offset 
+		{
+			get 
+			{
+				if (SelectionStart<0) return 0;
+				return SelectionStart;
+			}
+			set 
+			{
+				Select(value, 1);
+			}
+		}
+
+		/// <summary>
 		/// Number of Columsn per Line
 		/// </summary>
+		[Browsable( false )]
 		public int Columns 
 		{
 			get { return cols * BLOCKSIZE; }
@@ -310,15 +510,20 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Number of Rows needed to display the Data
 		/// </summary>
+		[Browsable( false )]
 		public int Rows 
 		{
-			get { return Data.Length / Columns + 1; }
+			get { 
+				if (Columns==0) return 0;
+				return Data.Length / Columns + 1; 
+			}
 		}
 
 		int crow;
 		/// <summary>
 		/// Sets / Returns the current Row
 		/// </summary>
+		[Browsable( false )]
 		public int CurrentRow
 		{
 			get { return crow; }
@@ -343,30 +548,32 @@ namespace Ambertation.Windows.Forms
 			get { return hbrh; }
 		}
 
-		int selstart;
+		Highlight selection;
 		/// <summary>
 		/// Where does sthe selection start (-1 for nothing)
 		/// </summary>
+		[Browsable( false )]
 		public int SelectionStart 
 		{
-			get { return selstart; }
+			get { return selection.Start; }
 		}
-
-		int sellen;
+		
 		/// <summary>
 		/// How long is the Selection
 		/// </summary>
+		[Browsable( false )]
 		public int SelectionLength 
 		{
-			get { return sellen; }			
+			get { return selection.Length; }			
 		}
 
 		/// <summary>
 		/// Where does the Selection End
 		/// </summary>
+		[Browsable( false )]
 		public int SelectionEnd 
 		{
-			get {return selstart + sellen -1;}
+			get {return selection.End;}
 		}
 
 		float cwidth;
@@ -375,9 +582,21 @@ namespace Ambertation.Windows.Forms
 		/// </summary>
 		protected float CharWidth
 		{
-			get {return cwidth;}
+			get {
+				if (cwidth==0) this.UpdateCharWidth();
+				return cwidth;
+			}
 		}
 		
+		Ambertation.Collections.Highlights highlights;
+		/// <summary>
+		/// Returns the List of Highlighted Elements
+		/// </summary>
+		[Browsable( false )]
+		public Ambertation.Collections.Highlights Highlights
+		{
+			get {return highlights; }
+		}
 		#endregion
 
 		#region Fields
@@ -440,9 +659,9 @@ namespace Ambertation.Windows.Forms
 		/// Set the OffsetBox and Character Box to the size defined by the current Font
 		/// </summary>
 		public void MatchSize()
-		{
-	
+		{			
 			this.offsetboxwidth = (int)Math.Ceiling(GetTextWidth("00000000", HeaderFont)) + bm.Left + bm.Width;
+			if (DesignMode) this.offsetboxwidth = 83;
 			this.charboxwidth = Columns*((int)CharWidth + COLSPACING) + bm.Left + bm.Width;
 		}
 
@@ -499,41 +718,31 @@ namespace Ambertation.Windows.Forms
 		/// Create a new Instance
 		/// </summary>
 		public HexViewControl()
-		{
+		{			
+			data = new byte[0];			
+
 			vs = ViewState.Hex;
 			offsetboxwidth = 100;
 			charboxwidth = 200;
 			cols = 2;
-
-			Font = new Font("Courier New", 10, Font.Style, Font.Unit);
-			hfont = new Font(Font.FontFamily, Font.Size, FontStyle.Bold, Font.Unit);
+			grid = true;
+			highlights = new Ambertation.Collections.Highlights();
 
 			backcol = SystemColors.ControlLightLight;
 			fcfcol = Color.FromArgb(0x60, SystemColors.WindowFrame);
 			hcol = SystemColors.InactiveCaption;
+			gcol = Color.FromArgb(0x60, hcol);
 			hfcol = SystemColors.InactiveCaptionText;
 			hlcol = SystemColors.Highlight;
 			hlfcol = SystemColors.HighlightText;
 			fccol = Color.FromArgb(0x30, Color.Red);
+			highcol = Color.FromArgb(0xb0, Color.Black);
+			highfcol = Color.White;
 
-			data = new byte[0];
-
-			selstart = -1;
-			sellen = 0;
-
+			
+			selection = new Highlight(0, 0, data.Length);
+			
 			bm = new Rectangle(6, 6, 6, 6);
-
-			#region Add ScrollBar
-			sb = new VScrollBar();
-			sb.Parent = this;
-			sb.Dock = DockStyle.Right;
-			sb.Minimum = 0;
-			sb.Maximum = Math.Max(0, (int)this.GetNumberOfPages()-1);
-			sb.Visible = (sb.Minimum != sb.Maximum);
-			sb.Scroll += new ScrollEventHandler(sb_Scroll);
-			#endregion
-
-
 			border = new Image[8];
 			border[0] = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ambertation.Windows.Forms.tl.png"));
 			border[1] = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ambertation.Windows.Forms.t.png"));
@@ -544,8 +753,57 @@ namespace Ambertation.Windows.Forms
 			border[6] = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ambertation.Windows.Forms.bl.png"));
 			border[7] = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Ambertation.Windows.Forms.l.png"));
 
-			MatchSize();
+
+			#region Add ScrollBar
+			sb = new VScrollBar();
+			sb.Parent = this;
+			sb.Dock = DockStyle.Right;
+			sb.Minimum = 0;
+			sb.Maximum = Math.Max(0, (int)this.GetNumberOfPages()-1);
+			sb.Visible = (sb.Minimum != sb.Maximum);
+			sb.Scroll += new ScrollEventHandler(sb_Scroll);
+			#endregion
+			
+			
+			base.Font = new Font("Courier New", 10, Font.Style, Font.Unit);
+			hfont = new Font(Font.FontFamily, Font.Size, FontStyle.Bold, Font.Unit);
+			
+
+			if (DesignMode)
+			{
+				Width = 688;
+				Height = 104;
+				/*data = new byte[0x40];
+
+				Random r = new Random();
+				for (int i=0; i<data.Length; i++) data[i] = (byte)r.Next(0xff);
+				data[7] = 0;
+				data[0x1a] = 0;
+				data[29] = 0;
+				data[33] = 0;
+				data[35] = 0;
+
+				this.AddHighlight(24, 4);				
+				this.AddHighlight(26, 8);
+
+				selection.Start = 5;
+				selection.Length = 16;*/
+			} 
+
+			MatchSize();			
 			RedrawGraphics();
+			
+		}
+
+		public void AddHighlight(int start, int end)
+		{
+			highlights.Add(new Highlight(start, end, data.Length));
+		}
+
+		public void ClearHighlights()
+		{
+			highlights.Clear();
+			Refresh(true);
 		}
 
 		bool pause;
@@ -566,6 +824,7 @@ namespace Ambertation.Windows.Forms
 		/// </summary>
 		public void EndUpdate()
 		{
+			if (!pause) return;
 			pause = false;
 			if (refresh) Refresh();			
 			
@@ -576,13 +835,25 @@ namespace Ambertation.Windows.Forms
 		/// </summary>
 		/// <param name="selstart">Start offset (or -1 for nothing)</param>
 		/// <param name="sellen">Length of the Selection</param>
-		public void Select(int selstart, int sellen)
+		public void Select(int selstart, int sellen) 
+		{
+			DoSelect(selstart, sellen);
+			GoTo(selstart);
+		}
+
+		/// <summary>
+		/// Select the passed Range
+		/// </summary>
+		/// <param name="selstart">Start offset (or -1 for nothing)</param>
+		/// <param name="sellen">Length of the Selection</param>
+		protected void DoSelect(int selstart, int sellen)
 		{			
+			if (DesignMode) return;
 			int olds = SelectionStart;
 			int olde = SelectionEnd;
-			this.sellen = Math.Min(data.Length-1-selstart, sellen);
-			this.selstart = Math.Min(data.Length-1, selstart);
-				
+			selection.Length = Math.Min(data.Length-selstart, sellen);
+			selection.Start = Math.Min(data.Length-1, selstart);
+							
 			UpdateSelectedRows(olds, olde);
 			Refresh();	
 			
@@ -604,6 +875,13 @@ namespace Ambertation.Windows.Forms
 		}
 
 		#region Event Overrides
+		protected override void OnVisibleChanged(EventArgs e)
+		{
+			base.OnVisibleChanged (e);
+			if (this.Visible == false) BeginUpdate();
+			if (this.Visible == true) EndUpdate();
+		}
+
 		protected override void OnResize(EventArgs e)
 		{			
 			base.OnResize(e);			
@@ -619,11 +897,19 @@ namespace Ambertation.Windows.Forms
 
 		protected override void OnPaint(PaintEventArgs e) 
 		{
-			e.Graphics.DrawImageUnscaled(cachedimage, e.ClipRectangle.Left, e.ClipRectangle.Top, e.ClipRectangle.Width+1, e.ClipRectangle.Height+1);			
+			Rectangle src = e.ClipRectangle;
+			Rectangle dst = e.ClipRectangle;
+			e.Graphics.DrawImage(cachedimage, e.ClipRectangle, e.ClipRectangle, System.Drawing.GraphicsUnit.Pixel);			
 		}
 
 		public override void Refresh()
 		{
+			Refresh(false);
+		}
+
+		public void Refresh(bool rows)
+		{
+
 			if (pause) 
 			{
 				refresh = true;
@@ -631,13 +917,14 @@ namespace Ambertation.Windows.Forms
 			}
 
 			bool olvis = sb.Visible;
-			sb.Maximum = Math.Max(0, (int)this.GetNumberOfPages()-1);
-			sb.LargeChange = (int)this.GetHexBoxRowsPerPage();//sb.Maximum / 20;
-			sb.Maximum += sb.LargeChange-1;
-			sb.Visible = (sb.Minimum != sb.Maximum);
+			SetScrollBar();
 
 			if (olvis!=sb.Visible) this.RedrawGraphics();
-			else UpdateGraphics();			
+			else 
+			{
+				if (rows) this.UpdateRows(0);
+				UpdateGraphics();							
+			}
 
 			base.Refresh ();
 		}
@@ -646,7 +933,7 @@ namespace Ambertation.Windows.Forms
 		protected override void OnMouseDown(MouseEventArgs e)
 		{
 			Point acell = GetLocation(e.X, e.Y);			
-			this.Select(GetOffset(acell), 1);
+			this.DoSelect(GetOffset(acell), 1);
 			down = true;
 		}
 
@@ -658,17 +945,12 @@ namespace Ambertation.Windows.Forms
 				int of = GetOffset(acell);
 				if (of==-1) 
 				{
-					Select(0, -1);
+					DoSelect(0, -1);
 				}
-				else if (of < this.SelectionStart) 
-				{
-					int len = this.SelectionStart - of;										
-					Select(of, len+1);
-				} 
-				else 
-				{
-					this.Select(this.SelectionStart,of - this.SelectionStart+1);
-				}
+				else if (of <= this.SelectionStart) 
+					this.DoSelect(of, this.SelectionStart-of + this.SelectionLength);				
+				else 				
+					this.DoSelect(this.SelectionStart,of - this.SelectionStart+1);				
 			}
 		}
 
@@ -687,29 +969,46 @@ namespace Ambertation.Windows.Forms
 
 		#endregion
 
+		void SetScrollBar()
+		{
+			sb.Maximum = Math.Max(0, (int)this.GetNumberOfPages()-1);
+			sb.LargeChange = (int)this.GetHexBoxRowsPerPage();//sb.Maximum / 20;
+			sb.Maximum += sb.LargeChange-1;
+			sb.Visible = (sb.Minimum != sb.Maximum);
+		}
 		#region Manage Drawing
 		
 		Bitmap cachedimage;
 		Bitmap[] rowimage;
 
-		protected void SetGraphicsMode(Graphics g)
+		protected void SetGraphicsMode(Graphics g, bool fast)
 		{
-			g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-			g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-			g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+			if (fast) 
+			{
+				g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+				g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
+				g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Default;
+			} 
+			else 
+			{
+				g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+				g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+				g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+			}
 		}
 
 		protected void RedrawGraphics()
 		{
 			if (Width==0) return;
 			if (Height==0) return;
+			SetScrollBar();
 			UpdateHexBoxRowHeight();
-			UpdateRows();							
+			UpdateRows(0);							
 			if (cachedimage!=null) cachedimage.Dispose();			
 
 			cachedimage = new Bitmap(Width, Height);
 			Graphics g = Graphics.FromImage(cachedimage);
-			SetGraphicsMode(g);			
+			SetGraphicsMode(g, true);			
 			g.FillRectangle(new SolidBrush(base.BackColor), 0, 0, Width, Height);
 
 			UpdateGraphics(g);
@@ -719,7 +1018,7 @@ namespace Ambertation.Windows.Forms
 		protected void UpdateGraphics()
 		{
 			Graphics g = Graphics.FromImage(cachedimage);
-			SetGraphicsMode(g);
+			SetGraphicsMode(g, true);
 			UpdateGraphics(g);
 			g.Dispose();
 		}
@@ -837,7 +1136,7 @@ namespace Ambertation.Windows.Forms
 			if (delta==0) return ;
 			if (Math.Abs(delta)>=rowimage.Length) 
 			{
-				UpdateRows();
+				UpdateRows(delta);				
 				return;
 			}
 
@@ -877,14 +1176,18 @@ namespace Ambertation.Windows.Forms
 			}
 		}
 
-		protected void UpdateRows()
+		/// <summary>
+		/// Update the Row Buffer
+		/// </summary>
+		/// <param name="delta">delta Value to the Current Row Position</param>
+		protected void UpdateRows(int delta)
 		{
 			if (rowimage!=null) foreach (Bitmap b in rowimage) b.Dispose();
 			rowimage = new Bitmap[(int)this.GetHexBoxRowsPerPage()+2];
 			for (int i=0; i<rowimage.Length; i++) 
 			{
 				rowimage[i] = new Bitmap(Width, (int)this.HexBoxRowHeight+COLSPACING);			
-				PaintRow(rowimage[i], i);
+				PaintRow(rowimage[i], i+delta);
 			}
 		}
 
@@ -942,21 +1245,41 @@ namespace Ambertation.Windows.Forms
 			DrawImageV(g, border[7], new Rectangle(left, top, src.Width, height), src);
 		}
 
-		protected void DrawBar(Graphics g, int left, int top, int width, int height, bool start, bool end)
-		{
-			SolidBrush b = new SolidBrush(this.HighlightColor);
-			if (start) g.FillEllipse(b, left-COLSPACING, top, height-1, height-1);
-			if (end) g.FillEllipse(b, left+width-height+COLSPACING, top, height-1, height-1);
+		protected void DrawBar(Graphics g, SolidBrush b, int left, int top, int width, int height, bool start, bool end)
+		{						
+			//if (start) g.FillPie(b, left-COLSPACING, top, height-1, height-1, 90, 180);
+			//if (end) g.FillPie(b, left+width-height+COLSPACING, top, height-1, height-1, -90, 180);
 
+			Rectangle src = new Rectangle(left, top, width, height);
+			int diameter = height-1;
+			int radius = diameter/2;
+			
 			if (start) 
 			{
-				left += height/2 -COLSPACING;
-				width -= height/2 - COLSPACING;
+				left += radius -COLSPACING;
+				width -= radius - COLSPACING;
 			}
-			if (end) width -= height/2 + COLSPACING;
-			Rectangle rect = new Rectangle(left, top, width, height);
+			if (end) width -= diameter -COLSPACING;
+			Rectangle rect = new Rectangle(left, top, width, src.Top+diameter);
+			int mid = rect.Top + (radius/2);
 			
-			g.FillRectangle(b, rect);
+			//g.FillRectangle(b, rect);
+
+			System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+			if (start) gp.AddArc(src.Left, rect.Top, diameter, diameter, 90, 180);
+			else gp.AddLine(src.Left, rect.Bottom, src.Left, rect.Top);
+			gp.AddLine(rect.Left, rect.Top, rect.Right, rect.Top);
+			if (end) gp.AddArc(rect.Right, rect.Top, diameter, diameter, 270, 180);
+			else gp.AddLine(rect.Right, rect.Top, rect.Right, rect.Bottom);
+			gp.AddLine(rect.Right, rect.Bottom, rect.Left, rect.Bottom);
+			/*gp.AddArc(x + width - radius, y + height - radius, radius, radius, 0, 90);
+			gp.AddLine(x + width - radius, y + height, x + radius, y + height);
+			gp.AddArc(x, y + height - radius, radius, radius, 90, 90);
+			gp.AddLine(x, y + height - radius, x, y + radius);
+			gp.AddArc(x, y, radius, radius, 180, 90);*/
+			gp.CloseFigure();
+			
+			g.FillPath(b, gp);
 		}
 
 		protected void DrawHighlightedCell(Graphics g, int left, int top, int width, int height)
@@ -965,57 +1288,87 @@ namespace Ambertation.Windows.Forms
 			g.FillEllipse(p, left-COLSPACING, top, width, height-1);
 			g.DrawEllipse(this.BorderPen, left-COLSPACING, top, width, height-1);
 		}
+
+		protected void DrawRowGrid(Graphics g, int height, int row)
+		{
+			if (grid) 
+			{
+				Pen p = new Pen(this.GridColor, 1);
+				Rectangle client = new Rectangle(this.OffsetBoxWidth+WINDOWSPACING+bm.Left, 0, (int)this.HexBoxWidth-bm.Left-1, height-6);
+
+				g.DrawLine(p, client.Left, client.Top, client.Right, client.Top);
+				g.DrawLine(p, client.Right+WINDOWSPACING+1, client.Top, client.Right+WINDOWSPACING+1+this.CharBoxWidth-bm.Width, client.Top);				
+				for (int i=0; i<Columns; i++)
+				{
+					int gleft = this.GetHexColLeft(i);
+					g.DrawLine(p, gleft, client.Top, gleft, client.Bottom);
+
+				}
+			}
+		}
 		#endregion
 
 		#region Custom Drawing
 		
-
 		protected void DrawRowSelection(Graphics g, int offset, int height) 
 		{
-			if (SelectionLength<1 || SelectionStart<0) return;
-			if (SelectionStart<offset+Columns && SelectionEnd>=offset) 
+			DrawRowSelection(g, new SolidBrush(this.SelectionColor), offset, height, selection);
+		}
+
+		
+		protected void DrawRowSelection(Graphics g, SolidBrush b, int offset, int height, Highlight sel) 
+		{
+			int hstart = sel.Start;
+			int hlen = sel.Length;
+			int hend = sel.End;
+			if (hlen<1 || hstart<0) return;
+			if (hstart<offset+Columns && hend>=offset) 
 			{
 				int start = offset;
-				if (SelectionStart >= offset && SelectionStart<offset+Columns) 
-					start = SelectionStart;
+				if (hstart >= offset && hstart<offset+Columns) 
+					start = hstart;
 
 				int end = offset+Columns-1;
-				if (SelectionEnd >= offset && SelectionEnd<offset+Columns)
-					end = SelectionEnd;
+				if (hend >= offset && hend<offset+Columns)
+					end = hend;
 			
 
 				DrawBar(
 					g, 
+					b,
 					this.GetHexColLeft(start%Columns) , 
 					0, 
 					this.GetHexColLeft(end%Columns) - this.GetHexColLeft(start%Columns) + (int)this.HexBoxColumnWidth, 
 					height, 
-					(SelectionStart >= offset && SelectionStart<offset+Columns), 
-					(SelectionEnd >= offset && SelectionEnd<offset+Columns)
+					(hstart >= offset && hstart<offset+Columns), 
+					(hend >= offset && hend<offset+Columns)
 					);
 
 				DrawBar(
 					g, 
-					this.GetCharColLeft(start%Columns) , 
+					b,
+					this.GetCharColLeft(start%Columns) - 2*COLSPACING, 
 					0, 
-					this.GetCharColLeft(end%Columns) - this.GetCharColLeft(start%Columns) + (int)this.CharWidth, 
+					this.GetCharColLeft(end%Columns) - this.GetCharColLeft(start%Columns) + (int)this.CharWidth + 3*COLSPACING, 
 					height, 
-					(SelectionStart >= offset && SelectionStart<offset+Columns), 
-					(SelectionEnd >= offset && SelectionEnd<offset+Columns)
+					(hstart >= offset && hstart<offset+Columns), 
+					(hend >= offset && hend<offset+Columns)
 					);
 			}
 		}
 		
 		protected void PaintRow(Bitmap b, int row)
 		{
+			
 			Graphics g = Graphics.FromImage(b);
-			SetGraphicsMode(g);
+			SetGraphicsMode(g, true);
 			
 			g.FillRectangle(this.BackBrush, -2, 0, this.OffsetBoxWidth, b.Height+2);
 			g.FillRectangle(this.BackBrush, this.OffsetBoxWidth+WINDOWSPACING, -2, this.HexBoxWidth, b.Height+2);			
 			g.FillRectangle(this.BackBrush, this.OffsetBoxWidth+this.HexBoxWidth+2*WINDOWSPACING, -2, this.CharBoxWidth, b.Height+2);			
 			
-			Rectangle clip = new Rectangle(bm.Left, 0, b.Width - bm.Left - bm.Width, b.Height);
+			
+			//Rectangle clip = new Rectangle(bm.Left, 0, b.Width - bm.Left - bm.Width, b.Height);
 						
 			//Offset Number
 			int left = bm.Left;
@@ -1028,7 +1381,10 @@ namespace Ambertation.Windows.Forms
 			RectangleF dst = new RectangleF(left, 0, width, height);			
 			if (offset<data.Length) g.DrawString(SetLength(offset.ToString("x"), 8, '0'), HeaderFont, ForeBrush, dst);			
 			
+			SetGraphicsMode(g, false);
 			DrawRowSelection(g, offset, b.Height);
+			foreach (Highlight h in highlights) DrawRowSelection(g, new SolidBrush(HighlightColor), offset, b.Height, h); 
+			SetGraphicsMode(g, true);
 			
 			
 			width = (int)this.HexBoxColumnWidth + COLSPACING;						
@@ -1039,8 +1395,15 @@ namespace Ambertation.Windows.Forms
 				if ((offset<data.Length) && offset>=0)
 				{
 					SolidBrush brush;
-					if (offset>=this.SelectionStart && offset<=this.SelectionEnd ) brush = new SolidBrush(this.HighlightForeColor);				
+					if (selection.Contains(offset)) brush = new SolidBrush(this.SelectionForeColor);				
 					else brush = ForeBrush;
+
+					foreach (Highlight h in highlights) 
+						if (h.Contains(offset))
+						{
+							brush = new SolidBrush(this.HighlightForeColor);
+							break;
+						}
 					
 
 					left = this.GetHexColLeft(c);
@@ -1049,14 +1412,20 @@ namespace Ambertation.Windows.Forms
 						txt = SetLength(data[offset].ToString("x"), 2, '0');
 					else 
 						txt = data[offset].ToString();
-					dst = new RectangleF(left, 0, width, height);	
+					dst = new RectangleF(left+COLSPACING, 0, width, height);	
 					//if ( row == acell.Y && c==acell.X) DrawHighlightedCell(g, left, 0, width, height);
 					g.DrawString(txt, Font, brush, dst);
-					if (hs && data[offset]==0) this.DrawHighlightedCell(g, left, 0, width, height);
+					
+					if (hs && data[offset]==0) 
+					{
+						SetGraphicsMode(g, false);
+						this.DrawHighlightedCell(g, left, 0, width, height);
+						SetGraphicsMode(g, true);
+					}
 					
 				
 					txt = ((char)data[offset]).ToString();	
-					dst = new RectangleF(cleft, 0, this.CharWidth, height);
+					dst = new RectangleF(cleft+COLSPACING, 0, this.CharWidth, height);
 					//if ( row == acell.Y && c==acell.X) DrawHighlightedCell(g, left, 0, width, height);
 					g.DrawString(txt, Font, brush, dst);
 				
@@ -1064,6 +1433,8 @@ namespace Ambertation.Windows.Forms
 					offset++;
 				}
 			}
+
+			DrawRowGrid(g, b.Height, row);
 			
 			DrawImageSide(g, 0, 0, this.OffsetBoxWidth, b.Height);
 			DrawImageSide(g, this.OffsetBoxWidth+WINDOWSPACING, 0, (int)this.HexBoxWidth, b.Height);
@@ -1078,7 +1449,9 @@ namespace Ambertation.Windows.Forms
 			for (int r=0; r<rowimage.Length; r++)
 			{
 				int top = GetVisibleRowTop(r);
-				g.DrawImage(rowimage[r], new Rectangle(0, top, src.Width, src.Height),src, GraphicsUnit.Pixel);
+				int hg = Math.Min(Height-1-bm.Height-top, src.Height);
+				
+				if (hg>0) g.DrawImage(rowimage[r], new Rectangle(0, top, src.Width, hg), new Rectangle(src.Left, src.Top, src.Width, hg), GraphicsUnit.Pixel);
 			}
 		}
 
@@ -1086,13 +1459,23 @@ namespace Ambertation.Windows.Forms
 		{			
 			g.FillRectangle(this.BackBrush, 0, 0, this.OffsetBoxWidth, this.Height);	
 			g.FillRectangle(this.HeadBackBrush, 0, 0, this.OffsetBoxWidth, this.HexBoxRowHeight+bm.Top-COLSPACING);
+
+			int width = (int)this.OffsetBoxWidth;
+			int top = bm.Top - 2*COLSPACING;
+			int height = (int)this.HexBoxRowHeight;
+			int left = bm.Left;
+			
+			string txt = SetLength(data.Length.ToString("x"), 8, '0');
+			RectangleF dst = new RectangleF(left, top, width, height);					
+			g.DrawString(txt, HeaderFont, HeadForeBrush, dst);											
+
 			DrawImageBox(g, 0, 0, this.OffsetBoxWidth, this.Height);			
 		}
 
 		protected void PaintHexBox(Graphics g)
 		{			
-			g.FillRectangle(this.BackBrush, this.OffsetBoxWidth+WINDOWSPACING, 0, this.HexBoxWidth, this.Height);			
-			g.FillRectangle(this.BackBrush, this.OffsetBoxWidth+this.HexBoxWidth+2*WINDOWSPACING, 0, this.CharBoxWidth, this.Height);			
+			g.FillRectangle(this.BackBrush, this.OffsetBoxWidth+WINDOWSPACING, 0, this.HexBoxWidth, this.Height-1);			
+			g.FillRectangle(this.BackBrush, this.OffsetBoxWidth+this.HexBoxWidth+2*WINDOWSPACING, 0, this.CharBoxWidth, this.Height-1);			
 
 			g.FillRectangle(this.HeadBackBrush, this.OffsetBoxWidth+WINDOWSPACING, 0, this.HexBoxWidth, this.HexBoxRowHeight+bm.Top-COLSPACING);			
 			g.FillRectangle(this.HeadBackBrush, this.OffsetBoxWidth+this.HexBoxWidth+2*WINDOWSPACING, 0, this.CharBoxWidth, this.HexBoxRowHeight+bm.Top-COLSPACING);
@@ -1109,25 +1492,36 @@ namespace Ambertation.Windows.Forms
 				RectangleF dst = new RectangleF(left, top, width, height);					
 				g.DrawString(txt, HeaderFont, HeadForeBrush, dst);								
 			}
-			DrawImageBox(g, (int)this.OffsetBoxWidth+WINDOWSPACING, 0, (int)this.HexBoxWidth, this.Height);
-			DrawImageBox(g, (int)(this.OffsetBoxWidth+this.HexBoxWidth+2*WINDOWSPACING), 0, (int)this.CharBoxWidth, this.Height);			
+			DrawImageBox(g, (int)this.OffsetBoxWidth+WINDOWSPACING, 0, (int)this.HexBoxWidth, this.Height-1);
+			DrawImageBox(g, (int)(this.OffsetBoxWidth+this.HexBoxWidth+2*WINDOWSPACING), 0, (int)this.CharBoxWidth, this.Height-1);			
 		}		
 		#endregion
 
 		#region Data reading
+		public void GoTo(int offset) 
+		{			
+			int row = offset / Columns;
+			//if (this.GetHexBoxRowsPerPage()>3) row -= 2;
+			if (row<0) row=0;
+			if (row>=Rows) row = Rows-1;
+
+			if (row<this.CurrentRow || row>this.CurrentRow+this.GetHexBoxRowsPerPage())
+			{
+				sb.Value = row;
+				this.CurrentRow = row;
+			}
+		}
+
 		/// <summary>
 		/// Returns/Sets the currently Selected Data
 		/// </summary>
 		/// <returns></returns>
+		[Browsable( false )]
 		public byte[] Selection
 		{
 			get 
 			{
-				if (SelectionStart<0) return new byte[0];
-
-				byte[] ret = new byte[SelectionLength];
-				for (int i=SelectionStart; i<=SelectionEnd; i++) ret[i-SelectionStart] = data[i];
-				return ret;
+				return GetBlock(SelectionStart, SelectionLength);
 			}
 			set 
 			{
@@ -1144,6 +1538,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Returns/Sets the selected Byte
 		/// </summary>
+		[Browsable( false )]
 		public byte SelectedByte
 		{
 			get 
@@ -1189,14 +1584,15 @@ namespace Ambertation.Windows.Forms
 			if (data.Length-SelectionStart<val.Length) return;
 			int len = Math.Max(val.Length, SelectionLength);
 
-			BeginUpdate();
-			if  (len!=SelectionLength) Select(SelectionStart, len);
+			bool pause = this.pause;
+			if (!pause) BeginUpdate();
+			if  (len!=SelectionLength) DoSelect(SelectionStart, len);
 				
 			for (int i=0; i<val.Length; i++) data[SelectionStart+i] = val[i];
 				
 			this.UpdateSelectedRows();
 			Refresh();
-			EndUpdate();
+			if (!pause) EndUpdate();
 
 			if (DataChanged!=null) DataChanged(this, new EventArgs());
 		}
@@ -1204,6 +1600,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Returns/Sets the selected Character
 		/// </summary>
+		[Browsable( false )]
 		public char SelectedChar
 		{
 			get 
@@ -1226,6 +1623,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Returns/Sets the selected unsigned Short
 		/// </summary>
+		[Browsable( false )]
 		public ushort SelectedUShort
 		{
 			get 
@@ -1244,6 +1642,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Returns/Sets the selected  Short
 		/// </summary>
+		[Browsable( false )]
 		public short SelectedShort
 		{
 			get 
@@ -1262,6 +1661,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Returns/Sets the selected unsigned Integer
 		/// </summary>
+		[Browsable( false )]
 		public uint SelectedUInt
 		{
 			get 
@@ -1280,6 +1680,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Returns/Sets the selected Integer
 		/// </summary>
+		[Browsable( false )]
 		public int SelectedInt
 		{
 			get 
@@ -1298,6 +1699,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Returns/Sets the selected unsigned Long Integer
 		/// </summary>
+		[Browsable( false )]
 		public ulong SelectedULong
 		{
 			get 
@@ -1316,6 +1718,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Returns/Sets the selected Long Integer
 		/// </summary>
+		[Browsable( false )]
 		public long SelectedLong
 		{
 			get 
@@ -1334,6 +1737,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Returns/Sets the selected unsigned Integer
 		/// </summary>
+		[Browsable( false )]
 		public float SelectedFloat
 		{
 			get 
@@ -1352,6 +1756,7 @@ namespace Ambertation.Windows.Forms
 		/// <summary>
 		/// Returns/Sets the selected unsigned Integer
 		/// </summary>
+		[Browsable( false )]
 		public double SelectedDouble
 		{
 			get 
@@ -1365,6 +1770,59 @@ namespace Ambertation.Windows.Forms
 			{	
 				SetValue(value);
 			}
+		}
+
+		/// <summary>
+		/// Returns the Data stored in the passed Block
+		/// </summary>
+		/// <param name="start"></param>
+		/// <param name="len"></param>
+		/// <returns></returns>
+		public byte[] GetBlock(int start, int len)
+		{
+			if (start<0) {
+				len += start;
+				start=0;
+			}
+
+			if (len<=0) return new byte[0];
+			if (start+len>=data.Length) len = data.Length-start;
+
+			byte[] ret = new byte[len];
+			for (int i=start; i<start+len; i++) 			
+					ret[i-start] = data[i];
+
+			return ret;
+		}
+
+		/// <summary>
+		/// Highlights each occurence of the passed Data
+		/// </summary>
+		/// <param name="hldata"></param>
+		public void Highlight(byte[] hldata)
+		{
+			highlights.Clear();
+			if (hldata.Length==0) 
+			{
+				Refresh(true);
+				return;
+			}
+			for (int i=0; i<data.Length - hldata.Length; i++)
+			{
+				bool check = true;
+				for (int j=0; j<hldata.Length; j++)
+					if (hldata[j]!=data[i+j]) 
+					{
+						check = false;
+						break;
+					}
+
+				if (check) 
+					this.AddHighlight(i, hldata.Length);
+			}
+
+			if (highlights.Length>0) GoTo(highlights[0].Start);
+			Refresh(true);
 		}
 		#endregion
 	}

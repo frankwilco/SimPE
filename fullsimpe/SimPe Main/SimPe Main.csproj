@@ -345,6 +345,16 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Hidden.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Hidden.resx"
+                    DependentUpon = "Hidden.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Main.cs"
                     SubType = "Form"
                     BuildAction = "Compile"

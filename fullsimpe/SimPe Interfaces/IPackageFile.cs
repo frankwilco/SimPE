@@ -242,6 +242,18 @@ namespace SimPe.Interfaces.Files
 
 		#region Events
 		/// <summary>
+		/// Derefers <see cref="IPackedFileDescriptor.DescriptionChanged"/> and 
+		/// <see cref="IPackedFileDescriptor.ChangedData"/> for all stored Descriptors 
+		/// until <see cref="EndUpdate"/> is called
+		/// </summary>
+		void BeginUpdate();
+
+		/// <summary>
+		/// Executes Events Derrefered by <see cref="BeginUpdate"/>
+		/// </summary>
+		void EndUpdate();
+
+		/// <summary>
 		/// Triggered whenever a new Resource was added
 		/// </summary>
 		event System.EventHandler AddedResource;

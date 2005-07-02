@@ -41,7 +41,6 @@ namespace SimPe
 		private TD.SandBar.MenuBarItem menuBarItem1;
 		private TD.SandBar.MenuBarItem menuBarItem5;
 		private TD.SandBar.ToolBar toolBar1;
-		private TD.SandDock.DockControl dcPreview;
 		private TD.SandDock.DockControl dcFilter;
 		private TD.SandBar.MenuButtonItem miOpen;
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
@@ -258,8 +257,6 @@ namespace SimPe
 			this.tvGroup = new System.Windows.Forms.TreeView();
 			this.tvInstance = new System.Windows.Forms.TreeView();
 			this.myrightSandDock = new TD.SandDock.DockContainer();
-			this.dcPreview = new TD.SandDock.DockControl();
-			this.xpGradientPanel3 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.dcFilter = new TD.SandDock.DockControl();
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.xpLinkedLabelIcon1 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
@@ -268,6 +265,7 @@ namespace SimPe
 			this.tbExtAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
 			this.tbPlugAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
 			this.tbDefaultAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
+			this.xpGradientPanel3 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.mybottomSandDock = new TD.SandDock.DockContainer();
 			this.dcPlugin = new TD.SandDock.DockControl();
 			this.dc = new TD.SandDock.DocumentContainer();
@@ -288,7 +286,6 @@ namespace SimPe
 			this.myleftSandDock.SuspendLayout();
 			this.dcResource.SuspendLayout();
 			this.myrightSandDock.SuspendLayout();
-			this.dcPreview.SuspendLayout();
 			this.dcFilter.SuspendLayout();
 			this.xpGradientPanel1.SuspendLayout();
 			this.dcAction.SuspendLayout();
@@ -467,8 +464,8 @@ namespace SimPe
 			this.menuBar1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("menuBar1.ImeMode")));
 			this.menuBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
 																			  this.menuBarItem1,
-																			  this.miExtra,
 																			  this.miTools,
+																			  this.miExtra,
 																			  this.miWindow,
 																			  this.menuBarItem5,
 																			  this.miAction});
@@ -1060,7 +1057,6 @@ namespace SimPe
 			this.myrightSandDock.AccessibleName = resources.GetString("myrightSandDock.AccessibleName");
 			this.myrightSandDock.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("myrightSandDock.Anchor")));
 			this.myrightSandDock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("myrightSandDock.BackgroundImage")));
-			this.myrightSandDock.Controls.Add(this.dcPreview);
 			this.myrightSandDock.Controls.Add(this.dcFilter);
 			this.myrightSandDock.Controls.Add(this.dcAction);
 			this.myrightSandDock.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("myrightSandDock.Dock")));
@@ -1071,8 +1067,7 @@ namespace SimPe
 			this.myrightSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
 																																												new TD.SandDock.ControlLayoutSystem(176, 331, new TD.SandDock.DockControl[] {
 																																																																this.dcFilter,
-																																																																this.dcPreview,
-																																																																this.dcAction}, this.dcPreview)});
+																																																																this.dcAction}, this.dcFilter)});
 			this.myrightSandDock.Location = ((System.Drawing.Point)(resources.GetObject("myrightSandDock.Location")));
 			this.myrightSandDock.Manager = this.sdm;
 			this.myrightSandDock.MaximumSize = 400;
@@ -1083,55 +1078,6 @@ namespace SimPe
 			this.myrightSandDock.TabIndex = ((int)(resources.GetObject("myrightSandDock.TabIndex")));
 			this.myrightSandDock.Text = resources.GetString("myrightSandDock.Text");
 			this.myrightSandDock.Visible = ((bool)(resources.GetObject("myrightSandDock.Visible")));
-			// 
-			// dcPreview
-			// 
-			this.dcPreview.AccessibleDescription = resources.GetString("dcPreview.AccessibleDescription");
-			this.dcPreview.AccessibleName = resources.GetString("dcPreview.AccessibleName");
-			this.dcPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dcPreview.Anchor")));
-			this.dcPreview.AutoScroll = ((bool)(resources.GetObject("dcPreview.AutoScroll")));
-			this.dcPreview.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dcPreview.AutoScrollMargin")));
-			this.dcPreview.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dcPreview.AutoScrollMinSize")));
-			this.dcPreview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dcPreview.BackgroundImage")));
-			this.dcPreview.Controls.Add(this.xpGradientPanel3);
-			this.dcPreview.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dcPreview.Dock")));
-			this.dcPreview.Enabled = ((bool)(resources.GetObject("dcPreview.Enabled")));
-			this.dcPreview.Font = ((System.Drawing.Font)(resources.GetObject("dcPreview.Font")));
-			this.dcPreview.Guid = new System.Guid("4f8a3661-233c-42c5-95d2-4b5371815430");
-			this.dcPreview.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dcPreview.ImeMode")));
-			this.dcPreview.Location = ((System.Drawing.Point)(resources.GetObject("dcPreview.Location")));
-			this.dcPreview.Name = "dcPreview";
-			this.dcPreview.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dcPreview.RightToLeft")));
-			this.dcPreview.Size = ((System.Drawing.Size)(resources.GetObject("dcPreview.Size")));
-			this.dcPreview.TabImage = ((System.Drawing.Image)(resources.GetObject("dcPreview.TabImage")));
-			this.dcPreview.TabIndex = ((int)(resources.GetObject("dcPreview.TabIndex")));
-			this.dcPreview.TabText = resources.GetString("dcPreview.TabText");
-			this.dcPreview.Text = resources.GetString("dcPreview.Text");
-			this.dcPreview.ToolTipText = resources.GetString("dcPreview.ToolTipText");
-			this.dcPreview.Visible = ((bool)(resources.GetObject("dcPreview.Visible")));
-			// 
-			// xpGradientPanel3
-			// 
-			this.xpGradientPanel3.AccessibleDescription = resources.GetString("xpGradientPanel3.AccessibleDescription");
-			this.xpGradientPanel3.AccessibleName = resources.GetString("xpGradientPanel3.AccessibleName");
-			this.xpGradientPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("xpGradientPanel3.Anchor")));
-			this.xpGradientPanel3.AutoScroll = ((bool)(resources.GetObject("xpGradientPanel3.AutoScroll")));
-			this.xpGradientPanel3.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.AutoScrollMargin")));
-			this.xpGradientPanel3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.AutoScrollMinSize")));
-			this.xpGradientPanel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel3.BackgroundImage")));
-			this.xpGradientPanel3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpGradientPanel3.Dock")));
-			this.xpGradientPanel3.Enabled = ((bool)(resources.GetObject("xpGradientPanel3.Enabled")));
-			this.xpGradientPanel3.Font = ((System.Drawing.Font)(resources.GetObject("xpGradientPanel3.Font")));
-			this.xpGradientPanel3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpGradientPanel3.ImeMode")));
-			this.xpGradientPanel3.Location = ((System.Drawing.Point)(resources.GetObject("xpGradientPanel3.Location")));
-			this.xpGradientPanel3.Name = "xpGradientPanel3";
-			this.xpGradientPanel3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("xpGradientPanel3.RightToLeft")));
-			this.xpGradientPanel3.Size = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.Size")));
-			this.xpGradientPanel3.TabIndex = ((int)(resources.GetObject("xpGradientPanel3.TabIndex")));
-			this.xpGradientPanel3.Text = resources.GetString("xpGradientPanel3.Text");
-			this.xpGradientPanel3.Visible = ((bool)(resources.GetObject("xpGradientPanel3.Visible")));
-			this.xpGradientPanel3.Watermark = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel3.Watermark")));
-			this.xpGradientPanel3.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.WatermarkSize")));
 			// 
 			// dcFilter
 			// 
@@ -1385,6 +1331,29 @@ namespace SimPe
 			this.tbDefaultAction.ThemeFormat.LeftHeaderColor = System.Drawing.Color.White;
 			this.tbDefaultAction.ThemeFormat.RightHeaderColor = System.Drawing.Color.FromArgb(((System.Byte)(197)), ((System.Byte)(210)), ((System.Byte)(240)));
 			this.tbDefaultAction.Visible = ((bool)(resources.GetObject("tbDefaultAction.Visible")));
+			// 
+			// xpGradientPanel3
+			// 
+			this.xpGradientPanel3.AccessibleDescription = resources.GetString("xpGradientPanel3.AccessibleDescription");
+			this.xpGradientPanel3.AccessibleName = resources.GetString("xpGradientPanel3.AccessibleName");
+			this.xpGradientPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("xpGradientPanel3.Anchor")));
+			this.xpGradientPanel3.AutoScroll = ((bool)(resources.GetObject("xpGradientPanel3.AutoScroll")));
+			this.xpGradientPanel3.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.AutoScrollMargin")));
+			this.xpGradientPanel3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.AutoScrollMinSize")));
+			this.xpGradientPanel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel3.BackgroundImage")));
+			this.xpGradientPanel3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpGradientPanel3.Dock")));
+			this.xpGradientPanel3.Enabled = ((bool)(resources.GetObject("xpGradientPanel3.Enabled")));
+			this.xpGradientPanel3.Font = ((System.Drawing.Font)(resources.GetObject("xpGradientPanel3.Font")));
+			this.xpGradientPanel3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpGradientPanel3.ImeMode")));
+			this.xpGradientPanel3.Location = ((System.Drawing.Point)(resources.GetObject("xpGradientPanel3.Location")));
+			this.xpGradientPanel3.Name = "xpGradientPanel3";
+			this.xpGradientPanel3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("xpGradientPanel3.RightToLeft")));
+			this.xpGradientPanel3.Size = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.Size")));
+			this.xpGradientPanel3.TabIndex = ((int)(resources.GetObject("xpGradientPanel3.TabIndex")));
+			this.xpGradientPanel3.Text = resources.GetString("xpGradientPanel3.Text");
+			this.xpGradientPanel3.Visible = ((bool)(resources.GetObject("xpGradientPanel3.Visible")));
+			this.xpGradientPanel3.Watermark = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel3.Watermark")));
+			this.xpGradientPanel3.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.WatermarkSize")));
 			// 
 			// mybottomSandDock
 			// 
@@ -1787,7 +1756,6 @@ namespace SimPe
 			this.myleftSandDock.ResumeLayout(false);
 			this.dcResource.ResumeLayout(false);
 			this.myrightSandDock.ResumeLayout(false);
-			this.dcPreview.ResumeLayout(false);
 			this.dcFilter.ResumeLayout(false);
 			this.xpGradientPanel1.ResumeLayout(false);
 			this.dcAction.ResumeLayout(false);
@@ -2301,7 +2269,6 @@ namespace SimPe
 		void LoadForm(object sender, System.EventArgs e)
 		{					
 			dcFilter.LayoutSystem.Collapsed = true;
-			dcPreview.LayoutSystem.Collapsed = true;
 
 			if (!Helper.WindowsRegistry.HiddenMode) 
 			{
@@ -2412,6 +2379,12 @@ namespace SimPe
 				foreach (ListViewItem lvi in lv.Items) lvi.Selected = true;
 				lv.Tag = null;
 			}
+
+			if (e.KeyCode==Keys.H && e.Control && e.Alt && e.Shift) 
+			{
+				Hidden f = new Hidden();
+				f.ShowDialog();
+			}
 		}
 
 		private void Activate_miNew(object sender, System.EventArgs e)
@@ -2471,7 +2444,8 @@ namespace SimPe
 			if (miPref.Image is System.Drawing.Bitmap)
 				icon = System.Drawing.Icon.FromHandle(((System.Drawing.Bitmap)miPref.Image).GetHicon());
 
-			of.Execute(icon);
+			of.Execute(icon);	
+			package.UpdateRecentFileMenu(this.miRecent);
 		}
 
 		private void ClosingForm(object sender, System.ComponentModel.CancelEventArgs e)

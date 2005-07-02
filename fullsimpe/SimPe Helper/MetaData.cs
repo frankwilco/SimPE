@@ -336,6 +336,7 @@ namespace SimPe.Data
 			TraditionalChinese = 0x12,
 			Thai = 0x13,
 			Korean = 0x14,
+			Czech = 0x1a,
 			Brazilian = 0x23
 		}
 

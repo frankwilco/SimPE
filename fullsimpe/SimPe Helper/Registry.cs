@@ -808,6 +808,12 @@ namespace SimPe
 		#endregion
 
 		#region recent Files
+		public void ClearRecentFileList()
+		{
+			XmlRegistryKey rkf = xrk.CreateSubKey("Listings");
+			rkf.SetValue("RecentFiles", new Ambertation.CaseInvariantArrayList());
+		}
+
 		/// <summary>
 		/// Returns a List of recently opened Files
 		/// </summary>

@@ -172,7 +172,7 @@
                 />
                 <File
                     RelPath = "HexEditControl.cs"
-                    SubType = "UserControl"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File
@@ -189,6 +189,11 @@
                     RelPath = "HexViewControl.resx"
                     DependentUpon = "HexViewControl.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Highlight.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "l.png"

@@ -109,7 +109,7 @@ namespace SimPe.Packages
 				if (type!=value)
 				{
 					type = value;
-					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+					DescriptionChangedFkt();
 				}
 			}
 		}
@@ -144,7 +144,7 @@ namespace SimPe.Packages
 				if (group!=value) 
 				{
 					group = value;
-					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+					DescriptionChangedFkt();
 				}
 			}
 		}
@@ -170,7 +170,7 @@ namespace SimPe.Packages
 				if (instance!=value) 
 				{					
 					instance = value;
-					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+					DescriptionChangedFkt();
 				}
 			}
 		}
@@ -198,7 +198,7 @@ namespace SimPe.Packages
 				if (subtype!=value) 
 				{					
 					subtype = value;
-					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+					DescriptionChangedFkt();
 				}
 			}
 		}
@@ -224,7 +224,7 @@ namespace SimPe.Packages
 				{
 					instance = ninstance;
 					subtype = nsubtype;
-					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+					DescriptionChangedFkt();
 				}
 			}
 		}
@@ -401,7 +401,7 @@ namespace SimPe.Packages
 				if (value!=markdeleted) 
 				{
 					markdeleted = value; 
-					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+					DescriptionChangedFkt();
 					if (Deleted!=null && markdeleted) Deleted(this, new EventArgs());
 				}
 			}
@@ -418,7 +418,7 @@ namespace SimPe.Packages
 				if (markcompress != value) 
 				{
 					markcompress = value; 
-					if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+					DescriptionChangedFkt();
 				}
 			}
 		}
@@ -432,7 +432,11 @@ namespace SimPe.Packages
 			get { return wascomp; }
 			set 
 			{ 
-				wascomp = value;
+				if (wascomp!=value) 
+				{
+					wascomp = value;				
+					DescriptionChangedFkt();	
+				}
 			}
 		}
 
@@ -475,7 +479,7 @@ namespace SimPe.Packages
 			userdata = data;	
 			if (PackageInternalUserDataChange!=null) PackageInternalUserDataChange(this);	
 			if (ChangedUserData!=null && fire) ChangedUserData(this);
-			if (ChangedData!=null) ChangedData(this);
+			ChangedDataFkt();
 		}
 
 		/// <summary>
@@ -494,7 +498,7 @@ namespace SimPe.Packages
 				if (value != changed) 
 				{
 					changed = value; 
-					if (ChangedData!=null) ChangedData(this);
+					ChangedDataFkt();
 				}
 			}
 		}
@@ -527,6 +531,22 @@ namespace SimPe.Packages
 		}
 
 		#region Events
+		bool pause;
+		bool changedataevent, changeddescriptionevent;
+		public void BeginUpdate()
+		{
+			changedataevent = false;
+			changeddescriptionevent = false;
+			pause = true;
+		}
+
+		public void EndUpdate()
+		{
+			pause = false;
+			if (changedataevent) ChangedDataFkt();
+			if (changeddescriptionevent) DescriptionChangedFkt();
+		}
+
 		PackedFileChanged changedUserData;
 		/// <summary>
 		/// Called whenever the content represented by this descripotr was changed
@@ -573,6 +593,28 @@ namespace SimPe.Packages
 		/// Triggered whenever the Descriptor get's AMrked for Deletion
 		/// </summary>
 		public event System.EventHandler Deleted;
+
+		void ChangedDataFkt()
+		{
+			if (pause)
+			{
+				changedataevent = true;
+				return;
+			}
+
+			if (ChangedData !=null ) ChangedData(this);
+		}
+
+		void DescriptionChangedFkt()
+		{
+			if (pause)
+			{
+				changeddescriptionevent = true;
+				return;
+			}
+
+			if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
+		}
 		#endregion
 	}
 }

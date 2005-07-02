@@ -47,7 +47,7 @@ namespace SimPe.Packages
 		/// </summary>
 		internal PackageMaintainer()
 		{
-			ht = new Hashtable();
+			ht = new Hashtable(new CaseInsensitiveHashCodeProvider(), new CaseInsensitiveComparer());
 		}
 
 		/// <summary>
@@ -65,12 +65,6 @@ namespace SimPe.Packages
 			if (filename==null) return new GeneratableFile((System.IO.BinaryReader)null);
 
 			if (!Helper.WindowsRegistry.UsePackageMaintainer)  return new GeneratableFile(filename);
-
-#if MAC
-			filename = filename.Trim();
-#else
-			filename = filename.Trim().ToLower();
-#endif
 
 			if (!ht.ContainsKey(filename)) ht[filename] = new GeneratableFile(filename);
 			else if (sync) 
