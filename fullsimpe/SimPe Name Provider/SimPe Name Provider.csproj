@@ -199,6 +199,14 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "binary.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "empty.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "OpcodeProvider.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

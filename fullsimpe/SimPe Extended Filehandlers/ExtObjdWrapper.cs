@@ -295,8 +295,9 @@ namespace SimPe.PackedFiles.Wrapper
 			return new AbstractWrapperInfo(
 				"Extended OBJD Wrapper",
 				"Quaxi",
-				"---",
-				2
+				"This File is used to Set up the Basic Catalog Properties of an Object. It also contains the unique ID for the Objeect or a Part of the Object.",
+				2,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.objd.png"))
 				); 
 		}
 		#endregion

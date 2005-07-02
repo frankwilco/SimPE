@@ -20,6 +20,7 @@
 using System;
 using SimPe.Interfaces.Plugin;
 
+
 namespace SimPe.Interfaces.Plugin
 {
 	/// <summary>
@@ -31,6 +32,7 @@ namespace SimPe.Interfaces.Plugin
 		string author;
 		string description;
 		int version;
+		System.Drawing.Image img;
 
 		/// <summary>
 		/// Constructor
@@ -39,12 +41,26 @@ namespace SimPe.Interfaces.Plugin
 		/// <param name="author">The Author of the Wrapper</param>
 		/// <param name="description">Description of the Wrapper</param>
 		/// <param name="version">Version of the Wrapper</param>
-		public AbstractWrapperInfo(string name, string author, string description, int version)
-		{
+		/// <param name="icon">Icon that represents this Resource</param>
+		public AbstractWrapperInfo(string name, string author, string description, int version, System.Drawing.Image icon){
 			this.name = name;
 			this.author = author;
 			this.description = description;
 			this.version = version;
+			this.img = icon;
+
+			ii = -1;
+		}
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="name">Name of the Wrapper</param>
+		/// <param name="author">The Author of the Wrapper</param>
+		/// <param name="description">Description of the Wrapper</param>
+		/// <param name="version">Version of the Wrapper</param>
+		public AbstractWrapperInfo(string name, string author, string description, int version) : this (name, author, description, version, null)
+		{			
+			
 		}
 
 		#region IWrapperInfor Member
@@ -78,6 +94,26 @@ namespace SimPe.Interfaces.Plugin
 		public int Version
 		{
 			get {return version;}
+		}
+
+		/// <summary>
+		/// Returns a Icon that should be presented for that resource
+		/// </summary>
+		public System.Drawing.Image Icon
+		{
+			get {return img; }
+			set { img = value; }
+		}
+
+		int ii;
+		/// <summary>
+		/// Returns / Setst the Index of the Wrapepr icon in the ImageList of the Registry
+		/// </summary>
+		/// <remarks>Do nover set this yourself, it is set automatically by the Registry</remarks>
+		public int IconIndex 
+		{
+			get { return ii; }
+			set { ii = value; }
 		}
 
 		// <summary>

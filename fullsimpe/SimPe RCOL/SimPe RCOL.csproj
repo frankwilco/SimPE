@@ -494,6 +494,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "resource.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ScenegraphHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

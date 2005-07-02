@@ -255,6 +255,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "RemoteControl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ResourceLoader.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

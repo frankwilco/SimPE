@@ -163,8 +163,9 @@ namespace SimPe.Plugin
 			return new AbstractWrapperInfo(
 				"Neighborhood/Memory Wrapper",
 				"Quaxi",
-				"---",
-				7
+				"This File contains the Memories and Inventories of all Sims and Lots that Live in this Neighborhood.",
+				7,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ngbh.png"))
 				); 
 		}
 

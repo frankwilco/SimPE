@@ -1283,8 +1283,9 @@ namespace SimPe.PackedFiles.Wrapper
 			return new AbstractWrapperInfo(
 				"Sim Description Wrapper",
 				"Quaxi",
-				"---",
-				8
+				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
+				8,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.sdsc.png"))				
 				); 
 		}
 

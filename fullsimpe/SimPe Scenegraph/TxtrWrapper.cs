@@ -55,8 +55,9 @@ namespace SimPe.Plugin
 			return new AbstractWrapperInfo(
 				"TXTR Wrapper",
 				"Pumuckl, Quaxi",
-				"---",
-				13
+				"This File is part of the Scenegraph. It contains the Texture for a Mesh Group/Subset.",
+				13,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.txtr.png"))
 				); 
 		}
 		#endregion

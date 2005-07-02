@@ -12285,14 +12285,17 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			try 
 			{
-				if (MessageBox.Show(SimPe.Localization.Manager.GetString("open_wnt_from_sdsc"), SimPe.Localization.Manager.GetString("question"), MessageBoxButtons.YesNo)==DialogResult.Yes)
-					this.CommitSDescClick(null, null);
+				if (Helper.StartedGui ==Executable.Classic)
+				{
+					if (MessageBox.Show(SimPe.Localization.Manager.GetString("open_wnt_from_sdsc"), SimPe.Localization.Manager.GetString("question"), MessageBoxButtons.YesNo)==DialogResult.Yes)
+						this.CommitSDescClick(null, null);
+				}
 
 				//Open File
 				SimPe.PackedFiles.Wrapper.SDesc wrp = (SimPe.PackedFiles.Wrapper.SDesc)wrapper;
 				Interfaces.Files.IPackedFileDescriptor pfd = wrp.Package.NewDescriptor(0xCD95548E, wrp.FileDescriptor.SubType, wrp.FileDescriptor.Group, wrp.FileDescriptor.Instance); //try a W&f File
 				pfd = wrp.Package.FindFile(pfd);
-				SimPe.RemoteControl.OpenPackedFile(pfd);
+				SimPe.RemoteControl.OpenPackedFile(pfd, wrp.Package);
 			}
 			catch (Exception ex) 
 			{
@@ -12305,13 +12308,16 @@ namespace SimPe.PackedFiles.UserInterface
 			try 
 			{
 				uint inst = Convert.ToUInt32(this.tbfaminst.Text, 16);
-				if (MessageBox.Show(SimPe.Localization.Manager.GetString("open_fami_from_sdsc"), SimPe.Localization.Manager.GetString("question"), MessageBoxButtons.YesNo)==DialogResult.Yes)
-					this.CommitSDescClick(null, null);
+				if (Helper.StartedGui ==Executable.Classic) 
+				{
+					if (MessageBox.Show(SimPe.Localization.Manager.GetString("open_fami_from_sdsc"), SimPe.Localization.Manager.GetString("question"), MessageBoxButtons.YesNo)==DialogResult.Yes)
+						this.CommitSDescClick(null, null);
+				}
 
 				SimPe.PackedFiles.Wrapper.SDesc wrp = (SimPe.PackedFiles.Wrapper.SDesc)wrapper;
 				Interfaces.Files.IPackedFileDescriptor pfd = wrp.Package.NewDescriptor(0x46414D49, wrp.FileDescriptor.SubType, wrp.FileDescriptor.Group, inst); //try a Fami File
 				pfd = wrp.Package.FindFile(pfd);
-				SimPe.RemoteControl.OpenPackedFile(pfd);
+				SimPe.RemoteControl.OpenPackedFile(pfd, wrp.Package);
 			} 
 			catch (Exception ex) 
 			{
@@ -12323,13 +12329,16 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			try 
 			{
-				if (MessageBox.Show(SimPe.Localization.Manager.GetString("open_dna_from_sdsc"), SimPe.Localization.Manager.GetString("question"), MessageBoxButtons.YesNo)==DialogResult.Yes)
-					this.CommitSDescClick(null, null);
+				if (Helper.StartedGui ==Executable.Classic)
+				{
+					if (MessageBox.Show(SimPe.Localization.Manager.GetString("open_dna_from_sdsc"), SimPe.Localization.Manager.GetString("question"), MessageBoxButtons.YesNo)==DialogResult.Yes)
+						this.CommitSDescClick(null, null);
+				}
 
 				SimPe.PackedFiles.Wrapper.SDesc wrp = (SimPe.PackedFiles.Wrapper.SDesc)wrapper;
 				Interfaces.Files.IPackedFileDescriptor pfd = wrp.Package.NewDescriptor(0xEBFEE33F, wrp.FileDescriptor.SubType, wrp.FileDescriptor.Group, wrp.FileDescriptor.Instance); //try a DNA File
 				pfd = wrp.Package.FindFile(pfd);
-				SimPe.RemoteControl.OpenPackedFile(pfd);
+				SimPe.RemoteControl.OpenPackedFile(pfd, wrp.Package);
 			} 
 			catch (Exception ex) 
 			{
@@ -12345,11 +12354,12 @@ namespace SimPe.PackedFiles.UserInterface
 				if (System.IO.File.Exists(wrp.CharacterFileName)) 
 				{
 					uint inst = Convert.ToUInt32(this.tbfaminst.Text, 16);
-					if (MessageBox.Show(SimPe.Localization.Manager.GetString("open_cloth_from_sdsc"), SimPe.Localization.Manager.GetString("question"), MessageBoxButtons.YesNo)==DialogResult.Yes)
-					{
-						this.CommitSDescClick(null, null);
-						((SimPe.Packages.GeneratableFile)wrp.Package).Save();
-					}
+					if (Helper.StartedGui ==Executable.Classic)
+						if (MessageBox.Show(SimPe.Localization.Manager.GetString("open_cloth_from_sdsc"), SimPe.Localization.Manager.GetString("question"), MessageBoxButtons.YesNo)==DialogResult.Yes)
+						{
+							this.CommitSDescClick(null, null);
+							((SimPe.Packages.GeneratableFile)wrp.Package).Save();
+						}
 
 				
 					SimPe.Packages.GeneratableFile fl = SimPe.Packages.GeneratableFile.LoadFromFile(wrp.CharacterFileName);
@@ -12358,7 +12368,7 @@ namespace SimPe.PackedFiles.UserInterface
 					if (pfds.Length>0) 
 					{
 						SimPe.RemoteControl.OpenPackage(wrp.CharacterFileName);						
-						SimPe.RemoteControl.OpenPackedFile(pfds[0]);
+						SimPe.RemoteControl.OpenPackedFile(pfds[0], fl);
 					}
 				}
 			} 

@@ -193,6 +193,16 @@ namespace SimPe.Events
 		}
 
 		#endregion
+
+		public SimPe.Collections.PackedFileDescriptors GetDescriptors ()
+		{
+			SimPe.Collections.PackedFileDescriptors pfds = new SimPe.Collections.PackedFileDescriptors();
+			foreach (SimPe.Events.ResourceContainer e in list) 
+			{
+				if (e.HasFileDescriptor) pfds.Add(e.Resource.FileDescriptor);
+			}
+			return pfds;
+		}
 	}
 
 	/// <summary>

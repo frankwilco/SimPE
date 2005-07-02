@@ -18,7 +18,7 @@
                 OutputType = "Library"
                 PreBuildEvent = ""
                 PostBuildEvent = ""
-                RootNamespace = "SimPe_Clst"
+                RootNamespace = "SimPe.PackedFiles.Wrapper"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
             >
@@ -154,6 +154,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "clst.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ClstForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -227,6 +231,10 @@
                     RelPath = "StrWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "txt.png"
+                    BuildAction = "EmbeddedResource"
                 />
             </Include>
         </Files>

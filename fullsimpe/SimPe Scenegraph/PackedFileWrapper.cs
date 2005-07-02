@@ -101,8 +101,9 @@ namespace SimPe.Plugin
 			return new AbstractWrapperInfo(
 				"3D Reference File Wrapper",
 				"Quaxi",
-				"---",
-				5
+				"This File contains References to 3D Elements (from the Scenegraph) of a Sim, Skin or Clothing.",
+				5,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.3didr.png"))
 				); 
 		}
 

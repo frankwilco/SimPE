@@ -243,8 +243,9 @@ namespace SimPe.PackedFiles.Wrapper
 			return new AbstractWrapperInfo(
 				"Sim Relation Wrapper",
 				"Quaxi",
-				"---",
-				5
+				"This File Contians the Relationship states for two Sims.",
+				5,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.srel.png"))
 				); 
 		}
 		#endregion

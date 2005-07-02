@@ -64,6 +64,11 @@ namespace SimPe.PackedFiles
 		Registry reg;
 
 		/// <summary>
+		/// Wrapper ImageList
+		/// </summary>
+		System.Windows.Forms.ImageList il;
+
+		/// <summary>
 		/// Constructor of the class
 		/// </summary>
 		public TypeRegistry()
@@ -80,6 +85,12 @@ namespace SimPe.PackedFiles
 			toolsp = new ArrayList();
 			dtools = new ArrayList();
 			atools = new ArrayList();
+
+			il = new System.Windows.Forms.ImageList();
+			il.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+
+			il.Images.Add(System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Providers.empty.png")));
+			il.Images.Add(System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Providers.binary.png")));									
 		}
 
 		#region IWrapperRegistry Member
@@ -90,7 +101,18 @@ namespace SimPe.PackedFiles
 				if (!handlers.Contains(wrapper)) 
 				{
 					((SimPe.Interfaces.IWrapper)wrapper).Priority = reg.GetWrapperPriority(((SimPe.Interfaces.IWrapper)wrapper).WrapperDescription.UID);
-					handlers.Add((SimPe.Interfaces.Plugin.IFileWrapper)wrapper);					
+					handlers.Add((SimPe.Interfaces.Plugin.IFileWrapper)wrapper);
+					if (wrapper.WrapperDescription is AbstractWrapperInfo) 
+					{
+						if (wrapper.WrapperDescription.Icon!=null) 
+						{
+						
+							((AbstractWrapperInfo)wrapper.WrapperDescription).IconIndex = il.Images.Count;
+							il.Images.Add(wrapper.WrapperDescription.Icon);
+						}
+						else 
+							((AbstractWrapperInfo)wrapper.WrapperDescription).IconIndex = 1;				
+					}
 				}
 		}
 
@@ -154,6 +176,14 @@ namespace SimPe.PackedFiles
 				return wrappers;
 			}
 		}
+
+		/// <summary>
+		/// Contains a Listing of all available Wrapper Icons
+		/// </summary>
+		public System.Windows.Forms.ImageList WrapperImageList
+		{
+			get {return il; }
+		}		
 		#endregion
 
 		/// <summary>

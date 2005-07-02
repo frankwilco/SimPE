@@ -138,8 +138,9 @@ namespace SimPe.Plugin
 			return new AbstractWrapperInfo(
 				"BHAV Wrapper",
 				"Quaxi",
-				"---",
-				11
+				"Contains a SimAntic Script.",
+				11,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.bhav.png"))
 				); 
 		}
 

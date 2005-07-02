@@ -199,6 +199,26 @@
                     Project = "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "xpcommoncontrols"
+                    AssemblyName = "xpcommoncontrols"
+                    HintPath = "..\..\..\xpcommoncontrols\xpcommoncontrols.dll"
+                />
+                <Reference
+                    Name = "Microsoft.VisualBasic"
+                    AssemblyName = "Microsoft.VisualBasic"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\Microsoft.VisualBasic.dll"
+                />
+                <Reference
+                    Name = "System.Drawing.Design"
+                    AssemblyName = "System.Drawing.Design"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.Design.dll"
+                />
+                <Reference
+                    Name = "System.Design"
+                    AssemblyName = "System.Design"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Design.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -207,6 +227,10 @@
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cpf.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "CpfItem.cs"
@@ -259,11 +283,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "Elements2.de-DE.resx"
-                    DependentUpon = "Elements2.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "Elements2.resx"
                     DependentUpon = "Elements2.cs"
                     BuildAction = "EmbeddedResource"
@@ -272,6 +291,10 @@
                     RelPath = "Fami.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "fami.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "FamilyTieItem.cs"
@@ -339,6 +362,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "sdsc.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "SdscExtendedForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -367,6 +394,10 @@
                     RelPath = "SRel.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "srel.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "SRelWrapper.cs"

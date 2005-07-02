@@ -179,6 +179,10 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "3didr.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -274,6 +278,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "mmat.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "MMATCacheFile.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -359,6 +367,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "slot.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "SlotForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -391,6 +403,10 @@
                 <File
                     RelPath = "SubsetSelectForm.resx"
                     DependentUpon = "SubsetSelectForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "txtr.png"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

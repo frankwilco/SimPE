@@ -99,8 +99,9 @@ namespace SimPe.PackedFiles.Wrapper
 			return new AbstractWrapperInfo(
 				"Slot Wrapper",
 				"Quaxi",
-				"---",
-				1
+				"",
+				1,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.slot.png"))
 				);   
 		}
 

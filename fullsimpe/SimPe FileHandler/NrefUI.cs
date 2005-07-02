@@ -68,9 +68,9 @@ namespace SimPe.PackedFiles.UserInterface
 			form.wrapper = (IFileWrapperSaveExtension)wrapper;
 			Nref wrp = (Nref) wrapper;
 
-			form.tbnref.Tag = true;
-			form.tbnref.Text = wrp.FileName;
-			form.tbnref.Tag = null;
+			form.tbNref.Tag = true;
+			form.tbNref.Text = wrp.FileName;
+			form.tbNref.Tag = null;
 		}		
 
 		#endregion
