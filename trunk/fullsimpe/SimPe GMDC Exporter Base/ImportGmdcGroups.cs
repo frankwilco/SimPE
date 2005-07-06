@@ -569,6 +569,7 @@ namespace SimPe.Plugin.Gmdc
 			foreach (GmdcGroup g in gmdc.Groups) f.cbnames.Items.Add(g.Name);
 			for (int i=0; i<gmdc.Joints.Length; i++) f.cbbones.Items.Add("Bone "+i.ToString());				
 
+			bool toobig = false;
 			foreach (ImportedGroup a in actions)
 			{
 				if (a.TargetName=="") a.TargetName = a.Group.Name;
@@ -581,7 +582,16 @@ namespace SimPe.Plugin.Gmdc
 				lvi.Tag = a;
 				lvi.ForeColor = a.MarkColor;
 
+				if (a.VertexCount>SimPe.Plugin.Gmdc.AbstractGmdcImporter.CRITICAL_VERTEX_AMOUNT) toobig=true;
+				if (a.FaceCount>SimPe.Plugin.Gmdc.AbstractGmdcImporter.CRITICAL_FACE_AMOUNT) toobig=true;
+
 				f.lv.Items.Add(lvi);
+			}
+
+			if (toobig && !Helper.WindowsRegistry.HiddenMode) 			
+			{
+				Helper.ExceptionMessage( new Warning("One or more of the imported Mesh Groups contain too many Vertices or Faces", "If SimPE is not running in Advanced Mode, the maximum Number of Vertices is set to "+SimPe.Plugin.Gmdc.AbstractGmdcImporter.CRITICAL_VERTEX_AMOUNT.ToString()+" and the maximum amount of Faces to "+SimPe.Plugin.Gmdc.AbstractGmdcImporter.CRITICAL_FACE_AMOUNT+".\n\nIf you want to Import this Mesh, you have to turn on Advanced Mode. However, Objects with big Meshes will slow down the Game!") );			
+				f.button1.Enabled = false;
 			}
 
 			int ct = 0;

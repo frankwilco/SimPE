@@ -748,7 +748,12 @@ namespace SimPe.Plugin
 			if (this.tabPage3.Tag==null) return;
 			if (pob==null) return;
 			MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
-			md.GetProperty(e.ChangedItem.Label).Value = pob.Properties[e.ChangedItem.Label].ToString();
+			object o = pob.Properties[e.ChangedItem.Label];
+			if (o is Boolean)
+			{
+				if ((bool)o) md.GetProperty(e.ChangedItem.Label).Value = "1";
+				else md.GetProperty(e.ChangedItem.Label).Value = "0";
+			} else md.GetProperty(e.ChangedItem.Label).Value = o.ToString();
 
 			md.Parent.Changed = true;
 		}

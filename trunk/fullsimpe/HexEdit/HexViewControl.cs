@@ -36,7 +36,8 @@ namespace Ambertation.Windows.Forms
 		{
 			get 
 			{
-				return (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv");
+				return false;
+				//return (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv");
 			}
 		}
 
@@ -1362,6 +1363,7 @@ namespace Ambertation.Windows.Forms
 			
 			Graphics g = Graphics.FromImage(b);
 			SetGraphicsMode(g, true);
+			g.FillRectangle(new SolidBrush(base.BackColor), 0, 0, b.Width, b.Height);
 			
 			g.FillRectangle(this.BackBrush, -2, 0, this.OffsetBoxWidth, b.Height+2);
 			g.FillRectangle(this.BackBrush, this.OffsetBoxWidth+WINDOWSPACING, -2, this.HexBoxWidth, b.Height+2);			

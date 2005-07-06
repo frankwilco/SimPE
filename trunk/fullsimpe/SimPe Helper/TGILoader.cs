@@ -55,6 +55,12 @@ namespace SimPe
 		void LoadTGI(string xmlfilename)
 		{
 			map.Clear();
+			if (!System.IO.File.Exists(xmlfilename)) 
+			{
+				Helper.ExceptionMessage(new Warning("Unable to load TGI description", "The File \""+xmlfilename+"\" was not found on the system"));
+				return;
+			}
+			
 			
 			//read XML File
 			System.Xml.XmlDocument xmlfile = new XmlDocument();

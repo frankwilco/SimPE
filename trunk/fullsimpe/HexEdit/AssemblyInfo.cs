@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 // die mit einer Assembly verknüpft sind.
 //
 [assembly: AssemblyTitle("HexViewer Component")]
-[assembly: AssemblyDescription("Contains a very Simple HexEditor Control")]
+[assembly: AssemblyDescription("Contains a simple HexEditor Control")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ambertation")]
 #if DEBUG

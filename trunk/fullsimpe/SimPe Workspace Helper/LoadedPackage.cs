@@ -32,6 +32,11 @@ namespace SimPe
 	public class LoadedPackage
 	{		
 		/// <summary>
+		/// Maximum Number of Characters in the Recent File Menu
+		/// </summary>
+		const int MAX_FILENAME_LENGTH=75;
+
+		/// <summary>
 		/// Creates a new Instance
 		/// </summary>
 		public LoadedPackage()
@@ -260,6 +265,7 @@ namespace SimPe
 		{
 			if (pkg!=null) 
 			{
+				bool res = true;
 				if (pkg.HasUserChanges) 
 				{
 					DialogResult dr = SimPe.Message.Show(
@@ -267,14 +273,17 @@ namespace SimPe
 						SimPe.Localization.Manager.GetString("savechanges?"),
 						MessageBoxButtons.YesNoCancel);
 
-					if (dr==DialogResult.Yes) Save();
+					if (dr==DialogResult.Yes) res = Save();
 					else if (dr==DialogResult.Cancel) return false;
 				}
-				pkg.Close();
-				pkg.IndexChanged -= new EventHandler(IndexChangedHandler);
-				pkg.AddedResource -= new EventHandler(AddedResourceHandler);
-				pkg.RemovedResource -= new EventHandler(RemovedResourcehandler);
-				pkg = null;
+				if (res) 
+				{
+					pkg.Close();
+					pkg.IndexChanged -= new EventHandler(IndexChangedHandler);
+					pkg.AddedResource -= new EventHandler(AddedResourceHandler);
+					pkg.RemovedResource -= new EventHandler(RemovedResourcehandler);
+					pkg = null;
+				} else return false;
 			}
 
 			return true;
@@ -345,7 +354,11 @@ namespace SimPe
 			{
 				if (System.IO.File.Exists(file)) 
 				{
-					TD.SandBar.MenuButtonItem mbi = new TD.SandBar.MenuButtonItem(file);
+					string sname = file;
+					if (sname.Length>MAX_FILENAME_LENGTH) 
+						sname = "..."+sname.Substring(file.Length-MAX_FILENAME_LENGTH, MAX_FILENAME_LENGTH);
+					
+					TD.SandBar.MenuButtonItem mbi = new TD.SandBar.MenuButtonItem(sname);
 					mbi.Tag = file;
 					mbi.Activate += new EventHandler(OpenRecent);
 					mbi.Shortcut = GetShortCut(menu.Items.Count+1);

@@ -398,6 +398,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.tbNref.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbNref.TextAlign")));
 			this.tbNref.Visible = ((bool)(resources.GetObject("tbNref.Visible")));
 			this.tbNref.WordWrap = ((bool)(resources.GetObject("tbNref.WordWrap")));
+			this.tbNref.TextChanged += new System.EventHandler(this.tbnref_TextChanged);
 			// 
 			// label10
 			// 
