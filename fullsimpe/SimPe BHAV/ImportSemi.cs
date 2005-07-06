@@ -255,6 +255,7 @@ namespace SimPe
 			this.btimport.Enabled = false;
 
 			if (cbsemi.SelectedIndex<0) return;
+			ArrayList loaded = new ArrayList();
 
 			try 
 			{
@@ -286,7 +287,12 @@ namespace SimPe
 					{
 						item.FileDescriptor.Filename = item.FileDescriptor.ToString();
 					}
-					lbfiles.Items.Add(item, ((item.FileDescriptor.Type==Data.MetaData.BHAV_FILE) || (item.FileDescriptor.Type==0x42434F4E)));
+
+					if (!loaded.Contains(item.FileDescriptor)) 
+					{
+						lbfiles.Items.Add(item, ((item.FileDescriptor.Type==Data.MetaData.BHAV_FILE) || (item.FileDescriptor.Type==0x42434F4E)));
+						loaded.Add(item.FileDescriptor);
+					}
 				}
 				lbfiles.Sorted = true;
 				this.btimport.Enabled = (lbfiles.Items.Count>0);
@@ -316,95 +322,103 @@ namespace SimPe
 
 
 			ArrayList bhavs = new ArrayList();
-			ArrayList ttabs = new ArrayList();			
-			for (int i=0; i<lbfiles.Items.Count; i++) 
+			ArrayList ttabs = new ArrayList();	
+			package.BeginUpdate();
+			try 
 			{
-				if (!lbfiles.GetItemChecked(i)) continue;
-				Interfaces.Scenegraph.IScenegraphFileIndexItem item = (Interfaces.Scenegraph.IScenegraphFileIndexItem)lbfiles.Items[i];
-				SimPe.Packages.PackedFileDescriptor npfd = new SimPe.Packages.PackedFileDescriptor();
-				npfd.Type = item.FileDescriptor.Type;
-				npfd.Group = item.FileDescriptor.Group;
-				npfd.Instance = item.FileDescriptor.Instance;
-				npfd.SubType = item.FileDescriptor.SubType;
-				npfd.UserData = item.Package.Read(item.FileDescriptor).UncompressedData;
-				package.Add(npfd);
-
-				if (npfd.Type == Data.MetaData.BHAV_FILE)
+				for (int i=0; i<lbfiles.Items.Count; i++) 
 				{
-					maxbhavinst++;
-					npfd.Group = 0xffffffff;
-					bhavalias[(ushort)npfd.Instance] = (ushort)maxbhavinst;
-					npfd.Instance = maxbhavinst;
+					if (!lbfiles.GetItemChecked(i)) continue;
+					Interfaces.Scenegraph.IScenegraphFileIndexItem item = (Interfaces.Scenegraph.IScenegraphFileIndexItem)lbfiles.Items[i];
+					SimPe.Packages.PackedFileDescriptor npfd = new SimPe.Packages.PackedFileDescriptor();
+					npfd.Type = item.FileDescriptor.Type;
+					npfd.Group = item.FileDescriptor.Group;
+					npfd.Instance = item.FileDescriptor.Instance;
+					npfd.SubType = item.FileDescriptor.SubType;
+					npfd.UserData = item.Package.Read(item.FileDescriptor).UncompressedData;
+					package.Add(npfd);
 
-					SimPe.Plugin.Bhav bhav = new SimPe.Plugin.Bhav(prov.OpcodeProvider);
-					bhav.ProcessData(npfd, package);
-					if (cbname.Checked)	bhav.FileName = "["+cbsemi.Text+"] "+bhav.FileName;
+					if (npfd.Type == Data.MetaData.BHAV_FILE)
+					{
+						maxbhavinst++;
+						npfd.Group = 0xffffffff;
+						bhavalias[(ushort)npfd.Instance] = (ushort)maxbhavinst;
+						npfd.Instance = maxbhavinst;
+
+						SimPe.Plugin.Bhav bhav = new SimPe.Plugin.Bhav(prov.OpcodeProvider);
+						bhav.ProcessData(npfd, package);
+						if (cbname.Checked)	bhav.FileName = "["+cbsemi.Text+"] "+bhav.FileName;
+						bhav.SynchronizeUserData();
+
+						bhavs.Add(bhav);
+					} 
+					else if (npfd.Type == 0x42434F4E) //BCON
+					{
+						npfd.Instance = maxbconinst++;
+						npfd.Group = 0xffffffff;
+						bconalias[(ushort)npfd.Instance] = (ushort)npfd.Instance;
+
+						SimPe.Plugin.Bcon bcon = new SimPe.Plugin.Bcon();
+						bcon.ProcessData(npfd, package);
+						if (cbname.Checked)	bcon.FileName = "["+cbsemi.Text+"] "+bcon.FileName;
+						bcon.SynchronizeUserData();
+					} 
+					else if  (npfd.Type == 0x54544142) //TTAB
+					{
+						SimPe.Plugin.Ttab ttab = new SimPe.Plugin.Ttab(prov.OpcodeProvider);
+						ttab.ProcessData(npfd, package);
+
+						ttabs.Add(ttab);
+					}	
+				}
+
+				if (cbfix.Checked) 
+				{
+					pfds = package.FindFiles(Data.MetaData.BHAV_FILE);
+					foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+					{
+						SimPe.Plugin.Bhav bhav = new SimPe.Plugin.Bhav(prov.OpcodeProvider);
+						bhav.ProcessData(pfd, package);
+
+						bhavs.Add(bhav);
+					}
+
+					pfds = package.FindFiles(0x54544142);
+					foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+					{
+						SimPe.Plugin.Ttab ttab = new SimPe.Plugin.Ttab(prov.OpcodeProvider);
+						ttab.ProcessData(pfd, package);
+
+						ttabs.Add(ttab);
+					}
+				}
+
+				//Relink all SemiGlobals in imported BHAV's
+				foreach (SimPe.Plugin.Bhav bhav in bhavs) 
+				{
+					foreach (SimPe.Plugin.Instruction i in bhav.Instructions)
+					{
+						if (bhavalias.Contains(i.OpCode)) i.OpCode = (ushort)bhavalias[i.OpCode];
+					}
 					bhav.SynchronizeUserData();
-
-					bhavs.Add(bhav);
-				} 
-				else if (npfd.Type == 0x42434F4E) //BCON
-				{
-					npfd.Instance = maxbconinst++;
-					npfd.Group = 0xffffffff;
-					bconalias[(ushort)npfd.Instance] = (ushort)npfd.Instance;
-
-					SimPe.Plugin.Bcon bcon = new SimPe.Plugin.Bcon();
-					bcon.ProcessData(npfd, package);
-					if (cbname.Checked)	bcon.FileName = "["+cbsemi.Text+"] "+bcon.FileName;
-					bcon.SynchronizeUserData();
-				} 
-				else if  (npfd.Type == 0x54544142) //TTAB
-				{
-					SimPe.Plugin.Ttab ttab = new SimPe.Plugin.Ttab(prov.OpcodeProvider);
-					ttab.ProcessData(npfd, package);
-
-					ttabs.Add(ttab);
-				}	
-			}
-
-			if (cbfix.Checked) 
-			{
-				pfds = package.FindFiles(Data.MetaData.BHAV_FILE);
-				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
-				{
-					SimPe.Plugin.Bhav bhav = new SimPe.Plugin.Bhav(prov.OpcodeProvider);
-					bhav.ProcessData(pfd, package);
-
-					bhavs.Add(bhav);
 				}
 
-				pfds = package.FindFiles(0x54544142);
-				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+				//Relink all TTAbs
+				foreach (SimPe.Plugin.Ttab ttab in ttabs) 
 				{
-					SimPe.Plugin.Ttab ttab = new SimPe.Plugin.Ttab(prov.OpcodeProvider);
-					ttab.ProcessData(pfd, package);
-
-					ttabs.Add(ttab);
+					foreach (SimPe.Plugin.TtabItem item in ttab.Items)
+					{
+						if (bhavalias.Contains(item.Guardian)) item.Guardian = (ushort)bhavalias[item.Guardian];
+						if (bhavalias.Contains(item.Action)) item.Action = (ushort)bhavalias[item.Action];
+					}
+					ttab.SynchronizeUserData();
 				}
-			}
-
-			//Relink all SemiGlobals in imported BHAV's
-			foreach (SimPe.Plugin.Bhav bhav in bhavs) 
-			{
-				foreach (SimPe.Plugin.Instruction i in bhav.Instructions)
-				{
-					if (bhavalias.Contains(i.OpCode)) i.OpCode = (ushort)bhavalias[i.OpCode];
-				}
-				bhav.SynchronizeUserData();
-			}
-
-			//Relink all TTAbs
-			foreach (SimPe.Plugin.Ttab ttab in ttabs) 
-			{
-				foreach (SimPe.Plugin.TtabItem item in ttab.Items)
-				{
-					if (bhavalias.Contains(item.Guardian)) item.Guardian = (ushort)bhavalias[item.Guardian];
-					if (bhavalias.Contains(item.Action)) item.Action = (ushort)bhavalias[item.Action];
-				}
-				ttab.SynchronizeUserData();
-			}
 		
+			} 
+			finally 
+			{
+				package.EndUpdate();
+			}
 			this.Cursor = Cursors.Default;
 			Close();
 		}

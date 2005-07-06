@@ -127,6 +127,12 @@
   <data name="miOpen.Text">
     <value>Ö&amp;ffnen...</value>
   </data>
+  <data name="miOpenIn.Text">
+    <value>Öffne &amp;In</value>
+  </data>
+  <data name="miOpenUniRes.Text">
+    <value>WCJ: TSData/Res...</value>
+  </data>
   <data name="miSave.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -215,6 +221,9 @@
   <data name="miExit.Text">
     <value>&amp;Beenden</value>
   </data>
+  <data name="miTools.Text">
+    <value>&amp;Werkzeuge</value>
+  </data>
   <data name="miExtra.Text">
     <value>&amp;Extras</value>
   </data>
@@ -250,9 +259,6 @@
   </data>
   <data name="miPref.Text">
     <value>&amp;Einstellungen..</value>
-  </data>
-  <data name="miTools.Text">
-    <value>&amp;Werkzeuge</value>
   </data>
   <data name="miWindow.Text">
     <value>&amp;Fenster</value>
@@ -575,9 +581,6 @@
   <data name="dcResource.Text">
     <value>Resourcen Baum</value>
   </data>
-  <data name="dcPreview.Text">
-    <value>Resourcen Details</value>
-  </data>
   <data name="dcFilter.Text">
     <value>Resourcen Filter</value>
   </data>
@@ -897,6 +900,6 @@
     <value>Dokumenten Ansicht</value>
   </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
+    <value>NoControl</value>
   </data>
 </root>

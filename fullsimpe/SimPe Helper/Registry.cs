@@ -627,7 +627,11 @@ namespace SimPe
 			get 
 			{
 				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+#if MAC
+				object o = rkf.GetValue("CheckForUpdates", false);
+#else
 				object o = rkf.GetValue("CheckForUpdates", true);
+#endif
 				return Convert.ToBoolean(o);
 			}
 			set

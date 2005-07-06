@@ -116,6 +116,12 @@ namespace SimPe
 		private TD.SandBar.MenuButtonItem miUpdate;
 		private TD.SandBar.MenuButtonItem miTutorials;
 		private TD.SandBar.ButtonItem biUpdate;
+		private TD.SandBar.MenuButtonItem miOpenIn;
+		private TD.SandBar.MenuButtonItem miOpenSimsRes;
+		private TD.SandBar.MenuButtonItem miOpenUniRes;
+		private TD.SandBar.MenuButtonItem miOpenDownloads;
+		private System.Windows.Forms.TextBox tbRcolName;
+		private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon2;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -202,6 +208,7 @@ namespace SimPe
 			this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
 			this.tbInst = new System.Windows.Forms.TextBox();
 			this.tbGrp = new System.Windows.Forms.TextBox();
+			this.tbRcolName = new System.Windows.Forms.TextBox();
 			this.sbm = new TD.SandBar.SandBarManager();
 			this.leftSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.rightSandBarDock = new TD.SandBar.ToolBarContainer();
@@ -211,17 +218,21 @@ namespace SimPe
 			this.menuBarItem1 = new TD.SandBar.MenuBarItem();
 			this.miNew = new TD.SandBar.MenuButtonItem();
 			this.miOpen = new TD.SandBar.MenuButtonItem();
+			this.miOpenIn = new TD.SandBar.MenuButtonItem();
+			this.miOpenSimsRes = new TD.SandBar.MenuButtonItem();
+			this.miOpenUniRes = new TD.SandBar.MenuButtonItem();
+			this.miOpenDownloads = new TD.SandBar.MenuButtonItem();
 			this.miSave = new TD.SandBar.MenuButtonItem();
 			this.miSaveAs = new TD.SandBar.MenuButtonItem();
 			this.miClose = new TD.SandBar.MenuButtonItem();
 			this.miRecent = new TD.SandBar.MenuButtonItem();
 			this.miExit = new TD.SandBar.MenuButtonItem();
+			this.miTools = new TD.SandBar.MenuBarItem();
 			this.miExtra = new TD.SandBar.MenuBarItem();
 			this.miMetaInfo = new TD.SandBar.MenuButtonItem();
 			this.miFileNames = new TD.SandBar.MenuButtonItem();
 			this.miRunSims = new TD.SandBar.MenuButtonItem();
 			this.miPref = new TD.SandBar.MenuButtonItem();
-			this.miTools = new TD.SandBar.MenuBarItem();
 			this.miWindow = new TD.SandBar.MenuBarItem();
 			this.miNewDc = new TD.SandBar.MenuButtonItem();
 			this.menuBarItem5 = new TD.SandBar.MenuBarItem();
@@ -259,6 +270,7 @@ namespace SimPe
 			this.myrightSandDock = new TD.SandDock.DockContainer();
 			this.dcFilter = new TD.SandDock.DockControl();
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.xpLinkedLabelIcon2 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
 			this.xpLinkedLabelIcon1 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
 			this.dcAction = new TD.SandDock.DockControl();
 			this.xpGradientPanel2 = new SteepValley.Windows.Forms.XPGradientPanel();
@@ -351,6 +363,33 @@ namespace SimPe
 			this.tbGrp.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbGrp.TextAlign")));
 			this.tbGrp.Visible = ((bool)(resources.GetObject("tbGrp.Visible")));
 			this.tbGrp.WordWrap = ((bool)(resources.GetObject("tbGrp.WordWrap")));
+			// 
+			// tbRcolName
+			// 
+			this.tbRcolName.AccessibleDescription = resources.GetString("tbRcolName.AccessibleDescription");
+			this.tbRcolName.AccessibleName = resources.GetString("tbRcolName.AccessibleName");
+			this.tbRcolName.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbRcolName.Anchor")));
+			this.tbRcolName.AutoSize = ((bool)(resources.GetObject("tbRcolName.AutoSize")));
+			this.tbRcolName.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbRcolName.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbRcolName, "RCOL Filename");
+			this.tbRcolName.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbRcolName.Dock")));
+			this.tbRcolName.Enabled = ((bool)(resources.GetObject("tbRcolName.Enabled")));
+			this.tbRcolName.Font = ((System.Drawing.Font)(resources.GetObject("tbRcolName.Font")));
+			this.tbRcolName.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbRcolName.ImeMode")));
+			this.tbRcolName.Location = ((System.Drawing.Point)(resources.GetObject("tbRcolName.Location")));
+			this.tbRcolName.MaxLength = ((int)(resources.GetObject("tbRcolName.MaxLength")));
+			this.tbRcolName.Multiline = ((bool)(resources.GetObject("tbRcolName.Multiline")));
+			this.tbRcolName.Name = "tbRcolName";
+			this.tbRcolName.PasswordChar = ((char)(resources.GetObject("tbRcolName.PasswordChar")));
+			this.tbRcolName.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbRcolName.RightToLeft")));
+			this.tbRcolName.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbRcolName.ScrollBars")));
+			this.tbRcolName.Size = ((System.Drawing.Size)(resources.GetObject("tbRcolName.Size")));
+			this.tbRcolName.TabIndex = ((int)(resources.GetObject("tbRcolName.TabIndex")));
+			this.tbRcolName.Text = resources.GetString("tbRcolName.Text");
+			this.tbRcolName.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbRcolName.TextAlign")));
+			this.tbRcolName.Visible = ((bool)(resources.GetObject("tbRcolName.Visible")));
+			this.tbRcolName.WordWrap = ((bool)(resources.GetObject("tbRcolName.WordWrap")));
+			this.tbRcolName.SizeChanged += new System.EventHandler(this.tbRcolName_SizeChanged);
 			// 
 			// sbm
 			// 
@@ -483,6 +522,7 @@ namespace SimPe
 			this.menuBarItem1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
 																				  this.miNew,
 																				  this.miOpen,
+																				  this.miOpenIn,
 																				  this.miSave,
 																				  this.miSaveAs,
 																				  this.miClose,
@@ -509,6 +549,41 @@ namespace SimPe
 			this.miOpen.Text = resources.GetString("miOpen.Text");
 			this.miOpen.ToolTipText = resources.GetString("miOpen.ToolTipText");
 			this.miOpen.Activate += new System.EventHandler(this.Activate_miOpen);
+			// 
+			// miOpenIn
+			// 
+			this.miOpenIn.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																			  this.miOpenSimsRes,
+																			  this.miOpenUniRes,
+																			  this.miOpenDownloads});
+			this.miOpenIn.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenIn.Shortcut")));
+			this.miOpenIn.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenIn.Shortcut2")));
+			this.miOpenIn.Text = resources.GetString("miOpenIn.Text");
+			this.miOpenIn.ToolTipText = resources.GetString("miOpenIn.ToolTipText");
+			// 
+			// miOpenSimsRes
+			// 
+			this.miOpenSimsRes.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenSimsRes.Shortcut")));
+			this.miOpenSimsRes.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenSimsRes.Shortcut2")));
+			this.miOpenSimsRes.Text = resources.GetString("miOpenSimsRes.Text");
+			this.miOpenSimsRes.ToolTipText = resources.GetString("miOpenSimsRes.ToolTipText");
+			this.miOpenSimsRes.Activate += new System.EventHandler(this.Activate_miOpenSimsRes);
+			// 
+			// miOpenUniRes
+			// 
+			this.miOpenUniRes.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenUniRes.Shortcut")));
+			this.miOpenUniRes.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenUniRes.Shortcut2")));
+			this.miOpenUniRes.Text = resources.GetString("miOpenUniRes.Text");
+			this.miOpenUniRes.ToolTipText = resources.GetString("miOpenUniRes.ToolTipText");
+			this.miOpenUniRes.Activate += new System.EventHandler(this.Activate_miOpenUniRes);
+			// 
+			// miOpenDownloads
+			// 
+			this.miOpenDownloads.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenDownloads.Shortcut")));
+			this.miOpenDownloads.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenDownloads.Shortcut2")));
+			this.miOpenDownloads.Text = resources.GetString("miOpenDownloads.Text");
+			this.miOpenDownloads.ToolTipText = resources.GetString("miOpenDownloads.ToolTipText");
+			this.miOpenDownloads.Activate += new System.EventHandler(this.Activate_miOpenDownloads);
 			// 
 			// miSave
 			// 
@@ -555,6 +630,11 @@ namespace SimPe
 			this.miExit.ToolTipText = resources.GetString("miExit.ToolTipText");
 			this.miExit.Activate += new System.EventHandler(this.Activate_miExit);
 			// 
+			// miTools
+			// 
+			this.miTools.Text = resources.GetString("miTools.Text");
+			this.miTools.ToolTipText = resources.GetString("miTools.ToolTipText");
+			// 
 			// miExtra
 			// 
 			this.miExtra.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
@@ -600,11 +680,6 @@ namespace SimPe
 			this.miPref.Text = resources.GetString("miPref.Text");
 			this.miPref.ToolTipText = resources.GetString("miPref.ToolTipText");
 			this.miPref.Activate += new System.EventHandler(this.ShowPreferences);
-			// 
-			// miTools
-			// 
-			this.miTools.Text = resources.GetString("miTools.Text");
-			this.miTools.ToolTipText = resources.GetString("miTools.ToolTipText");
 			// 
 			// miWindow
 			// 
@@ -1114,6 +1189,8 @@ namespace SimPe
 			this.xpGradientPanel1.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel1.AutoScrollMargin")));
 			this.xpGradientPanel1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel1.AutoScrollMinSize")));
 			this.xpGradientPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel1.BackgroundImage")));
+			this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon2);
+			this.xpGradientPanel1.Controls.Add(this.tbRcolName);
 			this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon1);
 			this.xpGradientPanel1.Controls.Add(this.tbInst);
 			this.xpGradientPanel1.Controls.Add(this.tbGrp);
@@ -1130,6 +1207,33 @@ namespace SimPe
 			this.xpGradientPanel1.Visible = ((bool)(resources.GetObject("xpGradientPanel1.Visible")));
 			this.xpGradientPanel1.Watermark = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel1.Watermark")));
 			this.xpGradientPanel1.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel1.WatermarkSize")));
+			// 
+			// xpLinkedLabelIcon2
+			// 
+			this.xpLinkedLabelIcon2.AccessibleDescription = resources.GetString("xpLinkedLabelIcon2.AccessibleDescription");
+			this.xpLinkedLabelIcon2.AccessibleName = resources.GetString("xpLinkedLabelIcon2.AccessibleName");
+			this.xpLinkedLabelIcon2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("xpLinkedLabelIcon2.Anchor")));
+			this.xpLinkedLabelIcon2.AutoScroll = ((bool)(resources.GetObject("xpLinkedLabelIcon2.AutoScroll")));
+			this.xpLinkedLabelIcon2.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpLinkedLabelIcon2.AutoScrollMargin")));
+			this.xpLinkedLabelIcon2.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpLinkedLabelIcon2.AutoScrollMinSize")));
+			this.xpLinkedLabelIcon2.BackColor = System.Drawing.Color.Transparent;
+			this.xpLinkedLabelIcon2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpLinkedLabelIcon2.BackgroundImage")));
+			this.xpLinkedLabelIcon2.DisabledLinkColor = System.Drawing.Color.FromArgb(((System.Byte)(105)), ((System.Byte)(99)), ((System.Byte)(50)));
+			this.xpLinkedLabelIcon2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpLinkedLabelIcon2.Dock")));
+			this.xpLinkedLabelIcon2.Enabled = ((bool)(resources.GetObject("xpLinkedLabelIcon2.Enabled")));
+			this.xpLinkedLabelIcon2.Font = ((System.Drawing.Font)(resources.GetObject("xpLinkedLabelIcon2.Font")));
+			this.xpLinkedLabelIcon2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpLinkedLabelIcon2.ImeMode")));
+			this.xpLinkedLabelIcon2.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
+			this.xpLinkedLabelIcon2.LinkColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(255)));
+			this.xpLinkedLabelIcon2.Location = ((System.Drawing.Point)(resources.GetObject("xpLinkedLabelIcon2.Location")));
+			this.xpLinkedLabelIcon2.Name = "xpLinkedLabelIcon2";
+			this.xpLinkedLabelIcon2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("xpLinkedLabelIcon2.RightToLeft")));
+			this.xpLinkedLabelIcon2.Size = ((System.Drawing.Size)(resources.GetObject("xpLinkedLabelIcon2.Size")));
+			this.xpLinkedLabelIcon2.TabIndex = ((int)(resources.GetObject("xpLinkedLabelIcon2.TabIndex")));
+			this.xpLinkedLabelIcon2.Text = resources.GetString("xpLinkedLabelIcon2.Text");
+			this.xpLinkedLabelIcon2.Visible = ((bool)(resources.GetObject("xpLinkedLabelIcon2.Visible")));
+			this.xpLinkedLabelIcon2.VisitedLinkColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(0)), ((System.Byte)(128)));
+			this.xpLinkedLabelIcon2.LinkClicked += new System.EventHandler(this.SetRcolNameFilter);
 			// 
 			// xpLinkedLabelIcon1
 			// 
@@ -2097,6 +2201,8 @@ namespace SimPe
 			this.miSave.Enabled = System.IO.File.Exists(package.FileName);
 			this.miSaveAs.Enabled = package.Loaded;
 			this.miClose.Enabled = package.Loaded;
+
+			this.miOpenUniRes.Enabled = Helper.WindowsRegistry.EPInstalled>=1;
 		}
 		#endregion
 
@@ -2266,6 +2372,7 @@ namespace SimPe
 		}
 		#endregion
 
+		delegate void ShowUpdateFkt(bool force);
 		void LoadForm(object sender, System.EventArgs e)
 		{					
 			dcFilter.LayoutSystem.Collapsed = true;
@@ -2277,8 +2384,8 @@ namespace SimPe
 			}	
 		
 			ReloadLayout();	
-		
-			if (Helper.WindowsRegistry.CheckForUpdates) About.ShowUpdate(false);
+			
+			if (Helper.WindowsRegistry.CheckForUpdates) this.BeginInvoke(new ShowUpdateFkt(About.ShowUpdate), new object[] {false});
 
 			//load Files passed on the commandline
 			package.LoadOrImportFiles(pargs, true);
@@ -2450,7 +2557,7 @@ namespace SimPe
 
 		private void ClosingForm(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			e.Cancel = !resloader.Clear();
+			e.Cancel = !this.ClosePackage();
 			if (!e.Cancel) 
 			{
 				Ambertation.Panel3D.StopAll();
@@ -2640,6 +2747,53 @@ namespace SimPe
 				if (e.HasResource) treebuilder.SelectResource(lv, e.Resource);	
 			}
 		}
+
+		private void Activate_miOpenSimsRes(object sender, System.EventArgs e)
+		{
+			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res");
+			this.Activate_miOpen(sender, e);
+		}
+
+		private void Activate_miOpenUniRes(object sender, System.EventArgs e)
+		{
+			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, "TSData\\Res");
+			this.Activate_miOpen(sender, e);
+		}
+
+		private void Activate_miOpenDownloads(object sender, System.EventArgs e)
+		{
+			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads");
+			this.Activate_miOpen(sender, e);
+		}
+
+		private void SetRcolNameFilter(object sender, System.EventArgs e)
+		{
+			filter.FilterGroup = false;
+			try 
+			{
+				filter.Instance = Hashes.InstanceHash(this.tbRcolName.Text);
+				//filter.Group = Hashes.GroupHash(this.tbRcolName.Text);
+				filter.FilterInstance = (tbRcolName.Text.Trim()!="");
+				//filter.FilterGroup = filter.FilterInstance;
+			} 
+			catch 
+			{
+				filter.FilterInstance = false;				
+			}
+			
+			if (lastusedtnt!=null) lastusedtnt.Refresh(lv);
+		}
+
+		private void tbRcolName_SizeChanged(object sender, System.EventArgs e)
+		{
+			if (tbRcolName.Right+8 > tbRcolName.Parent.Width) 
+			{
+				tbRcolName.Width = tbRcolName.Parent.Width - tbRcolName.Left - 8;
+				xpLinkedLabelIcon2.Left = tbRcolName.Right - xpLinkedLabelIcon2.Width;
+			}
+		}
+
+	
 	}
 			
 }

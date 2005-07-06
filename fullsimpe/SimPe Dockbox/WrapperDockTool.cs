@@ -54,7 +54,9 @@ namespace SimPe.Plugin.Tool.Dockable
 							rd.lbAuthor.Text = wrp.WrapperDescription.Author;
 							rd.lbVersion.Text = wrp.WrapperDescription.Version.ToString();
 							rd.lbDesc.Text = wrp.WrapperDescription.Description;
-
+							rd.pb.Image = wrp.WrapperDescription.Icon;
+							if (rd.pb.Image!=null) rd.lbName.Left = rd.pb.Right+4;
+							else rd.lbName.Left = rd.pb.Left;
 							return;
 						}
 					}
@@ -63,6 +65,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			rd.lbAuthor.Text = SimPe.Localization.GetString("Unknown");
 			rd.lbVersion.Text = SimPe.Localization.GetString("Unknown");
 			rd.lbDesc.Text = SimPe.Localization.GetString("");
+			rd.pb.Image = null;
+			rd.lbName.Left = rd.pb.Left;
 		}
 
 		#endregion

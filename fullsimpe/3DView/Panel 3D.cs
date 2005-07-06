@@ -241,7 +241,7 @@ namespace Ambertation
 
 		void SetupTexture()
 		{
-			return;
+			
 			device.TextureState[0].ColorOperation = TextureOperation.Modulate2X;
 			device.TextureState[0].ColorArgument1 = TextureArgument.TextureColor;
 			device.TextureState[0].ColorArgument2 = TextureArgument.Diffuse;
@@ -255,17 +255,16 @@ namespace Ambertation
 
 		void SetupRenderstate() 
 		{
-			//device.RenderState.CullMode = Cull.Clockwise;
-			device.RenderState.ZBufferEnable = true;
-			device.RenderState.Lighting = true;
+			device.RenderState.CullMode = Cull.Clockwise;
+			device.RenderState.ZBufferEnable = true;			
 			device.RenderState.AlphaBlendEnable = true;
 			device.RenderState.SeparateAlphaBlendEnabled = true;
 			device.RenderState.AlphaSourceBlend = Blend.SourceAlpha;
 			device.RenderState.AlphaDestinationBlend = Blend.InvSourceAlpha;			
 			device.RenderState.Lighting = true;    // Make sure lighting is enabled			
 			device.RenderState.AlphaBlendOperation = BlendOperation.Add;
-			device.RenderState.LocalViewer = false;
-			//device.RenderState.Ambient = Color.White;
+			device.RenderState.LocalViewer = true;
+			device.RenderState.Ambient = Color.White;
 			device.RenderState.DiffuseMaterialSource = ColorSource.Material;			
 		}
 
@@ -338,7 +337,8 @@ namespace Ambertation
 			dev.RenderState.ZBufferEnable = true;
 
 			// Turn on ambient lighting 
-			dev.RenderState.Ambient = System.Drawing.Color.White;				
+			dev.RenderState.Ambient = System.Drawing.Color.White;
+			xfile.Seek(0, System.IO.SeekOrigin.Begin);	
 			mesh = Mesh.FromStream(this.xfile, MeshFlags.SystemMemory, device, out materials);
 			
 
@@ -513,6 +513,7 @@ namespace Ambertation
 		Mesh bbox;
 		public void ResetDefaultViewport() 
 		{
+			
 			if (vp==null) vp = new ViewportSetting();
 			vp.Reset();
 
@@ -567,7 +568,12 @@ namespace Ambertation
 					}
 				} 				
 				
-			
+				if (min == max)
+				{
+					max.X = min.X+1;
+					max.Y = min.Y+1;
+					max.Z = min.Z+1;
+				}
 
 
 				Vector3 center = new Vector3((float)((max.X+min.X)/2.0), (float)((max.Y+min.Y)/2.0), (float)((max.Z+min.Z)/2.0));
@@ -616,7 +622,7 @@ namespace Ambertation
 					
 					Matrix.Translation(-vp.ObjectCenter.X, -vp.ObjectCenter.Y, -vp.ObjectCenter.Z),
 					Matrix.Multiply(
-						Matrix.Scaling(vp.Scale, vp.Scale, vp.Scale),
+						Matrix.Scaling(-vp.Scale, vp.Scale, vp.Scale),
 						Matrix.Multiply(
 							Matrix.RotationZ( vp.AngelZ ),
 							Matrix.Multiply(

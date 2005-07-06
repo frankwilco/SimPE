@@ -42,15 +42,7 @@ namespace SimPe.Plugin
 			if (prov==null) return false;
 			if (prov.OpcodeProvider==null) return false;
 
-			if (package==null) return false;
-			/*uint group = 0xffffffff;
-			if (pfd!=null) group = pfd.Group;
-
-			Interfaces.Files.IPackedFileDescriptor gpfd = package.FindFile(Data.MetaData.GLOB_FILE, 0, group, 1);
-			if (gpfd==null) return false;
-
-			prov.OpcodeProvider.LoadPackage();
-			if (prov.OpcodeProvider.BasePackage==null) return false;*/
+			if (package==null) return false;			
 
 			return true;
 		}

@@ -156,7 +156,10 @@ namespace SimPe
 			System.Diagnostics.FileVersionInfo v = Helper.SimPeVersion;
 			System.IO.Stream s = f.GetType().Assembly.GetManifestResourceStream("SimPe.about.rtf");
 			System.IO.StreamReader sr = new System.IO.StreamReader(s);
-			f.rtb.Rtf = sr.ReadToEnd().Replace("\\{Version\\}", v.FileMajorPart +"."+v.FileMinorPart);
+			string vtext = v.FileMajorPart +"."+v.FileMinorPart;
+			if (Helper.QARelease) vtext = "QA " + vtext;
+			if (Helper.DebugMode) vtext += " [debug]";
+			f.rtb.Rtf = sr.ReadToEnd().Replace("\\{Version\\}", vtext);
 
 			f.ShowDialog();
 		}

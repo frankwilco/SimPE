@@ -136,6 +136,7 @@ namespace SimPe.Packages
 		/// </remarks>
 		internal File(BinaryReader br)
 		{
+			pause = false;
 			type = PackageBaseType.Stream;
 			OpenByStream(br);
 		}
@@ -179,6 +180,7 @@ namespace SimPe.Packages
 		/// <param name="filename"></param>
 		internal File(string filename) 
 		{
+			pause = false;
 			ReloadFromFile(filename);
 		}
 
@@ -383,8 +385,8 @@ namespace SimPe.Packages
 
 			((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = null;
 			pfd.DescriptionChanged -= new EventHandler(ResourceDescriptionChanged);
-			if (IndexChanged!=null) IndexChanged(this, new EventArgs());			
-			if (RemovedResource!=null) RemovedResource(this, new EventArgs());
+			FireIndexEvent();			
+			this.FireRemoveEvent();
 		}
 
 		/// <summary>
@@ -410,8 +412,12 @@ namespace SimPe.Packages
 			fileindex = pfds;			
 			header.index.count = fileindex.Length;
 
-			if (IndexChanged!=null && changed) IndexChanged(this, new EventArgs());			
-			if (RemovedResource!=null && changed) RemovedResource(this, new EventArgs());
+						
+			if (changed) 
+			{
+				this.FireRemoveEvent();
+				FireIndexEvent();
+			}
 		}
 
 		/// <summary>
@@ -466,8 +472,8 @@ namespace SimPe.Packages
 
 			((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = new SimPe.Events.PackedFileChanged(ResourceChanged);
 			pfd.DescriptionChanged += new EventHandler(ResourceDescriptionChanged);
-			if (IndexChanged!=null) IndexChanged(this, new EventArgs());
-			if (AddedResource!=null) AddedResource(this, new EventArgs());
+			FireIndexEvent();
+			this.FireAddEvent();
 		}
 
 		/// <summary>
@@ -1081,16 +1087,45 @@ namespace SimPe.Packages
 		}
 
 		#region Events
+		bool pause;
+		bool indexevent;
+		void FireAddEvent() 
+		{
+			if (pause) return;
+			if (this.AddedResource!=null) AddedResource(this, new System.EventArgs());
+		}
+		void FireRemoveEvent() 
+		{
+			if (pause) return;
+			if (this.RemovedResource!=null) RemovedResource(this, new System.EventArgs());
+		}
+		void FireIndexEvent() 
+		{			
+			FireIndexEvent(new System.EventArgs());
+		}
+
+		void FireIndexEvent(System.EventArgs e)
+		{
+			if (pause) { indexevent = true; return; }
+			if (this.IndexChanged!=null) IndexChanged(this, e);
+		}
+
 		public void BeginUpdate()
 		{
+			indexevent = false;
+			pause = true;
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in Index)
 				pfd.BeginUpdate();
 		}
 
 		public void EndUpdate()
 		{
+			if (!pause) return;
+			pause = false;
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in Index)
 				pfd.EndUpdate();
+
+			if (indexevent) FireIndexEvent();
 		}
 		/// <summary>
 		/// Called whenever the content represented by this descripotr was changed
@@ -1128,7 +1163,7 @@ namespace SimPe.Packages
 		/// <param name="e"></param>
 		private void ResourceDescriptionChanged(object sender, EventArgs e)
 		{
-			if (IndexChanged!=null) IndexChanged(this, e);
+			FireIndexEvent(e);
 		}
 		#endregion
 	}

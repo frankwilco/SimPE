@@ -34,7 +34,11 @@ namespace SimPe.Plugin.Gmdc
 		/// <summary>
 		/// Flipped Depth with width (X, Z, Y)
 		/// </summary>
-		XZY = 1
+		XZY = 1,
+		/// <summary>
+		/// Used when you want to display a Preview
+		/// </summary>
+		Preview
 	}
 
 	/// <summary>
@@ -54,16 +58,15 @@ namespace SimPe.Plugin.Gmdc
 			set 
 			{ 
 				s = value; 
-				if (s==ElementSorting.XZY) 
+				if (s==ElementSorting.XZY||s==ElementSorting.Preview) 
 				{
 					//rotate 90° around X-Axis
 					m = new SimPe.Geometry.Matrixd(3, 3);
 					m[0,0] = -1;			m[0,1] = 0;			m[0,2] = 0;
 					m[1,0] = 0;			m[1,1] = 0;			m[1,2] = 1;
 					m[2,0] = 0;			m[2,1] = 1;			m[2,2] = 0;
-				}
+				} 
 				else m=SimPe.Geometry.Matrixd.GetIdentity(3, 3);	
-
 
 				ms = new SimPe.Geometry.Matrixd(3, 3);
 				ms[0,0] = Helper.WindowsRegistry.ImportExportScaleFactor;	ms[0,1] = 0;												ms[0,2] = 0;

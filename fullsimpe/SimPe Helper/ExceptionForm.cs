@@ -12,10 +12,7 @@ namespace SimPe
 	public class ExceptionForm : System.Windows.Forms.Form
 	{
 		internal System.Windows.Forms.Label lberr;
-#if MAC
-#else
 		private System.Windows.Forms.RichTextBox rtb;
-#endif
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.LinkLabel lldetail;
 		private System.Windows.Forms.Panel panel1;
@@ -468,6 +465,10 @@ namespace SimPe
 				extrace += myex.ToString()/*+": "+myex.Message*/+Helper.lbr;
 				myex = myex.InnerException;
 			}
+#if MAC
+			MessageBox.Show(message+"\n\n"+extrace+"\n\n"+myex);
+			return;
+#endif
 
 			ExceptionForm frm = new ExceptionForm();
 

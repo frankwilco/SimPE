@@ -181,6 +181,10 @@ namespace SimPe.Plugin
 
 			SimPe.Plugin.Gmdc.ElementSorting[] vs = (SimPe.Plugin.Gmdc.ElementSorting[])System.Enum.GetValues(typeof(SimPe.Plugin.Gmdc.ElementSorting));
 			foreach (SimPe.Plugin.Gmdc.ElementSorting es in vs) {
+#if DEBUG
+#else
+				if (es == ElementSorting.Preview) continue;
+#endif
 				cbaxis.Items.Add(es);
 				if (es == ElementSorting.XZY) cbaxis.SelectedIndex = cbaxis.Items.Count-1;
 			}
@@ -2143,7 +2147,8 @@ namespace SimPe.Plugin
 				GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
 				
 				
-				Stream xfile = gmdc.GenerateX(GetModelsExt());				
+				Stream xfile = gmdc.GenerateX(GetModelsExt());		
+
 				try 
 				{
 					//stop all running Previews
@@ -2153,8 +2158,9 @@ namespace SimPe.Plugin
 					System.Collections.Hashtable txtrs = tl.GetLargestImages(tl.FindTextures(gmdc.Parent));
 
 					Ambertation.ViewportSetting vp = null;
-					if (curpn!=null) vp = curpn.ViewportSetting;
-					curpn = new Ambertation.Panel3D(this.pnprev, new Point(0, 0), new Size(Math.Min(pnprev.Width, pnprev.Height), Math.Min(pnprev.Width, pnprev.Height)), xfile, txtrs, vp);
+					if (curpn!=null) vp = curpn.ViewportSetting;									
+					curpn = new Ambertation.Panel3D(this.pnprev, new Point(0, 0), new Size(Math.Min(pnprev.Width, pnprev.Height), Math.Min(pnprev.Width, pnprev.Height)), xfile, txtrs);
+					
 				} 
 				catch (System.IO.FileNotFoundException)
 				{

@@ -340,7 +340,7 @@ namespace SimPe.Plugin
 			IGmdcExporter exporter = ExporterLoader.FindExporterByExtension(".x");			
 			if (exporter==null) throw new Exception("No valid Direct X Exporter plugin was found!");
 
-			exporter.Component.Sorting = ElementSorting.XZY;
+			exporter.Component.Sorting = ElementSorting.Preview;
 			exporter.Process(this, models);
 			return (MemoryStream)exporter.FileContent.BaseStream;
 		}

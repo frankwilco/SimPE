@@ -452,6 +452,9 @@ namespace SimPe
 		#region Import Data
 		public static void ImportOldData()
 		{
+			if (!System.IO.Directory.Exists(Helper.SimPeDataPath)) 
+				System.IO.Directory.CreateDirectory(Helper.SimPeDataPath);
+
 			if (!System.IO.File.Exists(System.IO.Path.Combine(Helper.SimPeDataPath, "simpe.xreg")))
 			{
 				if (System.IO.Directory.Exists(Helper.WindowsRegistry.PreviousDataFolder))
