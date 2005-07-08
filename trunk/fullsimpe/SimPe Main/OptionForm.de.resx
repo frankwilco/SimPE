@@ -1,42 +1,660 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="ResMimeType">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="Version">
-		<value>1.0.0.0</value>
-	</resheader>
-	<resheader name="Reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="Writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 1.3
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">1.3</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1">this is my long string</data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        [base64 mime encoded serialized .NET Framework object]
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        [base64 mime encoded string representing a byte array form of the .NET Framework object]
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used forserialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="tbgame.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 72</value>
+  </data>
+  <data name="tbgame.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 21</value>
+  </data>
+  <data name="label2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0, 8</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 56</value>
+  </data>
+  <data name="label2.Text">
+    <value>Standard Verzeichnis:</value>
+  </data>
+  <data name="tbsavegame.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 176</value>
+  </data>
+  <data name="tbsavegame.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 21</value>
+  </data>
+  <data name="cbdebug.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>208, 24</value>
+  </data>
+  <data name="cbdebug.Text">
+    <value>Spiel startet im  Debug Modus</value>
+  </data>
+  <data name="cbblur.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>160, 24</value>
+  </data>
+  <data name="cbblur.Text">
+    <value>Nackte Sims verpixeln</value>
+  </data>
+  <data name="cbsound.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 72</value>
+  </data>
+  <data name="cbsound.Text">
+    <value>Spiel mit Ton starten</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>136, 17</value>
+  </data>
+  <data name="label1.Text">
+    <value>Externe Programme:</value>
+  </data>
+  <data name="lbext.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>24, 48</value>
+  </data>
+  <data name="lbext.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>552, 320</value>
+  </data>
+  <data name="linkLabel1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0, 10</value>
+  </data>
+  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>584, 328</value>
+  </data>
+  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>75, 17</value>
+  </data>
+  <data name="linkLabel1.Text">
+    <value>hinzufügen</value>
+  </data>
+  <data name="linkLabel2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0, 7</value>
+  </data>
+  <data name="linkLabel2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>584, 344</value>
+  </data>
+  <data name="linkLabel2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>53, 17</value>
+  </data>
+  <data name="linkLabel2.Text">
+    <value>löschen</value>
+  </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>568, 72</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>96, 24</value>
+  </data>
+  <data name="button2.Text">
+    <value>Durchsuchen...</value>
+  </data>
+  <data name="button3.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>568, 176</value>
+  </data>
+  <data name="button3.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>96, 24</value>
+  </data>
+  <data name="button3.Text">
+    <value>Durchsuchen...</value>
+  </data>
+  <data name="button4.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>568, 224</value>
+  </data>
+  <data name="button4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>96, 24</value>
+  </data>
+  <data name="button4.Text">
+    <value>Durchsuchen...</value>
+  </data>
+  <data name="tbdds.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 224</value>
+  </data>
+  <data name="tbdds.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 21</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>4, 224</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>188, 17</value>
+  </data>
+  <data name="label5.Text">
+    <value>Nvidia DDS Tool Verzeichnis:</value>
+  </data>
+  <data name="tbep1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 120</value>
+  </data>
+  <data name="tbep1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 21</value>
+  </data>
+  <data name="button5.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>568, 120</value>
+  </data>
+  <data name="button5.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>96, 24</value>
+  </data>
+  <data name="button5.Text">
+    <value>Durchsuchen...</value>
+  </data>
+  <data name="linkLabel4.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0, 8</value>
+  </data>
+  <data name="linkLabel4.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 160</value>
+  </data>
+  <data name="linkLabel4.Text">
+    <value>Standard Verzeichnis:</value>
+  </data>
+  <data name="lldds2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>11, 4</value>
+  </data>
+  <data name="lldds2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 264</value>
+  </data>
+  <data name="lldds2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>208, 23</value>
+  </data>
+  <data name="lldds2.Text">
+    <value>Sie stehen hier zum Download bereit.</value>
+  </data>
+  <data name="lldds.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 248</value>
+  </data>
+  <data name="lldds.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>376, 16</value>
+  </data>
+  <data name="lldds.Text">
+    <value>The Nvidia DDS Utilities wurden nicht gefunden.</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 168</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>184, 23</value>
+  </data>
+  <data name="label7.Text">
+    <value>Spielstand Verzeichnis:</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 120</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>184, 23</value>
+  </data>
+  <data name="label6.Text">
+    <value>Wilde Kampus-Jahre Verz.:</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 72</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>184, 23</value>
+  </data>
+  <data name="label3.Text">
+    <value>Sims 2 Verzeichnis:</value>
+  </data>
+  <data name="llsetep1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0, 8</value>
+  </data>
+  <data name="llsetep1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 104</value>
+  </data>
+  <data name="llsetep1.Text">
+    <value>Standard Verzeichnis:</value>
+  </data>
+  <data name="cbow.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>216, 24</value>
+  </data>
+  <data name="cbow.Text">
+    <value>schnell anzeigen</value>
+  </data>
+  <data name="cbshowobjd.Text">
+    <value>zeige OBJd Dateinamen</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>100, 17</value>
+  </data>
+  <data name="label8.Text">
+    <value>Vorschau Größe:</value>
+  </data>
+  <data name="tbthumb.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="tbthumb.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>112, 24</value>
+  </data>
+  <data name="button6.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>112, 24</value>
+  </data>
+  <data name="button6.Text">
+    <value>Cache leeren</value>
+  </data>
+  <data name="groupBox2.Text">
+    <value>SimPE Einstellungen:</value>
+  </data>
+  <data name="cbpkgmaint.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>176, 24</value>
+  </data>
+  <data name="cbpkgmaint.Text">
+    <value>Verwende Pkg. Mainatiner</value>
+  </data>
+  <data name="cbupdate.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 104</value>
+  </data>
+  <data name="cbupdate.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>208, 24</value>
+  </data>
+  <data name="cbupdate.Text">
+    <value>Beim starten auf Updates prüfen</value>
+  </data>
+  <data name="cbhidden.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 80</value>
+  </data>
+  <data name="cbhidden.Text">
+    <value>Experten Modus</value>
+  </data>
+  <data name="cbhidden.ToolTip">
+    <value>Nach dem Ändern dieser Einstellung mus SimPe neu gestartet werden</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>112, 17</value>
+  </data>
+  <data name="label4.Text">
+    <value>Standard Sprache:</value>
+  </data>
+  <data name="cbautobak.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>152, 24</value>
+  </data>
+  <data name="cbautobak.Text">
+    <value>Automatisches Backup</value>
+  </data>
+  <data name="cbcache.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 24</value>
+  </data>
+  <data name="cbcache.Text">
+    <value>Cache benutzen</value>
+  </data>
+  <data name="cblang.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>136, 24</value>
+  </data>
+  <data name="cblang.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>272, 21</value>
+  </data>
+  <data name="cbsilent.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 56</value>
+  </data>
+  <data name="cbsilent.Text">
+    <value>Leise (weniger Popups)</value>
+  </data>
+  <data name="cbwait.Text">
+    <value>Wartebildschirm</value>
+  </data>
+  <data name="cbSimple.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 16</value>
+  </data>
+  <data name="cbSimple.Text">
+    <value>kein Doppelclick zum öffnen</value>
+  </data>
+  <data name="cbmulti.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 40</value>
+  </data>
+  <data name="cbmulti.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>320, 24</value>
+  </data>
+  <data name="cbmulti.Text">
+    <value>Mehrere geöffnete Resourcen gleichzeitig zulassen</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>232, 104</value>
+  </data>
+  <data name="groupBox1.Text">
+    <value>Spiel Einstellungen:</value>
+  </data>
+  <data name="lladddown.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>16, 9</value>
+  </data>
+  <data name="lladddown.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>432, 336</value>
+  </data>
+  <data name="lladddown.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>192, 23</value>
+  </data>
+  <data name="lladddown.Text">
+    <value>Downloads Verz. aufnehmen</value>
+  </data>
+  <data name="lldel.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0, 7</value>
+  </data>
+  <data name="lldel.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>112, 336</value>
+  </data>
+  <data name="lldel.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>64, 23</value>
+  </data>
+  <data name="lldel.Text">
+    <value>löschen</value>
+  </data>
+  <data name="lladd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0, 10</value>
+  </data>
+  <data name="lladd.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>32, 336</value>
+  </data>
+  <data name="lladd.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>80, 23</value>
+  </data>
+  <data name="lladd.Text">
+    <value>hinzufügen</value>
+  </data>
+  <data name="lbfolder.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>592, 277</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>192, 23</value>
+  </data>
+  <data name="label9.Text">
+    <value>Durchsuchte Verzeichnisse:</value>
+  </data>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>232, 80</value>
+  </data>
+  <data name="groupBox4.Text">
+    <value>Gmdc Einstellungen:</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 28</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>137, 17</value>
+  </data>
+  <data name="label10.Text">
+    <value>Im-/Export Skalierung:</value>
+  </data>
+  <data name="label10.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>BottomLeft</value>
+  </data>
+  <data name="tbscale.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="tbscale.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>160, 24</value>
+  </data>
+  <data name="cbjointname.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>208, 24</value>
+  </data>
+  <data name="cbjointname.Text">
+    <value>GMDC: Zeige Joint-Bezeichnung</value>
+  </data>
+  <data name="hcFolders.Text">
+    <value>System Verzeichnisse</value>
+  </data>
+  <data name="hcSettings.Text">
+    <value>Einstellungen</value>
+  </data>
+  <data name="button8.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>280, 344</value>
+  </data>
+  <data name="button8.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 24</value>
+  </data>
+  <data name="button8.Text">
+    <value>Dateiliste leeren</value>
+  </data>
+  <data name="button8.ToolTip">
+    <value>Löscht die Liste der zuletzt geöffneten Dateien</value>
+  </data>
+  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>336, 96</value>
+  </data>
+  <data name="groupBox6.Text">
+    <value>Tabbed Borwsing:</value>
+  </data>
+  <data name="cbFirefox.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>24, 64</value>
+  </data>
+  <data name="cbFirefox.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>240, 24</value>
+  </data>
+  <data name="cbFirefox.Text">
+    <value>Firefox Stil zum öffnen neuer Tabs</value>
+  </data>
+  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>432, 264</value>
+  </data>
+  <data name="button7.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>128, 344</value>
+  </data>
+  <data name="button7.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 24</value>
+  </data>
+  <data name="button7.Text">
+    <value>Layout zurücksetzen</value>
+  </data>
+  <data name="button7.ToolTip">
+    <value>Setzt die Layout Einstellungen des Hauptbildschirms zurück.</value>
+  </data>
+  <data name="hcTools.Text">
+    <value>Externe Programme</value>
+  </data>
+  <data name="hcFileTable.Text">
+    <value>FileTable (Suchpfad)</value>
+  </data>
+  <data name="btdn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btdn.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="btdn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Flat</value>
+  </data>
+  <data name="btdn.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAklJREFUOE+lkl1I
+        k2EUx59aTFqm0Vq6j1RMl9PdaRdGQvRBVCKE4bY+FpOKIIMFRV7E5kS66MPEiGhXEXXVllS6cGoxGmU2
+        HSTTViybJIozfEinDlz/ztsmGESseuEH//c8538453kOY//7STQXjh2sD07qbMNcd/kD118NccONz9zQ
+        GuaGm6NcL9AS5vrmEV5zJcRrmoJcZx3iB8yBKbFsXzXL2mZrufciCufraTj6vsExQHpwHs7AAh4NxRKQ
+        dr6bh8Mf/ZnT1stxu2MG6erDViataLxe3x6DxTUNS08UDd4YbG8WYfPF0difQNBCrMG7AGvPLKwuDrMj
+        ConWaGVr1XVN998D7vE4Oie+wx0hvcQUaYFlMSGni3Lt/kWIcyrP0xXmlqvNg3NlnUDZM2BrF7CrF9j9
+        FtjjSyBoISacCTmlHUDeaU+EsczSxBuoDl1S2ecgbweULqCYDCUDgNafQNDFfWTqBja0AYpbHCx7+7nl
+        D5iWXtn6VPkE2OgGjKPA8S/EWBLSxjAgE84dgGTHxQdkXv3rBojXa1TNwUkpFTCNA7U0e+3XJKSPTFAB
+        aj/L4vnImLjwt+uTpq0y5XTFoaSWT84Ap6IJTsxS6x4g+2EkJlKWVP9p91asM12zy+niFMOAmcxniax+
+        ap3mX1Oht6WyuNLcO95+eQgoJIo+kZk6ktU1PyZzRioF2CpFUXmpL8ILyJwXAAruvgzS3FtSMi8lZew9
+        ekbzaiye/3xkQbRpc9VfmZPJIpEyfz/LlO6k/5X/UiAlzw9idp1Q9EbgxwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btdn.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>632, 304</value>
+  </data>
+  <data name="btdn.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>24, 24</value>
+  </data>
+  <data name="btdn.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>36</value>
+  </data>
+  <data name="btdn.Text">
+    <value />
+  </data>
+  <data name="btup.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btup.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="btup.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Flat</value>
+  </data>
+  <data name="btup.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAgdJREFUOE/NkltI
+        01EYwP9BRkSZlCmJOjV3sctWRHnb3IKuKkLZDDR8qRQK6SWIJKsHWbrAh95EC0RHW7U/WRErSRADy9Sy
+        C5VFeWmUWS5WtM3lfp2skCBkPQQd+HH4+M75fd93OJL0H6+UmI15F7tNW5o6RJNRf9toRGJmo+xwjWO7
+        Nk78WkuzEMwKW7LEYK2ravnAs+EvDIz4qLR5WLT+0PGwBJGm6v0H7J946J7gXL9vioGxr5Q7vKG5a0p2
+        zyiZk16eWyIHfL2jk1x6FSKleYJltiCXh0L0jIFZ/uiRVKbsP0vSS7X5std95z2cH4aMNki4IrgK2e0g
+        v4bbHtjjejMoxaqSf5fEamP0F0Z7a57D2UHY1AVJ4lLaLVguSO6A/B5oGgHLEKyr72qXpMULfkkidKc7
+        W4+8gFMvoaAflN2gE/vqRz/QCdT3YNdTqBPdHRYoT7Q0TAkicyuK9j2GSpEsuA853ztww9a3sO3dNJtF
+        vEGMUfQEqkSh4r5gcPYKQ5YUvfPk0bK7kNcJia3i4VwhVopYKypqH0yzqg9Sb4aId05iFvlSMdLC4uoy
+        KUp/8Jix8TMJ9V7izviIa/ChcPhRXg+gbvvJjQAKpx+F3U+SM0CqPUCOzct8Y8VeMcS8peqMHTWqzO1W
+        jaGwVmMw12qMMyDyKr3ZmpZVaBGXo8P6XP/00DfK/FVG/vJmNAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btup.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="btup.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>632, 272</value>
+  </data>
+  <data name="btup.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>24, 24</value>
+  </data>
+  <data name="btup.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>35</value>
+  </data>
+  <data name="btup.Text">
+    <value />
+  </data>
+  <data name="nbFolders.Text">
+    <value>Verzeichnisse</value>
+  </data>
+  <data name="nbSettings.Text">
+    <value>Einstellungen</value>
+  </data>
+  <data name="nbTools.Text">
+    <value>Programme</value>
+  </data>
+  <data name="nbPlugins.Text">
+    <value>Erweiterungen</value>
+  </data>
+  <data name="hcPlugins.Text">
+    <value>Erweiterungen</value>
+  </data>
+  <data name="btpup.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAklJREFUOE+lkl1I
+        k2EUx59aTFqm0Vq6j1RMl9PdaRdGQvRBVCKE4bY+FpOKIIMFRV7E5kS66MPEiGhXEXXVllS6cGoxGmU2
+        HSTTViybJIozfEinDlz/ztsmGESseuEH//c8538453kOY//7STQXjh2sD07qbMNcd/kD118NccONz9zQ
+        GuaGm6NcL9AS5vrmEV5zJcRrmoJcZx3iB8yBKbFsXzXL2mZrufciCufraTj6vsExQHpwHs7AAh4NxRKQ
+        dr6bh8Mf/ZnT1stxu2MG6erDViataLxe3x6DxTUNS08UDd4YbG8WYfPF0difQNBCrMG7AGvPLKwuDrMj
+        ConWaGVr1XVN998D7vE4Oie+wx0hvcQUaYFlMSGni3Lt/kWIcyrP0xXmlqvNg3NlnUDZM2BrF7CrF9j9
+        FtjjSyBoISacCTmlHUDeaU+EsczSxBuoDl1S2ecgbweULqCYDCUDgNafQNDFfWTqBja0AYpbHCx7+7nl
+        D5iWXtn6VPkE2OgGjKPA8S/EWBLSxjAgE84dgGTHxQdkXv3rBojXa1TNwUkpFTCNA7U0e+3XJKSPTFAB
+        aj/L4vnImLjwt+uTpq0y5XTFoaSWT84Ap6IJTsxS6x4g+2EkJlKWVP9p91asM12zy+niFMOAmcxniax+
+        ap3mX1Oht6WyuNLcO95+eQgoJIo+kZk6ktU1PyZzRioF2CpFUXmpL8ILyJwXAAruvgzS3FtSMi8lZew9
+        ekbzaiye/3xkQbRpc9VfmZPJIpEyfz/LlO6k/5X/UiAlzw9idp1Q9EbgxwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btpdown.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAgdJREFUOE/NkltI
+        01EYwP9BRkSZlCmJOjV3sctWRHnb3IKuKkLZDDR8qRQK6SWIJKsHWbrAh95EC0RHW7U/WRErSRADy9Sy
+        C5VFeWmUWS5WtM3lfp2skCBkPQQd+HH4+M75fd93OJL0H6+UmI15F7tNW5o6RJNRf9toRGJmo+xwjWO7
+        Nk78WkuzEMwKW7LEYK2ravnAs+EvDIz4qLR5WLT+0PGwBJGm6v0H7J946J7gXL9vioGxr5Q7vKG5a0p2
+        zyiZk16eWyIHfL2jk1x6FSKleYJltiCXh0L0jIFZ/uiRVKbsP0vSS7X5std95z2cH4aMNki4IrgK2e0g
+        v4bbHtjjejMoxaqSf5fEamP0F0Z7a57D2UHY1AVJ4lLaLVguSO6A/B5oGgHLEKyr72qXpMULfkkidKc7
+        W4+8gFMvoaAflN2gE/vqRz/QCdT3YNdTqBPdHRYoT7Q0TAkicyuK9j2GSpEsuA853ztww9a3sO3dNJtF
+        vEGMUfQEqkSh4r5gcPYKQ5YUvfPk0bK7kNcJia3i4VwhVopYKypqH0yzqg9Sb4aId05iFvlSMdLC4uoy
+        KUp/8Jix8TMJ9V7izviIa/ChcPhRXg+gbvvJjQAKpx+F3U+SM0CqPUCOzct8Y8VeMcS8peqMHTWqzO1W
+        jaGwVmMw12qMMyDyKr3ZmpZVaBGXo8P6XP/00DfK/FVG/vJmNAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="$this.Text">
+    <value>Einstellungen</value>
+  </data>
 </root>
