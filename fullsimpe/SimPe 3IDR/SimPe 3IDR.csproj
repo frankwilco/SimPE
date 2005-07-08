@@ -208,11 +208,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "NmapForm.de-DE.resx"
-                    DependentUpon = "NmapForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "NmapForm.resx"
                     DependentUpon = "NmapForm.cs"
                     BuildAction = "EmbeddedResource"

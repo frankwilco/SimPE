@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "WinExe"
                 PreBuildEvent = ""
-                PostBuildEvent = 'copy "$(TargetDir)\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)"&#xd;&#xa;copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;copy "$(TargetDir)\de-DE\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de-DE\"'
+                PostBuildEvent = 'copy "$(TargetDir)\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)"&#xd;&#xa;copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"'
                 RootNamespace = "SimPe"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
