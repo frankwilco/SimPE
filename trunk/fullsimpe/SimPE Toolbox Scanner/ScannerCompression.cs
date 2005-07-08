@@ -30,13 +30,18 @@ namespace SimPe.Plugin.Scanner
 	/// </summary>
 	internal class CompressionScanner : AbstractScanner, IScanner
 	{		
-		public enum CompressionState : uint 
+		public enum HealthState : uint 
 		{
 			Ok = 0x0,
 			UnknownVersion = 0x1,
 			IncompleteDirectory = 0x02,
 			WrongCompressionSize = 0x04,
-			WrongDirectory = 0x08
+			WrongDirectory = 0x08,
+			NonDefaultObjd = 0x10,
+			FaultyNamedObjd = 0x20,
+			FaultySizedObjd = 0x40,
+			BigMeshGeometry = 0x80,
+
 		}
 
 		public CompressionScanner (System.Windows.Forms.ListView lv) : base (lv) { }
@@ -58,7 +63,7 @@ namespace SimPe.Plugin.Scanner
 
 		protected override void DoInitScan()
 		{
-			AbstractScanner.AddColumn(ListView, "Compression", 100);
+			AbstractScanner.AddColumn(ListView, "Health", 100);
 		}
 
 
@@ -66,10 +71,10 @@ namespace SimPe.Plugin.Scanner
 		{		
 			ps.Data = new uint[1];
 			ps.State = TriState.True;
-			ps.Data[0] = (uint)CompressionState.Ok;
+			ps.Data[0] = (uint)HealthState.Ok;
 			if (si.Package.Header.Version != 0x100000001) 
 			{
-				ps.Data[0] = (uint)CompressionState.UnknownVersion;
+				ps.Data[0] = (uint)HealthState.UnknownVersion;
 			} 
 			else 
 			{
@@ -80,36 +85,58 @@ namespace SimPe.Plugin.Scanner
 						SimPe.Interfaces.Files.IPackedFileDescriptor p = si.Package.FindFile(item.Type, item.SubType, item.Group, item.Instance);
 						if (p==null) 
 						{
-							ps.Data[0] = (uint)CompressionState.WrongDirectory;
+							ps.Data[0] = (uint)HealthState.WrongDirectory;
 							break;
 						}						
 					}
 
-					if (ps.Data[0] == (uint)CompressionState.Ok) 
+					if (ps.Data[0] == (uint)HealthState.Ok) 
 					{
 						foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in si.Package.Index) 
 						{
 							SimPe.Interfaces.Files.IPackedFile fl = si.Package.Read(pfd);
+
+							if (pfd.Type == Data.MetaData.OBJD_FILE) 
+							{
+								SimPe.PackedFiles.Wrapper.ExtObjd obj = new ExtObjd(null);
+								obj.ProcessData(pfd, si.Package);
+
+								if (obj.Ok!=SimPe.PackedFiles.Wrapper.ObjdHealth.Ok) ps.Data[0] = (uint)HealthState.NonDefaultObjd;
+								if (obj.Ok==SimPe.PackedFiles.Wrapper.ObjdHealth.UnmatchingFilenames && Helper.WindowsRegistry.HiddenMode) ps.Data[0] = (uint)HealthState.FaultyNamedObjd;
+								if (obj.Ok==ObjdHealth.OverLength) ps.Data[0] = (uint)HealthState.FaultySizedObjd;
+							}
+							if (pfd.Type == Data.MetaData.GMDC) 
+							{
+								SimPe.Plugin.GenericRcol rcol = new GenericRcol();
+								rcol.ProcessData(pfd, si.Package);
+
+								SimPe.Plugin.GeometryDataContainer gmdc = (SimPe.Plugin.GeometryDataContainer)rcol.Blocks[0];
+								foreach (SimPe.Plugin.Gmdc.GmdcGroup g in gmdc.Groups) 
+								{
+									if (g.FaceCount>SimPe.Plugin.Gmdc.AbstractGmdcImporter.CRITICAL_FACE_AMOUNT) ps.Data[0] = (uint)HealthState.BigMeshGeometry;
+									else if (g.UsedVertexCount>SimPe.Plugin.Gmdc.AbstractGmdcImporter.CRITICAL_VERTEX_AMOUNT) ps.Data[0] = (uint)HealthState.BigMeshGeometry;
+								}
+							}
 							if (!fl.IsCompressed) continue;
 
 							int pos = si.Package.FileListFile.FindFile(pfd);
 							if (pos==-1) 
 							{
-								ps.Data[0] = (uint)CompressionState.IncompleteDirectory;
+								ps.Data[0] = (uint)HealthState.IncompleteDirectory;
 								break;
 							}
 
 							SimPe.PackedFiles.Wrapper.ClstItem item  = si.Package.FileListFile.Items[pos];
 							if (fl.UncompressedSize != item.UncompressedSize) 
 							{
-								ps.Data[0] = (uint)CompressionState.WrongCompressionSize;
+								ps.Data[0] = (uint)HealthState.WrongCompressionSize;
 								break;
 							}
 						}
 					}
 
 				}
-				if (ps.Data[0] != (uint)CompressionState.Ok) ps.State = TriState.False;
+				if (ps.Data[0] != (uint)HealthState.Ok) ps.State = TriState.False;
 			}
 
 			UpdateState(si, ps, lvi);
@@ -119,8 +146,10 @@ namespace SimPe.Plugin.Scanner
 		{	
 			if (ps.State != TriState.Null) 
 			{
-				CompressionState cs = (CompressionState)ps.Data[0];
+				HealthState cs = (HealthState)ps.Data[0];				
 				AbstractScanner.SetSubItem(lvi, this.StartColum, cs.ToString(), ps);
+
+				//if (ps.Data.Length>1) AbstractScanner.SetSubItem(lvi, this.StartColum+1, ps.Data[1].ToString(), ps);
 			}
 		}
 
@@ -128,7 +157,7 @@ namespace SimPe.Plugin.Scanner
 
 		public override bool IsActiveByDefault
 		{
-			get { return false; }
+			get { return true; }
 		}	
 	
 		ScannerItem[] selection;
@@ -146,7 +175,7 @@ namespace SimPe.Plugin.Scanner
 				SimPe.Cache.PackageState ps = item.PackageCacheItem.FindState(this.Uid, true);
 				if ((ps.State != TriState.Null) && (ps.Data.Length>0))
 				{
-					if ((CompressionState)ps.Data[0]!=CompressionState.Ok) 
+					if ((HealthState)ps.Data[0]!=HealthState.Ok) 
 					{
 						OperationControl.Enabled = true;
 						return;
@@ -161,7 +190,7 @@ namespace SimPe.Plugin.Scanner
 		{
 			Skybound.VisualStyles.VisualStyleLinkLabel ll = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			ll.AutoSize = true;
-			ll.Text = "fix Compression";
+			ll.Text = "fix unhealthy Package";
 			ll.Font = new System.Drawing.Font("Verdana", ll.Font.Size, System.Drawing.FontStyle.Bold);
 
 			ll.LinkClicked +=new System.Windows.Forms.LinkLabelLinkClickedEventHandler(FixCompression);
@@ -172,7 +201,7 @@ namespace SimPe.Plugin.Scanner
 
 		public override string ToString()
 		{
-			return "Compression Scanner";
+			return "Health Scanner";
 		}
 
 		/// <summary>
@@ -196,22 +225,44 @@ namespace SimPe.Plugin.Scanner
 					SimPe.Cache.PackageState ps = si.PackageCacheItem.FindState(this.Uid, true);
 					if ((ps.State != TriState.Null) && (ps.Data.Length>0))
 					{
-						if ((CompressionState)ps.Data[0]!=CompressionState.Ok) 
+						if ((HealthState)ps.Data[0]!=HealthState.Ok) 
 						{
+							ps.State = TriState.True;
+							ps.Data[0] = (uint)HealthState.Ok;
 							foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in si.Package.Index) 
 							{
 								SimPe.Interfaces.Files.IPackedFile file = si.Package.Read(pfd);
 								pfd.UserData = file.UncompressedData;
-
 								pfd.MarkForReCompress = (file.IsCompressed || Data.MetaData.CompressionCandidates.Contains(pfd.Type));							
+
+								if (pfd.Type==Data.MetaData.OBJD_FILE) 
+								{
+									SimPe.PackedFiles.Wrapper.ExtObjd objd = new ExtObjd(null);
+									objd.ProcessData(pfd, si.Package);
+
+									if (objd.Ok!=SimPe.PackedFiles.Wrapper.ObjdHealth.Ok) 
+									{
+										objd.SynchronizeUserData();
+										objd.ProcessData(pfd, si.Package);
+
+										if (objd.Ok != ObjdHealth.Ok) 
+										{
+											ps.State = TriState.False;
+											ps.Data[0] = (uint)HealthState.NonDefaultObjd;
+											if (objd.Ok==SimPe.PackedFiles.Wrapper.ObjdHealth.UnmatchingFilenames && Helper.WindowsRegistry.HiddenMode) ps.Data[0] = (uint)HealthState.FaultyNamedObjd;
+											if (objd.Ok==ObjdHealth.OverLength) ps.Data[0] = (uint)HealthState.FaultySizedObjd;
+										}
+									}
+								}																
 							}
 
-							si.Package.Save();
-							ps.State = TriState.True;
-							ps.Data[0] = (uint)CompressionState.Ok;
+							si.Package.Save();							
 							chg = true;
+							si.ListViewItem.ForeColor = System.Drawing.Color.Black;
+							this.ScanPackage(si, ps, si.ListViewItem);
 						}
 					}
+					
 				}
 
 				if (chg && this.CallbackFinish!=null) this.CallbackFinish(false, false);

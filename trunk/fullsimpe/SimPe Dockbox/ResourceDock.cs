@@ -87,7 +87,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			//
 			InitializeComponent();
 
-			ThemeManager tm = FileTable.ThemeManager.CreateChild();
+			ThemeManager tm = ThemeManager.Global.CreateChild();
 			tm.AddControl(this.xpGradientPanel1);
 			tm.AddControl(this.xpGradientPanel2);
 			tm.AddControl(this.xpGradientPanel3);

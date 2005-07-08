@@ -739,7 +739,12 @@ namespace Ambertation.Windows.Forms
 			}
 			s = s.Replace("-", " ");
 			while (s.IndexOf("  ") != -1) s.Replace("  ", " ");
-			string[] parts = s.Split(" ".ToCharArray());
+			if (s.IndexOf(" ")==-1) 
+				for (int i=s.Length-1; i>=0; i--)
+				{
+					if (i%2==0) s = s.Insert(i, " ");
+				}
+			string[] parts = s.Trim().Split(" ".ToCharArray());
 		
 			byte[] data = new byte[parts.Length];
 			for (int i=0; i<parts.Length; i++)

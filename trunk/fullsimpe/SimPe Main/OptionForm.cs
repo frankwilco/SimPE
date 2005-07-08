@@ -2887,8 +2887,8 @@ namespace SimPe
 
 		public void Execute(Icon icon)
 		{
-			ThemeManager tm = new ThemeManager(FileTable.ThemeManager.CurrentTheme);
-			tm.Parent = FileTable.ThemeManager;
+			ThemeManager tm = new ThemeManager(ThemeManager.Global.CurrentTheme);
+			tm.Parent = ThemeManager.Global;
 			
 			OptionForm f = this;
 			if (icon!=null) f.Icon = icon;

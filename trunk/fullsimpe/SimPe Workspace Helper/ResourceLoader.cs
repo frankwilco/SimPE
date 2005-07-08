@@ -77,7 +77,7 @@ namespace SimPe
 				try 
 				{
 					wrapper = wrapper.Activate();
-					wrapper.ProcessData(fii);
+					wrapper.ProcessData(fii.Package.FindFile(fii.FileDescriptor), fii.Package);
 				
 					return wrapper;
 				} 
@@ -187,6 +187,7 @@ namespace SimPe
 					Panel pan = wrapper.UIHandler.GUIHandle; 
 					if (pan!=null) 
 					{
+						
 						doc.FloatingSize = pan.Size;
 						if (add) dc.AddDocument(doc);
 						pan.Parent = doc;

@@ -244,6 +244,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "FlagBaseConverter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "HashAlgorithmParameters.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -265,6 +270,11 @@
                 />
                 <File
                     RelPath = "IAlias.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IPropertyClass.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

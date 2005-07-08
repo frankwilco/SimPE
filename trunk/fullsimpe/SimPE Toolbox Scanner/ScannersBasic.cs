@@ -288,7 +288,7 @@ namespace SimPe.Plugin.Scanner
 			if (pfds.Length>0) 
 			{
 				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
-				str.ProcessData(pfds[0], si.Package);
+				str.ProcessData(pfds[0], si.Package, false);
 
 				SimPe.PackedFiles.Wrapper.StrItemList list = str.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode);
 				foreach (SimPe.PackedFiles.Wrapper.StrItem item in list) 
@@ -311,7 +311,7 @@ namespace SimPe.Plugin.Scanner
 				if (pfds.Length>0) 
 				{
 					SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
-					cpf.ProcessData(pfds[0], si.Package);
+					cpf.ProcessData(pfds[0], si.Package, false);
 
 					si.PackageCacheItem.Name = cpf.GetSaveItem("name").StringValue;
 					if (si.PackageCacheItem.Name.Trim()!="") ps.State = TriState.True;
@@ -416,7 +416,7 @@ namespace SimPe.Plugin.Scanner
 						SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pfds[0];
 						foreach (SimPe.Interfaces.Files.IPackedFileDescriptor p in pfds) if (p.Instance<pfd.Instance) pfd = p;						
 
-						pic.ProcessData(pfd, si.Package);
+						pic.ProcessData(pfd, si.Package, false);
 
 						si.PackageCacheItem.Thumbnail = pic.Image;
 						if (si.PackageCacheItem.Thumbnail!=null) 
@@ -443,7 +443,7 @@ namespace SimPe.Plugin.Scanner
 					SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pfds[0];
 					foreach (SimPe.Interfaces.Files.IPackedFileDescriptor p in pfds) if (p.Size>pfd.Size) pfd = p;
 					
-					rcol.ProcessData(pfd, si.Package);
+					rcol.ProcessData(pfd, si.Package, false);
 
 					SimPe.Plugin.ImageData id = (SimPe.Plugin.ImageData)rcol.Blocks[0];
 					
@@ -546,7 +546,7 @@ namespace SimPe.Plugin.Scanner
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 			{
 				SimPe.PackedFiles.Wrapper.ExtObjd objd = new ExtObjd(null);
-				objd.ProcessData(pfd, si.Package);
+				objd.ProcessData(pfd, si.Package, false);
 
 				mylist.Add(objd.Guid);
 			}
@@ -665,7 +665,7 @@ namespace SimPe.Plugin.Scanner
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 			{
 				SimPe.Plugin.MmatWrapper mmat = new MmatWrapper();
-				mmat.ProcessData(pfd, si.Package);
+				mmat.ProcessData(pfd, si.Package, false);
 
 				string m = mmat.ModelName.Trim().ToLower();
 				if (!m.EndsWith("_cres")) m += "_cres";

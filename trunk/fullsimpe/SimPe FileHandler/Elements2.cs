@@ -47,7 +47,7 @@ namespace SimPe.PackedFiles.Wrapper
 			//
 			InitializeComponent();
 
-			ThemeManager tm = FileTable.ThemeManager.CreateChild();
+			ThemeManager tm = ThemeManager.Global.CreateChild();
 			tm.AddControl(this.NrefPanel);
 			tm.AddControl(this.CpfPanel);
 		}

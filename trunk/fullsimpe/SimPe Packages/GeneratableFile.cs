@@ -201,6 +201,9 @@ namespace SimPe.Packages
 				filelist = null;
 			}
 
+			int oldcount = 0;
+			if (this.Index!=null) oldcount = this.Index.Length;
+
 			//now save the stuff	
 			header.Save(writer);
 
@@ -304,6 +307,10 @@ namespace SimPe.Packages
 			ms.Seek(0, SeekOrigin.Begin);
 			this.UnLockStream();
 			CloseReader();
+
+			FireIndexEvent();
+			if (Index.Length<oldcount) this.FireRemoveEvent();
+			else if (Index.Length>oldcount) this.FireAddEvent();
 			return ms;
 		}
 

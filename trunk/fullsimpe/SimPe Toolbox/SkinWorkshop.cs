@@ -77,6 +77,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.CheckBox cbanim;
 		TreeNode tviwindow;
 
+		bool startup;
 		public SkinWorkshop()
 		{
 			//
@@ -84,6 +85,7 @@ namespace SimPe.Plugin
 			//
 			InitializeComponent();
 
+			startup = true;
 			
 			btclone.Enabled = false;
 			btclone.Refresh();
@@ -129,6 +131,12 @@ namespace SimPe.Plugin
 			this.tvimemory = new TreeNode("Memories"); tv.Nodes.Add(tvimemory);;
 			this.tvitemplate = new TreeNode("Templates"); tv.Nodes.Add(tvitemplate);;
 			this.tviwindow = new TreeNode("Windows"); tv.Nodes.Add(tviwindow);;
+
+			this.tabControl2.TabPages.Remove(this.tabPage3);
+			this.tabControl2.TabPages.Remove(this.tabPage2);
+			this.tabControl1.TabPages.Remove(this.tColor);
+
+			startup = false;
 		}
 
 		/// <summary>
@@ -594,6 +602,7 @@ namespace SimPe.Plugin
 			this.rbColor.Size = new System.Drawing.Size(120, 24);
 			this.rbColor.TabIndex = 5;
 			this.rbColor.Text = "Color Options";
+			this.rbColor.Visible = false;
 			this.visualStyleProvider1.SetVisualStyleSupport(this.rbColor, true);
 			this.rbColor.CheckedChanged += new System.EventHandler(this.rbColor_CheckedChanged);
 			// 
@@ -709,7 +718,7 @@ namespace SimPe.Plugin
 			this.tColor.Controls.Add(this.cbColor);
 			this.tColor.Location = new System.Drawing.Point(4, 22);
 			this.tColor.Name = "tColor";
-			this.tColor.Size = new System.Drawing.Size(320, 158);
+			this.tColor.Size = new System.Drawing.Size(320, 118);
 			this.tColor.TabIndex = 1;
 			this.tColor.Text = "Color Options";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.tColor, true);
@@ -787,7 +796,7 @@ namespace SimPe.Plugin
 			this.tabPage3.Controls.Add(this.tv);
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Size = new System.Drawing.Size(480, 230);
+			this.tabPage3.Size = new System.Drawing.Size(480, 254);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Grouped Objects";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage3, true);
@@ -801,7 +810,7 @@ namespace SimPe.Plugin
 			this.tv.ImageList = this.ilist;
 			this.tv.Location = new System.Drawing.Point(8, 8);
 			this.tv.Name = "tv";
-			this.tv.Size = new System.Drawing.Size(464, 216);
+			this.tv.Size = new System.Drawing.Size(464, 240);
 			this.tv.TabIndex = 0;
 			this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SelectTv);
 			// 
@@ -817,7 +826,7 @@ namespace SimPe.Plugin
 			this.tabPage2.Controls.Add(this.tbflname);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Size = new System.Drawing.Size(480, 230);
+			this.tabPage2.Size = new System.Drawing.Size(480, 254);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Load Object";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage2, true);
@@ -835,7 +844,7 @@ namespace SimPe.Plugin
 			// tbflname
 			// 
 			this.tbflname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbflname.Location = new System.Drawing.Point(8, 12);
+			this.tbflname.Location = new System.Drawing.Point(8, 24);
 			this.tbflname.Name = "tbflname";
 			this.tbflname.ReadOnly = true;
 			this.tbflname.Size = new System.Drawing.Size(464, 21);
@@ -858,7 +867,7 @@ namespace SimPe.Plugin
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(520, 320);
 			this.Name = "SkinWorkshop";
-			this.Text = "Object Workshop (biggest thanks to RGiles and Numenor)";
+			this.Text = "Skin Workshop (biggest thanks to RGiles and Numenor)";
 			this.groupBox1.ResumeLayout(false);
 			this.tabControl1.ResumeLayout(false);
 			this.tClone.ResumeLayout(false);
@@ -1401,6 +1410,7 @@ namespace SimPe.Plugin
 
 		private void TabChange(object sender, System.EventArgs e)
 		{
+			if (startup) return;
 			if (tabControl2.SelectedIndex==0) {BuildListing(); this.Select(null, null);}
 			else if (tabControl2.SelectedIndex==1) {BuildListing(); this.SelectTv(null, null);}
 			else this.btclone.Enabled = System.IO.File.Exists(tbflname.Text);

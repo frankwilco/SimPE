@@ -67,6 +67,8 @@ namespace SimPe.PackedFiles.UserInterface
 		private void InitializeComponent()
 		{
 			this.pnobjd = new System.Windows.Forms.Panel();
+			this.lbIsOk = new System.Windows.Forms.Label();
+			this.cball = new System.Windows.Forms.CheckBox();
 			this.tc = new System.Windows.Forms.TabControl();
 			this.tpcatalogsort = new System.Windows.Forms.TabPage();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -93,8 +95,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tpraw = new System.Windows.Forms.TabPage();
 			this.rbhex = new System.Windows.Forms.RadioButton();
 			this.rbdec = new System.Windows.Forms.RadioButton();
-			this.pg = new System.Windows.Forms.PropertyGrid();
 			this.rbbin = new System.Windows.Forms.RadioButton();
+			this.pg = new System.Windows.Forms.PropertyGrid();
 			this.tbtype = new System.Windows.Forms.TextBox();
 			this.cbtype = new System.Windows.Forms.ComboBox();
 			this.label63 = new System.Windows.Forms.Label();
@@ -112,7 +114,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label12 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.cbcareer = new System.Windows.Forms.CheckBox();
-			this.cball = new System.Windows.Forms.CheckBox();
 			this.pnobjd.SuspendLayout();
 			this.tc.SuspendLayout();
 			this.tpcatalogsort.SuspendLayout();
@@ -125,6 +126,7 @@ namespace SimPe.PackedFiles.UserInterface
 			// pnobjd
 			// 
 			this.pnobjd.AutoScroll = true;
+			this.pnobjd.Controls.Add(this.lbIsOk);
 			this.pnobjd.Controls.Add(this.cball);
 			this.pnobjd.Controls.Add(this.tc);
 			this.pnobjd.Controls.Add(this.tbtype);
@@ -147,6 +149,26 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnobjd.Size = new System.Drawing.Size(736, 328);
 			this.pnobjd.TabIndex = 6;
 			// 
+			// lbIsOk
+			// 
+			this.lbIsOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lbIsOk.Location = new System.Drawing.Point(424, 104);
+			this.lbIsOk.Name = "lbIsOk";
+			this.lbIsOk.Size = new System.Drawing.Size(240, 23);
+			this.lbIsOk.TabIndex = 29;
+			this.lbIsOk.Text = "Please commit!";
+			this.lbIsOk.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			this.lbIsOk.Visible = false;
+			// 
+			// cball
+			// 
+			this.cball.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cball.Location = new System.Drawing.Point(280, 56);
+			this.cball.Name = "cball";
+			this.cball.Size = new System.Drawing.Size(120, 24);
+			this.cball.TabIndex = 28;
+			this.cball.Text = "update all MMATs";
+			// 
 			// tc
 			// 
 			this.tc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -157,7 +179,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tc.Location = new System.Drawing.Point(8, 136);
 			this.tc.Name = "tc";
 			this.tc.SelectedIndex = 0;
-			this.tc.Size = new System.Drawing.Size(720, 160);
+			this.tc.Size = new System.Drawing.Size(720, 184);
 			this.tc.TabIndex = 26;
 			this.tc.SelectedIndexChanged += new System.EventHandler(this.CangedTab);
 			// 
@@ -167,7 +189,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tpcatalogsort.Controls.Add(this.groupBox1);
 			this.tpcatalogsort.Location = new System.Drawing.Point(4, 22);
 			this.tpcatalogsort.Name = "tpcatalogsort";
-			this.tpcatalogsort.Size = new System.Drawing.Size(712, 134);
+			this.tpcatalogsort.Size = new System.Drawing.Size(712, 158);
 			this.tpcatalogsort.TabIndex = 0;
 			this.tpcatalogsort.Text = "Catalog Sort";
 			// 
@@ -407,19 +429,20 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			this.tpraw.Controls.Add(this.rbhex);
 			this.tpraw.Controls.Add(this.rbdec);
-			this.tpraw.Controls.Add(this.pg);
 			this.tpraw.Controls.Add(this.rbbin);
+			this.tpraw.Controls.Add(this.pg);
 			this.tpraw.Location = new System.Drawing.Point(4, 22);
 			this.tpraw.Name = "tpraw";
-			this.tpraw.Size = new System.Drawing.Size(712, 134);
+			this.tpraw.Size = new System.Drawing.Size(712, 158);
 			this.tpraw.TabIndex = 1;
 			this.tpraw.Text = "RAW Data";
 			// 
 			// rbhex
 			// 
 			this.rbhex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.rbhex.Location = new System.Drawing.Point(600, 0);
+			this.rbhex.Location = new System.Drawing.Point(600, 16);
 			this.rbhex.Name = "rbhex";
+			this.rbhex.Size = new System.Drawing.Size(96, 16);
 			this.rbhex.TabIndex = 3;
 			this.rbhex.Text = "Hexadecimal";
 			this.rbhex.CheckedChanged += new System.EventHandler(this.DigitChanged);
@@ -427,12 +450,22 @@ namespace SimPe.PackedFiles.UserInterface
 			// rbdec
 			// 
 			this.rbdec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.rbdec.Location = new System.Drawing.Point(520, 0);
+			this.rbdec.Location = new System.Drawing.Point(520, 16);
 			this.rbdec.Name = "rbdec";
-			this.rbdec.Size = new System.Drawing.Size(72, 24);
+			this.rbdec.Size = new System.Drawing.Size(72, 16);
 			this.rbdec.TabIndex = 2;
 			this.rbdec.Text = "Decimal";
 			this.rbdec.CheckedChanged += new System.EventHandler(this.DigitChanged);
+			// 
+			// rbbin
+			// 
+			this.rbbin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.rbbin.Location = new System.Drawing.Point(448, 16);
+			this.rbbin.Name = "rbbin";
+			this.rbbin.Size = new System.Drawing.Size(64, 16);
+			this.rbbin.TabIndex = 1;
+			this.rbbin.Text = "Binary";
+			this.rbbin.CheckedChanged += new System.EventHandler(this.DigitChanged);
 			// 
 			// pg
 			// 
@@ -443,26 +476,14 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pg.HelpVisible = false;
 			this.pg.LargeButtons = false;
 			this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
-			this.pg.Location = new System.Drawing.Point(8, 24);
+			this.pg.Location = new System.Drawing.Point(8, 8);
 			this.pg.Name = "pg";
-			this.pg.PropertySort = System.Windows.Forms.PropertySort.Alphabetical;
-			this.pg.Size = new System.Drawing.Size(696, 104);
+			this.pg.Size = new System.Drawing.Size(696, 144);
 			this.pg.TabIndex = 0;
 			this.pg.Text = "RAW Items";
-			this.pg.ToolbarVisible = false;
 			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
 			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
 			this.pg.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PropChanged);
-			// 
-			// rbbin
-			// 
-			this.rbbin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.rbbin.Location = new System.Drawing.Point(448, 0);
-			this.rbbin.Name = "rbbin";
-			this.rbbin.Size = new System.Drawing.Size(64, 24);
-			this.rbbin.TabIndex = 1;
-			this.rbbin.Text = "Binary";
-			this.rbbin.CheckedChanged += new System.EventHandler(this.DigitChanged);
 			// 
 			// tbtype
 			// 
@@ -538,12 +559,12 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// llcommitobjd
 			// 
-			this.llcommitobjd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.llcommitobjd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.llcommitobjd.AutoSize = true;
 			this.llcommitobjd.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.llcommitobjd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.llcommitobjd.LinkArea = new System.Windows.Forms.LinkArea(0, 10);
-			this.llcommitobjd.Location = new System.Drawing.Point(675, 304);
+			this.llcommitobjd.Location = new System.Drawing.Point(675, 104);
 			this.llcommitobjd.Name = "llcommitobjd";
 			this.llcommitobjd.Size = new System.Drawing.Size(53, 17);
 			this.llcommitobjd.TabIndex = 14;
@@ -603,6 +624,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label8.Size = new System.Drawing.Size(43, 17);
 			this.label8.TabIndex = 8;
 			this.label8.Text = "GUID:";
+			this.label8.Click += new System.EventHandler(this.label8_Click);
 			// 
 			// panel6
 			// 
@@ -623,9 +645,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.label12.Location = new System.Drawing.Point(0, 4);
 			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(180, 19);
+			this.label12.Size = new System.Drawing.Size(145, 19);
 			this.label12.TabIndex = 0;
-			this.label12.Text = "Objekt Beschreibungen";
+			this.label12.Text = "Objekt Description";
 			// 
 			// linkLabel1
 			// 
@@ -647,15 +669,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbcareer.Name = "cbcareer";
 			this.cbcareer.TabIndex = 0;
 			this.cbcareer.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cball
-			// 
-			this.cball.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cball.Location = new System.Drawing.Point(280, 56);
-			this.cball.Name = "cball";
-			this.cball.Size = new System.Drawing.Size(120, 24);
-			this.cball.TabIndex = 28;
-			this.cball.Text = "update all MMATs";
 			// 
 			// ExtObjdForm
 			// 
@@ -726,6 +739,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.RadioButton rbdec;
 		private System.Windows.Forms.RadioButton rbhex;
 		private System.Windows.Forms.CheckBox cball;
+		internal System.Windows.Forms.Label lbIsOk;
 		internal uint initialguid;
 
 		private void GetGuid(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
@@ -874,7 +888,7 @@ namespace SimPe.PackedFiles.UserInterface
 			wrapper.SynchronizeUserData();
 		}
 
-		Ambertation.PropertyObjectBuilder pob;
+		Ambertation.PropertyObjectBuilderExt pob;
 		ArrayList names;
 		bool propchanged;
 		string GetName(int i)
@@ -896,11 +910,16 @@ namespace SimPe.PackedFiles.UserInterface
 			Hashtable ht = new Hashtable();
 			for (int i=0; i<Math.Min(names.Count, wrapper.Data.Length); i++)
 			{
-				string name = GetName(i);				
-				if (!ht.Contains(name)) ht.Add(name, wrapper.Data[i]);
+				Ambertation.PropertyDescription pf = ExtObjd.PropertyParser.GetDescriptor((ushort)wrapper.Type, (ushort)i);
+				if (pf==null) 
+					pf = new Ambertation.PropertyDescription("Unknown", null, wrapper.Data[i]);
+				else 					
+					pf.Property = wrapper.Data[i];				
+
+				ht[GetName(i)] = pf;				
 			}
 
-			pob = new Ambertation.PropertyObjectBuilder(ht);
+			pob = new Ambertation.PropertyObjectBuilderExt(ht);
 			this.pg.SelectedObject = pob.Instance;
 		}
 
@@ -916,10 +935,26 @@ namespace SimPe.PackedFiles.UserInterface
 				for (int i=0; i<Math.Min(names.Count, wrapper.Data.Length); i++)
 				{
 					string name = GetName(i);	
-					if (ht.Contains(name)) wrapper.Data[i] = (short)ht[name];
+					try 
+					{
+						if (ht.Contains(name)) 
+						{
+							object o = ht[name];
+							if (o is SimPe.FlagBase) 
+								wrapper.Data[i] = ((SimPe.FlagBase)ht[name]);
+							else
+								wrapper.Data[i] = Convert.ToInt16(ht[name]);
+						} 
+					}				
+					catch (Exception ex)
+					{
+						if (Helper.DebugMode) Helper.ExceptionMessage("Error converting "+name, ex);
+					}
 				}
 
 				wrapper.Changed = true;
+				wrapper.UpdateFlags();
+				wrapper.RefreshUI();
 			} 
 			catch (Exception ex) 
 			{
@@ -932,11 +967,12 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			if (tc.SelectedTab == tpraw)
 			{
-				rbhex.Checked = (Ambertation.BaseChangeShort.DigitBase==16);
-				rbbin.Checked = (Ambertation.BaseChangeShort.DigitBase==2);
+				rbhex.Checked = (Ambertation.BaseChangeableNumber.DigitBase==16);
+				rbbin.Checked = (Ambertation.BaseChangeableNumber.DigitBase==2);
 				rbdec.Checked = (!rbhex.Checked && !rbbin.Checked);
 
-				if (this.pg.SelectedObject==null) ShowData();
+				//if (this.pg.SelectedObject==null) 
+					ShowData();
 			} 
 			else 
 			{
@@ -959,11 +995,55 @@ namespace SimPe.PackedFiles.UserInterface
 
 		private void DigitChanged(object sender, System.EventArgs e)
 		{
-			if (rbhex.Checked) Ambertation.BaseChangeShort.DigitBase = 16;
-			else if (rbbin.Checked) Ambertation.BaseChangeShort.DigitBase = 2;			
-			else Ambertation.BaseChangeShort.DigitBase = 10;
+			if (rbhex.Checked) Ambertation.BaseChangeableNumber.DigitBase = 16;
+			else if (rbbin.Checked) Ambertation.BaseChangeableNumber.DigitBase = 2;			
+			else Ambertation.BaseChangeableNumber.DigitBase = 10;
 
 			this.pg.Refresh();		
+		}
+
+		private void label8_Click(object sender, System.EventArgs e)
+		{
+			SimPe.Data.ObjectTypes[] ts = (SimPe.Data.ObjectTypes[])System.Enum.GetValues(typeof(SimPe.Data.ObjectTypes));
+			System.IO.StreamWriter sw = System.IO.File.CreateText(@"h:\objd.xml");
+			Hashtable have = new Hashtable();
+			try
+			{
+				sw.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+				sw.WriteLine("<properties xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"propertydefinition.xsd\">");
+				foreach (SimPe.Data.ObjectTypes t in ts)
+				{
+					names = wrapper.Opcodes.OBJDDescription((ushort)t);
+					for (int i=0; i<names.Count; i++)
+					{
+						string k = (string)names[i];
+						string cont = (string)have[k.Trim().ToLower()];
+						if (cont==null) 
+						{					
+							cont += "<property type=\"short\">" + Helper.lbr;
+							cont += "    <name>"+k.Trim()+"</name>" + Helper.lbr;
+							cont += "    <help>"+k.Trim()+"</help>" + Helper.lbr;
+							cont += "    <default>0</default>" + Helper.lbr;
+							if (k.Trim().ToLower().IndexOf("read_only")!=-1 || k.Trim().ToLower().IndexOf("readonly")!=-1 || k.Trim().ToLower().IndexOf("read only")!=-1) 
+								cont += "    <readonly />" + Helper.lbr;
+						}
+						cont += "    <index type=\""+((ushort)t).ToString()+"\">"+i.ToString()+"</index>" + Helper.lbr;						
+
+						have[k.Trim().ToLower()] = cont;
+					}
+				}
+
+				foreach (string v in have.Values)
+				{
+					sw.Write(v);
+					sw.WriteLine("</property>");
+				}
+				sw.WriteLine("</properties>");
+			} 
+			finally 
+			{
+				sw.Close();
+			}
 		}
 	}
 }

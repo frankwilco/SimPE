@@ -74,7 +74,7 @@ namespace SimPe.Plugin.Scanner
 				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{
 					SimPe.PackedFiles.Wrapper.Cpf cpf = new Cpf();
-					cpf.ProcessData(pfd, si.Package);
+					cpf.ProcessData(pfd, si.Package, false);
 
 					data.Add(cpf.GetSaveItem("age").UIntegerValue);
 					data.Add(cpf.GetSaveItem("category").UIntegerValue);
@@ -268,7 +268,7 @@ namespace SimPe.Plugin.Scanner
 						foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 						{
 							SimPe.PackedFiles.Wrapper.Cpf cpf = new Cpf();
-							cpf.ProcessData(pfd, si.Package);
+							cpf.ProcessData(pfd, si.Package, false);
 
 							uint age = cpf.GetSaveItem(name).UIntegerValue;
 							foreach (CheckBox cb in cbs) 

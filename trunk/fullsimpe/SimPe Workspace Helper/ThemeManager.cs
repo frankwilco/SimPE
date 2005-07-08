@@ -221,5 +221,18 @@ namespace SimPe
 
 		
 		#endregion
+
+		static ThemeManager tm;
+		/// <summary>
+		/// Returns the Main ThemeManager
+		/// </summary>
+		public static ThemeManager Global 
+		{
+			get 
+			{ 
+				if (tm==null) tm = new ThemeManager((GuiTheme)Helper.WindowsRegistry.Layout.SelectedTheme);
+				return tm;
+			}
+		}
 	}
 }

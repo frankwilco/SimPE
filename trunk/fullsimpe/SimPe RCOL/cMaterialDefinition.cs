@@ -355,16 +355,16 @@ namespace SimPe.Plugin
 		#endregion
 
 		#region Property Grid
-		static SimPe.Plugin.Txmt.TxmtPropertyParser tpp;
+		static Ambertation.PropertyParser tpp;
 
 		/// <summary>
 		/// Return a PropertyParser, that enumerates all known Properties as <see cref="Ambertation.PropertyDescription"/> Objects
 		/// </summary>
-		public static SimPe.Plugin.Txmt.TxmtPropertyParser PropertyParser
+		public static Ambertation.PropertyParser PropertyParser
 		{
 			get 
 			{
-				if (tpp==null) tpp = new SimPe.Plugin.Txmt.TxmtPropertyParser(System.IO.Path.Combine(Helper.SimPeDataPath, "txmtdefinition.xml"));
+				if (tpp==null) tpp = new Ambertation.PropertyParser(System.IO.Path.Combine(Helper.SimPeDataPath, "txmtdefinition.xml"));
 				return tpp;
 			}
 		}

@@ -196,7 +196,7 @@ namespace SimPe.Plugin.Identifiers
 			if (pfds.Length>0) 
 			{
 				SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
-				cpf.ProcessData(pfds[0], pkg);
+				cpf.ProcessData(pfds[0], pkg, false);
 
 				string type = cpf.GetSaveItem("type").StringValue.Trim().ToLower();
 

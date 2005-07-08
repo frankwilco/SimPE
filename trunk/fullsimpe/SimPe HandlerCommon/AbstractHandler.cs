@@ -98,7 +98,7 @@ namespace SimPe.Interfaces.Plugin
 				Localization.Manager.GetString("unnamed"),
 				Localization.Manager.GetString("unknown"),
 				base.ToString(),
-				0
+				1
 				); 
 		}
 
@@ -120,9 +120,9 @@ namespace SimPe.Interfaces.Plugin
 			processed = false;
 			changed = false;
 			this.ui = null;
-		}		
-
-		private void ExceptionMessage(string msg, Exception ex)
+		}	
+	
+		private string ExceptionMessage(string msg)
 		{
 			msg += "\n\nPackage: ";
 			if (this.Package != null)
@@ -133,11 +133,17 @@ namespace SimPe.Interfaces.Plugin
 			msg += "\nFile: ";
 			if (this.FileDescriptor!=null) 
 			{
-				msg += Helper.HexString(this.FileDescriptor.Type) + " - " + Helper.HexString(this.FileDescriptor.SubType) + " - " + Helper.HexString(this.FileDescriptor.Group) + " - " +Helper.HexString(this.FileDescriptor.Instance);
+				msg += this.FileDescriptor.TypeName.Name+" ("+Helper.HexString(this.FileDescriptor.Type) + ") - " + Helper.HexString(this.FileDescriptor.SubType) + " - " + Helper.HexString(this.FileDescriptor.Group) + " - " +Helper.HexString(this.FileDescriptor.Instance);
 			} 
 			else 
 				msg += "null";
 
+			return msg;
+		}
+		
+		private void ExceptionMessage(string msg, Exception ex)
+		{
+			msg = ExceptionMessage(msg);
 			Helper.ExceptionMessage(msg, ex);
 		}
 
@@ -327,7 +333,7 @@ namespace SimPe.Interfaces.Plugin
 			catch (Exception ex) 
 			{
 				if (catchex) ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
-				else throw ex;
+				else throw new Exception(ExceptionMessage(ex.Message), ex);
 			}
 			
 		}
@@ -351,7 +357,7 @@ namespace SimPe.Interfaces.Plugin
 			catch (Exception ex) 
 			{
 				if (catchex) ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
-				else throw ex;
+				else throw new Exception(ExceptionMessage(ex.Message), ex);
 			}
 		}
 
