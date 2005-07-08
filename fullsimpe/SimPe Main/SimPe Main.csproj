@@ -404,11 +404,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "OptionForm.de-DE.resx"
-                    DependentUpon = "OptionForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "OptionForm.resx"
                     DependentUpon = "OptionForm.cs"
                     BuildAction = "EmbeddedResource"

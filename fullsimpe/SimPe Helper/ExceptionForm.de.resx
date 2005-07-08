@@ -97,7 +97,101 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lberr.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>362, 80</value>
+  </data>
+  <data name="gbdetail.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>432, 160</value>
+  </data>
+  <data name="rtb.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>408, 112</value>
+  </data>
+  <data name="linkLabel1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0, 26</value>
+  </data>
+  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>224, 140</value>
+  </data>
+  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 16</value>
+  </data>
+  <data name="linkLabel1.Text">
+    <value>In Zwischenablage kopieren</value>
+  </data>
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        H1PfAFMpwL9sHM+EplFLXQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 8</value>
+  </data>
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>64, 24</value>
+  </data>
+  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>AutoSize</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>434, 84</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>434, 32</value>
+  </data>
+  <data name="linkLabel2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>136, 16</value>
+  </data>
+  <data name="linkLabel2.Text">
+    <value>zum SimPE Forum</value>
+  </data>
+  <data name="panel3.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>434, 1</value>
+  </data>
+  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Right</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>352, 8</value>
+  </data>
+  <data name="tbsup.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 0</value>
+  </data>
+  <data name="tbsup.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>352, 21</value>
+  </data>
+  <data name="tbsup.Text">
+    <value>http://ambertation.de/simpeforum/viewforum.php?f=4</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>450, 300</value>
+  </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
+    <value>NoControl</value>
+  </data>
+  <data name="$this.Text">
+    <value>Fehler</value>
   </data>
 </root>

@@ -188,11 +188,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "ClstForm.de-DE.resx"
-                    DependentUpon = "ClstForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "ClstForm.resx"
                     DependentUpon = "ClstForm.cs"
                     BuildAction = "EmbeddedResource"
@@ -219,11 +214,6 @@
                 />
                 <File
                     RelPath = "StrForm.de.resx"
-                    DependentUpon = "StrForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "StrForm.de-DE.resx"
                     DependentUpon = "StrForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
