@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;copy "$(TargetDir)\de-DE\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de-DE\"'
+                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"'
                 RootNamespace = "SimPe.Plugin"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -291,11 +291,6 @@
                 />
                 <File
                     RelPath = "NgbhForm.de.resx"
-                    DependentUpon = "NgbhForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "NgbhForm.de-DE.resx"
                     DependentUpon = "NgbhForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
