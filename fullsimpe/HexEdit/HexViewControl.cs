@@ -632,7 +632,7 @@ namespace Ambertation.Windows.Forms
 			SizeF stringSize = g.MeasureString("0", Font, layoutSize);
 
 			hbrh = stringSize.Height;
-			return stringSize.Height;
+			return stringSize.Height+COLSPACING;
 		}
 
 		/// <summary>
@@ -672,8 +672,8 @@ namespace Ambertation.Windows.Forms
 		/// <returns></returns>
 		protected float GetHexBoxRowsPerPage()
 		{
-			int h = Height - (1 + bm.Top + bm.Height ) - (int)HexBoxRowHeight;
-			return (float)((float)h / Math.Ceiling(HexBoxRowHeight + COLSPACING) +1);
+			int h = Height - (1 + bm.Top + bm.Height +COLSPACING) - (int)HexBoxRowHeight;
+			return (float)((float)h / Math.Ceiling(HexBoxRowHeight + COLSPACING));
 		}
 
 		/// <summary>
@@ -682,7 +682,7 @@ namespace Ambertation.Windows.Forms
 		/// <returns></returns>
 		protected int GetNumberOfPages()
 		{
-			return (int)Math.Max(0, Rows - (int)Math.Floor(GetHexBoxRowsPerPage())) +1 ;
+			return (int)Math.Max(0, Rows - (int)Math.Floor(GetHexBoxRowsPerPage())) ;
 		}
 
 		/// <summary>
@@ -887,6 +887,8 @@ namespace Ambertation.Windows.Forms
 		{			
 			base.OnResize(e);			
 			RedrawGraphics();
+			if (CurrentRow+this.GetHexBoxRowsPerPage()>=Rows) 
+				this.CurrentRow = (int)Math.Max(0, Rows-this.GetHexBoxRowsPerPage());
 			base.Refresh();			
 		}
 
@@ -972,9 +974,9 @@ namespace Ambertation.Windows.Forms
 
 		void SetScrollBar()
 		{
-			sb.Maximum = Math.Max(0, (int)this.GetNumberOfPages()-1);
-			sb.LargeChange = (int)this.GetHexBoxRowsPerPage();//sb.Maximum / 20;
-			sb.Maximum += sb.LargeChange-1;
+			sb.Maximum = Math.Max(0, (int)this.GetNumberOfPages());
+			sb.LargeChange = 1;//(int)this.GetHexBoxRowsPerPage();//sb.Maximum / 20;
+			//sb.Maximum += sb.LargeChange+1;
 			sb.Visible = (sb.Minimum != sb.Maximum);
 		}
 		#region Manage Drawing
@@ -1365,7 +1367,7 @@ namespace Ambertation.Windows.Forms
 			SetGraphicsMode(g, true);
 			g.FillRectangle(new SolidBrush(base.BackColor), 0, 0, b.Width, b.Height);
 			
-			g.FillRectangle(this.BackBrush, -2, 0, this.OffsetBoxWidth, b.Height+2);
+			g.FillRectangle(this.BackBrush, -2, 0, this.OffsetBoxWidth+2, b.Height+2);
 			g.FillRectangle(this.BackBrush, this.OffsetBoxWidth+WINDOWSPACING, -2, this.HexBoxWidth, b.Height+2);			
 			g.FillRectangle(this.BackBrush, this.OffsetBoxWidth+this.HexBoxWidth+2*WINDOWSPACING, -2, this.CharBoxWidth, b.Height+2);			
 			

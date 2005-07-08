@@ -171,7 +171,7 @@ namespace SimPe
 						
 			TD.SandDock.SandDockManager sdm2 = new TD.SandDock.SandDockManager();
 			sdm2.OwnerForm = this;
-			FileTable.ThemeManager.AddControl(sdm2);
+			ThemeManager.Global.AddControl(sdm2);
 			this.dc.Manager = sdm2;	
 		
 			lv.SmallImageList = FileTable.WrapperRegistry.WrapperImageList;
@@ -656,6 +656,7 @@ namespace SimPe
 			// 
 			// miFileNames
 			// 
+			this.miFileNames.Checked = true;
 			this.miFileNames.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miFileNames.Shortcut")));
 			this.miFileNames.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miFileNames.Shortcut2")));
 			this.miFileNames.Text = resources.GetString("miFileNames.Text");
@@ -1496,6 +1497,7 @@ namespace SimPe
 			this.dcPlugin.Controls.Add(this.dc);
 			this.dcPlugin.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dcPlugin.Dock")));
 			this.dcPlugin.Enabled = ((bool)(resources.GetObject("dcPlugin.Enabled")));
+			this.dcPlugin.FloatingSize = new System.Drawing.Size(800, 400);
 			this.dcPlugin.Font = ((System.Drawing.Font)(resources.GetObject("dcPlugin.Font")));
 			this.dcPlugin.Guid = new System.Guid("1fc41585-f06c-418c-8226-523fdec0f9c4");
 			this.dcPlugin.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dcPlugin.ImeMode")));
@@ -1873,6 +1875,7 @@ namespace SimPe
 		#endregion
 
 		static string[] pargs;
+		public static MainForm Global;
 		/// <summary>
 		/// Der Haupteinstiegspunkt für die Anwendung.
 		/// </summary>
@@ -1890,7 +1893,8 @@ namespace SimPe
 				if (!Commandline.Start(args))  
 				{
 					Helper.WindowsRegistry.UpdateSimPEDirectory();
-					Application.Run(new MainForm());
+					Global = new MainForm();
+					Application.Run(Global);
 				}
 			} 
 			catch (Exception ex) 
@@ -1987,7 +1991,7 @@ namespace SimPe
 			tvInstance.Nodes.Clear();
 			tvGroup.Nodes.Clear();
 			tvType.Nodes.Clear();
-			treebuilder.ClearListView(lv);
+			TreeBuilder.ClearListView(lv);
 
 			SetupActiveResourceView();	
 			package.UpdateRecentFileMenu(this.miRecent);			
@@ -2032,18 +2036,18 @@ namespace SimPe
 		void InitThemer()
 		{
 			//setup the Theme Manager
-			FileTable.ThemeManager.AddControl(this.sdm);			
-			FileTable.ThemeManager.AddControl(this.sbm);
-			FileTable.ThemeManager.AddControl(this.tbResource);
-			FileTable.ThemeManager.AddControl(this.splitter1);
-			FileTable.ThemeManager.AddControl(this.xpGradientPanel1);
-			FileTable.ThemeManager.AddControl(this.xpGradientPanel2);
-			FileTable.ThemeManager.AddControl(this.xpGradientPanel3);
+			ThemeManager.Global.AddControl(this.sdm);			
+			ThemeManager.Global.AddControl(this.sbm);
+			ThemeManager.Global.AddControl(this.tbResource);
+			ThemeManager.Global.AddControl(this.splitter1);
+			ThemeManager.Global.AddControl(this.xpGradientPanel1);
+			ThemeManager.Global.AddControl(this.xpGradientPanel2);
+			ThemeManager.Global.AddControl(this.xpGradientPanel3);
 		}
 
 		void ChangedTheme(GuiTheme gt)
 		{
-			FileTable.ThemeManager.CurrentTheme = gt;
+			ThemeManager.Global.CurrentTheme = gt;
 		}
 
 		string sdmdef, sbmdef;
@@ -2602,6 +2606,7 @@ namespace SimPe
 			doc.TabImage = dcPlugin.TabImage;
 			doc.Text = dcPlugin.Text;
 			doc.TabText = dcPlugin.TabText;
+			doc.AutoScrollMinSize = dcPlugin.AutoScrollMinSize;
 			
 
 			TD.SandDock.DocumentContainer dc = new TD.SandDock.DocumentContainer();

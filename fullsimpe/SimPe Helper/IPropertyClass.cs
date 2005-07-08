@@ -18,75 +18,23 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
-using SimPe.Cache;
 
-namespace SimPe.Plugin
+namespace Ambertation
 {
 	/// <summary>
-	/// An Instance of this class represents one scanned Package
+	/// This Interface has to be implemented by classes that should be lodable by the class directive
+	/// in <see cref="Ambertation.PropertyParser"/>
 	/// </summary>
-	public class ScannerItem 	{
-		PackageCacheItem pci;
-		public PackageCacheItem PackageCacheItem
-		{
-			get { return pci; }
-		}
-		
-		string filename;
-
+	/// <remarks>
+	/// Classes implementing this Interface MUST have a constructur that takes one object as argument!
+	/// </remarks>
+	public interface IPropertyClass
+	{
 		/// <summary>
-		/// The FileName of the Package File
+		/// Create a new Instance of this Class
 		/// </summary>
-		public string FileName 
-		{
-			get { return filename; }
-			set { 
-				if (filename.Trim().ToLower() != value.Trim().ToLower()) pkg = null;
-				filename = value; 
-			}
-		}
-
-		SimPe.Cache.CacheContainer cc;
-		public SimPe.Cache.CacheContainer ParentContainer 
-		{
-			get { return cc; }
-		}
-
-		SimPe.Packages.GeneratableFile pkg = null;
-		/// <summary>
-		/// Returns the Package Instance fo the given FileNmae
-		/// </summary>
-		public SimPe.Packages.GeneratableFile Package 
-		{
-			get { 
-				if (pkg==null) 
-				{
-					pkg = SimPe.Packages.GeneratableFile.LoadFromFile(FileName);
-				}
-
-				return pkg;
-			}
-			set { pkg = value; }
-		}
-
-		public ScannerItem(PackageCacheItem pci, SimPe.Cache.CacheContainer cc) 
-		{
-			this.pci = pci;
-			this.cc = cc;
-			filename = "";
-		}
-
-		System.Windows.Forms.ListViewItem lvi;
-		public System.Windows.Forms.ListViewItem ListViewItem
-		{
-			get 
-			{
-				return lvi;
-			}
-			set 
-			{
-				lvi = value;
-			}
-		}
+		/// <param name="o"></param>
+		/// <returns></returns>
+		//IPropertyClass Create(object o);
 	}
 }

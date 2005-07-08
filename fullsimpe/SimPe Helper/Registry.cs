@@ -757,7 +757,7 @@ namespace SimPe
 			get 
 			{
 				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-				object o = rkf.GetValue("SimpleResourceSelect", false);
+				object o = rkf.GetValue("SimpleResourceSelect", true);
 				return Convert.ToBoolean(o);
 			}
 			set

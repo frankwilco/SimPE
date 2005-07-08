@@ -23,10 +23,21 @@ using SimPe.Interfaces.Plugin;
 
 namespace SimPe.PackedFiles.Wrapper
 {
+	/// <summary>
+	/// This is used to determin the Health of a OBJd File
+	/// </summary>
+	public enum ObjdHealth : byte 
+	{
+		Ok, 
+		Unreadable,
+		UnmatchingFilenames,
+		OverLength
+	}
 	#region Room Sort
 	public class ObjRoomSort : FlagBase 
 	{
 		public ObjRoomSort(short flags) : base((ushort)flags) {}
+		public ObjRoomSort(object o) : base(o) {}
 
 		public bool InBathroom
 		{
@@ -88,6 +99,7 @@ namespace SimPe.PackedFiles.Wrapper
 	public class ObjFunctionSort : FlagBase 
 	{
 		public ObjFunctionSort(short flags) : base((ushort)flags) {}
+		public ObjFunctionSort(object o) : base(o) {}
 
 		public bool InAppliances
 		{
@@ -160,13 +172,13 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
-	public class ExtObjd : AbstractWrapper, SimPe.Interfaces.Plugin.IFileWrapper, SimPe.Interfaces.Plugin.IFileWrapperSaveExtension
+	public class ExtObjd : AbstractWrapper, SimPe.Interfaces.Plugin.IFileWrapper, SimPe.Interfaces.Plugin.IFileWrapperSaveExtension, SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper
 	{
 		#region Attributes
 		/// <summary>
 		///the stored Filename		
 		/// </summary>
-        private byte[] filename;
+        private byte[] filename, filename2;
 
 		/// <summary>
 		/// The Type of this File
@@ -296,7 +308,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Extended OBJD Wrapper",
 				"Quaxi",
 				"This File is used to Set up the Basic Catalog Properties of an Object. It also contains the unique ID for the Objeect or a Part of the Object.",
-				2,
+				3,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.objd.png"))
 				); 
 		}
@@ -320,19 +332,40 @@ namespace SimPe.PackedFiles.Wrapper
 		public ExtObjd(Interfaces.Providers.IOpcodeProvider opcodes) : base()
 		{			
 			filename = new byte[0x40];
-			data = new short[0x06];
+			filename2 = new byte[0];
+			data = new short[0xdc];
 			this.opcodes = opcodes;
 			Type = SimPe.Data.ObjectTypes.Normal;
 			rsort = new ObjRoomSort(0);
 			fsort = new ObjFunctionSort(0);
 		}
 
+		public void UpdateFlags()
+		{
+			if (data.Length>0x28)
+			{
+				this.rsort = new ObjRoomSort(data[0x27]);
+				this.fsort = new ObjFunctionSort(data[0x28]);
+			}
+		}
+
+		ObjdHealth ok;
+		public ObjdHealth Ok
+		{
+			get {return ok; }
+		}
 		protected override void Unserialize(System.IO.BinaryReader reader)
-		{						
-			filename = reader.ReadBytes(0x40);				
-			int count = (int)((reader.BaseStream.Length - 0x40) / 2);
-			data = new short[count];
-			for (int i=0; i<count; i++) data[i] = reader.ReadInt16();
+		{	
+			ok = ObjdHealth.Ok;		
+			try 
+			{
+				UnserializeNew(reader);
+			} 
+			catch {
+				ok = ObjdHealth.Unreadable;
+				reader.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
+				UnserializeOld(reader);
+			}
 
 			//read some special Data
 			if (Length>0x5c+4)
@@ -353,15 +386,50 @@ namespace SimPe.PackedFiles.Wrapper
 				originalguid = reader.ReadUInt32();
 			}
 
-			if (data.Length>0x28)
+			
+			UpdateFlags();
+		}
+
+		protected void UnserializeNew(System.IO.BinaryReader reader)
+		{						
+			filename = reader.ReadBytes(0x40);				
+			int count = (int)((reader.BaseStream.Length - 0x40) / 2);
+			count = 0x6c;
+			data = new short[count];
+			for (int i=0; i<count; i++) data[i] = reader.ReadInt16();
+
+			int sz = reader.ReadInt32();
+			filename2 = reader.ReadBytes(sz);
+			
+			if (Helper.ToString(filename2) != this.FileName) 
+				ok = ObjdHealth.UnmatchingFilenames;
+
+			if (reader.BaseStream.Position != reader.BaseStream.Length)
+				ok = ObjdHealth.OverLength;
+		}
+
+		protected void UnserializeOld(System.IO.BinaryReader reader)
+		{						
+			filename = reader.ReadBytes(0x40);				
+			int count = (int)((reader.BaseStream.Length - 0x40) / 2);
+			data = new short[count];
+			for (int i=0; i<count; i++) 
 			{
-				this.rsort = new ObjRoomSort(data[0x27]);
-				this.fsort = new ObjFunctionSort(data[0x28]);
+				try 
+				{
+					data[i] = reader.ReadInt16();			
+				} 
+				catch (System.IO.EndOfStreamException ex)
+				{
+					throw new System.IO.EndOfStreamException("Reading Error in OBJd at "+i.ToString()+".", ex);
+					return;
+				}
 			}
 		}
 
 		protected override void Serialize(System.IO.BinaryWriter writer) 
 		{		
+			const int MAX_VALUES = 0x6c;
 			if (data.Length>0x27)
 			{
 				data[0x27] = (short)this.rsort.Value;
@@ -369,7 +437,20 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 
 			writer.Write(filename);
-			foreach (short s in data) writer.Write(s);
+			int ct =0;			
+			foreach (short s in data) 
+			{
+				writer.Write(s);
+				ct++;
+				if (ct>=MAX_VALUES) break;
+			}
+
+			while (ct<MAX_VALUES) writer.Write((short)0);
+
+			string flname = this.FileName;
+			byte[] name = Helper.ToBytes(flname, 0);
+			writer.Write((uint)name.Length);
+			writer.Write(name);
 			
 			//write some special Fields
 			if (Length>0x5c+4)
@@ -389,6 +470,10 @@ namespace SimPe.PackedFiles.Wrapper
 				writer.BaseStream.Seek(0xcc, System.IO.SeekOrigin.Begin);
 				writer.Write(originalguid);
 			}
+
+
+			
+			//if (free>0) writer.Write(new byte[free]);
 		}
 		#endregion
 
@@ -424,6 +509,34 @@ namespace SimPe.PackedFiles.Wrapper
 		}		
 
 		
+
+		#endregion
+
+		#region Property Grid
+		static SimPe.PackedFiles.Wrapper.ObjdPropertyParser tpp;
+
+		/// <summary>
+		/// Return a PropertyParser, that enumerates all known Properties as <see cref="Ambertation.PropertyDescription"/> Objects
+		/// </summary>
+		public static SimPe.PackedFiles.Wrapper.ObjdPropertyParser PropertyParser
+		{
+			get 
+			{
+				if (tpp==null) 
+					tpp = new SimPe.PackedFiles.Wrapper.ObjdPropertyParser(System.IO.Path.Combine(Helper.SimPeDataPath, "objddefinition.xml"));
+				return tpp;
+			}
+		}
+
+		#endregion
+
+		#region IMultiplePackedFileWrapper Member
+
+		public object[] GetConstructorArguments()
+		{
+			
+			return new object[] {this.opcodes};
+		}		
 
 		#endregion
 	}

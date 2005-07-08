@@ -56,6 +56,15 @@ namespace Ambertation
 			get { return cat; }
 		}		
 
+		bool ro;
+		/// <summary>
+		/// Tru iof this Property is ReadOnly
+		/// </summary>
+		public bool ReadOnly
+		{
+			get {return ro;}
+		}
+
 		object prop;
 		/// <summary>
 		/// The Property (=Content)
@@ -90,10 +99,16 @@ namespace Ambertation
 					{
 						if (type.IsEnum) 
 						{
-							if (value.GetType()!=typeof(int))								
-								prop = System.Enum.ToObject(type, type.GetField(value.ToString()).GetValue(null));
-							else
+							if (value.GetType()==typeof(int))				
 								prop = System.Enum.ToObject(type, System.Convert.ToInt32(value));
+							/*else if (value.GetType()==typeof(uint))				
+								prop = System.Enum.ToObject(type, System.Convert.ToInt32(value));
+							else if (value.GetType()==typeof(short))								
+								prop = System.Enum.ToObject(type, System.Convert.ToInt32(value));
+							else if (value.GetType()==typeof(ushort))								
+								prop = System.Enum.ToObject(type, System.Convert.ToInt32(value));*/
+							else
+								prop = System.Enum.ToObject(type, type.GetField(value.ToString()).GetValue(null));
 
 						} 
 						else if ((type == typeof(FloatColor)) && (value.GetType()==typeof(string)))
@@ -103,10 +118,14 @@ namespace Ambertation
 						else if ((type == typeof(FloatColor)) && (value.GetType()==typeof(Color)))
 						{
 							prop = FloatColor.FromColor((Color)value);
+						} 	
+						else if (type.GetInterface("Ambertation.IPropertyClass") == typeof(Ambertation.IPropertyClass))
+						{
+							prop = System.Activator.CreateInstance(type, new object[] {value});
 						}
 						else 
 						{
-							prop = System.Convert.ChangeType(value, type); 
+							prop = System.Convert.ChangeType(value, type); 							
 						}
 					} 
 					catch 
@@ -146,7 +165,7 @@ namespace Ambertation
 		/// <param name="description"></param>
 		/// <param name="property"></param>
 		public PropertyDescription(string category, string description, object property) :
-			this(category, description, property, property.GetType())
+			this(category, description, property, property.GetType(), false)
 		{
 			
 		}
@@ -157,12 +176,25 @@ namespace Ambertation
 		/// <param name="category"></param>
 		/// <param name="description"></param>
 		/// <param name="property"></param>
+		public PropertyDescription(string category, string description, object property, bool ro) :
+			this(category, description, property, property.GetType(), ro)
+		{
+		}
+
+		/// <summary>
+		/// Creates a new Instance
+		/// </summary>
+		/// <param name="category"></param>
+		/// <param name="description"></param>
+		/// <param name="property"></param>
 		/// <param name="type">type of the Object</param>
-		public PropertyDescription(string category, string description, object property, Type type) 
+		/// <param name="ro">ReadOnly?</param>
+		public PropertyDescription(string category, string description, object property, Type type, bool ro) 
 		{
 			desc = description;
 			cat = category;
 			prop = property;
+			this.ro = ro;
 			this.type = type;
 		}
 
@@ -172,7 +204,7 @@ namespace Ambertation
 		/// <returns>The cloned Object</returns>
 		public PropertyDescription Clone() 
 		{
-			return new PropertyDescription(cat, desc, null, type);
+			return new PropertyDescription(cat, desc, null, type, ro);
 		}
 	}
 
@@ -212,11 +244,11 @@ namespace Ambertation
 					if (o.GetType()== typeof(FloatColor)) 
 						o = ((FloatColor)o).Color;
 
-					AddProperty(k, myTypeBuilder, o.GetType(), pd.Description, pd.Category);
+					AddProperty(k, myTypeBuilder, o, pd.Description, pd.Category, pd.ReadOnly);
 				} 
 				else 
 				{
-					AddProperty(k, myTypeBuilder, o.GetType(), "[Unknown Property]", null);
+					AddProperty(k, myTypeBuilder, o, "[Unknown Property]", null, false);
 				}
 			}
 
@@ -265,15 +297,49 @@ namespace Ambertation
 		}
 
 		/// <summary>
+		/// Add an Attribute
+		/// </summary>
+		/// <param name="custNamePropBldr"></param>
+		/// <param name="attrType"></param>
+		/// <param name="val"></param>
+		static void AddAttribute(PropertyBuilder custNamePropBldr, Type attrType, bool val)
+		{
+			ConstructorInfo classCtorCat =
+				attrType.GetConstructor(new Type[] { typeof(bool) });
+			CustomAttributeBuilder myCABuilder = new CustomAttributeBuilder(
+				classCtorCat,
+				new object[] { val });
+			custNamePropBldr.SetCustomAttribute(myCABuilder);
+		}
+
+		/// <summary>
+		/// Add an Attribute
+		/// </summary>
+		/// <param name="custNamePropBldr"></param>
+		/// <param name="attrType"></param>
+		/// <param name="val"></param>
+		static void AddAttribute(PropertyBuilder custNamePropBldr, Type attrType, object val, bool a)
+		{
+			ConstructorInfo classCtorCat =
+				attrType.GetConstructor(new Type[] { val.GetType() });
+			CustomAttributeBuilder myCABuilder = new CustomAttributeBuilder(
+				classCtorCat,
+				new object[] { val });
+			custNamePropBldr.SetCustomAttribute(myCABuilder);
+		}
+
+		/// <summary>
 		/// Add a Property To the new Type
 		/// </summary>
 		/// <param name="name">name of the Property</param>
 		/// <param name="myTypeBuilder">The TypeBuidler Object</param>
-		/// <param name="type">Type of the Property</param>
+		/// <param name="o">The default value for that Property</param>
 		/// <param name="category">Category the Property is assigned to</param>
 		/// <param name="description">Description for this Category</param>
-		public static void AddProperty(string name, TypeBuilder myTypeBuilder, Type type, string description, string category)
+		/// <param name="ro">true if this Item should be ReadOnly</param>
+		public static void AddProperty(string name, TypeBuilder myTypeBuilder, object o, string description, string category, bool ro)
 		{
+			Type type = o.GetType();
 			FieldBuilder customerNameBldr = myTypeBuilder.DefineField("_"+name.ToLower(),
 				type,
 				FieldAttributes.Private);
@@ -286,10 +352,12 @@ namespace Ambertation
 				new Type[] { });			
 
 			//Define Category-Attribute
-			if (category!=null) AddAttribute(custNamePropBldr, typeof(CategoryAttribute), category);
+			if (category!=null) if (category!="") AddAttribute(custNamePropBldr, typeof(CategoryAttribute), category);
 
 			//Define Description-Attribute
 			if (description!=null) AddAttribute(custNamePropBldr, typeof(DescriptionAttribute), description);
+			AddAttribute(custNamePropBldr, typeof(ReadOnlyAttribute), ro);
+			//AddAttribute(custNamePropBldr, typeof(DefaultValueAttribute), o, true);
 			
 
 			// First, we'll define the behavior of the "get" property for CustomerName as a method.

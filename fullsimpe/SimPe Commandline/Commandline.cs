@@ -476,7 +476,7 @@ namespace SimPe
 									}
 
 									Helper.WindowsRegistry.Reload();
-									FileTable.ThemeManager.CurrentTheme = (SimPe.GuiTheme)Helper.WindowsRegistry.Layout.SelectedTheme;
+									ThemeManager.Global.CurrentTheme = (SimPe.GuiTheme)Helper.WindowsRegistry.Layout.SelectedTheme;
 								} 
 								catch (Exception ex) 
 								{

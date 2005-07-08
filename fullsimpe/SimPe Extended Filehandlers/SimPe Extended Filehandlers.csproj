@@ -197,6 +197,11 @@
                     RelPath = "objd.png"
                     BuildAction = "EmbeddedResource"
                 />
+                <File
+                    RelPath = "ObjdPropertyParser.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
             </Include>
         </Files>
     </CSHARP>

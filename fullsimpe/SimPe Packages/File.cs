@@ -1088,23 +1088,23 @@ namespace SimPe.Packages
 
 		#region Events
 		bool pause;
-		bool indexevent;
-		void FireAddEvent() 
+		bool indexevent, addevent, remevent;
+		protected void FireAddEvent() 
 		{
-			if (pause) return;
+			if (pause) { addevent = true; return; }
 			if (this.AddedResource!=null) AddedResource(this, new System.EventArgs());
 		}
-		void FireRemoveEvent() 
+		protected void FireRemoveEvent() 
 		{
-			if (pause) return;
+			if (pause) { remevent = true;  return; }
 			if (this.RemovedResource!=null) RemovedResource(this, new System.EventArgs());
 		}
-		void FireIndexEvent() 
+		protected void FireIndexEvent() 
 		{			
 			FireIndexEvent(new System.EventArgs());
 		}
 
-		void FireIndexEvent(System.EventArgs e)
+		protected void FireIndexEvent(System.EventArgs e)
 		{
 			if (pause) { indexevent = true; return; }
 			if (this.IndexChanged!=null) IndexChanged(this, e);
@@ -1112,7 +1112,10 @@ namespace SimPe.Packages
 
 		public void BeginUpdate()
 		{
+			if (pause) return;
 			indexevent = false;
+			addevent = false;
+			remevent = false;
 			pause = true;
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in Index)
 				pfd.BeginUpdate();
@@ -1126,6 +1129,8 @@ namespace SimPe.Packages
 				pfd.EndUpdate();
 
 			if (indexevent) FireIndexEvent();
+			if (remevent) FireRemoveEvent();
+			if (addevent) FireAddEvent();
 		}
 		/// <summary>
 		/// Called whenever the content represented by this descripotr was changed

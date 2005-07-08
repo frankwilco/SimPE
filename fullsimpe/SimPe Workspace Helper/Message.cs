@@ -158,8 +158,8 @@ namespace SimPe
 				
 				m.Height = m.panel2.Height + m.panel1.Height + System.Windows.Forms.SystemInformation.CaptionHeight;
 
-				FileTable.ThemeManager.Theme(m.panel2);
-				m.panel1.BackColor = FileTable.ThemeManager.ThemeColorDark;
+				ThemeManager.Global.Theme(m.panel2);
+				m.panel1.BackColor = ThemeManager.Global.ThemeColorDark;
 
 				bool run = WaitingScreen.Running;
 				if (run) WaitingScreen.Stop();

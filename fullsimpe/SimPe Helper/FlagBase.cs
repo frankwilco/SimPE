@@ -18,21 +18,35 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.ComponentModel;
 
 namespace SimPe
 {
 	/// <summary>
 	/// Basic Class you can use if you have to implement Flags
 	/// </summary>
-	public class FlagBase
+	[TypeConverterAttribute(typeof(FlagBaseConverter)),
+	DescriptionAttribute("This Property contains some Flags")]
+	public class FlagBase : Ambertation.IPropertyClass
 	{
 		public FlagBase(ushort flags) 
 		{
 			this.flags = flags;
 		}
 
+		public FlagBase(object flags) 
+		{
+			this.flags = 0;
+			try 
+			{
+				this.flags = Convert.ToUInt16(flags);
+			} 
+			catch {}
+		}
+
 		ushort flags;
 
+		[System.ComponentModel.Browsable(false)]
 		public ushort Value 
 		{
 			get { return flags; }
@@ -51,5 +65,22 @@ namespace SimPe
 			flags = (ushort)(flags | mask);
 			if (!val) flags -= mask;
 		}
+
+		public override string ToString()
+		{
+			return Convert.ToString(flags, 2);
+		}
+
+		public static implicit operator ushort(FlagBase m)
+		{
+			return m.flags;
+		}
+
+		public static implicit operator short(FlagBase m)
+		{
+			return (short)m.flags;
+		}		
+
+
 	}
 }

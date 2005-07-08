@@ -1065,7 +1065,7 @@ namespace SimPe.Plugin
 				lv.EndUpdate();
 			}
 
-			if (errorlog.Trim()!="") Helper.ExceptionMessage("Unreadable Files were found", new Exception(errorlog));
+			if (errorlog.Trim()!="") Helper.ExceptionMessage(new Warning("Unreadable Files were found", errorlog));
 		}
 
 				
@@ -1085,7 +1085,7 @@ namespace SimPe.Plugin
 				try 
 				{
 					//Load the Item from the cache (if possible)
-					ScannerItem si = cachefile.LoadItem(file);	
+					ScannerItem si = cachefile.LoadItem(file);						
 					si.PackageCacheItem.Enabled = enabled;
 
 					if (si.PackageCacheItem.Thumbnail!=null) WaitingScreen.Update(si.PackageCacheItem.Thumbnail, si.PackageCacheItem.Name);
@@ -1107,6 +1107,7 @@ namespace SimPe.Plugin
 					
 					//setup the ListView Item
 					ListViewItem lvi = new ListViewItem();
+					si.ListViewItem = lvi;
 					lvi.Text = System.IO.Path.GetFileNameWithoutExtension(si.FileName);
 					lvi.SubItems.Add(si.PackageCacheItem.Enabled.ToString());
 					lvi.SubItems.Add(si.PackageCacheItem.Type.ToString());
@@ -1133,14 +1134,14 @@ namespace SimPe.Plugin
 				} 
 				catch (Exception ex) 
 				{
-					if (Helper.DebugMode) 
+					/*if (Helper.DebugMode) 
 					{
 						Helper.ExceptionMessage("", ex);
 					} 
 					else 
-					{
-						errorlog += file+": "+ex.Message+Helper.lbr;
-					}
+					{*/
+						errorlog += file+": "+ex.Message+Helper.lbr+"----------------------------------------"+Helper.lbr;
+					//}
 				}
 			} //foreach			
 		}

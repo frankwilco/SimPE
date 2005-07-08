@@ -485,8 +485,8 @@ namespace SimPe
 		/// <returns>A Byte Array of the given Length (filled with 0)</returns>
 		public static byte[] ToBytes(string str, int len) 
 		{
-			byte[] ret = new byte[len];
-			System.IO.MemoryStream ms = new MemoryStream();
+			
+			/*System.IO.MemoryStream ms = new MemoryStream();
 			System.IO.BinaryWriter bw = new BinaryWriter(ms);
 			foreach (char c in str) 
 			{
@@ -497,7 +497,15 @@ namespace SimPe
 			bw.Flush();
 			System.IO.BinaryReader br = new BinaryReader(ms);
 			br.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
-			ret = br.ReadBytes((int)br.BaseStream.Length);
+			ret = br.ReadBytes((int)br.BaseStream.Length);*/
+
+			byte[] ret = null;
+			if (len!=0) 
+			{
+				ret = new byte[len];
+				System.Text.Encoding.ASCII.GetBytes(str, 0, Math.Min(len, str.Length), ret, 0);
+			}
+			else ret = System.Text.Encoding.ASCII.GetBytes(str);
 
 			return ret;
 		}

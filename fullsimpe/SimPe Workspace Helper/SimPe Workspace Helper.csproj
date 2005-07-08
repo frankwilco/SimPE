@@ -275,6 +275,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "PropertyParser.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "RemoteControl.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
