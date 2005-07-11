@@ -459,7 +459,7 @@ namespace SimPe
 			{
 				if (System.IO.Directory.Exists(Helper.WindowsRegistry.PreviousDataFolder))
 					if (Helper.WindowsRegistry.PreviousDataFolder.Trim().ToLower()!=Helper.SimPeDataPath.Trim().ToLower())
-						if (Helper.SimPeVersionLong>Helper.WindowsRegistry.PreviousVersion) 
+						if (Helper.SimPeVersionLong>Helper.WindowsRegistry.PreviousVersion && Helper.WindowsRegistry.PreviousVersion>0) 
 						{
 							if (Message.Show("Should SimPE import old Settings from \""+Helper.WindowsRegistry.PreviousDataFolder+"\"?", "Import Settings", System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.Yes) 
 							{

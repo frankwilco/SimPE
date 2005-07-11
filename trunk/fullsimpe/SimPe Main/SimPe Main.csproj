@@ -244,7 +244,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "about.rtf"
+                    RelPath = "about-de.rtf"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "about-en.rtf"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -435,6 +439,14 @@
                     RelPath = "ViewFilter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "welcome-de.rtf"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "welcome-en.rtf"
+                    BuildAction = "EmbeddedResource"
                 />
             </Include>
         </Files>

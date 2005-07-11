@@ -156,7 +156,7 @@ namespace SimPe
 		static ArrayList GetExtractExtensions(string suffix)
 		{
 			ArrayList exts = new ArrayList();
-			exts.Add("*.simpe");
+			exts.Add("*.simpe"+suffix);
 
 			SimPe.Data.TypeAlias[] types = Helper.TGILoader.FileTypes;
 			foreach (SimPe.Data.TypeAlias type in types) 

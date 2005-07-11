@@ -165,12 +165,34 @@ namespace SimPe
 		}
 
 		/// <summary>
-		/// Returns teh ChangeLog for the latest Release
+		/// Returns the ChangeLog for the latest Release
 		/// </summary>
 		/// <returns></returns>
 		public static string GetChangeLog()
 		{
-			if (!IsConnectedToInternet()) return "Unable to load the ChangeLog";
+			return GetSite("rssengine.php?&show=latestplain&browser=simpe"+GetLanguageParameter(), true);
+		}
+
+		/// <summary>
+		/// Returns SimPE Tutorials
+		/// </summary>
+		/// <returns></returns>
+		public static string GetTutorials()
+		{
+			return GetSite("tutorials.php?&browser=simpe"+GetLanguageParameter(), false);
+		}
+
+		/// <summary>
+		/// Returns a Site from sims.ambertation.de
+		/// </summary>
+		/// <returns></returns>
+		public static string GetSite(string name, bool catchex)
+		{
+			if (!IsConnectedToInternet()) 
+			{
+				if (catchex) return "Warning: Not Connected to the Internet.";
+				else throw new Warning("Not Connected to the Internet", "Your System is not connected to the Internet!");
+			}
 
 			WebClient Client = new WebClient ();
 			bool run = WaitingScreen.Running;
@@ -180,7 +202,7 @@ namespace SimPe
 				if (!run) WaitingScreen.Wait();
 				WaitingScreen.UpdateMessage("Loading ChangeLog");
 				WebClient cli = new WebClient();
-				byte[] data = cli.DownloadData("http://sims.ambertation.de/rssengine.php?&show=latestplain");
+				byte[] data = cli.DownloadData("http://sims.ambertation.de/"+name);
 				MemoryStream ms = new MemoryStream(data);
 				StreamReader sr = new StreamReader(ms);
 				string content = sr.ReadToEnd();								
@@ -190,14 +212,19 @@ namespace SimPe
 			} 
 			catch (Exception ex)
 			{
-				Helper.ExceptionMessage("Unable to load the ChangeLog.", ex);
+				if (catchex) Helper.ExceptionMessage("Unable to load a File from the Web.", ex);
+				else throw new Warning("Unable to load a File from the Web.", "SimPE was unable to download a Textfile from the Web.", ex);
 			}
 			finally 
 			{
 				if (!run) WaitingScreen.Stop();
 			}
 
-			return "Unable to load the ChangeLog";
+#if DEBUG
+			return "Warning: Unable to load \""+name+"\" from the Web.";
+#else
+			return "Warning: Unable to load a File from the Web.";
+#endif
 		}
 
 		/// <summary>
@@ -228,7 +255,7 @@ namespace SimPe
 				if (!run) WaitingScreen.Wait();
 				WaitingScreen.UpdateMessage("Check for new Updates");
 				WebClient cli = new WebClient();
-				byte[] data = cli.DownloadData("http://sims.ambertation.de/downloadnfo.txt");
+				byte[] data = cli.DownloadData("http://sims.ambertation.de/downloadnfo.txt?&browser=simpe");
 				MemoryStream ms = new MemoryStream(data);
 				StreamReader sr = new StreamReader(ms);
 				string content = sr.ReadToEnd();
@@ -271,6 +298,10 @@ namespace SimPe
 			return UpdateState.Nothing;
 		}
 
+		static string GetLanguageParameter()
+		{			
+			return "&language="+System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+		}
 #if MAC
 		/// <summary>
 		/// Returns true if the System is Connected

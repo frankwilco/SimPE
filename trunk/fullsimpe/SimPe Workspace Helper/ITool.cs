@@ -63,7 +63,7 @@ namespace SimPe.Interfaces
 	/// <summary>
 	/// defines a Action Plugin with the new Interface
 	/// </summary>
-	public interface IToolPlus: IToolPlugin, IToolExt
+	public interface IToolPlus: IToolExt
 	{
 		/// <summary>
 		/// This Eventhandler will be connected to the ExecuteAction Event of the Caller, you should

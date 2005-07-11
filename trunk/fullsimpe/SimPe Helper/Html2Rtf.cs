@@ -39,7 +39,7 @@ namespace Ambertation
 			html = html.Replace("\\", "/").Replace("{", "(").Replace("}", ")");
 
 			html = html.Replace("<br />", @"\pard\par"+"\n");
-			html = Regex.Replace(html, "<p[^>]*>", @"\pard ");			
+			html = Regex.Replace(html, "<p[^>]*>", @"\pard\f0\fs16 ");			
 			html = html.Replace("</p>", @"\par\pard\par"+"\n");
 			html = html.Replace("<h2>", @"\viewkind4\uc1\pard\b\f0\fs16 ");
 			html = html.Replace("</h2>", @"\b0\par");
@@ -55,8 +55,9 @@ namespace Ambertation
 			html = html.Replace("<li>", @"{\pntext\f1\'B7\tab}");
 			html = html.Replace("</li>", @"\par ");
 			html = html.Replace("../", @"http://sims.ambertation.de/");
+			html = html.Replace("./", @"http://sims.ambertation.de/");
 			while (html.IndexOf(" \\")!=-1) html=html.Replace(" \\", "\\");
-			html = Regex.Replace(html, "<span [ ]*class=\"([^\"]*)highlight([^\"]*)\"[^>]*>(.*?)<\\/span>", @"\cf1 $3\cf0 ");
+			html = Regex.Replace(html, "<span [ ]*class=\"([^\"]*)serif([^\"]*)\"[^>]*>(.*?)<\\/span>", @"\cf1 $3\cf0 ");
 			html = Regex.Replace(html, "<span [ ]*class=\"([^\"]*)\"[^>]*>(.*?)<\\/span>", @"$2");
 			html = html.Replace("<b>", @"\b ").Replace("<strong>", @"\b ");
 			html = html.Replace("</b>", @"\b0 ").Replace("</strong>", @"\b0 ");
@@ -70,7 +71,7 @@ namespace Ambertation
 			html = html.Replace("&lt;", "<").Replace("&gt;", ">");
 			
 
-			string rtf = @"{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fswiss\fprq2\fcharset0 Verdana;}}";
+			string rtf = @"{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fswiss\fprq2\fcharset0 Verdana;}{\f1\fnil\fcharset2 Symbol;}}";
 			rtf += @"{\colortbl ;\red215\green120\blue0;}";
 			rtf += html;
 			rtf += @"}";

@@ -1265,12 +1265,13 @@ namespace SimPe.Plugin
 			else 
 			{
 				exclude.Add("tsMaterialsMeshName");
+				
 
 				//for clones only when cbparent is not checked
-				if (!this.cbparent.Checked) 
+				//if (!this.cbparent.Checked) 
 				{					
-					exclude.Add("stdMatEnvCubeTextureName");
 					exclude.Add("TXTR");
+					exclude.Add("stdMatEnvCubeTextureName");					
 				} 
 			}
 

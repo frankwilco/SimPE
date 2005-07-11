@@ -146,7 +146,7 @@ namespace SimPe
 			rkf.SetValue("Path", Helper.SimPePath);
 			rkf.SetValue("DataPath", Helper.SimPeDataPath);
 			rkf.SetValue("PluginPath", Helper.SimPePluginPath);
-			rkf.SetValue("Version", Helper.SimPeVersionLong);
+			rkf.SetValue("LastVersion", Helper.SimPeVersionLong);
 		}
 
 		/// <summary>
@@ -176,7 +176,7 @@ namespace SimPe
 				return 0;
 #else
 				RegistryKey rkf = rk.CreateSubKey("Settings");	
-				return Convert.ToInt64(rkf.GetValue("Version", (long)0));
+				return Convert.ToInt64(rkf.GetValue("LastVersion", (long)0));
 #endif
 			}
 		}
@@ -782,6 +782,24 @@ namespace SimPe
 			{
 				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
 				rkf.SetValue("FirefoxTabbing", value);
+			}
+		}
+
+		/// <summary>
+		/// Number of Resource Files per package
+		/// </summary>
+		public int BigPackageResourceCount
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("BigPackageResourceCount", 1000);
+				return Convert.ToInt16(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("BigPackageResourceCount", value);
 			}
 		}
 
