@@ -219,9 +219,9 @@ namespace SimPe
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="parts"></param>
-		public void AddMenuItem(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuItemBase.MenuItemCollection parent, ToolMenuItemExt item, string[] parts)
+		public static  void AddMenuItem(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuItemBase.MenuItemCollection parent, ToolMenuItemExt item, string[] parts)
 		{
-			System.Reflection.Assembly a = this.GetType().Assembly;
+			System.Reflection.Assembly a = typeof(LoadFileWrappersExt).Assembly;
 
 			for (int i=0; i<parts.Length-1; i++) 
 			{
@@ -263,7 +263,7 @@ namespace SimPe
 
 			parent.Add(item);			
 			ev += new SimPe.Events.ChangedResourceEvent(item.ChangeEnabledStateEventHandler);
-			item.ChangeEnabledStateEventHandler(this, new SimPe.Events.ResourceEventArgs(null));
+			item.ChangeEnabledStateEventHandler(item, new SimPe.Events.ResourceEventArgs(null));
 		}
 
 		TD.SandBar.MenuBarItem mi;
@@ -272,11 +272,9 @@ namespace SimPe
 		/// </summary>
 		/// <param name="mi">The Menu you want to add Items to</param>
 		/// <param name="chghandler">A Function to call when the Package was chaged by a Tool</param>
-		public void AddMenuItems(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuBarItem mi, ToolMenuItemExt.ExternalToolNotify chghandler) 
+		public static void AddMenuItems(IToolExt[] toolsp, ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuBarItem mi, ToolMenuItemExt.ExternalToolNotify chghandler) 
 		{
-			this.mi = mi;
-			IToolPlus[] toolsp = FileTable.ToolRegistry.ToolsPlus;
-			foreach (IToolPlus tool in toolsp)
+			foreach (IToolExt tool in toolsp)
 			{
 				string name = tool.ToString();
 				string[] parts = name.Split("\\".ToCharArray());
@@ -285,6 +283,17 @@ namespace SimPe
 
 				AddMenuItem(ref ev, mi.Items, item, parts);
 			}
+		}
+		/// <summary>
+		/// Adds the Tool Plugins to the passed menu
+		/// </summary>
+		/// <param name="mi">The Menu you want to add Items to</param>
+		/// <param name="chghandler">A Function to call when the Package was chaged by a Tool</param>
+		public void AddMenuItems(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuBarItem mi, ToolMenuItemExt.ExternalToolNotify chghandler) 
+		{
+			this.mi = mi;
+			IToolExt[] toolsp = (IToolExt[])FileTable.ToolRegistry.ToolsPlus;
+			AddMenuItems(toolsp, ref ev, mi, chghandler);
 
 			ITool[] tools = FileTable.ToolRegistry.Tools;
 			foreach (ITool tool in tools)

@@ -719,12 +719,12 @@ namespace SimPe
 			// 
 			// miTutorials
 			// 
-			this.miTutorials.Enabled = false;
 			this.miTutorials.Image = ((System.Drawing.Image)(resources.GetObject("miTutorials.Image")));
 			this.miTutorials.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miTutorials.Shortcut")));
 			this.miTutorials.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miTutorials.Shortcut2")));
 			this.miTutorials.Text = resources.GetString("miTutorials.Text");
 			this.miTutorials.ToolTipText = resources.GetString("miTutorials.ToolTipText");
+			this.miTutorials.Activate += new System.EventHandler(this.Activate_miTutorials);
 			// 
 			// miAbout
 			// 
@@ -1929,7 +1929,7 @@ namespace SimPe
 		void AfterFileLoad(LoadedPackage sender)
 		{
 			ShowNewFile();
-			UpdateProviders();			
+			package.UpdateProviders();			
 		}	
 	
 		/// <summary>
@@ -1949,7 +1949,7 @@ namespace SimPe
 		private void AfterFileSave(LoadedPackage sender)
 		{
 			UpdateFileInfo();
-			UpdateProviders();
+			package.UpdateProviders();
 		}
 
 		/// <summary>
@@ -1993,30 +1993,14 @@ namespace SimPe
 			tvType.Nodes.Clear();
 			TreeBuilder.ClearListView(lv);
 
+			
 			SetupActiveResourceView();	
 			package.UpdateRecentFileMenu(this.miRecent);			
 
 			UpdateFileInfo();
 		}
 
-		/// <summary>
-		/// Update the old Provider Infrastructure
-		/// </summary>
-		void UpdateProviders()
-		{
-			if (Helper.IsNeighborhoodFile(package.FileName) && (Helper.WindowsRegistry.LoadMetaInfo))
-			{
-				FileTable.ProviderRegistry.SimNameProvider.BaseFolder = System.IO.Path.GetDirectoryName(package.FileName)+"\\Characters";
-				FileTable.ProviderRegistry.SimFamilynameProvider.BasePackage = package.Package;
-				FileTable.ProviderRegistry.SimDescriptionProvider.BasePackage = package.Package;
-			} 
-			else 
-			{
-				FileTable.ProviderRegistry.SimNameProvider.BaseFolder = "";
-				FileTable.ProviderRegistry.SimFamilynameProvider.BasePackage = null;
-				FileTable.ProviderRegistry.SimDescriptionProvider.BasePackage = null;
-			}
-		}
+		
 
 		/// <summary>
 		/// Close the currently opened File
@@ -2285,6 +2269,8 @@ namespace SimPe
 							if (tbl.TreeView.Nodes.Count>0) lastusedtnt = (TreeNodeTag)tbl.TreeView.Nodes[0].Tag;							
 						}
 						this.SelectResourceNode(tbl.TreeView, new TreeViewEventArgs(tbl.TreeView.SelectedNode, TreeViewAction.ByMouse));
+						//special Treatment for Neighborhood Files
+						if (Helper.IsNeighborhoodFile(package.FileName) && tbl.TreeView.Nodes.Count>0) tvType.SelectedNode = tbl.TreeView.Nodes[0];
 					}
 				}
 			}
@@ -2376,9 +2362,11 @@ namespace SimPe
 		}
 		#endregion
 
-		delegate void ShowUpdateFkt(bool force);
+		
 		void LoadForm(object sender, System.EventArgs e)
 		{					
+			if (Helper.WindowsRegistry.PreviousVersion==0) About.ShowWelcome();
+
 			dcFilter.LayoutSystem.Collapsed = true;
 
 			if (!Helper.WindowsRegistry.HiddenMode) 
@@ -2389,7 +2377,8 @@ namespace SimPe
 		
 			ReloadLayout();	
 			
-			if (Helper.WindowsRegistry.CheckForUpdates) this.BeginInvoke(new ShowUpdateFkt(About.ShowUpdate), new object[] {false});
+			if (Helper.WindowsRegistry.CheckForUpdates) 
+				About.ShowUpdate();
 
 			//load Files passed on the commandline
 			package.LoadOrImportFiles(pargs, true);
@@ -2465,6 +2454,11 @@ namespace SimPe
 		private void Activate_miAbout(object sender, System.EventArgs e)
 		{
 			About.ShowAbout();
+		}
+
+		private void Activate_miTutorials(object sender, System.EventArgs e)
+		{
+			About.ShowTutorials();
 		}
 
 		private void dc_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -2797,6 +2791,8 @@ namespace SimPe
 				xpLinkedLabelIcon2.Left = tbRcolName.Right - xpLinkedLabelIcon2.Width;
 			}
 		}
+
+		
 
 	
 	}

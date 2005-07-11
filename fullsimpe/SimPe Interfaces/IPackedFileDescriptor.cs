@@ -142,6 +142,14 @@ namespace SimPe.Interfaces.Files
 		}
 
 		/// <summary>
+		/// Returns the Filename that should be used when you create a single exported File 
+		/// </summary>
+		string ExportFileName
+		{
+			get;
+		}
+
+		/// <summary>
 		/// Returns or Setst the File Path
 		/// </summary>
 		/// <remarks>This is mostly of intrest when you extract packedFiles</remarks>

@@ -550,4 +550,10 @@ Package: {filename}</value>
 	<data name="Czech">
 		<value>Tschechisch</value>
 	</data>
+	<data name="Tutorials">
+		<value>Anleitungen</value>
+	</data>
+	<data name="Welcome">
+		<value>Willkommen</value>
+	</data>
 </root>

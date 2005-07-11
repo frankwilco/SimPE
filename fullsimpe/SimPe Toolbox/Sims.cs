@@ -46,6 +46,9 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.ColumnHeader columnHeader5;
 		private System.Windows.Forms.ColumnHeader columnHeader6;
+		private System.Windows.Forms.ColumnHeader columnHeader7;
+		private System.Windows.Forms.ColumnHeader columnHeader8;
+		private System.Windows.Forms.ColumnHeader columnHeader9;
 		private System.ComponentModel.IContainer components;
 
 		public Sims()
@@ -92,6 +95,8 @@ namespace SimPe.Plugin
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
 			this.iListSmall = new System.Windows.Forms.ImageList(this.components);
 			this.button1 = new System.Windows.Forms.Button();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -100,6 +105,7 @@ namespace SimPe.Plugin
 			this.label2 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.cbdetail = new System.Windows.Forms.CheckBox();
+			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
 			this.SuspendLayout();
 			// 
 			// ilist
@@ -121,7 +127,10 @@ namespace SimPe.Plugin
 																				 this.columnHeader3,
 																				 this.columnHeader4,
 																				 this.columnHeader5,
-																				 this.columnHeader6});
+																				 this.columnHeader6,
+																				 this.columnHeader9,
+																				 this.columnHeader7,
+																				 this.columnHeader8});
 			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
 			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
 			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
@@ -180,6 +189,18 @@ namespace SimPe.Plugin
 			this.columnHeader6.Text = resources.GetString("columnHeader6.Text");
 			this.columnHeader6.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader6.TextAlign")));
 			this.columnHeader6.Width = ((int)(resources.GetObject("columnHeader6.Width")));
+			// 
+			// columnHeader7
+			// 
+			this.columnHeader7.Text = resources.GetString("columnHeader7.Text");
+			this.columnHeader7.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader7.TextAlign")));
+			this.columnHeader7.Width = ((int)(resources.GetObject("columnHeader7.Width")));
+			// 
+			// columnHeader8
+			// 
+			this.columnHeader8.Text = resources.GetString("columnHeader8.Text");
+			this.columnHeader8.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader8.TextAlign")));
+			this.columnHeader8.Width = ((int)(resources.GetObject("columnHeader8.Width")));
 			// 
 			// iListSmall
 			// 
@@ -333,6 +354,12 @@ namespace SimPe.Plugin
 			this.cbdetail.Visible = ((bool)(resources.GetObject("cbdetail.Visible")));
 			this.cbdetail.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
 			// 
+			// columnHeader9
+			// 
+			this.columnHeader9.Text = resources.GetString("columnHeader9.Text");
+			this.columnHeader9.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader9.TextAlign")));
+			this.columnHeader9.Width = ((int)(resources.GetObject("columnHeader9.Width")));
+			// 
 			// Sims
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -360,7 +387,6 @@ namespace SimPe.Plugin
 			this.MinimumSize = ((System.Drawing.Size)(resources.GetObject("$this.MinimumSize")));
 			this.Name = "Sims";
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
-			this.ShowInTaskbar = false;
 			this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
 			this.Text = resources.GetString("$this.Text");
 			this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
@@ -434,7 +460,23 @@ namespace SimPe.Plugin
 				if (avl!="") avl+=", ";
 				avl += "Unlinked";
 			}
+			if (avl=="") avl="OK";
 			lvi.SubItems.Add(avl);
+			lvi.SubItems.Add("0x"+Helper.HexString(sdesc.SimId));
+
+			if (System.IO.File.Exists(sdesc.CharacterFileName)) 
+			{
+				System.IO.Stream s = System.IO.File.OpenRead(sdesc.CharacterFileName);
+				double sz = s.Length / 1024.0;				
+				s.Close();
+				lvi.SubItems.Add(System.IO.Path.GetFileNameWithoutExtension(sdesc.CharacterFileName));
+				lvi.SubItems.Add(sz.ToString("N2")+"kb");
+			} 
+			else 
+			{
+				lvi.SubItems.Add("---");
+				lvi.SubItems.Add("---");
+			}
 		
 			
 			//toolTip1.SetToolTip(lvi, sdesc.CharacterFileName);

@@ -32,6 +32,8 @@ namespace SimPe
 	{
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox tbComp;
+		private System.Windows.Forms.TextBox tbBig;
+		private System.Windows.Forms.Label label2;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -74,29 +76,50 @@ namespace SimPe
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Hidden));
 			this.label1 = new System.Windows.Forms.Label();
 			this.tbComp = new System.Windows.Forms.TextBox();
+			this.tbBig = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
 			this.label1.Location = new System.Drawing.Point(16, 24);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(160, 23);
+			this.label1.Size = new System.Drawing.Size(176, 23);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Compression Strength:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// tbComp
 			// 
-			this.tbComp.Location = new System.Drawing.Point(184, 24);
+			this.tbComp.Location = new System.Drawing.Point(200, 24);
 			this.tbComp.Name = "tbComp";
 			this.tbComp.Size = new System.Drawing.Size(104, 21);
 			this.tbComp.TabIndex = 1;
 			this.tbComp.Text = "";
 			// 
+			// tbBig
+			// 
+			this.tbBig.Location = new System.Drawing.Point(200, 48);
+			this.tbBig.Name = "tbBig";
+			this.tbBig.Size = new System.Drawing.Size(104, 21);
+			this.tbBig.TabIndex = 3;
+			this.tbBig.Text = "";
+			// 
+			// label2
+			// 
+			this.label2.Location = new System.Drawing.Point(16, 48);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(176, 23);
+			this.label2.TabIndex = 2;
+			this.label2.Text = "Big Package Resource Count:";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
 			// Hidden
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-			this.ClientSize = new System.Drawing.Size(458, 72);
+			this.ClientSize = new System.Drawing.Size(458, 96);
+			this.Controls.Add(this.tbBig);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.tbComp);
 			this.Controls.Add(this.label1);
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -117,6 +140,7 @@ namespace SimPe
 		private void Hidden_Load(object sender, System.EventArgs e)
 		{
 			this.tbComp.Text = SimPe.Packages.PackedFile.CompressionStrength.ToString();
+			tbBig.Text = Helper.WindowsRegistry.BigPackageResourceCount.ToString();
 		}
 
 		private void Hidden_Closed(object sender, System.EventArgs e)
@@ -124,6 +148,7 @@ namespace SimPe
 			try 
 			{
 				SimPe.Packages.PackedFile.CompressionStrength = Convert.ToInt32(this.tbComp.Text);
+				Helper.WindowsRegistry.BigPackageResourceCount = Convert.ToInt32(tbBig.Text);
 			} 
 			catch {}
 		}

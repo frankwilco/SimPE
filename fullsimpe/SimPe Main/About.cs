@@ -145,6 +145,25 @@ namespace SimPe
 		}
 		#endregion
 
+		void LoadResource(string flname)
+		{
+			System.Diagnostics.FileVersionInfo v = Helper.SimPeVersion;
+			System.IO.Stream s = this.GetType().Assembly.GetManifestResourceStream("SimPe."+flname+"-"+System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName+".rtf");
+			if (s==null) s = this.GetType().Assembly.GetManifestResourceStream("SimPe."+flname+"-en.rtf");
+			if (s!=null) 
+			{
+				System.IO.StreamReader sr = new System.IO.StreamReader(s);
+				string vtext = v.FileMajorPart +"."+v.FileMinorPart;
+				if (Helper.QARelease) vtext = "QA " + vtext;
+				if (Helper.DebugMode) vtext += " [debug]";
+				rtb.Rtf = sr.ReadToEnd().Replace("\\{Version\\}", vtext);
+			} 
+			else 
+			{
+				rtb.Text = "Error: Unknown Resource "+flname+".";
+			}
+		}
+
 		/// <summary>
 		/// Display the About Screen
 		/// </summary>
@@ -153,15 +172,39 @@ namespace SimPe
 			About f = new About();
 			f.Text = SimPe.Localization.GetString("About");
 
-			System.Diagnostics.FileVersionInfo v = Helper.SimPeVersion;
-			System.IO.Stream s = f.GetType().Assembly.GetManifestResourceStream("SimPe.about.rtf");
-			System.IO.StreamReader sr = new System.IO.StreamReader(s);
-			string vtext = v.FileMajorPart +"."+v.FileMinorPart;
-			if (Helper.QARelease) vtext = "QA " + vtext;
-			if (Helper.DebugMode) vtext += " [debug]";
-			f.rtb.Rtf = sr.ReadToEnd().Replace("\\{Version\\}", vtext);
+			f.LoadResource("about");
 
 			f.ShowDialog();
+		}
+
+		/// <summary>
+		/// Display the Welcome Screen
+		/// </summary>
+		public static void ShowWelcome()
+		{
+			About f = new About();
+			f.Text = SimPe.Localization.GetString("Welcome");
+
+			f.LoadResource("welcome");
+
+			f.ShowDialog();
+		}
+		
+		/// <summary>
+		/// Search for Updates in an async Thread
+		/// </summary>
+		public static void ShowUpdate()
+		{
+			System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(StartShowUpdate));
+			t.Start();
+		}
+
+		/// <summary>
+		/// used to start the Check thread
+		/// </summary>
+		static void StartShowUpdate()
+		{
+			ShowUpdate(false);
 		}
 
 		/// <summary>
@@ -176,7 +219,9 @@ namespace SimPe
 			long version = 0;
 			long qaversion = 0;
 			string text = "";
+
 			SimPe.UpdateState res = WebUpdate.CheckUpdate(ref version, ref qaversion);
+			
 			
 			if (!show && (res != SimPe.UpdateState.Nothing)) 
 			{
@@ -202,11 +247,112 @@ namespace SimPe
 			if (show || (res != SimPe.UpdateState.Nothing)) f.ShowDialog();
 		}
 
+		static string TutorialTempFile
+		{
+			get 
+			{
+				return System.IO.Path.Combine(Helper.SimPeDataPath, "tutorialtemp.rtf");
+			}
+		}
+
+		static string GetStoredTutorials()
+		{
+			if (System.IO.File.Exists(TutorialTempFile))
+			{
+				System.IO.StreamReader sr = System.IO.File.OpenText(TutorialTempFile);
+				try 
+				{
+					return sr.ReadToEnd();
+				} 
+				finally 
+				{
+					sr.Close();
+				}
+			}
+
+			return "";
+		}
+
+		static void SaveTutorials(string cont)
+		{
+			System.IO.StreamWriter sw = System.IO.File.CreateText(TutorialTempFile);
+			try 
+			{
+				sw.Write(cont);
+			} 
+			finally 
+			{
+				sw.Close();
+			}
+		}
+
+		static string TazzMannTutorial(bool real)
+		{
+			if (real) return System.IO.Path.Combine(Helper.SimPePath, @"Doc\SimPE_FTGU.pdf");
+			else return "http://localhost/Doc/SimPE_FTGU.pdf";
+		}
+
+		static string Introduction(bool real)
+		{
+			if (real) return System.IO.Path.Combine(Helper.SimPePath, @"Doc\Introduction.pdf");
+			else return "http://localhost/Doc/Introduction.pdf";
+		}
+
+		/// <summary>
+		/// Display the Update Screen
+		/// </summary>
+		/// <param name="show">true, if it should be visible even if no updates were found</param>
+		public static void ShowTutorials()
+		{
+			WaitingScreen.Wait();
+			About f = new About();
+			string text = "";
+			
+			try 
+			{
+				f.Text = SimPe.Localization.GetString("Tutorials");			
+							
+
+				text += "<p>";
+				if (System.IO.File.Exists(Introduction(true)))
+				{
+					text += "\n                <li>";
+					text += "\n                    <a href=\""+Introduction(false)+"\"><span class=\"serif\">Emily:</span> Introduction to the new SimPE</a>";
+					text += "\n                </li>";
+				}
+				if (System.IO.File.Exists(TazzMannTutorial(true)))
+				{
+					text += "\n                <li>";
+					text += "\n                    <a href=\""+TazzMannTutorial(false)+"\"><span class=\"serif\">TazzMann:</span> SimPE - From the Ground Up</a>";
+					text += "\n                </li>";
+				}
+				text += WebUpdate.GetTutorials().Replace("<ul>", "").Replace("</ul>", "");			
+				text += "</p>";
+
+				text = text.Replace("<li>", "");
+				text = text.Replace("</li>", "<br /><br />");
+				
+
+				text = Ambertation.Html2Rtf.Convert(text);
+				text = text.Replace("(http://", @"\pard\par         (http://");
+				SaveTutorials(text);
+				f.rtb.Rtf = text;
+			} 
+			catch (Exception ex)
+			{
+				f.rtb.Rtf = GetStoredTutorials();
+				if (f.rtb.Rtf=="") f.rtb.Rtf = ex.Message;
+			}
+
+			WaitingScreen.Stop();			
+			f.ShowDialog();
+		}
+
 		private void rtb_LinkClicked(object sender, System.Windows.Forms.LinkClickedEventArgs e)
 		{
 			try 
 			{
-				System.Windows.Forms.Help.ShowHelp(this, e.LinkText);
+				System.Windows.Forms.Help.ShowHelp(this, e.LinkText.Replace("http://localhost", Helper.SimPePath));
 			} 
 			catch (Exception ex) 
 			{

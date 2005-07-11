@@ -2627,28 +2627,7 @@ namespace SimPe
 			pn.Tag = wrapper;
 			pn.Dock = DockStyle.Top;
 
-			wrappers.Add(pn);
-			
-			
-			PictureBox ipb = new PictureBox();
-			ipb.Parent = pn;
-			ipb.Left = 2;
-			ipb.Top = 1;
-			ipb.BackColor = Color.Transparent;
-			ipb.SizeMode = PictureBoxSizeMode.StretchImage;
-			if (wrapper.WrapperDescription.Icon!=null) 
-			{
-				ipb.Height = Math.Min(wrapper.WrapperDescription.Icon.Height, pn.DisplayRectangle.Top-2);
-				ipb.Width = Math.Min(wrapper.WrapperDescription.Icon.Width, pn.DisplayRectangle.Top-2);			
-				ipb.Image = wrapper.WrapperDescription.Icon;
-			} 
-			else 
-			{
-				ipb.Height = 16;
-				ipb.Width = 16;			
-//				ipb.Image = FileTable.WrapperRegistry.WrapperImageList.Images[1];
-			}
-			
+			wrappers.Add(pn);								
 
 			#region Author
 			Label lbauthor = new Label();
@@ -2831,6 +2810,25 @@ namespace SimPe
 				pb.Image = System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.error.png")).GetThumbnailImage(16, 16, new Image.GetThumbnailImageAbort(ThumbnailCallback), IntPtr.Zero);;
 				pb.BackColor = Color.Transparent;
 				this.toolTip1.SetToolTip(pb, "This wrapper caused an Error while loading.");
+			}
+
+			PictureBox ipb = new PictureBox();
+			ipb.Parent = pn;
+			ipb.Left = 2;
+			ipb.Top = 1;
+			ipb.BackColor = Color.Transparent;
+			ipb.SizeMode = PictureBoxSizeMode.StretchImage;
+			if (wrapper.WrapperDescription.Icon!=null) 
+			{
+				ipb.Height = Math.Min(wrapper.WrapperDescription.Icon.Height, pn.DisplayRectangle.Top-2);
+				ipb.Width = Math.Min(wrapper.WrapperDescription.Icon.Width, pn.DisplayRectangle.Top-2);			
+				ipb.Image = wrapper.WrapperDescription.Icon;
+			} 
+			else 
+			{
+				ipb.Height = 16;
+				ipb.Width = 16;			
+				//				ipb.Image = FileTable.WrapperRegistry.WrapperImageList.Images[1];
 			}
 
 			PictureBox pbe = new PictureBox();

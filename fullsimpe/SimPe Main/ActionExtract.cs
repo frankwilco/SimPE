@@ -38,7 +38,7 @@ namespace SimPe.Actions.Default
 		/// <returns></returns>
 		string SetupSaveDialog(string name, bool multi) 
 		{
-			
+			name = name.Replace(" ", "").Replace(":", "_").Replace(@"\", "_");
 			if (!multi) 
 			{
 				System.Windows.Forms.SaveFileDialog sfd = new System.Windows.Forms.SaveFileDialog();
@@ -142,7 +142,7 @@ namespace SimPe.Actions.Default
 			if (!ChangeEnabledStateEventHandler(null, es)) return;
 
 			bool multi = es.Count>1;
-			string flname = SetupSaveDialog(es[0].Resource.FileDescriptor.Filename, multi);
+			string flname = SetupSaveDialog(es[0].Resource.FileDescriptor.ExportFileName, multi);
 
 			if (flname==null) return;
 

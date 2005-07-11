@@ -157,7 +157,7 @@ namespace SimPe
 
 				pkg = SimPe.Packages.File.LoadFromFile(e.FileName, sync);
 				pkg.LoadCompressedState();
-
+				
 				pkg.IndexChanged += new EventHandler(IndexChangedHandler);
 				pkg.AddedResource += new EventHandler(AddedResourceHandler);
 				pkg.RemovedResource += new EventHandler(RemovedResourcehandler);
@@ -242,7 +242,7 @@ namespace SimPe
 			}
 
 			pkg = newpkg;
-			pkg.LoadCompressedState();
+			pkg.LoadCompressedState();			
 
 			if (pkg!=null) 
 			{
@@ -255,6 +255,25 @@ namespace SimPe
 			if (AfterFileLoad!=null) AfterFileLoad(this);
 
 			return true;
+		}
+
+		/// <summary>
+		/// Update the old Provider Infrastructure
+		/// </summary>
+		public void UpdateProviders()
+		{
+			if (Helper.IsNeighborhoodFile(FileName) && (Helper.WindowsRegistry.LoadMetaInfo))
+			{
+				FileTable.ProviderRegistry.SimNameProvider.BaseFolder = System.IO.Path.GetDirectoryName(FileName)+"\\Characters";
+				FileTable.ProviderRegistry.SimFamilynameProvider.BasePackage = Package;
+				FileTable.ProviderRegistry.SimDescriptionProvider.BasePackage = Package;
+			} 
+			else 
+			{
+				FileTable.ProviderRegistry.SimNameProvider.BaseFolder = "";
+				FileTable.ProviderRegistry.SimFamilynameProvider.BasePackage = null;
+				FileTable.ProviderRegistry.SimDescriptionProvider.BasePackage = null;
+			}
 		}
 
 		/// <summary>

@@ -121,6 +121,12 @@
   <data name="columnHeader6.Text">
     <value>Verfügbar</value>
   </data>
+  <data name="columnHeader7.Text">
+    <value>Dateiname</value>
+  </data>
+  <data name="columnHeader8.Text">
+    <value>Dateigröße</value>
+  </data>
   <data name="button1.Text">
     <value>Öffnen</value>
   </data>

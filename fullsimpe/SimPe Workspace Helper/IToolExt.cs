@@ -26,7 +26,7 @@ namespace SimPe.Interfaces
 	/// <summary>
 	/// Defines extended properties for the <see cref="ITool"/> Interface.
 	/// </summary>
-	public interface IToolExt 
+	public interface IToolExt : IToolPlugin 
 	{
 		/// <summary>
 		/// Returns null or the Icon that should be dispalyed for this Menu Item (can be null)

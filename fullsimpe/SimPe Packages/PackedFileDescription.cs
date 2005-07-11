@@ -257,6 +257,14 @@ namespace SimPe.Packages
 			}
 		}
 
+		public string ExportFileName
+		{
+			get 
+			{
+				return Helper.HexString(Type)+"-"+this.Filename;
+			}
+		}
+
 		/// <summary>
 		/// The proposed FilePath
 		/// </summary>
