@@ -219,7 +219,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="parts"></param>
-		public static  void AddMenuItem(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuItemBase.MenuItemCollection parent, ToolMenuItemExt item, string[] parts)
+		public static void AddMenuItem(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuItemBase.MenuItemCollection parent, ToolMenuItemExt item, string[] parts)
 		{
 			System.Reflection.Assembly a = typeof(LoadFileWrappersExt).Assembly;
 
@@ -263,7 +263,48 @@ namespace SimPe
 
 			parent.Add(item);			
 			ev += new SimPe.Events.ChangedResourceEvent(item.ChangeEnabledStateEventHandler);
-			item.ChangeEnabledStateEventHandler(item, new SimPe.Events.ResourceEventArgs(null));
+			item.ChangeEnabledStateEventHandler(item, new SimPe.Events.ResourceEventArgs(null));			
+		}
+
+		/// <summary>
+		/// Build a ToolBar that matches the Content of a MenuItem
+		/// </summary>
+		/// <param name="tb"></param>
+		/// <param name="mi"></param>
+		/// <param name="exclude">List of <see cref="TD.SandBar.MenuButtonItem"/> that should be excluded</param>
+		public static void BuildToolBar(TD.SandBar.ToolBar tb, TD.SandBar.MenuItemBase.MenuItemCollection mi, ArrayList exclude)
+		{
+			ArrayList submenus = new ArrayList();
+			ArrayList items = new ArrayList();
+
+			for (int i=mi.Count-1; i>=0; i--)
+			{
+				if (mi[i].Items.Count>0) submenus.Add(mi[i].Items);
+				else 
+				{
+					TD.SandBar.MenuButtonItem item = mi[i];
+					if (exclude.Contains(item)) continue;
+					if (item.Image==null) items.Add(item);
+					else items.Insert(0, item);
+				}
+			}
+
+			for (int i=0; i<items.Count; i++)
+			{
+				TD.SandBar.MenuButtonItem item = (TD.SandBar.MenuButtonItem)items[i];				
+				TD.SandBar.ButtonItem bi = new TD.SandBar.ButtonItem();
+				bi.Image = item.Image;
+				bi.Visible = (item.Image!=null);
+				bi.ToolTipText = item.Text.Replace("&", "");
+				bi.BuddyMenu = item;
+				bi.BeginGroup = (i==0 && tb.Items.Count>0) || item.BeginGroup;
+
+				tb.Items.Add(bi);
+			}
+			
+
+			for (int i=0; i<submenus.Count; i++)
+				BuildToolBar(tb, (TD.SandBar.MenuItemBase.MenuItemCollection)submenus[i], exclude);			
 		}
 
 		TD.SandBar.MenuBarItem mi;
@@ -273,9 +314,9 @@ namespace SimPe
 		/// <param name="mi">The Menu you want to add Items to</param>
 		/// <param name="chghandler">A Function to call when the Package was chaged by a Tool</param>
 		public static void AddMenuItems(IToolExt[] toolsp, ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuBarItem mi, ToolMenuItemExt.ExternalToolNotify chghandler) 
-		{
+		{			
 			foreach (IToolExt tool in toolsp)
-			{
+			{		
 				string name = tool.ToString();
 				string[] parts = name.Split("\\".ToCharArray());
 				name = SimPe.Localization.GetString(parts[parts.Length-1]);
@@ -289,13 +330,14 @@ namespace SimPe
 		/// </summary>
 		/// <param name="mi">The Menu you want to add Items to</param>
 		/// <param name="chghandler">A Function to call when the Package was chaged by a Tool</param>
-		public void AddMenuItems(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuBarItem mi, ToolMenuItemExt.ExternalToolNotify chghandler) 
+		public void AddMenuItems(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuBarItem mi, TD.SandBar.ToolBar tb, ToolMenuItemExt.ExternalToolNotify chghandler) 
 		{
 			this.mi = mi;
 			IToolExt[] toolsp = (IToolExt[])FileTable.ToolRegistry.ToolsPlus;
 			AddMenuItems(toolsp, ref ev, mi, chghandler);
 
 			ITool[] tools = FileTable.ToolRegistry.Tools;
+			
 			foreach (ITool tool in tools)
 			{
 				string name = tool.ToString();
@@ -306,6 +348,7 @@ namespace SimPe
 				AddMenuItem(ref ev, mi.Items, item, parts);
 			}
 
+			BuildToolBar(tb, mi.Items, new ArrayList());
 			//EnableMenuItems(null);
 		}
 

@@ -244,6 +244,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "scanfolder.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ScannerCloths.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

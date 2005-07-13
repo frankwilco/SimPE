@@ -25,7 +25,7 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// Zusammenfassung für ImportSemiTool.
 	/// </summary>
-	internal class ScanerTool : Interfaces.ITool
+	internal class ScanerTool : Interfaces.AbstractTool, Interfaces.ITool
 	{
 		static ScannerForm ds;
 
@@ -61,6 +61,24 @@ namespace SimPe.Plugin
 			return "Scan Folders...";
 		}
 
+		#endregion
+
+		#region IToolExt Member
+		public override System.Drawing.Image Icon
+		{
+			get
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.scanfolder.png"));
+			}
+		}
+
+		public override System.Windows.Forms.Shortcut Shortcut
+		{
+			get
+			{
+				return System.Windows.Forms.Shortcut.CtrlF;
+			}
+		}
 		#endregion
 	}
 }
