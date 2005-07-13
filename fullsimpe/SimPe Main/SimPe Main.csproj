@@ -229,6 +229,11 @@
                     AssemblyName = "NewHexEdit"
                     HintPath = "..\HexEdit\bin\Release\NewHexEdit.dll"
                 />
+                <Reference
+                    Name = "GraphControl"
+                    Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>

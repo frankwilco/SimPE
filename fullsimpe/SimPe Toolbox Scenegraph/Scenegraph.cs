@@ -23,7 +23,8 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using SimPe.Interfaces;
-using Ambertation.Graph;
+using Ambertation.Windows.Forms;
+using Ambertation.Windows.Forms.Graph;
 
 namespace SimPe.Plugin
 {
@@ -39,8 +40,11 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.PictureBox pb;
 		private System.Windows.Forms.LinkLabel llopen;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.ComboBox cbLineStyle;
+		private System.Windows.Forms.CheckBox cbQuality;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -52,6 +56,20 @@ namespace SimPe.Plugin
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
+
+			gb = new GraphBuilder(panel1, new EventHandler(GraphItemClick));
+			Ambertation.Windows.Forms.Graph.LinkControlLineMode[] ls = (Ambertation.Windows.Forms.Graph.LinkControlLineMode[])System.Enum.GetValues(typeof(Ambertation.Windows.Forms.Graph.LinkControlLineMode));
+			foreach (Ambertation.Windows.Forms.Graph.LinkControlLineMode l in ls) 
+			{				
+				this.cbLineStyle.Items.Add(l);
+				if ((int)l == Helper.WindowsRegistry.GraphLineMode) this.cbLineStyle.SelectedIndex=cbLineStyle.Items.Count-1;
+			}
+//			if (cbLineStyle.SelectedIndex==-1) cbLineStyle.SelectedIndex = 2;
+
+			cbQuality.Checked = Helper.WindowsRegistry.GraphQuality;
+
+			cbQuality_CheckedChanged(cbQuality, null);
+			cbLineStyle_SelectedIndexChanged(cbLineStyle, null);
 		}
 
 		/// <summary>
@@ -79,20 +97,24 @@ namespace SimPe.Plugin
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ScenegraphForm));
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.llopen = new System.Windows.Forms.LinkLabel();
 			this.cbrefnames = new System.Windows.Forms.ComboBox();
 			this.tbflname = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.pb = new System.Windows.Forms.PictureBox();
-			this.llopen = new System.Windows.Forms.LinkLabel();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.cbQuality = new System.Windows.Forms.CheckBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.cbLineStyle = new System.Windows.Forms.ComboBox();
 			this.panel2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
-			this.panel1.SuspendLayout();
+			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.groupBox2);
 			this.panel2.Controls.Add(this.groupBox1);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel2.Location = new System.Drawing.Point(8, 350);
@@ -114,10 +136,21 @@ namespace SimPe.Plugin
 			this.groupBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox1.Location = new System.Drawing.Point(0, 8);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(784, 108);
+			this.groupBox1.Size = new System.Drawing.Size(552, 108);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Properties";
+			// 
+			// llopen
+			// 
+			this.llopen.AutoSize = true;
+			this.llopen.Location = new System.Drawing.Point(88, 0);
+			this.llopen.Name = "llopen";
+			this.llopen.Size = new System.Drawing.Size(35, 17);
+			this.llopen.TabIndex = 4;
+			this.llopen.TabStop = true;
+			this.llopen.Text = "open";
+			this.llopen.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenPfd);
 			// 
 			// cbrefnames
 			// 
@@ -126,7 +159,7 @@ namespace SimPe.Plugin
 			this.cbrefnames.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbrefnames.Location = new System.Drawing.Point(24, 80);
 			this.cbrefnames.Name = "cbrefnames";
-			this.cbrefnames.Size = new System.Drawing.Size(752, 21);
+			this.cbrefnames.Size = new System.Drawing.Size(520, 21);
 			this.cbrefnames.TabIndex = 3;
 			// 
 			// tbflname
@@ -137,7 +170,7 @@ namespace SimPe.Plugin
 			this.tbflname.Location = new System.Drawing.Point(24, 40);
 			this.tbflname.Name = "tbflname";
 			this.tbflname.ReadOnly = true;
-			this.tbflname.Size = new System.Drawing.Size(752, 21);
+			this.tbflname.Size = new System.Drawing.Size(520, 21);
 			this.tbflname.TabIndex = 2;
 			this.tbflname.Text = "";
 			// 
@@ -164,33 +197,55 @@ namespace SimPe.Plugin
 			// panel1
 			// 
 			this.panel1.AutoScroll = true;
-			this.panel1.Controls.Add(this.pb);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(8, 8);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(792, 342);
 			this.panel1.TabIndex = 5;
 			// 
-			// pb
+			// groupBox2
 			// 
-			this.pb.BackColor = System.Drawing.Color.Transparent;
-			this.pb.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.pb.Location = new System.Drawing.Point(0, 0);
-			this.pb.Name = "pb";
-			this.pb.Size = new System.Drawing.Size(4000, 1400);
-			this.pb.TabIndex = 4;
-			this.pb.TabStop = false;
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.cbLineStyle);
+			this.groupBox2.Controls.Add(this.label3);
+			this.groupBox2.Controls.Add(this.cbQuality);
+			this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.groupBox2.Location = new System.Drawing.Point(560, 8);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(224, 108);
+			this.groupBox2.TabIndex = 2;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Graph";
 			// 
-			// llopen
+			// cbQuality
 			// 
-			this.llopen.AutoSize = true;
-			this.llopen.Location = new System.Drawing.Point(88, 0);
-			this.llopen.Name = "llopen";
-			this.llopen.Size = new System.Drawing.Size(35, 17);
-			this.llopen.TabIndex = 4;
-			this.llopen.TabStop = true;
-			this.llopen.Text = "open";
-			this.llopen.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenPfd);
+			this.cbQuality.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbQuality.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbQuality.Location = new System.Drawing.Point(16, 24);
+			this.cbQuality.Name = "cbQuality";
+			this.cbQuality.TabIndex = 0;
+			this.cbQuality.Text = "High Quality";
+			this.cbQuality.CheckedChanged += new System.EventHandler(this.cbQuality_CheckedChanged);
+			// 
+			// label3
+			// 
+			this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label3.Location = new System.Drawing.Point(16, 48);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(100, 16);
+			this.label3.TabIndex = 1;
+			this.label3.Text = "Connector Style:";
+			// 
+			// cbLineStyle
+			// 
+			this.cbLineStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbLineStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbLineStyle.Location = new System.Drawing.Point(32, 64);
+			this.cbLineStyle.Name = "cbLineStyle";
+			this.cbLineStyle.Size = new System.Drawing.Size(184, 21);
+			this.cbLineStyle.TabIndex = 2;
+			this.cbLineStyle.SelectedIndexChanged += new System.EventHandler(this.cbLineStyle_SelectedIndexChanged);
 			// 
 			// ScenegraphForm
 			// 
@@ -207,7 +262,7 @@ namespace SimPe.Plugin
 			this.Text = "Scenegrapher";
 			this.panel2.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
-			this.panel1.ResumeLayout(false);
+			this.groupBox2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -262,6 +317,7 @@ namespace SimPe.Plugin
 		
 		SimPe.Interfaces.Files.IPackedFileDescriptor pfd, selpfd;
 		SimPe.Interfaces.Files.IPackageFile open_pkg;
+		GraphBuilder gb;
 		/// <summary>
 		/// Build the SceneGraph
 		/// </summary>
@@ -298,7 +354,7 @@ namespace SimPe.Plugin
 
 				FileTable.FileIndex = oldfileindex;
 
-				GraphBuilder gb = new GraphBuilder(pb, new EventHandler(GraphItemClick));
+				
 				gb.BuildGraph(simpe_pkg, fileindex);
 				gb.FindUnused(orgpkg);
 				
@@ -330,5 +386,20 @@ namespace SimPe.Plugin
 			pfd = selpfd;
 			Close();
 		}
+
+		private void cbQuality_CheckedChanged(object sender, System.EventArgs e)
+		{
+			gb.Graph.Quality = cbQuality.Checked;
+			Helper.WindowsRegistry.GraphQuality = gb.Graph.Quality;
+		}
+
+		private void cbLineStyle_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (cbLineStyle.SelectedIndex<0) return;
+			gb.Graph.LineMode = (Ambertation.Windows.Forms.Graph.LinkControlLineMode)cbLineStyle.Items[cbLineStyle.SelectedIndex];
+			Helper.WindowsRegistry.GraphLineMode = (int)gb.Graph.LineMode;
+		}
+
+		
 	}
 }

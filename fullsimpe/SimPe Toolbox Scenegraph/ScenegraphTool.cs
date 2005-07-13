@@ -25,7 +25,7 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// Zusammenfassung für ImportSemiTool.
 	/// </summary>
-	public class ScenegraphTool : Interfaces.ITool
+	public class ScenegraphTool : Interfaces.AbstractTool, Interfaces.ITool	
 	{
 		IWrapperRegistry reg;
 		IProviderRegistry prov;
@@ -63,7 +63,25 @@ namespace SimPe.Plugin
 		{
 			return "Object Tool\\Scenegrapher...";
 		}
+		
+		#endregion
 
+		#region IToolExt Member
+		public override System.Drawing.Image Icon
+		{
+			get
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.scenegrapher.png"));
+			}
+		}
+
+		public override System.Windows.Forms.Shortcut Shortcut
+		{
+			get
+			{
+				return System.Windows.Forms.Shortcut.CtrlG;
+			}
+		}
 		#endregion
 	}
 }

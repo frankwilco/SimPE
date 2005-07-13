@@ -234,12 +234,12 @@ namespace SimPe
 			text += "</h2>";
 			if (Helper.QARelease) text += "<h2><span class=\"highlight\">Available QA-Version:</span> "+Helper.LongVersionToString(qaversion)+"</h2>";
 			text += "<h2><span class=\"highlight\">Available Version:</span> "+Helper.LongVersionToString(version);
-			if (res == SimPe.UpdateState.NewRelease) text += " (download: <b>http://sims.ambertation.de/download.shtml</b>)";
+			if ((res & SimPe.UpdateState.NewRelease) !=0) text += " (download: <b>http://sims.ambertation.de/download.shtml</b>)";
 			text += "</h2>";
 			text += "<br /><br />";
 
-			if (res == SimPe.UpdateState.NewRelease) text += WebUpdate.GetChangeLog();
-			else if (res == SimPe.UpdateState.NewQARelease) text += "A new <b>QA Version</b> has been released.<br />You can get it at <b>http://ambertation.de/simpeforum/viewforum.php?f=14</b>.";
+			if ((res & SimPe.UpdateState.NewQARelease) !=0) text += "A new <b>QA Version</b> has been released.<br />You can get it at <b>http://ambertation.de/simpeforum/viewforum.php?f=14</b>.";
+			else if ((res & SimPe.UpdateState.NewRelease) !=0) text += WebUpdate.GetChangeLog();			
 			else text += "There is no new SimPE Version available.";
 
 			f.rtb.Rtf = Ambertation.Html2Rtf.Convert(text);
