@@ -25,7 +25,7 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// Zusammenfassung für ImportSemiTool.
 	/// </summary>
-	public class PhotoStudioTool : Interfaces.ITool
+	public class PhotoStudioTool : Interfaces.AbstractTool, Interfaces.ITool
 	{
 		/// <summary>
 		/// Windows Registry Link
@@ -69,6 +69,24 @@ namespace SimPe.Plugin
 			return "Object Creation\\Photo Studio...";
 		}
 
+		#endregion
+
+		#region IToolExt Member
+		public override System.Drawing.Image Icon
+		{
+			get
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.camera.png"));
+			}
+		}
+
+		public override System.Windows.Forms.Shortcut Shortcut
+		{
+			get
+			{
+				return System.Windows.Forms.Shortcut.CtrlP;
+			}
+		}
 		#endregion
 	}
 }

@@ -86,6 +86,13 @@ namespace SimPe.Plugin
 		#endregion
 
 		#region IToolExt Member
+		public override System.Drawing.Image Icon
+		{
+			get
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.createpackage.png"));
+			}
+		}
 		public override System.Windows.Forms.Shortcut Shortcut
 		{
 			get

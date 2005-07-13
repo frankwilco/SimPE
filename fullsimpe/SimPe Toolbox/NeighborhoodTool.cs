@@ -25,7 +25,7 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// Zusammenfassung für ImportSemiTool.
 	/// </summary>
-	public class NeighborhoodTool : Interfaces.ITool
+	public class NeighborhoodTool : Interfaces.AbstractTool, Interfaces.ITool
 	{
 		/// <summary>
 		/// Windows Registry Link
@@ -82,6 +82,23 @@ namespace SimPe.Plugin
 			return "Neighborhood\\"+Localization.Manager.GetString("neighborhoodbrowser")+"...";
 		}
 
+		#endregion
+
+		#region IToolExt Member
+		public override System.Drawing.Image Icon
+		{
+			get
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.neighboorhood.png"));
+			}
+		}
+		public override System.Windows.Forms.Shortcut Shortcut
+		{
+			get
+			{
+				return System.Windows.Forms.Shortcut.CtrlShiftN;
+			}
+		}
 		#endregion
 	}
 }

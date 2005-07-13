@@ -25,7 +25,7 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// Zusammenfassung für ImportSemiTool.
 	/// </summary>
-	public class SimsTool : Interfaces.ITool
+	public class SimsTool : Interfaces.AbstractTool, Interfaces.ITool
 	{
 		/// <summary>
 		/// Windows Registry Link
@@ -71,6 +71,23 @@ namespace SimPe.Plugin
 			return "Neighborhood\\"+Localization.Manager.GetString("simsbrowser")+"...";
 		}
 
+		#endregion
+
+		#region IToolExt Member
+		public override System.Drawing.Image Icon
+		{
+			get
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.simbrowser.png"));
+			}
+		}
+		public override System.Windows.Forms.Shortcut Shortcut
+		{
+			get
+			{
+				return System.Windows.Forms.Shortcut.CtrlShiftS;
+			}
+		}
 		#endregion
 	}
 }

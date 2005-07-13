@@ -122,6 +122,8 @@ namespace SimPe
 		private TD.SandBar.MenuButtonItem miOpenDownloads;
 		private System.Windows.Forms.TextBox tbRcolName;
 		private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon2;
+		private TD.SandBar.ToolBar tbTools;
+		private TD.SandBar.ToolBar tbWindow;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -146,6 +148,7 @@ namespace SimPe
 
 			plugger = new PluginManager(
 				miTools, 
+				tbTools,
 				dc, 
 				package,
 				tbDefaultAction,
@@ -294,6 +297,8 @@ namespace SimPe
 			this.lnProg = new SteepValley.Windows.Forms.XPLine();
 			this.pb = new System.Windows.Forms.ProgressBar();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
+			this.tbTools = new TD.SandBar.ToolBar();
+			this.tbWindow = new TD.SandBar.ToolBar();
 			this.topSandBarDock.SuspendLayout();
 			this.myleftSandDock.SuspendLayout();
 			this.dcResource.SuspendLayout();
@@ -476,6 +481,8 @@ namespace SimPe
 			this.topSandBarDock.Controls.Add(this.menuBar1);
 			this.topSandBarDock.Controls.Add(this.toolBar1);
 			this.topSandBarDock.Controls.Add(this.tbAction);
+			this.topSandBarDock.Controls.Add(this.tbTools);
+			this.topSandBarDock.Controls.Add(this.tbWindow);
 			this.topSandBarDock.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("topSandBarDock.Dock")));
 			this.topSandBarDock.Enabled = ((bool)(resources.GetObject("topSandBarDock.Enabled")));
 			this.topSandBarDock.Font = ((System.Drawing.Font)(resources.GetObject("topSandBarDock.Font")));
@@ -1822,6 +1829,48 @@ namespace SimPe
 			this.sfd.Filter = resources.GetString("sfd.Filter");
 			this.sfd.Title = resources.GetString("sfd.Title");
 			// 
+			// tbTools
+			// 
+			this.tbTools.AccessibleDescription = resources.GetString("tbTools.AccessibleDescription");
+			this.tbTools.AccessibleName = resources.GetString("tbTools.AccessibleName");
+			this.tbTools.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbTools.Anchor")));
+			this.tbTools.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbTools.BackgroundImage")));
+			this.tbTools.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbTools.Dock")));
+			this.tbTools.DockLine = 1;
+			this.tbTools.DockOffset = 2;
+			this.tbTools.Enabled = ((bool)(resources.GetObject("tbTools.Enabled")));
+			this.tbTools.Font = ((System.Drawing.Font)(resources.GetObject("tbTools.Font")));
+			this.tbTools.Guid = new System.Guid("078e55cf-63d2-4821-a167-a8ccb6446322");
+			this.tbTools.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbTools.ImeMode")));
+			this.tbTools.Location = ((System.Drawing.Point)(resources.GetObject("tbTools.Location")));
+			this.tbTools.Name = "tbTools";
+			this.tbTools.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbTools.RightToLeft")));
+			this.tbTools.Size = ((System.Drawing.Size)(resources.GetObject("tbTools.Size")));
+			this.tbTools.TabIndex = ((int)(resources.GetObject("tbTools.TabIndex")));
+			this.tbTools.Text = resources.GetString("tbTools.Text");
+			this.tbTools.Visible = ((bool)(resources.GetObject("tbTools.Visible")));
+			// 
+			// tbWindow
+			// 
+			this.tbWindow.AccessibleDescription = resources.GetString("tbWindow.AccessibleDescription");
+			this.tbWindow.AccessibleName = resources.GetString("tbWindow.AccessibleName");
+			this.tbWindow.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbWindow.Anchor")));
+			this.tbWindow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbWindow.BackgroundImage")));
+			this.tbWindow.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbWindow.Dock")));
+			this.tbWindow.DockLine = 1;
+			this.tbWindow.DockOffset = 3;
+			this.tbWindow.Enabled = ((bool)(resources.GetObject("tbWindow.Enabled")));
+			this.tbWindow.Font = ((System.Drawing.Font)(resources.GetObject("tbWindow.Font")));
+			this.tbWindow.Guid = new System.Guid("6c37bb3a-a49a-4467-b812-34eb2c2a85ef");
+			this.tbWindow.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbWindow.ImeMode")));
+			this.tbWindow.Location = ((System.Drawing.Point)(resources.GetObject("tbWindow.Location")));
+			this.tbWindow.Name = "tbWindow";
+			this.tbWindow.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbWindow.RightToLeft")));
+			this.tbWindow.Size = ((System.Drawing.Size)(resources.GetObject("tbWindow.Size")));
+			this.tbWindow.TabIndex = ((int)(resources.GetObject("tbWindow.TabIndex")));
+			this.tbWindow.Text = resources.GetString("tbWindow.Text");
+			this.tbWindow.Visible = ((bool)(resources.GetObject("tbWindow.Visible")));
+			// 
 			// MainForm
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -2178,6 +2227,12 @@ namespace SimPe
 			UpdateMenuItems();
 			
 			tbAction.Visible = false;
+			tbTools.Visible = false;
+			tbWindow.Visible = false;
+
+			ArrayList exclude = new ArrayList();
+			exclude.Add(this.miNewDc);
+			SimPe.LoadFileWrappersExt.BuildToolBar(tbWindow, miWindow.Items, exclude);
 			this.dcPlugin.Open();
 		}
 

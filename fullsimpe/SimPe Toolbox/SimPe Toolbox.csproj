@@ -252,7 +252,15 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "camera.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "contents.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "createpackage.png"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -301,6 +309,10 @@
                 />
                 <File
                     RelPath = "mmat.simpe"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "neighboorhood.png"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -404,6 +416,10 @@
                     RelPath = "SearchTool.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "simbrowser.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "Sims.cs"

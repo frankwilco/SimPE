@@ -29,6 +29,7 @@ namespace SimPe
 		LoadFileWrappersExt wloader;
 		internal PluginManager(
 			TD.SandBar.MenuBarItem toolmenu, 
+			TD.SandBar.ToolBar tootoolbar,
 			TD.SandDock.DocumentContainer dc, 
 			LoadedPackage lp,
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox defaultactiontaskbox,
@@ -49,7 +50,7 @@ namespace SimPe
 			this.LoadStaticWrappers();
 			this.LoadDynamicWrappers();
 
-			wloader.AddMenuItems(ref ChangedGuiResourceEvent, toolmenu, new ToolMenuItemExt.ExternalToolNotify(ClosedToolPluginHandler));
+			wloader.AddMenuItems(ref ChangedGuiResourceEvent, toolmenu, tootoolbar, new ToolMenuItemExt.ExternalToolNotify(ClosedToolPluginHandler));
 			//dc.ActiveDocumentChanged += new TD.SandDock.ActiveDocumentEventHandler(wloader.ActiveDocumentChanged);
 			//lp.AfterFileLoad += new SimPe.Events.PackageFileLoadedEvent(wloader.ChangedPackage);
 
