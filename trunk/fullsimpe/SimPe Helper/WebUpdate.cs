@@ -271,7 +271,7 @@ namespace SimPe
 					if (version>Helper.SimPeVersionLong) 
 						res |= UpdateState.NewRelease;					
 
-					if (Helper.QARelease) 
+					if (Helper.QARelease || Helper.WindowsRegistry.WasQAUser) 
 						if (qaversion>Helper.SimPeVersionLong) 
 							res |= UpdateState.NewQARelease;					
 				} 

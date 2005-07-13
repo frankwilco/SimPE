@@ -99,6 +99,7 @@ namespace SimPe
 		/// </remarks>
 		~Registry()
 		{
+			if (Helper.QARelease) this.WasQAUser=true;
 			Flush();
 		}
 
@@ -333,7 +334,7 @@ namespace SimPe
 			get 
 			{
 				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-				object o = rkf.GetValue("DecodeFilenames", false);
+				object o = rkf.GetValue("DecodeFilenames", true);
 				return Convert.ToBoolean(o);
 			}
 			set
@@ -786,6 +787,24 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// true, if the user ever started a QA Version
+		/// </summary>
+		public bool WasQAUser
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("WasQAUser", false);
+				return Convert.ToBoolean(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("WasQAUser", value);
+			}
+		}
+
+		/// <summary>
 		/// Number of Resource Files per package
 		/// </summary>
 		public int BigPackageResourceCount
@@ -800,6 +819,42 @@ namespace SimPe
 			{
 				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
 				rkf.SetValue("BigPackageResourceCount", value);
+			}
+		}
+
+		/// <summary>
+		/// The LineMode that we should use for the GraphControls
+		/// </summary>
+		public int GraphLineMode
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("GraphLineMode", 0x02);
+				return Convert.ToInt16(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("GraphLineMode", value);
+			}
+		}
+
+		/// <summary>
+		/// ahousl we use Qulity Mode?
+		/// </summary>
+		public bool GraphQuality
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("GraphQuality", true);
+				return Convert.ToBoolean(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("GraphQuality", value);
 			}
 		}
 

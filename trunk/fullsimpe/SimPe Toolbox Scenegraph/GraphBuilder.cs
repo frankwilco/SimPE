@@ -21,7 +21,8 @@ using System;
 using System.Collections;
 using System.Drawing;
 using SimPe.Interfaces;
-using Ambertation.Graph;
+using Ambertation.Windows.Forms;
+using Ambertation.Windows.Forms.Graph;
 
 namespace SimPe.Plugin
 {
@@ -31,7 +32,11 @@ namespace SimPe.Plugin
 	public class GraphBuilder
 	{
 		Hashtable colors;
-		GraphControl gc;
+		GraphPanel gc;
+		public GraphPanel Graph
+		{
+			get {return gc;}
+		}
 		System.EventHandler click;
 
 		/// <summary>
@@ -50,7 +55,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="pb"></param>
 		/// <param name="click"></param>
-		public GraphBuilder (System.Windows.Forms.PictureBox pb, System.EventHandler click) 
+		public GraphBuilder (System.Windows.Forms.Control pb, System.EventHandler click) 
 		{
 			colors = new Hashtable();
 			names = new Hashtable();
@@ -64,7 +69,8 @@ namespace SimPe.Plugin
 			colors.Add("LIFO", Color.PaleVioletRed);
 			colors.Add("LGHT", Color.White);
 
-			gc = new GraphControl(pb);
+			gc = new GraphPanel();
+			gc.Parent = pb;
 			this.click = click;
 
 			coords = new Hashtable();
@@ -75,7 +81,7 @@ namespace SimPe.Plugin
 			GenericRcol rcol = new GenericRcol(null, false);
 			rcol.ProcessData(pfd, pkg);
 
-			gi.Caption = Hashes.StripHashFromName(rcol.FileName);
+			gi.Text = Hashes.StripHashFromName(rcol.FileName);
 			gi.Tag = rcol;
 
 			if (pfd.Type == Data.MetaData.TXTR) 
@@ -92,7 +98,7 @@ namespace SimPe.Plugin
 			SimPe.Plugin.MmatWrapper mmat = new MmatWrapper();
 			mmat.ProcessData(pfd, pkg);
 
-			gi.Caption = mmat.GetSaveItem("subsetName").StringValue +" (family="+mmat.GetSaveItem("family").StringValue+", objectStateIndex="+Helper.HexString(mmat.GetSaveItem("objectStateIndex").UIntegerValue)+", materialStateFlags="+Helper.HexString(mmat.GetSaveItem("materialStateFlags").UIntegerValue)+", objectGuid="+Helper.HexString(mmat.GetSaveItem("objectGUID").UIntegerValue)+")";
+			gi.Text = mmat.GetSaveItem("subsetName").StringValue +" (family="+mmat.GetSaveItem("family").StringValue+", objectStateIndex="+Helper.HexString(mmat.GetSaveItem("objectStateIndex").UIntegerValue)+", materialStateFlags="+Helper.HexString(mmat.GetSaveItem("materialStateFlags").UIntegerValue)+", objectGuid="+Helper.HexString(mmat.GetSaveItem("objectGUID").UIntegerValue)+")";
 			gi.Properties["Default"] = mmat.GetSaveItem("defaultMaterial").BooleanValue.ToString();
 			gi.Properties["cres"] = mmat.GetSaveItem("modelName").StringValue.ToString();
 			gi.Properties["txmt"] = mmat.GetSaveItem("name").StringValue.ToString();
@@ -113,30 +119,34 @@ namespace SimPe.Plugin
 			{				
 				top += 128;				
 				if (coords.ContainsKey(top)) left = (int)coords[top];
-				if (parent!=null) if (left<parent.Location.X) left = parent.Location.X;
-			} while (left>gc.Parent.Width);
+				//if (parent!=null) if (left<parent.Location.X) left = parent.Location.X;
+			} while (left>gc.Parent.Width && false);
 
-			GraphItem gi = new GraphItem(gc, Hashes.StripHashFromName(pfd.Filename), new Hashtable());
-			gi.BeginUpdate();
-			gi.Location = new Point(left, top);
-			gi.Click = click;
+			GraphItem gi = new GraphItem(new Hashtable());
+			gi.Text = Hashes.StripHashFromName(pfd.Filename);			
+			//gi.BeginUpdate();
+			//gi.Location = new Point(left, top);
+			gi.SetBounds(left, top, 200, 64);
+			gi.GotFocus += new EventHandler(gi_GotFocus);
 			gi.Tag = Hashes.StripHashFromName(pfd.Filename);
-			gi.LinkColor = Color.FromArgb(35, Color.Black);
-			gi.SelectedLinkColor = Color.FromArgb(0xff, Color.DarkBlue);
+			gi.Fade = 0.7f;
+			//gi.LinkColor = Color.FromArgb(35, Color.Black);
+			//gi.SelectedLinkColor = Color.FromArgb(0xff, Color.DarkBlue);
 
 			SimPe.Data.TypeAlias ta = Data.MetaData.FindTypeAlias(pfd.Type);
 			gi.Properties["Type"] = ta.shortname;
 			gi.Properties["Available"] = "false";
+			//gi.Parent = gc;
 			#endregion			
 			
 			//check if we already have a reource of that kind
-			string name = gi.Caption.Trim().ToLower();
+			string name = gi.Text.Trim().ToLower();
 			if (names.ContainsKey(name)) 
 			{
-				gi.EndUpdate();
+				//gi.EndUpdate();
 				gi = (GraphItem)names[name]; 
 
-				if (parent!=null) parent.AddChild(gi);
+				if (parent!=null) parent.ChildItems.Add(gi);
 			} 
 			else 
 			{
@@ -154,7 +164,7 @@ namespace SimPe.Plugin
 						gi.Properties["Available"] = "extern";
 						gi.Properties["File"] = items.Package.FileName;
 						gi.Size = new Size(gi.Size.Width, 70);
-						gi.BackgroundColor = Color.Black;
+						gi.PanelColor = Color.Black;
 					}
 				}
 				#endregion
@@ -163,7 +173,7 @@ namespace SimPe.Plugin
 				if (pkgpfd!=null) 
 				{
 					gi.Properties["Available"] = "true";
-					if (colors.ContainsKey(ta.shortname))gi.BackgroundColor = (Color)colors[ta.shortname];
+					if (colors.ContainsKey(ta.shortname))gi.PanelColor = (Color)colors[ta.shortname];
 
 					if (Data.MetaData.RcolList.Contains(pfd.Type)) item = BuildRcol(pkgpfd, pkg, gi);
 					else if (pfd.Type==Data.MetaData.MMAT) item = BuildMmat(pkgpfd, pkg, gi);	
@@ -175,10 +185,10 @@ namespace SimPe.Plugin
 					}*/
 			
 					//check again if we still don't have that file
-					name = gi.Caption.Trim().ToLower();
+					name = gi.Text.Trim().ToLower();
 					if (names.ContainsKey(name)) 
 					{
-						gi.EndUpdate();
+						//gi.EndUpdate();
 						gi = (GraphItem)names[name];
 					}
 					else 
@@ -198,26 +208,30 @@ namespace SimPe.Plugin
 					}
 				} 
 
+				gi.Invalidate();
+
 				if (!names.ContainsKey(name)) 
 				{
 					names.Add(name, gi);	
-					gc.Add(gi);
+					gi.Parent = gc;		
 					coords[top] = left + 8 + gi.Size.Width;		
 								
 					if (pkgpfd==null) 
 					{
-						gi.BackgroundColor = Color.DarkRed;
-						gi.ForegroundColor = Color.White;
+						
+						gi.PanelColor = Color.DarkRed;
+						gi.ForeColor = Color.White;
+						gi.BorderColor = gi.ForeColor;
 
-						if ((string)gi.Properties["Available"]=="extern") gi.BackgroundColor = Color.Black;
+						if ((string)gi.Properties["Available"]=="extern") gi.PanelColor = Color.Black;
 					}
-				}
+				} 
 				
 
-				if (parent!=null) parent.AddChild(gi);
+				if (parent!=null) parent.ChildItems.Add(gi);
 			}
 			
-			gi.EndUpdate();			
+			//gi.EndUpdate();			
 		}
 
 		/// <summary>
@@ -229,6 +243,12 @@ namespace SimPe.Plugin
 		public void BuildGraph(SimPe.Interfaces.Files.IPackageFile pkg, SimPe.Interfaces.Scenegraph.IScenegraphFileIndex fileindex) 
 		{
 
+			gc.BeginUpdate();
+			gc.Clear();
+			gc.SaveBounds = false;
+			gc.AutoSize = true;
+			this.coords.Clear();
+			this.names.Clear();
 			WaitingScreen.UpdateMessage("Scaning MMAT Tree");
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.MMAT);
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
@@ -243,7 +263,9 @@ namespace SimPe.Plugin
 				AddItem(pfd, pkg, null, fileindex);
 			}			
 
-			gc.Update();
+			gc.AutoSize = false;
+			gc.SaveBounds = true;
+			gc.EndUpdate();
 		}
 
 		/// <summary>
@@ -261,32 +283,39 @@ namespace SimPe.Plugin
 			{
 				if ((pfd.Type == Data.MetaData.MMAT) || (Data.MetaData.RcolList.Contains(pfd.Type)))
 				{
-					GraphItem gi = new GraphItem(gc, Hashes.StripHashFromName(pfd.Filename), new Hashtable());
-					gi.BeginUpdate();
-					gi.Location = new Point(left, top);
-					gi.Click = click;
+					GraphItem gi = new GraphItem(new Hashtable());
+					gi.Text = Hashes.StripHashFromName(pfd.Filename);
+					
+					//gi.BeginUpdate();
+					gi.SetBounds(left, top, 200, 64);
+					//gi.Location = new Point(left, top);
+					gi.GotFocus += new EventHandler(gi_GotFocus);
+					
 					gi.Tag = Hashes.StripHashFromName(pfd.Filename);
-					gi.LinkColor = Color.FromArgb(35, Color.Black);
-					gi.SelectedLinkColor = Color.FromArgb(0xff, Color.DarkBlue);
+					gi.Fade = 0.7f;
+					//gi.LinkColor = Color.FromArgb(35, Color.Black);
+
+					//gi.SelectedLinkColor = Color.FromArgb(0xff, Color.DarkBlue);
 
 					SimPe.Data.TypeAlias ta = Data.MetaData.FindTypeAlias(pfd.Type);
 					gi.Properties["Type"] = ta.shortname;
 					gi.Properties["Available"] = "true (orphan)";
-					if (colors.ContainsKey(ta.shortname)) gi.BackgroundColor = (Color)colors[ta.shortname];
+					if (colors.ContainsKey(ta.shortname)) gi.PanelColor = (Color)colors[ta.shortname];
 
 					SimPe.Interfaces.Scenegraph.IScenegraphItem item = null;
 					if (Data.MetaData.RcolList.Contains(pfd.Type)) item = BuildRcol(pfd, pkg, gi);
 					else if (pfd.Type==Data.MetaData.MMAT) item = BuildMmat(pfd, pkg, gi);
-
+					//gi.Parent = gc;
 					if (item!=null) 
 					{
-						string name = gi.Caption.Trim().ToLower();
+						string name = gi.Text.Trim().ToLower();
 						if (!names.ContainsKey(name)) 
-						{
-							gc.Add(gi);							
+						{							
+							//gc.Add(gi);	
+							gi.Parent = gc;
 							left += gi.Size.Width + 8;
-							gi.EndUpdate();
-						}
+							//gi.EndUpdate();
+						} 
 					}
 
 					
@@ -295,6 +324,11 @@ namespace SimPe.Plugin
 			}
 
 			gc.Update();
+		}
+
+		private void gi_GotFocus(object sender, EventArgs e)
+		{
+			if (click!=null) click(sender, e);
 		}
 	}
 }
