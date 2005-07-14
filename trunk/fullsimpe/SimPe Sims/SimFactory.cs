@@ -27,46 +27,24 @@ namespace SimPe.PackedFiles.Wrapper.Factory
 	/// <summary>
 	/// The Wrapper Factory for Default Wrappers that ship with SimPe
 	/// </summary>
-	public class DefaultWrapperFactory : AbstractWrapperFactory
+	public class SimFactory : AbstractWrapperFactory
 	{
 		#region AbstractWrapperFactory Member
 		public override SimPe.Interfaces.IWrapper[] KnownWrappers
 		{
 			get 
-			{		
+			{				
 				if (Helper.StartedGui == Executable.Classic) 
 				{
-					IWrapper[] wrappers = {
-											  new SimPe.PackedFiles.Wrapper.Picture(),
-											  new SimPe.PackedFiles.Wrapper.Xml(),										 
-											  new SimPe.PackedFiles.Wrapper.Fami(this.LinkedProvider.SimNameProvider),
-											  new SimPe.PackedFiles.Wrapper.SDesc(this.LinkedProvider.SimNameProvider, this.LinkedProvider.SimFamilynameProvider, this.LinkedProvider.SimDescriptionProvider),
-											  new SimPe.PackedFiles.Wrapper.SRel(),
-											  new SimPe.PackedFiles.Wrapper.Cpf(),
-											  new SimPe.PackedFiles.Wrapper.FamilyTies(this.LinkedProvider.SimNameProvider),
-											  new SimPe.PackedFiles.Wrapper.Nref()
-										  };
-					return wrappers;
+					return new IWrapper[0];
 				} 
 				else 
 				{
 					IWrapper[] wrappers = {
-											  new SimPe.PackedFiles.Wrapper.Picture(),
-											  new SimPe.PackedFiles.Wrapper.Xml(),
-										 
-											  new SimPe.PackedFiles.Wrapper.Fami(this.LinkedProvider.SimNameProvider),
-											  new SimPe.PackedFiles.Wrapper.SDesc(this.LinkedProvider.SimNameProvider, this.LinkedProvider.SimFamilynameProvider, this.LinkedProvider.SimDescriptionProvider),
-											  new SimPe.PackedFiles.Wrapper.SRel(),
-											  new SimPe.PackedFiles.Wrapper.Cpf(),
-#if DEBUG
-											  new SimPe.PackedFiles.Wrapper.Objd(this.LinkedProvider.OpcodeProvider),
-											  new SimPe.PackedFiles.Wrapper.FamilyTies(this.LinkedProvider.SimNameProvider),
-#endif										  
-											  new SimPe.PackedFiles.Wrapper.Nref()
+											  new SimPe.PackedFiles.Wrapper.ExtFamilyTies()									  
 										  };
 					return wrappers;
 				}
-				
 			}
 		}
 

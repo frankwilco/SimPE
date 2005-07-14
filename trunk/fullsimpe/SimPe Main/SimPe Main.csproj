@@ -234,6 +234,16 @@
                     Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe Sims"
+                    Project = "{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "EnumComboBox"
+                    Project = "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>

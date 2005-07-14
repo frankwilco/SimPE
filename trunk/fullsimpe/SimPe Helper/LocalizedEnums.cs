@@ -665,9 +665,19 @@ namespace SimPe.Data
 		/// <returns></returns>
 		public override string ToString()
 		{
-			string s = Localization.Manager.GetString(data.ToString());
-			if (s!=null) return s;
-			else return data.ToString();
+			if (Helper.StartedGui == Executable.Default) 
+			{
+				Type type = typeof(MetaData.FamilyTieTypes);
+				string s = Localization.Manager.GetString(type.Namespace+"."+type.Name+"."+data.ToString());
+				if (s!=null) return s;
+				else return data.ToString();
+			} 
+			else 
+			{
+				string s = Localization.Manager.GetString(data.ToString());
+				if (s!=null) return s;
+				else return data.ToString();
+			}
 		}
 
 	}

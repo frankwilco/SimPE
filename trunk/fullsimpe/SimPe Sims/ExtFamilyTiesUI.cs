@@ -18,28 +18,46 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Data;
 using System.Windows.Forms;
-using Ambertation.Collections;
+using System.Drawing;
+using SimPe.Interfaces.Plugin;
+using SimPe.Interfaces;
+using SimPe.PackedFiles.Wrapper.Supporting;
+using SimPe.Data;
 
-namespace Ambertation.Windows.Forms.Graph
+namespace SimPe.PackedFiles.UserInterface
 {
 	/// <summary>
-	/// This is an Item you can add to a <see cref="GraphPanel"/>.
+	/// handles Packed XmlFiles
 	/// </summary>
-	public class GraphItem : PropertyPanel
+	public class ExtFamilyTies : IPackedFileUI
 	{
-		
-		public GraphItem() : this(new PropertyItems()) 
+		FamilyTiesForm form;
+		public ExtFamilyTies()
 		{
+			form = new FamilyTiesForm();
 		}
 
-		public GraphItem(PropertyItems properties) :base (properties)
-		{				
-		}		
+		#region IPackedFileHandler Member
+
+		public Panel GUIHandle
+		{
+			get 
+			{
+				return form.pnfamt;
+			}
+		}
+
+		public void UpdateGUI(SimPe.Interfaces.Plugin.IFileWrapper wrapper)
+		{
+			Wrapper.ExtFamilyTies famt = (Wrapper.ExtFamilyTies)wrapper;
+			form.wrapper = famt;
+			
+			form.pool_SelectedSimChanged(null, null, null);				
+			form.pool.Package = wrapper.Package;
+		}
+
+		
+		#endregion		
 	}
 }

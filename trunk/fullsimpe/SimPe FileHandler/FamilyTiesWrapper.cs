@@ -175,5 +175,35 @@ namespace SimPe.PackedFiles.Wrapper
 		
 
 		#endregion
+
+		/// <summary>
+		/// Returns the avaqilable <see cref="FamilyTieSim"/> for the passed Sim
+		/// </summary>
+		/// <param name="sdsc"></param>
+		/// <returns>null or the <see cref="FamilyTieSim"/> for that Sim</returns>
+		public FamilyTieSim FindTies(SDesc sdsc)
+		{
+			if (sdsc==null) return null;
+			foreach (FamilyTieSim s in sims)			
+				if (s.Instance == sdsc.Instance) return s;			
+
+			return null;
+		}
+
+		/// <summary>
+		/// Returns the available <see cref="FamilyTieSim"/> for the Sim, or creates a new One
+		/// </summary>
+		/// <param name="sdsc"></param>
+		/// <returns>the <see cref="FamilyTieSim"/> for the passed Sim</returns>
+		public FamilyTieSim CreateTie(SDesc sdsc)
+		{
+			FamilyTieSim s = FindTies(sdsc);
+			if (s==null) 
+			{
+				s = new FamilyTieSim(sdsc.Instance, new FamilyTieItem[0], this);
+				sims.Add(s);
+			}
+			return s;
+		}
 	}
 }

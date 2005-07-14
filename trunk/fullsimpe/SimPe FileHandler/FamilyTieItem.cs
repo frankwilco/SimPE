@@ -30,7 +30,7 @@ namespace SimPe.PackedFiles.Wrapper.Supporting
 		/// <summary>
 		/// The Parent Wrapper
 		/// </summary>
-		Wrapper.FamilyTies famt;
+		protected Wrapper.FamilyTies famt;
 
 		/// <summary>
 		/// Constructor
@@ -94,6 +94,15 @@ namespace SimPe.PackedFiles.Wrapper.Supporting
 			{
 				LoadSDesc();
 				return sdesc.SimName;
+			}
+		}
+
+		public SDesc SimDescription
+		{
+			get 
+			{
+				LoadSDesc();
+				return sdesc;
 			}
 		}
 
@@ -166,10 +175,50 @@ namespace SimPe.PackedFiles.Wrapper.Supporting
 		{
 			get { return blockdelimiter; }
 			set { blockdelimiter = value; }
+		}	
+	
+		/// <summary>
+		/// Returns the avaqilable <see cref="FamilyTieItem"/> for the passed Sim
+		/// </summary>
+		/// <param name="sdsc"></param>
+		/// <returns>null or the <see cref="FamilyTieItem"/> for that Sim</returns>
+		public FamilyTieItem FindTie(SDesc sdsc)
+		{
+			if (sdsc==null) return null;
+			foreach (FamilyTieItem s in ties)			
+				if (s.Instance == sdsc.Instance) return s;			
+
+			return null;
 		}
 
-		
+		/// <summary>
+		/// Returns the available <see cref="FamilyTieItem"/> for the Sim, or creates a new One
+		/// </summary>
+		/// <param name="sdsc"></param>
+		/// <returns>the <see cref="FamilyTieItem"/> for the passed Sim</returns>
+		public FamilyTieItem CreateTie(SDesc sdsc, Data.MetaData.FamilyTieTypes type)
+		{
+			FamilyTieItem s = FindTie(sdsc);
+			if (s==null) 
+			{
+				s = new FamilyTieItem(type, sdsc.Instance, this.famt);
+				ties = (FamilyTieItem[])Helper.Add(ties, s);
+			}
+			s.Type = type;
+			return s;
+		}
 
+		/// <summary>
+		/// Remove the passed Family Tie
+		/// </summary>
+		/// <param name="fti"></param>
+		/// <returns>true, if the Tie was removed</returns>
+		public bool RemoveTie(FamilyTieItem fti)
+		{
+			int len = ties.Length;			
+			ties = (FamilyTieItem[])Helper.Delete(ties, fti);
+			return (ties.Length<len);
+		}
 	}
 
 	/// <summary>

@@ -29,25 +29,21 @@ using Ambertation.Collections;
 namespace Ambertation.Windows.Forms.Graph
 {
 	/// <summary>
-	/// This is a Rounded Panel
+	/// This is a Image Panel
 	/// </summary>
-	public abstract class PropertyPanel : RoundedPanel
+	public class ExtendedImagePanel : ImagePanel
 	{
 		
-		public PropertyPanel() : this(new PropertyItems()) 
-		{
-			
-		}
+		public ExtendedImagePanel() :this (new PropertyItems())
+		{									
+		}		
 
-		public PropertyPanel(PropertyItems properties) :base ()
+		public ExtendedImagePanel(PropertyItems properties) :base ()
 		{
 			this.properties = properties;	
-			txt = "";
 		}
 
-		
-
-		#region public Properties
+		#region public Properties		
 		PropertyItems properties;		
 		public PropertyItems Properties 
 		{
@@ -61,67 +57,61 @@ namespace Ambertation.Windows.Forms.Graph
 				}
 			}
 		}
-
-		Image thumb;
-		public Image Thumbnail
-		{
-			get { return thumb; }
-			set 
-			{
-				thumb = value;
-				Invalidate();
-			}
-		}
-
-		string txt;
-		public string Text
-		{
-			get { return txt; }
-			set 
-			{
-				txt = value;
-				Invalidate();
-			}
-		}
-
 		#endregion
 
 		#region Properties
-		
+			
 		#endregion
 
 
 		
 
-		#region Event Override
+		#region Event Override		
+		
+		
 		#endregion
 
-		#region Basic Draw Methods
-		
+		#region Basic Draw Methods				
 
-		
+		protected override void UserDraw(Graphics gr)
+		{
+			Rectangle prec = new Rectangle(10+ImageBorderWidth, 10+ImageBorderWidth, Width -10-ImageBorderWidth, Height-10-ImageBorderWidth);
+			int rad = Math.Min(Math.Min(8, prec.Height/2), prec.Width/2);
+			DrawNiceRoundRect(gr, prec.Left, prec.Top, prec.Width, prec.Height, rad, this.PanelColor);	
+			int tw = 48;
+			int th = 48;
+			if (this.Image!=null) 
+			{
+				tw = this.Image.Width;
+				th = this.Image.Height;
+			}
+			rad = Math.Min(Math.Min(8, th/2), tw/2);
+			Rectangle trec = new Rectangle(
+				2+ImageBorderWidth,
+				2+ImageBorderWidth,
+				tw,
+				th);
 
-		protected override void DrawText(Graphics gr)
+			DrawText(gr, prec, trec);
+			DrawThumbnail(gr, trec, rad);	
+		}
+
+		protected void DrawText(Graphics gr, Rectangle prec, Rectangle trec)
 		{
 			if (this.properties==null) return;
 			LinkGraphic.SetGraphicsMode(gr, !Quality);
 
+			Font ftb = new Font(Font.FontFamily, Font.Size, FontStyle.Bold, Font.Unit);
+			this.DrawCaption(gr, new Rectangle(trec.Right+2, prec.Top, prec.Width - (trec.Right-prec.Left) - 4-this.ImageBorderWidth, 16), ftb, false);
 			Pen linepen = new Pen(Color.FromArgb(90, Color.Black));
-			gr.DrawLine(linepen, new Point(0, 20), new Point(Width, 20));
+			gr.DrawLine(linepen, new Point(prec.Left, prec.Top+16), new Point(prec.Right, prec.Top+16));
 			linepen.Dispose();
 
+	
 			StringFormat sf = new StringFormat();
-			sf.FormatFlags = StringFormatFlags.NoWrap;
-			Font ftb = new Font(Font.FontFamily, Font.Size, FontStyle.Bold, Font.Unit);
-			gr.DrawString(Text, ftb, new Pen(this.ForeColor).Brush, new RectangleF(new PointF(4, 4), new SizeF(Width-8, Height-8)), sf);
-			ftb.Dispose();	
-			int top = 24;
-			Size indent = new Size(0,0);
-			if (thumb!=null) 
-			{
-				gr.DrawImageUnscaled(thumb, 4, top, thumb.Width, thumb.Height);
-				indent = new Size(thumb.Width+4, top+thumb.Height+4);
-			}
+			sf.FormatFlags = StringFormatFlags.NoWrap;			
+			int top = prec.Top+24;
+			Size indent = new Size(trec.Right+6, trec.Bottom - prec.Top + 7 + 2*this.ImageBorderWidth);			
 				
 			//Hashtable ht = new Hashtable();
 			foreach (string k in properties.Keys) 
@@ -129,11 +119,11 @@ namespace Ambertation.Windows.Forms.Graph
 				PropertyItem o = properties[k];
 				if (o==null) continue;				
 				string val = "";				
-				val = (string)o.Value;			
+				val = (string)o.Value;				
 					
 				if (val!=null) 
 				{
-					int indentx = 0;
+					int indentx = prec.Left+6;
 					if (top<indent.Height) indentx = indent.Width;
 					Font ft = new Font(Font.FontFamily, Font.Size, FontStyle.Italic, Font.Unit);
 					
@@ -142,7 +132,7 @@ namespace Ambertation.Windows.Forms.Graph
 						k+":", 
 						ft, 
 						new Pen(Color.FromArgb(160, this.ForeColor)).Brush, 
-						new RectangleF(new PointF(indentx+10, top), new SizeF(Width-(24+indentx), top+16)), 
+						new RectangleF(new PointF(indentx, top), new SizeF(prec.Width-indentx, top+16)), 
 						sf);
 					SizeF sz = gr.MeasureString(
 						k+":", 
@@ -152,13 +142,13 @@ namespace Ambertation.Windows.Forms.Graph
 						val, 
 						Font, 
 						new Pen(Color.FromArgb(140, this.ForeColor)).Brush, 
-						new RectangleF(new PointF(indentx+12+sz.Width, top), new SizeF(Width-(24+sz.Width+indentx), top+16)), 
+						new RectangleF(new PointF(indentx+sz.Width, top), new SizeF(prec.Width-indentx-sz.Width, top+16)), 
 						sf);
 					SizeF sz2 = gr.MeasureString(
 						val, 
 						Font);
 						
-					Rectangle rect = new Rectangle(new Point((int)(indentx+12+sz.Width), top), new Size((int)(Width-(24+sz.Width+indentx)), top+16));					
+					Rectangle rect = new Rectangle(new Point((int)(indentx+sz.Width), top), new Size((int)(prec.Width-indentx-sz.Width), top+16));					
 
 					top += (int)Math.Max(sz.Height, sz2.Height);
 					ft.Dispose();
@@ -170,6 +160,6 @@ namespace Ambertation.Windows.Forms.Graph
 			//properties = ht;
 		}
 		
-		#endregion
+		#endregion		
 	}
 }

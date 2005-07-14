@@ -296,6 +296,7 @@ namespace SimPe
 				bi.Image = item.Image;
 				bi.Visible = (item.Image!=null);
 				bi.ToolTipText = item.Text.Replace("&", "");
+				bi.Enabled = item.Enabled;
 				bi.BuddyMenu = item;
 				bi.BeginGroup = (i==0 && tb.Items.Count>0) || item.BeginGroup;
 

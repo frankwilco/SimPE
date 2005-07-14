@@ -1313,6 +1313,8 @@ namespace SimPe.PackedFiles.Wrapper
 			sdescprovider = prov.SimDescriptionProvider;
 		}
 
+		public SDesc() : this(FileTable.ProviderRegistry.SimNameProvider, FileTable.ProviderRegistry.SimFamilynameProvider, FileTable.ProviderRegistry.SimDescriptionProvider) {}
+
 		/// <summary>
 		/// Creates a new Instance
 		/// </summary>
