@@ -127,6 +127,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphControl", "..\GraphCon
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims", "..\SimPe Sims\SimPe Sims.csproj", "{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumComboBox", "..\EnumComboBox\EnumComboBox.csproj", "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -456,6 +464,26 @@ Global
 		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release MAC.Build.0 = Release|.NET
 		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release PLJ.ActiveCfg = Release|.NET
 		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release PLJ.Build.0 = Release|.NET
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Debug.ActiveCfg = Debug|.NET
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Debug.Build.0 = Debug|.NET
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Debug Txtr.ActiveCfg = Debug|.NET
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Debug Txtr.Build.0 = Debug|.NET
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release.ActiveCfg = Release|.NET
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release.Build.0 = Release|.NET
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release MAC.ActiveCfg = Release|.NET
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release MAC.Build.0 = Release|.NET
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release PLJ.ActiveCfg = Release|.NET
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release PLJ.Build.0 = Release|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Debug.ActiveCfg = Debug|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Debug.Build.0 = Debug|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Debug Txtr.ActiveCfg = Debug|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Debug Txtr.Build.0 = Debug|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release.ActiveCfg = Release|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release.Build.0 = Release|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release MAC.ActiveCfg = Release|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release MAC.Build.0 = Release|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release PLJ.ActiveCfg = Release|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release PLJ.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

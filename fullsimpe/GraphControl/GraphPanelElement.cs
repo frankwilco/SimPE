@@ -1,3 +1,22 @@
+/***************************************************************************
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -19,7 +38,10 @@ namespace Ambertation.Windows.Forms.Graph
 
 			quality = true;	
 			savebound = true;
-			CompleteRedraw();
+			update = false;
+			cachedimage = new System.Drawing.Bitmap(1, 1);
+			this.width = 48;
+			this.height = 48;
 		}
 
 		public virtual void Dispose()
@@ -216,6 +238,8 @@ namespace Ambertation.Windows.Forms.Graph
 
 		public void SetBounds(int x, int y, int wd, int hg)
 		{
+			wd = Math.Max(1, wd);
+			hg = Math.Max(1, hg);
 			Rectangle src = new Rectangle(x, y, wd, hg);
 			Rectangle dst = this.BoundingRectangle;
 
@@ -275,6 +299,7 @@ namespace Ambertation.Windows.Forms.Graph
 		Image cachedimage;
 		protected void CompleteRedraw()
 		{
+			if (update) return;
 			if (Width==0) return;
 			if (Height==0) return;										
 			if (cachedimage!=null) cachedimage.Dispose();			
@@ -330,6 +355,25 @@ namespace Ambertation.Windows.Forms.Graph
 		#region Events
 		public event System.EventHandler GotFocus;
 		public event System.EventHandler LostFocus;
+		#endregion
+
+		#region Update Control
+		bool update;
+		public bool Updating
+		{
+			get {return update; }
+		}
+
+		public void BeginUpdate()
+		{
+			update = true;
+		}
+
+		public void EndUpdate()
+		{
+			update = false;
+			this.Invalidate();
+		}
 		#endregion
 	}
 }

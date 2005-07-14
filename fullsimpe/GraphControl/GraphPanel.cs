@@ -1,3 +1,22 @@
+/***************************************************************************
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -197,6 +216,33 @@ namespace Ambertation.Windows.Forms
 			}
 		}
 
+		[Browsable(false)]
+		public GraphPanelElement SelectedElement
+		{
+			get 
+			{
+				foreach (GraphPanelElement gpe in li) 
+					if ( gpe is DragPanel) 					
+						if (((DragPanel)gpe).Focused)
+							return gpe;					
+
+				return null;
+			}
+			set 
+			{
+				if (value==null) return;
+				if (!(value is DragPanel)) return;
+
+				if (li.Contains(value))
+				{
+					GraphPanelElement[] elements = new GraphPanelElement[li.Count];
+					li.CopyTo(elements);
+					foreach (GraphPanelElement gpe in elements) 
+						if ( gpe is DragPanel)
+							((DragPanel)gpe).SetFocus(gpe==value);					
+				}
+			}
+		}
 		#endregion
 
 		
@@ -220,20 +266,25 @@ namespace Ambertation.Windows.Forms
 		{
 			base.OnMouseDown (e);
 			bool hit = false;
-			for (int i=li.Count-1; i>=0; i--){
-				GraphPanelElement c = li[i]; 
+			GraphPanelElement[] elements = new GraphPanelElement[li.Count];
+			li.CopyTo(elements);
+			for (int i=elements.Length-1; i>=0; i--){
+				GraphPanelElement c = elements[i]; 
 			
 				if (c is DragPanel) 
 				{	
 					if (!hit) 
 						if (((DragPanel)c).OnMouseDown(e)) 
-						{						
-							hit = true;
-							((DragPanel)c).SetFocus(true);
-							continue;
+						{	
+							if (e.Button==System.Windows.Forms.MouseButtons.Left) 
+							{
+								hit = true;
+								((DragPanel)c).SetFocus(true);
+								continue;
+							}
 						}
 					
-					((DragPanel)c).SetFocus(false);
+					if (e.Button==System.Windows.Forms.MouseButtons.Left) ((DragPanel)c).SetFocus(false);
 					
 				}
 			}

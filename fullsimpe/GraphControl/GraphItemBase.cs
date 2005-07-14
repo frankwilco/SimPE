@@ -1,3 +1,22 @@
+/***************************************************************************
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -35,6 +54,12 @@ namespace Ambertation.Windows.Forms.Graph
 			lcmap = new Hashtable();
 		}		
 		
+
+		public override void Dispose()
+		{
+			tag = null;
+			base.Dispose ();
+		}
 
 		#region public Properties
 		object tag;
@@ -246,6 +271,7 @@ namespace Ambertation.Windows.Forms.Graph
 			if (e.Added) 
 			{
 				LinkGraphic lc = new LinkGraphic();
+				lc.Text = e.Text;
 				lc.ForeColor = this.CurrentLinkColor;
 				lc.Parent = (GraphPanel)Parent;
 				lc.StartElement = this;
@@ -254,7 +280,7 @@ namespace Ambertation.Windows.Forms.Graph
 				lc.EndAnchorSnap = LinkControlSnapAnchor.NoCorners;
 				lc.LineMode = this.LineMode;
 				lc.Quality = this.Quality;
-				lc.Text = e.Text;
+				
 				
 				lc.SendToBack();
 				lcmap.Add(e.GraphItem, lc);				

@@ -1,3 +1,22 @@
+/***************************************************************************
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -84,28 +103,36 @@ namespace Ambertation.Windows.Forms.Graph
 		{			
 			
 			if (!this.BoundingRectangle.Contains(e.X, e.Y)) return false;
+			if (MouseDown!=null) MouseDown(this, FixMouseEventArgs(e));
 			if (!lk) return true;
 			e = FixMouseEventArgs(e);
 			
 
-			down = true;
-			
-			SetMousePos(e.X, e.Y);
+			if (e.Button==MouseButtons.Left) 
+			{
+				down = true;			
+				SetMousePos(e.X, e.Y);
+			}
 
+			
 			return true;
 		}
 
 		internal bool OnMouseUp(MouseEventArgs e)
 		{
 			if (!this.BoundingRectangle.Contains(e.X, e.Y) && !down) return false;
+			if (MouseUp!=null) MouseUp(this, FixMouseEventArgs(e));
 			e = FixMouseEventArgs(e);			
-			down = false;	
+			down = false;
+			
 			return true;
 		}		
 
 		internal bool OnMouseMove(MouseEventArgs e)
 		{				
 			if (!this.BoundingRectangle.Contains(e.X, e.Y) && !down) return false;
+			
+			if (MouseMove!=null) MouseMove(this, FixMouseEventArgs(e));
 			if (!lk) return true;
 			if (!down) return true;			
 			e = FixMouseEventArgs(e);
@@ -131,6 +158,11 @@ namespace Ambertation.Windows.Forms.Graph
 
 		#endregion
 
+		#region Events
+		public event System.Windows.Forms.MouseEventHandler MouseMove;
+		public event System.Windows.Forms.MouseEventHandler MouseUp;
+		public event System.Windows.Forms.MouseEventHandler MouseDown;
+		#endregion
 
 		internal void SetFocus(bool val)
 		{

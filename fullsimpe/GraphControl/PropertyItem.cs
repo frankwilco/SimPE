@@ -18,28 +18,32 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Data;
-using System.Windows.Forms;
-using Ambertation.Collections;
 
 namespace Ambertation.Windows.Forms.Graph
 {
 	/// <summary>
-	/// This is an Item you can add to a <see cref="GraphPanel"/>.
+	/// Contains a Property
 	/// </summary>
-	public class GraphItem : PropertyPanel
+	public class PropertyItem
 	{
-		
-		public GraphItem() : this(new PropertyItems()) 
+		string name;
+		object val;
+
+		public string Name 
 		{
+			get { return name; }
 		}
 
-		public GraphItem(PropertyItems properties) :base (properties)
-		{				
-		}		
+		public object Value
+		{
+			get {return val;}
+			set {val = value;}
+		}
+
+		public PropertyItem(string name, object val)
+		{
+			this.name = name;
+			this.val = val;
+		}
 	}
 }

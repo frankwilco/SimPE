@@ -1,3 +1,22 @@
+/***************************************************************************
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 using System.Collections;
 using Ambertation.Windows.Forms.Graph;
@@ -265,6 +284,161 @@ namespace Ambertation.Collections
 		{
 			GraphElements list = new GraphElements();
 			foreach (GraphPanelElement item in this) list.Add(item);
+
+			return list;
+		}
+	}
+
+	/// <summary>
+	/// Typesave ArrayList for PropertyItem Objects
+	/// </summary>
+	public class PropertyItems : ArrayList 
+	{		
+		/// <summary>
+		/// Integer Indexer
+		/// </summary>
+		public new PropertyItem this[int index]
+		{
+			get { return ((PropertyItem)base[index]); }
+			set { base[index] = value; }
+		}
+
+		/// <summary>
+		/// unsigned Integer Indexer
+		/// </summary>
+		public PropertyItem this[uint index]
+		{
+			get { return ((PropertyItem)base[(int)index]); }
+			set { base[(int)index] = value; }
+		}
+
+		/// <summary>
+		/// unsigned Integer Indexer
+		/// </summary>
+		public PropertyItem this[string name]
+		{
+			get { 
+				int index = this.GetIndexOf(name);
+				if (index>=0) return this[index]; 
+
+				PropertyItem pi = new PropertyItem(name, null);
+				Add(pi);
+				return pi;
+			}
+			set { 
+				int index = this.GetIndexOf(name);
+				if (index>=0) this[index] = value; 
+				else Add(name, value);
+			}
+		}
+
+		/// <summary>
+		/// add a new Element
+		/// </summary>
+		/// <param name="item">The object you want to add</param>
+		/// <returns>The index it was added on</returns>
+		public int Add(PropertyItem item)
+		{
+			return base.Add(item);			
+		}
+
+		public int Add(string name, object val)
+		{
+			return Add(new PropertyItem(name, val));
+		}
+
+		/// <summary>
+		/// insert a new Element
+		/// </summary>
+		/// <param name="index">The Index where the Element should be stored</param>
+		/// <param name="item">The object that should be inserted</param>
+		public void Insert(int index, PropertyItem item)
+		{
+			base.Insert(index, item);			
+		}
+
+		public void Insert(int index, string name, object val)
+		{
+			
+			base.Insert(index, new PropertyItem(name, val));			
+		}
+
+		/// <summary>
+		/// remove an Element
+		/// </summary>
+		/// <param name="item">The object that should be removed</param>
+		public void Remove(PropertyItem item)
+		{
+			base.Remove(item);			
+		}
+
+		public void Remove(string name)
+		{
+			int index = GetIndexOf(name);
+			if (index>=0) base.RemoveAt(index);			
+		}
+
+		public int GetIndexOf(string name)
+		{
+			name = name.Trim().ToLower();
+			for (int i=0; i<this.Count; i++)
+				if (this[i].Name.Trim().ToLower() == name) return i;
+			return -1;
+		}
+
+		/// <summary>
+		/// Checks wether or not the object is already stored in the List
+		/// </summary>
+		/// <param name="item">The Object you are looking for</param>
+		/// <returns>true, if it was found</returns>
+		public bool Contains(PropertyItem item)
+		{
+			return base.Contains(item);
+		}
+		
+		public bool Contains(string name)
+		{
+			return (GetIndexOf(name)>=0);
+		}
+
+		/// <summary>
+		/// Number of stored Elements
+		/// </summary>
+		public int Length 
+		{
+			get { return this.Count; }
+		}
+
+		public string[] Keys
+		{
+			get 
+			{
+				string[] res = new string[this.Count];
+				int ct=0;
+				foreach (PropertyItem item in this) res[ct++] = item.Name;
+				return res;
+			}
+		}
+
+		public object[] Values
+		{
+			get 
+			{
+				object[] res = new object[this.Count];
+				int ct=0;
+				foreach (PropertyItem item in this) res[ct++] = item.Value;
+				return res;
+			}
+		}
+
+		/// <summary>
+		/// Create a clone of this Object
+		/// </summary>
+		/// <returns>The clone</returns>
+		public override object Clone()
+		{
+			PropertyItems list = new PropertyItems();
+			foreach (PropertyItem item in this) list.Add(item);
 
 			return list;
 		}

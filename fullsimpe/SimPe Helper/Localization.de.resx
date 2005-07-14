@@ -556,4 +556,19 @@ Package: {filename}</value>
 	<data name="Welcome">
 		<value>Willkommen</value>
 	</data>
+	<data name="SimPe.Data.FamilyTieTypes.MyMotherIs">
+        <value>Elternteil A</value>
+    </data>
+    <data name="SimPe.Data.FamilyTieTypes.MyFatherIs">
+        <value>Elternteil B</value>
+    </data>
+    <data name="SimPe.Data.FamilyTieTypes.ImMarriedTo">
+        <value>Ehepartner</value>
+    </data>
+    <data name="SimPe.Data.FamilyTieTypes.MySiblingIs">
+        <value>Geschwister</value>
+    </data>
+    <data name="SimPe.Data.FamilyTieTypes.MyChildIs">
+        <value>Kind</value>
+    </data>
 </root>
