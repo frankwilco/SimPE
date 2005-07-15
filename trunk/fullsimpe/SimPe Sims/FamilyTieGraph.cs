@@ -40,17 +40,31 @@ namespace SimPe.PackedFiles.Wrapper
 			this.LockItems = false;
 
 			ImagePanel eip = new ImagePanel();
-			isz = new Size(150, eip.BestSize(48, 48).Height);
+			isz = new Size(120, eip.BestSize(48, 48).Height);
 			eip.Dispose();
 		}
 
 		ImagePanel baseip;
+		/// <summary>
+		/// returns the <see cref="ImagePanel"/> for the Sim that was used to build th Graph
+		/// </summary>
+		public ImagePanel MainSimElement
+		{
+			get { return baseip;}
+		}
 
 		public void UpdateGraph(Wrapper.SDesc sdsc, Wrapper.ExtFamilyTies famt)
 		{
 			this.BeginUpdate();
+			if (Parent!=null) 
+			{
+				this.Width = Parent.ClientRectangle.Width;
+				this.Height = Parent.ClientRectangle.Height;
+			}
 			bool run = WaitingScreen.Running;
 			WaitingScreen.Wait();
+			this.SaveBounds = false;
+			this.AutoSize = true;
 			this.Clear();
 			baseip = null;
 
@@ -66,9 +80,79 @@ namespace SimPe.PackedFiles.Wrapper
 			Wrapper.SDesc[] siblings = famt.SiblingSims(sdsc);
 			Wrapper.SDesc[] childs = famt.ChildSims(sdsc);
 
-			Size prect = new Size(parents.Length*(ItemSize.Width+8), ItemSize.Height+60);
-			Size srect = new Size((1+siblings.Length)*(ItemSize.Width+100), ItemSize.Height+60 + ((siblings.Length/2)-1) * 4 + 24);
-			Size crect = new Size(childs.Length*(ItemSize.Width+8), ItemSize.Height);
+			int maxct = parents.Length+siblings.Length+childs.Length;
+			if (maxct<4) 
+			{
+				this.LinearUpdateGraph(sdsc, famt);
+				if (!run) WaitingScreen.Stop();
+				return;
+			}
+
+			double r = GraphPanel.GetPinCircleRadius(this.ItemSize, this.ItemSize, maxct);
+			Point center = new Point(
+				Math.Max(Width/2, (int)r+16+ItemSize.Width/2), 
+				Math.Max(Height/2, (int)r+ItemSize.Height/2)
+				);
+
+			baseip = CreateItem(sdsc, 0, 0);
+			baseip.Location = GraphPanel.GetCenterLocationOnPinCircle(center, r, ItemSize);
+			baseip.Parent = this;
+			this.SelectedElement = baseip;
+			baseip.PanelColor = Color.Black;
+			baseip.ForeColor = Color.White;
+			baseip.EndUpdate();
+
+			int ct = 0;	
+		
+			foreach (SDesc s in childs) 
+			{
+				ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
+				ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
+				ip.EndUpdate();
+			}
+
+			foreach (SDesc s in siblings) 
+			{
+				ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
+				ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
+				ip.EndUpdate();
+			}
+
+			
+
+			foreach (SDesc s in parents) 
+			{
+				ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
+				ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
+				ip.EndUpdate();
+			}
+
+			
+			this.EndUpdate();
+			if (!run) WaitingScreen.Stop();
+		}
+
+		public void LinearUpdateGraph(Wrapper.SDesc sdsc, Wrapper.ExtFamilyTies famt)
+		{
+			this.BeginUpdate();
+			
+			this.Clear();
+			baseip = null;
+
+			if (famt==null || sdsc==null) 
+			{
+				this.EndUpdate();				
+				return;
+			}
+			
+			FamilyTieSim tie = famt.FindTies(sdsc);
+			Wrapper.SDesc[] parents = famt.ParentSims(sdsc);
+			Wrapper.SDesc[] siblings = famt.SiblingSims(sdsc);
+			Wrapper.SDesc[] childs = famt.ChildSims(sdsc);
+
+			Size prect = new Size((parents.Length-1)*(ItemSize.Width+8), ItemSize.Height+60);
+			Size srect = new Size(siblings.Length*(ItemSize.Width+24)+140, ItemSize.Height+60 + ((siblings.Length/2)-1) * 4 + 24);
+			Size crect = new Size((childs.Length-1)*(ItemSize.Width+8), ItemSize.Height);
 			int maxw = Math.Max(Math.Max(prect.Width, srect.Width), crect.Width);
 			int top = prect.Height + (srect.Height-ItemSize.Height) /2;
 			int left = (maxw - ItemSize.Width)/2+32;
@@ -77,18 +161,15 @@ namespace SimPe.PackedFiles.Wrapper
 			baseip = CreateItem(sdsc, left, top);
 			baseip.Parent = this;
 			this.SelectedElement = baseip;
+			baseip.PanelColor = Color.Black;
+			baseip.ForeColor = Color.White;
 			baseip.EndUpdate();
 
 			left = (maxw -prect.Width)/2+16;
 			top = 0;
 			foreach (SDesc s in parents) 
 			{
-				ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type);/*CreateItem(s, left, top);
-				
-				string name = ((Data.LocalizedFamilyTieTypes)tie.FindTie(s).Type).ToString();
-				ip.ParentItems.Add(baseip, name);
-				ip.Parent = this;
-				ip.EndUpdate();*/
+				ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type, true);
 				left += ip.Width+8;
 			}
 
@@ -97,20 +178,15 @@ namespace SimPe.PackedFiles.Wrapper
 			top =  prect.Height;
 			foreach (SDesc s in siblings) 
 			{
-				ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type);/*CreateItem(s, left, top);
-				
-				string name = ((Data.LocalizedFamilyTieTypes)tie.FindTie(s).Type).ToString();
-				ip.ParentItems.Add(baseip, name);
-				ip.Parent = this;
-				
-				ip.EndUpdate();*/
-				left += ip.Width+100;
+				ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type, true);
+				left += ip.Width+24;
 				
 				ct++;
-				if (ct==siblings.Length/2) 
+				if (ct==siblings.Length/2 || siblings.Length==1) 
 				{
+					left += 70;
 					baseip.SetBounds(left, top+24, baseip.Width, baseip.Height);
-					left += ip.Width+100;				
+					left += ip.Width+94;				
 				}
 				else if (ct>siblings.Length/2) top -= 4;
 				else top += 4;
@@ -120,21 +196,20 @@ namespace SimPe.PackedFiles.Wrapper
 			top =  prect.Height +srect.Height;
 			foreach (SDesc s in childs) 
 			{
-				ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type);/* CreateItem(s, left, top);
-				
-				string name = ((Data.LocalizedFamilyTieTypes)tie.FindTie(s).Type).ToString();
-				ip.ParentItems.Add(baseip, name);
-				ip.Parent = this;
-				ip.EndUpdate();*/
+				ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type, true);
 				left += ip.Width+8;
 			}
 
 			
-			this.EndUpdate();
-			if (!run) WaitingScreen.Stop();
+			this.EndUpdate();			
 		}
 
-		public ImagePanel AddTieToGraph(SDesc sdsc, int left, int top, Data.MetaData.FamilyTieTypes type)
+		public ImagePanel AddTieToGraph(SDesc sdsc, int left, int top, Data.MetaData.FamilyTieTypes type) 
+		{
+			return AddTieToGraph(sdsc, left, top, type, true);
+		}
+
+		ImagePanel AddTieToGraph(SDesc sdsc, int left, int top, Data.MetaData.FamilyTieTypes type, bool isextern)
 		{
 			if (baseip==null) return null;
 
@@ -143,7 +218,7 @@ namespace SimPe.PackedFiles.Wrapper
 			string name = ((Data.LocalizedFamilyTieTypes)type).ToString();
 			ip.ParentItems.Add(baseip, name);
 			ip.Parent = this;
-			ip.EndUpdate();
+			if (isextern) ip.EndUpdate();
 
 			return ip;
 		}
@@ -164,6 +239,7 @@ namespace SimPe.PackedFiles.Wrapper
 			eip.GotFocus += new EventHandler(eip_GotFocus);
 			eip.LostFocus += new EventHandler(eip_LostFocus);
 			eip.MouseDown += new System.Windows.Forms.MouseEventHandler(eip_MouseDown);
+			eip.DoubleClick += new EventHandler(eip_DoubleClick);
 			
 			return eip;
 		}
@@ -171,6 +247,7 @@ namespace SimPe.PackedFiles.Wrapper
 		#region Events
 		public event SimPoolControl.SelectedSimHandler SelectedSimChanged;
 		public event SimPoolControl.SelectedSimHandler ClickOverSim;
+		public event SimPoolControl.SelectedSimHandler DoubleClickSim;
 		#endregion
 
 		private void eip_GotFocus(object sender, EventArgs e)
@@ -182,7 +259,7 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		private void eip_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
+		{			
 			if (ClickOverSim!=null && (sender is ImagePanel)) 
 			{
 				ClickOverSim(this, ((Ambertation.Windows.Forms.Graph.ImagePanel)sender).Image, (Wrapper.SDesc)((Ambertation.Windows.Forms.Graph.ImagePanel)sender).Tag);
@@ -195,6 +272,45 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				SelectedSimChanged(this, ((Ambertation.Windows.Forms.Graph.ImagePanel)sender).Image, null);
 			}
+		}
+
+		private void eip_DoubleClick(object sender, EventArgs e)
+		{
+			if (DoubleClickSim!=null && (sender is ImagePanel)) 
+			{
+				DoubleClickSim(this, ((Ambertation.Windows.Forms.Graph.ImagePanel)sender).Image, (Wrapper.SDesc)((Ambertation.Windows.Forms.Graph.ImagePanel)sender).Tag);
+			}
+		}
+
+		/// <summary>
+		/// Returns the <see cref="ImagePanel"/> that contains the passed Sim
+		/// </summary>
+		/// <param name="sdsc"></param>
+		/// <returns></returns>
+		public ImagePanel FindItem(Wrapper.SDesc sdsc)
+		{
+			foreach (GraphPanelElement gpe in this.Items)
+			{
+				if (gpe is ImagePanel)
+				{
+					if (sdsc.Equals(((ImagePanel)gpe).Tag)) return (ImagePanel)gpe;
+				}
+			}
+
+			return null;
+		}
+
+		public static Data.MetaData.FamilyTieTypes GetAntiTie(Wrapper.SDesc sdsc, Data.MetaData.FamilyTieTypes t)
+		{
+			if (t == Data.MetaData.FamilyTieTypes.MyMotherIs || t == Data.MetaData.FamilyTieTypes.MyFatherIs) return Data.MetaData.FamilyTieTypes.MyChildIs;
+			if (t == Data.MetaData.FamilyTieTypes.MyChildIs) 
+			{
+				if (sdsc==null)	return Data.MetaData.FamilyTieTypes.MyMotherIs;
+				if (sdsc.CharacterDescription.Gender == SimPe.Data.MetaData.Gender.Female) return Data.MetaData.FamilyTieTypes.MyMotherIs;
+				return Data.MetaData.FamilyTieTypes.MyFatherIs;
+			}			
+
+			return t;
 		}
 	}
 }

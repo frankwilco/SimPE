@@ -42,6 +42,11 @@ namespace Ambertation.Windows.Forms
 		{
 			get { return li;}
 		}
+
+		protected Ambertation.Collections.GraphElements Items
+		{
+			get { return li;}
+		}
 		
 		public GraphPanel()
 		{
@@ -239,7 +244,20 @@ namespace Ambertation.Windows.Forms
 					li.CopyTo(elements);
 					foreach (GraphPanelElement gpe in elements) 
 						if ( gpe is DragPanel)
+						{
 							((DragPanel)gpe).SetFocus(gpe==value);					
+							/*if (gpe==value)
+							{
+								Label lb = new Label();
+								lb.Location = gpe.Location;
+								lb.Visible = true;
+								lb.Parent = this;
+								
+								this.ScrollControlIntoView(lb);
+								lb.Parent = null;
+								lb.Dispose();
+							}*/
+						}
 				}
 			}
 		}
@@ -394,6 +412,43 @@ namespace Ambertation.Windows.Forms
 			}
 		
 			this.Refresh();
+		}
+
+		/// <summary>
+		/// Calculate the Radius of a Circle you can use to place Items on
+		/// </summary>
+		/// <param name="centersize">The Size of the Item that should be presented in the center of the Cricle</param>
+		/// <param name="itemsize">The size of the Items that should sourrpund the circle</param>
+		/// <param name="itemcount">The number of items that should surround the Center</param>
+		/// <returns>The calculated Radius</returns>
+		public static double GetPinCircleRadius(Size centersize, Size itemsize, int itemcount)
+		{
+			double alpha = Math.Max(0.01, Math.Min(Math.PI/2, 2*Math.PI / itemcount));
+			double l = Math.Max(itemsize.Width, itemsize.Height) * Math.Sqrt(2);
+			double minl = Math.Max(centersize.Width, centersize.Height) * Math.Sqrt(0.5) + l/2;
+
+			return Math.Max(l/(2*Math.Sin(alpha)), minl);
+		}
+
+		/// <summary>
+		/// Calculate sthe location of an Item on a Circle
+		/// </summary>
+		/// <param name="center">The centner of the Circle</param>
+		/// <param name="r">The radius (as caluclated in <see cref="GetPinCircleRadius"/>)</param>
+		/// <param name="nr">The number of the item on the circle</param>
+		/// <param name="itemcount">Maximum Number of Items on the circle</param>
+		/// <param name="itemsize">The Size of the Item</param>
+		/// <returns>the point for the given Location</returns>
+		public static Point GetItemLocationOnPinCricle(Point center, double r, int nr, int itemcount, Size itemsize)
+		{
+			double alpha = (2*Math.PI / itemcount) * nr;
+
+			return new Point(center.X+(int)(Math.Cos(alpha)*r)-itemsize.Width/2, center.Y+(int)(Math.Sin(alpha)*r)-itemsize.Height/2);
+		}
+
+		public static Point GetCenterLocationOnPinCircle(Point center, double r, Size itemsize)
+		{
+			return new Point(center.X-itemsize.Width/2, center.Y-itemsize.Height/2);
 		}
 	}
 }

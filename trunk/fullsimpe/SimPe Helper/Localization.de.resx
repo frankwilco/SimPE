@@ -557,18 +557,24 @@ Package: {filename}</value>
 		<value>Willkommen</value>
 	</data>
 	<data name="SimPe.Data.FamilyTieTypes.MyMotherIs">
-        <value>Elternteil A</value>
-    </data>
-    <data name="SimPe.Data.FamilyTieTypes.MyFatherIs">
-        <value>Elternteil B</value>
-    </data>
-    <data name="SimPe.Data.FamilyTieTypes.ImMarriedTo">
-        <value>Ehepartner</value>
-    </data>
-    <data name="SimPe.Data.FamilyTieTypes.MySiblingIs">
-        <value>Geschwister</value>
-    </data>
-    <data name="SimPe.Data.FamilyTieTypes.MyChildIs">
-        <value>Kind</value>
-    </data>
+		<value>Elternteil A</value>
+	</data>
+	<data name="SimPe.Data.FamilyTieTypes.MyFatherIs">
+		<value>Elternteil B</value>
+	</data>
+	<data name="SimPe.Data.FamilyTieTypes.ImMarriedTo">
+		<value>Ehepartner</value>
+	</data>
+	<data name="SimPe.Data.FamilyTieTypes.MySiblingIs">
+		<value>Geschwister</value>
+	</data>
+	<data name="SimPe.Data.FamilyTieTypes.MyChildIs">
+		<value>Kind</value>
+	</data>
+	<data name="AddFamilyTieCaption">
+		<value>"{name}" in die Familie von "{gname}" aufnehmen</value>
+	</data>
+	<data name="OpenSDesc">
+		<value>Öffne Sim Beschreibung von "{name}"</value>
+	</data>
 </root>

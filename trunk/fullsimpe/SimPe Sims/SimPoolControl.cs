@@ -88,7 +88,7 @@ namespace SimPe.PackedFiles.Wrapper
 				WaitingScreen.UpdateMessage((ct++).ToString() + "/" + pfds.Length.ToString());
 			}			
 
-			WaitingScreen.UpdateMessage("Update Canvas");
+			WaitingScreen.UpdateMessage("Updating Canvas");
 			ct = 0;
 			foreach (string k in map.Keys) 
 			{
@@ -172,6 +172,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 			eip.GotFocus += new EventHandler(eip_GotFocus);
 			eip.MouseDown += new System.Windows.Forms.MouseEventHandler(eip_MouseDown);
+			eip.DoubleClick += new EventHandler(eip_DoubleClick);
 			
 			return eip;
 		}
@@ -180,6 +181,7 @@ namespace SimPe.PackedFiles.Wrapper
 		public delegate void SelectedSimHandler(object sender, System.Drawing.Image thumb, Wrapper.SDesc sdesc);
 		public event SelectedSimHandler SelectedSimChanged;
 		public event SelectedSimHandler ClickOverSim;
+		public event SelectedSimHandler DoubleClickSim;
 		#endregion
 
 		private void eip_GotFocus(object sender, EventArgs e)
@@ -196,6 +198,32 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				ClickOverSim(this, ((Ambertation.Windows.Forms.Graph.ExtendedImagePanel)sender).Image, (Wrapper.SDesc)((Ambertation.Windows.Forms.Graph.ExtendedImagePanel)sender).Tag);
 			}
+		}
+
+		private void eip_DoubleClick(object sender, EventArgs e)
+		{
+			if (DoubleClickSim!=null && (sender is ExtendedImagePanel)) 
+			{
+				DoubleClickSim(this, ((Ambertation.Windows.Forms.Graph.ExtendedImagePanel)sender).Image, (Wrapper.SDesc)((Ambertation.Windows.Forms.Graph.ExtendedImagePanel)sender).Tag);
+			}
+		}
+
+		/// <summary>
+		/// Returns the <see cref="ImagePanel"/> that contains the passed Sim
+		/// </summary>
+		/// <param name="sdsc"></param>
+		/// <returns></returns>
+		public ImagePanel FindItem(Wrapper.SDesc sdsc)
+		{
+			foreach (GraphPanelElement gpe in this.Items)
+			{
+				if (gpe is ImagePanel)
+				{
+					if (sdsc.Equals(((ImagePanel)gpe).Tag)) return (ImagePanel)gpe;
+				}
+			}
+
+			return null;
 		}
 	}
 }

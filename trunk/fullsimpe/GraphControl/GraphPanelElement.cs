@@ -152,16 +152,17 @@ namespace Ambertation.Windows.Forms.Graph
 				if (parent!=value)
 				{
 					if (parent!=null) 
-					{
-						parent.LinkItems.Remove(this);
+					{						
+						this.RemoveFromParent();
+						Refresh();
 					}
 					parent = value;
 					if (parent!=null) 
 					{
-						parent.LinkItems.Add(this);											
+						this.AddToParent();						
 					}
 					ChangedParent();
-					this.Refresh();
+					this.Invalidate();
 				}
 			}
 		}
@@ -177,8 +178,7 @@ namespace Ambertation.Windows.Forms.Graph
 				if (quality != value) 
 				{
 					quality = value;
-					CompleteRedraw();
-					Refresh();	
+					this.Invalidate();	
 				}
 			}
 		}		
@@ -261,12 +261,18 @@ namespace Ambertation.Windows.Forms.Graph
 				src = new Rectangle(left, top, width, height);
 			}
 			
+			if (src.X!=dst.X || src.Y!=dst.Y) OnMove();
 			if (src.Width!=dst.Width || src.Height!=dst.Height) 
 			{
-				this.CompleteRedraw();
-				if (SizeChanged!=null) SizeChanged(this, new System.EventArgs());
+				OnSizeChanged();
+				this.CompleteRedraw();				
+				if (SizeChanged!=null) SizeChanged(this, new System.EventArgs());				
 			}
-			if ((src.X!=dst.X || src.Y!=dst.Y) && Move!=null) Move(this, new System.EventArgs());
+			if ((src.X!=dst.X || src.Y!=dst.Y) && Move!=null) 
+			{
+				
+				Move(this, new System.EventArgs());
+			}
 
 			if (parent!=null) parent.Invalidate(r);
 			//Refresh();
@@ -300,11 +306,19 @@ namespace Ambertation.Windows.Forms.Graph
 		protected void CompleteRedraw()
 		{
 			if (update) return;
-			if (Width==0) return;
-			if (Height==0) return;										
+			if (Width<=0) return;
+			if (Height<=0) return;		
 			if (cachedimage!=null) cachedimage.Dispose();			
 
-			cachedimage = new Bitmap(Width, Height);
+			try 
+			{
+				cachedimage = new Bitmap(Width, Height);
+			}
+			catch 
+			{
+				cachedimage = new Bitmap(1, 1);
+				return;
+			}
 			Graphics g = Graphics.FromImage(cachedimage);
 			CompleteRedraw(g);
 			g.Dispose();
@@ -320,8 +334,7 @@ namespace Ambertation.Windows.Forms.Graph
 
 		protected abstract void UserDraw(Graphics g);
 
-		public event System.EventHandler Move;
-		public event System.EventHandler SizeChanged;
+		
 		#endregion		
 
 		public void SendToBack()
@@ -351,10 +364,23 @@ namespace Ambertation.Windows.Forms.Graph
 
 		
 		public abstract void Clear();
+		protected virtual void RemoveFromParent()
+		{
+			parent.LinkItems.Remove(this);
+		}
+
+		protected virtual void AddToParent()
+		{
+			parent.LinkItems.Add(this);					
+		}
 
 		#region Events
+		protected virtual void OnMove(){}
+		protected virtual void OnSizeChanged(){}
 		public event System.EventHandler GotFocus;
 		public event System.EventHandler LostFocus;
+		public event System.EventHandler Move;
+		public event System.EventHandler SizeChanged;
 		#endregion
 
 		#region Update Control
