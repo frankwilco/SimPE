@@ -565,7 +565,8 @@ namespace SimPe.Plugin
 					if (newref!=null) i.Title = Hashes.StripHashFromName(newref.Substring(0, newref.Length-5));
 					else i.Title = Hashes.StripHashFromName(i.Title);
 
-					if (((ver == FixVersion.UniversityReady) || (pfd.Instance == 0x88)) && (newref!=null)) i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+i.Title;
+					if (((ver == FixVersion.UniversityReady) || (pfd.Instance == 0x88)) && (newref!=null)) 
+						i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+i.Title;
 					
 					if ((modelname==null) && (i.Language.Id==1) && (pfd.Instance==0x85)) 
 						modelname = name.ToUpper().Replace("-", "_");

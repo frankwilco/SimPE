@@ -102,8 +102,15 @@ namespace Ambertation.Windows.Forms.Graph
 		internal bool OnMouseDown(MouseEventArgs e)
 		{			
 			
+
 			if (!this.BoundingRectangle.Contains(e.X, e.Y)) return false;
-			if (MouseDown!=null) MouseDown(this, FixMouseEventArgs(e));
+			if (e.Clicks==1 && this.Click!=null) Click(this, new System.EventArgs());
+			else if (e.Clicks==2 && this.DoubleClick!=null) 
+			{
+				DoubleClick(this, new System.EventArgs());
+				return true;
+			}
+			else if (MouseDown!=null) MouseDown(this, FixMouseEventArgs(e));
 			if (!lk) return true;
 			e = FixMouseEventArgs(e);
 			
@@ -162,6 +169,8 @@ namespace Ambertation.Windows.Forms.Graph
 		public event System.Windows.Forms.MouseEventHandler MouseMove;
 		public event System.Windows.Forms.MouseEventHandler MouseUp;
 		public event System.Windows.Forms.MouseEventHandler MouseDown;
+		public event System.EventHandler DoubleClick;
+		public event System.EventHandler Click;
 		#endregion
 
 		internal void SetFocus(bool val)

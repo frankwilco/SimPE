@@ -29,7 +29,7 @@ using Ambertation.Collections;
 namespace Ambertation.Windows.Forms.Graph
 {
 	/// <summary>
-	/// This is a Rounded Panel
+	/// This is the basic classed that should be inherited by all <see cref="GraphPanel"/> Items.
 	/// </summary>
 	public abstract class GraphItemBase : DragPanel
 	{
@@ -41,7 +41,7 @@ namespace Ambertation.Windows.Forms.Graph
 
 			parents = new GraphItems();
 			parents.ItemsChanged +=new GraphItemsChanged(parents_ItemsChanged);
-
+			
 			
 			alcol = Color.DarkOrange;
 
@@ -62,6 +62,15 @@ namespace Ambertation.Windows.Forms.Graph
 		}
 
 		#region public Properties
+		protected DockPoint[] docks;
+		public DockPoint[] Docks
+		{
+			get { 
+				if (docks==null) this.SetupDocks();				
+				return docks; 
+			}
+		}
+
 		object tag;
 		public object Tag
 		{
@@ -263,6 +272,35 @@ namespace Ambertation.Windows.Forms.Graph
 		}
 		#endregion
 
+		protected virtual void InitDocks()
+		{
+			if (docks==null) 
+			{
+				docks = new DockPoint[8];								
+				
+				docks[0] = new DockPoint(0, 0, LinkControlType.MiddleLeft);				
+				docks[1] = new DockPoint(0, 0, LinkControlType.MiddleRight);
+				docks[2] = new DockPoint(0, 0, LinkControlType.TopCenter);
+				docks[3] = new DockPoint(0, 0, LinkControlType.TopLeft);				
+				docks[4] = new DockPoint(0, 0, LinkControlType.TopRight);				
+				docks[5] = new DockPoint(0, 0, LinkControlType.BottomCenter);
+				docks[6] = new DockPoint(0, 0, LinkControlType.BottomLeft);
+				docks[7] = new DockPoint(0, 0, LinkControlType.BottomRight);
+			}
+		}
+		protected virtual void SetupDocks()
+		{	
+			if (docks==null) InitDocks();
+			docks[0].X = Left;  docks[0].Y = Top+Height/2;
+			docks[1].X = Left+Width;  docks[1].Y = Top+Height/2;
+			docks[2].X = Left+Width/2;  docks[2].Y = Top;
+			docks[3].X = Left;  docks[3].Y = Top;			
+			docks[4].X = Left+Width;  docks[4].Y = Top;
+			docks[5].X = Left+Width/2;  docks[5].Y = Top+Height;
+			docks[6].X = Left;  docks[6].Y = Top+Height;			
+			docks[7].X = Left+Width;  docks[7].Y = Top+Height;
+		}
+
 		private void childs_ItemsChanged(GraphItems sender, GraphItemChangedEventArgs e)
 		{
 			if (e.Added && sender.Count==1) Refresh();
@@ -276,8 +314,8 @@ namespace Ambertation.Windows.Forms.Graph
 				lc.Parent = (GraphPanel)Parent;
 				lc.StartElement = this;
 				lc.EndElement = e.GraphItem;
-				lc.StartAnchorSnap = LinkControlSnapAnchor.NoCorners;
-				lc.EndAnchorSnap = LinkControlSnapAnchor.NoCorners;
+				lc.StartAnchorSnap = LinkControlSnapAnchor.OnlyCenter;
+				lc.EndAnchorSnap = LinkControlSnapAnchor.OnlyCenter;
 				lc.LineMode = this.LineMode;
 				lc.Quality = this.Quality;
 				
@@ -292,6 +330,7 @@ namespace Ambertation.Windows.Forms.Graph
 				if (lc!=null)
 				{
 					lcmap.Remove(lc);
+					lc.Parent = null;
 					lc.Dispose();
 				}
 			}
@@ -334,14 +373,110 @@ namespace Ambertation.Windows.Forms.Graph
 
 		public override void Clear()
 		{
-			foreach (LinkGraphic lc in lcmap.Values) lc.Dispose();
+			foreach (LinkGraphic lc in lcmap.Values) 
+			{
+				lc.Parent = null;
+				lc.Dispose();
+			}
 			lcmap.Clear();
 			
-			foreach (GraphItemBase gib in childs) gib.Dispose();
+			GraphItemBase[] gibs = new GraphItemBase[childs.Length];
+			childs.CopyTo(gibs);
+			foreach (GraphItemBase gib in gibs) 			
+				gib.ParentItems.Remove(this);
+
+			gibs = new GraphItemBase[parents.Length];
+			parents.CopyTo(gibs);
+			foreach (GraphItemBase gib in gibs)
+				gib.ChildItems.Remove(this);
+
+			//foreach (GraphItemBase gib in childs) gib.Dispose();
 			childs.Clear();
 
-			foreach (GraphItemBase gib in parents) gib.Dispose();
+			//foreach (GraphItemBase gib in parents) gib.Dispose();
 			parents.Clear();
 		}
+
+		protected override void OnSizeChanged()
+		{
+			base.OnSizeChanged ();
+			SetupDocks();
+		}
+
+		protected override void OnMove()
+		{
+			base.OnMove ();
+			SetupDocks();
+		}
+
+		
+
+		protected override void RemoveFromParent()
+		{
+			LinkGraphic[] lgs = GetChildLinks();
+			foreach (LinkGraphic lg in lgs)
+				lg.Parent = null;						
+
+			GraphItemBase[] gibs = new GraphItemBase[parents.Length];
+			parents.CopyTo(gibs);
+			foreach (GraphItemBase gib in gibs) 			
+				gib.ChildItems.Remove(this);
+
+			base.RemoveFromParent();
+		}
+
+		protected override void AddToParent()
+		{
+			LinkGraphic[] lgs = GetChildLinks();
+			foreach (LinkGraphic lg in lgs)
+				this.Parent.LinkItems.Add(lg);
+
+			base.AddToParent();
+		}
+
+
+
+		/// <summary>
+		/// Returns the best fitting Docks
+		/// </summary>
+		/// <param name="d1">The available Docks for the first Control</param>
+		/// <param name="lsa1">The Link Mode for the first Control</param>
+		/// <param name="l1">The currently used Dock for the first Controls</param>
+		/// <param name="d2">The available Docks for the second Control</param>
+		/// <param name="lsa2">The Link Mode for the second Control</param>
+		/// <param name="l2">The currently used Dock for the second Controls</param>
+		/// <returns>X=Index for the first Control, Y=index for the second Control</returns>
+		public static Point FindBestDocks(DockPoint[] d1, LinkControlSnapAnchor lsa1, int l1, DockPoint[] d2, LinkControlSnapAnchor lsa2, int l2)
+		{
+			int i1 = l1;
+			int i2 = l2;
+			double odist = d1[l1].Distance(d2[l2]);
+			double mindelta = -odist * 0.15;
+			double dist = odist;
+			if ((lsa1 == LinkControlSnapAnchor.OnlyCenter && !d1[l1].IsCenterDock)
+				||(lsa2 == LinkControlSnapAnchor.OnlyCenter && !d2[l2].IsCenterDock)) 
+			{
+				dist = double.MaxValue;
+			}
+
+			for (int i=0; i<d1.Length; i++) 
+			{
+				if (lsa1 == LinkControlSnapAnchor.OnlyCenter && !d1[i].IsCenterDock) continue;
+				for (int j=d2.Length-1; j>=0; j--)
+				{
+					if (d1[i].IsSideDock != d2[j].IsSideDock) continue;
+					if (lsa2 == LinkControlSnapAnchor.OnlyCenter && !d2[j].IsCenterDock) continue;
+					double len =  d1[i].Distance(d2[j]);
+					if (len-dist<=mindelta)
+					{
+						dist = len;
+						i1 = i; 
+						i2 = j;
+					}
+				}
+			}
+
+			return new Point(i1, i2);
+		}		
 	}
 }

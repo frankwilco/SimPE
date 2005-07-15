@@ -26,7 +26,62 @@ using System.Windows.Forms;
 
 namespace Ambertation.Windows.Forms.Graph
 {
-	public enum LinkControlAnchor:byte
+	/// <summary>
+	/// This calss describes one possible Dock Point for a Controls
+	/// </summary>
+	public class DockPoint 
+	{
+		public DockPoint(int x, int y, LinkControlType type)
+		{
+			this.x = x;
+			this.y = y;
+			this.lct = type;
+		}
+
+		int x;
+		int y;
+		public int X 
+		{
+			get {return x;}
+			set {x = value;}
+		}
+		public int Y 
+		{
+			get {return y;}
+			set {y = value;}
+		}
+
+		LinkControlType lct;
+		public LinkControlType Type
+		{
+			get {return lct;}
+		}
+
+		public double Distance(DockPoint d)
+		{
+			return Math.Sqrt(Math.Pow(X-d.X, 2) + Math.Pow(Y-d.Y, 2));
+		}
+
+		public bool IsSideDock
+		{
+			get 
+			{
+				int yl = ((byte)lct >> 2) & (byte)0x3;
+				return (yl==0x2);
+			}
+		}
+
+		public bool IsCenterDock
+		{
+			get 
+			{
+				int xl = (byte)lct & (byte)0x3;
+				int yl = ((byte)lct >> 2) & (byte)0x3;
+				return (yl==0x2 || xl==0x2);
+			}
+		}
+	}
+	public enum LinkControlType:byte
 	{
 		TopLeft = 0x0, //00 00
 		TopCenter = 0x2, //00 10
@@ -55,8 +110,8 @@ namespace Ambertation.Windows.Forms.Graph
 	public enum LinkControlSnapAnchor:byte
 	{
 		None = 0xff,
-		All = 0x0,
-		NoCorners = 0x1
+		Normal = 0x0,
+		OnlyCenter = 0x1
 	}
 
 	/// <summary>
@@ -68,13 +123,13 @@ namespace Ambertation.Windows.Forms.Graph
 		
 		public LinkGraphic()
 		{
-			this.sa = LinkControlAnchor.BottomCenter;
-			this.ea = LinkControlAnchor.TopCenter;
+			this.sa = 0;
+			this.ea = 0;
 			this.lclm = LinkControlLineMode.Bezier;
 			this.psa = LinkControlCapType.Disk;
 			this.pea = LinkControlCapType.Arrow;
-			ssa = LinkControlSnapAnchor.NoCorners;
-			esa = LinkControlSnapAnchor.All;
+			ssa = LinkControlSnapAnchor.OnlyCenter;
+			esa = LinkControlSnapAnchor.Normal;
 			txt = "";
 			fnt = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			
@@ -106,11 +161,11 @@ namespace Ambertation.Windows.Forms.Graph
 			}
 		}
 	
-		GraphPanelElement sc, ec;
+		GraphItemBase sc, ec;
 		/// <summary>
 		/// Returns /Sets the Start Control
 		/// </summary>
-		public GraphPanelElement StartElement
+		public GraphItemBase StartElement
 		{
 			get {return sc; }
 			set 
@@ -131,7 +186,7 @@ namespace Ambertation.Windows.Forms.Graph
 		/// <summary>
 		/// Returns /Sets the End Control
 		/// </summary>
-		public GraphPanelElement EndElement
+		public GraphItemBase EndElement
 		{
 			get {return ec; }
 			set 
@@ -188,11 +243,11 @@ namespace Ambertation.Windows.Forms.Graph
 			}
 		}
 
-		LinkControlAnchor sa, ea;
+		byte sa, ea;
 		/// <summary>
 		/// Returns / Sets the start Anchor
 		/// </summary>
-		public LinkControlAnchor StartAnchor 
+		public byte StartAnchor 
 		{
 			get { return sa; }
 			set 
@@ -209,7 +264,7 @@ namespace Ambertation.Windows.Forms.Graph
 		/// <summary>
 		/// Returns / Sets the end Anchor
 		/// </summary>
-		public LinkControlAnchor EndAnchor 
+		public byte EndAnchor 
 		{
 			get { return ea; }
 			set 
@@ -303,6 +358,7 @@ namespace Ambertation.Windows.Forms.Graph
 			set 
 			{
 				txt = value;
+				this.SetBounds(Left, Top, Width, Height);
 				this.Invalidate();
 			}
 		}
@@ -392,31 +448,14 @@ namespace Ambertation.Windows.Forms.Graph
 			get { return new Size(ArrowSize.Width/2, ArrowSize.Height/2); }
 		}
 
-		protected Point GetAnchorLocation(LinkControlAnchor lca, GraphPanelElement c)
+		protected Point GetAnchorLocation(byte lca, GraphItemBase c)
 		{
 			return GetAnchorLocation(lca, c, new Point(0,0));
-		}
+		}		
 
-		protected bool SideAnchor(LinkControlAnchor lca)
-		{
-			int yl = ((byte)lca >> 2) & (byte)0x3;
-			return (yl==0x2);
-		}
-
-		protected Point GetAnchorLocation(LinkControlAnchor lca, GraphPanelElement c, Point offset)
-		{			
-			int yl = ((byte)lca >> 2) & (byte)0x3;
-			int xl = (byte)lca & (byte)0x3;
-
-			int x = c.Left;
-			if (xl==0x2) x = (c.Left + c.Right) / 2;
-			else if (xl==0x3) x = c.Right;
-
-			int y = c.Top;
-			if (yl==0x2) y = (c.Top + c.Bottom) / 2;
-			else if (yl==0x3) y = c.Bottom;
-
-			return new Point(x-offset.X, y-offset.Y);
+		protected Point GetAnchorLocation(byte lca, GraphItemBase c, Point offset)
+		{						
+			return new Point(c.Docks[lca].X-offset.X, c.Docks[lca].Y-offset.Y);			
 		}
 
 		protected Point MinPoint(Point p1, Point p2)
@@ -467,50 +506,43 @@ namespace Ambertation.Windows.Forms.Graph
 			this.SetBounds(left, top, wd, hg);			
 		}
 
-		protected LinkControlAnchor AlignToControl(GraphPanelElement s, GraphPanelElement e, LinkControlAnchor def, bool centers)
-		{
-			if (s==null || e==null) return def;
-			if (centers) 
-			{
-				if (s.Bottom<=e.Top-SnapThreshhold && !(s.Top<=e.Top && s.Bottom>=e.Bottom)) return LinkControlAnchor.BottomCenter;				
-				if (s.Top>=e.Bottom+SnapThreshhold && !(s.Top<=e.Top && s.Bottom>=e.Bottom)) return LinkControlAnchor.TopCenter;
-
-				if (s.Right<e.Left-SnapThreshhold) return LinkControlAnchor.MiddleRight;
-				else return LinkControlAnchor.MiddleLeft;
-			} 
-			else 
-			{
-				if (s.Right < e.Left-SnapThreshhold && !(s.Left<=e.Left && s.Right>=e.Right))
-				{
-					if (s.Bottom<e.Top-SnapThreshhold) return LinkControlAnchor.BottomRight;
-					else if (s.Top>e.Bottom+SnapThreshhold) return LinkControlAnchor.TopRight;
-					else return LinkControlAnchor.MiddleRight;
-				} 
-				else if (s.Left >e.Right+SnapThreshhold && !(s.Left<=e.Left && s.Right>=e.Right)) 
-				{
-					if (s.Bottom<e.Top-SnapThreshhold) return LinkControlAnchor.BottomLeft;
-					else if (s.Top>e.Bottom+SnapThreshhold) return LinkControlAnchor.TopLeft;
-					else return LinkControlAnchor.MiddleLeft;
-				} 
-				else 
-				{
-					if (s.Bottom<e.Top-SnapThreshhold) return LinkControlAnchor.BottomCenter;
-					else if (s.Top>e.Bottom+SnapThreshhold) return LinkControlAnchor.TopCenter;			 
-					
-				}
-			}
-
-			return def;
-		}
-		
 		protected void AlignToControl()
 		{
-			if (ssa!=LinkControlSnapAnchor.None) this.sa = AlignToControl(sc, ec, sa, ssa==LinkControlSnapAnchor.NoCorners);
-			if (esa!=LinkControlSnapAnchor.None) this.ea = AlignToControl(ec, sc, ea, esa==LinkControlSnapAnchor.NoCorners);
+			if (sc==null||ec==null || (ssa== LinkControlSnapAnchor.None && this.esa==LinkControlSnapAnchor.None)) return;
+			Point b = GraphItemBase.FindBestDocks(sc.Docks, ssa, sa, ec.Docks, esa, ea);
+			this.sa = (byte)b.X;
+			ea = (byte)b.Y;
 		}
 		#endregion
 
 		#region Basic Draw Methods
+		protected void AddBezierPath(System.Drawing.Drawing2D.GraphicsPath path, Point pstart, Point pend, bool sside, bool eside)
+		{
+			Point ctrl1 = new Point(pstart.X, pstart.Y + Height / 2);
+			Point ctrl2 = new Point(pend.X, pend.Y-Height / 2);
+			if (sside) 
+			{
+				if (pend.X<pstart.X) ctrl1 = new Point(pstart.X - Width / 2, pstart.Y);											
+				else ctrl1 = new Point(pstart.X + Width / 2, pstart.Y);
+			} 
+			else 
+			{
+				if (pend.Y<pstart.Y) ctrl1 = new Point(pstart.X, pstart.Y - Height / 2);
+			}
+			if (this.EndElement.Docks[this.EndAnchor].IsSideDock) 
+			{
+				if (pend.X<pstart.X) ctrl2 = new Point(pend.X + Width / 2, pend.Y);					
+				else ctrl2 = new Point(pend.X - Width / 2, pend.Y);
+			} 
+			else 
+			{
+				if (pend.Y<pstart.Y) ctrl2 = new Point(pend.X, pend.Y+Height / 2);
+			}
+				
+			path.AddBezier(
+				pstart.X, pstart.Y, ctrl1.X, ctrl1.Y,
+				ctrl2.X, ctrl2.Y, pend.X, pend.Y);
+		}
 		protected override void UserDraw(Graphics g)
 		{
 			if (sc==null || ec==null) return;
@@ -527,34 +559,20 @@ namespace Ambertation.Windows.Forms.Graph
 			}
 			else if (lclm == LinkControlLineMode.Bezier) 
 			{		
-				Point ctrl1 = new Point(pstart.X, pstart.Y + Height / 2);
-				Point ctrl2 = new Point(pend.X, pend.Y-Height / 2);
-				if (this.SideAnchor(this.StartAnchor)) 
+				if (Text!="" && this.EndElement.Docks[this.EndAnchor].IsSideDock != this.StartElement.Docks[this.StartAnchor].IsSideDock) 
 				{
-					if (pend.X<pstart.X) ctrl1 = new Point(pstart.X - Width / 2, pstart.Y);											
-					else ctrl1 = new Point(pstart.X + Width / 2, pstart.Y);
-				} 
+					Point pmid = new Point((pstart.X+pend.X)/2, (pstart.Y+pend.Y)/2);
+					this.AddBezierPath(path, pstart, pmid, this.StartElement.Docks[this.StartAnchor].IsSideDock, this.StartElement.Docks[this.StartAnchor].IsSideDock);
+					this.AddBezierPath(path, pmid, pend, this.EndElement.Docks[this.EndAnchor].IsSideDock, this.EndElement.Docks[this.EndAnchor].IsSideDock);				
+				}
 				else 
 				{
-					if (pend.Y<pstart.Y) ctrl1 = new Point(pstart.X, pstart.Y - Height / 2);
+					this.AddBezierPath(path, pstart, pend, this.StartElement.Docks[this.StartAnchor].IsSideDock, this.EndElement.Docks[this.EndAnchor].IsSideDock);									
 				}
-				if (this.SideAnchor(this.EndAnchor)) 
-				{
-					if (pend.X<pstart.X) ctrl2 = new Point(pend.X + Width / 2, pend.Y);					
-					else ctrl2 = new Point(pend.X - Width / 2, pend.Y);
-				} 
-				else 
-				{
-					if (pend.Y<pstart.Y) ctrl2 = new Point(pend.X, pend.Y+Height / 2);
-				}
-				
-				path.AddBezier(
-					pstart.X, pstart.Y, ctrl1.X, ctrl1.Y,
-					ctrl2.X, ctrl2.Y, pend.X, pend.Y);
 			}
 			else 
 			{			
-				if (this.SideAnchor(this.EndAnchor) && this.SideAnchor(this.StartAnchor)) 
+				if (this.EndElement.Docks[this.EndAnchor].IsSideDock && this.StartElement.Docks[this.StartAnchor].IsSideDock) 
 				{
 					path.AddLine(pstart.X, pstart.Y, Width/2, pstart.Y);
 					path.AddLine(Width/2, pstart.Y, Width/2, pend.Y);
@@ -576,15 +594,14 @@ namespace Ambertation.Windows.Forms.Graph
 			
 			if (Text!="")
 			{
+				
 				SizeF sz = g.MeasureString(Text, Font);
 				Rectangle trec = new Rectangle((int)((Width-sz.Width+4)/2)-4, (int)((Height-sz.Height+4)/2)-4, (int)sz.Width+5, (int)sz.Height+4);
 				DrawNiceRoundRect(g, trec.X, trec.Y, trec.Width, trec.Height , (int)sz.Height/2);
 				SolidBrush b = new SolidBrush(this.TextForeColor);
 				g.DrawString(Text, Font, b, trec.Left+2, trec.Top+2);
 				b.Dispose();
-			}
-						
-			//Region = new Region(path);
+			}						
 
 			pen.Dispose();			
 		}
@@ -624,6 +641,7 @@ namespace Ambertation.Windows.Forms.Graph
 		{
 			this.StartElement = null;
 			this.EndElement = null;	
+			this.SetBounds(0, 0, 1, 1);
 		}
 
 	}

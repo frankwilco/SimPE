@@ -22,6 +22,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using SimPe.PackedFiles.Wrapper;
 
 namespace SimPe.PackedFiles.UserInterface
 {
@@ -87,12 +88,14 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
-			this.llrem = new System.Windows.Forms.LinkLabel();
+			this.xpLine1 = new SteepValley.Windows.Forms.XPLine();
+			this.button1 = new System.Windows.Forms.Button();
+			this.cbkeep = new System.Windows.Forms.CheckBox();
 			this.cbrel = new Ambertation.Windows.Forms.EnumComboBox();
+			this.llrem = new System.Windows.Forms.LinkLabel();
 			this.label3 = new System.Windows.Forms.Label();
 			this.lbname = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.pool = new SimPe.PackedFiles.Wrapper.SimPoolControl();
 			this.label12 = new System.Windows.Forms.Label();
@@ -104,6 +107,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.menuBar1 = new TD.SandBar.MenuBar();
 			this.miTies = new TD.SandBar.ContextMenuBarItem();
 			this.miAddTie = new TD.SandBar.MenuButtonItem();
+			this.miOpenSdesc = new TD.SandBar.MenuButtonItem();
 			this.pnfamt.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel4.SuspendLayout();
@@ -186,11 +190,13 @@ namespace SimPe.PackedFiles.UserInterface
 			this.ties.Quality = true;
 			this.ties.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("ties.RightToLeft")));
 			this.ties.SaveBounds = true;
+			this.ties.SelectedElement = null;
 			this.ties.Size = ((System.Drawing.Size)(resources.GetObject("ties.Size")));
 			this.ties.TabIndex = ((int)(resources.GetObject("ties.TabIndex")));
 			this.ties.Text = resources.GetString("ties.Text");
 			this.ties.Visible = ((bool)(resources.GetObject("ties.Visible")));
 			this.ties.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.ties_SelectedSimChanged);
+			this.ties.DoubleClickSim += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.ties_DoubleClickSim);
 			// 
 			// panel4
 			// 
@@ -270,12 +276,14 @@ namespace SimPe.PackedFiles.UserInterface
 			this.xpGradientPanel1.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel1.AutoScrollMargin")));
 			this.xpGradientPanel1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel1.AutoScrollMinSize")));
 			this.xpGradientPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel1.BackgroundImage")));
-			this.xpGradientPanel1.Controls.Add(this.llrem);
+			this.xpGradientPanel1.Controls.Add(this.xpLine1);
+			this.xpGradientPanel1.Controls.Add(this.button1);
+			this.xpGradientPanel1.Controls.Add(this.cbkeep);
 			this.xpGradientPanel1.Controls.Add(this.cbrel);
+			this.xpGradientPanel1.Controls.Add(this.llrem);
 			this.xpGradientPanel1.Controls.Add(this.label3);
 			this.xpGradientPanel1.Controls.Add(this.lbname);
 			this.xpGradientPanel1.Controls.Add(this.label2);
-			this.xpGradientPanel1.Controls.Add(this.button1);
 			this.xpGradientPanel1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpGradientPanel1.Dock")));
 			this.xpGradientPanel1.Enabled = ((bool)(resources.GetObject("xpGradientPanel1.Enabled")));
 			this.xpGradientPanel1.Font = ((System.Drawing.Font)(resources.GetObject("xpGradientPanel1.Font")));
@@ -290,31 +298,81 @@ namespace SimPe.PackedFiles.UserInterface
 			this.xpGradientPanel1.Watermark = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel1.Watermark")));
 			this.xpGradientPanel1.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel1.WatermarkSize")));
 			// 
-			// llrem
+			// xpLine1
 			// 
-			this.llrem.AccessibleDescription = resources.GetString("llrem.AccessibleDescription");
-			this.llrem.AccessibleName = resources.GetString("llrem.AccessibleName");
-			this.llrem.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llrem.Anchor")));
-			this.llrem.AutoSize = ((bool)(resources.GetObject("llrem.AutoSize")));
-			this.llrem.BackColor = System.Drawing.Color.Transparent;
-			this.llrem.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llrem.Dock")));
-			this.llrem.Enabled = ((bool)(resources.GetObject("llrem.Enabled")));
-			this.llrem.Font = ((System.Drawing.Font)(resources.GetObject("llrem.Font")));
-			this.llrem.Image = ((System.Drawing.Image)(resources.GetObject("llrem.Image")));
-			this.llrem.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llrem.ImageAlign")));
-			this.llrem.ImageIndex = ((int)(resources.GetObject("llrem.ImageIndex")));
-			this.llrem.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llrem.ImeMode")));
-			this.llrem.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llrem.LinkArea")));
-			this.llrem.Location = ((System.Drawing.Point)(resources.GetObject("llrem.Location")));
-			this.llrem.Name = "llrem";
-			this.llrem.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llrem.RightToLeft")));
-			this.llrem.Size = ((System.Drawing.Size)(resources.GetObject("llrem.Size")));
-			this.llrem.TabIndex = ((int)(resources.GetObject("llrem.TabIndex")));
-			this.llrem.TabStop = true;
-			this.llrem.Text = resources.GetString("llrem.Text");
-			this.llrem.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llrem.TextAlign")));
-			this.llrem.Visible = ((bool)(resources.GetObject("llrem.Visible")));
-			this.llrem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llrem_LinkClicked);
+			this.xpLine1.AccessibleDescription = resources.GetString("xpLine1.AccessibleDescription");
+			this.xpLine1.AccessibleName = resources.GetString("xpLine1.AccessibleName");
+			this.xpLine1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("xpLine1.Anchor")));
+			this.xpLine1.AutoScroll = ((bool)(resources.GetObject("xpLine1.AutoScroll")));
+			this.xpLine1.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpLine1.AutoScrollMargin")));
+			this.xpLine1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpLine1.AutoScrollMinSize")));
+			this.xpLine1.BackColor = System.Drawing.Color.Transparent;
+			this.xpLine1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpLine1.BackgroundImage")));
+			this.xpLine1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpLine1.Dock")));
+			this.xpLine1.Enabled = ((bool)(resources.GetObject("xpLine1.Enabled")));
+			this.xpLine1.Font = ((System.Drawing.Font)(resources.GetObject("xpLine1.Font")));
+			this.xpLine1.ForeColor = System.Drawing.Color.Transparent;
+			this.xpLine1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpLine1.ImeMode")));
+			this.xpLine1.LineColor = System.Drawing.Color.FromArgb(((System.Byte)(125)), ((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(0)));
+			this.xpLine1.Location = ((System.Drawing.Point)(resources.GetObject("xpLine1.Location")));
+			this.xpLine1.Name = "xpLine1";
+			this.xpLine1.Orientation = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			this.xpLine1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("xpLine1.RightToLeft")));
+			this.xpLine1.Size = ((System.Drawing.Size)(resources.GetObject("xpLine1.Size")));
+			this.xpLine1.TabIndex = ((int)(resources.GetObject("xpLine1.TabIndex")));
+			this.xpLine1.Visible = ((bool)(resources.GetObject("xpLine1.Visible")));
+			// 
+			// button1
+			// 
+			this.button1.AccessibleDescription = resources.GetString("button1.AccessibleDescription");
+			this.button1.AccessibleName = resources.GetString("button1.AccessibleName");
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("button1.Anchor")));
+			this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+			this.button1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("button1.Dock")));
+			this.button1.Enabled = ((bool)(resources.GetObject("button1.Enabled")));
+			this.button1.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("button1.FlatStyle")));
+			this.button1.Font = ((System.Drawing.Font)(resources.GetObject("button1.Font")));
+			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+			this.button1.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.ImageAlign")));
+			this.button1.ImageIndex = ((int)(resources.GetObject("button1.ImageIndex")));
+			this.button1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("button1.ImeMode")));
+			this.button1.Location = ((System.Drawing.Point)(resources.GetObject("button1.Location")));
+			this.button1.Name = "button1";
+			this.button1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("button1.RightToLeft")));
+			this.button1.Size = ((System.Drawing.Size)(resources.GetObject("button1.Size")));
+			this.button1.TabIndex = ((int)(resources.GetObject("button1.TabIndex")));
+			this.button1.Text = resources.GetString("button1.Text");
+			this.button1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.TextAlign")));
+			this.button1.Visible = ((bool)(resources.GetObject("button1.Visible")));
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// cbkeep
+			// 
+			this.cbkeep.AccessibleDescription = resources.GetString("cbkeep.AccessibleDescription");
+			this.cbkeep.AccessibleName = resources.GetString("cbkeep.AccessibleName");
+			this.cbkeep.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbkeep.Anchor")));
+			this.cbkeep.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbkeep.Appearance")));
+			this.cbkeep.BackColor = System.Drawing.Color.Transparent;
+			this.cbkeep.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbkeep.BackgroundImage")));
+			this.cbkeep.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbkeep.CheckAlign")));
+			this.cbkeep.Checked = true;
+			this.cbkeep.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbkeep.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbkeep.Dock")));
+			this.cbkeep.Enabled = ((bool)(resources.GetObject("cbkeep.Enabled")));
+			this.cbkeep.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbkeep.FlatStyle")));
+			this.cbkeep.Font = ((System.Drawing.Font)(resources.GetObject("cbkeep.Font")));
+			this.cbkeep.Image = ((System.Drawing.Image)(resources.GetObject("cbkeep.Image")));
+			this.cbkeep.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbkeep.ImageAlign")));
+			this.cbkeep.ImageIndex = ((int)(resources.GetObject("cbkeep.ImageIndex")));
+			this.cbkeep.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbkeep.ImeMode")));
+			this.cbkeep.Location = ((System.Drawing.Point)(resources.GetObject("cbkeep.Location")));
+			this.cbkeep.Name = "cbkeep";
+			this.cbkeep.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbkeep.RightToLeft")));
+			this.cbkeep.Size = ((System.Drawing.Size)(resources.GetObject("cbkeep.Size")));
+			this.cbkeep.TabIndex = ((int)(resources.GetObject("cbkeep.TabIndex")));
+			this.cbkeep.Text = resources.GetString("cbkeep.Text");
+			this.cbkeep.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbkeep.TextAlign")));
+			this.cbkeep.Visible = ((bool)(resources.GetObject("cbkeep.Visible")));
 			// 
 			// cbrel
 			// 
@@ -343,6 +401,32 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbrel.Text = resources.GetString("cbrel.Text");
 			this.cbrel.Visible = ((bool)(resources.GetObject("cbrel.Visible")));
 			this.cbrel.SelectedIndexChanged += new System.EventHandler(this.cbrel_SelectedIndexChanged);
+			// 
+			// llrem
+			// 
+			this.llrem.AccessibleDescription = resources.GetString("llrem.AccessibleDescription");
+			this.llrem.AccessibleName = resources.GetString("llrem.AccessibleName");
+			this.llrem.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llrem.Anchor")));
+			this.llrem.AutoSize = ((bool)(resources.GetObject("llrem.AutoSize")));
+			this.llrem.BackColor = System.Drawing.Color.Transparent;
+			this.llrem.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llrem.Dock")));
+			this.llrem.Enabled = ((bool)(resources.GetObject("llrem.Enabled")));
+			this.llrem.Font = ((System.Drawing.Font)(resources.GetObject("llrem.Font")));
+			this.llrem.Image = ((System.Drawing.Image)(resources.GetObject("llrem.Image")));
+			this.llrem.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llrem.ImageAlign")));
+			this.llrem.ImageIndex = ((int)(resources.GetObject("llrem.ImageIndex")));
+			this.llrem.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llrem.ImeMode")));
+			this.llrem.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llrem.LinkArea")));
+			this.llrem.Location = ((System.Drawing.Point)(resources.GetObject("llrem.Location")));
+			this.llrem.Name = "llrem";
+			this.llrem.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llrem.RightToLeft")));
+			this.llrem.Size = ((System.Drawing.Size)(resources.GetObject("llrem.Size")));
+			this.llrem.TabIndex = ((int)(resources.GetObject("llrem.TabIndex")));
+			this.llrem.TabStop = true;
+			this.llrem.Text = resources.GetString("llrem.Text");
+			this.llrem.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llrem.TextAlign")));
+			this.llrem.Visible = ((bool)(resources.GetObject("llrem.Visible")));
+			this.llrem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llrem_LinkClicked);
 			// 
 			// label3
 			// 
@@ -413,30 +497,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.TextAlign")));
 			this.label2.Visible = ((bool)(resources.GetObject("label2.Visible")));
 			// 
-			// button1
-			// 
-			this.button1.AccessibleDescription = resources.GetString("button1.AccessibleDescription");
-			this.button1.AccessibleName = resources.GetString("button1.AccessibleName");
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("button1.Anchor")));
-			this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-			this.button1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("button1.Dock")));
-			this.button1.Enabled = ((bool)(resources.GetObject("button1.Enabled")));
-			this.button1.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("button1.FlatStyle")));
-			this.button1.Font = ((System.Drawing.Font)(resources.GetObject("button1.Font")));
-			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-			this.button1.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.ImageAlign")));
-			this.button1.ImageIndex = ((int)(resources.GetObject("button1.ImageIndex")));
-			this.button1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("button1.ImeMode")));
-			this.button1.Location = ((System.Drawing.Point)(resources.GetObject("button1.Location")));
-			this.button1.Name = "button1";
-			this.button1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("button1.RightToLeft")));
-			this.button1.Size = ((System.Drawing.Size)(resources.GetObject("button1.Size")));
-			this.button1.TabIndex = ((int)(resources.GetObject("button1.TabIndex")));
-			this.button1.Text = resources.GetString("button1.Text");
-			this.button1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.TextAlign")));
-			this.button1.Visible = ((bool)(resources.GetObject("button1.Visible")));
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
 			// panel2
 			// 
 			this.panel2.AccessibleDescription = resources.GetString("panel2.AccessibleDescription");
@@ -486,6 +546,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pool.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pool.RightToLeft")));
 			this.menuBar1.SetSandBarMenu(this.pool, this.miTies);
 			this.pool.SaveBounds = false;
+			this.pool.SelectedElement = null;
 			this.pool.Size = ((System.Drawing.Size)(resources.GetObject("pool.Size")));
 			this.pool.TabIndex = ((int)(resources.GetObject("pool.TabIndex")));
 			this.pool.Text = resources.GetString("pool.Text");
@@ -637,7 +698,8 @@ namespace SimPe.PackedFiles.UserInterface
 			// miTies
 			// 
 			this.miTies.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
-																			this.miAddTie});
+																			this.miAddTie,
+																			this.miOpenSdesc});
 			this.miTies.Text = resources.GetString("miTies.Text");
 			this.miTies.ToolTipText = resources.GetString("miTies.ToolTipText");
 			this.miTies.BeforePopup += new TD.SandBar.MenuItemBase.BeforePopupEventHandler(this.miAddTie_BeforePopup);
@@ -650,6 +712,15 @@ namespace SimPe.PackedFiles.UserInterface
 			this.miAddTie.Text = resources.GetString("miAddTie.Text");
 			this.miAddTie.ToolTipText = resources.GetString("miAddTie.ToolTipText");
 			this.miAddTie.Activate += new System.EventHandler(this.Activate_miAddTie);
+			// 
+			// miOpenSdesc
+			// 
+			this.miOpenSdesc.Image = ((System.Drawing.Image)(resources.GetObject("miOpenSdesc.Image")));
+			this.miOpenSdesc.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenSdesc.Shortcut")));
+			this.miOpenSdesc.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenSdesc.Shortcut2")));
+			this.miOpenSdesc.Text = resources.GetString("miOpenSdesc.Text");
+			this.miOpenSdesc.ToolTipText = resources.GetString("miOpenSdesc.ToolTipText");
+			this.miOpenSdesc.Activate += new System.EventHandler(this.Activate_miOpenSDesc);
 			// 
 			// FamilyTiesForm
 			// 
@@ -715,9 +786,13 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label lbname;
 		private System.Windows.Forms.Label label3;
-		private Ambertation.Windows.Forms.EnumComboBox cbrel;
+	
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.LinkLabel llrem;
+		private Ambertation.Windows.Forms.EnumComboBox cbrel;
+		private System.Windows.Forms.CheckBox cbkeep;
+		private TD.SandBar.MenuButtonItem miOpenSdesc;
+		private SteepValley.Windows.Forms.XPLine xpLine1;
 		Image thumb;
 		internal void pool_SelectedSimChanged(object sender, System.Drawing.Image thumb, SimPe.PackedFiles.Wrapper.SDesc sdesc)
 		{
@@ -730,11 +805,13 @@ namespace SimPe.PackedFiles.UserInterface
 		private void miAddTie_BeforePopup(object sender, TD.SandBar.MenuPopupEventArgs e)
 		{
 			this.miAddTie.Enabled = (lastsdsc!=null && currentsdsc!=null && currentsdsc!=lastsdsc);
+			this.miOpenSdesc.Enabled = (lastsdsc!=null);
 			this.miAddTie.Image = thumb;
+			//this.miOpenSdesc.Image = thumb;
 			if (thumb!=null) miAddTie.Image = Ambertation.Drawing.GraphicRoutines.ScaleImage(thumb, 32, 32, true);
 			if (lastsdsc!=null && currentsdsc!=null) 
 			{
-				string name = miAddTie.Tag.ToString();
+				string name = SimPe.Localization.GetString("AddFamilyTieCaption");
 				name = name.Replace("{name}", lastsdsc.SimName+" "+lastsdsc.SimFamilyName);
 				name = name.Replace("{gname}", currentsdsc.SimName+" "+currentsdsc.SimFamilyName);
 				this.miAddTie.Text = name;
@@ -743,7 +820,12 @@ namespace SimPe.PackedFiles.UserInterface
 				if (fts!=null) if (fts.FindTie(lastsdsc)!=null) miAddTie.Enabled = false;				
 			}
 
-			
+			if (lastsdsc!=null)
+			{
+				string name = SimPe.Localization.GetString("OpenSDesc");
+				name = name.Replace("{name}", lastsdsc.SimName+" "+lastsdsc.SimFamilyName);
+				this.miOpenSdesc.Text = name;
+			}
 		}
 
 		private void pool_ClickOverSim(object sender, System.Drawing.Image thumb, SimPe.PackedFiles.Wrapper.SDesc sdesc)
@@ -755,8 +837,15 @@ namespace SimPe.PackedFiles.UserInterface
 		private void Activate_miAddTie(object sender, System.EventArgs e)
 		{
 			SimPe.PackedFiles.Wrapper.Supporting.FamilyTieSim fts = wrapper.CreateTie(currentsdsc);
-			SimPe.PackedFiles.Wrapper.Supporting.FamilyTieItem fti = fts.CreateTie(lastsdsc, Data.MetaData.FamilyTieTypes.MyChildIs);
+			SimPe.PackedFiles.Wrapper.Supporting.FamilyTieItem fti = fts.CreateTie(lastsdsc, Data.MetaData.FamilyTieTypes.MySiblingIs);
+			
 			ties.AddTieToGraph(lastsdsc, 0, 0, fti.Type);
+
+			if (this.cbkeep.Checked) 
+			{
+				fts = wrapper.CreateTie(lastsdsc);
+				fti = fts.CreateTie(currentsdsc,  Data.MetaData.FamilyTieTypes.MySiblingIs);
+			}
 			wrapper.Changed = true;
 		}
 
@@ -790,15 +879,33 @@ namespace SimPe.PackedFiles.UserInterface
 			llrem.Enabled = cbrel.Enabled;
 		}
 
+		private void ties_DoubleClickSim(object sender, System.Drawing.Image thumb, SimPe.PackedFiles.Wrapper.SDesc sdesc)
+		{
+			if (sdesc!=null && sdesc!=currentsdsc) 
+			{
+				Ambertation.Windows.Forms.Graph.ImagePanel ip = pool.FindItem(sdesc);				
+				pool.SelectedElement = ip;
+			}
+			
+		}
+
 		private void cbrel_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			if (cbrel.Tag!=null) 
 			{
 				SimPe.PackedFiles.Wrapper.Supporting.FamilyTieItem fti = (SimPe.PackedFiles.Wrapper.Supporting.FamilyTieItem)cbrel.Tag;
+				Ambertation.Windows.Forms.Graph.ImagePanel ip = (Ambertation.Windows.Forms.Graph.ImagePanel)ties.SelectedElement;
 				fti.Type = (Data.MetaData.FamilyTieTypes)cbrel.SelectedValue;
 				wrapper.Changed = true;
 
-				pool_SelectedSimChanged(null, thumb, currentsdsc);
+				Ambertation.Windows.Forms.Graph.LinkGraphic lg = ties.MainSimElement.GetChildLink(ip);
+				if (lg!=null) lg.Text = cbrel.Text;
+
+				if (this.cbkeep.Checked) 
+				{
+					SimPe.PackedFiles.Wrapper.Supporting.FamilyTieSim fts = wrapper.CreateTie(fti.SimDescription);
+					fti = fts.CreateTie(currentsdsc,  FamilyTieGraph.GetAntiTie(currentsdsc, fti.Type));
+				}
 			}
 		}
 
@@ -816,10 +923,18 @@ namespace SimPe.PackedFiles.UserInterface
 				
 				if (fts.RemoveTie(fti)) 
 				{
-					pool_SelectedSimChanged(null, thumb, currentsdsc);
+					Ambertation.Windows.Forms.Graph.ImagePanel ip = (Ambertation.Windows.Forms.Graph.ImagePanel)ties.SelectedElement;
+					ip.Parent = null;						
+					ip.Dispose();					
 					wrapper.Changed = true;
 				}
 			}
+		}
+
+		private void Activate_miOpenSDesc(object sender, System.EventArgs e)
+		{
+			if (lastsdsc!=null)
+				SimPe.RemoteControl.OpenPackedFile(lastsdsc.FileDescriptor, lastsdsc.Package);
 		}
 	}
 }

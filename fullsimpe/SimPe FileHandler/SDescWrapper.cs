@@ -1768,5 +1768,39 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 		#endregion
+
+		public override int GetHashCode()
+		{
+			if (this.FileDescriptor==null || this.Package==null)
+				return base.GetHashCode ();
+			else 
+				return (int)this.SimId;
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (this.FileDescriptor==null || this.Package==null)
+				return base.Equals (obj);
+			
+
+			if (obj==null) return false;
+			if (!(obj is SDesc)) return false;
+
+			return (((SDesc)obj).SimId == SimId) && (((SDesc)obj).Instance == Instance);
+		}
+
+		/*public static bool operator ==(SDesc s1, SDesc s2) 
+		{
+			if (s1==null)
+				return s2==null;
+			return s1.Equals(s2);
+		}
+
+		public static bool operator !=(SDesc s1, SDesc s2) 
+		{
+			if (s1==null)
+				return s2!=null;
+			return !s1.Equals(s2);
+		}*/
 	}
 }
