@@ -112,8 +112,11 @@ namespace SimPe.Providers
 				SDesc sdesc = new SDesc(this.names, this.famnames, this);
 				sdesc.ProcessData(pfd, BasePackage);
 
-				bysimid.Add((uint)sdesc.SimId, sdesc);
-				byinstance.Add((ushort)sdesc.Instance, sdesc);
+				if (bysimid.ContainsKey((uint)sdesc.SimId) || byinstance.ContainsKey((ushort)sdesc.Instance))
+					Helper.ExceptionMessage(new Warning("A Sim was found Twice!", "The Sim with GUID 0x"+Helper.HexString(sdesc.SimId)+" (inst=0x"+Helper.HexString(sdesc.Instance)+") exists more than once. This could result in  Problems during the Gameplay!"));
+				
+				bysimid[(uint)sdesc.SimId] = sdesc;
+				byinstance[(ushort)sdesc.Instance] = sdesc;
 			}
 		}
 		
