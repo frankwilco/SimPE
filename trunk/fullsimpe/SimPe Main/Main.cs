@@ -124,6 +124,8 @@ namespace SimPe
 		private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon2;
 		private TD.SandBar.ToolBar tbTools;
 		private TD.SandBar.ToolBar tbWindow;
+		private TD.SandBar.FlatComboBox cbsemig;
+		private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon3;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -259,6 +261,8 @@ namespace SimPe
 			this.biNewDc = new TD.SandBar.ButtonItem();
 			this.biUpdate = new TD.SandBar.ButtonItem();
 			this.tbAction = new TD.SandBar.ToolBar();
+			this.tbTools = new TD.SandBar.ToolBar();
+			this.tbWindow = new TD.SandBar.ToolBar();
 			this.iAnim = new System.Windows.Forms.ImageList(this.components);
 			this.sdm = new TD.SandDock.SandDockManager();
 			this.myleftSandDock = new TD.SandDock.DockContainer();
@@ -297,8 +301,8 @@ namespace SimPe
 			this.lnProg = new SteepValley.Windows.Forms.XPLine();
 			this.pb = new System.Windows.Forms.ProgressBar();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
-			this.tbTools = new TD.SandBar.ToolBar();
-			this.tbWindow = new TD.SandBar.ToolBar();
+			this.cbsemig = new TD.SandBar.FlatComboBox();
+			this.xpLinkedLabelIcon3 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
 			this.topSandBarDock.SuspendLayout();
 			this.myleftSandDock.SuspendLayout();
 			this.dcResource.SuspendLayout();
@@ -933,6 +937,48 @@ namespace SimPe
 			this.tbAction.Text = resources.GetString("tbAction.Text");
 			this.tbAction.Visible = ((bool)(resources.GetObject("tbAction.Visible")));
 			// 
+			// tbTools
+			// 
+			this.tbTools.AccessibleDescription = resources.GetString("tbTools.AccessibleDescription");
+			this.tbTools.AccessibleName = resources.GetString("tbTools.AccessibleName");
+			this.tbTools.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbTools.Anchor")));
+			this.tbTools.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbTools.BackgroundImage")));
+			this.tbTools.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbTools.Dock")));
+			this.tbTools.DockLine = 1;
+			this.tbTools.DockOffset = 2;
+			this.tbTools.Enabled = ((bool)(resources.GetObject("tbTools.Enabled")));
+			this.tbTools.Font = ((System.Drawing.Font)(resources.GetObject("tbTools.Font")));
+			this.tbTools.Guid = new System.Guid("078e55cf-63d2-4821-a167-a8ccb6446322");
+			this.tbTools.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbTools.ImeMode")));
+			this.tbTools.Location = ((System.Drawing.Point)(resources.GetObject("tbTools.Location")));
+			this.tbTools.Name = "tbTools";
+			this.tbTools.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbTools.RightToLeft")));
+			this.tbTools.Size = ((System.Drawing.Size)(resources.GetObject("tbTools.Size")));
+			this.tbTools.TabIndex = ((int)(resources.GetObject("tbTools.TabIndex")));
+			this.tbTools.Text = resources.GetString("tbTools.Text");
+			this.tbTools.Visible = ((bool)(resources.GetObject("tbTools.Visible")));
+			// 
+			// tbWindow
+			// 
+			this.tbWindow.AccessibleDescription = resources.GetString("tbWindow.AccessibleDescription");
+			this.tbWindow.AccessibleName = resources.GetString("tbWindow.AccessibleName");
+			this.tbWindow.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbWindow.Anchor")));
+			this.tbWindow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbWindow.BackgroundImage")));
+			this.tbWindow.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbWindow.Dock")));
+			this.tbWindow.DockLine = 1;
+			this.tbWindow.DockOffset = 3;
+			this.tbWindow.Enabled = ((bool)(resources.GetObject("tbWindow.Enabled")));
+			this.tbWindow.Font = ((System.Drawing.Font)(resources.GetObject("tbWindow.Font")));
+			this.tbWindow.Guid = new System.Guid("6c37bb3a-a49a-4467-b812-34eb2c2a85ef");
+			this.tbWindow.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbWindow.ImeMode")));
+			this.tbWindow.Location = ((System.Drawing.Point)(resources.GetObject("tbWindow.Location")));
+			this.tbWindow.Name = "tbWindow";
+			this.tbWindow.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbWindow.RightToLeft")));
+			this.tbWindow.Size = ((System.Drawing.Size)(resources.GetObject("tbWindow.Size")));
+			this.tbWindow.TabIndex = ((int)(resources.GetObject("tbWindow.TabIndex")));
+			this.tbWindow.Text = resources.GetString("tbWindow.Text");
+			this.tbWindow.Visible = ((bool)(resources.GetObject("tbWindow.Visible")));
+			// 
 			// iAnim
 			// 
 			this.iAnim.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
@@ -1197,6 +1243,8 @@ namespace SimPe
 			this.xpGradientPanel1.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel1.AutoScrollMargin")));
 			this.xpGradientPanel1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel1.AutoScrollMinSize")));
 			this.xpGradientPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel1.BackgroundImage")));
+			this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon3);
+			this.xpGradientPanel1.Controls.Add(this.cbsemig);
 			this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon2);
 			this.xpGradientPanel1.Controls.Add(this.tbRcolName);
 			this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon1);
@@ -1829,47 +1877,57 @@ namespace SimPe
 			this.sfd.Filter = resources.GetString("sfd.Filter");
 			this.sfd.Title = resources.GetString("sfd.Title");
 			// 
-			// tbTools
+			// cbsemig
 			// 
-			this.tbTools.AccessibleDescription = resources.GetString("tbTools.AccessibleDescription");
-			this.tbTools.AccessibleName = resources.GetString("tbTools.AccessibleName");
-			this.tbTools.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbTools.Anchor")));
-			this.tbTools.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbTools.BackgroundImage")));
-			this.tbTools.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbTools.Dock")));
-			this.tbTools.DockLine = 1;
-			this.tbTools.DockOffset = 2;
-			this.tbTools.Enabled = ((bool)(resources.GetObject("tbTools.Enabled")));
-			this.tbTools.Font = ((System.Drawing.Font)(resources.GetObject("tbTools.Font")));
-			this.tbTools.Guid = new System.Guid("078e55cf-63d2-4821-a167-a8ccb6446322");
-			this.tbTools.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbTools.ImeMode")));
-			this.tbTools.Location = ((System.Drawing.Point)(resources.GetObject("tbTools.Location")));
-			this.tbTools.Name = "tbTools";
-			this.tbTools.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbTools.RightToLeft")));
-			this.tbTools.Size = ((System.Drawing.Size)(resources.GetObject("tbTools.Size")));
-			this.tbTools.TabIndex = ((int)(resources.GetObject("tbTools.TabIndex")));
-			this.tbTools.Text = resources.GetString("tbTools.Text");
-			this.tbTools.Visible = ((bool)(resources.GetObject("tbTools.Visible")));
+			this.cbsemig.AccessibleDescription = resources.GetString("cbsemig.AccessibleDescription");
+			this.cbsemig.AccessibleName = resources.GetString("cbsemig.AccessibleName");
+			this.cbsemig.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbsemig.Anchor")));
+			this.cbsemig.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbsemig.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.cbsemig, "Semiglobal Group");
+			this.cbsemig.DefaultText = resources.GetString("cbsemig.DefaultText");
+			this.cbsemig.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbsemig.Dock")));
+			this.cbsemig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbsemig.Enabled = ((bool)(resources.GetObject("cbsemig.Enabled")));
+			this.cbsemig.Font = ((System.Drawing.Font)(resources.GetObject("cbsemig.Font")));
+			this.cbsemig.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbsemig.ImeMode")));
+			this.cbsemig.IntegralHeight = ((bool)(resources.GetObject("cbsemig.IntegralHeight")));
+			this.cbsemig.ItemHeight = ((int)(resources.GetObject("cbsemig.ItemHeight")));
+			this.cbsemig.Location = ((System.Drawing.Point)(resources.GetObject("cbsemig.Location")));
+			this.cbsemig.MaxDropDownItems = ((int)(resources.GetObject("cbsemig.MaxDropDownItems")));
+			this.cbsemig.MaxLength = ((int)(resources.GetObject("cbsemig.MaxLength")));
+			this.cbsemig.Name = "cbsemig";
+			this.cbsemig.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbsemig.RightToLeft")));
+			this.cbsemig.Size = ((System.Drawing.Size)(resources.GetObject("cbsemig.Size")));
+			this.cbsemig.TabIndex = ((int)(resources.GetObject("cbsemig.TabIndex")));
+			this.cbsemig.Text = resources.GetString("cbsemig.Text");
+			this.cbsemig.Visible = ((bool)(resources.GetObject("cbsemig.Visible")));
 			// 
-			// tbWindow
+			// xpLinkedLabelIcon3
 			// 
-			this.tbWindow.AccessibleDescription = resources.GetString("tbWindow.AccessibleDescription");
-			this.tbWindow.AccessibleName = resources.GetString("tbWindow.AccessibleName");
-			this.tbWindow.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbWindow.Anchor")));
-			this.tbWindow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbWindow.BackgroundImage")));
-			this.tbWindow.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbWindow.Dock")));
-			this.tbWindow.DockLine = 1;
-			this.tbWindow.DockOffset = 3;
-			this.tbWindow.Enabled = ((bool)(resources.GetObject("tbWindow.Enabled")));
-			this.tbWindow.Font = ((System.Drawing.Font)(resources.GetObject("tbWindow.Font")));
-			this.tbWindow.Guid = new System.Guid("6c37bb3a-a49a-4467-b812-34eb2c2a85ef");
-			this.tbWindow.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbWindow.ImeMode")));
-			this.tbWindow.Location = ((System.Drawing.Point)(resources.GetObject("tbWindow.Location")));
-			this.tbWindow.Name = "tbWindow";
-			this.tbWindow.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbWindow.RightToLeft")));
-			this.tbWindow.Size = ((System.Drawing.Size)(resources.GetObject("tbWindow.Size")));
-			this.tbWindow.TabIndex = ((int)(resources.GetObject("tbWindow.TabIndex")));
-			this.tbWindow.Text = resources.GetString("tbWindow.Text");
-			this.tbWindow.Visible = ((bool)(resources.GetObject("tbWindow.Visible")));
+			this.xpLinkedLabelIcon3.AccessibleDescription = resources.GetString("xpLinkedLabelIcon3.AccessibleDescription");
+			this.xpLinkedLabelIcon3.AccessibleName = resources.GetString("xpLinkedLabelIcon3.AccessibleName");
+			this.xpLinkedLabelIcon3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("xpLinkedLabelIcon3.Anchor")));
+			this.xpLinkedLabelIcon3.AutoScroll = ((bool)(resources.GetObject("xpLinkedLabelIcon3.AutoScroll")));
+			this.xpLinkedLabelIcon3.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpLinkedLabelIcon3.AutoScrollMargin")));
+			this.xpLinkedLabelIcon3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpLinkedLabelIcon3.AutoScrollMinSize")));
+			this.xpLinkedLabelIcon3.BackColor = System.Drawing.Color.Transparent;
+			this.xpLinkedLabelIcon3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpLinkedLabelIcon3.BackgroundImage")));
+			this.xpLinkedLabelIcon3.DisabledLinkColor = System.Drawing.Color.FromArgb(((System.Byte)(105)), ((System.Byte)(99)), ((System.Byte)(50)));
+			this.xpLinkedLabelIcon3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpLinkedLabelIcon3.Dock")));
+			this.xpLinkedLabelIcon3.Enabled = ((bool)(resources.GetObject("xpLinkedLabelIcon3.Enabled")));
+			this.xpLinkedLabelIcon3.Font = ((System.Drawing.Font)(resources.GetObject("xpLinkedLabelIcon3.Font")));
+			this.xpLinkedLabelIcon3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpLinkedLabelIcon3.ImeMode")));
+			this.xpLinkedLabelIcon3.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
+			this.xpLinkedLabelIcon3.LinkColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(255)));
+			this.xpLinkedLabelIcon3.Location = ((System.Drawing.Point)(resources.GetObject("xpLinkedLabelIcon3.Location")));
+			this.xpLinkedLabelIcon3.Name = "xpLinkedLabelIcon3";
+			this.xpLinkedLabelIcon3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("xpLinkedLabelIcon3.RightToLeft")));
+			this.xpLinkedLabelIcon3.Size = ((System.Drawing.Size)(resources.GetObject("xpLinkedLabelIcon3.Size")));
+			this.xpLinkedLabelIcon3.TabIndex = ((int)(resources.GetObject("xpLinkedLabelIcon3.TabIndex")));
+			this.xpLinkedLabelIcon3.Text = resources.GetString("xpLinkedLabelIcon3.Text");
+			this.xpLinkedLabelIcon3.Visible = ((bool)(resources.GetObject("xpLinkedLabelIcon3.Visible")));
+			this.xpLinkedLabelIcon3.VisitedLinkColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(0)), ((System.Byte)(128)));
+			this.xpLinkedLabelIcon3.LinkClicked += new System.EventHandler(this.SetSemiGlobalFilter);
 			// 
 			// MainForm
 			// 
@@ -2429,6 +2487,11 @@ namespace SimPe
 				lv.Columns.RemoveAt(lv.Columns.Count-1);
 				lv.Columns.RemoveAt(lv.Columns.Count-1);
 			}	
+			
+			cbsemig.Items.Add("");
+			foreach (Data.SemiGlobalAlias sga in Data.MetaData.SemiGlobals)
+				if (sga.Known) this.cbsemig.Items.Add(sga);
+			if (cbsemig.Items.Count>0) cbsemig.SelectedIndex = 0;
 		
 			ReloadLayout();	
 			
@@ -2825,9 +2888,10 @@ namespace SimPe
 			filter.FilterGroup = false;
 			try 
 			{
-				filter.Instance = Hashes.InstanceHash(this.tbRcolName.Text);
+				string name = Hashes.StripHashFromName(tbRcolName.Text);
+				filter.Instance = Hashes.InstanceHash(name);
 				//filter.Group = Hashes.GroupHash(this.tbRcolName.Text);
-				filter.FilterInstance = (tbRcolName.Text.Trim()!="");
+				filter.FilterInstance = (name.Trim()!="");
 				//filter.FilterGroup = filter.FilterInstance;
 			} 
 			catch 
@@ -2843,8 +2907,35 @@ namespace SimPe
 			if (tbRcolName.Right+8 > tbRcolName.Parent.Width) 
 			{
 				tbRcolName.Width = tbRcolName.Parent.Width - tbRcolName.Left - 8;
+				this.cbsemig.Width = tbRcolName.Width;
+
 				xpLinkedLabelIcon2.Left = tbRcolName.Right - xpLinkedLabelIcon2.Width;
+				xpLinkedLabelIcon3.Left = xpLinkedLabelIcon2.Left;
 			}
+		}
+
+		private void SetSemiGlobalFilter(object sender, System.EventArgs e)
+		{
+			filter.FilterInstance = false;
+			try 
+			{
+				if (this.cbsemig.SelectedItem is Data.SemiGlobalAlias) 
+				{
+					Data.SemiGlobalAlias sga = (Data.SemiGlobalAlias)this.cbsemig.SelectedItem;
+					if (sga!=null) 
+					{
+						string name = Hashes.StripHashFromName(tbRcolName.Text);
+						filter.Group = sga.Id;					
+						filter.FilterGroup = (cbsemig.Text.Trim()!="");					
+					}
+				} else filter.FilterGroup = false;
+			} 
+			catch 
+			{
+				filter.FilterGroup = false;				
+			}
+			
+			if (lastusedtnt!=null) lastusedtnt.Refresh(lv);
 		}
 
 		

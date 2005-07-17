@@ -566,7 +566,18 @@ namespace SimPe.Plugin
 					else i.Title = Hashes.StripHashFromName(i.Title);
 
 					if (((ver == FixVersion.UniversityReady) || (pfd.Instance == 0x88)) && (newref!=null)) 
-						i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+i.Title;
+						i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+Hashes.StripHashFromName(i.Title);
+					else 
+					{
+						uint tp = Data.MetaData.ANIM;
+						if (pfd.Instance==0x88) tp = Data.MetaData.TXMT;
+						else if (pfd.Instance==0x85) tp = Data.MetaData.CRES;
+
+						SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = FileTable.FileIndex.FindFileByName(i.Title, tp, Data.MetaData.LOCAL_GROUP, true);
+						if (fii!=null)
+							if (fii.FileDescriptor.Group == Data.MetaData.CUSTOM_GROUP) 						
+								i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+Hashes.StripHashFromName(i.Title);						
+					}
 					
 					if ((modelname==null) && (i.Language.Id==1) && (pfd.Instance==0x85)) 
 						modelname = name.ToUpper().Replace("-", "_");
