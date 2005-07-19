@@ -34,6 +34,7 @@ namespace SimPe
 
 			RemoteControl.OpenPackageFkt = new SimPe.RemoteControl.OpenPackageDelegate(OpenPackage);
 			RemoteControl.OpenPackedFileFkt = new SimPe.RemoteControl.OpenPackedFileDelegate(OpenPackedFile);
+			RemoteControl.OpenMemoryPackageFkt = new SimPe.RemoteControl.OpenMemPackageDelegate(OpenMemPackage);
 		}
 
 		public bool OpenPackage(string filename)
@@ -41,6 +42,14 @@ namespace SimPe
 			if (!System.IO.File.Exists(filename)) return false;
 
 			return lp.LoadFromFile(filename);
+		}
+
+		public bool OpenMemPackage(SimPe.Interfaces.Files.IPackageFile pkg)
+		{
+			if (pkg==null) return false;
+			if (!(pkg is SimPe.Packages.GeneratableFile)) return false;
+
+			return lp.LoadFromPackage((SimPe.Packages.GeneratableFile)pkg);
 		}
 
 		public bool OpenPackedFile(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii) 

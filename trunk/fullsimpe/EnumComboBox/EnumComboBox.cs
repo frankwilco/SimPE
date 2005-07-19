@@ -61,6 +61,7 @@ namespace Ambertation.Windows.Forms
 	/// <summary>
 	/// Zusammenfassung für UserControl1.
 	/// </summary>
+	[ToolboxBitmapAttribute(typeof(ComboBox))]
 	public class EnumComboBox : TD.SandBar.FlatComboBox
 	{
 		/// <summary>
@@ -119,7 +120,7 @@ namespace Ambertation.Windows.Forms
 			}
 		}
 
-		public object SelectedValue
+		public new object SelectedValue
 		{
 			get 
 			{
@@ -181,7 +182,7 @@ namespace Ambertation.Windows.Forms
 			if (myenum!=null) 
 			{
 				Array ls = System.Enum.GetValues(myenum);
-
+				
 				foreach (object o in ls)
 				{
 					Items.Add(new EnumComboBoxItem(myenum, o, rm));

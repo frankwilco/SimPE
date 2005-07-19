@@ -624,5 +624,17 @@ namespace SimPe.Packages
 			if (DescriptionChanged!=null) DescriptionChanged(this, new EventArgs());
 		}
 		#endregion
+
+		public string ExceptionString
+		{
+			get 
+			{
+				string msg = "";
+				msg += TypeName.Name+" ("+Helper.HexString(Type) + ") - " + Helper.HexString(SubType) + " - " + Helper.HexString(Group) + " - " +Helper.HexString(Instance);
+				
+
+				return msg;
+			}
+		}
 	}
 }

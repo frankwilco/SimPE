@@ -286,7 +286,7 @@ namespace Ambertation
 		/// <param name="custNamePropBldr"></param>
 		/// <param name="attrType"></param>
 		/// <param name="val"></param>
-		static void AddAttribute(PropertyBuilder custNamePropBldr, Type attrType, string val)
+		internal static void AddAttribute(PropertyBuilder custNamePropBldr, Type attrType, string val)
 		{
 			ConstructorInfo classCtorCat =
 				attrType.GetConstructor(new Type[] { typeof(string) });
@@ -302,7 +302,7 @@ namespace Ambertation
 		/// <param name="custNamePropBldr"></param>
 		/// <param name="attrType"></param>
 		/// <param name="val"></param>
-		static void AddAttribute(PropertyBuilder custNamePropBldr, Type attrType, bool val)
+		internal static void AddAttribute(PropertyBuilder custNamePropBldr, Type attrType, bool val)
 		{
 			ConstructorInfo classCtorCat =
 				attrType.GetConstructor(new Type[] { typeof(bool) });
@@ -318,7 +318,7 @@ namespace Ambertation
 		/// <param name="custNamePropBldr"></param>
 		/// <param name="attrType"></param>
 		/// <param name="val"></param>
-		static void AddAttribute(PropertyBuilder custNamePropBldr, Type attrType, object val, bool a)
+		internal static void AddAttribute(PropertyBuilder custNamePropBldr, Type attrType, object val, bool a)
 		{
 			ConstructorInfo classCtorCat =
 				attrType.GetConstructor(new Type[] { val.GetType() });

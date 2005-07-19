@@ -244,6 +244,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "FlagObjectBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "HashAlgorithmParameters.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

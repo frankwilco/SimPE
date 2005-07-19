@@ -290,6 +290,21 @@ namespace SimPe.PackedFiles.Wrapper
 			get { return fsort; }
 			set { fsort = value; }
 		}
+
+		public Data.ObjFunctionSubSort FunctionSubSort
+		{
+			get 
+			{
+				uint val = (uint)((data[0x5e]&0xff) | ((fsort.Value&0xfff)<<8));
+				return (Data.ObjFunctionSubSort)val;
+			}
+			set 
+			{
+				uint val = (uint)value;
+				fsort.Value = (ushort)((val >> 8) & 0xfff);
+				data[0x5e] = (short)(val & 0xff);
+			}
+		}
 		#endregion
 
 		/// <summary>
@@ -422,7 +437,6 @@ namespace SimPe.PackedFiles.Wrapper
 				catch (System.IO.EndOfStreamException ex)
 				{
 					throw new System.IO.EndOfStreamException("Reading Error in OBJd at "+i.ToString()+".", ex);
-					return;
 				}
 			}
 		}

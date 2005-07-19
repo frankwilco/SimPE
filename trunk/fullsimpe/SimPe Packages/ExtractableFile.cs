@@ -23,6 +23,7 @@ using SimPe.Interfaces.Plugin;
 using SimPe.Interfaces.Plugin.Internal;
 using SimPe.Interfaces;
 using SimPe.Interfaces.Files;
+using SimPe.Collections.IO;
 
 namespace SimPe.Packages
 {
@@ -158,7 +159,10 @@ namespace SimPe.Packages
 			string xml = "";
 			if (header) xml += "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" + Helper.lbr;
 			xml += "<package type=\""+((uint)Header.IndexType).ToString()+"\">" + Helper.lbr;
-			foreach(PackedFileDescriptor pfd in this.fileindex) 
+			PackedFileDescriptors list = fileindex.Flatten();
+
+			
+			foreach(PackedFileDescriptor pfd in list) 
 			{
 				xml += pfd.GenerateXmlMetaInfo() + Helper.lbr;
 			}

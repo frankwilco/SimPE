@@ -420,7 +420,7 @@ namespace SimPe.Plugin
 						oci.ObjectType = ObjectTypes.Outfit;
 						SimPe.PackedFiles.Wrapper.ObjFunctionSort ofs = new SimPe.PackedFiles.Wrapper.ObjFunctionSort(0);
 						ofs.InGeneral = true;
-						oci.ObjectFunctionSort = (short)ofs.Value;
+						oci.ObjectFunctionSort = (uint)ofs.Value;
 						oci.ObjectFileName = cpf.GetItem("name").StringValue;
 						oci.Useable = true;
 						oci.Class = SimPe.Cache.ObjectClass.Skin;

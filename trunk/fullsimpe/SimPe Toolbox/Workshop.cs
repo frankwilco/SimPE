@@ -411,7 +411,7 @@ namespace SimPe.Plugin
 						oci.FileDescriptor = nrefitem.FileDescriptor;
 						oci.LocalGroup = nrefitem.LocalGroup;							
 						oci.ObjectType = objd.Type;
-						oci.ObjectFunctionSort = (short)objd.FunctionSort.Value;
+						oci.ObjectFunctionSort = (uint)objd.FunctionSubSort;
 						oci.ObjectFileName = objd.FileName;
 						oci.Useable = true;
 						oci.Class = SimPe.Cache.ObjectClass.Object;

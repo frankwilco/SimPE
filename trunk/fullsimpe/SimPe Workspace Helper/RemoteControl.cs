@@ -33,6 +33,11 @@ namespace SimPe
 		public delegate bool OpenPackageDelegate(string filename);
 
 		/// <summary>
+		/// Delegate you have to implement for the remote Package opener
+		/// </summary>
+		public delegate bool OpenMemPackageDelegate(SimPe.Interfaces.Files.IPackageFile pkg);
+
+		/// <summary>
 		/// Delegate you have to implement for the Remote PackedFile Opener
 		/// </summary>
 		public delegate bool OpenPackedFileDelegate(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii);
@@ -74,6 +79,36 @@ namespace SimPe
 			catch (Exception ex) 
 			{
 				Helper.ExceptionMessage("Unable to open a Package in the SimPE GUI. (file="+filename+")", ex);
+			}
+			return false;
+		}
+
+		static OpenMemPackageDelegate omp;
+		/// <summary>
+		/// Returns/Sets the Function that should be called if you want to open a PackedFile
+		/// </summary>
+		public static OpenMemPackageDelegate OpenMemoryPackageFkt
+		{
+			get { return omp; }
+			set { omp = value; }
+		}
+
+		/// <summary>
+		/// Open a Package in the main SimPE Gui
+		/// </summary>
+		/// <param name="filename">The Filename of the package</param>
+		/// <returns>true, if the package was opened</returns>
+		public static bool OpenMemoryPackage(SimPe.Interfaces.Files.IPackageFile pkg) 
+		{
+			if (omp==null) return false;
+
+			try 
+			{
+				return omp(pkg);
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage("Unable to open a Package in the SimPE GUI. (package="+pkg.ToString()+")", ex);
 			}
 			return false;
 		}

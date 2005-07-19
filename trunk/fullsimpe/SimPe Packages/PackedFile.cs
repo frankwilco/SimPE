@@ -283,7 +283,8 @@ namespace SimPe.Packages
 			} //try
 			catch(Exception ex)
 			{
-				Helper.ExceptionMessage("", ex);
+				//Helper.ExceptionMessage("", ex);
+				throw ex;
 			} 
 			
 

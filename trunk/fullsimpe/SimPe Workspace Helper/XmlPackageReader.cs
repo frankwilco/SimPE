@@ -72,14 +72,13 @@ namespace SimPe
 				}
 			}			
 
-			SimPe.Packages.GeneratableFile file = SimPe.Packages.GeneratableFile.LoadFromFile("");
-			file.Index = new SimPe.Packages.PackedFileDescriptor[list.Count];
+			SimPe.Packages.GeneratableFile file = SimPe.Packages.GeneratableFile.CreateNew();
+			file.BeginUpdate();
 			file.Header.IndexType = type;
 
-			int k = 0;
 			foreach(SimPe.Packages.PackedFileDescriptor pfd in list) 
 			{
-				file.Index[k++] = pfd;
+				file.Add(pfd);
 				if (pfd.Type == Packages.File.FILELIST_TYPE) 
 				{
 					file.FileList = pfd;
@@ -87,6 +86,7 @@ namespace SimPe
 			}
 
 			System.IO.MemoryStream ms = file.Build();
+			file.EndUpdate();
 			if (pb!=null) pb.Value = pb.Maximum;
 			return new System.IO.BinaryReader(ms);
 		}

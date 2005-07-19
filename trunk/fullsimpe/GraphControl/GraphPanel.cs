@@ -29,7 +29,8 @@ namespace Ambertation.Windows.Forms
 {
 	/// <summary>
 	/// This is a Dragable Panel
-	/// </summary>
+	/// </summary>	
+	[ToolboxBitmapAttribute(typeof(Panel))]
 	public class GraphPanel : System.Windows.Forms.Panel
 	{
 		/// <summary> 

@@ -27,6 +27,7 @@ using SimPe.Interfaces;
 using SimPe.Interfaces.Files;
 using SimPe.PackedFiles.Wrapper;
 using SimPe.Events;
+using SimPe.Collections.IO;
 
 namespace SimPe.Packages 
 {
@@ -77,7 +78,7 @@ namespace SimPe.Packages
 		/// <summary>
 		/// Will contain the File Index
 		/// </summary>
-		protected IPackedFileDescriptor[] fileindex;
+		protected ResourceIndex fileindex;
 
 		/// <summary>
 		/// Will contain the Hole Index
@@ -375,14 +376,10 @@ namespace SimPe.Packages
 		public void Remove(IPackedFileDescriptor pfd) 
 		{
 			if (fileindex==null) return;
-			System.Collections.ArrayList list = new System.Collections.ArrayList();
-			for (int i=0; i<fileindex.Length; i++) if (fileindex[i]!=pfd) list.Add(fileindex[i]);
+			fileindex.RemoveItem(pfd);
 			
-			PackedFileDescriptor[] newindex = new PackedFileDescriptor[list.Count];
-			list.CopyTo(newindex);
-			header.index.count = newindex.Length;
-			fileindex = newindex;
-
+			header.index.count = fileindex.Count;
+			
 			((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = null;
 			pfd.DescriptionChanged -= new EventHandler(ResourceDescriptionChanged);
 			FireIndexEvent();			
@@ -394,23 +391,17 @@ namespace SimPe.Packages
 		/// </summary>
 		public void RemoveMarked()
 		{
-			ArrayList list = new ArrayList();
-			foreach (Interfaces.Files.IPackedFileDescriptor pfd in fileindex) 
+			ArrayList list = fileindex.RemoveDeleteMarkedItem();
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in list) 
 			{
-				if (!pfd.MarkForDelete) list.Add(pfd);
-				else 
-				{
-					((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = null;
-					pfd.DescriptionChanged -= new EventHandler(ResourceDescriptionChanged);
-				}
+				((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = null;
+				pfd.DescriptionChanged -= new EventHandler(ResourceDescriptionChanged);				
 			}
 
-			Interfaces.Files.IPackedFileDescriptor[] pfds = new Interfaces.Files.IPackedFileDescriptor[list.Count];
-			list.CopyTo(pfds);
+			
 
-			bool changed = (fileindex.Length != fileindex.Length);
-			fileindex = pfds;			
-			header.index.count = fileindex.Length;
+			bool changed = list.Count>0;			
+			header.index.count = fileindex.Count;
 
 						
 			if (changed) 
@@ -455,20 +446,11 @@ namespace SimPe.Packages
 		/// <param name="pfd">The PackedFile Descriptor</param>
 		public void Add(IPackedFileDescriptor pfd)
 		{
-			
-			IPackedFileDescriptor[] newindex = null;
-			if (fileindex!=null) 
-			{
-				newindex = new IPackedFileDescriptor[fileindex.Length+1];
-				fileindex.CopyTo(newindex, 0);
-			} 
-			else 
-			{
-				newindex = new IPackedFileDescriptor[1];
-			}
-			newindex[newindex.Length-1] = pfd;
-			header.index.count = newindex.Length;
-			fileindex = newindex;
+			if (fileindex==null) 
+				fileindex = new ResourceIndex(this);
+
+			fileindex.AddIndexFromPfd(pfd);
+			header.index.count = fileindex.Count;			
 
 			((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = new SimPe.Events.PackedFileChanged(ResourceChanged);
 			pfd.DescriptionChanged += new EventHandler(ResourceDescriptionChanged);
@@ -483,10 +465,18 @@ namespace SimPe.Packages
 		/// <returns>The FileIndexItem for this Entry</returns>
 		public IPackedFileDescriptor GetFileIndex(uint item)
 		{
-			if ((item>=fileindex.Length) || (item<0)) return null;
-			return fileindex[item];
+			PackedFileDescriptors list = fileindex.Flatten();
+			if ((item>=list.Count) || (item<0)) return null;
+			return list[item];
 		}
 
+		public ResourceIndex FileIndex 
+		{
+			get { 
+				if (fileindex==null) fileindex = new ResourceIndex(this);
+				return fileindex; 
+			}
+		}
 		/// <summary>
 		/// Returns or Changes the stored Fileindex
 		/// </summary>
@@ -494,13 +484,16 @@ namespace SimPe.Packages
 		{
 			get 
 			{
-				return fileindex;
+				if (fileindex==null) return new IPackedFileDescriptor[0];
+				IPackedFileDescriptor[] pfds = new IPackedFileDescriptor[fileindex.Flatten().Count];
+				fileindex.Flatten().CopyTo(pfds);
+				return pfds;
 			}
-			set 
+			/*set 
 			{
 				fileindex = value;
 				header.Index.Count = fileindex.Length;
-			}
+			}*/
 		}
 
 		/// <summary>
@@ -545,11 +538,13 @@ namespace SimPe.Packages
 		/// </summary>
 		protected void LoadFileIndex()
 		{
-			fileindex = new PackedFileDescriptor[header.index.Count];
+			if (fileindex==null) fileindex = new ResourceIndex(this);
+			else fileindex.Clear();
+
 			uint counter = 0;
 			reader.BaseStream.Seek(	header.index.offset, System.IO.SeekOrigin.Begin );
 
-			while (counter<fileindex.Length) 
+			while (counter<header.Index.Count) 
 			{
 				/*reader.BaseStream.Seek(	header.index.offset + counter*header.Index.ItemSize, 
 										System.IO.SeekOrigin.Begin );*/
@@ -571,7 +566,7 @@ namespace SimPe.Packages
 			if (FileList != null) 
 			{
 				//setup the compression State
-				foreach (PackedFileDescriptor pfd in fileindex)
+				foreach (PackedFileDescriptor pfd in fileindex.Flatten())
 					pfd.WasCompressed = this.GetPackedFile(pfd, new byte[0]).IsCompressed;				
 			}
 		}
@@ -598,7 +593,8 @@ namespace SimPe.Packages
 			item.PackageInternalUserDataChange = new SimPe.Events.PackedFileChanged(ResourceChanged);
 			item.DescriptionChanged += new EventHandler(ResourceDescriptionChanged);
 
-			fileindex[position] = item;
+//			fileindex[position] = item;
+			fileindex.AddIndexFromPfd(item);
 
 			//remeber the filelist;
 			if (item.Type == FILELIST_TYPE) 
@@ -697,7 +693,7 @@ namespace SimPe.Packages
 		/// <returns>The plain Content of the File</returns>
 		public IPackedFile Read(uint item)
 		{
-			IPackedFileDescriptor pfd = fileindex[item];
+			IPackedFileDescriptor pfd = fileindex.Flatten()[item];
 
 			return Read(pfd);
 		}
@@ -724,7 +720,7 @@ namespace SimPe.Packages
 					int pos = filelistfile.FindFile(pfd);
 					if (pos!=-1) 
 					{
-						SimPe.PackedFiles.Wrapper.ClstItem fi = (ClstItem)filelistfile.Items[pos];							
+						SimPe.PackedFiles.Wrapper.ClstItem fi = filelistfile[pos];							
 						if (header.Version==0x100000001) pf.uncsize = fi.UncompressedSize;
 					}
 				} 
@@ -775,42 +771,27 @@ namespace SimPe.Packages
 				}
 				#endregion
 
-				this.LockStream();
-				reader.BaseStream.Seek(pfd.Offset, System.IO.SeekOrigin.Begin);
-				Byte[] data = reader.ReadBytes(pfd.Size);
-				//for (int i=0; i<data.Length; i++) data[i] = reader.ReadByte();
-
-				PackedFile pf = GetPackedFile(pfd, data);
-				/*new PackedFile(data);
-
 				try 
 				{
+					this.LockStream();
 					reader.BaseStream.Seek(pfd.Offset, System.IO.SeekOrigin.Begin);
-					pf.size = reader.ReadInt32();
-					pf.signature = reader.ReadUInt16();			
-					Byte[] dummy = reader.ReadBytes(3);
-					pf.uncsize = (uint)((dummy[0]<< 0x10) | (dummy[1] << 0x08) | + dummy[2]);
-					if ((pf.Size == pfd.Size) && (pf.Signature==MetaData.COMPRESS_SIGNATURE)) pf.headersize = 9;											
+					Byte[] data = reader.ReadBytes(pfd.Size);
+					//for (int i=0; i<data.Length; i++) data[i] = reader.ReadByte();
 
-					if ((filelistfile!=null) && (pfd.Type!=File.FILELIST_TYPE))
-					{
-						int pos = filelistfile.FindFile(pfd);
-						if (pos!=-1) 
-						{
-							SimPe.PackedFiles.Wrapper.ClstItem fi = (ClstItem)filelistfile.Items[pos];							
-							if (header.Version==0x100000001) pf.uncsize = fi.UncompressedSize;
-						}
-					} 
-				} 
-				catch (Exception) 
+					PackedFile pf = GetPackedFile(pfd, data);
+					return (IPackedFile)pf;
+				}
+				catch (Exception ex) 
 				{
-					pf.size = 0;
-					pf.data = new byte[0];
-				}*/
+					Helper.ExceptionMessage(new Warning("Unabled to Read/Decode \""+pfd.ExceptionString+"\". Do not save this package!!!", ex.Message, ex));
+				}
+				finally 
+				{
+					this.UnLockStream();
+					CloseReader();
+				}
 
-				this.UnLockStream();
-				CloseReader();
-				return (IPackedFile)pf;
+				return new PackedFile(new byte[0]);
 			} // if HasUserdata
 		}
 
@@ -825,12 +806,9 @@ namespace SimPe.Packages
 
 			if (fileindex!=null) 
 			{
-				for(int i=0; i<fileindex.Length; i++) 
-				{
-					IPackedFileDescriptor pfd = fileindex[i];
-					if (pfd.Type == type) list.Add(pfd);
-				}
+				list = fileindex.FindFile(type);
 			}
+			
 
 			IPackedFileDescriptor[] ret = new IPackedFileDescriptor[list.Count];
 			list.CopyTo(ret);
@@ -847,13 +825,7 @@ namespace SimPe.Packages
 			System.Collections.ArrayList list = new System.Collections.ArrayList();
 
 			if (fileindex!=null) 
-			{
-				for(int i=0; i<fileindex.Length; i++) 
-				{
-					IPackedFileDescriptor pfd = fileindex[i];
-					if (pfd.Group == group) list.Add(pfd);
-				}
-			}
+				list = fileindex.FindFileByGroup(group);			
 
 			IPackedFileDescriptor[] ret = new IPackedFileDescriptor[list.Count];
 			list.CopyTo(ret);
@@ -902,10 +874,8 @@ namespace SimPe.Packages
 		{
 			System.Collections.ArrayList list = new System.Collections.ArrayList();
 
-			foreach (IPackedFileDescriptor pfd in fileindex) 
-			{
-				if ((pfd.Instance == instance) && (pfd.SubType == subtype)) list.Add(pfd);
-			}
+			if (fileindex!=null) 
+				list = fileindex.FindFileByInstance(subtype, instance);						
 
 			IPackedFileDescriptor[] ret = new IPackedFileDescriptor[list.Count];
 			list.CopyTo(ret);
@@ -922,12 +892,7 @@ namespace SimPe.Packages
 			System.Collections.ArrayList list = new System.Collections.ArrayList();
 
 			if (fileindex!=null) 
-			{
-				foreach (IPackedFileDescriptor pfd in fileindex) 
-				{
-					if ( (pfd.Type == type) && (pfd.Instance == instance) && (pfd.SubType == subtype)) list.Add(pfd);
-				}
-			}
+				list = fileindex.FindFileByInstance(type, subtype, instance);							
 
 			IPackedFileDescriptor[] ret = new IPackedFileDescriptor[list.Count];
 			list.CopyTo(ret);
@@ -953,14 +918,8 @@ namespace SimPe.Packages
 		{
 			if (fileindex!=null) 
 			{
-				foreach (IPackedFileDescriptor pfd in fileindex) 
-					if ((pfd.Type == type)
-						&& (pfd.SubType == subtype)
-						&& (pfd.Group == group)
-						&& (pfd.Instance == instance)) 
-					{
-						return pfd;
-					}
+				PackedFileDescriptors list = fileindex.FindFile(type, group, subtype, instance);
+				if (list.Length>0) return list[0];				
 			}
 
 			return null;
