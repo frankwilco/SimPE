@@ -39,6 +39,15 @@ namespace SimPe.Cache
 		/// </summary>
 		Skin = 0x01
 	}
+	
+	public enum ObjectCacheItemVersions: byte 
+	{
+		Outdated = 0x00,
+		ClassicOW = 0x03,
+		DockableOW = 0x04,
+		Unsupported = 0xff
+	}
+
 	/// <summary>
 	/// Contains one ObjectCacheItem
 	/// </summary>
@@ -47,7 +56,7 @@ namespace SimPe.Cache
 		/// <summary>
 		/// The current Version
 		/// </summary>
-		public const byte VERSION = 3;
+		public const byte VERSION = 4;
 
 		public ObjectCacheItem()
 		{			
@@ -67,10 +76,32 @@ namespace SimPe.Cache
 		Image thumb;
 		Data.ObjectTypes objtype;
 		string objname;
-		short objfuncsort;
+		uint objfuncsort;
 		bool use;
 		ObjectClass oclass;
+		object tag;
+		
 
+		public Object Tag 
+		{
+			get { return tag; }
+			set { tag = value; }
+		}
+		
+		public ObjectCacheItemVersions ObjectVersion 
+		{
+			get { 
+				if (version==(byte)ObjectCacheItemVersions.ClassicOW) return ObjectCacheItemVersions.ClassicOW; 
+				if (version==(byte)ObjectCacheItemVersions.DockableOW) return ObjectCacheItemVersions.DockableOW; 
+				if (version>VERSION) return ObjectCacheItemVersions.Unsupported;
+				return ObjectCacheItemVersions.Outdated;
+			}
+			/*set { 
+				if (value == ObjectCacheItemVersions.Outdated) version = (byte)ObjectCacheItemVersions.ClassicOW;
+				else if (value == ObjectCacheItemVersions.Unsupported) version = (byte)ObjectCacheItemVersions.DockableOW;
+				version = (byte)value;
+			}*/
+		}
 		/// <summary>
 		/// Returns an (unitialized) FileDescriptor
 		/// </summary>
@@ -104,10 +135,98 @@ namespace SimPe.Cache
 		/// <summary>
 		/// Returns the FunctionSort Field of the Object
 		/// </summary>
-		public short ObjectFunctionSort
+		public uint ObjectFunctionSort
 		{
 			get { return objfuncsort; }
 			set { objfuncsort = value; }
+		}
+
+		/// <summary>
+		/// Returs the Category this Object should get sorted in
+		/// </summary>
+		public string[][] ObjectCategory 
+		{
+			get 
+			{
+				string[][] ret = null;
+					
+				if (ObjectVersion==ObjectCacheItemVersions.ClassicOW) 
+				{
+					System.Collections.ArrayList list = new System.Collections.ArrayList();
+					Data.ObjFunctionSortBits[] ss = (Data.ObjFunctionSortBits[])System.Enum.GetValues(typeof(Data.ObjFunctionSortBits));
+					foreach (Data.ObjFunctionSortBits s in ss) 
+						if ((ObjectFunctionSort & (uint)Math.Pow(2, (byte)s))!=0)						
+							list.Add(s.ToString());													
+				
+					ret = new string[list.Count][];
+					for (int i=0; i<list.Count; i++)
+						ret[i]= new string[] { list[i].ToString() };
+				}
+				else if  (ObjectVersion==ObjectCacheItemVersions.DockableOW) 
+				{
+					Data.ObjFunctionSubSort fss = (Data.ObjFunctionSubSort)ObjectFunctionSort;
+					uint upper = (uint)(((uint)fss >> 8) & 0xfff);
+					uint lower = (uint)((uint)fss & 0xff);
+
+					System.Collections.ArrayList list = new System.Collections.ArrayList();
+					Data.ObjFunctionSortBits[] ss = (Data.ObjFunctionSortBits[])System.Enum.GetValues(typeof(Data.ObjFunctionSortBits));
+					
+					foreach (Data.ObjFunctionSortBits s in ss) 
+					{
+						int vu = (int)Math.Pow(2, (byte)s);
+						if ((upper & vu)!=0)	
+						{			
+							bool added = false;	
+							for (int i=0; i<8; i++)
+							{
+								int v = (int)Math.Pow(2, i);
+								if ((lower & v) != 0) 
+								{
+									Data.ObjFunctionSubSort mss = (Data.ObjFunctionSubSort)(((vu&0xff)<<8) | (v & 0xff));
+									string[] ps = mss.ToString().Split("_".ToCharArray(), 2);
+									if (ps.Length>=2) { list.Add(new string[] {ps[0], ps[1]});	 added = true; }
+									else if (ps.Length==1) { list.Add(new string[] {s.ToString()}); added = true; }
+								}
+							}
+
+							if (!added) 
+							{
+								list.Add(new string[] {s.ToString()});			
+							}
+						}
+					}
+				
+					ret = new string[list.Count][];
+					for (int i=0; i<list.Count; i++) 
+					{					
+						string[] ct = (string[])list[i];
+						ret[i] = ct;
+					}
+				}
+
+				if (this.ObjectType!=Data.ObjectTypes.Normal) 
+				{
+					System.Collections.ArrayList list = new System.Collections.ArrayList();
+					if (ret!=null) 
+					{
+						foreach (string[] s in ret)
+							list.Add(s);
+					}
+					list.Add(new string[] {SimPe.Localization.GetString("Other"),  this.ObjectType.ToString() });
+
+					ret = new string[list.Count][];
+					for (int i=0; i<list.Count; i++) 
+					{					
+						string[] ct = (string[])list[i];
+						ret[i] = ct;
+					}
+				}
+
+				if (ret==null) 				
+					ret = new string[][] { new string[] {SimPe.Localization.GetString("Unknown")} };
+				
+				return ret;
+			}
 		}
 
 		/// <summary>
@@ -135,7 +254,7 @@ namespace SimPe.Cache
 		{
 			get { return objname; }
 			set { objname = value; }
-		}
+		}		
 
 		/// <summary>
 		/// Returns the Name of this Object
@@ -199,7 +318,8 @@ namespace SimPe.Cache
 			}
 
 			objtype = (Data.ObjectTypes)reader.ReadUInt16();
-			objfuncsort = reader.ReadInt16();
+			if (version>=4) objfuncsort = reader.ReadUInt32();
+			else objfuncsort = (uint)reader.ReadInt16();
 
 			if (version>=2) 
 			{
@@ -213,7 +333,7 @@ namespace SimPe.Cache
 			}
 
 			if (version>=3) oclass = (ObjectClass)reader.ReadByte();
-			else oclass = ObjectClass.Object;
+			else oclass = ObjectClass.Object;			
 		}
 
 		public void Save(System.IO.BinaryWriter writer) 
@@ -246,7 +366,7 @@ namespace SimPe.Cache
 			writer.Write(objname);
 			writer.Write(use);
 
-			writer.Write((byte)oclass);
+			writer.Write((byte)oclass);			
 		}
 
 		public byte Version

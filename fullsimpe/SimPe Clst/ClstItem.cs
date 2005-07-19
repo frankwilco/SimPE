@@ -33,9 +33,23 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public ClstItem (Data.MetaData.IndexTypes format)
+		public ClstItem (Data.MetaData.IndexTypes format) : this(null, format)
+		{			
+		}
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public ClstItem (SimPe.Interfaces.Files.IPackedFileDescriptor pfd, Data.MetaData.IndexTypes format)
 		{
 			this.format = format;
+			if (pfd!=null)
+			{
+				this.Type = pfd.Type;
+				this.Instance = pfd.Instance;
+				this.SubType = pfd.SubType;
+				this.Group = pfd.Group;
+			}
 		}
 
 		uint type;
@@ -99,6 +113,28 @@ namespace SimPe.PackedFiles.Wrapper
 			get { return uncsize; }
 			set { uncsize =value; }
 		}
+
+		public override int GetHashCode()
+		{
+			return (int)(this.Type|this.Instance)-(int)(this.Type&this.Instance) ;
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (obj==null) return false;
+			if (obj is ClstItem)
+			{
+				ClstItem ci = (ClstItem)obj;
+				return (ci.Group == Group && ci.Instance == Instance && ci.Type == type && (ci.SubType==SubType || ci.format == Data.MetaData.IndexTypes.ptShortFileIndex || format == Data.MetaData.IndexTypes.ptShortFileIndex));
+			} 
+			else if (obj is SimPe.Interfaces.Files.IPackedFileDescriptor)
+			{
+				SimPe.Interfaces.Files.IPackedFileDescriptor ci = (SimPe.Interfaces.Files.IPackedFileDescriptor)obj;
+				return (ci.Group == Group && ci.Instance == Instance && ci.Type == type && (ci.SubType==SubType || format == Data.MetaData.IndexTypes.ptShortFileIndex));
+			} else return base.Equals (obj);
+		}
+
+
 
 		public override string ToString()
 		{

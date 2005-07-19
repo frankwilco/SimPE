@@ -361,16 +361,7 @@ namespace SimPe.Plugin
 			if (flname==null) flname="memoryfile";
 			flname = flname.Trim().ToLower();
 
-			SimPe.Interfaces.Wrapper.IGroupCacheItem gci = FileTable.GroupCache.GetItem(flname);
-			/*uint local = 0;
-			if (localGroupMap.ContainsKey(flname)) local = (uint)localGroupMap[flname];
-			else 
-			{
-				local = lastLocalGroup++;
-				localGroupMap[flname] = local;
-			}
-
-			return local;*/
+			SimPe.Interfaces.Wrapper.IGroupCacheItem gci = FileTable.GroupCache.GetItem(flname);			
 			return gci.LocalGroup;
 		}
 
@@ -502,6 +493,17 @@ namespace SimPe.Plugin
 		{
 			uint local = GetLocalGroup(package);
 			AddIndexFromPfd(pfd, package, local);
+		}
+
+		/// <summary>
+		/// Add a Filedescriptor to the Index
+		/// </summary>
+		/// <param name="pfd">The Descriptor</param>
+		/// <param name="package">The File</param>
+		public void AddIndexFromPfd(SimPe.Collections.IO.PackedFileDescriptors pfds, SimPe.Interfaces.Files.IPackageFile package)
+		{
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+				AddIndexFromPfd(pfd, package);
 		}
 
 		/// <summary>
@@ -931,6 +933,19 @@ namespace SimPe.Plugin
 		public SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem CreateFileIndexItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg) 
 		{
 			return new SimPe.Plugin.FileIndexItem(pfd, pkg);
+		}
+
+		/// <summary>
+		/// Creates a new FileIndex
+		/// </summary>
+		/// <param name="pfds"></param>
+		/// <param name="package"></param>
+		/// <returns></returns>
+		public SimPe.Interfaces.Scenegraph.IScenegraphFileIndex CreateFileIndex(SimPe.Collections.IO.PackedFileDescriptors pfds, SimPe.Interfaces.Files.IPackageFile package)
+		{
+			SimPe.Plugin.FileIndex fi =  new SimPe.Plugin.FileIndex();
+			if (pfds!=null) fi.AddIndexFromPfd(pfds, package);
+			return fi;
 		}
 	}
 }

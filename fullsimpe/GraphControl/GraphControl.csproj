@@ -178,6 +178,26 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <File
+                    RelPath = "TransparentCheckBox.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "TransparentGroupBox.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "UxTheme.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "XpTaskBoxSimple.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
             </Include>
         </Files>
     </CSHARP>

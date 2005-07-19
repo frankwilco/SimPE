@@ -305,5 +305,13 @@ namespace SimPe.Interfaces.Files
 		/// Executes Events Derrefered by <see cref="BeginUpdate"/>
 		/// </summary>
 		void EndUpdate();
+
+		/// <summary>
+		/// Returns the Name of this Descripotr as used in Exception Messages
+		/// </summary>
+		string ExceptionString
+		{
+			get;
+		}
 	}
 }

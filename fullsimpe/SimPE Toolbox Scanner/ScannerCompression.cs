@@ -80,7 +80,7 @@ namespace SimPe.Plugin.Scanner
 			{
 				if (si.Package.FileListFile != null) 
 				{
-					foreach (SimPe.PackedFiles.Wrapper.ClstItem item in si.Package.FileListFile.Items) 
+					foreach (SimPe.PackedFiles.Wrapper.ClstItem item in si.Package.FileListFile) 
 					{
 						SimPe.Interfaces.Files.IPackedFileDescriptor p = si.Package.FindFile(item.Type, item.SubType, item.Group, item.Instance);
 						if (p==null) 
@@ -126,7 +126,7 @@ namespace SimPe.Plugin.Scanner
 								break;
 							}
 
-							SimPe.PackedFiles.Wrapper.ClstItem item  = si.Package.FileListFile.Items[pos];
+							SimPe.PackedFiles.Wrapper.ClstItem item  = si.Package.FileListFile[pos];
 							if (fl.UncompressedSize != item.UncompressedSize) 
 							{
 								ps.Data[0] = (uint)HealthState.WrongCompressionSize;

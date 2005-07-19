@@ -2006,7 +2006,14 @@ namespace SimPe
 			} 
 			catch (Exception ex) 
 			{
-				Helper.ExceptionMessage("SimPE will shutdown due to an unhandled Exception.", ex);
+				try 
+				{
+					Helper.ExceptionMessage("SimPE will shutdown due to an unhandled Exception.", ex);
+				} 
+				catch (Exception ex2) 
+				{
+					MessageBox.Show(ex2.Message);
+				}
 			}
 		}
 

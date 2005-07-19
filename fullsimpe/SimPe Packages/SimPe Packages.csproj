@@ -244,7 +244,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "PackedFileDescriptors.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ResourceIndex.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "StreamMaintainer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "XmlPackageReaderBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

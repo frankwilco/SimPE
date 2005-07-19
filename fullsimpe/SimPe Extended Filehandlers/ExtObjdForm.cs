@@ -42,6 +42,11 @@ namespace SimPe.PackedFiles.UserInterface
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
+#if DEBUG
+#else
+			//cbsort.Visible = false;
+			//label1.Visible = false;
+#endif
 		}
 
 		/// <summary>
@@ -71,6 +76,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cball = new System.Windows.Forms.CheckBox();
 			this.tc = new System.Windows.Forms.TabControl();
 			this.tpcatalogsort = new System.Windows.Forms.TabPage();
+			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.cbaspiration = new System.Windows.Forms.CheckBox();
 			this.cbhobby = new System.Windows.Forms.CheckBox();
@@ -114,6 +120,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label12 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.cbcareer = new System.Windows.Forms.CheckBox();
+			this.cbsort = new Ambertation.Windows.Forms.EnumComboBox();
 			this.pnobjd.SuspendLayout();
 			this.tc.SuspendLayout();
 			this.tpcatalogsort.SuspendLayout();
@@ -193,6 +200,15 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tpcatalogsort.TabIndex = 0;
 			this.tpcatalogsort.Text = "Catalog Sort";
 			// 
+			// label1
+			// 
+			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label1.Location = new System.Drawing.Point(16, 112);
+			this.label1.Name = "label1";
+			this.label1.TabIndex = 18;
+			this.label1.Text = "Overall Sort:";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
 			// groupBox2
 			// 
 			this.groupBox2.Controls.Add(this.cbaspiration);
@@ -205,11 +221,13 @@ namespace SimPe.PackedFiles.UserInterface
 			this.groupBox2.Controls.Add(this.cbplumbing);
 			this.groupBox2.Controls.Add(this.cbseating);
 			this.groupBox2.Controls.Add(this.cbsurfaces);
+			this.groupBox2.Controls.Add(this.cbsort);
+			this.groupBox2.Controls.Add(this.label1);
 			this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox2.Location = new System.Drawing.Point(352, 8);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(336, 112);
+			this.groupBox2.Size = new System.Drawing.Size(336, 144);
 			this.groupBox2.TabIndex = 17;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Function Sort";
@@ -481,6 +499,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pg.Size = new System.Drawing.Size(696, 144);
 			this.pg.TabIndex = 0;
 			this.pg.Text = "RAW Items";
+			this.pg.ToolbarVisible = false;
 			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
 			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
 			this.pg.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PropChanged);
@@ -670,6 +689,18 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbcareer.TabIndex = 0;
 			this.cbcareer.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
 			// 
+			// cbsort
+			// 
+			this.cbsort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbsort.Enum = null;
+			this.cbsort.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbsort.Location = new System.Drawing.Point(120, 112);
+			this.cbsort.Name = "cbsort";
+			this.cbsort.ResourceManager = null;
+			this.cbsort.Size = new System.Drawing.Size(208, 21);
+			this.cbsort.TabIndex = 19;
+			this.cbsort.SelectedIndexChanged += new System.EventHandler(this.cbsort_SelectedIndexChanged);
+			// 
 			// ExtObjdForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -740,6 +771,8 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.RadioButton rbhex;
 		private System.Windows.Forms.CheckBox cball;
 		internal System.Windows.Forms.Label lbIsOk;
+		private System.Windows.Forms.Label label1;
+		internal Ambertation.Windows.Forms.EnumComboBox cbsort;
 		internal uint initialguid;
 
 		private void GetGuid(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
@@ -1044,6 +1077,31 @@ namespace SimPe.PackedFiles.UserInterface
 			{
 				sw.Close();
 			}
+		}
+
+		private void cbsort_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (Tag!=null) return;
+			wrapper.FunctionSubSort = (Data.ObjFunctionSubSort)cbsort.SelectedValue;
+			wrapper.Changed = true;
+			this.SetFunctionCb(wrapper);
+		}
+
+		internal void SetFunctionCb(Wrapper.ExtObjd objd)
+		{
+			this.cbappliances.Checked = objd.FunctionSort.InAppliances;
+			this.cbdecorative.Checked = objd.FunctionSort.InDecorative;
+			this.cbelectronics.Checked = objd.FunctionSort.InElectronics;
+			this.cbgeneral.Checked = objd.FunctionSort.InGeneral;
+			this.cblightning.Checked = objd.FunctionSort.InLighting;
+			this.cbplumbing.Checked = objd.FunctionSort.InPlumbing;
+			this.cbseating.Checked = objd.FunctionSort.InSeating;
+			this.cbsurfaces.Checked = objd.FunctionSort.InSurfaces;
+			this.cbhobby.Checked = objd.FunctionSort.InHobbies;
+			this.cbaspiration.Checked = objd.FunctionSort.InAspirationRewards;
+			this.cbcareer.Checked = objd.FunctionSort.InCareerRewards;
+
+			this.groupBox2.Refresh();
 		}
 	}
 }

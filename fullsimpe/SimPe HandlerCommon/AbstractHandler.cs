@@ -133,7 +133,7 @@ namespace SimPe.Interfaces.Plugin
 			msg += "\nFile: ";
 			if (this.FileDescriptor!=null) 
 			{
-				msg += this.FileDescriptor.TypeName.Name+" ("+Helper.HexString(this.FileDescriptor.Type) + ") - " + Helper.HexString(this.FileDescriptor.SubType) + " - " + Helper.HexString(this.FileDescriptor.Group) + " - " +Helper.HexString(this.FileDescriptor.Instance);
+				msg += this.FileDescriptor.ExceptionString;
 			} 
 			else 
 				msg += "null";

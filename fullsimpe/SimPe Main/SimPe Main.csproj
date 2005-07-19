@@ -244,6 +244,11 @@
                     Project = "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe Wizardbase"
+                    Project = "{B552AF25-66F1-4DFE-8760-2D3053F57E7C}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
