@@ -794,6 +794,7 @@ namespace SimPe
 			}
 		}
 
+		
 		/// <summary>
 		/// Returns true if this is a Neighborhood File
 		/// </summary>
@@ -801,6 +802,7 @@ namespace SimPe
 		/// <returns></returns>
 		public static bool IsNeighborhoodFile(string filename) 
 		{
+			if (filename==null) return false;
 			filename = filename.Trim().ToLower();
 
 			if (filename.EndsWith("neighborhood.package")) return true;
