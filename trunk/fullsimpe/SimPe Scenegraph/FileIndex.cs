@@ -445,7 +445,7 @@ namespace SimPe.Plugin
 			WaitingScreen.UpdateMessage(System.IO.Path.GetFileNameWithoutExtension(file));
 			try 
 			{
-				SimPe.Interfaces.Files.IPackageFile package = SimPe.Packages.File.LoadFromFile(file);
+				SimPe.Interfaces.Files.IPackageFile package = SimPe.Packages.File.LoadFromFile(file, false, true);
 				AddIndexFromPackage(package, false);
 			} 
 			catch (Exception ex) 
@@ -459,8 +459,7 @@ namespace SimPe.Plugin
 		/// <param name="package">The package File</param>
 		public void AddIndexFromPackage(SimPe.Interfaces.Files.IPackageFile package){
 			AddIndexFromPackage(package, false);
-		}
-
+		}		
 
 		/// <summary>
 		/// Add all Files stored in the passed package
@@ -472,8 +471,8 @@ namespace SimPe.Plugin
 			package.Persistent = true;			
 			if (package.FileName!=null) 
 			{
-				if ((addedfilenames.Contains(package.FileName)) && !overwrite) return;
-				addedfilenames.Add(package.FileName);
+				if ((addedfilenames.Contains(package.FileName.Trim().ToLower())) && !overwrite) return;
+				addedfilenames.Add(package.FileName.Trim().ToLower());
 			}
 
 			uint local = GetLocalGroup(package);
@@ -609,7 +608,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="pfd">The File you are looking for</param>
 		/// <returns>all FileIndexItems</returns>
-		public IScenegraphFileIndexItem[] FindFile(Interfaces.Files.IPackedFileDescriptor pfd)
+		public IScenegraphFileIndexItem[] FindFile(Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg)
 		{
 			ArrayList list = new ArrayList();
 
@@ -621,7 +620,15 @@ namespace SimPe.Plugin
 					Hashtable instances = (Hashtable)groups[pfd.Group];
 					if (instances.ContainsKey(pfd.LongInstance)) 
 					{
-						list = (ArrayList)instances[pfd.LongInstance];
+						
+						/*if (pkg!=null) 
+						{
+							foreach (FileIndexItem fii in (ArrayList)instances[pfd.LongInstance]) 
+							{								
+								if (fii.Package.Equals(pkg)) list.Add(fii);
+							}
+						} 
+						else */	list = (ArrayList)instances[pfd.LongInstance];
 					}
 				}
 			}
@@ -674,14 +681,14 @@ namespace SimPe.Plugin
 		/// <param name="group">the Group of the Files</param>
 		/// <param name="instance">Instance Number of the File</param>
 		/// <returns>all FileIndexItems</returns>
-		public IScenegraphFileIndexItem[] FindFile(uint type, uint group, ulong instance)
+		public IScenegraphFileIndexItem[] FindFile(uint type, uint group, ulong instance, SimPe.Interfaces.Files.IPackageFile pkg)
 		{
 			SimPe.Packages.PackedFileDescriptor pfd = new SimPe.Packages.PackedFileDescriptor();
 			pfd.Group = group;
 			pfd.Type = type;
 			pfd.LongInstance = instance;
 
-			return FindFile(pfd);
+			return FindFile(pfd, pkg);
 		}
 
 		/// <summary>
@@ -851,12 +858,12 @@ namespace SimPe.Plugin
 		public IScenegraphFileIndexItem FindFileByName(string filename, uint type, uint defgroup, bool betolerant)
 		{
 			Interfaces.Files.IPackedFileDescriptor pfd = SimPe.Plugin.ScenegraphHelper.BuildPfd(filename, type, defgroup);
-			IScenegraphFileIndexItem ret = FindSingleFile(pfd, betolerant);
+			IScenegraphFileIndexItem ret = FindSingleFile(pfd, null, betolerant);
 
 			if ((ret==null) && betolerant)
 			{
 				pfd.SubType = 0;
-				ret = FindSingleFile(pfd, betolerant);
+				ret = FindSingleFile(pfd, null, betolerant);
 			} 
 
 			return ret;
@@ -871,10 +878,10 @@ namespace SimPe.Plugin
 		/// fallback Algorithm in case of the precice Search failing
 		/// </param>
 		/// <returns>The first matching File or null if none</returns>
-		public IScenegraphFileIndexItem FindSingleFile(Interfaces.Files.IPackedFileDescriptor pfd, bool betolerant)
+		public IScenegraphFileIndexItem FindSingleFile(Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg, bool betolerant)
 		{
 			IScenegraphFileIndexItem[] list;
-			list = this.FindFile(pfd);
+			list = this.FindFile(pfd, pkg);
 
 			//something is wrong with the Link, try to be tolerant
 			if (list.Length==0) 
@@ -883,7 +890,7 @@ namespace SimPe.Plugin
 				for (int i=0; i<alternaiveGroups.Count; i++)
 				{
 					pfd.Group = (uint)alternaiveGroups[i];
-					list = this.FindFile(pfd);
+					list = this.FindFile(pfd, pkg);
 					if (list.Length>0) break;
 				}
 
@@ -915,12 +922,31 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Remove the trace of a Package from the FileTable
+		/// </summary>
+		/// <param name="pkg"></param>
+		public void ClosePackage(SimPe.Interfaces.Files.IPackageFile pkg)
+		{
+			if (pkg==null) return;
+			string flname = pkg.FileName;
+			pkg.Close(true);
+
+			if (flname==null) return;			
+			addedfilenames.Remove(flname.Trim().ToLower());
+		}
+
+		/// <summary>
 		/// Remove a FileItem from the Tree when it is closed
 		/// </summary>
 		/// <param name="sender"></param>
 		private void ClosedDescriptor(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
 		{
-			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] sgis = FindFile(sender);
+			
+			///
+			/// TODO: This might be critical! Maybe we need to send the parent package along 
+			/// with this Data, otherwise to many Files could get removed!
+			/// 
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] sgis = FindFile(sender, null);
 			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem sgi in sgis) RemoveItem(sgi);			
 		}
 

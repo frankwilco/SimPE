@@ -43,8 +43,8 @@ namespace SimPe.Packages
 		/// Cosntructor of the Class
 		/// </summary>
 		/// <param name="br">The BinaryReader representing the Package File</param>
-		internal GeneratableFile(BinaryReader br) : base(br) {}	
-		internal GeneratableFile(string flname) : base(flname) {}
+		internal GeneratableFile(BinaryReader br, bool flat) : base(br, flat) {}	
+		internal GeneratableFile(string flname, bool flat) : base(flname, flat) {}
 
 
 		/// <summary>
@@ -53,7 +53,7 @@ namespace SimPe.Packages
 		/// <returns>An INstance of this Class</returns>
 		protected override Interfaces.Files.IPackageFile NewCloneBase() 
 		{
-			GeneratableFile fl = new GeneratableFile((BinaryReader)null);
+			GeneratableFile fl = new GeneratableFile((BinaryReader)null, FileIndex.Flat);
 			fl.header = this.header;
 			
 			return fl;
@@ -65,35 +65,18 @@ namespace SimPe.Packages
 		/// <param name="flname">Filename for the Package</param>
 		public void Build(string flname)
 		{
-			this.BeginUpdate();
-			try 
-			{
-				MemoryStream ms = Build();
-				Save(ms, flname);
-			} 
-			finally 
-			{
-				this.EndUpdate();
-			}
-		}
-
-		/// <summary>
-		/// Stores the internal reader to the passed File (IncrementalBuild() will be called!)
-		/// </summary>
-		/// <remarks>This is Experimental and might not work properly</remarks>
-		public void Save()
-		{
-			Save(this.FileName);
-		}
+			this.Save(flname);
+		}		
 
 		/// <summary>
 		/// Stores the internal reader to the passed File (IncrementalBuild() will be called!)
 		/// </summary>
 		/// <param name="flname">The Filename you want to save the Package to</param>
 		/// <remarks>This is Experimental and might not work properly</remarks>
-		public void Save(string flname)
-		{
+		public override void Save(string flname)
+		{			
 			this.BeginUpdate();
+			PackageMaintainer.Maintainer.RemovePackage(flname);
 			try 
 			{
 				//this.IncrementalBuild();						
@@ -164,7 +147,7 @@ namespace SimPe.Packages
 		/// </summary>
 		/// <param name="ms">The Memory Stream you want to write</param>
 		/// <param name="fs">The Filestream you want to write the File to</param>
-		public void Save(MemoryStream ms, FileStream fs)
+		protected void Save(MemoryStream ms, FileStream fs)
 		{			
 			try 
 			{

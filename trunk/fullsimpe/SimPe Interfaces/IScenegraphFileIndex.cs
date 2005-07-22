@@ -106,7 +106,7 @@ namespace SimPe.Interfaces.Scenegraph
 		/// </summary>
 		/// <param name="pfd">The File you are looking for</param>
 		/// <returns>all FileIndexItems</returns>
-		IScenegraphFileIndexItem[] FindFile(Interfaces.Files.IPackedFileDescriptor pfd);
+		IScenegraphFileIndexItem[] FindFile(Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg);
 
 		/// <summary>
 		/// Returns all matching FileIndexItems for the passed type
@@ -139,7 +139,7 @@ namespace SimPe.Interfaces.Scenegraph
 		/// <param name="group">the Group of the Files</param>
 		/// <param name="instance">Instance Number of the File</param>
 		/// <returns>all FileIndexItems</returns>
-		IScenegraphFileIndexItem[] FindFile(uint type, uint group, ulong instance);
+		IScenegraphFileIndexItem[] FindFile(uint type, uint group, ulong instance, SimPe.Interfaces.Files.IPackageFile pkg);
 
 		/// <summary>
 		/// Returns all matching FileIndexItems while Ignoring the Group
@@ -192,7 +192,7 @@ namespace SimPe.Interfaces.Scenegraph
 		/// fallback Algorithm in case of the precice Search failing
 		/// </param>
 		/// <returns>The first matching File or null if none</returns>
-		IScenegraphFileIndexItem FindSingleFile(Interfaces.Files.IPackedFileDescriptor pfd, bool betolerant);
+		IScenegraphFileIndexItem FindSingleFile(Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg, bool betolerant);
 	
 		/// <summary>
 		/// Sort the Files in this type ascending by instance value
@@ -220,5 +220,10 @@ namespace SimPe.Interfaces.Scenegraph
 		/// <returns></returns>
 		SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem CreateFileIndexItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg);
 		
+		/// <summary>
+		/// Remove the trace of a Package from the FileTable
+		/// </summary>
+		/// <param name="pkg"></param>
+		void ClosePackage(SimPe.Interfaces.Files.IPackageFile pkg);
 	}
 }

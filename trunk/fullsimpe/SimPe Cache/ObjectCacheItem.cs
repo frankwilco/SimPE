@@ -141,6 +141,96 @@ namespace SimPe.Cache
 			set { objfuncsort = value; }
 		}
 
+		public static string[][] GetCategory(ObjectCacheItemVersions version, Data.ObjFunctionSubSort subsort, Data.ObjectTypes type)
+		{
+			uint ofss = (uint)subsort;
+			string[][] ret = null;
+					
+			if (version==ObjectCacheItemVersions.ClassicOW) 
+			{
+				System.Collections.ArrayList list = new System.Collections.ArrayList();
+				Data.ObjFunctionSortBits[] ss = (Data.ObjFunctionSortBits[])System.Enum.GetValues(typeof(Data.ObjFunctionSortBits));
+				foreach (Data.ObjFunctionSortBits s in ss) 
+					if ((ofss & (uint)Math.Pow(2, (byte)s))!=0)						
+						list.Add(s.ToString());													
+				
+				ret = new string[list.Count][];
+				for (int i=0; i<list.Count; i++)
+					ret[i]= new string[] { list[i].ToString() };
+			}
+			else if  (version==ObjectCacheItemVersions.DockableOW) 
+			{
+				Data.ObjFunctionSubSort fss = subsort;
+				uint upper = (uint)((ofss >> 8) & 0xfff);
+				uint lower = (uint)(ofss & 0xff);
+
+				System.Collections.ArrayList list = new System.Collections.ArrayList();
+				Data.ObjFunctionSortBits[] ss = (Data.ObjFunctionSortBits[])System.Enum.GetValues(typeof(Data.ObjFunctionSortBits));
+					
+				foreach (Data.ObjFunctionSortBits s in ss) 
+				{
+					int vu = (int)Math.Pow(2, (byte)s);
+					if ((upper & vu)!=0)	
+					{			
+						bool added = false;	
+						for (int i=0; i<8; i++)
+						{
+							int v = (int)Math.Pow(2, i);
+							if ((lower & v) != 0) 
+							{
+								Data.ObjFunctionSubSort mss = (Data.ObjFunctionSubSort)(((vu&0xff)<<8) | (v & 0xff));
+								string[] ps = mss.ToString().Split("_".ToCharArray(), 2);
+								if (ps.Length>=2) { list.Add(new string[] {ps[0], ps[1]});	 added = true; }
+								else if (ps.Length==1) { list.Add(new string[] {s.ToString()}); added = true; }
+							}
+						}
+
+						if (!added) 
+						{
+							list.Add(new string[] {s.ToString()});			
+						}
+					}
+				}
+
+				
+				
+				ret = new string[list.Count][];
+				for (int i=0; i<list.Count; i++) 
+				{					
+					string[] ct = (string[])list[i];
+					ret[i] = ct;
+				}
+			}
+
+			if (type!=Data.ObjectTypes.Normal) 
+			{
+				System.Collections.ArrayList list = new System.Collections.ArrayList();
+				if (ret!=null) 
+				{
+					foreach (string[] s in ret)
+						list.Add(s);
+				}
+				list.Add(new string[] {SimPe.Localization.GetString("Other"),  type.ToString() });
+
+				ret = new string[list.Count][];
+				for (int i=0; i<list.Count; i++) 
+				{					
+					string[] ct = (string[])list[i];
+					ret[i] = ct;
+				}
+			}
+
+			
+			if (ret==null) 				
+				ret = new string[][] { new string[] {SimPe.Localization.GetString("Unknown")} };
+
+			if (ret.Length==0) 				
+				ret = new string[][] { new string[] {SimPe.Localization.GetString("Unknown")} };
+				
+			return ret;
+		}
+		
+
 		/// <summary>
 		/// Returs the Category this Object should get sorted in
 		/// </summary>
@@ -148,84 +238,7 @@ namespace SimPe.Cache
 		{
 			get 
 			{
-				string[][] ret = null;
-					
-				if (ObjectVersion==ObjectCacheItemVersions.ClassicOW) 
-				{
-					System.Collections.ArrayList list = new System.Collections.ArrayList();
-					Data.ObjFunctionSortBits[] ss = (Data.ObjFunctionSortBits[])System.Enum.GetValues(typeof(Data.ObjFunctionSortBits));
-					foreach (Data.ObjFunctionSortBits s in ss) 
-						if ((ObjectFunctionSort & (uint)Math.Pow(2, (byte)s))!=0)						
-							list.Add(s.ToString());													
-				
-					ret = new string[list.Count][];
-					for (int i=0; i<list.Count; i++)
-						ret[i]= new string[] { list[i].ToString() };
-				}
-				else if  (ObjectVersion==ObjectCacheItemVersions.DockableOW) 
-				{
-					Data.ObjFunctionSubSort fss = (Data.ObjFunctionSubSort)ObjectFunctionSort;
-					uint upper = (uint)(((uint)fss >> 8) & 0xfff);
-					uint lower = (uint)((uint)fss & 0xff);
-
-					System.Collections.ArrayList list = new System.Collections.ArrayList();
-					Data.ObjFunctionSortBits[] ss = (Data.ObjFunctionSortBits[])System.Enum.GetValues(typeof(Data.ObjFunctionSortBits));
-					
-					foreach (Data.ObjFunctionSortBits s in ss) 
-					{
-						int vu = (int)Math.Pow(2, (byte)s);
-						if ((upper & vu)!=0)	
-						{			
-							bool added = false;	
-							for (int i=0; i<8; i++)
-							{
-								int v = (int)Math.Pow(2, i);
-								if ((lower & v) != 0) 
-								{
-									Data.ObjFunctionSubSort mss = (Data.ObjFunctionSubSort)(((vu&0xff)<<8) | (v & 0xff));
-									string[] ps = mss.ToString().Split("_".ToCharArray(), 2);
-									if (ps.Length>=2) { list.Add(new string[] {ps[0], ps[1]});	 added = true; }
-									else if (ps.Length==1) { list.Add(new string[] {s.ToString()}); added = true; }
-								}
-							}
-
-							if (!added) 
-							{
-								list.Add(new string[] {s.ToString()});			
-							}
-						}
-					}
-				
-					ret = new string[list.Count][];
-					for (int i=0; i<list.Count; i++) 
-					{					
-						string[] ct = (string[])list[i];
-						ret[i] = ct;
-					}
-				}
-
-				if (this.ObjectType!=Data.ObjectTypes.Normal) 
-				{
-					System.Collections.ArrayList list = new System.Collections.ArrayList();
-					if (ret!=null) 
-					{
-						foreach (string[] s in ret)
-							list.Add(s);
-					}
-					list.Add(new string[] {SimPe.Localization.GetString("Other"),  this.ObjectType.ToString() });
-
-					ret = new string[list.Count][];
-					for (int i=0; i<list.Count; i++) 
-					{					
-						string[] ct = (string[])list[i];
-						ret[i] = ct;
-					}
-				}
-
-				if (ret==null) 				
-					ret = new string[][] { new string[] {SimPe.Localization.GetString("Unknown")} };
-				
-				return ret;
+				return GetCategory(this.ObjectVersion, (Data.ObjFunctionSubSort)this.ObjectFunctionSort, this.ObjectType);
 			}
 		}
 

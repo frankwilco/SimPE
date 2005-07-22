@@ -360,7 +360,7 @@ namespace SimPe.Plugin
 					if (pitems.Contains(nrefitem)) continue;
 					if (groups.Contains(nrefitem.LocalGroup)) continue;					
 
-					Interfaces.Scenegraph.IScenegraphFileIndexItem[] cacheitems = cachefile.FileIndex.FindFile(nrefitem.FileDescriptor);
+					Interfaces.Scenegraph.IScenegraphFileIndexItem[] cacheitems = cachefile.FileIndex.FindFile(nrefitem.FileDescriptor, nrefitem.Package);
 
 					//find the correct File
 					int cindex = -1;

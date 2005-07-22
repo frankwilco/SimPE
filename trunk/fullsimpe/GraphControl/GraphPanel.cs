@@ -164,7 +164,11 @@ namespace Ambertation.Windows.Forms
 			{
 				autosz = value;
 				this.li_ItemsChanged(li, null);
-				if (autosz) Dock = DockStyle.None;
+				if (autosz) 
+				{
+					Dock = DockStyle.None;
+					this.SetBounds(0, 0, Width, Height);
+				}
 			}
 		}
 		Ambertation.Windows.Forms.Graph.LinkControlLineMode lm;
@@ -189,9 +193,14 @@ namespace Ambertation.Windows.Forms
 			}
 		}
 		int minwd, minhg;
+		[Browsable(false)]
 		public int MinWidth
 		{
-			get { return minwd; }
+			get { 
+				if (this.DesignMode && Parent!=null) return Parent.Width;
+				
+				return minwd; 
+			}
 			set 
 			{
 				minwd = value;
@@ -199,10 +208,13 @@ namespace Ambertation.Windows.Forms
 			}
 		}
 
-		
+		[Browsable(false)]
 		public int MinHeight
 		{
-			get { return minhg; }
+			get { 
+				if (this.DesignMode && Parent!=null) return Parent.Height;
+				return minhg; 
+			}
 			set 
 			{
 				minhg = value;

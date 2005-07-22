@@ -30,7 +30,7 @@ namespace SimPe
 		internal PluginManager(
 			TD.SandBar.MenuBarItem toolmenu, 
 			TD.SandBar.ToolBar tootoolbar,
-			TD.SandDock.DocumentContainer dc, 
+			TD.SandDock.TabControl dc, 
 			LoadedPackage lp,
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox defaultactiontaskbox,
 			TD.SandBar.MenuBarItem defaultactionmenu,
@@ -200,7 +200,7 @@ namespace SimPe
 				if (dctrl!=null) 
 				{
 					dctrl.Manager = dc.Manager;
-					dctrl.PerformDock(dc.LayoutSystem);
+					dctrl.DockNextTo(dc);
 
 					ChangedGuiResourceEvent += new SimPe.Events.ChangedResourceEvent(idt.RefreshDock);
 					dctrl.Tag = idt.Shortcut;

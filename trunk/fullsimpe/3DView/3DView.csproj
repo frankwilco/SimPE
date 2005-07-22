@@ -157,6 +157,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "DirectXPanel.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DirectXPanel.resx"
+                    DependentUpon = "DirectXPanel.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Panel 3D.cs"
                     SubType = "Component"
                     BuildAction = "Compile"

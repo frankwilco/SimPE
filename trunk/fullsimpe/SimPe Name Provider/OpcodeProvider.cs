@@ -121,7 +121,7 @@ namespace SimPe.Providers
 					if (memories.Contains(objd.Guid)) continue;
 					try 
 					{
-						Interfaces.Scenegraph.IScenegraphFileIndexItem[] sitems = FileTable.FileIndex.FindFile(Data.MetaData.CTSS_FILE, pfd.Group, objd.CTSSInstance);
+						Interfaces.Scenegraph.IScenegraphFileIndexItem[] sitems = FileTable.FileIndex.FindFile(Data.MetaData.CTSS_FILE, pfd.Group, objd.CTSSInstance, null);
 						if (sitems.Length>0) 
 						{
 							str.ProcessData(sitems[0]);
@@ -153,7 +153,7 @@ namespace SimPe.Providers
 					o[1] = (Data.ObjectTypes)objd.Type;
 					o[2] = null;
 					SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
-					Interfaces.Scenegraph.IScenegraphFileIndexItem[] iitems = FileTable.FileIndex.FindFile(Data.MetaData.SIM_IMAGE_FILE, pfd.Group, 1);	
+					Interfaces.Scenegraph.IScenegraphFileIndexItem[] iitems = FileTable.FileIndex.FindFile(Data.MetaData.SIM_IMAGE_FILE, pfd.Group, 1, null);	
 					if (iitems.Length>0) 
 					{
 						pic.ProcessData(iitems[0]);

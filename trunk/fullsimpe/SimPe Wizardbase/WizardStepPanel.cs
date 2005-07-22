@@ -159,6 +159,11 @@ namespace SimPe.Wizards
 			if (Activate!=null) Activate(sender, e);
 		}
 
+		internal void OnShowed(Wizard sender)
+		{
+			if (Activated!=null) Activated(sender, this);
+		}
+
 		public event WizardStepHandle Loaded;
 		public event WizardStepHandle Aborted;
 		public event WizardStepHandle Finished;
@@ -166,6 +171,7 @@ namespace SimPe.Wizards
 		public event WizardStepChangeHandle Prepare;
 		public event WizardStepChangeHandle Rollback;
 		public event WizardChangeHandle Activate;
+		public event WizardStepHandle Activated;
 
 		#endregion
 		

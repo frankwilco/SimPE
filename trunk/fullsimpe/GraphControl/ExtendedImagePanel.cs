@@ -73,7 +73,7 @@ namespace Ambertation.Windows.Forms.Graph
 
 		#region Basic Draw Methods				
 
-		new Rectangle  ThumbnailRectangle
+		Rectangle  ThumbnailRectangle
 		{
 			get 
 			{ 

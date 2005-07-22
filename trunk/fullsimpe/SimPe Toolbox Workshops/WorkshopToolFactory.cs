@@ -31,11 +31,9 @@ namespace SimPe.Plugin
 	/// </remarks>
 	public class WorkshopToolFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory, SimPe.Interfaces.Plugin.IToolFactory
 	{
-		SimPe.Plugin.Tool.Dockable.ObjectWorkshopDock rd;
-
 		public WorkshopToolFactory()
 		{
-			rd = new SimPe.Plugin.Tool.Dockable.ObjectWorkshopDock();
+			
 		}
 
 		#region AbstractWrapperFactory Member
@@ -64,7 +62,8 @@ namespace SimPe.Plugin
 			get
 			{
 				IToolPlugin[] tools = {
-										  new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool(rd)
+										  new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool(),
+										  new SimPe.Plugin.Tool.Dockable.PackageDetailDockTool()
 									  };
 				return tools;
 			}

@@ -89,6 +89,11 @@
                     AssemblyName = "System.Xml"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
+                <Reference
+                    Name = "System.Design"
+                    AssemblyName = "System.Design"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Design.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -97,6 +102,21 @@
                     RelPath = "AbstractFloodFiller.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AnimatedDesigner.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AnimatedImagelist.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AnimatedImagelist.resx"
+                    DependentUpon = "AnimatedImagelist.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "AssemblyInfo.cs"

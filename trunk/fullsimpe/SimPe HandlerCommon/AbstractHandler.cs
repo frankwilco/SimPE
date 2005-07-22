@@ -332,6 +332,7 @@ namespace SimPe.Interfaces.Plugin
 			} 
 			catch (Exception ex) 
 			{
+
 				if (catchex) ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
 				else throw new Exception(ExceptionMessage(ex.Message), ex);
 			}
@@ -356,6 +357,7 @@ namespace SimPe.Interfaces.Plugin
 			}
 			catch (Exception ex) 
 			{
+
 				if (catchex) ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
 				else throw new Exception(ExceptionMessage(ex.Message), ex);
 			}

@@ -344,6 +344,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ThreadConsumer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "TypeAlias.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

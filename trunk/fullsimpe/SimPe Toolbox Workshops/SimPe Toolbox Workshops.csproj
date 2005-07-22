@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"'
+                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\$(TargetName).pdb" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"'
                 RootNamespace = "SimPe.Plugin.Tool.Dockable"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -120,11 +120,6 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "SimPe Workspace Helper"
-                    Project = "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
                     Name = "System.Drawing"
                     AssemblyName = "System.Drawing"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
@@ -135,29 +130,9 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
                 />
                 <Reference
-                    Name = "sanddock"
-                    AssemblyName = "SandDock"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\sanddock.dll"
-                />
-                <Reference
                     Name = "System.Design"
                     AssemblyName = "System.Design"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Design.dll"
-                />
-                <Reference
-                    Name = "eyefinder"
-                    AssemblyName = "Eyefinder"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\eyefinder.dll"
-                />
-                <Reference
-                    Name = "navisight"
-                    AssemblyName = "Navisight"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\navisight.dll"
-                />
-                <Reference
-                    Name = "sandbar"
-                    AssemblyName = "SandBar"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\sandbar.dll"
                 />
                 <Reference
                     Name = "xpcommoncontrols"
@@ -190,13 +165,28 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
+                    Name = "GraphControl"
+                    Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SandDock"
+                    AssemblyName = "SandDock"
+                    HintPath = "..\..\..\httpwww.divil.co.uknet\SandDock.dll"
+                />
+                <Reference
+                    Name = "SandBar"
+                    AssemblyName = "SandBar"
+                    HintPath = "..\..\..\httpwww.divil.co.uknet\SandBar.dll"
+                />
+                <Reference
                     Name = "SimPe Extended Filehandlers"
                     Project = "{7EF7C30C-2968-46E8-AA74-79EDB0FE8F2A}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "GraphControl"
-                    Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
+                    Name = "SimPe Workspace Helper"
+                    Project = "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
@@ -210,6 +200,30 @@
                 />
                 <File
                     RelPath = "custom.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "demo.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "DockableWindow1.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NeighborhoodPreview.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NeighborhoodPreview.de.resx"
+                    DependentUpon = "NeighborhoodPreview.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "NeighborhoodPreview.resx"
+                    DependentUpon = "NeighborhoodPreview.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -227,19 +241,59 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ObjectPreview.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ObjectPreview.de.resx"
+                    DependentUpon = "ObjectPreview.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ObjectPreview.resx"
+                    DependentUpon = "ObjectPreview.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Objects.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "OWDockForm.cs"
-                    SubType = "Form"
+                    RelPath = "ObjectsDock.cs"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "OWDockForm.resx"
-                    DependentUpon = "OWDockForm.cs"
+                    RelPath = "ObjectsDock.resx"
+                    DependentUpon = "ObjectsDock.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ObjectWorkshopHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PackageDetailDock.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PackageDetailDock.de.resx"
+                    DependentUpon = "PackageDetailDock.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PackageDetailDock.resx"
+                    DependentUpon = "PackageDetailDock.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PackageDetailDockTool.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "subitems.png"

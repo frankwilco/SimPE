@@ -833,7 +833,7 @@ namespace SimPe.Plugin
 						if (tones.Contains(st)) continue;
 						else tones.Add(st);
 
-						SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] idr = FileTable.FileIndex.FindFile(0xAC506764, item.FileDescriptor.Group, item.FileDescriptor.LongInstance);
+						SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] idr = FileTable.FileIndex.FindFile(0xAC506764, item.FileDescriptor.Group, item.FileDescriptor.LongInstance, null);
 						if (idr.Length>0) 
 						{
 							SimPe.Plugin.RefFile reffile = new RefFile();
@@ -846,7 +846,7 @@ namespace SimPe.Plugin
 							{								
 								if (pfd.Type == Data.MetaData.TXMT) 
 								{
-									SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] txmts = FileTable.FileIndex.FindFile(pfd);
+									SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] txmts = FileTable.FileIndex.FindFile(pfd, null);
 									if (txmts.Length>0) 
 									{
 										SimPe.Plugin.Rcol rcol = new GenericRcol(null, false);

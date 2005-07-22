@@ -368,6 +368,8 @@ namespace Ambertation.Drawing
 
 		public static Image ScaleImage(Image img, int width, int height, bool quality)
 		{
+			if (img==null) return img;
+
 			Bitmap bm = new Bitmap(width, height);
 			
 			Graphics g = Graphics.FromImage(bm);						

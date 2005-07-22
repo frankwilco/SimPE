@@ -51,6 +51,35 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// Remove a given Package from the Maintainer
+		/// </summary>
+		/// <param name="pkg"></param>
+		internal void RemovePackage(GeneratableFile pkg)
+		{
+			if (!Helper.WindowsRegistry.UsePackageMaintainer) return;
+			if (pkg==null) return;			
+
+			RemovePackage(pkg.FileName);
+		}
+
+		/// <summary>
+		/// Remove a given Package from the Maintainer
+		/// </summary>
+		/// <param name="pkg"></param>
+		internal void RemovePackage(string flname)
+		{
+			if (flname==null) return;
+			
+
+			if (ht.ContainsKey(flname)) 
+			{
+				SimPe.FileTableBase.FileIndex.ClosePackage((GeneratableFile)ht[flname]);
+				//((GeneratableFile)ht[filename]).Close(true);
+				ht.Remove(flname);
+			}
+		}
+
+		/// <summary>
 		/// Load a Package File from the Maintainer
 		/// </summary>
 		/// <param name="filename">the name of the package</param>
@@ -60,16 +89,17 @@ namespace SimPe.Packages
 		/// If the package was loaded once in this session, this Method will return an instance to the
 		/// last loaded Version. Otherwise it wil create a new instance
 		/// </remarks>
-		public GeneratableFile LoadPackageFromFile(string filename, bool sync) 
+		public GeneratableFile LoadPackageFromFile(string filename, bool sync, bool flat) 
 		{
-			if (filename==null) return new GeneratableFile((System.IO.BinaryReader)null);
+			if (filename==null) return GeneratableFile.CreateNew();
 
-			if (!Helper.WindowsRegistry.UsePackageMaintainer)  return new GeneratableFile(filename);
+			if (!Helper.WindowsRegistry.UsePackageMaintainer)  return new GeneratableFile(filename, flat);
 
-			if (!ht.ContainsKey(filename)) ht[filename] = new GeneratableFile(filename);
+			if (!ht.ContainsKey(filename)) ht[filename] = new GeneratableFile(filename, flat);
 			else if (sync) 
 			{				
-				((GeneratableFile)ht[filename]).Close(true);
+				SimPe.FileTableBase.FileIndex.ClosePackage((GeneratableFile)ht[filename]);
+				//((GeneratableFile)ht[filename]).Close(true);
 				((GeneratableFile)ht[filename]).ReloadFromFile(filename);
 				SimPe.FileTableBase.FileIndex.AddIndexFromPackage((GeneratableFile)ht[filename]);
 			}

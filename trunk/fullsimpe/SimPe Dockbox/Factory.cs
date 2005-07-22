@@ -74,7 +74,10 @@ namespace SimPe.Plugin.Tool.Dockable
 									new ActionUniqueInstance(),
 									new CreateListFromPackageTool(),
 									new CreateListFromSelectionTool(),
-								    new HexDockTool(rd)				
+								    new HexDockTool(rd)		
+#if DEBUG
+										  , new ActionCheckFiletable()
+#endif
 				};
 				return tools;
 			}

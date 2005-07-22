@@ -32,22 +32,44 @@ namespace SimPe.Collections.IO
 		/// This Hashtable (FileType) contains a Hashtable (Group) of Hashtables (Instance) of ArrayLists (coliding Files)
 		/// </summary>
 		Hashtable index;
-
 		SimPe.Interfaces.Files.IPackageFile pkg;
-
+		uint higestoffset;
 		PackedFileDescriptors pfds;
 		
 		/// <summary>
 		/// Create a new Instance
 		/// </summary>
 		/// <remarks>Same as a call to FileIndex(null)</remarks>
-		public ResourceIndex(SimPe.Interfaces.Files.IPackageFile pkg)
+		public ResourceIndex(SimPe.Interfaces.Files.IPackageFile pkg) : this(pkg, false)
+		{
+		}
+
+		/// <summary>
+		/// Create a new Instance
+		/// </summary>
+		/// <remarks>Same as a call to FileIndex(null)</remarks>
+		public ResourceIndex(SimPe.Interfaces.Files.IPackageFile pkg, bool flat)
 		{
 			this.pkg = pkg;
 			pfds = new PackedFileDescriptors();
+			this.flat = flat;
+			higestoffset = 0;
 			LoadIndex();
 		}
 		
+		bool flat;
+		public bool Flat
+		{
+			get { return flat; }
+		}
+
+		/// <summary>
+		/// Returns the next free offset in the File
+		/// </summary>
+		public uint NextFreeOffset
+		{
+			get { return higestoffset; }
+		}
 
 		/// <summary>
 		/// Creates a clone of this Object
@@ -103,39 +125,69 @@ namespace SimPe.Collections.IO
 		/// Add a Filedescriptor to the Index
 		/// </summary>
 		/// <param name="pfd">The Descriptor</param>
-		/// <param name="package">The File</param>
-		/// <param name="localgroup">use this groupa as replacement for 0xffffffff</param>
 		internal void AddIndexFromPfd(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
 		{
-			//pfd.Closed += new SimPe.Events.PackedFileChanged(ClosedDescriptor);			
+			pfd.Closed += new SimPe.Events.PackedFileChanged(ClosedDescriptor);		
+			pfd.DescriptionChanged += new EventHandler(DescriptorChanged);
 
 			Hashtable groups = null;
 			Hashtable instances = null;
-			PackedFileDescriptors files = null;			
+			PackedFileDescriptors files = null;		
+	
+			if (pfd.Offset+pfd.Size > higestoffset) higestoffset = (uint)(pfd.Offset+pfd.Size);
 			
-			if (index.ContainsKey(pfd.Type)) groups = (Hashtable)index[pfd.Type];
-			else 
+			if (!flat) 
 			{
-				groups = new Hashtable();
-				index[pfd.Type] = groups;
-			}
+				if (index.ContainsKey(pfd.Type)) groups = (Hashtable)index[pfd.Type];
+				else 
+				{
+					groups = new Hashtable();
+					index[pfd.Type] = groups;
+				}
 
-			if (groups.ContainsKey(pfd.Group)) instances = (Hashtable)groups[pfd.Group];
-			else 
-			{
-				instances = new Hashtable();
-				groups[pfd.Group] = instances;
-			}
+				if (groups.ContainsKey(pfd.Group)) instances = (Hashtable)groups[pfd.Group];
+				else 
+				{
+					instances = new Hashtable();
+					groups[pfd.Group] = instances;
+				}
 
-			if (instances.ContainsKey(pfd.LongInstance)) files = (PackedFileDescriptors)instances[pfd.LongInstance];
-			else 
-			{
-				files = new PackedFileDescriptors();
-				instances[pfd.LongInstance] = files;
-			}
+				if (instances.ContainsKey(pfd.LongInstance)) files = (PackedFileDescriptors)instances[pfd.LongInstance];
+				else 
+				{
+					files = new PackedFileDescriptors();
+					instances[pfd.LongInstance] = files;
+				}
 			
-			files.Add(pfd);		
+				files.Add(pfd);	
+			}
 			pfds.Add(pfd);	
+		}
+
+		internal void RemoveChanged(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
+		{
+			if (!flat) 
+			{
+				foreach (uint type in index.Keys) 
+				{
+					Hashtable groups = (Hashtable)index[type];
+					foreach (uint group in groups.Keys)
+					{
+						Hashtable instances = (Hashtable)groups[group];
+						foreach (ulong instance in instances.Keys) 
+						{
+							PackedFileDescriptors list = (PackedFileDescriptors)instances[instance];
+							for (int i=list.Count-1; i>=0; i--) 
+								if (list[i] == pfd) 
+								{
+									pfds.Remove(list[i]);
+									list.RemoveAt(i);																	
+								}
+						}
+					}
+				}	
+			} 
+			else pfds.Remove(pfd);			
 		}
 
 		/// <summary>
@@ -146,19 +198,26 @@ namespace SimPe.Collections.IO
 		{			
 			ArrayList list = new ArrayList();
 
-			if (index.ContainsKey(pfd.Type)) 
+			if (!flat) 
 			{
-				Hashtable groups = (Hashtable)index[pfd.Type];
-				if (groups.ContainsKey(pfd.Group)) 
+				if (index.ContainsKey(pfd.Type)) 
 				{
-					Hashtable instances = (Hashtable)groups[pfd.Group];
-					if (instances.ContainsKey(pfd.LongInstance)) 
+					Hashtable groups = (Hashtable)index[pfd.Type];
+					if (groups.ContainsKey(pfd.Group)) 
 					{
-						list = (ArrayList)instances[pfd.LongInstance];
-						list.Remove(pfd);
-						pfds.Remove(pfd);
-					}
-				}				
+						Hashtable instances = (Hashtable)groups[pfd.Group];
+						if (instances.ContainsKey(pfd.LongInstance)) 
+						{
+							list = (ArrayList)instances[pfd.LongInstance];
+							list.Remove(pfd);
+							pfds.Remove(pfd);
+						}
+					}				
+				}
+			} 
+			else 
+			{
+				pfds.Remove(pfd);
 			}
 		}
 
@@ -171,26 +230,35 @@ namespace SimPe.Collections.IO
 			PackedFileDescriptors list;
 			PackedFileDescriptors removed = new PackedFileDescriptors();
 
-			foreach (uint type in index.Keys) 
+			if (!flat) 
 			{
-				Hashtable groups = (Hashtable)index[type];
-				foreach (uint group in groups.Keys)
+				foreach (uint type in index.Keys) 
 				{
-					Hashtable instances = (Hashtable)groups[group];
-					foreach (ulong instance in instances.Keys) 
+					Hashtable groups = (Hashtable)index[type];
+					foreach (uint group in groups.Keys)
 					{
-						list = (PackedFileDescriptors)instances[instance];
-						for (int i=list.Count-1; i>=0; i--) 
-							if (list[i].MarkForDelete) 
-							{
-								pfds.Remove(list[i]);
-								removed.Add(list[i]);
-								list.RemoveAt(i);									
+						Hashtable instances = (Hashtable)groups[group];
+						foreach (ulong instance in instances.Keys) 
+						{
+							list = (PackedFileDescriptors)instances[instance];
+							for (int i=list.Count-1; i>=0; i--) 
+								if (list[i].MarkForDelete) 
+								{
+									pfds.Remove(list[i]);
+									removed.Add(list[i]);
+									list.RemoveAt(i);									
 								
-							}
+								}
+						}
 					}
-				}
-			}			
+				}	
+			} 
+			else 
+			{
+				for (int i=this.pfds.Count-1; i>=0; i--) 				
+					if (pfds[i].MarkForDelete) 					
+						pfds.RemoveAt(i);
+			}
 
 			return removed;
 		}
@@ -204,20 +272,31 @@ namespace SimPe.Collections.IO
 		{
 			ArrayList list = new ArrayList();
 
-			if (index.ContainsKey(pfd.Type)) 
+			if (!flat) 
 			{
-				Hashtable groups = (Hashtable)index[pfd.Type];
-				if (groups.ContainsKey(pfd.Group)) 
+				if (index.ContainsKey(pfd.Type)) 
 				{
-					Hashtable instances = (Hashtable)groups[pfd.Group];
-					if (instances.ContainsKey(pfd.LongInstance)) 
+					Hashtable groups = (Hashtable)index[pfd.Type];
+					if (groups.ContainsKey(pfd.Group)) 
 					{
-						return (PackedFileDescriptors)instances[pfd.LongInstance];
+						Hashtable instances = (Hashtable)groups[pfd.Group];
+						if (instances.ContainsKey(pfd.LongInstance)) 
+						{
+							return (PackedFileDescriptors)instances[pfd.LongInstance];
+						}
 					}
 				}
-			}
-			
-			return new PackedFileDescriptors();
+
+				return new PackedFileDescriptors();
+			} 
+			else 
+			{
+				PackedFileDescriptors ret = new PackedFileDescriptors();
+				foreach (Interfaces.Files.IPackedFileDescriptor i in pfds)				
+					if (i.Equals(pfd)) ret.Add(i);
+				
+				return ret;
+			}						
 		}
 
 		/// <summary>
@@ -229,21 +308,32 @@ namespace SimPe.Collections.IO
 		{
 			PackedFileDescriptors list = new PackedFileDescriptors();
 
-			if (index.ContainsKey(type)) 
+			if (!flat) 
 			{
-				Hashtable groups = (Hashtable)index[type];
-				foreach (uint group in groups.Keys) 
+				if (index.ContainsKey(type)) 
 				{
-					if (groups.ContainsKey(group)) 
+					Hashtable groups = (Hashtable)index[type];
+					foreach (uint group in groups.Keys) 
 					{
-						Hashtable instances = (Hashtable)groups[group];
-
-						foreach (ulong instance in instances.Keys) 
+						if (groups.ContainsKey(group)) 
 						{
-							list.AddRange((PackedFileDescriptors)instances[instance]);
+							Hashtable instances = (Hashtable)groups[group];
+
+							foreach (ulong instance in instances.Keys) 
+							{
+								list.AddRange((PackedFileDescriptors)instances[instance]);
+							}
 						}
 					}
 				}
+			} 
+			else 
+			{
+				PackedFileDescriptors ret = new PackedFileDescriptors();
+				foreach (Interfaces.Files.IPackedFileDescriptor i in pfds)				
+					if (i.Type == type) ret.Add(i);
+				
+				return ret;
 			}
 			
 			return list;
@@ -294,21 +384,33 @@ namespace SimPe.Collections.IO
 		{
 			PackedFileDescriptors list = new PackedFileDescriptors();
 
-			if (index.ContainsKey(type)) 
+			if (!flat) 
 			{
-				Hashtable groups = (Hashtable)index[type];
-				if (groups.Contains(group)) 
+				if (index.ContainsKey(type)) 
 				{
-					Hashtable instances = (Hashtable)groups[group];
-
-					foreach (ulong instance in instances.Keys) 
+					Hashtable groups = (Hashtable)index[type];
+					if (groups.Contains(group)) 
 					{
-						list.AddRange((PackedFileDescriptors)instances[instance]);
+						Hashtable instances = (Hashtable)groups[group];
+
+						foreach (ulong instance in instances.Keys) 
+						{
+							list.AddRange((PackedFileDescriptors)instances[instance]);
+						}
 					}
 				}
-			}
+
+				return list;
+			} 
 			
-			return list;
+			else 
+			{
+				PackedFileDescriptors ret = new PackedFileDescriptors();
+				foreach (Interfaces.Files.IPackedFileDescriptor i in pfds)				
+					if (i.Type == type && i.Group==group) ret.Add(i);
+				
+				return ret;
+			}		
 		}
 
 		/// <summary>
@@ -330,21 +432,31 @@ namespace SimPe.Collections.IO
 		{
 			PackedFileDescriptors list = new PackedFileDescriptors();
 
-			if (index.ContainsKey(type)) 
+			if (!flat)
 			{
-				Hashtable groups = (Hashtable)index[type];
-				foreach (uint group in groups.Keys) 
+				if (index.ContainsKey(type)) 
 				{
-					if (groups.ContainsKey(group)) 
+					Hashtable groups = (Hashtable)index[type];
+					foreach (uint group in groups.Keys) 
 					{
 						Hashtable instances = (Hashtable)groups[group];
 						if (instances.ContainsKey(instance)) 
 						{
 							list.AddRange((PackedFileDescriptors)instances[instance]);
-						}
+						}						
 					}
 				}
+			} 
+			
+			else 
+			{
+				PackedFileDescriptors ret = new PackedFileDescriptors();
+				foreach (Interfaces.Files.IPackedFileDescriptor i in pfds)				
+					if (i.Type==type && i.LongInstance==instance) ret.Add(i);
+				
+				return ret;
 			}
+			
 			
 			//return the Result
 			return list;
@@ -367,23 +479,34 @@ namespace SimPe.Collections.IO
 		/// <returns>all FileIndexItems</returns>
 		public PackedFileDescriptors FindFileByInstance(ulong instance)
 		{
-			PackedFileDescriptors list = new PackedFileDescriptors();
-
-			foreach (uint type in index.Keys) 
+			if (!flat) 
 			{
-				Hashtable groups = (Hashtable)index[type];
-				foreach (uint group in groups.Keys) 
+				PackedFileDescriptors list = new PackedFileDescriptors();
+
+				foreach (uint type in index.Keys) 
 				{
-					Hashtable instances = (Hashtable)groups[group];
-					if (instances.ContainsKey(instance))
+					Hashtable groups = (Hashtable)index[type];
+					foreach (uint group in groups.Keys) 
 					{
-						list.AddRange((PackedFileDescriptors)instances[instance]);
+						Hashtable instances = (Hashtable)groups[group];
+						if (instances.ContainsKey(instance))
+						{
+							list.AddRange((PackedFileDescriptors)instances[instance]);
+						}
 					}
 				}
-			}
 			
-			//return the Result
-			return list;
+				//return the Result
+				return list;
+			} 
+			else 
+			{
+				PackedFileDescriptors ret = new PackedFileDescriptors();
+				foreach (Interfaces.Files.IPackedFileDescriptor i in pfds)				
+					if (i.LongInstance == instance) ret.Add(i);
+				
+				return ret;
+			}
 		}
 
 		/// <summary>
@@ -393,7 +516,7 @@ namespace SimPe.Collections.IO
 		/// <returns>all FileIndexItems</returns>
 		public PackedFileDescriptors FindFileByInstance(uint type, uint subtype, uint instance)
 		{
-			return FindFileByInstance(type, (((ulong)subtype << 32) & 0xffffffff00000000) | (ulong)instance);
+			return FindFileDiscardingGroup(type, (((ulong)subtype << 32) & 0xffffffff00000000) | (ulong)instance);
 		}
 
 		/// <summary>
@@ -403,23 +526,7 @@ namespace SimPe.Collections.IO
 		/// <returns>all FileIndexItems</returns>
 		public PackedFileDescriptors FindFileByInstance(uint type, ulong instance)
 		{
-			PackedFileDescriptors list = new PackedFileDescriptors();
-
-			if (index.ContainsKey(type))
-			{
-				Hashtable groups = (Hashtable)index[type];
-				foreach (uint group in groups.Keys) 
-				{
-					Hashtable instances = (Hashtable)groups[group];
-					if (instances.ContainsKey(instance))
-					{
-						list.AddRange((PackedFileDescriptors)instances[instance]);
-					}
-				}
-			}
-			
-			//return the Result
-			return list;
+			return FindFileDiscardingGroup(type, instance);
 		}
 
 		/// <summary>
@@ -430,20 +537,31 @@ namespace SimPe.Collections.IO
 		/// <returns>all FileIndexItems</returns>
 		public PackedFileDescriptors FindFileByGroupAndInstance(uint group, ulong instance)
 		{
-			PackedFileDescriptors list = new PackedFileDescriptors();
-
-			foreach (uint type in index.Keys) 
+			if (!flat) 
 			{
-				Hashtable groups = (Hashtable)index[type];
-				if (groups.ContainsKey(group))  
+				PackedFileDescriptors list = new PackedFileDescriptors();
+
+				foreach (uint type in index.Keys) 
 				{
-					Hashtable instances = (Hashtable)groups[group];
-					if (instances.ContainsKey(instance)) list.AddRange((PackedFileDescriptors)instances[instance]);
+					Hashtable groups = (Hashtable)index[type];
+					if (groups.ContainsKey(group))  
+					{
+						Hashtable instances = (Hashtable)groups[group];
+						if (instances.ContainsKey(instance)) list.AddRange((PackedFileDescriptors)instances[instance]);
+					}
 				}
-			}
 			
-			//return the Result
-			return list;
+				//return the Result
+				return list;
+			} 
+			else 
+			{
+				PackedFileDescriptors ret = new PackedFileDescriptors();
+				foreach (Interfaces.Files.IPackedFileDescriptor i in pfds)				
+					if (i.LongInstance == instance && i.Group == group) ret.Add(i);
+				
+				return ret;
+			}
 		}
 
 		/// <summary>
@@ -453,23 +571,34 @@ namespace SimPe.Collections.IO
 		/// <returns>all FileIndexItems</returns>
 		public PackedFileDescriptors FindFileByGroup(uint group)
 		{
-			PackedFileDescriptors list = new PackedFileDescriptors();
-
-			foreach (uint type in index.Keys) 
+			if (!flat) 
 			{
-				Hashtable groups = (Hashtable)index[type];
-				if (groups.ContainsKey(group))  
+				PackedFileDescriptors list = new PackedFileDescriptors();
+
+				foreach (uint type in index.Keys) 
 				{
-					Hashtable instances = (Hashtable)groups[group];
-					foreach (ulong instance in instances.Keys)
+					Hashtable groups = (Hashtable)index[type];
+					if (groups.ContainsKey(group))  
 					{
-						list.AddRange((PackedFileDescriptors)instances[instance]);
+						Hashtable instances = (Hashtable)groups[group];
+						foreach (ulong instance in instances.Keys)
+						{
+							list.AddRange((PackedFileDescriptors)instances[instance]);
+						}
 					}
 				}
-			}
 			
-			//return the Result
-			return list;
+				//return the Result
+				return list;
+			} 
+			else 
+			{
+				PackedFileDescriptors ret = new PackedFileDescriptors();
+				foreach (Interfaces.Files.IPackedFileDescriptor i in pfds)				
+					if (i.Group == group) ret.Add(i);
+				
+				return ret;
+			}
 		}
 		
 
@@ -499,20 +628,7 @@ namespace SimPe.Collections.IO
 		public PackedFileDescriptors Flatten()
 		{
 			if (pfds==null) pfds = new PackedFileDescriptors();
-			return pfds;
-			/*PackedFileDescriptors list = new PackedFileDescriptors();
-			foreach (uint type in index.Keys) 
-			{
-				Hashtable groups = (Hashtable)index[type];
-				foreach (uint group in groups.Keys)
-				{
-					Hashtable instances = (Hashtable)groups[group];
-					foreach (ulong instance in instances.Keys)
-						list.AddRange((PackedFileDescriptors)instances[instance]);
-				}
-			}
-
-			return list;*/
+			return pfds;			
 		}
 		
 		internal void Clear()
@@ -541,6 +657,20 @@ namespace SimPe.Collections.IO
 		public int Count
 		{
 			get { return Flatten().Length; }
+		}
+
+		private void ClosedDescriptor(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
+		{
+
+		}
+
+		private void DescriptorChanged(object sender, EventArgs e)
+		{
+			if (sender is SimPe.Interfaces.Files.IPackedFileDescriptor) 
+			{
+				this.RemoveChanged((SimPe.Interfaces.Files.IPackedFileDescriptor)sender);
+				this.AddIndexFromPfd((SimPe.Interfaces.Files.IPackedFileDescriptor)sender);
+			}
 		}
 	}
 }

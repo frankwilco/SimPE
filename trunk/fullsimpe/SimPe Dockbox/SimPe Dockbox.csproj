@@ -130,11 +130,6 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
                 />
                 <Reference
-                    Name = "sanddock"
-                    AssemblyName = "SandDock"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\sanddock.dll"
-                />
-                <Reference
                     Name = "System.Design"
                     AssemblyName = "System.Design"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Design.dll"
@@ -170,7 +165,12 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "newhexedit"
+                    Name = "SandDock"
+                    AssemblyName = "SandDock"
+                    HintPath = "..\..\..\httpwww.divil.co.uknet\SandDock.dll"
+                />
+                <Reference
+                    Name = "NewHexEdit"
                     AssemblyName = "NewHexEdit"
                     HintPath = "..\HexEdit\bin\Release\NewHexEdit.dll"
                 />
@@ -178,6 +178,11 @@
         </Build>
         <Files>
             <Include>
+                <File
+                    RelPath = "ActionCheckFiletable.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
                 <File
                     RelPath = "ActionReloadFiletable.cs"
                     SubType = "Code"

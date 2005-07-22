@@ -117,6 +117,11 @@ namespace SimPe
 			else tb.Renderer = new TD.SandBar.WhidbeyRenderer();
 		}
 
+		void SetTheme(System.Windows.Forms.Splitter tb) 
+		{			
+			tb.BackColor = ThemeColorDark;
+		}
+
 		void SetTheme(System.Windows.Forms.Control c) 
 		{
 			c.BackColor = ThemeColorLight;
@@ -138,6 +143,7 @@ namespace SimPe
 			else if (o is TD.SandBar.SandBarManager) SetTheme((TD.SandBar.SandBarManager)o);
 			else if (o is TD.SandBar.ToolBar) SetTheme((TD.SandBar.ToolBar)o);
 			else if (o is SteepValley.Windows.Forms.XPGradientPanel) SetTheme((SteepValley.Windows.Forms.XPGradientPanel)o);
+			else if (o is System.Windows.Forms.Splitter) SetTheme((System.Windows.Forms.Splitter)o);
 			else if (o is System.Windows.Forms.Control) SetTheme((System.Windows.Forms.Control)o);			
 		}
 		#endregion

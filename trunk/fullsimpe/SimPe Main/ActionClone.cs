@@ -41,7 +41,9 @@ namespace SimPe.Actions.Default
 				if (e.HasFileDescriptor)					
 				{
 					SimPe.Interfaces.Files.IPackedFileDescriptor pfd = (SimPe.Interfaces.Files.IPackedFileDescriptor)e.Resource.FileDescriptor.Clone();
-					es.LoadedPackage.Package.Add(pfd);
+					
+					pfd.UserData = es.LoadedPackage.Package.Read(e.Resource.FileDescriptor).UncompressedData;
+					es.LoadedPackage.Package.Add(pfd, true);
 				}
 			}
 		}

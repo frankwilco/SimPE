@@ -367,7 +367,7 @@ namespace SimPe.Plugin
 			if (wnt==null) return null;
 			if (txtpkg==null) LoadTextPackage();
 
-			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(wnt.IconFileDescriptor);
+			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(wnt.IconFileDescriptor, null);
 			if (items.Length>0) 
 			{
 				SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
