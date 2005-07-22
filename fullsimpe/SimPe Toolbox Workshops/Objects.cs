@@ -27,17 +27,17 @@ namespace SimPe.Plugin.Tool.Dockable
 	/// </summary>
 	public class ObectWorkshopDockTool : SimPe.Interfaces.IDockableTool
 	{		
-		ObjectWorkshopDock rd;
-		public ObectWorkshopDockTool(ObjectWorkshopDock rd)
+		dcObjectWorkshop dc;
+		public ObectWorkshopDockTool()
 		{
-			this.rd = rd;
+			dc = new dcObjectWorkshop();
 		}
 
 		#region IDockableTool Member
 
 		public TD.SandDock.DockControl GetDockableControl()
 		{
-			return rd.dcObjectWorkshop;
+			return dc;
 		}		
 
 		public event SimPe.Events.ChangedResourceEvent ShowNewResource;
@@ -53,7 +53,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		public override string ToString()
 		{
-			return rd.dcObjectWorkshop.Text;
+			return dc.Text;
 		}
 
 		#endregion
@@ -72,7 +72,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			get
 			{
-				return rd.dcObjectWorkshop.TabImage;
+				return dc.TabImage;
 			}
 		}
 

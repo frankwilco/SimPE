@@ -1136,7 +1136,7 @@ namespace SimPe.Plugin
 				tbrefinst.Text = "0x"+Helper.HexString(pfd.Instance);
 
 				SimPe.FileTable.FileIndex.Load();
-				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(pfd);
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(pfd, null);
 				if (items.Length == 0) 
 				{
 					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(pfd.Filename, pfd.Type, pfd.Group, true);
@@ -1149,7 +1149,7 @@ namespace SimPe.Plugin
 				{
 					Interfaces.Files.IPackedFileDescriptor npfd = (Interfaces.Files.IPackedFileDescriptor)pfd.Clone();
 					npfd.SubType = 0;
-					items = FileTable.FileIndex.FindFile(npfd);
+					items = FileTable.FileIndex.FindFile(npfd, null);
 				}
 
 				

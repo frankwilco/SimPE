@@ -238,7 +238,7 @@ namespace SimPe.Plugin
 				if (pfd.Type == Data.MetaData.GZPS) 
 				{
 
-					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] fii = FileTable.FileIndex.FindFile(pfd);
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] fii = FileTable.FileIndex.FindFile(pfd, reffile.Package);
 					if (fii.Length>0) 
 					{
 						Cpf skinfile = new Cpf();

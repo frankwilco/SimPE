@@ -76,7 +76,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cball = new System.Windows.Forms.CheckBox();
 			this.tc = new System.Windows.Forms.TabControl();
 			this.tpcatalogsort = new System.Windows.Forms.TabPage();
-			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.cbaspiration = new System.Windows.Forms.CheckBox();
 			this.cbhobby = new System.Windows.Forms.CheckBox();
@@ -88,6 +87,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbplumbing = new System.Windows.Forms.CheckBox();
 			this.cbseating = new System.Windows.Forms.CheckBox();
 			this.cbsurfaces = new System.Windows.Forms.CheckBox();
+			this.cbsort = new Ambertation.Windows.Forms.EnumComboBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cbkids = new System.Windows.Forms.CheckBox();
 			this.cbbathroom = new System.Windows.Forms.CheckBox();
@@ -120,7 +121,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label12 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.cbcareer = new System.Windows.Forms.CheckBox();
-			this.cbsort = new Ambertation.Windows.Forms.EnumComboBox();
 			this.pnobjd.SuspendLayout();
 			this.tc.SuspendLayout();
 			this.tpcatalogsort.SuspendLayout();
@@ -199,15 +199,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tpcatalogsort.Size = new System.Drawing.Size(712, 158);
 			this.tpcatalogsort.TabIndex = 0;
 			this.tpcatalogsort.Text = "Catalog Sort";
-			// 
-			// label1
-			// 
-			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label1.Location = new System.Drawing.Point(16, 112);
-			this.label1.Name = "label1";
-			this.label1.TabIndex = 18;
-			this.label1.Text = "Overall Sort:";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// groupBox2
 			// 
@@ -331,6 +322,27 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbsurfaces.TabIndex = 15;
 			this.cbsurfaces.Text = "Surfaces";
 			this.cbsurfaces.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+			// 
+			// cbsort
+			// 
+			this.cbsort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbsort.Enum = null;
+			this.cbsort.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbsort.Location = new System.Drawing.Point(120, 112);
+			this.cbsort.Name = "cbsort";
+			this.cbsort.ResourceManager = null;
+			this.cbsort.Size = new System.Drawing.Size(208, 21);
+			this.cbsort.TabIndex = 19;
+			this.cbsort.SelectedIndexChanged += new System.EventHandler(this.cbsort_SelectedIndexChanged);
+			// 
+			// label1
+			// 
+			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label1.Location = new System.Drawing.Point(16, 112);
+			this.label1.Name = "label1";
+			this.label1.TabIndex = 18;
+			this.label1.Text = "Overall Sort:";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// groupBox1
 			// 
@@ -499,7 +511,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pg.Size = new System.Drawing.Size(696, 144);
 			this.pg.TabIndex = 0;
 			this.pg.Text = "RAW Items";
-			this.pg.ToolbarVisible = false;
 			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
 			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
 			this.pg.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PropChanged);
@@ -688,18 +699,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbcareer.Name = "cbcareer";
 			this.cbcareer.TabIndex = 0;
 			this.cbcareer.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cbsort
-			// 
-			this.cbsort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbsort.Enum = null;
-			this.cbsort.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbsort.Location = new System.Drawing.Point(120, 112);
-			this.cbsort.Name = "cbsort";
-			this.cbsort.ResourceManager = null;
-			this.cbsort.Size = new System.Drawing.Size(208, 21);
-			this.cbsort.TabIndex = 19;
-			this.cbsort.SelectedIndexChanged += new System.EventHandler(this.cbsort_SelectedIndexChanged);
 			// 
 			// ExtObjdForm
 			// 

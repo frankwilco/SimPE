@@ -98,7 +98,6 @@ namespace SimPe.Plugin
 		internal System.Windows.Forms.TextBox tb_uk4;
 		internal System.Windows.Forms.TextBox tb_uk6;
 		private System.Windows.Forms.SaveFileDialog sfd;
-		private System.Windows.Forms.Panel pnprev;
 		private System.Windows.Forms.Button button3;
 		internal System.Windows.Forms.CheckedListBox lbmodel;
 		private System.Windows.Forms.Label label20;
@@ -150,6 +149,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ComboBox cbaxis;
 		private System.Windows.Forms.LinkLabel linkLabel6;
 		private System.Windows.Forms.LinkLabel linkLabel7;
+		private Ambertation.Windows.Forms.DirectXPanel dxprev;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -241,6 +241,7 @@ namespace SimPe.Plugin
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
 			this.lb_itemsa1 = new System.Windows.Forms.ListBox();
 			this.tMesh = new System.Windows.Forms.TabPage();
+			this.dxprev = new Ambertation.Windows.Forms.DirectXPanel();
 			this.cbaxis = new System.Windows.Forms.ComboBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
@@ -248,7 +249,6 @@ namespace SimPe.Plugin
 			this.label20 = new System.Windows.Forms.Label();
 			this.lbmodel = new System.Windows.Forms.CheckedListBox();
 			this.lb_models = new System.Windows.Forms.Label();
-			this.pnprev = new System.Windows.Forms.Panel();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.tGeometryDataContainer3 = new System.Windows.Forms.TabPage();
@@ -686,6 +686,7 @@ namespace SimPe.Plugin
 			// tMesh
 			// 
 			this.tMesh.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.tMesh.Controls.Add(this.dxprev);
 			this.tMesh.Controls.Add(this.cbaxis);
 			this.tMesh.Controls.Add(this.label12);
 			this.tMesh.Controls.Add(this.button1);
@@ -693,7 +694,6 @@ namespace SimPe.Plugin
 			this.tMesh.Controls.Add(this.label20);
 			this.tMesh.Controls.Add(this.lbmodel);
 			this.tMesh.Controls.Add(this.lb_models);
-			this.tMesh.Controls.Add(this.pnprev);
 			this.tMesh.Controls.Add(this.button3);
 			this.tMesh.Controls.Add(this.button4);
 			this.tMesh.Location = new System.Drawing.Point(4, 22);
@@ -701,6 +701,15 @@ namespace SimPe.Plugin
 			this.tMesh.Size = new System.Drawing.Size(884, 302);
 			this.tMesh.TabIndex = 4;
 			this.tMesh.Text = "3D Mesh";
+			this.tMesh.SizeChanged += new System.EventHandler(this.dxprev_SizeChanged);
+			// 
+			// dxprev
+			// 
+			this.dxprev.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(128)), ((System.Byte)(255)));
+			this.dxprev.Location = new System.Drawing.Point(336, 8);
+			this.dxprev.Name = "dxprev";
+			this.dxprev.Size = new System.Drawing.Size(304, 288);
+			this.dxprev.TabIndex = 31;
 			// 
 			// cbaxis
 			// 
@@ -785,16 +794,6 @@ namespace SimPe.Plugin
 			this.lb_models.Size = new System.Drawing.Size(45, 16);
 			this.lb_models.TabIndex = 23;
 			this.lb_models.Text = "Models:";
-			// 
-			// pnprev
-			// 
-			this.pnprev.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.pnprev.Location = new System.Drawing.Point(336, 8);
-			this.pnprev.Name = "pnprev";
-			this.pnprev.Size = new System.Drawing.Size(296, 288);
-			this.pnprev.TabIndex = 3;
 			// 
 			// button3
 			// 
@@ -2136,8 +2135,7 @@ namespace SimPe.Plugin
 				lb_itemsc.Tag = null;
 			}
 		}
-
-		Ambertation.Panel3D curpn = null;
+		
 		private void Preview(object sender, System.EventArgs e)
 		{
 			
@@ -2152,14 +2150,12 @@ namespace SimPe.Plugin
 				try 
 				{
 					//stop all running Previews
-					Ambertation.Panel3D.StopAll();
+					//Ambertation.Panel3D.StopAll();
 
 					TextureLocator tl = new TextureLocator(gmdc.Parent.Package);
 					System.Collections.Hashtable txtrs = tl.GetLargestImages(tl.FindTextures(gmdc.Parent));
 
-					Ambertation.ViewportSetting vp = null;
-					if (curpn!=null) vp = curpn.ViewportSetting;									
-					curpn = new Ambertation.Panel3D(this.pnprev, new Point(0, 0), new Size(Math.Min(pnprev.Width, pnprev.Height), Math.Min(pnprev.Width, pnprev.Height)), xfile, txtrs);
+					dxprev.LoadMesh(xfile, txtrs);
 					
 				} 
 				catch (System.IO.FileNotFoundException)
@@ -2178,8 +2174,7 @@ namespace SimPe.Plugin
 					Helper.ExceptionMessage("", ex);
 					return;
 				}
-				curpn.BackColor = cd.Color;
-				curpn.BorderStyle = BorderStyle.FixedSingle;
+				dxprev.BackColor = cd.Color;
 				WaitingScreen.Stop();
 				
 			}		
@@ -2217,10 +2212,10 @@ namespace SimPe.Plugin
 
 		private void PickColor(object sender, System.EventArgs e)
 		{
-			if (curpn!=null) cd.Color = curpn.BackColor;
+			cd.Color = dxprev.BackColor;
 			if (cd.ShowDialog()==DialogResult.OK)
 			{
-				if (curpn!=null) curpn.BackColor = cd.Color;
+				dxprev.BackColor = cd.Color;
 			}
 		}
 
@@ -2232,6 +2227,15 @@ namespace SimPe.Plugin
 				pg.SelectedObject = ((SimPe.CountedListItem)lb.Items[lb.SelectedIndex]).Object;
 				pg.Refresh();
 			}
+		}
+
+		private void dxprev_SizeChanged(object sender, System.EventArgs e)
+		{
+			int width = label20.Left - lbmodel.Right - 16;
+			int height = label20.Height;
+
+			dxprev.Width = Math.Min(width, height);
+			dxprev.Height = dxprev.Width;
 		}
 
 		public int DefaultSelectedAxisIndex
@@ -2373,13 +2377,11 @@ namespace SimPe.Plugin
 				try 
 				{
 					//stop all running Previews
-					Ambertation.Panel3D.StopAll();
+					//Ambertation.Panel3D.StopAll();
 
 					System.Collections.Hashtable txtrs = new Hashtable();
 
-					Ambertation.ViewportSetting vp = null;
-					if (curpn!=null) vp = curpn.ViewportSetting;
-					curpn = new Ambertation.Panel3D(this.pnprev, new Point(0, 0), new Size(Math.Min(pnprev.Width, pnprev.Height), Math.Min(pnprev.Width, pnprev.Height)), xfile, txtrs, vp);
+					dxprev.LoadMesh(xfile, txtrs);
 				} 
 				catch (Exception ex)
 				{
@@ -2387,8 +2389,7 @@ namespace SimPe.Plugin
 					Helper.ExceptionMessage("", ex);
 					return;
 				}
-				curpn.BackColor = cd.Color;
-				curpn.BorderStyle = BorderStyle.FixedSingle;
+				dxprev.BackColor = cd.Color;				
 				WaitingScreen.Stop();
 				
 				//this.tabControl1.SelectedIndex = 1;

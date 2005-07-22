@@ -36,8 +36,8 @@ namespace SimPe.Packages
 		/// Constructor For the Class
 		/// </summary>
 		/// <param name="br">The BinaryReader representing the Package File</param>
-		internal ExtractableFile(BinaryReader br) : base(br) {}
-		internal ExtractableFile(string flname) : base(flname) {}
+		internal ExtractableFile(BinaryReader br, bool flat) : base(br, flat) {}
+		internal ExtractableFile(string flname, bool flat) : base(flname, flat) {}
 
 		/// <summary>
 		/// Init the Clone for this Package
@@ -45,7 +45,7 @@ namespace SimPe.Packages
 		/// <returns>An INstance of this Class</returns>
 		protected override Interfaces.Files.IPackageFile NewCloneBase() 
 		{
-			ExtractableFile fl = new ExtractableFile((BinaryReader)null);
+			ExtractableFile fl = new ExtractableFile((BinaryReader)null, FileIndex.Flat);
 			fl.header = this.header;
 			
 			return fl;

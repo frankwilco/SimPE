@@ -135,10 +135,11 @@ namespace SimPe.Packages
 		/// The Reader must be positioned on the first byte of the Header 
 		/// (mostly that should be Index 0)
 		/// </remarks>
-		internal File(BinaryReader br)
+		internal File(BinaryReader br, bool flat)
 		{
 			pause = false;
 			type = PackageBaseType.Stream;
+			flatindex = flat;
 			OpenByStream(br);
 		}
 
@@ -174,15 +175,17 @@ namespace SimPe.Packages
 
 			CloseReader();
 		}
+		bool flatindex;
 
 		/// <summary>
 		/// Creats a new Object based on the given File
 		/// </summary>
 		/// <param name="filename"></param>
-		internal File(string filename) 
+		internal File(string filename, bool flat) 
 		{
 			pause = false;
 			ReloadFromFile(filename);
+			flatindex = flat;
 		}
 
 		/// <summary>
@@ -247,7 +250,7 @@ namespace SimPe.Packages
 		/// <returns>An INstance of this Class</returns>
 		protected virtual Interfaces.Files.IPackageFile NewCloneBase() 
 		{
-			File fl = new File((BinaryReader)null);
+			File fl = new File((BinaryReader)null, FileIndex.Flat);
 			fl.header = this.header;
 			
 			return fl;
@@ -439,16 +442,28 @@ namespace SimPe.Packages
 		{
 			foreach (IPackedFileDescriptor pfd in pfds) Add(pfd);
 		}
-
 		/// <summary>
 		/// Ads a new Descriptor to the Index
 		/// </summary>
 		/// <param name="pfd">The PackedFile Descriptor</param>
 		public void Add(IPackedFileDescriptor pfd)
 		{
-			if (fileindex==null) 
-				fileindex = new ResourceIndex(this);
+			Add(pfd, false);
+		}
 
+		/// <summary>
+		/// Ads a new Descriptor to the Index
+		/// </summary>
+		/// <param name="pfd">The PackedFile Descriptor</param>
+		/// <param name="isnew">truze, if offset should be set a unique Value</param>
+		public void Add(IPackedFileDescriptor pfd, bool isnew)
+		{
+			if (fileindex==null) 
+				fileindex = new ResourceIndex(this, flatindex);
+
+			if (isnew) 			
+				((SimPe.Packages.PackedFileDescriptor)pfd).offset = fileindex.NextFreeOffset;
+			
 			fileindex.AddIndexFromPfd(pfd);
 			header.index.count = fileindex.Count;			
 
@@ -473,7 +488,7 @@ namespace SimPe.Packages
 		public ResourceIndex FileIndex 
 		{
 			get { 
-				if (fileindex==null) fileindex = new ResourceIndex(this);
+				if (fileindex==null) fileindex = new ResourceIndex(this, flatindex);
 				return fileindex; 
 			}
 		}
@@ -494,6 +509,16 @@ namespace SimPe.Packages
 				fileindex = value;
 				header.Index.Count = fileindex.Length;
 			}*/
+		}
+
+		public virtual void Save() 
+		{
+			Save(this.FileName);
+		}
+
+		public virtual void Save(string filename) 
+		{
+			throw new Exception("Can't save a object of Type "+this.GetType().Namespace+"."+this.GetType().Name);
 		}
 
 		/// <summary>
@@ -538,7 +563,7 @@ namespace SimPe.Packages
 		/// </summary>
 		protected void LoadFileIndex()
 		{
-			if (fileindex==null) fileindex = new ResourceIndex(this);
+			if (fileindex==null) fileindex = new ResourceIndex(this, flatindex);
 			else fileindex.Clear();
 
 			uint counter = 0;
@@ -565,9 +590,18 @@ namespace SimPe.Packages
 			//Load the File Index File
 			if (FileList != null) 
 			{
+				this.BeginUpdate();
+				PackedFileDescriptors flat = (PackedFileDescriptors)fileindex.Flatten();
 				//setup the compression State
-				foreach (PackedFileDescriptor pfd in fileindex.Flatten())
+				for (int i=flat.Count-1; i>=0; i--) 
+				{
+					PackedFileDescriptor pfd = (PackedFileDescriptor)flat[i];
 					pfd.WasCompressed = this.GetPackedFile(pfd, new byte[0]).IsCompressed;				
+				}
+
+				//now delete all pending Events
+				this.ForgetUpdate();
+				this.EndUpdate();
 			}
 		}
 
@@ -899,6 +933,8 @@ namespace SimPe.Packages
 			return ret;
 		}
 
+		
+
 		/// <summary>
 		/// Returns the first File matching 
 		/// </summary>
@@ -920,6 +956,37 @@ namespace SimPe.Packages
 			{
 				PackedFileDescriptors list = fileindex.FindFile(type, group, subtype, instance);
 				if (list.Length>0) return list[0];				
+			}
+
+			return null;
+		}
+
+
+		/// <summary>
+		/// Returns the first File matching 
+		/// </summary>
+		/// <param name="pfd">Type you want to look for</param>
+		/// <returns>The descriptor for the matching Dile or null</returns>
+		public IPackedFileDescriptor FindExactFile(Interfaces.Files.IPackedFileDescriptor pfd) 
+		{
+			return FindExactFile(pfd.Type, pfd.SubType, pfd.Group, pfd.Instance, pfd.Offset);
+		}
+		/// <summary>
+		/// Returns the first File matching 
+		/// </summary>
+		/// <param name="type">Type you want to look for</param>
+		/// <returns>The descriptor for the matching Dile or null</returns>
+		public IPackedFileDescriptor FindExactFile(uint type, uint subtype, uint group, uint instance, uint offset) 
+		{
+			if (fileindex!=null) 
+			{
+				PackedFileDescriptors list = fileindex.FindFile(type, group, subtype, instance);
+				if (list.Length>0) 
+				{				
+					foreach (IPackedFileDescriptor pfd in list)
+						if (pfd.Offset==offset) return pfd;
+					return list[0];				
+				}
 			}
 
 			return null;
@@ -970,7 +1037,7 @@ namespace SimPe.Packages
 		/// <returns></returns>
 		public static GeneratableFile LoadFromFile(string flname) 
 		{
-			return PackageMaintainer.Maintainer.LoadPackageFromFile(flname, false);
+			return PackageMaintainer.Maintainer.LoadPackageFromFile(flname, false, false);
 		}
 
 		/// <summary>
@@ -981,7 +1048,20 @@ namespace SimPe.Packages
 		/// <returns></returns>
 		public static GeneratableFile LoadFromFile(string flname, bool sync) 
 		{
-			return PackageMaintainer.Maintainer.LoadPackageFromFile(flname, sync);
+			return PackageMaintainer.Maintainer.LoadPackageFromFile(flname, sync, false);
+		}
+
+		/// <summary>
+		/// Create a new GeneratableFile
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <param name="sync">true, if the content should be synced with the FileSystem</param>
+		/// <param name="flat">true, if you want to load a flat 
+		/// Index (faster loaded, but slower when searched)</param>
+		/// <returns></returns>
+		public static GeneratableFile LoadFromFile(string flname, bool sync, bool flat) 
+		{
+			return PackageMaintainer.Maintainer.LoadPackageFromFile(flname, sync, flat);
 		}
 
 		/// <summary>
@@ -991,7 +1071,7 @@ namespace SimPe.Packages
 		/// <returns></returns>
 		public static  GeneratableFile LoadFromStream(BinaryReader br) 
 		{
-			return new GeneratableFile(br);
+			return new GeneratableFile(br, false);
 		}
 
 		/// <summary>
@@ -1072,6 +1152,11 @@ namespace SimPe.Packages
 		public void BeginUpdate()
 		{
 			if (pause) return;
+			ForgetUpdate();
+		}
+
+		internal void ForgetUpdate()
+		{			
 			indexevent = false;
 			addevent = false;
 			remevent = false;

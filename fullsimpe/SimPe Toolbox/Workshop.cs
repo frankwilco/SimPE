@@ -353,7 +353,7 @@ namespace SimPe.Plugin
 					if (pitems.Contains(nrefitem)) continue;
 					if (groups.Contains(nrefitem.LocalGroup)) continue;					
 
-					Interfaces.Scenegraph.IScenegraphFileIndexItem[] cacheitems = cachefile.FileIndex.FindFile(nrefitem.FileDescriptor);
+					Interfaces.Scenegraph.IScenegraphFileIndexItem[] cacheitems = cachefile.FileIndex.FindFile(nrefitem.FileDescriptor, nrefitem.Package);
 
 					//find the correct File
 					int cindex = -1;
@@ -395,7 +395,10 @@ namespace SimPe.Plugin
 						Image img = oci.Thumbnail;
 						//if (img!=null) WaitingScreen.UpdateImage(img);
 
-						PutItemToTree(a, img, (SimPe.Data.ObjectTypes)oci.ObjectType, new SimPe.PackedFiles.Wrapper.ObjFunctionSort(oci.ObjectFunctionSort), cacheitems[0].FileDescriptor.Filename, cacheitems[0].FileDescriptor.Group);
+						if (oci.ObjectVersion == SimPe.Cache.ObjectCacheItemVersions.DockableOW) 
+							PutItemToTree(a, img, (SimPe.Data.ObjectTypes)oci.ObjectType, new SimPe.PackedFiles.Wrapper.ObjFunctionSort((oci.ObjectFunctionSort>>8) &0xfff), cacheitems[0].FileDescriptor.Filename, cacheitems[0].FileDescriptor.Group);
+						else
+							PutItemToTree(a, img, (SimPe.Data.ObjectTypes)oci.ObjectType, new SimPe.PackedFiles.Wrapper.ObjFunctionSort(oci.ObjectFunctionSort), cacheitems[0].FileDescriptor.Filename, cacheitems[0].FileDescriptor.Group);
 
 						if (img!=null) a.Name = "* "+a.Name;
 						lbobj.Items.Add(a);
@@ -457,7 +460,7 @@ namespace SimPe.Plugin
 						
 
 						//now the ModeName File
-						Interfaces.Scenegraph.IScenegraphFileIndexItem[] txtitems = FileTable.FileIndex.FindFile(Data.MetaData.STRING_FILE, nrefitem.LocalGroup, 0x85);
+						Interfaces.Scenegraph.IScenegraphFileIndexItem[] txtitems = FileTable.FileIndex.FindFile(Data.MetaData.STRING_FILE, nrefitem.LocalGroup, 0x85, null);
 						if (txtitems.Length>0) 
 						{
 							SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str(2);

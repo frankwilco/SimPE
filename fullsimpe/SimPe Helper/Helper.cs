@@ -367,15 +367,21 @@ namespace SimPe
 		/// </summary>
 		public static long SimPeVersionLong 
 		{
-			get { 
-				 System.Diagnostics.FileVersionInfo ver = SimPeVersion;
-				long lver = ver.FileMajorPart;
-				lver = (lver << 16) + ver.FileMinorPart;
-				lver = (lver << 16) + ver.FileBuildPart;
-				lver = (lver << 16) + ver.FilePrivatePart;
-				return lver;
-			}
+			get { return  VersionToLong(SimPeVersion); }				
 		}
+
+		/// <summary>
+		/// Returns the long Version Number
+		/// </summary>
+		public static long VersionToLong(System.Diagnostics.FileVersionInfo ver)
+		{
+			long lver = ver.FileMajorPart;
+			lver = (lver << 16) + ver.FileMinorPart;
+			lver = (lver << 16) + ver.FileBuildPart;
+			lver = (lver << 16) + ver.FilePrivatePart;
+			return lver;
+			
+		}		
 
 		/// <summary>
 		/// Formats the Version and returns it
@@ -398,6 +404,22 @@ namespace SimPe
 			res = (l & 0xffff).ToString();
 			l = l>>16;
 			res = (l & 0xffff).ToString()+"."+res;
+			l = l>>16;
+			res = (l & 0xffff).ToString()+"."+res;
+			l = l>>16;
+			res = (l & 0xffff).ToString()+"."+res;		
+			return res;
+		}
+
+		/// <summary>
+		/// Formats a Long Version Number to a String
+		/// </summary>
+		/// <param name="l"></param>
+		/// <returns></returns>
+		public static string LongVersionToShortString(long l)
+		{	
+			string res = "";			
+			l = l>>16;			
 			l = l>>16;
 			res = (l & 0xffff).ToString()+"."+res;
 			l = l>>16;

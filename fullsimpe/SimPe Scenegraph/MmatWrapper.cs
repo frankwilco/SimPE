@@ -105,7 +105,7 @@ namespace SimPe.Plugin
 
 						if (pfd==null) //FileTable fallback code
 						{
-							Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)txmts[0]);
+							Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)txmts[0], null);
 							if (items.Length>0) 
 							{
 								GenericRcol txmt = new GenericRcol(null, false);
@@ -150,7 +150,7 @@ namespace SimPe.Plugin
 
 					if (pfd==null) //FileTable fallback code
 					{
-						Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)txtrs[0]);
+						Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)txtrs[0], null);
 						if (items.Length>0) 
 						{
 							GenericRcol txtr = new GenericRcol(null, false);

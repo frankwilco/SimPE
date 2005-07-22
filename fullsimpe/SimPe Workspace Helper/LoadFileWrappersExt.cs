@@ -293,8 +293,9 @@ namespace SimPe
 			{
 				TD.SandBar.MenuButtonItem item = (TD.SandBar.MenuButtonItem)items[i];				
 				TD.SandBar.ButtonItem bi = new TD.SandBar.ButtonItem();
-				bi.Image = item.Image;
+				bi.Image = item.Image;				
 				bi.Visible = (item.Image!=null);
+				if (bi.Image==null) bi.Text = item.Text;
 				bi.ToolTipText = item.Text.Replace("&", "");
 				bi.Enabled = item.Enabled;
 				bi.BuddyMenu = item;

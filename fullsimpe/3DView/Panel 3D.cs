@@ -32,7 +32,7 @@ namespace Ambertation
 	/// <summary>
 	/// Zusammenfassung für Panel3D.
 	/// </summary>
-	public class Panel3D : Panel
+	internal class Panel3D : Panel
 	{
 		/// <summary>
 		/// string that is starting a Comment

@@ -20,6 +20,7 @@
 using System;
 using System.Collections;
 using Ambertation.Windows.Forms.Graph;
+using System.Drawing;
 
 namespace Ambertation.Collections
 {
@@ -439,6 +440,90 @@ namespace Ambertation.Collections
 		{
 			PropertyItems list = new PropertyItems();
 			foreach (PropertyItem item in this) list.Add(item);
+
+			return list;
+		}
+	}	
+
+	/// <summary>
+	/// Typesave ArrayList for Image Objects
+	/// </summary>
+	public class Images : ArrayList
+	{
+		
+		/// <summary>
+		/// Integer Indexer
+		/// </summary>
+		public new Image this[int index]
+		{
+			get { return ((Image)base[index]); }
+			set { base[index] = value; }
+		}
+
+		/// <summary>
+		/// unsigned Integer Indexer
+		/// </summary>
+		public Image this[uint index]
+		{
+			get { return ((Image)base[(int)index]); }
+			set { base[(int)index] = value; }
+		}
+
+		/// <summary>
+		/// add a new Element
+		/// </summary>
+		/// <param name="item">The object you want to add</param>
+		/// <returns>The index it was added on</returns>
+		public int Add(Image item)
+		{
+			return base.Add(item);			
+		}
+
+		/// <summary>
+		/// insert a new Element
+		/// </summary>
+		/// <param name="index">The Index where the Element should be stored</param>
+		/// <param name="item">The object that should be inserted</param>
+		public void Insert(int index, Image item)
+		{
+			base.Insert(index, item);			
+		}
+
+		/// <summary>
+		/// remove an Element
+		/// </summary>
+		/// <param name="item">The object that should be removed</param>
+		public void Remove(Image item)
+		{
+			base.Remove(item);			
+		}
+
+		/// <summary>
+		/// Checks wether or not the object is already stored in the List
+		/// </summary>
+		/// <param name="item">The Object you are looking for</param>
+		/// <returns>true, if it was found</returns>
+		public bool Contains(Image item)
+		{
+			return base.Contains(item);
+		}		
+
+		/// <summary>
+		/// Number of stored Elements
+		/// </summary>
+		public int Length 
+		{
+			get { return this.Count; }
+		}
+
+		/// <summary>
+		/// Create a clone of this Object
+		/// </summary>
+		/// <returns>The clone</returns>
+		public override object Clone()
+		{
+			Images list = new Images();
+			foreach (Image item in this) list.Add(item);
 
 			return list;
 		}

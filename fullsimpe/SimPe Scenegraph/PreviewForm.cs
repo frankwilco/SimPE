@@ -11,6 +11,7 @@ namespace SimPe.Plugin
 	/// </summary>
 	public class PreviewForm : System.Windows.Forms.Form
 	{
+		private Ambertation.Windows.Forms.DirectXPanel dxprev;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -51,12 +52,24 @@ namespace SimPe.Plugin
 		private void InitializeComponent()
 		{
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(PreviewForm));
+			this.dxprev = new Ambertation.Windows.Forms.DirectXPanel();
+			this.SuspendLayout();
+			// 
+			// dxprev
+			// 
+			this.dxprev.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(128)), ((System.Byte)(255)));
+			this.dxprev.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dxprev.Location = new System.Drawing.Point(0, 0);
+			this.dxprev.Name = "dxprev";
+			this.dxprev.Size = new System.Drawing.Size(494, 476);
+			this.dxprev.TabIndex = 0;
 			// 
 			// PreviewForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
 			this.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(128)), ((System.Byte)(255)));
-			this.ClientSize = new System.Drawing.Size(634, 448);
+			this.ClientSize = new System.Drawing.Size(494, 476);
+			this.Controls.Add(this.dxprev);
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -65,11 +78,12 @@ namespace SimPe.Plugin
 			this.Name = "PreviewForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Recolor Preview";
+			this.ResumeLayout(false);
 
 		}
 		#endregion
 
-		static Ambertation.Panel3D p3d;
+		//static Ambertation.Panel3D p3d;
 		public static void Execute(SimPe.PackedFiles.Wrapper.Cpf cmmat, SimPe.Interfaces.Files.IPackageFile package) 
 		{
 			try 
@@ -145,9 +159,9 @@ namespace SimPe.Plugin
 											
 										try 
 										{
-											Ambertation.Panel3D.StopAll();
+											//Ambertation.Panel3D.StopAll();
 											WaitingScreen.UpdateMessage("Show Preview");
-											p3d = new Ambertation.Panel3D(pf, new Point(0, 0), pf.Size, xfile, txtrmap);
+											pf.dxprev.LoadMesh(xfile, txtrmap);
 											found = true;
 											break;
 										} 
@@ -178,11 +192,11 @@ namespace SimPe.Plugin
 				if (found) pf.ShowDialog();
 				else throw new SimPe.Warning("This Item can't be previed!", "SimPE was unable to build the Scengraph.");
 
-				if (p3d!=null) 
+				/*if (p3d!=null) 
 				{
 					p3d.Stop();
 					p3d=null;
-				}
+				}*/
 			} 
 			finally 
 			{

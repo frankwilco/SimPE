@@ -305,6 +305,12 @@ namespace SimPe.PackedFiles.Wrapper
 				data[0x5e] = (short)(val & 0xff);
 			}
 		}
+
+		public short Price 
+		{
+			get {return data[0x12];}
+			set {data[0x12] = value; }
+		}
 		#endregion
 
 		/// <summary>
@@ -546,7 +552,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		#region IMultiplePackedFileWrapper Member
 
-		public object[] GetConstructorArguments()
+		public override object[] GetConstructorArguments()
 		{
 			
 			return new object[] {this.opcodes};

@@ -128,7 +128,7 @@ namespace SimPe.Plugin
 						{	
 							if (pfd.Type == Data.MetaData.TXMT) 
 							{
-								Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(pfd);
+								Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(pfd, null);
 								if (items.Length>0) 
 								{
 									SimPe.Plugin.GenericRcol rcol= new GenericRcol(null, false);
@@ -247,12 +247,12 @@ namespace SimPe.Plugin
 		{
 			get 
 			{
-				if ((skin==null) && (this.Type==Data.MetaData.GZPS))
+				if ((skin==null) && (this.Type==Data.MetaData.GZPS) && (parent!=null))
 				{
 					try 
 					{
 						FileTable.FileIndex.Load();
-						Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(this);
+						Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(this, parent.Package);
 						if (items.Length>0) 
 						{
 							SimPe.PackedFiles.Wrapper.Cpf cpff = new SimPe.PackedFiles.Wrapper.Cpf();
@@ -303,7 +303,7 @@ namespace SimPe.Plugin
 			name = name.Replace("CASIE_", "");
 		}
 
-		public string Name 
+		public new string Name 
 		{
 			get { return name; }
 		}

@@ -93,6 +93,13 @@ namespace SimPe.Interfaces.Files
 		void Add(IPackedFileDescriptor pfd);
 
 		/// <summary>
+		/// Ads a new Descriptor to the Index
+		/// </summary>
+		/// <param name="pfd">The PackedFile Descriptor</param>
+		/// <param name="isnew">truze, if offset should be set a unique Value</param>
+		void Add(IPackedFileDescriptor pfd, bool isnew);
+
+		/// <summary>
 		/// Returns or Changes the stored Fileindex
 		/// </summary>
 		IPackedFileDescriptor[] Index 
@@ -159,6 +166,21 @@ namespace SimPe.Interfaces.Files
 		/// <param name="type">Type you want to look for</param>
 		/// <returns>The descriptor for the matching File or null</returns>
 		IPackedFileDescriptor FindFile(uint type, uint subtype, uint group, uint instance);
+
+		/// <summary>
+		/// Returns the first File matching 
+		/// </summary>
+		/// <param name="pfd">Type you want to look for</param>
+		/// <returns>The descriptor for the matching Dile or null</returns>
+		IPackedFileDescriptor FindExactFile(Interfaces.Files.IPackedFileDescriptor pfd) ;
+
+		/// <summary>
+		/// Returns the first File matching 
+		/// </summary>
+		/// <param name="type">Type you want to look for</param>
+		/// <returns>The descriptor for the matching Dile or null</returns>
+		IPackedFileDescriptor FindExactFile(uint type, uint subtype, uint group, uint instance, uint offset); 
+		
 
 		/// <summary>
 		/// Returns a List ofa all Files matching the passed group
@@ -239,6 +261,9 @@ namespace SimPe.Interfaces.Files
 		/// </summary>
 		/// <param name="total">true, if the FileDescriptors should be marked invalid</param>
 		void Close(bool total);
+
+		void Save();
+		void Save(string filename);
 
 		#region Events
 		/// <summary>

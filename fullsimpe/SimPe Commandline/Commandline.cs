@@ -450,6 +450,14 @@ namespace SimPe
 		#endregion
 
 		#region Import Data
+		public static void ConvertData()
+		{
+			if (Helper.WindowsRegistry.PreviousVersion<184819098236) //0.43e
+			{
+				Helper.WindowsRegistry.Layout.SandBarLayout = "";
+				Helper.WindowsRegistry.Layout.SandDockLayout = "";
+			}
+		}
 		public static void ImportOldData()
 		{
 			if (!System.IO.Directory.Exists(Helper.SimPeDataPath)) 
@@ -489,6 +497,8 @@ namespace SimPe
 							}
 						}
 			}
+
+			ConvertData();
 		}
 		#endregion
 	}

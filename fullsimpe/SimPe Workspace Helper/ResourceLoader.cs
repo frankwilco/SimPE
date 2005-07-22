@@ -28,7 +28,7 @@ namespace SimPe
 	/// </summary>
 	public class ResourceLoader
 	{
-		TD.SandDock.DocumentContainer dc;
+		TD.SandDock.TabControl dc;
 		LoadedPackage pkg;
 
 		/// <summary>
@@ -46,7 +46,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="dc">The document Container that receives the Plugins</param>
 		/// <param name="lp">The Container for the currently loaded package</param>
-		public ResourceLoader(TD.SandDock.DocumentContainer dc, LoadedPackage lp)
+		public ResourceLoader(TD.SandDock.TabControl dc, LoadedPackage lp)
 		{
 			this.dc = dc;
 			pkg = lp;
@@ -77,7 +77,7 @@ namespace SimPe
 				try 
 				{
 					wrapper = wrapper.Activate();
-					wrapper.ProcessData(fii.Package.FindFile(fii.FileDescriptor), fii.Package);
+					wrapper.ProcessData(fii.Package.FindExactFile(fii.FileDescriptor), fii.Package);
 				
 					return wrapper;
 				} 
@@ -170,8 +170,8 @@ namespace SimPe
 
 				TD.SandDock.DockControl doc = null;
 				bool add = !overload;
-				if (overload) doc = dc.ActiveDocument;				
-				if (doc == null) {add = true; doc = new TD.SandDock.DockControl(); }
+				if (overload) doc = dc.SelectedPage;				
+				if (doc == null) {add = true; doc = new TD.SandDock.DockableWindow(); }
 				else if (!this.UnloadWrapper(doc)) return false;
 
 				doc.Text = wrapper.ResourceName;
@@ -189,7 +189,7 @@ namespace SimPe
 					{
 						
 						doc.FloatingSize = pan.Size;
-						if (add) dc.AddDocument(doc);
+						if (add) dc.TabPages.Add(doc);
 						pan.Parent = doc;
 						pan.Left = 0;
 						pan.Top = 0;
@@ -201,8 +201,8 @@ namespace SimPe
 						//pan.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
 
 						
-						if (add) doc.Closing += new System.ComponentModel.CancelEventHandler(CloseResourceDocument);
-						dc.ActiveDocument = doc;
+						if (add) doc.Closing += new TD.SandDock.DockControlClosingEventHandler(CloseResourceDocument);
+						dc.SelectedPage = doc;
 						doc.Manager = dc.Manager;
 						loaded[fii] = doc;
 
@@ -263,8 +263,8 @@ namespace SimPe
 				TD.SandDock.DockControl doc = (TD.SandDock.DockControl)loaded[fii];					
 
 				if (doc.Parent == null ) return true;
-				if (doc.Parent is TD.SandDock.DocumentContainer)
-					((TD.SandDock.DocumentContainer)doc.Parent).ActiveDocument = doc;
+				if (doc.Parent is TD.SandDock.TabControl)
+					((TD.SandDock.TabControl)doc.Parent).SelectedPage = doc;
 				else 
 					doc.LayoutSystem.SelectedControl = doc;
 				
@@ -440,6 +440,8 @@ namespace SimPe
 		/// if the changes should be commited</remarks>
 		bool UnloadWrapper(SimPe.Interfaces.Plugin.IFileWrapper wrapper)
 		{
+			if (wrapper==null) return false;
+
 			if (wrapper.GetType().GetInterface("IPackedFileSaveExtension", false) == typeof(SimPe.Interfaces.Plugin.Internal.IPackedFileSaveExtension)) 
 			{
 				SimPe.Interfaces.Plugin.Internal.IPackedFileSaveExtension wrp = (SimPe.Interfaces.Plugin.Internal.IPackedFileSaveExtension)wrapper;
@@ -471,7 +473,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="sender">a <see cref="TD.SandDock.DockControl"/> Object</param>
 		/// <param name="e">the Cancel Arguments</param>
-		private void CloseResourceDocument(object sender, System.ComponentModel.CancelEventArgs e)
+		private void CloseResourceDocument(object sender, TD.SandDock.DockControlClosingEventArgs e)
 		{
 			SimPe.Interfaces.Plugin.IFileWrapper wrapper = (SimPe.Interfaces.Plugin.IFileWrapper)((TD.SandDock.DockControl)sender).Tag;
 			e.Cancel = !UnloadWrapper(wrapper);	
@@ -526,6 +528,6 @@ namespace SimPe
 						}
 					}
 			}
-		}
+		}		
 	}
 }

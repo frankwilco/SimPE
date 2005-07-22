@@ -185,6 +185,8 @@ namespace SimPe.Wizards
 			this.PrevEnabled = e.EnablePrev;
 			this.FinishEnabled = e.CanFinish;
 		
+		((WizardStepPanel)Controls[nr]).OnShowed(this);
+			if (ShowedStep!=null) ShowedStep(this);
 			return true;
 		}
 
@@ -227,6 +229,8 @@ namespace SimPe.Wizards
 		public event SimPe.Wizards.WizardStepChangeHandle RollbackStep;
 
 		public event SimPe.Wizards.WizardChangeHandle ShowStep;
+
+		public event SimPe.Wizards.WizardHandle ShowedStep;
 
 		public event SimPe.Wizards.WizardHandle ChangedNextState;
 

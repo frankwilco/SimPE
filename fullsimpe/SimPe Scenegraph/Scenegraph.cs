@@ -194,7 +194,7 @@ namespace SimPe.Plugin
 				ArrayList descs = (ArrayList)map[s];
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in descs) 
 				{				
-					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem subitem = FileTable.FileIndex.FindSingleFile(pfd, true);
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem subitem = FileTable.FileIndex.FindSingleFile(pfd, null, true);
 
 					if (subitem!=null) 
 					{
@@ -399,7 +399,7 @@ namespace SimPe.Plugin
 			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
 			{
 				string pname = item.Package.FileName.Trim().ToLower();
-				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] citems = cachefile.FileIndex.FindFile(item.FileDescriptor);
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] citems = cachefile.FileIndex.FindFile(item.FileDescriptor, item.Package);
 				bool have=false;
 				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem citem in citems) 
 				{
@@ -440,7 +440,7 @@ namespace SimPe.Plugin
 						if (onlydefault && !defaultfam.Contains(mci.Family)) continue;
 
 						string name = k;
-						items = FileTable.FileIndex.FindFile(mci.FileDescriptor);						
+						items = FileTable.FileIndex.FindFile(mci.FileDescriptor, null);						
 
 						foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
 						{
@@ -853,7 +853,7 @@ namespace SimPe.Plugin
 
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor p in re.Items) 
 				{
-					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(p);
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(p, null);
 					foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
 					{
 						try 
