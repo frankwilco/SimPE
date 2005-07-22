@@ -485,8 +485,8 @@ namespace SimPe.Plugin
 
 			XmlRegistryKey rk = Helper.WindowsRegistry.PluginRegistryKey.CreateSubKey("CareerEditor");
 
-			oneEnglish = ((string)rk.GetValue("oneEnglish", "True")) == "True";
-			englishOnly = ((string)rk.GetValue("englishOnly", "False")) == "True";
+			oneEnglish = (rk.GetValue("oneEnglish", "True").ToString()) == "True";
+			englishOnly = (rk.GetValue("englishOnly", "False").ToString()) == "True";
 		}
 
 		/// <summary>

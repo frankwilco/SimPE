@@ -458,11 +458,19 @@ namespace SimPe.Interfaces.Plugin
 		{
 			get
 			{		
-				Data.TypeAlias ta = Helper.TGILoader.GetByType(FileDescriptor.Type);
-				string res = GetResourceName(ta);
-				if (res==null) res = GetEmbeddedFileName(ta);
-				if (res==null) res = FileDescriptor.ToString();
-				else  res = ta.Name+": "+res;				
+				string res = null;
+				if (FileDescriptor!=null) 
+				{
+					Data.TypeAlias ta = Helper.TGILoader.GetByType(FileDescriptor.Type);
+					res = GetResourceName(ta);
+					if (res==null) res = GetEmbeddedFileName(ta);
+					if (res==null) res = FileDescriptor.ToString();
+					else  res = ta.Name+": "+res;
+				} 
+				else 
+				{
+					res = SimPe.Localization.GetString("Unknown");
+				}
 				 
 				return res;
 			}

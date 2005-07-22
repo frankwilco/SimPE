@@ -165,6 +165,9 @@ namespace SimPe
 		{
 			if (wrapper!=null) 
 			{
+				if (wrapper.FileDescriptor==null) return false;
+				if (wrapper.Package==null) return false;
+
 				//do not open Wrappers for deleted Descriptors
 				if (wrapper.FileDescriptor!=null) if (wrapper.FileDescriptor.MarkForDelete) return false;
 
@@ -175,7 +178,8 @@ namespace SimPe
 				else if (!this.UnloadWrapper(doc)) return false;
 
 				doc.Text = wrapper.ResourceName;
-				doc.Tag = wrapper;					
+				doc.Tag = wrapper;		
+				
 				wrapper.FileDescriptor.Deleted += new EventHandler(DeletedDescriptor);
 				wrapper.FileDescriptor.ChangedUserData += new SimPe.Events.PackedFileChanged(FileDescriptor_ChangedUserData);
 
