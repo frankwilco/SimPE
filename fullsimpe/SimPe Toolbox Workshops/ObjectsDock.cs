@@ -836,67 +836,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			}
 		}
 
-		delegate TreeNode GetParentNodeHandler(TreeNodeCollection nodes, string[] names, int id, SimPe.Cache.ObjectCacheItem oci, SimPe.Data.Alias a);
-		TreeNode GetParentNode(TreeNodeCollection nodes, string[] names, int id, SimPe.Cache.ObjectCacheItem oci, SimPe.Data.Alias a)
-		{	
-			TreeNode ret = null;
-			if (id<names.Length) 
-			{	
-				string name = names[id];
-				foreach (TreeNode tn in nodes) 
-				{
-					if (tn.Text.Trim().ToLower() == name.Trim().ToLower())
-					{
-						ret = tn;
-						if (id<names.Length-1) 
-							ret = GetParentNode(tn.Nodes, names, id+1, oci, a);
-
-						break;
-					}
-				}
-			}
-
-			if (ret==null) 
-			{
-				if (id<names.Length) ret = new TreeNode(names[id]);
-				else ret = new TreeNode(SimPe.Localization.GetString("Unknown"));
-
-				nodes.Add(ret);
-				ret.SelectedImageIndex = 0;
-				ret.ImageIndex = 0;
-			}
-
-			if (id==0) 
-			{
-				TreeNode tn = new TreeNode(a.ToString());
-				tn.Tag = a;
-
-				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)oci.Tag;
-				string flname = "";
-				if (fii.Package!=null)
-					if (fii.Package.FileName!=null)
-						flname = fii.Package.FileName.Trim().ToLower();
-
-				if (flname.StartsWith(Helper.WindowsRegistry.SimSavegameFolder.Trim().ToLower())) 
-				{
-					tn.ImageIndex = 2;
-				}
-				else if (oci.Thumbnail!=null) 
-				{
-					Image img = oci.Thumbnail;
-					//if (Helper.WindowsRegistry.GraphQuality) img = Ambertation.Drawing.GraphicRoutines.KnockoutImage(img, new System.Drawing.Point(0,0), System.Drawing.Color.Magenta);
-					img = Ambertation.Drawing.GraphicRoutines.ScaleImage(img, ilist.ImageSize.Width, ilist.ImageSize.Height, Helper.WindowsRegistry.GraphQuality);
-
-					ilist.Images.Add(img);
-					tn.ImageIndex = ilist.Images.Count-1;					
-				}
-				else
-					tn.ImageIndex = 1;
-				tn.SelectedImageIndex = tn.ImageIndex;
-				ret.Nodes.Add(tn);
-			}
-			return ret;
-		}
+		delegate TreeNode GetParentNodeHandler(TreeNodeCollection nodes, string[] names, int id, SimPe.Cache.ObjectCacheItem oci, SimPe.Data.Alias a, ImageList ilist);
+		
 
 		private void ol_LoadedItem(SimPe.Cache.ObjectCacheItem oci, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, SimPe.Data.Alias a)
 		{
@@ -906,7 +847,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			string[][] cats = oci.ObjectCategory;
 			foreach (string[] ss in cats)				
 			{
-				this.tv.BeginInvoke(new GetParentNodeHandler(GetParentNode), new object[] {tv.Nodes, ss, 0, oci, a});				
+				this.tv.BeginInvoke(new GetParentNodeHandler(ObjectLoader.GetParentNode), new object[] {tv.Nodes, ss, 0, oci, a, ilist});				
 			}
 
 			//if (oci.Thumbnail!=null) a.Name = "* "+a.Name;				

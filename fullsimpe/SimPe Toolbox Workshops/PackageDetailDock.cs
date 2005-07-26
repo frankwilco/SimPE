@@ -13,8 +13,8 @@ namespace SimPe.Plugin.Tool.Dockable
 	public class dcPackageDetails : TD.SandDock.UserDockableWindow
 	{
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
+		protected SimPe.Plugin.Tool.Dockable.NeighborhoodPreview np;
 		private SimPe.Plugin.Tool.Dockable.ObjectPreview op;
-		private SimPe.Plugin.Tool.Dockable.NeighborhoodPreview np;
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -70,6 +70,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpGradientPanel1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel1.AutoScrollMinSize")));
 			this.xpGradientPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel1.BackgroundImage")));
 			this.xpGradientPanel1.Controls.Add(this.np);
+			this.xpGradientPanel1.Controls.Add(this.op);
 			this.xpGradientPanel1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("xpGradientPanel1.Dock")));
 			this.xpGradientPanel1.Enabled = ((bool)(resources.GetObject("xpGradientPanel1.Enabled")));
 			this.xpGradientPanel1.Font = ((System.Drawing.Font)(resources.GetObject("xpGradientPanel1.Font")));

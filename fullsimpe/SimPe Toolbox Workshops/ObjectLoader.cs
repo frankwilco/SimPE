@@ -57,7 +57,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			cachefile = new SimPe.Cache.ObjectCacheFile();
 		
 			if (!Helper.WindowsRegistry.UseCache) return;
-			WaitingScreen.UpdateMessage("Loading Cache");
+			Wait.Message = "Loading Cache";
 			try 
 			{
 				cachefile.Load(CacheFileName);
@@ -77,11 +77,12 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			if (!Helper.WindowsRegistry.UseCache) return;
 			if (!cachechg && !ObjectReader.changedcache) return;
-			WaitingScreen.UpdateMessage("Saving Cache");
+			Wait.Message = "Saving Cache";
 
 			cachefile.Save(CacheFileName);
 		}		
 		#endregion
+		
 		
 
 		protected override void Produce()
@@ -97,11 +98,13 @@ namespace SimPe.Plugin.Tool.Dockable
 			string len = " / " + nrefitems.Length.ToString();
 
 			SimPe.Data.MetaData.Languages deflang = Helper.WindowsRegistry.LanguageCode;
+			Wait.Message = "Loading Objects";
+			Wait.MaxProgress = nrefitems.Length;
 			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem lnrefitem in nrefitems)
 			{
 				ct++;
 				Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem = lnrefitem;
-				if (ct%134==1) WaitingScreen.UpdateMessage(ct.ToString() + len);				
+				if (ct%134==1) Wait.Progress = ct;				
 
 				//if (nrefitem.FileDescriptor.Instance != 0x41A7) continue;
 				if (nrefitem.LocalGroup == Data.MetaData.LOCAL_GROUP) continue;
@@ -260,7 +263,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				
 				if (oci.Thumbnail!=null) 
 				{
-					WaitingScreen.UpdateImage(oci.Thumbnail);
+					Wait.Image =oci.Thumbnail;
 					ObjectReader.changedcache = true;
 				}
 			}
@@ -310,7 +313,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		public void LoadData()
 		{
-			WaitingScreen.Wait();
+			Wait.SubStart();
 			FileTable.FileIndex.Load();
 			
 			ObjectReader erz = new ObjectReader();
@@ -334,8 +337,69 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		private void erz_Finished(object sender, EventArgs e)
 		{
-			WaitingScreen.Stop();
+			Wait.SubStop();
 			if (Finished!=null) Finished(this, new System.EventArgs());
+		}
+
+		public static TreeNode GetParentNode(TreeNodeCollection nodes, string[] names, int id, SimPe.Cache.ObjectCacheItem oci, SimPe.Data.Alias a, ImageList ilist)
+		{	
+			TreeNode ret = null;
+			if (id<names.Length) 
+			{	
+				string name = names[id];
+				foreach (TreeNode tn in nodes) 
+				{
+					if (tn.Text.Trim().ToLower() == name.Trim().ToLower())
+					{
+						ret = tn;
+						if (id<names.Length-1) 
+							ret = GetParentNode(tn.Nodes, names, id+1, oci, a, ilist);
+
+						break;
+					}
+				}
+			}
+
+			if (ret==null) 
+			{
+				if (id<names.Length) ret = new TreeNode(names[id]);
+				else ret = new TreeNode(SimPe.Localization.GetString("Unknown"));
+
+				nodes.Add(ret);
+				ret.SelectedImageIndex = 0;
+				ret.ImageIndex = 0;
+			}
+
+			if (id==0) 
+			{
+				TreeNode tn = new TreeNode(a.ToString());
+				tn.Tag = a;
+
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)oci.Tag;
+				string flname = "";
+				if (fii.Package!=null)
+					if (fii.Package.FileName!=null)
+						flname = fii.Package.FileName.Trim().ToLower();
+
+				if (flname.StartsWith(Helper.WindowsRegistry.SimSavegameFolder.Trim().ToLower())) 
+				{
+					tn.ImageIndex = 2;
+				}
+				else if (oci.Thumbnail!=null) 
+				{
+					Image img = oci.Thumbnail;
+					//if (Helper.WindowsRegistry.GraphQuality) img = Ambertation.Drawing.GraphicRoutines.KnockoutImage(img, new System.Drawing.Point(0,0), System.Drawing.Color.Magenta);
+					img = Ambertation.Drawing.GraphicRoutines.ScaleImage(img, ilist.ImageSize.Width, ilist.ImageSize.Height, Helper.WindowsRegistry.GraphQuality);
+
+					ilist.Images.Add(img);
+					tn.ImageIndex = ilist.Images.Count-1;					
+				}
+				else
+					tn.ImageIndex = 1;
+				tn.SelectedImageIndex = tn.ImageIndex;
+				ret.Nodes.Add(tn);
+			}
+			return ret;
 		}
 	}
 }

@@ -254,6 +254,11 @@
                     AssemblyName = "System.Configuration.Install"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Configuration.Install.dll"
                 />
+                <Reference
+                    Name = "SimPe Main ResourceControl"
+                    Project = "{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
@@ -456,12 +461,7 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "TreeBuilder.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ViewFilter.cs"
+                    RelPath = "WaitBar.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

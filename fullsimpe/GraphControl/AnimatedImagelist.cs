@@ -168,6 +168,7 @@ namespace Ambertation.Windows.Forms
 			else index++;
 			
 			Refresh();
+			Application.DoEvents();
 		}
 	}
 }

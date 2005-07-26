@@ -104,7 +104,7 @@
     <value>Private</value>
   </data>
   <data name="ofd.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>63, 0</value>
+    <value>17, 17</value>
   </data>
   <data name="ofd.Filter">
     <value />
@@ -113,7 +113,7 @@
     <value>Open Package</value>
   </data>
   <data name="xpCueBannerExtender1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>196, 0</value>
+    <value>84, 17</value>
   </data>
   <data name="xpCueBannerExtender1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
@@ -205,14 +205,14 @@
   <data name="&gt;&gt;tbInst.ZOrder">
     <value>5</value>
   </data>
-  <data name="tbGrp.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
   <data name="tbGrp.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
   <data name="tbGrp.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
+  </data>
+  <data name="tbGrp.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
   </data>
   <data name="tbGrp.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -376,11 +376,11 @@
   <data name="cbsemig.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
-  <data name="cbsemig.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
   <data name="cbsemig.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
+  </data>
+  <data name="cbsemig.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
   </data>
   <data name="cbsemig.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -455,7 +455,7 @@
     <value>Private</value>
   </data>
   <data name="sbm.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>364, 0</value>
+    <value>252, 17</value>
   </data>
   <data name="sbm.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
@@ -2100,7 +2100,7 @@
     <value>Private</value>
   </data>
   <data name="iAnim.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>436, 0</value>
+    <value>324, 17</value>
   </data>
   <data name="iAnim.ImageSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 16</value>
@@ -2313,7 +2313,7 @@
     <value>Private</value>
   </data>
   <data name="sdm.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>515, 0</value>
+    <value>403, 17</value>
   </data>
   <data name="dcResource.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -4263,11 +4263,20 @@
   <data name="dc.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
-  <data name="dc.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
+  <data name="dc.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="dc.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="dc.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
+  </data>
+  <data name="dc.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="dc.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 8</value>
   </data>
   <data name="dc.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -4302,7 +4311,7 @@
   <data name="dc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
   </data>
-  <data name="dc.Location1" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="dc.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </data>
   <data name="dc.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -4426,7 +4435,7 @@
     <value>Private</value>
   </data>
   <data name="sb.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="sb.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>8, 8</value>
@@ -4500,6 +4509,81 @@
   <data name="&gt;&gt;sb.ZOrder">
     <value>8</value>
   </data>
+  <data name="lbOp.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="lbOp.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="lbOp.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Assembly</value>
+  </data>
+  <data name="lbOp.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="lbOp.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="lbOp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="lbOp.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="lbOp.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Fill</value>
+  </data>
+  <data name="lbOp.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="lbOp.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="lbOp.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="lbOp.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbOp.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="lbOp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="lbOp.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>512, 4</value>
+  </data>
+  <data name="lbOp.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="lbOp.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>372, 16</value>
+  </data>
+  <data name="lbOp.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>4</value>
+  </data>
+  <data name="lbOp.Text">
+    <value />
+  </data>
+  <data name="lbOp.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="lbOp.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lbOp.Name">
+    <value>lbOp</value>
+  </data>
+  <data name="&gt;&gt;lbOp.Type">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbOp.Parent">
+    <value>sb</value>
+  </data>
+  <data name="&gt;&gt;lbOp.ZOrder">
+    <value>0</value>
+  </data>
   <data name="pbimg.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
@@ -4507,7 +4591,7 @@
     <value>Private</value>
   </data>
   <data name="pbimg.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="pbimg.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -4567,7 +4651,7 @@
     <value>sb</value>
   </data>
   <data name="&gt;&gt;pbimg.ZOrder">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="xpLine1.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -4579,7 +4663,7 @@
     <value>True</value>
   </data>
   <data name="xpLine1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="xpLine1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
@@ -4645,7 +4729,7 @@
     <value>sb</value>
   </data>
   <data name="&gt;&gt;xpLine1.ZOrder">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="pbWait.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -4654,7 +4738,7 @@
     <value>Private</value>
   </data>
   <data name="pbWait.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="pbWait.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -4664,6 +4748,15 @@
   </data>
   <data name="pbWait.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left</value>
+  </data>
+  <data name="pbWait.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="pbWait.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </data>
+  <data name="pbWait.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
   </data>
   <data name="pbWait.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -4677,11 +4770,137 @@
   <data name="pbWait.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="pbWait.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="resource" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAhBJREFUOE9jYKAV
+        WLNknvWKhbNzFs6amtVQVaYHtIcdiBkJ2rdm6fyojSsXP960asl/ZLxiwaxr+VlpvkAD+ICYCatB65Yt
+        aIRpOrx3x/8LZ078P3fy6P89WzeADVu/fOGvtMS4YqBmMSBmRjFk7dL5LjDN927f+I8Ozp86BjZk1eK5
+        X1WVlcKAmoVRvAQ0/QhIwY0rFzE0wwROHTkANqQgO30XULMxNFwYGBbOnMIFlPgDkvz37x9OA54/fQw2
+        YHJvxwug5gggFmVISsn8jw/v3r3n/9u3b///+fPn/9cvn8EGAGPmK1AzKCyUQOEgKSoiHJmdnvw/Lyvt
+        /6xZs1DwunXr/t+6dev/z58//799/QpswNT+rg9AfXVArA4ygBeINVvrqx/1d7b837Z50/+zZ8/C8bVr
+        1+AugAVkXmbqbaCeciBWhsUE44Su1iqQ6bs2r/v/8f07jHB4cPc2LCr/qigpbgZqjAdiCXhUSoiLi82Z
+        2n8KFpVnTxz5D9IEwicP74cnqoiQwKtATV1AbAPEXMhpgRVoiE5nc91+YEr8h54SgfH/29/b8yJQw1Qg
+        DgWFHUo6gJrECaS19XS0SoD+PFxbXnyrpqzobmig30kBfv6lQLlmIA4CYnkgZkW2HZkNyjQyQGwNxOFA
+        nAbEKUAcCMSgxANKxiy4NMMDFcjgAGJQcpUGYikgFgRiNnRnAwA2XZVm6b1l0AAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="resource1" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAlFJREFUOE9jYKAW
+        iE9My/fw9NUEmscJxExrlsyzXrFwds7CWVOzGqrK9IBi7EDMiNO+yOj4LKAhTzLTUtqXzJ3+dOPKxf83
+        rVoCxysWzLqWn5XmCzSAD2QBNoP4M9LSD6ekZf5vra/5v23Dmv/nTh37f+7k0f97tm4AG7R++cJfaYlx
+        xUDNYkDMjGLIwpmTPeZOm/i/uLDgf3pm7v+du3b9f/fu3f+/f//+B4HzQMNAhqxaPPerqrJSGFCzMIqX
+        gKYfAeL/+3fv+D9t+oz/WTkFGIacOnIAbEhBdvouoGZjaLgwMCycOYULKPEHJPnz58//Dx8+xGrI86eP
+        wQZM7u14AdQcAcSiYG+sXDhHDSSxd9tGsHN//foFNmT69Jn/586b///GjRtgg79++Qw2ABgzX4HaQGGh
+        BDagp61RGCSxbf1KsAHIhpw+ffr/vXv3wAa8ff0KbMDU/q4PQG11QKwOC0jm1Yvn3QZJPrp/F8WQz58/
+        ///27Rs4MGEBmZeZehuosRyIlWEGME7oaq0CGbBr87r/H9+/gxsCYzy4exsWlX9VlBQ3AzXGA7EEPCol
+        xMXF5kztPwVLPGdPHPkP0gTCJw/vhyeoiJDAq0BNXUBsA8RcyGmBFWiITmdz3X5gKvyHnAqh8f/b39vz
+        IlDDVCAOBWJJlHQANQmUD7T1dLRKgP48XFtefKumrOhuaKDfSQF+/qVAuWYgDgJieSBmRbYdmQ3KNDJA
+        bA3E4UCcBsQpQBwIxKDEA0rGLLg0wwMVyOAAYlBylQZiKSAWBGI2dGcDABo+m98QlMq1AAAAAElFTkSu
+        QmCC
+</value>
+  </data>
+  <data name="resource2" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAkxJREFUOE+Fkm1I
+        U1EYx7NlL37IQlJ7gWj2AiVJ+NE+FPUlomKRJX4oLLc2rYyMjEpBpKhVLMhBDZutOXNmOhMkBDHYiDaI
+        EFZIl6ulRFHr9joWa9vT/zlwL87SDvy4597/+f/Puc95dLNmGBVHzN/H345JsVgshWUKoJnWp2ldbc6S
+        w5WWX9u2buko3lRUDjELZPw3oMvTWt7rdU886mwjo6majluMdO1SI7U7b72qqTLtQsBCMPufQd3tdxvZ
+        yPgHH5PJfIzqz5+lZttV8nXco577rrip4mAtzLlAlxby0NO6XTWPSiPEw1xVQw6Hg4LBID1/FhDBne47
+        0TUF+v0w56T9EtIDvGAkPCzMUwMSiQSFAk9EyMnqowMwF4N54hSu281ZEBIsplKpaQPev5sQATevX/4A
+        WxlYIgK8rpa1LAz292pmnvj9AfL5fBQOhymZTFL05w8R4HLYo7BxLfQiAFXOYaG/x5sWoCgKybJMkUhE
+        nOzzp48iwG6zfoWtAaxTC6l74HZKLI6PyVoI7xqPx8XuPF6EnoqAExajBGMdKFADMm5YL55jcaCvm759
+        UdJOwi9vZEmYUezkav2qPhgPgXztKvPz8nJb7LaQepV8bWxigv4hYWbK9hlewmQFmwF3pzYyEVJ4palh
+        CJ2YUg3qE/f/e8/OHcNYbQelYCn4q7UX4OOGjYXrT+M//fV1ta8vnDkllxp2BxdlZ3ugNYG9YCXInLz7
+        5Dk3xwpQAg4AE6gEBsDNw208ZzqzVlRM5gNu1+VgGVgM5k499h/Kk6DZ9FE/MwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="resource3" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAlFJREFUOE+1k2tI
+        U2EYx5Wyi0xNVmoXiEwSSvzSRyuQIogwWyhdCDXSRSsmqSlILjc1cgVbsAna0q256c5MM8lFJH7YhC2W
+        JLSQxlKsLzHoMogNlnv6vwfO2IU+9sIPznvO+f3f2/NmZPyvNjE6XDFuenzTNKSXdXe2l2OczSCTjVd/
+        RXq78vjJEjxuSRt/wjJyadpm/vKCG6VExo1DH5tl0qrLdVcH6hqaFsXi7ccg704KmLQalYLknHtF771u
+        WvQs0JuXz/kw1d3u9fqGxq8ikegaxGqwNx7wzDJyQpA/+5cptWk1WpLLb1GLXBbJzc15BLES5MQDpsZM
+        Lhaw/GEpTbZYbdSlUNH9XhW1Nd+gmrNVbohH43tgGtRlQ/7DAmKxWFKAIHN2Ow3odaTp76UHfcpvkC+C
+        HfwMbCbDASbPzU4nydFolKxjNnI4HMRxHC24nMQ9NZBxUPcbWiso5gMe3lOKWcDslC0pgM0mGAyS1+sl
+        n89Ha6srhBMivUb9E5oClAp7sMFuHvazkLWVQFJIJBKhUChE4XCYPxH2j/x6kx9iB9gvBGRq1X2d7OPr
+        mUn69eN72kauBvy8jM1eLyneN8PqCRTFT6GosLDAoNe8FY7yndtFTGJ4nPPxorpQI/FBUoMjIDuxkLIQ
+        Utbfo5jHOmOplciZn0SrT59agqAHtWAn4Es7sW1F51B52cE2rNPZ1dH66U57S6BWcsazLS/Pgm894Bxg
+        FZiVKgt9dmn2gApwHkhBI5CAw6AAbPyXLLxnU2M3TQzYhdkF8sGm1Gn/BeruoLc5JQzBAAAAAElFTkSu
+        QmCC
+</value>
+  </data>
+  <data name="resource4" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAgVJREFUOE9jYKAV
+        WLNknvWKhbNzFs6amtVQVaYHtIcdiBkJ2rdm6fyojSsXP960asl/ZLxiwaxr+VlpvkAD+ICYCatB65Yt
+        aIRpOrx3x/8LZ078P3fy6P89WzeADVu/fOGvtMS4YqBmMSBmRjFk7dL5LjDN927f+I8Ozp86BjZk1eK5
+        X1WVlcKAmoVRvAQ0/QhIwY0rFzE0wwROHTkANqQgO30XULMxNFwYGBbOnMIFlPgDkvz37x9OA54/fQw2
+        YHJvxwug5gggFgV7Y+XCOWogib3bNmJobm3r+p+UkokTgw3oaWsUBhmwbf1KDAPevHnzf//+/f8XLFjw
+        v7+v9392evL/iJDAb0BtG4G4FhaQzKsXz7sNMuTR/bsohnz79u3//fv3/1+4cOH/skXz//d3tvwPDfR7
+        BNQ4CYj9YAYwTuhqrQIZsGvzuv8f37/DcMmDu7dhUflXRUlxM1BjPBBLwKNSQlxcbM7U/lOwqDx74sh/
+        kCYQPnl4PzxRAZ1/FaipC4htgJgLOS2wAg3R6Wyu2w9Mif/QUyIw/n/7e3teBGqYCsShQCyJkg6gJnEC
+        aW09Ha2SvMzUw7XlxbdqyoruAv18UoCffylQrhmIg4BYHohZkW1HZoMyjQwQWwNxOBCnAXEKEAcCMSjx
+        gJIxCy7N8EAFMjiAGJRcpYFYCogFgZgN3dkA9aqfK7LGo84AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="resource5" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAklJREFUOE9jYKAV
+        WLNknvWKhbNzFs6amtVQVaYHtIcdiBkJ2rdm6fyojSsXP960asl/ZLxiwaxr+VlpvkAD+ICYCatB65Yt
+        aIRpOrx3x/8LZ078P3fy6P89WzeADVu/fOGvtMS4YqBmMSBmRjFk7dL5LjDN927f+I8Ozp86BjZk1eK5
+        X1WVlcKAmoVRvAQ0/QhIwY0rFzE0wwROHTkANqQgO30XULMxNFwYGBbOnMIFlPgDkvz37x9OA54/fQw2
+        YHJvxwug5gggFgV7Y+XCOWogib3bNqJo/vv37//JU6b/v3v37v8vX778//zpI9gAYMx8BWoDhYUS2ICe
+        tkZhkMS29SsxbN+2fef/vPyS/wcOHPh/9/at/8AY+j+1v+sDUFsdEKvDApJ59eJ5t0GGPLp/F8WQt2/f
+        /p89Z97/rJyC/zOnTv6/bP7M/7kZKbeBGsuBWBlmAOOErtYqkAG7Nq/7//H9O7ghv379+v/w4cP/HR0d
+        /1NSM/8311X9VZSX2wHUmADEEvColBAXF5sztf8ULCrPnjjy/8Hd22B8dP/u/3OnTfxfXFjwPzY++Y+g
+        oNAGoEZPIOZBTgusQEN0Opvr9gP9+Q89JS5fMOu3i4PdNV09wwvRsUmfZGTkQC4QQklMQA4nEGvr6WiV
+        5GWmHq4tL75VU1Z0NzTQ76QAP/9SoFwrEKcZGZv1cHFxhwPZiugGgPigTCMDxNZADFKUBsQpQBwIxKDE
+        Iw3ECiCLgFgcmwEgMVCu4wBiUHIFaZACYkEgZoPKsUDlWQHukaKNWs4IHAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="resource6" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAkNJREFUOE9jYKAV
+        WLNknvWKhbNzFs6amtVQVaYHtIcdiBkJ2rdm6fyojSsXP960asl/ZLxiwaxr+VlpvkAD+ICYCatB65Yt
+        aIRpOrx3x/8LZ078P3fy6P89WzeADVu/fOGvtMS4YqBmMSBmRjFk7dL5LjDN927f+I8Ozp86BjZk1eK5
+        X1WVlcKAmoVRvAQ0/QhIwY0rFzE0wwROHTkANqQgO30XULMxNFwYGBbOnMIFlPgDkvz37x9OA54/fQw2
+        YHJvxwug5gggFgV7Y+XCOWogib3bNqJofvTo8f/tO3b9//Tp0/+fP3/+//rlM9gAYMx8BWoDhYUS2ICe
+        tkZhkMS29StRDDh95uz/tvbu/xcuXPj/+vXr/29fvwIbMLW/6wNQWx0Qq8MCknn14nm3QZKP7t+FG3Li
+        xKn/9Y0t/zdt2vT//v37/2EBmZeZehuosRyIlWEGME7oaq0CGbBr87r/H9+/Axty7PiJ/7V1Tf9Xrlz5
+        /+D+vbCo/KuipLgZqDEeiCXgUSkhLi42Z2r/KVhUnj1x5P+mDRv+l5VX/W9trP8/a3Iv2ICIkMCrQE1d
+        QGwDxFzIaYEVaIhOZ3PdfmBK/AcO7b6e/zk5ef/LCnP/T+pp++Pv7XkRqGEqEIcCsSRKOoCaxAmktfV0
+        tEqA/jycn531LD4h+YexkcFtXh6ejUC5ZiAOAmJ5IGZFth2ZDco0MkBsbWxq3h8QFHYXyJ4BxJlADEo8
+        oGTMgkszPFCBDA47B2d3VzevWdAA0wfSbOjOBgB3DZ5acjxyPwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="resource7" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAlZJREFUOE9jYKAV
+        WLNknvWKhbNzFs6amtVQVaYHtIcdiBkJ2rdm6fyojSsXP960asl/ZLxiwaxr+VlpvkAD+ICYCatB65Yt
+        aIRpOrx3x/8LZ078P3fy6P89WzeADVu/fOGvtMS4YqBmMSBmRjFk7dL5LjDN927f+I8Ozp86BjZk1eK5
+        X1WVlcKAmoVRvAQ0/QhIwY0rFzE0wwROHTkANqQgO30XULMxNFwYGBbOnMIFlPgDkvz37x9OA54/fQw2
+        YHJvxwug5gggFgV7Y+XCOWogib3bNqJoXrlq7f8TJ0/9//Tp0/8/f/78//rlM9gAYMx8BWoDhYUS2ICe
+        tkZhkMS29SvhBixdtvJ/bV3T/7379v2/efPm/x8/fvx/+/oV2ICp/V0fgNrqgFgdFpDMqxfPuw2SfHT/
+        7n+Y5lWrV/9fu3bt/9u3b///9evXf1hA5mWm3gZqLAdiZZgBjBO6WqtABrS3tv2vqq7/D9K8bNmy/2fP
+        nv3/+fPn//fv3IJF5V8VJcXNQI3xQCwBj0oJcXGx8tKyF3l5hf8rigv+tzY1/N+yacP/q5cv/j9xaB88
+        UUWEBF4FauoCYhsg5oIbEJ+QOik6Nul6aJD/1eK8rH/9nS3/Vy2a8x+YKmHx/9vf2/MiUMNUIA4FYkmU
+        dBAcGhnILyAASqr5cjIy/elJccdqy4tv1ZQV3Q0N9DspwM+/FCjXDMRBQCwPxKxw26EMXmioakFpkBPD
+        gTgNiFOAOBCIQYkHlIxZ0DWD+KC0DcpxIJNBmYUDiEHJVRqIpYBYEIjZUJwN5AAAaZqa/+KzyOQAAAAA
+        SUVORK5CYII=
+</value>
   </data>
   <data name="pbWait.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
+    <value>Inherit</value>
   </data>
   <data name="pbWait.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>900, 4</value>
@@ -4692,14 +4911,8 @@
   <data name="pbWait.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 16</value>
   </data>
-  <data name="pbWait.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Normal</value>
-  </data>
   <data name="pbWait.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>5</value>
-  </data>
-  <data name="pbWait.Text">
-    <value />
+    <value>8</value>
   </data>
   <data name="pbWait.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -4708,87 +4921,12 @@
     <value>pbWait</value>
   </data>
   <data name="&gt;&gt;pbWait.Type">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2032.35851, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbWait.Parent">
     <value>sb</value>
   </data>
   <data name="&gt;&gt;pbWait.ZOrder">
-    <value>2</value>
-  </data>
-  <data name="lbOp.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="lbOp.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="lbOp.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="lbOp.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="lbOp.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="lbOp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="lbOp.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="lbOp.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Fill</value>
-  </data>
-  <data name="lbOp.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="lbOp.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="lbOp.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="lbOp.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="lbOp.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>-1</value>
-  </data>
-  <data name="lbOp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
-  <data name="lbOp.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>496, 4</value>
-  </data>
-  <data name="lbOp.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="lbOp.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>420, 16</value>
-  </data>
-  <data name="lbOp.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>4</value>
-  </data>
-  <data name="lbOp.Text">
-    <value />
-  </data>
-  <data name="lbOp.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="lbOp.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lbOp.Name">
-    <value>lbOp</value>
-  </data>
-  <data name="&gt;&gt;lbOp.Type">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbOp.Parent">
-    <value>sb</value>
-  </data>
-  <data name="&gt;&gt;lbOp.ZOrder">
     <value>3</value>
   </data>
   <data name="lnProg2.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -4801,7 +4939,7 @@
     <value>True</value>
   </data>
   <data name="lnProg2.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="lnProg2.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
@@ -4876,7 +5014,7 @@
     <value>Private</value>
   </data>
   <data name="lbPercent.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="lbPercent.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -4954,7 +5092,7 @@
     <value>True</value>
   </data>
   <data name="lnProg.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="lnProg.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
@@ -5029,7 +5167,7 @@
     <value>Private</value>
   </data>
   <data name="pb.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="pb.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -5092,7 +5230,7 @@
     <value>Private</value>
   </data>
   <data name="sfd.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>130, 0</value>
+    <value>475, 17</value>
   </data>
   <data name="sfd.Filter">
     <value />
@@ -5199,9 +5337,6 @@
   <data name="$this.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="$this.Name">
-    <value>MainForm</value>
-  </data>
   <data name="$this.TrayHeight" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>80</value>
   </data>
@@ -5210,6 +5345,9 @@
   </data>
   <data name="$this.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
+  </data>
+  <data name="$this.Name">
+    <value>MainForm</value>
   </data>
   <data name="$this.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />

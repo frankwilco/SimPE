@@ -68,16 +68,16 @@ namespace SimPe
 		private TD.SandDock.DockableWindow dcAction;
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel2;
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel3;
-		private System.Windows.Forms.ProgressBar pb;
-		private SteepValley.Windows.Forms.XPLine lnProg;
-		private System.Windows.Forms.Label lbPercent;
-		private System.Windows.Forms.Label lbOp;
-		private SteepValley.Windows.Forms.XPGradientPanel sb;
+		internal System.Windows.Forms.ProgressBar pb;
+		internal SteepValley.Windows.Forms.XPLine lnProg;
+		internal System.Windows.Forms.Label lbPercent;
+		internal System.Windows.Forms.Label lbOp;
+		internal SteepValley.Windows.Forms.XPGradientPanel sb;
 		private System.Windows.Forms.ImageList iAnim;
-		private SteepValley.Windows.Forms.XPLine lnProg2;
-		private System.Windows.Forms.PictureBox pbWait;
-		private SteepValley.Windows.Forms.XPLine xpLine1;
-		private System.Windows.Forms.PictureBox pbimg;
+		internal SteepValley.Windows.Forms.XPLine lnProg2;
+		internal Ambertation.Windows.Forms.AnimatedImagelist pbWait;
+		internal SteepValley.Windows.Forms.XPLine xpLine1;
+		internal System.Windows.Forms.PictureBox pbimg;
 		private TD.SandBar.MenuBarItem miTools;
 		private TD.SandDock.DockContainer myrightSandDock;
 		private TD.SandDock.DockContainer mybottomSandDock;
@@ -133,6 +133,9 @@ namespace SimPe
 			//
 			InitializeComponent();
 			
+			WaitBarControl wbc = new WaitBarControl(this);
+			Wait.Bar = wbc;
+
 			package = new LoadedPackage();			
 			package.BeforeFileLoad += new PackageFileLoadEvent(BeforeFileLoad);
 			package.AfterFileLoad += new PackageFileLoadedEvent(AfterFileLoad);
@@ -174,6 +177,7 @@ namespace SimPe
 			TD.SandDock.SandDockManager sdm2 = new TD.SandDock.SandDockManager();
 			sdm2.OwnerForm = this;
 			ThemeManager.Global.AddControl(sdm2);
+			ThemeManager.Global.AddControl(sb);
 			this.dc.Manager = sdm2;	
 		
 			lv.SmallImageList = FileTable.WrapperRegistry.WrapperImageList;
@@ -288,10 +292,10 @@ namespace SimPe
 			this.dc = new TD.SandDock.TabControl();
 			this.xpGradientPanel5 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.sb = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.lbOp = new System.Windows.Forms.Label();
 			this.pbimg = new System.Windows.Forms.PictureBox();
 			this.xpLine1 = new SteepValley.Windows.Forms.XPLine();
-			this.pbWait = new System.Windows.Forms.PictureBox();
-			this.lbOp = new System.Windows.Forms.Label();
+			this.pbWait = new Ambertation.Windows.Forms.AnimatedImagelist();
 			this.lnProg2 = new SteepValley.Windows.Forms.XPLine();
 			this.lbPercent = new System.Windows.Forms.Label();
 			this.lnProg = new SteepValley.Windows.Forms.XPLine();
@@ -1608,7 +1612,7 @@ namespace SimPe
 			this.dc.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dc.ImeMode")));
 			this.dc.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
 																																								   new TD.SandDock.DocumentLayoutSystem(905, 373, new TD.SandDock.DockControl[0], null)});
-			this.dc.Location = ((System.Drawing.Point)(resources.GetObject("dc.Location1")));
+			this.dc.Location = ((System.Drawing.Point)(resources.GetObject("dc.Location")));
 			this.dc.Name = "dc";
 			this.dc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dc.RightToLeft")));
 			this.dc.Size = ((System.Drawing.Size)(resources.GetObject("dc.Size")));
@@ -1649,10 +1653,10 @@ namespace SimPe
 			this.sb.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("sb.AutoScrollMargin")));
 			this.sb.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("sb.AutoScrollMinSize")));
 			this.sb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("sb.BackgroundImage")));
+			this.sb.Controls.Add(this.lbOp);
 			this.sb.Controls.Add(this.pbimg);
 			this.sb.Controls.Add(this.xpLine1);
 			this.sb.Controls.Add(this.pbWait);
-			this.sb.Controls.Add(this.lbOp);
 			this.sb.Controls.Add(this.lnProg2);
 			this.sb.Controls.Add(this.lbPercent);
 			this.sb.Controls.Add(this.lnProg);
@@ -1674,6 +1678,30 @@ namespace SimPe
 			this.sb.Visible = ((bool)(resources.GetObject("sb.Visible")));
 			this.sb.Watermark = ((System.Drawing.Image)(resources.GetObject("sb.Watermark")));
 			this.sb.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("sb.WatermarkSize")));
+			// 
+			// lbOp
+			// 
+			this.lbOp.AccessibleDescription = resources.GetString("lbOp.AccessibleDescription");
+			this.lbOp.AccessibleName = resources.GetString("lbOp.AccessibleName");
+			this.lbOp.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbOp.Anchor")));
+			this.lbOp.AutoSize = ((bool)(resources.GetObject("lbOp.AutoSize")));
+			this.lbOp.BackColor = System.Drawing.Color.Transparent;
+			this.lbOp.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbOp.Dock")));
+			this.lbOp.Enabled = ((bool)(resources.GetObject("lbOp.Enabled")));
+			this.lbOp.Font = ((System.Drawing.Font)(resources.GetObject("lbOp.Font")));
+			this.lbOp.ForeColor = System.Drawing.SystemColors.Highlight;
+			this.lbOp.Image = ((System.Drawing.Image)(resources.GetObject("lbOp.Image")));
+			this.lbOp.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbOp.ImageAlign")));
+			this.lbOp.ImageIndex = ((int)(resources.GetObject("lbOp.ImageIndex")));
+			this.lbOp.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbOp.ImeMode")));
+			this.lbOp.Location = ((System.Drawing.Point)(resources.GetObject("lbOp.Location")));
+			this.lbOp.Name = "lbOp";
+			this.lbOp.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbOp.RightToLeft")));
+			this.lbOp.Size = ((System.Drawing.Size)(resources.GetObject("lbOp.Size")));
+			this.lbOp.TabIndex = ((int)(resources.GetObject("lbOp.TabIndex")));
+			this.lbOp.Text = resources.GetString("lbOp.Text");
+			this.lbOp.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbOp.TextAlign")));
+			this.lbOp.Visible = ((bool)(resources.GetObject("lbOp.Visible")));
 			// 
 			// pbimg
 			// 
@@ -1726,46 +1754,30 @@ namespace SimPe
 			this.pbWait.AccessibleDescription = resources.GetString("pbWait.AccessibleDescription");
 			this.pbWait.AccessibleName = resources.GetString("pbWait.AccessibleName");
 			this.pbWait.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pbWait.Anchor")));
-			this.pbWait.BackColor = System.Drawing.SystemColors.InactiveCaption;
+			this.pbWait.AutoScroll = ((bool)(resources.GetObject("pbWait.AutoScroll")));
+			this.pbWait.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("pbWait.AutoScrollMargin")));
+			this.pbWait.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("pbWait.AutoScrollMinSize")));
+			this.pbWait.BackColor = System.Drawing.Color.Transparent;
 			this.pbWait.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbWait.BackgroundImage")));
+			this.pbWait.CurrentIndex = 4;
 			this.pbWait.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pbWait.Dock")));
 			this.pbWait.Enabled = ((bool)(resources.GetObject("pbWait.Enabled")));
 			this.pbWait.Font = ((System.Drawing.Font)(resources.GetObject("pbWait.Font")));
-			this.pbWait.Image = ((System.Drawing.Image)(resources.GetObject("pbWait.Image")));
+			this.pbWait.Images.Add(((System.Drawing.Image)(resources.GetObject("resource"))));
+			this.pbWait.Images.Add(((System.Drawing.Image)(resources.GetObject("resource1"))));
+			this.pbWait.Images.Add(((System.Drawing.Image)(resources.GetObject("resource2"))));
+			this.pbWait.Images.Add(((System.Drawing.Image)(resources.GetObject("resource3"))));
+			this.pbWait.Images.Add(((System.Drawing.Image)(resources.GetObject("resource4"))));
+			this.pbWait.Images.Add(((System.Drawing.Image)(resources.GetObject("resource5"))));
+			this.pbWait.Images.Add(((System.Drawing.Image)(resources.GetObject("resource6"))));
+			this.pbWait.Images.Add(((System.Drawing.Image)(resources.GetObject("resource7"))));
 			this.pbWait.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pbWait.ImeMode")));
 			this.pbWait.Location = ((System.Drawing.Point)(resources.GetObject("pbWait.Location")));
 			this.pbWait.Name = "pbWait";
 			this.pbWait.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pbWait.RightToLeft")));
 			this.pbWait.Size = ((System.Drawing.Size)(resources.GetObject("pbWait.Size")));
-			this.pbWait.SizeMode = ((System.Windows.Forms.PictureBoxSizeMode)(resources.GetObject("pbWait.SizeMode")));
 			this.pbWait.TabIndex = ((int)(resources.GetObject("pbWait.TabIndex")));
-			this.pbWait.TabStop = false;
-			this.pbWait.Text = resources.GetString("pbWait.Text");
 			this.pbWait.Visible = ((bool)(resources.GetObject("pbWait.Visible")));
-			// 
-			// lbOp
-			// 
-			this.lbOp.AccessibleDescription = resources.GetString("lbOp.AccessibleDescription");
-			this.lbOp.AccessibleName = resources.GetString("lbOp.AccessibleName");
-			this.lbOp.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbOp.Anchor")));
-			this.lbOp.AutoSize = ((bool)(resources.GetObject("lbOp.AutoSize")));
-			this.lbOp.BackColor = System.Drawing.Color.Transparent;
-			this.lbOp.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbOp.Dock")));
-			this.lbOp.Enabled = ((bool)(resources.GetObject("lbOp.Enabled")));
-			this.lbOp.Font = ((System.Drawing.Font)(resources.GetObject("lbOp.Font")));
-			this.lbOp.ForeColor = System.Drawing.SystemColors.Highlight;
-			this.lbOp.Image = ((System.Drawing.Image)(resources.GetObject("lbOp.Image")));
-			this.lbOp.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbOp.ImageAlign")));
-			this.lbOp.ImageIndex = ((int)(resources.GetObject("lbOp.ImageIndex")));
-			this.lbOp.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbOp.ImeMode")));
-			this.lbOp.Location = ((System.Drawing.Point)(resources.GetObject("lbOp.Location")));
-			this.lbOp.Name = "lbOp";
-			this.lbOp.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbOp.RightToLeft")));
-			this.lbOp.Size = ((System.Drawing.Size)(resources.GetObject("lbOp.Size")));
-			this.lbOp.TabIndex = ((int)(resources.GetObject("lbOp.TabIndex")));
-			this.lbOp.Text = resources.GetString("lbOp.Text");
-			this.lbOp.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbOp.TextAlign")));
-			this.lbOp.Visible = ((bool)(resources.GetObject("lbOp.Visible")));
 			// 
 			// lnProg2
 			// 

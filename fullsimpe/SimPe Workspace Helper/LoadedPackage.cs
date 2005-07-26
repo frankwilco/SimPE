@@ -31,19 +31,21 @@ namespace SimPe
 	/// </summary>
 	public class LoadedPackage
 	{		
-		/// <summary>
-		/// Maximum Number of Characters in the Recent File Menu
-		/// </summary>
-		const int MAX_FILENAME_LENGTH=75;
-
+		
 		/// <summary>
 		/// Creates a new Instance
 		/// </summary>
 		public LoadedPackage()
 		{
 			
-			
 		}
+
+		/// <summary>
+		/// Maximum Number of Characters in the Recent File Menu
+		/// </summary>
+		const int MAX_FILENAME_LENGTH=75;
+
+		
 
 		#region Events
 		/// <summary>
@@ -66,6 +68,10 @@ namespace SimPe
 		/// Called before any File is loaded
 		/// </summary>
 		public event PackageFileLoadEvent BeforeFileLoad;
+		/// <summary>
+		/// Called before any File is loaded
+		/// </summary>
+		public event PackageFileCloseEvent BeforeFileClose;
 		/// <summary>
 		/// Called After any File was sucesfully loaded
 		/// </summary>
@@ -144,9 +150,8 @@ namespace SimPe
 				if (BeforeFileLoad!=null) BeforeFileLoad(this, e);
 				if (e.Cancel) return false;
 				
-				bool run = WaitingScreen.Running;
-				if (!run) WaitingScreen.Wait();
-				WaitingScreen.UpdateMessage("Loading File");
+				Wait.SubStart();
+				Wait.Message = "Loading File";
 
 				if (pkg!=null) 
 				{
@@ -163,7 +168,7 @@ namespace SimPe
 				pkg.RemovedResource += new EventHandler(RemovedResourcehandler);
 				Helper.WindowsRegistry.AddRecentFile(flname);
 
-				if (!run) WaitingScreen.Stop();
+				Wait.SubStop();
 
 				if (AfterFileLoad!=null) AfterFileLoad(this);
 				return true;
@@ -200,13 +205,12 @@ namespace SimPe
 				if (BeforeFileSave!=null) BeforeFileSave(this, e);
 				if (e.Cancel) return false;
 
-				bool run = WaitingScreen.Running;
-				if (!run) WaitingScreen.Wait();
-				WaitingScreen.UpdateMessage("Saving File");
+				Wait.SubStart();
+				Wait.Message = "Saving File";
 
 				this.Package.Save(e.FileName);	
 
-				if (!run) WaitingScreen.Stop();
+				Wait.SubStop();
 
 				if (AfterFileSave!=null) AfterFileSave(this);
 			}
@@ -297,6 +301,13 @@ namespace SimPe
 				}
 				if (res) 
 				{
+					FileNameEventArg e = new FileNameEventArg(this.FileName);
+					if (BeforeFileClose!=null) BeforeFileClose(this, e);
+					if (e.Cancel) res = false;
+				}
+
+				if (res) 
+				{										
 					pkg.Close();
 					pkg.IndexChanged -= new EventHandler(IndexChangedHandler);
 					pkg.AddedResource -= new EventHandler(AddedResourceHandler);

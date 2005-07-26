@@ -23,7 +23,7 @@ using SimPe;
 
 namespace Ambertation.Threading
 {
-	public class OldThreadBuffer
+	internal class OldThreadBuffer
 	{
 		// Anzahl der Elemente
 		internal static bool finished_create;
@@ -124,6 +124,7 @@ namespace Ambertation.Threading
 		// Anzahl der Elemente
 		internal bool finished_create;
 		internal bool finished_consume;
+		bool canceled;
   
 		// Thread - Lock - Variablen
 		private object buffer_free = "";
@@ -160,6 +161,10 @@ namespace Ambertation.Threading
 		{			
 			finished_create = false;
 			finished_consume = false;
+			canceled = false;
+
+			for (int i=0; i< buffer.Length; i++) buffer[i] = null;
+			counter = 0;
 		}
 
 		internal void Finish()
@@ -170,6 +175,29 @@ namespace Ambertation.Threading
 				// Signal that we have added a Element
 				Monitor.PulseAll(buffer_not_empty);
 			}
+		}
+
+		internal bool Canceled
+		{
+			get {return canceled;}
+			set {
+				canceled = value; 
+
+				if (value) 
+				{
+					if (Canceling!=null) Canceling(this, new System.EventArgs());
+
+					// Signal that we have added a Element
+					counter = 0;
+					Monitor.PulseAll(buffer_not_empty);				
+					Monitor.PulseAll(buffer_free);
+				}
+			}
+		}
+
+		public void Cancel()
+		{
+			Canceled = true;
 		}
   
 		// Synchronisierte consume - Methode
@@ -193,6 +221,8 @@ namespace Ambertation.Threading
 							finished_consume = true;
 							return null;
 						}
+
+						if (Canceled) return null;
 					}
 
 				
@@ -215,6 +245,7 @@ namespace Ambertation.Threading
 	
 		#endregion
 		public event System.EventHandler Finished;
+		public event System.EventHandler Canceling;
 
 		/// <summary>
 		/// Use this Method top Produces objects, add the Objects to the 
@@ -226,15 +257,14 @@ namespace Ambertation.Threading
 		public void start()
 		{
 			Init();
-			bool run = WaitingScreen.Running;
-			WaitingScreen.Wait();
+			Wait.SubStart();
 			Produce();
 					
 			Finish();
 			while (!finished_consume)
 				Thread.Sleep(500);
 		
-			if (!run) WaitingScreen.Stop();
+			Wait.SubStop();
 			OnFinish();
 			if (Finished!=null) Finished(this, new System.EventArgs());
 		}
@@ -262,7 +292,7 @@ namespace Ambertation.Threading
 
 		public void start()
 		{				
-			while(!pt.finished_consume)
+			while(!pt.finished_consume && !pt.Canceled)
 			{
 				// consume Data
 				Object o = pt.Consume();				
