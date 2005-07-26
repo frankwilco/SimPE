@@ -207,11 +207,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "DockableWindow1.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "NeighborhoodPreview.cs"
                     SubType = "UserControl"
                     BuildAction = "Compile"

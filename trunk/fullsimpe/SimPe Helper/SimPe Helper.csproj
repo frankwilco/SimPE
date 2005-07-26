@@ -279,6 +279,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IWaitingBarControl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutRegistry.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -350,6 +355,11 @@
                 />
                 <File
                     RelPath = "TypeAlias.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "WaitingBar.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

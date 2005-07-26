@@ -446,6 +446,11 @@ namespace SimPe.Events
 	public delegate void PackageFileLoadEvent(LoadedPackage sender, FileNameEventArg e);
 
 	/// <summary>
+	/// A function that can be executed when a new File has to be closed
+	/// </summary>
+	public delegate void PackageFileCloseEvent(LoadedPackage sender, FileNameEventArg e);
+
+	/// <summary>
 	/// A function that can be executed when a new File hwas loaded
 	/// </summary>
 	public delegate void PackageFileLoadedEvent(LoadedPackage sender);

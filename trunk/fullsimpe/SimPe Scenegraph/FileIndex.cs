@@ -391,16 +391,37 @@ namespace SimPe.Plugin
 		public void ForceReload()
 		{
 			loaded = true;
+			System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(StartReload));
+			t.Priority = System.Threading.ThreadPriority.Highest;
+			t.Start();
+
+			
+			while ( t.IsAlive) {
+				t.Join(200);	
+				System.Windows.Forms.Application.DoEvents();
+			}
+		}
+
+		/// <summary>
+		/// This is used to start the Reload Thread
+		/// </summary>
+		void StartReload()
+		{
+			Wait.SubStart(folders.Count);
+			Wait.Message = SimPe.Localization.GetString("Loading")+" Group Cache";
 			WrapperFactory.LoadGroupCache();
-			addedfilenames.Clear();
-			bool wasrunning = WaitingScreen.Running;
-			WaitingScreen.Wait();
+			addedfilenames.Clear();			
+			
 			index.Clear();
 
-			foreach (FileTableItem fti in folders)
+			int ct = 0;
+			foreach (FileTableItem fti in folders) 
+			{
+				Wait.Progress = ct++;
 				AddIndexFromFolder(fti);
+			}
 
-			if (!wasrunning) WaitingScreen.Stop();
+			Wait.SubStop();
 		}
 
 		/// <summary>
@@ -442,7 +463,7 @@ namespace SimPe.Plugin
 		/// <remarks>Updates the WaitingScreen Message</remarks>
 		public void AddIndexFromPackage(string file)
 		{
-			WaitingScreen.UpdateMessage(System.IO.Path.GetFileNameWithoutExtension(file));
+			Wait.Message = SimPe.Localization.GetString("Loading")+" \""+System.IO.Path.GetFileNameWithoutExtension(file)+"\"";
 			try 
 			{
 				SimPe.Interfaces.Files.IPackageFile package = SimPe.Packages.File.LoadFromFile(file, false, true);

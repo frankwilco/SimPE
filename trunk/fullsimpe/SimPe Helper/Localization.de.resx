@@ -577,4 +577,10 @@ Package: {filename}</value>
 	<data name="OpenSDesc">
 		<value>Öffne Sim Beschreibung von "{name}"</value>
 	</data>
+	<data name="Loading">
+		<value>Lade</value>
+	</data>
+	<data name="Please Wait">
+		<value>Bitte warten</value>
+	</data>
 </root>
