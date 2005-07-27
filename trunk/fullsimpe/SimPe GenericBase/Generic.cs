@@ -109,7 +109,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		#region IPackedFileHandler Member
 
-		public virtual Panel GUIHandle
+		public virtual Control GUIHandle
 		{
 			get 
 			{

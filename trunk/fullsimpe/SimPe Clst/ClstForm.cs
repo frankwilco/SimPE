@@ -83,7 +83,7 @@ namespace SimPe.PackedFiles.UserInterface
 		/// <summary>
 		/// Returns the Panel that will be displayed within SimPe
 		/// </summary>
-		public System.Windows.Forms.Panel GUIHandle
+		public System.Windows.Forms.Control GUIHandle
 		{
 			get
 			{

@@ -20,6 +20,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace SimPe
 {
@@ -30,6 +31,8 @@ namespace SimPe
 	public class Wait
 	{
 		static IWaitingBarControl bar;
+		static Stack mystack = new Stack();
+
 		public static IWaitingBarControl Bar
 		{
 			set { bar = value; }
@@ -125,25 +128,39 @@ namespace SimPe
 			if (bar!=null) 
 			{
 				bar.Stop();
+				mystack.Clear();
 				running = 0;
 			}
 		}
 
-		public static void SubStart()
+		static void SubStartCommon()
 		{
 			running++;
+			mystack.Push(Progress);
+			mystack.Push(MaxProgress);
+			mystack.Push(Message);
+		}
+		public static void SubStart()
+		{			
+			SubStartCommon();
 			Start();
 		}
 
 		public static void SubStart(int max)
 		{
-			running++;
+			SubStartCommon();
 			Start(max);
 		}
 
 		public static void SubStop()
 		{
-			running--;
+			if (running>0) running--;			
+			if (mystack.Count>0)
+			{
+				Message = (string)mystack.Pop();
+				MaxProgress = (int)mystack.Pop();
+				Progress = (int)mystack.Pop();
+			}
 			if (running==0) Stop();
 		}
 	}

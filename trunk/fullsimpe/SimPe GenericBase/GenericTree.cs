@@ -35,7 +35,7 @@ namespace SimPe.PackedFiles.UserInterface
 	{
 		#region IPackedFileHandler Member
 
-		public override Panel GUIHandle
+		public override Control GUIHandle
 		{
 			get 
 			{

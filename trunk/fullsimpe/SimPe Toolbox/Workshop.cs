@@ -325,17 +325,26 @@ namespace SimPe.Plugin
 			if (lbobj.Items.Count==0) 
 			{								
 				DateTime start = DateTime.Now;						
-				WaitingScreen.Wait();
+				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Wait();
 				this.ilist.ImageSize = new Size(Helper.WindowsRegistry.OWThumbSize,Helper.WindowsRegistry.OWThumbSize);
-				LoadCachIndex();
+				//LoadCachIndex();
 				lbobj.BeginUpdate();
 				tv.BeginUpdate();
 				lbobj.Items.Clear();
 				this.CleanTree();		
 				lbobj.Sorted = false;
+				lbobj.Enabled = false;
+				this.tv.Enabled = false;
 				tv.Sorted = false;
 
-				FileTable.FileIndex.Load();
+				SimPe.Plugin.Tool.Dockable.ObjectLoader ol = new SimPe.Plugin.Tool.Dockable.ObjectLoader(this.ilist);
+				ol.Finished += new EventHandler(ol_Finished);
+				ol.LoadedItem += new SimPe.Plugin.Tool.Dockable.ObjectLoader.LoadItemHandler(ol_LoadedItem);
+				ol.LoadData();
+				WaitingScreen.Stop();
+				return;
+
+				/*FileTable.FileIndex.Load();
 				ArrayList pitems = new ArrayList();
 				ArrayList groups = new ArrayList();
 				int ct = 0;				
@@ -495,13 +504,13 @@ namespace SimPe.Plugin
 				tv.Sorted = true;
 				tv.EndUpdate();
 				lbobj.EndUpdate();				
-				WaitingScreen.Stop(this);
+				if (Helper.StartedGui==Executable.Classic)  WaitingScreen.Stop(this);
 				TimeSpan dur = DateTime.Now.Subtract(start);
 				if ((Helper.WindowsRegistry.HiddenMode) || (Helper.DebugMode)) 
 				{
 					Text = "sek="+dur.Seconds.ToString()+", min="+dur.Minutes.ToString();
 					Text += " ("+lbobj.Items.Count.ToString()+" Objects)";
-				}
+				}*/
 			}
 		}
 
@@ -1482,6 +1491,40 @@ namespace SimPe.Plugin
 			btclone.Refresh();
 		}
 
+		delegate void InvokeTargetLoad(SimPe.Cache.ObjectCacheItem oci, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, Alias a);
+		delegate void InvokeTargetFinish(object sender, EventArgs e);
 		
+		private void ol_Finished(object sender, EventArgs e)
+		{
+			this.Invoke(new InvokeTargetFinish(invoke_Finished), new object[] {sender, e});		
+		}
+
+		private void invoke_Finished(object sender, EventArgs e)
+		{
+			lbobj.Enabled = true;
+			this.tv.Enabled = true;
+
+			lbobj.Sorted = true;
+			tv.Sorted = true;
+			tv.EndUpdate();
+			lbobj.EndUpdate();				
+			if (Helper.StartedGui==Executable.Classic)  WaitingScreen.Stop(this);			
+		}
+
+		private void ol_LoadedItem(SimPe.Cache.ObjectCacheItem oci, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, Alias a)
+		{
+			this.Invoke(new InvokeTargetLoad(invoke_LoadedItem), new object[] {oci, fii, a});
+		}
+
+		private void invoke_LoadedItem(SimPe.Cache.ObjectCacheItem oci, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, Alias a)
+		{
+			if (oci.ObjectVersion == SimPe.Cache.ObjectCacheItemVersions.DockableOW) 
+				PutItemToTree(a, oci.Thumbnail, (SimPe.Data.ObjectTypes)oci.ObjectType, new SimPe.PackedFiles.Wrapper.ObjFunctionSort((oci.ObjectFunctionSort>>8) &0xfff), oci.FileDescriptor.Filename, oci.FileDescriptor.Group);
+			else
+				PutItemToTree(a, oci.Thumbnail, (SimPe.Data.ObjectTypes)oci.ObjectType, new SimPe.PackedFiles.Wrapper.ObjFunctionSort(oci.ObjectFunctionSort), oci.FileDescriptor.Filename, oci.FileDescriptor.Group);
+
+			if (oci.Thumbnail!=null) a.Name = "* "+a.Name;
+			lbobj.Items.Add(a);
+		}
 	}
 }

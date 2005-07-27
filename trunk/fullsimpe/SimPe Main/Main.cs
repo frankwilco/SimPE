@@ -173,7 +173,7 @@ namespace SimPe
 			mybottomSandDock.Height = ((this.Height * 3) /4);			
 			this.Text += " (Version "+Helper.SimPeVersion.ProductVersion+")";
 
-						
+			sdm.MaximumDockContainerSize = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width;
 			TD.SandDock.SandDockManager sdm2 = new TD.SandDock.SandDockManager();
 			sdm2.OwnerForm = this;
 			ThemeManager.Global.AddControl(sdm2);
@@ -221,17 +221,30 @@ namespace SimPe
 			this.rightSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.mybottomSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.topSandBarDock = new TD.SandBar.ToolBarContainer();
+			this.toolBar1 = new TD.SandBar.ToolBar();
+			this.biNew = new TD.SandBar.ButtonItem();
+			this.miNew = new TD.SandBar.MenuButtonItem();
+			this.biOpen = new TD.SandBar.ButtonItem();
+			this.miOpen = new TD.SandBar.MenuButtonItem();
+			this.biSave = new TD.SandBar.ButtonItem();
+			this.miSave = new TD.SandBar.MenuButtonItem();
+			this.biSaveAs = new TD.SandBar.ButtonItem();
+			this.miSaveAs = new TD.SandBar.MenuButtonItem();
+			this.biClose = new TD.SandBar.ButtonItem();
+			this.miClose = new TD.SandBar.MenuButtonItem();
+			this.biNewDc = new TD.SandBar.ButtonItem();
+			this.miNewDc = new TD.SandBar.MenuButtonItem();
+			this.biUpdate = new TD.SandBar.ButtonItem();
+			this.miUpdate = new TD.SandBar.MenuButtonItem();
+			this.tbAction = new TD.SandBar.ToolBar();
+			this.tbTools = new TD.SandBar.ToolBar();
+			this.tbWindow = new TD.SandBar.ToolBar();
 			this.menuBar1 = new TD.SandBar.MenuBar();
 			this.menuBarItem1 = new TD.SandBar.MenuBarItem();
-			this.miNew = new TD.SandBar.MenuButtonItem();
-			this.miOpen = new TD.SandBar.MenuButtonItem();
 			this.miOpenIn = new TD.SandBar.MenuButtonItem();
 			this.miOpenSimsRes = new TD.SandBar.MenuButtonItem();
 			this.miOpenUniRes = new TD.SandBar.MenuButtonItem();
 			this.miOpenDownloads = new TD.SandBar.MenuButtonItem();
-			this.miSave = new TD.SandBar.MenuButtonItem();
-			this.miSaveAs = new TD.SandBar.MenuButtonItem();
-			this.miClose = new TD.SandBar.MenuButtonItem();
 			this.miRecent = new TD.SandBar.MenuButtonItem();
 			this.miExit = new TD.SandBar.MenuButtonItem();
 			this.miTools = new TD.SandBar.MenuBarItem();
@@ -241,9 +254,7 @@ namespace SimPe
 			this.miRunSims = new TD.SandBar.MenuButtonItem();
 			this.miPref = new TD.SandBar.MenuButtonItem();
 			this.miWindow = new TD.SandBar.MenuBarItem();
-			this.miNewDc = new TD.SandBar.MenuButtonItem();
 			this.menuBarItem5 = new TD.SandBar.MenuBarItem();
-			this.miUpdate = new TD.SandBar.MenuButtonItem();
 			this.miTutorials = new TD.SandBar.MenuButtonItem();
 			this.miAbout = new TD.SandBar.MenuButtonItem();
 			this.miAction = new TD.SandBar.ContextMenuBarItem();
@@ -254,17 +265,6 @@ namespace SimPe
 			this.clInstance = new System.Windows.Forms.ColumnHeader();
 			this.clOffset = new System.Windows.Forms.ColumnHeader();
 			this.clSize = new System.Windows.Forms.ColumnHeader();
-			this.toolBar1 = new TD.SandBar.ToolBar();
-			this.biNew = new TD.SandBar.ButtonItem();
-			this.biOpen = new TD.SandBar.ButtonItem();
-			this.biSave = new TD.SandBar.ButtonItem();
-			this.biSaveAs = new TD.SandBar.ButtonItem();
-			this.biClose = new TD.SandBar.ButtonItem();
-			this.biNewDc = new TD.SandBar.ButtonItem();
-			this.biUpdate = new TD.SandBar.ButtonItem();
-			this.tbAction = new TD.SandBar.ToolBar();
-			this.tbTools = new TD.SandBar.ToolBar();
-			this.tbWindow = new TD.SandBar.ToolBar();
 			this.iAnim = new System.Windows.Forms.ImageList(this.components);
 			this.sdm = new TD.SandDock.SandDockManager();
 			this.dcResource = new TD.SandDock.DockableWindow();
@@ -507,11 +507,11 @@ namespace SimPe
 			this.topSandBarDock.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("topSandBarDock.AutoScrollMargin")));
 			this.topSandBarDock.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("topSandBarDock.AutoScrollMinSize")));
 			this.topSandBarDock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("topSandBarDock.BackgroundImage")));
-			this.topSandBarDock.Controls.Add(this.menuBar1);
 			this.topSandBarDock.Controls.Add(this.toolBar1);
 			this.topSandBarDock.Controls.Add(this.tbAction);
 			this.topSandBarDock.Controls.Add(this.tbTools);
 			this.topSandBarDock.Controls.Add(this.tbWindow);
+			this.topSandBarDock.Controls.Add(this.menuBar1);
 			this.topSandBarDock.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("topSandBarDock.Dock")));
 			this.topSandBarDock.Enabled = ((bool)(resources.GetObject("topSandBarDock.Enabled")));
 			this.topSandBarDock.Font = ((System.Drawing.Font)(resources.GetObject("topSandBarDock.Font")));
@@ -525,6 +525,219 @@ namespace SimPe
 			this.topSandBarDock.TabIndex = ((int)(resources.GetObject("topSandBarDock.TabIndex")));
 			this.topSandBarDock.Text = resources.GetString("topSandBarDock.Text");
 			this.topSandBarDock.Visible = ((bool)(resources.GetObject("topSandBarDock.Visible")));
+			// 
+			// toolBar1
+			// 
+			this.toolBar1.AccessibleDescription = resources.GetString("toolBar1.AccessibleDescription");
+			this.toolBar1.AccessibleName = resources.GetString("toolBar1.AccessibleName");
+			this.toolBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("toolBar1.Anchor")));
+			this.toolBar1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolBar1.BackgroundImage")));
+			this.toolBar1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("toolBar1.Dock")));
+			this.toolBar1.DockLine = 1;
+			this.toolBar1.Enabled = ((bool)(resources.GetObject("toolBar1.Enabled")));
+			this.toolBar1.Font = ((System.Drawing.Font)(resources.GetObject("toolBar1.Font")));
+			this.toolBar1.Guid = new System.Guid("450cfa2c-067d-435a-bc20-a98c7b00b268");
+			this.toolBar1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("toolBar1.ImeMode")));
+			this.toolBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																			  this.biNew,
+																			  this.biOpen,
+																			  this.biSave,
+																			  this.biSaveAs,
+																			  this.biClose,
+																			  this.biNewDc,
+																			  this.biUpdate});
+			this.toolBar1.Location = ((System.Drawing.Point)(resources.GetObject("toolBar1.Location")));
+			this.toolBar1.Name = "toolBar1";
+			this.toolBar1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("toolBar1.RightToLeft")));
+			this.toolBar1.ShowShortcutsInToolTips = true;
+			this.toolBar1.Size = ((System.Drawing.Size)(resources.GetObject("toolBar1.Size")));
+			this.toolBar1.TabIndex = ((int)(resources.GetObject("toolBar1.TabIndex")));
+			this.toolBar1.Text = resources.GetString("toolBar1.Text");
+			this.toolBar1.Visible = ((bool)(resources.GetObject("toolBar1.Visible")));
+			// 
+			// biNew
+			// 
+			this.biNew.BuddyMenu = this.miNew;
+			this.biNew.Image = ((System.Drawing.Image)(resources.GetObject("biNew.Image")));
+			this.biNew.ItemImportance = TD.SandBar.ItemImportance.Low;
+			this.biNew.Text = resources.GetString("biNew.Text");
+			this.biNew.ToolTipText = resources.GetString("biNew.ToolTipText");
+			// 
+			// miNew
+			// 
+			this.miNew.Image = ((System.Drawing.Image)(resources.GetObject("miNew.Image")));
+			this.miNew.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNew.Shortcut")));
+			this.miNew.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNew.Shortcut2")));
+			this.miNew.Text = resources.GetString("miNew.Text");
+			this.miNew.ToolTipText = resources.GetString("miNew.ToolTipText");
+			this.miNew.Activate += new System.EventHandler(this.Activate_miNew);
+			// 
+			// biOpen
+			// 
+			this.biOpen.BuddyMenu = this.miOpen;
+			this.biOpen.Image = ((System.Drawing.Image)(resources.GetObject("biOpen.Image")));
+			this.biOpen.ItemImportance = TD.SandBar.ItemImportance.Highest;
+			this.biOpen.Text = resources.GetString("biOpen.Text");
+			this.biOpen.ToolTipText = resources.GetString("biOpen.ToolTipText");
+			// 
+			// miOpen
+			// 
+			this.miOpen.Image = ((System.Drawing.Image)(resources.GetObject("miOpen.Image")));
+			this.miOpen.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpen.Shortcut")));
+			this.miOpen.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpen.Shortcut2")));
+			this.miOpen.Text = resources.GetString("miOpen.Text");
+			this.miOpen.ToolTipText = resources.GetString("miOpen.ToolTipText");
+			this.miOpen.Activate += new System.EventHandler(this.Activate_miOpen);
+			// 
+			// biSave
+			// 
+			this.biSave.BuddyMenu = this.miSave;
+			this.biSave.Image = ((System.Drawing.Image)(resources.GetObject("biSave.Image")));
+			this.biSave.ItemImportance = TD.SandBar.ItemImportance.High;
+			this.biSave.Text = resources.GetString("biSave.Text");
+			this.biSave.ToolTipText = resources.GetString("biSave.ToolTipText");
+			// 
+			// miSave
+			// 
+			this.miSave.Image = ((System.Drawing.Image)(resources.GetObject("miSave.Image")));
+			this.miSave.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSave.Shortcut")));
+			this.miSave.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSave.Shortcut2")));
+			this.miSave.Text = resources.GetString("miSave.Text");
+			this.miSave.ToolTipText = resources.GetString("miSave.ToolTipText");
+			this.miSave.Activate += new System.EventHandler(this.Activate_miSave);
+			// 
+			// biSaveAs
+			// 
+			this.biSaveAs.BuddyMenu = this.miSaveAs;
+			this.biSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("biSaveAs.Image")));
+			this.biSaveAs.ItemImportance = TD.SandBar.ItemImportance.Lowest;
+			this.biSaveAs.Text = resources.GetString("biSaveAs.Text");
+			this.biSaveAs.ToolTipText = resources.GetString("biSaveAs.ToolTipText");
+			// 
+			// miSaveAs
+			// 
+			this.miSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("miSaveAs.Image")));
+			this.miSaveAs.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSaveAs.Shortcut")));
+			this.miSaveAs.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSaveAs.Shortcut2")));
+			this.miSaveAs.Text = resources.GetString("miSaveAs.Text");
+			this.miSaveAs.ToolTipText = resources.GetString("miSaveAs.ToolTipText");
+			this.miSaveAs.Activate += new System.EventHandler(this.Activate_miSaveAs);
+			// 
+			// biClose
+			// 
+			this.biClose.BuddyMenu = this.miClose;
+			this.biClose.Image = ((System.Drawing.Image)(resources.GetObject("biClose.Image")));
+			this.biClose.ItemImportance = TD.SandBar.ItemImportance.Low;
+			this.biClose.Text = resources.GetString("biClose.Text");
+			this.biClose.ToolTipText = resources.GetString("biClose.ToolTipText");
+			// 
+			// miClose
+			// 
+			this.miClose.Image = ((System.Drawing.Image)(resources.GetObject("miClose.Image")));
+			this.miClose.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miClose.Shortcut")));
+			this.miClose.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miClose.Shortcut2")));
+			this.miClose.Text = resources.GetString("miClose.Text");
+			this.miClose.ToolTipText = resources.GetString("miClose.ToolTipText");
+			this.miClose.Activate += new System.EventHandler(this.Activate_miClose);
+			// 
+			// biNewDc
+			// 
+			this.biNewDc.BeginGroup = true;
+			this.biNewDc.BuddyMenu = this.miNewDc;
+			this.biNewDc.Image = ((System.Drawing.Image)(resources.GetObject("biNewDc.Image")));
+			this.biNewDc.Text = resources.GetString("biNewDc.Text");
+			this.biNewDc.ToolTipText = resources.GetString("biNewDc.ToolTipText");
+			// 
+			// miNewDc
+			// 
+			this.miNewDc.Image = ((System.Drawing.Image)(resources.GetObject("miNewDc.Image")));
+			this.miNewDc.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNewDc.Shortcut")));
+			this.miNewDc.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNewDc.Shortcut2")));
+			this.miNewDc.Text = resources.GetString("miNewDc.Text");
+			this.miNewDc.ToolTipText = resources.GetString("miNewDc.ToolTipText");
+			this.miNewDc.Activate += new System.EventHandler(this.CreateNewDocumentContainer);
+			// 
+			// biUpdate
+			// 
+			this.biUpdate.BuddyMenu = this.miUpdate;
+			this.biUpdate.Image = ((System.Drawing.Image)(resources.GetObject("biUpdate.Image")));
+			this.biUpdate.ItemImportance = TD.SandBar.ItemImportance.Lowest;
+			this.biUpdate.Text = resources.GetString("biUpdate.Text");
+			this.biUpdate.ToolTipText = resources.GetString("biUpdate.ToolTipText");
+			this.biUpdate.Visible = false;
+			// 
+			// miUpdate
+			// 
+			this.miUpdate.Image = ((System.Drawing.Image)(resources.GetObject("miUpdate.Image")));
+			this.miUpdate.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miUpdate.Shortcut")));
+			this.miUpdate.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miUpdate.Shortcut2")));
+			this.miUpdate.Text = resources.GetString("miUpdate.Text");
+			this.miUpdate.ToolTipText = resources.GetString("miUpdate.ToolTipText");
+			this.miUpdate.Activate += new System.EventHandler(this.Activate_miUpdate);
+			// 
+			// tbAction
+			// 
+			this.tbAction.AccessibleDescription = resources.GetString("tbAction.AccessibleDescription");
+			this.tbAction.AccessibleName = resources.GetString("tbAction.AccessibleName");
+			this.tbAction.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbAction.Anchor")));
+			this.tbAction.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbAction.BackgroundImage")));
+			this.tbAction.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbAction.Dock")));
+			this.tbAction.DockLine = 1;
+			this.tbAction.DockOffset = 1;
+			this.tbAction.Enabled = ((bool)(resources.GetObject("tbAction.Enabled")));
+			this.tbAction.Font = ((System.Drawing.Font)(resources.GetObject("tbAction.Font")));
+			this.tbAction.Guid = new System.Guid("7caadbda-cf74-4748-8239-5cba76a9cfe3");
+			this.tbAction.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbAction.ImeMode")));
+			this.tbAction.Location = ((System.Drawing.Point)(resources.GetObject("tbAction.Location")));
+			this.tbAction.Name = "tbAction";
+			this.tbAction.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbAction.RightToLeft")));
+			this.tbAction.ShowShortcutsInToolTips = true;
+			this.tbAction.Size = ((System.Drawing.Size)(resources.GetObject("tbAction.Size")));
+			this.tbAction.TabIndex = ((int)(resources.GetObject("tbAction.TabIndex")));
+			this.tbAction.Text = resources.GetString("tbAction.Text");
+			this.tbAction.Visible = ((bool)(resources.GetObject("tbAction.Visible")));
+			// 
+			// tbTools
+			// 
+			this.tbTools.AccessibleDescription = resources.GetString("tbTools.AccessibleDescription");
+			this.tbTools.AccessibleName = resources.GetString("tbTools.AccessibleName");
+			this.tbTools.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbTools.Anchor")));
+			this.tbTools.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbTools.BackgroundImage")));
+			this.tbTools.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbTools.Dock")));
+			this.tbTools.DockLine = 1;
+			this.tbTools.DockOffset = 2;
+			this.tbTools.Enabled = ((bool)(resources.GetObject("tbTools.Enabled")));
+			this.tbTools.Font = ((System.Drawing.Font)(resources.GetObject("tbTools.Font")));
+			this.tbTools.Guid = new System.Guid("078e55cf-63d2-4821-a167-a8ccb6446322");
+			this.tbTools.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbTools.ImeMode")));
+			this.tbTools.Location = ((System.Drawing.Point)(resources.GetObject("tbTools.Location")));
+			this.tbTools.Name = "tbTools";
+			this.tbTools.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbTools.RightToLeft")));
+			this.tbTools.Size = ((System.Drawing.Size)(resources.GetObject("tbTools.Size")));
+			this.tbTools.TabIndex = ((int)(resources.GetObject("tbTools.TabIndex")));
+			this.tbTools.Text = resources.GetString("tbTools.Text");
+			this.tbTools.Visible = ((bool)(resources.GetObject("tbTools.Visible")));
+			// 
+			// tbWindow
+			// 
+			this.tbWindow.AccessibleDescription = resources.GetString("tbWindow.AccessibleDescription");
+			this.tbWindow.AccessibleName = resources.GetString("tbWindow.AccessibleName");
+			this.tbWindow.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbWindow.Anchor")));
+			this.tbWindow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbWindow.BackgroundImage")));
+			this.tbWindow.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbWindow.Dock")));
+			this.tbWindow.DockLine = 1;
+			this.tbWindow.DockOffset = 3;
+			this.tbWindow.Enabled = ((bool)(resources.GetObject("tbWindow.Enabled")));
+			this.tbWindow.Font = ((System.Drawing.Font)(resources.GetObject("tbWindow.Font")));
+			this.tbWindow.Guid = new System.Guid("6c37bb3a-a49a-4467-b812-34eb2c2a85ef");
+			this.tbWindow.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbWindow.ImeMode")));
+			this.tbWindow.Location = ((System.Drawing.Point)(resources.GetObject("tbWindow.Location")));
+			this.tbWindow.Name = "tbWindow";
+			this.tbWindow.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbWindow.RightToLeft")));
+			this.tbWindow.Size = ((System.Drawing.Size)(resources.GetObject("tbWindow.Size")));
+			this.tbWindow.TabIndex = ((int)(resources.GetObject("tbWindow.TabIndex")));
+			this.tbWindow.Text = resources.GetString("tbWindow.Text");
+			this.tbWindow.Visible = ((bool)(resources.GetObject("tbWindow.Visible")));
 			// 
 			// menuBar1
 			// 
@@ -567,25 +780,6 @@ namespace SimPe
 			this.menuBarItem1.Text = resources.GetString("menuBarItem1.Text");
 			this.menuBarItem1.ToolTipText = resources.GetString("menuBarItem1.ToolTipText");
 			// 
-			// miNew
-			// 
-			this.miNew.Image = ((System.Drawing.Image)(resources.GetObject("miNew.Image")));
-			this.miNew.ItemImportance = TD.SandBar.ItemImportance.Low;
-			this.miNew.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNew.Shortcut")));
-			this.miNew.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNew.Shortcut2")));
-			this.miNew.Text = resources.GetString("miNew.Text");
-			this.miNew.ToolTipText = resources.GetString("miNew.ToolTipText");
-			this.miNew.Activate += new System.EventHandler(this.Activate_miNew);
-			// 
-			// miOpen
-			// 
-			this.miOpen.Image = ((System.Drawing.Image)(resources.GetObject("miOpen.Image")));
-			this.miOpen.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpen.Shortcut")));
-			this.miOpen.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpen.Shortcut2")));
-			this.miOpen.Text = resources.GetString("miOpen.Text");
-			this.miOpen.ToolTipText = resources.GetString("miOpen.ToolTipText");
-			this.miOpen.Activate += new System.EventHandler(this.Activate_miOpen);
-			// 
 			// miOpenIn
 			// 
 			this.miOpenIn.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
@@ -620,34 +814,6 @@ namespace SimPe
 			this.miOpenDownloads.Text = resources.GetString("miOpenDownloads.Text");
 			this.miOpenDownloads.ToolTipText = resources.GetString("miOpenDownloads.ToolTipText");
 			this.miOpenDownloads.Activate += new System.EventHandler(this.Activate_miOpenDownloads);
-			// 
-			// miSave
-			// 
-			this.miSave.Image = ((System.Drawing.Image)(resources.GetObject("miSave.Image")));
-			this.miSave.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSave.Shortcut")));
-			this.miSave.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSave.Shortcut2")));
-			this.miSave.Text = resources.GetString("miSave.Text");
-			this.miSave.ToolTipText = resources.GetString("miSave.ToolTipText");
-			this.miSave.Activate += new System.EventHandler(this.Activate_miSave);
-			// 
-			// miSaveAs
-			// 
-			this.miSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("miSaveAs.Image")));
-			this.miSaveAs.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSaveAs.Shortcut")));
-			this.miSaveAs.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSaveAs.Shortcut2")));
-			this.miSaveAs.Text = resources.GetString("miSaveAs.Text");
-			this.miSaveAs.ToolTipText = resources.GetString("miSaveAs.ToolTipText");
-			this.miSaveAs.Activate += new System.EventHandler(this.Activate_miSaveAs);
-			// 
-			// miClose
-			// 
-			this.miClose.Image = ((System.Drawing.Image)(resources.GetObject("miClose.Image")));
-			this.miClose.ItemImportance = TD.SandBar.ItemImportance.Low;
-			this.miClose.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miClose.Shortcut")));
-			this.miClose.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miClose.Shortcut2")));
-			this.miClose.Text = resources.GetString("miClose.Text");
-			this.miClose.ToolTipText = resources.GetString("miClose.ToolTipText");
-			this.miClose.Activate += new System.EventHandler(this.Activate_miClose);
 			// 
 			// miRecent
 			// 
@@ -726,15 +892,6 @@ namespace SimPe
 			this.miWindow.Text = resources.GetString("miWindow.Text");
 			this.miWindow.ToolTipText = resources.GetString("miWindow.ToolTipText");
 			// 
-			// miNewDc
-			// 
-			this.miNewDc.Image = ((System.Drawing.Image)(resources.GetObject("miNewDc.Image")));
-			this.miNewDc.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNewDc.Shortcut")));
-			this.miNewDc.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNewDc.Shortcut2")));
-			this.miNewDc.Text = resources.GetString("miNewDc.Text");
-			this.miNewDc.ToolTipText = resources.GetString("miNewDc.ToolTipText");
-			this.miNewDc.Activate += new System.EventHandler(this.CreateNewDocumentContainer);
-			// 
 			// menuBarItem5
 			// 
 			this.menuBarItem5.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
@@ -743,15 +900,6 @@ namespace SimPe
 																				  this.miAbout});
 			this.menuBarItem5.Text = resources.GetString("menuBarItem5.Text");
 			this.menuBarItem5.ToolTipText = resources.GetString("menuBarItem5.ToolTipText");
-			// 
-			// miUpdate
-			// 
-			this.miUpdate.Image = ((System.Drawing.Image)(resources.GetObject("miUpdate.Image")));
-			this.miUpdate.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miUpdate.Shortcut")));
-			this.miUpdate.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miUpdate.Shortcut2")));
-			this.miUpdate.Text = resources.GetString("miUpdate.Text");
-			this.miUpdate.ToolTipText = resources.GetString("miUpdate.ToolTipText");
-			this.miUpdate.Activate += new System.EventHandler(this.Activate_miUpdate);
 			// 
 			// miTutorials
 			// 
@@ -853,156 +1001,6 @@ namespace SimPe
 			this.clSize.Text = resources.GetString("clSize.Text");
 			this.clSize.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("clSize.TextAlign")));
 			this.clSize.Width = ((int)(resources.GetObject("clSize.Width")));
-			// 
-			// toolBar1
-			// 
-			this.toolBar1.AccessibleDescription = resources.GetString("toolBar1.AccessibleDescription");
-			this.toolBar1.AccessibleName = resources.GetString("toolBar1.AccessibleName");
-			this.toolBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("toolBar1.Anchor")));
-			this.toolBar1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolBar1.BackgroundImage")));
-			this.toolBar1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("toolBar1.Dock")));
-			this.toolBar1.DockLine = 1;
-			this.toolBar1.Enabled = ((bool)(resources.GetObject("toolBar1.Enabled")));
-			this.toolBar1.Font = ((System.Drawing.Font)(resources.GetObject("toolBar1.Font")));
-			this.toolBar1.Guid = new System.Guid("450cfa2c-067d-435a-bc20-a98c7b00b268");
-			this.toolBar1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("toolBar1.ImeMode")));
-			this.toolBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
-																			  this.biNew,
-																			  this.biOpen,
-																			  this.biSave,
-																			  this.biSaveAs,
-																			  this.biClose,
-																			  this.biNewDc,
-																			  this.biUpdate});
-			this.toolBar1.Location = ((System.Drawing.Point)(resources.GetObject("toolBar1.Location")));
-			this.toolBar1.Name = "toolBar1";
-			this.toolBar1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("toolBar1.RightToLeft")));
-			this.toolBar1.ShowShortcutsInToolTips = true;
-			this.toolBar1.Size = ((System.Drawing.Size)(resources.GetObject("toolBar1.Size")));
-			this.toolBar1.TabIndex = ((int)(resources.GetObject("toolBar1.TabIndex")));
-			this.toolBar1.Text = resources.GetString("toolBar1.Text");
-			this.toolBar1.Visible = ((bool)(resources.GetObject("toolBar1.Visible")));
-			// 
-			// biNew
-			// 
-			this.biNew.BuddyMenu = this.miNew;
-			this.biNew.Image = ((System.Drawing.Image)(resources.GetObject("biNew.Image")));
-			this.biNew.ItemImportance = TD.SandBar.ItemImportance.Low;
-			this.biNew.Text = resources.GetString("biNew.Text");
-			this.biNew.ToolTipText = resources.GetString("biNew.ToolTipText");
-			// 
-			// biOpen
-			// 
-			this.biOpen.BuddyMenu = this.miOpen;
-			this.biOpen.Image = ((System.Drawing.Image)(resources.GetObject("biOpen.Image")));
-			this.biOpen.ItemImportance = TD.SandBar.ItemImportance.Highest;
-			this.biOpen.Text = resources.GetString("biOpen.Text");
-			this.biOpen.ToolTipText = resources.GetString("biOpen.ToolTipText");
-			// 
-			// biSave
-			// 
-			this.biSave.BuddyMenu = this.miSave;
-			this.biSave.Image = ((System.Drawing.Image)(resources.GetObject("biSave.Image")));
-			this.biSave.ItemImportance = TD.SandBar.ItemImportance.High;
-			this.biSave.Text = resources.GetString("biSave.Text");
-			this.biSave.ToolTipText = resources.GetString("biSave.ToolTipText");
-			// 
-			// biSaveAs
-			// 
-			this.biSaveAs.BuddyMenu = this.miSaveAs;
-			this.biSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("biSaveAs.Image")));
-			this.biSaveAs.ItemImportance = TD.SandBar.ItemImportance.Lowest;
-			this.biSaveAs.Text = resources.GetString("biSaveAs.Text");
-			this.biSaveAs.ToolTipText = resources.GetString("biSaveAs.ToolTipText");
-			// 
-			// biClose
-			// 
-			this.biClose.BuddyMenu = this.miClose;
-			this.biClose.Image = ((System.Drawing.Image)(resources.GetObject("biClose.Image")));
-			this.biClose.ItemImportance = TD.SandBar.ItemImportance.Low;
-			this.biClose.Text = resources.GetString("biClose.Text");
-			this.biClose.ToolTipText = resources.GetString("biClose.ToolTipText");
-			// 
-			// biNewDc
-			// 
-			this.biNewDc.BeginGroup = true;
-			this.biNewDc.BuddyMenu = this.miNewDc;
-			this.biNewDc.Image = ((System.Drawing.Image)(resources.GetObject("biNewDc.Image")));
-			this.biNewDc.Text = resources.GetString("biNewDc.Text");
-			this.biNewDc.ToolTipText = resources.GetString("biNewDc.ToolTipText");
-			// 
-			// biUpdate
-			// 
-			this.biUpdate.BuddyMenu = this.miUpdate;
-			this.biUpdate.Image = ((System.Drawing.Image)(resources.GetObject("biUpdate.Image")));
-			this.biUpdate.ItemImportance = TD.SandBar.ItemImportance.Lowest;
-			this.biUpdate.Text = resources.GetString("biUpdate.Text");
-			this.biUpdate.ToolTipText = resources.GetString("biUpdate.ToolTipText");
-			this.biUpdate.Visible = false;
-			// 
-			// tbAction
-			// 
-			this.tbAction.AccessibleDescription = resources.GetString("tbAction.AccessibleDescription");
-			this.tbAction.AccessibleName = resources.GetString("tbAction.AccessibleName");
-			this.tbAction.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbAction.Anchor")));
-			this.tbAction.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbAction.BackgroundImage")));
-			this.tbAction.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbAction.Dock")));
-			this.tbAction.DockLine = 1;
-			this.tbAction.DockOffset = 1;
-			this.tbAction.Enabled = ((bool)(resources.GetObject("tbAction.Enabled")));
-			this.tbAction.Font = ((System.Drawing.Font)(resources.GetObject("tbAction.Font")));
-			this.tbAction.Guid = new System.Guid("7caadbda-cf74-4748-8239-5cba76a9cfe3");
-			this.tbAction.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbAction.ImeMode")));
-			this.tbAction.Location = ((System.Drawing.Point)(resources.GetObject("tbAction.Location")));
-			this.tbAction.Name = "tbAction";
-			this.tbAction.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbAction.RightToLeft")));
-			this.tbAction.ShowShortcutsInToolTips = true;
-			this.tbAction.Size = ((System.Drawing.Size)(resources.GetObject("tbAction.Size")));
-			this.tbAction.TabIndex = ((int)(resources.GetObject("tbAction.TabIndex")));
-			this.tbAction.Text = resources.GetString("tbAction.Text");
-			this.tbAction.Visible = ((bool)(resources.GetObject("tbAction.Visible")));
-			// 
-			// tbTools
-			// 
-			this.tbTools.AccessibleDescription = resources.GetString("tbTools.AccessibleDescription");
-			this.tbTools.AccessibleName = resources.GetString("tbTools.AccessibleName");
-			this.tbTools.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbTools.Anchor")));
-			this.tbTools.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbTools.BackgroundImage")));
-			this.tbTools.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbTools.Dock")));
-			this.tbTools.DockLine = 1;
-			this.tbTools.DockOffset = 2;
-			this.tbTools.Enabled = ((bool)(resources.GetObject("tbTools.Enabled")));
-			this.tbTools.Font = ((System.Drawing.Font)(resources.GetObject("tbTools.Font")));
-			this.tbTools.Guid = new System.Guid("078e55cf-63d2-4821-a167-a8ccb6446322");
-			this.tbTools.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbTools.ImeMode")));
-			this.tbTools.Location = ((System.Drawing.Point)(resources.GetObject("tbTools.Location")));
-			this.tbTools.Name = "tbTools";
-			this.tbTools.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbTools.RightToLeft")));
-			this.tbTools.Size = ((System.Drawing.Size)(resources.GetObject("tbTools.Size")));
-			this.tbTools.TabIndex = ((int)(resources.GetObject("tbTools.TabIndex")));
-			this.tbTools.Text = resources.GetString("tbTools.Text");
-			this.tbTools.Visible = ((bool)(resources.GetObject("tbTools.Visible")));
-			// 
-			// tbWindow
-			// 
-			this.tbWindow.AccessibleDescription = resources.GetString("tbWindow.AccessibleDescription");
-			this.tbWindow.AccessibleName = resources.GetString("tbWindow.AccessibleName");
-			this.tbWindow.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbWindow.Anchor")));
-			this.tbWindow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbWindow.BackgroundImage")));
-			this.tbWindow.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbWindow.Dock")));
-			this.tbWindow.DockLine = 1;
-			this.tbWindow.DockOffset = 3;
-			this.tbWindow.Enabled = ((bool)(resources.GetObject("tbWindow.Enabled")));
-			this.tbWindow.Font = ((System.Drawing.Font)(resources.GetObject("tbWindow.Font")));
-			this.tbWindow.Guid = new System.Guid("6c37bb3a-a49a-4467-b812-34eb2c2a85ef");
-			this.tbWindow.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbWindow.ImeMode")));
-			this.tbWindow.Location = ((System.Drawing.Point)(resources.GetObject("tbWindow.Location")));
-			this.tbWindow.Name = "tbWindow";
-			this.tbWindow.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbWindow.RightToLeft")));
-			this.tbWindow.Size = ((System.Drawing.Size)(resources.GetObject("tbWindow.Size")));
-			this.tbWindow.TabIndex = ((int)(resources.GetObject("tbWindow.TabIndex")));
-			this.tbWindow.Text = resources.GetString("tbWindow.Text");
-			this.tbWindow.Visible = ((bool)(resources.GetObject("tbWindow.Visible")));
 			// 
 			// iAnim
 			// 
@@ -1197,7 +1195,7 @@ namespace SimPe
 			this.myrightSandDock.Font = ((System.Drawing.Font)(resources.GetObject("myrightSandDock.Font")));
 			this.myrightSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("myrightSandDock.ImeMode")));
 			this.myrightSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-																																												new TD.SandDock.ControlLayoutSystem(176, 331, new TD.SandDock.DockControl[] {
+																																												new TD.SandDock.ControlLayoutSystem(176, 523, new TD.SandDock.DockControl[] {
 																																																																this.dcFilter,
 																																																																this.dcAction}, this.dcFilter, false)});
 			this.myrightSandDock.Location = ((System.Drawing.Point)(resources.GetObject("myrightSandDock.Location")));
@@ -1558,7 +1556,7 @@ namespace SimPe
 			this.mybottomSandDock.Font = ((System.Drawing.Font)(resources.GetObject("mybottomSandDock.Font")));
 			this.mybottomSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("mybottomSandDock.ImeMode")));
 			this.mybottomSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Vertical, new TD.SandDock.LayoutSystemBase[] {
-																																											   new TD.SandDock.ControlLayoutSystem(924, 188, new TD.SandDock.DockControl[] {
+																																											   new TD.SandDock.ControlLayoutSystem(744, 188, new TD.SandDock.DockControl[] {
 																																																															   this.dcPlugin}, this.dcPlugin, false)});
 			this.mybottomSandDock.Location = ((System.Drawing.Point)(resources.GetObject("mybottomSandDock.Location")));
 			this.mybottomSandDock.Manager = this.sdm;
@@ -1611,7 +1609,7 @@ namespace SimPe
 			this.dc.Font = ((System.Drawing.Font)(resources.GetObject("dc.Font")));
 			this.dc.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dc.ImeMode")));
 			this.dc.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-																																								   new TD.SandDock.DocumentLayoutSystem(905, 373, new TD.SandDock.DockControl[0], null)});
+																																								   new TD.SandDock.DocumentLayoutSystem(725, 373, new TD.SandDock.DockControl[0], null)});
 			this.dc.Location = ((System.Drawing.Point)(resources.GetObject("dc.Location")));
 			this.dc.Name = "dc";
 			this.dc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dc.RightToLeft")));
@@ -1913,11 +1911,11 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.lv);
 			this.Controls.Add(this.dockContainer1);
-			this.Controls.Add(this.myrightSandDock);
 			this.Controls.Add(this.mybottomSandDock);
 			this.Controls.Add(this.leftSandBarDock);
 			this.Controls.Add(this.rightSandBarDock);
 			this.Controls.Add(this.mybottomSandBarDock);
+			this.Controls.Add(this.myrightSandDock);
 			this.Controls.Add(this.topSandBarDock);
 			this.Controls.Add(this.sb);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
@@ -1960,12 +1958,30 @@ namespace SimPe
 		{
 			try 
 			{
+				//check if the settings File is available
+				string file = System.IO.Path.Combine(Helper.SimPeDataPath, @"simpe.xreg");				
+				try 
+				{
+					System.Xml.XmlDocument xmlfile = new System.Xml.XmlDocument();
+						
+					if (System.IO.File.Exists(file)) 
+					{
+						xmlfile.Load(file);
+						System.Xml.XmlNodeList XMLData = xmlfile.GetElementsByTagName("registry");	
+					}
+				}
+				catch
+				{
+					if (MessageBox.Show("The Settings File was not readable. SimPE will generate a new one, which means that all your Settings made in \"Extra->Preferences\" get lost.\n\nShould SimPe reset the Settings File?", "Error", MessageBoxButtons.YesNo)==DialogResult.Yes)
+						System.IO.File.Delete(file);
+				}
+			
+				//do the real Startup
 				pargs = args;
 				//Application.EnableVisualStyles();
 				Application.DoEvents();				
 
-				Commandline.ImportOldData();				
-				
+				Commandline.ImportOldData();								
 				if (!Commandline.Start(args))  
 				{
 					Helper.WindowsRegistry.UpdateSimPEDirectory();
@@ -1981,7 +1997,8 @@ namespace SimPe
 				} 
 				catch (Exception ex2) 
 				{
-					MessageBox.Show(ex2.Message);
+					
+					MessageBox.Show("SimPE will shutdown due to an unhandled Exception.\n\nMessage: "+ex2.Message);
 				}
 			}
 		}

@@ -103,7 +103,7 @@ namespace SimPe
 		protected virtual void OnFinish(TreeNode root, int ct)
 		{
 			root.Expand();
-			if (ct<Helper.WindowsRegistry.BigPackageResourceCount) 
+			//if (ct<Helper.WindowsRegistry.BigPackageResourceCount) 
 				tv.SelectedNode = root;
 			
 			nodemap.Clear();
@@ -112,11 +112,7 @@ namespace SimPe
 			tv.Refresh();
 		}
 
-		protected ListViewItem CreateItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd) 
-		{			
-			UpdatableListViewItem lvi = new UpdatableListViewItem(pfd, pkg.Package);
-			return lvi;
-		}
+		
 
 		protected void RefreshAll(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
 		{
