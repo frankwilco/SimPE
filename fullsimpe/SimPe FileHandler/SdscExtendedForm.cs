@@ -173,7 +173,8 @@ namespace SimPe.PackedFiles.UserInterface
 		short[] shortdata;
 		string GetName(int i)
 		{
-			string name = Helper.MinStrLength(i.ToString(), 4) + ": ";
+			//string name = Helper.MinStrLength(i.ToString(), 4) + ": ";
+			string name = Helper.HexString(0x0a+2*i) + ": ";
 			name += ((string)names[i]);
 
 			return name;
@@ -270,11 +271,15 @@ namespace SimPe.PackedFiles.UserInterface
 			{
 				Hashtable ht = pob.Properties;
 
+				System.IO.StreamWriter sw = System.IO.File.CreateText(@"G:\vs.net\SimPE\ep1_sdsc.txt");
 				for (int i=0; i<shortdata.Length; i++)
 				{
+					
 					string name = GetName(i);	
+					sw.WriteLine(name);
 					if (ht.Contains(name)) shortdata[i] = (short)ht[name];
 				}
+				sw.Close();
 
 				int j=0;
 				for (int i=0xa; i<data.Length-1; i +=2) 

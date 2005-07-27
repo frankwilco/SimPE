@@ -188,7 +188,7 @@ namespace SimPe
 					doc.Text = wrapper.ResourceName;
 					
 
-					Panel pan = wrapper.UIHandler.GUIHandle; 
+					Control pan = wrapper.UIHandler.GUIHandle; 
 					if (pan!=null) 
 					{
 						

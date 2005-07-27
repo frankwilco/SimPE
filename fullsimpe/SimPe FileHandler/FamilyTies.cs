@@ -63,7 +63,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		#region IPackedFileHandler Member
 
-		public Panel GUIHandle
+		public Control GUIHandle
 		{
 			get 
 			{

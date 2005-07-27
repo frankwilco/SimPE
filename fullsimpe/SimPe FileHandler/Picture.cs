@@ -32,7 +32,7 @@ namespace SimPe.PackedFiles.UserInterface
 	{
 		
 		#region IPackedFileUI Member
-		public Panel GUIHandle
+		public Control GUIHandle
 		{
 			get 
 			{

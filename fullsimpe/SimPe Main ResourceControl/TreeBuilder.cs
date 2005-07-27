@@ -288,26 +288,9 @@ namespace SimPe
 		/// <param name="tv"></param>
 		public void InstanceView(TreeView tv)
 		{
-			tv.Nodes.Clear();			
-			if (pkg.Loaded==false) return;
-			TreeNode root = DefaultTree(tv);
-
-			int ct = 0;
-			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Package.Index) 
-			{
-				TreeNode parent = GetNode(root.Nodes, pfd.LongInstance.ToString(), "0x"+Helper.HexString(pfd.LongInstance), null);
-				TreeNode child = GetNode(parent.Nodes, pfd.LongInstance.ToString()+"-"+pfd.Group.ToString(), "0x"+Helper.HexString(pfd.Group), null);				
-				
-				if (parent.Tag==null) parent.Tag = new TreeNodeTag(parent.Text, new TreeNodeTag.RefreshResourceList(RefreshInstance), pfd, null);
-				if (child.Tag==null) child.Tag = new TreeNodeTag(child.Text, new TreeNodeTag.RefreshResourceList(RefreshGroupInstance), pfd, null);
-							
-				((TreeNodeTag)parent.Tag).ResourceCount++;
-				((TreeNodeTag)child.Tag).ResourceCount++;
-				((TreeNodeTag)root.Tag).ResourceCount++;
-				ct++;				
-			}
-
-			DefaultTreeFinish(tv, root, ct);
+			InstanceTreeBuilder instb = new InstanceTreeBuilder(pkg, filter, tv);
+			instb.Finished += new EventHandler(typetb_Finished);
+			TreeBuilderBase.Start(instb);		
 		}
 
 		/// <summary>
@@ -316,26 +299,9 @@ namespace SimPe
 		/// <param name="tv"></param>
 		public void GroupView(TreeView tv)
 		{
-			tv.Nodes.Clear();			
-			if (pkg.Loaded==false) return;
-			TreeNode root = DefaultTree(tv);
-
-			int ct = 0;
-			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Package.Index) 
-			{
-				TreeNode parent = GetNode(root.Nodes, pfd.Group, "0x"+Helper.HexString(pfd.Group), null);
-				TreeNode child = GetNode(parent.Nodes, pfd.LongInstance.ToString()+"-"+pfd.Group.ToString(), "0x"+Helper.HexString(pfd.LongInstance), null);				
-				
-				if (parent.Tag==null) parent.Tag = new TreeNodeTag(parent.Text, new TreeNodeTag.RefreshResourceList(RefreshGroup), pfd, null);
-				if (child.Tag==null) child.Tag = new TreeNodeTag(child.Text, new TreeNodeTag.RefreshResourceList(RefreshGroupInstance), pfd, null);
-				 
-				((TreeNodeTag)parent.Tag).ResourceCount++;
-				((TreeNodeTag)child.Tag).ResourceCount++;
-				((TreeNodeTag)root.Tag).ResourceCount++;
-				ct++;
-			}
-
-			DefaultTreeFinish(tv, root, ct);
+			GroupTreeBuilder grptb = new GroupTreeBuilder(pkg, filter, tv);
+			grptb.Finished += new EventHandler(typetb_Finished);
+			TreeBuilderBase.Start(grptb);				
 		}
 
 		/// <summary>
@@ -355,8 +321,7 @@ namespace SimPe
 		}
 
 		private void typetb_Finished(object sender, EventArgs e)
-		{
-			
+		{			
 			if (Finished!=null) Finished(sender, e);
 		}
 
@@ -364,6 +329,7 @@ namespace SimPe
 		{
 			TreeBuilderBase.Stop();
 			ResourceListerBase.Stop();
+			Wait.Stop();
 		}
 
 		private void lp_BeforeFileLoadSave(LoadedPackage sender, SimPe.Events.FileNameEventArg e)

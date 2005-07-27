@@ -391,15 +391,16 @@ namespace SimPe.Plugin
 		public void ForceReload()
 		{
 			loaded = true;
-			System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(StartReload));
-			t.Priority = System.Threading.ThreadPriority.Highest;
+			/*System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(StartReload));
+			t.Priority = System.Threading.ThreadPriority.AboveNormal;
 			t.Start();
 
 			
 			while ( t.IsAlive) {
 				t.Join(200);	
 				System.Windows.Forms.Application.DoEvents();
-			}
+			}*/
+			StartReload();
 		}
 
 		/// <summary>

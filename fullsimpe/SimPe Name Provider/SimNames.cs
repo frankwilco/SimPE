@@ -102,11 +102,14 @@ namespace SimPe.Providers
 
 			string[] files = Directory.GetFiles(dir, "*.package");
 
-			WaitingScreen.Wait();	
+			if (Helper.StartedGui==Executable.Classic)
+				WaitingScreen.Wait();	
+			else Wait.SubStart(files.Length);
 			
 			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(opcodes);
 			SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 			//ArrayList al = new ArrayList();
+			int ct = 0;
 			foreach(string file in files) 
 			{
 				//BinaryReader br = new BinaryReader(File.OpenRead(file));//new StreamReader(file)
@@ -159,13 +162,24 @@ namespace SimPe.Providers
 						{
 							SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
 							pic.ProcessData(pfd, fl);	
-							WaitingScreen.UpdateImage(pic.Image);
+							if (Helper.StartedGui==Executable.Classic) 
+								WaitingScreen.UpdateImage(pic.Image);
+							else
+							{
+								Wait.Image = pic.Image;
+								
+							}
 							tags[1] = pic.Image;							
 							break;
 						}						
 					}
 
 					a.Tag = tags;
+					if (Helper.StartedGui!=Executable.Classic) 
+					{
+						Wait.Message = a.ToString();
+						Wait.Progress = ct++;
+					}
 					if (!names.Contains(objd.Guid)) names.Add(objd.Guid, a);
 				}
 				//fl.Reader.Close();
@@ -174,7 +188,8 @@ namespace SimPe.Providers
 			/*names = new Alias[al.Count];
 			al.CopyTo(names);*/
 
-			WaitingScreen.Stop();
+			if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
+			else Wait.SubStop();
 		}
 
 		/// <summary>

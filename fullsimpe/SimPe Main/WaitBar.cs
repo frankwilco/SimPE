@@ -130,7 +130,7 @@ namespace SimPe
 			{
 				if (value!=f.lbOp.Text) 
 				{	
-					f.lbOp.Invoke(new SetStuff(SetMessage), new object[] { value });
+					f.lbOp.Invoke(new SetStuff(SetMessage), new object[] { " "+value });
 				}
 			}
 		}
