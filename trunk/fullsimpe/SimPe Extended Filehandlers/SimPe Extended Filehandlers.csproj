@@ -167,7 +167,7 @@
                 <Reference
                     Name = "SandBar"
                     AssemblyName = "SandBar"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\SandBar.dll"
+                    HintPath = "..\..\..\DivElements\SandBar\SandBar.dll"
                 />
             </References>
         </Build>
