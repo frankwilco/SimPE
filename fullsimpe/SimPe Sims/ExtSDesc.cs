@@ -28,7 +28,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Zusammenfassung für ExtSDesc.
 	/// </summary>
-	public class ExtSDesc : SDesc
+	public class ExtSDesc : SDesc//, SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper
 	{
 		public ExtSDesc() : base()
 		{

@@ -266,10 +266,15 @@ namespace SimPe
 		/// <param name="create">true, if you want to create the File if it does not exist</param>
 		public XmlRegistry(string xmlfilename, bool create)
 		{
+				
 			root = new XmlRegistryKey();
 			if (create) 
+			{
+				if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(xmlfilename)))
+					System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(xmlfilename));
 				if (!System.IO.File.Exists(xmlfilename))				
 					Flush(xmlfilename);
+			}
 				
 			this.filename = xmlfilename;
 

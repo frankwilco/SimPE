@@ -199,6 +199,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "SelectorItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "TransparentCheckBox.cs"
                     SubType = "Component"
                     BuildAction = "Compile"
@@ -212,6 +217,16 @@
                     RelPath = "UxTheme.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "XpTaskBoxSelector.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "XpTaskBoxSelector.resx"
+                    DependentUpon = "XpTaskBoxSelector.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "XpTaskBoxSimple.cs"

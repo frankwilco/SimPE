@@ -56,8 +56,7 @@ namespace Ambertation.Windows.Forms
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
 			InitializeComponent();
 
-			pause = false;
-			loaded = false;
+			pause = false;			
 			vp = new ViewportSetting();
 
 		}
@@ -104,7 +103,6 @@ namespace Ambertation.Windows.Forms
 
 		ViewportSetting vp;
 		bool pause;
-		bool loaded;
 		#endregion
 
 		#region Public Properties

@@ -170,16 +170,6 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "SandDock"
-                    AssemblyName = "SandDock"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\SandDock.dll"
-                />
-                <Reference
-                    Name = "SandBar"
-                    AssemblyName = "SandBar"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\SandBar.dll"
-                />
-                <Reference
                     Name = "SimPe Extended Filehandlers"
                     Project = "{7EF7C30C-2968-46E8-AA74-79EDB0FE8F2A}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
@@ -188,6 +178,16 @@
                     Name = "SimPe Workspace Helper"
                     Project = "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SandDock"
+                    AssemblyName = "SandDock"
+                    HintPath = "..\..\..\DivElements\SandDock\SandDock.dll"
+                />
+                <Reference
+                    Name = "SandBar"
+                    AssemblyName = "SandBar"
+                    HintPath = "..\..\..\DivElements\SandBar\SandBar.dll"
                 />
             </References>
         </Build>

@@ -140,11 +140,6 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Design.dll"
                 />
                 <Reference
-                    Name = "sandbar"
-                    AssemblyName = "SandBar"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\sandbar.dll"
-                />
-                <Reference
                     Name = "EnumComboBox"
                     Project = "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
@@ -153,6 +148,16 @@
                     Name = "SimPe FileHandlers"
                     Project = "{97551C0A-6295-4E32-8E15-A4FF456E65A6}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SandBar"
+                    AssemblyName = "SandBar"
+                    HintPath = "..\..\..\DivElements\SandBar\SandBar.dll"
+                />
+                <Reference
+                    Name = "SandDock"
+                    AssemblyName = "SandDock"
+                    HintPath = "..\..\..\DivElements\SandDock\SandDock.dll"
                 />
             </References>
         </Build>

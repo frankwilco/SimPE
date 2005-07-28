@@ -100,11 +100,6 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "SandBar"
-                    AssemblyName = "SandBar"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\SandBar.dll"
-                />
-                <Reference
                     Name = "SimPe Interfaces"
                     Project = "{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
@@ -130,11 +125,6 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "SandDock"
-                    AssemblyName = "SandDock"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\SandDock.dll"
-                />
-                <Reference
                     Name = "XPCommonControls"
                     AssemblyName = "XPCommonControls"
                     HintPath = "..\..\..\XPCommonControls\XPCommonControls.dll"
@@ -148,6 +138,16 @@
                     Name = "SimPe Wizardbase"
                     Project = "{B552AF25-66F1-4DFE-8760-2D3053F57E7C}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SandDock"
+                    AssemblyName = "SandDock"
+                    HintPath = "..\..\..\DivElements\SandDock\SandDock.dll"
+                />
+                <Reference
+                    Name = "SandBar"
+                    AssemblyName = "SandBar"
+                    HintPath = "..\..\..\DivElements\SandBar\SandBar.dll"
                 />
             </References>
         </Build>
@@ -258,6 +258,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "MediaPlayerRenderer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Message.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -313,6 +318,16 @@
                     RelPath = "ToolResult.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "WrapperBaseControl.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "WrapperBaseControl.resx"
+                    DependentUpon = "WrapperBaseControl.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "XmlPackageReader.cs"

@@ -112,9 +112,32 @@ namespace SimPe
 
 		void SetTheme(TD.SandBar.ToolBar tb) 
 		{			
-			if (ctheme == GuiTheme.Everett) tb.Renderer = new TD.SandBar.Office2002Renderer();
-			else if (ctheme == GuiTheme.Office2003) tb.Renderer = new TD.SandBar.Office2003Renderer();
-			else tb.Renderer = new TD.SandBar.WhidbeyRenderer();
+			if (tb.Renderer is TD.SandBar.MediaPlayerRenderer) 
+			{
+				if (ctheme == GuiTheme.Office2003) tb.Renderer = new TD.SandBar.MediaPlayerRenderer();
+				else if (ctheme == GuiTheme.Everett)
+				{
+					
+					TD.SandBar.MediaPlayerRenderer r = (TD.SandBar.MediaPlayerRenderer)tb.Renderer;
+					r.ToolBarGradientColor1 = this.ThemeColorLight;
+					r.ToolBarGradientColor2 = this.ThemeColor;
+					r.BorderColor = this.ThemeColorDark;
+				} 
+				else 
+				{
+					TD.SandBar.WhidbeyRenderer rend = new TD.SandBar.WhidbeyRenderer();
+					TD.SandBar.MediaPlayerRenderer r = (TD.SandBar.MediaPlayerRenderer)tb.Renderer;
+					r.ToolBarGradientColor1 = rend.ToolBarGradientColor1;
+					r.ToolBarGradientColor2 = rend.ToolBarGradientColor2;
+					r.BorderColor = rend.BorderColor;
+				}
+			} 
+			else 
+			{
+				if (ctheme == GuiTheme.Everett) tb.Renderer = new TD.SandBar.Office2002Renderer();
+				else if (ctheme == GuiTheme.Office2003) tb.Renderer = new TD.SandBar.Office2003Renderer();
+				else tb.Renderer = new TD.SandBar.WhidbeyRenderer();
+			}
 		}
 
 		void SetTheme(System.Windows.Forms.Splitter tb) 
@@ -133,6 +156,12 @@ namespace SimPe
 			gp.EndColor = ThemeColor;
 		}
 
+		void SetTheme(SimPe.Windows.Forms.WrapperBaseControl gp) 
+		{
+			gp.BackColor = ThemeColorLight;
+			gp.GradientColor = ThemeColor;
+		}
+
 		/// <summary>
 		/// Apply a Theme to the passed object
 		/// </summary>
@@ -143,6 +172,7 @@ namespace SimPe
 			else if (o is TD.SandBar.SandBarManager) SetTheme((TD.SandBar.SandBarManager)o);
 			else if (o is TD.SandBar.ToolBar) SetTheme((TD.SandBar.ToolBar)o);
 			else if (o is SteepValley.Windows.Forms.XPGradientPanel) SetTheme((SteepValley.Windows.Forms.XPGradientPanel)o);
+			else if (o is SimPe.Windows.Forms.WrapperBaseControl) SetTheme((SimPe.Windows.Forms.WrapperBaseControl)o);
 			else if (o is System.Windows.Forms.Splitter) SetTheme((System.Windows.Forms.Splitter)o);
 			else if (o is System.Windows.Forms.Control) SetTheme((System.Windows.Forms.Control)o);			
 		}

@@ -130,16 +130,6 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Design.dll"
                 />
                 <Reference
-                    Name = "sandbar"
-                    AssemblyName = "SandBar"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\sandbar.dll"
-                />
-                <Reference
-                    Name = "sanddock"
-                    AssemblyName = "SandDock"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\sanddock.dll"
-                />
-                <Reference
                     Name = "SimPe Packages"
                     Project = "{1C6C45BF-FE19-4C23-B327-01F45B0F269C}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
@@ -258,6 +248,16 @@
                     Name = "SimPe Main ResourceControl"
                     Project = "{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "sandbar"
+                    AssemblyName = "sandbar"
+                    HintPath = "..\..\..\divelements\sandbar\sandbar.dll"
+                />
+                <Reference
+                    Name = "sanddock"
+                    AssemblyName = "sanddock"
+                    HintPath = "..\..\..\divelements\sanddock\sanddock.dll"
                 />
             </References>
         </Build>

@@ -36,9 +36,9 @@ namespace SimPe.PackedFiles.UserInterface
 	/// </summary>
 	public class SDesc : UIBase, IPackedFileUI
 	{
-		static AssemblyBuilder myAssemblyBuilder;
+		/*static AssemblyBuilder myAssemblyBuilder;
 		static ModuleBuilder myModuleBuilder;
-		static EnumBuilder myEnumBuilder;
+		static EnumBuilder myEnumBuilder;*/
 		
 
 		/// <summary>

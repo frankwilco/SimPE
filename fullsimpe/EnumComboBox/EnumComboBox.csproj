@@ -90,9 +90,14 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "sandbar"
+                    Name = "GraphControl"
+                    Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SandBar"
                     AssemblyName = "SandBar"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\sandbar.dll"
+                    HintPath = "..\..\..\DivElements\SandBar\SandBar.dll"
                 />
             </References>
         </Build>
@@ -111,6 +116,26 @@
                 <File
                     RelPath = "EnumComboBox.resx"
                     DependentUpon = "EnumComboBox.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ExtProgressBar.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ExtProgressBar.resx"
+                    DependentUpon = "ExtProgressBar.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "LabeledProgressBar.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LabeledProgressBar.resx"
+                    DependentUpon = "LabeledProgressBar.cs"
                     BuildAction = "EmbeddedResource"
                 />
             </Include>
