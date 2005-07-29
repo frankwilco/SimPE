@@ -158,6 +158,13 @@ namespace SimPe.PackedFiles.Wrapper
 			set { npc = value; }
 		}
 
+		ushort mst;
+		public ushort MotivesStatic 
+		{
+			get { return mst; }
+			set { mst = value; }
+		}
+
 		ushort voice;
 		public ushort VoiceType 
 		{
@@ -1073,7 +1080,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Returns the FirstName of a Sim 
 		/// </summary>
 		/// <remarks>If no SimName Provider is available, '---' will be delivered</remarks>
-		public string SimName 
+		public virtual string SimName 
 		{
 			get 
 			{
@@ -1085,6 +1092,11 @@ namespace SimPe.PackedFiles.Wrapper
 				{
 					return "---";
 				}
+			}
+			
+			set 
+			{
+				throw new Exception("SimFamilyName can't be changed here!");
 			}
 		}
 
@@ -1174,7 +1186,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Returns the FamilyName of a Sim 
 		/// </summary>
 		/// <remarks>If no SimFamilyName Provider is available, '---' will be delivered</remarks>
-		public string SimFamilyName 
+		public virtual string SimFamilyName 
 		{
 			get 
 			{
@@ -1191,6 +1203,10 @@ namespace SimPe.PackedFiles.Wrapper
 				} 
 				return Localization.Manager.GetString("Unknown");
 				
+			}
+			set 
+			{
+				throw new Exception("SimFamilyName can't be changed here!");
 			}
 		}
 
@@ -1428,6 +1444,8 @@ namespace SimPe.PackedFiles.Wrapper
 			character.Neat = reader.ReadUInt16();
 
 			//random Data
+			reader.BaseStream.Seek(startpos + 0x46, System.IO.SeekOrigin.Begin);
+			description.MotivesStatic = reader.ReadUInt16();	
 			reader.BaseStream.Seek(startpos + 0x68, System.IO.SeekOrigin.Begin);
 			description.Aspiration = (MetaData.AspirationTypes)reader.ReadUInt16();	
 			reader.BaseStream.Seek(startpos + 0xBC, System.IO.SeekOrigin.Begin);
@@ -1575,6 +1593,8 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write(character.Neat); //Neat
 
 			//random Data			
+			writer.BaseStream.Seek(startpos + 0x46, System.IO.SeekOrigin.Begin);
+			writer.Write((ushort)description.MotivesStatic);
 			writer.BaseStream.Seek(startpos + 0x68, System.IO.SeekOrigin.Begin);
 			writer.Write((ushort)description.Aspiration);
 			writer.BaseStream.Seek(startpos + 0xBC, System.IO.SeekOrigin.Begin);

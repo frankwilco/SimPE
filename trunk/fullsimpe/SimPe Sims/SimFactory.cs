@@ -42,7 +42,8 @@ namespace SimPe.PackedFiles.Wrapper.Factory
 				{
 					IWrapper[] wrappers = {
 											  new SimPe.PackedFiles.Wrapper.ExtFamilyTies()	,
-											  new SimPe.PackedFiles.Wrapper.ExtSDesc()		  
+											  new SimPe.PackedFiles.Wrapper.ExtSDesc(),
+											  new SimPe.PackedFiles.Wrapper.ExtSrel()
 										  };
 					return wrappers;
 				}

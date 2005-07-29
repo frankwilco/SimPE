@@ -28,74 +28,31 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Zusammenfassung für ExtSDesc.
 	/// </summary>
-	public class ExtSDesc : SDesc//, SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper
+	public class ExtSrel : SRel//, SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper
 	{
-		public ExtSDesc() : base()
+		public ExtSrel() : base()
 		{
 			
 		}
 
 		
 		protected override IWrapperInfo CreateWrapperInfo()
-		{
+		{			
 			return new AbstractWrapperInfo(
-				"Extended Sim Description Wrapper",
+				"Extended Sim Relation Wrapper",
 				"Quaxi",
-				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
+				"This File Contians the Relationship states for two Sims.",
 				1,
-				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.sdsc.png"))				
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.srel.png"))
 				); 
+			
 		}
 
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new SimPe.PackedFiles.UserInterface.ExtSDesc();
+			return new SimPe.PackedFiles.UserInterface.ExtSrel();
 		}
 
-		bool chgname;
-		string sname, sfname;
-		public override string SimFamilyName
-		{
-			get
-			{
-				return base.SimFamilyName;
-			}
-			set
-			{
-				chgname = true;
-				sname = value;
-			}
-		}
-
-		public override string SimName
-		{
-			get
-			{
-				return base.SimName;
-			}
-			set 
-			{
-				chgname = true;
-				sfname = value;
-			}
-		}
-
-		protected override void Unserialize(System.IO.BinaryReader reader)
-		{
-			base.Unserialize(reader);
-			chgname = false;
-		}
-
-
-		protected override void Serialize(System.IO.BinaryWriter writer)
-		{
-			base.Serialize (writer);
-			if (chgname) ChangeName();
-		}
-
-		protected virtual void ChangeName()
-		{
-			chgname = false;
-		}
+		
 	}
 }

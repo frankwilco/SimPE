@@ -811,7 +811,7 @@ namespace SimPe.Plugin
 			try 
 			{
 				string ext = ".package";
-				if (!this.cbenable.Checked) ext = ".simpedis";
+				if (!this.cbenable.Checked) ext = ".packagedisabled";
 
 				WaitingScreen.UpdateMessage("Disable/Enable Packges");
 				int ct = 0;
@@ -985,10 +985,12 @@ namespace SimPe.Plugin
 			pb.Value = 0;
 			string[] files = System.IO.Directory.GetFiles(folder, "*.package"); 
 			string[] dfiles = System.IO.Directory.GetFiles(folder, "*.simpedis"); 
+			string[] dofiles = System.IO.Directory.GetFiles(folder, "*.packagedisabled");
 			string[] tfiles = System.IO.Directory.GetFiles(folder, "*.Sims2Tmp");
 			
 			Scan(files, true, 0, files.Length+dfiles.Length+tfiles.Length);
 			Scan(dfiles, false, files.Length, files.Length+dfiles.Length+tfiles.Length);			
+			Scan(dofiles, false, files.Length, files.Length+dfiles.Length+tfiles.Length);	
 			Scan(tfiles, false, files.Length+dfiles.Length, files.Length+dfiles.Length+tfiles.Length);
 			pb.Value = 0;
 

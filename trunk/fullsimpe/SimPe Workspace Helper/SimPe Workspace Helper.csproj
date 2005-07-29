@@ -325,6 +325,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "WrapperBaseControl.de.resx"
+                    DependentUpon = "WrapperBaseControl.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "WrapperBaseControl.resx"
                     DependentUpon = "WrapperBaseControl.cs"
                     BuildAction = "EmbeddedResource"
