@@ -155,12 +155,17 @@ namespace SimPe
 		public static void SubStop()
 		{
 			if (running>0) running--;			
-			if (mystack.Count>0)
+			try 
 			{
-				Message = (string)mystack.Pop();
-				MaxProgress = (int)mystack.Pop();
-				Progress = (int)mystack.Pop();
+				if (mystack.Count>0) Message = (string)mystack.Pop();
+				if (mystack.Count>0) MaxProgress = (int)mystack.Pop();
+				if (mystack.Count>0) Progress = (int)mystack.Pop();
+			} 
+			catch (Exception ex)
+			{
+				if (Helper.DebugMode) Helper.ExceptionMessage(ex);
 			}
+			
 			if (running==0) Stop();
 		}
 	}

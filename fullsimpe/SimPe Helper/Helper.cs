@@ -180,17 +180,75 @@ namespace SimPe
 		/// <returns>the represented value</returns>
 		public static uint HexStringToUInt(string txt)
 		{
-			txt = txt.Replace("0x", "").Trim().ToUpper();
-			uint offset = 0;
-			foreach (char c in txt) 
-			{
-				byte b = 0;
-				if ((c>='0') && (c<='9')) b = (byte)(c - '0');
-				else if ((c>='A') && (c<='F')) b = (byte)((c - 'A') + 10);
-				offset = (offset*16) + b;
-			}
+			return StringToUInt32(txt, 0, 16);
+		}
 
-			return offset;
+		/// <summary>
+		/// Returns the Value represented by the HexString
+		/// </summary>
+		/// <param name="txt">The hex String</param>
+		/// <returns>the represented value</returns>
+		public static uint StringToUInt32(string txt, uint def, byte bbase)
+		{
+			try 
+			{
+				return Convert.ToUInt32(txt, bbase);
+			} 
+			catch 
+			{
+				return def;
+			}
+		}
+
+		/// <summary>
+		/// Returns the Value represented by the HexString
+		/// </summary>
+		/// <param name="txt">The hex String</param>
+		/// <returns>the represented value</returns>
+		public static int StringToInt32(string txt, int def, byte bbase)
+		{
+			try 
+			{
+				return Convert.ToInt32(txt, bbase);
+			} 
+			catch 
+			{
+				return def;
+			}
+		}
+
+		/// <summary>
+		/// Returns the Value represented by the HexString
+		/// </summary>
+		/// <param name="txt">The hex String</param>
+		/// <returns>the represented value</returns>
+		public static ushort StringToUInt16(string txt, ushort def, byte bbase)
+		{
+			try 
+			{
+				return Convert.ToUInt16(txt, bbase);
+			} 
+			catch 
+			{
+				return def;
+			}
+		}
+
+		/// <summary>
+		/// Returns the Value represented by the HexString
+		/// </summary>
+		/// <param name="txt">The hex String</param>
+		/// <returns>the represented value</returns>
+		public static short StringToInt16(string txt, short def, byte bbase)
+		{
+			try 
+			{
+				return Convert.ToInt16(txt, bbase);
+			} 
+			catch 
+			{
+				return def;
+			}
 		}
 
 		/// <summary>

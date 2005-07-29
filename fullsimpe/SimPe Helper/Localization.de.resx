@@ -583,4 +583,10 @@ Package: {filename}</value>
 	<data name="Please Wait">
 		<value>Bitte warten</value>
 	</data>
+	<data name="Sim Relation Editor">
+		<value>Sim Beziehungs Editor</value>
+	</data>
+	<data name="Sim Description Editor">
+		<value>Sim Beschreibungs Editor</value>
+	</data>
 </root>

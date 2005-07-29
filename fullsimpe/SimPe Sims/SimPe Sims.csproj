@@ -169,6 +169,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "CommonSrelUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CommonSrelUI.de.resx"
+                    DependentUpon = "CommonSrelUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "CommonSrelUI.resx"
+                    DependentUpon = "CommonSrelUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ExtFamilyTiesUI.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -189,8 +204,28 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ExtSDescUI.de.resx"
+                    DependentUpon = "ExtSDescUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ExtSDescUI.resx"
                     DependentUpon = "ExtSDescUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ExtSrel.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ExtSrelUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ExtSrelUI.resx"
+                    DependentUpon = "ExtSrelUI.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -214,6 +249,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "noone.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "sdsc.png"
                     BuildAction = "EmbeddedResource"
                 />
@@ -230,6 +269,10 @@
                 <File
                     RelPath = "SimPoolControl.resx"
                     DependentUpon = "SimPoolControl.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "srel.png"
                     BuildAction = "EmbeddedResource"
                 />
             </Include>

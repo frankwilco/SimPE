@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 1.3
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">1.3</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1">this is my long string</data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        [base64 mime encoded serialized .NET Framework object]
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        [base64 mime encoded string representing a byte array form of the .NET Framework object]
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used forserialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="biId.Text">
+    <value>Übersicht</value>
+  </data>
+  <data name="biCareer.Text">
+    <value>Kariere</value>
+  </data>
+  <data name="biRel.Text">
+    <value>Beziehung</value>
+  </data>
+  <data name="biInt.Text">
+    <value>Interessen</value>
+  </data>
+  <data name="biChar.Text">
+    <value>Charakter</value>
+  </data>
+  <data name="biSkill.Text">
+    <value>Fähigkeiten</value>
+  </data>
+  <data name="biMisc.Text">
+    <value>Sonstiges</value>
+  </data>
+  <data name="biEP1.Text">
+    <value>WCJ</value>
+  </data>
+  <data name="biMore.Text">
+    <value>Mehr</value>
+  </data>
+  <data name="biMax.Text">
+    <value>Maximieren</value>
+  </data>
+  <data name="biMax.ToolTipText">
+    <value>Maximiere alle angezeigten Werte</value>
+  </data>
+  <data name="mbiMax.Text">
+    <value>Maximieren</value>
+  </data>
+  <data name="label1.Text">
+    <value>Familien Instanz:</value>
+  </data>
+  <data name="label49.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 96</value>
+  </data>
+  <data name="label49.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>96, 17</value>
+  </data>
+  <data name="label49.Text">
+    <value>Behandle als:</value>
+  </data>
+  <data name="rbmale.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>280, 96</value>
+  </data>
+  <data name="rbmale.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>56, 16</value>
+  </data>
+  <data name="rbmale.Text">
+    <value>Mann</value>
+  </data>
+  <data name="rbfemale.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>48, 16</value>
+  </data>
+  <data name="rbfemale.Text">
+    <value>Frau</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 17</value>
+  </data>
+  <data name="label10.Text">
+    <value>Verbleibende Tage:</value>
+  </data>
+  <data name="tbage.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>136, 160</value>
+  </data>
+  <data name="label48.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 17</value>
+  </data>
+  <data name="label48.Text">
+    <value>Lebensabschnitt:</value>
+  </data>
+  <data name="cblifesection.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>136, 136</value>
+  </data>
+  <data name="pbRomance.LabelText">
+    <value>Romantik:</value>
+  </data>
+  <data name="pbFat.LabelText">
+    <value>Dickheit:</value>
+  </data>
+  <data name="pbClean.LabelText">
+    <value>Putzen:</value>
+  </data>
+  <data name="pbCreative.LabelText">
+    <value>Kreativität:</value>
+  </data>
+  <data name="pbBody.LabelText">
+    <value>Körper:</value>
+  </data>
+  <data name="pbMech.LabelText">
+    <value>Mechanik:</value>
+  </data>
+  <data name="pbLogic.LabelText">
+    <value>Logik:</value>
+  </data>
+  <data name="pbCooking.LabelText">
+    <value>Koschen:</value>
+  </data>
+  <data name="pbMan.LabelText">
+    <value>Männer:</value>
+  </data>
+  <data name="pbMan.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 208</value>
+  </data>
+  <data name="pbWoman.LabelText">
+    <value>Frauen:</value>
+  </data>
+  <data name="pbWoman.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 184</value>
+  </data>
+  <data name="pbGNice.LabelText">
+    <value>Genetisch Nett:</value>
+  </data>
+  <data name="pbGNice.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>304, 20</value>
+  </data>
+  <data name="pbGPlayful.LabelText">
+    <value>Genetisch Verspielt:</value>
+  </data>
+  <data name="pbGPlayful.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>304, 20</value>
+  </data>
+  <data name="pbGActive.LabelText">
+    <value>Genetisch Aktiv:</value>
+  </data>
+  <data name="pbGActive.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>304, 20</value>
+  </data>
+  <data name="pbGOutgoing.LabelText">
+    <value>Genetisch Extrovertiert:</value>
+  </data>
+  <data name="pbGOutgoing.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>304, 20</value>
+  </data>
+  <data name="pbGNeat.LabelText">
+    <value>Genetisch Ordentlich:</value>
+  </data>
+  <data name="pbGNeat.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>304, 20</value>
+  </data>
+  <data name="pbNice.LabelText">
+    <value>Nett:</value>
+  </data>
+  <data name="pbNice.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 152</value>
+  </data>
+  <data name="pbPlayful.LabelText">
+    <value>Verspielt:</value>
+  </data>
+  <data name="pbPlayful.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 128</value>
+  </data>
+  <data name="pbActive.LabelText">
+    <value>Aktiv:</value>
+  </data>
+  <data name="pbActive.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 104</value>
+  </data>
+  <data name="pbOutgoing.LabelText">
+    <value>Extrovertiert:</value>
+  </data>
+  <data name="pbOutgoing.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 80</value>
+  </data>
+  <data name="pbNeat.LabelText">
+    <value>Ordentlich:</value>
+  </data>
+  <data name="pbNeat.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 56</value>
+  </data>
+  <data name="cbzodiac.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>104, 16</value>
+  </data>
+  <data name="label47.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>88, 17</value>
+  </data>
+  <data name="label47.Text">
+    <value>Sternzeichen:</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>504, 176</value>
+  </data>
+  <data name="label69.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>440, 232</value>
+  </data>
+  <data name="label69.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>64, 16</value>
+  </data>
+  <data name="label69.Text">
+    <value>anziehend</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>104, 176</value>
+  </data>
+  <data name="label70.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>104, 232</value>
+  </data>
+  <data name="label70.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>64, 16</value>
+  </data>
+  <data name="label70.Text">
+    <value>abstoßend</value>
+  </data>
+  <data name="miRand.Text">
+    <value>Zufällig</value>
+  </data>
+  <data name="miOpenChar.Text">
+    <value>Öffne Charakter Datei</value>
+  </data>
+  <data name="miOpenWf.Text">
+    <value>Öffne Wünsche &amp;&amp; Ängste</value>
+  </data>
+  <data name="miOpenDNA.Text">
+    <value>Öffne Sim DNA</value>
+  </data>
+  <data name="miOpenFamily.Text">
+    <value>Öffne Familie</value>
+  </data>
+  <data name="miOpenCloth.Text">
+    <value>Öffne Kleidung</value>
+  </data>
+  <data name="miMore.Text">
+    <value>Erweiterte Ansicht...</value>
+  </data>
+  <data name="miRelink.Text">
+    <value>Charakter neu Zuordnen</value>
+  </data>
+  <data name="pbAspBliz.LabelText">
+    <value>Stimmung kurzfristig:</value>
+  </data>
+  <data name="pbAspBliz.LabelWidth" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>136</value>
+  </data>
+  <data name="pbAspBliz.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>344, 48</value>
+  </data>
+  <data name="pbAspBliz.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>336, 20</value>
+  </data>
+  <data name="label60.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 96</value>
+  </data>
+  <data name="label60.Text">
+    <value>Punkte:</value>
+  </data>
+  <data name="cbaspiration.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>488, 16</value>
+  </data>
+  <data name="cbaspiration.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 21</value>
+  </data>
+  <data name="pbAspCur.LabelText">
+    <value>Stimmung Gesammt:</value>
+  </data>
+  <data name="pbAspCur.LabelWidth" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>136</value>
+  </data>
+  <data name="pbAspCur.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>344, 72</value>
+  </data>
+  <data name="pbAspCur.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>336, 20</value>
+  </data>
+  <data name="label46.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>400, 24</value>
+  </data>
+  <data name="label46.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>80, 17</value>
+  </data>
+  <data name="label46.Text">
+    <value>Lebensziel:</value>
+  </data>
+  <data name="tblifelinescore.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>488, 96</value>
+  </data>
+  <data name="pbCareerPerformance.LabelText">
+    <value>Leistung:</value>
+  </data>
+  <data name="pbCareerLevel.LabelText">
+    <value>Kariere Stufe:</value>
+  </data>
+  <data name="label78.Text">
+    <value>Schultyp:</value>
+  </data>
+  <data name="label77.Text">
+    <value>Note:</value>
+  </data>
+  <data name="label50.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>50, 17</value>
+  </data>
+  <data name="label50.Text">
+    <value>Kariere:</value>
+  </data>
+  <data name="pbSciFi.LabelText">
+    <value>Science-Fiction:</value>
+  </data>
+  <data name="pbToys.LabelText">
+    <value>Spielzeug:</value>
+  </data>
+  <data name="pbSchool.LabelText">
+    <value>Schule:</value>
+  </data>
+  <data name="pbAnimals.LabelText">
+    <value>Tiere:</value>
+  </data>
+  <data name="pbAnimals.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>77</value>
+  </data>
+  <data name="pbWeather.LabelText">
+    <value>Wetter:</value>
+  </data>
+  <data name="pbWeather.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>66</value>
+  </data>
+  <data name="pbWork.LabelText">
+    <value>Arbeit:</value>
+  </data>
+  <data name="pbWork.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>78</value>
+  </data>
+  <data name="pbTravel.LabelText">
+    <value>Reisen:</value>
+  </data>
+  <data name="pbTravel.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>73</value>
+  </data>
+  <data name="pbCrime.LabelText">
+    <value>Kriminalität:</value>
+  </data>
+  <data name="pbSports.LabelText">
+    <value>Sport:</value>
+  </data>
+  <data name="pbSports.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>75</value>
+  </data>
+  <data name="pbFashion.LabelText">
+    <value>Mode:</value>
+  </data>
+  <data name="pbHealth.LabelText">
+    <value>Gesundheit:</value>
+  </data>
+  <data name="pbFood.LabelText">
+    <value>Nahrung:</value>
+  </data>
+  <data name="pbFood.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>65</value>
+  </data>
+  <data name="pbPolitics.LabelText">
+    <value>Politik:</value>
+  </data>
+  <data name="pbMoney.LabelText">
+    <value>Geld:</value>
+  </data>
+  <data name="pbCulture.LabelText">
+    <value>Kultur:</value>
+  </data>
+  <data name="pbEntertainment.LabelText">
+    <value>Unterhaltung:</value>
+  </data>
+  <data name="pbEntertainment.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>76</value>
+  </data>
+  <data name="pbParanormal.LabelText">
+    <value>Paranormales:</value>
+  </data>
+  <data name="pbParanormal.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>70</value>
+  </data>
+  <data name="pbEnvironment.LabelText">
+    <value>Umwelt:</value>
+  </data>
+  <data name="xpTaskBoxSimple3.HeaderText">
+    <value>Verschiedenes</value>
+  </data>
+  <data name="xpTaskBoxSimple2.HeaderText">
+    <value>Körper Schalter</value>
+  </data>
+  <data name="xpTaskBoxSimple2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 184</value>
+  </data>
+  <data name="cbfit.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 152</value>
+  </data>
+  <data name="cbfit.Text">
+    <value>Dünn</value>
+  </data>
+  <data name="cbpreginv.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 32</value>
+  </data>
+  <data name="cbpreginv.Text">
+    <value>Schwanger (unsichtbar)</value>
+  </data>
+  <data name="cbpreghalf.Text">
+    <value>Schwanger (halb)</value>
+  </data>
+  <data name="cbpregfull.Text">
+    <value>Schwanger (voll)</value>
+  </data>
+  <data name="cbfat.Text">
+    <value>Dick</value>
+  </data>
+  <data name="xpTaskBoxSimple1.HeaderText">
+    <value>Geist Schalter</value>
+  </data>
+  <data name="xpTaskBoxSimple1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>184, 184</value>
+  </data>
+  <data name="cbisghost.Text">
+    <value>Ist Geist</value>
+  </data>
+  <data name="cbignoretraversal.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>160, 32</value>
+  </data>
+  <data name="cbignoretraversal.Text">
+    <value>Ignoriere Bewegungskosten</value>
+  </data>
+  <data name="cbpasspeople.Text">
+    <value>Geht durch Sims</value>
+  </data>
+  <data name="cbpasswalls.Text">
+    <value>Geht durch Wände</value>
+  </data>
+  <data name="cbpassobject.Text">
+    <value>Geht durch Objekte</value>
+  </data>
+  <data name="pbLastGrade.LabelText">
+    <value>Letzte Note:</value>
+  </data>
+  <data name="pbUniTime.LabelText">
+    <value>Zeit bis Prüfung:</value>
+  </data>
+  <data name="pbEffort.LabelText">
+    <value>Leistung:</value>
+  </data>
+  <data name="label101.Text">
+    <value>Einfluss:</value>
+  </data>
+  <data name="cboncampus.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>264, 24</value>
+  </data>
+  <data name="cboncampus.Text">
+    <value>Auf dem Campus (ist junger Erwachsener)</value>
+  </data>
+  <data name="label98.Text">
+    <value>Fachrichtung:</value>
+  </data>
+</root>

@@ -10618,8 +10618,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tabPage3.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("tabPage3.AutoScrollMargin")));
 			this.tabPage3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("tabPage3.AutoScrollMinSize")));
 			this.tabPage3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage3.BackgroundImage")));
-			this.tabPage3.Controls.Add(this.objdPanel);
 			this.tabPage3.Controls.Add(this.realPanel);
+			this.tabPage3.Controls.Add(this.objdPanel);
 			this.tabPage3.Controls.Add(this.xmlPanel);
 			this.tabPage3.Controls.Add(this.JpegPanel);
 			this.tabPage3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tabPage3.Dock")));

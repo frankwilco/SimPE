@@ -374,12 +374,12 @@ namespace SimPe.PackedFiles.UserInterface
 			form.pblifelinepoints.Value = sdesc.CharacterDescription.LifelinePoints + 600;
 			form.pbblizlifelinepoints.Value = sdesc.CharacterDescription.BlizLifelinePoints;
 			form.tblifelinescore.Text = sdesc.CharacterDescription.LifelineScore.ToString();
-			form.tbschooltype.Text = "0x"+Helper.HexString((uint)sdesc.CharacterDescription.SchoolType);
-			form.tbautonomy.Text = "0x"+Helper.HexString(sdesc.CharacterDescription.AutonomyLevel);
-			form.tbnpc.Text = "0x"+Helper.HexString(sdesc.CharacterDescription.NPCType);
+			form.tbschooltype.Text = "0x"+Helper.HexString((uint)sdesc.CharacterDescription.SchoolType);			
 			form.pbjobperformance.Value = sdesc.CharacterDescription.CareerPerformance + 1000;
 			form.tbfaminst.Text = "0x"+Helper.HexString(sdesc.FamilyInstance);
 			form.tbvoice.Text = "0x"+Helper.HexString(sdesc.CharacterDescription.VoiceType);
+			form.tbautonomy.Text = "0x"+Helper.HexString(sdesc.CharacterDescription.AutonomyLevel);
+			form.tbnpc.Text = "0x"+Helper.HexString(sdesc.CharacterDescription.NPCType);
 
 			//Decay
 			form.pbhunger.Value = sdesc.Decay.Hunger + 1000;

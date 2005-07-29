@@ -350,7 +350,7 @@ namespace Ambertation.Windows.Forms
 		Bitmap cachedimgsel;
 		Bitmap cachedimg;
 
-		void CompleteRedraw()
+		public void CompleteRedraw()
 		{			
 			if (Width<=8) return;
 			if (Height<=8) return;		
@@ -565,7 +565,11 @@ namespace Ambertation.Windows.Forms
 		#region Properties
 		public int SensitiveWidth 
 		{
-			get { return TokenOffset(this.TokenCount-1)+TokenWidth; }
+			get { 
+				if (Style==ProgresBarStyle.Simple) return Width;
+
+				return TokenOffset(this.TokenCount-1)+TokenWidth; 
+			}
 		}
 		public int TokenOffset(int nr)
 		{

@@ -57,18 +57,16 @@ namespace SimPe.PackedFiles.Wrapper
 
 		protected void UpdateContent()
 		{
-			this.BeginUpdate();
-			bool run = WaitingScreen.Running;
-			WaitingScreen.Wait();
+			this.BeginUpdate();			
 			this.Clear();
 
 			if (pkg==null) 
 			{
-				this.EndUpdate();
-				if (!run) WaitingScreen.Stop();
+				this.EndUpdate();				
 				return;
 			}
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE);
+			Wait.SubStart(pfds.Length);
 			int left = 12;
 			int top = 12;
 			bool auto = this.AutoSize;			
@@ -78,17 +76,19 @@ namespace SimPe.PackedFiles.Wrapper
 			System.Collections.SortedList map = new System.Collections.SortedList();
 			
 			foreach(Interfaces.Files.IPackedFileDescriptor pfd in pfds)
-			{								
+			{												
 				ExtendedImagePanel eip = this.CreateItem(pfd, left, top);				
 				string name = eip.Text;
 				if (map.ContainsKey(name)) name += " ("+pfd.Instance.ToString()+")";
 				map[name] = eip;
 				
-				if (ct==1) WaitingScreen.Wait();													
-				WaitingScreen.UpdateMessage((ct++).ToString() + "/" + pfds.Length.ToString());
+				//if (ct==1) WaitingScreen.Wait();													
+				//WaitingScreen.UpdateMessage((ct++).ToString() + "/" + pfds.Length.ToString());
+				Wait.Progress = ct++;
+				Wait.Message = eip.Text;
 			}			
 
-			WaitingScreen.UpdateMessage("Updating Canvas");
+			Wait.Message=("Updating Canvas");
 			ct = 0;
 			foreach (string k in map.Keys) 
 			{
@@ -103,7 +103,7 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 			
 			this.EndUpdate();
-			if (!run) WaitingScreen.Stop();
+			Wait.SubStop();
 		}
 
 		internal static void CreateItem(ImagePanel eip, SDesc sdesc)

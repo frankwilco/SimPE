@@ -174,28 +174,51 @@ namespace SimPe.Windows.Forms
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(WrapperBaseControl));
 			this.btCommit = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btCommit
 			// 
-			this.btCommit.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btCommit.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.btCommit.Location = new System.Drawing.Point(696, 0);
+			this.btCommit.AccessibleDescription = resources.GetString("btCommit.AccessibleDescription");
+			this.btCommit.AccessibleName = resources.GetString("btCommit.AccessibleName");
+			this.btCommit.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btCommit.Anchor")));
+			this.btCommit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btCommit.BackgroundImage")));
+			this.btCommit.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btCommit.Dock")));
+			this.btCommit.Enabled = ((bool)(resources.GetObject("btCommit.Enabled")));
+			this.btCommit.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btCommit.FlatStyle")));
+			this.btCommit.Font = ((System.Drawing.Font)(resources.GetObject("btCommit.Font")));
+			this.btCommit.Image = ((System.Drawing.Image)(resources.GetObject("btCommit.Image")));
+			this.btCommit.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btCommit.ImageAlign")));
+			this.btCommit.ImageIndex = ((int)(resources.GetObject("btCommit.ImageIndex")));
+			this.btCommit.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btCommit.ImeMode")));
+			this.btCommit.Location = ((System.Drawing.Point)(resources.GetObject("btCommit.Location")));
 			this.btCommit.Name = "btCommit";
-			this.btCommit.TabIndex = 0;
-			this.btCommit.Text = "Commit";
+			this.btCommit.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btCommit.RightToLeft")));
+			this.btCommit.Size = ((System.Drawing.Size)(resources.GetObject("btCommit.Size")));
+			this.btCommit.TabIndex = ((int)(resources.GetObject("btCommit.TabIndex")));
+			this.btCommit.Text = resources.GetString("btCommit.Text");
+			this.btCommit.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btCommit.TextAlign")));
+			this.btCommit.Visible = ((bool)(resources.GetObject("btCommit.Visible")));
 			this.btCommit.Click += new System.EventHandler(this.btCommit_Click);
 			// 
 			// WrapperBaseControl
 			// 
+			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
+			this.AccessibleName = resources.GetString("$this.AccessibleName");
+			this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
+			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
+			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
+			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.Controls.Add(this.btCommit);
-			this.DockPadding.Bottom = 0;
-			this.DockPadding.Left = 0;
-			this.DockPadding.Right = 0;
 			this.DockPadding.Top = 24;
+			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
+			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
+			this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
+			this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
 			this.Name = "WrapperBaseControl";
-			this.Size = new System.Drawing.Size(776, 416);
+			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
+			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
 			this.ResumeLayout(false);
 
 		}

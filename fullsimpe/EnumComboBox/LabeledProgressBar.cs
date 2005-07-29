@@ -122,18 +122,21 @@ namespace Ambertation.Windows.Forms
 			}
 		}
 
+		[Localizable(true)]
 		public int TextboxWidth
 		{
 			get { return pntb.Width; }
 			set { pntb.Width = value; }
 		}		
 
+		[Localizable(true)]
 		public string LabelText
 		{
 			get { return lb.Text; }
 			set { lb.Text = value; }
 		}
 
+		[Localizable(true)]
 		public int LabelWidth
 		{
 			get { return pnlb.Width; }
@@ -247,7 +250,7 @@ namespace Ambertation.Windows.Forms
 			base.Dispose( disposing );
 		}
 
-		
+		#region von Designer
 		/// <summary> 
 		/// Erforderliche Methode für die Designerunterstützung. 
 		/// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
@@ -354,6 +357,7 @@ namespace Ambertation.Windows.Forms
 			this.ResumeLayout(false);
 
 		}
+		#endregion
 
 		bool internalupdate;
 		public new void Update()
@@ -362,7 +366,7 @@ namespace Ambertation.Windows.Forms
 			internalupdate = true;
 			try 
 			{
-				double disp = ((float)pb.Value  + no) * ns + dno;
+				double disp = ((float)Value) * ns + dno;
 				tb.Text = npre + disp.ToString(nf) + nsu;
 			}
 			catch {}
@@ -377,20 +381,26 @@ namespace Ambertation.Windows.Forms
 
 		private void tb_TextChanged(object sender, System.EventArgs e)
 		{
-			if (internalupdate) return;
+			
+			if (internalupdate) 
+			{
+				if (Changed!=null) Changed(this, e);
+				return;
+			}
 			internalupdate = true;
 			try 
 			{
-				int val = (int)((((Convert.ToDouble(tb.Text)-dno) / ns) - no) );
-				pb.Value = Math.Max(pb.Minimum, Math.Min(pb.Maximum, val));				
+				int val = (int)((((Convert.ToDouble(tb.Text)-dno) / ns)) );
+				Value = Math.Max(pb.Minimum, Math.Min(pb.Maximum, val));				
 			}
 			catch {}
 			finally 
 			{
+				if (Changed!=null) Changed(this, e);
 				internalupdate = false;
 			}	
 		
-			if (Changed!=null) Changed(this, e);
+			
 		}
 
 		private void ProgressBarUpdate(System.Windows.Forms.MouseEventArgs e) 
@@ -430,6 +440,12 @@ namespace Ambertation.Windows.Forms
 				tb.Left - pb.Left - 8,
 				pb.Height
 				);*/
+		}
+
+		public void CompleteRedraw() 
+		{
+			pb.CompleteRedraw();
+			pb.Refresh();
 		}
 
 

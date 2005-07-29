@@ -140,11 +140,15 @@ namespace SimPe
 			get { return f.pbimg.Image; }
 			set 
 			{
-				if (value!=f.pbimg.Image) 
-				{	
-					if (value!=null && !f.pbimg.Visible) ShowImage(true);
-					f.pbimg.Invoke(new SetStuff(SetImage), new object[] { value });
-				}
+				/*try 
+				{
+					if (value!=f.pbimg.Image) 
+					{				
+						if (value!=null && !f.pbimg.Visible) ShowImage(true);
+						f.pbimg.Invoke(new SetStuff(SetImage), new object[] { value });
+					}
+				} 
+				catch {}*/
 			}
 		}
 
@@ -201,10 +205,14 @@ namespace SimPe
 		}
 
 		public void Stop()
-		{						
-			f.sb.Invoke(new ShowStuff(ShowMain), new object[] {false});			
-			f.pbWait.Invoke(new ShowStuff(StartAnimation), new object[] {false});
-			Application.DoEvents();
+		{	
+			try  
+			{ 		
+				f.sb.Invoke(new ShowStuff(ShowMain), new object[] {false});			
+				f.pbWait.Invoke(new ShowStuff(StartAnimation), new object[] {false});
+				Application.DoEvents();
+			} 
+			catch {}
 		}
 	}
 }
