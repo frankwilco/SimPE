@@ -40,13 +40,13 @@ namespace Ambertation.Drawing {
 	public abstract class AbstractFloodFiller : object {
 		
 
-		[DllImport("winmm.dll")]
-		protected static extern int timeGetTime();
+		/*[DllImport("winmm.dll")]
+		protected static extern int timeGetTime();*/
 
 		//private members with public accessors
 
 		protected Color m_fillcolorcolor=Color.Green;
-		protected byte[] m_Tolerance=new byte[]{32,32,32};
+		protected byte[] m_Tolerance=new byte[]{11,11,11};
 		protected int m_TimeBenchmark=0;
 		protected FloodFillStyle m_FillStyle=FloodFillStyle.Linear;
 		protected bool m_FillDiagonal=false;

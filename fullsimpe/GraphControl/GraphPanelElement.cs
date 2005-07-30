@@ -324,6 +324,11 @@ namespace Ambertation.Windows.Forms.Graph
 			g.Dispose();
 		}
 
+		public Image SourceImage
+		{
+			get {return cachedimage;}
+		}
+
 		protected void CompleteRedraw(Graphics g)
 		{
 			SetGraphicsMode(g, true);						

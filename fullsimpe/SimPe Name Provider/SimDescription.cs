@@ -109,7 +109,8 @@ namespace SimPe.Providers
 
 			foreach (IPackedFileDescriptor pfd in files) 
 			{
-				SDesc sdesc = new SDesc(this.names, this.famnames, this);
+				//SDesc sdesc = new SDesc(this.names, this.famnames, this);
+				ExtSDesc sdesc = new ExtSDesc();
 				sdesc.ProcessData(pfd, BasePackage);
 
 				if (bysimid.ContainsKey((uint)sdesc.SimId) || byinstance.ContainsKey((ushort)sdesc.Instance))

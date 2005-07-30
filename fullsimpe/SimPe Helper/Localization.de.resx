@@ -589,4 +589,7 @@ Package: {filename}</value>
 	<data name="Sim Description Editor">
 		<value>Sim Beschreibungs Editor</value>
 	</data>
+	<data name="towards">
+		<value>für</value>
+	</data>
 </root>

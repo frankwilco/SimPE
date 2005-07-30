@@ -130,7 +130,8 @@ namespace SimPe
 			{
 				if (value!=f.lbOp.Text) 
 				{	
-					f.lbOp.Invoke(new SetStuff(SetMessage), new object[] { " "+value });
+					//f.lbOp.Invoke(new SetStuff(SetMessage), new object[] { " "+value });
+					f.lbOp.Text = " "+value;
 				}
 			}
 		}
@@ -140,15 +141,12 @@ namespace SimPe
 			get { return f.pbimg.Image; }
 			set 
 			{
-				/*try 
-				{
-					if (value!=f.pbimg.Image) 
-					{				
-						if (value!=null && !f.pbimg.Visible) ShowImage(true);
-						f.pbimg.Invoke(new SetStuff(SetImage), new object[] { value });
-					}
-				} 
-				catch {}*/
+				if (value!=f.pbimg.Image) 
+				{				
+					if (value!=null && !f.pbimg.Visible) ShowImage(true);
+					f.pbimg.Invoke(new SetStuff(SetImage), new object[] { value });
+				}
+			
 			}
 		}
 
@@ -159,8 +157,9 @@ namespace SimPe
 			{
 				if (value!=f.pb.Value) 
 				{	
-					
-					f.pb.Invoke(new SetStuff(SetProgress), new object[] { value });
+					SetProgress(value);
+					//f.pb.Value = value;
+					//f.pb.Invoke(new SetStuff(SetProgress), new object[] { value });
 				}
 			}
 		}
@@ -173,7 +172,8 @@ namespace SimPe
 				if (value!=f.pb.Maximum)
 				{
 					f.Invoke(new ShowStuff(ShowProgress), new object[] {true});
-					f.pb.Invoke(new SetStuff(SetMaxProgress), new object[] { value });
+					//f.pb.Invoke(new SetStuff(SetMaxProgress), new object[] { value });
+					f.pb.Maximum = value;
 				}
 			}
 		}

@@ -530,14 +530,31 @@ namespace SimPe.PackedFiles.UserInterface
 			get {return srel;}
 			set 
 			{
-				//if (srel!=value) 
+				srel = value;
+				UpdateContent();
+
+				/*if (value!=null) 
 				{
-					srel = value;
-					UpdateContent();
-				}
+					if (srel==null) 
+					{
+						srel = value;
+						UpdateContent();
+					} 
+					else if (srel.FileDescriptor==null) 
+					{
+						srel = value;
+						UpdateContent();
+					} 
+					else if (srel.FileDescriptor.Equals(value.FileDescriptor))
+					{
+						srel = value;
+						UpdateContent();
+					}
+				} */
 			}
 		}
 
+		public event EventHandler ChangedContent;
 		protected void InitComboBox()
 		{
 			this.cbfamtype.Items.Clear();
@@ -556,6 +573,7 @@ namespace SimPe.PackedFiles.UserInterface
 		bool intern;
 		protected void UpdateContent()
 		{
+			this.Enabled = (Srel!=null);
 			if (Srel==null) return;
 			intern = true;
 			this.pbDay.Value = Srel.Shortterm;
@@ -581,6 +599,8 @@ namespace SimPe.PackedFiles.UserInterface
 				}
 
 			intern = false;
+
+			if (ChangedContent!=null) ChangedContent(this, new EventArgs());
 		}
 
 		private void ChangedLife(object sender, System.EventArgs e)
@@ -670,7 +690,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		SimPe.PackedFiles.Wrapper.ExtSDesc src, dst;
 
-		public uint SourceSimInstance
+		public uint TargetSimInstance
 		{
 			get 
 			{
@@ -679,7 +699,7 @@ namespace SimPe.PackedFiles.UserInterface
 			}
 		}
 
-		public uint TargetSimInstance
+		public uint SourceSimInstance
 		{
 			get 
 			{
@@ -707,6 +727,55 @@ namespace SimPe.PackedFiles.UserInterface
 				else if (dst.FileDescriptor.Instance!=TargetSimInstance) dst = GetDescriptionByInstance(TargetSimInstance);
 
 				return dst;
+			}
+		}
+
+		public string SourceSimName
+		{
+			get 
+			{
+				if (SourceSim!=null) return SourceSim.SimName+" "+SourceSim.SimFamilyName;
+				return SimPe.Localization.GetString("Unknown");
+			}
+		}
+
+		public string TargetSimName
+		{
+			get 
+			{
+				if (TargetSim!=null) return TargetSim.SimName+" "+TargetSim.SimFamilyName;
+				return SimPe.Localization.GetString("Unknown");
+			}
+		}
+
+		public Image Image
+		{
+			get 
+			{
+				Bitmap b = new Bitmap(356, 256);
+				Graphics g = Graphics.FromImage(b);
+
+				Image isrc = null;
+				if (SourceSim!=null)
+					if (SourceSim.Image!=null)
+						if (SourceSim.Image.Width>8)
+							isrc = SourceSim.Image;
+				if (isrc==null) isrc = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png"));
+				else isrc = Ambertation.Drawing.GraphicRoutines.KnockoutImage(isrc, new Point(0,0), Color.Magenta);
+
+				Image idst = null;
+				if (TargetSim!=null)
+					if (TargetSim.Image!=null) 
+						if (TargetSim.Image.Width>8)
+							idst = TargetSim.Image;
+				if (idst==null) idst = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png"));
+				else idst = Ambertation.Drawing.GraphicRoutines.KnockoutImage(idst, new Point(0,0), Color.Magenta);
+
+				const int offsety = 32;
+				g.DrawImage(isrc, new Rectangle(0, offsety, 256, 256-offsety), new Rectangle(0, 0, isrc.Width, isrc.Height-offsety), GraphicsUnit.Pixel);
+				g.DrawImage(idst, new Rectangle(100, 0, 256, 256), new Rectangle(0, 0, idst.Width, idst.Height), GraphicsUnit.Pixel);
+				g.Dispose();
+				return b;
 			}
 		}
 	}

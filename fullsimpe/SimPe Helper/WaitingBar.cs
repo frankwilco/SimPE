@@ -32,15 +32,22 @@ namespace SimPe
 	{
 		static IWaitingBarControl bar;
 		static Stack mystack = new Stack();
+		static object sync = new object();
+		static int timeout = 10000; 
+
 
 		public static IWaitingBarControl Bar
 		{
-			set { bar = value; }
+			set 
+			{ 
+				bar = value; 				
+			}
 		}
 
 		public static bool Running
 		{
-			get { 
+			get 
+			{ 
 				if (bar!=null) return bar.Running;
 				return false;
 			}
@@ -50,13 +57,28 @@ namespace SimPe
 		{
 			get 
 			{ 
+				return IntMessage;
+			}
+			set 
+			{
+				//lock (sync) 
+				{
+					IntMessage = value;				
+				}
+			}
+		}
+
+		static string IntMessage
+		{
+			get 
+			{ 
 				if (bar!=null) return bar.Message; 
 				return "";
+				
 			} 
 			set 
 			{
-				if (bar!=null) bar.Message = value;
-				
+				if (bar!=null) bar.Message = value;								
 			}
 		}
 
@@ -69,8 +91,10 @@ namespace SimPe
 			} 
 			set 
 			{
-				if (bar!=null) bar.Image = value;
-				
+				//lock (sync) 
+				{
+					//if (bar!=null) bar.Image = value;
+				}
 			}
 		}
 
@@ -78,16 +102,48 @@ namespace SimPe
 		{
 			get 
 			{ 
+				return IntProgress;
+			} 
+			set 
+			{
+				//lock (sync) 
+				{
+					IntProgress = value;
+				}
+			}
+		}
+
+		public static int IntProgress
+		{
+			get 
+			{ 
 				if (bar!=null) return bar.Progress; 
-				return MaxProgress;
+				return IntMaxProgress;
+				
 			} 
 			set 
 			{
 				if (bar!=null) bar.Progress = value;				
+				
 			}
 		}
 
 		public static int MaxProgress
+		{
+			get 
+			{ 
+				return IntMaxProgress;
+			} 	
+			set 
+			{
+				//lock (sync) 
+				{
+					IntMaxProgress = value;		
+				}
+			}
+		}
+
+		public static int IntMaxProgress
 		{
 			get 
 			{ 
@@ -112,61 +168,83 @@ namespace SimPe
 				bar.Wait();
 				CommonStart();
 			}
+			
 		}		
 
 		public static void Start(int max)
 		{
+			
 			if (bar!=null) 
 			{
 				bar.Wait(max);
 				CommonStart();
 			}
+			
 		}
 
 		public static void Stop()
 		{
-			if (bar!=null) 
-			{
-				bar.Stop();
-				mystack.Clear();
-				running = 0;
-			}
+			if (bar!=null) 				
+				bar.Stop();					
+				
+			mystack.Clear();
+			running = 0;
+			
 		}
 
+		static object syncstart = 0;
 		static void SubStartCommon()
 		{
+			System.Threading.Monitor.TryEnter(sync, timeout);		
+			
 			running++;
 			mystack.Push(Progress);
 			mystack.Push(MaxProgress);
 			mystack.Push(Message);
+
+			System.Threading.Monitor.PulseAll(sync);
+			System.Threading.Monitor.Exit(sync);
 		}
 		public static void SubStart()
 		{			
+						
 			SubStartCommon();
 			Start();
+			
 		}
 
 		public static void SubStart(int max)
 		{
+			
 			SubStartCommon();
 			Start(max);
+			
 		}
 
 		public static void SubStop()
 		{
+			System.Threading.Monitor.TryEnter(sync, timeout);								
 			if (running>0) running--;			
 			try 
 			{
-				if (mystack.Count>0) Message = (string)mystack.Pop();
-				if (mystack.Count>0) MaxProgress = (int)mystack.Pop();
-				if (mystack.Count>0) Progress = (int)mystack.Pop();
+				if (mystack.Count>0) 
+				{
+					IntMessage = (string)mystack.Pop();
+					//if (mystack.Count>0) 
+					IntMaxProgress = (int)mystack.Pop();
+					//if (mystack.Count>0) 
+					IntProgress = (int)mystack.Pop();
+				}
 			} 
 			catch (Exception ex)
 			{
 				if (Helper.DebugMode) Helper.ExceptionMessage(ex);
 			}
-			
+							
 			if (running==0) Stop();
+
+			System.Threading.Monitor.Exit(sync);
+			
 		}
 	}
 }

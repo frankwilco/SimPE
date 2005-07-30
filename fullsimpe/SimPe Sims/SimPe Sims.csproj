@@ -224,6 +224,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ExtSrelUI.de.resx"
+                    DependentUpon = "ExtSrelUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ExtSrelUI.resx"
                     DependentUpon = "ExtSrelUI.cs"
                     BuildAction = "EmbeddedResource"
@@ -260,6 +265,16 @@
                     RelPath = "SimFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SimListView.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SimListView.resx"
+                    DependentUpon = "SimListView.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "SimPoolControl.cs"

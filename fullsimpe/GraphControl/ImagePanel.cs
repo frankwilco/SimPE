@@ -127,12 +127,32 @@ namespace Ambertation.Windows.Forms.Graph
 
 		protected void DrawThumbnail(Graphics gr, Rectangle trec, int rad)
 		{
+			DrawThumbnail(gr, trec, rad, thumb, BorderColor, ImagePanelColor, this.GradientColor, this.FadeColor, this.Focused, tborder);
+		}
+
+		protected static void DrawThumbnail(Graphics gr, Rectangle trec, int rad, Image thumb, Color borderColor, Color imagePanelColor, Color gradientColor, Color fadeColor, bool focused, int tborder)
+		{
 			Rectangle srect = new Rectangle(trec.Left-tborder, trec.Top-tborder, trec.Width+2*tborder, trec.Height+2*tborder);;
-			DrawNiceRoundRect(gr, srect.X, srect.Y, srect.Width, srect.Height, rad, this.ImagePanelColor);
-			Ambertation.Drawing.GraphicRoutines.DrawRoundRect(gr, new Pen(this.BorderColor), srect.X-2, srect.Y-2, srect.Width+3, srect.Height+3, rad);
+			DrawNiceRoundRectStart(gr, srect.X, srect.Y, srect.Width, srect.Height, rad, imagePanelColor, borderColor, gradientColor, fadeColor, focused);
+			DrawNiceRoundRectEnd(gr, srect.X, srect.Y, srect.Width, srect.Height, rad, imagePanelColor, borderColor, gradientColor, fadeColor, focused);
+			Ambertation.Drawing.GraphicRoutines.DrawRoundRect(gr, new Pen(borderColor), srect.X-2, srect.Y-2, srect.Width+3, srect.Height+3, rad);
 				
 			if (thumb!=null) gr.DrawImage(thumb, trec, new Rectangle(0, 0, thumb.Width, thumb.Height), GraphicsUnit.Pixel);
 			
+		}
+
+		public static Image CreateThumbnail(Image img, Size sz, int rad, Color borderColor, Color imagePanelColor, Color gradientColor, Color fadeColor, bool focused, int tborder)
+		{
+			Bitmap b = new Bitmap(sz.Width, sz.Height);
+			Rectangle trec = new Rectangle(new Point(tborder+2, tborder+2), new Size(sz.Width-2*tborder-4, sz.Height-2*tborder-4));
+			img = Ambertation.Drawing.GraphicRoutines.ScaleImage(img, trec.Width, trec.Height, true);
+			Graphics g = Graphics.FromImage(b);
+			SetGraphicsMode(g, false);
+
+			DrawThumbnail(g, trec, rad, img, borderColor, imagePanelColor, gradientColor, fadeColor, focused, tborder);
+
+			g.Dispose();
+			return b;
 		}
 
 		protected void DrawCaption(Graphics gr, Rectangle r, Font f, bool center)

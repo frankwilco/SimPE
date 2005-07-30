@@ -44,7 +44,7 @@ namespace Ambertation.Drawing {
 		///<summary>initializes the FloodFill operation</summary>
 		public override void FloodFill(Bitmap bmp, Point pt)
 		{
-			int ctr=timeGetTime();
+			int ctr=0;//timeGetTime();
 			
 			//Debug.WriteLine("*******Flood Fill******");
 			
@@ -96,7 +96,7 @@ namespace Ambertation.Drawing {
 		    
 		    bmp.UnlockBits(bmpData);
 			
-                    m_TimeBenchmark=timeGetTime()-ctr;
+                    //m_TimeBenchmark=timeGetTime()-ctr;
 			
 		}
 		
