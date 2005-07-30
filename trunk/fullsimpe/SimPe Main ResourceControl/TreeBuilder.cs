@@ -70,7 +70,7 @@ namespace SimPe
 	/// <summary>
 	/// ZUsed to present a Package in various TreeLists
 	/// </summary>
-	public class TreeBuilder : ITreeBuilder
+	public class TreeBuilder 
 	{
 		
 		LoadedPackage pkg;
@@ -87,7 +87,8 @@ namespace SimPe
 					lvi.Dispose();				
 				}
 
-			lv.Items.Clear();			
+			lv.Items.Clear();
+			lv.ListViewItemSorter = null;
 		}
 
 		/// <summary>
@@ -325,7 +326,7 @@ namespace SimPe
 			if (Finished!=null) Finished(sender, e);
 		}
 
-		public void StopAll()
+		public static void StopAll()
 		{
 			TreeBuilderBase.Stop();
 			ResourceListerBase.Stop();

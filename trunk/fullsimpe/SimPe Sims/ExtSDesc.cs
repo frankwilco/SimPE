@@ -95,7 +95,16 @@ namespace SimPe.PackedFiles.Wrapper
 
 		protected virtual void ChangeName()
 		{
-			chgname = false;
+			chgname = false;			
+		}
+
+		public bool HasRelationWith(ExtSDesc sdsc)
+		{
+			
+			foreach (uint inst in this.Relations.SimInstances) 
+				if (sdsc.FileDescriptor.Instance==inst) 
+					return true;
+			return false;
 		}
 	}
 }

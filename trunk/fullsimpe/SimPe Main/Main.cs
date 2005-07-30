@@ -2685,7 +2685,9 @@ namespace SimPe
 			e.Cancel = !this.ClosePackage();
 			if (!e.Cancel) 
 			{
-//				Ambertation.Panel3D.StopAll();
+				TreeBuilder.StopAll();
+				Wait.Stop(); Wait.Bar = null;
+
 				Helper.WindowsRegistry.Layout.SandBarLayout = sbm.GetLayout(true);
 				Helper.WindowsRegistry.Layout.SandDockLayout = sdm.GetLayout();
 				Helper.WindowsRegistry.Layout.PluginActionBoxExpanded = this.tbPlugAction.IsExpanded;

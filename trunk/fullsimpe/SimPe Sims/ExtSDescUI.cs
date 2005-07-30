@@ -181,11 +181,16 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label3;
 		internal System.Windows.Forms.TextBox tbstatmot;
 		private System.Windows.Forms.Panel panel3;
-		private SimPe.PackedFiles.Wrapper.SimPoolControl sp;
-		/// <summary> 
-		/// Erforderliche Designervariable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+		private SimPe.PackedFiles.Wrapper.SimListView lv;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private SimPe.PackedFiles.UserInterface.CommonSrel srcRel;
+		private SimPe.PackedFiles.UserInterface.CommonSrel dstRel;
+		private Ambertation.Windows.Forms.XPTaskBoxSimple srcTb;
+		private Ambertation.Windows.Forms.XPTaskBoxSimple dstTb;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.ComponentModel.IContainer components;
 
 		
 		public ExtSDesc()
@@ -198,7 +203,8 @@ namespace SimPe.PackedFiles.UserInterface
 			toolBar1.Renderer = new TD.SandBar.MediaPlayerRenderer();
 			ThemeManager.AddControl(this.toolBar1);
 			ThemeManager.AddControl(this.menuBar1);
-			ThemeManager.AddControl(this.sp);
+			//ThemeManager.AddControl(this.lv);
+			//ThemeManager.AddControl(this.sp);
 			//ThemeManager.AddControl(this.pnId);
 			this.biId.Tag = pnId;	
 			this.biSkill.Tag = pnSkill;
@@ -240,6 +246,8 @@ namespace SimPe.PackedFiles.UserInterface
 		private void InitializeComponent()
 		{
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ExtSDesc));
+			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup1 = new SteepValley.Windows.Forms.XPListViewGroup("Relations", 0);
+			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup2 = new SteepValley.Windows.Forms.XPListViewGroup("Sim Pool", 1);
 			this.toolBar1 = new TD.SandBar.ToolBar();
 			this.biId = new TD.SandBar.ButtonItem();
 			this.biCareer = new TD.SandBar.ButtonItem();
@@ -344,8 +352,16 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbParanormal = new Ambertation.Windows.Forms.LabeledProgressBar();
 			this.pbEnvironment = new Ambertation.Windows.Forms.LabeledProgressBar();
 			this.pnRel = new System.Windows.Forms.Panel();
-			this.sp = new SimPe.PackedFiles.Wrapper.SimPoolControl();
+			this.lv = new SimPe.PackedFiles.Wrapper.SimListView();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.srcTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+			this.srcRel = new SimPe.PackedFiles.UserInterface.CommonSrel();
+			this.dstTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+			this.dstRel = new SimPe.PackedFiles.UserInterface.CommonSrel();
 			this.pnMisc = new System.Windows.Forms.Panel();
 			this.xpTaskBoxSimple3 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.label3 = new System.Windows.Forms.Label();
@@ -392,6 +408,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnCareer.SuspendLayout();
 			this.pnInt.SuspendLayout();
 			this.pnRel.SuspendLayout();
+			this.panel3.SuspendLayout();
+			this.srcTb.SuspendLayout();
+			this.dstTb.SuspendLayout();
 			this.pnMisc.SuspendLayout();
 			this.xpTaskBoxSimple3.SuspendLayout();
 			this.xpTaskBoxSimple2.SuspendLayout();
@@ -3159,7 +3178,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnRel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("pnRel.AutoScrollMinSize")));
 			this.pnRel.BackColor = System.Drawing.Color.Transparent;
 			this.pnRel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnRel.BackgroundImage")));
-			this.pnRel.Controls.Add(this.sp);
+			this.pnRel.Controls.Add(this.lv);
 			this.pnRel.Controls.Add(this.panel3);
 			this.pnRel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pnRel.Dock")));
 			this.pnRel.Enabled = ((bool)(resources.GetObject("pnRel.Enabled")));
@@ -3174,36 +3193,73 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnRel.Visible = ((bool)(resources.GetObject("pnRel.Visible")));
 			this.pnRel.VisibleChanged += new System.EventHandler(this.pnRel_VisibleChanged);
 			// 
-			// sp
+			// lv
 			// 
-			this.sp.AccessibleDescription = resources.GetString("sp.AccessibleDescription");
-			this.sp.AccessibleName = resources.GetString("sp.AccessibleName");
-			this.sp.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("sp.Anchor")));
-			this.sp.AutoScroll = ((bool)(resources.GetObject("sp.AutoScroll")));
-			this.sp.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("sp.AutoScrollMargin")));
-			this.sp.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("sp.AutoScrollMinSize")));
-			this.sp.AutoSize = false;
-			this.sp.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.sp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("sp.BackgroundImage")));
-			this.sp.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("sp.Dock")));
-			this.sp.Enabled = ((bool)(resources.GetObject("sp.Enabled")));
-			this.sp.Font = ((System.Drawing.Font)(resources.GetObject("sp.Font")));
-			this.sp.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("sp.ImeMode")));
-			this.sp.LineMode = Ambertation.Windows.Forms.Graph.LinkControlLineMode.Bezier;
-			this.sp.Location = ((System.Drawing.Point)(resources.GetObject("sp.Location")));
-			this.sp.LockItems = true;
-			this.sp.MinHeight = 264;
-			this.sp.MinWidth = 696;
-			this.sp.Name = "sp";
-			this.sp.Package = null;
-			this.sp.Quality = true;
-			this.sp.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("sp.RightToLeft")));
-			this.sp.SaveBounds = false;
-			this.sp.SelectedElement = null;
-			this.sp.Size = ((System.Drawing.Size)(resources.GetObject("sp.Size")));
-			this.sp.TabIndex = ((int)(resources.GetObject("sp.TabIndex")));
-			this.sp.Text = resources.GetString("sp.Text");
-			this.sp.Visible = ((bool)(resources.GetObject("sp.Visible")));
+			this.lv.AccessibleDescription = resources.GetString("lv.AccessibleDescription");
+			this.lv.AccessibleName = resources.GetString("lv.AccessibleName");
+			this.lv.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lv.Alignment")));
+			this.lv.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lv.Anchor")));
+			this.lv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lv.BackgroundImage")));
+			this.lv.BorderSelect = true;
+			this.lv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+																				 this.columnHeader1,
+																				 this.columnHeader2,
+																				 this.columnHeader3,
+																				 this.columnHeader4});
+			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
+			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
+			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
+			this.lv.FullRowSelect = true;
+			xpListViewGroup1.GroupIndex = 0;
+			xpListViewGroup1.GroupText = "Relations";
+			xpListViewGroup2.GroupIndex = 1;
+			xpListViewGroup2.GroupText = "Sim Pool";
+			this.lv.Groups.Add(xpListViewGroup1);
+			this.lv.Groups.Add(xpListViewGroup2);
+			this.lv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+			this.lv.HideSelection = false;
+			this.lv.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lv.ImeMode")));
+			this.lv.LabelWrap = ((bool)(resources.GetObject("lv.LabelWrap")));
+			this.lv.Location = ((System.Drawing.Point)(resources.GetObject("lv.Location")));
+			this.lv.MultiSelect = false;
+			this.lv.Name = "lv";
+			this.lv.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lv.RightToLeft")));
+			this.lv.ShowGroups = true;
+			this.lv.Size = ((System.Drawing.Size)(resources.GetObject("lv.Size")));
+			this.lv.TabIndex = ((int)(resources.GetObject("lv.TabIndex")));
+			this.lv.Text = resources.GetString("lv.Text");
+			this.lv.TileColumns = new int[] {
+												1,
+												2,
+												3};
+			this.lv.View = SteepValley.Windows.Forms.ExtendedView.Tile;
+			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
+			this.lv.SelectedIndexChanged += new System.EventHandler(this.lv_SelectedIndexChanged);
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = resources.GetString("columnHeader1.Text");
+			this.columnHeader1.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader1.TextAlign")));
+			this.columnHeader1.Width = ((int)(resources.GetObject("columnHeader1.Width")));
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = resources.GetString("columnHeader2.Text");
+			this.columnHeader2.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader2.TextAlign")));
+			this.columnHeader2.Width = ((int)(resources.GetObject("columnHeader2.Width")));
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = resources.GetString("columnHeader3.Text");
+			this.columnHeader3.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader3.TextAlign")));
+			this.columnHeader3.Width = ((int)(resources.GetObject("columnHeader3.Width")));
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = resources.GetString("columnHeader4.Text");
+			this.columnHeader4.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader4.TextAlign")));
+			this.columnHeader4.Width = ((int)(resources.GetObject("columnHeader4.Width")));
 			// 
 			// panel3
 			// 
@@ -3214,6 +3270,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel3.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel3.AutoScrollMargin")));
 			this.panel3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel3.AutoScrollMinSize")));
 			this.panel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel3.BackgroundImage")));
+			this.panel3.Controls.Add(this.srcTb);
+			this.panel3.Controls.Add(this.dstTb);
 			this.panel3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel3.Dock")));
 			this.panel3.Enabled = ((bool)(resources.GetObject("panel3.Enabled")));
 			this.panel3.Font = ((System.Drawing.Font)(resources.GetObject("panel3.Font")));
@@ -3225,6 +3283,122 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel3.TabIndex = ((int)(resources.GetObject("panel3.TabIndex")));
 			this.panel3.Text = resources.GetString("panel3.Text");
 			this.panel3.Visible = ((bool)(resources.GetObject("panel3.Visible")));
+			// 
+			// srcTb
+			// 
+			this.srcTb.AccessibleDescription = resources.GetString("srcTb.AccessibleDescription");
+			this.srcTb.AccessibleName = resources.GetString("srcTb.AccessibleName");
+			this.srcTb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("srcTb.Anchor")));
+			this.srcTb.AutoScroll = ((bool)(resources.GetObject("srcTb.AutoScroll")));
+			this.srcTb.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("srcTb.AutoScrollMargin")));
+			this.srcTb.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("srcTb.AutoScrollMinSize")));
+			this.srcTb.BackColor = System.Drawing.Color.Transparent;
+			this.srcTb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("srcTb.BackgroundImage")));
+			this.srcTb.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
+			this.srcTb.BorderColor = System.Drawing.SystemColors.Window;
+			this.srcTb.Controls.Add(this.srcRel);
+			this.srcTb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("srcTb.Dock")));
+			this.srcTb.DockPadding.Bottom = 4;
+			this.srcTb.DockPadding.Left = 4;
+			this.srcTb.DockPadding.Right = 4;
+			this.srcTb.DockPadding.Top = 44;
+			this.srcTb.Enabled = ((bool)(resources.GetObject("srcTb.Enabled")));
+			this.srcTb.Font = ((System.Drawing.Font)(resources.GetObject("srcTb.Font")));
+			this.srcTb.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
+			this.srcTb.HeaderText = resources.GetString("srcTb.HeaderText");
+			this.srcTb.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.srcTb.Icon = ((System.Drawing.Image)(resources.GetObject("srcTb.Icon")));
+			this.srcTb.IconLocation = new System.Drawing.Point(4, 6);
+			this.srcTb.IconSize = new System.Drawing.Size(48, 32);
+			this.srcTb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("srcTb.ImeMode")));
+			this.srcTb.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
+			this.srcTb.Location = ((System.Drawing.Point)(resources.GetObject("srcTb.Location")));
+			this.srcTb.Name = "srcTb";
+			this.srcTb.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+			this.srcTb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("srcTb.RightToLeft")));
+			this.srcTb.Size = ((System.Drawing.Size)(resources.GetObject("srcTb.Size")));
+			this.srcTb.TabIndex = ((int)(resources.GetObject("srcTb.TabIndex")));
+			this.srcTb.Text = resources.GetString("srcTb.Text");
+			this.srcTb.Visible = ((bool)(resources.GetObject("srcTb.Visible")));
+			// 
+			// srcRel
+			// 
+			this.srcRel.AccessibleDescription = resources.GetString("srcRel.AccessibleDescription");
+			this.srcRel.AccessibleName = resources.GetString("srcRel.AccessibleName");
+			this.srcRel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("srcRel.Anchor")));
+			this.srcRel.AutoScroll = ((bool)(resources.GetObject("srcRel.AutoScroll")));
+			this.srcRel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("srcRel.AutoScrollMargin")));
+			this.srcRel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("srcRel.AutoScrollMinSize")));
+			this.srcRel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("srcRel.BackgroundImage")));
+			this.srcRel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("srcRel.Dock")));
+			this.srcRel.Enabled = ((bool)(resources.GetObject("srcRel.Enabled")));
+			this.srcRel.Font = ((System.Drawing.Font)(resources.GetObject("srcRel.Font")));
+			this.srcRel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("srcRel.ImeMode")));
+			this.srcRel.Location = ((System.Drawing.Point)(resources.GetObject("srcRel.Location")));
+			this.srcRel.Name = "srcRel";
+			this.srcRel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("srcRel.RightToLeft")));
+			this.srcRel.Size = ((System.Drawing.Size)(resources.GetObject("srcRel.Size")));
+			this.srcRel.Srel = null;
+			this.srcRel.TabIndex = ((int)(resources.GetObject("srcRel.TabIndex")));
+			this.srcRel.Visible = ((bool)(resources.GetObject("srcRel.Visible")));
+			// 
+			// dstTb
+			// 
+			this.dstTb.AccessibleDescription = resources.GetString("dstTb.AccessibleDescription");
+			this.dstTb.AccessibleName = resources.GetString("dstTb.AccessibleName");
+			this.dstTb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dstTb.Anchor")));
+			this.dstTb.AutoScroll = ((bool)(resources.GetObject("dstTb.AutoScroll")));
+			this.dstTb.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dstTb.AutoScrollMargin")));
+			this.dstTb.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dstTb.AutoScrollMinSize")));
+			this.dstTb.BackColor = System.Drawing.Color.Transparent;
+			this.dstTb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dstTb.BackgroundImage")));
+			this.dstTb.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
+			this.dstTb.BorderColor = System.Drawing.SystemColors.Window;
+			this.dstTb.Controls.Add(this.dstRel);
+			this.dstTb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dstTb.Dock")));
+			this.dstTb.DockPadding.Bottom = 4;
+			this.dstTb.DockPadding.Left = 4;
+			this.dstTb.DockPadding.Right = 4;
+			this.dstTb.DockPadding.Top = 44;
+			this.dstTb.Enabled = ((bool)(resources.GetObject("dstTb.Enabled")));
+			this.dstTb.Font = ((System.Drawing.Font)(resources.GetObject("dstTb.Font")));
+			this.dstTb.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
+			this.dstTb.HeaderText = resources.GetString("dstTb.HeaderText");
+			this.dstTb.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.dstTb.Icon = ((System.Drawing.Image)(resources.GetObject("dstTb.Icon")));
+			this.dstTb.IconLocation = new System.Drawing.Point(4, 6);
+			this.dstTb.IconSize = new System.Drawing.Size(48, 32);
+			this.dstTb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dstTb.ImeMode")));
+			this.dstTb.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
+			this.dstTb.Location = ((System.Drawing.Point)(resources.GetObject("dstTb.Location")));
+			this.dstTb.Name = "dstTb";
+			this.dstTb.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+			this.dstTb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dstTb.RightToLeft")));
+			this.dstTb.Size = ((System.Drawing.Size)(resources.GetObject("dstTb.Size")));
+			this.dstTb.TabIndex = ((int)(resources.GetObject("dstTb.TabIndex")));
+			this.dstTb.Text = resources.GetString("dstTb.Text");
+			this.dstTb.Visible = ((bool)(resources.GetObject("dstTb.Visible")));
+			// 
+			// dstRel
+			// 
+			this.dstRel.AccessibleDescription = resources.GetString("dstRel.AccessibleDescription");
+			this.dstRel.AccessibleName = resources.GetString("dstRel.AccessibleName");
+			this.dstRel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dstRel.Anchor")));
+			this.dstRel.AutoScroll = ((bool)(resources.GetObject("dstRel.AutoScroll")));
+			this.dstRel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dstRel.AutoScrollMargin")));
+			this.dstRel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dstRel.AutoScrollMinSize")));
+			this.dstRel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dstRel.BackgroundImage")));
+			this.dstRel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dstRel.Dock")));
+			this.dstRel.Enabled = ((bool)(resources.GetObject("dstRel.Enabled")));
+			this.dstRel.Font = ((System.Drawing.Font)(resources.GetObject("dstRel.Font")));
+			this.dstRel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dstRel.ImeMode")));
+			this.dstRel.Location = ((System.Drawing.Point)(resources.GetObject("dstRel.Location")));
+			this.dstRel.Name = "dstRel";
+			this.dstRel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dstRel.RightToLeft")));
+			this.dstRel.Size = ((System.Drawing.Size)(resources.GetObject("dstRel.Size")));
+			this.dstRel.Srel = null;
+			this.dstRel.TabIndex = ((int)(resources.GetObject("dstRel.TabIndex")));
+			this.dstRel.Visible = ((bool)(resources.GetObject("dstRel.Visible")));
 			// 
 			// pnMisc
 			// 
@@ -3288,6 +3462,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.xpTaskBoxSimple3.HeaderText = resources.GetString("xpTaskBoxSimple3.HeaderText");
 			this.xpTaskBoxSimple3.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.xpTaskBoxSimple3.Icon = ((System.Drawing.Image)(resources.GetObject("xpTaskBoxSimple3.Icon")));
+			this.xpTaskBoxSimple3.IconLocation = new System.Drawing.Point(4, 12);
+			this.xpTaskBoxSimple3.IconSize = new System.Drawing.Size(32, 32);
 			this.xpTaskBoxSimple3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpTaskBoxSimple3.ImeMode")));
 			this.xpTaskBoxSimple3.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
 			this.xpTaskBoxSimple3.Location = ((System.Drawing.Point)(resources.GetObject("xpTaskBoxSimple3.Location")));
@@ -3670,6 +3846,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.xpTaskBoxSimple2.HeaderText = resources.GetString("xpTaskBoxSimple2.HeaderText");
 			this.xpTaskBoxSimple2.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.xpTaskBoxSimple2.Icon = ((System.Drawing.Image)(resources.GetObject("xpTaskBoxSimple2.Icon")));
+			this.xpTaskBoxSimple2.IconLocation = new System.Drawing.Point(4, 12);
+			this.xpTaskBoxSimple2.IconSize = new System.Drawing.Size(32, 32);
 			this.xpTaskBoxSimple2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpTaskBoxSimple2.ImeMode")));
 			this.xpTaskBoxSimple2.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
 			this.xpTaskBoxSimple2.Location = ((System.Drawing.Point)(resources.GetObject("xpTaskBoxSimple2.Location")));
@@ -3839,6 +4017,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.xpTaskBoxSimple1.HeaderText = resources.GetString("xpTaskBoxSimple1.HeaderText");
 			this.xpTaskBoxSimple1.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.xpTaskBoxSimple1.Icon = ((System.Drawing.Image)(resources.GetObject("xpTaskBoxSimple1.Icon")));
+			this.xpTaskBoxSimple1.IconLocation = new System.Drawing.Point(4, 12);
+			this.xpTaskBoxSimple1.IconSize = new System.Drawing.Size(32, 32);
 			this.xpTaskBoxSimple1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("xpTaskBoxSimple1.ImeMode")));
 			this.xpTaskBoxSimple1.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
 			this.xpTaskBoxSimple1.Location = ((System.Drawing.Point)(resources.GetObject("xpTaskBoxSimple1.Location")));
@@ -4357,6 +4537,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnCareer.ResumeLayout(false);
 			this.pnInt.ResumeLayout(false);
 			this.pnRel.ResumeLayout(false);
+			this.panel3.ResumeLayout(false);
+			this.srcTb.ResumeLayout(false);
+			this.dstTb.ResumeLayout(false);
 			this.pnMisc.ResumeLayout(false);
 			this.xpTaskBoxSimple3.ResumeLayout(false);
 			this.xpTaskBoxSimple2.ResumeLayout(false);
@@ -4396,30 +4579,6 @@ namespace SimPe.PackedFiles.UserInterface
 
 		void InitDropDowns()
 		{
-			/*this.cboutfamtype.Items.Clear();
-			this.cboutfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Unset_Unknown));
-			this.cboutfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Aunt));
-			this.cboutfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Child));
-			this.cboutfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Cousin));
-			this.cboutfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Grandchild));
-			this.cboutfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Gradparent));
-			this.cboutfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Nice_Nephew));
-			this.cboutfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Parent));
-			this.cboutfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Sibling));
-			this.cboutfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Spouses));
-
-			this.cbinfamtype.Items.Clear();
-			this.cbinfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Unset_Unknown));
-			this.cbinfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Aunt));
-			this.cbinfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Child));
-			this.cbinfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Cousin));
-			this.cbinfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Grandchild));
-			this.cbinfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Gradparent));
-			this.cbinfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Nice_Nephew));
-			this.cbinfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Parent));
-			this.cbinfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Sibling));
-			this.cbinfamtype.Items.Add(new LocalizedRelationshipTypes(Data.MetaData.RelationshipTypes.Spouses));*/
-
 			this.cbaspiration.Items.Clear();
 			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Nothing));
 			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Fortune));
@@ -4515,6 +4674,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		protected override void RefreshGUI()
 		{
+			loadedRel = false;
 			this.intern = true;
 			try 
 			{
@@ -4530,6 +4690,8 @@ namespace SimPe.PackedFiles.UserInterface
 				RefreshCharcter(Sdesc);
 				RefreshInterests(Sdesc);
 				RefreshMisc(Sdesc);
+
+				pnRel_VisibleChanged(null, null);
 
 				this.biEP1.Enabled = Sdesc.Version == SimPe.PackedFiles.Wrapper.SDescVersions.University;
 				if (pnEP1.Visible && !biEP1.Enabled) this.SelectButton(biId);
@@ -4619,13 +4781,17 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsim.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
 			this.tbfaminst.Text = "0x"+Helper.HexString(sdesc.FamilyInstance);
 			
-			this.pbImage.Image = null;
+			Image img = null;
+			
 			if (sdesc.Image!=null) 
 				if (sdesc.Image.Width>5) 
-					this.pbImage.Image = Ambertation.Drawing.GraphicRoutines.ScaleImage(Ambertation.Drawing.GraphicRoutines.KnockoutImage(sdesc.Image, new Point(0,0), Color.Magenta), pbImage.Width, pbImage.Height, true);
+					img = Ambertation.Drawing.GraphicRoutines.KnockoutImage(sdesc.Image, new Point(0,0), Color.Magenta);
 
-			if (pbImage.Image == null)
-				pbImage.Image = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png"));
+			if (img == null)
+				img = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png"));
+
+			img = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(img, pbImage.Size, 12, Color.FromArgb(90, Color.Black), SimPe.PackedFiles.Wrapper.SimPoolControl.GetImagePanelColor(Sdesc), Color.White, Color.FromArgb(80, Color.White), true, 0);
+			this.pbImage.Image = img;
 
 			//Lifesection
 			this.cblifesection.SelectedIndex = 0;
@@ -5228,11 +5394,125 @@ namespace SimPe.PackedFiles.UserInterface
 			}
 		}
 
+		#region Relations
+		bool loadedRel;
+		SimPe.Interfaces.Files.IPackageFile lastpkg;
 		private void pnRel_VisibleChanged(object sender, System.EventArgs e)
 		{
-			if (pnRel.Visible) sp.Package = Sdesc.Package;
+			if (pnRel.Visible) 
+			{
+				if (lastpkg==null) LoadRelList();
+				else if (!lastpkg.Equals(Sdesc.Package)) LoadRelList();
+				else if (!loadedRel) UpdateRelList();
+				
+				lastpkg = Sdesc.Package;
+			}
+		}	
+	
+		void LoadRelList()
+		{
+			lv.BeginUpdate();
+			Wait.SubStart(FileTable.ProviderRegistry.SimDescriptionProvider.SimGuidMap.Count);
+			Wait.Message = "Loading Relations";
+			lv.Clear();	
+			int ct = 0;
+			foreach (PackedFiles.Wrapper.ExtSDesc sdesc in FileTable.ProviderRegistry.SimDescriptionProvider.SimGuidMap.Values)
+			{				
+				SteepValley.Windows.Forms.XPListViewItem lvi = lv.Add(sdesc);
+				if (Sdesc.HasRelationWith(sdesc)) lvi.GroupIndex=0;
+				else lvi.GroupIndex=1;
+
+				lvi.Tag = sdesc;
+				Wait.Progress = ct++;				
+			}
+
+			this.lv.TileColumns = new int[]{1, 2, 3, 4, 5};
+			this.lv.SetColumnStyle(1, lv.Font, Color.Gray);
+			this.lv.SetColumnStyle(2, lv.Font, Color.Gray);
+			this.lv.SetColumnStyle(3, lv.Font, Color.Gray);
+
+			lv.EndUpdate();
+			Wait.SubStop();	
+		
+			ResetLabel();
+			loadedRel = true;
 		}
 
+		void UpdateRelList()
+		{
+			foreach (SteepValley.Windows.Forms.XPListViewItem lvi in lv.Items)
+			{
+				PackedFiles.Wrapper.ExtSDesc sdesc = (PackedFiles.Wrapper.ExtSDesc)lvi.Tag;
+
+				if (Sdesc.HasRelationWith(sdesc)) lvi.GroupIndex=0;
+				else lvi.GroupIndex=1;
+			}
+
+			ResetLabel();
+			loadedRel = true;
+		}		
+
+		void ResetLabel()
+		{
+			this.dstRel.Srel = null;
+			this.srcRel.Srel = null;
+			UpdateLabel();
+		}
+
+		void UpdateLabel()
+		{
+			Image img = null;
+			srcTb.HeaderText = srcRel.SourceSimName + " " + SimPe.Localization.GetString("towards") +" " +srcRel.TargetSimName;
+			if (srcRel.TargetSim==null)img  = null;
+			else  img = (Image)srcRel.Image;
+			if (img!=null) 
+			{
+				//img = Ambertation.Drawing.GraphicRoutines.KnockoutImage(img, new Point(0,0), Color.Magenta);
+				img = Ambertation.Drawing.GraphicRoutines.ScaleImage(img, srcTb.IconSize.Width, srcTb.IconSize.Height, true);
+			}
+			srcTb.Icon = img;
+			
+
+			dstTb.HeaderText = dstRel.SourceSimName + " " + SimPe.Localization.GetString("towards") +" " +dstRel.TargetSimName;
+			if (dstRel.TargetSim==null) img = null;
+			else img = (Image)dstRel.Image.Clone();
+			if (img!=null) 
+			{
+				//img = Ambertation.Drawing.GraphicRoutines.KnockoutImage(img, new Point(0,0), Color.Magenta);
+				img = Ambertation.Drawing.GraphicRoutines.ScaleImage(img, srcTb.IconSize.Width, srcTb.IconSize.Height, true);
+			}
+			dstTb.Icon = img;
+		}
+
+		private void lv_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (lv.SelectedItems.Count!=1) return;
+
+			PackedFiles.Wrapper.ExtSDesc sdesc = (PackedFiles.Wrapper.ExtSDesc)lv.SelectedItems[0].Tag;
+			uint sinst = ((Sdesc.FileDescriptor.Instance & 0xffff) << 16) | (sdesc.FileDescriptor.Instance & 0xffff);
+			uint dinst = ((sdesc.FileDescriptor.Instance & 0xffff) << 16) | (Sdesc.FileDescriptor.Instance & 0xffff);
+
+			SimPe.Interfaces.Files.IPackedFileDescriptor spfd = Sdesc.Package.FindFile(0xCC364C2A, 0, Sdesc.FileDescriptor.Group, sinst);
+			SimPe.Interfaces.Files.IPackedFileDescriptor dpfd = Sdesc.Package.FindFile(0xCC364C2A, 0, Sdesc.FileDescriptor.Group, dinst);
+
+			if (spfd!=null) 
+			{
+				SimPe.PackedFiles.Wrapper.ExtSrel srel = new SimPe.PackedFiles.Wrapper.ExtSrel();
+				srel.ProcessData(spfd, Sdesc.Package);
+				srcRel.Srel = srel;
+			} else this.srcRel.Srel = null;
+			
+			if (dpfd!=null) 
+			{
+				SimPe.PackedFiles.Wrapper.ExtSrel srel = new SimPe.PackedFiles.Wrapper.ExtSrel();
+				srel.ProcessData(dpfd, Sdesc.Package);
+				dstRel.Srel = srel;
+			} 
+			else this.dstRel.Srel = null;
+			
+			UpdateLabel();
+		}
 		
+		#endregion
 	}
 }

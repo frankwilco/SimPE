@@ -233,6 +233,11 @@
                     SubType = "Component"
                     BuildAction = "Compile"
                 />
+                <File
+                    RelPath = "XpTaskBoxSimple.resx"
+                    DependentUpon = "XpTaskBoxSimple.cs"
+                    BuildAction = "EmbeddedResource"
+                />
             </Include>
         </Files>
     </CSHARP>

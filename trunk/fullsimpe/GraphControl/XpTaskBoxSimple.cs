@@ -60,6 +60,9 @@ namespace Ambertation.Windows.Forms
 			this.htc = SystemColors.ActiveCaptionText;
 
 			this.font = new Font(base.Font.Name, base.Font.Size+2, FontStyle.Bold, base.Font.Unit);
+
+			icsz = new Size(32, 32);
+			icpt = new Point(4, 12);
 		}
 		
 		Color lhc, rhc, bc, bodc, htc;
@@ -170,6 +173,33 @@ namespace Ambertation.Windows.Forms
 			this.Invalidate();
 		}
 
+		Size icsz;
+		public Size IconSize
+		{
+			get { return icsz; }
+			set 
+			{
+				if (icsz!=value) 
+				{
+					icsz = value;
+					Invalidate();
+				}
+			}
+		}
+
+		Point icpt;
+		public Point IconLocation
+		{
+			get { return icpt; }
+			set 
+			{
+				if (icpt!=value) 
+				{
+					icpt = value;
+					Invalidate();
+				}
+			}
+		}
 		
 		protected override void OnPaint(PaintEventArgs e)
 		{
@@ -201,14 +231,15 @@ namespace Ambertation.Windows.Forms
 			e.Graphics.DrawPath(borderpen, path);
 			if (this.mIcon != null)
 			{
-				Size size1 = new Size(0x20, 0x20);
-				Rectangle rectangle1 = new Rectangle(4, 12, 0x20, 0x20);
+				Size size1 = mIcon.Size;
+				Rectangle rectangle1 = new Rectangle(IconLocation, size1);
 				e.Graphics.DrawImage(
-					Ambertation.Drawing.GraphicRoutines.ScaleImage(mIcon, size1.Width, size1.Height, true)
-					, rectangle1, 
+					//Ambertation.Drawing.GraphicRoutines.ScaleImage(mIcon, size1.Width, size1.Height, true)					
+					mIcon
+					, rectangle1,
 					new Rectangle(0, 0, mIcon.Width, mIcon.Height), 
 					GraphicsUnit.Pixel);
-				ef4 = new Rectangle(40, 16, (this.Width - 0x40), 22);
+				ef4 = new Rectangle(8+size1.Width+IconLocation.X, 16, (this.Width - (size1.Width+IconLocation.X)), 22);
 			}
 			else
 			{

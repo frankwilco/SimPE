@@ -97,103 +97,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label91.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>64, 21</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>72, 23</value>
   </data>
-  <data name="label91.Text">
-    <value>Typ:</value>
+  <data name="label1.Text">
+    <value>Gefühle von</value>
   </data>
-  <data name="cbfamtype.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>72, 24</value>
+  <data name="lbsims.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>88, 26</value>
   </data>
-  <data name="cbbest.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>72, 16</value>
+  <data name="lbsims.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>416, 23</value>
   </data>
-  <data name="cbbest.Text">
-    <value>Bekannt</value>
+  <data name="sc.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 56</value>
   </data>
-  <data name="cbfamily.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>72, 16</value>
-  </data>
-  <data name="cbfamily.Text">
-    <value>Familie</value>
-  </data>
-  <data name="cbmarried.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>216, 72</value>
-  </data>
-  <data name="cbmarried.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>88, 16</value>
-  </data>
-  <data name="cbmarried.Text">
-    <value>Verheiratet</value>
-  </data>
-  <data name="cbengaged.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>144, 72</value>
-  </data>
-  <data name="cbengaged.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>64, 16</value>
-  </data>
-  <data name="cbengaged.Text">
-    <value>Verlobt</value>
-  </data>
-  <data name="cbsteady.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>312, 72</value>
-  </data>
-  <data name="cbsteady.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>56, 16</value>
-  </data>
-  <data name="cbsteady.Text">
-    <value>Fest</value>
-  </data>
-  <data name="cblove.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>72, 72</value>
-  </data>
-  <data name="cblove.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>No</value>
-  </data>
-  <data name="cblove.Text">
-    <value>Verliebt</value>
-  </data>
-  <data name="cbcrush.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>312, 56</value>
-  </data>
-  <data name="cbcrush.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>80, 16</value>
-  </data>
-  <data name="cbcrush.Text">
-    <value>Schwarm</value>
-  </data>
-  <data name="cbbuddie.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>216, 56</value>
-  </data>
-  <data name="cbbuddie.Text">
-    <value>Kumpels</value>
-  </data>
-  <data name="cbfriend.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>144, 56</value>
-  </data>
-  <data name="cbfriend.Text">
-    <value>Freunde</value>
-  </data>
-  <data name="cbenemy.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>72, 56</value>
-  </data>
-  <data name="cbenemy.Text">
-    <value>Feind</value>
-  </data>
-  <data name="pbDay.LabelText">
-    <value>Kurzzeit:</value>
-  </data>
-  <data name="pbDay.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>240, 20</value>
-  </data>
-  <data name="pbLife.LabelText">
-    <value>Langzeit:</value>
-  </data>
-  <data name="pbLife.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>240, 20</value>
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>480, 88</value>
+  <data name="sc.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>488, 112</value>
   </data>
 </root>

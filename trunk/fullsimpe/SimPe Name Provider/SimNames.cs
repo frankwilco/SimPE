@@ -91,25 +91,15 @@ namespace SimPe.Providers
 			}
 		}
 
-		/// <summary>
-		/// Loads all package Files in the directory and scans them for Name Informations
-		/// </summary>
-		public void LoadSimsFromFolder() 
+		public void StartLoad()
 		{
-			names = new Hashtable();
-			if (!Directory.Exists(dir)) return;
-			
-
 			string[] files = Directory.GetFiles(dir, "*.package");
 
-			if (Helper.StartedGui==Executable.Classic)
-				WaitingScreen.Wait();	
-			else Wait.SubStart(files.Length);
-			
 			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(opcodes);
 			SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 			//ArrayList al = new ArrayList();
 			int ct = 0;
+			int step = Math.Max(2, Wait.MaxProgress / 100);
 			foreach(string file in files) 
 			{
 				//BinaryReader br = new BinaryReader(File.OpenRead(file));//new StreamReader(file)
@@ -165,10 +155,8 @@ namespace SimPe.Providers
 							if (Helper.StartedGui==Executable.Classic) 
 								WaitingScreen.UpdateImage(pic.Image);
 							else
-							{
-								Wait.Image = pic.Image;
-								
-							}
+								Wait.Image = pic.Image;								
+							
 							tags[1] = pic.Image;							
 							break;
 						}						
@@ -177,8 +165,12 @@ namespace SimPe.Providers
 					a.Tag = tags;
 					if (Helper.StartedGui!=Executable.Classic) 
 					{
-						Wait.Message = a.ToString();
-						Wait.Progress = ct++;
+						ct++;
+						if (ct%step==1) 
+						{
+							Wait.Message = a.ToString();
+							Wait.Progress = ct;
+						}
 					}
 					if (!names.Contains(objd.Guid)) names.Add(objd.Guid, a);
 				}
@@ -187,6 +179,30 @@ namespace SimPe.Providers
 
 			/*names = new Alias[al.Count];
 			al.CopyTo(names);*/
+		}
+
+		/// <summary>
+		/// Loads all package Files in the directory and scans them for Name Informations
+		/// </summary>
+		public void LoadSimsFromFolder() 
+		{
+			names = new Hashtable();
+			if (!Directory.Exists(dir)) return;
+			
+
+			string[] files = Directory.GetFiles(dir, "*.package");
+
+			if (Helper.StartedGui==Executable.Classic)
+				WaitingScreen.Wait();	
+			else Wait.SubStart(files.Length);
+			
+			System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(this.StartLoad));
+			t.Priority = System.Threading.ThreadPriority.AboveNormal;
+			t.Name = "SimNames Provider";
+			t.Start();
+
+			while (t.IsAlive) 			
+				t.Join(200);			
 
 			if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
 			else Wait.SubStop();

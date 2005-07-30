@@ -62,7 +62,7 @@ namespace SimPe
 
 		protected void ClearList(ListView lv, ListViewItem lvi)
 		{
-			lv.Items.Clear();
+			TreeBuilder.ClearListView(lv);			
 		}
 
 		internal event System.EventHandler Finished;		
@@ -138,7 +138,8 @@ namespace SimPe
 			Stop();
 			
 			last = rlb;							
-			lastthread = new Thread(new ThreadStart(last.Start));			
+			lastthread = new Thread(new ThreadStart(last.Start));	
+			lastthread.Name = "Resource Loader "+rlb.GetType().Name;
 			last.Running.Set();
 			lastthread.Start();
 		}

@@ -106,6 +106,15 @@ namespace SimPe.PackedFiles.Wrapper
 			Wait.SubStop();
 		}
 
+		public static System.Drawing.Color GetImagePanelColor(SDesc sdesc)
+		{
+			if (sdesc.Unlinked!=0) 
+				return System.Drawing.Color.DarkBlue;
+			else if (!sdesc.AvailableCharacterData)
+				return System.Drawing.Color.DarkRed;
+			return System.Drawing.Color.Black;
+		}
+
 		internal static void CreateItem(ImagePanel eip, SDesc sdesc)
 		{
 			eip.ImagePanelColor = System.Drawing.Color.Black;
@@ -118,16 +127,13 @@ namespace SimPe.PackedFiles.Wrapper
 				eip.Text = sdesc.SimName+" "+sdesc.SimFamilyName;
 				
 				System.Drawing.Image img = sdesc.Image;
-				if (img!=null)
-				{
-					if (Helper.WindowsRegistry.GraphQuality) img = Ambertation.Drawing.GraphicRoutines.KnockoutImage(img, new System.Drawing.Point(0,0), System.Drawing.Color.Magenta);
-					eip.Image = Ambertation.Drawing.GraphicRoutines.ScaleImage(img, 48, 48, Helper.WindowsRegistry.GraphQuality);
-				}
+				if (img.Width<8) img=null;
+				if (img==null) img = System.Drawing.Image.FromStream(typeof(SimPoolControl).Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png"));
+				else if (Helper.WindowsRegistry.GraphQuality) img = Ambertation.Drawing.GraphicRoutines.KnockoutImage(img, new System.Drawing.Point(0,0), System.Drawing.Color.Magenta);					
+				
+				eip.Image = Ambertation.Drawing.GraphicRoutines.ScaleImage(img, 48, 48, Helper.WindowsRegistry.GraphQuality);
 
-				if (sdesc.Unlinked!=0) 
-					eip.ImagePanelColor = System.Drawing.Color.DarkBlue;
-				else if (!sdesc.AvailableCharacterData)
-					eip.ImagePanelColor = System.Drawing.Color.DarkRed;
+				eip.ImagePanelColor = GetImagePanelColor(sdesc);				
 			} 
 			catch {	}
 
@@ -138,23 +144,29 @@ namespace SimPe.PackedFiles.Wrapper
 			else
 				eip.PanelColor = System.Drawing.Color.PowderBlue;
 		}
-		protected ExtendedImagePanel CreateItem(Interfaces.Files.IPackedFileDescriptor pfd, int left, int top)
+
+		public static ExtendedImagePanel CreateItem(Wrapper.SDesc sdesc)
 		{
 			ExtendedImagePanel eip = new ExtendedImagePanel();
+			eip.SetBounds(0, 0, 216, 80);
 			eip.BeginUpdate();
-			eip.SetBounds(left, top, 216, 80);
+			PrepareItem(eip, sdesc);
+			eip.EndUpdate();
+
+			return eip;
+		}
+
+		static void PrepareItem(ExtendedImagePanel eip, Wrapper.SDesc sdesc)
+		{
 			eip.ImagePanelColor = System.Drawing.Color.Black;
 			eip.Fade = 0.5f;
 			eip.FadeColor = System.Drawing.Color.Transparent;
-
-			Wrapper.SDesc sdesc = new SDesc();
+			
 			eip.Tag = sdesc;			
 			try 
 			{
-				sdesc.ProcessData(pfd, pkg);
-				
 				eip.Properties["GUID"].Value = "0x"+Helper.HexString(sdesc.SimId);
-				eip.Properties["Instance"].Value = "0x"+Helper.HexString(pfd.Instance);
+				eip.Properties["Instance"].Value = "0x"+Helper.HexString(sdesc.FileDescriptor.Instance);
 				eip.Properties["Household"].Value = sdesc.HouseholdName;
 				/*eip.Properties["Life Stage"].Value = ((Data.LocalizedLifeSections)sdesc.CharacterDescription.LifeSection).ToString();
 				eip.Properties["Career"].Value = ((Data.LocalizedCareers)sdesc.CharacterDescription.Career).ToString();
@@ -169,6 +181,26 @@ namespace SimPe.PackedFiles.Wrapper
 			
 			
 			CreateItem(eip, sdesc);
+		}
+
+		protected ExtendedImagePanel CreateItem(Interfaces.Files.IPackedFileDescriptor pfd, int left, int top)
+		{
+			ExtendedImagePanel eip = new ExtendedImagePanel();
+			eip.BeginUpdate();
+			eip.SetBounds(left, top, 216, 80);
+			
+
+			Wrapper.SDesc sdesc = new SDesc();			
+			try 
+			{
+				sdesc.ProcessData(pfd, pkg);
+				
+				PrepareItem(eip, sdesc);
+			} 
+			catch (Exception ex) 
+			{
+				eip.Properties["Error"].Value = ex.Message;
+			}
 
 			eip.GotFocus += new EventHandler(eip_GotFocus);
 			eip.MouseDown += new System.Windows.Forms.MouseEventHandler(eip_MouseDown);

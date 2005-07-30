@@ -187,23 +187,31 @@ namespace Ambertation.Windows.Forms.Graph
 
 		protected void DrawNiceRoundRect(Graphics gr, int left, int top, int width, int height)
 		{
-			int rad = Math.Min(Math.Min(20, Height/2), Width/2);
-			DrawNiceRoundRect(gr, left, top, width, height, rad, this.PanelColor);
+			int rad = Math.Min(Math.Min(20, height/2), width/2);
+			DrawNiceRoundRect(gr, left, top, width, height, rad, PanelColor);
 		}
-		protected void DrawNiceRoundRect(Graphics gr, int left, int top, int width, int height, int rad, Color bg)
+
+		protected void DrawNiceRoundRect(Graphics gr, int left, int top, int width, int height, int rad, Color panelColor)
+		{			
+			DrawNiceRoundRectStart(gr, left, top, width, height, rad, panelColor, BorderColor, GradientColor, FadeColor, Focused);
+			this.DrawText(gr);
+			DrawNiceRoundRectEnd(gr, left, top, width, height, rad, panelColor, BorderColor, GradientColor, FadeColor, Focused);
+		}
+
+		protected static void DrawNiceRoundRectStart(Graphics gr, int left, int top, int width, int height, int rad, Color bg, Color borderColor, Color gradientColor, Color fadeColor, bool focused)
 		{
 			Rectangle srect = new Rectangle(left, top, width-1, height-1);
 
 			
-			Pen linepen = new Pen(BorderColor);
-			if (this.Focused) 
+			Pen linepen = new Pen(borderColor);
+			if (focused) 
 			{
 				
 				LinearGradientBrush linGrBrush = new LinearGradientBrush(
 					new Point(left, top+height),
 					new Point(left, top),					
 					bg,
-					GradientColor); 
+					gradientColor); 
 
 
 				float[] relativeIntensities = {0.0f, 0.05f, 0.3f};
@@ -225,17 +233,25 @@ namespace Ambertation.Windows.Forms.Graph
 				b.Dispose();				
 			}
 
-			this.DrawText(gr);
+			linepen.Dispose();
+		}
+
+		protected static void DrawNiceRoundRectEnd(Graphics gr, int left, int top, int width, int height, int rad, Color bg, Color borderColor, Color gradientColor, Color fadeColor, bool focused)
+		{
+			Rectangle srect = new Rectangle(left, top, width-1, height-1);
+			Pen linepen = new Pen(borderColor);
 			Ambertation.Drawing.GraphicRoutines.DrawRoundRect(gr, linepen, srect, rad);
 			linepen.Dispose();
 
-			if (!this.Focused)
+			if (!focused)
 			{
-				Brush b = new SolidBrush(this.FadeColor);
+				Brush b = new SolidBrush(fadeColor);
 				Ambertation.Drawing.GraphicRoutines.FillRoundRect(gr, b, srect, rad);	
 				b.Dispose();
 			}
 		}
+
+		
 		
 
 		protected override void UserDraw(Graphics gr)

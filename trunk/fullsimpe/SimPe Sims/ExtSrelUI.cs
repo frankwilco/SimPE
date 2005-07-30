@@ -36,9 +36,9 @@ namespace SimPe.PackedFiles.UserInterface
 	/// </summary>
 	public class ExtSrel : SimPe.Windows.Forms.WrapperBaseControl, IPackedFileUI
 	{
-		private CommonSrel panel1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label lbsims;
+		private SimPe.PackedFiles.UserInterface.CommonSrel sc;
 		/// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -78,32 +78,10 @@ namespace SimPe.PackedFiles.UserInterface
 		private void InitializeComponent()
 		{
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ExtSrel));
-			this.panel1 = new SimPe.PackedFiles.UserInterface.CommonSrel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lbsims = new System.Windows.Forms.Label();
+			this.sc = new SimPe.PackedFiles.UserInterface.CommonSrel();
 			this.SuspendLayout();
-			// 
-			// panel1
-			// 
-			this.panel1.AccessibleDescription = resources.GetString("panel1.AccessibleDescription");
-			this.panel1.AccessibleName = resources.GetString("panel1.AccessibleName");
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel1.Anchor")));
-			this.panel1.AutoScroll = ((bool)(resources.GetObject("panel1.AutoScroll")));
-			this.panel1.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel1.AutoScrollMargin")));
-			this.panel1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel1.AutoScrollMinSize")));
-			this.panel1.BackColor = System.Drawing.Color.Transparent;
-			this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-			this.panel1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel1.Dock")));
-			this.panel1.Enabled = ((bool)(resources.GetObject("panel1.Enabled")));
-			this.panel1.Font = ((System.Drawing.Font)(resources.GetObject("panel1.Font")));
-			this.panel1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("panel1.ImeMode")));
-			this.panel1.Location = ((System.Drawing.Point)(resources.GetObject("panel1.Location")));
-			this.panel1.Name = "panel1";
-			this.panel1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("panel1.RightToLeft")));
-			this.panel1.Size = ((System.Drawing.Size)(resources.GetObject("panel1.Size")));
-			this.panel1.Srel = null;
-			this.panel1.TabIndex = ((int)(resources.GetObject("panel1.TabIndex")));
-			this.panel1.Visible = ((bool)(resources.GetObject("panel1.Visible")));
 			// 
 			// label1
 			// 
@@ -151,6 +129,28 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lbsims.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbsims.TextAlign")));
 			this.lbsims.Visible = ((bool)(resources.GetObject("lbsims.Visible")));
 			// 
+			// sc
+			// 
+			this.sc.AccessibleDescription = resources.GetString("sc.AccessibleDescription");
+			this.sc.AccessibleName = resources.GetString("sc.AccessibleName");
+			this.sc.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("sc.Anchor")));
+			this.sc.AutoScroll = ((bool)(resources.GetObject("sc.AutoScroll")));
+			this.sc.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("sc.AutoScrollMargin")));
+			this.sc.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("sc.AutoScrollMinSize")));
+			this.sc.BackColor = System.Drawing.Color.Transparent;
+			this.sc.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("sc.BackgroundImage")));
+			this.sc.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("sc.Dock")));
+			this.sc.Enabled = ((bool)(resources.GetObject("sc.Enabled")));
+			this.sc.Font = ((System.Drawing.Font)(resources.GetObject("sc.Font")));
+			this.sc.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("sc.ImeMode")));
+			this.sc.Location = ((System.Drawing.Point)(resources.GetObject("sc.Location")));
+			this.sc.Name = "sc";
+			this.sc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("sc.RightToLeft")));
+			this.sc.Size = ((System.Drawing.Size)(resources.GetObject("sc.Size")));
+			this.sc.Srel = null;
+			this.sc.TabIndex = ((int)(resources.GetObject("sc.TabIndex")));
+			this.sc.Visible = ((bool)(resources.GetObject("sc.Visible")));
+			// 
 			// ExtSrel
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -159,9 +159,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.sc);
 			this.Controls.Add(this.lbsims);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.panel1);
 			this.DockPadding.Top = 24;
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
@@ -171,9 +171,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
 			this.Commited += new System.EventHandler(this.ExtSrel_Commited);
-			this.Controls.SetChildIndex(this.panel1, 0);
 			this.Controls.SetChildIndex(this.label1, 0);
 			this.Controls.SetChildIndex(this.lbsims, 0);
+			this.Controls.SetChildIndex(this.sc, 0);
 			this.ResumeLayout(false);
 
 		}
@@ -187,7 +187,9 @@ namespace SimPe.PackedFiles.UserInterface
 		protected override void RefreshGUI()
 		{
 			base.RefreshGUI ();
-			panel1.Srel = this.Srel;
+			sc.Srel = this.Srel;
+			
+			this.lbsims.Text = sc.SourceSimName + " "+SimPe.Localization.GetString("towards") + " "+sc.TargetSimName;
 		}
 
 		private void ExtSrel_Commited(object sender, System.EventArgs e)

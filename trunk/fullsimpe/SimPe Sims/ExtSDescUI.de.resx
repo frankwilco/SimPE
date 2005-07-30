@@ -379,6 +379,9 @@
   <data name="tblifelinescore.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>488, 96</value>
   </data>
+  <data name="tblifelinescore.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>96, 14</value>
+  </data>
   <data name="pbCareerPerformance.LabelText">
     <value>Leistung:</value>
   </data>
@@ -409,35 +412,20 @@
   <data name="pbAnimals.LabelText">
     <value>Tiere:</value>
   </data>
-  <data name="pbAnimals.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>77</value>
-  </data>
   <data name="pbWeather.LabelText">
     <value>Wetter:</value>
-  </data>
-  <data name="pbWeather.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>66</value>
   </data>
   <data name="pbWork.LabelText">
     <value>Arbeit:</value>
   </data>
-  <data name="pbWork.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>78</value>
-  </data>
   <data name="pbTravel.LabelText">
     <value>Reisen:</value>
-  </data>
-  <data name="pbTravel.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>73</value>
   </data>
   <data name="pbCrime.LabelText">
     <value>Kriminalität:</value>
   </data>
   <data name="pbSports.LabelText">
     <value>Sport:</value>
-  </data>
-  <data name="pbSports.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>75</value>
   </data>
   <data name="pbFashion.LabelText">
     <value>Mode:</value>
@@ -447,9 +435,6 @@
   </data>
   <data name="pbFood.LabelText">
     <value>Nahrung:</value>
-  </data>
-  <data name="pbFood.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>65</value>
   </data>
   <data name="pbPolitics.LabelText">
     <value>Politik:</value>
@@ -463,17 +448,17 @@
   <data name="pbEntertainment.LabelText">
     <value>Unterhaltung:</value>
   </data>
-  <data name="pbEntertainment.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>76</value>
-  </data>
   <data name="pbParanormal.LabelText">
     <value>Paranormales:</value>
   </data>
-  <data name="pbParanormal.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>70</value>
-  </data>
   <data name="pbEnvironment.LabelText">
     <value>Umwelt:</value>
+  </data>
+  <data name="columnHeader2.Text">
+    <value>Haushalt</value>
+  </data>
+  <data name="columnHeader4.Text">
+    <value>Instanz</value>
   </data>
   <data name="xpTaskBoxSimple3.HeaderText">
     <value>Verschiedenes</value>
@@ -549,5 +534,8 @@
   </data>
   <data name="label98.Text">
     <value>Fachrichtung:</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>Tahoma, 8.25pt</value>
   </data>
 </root>
