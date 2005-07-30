@@ -113,7 +113,7 @@
     <value>cbfamtype</value>
   </data>
   <data name="pbLife.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>248, 20</value>
+    <value>224, 20</value>
   </data>
   <data name="&gt;&gt;cbcrush.Name">
     <value>cbcrush</value>
@@ -158,10 +158,13 @@
     <value />
   </data>
   <data name="&gt;&gt;pbDay.ZOrder">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cblove.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleCenter</value>
+  </data>
+  <data name="pbDay.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="cbmarried.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>-1</value>
@@ -175,14 +178,17 @@
   <data name="cbbuddie.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>248, 56</value>
   </data>
-  <data name="&gt;&gt;cbmarried.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2036.39649, Culture=neutral, PublicKeyToken=null</value>
+  <data name="tbRel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
   </data>
   <data name="&gt;&gt;cbenemy.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2036.39649, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cblove.Name">
     <value>cblove</value>
+  </data>
+  <data name="tbRel.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="cbenemy.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -223,11 +229,17 @@
   <data name="pbLife.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
+  <data name="&gt;&gt;cbfamily.Type">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
+  </data>
   <data name="label91.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>Tahoma, 8.25pt, style=Bold</value>
   </data>
   <data name="cbmarried.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
+  </data>
+  <data name="tbRel.Text">
+    <value>0x00000000</value>
   </data>
   <data name="cbbuddie.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>System</value>
@@ -239,13 +251,16 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;cbsteady.ZOrder">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="cbbuddie.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>NoControl</value>
   </data>
   <data name="cbsteady.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleCenter</value>
+  </data>
+  <data name="tbRel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
   </data>
   <data name="&gt;&gt;cbbest.Name">
     <value>cbbest</value>
@@ -280,8 +295,8 @@
   <data name="cbengaged.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>168, 72</value>
   </data>
-  <data name="cbbuddie.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>29</value>
+  <data name="cbengaged.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
   </data>
   <data name="cbfriend.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>System</value>
@@ -291,9 +306,6 @@
   </data>
   <data name="cbfamtype.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
-  </data>
-  <data name="$this.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
   </data>
   <data name="&gt;&gt;pbLife.Name">
     <value>pbLife</value>
@@ -380,10 +392,10 @@
     <value>Daily:</value>
   </data>
   <data name="&gt;&gt;label91.ZOrder">
-    <value>2</value>
+    <value>3</value>
   </data>
-  <data name="cbfamtype.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>Tahoma, 8.25pt</value>
+  <data name="$this.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="pbLife.LabelText">
     <value>Lifetime:</value>
@@ -391,11 +403,23 @@
   <data name="cblove.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Normal</value>
   </data>
+  <data name="cbfamtype.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="tbRel.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbRel.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
   <data name="&gt;&gt;cbenemy.ZOrder">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;cbfriend.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2036.39649, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="tbRel.MaxLength" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>32767</value>
   </data>
   <data name="cbenemy.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>-1</value>
@@ -404,7 +428,7 @@
     <value>cbenemy</value>
   </data>
   <data name="&gt;&gt;cbbest.ZOrder">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cbsteady.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -427,6 +451,9 @@
   <data name="&gt;&gt;cbbuddie.Name">
     <value>cbbuddie</value>
   </data>
+  <data name="tbRel.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>49</value>
+  </data>
   <data name="pbLife.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left, Right</value>
   </data>
@@ -439,8 +466,11 @@
   <data name="label91.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left</value>
   </data>
+  <data name="tbRel.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
   <data name="cbbest.Text">
-    <value>Known Sim</value>
+    <value>Known</value>
   </data>
   <data name="cbfamily.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -452,7 +482,7 @@
     <value>248, 21</value>
   </data>
   <data name="&gt;&gt;pbLife.Type">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2036.39650, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbDay.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>Tahoma, 8.25pt</value>
@@ -511,9 +541,6 @@
   <data name="cbfamtype.MaxDropDownItems" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>8</value>
   </data>
-  <data name="cbcrush.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>328, 56</value>
-  </data>
   <data name="cbfamily.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
@@ -527,7 +554,7 @@
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;cbbuddie.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2036.39649, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbsteady.Name">
     <value>cbsteady</value>
@@ -535,17 +562,20 @@
   <data name="cbenemy.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
   </data>
+  <data name="tbRel.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Left</value>
+  </data>
   <data name="cbfamtype.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>45</value>
   </data>
-  <data name="cbfriend.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="tbRel.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="cbmarried.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
   <data name="&gt;&gt;cbmarried.ZOrder">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="cbenemy.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -554,7 +584,7 @@
     <value>Normal</value>
   </data>
   <data name="&gt;&gt;cbengaged.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2036.39649, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbsteady.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>328, 72</value>
@@ -566,7 +596,7 @@
     <value>Relation Type:</value>
   </data>
   <data name="cbbest.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>88, 16</value>
+    <value>64, 16</value>
   </data>
   <data name="&gt;&gt;cbenemy.Parent">
     <value>$this</value>
@@ -599,13 +629,19 @@
     <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;cbsteady.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2036.39649, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label91.Parent">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbfamtype.Parent">
     <value>$this</value>
+  </data>
+  <data name="tbRel.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="cblove.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>96, 72</value>
   </data>
   <data name="cbfriend.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>28</value>
@@ -629,7 +665,7 @@
     <value />
   </data>
   <data name="&gt;&gt;cbengaged.ZOrder">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="pbLife.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
@@ -650,22 +686,25 @@
     <value>64, 16</value>
   </data>
   <data name="cbfamily.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>88, 16</value>
+    <value>56, 16</value>
   </data>
   <data name="cbfriend.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Normal</value>
   </data>
-  <data name="cbfriend.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="&gt;&gt;tbRel.Name">
+    <value>tbRel</value>
+  </data>
+  <data name="tbRel.PasswordChar" type="System.Char, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
+  </data>
+  <data name="&gt;&gt;tbRel.Type">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbfamily.Parent">
     <value>$this</value>
   </data>
   <data name="cbenemy.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>96, 56</value>
-  </data>
-  <data name="cbengaged.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
   </data>
   <data name="cbbest.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
@@ -677,7 +716,7 @@
     <value />
   </data>
   <data name="&gt;&gt;cbcrush.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2036.39649, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cblove.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
@@ -708,6 +747,9 @@
   </data>
   <data name="label91.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
+  </data>
+  <data name="tbRel.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>80, 14</value>
   </data>
   <data name="pbDay.LabelWidth" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>64</value>
@@ -764,7 +806,7 @@
     <value>-1</value>
   </data>
   <data name="&gt;&gt;cbcrush.ZOrder">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="cbfamily.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>Verdana, 8.25pt</value>
@@ -780,6 +822,9 @@
   </data>
   <data name="&gt;&gt;label91.Type">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cbbuddie.Text">
+    <value>Buddies</value>
   </data>
   <data name="cbbest.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>NoControl</value>
@@ -844,11 +889,11 @@
   <data name="cbbest.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
+  <data name="tbRel.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>352, 31</value>
+  </data>
   <data name="cbfamily.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>System</value>
-  </data>
-  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>German</value>
   </data>
   <data name="label91.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>BottomRight</value>
@@ -868,6 +913,9 @@
   <data name="cbfamily.Text">
     <value>Family</value>
   </data>
+  <data name="tbRel.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
   <data name="cbfriend.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
   </data>
@@ -880,8 +928,8 @@
   <data name="cbmarried.Text">
     <value>Married</value>
   </data>
-  <data name="cblove.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>96, 72</value>
+  <data name="tbRel.Multiline" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
   </data>
   <data name="pbDay.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -917,7 +965,7 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;cbbuddie.ZOrder">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="cbbuddie.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
@@ -925,10 +973,10 @@
   <data name="cbengaged.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleCenter</value>
   </data>
-  <data name="cbbest.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>-1</value>
+  <data name="tbRel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
   </data>
-  <data name="cbengaged.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="cbbest.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>-1</value>
   </data>
   <data name="cbfamily.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -947,10 +995,13 @@
     <value>248, 0</value>
   </data>
   <data name="pbDay.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>248, 20</value>
+    <value>224, 20</value>
   </data>
   <data name="cbsteady.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
+  </data>
+  <data name="&gt;&gt;tbRel.ZOrder">
+    <value>0</value>
   </data>
   <data name="cbcrush.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Normal</value>
@@ -958,11 +1009,17 @@
   <data name="label91.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
+  <data name="cbmarried.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="tbRel.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
   <data name="cbcrush.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>64, 16</value>
   </data>
   <data name="&gt;&gt;pbDay.Type">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2036.39650, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbmarried.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -988,6 +1045,9 @@
   <data name="cbcrush.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
   </data>
+  <data name="tbRel.WordWrap" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;cbcrush.Parent">
     <value>$this</value>
   </data>
@@ -995,10 +1055,10 @@
     <value>Inherit</value>
   </data>
   <data name="&gt;&gt;cbfamily.ZOrder">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;cblove.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2036.39649, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbLife.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -1013,13 +1073,13 @@
     <value>-1</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>496, 88</value>
+    <value>472, 88</value>
   </data>
-  <data name="$this.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="&gt;&gt;cbmarried.Type">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="pbDay.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="cbcrush.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>328, 56</value>
   </data>
   <data name="&gt;&gt;cbmarried.Name">
     <value>cbmarried</value>
@@ -1028,24 +1088,24 @@
     <value>Love</value>
   </data>
   <data name="&gt;&gt;cbfamtype.ZOrder">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;cbfriend.ZOrder">
-    <value>6</value>
+    <value>7</value>
   </data>
-  <data name="&gt;&gt;cbfamily.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2036.39649, Culture=neutral, PublicKeyToken=null</value>
+  <data name="cbengaged.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
   </data>
   <data name="cbcrush.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
   <data name="&gt;&gt;pbLife.ZOrder">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cbcrush.Text">
     <value>Crush</value>
   </data>
-  <data name="cbmarried.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
   <data name="cbsteady.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1066,8 +1126,14 @@
   <data name="cbfamtype.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left</value>
   </data>
+  <data name="cbfriend.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
   <data name="cbbuddie.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="cbbuddie.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>29</value>
   </data>
   <data name="cbfamtype.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1076,7 +1142,7 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;cbbest.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2036.39649, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2037.37160, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="label91.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 24</value>
@@ -1114,14 +1180,20 @@
   <data name="&gt;&gt;$this.Name">
     <value>CommonSrel</value>
   </data>
+  <data name="tbRel.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
   <data name="cbengaged.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
   </data>
-  <data name="cbbuddie.Text">
-    <value>Buddies</value>
+  <data name="cbfriend.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="cbcrush.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left</value>
+  </data>
+  <data name="&gt;&gt;tbRel.Parent">
+    <value>$this</value>
   </data>
   <data name="cbfriend.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left</value>
@@ -1154,7 +1226,7 @@
     <value>Normal</value>
   </data>
   <data name="&gt;&gt;cblove.ZOrder">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="pbDay.TextboxWidth" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>40</value>

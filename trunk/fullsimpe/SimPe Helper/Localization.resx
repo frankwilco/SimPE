@@ -305,4 +305,10 @@ Package: {filename}</value>
 	<data name="OpenSDesc">
 		<value>Open Sim Description for "{name}"</value>
 	</data>
+	<data name="AddRelationCaption">
+		<value>Add Relation to "{name}"</value>
+	</data>
+	<data name="RemoveRelationCaption">
+		<value>Remove Relation to "{name}"</value>
+	</data>
 </root>

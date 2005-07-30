@@ -33,7 +33,7 @@ namespace SimPe
 		static IWaitingBarControl bar;
 		static Stack mystack = new Stack();
 		static object sync = new object();
-		static int timeout = 10000; 
+		public const int TIMEOUT = 10000; 
 
 
 		public static IWaitingBarControl Bar
@@ -195,20 +195,20 @@ namespace SimPe
 		static object syncstart = 0;
 		static void SubStartCommon()
 		{
-			System.Threading.Monitor.TryEnter(sync, timeout);		
+			System.Threading.Monitor.TryEnter(sync, TIMEOUT);		
 			
 			running++;
 			mystack.Push(Progress);
 			mystack.Push(MaxProgress);
 			mystack.Push(Message);
 
-			System.Threading.Monitor.PulseAll(sync);
+			//System.Threading.Monitor.PulseAll(sync);
 			System.Threading.Monitor.Exit(sync);
 		}
 		public static void SubStart()
 		{			
 						
-			SubStartCommon();
+			SubStartCommon();			
 			Start();
 			
 		}
@@ -223,7 +223,7 @@ namespace SimPe
 
 		public static void SubStop()
 		{
-			System.Threading.Monitor.TryEnter(sync, timeout);								
+			System.Threading.Monitor.TryEnter(sync, TIMEOUT);								
 			if (running>0) running--;			
 			try 
 			{

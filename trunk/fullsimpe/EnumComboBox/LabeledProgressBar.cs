@@ -71,6 +71,7 @@ namespace Ambertation.Windows.Forms
 			pb.TokenWidth = 8;
 			pb.Maximum = 100;
 			pb.Value = 0;
+			pb.TabStop = false;
 			Update();
 		}
 

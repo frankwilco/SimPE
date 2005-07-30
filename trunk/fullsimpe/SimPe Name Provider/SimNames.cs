@@ -25,6 +25,8 @@ using SimPe.Interfaces.Plugin;
 using SimPe.Interfaces.Plugin.Internal;
 using SimPe.Interfaces;
 using SimPe.Interfaces.Files;
+using System.Threading;
+using Ambertation.Threading;
 
 namespace SimPe.Providers
 {
@@ -37,7 +39,7 @@ namespace SimPe.Providers
 	///  1: Image of the Sim (if available)
 	///  2: Familyname of the Sim
 	/// </remarks>
-	public class SimNames : SimPe.Interfaces.Providers.ISimNames
+	public class SimNames : StoppableThread, SimPe.Interfaces.Providers.ISimNames
 	{
 		/// <summary>
 		/// List of known Aliases (can be null)
@@ -58,7 +60,7 @@ namespace SimPe.Providers
 		/// Creates the List for the specific Folder
 		/// </summary>
 		/// <param name="folder">The Folder with the Character Files</param>
-		public SimNames(string folder, Interfaces.Providers.IOpcodeProvider opcodes)
+		public SimNames(string folder, Interfaces.Providers.IOpcodeProvider opcodes) : base()
 		{			
 			BaseFolder = folder;
 			this.opcodes = opcodes;
@@ -67,10 +69,8 @@ namespace SimPe.Providers
 		/// <summary>
 		/// Creates the List for the specific Folder
 		/// </summary>
-		public SimNames(Interfaces.Providers.IOpcodeProvider opcodes)
-		{
-			dir="";
-			this.opcodes = opcodes;
+		public SimNames(Interfaces.Providers.IOpcodeProvider opcodes) : this("", opcodes)
+		{			
 		}
 
 
@@ -86,126 +86,215 @@ namespace SimPe.Providers
 			}
 			set 
 			{
-				if (dir!=value) names = null;
+				if (dir!=value) 
+				{
+					WaitForEnd();
+					names = null;					
+				}
 				dir = value;
 			}
 		}
 
-		public void StartLoad()
+		protected Alias AddSim(SimPe.Interfaces.Files.IPackageFile fl, IPackedFileDescriptor objdpfd, ref int ct, int step)
 		{
-			string[] files = Directory.GetFiles(dir, "*.package");
+			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+			objd.ProcessData(objdpfd, fl);
 
-			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(opcodes);
-			SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
-			//ArrayList al = new ArrayList();
-			int ct = 0;
-			int step = Math.Max(2, Wait.MaxProgress / 100);
-			foreach(string file in files) 
+			return AddSim(objd, ref ct, step, false);
+		}
+
+		/// <summary>
+		/// Adds a Sim to the List
+		/// </summary>
+		/// <param name="objd"></param>
+		/// <param name="ct"></param>
+		/// <param name="step"></param>
+		/// <returns>The Alias for that Sim</returns>
+		/// <remarks>
+		/// Alias.Tag has the following Structure:
+		/// [0] : FileName of Character File (if NPC, this will be null)
+		/// [1] : Thumbnail
+		/// [2] : FamilyName
+		/// [3] : Contains Age Data
+		/// [4] : When NPC, this will get the Flename
+		/// </remarks>
+		protected Alias AddSim(SimPe.PackedFiles.Wrapper.ExtObjd objd, ref int ct, int step, bool npc)
+		{
+			if (objd.Type!=Data.ObjectTypes.Person) return null;
+
+			SimPe.Interfaces.Files.IPackageFile fl = objd.Package;
+			//BinaryReader br = new BinaryReader(File.OpenRead(file));//new StreamReader(file)
+			object[] tags = new object[5];
+			tags[0] = fl.FileName;
+			tags[1] = null;
+			tags[2] = Localization.Manager.GetString("Unknown");
+			tags[3] = (fl.FindFiles(0xAC598EAC).Length>0); //has Age Data?
+			tags[4] = null; 
+
+			//set stuff for NPCs
+			if (npc) 
 			{
-				//BinaryReader br = new BinaryReader(File.OpenRead(file));//new StreamReader(file)
-				object[] tags = new object[4];
-				tags[0] = file;
-				tags[1] = null;
-				tags[2] = Localization.Manager.GetString("Unknown");
-				tags[3] = false;
+				tags[4] = tags[0];
+				tags[0] = "";				
+				tags[2] += " (NPC)";
+			}
 
-				SimPe.Packages.File fl = SimPe.Packages.File.LoadFromFile(file);
-				Alias a = null;
-				//check if package contains a AgeData File
-				tags[3] = (fl.FindFiles(0xAC598EAC).Length>0);
+			Alias a = null;
+			
+			
 
-				foreach (uint type in objd.AssignableTypes) 
-				{
-					IPackedFileDescriptor[] list = fl.FindFiles(type);
-					if (list.Length>0) 
-					{
-						objd.ProcessData(list[0], fl);
-						Interfaces.Files.IPackedFileDescriptor str_pfd = fl.FindFile(Data.MetaData.CTSS_FILE, 0, 0xffffffff, objd.CTSSInstance);
+				
+			
+			
+			Interfaces.Files.IPackedFileDescriptor str_pfd = fl.FindFile(Data.MetaData.CTSS_FILE, 0, objd.FileDescriptor.Group, objd.CTSSInstance);
 						
-						if (str_pfd != null) 
-						{
-							str.ProcessData(str_pfd, fl);
-							SimPe.PackedFiles.Wrapper.StrItemList its = str.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode);
-							if (its.Length>0) 
-							{
+			if (str_pfd != null) 
+			{
+				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+				str.ProcessData(str_pfd, fl);
+				SimPe.PackedFiles.Wrapper.StrItemList its = str.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode);
+				if (its.Length>0) 
+				{
 #if DEBUG
-								a = new Alias(objd.Guid, its[0].Title, "{name} {2} (0x{id})");						
+					a = new Alias(objd.Guid, its[0].Title, "{name} {2} (0x{id})");						
 #else
 								a = new Alias(objd.Guid, its[0].Title, "{name} {2} (0x{id})");
 #endif
-								if (its.Length>2) tags[2] = its[2].Title;
-							}
-						}
+					if (its.Length>2) tags[2] = its[2].Title;
 
+					
+				}
+			}
+			
+
+			if (a!=null) 
+			{
+				IPackedFileDescriptor[] piclist = fl.FindFiles(Data.MetaData.SIM_IMAGE_FILE);
+				foreach (IPackedFileDescriptor pfd in piclist) 
+				{
+					if (pfd.Group != objd.FileDescriptor.Group) continue;
+					if (pfd.Instance < 0x1000) 
+					{
+						SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
+						pic.ProcessData(pfd, fl);	
+						/*if (Helper.StartedGui==Executable.Classic) 
+							WaitingScreen.UpdateImage(pic.Image);
+						else
+							Wait.Image = pic.Image;								*/
+							
+						tags[1] = pic.Image;							
+						break;
+					}						
+				}
+
+				a.Tag = tags;
+				//if (Helper.StartedGui!=Executable.Classic) 
+				{
+					ct++;
+					if (ct%step==1) 
+					{
+						Wait.Message = a.ToString();
+						Wait.Progress = ct;
+					}
+				}
+
+				//set stuff for NPCs
+				if (npc) a.Tag[2] = a.Tag[2].ToString()+" (NPC)";
+
+				if (names==null) return null;
+				if (!names.Contains(objd.Guid)) names.Add(objd.Guid, a);
+			
+			}
+
+			return a;
+		}
+		
+		protected void ScanFileTable()
+		{
+			if (Helper.StartedGui==Executable.Classic) return;
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFileDiscardingGroup(Data.MetaData.OBJD_FILE, 0x80);
+			Wait.MaxProgress = items.Length;
+			int ct = 0;
+			int step = Math.Max(2, Wait.MaxProgress / 100);
+			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
+			{
+				if (this.HaveToStop) break;
+
+				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+				objd.ProcessData(item);
+
+				AddSim(objd, ref ct, step, true);
+				
+			}
+		}
+
+		protected override void StartThread()
+		{
+			string[] files = Directory.GetFiles(dir, "*.package");
+			if (Helper.StartedGui==Executable.Classic)
+				WaitingScreen.Wait();	
+			else Wait.SubStart(files.Length);
+			try 
+			{
+				bool breaked = false;			
+				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(opcodes);
+				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+				//ArrayList al = new ArrayList();
+				int ct = 0;
+				int step = Math.Max(2, Wait.MaxProgress / 100);
+				foreach(string file in files) 
+				{
+					if (this.HaveToStop) 
+					{
+						breaked = true;
 						break;
 					}
 
-					if (a!=null) break;
+					SimPe.Packages.File fl = null;
+					try 
+					{
+						fl = SimPe.Packages.File.LoadFromFile(file);
+					} 
+					catch {break;}
+									
+					IPackedFileDescriptor[] list = fl.FindFiles(Data.MetaData.OBJD_FILE);
+					if (list.Length>0)	AddSim(fl, list[0], ref ct, step);
+					//fl.Reader.Close();
 				}//foreach
 
-				if (a!=null) 
-				{
-					IPackedFileDescriptor[] piclist = fl.FindFiles(Data.MetaData.SIM_IMAGE_FILE);
-					foreach (IPackedFileDescriptor pfd in piclist) 
-					{
-						if (pfd.Instance < 0x1000) 
-						{
-							SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
-							pic.ProcessData(pfd, fl);	
-							if (Helper.StartedGui==Executable.Classic) 
-								WaitingScreen.UpdateImage(pic.Image);
-							else
-								Wait.Image = pic.Image;								
-							
-							tags[1] = pic.Image;							
-							break;
-						}						
-					}
-
-					a.Tag = tags;
-					if (Helper.StartedGui!=Executable.Classic) 
-					{
-						ct++;
-						if (ct%step==1) 
-						{
-							Wait.Message = a.ToString();
-							Wait.Progress = ct;
-						}
-					}
-					if (!names.Contains(objd.Guid)) names.Add(objd.Guid, a);
-				}
-				//fl.Reader.Close();
-			}//foreach
-
-			/*names = new Alias[al.Count];
-			al.CopyTo(names);*/
+				if (!breaked) ScanFileTable();
+			}  
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage(ex);
+			} 
+			finally 
+			{
+				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
+				else Wait.SubStop();
+			}
+				
+			ended.Set();
 		}
+
+		
+		object sync = new object();
+
+		
 
 		/// <summary>
 		/// Loads all package Files in the directory and scans them for Name Informations
 		/// </summary>
 		public void LoadSimsFromFolder() 
 		{
+			WaitForEnd();
+
 			names = new Hashtable();
 			if (!Directory.Exists(dir)) return;
-			
-
-			string[] files = Directory.GetFiles(dir, "*.package");
-
-			if (Helper.StartedGui==Executable.Classic)
-				WaitingScreen.Wait();	
-			else Wait.SubStart(files.Length);
-			
-			System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(this.StartLoad));
-			t.Priority = System.Threading.ThreadPriority.AboveNormal;
-			t.Name = "SimNames Provider";
-			t.Start();
-
-			while (t.IsAlive) 			
-				t.Join(200);			
-
-			if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
-			else Wait.SubStop();
+						
+			if (Helper.WindowsRegistry.DeepSimScan && Helper.StartedGui!=Executable.Classic) 
+				FileTable.FileIndex.Load();
+			this.ExecuteThread(ThreadPriority.AboveNormal, "Sim Name Provider", true, true);						
 		}
 
 		/// <summary>
@@ -213,6 +302,14 @@ namespace SimPe.Providers
 		/// </summary>
 		/// <param name="id">The id of a Sim</param>
 		/// <returns>The Alias of the Sim</returns>
+		/// <remarks>
+		/// Alias.Tag has the following Structure:
+		/// [0] : FileName of Character File (if NPC, this will be null)
+		/// [1] : Thumbnail
+		/// [2] : FamilyName
+		/// [3] : Contains Age Data
+		/// [4] : When NPC, this will get the Flename
+		/// </remarks>
 		public IAlias FindName(uint id) 
 		{			
 			if (names==null) LoadSimsFromFolder();

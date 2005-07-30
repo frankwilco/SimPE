@@ -112,7 +112,7 @@ namespace SimPe.PackedFiles.Wrapper
 				return System.Drawing.Color.DarkBlue;
 			else if (!sdesc.AvailableCharacterData)
 				return System.Drawing.Color.DarkRed;
-			return System.Drawing.Color.Black;
+			return System.Drawing.SystemColors.ControlDarkDark;//System.Drawing.Color.Black;
 		}
 
 		internal static void CreateItem(ImagePanel eip, SDesc sdesc)

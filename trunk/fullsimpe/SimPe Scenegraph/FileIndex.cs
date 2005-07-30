@@ -201,7 +201,7 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// This class contains a Index of all found Files
 	/// </summary>
-	public class FileIndex : IScenegraphFileIndex
+	public class FileIndex : Ambertation.Threading.StoppableThread, IScenegraphFileIndex
 	{
 
 		/// <summary>
@@ -250,7 +250,7 @@ namespace SimPe.Plugin
 		/// Create a new Instance
 		/// </summary>
 		/// <remarks>Same as a call to FileIndex(null)</remarks>
-		public FileIndex()
+		public FileIndex() :base()
 		{
 			loaded = false;
 			Init(null);
@@ -261,7 +261,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="folders">The Folders where you want to look for packages, null for the default Set</param>
 		/// <remarks>The Default set is read from the Folder.xml File</remarks>
-		public FileIndex(ArrayList folders)
+		public FileIndex(ArrayList folders) :base()
 		{
 			Init(folders);
 		}
@@ -390,24 +390,15 @@ namespace SimPe.Plugin
 		/// </remarks>
 		public void ForceReload()
 		{
+			this.WaitForEnd();
 			loaded = true;
-			System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(StartReload));
-			t.Priority = System.Threading.ThreadPriority.AboveNormal;
-			t.Name = "FileIndex Reload";
-			t.Start();
-
-			
-			while ( t.IsAlive) 
-			{
-				t.Join(200);
-				System.Windows.Forms.Application.DoEvents();
-			}
+			this.ExecuteThread(System.Threading.ThreadPriority.AboveNormal, "FileTable Reload", true, true, 100);
 		}
 
 		/// <summary>
 		/// This is used to start the Reload Thread
 		/// </summary>
-		void StartReload()
+		protected override void StartThread()
 		{
 			Wait.SubStart(folders.Count);
 			Wait.Message = SimPe.Localization.GetString("Loading")+" Group Cache";
@@ -419,6 +410,7 @@ namespace SimPe.Plugin
 			int ct = 0;
 			foreach (FileTableItem fti in folders) 
 			{
+				if (HaveToStop) break;
 				Wait.Progress = ct++;
 				AddIndexFromFolder(fti);
 			}

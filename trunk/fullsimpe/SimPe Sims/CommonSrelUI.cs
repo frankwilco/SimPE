@@ -56,6 +56,8 @@ namespace SimPe.PackedFiles.UserInterface
 				,true);
 
 			InitComboBox();
+
+			tbRel.Visible = Helper.WindowsRegistry.HiddenMode;
 		}
 
 		/// <summary> 
@@ -95,6 +97,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbenemy = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.pbDay = new Ambertation.Windows.Forms.LabeledProgressBar();
 			this.pbLife = new Ambertation.Windows.Forms.LabeledProgressBar();
+			this.tbRel = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label91
@@ -475,6 +478,32 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbLife.Visible = ((bool)(resources.GetObject("pbLife.Visible")));
 			this.pbLife.Changed += new System.EventHandler(this.ChangedLife);
 			// 
+			// tbRel
+			// 
+			this.tbRel.AccessibleDescription = resources.GetString("tbRel.AccessibleDescription");
+			this.tbRel.AccessibleName = resources.GetString("tbRel.AccessibleName");
+			this.tbRel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbRel.Anchor")));
+			this.tbRel.AutoSize = ((bool)(resources.GetObject("tbRel.AutoSize")));
+			this.tbRel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbRel.BackgroundImage")));
+			this.tbRel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.tbRel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbRel.Dock")));
+			this.tbRel.Enabled = ((bool)(resources.GetObject("tbRel.Enabled")));
+			this.tbRel.Font = ((System.Drawing.Font)(resources.GetObject("tbRel.Font")));
+			this.tbRel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbRel.ImeMode")));
+			this.tbRel.Location = ((System.Drawing.Point)(resources.GetObject("tbRel.Location")));
+			this.tbRel.MaxLength = ((int)(resources.GetObject("tbRel.MaxLength")));
+			this.tbRel.Multiline = ((bool)(resources.GetObject("tbRel.Multiline")));
+			this.tbRel.Name = "tbRel";
+			this.tbRel.PasswordChar = ((char)(resources.GetObject("tbRel.PasswordChar")));
+			this.tbRel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbRel.RightToLeft")));
+			this.tbRel.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbRel.ScrollBars")));
+			this.tbRel.Size = ((System.Drawing.Size)(resources.GetObject("tbRel.Size")));
+			this.tbRel.TabIndex = ((int)(resources.GetObject("tbRel.TabIndex")));
+			this.tbRel.Text = resources.GetString("tbRel.Text");
+			this.tbRel.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbRel.TextAlign")));
+			this.tbRel.Visible = ((bool)(resources.GetObject("tbRel.Visible")));
+			this.tbRel.WordWrap = ((bool)(resources.GetObject("tbRel.WordWrap")));
+			// 
 			// CommonSrel
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -483,6 +512,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.tbRel);
 			this.Controls.Add(this.pbLife);
 			this.Controls.Add(this.pbDay);
 			this.Controls.Add(this.label91);
@@ -523,6 +553,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private Ambertation.Windows.Forms.TransparentCheckBox cbenemy;
 		private Ambertation.Windows.Forms.LabeledProgressBar pbDay;
 		private Ambertation.Windows.Forms.LabeledProgressBar pbLife;
+		private System.Windows.Forms.TextBox tbRel;
 
 		SimPe.PackedFiles.Wrapper.ExtSrel srel;
 		public SimPe.PackedFiles.Wrapper.ExtSrel Srel
@@ -598,6 +629,7 @@ namespace SimPe.PackedFiles.UserInterface
 					break;
 				}
 
+			this.tbRel.Text = "0x"+Helper.HexString((uint)srel.FamilyRelation);
 			intern = false;
 
 			if (ChangedContent!=null) ChangedContent(this, new EventArgs());
@@ -654,7 +686,15 @@ namespace SimPe.PackedFiles.UserInterface
 		private void ChangedRelation(object sender, System.EventArgs e)
 		{
 			if (intern) return;
-			Srel.FamilyRelation = (Data.LocalizedRelationshipTypes)cbfamtype.SelectedItem;
+			if (this.cbfamtype.SelectedIndex>0) 			
+				this.tbRel.Text = "0x"+Helper.HexString((uint)((Data.MetaData.RelationshipTypes)((Data.LocalizedRelationshipTypes)cbfamtype.SelectedItem)));
+			
+		}
+
+		private void ChangedRelationText(object sender, System.EventArgs e)
+		{
+			if (intern) return;
+			Srel.FamilyRelation = (Data.LocalizedRelationshipTypes)Helper.StringToUInt32(this.tbRel.Text, (uint)Srel.FamilyRelation, 16);
 			Srel.Changed = true;
 		}
 
@@ -676,106 +716,44 @@ namespace SimPe.PackedFiles.UserInterface
 			Srel.Changed = true;
 		}
 
-		protected SimPe.PackedFiles.Wrapper.ExtSDesc GetDescriptionByInstance(uint inst)
-		{
-			if (Srel==null) return null;
-			if (Srel.Package==null) return null;
-			SimPe.Interfaces.Files.IPackedFileDescriptor pfd = Srel.Package.FindFile(Data.MetaData.SIM_DESCRIPTION_FILE, 0, Srel.FileDescriptor.Group, inst);
-			if (pfd==null) return null;
-
-			SimPe.PackedFiles.Wrapper.ExtSDesc ret = new SimPe.PackedFiles.Wrapper.ExtSDesc();
-			ret.ProcessData(pfd, Srel.Package);
-			return ret;
-		}
-
-		SimPe.PackedFiles.Wrapper.ExtSDesc src, dst;
-
-		public uint TargetSimInstance
-		{
-			get 
-			{
-				if (Srel==null) return 0;
-				return (Srel.FileDescriptor.Instance & 0xffff);
-			}
-		}
-
-		public uint SourceSimInstance
-		{
-			get 
-			{
-				if (Srel==null) return 0;
-				return ((Srel.FileDescriptor.Instance>>16) & 0xffff);
-			}
-		}
-
 		public SimPe.PackedFiles.Wrapper.ExtSDesc SourceSim
 		{
-			get 
-			{
-				if (src==null) src = GetDescriptionByInstance(SourceSimInstance);
-				else if (src.FileDescriptor.Instance!=SourceSimInstance) src = GetDescriptionByInstance(SourceSimInstance);
-
-				return src;
+			get { 
+				if (Srel==null) return null;
+				return Srel.SourceSim; 
 			}
 		}
 
 		public SimPe.PackedFiles.Wrapper.ExtSDesc TargetSim
 		{
-			get 
-			{
-				if (dst==null) dst = GetDescriptionByInstance(TargetSimInstance);
-				else if (dst.FileDescriptor.Instance!=TargetSimInstance) dst = GetDescriptionByInstance(TargetSimInstance);
-
-				return dst;
+			get { 
+				if (Srel==null) return null;
+				return Srel.TargetSim; 
 			}
 		}
 
+		
 		public string SourceSimName
 		{
-			get 
-			{
-				if (SourceSim!=null) return SourceSim.SimName+" "+SourceSim.SimFamilyName;
-				return SimPe.Localization.GetString("Unknown");
+			get { 
+				if (Srel==null) return SimPe.Localization.GetString("Unknown");
+				return Srel.SourceSimName; 
 			}
 		}
 
 		public string TargetSimName
 		{
-			get 
-			{
-				if (TargetSim!=null) return TargetSim.SimName+" "+TargetSim.SimFamilyName;
-				return SimPe.Localization.GetString("Unknown");
+			get { 
+				if (Srel==null) return SimPe.Localization.GetString("Unknown");
+				return Srel.TargetSimName; 
 			}
 		}
 
 		public Image Image
 		{
-			get 
-			{
-				Bitmap b = new Bitmap(356, 256);
-				Graphics g = Graphics.FromImage(b);
-
-				Image isrc = null;
-				if (SourceSim!=null)
-					if (SourceSim.Image!=null)
-						if (SourceSim.Image.Width>8)
-							isrc = SourceSim.Image;
-				if (isrc==null) isrc = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png"));
-				else isrc = Ambertation.Drawing.GraphicRoutines.KnockoutImage(isrc, new Point(0,0), Color.Magenta);
-
-				Image idst = null;
-				if (TargetSim!=null)
-					if (TargetSim.Image!=null) 
-						if (TargetSim.Image.Width>8)
-							idst = TargetSim.Image;
-				if (idst==null) idst = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png"));
-				else idst = Ambertation.Drawing.GraphicRoutines.KnockoutImage(idst, new Point(0,0), Color.Magenta);
-
-				const int offsety = 32;
-				g.DrawImage(isrc, new Rectangle(0, offsety, 256, 256-offsety), new Rectangle(0, 0, isrc.Width, isrc.Height-offsety), GraphicsUnit.Pixel);
-				g.DrawImage(idst, new Rectangle(100, 0, 256, 256), new Rectangle(0, 0, idst.Width, idst.Height), GraphicsUnit.Pixel);
-				g.Dispose();
-				return b;
+			get { 
+				if (Srel==null) return null;
+				return Srel.Image;
 			}
 		}
 	}

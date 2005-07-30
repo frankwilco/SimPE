@@ -113,6 +113,8 @@ namespace SimPe
 		private System.Windows.Forms.GroupBox groupBox6;
 		private System.Windows.Forms.CheckBox cbFirefox;
 		private System.Windows.Forms.Button button8;
+		private System.Windows.Forms.GroupBox groupBox7;
+		private System.Windows.Forms.CheckBox cbDeep;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -223,6 +225,8 @@ namespace SimPe
 			this.btdn = new System.Windows.Forms.Button();
 			this.btup = new System.Windows.Forms.Button();
 			this.hcSceneGraph = new TD.Eyefinder.HeaderControl();
+			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.cbDeep = new System.Windows.Forms.CheckBox();
 			this.bb = new Divelements.Navisight.ButtonBar();
 			this.nbFolders = new Divelements.Navisight.NavigationButton();
 			this.nbSettings = new Divelements.Navisight.NavigationButton();
@@ -248,6 +252,7 @@ namespace SimPe
 			this.hcTools.SuspendLayout();
 			this.hcFileTable.SuspendLayout();
 			this.hcSceneGraph.SuspendLayout();
+			this.groupBox7.SuspendLayout();
 			this.hcPlugins.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -1937,6 +1942,7 @@ namespace SimPe
 			this.hcSceneGraph.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hcSceneGraph.AutoScrollMargin")));
 			this.hcSceneGraph.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hcSceneGraph.AutoScrollMinSize")));
 			this.hcSceneGraph.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hcSceneGraph.BackgroundImage")));
+			this.hcSceneGraph.Controls.Add(this.groupBox7);
 			this.hcSceneGraph.Controls.Add(this.groupBox4);
 			this.hcSceneGraph.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("hcSceneGraph.Dock")));
 			this.hcSceneGraph.Enabled = ((bool)(resources.GetObject("hcSceneGraph.Enabled")));
@@ -1951,6 +1957,54 @@ namespace SimPe
 			this.hcSceneGraph.Text = resources.GetString("hcSceneGraph.Text");
 			this.toolTip1.SetToolTip(this.hcSceneGraph, resources.GetString("hcSceneGraph.ToolTip"));
 			this.hcSceneGraph.Visible = ((bool)(resources.GetObject("hcSceneGraph.Visible")));
+			// 
+			// groupBox7
+			// 
+			this.groupBox7.AccessibleDescription = resources.GetString("groupBox7.AccessibleDescription");
+			this.groupBox7.AccessibleName = resources.GetString("groupBox7.AccessibleName");
+			this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox7.Anchor")));
+			this.groupBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox7.BackgroundImage")));
+			this.groupBox7.Controls.Add(this.cbDeep);
+			this.groupBox7.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("groupBox7.Dock")));
+			this.groupBox7.Enabled = ((bool)(resources.GetObject("groupBox7.Enabled")));
+			this.groupBox7.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.groupBox7.Font = ((System.Drawing.Font)(resources.GetObject("groupBox7.Font")));
+			this.groupBox7.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("groupBox7.ImeMode")));
+			this.groupBox7.Location = ((System.Drawing.Point)(resources.GetObject("groupBox7.Location")));
+			this.groupBox7.Name = "groupBox7";
+			this.groupBox7.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("groupBox7.RightToLeft")));
+			this.groupBox7.Size = ((System.Drawing.Size)(resources.GetObject("groupBox7.Size")));
+			this.groupBox7.TabIndex = ((int)(resources.GetObject("groupBox7.TabIndex")));
+			this.groupBox7.TabStop = false;
+			this.groupBox7.Text = resources.GetString("groupBox7.Text");
+			this.toolTip1.SetToolTip(this.groupBox7, resources.GetString("groupBox7.ToolTip"));
+			this.groupBox7.Visible = ((bool)(resources.GetObject("groupBox7.Visible")));
+			// 
+			// cbDeep
+			// 
+			this.cbDeep.AccessibleDescription = resources.GetString("cbDeep.AccessibleDescription");
+			this.cbDeep.AccessibleName = resources.GetString("cbDeep.AccessibleName");
+			this.cbDeep.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbDeep.Anchor")));
+			this.cbDeep.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbDeep.Appearance")));
+			this.cbDeep.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbDeep.BackgroundImage")));
+			this.cbDeep.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbDeep.CheckAlign")));
+			this.cbDeep.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbDeep.Dock")));
+			this.cbDeep.Enabled = ((bool)(resources.GetObject("cbDeep.Enabled")));
+			this.cbDeep.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbDeep.FlatStyle")));
+			this.cbDeep.Font = ((System.Drawing.Font)(resources.GetObject("cbDeep.Font")));
+			this.cbDeep.Image = ((System.Drawing.Image)(resources.GetObject("cbDeep.Image")));
+			this.cbDeep.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbDeep.ImageAlign")));
+			this.cbDeep.ImageIndex = ((int)(resources.GetObject("cbDeep.ImageIndex")));
+			this.cbDeep.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbDeep.ImeMode")));
+			this.cbDeep.Location = ((System.Drawing.Point)(resources.GetObject("cbDeep.Location")));
+			this.cbDeep.Name = "cbDeep";
+			this.cbDeep.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbDeep.RightToLeft")));
+			this.cbDeep.Size = ((System.Drawing.Size)(resources.GetObject("cbDeep.Size")));
+			this.cbDeep.TabIndex = ((int)(resources.GetObject("cbDeep.TabIndex")));
+			this.cbDeep.Text = resources.GetString("cbDeep.Text");
+			this.cbDeep.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbDeep.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbDeep, resources.GetString("cbDeep.ToolTip"));
+			this.cbDeep.Visible = ((bool)(resources.GetObject("cbDeep.Visible")));
 			// 
 			// bb
 			// 
@@ -2151,12 +2205,12 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.hcSceneGraph);
 			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
 			this.Controls.Add(this.hcFileTable);
 			this.Controls.Add(this.hcFolders);
-			this.Controls.Add(this.hcSceneGraph);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -2183,6 +2237,7 @@ namespace SimPe
 			this.hcTools.ResumeLayout(false);
 			this.hcFileTable.ResumeLayout(false);
 			this.hcSceneGraph.ResumeLayout(false);
+			this.groupBox7.ResumeLayout(false);
 			this.hcPlugins.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -2215,6 +2270,7 @@ namespace SimPe
 			cbmulti.Checked = Helper.WindowsRegistry.MultipleFiles;
 			cbSimple.Checked = Helper.WindowsRegistry.SimpleResourceSelect;
 			cbFirefox.Checked = Helper.WindowsRegistry.FirefoxTabbing;
+			cbDeep.Checked = Helper.WindowsRegistry.DeepSimScan;
 
 			this.tbep1.ReadOnly = (Helper.WindowsRegistry.EPInstalled<1);
 			this.button5.Enabled = (Helper.WindowsRegistry.EPInstalled>=1);
@@ -2269,6 +2325,7 @@ namespace SimPe
 			Helper.WindowsRegistry.Layout.SelectedTheme = (byte)cbThemes.Items[cbThemes.SelectedIndex];
 			Helper.WindowsRegistry.SimpleResourceSelect = cbSimple.Checked;
 			Helper.WindowsRegistry.FirefoxTabbing = cbFirefox.Checked;
+			Helper.WindowsRegistry.DeepSimScan = cbDeep.Checked;
 			
 			StoreFoldersXml();
 			try 

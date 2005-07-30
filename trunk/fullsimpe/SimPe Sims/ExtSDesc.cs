@@ -22,6 +22,7 @@ using SimPe.Interfaces.Plugin;
 using SimPe.Interfaces;
 using SimPe.PackedFiles.Wrapper.Supporting;
 using SimPe.Data;
+using System.Collections;
 
 namespace SimPe.PackedFiles.Wrapper
 {
@@ -32,7 +33,7 @@ namespace SimPe.PackedFiles.Wrapper
 	{
 		public ExtSDesc() : base()
 		{
-			
+			crmap = new Hashtable();
 		}
 
 		
@@ -52,18 +53,58 @@ namespace SimPe.PackedFiles.Wrapper
 			return new SimPe.PackedFiles.UserInterface.ExtSDesc();
 		}
 
+		/// <summary>
+		/// Returns the Name of the File the Character is stored in
+		/// </summary>
+		/// <remarks>null, if no File was found</remarks>
+		public bool IsNPC
+		{
+			get 
+			{
+				if (FileTable.ProviderRegistry.SimNameProvider!=null) 
+				{
+					object o = FileTable.ProviderRegistry.SimNameProvider.FindName(SimId).Tag;
+					if (o!=null) 
+					{
+						object[] tags = (object[])o;
+						return tags[4]!=null;
+					}
+				} 
+				return false;
+			}
+		}
+		
+		/*public override string CharacterFileName
+		{
+			get
+			{
+				if (IsNPC)
+				{
+					object o = FileTable.ProviderRegistry.SimNameProvider.FindName(SimId).Tag;
+					if (o!=null) 
+					{
+						object[] tags = (object[])o;
+						return tags[4].ToString();
+					}
+				}
+				return base.CharacterFileName;
+			}
+		}*/
+
+
 		bool chgname;
 		string sname, sfname;
 		public override string SimFamilyName
 		{
 			get
 			{
-				return base.SimFamilyName;
+				if (sfname==null) return base.SimFamilyName;
+				return sfname;
 			}
 			set
 			{
 				chgname = true;
-				sname = value;
+				sfname = value;
 			}
 		}
 
@@ -71,12 +112,13 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get
 			{
-				return base.SimName;
+				if (sname==null) return base.SimName;
+				return sname;
 			}
 			set 
 			{
 				chgname = true;
-				sfname = value;
+				sname = value;
 			}
 		}
 
@@ -84,6 +126,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			base.Unserialize(reader);
 			chgname = false;
+			crmap.Clear();
 		}
 
 
@@ -91,11 +134,22 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			base.Serialize (writer);
 			if (chgname) ChangeName();
+			SaveRelations();
 		}
+
+		
 
 		protected virtual void ChangeName()
 		{
-			chgname = false;			
+			if (!this.IsNPC) 
+				if (ChangeNames(SimName, SimFamilyName)) 
+					chgname = false;
+
+			if (!chgname) 
+			{
+				sname = null;
+				sfname = null;
+			}
 		}
 
 		public bool HasRelationWith(ExtSDesc sdsc)
@@ -106,5 +160,135 @@ namespace SimPe.PackedFiles.Wrapper
 					return true;
 			return false;
 		}
+
+		#region Changed Relations
+		public void AddRelation(ExtSDesc sdesc)
+		{
+			foreach (ushort inst in Relations.SimInstances)
+				if (inst == (ushort)sdesc.FileDescriptor.Instance) return;
+
+			Relations.SimInstances = (ushort[])Helper.Add(Relations.SimInstances, (ushort)sdesc.FileDescriptor.Instance);
+			this.Changed = true;
+		}
+
+		public void RemoveRelation(ExtSDesc sdesc)
+		{
+			Relations.SimInstances = (ushort[])Helper.Delete(Relations.SimInstances, (ushort)sdesc.FileDescriptor.Instance);
+			this.Changed = true;
+		}
+
+		public override bool Changed
+		{
+			get
+			{
+				foreach (ExtSrel srel in crmap.Values)
+					if (srel.Changed) return true;
+
+				return base.Changed;
+			}
+			set
+			{
+				base.Changed = value;
+
+				foreach (ExtSrel srel in crmap.Values)
+					srel.Changed = value;
+			}
+		}
+
+		Hashtable crmap;
+		void SaveRelations()
+		{
+			foreach (ExtSrel srel in crmap.Values)
+			{
+				if (srel.Package!=null) srel.SynchronizeUserData();
+				else 
+				{
+					srel.Package = this.Package;
+					this.Package.Add(srel.FileDescriptor);
+					srel.SynchronizeUserData();					
+				}
+
+				if (!this.Equals(srel.SourceSim)) 
+				{
+					if (srel.SourceSim!=null) 
+						if (srel.SourceSim.Changed)
+							srel.SourceSim.SynchronizeUserData();
+				}
+			}
+
+			crmap.Clear();
+		}
+
+		internal ExtSrel GetCachedRelation(uint inst)
+		{
+			if (crmap.ContainsKey(inst)) return (ExtSrel)crmap[inst];
+			return null;
+		}
+
+		internal ExtSrel GetCachedRelation(ExtSDesc sdesc)
+		{
+			return this.GetCachedRelation(GetRelationInstance(sdesc));
+		}
+
+		internal void AddRelationToCache(ExtSrel srel)
+		{
+			if (srel==null) return;
+			if (srel.FileDescriptor==null) return;
+
+			if (!crmap.ContainsKey(srel.FileDescriptor.Instance)) crmap[srel.FileDescriptor.Instance] = srel;
+		}
+
+		internal void RemoveRelationFromCache(ExtSrel srel)
+		{
+			if (srel==null) return;
+			if (srel.FileDescriptor==null) return;
+
+			if (crmap.ContainsKey(srel.FileDescriptor.Instance)) 
+				crmap.Remove(srel.FileDescriptor.Instance);
+		}
+
+		public static ExtSrel FindRelation(ExtSDesc src, ExtSDesc dst)
+		{
+			return FindRelation(src, src, dst);
+		}
+
+		public static ExtSrel FindRelation(ExtSDesc cache, ExtSDesc src, ExtSDesc dst)
+		{
+			uint sinst = src.GetRelationInstance(dst);	
+			SimPe.PackedFiles.Wrapper.ExtSrel srel = cache.GetCachedRelation(sinst);
+			if (srel==null) 
+			{
+				SimPe.Interfaces.Files.IPackedFileDescriptor spfd = cache.Package.FindFile(Data.MetaData.RELATION_FILE, 0, cache.FileDescriptor.Group, sinst);
+				
+				if (spfd!=null) 
+				{
+					srel = new SimPe.PackedFiles.Wrapper.ExtSrel();
+					srel.ProcessData(spfd, cache.Package);
+				} 
+			}
+
+			return srel;
+		}
+
+		public ExtSrel FindRelation(ExtSDesc sdesc)
+		{
+			return FindRelation(this, sdesc);
+		}
+
+		public uint GetRelationInstance(ExtSDesc sdesc)
+		{
+			return ((this.FileDescriptor.Instance & 0xffff) << 16) | (sdesc.FileDescriptor.Instance & 0xffff);
+		}
+
+		public ExtSrel CreateRelation(ExtSDesc sdesc)
+		{
+			ExtSrel srel = new ExtSrel();
+			uint inst = GetRelationInstance(sdesc);
+			srel.FileDescriptor = package.NewDescriptor(Data.MetaData.RELATION_FILE, 0, this.FileDescriptor.Group, inst);
+			srel.RelationState.IsKnown = true;
+
+			return srel;
+		}
+		#endregion
 	}
 }

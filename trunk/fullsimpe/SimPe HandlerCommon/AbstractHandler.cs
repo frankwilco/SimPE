@@ -255,7 +255,7 @@ namespace SimPe.Interfaces.Plugin
 		}
 
 		bool changed;
-		public bool Changed 
+		public virtual bool Changed 
 		{
 			get { return changed; }
 			set { changed = value; }
