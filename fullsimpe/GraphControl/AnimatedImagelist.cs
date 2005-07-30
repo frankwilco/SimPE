@@ -24,6 +24,7 @@ using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
 using Ambertation.Collections;
+using System.Threading;
 
 namespace Ambertation.Windows.Forms
 {
@@ -54,7 +55,7 @@ namespace Ambertation.Windows.Forms
 
 			index = 0;
 			BackColor = Color.Transparent;
-			timer = new Timer();
+			timer = new System.Windows.Forms.Timer();
 			timer.Enabled = false;
 
 			timer.Tick += new EventHandler(timer_Tick);
@@ -78,8 +79,8 @@ namespace Ambertation.Windows.Forms
 		}
 
 		#region Properties
-		Timer timer;
-		public Timer Timer
+		System.Windows.Forms.Timer timer;
+		public System.Windows.Forms.Timer Timer
 		{
 			get { return timer; }
 		}
@@ -163,12 +164,15 @@ namespace Ambertation.Windows.Forms
 
 		private void timer_Tick(object sender, EventArgs e)
 		{
-			if (index<0) index = 0;
-			else if (index >=list.Count-1) index = 0;
-			else index++;
+			lock (timer) 
+			{
+				if (index<0) index = 0;
+				else if (index >=list.Count-1) index = 0;
+				else index++;
 			
-			Refresh();
-			Application.DoEvents();
+				Refresh();
+				Application.DoEvents();
+			}
 		}
 	}
 }

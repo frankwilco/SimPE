@@ -71,11 +71,17 @@ namespace SimPe
 			}
 		}
 
+		Color clight, c, cdark;
 		public ThemeManager(GuiTheme t) 
 		{
 			ctheme = t;
 			parent = null;
 			ctrls = new System.Collections.ArrayList();
+
+			TD.SandBar.WhidbeyRenderer rend = new TD.SandBar.WhidbeyRenderer();
+			clight = rend.ToolBarGradientColor1;
+			c = Ambertation.Drawing.GraphicRoutines.InterpolateColors(rend.ToolBarGradientColor2, rend.BorderColor, 0.5f);;
+			cdark = rend.BorderColor;
 		}
 
 		~ThemeManager()
@@ -103,6 +109,13 @@ namespace SimPe
 			else sdm.Renderer = new TD.SandDock.Rendering.WhidbeyRenderer();
 		}
 
+		void SetTheme(Ambertation.Windows.Forms.XPTaskBoxSimple sdm) 
+		{
+			sdm.LeftHeaderColor = this.ThemeColor;
+			sdm.RightHeaderColor = this.ThemeColorDark;
+			sdm.BodyColor = this.ThemeColorLight;
+		}
+
 		void SetTheme(TD.SandBar.SandBarManager sbm) 
 		{
 			if (ctheme == GuiTheme.Everett) sbm.Renderer = new TD.SandBar.Office2002Renderer();
@@ -115,22 +128,14 @@ namespace SimPe
 			if (tb.Renderer is TD.SandBar.MediaPlayerRenderer) 
 			{
 				if (ctheme == GuiTheme.Office2003) tb.Renderer = new TD.SandBar.MediaPlayerRenderer();
-				else if (ctheme == GuiTheme.Everett)
+				else 
 				{
 					
 					TD.SandBar.MediaPlayerRenderer r = (TD.SandBar.MediaPlayerRenderer)tb.Renderer;
 					r.ToolBarGradientColor1 = this.ThemeColorLight;
 					r.ToolBarGradientColor2 = this.ThemeColor;
 					r.BorderColor = this.ThemeColorDark;
-				} 
-				else 
-				{
-					TD.SandBar.WhidbeyRenderer rend = new TD.SandBar.WhidbeyRenderer();
-					TD.SandBar.MediaPlayerRenderer r = (TD.SandBar.MediaPlayerRenderer)tb.Renderer;
-					r.ToolBarGradientColor1 = rend.ToolBarGradientColor1;
-					r.ToolBarGradientColor2 = rend.ToolBarGradientColor2;
-					r.BorderColor = rend.BorderColor;
-				}
+				} 				
 			} 
 			else 
 			{
@@ -174,6 +179,7 @@ namespace SimPe
 			else if (o is SteepValley.Windows.Forms.XPGradientPanel) SetTheme((SteepValley.Windows.Forms.XPGradientPanel)o);
 			else if (o is SimPe.Windows.Forms.WrapperBaseControl) SetTheme((SimPe.Windows.Forms.WrapperBaseControl)o);
 			else if (o is System.Windows.Forms.Splitter) SetTheme((System.Windows.Forms.Splitter)o);
+			else if (o is Ambertation.Windows.Forms.XPTaskBoxSimple) SetTheme((Ambertation.Windows.Forms.XPTaskBoxSimple)o);
 			else if (o is System.Windows.Forms.Control) SetTheme((System.Windows.Forms.Control)o);			
 		}
 		#endregion
@@ -184,7 +190,8 @@ namespace SimPe
 			get 
 			{
 				if (ctheme == GuiTheme.Office2003) return SystemColors.InactiveCaption;
-				else return SystemColors.ControlDark;
+				else if (ctheme == GuiTheme.Everett) return SystemColors.ControlDark;
+				else return c;
 			}
 		}
 
@@ -193,7 +200,8 @@ namespace SimPe
 			get 
 			{
 				if (ctheme == GuiTheme.Office2003) return SystemColors.InactiveCaptionText;
-				else return SystemColors.ControlLight;
+				else if (ctheme == GuiTheme.Everett) return SystemColors.ControlLight;
+				else return clight;
 			}
 		}
 
@@ -202,7 +210,8 @@ namespace SimPe
 			get 
 			{
 				if (ctheme == GuiTheme.Office2003) return SystemColors.Highlight;
-				else return SystemColors.ControlDarkDark;
+				else if (ctheme == GuiTheme.Everett) return SystemColors.ControlDarkDark;
+				else return cdark;
 			}
 		}
 		#endregion

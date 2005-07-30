@@ -755,7 +755,12 @@ namespace SimPe
 			System.Collections.ArrayList a = new System.Collections.ArrayList();
 			foreach (object i in source) 
 			{
-				if (i!=item) a.Add(i);
+				if (i==null) 
+				{
+					if (item==null)
+						a.Add(i);
+				}
+				else if (!i.Equals(item)) a.Add(i);
 			}
 
 			Array ar = Array.CreateInstance(elementType, a.Count);

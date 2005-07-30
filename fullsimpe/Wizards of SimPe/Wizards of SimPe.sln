@@ -103,6 +103,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Workspace Helper", ".
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Toolbox Workshops", "..\SimPe Toolbox Workshops\SimPe Toolbox Workshops.csproj", "{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Wizardbase", "..\SimPe Wizardbase\SimPe Wizardbase.csproj", "{B552AF25-66F1-4DFE-8760-2D3053F57E7C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumComboBox", "..\EnumComboBox\EnumComboBox.csproj", "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphControl", "..\GraphControl\GraphControl.csproj", "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -319,6 +335,38 @@ Global
 		{45021667-BAD2-4ECA-8423-F4734F914CBB}.Release.Build.0 = Release|.NET
 		{45021667-BAD2-4ECA-8423-F4734F914CBB}.Release MAC.ActiveCfg = Release MAC|.NET
 		{45021667-BAD2-4ECA-8423-F4734F914CBB}.Release MAC.Build.0 = Release MAC|.NET
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Debug.ActiveCfg = Debug|.NET
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Debug.Build.0 = Debug|.NET
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Debug Txtr.ActiveCfg = Debug|.NET
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Debug Txtr.Build.0 = Debug|.NET
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Release.ActiveCfg = Release|.NET
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Release.Build.0 = Release|.NET
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Release MAC.ActiveCfg = Release|.NET
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Release MAC.Build.0 = Release|.NET
+		{B552AF25-66F1-4DFE-8760-2D3053F57E7C}.Debug.ActiveCfg = Debug|.NET
+		{B552AF25-66F1-4DFE-8760-2D3053F57E7C}.Debug.Build.0 = Debug|.NET
+		{B552AF25-66F1-4DFE-8760-2D3053F57E7C}.Debug Txtr.ActiveCfg = Debug|.NET
+		{B552AF25-66F1-4DFE-8760-2D3053F57E7C}.Debug Txtr.Build.0 = Debug|.NET
+		{B552AF25-66F1-4DFE-8760-2D3053F57E7C}.Release.ActiveCfg = Release|.NET
+		{B552AF25-66F1-4DFE-8760-2D3053F57E7C}.Release.Build.0 = Release|.NET
+		{B552AF25-66F1-4DFE-8760-2D3053F57E7C}.Release MAC.ActiveCfg = Release|.NET
+		{B552AF25-66F1-4DFE-8760-2D3053F57E7C}.Release MAC.Build.0 = Release|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Debug.ActiveCfg = Debug|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Debug.Build.0 = Debug|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Debug Txtr.ActiveCfg = Debug|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Debug Txtr.Build.0 = Debug|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release.ActiveCfg = Release|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release.Build.0 = Release|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release MAC.ActiveCfg = Release|.NET
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release MAC.Build.0 = Release|.NET
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Debug.ActiveCfg = Debug|.NET
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Debug.Build.0 = Debug|.NET
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Debug Txtr.ActiveCfg = Debug|.NET
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Debug Txtr.Build.0 = Debug|.NET
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release.ActiveCfg = Release|.NET
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release.Build.0 = Release|.NET
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release MAC.ActiveCfg = Release|.NET
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release MAC.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

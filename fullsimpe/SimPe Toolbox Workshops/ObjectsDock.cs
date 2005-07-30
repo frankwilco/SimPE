@@ -71,6 +71,10 @@ namespace SimPe.Plugin.Tool.Dockable
 			tm.AddControl(this.xpGradientPanel1);
 			tm.AddControl(this.toolBar1);
 			tm.AddControl(this.splitter1);
+			tm.AddControl(this.xpTaskBoxSimple1);
+			tm.AddControl(this.xpTaskBoxSimple2);
+			tm.AddControl(this.gbRecolor);
+			tm.AddControl(this.gbClone);
 
 			biFinish.Visible = wizard1.FinishEnabled;
 			this.biAbort.Visible = wizard1.PrevEnabled;

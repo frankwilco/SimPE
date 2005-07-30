@@ -347,15 +347,30 @@ namespace Ambertation.Drawing
 			g.ReleaseHdc(p);
 		}
 #endif	
-
 		public static Image KnockoutImage(Image img, Point pos, Color fillcl)
+		{
+			return KnockoutImage(img, pos, fillcl, true);
+		}
+
+		public static Image KnockoutImage(Image img, Point pos, Color fillcl, bool save)
 		{
 			
 
-			Bitmap bm = new Bitmap(img.Width, img.Height);
+			Bitmap bm = null;
+			if (!save) 
+				bm = new Bitmap(img.Width, img.Height);
+			else 			
+				bm = new Bitmap(img.Width+2, img.Height+2);							
+
 			Graphics g = Graphics.FromImage(bm);						
+			if (save) 
+			{
+				g.FillRectangle(new SolidBrush(((Bitmap)img).GetPixel(pos.X, pos.Y)), 0, 0, bm.Width, bm.Height);
+				g.DrawImage(img, new Rectangle(1, 1, img.Width, img.Height), new Rectangle(0, 0, img.Width, img.Height), GraphicsUnit.Pixel);
+			} else g.DrawImageUnscaled(img, 0, 0);
+
 			//Ambertation.Windows.Forms.Graph.GraphPanelElement.SetGraphicsMode(g, !quality);
-			g.DrawImageUnscaled(img, 0, 0);
+			
 			g.Dispose();
 
 			FloodFiller ff = new FloodFiller();
@@ -364,6 +379,11 @@ namespace Ambertation.Drawing
 			((Bitmap)img).MakeTransparent(fillcl);
 
 			return bm;
+		}
+
+		public static Image ScaleImage(Image img, Size sz, bool quality)
+		{
+			return ScaleImage(img, sz.Width, sz.Height, quality);
 		}
 
 		public static Image ScaleImage(Image img, int width, int height, bool quality)
@@ -380,5 +400,20 @@ namespace Ambertation.Drawing
 			
 			return bm;
 		}		
+
+		public static Color InterpolateColors(Color src, Color dst, float percentage)
+		{
+			int r1 = src.R;
+			int g1 = src.G;
+			int b1 = src.B;
+			int r2 = dst.R;
+			int g2 = dst.G;
+			int b2 = dst.B;
+			byte r = Convert.ToByte((float) (r1 + ((r2 - r1) * percentage)));
+			byte g = Convert.ToByte((float) (g1 + ((g2 - g1) * percentage)));
+			byte b = Convert.ToByte((float) (b1 + ((b2 - b1) * percentage)));
+			return Color.FromArgb(r, g, b);
+		}
+
 	}
 }

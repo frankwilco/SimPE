@@ -1150,7 +1150,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Returns the Name of the File the Character is stored in
 		/// </summary>
 		/// <remarks>null, if no File was found</remarks>
-		public string CharacterFileName
+		public virtual string CharacterFileName
 		{
 			get 
 			{
@@ -1180,6 +1180,45 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				instancenumber = value;
 			}
+		}
+
+		public virtual bool ChangeNames(string name, string familyname)
+		{
+			if (!System.IO.File.Exists(this.CharacterFileName)) return false;			
+
+			try 
+			{
+				SimPe.Packages.GeneratableFile file = SimPe.Packages.GeneratableFile.LoadFromFile(CharacterFileName);
+				Interfaces.Files.IPackedFileDescriptor[] pfds = file.FindFiles(Data.MetaData.CTSS_FILE);
+				if (pfds.Length>0) 
+				{
+					SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+					str.ProcessData(pfds[0], file);
+					foreach (SimPe.PackedFiles.Wrapper.StrLanguage lng in str.Languages)
+					{
+						if (lng == null) continue;
+						if (str.LanguageItems(lng)[0x0] != null) str.LanguageItems(lng)[0x0].Title = name;
+						if (str.LanguageItems(lng)[0x2] != null) str.LanguageItems(lng)[0x2].Title = familyname;
+					}
+					str.SynchronizeUserData();
+					file.Save();
+				}
+
+				//update the Data in the Provider
+				SimPe.Data.Alias a = (Data.Alias)NameProvider.FindName(SimId);
+				if (a!=null) 
+				{
+					a.Name = name;
+					if (a.Tag.Length>=2) a.Tag[2] = familyname;
+				}
+
+				return true;
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage("Unable to change the Sim Name", ex);
+			}				
+			return false;
 		}
 
 		/// <summary>
@@ -1376,6 +1415,17 @@ namespace SimPe.PackedFiles.Wrapper
 			version = 0x20;
 		}
 
+		/// <summary>
+		/// Returns the Offset for the Relation COunt Filed
+		/// </summary>
+		int RelationPosition
+		{
+			get 
+			{
+				if (version>=(int)SDescVersions.University) return 0x16A+0x12;
+				return 0x16A;
+			}
+		}
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{							
 			long startpos = reader.BaseStream.Position;
@@ -1486,16 +1536,15 @@ namespace SimPe.PackedFiles.Wrapper
 			unlinked = reader.ReadUInt16();
 
 			//available Relationships
-			reader.BaseStream.Seek(startpos + 0x16A, System.IO.SeekOrigin.Begin);
-			if (version>=(int)SDescVersions.University) reader.BaseStream.Seek(0x12, System.IO.SeekOrigin.Current);
-			relations.SimInstances = new ushort[reader.ReadUInt16()];
+			reader.BaseStream.Seek(startpos + this.RelationPosition, System.IO.SeekOrigin.Begin);
+			relations.SimInstances = new ushort[reader.ReadUInt32()];
 
 			int ct = 0;
 			for (int i=0; i<relations.SimInstances.Length; i++)
 			{
 				if (reader.BaseStream.Length - reader.BaseStream.Position < 4) continue;
-				reader.ReadUInt16();			//yet unknown
-				relations.SimInstances[i] = reader.ReadUInt16();
+				//reader.ReadUInt16();			//yet unknown
+				relations.SimInstances[i] = (ushort)reader.ReadUInt32();
 				ct++;
 			}
 
@@ -1560,7 +1609,8 @@ namespace SimPe.PackedFiles.Wrapper
 			//writer.Write(reserved_02);
 			//writer.Write(instancenumber);
 			//writer.Write(simid);
-			writer.Write(reserved_03);
+			byte[] res03 = Helper.SetLength(reserved_03, (int)(this.RelationPosition-writer.BaseStream.Position));
+			writer.Write(res03);
 			while (writer.BaseStream.Length < 0x16D) writer.Write((byte)0);
 			long endpos = writer.BaseStream.Position;			
 			
@@ -1647,14 +1697,11 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write(decay.Fun);
 
 			//available Relationships
-			writer.BaseStream.Seek(startpos + 0x16A, System.IO.SeekOrigin.Begin);
-			if (version>=(int)SDescVersions.University) writer.BaseStream.Seek(0x12, System.IO.SeekOrigin.Current);
+			writer.BaseStream.Seek(startpos + this.RelationPosition, System.IO.SeekOrigin.Begin);			
 			writer.Write((uint)relations.SimInstances.Length);
 
-			for (int i=0; i<relations.SimInstances.Length; i++)
-			{								
-				writer.Write((uint)relations.SimInstances[i]);
-			}
+			for (int i=0; i<relations.SimInstances.Length; i++)											
+				writer.Write((uint)relations.SimInstances[i]);			
 			writer.Write((byte)0x01);
 
 			//skills

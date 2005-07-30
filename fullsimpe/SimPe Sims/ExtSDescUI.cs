@@ -190,6 +190,9 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private TD.SandBar.ContextMenuBarItem miRel;
+		private TD.SandBar.MenuButtonItem miAddRelation;
+		private TD.SandBar.MenuButtonItem miRemRelation;
 		private System.ComponentModel.IContainer components;
 
 		
@@ -203,9 +206,11 @@ namespace SimPe.PackedFiles.UserInterface
 			toolBar1.Renderer = new TD.SandBar.MediaPlayerRenderer();
 			ThemeManager.AddControl(this.toolBar1);
 			ThemeManager.AddControl(this.menuBar1);
-			//ThemeManager.AddControl(this.lv);
-			//ThemeManager.AddControl(this.sp);
-			//ThemeManager.AddControl(this.pnId);
+			ThemeManager.AddControl(this.srcTb);
+			ThemeManager.AddControl(this.dstTb);
+			ThemeManager.AddControl(this.xpTaskBoxSimple1);
+			ThemeManager.AddControl(this.xpTaskBoxSimple2);
+			ThemeManager.AddControl(this.xpTaskBoxSimple3);
 			this.biId.Tag = pnId;	
 			this.biSkill.Tag = pnSkill;
 			this.biChar.Tag = pnChar;
@@ -247,7 +252,8 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ExtSDesc));
 			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup1 = new SteepValley.Windows.Forms.XPListViewGroup("Relations", 0);
-			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup2 = new SteepValley.Windows.Forms.XPListViewGroup("Sim Pool", 1);
+			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup2 = new SteepValley.Windows.Forms.XPListViewGroup("Unknown Relations", 2);
+			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup3 = new SteepValley.Windows.Forms.XPListViewGroup("Sim Pool", 1);
 			this.toolBar1 = new TD.SandBar.ToolBar();
 			this.biId = new TD.SandBar.ButtonItem();
 			this.biCareer = new TD.SandBar.ButtonItem();
@@ -315,6 +321,14 @@ namespace SimPe.PackedFiles.UserInterface
 			this.miOpenCloth = new TD.SandBar.MenuButtonItem();
 			this.miMore = new TD.SandBar.MenuButtonItem();
 			this.miRelink = new TD.SandBar.MenuButtonItem();
+			this.miRel = new TD.SandBar.ContextMenuBarItem();
+			this.miAddRelation = new TD.SandBar.MenuButtonItem();
+			this.miRemRelation = new TD.SandBar.MenuButtonItem();
+			this.lv = new SimPe.PackedFiles.Wrapper.SimListView();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.pnCareer = new System.Windows.Forms.Panel();
 			this.pbAspBliz = new Ambertation.Windows.Forms.LabeledProgressBar();
 			this.label60 = new System.Windows.Forms.Label();
@@ -352,11 +366,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbParanormal = new Ambertation.Windows.Forms.LabeledProgressBar();
 			this.pbEnvironment = new Ambertation.Windows.Forms.LabeledProgressBar();
 			this.pnRel = new System.Windows.Forms.Panel();
-			this.lv = new SimPe.PackedFiles.Wrapper.SimListView();
-			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.srcTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.srcRel = new SimPe.PackedFiles.UserInterface.CommonSrel();
@@ -1912,7 +1921,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.menuBar1.Guid = new System.Guid("3f236769-07ab-43a2-b382-15b597af92c2");
 			this.menuBar1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("menuBar1.ImeMode")));
 			this.menuBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
-																			  this.mbiLink});
+																			  this.mbiLink,
+																			  this.miRel});
 			this.menuBar1.Location = ((System.Drawing.Point)(resources.GetObject("menuBar1.Location")));
 			this.menuBar1.Name = "menuBar1";
 			this.menuBar1.OwnerForm = null;
@@ -2010,6 +2020,106 @@ namespace SimPe.PackedFiles.UserInterface
 			this.miRelink.Text = resources.GetString("miRelink.Text");
 			this.miRelink.ToolTipText = resources.GetString("miRelink.ToolTipText");
 			this.miRelink.Activate += new System.EventHandler(this.Activate_miRelink);
+			// 
+			// miRel
+			// 
+			this.miRel.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																		   this.miAddRelation,
+																		   this.miRemRelation});
+			this.miRel.Text = resources.GetString("miRel.Text");
+			this.miRel.ToolTipText = resources.GetString("miRel.ToolTipText");
+			this.miRel.Visible = true;
+			this.miRel.BeforePopup += new TD.SandBar.MenuItemBase.BeforePopupEventHandler(this.miRel_BeforePopup);
+			// 
+			// miAddRelation
+			// 
+			this.miAddRelation.Image = ((System.Drawing.Image)(resources.GetObject("miAddRelation.Image")));
+			this.miAddRelation.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miAddRelation.Shortcut")));
+			this.miAddRelation.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miAddRelation.Shortcut2")));
+			this.miAddRelation.Text = resources.GetString("miAddRelation.Text");
+			this.miAddRelation.ToolTipText = resources.GetString("miAddRelation.ToolTipText");
+			this.miAddRelation.Activate += new System.EventHandler(this.Activate_miAddRelation);
+			// 
+			// miRemRelation
+			// 
+			this.miRemRelation.Image = ((System.Drawing.Image)(resources.GetObject("miRemRelation.Image")));
+			this.miRemRelation.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miRemRelation.Shortcut")));
+			this.miRemRelation.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miRemRelation.Shortcut2")));
+			this.miRemRelation.Text = resources.GetString("miRemRelation.Text");
+			this.miRemRelation.ToolTipText = resources.GetString("miRemRelation.ToolTipText");
+			this.miRemRelation.Activate += new System.EventHandler(this.Activate_miRemRelation);
+			// 
+			// lv
+			// 
+			this.lv.AccessibleDescription = resources.GetString("lv.AccessibleDescription");
+			this.lv.AccessibleName = resources.GetString("lv.AccessibleName");
+			this.lv.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lv.Alignment")));
+			this.lv.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lv.Anchor")));
+			this.lv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lv.BackgroundImage")));
+			this.lv.BorderSelect = true;
+			this.lv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+																				 this.columnHeader1,
+																				 this.columnHeader2,
+																				 this.columnHeader3,
+																				 this.columnHeader4});
+			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
+			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
+			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
+			this.lv.FullRowSelect = true;
+			xpListViewGroup1.GroupIndex = 0;
+			xpListViewGroup1.GroupText = "Relations";
+			xpListViewGroup2.GroupIndex = 2;
+			xpListViewGroup2.GroupText = "Unknown Relations";
+			xpListViewGroup3.GroupIndex = 1;
+			xpListViewGroup3.GroupText = "Sim Pool";
+			this.lv.Groups.Add(xpListViewGroup1);
+			this.lv.Groups.Add(xpListViewGroup2);
+			this.lv.Groups.Add(xpListViewGroup3);
+			this.lv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+			this.lv.HideSelection = false;
+			this.lv.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lv.ImeMode")));
+			this.lv.LabelWrap = ((bool)(resources.GetObject("lv.LabelWrap")));
+			this.lv.Location = ((System.Drawing.Point)(resources.GetObject("lv.Location")));
+			this.lv.MultiSelect = false;
+			this.lv.Name = "lv";
+			this.lv.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lv.RightToLeft")));
+			this.menuBar1.SetSandBarMenu(this.lv, this.miRel);
+			this.lv.ShowGroups = true;
+			this.lv.Size = ((System.Drawing.Size)(resources.GetObject("lv.Size")));
+			this.lv.TabIndex = ((int)(resources.GetObject("lv.TabIndex")));
+			this.lv.Text = resources.GetString("lv.Text");
+			this.lv.TileColumns = new int[] {
+												1,
+												2,
+												3};
+			this.lv.View = SteepValley.Windows.Forms.ExtendedView.Tile;
+			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
+			this.lv.SelectedIndexChanged += new System.EventHandler(this.lv_SelectedIndexChanged);
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = resources.GetString("columnHeader1.Text");
+			this.columnHeader1.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader1.TextAlign")));
+			this.columnHeader1.Width = ((int)(resources.GetObject("columnHeader1.Width")));
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = resources.GetString("columnHeader2.Text");
+			this.columnHeader2.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader2.TextAlign")));
+			this.columnHeader2.Width = ((int)(resources.GetObject("columnHeader2.Width")));
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = resources.GetString("columnHeader3.Text");
+			this.columnHeader3.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader3.TextAlign")));
+			this.columnHeader3.Width = ((int)(resources.GetObject("columnHeader3.Width")));
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = resources.GetString("columnHeader4.Text");
+			this.columnHeader4.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader4.TextAlign")));
+			this.columnHeader4.Width = ((int)(resources.GetObject("columnHeader4.Width")));
 			// 
 			// pnCareer
 			// 
@@ -3192,74 +3302,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnRel.Text = resources.GetString("pnRel.Text");
 			this.pnRel.Visible = ((bool)(resources.GetObject("pnRel.Visible")));
 			this.pnRel.VisibleChanged += new System.EventHandler(this.pnRel_VisibleChanged);
-			// 
-			// lv
-			// 
-			this.lv.AccessibleDescription = resources.GetString("lv.AccessibleDescription");
-			this.lv.AccessibleName = resources.GetString("lv.AccessibleName");
-			this.lv.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lv.Alignment")));
-			this.lv.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lv.Anchor")));
-			this.lv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lv.BackgroundImage")));
-			this.lv.BorderSelect = true;
-			this.lv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-																				 this.columnHeader1,
-																				 this.columnHeader2,
-																				 this.columnHeader3,
-																				 this.columnHeader4});
-			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
-			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
-			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
-			this.lv.FullRowSelect = true;
-			xpListViewGroup1.GroupIndex = 0;
-			xpListViewGroup1.GroupText = "Relations";
-			xpListViewGroup2.GroupIndex = 1;
-			xpListViewGroup2.GroupText = "Sim Pool";
-			this.lv.Groups.Add(xpListViewGroup1);
-			this.lv.Groups.Add(xpListViewGroup2);
-			this.lv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-			this.lv.HideSelection = false;
-			this.lv.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lv.ImeMode")));
-			this.lv.LabelWrap = ((bool)(resources.GetObject("lv.LabelWrap")));
-			this.lv.Location = ((System.Drawing.Point)(resources.GetObject("lv.Location")));
-			this.lv.MultiSelect = false;
-			this.lv.Name = "lv";
-			this.lv.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lv.RightToLeft")));
-			this.lv.ShowGroups = true;
-			this.lv.Size = ((System.Drawing.Size)(resources.GetObject("lv.Size")));
-			this.lv.TabIndex = ((int)(resources.GetObject("lv.TabIndex")));
-			this.lv.Text = resources.GetString("lv.Text");
-			this.lv.TileColumns = new int[] {
-												1,
-												2,
-												3};
-			this.lv.View = SteepValley.Windows.Forms.ExtendedView.Tile;
-			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
-			this.lv.SelectedIndexChanged += new System.EventHandler(this.lv_SelectedIndexChanged);
-			// 
-			// columnHeader1
-			// 
-			this.columnHeader1.Text = resources.GetString("columnHeader1.Text");
-			this.columnHeader1.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader1.TextAlign")));
-			this.columnHeader1.Width = ((int)(resources.GetObject("columnHeader1.Width")));
-			// 
-			// columnHeader2
-			// 
-			this.columnHeader2.Text = resources.GetString("columnHeader2.Text");
-			this.columnHeader2.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader2.TextAlign")));
-			this.columnHeader2.Width = ((int)(resources.GetObject("columnHeader2.Width")));
-			// 
-			// columnHeader3
-			// 
-			this.columnHeader3.Text = resources.GetString("columnHeader3.Text");
-			this.columnHeader3.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader3.TextAlign")));
-			this.columnHeader3.Width = ((int)(resources.GetObject("columnHeader3.Width")));
-			// 
-			// columnHeader4
-			// 
-			this.columnHeader4.Text = resources.GetString("columnHeader4.Text");
-			this.columnHeader4.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader4.TextAlign")));
-			this.columnHeader4.Width = ((int)(resources.GetObject("columnHeader4.Width")));
 			// 
 			// panel3
 			// 
@@ -4505,14 +4547,14 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.Controls.Add(this.toolBar1);
+			this.Controls.Add(this.pnMisc);
+			this.Controls.Add(this.pnChar);
+			this.Controls.Add(this.pnSkill);
 			this.Controls.Add(this.pnRel);
 			this.Controls.Add(this.pnInt);
-			this.Controls.Add(this.pnChar);
 			this.Controls.Add(this.pnId);
-			this.Controls.Add(this.pnSkill);
 			this.Controls.Add(this.pnCareer);
 			this.Controls.Add(this.pnEP1);
-			this.Controls.Add(this.pnMisc);
 			this.DockPadding.Top = 24;
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
@@ -4522,14 +4564,14 @@ namespace SimPe.PackedFiles.UserInterface
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
 			this.Commited += new System.EventHandler(this.ExtSDesc_Commited);
-			this.Controls.SetChildIndex(this.pnMisc, 0);
 			this.Controls.SetChildIndex(this.pnEP1, 0);
 			this.Controls.SetChildIndex(this.pnCareer, 0);
-			this.Controls.SetChildIndex(this.pnSkill, 0);
 			this.Controls.SetChildIndex(this.pnId, 0);
-			this.Controls.SetChildIndex(this.pnChar, 0);
 			this.Controls.SetChildIndex(this.pnInt, 0);
 			this.Controls.SetChildIndex(this.pnRel, 0);
+			this.Controls.SetChildIndex(this.pnSkill, 0);
+			this.Controls.SetChildIndex(this.pnChar, 0);
+			this.Controls.SetChildIndex(this.pnMisc, 0);
 			this.Controls.SetChildIndex(this.toolBar1, 0);
 			this.pnId.ResumeLayout(false);
 			this.pnSkill.ResumeLayout(false);
@@ -4568,7 +4610,7 @@ namespace SimPe.PackedFiles.UserInterface
 				}
 			}
 
-			mbiMax.Enabled = pnSkill.Visible || pnChar.Visible || pnInt.Visible;
+			mbiMax.Enabled = pnSkill.Visible || pnChar.Visible || pnInt.Visible || pnRel.Visible;
 			this.miRand.Enabled = mbiMax.Enabled;
 		}
 		
@@ -4684,6 +4726,9 @@ namespace SimPe.PackedFiles.UserInterface
 				miOpenCloth.Enabled = miOpenChar.Enabled;
 				miRelink.Enabled = miOpenChar.Enabled && Helper.WindowsRegistry.HiddenMode;
 
+				this.tbsimdescname.ReadOnly = Sdesc.IsNPC;
+				this.tbsimdescfamname.ReadOnly = this.tbsimdescname.ReadOnly;
+
 				RefreshSkills(Sdesc);
 				RefreshId(Sdesc);
 				RefreshCareer(Sdesc);
@@ -4790,7 +4835,7 @@ namespace SimPe.PackedFiles.UserInterface
 			if (img == null)
 				img = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png"));
 
-			img = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(img, pbImage.Size, 12, Color.FromArgb(90, Color.Black), SimPe.PackedFiles.Wrapper.SimPoolControl.GetImagePanelColor(Sdesc), Color.White, Color.FromArgb(80, Color.White), true, 0);
+			img = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(img, pbImage.Size, 12, Color.FromArgb(90, Color.Black), SimPe.PackedFiles.Wrapper.SimPoolControl.GetImagePanelColor(Sdesc), Color.White, Color.FromArgb(80, Color.White), true, 4, 0);
 			this.pbImage.Image = img;
 
 			//Lifesection
@@ -4964,6 +5009,31 @@ namespace SimPe.PackedFiles.UserInterface
 					if (c is LabeledProgressBar)
 						((LabeledProgressBar)c).Value = ((LabeledProgressBar)c).Maximum;
 				intern = false;	this.ChangedSkill(null, null);
+			} 
+			else if (this.pnRel.Visible)
+			{
+				foreach (SteepValley.Windows.Forms.XPListViewItem lvi in lv.Items)
+				{
+					
+					if (lvi.GroupIndex!=1) 
+					{
+						lvi.Selected = true;
+						if (this.srcRel.Srel!=null) 
+						{
+							srcRel.Srel.Longterm = 100;
+							srcRel.Srel.Shortterm = 100;
+							srcRel.Srel.Changed = true;
+						}
+
+						if (this.dstRel.Srel!=null) 
+						{
+							dstRel.Srel.Longterm = 100;
+							dstRel.Srel.Shortterm = 100;
+							dstRel.Srel.Changed = true;
+						}
+					}
+				}
+				if (lv.Items.Count>0) lv.Items[0].Selected= true;
 			}
 		}
 
@@ -4994,6 +5064,32 @@ namespace SimPe.PackedFiles.UserInterface
 					if (c is LabeledProgressBar)
 						((LabeledProgressBar)c).Value = rnd.Next(((LabeledProgressBar)c).Maximum);
 				intern = false;	this.ChangedSkill(null, null);
+			}
+			else if (this.pnRel.Visible)
+			{
+				foreach (SteepValley.Windows.Forms.XPListViewItem lvi in lv.Items)
+				{
+					
+					if (lvi.GroupIndex!=1) 
+					{
+						lvi.Selected = true;
+						int baseval = rnd.Next(200)-100;
+						if (this.srcRel.Srel!=null) 
+						{
+							srcRel.Srel.Longterm = Math.Max(-100, Math.Min(100, baseval + rnd.Next(40)-20));
+							srcRel.Srel.Shortterm = Math.Max(-100, Math.Min(100, baseval + rnd.Next(40)-20));
+							srcRel.Srel.Changed = true;
+						}
+
+						if (this.dstRel.Srel!=null) 
+						{
+							dstRel.Srel.Longterm = Math.Max(-100, Math.Min(100, baseval + rnd.Next(40)-20));
+							dstRel.Srel.Shortterm = Math.Max(-100, Math.Min(100, baseval + rnd.Next(40)-20));
+							dstRel.Srel.Changed = true;
+						}
+					}
+				}
+				if (lv.Items.Count>0) lv.Items[0].Selected= true;
 			}
 		}		
 
@@ -5416,44 +5512,77 @@ namespace SimPe.PackedFiles.UserInterface
 			Wait.Message = "Loading Relations";
 			lv.Clear();	
 			int ct = 0;
+			ArrayList inst = new ArrayList();
 			foreach (PackedFiles.Wrapper.ExtSDesc sdesc in FileTable.ProviderRegistry.SimDescriptionProvider.SimGuidMap.Values)
 			{				
+				inst.Add((ushort)sdesc.FileDescriptor.Instance);
 				SteepValley.Windows.Forms.XPListViewItem lvi = lv.Add(sdesc);
 				if (Sdesc.HasRelationWith(sdesc)) lvi.GroupIndex=0;
 				else lvi.GroupIndex=1;
 
 				lvi.Tag = sdesc;
-				Wait.Progress = ct++;				
+				Wait.Progress = ct++;					
 			}
 
-			this.lv.TileColumns = new int[]{1, 2, 3, 4, 5};
-			this.lv.SetColumnStyle(1, lv.Font, Color.Gray);
-			this.lv.SetColumnStyle(2, lv.Font, Color.Gray);
-			this.lv.SetColumnStyle(3, lv.Font, Color.Gray);
+			AddUnknownToRelList(inst);
 
+			
+								
+			
 			lv.EndUpdate();
 			Wait.SubStop();	
-		
+
 			ResetLabel();
 			loadedRel = true;
 		}
 
 		void UpdateRelList()
 		{
-			foreach (SteepValley.Windows.Forms.XPListViewItem lvi in lv.Items)
+			ArrayList inst = new ArrayList();
+			for (int i=lv.Items.Count-1; i>=0; i--)
 			{
+				SteepValley.Windows.Forms.XPListViewItem lvi = lv.Items[i];
 				PackedFiles.Wrapper.ExtSDesc sdesc = (PackedFiles.Wrapper.ExtSDesc)lvi.Tag;
-
+				if (lvi.GroupIndex==2) 
+				{
+					lv.Items.Remove(lvi);
+					continue;
+				}
+				
+				inst.Add((ushort)sdesc.FileDescriptor.Instance);
 				if (Sdesc.HasRelationWith(sdesc)) lvi.GroupIndex=0;
 				else lvi.GroupIndex=1;
 			}
 
+			AddUnknownToRelList(inst);
 			ResetLabel();
 			loadedRel = true;
-		}		
+		}
+		
+		void AddUnknownToRelList(ArrayList insts)
+		{
+			foreach (ushort inst in Sdesc.Relations.SimInstances)
+			{
+				if (!insts.Contains(inst))
+				{
+					PackedFiles.Wrapper.ExtSDesc sdesc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
+					sdesc.FileDescriptor = Sdesc.Package.NewDescriptor(Data.MetaData.SIM_DESCRIPTION_FILE, 0, Sdesc.FileDescriptor.Group, inst);
+					sdesc.Package = Sdesc.Package;
+					SteepValley.Windows.Forms.XPListViewItem lvi = lv.Add(sdesc);
+					lvi.GroupIndex=2;					
+
+					lvi.Tag = sdesc;					
+				}
+			}
+		}
 
 		void ResetLabel()
 		{
+			this.lv.TileColumns = new int[]{1, 2, 3, 4, 5};
+			this.lv.SetColumnStyle(1, lv.Font, Color.Gray);
+			this.lv.SetColumnStyle(2, lv.Font, Color.Gray);
+			this.lv.SetColumnStyle(3, lv.Font, Color.Gray);
+
 			this.dstRel.Srel = null;
 			this.srcRel.Srel = null;
 			UpdateLabel();
@@ -5484,35 +5613,99 @@ namespace SimPe.PackedFiles.UserInterface
 			dstTb.Icon = img;
 		}
 
+		SimPe.PackedFiles.Wrapper.ExtSrel FindRelation(PackedFiles.Wrapper.ExtSDesc src, PackedFiles.Wrapper.ExtSDesc dst)
+		{
+			return SimPe.PackedFiles.Wrapper.ExtSDesc.FindRelation(Sdesc, src, dst);
+		}
+
+		void DiplayRelation(PackedFiles.Wrapper.ExtSDesc src, PackedFiles.Wrapper.ExtSDesc dst, CommonSrel c)
+		{
+			SimPe.PackedFiles.Wrapper.ExtSrel srel = FindRelation(src, dst);			
+			c.Srel = srel;
+			Sdesc.AddRelationToCache(srel);
+		}
+
 		private void lv_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			if (lv.SelectedItems.Count!=1) return;
 
 			PackedFiles.Wrapper.ExtSDesc sdesc = (PackedFiles.Wrapper.ExtSDesc)lv.SelectedItems[0].Tag;
-			uint sinst = ((Sdesc.FileDescriptor.Instance & 0xffff) << 16) | (sdesc.FileDescriptor.Instance & 0xffff);
-			uint dinst = ((sdesc.FileDescriptor.Instance & 0xffff) << 16) | (Sdesc.FileDescriptor.Instance & 0xffff);
 
-			SimPe.Interfaces.Files.IPackedFileDescriptor spfd = Sdesc.Package.FindFile(0xCC364C2A, 0, Sdesc.FileDescriptor.Group, sinst);
-			SimPe.Interfaces.Files.IPackedFileDescriptor dpfd = Sdesc.Package.FindFile(0xCC364C2A, 0, Sdesc.FileDescriptor.Group, dinst);
-
-			if (spfd!=null) 
-			{
-				SimPe.PackedFiles.Wrapper.ExtSrel srel = new SimPe.PackedFiles.Wrapper.ExtSrel();
-				srel.ProcessData(spfd, Sdesc.Package);
-				srcRel.Srel = srel;
-			} else this.srcRel.Srel = null;
-			
-			if (dpfd!=null) 
-			{
-				SimPe.PackedFiles.Wrapper.ExtSrel srel = new SimPe.PackedFiles.Wrapper.ExtSrel();
-				srel.ProcessData(dpfd, Sdesc.Package);
-				dstRel.Srel = srel;
-			} 
-			else this.dstRel.Srel = null;
+			DiplayRelation(Sdesc, sdesc, srcRel);
+			DiplayRelation(sdesc, Sdesc, dstRel);						
 			
 			UpdateLabel();
 		}
 		
+		
+
+		private void miRel_BeforePopup(object sender, TD.SandBar.MenuPopupEventArgs e)
+		{
+			if (lv.SelectedItems.Count==1) 
+			{
+				this.miAddRelation.Enabled = ((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex==1 && !Sdesc.Equals(lv.SelectedItems[0].Tag);
+				this.miRemRelation.Enabled = ((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex!=1;
+			
+				string name = SimPe.Localization.GetString("AddRelationCaption").Replace("{name}", lv.SelectedItems[0].Text);
+				this.miAddRelation.Text = name;
+
+				name = SimPe.Localization.GetString("RemoveRelationCaption").Replace("{name}", lv.SelectedItems[0].Text);
+				this.miRemRelation.Text = name;
+			} 
+			else 
+			{
+				this.miAddRelation.Enabled = false;
+				this.miRemRelation.Enabled = false;
+
+				string name = SimPe.Localization.GetString("AddRelationCaption").Replace("{name}", SimPe.Localization.GetString("Unknown"));
+				this.miAddRelation.Text = name;
+
+				name = SimPe.Localization.GetString("RemoveRelationCaption").Replace("{name}", SimPe.Localization.GetString("Unknown"));
+				this.miRemRelation.Text = name;
+			}
+		}
+
+		private void Activate_miAddRelation(object sender, System.EventArgs e)
+		{
+			if (lv.SelectedItems.Count!=1) return;
+			PackedFiles.Wrapper.ExtSDesc sdesc = (PackedFiles.Wrapper.ExtSDesc)lv.SelectedItems[0].Tag;
+
+			SimPe.PackedFiles.Wrapper.ExtSrel srel = FindRelation(Sdesc, sdesc);
+			if (srel==null) srel = Sdesc.CreateRelation(sdesc);
+			Sdesc.AddRelationToCache(srel);
+			Sdesc.AddRelation(sdesc);
+
+			srel = FindRelation(sdesc, Sdesc);
+			if (srel==null) srel = sdesc.CreateRelation(Sdesc);
+			Sdesc.AddRelationToCache(srel);
+			sdesc.AddRelation(Sdesc);
+
+			((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex=0;
+			lv_SelectedIndexChanged(lv, null);
+		}
+
+		private void Activate_miRemRelation(object sender, System.EventArgs e)
+		{
+			if (lv.SelectedItems.Count!=1) return;
+			PackedFiles.Wrapper.ExtSDesc sdesc = (PackedFiles.Wrapper.ExtSDesc)lv.SelectedItems[0].Tag;
+
+			SimPe.PackedFiles.Wrapper.ExtSrel srel = FindRelation(Sdesc, sdesc);
+			if (srel!=null) Sdesc.RemoveRelationFromCache(srel);				
+			Sdesc.RemoveRelation(sdesc);
+			
+
+			srel = FindRelation(sdesc, Sdesc);
+			if (srel!=null) Sdesc.RemoveRelationFromCache(srel);
+			sdesc.RemoveRelation(Sdesc);
+			
+
+			if (((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex==2)
+				lv.Items.Remove((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]);
+			else 			
+				((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex=1;
+			
+			lv_SelectedIndexChanged(lv, null);
+		}
 		#endregion
 	}
 }

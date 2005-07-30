@@ -78,7 +78,7 @@ namespace SimPe.PackedFiles.Wrapper
 			else 
 				imgbig = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png"));			
 
-			imgbig = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(imgbig, this.LargeImageList.ImageSize, 8, Color.FromArgb(90, Color.Black), SimPe.PackedFiles.Wrapper.SimPoolControl.GetImagePanelColor(sdesc), Color.White, Color.FromArgb(80, Color.White), true, 0);
+			imgbig = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(imgbig, this.LargeImageList.ImageSize, 8, Color.FromArgb(90, Color.Black), SimPe.PackedFiles.Wrapper.SimPoolControl.GetImagePanelColor(sdesc), Color.White, Color.FromArgb(80, Color.White), true, 0, 0);
 			//imgbig = Ambertation.Drawing.GraphicRoutines.ScaleImage(imgbig, this.LargeImageList.ImageSize.Width, this.LargeImageList.ImageSize.Height, true);
 
 			this.LargeImageList.Images.Add(imgbig);

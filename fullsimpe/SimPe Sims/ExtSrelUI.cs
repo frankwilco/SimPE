@@ -39,6 +39,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label lbsims;
 		private SimPe.PackedFiles.UserInterface.CommonSrel sc;
+		private System.Windows.Forms.PictureBox pb;
 		/// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -81,6 +82,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label1 = new System.Windows.Forms.Label();
 			this.lbsims = new System.Windows.Forms.Label();
 			this.sc = new SimPe.PackedFiles.UserInterface.CommonSrel();
+			this.pb = new System.Windows.Forms.PictureBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -151,6 +153,28 @@ namespace SimPe.PackedFiles.UserInterface
 			this.sc.TabIndex = ((int)(resources.GetObject("sc.TabIndex")));
 			this.sc.Visible = ((bool)(resources.GetObject("sc.Visible")));
 			// 
+			// pb
+			// 
+			this.pb.AccessibleDescription = resources.GetString("pb.AccessibleDescription");
+			this.pb.AccessibleName = resources.GetString("pb.AccessibleName");
+			this.pb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pb.Anchor")));
+			this.pb.BackColor = System.Drawing.Color.Transparent;
+			this.pb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb.BackgroundImage")));
+			this.pb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pb.Dock")));
+			this.pb.Enabled = ((bool)(resources.GetObject("pb.Enabled")));
+			this.pb.Font = ((System.Drawing.Font)(resources.GetObject("pb.Font")));
+			this.pb.Image = ((System.Drawing.Image)(resources.GetObject("pb.Image")));
+			this.pb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pb.ImeMode")));
+			this.pb.Location = ((System.Drawing.Point)(resources.GetObject("pb.Location")));
+			this.pb.Name = "pb";
+			this.pb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pb.RightToLeft")));
+			this.pb.Size = ((System.Drawing.Size)(resources.GetObject("pb.Size")));
+			this.pb.SizeMode = ((System.Windows.Forms.PictureBoxSizeMode)(resources.GetObject("pb.SizeMode")));
+			this.pb.TabIndex = ((int)(resources.GetObject("pb.TabIndex")));
+			this.pb.TabStop = false;
+			this.pb.Text = resources.GetString("pb.Text");
+			this.pb.Visible = ((bool)(resources.GetObject("pb.Visible")));
+			// 
 			// ExtSrel
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -159,9 +183,10 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.pb);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.sc);
 			this.Controls.Add(this.lbsims);
-			this.Controls.Add(this.label1);
 			this.DockPadding.Top = 24;
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
@@ -171,9 +196,10 @@ namespace SimPe.PackedFiles.UserInterface
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
 			this.Commited += new System.EventHandler(this.ExtSrel_Commited);
-			this.Controls.SetChildIndex(this.label1, 0);
 			this.Controls.SetChildIndex(this.lbsims, 0);
 			this.Controls.SetChildIndex(this.sc, 0);
+			this.Controls.SetChildIndex(this.label1, 0);
+			this.Controls.SetChildIndex(this.pb, 0);
 			this.ResumeLayout(false);
 
 		}
@@ -190,12 +216,17 @@ namespace SimPe.PackedFiles.UserInterface
 			sc.Srel = this.Srel;
 			
 			this.lbsims.Text = sc.SourceSimName + " "+SimPe.Localization.GetString("towards") + " "+sc.TargetSimName;
+			this.pb.Image = Ambertation.Drawing.GraphicRoutines.ScaleImage(sc.Image, pb.Size, true);
+
+			pb.Image = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(sc.Image, pb.Size, 12, Color.FromArgb(90, Color.Black), SimPe.ThemeManager.Global.ThemeColorDark, Color.White, Color.FromArgb(80, Color.White), true, 2, 0);
 		}
 
 		private void ExtSrel_Commited(object sender, System.EventArgs e)
 		{
 			Srel.SynchronizeUserData();
-		}
+		}		
+
+		
 
 	}
 }

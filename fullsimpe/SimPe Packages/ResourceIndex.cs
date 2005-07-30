@@ -96,13 +96,12 @@ namespace SimPe.Collections.IO
 		{							
 			index = new Hashtable();									
 			
-			bool wasrunning = WaitingScreen.Running;
-			WaitingScreen.Wait();
+			Wait.SubStart();
+			
 			index.Clear();
-
 			if (pfds!=null) this.AddIndexFromPfd(pfds);
 
-			if (!wasrunning) WaitingScreen.Stop();
+			Wait.SubStop();
 		}
 
 		

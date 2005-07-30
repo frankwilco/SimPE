@@ -841,7 +841,7 @@ namespace SimPe
 		}
 
 		/// <summary>
-		/// ahousl we use Qulity Mode?
+		/// should we use Qulity Mode?
 		/// </summary>
 		public bool GraphQuality
 		{
@@ -855,6 +855,24 @@ namespace SimPe
 			{
 				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
 				rkf.SetValue("GraphQuality", value);
+			}
+		}
+
+		/// <summary>
+		/// Should we search the objects.package's for Sims?
+		/// </summary>
+		public bool DeepSimScan
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("DeepSimScan", true);
+				return Convert.ToBoolean(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("DeepSimScan", value);
 			}
 		}
 

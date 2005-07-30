@@ -193,8 +193,7 @@ namespace SimPe
 
 		public void Wait()
 		{			
-			StartWait();
-			f.Invoke(new ShowStuff(ShowProgress), new object[] {false});
+			StartWait();			
 		}
 
 		public void Wait(int max)
@@ -210,6 +209,7 @@ namespace SimPe
 			{ 		
 				f.sb.Invoke(new ShowStuff(ShowMain), new object[] {false});			
 				f.pbWait.Invoke(new ShowStuff(StartAnimation), new object[] {false});
+				f.Invoke(new ShowStuff(ShowProgress), new object[] {false});
 				Application.DoEvents();
 			} 
 			catch {}

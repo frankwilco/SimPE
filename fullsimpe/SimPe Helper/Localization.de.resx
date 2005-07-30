@@ -592,4 +592,10 @@ Package: {filename}</value>
 	<data name="towards">
 		<value>für</value>
 	</data>
+	<data name="AddRelationCaption">
+		<value>Beziehung zu "{name}" erstellen</value>
+	</data>
+	<data name="RemoveRelationCaption">
+		<value>Beziehung zu "{name}" entfernen</value>
+	</data>
 </root>

@@ -744,7 +744,7 @@ namespace SimPe.Wizards
 
 					SimPe.Packages.PackedFileDescriptor pfd = new SimPe.Packages.PackedFileDescriptor();
 					pfd.Group = objditem.LocalGroup; pfd.LongInstance = objd.CTSSInstance; pfd.Type = Data.MetaData.CTSS_FILE;
-					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem ctssitem = FileTable.FileIndex.FindSingleFile(pfd, true);
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem ctssitem = FileTable.FileIndex.FindSingleFile(pfd, null, true);
 					if (ctssitem!=null)
 					{
 						SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
@@ -757,7 +757,7 @@ namespace SimPe.Wizards
 						//now get the Modelname
 						pfd = new SimPe.Packages.PackedFileDescriptor();
 						pfd.Group = objditem.LocalGroup; pfd.LongInstance = 0x85; pfd.Type = Data.MetaData.STRING_FILE;
-						SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem txtitem = FileTable.FileIndex.FindSingleFile(pfd, true);
+						SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem txtitem = FileTable.FileIndex.FindSingleFile(pfd, null, true);
 						if (txtitem!=null)
 						{
 							str.ProcessData(txtitem.FileDescriptor, txtitem.Package);
