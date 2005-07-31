@@ -210,13 +210,17 @@ namespace SimPe
 		{
 			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainForm));
+			this.sbm = new TD.SandBar.SandBarManager();
+			this.mybottomSandDock = new TD.SandDock.DockContainer();
+			this.dcPlugin = new TD.SandDock.DockableWindow();
+			this.dc = new TD.SandDock.TabControl();
+			this.sdm = new TD.SandDock.SandDockManager();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
 			this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
 			this.tbInst = new System.Windows.Forms.TextBox();
 			this.tbGrp = new System.Windows.Forms.TextBox();
 			this.tbRcolName = new System.Windows.Forms.TextBox();
 			this.cbsemig = new TD.SandBar.FlatComboBox();
-			this.sbm = new TD.SandBar.SandBarManager();
 			this.leftSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.rightSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.mybottomSandBarDock = new TD.SandBar.ToolBarContainer();
@@ -266,7 +270,6 @@ namespace SimPe
 			this.clOffset = new System.Windows.Forms.ColumnHeader();
 			this.clSize = new System.Windows.Forms.ColumnHeader();
 			this.iAnim = new System.Windows.Forms.ImageList(this.components);
-			this.sdm = new TD.SandDock.SandDockManager();
 			this.dcResource = new TD.SandDock.DockableWindow();
 			this.tbResource = new TD.SandBar.ToolBar();
 			this.biInstanceList = new TD.SandBar.ButtonItem();
@@ -287,9 +290,6 @@ namespace SimPe
 			this.tbPlugAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
 			this.tbDefaultAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
 			this.xpGradientPanel3 = new SteepValley.Windows.Forms.XPGradientPanel();
-			this.mybottomSandDock = new TD.SandDock.DockContainer();
-			this.dcPlugin = new TD.SandDock.DockableWindow();
-			this.dc = new TD.SandDock.TabControl();
 			this.xpGradientPanel5 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.sb = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.lbOp = new System.Windows.Forms.Label();
@@ -302,6 +302,8 @@ namespace SimPe
 			this.pb = new System.Windows.Forms.ProgressBar();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.dockContainer1 = new TD.SandDock.DockContainer();
+			this.mybottomSandDock.SuspendLayout();
+			this.dcPlugin.SuspendLayout();
 			this.topSandBarDock.SuspendLayout();
 			this.dcResource.SuspendLayout();
 			this.myrightSandDock.SuspendLayout();
@@ -309,11 +311,98 @@ namespace SimPe
 			this.xpGradientPanel1.SuspendLayout();
 			this.dcAction.SuspendLayout();
 			this.xpGradientPanel2.SuspendLayout();
-			this.mybottomSandDock.SuspendLayout();
-			this.dcPlugin.SuspendLayout();
 			this.sb.SuspendLayout();
 			this.dockContainer1.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// sbm
+			// 
+			this.sbm.OwnerForm = this;
+			// 
+			// mybottomSandDock
+			// 
+			this.mybottomSandDock.AccessibleDescription = resources.GetString("mybottomSandDock.AccessibleDescription");
+			this.mybottomSandDock.AccessibleName = resources.GetString("mybottomSandDock.AccessibleName");
+			this.mybottomSandDock.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("mybottomSandDock.Anchor")));
+			this.mybottomSandDock.AutoScroll = ((bool)(resources.GetObject("mybottomSandDock.AutoScroll")));
+			this.mybottomSandDock.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("mybottomSandDock.AutoScrollMargin")));
+			this.mybottomSandDock.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("mybottomSandDock.AutoScrollMinSize")));
+			this.mybottomSandDock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mybottomSandDock.BackgroundImage")));
+			this.mybottomSandDock.Controls.Add(this.dcPlugin);
+			this.mybottomSandDock.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("mybottomSandDock.Dock")));
+			this.mybottomSandDock.Enabled = ((bool)(resources.GetObject("mybottomSandDock.Enabled")));
+			this.mybottomSandDock.Font = ((System.Drawing.Font)(resources.GetObject("mybottomSandDock.Font")));
+			this.mybottomSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("mybottomSandDock.ImeMode")));
+			this.mybottomSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Vertical, new TD.SandDock.LayoutSystemBase[] {
+																																											   new TD.SandDock.ControlLayoutSystem(744, 188, new TD.SandDock.DockControl[] {
+																																																															   this.dcPlugin}, this.dcPlugin, false)});
+			this.mybottomSandDock.Location = ((System.Drawing.Point)(resources.GetObject("mybottomSandDock.Location")));
+			this.mybottomSandDock.Manager = this.sdm;
+			this.mybottomSandDock.Name = "mybottomSandDock";
+			this.mybottomSandDock.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("mybottomSandDock.RightToLeft")));
+			this.mybottomSandDock.Size = ((System.Drawing.Size)(resources.GetObject("mybottomSandDock.Size")));
+			this.mybottomSandDock.TabIndex = ((int)(resources.GetObject("mybottomSandDock.TabIndex")));
+			this.mybottomSandDock.Text = resources.GetString("mybottomSandDock.Text");
+			this.mybottomSandDock.Visible = ((bool)(resources.GetObject("mybottomSandDock.Visible")));
+			// 
+			// dcPlugin
+			// 
+			this.dcPlugin.AccessibleDescription = resources.GetString("dcPlugin.AccessibleDescription");
+			this.dcPlugin.AccessibleName = resources.GetString("dcPlugin.AccessibleName");
+			this.dcPlugin.AllowDockCenter = true;
+			this.dcPlugin.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dcPlugin.Anchor")));
+			this.dcPlugin.AutoScroll = ((bool)(resources.GetObject("dcPlugin.AutoScroll")));
+			this.dcPlugin.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dcPlugin.AutoScrollMargin")));
+			this.dcPlugin.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dcPlugin.AutoScrollMinSize")));
+			this.dcPlugin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dcPlugin.BackgroundImage")));
+			this.dcPlugin.Controls.Add(this.dc);
+			this.dcPlugin.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dcPlugin.Dock")));
+			this.dcPlugin.Enabled = ((bool)(resources.GetObject("dcPlugin.Enabled")));
+			this.dcPlugin.FloatingSize = new System.Drawing.Size(800, 400);
+			this.dcPlugin.Font = ((System.Drawing.Font)(resources.GetObject("dcPlugin.Font")));
+			this.dcPlugin.Guid = new System.Guid("1fc41585-f06c-418c-8226-523fdec0f9c4");
+			this.dcPlugin.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dcPlugin.ImeMode")));
+			this.dcPlugin.Location = ((System.Drawing.Point)(resources.GetObject("dcPlugin.Location")));
+			this.dcPlugin.Name = "dcPlugin";
+			this.dcPlugin.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dcPlugin.RightToLeft")));
+			this.dcPlugin.Size = ((System.Drawing.Size)(resources.GetObject("dcPlugin.Size")));
+			this.dcPlugin.TabImage = ((System.Drawing.Image)(resources.GetObject("dcPlugin.TabImage")));
+			this.dcPlugin.TabIndex = ((int)(resources.GetObject("dcPlugin.TabIndex")));
+			this.dcPlugin.TabText = resources.GetString("dcPlugin.TabText");
+			this.dcPlugin.Text = resources.GetString("dcPlugin.Text");
+			this.dcPlugin.ToolTipText = resources.GetString("dcPlugin.ToolTipText");
+			this.dcPlugin.Visible = ((bool)(resources.GetObject("dcPlugin.Visible")));
+			// 
+			// dc
+			// 
+			this.dc.AccessibleDescription = resources.GetString("dc.AccessibleDescription");
+			this.dc.AccessibleName = resources.GetString("dc.AccessibleName");
+			this.dc.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dc.Anchor")));
+			this.dc.AutoScroll = ((bool)(resources.GetObject("dc.AutoScroll")));
+			this.dc.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dc.AutoScrollMargin")));
+			this.dc.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dc.AutoScrollMinSize")));
+			this.dc.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dc.BackgroundImage")));
+			this.dc.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dc.Dock")));
+			this.dc.Enabled = ((bool)(resources.GetObject("dc.Enabled")));
+			this.dc.Font = ((System.Drawing.Font)(resources.GetObject("dc.Font")));
+			this.dc.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dc.ImeMode")));
+			this.dc.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
+																																								   new TD.SandDock.DocumentLayoutSystem(725, 373, new TD.SandDock.DockControl[0], null)});
+			this.dc.Location = ((System.Drawing.Point)(resources.GetObject("dc.Location")));
+			this.dc.Name = "dc";
+			this.dc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dc.RightToLeft")));
+			this.dc.Size = ((System.Drawing.Size)(resources.GetObject("dc.Size")));
+			this.dc.TabIndex = ((int)(resources.GetObject("dc.TabIndex")));
+			this.dc.Text = resources.GetString("dc.Text");
+			this.dc.Visible = ((bool)(resources.GetObject("dc.Visible")));
+			this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
+			// 
+			// sdm
+			// 
+			this.sdm.DockSystemContainer = this;
+			this.sdm.OwnerForm = this;
+			this.sdm.Renderer = new TD.SandDock.Rendering.Office2003Renderer();
+			this.sdm.DockControlActivated += new TD.SandDock.DockControlEventHandler(this.sdm_DockControlActivated);
 			// 
 			// ofd
 			// 
@@ -424,10 +513,6 @@ namespace SimPe
 			this.cbsemig.TabIndex = ((int)(resources.GetObject("cbsemig.TabIndex")));
 			this.cbsemig.Text = resources.GetString("cbsemig.Text");
 			this.cbsemig.Visible = ((bool)(resources.GetObject("cbsemig.Visible")));
-			// 
-			// sbm
-			// 
-			this.sbm.OwnerForm = this;
 			// 
 			// leftSandBarDock
 			// 
@@ -713,6 +798,7 @@ namespace SimPe
 			this.tbTools.Location = ((System.Drawing.Point)(resources.GetObject("tbTools.Location")));
 			this.tbTools.Name = "tbTools";
 			this.tbTools.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbTools.RightToLeft")));
+			this.tbTools.ShowShortcutsInToolTips = true;
 			this.tbTools.Size = ((System.Drawing.Size)(resources.GetObject("tbTools.Size")));
 			this.tbTools.TabIndex = ((int)(resources.GetObject("tbTools.TabIndex")));
 			this.tbTools.Text = resources.GetString("tbTools.Text");
@@ -734,6 +820,7 @@ namespace SimPe
 			this.tbWindow.Location = ((System.Drawing.Point)(resources.GetObject("tbWindow.Location")));
 			this.tbWindow.Name = "tbWindow";
 			this.tbWindow.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbWindow.RightToLeft")));
+			this.tbWindow.ShowShortcutsInToolTips = true;
 			this.tbWindow.Size = ((System.Drawing.Size)(resources.GetObject("tbWindow.Size")));
 			this.tbWindow.TabIndex = ((int)(resources.GetObject("tbWindow.TabIndex")));
 			this.tbWindow.Text = resources.GetString("tbWindow.Text");
@@ -1008,13 +1095,6 @@ namespace SimPe
 			this.iAnim.ImageSize = ((System.Drawing.Size)(resources.GetObject("iAnim.ImageSize")));
 			this.iAnim.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iAnim.ImageStream")));
 			this.iAnim.TransparentColor = System.Drawing.Color.Transparent;
-			// 
-			// sdm
-			// 
-			this.sdm.DockSystemContainer = this;
-			this.sdm.OwnerForm = this;
-			this.sdm.Renderer = new TD.SandDock.Rendering.Office2003Renderer();
-			this.sdm.DockControlActivated += new TD.SandDock.DockControlEventHandler(this.sdm_DockControlActivated);
 			// 
 			// dcResource
 			// 
@@ -1541,84 +1621,6 @@ namespace SimPe
 			this.xpGradientPanel3.Watermark = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel3.Watermark")));
 			this.xpGradientPanel3.WatermarkSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel3.WatermarkSize")));
 			// 
-			// mybottomSandDock
-			// 
-			this.mybottomSandDock.AccessibleDescription = resources.GetString("mybottomSandDock.AccessibleDescription");
-			this.mybottomSandDock.AccessibleName = resources.GetString("mybottomSandDock.AccessibleName");
-			this.mybottomSandDock.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("mybottomSandDock.Anchor")));
-			this.mybottomSandDock.AutoScroll = ((bool)(resources.GetObject("mybottomSandDock.AutoScroll")));
-			this.mybottomSandDock.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("mybottomSandDock.AutoScrollMargin")));
-			this.mybottomSandDock.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("mybottomSandDock.AutoScrollMinSize")));
-			this.mybottomSandDock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mybottomSandDock.BackgroundImage")));
-			this.mybottomSandDock.Controls.Add(this.dcPlugin);
-			this.mybottomSandDock.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("mybottomSandDock.Dock")));
-			this.mybottomSandDock.Enabled = ((bool)(resources.GetObject("mybottomSandDock.Enabled")));
-			this.mybottomSandDock.Font = ((System.Drawing.Font)(resources.GetObject("mybottomSandDock.Font")));
-			this.mybottomSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("mybottomSandDock.ImeMode")));
-			this.mybottomSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Vertical, new TD.SandDock.LayoutSystemBase[] {
-																																											   new TD.SandDock.ControlLayoutSystem(744, 188, new TD.SandDock.DockControl[] {
-																																																															   this.dcPlugin}, this.dcPlugin, false)});
-			this.mybottomSandDock.Location = ((System.Drawing.Point)(resources.GetObject("mybottomSandDock.Location")));
-			this.mybottomSandDock.Manager = this.sdm;
-			this.mybottomSandDock.Name = "mybottomSandDock";
-			this.mybottomSandDock.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("mybottomSandDock.RightToLeft")));
-			this.mybottomSandDock.Size = ((System.Drawing.Size)(resources.GetObject("mybottomSandDock.Size")));
-			this.mybottomSandDock.TabIndex = ((int)(resources.GetObject("mybottomSandDock.TabIndex")));
-			this.mybottomSandDock.Text = resources.GetString("mybottomSandDock.Text");
-			this.mybottomSandDock.Visible = ((bool)(resources.GetObject("mybottomSandDock.Visible")));
-			// 
-			// dcPlugin
-			// 
-			this.dcPlugin.AccessibleDescription = resources.GetString("dcPlugin.AccessibleDescription");
-			this.dcPlugin.AccessibleName = resources.GetString("dcPlugin.AccessibleName");
-			this.dcPlugin.AllowDockCenter = true;
-			this.dcPlugin.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dcPlugin.Anchor")));
-			this.dcPlugin.AutoScroll = ((bool)(resources.GetObject("dcPlugin.AutoScroll")));
-			this.dcPlugin.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dcPlugin.AutoScrollMargin")));
-			this.dcPlugin.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dcPlugin.AutoScrollMinSize")));
-			this.dcPlugin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dcPlugin.BackgroundImage")));
-			this.dcPlugin.Controls.Add(this.dc);
-			this.dcPlugin.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dcPlugin.Dock")));
-			this.dcPlugin.Enabled = ((bool)(resources.GetObject("dcPlugin.Enabled")));
-			this.dcPlugin.FloatingSize = new System.Drawing.Size(800, 400);
-			this.dcPlugin.Font = ((System.Drawing.Font)(resources.GetObject("dcPlugin.Font")));
-			this.dcPlugin.Guid = new System.Guid("1fc41585-f06c-418c-8226-523fdec0f9c4");
-			this.dcPlugin.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dcPlugin.ImeMode")));
-			this.dcPlugin.Location = ((System.Drawing.Point)(resources.GetObject("dcPlugin.Location")));
-			this.dcPlugin.Name = "dcPlugin";
-			this.dcPlugin.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dcPlugin.RightToLeft")));
-			this.dcPlugin.Size = ((System.Drawing.Size)(resources.GetObject("dcPlugin.Size")));
-			this.dcPlugin.TabImage = ((System.Drawing.Image)(resources.GetObject("dcPlugin.TabImage")));
-			this.dcPlugin.TabIndex = ((int)(resources.GetObject("dcPlugin.TabIndex")));
-			this.dcPlugin.TabText = resources.GetString("dcPlugin.TabText");
-			this.dcPlugin.Text = resources.GetString("dcPlugin.Text");
-			this.dcPlugin.ToolTipText = resources.GetString("dcPlugin.ToolTipText");
-			this.dcPlugin.Visible = ((bool)(resources.GetObject("dcPlugin.Visible")));
-			// 
-			// dc
-			// 
-			this.dc.AccessibleDescription = resources.GetString("dc.AccessibleDescription");
-			this.dc.AccessibleName = resources.GetString("dc.AccessibleName");
-			this.dc.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dc.Anchor")));
-			this.dc.AutoScroll = ((bool)(resources.GetObject("dc.AutoScroll")));
-			this.dc.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dc.AutoScrollMargin")));
-			this.dc.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dc.AutoScrollMinSize")));
-			this.dc.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dc.BackgroundImage")));
-			this.dc.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dc.Dock")));
-			this.dc.Enabled = ((bool)(resources.GetObject("dc.Enabled")));
-			this.dc.Font = ((System.Drawing.Font)(resources.GetObject("dc.Font")));
-			this.dc.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dc.ImeMode")));
-			this.dc.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-																																								   new TD.SandDock.DocumentLayoutSystem(725, 373, new TD.SandDock.DockControl[0], null)});
-			this.dc.Location = ((System.Drawing.Point)(resources.GetObject("dc.Location")));
-			this.dc.Name = "dc";
-			this.dc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dc.RightToLeft")));
-			this.dc.Size = ((System.Drawing.Size)(resources.GetObject("dc.Size")));
-			this.dc.TabIndex = ((int)(resources.GetObject("dc.TabIndex")));
-			this.dc.Text = resources.GetString("dc.Text");
-			this.dc.Visible = ((bool)(resources.GetObject("dc.Visible")));
-			this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
-			// 
 			// xpGradientPanel5
 			// 
 			this.xpGradientPanel5.AccessibleDescription = resources.GetString("xpGradientPanel5.AccessibleDescription");
@@ -1932,6 +1934,8 @@ namespace SimPe
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Closing += new System.ComponentModel.CancelEventHandler(this.ClosingForm);
 			this.Load += new System.EventHandler(this.LoadForm);
+			this.mybottomSandDock.ResumeLayout(false);
+			this.dcPlugin.ResumeLayout(false);
 			this.topSandBarDock.ResumeLayout(false);
 			this.dcResource.ResumeLayout(false);
 			this.myrightSandDock.ResumeLayout(false);
@@ -1939,8 +1943,6 @@ namespace SimPe
 			this.xpGradientPanel1.ResumeLayout(false);
 			this.dcAction.ResumeLayout(false);
 			this.xpGradientPanel2.ResumeLayout(false);
-			this.mybottomSandDock.ResumeLayout(false);
-			this.dcPlugin.ResumeLayout(false);
 			this.sb.ResumeLayout(false);
 			this.dockContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -2293,8 +2295,8 @@ namespace SimPe
 			AddDockMenus();
 			UpdateMenuItems();
 			
-			tbAction.Visible = false;
-			tbTools.Visible = false;
+			tbAction.Visible = true;
+			tbTools.Visible = true;
 			tbWindow.Visible = false;
 
 			ArrayList exclude = new ArrayList();

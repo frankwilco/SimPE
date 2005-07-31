@@ -36,7 +36,8 @@ namespace SimPe
 			WebClient cli = new WebClient();
 			Stream fDnld = null, fOut = null;
 
-			WaitingScreen.Wait();
+			if (Helper.StartedGui==Executable.Classic) WaitingScreen.Wait();
+			else Wait.SubStart();
 			int total = 0;
 			try
 			{
@@ -51,13 +52,15 @@ namespace SimPe
 				{
 					total += nBytesRead;
 					WaitingScreen.UpdateMessage(total.ToString()+" of "+nTotal.ToString());
+					Wait.Message = total.ToString()+" of "+nTotal.ToString();
 					fOut.Write(buf, 0, nBytesRead);
 				}
 			}
 			catch{ throw; }
 			finally
 			{
-				WaitingScreen.Stop();
+				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
+				else Wait.SubStop();
 				if (fDnld!=null) fDnld.Close();
 				if (fOut!=null) fOut.Close();				
 			}
@@ -72,11 +75,13 @@ namespace SimPe
 			WebClient Client = new WebClient ();
 			try 
 			{
-				WaitingScreen.Wait();
+				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Wait();
+				else Wait.SubStart();
 				string tempname = System.IO.Path.GetTempFileName()+".msi";
 				DownloadFile("http://sims.ambertation.de/files/mdxredist.msi", tempname);
 
-				WaitingScreen.Stop();
+				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
+				else Wait.SubStop();
 				try 
 				{
 					System.Diagnostics.Process p = System.Diagnostics.Process.Start(tempname);
@@ -96,7 +101,8 @@ namespace SimPe
 			}
 			finally 
 			{
-				WaitingScreen.Stop();
+				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
+				else Wait.SubStop();
 			}
 
 			return false;
@@ -111,11 +117,13 @@ namespace SimPe
 			WebClient Client = new WebClient ();
 			try 
 			{
-				WaitingScreen.Wait();
+				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Wait();
+				else Wait.SubStart();
 				string tempname = System.IO.Path.GetTempFileName()+".exe";
 				DownloadFile("http://sims.ambertation.de/files/SimPE-Templates-Setup.exe", tempname);
 
-				WaitingScreen.Stop();
+				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
+				else Wait.SubStop();
 				try 
 				{
 					System.Diagnostics.Process p = System.Diagnostics.Process.Start(tempname);
@@ -135,7 +143,8 @@ namespace SimPe
 			}
 			finally 
 			{
-				WaitingScreen.Stop();
+				if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
+				else Wait.SubStop();
 			}
 
 			return false;
@@ -195,12 +204,12 @@ namespace SimPe
 			}
 
 			WebClient Client = new WebClient ();
-			bool run = WaitingScreen.Running;
+			
+			Wait.SubStart();
 			try 
 			{
-				
-				if (!run) WaitingScreen.Wait();
-				WaitingScreen.UpdateMessage("Loading ChangeLog");
+								
+				Wait.Message=("Loading ChangeLog");
 				WebClient cli = new WebClient();
 				byte[] data = cli.DownloadData("http://sims.ambertation.de/"+name);
 				MemoryStream ms = new MemoryStream(data);
@@ -217,7 +226,7 @@ namespace SimPe
 			}
 			finally 
 			{
-				if (!run) WaitingScreen.Stop();
+				Wait.SubStop();
 			}
 
 #if DEBUG
@@ -248,12 +257,18 @@ namespace SimPe
 			if (!IsConnectedToInternet()) return UpdateState.Nothing;
 
 			WebClient Client = new WebClient ();
-			bool run = WaitingScreen.Running;
+			bool run = true;
+			if (Helper.StartedGui==Executable.Classic) 
+			{
+				run = WaitingScreen.Running;
+				WaitingScreen.Wait();
+			}
+			else Wait.SubStart();
 			try 
 			{
 				
-				if (!run) WaitingScreen.Wait();
 				WaitingScreen.UpdateMessage("Check for new Updates");
+				Wait.Message = "Check for new Updates";
 				WebClient cli = new WebClient();
 				byte[] data = cli.DownloadData("http://sims.ambertation.de/downloadnfo.txt?&browser=simpe");
 				MemoryStream ms = new MemoryStream(data);
@@ -262,6 +277,7 @@ namespace SimPe
 
 				//extract the Version String
 				WaitingScreen.UpdateMessage("read latest Version");
+				Wait.Message = "Reciving latest Version";
 				UpdateState res = UpdateState.Nothing;
 				try 
 				{
@@ -281,7 +297,11 @@ namespace SimPe
 					Helper.ExceptionMessage("", ex);
 				}
 
-				if (!run) WaitingScreen.Stop();
+				if (Helper.StartedGui==Executable.Classic) 
+				{
+					if (!run) WaitingScreen.Stop();
+				}
+				else Wait.SubStop();			 
 				
 				return res;
 
@@ -292,7 +312,11 @@ namespace SimPe
 			}
 			finally 
 			{
-				if (!run) WaitingScreen.Stop();
+				if (Helper.StartedGui==Executable.Classic) 
+				{
+					if (!run) WaitingScreen.Stop();
+				}
+				else Wait.SubStop();
 			}
 
 			return UpdateState.Nothing;

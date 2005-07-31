@@ -93,6 +93,7 @@ namespace SimPe
 		{
 			this.tool = tool;
 			this.Text = text;
+			this.ToolTipText = text;
 			Activate += new EventHandler(LinkClicked);
 			Activate += new EventHandler(ClickItem);
 			chghandler = chghnd;
@@ -258,7 +259,8 @@ namespace SimPe
 			if (item.ToolExt!=null) 
 			{
 				item.Shortcut = item.ToolExt.Shortcut;
-				item.Image = item.ToolExt.Icon;
+				item.Image = item.ToolExt.Icon;			
+				//item.ToolTipText = item.ToolExt.ToString();
 			}
 
 			parent.Add(item);			
@@ -300,6 +302,7 @@ namespace SimPe
 				bi.Enabled = item.Enabled;
 				bi.BuddyMenu = item;
 				bi.BeginGroup = (i==0 && tb.Items.Count>0) || item.BeginGroup;
+				bi.ToolTipText = item.Text;
 
 				tb.Items.Add(bi);
 			}
