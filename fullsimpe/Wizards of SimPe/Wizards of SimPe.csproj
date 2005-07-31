@@ -124,6 +124,11 @@
                     Project = "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "EnumComboBox"
+                    Project = "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
@@ -169,6 +174,11 @@
                 />
                 <File
                     RelPath = "Stack.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "WaitBar.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

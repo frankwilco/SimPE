@@ -341,7 +341,7 @@ namespace SimPe.Plugin
 				ol.Finished += new EventHandler(ol_Finished);
 				ol.LoadedItem += new SimPe.Plugin.Tool.Dockable.ObjectLoader.LoadItemHandler(ol_LoadedItem);
 				ol.LoadData();
-				WaitingScreen.Stop();
+				//if (Helper.StartedGui==Executable.Classic) WaitingScreen.Stop();
 				return;
 
 				/*FileTable.FileIndex.Load();

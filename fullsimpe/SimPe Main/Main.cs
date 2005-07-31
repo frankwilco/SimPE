@@ -2028,8 +2028,8 @@ namespace SimPe
 		/// <param name="sender"></param>
 		void AfterFileLoad(LoadedPackage sender)
 		{
-			ShowNewFile();
-			package.UpdateProviders();			
+			sender.UpdateProviders();	
+			ShowNewFile();		
 		}	
 	
 		/// <summary>

@@ -326,6 +326,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			Thread te = new Thread(new ThreadStart(erz.start));
 			Thread tv1 = new Thread(new ThreadStart(ver1.start));
 			//Thread tv2 = new Thread(new ThreadStart(ver2.start));
+			te.Name = "Object Loader: Producer";
+			tv1.Name = "Object Loader: Consumer";
 			te.Start();
 			tv1.Start();	
 		}

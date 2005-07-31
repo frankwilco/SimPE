@@ -55,10 +55,10 @@ namespace SimPe.Plugin.Tool.Dockable
 		private TD.SandBar.ButtonItem biFinish;
 		private TD.SandBar.ButtonItem biAbort;
 		private TD.SandBar.ButtonItem biCatalog;
-		private SimPe.Plugin.Tool.Dockable.ObjectPreview op1;
 		private System.Windows.Forms.Label label4;
-		private SimPe.Plugin.Tool.Dockable.ObjectPreview op2;
 		private System.Windows.Forms.ImageList ilist;
+		private SimPe.Plugin.Tool.Dockable.ObjectPreview op1;
+		private SimPe.Plugin.Tool.Dockable.ObjectPreview op2;
 		private System.ComponentModel.IContainer components;
 
 		public dcObjectWorkshop()
@@ -124,8 +124,10 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.splitter1 = new System.Windows.Forms.Splitter();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.xpTaskBoxSimple2 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+			this.op1 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
 			this.wizardStepPanel3 = new SimPe.Wizards.WizardStepPanel();
 			this.xpTaskBoxSimple1 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+			this.op2 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
 			this.gbRecolor = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.cbColorExt = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.gbClone = new Ambertation.Windows.Forms.XPTaskBoxSimple();
@@ -159,7 +161,9 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.wizardStepPanel1.SuspendLayout();
 			this.wizardStepPanel2.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.xpTaskBoxSimple2.SuspendLayout();
 			this.wizardStepPanel3.SuspendLayout();
+			this.xpTaskBoxSimple1.SuspendLayout();
 			this.gbRecolor.SuspendLayout();
 			this.gbClone.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -184,7 +188,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.wizard1.Controls.Add(this.wizardStepPanel2);
 			this.wizard1.Controls.Add(this.wizardStepPanel3);
 			this.wizard1.Controls.Add(this.wizardStepPanel4);
-			this.wizard1.CurrentStepNumber = 0;
+			this.wizard1.CurrentStepNumber = 1;
 			this.wizard1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.wizard1.DockPadding.All = 8;
 			this.wizard1.FinishEnabled = false;
@@ -330,6 +334,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpTaskBoxSimple2.BackColor = System.Drawing.Color.Transparent;
 			this.xpTaskBoxSimple2.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
 			this.xpTaskBoxSimple2.BorderColor = System.Drawing.SystemColors.Window;
+			this.xpTaskBoxSimple2.Controls.Add(this.op1);
 			this.xpTaskBoxSimple2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xpTaskBoxSimple2.DockPadding.Bottom = 4;
 			this.xpTaskBoxSimple2.DockPadding.Left = 4;
@@ -339,12 +344,28 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpTaskBoxSimple2.HeaderText = "Selected Object";
 			this.xpTaskBoxSimple2.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.xpTaskBoxSimple2.Icon = ((System.Drawing.Image)(resources.GetObject("xpTaskBoxSimple2.Icon")));
+			this.xpTaskBoxSimple2.IconLocation = new System.Drawing.Point(4, 12);
+			this.xpTaskBoxSimple2.IconSize = new System.Drawing.Size(32, 32);
 			this.xpTaskBoxSimple2.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
 			this.xpTaskBoxSimple2.Location = new System.Drawing.Point(0, 0);
 			this.xpTaskBoxSimple2.Name = "xpTaskBoxSimple2";
 			this.xpTaskBoxSimple2.RightHeaderColor = System.Drawing.SystemColors.Highlight;
 			this.xpTaskBoxSimple2.Size = new System.Drawing.Size(320, 136);
 			this.xpTaskBoxSimple2.TabIndex = 4;
+			// 
+			// op1
+			// 
+			this.op1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.op1.BackColor = System.Drawing.Color.Transparent;
+			this.op1.Font = new System.Drawing.Font("Tahoma", 8.25F);
+			this.op1.LoadCustomImage = true;
+			this.op1.Location = new System.Drawing.Point(8, 40);
+			this.op1.Name = "op1";
+			this.op1.SelectedObject = null;
+			this.op1.Size = new System.Drawing.Size(304, 88);
+			this.op1.TabIndex = 1;
 			// 
 			// wizardStepPanel3
 			// 
@@ -368,6 +389,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpTaskBoxSimple1.BackColor = System.Drawing.Color.Transparent;
 			this.xpTaskBoxSimple1.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
 			this.xpTaskBoxSimple1.BorderColor = System.Drawing.SystemColors.Window;
+			this.xpTaskBoxSimple1.Controls.Add(this.op2);
 			this.xpTaskBoxSimple1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xpTaskBoxSimple1.DockPadding.Bottom = 4;
 			this.xpTaskBoxSimple1.DockPadding.Left = 4;
@@ -377,12 +399,28 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpTaskBoxSimple1.HeaderText = "Selected Object";
 			this.xpTaskBoxSimple1.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.xpTaskBoxSimple1.Icon = ((System.Drawing.Image)(resources.GetObject("xpTaskBoxSimple1.Icon")));
+			this.xpTaskBoxSimple1.IconLocation = new System.Drawing.Point(4, 12);
+			this.xpTaskBoxSimple1.IconSize = new System.Drawing.Size(32, 32);
 			this.xpTaskBoxSimple1.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
 			this.xpTaskBoxSimple1.Location = new System.Drawing.Point(0, 372);
 			this.xpTaskBoxSimple1.Name = "xpTaskBoxSimple1";
 			this.xpTaskBoxSimple1.RightHeaderColor = System.Drawing.SystemColors.Highlight;
 			this.xpTaskBoxSimple1.Size = new System.Drawing.Size(320, 129);
 			this.xpTaskBoxSimple1.TabIndex = 3;
+			// 
+			// op2
+			// 
+			this.op2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.op2.BackColor = System.Drawing.Color.Transparent;
+			this.op2.Font = new System.Drawing.Font("Tahoma", 8.25F);
+			this.op2.LoadCustomImage = true;
+			this.op2.Location = new System.Drawing.Point(8, 40);
+			this.op2.Name = "op2";
+			this.op2.SelectedObject = null;
+			this.op2.Size = new System.Drawing.Size(304, 80);
+			this.op2.TabIndex = 1;
 			// 
 			// gbRecolor
 			// 
@@ -399,6 +437,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.gbRecolor.HeaderText = "Recolor";
 			this.gbRecolor.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.gbRecolor.Icon = ((System.Drawing.Image)(resources.GetObject("gbRecolor.Icon")));
+			this.gbRecolor.IconLocation = new System.Drawing.Point(4, 12);
+			this.gbRecolor.IconSize = new System.Drawing.Size(32, 32);
 			this.gbRecolor.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
 			this.gbRecolor.Location = new System.Drawing.Point(0, 296);
 			this.gbRecolor.Name = "gbRecolor";
@@ -440,6 +480,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.gbClone.HeaderText = "Clone";
 			this.gbClone.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.gbClone.Icon = ((System.Drawing.Image)(resources.GetObject("gbClone.Icon")));
+			this.gbClone.IconLocation = new System.Drawing.Point(4, 12);
+			this.gbClone.IconSize = new System.Drawing.Size(32, 32);
 			this.gbClone.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
 			this.gbClone.Location = new System.Drawing.Point(0, 80);
 			this.gbClone.Name = "gbClone";
@@ -728,7 +770,9 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.wizardStepPanel1.ResumeLayout(false);
 			this.wizardStepPanel2.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
+			this.xpTaskBoxSimple2.ResumeLayout(false);
 			this.wizardStepPanel3.ResumeLayout(false);
+			this.xpTaskBoxSimple1.ResumeLayout(false);
 			this.gbRecolor.ResumeLayout(false);
 			this.gbClone.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);

@@ -34,6 +34,7 @@ namespace SimPe.PackedFiles.Wrapper
 		public ExtSDesc() : base()
 		{
 			crmap = new Hashtable();
+			locked = false;
 		}
 
 		
@@ -74,7 +75,7 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 		
-		/*public override string CharacterFileName
+		public override string CharacterFileName
 		{
 			get
 			{
@@ -89,7 +90,7 @@ namespace SimPe.PackedFiles.Wrapper
 				}
 				return base.CharacterFileName;
 			}
-		}*/
+		}
 
 
 		bool chgname;
@@ -122,8 +123,10 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 
+		bool locked;
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{
+			if (locked) return;
 			base.Unserialize(reader);
 			chgname = false;
 			crmap.Clear();
@@ -132,6 +135,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		protected override void Serialize(System.IO.BinaryWriter writer)
 		{
+			if (locked) return;
 			base.Serialize (writer);
 			if (chgname) ChangeName();
 			SaveRelations();
@@ -198,14 +202,15 @@ namespace SimPe.PackedFiles.Wrapper
 		Hashtable crmap;
 		void SaveRelations()
 		{
+			locked = true;
 			foreach (ExtSrel srel in crmap.Values)
 			{
 				if (srel.Package!=null) srel.SynchronizeUserData();
 				else 
 				{
 					srel.Package = this.Package;
-					this.Package.Add(srel.FileDescriptor);
 					srel.SynchronizeUserData();					
+					this.Package.Add(srel.FileDescriptor, true);					
 				}
 
 				if (!this.Equals(srel.SourceSim)) 
@@ -217,6 +222,7 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 
 			crmap.Clear();
+			locked = false;
 		}
 
 		internal ExtSrel GetCachedRelation(uint inst)
@@ -290,5 +296,22 @@ namespace SimPe.PackedFiles.Wrapper
 			return srel;
 		}
 		#endregion
+
+		public override int GetHashCode()
+		{
+			return (int)this.SimId;
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (obj==null) return false;
+			if (obj is SDesc) 
+			{
+				SDesc s = (SDesc)obj;
+				return (s.SimId==SimId);
+			}
+			return base.Equals (obj);
+		}
+
 	}
 }

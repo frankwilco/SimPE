@@ -115,6 +115,7 @@ namespace SimPe
 		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.GroupBox groupBox7;
 		private System.Windows.Forms.CheckBox cbDeep;
+		private System.Windows.Forms.CheckBox cbAsync;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -191,6 +192,7 @@ namespace SimPe
 			this.tbthumb = new System.Windows.Forms.TextBox();
 			this.button6 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.cbAsync = new System.Windows.Forms.CheckBox();
 			this.cbpkgmaint = new System.Windows.Forms.CheckBox();
 			this.cbupdate = new System.Windows.Forms.CheckBox();
 			this.cbhidden = new System.Windows.Forms.CheckBox();
@@ -1054,6 +1056,7 @@ namespace SimPe
 			this.groupBox2.AccessibleName = resources.GetString("groupBox2.AccessibleName");
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox2.Anchor")));
 			this.groupBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox2.BackgroundImage")));
+			this.groupBox2.Controls.Add(this.cbAsync);
 			this.groupBox2.Controls.Add(this.cbpkgmaint);
 			this.groupBox2.Controls.Add(this.cbupdate);
 			this.groupBox2.Controls.Add(this.cbhidden);
@@ -1077,6 +1080,32 @@ namespace SimPe
 			this.groupBox2.Text = resources.GetString("groupBox2.Text");
 			this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
 			this.groupBox2.Visible = ((bool)(resources.GetObject("groupBox2.Visible")));
+			// 
+			// cbAsync
+			// 
+			this.cbAsync.AccessibleDescription = resources.GetString("cbAsync.AccessibleDescription");
+			this.cbAsync.AccessibleName = resources.GetString("cbAsync.AccessibleName");
+			this.cbAsync.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbAsync.Anchor")));
+			this.cbAsync.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbAsync.Appearance")));
+			this.cbAsync.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbAsync.BackgroundImage")));
+			this.cbAsync.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbAsync.CheckAlign")));
+			this.cbAsync.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbAsync.Dock")));
+			this.cbAsync.Enabled = ((bool)(resources.GetObject("cbAsync.Enabled")));
+			this.cbAsync.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbAsync.FlatStyle")));
+			this.cbAsync.Font = ((System.Drawing.Font)(resources.GetObject("cbAsync.Font")));
+			this.cbAsync.Image = ((System.Drawing.Image)(resources.GetObject("cbAsync.Image")));
+			this.cbAsync.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbAsync.ImageAlign")));
+			this.cbAsync.ImageIndex = ((int)(resources.GetObject("cbAsync.ImageIndex")));
+			this.cbAsync.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbAsync.ImeMode")));
+			this.cbAsync.Location = ((System.Drawing.Point)(resources.GetObject("cbAsync.Location")));
+			this.cbAsync.Name = "cbAsync";
+			this.cbAsync.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbAsync.RightToLeft")));
+			this.cbAsync.Size = ((System.Drawing.Size)(resources.GetObject("cbAsync.Size")));
+			this.cbAsync.TabIndex = ((int)(resources.GetObject("cbAsync.TabIndex")));
+			this.cbAsync.Text = resources.GetString("cbAsync.Text");
+			this.cbAsync.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbAsync.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbAsync, resources.GetString("cbAsync.ToolTip"));
+			this.cbAsync.Visible = ((bool)(resources.GetObject("cbAsync.Visible")));
 			// 
 			// cbpkgmaint
 			// 
@@ -2205,12 +2234,12 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.hcSceneGraph);
 			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
 			this.Controls.Add(this.hcFileTable);
 			this.Controls.Add(this.hcFolders);
+			this.Controls.Add(this.hcSceneGraph);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -2271,6 +2300,7 @@ namespace SimPe
 			cbSimple.Checked = Helper.WindowsRegistry.SimpleResourceSelect;
 			cbFirefox.Checked = Helper.WindowsRegistry.FirefoxTabbing;
 			cbDeep.Checked = Helper.WindowsRegistry.DeepSimScan;
+			cbAsync.Checked = Helper.WindowsRegistry.AsynchronLoad;
 
 			this.tbep1.ReadOnly = (Helper.WindowsRegistry.EPInstalled<1);
 			this.button5.Enabled = (Helper.WindowsRegistry.EPInstalled>=1);
@@ -2326,6 +2356,7 @@ namespace SimPe
 			Helper.WindowsRegistry.SimpleResourceSelect = cbSimple.Checked;
 			Helper.WindowsRegistry.FirefoxTabbing = cbFirefox.Checked;
 			Helper.WindowsRegistry.DeepSimScan = cbDeep.Checked;
+			Helper.WindowsRegistry.AsynchronLoad = cbAsync.Checked;
 			
 			StoreFoldersXml();
 			try 

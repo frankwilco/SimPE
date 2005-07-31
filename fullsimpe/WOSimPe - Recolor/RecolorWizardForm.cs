@@ -709,7 +709,9 @@ namespace SimPe.Wizards
 				return;
 			}
 
-			WaitingScreen.Wait();			
+			
+			//WaitingScreen.Wait();	
+			//WaitingScreen.UpdateMessage("Loading FileTable");
 			//initialize the FileTable if needed
 			if (SimPe.FileTable.FileIndex==null) SimPe.FileTable.FileIndex = new SimPe.Plugin.FileIndex();
 			SimPe.FileTable.FileIndex.Load();
@@ -717,7 +719,7 @@ namespace SimPe.Wizards
 			iObjects.Images.Clear();
 			objects = SimPe.Packages.File.LoadFromFile(sourcefile);
 
-			ArrayList groups = new ArrayList();
+			/*ArrayList groups = new ArrayList();
 			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] objditems = FileTable.FileIndex.FindFile(Data.MetaData.OBJD_FILE, true);
 
 			string max = " / "+objditems.Length.ToString();
@@ -791,7 +793,13 @@ namespace SimPe.Wizards
 			} //foreach
 
 			loaded = true;
-			WaitingScreen.Stop();
+			WaitingScreen.Stop();*/
+
+			
+			SimPe.Plugin.Tool.Dockable.ObjectLoader ol = new SimPe.Plugin.Tool.Dockable.ObjectLoader(null);
+			ol.Finished += new EventHandler(ol_Finished);
+			ol.LoadedItem += new SimPe.Plugin.Tool.Dockable.ObjectLoader.LoadItemHandler(ol_LoadedItem);
+			ol.LoadData();			
 		}
 
 		protected Image GetImageFile(SimPe.Plugin.Rcol txtr)
@@ -1072,6 +1080,53 @@ namespace SimPe.Wizards
 		private void SubsetSelectedIndexChanged(object sender, EventArgs e)
 		{
 			step1b.Update();
+		}
+
+		delegate void InvokeTargetLoad(SimPe.Cache.ObjectCacheItem oci, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, Data.Alias a);
+		delegate void InvokeTargetFinish(object sender, EventArgs e);
+		
+		private void ol_Finished(object sender, EventArgs e)
+		{
+			//this.Invoke(new InvokeTargetFinish(invoke_Finished), new object[] {sender, e});	
+			invoke_Finished(sender, e);
+		}
+
+		private void invoke_Finished(object sender, EventArgs e)
+		{
+			loaded = true;
+			//if (Helper.StartedGui==Executable.Classic)  WaitingScreen.Stop(this);			
+		}
+
+		private void ol_LoadedItem(SimPe.Cache.ObjectCacheItem oci, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, Data.Alias a)
+		{
+			//this.Invoke(new InvokeTargetLoad(invoke_LoadedItem), new object[] {oci, fii, a});
+			invoke_LoadedItem(oci, fii, a);
+		}
+
+		private void invoke_LoadedItem(SimPe.Cache.ObjectCacheItem oci, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, Data.Alias a)
+		{
+			//WaitingScreen.UpdateMessage(a.Name);
+			SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+			objd.ProcessData(fii);
+			Image img = oci.Thumbnail;
+			if (img!=null) 
+			{
+				img = Ambertation.Drawing.GraphicRoutines.KnockoutImage(img, new Point(0,0), Color.Magenta);
+				img = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(img, this.iObjects.ImageSize, 8, Color.FromArgb(90, Color.Black), Color.FromArgb(10, 10, 40), Color.White, Color.FromArgb(80, Color.White), true, 3, 3);
+				
+			}
+			ListViewItem item = this.CreateItem(a.Tag[2].ToString(), img, objd, a.Name);
+
+			bool added = false;
+			if (objd.FunctionSort.InAppliances) { lvobjs[(int)Data.ObjFunctionSortBits.Appliances].Items.Add((ListViewItem)item.Clone()); added=true;}
+			if (objd.FunctionSort.InDecorative) { lvobjs[(int)Data.ObjFunctionSortBits.Decorative].Items.Add((ListViewItem)item.Clone()); added=true;}
+			if (objd.FunctionSort.InElectronics) { lvobjs[(int)Data.ObjFunctionSortBits.Electronics].Items.Add((ListViewItem)item.Clone()); added=true;}
+			if (objd.FunctionSort.InGeneral) { lvobjs[(int)Data.ObjFunctionSortBits.General].Items.Add((ListViewItem)item.Clone()); added=true;}
+			if (objd.FunctionSort.InLighting) { lvobjs[(int)Data.ObjFunctionSortBits.Lighting].Items.Add((ListViewItem)item.Clone()); added=true;}
+			if (objd.FunctionSort.InPlumbing) { lvobjs[(int)Data.ObjFunctionSortBits.Plumbing].Items.Add((ListViewItem)item.Clone()); added=true;}
+			if (objd.FunctionSort.InSeating) { lvobjs[(int)Data.ObjFunctionSortBits.Seating].Items.Add((ListViewItem)item.Clone()); added=true;}
+			if (objd.FunctionSort.InSurfaces) { lvobjs[(int)Data.ObjFunctionSortBits.Surfaces].Items.Add((ListViewItem)item.Clone()); added=true;}
+			if (!added) { lvobjs[8].Items.Add(item); }
 		}
 	}
 }

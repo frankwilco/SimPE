@@ -190,11 +190,11 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.pb);
 			this.Controls.Add(this.lbAbout);
 			this.Controls.Add(this.lbName);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.pb);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
@@ -252,7 +252,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			{
 				try 
 				{
-					pb.Image = Ambertation.Drawing.GraphicRoutines.ScaleImage(Image.FromFile(tname), pb.Width, pb.Height, true);
+					pb.Image = ObjectPreview.GenerateImage(pb.Size, Image.FromFile(tname), false);
 				} 
 				catch {}
 			}

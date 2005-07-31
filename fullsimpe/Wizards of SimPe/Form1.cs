@@ -35,16 +35,20 @@ namespace SimPe.Wizards
 		private System.Windows.Forms.PictureBox pbbottom;
 		private System.Windows.Forms.Panel pndrop;
 		private System.Windows.Forms.PictureBox pbstretch;
-		private System.Windows.Forms.Label lbmsg;
 		private System.Windows.Forms.Label lbstep;
 		private System.Windows.Forms.LinkLabel llnext;
 		private System.Windows.Forms.LinkLabel llback;
 		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.LinkLabel llopt;
+		internal System.Windows.Forms.Panel pnP;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
-		private System.Windows.Forms.LinkLabel llopt;
+		private System.Windows.Forms.Label lbmsg;
+		internal System.Windows.Forms.Label lbPmsg;
+		internal Ambertation.Windows.Forms.ExtProgressBar pbP;
+		
 
 		FormStep1 step1;
 		public Form1()
@@ -65,6 +69,8 @@ namespace SimPe.Wizards
 				MessageBox.Show("Your Path settings are invalid. Wizards of SimPE will direct you to the Options Page.\n\nYou can just click on the 'Suggest' Buttons there, to get the default Paths. If the 'Suggest' Button disapears, your Path is set correct.", "Warning");
 				this.ShowOptions(null, null);
 			}
+
+			Wait.Bar = new SimPe.Wizards.WaitBarControl(this);			
 		}
 
 		/// <summary>
@@ -98,9 +104,13 @@ namespace SimPe.Wizards
 			this.llback = new System.Windows.Forms.LinkLabel();
 			this.llnext = new System.Windows.Forms.LinkLabel();
 			this.pbstretch = new System.Windows.Forms.PictureBox();
-			this.lbmsg = new System.Windows.Forms.Label();
 			this.lbstep = new System.Windows.Forms.Label();
+			this.pnP = new System.Windows.Forms.Panel();
+			this.pbP = new Ambertation.Windows.Forms.ExtProgressBar();
+			this.lbPmsg = new System.Windows.Forms.Label();
+			this.lbmsg = new System.Windows.Forms.Label();
 			this.pndrop.SuspendLayout();
+			this.pnP.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pbtop
@@ -205,18 +215,6 @@ namespace SimPe.Wizards
 			this.pbstretch.TabIndex = 5;
 			this.pbstretch.TabStop = false;
 			// 
-			// lbmsg
-			// 
-			this.lbmsg.BackColor = System.Drawing.Color.Transparent;
-			this.lbmsg.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lbmsg.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(64)), ((System.Byte)(64)), ((System.Byte)(64)));
-			this.lbmsg.Location = new System.Drawing.Point(248, 8);
-			this.lbmsg.Name = "lbmsg";
-			this.lbmsg.Size = new System.Drawing.Size(264, 80);
-			this.lbmsg.TabIndex = 11;
-			this.lbmsg.Text = "Description";
-			this.lbmsg.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-			// 
 			// lbstep
 			// 
 			this.lbstep.AutoSize = true;
@@ -230,17 +228,75 @@ namespace SimPe.Wizards
 			this.lbstep.Text = "0";
 			this.lbstep.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
+			// pnP
+			// 
+			this.pnP.BackColor = System.Drawing.Color.White;
+			this.pnP.Controls.Add(this.pbP);
+			this.pnP.Controls.Add(this.lbPmsg);
+			this.pnP.Location = new System.Drawing.Point(24, 464);
+			this.pnP.Name = "pnP";
+			this.pnP.Size = new System.Drawing.Size(384, 24);
+			this.pnP.TabIndex = 5;
+			this.pnP.Visible = false;
+			// 
+			// pbP
+			// 
+			this.pbP.BackColor = System.Drawing.Color.Transparent;
+			this.pbP.BorderColor = System.Drawing.Color.FromArgb(((System.Byte)(100)), ((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(0)));
+			this.pbP.Gradient = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			this.pbP.GradientEndColor = System.Drawing.Color.White;
+			this.pbP.GradientStartColor = System.Drawing.Color.White;
+			this.pbP.Location = new System.Drawing.Point(0, 4);
+			this.pbP.Maximum = 100;
+			this.pbP.Minimum = 0;
+			this.pbP.Name = "pbP";
+			this.pbP.ProgressBackColor = System.Drawing.SystemColors.Window;
+			this.pbP.Quality = true;
+			this.pbP.SelectedColor = System.Drawing.Color.Orange;
+			this.pbP.Size = new System.Drawing.Size(128, 16);
+			this.pbP.Style = Ambertation.Windows.Forms.ProgresBarStyle.Flat;
+			this.pbP.TabIndex = 16;
+			this.pbP.TokenCount = 10;
+			this.pbP.UnselectedColor = System.Drawing.Color.Gray;
+			this.pbP.Value = 50;
+			// 
+			// lbPmsg
+			// 
+			this.lbPmsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lbPmsg.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lbPmsg.ForeColor = System.Drawing.Color.Silver;
+			this.lbPmsg.Location = new System.Drawing.Point(128, 0);
+			this.lbPmsg.Name = "lbPmsg";
+			this.lbPmsg.Size = new System.Drawing.Size(256, 24);
+			this.lbPmsg.TabIndex = 15;
+			this.lbPmsg.Text = "Please Wait";
+			this.lbPmsg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// lbmsg
+			// 
+			this.lbmsg.BackColor = System.Drawing.Color.Transparent;
+			this.lbmsg.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lbmsg.ForeColor = System.Drawing.Color.DimGray;
+			this.lbmsg.Location = new System.Drawing.Point(240, 16);
+			this.lbmsg.Name = "lbmsg";
+			this.lbmsg.Size = new System.Drawing.Size(280, 72);
+			this.lbmsg.TabIndex = 6;
+			this.lbmsg.Text = "Description";
+			this.lbmsg.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
 			// Form1
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(102)), ((System.Byte)(102)), ((System.Byte)(153)));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.ClientSize = new System.Drawing.Size(612, 504);
+			this.Controls.Add(this.pnP);
+			this.Controls.Add(this.pndrop);
+			this.Controls.Add(this.pbbottom);
 			this.Controls.Add(this.lbmsg);
 			this.Controls.Add(this.lbstep);
-			this.Controls.Add(this.pndrop);
 			this.Controls.Add(this.pbtop);
-			this.Controls.Add(this.pbbottom);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -251,6 +307,7 @@ namespace SimPe.Wizards
 			this.Text = "Wizards of SimPE";
 			this.Closing += new System.ComponentModel.CancelEventHandler(this.Close);
 			this.pndrop.ResumeLayout(false);
+			this.pnP.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

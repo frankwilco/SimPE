@@ -285,8 +285,8 @@ namespace Ambertation.Windows.Forms
 			this.pb.BackColor = System.Drawing.Color.Transparent;
 			this.pb.BorderColor = System.Drawing.Color.FromArgb(((System.Byte)(100)), ((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(0)));
 			this.pb.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pb.Gradient = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-			this.pb.GradientEndColor = System.Drawing.Color.Black;
+			this.pb.Gradient = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			this.pb.GradientEndColor = System.Drawing.Color.White;
 			this.pb.GradientStartColor = System.Drawing.Color.White;
 			this.pb.Location = new System.Drawing.Point(8, 0);
 			this.pb.Maximum = 100;

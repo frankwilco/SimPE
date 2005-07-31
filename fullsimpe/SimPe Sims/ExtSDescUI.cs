@@ -196,8 +196,11 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.ComponentModel.IContainer components;
 
 		
+		System.Resources.ResourceManager strresources;
 		public ExtSDesc()
 		{
+			
+			strresources = new System.Resources.ResourceManager(typeof(ExtSDesc));
 			Text = SimPe.Localization.GetString("Sim Description Editor");
 			
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
@@ -4547,7 +4550,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.Controls.Add(this.toolBar1);
-			this.Controls.Add(this.pnMisc);
 			this.Controls.Add(this.pnChar);
 			this.Controls.Add(this.pnSkill);
 			this.Controls.Add(this.pnRel);
@@ -4555,6 +4557,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Controls.Add(this.pnId);
 			this.Controls.Add(this.pnCareer);
 			this.Controls.Add(this.pnEP1);
+			this.Controls.Add(this.pnMisc);
 			this.DockPadding.Top = 24;
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
@@ -4564,6 +4567,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
 			this.Commited += new System.EventHandler(this.ExtSDesc_Commited);
+			this.Controls.SetChildIndex(this.pnMisc, 0);
 			this.Controls.SetChildIndex(this.pnEP1, 0);
 			this.Controls.SetChildIndex(this.pnCareer, 0);
 			this.Controls.SetChildIndex(this.pnId, 0);
@@ -4571,7 +4575,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Controls.SetChildIndex(this.pnRel, 0);
 			this.Controls.SetChildIndex(this.pnSkill, 0);
 			this.Controls.SetChildIndex(this.pnChar, 0);
-			this.Controls.SetChildIndex(this.pnMisc, 0);
 			this.Controls.SetChildIndex(this.toolBar1, 0);
 			this.pnId.ResumeLayout(false);
 			this.pnSkill.ResumeLayout(false);
@@ -4722,9 +4725,14 @@ namespace SimPe.PackedFiles.UserInterface
 			{
 				base.RefreshGUI ();
 		
-				miOpenChar.Enabled = System.IO.File.Exists(Sdesc.CharacterFileName);
+				miOpenChar.Enabled = System.IO.File.Exists(Sdesc.CharacterFileName) && !Sdesc.IsNPC;
 				miOpenCloth.Enabled = miOpenChar.Enabled;
 				miRelink.Enabled = miOpenChar.Enabled && Helper.WindowsRegistry.HiddenMode;
+
+				if (System.IO.File.Exists(Sdesc.CharacterFileName))
+					miOpenChar.Text = strresources.GetString("miOpenChar.Text")+" ("+System.IO.Path.GetFileNameWithoutExtension(Sdesc.CharacterFileName)+")";
+				else
+					miOpenChar.Text = strresources.GetString("miOpenChar.Text");
 
 				this.tbsimdescname.ReadOnly = Sdesc.IsNPC;
 				this.tbsimdescfamname.ReadOnly = this.tbsimdescname.ReadOnly;
@@ -5392,6 +5400,7 @@ namespace SimPe.PackedFiles.UserInterface
 		#endregion
 	
 
+		#region More Menu
 		private void Activate_miMore(object sender, System.EventArgs e)
 		{
 			SdscExtendedForm.Execute(this.Sdesc);
@@ -5489,6 +5498,7 @@ namespace SimPe.PackedFiles.UserInterface
 				Helper.ExceptionMessage(ex);
 			}
 		}
+		#endregion
 
 		#region Relations
 		bool loadedRel;

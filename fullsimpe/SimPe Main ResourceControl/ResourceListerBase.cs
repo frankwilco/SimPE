@@ -136,12 +136,14 @@ namespace SimPe
 		public static void Start(ResourceListerBase rlb)
 		{
 			Stop();
-			
-			last = rlb;							
-			lastthread = new Thread(new ThreadStart(last.Start));	
-			lastthread.Name = "Resource Loader "+rlb.GetType().Name;
-			last.Running.Set();
-			lastthread.Start();
+			if (Helper.WindowsRegistry.AsynchronLoad) 
+			{			
+				last = rlb;							
+				lastthread = new Thread(new ThreadStart(last.Start));	
+				lastthread.Name = "Resource Loader "+rlb.GetType().Name;
+				last.Running.Set();
+				lastthread.Start();
+			} else rlb.Start();
 		}
 
 		public static void Stop()
