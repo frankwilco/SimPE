@@ -136,7 +136,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="wrapper"></param>
 		/// <returns>true, if the Wrapper was unloaded or allows Multiple Instances</returns>
-		bool UnloadSingleInstanceWrappers(SimPe.Interfaces.Plugin.IFileWrapper wrapper)
+		bool UnloadSingleInstanceWrappers(SimPe.Interfaces.Plugin.IFileWrapper wrapper, ref bool overload)
 		{
 			if (wrapper==null) return false;
 			
@@ -148,6 +148,7 @@ namespace SimPe
 					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem oldfii = (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)single[id];
 					if (!this.CloseDocument(oldfii)) return false;
 					single.Remove(id);
+					overload = false;
 				}
 			}
 
@@ -249,7 +250,7 @@ namespace SimPe
 			SimPe.Interfaces.Plugin.IFileWrapper wrapper = LoadWrapper(fii);
 
 			//unload if only one instance can be loaded
-			if (!UnloadSingleInstanceWrappers(wrapper)) return false;
+			if (!UnloadSingleInstanceWrappers(wrapper, ref overload)) return false;
 
 			//Present the passed Wrapper
 			return Present(fii, wrapper, overload);

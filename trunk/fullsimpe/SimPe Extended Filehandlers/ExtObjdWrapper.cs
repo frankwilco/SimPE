@@ -348,7 +348,7 @@ namespace SimPe.PackedFiles.Wrapper
 		public Interfaces.Providers.IOpcodeProvider Opcodes
 		{
 			get { return opcodes; }
-		}
+		}		
 
 		public ExtObjd(Interfaces.Providers.IOpcodeProvider opcodes) : base()
 		{			

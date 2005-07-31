@@ -390,9 +390,10 @@ namespace SimPe.Plugin
 		/// </remarks>
 		public void ForceReload()
 		{
-			this.WaitForEnd();
+			//this.WaitForEnd();
 			loaded = true;
-			this.ExecuteThread(System.Threading.ThreadPriority.AboveNormal, "FileTable Reload", true, true, 100);
+			//this.ExecuteThread(System.Threading.ThreadPriority.Normal, "FileTable Reload", true, true, 1000);
+			StartThread();
 		}
 
 		/// <summary>

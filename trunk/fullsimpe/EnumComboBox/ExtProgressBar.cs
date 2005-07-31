@@ -68,12 +68,12 @@ namespace Ambertation.Windows.Forms
 
 			style = ProgresBarStyle.Flat;
 			startgradcol = Color.White;
-			endgradcol = Color.Black;
+			endgradcol = Color.White;
 			bgcol = SystemColors.Window;
 			bcol = Color.FromArgb(100, Color.Black);
 			col = Color.Black;
 			selcol = Color.YellowGreen;
-			this.mGradient = LinearGradientMode.ForwardDiagonal;
+			this.mGradient = LinearGradientMode.Vertical;
 
 
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
@@ -112,11 +112,13 @@ namespace Ambertation.Windows.Forms
 
 					if (style==ProgresBarStyle.Simple) 
 					{
-						this.mGradient = LinearGradientMode.Vertical;
+						endgradcol = Color.Black;
+						//this.mGradient = LinearGradientMode.Vertical;
 					} 
 					else 
 					{
-						this.mGradient = LinearGradientMode.ForwardDiagonal;
+						endgradcol = Color.White;
+						//this.mGradient = LinearGradientMode.ForwardDiagonal;
 					}
 					CompleteRedraw();
 					Invalidate();					

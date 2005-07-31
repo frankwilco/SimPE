@@ -22,6 +22,7 @@ namespace Ambertation.Threading
 		/// </summary>
 		protected void WaitForEnd()
 		{
+			if (!SimPe.Helper.WindowsRegistry.AsynchronLoad) return;
 			if (stop==null) return;
 			stop.Set();
 			const int wait = 100;
@@ -62,7 +63,8 @@ namespace Ambertation.Threading
 		{
 			get 
 			{
-				if (stop.WaitOne(0, true)) return true;
+				if (SimPe.Helper.WindowsRegistry.AsynchronLoad)
+					if (stop.WaitOne(0, true)) return true;
 				return false;
 			}
 		}
@@ -85,17 +87,24 @@ namespace Ambertation.Threading
 		protected void ExecuteThread(ThreadPriority tp, string name, bool sync, bool events, int synctime)
 		{
 			WaitForEnd();
-			Thread t = new Thread(new ThreadStart(ThreadEntry));
-			t.Priority = tp;
-			t.Name = name;
-			t.Start();
+			if (!SimPe.Helper.WindowsRegistry.AsynchronLoad) 
+			{
+				ThreadEntry();
+			} 
+			else 
+			{
+				Thread t = new Thread(new ThreadStart(ThreadEntry));
+				t.Priority = tp;
+				t.Name = name;
+				t.Start();
 
-			if (sync)
-				while (t.IsAlive) 
-				{
-					t.Join(synctime);
-					if (events) System.Windows.Forms.Application.DoEvents();
-				}
+				if (sync)
+					while (t.IsAlive) 
+					{
+						t.Join(synctime);
+						if (events) System.Windows.Forms.Application.DoEvents();
+					}
+			}
 		}
 	}
 }

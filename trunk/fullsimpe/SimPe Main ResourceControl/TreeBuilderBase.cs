@@ -211,11 +211,14 @@ namespace SimPe
 		{
 			Stop();
 			
-			last = tbb;							
-			lastthread = new Thread(new ThreadStart(last.Start));
-			lastthread.Name = "Tree Builder "+tbb.GetType().Name;
-			last.Running.Set();
-			lastthread.Start();
+			if (Helper.WindowsRegistry.AsynchronLoad) 
+			{
+				last = tbb;							
+				lastthread = new Thread(new ThreadStart(last.Start));
+				lastthread.Name = "Tree Builder "+tbb.GetType().Name;
+				last.Running.Set();
+				lastthread.Start();
+			} else tbb.Start();
 		}
 
 		public static void Stop()

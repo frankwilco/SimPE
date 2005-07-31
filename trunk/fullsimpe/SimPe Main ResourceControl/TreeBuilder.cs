@@ -120,77 +120,7 @@ namespace SimPe
 					}
 				}
 			}
-		}
-
-		ListViewItem CreateItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd) 
-		{			
-			UpdatableListViewItem lvi = new UpdatableListViewItem(pfd, pkg.Package);
-			return lvi;
-		}
-
-		void RefreshAll(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
-		{
-			if (!pkg.Loaded) return;
-			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Package.Index) 
-			{
-				if (filter.Active)
-					if (filter.IsFiltered(pfd)) continue;
-				lv.Items.Add(CreateItem(pfd));
-			}
-		}
-
-		void RefreshType(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
-		{
-			if (!pkg.Loaded) return;
-			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Package.Index) 
-			{
-				if (pfd.Type!=p.Type) continue;
-				if (filter.Active)
-					if (filter.IsFiltered(pfd)) continue;
-
-				lv.Items.Add(CreateItem(pfd));
-			}
-		}
-
-		void RefreshInstance(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
-		{
-			if (!pkg.Loaded) return;
-			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Package.Index) 
-			{
-				if (pfd.LongInstance!=p.LongInstance) continue;
-				if (filter.Active)
-					if (filter.IsFiltered(pfd)) continue;
-
-				lv.Items.Add(CreateItem(pfd));
-			}
-		}
-
-		void RefreshGroup(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
-		{
-			if (!pkg.Loaded) return;
-			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Package.Index) 
-			{
-				if (pfd.Group!=p.Group) continue;
-				if (filter.Active)
-					if (filter.IsFiltered(pfd)) continue;
-
-				lv.Items.Add(CreateItem(pfd));
-			}
-		}
-
-		void RefreshGroupInstance(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
-		{
-			if (!pkg.Loaded) return;
-			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Package.Index) 
-			{
-				if (pfd.Group!=p.Group) continue;
-				if (pfd.LongInstance!=p.LongInstance) continue;
-				if (filter.Active)
-					if (filter.IsFiltered(pfd)) continue;
-
-				lv.Items.Add(CreateItem(pfd));
-			}
-		}
+		}		
 		#endregion
 
 		/// <summary>
@@ -201,87 +131,14 @@ namespace SimPe
 		public TreeBuilder(LoadedPackage lp, ViewFilter vf)
 		{
 			pkg = lp;
-			filter = vf;
-			nodemap = new Hashtable();
+			filter = vf;			
 
 			lp.BeforeFileLoad += new SimPe.Events.PackageFileLoadEvent(lp_BeforeFileLoadSave);
 			lp.BeforeFileSave += new SimPe.Events.PackageFileSaveEvent(lp_BeforeFileLoadSave);
 			lp.BeforeFileClose += new SimPe.Events.PackageFileCloseEvent(lp_BeforeFileLoadSave);
-		}
 
-		#region Node Management
-		Hashtable nodemap;
-
-		TreeNode GetNode(TreeNodeCollection root, object o, string name, SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
-		{
-			if (nodemap.ContainsKey(o)) return (TreeNode)nodemap[o];
-
-			TreeNode node = new TreeNode(name);
-			nodemap[o] = node;
-
-			if (pfd!=null) 
-			{
-				SimPe.Interfaces.Plugin.Internal.IPackedFileWrapper wrp = FileTable.WrapperRegistry.FindHandler(pfd.Type);
-				if (wrp!=null) node.ImageIndex = wrp.WrapperDescription.IconIndex;
-				else node.ImageIndex = 0;
-				node.SelectedImageIndex = node.ImageIndex;
-			}
-			
-			root.Add(node);
-			return node;
-		}
-		#endregion
-
-		/// <summary>
-		/// Adds default treeView Properties
-		/// </summary>
-		/// <param name="tv"></param>
-		TreeNode DefaultTree(TreeView tv) 
-		{
-			tv.BeginUpdate();
-			TreeNode node = new TreeNode("All Resources");
-			tv.Nodes.Add(node);
-
-			TreeNodeTag tag = new TreeNodeTag(node.Text, new TreeNodeTag.RefreshResourceList(RefreshAll), null, null);
-			node.Tag = tag;
-
-			return node;
-		}
-
-		void DefaultTreeFinish(TreeView tv, TreeNode root, int ct)
-		{
-			root.Expand();
-			if (ct<Helper.WindowsRegistry.BigPackageResourceCount) tv.SelectedNode = root;
-			
-			nodemap.Clear();
-			if (ct<Helper.WindowsRegistry.BigPackageResourceCount) UpdateLabels(tv);
-			else 
-				if (root.Tag!=null)
-					if (root.Tag is TreeNodeTag) 
-						root.Text = root.Tag.ToString();
-			tv.EndUpdate();
-		}
-
-		/// <summary>
-		/// Updates the Labels of the TreeNodes
-		/// </summary>
-		/// <param name="tv"></param>
-		public void UpdateLabels(TreeView tv) 
-		{
-			UpdateLabels(tv.Nodes);
-		}
-
-		void UpdateLabels(TreeNodeCollection nodes) 
-		{
-			foreach (TreeNode node in nodes) {
-
-				if (node.Tag!=null)
-					if (node.Tag is TreeNodeTag) 
-						node.Text = node.Tag.ToString();
-					
-				UpdateLabels(node.Nodes);
-			}
-		}
+			lp.AfterFileLoad += new SimPe.Events.PackageFileLoadedEvent(lp_AfterFileLoad);
+		}		
 
 		/// <summary>
 		/// Build a TreeView based on the Instance Values
@@ -336,6 +193,10 @@ namespace SimPe
 		private void lp_BeforeFileLoadSave(LoadedPackage sender, SimPe.Events.FileNameEventArg e)
 		{
 			StopAll();
+		}
+
+		private void lp_AfterFileLoad(LoadedPackage sender)
+		{			
 		}
 	}
 

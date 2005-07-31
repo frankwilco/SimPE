@@ -417,6 +417,20 @@ namespace SimPe.Plugin.Tool.Dockable
 			cbCat.SelectedIndex = cbCat.Items.Count-1;
 		}
 
+		public static Image GenerateImage(Size sz, Image img, bool knockout)
+		{
+			if (img==null) return null;
+			if (knockout) 
+			{
+				img = Ambertation.Drawing.GraphicRoutines.KnockoutImage(img, new Point(0,0), Color.Magenta);
+				return Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(img, sz, 8, Color.FromArgb(90, Color.Black), Color.FromArgb(10, 10, 40), Color.White, Color.FromArgb(80, Color.White), true, 3, 3);
+			} 
+			else 
+			{
+				return Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(img, sz, 8, Color.FromArgb(90, Color.Black), SimPe.ThemeManager.Global.ThemeColorDark, Color.White, Color.FromArgb(80, Color.White), true, 3, 3);
+			}
+		}
+
 		public void SetFromObjectCacheItem(SimPe.Cache.ObjectCacheItem oci)
 		{
 			if (oci==null) 
@@ -436,7 +450,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 			UpdateScreen();			
 			if (oci.Thumbnail == null) pb.Image = defimg;
-			else pb.Image = Ambertation.Drawing.GraphicRoutines.ScaleImage(oci.Thumbnail, pb.Width, pb.Height, true);
+			else pb.Image = GenerateImage(pb.Size, oci.Thumbnail, true);
 			lbName.Text = oci.Name;					
 		}
 
@@ -486,7 +500,7 @@ namespace SimPe.Plugin.Tool.Dockable
 						SimPe.Interfaces.Wrapper.IGroupCacheItem gci = FileTable.GroupCache.GetItem(objd.Package.FileName);
 						if (gci!=null) grp = gci.LocalGroup;
 					}*/
-				pb.Image =  Ambertation.Drawing.GraphicRoutines.ScaleImage(GetThumbnail(objd.FileDescriptor.Group, mn[0]), Width, Height, true);
+				pb.Image =  GenerateImage(pb.Size, GetThumbnail(objd.FileDescriptor.Group, mn[0]), true);
 			}
 			else pb.Image = null;
 			SetupCategories(SimPe.Cache.ObjectCacheItem.GetCategory(SimPe.Cache.ObjectCacheItemVersions.DockableOW, objd.FunctionSubSort, objd.Type));

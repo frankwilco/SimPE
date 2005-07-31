@@ -876,6 +876,24 @@ namespace SimPe
 			}
 		}
 
+		/// <summary>
+		/// Schould we load Stuff Asynchron to the main Thread?
+		/// </summary>
+		public bool AsynchronLoad
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("AsynchronLoad", false);
+				return Convert.ToBoolean(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("AsynchronLoad", value);
+			}
+		}
+
 		#region Wrappers
 		/// <summary>
 		/// Returns the Priority for the Wrapper identified with the given UID
