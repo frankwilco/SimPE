@@ -213,7 +213,7 @@ namespace SimPe
 		/// <param name="show">true, if it should be visible even if no updates were found</param>
 		public static void ShowUpdate(bool show)
 		{
-			WaitingScreen.Wait();
+			Wait.SubStart();
 			About f = new About();
 			f.Text = SimPe.Localization.GetString("Updates");
 			long version = 0;
@@ -243,7 +243,7 @@ namespace SimPe
 			else text += "There is no new SimPE Version available.";
 
 			f.rtb.Rtf = Ambertation.Html2Rtf.Convert(text);
-			WaitingScreen.Stop();			
+			Wait.SubStop();		
 			if (show || (res != SimPe.UpdateState.Nothing)) f.ShowDialog();
 		}
 
@@ -304,7 +304,7 @@ namespace SimPe
 		/// <param name="show">true, if it should be visible even if no updates were found</param>
 		public static void ShowTutorials()
 		{
-			WaitingScreen.Wait();
+			Wait.SubStart();
 			About f = new About();
 			string text = "";
 			
@@ -344,7 +344,7 @@ namespace SimPe
 				if (f.rtb.Rtf=="") f.rtb.Rtf = ex.Message;
 			}
 
-			WaitingScreen.Stop();			
+			Wait.SubStop();			
 			f.ShowDialog();
 		}
 

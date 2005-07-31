@@ -322,8 +322,12 @@ namespace SimPe.Interfaces.Plugin
 					this.pfd = pfd;
 					this.package = package;
 					file = package.Read(pfd);
-					Unserialize(new System.IO.BinaryReader(new System.IO.MemoryStream(file.UncompressedData)));
-					processed = true;
+					System.IO.MemoryStream ms = new System.IO.MemoryStream(file.UncompressedData);
+					if (ms.Length>0) 
+					{
+						Unserialize(new System.IO.BinaryReader(ms));
+						processed = true;
+					}
 				} 
 				else 
 				{
@@ -351,9 +355,12 @@ namespace SimPe.Interfaces.Plugin
 			try 
 			{
 				this.pfd = pfd;
-				this.package = package;			
-				Unserialize(StoredData);
-				processed = true;
+				this.package = package;	
+				if (StoredData.BaseStream.Length>0) 
+				{
+					Unserialize(StoredData);
+					processed = true;
+				}
 			}
 			catch (Exception ex) 
 			{

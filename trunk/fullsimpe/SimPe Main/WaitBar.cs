@@ -33,6 +33,7 @@ namespace SimPe
 		public WaitBarControl(MainForm mf)
 		{
 			f = mf;
+			ShowProgress(false);
 		}
 
 		delegate void SetStuff(object o);

@@ -59,7 +59,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="fii"></param>
 		/// <returns></returns>
-		public SimPe.Interfaces.Plugin.IFileWrapper LoadWrapper(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii)
+		public SimPe.Interfaces.Plugin.IFileWrapper GetWrapper(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii)
 		{
 			//try by Type
 			SimPe.Interfaces.Plugin.IFileWrapper wrapper = 
@@ -72,22 +72,28 @@ namespace SimPe
 				wrapper = FileTable.WrapperRegistry.FindHandler(pf.GetUncompressedData(0x40));
 			}
 
+			return wrapper;
+		}
+
+		/// <summary>
+		/// Load the assigned Wrapper, and initiate the Resource
+		/// </summary>
+		/// <param name="fii"></param>
+		/// <returns></returns>
+		public void LoadWrapper(SimPe.Interfaces.Plugin.IFileWrapper wrapper, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii)
+		{
 			if (wrapper!=null) 
 			{
 				try 
 				{
 					wrapper = wrapper.Activate();
-					wrapper.ProcessData(fii.Package.FindExactFile(fii.FileDescriptor), fii.Package);
-				
-					return wrapper;
+					wrapper.ProcessData(fii.Package.FindExactFile(fii.FileDescriptor), fii.Package);			
 				} 
 				catch(Exception ex) 
 				{
 					Helper.ExceptionMessage(ex);
 				}
 			}
-
-			return null;
 		}
 
 		/// <summary>
@@ -238,6 +244,7 @@ namespace SimPe
 		/// <returns>true, if the Plugin was loaded</returns>
 		public bool AddResource(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, bool reload, bool overload)
 		{
+			
 			if (!pkg.Loaded) return false;
 
 			//already Loaded?
@@ -247,10 +254,13 @@ namespace SimPe
 			if (!Helper.WindowsRegistry.MultipleFiles) this.Clear();
 
 			//get the Wrapper
-			SimPe.Interfaces.Plugin.IFileWrapper wrapper = LoadWrapper(fii);
+			SimPe.Interfaces.Plugin.IFileWrapper wrapper = GetWrapper(fii);
 
 			//unload if only one instance can be loaded
 			if (!UnloadSingleInstanceWrappers(wrapper, ref overload)) return false;
+
+			//load the new Data into the Wrapper
+			LoadWrapper(wrapper, fii);
 
 			//Present the passed Wrapper
 			return Present(fii, wrapper, overload);
@@ -444,7 +454,7 @@ namespace SimPe
 		/// Prompt the User (if <see cref="SimPe.Helper.WindowsRegistry.Silent"/> is not set)
 		/// if the changes should be commited</remarks>
 		bool UnloadWrapper(SimPe.Interfaces.Plugin.IFileWrapper wrapper)
-		{
+		{			
 			if (wrapper==null) return false;
 
 			if (wrapper.GetType().GetInterface("IPackedFileSaveExtension", false) == typeof(SimPe.Interfaces.Plugin.Internal.IPackedFileSaveExtension)) 
