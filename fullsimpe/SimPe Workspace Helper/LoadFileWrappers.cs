@@ -195,6 +195,9 @@ namespace SimPe
 				{
 					Exception e = new Exception("Unable to load WrapperFactory", new Exception("Invalid Interface in "+file, ex));
 					reg.Register(new SimPe.PackedFiles.Wrapper.ErrorWrapper(file, ex));
+#if DEBUG
+					Helper.ExceptionMessage(ex);
+#endif
 				}
 
 				try 
@@ -205,6 +208,10 @@ namespace SimPe
 				catch (Exception ex) 
 				{
 					Exception e = new Exception("Unable to load ToolFactory", new Exception("Invalid Interface in "+file, ex));
+#if DEBUG
+					Helper.ExceptionMessage(e);
+#endif
+
 				}
 			}
 		}
@@ -214,7 +221,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="file">The File where to look in</param>
 		/// <returns>null or a Wrapper Factory</returns>
-		protected static IWrapperFactory LoadWrapperFactory(string file)
+		public static IWrapperFactory LoadWrapperFactory(string file)
 		{
 			Type interfaceType = typeof(IWrapperFactory);
 			object o = LoadPlugin(file, interfaceType);
@@ -228,7 +235,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="file">The File where to look in</param>
 		/// <returns>null or a Wrapper Factory</returns>
-		protected static IToolFactory LoadToolFactory(string file)
+		public static IToolFactory LoadToolFactory(string file)
 		{
 			Type interfaceType = typeof(IToolFactory);
 			object o = LoadPlugin(file, interfaceType);

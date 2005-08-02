@@ -1981,7 +1981,8 @@ namespace SimPe
 				//do the real Startup
 				pargs = args;
 				//Application.EnableVisualStyles();
-				Application.DoEvents();				
+				Application.DoEvents();		
+				Application.Idle += new EventHandler(Application_Idle);
 
 				Commandline.ImportOldData();								
 				if (!Commandline.Start(args))  
@@ -2954,12 +2955,33 @@ namespace SimPe
 		private void sdm_DockControlActivated(object sender, TD.SandDock.DockControlEventArgs e)
 		{
 			if (!e.DockControl.Collapsed) lv.BringToFront();
-		}		
+		}
 
-		
+		#region Idle Actions
+		static DateTime lastgc = DateTime.Now;
+		static TimeSpan waitgc = new TimeSpan(0, 0, 5, 0, 0);
+		static DateTime lastfi = DateTime.Now;
+		static TimeSpan waitfi = new TimeSpan(0, 0, 10, 0, 0);
+		private static void Application_Idle(object sender, EventArgs e)
+		{
+			DateTime now = DateTime.Now;
+			if (now.Subtract(lastgc) > waitgc) 
+			{
+				GC.Collect();
+				lastgc = now;
+			}
 
-
-		
+			if (now.Subtract(lastfi) > waitfi) 
+			{
+				try 
+				{
+					FileTable.FileIndex.Load();
+				} 
+				catch {}
+				lastfi = now;
+			}
+		}
+		#endregion
 	}
 			
 }

@@ -498,6 +498,7 @@ namespace SimPe
 				} 
 				finally 
 				{
+					sw.Flush();
 					sw.Close();
 				}
 			} 

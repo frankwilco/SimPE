@@ -34,6 +34,16 @@ namespace SimPe.Plugin
 	}
 
 	/// <summary>
+	/// Known Neighborhhod Versions
+	/// </summary>
+	public enum NeighborhoodVersion:uint
+	{
+		Unknown = 0x00,
+		Sims2 = 0x03,
+		Sims2_University = 0x05
+	}
+
+	/// <summary>
 	/// This is the actual FileWrapper
 	/// </summary>
 	/// <remarks>
@@ -52,9 +62,9 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns the Version of this File
 		/// </summary>
-		public uint Version 
+		public NeighborhoodVersion Version 
 		{
-			get { return version; }
+			get { return (NeighborhoodVersion)version; }
 		}
 
 		NeighborhoodType type;
@@ -101,6 +111,26 @@ namespace SimPe.Plugin
 		#endregion
 
 		#region static Methods
+		/// <summary>
+		/// Load the IdNo stored in the passed package
+		/// </summary>
+		/// <param name="pkg"></param>
+		/// <returns></returns>
+		public static Idno FromPackage(SimPe.Interfaces.Files.IPackageFile pkg)
+		{
+			if (pkg==null) return null;
+			Interfaces.Files.IPackedFileDescriptor idno = pkg.FindFile(Data.MetaData.IDNO, 0, Data.MetaData.LOCAL_GROUP, 1);
+			if (idno!=null) 
+			{
+				SimPe.Plugin.Idno wrp = new Idno();
+				wrp.ProcessData(idno, pkg);
+
+				return wrp;
+			}
+
+			return null;
+		}
+
 		/// <summary>
 		/// Assigns a unique uid to the idno
 		/// </summary>
@@ -289,8 +319,8 @@ namespace SimPe.Plugin
 		/// </summary>
 		public Idno() : base()
 		{
-			if (Helper.WindowsRegistry.EPInstalled>=1) this.version = 5;
-			else this.version = 3;
+			if (Helper.WindowsRegistry.EPInstalled>=1) this.version = (uint)NeighborhoodVersion.Sims2_University;
+			else this.version = (uint)NeighborhoodVersion.Sims2;
 
 			this.type = NeighborhoodType.Normal;
 			over = new byte[0];
@@ -323,7 +353,7 @@ namespace SimPe.Plugin
 				"Neighborhood ID Wrapper",
 				"Quaxi",
 				"Contains the ID for this Neighborhood. The Neighborhood ID must be Unique for all packages the Game is loading.",
-				1,
+				2,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.idno.png"))
 				); 
 		}

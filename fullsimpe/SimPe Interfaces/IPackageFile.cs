@@ -274,6 +274,12 @@ namespace SimPe.Interfaces.Files
 		void BeginUpdate();
 
 		/// <summary>
+		/// Makes the package forget all pending Updates!
+		/// </summary>
+		void ForgetUpdate();
+
+
+		/// <summary>
 		/// Executes Events Derrefered by <see cref="BeginUpdate"/>
 		/// </summary>
 		void EndUpdate();

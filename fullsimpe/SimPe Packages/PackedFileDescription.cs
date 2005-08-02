@@ -29,7 +29,7 @@ namespace SimPe.Packages
 	/// <summary>
 	/// Structure of a FileIndex Item
 	/// </summary>
-	public class PackedFileDescriptor : HoleIndexItem, IPackedFileDescriptor
+	public class PackedFileDescriptor : HoleIndexItem, IPackedFileDescriptor, System.IDisposable
 	{
 
 		/// <summary>
@@ -636,5 +636,15 @@ namespace SimPe.Packages
 				return msg;
 			}
 		}
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			this.userdata = null;
+			this.filename = null;			
+		}
+
+		#endregion
 	}
 }

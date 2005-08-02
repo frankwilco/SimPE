@@ -202,15 +202,17 @@ namespace SimPe.PackedFiles.Wrapper
 		Hashtable crmap;
 		void SaveRelations()
 		{
+			SimPe.Collections.PackedFileDescriptors pfds = new SimPe.Collections.PackedFileDescriptors();
 			locked = true;
+			
 			foreach (ExtSrel srel in crmap.Values)
 			{
 				if (srel.Package!=null) srel.SynchronizeUserData();
 				else 
 				{
 					srel.Package = this.Package;
-					srel.SynchronizeUserData();					
-					this.Package.Add(srel.FileDescriptor, true);					
+					srel.SynchronizeUserData();	
+					pfds.Add(srel.FileDescriptor);					
 				}
 
 				if (!this.Equals(srel.SourceSim)) 
@@ -223,6 +225,14 @@ namespace SimPe.PackedFiles.Wrapper
 
 			crmap.Clear();
 			locked = false;
+
+			this.Package.BeginUpdate();
+			for (int i=pfds.Count-1;i>=0; i--) 
+			{
+				if (i==0) this.Package.ForgetUpdate();
+				this.Package.Add(pfds[i], true);					
+			}
+			this.Package.EndUpdate();
 		}
 
 		internal ExtSrel GetCachedRelation(uint inst)

@@ -26,7 +26,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Represents a PacjedFile in JPEG Format
 	/// </summary>
-	public class Picture : AbstractWrapper, SimPe.Interfaces.Plugin.IFileWrapper
+	public class Picture : AbstractWrapper, SimPe.Interfaces.Plugin.IFileWrapper, System.IDisposable
 	{
 		/// <summary>
 		/// Stores the Image
@@ -160,6 +160,16 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				return new Byte[0];
 			}
+		}
+
+		#endregion
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			if (this.image!=null) this.image.Dispose();
+			image = null;
 		}
 
 		#endregion

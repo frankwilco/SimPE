@@ -204,7 +204,13 @@ namespace SimPe.Interfaces.Plugin
 				return ms;
 			}
 		}
+
 		public void SynchronizeUserData()
+		{
+			SynchronizeUserData(true);
+		}
+		
+		public void SynchronizeUserData(bool catchex)
 		{
 			if (pfd==null) 
 			{
@@ -212,15 +218,24 @@ namespace SimPe.Interfaces.Plugin
 				return;
 			}
 
-			try 
-			{				
+			if (catchex) 
+			{
+				try 
+				{				
+					//set UserData, but do not fire a change Event!
+					pfd.SetUserData(CurrentStateData.ToArray(), false);
+					changed = false;
+				}
+				catch (Exception ex) 
+				{
+					ExceptionMessage(Localization.Manager.GetString("errwritingfile"), ex);				
+				}
+			} 
+			else 
+			{
 				//set UserData, but do not fire a change Event!
 				pfd.SetUserData(CurrentStateData.ToArray(), false);
 				changed = false;
-			}
-			catch (Exception ex) 
-			{
-				ExceptionMessage(Localization.Manager.GetString("errwritingfile"), ex);
 			}
 		}
 
@@ -315,7 +330,34 @@ namespace SimPe.Interfaces.Plugin
 			changed = false;
 			if (pfd==null) return;
 			if (package==null) return;
-			try 
+			if (catchex) 
+			{
+				try 
+				{
+					if (file!=null) 
+					{
+						this.pfd = pfd;
+						this.package = package;
+						file = package.Read(pfd);
+						System.IO.MemoryStream ms = new System.IO.MemoryStream(file.UncompressedData);
+						if (ms.Length>0) 
+						{
+							Unserialize(new System.IO.BinaryReader(ms));
+							processed = true;
+						}
+					} 
+					else 
+					{
+						ProcessData(pfd, package);
+					}
+				} 
+				catch (Exception ex) 
+				{
+
+					ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
+				}
+			} 
+			else 
 			{
 				if (file!=null) 
 				{
@@ -333,12 +375,6 @@ namespace SimPe.Interfaces.Plugin
 				{
 					ProcessData(pfd, package);
 				}
-			} 
-			catch (Exception ex) 
-			{
-
-				if (catchex) ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
-				else throw new Exception(ExceptionMessage(ex.Message), ex);
 			}
 			
 		}
@@ -352,7 +388,26 @@ namespace SimPe.Interfaces.Plugin
 		{
 			if (pfd==null) return;
 			if (package==null) return;
-			try 
+			if (catchex) 
+			{
+				try 
+				{
+					this.pfd = pfd;
+					this.package = package;	
+					if (StoredData.BaseStream.Length>0) 
+					{
+						Unserialize(StoredData);
+						processed = true;
+					}
+				}
+				catch (Exception ex) 
+				{
+
+					ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
+					
+				}
+			} 
+			else 
 			{
 				this.pfd = pfd;
 				this.package = package;	
@@ -361,12 +416,6 @@ namespace SimPe.Interfaces.Plugin
 					Unserialize(StoredData);
 					processed = true;
 				}
-			}
-			catch (Exception ex) 
-			{
-
-				if (catchex) ExceptionMessage(Localization.Manager.GetString("erropenfile"), ex);
-				else throw new Exception(ExceptionMessage(ex.Message), ex);
 			}
 		}
 
@@ -528,6 +577,6 @@ namespace SimPe.Interfaces.Plugin
 		{
 			return new object[0];
 		}
-		#endregion
+		#endregion		
 	}
 }

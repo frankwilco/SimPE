@@ -80,7 +80,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="fii"></param>
 		/// <returns></returns>
-		public void LoadWrapper(SimPe.Interfaces.Plugin.IFileWrapper wrapper, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii)
+		public void LoadWrapper(ref SimPe.Interfaces.Plugin.IFileWrapper wrapper, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii)
 		{
 			if (wrapper!=null) 
 			{
@@ -260,7 +260,7 @@ namespace SimPe
 			if (!UnloadSingleInstanceWrappers(wrapper, ref overload)) return false;
 
 			//load the new Data into the Wrapper
-			LoadWrapper(wrapper, fii);
+			LoadWrapper(ref wrapper, fii);
 
 			//Present the passed Wrapper
 			return Present(fii, wrapper, overload);

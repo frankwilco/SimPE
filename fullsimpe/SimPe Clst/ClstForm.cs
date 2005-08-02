@@ -107,7 +107,10 @@ namespace SimPe.PackedFiles.UserInterface
 
 			lbclst.Items.Clear();
 			foreach (ClstItem i in wrapper)
-				lbclst.Items.Add(i);
+				if (i!=null) 
+					lbclst.Items.Add(i);
+				else 
+					lbclst.Items.Add("Error");
 		}		
 		#endregion
 

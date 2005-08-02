@@ -57,7 +57,7 @@ namespace SimPe.Cache
 					SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
 					objd.ProcessData(item);
 
-					cachefile.AddItem(objd);
+					cachefile.AddItem(objd);					
 					added = true;
 				}
 			}
@@ -85,12 +85,11 @@ namespace SimPe.Cache
 		/// Add a MaterialOverride to the Cache
 		/// </summary>
 		/// <param name="objd">The Object Data File</param>
-		public void AddItem(SimPe.PackedFiles.Wrapper.ExtObjd objd) 
+		public MemoryCacheItem AddItem(SimPe.PackedFiles.Wrapper.ExtObjd objd) 
 		{
 			CacheContainer mycc = this.UseConatiner(ContainerType.Memory, objd.Package.FileName);
 			
-			MemoryCacheItem mci = new MemoryCacheItem();	
-			//mci.ParentCacheContainer = mycc;
+			MemoryCacheItem mci = new MemoryCacheItem();			
 			mci.FileDescriptor = objd.FileDescriptor;
 			mci.Guid = objd.Guid;			
 			mci.ObjectType = objd.Type;		
@@ -130,7 +129,10 @@ namespace SimPe.Cache
 			}
 
 			WaitingScreen.UpdateMessage(mci.Name);
+			//mci.ParentCacheContainer = mycc; //why was this disbaled?
 			mycc.Items.Add(mci);
+
+			return mci;
 		}
 
 		Hashtable map;

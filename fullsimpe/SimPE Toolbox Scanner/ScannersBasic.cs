@@ -513,7 +513,16 @@ namespace SimPe.Plugin.Scanner
 			if (list==null) list = new Hashtable();
 			else list.Clear();
 
-			if (cachefile==null) cachefile = MemoryCacheFile.InitCacheFile();
+			if (cachefile==null) 
+			{
+				cachefile = MemoryCacheFile.InitCacheFile();
+				cachefile.Save();
+				cachefile.Dispose();
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+				cachefile = null;
+				cachefile = MemoryCacheFile.InitCacheFile();
+			}
 			
 			AbstractScanner.AddColumn(ListView, "GUIDs", 180);
 			AbstractScanner.AddColumn(ListView, "Duplicate GUID", 80);
@@ -521,8 +530,11 @@ namespace SimPe.Plugin.Scanner
 
 			foreach (MemoryCacheItem mci in cachefile.List) 
 			{
-				string flname = mci.ParentCacheContainer.FileName;
-				if (flname==null) flname = "";
+				string flname = null;
+				if (mci.ParentCacheContainer==null)  
+					flname = mci.FileDescriptor.Filename;
+				else
+					flname = mci.ParentCacheContainer.FileName;				
 				list[(uint)mci.Guid] = flname.Trim().ToLower();
 				/*if (mci.Guid == guid) 
 				{

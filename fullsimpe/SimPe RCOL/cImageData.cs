@@ -38,7 +38,7 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// A MipMap contains one Texture in a specific Size
 	/// </summary>
-	public class MipMap 
+	public class MipMap : System.IDisposable
 	{
 		
 		#region Attributes
@@ -286,12 +286,22 @@ namespace SimPe.Plugin
 			}
 		}
 
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			this.data = new byte[0];
+			if (this.img!=null) img.Dispose();
+			img = null;
+		}
+
+		#endregion
 	}
 
 	/// <summary>
 	/// MipMap Blocks contain all MipMaps in given sizes
 	/// </summary>
-	public class MipMapBlock 
+	public class MipMapBlock : System.IDisposable
 	{
 		#region Attributes
 		MipMap[] mipmaps;
@@ -473,6 +483,17 @@ namespace SimPe.Plugin
 			return "0x"+Helper.HexString(this.creator)+" - 0x"+Helper.HexString(this.unknown_1)+" ("+this.mipmaps.Length+" Items)";
 		}
 
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			foreach (MipMap mm in this.mipmaps)		
+				mm.Dispose();			
+
+			mipmaps = new MipMap[0];
+		}
+
+		#endregion
 	}
 
 
@@ -484,7 +505,7 @@ namespace SimPe.Plugin
 	/// a BinaryStream and translates the data into some userdefine Attributes.
 	/// </remarks>
 	public class ImageData
-		: AbstractRcolBlock, IScenegraphBlock
+		: AbstractRcolBlock, IScenegraphBlock, System.IDisposable
 	{
 		#region Attributes
 		
@@ -700,5 +721,17 @@ namespace SimPe.Plugin
 			foreach (MipMapBlock mmp in this.MipMapBlocks)
 				mmp.GetReferencedLifos();
 		}
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			foreach (MipMapBlock mmb in this.mipmapblocks)
+				mmb.Dispose();
+
+			mipmapblocks = new MipMapBlock[0];
+		}
+
+		#endregion
 	}
 }

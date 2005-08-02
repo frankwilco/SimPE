@@ -42,7 +42,7 @@ namespace SimPe.Actions.Default
 		{
 			if (!ChangeEnabledStateEventHandler(null, e)) return;
 
-			e.LoadedPackage.Package.Add(e.LoadedPackage.Package.NewDescriptor(0xffffffff, 0, Data.MetaData.LOCAL_GROUP, 0));
+			e.LoadedPackage.Package.Add(e.LoadedPackage.Package.NewDescriptor(0xffffffff, 0, Data.MetaData.LOCAL_GROUP, 0), true);
 		}
 
 		#endregion

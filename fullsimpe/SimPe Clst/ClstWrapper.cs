@@ -37,6 +37,7 @@ namespace SimPe.PackedFiles.Wrapper
 		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File
 		, System.Collections.IEnumerable
 		, System.Collections.IEnumerator
+		, System.IDisposable
 	{
 		#region Attributes
 		Data.MetaData.IndexTypes iformat;
@@ -86,6 +87,7 @@ namespace SimPe.PackedFiles.Wrapper
 			iformat = type;
 			items = new Hashtable();
 			ordered = new ArrayList();
+			Reset();
 		}
 
 		/// <summary>
@@ -125,8 +127,16 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <param name="item">the new File</param>
 		public void Add(ClstItem item) 
 		{
-			items.Add(item, items.Count);
-			ordered.Add(item);
+			if (item==null) return;
+			if (items.ContainsKey(item)) 
+			{
+				throw new Warning("Duplicated Entry in Directory of Compressed Files!", "The Resource "+item.ToString()+" was added twice!");
+			} 
+			else 
+			{
+				items.Add(item, items.Count);
+				ordered.Add(item);
+			}
 		}
 
 		public ClstItem this[int index]
@@ -173,7 +183,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Compressed File Directory Wrapper",
 				"Quaxi",
 				"This File contains a List of all compressed Files that are stored within this Package.",
-				3,
+				4,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.clst.png"))
 				);   
 		}
@@ -286,7 +296,7 @@ namespace SimPe.PackedFiles.Wrapper
 		int cur;
 		public void Reset()
 		{
-			cur = 0;
+			cur = -1;
 		}
 
 		public object Current
@@ -300,10 +310,20 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public bool MoveNext()
 		{
-			if (cur<ordered.Count && cur>=0) cur++;
+			if (cur<ordered.Count-1 && cur>=-1) cur++;
 			else return false;
 
 			return true;
+		}
+
+		#endregion
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			if (items!=null) this.items.Clear();
+			if (ordered!=null) this.ordered.Clear();
 		}
 
 		#endregion

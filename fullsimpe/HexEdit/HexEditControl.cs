@@ -446,43 +446,52 @@ namespace Ambertation.Windows.Forms
 			if (sender==null) return;
 
 			edit = true;
-			HexViewControl hvc = (HexViewControl)sender;
-			if (vs==HexViewControl.ViewState.Hex) 
+			try 
 			{
-				boxes[0].Text = "0x"+HexViewControl.SetLength(hvc.SelectedByte.ToString("x"), 2, '0');
-				boxes[1].Text = "0x"+HexViewControl.SetLength(hvc.SelectedUShort.ToString("x"), 4, '0');
-				boxes[2].Text = "0x"+HexViewControl.SetLength(hvc.SelectedUInt.ToString("x"), 8, '0');
-				boxes[3].Text = "0x"+HexViewControl.SetLength(hvc.SelectedULong.ToString("x"), 16, '0');
-				boxes[10].Text = "0x"+HexViewControl.SetLength(hvc.Offset.ToString("x"), 8, '0');
+			
+				HexViewControl hvc = (HexViewControl)sender;
+				if (vs==HexViewControl.ViewState.Hex) 
+				{
+					boxes[0].Text = "0x"+HexViewControl.SetLength(hvc.SelectedByte.ToString("x"), 2, '0');
+					boxes[1].Text = "0x"+HexViewControl.SetLength(hvc.SelectedUShort.ToString("x"), 4, '0');
+					boxes[2].Text = "0x"+HexViewControl.SetLength(hvc.SelectedUInt.ToString("x"), 8, '0');
+					boxes[3].Text = "0x"+HexViewControl.SetLength(hvc.SelectedULong.ToString("x"), 16, '0');
+					boxes[10].Text = "0x"+HexViewControl.SetLength(hvc.Offset.ToString("x"), 8, '0');
+				} 
+				else if (vs==HexViewControl.ViewState.UnsignedDec) 
+				{
+					boxes[0].Text = hvc.SelectedByte.ToString();
+					boxes[1].Text = hvc.SelectedUShort.ToString();
+					boxes[2].Text = hvc.SelectedUInt.ToString();
+					boxes[3].Text = hvc.SelectedULong.ToString();
+					boxes[10].Text = hvc.Offset.ToString();
+				} 
+				else 
+				{
+					boxes[0].Text = hvc.SelectedByte.ToString();
+					boxes[1].Text = hvc.SelectedShort.ToString();
+					boxes[2].Text = hvc.SelectedInt.ToString();
+					boxes[3].Text = hvc.SelectedLong.ToString();
+					boxes[10].Text = hvc.Offset.ToString();
+				}
+
+				boxes[4].Text = hvc.SelectedFloat.ToString();
+				boxes[5].Text = hvc.SelectedDouble.ToString();
+				byte[] b = BitConverter.GetBytes(hvc.SelectedUInt);
+				boxes[6].Text = HexViewControl.SetLength(BinaryString(b[0]), 8, '0');
+				boxes[7].Text = HexViewControl.SetLength(BinaryString(b[1]), 8, '0');
+				boxes[8].Text = HexViewControl.SetLength(BinaryString(b[2]), 8, '0');
+				boxes[9].Text = HexViewControl.SetLength(BinaryString(b[3]), 8, '0');	
+
+				if (hvc.SelectionLength>0) boxes[11].Text = BitConverter.ToString(hvc.Selection).Replace("-", " ");
 			} 
-			else if (vs==HexViewControl.ViewState.UnsignedDec) 
+			catch 
 			{
-				boxes[0].Text = hvc.SelectedByte.ToString();
-				boxes[1].Text = hvc.SelectedUShort.ToString();
-				boxes[2].Text = hvc.SelectedUInt.ToString();
-				boxes[3].Text = hvc.SelectedULong.ToString();
-				boxes[10].Text = hvc.Offset.ToString();
 			} 
-			else 
+			finally 
 			{
-				boxes[0].Text = hvc.SelectedByte.ToString();
-				boxes[1].Text = hvc.SelectedShort.ToString();
-				boxes[2].Text = hvc.SelectedInt.ToString();
-				boxes[3].Text = hvc.SelectedLong.ToString();
-				boxes[10].Text = hvc.Offset.ToString();
+				edit = false;
 			}
-
-			boxes[4].Text = hvc.SelectedFloat.ToString();
-			boxes[5].Text = hvc.SelectedDouble.ToString();
-			byte[] b = BitConverter.GetBytes(hvc.SelectedUInt);
-			boxes[6].Text = HexViewControl.SetLength(BinaryString(b[0]), 8, '0');
-			boxes[7].Text = HexViewControl.SetLength(BinaryString(b[1]), 8, '0');
-			boxes[8].Text = HexViewControl.SetLength(BinaryString(b[2]), 8, '0');
-			boxes[9].Text = HexViewControl.SetLength(BinaryString(b[3]), 8, '0');	
-
-			if (hvc.SelectionLength>0) boxes[11].Text = BitConverter.ToString(hvc.Selection).Replace("-", " ");
-		
-			edit = false;
 		}
 
 		private void rbhex_CheckedChanged(object sender, EventArgs e)

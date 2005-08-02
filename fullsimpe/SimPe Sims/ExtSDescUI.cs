@@ -194,6 +194,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private TD.SandBar.MenuButtonItem miAddRelation;
 		private TD.SandBar.MenuButtonItem miRemRelation;
 		private System.ComponentModel.IContainer components;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
 
 		
 		System.Resources.ResourceManager strresources;
@@ -332,6 +333,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.pnCareer = new System.Windows.Forms.Panel();
 			this.pbAspBliz = new Ambertation.Windows.Forms.LabeledProgressBar();
 			this.label60 = new System.Windows.Forms.Label();
@@ -2065,7 +2067,8 @@ namespace SimPe.PackedFiles.UserInterface
 																				 this.columnHeader1,
 																				 this.columnHeader2,
 																				 this.columnHeader3,
-																				 this.columnHeader4});
+																				 this.columnHeader4,
+																				 this.columnHeader5});
 			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
 			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
 			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
@@ -2123,6 +2126,12 @@ namespace SimPe.PackedFiles.UserInterface
 			this.columnHeader4.Text = resources.GetString("columnHeader4.Text");
 			this.columnHeader4.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader4.TextAlign")));
 			this.columnHeader4.Width = ((int)(resources.GetObject("columnHeader4.Width")));
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = resources.GetString("columnHeader5.Text");
+			this.columnHeader5.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader5.TextAlign")));
+			this.columnHeader5.Width = ((int)(resources.GetObject("columnHeader5.Width")));
 			// 
 			// pnCareer
 			// 
@@ -4997,7 +5006,7 @@ namespace SimPe.PackedFiles.UserInterface
 					} 
 					else if (c is LabeledProgressBar)
 					{
-						((LabeledProgressBar)c).Value = ((LabeledProgressBar)c).Maximum;
+						((LabeledProgressBar)c).Value = ((LabeledProgressBar)c).Maximum-1;
 					}
 				}
 				intern = false;	this.ChangedSkill(null, null);
@@ -5588,10 +5597,11 @@ namespace SimPe.PackedFiles.UserInterface
 
 		void ResetLabel()
 		{
-			this.lv.TileColumns = new int[]{1, 2, 3, 4, 5};
+			this.lv.TileColumns = new int[]{1, 2, 6, 3, 4, 5};
 			this.lv.SetColumnStyle(1, lv.Font, Color.Gray);
 			this.lv.SetColumnStyle(2, lv.Font, Color.Gray);
-			this.lv.SetColumnStyle(3, lv.Font, Color.Gray);
+			this.lv.SetColumnStyle(3, lv.Font, Color.Gray);			
+			this.lv.SetColumnStyle(4, lv.Font, Color.Gray);
 
 			this.dstRel.Srel = null;
 			this.srcRel.Srel = null;
@@ -5691,6 +5701,7 @@ namespace SimPe.PackedFiles.UserInterface
 			sdesc.AddRelation(Sdesc);
 
 			((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex=0;
+			lv.EnsureVisible(lv.SelectedItems[0].Index);
 			lv_SelectedIndexChanged(lv, null);
 		}
 
@@ -5714,6 +5725,7 @@ namespace SimPe.PackedFiles.UserInterface
 			else 			
 				((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex=1;
 			
+			lv.EnsureVisible(lv.SelectedItems[0].Index);
 			lv_SelectedIndexChanged(lv, null);
 		}
 		#endregion

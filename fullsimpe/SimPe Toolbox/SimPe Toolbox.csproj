@@ -229,6 +229,11 @@
                     Project = "{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe HGBH"
+                    Project = "{2A67C9C3-9577-4922-991F-291EAA6B4F2D}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>

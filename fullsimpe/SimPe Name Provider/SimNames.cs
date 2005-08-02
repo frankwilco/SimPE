@@ -173,7 +173,7 @@ namespace SimPe.Providers
 				foreach (IPackedFileDescriptor pfd in piclist) 
 				{
 					if (pfd.Group != objd.FileDescriptor.Group) continue;
-					if (pfd.Instance < 0x1000) 
+					if (pfd.Instance < 0x200) 
 					{
 						SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
 						pic.ProcessData(pfd, fl);	
