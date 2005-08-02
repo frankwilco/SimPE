@@ -208,7 +208,8 @@ namespace SimPe
 				Wait.SubStart();
 				Wait.Message = "Saving File";
 
-				this.Package.Save(e.FileName);	
+				this.Package.Save(e.FileName);
+				Helper.WindowsRegistry.AddRecentFile(e.FileName);
 
 				Wait.SubStop();
 

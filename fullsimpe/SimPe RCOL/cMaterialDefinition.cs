@@ -77,6 +77,8 @@ namespace SimPe.Plugin
 			listing = new String[0];
 			sgres = new SGResource(null);
 			BlockID = 0x49596978;
+			fldsc = "";
+			mattype = "";
 		}
 
 		/// <summary>
@@ -292,7 +294,7 @@ namespace SimPe.Plugin
 			}
 
 			tc.SelectedIndex = 1;			
-			parent.CallWhenTabPageChanged = new System.EventHandler(form.TxmtChangeTab);
+			if (parent!=null) parent.CallWhenTabPageChanged = new System.EventHandler(form.TxmtChangeTab);
 		}
 
 		#region IScenegraphBlock Member
