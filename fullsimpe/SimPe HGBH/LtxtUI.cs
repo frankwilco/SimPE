@@ -43,11 +43,15 @@ namespace SimPe.Plugin
 			//form = WrapperFactory.form;
 			form = new LtxtForm();
 
-			form.cbtype.Items.Add(Ltxt.LotType.Unknown);
-			form.cbtype.Items.Add(Ltxt.LotType.Residential);
-			form.cbtype.Items.Add(Ltxt.LotType.Community);
-			form.cbtype.Items.Add(Ltxt.LotType.Dorm);
-			form.cbtype.Items.Add(Ltxt.LotType.Secret);
+			Ltxt.LotType[] ts = (Ltxt.LotType[])System.Enum.GetValues(typeof(Ltxt.LotType));
+			foreach (Ltxt.LotType t in ts)
+				if (t==Ltxt.LotType.Unknown) form.cbtype.Items.Insert(0, t);
+				else form.cbtype.Items.Add(t);
+			//form.cbtype.Items.Add(Ltxt.LotType.Unknown);
+			//form.cbtype.Items.Add(Ltxt.LotType.Residential);
+			//form.cbtype.Items.Add(Ltxt.LotType.Community);
+			//form.cbtype.Items.Add(Ltxt.LotType.Dorm);
+			//form.cbtype.Items.Add(Ltxt.LotType.Secret);
 		}
 		#endregion
 
