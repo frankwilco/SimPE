@@ -51,6 +51,7 @@ namespace SimPe.Plugin
 		private void InitializeComponent()
 		{
 			this.pnidno = new System.Windows.Forms.Panel();
+			this.llunique = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.label5 = new System.Windows.Forms.Label();
 			this.tbversion = new System.Windows.Forms.TextBox();
 			this.tbsubname = new System.Windows.Forms.TextBox();
@@ -66,7 +67,7 @@ namespace SimPe.Plugin
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.label27 = new System.Windows.Forms.Label();
 			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
-			this.llunique = new Skybound.VisualStyles.VisualStyleLinkLabel();
+			this.lbVer = new System.Windows.Forms.Label();
 			this.pnidno.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -74,6 +75,7 @@ namespace SimPe.Plugin
 			// pnidno
 			// 
 			this.pnidno.AutoScroll = true;
+			this.pnidno.Controls.Add(this.lbVer);
 			this.pnidno.Controls.Add(this.llunique);
 			this.pnidno.Controls.Add(this.label5);
 			this.pnidno.Controls.Add(this.tbversion);
@@ -93,6 +95,18 @@ namespace SimPe.Plugin
 			this.pnidno.Size = new System.Drawing.Size(652, 232);
 			this.pnidno.TabIndex = 21;
 			this.visualStyleProvider1.SetVisualStyleSupport(this.pnidno, true);
+			// 
+			// llunique
+			// 
+			this.llunique.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.llunique.Location = new System.Drawing.Point(208, 88);
+			this.llunique.Name = "llunique";
+			this.llunique.Size = new System.Drawing.Size(88, 23);
+			this.llunique.TabIndex = 28;
+			this.llunique.TabStop = true;
+			this.llunique.Text = "make unique";
+			this.llunique.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.llunique.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakeUnique);
 			// 
 			// label5
 			// 
@@ -244,17 +258,14 @@ namespace SimPe.Plugin
 			this.label27.Text = "Neighborhood ID Editor";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.label27, true);
 			// 
-			// llunique
+			// lbVer
 			// 
-			this.llunique.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.llunique.Location = new System.Drawing.Point(208, 88);
-			this.llunique.Name = "llunique";
-			this.llunique.Size = new System.Drawing.Size(88, 23);
-			this.llunique.TabIndex = 28;
-			this.llunique.TabStop = true;
-			this.llunique.Text = "make unique";
-			this.llunique.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.llunique.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakeUnique);
+			this.lbVer.Location = new System.Drawing.Point(256, 40);
+			this.lbVer.Name = "lbVer";
+			this.lbVer.Size = new System.Drawing.Size(176, 23);
+			this.lbVer.TabIndex = 29;
+			this.lbVer.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.lbVer, true);
 			// 
 			// IdnoForm
 			// 
@@ -288,6 +299,7 @@ namespace SimPe.Plugin
 		internal System.Windows.Forms.TextBox tbversion;
 		private System.Windows.Forms.Label label5;
 		private Skybound.VisualStyles.VisualStyleLinkLabel llunique;
+		internal System.Windows.Forms.Label lbVer;
 
 		internal Idno wrapper;
 

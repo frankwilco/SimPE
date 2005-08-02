@@ -106,6 +106,7 @@ namespace SimPe.Plugin
 				//this.cbpar.Checked = true;
 			}
 			
+			
 			this.tviapl = new TreeNode("Appliances"); tv.Nodes.Add(tviapl);
 			this.tvideco = new TreeNode("Decorative"); tv.Nodes.Add(tvideco);
 			this.tvielectro = new TreeNode("Electronics"); tv.Nodes.Add(tvielectro);
@@ -906,8 +907,7 @@ namespace SimPe.Plugin
 			FileTable.FileIndex.Load();
 			package = null;
 
-			if (!Helper.WindowsRegistry.LoadOWFast) BuildListing();
-			else tabControl2.SelectedIndex = 2;
+			BuildListing();			
 			this.ShowDialog();
 
 			WaitingScreen.Stop(this);

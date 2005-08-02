@@ -87,7 +87,8 @@ namespace SimPe.Plugin
 				}
 				form.tbtype.Text = "0x"+Helper.HexString((byte)wrp.Type);
 
-				form.tbversion.Text = "0x"+Helper.HexString(wrp.Version);
+				form.tbversion.Text = "0x"+Helper.HexString((uint)wrp.Version);
+				form.lbVer.Text = wrp.Version.ToString().Replace("_", " ");
 
 				form.tbid.Text = wrp.Uid.ToString();
 				form.tbname.Text = wrp.OwnerName;

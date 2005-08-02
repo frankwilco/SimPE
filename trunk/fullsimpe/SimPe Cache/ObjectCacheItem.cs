@@ -365,12 +365,19 @@ namespace SimPe.Cache
 				writer.Write((int)0);
 			} 
 			else 
-			{
-				MemoryStream ms = new MemoryStream();
-				thumb.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-				byte[] data = ms.ToArray();
-				writer.Write(data.Length);
-				writer.Write(data);
+			{			
+				try 
+				{
+					MemoryStream ms = new MemoryStream();
+					thumb.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+					byte[] data = ms.ToArray();
+					writer.Write(data.Length);
+					writer.Write(data);					
+				} 
+				catch 
+				{
+					writer.Write((int)0);
+				}
 			}
 
 			writer.Write((ushort)objtype);

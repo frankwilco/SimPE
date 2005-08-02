@@ -486,7 +486,10 @@ namespace SimPe
 				text += @"\pard\par";
 				text += @"\pard\li284 "+((Warning)ex).Details.Trim().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284")+@"\par" ;
 			} 
+#if DEBUG
+#else		
 			else 
+#endif
 			{				
 				text += @"\viewkind4\uc1\pard\cf1\b\f0\fs16 Message:\b0\par";
 				text += @"\pard\li284 "+message.Trim().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284")+@"\par" ;

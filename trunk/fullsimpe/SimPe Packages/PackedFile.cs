@@ -33,7 +33,7 @@ namespace SimPe.Packages
 	/// <summary>
 	/// A File within a Package
 	/// </summary>
-	public class PackedFile : IPackedFile
+	public class PackedFile : IPackedFile, System.IDisposable
 	{
 
 
@@ -628,6 +628,16 @@ namespace SimPe.Packages
 			}
 			
 		}
+		#endregion
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			this.data = null;
+			this.uncdata = null;
+		}
+
 		#endregion
 	}
 }

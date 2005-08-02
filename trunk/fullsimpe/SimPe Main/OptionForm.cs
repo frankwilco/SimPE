@@ -2371,6 +2371,8 @@ namespace SimPe
 			ToolLoaderExt.Items = new ToolLoaderItemExt[0];
 			foreach (ToolLoaderItemExt tli in lbext.Items) ToolLoaderExt.Add(tli);;
 			ToolLoaderExt.StoreTools();
+
+			Helper.WindowsRegistry.Flush();
 			Close();
 		}
 

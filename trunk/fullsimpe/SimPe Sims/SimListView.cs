@@ -88,6 +88,7 @@ namespace SimPe.PackedFiles.Wrapper
 			if (this.Columns.Count>1) lvi.SubItems.Add("    "+Columns[1].Text+": "+sdesc.HouseholdName);
 			if (this.Columns.Count>2) lvi.SubItems.Add("    "+Columns[2].Text+": 0x"+Helper.HexString(sdesc.SimId));
 			if (this.Columns.Count>3) lvi.SubItems.Add("    "+Columns[3].Text+": 0x"+Helper.HexString((ushort)sdesc.FileDescriptor.Instance));
+			if (this.Columns.Count>4) lvi.SubItems.Add("    "+Columns[4].Text+": 0x"+new Data.LocalizedLifeSections(sdesc.CharacterDescription.LifeSection).ToString());
 			lvi.ImageIndex = LargeImageList.Images.Count-1;
 			
 			

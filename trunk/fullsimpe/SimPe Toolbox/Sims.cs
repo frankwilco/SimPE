@@ -49,6 +49,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ColumnHeader columnHeader7;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
 		private System.Windows.Forms.ColumnHeader columnHeader9;
+		private System.Windows.Forms.Label lbUbi;
 		private System.ComponentModel.IContainer components;
 
 		public Sims()
@@ -95,6 +96,7 @@ namespace SimPe.Plugin
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
 			this.iListSmall = new System.Windows.Forms.ImageList(this.components);
@@ -105,7 +107,7 @@ namespace SimPe.Plugin
 			this.label2 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.cbdetail = new System.Windows.Forms.CheckBox();
-			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+			this.lbUbi = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// ilist
@@ -189,6 +191,12 @@ namespace SimPe.Plugin
 			this.columnHeader6.Text = resources.GetString("columnHeader6.Text");
 			this.columnHeader6.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader6.TextAlign")));
 			this.columnHeader6.Width = ((int)(resources.GetObject("columnHeader6.Width")));
+			// 
+			// columnHeader9
+			// 
+			this.columnHeader9.Text = resources.GetString("columnHeader9.Text");
+			this.columnHeader9.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader9.TextAlign")));
+			this.columnHeader9.Width = ((int)(resources.GetObject("columnHeader9.Width")));
 			// 
 			// columnHeader7
 			// 
@@ -354,11 +362,30 @@ namespace SimPe.Plugin
 			this.cbdetail.Visible = ((bool)(resources.GetObject("cbdetail.Visible")));
 			this.cbdetail.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
 			// 
-			// columnHeader9
+			// lbUbi
 			// 
-			this.columnHeader9.Text = resources.GetString("columnHeader9.Text");
-			this.columnHeader9.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader9.TextAlign")));
-			this.columnHeader9.Width = ((int)(resources.GetObject("columnHeader9.Width")));
+			this.lbUbi.AccessibleDescription = resources.GetString("lbUbi.AccessibleDescription");
+			this.lbUbi.AccessibleName = resources.GetString("lbUbi.AccessibleName");
+			this.lbUbi.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbUbi.Anchor")));
+			this.lbUbi.AutoSize = ((bool)(resources.GetObject("lbUbi.AutoSize")));
+			this.lbUbi.BackColor = System.Drawing.SystemColors.Window;
+			this.lbUbi.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbUbi.Dock")));
+			this.lbUbi.Enabled = ((bool)(resources.GetObject("lbUbi.Enabled")));
+			this.lbUbi.Font = ((System.Drawing.Font)(resources.GetObject("lbUbi.Font")));
+			this.lbUbi.ForeColor = System.Drawing.Color.Brown;
+			this.lbUbi.Image = ((System.Drawing.Image)(resources.GetObject("lbUbi.Image")));
+			this.lbUbi.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbUbi.ImageAlign")));
+			this.lbUbi.ImageIndex = ((int)(resources.GetObject("lbUbi.ImageIndex")));
+			this.lbUbi.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbUbi.ImeMode")));
+			this.lbUbi.Location = ((System.Drawing.Point)(resources.GetObject("lbUbi.Location")));
+			this.lbUbi.Name = "lbUbi";
+			this.lbUbi.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbUbi.RightToLeft")));
+			this.lbUbi.Size = ((System.Drawing.Size)(resources.GetObject("lbUbi.Size")));
+			this.lbUbi.TabIndex = ((int)(resources.GetObject("lbUbi.TabIndex")));
+			this.lbUbi.Text = resources.GetString("lbUbi.Text");
+			this.lbUbi.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbUbi.TextAlign")));
+			this.toolTip1.SetToolTip(this.lbUbi, resources.GetString("lbUbi.ToolTip"));
+			this.lbUbi.Visible = ((bool)(resources.GetObject("lbUbi.Visible")));
 			// 
 			// Sims
 			// 
@@ -370,6 +397,7 @@ namespace SimPe.Plugin
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
+			this.Controls.Add(this.lbUbi);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.panel2);
@@ -489,6 +517,8 @@ namespace SimPe.Plugin
 			sorter = new ColumnSorter();
 			this.Cursor = Cursors.WaitCursor;
 			
+			SimPe.Plugin.Idno idno = SimPe.Plugin.Idno.FromPackage(package);
+			if (idno!=null) this.lbUbi.Visible = (idno.Type == NeighborhoodType.University);
 			this.pfd = null;
 			ilist.Images.Clear();
 			lv.Items.Clear();

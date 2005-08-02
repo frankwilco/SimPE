@@ -143,6 +143,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Main ResourceControl"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewHexEdit", "..\HexEdit\NewHexEdit.csproj", "{57FB03C0-014D-4347-BF66-16E62ECA1EFF}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -512,6 +516,16 @@ Global
 		{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}.Release MAC.Build.0 = Release|.NET
 		{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}.Release PLJ.ActiveCfg = Release|.NET
 		{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}.Release PLJ.Build.0 = Release|.NET
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Debug.ActiveCfg = Debug|.NET
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Debug.Build.0 = Debug|.NET
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Debug Txtr.ActiveCfg = Debug Txtr|.NET
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Debug Txtr.Build.0 = Debug Txtr|.NET
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release.ActiveCfg = Release|.NET
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release.Build.0 = Release|.NET
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release MAC.ActiveCfg = Release Mac|.NET
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release MAC.Build.0 = Release Mac|.NET
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release PLJ.ActiveCfg = Release PLJ|.NET
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release PLJ.Build.0 = Release PLJ|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

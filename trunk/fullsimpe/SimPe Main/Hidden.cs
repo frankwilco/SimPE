@@ -34,6 +34,9 @@ namespace SimPe
 		private System.Windows.Forms.TextBox tbComp;
 		private System.Windows.Forms.TextBox tbBig;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label lbMem;
+		private System.Windows.Forms.Button button1;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -78,6 +81,9 @@ namespace SimPe
 			this.tbComp = new System.Windows.Forms.TextBox();
 			this.tbBig = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.lbMem = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -114,10 +120,41 @@ namespace SimPe
 			this.label2.Text = "Big Package Resource Count:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
+			// label3
+			// 
+			this.label3.Location = new System.Drawing.Point(16, 88);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(176, 23);
+			this.label3.TabIndex = 4;
+			this.label3.Text = "Used Memory:";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
+			// lbMem
+			// 
+			this.lbMem.Location = new System.Drawing.Point(200, 88);
+			this.lbMem.Name = "lbMem";
+			this.lbMem.Size = new System.Drawing.Size(176, 23);
+			this.lbMem.TabIndex = 6;
+			this.lbMem.Text = "0";
+			this.lbMem.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			// 
+			// button1
+			// 
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button1.Location = new System.Drawing.Point(200, 112);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(120, 23);
+			this.button1.TabIndex = 7;
+			this.button1.Text = "Collect Garbage";
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// Hidden
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-			this.ClientSize = new System.Drawing.Size(458, 96);
+			this.ClientSize = new System.Drawing.Size(458, 144);
+			this.Controls.Add(this.button1);
+			this.Controls.Add(this.lbMem);
+			this.Controls.Add(this.label3);
 			this.Controls.Add(this.tbBig);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.tbComp);
@@ -141,6 +178,8 @@ namespace SimPe
 		{
 			this.tbComp.Text = SimPe.Packages.PackedFile.CompressionStrength.ToString();
 			tbBig.Text = Helper.WindowsRegistry.BigPackageResourceCount.ToString();
+
+			this.lbMem.Text = GC.GetTotalMemory(false).ToString("N0") + " Byte";
 		}
 
 		private void Hidden_Closed(object sender, System.EventArgs e)
@@ -151,6 +190,16 @@ namespace SimPe
 				Helper.WindowsRegistry.BigPackageResourceCount = Convert.ToInt32(tbBig.Text);
 			} 
 			catch {}
+		}
+
+		private void button1_Click(object sender, System.EventArgs e)
+		{
+			this.Cursor = Cursors.WaitCursor;
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+			this.lbMem.Text = GC.GetTotalMemory(false).ToString("N0") + " Byte";
+
+			this.Cursor = Cursors.Default;
 		}
 	}
 }

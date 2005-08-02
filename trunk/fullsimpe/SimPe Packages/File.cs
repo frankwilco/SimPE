@@ -43,7 +43,7 @@ namespace SimPe.Packages
 	/// <summary>
 	/// Header of a .package File
 	/// </summary>
-	public class File : IPackageFile
+	public class File : IPackageFile, System.IDisposable
 	{	
 		/// <summary>
 		/// The Type ID for CompressedFile Lists
@@ -812,7 +812,7 @@ namespace SimPe.Packages
 					Byte[] data = reader.ReadBytes(pfd.Size);
 					//for (int i=0; i<data.Length; i++) data[i] = reader.ReadByte();
 
-					PackedFile pf = GetPackedFile(pfd, data);
+					PackedFile pf = GetPackedFile(pfd, data);					
 					return (IPackedFile)pf;
 				}
 				catch (Exception ex) 
@@ -1155,7 +1155,7 @@ namespace SimPe.Packages
 			ForgetUpdate();
 		}
 
-		internal void ForgetUpdate()
+		public void ForgetUpdate()
 		{			
 			indexevent = false;
 			addevent = false;
@@ -1214,6 +1214,16 @@ namespace SimPe.Packages
 		{
 			FireIndexEvent(e);
 		}
+		#endregion
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			if (this.fileindex!=null) this.fileindex.Clear();
+			this.holeindex = null;
+		}
+
 		#endregion
 	}
 }

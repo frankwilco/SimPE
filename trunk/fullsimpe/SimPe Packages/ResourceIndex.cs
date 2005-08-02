@@ -25,7 +25,7 @@ namespace SimPe.Collections.IO
 	/// <summary>
 	/// This class contains a Index of all found Files
 	/// </summary>
-	public class ResourceIndex
+	public class ResourceIndex : System.IDisposable
 	{
 
 		/// <summary>
@@ -671,5 +671,14 @@ namespace SimPe.Collections.IO
 				this.AddIndexFromPfd((SimPe.Interfaces.Files.IPackedFileDescriptor)sender);
 			}
 		}
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			this.Clear();
+		}
+
+		#endregion
 	}
 }

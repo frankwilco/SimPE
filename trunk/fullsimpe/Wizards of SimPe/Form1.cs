@@ -321,9 +321,16 @@ namespace SimPe.Wizards
 		[STAThread]			
 		static void Main() 
 		{
-			SimPe.Plugin.WrapperFactory.InitRcolBlocks();
-			form1 = new Form1();
-			Application.Run(form1);
+			try 
+			{
+				SimPe.Plugin.WrapperFactory.InitRcolBlocks();
+				form1 = new Form1();
+				Application.Run(form1);
+			} 
+			catch (Exception ex)
+			{
+				MessageBox.Show("WOS will Shutdown due to an unhandled Exception. \n\nMessage:"+ex.Message);
+			}
 		}
 
 		private void ExitClick(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
@@ -420,6 +427,8 @@ namespace SimPe.Wizards
 			{
 				e.Cancel = (MessageBox.Show("This Wizard is not finished yet.\n\nDo you want to quit anyway?", "Information", MessageBoxButtons.YesNo)!=DialogResult.Yes);
 			}
+
+			if (!e.Cancel) Helper.WindowsRegistry.Flush();
 		}
 
 		/// <summary>

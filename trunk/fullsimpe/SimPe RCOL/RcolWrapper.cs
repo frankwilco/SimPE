@@ -37,6 +37,7 @@ namespace SimPe.Plugin
 		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File
 		//,IPackedFileProperties		//This Interface can be used by thirdparties to retrive the FIleproperties, however you don't have to implement it!
 		, IMultiplePackedFileWrapper	//Allow Multiple Instances
+		, System.IDisposable
 	{
 		#region Attributes
 		byte[] oversize;
@@ -441,5 +442,12 @@ namespace SimPe.Plugin
 			return o;
 		}
 		#endregion
+
+		public void Dispose()
+		{
+			foreach (IRcolBlock irb in this.blocks)
+				if (irb is IDisposable) 
+					((IDisposable)irb).Dispose();
+		}
 	}	
 }

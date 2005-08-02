@@ -22,6 +22,7 @@ using SimPe.Interfaces.Files;
 
 namespace SimPe.Interfaces.Plugin.Internal
 {
+	
 	/// <summary>
 	/// Interface for Filehanders that are able to save their content to a BinaryStream
 	/// </summary>

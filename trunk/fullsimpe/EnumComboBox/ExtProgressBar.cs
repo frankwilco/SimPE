@@ -443,7 +443,7 @@ namespace Ambertation.Windows.Forms
 		{
 			LinearGradientBrush b 
 				= new LinearGradientBrush(
-				new Rectangle(left, top+1, width, height-2), 
+				new Rectangle(left, top, width, height), 
 				this.GradientStartColor, 
 				Color.Transparent, 
 				this.Gradient

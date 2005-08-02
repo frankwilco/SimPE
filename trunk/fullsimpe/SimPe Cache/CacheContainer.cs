@@ -49,7 +49,7 @@ namespace SimPe.Cache
 	/// <summary>
 	/// Contains one or more CacheItems
 	/// </summary>
-	public class CacheContainer
+	public class CacheContainer : System.IDisposable
 	{
 		/// <summary>
 		/// The current Version
@@ -261,5 +261,15 @@ namespace SimPe.Cache
 				for (int i=0; i<items.Count; i++) items[i].Save(writer);				
 			}
 		}
+
+		#region IDisposable Member
+
+		public virtual void Dispose()
+		{
+			if (items!=null)
+				items.Clear();
+		}
+
+		#endregion
 	}
 }

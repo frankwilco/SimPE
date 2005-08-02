@@ -28,7 +28,7 @@ namespace SimPe.Cache
 	/// <summary>
 	/// Contains an Instance of a CacheFile
 	/// </summary>
-	public class CacheFile
+	public class CacheFile:  System.IDisposable
 	{
 		/// <summary>
 		/// This is the 64-Bit Int, a cache File needs to start with
@@ -210,6 +210,14 @@ namespace SimPe.Cache
 			}
 
 			return mycc;
+		}
+
+		public virtual void Dispose()
+		{
+			foreach (CacheContainer cc in containers)
+				cc.Dispose();
+
+			containers.Clear();
 		}
 	}
 }

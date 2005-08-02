@@ -307,32 +307,33 @@ namespace SimPe.PackedFiles
 		#region IToolRegistry Member
 		public void Register(IToolPlugin tool)
 		{
-			if (tool!=null)
-				if (tool.GetType().GetInterface("SimPe.Interfaces.IDockableTool", true) == typeof(SimPe.Interfaces.IDockableTool)) 
-				{
-					if (!dtools.Contains(tool)) 					
-						dtools.Add((SimPe.Interfaces.IDockableTool)tool);	
-				} 
-				else if (tool.GetType().GetInterface("SimPe.Interfaces.IToolAction", true) == typeof(SimPe.Interfaces.IToolAction)) 
-				{
-					if (!atools.Contains(tool)) 					
-						atools.Add((SimPe.Interfaces.IToolAction)tool);	
-				} 
-				else 
-				{
-					if  (tool.GetType().GetInterface("SimPe.Interfaces.IToolPlus", true) == typeof(SimPe.Interfaces.IToolPlus)) 
+			
+				if (tool!=null)
+					if (tool.GetType().GetInterface("SimPe.Interfaces.IDockableTool", true) == typeof(SimPe.Interfaces.IDockableTool)) 
 					{
-						if (!toolsp.Contains(tool)) 					
-							toolsp.Add((SimPe.Interfaces.IToolPlus)tool);	
+						if (!dtools.Contains(tool)) 					
+							dtools.Add((SimPe.Interfaces.IDockableTool)tool);	
 					} 
-
-					if  (tool.GetType().GetInterface("SimPe.Interfaces.ITool", true) == typeof(SimPe.Interfaces.ITool)) 
+					else if (tool.GetType().GetInterface("SimPe.Interfaces.IToolAction", true) == typeof(SimPe.Interfaces.IToolAction)) 
 					{
-						if (!tools.Contains(tool)) 					
-							tools.Add((SimPe.Interfaces.ITool)tool);										  
+						if (!atools.Contains(tool)) 					
+							atools.Add((SimPe.Interfaces.IToolAction)tool);	
+					} 
+					else 
+					{
+						if  (tool.GetType().GetInterface("SimPe.Interfaces.IToolPlus", true) == typeof(SimPe.Interfaces.IToolPlus)) 
+						{
+							if (!toolsp.Contains(tool)) 					
+								toolsp.Add((SimPe.Interfaces.IToolPlus)tool);	
+						} 
+
+						if  (tool.GetType().GetInterface("SimPe.Interfaces.ITool", true) == typeof(SimPe.Interfaces.ITool)) 
+						{
+							if (!tools.Contains(tool)) 					
+								tools.Add((SimPe.Interfaces.ITool)tool);										  
+						}
 					}
-				}
-					
+			
 		}		
 
 		public void Register(IToolPlugin[] tools)
