@@ -1982,7 +1982,7 @@ namespace SimPe
 				pargs = args;
 				//Application.EnableVisualStyles();
 				Application.DoEvents();		
-				Application.Idle += new EventHandler(Application_Idle);
+				Application.Idle += new EventHandler(Application_Idle);				
 
 				Commandline.ImportOldData();								
 				if (!Commandline.Start(args))  
@@ -2959,9 +2959,9 @@ namespace SimPe
 
 		#region Idle Actions
 		static DateTime lastgc = DateTime.Now;
-		static TimeSpan waitgc = new TimeSpan(0, 0, 5, 0, 0);
+		static TimeSpan waitgc = new TimeSpan(0, 0, 15, 0, 0);
 		static DateTime lastfi = DateTime.Now;
-		static TimeSpan waitfi = new TimeSpan(0, 0, 10, 0, 0);
+		static TimeSpan waitfi = new TimeSpan(0, 2, 10, 0, 0);
 		private static void Application_Idle(object sender, EventArgs e)
 		{
 			DateTime now = DateTime.Now;

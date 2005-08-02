@@ -16,7 +16,7 @@
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
                 OutputType = "WinExe"
-                PreBuildEvent = ""
+                PreBuildEvent = 'copy G:\vs.net\DivElements\SandBar\sandbar.dll "$(TargetDir)"&#xd;&#xa;copy G:\vs.net\DivElements\SandDock\sanddock.dll "$(TargetDir)"'
                 PostBuildEvent = 'copy "$(TargetDir)\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)"&#xd;&#xa;copy "$(TargetDir)\*.pdb" "$(ProjectDir)\..\SimPe\$(OutDir)"&#xd;&#xa;copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"'
                 RootNamespace = "SimPe"
                 RunPostBuildEvent = "OnBuildSuccess"
