@@ -41,6 +41,7 @@ namespace SimPe.Plugin
 			Residential = 0x00,
 			Community = 0x01,
 			Dorm = 0x02,
+			Greek = 0x03,
 			Secret = 0x04,
 			Unknown = 0xff
 		}
