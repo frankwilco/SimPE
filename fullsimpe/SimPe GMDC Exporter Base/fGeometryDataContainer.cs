@@ -150,6 +150,9 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.LinkLabel linkLabel6;
 		private System.Windows.Forms.LinkLabel linkLabel7;
 		private Ambertation.Windows.Forms.DirectXPanel dxprev;
+		private System.Windows.Forms.Label label21;
+		internal System.Windows.Forms.ComboBox cbGroupJoint;
+		private System.Windows.Forms.LinkLabel llAssign;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -257,6 +260,9 @@ namespace SimPe.Plugin
 			this.label4 = new System.Windows.Forms.Label();
 			this.lb_itemsc2 = new System.Windows.Forms.ListBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.llAssign = new System.Windows.Forms.LinkLabel();
+			this.cbGroupJoint = new System.Windows.Forms.ComboBox();
+			this.label21 = new System.Windows.Forms.Label();
 			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.tb_opacity = new System.Windows.Forms.TextBox();
 			this.tb_uk2 = new System.Windows.Forms.TextBox();
@@ -717,7 +723,7 @@ namespace SimPe.Plugin
 			this.cbaxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbaxis.Location = new System.Drawing.Point(232, 240);
 			this.cbaxis.Name = "cbaxis";
-			this.cbaxis.Size = new System.Drawing.Size(96, 21);
+			this.cbaxis.Size = new System.Drawing.Size(96, 20);
 			this.cbaxis.TabIndex = 30;
 			this.cbaxis.SelectedIndexChanged += new System.EventHandler(this.ChangedAxis);
 			// 
@@ -885,6 +891,9 @@ namespace SimPe.Plugin
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.llAssign);
+			this.groupBox2.Controls.Add(this.cbGroupJoint);
+			this.groupBox2.Controls.Add(this.label21);
 			this.groupBox2.Controls.Add(this.linkLabel2);
 			this.groupBox2.Controls.Add(this.tb_opacity);
 			this.groupBox2.Controls.Add(this.tb_uk2);
@@ -903,6 +912,40 @@ namespace SimPe.Plugin
 			this.groupBox2.TabIndex = 14;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Group Section";
+			// 
+			// llAssign
+			// 
+			this.llAssign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.llAssign.LinkArea = new System.Windows.Forms.LinkArea(0, 6);
+			this.llAssign.Location = new System.Drawing.Point(456, 184);
+			this.llAssign.Name = "llAssign";
+			this.llAssign.Size = new System.Drawing.Size(120, 23);
+			this.llAssign.TabIndex = 29;
+			this.llAssign.TabStop = true;
+			this.llAssign.Text = "Assign to Joint";
+			this.llAssign.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			this.llAssign.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAssign_LinkClicked);
+			// 
+			// cbGroupJoint
+			// 
+			this.cbGroupJoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cbGroupJoint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbGroupJoint.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbGroupJoint.Location = new System.Drawing.Point(272, 160);
+			this.cbGroupJoint.Name = "cbGroupJoint";
+			this.cbGroupJoint.Size = new System.Drawing.Size(304, 21);
+			this.cbGroupJoint.TabIndex = 28;			
+			// 
+			// label21
+			// 
+			this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label21.AutoSize = true;
+			this.label21.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label21.Location = new System.Drawing.Point(264, 144);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(42, 17);
+			this.label21.TabIndex = 27;
+			this.label21.Text = "Joints:";
 			// 
 			// linkLabel2
 			// 
@@ -2227,6 +2270,69 @@ namespace SimPe.Plugin
 				pg.SelectedObject = ((SimPe.CountedListItem)lb.Items[lb.SelectedIndex]).Object;
 				pg.Refresh();
 			}
+		}
+
+		
+		private void llAssign_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (this.cbGroupJoint.SelectedItem!=null)
+				if (this.lb_itemsc.SelectedItem!=null)
+				{
+					GmdcJoint j = (GmdcJoint)((CountedListItem)cbGroupJoint.SelectedItem).Object;
+					GmdcGroup g = (GmdcGroup)lb_itemsc.SelectedItem;
+
+					//Get the assignment Element
+					GmdcElement ba = g.Link.FindElementType(ElementIdentity.BoneAssignment);
+					if (ba==null) 
+					{
+						ba = new GmdcElement(g.Parent);
+						ba.Identity = ElementIdentity.BoneAssignment;
+						ba.Parent.Elements.Add(ba);
+						g.Link.ReferencedElement.Add(ba.Parent.Elements.Count-1);
+					}
+
+					//Get the Weight Element
+					GmdcElement bw = g.Link.FindElementType(ElementIdentity.BoneWeights);
+					if (bw==null) 
+					{
+						bw = new GmdcElement(g.Parent);
+						bw.Identity = ElementIdentity.BoneWeights;	
+						
+						bw.Parent.Elements.Add(bw);
+						g.Link.ReferencedElement.Add(bw.Parent.Elements.Count-1);
+					}
+
+
+					//Get the Index of the used joint
+					if (!g.UsedJoints.Contains(j.Index)) 
+					{
+						g.UsedJoints.Add(j.Index);
+						this.lb_itemsc3.Items.Add(j.Index);
+					}
+					int id = 0;
+					for (int i=0; i<g.UsedJoints.Count; i++)
+						if (g.UsedJoints[i]==j.Index) 
+						{
+							id = i;
+							break;
+						}
+
+					GmdcElement v = g.Link.FindElementType(ElementIdentity.Vertex);
+					if (v==null) return;
+
+					ba.Values.Clear();
+					ba.BlockFormat = BlockFormat.OneDword;
+
+					bw.Values.Clear();
+					bw.BlockFormat = BlockFormat.OneFloat;
+
+					//create an assignment for each Vertex
+					for (int i=0; i<v.Values.Length; i++)
+					{
+						ba.Values.Add(new GmdcElementValueOneInt((int)(id | 0xffffff00)));
+						bw.Values.Add(new GmdcElementValueOneFloat(1.0f));
+					}
+				}
 		}
 
 		private void dxprev_SizeChanged(object sender, System.EventArgs e)

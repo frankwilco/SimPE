@@ -108,6 +108,7 @@ namespace SimPe
 		/// </summary>
 		public void Flush() 
 		{
+			if (lr!=null) lr.Flush();
 			if (reg!=null) reg.Flush();
 		}
 

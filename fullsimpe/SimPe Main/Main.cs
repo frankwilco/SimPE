@@ -1960,23 +1960,7 @@ namespace SimPe
 		{
 			try 
 			{
-				//check if the settings File is available
-				string file = System.IO.Path.Combine(Helper.SimPeDataPath, @"simpe.xreg");				
-				try 
-				{
-					System.Xml.XmlDocument xmlfile = new System.Xml.XmlDocument();
-						
-					if (System.IO.File.Exists(file)) 
-					{
-						xmlfile.Load(file);
-						System.Xml.XmlNodeList XMLData = xmlfile.GetElementsByTagName("registry");	
-					}
-				}
-				catch
-				{
-					if (MessageBox.Show("The Settings File was not readable. SimPE will generate a new one, which means that all your Settings made in \"Extra->Preferences\" get lost.\n\nShould SimPe reset the Settings File?", "Error", MessageBoxButtons.YesNo)==DialogResult.Yes)
-						System.IO.File.Delete(file);
-				}
+				Commandline.CheckFiles();
 			
 				//do the real Startup
 				pargs = args;

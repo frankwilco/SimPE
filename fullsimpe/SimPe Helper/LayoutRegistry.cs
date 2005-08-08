@@ -45,13 +45,15 @@ namespace SimPe
 		#endregion
 
 		#region Management
+		XmlRegistry reg;
 		/// <summary>
 		/// Creates a new Instance
 		/// </summary>
 		/// <param name="layoutkey">Key to the Layout</param>
 		internal LayoutRegistry(XmlRegistryKey layoutkey)
 		{
-			xrk = layoutkey;
+			reg = new XmlRegistry(System.IO.Path.Combine(Helper.SimPeDataPath, "layout.xreg"), true);
+			xrk = reg.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe\\Layout");						
 		}	
 
 		
@@ -65,6 +67,25 @@ namespace SimPe
 			{
 				return xrk.CreateSubKey("PluginLayout");
 			}
+		}
+
+		/// <summary>
+		/// Descturtor 
+		/// </summary>
+		/// <remarks>
+		/// Will flsuh the XmlRegistry to the disk
+		/// </remarks>
+		~LayoutRegistry()
+		{
+			Flush();
+		}
+
+		/// <summary>
+		/// Write the Settings to the Disk
+		/// </summary>
+		public void Flush() 
+		{
+			if (reg!=null) reg.Flush();
 		}
 		
 		#endregion

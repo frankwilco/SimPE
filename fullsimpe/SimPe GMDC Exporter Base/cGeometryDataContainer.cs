@@ -283,7 +283,12 @@ namespace SimPe.Plugin
 				form.lb_subsets.Items.Clear();
 				form.lb_sub_faces.Items.Clear();
 				form.lb_sub_items.Items.Clear();
-				foreach (GmdcJoint i in this.joints) SimPe.CountedListItem.Add(form.lb_subsets, i);
+				form.cbGroupJoint.Items.Clear();
+				foreach (GmdcJoint i in this.joints) 
+				{
+					SimPe.CountedListItem.Add(form.lb_subsets, i);
+					SimPe.CountedListItem.Add(form.cbGroupJoint, i);
+				}
 
 				form.lb_model_faces.Items.Clear();
 				foreach (Vector3f i in this.model.Bone.Vertices) SimPe.CountedListItem.Add(form.lb_model_faces, i);
