@@ -40,7 +40,7 @@ namespace SimPe.Collections.IO
 		/// Create a new Instance
 		/// </summary>
 		/// <remarks>Same as a call to FileIndex(null)</remarks>
-		public ResourceIndex(SimPe.Interfaces.Files.IPackageFile pkg) : this(pkg, false)
+		public ResourceIndex(SimPe.Interfaces.Files.IPackageFile pkg, int capacity) : this(pkg, false, capacity)
 		{
 		}
 
@@ -48,11 +48,11 @@ namespace SimPe.Collections.IO
 		/// Create a new Instance
 		/// </summary>
 		/// <remarks>Same as a call to FileIndex(null)</remarks>
-		public ResourceIndex(SimPe.Interfaces.Files.IPackageFile pkg, bool flat)
+		public ResourceIndex(SimPe.Interfaces.Files.IPackageFile pkg, bool flat, int capacity)
 		{
-			this.pkg = pkg;
-			pfds = new PackedFileDescriptors();
-			this.flat = flat;
+			this.pkg = pkg;			
+			pfds = new PackedFileDescriptors(capacity);
+			this.flat = true;
 			higestoffset = 0;
 			LoadIndex();
 		}
@@ -77,7 +77,7 @@ namespace SimPe.Collections.IO
 		/// <returns>The Clone</returns>
 		public ResourceIndex Clone()
 		{
-			ResourceIndex ret = new ResourceIndex(this.pkg);
+			ResourceIndex ret = new ResourceIndex(this.pkg, this.pfds.Length);
 			ret.index = (Hashtable)this.index.Clone();		
 
 			return ret;
@@ -126,8 +126,8 @@ namespace SimPe.Collections.IO
 		/// <param name="pfd">The Descriptor</param>
 		internal void AddIndexFromPfd(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
 		{
-			pfd.Closed += new SimPe.Events.PackedFileChanged(ClosedDescriptor);		
-			pfd.DescriptionChanged += new EventHandler(DescriptorChanged);
+			//pfd.Closed += new SimPe.Events.PackedFileChanged(ClosedDescriptor);		
+			if (!flat) pfd.DescriptionChanged += new EventHandler(DescriptorChanged);
 
 			Hashtable groups = null;
 			Hashtable instances = null;
@@ -163,6 +163,23 @@ namespace SimPe.Collections.IO
 			pfds.Add(pfd);	
 		}
 
+		void RemoveFromList(PackedFileDescriptors list, SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
+		{
+			bool rem = false;
+			for (int i=0; i<list.Count; i++) 
+			{
+				SimPe.Interfaces.Files.IPackedFileDescriptor p = list[i];				
+				if (p.Equals(pfd)) 
+				{
+					list.RemoveAt(i);
+					rem = true;
+				}
+			}
+			
+			if (!rem) 
+				throw new Exception("Bugger");
+		}
+
 		internal void RemoveChanged(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
 		{
 			if (!flat) 
@@ -179,14 +196,14 @@ namespace SimPe.Collections.IO
 							for (int i=list.Count-1; i>=0; i--) 
 								if (list[i] == pfd) 
 								{
-									pfds.Remove(list[i]);
+									RemoveFromList(pfds, list[i]);
 									list.RemoveAt(i);																	
 								}
 						}
 					}
 				}	
 			} 
-			else pfds.Remove(pfd);			
+			else RemoveFromList(pfds, pfd);
 		}
 
 		/// <summary>
@@ -632,6 +649,10 @@ namespace SimPe.Collections.IO
 		
 		internal void Clear()
 		{
+			Clear(true);
+		}
+		internal void Clear(bool full)
+		{
 			if (index==null) return;
 			PackedFileDescriptors list;
 			foreach (uint type in index.Keys) 
@@ -650,7 +671,8 @@ namespace SimPe.Collections.IO
 				groups.Clear();
 			}	
 			index.Clear();
-			pfds.Clear();
+			
+			if (full) pfds.Clear();
 		}
 
 		public int Count
@@ -665,10 +687,11 @@ namespace SimPe.Collections.IO
 
 		private void DescriptorChanged(object sender, EventArgs e)
 		{
-			if (sender is SimPe.Interfaces.Files.IPackedFileDescriptor) 
+			if ((sender is SimPe.Interfaces.Files.IPackedFileDescriptor) && !flat)
 			{
-				this.RemoveChanged((SimPe.Interfaces.Files.IPackedFileDescriptor)sender);
-				this.AddIndexFromPfd((SimPe.Interfaces.Files.IPackedFileDescriptor)sender);
+				/*PackedFileDescriptors ps = (PackedFileDescriptors)pfds.Clone();
+				this.Clear(true);
+				this.AddIndexFromPfd(ps);*/
 			}
 		}
 

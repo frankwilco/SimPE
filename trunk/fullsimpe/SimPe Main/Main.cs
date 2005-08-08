@@ -388,7 +388,7 @@ namespace SimPe
 			this.dc.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dc.ImeMode")));
 			this.dc.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
 																																								   new TD.SandDock.DocumentLayoutSystem(725, 373, new TD.SandDock.DockControl[0], null)});
-			this.dc.Location = ((System.Drawing.Point)(resources.GetObject("dc.Location")));
+			this.dc.Location = ((System.Drawing.Point)(resources.GetObject("dc.Location1")));
 			this.dc.Name = "dc";
 			this.dc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dc.RightToLeft")));
 			this.dc.Size = ((System.Drawing.Size)(resources.GetObject("dc.Size")));
@@ -2094,6 +2094,8 @@ namespace SimPe
 			tvInstance.Nodes.Clear();
 			tvGroup.Nodes.Clear();
 			tvType.Nodes.Clear();
+
+			if (!Helper.WindowsRegistry.AsynchronLoad) lv.BeginUpdate();
 			TreeBuilder.ClearListView(lv);
 
 			
@@ -2101,6 +2103,7 @@ namespace SimPe
 			package.UpdateRecentFileMenu(this.miRecent);			
 
 			UpdateFileInfo();
+			if (!Helper.WindowsRegistry.AsynchronLoad) lv.EndUpdate();
 		}
 
 		

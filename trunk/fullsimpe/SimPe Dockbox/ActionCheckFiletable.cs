@@ -47,7 +47,7 @@ namespace SimPe.Plugin.Tool.Action
 			System.IO.StreamWriter sw = new System.IO.StreamWriter(new System.IO.MemoryStream());
 			try 
 			{
-				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in e.LoadedPackage.Package.FileIndex.Flatten()) 
+				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in e.LoadedPackage.Package.Index) 
 				{
 					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] fiis = FileTable.FileIndex.FindFile(pfd, e.LoadedPackage.Package);
 

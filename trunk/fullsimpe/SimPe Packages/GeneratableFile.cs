@@ -43,8 +43,8 @@ namespace SimPe.Packages
 		/// Cosntructor of the Class
 		/// </summary>
 		/// <param name="br">The BinaryReader representing the Package File</param>
-		internal GeneratableFile(BinaryReader br, bool flat) : base(br, flat) {}	
-		internal GeneratableFile(string flname, bool flat) : base(flname, flat) {}
+		internal GeneratableFile(BinaryReader br) : base(br) {}	
+		internal GeneratableFile(string flname) : base(flname) {}
 
 
 		/// <summary>
@@ -53,7 +53,7 @@ namespace SimPe.Packages
 		/// <returns>An INstance of this Class</returns>
 		protected override Interfaces.Files.IPackageFile NewCloneBase() 
 		{
-			GeneratableFile fl = new GeneratableFile((BinaryReader)null, FileIndex.Flat);
+			GeneratableFile fl = new GeneratableFile((BinaryReader)null);
 			fl.header = this.header;
 			
 			return fl;
@@ -194,9 +194,9 @@ namespace SimPe.Packages
 			//now save the files
 			PackedFileDescriptors tmpindex = new PackedFileDescriptors();
 			ArrayList tmpcmp = new ArrayList();
-			if (this.fileindex==null) fileindex = new ResourceIndex(this);
+			if (this.fileindex==null) fileindex = new SimPe.Interfaces.Files.IPackedFileDescriptor[0];
 
-			foreach(PackedFileDescriptor pfd in this.fileindex.Flatten())
+			foreach(PackedFileDescriptor pfd in this.fileindex)
 			{				
 				pfd.Changed = false;
 
@@ -268,8 +268,8 @@ namespace SimPe.Packages
 			WriteFileList(writer, ref tmpindex, tmpcmp);
 
 			//create a new Index
-			/*IPackedFileDescriptor[] myindex = new PackedFileDescriptor[tmpindex.Count];
-			tmpindex.CopyTo(myindex);*/
+			IPackedFileDescriptor[] myindex = new PackedFileDescriptor[tmpindex.Count];
+			tmpindex.CopyTo(myindex);
 
 			//write the hole index
 			header.HoleIndex.Offset = 0;
@@ -279,11 +279,10 @@ namespace SimPe.Packages
 
 			//write the packed Fileindex
 			header.Index.Offset = (uint)writer.BaseStream.Position;
-			header.Index.Size = (int)(header.Index.ItemSize * tmpindex.Count);
-			header.Index.Count = tmpindex.Length;
-			SaveIndex(writer, tmpindex);
-			fileindex.Clear();
-			fileindex.LoadIndex(tmpindex);
+			header.Index.Size = (int)(header.Index.ItemSize * myindex.Length);
+			header.Index.Count = myindex.Length;
+			SaveIndex(writer, myindex);
+			Index = myindex;
 			
 
 			//rewrite Header
@@ -336,7 +335,7 @@ namespace SimPe.Packages
 
 					if (pos!=-1) //the file did already exist, so the size did not change!
 					{
-						SimPe.PackedFiles.Wrapper.ClstItem fi = fl[pos];						
+						SimPe.PackedFiles.Wrapper.ClstItem fi = fl.Items[pos];						
 						newfl.Add(fi);
 					} 
 					else //the file is new but compressed
@@ -357,7 +356,7 @@ namespace SimPe.Packages
 			
 			
 			//no compressed Files, so remove the (empty) Filelist
-			if (newfl.Length!=0) 
+			if (newfl.Items.Length!=0) 
 			{
 				//tmpindex[tmpindex.Length-1] = filelist;	
 				tmpindex.Add(filelist);
@@ -377,7 +376,7 @@ namespace SimPe.Packages
 		/// </summary>
 		/// <param name="writer">The BinaryWriter to use</param>
 		/// <param name="tmpcmp">the index you want to write</param>
-		protected void SaveIndex(BinaryWriter writer, PackedFileDescriptors tmpindex)
+		protected void SaveIndex(BinaryWriter writer, IPackedFileDescriptor[] tmpindex)
 		{
 			long pos = writer.BaseStream.Position;
 			foreach (PackedFileDescriptor item in tmpindex) 

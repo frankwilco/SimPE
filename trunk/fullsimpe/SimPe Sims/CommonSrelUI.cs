@@ -503,6 +503,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbRel.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbRel.TextAlign")));
 			this.tbRel.Visible = ((bool)(resources.GetObject("tbRel.Visible")));
 			this.tbRel.WordWrap = ((bool)(resources.GetObject("tbRel.WordWrap")));
+			this.tbRel.TextChanged += new System.EventHandler(this.ChangedRelationText);
 			// 
 			// CommonSrel
 			// 

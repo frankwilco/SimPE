@@ -106,7 +106,7 @@ namespace SimPe.PackedFiles.UserInterface
 			lbformat.Text = wrapper.IndexType.ToString();
 
 			lbclst.Items.Clear();
-			foreach (ClstItem i in wrapper)
+			foreach (ClstItem i in wrapper.Items)
 				if (i!=null) 
 					lbclst.Items.Add(i);
 				else 

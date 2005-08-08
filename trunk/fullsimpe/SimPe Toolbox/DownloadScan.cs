@@ -698,7 +698,7 @@ namespace SimPe.Plugin
 				if (inlist) 
 				{
 					byte[] uncdata = file.UncompressedData;
-					if (package.FileListFile[nr].UncompressedSize != uncdata.Length) return -2;
+					if (package.FileListFile.Items[nr].UncompressedSize != uncdata.Length) return -2;
 				}
 				
 				if (inlist != file.IsCompressed) incomplete = true;

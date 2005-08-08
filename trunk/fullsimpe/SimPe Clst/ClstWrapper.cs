@@ -35,9 +35,7 @@ namespace SimPe.PackedFiles.Wrapper
 		: AbstractWrapper				//Implements some of the default Behaviur of a Handler, you can Implement yourself if you want more flexibility!
 		, IFileWrapper					//This Interface is used when loading a File
 		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File
-		, System.Collections.IEnumerable
-		, System.Collections.IEnumerator
-		, System.IDisposable
+		//,IPackedFileProperties		//This Interface can be used by thirdparties to retrive the FIleproperties, however you don't have to implement it!
 	{
 		#region Attributes
 		Data.MetaData.IndexTypes iformat;
@@ -55,13 +53,12 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Contains all available Items
 		/// </summary>		
-		private Hashtable items;
-		ArrayList ordered;
+		private ClstItem[] items;
 
 		/// <summary>
 		/// Returns/Sets the Constants
 		/// </summary>
-		/*public ClstItem[] Items
+		public ClstItem[] Items
 		{
 			get { 
 				return items;	
@@ -70,13 +67,17 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				items = value;
 			}
-		}*/
+		}
 		#endregion
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		internal CompressedFileList() : this(Data.MetaData.IndexTypes.ptShortFileIndex){}
+		internal CompressedFileList() : base()
+		{		
+			iformat = Data.MetaData.IndexTypes.ptShortFileIndex;
+			items = new ClstItem[0];
+		}
 
 		/// <summary>
 		/// Constructor
@@ -85,9 +86,7 @@ namespace SimPe.PackedFiles.Wrapper
 		public CompressedFileList(Data.MetaData.IndexTypes type) : base()
 		{		
 			iformat = type;
-			items = new Hashtable();
-			ordered = new ArrayList();
-			Reset();
+			items = new ClstItem[0];
 		}
 
 		/// <summary>
@@ -99,8 +98,7 @@ namespace SimPe.PackedFiles.Wrapper
 		public CompressedFileList(IPackedFileDescriptor pfd, IPackageFile package) : base()
 		{		
 			iformat = package.Header.IndexType;
-			items = new Hashtable();
-			ordered = new ArrayList();
+			items = new ClstItem[0];
 			this.ProcessData(pfd, package);
 		}
 
@@ -113,12 +111,23 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			if (items == null) 
 				return -1;
+			for(int i=0; i<this.items.Length; i++) 
+			{
+				ClstItem lfi = items[i];
 
-			object o = items[new ClstItem(pfd, this.IndexType)];
-			if (o!=null) 
-				return (int)o;			
+				if (	(lfi.Group == pfd.Group) &&
+					(lfi.Instance == pfd.Instance) &&
+					((lfi.SubType == pfd.SubType) || (iformat==Data.MetaData.IndexTypes.ptShortFileIndex) ) && 
+					(lfi.Type == pfd.Type) ) return i;
+
+			}
 
 			return -1;
+		}
+
+		public void Clear()
+		{
+			items = new ClstItem[0];
 		}
 
 		/// <summary>
@@ -127,42 +136,11 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <param name="item">the new File</param>
 		public void Add(ClstItem item) 
 		{
-			if (item==null) return;
-			/*if (items.ContainsKey(item)) 
-			{
-				throw new Warning("Duplicated Entry in Directory of Compressed Files!", "The Resource "+item.ToString()+" was added twice!");
-			} 
-			else 
-			{
-				items.Add(item, items.Count);
-				ordered.Add(item);
-			}*/
+			ClstItem[] its = new ClstItem[items.Length + 1];
+			items.CopyTo(its, 0);
+			its[its.Length-1] = item;
 
-			items[item] = items.Count;
-			ordered.Add(item);
-		}
-
-		public ClstItem this[int index]
-		{
-			get 
-			{
-				return (ClstItem)ordered[index];
-			} 
-			set 
-			{
-				ordered[index] = value;
-			}
-		}
-
-		public int Length
-		{
-			get { return ordered.Count; }
-		}
-
-		public void Clear()
-		{
-			items.Clear();
-			ordered.Clear();
+			items = its;
 		}
 
 		
@@ -186,7 +164,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Compressed File Directory Wrapper",
 				"Quaxi",
 				"This File contains a List of all compressed Files that are stored within this Package.",
-				4,
+				2,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.clst.png"))
 				);   
 		}
@@ -203,12 +181,10 @@ namespace SimPe.PackedFiles.Wrapper
 				count = reader.BaseStream.Length / 0x14;
 			else
 				count = reader.BaseStream.Length / 0x10;
-
-			Clear();
-			
+			items = new ClstItem[count];
 
 			long pos = reader.BaseStream.Position;
-			bool switch_t = false;			
+			bool switch_t = false;
 			for (int i=0; i< count; i++) 
 			{
 				ClstItem item = new ClstItem(this.IndexType);
@@ -230,9 +206,7 @@ namespace SimPe.PackedFiles.Wrapper
 					}
 				}
 
-				items[item] = items.Count;
-				ordered.Add(item);
-				//Add(item);//items[i] = item;
+				items[i] = item;
 			}
 		}
 
@@ -246,9 +220,9 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </remarks>
 		protected override void Serialize(System.IO.BinaryWriter writer)
 		{			
-			foreach (ClstItem item in items.Keys) 
+			for (int i=0; i< items.Length; i++) 
 			{
-				item.Serialize(writer, this.IndexType);
+				items[i].Serialize(writer, this.IndexType);
 			}
 		}
 		#endregion
@@ -289,50 +263,5 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		#endregion		
-
-		#region IEnumerable Member
-
-		public IEnumerator GetEnumerator()
-		{
-			return this;
-		}
-
-		#endregion
-
-		#region IEnumerator Member
-		int cur;
-		public void Reset()
-		{
-			cur = -1;
-		}
-
-		public object Current
-		{
-			get
-			{
-				if (cur<ordered.Count && cur>=0) return this[cur];
-				return null;
-			}
-		}
-
-		public bool MoveNext()
-		{
-			if (cur<ordered.Count-1 && cur>=-1) cur++;
-			else return false;
-
-			return true;
-		}
-
-		#endregion
-
-		#region IDisposable Member
-
-		public void Dispose()
-		{
-			if (items!=null) this.items.Clear();
-			if (ordered!=null) this.ordered.Clear();
-		}
-
-		#endregion
 	}
 }

@@ -199,7 +199,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.bottomSandDock.Controls.Add(this.dcConvert);
 			this.bottomSandDock.Controls.Add(this.dcPackage);
 			this.bottomSandDock.Controls.Add(this.dcWrapper);
-			this.bottomSandDock.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("bottomSandDock.Dock")));
+			this.bottomSandDock.Dock = DockStyle.Bottom;
 			this.bottomSandDock.Enabled = ((bool)(resources.GetObject("bottomSandDock.Enabled")));
 			this.bottomSandDock.Font = ((System.Drawing.Font)(resources.GetObject("bottomSandDock.Font")));
 			this.bottomSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("bottomSandDock.ImeMode")));
@@ -209,7 +209,7 @@ namespace SimPe.Plugin.Tool.Dockable
 																																																															   this.dcResource,
 																																																															   this.dcWrapper,
 																																																															   this.dcConvert,
-																																																															   this.dcHex}, this.dcHex, false)});
+																																																															   this.dcHex}, this.dcResource, false)});
 			this.bottomSandDock.Location = ((System.Drawing.Point)(resources.GetObject("bottomSandDock.Location")));
 			this.bottomSandDock.Manager = this.sandDockManager1;
 			this.bottomSandDock.Name = "bottomSandDock";

@@ -161,7 +161,8 @@ namespace SimPe
 				}
 
 				pkg = SimPe.Packages.File.LoadFromFile(e.FileName, sync);
-				pkg.LoadCompressedState();
+				if (pkg.Index.Length<Helper.WindowsRegistry.BigPackageResourceCount)
+					pkg.LoadCompressedState();
 				
 				pkg.IndexChanged += new EventHandler(IndexChangedHandler);
 				pkg.AddedResource += new EventHandler(AddedResourceHandler);

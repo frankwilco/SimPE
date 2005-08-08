@@ -89,13 +89,13 @@ namespace SimPe.Packages
 		/// If the package was loaded once in this session, this Method will return an instance to the
 		/// last loaded Version. Otherwise it wil create a new instance
 		/// </remarks>
-		public GeneratableFile LoadPackageFromFile(string filename, bool sync, bool flat) 
+		public GeneratableFile LoadPackageFromFile(string filename, bool sync) 
 		{
 			if (filename==null) return GeneratableFile.CreateNew();
 
-			if (!Helper.WindowsRegistry.UsePackageMaintainer)  return new GeneratableFile(filename, flat);
+			if (!Helper.WindowsRegistry.UsePackageMaintainer)  return new GeneratableFile(filename);
 
-			if (!ht.ContainsKey(filename)) ht[filename] = new GeneratableFile(filename, flat);
+			if (!ht.ContainsKey(filename)) ht[filename] = new GeneratableFile(filename);
 			else if (sync) 
 			{				
 				SimPe.FileTableBase.FileIndex.ClosePackage((GeneratableFile)ht[filename]);

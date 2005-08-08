@@ -42,7 +42,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		public event SimPe.Events.ChangedResourceEvent ShowNewResource;
 
 		public void RefreshDock(object sender, SimPe.Events.ResourceEventArgs es)
-		{
+		{			
 			rd.items = null;
 			bool check = false;
 			if (!es.Empty) 			
@@ -77,6 +77,11 @@ namespace SimPe.Plugin.Tool.Dockable
 
 			rd.items = es;
 			rd.guipackage = es.LoadedPackage;
+
+			if (es.Loaded)			
+				if (!es.LoadedPackage.Package.LoadedCompressedState) 
+					rd.cbComp.Enabled = false;
+			
 		}
 
 		#endregion

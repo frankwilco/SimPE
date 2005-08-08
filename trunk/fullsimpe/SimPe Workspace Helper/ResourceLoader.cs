@@ -181,7 +181,7 @@ namespace SimPe
 				TD.SandDock.DockControl doc = null;
 				bool add = !overload;
 				if (overload) doc = dc.SelectedPage;				
-				if (doc == null) {add = true; doc = new TD.SandDock.DockableWindow(); }
+				if (doc == null) {add = true; doc = new TD.SandDock.TabPage(); }
 				else if (!this.UnloadWrapper(doc)) return false;
 
 				doc.Text = wrapper.ResourceName;
@@ -213,7 +213,7 @@ namespace SimPe
 
 						
 						if (add) doc.Closing += new TD.SandDock.DockControlClosingEventHandler(CloseResourceDocument);
-						dc.SelectedPage = doc;
+						dc.SelectedPage = (TD.SandDock.TabPage)doc;
 						doc.Manager = dc.Manager;
 						loaded[fii] = doc;
 
@@ -279,7 +279,7 @@ namespace SimPe
 
 				if (doc.Parent == null ) return true;
 				if (doc.Parent is TD.SandDock.TabControl)
-					((TD.SandDock.TabControl)doc.Parent).SelectedPage = doc;
+					((TD.SandDock.TabControl)doc.Parent).SelectedPage = (TD.SandDock.TabPage)doc;
 				else 
 					doc.LayoutSystem.SelectedControl = doc;
 				
