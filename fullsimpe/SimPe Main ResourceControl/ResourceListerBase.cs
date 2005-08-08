@@ -98,8 +98,9 @@ namespace SimPe
 					} 
 					if (startedwait && ct%step==1) Wait.Progress = ct;												
 					
-					if (stop.WaitOne(0, false)) 
-						break;
+					if (Helper.WindowsRegistry.AsynchronLoad) 
+						if (stop.WaitOne(0, false)) 
+							break;
 				}				
 						
 			}

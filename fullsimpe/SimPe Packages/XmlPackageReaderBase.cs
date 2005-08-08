@@ -32,7 +32,7 @@ namespace SimPe
 	{
 		protected void ClearFileIndex(SimPe.Packages.GeneratableFile file) 
 		{
-			file.FileIndex.Clear();
+			file.ClearFileIndex();
 		}
 
 		protected void AddToFileIndex(SimPe.Packages.GeneratableFile file, SimPe.Packages.PackedFileDescriptor pfd)

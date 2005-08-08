@@ -78,7 +78,10 @@ namespace SimPe.Plugin
 				WaitingScreen.Stop();
 			}
 
-			return new ToolResult(false, true);
+			if (Helper.StartedGui != Executable.Classic)
+				return new ToolResult(false, false);
+			else 
+				return new ToolResult(false, true);
 		}
 
 		public override string ToString()

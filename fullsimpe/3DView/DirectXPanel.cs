@@ -482,7 +482,8 @@ namespace Ambertation.Windows.Forms
 		/// <param name="e"></param>
 		protected override void OnResize(System.EventArgs e)
 		{
-			vp.Aspect = Math.Max(this.Width / this.Height , this.Size.Height / this.Size.Width);			
+			if (this.Height==0 || this.Width==0) vp.Aspect = 1;
+			else vp.Aspect = Math.Max(this.Width / this.Height , this.Size.Height / this.Size.Width);			
 			//pause = ((this.WindowState == FormWindowState.Minimized) || !this.Visible);
 		}
 

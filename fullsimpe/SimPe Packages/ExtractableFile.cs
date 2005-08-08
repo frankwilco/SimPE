@@ -23,7 +23,6 @@ using SimPe.Interfaces.Plugin;
 using SimPe.Interfaces.Plugin.Internal;
 using SimPe.Interfaces;
 using SimPe.Interfaces.Files;
-using SimPe.Collections.IO;
 
 namespace SimPe.Packages
 {
@@ -36,8 +35,8 @@ namespace SimPe.Packages
 		/// Constructor For the Class
 		/// </summary>
 		/// <param name="br">The BinaryReader representing the Package File</param>
-		internal ExtractableFile(BinaryReader br, bool flat) : base(br, flat) {}
-		internal ExtractableFile(string flname, bool flat) : base(flname, flat) {}
+		internal ExtractableFile(BinaryReader br) : base(br) {}
+		internal ExtractableFile(string flname) : base(flname) {}
 
 		/// <summary>
 		/// Init the Clone for this Package
@@ -45,7 +44,7 @@ namespace SimPe.Packages
 		/// <returns>An INstance of this Class</returns>
 		protected override Interfaces.Files.IPackageFile NewCloneBase() 
 		{
-			ExtractableFile fl = new ExtractableFile((BinaryReader)null, FileIndex.Flat);
+			ExtractableFile fl = new ExtractableFile((BinaryReader)null);
 			fl.header = this.header;
 			
 			return fl;
@@ -159,10 +158,7 @@ namespace SimPe.Packages
 			string xml = "";
 			if (header) xml += "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" + Helper.lbr;
 			xml += "<package type=\""+((uint)Header.IndexType).ToString()+"\">" + Helper.lbr;
-			PackedFileDescriptors list = fileindex.Flatten();
-
-			
-			foreach(PackedFileDescriptor pfd in list) 
+			foreach(PackedFileDescriptor pfd in this.fileindex) 
 			{
 				xml += pfd.GenerateXmlMetaInfo() + Helper.lbr;
 			}

@@ -461,7 +461,7 @@ namespace SimPe.Plugin
 			Wait.Message = SimPe.Localization.GetString("Loading")+" \""+System.IO.Path.GetFileNameWithoutExtension(file)+"\"";
 			try 
 			{
-				SimPe.Interfaces.Files.IPackageFile package = SimPe.Packages.File.LoadFromFile(file, false, true);
+				SimPe.Interfaces.Files.IPackageFile package = SimPe.Packages.File.LoadFromFile(file, false);
 				AddIndexFromPackage(package, false);
 			} 
 			catch (Exception ex) 

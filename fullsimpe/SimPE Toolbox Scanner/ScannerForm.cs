@@ -988,10 +988,11 @@ namespace SimPe.Plugin
 			string[] dofiles = System.IO.Directory.GetFiles(folder, "*.packagedisabled");
 			string[] tfiles = System.IO.Directory.GetFiles(folder, "*.Sims2Tmp");
 			
-			Scan(files, true, 0, files.Length+dfiles.Length+tfiles.Length);
-			Scan(dfiles, false, files.Length, files.Length+dfiles.Length+tfiles.Length);			
-			Scan(dofiles, false, files.Length, files.Length+dfiles.Length+tfiles.Length);	
-			Scan(tfiles, false, files.Length+dfiles.Length, files.Length+dfiles.Length+tfiles.Length);
+			int ct = files.Length + dfiles.Length + dofiles.Length + tfiles.Length;
+			Scan(files, true, 0, ct);
+			Scan(dfiles, false, files.Length, ct);			
+			Scan(dofiles, false, files.Length + dfiles.Length, ct);	
+			Scan(tfiles, false, files.Length + dfiles.Length + dofiles.Length, ct);
 			pb.Value = 0;
 
 			//issue a recursive Scan
@@ -1083,7 +1084,7 @@ namespace SimPe.Plugin
 			int ct = pboffset;
 			foreach (string file in files) 
 			{
-				pb.Value = ((ct++) * pb.Maximum) / count;
+				pb.Value = Math.Max(Math.Min(((ct++) * pb.Maximum) / count, pb.Maximum), pb.Minimum);
 				try 
 				{
 					//Load the Item from the cache (if possible)

@@ -28,6 +28,9 @@ namespace SimPe.Collections.IO
 	/// </summary>
 	public class PackedFileDescriptors: ArrayList 
 	{
+		public PackedFileDescriptors(int capacity) : base(capacity) {}
+		public PackedFileDescriptors() : base() {}
+
 		/// <summary>
 		/// Integer Indexer
 		/// </summary>

@@ -452,11 +452,14 @@ namespace SimPe
 		#region Import Data
 		public static void ConvertData()
 		{
+#if DEBUG
+#else
 			if (Helper.WindowsRegistry.PreviousVersion<184819098236) //0.43e
 			{
 				Helper.WindowsRegistry.Layout.SandBarLayout = "";
 				Helper.WindowsRegistry.Layout.SandDockLayout = "";
 			}
+#endif
 		}
 		public static void ImportOldData()
 		{

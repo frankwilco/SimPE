@@ -73,7 +73,8 @@ namespace SimPe
 					if (node.Tag is TreeNodeTag) 
 						node.Text = node.Tag.ToString();
 					
-				UpdateLabels(node.Nodes);
+				if (Helper.WindowsRegistry.AsynchronLoad || nodes.Count<Helper.WindowsRegistry.BigPackageResourceCount) 
+					UpdateLabels(node.Nodes);
 			}
 		}
 
@@ -103,7 +104,7 @@ namespace SimPe
 		protected virtual void OnFinish(TreeNode root, int ct)
 		{
 			root.Expand();
-			//if (ct<Helper.WindowsRegistry.BigPackageResourceCount) 
+			if (Helper.WindowsRegistry.AsynchronLoad || ct<Helper.WindowsRegistry.BigPackageResourceCount) 
 				tv.SelectedNode = root;
 			
 			nodemap.Clear();
@@ -168,8 +169,9 @@ namespace SimPe
 							Wait.SubStart();
 							startedwait = true;
 						}
-						if (stop.WaitOne(0, false)) 
-							break;
+						if (Helper.WindowsRegistry.AsynchronLoad) 						
+							if (stop.WaitOne(0, false)) 
+								break;
 					}
 				} 
 				finally 
