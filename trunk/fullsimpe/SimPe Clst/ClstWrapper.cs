@@ -128,7 +128,7 @@ namespace SimPe.PackedFiles.Wrapper
 		public void Add(ClstItem item) 
 		{
 			if (item==null) return;
-			if (items.ContainsKey(item)) 
+			/*if (items.ContainsKey(item)) 
 			{
 				throw new Warning("Duplicated Entry in Directory of Compressed Files!", "The Resource "+item.ToString()+" was added twice!");
 			} 
@@ -136,7 +136,10 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				items.Add(item, items.Count);
 				ordered.Add(item);
-			}
+			}*/
+
+			items[item] = items.Count;
+			ordered.Add(item);
 		}
 
 		public ClstItem this[int index]
@@ -200,10 +203,12 @@ namespace SimPe.PackedFiles.Wrapper
 				count = reader.BaseStream.Length / 0x14;
 			else
 				count = reader.BaseStream.Length / 0x10;
-			items.Clear();
+
+			Clear();
+			
 
 			long pos = reader.BaseStream.Position;
-			bool switch_t = false;
+			bool switch_t = false;			
 			for (int i=0; i< count; i++) 
 			{
 				ClstItem item = new ClstItem(this.IndexType);
@@ -225,7 +230,9 @@ namespace SimPe.PackedFiles.Wrapper
 					}
 				}
 
-				Add(item);//items[i] = item;
+				items[item] = items.Count;
+				ordered.Add(item);
+				//Add(item);//items[i] = item;
 			}
 		}
 
