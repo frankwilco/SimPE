@@ -452,15 +452,47 @@ namespace SimPe
 		#region Import Data
 		public static void ConvertData()
 		{
-#if DEBUG
-#else
-			if (Helper.WindowsRegistry.PreviousVersion<184819098236) //0.43e
-			{
-				Helper.WindowsRegistry.Layout.SandBarLayout = "";
-				Helper.WindowsRegistry.Layout.SandDockLayout = "";
-			}
-#endif
+
 		}
+
+		static void CheckXML(string file)
+		{
+			System.Xml.XmlDocument xmlfile = new System.Xml.XmlDocument();
+						
+			if (System.IO.File.Exists(file)) 
+			{
+				xmlfile.Load(file);
+				System.Xml.XmlNodeList XMLData = xmlfile.GetElementsByTagName("registry");	
+			}
+		}
+
+		public static void CheckFiles()
+		{
+			//check if the settings File is available
+			string file = System.IO.Path.Combine(Helper.SimPeDataPath, @"simpe.xreg");
+			try 
+			{
+				CheckXML(file);
+			}
+			catch
+			{
+				if (System.Windows.Forms.MessageBox.Show("The Settings File was not readable. SimPE will generate a new one, which means that all your Settings made in \"Extra->Preferences\" get lost.\n\nShould SimPe reset the Settings File?", "Error", System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.Yes)
+					System.IO.File.Delete(file);
+			}
+
+			//check if the layout File is available
+			file = System.IO.Path.Combine(Helper.SimPeDataPath, @"layout.xreg");
+			try 
+			{
+				CheckXML(file);
+			}
+			catch
+			{
+				if (System.Windows.Forms.MessageBox.Show("The Layout File was not readable. SimPE will generate a new one, which means that your Window Layout will be reset to the Default.\n\nShould SimPe reset the Settings File?", "Error", System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.Yes)
+					System.IO.File.Delete(file);
+			}
+		}
+
 		public static void ImportOldData()
 		{
 			if (!System.IO.Directory.Exists(Helper.SimPeDataPath)) 

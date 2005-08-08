@@ -1090,6 +1090,7 @@ namespace SimPe.Plugin
 			{
 				//SimPe.CountedListItem cli = (SimPe.CountedListItem);
 				IRcolBlock irb = ((IRcolBlock)cbblocks.Items[cbblocks.SelectedIndex]).Create();
+				if (irb is AbstractRcolBlock) ((AbstractRcolBlock)irb).Parent = wrapper;
 				SimPe.CountedListItem.AddHex(this.lbblocks, irb);
 				wrapper.Blocks = (IRcolBlock[])Helper.Add(wrapper.Blocks, irb, typeof(IRcolBlock));
 				UpdateComboBox();

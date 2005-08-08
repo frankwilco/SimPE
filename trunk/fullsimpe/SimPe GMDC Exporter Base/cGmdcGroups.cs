@@ -51,6 +51,20 @@ namespace SimPe.Plugin.Gmdc
 			set { alternate = value; }
 		}
 
+		/// <summary>
+		/// The Link Element
+		/// </summary>
+		public GmdcLink Link
+		{
+			get 
+			{
+				if (parent==null) return null;
+				if (LinkIndex<0 || LinkIndex>=parent.Links.Count) return null;
+
+				return parent.Links[LinkIndex];
+			}
+		}
+
 		string name;
 		/// <summary>
 		/// The Name of this Group

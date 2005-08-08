@@ -371,6 +371,7 @@ namespace SimPe.Plugin
 			version = 0x03;
 			typecode = 0x07;
 			data = new byte[0];
+			varname = "";
 		}
 		
 		#region IRcolBlock Member
