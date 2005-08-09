@@ -39,9 +39,11 @@ namespace SimPe.Plugin
 		}
 
 		short unknown1;
-		public short Unknown1 
+		[DescriptionAttribute("The Time the Animation takes to play (probably in ms)")]
+		public short TotalTime 
 		{
 			get { return unknown1; }
+			set { unknown1 = value; }
 		}
 		
 		public Ambertation.BaseChangeShort B_Unknown1
@@ -354,6 +356,40 @@ namespace SimPe.Plugin
 						System.Windows.Forms.TreeNode tn3 = new System.Windows.Forms.TreeNode(ab3.ToString());
 						tn3.Tag = ab3;
 						tn2.Nodes.Add(tn3);
+					}
+
+					//Add a FrameList
+					if (ab2.FrameCount>0) 
+					{
+						System.Windows.Forms.TreeNode frames = new System.Windows.Forms.TreeNode("Frames");
+						tn2.Nodes.Add(frames);
+						AnimationFrame[] afs = ab2.Frames;
+						for (int i=0; i< afs.Length; i++)
+						{
+							AnimationFrame af = afs[i];
+							System.Windows.Forms.TreeNode tnf = new System.Windows.Forms.TreeNode(af.ToString());
+							tnf.Tag = af;
+							frames.Nodes.Add(tnf);
+						}
+						frames.Tag = afs;
+					}
+
+
+					//Add a FrameList
+					if (ab2.MaxPart3FrameCount>0 && Helper.WindowsRegistry.HiddenMode) 
+					{
+						System.Windows.Forms.TreeNode frames = new System.Windows.Forms.TreeNode("(Block Frames)");
+						tn2.Nodes.Add(frames);
+						AnimationFrameAssembler[] afs = new AnimationFrameAssembler[ab2.MaxPart3FrameCount];
+						for (int i=0; i< ab2.MaxPart3FrameCount; i++)
+						{
+							AnimationFrameAssembler af = new AnimationFrameAssembler(ab2, i);
+							System.Windows.Forms.TreeNode tnf = new System.Windows.Forms.TreeNode(af.ToString());
+							tnf.Tag = af;
+							frames.Nodes.Add(tnf);
+							afs[i] = af;
+						}
+						frames.Tag = afs;
 					}
 				}
 
