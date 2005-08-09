@@ -44,6 +44,21 @@ namespace SimPe.Plugin
 	}
 
 	/// <summary>
+	/// What type of Information is stored in a Frame
+	/// </summary>
+	public enum FrameType  :byte
+	{
+		/// <summary>
+		/// Translations
+		/// </summary>
+		Translation = 0x0,
+		/// <summary>
+		/// Rotations
+		/// </summary>
+		Rotation = 0xC
+	}
+
+	/// <summary>
 	/// Base Class for common structures in the diffrent AnimBlock Formats
 	/// </summary>
 	public class AnimBlock 
@@ -416,6 +431,65 @@ namespace SimPe.Plugin
 		{
 			get { return ab3.Length; }
 		}
+		
+
+		internal int MaxPart3FrameCount 
+		{
+			get {  
+				int ct=0;
+				foreach (AnimBlock3 ab in ab3)
+					ct = Math.Max(ct, ab.AddonTokenCount);
+
+				return ct;
+			}
+		}
+
+		[DescriptionAttribute("Number of loaded AnimBlock3 Items"), CategoryAttribute("Information")]
+		public int FrameCount
+		{
+			get {return Frames.Length; }
+		}
+
+		[DescriptionAttribute("Available Frames"), CategoryAttribute("Information")]
+		public AnimationFrame[] Frames
+		{
+			get 
+			{  
+				ArrayList tclist = new ArrayList();
+				Hashtable ht = new Hashtable();
+				ArrayList list = new ArrayList();
+
+				
+				//get a List of all TimeCodes
+				for (int i=0; i<MaxPart3FrameCount; i++)														
+					foreach (AnimBlock3 ab in ab3)	
+						foreach (int tc in ab.TimeCodes)
+							if (!tclist.Contains((short)tc)) 
+							{
+								tclist.Add((short)tc);
+								ht[(short)tc] = new AnimationFrame((short)tc, this.TransformationType);
+								list.Add(ht[(short)tc]);
+							}
+
+				tclist.Sort();				
+				for(int part=0; part<ab3.Length; part++)
+				{
+					AnimBlock3 ab = ab3[part];
+					for (int i=0; i<ab.AddonTokenCount; i++)
+					{
+						AnimationFrame af = (AnimationFrame)ht[ab.GetTimeCode(i)];
+						if (part==0) af.SetXBlock(ab, (short)i);
+						else if (part==1) af.SetYBlock(ab, (short)i);
+						else if (part==2) af.SetZBlock(ab, (short)i);						
+					}				
+				}
+				
+
+				AnimationFrame[] afs = new AnimationFrame[list.Count];
+				list.CopyTo(afs);
+				return afs;
+			}
+		}
 
 		[DescriptionAttribute("Unknown additional Data"), CategoryAttribute("Information")]
 		public string Unknown7 
@@ -446,17 +520,84 @@ namespace SimPe.Plugin
 			get { return datai[2]; }
 			set { datai[2] = value; }
 		}
+
+		public string Unknown3Binary
+		{
+			get 
+			{ 
+				string s = Convert.ToString(Unknown3, 2); 
+				s = Helper.MinStrLength(s, 32);
+				int p=s.Length-4;
+				while (p>=0) 
+				{
+					s = s.Insert(p, " ");
+					p-=4;
+				}
+				return s.Trim();;
+			}
+			
+		}
+
+		public string Unknown3Hex
+		{
+			get { return "0x"+Helper.HexString(Unknown3); }
+			
+		}
+
 		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]		
 		public uint Unknown4 
 		{
 			get { return datai[3]; }
 			set { datai[3] = value; }
 		}
-		[DescriptionAttribute("Highest 3 Bits contain the Number of assigned AnimBlock3 Items")]
+
+		[DescriptionAttribute("What kind of Transformation is performed."), CategoryAttribute("Information")]
+		public FrameType TransformationType
+		{
+			get 
+			{
+				uint i = Unknown5 & 0x00F00000;
+				i = i >> 20;
+				return (FrameType)((byte)i);
+			}
+			set 
+			{
+				uint i = (uint)value;
+				i = i << 20;
+				i = i & 0x00F00000;
+				Unknown5 = (uint)((Unknown5 & 0xFF0FFFFF) | i);
+			}
+		}
+
+		[DescriptionAttribute("Highest 3 Bits (Bit 31-29) contain the Number of assigned AnimBlock3 Items, Bits 23-16 describe the Transformation Type (0=Translation, C=Rotation).")]
 		public uint Unknown5 
 		{
 			get { return datai[4]; }
 			set { datai[4] = value; }
+		}
+
+		[DescriptionAttribute("Highest 3 Bits contain the Number of assigned AnimBlock3 Items")]
+		public string Unknown5Binary
+		{
+			get { 
+				string s = Convert.ToString(Unknown5, 2); 
+				s = Helper.MinStrLength(s, 32);
+				int p=s.Length-4;
+				while (p>=0) 
+				{
+					s = s.Insert(p, " ");
+					p-=4;
+				}
+				return s.Trim();
+			}
+			
+		}
+
+		[DescriptionAttribute("Highest 3 Bits contain the Number of assigned AnimBlock3 Items")]
+		public string Unknown5Hex
+		{
+			get { return "0x"+Helper.HexString(Unknown5); }
+			
 		}
 		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]				
 		public uint Unknown6 
@@ -597,6 +738,21 @@ namespace SimPe.Plugin
 			get { return datas; }
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="data"></param>
+		/// <exception cref="Exception">Thrown when the Length of the passed Array does not mathc the <see cref="AddonTokenSize"/>.</exception>
+		public void AddData(short[] data)
+		{
+			if (data.Length!=this.AddonTokenSize) throw new Exception("Invalid Data Size");
+
+			foreach (short s in data)			
+				datas = (short[])Helper.Add(datas, s);
+			
+		}
+		
+
 		[DescriptionAttribute("AddonData interpreted as Float"), CategoryAttribute("Data"), DefaultValueAttribute(0x11BA05F0)]	
 		public float[] AddonDataFloat
 		{
@@ -604,56 +760,82 @@ namespace SimPe.Plugin
 				float[] f = new float[datas.Length];
 				for (int i=0; i<f.Length; i++) 
 				{
-					f[i] = (float)datas[i]/(float)short.MaxValue;
+					f[i] = AnimationFrame.GetCompressedFloat(datas[i]);
 				}
 				return f; 
 			}
 		}
-
-		[DescriptionAttribute("AddonData interpreted as Quaternions (only if Rotation!)"), CategoryAttribute("Data"), DefaultValueAttribute(0x11BA05F0)]	
-		public Quaternions AddonDataQuaternions
-		{
-			get 
-			{ 
-				Quaternions qs = new Quaternions();
-				if (type==2) 
-				{
-					float[] f = AddonDataFloat;
-					for (int i=0; i<f.Length; i+=4) 
-					{
-						Quaternion q = new Quaternion(SimPe.Geometry.QuaternionParameterType.ImaginaryReal, f[i+0], f[i+1], f[i+2], f[i+3]);						
-						//q.MakeUnitQuaternion();
-						qs.Add(q);
-					}
-				}
-				return qs; 
-			}
-		}
-
-		[DescriptionAttribute("AddonData interpreted as Vectors (only if Translation!)"), CategoryAttribute("Data"), DefaultValueAttribute(0x11BA05F0)]	
-		public Vectors3f AddonDataVectors
-		{
-			get 
-			{ 
-				Vectors3f vs = new Vectors3f();
-				if (type==1) 
-				{
-					float[] f = AddonDataFloat;
-					for (int i=0; i<f.Length; i+=3) 
-					{
-						Vector3f v = new Vector3f(f[i+0], f[i+1], f[i+2]);						
-						vs.Add(v);
-					}
-				}
-				return vs; 
-			}
-		}
+		
 
 		byte type;
 		[DescriptionAttribute("Propbably some sort of Type Identifier"), CategoryAttribute("Information")]				
 		public AnimationTokenType AddonTokenType 
 		{
 			get { return (AnimationTokenType)type; }
+			set { type = (byte)value; }
+		}
+
+		[DescriptionAttribute("The First TimeCode for this Transformation Element"), CategoryAttribute("Information")]				
+		public short FirstTimeCode 
+		{
+			get { 
+				if (datas.Length>0) return datas[0]; 
+				else return 0;
+			}
+			
+		}
+
+		[DescriptionAttribute("The First TimeCode for this Transformation Element"), CategoryAttribute("Information")]				
+		public IntArrayList TimeCodes
+		{
+			get 
+			{ 
+				IntArrayList list = new IntArrayList();
+				int o = 0;
+				while (o<datas.Length)
+				{
+					list.Add(datas[o]);
+					o += this.AddonTokenSize;
+				}
+
+				return list;
+			}
+			
+		}
+
+		/// <summary>
+		/// Returns the Data for the indexth Frame
+		/// </summary>
+		/// <param name="index">The Frame Index</param>
+		/// <param name="part">The In this Frame</param>
+		/// <returns></returns>
+		public short GetPart(int index, int part)
+		{
+			int o = index*this.AddonTokenSize+part;
+			if (o<datas.Length) return datas[o];
+			return 0;
+		}
+
+		/// <summary>
+		/// Sets the Data for the indexth Frame
+		/// </summary>
+		/// <param name="index">The Frame Index</param>
+		/// <param name="part">The In this Frame</param>
+		/// <returns></returns>
+		public void SetPart(int index, int part, short val)
+		{
+			int o = index*this.AddonTokenSize+part;
+			if (o<datas.Length) datas[o] = val;
+		}
+
+		/// <summary>
+		/// Returns the TimeCode for the indexth Frame
+		/// </summary>
+		/// <param name="index"></param>
+		/// <returns></returns>
+		public short GetTimeCode(int index)
+		{
+			return GetPart(index, 0);
 		}
 
 		[DescriptionAttribute("Size (in Bytes) of one Addon Token"), CategoryAttribute("Information")]				
@@ -733,6 +915,7 @@ namespace SimPe.Plugin
 		internal void UnserializeAddonData(System.IO.BinaryReader reader)
 		{					
 			datas = new short[GetCount()];
+			
 			for (int i=0; i<datas.Length; i++) datas[i] = reader.ReadInt16();
 		}	
 
@@ -742,12 +925,15 @@ namespace SimPe.Plugin
 		/// <param name="writer">The Stream that receives the Data</param>
 		internal void SerializeAddonData(System.IO.BinaryWriter writer)
 		{
-			for (int i=0; i<datas.Length; i++) writer.Write(datas[i]);
+			int i = 0;
+			for (i=0; i<datas.Length; i++) writer.Write(datas[i]);			
 		}
 	
 		public override string ToString()
 		{
-			return Helper.HexString(datai[0]) + " ("+datas.Length.ToString()+")";
+			string n = this.AddonTokenType.ToString();
+			if (n.Length>3) n = n.Substring(0, 3);
+			return n + ": " + Helper.HexString(datai[0]) + " ("+datas.Length.ToString()+")";
 		}
 
 		/// <summary>
@@ -1054,4 +1240,560 @@ namespace SimPe.Plugin
 		}
 	}
 
+
+	/// <summary>
+	/// Assembles the Data Read from the ANIM Resource in a Frame
+	/// </summary>
+	internal class AnimationFrameAssembler
+	{
+		AnimBlock2 baseblock;
+		int nr;
+		public AnimationFrameAssembler(AnimBlock2 baseblock, int number)
+		{
+			this.baseblock = baseblock;
+			nr = number;
+		}
+
+		short GetFrameAddonData(int part, int subpart)
+		{
+			
+			if (baseblock.Part3.Length>=part) 
+			{
+				int mnr = nr;
+				/*if (subpart>0 && baseblock.Part3[part].AddonTokenType == AnimationTokenType.UniformScale) return -1;
+				if (subpart>2 && baseblock.Part3[part].AddonTokenType == AnimationTokenType.Translation) return -1;
+				if (subpart>3 && baseblock.Part3[part].AddonTokenType == AnimationTokenType.Rotation) return -1;*/
+				int o = mnr*baseblock.Part3[part].AddonTokenSize+subpart;
+				while (o>=baseblock.Part3[part].AddonData.Length)
+				{
+					mnr--;
+					o = mnr*baseblock.Part3[part].AddonTokenSize+subpart;
+				}
+				
+				if (o>=0) return baseblock.Part3[part].AddonData[o];
+				return -1;
+			}
+			else 
+				return -2;
+		}
+
+		float GetFloatFrameAddonData(int part, int subpart)
+		{
+			
+			if (baseblock.Part3.Length>=part) 
+			{
+				int mnr = nr;
+				/*if (subpart>0 && baseblock.Part3[part].AddonTokenType == AnimationTokenType.UniformScale) return -1;
+				if (subpart>2 && baseblock.Part3[part].AddonTokenType == AnimationTokenType.Translation) return -1;
+				if (subpart>3 && baseblock.Part3[part].AddonTokenType == AnimationTokenType.Rotation) return -1;*/
+				int o = mnr*baseblock.Part3[part].AddonTokenSize+subpart;
+				while (o>=baseblock.Part3[part].AddonDataFloat.Length)
+				{
+					mnr--;
+					o = mnr*baseblock.Part3[part].AddonTokenSize+subpart;
+				}
+				
+				if (o>=0) return baseblock.Part3[part].AddonDataFloat[o];
+				return -1;
+			}
+			else 
+				return -2;
+		}
+
+		void SetFrameAddonData(int part, int subpart, short val)
+		{
+			if (baseblock.Part3.Length>=part)
+				baseblock.Part3[part].AddonData[nr*baseblock.Part3[1].AddonTokenSize+subpart] = val;			
+		}
+
+		[DescriptionAttribute("The X Value for this Transformation"), CategoryAttribute("Transformation"), DefaultValueAttribute(0)]
+		public short X
+		{
+			get 
+			{
+				return GetFrameAddonData(0, 1);
+			}
+			set
+			{
+				SetFrameAddonData(0, 1, value);
+			}
+		}
+
+		[DescriptionAttribute("The Y Value for this Transformation"), CategoryAttribute("Transformation"), DefaultValueAttribute(0)]
+		public short Y
+		{
+			get 
+			{
+				return GetFrameAddonData(1, 1);
+			}
+			set
+			{
+				SetFrameAddonData(1, 1, value);
+			}
+		}
+
+		[DescriptionAttribute("The Z Value for this Transformation"), CategoryAttribute("Transformation"), DefaultValueAttribute(0)]
+		public short Z
+		{
+			get 
+			{
+				return GetFrameAddonData(2, 1);
+			}
+			set
+			{
+				SetFrameAddonData(2, 1, value);
+			}
+		}	
+	
+		[DescriptionAttribute("The X Value (as Floating Point) for this Transformation"), CategoryAttribute("Transformation"), DefaultValueAttribute(0)]
+		public float Float_X
+		{
+			get 
+			{
+				return GetFloatFrameAddonData(0, 1);
+			}
+		}
+
+		[DescriptionAttribute("The Y Value (as Floating Point) for this Transformation"), CategoryAttribute("Transformation"), DefaultValueAttribute(0)]
+		public float Float_Y
+		{
+			get 
+			{
+				return GetFloatFrameAddonData(1, 1);
+			}
+		}
+
+		[DescriptionAttribute("The Z Value (as Floating Point) for this Transformation"), CategoryAttribute("Transformation"), DefaultValueAttribute(0)]
+		public float Float_Z
+		{
+			get 
+			{
+				return GetFloatFrameAddonData(2, 1);
+			}
+		}		
+
+		[DescriptionAttribute("The TimeCode the X Transformation should be finished"), CategoryAttribute("Time"), DefaultValueAttribute(0)]
+		public short TimeCodeX
+		{
+			get 
+			{
+				return GetFrameAddonData(0, 0);
+			}
+			set
+			{
+				SetFrameAddonData(0, 0, value);
+			}
+		}
+
+		[DescriptionAttribute("The TimeCode the Y Transformation should be finished"), CategoryAttribute("Time"), DefaultValueAttribute(0)]
+		public short TimeCodeY
+		{
+			get 
+			{
+				return GetFrameAddonData(1, 0);
+			}
+			set
+			{
+				SetFrameAddonData(1, 0, value);
+			}
+		}
+
+		[DescriptionAttribute("The TimeCode the Z Transformation should be finished"), CategoryAttribute("Time"), DefaultValueAttribute(0)]
+		public short TimeCodeZ
+		{
+			get 
+			{
+				return GetFrameAddonData(2, 0);
+			}
+			set
+			{
+				SetFrameAddonData(2, 0, value);
+			}
+		}	
+
+
+
+		public short Unknown1_X
+		{
+			get 
+			{
+				return GetFrameAddonData(0, 2);
+			}
+			set
+			{
+				SetFrameAddonData(0, 2, value);
+			}
+		}
+
+		public short Unknown1_Y
+		{
+			get 
+			{
+				return GetFrameAddonData(1, 2);
+			}
+			set
+			{
+				SetFrameAddonData(1, 2, value);
+			}
+		}
+
+		public short Unknown1_Z
+		{
+			get 
+			{
+				return GetFrameAddonData(2, 2);
+			}
+			set
+			{
+				SetFrameAddonData(2, 2, value);
+			}
+		}	
+
+		public short Unknown2_X
+		{
+			get 
+			{
+				return GetFrameAddonData(0, 3);
+			}
+			set
+			{
+				SetFrameAddonData(0, 3, value);
+			}
+		}
+
+		public short Unknown2_Y
+		{
+			get 
+			{
+				return GetFrameAddonData(1, 3);
+			}
+			set
+			{
+				SetFrameAddonData(1, 3, value);
+			}
+		}
+
+		public short Unknown2_Z
+		{
+			get 
+			{
+				return GetFrameAddonData(2, 3);
+			}
+			set
+			{
+				SetFrameAddonData(2, 3, value);
+			}
+		}	
+	
+		public override string ToString()
+		{
+			return nr.ToString();
+		}
+
+		/*[DescriptionAttribute("AddonData interpreted as Quaternions (only if Rotation!)"), CategoryAttribute("Data"), DefaultValueAttribute(0x11BA05F0)]	
+		public Quaternions AddonDataQuaternions
+		{
+			get 
+			{ 
+				Quaternions qs = new Quaternions();
+				if (type==2) 
+				{
+					float[] f = AddonDataFloat;
+					for (int i=0; i<f.Length; i+=4) 
+					{
+						Quaternion q = new Quaternion(SimPe.Geometry.QuaternionParameterType.ImaginaryReal, f[i+0], f[i+1], f[i+2], f[i+3]);						
+						//q.MakeUnitQuaternion();
+						qs.Add(q);
+					}
+				}
+				return qs; 
+			}
+		}*/
+
+		[DescriptionAttribute("Data interpreted as Vector"), CategoryAttribute("Data"), DefaultValueAttribute(0x11BA05F0)]	
+		public Vector3f Vector
+		{
+			get 
+			{ 
+				return new Vector3f(this.Float_X, this.Float_Y, this.Float_Z);											
+			}
+		}
+
+		[DescriptionAttribute("What kind of Transformation is performed."), CategoryAttribute("Information")]
+		public FrameType Type
+		{
+			get 
+			{
+				return baseblock.TransformationType;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Assembles the Data Read from the ANIM Resource in a Frame
+	/// </summary>
+	public class AnimationFrame
+	{
+		const float SCALE = 8;
+		public static float GetCompressedFloat(short v)
+		{
+			return ((float)v/(float)short.MaxValue) * SCALE;
+		}
+
+		public static short FromCompressedFloat(float v)
+		{
+			return (short)((v * (float)short.MaxValue) / SCALE);
+		}
+
+		AnimBlock3 xblock, yblock, zblock;
+		short tc, xnr, ynr, znr;
+		public AnimationFrame(short tc, FrameType tp)
+		{
+			this.tc = tc;			
+			this.tp = tp;
+			xblock = null;
+			yblock = null;
+			zblock = null;
+		}
+		
+		public void SetXBlock(AnimBlock3 bl, short nr)
+		{
+			xnr = nr;
+			xblock = bl;
+		}
+
+		public void SetYBlock(AnimBlock3 bl, short nr)
+		{
+			ynr = nr;
+			yblock = bl;
+		}
+
+		public void SetZBlock(AnimBlock3 bl, short nr)
+		{
+			znr = nr;
+			zblock = bl;
+		}
+
+		short GetFrameAddonData(int part, int subpart)
+		{
+			AnimBlock3 b = null;
+			int nr = 0;
+			if (part==1) { b=yblock; nr = ynr; }
+			else if (part==2) { b=zblock; nr = znr; }
+			else if (part==0) {	b=xblock; nr = xnr;	}
+
+			if (b==null) return -1;
+			return b.GetPart(nr, subpart);
+		}		
+
+		void SetFrameAddonData(int part, int subpart, short val)
+		{
+			AnimBlock3 b = null;
+			int nr = 0;
+			if (part==1) { b=yblock; nr = ynr; }
+			else if (part==2) { b=zblock; nr = znr; }
+			else if (part==0) {	b=xblock; nr = xnr;	}
+
+			if (b==null) return;
+			b.SetPart(nr, subpart, val);
+		}
+
+		[DescriptionAttribute("The X Value for this Transformation"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
+		public short X
+		{
+			get 
+			{
+				return GetFrameAddonData(0, 1);
+			}
+			set
+			{
+				SetFrameAddonData(0, 1, value);
+			}
+		}
+
+		[DescriptionAttribute("The Y Value for this Transformation"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
+		public short Y
+		{
+			get 
+			{
+				return GetFrameAddonData(1, 1);
+			}
+			set
+			{
+				SetFrameAddonData(1, 1, value);
+			}
+		}
+
+		[DescriptionAttribute("The Z Value for this Transformation"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
+		public short Z
+		{
+			get 
+			{
+				return GetFrameAddonData(2, 1);
+			}
+			set
+			{
+				SetFrameAddonData(2, 1, value);
+			}
+		}	
+	
+		[DescriptionAttribute("The X Value (as Floating Point) for this Transformation"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
+		public float Float_X
+		{
+			get { return GetCompressedFloat(X);	}
+			set { X = FromCompressedFloat(value); }
+		}
+
+		[DescriptionAttribute("The Y Value (as Floating Point) for this Transformation"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
+		public float Float_Y
+		{
+			get { return GetCompressedFloat(Y);	}
+			set { Y = FromCompressedFloat(value); }
+		}
+
+		[DescriptionAttribute("The Z Value (as Floating Point) for this Transformation"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
+		public float Float_Z
+		{
+			get { return GetCompressedFloat(Z);	}
+			set { Z = FromCompressedFloat(value); }
+		}		
+
+		[DescriptionAttribute("The TimeCode the X Transformation should be finished"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
+		public short TimeCode
+		{
+			get 
+			{
+				return tc;
+			}
+			set
+			{
+				if (tc!=value) 
+				{
+					tc = value;
+					if (xblock!=null) xblock.SetPart(xnr, 0, value);
+					if (yblock!=null) yblock.SetPart(ynr, 0, value);
+					if (zblock!=null) zblock.SetPart(znr, 0, value);
+				}
+			}
+		}
+		
+
+
+
+		public short Unknown1_X
+		{
+			get 
+			{
+				return GetFrameAddonData(0, 2);
+			}
+			set
+			{
+				SetFrameAddonData(0, 2, value);
+			}
+		}
+
+		public short Unknown1_Y
+		{
+			get 
+			{
+				return GetFrameAddonData(1, 2);
+			}
+			set
+			{
+				SetFrameAddonData(1, 2, value);
+			}
+		}
+
+		public short Unknown1_Z
+		{
+			get 
+			{
+				return GetFrameAddonData(2, 2);
+			}
+			set
+			{
+				SetFrameAddonData(2, 2, value);
+			}
+		}	
+
+		public short Unknown2_X
+		{
+			get 
+			{
+				return GetFrameAddonData(0, 3);
+			}
+			set
+			{
+				SetFrameAddonData(0, 3, value);
+			}
+		}
+
+		public short Unknown2_Y
+		{
+			get 
+			{
+				return GetFrameAddonData(1, 3);
+			}
+			set
+			{
+				SetFrameAddonData(1, 3, value);
+			}
+		}
+
+		public short Unknown2_Z
+		{
+			get 
+			{
+				return GetFrameAddonData(2, 3);
+			}
+			set
+			{
+				SetFrameAddonData(2, 3, value);
+			}
+		}	
+	
+		public override string ToString()
+		{
+			return tc.ToString();
+		}
+
+		/*[DescriptionAttribute("AddonData interpreted as Quaternions (only if Rotation!)"), CategoryAttribute("Data"), DefaultValueAttribute(0x11BA05F0)]	
+		public Quaternions AddonDataQuaternions
+		{
+			get 
+			{ 
+				Quaternions qs = new Quaternions();
+				if (type==2) 
+				{
+					float[] f = AddonDataFloat;
+					for (int i=0; i<f.Length; i+=4) 
+					{
+						Quaternion q = new Quaternion(SimPe.Geometry.QuaternionParameterType.ImaginaryReal, f[i+0], f[i+1], f[i+2], f[i+3]);						
+						//q.MakeUnitQuaternion();
+						qs.Add(q);
+					}
+				}
+				return qs; 
+			}
+		}*/
+
+		[DescriptionAttribute("Data interpreted as Vector"), CategoryAttribute("Information"), DefaultValueAttribute(0x11BA05F0)]	
+		public Vector3f Vector
+		{
+			get 
+			{ 
+				return new Vector3f(this.Float_X, this.Float_Y, this.Float_Z);											
+			}
+		}
+
+		FrameType tp;
+		[DescriptionAttribute("What kind of Transformation is performed. You can changes this in the Parent Node!"), CategoryAttribute("Information")]
+		public FrameType Type
+		{
+			get 
+			{
+				return tp;
+			}
+		}
+	}
 }

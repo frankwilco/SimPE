@@ -19,6 +19,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.GroupBox groupBox2;
 		internal System.Windows.Forms.TreeView tv;
 		private System.Windows.Forms.PropertyGrid pg;
+		private System.Windows.Forms.LinkLabel llAdd;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -31,9 +32,7 @@ namespace SimPe.Plugin
 			//
 			InitializeComponent();
 
-			//
-			// TODO: Fügen Sie den Konstruktorcode nach dem Aufruf von InitializeComponent hinzu
-			//
+			llAdd.Visible = Helper.WindowsRegistry.HiddenMode;
 		}
 
 		/// <summary>
@@ -66,6 +65,7 @@ namespace SimPe.Plugin
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
 			this.tb_arc_ver = new System.Windows.Forms.TextBox();
 			this.label30 = new System.Windows.Forms.Label();
+			this.llAdd = new System.Windows.Forms.LinkLabel();
 			this.tabControl1.SuspendLayout();
 			this.tAnimResourceConst.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -87,6 +87,7 @@ namespace SimPe.Plugin
 			this.tAnimResourceConst.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.tAnimResourceConst.Controls.Add(this.groupBox2);
 			this.tAnimResourceConst.Controls.Add(this.groupBox12);
+			this.tAnimResourceConst.Controls.Add(this.llAdd);
 			this.tAnimResourceConst.Location = new System.Drawing.Point(4, 22);
 			this.tAnimResourceConst.Name = "tAnimResourceConst";
 			this.tAnimResourceConst.Size = new System.Drawing.Size(792, 262);
@@ -174,6 +175,17 @@ namespace SimPe.Plugin
 			this.label30.TabIndex = 23;
 			this.label30.Text = "Version:";
 			// 
+			// llAdd
+			// 
+			this.llAdd.Enabled = false;
+			this.llAdd.Location = new System.Drawing.Point(32, 88);
+			this.llAdd.Name = "llAdd";
+			this.llAdd.Size = new System.Drawing.Size(96, 16);
+			this.llAdd.TabIndex = 2;
+			this.llAdd.TabStop = true;
+			this.llAdd.Text = "Add Frame";
+			this.llAdd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAdd_LinkClicked);
+			// 
 			// fAnimResourceConst
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -194,6 +206,7 @@ namespace SimPe.Plugin
 
 		private void tv_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		{
+			llAdd.Enabled = false;
 			pg.SelectedObject = null;
 			if (e==null) return;
 			if (e.Node==null) return;
@@ -201,69 +214,40 @@ namespace SimPe.Plugin
 
 			pg.SelectedObject = e.Node.Tag;
 
-#if DEBUG
-			if (e.Node.Tag.GetType()==typeof(AnimBlock3)) 
+
+			if (e.Node.Tag.GetType()==typeof(AnimationFrame[])) 
 			{
-				AnimBlock3 ab3 = (AnimBlock3)e.Node.Tag;
+				llAdd.Enabled = true;
+				#if DEBUG
+				AnimationFrame[] afs = (AnimationFrame[])e.Node.Tag;
 
-				/*WaitingScreen.Wait();
-				for (double d= 1.0; d<100000.0; d+=0.0001) 
-				{	
-					WaitingScreen.UpdateMessage(d.ToString());
-					double rp=0;
-					double rm = 0;
-					bool check = true;					
-					for (int i=0; i<ab3.AddonDataQuaternions.Count; i++) 
-					{
-						if (ab3.AddonDataQuaternions[i].IsComplex(d)) 
-						{
-							check = false;
-							break;
-						}
-						if (i==0)
-						{
-							rp = ab3.AddonDataQuaternions[i].GetMovePlus(d);
-							rm = ab3.AddonDataQuaternions[i].GetMoveMinus(d);
-						}
-
-						if (Math.Abs(rp- ab3.AddonDataQuaternions[i].GetMovePlus(d))>0.0001 || Math.Abs(rm - ab3.AddonDataQuaternions[i].GetMoveMinus(d))>0.0001) 
-						{
-							check = false;
-							break;
-						}
-					}
-
-					if (check) MessageBox.Show(d.ToString());
-				}
-				WaitingScreen.Stop();*/
+				
 
 				System.IO.StreamWriter sw = System.IO.File.CreateText(@"G:\anim.txt");
 				try 
 				{
-					sw.WriteLine(ab3.AddonDataVectors.Count.ToString());
-					for (int i=0; i<ab3.AddonDataVectors.Count; i++) {
-						sw.WriteLine(i.ToString()+" "+
-							ab3.AddonDataVectors[i].X.ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
-							ab3.AddonDataVectors[i].Y.ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
-							ab3.AddonDataVectors[i].Z.ToString("N12", System.Globalization.CultureInfo.InvariantCulture));
-					}
 
-					sw.WriteLine(ab3.AddonDataQuaternions.Count.ToString());
-					for (int i=0; i<ab3.AddonDataQuaternions.Count; i++) 
-					{
-						SimPe.Geometry.Vector3f v = ab3.AddonDataQuaternions[i].Euler;
-						sw.WriteLine(i.ToString()+" "+
-							v.X.ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
-							v.Y.ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
-							v.Z.ToString("N12", System.Globalization.CultureInfo.InvariantCulture));
-					}
+					sw.WriteLine(afs.Length.ToString());
+					for (int i=0; i<afs.Length; i++) {
+						if (afs[0].Type == FrameType.Translation) 
+							sw.WriteLine((i+1).ToString()+" "+
+								(afs[i].Float_X * -1 * Helper.WindowsRegistry.ImportExportScaleFactor).ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
+								(afs[i].Float_Z * Helper.WindowsRegistry.ImportExportScaleFactor).ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
+								(afs[i].Float_Y * Helper.WindowsRegistry.ImportExportScaleFactor).ToString("N12", System.Globalization.CultureInfo.InvariantCulture));
+						else
+							sw.WriteLine((i+1).ToString()+" "+
+								(afs[i].Float_X * -1 ).ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
+								(afs[i].Float_Z).ToString("N12", System.Globalization.CultureInfo.InvariantCulture)+" "+
+								(afs[i].Float_Y).ToString("N12", System.Globalization.CultureInfo.InvariantCulture));
+					}			
 				} 
 				finally
 				{
 					sw.Close();
 				}
+				#endif
 			}
-#endif
+
 		}
 
 		private void tb_arc_ver_TextChanged(object sender, System.EventArgs e)
@@ -280,6 +264,25 @@ namespace SimPe.Plugin
 			{
 				//Helper.ExceptionMessage("", ex);
 			}
+		}
+
+		private void llAdd_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			AnimBlock2 ab2 = (AnimBlock2)tv.SelectedNode.Parent.Tag;
+			
+			if (ab2.Part3Count!=3) return;
+
+			for (int i=0; i<ab2.Part3Count; i++)
+			{
+				AnimBlock3 b = ab2.Part3[i];
+			
+				short[] s = new short[b.AddonTokenSize];
+				s[0] = -1;
+				b.AddData(s);
+			}	
+		
+			AnimResourceConst arc = (AnimResourceConst)tAnimResourceConst.Tag;
+			arc.Refresh();
 		}
 	}
 }
