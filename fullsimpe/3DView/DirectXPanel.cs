@@ -42,7 +42,7 @@ namespace Ambertation.Windows.Forms
 		private System.ComponentModel.Container components = null;
 
 		public DirectXPanel()
-		{
+		{			
 			SetStyle(
 				//ControlStyles.SupportsTransparentBackColor |
 				ControlStyles.AllPaintingInWmPaint |

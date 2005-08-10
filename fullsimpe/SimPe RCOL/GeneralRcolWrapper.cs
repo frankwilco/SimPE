@@ -132,7 +132,37 @@ namespace SimPe.Plugin
 			}
 		}
 
-		#region IScenegraphItem Member		
+		#region IScenegraphItem Member	
+		public SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem FindReferencedType(uint type)
+		{
+			
+
+			foreach (ArrayList list in ReferenceChains.Values)
+				foreach (object o in list)
+				{
+					SimPe.Interfaces.Files.IPackedFileDescriptor opfd = (SimPe.Interfaces.Files.IPackedFileDescriptor)o;					
+					if (opfd.Type == type) 
+					{
+						SimPe.Interfaces.Files.IPackedFileDescriptor pfd = Package.FindFile(opfd);
+						if (pfd==null) { opfd.Group = this.FileDescriptor.Group; pfd = Package.FindFile(opfd); }
+						if (pfd==null) { opfd.Group = Data.MetaData.LOCAL_GROUP; pfd = Package.FindFile(opfd); }						
+						SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = null;
+						if (pfd == null) 
+						{				
+							FileTable.FileIndex.Load();
+							SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((SimPe.Interfaces.Files.IPackedFileDescriptor)o, null);										
+							if (items.Length>0) item = items[0];
+						}
+						else 					
+							item = FileTable.FileIndex.CreateFileIndexItem(pfd, Package);					
+
+						if (item!=null) 
+							return item;
+					}
+				}
+			return null;
+		}
+
 		public Hashtable ReferenceChains
 		{
 			get

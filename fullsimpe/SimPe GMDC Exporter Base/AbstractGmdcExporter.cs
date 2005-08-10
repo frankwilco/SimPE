@@ -20,6 +20,7 @@
 using System;
 using System.IO;
 using System.Globalization;
+using System.Collections;
 
 namespace SimPe.Plugin.Gmdc
 {
@@ -305,5 +306,7 @@ namespace SimPe.Plugin.Gmdc
 		/// Use the <see cref="writer"/> member to write to the File</remarks>
 		protected abstract void FinishFile();
 		#endregion
+
+		
 	}
 }

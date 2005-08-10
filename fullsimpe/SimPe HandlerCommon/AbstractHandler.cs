@@ -209,8 +209,13 @@ namespace SimPe.Interfaces.Plugin
 		{
 			SynchronizeUserData(true);
 		}
-		
+
 		public void SynchronizeUserData(bool catchex)
+		{
+			SynchronizeUserData(catchex, false);
+		}
+		
+		public void SynchronizeUserData(bool catchex, bool fire)
 		{
 			if (pfd==null) 
 			{
@@ -223,7 +228,7 @@ namespace SimPe.Interfaces.Plugin
 				try 
 				{				
 					//set UserData, but do not fire a change Event!
-					pfd.SetUserData(CurrentStateData.ToArray(), false);
+					pfd.SetUserData(CurrentStateData.ToArray(), fire);
 					changed = false;
 				}
 				catch (Exception ex) 

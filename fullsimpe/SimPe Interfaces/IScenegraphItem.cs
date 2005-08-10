@@ -36,5 +36,11 @@ namespace SimPe.Interfaces.Scenegraph
 			get;
 		}
 		
+		/// <summary>
+		/// Returns the first Referenced RCOL Resource for the passed Type
+		/// </summary>
+		/// <param name="type">Type of the Resource you are looking for</param>
+		/// <returns>Descriptor for the first found RCOL Resource or null</returns>
+		//FindReferencedType(uint type);
 	}
 }

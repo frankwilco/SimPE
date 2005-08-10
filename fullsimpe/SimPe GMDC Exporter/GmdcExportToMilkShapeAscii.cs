@@ -87,6 +87,19 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		{
 			modelnr = 0;
 			vertexoffset = 0;
+			
+			//When we have a Animation, we need to Set the Frame Count
+			if (this.Gmdc.LinkedAnimation!=null) 
+			{
+				int maxframe = 1;
+				//foreach (AnimBlock2 ab2 in Gmdc.LinkedAnimation.Part2)
+				//	foreach (AnimationFrame af in ab2.Frames)
+				maxframe = Math.Max(maxframe, Gmdc.LinkedAnimation.Animation.TotalTime);				
+
+				writer.WriteLine("Frames: "+maxframe.ToString());
+				writer.WriteLine("Frame: 1");
+			}
+
 			writer.WriteLine("Meshes: "+this.Groups.Count.ToString());
 		}
 
@@ -107,6 +120,8 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		{	
 			//Find the BoneAssignment
 			GmdcElement boneelement = this.Link.FindElementType(ElementIdentity.BoneAssignment);
+			//List of ordered Joints
+			IntArrayList js = Gmdc.SortJoints();
 							
 
 			writer.WriteLine("\""+Group.Name+"\" 0 -1");
@@ -158,6 +173,8 @@ namespace SimPe.Plugin.Gmdc.Exporter
 						{
 							bnr = bnr&0xff;
 							bnr = Group.UsedJoints[bnr];
+							for (int ij=0; ij<js.Count; ij++)
+								if (js[ij]==bnr) { bnr=ij; break; }
 							writer.WriteLine(bnr.ToString());
 						}
 					}
@@ -213,11 +230,14 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		protected override void FinishFile()
 		{		
 			writer.WriteLine("Materials: 0");
-			Hashtable relationmap = Gmdc.LoadJointRelationMap();
 			
+			Hashtable relationmap = Gmdc.LoadJointRelationMap();
+			IntArrayList js = Gmdc.SortJoints(relationmap);
+			
+
 			//Export Bones
-			writer.WriteLine("Bones: "+Gmdc.Joints.Count.ToString());
-			for (int i=0; i<Gmdc.Joints.Length; i++)
+			writer.WriteLine("Bones: "+js.Count.ToString());
+			foreach (int i in js)
 			{
 				if (i>=Gmdc.Model.Transformations.Length) break;
 	
@@ -255,25 +275,49 @@ namespace SimPe.Plugin.Gmdc.Exporter
 
 				
 				
-				//those are temporary Absoluet Bone Positions (without hirarchy!)
-				//se we leave it!
-				/*Vector3f v = Gmdc.Model.Transformations[i].Translation;
-				v = Component.Scale(v);
-				writer.WriteLine("1");
-				writer.WriteLine("1 " + 
-					v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));				
+				
 
-				v = Gmdc.Model.Transformations[i].Rotation.GetEulerAngles();
-				writer.WriteLine("1");
-				writer.WriteLine("1 " + 
-					v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-					v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));*/
+				if (Gmdc.LinkedAnimation!=null) 
+				{
+					AnimBlock2 ab = Gmdc.LinkedAnimation.GetJointTransformation(Gmdc.Joints[i].Name, FrameType.Translation);
+					if (ab!=null) 
+					{
+						writer.WriteLine(ab.FrameCount.ToString());
+						foreach (AnimationFrame af in ab.InterpolateMissingFrames())
+						{
+							Vector3f v = af.Vector;
+							v = Component.TransformScaled(v);
 
-				writer.WriteLine("0");
-				writer.WriteLine("0");				
+							writer.WriteLine(af.TimeCode.ToString()+" " + 
+								v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+								v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+								v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
+						}
+					} 
+					else writer.WriteLine("0");
+					
+					ab = Gmdc.LinkedAnimation.GetJointTransformation(Gmdc.Joints[i].Name, FrameType.Rotation);
+					if (ab!=null) 
+					{
+						writer.WriteLine(ab.FrameCount.ToString());
+						foreach (AnimationFrame af in ab.InterpolateMissingFrames())
+						{
+							Vector3f v = af.Vector;
+							v = Component.Transform(v);
+						
+							writer.WriteLine(af.TimeCode.ToString()+" " + 
+								v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+								v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+								v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
+						}
+					} 
+					else writer.WriteLine("0");
+				} 
+				else 
+				{
+					writer.WriteLine("0");
+					writer.WriteLine("0");				
+				}
 			}
 
 			//Write Footer

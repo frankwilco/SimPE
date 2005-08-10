@@ -222,7 +222,7 @@ namespace SimPe.Plugin
 			int len = 0;	
 			for (int i=0; i<ab1.Length; i++) 
 			{
-				ab1[i] = new AnimBlock1();
+				ab1[i] = new AnimBlock1(this.Parent);
 				ab1[i].UnserializeData(reader);
 			}
 			for (int i=0; i<ab1.Length; i++) len += ab1[i].UnserializeName(reader);

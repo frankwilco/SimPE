@@ -181,7 +181,7 @@ namespace SimPe
 				TD.SandDock.DockControl doc = null;
 				bool add = !overload;
 				if (overload) doc = dc.SelectedPage;				
-				if (doc == null) {add = true; doc = new TD.SandDock.TabPage();}
+				if (doc == null) {add = true; doc = new TD.SandDock.TabPage(); doc.AllowClose=true; doc.AllowDockCenter=true;}
 				else if (!this.UnloadWrapper(doc)) return false;
 
 				doc.Text = wrapper.ResourceName;

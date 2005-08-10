@@ -56,6 +56,9 @@ namespace SimPe.Plugin
 			return null;
 		}
 
+		/// <summary>
+		/// Get the Index Number of this Block in the Parent
+		/// </summary>
 		public int Index 
 		{
 			get 
@@ -67,7 +70,10 @@ namespace SimPe.Plugin
 			}
 		}
 
-		
+		/// <summary>
+		/// Get List of al parent Blocks
+		/// </summary>
+		/// <returns></returns>
 		public IntArrayList GetParentBlocks()
 		{
 			IntArrayList l = new IntArrayList();
@@ -83,6 +89,10 @@ namespace SimPe.Plugin
 			return l;
 		}
 
+		/// <summary>
+		/// Get the first Block that references this Block as a Child
+		/// </summary>
+		/// <returns></returns>
 		public SimPe.Interfaces.Scenegraph.ICresChildren GetFirstParent()
 		{
 			IntArrayList l = GetParentBlocks();
@@ -98,12 +108,18 @@ namespace SimPe.Plugin
 			get;
 		}	
 	
+		/// <summary>
+		/// Returns an ImageIndex used to display the CRES Hirarchy
+		/// </summary>
 		public abstract int ImageIndex 
 		{
 			get;
 		}
 
 
+		/// <summary>
+		/// Returns the stored Transformation Node
+		/// </summary>
 		public abstract TransformNode StoredTransformNode
 		{
 			get;
@@ -170,6 +186,8 @@ namespace SimPe.Plugin
 				
 				v.Rotation = t.Rotation * v.Rotation;
 				v.Translation = t.Rotation.Rotate((v.Translation ) - (t.Translation));
+
+				v.Rotation.MakeUnitQuaternion();
 			}
 
 			return v;
