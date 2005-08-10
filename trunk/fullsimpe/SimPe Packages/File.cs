@@ -1137,8 +1137,11 @@ namespace SimPe.Packages
 			addevent = false;
 			remevent = false;
 			pause = true;
-			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in Index)
-				pfd.BeginUpdate();
+			if (Index!=null) 
+			{
+				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in Index)
+					if (pfd!=null) pfd.BeginUpdate();
+			}
 		}
 
 		public void EndUpdate()

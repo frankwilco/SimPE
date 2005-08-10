@@ -186,23 +186,42 @@ namespace SimPe.Plugin.Gmdc
 			get { return gmdc; }
 		}
 
+		AnimBlock1 ab1;
+		protected AnimBlock1 AnimationBlock
+		{
+			get { return ab1; }
+		}
+
+		
+
 		/// <summary>
 		/// Process the Data stored in the passed Stream, and change/replace the passed Gmdc
 		/// </summary>
 		/// <param name="input">A Stream with the Input Data</param>
 		/// <param name="gmdc">The Gmdc that should receive the Data</param>
-		public virtual void Process(System.IO.Stream input, GeometryDataContainer gmdc)
+		/// <param name="animationonly">true, if only the Animation Data should be imported</param>
+		public virtual void Process(System.IO.Stream input, GeometryDataContainer gmdc, bool animationonly)
 		{
+			animonly = animationonly;			
+
 			this.input = new System.IO.StreamReader(input);
 			this.gmdc = gmdc;
+			SetUpAnimationData();
 
 			if (gmdc==null || input==null) return;
 
 			ImportedGroups g = LoadGroups();
 			ImportedBones b = LoadBones();
-			if (ValidateImportedGroups(g, b)) ChangeGmdc(g, b);
+
+			if (!animonly) if (ValidateImportedGroups(g, b)) ChangeGmdc(g, b);
+			this.ChangeAnim();
 		}
 
+		bool animonly;
+		public bool AnimationOnly
+		{
+			get {return animonly; }
+		}
 		ImportOptions importoptionsresult;
 		/// <summary>
 		/// Returns Global Import Options
@@ -574,5 +593,31 @@ namespace SimPe.Plugin.Gmdc
 
 			return g;
 		}
+
+		#region Animation
+		protected void ChangeAnim()
+		{
+			if (Gmdc.LinkedAnimation==null) return;
+
+
+			Gmdc.LinkedAnimation.Part2 = this.AnimationBlock.Part2;
+			Gmdc.LinkedAnimation.Parent.SynchronizeUserData(true, true);
+		}
+
+		protected virtual void SetUpAnimationData()
+		{
+			if (Gmdc.LinkedAnimation!=null) 
+			{
+				ab1 = new AnimBlock1(Gmdc.LinkedAnimation.Parent);
+				foreach (AnimBlock2 ab in Gmdc.LinkedAnimation.Part2)
+				{
+					AnimBlock2 curanimblock = ab.CloneBase(true);
+
+					ab1.Part2 = (SimPe.Plugin.AnimBlock2[])Helper.Add(ab1.Part2, curanimblock);
+				}
+			}
+			else ab1 = null;
+		}
+		#endregion
 	}
 }

@@ -120,6 +120,11 @@ namespace SimPe.Plugin
 	public class AnimBlock1 : AnimBlock
 	{		
 		#region Attributes
+		Rcol parent;
+		public Rcol Parent
+		{
+			get { return parent; }
+		}
 		AnimBlock2[] ab2;
 		[BrowsableAttribute(false)]
 		public AnimBlock2[] Part2 
@@ -185,7 +190,7 @@ namespace SimPe.Plugin
 		}
 
 		[DescriptionAttribute("Number of assigned AnimBlock2 Items")]
-		public short SUnknown2 
+		public short AnimatedBoneCount 
 		{
 			get { return datas[1]; }
 		}
@@ -203,12 +208,13 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
-		internal AnimBlock1() 
+		internal AnimBlock1(Rcol parent) 
 		{
 			datai = new uint[6];
 			datas = new short[4];
 			ab2 = new AnimBlock2[0];
 			ab4 = new AnimBlock4[0];
+			this.parent = parent;
 		}
 
 		/// <summary>
@@ -410,6 +416,68 @@ namespace SimPe.Plugin
 			datas[2] = (short)((int)datas[2] & 0x0000FFC0);
 			datas[2] = (short)((ushort)datas[2] | (ushort)ct);
 		}
+
+		protected GenericRcol FindDefiningCRES(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg)
+		{
+			GenericRcol rcol = new GenericRcol();
+			rcol.ProcessData(pfd, pkg);
+
+			ResourceNode rn = (ResourceNode)rcol.Blocks[0];
+			foreach (int i in rn.ChildBlocks) 
+			{
+				SimPe.Interfaces.Scenegraph.ICresChildren icc = rn.GetBlock(i);
+				
+				if (icc.StoredTransformNode!=null) 				
+					if (icc.StoredTransformNode.ObjectGraphNode.FileName == this.Name) return rcol;				
+			}
+			return null;
+		}
+
+		public GenericRcol FindDefiningCRES()
+		{
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = Parent.Package.FindFiles(Data.MetaData.CRES);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+			{
+				GenericRcol rcol = FindDefiningCRES(pfd, Parent.Package);
+				if (rcol!=null) 
+					return rcol;
+			} 
+
+			FileTable.FileIndex.Load();
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.CRES, true);
+			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
+			{
+				GenericRcol rcol = FindDefiningCRES(item.FileDescriptor, item.Package);
+				if (rcol!=null) 
+					return rcol;
+			} 
+			return null;
+		}
+
+		public GenericRcol FindUsedGMDC(GenericRcol cres)
+		{
+			if (cres==null) return null;
+
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = cres.FindReferencedType(Data.MetaData.SHPE);
+			if (item!=null)
+			{
+				GenericRcol rcol = new GenericRcol();
+				rcol.ProcessData(item);
+
+				item = rcol.FindReferencedType(Data.MetaData.GMND);
+				if (item!=null)
+				{
+					rcol.ProcessData(item);
+					item = rcol.FindReferencedType(Data.MetaData.GMDC);
+					if (item!=null)
+					{
+						rcol.ProcessData(item);
+						return rcol;
+					}
+				}
+			}
+			return null;
+		}
 	}
 
 
@@ -467,8 +535,7 @@ namespace SimPe.Plugin
 							if (!tclist.Contains((short)tc)) 
 							{
 								tclist.Add((short)tc);
-								ht[(short)tc] = new AnimationFrame((short)tc, this.TransformationType);
-								list.Add(ht[(short)tc]);
+								ht[(short)tc] = new AnimationFrame((short)tc, this.TransformationType);								
 							}
 
 				tclist.Sort();				
@@ -483,6 +550,9 @@ namespace SimPe.Plugin
 						else if (part==2) af.SetZBlock(ab, (short)i);						
 					}				
 				}
+
+				//build ordered List
+				foreach (short tc in tclist) list.Add(ht[tc]);
 				
 
 				AnimationFrame[] afs = new AnimationFrame[list.Count];

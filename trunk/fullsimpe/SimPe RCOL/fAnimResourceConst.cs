@@ -20,6 +20,7 @@ namespace SimPe.Plugin
 		internal System.Windows.Forms.TreeView tv;
 		private System.Windows.Forms.PropertyGrid pg;
 		private System.Windows.Forms.LinkLabel llAdd;
+		private System.Windows.Forms.LinkLabel llExport;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -66,6 +67,7 @@ namespace SimPe.Plugin
 			this.tb_arc_ver = new System.Windows.Forms.TextBox();
 			this.label30 = new System.Windows.Forms.Label();
 			this.llAdd = new System.Windows.Forms.LinkLabel();
+			this.llExport = new System.Windows.Forms.LinkLabel();
 			this.tabControl1.SuspendLayout();
 			this.tAnimResourceConst.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -85,6 +87,7 @@ namespace SimPe.Plugin
 			// tAnimResourceConst
 			// 
 			this.tAnimResourceConst.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.tAnimResourceConst.Controls.Add(this.llExport);
 			this.tAnimResourceConst.Controls.Add(this.groupBox2);
 			this.tAnimResourceConst.Controls.Add(this.groupBox12);
 			this.tAnimResourceConst.Controls.Add(this.llAdd);
@@ -134,6 +137,8 @@ namespace SimPe.Plugin
 			this.tv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left)));
 			this.tv.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tv.FullRowSelect = true;
+			this.tv.HideSelection = false;
 			this.tv.ImageIndex = -1;
 			this.tv.Location = new System.Drawing.Point(8, 24);
 			this.tv.Name = "tv";
@@ -186,6 +191,17 @@ namespace SimPe.Plugin
 			this.llAdd.Text = "Add Frame";
 			this.llAdd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAdd_LinkClicked);
 			// 
+			// llExport
+			// 
+			this.llExport.Enabled = false;
+			this.llExport.Location = new System.Drawing.Point(32, 112);
+			this.llExport.Name = "llExport";
+			this.llExport.Size = new System.Drawing.Size(96, 16);
+			this.llExport.TabIndex = 40;
+			this.llExport.TabStop = true;
+			this.llExport.Text = "Export";
+			this.llExport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llExport_LinkClicked);
+			// 
 			// fAnimResourceConst
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -207,6 +223,7 @@ namespace SimPe.Plugin
 		private void tv_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		{
 			llAdd.Enabled = false;
+			llExport.Enabled = false;
 			pg.SelectedObject = null;
 			if (e==null) return;
 			if (e.Node==null) return;
@@ -215,6 +232,10 @@ namespace SimPe.Plugin
 			pg.SelectedObject = e.Node.Tag;
 
 
+			if (e.Node.Tag is AnimBlock1) 
+			{
+				llExport.Enabled = true;
+			}
 			if (e.Node.Tag.GetType()==typeof(AnimationFrame[])) 
 			{
 				llAdd.Enabled = true;
@@ -283,6 +304,16 @@ namespace SimPe.Plugin
 		
 			AnimResourceConst arc = (AnimResourceConst)tAnimResourceConst.Tag;
 			arc.Refresh();
+		}
+
+		private void llExport_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			AnimBlock1 ab1 = (AnimBlock1)tv.SelectedNode.Tag;
+			GenericRcol gmdc = ab1.FindUsedGMDC(ab1.FindDefiningCRES());
+			if (gmdc!=null) 
+			{
+
+			}
 		}
 	}
 }

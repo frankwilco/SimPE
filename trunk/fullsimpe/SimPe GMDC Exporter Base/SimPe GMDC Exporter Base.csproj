@@ -151,7 +151,7 @@
                 />
                 <Reference
                     Name = "xpcommoncontrols"
-                    AssemblyName = "xpcommoncontrols"
+                    AssemblyName = "XPCommonControls"
                     HintPath = "..\..\..\xpcommoncontrols\xpcommoncontrols.dll"
                 />
                 <Reference
@@ -190,6 +190,16 @@
                 />
                 <File
                     RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cAnimResourceConst.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cAnimResourceConst_Parts.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -237,6 +247,16 @@
                     RelPath = "ExporterLoader.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "fAnimResourceConst.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "fAnimResourceConst.resx"
+                    DependentUpon = "fAnimResourceConst.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "fGeometryDataContainer.cs"

@@ -77,7 +77,8 @@ namespace SimPe.Plugin.Gmdc
 		/// </summary>
 		/// <param name="input">A Stream with the Input Data</param>
 		/// <param name="gmdc">The Gmdc that should receive the Data</param>
-		void Process(System.IO.Stream input, GeometryDataContainer gmdc);
+		/// <param name="animationonly">True if you only want to import the Animation Data</param>
+		void Process(System.IO.Stream input, GeometryDataContainer gmdc, bool animationonly);
 
 		/// <summary>
 		/// Which Order is used for the Components (determins the Transformation that should be applied on import)

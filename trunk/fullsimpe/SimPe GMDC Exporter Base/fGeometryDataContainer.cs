@@ -163,7 +163,20 @@ namespace SimPe.Plugin
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
-			InitializeComponent();		
+			try 
+			{
+				InitializeComponent();		
+			}
+			catch (System.IO.FileNotFoundException ex)
+			{
+				WaitingScreen.Stop();
+				if (MessageBox.Show("The Microsoft Managed DirectX Extensions were not found on your System. Without them, the Preview is not available.\n\nYou can install them manually, by extracting the content of the DirectX\\ManagedDX.CAB on your Sims 2 Installation CD #1. If you double click on the extracted msi File, all needed Files will be installed.\n\nYou can also let SimPE install it automatically. SimPE will download the needed Files (3.5MB) from the SimPE Homepage and install them. Do you want SimPE to download and install the Files?", "Warning", MessageBoxButtons.YesNo)==DialogResult.Yes)
+				{
+					if (WebUpdate.InstallMDX()) MessageBox.Show("Managed DirectX Extension were installed succesfully!");
+				}	
+			
+				InitializeComponent();
+			}
 
 			Gmdc.BlockFormat[] bls = (Gmdc.BlockFormat[])System.Enum.GetValues(typeof(Gmdc.BlockFormat));
 			foreach (Gmdc.BlockFormat b in bls) this.cbblock.Items.Add(b);
@@ -192,7 +205,7 @@ namespace SimPe.Plugin
 				if (es == ElementSorting.XZY) cbaxis.SelectedIndex = cbaxis.Items.Count-1;
 			}
 
-			if (this.DefaultSelectedAxisIndex>=0 && this.DefaultSelectedAxisIndex<cbaxis.Items.Count) cbaxis.SelectedIndex = DefaultSelectedAxisIndex;
+			if (DefaultSelectedAxisIndex>=0 && DefaultSelectedAxisIndex<cbaxis.Items.Count) cbaxis.SelectedIndex = DefaultSelectedAxisIndex;
 		}
 
 		/// <summary>
@@ -2344,7 +2357,7 @@ namespace SimPe.Plugin
 			dxprev.Height = dxprev.Width;
 		}
 
-		public int DefaultSelectedAxisIndex
+		public static int DefaultSelectedAxisIndex
 		{
 			get 
 			{
@@ -2602,46 +2615,7 @@ namespace SimPe.Plugin
 				{
 					GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
 					
-					//Assemble a List of available Import Modules
-					string f = "";
-					foreach (IGmdcImporter ex in ExporterLoader.Importers) 
-					{
-						if (f!="") f += "|";
-						f += ex.FileDescription+" Importer ";
-						if ((ex.Author!="") && (ex.Author!="Quaxi") && (ex.Author!="Emily")) f += "by "+ex.Author+" ";
-						f += "(*"+ex.FileExtension+")|*"+ex.FileExtension;
-					}		
-	
-					if (f=="") {
-						Helper.ExceptionMessage("", new Exception("There are no Importer Plugins available!"));
-						return;
-					}
-					ofd.Filter = f;
-					//Make .obj the Default Extension
-					ofd.FilterIndex = ExporterLoader.FindFirstImporterIndexByExtension(".obj")+1;
-
-					ofd.AddExtension = true;												
-					ofd.FileName = Hashes.StripHashFromName(gmdc.Parent.FileName).Trim().ToLower();					
-					if (ofd.ShowDialog() == DialogResult.OK) 
-					{
-						//Now perpare the Import
-						IGmdcImporter importer = ExporterLoader.Importers[ofd.FilterIndex-1];	
-						importer.Component.Sorting = (ElementSorting)cbaxis.Items[cbaxis.SelectedIndex];
-						System.IO.FileStream meshreader = File.OpenRead(ofd.FileName);
-
-						try 
-						{
-							importer.Process(meshreader, gmdc);	
-							gmdc.Refresh();
-							gmdc.Changed = true;
-							
-							if (importer.ErrorMessage!="") Helper.ExceptionMessage("", new Warning("Problems while parsing the File.", importer.ErrorMessage));
-						} 
-						finally 
-						{
-							meshreader.Close();
-						}
-					}
+					StartImport(ofd, gmdc, ".obj", (ElementSorting)cbaxis.Items[cbaxis.SelectedIndex], false);
 				}				
 			}
 			catch (Exception exception1)
@@ -2701,6 +2675,98 @@ namespace SimPe.Plugin
 			}
 		}
 
+		public static void StartImport(System.Windows.Forms.OpenFileDialog ofd, GeometryDataContainer gmdc, string defext, ElementSorting sorting, bool animationonly)
+		{
+			//Assemble a List of available Import Modules
+			string f = "";
+			foreach (IGmdcImporter ex in ExporterLoader.Importers) 
+			{
+				if (f!="") f += "|";
+				f += ex.FileDescription+" Importer ";
+				if ((ex.Author!="") && (ex.Author!="Quaxi") && (ex.Author!="Emily")) f += "by "+ex.Author+" ";
+				f += "(*"+ex.FileExtension+")|*"+ex.FileExtension;
+			}		
+	
+			if (f=="") 
+			{
+				Helper.ExceptionMessage("", new Exception("There are no Importer Plugins available!"));
+				return;
+			}
+			ofd.Filter = f;
+			//Make .obj the Default Extension
+			ofd.FilterIndex = ExporterLoader.FindFirstImporterIndexByExtension(defext)+1;
+
+			ofd.AddExtension = true;												
+			ofd.FileName = Hashes.StripHashFromName(gmdc.Parent.FileName).Trim().ToLower();					
+			if (ofd.ShowDialog() == DialogResult.OK) 
+			{
+				//Now perpare the Import
+				IGmdcImporter importer = ExporterLoader.Importers[ofd.FilterIndex-1];	
+				importer.Component.Sorting = sorting;
+				System.IO.FileStream meshreader = File.OpenRead(ofd.FileName);
+
+				try 
+				{
+					importer.Process(meshreader, gmdc, animationonly);	
+					gmdc.Refresh();
+					gmdc.Changed = true;
+							
+					if (importer.ErrorMessage!="") Helper.ExceptionMessage("", new Warning("Problems while parsing the File.", importer.ErrorMessage));
+				} 
+				finally 
+				{
+					meshreader.Close();
+				}
+			}
+		}
+
+		public static void StartExport(System.Windows.Forms.SaveFileDialog sfd, GeometryDataContainer gmdc, string defext, GmdcGroups groups, ElementSorting sorting)
+		{
+			try
+			{
+				//Assemble a List of available Export Modules
+				string f = "";
+				foreach (IGmdcExporter ex in ExporterLoader.Exporters) 
+				{
+					if (f!="") f += "|";
+					f += ex.FileDescription+" Exporter ";
+					if ((ex.Author!="") && (ex.Author!="Quaxi") && (ex.Author!="Emily")) f += "by "+ex.Author+" ";
+					f += "(*"+ex.FileExtension+")|*"+ex.FileExtension;
+				}				
+			
+				if (f=="") 
+				{
+					Helper.ExceptionMessage("", new Exception("There are no Exporter Plugins available!"));
+					return;
+				}
+				sfd.Filter = f;
+				//Make .obj the Default Extension
+				sfd.FilterIndex = ExporterLoader.FindFirstIndexByExtension(defext)+1;
+
+				sfd.AddExtension = true;												
+				sfd.FileName = Hashes.StripHashFromName(gmdc.Parent.FileName).Trim().ToLower();					
+				if (sfd.ShowDialog() == DialogResult.OK) 
+				{
+					//Now perfor the Export
+					IGmdcExporter exporter = ExporterLoader.Exporters[sfd.FilterIndex-1];
+					exporter.Component.Sorting = sorting;
+					if (!sfd.FileName.Trim().ToLower().EndsWith(exporter.FileExtension.Trim().ToLower())) sfd.FileName += exporter.FileExtension;
+
+					Stream s = exporter.Process(gmdc, groups);		
+					StreamReader sr = new StreamReader(s);
+						
+					System.IO.StreamWriter meshwriter = File.CreateText(sfd.FileName);						
+					meshwriter.Write(sr.ReadToEnd());
+					meshwriter.Close();
+				}
+			}
+			catch (Exception exception1)
+			{
+				Helper.ExceptionMessage("", exception1);
+				return;
+			}
+		}
+
 		private void Export(object sender, System.EventArgs e)
 		{
 			try
@@ -2708,42 +2774,8 @@ namespace SimPe.Plugin
 				if (this.tMesh.Tag != null)
 				{
 					GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
+					StartExport(sfd, gmdc, ".obj", GetModelsExt(), (ElementSorting)cbaxis.Items[cbaxis.SelectedIndex]);
 					
-					//Assemble a List of available Export Modules
-					string f = "";
-					foreach (IGmdcExporter ex in ExporterLoader.Exporters) 
-					{
-						if (f!="") f += "|";
-						f += ex.FileDescription+" Exporter ";
-						if ((ex.Author!="") && (ex.Author!="Quaxi") && (ex.Author!="Emily")) f += "by "+ex.Author+" ";
-						f += "(*"+ex.FileExtension+")|*"+ex.FileExtension;
-					}				
-			
-					if (f=="") 
-					{
-						Helper.ExceptionMessage("", new Exception("There are no Exporter Plugins available!"));
-						return;
-					}
-					sfd.Filter = f;
-					//Make .obj the Default Extension
-					sfd.FilterIndex = ExporterLoader.FindFirstIndexByExtension(".obj")+1;
-
-					sfd.AddExtension = true;												
-					sfd.FileName = Hashes.StripHashFromName(gmdc.Parent.FileName).Trim().ToLower();					
-					if (sfd.ShowDialog() == DialogResult.OK) 
-					{
-						//Now perfor the Export
-						IGmdcExporter exporter = ExporterLoader.Exporters[sfd.FilterIndex-1];
-						exporter.Component.Sorting = (ElementSorting)cbaxis.Items[cbaxis.SelectedIndex];
-						if (!sfd.FileName.Trim().ToLower().EndsWith(exporter.FileExtension.Trim().ToLower())) sfd.FileName += exporter.FileExtension;
-
-						Stream s = exporter.Process(gmdc, GetModelsExt());		
-						StreamReader sr = new StreamReader(s);
-						
-						System.IO.StreamWriter meshwriter = File.CreateText(sfd.FileName);						
-						meshwriter.Write(sr.ReadToEnd());
-						meshwriter.Close();
-					}
 				}				
 			}
 			catch (Exception exception1)

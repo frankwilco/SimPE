@@ -2443,6 +2443,8 @@ namespace SimPe
 					Helper.ExceptionMessage("", ex);
 				}
 			}
+
+			Message.Show("The Cache was cleared, in order for this Operation to take effect, you have to Restart SimPE!", "Information", MessageBoxButtons.OK);
 		}
 
 		private void DDSChanged(object sender, System.EventArgs e)

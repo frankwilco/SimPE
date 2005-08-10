@@ -27,6 +27,7 @@ namespace SimPe.Geometry
 	/// </summary>
 	public class VectorTransformation 
 	{
+		public const double SMALL_NUMBER = 0.000001;
 		/// <summary>
 		/// What Order should the Transformation be applied
 		/// </summary>

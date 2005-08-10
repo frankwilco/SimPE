@@ -645,7 +645,93 @@ namespace SimPe.Plugin
 			else LoadJointRelationRec(parentmap, -1, rn);
 
 			return parentmap;
+		}		
+
+		/// <summary>
+		/// Recusrivley add all SubJoints
+		/// </summary>
+		/// <param name="start"></param>
+		/// <param name="relmap"></param>
+		/// <param name="l"></param>
+		static void SortJointsRec(int start, System.Collections.Hashtable relmap, IntArrayList l)
+		{
+			if (start==-1) return;
+			if (l.Contains(start)) return;
+			l.Add(start);
+
+			foreach (int k in relmap.Keys)
+				if ((int)relmap[k]==start) SortJointsRec(k, relmap, l);
+		}
+
+		/// <summary>
+		/// Sort the passed list of Joints so that parent joints allways come first
+		/// </summary>
+		/// <param name="joints"><see cref="Joints"/></param>
+		/// <param name="relmap"><see cref="LoadJointRelationMap"/></param>
+		/// <returns></returns>
+		public static IntArrayList SortJoints(GmdcJoints joints, System.Collections.Hashtable relmap)
+		{
+			int start = -1;
+			foreach (int k in relmap.Keys)
+				if ((int)relmap[k]==-1) 
+				{
+					start = k;
+					break;
+				}
+
+			if (start!=-1) 
+			{
+				IntArrayList l = new IntArrayList();
+				SortJointsRec(start, relmap, l);
+
+				//check if there are some Joint's that were not added so far
+				System.Collections.Hashtable nrelmap = (System.Collections.Hashtable)relmap.Clone();
+				foreach (int v in l)
+					if (nrelmap.ContainsKey(v)) 
+						nrelmap.Remove(v);
+
+				//recursivley process remaing joints
+				if (nrelmap.Count>0) 
+				{
+					IntArrayList l2 = SortJoints(joints, nrelmap);
+					foreach (int i in l2) l.Add(i);
+				}
+
+				return l;
+			}
+
+			IntArrayList ls = new IntArrayList();
+			foreach (GmdcJoint j in joints)
+				ls.Add(j.Index);
+
+			return ls;
+		}
+
+		/// <summary>
+		/// Sort the passed list of Joints so that parent joints allways come first
+		/// </summary>		
+		/// <returns></returns>
+		public IntArrayList SortJoints()
+		{
+			return SortJoints(this.Joints, this.LoadJointRelationMap());
+		}
+
+		/// <summary>
+		/// Sort the passed list of Joints so that parent joints allways come first
+		/// </summary>		
+		/// <param name="relmap"></param>
+		/// <returns></returns>
+		public IntArrayList SortJoints(System.Collections.Hashtable relmap)
+		{
+			return SortJoints(this.Joints, relmap);
 		}
 		#endregion
+
+		AnimBlock1 la;
+		public AnimBlock1 LinkedAnimation
+		{
+			get { return la; }
+			set { la = value; }
+		}
 	}
 }

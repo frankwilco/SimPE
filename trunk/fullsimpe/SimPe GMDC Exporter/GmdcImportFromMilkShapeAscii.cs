@@ -424,15 +424,16 @@ namespace SimPe.Plugin.Gmdc.Importer
 				ReadJointData(b);
 
 				int poscount = ReadCount();
-				for (int k=0; k<poscount; k++) ReadJointPosPhase(b);
+				for (int k=0; k<poscount; k++) ReadJointPosPhase(b, k, poscount);
 
 				int rotcount = ReadCount();
-				for (int k=0; k<rotcount; k++) ReadJointRotPhase(b);
+				for (int k=0; k<rotcount; k++) ReadJointRotPhase(b, k, rotcount);
 
 				bones.Add(b);
 			}
 		}
 
+		SimPe.Plugin.AnimBlock2 curanimblock;
 		void ReadJointDescription(ImportedBone b)
 		{
 			string[] linetoks = GetNonEmptyTokens();
@@ -452,6 +453,29 @@ namespace SimPe.Plugin.Gmdc.Importer
 			}
 			linetoks[0] = linetoks[0].Replace("\"", "");
 			b.ParentName = linetoks[0];
+
+			//Animations
+			if (this.AnimationBlock!=null && Gmdc.LinkedAnimation!=null) 
+			{
+				curanimblock = null;
+				foreach (AnimBlock2 ab in this.AnimationBlock.Part2)
+					if (ab.Name == b.ImportedName && ab.Part3Count==3)  
+					{
+						//ab.CreateBasePart3();
+						ab.ClearFrames(false, true);
+						curanimblock = ab;			
+					}
+
+				//at this time We are unable to create valid arbitary AnimBlock2 Objects, so we can't creat new Blocks here yet
+				/*if (curanimblock==null) 
+				{
+					curanimblock = new SimPe.Plugin.AnimBlock2();
+					curanimblock.Name = b.ImportedName;					
+					curanimblock.CreateBasePart3();
+				}*/				
+			}
+
+			//if (curanimblock==null) curanimblock = new SimPe.Plugin.AnimBlock2();
 		}	
 
 		void ReadJointData(ImportedBone b)
@@ -490,7 +514,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			}
 		}
 
-		void ReadJointPosPhase(ImportedBone b)
+		void ReadJointPosPhase(ImportedBone b, int index, int count)
 		{
 			string[] linetoks = GetNonEmptyTokens();
 			if (linetoks.Length<4) 
@@ -507,14 +531,25 @@ namespace SimPe.Plugin.Gmdc.Importer
 					ToDouble(linetoks[2]),
 					ToDouble(linetoks[3])
 					);
-				//trans = Component.InverseTransform(trans);
-				/*trans = Component.InverseScale(trans);
-					
+
+				trans = Component.InverseTransformScaled(trans);
 				
-				if (t==1) 
+
+				if (curanimblock!=null)
 				{
-					b.UnknownTransformation.Translation = trans;
-				}*/
+					
+					//Brand this Block as Translation (ignoring all rotations!)
+					if (curanimblock.TransformationType==FrameType.Unknown) 
+						curanimblock.TransformationType=FrameType.Translation;
+
+					//only process if the Block Type is Translation
+					if (curanimblock.TransformationType==FrameType.Translation)
+					{
+						//if (index==0 && count==1) curanimblock.CreateBasePart3(AnimationTokenType.UniformScale);
+						
+						curanimblock.AddFrame((short)t, trans);
+					}
+				}
 			} 
 			catch 
 			{
@@ -522,7 +557,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			}
 		}
 
-		void ReadJointRotPhase(ImportedBone b)
+		void ReadJointRotPhase(ImportedBone b, int index, int count)
 		{
 			string[] linetoks = GetNonEmptyTokens();
 			if (linetoks.Length<4) 
@@ -541,11 +576,22 @@ namespace SimPe.Plugin.Gmdc.Importer
 					);
 				
 				
-				/*if (t==1) 
+				rot = Component.InverseTransform(rot);
+
+				if (curanimblock!=null)
 				{
-					//Quaternion from Euler Angles
-					b.UnknownTransformation.Rotation = new SimPe.Geometry.Quaternion(rot);				
-				}*/
+					//Brand this Block as Rotation (ignoring all Translation!)
+					if (curanimblock.TransformationType==FrameType.Unknown) 
+						curanimblock.TransformationType=FrameType.Rotation;
+
+					//only process if the Block Type is Rotation
+					if (curanimblock.TransformationType==FrameType.Rotation)
+					{
+						//if (index==0 && count==1) curanimblock.CreateBasePart3(AnimationTokenType.UniformScale);
+
+						curanimblock.AddFrame((short)t, rot);
+					}
+				}
 			} 
 			catch 
 			{
