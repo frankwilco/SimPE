@@ -169,6 +169,15 @@ namespace SimPe.Geometry
 
 			return v;
 		}
+
+#if DEBUG
+		string name;
+		public string Name
+		{
+			get { return name; }
+			set { name = value; }
+		}
+#endif
 	}
 
 	#region container

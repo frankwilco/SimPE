@@ -187,9 +187,12 @@ namespace SimPe.Geometry
 		public void MakeUnitVector()
 		{
 			double l = Length;
-			X = X/l;
-			Y = Y/l;
-			Z = Z/l;
+			if (l!=0) 
+			{
+				X = X/l;
+				Y = Y/l;
+				Z = Z/l;
+			}
 		}
 
 		/// <summary>
@@ -557,7 +560,7 @@ namespace SimPe.Geometry
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
 			base.Unserialize(reader);
-			w = reader.ReadSingle();				
+			w = reader.ReadSingle();			
 		}
 
 		/// <summary>

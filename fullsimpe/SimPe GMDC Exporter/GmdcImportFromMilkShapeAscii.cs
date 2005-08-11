@@ -459,12 +459,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 			{
 				curanimblock = null;
 				foreach (AnimBlock2 ab in this.AnimationBlock.Part2)
-					if (ab.Name == b.ImportedName && ab.Part3Count==3)  
-					{
-						//ab.CreateBasePart3();
-						ab.ClearFrames(false, true);
-						curanimblock = ab;			
-					}
+					if (ab.Name == b.ImportedName && ab.Part3Count==3)  																
+						curanimblock = ab;								
 
 				//at this time We are unable to create valid arbitary AnimBlock2 Objects, so we can't creat new Blocks here yet
 				/*if (curanimblock==null) 
@@ -494,19 +490,21 @@ namespace SimPe.Plugin.Gmdc.Importer
 					ToDouble(linetoks[2]),
 					ToDouble(linetoks[3])
 					);
-				trans = Component.InverseScale(trans);
+				trans = Component.InverseTransformScaled(trans);
 				
 				Vector3f rot = new Vector3f(
 					ToDouble(linetoks[4]),
 					ToDouble(linetoks[5]),
 					ToDouble(linetoks[6])
 					);
-				//rot = Component.InverseTransform(rot);
+				Quaternion q = Quaternion.FromEulerAngles(rot);
+				rot = Component.InverseTransform(q.Axis);
+				
 				
 							
 				//Quaternion from Euler Angles
 				b.Transformation.Translation = trans;
-				b.Transformation.Rotation = new SimPe.Geometry.Quaternion(rot);		
+				b.Transformation.Rotation = SimPe.Geometry.Quaternion.FromAxisAngle(rot, q.Angle);	
 			} 
 			catch 
 			{
@@ -545,7 +543,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 					//only process if the Block Type is Translation
 					if (curanimblock.TransformationType==FrameType.Translation)
 					{
-						//if (index==0 && count==1) curanimblock.CreateBasePart3(AnimationTokenType.UniformScale);
+						if (index==0 && count!=1) curanimblock.CreateBasePart3(AnimationTokenType.Translation);
+						else if (count>0) curanimblock.ClearFrames(false, true);
 						
 						curanimblock.AddFrame((short)t, trans);
 					}
@@ -587,7 +586,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 					//only process if the Block Type is Rotation
 					if (curanimblock.TransformationType==FrameType.Rotation)
 					{
-						//if (index==0 && count==1) curanimblock.CreateBasePart3(AnimationTokenType.UniformScale);
+						if (index==0 && count!=1) curanimblock.CreateBasePart3(AnimationTokenType.Translation);
+						else if (count>0) curanimblock.ClearFrames(false, true);
 
 						curanimblock.AddFrame((short)t, rot);
 					}

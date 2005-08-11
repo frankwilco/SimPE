@@ -567,10 +567,17 @@ namespace SimPe.Plugin
 				last--;
 			}
 
+			while (next<frames.Length) 
+			{
+				if (frames[next].Blocks[blid]!=null) break;				
+				next++;
+			}	
+
 			AnimBlock3 lb = new AnimBlock3();
 			lb.AddonTokenType = AnimationTokenType.Translation;
 			lb.AddData(new short[] {Math.Min((short)0, frames[index].TimeCode), 0, 0});			
 
+			if (last<0 && next<frames.Length) last=next;
 			if (last>=0)
 			{
 				lb.SetPart(0, 0, frames[last].TimeCode);
@@ -579,11 +586,7 @@ namespace SimPe.Plugin
 
 			
 
-			while (next<frames.Length) 
-			{
-				if (frames[next].Blocks[blid]!=null) break;				
-				next++;
-			}	
+			
 		
 			AnimBlock3 nb = new AnimBlock3();
 			nb.AddonTokenType = AnimationTokenType.Translation;
@@ -597,9 +600,16 @@ namespace SimPe.Plugin
 
 			AnimBlock3 b = new AnimBlock3();
 			b.AddonTokenType = AnimationTokenType.Translation;
-			float pos = (float)(frames[index].TimeCode - lb.GetTimeCode(0)) / (float)(nb.GetTimeCode(0) - lb.GetTimeCode(0));
-			short val = (short)(((nb.GetPart(0,1) - lb.GetPart(0, 1)) * pos) + lb.GetPart(0, 1));
-			b.AddData(new short[] {frames[index].TimeCode, val, 0});
+			if (nb.GetTimeCode(0)==lb.GetTimeCode(0)) 
+			{
+				b.AddData(new short[] {frames[index].TimeCode, nb.GetPart(0,1), 0});
+			} 
+			else 
+			{
+				float pos = (float)(frames[index].TimeCode - lb.GetTimeCode(0)) / (float)(nb.GetTimeCode(0) - lb.GetTimeCode(0));
+				short val = (short)(((nb.GetPart(0,1) - lb.GetPart(0, 1)) * pos) + lb.GetPart(0, 1));
+				b.AddData(new short[] {frames[index].TimeCode, val, 0});
+			}
 
 			frames[index].Blocks[blid] = b;
 
@@ -1201,7 +1211,7 @@ namespace SimPe.Plugin
 		public short GetPart(int index, int part)
 		{
 			if (AddonTokenSize==1) part--;
-			if (part<0) return 0;
+			if (part<0 || part>=this.AddonTokenSize) return 0;
 
 			int o = index*this.AddonTokenSize+part;
 			if (o<datas.Length) return datas[o];
@@ -1217,6 +1227,8 @@ namespace SimPe.Plugin
 		public void SetPart(int index, int part, short val)
 		{
 			if (AddonTokenSize==1) part--;
+			if (part<0 || part>=this.AddonTokenSize) return;
+
 			int o = index*this.AddonTokenSize+part;
 			if (o<datas.Length) datas[o] = val;
 		}
@@ -1300,7 +1312,7 @@ namespace SimPe.Plugin
 			datas = new short[0];
 
 			this.AddonTokenType = AnimationTokenType.Translation;
-			this.Unknown1Bits = 1;
+			this.Unknown1Bits = 0;
 		}
 
 		/// <summary>

@@ -947,7 +947,7 @@ namespace SimPe.Plugin
 			this.cbGroupJoint.Location = new System.Drawing.Point(272, 160);
 			this.cbGroupJoint.Name = "cbGroupJoint";
 			this.cbGroupJoint.Size = new System.Drawing.Size(304, 21);
-			this.cbGroupJoint.TabIndex = 28;			
+			this.cbGroupJoint.TabIndex = 28;
 			// 
 			// label21
 			// 
@@ -1274,9 +1274,9 @@ namespace SimPe.Plugin
 			this.groupBox19.Controls.Add(this.lb_model_items);
 			this.groupBox19.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox19.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox19.Location = new System.Drawing.Point(676, 160);
+			this.groupBox19.Location = new System.Drawing.Point(676, 200);
 			this.groupBox19.Name = "groupBox19";
-			this.groupBox19.Size = new System.Drawing.Size(200, 136);
+			this.groupBox19.Size = new System.Drawing.Size(200, 96);
 			this.groupBox19.TabIndex = 35;
 			this.groupBox19.TabStop = false;
 			this.groupBox19.Text = "Model Section - Items";
@@ -1291,7 +1291,7 @@ namespace SimPe.Plugin
 			this.lb_model_items.IntegralHeight = false;
 			this.lb_model_items.Location = new System.Drawing.Point(8, 24);
 			this.lb_model_items.Name = "lb_model_items";
-			this.lb_model_items.Size = new System.Drawing.Size(184, 104);
+			this.lb_model_items.Size = new System.Drawing.Size(184, 64);
 			this.lb_model_items.TabIndex = 22;
 			// 
 			// groupBox18
@@ -1304,7 +1304,7 @@ namespace SimPe.Plugin
 			this.groupBox18.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox18.Location = new System.Drawing.Point(584, 8);
 			this.groupBox18.Name = "groupBox18";
-			this.groupBox18.Size = new System.Drawing.Size(292, 144);
+			this.groupBox18.Size = new System.Drawing.Size(292, 184);
 			this.groupBox18.TabIndex = 34;
 			this.groupBox18.TabStop = false;
 			this.groupBox18.Text = "Model Section - Faces";
@@ -1319,7 +1319,7 @@ namespace SimPe.Plugin
 			this.lb_model_faces.IntegralHeight = false;
 			this.lb_model_faces.Location = new System.Drawing.Point(8, 24);
 			this.lb_model_faces.Name = "lb_model_faces";
-			this.lb_model_faces.Size = new System.Drawing.Size(276, 112);
+			this.lb_model_faces.Size = new System.Drawing.Size(276, 152);
 			this.lb_model_faces.TabIndex = 22;
 			// 
 			// groupBox17
@@ -1329,9 +1329,9 @@ namespace SimPe.Plugin
 			this.groupBox17.Controls.Add(this.lb_model_names);
 			this.groupBox17.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox17.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox17.Location = new System.Drawing.Point(8, 160);
+			this.groupBox17.Location = new System.Drawing.Point(8, 200);
 			this.groupBox17.Name = "groupBox17";
-			this.groupBox17.Size = new System.Drawing.Size(660, 136);
+			this.groupBox17.Size = new System.Drawing.Size(660, 96);
 			this.groupBox17.TabIndex = 33;
 			this.groupBox17.TabStop = false;
 			this.groupBox17.Text = "Model Section - Names";
@@ -1346,7 +1346,7 @@ namespace SimPe.Plugin
 			this.lb_model_names.IntegralHeight = false;
 			this.lb_model_names.Location = new System.Drawing.Point(8, 24);
 			this.lb_model_names.Name = "lb_model_names";
-			this.lb_model_names.Size = new System.Drawing.Size(644, 104);
+			this.lb_model_names.Size = new System.Drawing.Size(644, 64);
 			this.lb_model_names.TabIndex = 22;
 			// 
 			// groupBox16
@@ -1359,7 +1359,7 @@ namespace SimPe.Plugin
 			this.groupBox16.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox16.Location = new System.Drawing.Point(8, 8);
 			this.groupBox16.Name = "groupBox16";
-			this.groupBox16.Size = new System.Drawing.Size(568, 144);
+			this.groupBox16.Size = new System.Drawing.Size(568, 184);
 			this.groupBox16.TabIndex = 32;
 			this.groupBox16.TabStop = false;
 			this.groupBox16.Text = "Model Section - Transformations";
@@ -1384,7 +1384,7 @@ namespace SimPe.Plugin
 			this.lb_model_trans.IntegralHeight = false;
 			this.lb_model_trans.Location = new System.Drawing.Point(8, 24);
 			this.lb_model_trans.Name = "lb_model_trans";
-			this.lb_model_trans.Size = new System.Drawing.Size(552, 112);
+			this.lb_model_trans.Size = new System.Drawing.Size(552, 152);
 			this.lb_model_trans.TabIndex = 22;
 			// 
 			// tGeometryDataContainer2

@@ -26,7 +26,7 @@ namespace SimPe.Geometry
 	/// <summary>
 	/// Determins the type of the passed Arguments
 	/// </summary>
-	public enum QuaternionParameterType : byte
+	internal enum QuaternionParameterType : byte
 	{
 		/*/// <summary>
 		/// Arguments represent an Euler Angle
@@ -54,7 +54,7 @@ namespace SimPe.Geometry
 		/// <param name="y">Y-Imaginary Part/Y-Axis</param>
 		/// <param name="z">Z-Imaginary Part/Z-Axis</param>
 		/// <param name="w">RealPart/Angle</param>
-		public Quaternion (QuaternionParameterType p, double x, double y, double z, double w) : base ()
+		internal Quaternion (QuaternionParameterType p, double x, double y, double z, double w) : base ()
 		{
 			if (p==QuaternionParameterType.ImaginaryReal) 
 			{
@@ -72,7 +72,7 @@ namespace SimPe.Geometry
 		/// <param name="p">How do you want to create the Quaternion</param>
 		/// <param name="v">The (unit) Axis for the Rotation/Imaginary part</param>
 		/// <param name="a">The angle (in Radiants)/Real Part</param>
-		public Quaternion (QuaternionParameterType p, Vector3f v, double a)  : base()
+		internal Quaternion (QuaternionParameterType p, Vector3f v, double a)  : base()
 		{
 			if (p==QuaternionParameterType.ImaginaryReal) 
 			{
@@ -82,16 +82,7 @@ namespace SimPe.Geometry
 			{
 				this.SetFromAxisAngle(v, a);
 			}
-		}	
-
-		/// <summary>
-		/// Creates new Quaternion i*x + j*y + k*z + w (Based on Euler Angles)
-		/// </summary>
-		/// <param name="v">The Euler Angles</param>
-		public Quaternion (Vector3f v)  : base()
-		{
-			SetFromEulerAngles(v);
-		}	
+		}			
 	
 		/// <summary>
 		/// Creates a new Identity Quaternion
@@ -271,6 +262,14 @@ namespace SimPe.Geometry
 		}	
 
 		/// <summary>
+		/// Returns an Empty Quaternion
+		/// </summary>
+		public static Quaternion Zero 
+		{
+			get { return new Quaternion(QuaternionParameterType.ImaginaryReal, 0, 0, 0, 0); }
+		}	
+
+		/// <summary>
 		/// Returns an Angle in Degree
 		/// </summary>
 		/// <param name="rad">Angle in Radiants</param>
@@ -296,10 +295,13 @@ namespace SimPe.Geometry
 		public void MakeUnitQuaternion()
 		{
 			double l = Length;
-			X = X/l;
-			Y = Y/l;
-			Z = Z/l;
-			W = W/l;
+			if (l!=0)
+			{
+				X = X/l;
+				Y = Y/l;
+				Z = Z/l;
+				W = W/l;
+			}
 		}
 
 		/// <summary>
@@ -349,28 +351,78 @@ namespace SimPe.Geometry
 		/// </summary>
 		/// <param name="ea">The Euler Angles</param>
 		/// <remarks>
-		/// Based on SourceCode from  
-		/// http://vered.rose.utoronto.ca/people/david_dir/GEMS/GEMS.html
-		/// 
 		/// X=Head
 		/// Y=Pitch
 		/// Z=Roll
 		/// </remarks>
-		public void SetFromEulerAngles(Vector3f ea) 
+		public static Quaternion FromEulerAngles(Vector3f ea) 
+		{			
+			/*Quaternion q1 = new Quaternion(QuaternionParameterType.ImaginaryReal, Math.Sin(ea.Y/2), 0, 0, Math.Cos(ea.Y/2));
+			Quaternion q2 = new Quaternion(QuaternionParameterType.ImaginaryReal, 0, Math.Sin(ea.X/2), 0, Math.Cos(ea.X/2));
+			Quaternion q3 = new Quaternion(QuaternionParameterType.ImaginaryReal, 0, 0, Math.Sin(ea.Z/2), Math.Cos(ea.Z/2));
+
+			return (q3 * q1) *q2;*/
+
+			Quaternion q = new Quaternion();
+			double angle;
+			angle = ea.X * 0.5;
+			double sr = (double)Math.Sin(angle);
+			double cr = (double)Math.Cos(angle);
+ 
+			angle = ea.Y * 0.5;
+			double sp = (double)Math.Sin(angle);
+			double cp = (double)Math.Cos(angle);
+ 
+			angle = ea.Z * 0.5;
+			double sy = (double)Math.Sin(angle);
+			double cy = (double)Math.Cos(angle);
+
+			double cpcy = cp * cy;
+			double spcy = sp * cy;
+			double cpsy = cp * sy;
+			double spsy = sp * sy; 
+
+			q.X = sr * cpcy - cr * spsy;
+			q.Y = cr * spcy + sr * cpsy;
+			q.Z = cr * cpsy - sr * spcy;
+			q.W = cr * cpcy + sr * spsy;
+ 
+			q.MakeUnitQuaternion();
+			return q;
+		}
+
+		/// <summary>
+		/// Set the quaternion based on the passed Euler Angles
+		/// </summary>
+		public static Quaternion FromEulerAngles(double head, double pitch, double roll) 
+		{			
+			return FromEulerAngles(new Vector3f(head, pitch, roll));
+		}
+
+		public static Quaternion FromAxisAngle(Vector3f v, double angle)
 		{
-			Vector3f a = new Vector3f();
-			double ti, tj, th, ci, cj, ch, si, sj, sh, cc, cs, sc, ss;
-			
-			ti = ea.X*0.5; tj = ea.Y*0.5; th = ea.Z*0.5;
-			ci = Math.Cos(ti);  cj = Math.Cos(tj);  ch = Math.Cos(th);
-			si = Math.Sin(ti);  sj = Math.Sin(tj);  sh = Math.Sin(th);
-			cc = ci*ch; cs = ci*sh; sc = si*ch; ss = si*sh;
-			X = (double)(cj*sc - sj*cs);
-			Y = (double)(cj*ss + sj*cc);
-			Z = (double)(cj*cs - sj*sc);
-			W = (double)(cj*cc + sj*ss);
-						
-			//this.MakeUnitQuaternion();
+			v.MakeUnitVector();
+			return new Quaternion(QuaternionParameterType.UnitAxisAngle, v.X, v.Y, v.Z, angle);
+		}
+
+		public static Quaternion FromAxisAngle(double x, double y, double z, double angle)
+		{
+			return new Quaternion(QuaternionParameterType.UnitAxisAngle, x, y, z, angle);
+		}
+
+		public static Quaternion FromImaginaryReal(Vector3f v, double w)
+		{			
+			return new Quaternion(QuaternionParameterType.ImaginaryReal, v.X, v.Y, v.Z, w);
+		}
+
+		public static Quaternion FromImaginaryReal(Vector4f v)
+		{			
+			return new Quaternion(QuaternionParameterType.ImaginaryReal, v.X, v.Y, v.Z, v.W);
+		}
+
+		public static Quaternion FromImaginaryReal(double x, double y, double z, double w)
+		{
+			return new Quaternion(QuaternionParameterType.ImaginaryReal, x, y, z, w);
 		}
 
 		/// <summary>
@@ -385,7 +437,7 @@ namespace SimPe.Geometry
 		/// Y=Pitch
 		/// Z=Roll
 		/// </remarks>
-		public Vector3f GetEulerAngles()
+		protected Vector3f GetEulerAnglesOlder()
 		{
 			Vector3f ea = new Vector3f();			
 			
@@ -426,9 +478,65 @@ namespace SimPe.Geometry
 			return ea;
 		}
 
+		/// <summary>
+		/// Get the Euler Angles represented by this Quaternion
+		/// </summary>
+		/// <returns></returns>
+		/// X=Yaw
+		/// Y=Pitch
+		/// Z=Roll
+		/// </remarks>
+		public Vector3f GetEulerAngles()
+		{
+			double sqw = W*W;    
+			double sqx = X*X;    
+			double sqy = Y*Y;    
+			double sqz = Z*Z; 
+			Vector3f euler = new Vector3f();
+ 
+			// heading = rotaton about z-axis 
+			euler.Z = (Math.Atan2(2.0 * (X*Y +Z*W),(sqx - sqy - sqz + sqw))); 
+
+			// bank = rotation about x-axis 
+			euler.X =  (Math.Atan2(2.0 * (Y*Z +X*W),(-sqx - sqy + sqz + sqw))); 
+
+			// attitude = rotation about y-axis 
+			euler.Y =  (Math.Asin(-2.0 * (X*Z - Y*W)));
+			return euler;
+		}
+
+		/// <summary>
+		/// Get the Euler Angles represented by this Quaternion
+		/// </summary>
+		/// <returns></returns>
+		/// X=Yaw
+		/// Y=Pitch
+		/// Z=Roll
+		/// </remarks>
+		protected Vector3f GetEulerAnglesOld()
+		{			
+			Matrixd m= this.Matrix;
+			Vector3f ea = new Vector3f();
+	
+			ea.X = Math.Atan2(-m[2,0], m[2, 2]);
+			ea.Y = Math.Asin(m[2, 1]);
+
+			if (Math.Cos(ea.Y)==0) 
+				ea.Z = Math.Atan2(m[1, 0], m[0, 0]);
+			else 
+				ea.Z = Math.Atan2(-m[0, 1], m[1, 1]);
+
+			return ea;			
+		}
+
+		
+
+		
+	
+
 		public override string ToString()
 		{
-			return base.ToString() + " (X=" +Axis.X.ToString("N2") + ", Y=" + Axis.Y.ToString("N2") + ", Z=" + Axis.Z.ToString("N2") + ", a=" + RadToDeg(Angle).ToString("N1") + ")";
+			return base.ToString() + " (X=" +Axis.X.ToString("N2") + ", Y=" + Axis.Y.ToString("N2") + ", Z=" + Axis.Z.ToString("N2") + ", a=" + RadToDeg(Angle).ToString("N1")+"    euler=h:"+Quaternion.RadToDeg(GetEulerAngles().X).ToString("N1")+"; p:"+Quaternion.RadToDeg(GetEulerAngles().Y).ToString("N1")+"; r:"+Quaternion.RadToDeg(GetEulerAngles().Z).ToString("N1") + ")";
 		}
 
 		/// <summary>
@@ -439,9 +547,13 @@ namespace SimPe.Geometry
 		/// <remarks>Make sure the Quaternion is normalized before you rotate a Vector!</remarks>
 		public Vector3f Rotate(Vector3f v) 
 		{
-			Quaternion vq = new Quaternion(QuaternionParameterType.ImaginaryReal, v.X, v.Y, v.Z, 1);			
+			/*Quaternion vq = new Quaternion(QuaternionParameterType.ImaginaryReal, v.X, v.Y, v.Z, 1);			
 			vq = this * vq * this.GetInverse();
-			return new Vector3f(vq.X, vq.Y, vq.Z);
+			return new Vector3f(vq.X, vq.Y, vq.Z);*/
+
+			SimPe.Geometry.Vector4f v4 = new SimPe.Geometry.Vector4f(v.X, v.Y, v.Z, 0);
+			v4 = Matrix*v4;
+			return new SimPe.Geometry.Vector3f(v4.X, v4.Y, v4.Z);
 		}
 
 		/// <summary>
@@ -452,6 +564,65 @@ namespace SimPe.Geometry
 		{
 			Quaternion q = new Quaternion(QuaternionParameterType.ImaginaryReal, this.X, this.Y, this.Z, this.W);
 			return q;
+		}
+
+		/// <summary>
+		/// Returns the Matirx for this Quaternion. 		
+		/// </summary>
+		/// <remarks>
+		/// Before the Matrix is generated, the Quaternion will get Normalized!!!
+		/// </remarks>
+		public Matrixd Matrix
+		{
+			get 
+			{
+				this.MakeUnitQuaternion();
+
+				Matrixd m = new SimPe.Geometry.Matrixd(4, 4);
+				double sx = Math.Pow(X, 2);
+				double sy = Math.Pow(Y, 2);
+				double sz = Math.Pow(Z, 2);
+				double sw = Math.Pow(W, 2);
+				m[0, 0] = 1 - 2*(sy+sz);	m[0, 1] = 2*(X*Y - W*Z);	m[0, 2] = 2*(X*Z + W*Y);	m[0, 3] = 0;
+				m[1, 0] = 2*(X*Y + W*Z);	m[1, 1] = 1 - 2*(sx+sz);	m[1, 2] = 2*(Y*Z - W*X);	m[1, 3] = 0;
+				m[2, 0] = 2*(X*Z - W*Y);	m[2, 1] = 2*(Y*Z + W*X);	m[2, 2] =  1 - 2*(sx+sy);	m[2, 3] = 0;
+				m[3, 0] = 0;				m[3, 1] = 0;				m[3, 2] = 0;				m[3, 3] = 1;
+
+				return m;
+			}
+		}
+
+		void LoadCorrection()
+		{
+			W = -W;
+			//X = -X;
+			//Y = Z;
+			//Z = -Z;
+		}
+		/// <summary>
+		/// Unserializes a BinaryStream into the Attributes of this Instance
+		/// </summary>
+		/// <param name="reader">The Stream that contains the FileData</param>
+		public override void Unserialize(System.IO.BinaryReader reader)
+		{
+			base.Unserialize(reader);
+			
+			LoadCorrection();
+		}
+
+		/// <summary>
+		/// Serializes a the Attributes stored in this Instance to the BinaryStream
+		/// </summary>
+		/// <param name="writer">The Stream the Data should be stored to</param>
+		/// <remarks>
+		/// Be sure that the Position of the stream is Proper on 
+		/// return (i.e. must point to the first Byte after your actual File)
+		/// </remarks>
+		public override void Serialize(System.IO.BinaryWriter writer)
+		{
+			LoadCorrection();
+			base.Serialize(writer);	
+			LoadCorrection();
 		}
 	}
 
