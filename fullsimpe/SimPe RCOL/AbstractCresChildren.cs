@@ -179,11 +179,15 @@ namespace SimPe.Plugin
 			VectorTransformations list = GetHirarchyTransformations();	
 			VectorTransformation v = new VectorTransformation();			
 
+#if DEBUG
 			System.IO.StreamWriter sw = System.IO.File.CreateText(@"G:\effect.txt");
+#endif
 			try 
 			{
+#if DEBUG
 				sw.WriteLine("-----------------------------------");
 				sw.WriteLine("    "+v.ToString());
+#endif
 				
 			
 			VectorTransformation l = null;
@@ -192,21 +196,29 @@ namespace SimPe.Plugin
 				VectorTransformation t = list[i];
 				t.Rotation.MakeUnitQuaternion();
 
-				sw.WriteLine("++++"+t.ToString()+" "+t.Name);
+				
 			
 				v.Rotation = v.Rotation * t.Rotation;
 				v.Translation =  t.Rotation.Rotate((v.Translation )) - t.Rotation.Rotate((t.Translation));				
-				
-
 				//v.Rotation.MakeUnitQuaternion();
+
+
+#if DEBUG
+				sw.WriteLine("++++"+t.ToString()+" "+t.Name);
 				sw.WriteLine("    "+v.ToString());
+#endif
+
+				
+				
 				l = t;
 			}
 
 			} 
 			finally
 			{
+#if DEBUG
 				sw.Close();
+#endif
 			}
 
 			return v;
