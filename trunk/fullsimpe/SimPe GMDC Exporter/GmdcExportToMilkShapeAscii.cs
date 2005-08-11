@@ -256,13 +256,15 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				if (Gmdc.Joints[i].AssignedTransformNode!=null) 
 				{		
 
-					Vector3f t = Component.Transform(Gmdc.Joints[i].AssignedTransformNode.Translation);
-					Vector3f r = Component.Transform(Gmdc.Joints[i].AssignedTransformNode.Rotation.GetEulerAngles());
-						
-/*					t = Gmdc.Model.Transformations[i].Translation;
-					r = Gmdc.Model.Transformations[i].Rotation.GetEulerAngles();*/
-
-					t = Component.Scale(t);
+					Vector3f t = Gmdc.Joints[i].AssignedTransformNode.Translation;
+					//t = Gmdc.Joints[i].AssignedTransformNode.Rotation.Rotate(t);
+					t = Component.TransformScaled(t);
+					Vector3f r = Gmdc.Joints[i].AssignedTransformNode.Rotation.Axis;
+					r = Component.Transform(r);
+					Quaternion q = Quaternion.FromAxisAngle(r, Gmdc.Joints[i].AssignedTransformNode.Rotation.Angle);
+					q.W = -q.W;
+					r = q.GetEulerAngles();
+											
 					writer.WriteLine("8 " + 
 						t.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 						t.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +

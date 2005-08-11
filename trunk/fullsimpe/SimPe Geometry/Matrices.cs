@@ -55,6 +55,18 @@ namespace SimPe.Geometry
 		}
 
 		/// <summary>
+		/// Create a new 4x1 Matrix
+		/// </summary>
+		/// <param name="v">the vecotor that should be represented as a Matrix</param>
+		public Matrixd(Vector4f v) : this(4, 1)
+		{
+			this[0,0] = v.X;
+			this[1,0] = v.Y;
+			this[2,0] = v.Z;
+			this[3,0] = v.W;
+		}
+
+		/// <summary>
 		/// Returns the Vector stored in this matrix or null if not possible!
 		/// </summary>
 		/// <returns></returns>
@@ -63,6 +75,17 @@ namespace SimPe.Geometry
 			if ((Rows!=3 || Columns!=1) && ((Rows!=1 || Columns!=3)))return null;
 			if (Rows==3) return new Vector3f(m[0][0], m[1][0], m[2][0]);
 			return new Vector3f(m[0][1], m[0][1], m[0][2]);
+		}
+
+		/// <summary>
+		/// Returns the Vector stored in this matrix or null if not possible!
+		/// </summary>
+		/// <returns></returns>
+		public Vector4f GetVector4()
+		{
+			if ((Rows!=4 || Columns!=1) && ((Rows!=1 || Columns!=4)))return null;
+			if (Rows==4) return new Vector4f(m[0][0], m[1][0], m[2][0], m[3][0]);
+			return new Vector4f(m[0][1], m[0][1], m[0][2], m[0][3]);
 		}
 
 		/// <summary>
@@ -372,6 +395,19 @@ namespace SimPe.Geometry
 			Matrixd m2 = new Matrixd(v);
 			m2 = m1 * m2;
 			return m2.GetVector();
+		}
+
+		/// <summary>
+		/// SMatirx Multiplication
+		/// </summary>
+		/// <param name="m1">First Matrix</param>
+		/// <param name="v">Vector</param>
+		/// <returns>The resulting Vector</returns>
+		public static Vector4f operator *(Matrixd m1, Vector4f v) 
+		{
+			Matrixd m2 = new Matrixd(v);
+			m2 = m1 * m2;
+			return m2.GetVector4();
 		}
 
 		/// <summary>

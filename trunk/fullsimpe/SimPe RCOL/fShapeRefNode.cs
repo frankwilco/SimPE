@@ -3063,8 +3063,7 @@ namespace SimPe.Plugin
 			try 
 			{
 				TransformNode tn = (TransformNode)tTransformNode.Tag;
-				SimPe.Geometry.Quaternion q = new SimPe.Geometry.Quaternion(
-					SimPe.Geometry.QuaternionParameterType.UnitAxisAngle, 
+				SimPe.Geometry.Quaternion q = SimPe.Geometry.Quaternion.FromAxisAngle(					
 					new SimPe.Geometry.Vector3f(
 					    Convert.ToSingle(tb_tn_ax.Text),
 					    Convert.ToSingle(tb_tn_ay.Text),

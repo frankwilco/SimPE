@@ -257,6 +257,11 @@ namespace SimPe.Plugin
 
 			trans.Order = VectorTransformation.TransformOrder.TranslateRotate;
 			trans.Unserialize(reader);
+#if DEBUG
+			trans.Name = this.ogn.FileName;
+#endif
+			//trans.Rotation = Quaternion.FromAxisAngle(trans.Rotation.X, trans.Rotation.Y, trans.Rotation.Z, Quaternion.DegToRad(trans.Rotation.W));
+			
 
 			unknown = reader.ReadInt32();
 		}

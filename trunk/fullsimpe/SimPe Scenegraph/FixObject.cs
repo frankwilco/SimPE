@@ -135,6 +135,35 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Fix a Txtr Reference in the Properties of a TXMT File
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="matd"></param>
+		void FixTxtrRef(string propname, MaterialDefinition matd, Hashtable map, Rcol rcol)
+		{
+			string reference = matd.GetProperty(propname).Value.Trim().ToLower();
+			string newref = (string)map[Hashes.StripHashFromName(reference)+"_txtr"];
+
+			if (newref!=null) 
+			{
+				newref = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+Hashes.StripHashFromName(newref);
+				matd.GetProperty(propname).Value = newref.Substring(0, newref.Length-5);
+			}
+
+			for (int i=0; i<matd.Listing.Length; i++)
+			{
+				newref = (string)map[Hashes.StripHashFromName(matd.Listing[i].Trim().ToLower())+"_txtr"];
+				if (newref!=null) 
+				{
+					matd.Listing[i] = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+Hashes.StripHashFromName(newref.Substring(0, newref.Length-5));
+				}
+			}
+
+			string name = Hashes.StripHashFromName(rcol.FileName);
+			if (name.Length>5) name = name.Substring(0, name.Length-5);
+			matd.FileDescription = name;
+		}
+		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="map"></param>
@@ -146,28 +175,9 @@ namespace SimPe.Plugin
 				case Data.MetaData.TXMT: //MATD
 				{
 					MaterialDefinition matd = (MaterialDefinition)rcol.Blocks[0];
-					string reference = matd.GetProperty("stdMatBaseTextureName").Value.Trim().ToLower();
-					string newref = (string)map[Hashes.StripHashFromName(reference)+"_txtr"];
-
-					if (newref!=null) 
-					{
-						newref = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+Hashes.StripHashFromName(newref);
-						matd.GetProperty("stdMatBaseTextureName").Value = newref.Substring(0, newref.Length-5);
-					}
-
-					for (int i=0; i<matd.Listing.Length; i++)
-					{
-						newref = (string)map[Hashes.StripHashFromName(matd.Listing[i].Trim().ToLower())+"_txtr"];
-						if (newref!=null) 
-						{
-							matd.Listing[i] = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+Hashes.StripHashFromName(newref.Substring(0, newref.Length-5));
-						}
-					}
-
-					string name = Hashes.StripHashFromName(rcol.FileName);
-					if (name.Length>5) name = name.Substring(0, name.Length-5);
-					matd.FileDescription = name;
-
+					
+					FixTxtrRef("stdMatBaseTextureName", matd, map, rcol);
+					FixTxtrRef("stdMatNormalMapTextureName", matd, map, rcol);
 					break;
 				}
 
@@ -321,6 +331,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public void FixGroup()
 		{
+			
 			uint[] RCOLs =  {
 								0xFB00791E, //ANIM
 								0x4D51F042, //CINE
@@ -360,7 +371,13 @@ namespace SimPe.Plugin
 						} 
 						else 
 						{
-							if (Data.MetaData.RcolList.Contains(p.Type)) p.Group = Data.MetaData.CUSTOM_GROUP;
+							if (Data.MetaData.RcolList.Contains(p.Type)) 
+							{
+								if (p.Type !=Data.MetaData.ANIM)
+									p.Group = Data.MetaData.CUSTOM_GROUP;
+								else
+									p.Group = Data.MetaData.GLOBAL_GROUP;
+							}
 							else p.Group = Data.MetaData.LOCAL_GROUP;
 						}
 					}
@@ -369,7 +386,10 @@ namespace SimPe.Plugin
 
 				if (RCOLcheck) 
 				{
-					pfd.Group = Data.MetaData.CUSTOM_GROUP;
+					if (pfd.Type != Data.MetaData.ANIM)
+						pfd.Group = Data.MetaData.CUSTOM_GROUP;
+					else 
+						pfd.Group = Data.MetaData.GLOBAL_GROUP;
 				}
 				else 
 				{
@@ -469,7 +489,10 @@ namespace SimPe.Plugin
 						}
 						else 
 						{
-							rpfd.Group = Data.MetaData.CUSTOM_GROUP;
+							if (rpfd.Type!=Data.MetaData.ANIM)
+								rpfd.Group = Data.MetaData.CUSTOM_GROUP;
+							else
+								rpfd.Group = Data.MetaData.GLOBAL_GROUP;
 						}
 
 						if (refmap.Contains(refstr)) 
@@ -566,7 +589,12 @@ namespace SimPe.Plugin
 					else i.Title = Hashes.StripHashFromName(i.Title);
 
 					if (((ver == FixVersion.UniversityReady) || (pfd.Instance == 0x88)) && (newref!=null)) 
-						i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+Hashes.StripHashFromName(i.Title);
+					{
+						i.Title = Hashes.StripHashFromName(i.Title);
+						
+						if (!((pfd.Instance == 0x81) || (pfd.Instance == 0x82) || (pfd.Instance == 0x86) || (pfd.Instance == 0x192)))
+							i.Title = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+i.Title;
+					}
 					else 
 					{
 						uint tp = Data.MetaData.ANIM;
