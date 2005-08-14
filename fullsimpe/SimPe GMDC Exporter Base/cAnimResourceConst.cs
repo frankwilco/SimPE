@@ -21,7 +21,7 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 
-namespace SimPe.Plugin
+namespace SimPe.Plugin.Anim
 {
 	/// <summary>
 	/// contains an Animation Ressource
@@ -80,7 +80,7 @@ namespace SimPe.Plugin
 			get { return objmod; }
 		}
 
-		AnimBlock1[] ab1;
+		AnimationMeshBlock[] ab1;
 		AnimBlock6[] ab6;
 		#endregion
 		
@@ -101,7 +101,7 @@ namespace SimPe.Plugin
 			objname = "";
 			objmod = "";
 
-			ab1 = new AnimBlock1[0];	
+			ab1 = new AnimationMeshBlock[0];	
 			ab6 = new AnimBlock6[0];
 		}
 		
@@ -218,11 +218,11 @@ namespace SimPe.Plugin
 			Align(reader, ct+2);
 			
 			//--- part1 ---
-			ab1 = new AnimBlock1[ct1];
+			ab1 = new AnimationMeshBlock[ct1];
 			int len = 0;	
 			for (int i=0; i<ab1.Length; i++) 
 			{
-				ab1[i] = new AnimBlock1(this.Parent);
+				ab1[i] = new AnimationMeshBlock(this.Parent);
 				ab1[i].UnserializeData(reader);
 			}
 			for (int i=0; i<ab1.Length; i++) len += ab1[i].UnserializeName(reader);
@@ -323,7 +323,7 @@ namespace SimPe.Plugin
 			get
 			{
 				if (form==null) form = new fAnimResourceConst(); 
-				return form.tAnimResourceConst;
+				return form.tMesh;
 			}
 		}
 		#endregion
@@ -340,22 +340,29 @@ namespace SimPe.Plugin
 			btn.Tag = this;
 			form.tv.Nodes.Add(btn);
 
-			foreach (AnimBlock1 ab in this.ab1) 
+			foreach (AnimationMeshBlock ab in this.ab1) 
 			{
 				System.Windows.Forms.TreeNode tn = new System.Windows.Forms.TreeNode(ab.ToString());
 				tn.Tag = ab;
 				form.tv.Nodes.Add(tn);
 				
-				foreach (AnimBlock2 ab2 in ab.Part2) 
+				foreach (AnimationFrameBlock ab2 in ab.Part2) 
 				{
 					System.Windows.Forms.TreeNode tn2 = new System.Windows.Forms.TreeNode(ab2.ToString());
 					tn2.Tag = ab2;
 					tn.Nodes.Add(tn2);
-					foreach (AnimBlock3 ab3 in ab2.Part3) 
+					foreach (AnimationAxisTransformBlock ab3 in ab2.AxisSet) 
 					{
 						System.Windows.Forms.TreeNode tn3 = new System.Windows.Forms.TreeNode(ab3.ToString());
 						tn3.Tag = ab3;
 						tn2.Nodes.Add(tn3);
+
+						foreach (AnimationAxisTransform ab4 in ab3)
+						{
+							System.Windows.Forms.TreeNode tn4 = new System.Windows.Forms.TreeNode(ab4.ToString());
+							tn4.Tag = ab4;
+							tn3.Nodes.Add(tn4);
+						}
 					}
 
 					//Add a FrameList
@@ -375,22 +382,7 @@ namespace SimPe.Plugin
 						frames.Tag = afs;
 					}
 
-					//Add a EventList
-					if (ab2.EventCount>0) 
-					{
-						System.Windows.Forms.TreeNode frames = new System.Windows.Forms.TreeNode("Events");
-						tn2.Nodes.Add(frames);
-						AnimationFrame[] afs = ab2.Events;
-
-						for (int i=0; i< afs.Length; i++)
-						{
-							AnimationFrame af = afs[i];
-							System.Windows.Forms.TreeNode tnf = new System.Windows.Forms.TreeNode(af.ToString());
-							tnf.Tag = af;
-							frames.Nodes.Add(tnf);
-						}
-						frames.Tag = afs;
-					}
+					
 
 
 					//Add a FrameList
@@ -410,22 +402,7 @@ namespace SimPe.Plugin
 						frames.Tag = afs;
 					}
 
-					//Add a Event
-					if (ab2.EventCount>0 && Helper.WindowsRegistry.HiddenMode) 
-					{
-						System.Windows.Forms.TreeNode frames = new System.Windows.Forms.TreeNode("Interpolated Events");
-						tn2.Nodes.Add(frames);
-						AnimationFrame[] afs = ab2.InterpolateMissingEvents();
-						
-						for (int i=0; i< afs.Length; i++)
-						{
-							AnimationFrame af = afs[i];
-							System.Windows.Forms.TreeNode tnf = new System.Windows.Forms.TreeNode(af.ToString());
-							tnf.Tag = af;
-							frames.Nodes.Add(tnf);
-						}
-						frames.Tag = afs;
-					}
+					
 				}
 
 				foreach (AnimBlock4 ab4 in ab.Part4) 
@@ -452,6 +429,8 @@ namespace SimPe.Plugin
 			form.tb_arc_ver.Tag = true;
 			form.tb_arc_ver.Text = "0x"+Helper.HexString(this.version);			
 			form.tb_arc_ver.Tag = null;
+
+			form.ambc.MeshBlocks = this.ab1;
 		}
 
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
@@ -461,6 +440,9 @@ namespace SimPe.Plugin
 
 			form.tMisc.Tag = this;
 			tc.TabPages.Add(form.tMisc);
+
+			form.tAnimResourceConst.Tag = this;
+			if (Helper.WindowsRegistry.HiddenMode) tc.TabPages.Add(form.tAnimResourceConst);
 		}
 
 	}

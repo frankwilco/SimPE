@@ -144,7 +144,7 @@ namespace SimPe.Plugin.Gmdc
 
 		TransformNode reftn;
 		/// <summary>
-		/// Returns the first TransformNode assigned to this Node or null if none was found
+		/// Returns the first TransformNode assigned to this Joint or null if none was found
 		/// </summary>
 		public TransformNode AssignedTransformNode
 		{

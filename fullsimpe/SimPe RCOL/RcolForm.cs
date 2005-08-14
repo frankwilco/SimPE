@@ -31,20 +31,16 @@ namespace SimPe.Plugin
 	/// </summary>
 	public class RcolForm : System.Windows.Forms.Form
 	{
-		internal System.Windows.Forms.Panel RcolPanel;
+		internal SimPe.Windows.Forms.WrapperBaseControl RcolPanel;
 		private System.Windows.Forms.LinkLabel llfix;
 		private System.Windows.Forms.LinkLabel llhash;
 		private System.Windows.Forms.TextBox tbflname;
 		private System.Windows.Forms.Label label2;
 		internal System.Windows.Forms.ComboBox cbitem;
-		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.Label label27;
-		private System.Windows.Forms.Button btcommit;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
 		internal System.Windows.Forms.ListBox lbref;
 		private System.Windows.Forms.TabControl childtc;
-		private System.Windows.Forms.GroupBox gbtypes;
 		private System.Windows.Forms.Panel pntypes;
 		internal System.Windows.Forms.LinkLabel lladd;
 		internal System.Windows.Forms.LinkLabel lldelete;
@@ -68,7 +64,6 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label1;
 		internal System.Windows.Forms.TabPage tpref;
 		internal System.Windows.Forms.TreeView tv;
-		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox tbrefgroup;
@@ -77,6 +72,12 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.TextBox tbfile;
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		internal System.Windows.Forms.TabControl tbResource;
+		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
+		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel2;
+		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel3;
+		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel4;
+		private Ambertation.Windows.Forms.XPTaskBoxSimple xpTaskBoxSimple1;
+		private Ambertation.Windows.Forms.XPTaskBoxSimple xpTaskBoxSimple2;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -88,6 +89,15 @@ namespace SimPe.Plugin
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
+
+			ThemeManager tm = ThemeManager.Global.CreateChild();
+			tm.AddControl(RcolPanel);
+			tm.AddControl(this.xpGradientPanel1);
+			tm.AddControl(this.xpGradientPanel2);
+			tm.AddControl(this.xpGradientPanel3);
+			tm.AddControl(this.xpGradientPanel4);
+			tm.AddControl(this.xpTaskBoxSimple1);
+			tm.AddControl(this.xpTaskBoxSimple2);
 			foreach (Interfaces.IAlias alias in SimPe.Helper.TGILoader.FileTypes) cbtypes.Items.Add(alias);
 #if DEBUG
 #else
@@ -117,19 +127,20 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.RcolPanel = new System.Windows.Forms.Panel();
+			this.RcolPanel = new SimPe.Windows.Forms.WrapperBaseControl();
 			this.tbResource = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.label1 = new System.Windows.Forms.Label();
-			this.childtc = new System.Windows.Forms.TabControl();
-			this.tbflname = new System.Windows.Forms.TextBox();
+			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.label2 = new System.Windows.Forms.Label();
-			this.cbitem = new System.Windows.Forms.ComboBox();
-			this.llfix = new System.Windows.Forms.LinkLabel();
+			this.tbflname = new System.Windows.Forms.TextBox();
+			this.childtc = new System.Windows.Forms.TabControl();
+			this.label1 = new System.Windows.Forms.Label();
 			this.llhash = new System.Windows.Forms.LinkLabel();
+			this.llfix = new System.Windows.Forms.LinkLabel();
+			this.cbitem = new System.Windows.Forms.ComboBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.btref = new System.Windows.Forms.Button();
-			this.gbtypes = new System.Windows.Forms.GroupBox();
+			this.xpGradientPanel2 = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.xpTaskBoxSimple2 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.pntypes = new System.Windows.Forms.Panel();
 			this.lladd = new System.Windows.Forms.LinkLabel();
 			this.lldelete = new System.Windows.Forms.LinkLabel();
@@ -142,47 +153,59 @@ namespace SimPe.Plugin
 			this.label10 = new System.Windows.Forms.Label();
 			this.tbgroup = new System.Windows.Forms.TextBox();
 			this.cbtypes = new System.Windows.Forms.ComboBox();
+			this.btref = new System.Windows.Forms.Button();
 			this.lbref = new System.Windows.Forms.ListBox();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.cbblocks = new System.Windows.Forms.ComboBox();
-			this.btdel = new System.Windows.Forms.Button();
-			this.btadd = new System.Windows.Forms.Button();
-			this.btdown = new System.Windows.Forms.Button();
+			this.xpGradientPanel3 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.btup = new System.Windows.Forms.Button();
 			this.lbblocks = new System.Windows.Forms.ListBox();
+			this.btdel = new System.Windows.Forms.Button();
+			this.cbblocks = new System.Windows.Forms.ComboBox();
+			this.btadd = new System.Windows.Forms.Button();
+			this.btdown = new System.Windows.Forms.Button();
 			this.tpref = new System.Windows.Forms.TabPage();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.xpGradientPanel4 = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.xpTaskBoxSimple1 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
 			this.tbfile = new System.Windows.Forms.TextBox();
+			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.label5 = new System.Windows.Forms.Label();
 			this.tbrefinst = new System.Windows.Forms.TextBox();
 			this.tbrefgroup = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.tv = new System.Windows.Forms.TreeView();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.label27 = new System.Windows.Forms.Label();
-			this.btcommit = new System.Windows.Forms.Button();
 			this.RcolPanel.SuspendLayout();
 			this.tbResource.SuspendLayout();
 			this.tabPage1.SuspendLayout();
+			this.xpGradientPanel1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
-			this.gbtypes.SuspendLayout();
+			this.xpGradientPanel2.SuspendLayout();
+			this.xpTaskBoxSimple2.SuspendLayout();
 			this.pntypes.SuspendLayout();
 			this.tabPage3.SuspendLayout();
+			this.xpGradientPanel3.SuspendLayout();
 			this.tpref.SuspendLayout();
-			this.groupBox1.SuspendLayout();
-			this.panel2.SuspendLayout();
+			this.xpGradientPanel4.SuspendLayout();
+			this.xpTaskBoxSimple1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// RcolPanel
 			// 
+			this.RcolPanel.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
 			this.RcolPanel.Controls.Add(this.tbResource);
-			this.RcolPanel.Controls.Add(this.panel2);
-			this.RcolPanel.Location = new System.Drawing.Point(40, 35);
+			this.RcolPanel.DockPadding.Top = 24;
+			this.RcolPanel.Font = new System.Drawing.Font("Tahoma", 8.25F);
+			this.RcolPanel.Gradient = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+			this.RcolPanel.GradientColor = System.Drawing.SystemColors.InactiveCaption;
+			this.RcolPanel.HeadBackColor = System.Drawing.Color.FromArgb(((System.Byte)(120)), ((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(0)));
+			this.RcolPanel.HeaderText = "Generic Rcol Editor";
+			this.RcolPanel.HeadFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+			this.RcolPanel.HeadForeColor = System.Drawing.Color.White;
+			this.RcolPanel.Location = new System.Drawing.Point(48, 32);
 			this.RcolPanel.Name = "RcolPanel";
 			this.RcolPanel.Size = new System.Drawing.Size(768, 301);
 			this.RcolPanel.TabIndex = 20;
+			this.RcolPanel.Commited += new System.EventHandler(this.Commit);
 			// 
 			// tbResource
 			// 
@@ -202,136 +225,155 @@ namespace SimPe.Plugin
 			// 
 			// tabPage1
 			// 
-			this.tabPage1.Controls.Add(this.label1);
-			this.tabPage1.Controls.Add(this.childtc);
-			this.tabPage1.Controls.Add(this.tbflname);
-			this.tabPage1.Controls.Add(this.label2);
-			this.tabPage1.Controls.Add(this.cbitem);
-			this.tabPage1.Controls.Add(this.llfix);
-			this.tabPage1.Controls.Add(this.llhash);
+			this.tabPage1.Controls.Add(this.xpGradientPanel1);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Size = new System.Drawing.Size(744, 235);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Content";
 			// 
-			// label1
+			// xpGradientPanel1
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label1.Location = new System.Drawing.Point(16, 32);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(67, 17);
-			this.label1.TabIndex = 21;
-			this.label1.Text = "Filename:";
+			this.xpGradientPanel1.Controls.Add(this.label2);
+			this.xpGradientPanel1.Controls.Add(this.tbflname);
+			this.xpGradientPanel1.Controls.Add(this.childtc);
+			this.xpGradientPanel1.Controls.Add(this.label1);
+			this.xpGradientPanel1.Controls.Add(this.llhash);
+			this.xpGradientPanel1.Controls.Add(this.llfix);
+			this.xpGradientPanel1.Controls.Add(this.cbitem);
+			this.xpGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xpGradientPanel1.Location = new System.Drawing.Point(0, 0);
+			this.xpGradientPanel1.Name = "xpGradientPanel1";
+			this.xpGradientPanel1.Size = new System.Drawing.Size(744, 235);
+			this.xpGradientPanel1.TabIndex = 22;
 			// 
-			// childtc
+			// label2
 			// 
-			this.childtc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.childtc.Location = new System.Drawing.Point(16, 56);
-			this.childtc.Multiline = true;
-			this.childtc.Name = "childtc";
-			this.childtc.SelectedIndex = 0;
-			this.childtc.Size = new System.Drawing.Size(720, 176);
-			this.childtc.TabIndex = 20;
-			this.childtc.SelectedIndexChanged += new System.EventHandler(this.ChildTabPageChanged);
+			this.label2.BackColor = System.Drawing.Color.Transparent;
+			this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label2.Location = new System.Drawing.Point(8, 16);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(63, 17);
+			this.label2.TabIndex = 8;
+			this.label2.Text = "Blocklist:";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// tbflname
 			// 
 			this.tbflname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tbflname.Location = new System.Drawing.Point(88, 32);
+			this.tbflname.Location = new System.Drawing.Point(72, 32);
 			this.tbflname.Name = "tbflname";
 			this.tbflname.Size = new System.Drawing.Size(504, 21);
 			this.tbflname.TabIndex = 9;
 			this.tbflname.Text = "";
 			this.tbflname.TextChanged += new System.EventHandler(this.ChangeFileName);
 			// 
-			// label2
+			// childtc
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label2.Location = new System.Drawing.Point(20, 16);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(63, 17);
-			this.label2.TabIndex = 8;
-			this.label2.Text = "Blocklist:";
+			this.childtc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.childtc.Location = new System.Drawing.Point(8, 56);
+			this.childtc.Multiline = true;
+			this.childtc.Name = "childtc";
+			this.childtc.SelectedIndex = 0;
+			this.childtc.Size = new System.Drawing.Size(728, 176);
+			this.childtc.TabIndex = 20;
+			this.childtc.SelectedIndexChanged += new System.EventHandler(this.ChildTabPageChanged);
+			// 
+			// label1
+			// 
+			this.label1.BackColor = System.Drawing.Color.Transparent;
+			this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label1.Location = new System.Drawing.Point(8, 32);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(63, 17);
+			this.label1.TabIndex = 21;
+			this.label1.Text = "Filename:";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// llhash
+			// 
+			this.llhash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.llhash.AutoSize = true;
+			this.llhash.BackColor = System.Drawing.Color.Transparent;
+			this.llhash.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.llhash.Location = new System.Drawing.Point(664, 40);
+			this.llhash.Name = "llhash";
+			this.llhash.Size = new System.Drawing.Size(72, 17);
+			this.llhash.TabIndex = 18;
+			this.llhash.TabStop = true;
+			this.llhash.Text = "assign Hash";
+			this.llhash.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BuildFilename);
+			// 
+			// llfix
+			// 
+			this.llfix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.llfix.AutoSize = true;
+			this.llfix.BackColor = System.Drawing.Color.Transparent;
+			this.llfix.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.llfix.Location = new System.Drawing.Point(608, 40);
+			this.llfix.Name = "llfix";
+			this.llfix.Size = new System.Drawing.Size(43, 17);
+			this.llfix.TabIndex = 19;
+			this.llfix.TabStop = true;
+			this.llfix.Text = "fix TGI";
+			this.llfix.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FixTGI);
 			// 
 			// cbitem
 			// 
 			this.cbitem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.cbitem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbitem.Location = new System.Drawing.Point(88, 8);
+			this.cbitem.Location = new System.Drawing.Point(72, 8);
 			this.cbitem.Name = "cbitem";
-			this.cbitem.Size = new System.Drawing.Size(648, 21);
+			this.cbitem.Size = new System.Drawing.Size(664, 21);
 			this.cbitem.TabIndex = 7;
 			this.cbitem.SelectedIndexChanged += new System.EventHandler(this.SelectRcolItem);
 			// 
-			// llfix
-			// 
-			this.llfix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.llfix.AutoSize = true;
-			this.llfix.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.llfix.Location = new System.Drawing.Point(600, 40);
-			this.llfix.Name = "llfix";
-			this.llfix.Size = new System.Drawing.Size(47, 17);
-			this.llfix.TabIndex = 19;
-			this.llfix.TabStop = true;
-			this.llfix.Text = "fix TGI";
-			this.llfix.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FixTGI);
-			// 
-			// llhash
-			// 
-			this.llhash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.llhash.AutoSize = true;
-			this.llhash.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.llhash.Location = new System.Drawing.Point(656, 40);
-			this.llhash.Name = "llhash";
-			this.llhash.Size = new System.Drawing.Size(81, 17);
-			this.llhash.TabIndex = 18;
-			this.llhash.TabStop = true;
-			this.llhash.Text = "assign Hash";
-			this.llhash.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BuildFilename);
-			// 
 			// tabPage2
 			// 
-			this.tabPage2.Controls.Add(this.btref);
-			this.tabPage2.Controls.Add(this.gbtypes);
-			this.tabPage2.Controls.Add(this.lbref);
+			this.tabPage2.Controls.Add(this.xpGradientPanel2);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Size = new System.Drawing.Size(744, 235);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Reference";
 			// 
-			// btref
+			// xpGradientPanel2
 			// 
-			this.btref.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btref.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btref.Font = new System.Drawing.Font("Wingdings 3", 8.25F, System.Drawing.FontStyle.Bold);
-			this.btref.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.btref.Location = new System.Drawing.Point(368, 4);
-			this.btref.Name = "btref";
-			this.btref.Size = new System.Drawing.Size(21, 21);
-			this.btref.TabIndex = 42;
-			this.btref.Text = "u";
-			this.btref.Click += new System.EventHandler(this.ShowPackageSelector);
+			this.xpGradientPanel2.Controls.Add(this.lbref);
+			this.xpGradientPanel2.Controls.Add(this.xpTaskBoxSimple2);
+			this.xpGradientPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xpGradientPanel2.Location = new System.Drawing.Point(0, 0);
+			this.xpGradientPanel2.Name = "xpGradientPanel2";
+			this.xpGradientPanel2.Size = new System.Drawing.Size(744, 235);
+			this.xpGradientPanel2.TabIndex = 43;
 			// 
-			// gbtypes
+			// xpTaskBoxSimple2
 			// 
-			this.gbtypes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.gbtypes.Controls.Add(this.pntypes);
-			this.gbtypes.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.gbtypes.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-			this.gbtypes.Location = new System.Drawing.Point(296, 8);
-			this.gbtypes.Name = "gbtypes";
-			this.gbtypes.Size = new System.Drawing.Size(440, 128);
-			this.gbtypes.TabIndex = 20;
-			this.gbtypes.TabStop = false;
-			this.gbtypes.Text = "Settings";
+			this.xpTaskBoxSimple2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.xpTaskBoxSimple2.BackColor = System.Drawing.Color.Transparent;
+			this.xpTaskBoxSimple2.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
+			this.xpTaskBoxSimple2.BorderColor = System.Drawing.SystemColors.Window;
+			this.xpTaskBoxSimple2.Controls.Add(this.pntypes);
+			this.xpTaskBoxSimple2.Controls.Add(this.btref);
+			this.xpTaskBoxSimple2.DockPadding.Bottom = 4;
+			this.xpTaskBoxSimple2.DockPadding.Left = 4;
+			this.xpTaskBoxSimple2.DockPadding.Right = 4;
+			this.xpTaskBoxSimple2.DockPadding.Top = 44;
+			this.xpTaskBoxSimple2.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
+			this.xpTaskBoxSimple2.HeaderText = "Settings";
+			this.xpTaskBoxSimple2.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.xpTaskBoxSimple2.IconLocation = new System.Drawing.Point(4, 12);
+			this.xpTaskBoxSimple2.IconSize = new System.Drawing.Size(32, 32);
+			this.xpTaskBoxSimple2.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
+			this.xpTaskBoxSimple2.Location = new System.Drawing.Point(296, 0);
+			this.xpTaskBoxSimple2.Name = "xpTaskBoxSimple2";
+			this.xpTaskBoxSimple2.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+			this.xpTaskBoxSimple2.Size = new System.Drawing.Size(440, 152);
+			this.xpTaskBoxSimple2.TabIndex = 43;
 			// 
 			// pntypes
 			// 
@@ -346,7 +388,7 @@ namespace SimPe.Plugin
 			this.pntypes.Controls.Add(this.label10);
 			this.pntypes.Controls.Add(this.tbgroup);
 			this.pntypes.Controls.Add(this.cbtypes);
-			this.pntypes.Location = new System.Drawing.Point(8, 24);
+			this.pntypes.Location = new System.Drawing.Point(8, 48);
 			this.pntypes.Name = "pntypes";
 			this.pntypes.Size = new System.Drawing.Size(424, 96);
 			this.pntypes.TabIndex = 19;
@@ -354,12 +396,12 @@ namespace SimPe.Plugin
 			// lladd
 			// 
 			this.lladd.AutoSize = true;
-			this.lladd.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+			this.lladd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lladd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.lladd.LinkArea = new System.Windows.Forms.LinkArea(0, 9);
 			this.lladd.Location = new System.Drawing.Point(344, 80);
 			this.lladd.Name = "lladd";
-			this.lladd.Size = new System.Drawing.Size(28, 17);
+			this.lladd.Size = new System.Drawing.Size(25, 17);
 			this.lladd.TabIndex = 19;
 			this.lladd.TabStop = true;
 			this.lladd.Text = "add";
@@ -368,12 +410,12 @@ namespace SimPe.Plugin
 			// lldelete
 			// 
 			this.lldelete.AutoSize = true;
-			this.lldelete.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+			this.lldelete.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lldelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.lldelete.LinkArea = new System.Windows.Forms.LinkArea(0, 7);
 			this.lldelete.Location = new System.Drawing.Point(372, 80);
 			this.lldelete.Name = "lldelete";
-			this.lldelete.Size = new System.Drawing.Size(44, 17);
+			this.lldelete.Size = new System.Drawing.Size(40, 17);
 			this.lldelete.TabIndex = 18;
 			this.lldelete.TabStop = true;
 			this.lldelete.Text = "delete";
@@ -381,7 +423,7 @@ namespace SimPe.Plugin
 			// 
 			// tbsubtype
 			// 
-			this.tbsubtype.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.tbsubtype.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.tbsubtype.Location = new System.Drawing.Point(72, 24);
 			this.tbsubtype.Name = "tbsubtype";
 			this.tbsubtype.TabIndex = 12;
@@ -390,7 +432,7 @@ namespace SimPe.Plugin
 			// 
 			// tbinstance
 			// 
-			this.tbinstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.tbinstance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.tbinstance.Location = new System.Drawing.Point(72, 72);
 			this.tbinstance.Name = "tbinstance";
 			this.tbinstance.TabIndex = 14;
@@ -399,18 +441,18 @@ namespace SimPe.Plugin
 			// 
 			// label11
 			// 
-			this.label11.AutoSize = true;
-			this.label11.Font = new System.Drawing.Font("Verdana", 8.25F);
+			this.label11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label11.Location = new System.Drawing.Point(10, 80);
+			this.label11.Location = new System.Drawing.Point(8, 80);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(58, 17);
+			this.label11.Size = new System.Drawing.Size(60, 17);
 			this.label11.TabIndex = 10;
 			this.label11.Text = "Instance:";
+			this.label11.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// tbtype
 			// 
-			this.tbtype.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.tbtype.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.tbtype.Location = new System.Drawing.Point(72, 0);
 			this.tbtype.Name = "tbtype";
 			this.tbtype.TabIndex = 11;
@@ -419,40 +461,40 @@ namespace SimPe.Plugin
 			// 
 			// label8
 			// 
-			this.label8.AutoSize = true;
-			this.label8.Font = new System.Drawing.Font("Verdana", 8.25F);
+			this.label8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.label8.Location = new System.Drawing.Point(8, 8);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(60, 17);
 			this.label8.TabIndex = 7;
 			this.label8.Text = "File Type:";
+			this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// label9
 			// 
-			this.label9.AutoSize = true;
-			this.label9.Font = new System.Drawing.Font("Verdana", 8.25F);
+			this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label9.Location = new System.Drawing.Point(24, 56);
+			this.label9.Location = new System.Drawing.Point(8, 56);
 			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(44, 17);
+			this.label9.Size = new System.Drawing.Size(60, 17);
 			this.label9.TabIndex = 8;
 			this.label9.Text = "Group:";
+			this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// label10
 			// 
-			this.label10.AutoSize = true;
-			this.label10.Font = new System.Drawing.Font("Verdana", 8.25F);
+			this.label10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label10.Location = new System.Drawing.Point(12, 32);
+			this.label10.Location = new System.Drawing.Point(8, 32);
 			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(56, 17);
+			this.label10.Size = new System.Drawing.Size(60, 17);
 			this.label10.TabIndex = 9;
 			this.label10.Text = "Sub Typ:";
+			this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// tbgroup
 			// 
-			this.tbgroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.tbgroup.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.tbgroup.Location = new System.Drawing.Point(72, 48);
 			this.tbgroup.Name = "tbgroup";
 			this.tbgroup.TabIndex = 13;
@@ -462,7 +504,7 @@ namespace SimPe.Plugin
 			// cbtypes
 			// 
 			this.cbtypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbtypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.cbtypes.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbtypes.ItemHeight = 13;
 			this.cbtypes.Location = new System.Drawing.Point(176, 0);
 			this.cbtypes.Name = "cbtypes";
@@ -471,16 +513,31 @@ namespace SimPe.Plugin
 			this.cbtypes.TabIndex = 16;
 			this.cbtypes.SelectedIndexChanged += new System.EventHandler(this.SelectType);
 			// 
+			// btref
+			// 
+			this.btref.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btref.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btref.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+			this.btref.ForeColor = System.Drawing.SystemColors.Window;
+			this.btref.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.btref.Location = new System.Drawing.Point(408, 17);
+			this.btref.Name = "btref";
+			this.btref.Size = new System.Drawing.Size(21, 21);
+			this.btref.TabIndex = 42;
+			this.btref.Text = "u";
+			this.btref.Click += new System.EventHandler(this.ShowPackageSelector);
+			// 
 			// lbref
 			// 
 			this.lbref.AllowDrop = true;
 			this.lbref.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lbref.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.lbref.IntegralHeight = false;
-			this.lbref.Location = new System.Drawing.Point(8, 8);
+			this.lbref.Location = new System.Drawing.Point(0, 0);
 			this.lbref.Name = "lbref";
-			this.lbref.Size = new System.Drawing.Size(280, 221);
+			this.lbref.Size = new System.Drawing.Size(288, 235);
 			this.lbref.TabIndex = 0;
 			this.lbref.DragDrop += new System.Windows.Forms.DragEventHandler(this.PackageItemDrop);
 			this.lbref.DragEnter += new System.Windows.Forms.DragEventHandler(this.PackageItemDragEnter);
@@ -488,17 +545,58 @@ namespace SimPe.Plugin
 			// 
 			// tabPage3
 			// 
-			this.tabPage3.Controls.Add(this.cbblocks);
-			this.tabPage3.Controls.Add(this.btdel);
-			this.tabPage3.Controls.Add(this.btadd);
-			this.tabPage3.Controls.Add(this.btdown);
-			this.tabPage3.Controls.Add(this.btup);
-			this.tabPage3.Controls.Add(this.lbblocks);
+			this.tabPage3.Controls.Add(this.xpGradientPanel3);
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Size = new System.Drawing.Size(744, 235);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Edit Blocks";
+			// 
+			// xpGradientPanel3
+			// 
+			this.xpGradientPanel3.Controls.Add(this.btup);
+			this.xpGradientPanel3.Controls.Add(this.lbblocks);
+			this.xpGradientPanel3.Controls.Add(this.btdel);
+			this.xpGradientPanel3.Controls.Add(this.cbblocks);
+			this.xpGradientPanel3.Controls.Add(this.btadd);
+			this.xpGradientPanel3.Controls.Add(this.btdown);
+			this.xpGradientPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xpGradientPanel3.Location = new System.Drawing.Point(0, 0);
+			this.xpGradientPanel3.Name = "xpGradientPanel3";
+			this.xpGradientPanel3.Size = new System.Drawing.Size(744, 235);
+			this.xpGradientPanel3.TabIndex = 6;
+			// 
+			// btup
+			// 
+			this.btup.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.btup.Location = new System.Drawing.Point(384, 16);
+			this.btup.Name = "btup";
+			this.btup.Size = new System.Drawing.Size(48, 23);
+			this.btup.TabIndex = 1;
+			this.btup.Text = "Up";
+			this.btup.Click += new System.EventHandler(this.btup_Click);
+			// 
+			// lbblocks
+			// 
+			this.lbblocks.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.lbblocks.Dock = System.Windows.Forms.DockStyle.Left;
+			this.lbblocks.HorizontalScrollbar = true;
+			this.lbblocks.IntegralHeight = false;
+			this.lbblocks.Location = new System.Drawing.Point(0, 0);
+			this.lbblocks.Name = "lbblocks";
+			this.lbblocks.Size = new System.Drawing.Size(376, 235);
+			this.lbblocks.TabIndex = 0;
+			this.lbblocks.SelectedIndexChanged += new System.EventHandler(this.lbblocks_SelectedIndexChanged);
+			// 
+			// btdel
+			// 
+			this.btdel.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.btdel.Location = new System.Drawing.Point(384, 136);
+			this.btdel.Name = "btdel";
+			this.btdel.Size = new System.Drawing.Size(72, 23);
+			this.btdel.TabIndex = 4;
+			this.btdel.Text = "Delete";
+			this.btdel.Click += new System.EventHandler(this.btdel_Click);
 			// 
 			// cbblocks
 			// 
@@ -510,16 +608,6 @@ namespace SimPe.Plugin
 			this.cbblocks.Size = new System.Drawing.Size(352, 21);
 			this.cbblocks.Sorted = true;
 			this.cbblocks.TabIndex = 5;
-			// 
-			// btdel
-			// 
-			this.btdel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btdel.Location = new System.Drawing.Point(384, 136);
-			this.btdel.Name = "btdel";
-			this.btdel.Size = new System.Drawing.Size(72, 23);
-			this.btdel.TabIndex = 4;
-			this.btdel.Text = "Delete";
-			this.btdel.Click += new System.EventHandler(this.btdel_Click);
 			// 
 			// btadd
 			// 
@@ -541,81 +629,109 @@ namespace SimPe.Plugin
 			this.btdown.Text = "Down";
 			this.btdown.Click += new System.EventHandler(this.btdown_Click);
 			// 
-			// btup
-			// 
-			this.btup.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btup.Location = new System.Drawing.Point(384, 16);
-			this.btup.Name = "btup";
-			this.btup.Size = new System.Drawing.Size(48, 23);
-			this.btup.TabIndex = 1;
-			this.btup.Text = "Up";
-			this.btup.Click += new System.EventHandler(this.btup_Click);
-			// 
-			// lbblocks
-			// 
-			this.lbblocks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left)));
-			this.lbblocks.HorizontalScrollbar = true;
-			this.lbblocks.IntegralHeight = false;
-			this.lbblocks.Location = new System.Drawing.Point(8, 9);
-			this.lbblocks.Name = "lbblocks";
-			this.lbblocks.Size = new System.Drawing.Size(368, 216);
-			this.lbblocks.TabIndex = 0;
-			this.lbblocks.SelectedIndexChanged += new System.EventHandler(this.lbblocks_SelectedIndexChanged);
-			// 
 			// tpref
 			// 
-			this.tpref.Controls.Add(this.groupBox1);
-			this.tpref.Controls.Add(this.tv);
+			this.tpref.Controls.Add(this.xpGradientPanel4);
 			this.tpref.Location = new System.Drawing.Point(4, 22);
 			this.tpref.Name = "tpref";
 			this.tpref.Size = new System.Drawing.Size(744, 235);
 			this.tpref.TabIndex = 3;
 			this.tpref.Text = "All References";
 			// 
-			// groupBox1
+			// xpGradientPanel4
 			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox1.Controls.Add(this.tbfile);
-			this.groupBox1.Controls.Add(this.label5);
-			this.groupBox1.Controls.Add(this.tbrefinst);
-			this.groupBox1.Controls.Add(this.tbrefgroup);
-			this.groupBox1.Controls.Add(this.label4);
-			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.linkLabel1);
-			this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox1.Location = new System.Drawing.Point(560, 8);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(176, 128);
-			this.groupBox1.TabIndex = 1;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Values";
+			this.xpGradientPanel4.Controls.Add(this.xpTaskBoxSimple1);
+			this.xpGradientPanel4.Controls.Add(this.tv);
+			this.xpGradientPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xpGradientPanel4.Location = new System.Drawing.Point(0, 0);
+			this.xpGradientPanel4.Name = "xpGradientPanel4";
+			this.xpGradientPanel4.Size = new System.Drawing.Size(744, 235);
+			this.xpGradientPanel4.TabIndex = 2;
+			// 
+			// xpTaskBoxSimple1
+			// 
+			this.xpTaskBoxSimple1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.xpTaskBoxSimple1.BackColor = System.Drawing.Color.Transparent;
+			this.xpTaskBoxSimple1.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
+			this.xpTaskBoxSimple1.BorderColor = System.Drawing.SystemColors.Window;
+			this.xpTaskBoxSimple1.Controls.Add(this.label4);
+			this.xpTaskBoxSimple1.Controls.Add(this.label3);
+			this.xpTaskBoxSimple1.Controls.Add(this.tbfile);
+			this.xpTaskBoxSimple1.Controls.Add(this.linkLabel1);
+			this.xpTaskBoxSimple1.Controls.Add(this.label5);
+			this.xpTaskBoxSimple1.Controls.Add(this.tbrefinst);
+			this.xpTaskBoxSimple1.Controls.Add(this.tbrefgroup);
+			this.xpTaskBoxSimple1.DockPadding.Bottom = 4;
+			this.xpTaskBoxSimple1.DockPadding.Left = 4;
+			this.xpTaskBoxSimple1.DockPadding.Right = 4;
+			this.xpTaskBoxSimple1.DockPadding.Top = 44;
+			this.xpTaskBoxSimple1.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
+			this.xpTaskBoxSimple1.HeaderText = "Values";
+			this.xpTaskBoxSimple1.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.xpTaskBoxSimple1.IconLocation = new System.Drawing.Point(4, 12);
+			this.xpTaskBoxSimple1.IconSize = new System.Drawing.Size(32, 32);
+			this.xpTaskBoxSimple1.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
+			this.xpTaskBoxSimple1.Location = new System.Drawing.Point(544, 0);
+			this.xpTaskBoxSimple1.Name = "xpTaskBoxSimple1";
+			this.xpTaskBoxSimple1.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+			this.xpTaskBoxSimple1.Size = new System.Drawing.Size(192, 152);
+			this.xpTaskBoxSimple1.TabIndex = 2;
+			// 
+			// label4
+			// 
+			this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label4.Location = new System.Drawing.Point(16, 80);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(56, 17);
+			this.label4.TabIndex = 1;
+			this.label4.Text = "Instance:";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label3
+			// 
+			this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label3.Location = new System.Drawing.Point(16, 56);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(56, 17);
+			this.label3.TabIndex = 0;
+			this.label3.Text = "Group:";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// tbfile
 			// 
-			this.tbfile.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbfile.Location = new System.Drawing.Point(16, 96);
+			this.tbfile.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbfile.Location = new System.Drawing.Point(16, 120);
 			this.tbfile.Name = "tbfile";
 			this.tbfile.ReadOnly = true;
-			this.tbfile.Size = new System.Drawing.Size(152, 21);
+			this.tbfile.Size = new System.Drawing.Size(168, 21);
 			this.tbfile.TabIndex = 4;
 			this.tbfile.Text = "";
+			// 
+			// linkLabel1
+			// 
+			this.linkLabel1.AutoSize = true;
+			this.linkLabel1.Location = new System.Drawing.Point(40, 104);
+			this.linkLabel1.Name = "linkLabel1";
+			this.linkLabel1.Size = new System.Drawing.Size(35, 17);
+			this.linkLabel1.TabIndex = 6;
+			this.linkLabel1.TabStop = true;
+			this.linkLabel1.Text = "reload";
+			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label5.Location = new System.Drawing.Point(8, 80);
+			this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label5.Location = new System.Drawing.Point(8, 104);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(29, 17);
+			this.label5.Size = new System.Drawing.Size(25, 17);
 			this.label5.TabIndex = 5;
 			this.label5.Text = "File:";
 			// 
 			// tbrefinst
 			// 
-			this.tbrefinst.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbrefinst.Location = new System.Drawing.Point(80, 50);
+			this.tbrefinst.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbrefinst.Location = new System.Drawing.Point(80, 80);
 			this.tbrefinst.Name = "tbrefinst";
 			this.tbrefinst.ReadOnly = true;
 			this.tbrefinst.Size = new System.Drawing.Size(88, 21);
@@ -624,112 +740,50 @@ namespace SimPe.Plugin
 			// 
 			// tbrefgroup
 			// 
-			this.tbrefgroup.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbrefgroup.Location = new System.Drawing.Point(80, 24);
+			this.tbrefgroup.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbrefgroup.Location = new System.Drawing.Point(80, 48);
 			this.tbrefgroup.Name = "tbrefgroup";
 			this.tbrefgroup.ReadOnly = true;
 			this.tbrefgroup.Size = new System.Drawing.Size(88, 21);
 			this.tbrefgroup.TabIndex = 2;
 			this.tbrefgroup.Text = "0x00000000";
 			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label4.Location = new System.Drawing.Point(16, 56);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(58, 17);
-			this.label4.TabIndex = 1;
-			this.label4.Text = "Instance:";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label3.Location = new System.Drawing.Point(30, 32);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(44, 17);
-			this.label3.TabIndex = 0;
-			this.label3.Text = "Group:";
-			// 
-			// linkLabel1
-			// 
-			this.linkLabel1.AutoSize = true;
-			this.linkLabel1.Location = new System.Drawing.Point(40, 80);
-			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.Size = new System.Drawing.Size(44, 17);
-			this.linkLabel1.TabIndex = 6;
-			this.linkLabel1.TabStop = true;
-			this.linkLabel1.Text = "reload";
-			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-			// 
 			// tv
 			// 
 			this.tv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
+			this.tv.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.tv.HideSelection = false;
 			this.tv.ImageIndex = -1;
-			this.tv.Location = new System.Drawing.Point(8, 8);
+			this.tv.Location = new System.Drawing.Point(0, 0);
 			this.tv.Name = "tv";
 			this.tv.SelectedImageIndex = -1;
-			this.tv.Size = new System.Drawing.Size(544, 216);
+			this.tv.Size = new System.Drawing.Size(536, 235);
 			this.tv.TabIndex = 0;
 			this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SelectRefItem);
 			// 
-			// panel2
-			// 
-			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-			this.panel2.Controls.Add(this.label27);
-			this.panel2.Controls.Add(this.btcommit);
-			this.panel2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold);
-			this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.panel2.Location = new System.Drawing.Point(0, 0);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(768, 24);
-			this.panel2.TabIndex = 0;
-			// 
-			// label27
-			// 
-			this.label27.AutoSize = true;
-			this.label27.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label27.Location = new System.Drawing.Point(0, 4);
-			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(148, 19);
-			this.label27.TabIndex = 0;
-			this.label27.Text = "Generic Rcol Editor";
-			// 
-			// btcommit
-			// 
-			this.btcommit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btcommit.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btcommit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.btcommit.Location = new System.Drawing.Point(688, 0);
-			this.btcommit.Name = "btcommit";
-			this.btcommit.TabIndex = 6;
-			this.btcommit.Text = "Commit";
-			this.btcommit.Click += new System.EventHandler(this.Commit);
-			// 
 			// RcolForm
 			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
+			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.ClientSize = new System.Drawing.Size(848, 358);
 			this.Controls.Add(this.RcolPanel);
-			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.Name = "RcolForm";
 			this.Text = "RcolForm";
 			this.RcolPanel.ResumeLayout(false);
 			this.tbResource.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
+			this.xpGradientPanel1.ResumeLayout(false);
 			this.tabPage2.ResumeLayout(false);
-			this.gbtypes.ResumeLayout(false);
+			this.xpGradientPanel2.ResumeLayout(false);
+			this.xpTaskBoxSimple2.ResumeLayout(false);
 			this.pntypes.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
+			this.xpGradientPanel3.ResumeLayout(false);
 			this.tpref.ResumeLayout(false);
-			this.groupBox1.ResumeLayout(false);
-			this.panel2.ResumeLayout(false);
+			this.xpGradientPanel4.ResumeLayout(false);
+			this.xpTaskBoxSimple1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

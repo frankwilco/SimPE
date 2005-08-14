@@ -45,6 +45,8 @@ namespace SimPe.Windows.Forms
 			tm = ThemeManager.Global.CreateChild();
 			tm.AddControl(this);
 
+			txt = "";
+
 			//this.D = new Rectangle(0, 24, Width, Height-24);
 		}
 
@@ -66,6 +68,38 @@ namespace SimPe.Windows.Forms
 		}
 
 		#region Public Properties
+		string txt;
+		[Localizable(true)]
+		public string HeaderText
+		{
+			get
+			{
+				return txt;
+			}
+			set
+			{
+				if (txt!=value) 
+				{
+					txt = value;
+					this.Refresh();
+				}
+			}
+		}
+
+		public override string Text
+		{
+			get
+			{
+				return base.Text;
+			}
+			set
+			{
+				base.Text = value;
+				HeaderText = value;
+			}
+		}
+
+
 		Color headcol, headforecol;
 		Font headfont;
 
@@ -244,9 +278,9 @@ namespace SimPe.Windows.Forms
 				SolidBrush bg = new SolidBrush(this.HeadBackColor);
 				SolidBrush fb = new SolidBrush(this.HeadForeColor);
 				e.Graphics.FillRectangle(bg, 0, 0, Width, HeaderHeight);
-				SizeF sz = e.Graphics.MeasureString(Text, this.HeadFont);
+				SizeF sz = e.Graphics.MeasureString(HeaderText, this.HeadFont);
 				int dist = (int)((HeaderHeight-sz.Height) / 2);
-				e.Graphics.DrawString(Text, this.HeadFont, fb, dist, dist);
+				e.Graphics.DrawString(HeaderText, this.HeadFont, fb, dist, dist);
 				bg.Dispose();
 				fb.Dispose();
 			}

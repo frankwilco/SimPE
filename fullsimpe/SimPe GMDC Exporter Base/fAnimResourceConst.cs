@@ -4,7 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace SimPe.Plugin
+namespace SimPe.Plugin.Anim
 {
 	/// <summary>
 	/// Zusammenfassung für fAnimResourceConst.
@@ -26,6 +26,9 @@ namespace SimPe.Plugin
 		internal System.Windows.Forms.TabPage tMisc;
 		private System.Windows.Forms.LinkLabel llClear;
 		private System.Windows.Forms.LinkLabel llTxt;
+		internal SimPe.Plugin.Anim.AnimMeshBlockControl ambc;
+		internal System.Windows.Forms.TabPage tMesh;
+		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -37,10 +40,11 @@ namespace SimPe.Plugin
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
+			
+			llTxt.Visible = Helper.WindowsRegistry.HiddenMode;
 
-			llAdd.Visible = Helper.WindowsRegistry.HiddenMode;
-			llClear.Visible = Helper.WindowsRegistry.HiddenMode;
-			llTxt.Visible = Helper.DebugMode;
+			SimPe.ThemeManager tm = SimPe.ThemeManager.Global.CreateChild();
+			tm.AddControl(this.xpGradientPanel1);
 		}
 
 		/// <summary>
@@ -65,32 +69,39 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.ambc = new AnimMeshBlockControl();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tAnimResourceConst = new System.Windows.Forms.TabPage();
-			this.llImport = new System.Windows.Forms.LinkLabel();
-			this.llExport = new System.Windows.Forms.LinkLabel();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.pg = new System.Windows.Forms.PropertyGrid();
+			this.llTxt = new System.Windows.Forms.LinkLabel();
+			this.llClear = new System.Windows.Forms.LinkLabel();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.tv = new System.Windows.Forms.TreeView();
+			this.llAdd = new System.Windows.Forms.LinkLabel();
+			this.llExport = new System.Windows.Forms.LinkLabel();
+			this.llImport = new System.Windows.Forms.LinkLabel();
+			this.pg = new System.Windows.Forms.PropertyGrid();
+			this.tMisc = new System.Windows.Forms.TabPage();
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
 			this.tb_arc_ver = new System.Windows.Forms.TextBox();
 			this.label30 = new System.Windows.Forms.Label();
-			this.llAdd = new System.Windows.Forms.LinkLabel();
-			this.tMisc = new System.Windows.Forms.TabPage();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.llClear = new System.Windows.Forms.LinkLabel();
-			this.llTxt = new System.Windows.Forms.LinkLabel();
+			this.tMesh = new System.Windows.Forms.TabPage();
+			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.ambc = new SimPe.Plugin.Anim.AnimMeshBlockControl();
 			this.tabControl1.SuspendLayout();
 			this.tAnimResourceConst.SuspendLayout();
 			this.groupBox2.SuspendLayout();
-			this.groupBox12.SuspendLayout();
 			this.tMisc.SuspendLayout();
+			this.groupBox12.SuspendLayout();
+			this.tMesh.SuspendLayout();
+			this.xpGradientPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tAnimResourceConst);
 			this.tabControl1.Controls.Add(this.tMisc);
+			this.tabControl1.Controls.Add(this.tMesh);
 			this.tabControl1.Location = new System.Drawing.Point(8, 8);
 			this.tabControl1.Multiline = true;
 			this.tabControl1.Name = "tabControl1";
@@ -106,30 +117,8 @@ namespace SimPe.Plugin
 			this.tAnimResourceConst.Name = "tAnimResourceConst";
 			this.tAnimResourceConst.Size = new System.Drawing.Size(792, 262);
 			this.tAnimResourceConst.TabIndex = 6;
-			this.tAnimResourceConst.Text = "AnimResourceConst";
+			this.tAnimResourceConst.Text = "Raw View";
 			this.tAnimResourceConst.Visible = false;
-			// 
-			// llImport
-			// 
-			this.llImport.Enabled = false;
-			this.llImport.Location = new System.Drawing.Point(640, 32);
-			this.llImport.Name = "llImport";
-			this.llImport.Size = new System.Drawing.Size(56, 16);
-			this.llImport.TabIndex = 41;
-			this.llImport.TabStop = true;
-			this.llImport.Text = "Import";
-			this.llImport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llImport_LinkClicked);
-			// 
-			// llExport
-			// 
-			this.llExport.Enabled = false;
-			this.llExport.Location = new System.Drawing.Point(584, 32);
-			this.llExport.Name = "llExport";
-			this.llExport.Size = new System.Drawing.Size(48, 16);
-			this.llExport.TabIndex = 40;
-			this.llExport.TabStop = true;
-			this.llExport.Text = "Export";
-			this.llExport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llExport_LinkClicked);
 			// 
 			// groupBox2
 			// 
@@ -153,6 +142,86 @@ namespace SimPe.Plugin
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Content";
 			// 
+			// llTxt
+			// 
+			this.llTxt.Enabled = false;
+			this.llTxt.Location = new System.Drawing.Point(640, 8);
+			this.llTxt.Name = "llTxt";
+			this.llTxt.Size = new System.Drawing.Size(56, 16);
+			this.llTxt.TabIndex = 44;
+			this.llTxt.TabStop = true;
+			this.llTxt.Text = "Text";
+			this.llTxt.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTxt_LinkClicked);
+			// 
+			// llClear
+			// 
+			this.llClear.Enabled = false;
+			this.llClear.Location = new System.Drawing.Point(480, 32);
+			this.llClear.Name = "llClear";
+			this.llClear.Size = new System.Drawing.Size(88, 16);
+			this.llClear.TabIndex = 43;
+			this.llClear.TabStop = true;
+			this.llClear.Text = "Clear Frames";
+			this.llClear.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llClear_LinkClicked);
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox1.Location = new System.Drawing.Point(704, 32);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(56, 16);
+			this.checkBox1.TabIndex = 42;
+			this.checkBox1.Text = "Help";
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+			// 
+			// tv
+			// 
+			this.tv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left)));
+			this.tv.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tv.FullRowSelect = true;
+			this.tv.HideSelection = false;
+			this.tv.ImageIndex = -1;
+			this.tv.Location = new System.Drawing.Point(8, 24);
+			this.tv.Name = "tv";
+			this.tv.SelectedImageIndex = -1;
+			this.tv.Size = new System.Drawing.Size(296, 216);
+			this.tv.TabIndex = 0;
+			this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
+			// 
+			// llAdd
+			// 
+			this.llAdd.Enabled = false;
+			this.llAdd.Location = new System.Drawing.Point(400, 32);
+			this.llAdd.Name = "llAdd";
+			this.llAdd.Size = new System.Drawing.Size(80, 16);
+			this.llAdd.TabIndex = 2;
+			this.llAdd.TabStop = true;
+			this.llAdd.Text = "Add Frame";
+			this.llAdd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAdd_LinkClicked);
+			// 
+			// llExport
+			// 
+			this.llExport.Enabled = false;
+			this.llExport.Location = new System.Drawing.Point(584, 32);
+			this.llExport.Name = "llExport";
+			this.llExport.Size = new System.Drawing.Size(48, 16);
+			this.llExport.TabIndex = 40;
+			this.llExport.TabStop = true;
+			this.llExport.Text = "Export";
+			this.llExport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llExport_LinkClicked);
+			// 
+			// llImport
+			// 
+			this.llImport.Enabled = false;
+			this.llImport.Location = new System.Drawing.Point(640, 32);
+			this.llImport.Name = "llImport";
+			this.llImport.Size = new System.Drawing.Size(56, 16);
+			this.llImport.TabIndex = 41;
+			this.llImport.TabStop = true;
+			this.llImport.Text = "Import";
+			this.llImport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llImport_LinkClicked);
+			// 
 			// pg
 			// 
 			this.pg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -172,20 +241,15 @@ namespace SimPe.Plugin
 			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
 			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
 			// 
-			// tv
+			// tMisc
 			// 
-			this.tv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left)));
-			this.tv.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tv.FullRowSelect = true;
-			this.tv.HideSelection = false;
-			this.tv.ImageIndex = -1;
-			this.tv.Location = new System.Drawing.Point(8, 24);
-			this.tv.Name = "tv";
-			this.tv.SelectedImageIndex = -1;
-			this.tv.Size = new System.Drawing.Size(296, 216);
-			this.tv.TabIndex = 0;
-			this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
+			this.tMisc.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.tMisc.Controls.Add(this.groupBox12);
+			this.tMisc.Location = new System.Drawing.Point(4, 22);
+			this.tMisc.Name = "tMisc";
+			this.tMisc.Size = new System.Drawing.Size(792, 262);
+			this.tMisc.TabIndex = 7;
+			this.tMisc.Text = "Misc.";
 			// 
 			// groupBox12
 			// 
@@ -220,58 +284,38 @@ namespace SimPe.Plugin
 			this.label30.TabIndex = 23;
 			this.label30.Text = "Version:";
 			// 
-			// llAdd
+			// tMesh
 			// 
-			this.llAdd.Enabled = false;
-			this.llAdd.Location = new System.Drawing.Point(400, 32);
-			this.llAdd.Name = "llAdd";
-			this.llAdd.Size = new System.Drawing.Size(80, 16);
-			this.llAdd.TabIndex = 2;
-			this.llAdd.TabStop = true;
-			this.llAdd.Text = "Add Frame";
-			this.llAdd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAdd_LinkClicked);
+			this.tMesh.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.tMesh.Controls.Add(this.xpGradientPanel1);
+			this.tMesh.Location = new System.Drawing.Point(4, 22);
+			this.tMesh.Name = "tMesh";
+			this.tMesh.Size = new System.Drawing.Size(792, 262);
+			this.tMesh.TabIndex = 8;
+			this.tMesh.Text = "Mesh Animations";
 			// 
-			// tMisc
+			// xpGradientPanel1
 			// 
-			this.tMisc.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.tMisc.Controls.Add(this.groupBox12);
-			this.tMisc.Location = new System.Drawing.Point(4, 22);
-			this.tMisc.Name = "tMisc";
-			this.tMisc.Size = new System.Drawing.Size(792, 262);
-			this.tMisc.TabIndex = 7;
-			this.tMisc.Text = "Misc.";
+			this.xpGradientPanel1.Controls.Add(this.ambc);
+			this.xpGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xpGradientPanel1.DockPadding.All = 8;
+			this.xpGradientPanel1.Location = new System.Drawing.Point(0, 0);
+			this.xpGradientPanel1.Name = "xpGradientPanel1";
+			this.xpGradientPanel1.Size = new System.Drawing.Size(792, 262);
+			this.xpGradientPanel1.TabIndex = 2;
 			// 
-			// checkBox1
+			// ambc
 			// 
-			this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkBox1.Location = new System.Drawing.Point(704, 32);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(56, 16);
-			this.checkBox1.TabIndex = 42;
-			this.checkBox1.Text = "Help";
-			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-			// 
-			// llClear
-			// 
-			this.llClear.Enabled = false;
-			this.llClear.Location = new System.Drawing.Point(480, 32);
-			this.llClear.Name = "llClear";
-			this.llClear.Size = new System.Drawing.Size(88, 16);
-			this.llClear.TabIndex = 43;
-			this.llClear.TabStop = true;
-			this.llClear.Text = "Clear Frames";
-			this.llClear.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llClear_LinkClicked);
-			// 
-			// llTxt
-			// 
-			this.llTxt.Enabled = false;
-			this.llTxt.Location = new System.Drawing.Point(640, 8);
-			this.llTxt.Name = "llTxt";
-			this.llTxt.Size = new System.Drawing.Size(56, 16);
-			this.llTxt.TabIndex = 44;
-			this.llTxt.TabStop = true;
-			this.llTxt.Text = "Text";
-			this.llTxt.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTxt_LinkClicked);
+			this.ambc.BackColor = System.Drawing.Color.Transparent;
+			this.ambc.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ambc.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.ambc.Location = new System.Drawing.Point(8, 8);
+			this.ambc.MeshBlock = null;
+			this.ambc.MeshBlocks = null;
+			this.ambc.Name = "ambc";
+			this.ambc.Size = new System.Drawing.Size(776, 246);
+			this.ambc.TabIndex = 1;
+			this.ambc.Changed += new System.EventHandler(this.ambc_Changed);
 			// 
 			// fAnimResourceConst
 			// 
@@ -283,8 +327,10 @@ namespace SimPe.Plugin
 			this.tabControl1.ResumeLayout(false);
 			this.tAnimResourceConst.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
-			this.groupBox12.ResumeLayout(false);
 			this.tMisc.ResumeLayout(false);
+			this.groupBox12.ResumeLayout(false);
+			this.tMesh.ResumeLayout(false);
+			this.xpGradientPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -307,13 +353,13 @@ namespace SimPe.Plugin
 			pg.SelectedObject = e.Node.Tag;
 
 
-			if (e.Node.Tag is AnimBlock1) 
+			if (e.Node.Tag is AnimationMeshBlock) 
 			{
 				llExport.Enabled = true;
 				llImport.Enabled = true;
 				llTxt.Enabled = true;
 			}
-			if (e.Node.Tag is AnimBlock2) 
+			if (e.Node.Tag is AnimationFrameBlock) 
 			{
 				llAdd.Enabled = true;
 				llClear.Enabled = true;
@@ -372,13 +418,19 @@ namespace SimPe.Plugin
 
 		private void llAdd_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			AnimBlock2 ab2 = null;
-			if (tv.SelectedNode.Tag is AnimBlock2) ab2 = (AnimBlock2)tv.SelectedNode.Tag;
-			else ab2 = (AnimBlock2)tv.SelectedNode.Parent.Tag;
+			AnimationFrameBlock ab2 = null;
+			if (tv.SelectedNode.Tag is AnimationFrameBlock) 
+			{
+				ab2 = (AnimationFrameBlock)tv.SelectedNode.Tag;
+			}
+			else 
+			{
+				ab2 = (AnimationFrameBlock)tv.SelectedNode.Parent.Tag;
+			}
 			
-			if (ab2.Part3Count!=3) return;
+			if (ab2.AxisCount!=3) return;
 
-			ab2.AddFrame(-1, 0, 0, 0);
+			ab2.AddFrame((short)(ab2.GetDuration()+1), 0, 0, 0, false);
 		
 			AnimResourceConst arc = (AnimResourceConst)tAnimResourceConst.Tag;
 			arc.Refresh();
@@ -386,7 +438,7 @@ namespace SimPe.Plugin
 
 		private void llExport_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			AnimBlock1 ab1 = (AnimBlock1)tv.SelectedNode.Tag;
+			AnimationMeshBlock ab1 = (AnimationMeshBlock)tv.SelectedNode.Tag;
 			GenericRcol gmdc = ab1.FindUsedGMDC(ab1.FindDefiningCRES());
 			if (gmdc!=null) 
 			{
@@ -403,7 +455,7 @@ namespace SimPe.Plugin
 
 		private void llImport_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			AnimBlock1 ab1 = (AnimBlock1)tv.SelectedNode.Tag;
+			AnimationMeshBlock ab1 = (AnimationMeshBlock)tv.SelectedNode.Tag;
 			GenericRcol gmdc = ab1.FindUsedGMDC(ab1.FindDefiningCRES());
 			if (gmdc!=null) 
 			{
@@ -425,9 +477,9 @@ namespace SimPe.Plugin
 
 		private void llClear_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			AnimBlock2 ab2 = null;
-			if (tv.SelectedNode.Tag is AnimBlock2) ab2 = (AnimBlock2)tv.SelectedNode.Tag;
-			else ab2 = (AnimBlock2)tv.SelectedNode.Parent.Tag;
+			AnimationFrameBlock ab2 = null;
+			if (tv.SelectedNode.Tag is AnimationFrameBlock) ab2 = (AnimationFrameBlock)tv.SelectedNode.Tag;
+			else ab2 = (AnimationFrameBlock)tv.SelectedNode.Parent.Tag;
 			
 			ab2.ClearFrames();
 		
@@ -437,27 +489,41 @@ namespace SimPe.Plugin
 
 		private void llTxt_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-#if DEBUG
-			AnimBlock1 ab1 = (AnimBlock1)tv.SelectedNode.Tag;
-			System.IO.StreamWriter sw = System.IO.File.CreateText(@"G:\anim.txt");
-			try 
+
+			AnimationMeshBlock ab1 = (AnimationMeshBlock)tv.SelectedNode.Tag;
+			SaveFileDialog ofd = new SaveFileDialog();
+			ofd.Filter = "TextFile (*.txt)|*.txt|All Files (*.*)|*.*";
+			if (ofd.ShowDialog() == DialogResult.OK)
 			{
-				sw.WriteLine(ab1.Name+"-----------------------------------");
-				foreach (AnimBlock2 ab2 in ab1.Part2)
+				System.IO.StreamWriter sw = System.IO.File.CreateText(ofd.FileName);
+				try 
 				{
-					sw.WriteLine("    ---- "+ab2.Name+" ----");
-					foreach (AnimationFrame af in ab2.Frames)
+					sw.WriteLine(ab1.Name+"-----------------------------------");
+					foreach (AnimationFrameBlock ab2 in ab1.Part2)
 					{
-						sw.WriteLine("        "+af.TimeCode.ToString()+": "+af.X.ToString()+"; "+af.Y.ToString()+"; "+af.Z.ToString()+"; ---- "+af.Float_X.ToString("N6")+"; "+af.Float_Y.ToString("N6")+"; "+af.Float_Z.ToString("N6"));
+						sw.WriteLine("--------------- "+ab2.Name+" ---------------");
+						foreach (AnimationAxisTransformBlock aatb in ab2.AxisSet)
+						{
+							sw.WriteLine("    "+aatb.ToString()+":");
+							foreach (AnimationAxisTransform aat in aatb)
+							{
+								sw.WriteLine("        "+aat.ToString());
+							}
+						}	
 					}
-				}	
-			} 
-			finally
-			{
-				sw.Close();
-			}
+				}
+				finally
+				{
+					sw.Close();
+				}
 			
-#endif
+			}
+		}
+
+		private void ambc_Changed(object sender, System.EventArgs e)
+		{
+			AnimResourceConst arc = (AnimResourceConst)tMesh.Tag;
+			arc.Parent.Changed = true;
 		}
 	}
 }

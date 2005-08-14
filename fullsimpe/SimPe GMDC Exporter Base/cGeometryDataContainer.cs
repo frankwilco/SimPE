@@ -23,6 +23,7 @@ using System.Globalization;
 using SimPe.Plugin.Gmdc;
 using System.Collections;
 using SimPe.Geometry;
+using SimPe.Plugin.Anim;
 
 namespace SimPe.Plugin
 {
@@ -727,8 +728,8 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
-		AnimBlock1 la;
-		public AnimBlock1 LinkedAnimation
+		AnimationMeshBlock la;
+		public AnimationMeshBlock LinkedAnimation
 		{
 			get { return la; }
 			set { la = value; }

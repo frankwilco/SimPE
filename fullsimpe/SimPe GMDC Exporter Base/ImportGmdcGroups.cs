@@ -408,6 +408,7 @@ namespace SimPe.Plugin.Gmdc
 			// 
 			// gbbones
 			// 
+			this.gbbones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.gbbones.BackColor = System.Drawing.Color.Transparent;
 			this.gbbones.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
 			this.gbbones.BorderColor = System.Drawing.SystemColors.Window;
@@ -420,6 +421,7 @@ namespace SimPe.Plugin.Gmdc
 			this.gbbones.DockPadding.Left = 4;
 			this.gbbones.DockPadding.Right = 4;
 			this.gbbones.DockPadding.Top = 44;
+			this.gbbones.Enabled = false;
 			this.gbbones.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
 			this.gbbones.HeaderText = "Bone Settings";
 			this.gbbones.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -434,6 +436,7 @@ namespace SimPe.Plugin.Gmdc
 			// 
 			// gbgroups
 			// 
+			this.gbgroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.gbgroups.BackColor = System.Drawing.Color.Transparent;
 			this.gbgroups.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
 			this.gbgroups.BorderColor = System.Drawing.SystemColors.Window;
@@ -451,6 +454,7 @@ namespace SimPe.Plugin.Gmdc
 			this.gbgroups.DockPadding.Left = 4;
 			this.gbgroups.DockPadding.Right = 4;
 			this.gbgroups.DockPadding.Top = 44;
+			this.gbgroups.Enabled = false;
 			this.gbgroups.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
 			this.gbgroups.HeaderText = "Group Settings";
 			this.gbgroups.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -465,6 +469,7 @@ namespace SimPe.Plugin.Gmdc
 			// 
 			// gbsettings
 			// 
+			this.gbsettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.gbsettings.BackColor = System.Drawing.Color.Transparent;
 			this.gbsettings.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
 			this.gbsettings.BorderColor = System.Drawing.SystemColors.Window;

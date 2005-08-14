@@ -22,6 +22,7 @@ using System.IO;
 using System.Globalization;
 using System.Collections;
 using SimPe.Geometry;
+using SimPe.Plugin.Anim;
 
 namespace SimPe.Plugin.Gmdc
 {
@@ -106,6 +107,7 @@ namespace SimPe.Plugin.Gmdc
 		public AbstractGmdcImporter()
 		{
 			order = new ElementOrder(ElementSorting.XZY);
+			ab1 = new ImportedFrameBlocks();
 		}
 
 		#region abstract Methods
@@ -186,8 +188,8 @@ namespace SimPe.Plugin.Gmdc
 			get { return gmdc; }
 		}
 
-		AnimBlock1 ab1;
-		protected AnimBlock1 AnimationBlock
+		ImportedFrameBlocks ab1;
+		protected ImportedFrameBlocks AnimationBlocks
 		{
 			get { return ab1; }
 		}
@@ -599,24 +601,39 @@ namespace SimPe.Plugin.Gmdc
 		{
 			if (Gmdc.LinkedAnimation==null) return;
 
+			foreach (ImportedFrameBlock ifb in AnimationBlocks)	
+				ifb.FindTarget(Gmdc.LinkedAnimation);
 
-			Gmdc.LinkedAnimation.Part2 = this.AnimationBlock.Part2;
-			Gmdc.LinkedAnimation.Parent.SynchronizeUserData(true, true);
+			if (ImportJointAnim.Execute(this.AnimationBlocks, gmdc)) 
+			{			
+				foreach (ImportedFrameBlock ifb in AnimationBlocks)	
+				{		
+					if (ifb.Action == AnimImporterAction.Replace) 					
+						ifb.ReplaceFrames();
+				}
+			}
+
+				
+			
+			//Gmdc.LinkedAnimation.Part2 = this.AnimationBlock.Part2;
+			//Gmdc.LinkedAnimation.Parent.SynchronizeUserData(true, true);
 		}
 
 		protected virtual void SetUpAnimationData()
-		{
-			if (Gmdc.LinkedAnimation!=null) 
+		{			
+			ab1.Clear();
+			/*if (Gmdc.LinkedAnimation!=null) 
 			{
-				ab1 = new AnimBlock1(Gmdc.LinkedAnimation.Parent);
-				foreach (AnimBlock2 ab in Gmdc.LinkedAnimation.Part2)
+				
+				ab1 = new AnimationMeshBlock(Gmdc.LinkedAnimation.Parent);
+				foreach (AnimationFrameBlock ab in Gmdc.LinkedAnimation.Part2)
 				{
-					AnimBlock2 curanimblock = ab.CloneBase(true);
+					AnimationFrameBlock curanimblock = ab.CloneBase(true);
 
-					ab1.Part2 = (SimPe.Plugin.AnimBlock2[])Helper.Add(ab1.Part2, curanimblock);
+					ab1.Part2 = (AnimationFrameBlock[])Helper.Add(ab1.Part2, curanimblock);
 				}
 			}
-			else ab1 = null;
+			else ab1 = null;*/
 		}
 		#endregion
 	}

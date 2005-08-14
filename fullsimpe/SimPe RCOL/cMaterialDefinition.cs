@@ -372,6 +372,23 @@ namespace SimPe.Plugin
 		}
 
 		#endregion
+
+		/// <summary>
+		/// Sort the Properties in Alphabetic Order
+		/// </summary>
+		public void Sort()
+		{
+			for (int i=0; i<this.properties.Length-1; i++) 
+				for (int j=i+1; j<this.properties.Length; j++)
+				{
+					if (properties[i].Name.CompareTo(properties[j].Name)>0)
+					{
+						MaterialDefinitionProperty dum = properties[i];
+						 properties[i] =  properties[j];
+						 properties[j] = dum;
+					}
+				}
+		}
 	}
 
 	public class MaterialDefinitionProperty
@@ -429,5 +446,6 @@ namespace SimPe.Plugin
 			return name + ": " + val;
 		}
 
+		
 	}
 }

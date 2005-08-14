@@ -23,6 +23,7 @@ using System.Globalization;
 using SimPe.Plugin.Gmdc;
 using System.Collections;
 using SimPe.Geometry;
+using SimPe.Plugin.Anim;
 
 namespace SimPe.Plugin.Gmdc.Exporter
 {
@@ -233,7 +234,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			
 			Hashtable relationmap = Gmdc.LoadJointRelationMap();
 			IntArrayList js = Gmdc.SortJoints(relationmap);
-			
+			ArrayList animbname = new ArrayList();
 
 			//Export Bones
 			writer.WriteLine("Bones: "+js.Count.ToString());
@@ -255,7 +256,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 	
 				if (Gmdc.Joints[i].AssignedTransformNode!=null) 
 				{		
-
+					
 					Vector3f t = Gmdc.Joints[i].AssignedTransformNode.Translation;
 					//t = Gmdc.Joints[i].AssignedTransformNode.Rotation.Rotate(t);
 					t = Component.TransformScaled(t);
@@ -278,19 +279,22 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				
 				
 				
-
+				
 				if (Gmdc.LinkedAnimation!=null) 
 				{
-					AnimBlock2 ab = Gmdc.LinkedAnimation.GetJointTransformation(Gmdc.Joints[i].Name, FrameType.Translation);
+					Anim.AnimationFrameBlock ab = Gmdc.LinkedAnimation.GetJointTransformation(Gmdc.Joints[i].Name, FrameType.Translation);
 					if (ab!=null) 
 					{
-						writer.WriteLine(ab.FrameCount.ToString());
-						foreach (AnimationFrame af in ab.InterpolateMissingFrames())
+						animbname.Add("trn: "+Gmdc.Joints[i].Name);
+						AnimationFrame[] afs =  ab.InterpolateMissingFrames();
+						writer.WriteLine(afs.Length.ToString());						
+						foreach (AnimationFrame af in afs)
 						{
 							Vector3f v = af.Vector;
+							
 							v = Component.TransformScaled(v);
 
-							writer.WriteLine(af.TimeCode.ToString()+" " + 
+							writer.WriteLine((af.TimeCode+1).ToString()+" " + 
 								v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 								v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 								v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
@@ -301,13 +305,20 @@ namespace SimPe.Plugin.Gmdc.Exporter
 					ab = Gmdc.LinkedAnimation.GetJointTransformation(Gmdc.Joints[i].Name, FrameType.Rotation);
 					if (ab!=null) 
 					{
-						writer.WriteLine(ab.FrameCount.ToString());
-						foreach (AnimationFrame af in ab.InterpolateMissingFrames())
+						animbname.Add("rot: "+Gmdc.Joints[i].Name);
+						AnimationFrame[] afs =  ab.InterpolateMissingFrames();
+						writer.WriteLine(afs.Length.ToString());						
+						foreach (AnimationFrame af in afs)
 						{
 							Vector3f v = af.Vector;
+							//Transform the Angles in their Axis/Angle Form
+							Quaternion q = Quaternion.FromEulerAngles(v);
+							v = q.Axis;
 							v = Component.Transform(v);
+							q = Quaternion.FromAxisAngle(v, q.Angle);
+							v = q.GetEulerAngles();
 						
-							writer.WriteLine(af.TimeCode.ToString()+" " + 
+							writer.WriteLine((af.TimeCode+1).ToString()+" " + 
 								v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 								v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 								v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
@@ -321,6 +332,33 @@ namespace SimPe.Plugin.Gmdc.Exporter
 					writer.WriteLine("0");				
 				}
 			}
+#if DEBUG
+			System.IO.StreamWriter sw = System.IO.File.CreateText(@"g:\joints.txt");
+			try 
+			{
+				foreach (string s in animbname) sw.WriteLine(s);
+
+				sw.WriteLine("--------------------");
+				foreach (Anim.AnimationFrameBlock p in Gmdc.LinkedAnimation.Part2) 
+				{
+					if (animbname.Contains("rot: "+p.Name)) sw.Write("[***rot***] ");
+					if (animbname.Contains("trn: "+p.Name)) sw.Write("[***trn***] ");
+					sw.WriteLine(p.Name);
+				}
+
+				sw.WriteLine("--------------------");
+				foreach (int i in js)
+				{
+					if (animbname.Contains("rot: "+Gmdc.Joints[i].Name)) sw.Write("[***rot***] ");
+					if (animbname.Contains("trn: "+Gmdc.Joints[i].Name)) sw.Write("[***trn**] ");
+					sw.WriteLine(Gmdc.Joints[i].Name);
+				}
+			} 
+			finally 
+			{
+				sw.Close();
+			}
+#endif
 
 			//Write Footer
 			writer.WriteLine("GroupComments: 0");

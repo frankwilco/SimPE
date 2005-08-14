@@ -271,15 +271,12 @@ namespace SimPe.PackedFiles.UserInterface
 			{
 				Hashtable ht = pob.Properties;
 
-				System.IO.StreamWriter sw = System.IO.File.CreateText(@"G:\vs.net\SimPE\ep1_sdsc.txt");
 				for (int i=0; i<shortdata.Length; i++)
 				{
 					
-					string name = GetName(i);	
-					sw.WriteLine(name);
+					string name = GetName(i);					
 					if (ht.Contains(name)) shortdata[i] = (short)ht[name];
 				}
-				sw.Close();
 
 				int j=0;
 				for (int i=0xa; i<data.Length-1; i +=2) 
