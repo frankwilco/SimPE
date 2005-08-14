@@ -23,6 +23,7 @@ using System.Globalization;
 using System.Collections;
 using SimPe.Plugin.Gmdc;
 using SimPe.Geometry;
+using SimPe.Plugin.Anim;
 
 namespace SimPe.Plugin.Gmdc.Importer
 {
@@ -433,7 +434,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			}
 		}
 
-		SimPe.Plugin.AnimBlock2 curanimblock;
+		SimPe.Plugin.Anim.AnimationFrameBlock curanimblock;
 		void ReadJointDescription(ImportedBone b)
 		{
 			string[] linetoks = GetNonEmptyTokens();
@@ -455,12 +456,19 @@ namespace SimPe.Plugin.Gmdc.Importer
 			b.ParentName = linetoks[0];
 
 			//Animations
-			if (this.AnimationBlock!=null && Gmdc.LinkedAnimation!=null) 
+			if (this.AnimationBlocks!=null && Gmdc.LinkedAnimation!=null) 
 			{
 				curanimblock = null;
-				foreach (AnimBlock2 ab in this.AnimationBlock.Part2)
-					if (ab.Name == b.ImportedName && ab.Part3Count==3)  																
-						curanimblock = ab;								
+				ImportedFrameBlock ifb = new ImportedFrameBlock(new AnimationFrameBlock());
+				ifb.FrameBlock.Name = b.ImportedName;
+				ifb.FrameBlock.CreateBaseAxisSet(AnimationTokenType.SixByte);
+				curanimblock = ifb.FrameBlock;
+
+				this.AnimationBlocks.Add(ifb);
+
+				/*foreach (AnimationFrameBlock ab in this.AnimationBlock.Part2)
+					if (ab.Name == b.ImportedName && ab.AxisCount==3)  																
+						curanimblock = ab;								*/
 
 				//at this time We are unable to create valid arbitary AnimBlock2 Objects, so we can't creat new Blocks here yet
 				/*if (curanimblock==null) 
@@ -523,7 +531,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 			try 
 			{
-				float t = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
+				float t = Math.Max(0, Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture) - 1);
 				Vector3f trans = new Vector3f(
 					ToDouble(linetoks[1]),
 					ToDouble(linetoks[2]),
@@ -541,13 +549,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 						curanimblock.TransformationType=FrameType.Translation;
 
 					//only process if the Block Type is Translation
-					if (curanimblock.TransformationType==FrameType.Translation)
-					{
-						if (index==0 && count!=1) curanimblock.CreateBasePart3(AnimationTokenType.Translation);
-						else if (count>0) curanimblock.ClearFrames(false, true);
-						
-						curanimblock.AddFrame((short)t, trans);
-					}
+					if (curanimblock.TransformationType==FrameType.Translation)											
+						curanimblock.AddFrame((short)t, trans, false);					
 				}
 			} 
 			catch 
@@ -567,15 +570,18 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 			try 
 			{
-				float t = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
+				float t = Math.Max(0, Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture) - 1);
 				Vector3f rot = new Vector3f(
 					ToDouble(linetoks[1]),
 					ToDouble(linetoks[2]),
 					ToDouble(linetoks[3])
 					);
 				
-				
+				Quaternion q = Quaternion.FromEulerAngles(rot);
+				rot = q.Axis;
 				rot = Component.InverseTransform(rot);
+				q = Quaternion.FromAxisAngle(rot, q.Angle);
+				rot = q.GetEulerAngles();
 
 				if (curanimblock!=null)
 				{
@@ -585,12 +591,8 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 					//only process if the Block Type is Rotation
 					if (curanimblock.TransformationType==FrameType.Rotation)
-					{
-						if (index==0 && count!=1) curanimblock.CreateBasePart3(AnimationTokenType.Translation);
-						else if (count>0) curanimblock.ClearFrames(false, true);
-
-						curanimblock.AddFrame((short)t, rot);
-					}
+						curanimblock.AddFrame((short)t, rot, false);
+					
 				}
 			} 
 			catch 

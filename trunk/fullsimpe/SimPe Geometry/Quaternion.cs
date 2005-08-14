@@ -479,6 +479,19 @@ namespace SimPe.Geometry
 		}
 
 		/// <summary>
+		/// Makes sure that the passed Radius has only one Pi cycle. Result is in Intervall [-Pi; +PI]
+		/// </summary>
+		/// <param name="rad"></param>
+		/// <returns></returns>
+		double NormalizeRad(double rad)
+		{
+			while (rad>Math.PI) rad -= 2*Math.PI;
+			while (rad<-Math.PI) rad += 2*Math.PI;
+
+			return rad;
+		}
+
+		/// <summary>
 		/// Get the Euler Angles represented by this Quaternion
 		/// </summary>
 		/// <returns></returns>
@@ -488,6 +501,16 @@ namespace SimPe.Geometry
 		/// </remarks>
 		public Vector3f GetEulerAngles()
 		{
+			Vector3f a = Axis;
+
+			double dx = Math.Abs(a.X)-1.0; if (Math.Abs(dx)<10*float.Epsilon) dx = 0;
+			double dy = Math.Abs(a.Y)-1.0; if (Math.Abs(dy)<10*float.Epsilon) dy = 0;
+			double dz = Math.Abs(a.Z)-1.0; if (Math.Abs(dz)<10*float.Epsilon) dz = 0;
+
+			if (dx==0 && dy!=0 && dz!=0) return new Vector3f(a.X*Angle, 0, 0);
+			if (dx!=0 && dy==0 && dz!=0) return new Vector3f(0, a.Y*Angle, 0);
+			if (dx!=0 && dy!=0 && dz==0) return new Vector3f(0, 0, a.Z*Angle);
+			
 			double sqw = W*W;    
 			double sqx = X*X;    
 			double sqy = Y*Y;    
@@ -502,6 +525,10 @@ namespace SimPe.Geometry
 
 			// attitude = rotation about y-axis 
 			euler.Y =  (Math.Asin(-2.0 * (X*Z - Y*W)));
+
+			euler.X = NormalizeRad(euler.X);
+			euler.Y = NormalizeRad(euler.Y);
+			euler.Z = NormalizeRad(euler.Z);
 			return euler;
 		}
 

@@ -95,6 +95,7 @@ namespace SimPe.Plugin
 			this.label28 = new System.Windows.Forms.Label();
 			this.tGrid = new System.Windows.Forms.TabPage();
 			this.pg = new System.Windows.Forms.PropertyGrid();
+			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.gbprop.SuspendLayout();
@@ -170,6 +171,7 @@ namespace SimPe.Plugin
 			this.tabPage1.Controls.Add(this.llscan);
 			this.tabPage1.Controls.Add(this.lbprop);
 			this.tabPage1.Controls.Add(this.gbprop);
+			this.tabPage1.Controls.Add(this.linkLabel1);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Size = new System.Drawing.Size(744, 238);
@@ -424,6 +426,7 @@ namespace SimPe.Plugin
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.pg.CommandsBackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.pg.CommandsVisibleIfAvailable = true;
+			this.pg.HelpVisible = false;
 			this.pg.LargeButtons = false;
 			this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
 			this.pg.Location = new System.Drawing.Point(8, 8);
@@ -431,10 +434,23 @@ namespace SimPe.Plugin
 			this.pg.Size = new System.Drawing.Size(728, 224);
 			this.pg.TabIndex = 0;
 			this.pg.Text = "MaterialDefinition Properties";
+			this.pg.ToolbarVisible = false;
 			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
 			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
 			this.pg.Click += new System.EventHandler(this.pg_Click);
 			this.pg.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.pg_PropertyValueChanged);
+			// 
+			// linkLabel1
+			// 
+			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.linkLabel1.AutoSize = true;
+			this.linkLabel1.Location = new System.Drawing.Point(432, 184);
+			this.linkLabel1.Name = "linkLabel1";
+			this.linkLabel1.Size = new System.Drawing.Size(50, 17);
+			this.linkLabel1.TabIndex = 6;
+			this.linkLabel1.TabStop = true;
+			this.linkLabel1.Text = "sort List";
+			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
 			// 
 			// MatdForm
 			// 
@@ -482,6 +498,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.LinkLabel llscan;
 		private System.Windows.Forms.PropertyGrid pg;
 		internal System.Windows.Forms.TabPage tGrid;
+		private System.Windows.Forms.LinkLabel linkLabel1;
 		internal System.Windows.Forms.TabPage tabPage3;
 
 
@@ -776,6 +793,15 @@ namespace SimPe.Plugin
 		private void pg_Click(object sender, System.EventArgs e)
 		{
 		
+		}
+
+		private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (this.tabPage3.Tag==null) return;
+			
+			MaterialDefinition md = (MaterialDefinition)this.tabPage3.Tag;
+			md.Sort();
+			md.Refresh();
 		}
 	}
 }

@@ -266,6 +266,16 @@ namespace SimPe.PackedFiles.Wrapper
 			this.limit = 0;
 		}
 
+		/// <summary>
+		/// Removes all String Items that are not assigned to the Default Language
+		/// </summary>
+		public void ClearNonDefault()
+		{
+			StrItemList sil = this.Items;
+			StrLanguage def = new StrLanguage(0);
+			foreach (StrItem si in sil) 
+				if (si.Language!=def) this.Remove(si);
+		}
 
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 

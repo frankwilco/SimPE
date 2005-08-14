@@ -2708,8 +2708,11 @@ namespace SimPe.Plugin
 				try 
 				{
 					importer.Process(meshreader, gmdc, animationonly);	
-					gmdc.Refresh();
-					gmdc.Changed = true;
+					if (!animationonly) 
+					{
+						gmdc.Refresh();
+						gmdc.Changed = true;
+					}
 							
 					if (importer.ErrorMessage!="") Helper.ExceptionMessage("", new Warning("Problems while parsing the File.", importer.ErrorMessage));
 				} 
