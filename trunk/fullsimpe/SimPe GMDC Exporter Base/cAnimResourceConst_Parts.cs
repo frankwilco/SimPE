@@ -253,6 +253,12 @@ namespace SimPe.Plugin.Anim
 			if (ct>0xff) ct=0xff;
 			data[2] = (byte)(ct & 0xff);
 		}
+
+		public override string ToString()
+		{
+			return "AnimBlock4: "+this.Part5Count.ToString()+" "+this.AddonData.Length.ToString();
+		}
+
 	}
 
 
@@ -269,12 +275,35 @@ namespace SimPe.Plugin.Anim
 			get { return datai[0]; }
 			set { datai[0] = value; }
 		}
-		[DescriptionAttribute("Reserved"), CategoryAttribute("Reserved"), DefaultValueAttribute(0x11BA05F0)]				
+						
 		public uint Unknown2 
 		{
 			get { return datai[1]; }
 			set { datai[1] = value; }
 		}	
+
+		public string Unknown2Binary
+		{
+			get 
+			{ 
+				string s = Convert.ToString(Unknown2, 2); 
+				s = Helper.MinStrLength(s, 14);
+				int p=s.Length-4;
+				while (p>=0) 
+				{
+					s = s.Insert(p, " ");
+					p-=4;
+				}
+				return s.Trim();
+			}
+			
+		}
+
+		public string Unknown2Hex
+		{
+			get { return "0x"+Helper.HexString(Unknown2); }
+			
+		}
 
 		byte[] data;
 		public byte[] AddonData 
@@ -319,6 +348,11 @@ namespace SimPe.Plugin.Anim
 			writer.Write(datai[0]);
 			writer.Write(datai[1]);	
 			writer.Write(data);
+		}
+
+		public override string ToString()
+		{
+			return "0x"+Helper.HexString(Unknown2)+" "+this.AddonData.Length.ToString();
 		}
 	}
 
@@ -396,6 +430,9 @@ namespace SimPe.Plugin.Anim
 		
 			writer.Write(datai[1]);
 		}
+
+		
+
 	}
 
 	

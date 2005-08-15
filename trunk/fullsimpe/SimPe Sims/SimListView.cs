@@ -17,6 +17,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
+		SimPe.ColumnsSorter s;
 		public SimListView()
 		{
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
@@ -32,7 +33,8 @@ namespace SimPe.PackedFiles.Wrapper
 			LargeImageList.ColorDepth = ColorDepth.Depth32Bit;
 			LargeImageList.ImageSize = new Size(64, 64);
 			
-		
+			s = new SimPe.ColumnsSorter(new int[]{1,0});
+			this.ListViewItemSorter = s;
 		}
 
 		/// <summary> 
@@ -64,7 +66,8 @@ namespace SimPe.PackedFiles.Wrapper
 		public new void Clear()
 		{
 			Items.Clear();
-			LargeImageList.Images.Clear();			
+			LargeImageList.Images.Clear();	
+			this.ListViewItemSorter = s;
 		}
 
 		public SteepValley.Windows.Forms.XPListViewItem Add(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc)
@@ -88,7 +91,7 @@ namespace SimPe.PackedFiles.Wrapper
 			if (this.Columns.Count>1) lvi.SubItems.Add("    "+Columns[1].Text+": "+sdesc.HouseholdName);
 			if (this.Columns.Count>2) lvi.SubItems.Add("    "+Columns[2].Text+": 0x"+Helper.HexString(sdesc.SimId));
 			if (this.Columns.Count>3) lvi.SubItems.Add("    "+Columns[3].Text+": 0x"+Helper.HexString((ushort)sdesc.FileDescriptor.Instance));
-			if (this.Columns.Count>4) lvi.SubItems.Add("    "+Columns[4].Text+": 0x"+new Data.LocalizedLifeSections(sdesc.CharacterDescription.LifeSection).ToString());
+			if (this.Columns.Count>4) lvi.SubItems.Add("    "+Columns[4].Text+": "+new Data.LocalizedLifeSections(sdesc.CharacterDescription.LifeSection).ToString());
 			lvi.ImageIndex = LargeImageList.Images.Count-1;
 			
 			

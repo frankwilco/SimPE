@@ -304,15 +304,15 @@ namespace SimPe.Plugin.Anim
 		/// <summary>
 		/// Returns a List of available TimeCodes
 		/// </summary>
-		/// <param name="flagged">true if you want to have TimeCodes for Flagged Frames</param>
-		/// <param name="unflagged">true if you want TimeCodes for Unflagged Frames</param>		
+		/// <param name="linear">true if you want to have TimeCodes for Linear KeyFrames</param>
+		/// <param name="nonlinear">true if you want TimeCodes for Non Linear KeyFrames</param>		
 		/// <returns>List of TimeCodes</returns>
-		public IntArrayList GetTimeCodes(bool flagged, bool unflagged)
+		public IntArrayList GetTimeCodes(bool linear, bool nonlinear)
 		{
 			IntArrayList list = new IntArrayList();
 
 			foreach (AnimationAxisTransform aat in items)				
-					if ((aat.Flag && flagged) || (!aat.Flag && unflagged))
+					if ((aat.Linear && linear) || (!aat.Linear && nonlinear))
 						list.Add(aat.TimeCode);
 				
 
@@ -357,11 +357,11 @@ namespace SimPe.Plugin.Anim
 			return this[0];
 		}
 
-		AnimationAxisTransform BuildAnimationAxisTransform(short timecode, short param, short u1, short u2, bool isflagged, int index)
+		AnimationAxisTransform BuildAnimationAxisTransform(short timecode, short param, short u1, short u2, bool islinear, int index)
 		{
 			AnimationAxisTransform aat = new AnimationAxisTransform(this, index);
 			aat.TimeCode = timecode;
-			aat.Flag = isflagged;
+			aat.Linear = islinear;
 			aat.Parameter = param;
 			aat.Unknown1 = u1;
 			aat.Unknown2 = u2;
@@ -393,10 +393,10 @@ namespace SimPe.Plugin.Anim
 		/// <param name="param"></param>
 		/// <param name="u1"></param>
 		/// <param name="u2"></param>
-		/// <param name="isflagged"></param>
-		public AnimationAxisTransform Add(short timecode, short param, short u1, short u2, bool isflagged)
+		/// <param name="islinear"></param>
+		public AnimationAxisTransform Add(short timecode, short param, short u1, short u2, bool islinear)
 		{			
-			AnimationAxisTransform aat = BuildAnimationAxisTransform(timecode, param, u1, u2, isflagged, items.Count);
+			AnimationAxisTransform aat = BuildAnimationAxisTransform(timecode, param, u1, u2, islinear, items.Count);
 			items.Add(aat);
 			return aat;
 		}
@@ -429,30 +429,30 @@ namespace SimPe.Plugin.Anim
 		/// <param name="param"></param>
 		/// <param name="u1"></param>
 		/// <param name="u2"></param>
-		/// <param name="isflagged"></param>
-		public void Insert(int index, short timecode, short param, short u1, short u2, bool isflagged)
+		/// <param name="islinear"></param>
+		public void Insert(int index, short timecode, short param, short u1, short u2, bool islinear)
 		{			
-			items.Insert(index, BuildAnimationAxisTransform(timecode, param, u1, u2, isflagged, index));
+			items.Insert(index, BuildAnimationAxisTransform(timecode, param, u1, u2, islinear, index));
 			ReIndex(index+1);
 		}
 
 		/// <summary>
 		/// Remove all Data Stored here
 		/// </summary>
-		/// <param name="clearflagged">true if you want to clear transformations</param>
-		/// <param name="clearunflagged">true if you want to clear Flagged Frames</param>
-		public void Clear(bool clearflagged, bool clearunflagged)
+		/// <param name="clearlinear">true if you want to clear linear transformations</param>
+		/// <param name="clearnonlinear">true if you want to clear non Linear KeyFrames</param>
+		public void Clear(bool clearlinear, bool clearnonlinear)
 		{
-			if (clearflagged && clearunflagged) this.Clear();
+			if (clearlinear && clearnonlinear) this.Clear();
 			else 
 			{
 				ArrayList list = new ArrayList();
 
 				foreach (AnimationAxisTransform aat in items) 				
 				{
-					if (aat.Flag && !clearflagged) list.Add(aat);
+					if (aat.Linear && !clearlinear) list.Add(aat);
 					
-					if (!aat.Flag && !clearunflagged) list.Add(aat);
+					if (!aat.Linear && !clearnonlinear) list.Add(aat);
 				}
 
 				items.Clear();

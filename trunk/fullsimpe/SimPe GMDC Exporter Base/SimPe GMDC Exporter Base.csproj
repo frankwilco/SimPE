@@ -224,6 +224,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "AnimAxisTransformControl.de.resx"
+                    DependentUpon = "AnimAxisTransformControl.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "AnimAxisTransformControl.resx"
                     DependentUpon = "AnimAxisTransformControl.cs"
                     BuildAction = "EmbeddedResource"
@@ -232,6 +237,11 @@
                     RelPath = "AnimFrameBlockControl.cs"
                     SubType = "UserControl"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AnimFrameBlockControl.de.resx"
+                    DependentUpon = "AnimFrameBlockControl.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "AnimFrameBlockControl.resx"

@@ -29,7 +29,7 @@ namespace SimPe.Plugin.Anim
 	/// </summary>
 	public class AnimationFrame
 	{
-		public const float SCALE = 10;
+		public const float SCALE = 1f/1000f;//10/(float)short.MaxValue;
 		public const float SCALEROT = (float)(((1f/180f) * Math.PI) / 64f);
 
 		public float GetCompressedFloat(short v)
@@ -56,16 +56,16 @@ namespace SimPe.Plugin.Anim
 
 		public static float GetCompressedFloat(short v, float scale)
 		{
-			return ((float)v/(float)short.MaxValue) * scale;
+			return ((float)v * scale);
 		}
 
 		public static short FromCompressedFloat(float v, float scale)
 		{
-			return (short)((v * (float)short.MaxValue) / scale);
+			return (short)(v / scale);
 		}		
 
 		AnimationAxisTransform[] block;
-		short tc, xnr, ynr, znr;
+		short tc;
 		public AnimationFrame(short tc, FrameType tp)
 		{
 			this.tc = tc;			
@@ -170,20 +170,20 @@ namespace SimPe.Plugin.Anim
 			}
 		}
 
-		[DescriptionAttribute("True if this Frame is Flagged"), CategoryAttribute("Data"), DefaultValueAttribute(false)]
-		public bool Flag
+		[DescriptionAttribute("True if Frames are interpolated linear fro this KeyFrame"), CategoryAttribute("Data"), DefaultValueAttribute(false)]
+		public bool Linear
 		{
 			get { 
-				if (block[0]!=null) return block[0].Flag;
-				if (block[1]!=null) return block[1].Flag;
-				if (block[2]!=null) return block[2].Flag;
+				if (block[0]!=null) return block[0].Linear;
+				if (block[1]!=null) return block[1].Linear;
+				if (block[2]!=null) return block[2].Linear;
 				return false;
 			}
 			set
 			{				
-				if (block[0]!=null) block[0].Flag = value;
-				if (block[1]!=null) block[1].Flag = value;
-				if (block[2]!=null) block[2].Flag = value;				
+				if (block[0]!=null) block[0].Linear = value;
+				if (block[1]!=null) block[1].Linear = value;
+				if (block[2]!=null) block[2].Linear = value;				
 			}
 		}
 		

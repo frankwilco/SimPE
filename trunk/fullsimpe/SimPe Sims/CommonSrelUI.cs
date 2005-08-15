@@ -57,7 +57,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 			InitComboBox();
 
-			tbRel.Visible = Helper.WindowsRegistry.HiddenMode;
+			tbRel.Visible = Helper.WindowsRegistry.HiddenMode;			
 		}
 
 		/// <summary> 

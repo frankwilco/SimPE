@@ -333,10 +333,10 @@ namespace SimPe.Plugin.Anim
 			ClearFrames(true, true);
 		}
 
-		public void ClearFrames(bool clearflagged, bool clearunflagged)
+		public void ClearFrames(bool clearlinear, bool clearnonlinear)
 		{
 			for (int i=0; i<AxisCount; i++) 
-				ab3[i].Clear(clearflagged, clearunflagged);
+				ab3[i].Clear(clearlinear, clearnonlinear);
 		}		
 
 		/// <summary>
@@ -356,28 +356,28 @@ namespace SimPe.Plugin.Anim
 			return 0;
 		}
 
-		public void AddFrame(short tc, short x, short y, short z, bool flagged)
+		public void AddFrame(short tc, short x, short y, short z, bool linear)
 		{
 			for (int i=0; i<AxisCount; i++)
 			{
 				AnimationAxisTransformBlock b = AxisSet[i];										
-				b.Add(tc, GetAxisValue(i, x, y, z), 0, 0, flagged);				
+				b.Add(tc, GetAxisValue(i, x, y, z), 0, 0, linear);				
 			}	
 		}
 
-		public void AddFrame(short tc, float x, float y, float z, bool flagged)
+		public void AddFrame(short tc, float x, float y, float z, bool linear)
 		{			
 			AddFrame(
 				tc, 
 				AnimationFrame.FromCompressedFloat(x, this.TransformationType),
 				AnimationFrame.FromCompressedFloat(y, this.TransformationType),
 				AnimationFrame.FromCompressedFloat(z, this.TransformationType),
-				flagged);
+				linear);
 		}
 
-		public void AddFrame(short tc, Vector3f v, bool flagged)
+		public void AddFrame(short tc, Vector3f v, bool linear)
 		{			
-			AddFrame(tc, (float)v.X, (float)v.Y, (float)v.Z, flagged);
+			AddFrame(tc, (float)v.X, (float)v.Y, (float)v.Z, linear);
 		}
 
 		public AnimationFrameBlock() 
@@ -512,11 +512,11 @@ namespace SimPe.Plugin.Anim
 		{
 			AnimationAxisTransform b = new AnimationAxisTransform(null, -1);
 			b.TimeCode = timecode;
+			b.Linear = first.Linear || last.Linear;
 
 			if (first.TimeCode==last.TimeCode) 
 			{
-				b.Parameter = first.Parameter;
-				b.Flag = first.Flag || last.Flag;
+				b.Parameter = first.Parameter;				
 			} 
 			else 
 			{
@@ -532,7 +532,6 @@ namespace SimPe.Plugin.Anim
 				short val = (short)(((last.Parameter - first.Parameter) * pos) + first.Parameter);
 
 				b.Parameter = val;
-				b.Flag = first.Flag || last.Flag;
 			}
 
 			return b;
@@ -557,7 +556,7 @@ namespace SimPe.Plugin.Anim
 
 			AnimationAxisTransform lb = new AnimationAxisTransform(null, -1);
 			lb.TimeCode = Math.Min((short)0, frames[index].TimeCode);
-			lb.Flag = frames[index].Flag;
+			lb.Linear = frames[index].Linear;
 
 			//if (last<0 && next<frames.Length) last=next; //if the first Frame is missing, use the Position of the next Frame
 			if (last>=0)
@@ -573,7 +572,7 @@ namespace SimPe.Plugin.Anim
 			AnimationAxisTransform nb = new AnimationAxisTransform(null, -1);
 			nb.TimeCode = Math.Max(maxtime, frames[index].TimeCode);
 			nb.Parameter = lb.Parameter;
-			nb.Flag = frames[index].Flag;
+			nb.Linear = frames[index].Linear;
 			
 
 			if (next<frames.Length)
@@ -599,20 +598,28 @@ namespace SimPe.Plugin.Anim
 			for (int blid = this.AxisSet.Length-1; blid>=0; blid--)
 			{
 				IntArrayList remlist = new IntArrayList();
-				for (int nr = 0; nr<this.AxisSet[blid].Count-1; nr++) 
+				for (int nr = 1; nr<this.AxisSet[blid].Count-1; nr++) 
 				{
 					AnimationAxisTransform iframe = null;
-					if (nr==0) iframe = this.AxisSet[blid][nr+1];
+					/*if (nr==0) iframe = this.AxisSet[blid][nr+1];
 					else if (nr==this.AxisSet[blid].Count-1) iframe = this.AxisSet[blid][nr+1];
-					else iframe = InterpolateFrame(this.AxisSet[blid][nr-1], this.AxisSet[blid][nr+1], this.AxisSet[blid][nr].TimeCode);
+					else*/ iframe = InterpolateFrame(this.AxisSet[blid][nr-1], this.AxisSet[blid][nr+1], this.AxisSet[blid][nr].TimeCode);
 
 					if (Math.Abs(iframe.Parameter - this.AxisSet[blid][nr].Parameter)<DELTA) remlist.Add(nr);
 				}
+				
 
 				//sort the List and remove the marked Transformations
 				remlist.Sort();
 				for (int i=remlist.Count-1; i>=0; i--)
 					AxisSet[blid].Remove(AxisSet[blid][remlist[i]]);
+
+				//only two remaining Frmaes, were both have the same Parameter ==> delete the second one
+				if (AxisSet[blid].Count==2) 
+				{
+					if (AxisSet[blid][0].Parameter == AxisSet[blid][1].Parameter)
+						AxisSet[blid].Remove(AxisSet[blid][1]);
+				}
 
 				//Now set the suggested Type that should be used
 				if (AxisSet[blid].Count==1) 
