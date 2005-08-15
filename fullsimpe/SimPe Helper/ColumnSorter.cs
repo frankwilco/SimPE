@@ -60,10 +60,61 @@ namespace SimPe
 					rowA.SubItems[CurrentColumn].Text);
 			}
 
+		}		
+	}
+
+	/// <summary>
+	/// ListView Column Sorter
+	/// </summary>
+	public class  ColumnsSorter : IComparer
+	{
+		int[] co;
+		/// <summary>
+		/// The Currently active Column
+		/// </summary>
+		public int[] ColumnOrder
+		{
+			get { return co; }
+			set {co = value; }
 		}
 
+		/// <summary>
+		/// The Sort Order
+		/// </summary>
+		public SortOrder Sorting = SortOrder.Ascending;
 
-		
+		public ColumnsSorter() : this (new int[0]) {}
 
+		public ColumnsSorter(int[] columns)
+		{
+			co = columns;
+		}
+
+		/// <summary>
+		/// The Compare Function to use
+		/// </summary>
+		/// <param name="x">fisrt ListViewItem</param>
+		/// <param name="y">second ListViewItem</param>
+		/// <returns>0 if the ListViewItem match</returns>
+		public int Compare(object x, object y)
+		{
+			ListViewItem rowA = (ListViewItem)x;
+			ListViewItem rowB = (ListViewItem)y;
+
+			if (Sorting!=SortOrder.Ascending) 
+			{
+				rowB = (ListViewItem)x;
+				rowA = (ListViewItem)y;
+			}
+
+			for (int cc=0; cc<co.Length; cc++) 
+			{
+				int cmp = String.Compare(rowA.SubItems[co[cc]].Text, rowB.SubItems[co[cc]].Text);
+				if (cmp!=0) return cmp;
+			}
+
+			return 0;
+
+		}		
 	}
 }

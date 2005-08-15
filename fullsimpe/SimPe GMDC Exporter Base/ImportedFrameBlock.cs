@@ -164,7 +164,7 @@ namespace SimPe.Plugin.Anim
 			Target.CreateBaseAxisSet(AnimationTokenType.SixByte);
 			foreach (AnimationFrame af in FrameBlock.Frames)
 				if (!this.DiscardZeroFrame || af.TimeCode!=0)
-					Target.AddFrame(af.TimeCode, af.X, af.Y, af.Z, af.Flag);
+					Target.AddFrame(af.TimeCode, af.X, af.Y, af.Z, af.Linear);
 
 			if (ruf) Target.RemoveUnneededFrames();
 		}

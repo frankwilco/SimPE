@@ -83,7 +83,7 @@ namespace SimPe
 			if (img!=null) 
 			{
 				f.pbimg.Image = Ambertation.Drawing.GraphicRoutines.ScaleImage((Image)img, f.pbimg.Width, f.pbimg.Height, true);
-				Application.DoEvents();
+				//Application.DoEvents();
 			}
 			else 
 				f.pbimg.Image = null;
@@ -189,7 +189,7 @@ namespace SimPe
 			Image = null;
 			f.sb.Invoke(new ShowStuff(ShowMain), new object[] {true});			
 			f.pbWait.Invoke(new ShowStuff(StartAnimation), new object[] {true});
-			Application.DoEvents();
+			//Application.DoEvents();
 		}
 
 		public void Wait()
@@ -211,7 +211,7 @@ namespace SimPe
 				f.sb.Invoke(new ShowStuff(ShowMain), new object[] {false});			
 				f.pbWait.Invoke(new ShowStuff(StartAnimation), new object[] {false});
 				f.Invoke(new ShowStuff(ShowProgress), new object[] {false});
-				Application.DoEvents();
+				//Application.DoEvents();
 			} 
 			catch {}
 		}

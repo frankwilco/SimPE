@@ -421,7 +421,6 @@ namespace SimPe.Plugin.Gmdc
 			this.gbbones.DockPadding.Left = 4;
 			this.gbbones.DockPadding.Right = 4;
 			this.gbbones.DockPadding.Top = 44;
-			this.gbbones.Enabled = false;
 			this.gbbones.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
 			this.gbbones.HeaderText = "Bone Settings";
 			this.gbbones.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -454,7 +453,6 @@ namespace SimPe.Plugin.Gmdc
 			this.gbgroups.DockPadding.Left = 4;
 			this.gbgroups.DockPadding.Right = 4;
 			this.gbgroups.DockPadding.Top = 44;
-			this.gbgroups.Enabled = false;
 			this.gbgroups.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
 			this.gbgroups.HeaderText = "Group Settings";
 			this.gbgroups.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;

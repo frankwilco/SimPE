@@ -5553,6 +5553,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 			ResetLabel();
 			loadedRel = true;
+			lv.Sort();
 		}
 
 		void UpdateRelList()
@@ -5576,6 +5577,7 @@ namespace SimPe.PackedFiles.UserInterface
 			AddUnknownToRelList(inst);
 			ResetLabel();
 			loadedRel = true;
+			lv.Sort();
 		}
 		
 		void AddUnknownToRelList(ArrayList insts)

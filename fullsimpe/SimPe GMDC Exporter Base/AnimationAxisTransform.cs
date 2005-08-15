@@ -76,10 +76,10 @@ namespace SimPe.Plugin.Anim
 		}
 
 		/// <summary>
-		/// Flag for this Frame Component
+		/// Use this KeyFrame as a Linear Pole?
 		/// </summary>
-		[Description("The Unknown Flag for this Frame Component?"), Category("Information")]
-		public bool Flag
+		[Description("Use this KeyFrame as a Linear Pole."), Category("Information")]
+		public bool Linear
 		{
 			get 
 			{
@@ -93,7 +93,7 @@ namespace SimPe.Plugin.Anim
 		}
 
 		/// <summary>
-		/// Flag for this Frame Component
+		/// Unknown?
 		/// </summary>
 		[Description("True if the Parent is Locked."), Category("Information")]
 		public bool ParentLocked
@@ -153,7 +153,7 @@ namespace SimPe.Plugin.Anim
 		public AnimationAxisTransform CloneBase()
 		{
 			AnimationAxisTransform aat = new AnimationAxisTransform(null, -1);
-			aat.Flag = this.Flag;
+			aat.Linear = this.Linear;
 			aat.TimeCode = this.TimeCode;
 			aat.Parameter = this.Parameter;
 			aat.Unknown1 = this.Unknown1;
@@ -275,7 +275,7 @@ namespace SimPe.Plugin.Anim
 				if (parent.Type == AnimationTokenType.SixByte) s += "; "+Unknown1.ToString();
 				if (parent.Type == AnimationTokenType.EightByte) s += "; "+Unknown1.ToString()+"; "+Unknown2.ToString();
 			}
-			if (Flag) s += " (flagged)";
+			if (Linear) s += " (linear)";
 			if (ParentLocked) s += " (locked)";
 			return s;
 		}

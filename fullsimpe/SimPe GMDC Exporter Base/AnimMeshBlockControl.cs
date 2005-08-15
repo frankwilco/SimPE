@@ -169,6 +169,7 @@ namespace SimPe.Plugin.Anim
 			this.cbJoint.Size = new System.Drawing.Size(278, 21);
 			this.cbJoint.TabIndex = 3;
 			this.cbJoint.SelectedIndexChanged += new System.EventHandler(this.cbSubMesh_SelectedIndexChanged);
+			this.cbJoint.Sorted = true;
 			// 
 			// label1
 			// 

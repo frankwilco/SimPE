@@ -1216,7 +1216,7 @@ namespace SimPe
 				} 
 				catch (Exception) 
 				{
-					return 0;
+					return 1;
 				}
 			}
 		}

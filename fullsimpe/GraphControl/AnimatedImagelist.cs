@@ -57,6 +57,7 @@ namespace Ambertation.Windows.Forms
 			BackColor = Color.Transparent;
 			timer = new System.Windows.Forms.Timer();
 			timer.Enabled = false;
+			doevents = false;
 
 			timer.Tick += new EventHandler(timer_Tick);
 
@@ -85,8 +86,15 @@ namespace Ambertation.Windows.Forms
 			get { return timer; }
 		}
 		#endregion
+
 		#region public Properties		
 
+		bool doevents;
+		public bool DoEvents
+		{
+			get {return doevents;}
+			set {doevents = value; }
+		}
 		int index;
 		public int CurrentIndex 
 		{
@@ -171,7 +179,7 @@ namespace Ambertation.Windows.Forms
 				else index++;
 			
 				Refresh();
-				Application.DoEvents();
+				if (doevents) Application.DoEvents();
 			}
 		}
 	}

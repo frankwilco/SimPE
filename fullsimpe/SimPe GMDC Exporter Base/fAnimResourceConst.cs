@@ -501,7 +501,7 @@ namespace SimPe.Plugin.Anim
 					sw.WriteLine(ab1.Name+"-----------------------------------");
 					foreach (AnimationFrameBlock ab2 in ab1.Part2)
 					{
-						sw.WriteLine("--------------- "+ab2.Name+" ---------------");
+						sw.WriteLine("--------------- "+ab2.ToString()+" ---------------");
 						foreach (AnimationAxisTransformBlock aatb in ab2.AxisSet)
 						{
 							sw.WriteLine("    "+aatb.ToString()+":");
