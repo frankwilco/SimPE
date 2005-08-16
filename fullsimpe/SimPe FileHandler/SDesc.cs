@@ -416,8 +416,8 @@ namespace SimPe.PackedFiles.UserInterface
 			form.pbromance.Value = sdesc.Skills.Romance;
 
 			//Interests
-			form.pbwoman.Value = sdesc.Interests.Woman + 1000;
-			form.pbman.Value = sdesc.Interests.Man + 1000;
+			form.pbman.Value = sdesc.Interests.FemalePreference + 1000;
+			form.pbwoman.Value = sdesc.Interests.MalePreference + 1000;
 			form.pbanimals.Value = sdesc.Interests.Animals / 100;
 			form.pbcrime.Value = sdesc.Interests.Crime / 100;
 			form.pbculture.Value = sdesc.Interests.Culture / 100;

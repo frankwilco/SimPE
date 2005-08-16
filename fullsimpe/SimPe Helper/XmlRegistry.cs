@@ -481,17 +481,20 @@ namespace SimPe
 		/// </summary>
 		/// <param name="filename">The name of the File you want to flush to</param>
 		void Flush(string filename)
-		{
+		{			
 			try 
 			{
 				string dir = System.IO.Path.GetDirectoryName(filename);
 				if (!System.IO.Directory.Exists(dir)) throw new Exception("Directory \""+dir+"\"not found!");
 				System.IO.StreamWriter sw = System.IO.File.CreateText(filename);
+				
 				try 
 				{
+					//root.CreateSubKey("META").SetValue("Version", (int)1);
 					sw.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
 					sw.WriteLine("<registry>");
 
+					
 					WriteKey(sw, root);
 
 					sw.WriteLine("</registry>");

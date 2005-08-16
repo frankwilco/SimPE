@@ -29,17 +29,7 @@ namespace Ambertation.Windows.Forms
 	/// </summary>
 	public class HexViewControl : UserControl
 	{
-		/// <summary>
-		/// true if COmponent is within the DesignMode
-		/// </summary>
-		internal static bool DesignMode
-		{
-			get 
-			{
-				return false;
-				//return (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv");
-			}
-		}
+		
 
 		/// <summary>
 		/// Determins the ViewState of teh Control
@@ -662,7 +652,7 @@ namespace Ambertation.Windows.Forms
 		public void MatchSize()
 		{			
 			this.offsetboxwidth = (int)Math.Ceiling(GetTextWidth("00000000", HeaderFont)) + bm.Left + bm.Width;
-			if (DesignMode) this.offsetboxwidth = 83;
+			//if (DesignMode) this.offsetboxwidth = 83;
 			this.charboxwidth = Columns*((int)CharWidth + COLSPACING) + bm.Left + bm.Width;
 		}
 
@@ -770,27 +760,7 @@ namespace Ambertation.Windows.Forms
 			hfont = new Font(Font.FontFamily, Font.Size, FontStyle.Bold, Font.Unit);
 			
 
-			if (DesignMode)
-			{
-				Width = 688;
-				Height = 104;
-				/*data = new byte[0x40];
-
-				Random r = new Random();
-				for (int i=0; i<data.Length; i++) data[i] = (byte)r.Next(0xff);
-				data[7] = 0;
-				data[0x1a] = 0;
-				data[29] = 0;
-				data[33] = 0;
-				data[35] = 0;
-
-				this.AddHighlight(24, 4);				
-				this.AddHighlight(26, 8);
-
-				selection.Start = 5;
-				selection.Length = 16;*/
-			} 
-
+		
 			MatchSize();			
 			RedrawGraphics();
 			
@@ -849,7 +819,7 @@ namespace Ambertation.Windows.Forms
 		/// <param name="sellen">Length of the Selection</param>
 		protected void DoSelect(int selstart, int sellen)
 		{			
-			if (DesignMode) return;
+			//if (DesignMode) return;
 			int olds = SelectionStart;
 			int olde = SelectionEnd;
 			selection.Length = Math.Min(data.Length-selstart, sellen);

@@ -129,7 +129,7 @@ namespace SimPe.Plugin.Anim
 		/// <summary>
 		/// Create a new Instance
 		/// </summary>
-		/// <param name="parent">The gmdc that should act as Parent</param>
+		/// <param name="afb">The <see cref="AnimationFrameBlock"/> that was Imported</param>
 		public ImportedFrameBlock(AnimationFrameBlock afb)
 		{
 			dz = false;
@@ -156,17 +156,25 @@ namespace SimPe.Plugin.Anim
 		/// <summary>
 		/// Replaces the Frames within <see cref="Target"/>, with the ones stored in <see cref="FrameBlock"/>
 		/// </summary>
-		/// <param name="amb"></param>
 		public void ReplaceFrames()
 		{
 			if (Target==null) return;
 			Target.ClearFrames();
 			Target.CreateBaseAxisSet(AnimationTokenType.SixByte);
+
+			for (int i=0; i< Math.Min(Target.AxisCount, FrameBlock.AxisCount); i++)
+				Target.AxisSet[i].Locked = FrameBlock.AxisSet[i].Locked;
+
+			Target.TransformationType = FrameBlock.TransformationType;
 			foreach (AnimationFrame af in FrameBlock.Frames)
 				if (!this.DiscardZeroFrame || af.TimeCode!=0)
 					Target.AddFrame(af.TimeCode, af.X, af.Y, af.Z, af.Linear);
 
+			
+
 			if (ruf) Target.RemoveUnneededFrames();
+
+			Target.Duration = Target.GetDuration();
 		}
 	}
 

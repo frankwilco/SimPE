@@ -57,7 +57,7 @@ namespace SimPe.Plugin
 
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
 		{		
-			FixObject fo = new FixObject(package, FixVersion.UniversityReady);
+			FixObject fo = new FixObject(package, FixVersion.UniversityReady, false);
 			try 
 			{
 				System.Collections.Hashtable map = fo.GetNameMap(false);

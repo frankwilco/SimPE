@@ -1974,6 +1974,9 @@ namespace SimPe
 					Helper.WindowsRegistry.UpdateSimPEDirectory();
 					Global = new MainForm();
 					Application.Run(Global);
+
+					Helper.WindowsRegistry.Flush();
+					Helper.WindowsRegistry.Layout.Flush();
 				}
 			} 
 			catch (Exception ex) 

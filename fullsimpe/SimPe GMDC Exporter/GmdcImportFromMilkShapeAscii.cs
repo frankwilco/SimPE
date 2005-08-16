@@ -459,8 +459,16 @@ namespace SimPe.Plugin.Gmdc.Importer
 			if (this.AnimationBlocks!=null && Gmdc.LinkedAnimation!=null) 
 			{
 				curanimblock = null;
+
 				ImportedFrameBlock ifb = new ImportedFrameBlock(new AnimationFrameBlock());
+				
+				
 				ifb.FrameBlock.Name = b.ImportedName;
+				ifb.FindTarget(Gmdc.LinkedAnimation);
+				if (ifb.Target!=null) 				
+					ifb.FrameBlock.TransformationType = ifb.Target.TransformationType;
+				else 
+					ifb.FrameBlock.TransformationType = FrameType.Unknown;
 				ifb.FrameBlock.CreateBaseAxisSet(AnimationTokenType.SixByte);
 				curanimblock = ifb.FrameBlock;
 
@@ -520,6 +528,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			}
 		}
 
+		
 		void ReadJointPosPhase(ImportedBone b, int index, int count)
 		{
 			string[] linetoks = GetNonEmptyTokens();
@@ -531,26 +540,34 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 			try 
 			{
-				float t = Math.Max(0, Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture) - 1);
+				float t = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
+				bool isscaled = (t==-1);
+				t = Math.Max(0, t - 1);
 				Vector3f trans = new Vector3f(
 					ToDouble(linetoks[1]),
 					ToDouble(linetoks[2]),
 					ToDouble(linetoks[3])
 					);
 
-				trans = Component.InverseTransformScaled(trans);
-				
+				trans = Component.InverseTransformScaled(trans);				
 
 				if (curanimblock!=null)
 				{
 					
 					//Brand this Block as Translation (ignoring all rotations!)
-					if (curanimblock.TransformationType==FrameType.Unknown) 
-						curanimblock.TransformationType=FrameType.Translation;
+					if (curanimblock.TransformationType==FrameType.Unknown) 							
+						curanimblock.TransformationType=FrameType.Translation;						
+										
 
 					//only process if the Block Type is Translation
-					if (curanimblock.TransformationType==FrameType.Translation)											
-						curanimblock.AddFrame((short)t, trans, false);					
+					if (curanimblock.TransformationType==FrameType.Translation) 
+					{
+						if (isscaled && index==0) 
+							for (int i=0; i<curanimblock.AxisCount; i++)
+								curanimblock.AxisSet[i].Locked = true;
+
+						curanimblock.AddFrame((short)t, trans, false);			
+					}
 				}
 			} 
 			catch 
@@ -570,7 +587,9 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 			try 
 			{
-				float t = Math.Max(0, Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture) - 1);
+				float t = Convert.ToSingle(linetoks[0], AbstractGmdcImporter.DefaultCulture);
+				bool isscaled = (t==-1);
+				t = Math.Max(0, t - 1);
 				Vector3f rot = new Vector3f(
 					ToDouble(linetoks[1]),
 					ToDouble(linetoks[2]),
@@ -586,12 +605,20 @@ namespace SimPe.Plugin.Gmdc.Importer
 				if (curanimblock!=null)
 				{
 					//Brand this Block as Rotation (ignoring all Translation!)
-					if (curanimblock.TransformationType==FrameType.Unknown) 
-						curanimblock.TransformationType=FrameType.Rotation;
+					if (curanimblock.TransformationType==FrameType.Unknown) 					
+						curanimblock.TransformationType=FrameType.Rotation;						
+					
+					
 
 					//only process if the Block Type is Rotation
-					if (curanimblock.TransformationType==FrameType.Rotation)
+					if (curanimblock.TransformationType==FrameType.Rotation) 
+					{
+						if (isscaled && index==0) 
+							for (int i=0; i<curanimblock.AxisCount; i++)
+								curanimblock.AxisSet[i].Locked = true;
+
 						curanimblock.AddFrame((short)t, rot, false);
+					}
 					
 				}
 			} 

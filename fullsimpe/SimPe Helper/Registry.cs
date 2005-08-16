@@ -77,7 +77,9 @@ namespace SimPe
 #else
 			rk = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe");
 #endif
+			
 			Reload();
+			if (Helper.QARelease) this.WasQAUser=true;
 		}
 
 		/// <summary>
@@ -98,9 +100,8 @@ namespace SimPe
 		/// Will flsuh the XmlRegistry to the disk
 		/// </remarks>
 		~Registry()
-		{
-			if (Helper.QARelease) this.WasQAUser=true;
-			Flush();
+		{			
+			//Flush();
 		}
 
 		/// <summary>

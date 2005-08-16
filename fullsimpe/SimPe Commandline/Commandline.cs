@@ -46,7 +46,7 @@ namespace SimPe
 				SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromFile(flname);
 
 				System.Collections.Hashtable map = RenameForm.GetNames((modelname.Trim()!=""), pkg, null, modelname);
-				FixObject fo = new FixObject(pkg, ver);
+				FixObject fo = new FixObject(pkg, ver, false);
 				fo.Fix(map, false);
 				fo.CleanUp();
 				fo.FixGroup();

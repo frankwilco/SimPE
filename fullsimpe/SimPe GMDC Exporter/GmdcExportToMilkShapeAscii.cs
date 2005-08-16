@@ -285,21 +285,38 @@ namespace SimPe.Plugin.Gmdc.Exporter
 					Anim.AnimationFrameBlock ab = Gmdc.LinkedAnimation.GetJointTransformation(Gmdc.Joints[i].Name, FrameType.Translation);
 					if (ab!=null) 
 					{
-						animbname.Add("trn: "+Gmdc.Joints[i].Name);
-						AnimationFrame[] afs =  ab.InterpolateMissingFrames();
-						writer.WriteLine(afs.Length.ToString());						
-						foreach (AnimationFrame af in afs)
+						if (ab.AxisCount>0) 
 						{
-							Vector3f v = af.Vector;
-							
-							v = Component.TransformScaled(v);
+							animbname.Add("trn: "+Gmdc.Joints[i].Name);
+							AnimationFrame[] afs =  ab.InterpolateMissingFrames();
 
-							writer.WriteLine((af.TimeCode+1).ToString()+" " + 
-								v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-								v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
-								v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
+							int ct = afs.Length;
+							if (ab.AxisSet[0].Locked) ct += 2;						
+							writer.WriteLine(ct.ToString());	
+												
+							foreach (AnimationFrame af in afs)
+							{
+								Vector3f v = af.Vector;
+							
+								v = Component.TransformScaled(v);
+
+								int tc = af.TimeCode+1;								
+								if (ab.AxisSet[0].Locked && tc==1) tc = -1;
+								writer.WriteLine(tc.ToString()+" " + 
+									v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+									v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
+									v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
+
+								if (ab.AxisSet[0].Locked && tc==-1) 
+								{
+									writer.WriteLine("0 0 0 0");
+									writer.WriteLine("1 0 0 0");
+								}
+							}
+						
 						}
-					} 
+						else writer.WriteLine("0");
+					}
 					else writer.WriteLine("0");
 					
 					ab = Gmdc.LinkedAnimation.GetJointTransformation(Gmdc.Joints[i].Name, FrameType.Rotation);
@@ -307,7 +324,10 @@ namespace SimPe.Plugin.Gmdc.Exporter
 					{
 						animbname.Add("rot: "+Gmdc.Joints[i].Name);
 						AnimationFrame[] afs =  ab.InterpolateMissingFrames();
-						writer.WriteLine(afs.Length.ToString());						
+
+						int ct = afs.Length;
+						if (ab.AxisSet[0].Locked) ct += 2;						
+						writer.WriteLine(ct.ToString());						
 						foreach (AnimationFrame af in afs)
 						{
 							Vector3f v = af.Vector;
@@ -318,10 +338,18 @@ namespace SimPe.Plugin.Gmdc.Exporter
 							q = Quaternion.FromAxisAngle(v, q.Angle);
 							v = q.GetEulerAngles();
 						
+							int tc = af.TimeCode+1;								
+							if (ab.AxisSet[0].Locked && tc==1) tc = -1;
 							writer.WriteLine((af.TimeCode+1).ToString()+" " + 
 								v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 								v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " " +
 								v.Z.ToString("N12", AbstractGmdcExporter.DefaultCulture));
+
+							if (ab.AxisSet[0].Locked && tc==-1) 
+							{
+								writer.WriteLine("0 0 0 0");
+								writer.WriteLine("1 0 0 0");
+							}
 						}
 					} 
 					else writer.WriteLine("0");

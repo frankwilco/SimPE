@@ -230,6 +230,11 @@ namespace SimPe.PackedFiles.UserInterface
 			
 			InitDropDowns();
 			SelectButton(biId);
+
+			if (System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName=="en")
+				pbLastGrade.DisplayOffset = 0;
+			else
+				pbLastGrade.DisplayOffset = 1;
 		}
 
 		/// <summary> 
@@ -4257,7 +4262,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbLastGrade.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("pbLastGrade.AutoScrollMinSize")));
 			this.pbLastGrade.BackColor = System.Drawing.Color.Transparent;
 			this.pbLastGrade.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbLastGrade.BackgroundImage")));
-			this.pbLastGrade.DisplayOffset = 1;
+			this.pbLastGrade.DisplayOffset = 0;
 			this.pbLastGrade.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pbLastGrade.Dock")));
 			this.pbLastGrade.DockPadding.Bottom = 5;
 			this.pbLastGrade.Enabled = ((bool)(resources.GetObject("pbLastGrade.Enabled")));
@@ -4987,8 +4992,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbGPlayful.Value = sdesc.GeneticCharacter.Playful;
 			this.pbGNice.Value = sdesc.GeneticCharacter.Nice;
 
-			pbWoman.Value = sdesc.Interests.Woman;
-			pbMan.Value = sdesc.Interests.Man;
+			pbWoman.Value = sdesc.Interests.FemalePreference;
+			pbMan.Value = sdesc.Interests.MalePreference;
 		}
 
 		#endregion
@@ -5309,8 +5314,8 @@ namespace SimPe.PackedFiles.UserInterface
 				Sdesc.GeneticCharacter.Playful = (ushort)this.pbGPlayful.Value;
 				Sdesc.GeneticCharacter.Nice = (ushort)this.pbGNice.Value;
 
-				Sdesc.Interests.Woman = (short)pbWoman.Value;
-				Sdesc.Interests.Man = (short)pbMan.Value;
+				Sdesc.Interests.FemalePreference = (short)pbWoman.Value;
+				Sdesc.Interests.MalePreference = (short)pbMan.Value;
 
 				Sdesc.Changed = true;
 			} 
@@ -5642,9 +5647,16 @@ namespace SimPe.PackedFiles.UserInterface
 
 		void DiplayRelation(PackedFiles.Wrapper.ExtSDesc src, PackedFiles.Wrapper.ExtSDesc dst, CommonSrel c)
 		{
-			SimPe.PackedFiles.Wrapper.ExtSrel srel = FindRelation(src, dst);			
-			c.Srel = srel;
-			Sdesc.AddRelationToCache(srel);
+			if (src.Equals(dst) && (c==dstRel || !Helper.WindowsRegistry.HiddenMode)) 
+			{
+				c.Srel = null;
+			} 
+			else 
+			{
+				SimPe.PackedFiles.Wrapper.ExtSrel srel = FindRelation(src, dst);			
+				c.Srel = srel;
+				Sdesc.AddRelationToCache(srel);
+			}
 		}
 
 		private void lv_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -5653,8 +5665,10 @@ namespace SimPe.PackedFiles.UserInterface
 
 			PackedFiles.Wrapper.ExtSDesc sdesc = (PackedFiles.Wrapper.ExtSDesc)lv.SelectedItems[0].Tag;
 
+			
 			DiplayRelation(Sdesc, sdesc, srcRel);
 			DiplayRelation(sdesc, Sdesc, dstRel);						
+			
 			
 			UpdateLabel();
 		}
@@ -5665,7 +5679,11 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			if (lv.SelectedItems.Count==1) 
 			{
-				this.miAddRelation.Enabled = ((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex==1 && !Sdesc.Equals(lv.SelectedItems[0].Tag);
+				if (Helper.WindowsRegistry.HiddenMode)
+					this.miAddRelation.Enabled = ((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex==1;
+				else
+					this.miAddRelation.Enabled = ((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex==1 && !Sdesc.Equals(lv.SelectedItems[0].Tag);
+
 				this.miRemRelation.Enabled = ((SteepValley.Windows.Forms.XPListViewItem)lv.SelectedItems[0]).GroupIndex!=1;
 			
 				string name = SimPe.Localization.GetString("AddRelationCaption").Replace("{name}", lv.SelectedItems[0].Text);
