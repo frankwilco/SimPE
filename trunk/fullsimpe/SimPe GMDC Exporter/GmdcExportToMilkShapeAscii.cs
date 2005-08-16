@@ -221,7 +221,22 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			modelnr++;
 		}
 
-		
+		SimPe.Geometry.Vector3f Correct(SimPe.Geometry.Vector3f t, object cor)
+		{
+			if (cor==null) return t;
+			if (cor is SimPe.Geometry.Quaternion) return t; 
+			if (!(cor is SimPe.Geometry.Vector3f)) return t;
+			
+			return t + (SimPe.Geometry.Vector3f)cor;
+		}
+
+		SimPe.Geometry.Quaternion Correct(SimPe.Geometry.Quaternion t, object cor)
+		{
+			if (cor==null) return t;
+			if (!(cor is SimPe.Geometry.Quaternion)) return t;
+			
+			return t * (SimPe.Geometry.Quaternion)cor;
+		}
 
 		/// <summary>
 		/// Called when the export was finished
@@ -235,6 +250,29 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			Hashtable relationmap = Gmdc.LoadJointRelationMap();
 			IntArrayList js = Gmdc.SortJoints(relationmap);
 			ArrayList animbname = new ArrayList();
+
+			//Correct the Exported Joint Definitions in a way that _trans 
+			//Joint sonly conatin Translations and _rot Joints only contain Rotations
+			Hashtable correct_rot = new Hashtable();
+			Hashtable correct_trans = new Hashtable();
+			foreach (int i in js)
+			{
+				if (i>=Gmdc.Model.Transformations.Length) break;
+				string name = Gmdc.Joints[i].Name;
+				if (name.EndsWith("_rot"))
+				{
+					correct_trans[name] = Gmdc.Joints[i].AssignedTransformNode.Translation.GetInverse();
+					name = name.Substring(0, name.Length-4)+"_trans";
+					correct_trans[name] = Gmdc.Joints[i].AssignedTransformNode.Translation ;
+				} 
+				else if (name.EndsWith("_trans"))
+				{
+					correct_rot[name] = Gmdc.Joints[i].AssignedTransformNode.Rotation.GetInverse();
+					name = name.Substring(0, name.Length-6)+"_rot";
+					correct_rot[name] = Gmdc.Joints[i].AssignedTransformNode.Rotation;
+				}
+			}
+
 
 			//Export Bones
 			writer.WriteLine("Bones: "+js.Count.ToString());
@@ -258,11 +296,15 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				{		
 					
 					Vector3f t = Gmdc.Joints[i].AssignedTransformNode.Translation;
+					t = Correct(t, correct_trans[Gmdc.Joints[i].Name]);
+
 					//t = Gmdc.Joints[i].AssignedTransformNode.Rotation.Rotate(t);
 					t = Component.TransformScaled(t);
-					Vector3f r = Gmdc.Joints[i].AssignedTransformNode.Rotation.Axis;
+					Quaternion q = Gmdc.Joints[i].AssignedTransformNode.Rotation;
+					q = Correct(q, correct_rot[Gmdc.Joints[i].Name]);
+					Vector3f r = q.Axis;
 					r = Component.Transform(r);
-					Quaternion q = Quaternion.FromAxisAngle(r, Gmdc.Joints[i].AssignedTransformNode.Rotation.Angle);
+					q = Quaternion.FromAxisAngle(r, q.Angle);					
 					q.W = -q.W;
 					r = q.GetEulerAngles();
 											
