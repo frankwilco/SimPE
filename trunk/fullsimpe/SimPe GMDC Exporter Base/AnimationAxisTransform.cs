@@ -120,6 +120,16 @@ namespace SimPe.Plugin.Anim
 			set {param = value;}
 		}
 
+		/// <summary>
+		/// The Transformation Parameter for this Frame
+		/// </summary>
+		[Description("The Transformation Parameter as Floatingpoint Value."), Category("Information")]
+		public float ParameterFloat
+		{
+			get { return this.GetCompressedFloat(Parameter); }
+			set { Parameter = this.FromCompressedFloat(value); }
+		}
+
 		short u1;
 		public short Unknown1
 		{
@@ -291,6 +301,23 @@ namespace SimPe.Plugin.Anim
 			return this.TimeCode.CompareTo(aat.TimeCode);			
 		}
 
+		#endregion
+
+		#region Float Converters
+		
+		public float GetCompressedFloat(short val)
+		{			
+			if (parent!=null) return parent.GetCompressedFloat(val);
+			return AnimationAxisTransformBlock.GetCompressedFloat(val, AnimationAxisTransformBlock.SCALE); 
+		}
+
+		public short FromCompressedFloat(float val)
+		{			
+			if (parent!=null) return parent.FromCompressedFloat(val);
+			return AnimationAxisTransformBlock.FromCompressedFloat(val, AnimationAxisTransformBlock.SCALE); 
+		}
+		
+		
 		#endregion
 	}
 }

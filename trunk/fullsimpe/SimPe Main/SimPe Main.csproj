@@ -256,8 +256,8 @@
                 />
                 <Reference
                     Name = "NewHexEdit"
-                    Project = "{57FB03C0-014D-4347-BF66-16E62ECA1EFF}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                    AssemblyName = "NewHexEdit"
+                    HintPath = "..\HexEdit\bin\Release\NewHexEdit.dll"
                 />
             </References>
         </Build>

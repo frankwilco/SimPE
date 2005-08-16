@@ -77,7 +77,7 @@ namespace SimPe
 		/// </remarks>
 		~LayoutRegistry()
 		{
-			Flush();
+			//Flush();
 		}
 
 		/// <summary>

@@ -337,7 +337,7 @@ namespace SimPe.Plugin.Anim
 				if (ifb.Target!=null) lvi.SubItems.Add(ifb.Target.ToString());
 				else lvi.SubItems.Add("---");
 				lvi.SubItems.Add(ifb.FrameBlock.FrameCount.ToString());
-				lvi.SubItems.Add(ifb.FrameBlock.Duration.ToString());
+				lvi.SubItems.Add(ifb.FrameBlock.GetDuration().ToString());
 				if (ifb.DiscardZeroFrame) lvi.SubItems.Add("no");
 				else lvi.SubItems.Add("yes");
 

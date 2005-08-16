@@ -713,6 +713,7 @@ namespace SimPe.Plugin.Anim
 
 		internal void Clear()
 		{
+			intern = true; refresh=true;
 			this.cbParentLock.Checked = true;
 			this.cbEvent.Checked = false;
 			this.tbTimeCode.Text = "0";
@@ -728,18 +729,21 @@ namespace SimPe.Plugin.Anim
 			this.llAdd.Enabled = true;
 
 			if (Cleared!=null) Cleared(this, new EventArgs());
+
+			intern = false; refresh=false;
 		}
 
 		protected void EnableTimeCode(bool enabled)
-		{
-			this.cbParentLock.Enabled = enabled;
+		{			
 			cbEvent.Enabled = enabled;
 			tbTimeCode.Enabled = enabled;
 		}
 
 		protected void EnableParameter(bool enabled)
 		{
+			this.cbParentLock.Enabled = enabled;
 			this.llDelete.Enabled = enabled;
+
 			tbParameter.Enabled = enabled;
 			tbParameterFloat.Enabled = enabled;
 			tbParameterHex.Enabled = enabled;
@@ -765,7 +769,6 @@ namespace SimPe.Plugin.Anim
 		public void RefreshData()
 		{
 			Clear();
-
 			if (aat!=null) 
 			{
 				this.llAdd.Enabled = false;
@@ -811,7 +814,7 @@ namespace SimPe.Plugin.Anim
 			if (aat!=null) 				
 				if (aat.Parent.Parent!=null) 
 				{
-					float f = AnimationFrame.GetCompressedFloat(val, aat.Parent.Parent.TransformationType);
+					float f = aat.GetCompressedFloat(val);
 					if (aat.Parent.Parent.TransformationType== FrameType.Rotation) 
 						f = (float)SimPe.Geometry.Quaternion.RadToDeg(f);
 					tbParameterFloat.Text = f.ToString("N8");
@@ -837,7 +840,7 @@ namespace SimPe.Plugin.Anim
 			tbU2Float.Text = val.ToString();
 			if (aat!=null) 				
 				if (aat.Parent.Parent!=null)
-					tbU2Float.Text = AnimationFrame.GetCompressedFloat(val, aat.Parent.Parent.TransformationType).ToString("N8");
+					tbU2Float.Text = aat.GetCompressedFloat(val).ToString("N8");
 
 			tbU2Hex.Text = "0x"+Helper.HexString(val);
 			tbU2Bin.Text = Convert.ToString(val, 2);
@@ -858,8 +861,7 @@ namespace SimPe.Plugin.Anim
 
 			tbU1Float.Text = val.ToString();
 			if (aat!=null) 				
-				if (aat.Parent.Parent!=null)
-					tbU1Float.Text = AnimationFrame.GetCompressedFloat(val, aat.Parent.Parent.TransformationType).ToString("N8");
+				tbU1Float.Text = aat.GetCompressedFloat(val).ToString("N8");
 
 			tbU1Hex.Text = "0x"+Helper.HexString(val);
 			tbU1Bin.Text = Convert.ToString(val, 2);
@@ -898,7 +900,7 @@ namespace SimPe.Plugin.Anim
 						float f = Convert.ToSingle(tbParameterFloat.Text);
 						if (aat.Parent.Parent.TransformationType == FrameType.Rotation)
 							f = (float)SimPe.Geometry.Quaternion.DegToRad(f);
-						val = AnimationFrame.FromCompressedFloat(f, aat.Parent.Parent.TransformationType);						
+						val = aat.FromCompressedFloat(f);						
 					}
 				} 
 				catch {}
@@ -923,7 +925,7 @@ namespace SimPe.Plugin.Anim
 				try 
 				{
 					if (aat.Parent.Parent!=null)
-						val = AnimationFrame.FromCompressedFloat(Convert.ToSingle(tbU1Float.Text), aat.Parent.Parent.TransformationType);
+						val = aat.FromCompressedFloat(Convert.ToSingle(tbU1Float.Text));
 				} 
 				catch {}
 
@@ -947,7 +949,7 @@ namespace SimPe.Plugin.Anim
 				try 
 				{
 					if (aat.Parent.Parent!=null)
-						val = AnimationFrame.FromCompressedFloat(Convert.ToSingle(tbU2Float.Text), aat.Parent.Parent.TransformationType);
+						val = aat.FromCompressedFloat(Convert.ToSingle(tbU2Float.Text));
 				} 
 				catch {}
 
@@ -973,7 +975,7 @@ namespace SimPe.Plugin.Anim
 			if (aat!=null) 				
 				if (aat.Parent.Parent!=null) 
 				{
-					float f = AnimationFrame.GetCompressedFloat(val, aat.Parent.Parent.TransformationType);
+					float f = aat.GetCompressedFloat(val);
 					if (aat.Parent.Parent.TransformationType== FrameType.Rotation) 
 						f = (float)SimPe.Geometry.Quaternion.RadToDeg(f);
 					tbParameterFloat.Text = f.ToString("N8");
@@ -998,8 +1000,7 @@ namespace SimPe.Plugin.Anim
 
 			tbU1Float.Text = val.ToString();
 			if (aat!=null) 				
-				if (aat.Parent.Parent!=null)
-					tbU1Float.Text = AnimationFrame.GetCompressedFloat(val, aat.Parent.Parent.TransformationType).ToString("N8");
+				tbU1Float.Text = aat.GetCompressedFloat(val).ToString("N8");
 
 			tbU1.Text = val.ToString();
 			tbU1Bin.Text = Convert.ToString(val, 2);
@@ -1020,8 +1021,7 @@ namespace SimPe.Plugin.Anim
 
 			tbU2Float.Text = val.ToString();
 			if (aat!=null) 				
-				if (aat.Parent.Parent!=null)
-					tbU2Float.Text = AnimationFrame.GetCompressedFloat(val, aat.Parent.Parent.TransformationType).ToString("N8");
+				tbU2Float.Text = aat.GetCompressedFloat(val).ToString("N8");
 
 			tbU2.Text = val.ToString();
 			tbU2Bin.Text = Convert.ToString(val, 2);
@@ -1044,7 +1044,7 @@ namespace SimPe.Plugin.Anim
 			if (aat!=null) 				
 				if (aat.Parent.Parent!=null) 
 				{
-					float f = AnimationFrame.GetCompressedFloat(val, aat.Parent.Parent.TransformationType);
+					float f = aat.GetCompressedFloat(val);
 					if (aat.Parent.Parent.TransformationType== FrameType.Rotation) 
 						f = (float)SimPe.Geometry.Quaternion.RadToDeg(f);
 					tbParameterFloat.Text = f.ToString("N8");
@@ -1069,8 +1069,7 @@ namespace SimPe.Plugin.Anim
 
 			tbU1Float.Text = val.ToString();
 			if (aat!=null) 				
-				if (aat.Parent.Parent!=null)
-					tbU1Float.Text = AnimationFrame.GetCompressedFloat(val, aat.Parent.Parent.TransformationType).ToString("N8");
+				tbU1Float.Text = aat.GetCompressedFloat(val).ToString("N8");
 
 			tbU1.Text = val.ToString();
 			tbU1Hex.Text = "0x"+Helper.HexString(val);
@@ -1090,9 +1089,8 @@ namespace SimPe.Plugin.Anim
 			if (aat!=null) val = Helper.StringToInt16(tbU2Bin.Text, aat.Unknown2, 2);
 
 			tbU2Float.Text = val.ToString();
-			if (aat!=null) 				
-				if (aat.Parent.Parent!=null)
-					tbU2Float.Text = AnimationFrame.GetCompressedFloat(val, aat.Parent.Parent.TransformationType).ToString("N8");
+			if (aat!=null) 								
+				tbU2Float.Text = aat.GetCompressedFloat(val).ToString("N8");
 
 			tbU2.Text = val.ToString();
 			tbU2Hex.Text = "0x"+Helper.HexString(val);
@@ -1121,6 +1119,8 @@ namespace SimPe.Plugin.Anim
 		{
 			if (intern || aat==null) return;
 			aat.ParentLocked = this.cbParentLock.Checked;
+
+			this.RefreshData();
 			if (Changed!=null) Changed(this, new System.EventArgs());
 		}
 

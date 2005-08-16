@@ -189,7 +189,7 @@ namespace SimPe
 			Image = null;
 			f.sb.Invoke(new ShowStuff(ShowMain), new object[] {true});			
 			f.pbWait.Invoke(new ShowStuff(StartAnimation), new object[] {true});
-			//Application.DoEvents();
+			Application.DoEvents();
 		}
 
 		public void Wait()

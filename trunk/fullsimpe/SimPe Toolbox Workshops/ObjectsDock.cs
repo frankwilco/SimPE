@@ -59,6 +59,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		private System.Windows.Forms.ImageList ilist;
 		private SimPe.Plugin.Tool.Dockable.ObjectPreview op1;
 		private SimPe.Plugin.Tool.Dockable.ObjectPreview op2;
+		private Ambertation.Windows.Forms.TransparentCheckBox cbRemTxt;
 		private System.ComponentModel.IContainer components;
 
 		public dcObjectWorkshop()
@@ -110,6 +111,8 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(dcObjectWorkshop));
+			this.op1 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
+			this.op2 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.wizard1 = new SimPe.Wizards.Wizard();
 			this.wizardStepPanel1 = new SimPe.Wizards.WizardStepPanel();
@@ -124,13 +127,12 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.splitter1 = new System.Windows.Forms.Splitter();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.xpTaskBoxSimple2 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
-			this.op1 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
 			this.wizardStepPanel3 = new SimPe.Wizards.WizardStepPanel();
 			this.xpTaskBoxSimple1 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
-			this.op2 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
 			this.gbRecolor = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.cbColorExt = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.gbClone = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+			this.cbRemTxt = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.cbanim = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.cbwallmask = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.cbparent = new Ambertation.Windows.Forms.TransparentCheckBox();
@@ -171,6 +173,34 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.pnWait.SuspendLayout();
 			this.SuspendLayout();
 			// 
+			// op1
+			// 
+			this.op1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.op1.BackColor = System.Drawing.Color.Transparent;
+			this.op1.Font = new System.Drawing.Font("Tahoma", 8.25F);
+			this.op1.LoadCustomImage = true;
+			this.op1.Location = new System.Drawing.Point(8, 44);
+			this.op1.Name = "op1";
+			this.op1.SelectedObject = null;
+			this.op1.Size = new System.Drawing.Size(304, 88);
+			this.op1.TabIndex = 0;
+			// 
+			// op2
+			// 
+			this.op2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.op2.BackColor = System.Drawing.Color.Transparent;
+			this.op2.Font = new System.Drawing.Font("Tahoma", 8.25F);
+			this.op2.LoadCustomImage = true;
+			this.op2.Location = new System.Drawing.Point(8, 44);
+			this.op2.Name = "op2";
+			this.op2.SelectedObject = null;
+			this.op2.Size = new System.Drawing.Size(304, 56);
+			this.op2.TabIndex = 1;
+			// 
 			// xpGradientPanel1
 			// 
 			this.xpGradientPanel1.Controls.Add(this.wizard1);
@@ -188,7 +218,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.wizard1.Controls.Add(this.wizardStepPanel2);
 			this.wizard1.Controls.Add(this.wizardStepPanel3);
 			this.wizard1.Controls.Add(this.wizardStepPanel4);
-			this.wizard1.CurrentStepNumber = 1;
+			this.wizard1.CurrentStepNumber = 0;
 			this.wizard1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.wizard1.DockPadding.All = 8;
 			this.wizard1.FinishEnabled = false;
@@ -353,20 +383,6 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpTaskBoxSimple2.Size = new System.Drawing.Size(320, 136);
 			this.xpTaskBoxSimple2.TabIndex = 4;
 			// 
-			// op1
-			// 
-			this.op1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.op1.BackColor = System.Drawing.Color.Transparent;
-			this.op1.Font = new System.Drawing.Font("Tahoma", 8.25F);
-			this.op1.LoadCustomImage = true;
-			this.op1.Location = new System.Drawing.Point(8, 40);
-			this.op1.Name = "op1";
-			this.op1.SelectedObject = null;
-			this.op1.Size = new System.Drawing.Size(304, 88);
-			this.op1.TabIndex = 1;
-			// 
 			// wizardStepPanel3
 			// 
 			this.wizardStepPanel3.BackColor = System.Drawing.Color.Transparent;
@@ -402,25 +418,11 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpTaskBoxSimple1.IconLocation = new System.Drawing.Point(4, 12);
 			this.xpTaskBoxSimple1.IconSize = new System.Drawing.Size(32, 32);
 			this.xpTaskBoxSimple1.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
-			this.xpTaskBoxSimple1.Location = new System.Drawing.Point(0, 372);
+			this.xpTaskBoxSimple1.Location = new System.Drawing.Point(0, 392);
 			this.xpTaskBoxSimple1.Name = "xpTaskBoxSimple1";
 			this.xpTaskBoxSimple1.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-			this.xpTaskBoxSimple1.Size = new System.Drawing.Size(320, 129);
+			this.xpTaskBoxSimple1.Size = new System.Drawing.Size(320, 109);
 			this.xpTaskBoxSimple1.TabIndex = 3;
-			// 
-			// op2
-			// 
-			this.op2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.op2.BackColor = System.Drawing.Color.Transparent;
-			this.op2.Font = new System.Drawing.Font("Tahoma", 8.25F);
-			this.op2.LoadCustomImage = true;
-			this.op2.Location = new System.Drawing.Point(8, 40);
-			this.op2.Name = "op2";
-			this.op2.SelectedObject = null;
-			this.op2.Size = new System.Drawing.Size(304, 80);
-			this.op2.TabIndex = 1;
 			// 
 			// gbRecolor
 			// 
@@ -440,7 +442,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.gbRecolor.IconLocation = new System.Drawing.Point(4, 12);
 			this.gbRecolor.IconSize = new System.Drawing.Size(32, 32);
 			this.gbRecolor.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
-			this.gbRecolor.Location = new System.Drawing.Point(0, 296);
+			this.gbRecolor.Location = new System.Drawing.Point(0, 316);
 			this.gbRecolor.Name = "gbRecolor";
 			this.gbRecolor.RightHeaderColor = System.Drawing.SystemColors.Highlight;
 			this.gbRecolor.Size = new System.Drawing.Size(320, 76);
@@ -464,6 +466,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.gbClone.BackColor = System.Drawing.Color.Transparent;
 			this.gbClone.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
 			this.gbClone.BorderColor = System.Drawing.SystemColors.Window;
+			this.gbClone.Controls.Add(this.cbRemTxt);
 			this.gbClone.Controls.Add(this.cbanim);
 			this.gbClone.Controls.Add(this.cbwallmask);
 			this.gbClone.Controls.Add(this.cbparent);
@@ -486,13 +489,24 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.gbClone.Location = new System.Drawing.Point(0, 80);
 			this.gbClone.Name = "gbClone";
 			this.gbClone.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-			this.gbClone.Size = new System.Drawing.Size(320, 216);
+			this.gbClone.Size = new System.Drawing.Size(320, 236);
 			this.gbClone.TabIndex = 0;
+			// 
+			// cbRemTxt
+			// 
+			this.cbRemTxt.Checked = true;
+			this.cbRemTxt.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbRemTxt.Font = new System.Drawing.Font("Tahoma", 8.25F);
+			this.cbRemTxt.Location = new System.Drawing.Point(24, 112);
+			this.cbRemTxt.Name = "cbRemTxt";
+			this.cbRemTxt.Size = new System.Drawing.Size(264, 24);
+			this.cbRemTxt.TabIndex = 17;
+			this.cbRemTxt.Text = "Rem. non default Languages from References";
 			// 
 			// cbanim
 			// 
 			this.cbanim.Font = new System.Drawing.Font("Tahoma", 8.25F);
-			this.cbanim.Location = new System.Drawing.Point(12, 188);
+			this.cbanim.Location = new System.Drawing.Point(16, 208);
 			this.cbanim.Name = "cbanim";
 			this.cbanim.Size = new System.Drawing.Size(120, 24);
 			this.cbanim.TabIndex = 16;
@@ -503,7 +517,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbwallmask.Checked = true;
 			this.cbwallmask.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.cbwallmask.Font = new System.Drawing.Font("Tahoma", 8.25F);
-			this.cbwallmask.Location = new System.Drawing.Point(12, 164);
+			this.cbwallmask.Location = new System.Drawing.Point(16, 184);
 			this.cbwallmask.Name = "cbwallmask";
 			this.cbwallmask.Size = new System.Drawing.Size(192, 24);
 			this.cbwallmask.TabIndex = 15;
@@ -512,7 +526,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			// cbparent
 			// 
 			this.cbparent.Font = new System.Drawing.Font("Tahoma", 8.25F);
-			this.cbparent.Location = new System.Drawing.Point(12, 116);
+			this.cbparent.Location = new System.Drawing.Point(16, 136);
 			this.cbparent.Name = "cbparent";
 			this.cbparent.Size = new System.Drawing.Size(192, 24);
 			this.cbparent.TabIndex = 14;
@@ -546,7 +560,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbdefault.Checked = true;
 			this.cbdefault.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.cbdefault.Font = new System.Drawing.Font("Tahoma", 8.25F);
-			this.cbdefault.Location = new System.Drawing.Point(12, 140);
+			this.cbdefault.Location = new System.Drawing.Point(16, 160);
 			this.cbdefault.Name = "cbdefault";
 			this.cbdefault.Size = new System.Drawing.Size(224, 24);
 			this.cbdefault.TabIndex = 11;
@@ -630,7 +644,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.pnWait.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnWait.Location = new System.Drawing.Point(0, 0);
 			this.pnWait.Name = "pnWait";
-			this.pnWait.Size = new System.Drawing.Size(320, 80);
+			this.pnWait.Size = new System.Drawing.Size(320, 136);
 			this.pnWait.TabIndex = 0;
 			// 
 			// lberr
@@ -638,10 +652,11 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lberr.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lberr.Location = new System.Drawing.Point(32, 16);
 			this.lberr.Name = "lberr";
-			this.lberr.Size = new System.Drawing.Size(280, 56);
+			this.lberr.Size = new System.Drawing.Size(280, 120);
 			this.lberr.TabIndex = 4;
-			this.lberr.Text = "SimPE was unable to create the Object. A possible reason could be, that the selec" +
-				"ted Object is not CEP enabled, or that you did Interrupt the creation process.";
+			this.lberr.Text = @"SimPE was unable to create the Object. A possible reason could be, that the selected Object is not CEP enabled, or that you did Interrupt the creation process.
+
+Another reason might be, that the selected Object ""borrows"" it's Textures from a Parent Object. In that case you would need to work with the Parent Object.";
 			// 
 			// lbfinload
 			// 
@@ -667,6 +682,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			// 
 			this.animatedImagelist1.BackColor = System.Drawing.Color.Transparent;
 			this.animatedImagelist1.CurrentIndex = 0;
+			this.animatedImagelist1.DoEvents = false;
 			this.animatedImagelist1.Images.Add(((System.Drawing.Image)(resources.GetObject("resource"))));
 			this.animatedImagelist1.Images.Add(((System.Drawing.Image)(resources.GetObject("resource1"))));
 			this.animatedImagelist1.Images.Add(((System.Drawing.Image)(resources.GetObject("resource2"))));
@@ -1034,14 +1050,15 @@ namespace SimPe.Plugin.Tool.Dockable
 					cs.CustomGroup = this.cbgid.Checked;
 					cs.FixResources = this.cbfix.Checked;
 					cs.RemoveUselessResource = this.cbclean.Checked;
-					cs.StandAloneObject = this.cbparent.Checked;
+					cs.StandAloneObject = this.cbparent.Checked;					
+					cs.RemoveNonDefaultTextReferences = this.cbRemTxt.Checked;
 
 					settings = cs;
 				} 					
-				else  //Recolor a Object
-				
+				else  //Recolor a Object				
 					settings = new OWRecolorSettings();
 				
+
 				try 
 				{
 					package = ObjectWorkshopHelper.Start(this.package, a, ref pfd, localgroup, settings);

@@ -64,7 +64,7 @@ namespace SimPe.Plugin.Anim
 
 		
 
-		public static void InterpolateMissingBlocks(AnimationFrame[] frames, short maxtime)
+		public void InterpolateMissingBlocks(AnimationFrame[] frames, short maxtime)
 		{
 			if (frames.Length==0) return;
 			
@@ -176,8 +176,11 @@ namespace SimPe.Plugin.Anim
 			set { datai[2] = value; }
 		}
 
-		[Browsable(false)]
-		public uint GenerateNameChecksum
+#if DEBUG
+#else
+			[Browsable(false)]
+#endif	
+		public uint GeneratedNameChecksum
 		{
 			get 
 			{ 
@@ -367,12 +370,11 @@ namespace SimPe.Plugin.Anim
 
 		public void AddFrame(short tc, float x, float y, float z, bool linear)
 		{			
-			AddFrame(
-				tc, 
-				AnimationFrame.FromCompressedFloat(x, this.TransformationType),
-				AnimationFrame.FromCompressedFloat(y, this.TransformationType),
-				AnimationFrame.FromCompressedFloat(z, this.TransformationType),
-				linear);
+			for (int i=0; i<AxisCount; i++)
+			{
+				AnimationAxisTransformBlock b = AxisSet[i];										
+				b.Add(tc, GetAxisValue(i, b.FromCompressedFloat(x), b.FromCompressedFloat(y), b.FromCompressedFloat(z)), 0, 0, linear);				
+			}	
 		}
 
 		public void AddFrame(short tc, Vector3f v, bool linear)
@@ -420,7 +422,7 @@ namespace SimPe.Plugin.Anim
 		internal void SerializeData(System.IO.BinaryWriter writer)
 		{
 			this.SetPart3Count(ab3.Length);
-			this.NameChecksum = this.GenerateNameChecksum;
+			this.NameChecksum = this.GeneratedNameChecksum;
 
 			//Make sur the Duration is written correct			
 			this.Duration = GetDuration();
@@ -508,9 +510,10 @@ namespace SimPe.Plugin.Anim
 
 		#endregion
 
-		public static AnimationAxisTransform InterpolateFrame(AnimationAxisTransform first, AnimationAxisTransform last, short timecode)
+		public AnimationAxisTransform InterpolateFrame(AnimationAxisTransform first, AnimationAxisTransform last, short timecode)
 		{
 			AnimationAxisTransform b = new AnimationAxisTransform(null, -1);
+			
 			b.TimeCode = timecode;
 			b.Linear = first.Linear || last.Linear;
 
@@ -534,10 +537,13 @@ namespace SimPe.Plugin.Anim
 				b.Parameter = val;
 			}
 
+			if (this.AxisCount>0) b.SetParent(this.AxisSet[0]);
+			
+
 			return b;
 		}
 
-		static void Interpolate(AnimationFrame[] frames, int index, int blid, short maxtime)
+		void Interpolate(AnimationFrame[] frames, int index, int blid, short maxtime)
 		{
 			int last = index-1;
 			int next = index+1;
@@ -563,6 +569,9 @@ namespace SimPe.Plugin.Anim
 			{
 				lb.TimeCode = frames[last].TimeCode;
 				lb.Parameter = frames[last].Blocks[blid].Parameter;				
+				if (frames[last].Blocks[blid].Parent!=null)  
+					if (lb.TimeCode==0 && frames[last].Blocks[blid].Parent.Locked)
+						lb.Parameter = 0;
 			}
 
 			
@@ -614,11 +623,11 @@ namespace SimPe.Plugin.Anim
 				for (int i=remlist.Count-1; i>=0; i--)
 					AxisSet[blid].Remove(AxisSet[blid][remlist[i]]);
 
-				//only two remaining Frmaes, were both have the same Parameter ==> delete the second one
-				if (AxisSet[blid].Count==2) 
+				//two or more remaining Frames, where the last two have the same Parameter ==> delete the last one
+				if (AxisSet[blid].Count>=2) 
 				{
-					if (AxisSet[blid][0].Parameter == AxisSet[blid][1].Parameter)
-						AxisSet[blid].Remove(AxisSet[blid][1]);
+					if (AxisSet[blid][AxisSet[blid].Count-2].Parameter == AxisSet[blid][AxisSet[blid].Count-1].Parameter)
+						AxisSet[blid].Remove(AxisSet[blid][AxisSet[blid].Count-1]);
 				}
 
 				//Now set the suggested Type that should be used

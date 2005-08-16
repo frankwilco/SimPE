@@ -29,7 +29,7 @@ namespace SimPe.Plugin.Anim
 	/// </summary>
 	public class AnimationFrame
 	{
-		public const float SCALE = 1f/1000f;//10/(float)short.MaxValue;
+		/*public const float SCALE = 1f/1000f;//10/(float)short.MaxValue;
 		public const float SCALEROT = (float)(((1f/180f) * Math.PI) / 64f);
 
 		public float GetCompressedFloat(short v)
@@ -62,7 +62,7 @@ namespace SimPe.Plugin.Anim
 		public static short FromCompressedFloat(float v, float scale)
 		{
 			return (short)(v / scale);
-		}		
+		}		*/
 
 		AnimationAxisTransform[] block;
 		short tc;
@@ -133,22 +133,22 @@ namespace SimPe.Plugin.Anim
 		[DescriptionAttribute("The X Value (as Floating Point) for this Transformation"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
 		public float Float_X
 		{
-			get { return GetCompressedFloat(X);	}
-			set { X = FromCompressedFloat(value); }
+			get { return GetFrameAddonData(0).ParameterFloat; }
+			set { GetFrameAddonData(0).ParameterFloat = value; }
 		}
 
 		[DescriptionAttribute("The Y Value (as Floating Point) for this Transformation"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
 		public float Float_Y
 		{
-			get { return GetCompressedFloat(Y);	}
-			set { Y = FromCompressedFloat(value); }
+			get { return GetFrameAddonData(1).ParameterFloat; }
+			set { GetFrameAddonData(1).ParameterFloat = value; }
 		}
 
 		[DescriptionAttribute("The Z Value (as Floating Point) for this Transformation"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
 		public float Float_Z
 		{
-			get { return GetCompressedFloat(Z);	}
-			set { Z = FromCompressedFloat(value); }
+			get { return GetFrameAddonData(2).ParameterFloat; }
+			set { GetFrameAddonData(2).ParameterFloat = value; }
 		}		
 
 		[DescriptionAttribute("The TimeCode the X Transformation should be finished"), CategoryAttribute("Data"), DefaultValueAttribute(0)]

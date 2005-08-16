@@ -780,7 +780,8 @@ namespace SimPe.Plugin.Anim
 						intern = true;
 						this.tbTimeCode.Enabled = true;
 						this.lbTimeCode.Enabled = tbTimeCode.Enabled;
-						tbTimeCode.Text = aatcs[ct].AxisTransform.TimeCode.ToString();
+						if (aatcs[ct].AxisTransform!=null)
+							tbTimeCode.Text = aatcs[ct].AxisTransform.TimeCode.ToString();
 						intern = false;
 					}
 				}
@@ -814,8 +815,11 @@ namespace SimPe.Plugin.Anim
 			AnimAxisTransformControl s = (AnimAxisTransformControl)sender;
 			TreeNode n = (TreeNode)s.Tag;
 
-			n.Text = n.Text.Substring(0, 3)+s.AxisTransform.ToString();
-			if (Changed!=null) Changed(this, new System.EventArgs());			
+			if (n!=null && s.AxisTransform!=null) 
+			{
+				n.Text = n.Text.Substring(0, 3)+s.AxisTransform.ToString();
+				if (Changed!=null) Changed(this, new System.EventArgs());			
+			}
 		}
 
 		private void llClear_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
@@ -828,6 +832,8 @@ namespace SimPe.Plugin.Anim
 
 		private void llAdd_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
+			if (afb.AxisCount==0) afb.CreateBaseAxisSet();
+
 			afb.AddFrame((short)(afb.GetDuration()+1), 0, 0, 0, false);
 			AddFrames(afb.Frames[afb.FrameCount-1], "");
 

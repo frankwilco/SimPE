@@ -11459,8 +11459,8 @@ namespace SimPe.PackedFiles.UserInterface
 					sdesc.Skills.Romance = (ushort)pbromance.Value;
 
 					//Interests
-					sdesc.Interests.Woman = (short)(pbwoman.Value - 1000);
-					sdesc.Interests.Man = (short)(pbman.Value - 1000);
+					sdesc.Interests.FemalePreference = (short)(pbman.Value - 1000);
+					sdesc.Interests.MalePreference = (short)(pbwoman.Value - 1000);
 					sdesc.Interests.Animals = (ushort)(pbanimals.Value * 100);
 					sdesc.Interests.Crime= (ushort)(pbcrime.Value * 100);
 					sdesc.Interests.Culture= (ushort)(pbculture.Value * 100);

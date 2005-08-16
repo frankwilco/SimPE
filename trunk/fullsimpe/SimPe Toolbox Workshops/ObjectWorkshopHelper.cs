@@ -34,11 +34,17 @@ namespace SimPe.Plugin.Tool.Dockable
 			remoteres = false;
 		}
 
-		bool remote, remoteres;
+		bool remote, remoteres, remndeftxt;
 		public bool OpenWithRemoteControl
 		{
 			get { return remote; }
 			set { remote = value; }
+		}
+
+		public bool RemoveNonDefaultTextReferences
+		{
+			get { return remndeftxt; }
+			set { remndeftxt = value; }
 		}
 
 		public bool RemoteResult
@@ -63,6 +69,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			fix = true;
 			rem = true;
 			alone = false;
+			RemoveNonDefaultTextReferences = true;
 		}
 
 		bool grp, fix, rem, alone;
@@ -295,7 +302,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				package = RecolorClone(package, pfd, localgroup, settings);						
 					
 
-				FixObject fo = new FixObject(package, FixVersion.UniversityReady);
+				FixObject fo = new FixObject(package, FixVersion.UniversityReady, settings.RemoveNonDefaultTextReferences);
 				System.Collections.Hashtable map = null;
 					
 				if (cs.FixResources) 

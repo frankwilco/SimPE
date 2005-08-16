@@ -1041,7 +1041,7 @@ namespace SimPe.Plugin
 					} 
 					
 
-					FixObject fo = new FixObject(package, FixVersion.UniversityReady);
+					FixObject fo = new FixObject(package, FixVersion.UniversityReady, true);
 					System.Collections.Hashtable map = null;
 					
 					if (this.cbfix.Checked) 

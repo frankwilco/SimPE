@@ -385,6 +385,14 @@ namespace SimPe.Plugin.Anim
 			aat.SetParent(this);
 			items.Add(aat);
 		}
+		public bool ContainsTimeCode(short timecode)
+		{
+			foreach (AnimationAxisTransform a in items) 
+				if (a.TimeCode==timecode) 
+					return true;
+
+			return false;
+		}
 
 		/// <summary>
 		/// Add a new <see cref="AnimationAxisTransform"/> Item
@@ -394,9 +402,12 @@ namespace SimPe.Plugin.Anim
 		/// <param name="u1"></param>
 		/// <param name="u2"></param>
 		/// <param name="islinear"></param>
+		/// <remarks>The Data does not get added when the timecode already exists, null will be returned in that case</remarks>
 		public AnimationAxisTransform Add(short timecode, short param, short u1, short u2, bool islinear)
 		{			
 			AnimationAxisTransform aat = BuildAnimationAxisTransform(timecode, param, u1, u2, islinear, items.Count);
+			if (ContainsTimeCode(timecode)) return null;
+
 			items.Add(aat);
 			return aat;
 		}
@@ -536,7 +547,62 @@ namespace SimPe.Plugin.Anim
 
 		#endregion
 
+		#region Float Converters
+		public float GetScale()
+		{
+			FrameType ft = FrameType.Translation;			
+			if (parent!=null)
+				ft=parent.TransformationType;
+
+			return GetScale(ft);
+		}
 		
+		public float GetCompressedFloat(short val)
+		{			
+			return GetCompressedFloat(val, GetScale());
+		}
+
+		public short FromCompressedFloat(float val)
+		{			
+			return FromCompressedFloat(val, GetScale());
+		}
+		
+		public float GetScale(FrameType ft)
+		{			
+			float scale = SCALE;
+			if (Locked) scale = scale / 16f;
+			if (ft==FrameType.Rotation) scale=SCALEROT;			
+
+			return scale;
+		}
+
+		public float GetCompressedFloat(short val, FrameType ft)
+		{			
+			return GetCompressedFloat(val, GetScale(ft));
+		}
+
+		public short FromCompressedFloat(float val, FrameType ft)
+		{			
+			return FromCompressedFloat(val, GetScale(ft));
+		}
+
+		#region statics
+		public const float SCALE = 6.25f/1000f;//10/(float)short.MaxValue;
+		public const float SCALEROT = (float)(((1f/180f) * Math.PI) / 64f);
+
+		
+
+		public static float GetCompressedFloat(short v, float scale)
+		{
+			return ((float)v * scale);
+		}
+
+		public static short FromCompressedFloat(float v, float scale)
+		{
+			return (short)(v / scale);
+		}
+		#endregion
+		#endregion
 	}
 
 }

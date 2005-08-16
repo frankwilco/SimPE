@@ -47,13 +47,23 @@ namespace SimPe.Plugin
 			set {ver = value; }
 		}
 
+		bool rndtr;
+		public bool RemoveNonDefaultTextReferences
+		{
+			get {return rndtr;}
+			set {rndtr = value; }
+		}
+
 		/// <summary>
 		/// Creates a new Instance of this class
 		/// </summary>
 		/// <param name="package">The package you want to fix the Integrity in</param>
-		public FixObject(IPackageFile package, FixVersion ver) : base (package)
+		/// <param name="ver">Fix Version that should be used</param>
+		/// <param name="remndeftxt">Remove all Text Links that are not assigned to the Default Language</param>
+		public FixObject(IPackageFile package, FixVersion ver, bool remndeftxt) : base (package)
 		{
 			this.ver = ver;
+			this.rndtr = remndeftxt;
 			if (types==null) 
 			{
 				types = new ArrayList();
@@ -610,6 +620,11 @@ namespace SimPe.Plugin
 					if ((modelname==null) && (i.Language.Id==1) && (pfd.Instance==0x85)) 
 						modelname = name.ToUpper().Replace("-", "_");
 				}
+
+				if (RemoveNonDefaultTextReferences)
+					if (pfd.Instance == 0x88 || pfd.Instance == 0x85 || (pfd.Instance == 0x81) || (pfd.Instance == 0x82) || (pfd.Instance == 0x86) || (pfd.Instance == 0x192)) 				
+						str.ClearNonDefault();				
+					
 				
 				str.SynchronizeUserData();
 			}

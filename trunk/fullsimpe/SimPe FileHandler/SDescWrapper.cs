@@ -654,14 +654,14 @@ namespace SimPe.PackedFiles.Wrapper
 		}	
 	
 		private short woman;
-		public short Woman
+		public short FemalePreference
 		{
 			get	{ return woman; }
 			set { woman = (short)Math.Max(-1000, Math.Min(1000, (int)value)); }
 		}
 
 		private short man;
-		public short Man
+		public short MalePreference
 		{
 			get	{ return man; }
 			set { man = (short)Math.Max(-1000, Math.Min(1000, (int)value)); }
@@ -1339,7 +1339,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Sim Description Wrapper",
 				"Quaxi",
 				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
-				8,
+				9,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.sdsc.png"))				
 				); 
 		}
@@ -1408,8 +1408,8 @@ namespace SimPe.PackedFiles.Wrapper
 			description.LifelinePoints = 500;
 			
 
-			interests.Woman = 50;
-			interests.Man = 50;
+			interests.FemalePreference = 50;
+			interests.MalePreference = 50;
 
 			skills.Fatness = 500;
 			version = 0x20;
@@ -1568,9 +1568,9 @@ namespace SimPe.PackedFiles.Wrapper
 			
 
 			//interests
-			reader.BaseStream.Seek(startpos + 0x038, System.IO.SeekOrigin.Begin);			
-			interests.Woman = reader.ReadInt16();
-			interests.Man = reader.ReadInt16();
+			reader.BaseStream.Seek(startpos + 0x038, System.IO.SeekOrigin.Begin);						
+			interests.MalePreference = reader.ReadInt16();
+			interests.FemalePreference = reader.ReadInt16();
 			reader.BaseStream.Seek(startpos + 0x104, System.IO.SeekOrigin.Begin);
 			interests.Politics = reader.ReadUInt16();
 			interests.Money = reader.ReadUInt16();
@@ -1727,9 +1727,9 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write(gencharacter.Playful);
 
 			//interests
-			writer.BaseStream.Seek(startpos + 0x038, System.IO.SeekOrigin.Begin);			
-			writer.Write(interests.Woman);
-			writer.Write(interests.Man);
+			writer.BaseStream.Seek(startpos + 0x038, System.IO.SeekOrigin.Begin);					
+			writer.Write(interests.MalePreference);
+			writer.Write(interests.FemalePreference);
 			writer.BaseStream.Seek(startpos + 0x104, System.IO.SeekOrigin.Begin);
 			writer.Write(interests.Politics);
 			writer.Write(interests.Money);
