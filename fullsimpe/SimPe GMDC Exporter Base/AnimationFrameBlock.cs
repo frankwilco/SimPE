@@ -249,7 +249,12 @@ namespace SimPe.Plugin.Anim
 				i = i >> 24;
 				return (byte) i;
 			}
-			
+		
+			set 
+			{
+				uint i = ((uint)value << 24) & 0x1F000000;
+				Unknown5 = (Unknown5 & 0xE0FFFFFF) | i;
+			}
 		}
 
 		[DescriptionAttribute("Highest 3 Bits contain the Number of assigned AnimationAxisTransformBlock Items")]
