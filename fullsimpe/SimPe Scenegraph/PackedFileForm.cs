@@ -55,6 +55,9 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.PictureBox pb;
+		private System.Windows.Forms.ContextMenu contextMenu1;
+		private System.Windows.Forms.MenuItem miAdd;
+		internal System.Windows.Forms.MenuItem miRem;
 		private System.ComponentModel.IContainer components;
 
 		public RefFileForm()
@@ -112,6 +115,9 @@ namespace SimPe.Plugin
 			this.lblist = new System.Windows.Forms.ListBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
+			this.contextMenu1 = new System.Windows.Forms.ContextMenu();
+			this.miAdd = new System.Windows.Forms.MenuItem();
+			this.miRem = new System.Windows.Forms.MenuItem();
 			this.wrapperPanel.SuspendLayout();
 			this.gbtypes.SuspendLayout();
 			this.pntypes.SuspendLayout();
@@ -166,7 +172,7 @@ namespace SimPe.Plugin
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button4.Font = new System.Drawing.Font("Wingdings 3", 8.25F, System.Drawing.FontStyle.Bold);
+			this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
 			this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.button4.Location = new System.Drawing.Point(288, 28);
 			this.button4.Name = "button4";
@@ -384,6 +390,7 @@ namespace SimPe.Plugin
 			this.lblist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lblist.ContextMenu = this.contextMenu1;
 			this.lblist.HorizontalScrollbar = true;
 			this.lblist.IntegralHeight = false;
 			this.lblist.Location = new System.Drawing.Point(8, 32);
@@ -416,6 +423,24 @@ namespace SimPe.Plugin
 			this.label1.Size = new System.Drawing.Size(201, 19);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "3D Referencing File Editor";
+			// 
+			// contextMenu1
+			// 
+			this.contextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+																						 this.miAdd,
+																						 this.miRem});
+			// 
+			// miAdd
+			// 
+			this.miAdd.Index = 0;
+			this.miAdd.Text = "&Add";
+			this.miAdd.Click += new System.EventHandler(this.miAdd_Click);
+			// 
+			// miRem
+			// 
+			this.miRem.Index = 1;
+			this.miRem.Text = "&Delete";
+			this.miRem.Click += new System.EventHandler(this.menuItem1_Click);
 			// 
 			// RefFileForm
 			// 
@@ -476,11 +501,15 @@ namespace SimPe.Plugin
 			lldelete.Enabled = false;
 			btup.Enabled = false;
 			btdown.Enabled = false;
+			miAdd.Enabled = false;
+			miRem.Enabled = lldelete.Enabled;
 			if (lblist.SelectedIndex<0) return;
 			llcommit.Enabled = true;
 			lldelete.Enabled = true;
 			btup.Enabled = true;
 			btdown.Enabled = true;
+			miAdd.Enabled = true;
+			miRem.Enabled = lldelete.Enabled;
 
 			if (tbtype.Tag!=null) return;
 			try 
@@ -564,11 +593,13 @@ namespace SimPe.Plugin
 			lldelete.Enabled = false;
 			btup.Enabled = false;
 			btdown.Enabled = false;
+			miRem.Enabled = lldelete.Enabled;
 			if (lblist.SelectedIndex<0) return;
 			llcommit.Enabled = true;
 			lldelete.Enabled = true;
 			btup.Enabled = true;
 			btdown.Enabled = true;
+			miRem.Enabled = lldelete.Enabled;
 
 			lblist.Items.Remove(lblist.Items[lblist.SelectedIndex]);
 		}
@@ -694,6 +725,16 @@ namespace SimPe.Plugin
 		private void pb_SizeChanged(object sender, System.EventArgs e)
 		{
 			pb.Width = pb.Height;
+		}
+
+		private void miAdd_Click(object sender, System.EventArgs e)
+		{
+			AddFile(null, null);
+		}
+
+		private void menuItem1_Click(object sender, System.EventArgs e)
+		{
+			DeleteFile(null, null);
 		}
 	}
 }

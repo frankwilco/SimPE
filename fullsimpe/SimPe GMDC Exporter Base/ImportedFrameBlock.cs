@@ -39,7 +39,7 @@ namespace SimPe.Plugin.Anim
 		/// <summary>
 		/// Add the Animation stored in the <see cref="ImportedFrameBlock.FrameBlock"/> Member
 		/// </summary>
-		//Add = 0x02		
+		Add = 0x02		
 	}
 
 	/// <summary>
@@ -175,6 +175,19 @@ namespace SimPe.Plugin.Anim
 			if (ruf) Target.RemoveUnneededFrames();
 
 			Target.Duration = Target.GetDuration();
+		}
+
+		/// <summary>
+		/// Add the <see cref="FrameBlock"/> to the passed <see cref="AnimationMeshBlock"/>.
+		/// </summary>
+		public void AddFrameBlock(AnimationMeshBlock amb)
+		{
+			if (amb==null) return;
+
+			amb.Part2 = (AnimationFrameBlock[])Helper.Add(amb.Part2, FrameBlock);
+			
+			if (ruf) FrameBlock.RemoveUnneededFrames();
+			FrameBlock.Duration = FrameBlock.GetDuration();
 		}
 	}
 

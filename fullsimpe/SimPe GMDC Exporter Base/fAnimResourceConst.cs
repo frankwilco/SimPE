@@ -20,8 +20,6 @@ namespace SimPe.Plugin.Anim
 		internal System.Windows.Forms.TreeView tv;
 		private System.Windows.Forms.PropertyGrid pg;
 		private System.Windows.Forms.LinkLabel llAdd;
-		private System.Windows.Forms.LinkLabel llExport;
-		private System.Windows.Forms.LinkLabel llImport;
 		private System.Windows.Forms.CheckBox checkBox1;
 		internal System.Windows.Forms.TabPage tMisc;
 		private System.Windows.Forms.LinkLabel llClear;
@@ -45,6 +43,22 @@ namespace SimPe.Plugin.Anim
 
 			SimPe.ThemeManager tm = SimPe.ThemeManager.Global.CreateChild();
 			tm.AddControl(this.xpGradientPanel1);
+
+			// 
+			// ambc
+			// 
+			this.ambc = new AnimMeshBlockControl();			
+			this.ambc.BackColor = System.Drawing.Color.Transparent;
+			this.ambc.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ambc.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.ambc.Location = new System.Drawing.Point(8, 8);
+			this.ambc.MeshBlock = null;
+			this.ambc.MeshBlocks = null;
+			this.ambc.Name = "ambc";
+			this.ambc.Size = new System.Drawing.Size(776, 246);
+			this.ambc.TabIndex = 1;
+			this.ambc.Changed += new System.EventHandler(this.ambc_Changed);
+			this.xpGradientPanel1.Controls.Add(this.ambc);
 		}
 
 		/// <summary>
@@ -69,7 +83,7 @@ namespace SimPe.Plugin.Anim
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.ambc = new AnimMeshBlockControl();
+			
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tAnimResourceConst = new System.Windows.Forms.TabPage();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -78,8 +92,6 @@ namespace SimPe.Plugin.Anim
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.tv = new System.Windows.Forms.TreeView();
 			this.llAdd = new System.Windows.Forms.LinkLabel();
-			this.llExport = new System.Windows.Forms.LinkLabel();
-			this.llImport = new System.Windows.Forms.LinkLabel();
 			this.pg = new System.Windows.Forms.PropertyGrid();
 			this.tMisc = new System.Windows.Forms.TabPage();
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
@@ -87,14 +99,12 @@ namespace SimPe.Plugin.Anim
 			this.label30 = new System.Windows.Forms.Label();
 			this.tMesh = new System.Windows.Forms.TabPage();
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
-			this.ambc = new SimPe.Plugin.Anim.AnimMeshBlockControl();
 			this.tabControl1.SuspendLayout();
 			this.tAnimResourceConst.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.tMisc.SuspendLayout();
 			this.groupBox12.SuspendLayout();
 			this.tMesh.SuspendLayout();
-			this.xpGradientPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -130,8 +140,6 @@ namespace SimPe.Plugin.Anim
 			this.groupBox2.Controls.Add(this.checkBox1);
 			this.groupBox2.Controls.Add(this.tv);
 			this.groupBox2.Controls.Add(this.llAdd);
-			this.groupBox2.Controls.Add(this.llExport);
-			this.groupBox2.Controls.Add(this.llImport);
 			this.groupBox2.Controls.Add(this.pg);
 			this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -145,7 +153,7 @@ namespace SimPe.Plugin.Anim
 			// llTxt
 			// 
 			this.llTxt.Enabled = false;
-			this.llTxt.Location = new System.Drawing.Point(640, 8);
+			this.llTxt.Location = new System.Drawing.Point(640, 32);
 			this.llTxt.Name = "llTxt";
 			this.llTxt.Size = new System.Drawing.Size(56, 16);
 			this.llTxt.TabIndex = 44;
@@ -199,28 +207,6 @@ namespace SimPe.Plugin.Anim
 			this.llAdd.TabStop = true;
 			this.llAdd.Text = "Add Frame";
 			this.llAdd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAdd_LinkClicked);
-			// 
-			// llExport
-			// 
-			this.llExport.Enabled = false;
-			this.llExport.Location = new System.Drawing.Point(584, 32);
-			this.llExport.Name = "llExport";
-			this.llExport.Size = new System.Drawing.Size(48, 16);
-			this.llExport.TabIndex = 40;
-			this.llExport.TabStop = true;
-			this.llExport.Text = "Export";
-			this.llExport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llExport_LinkClicked);
-			// 
-			// llImport
-			// 
-			this.llImport.Enabled = false;
-			this.llImport.Location = new System.Drawing.Point(640, 32);
-			this.llImport.Name = "llImport";
-			this.llImport.Size = new System.Drawing.Size(56, 16);
-			this.llImport.TabIndex = 41;
-			this.llImport.TabStop = true;
-			this.llImport.Text = "Import";
-			this.llImport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llImport_LinkClicked);
 			// 
 			// pg
 			// 
@@ -296,26 +282,12 @@ namespace SimPe.Plugin.Anim
 			// 
 			// xpGradientPanel1
 			// 
-			this.xpGradientPanel1.Controls.Add(this.ambc);
 			this.xpGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xpGradientPanel1.DockPadding.All = 8;
 			this.xpGradientPanel1.Location = new System.Drawing.Point(0, 0);
 			this.xpGradientPanel1.Name = "xpGradientPanel1";
 			this.xpGradientPanel1.Size = new System.Drawing.Size(792, 262);
 			this.xpGradientPanel1.TabIndex = 2;
-			// 
-			// ambc
-			// 
-			this.ambc.BackColor = System.Drawing.Color.Transparent;
-			this.ambc.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ambc.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.ambc.Location = new System.Drawing.Point(8, 8);
-			this.ambc.MeshBlock = null;
-			this.ambc.MeshBlocks = null;
-			this.ambc.Name = "ambc";
-			this.ambc.Size = new System.Drawing.Size(776, 246);
-			this.ambc.TabIndex = 1;
-			this.ambc.Changed += new System.EventHandler(this.ambc_Changed);
 			// 
 			// fAnimResourceConst
 			// 
@@ -330,7 +302,6 @@ namespace SimPe.Plugin.Anim
 			this.tMisc.ResumeLayout(false);
 			this.groupBox12.ResumeLayout(false);
 			this.tMesh.ResumeLayout(false);
-			this.xpGradientPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -343,8 +314,6 @@ namespace SimPe.Plugin.Anim
 			llAdd.Enabled = false;
 			llTxt.Enabled = false;
 			llClear.Enabled = false;
-			llExport.Enabled = false;
-			llImport.Enabled = false;
 			pg.SelectedObject = null;
 			if (e==null) return;
 			if (e.Node==null) return;
@@ -355,8 +324,6 @@ namespace SimPe.Plugin.Anim
 
 			if (e.Node.Tag is AnimationMeshBlock) 
 			{
-				llExport.Enabled = true;
-				llImport.Enabled = true;
 				llTxt.Enabled = true;
 			}
 			if (e.Node.Tag is AnimationFrameBlock) 
@@ -435,41 +402,7 @@ namespace SimPe.Plugin.Anim
 			AnimResourceConst arc = (AnimResourceConst)tAnimResourceConst.Tag;
 			arc.Refresh();
 		}
-
-		private void llExport_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			AnimationMeshBlock ab1 = (AnimationMeshBlock)tv.SelectedNode.Tag;
-			GenericRcol gmdc = ab1.FindUsedGMDC(ab1.FindDefiningCRES());
-			if (gmdc!=null) 
-			{
-				GeometryDataContainer gdc = (GeometryDataContainer)gmdc.Blocks[0];
-				gdc.LinkedAnimation = ab1;
-
-				fGeometryDataContainer.StartExport(new System.Windows.Forms.SaveFileDialog(), gdc, ".txt", gdc.Groups, (SimPe.Plugin.Gmdc.ElementSorting)fGeometryDataContainer.DefaultSelectedAxisIndex);
-			} 
-			else 
-			{
-				Helper.ExceptionMessage(new Warning("Unable to Find Model File for \""+ab1.Name+"\".", "SimPe was not able to Find the Model File that defines the specified Hirarchy. The Animation will not get exported!"));
-			}
-		}
-
-		private void llImport_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			AnimationMeshBlock ab1 = (AnimationMeshBlock)tv.SelectedNode.Tag;
-			GenericRcol gmdc = ab1.FindUsedGMDC(ab1.FindDefiningCRES());
-			if (gmdc!=null) 
-			{
-				GeometryDataContainer gdc = (GeometryDataContainer)gmdc.Blocks[0];
-				gdc.LinkedAnimation = ab1;
-
-				fGeometryDataContainer.StartImport(new System.Windows.Forms.OpenFileDialog(), gdc, ".txt", (SimPe.Plugin.Gmdc.ElementSorting)fGeometryDataContainer.DefaultSelectedAxisIndex, true);				
-			} 
-			else 
-			{
-				Helper.ExceptionMessage(new Warning("Unable to Find Model File for \""+ab1.Name+"\".", "SimPe was not able to Find the Model File that defines the specified Hirarchy. The Animation will not get exported!"));
-			}
-		}
-
+		
 		private void checkBox1_CheckedChanged(object sender, System.EventArgs e)
 		{
 			pg.HelpVisible = checkBox1.Checked;

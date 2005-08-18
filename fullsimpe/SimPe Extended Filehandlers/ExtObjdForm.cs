@@ -1081,13 +1081,15 @@ namespace SimPe.PackedFiles.UserInterface
 		private void cbsort_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			if (Tag!=null) return;
+			this.Tag = true;
 			wrapper.FunctionSubSort = (Data.ObjFunctionSubSort)cbsort.SelectedValue;
 			wrapper.Changed = true;
 			this.SetFunctionCb(wrapper);
+			this.Tag = null;
 		}
 
 		internal void SetFunctionCb(Wrapper.ExtObjd objd)
-		{
+		{			
 			this.cbappliances.Checked = objd.FunctionSort.InAppliances;
 			this.cbdecorative.Checked = objd.FunctionSort.InDecorative;
 			this.cbelectronics.Checked = objd.FunctionSort.InElectronics;

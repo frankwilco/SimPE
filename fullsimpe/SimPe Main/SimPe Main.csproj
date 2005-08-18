@@ -259,6 +259,11 @@
                     AssemblyName = "NewHexEdit"
                     HintPath = "..\HexEdit\bin\Release\NewHexEdit.dll"
                 />
+                <Reference
+                    Name = "SimsGUID"
+                    Project = "{8A2A1FCD-F166-4AE8-A87A-7424215C93AF}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>

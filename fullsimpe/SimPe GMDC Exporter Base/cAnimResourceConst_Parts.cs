@@ -51,15 +51,15 @@ namespace SimPe.Plugin.Anim
 		/// <summary>
 		/// Translations
 		/// </summary>
-		Translation = 0x0,
+		Translation = 0x10,
 		/// <summary>
 		/// Rotations
 		/// </summary>
-		Rotation = 0xC,
+		Rotation = 0x0C,
 		/// <summary>
 		/// Unknown Type
 		/// </summary>
-		Unknown = 0xF
+		Unknown = 0xFF
 	}	
 
 	/// <summary>
@@ -70,7 +70,7 @@ namespace SimPe.Plugin.Anim
 		protected string name;
 
 		[DescriptionAttribute("Name of the selected Item")]
-		public string Name 
+		public virtual string Name 
 		{
 			get { return name; }
 			set { name = value; }

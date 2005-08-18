@@ -1056,7 +1056,11 @@ namespace SimPe.Packages
 		/// <returns></returns>
 		public static GeneratableFile CreateNew() 
 		{
-			return SimPe.Packages.GeneratableFile.LoadFromStream(new System.IO.BinaryReader(SimPe.Packages.GeneratableFile.LoadFromStream(null).Build()));
+			GeneratableFile gf = SimPe.Packages.GeneratableFile.LoadFromStream(new System.IO.BinaryReader(SimPe.Packages.GeneratableFile.LoadFromStream(null).Build()));
+			if (UserVerification.HaveValidUserId) 											
+				gf.Header.Created = UserVerification.UserId;
+			
+			return gf;
 		}
 
 		public override int GetHashCode()

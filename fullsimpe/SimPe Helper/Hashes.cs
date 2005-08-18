@@ -151,6 +151,30 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Returns a CRC32 hash for the passed string
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns></returns>
+		public static uint GetCrc32(string s)
+		{			
+			byte[] rt = crc32.ComputeHash(Helper.ToBytes(s, 0));//CRC24Seed, CRC24Poly, filename.ToCharArray());
+
+			return (uint)ToLong(rt);
+		}
+
+		/// <summary>
+		/// Returns a crc24 hash for the string
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns></returns>
+		public static uint GetCrc24(string s)
+		{			
+			byte[] rt = crc24.ComputeHash(Helper.ToBytes(s, 0));//CRC24Seed, CRC24Poly, filename.ToCharArray());
+
+			return (uint)ToLong(rt);
+		}
+
+		/// <summary>
 		/// Retruns the Filename without the Hash
 		/// </summary>
 		/// <param name="filename"></param>
@@ -209,6 +233,56 @@ namespace SimPe
 		public static string AssembleHashedFileName(uint hash, string filename)
 		{
 			return "#0x"+Helper.MinStrLength(hash.ToString("x"),8)+"!"+filename;
+		}
+	}
+
+	public class UserVerification
+	{
+		public static uint GenerateUserId(uint guid, string username, string password)
+		{			
+			if (username.Trim()=="") return 0;
+
+			uint hash = Hashes.GetCrc32(username) & 0xFFFFFFFE;
+			guid = (uint)(guid  << 8) & 0xFFFFFF00;
+			if (guid==0)			
+				return hash;
+
+			return ((hash | 0x00000001) & 0x000000FF) | guid;
+		}
+
+		public static bool ValidUserId(uint id, string username, string password)
+		{
+			if (username.Trim()=="") return id==0;
+			uint hash = Hashes.GetCrc32(username) & 0xFFFFFFFE;			
+
+			if ((id & 1) == 0) 			
+				return (id==hash);
+			
+			uint guid = GetUserGuid(id);
+			id = id & 0x000000FE;
+			hash = hash & 0x000000FE;
+			return (id==hash);
+		}
+
+		public static uint GetUserGuid(uint id)
+		{
+			uint guid = (id >> 8);
+			return guid;
+		}
+
+		public static bool HaveUserId
+		{
+			get {return (Helper.WindowsRegistry.CachedUserId!=0) && (Helper.WindowsRegistry.Username.Trim()!="");}
+		}
+
+		public static bool HaveValidUserId
+		{
+			get {return HaveUserId && ValidUserId(Helper.WindowsRegistry.CachedUserId, Helper.WindowsRegistry.Username, Helper.WindowsRegistry.Password);}
+		}
+
+		public static uint UserId
+		{
+			get { return Helper.WindowsRegistry.CachedUserId; }
 		}
 	}
 }

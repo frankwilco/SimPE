@@ -94,5 +94,15 @@ namespace SimPe.Plugin.Gmdc
 			get;
 			set;
 		}
+
+		/// <summary>
+		/// true, if you want SimPe to correct the Joint definitions, moving all rotations to the _root node, 
+		/// and all translations to the _trans node of a Joint pair.
+		/// </summary>
+		bool CorrectJointSetup
+		{
+			get;
+			set;
+		}
 	}
 }

@@ -153,6 +153,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label21;
 		internal System.Windows.Forms.ComboBox cbGroupJoint;
 		private System.Windows.Forms.LinkLabel llAssign;
+		private System.Windows.Forms.CheckBox cbCorrect;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -167,7 +168,7 @@ namespace SimPe.Plugin
 			{
 				InitializeComponent();		
 			}
-			catch (System.IO.FileNotFoundException ex)
+			catch (System.IO.FileNotFoundException)
 			{
 				WaitingScreen.Stop();
 				if (MessageBox.Show("The Microsoft Managed DirectX Extensions were not found on your System. Without them, the Preview is not available.\n\nYou can install them manually, by extracting the content of the DirectX\\ManagedDX.CAB on your Sims 2 Installation CD #1. If you double click on the extracted msi File, all needed Files will be installed.\n\nYou can also let SimPE install it automatically. SimPE will download the needed Files (3.5MB) from the SimPE Homepage and install them. Do you want SimPE to download and install the Files?", "Warning", MessageBoxButtons.YesNo)==DialogResult.Yes)
@@ -195,6 +196,7 @@ namespace SimPe.Plugin
 			lljointprev.Visible = Helper.WindowsRegistry.HiddenMode;
 
 
+			this.cbCorrect.Checked = Helper.WindowsRegistry.CorrectJointDefinitionOnExport;
 			SimPe.Plugin.Gmdc.ElementSorting[] vs = (SimPe.Plugin.Gmdc.ElementSorting[])System.Enum.GetValues(typeof(SimPe.Plugin.Gmdc.ElementSorting));
 			foreach (SimPe.Plugin.Gmdc.ElementSorting es in vs) {
 #if DEBUG
@@ -257,6 +259,7 @@ namespace SimPe.Plugin
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
 			this.lb_itemsa1 = new System.Windows.Forms.ListBox();
 			this.tMesh = new System.Windows.Forms.TabPage();
+			this.cbCorrect = new System.Windows.Forms.CheckBox();
 			this.dxprev = new Ambertation.Windows.Forms.DirectXPanel();
 			this.cbaxis = new System.Windows.Forms.ComboBox();
 			this.label12 = new System.Windows.Forms.Label();
@@ -705,6 +708,7 @@ namespace SimPe.Plugin
 			// tMesh
 			// 
 			this.tMesh.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.tMesh.Controls.Add(this.cbCorrect);
 			this.tMesh.Controls.Add(this.dxprev);
 			this.tMesh.Controls.Add(this.cbaxis);
 			this.tMesh.Controls.Add(this.label12);
@@ -722,6 +726,16 @@ namespace SimPe.Plugin
 			this.tMesh.Text = "3D Mesh";
 			this.tMesh.SizeChanged += new System.EventHandler(this.dxprev_SizeChanged);
 			// 
+			// cbCorrect
+			// 
+			this.cbCorrect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.cbCorrect.Location = new System.Drawing.Point(232, 264);
+			this.cbCorrect.Name = "cbCorrect";
+			this.cbCorrect.Size = new System.Drawing.Size(96, 32);
+			this.cbCorrect.TabIndex = 32;
+			this.cbCorrect.Text = "Correct Joint definition";
+			this.cbCorrect.CheckedChanged += new System.EventHandler(this.cbCorrect_CheckedChanged);
+			// 
 			// dxprev
 			// 
 			this.dxprev.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(128)), ((System.Byte)(255)));
@@ -736,7 +750,7 @@ namespace SimPe.Plugin
 			this.cbaxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbaxis.Location = new System.Drawing.Point(232, 240);
 			this.cbaxis.Name = "cbaxis";
-			this.cbaxis.Size = new System.Drawing.Size(96, 20);
+			this.cbaxis.Size = new System.Drawing.Size(96, 21);
 			this.cbaxis.TabIndex = 30;
 			this.cbaxis.SelectedIndexChanged += new System.EventHandler(this.ChangedAxis);
 			// 
@@ -2285,6 +2299,11 @@ namespace SimPe.Plugin
 			}
 		}
 
+		private void cbCorrect_CheckedChanged(object sender, System.EventArgs e)
+		{
+			Helper.WindowsRegistry.CorrectJointDefinitionOnExport = this.cbCorrect.Checked;
+		}
+
 		
 		private void llAssign_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
@@ -2723,7 +2742,7 @@ namespace SimPe.Plugin
 			}
 		}
 
-		public static void StartExport(System.Windows.Forms.SaveFileDialog sfd, GeometryDataContainer gmdc, string defext, GmdcGroups groups, ElementSorting sorting)
+		public static void StartExport(System.Windows.Forms.SaveFileDialog sfd, GeometryDataContainer gmdc, string defext, GmdcGroups groups, ElementSorting sorting, bool corjoints)
 		{
 			try
 			{
@@ -2752,7 +2771,8 @@ namespace SimPe.Plugin
 				{
 					//Now perfor the Export
 					IGmdcExporter exporter = ExporterLoader.Exporters[sfd.FilterIndex-1];
-					exporter.Component.Sorting = sorting;
+					exporter.Component.Sorting = sorting;	
+					exporter.CorrectJointSetup = corjoints;
 					if (!sfd.FileName.Trim().ToLower().EndsWith(exporter.FileExtension.Trim().ToLower())) sfd.FileName += exporter.FileExtension;
 
 					Stream s = exporter.Process(gmdc, groups);		
@@ -2777,7 +2797,7 @@ namespace SimPe.Plugin
 				if (this.tMesh.Tag != null)
 				{
 					GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
-					StartExport(sfd, gmdc, ".obj", GetModelsExt(), (ElementSorting)cbaxis.Items[cbaxis.SelectedIndex]);
+					StartExport(sfd, gmdc, ".obj", GetModelsExt(), (ElementSorting)cbaxis.Items[cbaxis.SelectedIndex], cbCorrect.Checked);
 					
 				}				
 			}

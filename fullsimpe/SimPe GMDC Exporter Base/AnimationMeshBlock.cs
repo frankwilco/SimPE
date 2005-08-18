@@ -186,7 +186,7 @@ namespace SimPe.Plugin.Anim
 			ab2 = new AnimationFrameBlock[GetPart2Count()];
 			for (int i=0; i<ab2.Length; i++) 
 			{
-				ab2[i] = new AnimationFrameBlock();
+				ab2[i] = new AnimationFrameBlock(this);
 				ab2[i].UnserializeData(reader);
 			}
 		}

@@ -460,7 +460,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			{
 				curanimblock = null;
 
-				ImportedFrameBlock ifb = new ImportedFrameBlock(new AnimationFrameBlock());
+				ImportedFrameBlock ifb = new ImportedFrameBlock(new AnimationFrameBlock(Gmdc.LinkedAnimation));
 				
 				
 				ifb.FrameBlock.Name = b.ImportedName;
@@ -468,7 +468,11 @@ namespace SimPe.Plugin.Gmdc.Importer
 				if (ifb.Target!=null) 				
 					ifb.FrameBlock.TransformationType = ifb.Target.TransformationType;
 				else 
+				{
 					ifb.FrameBlock.TransformationType = FrameType.Unknown;
+					if (b.ImportedName.EndsWith("_rot")) ifb.FrameBlock.TransformationType = FrameType.Rotation;
+					else if (b.ImportedName.EndsWith("_trans")) ifb.FrameBlock.TransformationType = FrameType.Translation;
+				}
 				ifb.FrameBlock.CreateBaseAxisSet(AnimationTokenType.SixByte);
 				curanimblock = ifb.FrameBlock;
 

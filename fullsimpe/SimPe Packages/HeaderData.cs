@@ -138,16 +138,23 @@ namespace SimPe.Packages
 		/// Createion Date of the File
 		/// </summary>
 #if DEBUG
-		public Int32 created;
+		public uint created;
 
-		[DescriptionAttribute("Creation Date of the Package"), CategoryAttribute("Debug")]						
-		public Int32 Created 
+		[DescriptionAttribute("Creation Date of the Package"), CategoryAttribute("Debug"), ReadOnly(true)]						
+		
+#else
+		public uint Ident
+		{
+			get {return Created;}
+		}
+		internal uint created;
+		[DescriptionAttribute("Creation Date of the Package"), CategoryAttribute("Debug"), Browsable(false)]
+#endif
+		public uint Created 
 		{
 			get { return created; }
+			set { created = value; }
 		}
-#else
-		internal Int32 created;
-#endif
 
 		/// <summary>
 		/// Modification Date of the File
@@ -267,7 +274,7 @@ namespace SimPe.Packages
 			//this.reserved_00 = new Int32[3];
 			for (uint i=0; i<this.reserved_00.Length; i++) this.reserved_00[i] = reader.ReadInt32();
 
-			this.created = reader.ReadInt32();
+			this.created = reader.ReadUInt32();
 			this.modified = reader.ReadInt32();
 
 			this.index.type = reader.ReadInt32();

@@ -29,10 +29,11 @@ namespace SimPe.Cache
 	{
 		None = 0x00,
 		Object = 0x01,
-		MaterialOverride = 0x02,
+		MaterialOverride = 0x02,		
 		Want = 0x03,
 		Memory = 0x04,
-		Package = 0x05
+		Package = 0x05,
+		Rcol = 0x06
 	};
 
 	/// <summary>
@@ -188,6 +189,17 @@ namespace SimPe.Cache
 							
 								break;
 							}	
+							case ContainerType.Rcol:
+							{														
+								for (int i=0; i<count; i++) 
+								{
+									RcolCacheItem oci = new RcolCacheItem();
+									oci.Load(reader);
+									items.Add(oci);
+								}
+							
+								break;
+							}								
 							case ContainerType.Want:
 							{														
 								for (int i=0; i<count; i++) 
