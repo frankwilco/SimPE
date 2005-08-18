@@ -479,7 +479,7 @@ namespace SimPe
 			string res = "";			
 			l = l>>16;			
 			l = l>>16;
-			res = (l & 0xffff).ToString()+"."+res;
+			res = (l & 0xffff).ToString();
 			l = l>>16;
 			res = (l & 0xffff).ToString()+"."+res;		
 			return res;

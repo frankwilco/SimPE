@@ -122,6 +122,17 @@ namespace SimPe.Plugin.Gmdc
 			set { order = value; }
 		}
 
+		bool cjs;
+		/// <summary>
+		/// true, if you want SimPe to correct the Joint definitions, moving all rotations to the _root node, 
+		/// and all translations to the _trans node of a Joint pair.
+		/// </summary>
+		public bool CorrectJointSetup
+		{
+			get { return cjs; }
+			set { cjs = value; }
+		}
+
 		/// <summary>
 		/// Create a new Instance
 		/// </summary>
@@ -148,6 +159,7 @@ namespace SimPe.Plugin.Gmdc
 		{
 			this.gmdc = null;
 			this.order = new ElementOrder(ElementSorting.XZY);
+			this.cjs = false;
 		}
 
 		/// <summary>

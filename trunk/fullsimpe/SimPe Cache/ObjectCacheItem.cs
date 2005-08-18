@@ -178,7 +178,7 @@ namespace SimPe.Cache
 							int v = (int)Math.Pow(2, i);
 							if ((lower & v) != 0) 
 							{
-								Data.ObjFunctionSubSort mss = (Data.ObjFunctionSubSort)(((vu&0xff)<<8) | (v & 0xff));
+								Data.ObjFunctionSubSort mss = (Data.ObjFunctionSubSort)(((vu&0xfff)<<8) | (v & 0xff));
 								string[] ps = mss.ToString().Split("_".ToCharArray(), 2);
 								if (ps.Length>=2) { list.Add(new string[] {ps[0], ps[1]});	 added = true; }
 								else if (ps.Length==1) { list.Add(new string[] {s.ToString()}); added = true; }

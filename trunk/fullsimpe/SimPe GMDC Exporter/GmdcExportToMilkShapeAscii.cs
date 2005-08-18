@@ -251,25 +251,35 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			IntArrayList js = Gmdc.SortJoints(relationmap);
 			ArrayList animbname = new ArrayList();
 
-			//Correct the Exported Joint Definitions in a way that _trans 
-			//Joint sonly conatin Translations and _rot Joints only contain Rotations
 			Hashtable correct_rot = new Hashtable();
 			Hashtable correct_trans = new Hashtable();
-			foreach (int i in js)
+			if (this.CorrectJointSetup) 
 			{
-				if (i>=Gmdc.Model.Transformations.Length) break;
-				string name = Gmdc.Joints[i].Name;
-				if (name.EndsWith("_rot"))
+				//Correct the Exported Joint Definitions in a way that _trans 
+				//Joint sonly conatin Translations and _rot Joints only contain Rotations
+				
+				foreach (int i in js)
 				{
-					correct_trans[name] = Gmdc.Joints[i].AssignedTransformNode.Translation.GetInverse();
-					name = name.Substring(0, name.Length-4)+"_trans";
-					correct_trans[name] = Gmdc.Joints[i].AssignedTransformNode.Translation ;
-				} 
-				else if (name.EndsWith("_trans"))
-				{
-					correct_rot[name] = Gmdc.Joints[i].AssignedTransformNode.Rotation.GetInverse();
-					name = name.Substring(0, name.Length-6)+"_rot";
-					correct_rot[name] = Gmdc.Joints[i].AssignedTransformNode.Rotation;
+					if (i>=Gmdc.Model.Transformations.Length) break;
+					string name = Gmdc.Joints[i].Name;
+					if (name.EndsWith("_rot"))
+					{
+						string aname = name.Substring(0, name.Length-4)+"_trans";
+						if (Gmdc.Joints.Contains(aname))
+						{
+							correct_trans[name] = Gmdc.Joints[i].AssignedTransformNode.Translation.GetInverse();						
+							correct_trans[aname] = Gmdc.Joints[i].AssignedTransformNode.Translation ;
+						}
+					} 
+					else if (name.EndsWith("_trans"))
+					{
+						string aname = name.Substring(0, name.Length-6)+"_rot";
+						if (Gmdc.Joints.Contains(aname))
+						{
+							correct_rot[name] = Gmdc.Joints[i].AssignedTransformNode.Rotation.GetInverse();						
+							correct_rot[aname] = Gmdc.Joints[i].AssignedTransformNode.Rotation;
+						}
+					}
 				}
 			}
 
@@ -296,12 +306,12 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				{		
 					
 					Vector3f t = Gmdc.Joints[i].AssignedTransformNode.Translation;
-					t = Correct(t, correct_trans[Gmdc.Joints[i].Name]);
+					if (this.CorrectJointSetup) t = Correct(t, correct_trans[Gmdc.Joints[i].Name]);
 
 					//t = Gmdc.Joints[i].AssignedTransformNode.Rotation.Rotate(t);
 					t = Component.TransformScaled(t);
 					Quaternion q = Gmdc.Joints[i].AssignedTransformNode.Rotation;
-					q = Correct(q, correct_rot[Gmdc.Joints[i].Name]);
+					if (this.CorrectJointSetup) q = Correct(q, correct_rot[Gmdc.Joints[i].Name]);
 					Vector3f r = q.Axis;
 					r = Component.Transform(r);
 					q = Quaternion.FromAxisAngle(r, q.Angle);					

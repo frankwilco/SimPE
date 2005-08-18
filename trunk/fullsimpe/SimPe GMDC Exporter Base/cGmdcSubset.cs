@@ -381,6 +381,21 @@ namespace SimPe.Plugin.Gmdc
 		}		
 
 		/// <summary>
+		/// Checks weteher or not a Joint with the passed name is stored in the List
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public bool Contains(string name)
+		{
+			name = name.Trim().ToLower();
+			foreach (GmdcJoint gj in this)
+				if (gj.Name.Trim().ToLower()==name) 
+					return true;
+
+			return false;
+		}
+
+		/// <summary>
 		/// Number of stored Elements
 		/// </summary>
 		public int Length 

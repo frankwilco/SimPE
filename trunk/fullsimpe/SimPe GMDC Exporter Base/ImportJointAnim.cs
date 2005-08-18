@@ -65,7 +65,8 @@ namespace SimPe.Plugin.Anim
 			tm.AddControl(this.gbgroups);
 
 			this.cbaction.Items.Add(AnimImporterAction.Nothing);
-			this.cbaction.Items.Add(AnimImporterAction.Replace);
+			this.cbaction.Items.Add(AnimImporterAction.Add);
+			this.cbaction.Items.Add(AnimImporterAction.Replace);			
 		}
 
 		/// <summary>

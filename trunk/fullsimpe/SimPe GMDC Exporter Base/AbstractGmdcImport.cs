@@ -610,6 +610,8 @@ namespace SimPe.Plugin.Gmdc
 				{		
 					if (ifb.Action == AnimImporterAction.Replace) 					
 						ifb.ReplaceFrames();
+					else if (ifb.Action == AnimImporterAction.Add)
+						ifb.AddFrameBlock(Gmdc.LinkedAnimation);
 				}
 			}
 

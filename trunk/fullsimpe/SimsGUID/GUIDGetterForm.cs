@@ -308,6 +308,15 @@ namespace Sims.GUID
 			return (uint)(((userguid<<8)&0xffffff00) + (objguid&0x000000ff));
 		}
 
+		public static uint GetUserGuid(string username, string password)
+		{
+			Sims.GUID.Service.SimGUIDService service = new Sims.GUID.Service.SimGUIDService();
+			uint userguid = 0xf000000;
+			if (username.Trim()!="") userguid = (uint)service.loginUser(username, password);
+
+			return userguid;
+		}
+
 		public uint GetNewGUID(string user, string password, uint defguid) 
 		{
 			lluse.Enabled = false;

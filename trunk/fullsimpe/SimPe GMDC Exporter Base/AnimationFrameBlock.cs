@@ -31,6 +31,13 @@ namespace SimPe.Plugin.Anim
 	{
 		
 		#region Attributes
+		AnimationMeshBlock parent;
+		[Browsable(false)]
+		public AnimationMeshBlock Parent
+		{
+			get {return parent;}
+		}
+
 		AnimationAxisTransformBlock[] ab3;
 		[BrowsableAttribute(false)]
 		public AnimationAxisTransformBlock[] AxisSet
@@ -203,7 +210,7 @@ namespace SimPe.Plugin.Anim
 		{
 			get 
 			{
-				uint i = Unknown5 & 0x00F00000;
+				uint i = Unknown5 & 0x01F00000;
 				i = i >> 20;
 				return (FrameType)((byte)i);
 			}
@@ -211,8 +218,8 @@ namespace SimPe.Plugin.Anim
 			{
 				uint i = (uint)value;
 				i = i << 20;
-				i = i & 0x00F00000;
-				Unknown5 = (uint)((Unknown5 & 0xFF0FFFFF) | i);
+				i = i & 0x01F00000;
+				Unknown5 = (uint)((Unknown5 & 0xFE0FFFFF) | i);
 			}
 		}
 
@@ -233,6 +240,17 @@ namespace SimPe.Plugin.Anim
 			}
 		}
 
+		public override string Name
+		{
+			get{ return base.Name; }
+			set
+			{
+				base.Name = value;
+				this.NameChecksum = this.GeneratedNameChecksum;
+			}
+		}
+
+
 		[DescriptionAttribute("Highest 3 Bits (Bit 31-29) contain the Number of assigned AnimationAxisTransformBlock Items, Bits 16-23 describe the Transformation Type (0=Translation, C=Rotation). Bits 0-15 Decode the Time this Animation Runs.")]
 		public uint Unknown5 
 		{
@@ -245,15 +263,15 @@ namespace SimPe.Plugin.Anim
 		{
 			get 
 			{ 
-				uint i = Unknown5 & 0x1F000000;		
-				i = i >> 24;
+				uint i = Unknown5 & 0x1E000000;		
+				i = i >> 25;
 				return (byte) i;
 			}
 		
 			set 
 			{
-				uint i = ((uint)value << 24) & 0x1F000000;
-				Unknown5 = (Unknown5 & 0xE0FFFFFF) | i;
+				uint i = ((uint)value << 24) & 0x1E000000;
+				Unknown5 = (Unknown5 & 0xE1FFFFFF) | i;
 			}
 		}
 
@@ -291,7 +309,7 @@ namespace SimPe.Plugin.Anim
 
 		public AnimationFrameBlock CloneBase(bool fullclone)
 		{
-			AnimationFrameBlock ab = new AnimationFrameBlock();
+			AnimationFrameBlock ab = new AnimationFrameBlock(this.parent);
 
 			ab.datai = (uint[])this.datai.Clone();
 			ab.name = this.name;				
@@ -330,7 +348,7 @@ namespace SimPe.Plugin.Anim
 			}
 		}
 
-		public void SetTransformationType(AnimationTokenType t)
+		public void SetTokenType(AnimationTokenType t)
 		{
 			for (int i=0; i<AxisCount; i++) 			
 				ab3[i].Type = t;			
@@ -387,9 +405,15 @@ namespace SimPe.Plugin.Anim
 			AddFrame(tc, (float)v.X, (float)v.Y, (float)v.Z, linear);
 		}
 
-		public AnimationFrameBlock() 
+		public AnimationFrameBlock(AnimationMeshBlock parent) 
 		{
+			this.parent = parent;
 			datai = new uint[6];	
+			datai[0] = 297403888;
+			datai[1] = 297403888;
+			datai[3] = 297403888;
+			datai[5] = 297403888;
+			this.Unknown5Bits = 15;
 			ab3 = new AnimationAxisTransformBlock[0];
 			this.TransformationType = FrameType.Unknown;
 		}
@@ -426,11 +450,7 @@ namespace SimPe.Plugin.Anim
 		/// <param name="writer">The Stream that receives the Data</param>
 		internal void SerializeData(System.IO.BinaryWriter writer)
 		{
-			this.SetPart3Count(ab3.Length);
-			this.NameChecksum = this.GeneratedNameChecksum;
-
-			//Make sur the Duration is written correct			
-			this.Duration = GetDuration();
+			this.SetPart3Count(ab3.Length);			
 
 			writer.Write(datai[0]);
 			writer.Write(datai[1]);

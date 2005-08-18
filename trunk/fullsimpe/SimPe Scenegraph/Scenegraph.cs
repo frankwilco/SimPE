@@ -745,6 +745,7 @@ namespace SimPe.Plugin
 			return ret;
 		}
 
+		#region Wallmask
 		/// <summary>
 		/// Load all pending Wallmask Files
 		/// </summary>
@@ -769,14 +770,40 @@ namespace SimPe.Plugin
 			modelname =modelname.Trim().ToLower();
 			if (modelname.EndsWith("_cres")) modelname = modelname.Substring(0, modelname.Length-5);
 				
-			foreach (string s in list)
+			//this applies to all found NameMaps for TXTR Files
+			ArrayList foundnames = new ArrayList();
+			Interfaces.Scenegraph.IScenegraphFileIndexItem[] namemapitems = FileTable.FileIndex.FindFile(Data.MetaData.NAME_MAP, 0x52737256, Data.MetaData.TXMT, null);
+			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem namemap in namemapitems)
+			{
+				SimPe.Plugin.Nmap nmap = new Nmap(null);
+				nmap.ProcessData(namemap);
+
+				foreach (NmapItem ni in nmap.Items)
+				{
+					string name = ni.Filename.Trim().ToLower();
+					if (name.StartsWith(modelname+"_") && name.EndsWith("_wallmask_txmt")) 
+					{						
+						Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(name, Data.MetaData.TXMT, ni.Group, true);
+
+						if (item!=null) 
+						{
+							if (!foundnames.Contains(item.FileDescriptor))
+							{
+								foundnames.Add(item.FileDescriptor);
+								txmt.Add(item);
+							}
+						}
+					}
+				}
+			}
+			/*foreach (string s in list)
 			{
 				string nmn = modelname + "_" + s + "_wallmask_txmt";
 
 				Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(nmn, Data.MetaData.TXMT, Data.MetaData.LOCAL_GROUP, true);
 
 				if (item!=null) txmt.Add(item);
-			}
+			}*/
 
 			return txmt;
 		}
@@ -800,7 +827,9 @@ namespace SimPe.Plugin
 				}
 			}			
 		}
+		#endregion
 
+		#region ANIM
 		/// <summary>
 		/// Load a ANIM Resource
 		/// </summary>
@@ -837,8 +866,10 @@ namespace SimPe.Plugin
 				}
 			}			
 		}
+		#endregion
 		
 
+		#region 3IDR
 		/// <summary>
 		/// Add Resources referenced from 3IDR Files
 		/// </summary>
@@ -872,5 +903,6 @@ namespace SimPe.Plugin
 				
 			}			
 		}
+		#endregion
 	}
 }

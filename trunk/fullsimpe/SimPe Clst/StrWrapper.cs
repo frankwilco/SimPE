@@ -277,6 +277,22 @@ namespace SimPe.PackedFiles.Wrapper
 					this.Remove(si);
 		}
 
+		/// <summary>
+		/// Copy the content of the Default Language down to the other Languages
+		/// </summary>
+		public void CopyFromDefaultToAll()
+		{
+			StrItemList sil = this.Items;
+			StrItemList def = this.LanguageItems(new StrLanguage(1));
+			foreach (StrItem si in sil) 
+				if (si.Language.Id!=1) 				
+					if (si.Index>0 && si.Index<def.Count)
+					{
+						si.Title = def[si.Index].Title;
+						si.Description = def[si.Index].Description;
+					}				
+		}
+
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
 		{

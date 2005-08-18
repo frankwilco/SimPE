@@ -364,6 +364,24 @@ namespace SimPe
 			}
 		}
 
+		/// <summary>
+		/// the cached UserId
+		/// </summary>
+		public uint CachedUserId
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("CUi", 0);
+				return Convert.ToUInt32(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("CUi", value);
+			}
+		}
+
 		
 
 		/// <summary>
@@ -857,6 +875,24 @@ namespace SimPe
 			{
 				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
 				rkf.SetValue("GraphQuality", value);
+			}
+		}
+
+		/// <summary>
+		/// true, if the user did want to correct the Joint definitions during the last Export
+		/// </summary>
+		public bool CorrectJointDefinitionOnExport
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("CorrectJointDefinitionOnExport", false);
+				return Convert.ToBoolean(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("CorrectJointDefinitionOnExport", value);
 			}
 		}
 

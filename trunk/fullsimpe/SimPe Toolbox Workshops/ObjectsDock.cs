@@ -872,9 +872,9 @@ Another reason might be, that the selected Object ""borrows"" it's Textures from
 			if (a==null) return;
 
 			
-			string[][] cats = oci.ObjectCategory;
+			string[][] cats = oci.ObjectCategory;			
 			foreach (string[] ss in cats)				
-			{
+			{			
 				this.tv.BeginInvoke(new GetParentNodeHandler(ObjectLoader.GetParentNode), new object[] {tv.Nodes, ss, 0, oci, a, ilist});				
 			}
 

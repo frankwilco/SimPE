@@ -41,6 +41,10 @@ namespace SimPe.Plugin.Anim
 		private SimPe.Plugin.Anim.AnimFrameBlockControl pnFrames;
 		private System.Windows.Forms.LinkLabel llExport;
 		private System.Windows.Forms.LinkLabel llImport;
+		private Ambertation.Windows.Forms.TransparentCheckBox cbCorrect;
+		private System.Windows.Forms.MenuItem miAdd;
+		private System.Windows.Forms.MenuItem miRem;
+		private System.Windows.Forms.ContextMenu cmJoint;
 		/// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -60,8 +64,20 @@ namespace SimPe.Plugin.Anim
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
 			InitializeComponent();
 
+			this.pnFrames = new AnimFrameBlockControl();
+			this.pnFrames.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnFrames.FrameBlock = null;
+			this.pnFrames.Location = new System.Drawing.Point(0, 32);
+			this.pnFrames.Name = "pnFrames";
+			this.pnFrames.Size = new System.Drawing.Size(776, 368);
+			this.pnFrames.TabIndex = 3;
+			this.pnFrames.Changed += new System.EventHandler(this.pnFrames_Changed);
+			this.Controls.Add(this.pnFrames);
+			pnFrames.BringToFront();
+
 			Clear();
 
+			this.cbCorrect.Checked = Helper.WindowsRegistry.CorrectJointDefinitionOnExport;
 		}
 
 		/// <summary> 
@@ -86,8 +102,8 @@ namespace SimPe.Plugin.Anim
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.pnFrames = new SimPe.Plugin.Anim.AnimFrameBlockControl();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.cbCorrect = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.llExport = new System.Windows.Forms.LinkLabel();
 			this.llImport = new System.Windows.Forms.LinkLabel();
 			this.pnJoint = new System.Windows.Forms.Panel();
@@ -96,23 +112,17 @@ namespace SimPe.Plugin.Anim
 			this.pnSubMesh = new System.Windows.Forms.Panel();
 			this.cbSubMesh = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
+			this.cmJoint = new System.Windows.Forms.ContextMenu();
+			this.miAdd = new System.Windows.Forms.MenuItem();
+			this.miRem = new System.Windows.Forms.MenuItem();
 			this.panel2.SuspendLayout();
 			this.pnJoint.SuspendLayout();
 			this.pnSubMesh.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// pnFrames
-			// 
-			this.pnFrames.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnFrames.FrameBlock = null;
-			this.pnFrames.Location = new System.Drawing.Point(0, 32);
-			this.pnFrames.Name = "pnFrames";
-			this.pnFrames.Size = new System.Drawing.Size(776, 368);
-			this.pnFrames.TabIndex = 3;
-			this.pnFrames.Changed += new System.EventHandler(this.pnFrames_Changed);
-			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.cbCorrect);
 			this.panel2.Controls.Add(this.llExport);
 			this.panel2.Controls.Add(this.llImport);
 			this.panel2.Controls.Add(this.pnJoint);
@@ -122,6 +132,16 @@ namespace SimPe.Plugin.Anim
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(776, 32);
 			this.panel2.TabIndex = 4;
+			// 
+			// cbCorrect
+			// 
+			this.cbCorrect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cbCorrect.Location = new System.Drawing.Point(584, 0);
+			this.cbCorrect.Name = "cbCorrect";
+			this.cbCorrect.Size = new System.Drawing.Size(88, 32);
+			this.cbCorrect.TabIndex = 44;
+			this.cbCorrect.Text = "correct Joint Definition";
+			this.cbCorrect.CheckedChanged += new System.EventHandler(this.cbCorrect_CheckedChanged);
 			// 
 			// llExport
 			// 
@@ -154,22 +174,23 @@ namespace SimPe.Plugin.Anim
 			this.pnJoint.Controls.Add(this.cbJoint);
 			this.pnJoint.Controls.Add(this.label1);
 			this.pnJoint.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnJoint.Location = new System.Drawing.Point(280, 0);
+			this.pnJoint.Location = new System.Drawing.Point(256, 0);
 			this.pnJoint.Name = "pnJoint";
-			this.pnJoint.Size = new System.Drawing.Size(312, 32);
+			this.pnJoint.Size = new System.Drawing.Size(248, 32);
 			this.pnJoint.TabIndex = 7;
 			// 
 			// cbJoint
 			// 
 			this.cbJoint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
+			this.cbJoint.ContextMenu = this.cmJoint;
 			this.cbJoint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbJoint.Location = new System.Drawing.Point(34, 0);
 			this.cbJoint.Name = "cbJoint";
-			this.cbJoint.Size = new System.Drawing.Size(278, 21);
+			this.cbJoint.Size = new System.Drawing.Size(214, 21);
+			this.cbJoint.Sorted = true;
 			this.cbJoint.TabIndex = 3;
 			this.cbJoint.SelectedIndexChanged += new System.EventHandler(this.cbSubMesh_SelectedIndexChanged);
-			this.cbJoint.Sorted = true;
 			// 
 			// label1
 			// 
@@ -187,7 +208,7 @@ namespace SimPe.Plugin.Anim
 			this.pnSubMesh.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnSubMesh.Location = new System.Drawing.Point(0, 0);
 			this.pnSubMesh.Name = "pnSubMesh";
-			this.pnSubMesh.Size = new System.Drawing.Size(280, 32);
+			this.pnSubMesh.Size = new System.Drawing.Size(256, 32);
 			this.pnSubMesh.TabIndex = 8;
 			// 
 			// cbSubMesh
@@ -197,7 +218,7 @@ namespace SimPe.Plugin.Anim
 			this.cbSubMesh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbSubMesh.Location = new System.Drawing.Point(56, 0);
 			this.cbSubMesh.Name = "cbSubMesh";
-			this.cbSubMesh.Size = new System.Drawing.Size(214, 21);
+			this.cbSubMesh.Size = new System.Drawing.Size(190, 21);
 			this.cbSubMesh.TabIndex = 5;
 			this.cbSubMesh.SelectedIndexChanged += new System.EventHandler(this.cbSubMesh_SelectedIndexChanged_1);
 			// 
@@ -210,9 +231,28 @@ namespace SimPe.Plugin.Anim
 			this.label2.Text = "SubMesh:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
+			// cmJoint
+			// 
+			this.cmJoint.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+																					this.miAdd,
+																					this.miRem});
+			// 
+			// miAdd
+			// 
+			this.miAdd.Enabled = false;
+			this.miAdd.Index = 0;
+			this.miAdd.Text = "&Create Joint";
+			this.miAdd.Click += new System.EventHandler(this.miAdd_Click);
+			// 
+			// miRem
+			// 
+			this.miRem.Enabled = false;
+			this.miRem.Index = 1;
+			this.miRem.Text = "&Remove Joint";
+			this.miRem.Click += new System.EventHandler(this.miRem_Click);
+			// 
 			// AnimMeshBlockControl
 			// 
-			this.Controls.Add(this.pnFrames);
 			this.Controls.Add(this.panel2);
 			this.Name = "AnimMeshBlockControl";
 			this.Size = new System.Drawing.Size(776, 400);
@@ -298,6 +338,9 @@ namespace SimPe.Plugin.Anim
 			RefreshData((AnimationMeshBlock)cbSubMesh.SelectedItem);
 			llImport.Enabled = cbSubMesh.SelectedItem != null;
 			llExport.Enabled = llImport.Enabled;
+
+			this.miAdd.Enabled = (cbJoint.Items.Count>0);
+			this.miRem.Enabled = (cbJoint.Items.Count>0);
 		}
 
 		#region Events
@@ -318,7 +361,7 @@ namespace SimPe.Plugin.Anim
 				GeometryDataContainer gdc = (GeometryDataContainer)gmdc.Blocks[0];
 				gdc.LinkedAnimation = ab1;
 
-				fGeometryDataContainer.StartExport(new System.Windows.Forms.SaveFileDialog(), gdc, ".txt", gdc.Groups, (SimPe.Plugin.Gmdc.ElementSorting)fGeometryDataContainer.DefaultSelectedAxisIndex);
+				fGeometryDataContainer.StartExport(new System.Windows.Forms.SaveFileDialog(), gdc, ".txt", gdc.Groups, (SimPe.Plugin.Gmdc.ElementSorting)fGeometryDataContainer.DefaultSelectedAxisIndex, this.cbCorrect.Checked);
 			} 
 			else 
 			{
@@ -343,6 +386,42 @@ namespace SimPe.Plugin.Anim
 			{
 				Helper.ExceptionMessage(new Warning("Unable to Find Model File for \""+ab1.Name+"\".", "SimPe was not able to Find the Model File that defines the specified Hirarchy. The Animation will not get exported!"));
 			}
+		}
+
+		private void miAdd_Click(object sender, System.EventArgs e)
+		{
+			AnimationMeshBlock ab1 = (AnimationMeshBlock)cbSubMesh.SelectedItem;
+			if (ab1!=null) 
+			{
+				AnimationFrameBlock afb = new AnimationFrameBlock(ab1);
+				afb.Name = "SimPE Dummy";
+				afb.TransformationType = FrameType.Rotation;
+				afb.CreateBaseAxisSet();
+
+				ab1.Part2 = (AnimationFrameBlock[])Helper.Add(ab1.Part2, afb);
+
+				cbJoint.Items.Add(afb);
+				cbJoint.SelectedIndex = cbJoint.Items.Count-1;
+			}
+		}
+
+		private void miRem_Click(object sender, System.EventArgs e)
+		{
+			AnimationMeshBlock ab1 = (AnimationMeshBlock)cbSubMesh.SelectedItem;
+			AnimationFrameBlock afb = (AnimationFrameBlock)cbJoint.SelectedItem;
+			if (ab1!=null && afb!=null)
+			{
+				ab1.Part2 = (AnimationFrameBlock[])Helper.Delete(ab1.Part2, afb);
+				int sel = cbJoint.SelectedIndex+1;
+				if (sel>=cbJoint.Items.Count) sel = cbJoint.Items.Count-1;
+				cbJoint.Items.Remove(afb);
+				cbJoint.SelectedIndex = sel;
+			}
+		}
+
+		private void cbCorrect_CheckedChanged(object sender, System.EventArgs e)
+		{
+			Helper.WindowsRegistry.CorrectJointDefinitionOnExport = this.cbCorrect.Checked;
 		}
 
 	}

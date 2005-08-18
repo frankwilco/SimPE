@@ -349,6 +349,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			if (id<names.Length) 
 			{	
 				string name = names[id];
+				//does the nodes list already contain a Node with this Name?
 				foreach (TreeNode tn in nodes) 
 				{
 					if (tn.Text.Trim().ToLower() == name.Trim().ToLower())
@@ -357,11 +358,14 @@ namespace SimPe.Plugin.Tool.Dockable
 						if (id<names.Length-1) 
 							ret = GetParentNode(tn.Nodes, names, id+1, oci, a, ilist);
 
+						if (ret==null) ret = tn;
+
 						break;
 					}
 				}
 			}
 
+			//no Node with this Name found so far, create one
 			if (ret==null) 
 			{
 				if (id<names.Length) ret = new TreeNode(names[id]);
@@ -370,6 +374,9 @@ namespace SimPe.Plugin.Tool.Dockable
 				nodes.Add(ret);
 				ret.SelectedImageIndex = 0;
 				ret.ImageIndex = 0;
+
+				if (id<names.Length-1) 
+					ret = GetParentNode(ret.Nodes, names, id+1, oci, a, ilist);
 			}
 
 			if (id==0) 

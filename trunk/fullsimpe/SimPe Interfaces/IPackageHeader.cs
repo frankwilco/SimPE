@@ -97,5 +97,14 @@ namespace SimPe.Interfaces.Files
 		{
 			get;
 		}
+
+		/// <summary>
+		/// This is missused in SimPE as a Unique Creator ID
+		/// </summary>
+		uint Created
+		{
+			get;
+			set;
+		}
 	}
 }

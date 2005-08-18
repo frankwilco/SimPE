@@ -174,16 +174,6 @@
                     Project = "{97551C0A-6295-4E32-8E15-A4FF456E65A6}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
-                <Reference
-                    Name = "SimPe RCOL"
-                    Project = "{74517907-2236-4C45-80ED-E188D5E5CE0E}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Scenegraph"
-                    Project = "{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
             </References>
         </Build>
         <Files>

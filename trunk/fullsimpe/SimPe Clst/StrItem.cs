@@ -209,6 +209,10 @@ namespace SimPe.PackedFiles.Wrapper
 
 
 		#region Accessor methods
+		internal int Index
+		{
+			get {return index; }
+		}
 		/// <summary>
 		/// Language is read-only
 		/// </summary>

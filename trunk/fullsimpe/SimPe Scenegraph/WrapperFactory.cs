@@ -92,6 +92,7 @@ namespace SimPe.Plugin
 			{			
 				InitRcolBlocks();
 				IWrapper[] wrappers = {
+										  new RefFile(),
 										  new Plugin.Txtr(this.LinkedProvider, false),
 										  //new Plugin.Matd(this.LinkedProvider, false),
 										  new Plugin.Lifo(this.LinkedProvider, false),

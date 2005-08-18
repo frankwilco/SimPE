@@ -77,6 +77,7 @@ namespace SimPe.Plugin
 			form.lldelete.Enabled = false;
 			form.btup.Enabled = false;
 			form.btdown.Enabled = false;
+			form.miRem.Enabled = false;
 			form.lblist.Items.Clear();
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in mywrapper.Items) 
 			{

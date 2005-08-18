@@ -35,7 +35,6 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Holds a reference to the Form containing the UI Panel
 		/// </summary>
-		internal static RefFileForm form = new RefFileForm();
 		#region AbstractWrapperFactory Member
 		/// <summary>
 		/// Returns a List of all available Plugins in this Package
@@ -47,7 +46,6 @@ namespace SimPe.Plugin
 			{
 				// TODO:  You can add more Wrappers here
 				IWrapper[] wrappers = {
-										  new RefFile(),
 										  new Nmap(this.LinkedProvider)
 									  };
 				return wrappers;

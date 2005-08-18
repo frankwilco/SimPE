@@ -263,7 +263,20 @@ namespace SimPe.Plugin
 					if (old=="") old = " ";
 					if (auto) 
 					{
-						string secname = newname.Replace(old, username);
+						string secname = "";
+						if (newname.EndsWith("_anim")) 
+						{
+							secname = newname.Replace(old, "");
+							int pos = secname.IndexOf("-");
+							if (pos>=0 && pos<secname.Length-1) pos = secname.IndexOf("-", pos+1);
+
+							if (pos>=0 && pos<secname.Length-1)															
+								secname = secname.Substring(0, pos+1) + username + "-" + secname.Substring(pos+1);								
+							else 
+								secname = "";
+						} 
+						if (secname=="")
+							secname = newname.Replace(old, username);
 						if ((secname==newname) && (old!=username.Trim().ToLower())) secname = username+"__"+secname;
 						newname = secname;						
 					}
