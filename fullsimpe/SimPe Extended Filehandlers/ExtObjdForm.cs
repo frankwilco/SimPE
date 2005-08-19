@@ -153,15 +153,16 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnobjd.Controls.Add(this.linkLabel1);
 			this.pnobjd.Location = new System.Drawing.Point(8, 8);
 			this.pnobjd.Name = "pnobjd";
-			this.pnobjd.Size = new System.Drawing.Size(736, 328);
+			this.pnobjd.Size = new System.Drawing.Size(680, 328);
 			this.pnobjd.TabIndex = 6;
 			// 
 			// lbIsOk
 			// 
-			this.lbIsOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lbIsOk.Location = new System.Drawing.Point(424, 104);
+			this.lbIsOk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lbIsOk.Location = new System.Drawing.Point(384, 104);
 			this.lbIsOk.Name = "lbIsOk";
-			this.lbIsOk.Size = new System.Drawing.Size(240, 23);
+			this.lbIsOk.Size = new System.Drawing.Size(224, 23);
 			this.lbIsOk.TabIndex = 29;
 			this.lbIsOk.Text = "Please commit!";
 			this.lbIsOk.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -186,7 +187,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tc.Location = new System.Drawing.Point(8, 136);
 			this.tc.Name = "tc";
 			this.tc.SelectedIndex = 0;
-			this.tc.Size = new System.Drawing.Size(720, 184);
+			this.tc.Size = new System.Drawing.Size(664, 184);
 			this.tc.TabIndex = 26;
 			this.tc.SelectedIndexChanged += new System.EventHandler(this.CangedTab);
 			// 
@@ -196,12 +197,13 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tpcatalogsort.Controls.Add(this.groupBox1);
 			this.tpcatalogsort.Location = new System.Drawing.Point(4, 22);
 			this.tpcatalogsort.Name = "tpcatalogsort";
-			this.tpcatalogsort.Size = new System.Drawing.Size(712, 158);
+			this.tpcatalogsort.Size = new System.Drawing.Size(656, 158);
 			this.tpcatalogsort.TabIndex = 0;
 			this.tpcatalogsort.Text = "Catalog Sort";
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.cbaspiration);
 			this.groupBox2.Controls.Add(this.cbhobby);
 			this.groupBox2.Controls.Add(this.cbappliances);
@@ -216,7 +218,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.groupBox2.Controls.Add(this.label1);
 			this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox2.Location = new System.Drawing.Point(352, 8);
+			this.groupBox2.Location = new System.Drawing.Point(312, 8);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(336, 144);
 			this.groupBox2.TabIndex = 17;
@@ -359,7 +361,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.groupBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox1.Location = new System.Drawing.Point(8, 8);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(328, 112);
+			this.groupBox1.Size = new System.Drawing.Size(296, 112);
 			this.groupBox1.TabIndex = 16;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Room Sort";
@@ -370,7 +372,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbkids.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbkids.Location = new System.Drawing.Point(232, 24);
 			this.cbkids.Name = "cbkids";
-			this.cbkids.Size = new System.Drawing.Size(88, 24);
+			this.cbkids.Size = new System.Drawing.Size(56, 24);
 			this.cbkids.TabIndex = 8;
 			this.cbkids.Text = "Kids";
 			this.cbkids.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
@@ -463,14 +465,14 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tpraw.Controls.Add(this.pg);
 			this.tpraw.Location = new System.Drawing.Point(4, 22);
 			this.tpraw.Name = "tpraw";
-			this.tpraw.Size = new System.Drawing.Size(712, 158);
+			this.tpraw.Size = new System.Drawing.Size(656, 158);
 			this.tpraw.TabIndex = 1;
 			this.tpraw.Text = "RAW Data";
 			// 
 			// rbhex
 			// 
 			this.rbhex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.rbhex.Location = new System.Drawing.Point(600, 16);
+			this.rbhex.Location = new System.Drawing.Point(544, 16);
 			this.rbhex.Name = "rbhex";
 			this.rbhex.Size = new System.Drawing.Size(96, 16);
 			this.rbhex.TabIndex = 3;
@@ -480,7 +482,7 @@ namespace SimPe.PackedFiles.UserInterface
 			// rbdec
 			// 
 			this.rbdec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.rbdec.Location = new System.Drawing.Point(520, 16);
+			this.rbdec.Location = new System.Drawing.Point(464, 16);
 			this.rbdec.Name = "rbdec";
 			this.rbdec.Size = new System.Drawing.Size(72, 16);
 			this.rbdec.TabIndex = 2;
@@ -490,7 +492,7 @@ namespace SimPe.PackedFiles.UserInterface
 			// rbbin
 			// 
 			this.rbbin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.rbbin.Location = new System.Drawing.Point(448, 16);
+			this.rbbin.Location = new System.Drawing.Point(392, 16);
 			this.rbbin.Name = "rbbin";
 			this.rbbin.Size = new System.Drawing.Size(64, 16);
 			this.rbbin.TabIndex = 1;
@@ -508,7 +510,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
 			this.pg.Location = new System.Drawing.Point(8, 8);
 			this.pg.Name = "pg";
-			this.pg.Size = new System.Drawing.Size(696, 144);
+			this.pg.Size = new System.Drawing.Size(640, 144);
 			this.pg.TabIndex = 0;
 			this.pg.Text = "RAW Items";
 			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
@@ -535,10 +537,11 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// label63
 			// 
+			this.label63.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label63.AutoSize = true;
 			this.label63.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
 			this.label63.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label63.Location = new System.Drawing.Point(352, 40);
+			this.label63.Location = new System.Drawing.Point(296, 40);
 			this.label63.Name = "label63";
 			this.label63.Size = new System.Drawing.Size(78, 17);
 			this.label63.TabIndex = 22;
@@ -546,7 +549,8 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// tbproxguid
 			// 
-			this.tbproxguid.Location = new System.Drawing.Point(640, 32);
+			this.tbproxguid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbproxguid.Location = new System.Drawing.Point(584, 32);
 			this.tbproxguid.Name = "tbproxguid";
 			this.tbproxguid.Size = new System.Drawing.Size(88, 21);
 			this.tbproxguid.TabIndex = 21;
@@ -555,10 +559,11 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// label97
 			// 
+			this.label97.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label97.AutoSize = true;
 			this.label97.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
 			this.label97.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label97.Location = new System.Drawing.Point(536, 40);
+			this.label97.Location = new System.Drawing.Point(480, 40);
 			this.label97.Name = "label97";
 			this.label97.Size = new System.Drawing.Size(99, 17);
 			this.label97.TabIndex = 20;
@@ -566,7 +571,8 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// tborgguid
 			// 
-			this.tborgguid.Location = new System.Drawing.Point(432, 32);
+			this.tborgguid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.tborgguid.Location = new System.Drawing.Point(376, 32);
 			this.tborgguid.Name = "tborgguid";
 			this.tborgguid.Size = new System.Drawing.Size(88, 21);
 			this.tborgguid.TabIndex = 19;
@@ -594,7 +600,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.llcommitobjd.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.llcommitobjd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.llcommitobjd.LinkArea = new System.Windows.Forms.LinkArea(0, 10);
-			this.llcommitobjd.Location = new System.Drawing.Point(675, 104);
+			this.llcommitobjd.Location = new System.Drawing.Point(619, 104);
 			this.llcommitobjd.Name = "llcommitobjd";
 			this.llcommitobjd.Size = new System.Drawing.Size(53, 17);
 			this.llcommitobjd.TabIndex = 14;
@@ -619,7 +625,7 @@ namespace SimPe.PackedFiles.UserInterface
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.tbflname.Location = new System.Drawing.Point(88, 80);
 			this.tbflname.Name = "tbflname";
-			this.tbflname.Size = new System.Drawing.Size(640, 21);
+			this.tbflname.Size = new System.Drawing.Size(584, 21);
 			this.tbflname.TabIndex = 11;
 			this.tbflname.Text = "";
 			this.tbflname.TextChanged += new System.EventHandler(this.SetFlName);
@@ -666,7 +672,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.panel6.Location = new System.Drawing.Point(0, 0);
 			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(736, 24);
+			this.panel6.Size = new System.Drawing.Size(680, 24);
 			this.panel6.TabIndex = 0;
 			// 
 			// label12

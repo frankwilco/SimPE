@@ -120,7 +120,7 @@ namespace SimPe.Providers
 		/// </remarks>
 		protected Alias AddSim(SimPe.PackedFiles.Wrapper.ExtObjd objd, ref int ct, int step, bool npc)
 		{
-			if (objd.Type!=Data.ObjectTypes.Person) return null;
+			//if (objd.Type!=Data.ObjectTypes.Person) return null;
 
 			SimPe.Interfaces.Files.IPackageFile fl = objd.Package;
 			//BinaryReader br = new BinaryReader(File.OpenRead(file));//new StreamReader(file)
@@ -208,11 +208,16 @@ namespace SimPe.Providers
 
 			return a;
 		}
-		
+
 		protected void ScanFileTable()
 		{
+			ScanFileTable(0x80);
+		}
+		
+		protected void ScanFileTable(uint inst)
+		{
 			if (Helper.StartedGui==Executable.Classic) return;
-			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFileDiscardingGroup(Data.MetaData.OBJD_FILE, 0x80);
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFileDiscardingGroup(Data.MetaData.OBJD_FILE, inst);
 			Wait.MaxProgress = items.Length;
 			int ct = 0;
 			int step = Math.Max(2, Wait.MaxProgress / 100);
@@ -223,7 +228,7 @@ namespace SimPe.Providers
 				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
 				objd.ProcessData(item);
 
-				AddSim(objd, ref ct, step, true);
+				if (objd.Type==Data.ObjectTypes.Person || objd.Type==Data.ObjectTypes.Template) AddSim(objd, ref ct, step, true);
 				
 			}
 		}

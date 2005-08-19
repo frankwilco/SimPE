@@ -119,7 +119,7 @@ namespace SimPe.Plugin.Anim
 			uint myid = reader.ReadUInt32();		
 			sgres.Unserialize(reader);
 			sgres.BlockID = myid;
-
+					
 			int len = reader.ReadInt32();
 			byte[] data = reader.ReadBytes(len);
 

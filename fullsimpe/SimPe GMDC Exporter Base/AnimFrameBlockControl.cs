@@ -57,6 +57,7 @@ namespace SimPe.Plugin.Anim
 		private System.Windows.Forms.TextBox tbName;
 		private System.Windows.Forms.Label lbDuration;
 		private System.Windows.Forms.Label lbName;
+		private System.Windows.Forms.MenuItem miSort;
 		/// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -112,6 +113,7 @@ namespace SimPe.Plugin.Anim
 			this.contextMenu1 = new System.Windows.Forms.ContextMenu();
 			this.miExp = new System.Windows.Forms.MenuItem();
 			this.miRem = new System.Windows.Forms.MenuItem();
+			this.miSort = new System.Windows.Forms.MenuItem();
 			this.splitter1 = new System.Windows.Forms.Splitter();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.pn3 = new SimPe.Plugin.Anim.AnimAxisTransformControl();
@@ -124,16 +126,16 @@ namespace SimPe.Plugin.Anim
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.panel6 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
+			this.tbName = new System.Windows.Forms.TextBox();
+			this.lbName = new System.Windows.Forms.Label();
+			this.lbDuration = new System.Windows.Forms.Label();
+			this.tbDuration = new System.Windows.Forms.TextBox();
 			this.llClone = new System.Windows.Forms.LinkLabel();
 			this.llRefresh = new System.Windows.Forms.LinkLabel();
 			this.lbTimeCode = new System.Windows.Forms.Label();
 			this.tbTimeCode = new System.Windows.Forms.TextBox();
 			this.llAdd = new System.Windows.Forms.LinkLabel();
 			this.llClear = new System.Windows.Forms.LinkLabel();
-			this.lbDuration = new System.Windows.Forms.Label();
-			this.tbDuration = new System.Windows.Forms.TextBox();
-			this.lbName = new System.Windows.Forms.Label();
-			this.tbName = new System.Windows.Forms.TextBox();
 			this.panel2.SuspendLayout();
 			this.pnSplit2.SuspendLayout();
 			this.pnSplit1.SuspendLayout();
@@ -171,7 +173,8 @@ namespace SimPe.Plugin.Anim
 			// 
 			this.contextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																						 this.miExp,
-																						 this.miRem});
+																						 this.miRem,
+																						 this.miSort});
 			this.contextMenu1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("contextMenu1.RightToLeft")));
 			// 
 			// miExp
@@ -193,6 +196,16 @@ namespace SimPe.Plugin.Anim
 			this.miRem.Text = resources.GetString("miRem.Text");
 			this.miRem.Visible = ((bool)(resources.GetObject("miRem.Visible")));
 			this.miRem.Click += new System.EventHandler(this.menuItem1_Click);
+			// 
+			// miSort
+			// 
+			this.miSort.Enabled = ((bool)(resources.GetObject("miSort.Enabled")));
+			this.miSort.Index = 2;
+			this.miSort.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSort.Shortcut")));
+			this.miSort.ShowShortcut = ((bool)(resources.GetObject("miSort.ShowShortcut")));
+			this.miSort.Text = resources.GetString("miSort.Text");
+			this.miSort.Visible = ((bool)(resources.GetObject("miSort.Visible")));
+			this.miSort.Click += new System.EventHandler(this.SortClick);
 			// 
 			// splitter1
 			// 
@@ -481,6 +494,102 @@ namespace SimPe.Plugin.Anim
 			this.panel4.Text = resources.GetString("panel4.Text");
 			this.panel4.Visible = ((bool)(resources.GetObject("panel4.Visible")));
 			// 
+			// tbName
+			// 
+			this.tbName.AccessibleDescription = resources.GetString("tbName.AccessibleDescription");
+			this.tbName.AccessibleName = resources.GetString("tbName.AccessibleName");
+			this.tbName.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbName.Anchor")));
+			this.tbName.AutoSize = ((bool)(resources.GetObject("tbName.AutoSize")));
+			this.tbName.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbName.BackgroundImage")));
+			this.tbName.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbName.Dock")));
+			this.tbName.Enabled = ((bool)(resources.GetObject("tbName.Enabled")));
+			this.tbName.Font = ((System.Drawing.Font)(resources.GetObject("tbName.Font")));
+			this.tbName.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbName.ImeMode")));
+			this.tbName.Location = ((System.Drawing.Point)(resources.GetObject("tbName.Location")));
+			this.tbName.MaxLength = ((int)(resources.GetObject("tbName.MaxLength")));
+			this.tbName.Multiline = ((bool)(resources.GetObject("tbName.Multiline")));
+			this.tbName.Name = "tbName";
+			this.tbName.PasswordChar = ((char)(resources.GetObject("tbName.PasswordChar")));
+			this.tbName.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbName.RightToLeft")));
+			this.tbName.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbName.ScrollBars")));
+			this.tbName.Size = ((System.Drawing.Size)(resources.GetObject("tbName.Size")));
+			this.tbName.TabIndex = ((int)(resources.GetObject("tbName.TabIndex")));
+			this.tbName.Text = resources.GetString("tbName.Text");
+			this.tbName.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbName.TextAlign")));
+			this.tbName.Visible = ((bool)(resources.GetObject("tbName.Visible")));
+			this.tbName.WordWrap = ((bool)(resources.GetObject("tbName.WordWrap")));
+			this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
+			// 
+			// lbName
+			// 
+			this.lbName.AccessibleDescription = resources.GetString("lbName.AccessibleDescription");
+			this.lbName.AccessibleName = resources.GetString("lbName.AccessibleName");
+			this.lbName.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbName.Anchor")));
+			this.lbName.AutoSize = ((bool)(resources.GetObject("lbName.AutoSize")));
+			this.lbName.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbName.Dock")));
+			this.lbName.Enabled = ((bool)(resources.GetObject("lbName.Enabled")));
+			this.lbName.Font = ((System.Drawing.Font)(resources.GetObject("lbName.Font")));
+			this.lbName.Image = ((System.Drawing.Image)(resources.GetObject("lbName.Image")));
+			this.lbName.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbName.ImageAlign")));
+			this.lbName.ImageIndex = ((int)(resources.GetObject("lbName.ImageIndex")));
+			this.lbName.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbName.ImeMode")));
+			this.lbName.Location = ((System.Drawing.Point)(resources.GetObject("lbName.Location")));
+			this.lbName.Name = "lbName";
+			this.lbName.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbName.RightToLeft")));
+			this.lbName.Size = ((System.Drawing.Size)(resources.GetObject("lbName.Size")));
+			this.lbName.TabIndex = ((int)(resources.GetObject("lbName.TabIndex")));
+			this.lbName.Text = resources.GetString("lbName.Text");
+			this.lbName.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbName.TextAlign")));
+			this.lbName.Visible = ((bool)(resources.GetObject("lbName.Visible")));
+			// 
+			// lbDuration
+			// 
+			this.lbDuration.AccessibleDescription = resources.GetString("lbDuration.AccessibleDescription");
+			this.lbDuration.AccessibleName = resources.GetString("lbDuration.AccessibleName");
+			this.lbDuration.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbDuration.Anchor")));
+			this.lbDuration.AutoSize = ((bool)(resources.GetObject("lbDuration.AutoSize")));
+			this.lbDuration.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbDuration.Dock")));
+			this.lbDuration.Enabled = ((bool)(resources.GetObject("lbDuration.Enabled")));
+			this.lbDuration.Font = ((System.Drawing.Font)(resources.GetObject("lbDuration.Font")));
+			this.lbDuration.Image = ((System.Drawing.Image)(resources.GetObject("lbDuration.Image")));
+			this.lbDuration.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbDuration.ImageAlign")));
+			this.lbDuration.ImageIndex = ((int)(resources.GetObject("lbDuration.ImageIndex")));
+			this.lbDuration.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbDuration.ImeMode")));
+			this.lbDuration.Location = ((System.Drawing.Point)(resources.GetObject("lbDuration.Location")));
+			this.lbDuration.Name = "lbDuration";
+			this.lbDuration.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbDuration.RightToLeft")));
+			this.lbDuration.Size = ((System.Drawing.Size)(resources.GetObject("lbDuration.Size")));
+			this.lbDuration.TabIndex = ((int)(resources.GetObject("lbDuration.TabIndex")));
+			this.lbDuration.Text = resources.GetString("lbDuration.Text");
+			this.lbDuration.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbDuration.TextAlign")));
+			this.lbDuration.Visible = ((bool)(resources.GetObject("lbDuration.Visible")));
+			// 
+			// tbDuration
+			// 
+			this.tbDuration.AccessibleDescription = resources.GetString("tbDuration.AccessibleDescription");
+			this.tbDuration.AccessibleName = resources.GetString("tbDuration.AccessibleName");
+			this.tbDuration.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbDuration.Anchor")));
+			this.tbDuration.AutoSize = ((bool)(resources.GetObject("tbDuration.AutoSize")));
+			this.tbDuration.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbDuration.BackgroundImage")));
+			this.tbDuration.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbDuration.Dock")));
+			this.tbDuration.Enabled = ((bool)(resources.GetObject("tbDuration.Enabled")));
+			this.tbDuration.Font = ((System.Drawing.Font)(resources.GetObject("tbDuration.Font")));
+			this.tbDuration.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbDuration.ImeMode")));
+			this.tbDuration.Location = ((System.Drawing.Point)(resources.GetObject("tbDuration.Location")));
+			this.tbDuration.MaxLength = ((int)(resources.GetObject("tbDuration.MaxLength")));
+			this.tbDuration.Multiline = ((bool)(resources.GetObject("tbDuration.Multiline")));
+			this.tbDuration.Name = "tbDuration";
+			this.tbDuration.PasswordChar = ((char)(resources.GetObject("tbDuration.PasswordChar")));
+			this.tbDuration.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbDuration.RightToLeft")));
+			this.tbDuration.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbDuration.ScrollBars")));
+			this.tbDuration.Size = ((System.Drawing.Size)(resources.GetObject("tbDuration.Size")));
+			this.tbDuration.TabIndex = ((int)(resources.GetObject("tbDuration.TabIndex")));
+			this.tbDuration.Text = resources.GetString("tbDuration.Text");
+			this.tbDuration.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbDuration.TextAlign")));
+			this.tbDuration.Visible = ((bool)(resources.GetObject("tbDuration.Visible")));
+			this.tbDuration.WordWrap = ((bool)(resources.GetObject("tbDuration.WordWrap")));
+			this.tbDuration.TextChanged += new System.EventHandler(this.tbDuration_TextChanged);
+			// 
 			// llClone
 			// 
 			this.llClone.AccessibleDescription = resources.GetString("llClone.AccessibleDescription");
@@ -630,102 +739,6 @@ namespace SimPe.Plugin.Anim
 			this.llClear.Visible = ((bool)(resources.GetObject("llClear.Visible")));
 			this.llClear.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llClear_LinkClicked);
 			// 
-			// lbDuration
-			// 
-			this.lbDuration.AccessibleDescription = resources.GetString("lbDuration.AccessibleDescription");
-			this.lbDuration.AccessibleName = resources.GetString("lbDuration.AccessibleName");
-			this.lbDuration.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbDuration.Anchor")));
-			this.lbDuration.AutoSize = ((bool)(resources.GetObject("lbDuration.AutoSize")));
-			this.lbDuration.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbDuration.Dock")));
-			this.lbDuration.Enabled = ((bool)(resources.GetObject("lbDuration.Enabled")));
-			this.lbDuration.Font = ((System.Drawing.Font)(resources.GetObject("lbDuration.Font")));
-			this.lbDuration.Image = ((System.Drawing.Image)(resources.GetObject("lbDuration.Image")));
-			this.lbDuration.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbDuration.ImageAlign")));
-			this.lbDuration.ImageIndex = ((int)(resources.GetObject("lbDuration.ImageIndex")));
-			this.lbDuration.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbDuration.ImeMode")));
-			this.lbDuration.Location = ((System.Drawing.Point)(resources.GetObject("lbDuration.Location")));
-			this.lbDuration.Name = "lbDuration";
-			this.lbDuration.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbDuration.RightToLeft")));
-			this.lbDuration.Size = ((System.Drawing.Size)(resources.GetObject("lbDuration.Size")));
-			this.lbDuration.TabIndex = ((int)(resources.GetObject("lbDuration.TabIndex")));
-			this.lbDuration.Text = resources.GetString("lbDuration.Text");
-			this.lbDuration.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbDuration.TextAlign")));
-			this.lbDuration.Visible = ((bool)(resources.GetObject("lbDuration.Visible")));
-			// 
-			// tbDuration
-			// 
-			this.tbDuration.AccessibleDescription = resources.GetString("tbDuration.AccessibleDescription");
-			this.tbDuration.AccessibleName = resources.GetString("tbDuration.AccessibleName");
-			this.tbDuration.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbDuration.Anchor")));
-			this.tbDuration.AutoSize = ((bool)(resources.GetObject("tbDuration.AutoSize")));
-			this.tbDuration.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbDuration.BackgroundImage")));
-			this.tbDuration.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbDuration.Dock")));
-			this.tbDuration.Enabled = ((bool)(resources.GetObject("tbDuration.Enabled")));
-			this.tbDuration.Font = ((System.Drawing.Font)(resources.GetObject("tbDuration.Font")));
-			this.tbDuration.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbDuration.ImeMode")));
-			this.tbDuration.Location = ((System.Drawing.Point)(resources.GetObject("tbDuration.Location")));
-			this.tbDuration.MaxLength = ((int)(resources.GetObject("tbDuration.MaxLength")));
-			this.tbDuration.Multiline = ((bool)(resources.GetObject("tbDuration.Multiline")));
-			this.tbDuration.Name = "tbDuration";
-			this.tbDuration.PasswordChar = ((char)(resources.GetObject("tbDuration.PasswordChar")));
-			this.tbDuration.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbDuration.RightToLeft")));
-			this.tbDuration.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbDuration.ScrollBars")));
-			this.tbDuration.Size = ((System.Drawing.Size)(resources.GetObject("tbDuration.Size")));
-			this.tbDuration.TabIndex = ((int)(resources.GetObject("tbDuration.TabIndex")));
-			this.tbDuration.Text = resources.GetString("tbDuration.Text");
-			this.tbDuration.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbDuration.TextAlign")));
-			this.tbDuration.Visible = ((bool)(resources.GetObject("tbDuration.Visible")));
-			this.tbDuration.WordWrap = ((bool)(resources.GetObject("tbDuration.WordWrap")));
-			this.tbDuration.TextChanged += new System.EventHandler(this.tbDuration_TextChanged);
-			// 
-			// lbName
-			// 
-			this.lbName.AccessibleDescription = resources.GetString("lbName.AccessibleDescription");
-			this.lbName.AccessibleName = resources.GetString("lbName.AccessibleName");
-			this.lbName.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbName.Anchor")));
-			this.lbName.AutoSize = ((bool)(resources.GetObject("lbName.AutoSize")));
-			this.lbName.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbName.Dock")));
-			this.lbName.Enabled = ((bool)(resources.GetObject("lbName.Enabled")));
-			this.lbName.Font = ((System.Drawing.Font)(resources.GetObject("lbName.Font")));
-			this.lbName.Image = ((System.Drawing.Image)(resources.GetObject("lbName.Image")));
-			this.lbName.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbName.ImageAlign")));
-			this.lbName.ImageIndex = ((int)(resources.GetObject("lbName.ImageIndex")));
-			this.lbName.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbName.ImeMode")));
-			this.lbName.Location = ((System.Drawing.Point)(resources.GetObject("lbName.Location")));
-			this.lbName.Name = "lbName";
-			this.lbName.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbName.RightToLeft")));
-			this.lbName.Size = ((System.Drawing.Size)(resources.GetObject("lbName.Size")));
-			this.lbName.TabIndex = ((int)(resources.GetObject("lbName.TabIndex")));
-			this.lbName.Text = resources.GetString("lbName.Text");
-			this.lbName.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbName.TextAlign")));
-			this.lbName.Visible = ((bool)(resources.GetObject("lbName.Visible")));
-			// 
-			// tbName
-			// 
-			this.tbName.AccessibleDescription = resources.GetString("tbName.AccessibleDescription");
-			this.tbName.AccessibleName = resources.GetString("tbName.AccessibleName");
-			this.tbName.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbName.Anchor")));
-			this.tbName.AutoSize = ((bool)(resources.GetObject("tbName.AutoSize")));
-			this.tbName.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbName.BackgroundImage")));
-			this.tbName.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbName.Dock")));
-			this.tbName.Enabled = ((bool)(resources.GetObject("tbName.Enabled")));
-			this.tbName.Font = ((System.Drawing.Font)(resources.GetObject("tbName.Font")));
-			this.tbName.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbName.ImeMode")));
-			this.tbName.Location = ((System.Drawing.Point)(resources.GetObject("tbName.Location")));
-			this.tbName.MaxLength = ((int)(resources.GetObject("tbName.MaxLength")));
-			this.tbName.Multiline = ((bool)(resources.GetObject("tbName.Multiline")));
-			this.tbName.Name = "tbName";
-			this.tbName.PasswordChar = ((char)(resources.GetObject("tbName.PasswordChar")));
-			this.tbName.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbName.RightToLeft")));
-			this.tbName.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbName.ScrollBars")));
-			this.tbName.Size = ((System.Drawing.Size)(resources.GetObject("tbName.Size")));
-			this.tbName.TabIndex = ((int)(resources.GetObject("tbName.TabIndex")));
-			this.tbName.Text = resources.GetString("tbName.Text");
-			this.tbName.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbName.TextAlign")));
-			this.tbName.Visible = ((bool)(resources.GetObject("tbName.Visible")));
-			this.tbName.WordWrap = ((bool)(resources.GetObject("tbName.WordWrap")));
-			this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
-			// 
 			// AnimFrameBlockControl
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -776,6 +789,7 @@ namespace SimPe.Plugin.Anim
 
 			miRem.Enabled = enabled;
 			miExp.Enabled = enabled;
+			miSort.Enabled = enabled;
 			llAdd.Enabled = enabled;
 			llClear.Enabled = enabled;	
 		}
@@ -801,12 +815,13 @@ namespace SimPe.Plugin.Anim
 
 			if (afb!=null)
 			{				
-				
+				intern = true;
 				Enable(true);
 				tbName.Text = afb.Name;
 				tbDuration.Text = afb.Duration.ToString();
 
 				AddFrames(afb.Frames, "");
+				intern = false;
 			}
 		}
 
@@ -934,7 +949,7 @@ namespace SimPe.Plugin.Anim
 			if (!(sender is AnimAxisTransformControl)) return;
 			AnimAxisTransformControl s = (AnimAxisTransformControl)sender;
 			TreeNode n = (TreeNode)s.Tag;
-
+			
 			if (n!=null && s.AxisTransform!=null) 
 			{
 				n.Text = n.Text.Substring(0, 3)+s.AxisTransform.ToString();
@@ -955,6 +970,7 @@ namespace SimPe.Plugin.Anim
 			if (afb.AxisCount==0) afb.CreateBaseAxisSet();
 
 			afb.AddFrame((short)(afb.GetDuration()+1), 0, 0, 0, false);
+			afb.SortByTimeCode();
 			AddFrames(afb.Frames[afb.FrameCount-1], "");
 
 			if (Changed!=null) Changed(this, new System.EventArgs());	
@@ -1068,6 +1084,8 @@ namespace SimPe.Plugin.Anim
 				this.pn1_Changed(pn1, null);
 				this.pn1_Changed(pn2, null);
 				this.pn1_Changed(pn3, null);
+
+				afb.SortByTimeCode();
 			}
 			finally 
 			{
@@ -1107,6 +1125,15 @@ namespace SimPe.Plugin.Anim
 			if (afb.Parent!=null)
 				if (afb.Parent.Parent!=null)
 					afb.Parent.Parent.Changed = true;
+		}
+
+		private void SortClick(object sender, System.EventArgs e)
+		{
+			if (afb!=null) 
+			{
+				afb.SortByTimeCode();
+				this.RefreshData();
+			}
 		}
 
 		
