@@ -255,7 +255,7 @@ namespace SimPe.Plugin.Anim
 		/// <param name="writer">The Stream that receives the Data</param>
 		internal void SerializeAddonData(System.IO.BinaryWriter writer)
 		{								
-			this.Sort();
+			//this.Sort();
 			for (int i=0; i<this.Count; i++) 			
 				((AnimationAxisTransform)items[i]).SerializeData(writer);			
 		}

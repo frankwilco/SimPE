@@ -232,7 +232,7 @@ namespace SimPe.Plugin.Anim
 		/// <param name="writer">The Stream that receives the Data</param>
 		internal void SerializePart5Data(System.IO.BinaryWriter writer)
 		{
-			for (int i=0; i<ab5.Length; i++) ab5[i] = new AnimBlock5();				
+			for (int i=0; i<ab5.Length; i++) ab5[i].SerializeData(writer);		
 		}
 
 		/// <summary>

@@ -1103,6 +1103,7 @@ Another reason might be, that the selected Object ""borrows"" it's Textures from
 		private void cbfix_CheckedChanged(object sender, System.EventArgs e)
 		{
 			cbclean.Enabled = cbfix.Checked;
+			cbRemTxt.Enabled = cbfix.Checked;
 		}
 
 		private void wizardStepPanel3_Activated(SimPe.Wizards.Wizard sender, SimPe.Wizards.WizardStepPanel step)

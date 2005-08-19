@@ -266,12 +266,14 @@ namespace SimPe.Plugin
 						string secname = "";
 						if (newname.EndsWith("_anim")) 
 						{
+							string mun = username;
+							//mun = mun.Replace("[", "").Replace("]", "").Replace(".", "").Replace("-", "");
 							secname = newname.Replace(old, "");
 							int pos = secname.IndexOf("-");
 							if (pos>=0 && pos<secname.Length-1) pos = secname.IndexOf("-", pos+1);
 
 							if (pos>=0 && pos<secname.Length-1)															
-								secname = secname.Substring(0, pos+1) + username + "-" + secname.Substring(pos+1);								
+								secname = secname.Substring(0, pos+1) + mun + "-" + secname.Substring(pos+1);								
 							else 
 								secname = "";
 						} 

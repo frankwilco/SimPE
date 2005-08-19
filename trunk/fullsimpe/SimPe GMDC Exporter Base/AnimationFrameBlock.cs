@@ -354,6 +354,12 @@ namespace SimPe.Plugin.Anim
 				ab3[i].Type = t;			
 		}
 
+		public void SortByTimeCode()
+		{
+			for (int i=0; i<AxisCount; i++) 			
+				ab3[i].Sort();			
+		}
+
 		public void ClearFrames()
 		{
 			ClearFrames(true, true);
@@ -673,9 +679,12 @@ namespace SimPe.Plugin.Anim
 		public override string ToString()
 		{
 			string s = this.Name + " (";
-			if (this.TransformationType==FrameType.Translation) s+="trn, ";
-			else s+="rot, ";
-			s += this.FrameCount.ToString()+")";
+			if (this.TransformationType==FrameType.Translation) s+="trn";
+			else s+="rot";
+			//s += ", "+this.FrameCount.ToString();
+			for (int i=0; i<ab3.Length; i++)
+				s+= ", "+ab3[i].Count.ToString();
+			s += ")";
 			return s;
 		}
 
