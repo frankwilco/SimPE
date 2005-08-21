@@ -221,6 +221,8 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			modelnr++;
 		}
 
+		
+
 		SimPe.Geometry.Vector3f Correct(SimPe.Geometry.Vector3f t, object cor)
 		{
 			if (cor==null) return t;
@@ -279,7 +281,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 							correct_rot[name] = Gmdc.Joints[i].AssignedTransformNode.Rotation.GetInverse();						
 							correct_rot[aname] = Gmdc.Joints[i].AssignedTransformNode.Rotation;
 						}
-					}
+					}					
 				}
 			}
 
@@ -304,12 +306,11 @@ namespace SimPe.Plugin.Gmdc.Exporter
 	
 				if (Gmdc.Joints[i].AssignedTransformNode!=null) 
 				{		
-					
 					Vector3f t = Gmdc.Joints[i].AssignedTransformNode.Translation;
-					if (this.CorrectJointSetup) t = Correct(t, correct_trans[Gmdc.Joints[i].Name]);
-
+					if (this.CorrectJointSetup) t = Correct(t, correct_trans[Gmdc.Joints[i].Name]);					
 					//t = Gmdc.Joints[i].AssignedTransformNode.Rotation.Rotate(t);
 					t = Component.TransformScaled(t);
+
 					Quaternion q = Gmdc.Joints[i].AssignedTransformNode.Rotation;
 					if (this.CorrectJointSetup) q = Correct(q, correct_rot[Gmdc.Joints[i].Name]);
 					Vector3f r = q.Axis;
@@ -334,6 +335,10 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				
 				if (Gmdc.LinkedAnimation!=null) 
 				{
+					//get the correction Vector
+					Vector3f cv = AbstractGmdcImporter.GetCorrectionVector(Gmdc.Joints[i].Name);
+
+					//get Translation Frames
 					Anim.AnimationFrameBlock ab = Gmdc.LinkedAnimation.GetJointTransformation(Gmdc.Joints[i].Name, FrameType.Translation);
 					if (ab!=null) 
 					{
@@ -345,11 +350,14 @@ namespace SimPe.Plugin.Gmdc.Exporter
 							int ct = afs.Length;
 							if (ab.AxisSet[0].Locked) ct += 2;						
 							writer.WriteLine(ct.ToString());	
-												
+								
+							bool first = true;
 							foreach (AnimationFrame af in afs)
 							{
 								Vector3f v = af.Vector;
 							
+								if (first) v = v + cv; //corect static Values
+
 								v = Component.TransformScaled(v);
 
 								int tc = af.TimeCode+1;								
@@ -364,6 +372,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 									writer.WriteLine("0 0 0 0");
 									writer.WriteLine("1 0 0 0");
 								}
+								first = false;
 							}
 						
 						}
@@ -371,6 +380,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 					}
 					else writer.WriteLine("0");
 					
+					//Get Rotation Frames
 					ab = Gmdc.LinkedAnimation.GetJointTransformation(Gmdc.Joints[i].Name, FrameType.Rotation);
 					if (ab!=null) 
 					{
@@ -379,7 +389,8 @@ namespace SimPe.Plugin.Gmdc.Exporter
 
 						int ct = afs.Length;
 						if (ab.AxisSet[0].Locked) ct += 2;						
-						writer.WriteLine(ct.ToString());						
+						writer.WriteLine(ct.ToString());	
+						bool first = true;
 						foreach (AnimationFrame af in afs)
 						{
 							Vector3f v = af.Vector;
@@ -389,6 +400,9 @@ namespace SimPe.Plugin.Gmdc.Exporter
 							v = Component.Transform(v);
 							q = Quaternion.FromAxisAngle(v, q.Angle);
 							v = q.GetEulerAngles();
+
+							if (first) 
+								v = v + Component.Transform(cv); //correct static Values
 						
 							int tc = af.TimeCode+1;								
 							if (ab.AxisSet[0].Locked && tc==1) tc = -1;
@@ -402,6 +416,8 @@ namespace SimPe.Plugin.Gmdc.Exporter
 								writer.WriteLine("0 0 0 0");
 								writer.WriteLine("1 0 0 0");
 							}
+
+							first = false;
 						}
 					} 
 					else writer.WriteLine("0");

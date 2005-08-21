@@ -154,6 +154,8 @@ namespace SimPe.Plugin
 		internal System.Windows.Forms.ComboBox cbGroupJoint;
 		private System.Windows.Forms.LinkLabel llAssign;
 		private System.Windows.Forms.CheckBox cbCorrect;
+		private System.Windows.Forms.LinkLabel llClearBB;
+		private System.Windows.Forms.LinkLabel llAddBB;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -258,24 +260,25 @@ namespace SimPe.Plugin
 			this.label28 = new System.Windows.Forms.Label();
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
 			this.lb_itemsa1 = new System.Windows.Forms.ListBox();
-			this.tMesh = new System.Windows.Forms.TabPage();
-			this.cbCorrect = new System.Windows.Forms.CheckBox();
-			this.dxprev = new Ambertation.Windows.Forms.DirectXPanel();
-			this.cbaxis = new System.Windows.Forms.ComboBox();
-			this.label12 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
-			this.label20 = new System.Windows.Forms.Label();
-			this.lbmodel = new System.Windows.Forms.CheckedListBox();
-			this.lb_models = new System.Windows.Forms.Label();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
+			this.tDebug = new System.Windows.Forms.TabPage();
+			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+			this.list_subsets = new System.Windows.Forms.ListBox();
+			this.label_subsets = new System.Windows.Forms.Label();
+			this.list_groups = new System.Windows.Forms.ListBox();
+			this.label_groups = new System.Windows.Forms.Label();
+			this.list_links = new System.Windows.Forms.ListBox();
+			this.label_links = new System.Windows.Forms.Label();
+			this.list_elements = new System.Windows.Forms.ListBox();
+			this.label_elements = new System.Windows.Forms.Label();
+			this.pg = new System.Windows.Forms.PropertyGrid();
 			this.tGeometryDataContainer3 = new System.Windows.Forms.TabPage();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.tb_itemsc2 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.lb_itemsc2 = new System.Windows.Forms.ListBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.llAddBB = new System.Windows.Forms.LinkLabel();
 			this.llAssign = new System.Windows.Forms.LinkLabel();
 			this.cbGroupJoint = new System.Windows.Forms.ComboBox();
 			this.label21 = new System.Windows.Forms.Label();
@@ -293,22 +296,23 @@ namespace SimPe.Plugin
 			this.tb_itemsc3 = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.lb_itemsc3 = new System.Windows.Forms.ListBox();
-			this.tDebug = new System.Windows.Forms.TabPage();
-			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-			this.list_subsets = new System.Windows.Forms.ListBox();
-			this.label_subsets = new System.Windows.Forms.Label();
-			this.list_groups = new System.Windows.Forms.ListBox();
-			this.label_groups = new System.Windows.Forms.Label();
-			this.list_links = new System.Windows.Forms.ListBox();
-			this.label_links = new System.Windows.Forms.Label();
-			this.list_elements = new System.Windows.Forms.ListBox();
-			this.label_elements = new System.Windows.Forms.Label();
-			this.pg = new System.Windows.Forms.PropertyGrid();
+			this.tMesh = new System.Windows.Forms.TabPage();
+			this.cbCorrect = new System.Windows.Forms.CheckBox();
+			this.dxprev = new Ambertation.Windows.Forms.DirectXPanel();
+			this.cbaxis = new System.Windows.Forms.ComboBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
+			this.label20 = new System.Windows.Forms.Label();
+			this.lbmodel = new System.Windows.Forms.CheckedListBox();
+			this.lb_models = new System.Windows.Forms.Label();
+			this.button3 = new System.Windows.Forms.Button();
+			this.button4 = new System.Windows.Forms.Button();
 			this.tModel = new System.Windows.Forms.TabPage();
 			this.groupBox19 = new System.Windows.Forms.GroupBox();
 			this.lb_model_items = new System.Windows.Forms.ListBox();
 			this.groupBox18 = new System.Windows.Forms.GroupBox();
+			this.llClearBB = new System.Windows.Forms.LinkLabel();
 			this.lb_model_faces = new System.Windows.Forms.ListBox();
 			this.groupBox17 = new System.Windows.Forms.GroupBox();
 			this.lb_model_names = new System.Windows.Forms.ListBox();
@@ -358,12 +362,12 @@ namespace SimPe.Plugin
 			this.groupBox3.SuspendLayout();
 			this.groupBox10.SuspendLayout();
 			this.groupBox12.SuspendLayout();
-			this.tMesh.SuspendLayout();
+			this.tDebug.SuspendLayout();
 			this.tGeometryDataContainer3.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox5.SuspendLayout();
-			this.tDebug.SuspendLayout();
+			this.tMesh.SuspendLayout();
 			this.tModel.SuspendLayout();
 			this.groupBox19.SuspendLayout();
 			this.groupBox18.SuspendLayout();
@@ -384,9 +388,9 @@ namespace SimPe.Plugin
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tGeometryDataContainer);
-			this.tabControl1.Controls.Add(this.tMesh);
-			this.tabControl1.Controls.Add(this.tGeometryDataContainer3);
 			this.tabControl1.Controls.Add(this.tDebug);
+			this.tabControl1.Controls.Add(this.tGeometryDataContainer3);
+			this.tabControl1.Controls.Add(this.tMesh);
 			this.tabControl1.Controls.Add(this.tModel);
 			this.tabControl1.Controls.Add(this.tGeometryDataContainer2);
 			this.tabControl1.Controls.Add(this.tSubset);
@@ -705,150 +709,135 @@ namespace SimPe.Plugin
 			this.lb_itemsa1.Size = new System.Drawing.Size(248, 104);
 			this.lb_itemsa1.TabIndex = 22;
 			// 
-			// tMesh
+			// tDebug
 			// 
-			this.tMesh.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.tMesh.Controls.Add(this.cbCorrect);
-			this.tMesh.Controls.Add(this.dxprev);
-			this.tMesh.Controls.Add(this.cbaxis);
-			this.tMesh.Controls.Add(this.label12);
-			this.tMesh.Controls.Add(this.button1);
-			this.tMesh.Controls.Add(this.button5);
-			this.tMesh.Controls.Add(this.label20);
-			this.tMesh.Controls.Add(this.lbmodel);
-			this.tMesh.Controls.Add(this.lb_models);
-			this.tMesh.Controls.Add(this.button3);
-			this.tMesh.Controls.Add(this.button4);
-			this.tMesh.Location = new System.Drawing.Point(4, 22);
-			this.tMesh.Name = "tMesh";
-			this.tMesh.Size = new System.Drawing.Size(884, 302);
-			this.tMesh.TabIndex = 4;
-			this.tMesh.Text = "3D Mesh";
-			this.tMesh.SizeChanged += new System.EventHandler(this.dxprev_SizeChanged);
+			this.tDebug.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.tDebug.Controls.Add(this.linkLabel3);
+			this.tDebug.Controls.Add(this.linkLabel1);
+			this.tDebug.Controls.Add(this.list_subsets);
+			this.tDebug.Controls.Add(this.label_subsets);
+			this.tDebug.Controls.Add(this.list_groups);
+			this.tDebug.Controls.Add(this.label_groups);
+			this.tDebug.Controls.Add(this.list_links);
+			this.tDebug.Controls.Add(this.label_links);
+			this.tDebug.Controls.Add(this.list_elements);
+			this.tDebug.Controls.Add(this.label_elements);
+			this.tDebug.Controls.Add(this.pg);
+			this.tDebug.Location = new System.Drawing.Point(4, 22);
+			this.tDebug.Name = "tDebug";
+			this.tDebug.Size = new System.Drawing.Size(884, 302);
+			this.tDebug.TabIndex = 5;
+			this.tDebug.Text = "Debug";
 			// 
-			// cbCorrect
+			// linkLabel3
 			// 
-			this.cbCorrect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cbCorrect.Location = new System.Drawing.Point(232, 264);
-			this.cbCorrect.Name = "cbCorrect";
-			this.cbCorrect.Size = new System.Drawing.Size(96, 32);
-			this.cbCorrect.TabIndex = 32;
-			this.cbCorrect.Text = "Correct Joint definition";
-			this.cbCorrect.CheckedChanged += new System.EventHandler(this.cbCorrect_CheckedChanged);
+			this.linkLabel3.AutoSize = true;
+			this.linkLabel3.Location = new System.Drawing.Point(296, 152);
+			this.linkLabel3.Name = "linkLabel3";
+			this.linkLabel3.Size = new System.Drawing.Size(30, 16);
+			this.linkLabel3.TabIndex = 10;
+			this.linkLabel3.TabStop = true;
+			this.linkLabel3.Text = "Scan";
+			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
 			// 
-			// dxprev
+			// linkLabel1
 			// 
-			this.dxprev.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(128)), ((System.Byte)(255)));
-			this.dxprev.Location = new System.Drawing.Point(336, 8);
-			this.dxprev.Name = "dxprev";
-			this.dxprev.Size = new System.Drawing.Size(304, 288);
-			this.dxprev.TabIndex = 31;
+			this.linkLabel1.Location = new System.Drawing.Point(296, 128);
+			this.linkLabel1.Name = "linkLabel1";
+			this.linkLabel1.Size = new System.Drawing.Size(40, 16);
+			this.linkLabel1.TabIndex = 9;
+			this.linkLabel1.TabStop = true;
+			this.linkLabel1.Text = "Model";
+			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SeletDebugObject);
 			// 
-			// cbaxis
+			// list_subsets
 			// 
-			this.cbaxis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cbaxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbaxis.Location = new System.Drawing.Point(232, 240);
-			this.cbaxis.Name = "cbaxis";
-			this.cbaxis.Size = new System.Drawing.Size(96, 21);
-			this.cbaxis.TabIndex = 30;
-			this.cbaxis.SelectedIndexChanged += new System.EventHandler(this.ChangedAxis);
+			this.list_subsets.Location = new System.Drawing.Point(296, 24);
+			this.list_subsets.Name = "list_subsets";
+			this.list_subsets.Size = new System.Drawing.Size(264, 95);
+			this.list_subsets.TabIndex = 8;
+			this.list_subsets.SelectedIndexChanged += new System.EventHandler(this.SeletDebugObject);
 			// 
-			// label12
+			// label_subsets
 			// 
-			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label12.Location = new System.Drawing.Point(176, 240);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(48, 23);
-			this.label12.TabIndex = 29;
-			this.label12.Text = "Order:";
-			this.label12.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.label_subsets.AutoSize = true;
+			this.label_subsets.Location = new System.Drawing.Point(288, 8);
+			this.label_subsets.Name = "label_subsets";
+			this.label_subsets.Size = new System.Drawing.Size(48, 16);
+			this.label_subsets.TabIndex = 7;
+			this.label_subsets.Text = "Subsets:";
 			// 
-			// button1
+			// list_groups
 			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button1.Location = new System.Drawing.Point(96, 240);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(72, 23);
-			this.button1.TabIndex = 28;
-			this.button1.Text = "Import...";
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// button5
-			// 
-			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button5.Location = new System.Drawing.Point(16, 240);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(72, 23);
-			this.button5.TabIndex = 27;
-			this.button5.Text = "Export...";
-			this.button5.Click += new System.EventHandler(this.Export);
-			// 
-			// label20
-			// 
-			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label20.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.label20.Location = new System.Drawing.Point(644, 8);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(232, 288);
-			this.label20.TabIndex = 25;
-			this.label20.Text = @"Camera Control:
-
- Translate Y: left Button + move vertical
- Translate X: left Button + move horizontal
- Scale: middle Button + move vertical
- Rotate Z: middle Button + move horizontal
- Rotate X: right Button + move vertical
- Rotate Y: right Button + move horizontal";
-			this.label20.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-			// 
-			// lbmodel
-			// 
-			this.lbmodel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.list_groups.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left)));
-			this.lbmodel.CheckOnClick = true;
-			this.lbmodel.HorizontalScrollbar = true;
-			this.lbmodel.Location = new System.Drawing.Point(16, 24);
-			this.lbmodel.Name = "lbmodel";
-			this.lbmodel.Size = new System.Drawing.Size(312, 214);
-			this.lbmodel.TabIndex = 24;
+			this.list_groups.Location = new System.Drawing.Point(16, 224);
+			this.list_groups.Name = "list_groups";
+			this.list_groups.Size = new System.Drawing.Size(264, 69);
+			this.list_groups.TabIndex = 6;
+			this.list_groups.SelectedIndexChanged += new System.EventHandler(this.SeletDebugObject);
 			// 
-			// lb_models
+			// label_groups
 			// 
-			this.lb_models.AutoSize = true;
-			this.lb_models.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lb_models.Location = new System.Drawing.Point(8, 8);
-			this.lb_models.Name = "lb_models";
-			this.lb_models.Size = new System.Drawing.Size(45, 16);
-			this.lb_models.TabIndex = 23;
-			this.lb_models.Text = "Models:";
+			this.label_groups.AutoSize = true;
+			this.label_groups.Location = new System.Drawing.Point(8, 208);
+			this.label_groups.Name = "label_groups";
+			this.label_groups.Size = new System.Drawing.Size(44, 16);
+			this.label_groups.TabIndex = 5;
+			this.label_groups.Text = "Groups:";
 			// 
-			// button3
+			// list_links
 			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button3.Location = new System.Drawing.Point(16, 272);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(152, 23);
-			this.button3.TabIndex = 4;
-			this.button3.Text = "Preview";
-			this.button3.Click += new System.EventHandler(this.Preview);
+			this.list_links.Location = new System.Drawing.Point(16, 136);
+			this.list_links.Name = "list_links";
+			this.list_links.Size = new System.Drawing.Size(264, 69);
+			this.list_links.TabIndex = 4;
+			this.list_links.SelectedIndexChanged += new System.EventHandler(this.SeletDebugObject);
 			// 
-			// button4
+			// label_links
 			// 
-			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button4.Location = new System.Drawing.Point(184, 272);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(32, 23);
-			this.button4.TabIndex = 26;
-			this.button4.Text = "BG";
-			this.button4.Click += new System.EventHandler(this.PickColor);
+			this.label_links.AutoSize = true;
+			this.label_links.Location = new System.Drawing.Point(8, 120);
+			this.label_links.Name = "label_links";
+			this.label_links.Size = new System.Drawing.Size(34, 16);
+			this.label_links.TabIndex = 3;
+			this.label_links.Text = "Links:";
+			// 
+			// list_elements
+			// 
+			this.list_elements.Location = new System.Drawing.Point(16, 24);
+			this.list_elements.Name = "list_elements";
+			this.list_elements.Size = new System.Drawing.Size(264, 95);
+			this.list_elements.TabIndex = 2;
+			this.list_elements.SelectedIndexChanged += new System.EventHandler(this.SeletDebugObject);
+			// 
+			// label_elements
+			// 
+			this.label_elements.AutoSize = true;
+			this.label_elements.Location = new System.Drawing.Point(8, 8);
+			this.label_elements.Name = "label_elements";
+			this.label_elements.Size = new System.Drawing.Size(55, 16);
+			this.label_elements.TabIndex = 1;
+			this.label_elements.Text = "Elements:";
+			// 
+			// pg
+			// 
+			this.pg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.pg.CommandsBackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.pg.CommandsVisibleIfAvailable = true;
+			this.pg.HelpVisible = false;
+			this.pg.LargeButtons = false;
+			this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
+			this.pg.Location = new System.Drawing.Point(560, 8);
+			this.pg.Name = "pg";
+			this.pg.Size = new System.Drawing.Size(316, 288);
+			this.pg.TabIndex = 0;
+			this.pg.Text = "propertyGrid1";
+			this.pg.ToolbarVisible = false;
+			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
+			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
 			// 
 			// tGeometryDataContainer3
 			// 
@@ -918,6 +907,7 @@ namespace SimPe.Plugin
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.llAddBB);
 			this.groupBox2.Controls.Add(this.llAssign);
 			this.groupBox2.Controls.Add(this.cbGroupJoint);
 			this.groupBox2.Controls.Add(this.label21);
@@ -940,11 +930,23 @@ namespace SimPe.Plugin
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Group Section";
 			// 
+			// llAddBB
+			// 
+			this.llAddBB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.llAddBB.LinkArea = new System.Windows.Forms.LinkArea(0, 20);
+			this.llAddBB.Location = new System.Drawing.Point(268, 128);
+			this.llAddBB.Name = "llAddBB";
+			this.llAddBB.Size = new System.Drawing.Size(236, 23);
+			this.llAddBB.TabIndex = 30;
+			this.llAddBB.TabStop = true;
+			this.llAddBB.Text = "Add to Bounding Mesh (by Pinhead)";
+			this.llAddBB.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAddBB_LinkClicked);
+			// 
 			// llAssign
 			// 
 			this.llAssign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.llAssign.LinkArea = new System.Windows.Forms.LinkArea(0, 6);
-			this.llAssign.Location = new System.Drawing.Point(456, 184);
+			this.llAssign.Location = new System.Drawing.Point(456, 208);
 			this.llAssign.Name = "llAssign";
 			this.llAssign.Size = new System.Drawing.Size(120, 23);
 			this.llAssign.TabIndex = 29;
@@ -958,7 +960,7 @@ namespace SimPe.Plugin
 			this.cbGroupJoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cbGroupJoint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbGroupJoint.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbGroupJoint.Location = new System.Drawing.Point(272, 160);
+			this.cbGroupJoint.Location = new System.Drawing.Point(272, 184);
 			this.cbGroupJoint.Name = "cbGroupJoint";
 			this.cbGroupJoint.Size = new System.Drawing.Size(304, 21);
 			this.cbGroupJoint.TabIndex = 28;
@@ -968,7 +970,7 @@ namespace SimPe.Plugin
 			this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label21.AutoSize = true;
 			this.label21.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label21.Location = new System.Drawing.Point(264, 144);
+			this.label21.Location = new System.Drawing.Point(264, 168);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(42, 17);
 			this.label21.TabIndex = 27;
@@ -1139,135 +1141,150 @@ namespace SimPe.Plugin
 			this.lb_itemsc3.TabIndex = 22;
 			this.lb_itemsc3.SelectedIndexChanged += new System.EventHandler(this.SelectItemsC3);
 			// 
-			// tDebug
+			// tMesh
 			// 
-			this.tDebug.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.tDebug.Controls.Add(this.linkLabel3);
-			this.tDebug.Controls.Add(this.linkLabel1);
-			this.tDebug.Controls.Add(this.list_subsets);
-			this.tDebug.Controls.Add(this.label_subsets);
-			this.tDebug.Controls.Add(this.list_groups);
-			this.tDebug.Controls.Add(this.label_groups);
-			this.tDebug.Controls.Add(this.list_links);
-			this.tDebug.Controls.Add(this.label_links);
-			this.tDebug.Controls.Add(this.list_elements);
-			this.tDebug.Controls.Add(this.label_elements);
-			this.tDebug.Controls.Add(this.pg);
-			this.tDebug.Location = new System.Drawing.Point(4, 22);
-			this.tDebug.Name = "tDebug";
-			this.tDebug.Size = new System.Drawing.Size(884, 302);
-			this.tDebug.TabIndex = 5;
-			this.tDebug.Text = "Debug";
+			this.tMesh.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.tMesh.Controls.Add(this.cbCorrect);
+			this.tMesh.Controls.Add(this.dxprev);
+			this.tMesh.Controls.Add(this.cbaxis);
+			this.tMesh.Controls.Add(this.label12);
+			this.tMesh.Controls.Add(this.button1);
+			this.tMesh.Controls.Add(this.button5);
+			this.tMesh.Controls.Add(this.label20);
+			this.tMesh.Controls.Add(this.lbmodel);
+			this.tMesh.Controls.Add(this.lb_models);
+			this.tMesh.Controls.Add(this.button3);
+			this.tMesh.Controls.Add(this.button4);
+			this.tMesh.Location = new System.Drawing.Point(4, 22);
+			this.tMesh.Name = "tMesh";
+			this.tMesh.Size = new System.Drawing.Size(884, 302);
+			this.tMesh.TabIndex = 4;
+			this.tMesh.Text = "3D Mesh";
+			this.tMesh.SizeChanged += new System.EventHandler(this.dxprev_SizeChanged);
 			// 
-			// linkLabel3
+			// cbCorrect
 			// 
-			this.linkLabel3.AutoSize = true;
-			this.linkLabel3.Location = new System.Drawing.Point(296, 152);
-			this.linkLabel3.Name = "linkLabel3";
-			this.linkLabel3.Size = new System.Drawing.Size(30, 16);
-			this.linkLabel3.TabIndex = 10;
-			this.linkLabel3.TabStop = true;
-			this.linkLabel3.Text = "Scan";
-			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+			this.cbCorrect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.cbCorrect.Location = new System.Drawing.Point(232, 264);
+			this.cbCorrect.Name = "cbCorrect";
+			this.cbCorrect.Size = new System.Drawing.Size(96, 32);
+			this.cbCorrect.TabIndex = 32;
+			this.cbCorrect.Text = "Correct Joint definition";
+			this.cbCorrect.CheckedChanged += new System.EventHandler(this.cbCorrect_CheckedChanged);
 			// 
-			// linkLabel1
+			// dxprev
 			// 
-			this.linkLabel1.Location = new System.Drawing.Point(296, 128);
-			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.Size = new System.Drawing.Size(40, 16);
-			this.linkLabel1.TabIndex = 9;
-			this.linkLabel1.TabStop = true;
-			this.linkLabel1.Text = "Model";
-			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SeletDebugObject);
+			this.dxprev.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(128)), ((System.Byte)(255)));
+			this.dxprev.Location = new System.Drawing.Point(336, 8);
+			this.dxprev.Name = "dxprev";
+			this.dxprev.Size = new System.Drawing.Size(304, 288);
+			this.dxprev.TabIndex = 31;
 			// 
-			// list_subsets
+			// cbaxis
 			// 
-			this.list_subsets.Location = new System.Drawing.Point(296, 24);
-			this.list_subsets.Name = "list_subsets";
-			this.list_subsets.Size = new System.Drawing.Size(264, 95);
-			this.list_subsets.TabIndex = 8;
-			this.list_subsets.SelectedIndexChanged += new System.EventHandler(this.SeletDebugObject);
+			this.cbaxis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.cbaxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbaxis.Location = new System.Drawing.Point(232, 240);
+			this.cbaxis.Name = "cbaxis";
+			this.cbaxis.Size = new System.Drawing.Size(96, 20);
+			this.cbaxis.TabIndex = 30;
+			this.cbaxis.SelectedIndexChanged += new System.EventHandler(this.ChangedAxis);
 			// 
-			// label_subsets
+			// label12
 			// 
-			this.label_subsets.AutoSize = true;
-			this.label_subsets.Location = new System.Drawing.Point(288, 8);
-			this.label_subsets.Name = "label_subsets";
-			this.label_subsets.Size = new System.Drawing.Size(48, 16);
-			this.label_subsets.TabIndex = 7;
-			this.label_subsets.Text = "Subsets:";
+			this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label12.Location = new System.Drawing.Point(176, 240);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(48, 23);
+			this.label12.TabIndex = 29;
+			this.label12.Text = "Order:";
+			this.label12.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
-			// list_groups
+			// button1
 			// 
-			this.list_groups.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left)));
-			this.list_groups.Location = new System.Drawing.Point(16, 224);
-			this.list_groups.Name = "list_groups";
-			this.list_groups.Size = new System.Drawing.Size(264, 69);
-			this.list_groups.TabIndex = 6;
-			this.list_groups.SelectedIndexChanged += new System.EventHandler(this.SeletDebugObject);
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button1.Location = new System.Drawing.Point(96, 240);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(72, 23);
+			this.button1.TabIndex = 28;
+			this.button1.Text = "Import...";
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
-			// label_groups
+			// button5
 			// 
-			this.label_groups.AutoSize = true;
-			this.label_groups.Location = new System.Drawing.Point(8, 208);
-			this.label_groups.Name = "label_groups";
-			this.label_groups.Size = new System.Drawing.Size(44, 16);
-			this.label_groups.TabIndex = 5;
-			this.label_groups.Text = "Groups:";
+			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button5.Location = new System.Drawing.Point(16, 240);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(72, 23);
+			this.button5.TabIndex = 27;
+			this.button5.Text = "Export...";
+			this.button5.Click += new System.EventHandler(this.Export);
 			// 
-			// list_links
+			// label20
 			// 
-			this.list_links.Location = new System.Drawing.Point(16, 136);
-			this.list_links.Name = "list_links";
-			this.list_links.Size = new System.Drawing.Size(264, 69);
-			this.list_links.TabIndex = 4;
-			this.list_links.SelectedIndexChanged += new System.EventHandler(this.SeletDebugObject);
-			// 
-			// label_links
-			// 
-			this.label_links.AutoSize = true;
-			this.label_links.Location = new System.Drawing.Point(8, 120);
-			this.label_links.Name = "label_links";
-			this.label_links.Size = new System.Drawing.Size(34, 16);
-			this.label_links.TabIndex = 3;
-			this.label_links.Text = "Links:";
-			// 
-			// list_elements
-			// 
-			this.list_elements.Location = new System.Drawing.Point(16, 24);
-			this.list_elements.Name = "list_elements";
-			this.list_elements.Size = new System.Drawing.Size(264, 95);
-			this.list_elements.TabIndex = 2;
-			this.list_elements.SelectedIndexChanged += new System.EventHandler(this.SeletDebugObject);
-			// 
-			// label_elements
-			// 
-			this.label_elements.AutoSize = true;
-			this.label_elements.Location = new System.Drawing.Point(8, 8);
-			this.label_elements.Name = "label_elements";
-			this.label_elements.Size = new System.Drawing.Size(55, 16);
-			this.label_elements.TabIndex = 1;
-			this.label_elements.Text = "Elements:";
-			// 
-			// pg
-			// 
-			this.pg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
+			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.pg.CommandsBackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.pg.CommandsVisibleIfAvailable = true;
-			this.pg.HelpVisible = false;
-			this.pg.LargeButtons = false;
-			this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
-			this.pg.Location = new System.Drawing.Point(560, 8);
-			this.pg.Name = "pg";
-			this.pg.Size = new System.Drawing.Size(316, 288);
-			this.pg.TabIndex = 0;
-			this.pg.Text = "propertyGrid1";
-			this.pg.ToolbarVisible = false;
-			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
-			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
+			this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label20.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.label20.Location = new System.Drawing.Point(644, 8);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(232, 288);
+			this.label20.TabIndex = 25;
+			this.label20.Text = @"Camera Control:
+
+ Translate Y: left Button + move vertical
+ Translate X: left Button + move horizontal
+ Scale: middle Button + move vertical
+ Rotate Z: middle Button + move horizontal
+ Rotate X: right Button + move vertical
+ Rotate Y: right Button + move horizontal";
+			this.label20.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
+			// lbmodel
+			// 
+			this.lbmodel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left)));
+			this.lbmodel.CheckOnClick = true;
+			this.lbmodel.HorizontalScrollbar = true;
+			this.lbmodel.Location = new System.Drawing.Point(16, 24);
+			this.lbmodel.Name = "lbmodel";
+			this.lbmodel.Size = new System.Drawing.Size(312, 214);
+			this.lbmodel.TabIndex = 24;
+			// 
+			// lb_models
+			// 
+			this.lb_models.AutoSize = true;
+			this.lb_models.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lb_models.Location = new System.Drawing.Point(8, 8);
+			this.lb_models.Name = "lb_models";
+			this.lb_models.Size = new System.Drawing.Size(45, 16);
+			this.lb_models.TabIndex = 23;
+			this.lb_models.Text = "Models:";
+			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button3.Location = new System.Drawing.Point(16, 272);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(152, 23);
+			this.button3.TabIndex = 4;
+			this.button3.Text = "Preview";
+			this.button3.Click += new System.EventHandler(this.Preview);
+			// 
+			// button4
+			// 
+			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button4.Location = new System.Drawing.Point(184, 272);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(32, 23);
+			this.button4.TabIndex = 26;
+			this.button4.Text = "BG";
+			this.button4.Click += new System.EventHandler(this.PickColor);
 			// 
 			// tModel
 			// 
@@ -1288,12 +1305,12 @@ namespace SimPe.Plugin
 			this.groupBox19.Controls.Add(this.lb_model_items);
 			this.groupBox19.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox19.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox19.Location = new System.Drawing.Point(676, 200);
+			this.groupBox19.Location = new System.Drawing.Point(648, 200);
 			this.groupBox19.Name = "groupBox19";
-			this.groupBox19.Size = new System.Drawing.Size(200, 96);
+			this.groupBox19.Size = new System.Drawing.Size(224, 96);
 			this.groupBox19.TabIndex = 35;
 			this.groupBox19.TabStop = false;
-			this.groupBox19.Text = "Model Section - Items";
+			this.groupBox19.Text = "Bounding Mesh Control  - Faces";
 			// 
 			// lb_model_items
 			// 
@@ -1305,7 +1322,7 @@ namespace SimPe.Plugin
 			this.lb_model_items.IntegralHeight = false;
 			this.lb_model_items.Location = new System.Drawing.Point(8, 24);
 			this.lb_model_items.Name = "lb_model_items";
-			this.lb_model_items.Size = new System.Drawing.Size(184, 64);
+			this.lb_model_items.Size = new System.Drawing.Size(208, 64);
 			this.lb_model_items.TabIndex = 22;
 			// 
 			// groupBox18
@@ -1313,6 +1330,7 @@ namespace SimPe.Plugin
 			this.groupBox18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox18.Controls.Add(this.llClearBB);
 			this.groupBox18.Controls.Add(this.lb_model_faces);
 			this.groupBox18.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox18.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -1321,7 +1339,19 @@ namespace SimPe.Plugin
 			this.groupBox18.Size = new System.Drawing.Size(292, 184);
 			this.groupBox18.TabIndex = 34;
 			this.groupBox18.TabStop = false;
-			this.groupBox18.Text = "Model Section - Faces";
+			this.groupBox18.Text = "Bounding Mesh Control - Vertices";
+			// 
+			// llClearBB
+			// 
+			this.llClearBB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.llClearBB.AutoSize = true;
+			this.llClearBB.Location = new System.Drawing.Point(247, 0);
+			this.llClearBB.Name = "llClearBB";
+			this.llClearBB.Size = new System.Drawing.Size(37, 17);
+			this.llClearBB.TabIndex = 24;
+			this.llClearBB.TabStop = true;
+			this.llClearBB.Text = "Clear";
+			this.llClearBB.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llClearBB_LinkClicked);
 			// 
 			// lb_model_faces
 			// 
@@ -1345,7 +1375,7 @@ namespace SimPe.Plugin
 			this.groupBox17.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox17.Location = new System.Drawing.Point(8, 200);
 			this.groupBox17.Name = "groupBox17";
-			this.groupBox17.Size = new System.Drawing.Size(660, 96);
+			this.groupBox17.Size = new System.Drawing.Size(632, 96);
 			this.groupBox17.TabIndex = 33;
 			this.groupBox17.TabStop = false;
 			this.groupBox17.Text = "Model Section - Names";
@@ -1360,7 +1390,7 @@ namespace SimPe.Plugin
 			this.lb_model_names.IntegralHeight = false;
 			this.lb_model_names.Location = new System.Drawing.Point(8, 24);
 			this.lb_model_names.Name = "lb_model_names";
-			this.lb_model_names.Size = new System.Drawing.Size(644, 64);
+			this.lb_model_names.Size = new System.Drawing.Size(616, 64);
 			this.lb_model_names.TabIndex = 22;
 			// 
 			// groupBox16
@@ -1868,12 +1898,12 @@ namespace SimPe.Plugin
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox10.ResumeLayout(false);
 			this.groupBox12.ResumeLayout(false);
-			this.tMesh.ResumeLayout(false);
+			this.tDebug.ResumeLayout(false);
 			this.tGeometryDataContainer3.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox5.ResumeLayout(false);
-			this.tDebug.ResumeLayout(false);
+			this.tMesh.ResumeLayout(false);
 			this.tModel.ResumeLayout(false);
 			this.groupBox19.ResumeLayout(false);
 			this.groupBox18.ResumeLayout(false);
@@ -2299,6 +2329,34 @@ namespace SimPe.Plugin
 			}
 		}
 
+		private void llAddBB_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (this.tMesh.Tag != null)
+			{
+				if (lb_itemsc.SelectedIndex<0) return;
+				GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;				
+				GmdcGroup g = (GmdcGroup)lb_itemsc.SelectedItem;
+				
+				gmdc.Model.AddGroupToBoundingMesh(g);
+				gmdc.Refresh();
+				gmdc.Changed = true;
+			}
+		}
+
+		private void llClearBB_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (this.tMesh.Tag != null)
+			{				
+				GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
+				gmdc.Model.ClearBoundingMesh();
+
+				this.lb_model_faces.Items.Clear();
+				this.lb_model_items.Items.Clear();
+
+				gmdc.Changed = true;
+			}
+		}
+
 		private void cbCorrect_CheckedChanged(object sender, System.EventArgs e)
 		{
 			Helper.WindowsRegistry.CorrectJointDefinitionOnExport = this.cbCorrect.Checked;
@@ -2450,6 +2508,7 @@ namespace SimPe.Plugin
 				}*/
 
 				gmdc.Refresh();
+				gmdc.Changed = true;
 			}
 		}
 

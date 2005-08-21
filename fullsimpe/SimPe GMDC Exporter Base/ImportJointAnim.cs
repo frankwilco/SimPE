@@ -48,6 +48,8 @@ namespace SimPe.Plugin.Anim
 		private System.Windows.Forms.ColumnHeader chDuration;
 		private System.Windows.Forms.ColumnHeader chDiscardZero;
 		private Ambertation.Windows.Forms.TransparentCheckBox cbRemove;
+		private Ambertation.Windows.Forms.XPTaskBoxSimple gbsettings;
+		private Ambertation.Windows.Forms.TransparentCheckBox cbCorrect;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -110,12 +112,16 @@ namespace SimPe.Plugin.Anim
 			this.chDuration = new System.Windows.Forms.ColumnHeader();
 			this.chDiscardZero = new System.Windows.Forms.ColumnHeader();
 			this.label1 = new System.Windows.Forms.Label();
+			this.gbsettings = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+			this.cbCorrect = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.xpGradientPanel1.SuspendLayout();
 			this.gbgroups.SuspendLayout();
+			this.gbsettings.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// xpGradientPanel1
 			// 
+			this.xpGradientPanel1.Controls.Add(this.gbsettings);
 			this.xpGradientPanel1.Controls.Add(this.gbgroups);
 			this.xpGradientPanel1.Controls.Add(this.button1);
 			this.xpGradientPanel1.Controls.Add(this.lv);
@@ -150,7 +156,7 @@ namespace SimPe.Plugin.Anim
 			this.gbgroups.IconLocation = new System.Drawing.Point(4, 12);
 			this.gbgroups.IconSize = new System.Drawing.Size(32, 32);
 			this.gbgroups.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
-			this.gbgroups.Location = new System.Drawing.Point(536, 32);
+			this.gbgroups.Location = new System.Drawing.Point(536, 88);
 			this.gbgroups.Name = "gbgroups";
 			this.gbgroups.RightHeaderColor = System.Drawing.SystemColors.Highlight;
 			this.gbgroups.Size = new System.Drawing.Size(280, 168);
@@ -304,6 +310,38 @@ namespace SimPe.Plugin.Anim
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Importable Joints:";
 			// 
+			// gbsettings
+			// 
+			this.gbsettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.gbsettings.BackColor = System.Drawing.Color.Transparent;
+			this.gbsettings.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
+			this.gbsettings.BorderColor = System.Drawing.SystemColors.Window;
+			this.gbsettings.Controls.Add(this.cbCorrect);
+			this.gbsettings.DockPadding.Bottom = 4;
+			this.gbsettings.DockPadding.Left = 4;
+			this.gbsettings.DockPadding.Right = 4;
+			this.gbsettings.DockPadding.Top = 44;
+			this.gbsettings.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
+			this.gbsettings.HeaderText = "Global Settings";
+			this.gbsettings.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.gbsettings.IconLocation = new System.Drawing.Point(4, 12);
+			this.gbsettings.IconSize = new System.Drawing.Size(32, 32);
+			this.gbsettings.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
+			this.gbsettings.Location = new System.Drawing.Point(536, 16);
+			this.gbsettings.Name = "gbsettings";
+			this.gbsettings.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+			this.gbsettings.Size = new System.Drawing.Size(280, 72);
+			this.gbsettings.TabIndex = 15;
+			// 
+			// cbCorrect
+			// 
+			this.cbCorrect.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbCorrect.Location = new System.Drawing.Point(16, 40);
+			this.cbCorrect.Name = "cbCorrect";
+			this.cbCorrect.Size = new System.Drawing.Size(256, 24);
+			this.cbCorrect.TabIndex = 0;
+			this.cbCorrect.Text = "auskel Joint correction (by Pinhead)";
+			// 
 			// ImportJointAnim
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
@@ -315,6 +353,7 @@ namespace SimPe.Plugin.Anim
 			this.Text = "Import Animation";
 			this.xpGradientPanel1.ResumeLayout(false);
 			this.gbgroups.ResumeLayout(false);
+			this.gbsettings.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -323,6 +362,7 @@ namespace SimPe.Plugin.Anim
 		public static bool Execute(ImportedFrameBlocks amb, GeometryDataContainer gmdc)
 		{
 			ImportJointAnim f = new ImportJointAnim();
+			f.cbCorrect.Checked = amb.AuskelCorrection;
 			f.ok = false;
 			f.cbnames.Items.Clear();
 			foreach (AnimationFrameBlock afb in gmdc.LinkedAnimation.Part2)			
@@ -350,6 +390,7 @@ namespace SimPe.Plugin.Anim
 			}
 			f.ShowDialog();
 
+			amb.AuskelCorrection = f.cbCorrect.Checked;
 			return f.ok;
 		}
 

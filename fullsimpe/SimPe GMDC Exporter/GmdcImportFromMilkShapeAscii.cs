@@ -434,7 +434,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 			}
 		}
 
-		SimPe.Plugin.Anim.AnimationFrameBlock curanimblock;
+		SimPe.Plugin.Anim.AnimationFrameBlock curtransblock, currotblock;
 		void ReadJointDescription(ImportedBone b)
 		{
 			string[] linetoks = GetNonEmptyTokens();
@@ -458,37 +458,51 @@ namespace SimPe.Plugin.Gmdc.Importer
 			//Animations
 			if (this.AnimationBlocks!=null && Gmdc.LinkedAnimation!=null) 
 			{
-				curanimblock = null;
+				curtransblock = null; currotblock = null;
 
 				ImportedFrameBlock ifb = new ImportedFrameBlock(new AnimationFrameBlock(Gmdc.LinkedAnimation));
 				
 				
 				ifb.FrameBlock.Name = b.ImportedName;
 				ifb.FindTarget(Gmdc.LinkedAnimation);
-				if (ifb.Target!=null) 				
-					ifb.FrameBlock.TransformationType = ifb.Target.TransformationType;
+				if (ifb.Target!=null) 	
+				{			
+					ifb.FrameBlock.TransformationType = ifb.Target.TransformationType;					
+
+					if (ifb.FrameBlock.TransformationType==FrameType.Translation) curtransblock = ifb.FrameBlock;
+					else currotblock = ifb.FrameBlock;
+				}
 				else 
 				{
-					ifb.FrameBlock.TransformationType = FrameType.Unknown;
-					if (b.ImportedName.EndsWith("_rot")) ifb.FrameBlock.TransformationType = FrameType.Rotation;
-					else if (b.ImportedName.EndsWith("_trans")) ifb.FrameBlock.TransformationType = FrameType.Translation;
+					ifb.FrameBlock.TransformationType = FrameType.Rotation;
+					if (b.ImportedName.EndsWith("_rot")) 
+					{
+						ifb.FrameBlock.TransformationType = FrameType.Rotation;
+						currotblock = ifb.FrameBlock;
+					}
+					else if (b.ImportedName.EndsWith("_trans")) 
+					{
+						ifb.FrameBlock.TransformationType = FrameType.Translation;
+						curtransblock = ifb.FrameBlock;
+					} 
+					else 
+					{
+						currotblock = ifb.FrameBlock;
+						ifb.FrameBlock.CreateBaseAxisSet(AnimationTokenType.SixByte);
+						this.AnimationBlocks.Add(ifb);	
+
+						ifb = new ImportedFrameBlock(new AnimationFrameBlock(Gmdc.LinkedAnimation));
+						ifb.FrameBlock.TransformationType = FrameType.Translation;
+						ifb.FrameBlock.Name = b.ImportedName;
+						curtransblock = ifb.FrameBlock;
+					}					
 				}
+				
 				ifb.FrameBlock.CreateBaseAxisSet(AnimationTokenType.SixByte);
-				curanimblock = ifb.FrameBlock;
 
-				this.AnimationBlocks.Add(ifb);
+				
 
-				/*foreach (AnimationFrameBlock ab in this.AnimationBlock.Part2)
-					if (ab.Name == b.ImportedName && ab.AxisCount==3)  																
-						curanimblock = ab;								*/
-
-				//at this time We are unable to create valid arbitary AnimBlock2 Objects, so we can't creat new Blocks here yet
-				/*if (curanimblock==null) 
-				{
-					curanimblock = new SimPe.Plugin.AnimBlock2();
-					curanimblock.Name = b.ImportedName;					
-					curanimblock.CreateBasePart3();
-				}*/				
+				this.AnimationBlocks.Add(ifb);						
 			}
 
 			//if (curanimblock==null) curanimblock = new SimPe.Plugin.AnimBlock2();
@@ -555,22 +569,22 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 				trans = Component.InverseTransformScaled(trans);				
 
-				if (curanimblock!=null)
+				if (curtransblock!=null)
 				{
 					
 					//Brand this Block as Translation (ignoring all rotations!)
-					if (curanimblock.TransformationType==FrameType.Unknown) 							
-						curanimblock.TransformationType=FrameType.Translation;						
+					if (curtransblock.TransformationType==FrameType.Unknown) 							
+						curtransblock.TransformationType=FrameType.Translation;						
 										
 
 					//only process if the Block Type is Translation
-					if (curanimblock.TransformationType==FrameType.Translation) 
+					if (curtransblock.TransformationType==FrameType.Translation) 
 					{
 						if (isscaled && index==0) 
-							for (int i=0; i<curanimblock.AxisCount; i++)
-								curanimblock.AxisSet[i].Locked = true;
+							for (int i=0; i<curtransblock.AxisCount; i++)
+								curtransblock.AxisSet[i].Locked = true;
 
-						curanimblock.AddFrame((short)t, trans, false);			
+						curtransblock.AddFrame((short)t, trans, false);			
 					}
 				}
 			} 
@@ -606,22 +620,22 @@ namespace SimPe.Plugin.Gmdc.Importer
 				q = Quaternion.FromAxisAngle(rot, q.Angle);
 				rot = q.GetEulerAngles();
 
-				if (curanimblock!=null)
+				if (currotblock!=null)
 				{
 					//Brand this Block as Rotation (ignoring all Translation!)
-					if (curanimblock.TransformationType==FrameType.Unknown) 					
-						curanimblock.TransformationType=FrameType.Rotation;						
+					if (currotblock.TransformationType==FrameType.Unknown) 					
+						currotblock.TransformationType=FrameType.Rotation;						
 					
 					
 
 					//only process if the Block Type is Rotation
-					if (curanimblock.TransformationType==FrameType.Rotation) 
+					if (currotblock.TransformationType==FrameType.Rotation) 
 					{
 						if (isscaled && index==0) 
-							for (int i=0; i<curanimblock.AxisCount; i++)
-								curanimblock.AxisSet[i].Locked = true;
+							for (int i=0; i<currotblock.AxisCount; i++)
+								currotblock.AxisSet[i].Locked = true;
 
-						curanimblock.AddFrame((short)t, rot, false);
+						currotblock.AddFrame((short)t, rot, false);
 					}
 					
 				}
