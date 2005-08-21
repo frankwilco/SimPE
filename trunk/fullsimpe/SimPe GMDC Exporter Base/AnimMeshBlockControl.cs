@@ -380,11 +380,11 @@ namespace SimPe.Plugin.Anim
 
 				fGeometryDataContainer.StartImport(new System.Windows.Forms.OpenFileDialog(), gdc, ".txt", (SimPe.Plugin.Gmdc.ElementSorting)fGeometryDataContainer.DefaultSelectedAxisIndex, true);
 				ab1.Parent.Changed = true;
-				//ab1.Parent.Refresh();
+				this.RefreshData();
 			} 
 			else 
 			{
-				Helper.ExceptionMessage(new Warning("Unable to Find Model File for \""+ab1.Name+"\".", "SimPe was not able to Find the Model File that defines the specified Hirarchy. The Animation will not get exported!"));
+				Helper.ExceptionMessage(new Warning("Unable to Find Model File for \""+ab1.Name+"\".", "SimPe was not able to Find the Model File that defines the specified Hirarchy. The Animation will not get imported!"));
 			}
 		}
 
@@ -400,6 +400,7 @@ namespace SimPe.Plugin.Anim
 
 				ab1.Part2 = (AnimationFrameBlock[])Helper.Add(ab1.Part2, afb);
 
+				cbJoint.SelectedIndex = -1;
 				cbJoint.Items.Add(afb);
 				cbJoint.SelectedIndex = cbJoint.Items.Count-1;
 			}

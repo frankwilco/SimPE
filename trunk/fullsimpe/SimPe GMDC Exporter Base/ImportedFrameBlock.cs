@@ -197,6 +197,13 @@ namespace SimPe.Plugin.Anim
 	/// </summary>
 	public class ImportedFrameBlocks : ArrayList 
 	{
+		bool correctauskel;
+		public bool AuskelCorrection
+		{
+			get {return correctauskel;}
+			set {correctauskel = value;}
+		}
+
 		/// <summary>
 		/// Integer Indexer
 		/// </summary>

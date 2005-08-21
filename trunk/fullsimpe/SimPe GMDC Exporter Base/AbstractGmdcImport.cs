@@ -108,7 +108,11 @@ namespace SimPe.Plugin.Gmdc
 		{
 			order = new ElementOrder(ElementSorting.XZY);
 			ab1 = new ImportedFrameBlocks();
+
+			ab1.AuskelCorrection = Helper.WindowsRegistry.CorrectJointDefinitionOnExport;
 		}
+
+		
 
 		#region abstract Methods
 		/// <summary>
@@ -316,6 +320,8 @@ namespace SimPe.Plugin.Gmdc
 				}
 			}
 
+			bool clearbmesh = false;
+
 			//Add the Groups
 			foreach (ImportedGroup g in grps) 
 			{
@@ -329,7 +335,18 @@ namespace SimPe.Plugin.Gmdc
 					if (!Helper.WindowsRegistry.HiddenMode) 
 #endif
 						g.Link.Flatten();
+				
+				if (g.UseInBoundingMesh) clearbmesh=true;
 			}	
+
+			//Now Update the BoundingMesh if needed
+			if (clearbmesh)
+			{
+				gmdc.Model.ClearBoundingMesh();
+				foreach (ImportedGroup g in grps) 				
+					if (g.UseInBoundingMesh) 
+						gmdc.Model.AddGroupToBoundingMesh(g.Group);
+			}
 		
 			//Make sure the Elements are assigned to the correct Bones
 			for (int i=0; i<bns.Length; i++)
@@ -361,7 +378,8 @@ namespace SimPe.Plugin.Gmdc
 							}
 						}
 				}				
-			}
+			}			
+
 			if (this.Options.CleanBones) Gmdc.CleanupBones();
 			if (this.Options.UpdateCres) 
 			{
@@ -597,6 +615,43 @@ namespace SimPe.Plugin.Gmdc
 		}
 
 		#region Animation
+		/// <summary>
+		/// This Map contains static correction Values used for specific animation Joints
+		/// </summary>
+		static Hashtable ajcor;
+
+		protected static void BuildCorrectionMap()
+		{
+			if (ajcor!=null) return;
+			ajcor = new Hashtable();
+
+			ajcor["l_thigh"] = new Vector3f(-Quaternion.DegToRad(180), 0 , 0);
+			ajcor["r_thigh"] = new Vector3f(-Quaternion.DegToRad(180), 0 , 0);
+			ajcor["l_clavicle"] = new Vector3f(0, 0, Quaternion.DegToRad(90));
+			ajcor["r_clavicle"] = new Vector3f(0, 0, -Quaternion.DegToRad(90));
+		}
+
+		/// <summary>
+		/// Returns a Vector that contains Correction Data for a Animation Joint
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		/// <remarks>The vector should be added during Export, 
+		/// and will be substracted during Import</remarks>
+		public static Vector3f GetCorrectionVector(string name)
+		{
+			if (ajcor==null) BuildCorrectionMap();
+			Vector3f r = (Vector3f)ajcor[name];
+
+			if (r==null) r = new Vector3f(0, 0, 0);
+			return r;
+		}		
+
+		/// <summary>
+		/// This is called whenever a Animation is sored in 
+		/// <see cref="Gmdc.LinkedAnimation"/>, and it should import the Values stored in 
+		/// <see cref="AnimationBlocks"/> to <see cref="Gmdc.LinkedAnimation"/>.
+		/// </summary>
 		protected void ChangeAnim()
 		{
 			if (Gmdc.LinkedAnimation==null) return;
@@ -605,37 +660,40 @@ namespace SimPe.Plugin.Gmdc
 				ifb.FindTarget(Gmdc.LinkedAnimation);
 
 			if (ImportJointAnim.Execute(this.AnimationBlocks, gmdc)) 
-			{			
+			{		
+				//correct some transformation in special Joints, don't know yet 
+				//why they work diffrent
+				if (this.AnimationBlocks.AuskelCorrection)
+				{
+					foreach (ImportedFrameBlock ifb in AnimationBlocks)	
+						if (ifb.Action != AnimImporterAction.Nothing) 
+						if (ifb.FrameBlock.FrameCount!=0)
+						{
+							Vector3f v = GetCorrectionVector(ifb.ImportedName);
+							
+							ifb.FrameBlock.Frames[0].Float_X -= (float)v.X;
+							ifb.FrameBlock.Frames[0].Float_Y -= (float)v.Y;
+							ifb.FrameBlock.Frames[0].Float_Z -= (float)v.Z;							
+						}
+							
+				}
+
 				foreach (ImportedFrameBlock ifb in AnimationBlocks)	
 				{		
 					if (ifb.Action == AnimImporterAction.Replace) 					
 						ifb.ReplaceFrames();
 					else if (ifb.Action == AnimImporterAction.Add)
 						ifb.AddFrameBlock(Gmdc.LinkedAnimation);
-				}
+				}				
 			}
-
-				
-			
-			//Gmdc.LinkedAnimation.Part2 = this.AnimationBlock.Part2;
-			//Gmdc.LinkedAnimation.Parent.SynchronizeUserData(true, true);
 		}
 
+		/// <summary>
+		/// Called in order to Setup the Animation Data
+		/// </summary>
 		protected virtual void SetUpAnimationData()
 		{			
-			ab1.Clear();
-			/*if (Gmdc.LinkedAnimation!=null) 
-			{
-				
-				ab1 = new AnimationMeshBlock(Gmdc.LinkedAnimation.Parent);
-				foreach (AnimationFrameBlock ab in Gmdc.LinkedAnimation.Part2)
-				{
-					AnimationFrameBlock curanimblock = ab.CloneBase(true);
-
-					ab1.Part2 = (AnimationFrameBlock[])Helper.Add(ab1.Part2, curanimblock);
-				}
-			}
-			else ab1 = null;*/
+			ab1.Clear();			
 		}
 		#endregion
 	}

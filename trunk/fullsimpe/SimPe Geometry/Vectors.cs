@@ -348,6 +348,7 @@ namespace SimPe.Geometry
 		/// <returns>The resulting Vector</returns>
 		public static bool operator ==(Vector3f v1, Vector3f v2) 
 		{
+			if (((object)v1)==null || ((object)v2)==null) return (((object)v1)==null && ((object)v2)==null);
 			return (v1.X==v2.X) && (v1.Y==v2.Y) && (v1.Z==v2.Z);
 		}
 

@@ -134,7 +134,7 @@ namespace SimPe.Plugin.Gmdc
 		/// <summary>
 		/// Some SubSet Data (yet unknown)
 		/// </summary>
-		public GmdcJoint Bone
+		public GmdcJoint BoundingMesh
 		{
 			get { return subset; }
 			set { subset = value; }
@@ -199,6 +199,36 @@ namespace SimPe.Plugin.Gmdc
 			for (int i=0; i<names.Length; i++) names[i].Serialize(writer);
 
 			subset.Serialize(writer);
+		}
+
+		/// <summary>
+		/// Clear the BoundingMesh definition
+		/// </summary>
+		public void ClearBoundingMesh()
+		{
+			this.BoundingMesh.Items.Clear();
+			this.BoundingMesh.Vertices.Clear();
+		}
+
+		/// <summary>
+		/// Add the passed Group to the BoundingMesh Definition
+		/// </summary>
+		/// <param name="g"></param>
+		public void AddGroupToBoundingMesh(GmdcGroup g)
+		{
+			if (g==null) return;
+			if (g.Link==null) return;
+			int nr = g.Link.GetElementNr(g.Link.FindElementType(ElementIdentity.Vertex));
+			int offset = this.BoundingMesh.VertexCount;
+
+			for (int i = 0; i < g.Link.ReferencedSize; i++) 
+			{
+				Vector3f v = new Vector3f(g.Link.GetValue(nr, i).Data[0], g.Link.GetValue(nr, i).Data[1], g.Link.GetValue(nr, i).Data[2]);
+				this.BoundingMesh.Vertices.Add(v);
+			}
+
+			for (int i=0; i<g.FaceCount; i++)			
+				this.BoundingMesh.Items.Add(g.Faces[i]+offset);			
 		}
 	}
 	

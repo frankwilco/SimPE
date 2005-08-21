@@ -292,9 +292,9 @@ namespace SimPe.Plugin
 				}
 
 				form.lb_model_faces.Items.Clear();
-				foreach (Vector3f i in this.model.Bone.Vertices) SimPe.CountedListItem.Add(form.lb_model_faces, i);
+				foreach (Vector3f i in this.model.BoundingMesh.Vertices) SimPe.CountedListItem.Add(form.lb_model_faces, i);
 				form.lb_model_items.Items.Clear();
-				foreach (int i in this.model.Bone.Items) SimPe.CountedListItem.Add(form.lb_model_items, i);
+				foreach (int i in this.model.BoundingMesh.Items) SimPe.CountedListItem.Add(form.lb_model_items, i);
 				form.lb_model_names.Items.Clear();
 				foreach (GmdcNamePair i in this.model.BlendGroupDefinition) SimPe.CountedListItem.Add(form.lb_model_names, i);
 				form.lb_model_trans.Items.Clear();

@@ -161,6 +161,16 @@ namespace SimPe.Plugin.Gmdc
 			get {return this.Group.Faces.Length / 3; }
 		}
 
+		bool useinbmesh;
+		/// <summary>
+		/// True, if this MEshGroup sould be added to the BoundingMesh
+		/// </summary>
+		public bool UseInBoundingMesh
+		{
+			get { return useinbmesh; }
+			set { useinbmesh = value; }
+		}
+
 		/// <summary>
 		/// Returns the color that should be used to display this Group in the "Import Groups" ListView
 		/// </summary>
@@ -185,6 +195,7 @@ namespace SimPe.Plugin.Gmdc
 			group = new GmdcGroup(parent);
 			link = new GmdcLink(parent);
 			elements = new GmdcElements();
+			useinbmesh = false;
 		}
 	}
 
