@@ -308,7 +308,7 @@ namespace SimPe
 			} 
 			catch (Exception ex)
 			{
-				Helper.ExceptionMessage("Unable to determin Version.", ex);
+				Helper.ExceptionMessage(new Warning("SimPE was unable to connect to the Internet. It cannot lookup the latest Version.", "You can deactivate the Version Check in Extras->Preferences... .", ex));
 			}
 			finally 
 			{

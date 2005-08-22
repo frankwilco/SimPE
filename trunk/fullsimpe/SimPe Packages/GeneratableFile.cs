@@ -57,16 +57,25 @@ namespace SimPe.Packages
 			fl.header = this.header;
 			
 			return fl;
-		}
-
-		/// <summary>
-		/// Compiles a new Package File from the currently stored Information
-		/// </summary>
-		/// <param name="flname">Filename for the Package</param>
-		public void Build(string flname)
-		{
-			this.Save(flname);
 		}		
+	
+		/// <summary>
+		/// Checks if the passed File is writable by the System
+		/// </summary>
+		/// <param name="flname">The FileName</param>
+		/// <returns>true, if the File is writable</returns>
+		public static bool CanWriteToFile(string flname, bool close)
+		{
+			if (!System.IO.File.Exists(flname)) 			
+				return true;			
+
+			StreamItem si = StreamFactory.UseStream(flname, System.IO.FileAccess.ReadWrite);
+			bool res = (si.StreamState == StreamState.Opened);
+
+			if (close && res) 
+				si.Close();
+			return res;
+		}
 
 		/// <summary>
 		/// Stores the internal reader to the passed File (IncrementalBuild() will be called!)
@@ -75,6 +84,21 @@ namespace SimPe.Packages
 		/// <remarks>This is Experimental and might not work properly</remarks>
 		public override void Save(string flname)
 		{			
+			//can we write to the output File?
+			if (!CanWriteToFile(flname, false))
+			{
+				Helper.ExceptionMessage(new Warning("Changes cannot be saved!", @""""+flname+@""" is write protected."));
+				return;
+			}
+
+			//can we write to the .bak File?
+			if (Helper.WindowsRegistry.AutoBackup) 			
+				if (!CanWriteToFile(GetBakFileName(flname), true))
+				{
+					Helper.ExceptionMessage(new Warning("Changes cannot be saved!", @""""+GetBakFileName(flname)+@""" is write protected."));
+					return;
+				}
+
 			this.BeginUpdate();
 			PackageMaintainer.Maintainer.RemovePackage(flname);
 			try 
@@ -99,13 +123,23 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// Returns the suggested name for a .bak File
+		/// </summary>
+		/// <param name="flname">the initial filename</param>
+		/// <returns>the suggested Backup Filename</returns>
+		protected string GetBakFileName(string flname)
+		{
+			return System.IO.Path.Combine(System.IO.Path.GetDirectoryName(flname), System.IO.Path.GetFileNameWithoutExtension(flname)+".bak");
+		}
+
+		/// <summary>
 		/// Compiles a new Package File from the currently stored Information
 		/// </summary>
 		/// <param name="ms">The Memory Stream you want to write</param>
 		/// <param name="flname">Filename for the Package</param>
 		protected void Save(MemoryStream ms, string flname)
 		{
-			string bakfile = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(flname), System.IO.Path.GetFileNameWithoutExtension(flname)+".bak");
+			string bakfile = GetBakFileName(flname);
 			string tmpfile = System.IO.Path.GetTempFileName();
 			try 
 			{

@@ -645,7 +645,9 @@ namespace SimPe.Plugin.Gmdc
 			f.cbBMesh.Enabled = (joints.Count==0);
 			foreach (ImportedGroup a in actions)
 			{
-				if (a.Group.Opacity>0x100 && f.cbBMesh.Enabled) a.UseInBoundingMesh = true;
+				if (a.Group.Name.ToLower().Trim().IndexOf("shadow")>-1) 
+					a.Group.Opacity = (uint)MeshOpacity.Shadow;
+				if (a.Group.Opacity>0x10 && f.cbBMesh.Enabled) a.UseInBoundingMesh = true;
 
 				if (a.TargetName=="") a.TargetName = a.Group.Name;
 				ListViewItem lvi = new ListViewItem(a.Group.Name);
@@ -870,9 +872,9 @@ namespace SimPe.Plugin.Gmdc
 						if (o.GetType()!=typeof(ImportedGroup)) continue;
 						ImportedGroup a = (ImportedGroup)lv.SelectedItems[i].Tag;	
 				
-						if (cbopacity.SelectedIndex==0) a.Group.Opacity = 0xffffffff;
-						else if (cbopacity.SelectedIndex==1) a.Group.Opacity = 3;
-						else a.Group.Opacity = 0;						
+						if (cbopacity.SelectedIndex==0) a.Group.Opacity = (uint)MeshOpacity.Opaque;
+						else if (cbopacity.SelectedIndex==1) a.Group.Opacity = (uint)MeshOpacity.Shadow;
+						else a.Group.Opacity = (uint)MeshOpacity.Unknown;						
 
 						//lv.SelectedItems[i].SubItems[2].Text = a.TargetName;
 					}
