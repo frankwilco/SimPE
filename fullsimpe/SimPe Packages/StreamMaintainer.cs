@@ -269,10 +269,12 @@ namespace SimPe.Packages
 			} 
 			else 
 			{
-				si.SetFileAccess(fa);				
+				if (!si.SetFileAccess(fa))
+					si.Close();				
 			}
 
-			si.FileStream.Seek(0, SeekOrigin.Begin);
+			if (si.StreamState==StreamState.Opened)
+				si.FileStream.Seek(0, SeekOrigin.Begin);
 			return si;
 		}
 

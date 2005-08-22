@@ -227,7 +227,7 @@ namespace SimPe.Plugin.Gmdc
 				this.BoundingMesh.Vertices.Add(v);
 			}
 
-			for (int i=0; i<g.FaceCount; i++)			
+			for (int i=0; i<g.Faces.Count; i++)			
 				this.BoundingMesh.Items.Add(g.Faces[i]+offset);			
 		}
 	}
