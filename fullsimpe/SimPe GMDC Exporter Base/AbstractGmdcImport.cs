@@ -667,15 +667,14 @@ namespace SimPe.Plugin.Gmdc
 				{
 					foreach (ImportedFrameBlock ifb in AnimationBlocks)	
 						if (ifb.Action != AnimImporterAction.Nothing) 
-						if (ifb.FrameBlock.FrameCount!=0)
-						{
-							Vector3f v = GetCorrectionVector(ifb.ImportedName);
+							foreach (AnimationFrame af in ifb.FrameBlock.Frames)
+							{
+								Vector3f v = GetCorrectionVector(ifb.ImportedName);
 							
-							ifb.FrameBlock.Frames[0].Float_X -= (float)v.X;
-							ifb.FrameBlock.Frames[0].Float_Y -= (float)v.Y;
-							ifb.FrameBlock.Frames[0].Float_Z -= (float)v.Z;							
-						}
-							
+								af.Float_X -= (float)v.X;
+								af.Float_Y -= (float)v.Y;
+								af.Float_Z -= (float)v.Z;							
+							}							
 				}
 
 				foreach (ImportedFrameBlock ifb in AnimationBlocks)	

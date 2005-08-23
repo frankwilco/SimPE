@@ -97,8 +97,10 @@ namespace SimPe
 		/// <param name="lv"></param>
 		public void DeselectAll(ListView lv)
 		{
+			lv.BeginUpdate();
 			foreach (ListViewItem lvi in lv.Items)
 				lvi.Selected = false;
+			lv.EndUpdate();
 		}
 
 		/// <summary>

@@ -80,6 +80,11 @@ namespace SimPe.Plugin.Tool.Action
 			}
 		}
 
+		public virtual bool Visible 
+		{
+			get {return true;}
+		}
+
 		#endregion
 	}
 }

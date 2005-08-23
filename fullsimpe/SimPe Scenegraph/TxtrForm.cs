@@ -676,7 +676,10 @@ namespace SimPe.Plugin
 				try 
 				{
 					ImageData id = (ImageData)cbitem.Items[cbitem.SelectedIndex];
-					Image img = Image.FromFile(ofd.FileName);
+					System.IO.Stream s = System.IO.File.OpenRead(ofd.FileName);
+					Image img = Image.FromStream(s);
+					s.Close();
+
 					img = this.CropImage(id, img);
 					if (img==null) return;
 
@@ -686,6 +689,8 @@ namespace SimPe.Plugin
 					mm.Texture = img;
 					pb.Image = img;
 					lbimg.Items[lbimg.SelectedIndex] = mm;
+
+					//if (img!=null) img.Dispose();
 				} 
 				catch (Exception ex) 
 				{
@@ -1072,7 +1077,10 @@ namespace SimPe.Plugin
 				try 
 				{
 					ImageData id = (ImageData)cbitem.Items[cbitem.SelectedIndex];
-					Image img = Image.FromFile(ofd.FileName);
+					System.IO.Stream s = System.IO.File.OpenRead(ofd.FileName);
+					Image img = Image.FromStream(s);
+					s.Close();
+
 					img = this.CropImage(id, img);
 					if (img==null) return;
 
@@ -1081,7 +1089,7 @@ namespace SimPe.Plugin
 					mm.LifoFile = "";
 					mm.Texture = this.ChangeAlpha(mm.Texture, img);
 					pb.Image = mm.Texture;
-					lbimg.Items[lbimg.SelectedIndex] = mm;
+					lbimg.Items[lbimg.SelectedIndex] = mm;					
 				} 
 				catch (Exception ex) 
 				{

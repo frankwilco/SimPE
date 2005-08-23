@@ -8,8 +8,12 @@ namespace Ambertation.Threading
 	/// </summary>
 	public abstract class StoppableThread : System.IDisposable
 	{
-		public StoppableThread()
+		bool async;
+
+		public StoppableThread() : this(SimPe.Helper.WindowsRegistry.AsynchronLoad) {}
+		public StoppableThread(bool async)
 		{
+			this.async = async;
 			stop = new ManualResetEvent(false);
 			ended = new ManualResetEvent(true);
 		}
@@ -22,7 +26,7 @@ namespace Ambertation.Threading
 		/// </summary>
 		protected void WaitForEnd()
 		{
-			if (!SimPe.Helper.WindowsRegistry.AsynchronLoad) return;
+			if (!async) return;
 			if (stop==null) return;
 			stop.Set();
 			const int wait = 100;
@@ -63,7 +67,7 @@ namespace Ambertation.Threading
 		{
 			get 
 			{
-				if (SimPe.Helper.WindowsRegistry.AsynchronLoad)
+				if (async)
 					if (stop.WaitOne(0, true)) return true;
 				return false;
 			}
@@ -87,7 +91,7 @@ namespace Ambertation.Threading
 		protected void ExecuteThread(ThreadPriority tp, string name, bool sync, bool events, int synctime)
 		{
 			WaitForEnd();
-			if (!SimPe.Helper.WindowsRegistry.AsynchronLoad) 
+			if (!async) 
 			{
 				ThreadEntry();
 			} 

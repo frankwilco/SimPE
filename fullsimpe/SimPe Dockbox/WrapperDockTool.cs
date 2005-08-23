@@ -96,6 +96,11 @@ namespace SimPe.Plugin.Tool.Dockable
 			{
 				return rd.dcWrapper.TabImage;
 			}
+		}	
+
+		public virtual bool Visible 
+		{
+			get { return GetDockableControl().IsDocked ||  GetDockableControl().IsFloating; }
 		}
 
 		#endregion

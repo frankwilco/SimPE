@@ -179,7 +179,7 @@
     <value>mybottomSandDock</value>
   </data>
   <data name="&gt;&gt;mybottomSandDock.Type">
-    <value>TD.SandDock.DockContainer, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockContainer, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;mybottomSandDock.Parent">
     <value>$this</value>
@@ -196,11 +196,11 @@
   <data name="dcPlugin.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="dcPlugin.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
   <data name="dcPlugin.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>8, 8</value>
+  </data>
+  <data name="dcPlugin.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="dcPlugin.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
@@ -284,7 +284,7 @@
     <value>dcPlugin</value>
   </data>
   <data name="&gt;&gt;dcPlugin.Type">
-    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dcPlugin.Parent">
     <value>mybottomSandDock</value>
@@ -295,11 +295,20 @@
   <data name="dc.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
-  <data name="dc.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
+  <data name="dc.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="dc.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="dc.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
+  </data>
+  <data name="dc.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="dc.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 8</value>
   </data>
   <data name="dc.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -334,7 +343,7 @@
   <data name="dc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
   </data>
-  <data name="dc.Location1" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="dc.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </data>
   <data name="dc.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -356,7 +365,7 @@
     <value>dc</value>
   </data>
   <data name="&gt;&gt;dc.Type">
-    <value>TD.SandDock.TabControl, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.TabControl, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dc.Parent">
     <value>dcPlugin</value>
@@ -1054,11 +1063,11 @@
   <data name="toolBar1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
-  <data name="toolBar1.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
   <data name="toolBar1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
+  </data>
+  <data name="toolBar1.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
   </data>
   <data name="toolBar1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1567,11 +1576,11 @@
   <data name="tbAction.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
-  <data name="tbAction.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
   <data name="tbAction.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
+  </data>
+  <data name="tbAction.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
   </data>
   <data name="tbAction.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2671,7 +2680,7 @@
     <value>dcResource</value>
   </data>
   <data name="&gt;&gt;dcResource.Type">
-    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dcResource.Parent">
     <value>dockContainer1</value>
@@ -3104,7 +3113,7 @@
     <value>myrightSandDock</value>
   </data>
   <data name="&gt;&gt;myrightSandDock.Type">
-    <value>TD.SandDock.DockContainer, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockContainer, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;myrightSandDock.Parent">
     <value>$this</value>
@@ -3211,7 +3220,7 @@
     <value>dcFilter</value>
   </data>
   <data name="&gt;&gt;dcFilter.Type">
-    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dcFilter.Parent">
     <value>myrightSandDock</value>
@@ -3619,7 +3628,7 @@
     <value>dcAction</value>
   </data>
   <data name="&gt;&gt;dcAction.Type">
-    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dcAction.Parent">
     <value>myrightSandDock</value>
@@ -4578,11 +4587,11 @@
   <data name="pbimg.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
-  <data name="pbimg.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Assembly</value>
-  </data>
   <data name="pbimg.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
+  </data>
+  <data name="pbimg.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Assembly</value>
   </data>
   <data name="pbimg.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -4912,7 +4921,7 @@
     <value>pbWait</value>
   </data>
   <data name="&gt;&gt;pbWait.Type">
-    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2046.21872, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2061.32864, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbWait.Parent">
     <value>sb</value>
@@ -5151,14 +5160,14 @@
   <data name="&gt;&gt;lnProg.ZOrder">
     <value>6</value>
   </data>
-  <data name="pb.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
   <data name="pb.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
   <data name="pb.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Assembly</value>
+  </data>
+  <data name="pb.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
   </data>
   <data name="pb.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -5302,13 +5311,22 @@
     <value>dockContainer1</value>
   </data>
   <data name="&gt;&gt;dockContainer1.Type">
-    <value>TD.SandDock.DockContainer, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockContainer, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dockContainer1.Parent">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;dockContainer1.ZOrder">
     <value>1</value>
+  </data>
+  <data name="resourceSelectionTimer.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="resourceSelectionTimer.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>541, 17</value>
+  </data>
+  <data name="resourceSelectionTimer.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
   </data>
   <data name="$this.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -5933,7 +5951,7 @@
 </value>
   </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
+    <value>Inherit</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
@@ -5963,7 +5981,7 @@
     <value>sdm</value>
   </data>
   <data name="&gt;&gt;sdm.Type">
-    <value>TD.SandDock.SandDockManager, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.SandDockManager, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;ofd.Name">
     <value>ofd</value>
@@ -6234,6 +6252,12 @@
   </data>
   <data name="&gt;&gt;sfd.Type">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resourceSelectionTimer.Name">
+    <value>resourceSelectionTimer</value>
+  </data>
+  <data name="&gt;&gt;resourceSelectionTimer.Type">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name">
     <value>MainForm</value>

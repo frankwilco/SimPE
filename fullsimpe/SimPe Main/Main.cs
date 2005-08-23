@@ -124,6 +124,7 @@ namespace SimPe
 		private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon3;
 		private TD.SandDock.TabControl dc;
 		private TD.SandDock.DockContainer dockContainer1;
+		private System.Windows.Forms.Timer resourceSelectionTimer;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -302,6 +303,7 @@ namespace SimPe
 			this.pb = new System.Windows.Forms.ProgressBar();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.dockContainer1 = new TD.SandDock.DockContainer();
+			this.resourceSelectionTimer = new System.Windows.Forms.Timer(this.components);
 			this.mybottomSandDock.SuspendLayout();
 			this.dcPlugin.SuspendLayout();
 			this.topSandBarDock.SuspendLayout();
@@ -388,7 +390,7 @@ namespace SimPe
 			this.dc.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dc.ImeMode")));
 			this.dc.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
 																																								   new TD.SandDock.DocumentLayoutSystem(725, 373, new TD.SandDock.DockControl[0], null)});
-			this.dc.Location = ((System.Drawing.Point)(resources.GetObject("dc.Location1")));
+			this.dc.Location = ((System.Drawing.Point)(resources.GetObject("dc.Location")));
 			this.dc.Name = "dc";
 			this.dc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dc.RightToLeft")));
 			this.dc.Size = ((System.Drawing.Size)(resources.GetObject("dc.Size")));
@@ -1761,6 +1763,7 @@ namespace SimPe
 			this.pbWait.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbWait.BackgroundImage")));
 			this.pbWait.CurrentIndex = 4;
 			this.pbWait.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pbWait.Dock")));
+			this.pbWait.DoEvents = false;
 			this.pbWait.Enabled = ((bool)(resources.GetObject("pbWait.Enabled")));
 			this.pbWait.Font = ((System.Drawing.Font)(resources.GetObject("pbWait.Font")));
 			this.pbWait.Images.Add(((System.Drawing.Image)(resources.GetObject("resource"))));
@@ -1899,6 +1902,11 @@ namespace SimPe
 			this.dockContainer1.TabIndex = ((int)(resources.GetObject("dockContainer1.TabIndex")));
 			this.dockContainer1.Text = resources.GetString("dockContainer1.Text");
 			this.dockContainer1.Visible = ((bool)(resources.GetObject("dockContainer1.Visible")));
+			// 
+			// resourceSelectionTimer
+			// 
+			this.resourceSelectionTimer.Interval = 75;
+			this.resourceSelectionTimer.Tick += new System.EventHandler(this.resourceSelectionTimer_Tick);
 			// 
 			// MainForm
 			// 
@@ -2262,6 +2270,7 @@ namespace SimPe
 			if (sender is TD.SandBar.MenuButtonItem) 
 			{
 				TD.SandBar.MenuButtonItem mi = (TD.SandBar.MenuButtonItem)sender;
+				
 				if (mi.Tag is TD.SandDock.DockControl) 
 				{
 					TD.SandDock.DockControl c = (TD.SandDock.DockControl)mi.Tag;					
@@ -2270,6 +2279,7 @@ namespace SimPe
 					{
 						c.Open();
 						mi.Checked = c.IsOpen;
+						plugger.ChangedGuiResourceEventHandler();
 					}
 				}
 			}
@@ -2563,7 +2573,8 @@ namespace SimPe
 		/// <param name="e">null to indicate, that his Method was called internal, and should NOT open a Resource!</param>
 		private void SelectResource(object sender, System.EventArgs e)
 		{			
-			SelectResource(sender, false, false);
+			if (lv.SelectedItems.Count<=2) SelectResource(sender, false, false);
+			else DereferedResourceSelect();
 		}
 
 		private void Activate_miUpdate(object sender, System.EventArgs e)
@@ -2601,7 +2612,9 @@ namespace SimPe
 			if (e.KeyCode==Keys.A && e.Control) 
 			{
 				lv.Tag = true;
+				lv.BeginUpdate();
 				foreach (ListViewItem lvi in lv.Items) lvi.Selected = true;
+				lv.EndUpdate();
 				lv.Tag = null;
 			}
 
@@ -2621,6 +2634,7 @@ namespace SimPe
 		}
 
 		bool frommiddle = false;
+		
 		/// <summary>
 		/// Selected Resource did change
 		/// </summary>
@@ -2969,6 +2983,25 @@ namespace SimPe
 				} 
 				catch {}
 				lastfi = now;
+			}
+		}
+		#endregion
+
+		#region Dereffered ResourceSelection
+		byte rst = 0;
+		void DereferedResourceSelect()
+		{
+			rst = 0;
+			resourceSelectionTimer.Enabled = true;
+		}
+
+		private void resourceSelectionTimer_Tick(object sender, System.EventArgs e)
+		{
+			rst++;
+			if (rst==2) 
+			{
+				this.resourceSelectionTimer.Enabled = false;
+				SelectResource(lv, false, false);
 			}
 		}
 		#endregion

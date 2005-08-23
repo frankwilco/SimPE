@@ -394,13 +394,16 @@ namespace SimPe.Plugin
 		{
 			if (ofd.ShowDialog() == DialogResult.OK) 
 			{
-				img = Image.FromFile(ofd.FileName);
+				System.IO.Stream s = System.IO.File.OpenRead(ofd.FileName);
+				img = Image.FromStream(s);
+				s.Close();
+
 				imgname = ofd.FileName;
-				pb.Image = ImageLoader.Preview(img, pb.Size);
+				pb.Image = ImageLoader.Preview(img, pb.Size);				
 
 				tbwidth.Text = img.Width.ToString();
 				tbheight.Text = img.Height.ToString();
-				this.button1.Enabled = (img!=null);
+				this.button1.Enabled = (img!=null);				
 			}
 		}
 
@@ -491,7 +494,9 @@ namespace SimPe.Plugin
 			{
 				dds = BuildDDS(img, Convert.ToInt32(tblevel.Text), (ImageLoader.TxtrFormats)cbformat.Items[cbformat.SelectedIndex], arg);
 				Close();
-			} catch (Exception) {}
+			} catch (Exception ex) {
+				Helper.ExceptionMessage(ex);
+			}
 
 		}
 	}
