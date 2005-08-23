@@ -24,7 +24,7 @@ namespace SimPe
 	/// <summary>
 	/// This class manages the initialization of Various Plugins
 	/// </summary>
-	public class PluginManager
+	public class PluginManager : Ambertation.Threading.StoppableThread
 	{
 		LoadFileWrappersExt wloader;
 		internal PluginManager(
@@ -37,7 +37,7 @@ namespace SimPe
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox toolactiontaskbox, 
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox extactiontaskbox,
 			TD.SandBar.ToolBar actiontoolbar,
-			TD.SandDock.DockControl docktooldc)
+			TD.SandDock.DockControl docktooldc) : base(true)
 		{
 			SimPe.PackedFiles.TypeRegistry tr = new SimPe.PackedFiles.TypeRegistry();
 
@@ -63,19 +63,22 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// firede whenever a (classic) Tool was closed
+		/// </summary>
+		public event ToolMenuItemExt.ExternalToolNotify ClosedToolPlugin;
+
+		/// <summary>
 		/// Event Wrapper
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="pk"></param>
 		void ClosedToolPluginHandler(object sender, PackageArg pk)
 		{
-			if (ClosedToolPlugin!=null) ClosedToolPlugin(sender, pk);
+			if (ClosedToolPlugin!=null) 
+				ClosedToolPlugin(sender, pk);			
 		}
 
-		/// <summary>
-		/// Fired when th ePluigin Tool returns
-		/// </summary>
-		public event ToolMenuItemExt.ExternalToolNotify ClosedToolPlugin;
+		
 
 		/// <summary>
 		/// Load all Static FileWrappers (theese Wrappers are allways available!)
@@ -100,15 +103,54 @@ namespace SimPe
 			//wloader.AddMenuItems(this.miPlugins, new EventHandler(ToolChangePacakge));
 		}
 
-		#region Action Tools		
+		#region Action Tools			
 		event SimPe.Events.ChangedResourceEvent ChangedGuiResourceEvent;
+
+		object thsender;
+		SimPe.Events.ResourceEventArgs the;
+		protected override void StartThread()
+		{			
+			System.Delegate[] dls = ChangedGuiResourceEvent.GetInvocationList();
+			foreach (System.Delegate d in dls) 
+			{
+				if (this.HaveToStop) 
+					break;				
+				((SimPe.Events.ChangedResourceEvent)d)(thsender, the);
+			}
+		}
+
+		/// <summary>
+		/// Fires with the same arguments that were used during 
+		/// the last Time <see cref="ChangedGuiResourceEventHandler"/> was called
+		/// </summary>
+		public void ChangedGuiResourceEventHandler()
+		{
+			if (the!=null) ChangedGuiResourceEventHandler(thsender, the);
+		}
 		
 		/// <summary>
 		/// Fired when a Resource was changed by a ToolPlugin and the Enabled state needs to be changed
 		/// </summary>
 		public void ChangedGuiResourceEventHandler(object sender, SimPe.Events.ResourceEventArgs e)
 		{
-			if (ChangedGuiResourceEvent!=null) ChangedGuiResourceEvent(sender, e);
+			if (ChangedGuiResourceEvent!=null) 
+			{
+				thsender = sender;
+				the = e;
+				
+				//this.ExecuteThread(System.Threading.ThreadPriority.Normal, "ActionTool notification");
+				
+				//ChangedGuiResourceEvent(sender, e);
+
+				System.Delegate[] dls = ChangedGuiResourceEvent.GetInvocationList();
+				foreach (System.Delegate d in dls) 
+				{
+					if (d.Target is SimPe.Interfaces.IToolExt) 
+						if (!((SimPe.Interfaces.IToolExt)d.Target).Visible) continue;
+
+					((SimPe.Events.ChangedResourceEvent)d)(sender, e);
+				}
+			}
 		}
 
 		/// <summary>

@@ -798,6 +798,8 @@ namespace SimPe.Plugin.Anim
 		{			
 			intern = true;
 			this.tv.Nodes.Clear();
+			
+			intern = true;
 			llClone.Enabled = false;
 
 			Enable(false);
@@ -829,6 +831,7 @@ namespace SimPe.Plugin.Anim
 		{
 			foreach (AnimationFrame af in fr)			
 				AddFrames(af, prefix);			
+
 		}
 
 		protected void AddFrames(AnimationFrame af, string prefix)

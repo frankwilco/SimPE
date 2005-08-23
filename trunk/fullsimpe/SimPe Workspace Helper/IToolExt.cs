@@ -44,5 +44,12 @@ namespace SimPe.Interfaces
 		{
 			get;
 		}
+
+		/// <summary>
+		/// Returns true if the Tool is curently visible on the GUI
+		/// </summary>
+		bool Visible{
+			get;
+		}
 	}
 }

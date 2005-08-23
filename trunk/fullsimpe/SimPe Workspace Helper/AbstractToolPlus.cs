@@ -1,3 +1,22 @@
+/***************************************************************************
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 
 namespace SimPe.Interfaces
@@ -16,6 +35,7 @@ namespace SimPe.Interfaces
 
 		public static SimPe.Interfaces.Files.IPackedFileDescriptor ExtractFileDescriptor(SimPe.Events.ResourceEventArgs e) 
 		{
+			if (e==null) return null;
 			SimPe.Interfaces.Files.IPackedFileDescriptor pfd = null;
 			if (e.Count>0) 
 			{
@@ -31,6 +51,7 @@ namespace SimPe.Interfaces
 
 		public static SimPe.Interfaces.Files.IPackageFile ExtractPackage(SimPe.Events.ResourceEventArgs e) 
 		{
+			if (e==null) return null;
 			SimPe.Interfaces.Files.IPackageFile pkg = null;
 			if (e.Count>0) 
 			{

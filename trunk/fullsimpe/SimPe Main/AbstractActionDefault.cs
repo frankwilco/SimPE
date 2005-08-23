@@ -62,6 +62,11 @@ namespace SimPe.Actions.Default
 			}
 		}
 
+		public virtual bool Visible 
+		{
+			get {return true;}
+		}
+
 		#endregion
 	}
 }

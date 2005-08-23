@@ -356,7 +356,8 @@ namespace SimPe.Plugin.Gmdc.Exporter
 							{
 								Vector3f v = af.Vector;
 							
-								if (first) v = v + cv; //corect static Values
+								//if (first) 
+									v = v + cv; //corect static Values
 
 								v = Component.TransformScaled(v);
 
@@ -401,7 +402,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 							q = Quaternion.FromAxisAngle(v, q.Angle);
 							v = q.GetEulerAngles();
 
-							if (first) 
+							//if (first) 
 								v = v + Component.Transform(cv); //correct static Values
 						
 							int tc = af.TimeCode+1;								
