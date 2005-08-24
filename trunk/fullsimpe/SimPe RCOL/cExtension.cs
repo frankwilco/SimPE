@@ -88,7 +88,10 @@ namespace SimPe.Plugin
 		string varname;
 		public string Name 
 		{
-			get { return varname; }
+			get { 
+				if (varname==null) return "";
+				return varname; 
+			}
 			set { varname = value; }
 		}
 
@@ -344,7 +347,10 @@ namespace SimPe.Plugin
 		string varname;
 		public string VarName 
 		{
-			get {return varname; }
+			get {
+				if (varname==null) return "";
+				return varname; 
+			}
 			set {varname = value; }
 		}
 
