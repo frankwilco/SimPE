@@ -972,6 +972,7 @@ namespace SimPe.Plugin.Anim
 		{
 			if (afb.AxisCount==0) afb.CreateBaseAxisSet();
 
+			afb.ChangeTokenType(AnimationTokenType.TwoByte, AnimationTokenType.SixByte);
 			afb.AddFrame((short)(afb.GetDuration()+1), 0, 0, 0, false);
 			afb.SortByTimeCode();
 			AddFrames(afb.Frames[afb.FrameCount-1], "");

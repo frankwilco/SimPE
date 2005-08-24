@@ -533,7 +533,11 @@ namespace SimPe.Plugin
 		/// <returns>a List of Subset Names</returns>
 		public static ArrayList GetSubsets(SimPe.Interfaces.Files.IPackageFile pkg, string blockname)
 		{
+			if (blockname==null) blockname="";
 			ArrayList list = new ArrayList();
+
+			if (pkg==null) return list;
+
 			blockname = blockname.Trim().ToLower();
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] gmnds = pkg.FindFiles(Data.MetaData.GMND);
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in gmnds) 

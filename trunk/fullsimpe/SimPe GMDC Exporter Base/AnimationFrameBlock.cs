@@ -348,10 +348,26 @@ namespace SimPe.Plugin.Anim
 			}
 		}
 
-		public void SetTokenType(AnimationTokenType t)
+		/// <summary>
+		/// Change the TokenType of all AxisSets to t
+		/// </summary>
+		/// <param name="t">The new TokenType</param>
+		public void ChangeTokenType(AnimationTokenType t)
 		{
 			for (int i=0; i<AxisCount; i++) 			
 				ab3[i].Type = t;			
+		}
+
+		/// <summary>
+		/// Change the TokenType of all AxisSets to t, if the currently are set to current. Otherwise do not change
+		/// </summary>
+		/// <param name="current">The current TokenType</param>
+		/// <param name="t">The new TokenType</param>
+		public void ChangeTokenType(AnimationTokenType current, AnimationTokenType t)
+		{
+			for (int i=0; i<AxisCount; i++) 			
+				if (ab3[i].Type==current)
+					ab3[i].Type = t;			
 		}
 
 		public void SortByTimeCode()
