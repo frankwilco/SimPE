@@ -27,7 +27,7 @@ namespace SimPe.Interfaces.Scenegraph
 	/// <summary>
 	/// You need to implement is to provide a new RCOL Block
 	/// </summary>
-	public interface IRcolBlock
+	public interface IRcolBlock : System.IDisposable
 	{
 		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance

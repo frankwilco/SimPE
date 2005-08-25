@@ -445,6 +445,15 @@ namespace SimPe.Plugin.Anim
 			if (Helper.WindowsRegistry.HiddenMode) tc.TabPages.Add(form.tAnimResourceConst);
 		}
 
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
 	}
 
 }

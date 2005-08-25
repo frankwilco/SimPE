@@ -219,5 +219,12 @@ namespace SimPe.Plugin
 		}		
 
 		#endregion
+		
+		#region IDisposable Member
+		public virtual void Dispose()
+		{
+			
+		}
+		#endregion
 	}
 }

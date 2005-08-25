@@ -166,10 +166,12 @@ namespace SimPe.PackedFiles.Wrapper
 
 		#region IDisposable Member
 
-		public void Dispose()
+		public override void Dispose()
 		{
 			if (this.image!=null) this.image.Dispose();
 			image = null;
+
+			base.Dispose();
 		}
 
 		#endregion

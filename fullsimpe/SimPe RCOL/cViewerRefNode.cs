@@ -175,5 +175,14 @@ namespace SimPe.Plugin
 			this.bn.AddToTabControl(tc);
 			this.tn.AddToTabControl(tc);
 		}
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
 	}
 }

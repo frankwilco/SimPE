@@ -205,5 +205,14 @@ namespace SimPe.Plugin
 		{
 			return this.tn.ObjectGraphNode.FileName + " ("+base.ToString ()+")";
 		}
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
 	}
 }

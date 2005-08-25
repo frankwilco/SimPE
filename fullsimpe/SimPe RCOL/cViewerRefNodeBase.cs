@@ -86,5 +86,14 @@ namespace SimPe.Plugin
 				form.tb_ver.Text = "0x"+Helper.HexString(this.version);
 				form.gen_pg.SelectedObject = this;
 			}
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
 		}
 }

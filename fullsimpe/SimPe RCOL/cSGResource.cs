@@ -79,5 +79,14 @@ namespace SimPe.Plugin
 			writer.Write(flname);
 		}
 		#endregion
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			
+		}
+
+		#endregion
 	}
 }

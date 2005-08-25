@@ -583,5 +583,15 @@ namespace SimPe.Interfaces.Plugin
 			return new object[0];
 		}
 		#endregion		
+
+		#region IDisposable Member
+		public virtual void Dispose()
+		{
+			if (ui!=null) ui.Dispose();
+			ui = null;
+			package = null;
+			pfd = null;
+		}
+		#endregion
 	}
 }

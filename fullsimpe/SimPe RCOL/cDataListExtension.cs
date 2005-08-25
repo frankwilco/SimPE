@@ -144,5 +144,14 @@ namespace SimPe.Plugin
 		}
 
 		#endregion
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
 	}
 }
