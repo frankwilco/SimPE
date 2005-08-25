@@ -157,5 +157,14 @@ namespace SimPe.Plugin
 		}
 
 		#endregion
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			
+		}
+
+		#endregion
 	}
 }

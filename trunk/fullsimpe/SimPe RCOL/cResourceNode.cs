@@ -355,5 +355,14 @@ namespace SimPe.Plugin
 			if (typecode==0x1)this.ctn.AddToTabControl(tc);
 			this.ogn.AddToTabControl(tc);
 		}
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
 	}
 }

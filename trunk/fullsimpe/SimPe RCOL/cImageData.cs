@@ -724,7 +724,7 @@ namespace SimPe.Plugin
 
 		#region IDisposable Member
 
-		public void Dispose()
+		public override void Dispose()
 		{
 			foreach (MipMapBlock mmb in this.mipmapblocks)
 				mmb.Dispose();

@@ -34,7 +34,7 @@ namespace SimPe.Interfaces.Plugin
 	/// those measurements. If your output is bigger, you might want to consider the Use of the 
 	/// AutoScroll Attribute!
 	/// </remarks>
-	public interface IPackedFileUI
+	public interface IPackedFileUI : System.IDisposable
 	{
 		/// <summary>
 		/// Passes the Panel that should present the Data

@@ -396,6 +396,15 @@ namespace SimPe.Plugin
 			items.Add(tni);
 			return false;
 		}
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
 	}
 
 	#region Container

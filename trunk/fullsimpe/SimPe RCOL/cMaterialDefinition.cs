@@ -389,6 +389,16 @@ namespace SimPe.Plugin
 					}
 				}
 		}
+		
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
 	}
 
 	public class MaterialDefinitionProperty

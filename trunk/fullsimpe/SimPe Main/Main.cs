@@ -2566,13 +2566,15 @@ namespace SimPe
 			if (lastusedtnt!=null) lastusedtnt.Refresh(lv);
 		}				
 		
+		int ct = 0;
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e">null to indicate, that his Method was called internal, and should NOT open a Resource!</param>
 		private void SelectResource(object sender, System.EventArgs e)
-		{			
+		{		
+			ct++; this.Text=(ct/2).ToString();	
 			if (lv.SelectedItems.Count<=2) SelectResource(sender, false, false);
 			else DereferedResourceSelect();
 		}

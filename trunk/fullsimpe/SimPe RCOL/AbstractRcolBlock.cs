@@ -318,5 +318,7 @@ namespace SimPe.Plugin
 
 			throw new Warning("No Parent was found in the Search Path!", "Either there is no Scenegraph Resource that is referencing the File, or the package containing that Resource is not in the FileTable (see Extra->Options)");
 		}
+
+		public abstract void Dispose();
 	}
 }

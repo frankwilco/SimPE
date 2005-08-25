@@ -1064,6 +1064,7 @@ namespace SimPe.Plugin.Anim
 			if (!(tv.SelectedNode.Tag is AnimationFrame)) return;
 
 			AnimationFrame af = (AnimationFrame)tv.SelectedNode.Tag;			
+			afb.ChangeTokenType(AnimationTokenType.TwoByte, AnimationTokenType.SixByte);
 			afb.AddFrame((short)(afb.GetDuration()+1), af.X, af.Y, af.Z, af.Linear);
 			AddFrames(afb.Frames[afb.FrameCount-1], "");
 

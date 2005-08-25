@@ -38,5 +38,12 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			if (form==null)	form = new GenericElements();			
 		}
+
+		#region IDisposable Member
+		public virtual void Dispose()
+		{
+		
+		}
+		#endregion
 	}
 }

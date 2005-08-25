@@ -341,9 +341,14 @@ namespace SimPe
 		/// Removes the Resource from the internal storage
 		/// </summary>
 		/// <param name="fii"></param>
-		public void RemoveResource(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii) 
+		/// <param name="wrapper"></param>
+		public void RemoveResource(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii, SimPe.Interfaces.Plugin.IFileWrapper wrapper) 
 		{
-			if (fii!=null) loaded.Remove(fii);
+			if (fii!=null) 
+			{
+				loaded.Remove(fii);
+				if (wrapper!=null) single.Remove(wrapper.GetType().ToString());
+			}
 		}
 
 		/// <summary>
@@ -372,12 +377,12 @@ namespace SimPe
 			bool remain = false;
 			TD.SandDock.DockControl doc = (TD.SandDock.DockControl)loaded[fii];
 			if (doc!=null) doc.Close();	
-			else RemoveResource(fii);
+			else RemoveResource(fii, null);
 
 			if (doc!=null) 
 			{
 				if (doc.IsOpen) remain = true; 			
-				else RemoveResource(fii);
+				else RemoveResource(fii, null);
 			}
 	
 			return !remain;
@@ -422,6 +427,24 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Make sure all Controls and Child Controls get disposed
+		/// </summary>
+		/// <param name="ctrls"></param>
+		void DisposeSubControls(Control.ControlCollection ctrls)
+		{
+			if (ctrls==null) return;
+
+			foreach (Control c in ctrls) 
+			{	
+				//DisposeSubControls(c.Controls);
+				//c.Parent = null;
+				c.Dispose();				
+			}
+
+			ctrls.Clear();
+		}
+
+		/// <summary>
 		/// Call this if you want to unload a Wrapper
 		/// </summary>
 		/// <param name="doc">The document presenting the Wrapper</param>
@@ -429,16 +452,16 @@ namespace SimPe
 		bool UnloadWrapper(TD.SandDock.DockControl doc)
 		{
 			SimPe.Interfaces.Plugin.IFileWrapper wrapper = (SimPe.Interfaces.Plugin.IFileWrapper)doc.Tag;
+			bool multi = wrapper.AllowMultipleInstances;
 			bool res = UnloadWrapper(wrapper);
 			if (res) 
 			{
-				doc.Controls.Clear();
+				//doc.Controls.Clear();
 				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = this.GetResourceFromDocument(doc);
-				if (fii!=null) 
-				{
-					loaded.Remove(fii);
-					single.Remove(wrapper.GetType().ToString());
-				}
+				RemoveResource(fii, wrapper);
+
+				if (multi) DisposeSubControls(doc.Controls);
+				doc.Controls.Clear();													
 			}
 				
 
@@ -480,6 +503,11 @@ namespace SimPe
 				}
 			}	
 
+			wrapper.FileDescriptor.ChangedUserData -= new SimPe.Events.PackedFileChanged(FileDescriptor_ChangedUserData);
+			wrapper.FileDescriptor.Deleted -= new EventHandler(DeletedDescriptor);	
+			
+			if (wrapper.AllowMultipleInstances) wrapper.Dispose();			
+
 			return true;
 		}
 
@@ -490,18 +518,20 @@ namespace SimPe
 		/// <param name="e">the Cancel Arguments</param>
 		private void CloseResourceDocument(object sender, TD.SandDock.DockControlClosingEventArgs e)
 		{
+
 			SimPe.Interfaces.Plugin.IFileWrapper wrapper = (SimPe.Interfaces.Plugin.IFileWrapper)((TD.SandDock.DockControl)sender).Tag;
+			bool multi = wrapper.AllowMultipleInstances;
 			e.Cancel = !UnloadWrapper(wrapper);	
 			
 
 			if (!e.Cancel) 
 			{
 				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = GetResourceFromDocument((TD.SandDock.DockControl)sender);
-				RemoveResource(fii);
-				wrapper.FileDescriptor.ChangedUserData -= new SimPe.Events.PackedFileChanged(FileDescriptor_ChangedUserData);
-				wrapper.FileDescriptor.Deleted -= new EventHandler(DeletedDescriptor);	
-			
-				((TD.SandDock.DockControl)sender).Controls.Clear();
+				RemoveResource(fii, wrapper);
+
+				
+				if (multi) DisposeSubControls(((TD.SandDock.DockControl)sender).Controls);				
+				((TD.SandDock.DockControl)sender).Controls.Clear();													
 			}
 		}
 

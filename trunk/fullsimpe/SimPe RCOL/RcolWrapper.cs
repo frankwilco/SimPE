@@ -98,7 +98,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Filename of the First Block (or an empty string)
 		/// </summary>
-		public new string FileName 
+		public string FileName 
 		{
 			get 
 			{
@@ -443,11 +443,14 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
-		public void Dispose()
-		{
+		public override void Dispose()
+		{			
 			foreach (IRcolBlock irb in this.blocks)
 				if (irb is IDisposable) 
 					((IDisposable)irb).Dispose();
+
+			
+			base.Dispose();
 		}
 	}	
 }

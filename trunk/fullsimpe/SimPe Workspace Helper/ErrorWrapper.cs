@@ -239,5 +239,11 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		#endregion
+		
+		#region IDisposable Member
+		public virtual void Dispose()
+		{			
+		}
+		#endregion
 	}
 }

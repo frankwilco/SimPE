@@ -195,5 +195,14 @@ namespace SimPe.Plugin
 			return filename;
 		}
 
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
+
 	}
 }

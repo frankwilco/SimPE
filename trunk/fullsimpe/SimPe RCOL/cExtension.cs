@@ -495,5 +495,14 @@ namespace SimPe.Plugin
 
 			form.gbIems.Tag = this.items;
 		}
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
 	}
 }

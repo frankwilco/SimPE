@@ -112,6 +112,15 @@ namespace SimPe.Plugin
 			form.gen_pg.SelectedObject = this;
 		}
 
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (this.form!=null) this.form.Dispose();
+		}
+
+		#endregion
 	}
 
 
