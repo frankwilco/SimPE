@@ -125,6 +125,7 @@ namespace SimPe
 		private TD.SandDock.TabControl dc;
 		private TD.SandDock.DockContainer dockContainer1;
 		private System.Windows.Forms.Timer resourceSelectionTimer;
+		private TD.SandBar.MenuButtonItem miSaveCopyAs;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -250,6 +251,7 @@ namespace SimPe
 			this.miOpenSimsRes = new TD.SandBar.MenuButtonItem();
 			this.miOpenUniRes = new TD.SandBar.MenuButtonItem();
 			this.miOpenDownloads = new TD.SandBar.MenuButtonItem();
+			this.miSaveCopyAs = new TD.SandBar.MenuButtonItem();
 			this.miRecent = new TD.SandBar.MenuButtonItem();
 			this.miExit = new TD.SandBar.MenuButtonItem();
 			this.miTools = new TD.SandBar.MenuBarItem();
@@ -863,6 +865,7 @@ namespace SimPe
 																				  this.miOpenIn,
 																				  this.miSave,
 																				  this.miSaveAs,
+																				  this.miSaveCopyAs,
 																				  this.miClose,
 																				  this.miRecent,
 																				  this.miExit});
@@ -903,6 +906,14 @@ namespace SimPe
 			this.miOpenDownloads.Text = resources.GetString("miOpenDownloads.Text");
 			this.miOpenDownloads.ToolTipText = resources.GetString("miOpenDownloads.ToolTipText");
 			this.miOpenDownloads.Activate += new System.EventHandler(this.Activate_miOpenDownloads);
+			// 
+			// miSaveCopyAs
+			// 
+			this.miSaveCopyAs.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSaveCopyAs.Shortcut")));
+			this.miSaveCopyAs.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miSaveCopyAs.Shortcut2")));
+			this.miSaveCopyAs.Text = resources.GetString("miSaveCopyAs.Text");
+			this.miSaveCopyAs.ToolTipText = resources.GetString("miSaveCopyAs.ToolTipText");
+			this.miSaveCopyAs.Activate += new System.EventHandler(this.Activate_miSaveCopyAs);
 			// 
 			// miRecent
 			// 
@@ -2312,6 +2323,7 @@ namespace SimPe
 		void UpdateMenuItems()
 		{
 			this.miSave.Enabled = System.IO.File.Exists(package.FileName);
+			this.miSaveCopyAs.Enabled = this.miSave.Enabled;
 			this.miSaveAs.Enabled = package.Loaded;
 			this.miClose.Enabled = package.Loaded;
 
@@ -2566,7 +2578,7 @@ namespace SimPe
 			if (lastusedtnt!=null) lastusedtnt.Refresh(lv);
 		}				
 		
-		int ct = 0;
+		//int ct = 0;
 		/// <summary>
 		/// 
 		/// </summary>
@@ -2574,7 +2586,7 @@ namespace SimPe
 		/// <param name="e">null to indicate, that his Method was called internal, and should NOT open a Resource!</param>
 		private void SelectResource(object sender, System.EventArgs e)
 		{		
-			ct++; this.Text=(ct/2).ToString();	
+			//ct++; this.Text=(ct/2).ToString();	//was used to test for a Bug related to opened Docks
 			if (lv.SelectedItems.Count<=2) SelectResource(sender, false, false);
 			else DereferedResourceSelect();
 		}
@@ -2826,7 +2838,8 @@ namespace SimPe
 			sfd.FileName = package.FileName;
 			if (sfd.ShowDialog()==DialogResult.OK) 
 			{
-				package.Save(sfd.FileName);
+				package.Save(sfd.FileName, false);
+				package.UpdateRecentFileMenu(this.miRecent);
 			}
 		}
 
@@ -3007,6 +3020,24 @@ namespace SimPe
 			}
 		}
 		#endregion
+
+		private void Activate_miSaveCopyAs(object sender, System.EventArgs e)
+		{
+			sfd.Filter = ExtensionProvider.BuildFilterString(
+				new SimPe.ExtensionType[] {
+											  SimPe.ExtensionType.Package,
+											  SimPe.ExtensionType.DisabledPackage,
+											  SimPe.ExtensionType.AllFiles
+										  }
+				);
+
+			sfd.FileName = package.FileName;
+			if (sfd.ShowDialog()==DialogResult.OK) 
+			{
+				package.Save(sfd.FileName, true);	
+				package.UpdateRecentFileMenu(this.miRecent);
+			}
+		}
 	}
 			
 }

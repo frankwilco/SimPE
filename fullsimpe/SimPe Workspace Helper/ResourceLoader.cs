@@ -503,8 +503,11 @@ namespace SimPe
 				}
 			}	
 
-			wrapper.FileDescriptor.ChangedUserData -= new SimPe.Events.PackedFileChanged(FileDescriptor_ChangedUserData);
-			wrapper.FileDescriptor.Deleted -= new EventHandler(DeletedDescriptor);	
+			if (wrapper.FileDescriptor!=null) 
+			{
+				wrapper.FileDescriptor.ChangedUserData -= new SimPe.Events.PackedFileChanged(FileDescriptor_ChangedUserData);
+				wrapper.FileDescriptor.Deleted -= new EventHandler(DeletedDescriptor);	
+			}
 			
 			if (wrapper.AllowMultipleInstances) wrapper.Dispose();			
 

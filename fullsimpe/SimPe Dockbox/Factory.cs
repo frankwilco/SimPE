@@ -77,6 +77,7 @@ namespace SimPe.Plugin.Tool.Dockable
 								    new HexDockTool(rd)		
 #if DEBUG
 										  , new ActionCheckFiletable()
+										  , new DebugDock()
 #endif
 				};
 				return tools;

@@ -143,5 +143,15 @@ namespace SimPe.Interfaces.Plugin
 			}
 		}
 		#endregion
+
+		#region IDisposable Member
+		public virtual void Dispose()
+		{
+			if (this.img!=null) img.Dispose();
+			this.img = null;
+			this.name = null;
+			this.author = null;			
+		}
+		#endregion
 	}
 }

@@ -587,6 +587,7 @@ namespace SimPe.Interfaces.Plugin
 		#region IDisposable Member
 		public virtual void Dispose()
 		{
+			if (wrapperinfo!=null) wrapperinfo.Dispose();
 			if (ui!=null) ui.Dispose();
 			ui = null;
 			package = null;

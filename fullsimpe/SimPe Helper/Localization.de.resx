@@ -598,4 +598,28 @@ Package: {filename}</value>
 	<data name="RemoveRelationCaption">
 		<value>Beziehung zu "{name}" entfernen</value>
 	</data>
+	<data name="Current Version">
+		<value>Aktuelle Version</value>
+	</data>
+	<data name="Available QA-Version">
+		<value>Verfügbare QA-Version</value>
+	</data>
+	<data name="Available Version">
+		<value>Verfügbare Version</value>
+	</data>
+	<data name="download">
+		<value>download</value>
+	</data>
+	<data name="get_qa_release">
+		<value>Eine neue &lt;b&gt;QA Version&lt;/b&gt; ist verfügbar.&lt;br /&gt;Sie steht unter &lt;b&gt;http://ambertation.de/simpeforum/viewforum.php?f=14&lt;/b&gt; zum Download bereit.</value>
+	</data>
+	<data name="no_new_version">
+		<value>Zur Zeit ist keine neue SimPE Version verfügbar.</value>
+	</data>
+	<data name="Information">
+		<value>Information</value>
+	</data>
+	<data name="cache_cleared">
+		<value>"Der Cache wurde geleert. Damit die Änderungen aktiv werden, muss SimPE neu gestartet werden!"</value>
+	</data>
 </root>

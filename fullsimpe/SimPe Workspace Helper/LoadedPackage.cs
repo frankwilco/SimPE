@@ -189,15 +189,16 @@ namespace SimPe
 		public bool Save()
 		{
 			if (this.FileName.Trim()=="") return false;
-			return Save(this.FileName);
+			return Save(this.FileName, false);
 		}
 
 		/// <summary>
 		/// Save the current package
 		/// </summary>
 		/// <param name="filname">the new Filename</param>
+		/// <param name="savetocopy">true if you want to save to a copy</param>
 		/// <returns></returns>
-		public bool Save(string filname)
+		public bool Save(string filname, bool savetocopy)
 		{
 			if (!this.Loaded) return false;
 			try 
@@ -209,7 +210,11 @@ namespace SimPe
 				Wait.SubStart();
 				Wait.Message = "Saving File";
 
+				string oname = this.FileName;
 				this.Package.Save(e.FileName);
+
+				if (savetocopy) Package.FileName = oname;
+
 				Helper.WindowsRegistry.AddRecentFile(e.FileName);
 
 				Wait.SubStop();

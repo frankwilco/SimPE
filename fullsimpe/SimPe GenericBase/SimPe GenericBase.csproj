@@ -194,6 +194,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "GenericElements.pl.resx"
+                    DependentUpon = "GenericElements.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "GenericElements.resx"
                     DependentUpon = "GenericElements.cs"
                     BuildAction = "EmbeddedResource"

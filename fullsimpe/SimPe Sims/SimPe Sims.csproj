@@ -159,6 +159,66 @@
                     Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "3DView"
+                    Project = "{F2CCCDBC-B05F-4C9C-B57F-27A07ACEF9BE}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe 3IDR"
+                    Project = "{37D97490-DC9F-4DB7-9215-998C6BC06078}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe Cache"
+                    Project = "{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe Clst"
+                    Project = "{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe Commandline"
+                    Project = "{0D63B13E-F41B-456C-92D0-C0BB3FE8744F}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe Extended Filehandlers"
+                    Project = "{7EF7C30C-2968-46E8-AA74-79EDB0FE8F2A}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe GenericBase"
+                    Project = "{1DD372F9-D6F9-4724-8E7F-12BDE0FFAC74}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe GenericFileHandlers"
+                    Project = "{CE6B173A-B19F-40B6-94A3-D8FB8A3FB74B}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe Geometry"
+                    Project = "{60367A6D-8FF1-4289-B546-C68A2C395843}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe GMDC Exporter Base"
+                    Project = "{76D6A8B3-10DF-4948-9028-C63A416AB00E}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe RCOL"
+                    Project = "{74517907-2236-4C45-80ED-E188D5E5CE0E}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe Scenegraph"
+                    Project = "{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
@@ -175,6 +235,11 @@
                 />
                 <File
                     RelPath = "CommonSrelUI.de.resx"
+                    DependentUpon = "CommonSrelUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "CommonSrelUI.pL.resx"
                     DependentUpon = "CommonSrelUI.cs"
                     BuildAction = "EmbeddedResource"
                 />
@@ -209,6 +274,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ExtSDescUI.pl.resx"
+                    DependentUpon = "ExtSDescUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ExtSDescUI.resx"
                     DependentUpon = "ExtSDescUI.cs"
                     BuildAction = "EmbeddedResource"
@@ -229,6 +299,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ExtSrelUI.pl.resx"
+                    DependentUpon = "ExtSrelUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ExtSrelUI.resx"
                     DependentUpon = "ExtSrelUI.cs"
                     BuildAction = "EmbeddedResource"
@@ -245,6 +320,11 @@
                 />
                 <File
                     RelPath = "FamilyTiesForm.de.resx"
+                    DependentUpon = "FamilyTiesForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "FamilyTiesForm.pl.resx"
                     DependentUpon = "FamilyTiesForm.cs"
                     BuildAction = "EmbeddedResource"
                 />

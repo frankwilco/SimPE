@@ -112,6 +112,7 @@ namespace SimPe
 		{
 			try 
 			{
+				caption = SimPe.Localization.GetString(caption);
 				Message m = new Message();				
 				if (mbb==MessageBoxButtons.YesNoCancel) 
 				{

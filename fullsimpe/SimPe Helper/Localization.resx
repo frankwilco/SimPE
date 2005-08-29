@@ -311,4 +311,25 @@ Package: {filename}</value>
 	<data name="RemoveRelationCaption">
 		<value>Remove Relation to "{name}"</value>
 	</data>
+	<data name="Please Wait">
+		<value>Please Wait</value>
+	</data>
+	<data name="Current Version">
+		<value>Current Version</value>
+	</data>
+	<data name="Available QA-Version">
+		<value>Available QA-Version</value>
+	</data>
+	<data name="Available Version">
+		<value>Available Version</value>
+	</data>
+	<data name="download">
+		<value>download</value>
+	</data>
+	<data name="get_qa_release">
+		<value>A new &lt;b&gt;QA Version&lt;/b&gt; has been released.&lt;br /&gt;You can get it at &lt;b&gt;http://ambertation.de/simpeforum/viewforum.php?f=14&lt;/b&gt;.</value>
+	</data>
+	<data name="Information">
+		<value>Information</value>
+	</data>
 </root>
