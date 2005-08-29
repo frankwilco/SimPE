@@ -283,6 +283,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Elements.pl.resx"
+                    DependentUpon = "Elements.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Elements.resx"
                     DependentUpon = "Elements.cs"
                     BuildAction = "EmbeddedResource"
@@ -294,6 +299,11 @@
                 />
                 <File
                     RelPath = "Elements2.de.resx"
+                    DependentUpon = "Elements2.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Elements2.pl.resx"
                     DependentUpon = "Elements2.cs"
                     BuildAction = "EmbeddedResource"
                 />

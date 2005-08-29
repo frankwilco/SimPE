@@ -342,6 +342,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "PackedFileForm.pl.resx"
+                    DependentUpon = "PackedFileForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "PackedFileForm.resx"
                     DependentUpon = "PackedFileForm.cs"
                     BuildAction = "EmbeddedResource"

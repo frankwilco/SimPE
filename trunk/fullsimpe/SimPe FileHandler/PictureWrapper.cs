@@ -80,14 +80,15 @@ namespace SimPe.PackedFiles.Wrapper
 		{			
 			try 
 			{
-				image = Ambertation.Viewer.LoadTGAClass.LoadTGA(reader.BaseStream);
+				image = System.Drawing.Image.FromStream(reader.BaseStream); 
+				
 				return true;
 			} 
 			catch (Exception)
 			{
 				try 
 				{
-					image = System.Drawing.Image.FromStream(reader.BaseStream, true); 
+					image = Ambertation.Viewer.LoadTGAClass.LoadTGA(reader.BaseStream);	
 					//image = System.Drawing.Bitmap.FromStream(reader.BaseStream, true);
 
 					return true;

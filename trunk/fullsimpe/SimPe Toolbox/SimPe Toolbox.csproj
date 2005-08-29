@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"'
+                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;copy "$(TargetDir)\pl\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\pl\"'
                 RootNamespace = "SimPe.Plugin"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -336,6 +336,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Neighborhood.pl.resx"
+                    DependentUpon = "Neighborhood.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Neighborhood.resx"
                     DependentUpon = "Neighborhood.cs"
                     BuildAction = "EmbeddedResource"
@@ -360,6 +365,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "NgbBackup.pl.resx"
+                    DependentUpon = "NgbBackup.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "NgbBackup.resx"
                     DependentUpon = "NgbBackup.cs"
                     BuildAction = "EmbeddedResource"
@@ -380,6 +390,11 @@
                 />
                 <File
                     RelPath = "PhotoStudio.de.resx"
+                    DependentUpon = "PhotoStudio.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PhotoStudio.pl.resx"
                     DependentUpon = "PhotoStudio.cs"
                     BuildAction = "EmbeddedResource"
                 />
@@ -442,6 +457,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Sims.pl.resx"
+                    DependentUpon = "Sims.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Sims.resx"
                     DependentUpon = "Sims.cs"
                     BuildAction = "EmbeddedResource"
@@ -477,6 +497,11 @@
                 />
                 <File
                     RelPath = "Surgery.de.resx"
+                    DependentUpon = "Surgery.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Surgery.pl.resx"
                     DependentUpon = "Surgery.cs"
                     BuildAction = "EmbeddedResource"
                 />

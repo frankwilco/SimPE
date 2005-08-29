@@ -229,18 +229,18 @@ namespace SimPe
 				if (dr==DialogResult.No) res = SimPe.UpdateState.Nothing;
 			}
 
-			text = "<h2><span class=\"highlight\">Current Version:</span> "+Helper.SimPeVersionString;
+			text = "<h2><span class=\"highlight\">"+SimPe.Localization.GetString("Current Version")+":</span> "+Helper.SimPeVersionString;
 			if (Helper.DebugMode) text += " ("+Helper.SimPeVersionLong.ToString()+")";
 			text += "</h2>";
-			if (Helper.QARelease) text += "<h2><span class=\"highlight\">Available QA-Version:</span> "+Helper.LongVersionToString(qaversion)+"</h2>";
-			text += "<h2><span class=\"highlight\">Available Version:</span> "+Helper.LongVersionToString(version);
-			if ((res & SimPe.UpdateState.NewRelease) !=0) text += " (download: <b>http://sims.ambertation.de/download.shtml</b>)";
+			if (Helper.QARelease) text += "<h2><span class=\"highlight\">"+SimPe.Localization.GetString("Available QA-Version")+":</span> "+Helper.LongVersionToString(qaversion)+"</h2>";
+			text += "<h2><span class=\"highlight\">"+SimPe.Localization.GetString("Available Version")+":</span> "+Helper.LongVersionToString(version);
+			if ((res & SimPe.UpdateState.NewRelease) !=0) text += " ("+SimPe.Localization.GetString("download")+": <b>http://sims.ambertation.de/download.shtml</b>)";
 			text += "</h2>";
 			text += "<br /><br />";
 
-			if ((res & SimPe.UpdateState.NewQARelease) !=0) text += "A new <b>QA Version</b> has been released.<br />You can get it at <b>http://ambertation.de/simpeforum/viewforum.php?f=14</b>.";
+			if ((res & SimPe.UpdateState.NewQARelease) !=0) text += SimPe.Localization.GetString("get_qa_release");
 			else if ((res & SimPe.UpdateState.NewRelease) !=0) text += WebUpdate.GetChangeLog();			
-			else text += "There is no new SimPE Version available.";
+			else text += SimPe.Localization.GetString("no_new_version");
 
 			f.rtb.Rtf = Ambertation.Html2Rtf.Convert(text);
 			Wait.SubStop();		

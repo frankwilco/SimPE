@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"'
+                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;copy "$(TargetDir)\pl\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\pl\"'
                 RootNamespace = "SimPe.Plugin.Tool.Dockable"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -213,6 +213,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "DebugDock.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DebugDock.resx"
+                    DependentUpon = "DebugDock.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Factory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -251,6 +261,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Report.pl.resx"
+                    DependentUpon = "Report.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Report.resx"
                     DependentUpon = "Report.cs"
                     BuildAction = "EmbeddedResource"
@@ -262,6 +277,11 @@
                 />
                 <File
                     RelPath = "ResourceDock.de.resx"
+                    DependentUpon = "ResourceDock.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ResourceDock.pl.resx"
                     DependentUpon = "ResourceDock.cs"
                     BuildAction = "EmbeddedResource"
                 />

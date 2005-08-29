@@ -229,6 +229,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ExceptionForm.pl.resx"
+                    DependentUpon = "ExceptionForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ExceptionForm.resx"
                     DependentUpon = "ExceptionForm.cs"
                     BuildAction = "EmbeddedResource"
@@ -295,6 +300,11 @@
                 />
                 <File
                     RelPath = "Localization.de.resx"
+                    DependentUpon = "Localization.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Localization.pl.resx"
                     DependentUpon = "Localization.cs"
                     BuildAction = "EmbeddedResource"
                 />
@@ -375,6 +385,11 @@
                 />
                 <File
                     RelPath = "WaitingForm.de.resx"
+                    DependentUpon = "WaitingForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "WaitingForm.pl.resx"
                     DependentUpon = "WaitingForm.cs"
                     BuildAction = "EmbeddedResource"
                 />

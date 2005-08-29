@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\$(TargetName).pdb" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;rem "e:\Microsoft Visual Studio .NET 2003\SDK\v1.1\Bin\gacutil.exe" /i "$(TargetPath)" /f'
+                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\$(TargetName).pdb" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;copy "$(TargetDir)\pl\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\pl\"'
                 RootNamespace = "SimPe.Plugin.Tool.Dockable"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -222,6 +222,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "NeighborhoodPreview.pl.resx"
+                    DependentUpon = "NeighborhoodPreview.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "NeighborhoodPreview.resx"
                     DependentUpon = "NeighborhoodPreview.cs"
                     BuildAction = "EmbeddedResource"
@@ -251,6 +256,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ObjectPreview.pl.resx"
+                    DependentUpon = "ObjectPreview.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ObjectPreview.resx"
                     DependentUpon = "ObjectPreview.cs"
                     BuildAction = "EmbeddedResource"
@@ -264,6 +274,11 @@
                     RelPath = "ObjectsDock.cs"
                     SubType = "Component"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ObjectsDock.de.resx"
+                    DependentUpon = "ObjectsDock.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "ObjectsDock.resx"
@@ -282,6 +297,11 @@
                 />
                 <File
                     RelPath = "PackageDetailDock.de.resx"
+                    DependentUpon = "PackageDetailDock.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PackageDetailDock.pl.resx"
                     DependentUpon = "PackageDetailDock.cs"
                     BuildAction = "EmbeddedResource"
                 />

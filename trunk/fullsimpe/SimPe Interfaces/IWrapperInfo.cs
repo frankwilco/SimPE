@@ -28,7 +28,7 @@ namespace SimPe.Interfaces.Plugin
 	/// use <see cref="SimPe.Interfaces.Plugin.AbstractWrapperInfo"/> 
 	/// as staring Point for a new Implementation. Otherwise the Loader 
 	/// Wrapper loader won't load the Image Index correct!</remarks>
-	public interface IWrapperInfo
+	public interface IWrapperInfo : System.IDisposable
 	{
 		/// <summary>
 		/// The Name of this Wrapper

@@ -97,11 +97,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="menuBarItem1.Text">
-    <value>&amp;Datei</value>
+  <data name="dcPlugin.TabText">
+    <value>Dokumente</value>
+  </data>
+  <data name="dcPlugin.Text">
+    <value>Dokumenten Ansicht</value>
+  </data>
+  <data name="toolBar1.Text">
+    <value>Datei Toolbar</value>
+  </data>
+  <data name="biNew.ToolTipText">
+    <value>Neue Package Datei erzeugen</value>
   </data>
   <data name="miNew.Text">
     <value>&amp;Neu</value>
+  </data>
+  <data name="biOpen.ToolTipText">
+    <value>Datei öffnen</value>
   </data>
   <data name="miOpen.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -127,11 +139,24 @@
   <data name="miOpen.Text">
     <value>Ö&amp;ffnen...</value>
   </data>
-  <data name="miOpenIn.Text">
-    <value>Öffne &amp;In</value>
+  <data name="biSave.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAidJREFUOE+lkz1r
+        YmEQhTdYLOx28UdYW1j4Eb92kYAoGhPBDzRRGwnJIjYaIYSgiBaSEG1SxMZGUFTsjAZEE4kiIiiJWqTI
+        T7CxO+uM7K2CzV44zbxnnpl35r07AL7913d/f49EIoGzszP4/f41D1itVvj8/MTr6yvK5TJarRba7Tbu
+        7u7w8PAAiUTyh4py8ZubG1xeXiIQCMDpdGK5XGKxWODl5QXZbJZj+XyeYel0GplMBrlcDnK5/DsDKBiJ
+        ROByuWCz2fDx8YFut4tarcaAw8NDFItFTCYTXF9fI5lMIpVKQaFQ/GQABcPhMA4ODmA0GrlSpVJBs9nk
+        yvv7+6hWq3h/f8fFxQWurq4YJABisRhOT09hMBig1+tRr9f5zm9vbyiVStBqtRybTqdcKBqNMkipVG46
+        oCAN0GKxwGQyIR6PgwZbKBT4Go+Pj2g0Gri9vcX5+TlCoRCDBABVDwaDPETSyckJvF4vy+PxCDo+PobP
+        52Mv5ahUqk0HFKREmvxsNtsq8pCXcgSAw+Fg6nw+x3A43CoaJHkpZ29vb9OB1WrlB9Tv93l4T09PX4rO
+        aEPkpRwBQGtyu93c+ng83irykJdy1Gr1pgOdTge73Y7RaMSvr9frfSk6Iw95KUcASKVSfgNkoDa36fn5
+        mde9XiE0Gs2mg/WLwtHREc+g0+ls1WAwgNlshkwmI8CPf3+yXCQS/RaLxb92d3e3ijzkXf+I8vU1dgjw
+        FyNqY/BfwoFrAAAAAElFTkSuQmCC
+</value>
   </data>
-  <data name="miOpenUniRes.Text">
-    <value>WCJ: TSData/Res...</value>
+  <data name="biSave.ToolTipText">
+    <value>Datei Speichern</value>
   </data>
   <data name="miSave.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -151,6 +176,27 @@
   </data>
   <data name="miSave.Text">
     <value>&amp;Speichern</value>
+  </data>
+  <data name="biSaveAs.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
+        CxMBAJqcGAAAAqZJREFUOE+VktlLlGEUxl/xpoUWtJv+gkK6EWYucsQ1RmFwGB13BXVmCs0FxItGBQnR
+        KKkwFAmJkUIFRVFRxMIlc0NFZEBwK7yQFkKUmsC5iV/feQfnUuiDBz4ezvO85zznKED9L76Wum58vl/l
+        FJ3q7u6mtbWV6upq3G63wUEwGOTw8JDV1VWGh4eZmZlhfn6ejo4OfD4f+B5B1wO+JNmqVHt7O01NTXg8
+        HgoLCwkEAuzv77O8vExnZ6fmenp6tFlbWxtDQfj55il/zTfxWx13lJBer5eioiKcTicHBwcsLi4yNjam
+        DbKzsxkYGGBrawv+KFY+veWW+wlxcXGX9QjNzc3U1dWRlZWFzWbTL42MjDA9Pa1fTk9PZ3R0VItPnxtx
+        PVaIJmzQ2NhIZWUlVquVlJQUxsfH9czb29sMDQ2RlJSkxcGXim8eRX19PQ0NDVgsllAH8roE6HA4yMjI
+        oKWlBQm2t7dXj8GPi5y+Unx/qKipqaG2tlZ3HDaQ1ysqKnSIgrKyMkpKSjT4dY3AC8VxraK0tBSXy6Vr
+        RRMfHx/qQEgRSvK7u7thcHyb38+MmbtUmJMaqRVN2KCgoEC77u3tsbGxocGJCV4b4o8qzAm/s7NDeXk5
+        eXl5mEymK7qDzMxMfUBra2s6PE4s8MEQv1PMzs5qSBZyUJOTkxQXF+usYmJiriulIpSsSUhp/+hoHpYv
+        8Nau8Pv9TE1NMTg4qNco/7Li/Px80tLSSEhICGWQnJxMbm4u740Cb+pVPd/Kygp9fX309/czMTHB3Nwc
+        S0tLbG5u6lrRhA1iY2P1DUjh2Q3I5Z39y1hnEBNZt7FCEhMTQx0YF0VOTo7OYGFh4Vysr69jt9sxm81i
+        cEkbGN/dyMjIe9HR0alRUVHnQmqkVjTGGBFi8A8Z1IEpRrZfUAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="biSaveAs.ToolTipText">
+    <value>Datei Speichern unter</value>
   </data>
   <data name="miSaveAs.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -172,6 +218,29 @@
   </data>
   <data name="miSaveAs.Text">
     <value>Speichern &amp;Unter...</value>
+  </data>
+  <data name="biClose.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAxpJREFUOE9lU2tI
+        U2EYPom/BfuRztR0a7bUrkvmsbap0zZvmE26eqHMCzhKFJukoaaHjCkaoSMVoowI6o8aIdSPoE2CokJR
+        I2UsFAwiU3Nzjban9zulaR144Tsv33N5n/ecLbt367l/nmCv94fC5/NlU38rAM7v9y8EBHBPAgMDP1Dv
+        G+sB/t8wRrBWCkW6ITpaa9NqC1FR0QSzuQN1dR2orLyGtLRziIjgbVFRSQapVM1FRx8WawP4qCk+Pmul
+        sdGK0dFJLC974PP5QerweH7i/XsHBKEfe/fmrOzYwZs2EZCyPi4u02uxDGBszInJyU94926Galqst2+n
+        MT7uxNTULPr7h8DuRkQk6kUHCsXRIJks2V5e3oqRkTd4+XIMbvcqgT5icNCG4eFRPH78AnNzXzA//5Xc
+        TaG+vpuNY4+M5IM4uTyFT0jIh8XyAPfvP8f376uibbf7BxG+Rm/vEGZm5sQeq3v3RlBbe5NGycL27Yd4
+        bufOFEGvL8X16wNoablDJM/gcnnEyy7XKpzOz+vg9vYB6HQXoFYXYc+eTHKhEriYGJ3VYChDdXUnpX0D
+        paWt6Op6iKUl9zqQhdnWdgcJCSeRlHQGGk0xnY2gEazcrl06q0ZThBMnLsNorEF2tolIBExPz64TMLJL
+        lyxQKvNJvRBabTGdjzMHVpaBoFTmkbUS0dqpU2ZMTDhFMFNec7K46EZVVTtUqpNITT2P+PgMhIUpBcog
+        mWcvjJWpOxx/Z7ZY7tJoHVhYcP3JxAO2LeZCLk+GRHKAhailNWrsanWBOMLTp69I2YeenkdITy8jtRI0
+        Nt4Wgx0fd6CoqAE8f5qp2yWSg0EcgTmp9LA+Nlbvzcurok+4DU1NfTh7tp7qCgoK6sV8mpv7YDJZkJt7
+        ETKZ2hsSsk9PBJxIwIq+cVNcXMbKsWMXxW2YzbfEzdTUdNK5W+zl5FSS9ZSV0ND9JgbeRCCVHuEiIxMN
+        RGRTqYzIyqpAcfFVFBY2ICOjjFLPJduHbKRsWAP/R0Bgjn6UYLrIh4erBCK1RkXxVolEKWzbto8nQPBG
+        MDv/ArNIDOffPRRJAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="biClose.ToolTipText">
+    <value>Datei Schließen</value>
   </data>
   <data name="miClose.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -195,6 +264,33 @@
   </data>
   <data name="miClose.Text">
     <value>S&amp;chließen</value>
+  </data>
+  <data name="biNewDc.ToolTipText">
+    <value>Erzeuge neue Dokumenten Ansicht</value>
+  </data>
+  <data name="miNewDc.Text">
+    <value>Neue &amp;Dokumenten Ansicht</value>
+  </data>
+  <data name="biUpdate.ToolTipText">
+    <value>Updates suchen</value>
+  </data>
+  <data name="miUpdate.Text">
+    <value>&amp;Updates suchen...</value>
+  </data>
+  <data name="tbAction.Text">
+    <value>Resourcen Aktionen</value>
+  </data>
+  <data name="menuBarItem1.Text">
+    <value>&amp;Datei</value>
+  </data>
+  <data name="miOpenIn.Text">
+    <value>Öffne &amp;In</value>
+  </data>
+  <data name="miOpenUniRes.Text">
+    <value>WCJ: TSData/Res...</value>
+  </data>
+  <data name="miSaveCopyAs.Text">
+    <value>&amp;Kopie Speichern Unter...</value>
   </data>
   <data name="miRecent.Text">
     <value>&amp;Zuletzt geöffnete Dateien</value>
@@ -263,14 +359,8 @@
   <data name="miWindow.Text">
     <value>&amp;Fenster</value>
   </data>
-  <data name="miNewDc.Text">
-    <value>Neue &amp;Dokumenten Ansicht</value>
-  </data>
   <data name="menuBarItem5.Text">
     <value>&amp;Hilfe</value>
-  </data>
-  <data name="miUpdate.Text">
-    <value>&amp;Updates suchen...</value>
   </data>
   <data name="miTutorials.Text">
     <value>Anleitungen...</value>
@@ -292,87 +382,6 @@
   </data>
   <data name="clSize.Text">
     <value>Größe</value>
-  </data>
-  <data name="toolBar1.Text">
-    <value>Datei Toolbar</value>
-  </data>
-  <data name="biNew.ToolTipText">
-    <value>Neue Package Datei erzeugen</value>
-  </data>
-  <data name="biOpen.ToolTipText">
-    <value>Datei öffnen</value>
-  </data>
-  <data name="biSave.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAidJREFUOE+lkz1r
-        YmEQhTdYLOx28UdYW1j4Eb92kYAoGhPBDzRRGwnJIjYaIYSgiBaSEG1SxMZGUFTsjAZEE4kiIiiJWqTI
-        T7CxO+uM7K2CzV44zbxnnpl35r07AL7913d/f49EIoGzszP4/f41D1itVvj8/MTr6yvK5TJarRba7Tbu
-        7u7w8PAAiUTyh4py8ZubG1xeXiIQCMDpdGK5XGKxWODl5QXZbJZj+XyeYel0GplMBrlcDnK5/DsDKBiJ
-        ROByuWCz2fDx8YFut4tarcaAw8NDFItFTCYTXF9fI5lMIpVKQaFQ/GQABcPhMA4ODmA0GrlSpVJBs9nk
-        yvv7+6hWq3h/f8fFxQWurq4YJABisRhOT09hMBig1+tRr9f5zm9vbyiVStBqtRybTqdcKBqNMkipVG46
-        oCAN0GKxwGQyIR6PgwZbKBT4Go+Pj2g0Gri9vcX5+TlCoRCDBABVDwaDPETSyckJvF4vy+PxCDo+PobP
-        52Mv5ahUqk0HFKREmvxsNtsq8pCXcgSAw+Fg6nw+x3A43CoaJHkpZ29vb9OB1WrlB9Tv93l4T09PX4rO
-        aEPkpRwBQGtyu93c+ng83irykJdy1Gr1pgOdTge73Y7RaMSvr9frfSk6Iw95KUcASKVSfgNkoDa36fn5
-        mde9XiE0Gs2mg/WLwtHREc+g0+ls1WAwgNlshkwmI8CPf3+yXCQS/RaLxb92d3e3ijzkXf+I8vU1dgjw
-        FyNqY/BfwoFrAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="biSave.ToolTipText">
-    <value>Datei Speichern</value>
-  </data>
-  <data name="biSaveAs.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAAAqZJREFUOE+VktlLlGEUxl/xpoUWtJv+gkK6EWYucsQ1RmFwGB13BXVmCs0FxItGBQnR
-        KKkwFAmJkUIFRVFRxMIlc0NFZEBwK7yQFkKUmsC5iV/feQfnUuiDBz4ezvO85zznKED9L76Wum58vl/l
-        FJ3q7u6mtbWV6upq3G63wUEwGOTw8JDV1VWGh4eZmZlhfn6ejo4OfD4f+B5B1wO+JNmqVHt7O01NTXg8
-        HgoLCwkEAuzv77O8vExnZ6fmenp6tFlbWxtDQfj55il/zTfxWx13lJBer5eioiKcTicHBwcsLi4yNjam
-        DbKzsxkYGGBrawv+KFY+veWW+wlxcXGX9QjNzc3U1dWRlZWFzWbTL42MjDA9Pa1fTk9PZ3R0VItPnxtx
-        PVaIJmzQ2NhIZWUlVquVlJQUxsfH9czb29sMDQ2RlJSkxcGXim8eRX19PQ0NDVgsllAH8roE6HA4yMjI
-        oKWlBQm2t7dXj8GPi5y+Unx/qKipqaG2tlZ3HDaQ1ysqKnSIgrKyMkpKSjT4dY3AC8VxraK0tBSXy6Vr
-        RRMfHx/qQEgRSvK7u7thcHyb38+MmbtUmJMaqRVN2KCgoEC77u3tsbGxocGJCV4b4o8qzAm/s7NDeXk5
-        eXl5mEymK7qDzMxMfUBra2s6PE4s8MEQv1PMzs5qSBZyUJOTkxQXF+usYmJiriulIpSsSUhp/+hoHpYv
-        8Nau8Pv9TE1NMTg4qNco/7Li/Px80tLSSEhICGWQnJxMbm4u740Cb+pVPd/Kygp9fX309/czMTHB3Nwc
-        S0tLbG5u6lrRhA1iY2P1DUjh2Q3I5Z39y1hnEBNZt7FCEhMTQx0YF0VOTo7OYGFh4Vysr69jt9sxm81i
-        cEkbGN/dyMjIe9HR0alRUVHnQmqkVjTGGBFi8A8Z1IEpRrZfUAAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="biSaveAs.ToolTipText">
-    <value>Datei Speichern unter</value>
-  </data>
-  <data name="biClose.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAxpJREFUOE9lU2tI
-        U2EYPom/BfuRztR0a7bUrkvmsbap0zZvmE26eqHMCzhKFJukoaaHjCkaoSMVoowI6o8aIdSPoE2CokJR
-        I2UsFAwiU3Nzjban9zulaR144Tsv33N5n/ecLbt367l/nmCv94fC5/NlU38rAM7v9y8EBHBPAgMDP1Dv
-        G+sB/t8wRrBWCkW6ITpaa9NqC1FR0QSzuQN1dR2orLyGtLRziIjgbVFRSQapVM1FRx8WawP4qCk+Pmul
-        sdGK0dFJLC974PP5QerweH7i/XsHBKEfe/fmrOzYwZs2EZCyPi4u02uxDGBszInJyU94926Galqst2+n
-        MT7uxNTULPr7h8DuRkQk6kUHCsXRIJks2V5e3oqRkTd4+XIMbvcqgT5icNCG4eFRPH78AnNzXzA//5Xc
-        TaG+vpuNY4+M5IM4uTyFT0jIh8XyAPfvP8f376uibbf7BxG+Rm/vEGZm5sQeq3v3RlBbe5NGycL27Yd4
-        bufOFEGvL8X16wNoablDJM/gcnnEyy7XKpzOz+vg9vYB6HQXoFYXYc+eTHKhEriYGJ3VYChDdXUnpX0D
-        paWt6Op6iKUl9zqQhdnWdgcJCSeRlHQGGk0xnY2gEazcrl06q0ZThBMnLsNorEF2tolIBExPz64TMLJL
-        lyxQKvNJvRBabTGdjzMHVpaBoFTmkbUS0dqpU2ZMTDhFMFNec7K46EZVVTtUqpNITT2P+PgMhIUpBcog
-        mWcvjJWpOxx/Z7ZY7tJoHVhYcP3JxAO2LeZCLk+GRHKAhailNWrsanWBOMLTp69I2YeenkdITy8jtRI0
-        Nt4Wgx0fd6CoqAE8f5qp2yWSg0EcgTmp9LA+Nlbvzcurok+4DU1NfTh7tp7qCgoK6sV8mpv7YDJZkJt7
-        ETKZ2hsSsk9PBJxIwIq+cVNcXMbKsWMXxW2YzbfEzdTUdNK5W+zl5FSS9ZSV0ND9JgbeRCCVHuEiIxMN
-        RGRTqYzIyqpAcfFVFBY2ICOjjFLPJduHbKRsWAP/R0Bgjn6UYLrIh4erBCK1RkXxVolEKWzbto8nQPBG
-        MDv/ArNIDOffPRRJAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="biClose.ToolTipText">
-    <value>Datei Schließen</value>
-  </data>
-  <data name="biNewDc.ToolTipText">
-    <value>Erzeuge neue Dokumenten Ansicht</value>
-  </data>
-  <data name="biUpdate.ToolTipText">
-    <value>Updates suchen</value>
-  </data>
-  <data name="tbAction.Text">
-    <value>Resourcen Aktionen</value>
   </data>
   <data name="iAnim.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -892,12 +901,6 @@
         QeiqHOGKpfivJvyIhMVEKg1PKqQ3QSpkGYLkCJKhOmoK/JbTgeJTF3I5kvMfsg3tJlIMwlsAAAAASUVO
         RK5CYII=
 </value>
-  </data>
-  <data name="dcPlugin.TabText">
-    <value>Dokumente</value>
-  </data>
-  <data name="dcPlugin.Text">
-    <value>Dokumenten Ansicht</value>
   </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>

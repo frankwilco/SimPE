@@ -1,0 +1,1562 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="banner.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 16</value>
+  </data>
+  <data name="banner.Text">
+    <value xml:space="preserve">Przegląrka obrazów</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 16</value>
+  </data>
+  <data name="label1.Text">
+    <value xml:space="preserve">Edytor XML</value>
+  </data>
+  <data name="cbupdate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 34</value>
+  </data>
+  <data name="cbupdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 24</value>
+  </data>
+  <data name="cbupdate.Text">
+    <value xml:space="preserve">Zaktualizuj MMAT</value>
+  </data>
+  <data name="label63.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 96</value>
+  </data>
+  <data name="label63.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 13</value>
+  </data>
+  <data name="label63.Text">
+    <value xml:space="preserve">Oryginalne GUID:</value>
+  </data>
+  <data name="label97.Location" type="System.Drawing.Point, System.Drawing">
+    <value>520, 96</value>
+  </data>
+  <data name="label97.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 13</value>
+  </data>
+  <data name="label97.Text">
+    <value xml:space="preserve">Odwrotne GUID:</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="llgetGUID.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 12</value>
+  </data>
+  <data name="llgetGUID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
+  </data>
+  <data name="llgetGUID.Text">
+    <value xml:space="preserve">pobierz GUID</value>
+  </data>
+  <data name="gbelements.Text">
+    <value xml:space="preserve">Elementy</value>
+  </data>
+  <data name="llcommitobjd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>624, 224</value>
+  </data>
+  <data name="llcommitobjd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 14</value>
+  </data>
+  <data name="llcommitobjd.Text">
+    <value xml:space="preserve">zatwierdź</value>
+  </data>
+  <data name="label65.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 96</value>
+  </data>
+  <data name="label65.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 13</value>
+  </data>
+  <data name="label65.Text">
+    <value xml:space="preserve">Typ obiektu:</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 67</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="label9.Text">
+    <value xml:space="preserve">Nazwa pliku:</value>
+  </data>
+  <data name="label12.Text">
+    <value xml:space="preserve">Podgląd deksryptora pliku</value>
+  </data>
+  <data name="tabPage4.Text">
+    <value xml:space="preserve">Związki rodzinne</value>
+  </data>
+  <data name="tabPage1.Text">
+    <value xml:space="preserve">Opis rodziny</value>
+  </data>
+  <data name="linkLabel6.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 9</value>
+  </data>
+  <data name="linkLabel6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 35</value>
+  </data>
+  <data name="linkLabel6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 15</value>
+  </data>
+  <data name="linkLabel6.Text">
+    <value xml:space="preserve">GUID Sima:</value>
+  </data>
+  <data name="tpinterests.Text">
+    <value xml:space="preserve">Zainteresowania</value>
+  </data>
+  <data name="cbfit.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cbfit.Text">
+    <value xml:space="preserve">Wysportowane</value>
+  </data>
+  <data name="cbpreginv.Text">
+    <value xml:space="preserve">Ciąża (niewidoczna)</value>
+  </data>
+  <data name="cbpreghalf.Text">
+    <value xml:space="preserve">Ciąża (połowa)</value>
+  </data>
+  <data name="cbpregfull.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 24</value>
+  </data>
+  <data name="cbpregfull.Text">
+    <value xml:space="preserve">Ciąża (zaawansowana)</value>
+  </data>
+  <data name="cbfat.Text">
+    <value xml:space="preserve">Grube</value>
+  </data>
+  <data name="groupBox3.Text">
+    <value xml:space="preserve">Kształt ciała</value>
+  </data>
+  <data name="groupBox1.Text">
+    <value xml:space="preserve">Inne</value>
+  </data>
+  <data name="gbdecay.Text">
+    <value xml:space="preserve">Potrzeby</value>
+  </data>
+  <data name="tbext.Text">
+    <value xml:space="preserve">Rozszerzone</value>
+  </data>
+  <data name="tbcharacter.Text">
+    <value xml:space="preserve">Osobowość</value>
+  </data>
+  <data name="tbrelations.Text">
+    <value xml:space="preserve">Związki</value>
+  </data>
+  <data name="tbskills.Text">
+    <value xml:space="preserve">Umiejętności</value>
+  </data>
+  <data name="tbuni.Text">
+    <value xml:space="preserve">Na studiach</value>
+  </data>
+  <data name="lldna.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>6, 3</value>
+  </data>
+  <data name="lldna.Location" type="System.Drawing.Point, System.Drawing">
+    <value>299, 112</value>
+  </data>
+  <data name="lldna.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 15</value>
+  </data>
+  <data name="lldna.Text">
+    <value xml:space="preserve">Pokaż DNA...</value>
+  </data>
+  <data name="llcloth.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>6, 7</value>
+  </data>
+  <data name="llcloth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>395, 112</value>
+  </data>
+  <data name="llcloth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 15</value>
+  </data>
+  <data name="llcloth.Text">
+    <value xml:space="preserve">Pokaż ubrania...</value>
+  </data>
+  <data name="label49.Location" type="System.Drawing.Point, System.Drawing">
+    <value>511, 88</value>
+  </data>
+  <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 13</value>
+  </data>
+  <data name="label49.Text">
+    <value xml:space="preserve">Traktuj jako</value>
+  </data>
+  <data name="rbmale.Location" type="System.Drawing.Point, System.Drawing">
+    <value>672, 88</value>
+  </data>
+  <data name="rbmale.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 16</value>
+  </data>
+  <data name="rbmale.Text">
+    <value xml:space="preserve">Mężczyznę</value>
+  </data>
+  <data name="rbfemale.Location" type="System.Drawing.Point, System.Drawing">
+    <value>600, 88</value>
+  </data>
+  <data name="rbfemale.Text">
+    <value xml:space="preserve">Kobietę</value>
+  </data>
+  <data name="label48.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 64</value>
+  </data>
+  <data name="label48.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 13</value>
+  </data>
+  <data name="label48.Text">
+    <value xml:space="preserve">Etap życia:</value>
+  </data>
+  <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
+    <value>500, 64</value>
+  </data>
+  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 13</value>
+  </data>
+  <data name="label47.Text">
+    <value xml:space="preserve">Znak zodiaku:</value>
+  </data>
+  <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
+    <value>254, 88</value>
+  </data>
+  <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="label46.Text">
+    <value xml:space="preserve">Aspiracja:</value>
+  </data>
+  <data name="llsdesccommit.Text">
+    <value xml:space="preserve">Zatwierdź</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>246, 40</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 13</value>
+  </data>
+  <data name="label13.Text">
+    <value xml:space="preserve">Dane Sima:</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 88</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 13</value>
+  </data>
+  <data name="label10.Text">
+    <value xml:space="preserve">Pozostałe dni:</value>
+  </data>
+  <data name="linkLabel5.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>7, 15</value>
+  </data>
+  <data name="linkLabel5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 15</value>
+  </data>
+  <data name="linkLabel5.Text">
+    <value xml:space="preserve">Idź do pragnień i obaw...</value>
+  </data>
+  <data name="llfam.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 5</value>
+  </data>
+  <data name="llfam.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 64</value>
+  </data>
+  <data name="llfam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 15</value>
+  </data>
+  <data name="llfam.Text">
+    <value xml:space="preserve">Inst. rodziny:</value>
+  </data>
+  <data name="tabPage2.Text">
+    <value xml:space="preserve">Opis Sima</value>
+  </data>
+  <data name="tabPage3.Text">
+    <value xml:space="preserve">Inne</value>
+  </data>
+  <data name="gbties.Text">
+    <value xml:space="preserve">Związki</value>
+  </data>
+  <data name="btnewtie.Location" type="System.Drawing.Point, System.Drawing">
+    <value>675, 72</value>
+  </data>
+  <data name="btnewtie.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 23</value>
+  </data>
+  <data name="btnewtie.Text">
+    <value xml:space="preserve">stwórz nowe związki dla tego Sima</value>
+  </data>
+  <data name="btdeletetie.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="btdeletetie.Text">
+    <value xml:space="preserve">usuń związek</value>
+  </data>
+  <data name="btaddtie.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 45</value>
+  </data>
+  <data name="btaddtie.Text">
+    <value xml:space="preserve">&lt;-- dodaj związek</value>
+  </data>
+  <data name="llcommitties.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 9</value>
+  </data>
+  <data name="llcommitties.Location" type="System.Drawing.Point, System.Drawing">
+    <value>59, 272</value>
+  </data>
+  <data name="llcommitties.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 15</value>
+  </data>
+  <data name="llcommitties.Text">
+    <value xml:space="preserve">zatwierdź związki dla bieżącego Sima</value>
+  </data>
+  <data name="bttiecommit.Text">
+    <value xml:space="preserve">Zatwierdź</value>
+  </data>
+  <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 16</value>
+  </data>
+  <data name="label68.Text">
+    <value xml:space="preserve">Edytor związków rodzinnych</value>
+  </data>
+  <data name="label89.Location" type="System.Drawing.Point, System.Drawing">
+    <value>735, 48</value>
+  </data>
+  <data name="label89.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 13</value>
+  </data>
+  <data name="label89.Text">
+    <value xml:space="preserve">Podotoczenie:</value>
+  </data>
+  <data name="groupBox4.Text">
+    <value xml:space="preserve">Znaczniki</value>
+  </data>
+  <data name="cbcomputer.Text">
+    <value xml:space="preserve">ma komputer</value>
+  </data>
+  <data name="cblot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 24</value>
+  </data>
+  <data name="cblot.Text">
+    <value xml:space="preserve">nowa działka</value>
+  </data>
+  <data name="cbbaby.Text">
+    <value xml:space="preserve">ma dziecko</value>
+  </data>
+  <data name="cbphone.Text">
+    <value xml:space="preserve">ma telefon</value>
+  </data>
+  <data name="label93.Location" type="System.Drawing.Point, System.Drawing">
+    <value>267, 104</value>
+  </data>
+  <data name="label93.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 13</value>
+  </data>
+  <data name="label93.Text">
+    <value xml:space="preserve">GUID albumu:</value>
+  </data>
+  <data name="label92.Location" type="System.Drawing.Point, System.Drawing">
+    <value>291, 80</value>
+  </data>
+  <data name="label92.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="label92.Text">
+    <value xml:space="preserve">Znaczniki:</value>
+  </data>
+  <data name="tblotinst.Location" type="System.Drawing.Point, System.Drawing">
+    <value>648, 40</value>
+  </data>
+  <data name="llFamiDeleteSim.Text">
+    <value xml:space="preserve">usuń Sima</value>
+  </data>
+  <data name="llFamiAddSim.Text">
+    <value xml:space="preserve">&lt;-- dodaj Sima</value>
+  </data>
+  <data name="button1.Text">
+    <value xml:space="preserve">Wykonaj</value>
+  </data>
+  <data name="tbname.Size" type="System.Drawing.Size, System.Drawing">
+    <value>380, 20</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>59, 48</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 13</value>
+  </data>
+  <data name="label6.Text">
+    <value xml:space="preserve">Nazwisko:</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 136</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 13</value>
+  </data>
+  <data name="label5.Text">
+    <value xml:space="preserve">Członkowie:</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 104</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 13</value>
+  </data>
+  <data name="label4.Text">
+    <value xml:space="preserve">Przyjaciele:</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>58, 80</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="label3.Text">
+    <value xml:space="preserve">Pieniądze:</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 16</value>
+  </data>
+  <data name="label2.Text">
+    <value xml:space="preserve">Edytor rodziny</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>527, 48</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 13</value>
+  </data>
+  <data name="label15.Text">
+    <value xml:space="preserve">Instancja parceli:</value>
+  </data>
+  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 13</value>
+  </data>
+  <data name="label70.Text">
+    <value xml:space="preserve">odstręczają mnie</value>
+  </data>
+  <data name="label69.Location" type="System.Drawing.Point, System.Drawing">
+    <value>299, 136</value>
+  </data>
+  <data name="label69.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 13</value>
+  </data>
+  <data name="label69.Text">
+    <value xml:space="preserve">pociągają mnie</value>
+  </data>
+  <data name="label67.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 168</value>
+  </data>
+  <data name="label67.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="label67.Text">
+    <value xml:space="preserve">Mężczyźni</value>
+  </data>
+  <data name="label66.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 152</value>
+  </data>
+  <data name="label66.Text">
+    <value xml:space="preserve">Kobiety</value>
+  </data>
+  <data name="label38.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 32</value>
+  </data>
+  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 13</value>
+  </data>
+  <data name="label38.Text">
+    <value xml:space="preserve">Okultyzm</value>
+  </data>
+  <data name="label37.Location" type="System.Drawing.Point, System.Drawing">
+    <value>340, 64</value>
+  </data>
+  <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="label37.Text">
+    <value xml:space="preserve">Sport</value>
+  </data>
+  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 96</value>
+  </data>
+  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="label28.Text">
+    <value xml:space="preserve">Polityka</value>
+  </data>
+  <data name="label36.Location" type="System.Drawing.Point, System.Drawing">
+    <value>341, 48</value>
+  </data>
+  <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="label36.Text">
+    <value xml:space="preserve">Moda</value>
+  </data>
+  <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
+    <value>325, 32</value>
+  </data>
+  <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 13</value>
+  </data>
+  <data name="label35.Text">
+    <value xml:space="preserve">Zdrowie</value>
+  </data>
+  <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
+    <value>322, 16</value>
+  </data>
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 13</value>
+  </data>
+  <data name="label34.Text">
+    <value xml:space="preserve">Jedzenie</value>
+  </data>
+  <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="label33.Text">
+    <value xml:space="preserve">Kultura</value>
+  </data>
+  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 80</value>
+  </data>
+  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 13</value>
+  </data>
+  <data name="label29.Text">
+    <value xml:space="preserve">Pieniądze</value>
+  </data>
+  <data name="label43.Text">
+    <value xml:space="preserve">Szkoła</value>
+  </data>
+  <data name="label42.Location" type="System.Drawing.Point, System.Drawing">
+    <value>606, 48</value>
+  </data>
+  <data name="label42.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="label42.Text">
+    <value xml:space="preserve">Zwierzęta</value>
+  </data>
+  <data name="label40.Location" type="System.Drawing.Point, System.Drawing">
+    <value>630, 16</value>
+  </data>
+  <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 13</value>
+  </data>
+  <data name="label40.Text">
+    <value xml:space="preserve">Praca</value>
+  </data>
+  <data name="label41.Location" type="System.Drawing.Point, System.Drawing">
+    <value>620, 32</value>
+  </data>
+  <data name="label41.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 13</value>
+  </data>
+  <data name="label41.Text">
+    <value xml:space="preserve">Pogoda</value>
+  </data>
+  <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
+    <value>319, 80</value>
+  </data>
+  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="label31.Text">
+    <value xml:space="preserve">Przestęp.</value>
+  </data>
+  <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 16</value>
+  </data>
+  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="label30.Text">
+    <value xml:space="preserve">Środowisko</value>
+  </data>
+  <data name="label44.Location" type="System.Drawing.Point, System.Drawing">
+    <value>613, 80</value>
+  </data>
+  <data name="label44.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
+  </data>
+  <data name="label44.Text">
+    <value xml:space="preserve">Zabawki</value>
+  </data>
+  <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
+    <value>326, 96</value>
+  </data>
+  <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 13</value>
+  </data>
+  <data name="label39.Text">
+    <value xml:space="preserve">Podróże</value>
+  </data>
+  <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 48</value>
+  </data>
+  <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="label32.Text">
+    <value xml:space="preserve">Rozrywka</value>
+  </data>
+  <data name="label96.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 104</value>
+  </data>
+  <data name="label96.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 13</value>
+  </data>
+  <data name="label96.Text">
+    <value xml:space="preserve">Niepowiązany</value>
+  </data>
+  <data name="label95.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 88</value>
+  </data>
+  <data name="label95.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 13</value>
+  </data>
+  <data name="label95.Text">
+    <value xml:space="preserve">Czas trwania etapu</value>
+  </data>
+  <data name="label94.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 72</value>
+  </data>
+  <data name="label94.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 13</value>
+  </data>
+  <data name="label94.Text">
+    <value xml:space="preserve">Dni w poprz. etapie</value>
+  </data>
+  <data name="label90.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 56</value>
+  </data>
+  <data name="label90.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 13</value>
+  </data>
+  <data name="label90.Text">
+    <value xml:space="preserve">Rodzaj głosu</value>
+  </data>
+  <data name="label87.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 40</value>
+  </data>
+  <data name="label87.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="label87.Text">
+    <value xml:space="preserve">Rodzaj NPC</value>
+  </data>
+  <data name="label86.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="label86.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 13</value>
+  </data>
+  <data name="label86.Text">
+    <value xml:space="preserve">Samodzielność</value>
+  </data>
+  <data name="llmore.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 6</value>
+  </data>
+  <data name="llmore.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 120</value>
+  </data>
+  <data name="llmore.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 15</value>
+  </data>
+  <data name="llmore.Text">
+    <value xml:space="preserve">więcej...</value>
+  </data>
+  <data name="label85.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 120</value>
+  </data>
+  <data name="label85.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="label85.Text">
+    <value xml:space="preserve">Zabawa</value>
+  </data>
+  <data name="label84.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 104</value>
+  </data>
+  <data name="label84.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="label84.Text">
+    <value xml:space="preserve">Towarz.</value>
+  </data>
+  <data name="label83.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 88</value>
+  </data>
+  <data name="label83.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 13</value>
+  </data>
+  <data name="label83.Text">
+    <value xml:space="preserve">Higiena</value>
+  </data>
+  <data name="label82.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 72</value>
+  </data>
+  <data name="label82.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="label82.Text">
+    <value xml:space="preserve">Energia</value>
+  </data>
+  <data name="label81.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 56</value>
+  </data>
+  <data name="label81.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="label81.Text">
+    <value xml:space="preserve">Pęcherz</value>
+  </data>
+  <data name="label80.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 13</value>
+  </data>
+  <data name="label80.Text">
+    <value xml:space="preserve">Komfort</value>
+  </data>
+  <data name="label79.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 24</value>
+  </data>
+  <data name="label79.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 13</value>
+  </data>
+  <data name="label79.Text">
+    <value xml:space="preserve">Głód</value>
+  </data>
+  <data name="groupBox2.Text">
+    <value xml:space="preserve">Duch</value>
+  </data>
+  <data name="cbignoretraversal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 24</value>
+  </data>
+  <data name="cbignoretraversal.Text">
+    <value xml:space="preserve">Ignoruj koszty transwersalne</value>
+  </data>
+  <data name="cbpasspeople.Text">
+    <value xml:space="preserve">Może przenikać Simów</value>
+  </data>
+  <data name="cbpasswalls.Text">
+    <value xml:space="preserve">Może przenikać ściany</value>
+  </data>
+  <data name="cbpassobject.Text">
+    <value xml:space="preserve">Może przenikać obiekty</value>
+  </data>
+  <data name="cbisghost.Text">
+    <value xml:space="preserve">Jest duchem</value>
+  </data>
+  <data name="gbcareer.Text">
+    <value xml:space="preserve">Praca</value>
+  </data>
+  <data name="label88.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 64</value>
+  </data>
+  <data name="label88.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 13</value>
+  </data>
+  <data name="label88.Text">
+    <value xml:space="preserve">Wyniki w pracy</value>
+  </data>
+  <data name="label61.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 48</value>
+  </data>
+  <data name="label61.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 13</value>
+  </data>
+  <data name="label61.Text">
+    <value xml:space="preserve">Poziom kariery</value>
+  </data>
+  <data name="label50.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 24</value>
+  </data>
+  <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
+  </data>
+  <data name="label50.Text">
+    <value xml:space="preserve">Kariera:</value>
+  </data>
+  <data name="gblifeline.Text">
+    <value xml:space="preserve">Aspiracja</value>
+  </data>
+  <data name="label62.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 40</value>
+  </data>
+  <data name="label62.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 13</value>
+  </data>
+  <data name="label62.Text">
+    <value xml:space="preserve">Poziom:</value>
+  </data>
+  <data name="label60.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 64</value>
+  </data>
+  <data name="label60.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 13</value>
+  </data>
+  <data name="label60.Text">
+    <value xml:space="preserve">Punkty</value>
+  </data>
+  <data name="label59.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 24</value>
+  </data>
+  <data name="label59.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 13</value>
+  </data>
+  <data name="label59.Text">
+    <value xml:space="preserve">P. platyny:</value>
+  </data>
+  <data name="gbcharacter.Text">
+    <value xml:space="preserve">Osobowość</value>
+  </data>
+  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-3, 88</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="label20.Text">
+    <value xml:space="preserve">Uprzejmość</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 56</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
+  </data>
+  <data name="label19.Text">
+    <value xml:space="preserve">Aktywność</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 72</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="label18.Text">
+    <value xml:space="preserve">Wesołość</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 40</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="label17.Text">
+    <value xml:space="preserve">Otwartość</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-1, 24</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 13</value>
+  </data>
+  <data name="label16.Text">
+    <value xml:space="preserve">Schludność</value>
+  </data>
+  <data name="linkLabel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>81, 0</value>
+  </data>
+  <data name="gbgencharacter.Text">
+    <value xml:space="preserve">Osobowość w genach</value>
+  </data>
+  <data name="label71.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-3, 88</value>
+  </data>
+  <data name="label71.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="label71.Text">
+    <value xml:space="preserve">Uprzejmość</value>
+  </data>
+  <data name="label72.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 56</value>
+  </data>
+  <data name="label72.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
+  </data>
+  <data name="label72.Text">
+    <value xml:space="preserve">Aktywność</value>
+  </data>
+  <data name="label73.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 72</value>
+  </data>
+  <data name="label73.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="label73.Text">
+    <value xml:space="preserve">Wesołość</value>
+  </data>
+  <data name="label74.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 40</value>
+  </data>
+  <data name="label74.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="label74.Text">
+    <value xml:space="preserve">Otwartość</value>
+  </data>
+  <data name="label75.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-2, 24</value>
+  </data>
+  <data name="label75.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 13</value>
+  </data>
+  <data name="label75.Text">
+    <value xml:space="preserve">Schludność</value>
+  </data>
+  <data name="linkLabel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 0</value>
+  </data>
+  <data name="gbschool.Text">
+    <value xml:space="preserve">Szkoła</value>
+  </data>
+  <data name="label77.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 53</value>
+  </data>
+  <data name="label77.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="label77.Text">
+    <value xml:space="preserve">Ocena:</value>
+  </data>
+  <data name="label78.Location" type="System.Drawing.Point, System.Drawing">
+    <value>29, 28</value>
+  </data>
+  <data name="label78.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 13</value>
+  </data>
+  <data name="label78.Text">
+    <value xml:space="preserve">Typ:</value>
+  </data>
+  <data name="btaddrelation.Text">
+    <value xml:space="preserve">dodaj zw. --&gt;</value>
+  </data>
+  <data name="btdeleterelation.Text">
+    <value xml:space="preserve">usuń związek</value>
+  </data>
+  <data name="label14.Text">
+    <value xml:space="preserve">Zmiany są zatwierdzane automatycznie!</value>
+  </data>
+  <data name="llsimrelcommit.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 16</value>
+  </data>
+  <data name="llsimrelcommit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>743, 192</value>
+  </data>
+  <data name="llsimrelcommit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 13</value>
+  </data>
+  <data name="llsimrelcommit.Text">
+    <value xml:space="preserve">zatwiedź związek</value>
+  </data>
+  <data name="gbout.Text">
+    <value xml:space="preserve">Jak ten Sim lubi ...</value>
+  </data>
+  <data name="cboutbest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 64</value>
+  </data>
+  <data name="cboutbest.Text">
+    <value xml:space="preserve">Znajomość</value>
+  </data>
+  <data name="cboutfamily.Location" type="System.Drawing.Point, System.Drawing">
+    <value>327, 48</value>
+  </data>
+  <data name="cboutfamily.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 16</value>
+  </data>
+  <data name="cboutfamily.Text">
+    <value xml:space="preserve">Rodzina</value>
+  </data>
+  <data name="cboutmarried.Location" type="System.Drawing.Point, System.Drawing">
+    <value>327, 32</value>
+  </data>
+  <data name="cboutmarried.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 16</value>
+  </data>
+  <data name="cboutmarried.Text">
+    <value xml:space="preserve">Małżeństwo</value>
+  </data>
+  <data name="cboutengaged.Location" type="System.Drawing.Point, System.Drawing">
+    <value>327, 16</value>
+  </data>
+  <data name="cboutengaged.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 16</value>
+  </data>
+  <data name="cboutengaged.Text">
+    <value xml:space="preserve">Zaręczony/a</value>
+  </data>
+  <data name="cboutsteady.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 48</value>
+  </data>
+  <data name="cboutsteady.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 16</value>
+  </data>
+  <data name="cboutsteady.Text">
+    <value xml:space="preserve">St. symp.</value>
+  </data>
+  <data name="cboutlove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 32</value>
+  </data>
+  <data name="cboutlove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 16</value>
+  </data>
+  <data name="cboutlove.Text">
+    <value xml:space="preserve">Miłość</value>
+  </data>
+  <data name="cboutcrush.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 16</value>
+  </data>
+  <data name="cboutcrush.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 16</value>
+  </data>
+  <data name="cboutcrush.Text">
+    <value xml:space="preserve">Zaurocz.</value>
+  </data>
+  <data name="cboutbuddie.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 48</value>
+  </data>
+  <data name="cboutbuddie.Text">
+    <value xml:space="preserve">Koleżeń.</value>
+  </data>
+  <data name="cboutfriend.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 32</value>
+  </data>
+  <data name="cboutfriend.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 16</value>
+  </data>
+  <data name="cboutfriend.Text">
+    <value xml:space="preserve">Przyjaźń</value>
+  </data>
+  <data name="cboutenemy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 16</value>
+  </data>
+  <data name="cboutenemy.Text">
+    <value xml:space="preserve">Wróg</value>
+  </data>
+  <data name="label53.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 40</value>
+  </data>
+  <data name="label53.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="label53.Text">
+    <value xml:space="preserve">Długotrw.:</value>
+  </data>
+  <data name="label52.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 24</value>
+  </data>
+  <data name="label52.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 13</value>
+  </data>
+  <data name="label52.Text">
+    <value xml:space="preserve">Dzienny:</value>
+  </data>
+  <data name="gbin.Text">
+    <value xml:space="preserve">Jak ... lubi tego Sima</value>
+  </data>
+  <data name="cbinbest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 64</value>
+  </data>
+  <data name="cbinbest.Text">
+    <value xml:space="preserve">Znajomość</value>
+  </data>
+  <data name="cbinfamily.Location" type="System.Drawing.Point, System.Drawing">
+    <value>328, 48</value>
+  </data>
+  <data name="cbinfamily.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 16</value>
+  </data>
+  <data name="cbinfamily.Text">
+    <value xml:space="preserve">Rodzina</value>
+  </data>
+  <data name="cbinmarried.Location" type="System.Drawing.Point, System.Drawing">
+    <value>328, 32</value>
+  </data>
+  <data name="cbinmarried.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 16</value>
+  </data>
+  <data name="cbinmarried.Text">
+    <value xml:space="preserve">Małżeństwo</value>
+  </data>
+  <data name="cbinengaged.Location" type="System.Drawing.Point, System.Drawing">
+    <value>328, 16</value>
+  </data>
+  <data name="cbinengaged.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 16</value>
+  </data>
+  <data name="cbinengaged.Text">
+    <value xml:space="preserve">Zaręczony/a</value>
+  </data>
+  <data name="cbinsteady.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 48</value>
+  </data>
+  <data name="cbinsteady.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 16</value>
+  </data>
+  <data name="cbinsteady.Text">
+    <value xml:space="preserve">St. symp.</value>
+  </data>
+  <data name="cbinlove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 32</value>
+  </data>
+  <data name="cbinlove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 16</value>
+  </data>
+  <data name="cbinlove.Text">
+    <value xml:space="preserve">Miłość</value>
+  </data>
+  <data name="cbincrush.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 16</value>
+  </data>
+  <data name="cbincrush.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 16</value>
+  </data>
+  <data name="cbincrush.Text">
+    <value xml:space="preserve">Zaurocz.</value>
+  </data>
+  <data name="cbinbuddie.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 48</value>
+  </data>
+  <data name="cbinbuddie.Text">
+    <value xml:space="preserve">Koleżeń.</value>
+  </data>
+  <data name="cbinfriend.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 32</value>
+  </data>
+  <data name="cbinfriend.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 16</value>
+  </data>
+  <data name="cbinfriend.Text">
+    <value xml:space="preserve">Przyjaźń</value>
+  </data>
+  <data name="cbinenemy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 16</value>
+  </data>
+  <data name="cbinenemy.Text">
+    <value xml:space="preserve">Wróg</value>
+  </data>
+  <data name="label54.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 40</value>
+  </data>
+  <data name="label54.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="label54.Text">
+    <value xml:space="preserve">Długotrw.:</value>
+  </data>
+  <data name="label55.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 24</value>
+  </data>
+  <data name="label55.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 13</value>
+  </data>
+  <data name="label55.Text">
+    <value xml:space="preserve">Dzienny:</value>
+  </data>
+  <data name="gbskills.Text">
+    <value xml:space="preserve">Umiejętności</value>
+  </data>
+  <data name="label76.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 104</value>
+  </data>
+  <data name="label76.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="label76.Text">
+    <value xml:space="preserve">Romans.</value>
+  </data>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 32</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="label21.Text">
+    <value xml:space="preserve">Gotowanie</value>
+  </data>
+  <data name="label51.Location" type="System.Drawing.Point, System.Drawing">
+    <value>319, 80</value>
+  </data>
+  <data name="label51.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 13</value>
+  </data>
+  <data name="label51.Text">
+    <value xml:space="preserve">Sprawność</value>
+  </data>
+  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
+    <value>320, 64</value>
+  </data>
+  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
+  </data>
+  <data name="label27.Text">
+    <value xml:space="preserve">Sprzątanie</value>
+  </data>
+  <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
+    <value>308, 48</value>
+  </data>
+  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 13</value>
+  </data>
+  <data name="label26.Text">
+    <value xml:space="preserve">Kreatywność</value>
+  </data>
+  <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
+    <value>344, 32</value>
+  </data>
+  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 13</value>
+  </data>
+  <data name="label25.Text">
+    <value xml:space="preserve">Logika</value>
+  </data>
+  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 80</value>
+  </data>
+  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="label24.Text">
+    <value xml:space="preserve">Kondycja</value>
+  </data>
+  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 64</value>
+  </data>
+  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 13</value>
+  </data>
+  <data name="label23.Text">
+    <value xml:space="preserve">Charyzma</value>
+  </data>
+  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 48</value>
+  </data>
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 13</value>
+  </data>
+  <data name="label22.Text">
+    <value xml:space="preserve">Technika</value>
+  </data>
+  <data name="linkLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 0</value>
+  </data>
+  <data name="label103.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 120</value>
+  </data>
+  <data name="label103.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="label103.Text">
+    <value xml:space="preserve">Semestr:</value>
+  </data>
+  <data name="label102.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 13</value>
+  </data>
+  <data name="label102.Text">
+    <value xml:space="preserve">Pozostało czasu:</value>
+  </data>
+  <data name="label101.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 139</value>
+  </data>
+  <data name="label101.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 13</value>
+  </data>
+  <data name="label101.Text">
+    <value xml:space="preserve">Reputacja:</value>
+  </data>
+  <data name="label100.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 111</value>
+  </data>
+  <data name="label100.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 13</value>
+  </data>
+  <data name="label100.Text">
+    <value xml:space="preserve">Ostatnia ocena:</value>
+  </data>
+  <data name="cboncampus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 24</value>
+  </data>
+  <data name="cboncampus.Text">
+    <value xml:space="preserve">Na uczelni (jest młodym dorosłym)</value>
+  </data>
+  <data name="label99.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 87</value>
+  </data>
+  <data name="label99.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 13</value>
+  </data>
+  <data name="label99.Text">
+    <value xml:space="preserve">Ocena pr. na zaj.:</value>
+  </data>
+  <data name="label98.Location" type="System.Drawing.Point, System.Drawing">
+    <value>61, 56</value>
+  </data>
+  <data name="label98.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 13</value>
+  </data>
+  <data name="label98.Text">
+    <value xml:space="preserve">Wydział:</value>
+  </data>
+  <data name="lbfilename.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 8</value>
+  </data>
+  <data name="lbfilename.Text">
+    <value xml:space="preserve">Brak pliku</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 16</value>
+  </data>
+  <data name="label11.Text">
+    <value xml:space="preserve">Edytor opisu Sima</value>
+  </data>
+  <data name="label91.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 88</value>
+  </data>
+  <data name="label91.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 13</value>
+  </data>
+  <data name="label91.Text">
+    <value xml:space="preserve">Typ związku:</value>
+  </data>
+  <data name="llsrelcommit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 208</value>
+  </data>
+  <data name="llsrelcommit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 15</value>
+  </data>
+  <data name="llsrelcommit.Text">
+    <value xml:space="preserve">zatwierdź</value>
+  </data>
+  <data name="gbrelation.Text">
+    <value xml:space="preserve">Stan związku</value>
+  </data>
+  <data name="cbbest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 72</value>
+  </data>
+  <data name="cbbest.Text">
+    <value xml:space="preserve">Znajomość</value>
+  </data>
+  <data name="cbfamily.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 56</value>
+  </data>
+  <data name="cbfamily.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 16</value>
+  </data>
+  <data name="cbfamily.Text">
+    <value xml:space="preserve">Rodzina</value>
+  </data>
+  <data name="cbmarried.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 40</value>
+  </data>
+  <data name="cbmarried.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 16</value>
+  </data>
+  <data name="cbmarried.Text">
+    <value xml:space="preserve">Małżeństwo</value>
+  </data>
+  <data name="cbengaged.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 24</value>
+  </data>
+  <data name="cbengaged.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 16</value>
+  </data>
+  <data name="cbengaged.Text">
+    <value xml:space="preserve">Zaręczony/a</value>
+  </data>
+  <data name="cbsteady.Location" type="System.Drawing.Point, System.Drawing">
+    <value>91, 56</value>
+  </data>
+  <data name="cbsteady.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 16</value>
+  </data>
+  <data name="cbsteady.Text">
+    <value xml:space="preserve">St. symp.</value>
+  </data>
+  <data name="cblove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>91, 40</value>
+  </data>
+  <data name="cblove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 16</value>
+  </data>
+  <data name="cblove.Text">
+    <value xml:space="preserve">Miłość</value>
+  </data>
+  <data name="cbcrush.Location" type="System.Drawing.Point, System.Drawing">
+    <value>91, 24</value>
+  </data>
+  <data name="cbcrush.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 16</value>
+  </data>
+  <data name="cbcrush.Text">
+    <value xml:space="preserve">Zaurocz.</value>
+  </data>
+  <data name="cbbuddie.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 56</value>
+  </data>
+  <data name="cbbuddie.Text">
+    <value xml:space="preserve">Koleżeń.</value>
+  </data>
+  <data name="cbfriend.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 40</value>
+  </data>
+  <data name="cbfriend.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 16</value>
+  </data>
+  <data name="cbfriend.Text">
+    <value xml:space="preserve">Przyjaźń</value>
+  </data>
+  <data name="cbenemy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 24</value>
+  </data>
+  <data name="cbenemy.Text">
+    <value xml:space="preserve">Wróg</value>
+  </data>
+  <data name="label57.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 64</value>
+  </data>
+  <data name="label57.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="label57.Text">
+    <value xml:space="preserve">Długotrw.:</value>
+  </data>
+  <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 40</value>
+  </data>
+  <data name="label58.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="label58.Text">
+    <value xml:space="preserve">Dzienny:</value>
+  </data>
+  <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 16</value>
+  </data>
+  <data name="label56.Text">
+    <value xml:space="preserve">Edytor związków</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.Text">
+    <value xml:space="preserve">Elementy</value>
+  </data>
+</root>
