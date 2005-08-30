@@ -67,6 +67,42 @@ namespace SimPe.Plugin.Tool.Dockable
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
+			//init the preview manually since the designer is way to stupid to do so >:-|
+			this.op1 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
+			this.op2 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
+
+			// 
+			// op1
+			// 
+			this.op1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.op1.BackColor = System.Drawing.Color.Transparent;
+			this.op1.Font = new System.Drawing.Font("Tahoma", 8.25F);
+			this.op1.LoadCustomImage = true;
+			this.op1.Location = new System.Drawing.Point(8, 44);
+			this.op1.Name = "op1";
+			this.op1.SelectedObject = null;
+			this.op1.Size = new System.Drawing.Size(304, 88);
+			this.op1.TabIndex = 0;
+			this.xpTaskBoxSimple2.Controls.Add(this.op1);
+			// 
+			// op2
+			// 
+			this.op2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.op2.BackColor = System.Drawing.Color.Transparent;
+			this.op2.Font = new System.Drawing.Font("Tahoma", 8.25F);
+			this.op2.LoadCustomImage = true;
+			this.op2.Location = new System.Drawing.Point(8, 44);
+			this.op2.Name = "op2";
+			this.op2.SelectedObject = null;
+			this.op2.Size = new System.Drawing.Size(304, 56);
+			this.op2.TabIndex = 1;
+			this.xpTaskBoxSimple1.Controls.Add(this.op2);
+
+			//do the regular initialization Work
 			wizard1.Start();
 			SimPe.ThemeManager tm = SimPe.ThemeManager.Global.CreateChild();
 			tm.AddControl(this.xpGradientPanel1);
