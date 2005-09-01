@@ -8,10 +8,22 @@ using System.Windows.Forms;
 namespace SimPe.Plugin.Tool.Dockable
 {
 	/// <summary>
-	/// Zusammenfassung für ObjectPreview.
+	/// Component to display Details about a passed Object
 	/// </summary>
 	public class ObjectPreview : System.Windows.Forms.UserControl
 	{
+		/// <summary>
+		/// Known Expansions
+		/// </summary>
+		public enum Expansion : ushort
+		{
+			Unknown = 0xFF,			
+			Original = 0x02,
+			University = 0x04,
+			Nightlife = 0x08,
+			Custom = 0x01
+		}
+
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label4;
@@ -21,6 +33,8 @@ namespace SimPe.Plugin.Tool.Dockable
 		private System.Windows.Forms.PictureBox pb;
 		private System.Windows.Forms.Label lbAbout;
 		private TD.SandBar.FlatComboBox cbCat;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label lbExpansion;
 		/// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -78,6 +92,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lbPrice = new System.Windows.Forms.Label();
 			this.lbAbout = new System.Windows.Forms.Label();
 			this.cbCat = new TD.SandBar.FlatComboBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.lbExpansion = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// pb
@@ -281,6 +297,50 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbCat.Text = resources.GetString("cbCat.Text");
 			this.cbCat.Visible = ((bool)(resources.GetObject("cbCat.Visible")));
 			// 
+			// label5
+			// 
+			this.label5.AccessibleDescription = resources.GetString("label5.AccessibleDescription");
+			this.label5.AccessibleName = resources.GetString("label5.AccessibleName");
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label5.Anchor")));
+			this.label5.AutoSize = ((bool)(resources.GetObject("label5.AutoSize")));
+			this.label5.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label5.Dock")));
+			this.label5.Enabled = ((bool)(resources.GetObject("label5.Enabled")));
+			this.label5.Font = ((System.Drawing.Font)(resources.GetObject("label5.Font")));
+			this.label5.Image = ((System.Drawing.Image)(resources.GetObject("label5.Image")));
+			this.label5.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label5.ImageAlign")));
+			this.label5.ImageIndex = ((int)(resources.GetObject("label5.ImageIndex")));
+			this.label5.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label5.ImeMode")));
+			this.label5.Location = ((System.Drawing.Point)(resources.GetObject("label5.Location")));
+			this.label5.Name = "label5";
+			this.label5.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label5.RightToLeft")));
+			this.label5.Size = ((System.Drawing.Size)(resources.GetObject("label5.Size")));
+			this.label5.TabIndex = ((int)(resources.GetObject("label5.TabIndex")));
+			this.label5.Text = resources.GetString("label5.Text");
+			this.label5.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label5.TextAlign")));
+			this.label5.Visible = ((bool)(resources.GetObject("label5.Visible")));
+			// 
+			// lbExpansion
+			// 
+			this.lbExpansion.AccessibleDescription = resources.GetString("lbExpansion.AccessibleDescription");
+			this.lbExpansion.AccessibleName = resources.GetString("lbExpansion.AccessibleName");
+			this.lbExpansion.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbExpansion.Anchor")));
+			this.lbExpansion.AutoSize = ((bool)(resources.GetObject("lbExpansion.AutoSize")));
+			this.lbExpansion.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbExpansion.Dock")));
+			this.lbExpansion.Enabled = ((bool)(resources.GetObject("lbExpansion.Enabled")));
+			this.lbExpansion.Font = ((System.Drawing.Font)(resources.GetObject("lbExpansion.Font")));
+			this.lbExpansion.Image = ((System.Drawing.Image)(resources.GetObject("lbExpansion.Image")));
+			this.lbExpansion.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbExpansion.ImageAlign")));
+			this.lbExpansion.ImageIndex = ((int)(resources.GetObject("lbExpansion.ImageIndex")));
+			this.lbExpansion.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbExpansion.ImeMode")));
+			this.lbExpansion.Location = ((System.Drawing.Point)(resources.GetObject("lbExpansion.Location")));
+			this.lbExpansion.Name = "lbExpansion";
+			this.lbExpansion.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbExpansion.RightToLeft")));
+			this.lbExpansion.Size = ((System.Drawing.Size)(resources.GetObject("lbExpansion.Size")));
+			this.lbExpansion.TabIndex = ((int)(resources.GetObject("lbExpansion.TabIndex")));
+			this.lbExpansion.Text = resources.GetString("lbExpansion.Text");
+			this.lbExpansion.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbExpansion.TextAlign")));
+			this.lbExpansion.Visible = ((bool)(resources.GetObject("lbExpansion.Visible")));
+			// 
 			// ObjectPreview
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -289,6 +349,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.lbExpansion);
+			this.Controls.Add(this.label5);
 			this.Controls.Add(this.cbCat);
 			this.Controls.Add(this.lbAbout);
 			this.Controls.Add(this.lbName);
@@ -399,6 +461,44 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 		#endregion
 
+		/// <summary>
+		/// Returns the Game package the File is associated with
+		/// </summary>
+		/// <param name="flname">The Filename</param>
+		/// <returns>The expansion which madkes this File available (<see cref="Expansion.Custom"/> marks a Custom File from the Downloads Folder)</returns>
+		public static Expansion FileFrom(string flname)
+		{
+			if (flname==null) flname = "";
+			else flname = flname.Trim().ToLower();
+
+			if (flname.StartsWith(Helper.WindowsRegistry.SimsPath.Trim().ToLower())) return Expansion.Original;
+			if (flname.StartsWith(Helper.WindowsRegistry.SimsEP1Path.Trim().ToLower())) return Expansion.University;
+			if (flname.StartsWith(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Donwloads"))) return Expansion.Custom;
+			return Expansion.Unknown;
+		}
+
+		/// <summary>
+		/// Returns the Game package the File is associated with
+		/// </summary>
+		/// <param name="pfd">Resource Descriptor</param>
+		/// <returns>The expansion which madkes this File available (according to the FileTable, <see cref="Expansion.Custom"/> marks a Custom File from the Downloads Folder)</returns>
+		public static Expansion FileFrom(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
+		{
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] fiis = FileTable.FileIndex.FindFile(pfd, null);
+			ushort min = (ushort)(Expansion.Unknown);
+			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii in fiis) 
+			{
+				try 
+				{
+					min = Math.Min((ushort)FileFrom(fii.Package.FileName), min);
+				} 
+				catch {}
+			}
+			
+
+			return (Expansion)min;
+		}
+
 		protected void SetupCategories(string[][] catss)
 		{
 			cbCat.Items.Clear();
@@ -488,6 +588,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			ClearScreen();
 			if (objd==null) return;
 			
+			this.lbExpansion.Text = SimPe.Localization.GetString(FileFrom(objd.FileDescriptor).ToString());
 			
 			string[] mn = GetModelnames();			
 			if (mn.Length>0) 

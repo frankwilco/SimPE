@@ -932,6 +932,24 @@ namespace SimPe
 			}
 		}
 
+		/// <summary>
+		/// When did whe perform the last UpdateCheck?
+		/// </summary>
+		public DateTime LastUpdateCheck
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("LastUpdateCheck", DateTime.Now.Subtract(new TimeSpan(2, 0, 0, 0, 0)));
+				return Convert.ToDateTime(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("LastUpdateCheck", value);
+			}
+		}
+
 		#region Wrappers
 		/// <summary>
 		/// Returns the Priority for the Wrapper identified with the given UID

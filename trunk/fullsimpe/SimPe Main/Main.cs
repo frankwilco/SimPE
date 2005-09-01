@@ -69,12 +69,10 @@ namespace SimPe
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel2;
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel3;
 		internal System.Windows.Forms.ProgressBar pb;
-		internal SteepValley.Windows.Forms.XPLine lnProg;
 		internal System.Windows.Forms.Label lbPercent;
 		internal System.Windows.Forms.Label lbOp;
 		internal SteepValley.Windows.Forms.XPGradientPanel sb;
 		private System.Windows.Forms.ImageList iAnim;
-		internal SteepValley.Windows.Forms.XPLine lnProg2;
 		internal Ambertation.Windows.Forms.AnimatedImagelist pbWait;
 		internal SteepValley.Windows.Forms.XPLine xpLine1;
 		internal System.Windows.Forms.PictureBox pbimg;
@@ -299,9 +297,7 @@ namespace SimPe
 			this.pbimg = new System.Windows.Forms.PictureBox();
 			this.xpLine1 = new SteepValley.Windows.Forms.XPLine();
 			this.pbWait = new Ambertation.Windows.Forms.AnimatedImagelist();
-			this.lnProg2 = new SteepValley.Windows.Forms.XPLine();
 			this.lbPercent = new System.Windows.Forms.Label();
-			this.lnProg = new SteepValley.Windows.Forms.XPLine();
 			this.pb = new System.Windows.Forms.ProgressBar();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.dockContainer1 = new TD.SandDock.DockContainer();
@@ -1670,9 +1666,7 @@ namespace SimPe
 			this.sb.Controls.Add(this.pbimg);
 			this.sb.Controls.Add(this.xpLine1);
 			this.sb.Controls.Add(this.pbWait);
-			this.sb.Controls.Add(this.lnProg2);
 			this.sb.Controls.Add(this.lbPercent);
-			this.sb.Controls.Add(this.lnProg);
 			this.sb.Controls.Add(this.pb);
 			this.sb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("sb.Dock")));
 			this.sb.DockPadding.Bottom = 4;
@@ -1793,30 +1787,6 @@ namespace SimPe
 			this.pbWait.TabIndex = ((int)(resources.GetObject("pbWait.TabIndex")));
 			this.pbWait.Visible = ((bool)(resources.GetObject("pbWait.Visible")));
 			// 
-			// lnProg2
-			// 
-			this.lnProg2.AccessibleDescription = resources.GetString("lnProg2.AccessibleDescription");
-			this.lnProg2.AccessibleName = resources.GetString("lnProg2.AccessibleName");
-			this.lnProg2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lnProg2.Anchor")));
-			this.lnProg2.AutoScroll = ((bool)(resources.GetObject("lnProg2.AutoScroll")));
-			this.lnProg2.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("lnProg2.AutoScrollMargin")));
-			this.lnProg2.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("lnProg2.AutoScrollMinSize")));
-			this.lnProg2.BackColor = System.Drawing.Color.Transparent;
-			this.lnProg2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lnProg2.BackgroundImage")));
-			this.lnProg2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lnProg2.Dock")));
-			this.lnProg2.Enabled = ((bool)(resources.GetObject("lnProg2.Enabled")));
-			this.lnProg2.Font = ((System.Drawing.Font)(resources.GetObject("lnProg2.Font")));
-			this.lnProg2.ForeColor = System.Drawing.SystemColors.Highlight;
-			this.lnProg2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lnProg2.ImeMode")));
-			this.lnProg2.LineColor = System.Drawing.SystemColors.InactiveCaption;
-			this.lnProg2.Location = ((System.Drawing.Point)(resources.GetObject("lnProg2.Location")));
-			this.lnProg2.Name = "lnProg2";
-			this.lnProg2.Orientation = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-			this.lnProg2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lnProg2.RightToLeft")));
-			this.lnProg2.Size = ((System.Drawing.Size)(resources.GetObject("lnProg2.Size")));
-			this.lnProg2.TabIndex = ((int)(resources.GetObject("lnProg2.TabIndex")));
-			this.lnProg2.Visible = ((bool)(resources.GetObject("lnProg2.Visible")));
-			// 
 			// lbPercent
 			// 
 			this.lbPercent.AccessibleDescription = resources.GetString("lbPercent.AccessibleDescription");
@@ -1840,30 +1810,6 @@ namespace SimPe
 			this.lbPercent.Text = resources.GetString("lbPercent.Text");
 			this.lbPercent.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbPercent.TextAlign")));
 			this.lbPercent.Visible = ((bool)(resources.GetObject("lbPercent.Visible")));
-			// 
-			// lnProg
-			// 
-			this.lnProg.AccessibleDescription = resources.GetString("lnProg.AccessibleDescription");
-			this.lnProg.AccessibleName = resources.GetString("lnProg.AccessibleName");
-			this.lnProg.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lnProg.Anchor")));
-			this.lnProg.AutoScroll = ((bool)(resources.GetObject("lnProg.AutoScroll")));
-			this.lnProg.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("lnProg.AutoScrollMargin")));
-			this.lnProg.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("lnProg.AutoScrollMinSize")));
-			this.lnProg.BackColor = System.Drawing.Color.Transparent;
-			this.lnProg.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lnProg.BackgroundImage")));
-			this.lnProg.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lnProg.Dock")));
-			this.lnProg.Enabled = ((bool)(resources.GetObject("lnProg.Enabled")));
-			this.lnProg.Font = ((System.Drawing.Font)(resources.GetObject("lnProg.Font")));
-			this.lnProg.ForeColor = System.Drawing.SystemColors.Highlight;
-			this.lnProg.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lnProg.ImeMode")));
-			this.lnProg.LineColor = System.Drawing.SystemColors.InactiveCaption;
-			this.lnProg.Location = ((System.Drawing.Point)(resources.GetObject("lnProg.Location")));
-			this.lnProg.Name = "lnProg";
-			this.lnProg.Orientation = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-			this.lnProg.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lnProg.RightToLeft")));
-			this.lnProg.Size = ((System.Drawing.Size)(resources.GetObject("lnProg.Size")));
-			this.lnProg.TabIndex = ((int)(resources.GetObject("lnProg.TabIndex")));
-			this.lnProg.Visible = ((bool)(resources.GetObject("lnProg.Visible")));
 			// 
 			// pb
 			// 

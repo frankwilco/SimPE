@@ -178,7 +178,7 @@ namespace Ambertation.Windows.Forms
 				else if (index >=list.Count-1) index = 0;
 				else index++;
 			
-				Refresh();
+				this.Refresh();
 				if (doevents) Application.DoEvents();
 			}
 		}

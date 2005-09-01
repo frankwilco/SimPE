@@ -394,9 +394,10 @@ namespace SimPe.Plugin
 		{
 			if (ofd.ShowDialog() == DialogResult.OK) 
 			{
-				System.IO.Stream s = System.IO.File.OpenRead(ofd.FileName);
-				img = Image.FromStream(s);
-				s.Close();
+				//System.IO.Stream s = System.IO.File.OpenRead(ofd.FileName);
+				//img = (Image)Image.FromStream(s).Clone();
+				//s.Close();
+				img = Image.FromFile(ofd.FileName);
 
 				imgname = ofd.FileName;
 				pb.Image = ImageLoader.Preview(img, pb.Size);				

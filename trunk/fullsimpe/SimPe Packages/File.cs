@@ -729,6 +729,18 @@ namespace SimPe.Packages
 			}
 		}
 
+		/// <summary>
+		/// Returns the FileName of the Current Package
+		/// </summary>
+		public string SaveFileName 
+		{
+			get 
+			{
+				if (flname==null) return "";
+				return flname;
+			}			
+		}
+
 		uint fhg = 0;
 		/// <summary>
 		/// Returns the hash Group Value for this File

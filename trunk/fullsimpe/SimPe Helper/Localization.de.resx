@@ -622,4 +622,349 @@ Package: {filename}</value>
 	<data name="cache_cleared">
 		<value>"Der Cache wurde geleert. Damit die Änderungen aktiv werden, muss SimPE neu gestartet werden!"</value>
 	</data>
+	<data name="SimPe.Data.ObjectTypes.Person">
+		<value>Person</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.Normal">
+		<value>Normal</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.ArchitecturalSupport">
+		<value>Architektur</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.SimType">
+		<value>Sim Typ</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.Door">
+		<value>Tür</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.Window">
+		<value>Fenster</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.Stairs">
+		<value>Treppen</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.ModularStairs">
+		<value>Modulare Treppen</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.ModularStairsPortal">
+		<value>ModularStairsPortal</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.Vehicle">
+		<value>Fahrzeug</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.Outfit">
+		<value>Outfit</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.Memory">
+		<value>Erinnerung</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.Template">
+		<value>Vorlage</value>
+	</data>
+	<data name="SimPe.Data.ObjectTypes.Unknown">
+		<value>Unbekannt</value>
+	</data>
+	<data name="Other">
+		<value>Sonstiges</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.Seating">
+		<value>Sitzmöbel</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.Surfaces">
+		<value>Oberflächen</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.Appliances">
+		<value>Haushaltsgeräte</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.Electronics">
+		<value>Elektronik</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.Plumbing">
+		<value>Installationstechnik</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.Decorative">
+		<value>Dekoration</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.General">
+		<value>Allgemein</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.Lighting">
+		<value>Beleuchtung</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.Hobbies">
+		<value>Hobbys</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.AspirationRewards">
+		<value>Lebensziel Belohnungen</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSortBits.CareerRewards">
+		<value>Karriere Belohnungen</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Seating_DiningroomChair">
+		<value>Sitzmöbel / Esszimmer</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Seating_LivingroomChair">
+		<value>Sitzmöbel / Wohnzimmer</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Seating_Sofas">
+		<value>Sitzmöbel / Sofas</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Seating_Beds">
+		<value>Sitzmöbel / Betten</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Seating_Recreation">
+		<value>Sitzmöbel / Entspannung</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Seating_UnknownA">
+		<value>Sitzmöbel / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Seating_UnknownB">
+		<value>Sitzmöbel / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Seating_Misc">
+		<value>Sitzmöbel / Verschiedenes</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Counter">
+		<value>Oberflächen / Tresen und Küchenmöbel</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Table">
+		<value>Oberflächen / Tische</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_EndTable">
+		<value>Oberflächen / Beistelltische</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Desks">
+		<value>Oberflächen / Schreibtische</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Coffeetable">
+		<value>Oberflächen / Kaffeetische</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_UnknownA">
+		<value>Oberflächen / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_UnknownB">
+		<value>Oberflächen / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Misc">
+		<value>Oberflächen / Verschiedenes</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Decorative_Wall">
+		<value>Dekoration / Wandschmuck</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Decorative_Sculpture">
+		<value>Dekoration / Skulpturen</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Decorative_Plants">
+		<value>Dekoration / Pflanzen</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Decorative_Mirror">
+		<value>Dekoration / Spiegel</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Decorative_Curtain">
+		<value>Dekoration / Vorhänge</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Decorative_UnknownA">
+		<value>Dekoration / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Decorative_UnknownB">
+		<value>Dekoration / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Decorative_Misc">
+		<value>Dekoration / Verschiedenes</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Plumbing_Toilet">
+		<value>Installationstechnik / Toilette</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Plumbing_Shower">
+		<value>Installationstechnik / Dusche und Bad</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Plumbing_Sink">
+		<value>Installationstechnik / Wasch- und Spülbecken</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Plumbing_HotTub">
+		<value>Installationstechnik / Whirlpool</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Plumbing_UnknownC">
+		<value>Installationstechnik / Unbekannt III</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Plumbing_UnknownA">
+		<value>Installationstechnik / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Plumbing_UnknownB">
+		<value>Installationstechnik / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Plumbing_Misc">
+		<value>Installationstechnik / Verschiedenes</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Appliances_Cooking">
+		<value>Haushaltsgeräte / Kochen</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Appliances_Refrigerator">
+		<value>Haushaltsgeräte / Kühlen</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Appliances_Small">
+		<value>Haushaltsgeräte / Klein</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Appliances_Large">
+		<value>Haushaltsgeräte / Groß</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Appliances_UnknownC">
+		<value>Haushaltsgeräte / Unbekannt III</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Appliances_UnknownA">
+		<value>Haushaltsgeräte / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Appliances_UnknownB">
+		<value>Haushaltsgeräte / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Appliances_Misc">
+		<value>Haushaltsgeräte / Verschiedenes</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Electronics_Entertainment">
+		<value>Elektronik / Spiele und Unterhaltung</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Electronics_TV_and_Computer">
+		<value>Elektronik / TV und Computer</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Electronics_Audio">
+		<value>Elektronik / Audio</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Electronics_Small">
+		<value>Elektronik / Kleingeräte</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Electronics_UnknownC">
+		<value>Elektronik / Unbekannt III</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Electronics_UnknownA">
+		<value>Elektronik / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Electronics_UnknownB">
+		<value>Elektronik / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Electronics_Misc">
+		<value>Elektronik / Verschiedenes</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Lighting_TableLamp">
+		<value>Beleuchtung / Tischlampe</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Lighting_FloorLamp">
+		<value>Beleuchtung / Standleuchter</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Lighting_WallLamp">
+		<value>Beleuchtung / Wandleuchter</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Lighting_CeilingLamp">
+		<value>Beleuchtung / Hängelampen</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Lighting_Outdoor">
+		<value>Beleuchtung / Außenbeleuchtung</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Lighting_UnknownA">
+		<value>Beleuchtung / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Lighting_UnknownB">
+		<value>Beleuchtung / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Lighting_Misc">
+		<value>Beleuchtung / Verschiedenes</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Hobbies_Creative">
+		<value>Hobbys / Kreativität</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Hobbies_Knowledge">
+		<value>Hobbys / Wissen</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Hobbies_Excerising">
+		<value>Hobbys / Training</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Hobbies_Recreation">
+		<value>Hobbys / Erholung</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Hobbies_UnknownC">
+		<value>Hobbys / Unbekannt III</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Hobbies_UnknownA">
+		<value>Hobbys / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Hobbies_UnknownB">
+		<value>Hobbys / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.Hobbies_Misc">
+		<value>Hobbys / Verschiedenes</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.General_Dresser">
+		<value>Allgemein / Ankleide</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.General_Party">
+		<value>Allgemein / Feiern</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.General_Child">
+		<value>Allgemein / Kinder</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.General_UnknownD">
+		<value>Allgemein / Unbekannt IV</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.General_UnknownC">
+		<value>Allgemein / Unbekannt III</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.General_UnknownA">
+		<value>Allgemein / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.General_UnknownB">
+		<value>Allgemein / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.General_Misc">
+		<value>Allgemein / Verschiedenes</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownA">
+		<value>Lebensziel Belohnungen / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownB">
+		<value>Lebensziel Belohnungen / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownC">
+		<value>Lebensziel Belohnungen / Unbekannt III</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownD">
+		<value>Lebensziel Belohnungen / Unbekannt IV</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownE">
+		<value>Lebensziel Belohnungen / Unbekannt V</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownF">
+		<value>Lebensziel Belohnungen / Unbekannt VI</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownG">
+		<value>Lebensziel Belohnungen / Unbekannt VII</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownH">
+		<value>Lebensziel Belohnungen / Unbekannt VIII</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownA">
+		<value>Karriere Belohnungen / Unbekannt I</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownB">
+		<value>Karriere Belohnungen / Unbekannt II</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownC">
+		<value>Karriere Belohnungen / Unbekannt III</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownD">
+		<value>Karriere Belohnungen / Unbekannt IV</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownE">
+		<value>Karriere Belohnungen / Unbekannt V</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownF">
+		<value>Karriere Belohnungen / Unbekannt VI</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownG">
+		<value>Karriere Belohnungen / Unbekannt VII</value>
+	</data>
+	<data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownH">
+		<value>Karriere Belohnungen / Unbekannt VIII</value>
+	</data>
+	<data name="Searching - Please Wait">
+		<value>Suche - Bitte Warten</value>
+	</data>
 </root>

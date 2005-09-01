@@ -53,7 +53,7 @@ namespace SimPe
 
 		protected void ShowProgress(bool visible)
 		{
-			f.lnProg.Visible = visible;
+			//f.lnProg.Visible = visible;
 			f.pb.Visible = visible;
 			f.lbPercent.Visible = visible;
 		}
@@ -61,13 +61,13 @@ namespace SimPe
 		protected void ShowImage(bool visible)
 		{			
 			f.pbimg.Visible = visible;
-			f.lnProg2.Visible = f.lbOp.Visible || f.pbimg.Visible;
+			//f.lnProg2.Visible = f.lbOp.Visible || f.pbimg.Visible;
 		}
 
 		protected void ShowDescription(bool visible)
 		{			
 			f.lbOp.Visible = visible;
-			f.lnProg2.Visible = f.lbOp.Visible || f.pbimg.Visible;
+			//f.lnProg2.Visible = f.lbOp.Visible || f.pbimg.Visible;
 		}
 		#endregion
 
@@ -99,6 +99,7 @@ namespace SimPe
 				{
 					int p = (f.pb.Value * 100) / f.pb.Maximum;
 					f.lbPercent.Text = p.ToString()+"%";
+					f.lbPercent.Refresh();
 				}
 				//Application.DoEvents();
 			}
@@ -133,6 +134,8 @@ namespace SimPe
 				{	
 					//f.lbOp.Invoke(new SetStuff(SetMessage), new object[] { " "+value });
 					f.lbOp.Text = " "+value;
+					f.lbOp.Refresh();
+					//Application.DoEvents();
 				}
 			}
 		}

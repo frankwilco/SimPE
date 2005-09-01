@@ -142,6 +142,15 @@ namespace SimPe.Interfaces.Scenegraph
 		IScenegraphFileIndexItem[] FindFile(uint type, uint group, ulong instance, SimPe.Interfaces.Files.IPackageFile pkg);
 
 		/// <summary>
+		/// Returns all matching FileIndexItems for the passed type
+		/// </summary>
+		/// <param name="type">the Type of the Files</param>
+		/// <param name="group">the Group of the Files</param>
+		/// <param name="instance">Instance Number of the File</param>
+		/// <returns>all FileIndexItems</returns>
+		IScenegraphFileIndexItem[] FindFileDiscardingHighInstance(uint type, uint group, uint instance, SimPe.Interfaces.Files.IPackageFile pkg);
+
+		/// <summary>
 		/// Returns all matching FileIndexItems while Ignoring the Group
 		/// </summary>
 		/// <param name="pfd">The File you are looking for</param>

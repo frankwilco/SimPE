@@ -56,10 +56,17 @@ namespace SimPe
 		{
 			if (fii==null) return false;		
 
-			if (fii.Package!=null) 
+			try 
 			{
-				if (!fii.Package.Equals(lp.Package)) 
-					if (!lp.LoadFromPackage(lp.Package)) return false;
+				if (fii.Package!=null) 
+				{
+					if (!fii.Package.Equals(lp.Package)) 
+						if (!lp.LoadFromPackage((SimPe.Packages.GeneratableFile)fii.Package)) return false;
+				}
+			} 
+			catch 
+			{
+				return false;
 			}
 
 			bool res = rl.AddResource(fii, false);
