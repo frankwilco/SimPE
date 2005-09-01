@@ -255,6 +255,7 @@ namespace SimPe
 		public static UpdateState CheckUpdate(ref long version, ref long qaversion)
 		{
 			if (!IsConnectedToInternet()) return UpdateState.Nothing;
+			Helper.WindowsRegistry.LastUpdateCheck = DateTime.Now;
 
 			WebClient Client = new WebClient ();
 			bool run = true;

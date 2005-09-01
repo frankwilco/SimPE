@@ -785,7 +785,7 @@ namespace SimPe.Plugin
 				foreach (NmapItem ni in nmap.Items)
 				{
 					string name = ni.Filename.Trim().ToLower();
-					if (name.StartsWith(modelname+"_") && name.EndsWith("_wallmask_txmt")) 
+					if (name.StartsWith(modelname) && name.EndsWith("_wallmask_txmt")) 
 					{						
 						Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(name, Data.MetaData.TXMT, ni.Group, true);
 

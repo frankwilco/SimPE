@@ -2134,9 +2134,9 @@ namespace SimPe
 			// 
 			// nbIdent
 			// 
+			this.nbIdent.Image = ((System.Drawing.Image)(resources.GetObject("nbIdent.Image")));
 			this.nbIdent.Text = resources.GetString("nbIdent.Text");
 			this.nbIdent.ToolTipText = resources.GetString("nbIdent.ToolTipText");
-			this.nbIdent.Visible = false;
 			this.nbIdent.Activate += new System.EventHandler(this.SelectCategory);
 			// 
 			// hcPlugins

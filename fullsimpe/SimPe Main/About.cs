@@ -213,6 +213,18 @@ namespace SimPe
 		/// <param name="show">true, if it should be visible even if no updates were found</param>
 		public static void ShowUpdate(bool show)
 		{
+			//only check for new releases once a Day
+			if (!Helper.QARelease && !Helper.WindowsRegistry.WasQAUser) 
+			{
+				if (Helper.WindowsRegistry.LastUpdateCheck - DateTime.Now < new TimeSpan(1, 0, 0)) return;
+			} 
+			else if (Helper.WindowsRegistry.WasQAUser) 
+			{
+				if (Helper.WindowsRegistry.LastUpdateCheck - DateTime.Now < new TimeSpan(0, 4, 0)) return;
+			}
+			else if (Helper.WindowsRegistry.LastUpdateCheck - DateTime.Now < new TimeSpan(0, 1, 30)) return;
+
+			//scan for an Update
 			Wait.SubStart();
 			About f = new About();
 			f.Text = SimPe.Localization.GetString("Updates");

@@ -307,6 +307,7 @@ namespace SimPe
 			if (subnode.Name=="ulong") ParseULongValue(subnode, subkey);
 			if (subnode.Name=="bool") ParseBoolValue(subnode, subkey);
 			if (subnode.Name=="float") ParseFloatValue(subnode, subkey);
+			if (subnode.Name=="datetime") ParseDateTimeValue(subnode, subkey);
 		}
 
 		/// <summary>
@@ -357,6 +358,21 @@ namespace SimPe
 		}
 
 		#region Parse Values
+		/// <summary>
+		/// Add an Date Value
+		/// </summary>
+		/// <param name="node">The current Node</param>
+		/// <param name="key">The current SubTree</param>
+		void ParseDateTimeValue(XmlNode node, XmlRegistryKey key) 
+		{
+			DateTime val = DateTime.Now;
+			try 
+			{
+				val = Convert.ToDateTime(node.InnerText);
+			} 
+			catch {}
+			key.SetValue(node.Attributes["name"].Value, val);
+		}
 		/// <summary>
 		/// Add an Integer Value
 		/// </summary>
@@ -554,11 +570,12 @@ namespace SimPe
 				if ((bool)o) val = "true"; else val = "false";
 			} 
 			else if (o is float) { tag = "float"; }
+			else if (o is DateTime) { tag = "datetime";	}
 			else if (o is Ambertation.CaseInvariantArrayList) 
 			{
 				WriteList(sw, name, (ArrayList)o, true); 
 				return;
-			}
+			}			
 			else if (o is ArrayList) 
 			{
 				WriteList(sw, name, (ArrayList)o, false); 

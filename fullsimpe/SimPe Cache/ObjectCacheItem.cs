@@ -179,15 +179,15 @@ namespace SimPe.Cache
 							if ((lower & v) != 0) 
 							{
 								Data.ObjFunctionSubSort mss = (Data.ObjFunctionSubSort)(((vu&0xfff)<<8) | (v & 0xff));
-								string[] ps = mss.ToString().Split("_".ToCharArray(), 2);
+								string[] ps = SimPe.Localization.GetString("SimPe.Data.ObjFunctionSubSort."+mss.ToString()).Replace(" / ", "_").Split("_".ToCharArray(), 2);
 								if (ps.Length>=2) { list.Add(new string[] {ps[0], ps[1]});	 added = true; }
-								else if (ps.Length==1) { list.Add(new string[] {s.ToString()}); added = true; }
+								else if (ps.Length==1) { list.Add(new string[] {SimPe.Localization.GetString("SimPe.Data.ObjFunctionSortBits."+s.ToString())}); added = true; }
 							}
 						}
 
 						if (!added) 
 						{
-							list.Add(new string[] {s.ToString()});			
+							list.Add(new string[] {SimPe.Localization.GetString("SimPe.Data.ObjFunctionSortBits."+s.ToString())});			
 						}
 					}
 				}
@@ -210,7 +210,7 @@ namespace SimPe.Cache
 					foreach (string[] s in ret)
 						list.Add(s);
 				}
-				list.Add(new string[] {SimPe.Localization.GetString("Other"),  type.ToString() });
+				list.Add(new string[] {SimPe.Localization.GetString("Other"),  SimPe.Localization.GetString("SimPe.Data.ObjectTypes."+type.ToString()) });
 
 				ret = new string[list.Count][];
 				for (int i=0; i<list.Count; i++) 

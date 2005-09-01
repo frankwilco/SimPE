@@ -223,7 +223,17 @@ namespace SimPe.Interfaces.Files
 		/// <summary>
 		/// Returns the FileName of the Current Package
 		/// </summary>
+		/// <remarks>Can be null if a Memory stream was opened as package</remarks>
 		string FileName 
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns the FileName of the Current Package
+		/// </summary>
+		/// <remarks>Will never return null</remarks>
+		string SaveFileName 
 		{
 			get;
 		}

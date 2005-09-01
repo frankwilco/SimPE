@@ -244,7 +244,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.wizard1.Controls.Add(this.wizardStepPanel2);
 			this.wizard1.Controls.Add(this.wizardStepPanel3);
 			this.wizard1.Controls.Add(this.wizardStepPanel4);
-			this.wizard1.CurrentStepNumber = 0;
+			this.wizard1.CurrentStepNumber = 2;
 			this.wizard1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("wizard1.Dock")));
 			this.wizard1.DockPadding.All = 8;
 			this.wizard1.Enabled = ((bool)(resources.GetObject("wizard1.Enabled")));

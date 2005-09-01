@@ -226,6 +226,11 @@ namespace SimPe
 			}
 		}
 
+		public void Clear()
+		{
+			ctrls.Clear();
+		}
+
 		public void RemoveControl(object o) 
 		{
 			ctrls.Remove(o);

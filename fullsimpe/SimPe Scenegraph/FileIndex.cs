@@ -619,6 +619,36 @@ namespace SimPe.Plugin
 			}
 		}
 
+		// <summary>
+		/// Returns all matching FileIndexItems for the passed type
+		/// </summary>
+		/// <param name="type">the Type of the Files</param>
+		/// <param name="group">the Group of the Files</param>
+		/// <param name="instance">Instance Number of the File</param>
+		/// <returns>all FileIndexItems</returns>
+		public IScenegraphFileIndexItem[] FindFileDiscardingHighInstance(uint type, uint group, uint instance, SimPe.Interfaces.Files.IPackageFile pkg)
+		{
+			ArrayList list = new ArrayList();
+
+			if (index.ContainsKey(type)) 
+			{
+				Hashtable groups = (Hashtable)index[type];
+				if (groups.ContainsKey(group)) 
+				{
+					Hashtable instances = (Hashtable)groups[group];
+					foreach (ulong i in instances.Keys)
+						if ((i&0xffffffff) == instance)
+							list.AddRange((ArrayList)instances[i]);					
+				}
+			}
+			
+			//return the Result
+			FileIndexItem[] files = new FileIndexItem[list.Count];
+			list.CopyTo(files);
+			return files;
+		}
+
+
 		/// <summary>
 		/// Returns all matching FileIndexItems
 		/// </summary>

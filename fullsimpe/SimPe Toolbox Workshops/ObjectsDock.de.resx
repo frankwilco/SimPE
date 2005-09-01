@@ -97,9 +97,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 461</value>
   </data>
@@ -109,41 +106,23 @@
   <data name="label4.Text">
     <value>Tausend Dank an Numenor und RGiles für ihre Hilfe bei der Konzeption und Wartung des "Object Workshop".</value>
   </data>
-  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="button2.Text">
     <value>Öffnen...</value>
-  </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
   </data>
   <data name="label1.Text">
     <value>Wilkommen im neuen "Object Workshop".</value>
   </data>
-  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
-  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="label2.Text">
     <value>Die Objectktdaten wurden noch nicht vollständig geladen. Bitte auf "Start" klicken, umd die Objektliste zu erstellen, oder mit "Öffnen..." eine direkt eine .package Datei laden.</value>
   </data>
-  <data name="splitter1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="xpTaskBoxSimple2.HeaderText">
-    <value>Gewähltes Object</value>
+    <value>Gewähltes Objekt</value>
   </data>
   <data name="xpTaskBoxSimple1.HeaderText">
-    <value>Gewähltes Object</value>
+    <value>Gewähltes Objekt</value>
   </data>
   <data name="gbRecolor.HeaderText">
     <value>Farbalternative (Recolor)</value>
-  </data>
-  <data name="cbColorExt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
   </data>
   <data name="cbColorExt.Text">
     <value>Erzeuge Farbalternative</value>
@@ -151,20 +130,11 @@
   <data name="gbClone.HeaderText">
     <value>Klon</value>
   </data>
-  <data name="cbRemTxt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="cbRemTxt.Text">
     <value>Nur die std. Sprache in Refernez-Res. behalten</value>
   </data>
-  <data name="cbanim.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="cbanim.Text">
     <value>Animationen holen</value>
-  </data>
-  <data name="cbwallmask.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
   </data>
   <data name="cbwallmask.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>272, 24</value>
@@ -172,20 +142,11 @@
   <data name="cbwallmask.Text">
     <value>Wandmasken (Wallmask) holen (by Numenor)</value>
   </data>
-  <data name="cbparent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="cbparent.Text">
     <value>Eigenständiges Objekt erzeugen</value>
   </data>
-  <data name="cbclean.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="cbclean.Text">
     <value>Unben. Resourcen löschen (by  Numenor)</value>
-  </data>
-  <data name="cbfix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
   </data>
   <data name="cbfix.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>276, 24</value>
@@ -193,52 +154,28 @@
   <data name="cbfix.Text">
     <value>Geklonte Resourcen korrigieren (by wes_h)</value>
   </data>
-  <data name="cbdefault.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="cbdefault.Text">
     <value>Nur die standard Farbe behalten</value>
-  </data>
-  <data name="cbgid.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
   </data>
   <data name="cbgid.Text">
     <value>Group ID auf 0x1c050000 setzen</value>
   </data>
-  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="cbTask.ItemHeight" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>13</value>
   </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="label3.Text">
     <value>Aufgabe:</value>
-  </data>
-  <data name="lbfinished.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
-  <data name="lberr.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
   </data>
   <data name="lberr.Text">
     <value>SimPE konnte das Objekt nicht erzeugen. Möglicherweise ist das Basisobjekt nicht im CEP enthalten (oder das CEP nicht installiert?), oder der Vorgang wurde durch den Benutzer abgebrochen.
 
 Falls das Objekt Texturen "ausleiht", muss das entsprechende Elternobjekt las Basis ausgewählt werden.</value>
   </data>
-  <data name="lbfinload.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="lbfinload.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>232, 23</value>
   </data>
   <data name="lbfinload.Text">
     <value>Objekt wurde erzeugt und geladen.</value>
-  </data>
-  <data name="lbwait.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
   </data>
   <data name="lbwait.Text">
     <value>Bitte warten</value>

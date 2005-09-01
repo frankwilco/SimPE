@@ -47,6 +47,8 @@ namespace SimPe.PackedFiles.UserInterface
 			//cbsort.Visible = false;
 			//label1.Visible = false;
 #endif
+
+			this.cbsort.ResourceManager = SimPe.Localization.Manager;
 		}
 
 		/// <summary>
