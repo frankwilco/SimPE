@@ -645,6 +645,10 @@ namespace SimPe.Plugin
 			if (rn==null) System.Windows.Forms.MessageBox.Show("The parent CRES was not found. \n\nThis measn, that SimPe is unable to build the Joint Hirarchy.", "Information", System.Windows.Forms.MessageBoxButtons.OK);
 			else LoadJointRelationRec(parentmap, -1, rn);
 
+			//make sure Bones not defined in the CRES are listed here too
+			for (int i=0; i<Joints.Count; i++)
+				if (parentmap[i]==null) parentmap[i] = -1;
+
 			return parentmap;
 		}		
 

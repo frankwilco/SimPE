@@ -164,7 +164,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"CPF Wrapper",
 				"Quaxi",
 				"This File is a structured Text File (like an .ini or .xml File), that contains Key Value Pairs.",
-				6,
+				7,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.cpf.png"))				
 				);   
 		}
@@ -176,8 +176,12 @@ namespace SimPe.PackedFiles.Wrapper
 		protected void UnserializeXml(System.IO.BinaryReader reader)
 		{
 			reader.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
+			System.IO.StreamReader sr = new System.IO.StreamReader(reader.BaseStream);
+			string s = sr.ReadToEnd();
+			s = s.Replace("& ", "&amp; ");
+			System.IO.StringReader strr = new System.IO.StringReader(s);
 			System.Xml.XmlDocument xmlfile = new XmlDocument();
-			xmlfile.Load(reader.BaseStream);
+			xmlfile.Load(strr);
 
 			XmlNodeList XMLData = xmlfile.GetElementsByTagName("cGZPropertySetString");
 			ArrayList list = new ArrayList();
@@ -319,6 +323,14 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 
+		public bool CanHandleType(uint type)
+		{
+			foreach (uint t in this.AssignableTypes)
+				if (t==type) return true;
+
+			return false;
+		}	
+
 		/// <summary>
 		/// Returns a list of File Type this Plugin can process
 		/// </summary>
@@ -332,14 +344,17 @@ namespace SimPe.PackedFiles.Wrapper
 								   //0x4C697E5A, //MMAT
 								   0xEBFEE33F,
 								   0x2C1FD8A1,
-								   0xCCA8E925, //Object XML
+								   Data.MetaData.XOBJ, //Object XML
 								   0x4C158081, //Skintone XML
 								   0x0C1FE246, //Meshoverlay XML
 								   0x8C1580B5, //Hairtone XML
 								   0x8C93BF6C, //Face Region
 								   0x6C93B566, //Face Neutral
 								   0x0C93E3DE, //Face Modifier
-								   0x8C93E35C //Face Arch
+								   0x8C93E35C, //Face Arch
+								   Data.MetaData.XROF, //Roofs
+								   Data.MetaData.XFLR, //Floors
+								   Data.MetaData.XFNC // Fences
 							   };
 			
 				return types;

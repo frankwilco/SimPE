@@ -145,7 +145,7 @@ namespace SimPe.Interfaces.Plugin
 		{
 			msg = ExceptionMessage(msg);
 			Helper.ExceptionMessage(msg, ex);
-		}
+		}			
 
 		#region IWrapper Member
 

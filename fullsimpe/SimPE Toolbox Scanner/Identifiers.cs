@@ -188,10 +188,13 @@ namespace SimPe.Plugin.Identifiers
 		public SimPe.Cache.PackageType GetType(SimPe.Interfaces.Files.IPackageFile pkg)
 		{
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.GZPS);
-			if (pfds.Length==0) pfds = pkg.FindFiles(0xCCA8E925); //Object XML
+			if (pfds.Length==0) pfds = pkg.FindFiles(Data.MetaData.XOBJ); //Object XML
 			if (pfds.Length==0) pfds = pkg.FindFiles(0x2C1FD8A1); //TextureOverlay XML
 			if (pfds.Length==0) pfds = pkg.FindFiles(0x8C1580B5); //Hairtone XML
 			if (pfds.Length==0) pfds = pkg.FindFiles(0x0C1FE246); //Mesh Overlay XML
+			if (pfds.Length==0) pfds = pkg.FindFiles(Data.MetaData.XROF); //Object XML
+			if (pfds.Length==0) pfds = pkg.FindFiles(Data.MetaData.XFLR); //Object XML
+			if (pfds.Length==0) pfds = pkg.FindFiles(Data.MetaData.XFNC); //Object XML
 
 			if (pfds.Length>0) 
 			{
@@ -206,9 +209,21 @@ namespace SimPe.Plugin.Identifiers
 					{
 						return SimPe.Cache.PackageType.Wallpaper;
 					}
+					case "terrainpaint":
+					{
+						return SimPe.Cache.PackageType.Terrain;
+					}
 					case "floor" : 
 					{
 						return SimPe.Cache.PackageType.Floor;
+					}
+					case "roof" : 
+					{
+						return SimPe.Cache.PackageType.Roof;
+					}					
+					case "fence" : 
+					{
+						return SimPe.Cache.PackageType.Fence;
 					}
 					case "skin" :
 					{

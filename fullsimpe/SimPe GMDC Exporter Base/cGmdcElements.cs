@@ -133,6 +133,32 @@ namespace SimPe.Plugin.Gmdc
 		{
 			for (int i=0; i<data.Length; i++) dest.Data[i] = data[i];
 		}
+
+		public override int GetHashCode()
+		{
+			int f = 0;
+			for (int i=0; i<data.Length; i++) f += data[i].GetHashCode();
+			return f;
+		}
+
+
+		public override bool Equals(object obj)
+		{
+			if (obj==null) return false;
+			if (obj is GmdcElementValueBase) 
+			{
+				float epsilon = float.Epsilon*10;
+				GmdcElementValueBase g = (GmdcElementValueBase)obj;
+				if (g.data.Length!=data.Length) return false;
+
+				for (int i=0; i<data.Length; i++)				
+					if (Math.Abs(g.data[i]-data[i])>epsilon) return false;				
+
+				return true;
+			}
+			return base.Equals (obj);
+		}
+
 	}
 
 	/// <summary>

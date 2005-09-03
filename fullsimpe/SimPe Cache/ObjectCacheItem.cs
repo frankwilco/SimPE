@@ -37,7 +37,11 @@ namespace SimPe.Cache
 		/// <summary>
 		/// It something like a Skin (cpf based)
 		/// </summary>
-		Skin = 0x01
+		Skin = 0x01,
+		/// <summary>
+		/// Wallpapers, Floors, Fences
+		/// </summary>
+		XObject = 0x02
 	}
 	
 	public enum ObjectCacheItemVersions: byte 
@@ -141,7 +145,12 @@ namespace SimPe.Cache
 			set { objfuncsort = value; }
 		}
 
-		public static string[][] GetCategory(ObjectCacheItemVersions version, Data.ObjFunctionSubSort subsort, Data.ObjectTypes type)
+		public static string[][] GetCategory(ObjectCacheItemVersions version, Data.ObjFunctionSubSort subsort, Data.ObjectTypes type) 
+		{
+			return GetCategory(version, subsort, type, ObjectClass.Object);
+		}
+
+		public static string[][] GetCategory(ObjectCacheItemVersions version, Data.ObjFunctionSubSort subsort, Data.ObjectTypes type, ObjectClass cl)
 		{
 			uint ofss = (uint)subsort;
 			string[][] ret = null;
@@ -160,45 +169,55 @@ namespace SimPe.Cache
 			}
 			else if  (version==ObjectCacheItemVersions.DockableOW) 
 			{
-				Data.ObjFunctionSubSort fss = subsort;
-				uint upper = (uint)((ofss >> 8) & 0xfff);
-				uint lower = (uint)(ofss & 0xff);
-
-				System.Collections.ArrayList list = new System.Collections.ArrayList();
-				Data.ObjFunctionSortBits[] ss = (Data.ObjFunctionSortBits[])System.Enum.GetValues(typeof(Data.ObjFunctionSortBits));
-					
-				foreach (Data.ObjFunctionSortBits s in ss) 
+				if (cl==ObjectClass.XObject) 
 				{
-					int vu = (int)Math.Pow(2, (byte)s);
-					if ((upper & vu)!=0)	
-					{			
-						bool added = false;	
-						for (int i=0; i<8; i++)
-						{
-							int v = (int)Math.Pow(2, i);
-							if ((lower & v) != 0) 
+					Data.XObjFunctionSubSort fss = (Data.XObjFunctionSubSort)subsort;
+					ret = new string[1][];
+					string[] ps = SimPe.Localization.GetString("SimPe.Data.XObjFunctionSubSort."+fss.ToString()).Replace(" / ", "_").Split("_".ToCharArray(), 2);
+					if (ps.Length>=2) { ret[0] = new string[] {SimPe.Localization.GetString("XObject"), ps[0], ps[1]}; }
+					else if (ps.Length==1) { ret[0] = new string[] {SimPe.Localization.GetString("XObject"), ps[0]}; }
+					
+				} 
+				else 
+				{
+					Data.ObjFunctionSubSort fss = subsort;
+					uint upper = (uint)((ofss >> 8) & 0xfff);
+					uint lower = (uint)(ofss & 0xff);
+
+					System.Collections.ArrayList list = new System.Collections.ArrayList();
+					Data.ObjFunctionSortBits[] ss = (Data.ObjFunctionSortBits[])System.Enum.GetValues(typeof(Data.ObjFunctionSortBits));
+					
+					foreach (Data.ObjFunctionSortBits s in ss) 
+					{
+						int vu = (int)Math.Pow(2, (byte)s);
+						if ((upper & vu)!=0)	
+						{			
+							bool added = false;	
+							for (int i=0; i<8; i++)
 							{
-								Data.ObjFunctionSubSort mss = (Data.ObjFunctionSubSort)(((vu&0xfff)<<8) | (v & 0xff));
-								string[] ps = SimPe.Localization.GetString("SimPe.Data.ObjFunctionSubSort."+mss.ToString()).Replace(" / ", "_").Split("_".ToCharArray(), 2);
-								if (ps.Length>=2) { list.Add(new string[] {ps[0], ps[1]});	 added = true; }
-								else if (ps.Length==1) { list.Add(new string[] {SimPe.Localization.GetString("SimPe.Data.ObjFunctionSortBits."+s.ToString())}); added = true; }
+								int v = (int)Math.Pow(2, i);
+								if ((lower & v) != 0) 
+								{
+									Data.ObjFunctionSubSort mss = (Data.ObjFunctionSubSort)(((vu&0xfff)<<8) | (v & 0xff));
+									string[] ps = SimPe.Localization.GetString("SimPe.Data.ObjFunctionSubSort."+mss.ToString()).Replace(" / ", "_").Split("_".ToCharArray(), 2);
+									if (ps.Length>=2) { list.Add(new string[] {ps[0], ps[1]});	 added = true; }
+									else if (ps.Length==1) { list.Add(new string[] {SimPe.Localization.GetString("SimPe.Data.ObjFunctionSortBits."+s.ToString())}); added = true; }
+								}
+							}
+
+							if (!added) 
+							{
+								list.Add(new string[] {SimPe.Localization.GetString("SimPe.Data.ObjFunctionSortBits."+s.ToString())});			
 							}
 						}
-
-						if (!added) 
-						{
-							list.Add(new string[] {SimPe.Localization.GetString("SimPe.Data.ObjFunctionSortBits."+s.ToString())});			
-						}
+					}								
+				
+					ret = new string[list.Count][];
+					for (int i=0; i<list.Count; i++) 
+					{					
+						string[] ct = (string[])list[i];
+						ret[i] = ct;
 					}
-				}
-
-				
-				
-				ret = new string[list.Count][];
-				for (int i=0; i<list.Count; i++) 
-				{					
-					string[] ct = (string[])list[i];
-					ret[i] = ct;
 				}
 			}
 
@@ -238,7 +257,7 @@ namespace SimPe.Cache
 		{
 			get 
 			{
-				return GetCategory(this.ObjectVersion, (Data.ObjFunctionSubSort)this.ObjectFunctionSort, this.ObjectType);
+				return GetCategory(this.ObjectVersion, (Data.ObjFunctionSubSort)this.ObjectFunctionSort, this.ObjectType, this.Class);
 			}
 		}
 

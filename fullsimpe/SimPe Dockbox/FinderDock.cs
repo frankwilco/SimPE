@@ -50,7 +50,6 @@ namespace SimPe.Plugin.Tool.Dockable
 		private TD.SandBar.ToolBarContainer rightSandBarDock;
 		private TD.SandBar.ToolBarContainer bottomSandBarDock;
 		private TD.SandBar.ToolBarContainer topSandBarDock;
-		private TD.SandBar.StatusBar statusBar1;
 		private TD.SandBar.ToolBar toolBar1;
 		private TD.SandBar.ButtonItem biList;
 		private TD.SandBar.ButtonItem biTile;
@@ -126,7 +125,6 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.rightSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.bottomSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.topSandBarDock = new TD.SandBar.ToolBarContainer();
-			this.statusBar1 = new TD.SandBar.StatusBar();
 			this.xpGradientPanel1.SuspendLayout();
 			this.tbResult.SuspendLayout();
 			this.tbNmap.SuspendLayout();
@@ -142,7 +140,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpGradientPanel1.DockPadding.All = 8;
 			this.xpGradientPanel1.Location = new System.Drawing.Point(0, 24);
 			this.xpGradientPanel1.Name = "xpGradientPanel1";
-			this.xpGradientPanel1.Size = new System.Drawing.Size(304, 398);
+			this.xpGradientPanel1.Size = new System.Drawing.Size(304, 416);
 			this.xpGradientPanel1.TabIndex = 0;
 			// 
 			// tbResult
@@ -166,7 +164,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbResult.Location = new System.Drawing.Point(8, 176);
 			this.tbResult.Name = "tbResult";
 			this.tbResult.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-			this.tbResult.Size = new System.Drawing.Size(288, 214);
+			this.tbResult.Size = new System.Drawing.Size(288, 232);
 			this.tbResult.TabIndex = 4;
 			// 
 			// lv
@@ -178,7 +176,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lv.Location = new System.Drawing.Point(8, 48);
 			this.lv.MultiSelect = false;
 			this.lv.Name = "lv";
-			this.lv.Size = new System.Drawing.Size(272, 158);
+			this.lv.Size = new System.Drawing.Size(272, 176);
 			this.lv.TabIndex = 0;
 			this.lv.TileColumns = new int[] {
 												1};
@@ -352,7 +350,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.leftSandBarDock.Location = new System.Drawing.Point(0, 24);
 			this.leftSandBarDock.Manager = this.sandBarManager1;
 			this.leftSandBarDock.Name = "leftSandBarDock";
-			this.leftSandBarDock.Size = new System.Drawing.Size(0, 398);
+			this.leftSandBarDock.Size = new System.Drawing.Size(0, 416);
 			this.leftSandBarDock.TabIndex = 1;
 			// 
 			// rightSandBarDock
@@ -362,14 +360,14 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.rightSandBarDock.Location = new System.Drawing.Point(304, 24);
 			this.rightSandBarDock.Manager = this.sandBarManager1;
 			this.rightSandBarDock.Name = "rightSandBarDock";
-			this.rightSandBarDock.Size = new System.Drawing.Size(0, 398);
+			this.rightSandBarDock.Size = new System.Drawing.Size(0, 416);
 			this.rightSandBarDock.TabIndex = 2;
 			// 
 			// bottomSandBarDock
 			// 
 			this.bottomSandBarDock.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.bottomSandBarDock.Guid = new System.Guid("c6574d1f-e21f-4a4c-8dac-d81198ed5444");
-			this.bottomSandBarDock.Location = new System.Drawing.Point(0, 422);
+			this.bottomSandBarDock.Location = new System.Drawing.Point(0, 440);
 			this.bottomSandBarDock.Manager = this.sandBarManager1;
 			this.bottomSandBarDock.Name = "bottomSandBarDock";
 			this.bottomSandBarDock.Size = new System.Drawing.Size(304, 0);
@@ -385,17 +383,6 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.topSandBarDock.Size = new System.Drawing.Size(304, 0);
 			this.topSandBarDock.TabIndex = 4;
 			// 
-			// statusBar1
-			// 
-			this.statusBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.statusBar1.Guid = new System.Guid("41cfcea0-69c0-4086-bf93-80431afe48de");
-			this.statusBar1.Location = new System.Drawing.Point(0, 422);
-			this.statusBar1.Name = "statusBar1";
-			this.statusBar1.OwnerForm = null;
-			this.statusBar1.Size = new System.Drawing.Size(304, 18);
-			this.statusBar1.TabIndex = 5;
-			this.statusBar1.Text = "statusBar1";
-			// 
 			// FinderDock
 			// 
 			this.AutoScroll = true;
@@ -405,7 +392,6 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.Controls.Add(this.rightSandBarDock);
 			this.Controls.Add(this.bottomSandBarDock);
 			this.Controls.Add(this.topSandBarDock);
-			this.Controls.Add(this.statusBar1);
 			this.Controls.Add(this.toolBar1);
 			this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.Name = "FinderDock";

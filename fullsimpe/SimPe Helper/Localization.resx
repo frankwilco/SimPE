@@ -680,4 +680,73 @@ Package: {filename}</value>
 	<data name="Searching - Please Wait">
 		<value>Searching - Please Wait</value>
 	</data>
+	
+	<data name="XObject">
+        <value>Other</value>
+    </data>
+    
+    <data name="SimPe.Data.XObjFunctionSubSort.Roof">
+		<value>Roofs</value>
+    </data>
+    
+    <data name="SimPe.Data.XObjFunctionSubSort.Fence">
+		<value>Fences</value>
+    </data>
+    
+    <data name="SimPe.Data.XObjFunctionSubSort.Terrain">
+		<value>Terrains</value>
+    </data>
+    
+    <data name="SimPe.Data.XObjFunctionSubSort.Floor_Brick">
+		<value>Floors / Brick</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Floor_Carpet">
+		<value>Floors / Carpet</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Floor_Lino">
+		<value>Floors / Lino</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Floor_Poured">
+		<value>Floors / Poured</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Floor_Stone">
+		<value>Floors / Stone</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Floor_Tile">
+		<value>Floors / Tile</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Floor_Wood">
+		<value>Floors / Wood</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Floor_Other">
+		<value>Floors / Other</value>
+    </data>
+    
+    <data name="SimPe.Data.XObjFunctionSubSort.Wall_Brick">
+		<value>Walls / Brick</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Wall_Masonry">
+		<value>Walls / Masonry</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Wall_Paint">
+		<value>Walls / Paint</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Wall_Paneling">
+		<value>Walls / Paneling</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Wall_Poured">
+		<value>Walls / Poured</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Wall_Siding">
+		<value>Walls / Siding</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Wall_Tile">
+		<value>Walls / Tile</value>
+    </data>
+    <data name="SimPe.Data.XObjFunctionSubSort.Wall_Wallpaper">
+		<value>Walls / Wallpaper</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Wall_Other">
+		<value>Walls / Other</value>
+    </data>
 </root>

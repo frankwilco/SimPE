@@ -84,6 +84,76 @@ namespace SimPe.Plugin.Tool.Dockable
 		#endregion
 		
 		
+		void ProduceByXObj(uint type)
+		{
+			ArrayList pitems = new ArrayList();
+			ArrayList groups = new ArrayList();
+			int ct = 0;		
+			//this is the first part loading by objd Resources
+			Interfaces.Scenegraph.IScenegraphFileIndexItem[] nrefitems = FileTable.FileIndex.Sort(FileTable.FileIndex.FindFile(type, true));
+			string len = " / " + nrefitems.Length.ToString();
+
+			SimPe.Data.MetaData.Languages deflang = Helper.WindowsRegistry.LanguageCode;
+			Wait.Message = "Loading Walls, Fences and Floors";
+			Wait.MaxProgress = nrefitems.Length;
+			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem lnrefitem in nrefitems)
+			{
+				ct++;
+				Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem = lnrefitem;
+				if (ct%134==1) Wait.Progress = ct;				
+
+				//if (nrefitem.FileDescriptor.Instance != 0x41A7) continue;
+				if (nrefitem.LocalGroup == Data.MetaData.LOCAL_GROUP) continue;
+				if (pitems.Contains(nrefitem)) continue;
+				if (groups.Contains(nrefitem.FileDescriptor.Instance)) continue;		
+	
+
+				//try to find the best objd				
+				
+
+							
+
+				Interfaces.Scenegraph.IScenegraphFileIndexItem[] cacheitems = cachefile.FileIndex.FindFile(nrefitem.FileDescriptor, nrefitem.Package);
+
+				//find the correct File
+				int cindex = -1;
+				string pname = nrefitem.Package.FileName.Trim().ToLower();
+				for (int i=0; i<cacheitems.Length; i++)
+				{
+					Interfaces.Scenegraph.IScenegraphFileIndexItem citem = cacheitems[i];
+						
+					if (citem.FileDescriptor.Filename == pname) 
+					{
+						cindex=i;
+						break;
+					}
+				}
+
+				if (cindex!=-1) //found in the cache
+				{
+					SimPe.Cache.ObjectCacheItem oci = (SimPe.Cache.ObjectCacheItem)cacheitems[cindex].FileDescriptor.Tag;			
+					if (!oci.Useable) continue;
+					pitems.Add(nrefitem);
+					groups.Add(nrefitem.FileDescriptor.Instance);
+
+					oci.Tag = nrefitem;
+					this.AddToBuffer(oci);
+				} 
+				else 
+				{
+					pitems.Add(nrefitem);
+					groups.Add(nrefitem.FileDescriptor.Instance);
+
+					SimPe.Cache.ObjectCacheItem oci = new SimPe.Cache.ObjectCacheItem();
+					oci.Tag = nrefitem;
+					oci.Useable = false;
+					cachechg = true;
+					cachefile.AddItem(oci, nrefitem.Package.FileName);
+					
+					this.AddToBuffer(oci);
+				}
+			}		
+		}
 
 		protected override void Produce()
 		{			
@@ -93,7 +163,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			
 			ArrayList pitems = new ArrayList();
 			ArrayList groups = new ArrayList();
-			int ct = 0;				
+			int ct = 0;		
+			//this is the first part loading by objd Resources
 			Interfaces.Scenegraph.IScenegraphFileIndexItem[] nrefitems = FileTable.FileIndex.Sort(FileTable.FileIndex.FindFile(Data.MetaData.OBJD_FILE, true));
 			string len = " / " + nrefitems.Length.ToString();
 
@@ -166,6 +237,12 @@ namespace SimPe.Plugin.Tool.Dockable
 					this.AddToBuffer(oci);
 				}
 			}												
+
+			//In the second pass we use ObjectXml Resources to load Objects like Walls
+			ProduceByXObj(Data.MetaData.XOBJ);
+			ProduceByXObj(Data.MetaData.XROF);
+			ProduceByXObj(Data.MetaData.XFLR);
+			ProduceByXObj(Data.MetaData.XFNC);
 		}
 
 		protected override void OnFinish()
@@ -193,6 +270,114 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 		
 		public event ObjectLoader.LoadItemHandler LoadedItem;
+
+		void SetFunctionSortForXObj(SimPe.PackedFiles.Wrapper.Cpf cpf, SimPe.Cache.ObjectCacheItem oci)
+		{
+			string type = cpf.GetSaveItem("type").StringValue.Trim().ToLower();
+			switch (type) 
+			{
+				case "wall" : 
+				{
+					string stype = cpf.GetSaveItem("subsort").StringValue.Trim().ToLower();
+					if (stype=="brick") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Brick;
+					else if (stype=="masonry") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Masonry;					
+					else if (stype=="paint") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Paint;
+					else if (stype=="paneling") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Paneling;
+					else if (stype=="poured") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Poured;
+					else if (stype=="siding") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Siding;
+					else if (stype=="tile") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Tile;
+					else if (stype=="wallpaper") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Wallpaper;
+					else oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Other;
+					break;
+				}
+				case "terrainpaint":
+				{
+					oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Terrain;
+					break;
+				}
+				case "floor" : 
+				{
+					string stype = cpf.GetSaveItem("subsort").StringValue.Trim().ToLower();
+					if (stype=="brick") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Brick;
+					else if (stype=="carpet") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Carpet;
+					else if (stype=="lino") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Lino;					
+					else if (stype=="poured") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Poured;
+					else if (stype=="stone") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Stone;
+					else if (stype=="tile") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Tile;
+					else if (stype=="wood") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Wood;
+					else oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Other;
+					break;
+				}
+				case "roof" : 
+				{
+					oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Roof;
+					break;
+				}					
+				case "fence" : 
+				{
+					oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Fence;
+					break;
+				}
+				default :
+				{
+					oci.ObjectFunctionSort = 0;
+					break;
+				}
+			}
+		}
+
+		void ConsumeFromXobj(SimPe.Cache.ObjectCacheItem oci, Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem)
+		{
+			SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
+			nrefitem.FileDescriptor.UserData = nrefitem.Package.Read(nrefitem.FileDescriptor).UncompressedData;
+			cpf.ProcessData(nrefitem);
+
+			oci.FileDescriptor = nrefitem.FileDescriptor;
+			oci.LocalGroup = nrefitem.LocalGroup;							
+			oci.ObjectType = SimPe.Data.ObjectTypes.Normal;
+			
+			SetFunctionSortForXObj(cpf, oci);
+			
+			oci.ObjectFileName = cpf.GetSaveItem("filename").StringValue;
+			oci.Useable = true;
+			oci.Class = SimPe.Cache.ObjectClass.XObject;
+			
+
+			
+			Interfaces.Scenegraph.IScenegraphFileIndexItem[] ctssitems = FileTable.FileIndex.FindFile(Data.MetaData.STRING_FILE, cpf.GetSaveItem("stringsetgroupid").UIntegerValue, cpf.GetSaveItem("stringsetid").UIntegerValue, null);
+			if (ctssitems.Length>0) 
+			{
+				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+				str.ProcessData(ctssitems[0]);
+				SimPe.PackedFiles.Wrapper.StrItemList items = str.LanguageItems(deflang);
+				if (items.Length>0) oci.Name = items[0].Title;
+				else 
+				{
+					items = str.LanguageItems(1);
+					if (items.Length>0) oci.Name = items[0].Title;
+					else oci.Name = "";
+				}
+			} 
+			else 
+			{
+				oci.Name = "";
+			}
+
+			if (oci.Name=="") oci.Name = oci.ObjectFileName;
+
+			//now the ModeName File
+			if (cpf.GetItem("texturetname")!=null)			
+				oci.ModelName = cpf.GetItem("texturetname").StringValue;
+			else if (cpf.GetItem("filename")!=null)
+				oci.ModelName = cpf.GetItem("filename").StringValue;
+			else
+				oci.ModelName = cpf.GetSaveItem("material").StringValue;
+			
+			//oci.Name = cpf.GetSaveItem("type").StringValue + " - "+ cpf.GetSaveItem("subsort").StringValue;
+
+			ObjectReader.changedcache = true;
+		}
+
 		protected override bool Consume(Object o)
 		{				
 			
@@ -201,7 +386,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 			
 			//this item is new to the cache, so load the Data
-			if ((!oci.Useable || oci.ObjectVersion!=SimPe.Cache.ObjectCacheItemVersions.DockableOW))
+			if ((!oci.Useable || oci.ObjectVersion!=SimPe.Cache.ObjectCacheItemVersions.DockableOW) && nrefitem.FileDescriptor.Type == Data.MetaData.OBJD_FILE)
 			{
 				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
 				nrefitem.FileDescriptor.UserData = nrefitem.Package.Read(nrefitem.FileDescriptor).UncompressedData;
@@ -255,7 +440,12 @@ namespace SimPe.Plugin.Tool.Dockable
 				}
 
 				ObjectReader.changedcache = true;
-			} //if not loaded
+			} //if not loaded from objd
+
+			if ((!oci.Useable || oci.ObjectVersion!=SimPe.Cache.ObjectCacheItemVersions.DockableOW) && nrefitem.FileDescriptor.Type != Data.MetaData.OBJD_FILE)
+			{
+				ConsumeFromXobj(oci, nrefitem);
+			}
 
 			if (oci.Thumbnail==null) 
 			{

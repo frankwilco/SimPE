@@ -427,6 +427,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			return GetThumbnail(group, modelname, null);
 		}
+		
 		/// <summary>
 		/// Returns the Thumbnail of an Object
 		/// </summary>
@@ -435,27 +436,65 @@ namespace SimPe.Plugin.Tool.Dockable
 		/// <returns>The Thumbnail</returns>
 		public static Image GetThumbnail(uint group, string modelname, string message) 
 		{
-			uint inst = ThumbnailHash(group, modelname);
+			
 			if (thumbs==null) 
 			{
 				thumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
 				thumbs.Persistent = true;
 			}
 
-			//0x6C2A22C3
-			Interfaces.Files.IPackedFileDescriptor[] pfds = thumbs.FindFile(0xAC2950C1, 0, inst);
-			if (pfds.Length>0) 
+			Image img = GetThumbnail(group, modelname, message, thumbs);
+			if (img==null) 
 			{
-				Interfaces.Files.IPackedFileDescriptor pfd = pfds[0];
-				try 
+				SimPe.Packages.File pkg =  SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Thumbnails\\BuildModeThumbnails.package"));
+				img = GetThumbnail(group, modelname, message, pkg);
+			}
+			return img;
+		}
+		/// <summary>
+		/// Returns the Thumbnail of an Object
+		/// </summary>
+		/// <param name="group"></param>
+		/// <param name="modelname"></param>
+		/// <returns>The Thumbnail</returns>
+		public static Image GetThumbnail(uint group, string modelname, string message, SimPe.Packages.File thumbs) 
+		{
+			uint inst = ThumbnailHash(group, modelname);
+			Image img = GetThumbnail(message, inst, thumbs);
+ 
+			if (img==null) img = GetThumbnail(message, Hashes.GetCrc32(Hashes.StripHashFromName(modelname.Trim().ToLower())), thumbs);
+
+			return img;
+		}
+		/// <summary>
+		/// Returns the Thumbnail of an Object
+		/// </summary>
+		/// <param name="group"></param>
+		/// <param name="modelname"></param>
+		/// <returns>The Thumbnail</returns>
+		public static Image GetThumbnail(string message, uint inst, SimPe.Packages.File thumbs) 
+		{
+			ArrayList types = new ArrayList();
+			types.Add(0xAC2950C1);
+			types.Add(0xEC3126C4);
+
+			foreach (uint type in types)
+			{
+				//0x6C2A22C3
+				Interfaces.Files.IPackedFileDescriptor[] pfds = thumbs.FindFile(type, 0, inst);
+				if (pfds.Length>0) 
 				{
-					SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
-					pic.ProcessData(pfd, thumbs);
-					Bitmap bm = (Bitmap)ImageLoader.Preview(pic.Image, WaitingScreen.ImageSize);
-					WaitingScreen.Update(bm, message);
-					return pic.Image;
+					Interfaces.Files.IPackedFileDescriptor pfd = pfds[0];
+					try 
+					{
+						SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
+						pic.ProcessData(pfd, thumbs);
+						Bitmap bm = (Bitmap)ImageLoader.Preview(pic.Image, WaitingScreen.ImageSize);
+						WaitingScreen.Update(bm, message);
+						return pic.Image;
+					}
+					catch(Exception){}
 				}
-				catch(Exception){}
 			}
 			return null;
 		}
@@ -543,7 +582,22 @@ namespace SimPe.Plugin.Tool.Dockable
 			if (oci.Tag is SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem) 
 			{
 				objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
-				objd.ProcessData((SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)oci.Tag);
+				if (oci.Class == SimPe.Cache.ObjectClass.Object) 
+					objd.ProcessData((SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)oci.Tag);
+				else 
+				{
+					SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
+					cpf.ProcessData((SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)oci.Tag);
+					
+					objd.FileDescriptor = cpf.FileDescriptor.Clone();
+					objd.FileDescriptor.Type = 0xffffffff;
+					objd.FileDescriptor.Group = cpf.GetSaveItem("stringsetgroupid").UIntegerValue;;
+					objd.Package = cpf.Package;
+					objd.Guid = cpf.GetSaveItem("guid").UIntegerValue;
+					objd.Price = (short)cpf.GetSaveItem("cost").UIntegerValue;
+					objd.FunctionSubSort = (SimPe.Data.ObjFunctionSubSort)oci.ObjectFunctionSort;
+					objd.CTSSInstance = (ushort)cpf.GetSaveItem("stringsetrestypeid").UIntegerValue;
+				}
 			} 
 			else objd = null;
 		
@@ -604,7 +658,10 @@ namespace SimPe.Plugin.Tool.Dockable
 				pb.Image =  GenerateImage(pb.Size, GetThumbnail(objd.FileDescriptor.Group, mn[0]), true);
 			}
 			else pb.Image = null;
-			SetupCategories(SimPe.Cache.ObjectCacheItem.GetCategory(SimPe.Cache.ObjectCacheItemVersions.DockableOW, objd.FunctionSubSort, objd.Type));
+			if (objd.FileDescriptor.Type!=0xffffffff) 
+				SetupCategories(SimPe.Cache.ObjectCacheItem.GetCategory(SimPe.Cache.ObjectCacheItemVersions.DockableOW, objd.FunctionSubSort, objd.Type, SimPe.Cache.ObjectClass.Object));
+			else
+				SetupCategories(SimPe.Cache.ObjectCacheItem.GetCategory(SimPe.Cache.ObjectCacheItemVersions.DockableOW, objd.FunctionSubSort, objd.Type, SimPe.Cache.ObjectClass.XObject));
 
 			SimPe.PackedFiles.Wrapper.StrItemList strs = GetCtssItems();
 			if (strs!=null) 
@@ -648,6 +705,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 			//Get the Name of the Object
 			Interfaces.Files.IPackedFileDescriptor ctss = objd.Package.FindFile(Data.MetaData.CTSS_FILE, 0, objd.FileDescriptor.Group, objd.CTSSInstance);
+			if (ctss==null) ctss = objd.Package.FindFile(Data.MetaData.STRING_FILE, 0, objd.FileDescriptor.Group, objd.CTSSInstance);
 			if (ctss!= null) 
 			{
 				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
