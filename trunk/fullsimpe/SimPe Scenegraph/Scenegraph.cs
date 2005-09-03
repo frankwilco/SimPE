@@ -908,5 +908,108 @@ namespace SimPe.Plugin
 			}			
 		}
 		#endregion
+
+		#region Xml
+		/// <summary>
+		/// Add Resources referenced from XML Files
+		/// </summary>
+		/// <param name="names"></param>
+		public void AddFromXml(SimPe.Interfaces.Files.IPackageFile pkg)
+		{
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] index = (SimPe.Interfaces.Files.IPackedFileDescriptor[])pkg.Index.Clone();
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in index)
+			{				
+				SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
+				if (!cpf.CanHandleType(pfd.Type)) continue;
+
+				cpf.ProcessData(pfd, pkg);
+
+				//xobj
+				AddFromXml(cpf.GetItem("material"), "_txmt", Data.MetaData.TXMT);
+
+				//fences
+				AddFromXml(cpf.GetItem("diagrail"), "_cres", Data.MetaData.CRES);
+				AddFromXml(cpf.GetItem("post"), "_cres", Data.MetaData.CRES);
+				AddFromXml(cpf.GetItem("rail"), "_cres", Data.MetaData.CRES);
+				AddFromXml(cpf.GetItem("diagrail"), "_txmt", Data.MetaData.TXMT);
+				AddFromXml(cpf.GetItem("post"), "_txmt", Data.MetaData.TXMT);
+				AddFromXml(cpf.GetItem("rail"), "_txmt", Data.MetaData.TXMT);
+
+				//terrain
+				AddFromXml(cpf.GetItem("texturetname"), "_txtr", Data.MetaData.TXTR);
+				AddFromXml(cpf.GetItem("texturetname"), "_detail_txtr", Data.MetaData.TXTR);
+				AddFromXml(cpf.GetItem("texturetname"), "-bump_txtr", Data.MetaData.TXTR);
+
+				//roof
+				AddFromXml(cpf.GetItem("textureedges"), "_txtr", Data.MetaData.TXTR);
+				AddFromXml(cpf.GetItem("texturetop"), "_txtr", Data.MetaData.TXTR);
+				AddFromXml(cpf.GetItem("texturetopbump"), "_txtr", Data.MetaData.TXTR);
+				AddFromXml(cpf.GetItem("texturetrim"), "_txtr", Data.MetaData.TXTR);
+				AddFromXml(cpf.GetItem("textureunder"), "_txtr", Data.MetaData.TXTR);
+
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = 
+				FileTable.FileIndex.FindFile(
+					cpf.GetSaveItem("stringsetrestypeid").UIntegerValue,
+					cpf.GetSaveItem("stringsetgroupid").UIntegerValue,
+					cpf.GetSaveItem("stringsetid").UIntegerValue,
+					null
+				);
+				AddFromXml(items);
+			}
+
+			
+		}
+
+		/// <summary>
+		/// Add Resources referenced from XML Files
+		/// </summary>
+		protected void AddFromXml(SimPe.PackedFiles.Wrapper.CpfItem item, string prefix, uint type)
+		{
+			if (item==null) return;
+			AddFromXml(item.StringValue+prefix, type);
+		}
+
+		/// <summary>
+		/// Add Resources referenced from XML Files
+		/// </summary>
+		protected void AddFromXml( string name, uint type)
+		{			
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(name, type, Data.MetaData.LOCAL_GROUP, true);
+			AddFromXml(item);			
+		}
+		/// <summary>
+		/// Add Resources referenced from XML Files
+		/// </summary>
+		protected void AddFromXml(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item)
+		{
+			if (item==null) return;
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = new SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[1];
+			items[0] = item;
+			AddFromXml(items);
+		}
+
+		/// <summary>
+		/// Add Resources referenced from XML Files
+		/// </summary>
+		protected void AddFromXml(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items)
+		{			
+			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
+			{
+				try 
+				{
+					SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
+					sub.ProcessData(item);
+					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true);
+				} 
+				catch (Exception ex)
+				{
+					if (Helper.DebugMode) 
+						Helper.ExceptionMessage("", ex);
+				}
+			}
+			
+							
+		}
+		#endregion
 	}
 }

@@ -244,7 +244,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.wizard1.Controls.Add(this.wizardStepPanel2);
 			this.wizard1.Controls.Add(this.wizardStepPanel3);
 			this.wizard1.Controls.Add(this.wizardStepPanel4);
-			this.wizard1.CurrentStepNumber = 2;
+			this.wizard1.CurrentStepNumber = 0;
 			this.wizard1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("wizard1.Dock")));
 			this.wizard1.DockPadding.All = 8;
 			this.wizard1.Enabled = ((bool)(resources.GetObject("wizard1.Enabled")));
@@ -1413,7 +1413,8 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			if (a==null) return;
 
-			
+			if (oci.Class == SimPe.Cache.ObjectClass.XObject && !Helper.WindowsRegistry.HiddenMode) return;
+
 			string[][] cats = oci.ObjectCategory;			
 			foreach (string[] ss in cats)				
 			{			
@@ -1628,8 +1629,28 @@ namespace SimPe.Plugin.Tool.Dockable
 			e.CanFinish = lastselected!=null;
 			e.EnableNext = false;		
 			UpdateObjectPreview(op2);
+			UpdateEnabledOptions();
 		}
 
+		void UpdateEnabledOptions()
+		{
+			if (lastselected!=null) 
+			{
+				SimPe.Cache.ObjectCacheItem oci = (SimPe.Cache.ObjectCacheItem)lastselected.Tag[3];
+				if (oci.Class != SimPe.Cache.ObjectClass.Object) 
+				{
+					cbclean.Enabled = false;
+					cbdefault.Enabled = false;
+					cbparent.Enabled = false;
+				} 
+				else 
+				{
+					cbclean.Enabled = true;
+					cbdefault.Enabled = true;
+					cbparent.Enabled = true;
+				}
+			}
+		}
 		void UpdateObjectPreview(ObjectPreview op)
 		{
 			if (lastselected!=null) op.SetFromObjectCacheItem((SimPe.Cache.ObjectCacheItem)lastselected.Tag[3]);			
@@ -1646,6 +1667,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			cbclean.Enabled = cbfix.Checked;
 			cbRemTxt.Enabled = cbfix.Checked;
+			UpdateEnabledOptions();
 		}
 
 		private void wizardStepPanel3_Activated(SimPe.Wizards.Wizard sender, SimPe.Wizards.WizardStepPanel step)

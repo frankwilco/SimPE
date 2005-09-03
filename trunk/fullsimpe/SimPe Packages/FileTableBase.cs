@@ -322,12 +322,14 @@ namespace SimPe
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\3D</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\Materials</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\Skins</path>");
+					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\Patterns</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Wants</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\UI</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Objects</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Sims3D</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Catalog\\Materials</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Catalog\\Skins</path>");
+					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Catalog\\Patterns</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Wants</path>");					
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\UI</path>");
 					tw.WriteLine("  </filetable>");

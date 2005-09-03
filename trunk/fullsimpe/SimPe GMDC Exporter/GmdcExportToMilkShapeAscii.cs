@@ -391,7 +391,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 						int ct = afs.Length;
 						if (ab.AxisSet[0].Locked) ct += 2;						
 						writer.WriteLine(ct.ToString());	
-						bool first = true;
+						//bool first = true;
 						foreach (AnimationFrame af in afs)
 						{
 							Vector3f v = af.Vector;
@@ -418,7 +418,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 								writer.WriteLine("1 0 0 0");
 							}
 
-							first = false;
+							//first = false;
 						}
 					} 
 					else writer.WriteLine("0");
@@ -430,30 +430,33 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				}
 			}
 #if DEBUG
-			System.IO.StreamWriter sw = System.IO.File.CreateText(@"g:\joints.txt");
-			try 
+			if (Gmdc.LinkedAnimation!=null) 
 			{
-				foreach (string s in animbname) sw.WriteLine(s);
-
-				sw.WriteLine("--------------------");
-				foreach (Anim.AnimationFrameBlock p in Gmdc.LinkedAnimation.Part2) 
+				System.IO.StreamWriter sw = System.IO.File.CreateText(@"g:\joints.txt");
+				try 
 				{
-					if (animbname.Contains("rot: "+p.Name)) sw.Write("[***rot***] ");
-					if (animbname.Contains("trn: "+p.Name)) sw.Write("[***trn***] ");
-					sw.WriteLine(p.Name);
-				}
+					foreach (string s in animbname) sw.WriteLine(s);
 
-				sw.WriteLine("--------------------");
-				foreach (int i in js)
+					sw.WriteLine("--------------------");
+					foreach (Anim.AnimationFrameBlock p in Gmdc.LinkedAnimation.Part2) 
+					{
+						if (animbname.Contains("rot: "+p.Name)) sw.Write("[***rot***] ");
+						if (animbname.Contains("trn: "+p.Name)) sw.Write("[***trn***] ");
+						sw.WriteLine(p.Name);
+					}
+
+					sw.WriteLine("--------------------");
+					foreach (int i in js)
+					{
+						if (animbname.Contains("rot: "+Gmdc.Joints[i].Name)) sw.Write("[***rot***] ");
+						if (animbname.Contains("trn: "+Gmdc.Joints[i].Name)) sw.Write("[***trn**] ");
+						sw.WriteLine(Gmdc.Joints[i].Name);
+					}
+				} 
+				finally 
 				{
-					if (animbname.Contains("rot: "+Gmdc.Joints[i].Name)) sw.Write("[***rot***] ");
-					if (animbname.Contains("trn: "+Gmdc.Joints[i].Name)) sw.Write("[***trn**] ");
-					sw.WriteLine(Gmdc.Joints[i].Name);
+					sw.Close();
 				}
-			} 
-			finally 
-			{
-				sw.Close();
 			}
 #endif
 

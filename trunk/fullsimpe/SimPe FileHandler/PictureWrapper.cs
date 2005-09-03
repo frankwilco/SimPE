@@ -149,7 +149,8 @@ namespace SimPe.PackedFiles.Wrapper
 					0xCC44B5EC,
 					0xCC489E46,
 					0xCC48C51F,
-					0x8C3CE95A
+					0x8C3CE95A,
+					0xEC3126C4
 							   };
 				return Types;
 			}

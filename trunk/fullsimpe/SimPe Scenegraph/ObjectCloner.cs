@@ -30,17 +30,23 @@ namespace SimPe.Plugin
 	/// </summary>
 	public class CloneSettings 
 	{
+		public enum BaseResourceType : byte
+		{
+			Objd = 0x01,
+			Ref = 0x02,
+			Xml = 0x04
+		}
 		bool includeWallmask;
 		bool onlydefault;
 		bool updateguid;
 		bool exception;
 		bool loadanim;
-		bool use3idr;
+		BaseResourceType use3idr;
 
 		/// <summary>
 		/// true, if you want to load Files referenced by 3IDR Resoures
 		/// </summary>
-		public bool Use3IDRFiles 
+		public BaseResourceType BaseResource
 		{
 			get { return use3idr; }
 			set { use3idr = value; }
@@ -101,7 +107,7 @@ namespace SimPe.Plugin
 			updateguid = true;
 			onlydefault = true;
 			loadanim = false;
-			use3idr = false;
+			use3idr = BaseResourceType.Objd;
 		}
 	}
 
@@ -348,10 +354,15 @@ namespace SimPe.Plugin
 			SimPe.FileTable.FileIndex.Load();
 			WaitingScreen.UpdateMessage("Walking Scenegraph");
 			Scenegraph sg = new Scenegraph(modelnames, exclude);
-			if (Setup.Use3IDRFiles) 
+			if ((Setup.BaseResource & CloneSettings.BaseResourceType.Ref) == CloneSettings.BaseResourceType.Ref) 
 			{
 				WaitingScreen.UpdateMessage("Reading 3IDR References");
 				sg.AddFrom3IDR(package);
+			}
+			if ((Setup.BaseResource & CloneSettings.BaseResourceType.Xml) == CloneSettings.BaseResourceType.Xml) 
+			{
+				WaitingScreen.UpdateMessage("Reading 3IDR References");
+				sg.AddFromXml(package);
 			}
 			if (Setup.IncludeWallmask) 
 			{

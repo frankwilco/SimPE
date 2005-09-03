@@ -98,7 +98,19 @@ namespace SimPe.Cache
 		/// <summary>
 		/// Contains a Lot
 		/// </summary>
-		Lot = 0x4000
+		Lot = 0x4000,
+		/// <summary>
+		/// Describes a Fence
+		/// </summary>
+		Fence = 0x8000,
+		/// <summary>
+		/// Describes a Roof
+		/// </summary>
+		Roof = 0x10000,
+		/// <summary>
+		/// Describes TerrainPaint
+		/// </summary>
+		Terrain = 0x20000
 	}
 
 	/// <summary>

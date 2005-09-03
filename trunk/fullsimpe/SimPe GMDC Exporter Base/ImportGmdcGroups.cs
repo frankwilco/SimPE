@@ -572,10 +572,13 @@ namespace SimPe.Plugin.Gmdc
 				if (a.Group.Opacity>=0x10) cbopacity.SelectedIndex = 0;
 				else if (a.Group.Opacity>0) cbopacity.SelectedIndex = 1;
 				else cbopacity.SelectedIndex = 2;
+
+				
 			} 
 			finally 
 			{
 				this.Tag = null;
+				cbaction_SelectedIndexChanged(cbaction, null);
 			}
 		}
 
@@ -609,10 +612,13 @@ namespace SimPe.Plugin.Gmdc
 				{
 					cbbones.SelectedIndex = cbbones.Items.Count-1;
 				}
+
+				
 			} 
 			finally 
 			{
 				this.Tag = null;
+				cbboneaction_SelectedIndexChanged(cbboneaction, null);
 			}
 		}
 
@@ -628,6 +634,19 @@ namespace SimPe.Plugin.Gmdc
 			}	
 		}
 
+		public string BuildBoneName(int i)
+		{
+			if (i>=0 && i<gmdc.Joints.Count) return i.ToString()+": "+gmdc.Joints[i].Name;
+			return "Bone "+i.ToString();
+		}
+
+
+		public string BuildBoneName(ImportedBone a)
+		{
+			return BuildBoneName(a.TargetIndex);
+		}
+
+		SimPe.Plugin.GeometryDataContainer gmdc;
 		/// <summary>
 		/// Show the Group Import Dialog
 		/// </summary>
@@ -637,9 +656,10 @@ namespace SimPe.Plugin.Gmdc
 		/// <returns>DialogResult.OK or DialogResult.Cancel</returns>
 		public static ImportOptions Execute(SimPe.Plugin.GeometryDataContainer gmdc, ImportedGroups actions, ImportedBones joints)
 		{
-			ImportGmdcGroupsForm f = new ImportGmdcGroupsForm();			
+			ImportGmdcGroupsForm f = new ImportGmdcGroupsForm();
+			f.gmdc = gmdc;
 			foreach (GmdcGroup g in gmdc.Groups) f.cbnames.Items.Add(g.Name);
-			for (int i=0; i<gmdc.Joints.Length; i++) f.cbbones.Items.Add("Bone "+i.ToString());				
+			for (int i=0; i<gmdc.Joints.Length; i++) f.cbbones.Items.Add(f.BuildBoneName(i));				
 
 			bool toobig = false;
 			f.cbBMesh.Enabled = (joints.Count==0);
@@ -686,7 +706,7 @@ namespace SimPe.Plugin.Gmdc
 
 				ListViewItem lvi = new ListViewItem("(Bone) "+a.ImportedName);
 				lvi.SubItems.Add(a.Action.ToString());
-				lvi.SubItems.Add("Bone "+a.TargetIndex.ToString());				
+				lvi.SubItems.Add(f.BuildBoneName(a));				
 				lvi.SubItems.Add(a.ParentName);
 				lvi.SubItems.Add("-");
 				lvi.SubItems.Add("-");
@@ -953,7 +973,7 @@ namespace SimPe.Plugin.Gmdc
 						ImportedBone a = (ImportedBone)o;				
 						a.TargetIndex = cbbones.SelectedIndex;					
 
-						lv.SelectedItems[i].SubItems[2].Text = "Bone "+a.TargetIndex.ToString();
+						lv.SelectedItems[i].SubItems[2].Text = BuildBoneName(a);
 					}
 				} 
 				finally { this.Tag = null; }

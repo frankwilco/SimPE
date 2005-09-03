@@ -119,16 +119,27 @@ namespace SimPe.Plugin.Tool.Dockable
 		/// <param name="pfd"></param>
 		/// <param name="localgroup"></param>
 		/// <param name="onlydefault"></param>
-		protected static SimPe.Packages.GeneratableFile RecolorClone(SimPe.Packages.GeneratableFile ppkg, Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings) 
+		protected static SimPe.Packages.GeneratableFile RecolorClone(CloneSettings.BaseResourceType br, SimPe.Packages.GeneratableFile ppkg, Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings) 
 		{
-
 			SimPe.Packages.GeneratableFile package = null;
 			if (ppkg!=null) package = (SimPe.Packages.GeneratableFile)ppkg.Clone();
 			else 
 			{
 				package = SimPe.Packages.GeneratableFile.CreateNew();
 				//Get the Base Object Data from the Objects.package File
-				string[] modelname = BaseClone(pfd, localgroup, package);
+				string[] modelname = new string[0];
+				if (br == CloneSettings.BaseResourceType.Objd) modelname = BaseClone(pfd, localgroup, package);
+				else 
+				{
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] fii = FileTable.FileIndex.FindFile(pfd, null);
+					if (fii.Length>0) 
+					{
+						SimPe.Interfaces.Files.IPackedFileDescriptor cpfd = fii[0].FileDescriptor.Clone();
+						cpfd = cpfd.Clone();
+						cpfd.UserData = fii[0].Package.Read(fii[0].FileDescriptor).UncompressedData;
+						package.Add(cpfd);
+					}
+				}
 				ObjectCloner objclone = new ObjectCloner(package);
 				ArrayList exclude = new ArrayList();
 
@@ -148,25 +159,27 @@ namespace SimPe.Plugin.Tool.Dockable
 				}
 
 				//do the recolor
-				objclone.Setup.OnlyDefaultMmats = settings.OnlyDefaultMmats;
-				objclone.Setup.UpdateMmatGuids = settings.OnlyDefaultMmats;
+				objclone.Setup.OnlyDefaultMmats = (settings.OnlyDefaultMmats && br!=CloneSettings.BaseResourceType.Xml);
+				objclone.Setup.UpdateMmatGuids = objclone.Setup.OnlyDefaultMmats ;
 				objclone.Setup.IncludeWallmask = settings.IncludeWallmask;
+				objclone.Setup.BaseResource = br;
 				objclone.Setup.IncludeAnimationResources = settings.IncludeAnimationResources;
 				objclone.RcolModelClone(modelname, exclude);
 
 				//for clones only when cbparent is checked
 				if (settings is OWCloneSettings) 
 				{
-					if (((OWCloneSettings)settings).StandAloneObject)
+					if (((OWCloneSettings)settings).StandAloneObject || br==CloneSettings.BaseResourceType.Xml)
 					{
 						string[] names = Scenegraph.LoadParentModelNames(package, true);
 						SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(null);
 
 						ObjectCloner pobj = new ObjectCloner(pkg);
-						pobj.Setup.OnlyDefaultMmats = settings.OnlyDefaultMmats;
-						pobj.Setup.UpdateMmatGuids = settings.OnlyDefaultMmats;
+						pobj.Setup.OnlyDefaultMmats = (settings.OnlyDefaultMmats && br!=CloneSettings.BaseResourceType.Xml);;
+						pobj.Setup.UpdateMmatGuids = pobj.Setup.OnlyDefaultMmats;
 						pobj.Setup.IncludeWallmask = settings.IncludeWallmask;
 						pobj.Setup.IncludeAnimationResources = settings.IncludeAnimationResources;
+						pobj.Setup.BaseResource = br;
 						pobj.RcolModelClone(names, exclude);
 						pobj.AddParentFiles(modelname, package);				
 					} 
@@ -226,7 +239,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			return refname;
 		}
 
-		protected static SimPe.Packages.GeneratableFile ReColor(SimPe.Packages.GeneratableFile pkg, Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings) 
+		protected static SimPe.Packages.GeneratableFile ReColor(CloneSettings.BaseResourceType br, SimPe.Packages.GeneratableFile pkg, Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings) 
 		{
 			SimPe.Packages.GeneratableFile package = pkg;
 			// we need packages in the Gmaes and the Download Folder
@@ -249,7 +262,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			WaitingScreen.Wait();
 			WaitingScreen.UpdateMessage("Collecting needed Files");
 			
-			if ((package==null) && (pfd!=null)) package = RecolorClone(package, pfd, localgroup, settings);
+			if ((package==null) && (pfd!=null)) package = RecolorClone(br, package, pfd, localgroup, settings);
 			WaitingScreen.Stop();
 			
 			
@@ -293,13 +306,15 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 
 		public static SimPe.Packages.GeneratableFile Start(SimPe.Packages.GeneratableFile pkg, SimPe.Interfaces.IAlias a, ref Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings)
-		{
+		{			
 			SimPe.Packages.GeneratableFile package = pkg;
+			SimPe.Plugin.CloneSettings.BaseResourceType br = SimPe.Plugin.CloneSettings.BaseResourceType.Objd;
+			if (pfd.Type!=Data.MetaData.OBJD_FILE) br = SimPe.Plugin.CloneSettings.BaseResourceType.Xml;
 			if (settings is OWCloneSettings) 
 			{
 				OWCloneSettings cs = (OWCloneSettings)settings;				
 				
-				package = RecolorClone(package, pfd, localgroup, settings);						
+				package = RecolorClone(br, package, pfd, localgroup, settings);						
 					
 
 				FixObject fo = new FixObject(package, FixVersion.UniversityReady, settings.RemoveNonDefaultTextReferences);
@@ -323,7 +338,8 @@ namespace SimPe.Plugin.Tool.Dockable
 						package.FileName = sfd.FileName;
 						fo.Fix(map, true);
 
-						if (cs.RemoveUselessResource) fo.CleanUp();
+						if (cs.RemoveUselessResource && br!=SimPe.Plugin.CloneSettings.BaseResourceType.Xml) 
+							fo.CleanUp();
 						package.Save();
 							
 					} 
@@ -351,7 +367,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			else 
 			{
 				
-				package = ReColor(package, pfd, localgroup, new OWRecolorSettings());
+				package = ReColor(br, package, pfd, localgroup, new OWRecolorSettings());
 
 				//select a resource for display in SimPE
 				pfd=null;

@@ -1214,7 +1214,7 @@ namespace SimPe.Plugin
 			objclone.Setup.UpdateMmatGuids = onlydefault;
 			objclone.Setup.IncludeWallmask = wallmask;
 			objclone.Setup.IncludeAnimationResources = anim;
-			objclone.Setup.Use3IDRFiles = true;
+			objclone.Setup.BaseResource = CloneSettings.BaseResourceType.Ref;
 			objclone.RcolModelClone(modelname, exclude);
 
 			//for clones only when cbparent is checked
@@ -1228,7 +1228,7 @@ namespace SimPe.Plugin
 				pobj.Setup.UpdateMmatGuids = onlydefault;
 				pobj.Setup.IncludeWallmask = wallmask;
 				pobj.Setup.IncludeAnimationResources = anim;
-				pobj.Setup.Use3IDRFiles = true;
+				pobj.Setup.BaseResource = CloneSettings.BaseResourceType.Ref;
 				pobj.RcolModelClone(names, exclude);
 				pobj.AddParentFiles(modelname, package);				
 			}

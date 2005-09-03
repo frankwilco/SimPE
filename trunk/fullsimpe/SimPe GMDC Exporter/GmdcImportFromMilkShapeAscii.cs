@@ -417,11 +417,16 @@ namespace SimPe.Plugin.Gmdc.Importer
 		/// <param name="ct"></param>
 		void ParseBonesSection(ImportedGroups grps, int ct) 
 		{
+			SimPe.IntArrayList sort = Gmdc.SortJoints();
 			for (int i=0; i<ct; i++)
 			{
 				ImportedBone b = new ImportedBone(Gmdc);
+				b.TargetIndex = sort[i];
+				b.Action = GmdcImporterAction.Replace;
+
 				//Read the Bones Data
 				ReadJointDescription(b);
+
 				ReadJointData(b);
 
 				int poscount = ReadCount();

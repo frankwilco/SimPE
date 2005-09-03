@@ -100,9 +100,6 @@
   <data name="cbgid.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left</value>
   </data>
-  <data name="button2.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
   <data name="&gt;&gt;pnWait.Type">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -127,8 +124,14 @@
   <data name="cbColorExt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
   </data>
+  <data name="wizardStepPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Fill</value>
+  </data>
   <data name="&gt;&gt;biPrev.Type">
     <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+  </data>
+  <data name="&gt;&gt;cbdefault.ZOrder">
+    <value>6</value>
   </data>
   <data name="xpGradientPanel1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
@@ -138,6 +141,9 @@
   </data>
   <data name="xpGradientPanel1.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>0</value>
+  </data>
+  <data name="cbdefault.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;xpGradientPanel1.Type">
     <value>SteepValley.Windows.Forms.XPGradientPanel, XPCommonControls, Version=2.2.3.4, Culture=neutral, PublicKeyToken=825f5955c0dc55e8</value>
@@ -154,11 +160,17 @@
   <data name="lberr.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
+  <data name="cbColorExt.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>208, 24</value>
+  </data>
   <data name="tv.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 136</value>
+  </data>
+  <data name="wizardStepPanel4.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
   </data>
   <data name="button1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>112, 23</value>
@@ -190,9 +202,6 @@
   <data name="&gt;&gt;wizardStepPanel2.Parent">
     <value>wizard1</value>
   </data>
-  <data name="wizard1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
   <data name="tv.Indent" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>19</value>
   </data>
@@ -202,11 +211,8 @@
   <data name="&gt;&gt;button2.ZOrder">
     <value>1</value>
   </data>
-  <data name="cbgid.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
   <data name="&gt;&gt;xpTaskBoxSimple2.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label2.Parent">
     <value>wizardStepPanel1</value>
@@ -223,8 +229,14 @@
   <data name="cbclean.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
+  <data name="lberr.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>32, 16</value>
+  </data>
+  <data name="gbRecolor.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="cbgid.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="lbfinload.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>3</value>
@@ -256,14 +268,32 @@
   <data name="wizardStepPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Fill</value>
   </data>
+  <data name="&gt;&gt;cbColorExt.Type">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
+  </data>
   <data name="&gt;&gt;cbparent.Name">
     <value>cbparent</value>
   </data>
   <data name="&gt;&gt;cbparent.Parent">
     <value>gbClone</value>
   </data>
-  <data name="biCatalog.Text">
-    <value>Catalog</value>
+  <data name="biAbort.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAqJJREFUOE+Vk3tI
+        U1Ecx386nziRJuUj8DFoWtYfcTMTUoeIYliUYRqh0dPUkfSwl7G0h1ELTXtQVFqQiYGtqWma0WbZZppJ
+        NR9UI0kJjAwc5SP1229LpKLQDnw45/4en3MP91wRTTNCpS6RoQtmhztNmJ0/mqmfy8en6/ktX3MqsRkY
+        AD61wnj36JvN4d7p/yWoOBavxVgv8KUT+PaeZz1KFKHlLBHNSFSxV9DibQnwoZ5pAHofAX1qZEZ7Z1sF
+        Ib4ieWyQQ5wLkcffjNdXkX4omzBUKAOeq4COG8C7MnzWZHz1cCR/urZdWo3OExjQbB3U5Qr6rBjJoUVe
+        JLDM2SJ0dyT5ShkV1ibQwPdzfkDbSaCFaVMiKVi8g86sFpeieRfQfJgT2cCz3cDDjegpiepV7w/UpEdL
+        FPM8ab49UZA6xaYLT1KApkyuz0BWrERF24JtclCzAri/gUni5kSgcT1g4OcXXGxcg47jkj7L28QLdgro
+        uVaXANyTYV8U5VOELyXh5kKgMgqolgN1ESwJY0k4oF2K0QuuuBJDBu53a8jz0sGwDKjyBCoIeyJJRT5u
+        JAyeth1HqTtwxweo8QceSFkgxUSlK0y5NJKfbKtpv+T0GoZZQL0IqCWgjBAnI+udmNOtpH7c4uBtptqG
+        BVykYwx2QCvPL22Bdo4/5bwFLcF0kIbFDhRoEYjqdlIr1JZmppJpZNqYduYVY2Q6mK6fgomzhFSBzk99
+        9oJ1VIp6ThYTzAcII3m85jNaBSamZ7KZNxk+QlDKqYqbxVOCjDDKwVVCt4LGkgW6WBBLTSYFYVTFjZaj
+        lfO6iNCSSuaUxdad+d79MsL8KPHxFuoP8KS1k2H7uW4UGRdIyrQQurxpCRUt96U0B6KAf91/V074zOjn
+        +KPoB8GJk4KXvLFaAAAAAElFTkSuQmCC
+</value>
   </data>
   <data name="label4.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -288,9 +318,6 @@
   </data>
   <data name="lbfinload.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>BottomLeft</value>
-  </data>
-  <data name="&gt;&gt;cbRemTxt.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="wizard1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -329,7 +356,7 @@
     <value>False</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel3.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2070.33676, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2071.34374, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbparent.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -337,26 +364,17 @@
   <data name="lbfinished.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="cbRemTxt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="wizardStepPanel3.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
   <data name="gbRecolor.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
   <data name="splitter1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
   </data>
-  <data name="xpGradientPanel1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="biCatalog.Text">
+    <value>Catalog</value>
   </data>
   <data name="xpTaskBoxSimple2.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
-  </data>
-  <data name="&gt;&gt;cbColorExt.Parent">
-    <value>gbRecolor</value>
   </data>
   <data name="gbClone.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top</value>
@@ -387,9 +405,6 @@
   </data>
   <data name="button2.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
-  </data>
-  <data name="&gt;&gt;cbTask.ZOrder">
-    <value>1</value>
   </data>
   <data name="cbTask.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
@@ -427,9 +442,6 @@
   <data name="&gt;&gt;lb.Type">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cbclean.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
-  </data>
   <data name="gbRecolor.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 76</value>
   </data>
@@ -437,7 +449,7 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple1.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="$this.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -466,11 +478,14 @@
   <data name="xpGradientPanel1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="cbRemTxt.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="&gt;&gt;lbfinished.ZOrder">
+    <value>1</value>
   </data>
   <data name="lbfinload.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent">
+    <value>wizardStepPanel1</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel1.ZOrder">
     <value>0</value>
@@ -479,7 +494,7 @@
     <value>3</value>
   </data>
   <data name="&gt;&gt;cbfix.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="lbfinished.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>120, 23</value>
@@ -526,8 +541,11 @@
   <data name="xpTaskBoxSimple1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="&gt;&gt;tv.Parent">
-    <value>wizardStepPanel2</value>
+  <data name="cbfix.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="cbgid.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="panel1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -580,8 +598,8 @@
   <data name="toolBar1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="pnWait.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <data name="cbRemTxt.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="wizardStepPanel2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -592,11 +610,14 @@
   <data name="&gt;&gt;cbColorExt.Name">
     <value>cbColorExt</value>
   </data>
-  <data name="gbClone.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
+  <data name="$this.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>298, 465</value>
   </data>
   <data name="cbdefault.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
+  </data>
+  <data name="lbfinished.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
   </data>
   <data name="cbanim.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -623,7 +644,7 @@
     <value />
   </data>
   <data name="&gt;&gt;gbClone.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="tv.SelectedImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>-1</value>
@@ -633,9 +654,6 @@
   </data>
   <data name="&gt;&gt;panel2.ZOrder">
     <value>3</value>
-  </data>
-  <data name="cbparent.Text">
-    <value>Create a stand-alone object</value>
   </data>
   <data name="xpTaskBoxSimple1.HeaderText">
     <value>Selected Object</value>
@@ -664,14 +682,17 @@
   <data name="gbRecolor.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </data>
-  <data name="cbRemTxt.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <data name="cbwallmask.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;panel2.Name">
+    <value>panel2</value>
   </data>
   <data name="wizard1.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="cbTask.Items1">
-    <value>Clone</value>
+  <data name="xpTaskBoxSimple1.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple1.ZOrder">
     <value>0</value>
@@ -693,9 +714,6 @@
   </data>
   <data name="label2.Text">
     <value>The Object Data is not yet loaded. Please choose "Start", to load the Object Browser. Or click "Open...", to load a custom Package.</value>
-  </data>
-  <data name="tv.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>2</value>
   </data>
   <data name="&gt;&gt;pnWait.Name">
     <value>pnWait</value>
@@ -730,9 +748,6 @@
   <data name="gbRecolor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top</value>
   </data>
-  <data name="&gt;&gt;splitter1.Type">
-    <value>System.Windows.Forms.Splitter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="gbClone.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
@@ -750,6 +765,9 @@
   </data>
   <data name="lberr.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </data>
+  <data name="button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>System</value>
   </data>
   <data name="cbwallmask.Text">
     <value>Pull Wallmasks (by Numenor)</value>
@@ -774,9 +792,6 @@
         2sQ0l2FRxGvsX95gHFzVOJoTGBgAILzqSuEIvicAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="wizardStepPanel1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
   <data name="&gt;&gt;label2.Type">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -785,6 +800,12 @@
   </data>
   <data name="cbdefault.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 160</value>
+  </data>
+  <data name="lbfinished.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>Tahoma, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lbfinload.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
   </data>
   <data name="&gt;&gt;label3.Name">
     <value>label3</value>
@@ -803,9 +824,6 @@
   </data>
   <data name="&gt;&gt;label3.ZOrder">
     <value>2</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name">
-    <value>panel1</value>
   </data>
   <data name="cbclean.Text">
     <value>Rem. useless Files (by  Numenor)</value>
@@ -827,6 +845,12 @@
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple2.ZOrder">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;cbTask.ZOrder">
+    <value>1</value>
+  </data>
+  <data name="cbgid.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="splitter1.MinExtra" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
@@ -861,6 +885,9 @@
   <data name="&gt;&gt;$this.Type">
     <value>TD.SandDock.UserDockableWindow, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>24, 104</value>
+  </data>
   <data name="xpTaskBoxSimple2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 136</value>
   </data>
@@ -885,9 +912,6 @@
   <data name="cbfix.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
   </data>
-  <data name="cbdefault.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>System</value>
-  </data>
   <data name="panel1.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
@@ -903,8 +927,8 @@
   <data name="button3.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleCenter</value>
   </data>
-  <data name="splitter1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>320, 3</value>
+  <data name="&gt;&gt;cbclean.Type">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pnWait.Text">
     <value />
@@ -951,6 +975,9 @@
         Usyn4GP++O8HU0wFM7aZ/XJ4/KwtiZj5SjysN8di+sYYWDkEVFuscDtC11+meJ6CT8F8+uGnHr+4Prba
         iTixgp+MAnA9+ZzHwe+Xv6BYTsGvaHwEn/Rl9b/oUzqeo+815gAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="wizardStepPanel1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>Tahoma, 8.25pt, style=Bold</value>
@@ -1007,14 +1034,14 @@
   <data name="&gt;&gt;wizard1.Parent">
     <value>xpGradientPanel1</value>
   </data>
+  <data name="button1.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
   <data name="label3.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
   <data name="animatedImagelist1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>8, 16</value>
-  </data>
-  <data name="&gt;&gt;cbgid.ZOrder">
-    <value>7</value>
   </data>
   <data name="lbfinished.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
@@ -1029,7 +1056,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;cbwallmask.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbwallmask.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>15</value>
@@ -1058,9 +1085,6 @@
   <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>NoControl</value>
   </data>
-  <data name="xpTaskBoxSimple1.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </data>
   <data name="pnWait.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
@@ -1069,6 +1093,9 @@
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
+  </data>
+  <data name="cbwallmask.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
   </data>
   <data name="cbwallmask.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1082,11 +1109,17 @@
   <data name="biNext.Text">
     <value>Next</value>
   </data>
+  <data name="cbRemTxt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="xpTaskBoxSimple1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
   <data name="wizardStepPanel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Fill</value>
   </data>
   <data name="&gt;&gt;gbRecolor.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="animatedImagelist1.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
@@ -1096,6 +1129,9 @@
   </data>
   <data name="cbColorExt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>NoControl</value>
+  </data>
+  <data name="animatedImagelist1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="&gt;&gt;$this.Name">
     <value>dcObjectWorkshop</value>
@@ -1121,11 +1157,14 @@
   <data name="gbClone.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="&gt;&gt;cbwallmask.Name">
-    <value>cbwallmask</value>
+  <data name="&gt;&gt;lbwait.Type">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="xpTaskBoxSimple1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 392</value>
+  </data>
+  <data name="tv.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>2</value>
   </data>
   <data name="lbfinished.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -1133,8 +1172,8 @@
   <data name="wizardStepPanel2.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="cbwallmask.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
+  <data name="cbgid.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleLeft</value>
   </data>
   <data name="lbfinload.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -1148,9 +1187,6 @@
   <data name="cbanim.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>16</value>
   </data>
-  <data name="&gt;&gt;toolBar1.Type">
-    <value>TD.SandBar.ToolBar, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
-  </data>
   <data name="&gt;&gt;cbwallmask.Parent">
     <value>gbClone</value>
   </data>
@@ -1160,14 +1196,17 @@
   <data name="pnWait.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="&gt;&gt;lb.Parent">
-    <value>wizardStepPanel2</value>
+  <data name="button1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple2.Parent">
     <value>panel1</value>
   </data>
   <data name="splitter1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;cbgid.ZOrder">
+    <value>7</value>
   </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>2</value>
@@ -1178,14 +1217,11 @@
   <data name="wizardStepPanel1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="pnWait.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>0</value>
+  <data name="button1.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="cbTask.ItemHeight" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>16</value>
-  </data>
-  <data name="wizardStepPanel2.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
   </data>
   <data name="xpTaskBoxSimple2.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1198,9 +1234,6 @@
   </data>
   <data name="&gt;&gt;label2.Name">
     <value>label2</value>
-  </data>
-  <data name="animatedImagelist1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
   </data>
   <data name="wizardStepPanel3.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
@@ -1220,6 +1253,9 @@
   <data name="label4.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>26</value>
   </data>
+  <data name="cbgid.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
   <data name="lberr.Text">
     <value>SimPE was unable to create the Object. A possible reason could be, that the selected Object is not CEP enabled, or that you did Interrupt the creation process.
 
@@ -1227,9 +1263,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="label2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleCenter</value>
-  </data>
-  <data name="button3.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
   </data>
   <data name="xpTaskBoxSimple1.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>3</value>
@@ -1241,6 +1274,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
     <value>Inherit</value>
   </data>
   <data name="panel2.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="cbColorExt.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
   <data name="cbwallmask.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -1264,14 +1300,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="button3.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>75, 23</value>
   </data>
-  <data name="button3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>System</value>
-  </data>
   <data name="&gt;&gt;button1.Name">
     <value>button1</value>
   </data>
   <data name="cbfix.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
   </data>
   <data name="cbgid.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
@@ -1288,7 +1324,7 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="button2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleCenter</value>
   </data>
-  <data name="cbgid.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="cbclean.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
   <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1302,9 +1338,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="lbwait.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;label4.Type">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>TopLeft</value>
@@ -1330,9 +1363,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbColorExt.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>Tahoma, 8.25pt</value>
   </data>
-  <data name="lbfinload.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
   <data name="label1.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
@@ -1353,9 +1383,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="cbwallmask.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
-  </data>
-  <data name="cbwallmask.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>16, 184</value>
   </data>
   <data name="cbRemTxt.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>17</value>
@@ -1390,8 +1417,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="animatedImagelist1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left</value>
   </data>
-  <data name="button1.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="cbdefault.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>11</value>
   </data>
   <data name="lbfinload.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>-1</value>
@@ -1404,6 +1431,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>NoControl</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>1</value>
   </data>
   <data name="lbfinload.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1461,31 +1491,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
         QmCC
 </value>
   </data>
-  <data name="resource3" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAlFJREFUOE+1k2tI
-        U2EYx5Wyi0xNVmoXiEwSSvzSRyuQIogwWyhdCDXSRSsmqSlILjc1cgVbsAna0q256c5MM8lFJH7YhC2W
-        JLSQxlKsLzHoMogNlnv6vwfO2IU+9sIPznvO+f3f2/NmZPyvNjE6XDFuenzTNKSXdXe2l2OczSCTjVd/
-        RXq78vjJEjxuSRt/wjJyadpm/vKCG6VExo1DH5tl0qrLdVcH6hqaFsXi7ccg704KmLQalYLknHtF771u
-        WvQs0JuXz/kw1d3u9fqGxq8ikegaxGqwNx7wzDJyQpA/+5cptWk1WpLLb1GLXBbJzc15BLES5MQDpsZM
-        Lhaw/GEpTbZYbdSlUNH9XhW1Nd+gmrNVbohH43tgGtRlQ/7DAmKxWFKAIHN2Ow3odaTp76UHfcpvkC+C
-        HfwMbCbDASbPzU4nydFolKxjNnI4HMRxHC24nMQ9NZBxUPcbWiso5gMe3lOKWcDslC0pgM0mGAyS1+sl
-        n89Ha6srhBMivUb9E5oClAp7sMFuHvazkLWVQFJIJBKhUChE4XCYPxH2j/x6kx9iB9gvBGRq1X2d7OPr
-        mUn69eN72kauBvy8jM1eLyneN8PqCRTFT6GosLDAoNe8FY7yndtFTGJ4nPPxorpQI/FBUoMjIDuxkLIQ
-        Utbfo5jHOmOplciZn0SrT59agqAHtWAn4Es7sW1F51B52cE2rNPZ1dH66U57S6BWcsazLS/Pgm894Bxg
-        FZiVKgt9dmn2gApwHkhBI5CAw6AAbPyXLLxnU2M3TQzYhdkF8sGm1Gn/BeruoLc5JQzBAAAAAElFTkSu
-        QmCC
-</value>
-  </data>
   <data name="biPrev.ToolTipText">
     <value />
   </data>
   <data name="gbRecolor.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 316</value>
   </data>
-  <data name="button3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Right</value>
+  <data name="&gt;&gt;toolBar1.Type">
+    <value>TD.SandBar.ToolBar, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="lb.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -1514,6 +1527,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;pnWait.ZOrder">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;cbwallmask.Name">
+    <value>cbwallmask</value>
+  </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </data>
@@ -1521,7 +1537,7 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="&gt;&gt;wizard1.Type">
-    <value>SimPe.Wizards.Wizard, simpe.wizardbase, Version=1.0.2070.33676, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.Wizard, simpe.wizardbase, Version=1.0.2071.34374, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbclean.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>24, 92</value>
@@ -1539,6 +1555,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
     <value />
   </data>
   <data name="wizardStepPanel3.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="wizard1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
   <data name="button3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1580,6 +1599,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbRemTxt.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
+  <data name="button3.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
   <data name="xpTaskBoxSimple1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
@@ -1591,6 +1613,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="lbfinished.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>-1</value>
+  </data>
+  <data name="wizardStepPanel4.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 8</value>
@@ -1616,6 +1641,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbfix.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleCenter</value>
   </data>
+  <data name="lb.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
   <data name="xpGradientPanel1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
@@ -1640,12 +1668,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>24, 136</value>
   </data>
-  <data name="label1.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>-1</value>
-  </data>
-  <data name="wizardStepPanel4.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
   <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top</value>
   </data>
@@ -1660,6 +1682,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="&gt;&gt;xpGradientPanel1.Parent">
     <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button3.Parent">
+    <value>panel2</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>NoControl</value>
@@ -1676,14 +1701,17 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;biAbort.Name">
     <value>biAbort</value>
   </data>
+  <data name="biPrev.Text">
+    <value>Previous  </value>
+  </data>
   <data name="gbRecolor.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </data>
   <data name="&gt;&gt;button2.Name">
     <value>button2</value>
   </data>
-  <data name="cbclean.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <data name="cbparent.Text">
+    <value>Create a stand-alone object</value>
   </data>
   <data name="&gt;&gt;lb.ZOrder">
     <value>0</value>
@@ -1691,11 +1719,17 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="wizardStepPanel4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 501</value>
   </data>
+  <data name="cbTask.Items1">
+    <value>Clone</value>
+  </data>
   <data name="animatedImagelist1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
   </data>
   <data name="&gt;&gt;label3.Type">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label4.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="&gt;&gt;label3.Parent">
     <value>panel2</value>
@@ -1703,11 +1737,11 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbanim.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left</value>
   </data>
-  <data name="cbRemTxt.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>Tahoma, 8.25pt</value>
-  </data>
   <data name="pnWait.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
+  </data>
+  <data name="&gt;&gt;tv.Parent">
+    <value>wizardStepPanel2</value>
   </data>
   <data name="xpTaskBoxSimple2.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>4</value>
@@ -1721,8 +1755,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="label4.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="gbClone.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="lbfinload.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="cbwallmask.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1736,9 +1770,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="gbClone.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>System</value>
-  </data>
   <data name="&gt;&gt;wizardStepPanel1.Parent">
     <value>wizard1</value>
   </data>
@@ -1747,12 +1778,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="cbparent.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
-  </data>
-  <data name="lberr.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>32, 16</value>
-  </data>
-  <data name="cbdefault.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
   </data>
   <data name="wizardStepPanel3.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1766,8 +1791,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="xpGradientPanel1.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="cbfix.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
+  <data name="lberr.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
   </data>
   <data name="cbTask.Items">
     <value>Recolor</value>
@@ -1784,9 +1809,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbclean.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;lbwait.ZOrder">
-    <value>4</value>
-  </data>
   <data name="cbColorExt.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>-1</value>
   </data>
@@ -1802,15 +1824,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="xpTaskBoxSimple1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 109</value>
   </data>
-  <data name="&gt;&gt;wizardStepPanel4.Parent">
-    <value>wizard1</value>
-  </data>
-  <data name="cbclean.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>272, 24</value>
-  </data>
-  <data name="&gt;&gt;button3.Parent">
-    <value>panel2</value>
-  </data>
   <data name="gbClone.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
@@ -1820,17 +1833,11 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;label2.ZOrder">
     <value>4</value>
   </data>
-  <data name="pnWait.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="cbColorExt.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>5</value>
+  <data name="pnWait.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="label1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name">
-    <value>panel2</value>
   </data>
   <data name="gbClone.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -1853,8 +1860,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="lb.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="lbfinished.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
+  <data name="&gt;&gt;ilist.Name">
+    <value>ilist</value>
   </data>
   <data name="&gt;&gt;lbfinished.Type">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1879,6 +1886,23 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
         UdJOwi9vZEmYUezkav2qPhgPgXztKvPz8nJb7LaQepV8bWxigv4hYWbK9hlewmQFmwF3pzYyEVJ4palh
         CJ2YUg3qE/f/e8/OHcNYbQelYCn4q7UX4OOGjYXrT+M//fV1ta8vnDkllxp2BxdlZ3ugNYG9YCXInLz7
         5Dk3xwpQAg4AE6gEBsDNw208ZzqzVlRM5gNu1+VgGVgM5k499h/Kk6DZ9FE/MwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="resource3" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAlFJREFUOE+1k2tI
+        U2EYx5Wyi0xNVmoXiEwSSvzSRyuQIogwWyhdCDXSRSsmqSlILjc1cgVbsAna0q256c5MM8lFJH7YhC2W
+        JLSQxlKsLzHoMogNlnv6vwfO2IU+9sIPznvO+f3f2/NmZPyvNjE6XDFuenzTNKSXdXe2l2OczSCTjVd/
+        RXq78vjJEjxuSRt/wjJyadpm/vKCG6VExo1DH5tl0qrLdVcH6hqaFsXi7ccg704KmLQalYLknHtF771u
+        WvQs0JuXz/kw1d3u9fqGxq8ikegaxGqwNx7wzDJyQpA/+5cptWk1WpLLb1GLXBbJzc15BLES5MQDpsZM
+        Lhaw/GEpTbZYbdSlUNH9XhW1Nd+gmrNVbohH43tgGtRlQ/7DAmKxWFKAIHN2Ow3odaTp76UHfcpvkC+C
+        HfwMbCbDASbPzU4nydFolKxjNnI4HMRxHC24nMQ9NZBxUPcbWiso5gMe3lOKWcDslC0pgM0mGAyS1+sl
+        n89Ha6srhBMivUb9E5oClAp7sMFuHvazkLWVQFJIJBKhUChE4XCYPxH2j/x6kx9iB9gvBGRq1X2d7OPr
+        mUn69eN72kauBvy8jM1eLyneN8PqCRTFT6GosLDAoNe8FY7yndtFTGJ4nPPxorpQI/FBUoMjIDuxkLIQ
+        Utbfo5jHOmOplciZn0SrT59agqAHtWAn4Es7sW1F51B52cE2rNPZ1dH66U57S6BWcsazLS/Pgm894Bxg
+        FZiVKgt9dmn2gApwHkhBI5CAw6AAbPyXLLxnU2M3TQzYhdkF8sGm1Gn/BeruoLc5JQzBAAAAAElFTkSu
+        QmCC
 </value>
   </data>
   <data name="wizardStepPanel3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1942,9 +1966,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbfix.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
   </data>
-  <data name="&gt;&gt;cbdefault.ZOrder">
-    <value>6</value>
-  </data>
   <data name="cbdefault.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
@@ -1957,9 +1978,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="lbfinished.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;ilist.Name">
-    <value>ilist</value>
-  </data>
   <data name="cbColorExt.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
@@ -1969,8 +1987,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbColorExt.Text">
     <value>Create Color Extension Package</value>
   </data>
-  <data name="wizardStepPanel4.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
+  <data name="label1.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
   </data>
   <data name="cbfix.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1987,14 +2005,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="tv.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="cbparent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
+  <data name="panel1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
   </data>
   <data name="xpTaskBoxSimple2.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
   <data name="&gt;&gt;cbparent.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="toolBar1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top</value>
@@ -2008,14 +2026,20 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="$this.Localizable" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
+  <data name="gbClone.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </data>
   <data name="panel1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="&gt;&gt;gbClone.ZOrder">
-    <value>2</value>
+  <data name="pnWait.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
   </data>
   <data name="&gt;&gt;tv.Name">
     <value>tv</value>
+  </data>
+  <data name="label3.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;cbgid.Parent">
     <value>gbClone</value>
@@ -2035,6 +2059,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbanim.Text">
     <value>Pull Animations</value>
   </data>
+  <data name="pnWait.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;gbClone.Parent">
     <value>wizardStepPanel3</value>
   </data>
@@ -2047,14 +2074,11 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;lbfinload.ZOrder">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;wizardStepPanel3.ZOrder">
-    <value>2</value>
-  </data>
   <data name="&gt;&gt;panel2.Type">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cbwallmask.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>System</value>
+  <data name="animatedImagelist1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="pnWait.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
@@ -2080,17 +2104,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="button3.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="cbgid.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleLeft</value>
-  </data>
   <data name="cbgid.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
+  <data name="cbColorExt.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>System</value>
+  </data>
   <data name="cbanim.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>NoControl</value>
-  </data>
-  <data name="button1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 32</value>
@@ -2104,11 +2125,17 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="panel1.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>1</value>
   </data>
+  <data name="wizard1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 24</value>
+  </data>
+  <data name="label1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
   <data name="cbTask.MaxDropDownItems" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>8</value>
   </data>
-  <data name="cbColorExt.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>System</value>
+  <data name="wizardStepPanel2.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
   </data>
   <data name="label3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left</value>
@@ -2150,26 +2177,29 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
         RK5CYII=
 </value>
   </data>
+  <data name="lbfinload.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
   <data name="cbparent.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="xpTaskBoxSimple1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Fill</value>
   </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>24, 104</value>
+  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
   </data>
   <data name="cbparent.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
   </data>
-  <data name="label4.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="animatedImagelist1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
   <data name="button1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="tv.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
+  <data name="lbwait.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
   </data>
   <data name="label3.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -2187,7 +2217,7 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
     <value>224, 24</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel2.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2070.33676, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2071.34374, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbfix.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Normal</value>
@@ -2216,9 +2246,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbwallmask.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;cbgid.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
-  </data>
   <data name="button2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>112, 23</value>
   </data>
@@ -2227,9 +2254,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="lb.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
-  </data>
-  <data name="lbwait.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
   </data>
   <data name="label4.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2252,17 +2276,23 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;cbTask.Parent">
     <value>panel2</value>
   </data>
+  <data name="tv.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
   <data name="cbgid.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>System</value>
   </data>
   <data name="toolBar1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
   </data>
-  <data name="lbfinished.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>Tahoma, 8.25pt, style=Bold</value>
+  <data name="cbanim.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
   </data>
   <data name="cbdefault.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="&gt;&gt;button3.ZOrder">
+    <value>0</value>
   </data>
   <data name="cbTask.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -2276,14 +2306,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;animatedImagelist1.ZOrder">
     <value>0</value>
   </data>
-  <data name="animatedImagelist1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="animatedImagelist1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="lbfinished.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="panel1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
+  <data name="cbanim.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 24</value>
+  </data>
+  <data name="cbRemTxt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
   </data>
   <data name="xpTaskBoxSimple1.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -2294,14 +2324,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="label3.Text">
     <value>Task:</value>
   </data>
-  <data name="cbclean.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Normal</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>320, 48</value>
-  </data>
-  <data name="cbgid.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
+  <data name="&gt;&gt;toolBar1.Parent">
+    <value>xpGradientPanel1</value>
   </data>
   <data name="button1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleCenter</value>
@@ -2312,9 +2336,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 60</value>
   </data>
-  <data name="&gt;&gt;lbfinished.ZOrder">
-    <value>1</value>
-  </data>
   <data name="tv.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
@@ -2323,9 +2344,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="tv.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Fill</value>
-  </data>
-  <data name="label1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
   </data>
   <data name="wizardStepPanel4.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2373,9 +2391,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
         iTixgp+MAnA9+ZzHwe+Xv6BYTsGvaHwEn/Rl9b/oUzqeo+815gAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="cbColorExt.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
   <data name="wizardStepPanel4.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </data>
@@ -2383,7 +2398,7 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
     <value>0</value>
   </data>
   <data name="&gt;&gt;animatedImagelist1.Type">
-    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 80</value>
@@ -2403,20 +2418,20 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;label1.ZOrder">
     <value>2</value>
   </data>
-  <data name="lb.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="gbClone.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 80</value>
+  <data name="&gt;&gt;wizardStepPanel3.ZOrder">
+    <value>2</value>
   </data>
   <data name="lberr.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
+  <data name="button3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>System</value>
+  </data>
   <data name="cbRemTxt.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
   </data>
-  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>320, 48</value>
   </data>
   <data name="&gt;&gt;cbTask.Type">
     <value>TD.SandBar.FlatComboBox, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
@@ -2424,8 +2439,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="label3.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;cbColorExt.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
+  <data name="gbClone.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 80</value>
   </data>
   <data name="cbparent.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 136</value>
@@ -2435,6 +2450,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="xpTaskBoxSimple2.HeaderText">
     <value>Selected Object</value>
+  </data>
+  <data name="gbRecolor.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="label2.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>-1</value>
@@ -2448,9 +2466,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="wizardStepPanel3.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>2</value>
   </data>
-  <data name="button1.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
   <data name="cbclean.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
@@ -2459,9 +2474,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="$this.Text">
     <value>Object Workshop</value>
-  </data>
-  <data name="cbgid.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
   </data>
   <data name="&gt;&gt;wizardStepPanel3.Parent">
     <value>wizard1</value>
@@ -2472,19 +2484,16 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="wizardStepPanel2.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
-  <data name="cbdefault.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
   <data name="cbclean.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
+  </data>
+  <data name="label2.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="cbclean.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleLeft</value>
   </data>
   <data name="panel1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="lbfinished.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
   <data name="&gt;&gt;button3.Type">
@@ -2499,8 +2508,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="wizardStepPanel1.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="wizardStepPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Fill</value>
+  <data name="&gt;&gt;cbdefault.Type">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;lbwait.ZOrder">
+    <value>4</value>
+  </data>
+  <data name="cbparent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
   </data>
   <data name="cbRemTxt.Text">
     <value>Rem. non default Languages from References</value>
@@ -2511,11 +2526,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="label4.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
+  <data name="gbClone.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
   <data name="wizardStepPanel4.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="lbfinload.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
+  <data name="&gt;&gt;cbRemTxt.Type">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbparent.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
@@ -2532,17 +2550,17 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="lbfinished.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Top, Left</value>
   </data>
-  <data name="&gt;&gt;button1.Parent">
-    <value>wizardStepPanel1</value>
+  <data name="animatedImagelist1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="&gt;&gt;wizardStepPanel4.Parent">
+    <value>wizard1</value>
   </data>
   <data name="lberr.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
   <data name="gbClone.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>0</value>
-  </data>
-  <data name="lbfinload.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
   </data>
   <data name="lberr.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2556,14 +2574,17 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="lbwait.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>80, 23</value>
   </data>
+  <data name="&gt;&gt;splitter1.Type">
+    <value>System.Windows.Forms.Splitter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="label1.Text">
     <value>Welcome to the new Object Workshop. </value>
   </data>
   <data name="lbwait.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="wizard1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 24</value>
+  <data name="button3.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="ilist.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -2592,8 +2613,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;cbdefault.Parent">
     <value>gbClone</value>
   </data>
-  <data name="label1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <data name="cbclean.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Normal</value>
   </data>
   <data name="gbClone.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -2619,8 +2640,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbColorExt.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Normal</value>
   </data>
-  <data name="gbRecolor.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="button2.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;biFinish.Name">
     <value>biFinish</value>
@@ -2631,9 +2652,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="lbwait.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>MiddleCenter</value>
   </data>
-  <data name="biPrev.Text">
-    <value>Previous  </value>
-  </data>
   <data name="lberr.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
   </data>
@@ -2642,9 +2660,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="wizard1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>1</value>
   </data>
   <data name="button3.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2655,8 +2670,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;lberr.ZOrder">
     <value>2</value>
   </data>
-  <data name="cbanim.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
+  <data name="cbwallmask.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 184</value>
   </data>
   <data name="biFinish.Text">
     <value>Finish</value>
@@ -2721,14 +2736,11 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;cbclean.Name">
     <value>cbclean</value>
   </data>
-  <data name="lberr.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <data name="&gt;&gt;label4.Type">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cbanim.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>120, 24</value>
-  </data>
-  <data name="&gt;&gt;button3.ZOrder">
-    <value>0</value>
+  <data name="cbdefault.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="&gt;&gt;lbfinload.Parent">
     <value>pnWait</value>
@@ -2748,11 +2760,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="lbfinished.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>2</value>
   </data>
+  <data name="cbRemTxt.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>Tahoma, 8.25pt</value>
+  </data>
   <data name="lbwait.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="button3.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="&gt;&gt;cbColorExt.Parent">
+    <value>gbRecolor</value>
   </data>
   <data name="&gt;&gt;gbClone.Name">
     <value>gbClone</value>
@@ -2766,8 +2781,17 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;biPrev.Name">
     <value>biPrev</value>
   </data>
+  <data name="cbanim.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="biCatalog.ToolTipText">
+    <value />
+  </data>
   <data name="wizardStepPanel4.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>3</value>
+  </data>
+  <data name="wizardStepPanel3.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
   </data>
   <data name="animatedImagelist1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 16</value>
@@ -2814,20 +2838,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="lberr.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>TopLeft</value>
   </data>
-  <data name="label3.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
   <data name="wizardStepPanel1.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </data>
   <data name="&gt;&gt;biCatalog.Type">
     <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
-  <data name="&gt;&gt;cbdefault.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="cbRemTxt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
+  <data name="&gt;&gt;gbClone.ZOrder">
+    <value>2</value>
   </data>
   <data name="pnWait.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -2838,8 +2856,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="label1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="&gt;&gt;lbwait.Type">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;panel1.Name">
+    <value>panel1</value>
   </data>
   <data name="cbclean.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -2862,17 +2880,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="wizardStepPanel2.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="cbColorExt.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>208, 24</value>
+  <data name="&gt;&gt;cbRemTxt.Parent">
+    <value>gbClone</value>
   </data>
   <data name="button2.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>-1</value>
   </data>
-  <data name="animatedImagelist1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="xpGradientPanel1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
-  </data>
-  <data name="&gt;&gt;button2.Type">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="wizardStepPanel1.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -2900,7 +2915,7 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
 </value>
   </data>
   <data name="&gt;&gt;cbanim.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2070.33675, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lb.Name">
     <value>lb</value>
@@ -2926,6 +2941,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;biFinish.Type">
     <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
+  <data name="splitter1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>320, 3</value>
+  </data>
   <data name="panel1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
@@ -2933,7 +2951,7 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
     <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel4.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2070.33676, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2071.34374, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 60</value>
@@ -2956,11 +2974,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
         nAbEKUAcCMSgxANKxiy4NMMDFcjgAGJQcpUGYikgFgRiNnRnAwA2XZVm6b1l0AAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="label2.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="cbRemTxt.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
-  <data name="cbanim.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="cbclean.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>272, 24</value>
+  </data>
+  <data name="&gt;&gt;lb.Parent">
+    <value>wizardStepPanel2</value>
   </data>
   <data name="wizardStepPanel3.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -2971,14 +2992,11 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="cbRemTxt.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>System</value>
   </data>
-  <data name="&gt;&gt;toolBar1.Parent">
-    <value>xpGradientPanel1</value>
-  </data>
   <data name="cbfix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel1.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2070.33676, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2071.34374, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="wizardStepPanel3.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -2998,6 +3016,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="lbfinload.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
+  <data name="button3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Right</value>
+  </data>
   <data name="&gt;&gt;animatedImagelist1.Name">
     <value>animatedImagelist1</value>
   </data>
@@ -3012,9 +3033,6 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="xpTaskBoxSimple2.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
-  </data>
-  <data name="gbRecolor.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
   </data>
   <data name="wizardStepPanel4.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -3076,8 +3094,8 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="wizardStepPanel3.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </data>
-  <data name="cbdefault.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>11</value>
+  <data name="&gt;&gt;button2.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="splitter1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -3114,6 +3132,9 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="animatedImagelist1.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
+  </data>
+  <data name="cbColorExt.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>5</value>
   </data>
   <data name="toolBar1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -3175,23 +3196,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="animatedImagelist1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>None</value>
   </data>
-  <data name="xpTaskBoxSimple1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;cbRemTxt.Parent">
-    <value>gbClone</value>
+  <data name="cbdefault.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>System</value>
   </data>
   <data name="&gt;&gt;pnWait.Parent">
     <value>wizardStepPanel4</value>
   </data>
-  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>German</value>
-  </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 365</value>
-  </data>
-  <data name="$this.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>298, 465</value>
   </data>
   <data name="wizard1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -3202,26 +3214,11 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="&gt;&gt;cbRemTxt.ZOrder">
     <value>0</value>
   </data>
-  <data name="biCatalog.ToolTipText">
-    <value />
+  <data name="&gt;&gt;cbgid.Type">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2071.34375, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="biAbort.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAqJJREFUOE+Vk3tI
-        U1Ecx386nziRJuUj8DFoWtYfcTMTUoeIYliUYRqh0dPUkfSwl7G0h1ELTXtQVFqQiYGtqWma0WbZZppJ
-        NR9UI0kJjAwc5SP1229LpKLQDnw45/4en3MP91wRTTNCpS6RoQtmhztNmJ0/mqmfy8en6/ktX3MqsRkY
-        AD61wnj36JvN4d7p/yWoOBavxVgv8KUT+PaeZz1KFKHlLBHNSFSxV9DibQnwoZ5pAHofAX1qZEZ7Z1sF
-        Ib4ieWyQQ5wLkcffjNdXkX4omzBUKAOeq4COG8C7MnzWZHz1cCR/urZdWo3OExjQbB3U5Qr6rBjJoUVe
-        JLDM2SJ0dyT5ShkV1ibQwPdzfkDbSaCFaVMiKVi8g86sFpeieRfQfJgT2cCz3cDDjegpiepV7w/UpEdL
-        FPM8ab49UZA6xaYLT1KApkyuz0BWrERF24JtclCzAri/gUni5kSgcT1g4OcXXGxcg47jkj7L28QLdgro
-        uVaXANyTYV8U5VOELyXh5kKgMgqolgN1ESwJY0k4oF2K0QuuuBJDBu53a8jz0sGwDKjyBCoIeyJJRT5u
-        JAyeth1HqTtwxweo8QceSFkgxUSlK0y5NJKfbKtpv+T0GoZZQL0IqCWgjBAnI+udmNOtpH7c4uBtptqG
-        BVykYwx2QCvPL22Bdo4/5bwFLcF0kIbFDhRoEYjqdlIr1JZmppJpZNqYduYVY2Q6mK6fgomzhFSBzk99
-        9oJ1VIp6ThYTzAcII3m85jNaBSamZ7KZNxk+QlDKqYqbxVOCjDDKwVVCt4LGkgW6WBBLTSYFYVTFjZaj
-        lfO6iNCSSuaUxdad+d79MsL8KPHxFuoP8KS1k2H7uW4UGRdIyrQQurxpCRUt96U0B6KAf91/V074zOjn
-        +KPoB8GJk4KXvLFaAAAAAElFTkSuQmCC
-</value>
+  <data name="label1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
   <data name="label2.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
