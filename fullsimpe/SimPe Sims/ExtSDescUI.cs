@@ -4741,7 +4741,7 @@ namespace SimPe.PackedFiles.UserInterface
 		
 				miOpenChar.Enabled = System.IO.File.Exists(Sdesc.CharacterFileName) && !Sdesc.IsNPC;
 				miOpenCloth.Enabled = miOpenChar.Enabled;
-				miRelink.Enabled = miOpenChar.Enabled && Helper.WindowsRegistry.HiddenMode;
+				miRelink.Enabled = /*miOpenChar.Enabled &&*/ Helper.WindowsRegistry.HiddenMode;
 
 				if (System.IO.File.Exists(Sdesc.CharacterFileName))
 					miOpenChar.Text = strresources.GetString("miOpenChar.Text")+" ("+System.IO.Path.GetFileNameWithoutExtension(Sdesc.CharacterFileName)+")";

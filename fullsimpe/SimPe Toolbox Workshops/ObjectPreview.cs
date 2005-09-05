@@ -475,8 +475,16 @@ namespace SimPe.Plugin.Tool.Dockable
 		public static Image GetThumbnail(string message, uint inst, SimPe.Packages.File thumbs) 
 		{
 			ArrayList types = new ArrayList();
-			types.Add(0xAC2950C1);
-			types.Add(0xEC3126C4);
+			types.Add(0xAC2950C1); // Objects
+			types.Add(0xEC3126C4); // Terrain
+			/*types.Add(0xCC48C51F); //chimney
+			types.Add(0x2C30E040); //fence Arch
+			types.Add(0xCC30CDF8); //fences
+			types.Add(0x8C311262); //floors
+			types.Add(0x2C43CBD4); //foundtaion / pools
+			types.Add(0xCC44B5EC); //modular Stairs
+			types.Add(0xCC489E46); //roof
+			types.Add(0x8C31125E); //wall*/
 
 			foreach (uint type in types)
 			{

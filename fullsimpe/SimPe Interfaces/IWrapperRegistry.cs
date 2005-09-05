@@ -37,8 +37,10 @@ namespace SimPe.Interfaces
 		/// Registers all listed Wrappers with this Registry
 		/// </summary>
 		/// <param name="wrappers">The Wrappers to register</param>
+		/// <param name="guiwrappers">null, or a List of the same Length as wrappers, 
+		/// with a second Instance of each wrapper</param>
 		/// <remarks>The wrapper must only be added if the Registry doesnt already contain it</remarks>
-		void Register(IWrapper[] wrappers);
+		void Register(IWrapper[] wrappers, IWrapper[] guiwrappers);
 
 		/// <summary>
 		/// Registers all Wrappers supported by the Factory
