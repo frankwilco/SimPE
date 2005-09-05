@@ -39,7 +39,7 @@ namespace SimPe.Interfaces.Plugin
 		public bool Processed 
 		{
 			get { return processed; }
-		}
+		}		
 
 		/// <summary>
 		/// Stores the FileDescriptor
@@ -560,18 +560,35 @@ namespace SimPe.Interfaces.Plugin
 		}
 		#endregion
 
+		IFileWrapper guiwrapper;
+		/// <summary>
+		/// This is used to initialize single Gui Wrappers, in 
+		/// order to not corrupted when ResourceName is called
+		/// </summary>
+		public IFileWrapper SingleGuiWrapper
+		{
+			set { guiwrapper = value; }
+		}
 
 		#region IMultiplePackedFileWrapper Member
+		
+
 		/// <summary>
 		/// Create a new Instance of the Wrapper
 		/// </summary>
 		/// <returns>the new Instance</returns>
 		public virtual IFileWrapper Activate()
 		{
-			if (!this.AllowMultipleInstances) return (IFileWrapper)this;
-
-			SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper me = (SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper)this;
-			return (IFileWrapper)Activator.CreateInstance(this.GetType(), me.GetConstructorArguments());
+			if (!this.AllowMultipleInstances) 
+			{
+				if (guiwrapper==null) guiwrapper = (IFileWrapper)Activator.CreateInstance(this.GetType());
+				return guiwrapper;
+			} 
+			else 
+			{
+				SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper me = (SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper)this;
+				return (IFileWrapper)Activator.CreateInstance(this.GetType(), me.GetConstructorArguments());
+			}
 		}
 
 		/// <summary>

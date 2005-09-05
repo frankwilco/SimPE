@@ -238,11 +238,14 @@ namespace SimPe.Plugin.Tool.Dockable
 				}
 			}												
 
-			//In the second pass we use ObjectXml Resources to load Objects like Walls
-			ProduceByXObj(Data.MetaData.XOBJ);
-			ProduceByXObj(Data.MetaData.XROF);
-			ProduceByXObj(Data.MetaData.XFLR);
-			ProduceByXObj(Data.MetaData.XFNC);
+			if (Helper.WindowsRegistry.HiddenMode) 
+			{
+				//In the second pass we use ObjectXml Resources to load Objects like Walls
+				ProduceByXObj(Data.MetaData.XOBJ);
+				ProduceByXObj(Data.MetaData.XROF);
+				ProduceByXObj(Data.MetaData.XFLR);
+				ProduceByXObj(Data.MetaData.XFNC);
+			}
 		}
 
 		protected override void OnFinish()

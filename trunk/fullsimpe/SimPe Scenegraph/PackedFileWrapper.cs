@@ -54,7 +54,7 @@ namespace SimPe.Plugin
 		private Interfaces.Files.IPackedFileDescriptor[] items;
 
 		/// <summary>
-		/// Returns / Sets the Header
+		/// List of Stored References
 		/// </summary>
 		public Interfaces.Files.IPackedFileDescriptor[] Items 
 		{

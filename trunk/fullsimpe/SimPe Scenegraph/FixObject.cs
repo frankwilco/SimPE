@@ -419,11 +419,15 @@ namespace SimPe.Plugin
 			return RenameForm.Execute(package, uniquename, ref ver);
 		}
 
+		string BuildRefString(Interfaces.Files.IPackedFileDescriptor pfd)
+		{
+			return Helper.HexString(pfd.Group)+Helper.HexString(pfd.Type)+Helper.HexString(pfd.Instance)+Helper.HexString(pfd.SubType);
+		}
+
 		/// <summary>
 		/// Runs the Fix Operation
 		/// </summary>
-		/// <param name="map">the map we have to use for name Replacements</param>
-		
+		/// <param name="map">the map we have to use for name Replacements</param>		
 		/// <param name="uniquefamily">change the family values in the MMAT Files</param>
 		public void Fix(Hashtable map, bool uniquefamily)
 		{
@@ -431,6 +435,7 @@ namespace SimPe.Plugin
 			
 
 			Hashtable refmap = new Hashtable();
+			Hashtable completerefmap = new Hashtable();
 
 			WaitingScreen.UpdateMessage("Fixing Names");
 			FixNames(map);
@@ -439,6 +444,7 @@ namespace SimPe.Plugin
 			{
 				Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(type);
 
+				//build a List of RefItems
 				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{
 					SimPe.Plugin.Rcol rcol = new GenericRcol(null, false);
@@ -450,10 +456,10 @@ namespace SimPe.Plugin
 
 					foreach (Interfaces.Files.IPackedFileDescriptor rpfd in rcol.ReferencedFiles) 
 					{
-						string refstr = Helper.HexString(rpfd.Group)+Helper.HexString(rpfd.Type)+Helper.HexString(rpfd.Instance)+Helper.HexString(rpfd.SubType);
+						string refstr = BuildRefString(rpfd);
 						if (!refmap.Contains(refstr)) refmap.Add(refstr, null);
 					}
-					rcol.SynchronizeUserData();
+					//rcol.SynchronizeUserData();
 				}
 			}
 
@@ -465,7 +471,7 @@ namespace SimPe.Plugin
 
 				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{
-					string refstr = Helper.HexString(pfd.Group)+Helper.HexString(pfd.Type)+Helper.HexString(pfd.Instance)+Helper.HexString(pfd.SubType);
+					string refstr = BuildRefString(pfd);
 					SimPe.Plugin.Rcol rcol = new GenericRcol(null, false);
 					rcol.ProcessData(pfd, package);
 
@@ -474,6 +480,7 @@ namespace SimPe.Plugin
 					rcol.FileDescriptor.SubType = Hashes.SubTypeHash(Hashes.StripHashFromName(rcol.FileName));
 
 					if (refmap.Contains(refstr)) refmap[refstr] = rcol.FileDescriptor;
+					completerefmap[refstr] = rcol.FileDescriptor;
 				}
 			}
 
@@ -519,6 +526,10 @@ namespace SimPe.Plugin
 					rcol.SynchronizeUserData();
 				}
 			}
+
+			//Make sure XObjects and Skins get Fixed Too
+			FixXObject(map, completerefmap, grouphash);
+			FixSkin(map, completerefmap, grouphash);
 
 			//Now Fix the MMAT
 			WaitingScreen.UpdateMessage("Udating Material Overrides");
@@ -647,5 +658,103 @@ namespace SimPe.Plugin
 				}
 			}
 		}
+
+		#region Fix Skins
+		void FixCpfProperties(SimPe.PackedFiles.Wrapper.Cpf cpf, string[] props, Hashtable namemap, string prefix, string sufix)
+		{
+			foreach (string p in props)
+			{
+				SimPe.PackedFiles.Wrapper.CpfItem item = cpf.GetItem(p);
+				if (item==null) continue;
+
+				string name = Hashes.StripHashFromName(item.StringValue.Trim().ToLower());
+				if (!name.EndsWith(sufix)) name+=sufix;
+				string newname = (string)namemap[name];
+
+				if (newname!=null) 
+				{
+					if (newname.EndsWith(sufix)) newname = newname.Substring(0, newname.Length-sufix.Length);
+					item.StringValue = prefix+newname;
+				}
+			}
+		}
+
+		void FixCpfProperties(SimPe.PackedFiles.Wrapper.Cpf cpf, string[] props, uint val)
+		{
+			foreach (string p in props)
+			{
+				SimPe.PackedFiles.Wrapper.CpfItem item = cpf.GetItem(p);
+				if (item==null) continue;
+
+				item.UIntegerValue = val;
+			}
+		}
+
+		protected void FixSkin(Hashtable namemap, Hashtable refmap, string grphash)
+		{
+			SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
+			Random rnd = new Random();
+
+			//set list of critical types
+			uint[] types = new uint[]{Data.MetaData.XOBJ, Data.MetaData.XFLR, Data.MetaData.XFNC, Data.MetaData.XROF};
+			string[] txtr_props = new string[] {"textureedges", "texturetop", "texturetopbump", "texturetrim", "textureunder", "texturetname", "texturetname" };
+			string[] txmt_props = new string[] {"material", "diagrail", "post", "rail"};
+			string[] cres_props = new string[] {"diagrail", "post", "rail"};
+			string[] groups = new string[] {"stringsetgroupid", "resourcegroupid"};
+			string[] guids = new string[] {"guid"};
+
+			//now fix the texture References in those Resources
+			foreach (uint t in types)
+			{
+				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(t);
+				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+				{
+					cpf.ProcessData(pfd, package);
+
+					FixCpfProperties(cpf, txtr_props, namemap, grphash, "_txtr");
+					FixCpfProperties(cpf, txmt_props, namemap, grphash, "_txmt");
+					FixCpfProperties(cpf, cres_props, namemap, grphash, "_cres");
+
+					FixCpfProperties(cpf, groups, Data.MetaData.LOCAL_GROUP);
+					FixCpfProperties(cpf, guids, (uint)(((uint)rnd.Next() & 0x00ffffff) | 0xfb000000));
+					
+					cpf.SynchronizeUserData();
+				}
+			}
+		}
+		#endregion
+
+		#region Fix Xml Based Objects
+		protected void FixXObject(Hashtable namemap, Hashtable refmap, string grphash)
+		{
+			//set list of critical types
+			uint[] types = new uint[]{Data.MetaData.REF_FILE};
+			
+			SimPe.Plugin.RefFile fl = new RefFile();
+
+			//now fix the texture References in those Resources
+			foreach (uint t in types)
+			{
+				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(t);
+				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+				{
+					fl.ProcessData(pfd, package);
+
+					foreach (SimPe.Packages.PackedFileDescriptor rfi in fl.Items)
+					{
+						string name = this.BuildRefString(rfi);
+						SimPe.Interfaces.Files.IPackedFileDescriptor npfd = (SimPe.Interfaces.Files.IPackedFileDescriptor)refmap[name];
+						if (npfd!=null)
+						{
+							rfi.Group = npfd.Group;
+							rfi.LongInstance = npfd.LongInstance;
+						}
+					}
+
+					fl.SynchronizeUserData();
+				}
+			}
+		}
+		#endregion
 	}
 }

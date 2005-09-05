@@ -116,10 +116,23 @@ namespace SimPe.PackedFiles
 				}
 		}
 
-		public void Register(IWrapper[] wrappers)
+		public void Register(IWrapper[] wrappers, IWrapper[] guiwrappers)
 		{
-			if (wrappers!=null)
+			if (wrappers!=null && guiwrappers==null)
 				foreach (IWrapper wrapper in wrappers) Register(wrapper);
+			else if (wrappers!=null && guiwrappers!=null) 
+			{
+				for (int i=0; i<wrappers.Length; i++) 
+				{
+					IWrapper wrapper = wrappers[i];
+					//make sure whe have two instances of each Wrapper otherwise, 
+					//AbstractWrapper.ResoureceName could corrupt a open Resource
+					if (wrapper.AllowMultipleInstances && wrapper is AbstractWrapper) 					
+						((AbstractWrapper)wrapper).SingleGuiWrapper = (IFileWrapper)guiwrappers[i];
+					
+					Register(wrapper);Register(wrapper);
+				}
+			}
 		}
 
 		/// <summary>
@@ -131,7 +144,7 @@ namespace SimPe.PackedFiles
 		{
 			factory.LinkedRegistry = this;
 			factory.LinkedProvider = this;
-			Register(factory.KnownWrappers);
+			Register(factory.KnownWrappers, factory.KnownWrappers);
 		}
 
 		public IWrapper[] Wrappers

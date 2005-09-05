@@ -158,14 +158,16 @@ namespace SimPe.PackedFiles.Wrapper
 			for (int i=0; i<ct; i++) 
 			{
 				try 
-				{
+				{					
 					GroupCacheItem gci = new GroupCacheItem();
 					gci.Unserialize(reader);
 					Add(gci);
 				} 
 				catch (Exception ex) 
 				{
+#if DEBUG
 					Helper.ExceptionMessage("", ex);
+#endif
 				}
 			}
 
