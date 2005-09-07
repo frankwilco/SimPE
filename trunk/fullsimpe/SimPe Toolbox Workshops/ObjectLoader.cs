@@ -276,57 +276,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		void SetFunctionSortForXObj(SimPe.PackedFiles.Wrapper.Cpf cpf, SimPe.Cache.ObjectCacheItem oci)
 		{
-			string type = cpf.GetSaveItem("type").StringValue.Trim().ToLower();
-			switch (type) 
-			{
-				case "wall" : 
-				{
-					string stype = cpf.GetSaveItem("subsort").StringValue.Trim().ToLower();
-					if (stype=="brick") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Brick;
-					else if (stype=="masonry") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Masonry;					
-					else if (stype=="paint") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Paint;
-					else if (stype=="paneling") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Paneling;
-					else if (stype=="poured") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Poured;
-					else if (stype=="siding") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Siding;
-					else if (stype=="tile") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Tile;
-					else if (stype=="wallpaper") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Wallpaper;
-					else oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Wall_Other;
-					break;
-				}
-				case "terrainpaint":
-				{
-					oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Terrain;
-					break;
-				}
-				case "floor" : 
-				{
-					string stype = cpf.GetSaveItem("subsort").StringValue.Trim().ToLower();
-					if (stype=="brick") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Brick;
-					else if (stype=="carpet") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Carpet;
-					else if (stype=="lino") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Lino;					
-					else if (stype=="poured") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Poured;
-					else if (stype=="stone") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Stone;
-					else if (stype=="tile") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Tile;
-					else if (stype=="wood") oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Wood;
-					else oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Floor_Other;
-					break;
-				}
-				case "roof" : 
-				{
-					oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Roof;
-					break;
-				}					
-				case "fence" : 
-				{
-					oci.ObjectFunctionSort = (uint)Data.XObjFunctionSubSort.Fence;
-					break;
-				}
-				default :
-				{
-					oci.ObjectFunctionSort = 0;
-					break;
-				}
-			}
+			oci.ObjectFunctionSort = (uint)ObjectPreview.GetFunctionSort(cpf);			
 		}
 
 		void ConsumeFromXobj(SimPe.Cache.ObjectCacheItem oci, Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem)
@@ -378,6 +328,9 @@ namespace SimPe.Plugin.Tool.Dockable
 			
 			//oci.Name = cpf.GetSaveItem("type").StringValue + " - "+ cpf.GetSaveItem("subsort").StringValue;
 
+
+			if (oci.Thumbnail==null) 
+				oci.Thumbnail = ObjectPreview.GetXThumbnail(cpf);
 			ObjectReader.changedcache = true;
 		}
 

@@ -148,6 +148,7 @@ namespace SimPe.Wizards
 				this.CurrentStep.Client.Visible = true;
 				return false;
 			}
+			int lastnr = cur;
 			if (nr>=cur) 
 			{
 				for (int i=cur+1; i<=nr; i++) 
@@ -187,7 +188,7 @@ namespace SimPe.Wizards
 			this.FinishEnabled = e.CanFinish;
 		
 		((WizardStepPanel)Controls[nr]).OnShowed(this);
-			if (ShowedStep!=null) ShowedStep(this);
+			if (ShowedStep!=null) ShowedStep(this, lastnr);
 			return true;
 		}
 
@@ -231,7 +232,7 @@ namespace SimPe.Wizards
 
 		public event SimPe.Wizards.WizardChangeHandle ShowStep;
 
-		public event SimPe.Wizards.WizardHandle ShowedStep;
+		public event SimPe.Wizards.WizardShowedHandle ShowedStep;
 
 		public event SimPe.Wizards.WizardHandle ChangedNextState;
 
@@ -291,7 +292,7 @@ namespace SimPe.Wizards
 			iws.Dock = DockStyle.Fill;			
 			iws.Last = true;
 			iws.First = (Controls.Count==0);
-			iws.Visible = false;						
+			iws.Visible = true;						
 		}
 
 		private void Wizard_ControlRemoved(object sender, ControlEventArgs e)

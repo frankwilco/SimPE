@@ -41,6 +41,7 @@ namespace SimPe.Plugin
 		bool updateguid;
 		bool exception;
 		bool loadanim;
+		bool keepmesh;
 		BaseResourceType use3idr;
 
 		/// <summary>
@@ -50,6 +51,15 @@ namespace SimPe.Plugin
 		{
 			get { return use3idr; }
 			set { use3idr = value; }
+		}
+
+		/// <summary>
+		/// true, if you do not want to include the Mesh Data into the package
+		/// </summary>
+		public bool KeepOriginalMesh
+		{
+			get { return keepmesh; }
+			set { keepmesh = value; }
 		}
 
 		/// <summary>
@@ -107,6 +117,7 @@ namespace SimPe.Plugin
 			updateguid = true;
 			onlydefault = true;
 			loadanim = false;
+			keepmesh = false;
 			use3idr = BaseResourceType.Objd;
 		}
 	}
@@ -353,7 +364,7 @@ namespace SimPe.Plugin
 
 			SimPe.FileTable.FileIndex.Load();
 			WaitingScreen.UpdateMessage("Walking Scenegraph");
-			Scenegraph sg = new Scenegraph(modelnames, exclude);
+			Scenegraph sg = new Scenegraph(modelnames, exclude, this.setup);
 			if ((Setup.BaseResource & CloneSettings.BaseResourceType.Ref) == CloneSettings.BaseResourceType.Ref) 
 			{
 				WaitingScreen.UpdateMessage("Reading 3IDR References");

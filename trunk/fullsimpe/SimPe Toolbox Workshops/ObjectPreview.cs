@@ -10,7 +10,7 @@ namespace SimPe.Plugin.Tool.Dockable
 	/// <summary>
 	/// Component to display Details about a passed Object
 	/// </summary>
-	public class ObjectPreview : System.Windows.Forms.UserControl
+	public class SimpleObjectPreview : System.Windows.Forms.UserControl
 	{
 		/// <summary>
 		/// Known Expansions
@@ -28,19 +28,19 @@ namespace SimPe.Plugin.Tool.Dockable
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label lbName;
-		private System.Windows.Forms.Label lbPrice;
-		private System.Windows.Forms.PictureBox pb;
-		private System.Windows.Forms.Label lbAbout;
-		private TD.SandBar.FlatComboBox cbCat;
+		protected System.Windows.Forms.Label lbName;
+		protected System.Windows.Forms.Label lbPrice;
+		protected System.Windows.Forms.PictureBox pb;
+		protected System.Windows.Forms.Label lbAbout;
+		protected TD.SandBar.FlatComboBox cbCat;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label lbExpansion;
+		protected System.Windows.Forms.Label lbExpansion;
 		/// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		public ObjectPreview()
+		public SimpleObjectPreview()
 		{
 			SetStyle(
 				ControlStyles.SupportsTransparentBackColor |
@@ -373,7 +373,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		#endregion
 
 		#region Public Properties
-		SimPe.PackedFiles.Wrapper.ExtObjd objd;
+		protected SimPe.PackedFiles.Wrapper.ExtObjd objd;
 		[Browsable(false)]
 		public SimPe.PackedFiles.Wrapper.ExtObjd SelectedObject 
 		{
@@ -396,9 +396,27 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 
 		[Browsable(false)]
-		public bool Loaded
+		public virtual bool Loaded
 		{
 			get { return objd!=null; }
+		}
+
+		[Browsable(false)]
+		public string Title
+		{
+			get { return this.lbName.Text; }
+		}
+
+		[Browsable(false)]
+		public string Description
+		{
+			get { return this.lbAbout.Text; }
+		}
+
+		[Browsable(false)]
+		public short Price
+		{
+			get { return Helper.StringToInt16(this.lbPrice.Text.Replace(" $", ""), 0, 10); }
 		}
 		#endregion
 
@@ -443,12 +461,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				thumbs.Persistent = true;
 			}
 
-			Image img = GetThumbnail(group, modelname, message, thumbs);
-			if (img==null) 
-			{
-				SimPe.Packages.File pkg =  SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Thumbnails\\BuildModeThumbnails.package"));
-				img = GetThumbnail(group, modelname, message, pkg);
-			}
+			Image img = GetThumbnail(group, modelname, message, thumbs);	
 			return img;
 		}
 		/// <summary>
@@ -460,24 +473,36 @@ namespace SimPe.Plugin.Tool.Dockable
 		public static Image GetThumbnail(uint group, string modelname, string message, SimPe.Packages.File thumbs) 
 		{
 			uint inst = ThumbnailHash(group, modelname);
-			Image img = GetThumbnail(message, inst, thumbs);
- 
-			if (img==null) img = GetThumbnail(message, Hashes.GetCrc32(Hashes.StripHashFromName(modelname.Trim().ToLower())), thumbs);
+			Image img = GetThumbnail(message, new uint[] { 0xAC2950C1}, inst, thumbs);
+ 	
+			//if (img==null) img = GetThumbnail(message, new uint[] { 0xAC2950C1}, Hashes.GetCrc32(Hashes.StripHashFromName(modelname.Trim().ToLower())), thumbs);
 
 			return img;
 		}
+		
 		/// <summary>
 		/// Returns the Thumbnail of an Object
 		/// </summary>
 		/// <param name="group"></param>
 		/// <param name="modelname"></param>
 		/// <returns>The Thumbnail</returns>
-		public static Image GetThumbnail(string message, uint inst, SimPe.Packages.File thumbs) 
+		public static Image GetThumbnail(string message, uint type, uint inst, SimPe.Packages.File thumbs) 
 		{
-			ArrayList types = new ArrayList();
+			return GetThumbnail(message, new uint[] { type }, inst, thumbs);
+		}
+
+		/// <summary>
+		/// Returns the Thumbnail of an Object
+		/// </summary>
+		/// <param name="group"></param>
+		/// <param name="modelname"></param>
+		/// <returns>The Thumbnail</returns>
+		public static Image GetThumbnail(string message, uint[] types, uint inst, SimPe.Packages.File thumbs) 
+		{
+			/*ArrayList types = new ArrayList();
 			types.Add(0xAC2950C1); // Objects
 			types.Add(0xEC3126C4); // Terrain
-			/*types.Add(0xCC48C51F); //chimney
+			types.Add(0xCC48C51F); //chimney
 			types.Add(0x2C30E040); //fence Arch
 			types.Add(0xCC30CDF8); //fences
 			types.Add(0x8C311262); //floors
@@ -578,7 +603,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			}
 		}
 
-		public void SetFromObjectCacheItem(SimPe.Cache.ObjectCacheItem oci)
+		public virtual void SetFromObjectCacheItem(SimPe.Cache.ObjectCacheItem oci)
 		{
 			if (oci==null) 
 			{
@@ -587,27 +612,13 @@ namespace SimPe.Plugin.Tool.Dockable
 				return;
 			}
 
+			objd = null;
+			if (oci.Tag!=null)
 			if (oci.Tag is SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem) 
 			{
 				objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
-				if (oci.Class == SimPe.Cache.ObjectClass.Object) 
-					objd.ProcessData((SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)oci.Tag);
-				else 
-				{
-					SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
-					cpf.ProcessData((SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)oci.Tag);
-					
-					objd.FileDescriptor = cpf.FileDescriptor.Clone();
-					objd.FileDescriptor.Type = 0xffffffff;
-					objd.FileDescriptor.Group = cpf.GetSaveItem("stringsetgroupid").UIntegerValue;;
-					objd.Package = cpf.Package;
-					objd.Guid = cpf.GetSaveItem("guid").UIntegerValue;
-					objd.Price = (short)cpf.GetSaveItem("cost").UIntegerValue;
-					objd.FunctionSubSort = (SimPe.Data.ObjFunctionSubSort)oci.ObjectFunctionSort;
-					objd.CTSSInstance = (ushort)cpf.GetSaveItem("stringsetrestypeid").UIntegerValue;
-				}
-			} 
-			else objd = null;
+				objd.ProcessData((SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem)oci.Tag);
+			} 			
 		
 
 			UpdateScreen();			
@@ -616,7 +627,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			lbName.Text = oci.Name;					
 		}
 
-		public void SetFromPackage(SimPe.Interfaces.Files.IPackageFile pkg)
+		public virtual void SetFromPackage(SimPe.Interfaces.Files.IPackageFile pkg)
 		{
 			
 			if (pkg==null) 
@@ -645,6 +656,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbCat.Items.Clear();
 		}
 
+		
+
 		public void UpdateScreen()
 		{
 			ClearScreen();
@@ -666,10 +679,8 @@ namespace SimPe.Plugin.Tool.Dockable
 				pb.Image =  GenerateImage(pb.Size, GetThumbnail(objd.FileDescriptor.Group, mn[0]), true);
 			}
 			else pb.Image = null;
-			if (objd.FileDescriptor.Type!=0xffffffff) 
-				SetupCategories(SimPe.Cache.ObjectCacheItem.GetCategory(SimPe.Cache.ObjectCacheItemVersions.DockableOW, objd.FunctionSubSort, objd.Type, SimPe.Cache.ObjectClass.Object));
-			else
-				SetupCategories(SimPe.Cache.ObjectCacheItem.GetCategory(SimPe.Cache.ObjectCacheItemVersions.DockableOW, objd.FunctionSubSort, objd.Type, SimPe.Cache.ObjectClass.XObject));
+			
+			SetupCategories(SimPe.Cache.ObjectCacheItem.GetCategory(SimPe.Cache.ObjectCacheItemVersions.DockableOW, objd.FunctionSubSort, objd.Type, SimPe.Cache.ObjectClass.Object));							
 
 			SimPe.PackedFiles.Wrapper.StrItemList strs = GetCtssItems();
 			if (strs!=null) 
@@ -705,27 +716,33 @@ namespace SimPe.Plugin.Tool.Dockable
 			return refname;
 		}
 
-		protected SimPe.PackedFiles.Wrapper.StrItemList GetCtssItems()
+		protected virtual SimPe.PackedFiles.Wrapper.StrItemList GetCtssItems(Interfaces.Files.IPackedFileDescriptor ctss, SimPe.Interfaces.Files.IPackageFile pkg) 
+		{
+			if (ctss!= null) 
+			{
+				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+				str.ProcessData(ctss, pkg);
+
+				return str.LanguageItems(Helper.WindowsRegistry.LanguageCode);
+				
+			} 
+
+			return null;
+		}
+
+		protected virtual SimPe.PackedFiles.Wrapper.StrItemList GetCtssItems()
 		{
 			if (objd==null) return null;
 			if (objd.Package == null) return null;
 			if (objd.FileDescriptor == null) return null;
 
 			//Get the Name of the Object
-			Interfaces.Files.IPackedFileDescriptor ctss = objd.Package.FindFile(Data.MetaData.CTSS_FILE, 0, objd.FileDescriptor.Group, objd.CTSSInstance);
-			if (ctss==null) ctss = objd.Package.FindFile(Data.MetaData.STRING_FILE, 0, objd.FileDescriptor.Group, objd.CTSSInstance);
-			if (ctss!= null) 
-			{
-				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
-				str.ProcessData(ctss, objd.Package);
-
-				return str.LanguageItems(Helper.WindowsRegistry.LanguageCode);
-				
-			} 
-			return null;
+			Interfaces.Files.IPackedFileDescriptor ctss = objd.Package.FindFile(Data.MetaData.CTSS_FILE, 0, objd.FileDescriptor.Group, objd.CTSSInstance);			
+			
+			return GetCtssItems(ctss, objd.Package);
 		}
 
-		Image defimg;
+		protected Image defimg;
 		protected void BuildDefaultImage()
 		{
 			defimg = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.Tool.Dockable.demo.png"));

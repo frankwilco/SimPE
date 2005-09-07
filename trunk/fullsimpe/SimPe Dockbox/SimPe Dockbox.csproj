@@ -176,12 +176,17 @@
                 />
                 <Reference
                     Name = "sandbar"
-                    AssemblyName = "sandbar"
+                    AssemblyName = "SandBar"
                     HintPath = "..\..\..\divelements\sandbar\sandbar.dll"
                 />
                 <Reference
                     Name = "GraphControl"
                     Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe Clst"
+                    Project = "{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
