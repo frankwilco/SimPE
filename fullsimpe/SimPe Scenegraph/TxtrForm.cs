@@ -356,6 +356,7 @@ namespace SimPe.Plugin
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.AutoScroll = true;
+			this.panel1.AutoScrollMinSize = new System.Drawing.Size(24, 24);
 			this.panel1.Controls.Add(this.label7);
 			this.panel1.Controls.Add(this.pb);
 			this.panel1.Location = new System.Drawing.Point(432, 32);
@@ -1368,6 +1369,7 @@ namespace SimPe.Plugin
 
 			ImageData id = SelectedImageData();
 			LoadDDS(dds.Execute(Convert.ToInt32(this.tblevel.Text), id.TextureSize, id.Format));
+			id.Refresh();
 		}
 	}
 }

@@ -349,6 +349,7 @@ namespace SimPe
 			// 
 			this.dcPlugin.AccessibleDescription = resources.GetString("dcPlugin.AccessibleDescription");
 			this.dcPlugin.AccessibleName = resources.GetString("dcPlugin.AccessibleName");
+			this.dcPlugin.AllowClose = false;
 			this.dcPlugin.AllowDockCenter = true;
 			this.dcPlugin.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dcPlugin.Anchor")));
 			this.dcPlugin.AutoScroll = ((bool)(resources.GetObject("dcPlugin.AutoScroll")));

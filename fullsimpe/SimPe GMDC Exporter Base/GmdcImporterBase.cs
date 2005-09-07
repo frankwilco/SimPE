@@ -35,7 +35,7 @@ namespace SimPe.Plugin.Gmdc
 		{
 			V = GetAlias(alias.V, v);
 			VN = GetAlias(alias.VN, vn);
-			VU = GetAlias(alias.VN, vu);			
+			VU = GetAlias(alias.VU, vu);			
 		}
 
 		int GetAlias(Hashtable alias, int index)
@@ -263,9 +263,12 @@ namespace SimPe.Plugin.Gmdc
 					int c = g.Elements[0].Values.Count;
 					if (o==null) 
 					{
-						if (fc.V>=0) AddElement(g, 0, vertices[fc.V]);
-						if (fc.VN>=0 && fc.VN<normals.Count) AddElement(g, 1, normals[fc.VN]);
-						if (fc.VU>=0 && fc.VU<uvmaps.Count) AddElement(g, 2, uvmaps[fc.VU]);
+						if (fc.V>=0) 
+						{
+							AddElement(g, 0, vertices[fc.V]);
+							/*if (fc.VN>=0 && fc.VN<normals.Count)*/ AddElement(g, 1, normals[fc.VN]);
+							/*if (fc.VU>=0 && fc.VU<uvmaps.Count)*/ AddElement(g, 2, uvmaps[fc.VU]);
+						}
 						
 						facealias[fc] = c;						
 					} 
@@ -279,6 +282,7 @@ namespace SimPe.Plugin.Gmdc
 				} 
 				catch (Exception ex)
 				{
+					FaceSetCompare ft = new FaceSetCompare(alias, f.Data[0], f.Data[2], f.Data[1]);
 					Helper.ExceptionMessage(ex);
 					return;
 				}

@@ -1642,12 +1642,16 @@ namespace SimPe.Plugin.Tool.Dockable
 					cbclean.Enabled = false;
 					cbdefault.Enabled = false;
 					cbparent.Enabled = false;
+					
+					cbTask.SelectedIndex = 1;
+					cbTask.Enabled = false;
 				} 
 				else 
 				{
 					cbclean.Enabled = true;
 					cbdefault.Enabled = true;
 					cbparent.Enabled = true;
+					cbTask.Enabled = true;
 				}
 			}
 		}

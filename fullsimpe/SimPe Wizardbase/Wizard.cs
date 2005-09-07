@@ -178,6 +178,7 @@ namespace SimPe.Wizards
 			if (ShowStep!=null) ShowStep(this, e);
 			if (e.Cancel) return false;
 
+			foreach (Control c in Controls) c.Visible = false;
 			this.CurrentStep.Client.Visible = false;
 			this.cur = nr;
 			this.CurrentStep.Client.Visible = true;
@@ -290,7 +291,7 @@ namespace SimPe.Wizards
 			iws.Dock = DockStyle.Fill;			
 			iws.Last = true;
 			iws.First = (Controls.Count==0);
-			iws.Visible = true;						
+			iws.Visible = false;						
 		}
 
 		private void Wizard_ControlRemoved(object sender, ControlEventArgs e)

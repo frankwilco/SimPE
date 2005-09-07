@@ -490,7 +490,11 @@ namespace SimPe
 					if (wrp.FileDescriptor!=null) 
 						if (wrp.FileDescriptor.MarkForDelete) mbb = MessageBoxButtons.YesNo;
 
-					string flname = wrapper.Package.FileName;
+					string flname = null;
+					if (wrapper!=null)
+						if (wrapper.Package!=null) 
+							flname=wrapper.Package.FileName;
+
 					if (flname==null) flname = SimPe.Localization.Manager.GetString("unknown");
 					DialogResult dr = SimPe.Message.Show(
 						SimPe.Localization.Manager.GetString("savewrapperchanges").Replace("{name}", wrapper.ResourceName).Replace("{filename}", flname), 
