@@ -24,7 +24,7 @@ namespace SimPe.Packages
 	/// <summary>
 	/// Index Informations stored in the Header
 	/// </summary>
-	public class HeaderIndex : HeaderHole, SimPe.Interfaces.Files.IPackageHeaderIndex
+	public class HeaderIndex : HeaderHole, SimPe.Interfaces.Files.IPackageHeaderIndex, System.IDisposable
 	{
 		/// <summary>
 		/// IndexType of the File
@@ -46,6 +46,11 @@ namespace SimPe.Packages
 				type = value; 
 			}
 		}		
+
+		public virtual void Dispose()
+		{
+			
+		}
 	}
 
 }

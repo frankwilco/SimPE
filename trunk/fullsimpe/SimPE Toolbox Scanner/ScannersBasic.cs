@@ -454,6 +454,8 @@ namespace SimPe.Plugin.Scanner
 						si.PackageCacheItem.Thumbnail = ImageLoader.Preview(mm.Texture, sz);
 						ps.State = TriState.True;
 					}
+
+					rcol.Dispose();
 				}
 			}
 
@@ -669,7 +671,7 @@ namespace SimPe.Plugin.Scanner
 		public void ScanPackage(ScannerItem si, SimPe.Cache.PackageState ps, System.Windows.Forms.ListViewItem lvi)
 		{			
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = si.Package.FindFiles(Data.MetaData.MMAT);
-			ArrayList list = new ArrayList();
+			//ArrayList list = new ArrayList();
 
 			ps.State = TriState.True;
 			FileTable.FileIndex.StoreCurrentState();
@@ -686,6 +688,10 @@ namespace SimPe.Plugin.Scanner
 				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(m, Data.MetaData.CRES, Data.MetaData.LOCAL_GROUP, true);				
 
 				if (item==null) ps.State = TriState.False;
+
+				item = null;
+				mmat.Dispose();
+				m = null;
 			}		
 			FileTable.FileIndex.RestoreLastState();	
 

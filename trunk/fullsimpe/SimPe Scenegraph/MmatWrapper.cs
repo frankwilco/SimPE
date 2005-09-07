@@ -278,6 +278,6 @@ namespace SimPe.Plugin
 			get { return this.GetSaveItem("subsetName").StringValue; }
 			set { this.GetSaveItem("subsetName").StringValue = value; }
 		}
-		#endregion
+		#endregion		
 	}
 }

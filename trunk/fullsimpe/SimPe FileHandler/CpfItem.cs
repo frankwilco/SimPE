@@ -25,7 +25,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// An Item stored in a CPF File
 	/// </summary>
-	public class CpfItem {
+	public class CpfItem : System.IDisposable {
 		/// <summary>
 		/// Constructor
 		/// </summary>
@@ -518,5 +518,13 @@ namespace SimPe.PackedFiles.Wrapper
 					return ret;
 		}
 
+		public void Dispose()
+		{
+			this.val = new byte[0];
+			this.val= null;
+			this.name = new byte[0];
+			this.name = null;
+
+		}
 	}
 }

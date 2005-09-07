@@ -26,7 +26,7 @@ namespace SimPe.Packages
 	/// <summary>
 	/// Structural Data of a .package Header
 	/// </summary>
-	public class HeaderData : Interfaces.Files.IPackageHeader
+	public class HeaderData : Interfaces.Files.IPackageHeader, System.IDisposable
 	{
 		/// <summary>
 		/// Constructor for the class
@@ -322,6 +322,19 @@ namespace SimPe.Packages
 
 			for (uint i=0; i<this.reserved_02.Length; i++) writer.Write(this.reserved_02[i]);
 		}
+		#endregion
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			this.hole = null;
+			this.index = null;
+			this.reserved_00 = null;
+			this.reserved_02 = null;
+			this.id = null;
+		}
+
 		#endregion
 	}
 }

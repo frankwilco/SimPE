@@ -642,7 +642,14 @@ namespace SimPe.Packages
 		public void Dispose()
 		{
 			this.userdata = null;
-			this.filename = null;			
+			this.filename = null;
+			this.path = null;
+		
+			this.ChangedData = null;
+			this.ChangedUserData = null;
+			this.Closed = null;
+			this.Deleted = null;
+			this.DescriptionChanged = null;			
 		}
 
 		#endregion

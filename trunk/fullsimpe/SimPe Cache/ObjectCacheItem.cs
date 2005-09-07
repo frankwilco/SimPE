@@ -346,7 +346,7 @@ namespace SimPe.Cache
 				byte[] data = reader.ReadBytes(size);
 				MemoryStream ms = new MemoryStream(data);
 
-				thumb = Image.FromStream(ms);				
+				thumb = Image.FromStream(ms);								
 			}
 
 			objtype = (Data.ObjectTypes)reader.ReadUInt16();
@@ -391,7 +391,8 @@ namespace SimPe.Cache
 					thumb.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
 					byte[] data = ms.ToArray();
 					writer.Write(data.Length);
-					writer.Write(data);					
+					writer.Write(data);			
+					ms.Close();
 				} 
 				catch 
 				{
