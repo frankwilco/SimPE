@@ -279,7 +279,7 @@ namespace SimPe.Plugin
 						} 
 						if (secname=="")
 							secname = newname.Replace(old, username);
-						if ((secname==newname) && (old!=username.Trim().ToLower())) secname = username+"__"+secname;
+						if ((secname==newname) && (old!=username.Trim().ToLower())) secname = username+"-"+secname;
 						newname = secname;						
 					}
 

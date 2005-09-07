@@ -863,8 +863,12 @@ namespace SimPe.Plugin
 		private void FixTGI(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			string fl = Hashes.StripHashFromName(this.tbflname.Text);
-			wrapper.FileDescriptor.Instance = Hashes.InstanceHash(fl);
-			wrapper.FileDescriptor.SubType = Hashes.SubTypeHash(fl);
+			if (wrapper!=null)
+				if (wrapper.FileDescriptor!=null) 
+				{
+					wrapper.FileDescriptor.Instance = Hashes.InstanceHash(fl);
+					wrapper.FileDescriptor.SubType = Hashes.SubTypeHash(fl);
+				}
 		}
 
 		private void Commit(object sender, System.EventArgs e)

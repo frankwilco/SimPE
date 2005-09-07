@@ -309,7 +309,9 @@ namespace SimPe.Plugin.Tool.Dockable
 		{			
 			SimPe.Packages.GeneratableFile package = pkg;
 			SimPe.Plugin.CloneSettings.BaseResourceType br = SimPe.Plugin.CloneSettings.BaseResourceType.Objd;
-			if (pfd.Type!=Data.MetaData.OBJD_FILE) br = SimPe.Plugin.CloneSettings.BaseResourceType.Xml;
+			if (pfd!=null) 
+				if (pfd.Type!=Data.MetaData.OBJD_FILE) 
+					br = SimPe.Plugin.CloneSettings.BaseResourceType.Xml;
 			if (settings is OWCloneSettings) 
 			{
 				OWCloneSettings cs = (OWCloneSettings)settings;				

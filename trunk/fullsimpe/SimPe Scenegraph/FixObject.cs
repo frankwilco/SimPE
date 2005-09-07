@@ -407,6 +407,10 @@ namespace SimPe.Plugin
 				}
 				
 			}
+
+			//is this a Fence package? If so, do special FenceFixes
+			if (package.FindFiles(Data.MetaData.XFNC).Length>0)
+				this.FixFence();
 		}
 
 		/// <summary>
@@ -690,6 +694,94 @@ namespace SimPe.Plugin
 			}
 		}
 
+		SimPe.PackedFiles.Wrapper.CpfItem FixCpfProperties(SimPe.PackedFiles.Wrapper.Cpf cpf, string prop, uint val)
+		{
+			SimPe.PackedFiles.Wrapper.CpfItem item = cpf.GetItem(prop);
+			if (item==null) return null;
+
+			item.UIntegerValue = val;
+			return item;
+		}
+
+		void FixFence()
+		{
+			Hashtable shpnamemap = new Hashtable();
+			GenericRcol rcol = new GenericRcol();
+			uint[] types = new uint[]{Data.MetaData.SHPE, Data.MetaData.CRES};
+			
+			//now fix the texture References in those Resources
+			foreach (uint t in types)
+			{
+				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(t);				
+								
+				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+				{								
+
+					//fix the references to the SHPE Resources, to mirror the fact 
+					//that they are in the Global Group now
+					if (t==Data.MetaData.CRES || t==Data.MetaData.GMND) 
+					{		
+						rcol.ProcessData(pfd, package);
+
+						string shpname = null;
+
+						if (t==Data.MetaData.CRES) 
+						{
+							SimPe.Plugin.ResourceNode rn = (SimPe.Plugin.ResourceNode)rcol.Blocks[0];
+							rn.GraphNode.FileName = Hashes.StripHashFromName(rn.GraphNode.FileName);
+
+							//generate the name for the connected SHPE Resource
+							foreach (SimPe.Interfaces.Scenegraph.IRcolBlock irb in rcol.Blocks)
+							{
+								if (irb is SimPe.Plugin.ShapeRefNode) 
+								{
+									ShapeRefNode srn = (ShapeRefNode)irb;
+									shpname = rcol.FileName.Trim().ToLower().Replace("_cres", "").Replace("_", "").Trim();
+									srn.StoredTransformNode.ObjectGraphNode.FileName = shpname;
+									shpname = rcol.FileName.Replace("_cres", "").Trim()+"_"+shpname+"_shpe";
+								}
+							}
+						} 
+						else if (t==Data.MetaData.GMND)
+						{
+							SimPe.Plugin.GeometryNode gn = (SimPe.Plugin.GeometryNode)rcol.Blocks[0];							
+							gn.ObjectGraphNode.FileName = Hashes.StripHashFromName(gn.ObjectGraphNode.FileName);
+						}
+						
+						foreach (SimPe.Interfaces.Files.IPackedFileDescriptor rpfd in rcol.ReferencedFiles) 
+						{							
+							//SHPE Resources get a new Name, so fix the Instance of the reference at this point
+							if (rpfd.Type == Data.MetaData.SHPE) 
+							{
+								shpnamemap[rpfd.LongInstance] = shpname;
+								rpfd.Instance = Hashes.InstanceHash(shpname);
+								rpfd.SubType = Hashes.SubTypeHash(shpname);
+							}
+
+							rpfd.Group = Data.MetaData.GLOBAL_GROUP;
+						}
+
+						rcol.SynchronizeUserData();
+					}
+
+					pfd.Group = Data.MetaData.GLOBAL_GROUP;
+				}				
+			}
+
+			//we need some special Adjustments for SHPE Resources, as their name has to match a certain pattern
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] spfds = package.FindFiles(Data.MetaData.SHPE);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in spfds)
+			{	
+				if (shpnamemap[pfd.LongInstance]==null) continue;
+				rcol.ProcessData(pfd, package);
+				rcol.FileName = (string)shpnamemap[pfd.LongInstance];
+				rcol.FileDescriptor.Instance = Hashes.InstanceHash(rcol.FileName);
+				rcol.FileDescriptor.SubType = Hashes.SubTypeHash(rcol.FileName);
+
+				rcol.SynchronizeUserData();
+			}
+		}
+
 		protected void FixSkin(Hashtable namemap, Hashtable refmap, string grphash)
 		{
 			SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
@@ -700,27 +792,29 @@ namespace SimPe.Plugin
 			string[] txtr_props = new string[] {"textureedges", "texturetop", "texturetopbump", "texturetrim", "textureunder", "texturetname", "texturetname" };
 			string[] txmt_props = new string[] {"material", "diagrail", "post", "rail"};
 			string[] cres_props = new string[] {"diagrail", "post", "rail"};
-			string[] groups = new string[] {"stringsetgroupid", "resourcegroupid"};
-			string[] guids = new string[] {"guid"};
+			string[] groups = new string[] {"stringsetgroupid", "resourcegroupid"};			
 
 			//now fix the texture References in those Resources
 			foreach (uint t in types)
 			{
 				SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(t);
+
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 				{
 					cpf.ProcessData(pfd, package);
 
-					FixCpfProperties(cpf, txtr_props, namemap, grphash, "_txtr");
-					FixCpfProperties(cpf, txmt_props, namemap, grphash, "_txmt");
-					FixCpfProperties(cpf, cres_props, namemap, grphash, "_cres");
+					string pfx = grphash; if (t==Data.MetaData.XFNC) pfx = "";
+
+					FixCpfProperties(cpf, txtr_props, namemap, pfx, "_txtr");
+					FixCpfProperties(cpf, txmt_props, namemap, pfx, "_txmt");
+					FixCpfProperties(cpf, cres_props, namemap, pfx, "_cres");
 
 					FixCpfProperties(cpf, groups, Data.MetaData.LOCAL_GROUP);
-					FixCpfProperties(cpf, guids, (uint)(((uint)rnd.Next() & 0x00ffffff) | 0xfb000000));
+					FixCpfProperties(cpf, "guid", (uint)(((uint)rnd.Next() & 0x00ffffff) | 0xfb000000));
 					
 					cpf.SynchronizeUserData();
 				}
-			}
+			}			
 		}
 		#endregion
 
