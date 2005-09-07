@@ -72,19 +72,26 @@ namespace SimPe.Cache
 			{
 				BinaryReader reader = new BinaryReader(si.FileStream);
 
-				ulong sig = reader.ReadUInt64();
-				if (sig!=SIGNATURE) throw new CacheException("Unknown Cache File Signature ("+Helper.HexString(sig)+")", flname, 0);
-
-				version = reader.ReadByte();
-				if (version>VERSION) throw new CacheException("Unable to read Cache", flname, version);
-
-				int count = reader.ReadInt32();
-
-				for (int i=0; i<count; i++) 
+				try 
 				{
-					CacheContainer cc = new CacheContainer(DEFAULT_TYPE);
-					cc.Load(reader);
-					containers.Add(cc);
+					ulong sig = reader.ReadUInt64();
+					if (sig!=SIGNATURE) throw new CacheException("Unknown Cache File Signature ("+Helper.HexString(sig)+")", flname, 0);
+
+					version = reader.ReadByte();
+					if (version>VERSION) throw new CacheException("Unable to read Cache", flname, version);
+
+					int count = reader.ReadInt32();
+
+					for (int i=0; i<count; i++) 
+					{
+						CacheContainer cc = new CacheContainer(DEFAULT_TYPE);
+						cc.Load(reader);
+						containers.Add(cc);
+					}
+				} 
+				finally 
+				{
+					reader.Close();
 				}
 			} 
 			finally 

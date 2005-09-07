@@ -26,7 +26,7 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// This is a Item describing the File
 	/// </summary>
-	public class FileIndexItem : IScenegraphFileIndexItem, IComparer
+	public class FileIndexItem : IScenegraphFileIndexItem, IComparer, System.IDisposable
 	{
 		uint localgr;
 		SimPe.Interfaces.Files.IPackedFileDescriptor pfd;
@@ -145,6 +145,12 @@ namespace SimPe.Plugin
 		}
 
 		#endregion
+
+		public void Dispose()
+		{
+			this.pfd = null;
+			this.package = null;
+		}
 	}
 
 	/// <summary>
@@ -304,9 +310,16 @@ namespace SimPe.Plugin
 		/// </summary>
 		public void RestoreLastState()
 		{
+			Clear();
+
 			addedfilenames = oldnames;
 			index = oldindex;
 			duplicates = olddup;
+
+			oldnames = null;
+			oldindex = null;
+
+			this.PrepareAllForAdd();
 		}
 
 		#endregion
@@ -406,7 +419,7 @@ namespace SimPe.Plugin
 			WrapperFactory.LoadGroupCache();
 			addedfilenames.Clear();			
 			
-			index.Clear();
+			this.Clear();
 
 			int ct = 0;
 			foreach (FileTableItem fti in folders) 
@@ -521,6 +534,52 @@ namespace SimPe.Plugin
 				AddIndexFromPfd(pfd, package);
 		}
 
+		public void Clear()
+		{
+			foreach (Hashtable groups in index.Values) 
+			{
+				foreach (Hashtable instances in groups.Values) 
+				{
+					foreach (ArrayList res in instances.Values) 
+					{
+						foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem pfd in res)
+							PrepareForRemove(pfd.FileDescriptor);
+
+						res.Clear();
+					}
+					instances.Clear();
+				}
+				groups.Clear();
+			}
+
+			index.Clear();
+		}
+
+		protected void PrepareAllForAdd()
+		{
+			foreach (Hashtable groups in index.Values) 
+			{
+				foreach (Hashtable instances in groups.Values) 
+				{
+					foreach (ArrayList res in instances.Values) 
+					{
+						foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in res)
+							PrepareForAdd(pfd);
+					}
+				}
+			}
+		}
+
+		protected void PrepareForRemove(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
+		{
+			pfd.Closed -= new SimPe.Events.PackedFileChanged(ClosedDescriptor);
+		}
+
+		protected void PrepareForAdd(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
+		{
+			pfd.Closed += new SimPe.Events.PackedFileChanged(ClosedDescriptor);
+		}
+
 		/// <summary>
 		/// Add a Filedescriptor to the Index
 		/// </summary>
@@ -529,7 +588,7 @@ namespace SimPe.Plugin
 		/// <param name="localgroup">use this groupa as replacement for 0xffffffff</param>
 		public void AddIndexFromPfd(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package, uint localgroup)
 		{
-			pfd.Closed += new SimPe.Events.PackedFileChanged(ClosedDescriptor);
+			PrepareForAdd(pfd);
 			FileIndexItem item = new FileIndexItem(pfd, package);
 
 			Hashtable groups = null;
@@ -617,6 +676,8 @@ namespace SimPe.Plugin
 					}
 				}
 			}
+
+			PrepareForRemove(item.FileDescriptor);
 		}
 
 		// <summary>

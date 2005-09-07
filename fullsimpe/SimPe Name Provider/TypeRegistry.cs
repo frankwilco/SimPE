@@ -127,7 +127,7 @@ namespace SimPe.PackedFiles
 					IWrapper wrapper = wrappers[i];
 					//make sure whe have two instances of each Wrapper otherwise, 
 					//AbstractWrapper.ResoureceName could corrupt a open Resource
-					if (wrapper.AllowMultipleInstances && wrapper is AbstractWrapper) 					
+					if (!wrapper.AllowMultipleInstances && wrapper is AbstractWrapper) 					
 						((AbstractWrapper)wrapper).SingleGuiWrapper = (IFileWrapper)guiwrappers[i];
 					
 					Register(wrapper);Register(wrapper);

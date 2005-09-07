@@ -370,5 +370,21 @@ namespace SimPe.PackedFiles.Wrapper
 			return o;
 		}
 		#endregion
+
+		public override void Dispose()
+		{
+			base.Dispose ();
+
+			if (items!=null) 
+			{
+				for (int i=items.Length-1; i>=0; i--) 
+					if (items[i]!=null)
+						items[i].Dispose();
+			}
+
+			items = new CpfItem[0];
+			items = null;
+		}
+
 	}
 }

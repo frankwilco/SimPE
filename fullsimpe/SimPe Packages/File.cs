@@ -189,6 +189,11 @@ namespace SimPe.Packages
 
 		internal void ClearFileIndex()
 		{
+			if (fileindex!=null) 
+			{
+				for (int i=fileindex.Length-1; i>=0; i--)
+					this.Remove(fileindex[i]);
+			}
 			fileindex = new IPackedFileDescriptor[0];
 		}
 
@@ -1015,7 +1020,7 @@ namespace SimPe.Packages
 				{
 					foreach (Interfaces.Files.IPackedFileDescriptor pfd in this.Index) 
 						if (pfd!=null) pfd.MarkInvalid();	
-				}
+				}				
 			}
 		}
 
@@ -1267,7 +1272,13 @@ namespace SimPe.Packages
 
 		public void Dispose()
 		{
+			this.Close(true);
 			if (this.fileindex!=null) this.ClearFileIndex();
+
+			if (this is SimPe.Packages.GeneratableFile)
+				PackageMaintainer.Maintainer.RemovePackage((SimPe.Packages.GeneratableFile)this);
+
+			this.fileindex = null;
 			this.holeindex = null;
 		}
 

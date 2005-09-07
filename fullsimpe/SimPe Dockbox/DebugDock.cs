@@ -59,8 +59,8 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(DebugDock));
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
-			this.label1 = new System.Windows.Forms.Label();
 			this.lbMem = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.xpGradientPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -74,15 +74,6 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpGradientPanel1.Size = new System.Drawing.Size(250, 400);
 			this.xpGradientPanel1.TabIndex = 0;
 			// 
-			// label1
-			// 
-			this.label1.BackColor = System.Drawing.Color.Transparent;
-			this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label1.Location = new System.Drawing.Point(8, 8);
-			this.label1.Name = "label1";
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Memory Usage:";
-			// 
 			// lbMem
 			// 
 			this.lbMem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -94,6 +85,16 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lbMem.Size = new System.Drawing.Size(224, 23);
 			this.lbMem.TabIndex = 1;
 			this.lbMem.Text = "0";
+			this.lbMem.Click += new System.EventHandler(this.lbMem_Click);
+			// 
+			// label1
+			// 
+			this.label1.BackColor = System.Drawing.Color.Transparent;
+			this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label1.Location = new System.Drawing.Point(8, 8);
+			this.label1.Name = "label1";
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Memory Usage:";
 			// 
 			// DebugDock
 			// 
@@ -130,6 +131,11 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 
 		#endregion
+
+		private void lbMem_Click(object sender, System.EventArgs e)
+		{
+			RefreshDock(null, null);
+		}
 
 		#region IToolExt Member
 
