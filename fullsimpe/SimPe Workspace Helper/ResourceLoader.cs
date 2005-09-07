@@ -383,7 +383,7 @@ namespace SimPe
 			{
 				if (doc.IsOpen) remain = true; 			
 				else RemoveResource(fii, null);
-			}
+			}			
 	
 			return !remain;
 		}
@@ -505,17 +505,21 @@ namespace SimPe
 					else if (dr==DialogResult.Cancel) return false;
 					else if (dr==DialogResult.No) wrp.Changed=false;
 				}
-			}	
+			}						
 
+			//we cannot unload the wrapper here!!!
+			return true;
+		}
+
+		void UnlinkWrapper(SimPe.Interfaces.Plugin.IFileWrapper wrapper)
+		{
 			if (wrapper.FileDescriptor!=null) 
 			{
 				wrapper.FileDescriptor.ChangedUserData -= new SimPe.Events.PackedFileChanged(FileDescriptor_ChangedUserData);
 				wrapper.FileDescriptor.Deleted -= new EventHandler(DeletedDescriptor);	
 			}
 			
-			if (wrapper.AllowMultipleInstances) wrapper.Dispose();			
-
-			return true;
+			if (wrapper.AllowMultipleInstances) wrapper.Dispose();
 		}
 
 		/// <summary>
@@ -533,12 +537,13 @@ namespace SimPe
 
 			if (!e.Cancel) 
 			{
-				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = GetResourceFromDocument((TD.SandDock.DockControl)sender);
-				RemoveResource(fii, wrapper);
-
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = GetResourceFromDocument((TD.SandDock.DockControl)sender);				
+				RemoveResource(fii, wrapper);			
 				
 				if (multi) DisposeSubControls(((TD.SandDock.DockControl)sender).Controls);				
 				((TD.SandDock.DockControl)sender).Controls.Clear();													
+
+				UnlinkWrapper(wrapper);
 			}
 		}
 
