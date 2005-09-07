@@ -70,6 +70,7 @@ namespace SimPe.Wizards
 	}
 
 	public delegate void WizardHandle(Wizard sender);
+	public delegate void WizardShowedHandle(Wizard sender, int source);
 	public delegate void WizardChangeHandle(Wizard sender, WizardEventArgs e);
 	public delegate void WizardStepHandle(Wizard sender, WizardStepPanel step);
 	public delegate void WizardStepChangeHandle(Wizard sender, WizardStepPanel step, int target);	

@@ -69,10 +69,14 @@ namespace SimPe.Plugin.Tool.Dockable
 			fix = true;
 			rem = true;
 			alone = false;
+			updatedesc = false;
+			price = 0;
+			title = "";
+			desc = "";
 			RemoveNonDefaultTextReferences = true;
 		}
 
-		bool grp, fix, rem, alone;
+		bool grp, fix, rem, alone, updatedesc;
 
 		public bool CustomGroup
 		{
@@ -96,6 +100,32 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			get { return alone; }
 			set { alone = value;}
+		}
+
+		public bool ChangeObjectDescription
+		{
+			get { return updatedesc; }
+			set { updatedesc = value;}
+		}
+
+		short price;
+		string desc, title;
+		public short Price 
+		{
+			get { return price; }
+			set { price = value;}
+		}
+
+		public string Title 
+		{
+			get { return title; }
+			set { title = value;}
+		}
+
+		public string Description 
+		{
+			get { return desc; }
+			set { desc = value;}
 		}
 	}
 
@@ -164,6 +194,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				objclone.Setup.IncludeWallmask = settings.IncludeWallmask;
 				objclone.Setup.BaseResource = br;
 				objclone.Setup.IncludeAnimationResources = settings.IncludeAnimationResources;
+				objclone.Setup.KeepOriginalMesh = settings.KeepOriginalMesh;
 				objclone.RcolModelClone(modelname, exclude);
 
 				//for clones only when cbparent is checked
@@ -180,6 +211,7 @@ namespace SimPe.Plugin.Tool.Dockable
 						pobj.Setup.IncludeWallmask = settings.IncludeWallmask;
 						pobj.Setup.IncludeAnimationResources = settings.IncludeAnimationResources;
 						pobj.Setup.BaseResource = br;
+						pobj.Setup.KeepOriginalMesh = settings.KeepOriginalMesh;
 						pobj.RcolModelClone(names, exclude);
 						pobj.AddParentFiles(modelname, package);				
 					} 
@@ -237,6 +269,39 @@ namespace SimPe.Plugin.Tool.Dockable
 			list.CopyTo(refname);
 
 			return refname;
+		}
+
+		protected static SimPe.Packages.GeneratableFile ReColorXObject(CloneSettings.BaseResourceType br, SimPe.Packages.GeneratableFile pkg, Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings) 
+		{
+			settings.KeepOriginalMesh = true;
+			SimPe.Packages.GeneratableFile package = pkg;
+			// we need packages in the Gmaes and the Download Folder
+			
+			if (( (!System.IO.File.Exists(ScenegraphHelper.GMND_PACKAGE)) || (!System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE)) ) && (settings is OWCloneSettings)) 
+			{
+				if (Message.Show(Localization.Manager.GetString("OW_Warning"), "Warning", MessageBoxButtons.YesNo)==DialogResult.No) return package;
+			}
+
+			SaveFileDialog sfd = new SaveFileDialog();
+			sfd.Filter = ExtensionProvider.BuildFilterString(
+				new SimPe.ExtensionType[] {
+											  SimPe.ExtensionType.Package,
+											  SimPe.ExtensionType.AllFiles
+										  }
+				);
+			if (sfd.ShowDialog()!=DialogResult.OK) return package;			
+
+			//create a Cloned Object to get all needed Files for the Process			
+			WaitingScreen.Wait();
+			WaitingScreen.UpdateMessage("Collecting needed Files");
+			
+			if ((package==null) && (pfd!=null)) package = RecolorClone(br, package, pfd, localgroup, settings);
+			WaitingScreen.Stop();
+					
+			package.FileName = sfd.FileName;		
+			package.Save();
+							
+			return package;
 		}
 
 		protected static SimPe.Packages.GeneratableFile ReColor(CloneSettings.BaseResourceType br, SimPe.Packages.GeneratableFile pkg, Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings) 
@@ -358,6 +423,8 @@ namespace SimPe.Plugin.Tool.Dockable
 					if (cs.FixResources) package.Save();
 				}
 
+				if (cs.ChangeObjectDescription) UpdateDescription(cs, package);
+
 				//select a resource to display in SimPE
 				pfd=null;
 				if (package!=null) 
@@ -368,8 +435,10 @@ namespace SimPe.Plugin.Tool.Dockable
 			} 
 			else 
 			{
-				
-				package = ReColor(br, package, pfd, localgroup, new OWRecolorSettings());
+				/*if (br == SimPe.Plugin.CloneSettings.BaseResourceType.Xml)
+					package = ReColorXObject(br, package, pfd, localgroup, new OWRecolorSettings());
+				else*/
+					package = ReColor(br, package, pfd, localgroup, new OWRecolorSettings());
 
 				//select a resource for display in SimPE
 				pfd=null;
@@ -392,5 +461,96 @@ namespace SimPe.Plugin.Tool.Dockable
 		
 			return package;
 		}
+
+		#region Update Object Description
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="cs"></param>
+		/// <param name="cpf"></param>
+		/// <returns>ResourceDescriptor for the references String</returns>
+		protected static SimPe.Interfaces.Files.IPackedFileDescriptor UpdateDescription(OWCloneSettings cs, SimPe.Packages.GeneratableFile package, SimPe.PackedFiles.Wrapper.ExtObjd obj)
+		{
+			obj.Price = cs.Price;
+			obj.Data[0x22] = (short)Math.Floor(cs.Price * 0.035); // sale price
+			obj.Data[0x23] = (short)Math.Floor(cs.Price * 0.15); // initial depreciation
+			obj.Data[0x24] = (short)Math.Floor(cs.Price * 0.10); // daily depreciation
+			obj.Data[0x25] = 0; // self depreciation
+			obj.Data[0x26] = (short)Math.Floor(cs.Price * 0.40); // depreciation limit
+			obj.SynchronizeUserData();
+			SimPe.Interfaces.Files.IPackedFileDescriptor pfd = package.FindFile(Data.MetaData.CTSS_FILE, 0, obj.FileDescriptor.Group, obj.CTSSInstance);			
+			
+			return pfd;
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="cs"></param>
+		/// <param name="cpf"></param>
+		/// <returns>ResourceDescriptor for the references String</returns>
+		protected static SimPe.Interfaces.Files.IPackedFileDescriptor UpdateDescription(OWCloneSettings cs, SimPe.Packages.GeneratableFile package, SimPe.PackedFiles.Wrapper.Cpf cpf)
+		{
+			cpf.GetSaveItem("cost").UIntegerValue = (uint)cs.Price;
+			cpf.GetSaveItem("name").StringValue = cs.Title.Replace("\n", " ").Replace("\t", "    ").Replace("\r", " ");
+			cpf.GetSaveItem("description").StringValue = cs.Description.Replace("\n", " ").Replace("\t", "    ").Replace("\r", " ");
+			cpf.SynchronizeUserData();
+			
+			SimPe.Interfaces.Files.IPackedFileDescriptor pfd = package.FindFile(cpf.GetSaveItem("stringsetrestypeid").UIntegerValue, 0, cpf.GetSaveItem("stringsetgroupid").UIntegerValue, cpf.GetSaveItem("stringsetid").UIntegerValue);			
+			
+			return pfd;
+		}
+
+		protected static void UpdateDescription(OWCloneSettings cs, SimPe.PackedFiles.Wrapper.Str str)
+		{
+			str.ClearNonDefault();
+			while (str.Items.Length<2) str.Add(new SimPe.PackedFiles.Wrapper.StrItem(str.Items.Length, 1, "", ""));
+
+			str.Items[0].Title = cs.Title;
+			str.Items[1].Title = cs.Description;
+
+			str.SynchronizeUserData();
+		}
+
+		protected static void UpdateDescription(OWCloneSettings cs, SimPe.Packages.GeneratableFile package)
+		{
+			//change the price in the OBJd
+			SimPe.PackedFiles.Wrapper.ExtObjd obj = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+			SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.OBJD_FILE);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+			{				
+				obj.ProcessData(pfd, package);
+
+				SimPe.Interfaces.Files.IPackedFileDescriptor spfd = UpdateDescription(cs, package, obj);
+
+				if (spfd!=null) 
+				{
+					str.ProcessData(spfd, package);
+					UpdateDescription(cs, str);
+				}
+			}
+
+			//change Price, Title, Desc in the XObj Files
+			uint[] types = new uint[] {Data.MetaData.XFNC, Data.MetaData.XROF, Data.MetaData.XFLR, Data.MetaData.XOBJ};
+			SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();			
+			foreach (uint t in types) 
+			{
+				pfds = package.FindFiles(t);
+				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+				{
+					cpf.ProcessData(pfd, package);
+					SimPe.Interfaces.Files.IPackedFileDescriptor spfd = UpdateDescription(cs, package, cpf);
+
+					if (spfd!=null) 
+					{
+						str.ProcessData(spfd, package);
+						UpdateDescription(cs, str);
+					}
+				}
+			}
+
+			if (package.FileName!=null) package.Save();
+		}
+		#endregion
 	}
 }

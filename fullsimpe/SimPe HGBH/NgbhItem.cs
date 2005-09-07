@@ -59,7 +59,7 @@ namespace SimPe.Plugin
 		NgbhItemFlags flags;
 		ushort[] data;
 
-		SimPe.PackedFiles.Wrapper.ExtObjd objd = null;
+		protected SimPe.PackedFiles.Wrapper.ExtObjd objd = null;
 
 		/// <summary>
 		/// Returns the Slot that owns this Item

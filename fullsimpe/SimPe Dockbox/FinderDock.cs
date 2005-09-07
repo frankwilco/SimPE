@@ -221,7 +221,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.button1.Name = "button1";
 			this.button1.TabIndex = 7;
 			this.button1.Text = "Start";
-			this.button1.Click += new System.EventHandler(this.FindByNmap);
+			this.button1.Click += new System.EventHandler(this.FindByStringMatch);
 			// 
 			// tbNmapName
 			// 
@@ -280,7 +280,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpCueBannerExtender1.SetCueBannerText(this.cbTask, "");
 			this.cbTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbTask.Items.AddRange(new object[] {
-														"in Namemaps"});
+														"in Namemaps",
+														"in Text Lists"});
 			this.cbTask.Location = new System.Drawing.Point(48, 0);
 			this.cbTask.Name = "cbTask";
 			this.cbTask.Size = new System.Drawing.Size(240, 21);
@@ -430,14 +431,17 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		#endregion
 
-		void Show(Ambertation.Windows.Forms.XPTaskBoxSimple ctrl)
+		void Show(Ambertation.Windows.Forms.XPTaskBoxSimple ctrl, string txt)
 		{
 			this.tbNmap.Visible = (ctrl==tbNmap);
+
+			if (txt!=null) tbNmap.HeaderText = txt;
 		}
 
 		private void cbTask_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			if (cbTask.SelectedIndex==0) Show(tbNmap);
+			if (cbTask.SelectedIndex==0) Show(tbNmap, SimPe.Localization.GetString("Namemaps"));
+			if (cbTask.SelectedIndex==1) Show(tbNmap, SimPe.Localization.GetString("Text Lists"));
 		}
 
 		public void ClearResults()
@@ -483,6 +487,12 @@ namespace SimPe.Plugin.Tool.Dockable
 			g.GroupIndex = lv.Groups.Count;
 			lv.Groups.Add(g);
 			return g.GroupIndex;
+		}
+
+		private void FindByStringMatch(object sender, System.EventArgs e)
+		{
+			if (this.cbTask.SelectedIndex==0) FindByNmap(sender, e);
+			else FindByStr(sender, e);
 		}
 
 		private void FindByNmap(object sender, System.EventArgs e)
@@ -561,6 +571,104 @@ namespace SimPe.Plugin.Tool.Dockable
 								sri.GroupIndex = this.AddResultGroup(rfii.Package.SaveFileName);
 								lv.Items.Add(sri);
 							}
+						}
+					}		
+		
+				
+					Wait.Progress = ++ct;
+				}
+
+				//do the actual add
+				foreach (ScenegraphResultItem sri in items) 
+				{
+					sri.GroupIndex = (int)sri.Tag;
+					lv.Items.Add(sri);
+				}
+			} 
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage(ex);
+			}
+
+			lv.TileColumns = new int[] {1, 2, 3, 4, 5};
+			lv.ShowGroups = true;
+			
+			lv.Sort();
+			lv.EndUpdate();	
+			lv.DoubleBuffering = true;	
+			Wait.SubStop();
+		}
+
+		private void FindByStr(object sender, System.EventArgs e)
+		{
+			FileTable.FileIndex.Load();
+			ClearResults();
+			lv.BeginUpdate();
+			CreateDefaultColumns();		
+			
+			ArrayList items = new ArrayList();
+			System.Text.RegularExpressions.Regex reg = null;
+			
+			string name = this.tbNmapName.Text.Trim().ToLower();
+			try 
+			{
+				reg = new System.Text.RegularExpressions.Regex(this.tbNmapName.Text, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+			} 
+			catch (Exception ex)			
+			{
+				if (this.cbNmapMatch.SelectedIndex==4) 			
+					Helper.ExceptionMessage(ex);				
+			}
+
+			//get all known NMaps
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] strs = FileTable.FileIndex.FindFile(Data.MetaData.STRING_FILE, true);
+
+			SimPe.Wait.SubStart(strs.Length);
+			Wait.Message = SimPe.Localization.GetString("Searching - Please Wait");
+			try 
+			{
+				int ct = 0;
+				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii in strs)
+				{
+					SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+					str.ProcessData(fii);
+
+					SimPe.PackedFiles.Wrapper.StrItemList sitems = str.Items;
+					//check all stored nMap entries for a match
+					foreach (SimPe.PackedFiles.Wrapper.StrItem item in sitems)
+					{
+						bool found = false;
+						string n = item.Title.Trim().ToLower();
+						if (this.cbNmapMatch.SelectedIndex==0) 
+						{
+							found = n==name;
+						} 
+						else if (this.cbNmapMatch.SelectedIndex==1)  
+						{
+							found = n.StartsWith(name);
+						}
+						else if (this.cbNmapMatch.SelectedIndex==2)  
+						{
+							found = n.EndsWith(name);
+						}
+						else if (this.cbNmapMatch.SelectedIndex==3)  
+						{
+							found = n.IndexOf(name)>-1;
+						}
+						else if (this.cbNmapMatch.SelectedIndex==4 && reg!=null)  
+						{
+							found = reg.IsMatch(n);
+						}
+
+						//we have a match, so add the result item
+						if (found)
+						{
+							ScenegraphResultItem sri = new ScenegraphResultItem(fii);
+
+							sri.GroupIndex = this.AddResultGroup(fii.Package.SaveFileName);
+							lv.Items.Add(sri);							
+
+							break;
 						}
 					}		
 		

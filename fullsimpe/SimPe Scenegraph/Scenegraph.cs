@@ -177,7 +177,7 @@ namespace SimPe.Plugin
 		/// <param name="rcol">The Rcol File (Scenegraph Resource)</param>
 		/// <param name="item">The Item that was used to load the rcol</param>
 		/// <param name="recursive">true if you want to add all sub Rcols</param>
-		protected static void LoadReferenced(ArrayList modelnames, ArrayList exclude, ArrayList list, ArrayList itemlist, SimPe.Plugin.GenericRcol rcol, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item, bool recursive) 
+		protected static void LoadReferenced(ArrayList modelnames, ArrayList exclude, ArrayList list, ArrayList itemlist, SimPe.Plugin.GenericRcol rcol, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item, bool recursive, CloneSettings setup) 
 		{
 			//if we load a CRES, we also have to add the Modelname!
 			if (rcol.FileDescriptor.Type == Data.MetaData.CRES) 
@@ -193,7 +193,13 @@ namespace SimPe.Plugin
 
 				ArrayList descs = (ArrayList)map[s];
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in descs) 
-				{				
+				{		
+					if (setup!=null)
+						if (setup.KeepOriginalMesh)
+						{
+							if (pfd.Type==Data.MetaData.GMND) continue;
+							if (pfd.Type==Data.MetaData.GMDC) continue;
+						}
 					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem subitem = FileTable.FileIndex.FindSingleFile(pfd, null, true);
 
 					if (subitem!=null) 
@@ -207,7 +213,7 @@ namespace SimPe.Plugin
 
 								if (Scenegraph.excludefiles.Contains(sub.FileName.Trim().ToLower())) continue;
 
-								if (recursive) LoadReferenced(modelnames, exclude, list, itemlist, sub, subitem, true);
+								if (recursive) LoadReferenced(modelnames, exclude, list, itemlist, sub, subitem, true, setup);
 							}
 							catch (Exception ex) 
 							{
@@ -225,32 +231,25 @@ namespace SimPe.Plugin
 		/// Create a new Instance and build the CRES chain
 		/// </summary>
 		/// <param name="modelnames">Name of all Models</param>
-		public Scenegraph(string modelname)
-		{
-			string[] modelnames = new string[1];
-			modelnames[0] = modelname;
-			Init(modelnames, new ArrayList());
-		}
-
+		public Scenegraph(string modelname) : this(new string[]{modelname}, new ArrayList(), new CloneSettings()) {}
+		
 		/// <summary>
 		/// Create a new Instance and build the CRES chain
 		/// </summary>
 		/// <param name="modelnames">Name of all Models</param>
-		public Scenegraph(string[] modelnames)
-		{
-			Init(modelnames, new ArrayList());
-		}
+		public Scenegraph(string[] modelnames) : this(modelnames, new ArrayList(), new CloneSettings()) {}
 		
 
+		CloneSettings setup;
 		/// <summary>
 		/// Create a new Instance and build the CRES chain
 		/// </summary>
 		/// <param name="modelnames">Name of all Models</param>
 		/// <param name="ex">List of all ReferenceNames that should be excluded from the chain</param>
-		public Scenegraph(string[] modelnames, ArrayList ex)
+		public Scenegraph(string[] modelnames, ArrayList ex, CloneSettings setup)
 		{
-			Init(modelnames, ex);
-			
+			this.setup = setup;
+			Init(modelnames, ex);			
 		}
 
 		/// <summary>
@@ -270,7 +269,7 @@ namespace SimPe.Plugin
 			{
 				SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
 				sub.ProcessData(item);
-				LoadReferenced(this.modelnames, ex, files, itemlist, sub, item, true);
+				LoadReferenced(this.modelnames, ex, files, itemlist, sub, item, true, setup);
 			}
 			foreach (string s in modelnames) this.modelnames.Add(s);
 			
@@ -308,7 +307,7 @@ namespace SimPe.Plugin
 							txmt.ProcessData(item);
 							txmt.FileDescriptor = (Interfaces.Files.IPackedFileDescriptor)item.FileDescriptor.Clone();														
 							
-							LoadReferenced(modelnames, ex, list, itemlist, txmt, item, true);
+							LoadReferenced(modelnames, ex, list, itemlist, txmt, item, true, null);
 						}
 					}
 				}
@@ -470,7 +469,7 @@ namespace SimPe.Plugin
 											SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
 											sub.ProcessData(txmtitem.FileDescriptor, txmtitem.Package, false);
 											ArrayList newfiles = new ArrayList();
-											LoadReferenced(this.modelnames, this.exclude, newfiles, itemlist, sub, txmtitem, true);
+											LoadReferenced(this.modelnames, this.exclude, newfiles, itemlist, sub, txmtitem, true, setup);
 											BuildPackage(newfiles, pkg);
 										} 
 										catch (Exception ex) 
@@ -827,7 +826,7 @@ namespace SimPe.Plugin
 				{
 					SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
 					sub.ProcessData(item);
-					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true);
+					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true, setup);
 				}
 			}			
 		}
@@ -866,7 +865,7 @@ namespace SimPe.Plugin
 				{
 					SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
 					sub.ProcessData(item);
-					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true);
+					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true, setup);
 				}
 			}			
 		}
@@ -895,7 +894,7 @@ namespace SimPe.Plugin
 						{
 							SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
 							sub.ProcessData(item);
-							LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true);
+							LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true, setup);
 						} 
 						catch (Exception ex)
 						{
@@ -999,7 +998,7 @@ namespace SimPe.Plugin
 				{
 					SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
 					sub.ProcessData(item);
-					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true);
+					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true, setup);
 				} 
 				catch (Exception ex)
 				{

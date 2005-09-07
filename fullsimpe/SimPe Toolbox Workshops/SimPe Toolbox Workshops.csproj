@@ -324,6 +324,26 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <File
+                    RelPath = "XObjectPreview.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "XObjectPreview.de.resx"
+                    DependentUpon = "XObjectPreview.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "XObjectPreview.pl.resx"
+                    DependentUpon = "XObjectPreview.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "XObjectPreview.resx"
+                    DependentUpon = "XObjectPreview.cs"
+                    BuildAction = "EmbeddedResource"
+                />
             </Include>
         </Files>
     </CSHARP>
