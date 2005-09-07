@@ -461,7 +461,9 @@ namespace SimPe
 				RemoveResource(fii, wrapper);
 
 				if (multi) DisposeSubControls(doc.Controls);
-				doc.Controls.Clear();													
+				doc.Controls.Clear();						
+				
+				this.UnlinkWrapper(wrapper);
 			}
 				
 
