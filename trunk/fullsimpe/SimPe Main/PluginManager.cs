@@ -46,9 +46,9 @@ namespace SimPe
 			FileTable.WrapperRegistry = tr;
 
 			wloader = new LoadFileWrappersExt();
-
-			this.LoadStaticWrappers();
+			
 			this.LoadDynamicWrappers();
+			this.LoadStaticWrappers();
 
 			wloader.AddMenuItems(ref ChangedGuiResourceEvent, toolmenu, tootoolbar, new ToolMenuItemExt.ExternalToolNotify(ClosedToolPluginHandler));
 			//dc.ActiveDocumentChanged += new TD.SandDock.ActiveDocumentEventHandler(wloader.ActiveDocumentChanged);
