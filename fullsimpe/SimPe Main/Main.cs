@@ -1925,7 +1925,7 @@ namespace SimPe
 		static void Main(string[] args) 
 		{
 			try 
-			{
+			{				
 				Commandline.CheckFiles();
 			
 				//do the real Startup
@@ -2375,7 +2375,7 @@ namespace SimPe
 			if ( a != null )
 			{
 				string[] res = new string[a.Length];				
-				for (int i=0; i<a.Length; i++) res[i] = a.GetValue(i).ToString().ToLower();
+				for (int i=0; i<a.Length; i++) res[i] = a.GetValue(i).ToString();
 				return res;
 			}
 

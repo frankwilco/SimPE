@@ -420,7 +420,7 @@ namespace SimPe
 
 			ExtensionType et = ExtensionProvider.GetExtension(names[0]);
 			if (names.Length==1 && (et == ExtensionType.Package || et == ExtensionType.DisabledPackage || et == ExtensionType.ExtrackedPackageDescriptor))
-			{
+			{				
 				if (System.IO.File.Exists(names[0])) this.LoadFromFile(names[0]);
 			}
 			else if (et == ExtensionType.ExtractedFile || et == ExtensionType.ExtractedFileDescriptor || names.Length>1)
@@ -431,7 +431,7 @@ namespace SimPe
 					for (int i=0; i<names.Length; i++) 					
 						if (System.IO.File.Exists(names[i])) 
 						{
-							PackedFileDescriptors pfds = LoadDescriptorsFromDisk(names[i]);						
+							PackedFileDescriptors pfds = LoadDescriptorsFromDisk(names[i]);								
 							foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) this.Package.Add(pfd);						
 						}				
 				} 
