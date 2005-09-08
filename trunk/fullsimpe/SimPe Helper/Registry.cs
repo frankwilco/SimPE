@@ -77,7 +77,7 @@ namespace SimPe
 #else
 			rk = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe");
 #endif
-			
+			pver = this.GetPreviousVersion();
 			Reload();
 			if (Helper.QARelease) this.WasQAUser=true;
 		}
@@ -168,6 +168,21 @@ namespace SimPe
 			}
 		}
 
+		long pver;
+		/// <summary>
+		/// Returns the DataFolder as set by the last SimPe run
+		/// </summary>
+		protected long GetPreviousVersion()
+		{
+			
+#if MAC
+				return 0;
+#else
+				RegistryKey rkf = rk.CreateSubKey("Settings");	
+				return Convert.ToInt64(rkf.GetValue("LastVersion", (long)0));
+#endif			
+		}
+
 		/// <summary>
 		/// Returns the DataFolder as set by the last SimPe run
 		/// </summary>
@@ -175,12 +190,7 @@ namespace SimPe
 		{
 			get
 			{
-#if MAC
-				return 0;
-#else
-				RegistryKey rkf = rk.CreateSubKey("Settings");	
-				return Convert.ToInt64(rkf.GetValue("LastVersion", (long)0));
-#endif
+				return pver;
 			}
 		}
 
