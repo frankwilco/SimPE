@@ -564,7 +564,7 @@ namespace SimPe.Plugin.Gmdc
 						break;
 					}
 				}
-				tbname.Text = a.TargetName;		
+				tbname.Text = a.Target.Name;		
 				tbscale.Text = a.Scale.ToString("N9");
 
 				this.cbBMesh.Checked = a.UseInBoundingMesh;
@@ -669,10 +669,14 @@ namespace SimPe.Plugin.Gmdc
 					a.Group.Opacity = (uint)MeshOpacity.Shadow;
 				if (a.Group.Opacity>0x10 && f.cbBMesh.Enabled) a.UseInBoundingMesh = true;
 
-				if (a.TargetName=="") a.TargetName = a.Group.Name;
+				if (a.Target.Name=="") 
+				{
+					a.Target.Name = a.Group.Name;
+					a.Target.Index = gmdc.FindGroupByName(a.Target.Name);
+				}
 				ListViewItem lvi = new ListViewItem(a.Group.Name);
 				lvi.SubItems.Add(a.Action.ToString());
-				lvi.SubItems.Add(a.TargetName);				
+				lvi.SubItems.Add(a.Target.Name);				
 				lvi.SubItems.Add(a.VertexCount.ToString());
 				lvi.SubItems.Add(a.FaceCount.ToString());
 				lvi.SubItems.Add(a.Group.UsedJoints.Count.ToString());
@@ -700,7 +704,7 @@ namespace SimPe.Plugin.Gmdc
 				if (ct<gmdc.Joints.Length && a.TargetIndex==-1) 
 				{
 					a.TargetIndex = ct;
-					a.Action = GmdcImporterAction.Replace;
+					a.Action = GmdcImporterAction.Update;
 				}
 				ct++;
 
@@ -729,8 +733,12 @@ namespace SimPe.Plugin.Gmdc
 
 		void SetMostLikeName(ImportedGroup a)
 		{
-			if (a.TargetName==null) a.TargetName="";
-			if (a.TargetName.Trim()!="") return;
+			if (a.Target.Name==null) a.Target.Name="";
+			if (a.Target.Name.Trim()!="") 
+			{
+				if (a.Target.Index>=0 && a.Target.Index<cbnames.Items.Count) cbnames.SelectedIndex = a.Target.Index;
+				return;
+			}
 
 			for (int i=0; i<cbnames.Items.Count; i++) 
 			{
@@ -738,7 +746,8 @@ namespace SimPe.Plugin.Gmdc
 				s = s.Trim();
 				if (a.Group.Name.ToLower().Trim()==s.ToLower()) 
 				{
-					a.TargetName = s;
+					a.Target.Name = s;
+					a.Target.Index = i;
 					cbnames.SelectedIndex = i;
 					break;
 				}
@@ -820,9 +829,9 @@ namespace SimPe.Plugin.Gmdc
 						object o = lv.SelectedItems[i].Tag;
 						if (o.GetType()!=typeof(ImportedGroup)) continue;
 						GmdcGroupImporterAction a = (GmdcGroupImporterAction)lv.SelectedItems[i].Tag;					
-						a.TargetName = tbname.Text;
+						a.Target.Name = tbname.Text;						
 
-						lv.SelectedItems[i].SubItems[2].Text = a.TargetName;
+						lv.SelectedItems[i].SubItems[2].Text = a.Target.Name;
 					}
 				} 
 				finally { this.Tag = null; }
@@ -841,9 +850,10 @@ namespace SimPe.Plugin.Gmdc
 						object o = lv.SelectedItems[i].Tag;
 						if (o.GetType()!=typeof(ImportedGroup)) continue;
 						GmdcGroupImporterAction a = (GmdcGroupImporterAction)lv.SelectedItems[i].Tag;					
-						a.TargetName = cbnames.Text;					
+						a.Target.Name = cbnames.Text;					
+						a.Target.Index = cbnames.SelectedIndex;
 
-						lv.SelectedItems[i].SubItems[2].Text = a.TargetName;
+						lv.SelectedItems[i].SubItems[2].Text = a.Target.Name;
 					}
 				} 
 				finally { this.Tag = null; }

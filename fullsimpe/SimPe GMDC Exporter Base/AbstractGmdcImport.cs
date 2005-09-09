@@ -327,7 +327,7 @@ namespace SimPe.Plugin.Gmdc
 			{
 				if (g.Action == GmdcImporterAction.Add) AddGroup(g);
 				else if (g.Action == GmdcImporterAction.Rename) RenameGroup(g);
-				else if (g.Action == GmdcImporterAction.Replace) ReplaceGroup(g);
+				else if (g.Action == GmdcImporterAction.Replace) ReplaceGroup(grps, g);
 				else if (g.Action == GmdcImporterAction.Update) UpdateGroup(g);
 
 				if (g.Action!=GmdcImporterAction.Nothing) 
@@ -340,12 +340,19 @@ namespace SimPe.Plugin.Gmdc
 			}	
 
 			//Now Update the BoundingMesh if needed
-			if (clearbmesh)
+			if (gmdc.Joints.Count!=0) 
 			{
 				gmdc.Model.ClearBoundingMesh();
-				foreach (ImportedGroup g in grps) 				
-					if (g.UseInBoundingMesh) 
-						gmdc.Model.AddGroupToBoundingMesh(g.Group);
+			} 
+			else 
+			{
+				if (clearbmesh)
+				{
+					gmdc.Model.ClearBoundingMesh();
+					foreach (ImportedGroup g in grps) 				
+						if (g.UseInBoundingMesh) 
+							gmdc.Model.AddGroupToBoundingMesh(g.Group);
+				}
 			}
 		
 			//Make sure the Elements are assigned to the correct Bones
@@ -356,12 +363,13 @@ namespace SimPe.Plugin.Gmdc
 				{
 					b.Bone.CollectVertices();
 
-					//Update the effective Transformation
-					TransformNode tn = gmdc.Joints[b.TargetIndex].AssignedTransformNode;
-					if (tn!=null) gmdc.Model.Transformations[b.TargetIndex] = tn.GetEffectiveTransformation();
-
 					//Update the Hirarchy if wanted
 					if (Options.UpdateCres) 
+					{
+						//Update the effective Transformation
+						TransformNode tn = gmdc.Joints[b.TargetIndex].AssignedTransformNode;
+						if (tn!=null) gmdc.Model.Transformations[b.TargetIndex] = tn.GetEffectiveTransformation();
+
 						if (gmdc.ParentResourceNode!=null && tn!=null && IsLocalCres())
 						{
 							//first delete the reference to this Node from the current parent
@@ -377,6 +385,7 @@ namespace SimPe.Plugin.Gmdc
 								if (np!=null) np.AddChild(tn.Index);
 							}
 						}
+					}
 				}				
 			}			
 
@@ -416,11 +425,19 @@ namespace SimPe.Plugin.Gmdc
 		/// <summary>
 		/// Replace an existing Group with  the passed Group in the current Gmdc
 		/// </summary>
+		/// <param name="gs">List of all available Groups</param>
 		/// <param name="g"></param>
-		protected virtual void ReplaceGroup(ImportedGroup g)
+		protected virtual void ReplaceGroup(ImportedGroups gs, ImportedGroup g)
 		{
-			int index = Gmdc.FindGroupByName(g.TargetName);
+			int index = g.Target.Index;
+			if (index<0 || index>=Gmdc.Groups.Length) index = Gmdc.FindGroupByName(g.Target.Name);
 			if (index>=0) gmdc.RemoveGroup(index);
+
+			//make sure to update the Groups
+			foreach(ImportedGroup ig in gs) 
+				if (ig.Target.Index>index)
+					ig.Target.Index--;
+
 			RenameGroup(g);
 		}
 
@@ -430,7 +447,9 @@ namespace SimPe.Plugin.Gmdc
 		/// <param name="g"></param>
 		protected virtual void UpdateGroup(ImportedGroup g)
 		{			
-			int index = Gmdc.FindGroupByName(g.TargetName);
+			
+			int index = g.Target.Index;
+			if (index<0 || index>=Gmdc.Groups.Length) index = Gmdc.FindGroupByName(g.Target.Name);
 
 			GmdcGroup grp = Gmdc.Groups[index];
 			GmdcLink lnk = Gmdc.Links[grp.LinkIndex];
@@ -468,7 +487,7 @@ namespace SimPe.Plugin.Gmdc
 		/// <param name="g"></param>
 		protected virtual void RenameGroup(ImportedGroup g)
 		{
-			g.Group.Name = g.TargetName;
+			g.Group.Name = g.Target.Name;
 			AddGroup(g);
 		}
 		#endregion

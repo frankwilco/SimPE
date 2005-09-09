@@ -209,6 +209,21 @@
                     Project = "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "GraphControl"
+                    Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "EnumComboBox"
+                    Project = "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SandBar"
+                    AssemblyName = "SandBar"
+                    HintPath = "..\..\..\DivElements\SandBar\SandBar.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -327,6 +342,21 @@
                 <File
                     RelPath = "nothumb.png"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "RoadTextureControl.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "RoadTextureControl.resx"
+                    DependentUpon = "RoadTextureControl.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "RoadTextureWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "subitems.png"

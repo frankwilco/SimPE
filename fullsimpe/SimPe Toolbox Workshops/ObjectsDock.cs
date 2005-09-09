@@ -132,6 +132,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbTask.SelectedIndex = 0;
 			ilist.ImageSize = new Size(Helper.WindowsRegistry.OWThumbSize, Helper.WindowsRegistry.OWThumbSize);
 			this.Guid = new System.Guid("42807573-e8db-405b-95fa-28913d1e292a");
+
+			tv.ItemHeight = Helper.WindowsRegistry.OWThumbSize + 1;
 		}
 
 		/// <summary> 
