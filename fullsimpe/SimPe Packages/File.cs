@@ -192,7 +192,7 @@ namespace SimPe.Packages
 			if (fileindex!=null) 
 			{
 				for (int i=fileindex.Length-1; i>=0; i--)
-					this.Remove(fileindex[i]);
+					this.UnlinkResourceDescriptor(fileindex[i]);
 			}
 			fileindex = new IPackedFileDescriptor[0];
 		}
@@ -382,6 +382,16 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// USed to discconect the Events for a ResourceDescrptor
+		/// </summary>
+		/// <param name="pfd"></param>
+		protected void UnlinkResourceDescriptor(IPackedFileDescriptor pfd)
+		{
+			((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = null;
+			pfd.DescriptionChanged -= new EventHandler(ResourceDescriptionChanged);
+		}
+
+		/// <summary>
 		/// Temoves the described File from the Index
 		/// </summary>
 		/// <param name="pfd">A Packed File Descriptor</param>
@@ -396,8 +406,8 @@ namespace SimPe.Packages
 			header.index.count = newindex.Length;
 			fileindex = newindex;
 
-			((SimPe.Packages.PackedFileDescriptor)pfd).PackageInternalUserDataChange = null;
-			pfd.DescriptionChanged -= new EventHandler(ResourceDescriptionChanged);
+			UnlinkResourceDescriptor(pfd);
+			
 			FireIndexEvent();			
 			this.FireRemoveEvent();
 		}
@@ -1275,8 +1285,8 @@ namespace SimPe.Packages
 			this.Close(true);
 			if (this.fileindex!=null) this.ClearFileIndex();
 
-			if (this is SimPe.Packages.GeneratableFile)
-				PackageMaintainer.Maintainer.RemovePackage((SimPe.Packages.GeneratableFile)this);
+			/*if (this is SimPe.Packages.GeneratableFile)
+				PackageMaintainer.Maintainer.RemovePackage((SimPe.Packages.GeneratableFile)this);*/
 
 			this.fileindex = null;
 			this.holeindex = null;

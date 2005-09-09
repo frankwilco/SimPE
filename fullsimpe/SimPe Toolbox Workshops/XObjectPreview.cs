@@ -140,7 +140,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				if (strs.Count>1) this.lbAbout.Text = strs[1].Title;
 			} 
 			else this.lbName.Text = objd.FileName;
-			
+						
 			this.lbPrice.Text = cpf.GetSaveItem("cost").UIntegerValue.ToString()+" $";
 
 			if (pb.Image == null) pb.Image = defimg;		
@@ -157,7 +157,8 @@ namespace SimPe.Plugin.Tool.Dockable
 					cpf.GetSaveItem("stringsetgroupid").UIntegerValue, 
 					cpf.GetSaveItem("stringsetid").UIntegerValue);			
 			
-				return GetCtssItems(ctss, cpf.Package);
+				
+				return base.GetCtssItems(ctss, cpf.Package);
 			} 
 			else return base.GetCtssItems ();
 		}
