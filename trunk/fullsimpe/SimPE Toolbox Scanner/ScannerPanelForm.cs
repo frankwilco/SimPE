@@ -551,7 +551,11 @@ namespace SimPe.Plugin.Scanner
 														 "Light",
 														 "Normal",
 														 "Medium",
-														 "Dark"});
+														 "Dark",
+														 "Alien",
+														 "Zombie",
+														 "Mannequin",
+														 "CAS Mannequin"});
 			this.cbskins.Location = new System.Drawing.Point(16, 24);
 			this.cbskins.Name = "cbskins";
 			this.cbskins.Size = new System.Drawing.Size(256, 21);
@@ -635,7 +639,14 @@ namespace SimPe.Plugin.Scanner
 
 			if (sfd.ShowDialog()==DialogResult.OK) 
 			{
-				string skintone = "0000000"+(cbskins.SelectedIndex+1).ToString()+"-0000-0000-0000-000000000000";
+				string skintone = "";
+				if (cbskins.SelectedIndex<4)
+					skintone = "0000000"+(cbskins.SelectedIndex+1).ToString()+"-0000-0000-0000-000000000000";
+				else if (cbskins.SelectedIndex==4) skintone = "6baf064a-85ad-4e37-8d81-a987e9f8da46"; //Alien Skin
+				else if (cbskins.SelectedIndex==5) skintone = "b6ee1dbc-5bb3-4146-8315-02bd64eda707"; //Zombie Skin
+				else if (cbskins.SelectedIndex==6) skintone = "b9a94827-7544-450c-a8f4-6f643ae89a71"; //Mannequin Skin
+				else if (cbskins.SelectedIndex==7) skintone = "6eea47c7-8a35-4be7-9242-dcd082f53b55"; //CAS Mannequin Skin
+
 				SkinScanner cs = (SkinScanner)pnskin.Tag;
 				cs.CreateOverride(skintone, sfd.FileName, cbtxmt.Checked, cbtxtr.Checked);
 			}

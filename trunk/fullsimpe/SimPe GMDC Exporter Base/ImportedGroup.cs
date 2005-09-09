@@ -22,6 +22,39 @@ using System.Collections;
 
 namespace SimPe.Plugin.Gmdc
 {
+	public class GroupDescriptor
+	{
+		string name;
+		int index;
+
+		public GroupDescriptor(string name) : this(name, -1)
+		{
+		}
+
+		public GroupDescriptor(string name, int index) 
+		{
+			this.name = name;
+			this.index = index;
+		}
+
+		public string Name
+		{
+			get { return name; }
+			set { name = value; }
+		}
+
+		public int Index
+		{
+			get { return index; }
+			set { index = value; }
+		}
+
+		public bool HasIndex
+		{
+			get { return (index>=0); }
+		}
+	}
+
 	/// <summary>
 	/// Enumerates possible action for Mesh Groups
 	/// </summary>
@@ -58,14 +91,14 @@ namespace SimPe.Plugin.Gmdc
 		/// <summary>
 		/// internal Attribute
 		/// </summary>
-		string newname;
+		GroupDescriptor newname;
 
 		/// <summary>
 		/// If action is <see cref="GmdcImporterAction.Replace"/>, <see cref="GmdcImporterAction.Update"/> or 
 		/// <see cref="GmdcImporterAction.Rename"/>, this Member stores the 
 		/// new Name for the current Group. (read/write)
 		/// </summary>
-		public string TargetName 
+		public GroupDescriptor Target
 		{
 			get { return newname; }
 			set { newname = value; }
@@ -104,6 +137,8 @@ namespace SimPe.Plugin.Gmdc
 		{		
 			action = GmdcImporterAction.Add;
 			scale = (float)(1.0);
+
+			newname = new GroupDescriptor("");
 		}
 	}
 

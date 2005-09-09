@@ -46,7 +46,8 @@ namespace SimPe.Plugin
 										  new Plugin.Ltxt(this.LinkedProvider),
 										  new Plugin.Want(this.LinkedProvider),
 										  new Plugin.XWant(),
-										  new Plugin.Idno()
+										  new Plugin.Idno(),
+									      new Plugin.RoadTexture()
 									  };
 				return wrappers;
 			}

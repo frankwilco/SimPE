@@ -57,7 +57,7 @@ namespace SimPe.Windows.Forms
 		{
 			if( disposing )
 			{
-				tm.RemoveControl(this);
+				if (tm!=null) tm.Clear();				
 				tm = null;
 				if(components != null)
 				{
