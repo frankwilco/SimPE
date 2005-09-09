@@ -82,7 +82,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ObjectPreview));
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(SimpleObjectPreview));
 			this.pb = new System.Windows.Forms.PictureBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -341,7 +341,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lbExpansion.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbExpansion.TextAlign")));
 			this.lbExpansion.Visible = ((bool)(resources.GetObject("lbExpansion.Visible")));
 			// 
-			// ObjectPreview
+			// SimpleObjectPreview
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
 			this.AccessibleName = resources.GetString("$this.AccessibleName");
@@ -364,7 +364,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
 			this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
-			this.Name = "ObjectPreview";
+			this.Name = "SimpleObjectPreview";
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
 			this.ResumeLayout(false);
@@ -723,7 +723,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 				str.ProcessData(ctss, pkg);
 
-				return str.LanguageItems(Helper.WindowsRegistry.LanguageCode);
+				return str.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode);
 				
 			} 
 

@@ -810,7 +810,12 @@ namespace SimPe.Plugin
 					FixCpfProperties(cpf, cres_props, namemap, pfx, "_cres");
 
 					FixCpfProperties(cpf, groups, Data.MetaData.LOCAL_GROUP);
-					FixCpfProperties(cpf, "guid", (uint)(((uint)rnd.Next() & 0x00ffffff) | 0xfb000000));
+#if DEBUG
+					FixCpfProperties(cpf, "guid", (uint)(((uint)rnd.Next() & 0x00fffffe) | 0xfb000001));
+#else
+					
+					FixCpfProperties(cpf, "guid", (uint)(((uint)rnd.Next() & 0xfffffffe) | 0x00000001));
+#endif
 					
 					cpf.SynchronizeUserData();
 				}
