@@ -139,8 +139,13 @@ namespace SimPe.Plugin.Tool.Dockable
 				if (strs.Count>0) this.lbName.Text = strs[0].Title;
 				if (strs.Count>1) this.lbAbout.Text = strs[1].Title;
 			} 
-			else this.lbName.Text = cpf.FileName;
+			else 
+			{
+				this.lbName.Text = cpf.GetSaveItem("name").StringValue;
+				this.lbAbout.Text = cpf.GetSaveItem("description").StringValue;
+			}
 						
+			
 			this.lbPrice.Text = cpf.GetSaveItem("cost").UIntegerValue.ToString()+" $";
 
 			if (pb.Image == null) pb.Image = defimg;		
