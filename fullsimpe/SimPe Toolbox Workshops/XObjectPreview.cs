@@ -38,7 +38,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				if (cpf!=value)
 				{
 					cpf = value;
-					UpdateScreen();
+					UpdateXObjScreen();
 				}
 			}
 		}	
@@ -139,7 +139,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				if (strs.Count>0) this.lbName.Text = strs[0].Title;
 				if (strs.Count>1) this.lbAbout.Text = strs[1].Title;
 			} 
-			else this.lbName.Text = objd.FileName;
+			else this.lbName.Text = cpf.FileName;
 						
 			this.lbPrice.Text = cpf.GetSaveItem("cost").UIntegerValue.ToString()+" $";
 

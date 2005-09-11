@@ -106,7 +106,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		{	
 			//Find the Vertex Reference Number
 			int vertref = Link.GetElementNr(VertexElement);				
-
+			
 			writer.WriteLine("# Object number: " + modelnr);
 			writer.WriteLine("# VertexList ref: " + vertref);
 			writer.WriteLine("g " + Group.Name);
