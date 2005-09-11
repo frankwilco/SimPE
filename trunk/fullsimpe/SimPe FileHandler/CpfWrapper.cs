@@ -216,7 +216,7 @@ namespace SimPe.PackedFiles.Wrapper
 					else if (subnode.LocalName.Trim().ToLower() == "anyfloat32") 
 					{
 						item.Datatype = Data.MetaData.DataTypes.dtSingle;
-						item.SingleValue = Convert.ToSingle(subnode.InnerText);
+						item.SingleValue = Convert.ToSingle(subnode.InnerText, System.Globalization.CultureInfo.InvariantCulture);
 					}
 					else if (subnode.LocalName.Trim().ToLower() == "anyboolean") 
 					{
