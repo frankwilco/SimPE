@@ -48,6 +48,7 @@ namespace SimPe.Plugin
 		}
 
 		byte reserved_00;
+		byte reserved_01;
 
 		byte type;
 		public byte Type 
@@ -94,6 +95,18 @@ namespace SimPe.Plugin
 			format = reader.ReadUInt16();
 			switch (format) 
 			{
+				case 0x8009: 
+				{					
+					count = (uint)reader.ReadUInt16();
+					type = reader.ReadByte();
+					argc = reader.ReadByte();
+					locals = reader.ReadByte();
+					reserved_00 = reader.ReadByte();
+					flags = reader.ReadUInt16();
+					zero = reader.ReadUInt16();
+					reserved_01 = reader.ReadByte();
+					break;
+				}
                 case 0x8000:
 				case 0x8001: 
 				case 0x8002: 
@@ -137,6 +150,18 @@ namespace SimPe.Plugin
 			writer.Write(format);
 			switch (format) 
 			{
+				case 0x8009:
+				{					
+					writer.Write((ushort)count);
+					writer.Write(type);
+					writer.Write(argc);
+					writer.Write((byte)locals);
+					writer.Write((byte)reserved_00);
+					writer.Write(flags);
+					writer.Write(zero);					
+					writer.Write((byte)reserved_01);
+					break;
+				}
 				case 0x8000:
 				case 0x8001: 
 				case 0x8002: 

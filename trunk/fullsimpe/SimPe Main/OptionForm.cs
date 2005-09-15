@@ -2826,6 +2826,11 @@ namespace SimPe
 						{
 							switch (fti.Type) 
 							{
+								case FileTableItemType.EP2GameFolder: 
+								{
+									tw.Write(" root=\"ep2\"");
+									break;
+								}
 								case FileTableItemType.EP1GameFolder: 
 								{
 									tw.Write(" root=\"ep1\"");

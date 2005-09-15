@@ -473,7 +473,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		public static Image GetThumbnail(uint group, string modelname, string message, SimPe.Packages.File thumbs) 
 		{
 			uint inst = ThumbnailHash(group, modelname);
-			Image img = GetThumbnail(message, new uint[] { 0xAC2950C1}, inst, thumbs);
+			Image img = GetThumbnail(message, new uint[] { 0xAC2950C1}, group, inst, thumbs);
  	
 			//if (img==null) img = GetThumbnail(message, new uint[] { 0xAC2950C1}, Hashes.GetCrc32(Hashes.StripHashFromName(modelname.Trim().ToLower())), thumbs);
 
@@ -486,9 +486,9 @@ namespace SimPe.Plugin.Tool.Dockable
 		/// <param name="group"></param>
 		/// <param name="modelname"></param>
 		/// <returns>The Thumbnail</returns>
-		public static Image GetThumbnail(string message, uint type, uint inst, SimPe.Packages.File thumbs) 
+		public static Image GetThumbnail(string message, uint type, uint group, uint inst, SimPe.Packages.File thumbs) 
 		{
-			return GetThumbnail(message, new uint[] { type }, inst, thumbs);
+			return GetThumbnail(message, new uint[] { type }, group, inst, thumbs);
 		}
 
 		/// <summary>
@@ -497,7 +497,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		/// <param name="group"></param>
 		/// <param name="modelname"></param>
 		/// <returns>The Thumbnail</returns>
-		public static Image GetThumbnail(string message, uint[] types, uint inst, SimPe.Packages.File thumbs) 
+		public static Image GetThumbnail(string message, uint[] types, uint group, uint inst, SimPe.Packages.File thumbs) 
 		{
 			/*ArrayList types = new ArrayList();
 			types.Add(0xAC2950C1); // Objects
@@ -514,7 +514,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			foreach (uint type in types)
 			{
 				//0x6C2A22C3
-				Interfaces.Files.IPackedFileDescriptor[] pfds = thumbs.FindFile(type, 0, inst);
+				Interfaces.Files.IPackedFileDescriptor[] pfds = thumbs.FindFile(type, group, inst);
+				if (pfds.Length==0) pfds = thumbs.FindFile(type, 0, inst);
 				if (pfds.Length>0) 
 				{
 					Interfaces.Files.IPackedFileDescriptor pfd = pfds[0];
@@ -545,6 +546,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 			if (flname.StartsWith(Helper.WindowsRegistry.SimsPath.Trim().ToLower())) return Expansion.Original;
 			if (flname.StartsWith(Helper.WindowsRegistry.SimsEP1Path.Trim().ToLower())) return Expansion.University;
+			if (flname.StartsWith(Helper.WindowsRegistry.SimsEP2Path.Trim().ToLower())) return Expansion.Nightlife;
 			if (flname.StartsWith(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Donwloads"))) return Expansion.Custom;
 			return Expansion.Unknown;
 		}

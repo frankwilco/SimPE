@@ -38,7 +38,8 @@ namespace SimPe.Plugin
 			get 
 			{
 				if (opcodes==null) return Localization.Manager.GetString("Unknown");
-				else return opcodes.StoredObjfLines[nr].ToString();
+				else if (nr>=0 && nr<opcodes.StoredObjfLines.Count) return opcodes.StoredObjfLines[nr].ToString();
+				else return SimPe.Localization.GetString("Unknown")+" "+nr.ToString();
 			}
 		}
 

@@ -581,12 +581,45 @@ namespace SimPe
 		/// <summary>
 		/// Name of the Sims Application
 		/// </summary>
+		public string SimsEP2Path
+		{
+			get 
+			{
+				try 
+				{
+					XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+					object o = rkf.GetValue("SimsEP2Path");
+					if (o==null) return this.RealEP2GamePath;
+					else 
+					{
+						string fl = o.ToString();
+
+						if (!System.IO.Directory.Exists(fl)) return this.RealEP2GamePath;
+						return fl;
+					}
+				} 
+				catch (Exception) 
+				{
+					return this.RealEP2GamePath;
+				}
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("SimsEP2Path", value);
+			}
+		}
+
+		/// <summary>
+		/// Name of the Sims Application
+		/// </summary>
 		public string SimsApplication
 		{
 			get 
 			{
 				try 
 				{
+					if (this.EPInstalled==2) return System.IO.Path.Combine(this.SimsEP2Path, "TSBin\\Sims2EP2.exe");
 					if (this.EPInstalled==1) return System.IO.Path.Combine(this.SimsEP1Path, "TSBin\\Sims2EP1.exe");
 					else return System.IO.Path.Combine(this.SimsPath, "TSBin\\Sims2.exe");					
 				} 
@@ -1262,6 +1295,35 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Returns the Real Instalation Folder
+		/// </summary>
+		public string RealEP2GamePath 
+		{
+			get 
+			{
+#if MAC
+				return "";
+#else
+				if (this.EPInstalled>=2) 
+				{
+					try 
+					{
+						RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 Nightlife");
+						object o = rk.GetValue("Install Dir");
+						if (o==null) return "";
+						else return o.ToString();
+					} 
+					catch (Exception) 
+					{
+						return "";
+					}
+				}
+				return "";
+#endif
+			}
+		}
+
+		/// <summary>
 		/// Returns the highest number of installed EPs
 		/// </summary>
 		public int EPInstalled
@@ -1276,6 +1338,9 @@ namespace SimPe
 					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2");
 					object o = rk.GetValue("EPsInstalled");
 					if (o==null) return 0;
+
+					string name = o.ToString().ToLower();
+					if (name.IndexOf("sims2ep2.exe")!=-1) return 2;
 					else return 1; //Sims2EP1.exe
 #endif
 				} 

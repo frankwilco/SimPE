@@ -239,7 +239,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			}
 			
 			
-			return GetThumbnail(cpf.GetSaveItem("name").StringValue, types, inst, xthumbs);
+			return GetThumbnail(cpf.GetSaveItem("name").StringValue, types, cpf.FileDescriptor.Group, inst, xthumbs);
 			/*ArrayList types = new ArrayList();			
 			types.Add(0xEC3126C4); // Terrain
 			types.Add(0xCC30CDF8); //fences
