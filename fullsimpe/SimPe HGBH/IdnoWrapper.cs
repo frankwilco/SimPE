@@ -30,7 +30,8 @@ namespace SimPe.Plugin
 	{
 		Unknown = 0x00,
 		Normal = 0x01,
-		University = 0x02		
+		University = 0x02,
+		Downtown = 0x03
 	}
 
 	/// <summary>
@@ -40,7 +41,8 @@ namespace SimPe.Plugin
 	{
 		Unknown = 0x00,
 		Sims2 = 0x03,
-		Sims2_University = 0x05
+		Sims2_University = 0x05,
+		Sims2_Nightlife = 0x07
 	}
 
 	/// <summary>

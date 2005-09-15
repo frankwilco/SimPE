@@ -866,10 +866,12 @@ namespace SimPe
 		public static bool IsNeighborhoodFile(string filename) 
 		{
 			if (filename==null) return false;
+			filename = System.IO.Path.GetFileName(filename);
 			filename = filename.Trim().ToLower();
 
 			if (filename.EndsWith("neighborhood.package")) return true;
-			if ((filename.IndexOf("_university")!=-1) && filename.EndsWith(".package")) return true;
+			if ((filename.IndexOf("_university")!=-1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
+			if ((filename.IndexOf("_downtown")!=-1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
 
 			return false;
 		}

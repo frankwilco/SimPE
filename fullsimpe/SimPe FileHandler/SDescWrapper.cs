@@ -33,7 +33,8 @@ namespace SimPe.PackedFiles.Wrapper
 	{
 		Unknown = 0,
 		OriginalGame = 0x20,
-		University = 0x22
+		University = 0x22,
+		Nightlife = 0x29
 	}
 
 	#region Ghost Flags
@@ -857,6 +858,183 @@ namespace SimPe.PackedFiles.Wrapper
 	}
 	#endregion
 
+	#region SdscNightlife
+	/// <summary>
+	/// Nightlife specific Data
+	/// </summary>
+	public class SdscNightlife
+	{
+		internal SdscNightlife()
+		{
+			
+		}
+
+		ushort route;
+		public ushort RouteStartSlotOwnerID
+		{
+			get { return route; }			
+			set { route = value; }
+		}
+
+		
+		ushort traits1;
+		public ushort AttractionTraits1
+		{
+			get { return traits1; }			
+			set { traits1 = value; }
+		}		
+
+		ushort traits2;
+		public ushort AttractionTraits2
+		{
+			get { return traits2; }			
+			set { traits2 = value; }
+		}
+
+		ushort turnon1;
+		public ushort AttractionTurnOns1
+		{
+			get { return turnon1; }			
+			set { turnon1 = value; }
+		}
+
+		ushort turnoff1;
+		public ushort AttractionTurnOffs1
+		{
+			get { return turnoff1; }			
+			set { turnoff1 = value; }
+		}
+
+		ushort turnon2;
+		public ushort AttractionTurnOns2
+		{
+			get { return turnon2; }			
+			set { turnon2 = value; }
+		}
+
+		ushort turnoff2;
+		public ushort AttractionTurnOffs2
+		{
+			get { return turnoff2; }			
+			set { turnoff2 = value; }
+		}
+
+
+		
+		ushort species;
+		public ushort Species
+		{
+			get { return species; }			
+			set { species = value; }
+		}
+
+		
+		ushort countdown;
+		public ushort Countdown
+		{
+			get { return countdown; }			
+			set { countdown = value; }
+		}
+
+		
+		ushort perfume;
+		public ushort PerfumeDuration
+		{
+			get { return perfume; }			
+			set { perfume = value; }
+		}
+
+		
+		ushort timer;
+		public ushort DateTimer
+		{
+			get { return timer; }			
+			set { timer = value; }
+		}
+		
+
+		ushort score;
+		public ushort DateScore
+		{
+			get { return score; }			
+			set { score = value; }
+		}
+
+		ushort unlock;
+		public ushort DateUnlockCounter
+		{
+			get { return unlock; }			
+			set { unlock = value; }
+		}
+
+		ushort potion;
+		public ushort LovePotionDuration
+		{
+			get { return potion; }			
+			set { potion = value; }
+		}
+
+		ushort scorelock;
+		public ushort AspirationScoreLock
+		{
+			get { return scorelock; }			
+			set { scorelock = value; }
+		}
+
+		internal void Serialize(BinaryReader reader)
+		{
+			reader.BaseStream.Seek(0x172, SeekOrigin.Begin);
+			this.route = reader.ReadUInt16();		
+			
+			this.traits1 = reader.ReadUInt16();
+			this.traits2 = reader.ReadUInt16();
+			
+			this.turnon1 = reader.ReadUInt16();
+			this.turnon2 = reader.ReadUInt16();
+			
+			this.turnoff1 = reader.ReadUInt16();
+			this.turnoff2 = reader.ReadUInt16();
+
+			this.species = reader.ReadUInt16();
+			this.countdown = reader.ReadUInt16();
+			this.perfume = reader.ReadUInt16();
+
+			this.timer = reader.ReadUInt16();
+			this.score = reader.ReadUInt16();
+			this.unlock = reader.ReadUInt16();
+
+			this.potion = reader.ReadUInt16();
+			this.scorelock = reader.ReadUInt16();
+		}
+
+		internal void Unserialize(BinaryWriter writer)
+		{
+			writer.BaseStream.Seek(0x172, SeekOrigin.Begin);
+			writer.Write((ushort)this.route);		
+			
+			writer.Write((ushort)this.traits1);
+			writer.Write((ushort)this.traits2);
+			
+			writer.Write((ushort)this.turnon1);
+			writer.Write((ushort)this.turnon2);
+			
+			writer.Write((ushort)this.turnoff1);
+			writer.Write((ushort)this.turnoff2 );
+
+			writer.Write((ushort)this.species);
+			writer.Write((ushort)this.countdown);
+			writer.Write((ushort)this.perfume);
+
+			writer.Write((ushort)this.timer);
+			writer.Write((ushort)this.score);
+			writer.Write((ushort)this.unlock);
+		
+			writer.Write((ushort)this.potion);
+			writer.Write((ushort)this.scorelock);
+		}
+	}
+	#endregion
+
 	/// <summary>
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
@@ -969,10 +1147,20 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Returns University Specific Data
 		/// </summary>
-		/// <remarks>Only valid if Version == SDescVersions.University</remarks>
+		/// <remarks>Only valid if Version == SDescVersions.University or Version == SDescVersions.Nightlife</remarks>
 		public SdscUniversity University
 		{
 			get { return uni; }
+		}
+
+		SdscNightlife nightlife;
+		/// <summary>
+		/// Returns Nightlife Specific Data
+		/// </summary>
+		/// <remarks>Only valid if Version == SDescVersions.Nightlife</remarks>
+		public SdscNightlife Nightlife
+		{
+			get { return nightlife; }
 		}
 
 
@@ -1400,6 +1588,7 @@ namespace SimPe.PackedFiles.Wrapper
 			description = new CharacterDescription();	
 			relations = new SimRelationAttribute(this);
 			uni = new SdscUniversity();
+			nightlife = new SdscNightlife();
 
 			description.Aspiration = MetaData.AspirationTypes.Romance;
 			description.ZodiacSign = MetaData.ZodiacSignes.Virgo;
@@ -1416,12 +1605,24 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		/// <summary>
+		/// Returns the Offset for the GUID7Instance Data
+		/// </summary>
+		int GuidDataPosition
+		{
+			get 
+			{
+				return RelationPosition-0xA;
+			}
+		}
+
+		/// <summary>
 		/// Returns the Offset for the Relation COunt Filed
 		/// </summary>
 		int RelationPosition
 		{
 			get 
 			{
+				if (version>=(int)SDescVersions.Nightlife) return 0x192+0xA;
 				if (version>=(int)SDescVersions.University) return 0x16A+0x12;
 				return 0x16A;
 			}
@@ -1444,18 +1645,12 @@ namespace SimPe.PackedFiles.Wrapper
 			reader.BaseStream.Seek(startpos + 0x04, System.IO.SeekOrigin.Begin);
 			version = reader.ReadInt32();
 
-			if (version>=(int)SDescVersions.University) 
-			{
-				reader.BaseStream.Seek(startpos + 0x172, System.IO.SeekOrigin.Begin);
-				instancenumber = reader.ReadUInt16();
-				simid = reader.ReadUInt32();
-			} 
-			else 
-			{
-				reader.BaseStream.Seek(startpos + 0x160, System.IO.SeekOrigin.Begin);
-				instancenumber = reader.ReadUInt16();
-				simid = reader.ReadUInt32();
-			}
+			
+			//Read the GUID Data
+			reader.BaseStream.Seek(startpos + GuidDataPosition, System.IO.SeekOrigin.Begin);
+			instancenumber = reader.ReadUInt16();
+			simid = reader.ReadUInt32();
+			
  
 			//decay			
 			reader.BaseStream.Seek(startpos + 0xC6, System.IO.SeekOrigin.Begin);
@@ -1592,10 +1787,11 @@ namespace SimPe.PackedFiles.Wrapper
 			interests.Scifi = reader.ReadUInt16();
 
 			//university only Items
-			if (version>=(int)SDescVersions.University) 
-			{				
+			if (version>=(int)SDescVersions.University) 							
 				uni.Serialize(reader);
-			}
+			//nightlife only Items
+			if (version>=(int)SDescVersions.Nightlife) 							
+				nightlife.Serialize(reader);
 
 			reader.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
 		}
@@ -1620,18 +1816,11 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.BaseStream.Seek(startpos + 0x04, System.IO.SeekOrigin.Begin);
 			writer.Write(version); //Version Number
 
-			if (version>=(int)SDescVersions.University) 
-			{
-				writer.BaseStream.Seek(startpos + 0x172, System.IO.SeekOrigin.Begin);
-				writer.Write(instancenumber);
-				writer.Write(simid); 
-			} 
-			else 
-			{
-				writer.BaseStream.Seek(startpos + 0x160, System.IO.SeekOrigin.Begin);
-				writer.Write(instancenumber);
-				writer.Write(simid); 
-			}
+			//Write the Guid Data
+			writer.BaseStream.Seek(startpos + GuidDataPosition, System.IO.SeekOrigin.Begin);
+			writer.Write(instancenumber);
+			writer.Write(simid); 
+			
 
 			//character 
 			writer.BaseStream.Seek(startpos + 0x10, System.IO.SeekOrigin.Begin);
@@ -1751,10 +1940,12 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write(interests.Scifi);
 
 			//university only Items
-			if (version>=(int)SDescVersions.University) 
-			{				
+			if (version>=(int)SDescVersions.University) 							
 				uni.Unserialize(writer);
-			}
+			//nightlife only Items
+			if (version>=(int)SDescVersions.Nightlife) 							
+				nightlife.Unserialize(writer);
+			
 
 			writer.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
 		}

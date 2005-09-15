@@ -159,6 +159,7 @@ namespace SimPe.Plugin
 						reserved_01 = reader.ReadBytes(8);
 						break;
 					}
+					case 0x8009:
 					case 0x8007: 
 					{
 						opcode = reader.ReadUInt16();
@@ -220,6 +221,7 @@ namespace SimPe.Plugin
 					writer.Write(reserved_01);
 					break;
 				}
+				case 0x8009: 
 				case 0x8007: 
 				{
 					writer.Write(opcode);

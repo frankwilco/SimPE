@@ -28,13 +28,16 @@ using SimPe.Interfaces;
 using SimPe.PackedFiles.Wrapper.Supporting;
 using SimPe.Data;
 using Ambertation.Windows.Forms;
+using SimPe.Windows.Forms;
 
 namespace SimPe.PackedFiles.UserInterface
 {
 	/// <summary>
 	/// Zusammenfassung für ExtSDescUI.
 	/// </summary>
-	public class ExtSDesc : SimPe.Windows.Forms.WrapperBaseControl, IPackedFileUI
+	public class ExtSDesc : 
+		//System.Windows.Forms.UserControl 
+		SimPe.Windows.Forms.WrapperBaseControl, IPackedFileUI
 	{
 		private TD.SandBar.ToolBar toolBar1;
 		private TD.SandBar.ButtonItem biEP1;
@@ -96,6 +99,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Panel pnRel;
 		private System.Windows.Forms.Panel pnMisc;
 		private System.Windows.Forms.Panel pnEP1;
+		private System.Windows.Forms.Panel pnEP2;
 		private Ambertation.Windows.Forms.LabeledProgressBar pbPolitics;
 		private Ambertation.Windows.Forms.LabeledProgressBar pbMoney;
 		private Ambertation.Windows.Forms.LabeledProgressBar pbCulture;
@@ -195,6 +199,13 @@ namespace SimPe.PackedFiles.UserInterface
 		private TD.SandBar.MenuButtonItem miRemRelation;
 		private System.ComponentModel.IContainer components;
 		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private TD.SandBar.ButtonItem biEP2;
+		private System.Windows.Forms.CheckedListBox lbTraits;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.CheckedListBox lbTurnOn;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.CheckedListBox lbTurnOff;
+		private System.Windows.Forms.Label label6;
 
 		
 		System.Resources.ResourceManager strresources;
@@ -205,7 +216,8 @@ namespace SimPe.PackedFiles.UserInterface
 			Text = SimPe.Localization.GetString("Sim Description Editor");
 			
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
-			InitializeComponent();				
+			InitializeComponent();	
+			Initialize();
 
 			toolBar1.Renderer = new TD.SandBar.MediaPlayerRenderer();
 			ThemeManager.AddControl(this.toolBar1);
@@ -220,6 +232,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.biChar.Tag = pnChar;
 			this.biCareer.Tag = pnCareer;
 			this.biEP1.Tag = pnEP1;
+			this.biEP2.Tag = pnEP2;
 			this.biInt.Tag = pnInt;
 			this.biRel.Tag = pnRel;
 			this.biMisc.Tag = pnMisc;
@@ -252,6 +265,35 @@ namespace SimPe.PackedFiles.UserInterface
 			base.Dispose( disposing );
 		}
 
+		void Initialize()
+		{
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ExtSDesc));
+			this.Commited += new System.EventHandler(this.ExtSDesc_Commited);
+
+			this.srcRel = new SimPe.PackedFiles.UserInterface.CommonSrel();
+			this.dstRel = new SimPe.PackedFiles.UserInterface.CommonSrel();
+
+			this.srcTb.Controls.Add(this.srcRel);
+			this.dstTb.Controls.Add(this.dstRel);
+
+			// 
+			// srcRel
+			// 
+			this.srcRel.Dock = DockStyle.Fill;
+			this.srcRel.Enabled = false;
+			this.srcRel.Name = "srcRel";
+			this.srcRel.Srel = null;
+			this.srcRel.Visible = true;
+
+			// 
+			// dstRel
+			// 
+			this.dstRel.Dock = DockStyle.Fill;
+			this.dstRel.Enabled = false;
+			this.dstRel.Name = "dstRel";
+			this.dstRel.Srel = null;
+			this.dstRel.Visible = true;
+		}
 		#region Vom Komponenten-Designer generierter Code
 		/// <summary> 
 		/// Erforderliche Methode für die Designerunterstützung. 
@@ -272,6 +314,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.biSkill = new TD.SandBar.ButtonItem();
 			this.biMisc = new TD.SandBar.ButtonItem();
 			this.biEP1 = new TD.SandBar.ButtonItem();
+			this.biEP2 = new TD.SandBar.ButtonItem();
 			this.biMore = new TD.SandBar.ButtonItem();
 			this.biMax = new TD.SandBar.ButtonItem();
 			this.mbiMax = new TD.SandBar.MenuButtonItem();
@@ -378,9 +421,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnRel = new System.Windows.Forms.Panel();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.srcTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
-			this.srcRel = new SimPe.PackedFiles.UserInterface.CommonSrel();
 			this.dstTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
-			this.dstRel = new SimPe.PackedFiles.UserInterface.CommonSrel();
 			this.pnMisc = new System.Windows.Forms.Panel();
 			this.xpTaskBoxSimple3 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.label3 = new System.Windows.Forms.Label();
@@ -421,6 +462,13 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbmajor = new System.Windows.Forms.ComboBox();
 			this.label98 = new System.Windows.Forms.Label();
 			this.tbmajor = new System.Windows.Forms.TextBox();
+			this.pnEP2 = new System.Windows.Forms.Panel();
+			this.lbTurnOff = new System.Windows.Forms.CheckedListBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.lbTurnOn = new System.Windows.Forms.CheckedListBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.lbTraits = new System.Windows.Forms.CheckedListBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.pnId.SuspendLayout();
 			this.pnSkill.SuspendLayout();
 			this.pnChar.SuspendLayout();
@@ -428,13 +476,12 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnInt.SuspendLayout();
 			this.pnRel.SuspendLayout();
 			this.panel3.SuspendLayout();
-			this.srcTb.SuspendLayout();
-			this.dstTb.SuspendLayout();
 			this.pnMisc.SuspendLayout();
 			this.xpTaskBoxSimple3.SuspendLayout();
 			this.xpTaskBoxSimple2.SuspendLayout();
 			this.xpTaskBoxSimple1.SuspendLayout();
 			this.pnEP1.SuspendLayout();
+			this.pnEP2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// toolBar1
@@ -462,6 +509,7 @@ namespace SimPe.PackedFiles.UserInterface
 																			  this.biSkill,
 																			  this.biMisc,
 																			  this.biEP1,
+																			  this.biEP2,
 																			  this.biMore,
 																			  this.biMax});
 			this.toolBar1.Location = ((System.Drawing.Point)(resources.GetObject("toolBar1.Location")));
@@ -534,6 +582,14 @@ namespace SimPe.PackedFiles.UserInterface
 			this.biEP1.Text = resources.GetString("biEP1.Text");
 			this.biEP1.ToolTipText = resources.GetString("biEP1.ToolTipText");
 			this.biEP1.Activate += new System.EventHandler(this.ChoosePage);
+			// 
+			// biEP2
+			// 
+			this.biEP2.Enabled = false;
+			this.biEP2.Image = ((System.Drawing.Image)(resources.GetObject("biEP2.Image")));
+			this.biEP2.Text = resources.GetString("biEP2.Text");
+			this.biEP2.ToolTipText = resources.GetString("biEP2.ToolTipText");
+			this.biEP2.Activate += new System.EventHandler(this.ChoosePage);
 			// 
 			// biMore
 			// 
@@ -3355,7 +3411,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.srcTb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("srcTb.BackgroundImage")));
 			this.srcTb.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
 			this.srcTb.BorderColor = System.Drawing.SystemColors.Window;
-			this.srcTb.Controls.Add(this.srcRel);
 			this.srcTb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("srcTb.Dock")));
 			this.srcTb.DockPadding.Bottom = 4;
 			this.srcTb.DockPadding.Left = 4;
@@ -3380,27 +3435,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.srcTb.Text = resources.GetString("srcTb.Text");
 			this.srcTb.Visible = ((bool)(resources.GetObject("srcTb.Visible")));
 			// 
-			// srcRel
-			// 
-			this.srcRel.AccessibleDescription = resources.GetString("srcRel.AccessibleDescription");
-			this.srcRel.AccessibleName = resources.GetString("srcRel.AccessibleName");
-			this.srcRel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("srcRel.Anchor")));
-			this.srcRel.AutoScroll = ((bool)(resources.GetObject("srcRel.AutoScroll")));
-			this.srcRel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("srcRel.AutoScrollMargin")));
-			this.srcRel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("srcRel.AutoScrollMinSize")));
-			this.srcRel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("srcRel.BackgroundImage")));
-			this.srcRel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("srcRel.Dock")));
-			this.srcRel.Enabled = ((bool)(resources.GetObject("srcRel.Enabled")));
-			this.srcRel.Font = ((System.Drawing.Font)(resources.GetObject("srcRel.Font")));
-			this.srcRel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("srcRel.ImeMode")));
-			this.srcRel.Location = ((System.Drawing.Point)(resources.GetObject("srcRel.Location")));
-			this.srcRel.Name = "srcRel";
-			this.srcRel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("srcRel.RightToLeft")));
-			this.srcRel.Size = ((System.Drawing.Size)(resources.GetObject("srcRel.Size")));
-			this.srcRel.Srel = null;
-			this.srcRel.TabIndex = ((int)(resources.GetObject("srcRel.TabIndex")));
-			this.srcRel.Visible = ((bool)(resources.GetObject("srcRel.Visible")));
-			// 
 			// dstTb
 			// 
 			this.dstTb.AccessibleDescription = resources.GetString("dstTb.AccessibleDescription");
@@ -3413,7 +3447,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.dstTb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dstTb.BackgroundImage")));
 			this.dstTb.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
 			this.dstTb.BorderColor = System.Drawing.SystemColors.Window;
-			this.dstTb.Controls.Add(this.dstRel);
 			this.dstTb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dstTb.Dock")));
 			this.dstTb.DockPadding.Bottom = 4;
 			this.dstTb.DockPadding.Left = 4;
@@ -3437,27 +3470,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.dstTb.TabIndex = ((int)(resources.GetObject("dstTb.TabIndex")));
 			this.dstTb.Text = resources.GetString("dstTb.Text");
 			this.dstTb.Visible = ((bool)(resources.GetObject("dstTb.Visible")));
-			// 
-			// dstRel
-			// 
-			this.dstRel.AccessibleDescription = resources.GetString("dstRel.AccessibleDescription");
-			this.dstRel.AccessibleName = resources.GetString("dstRel.AccessibleName");
-			this.dstRel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("dstRel.Anchor")));
-			this.dstRel.AutoScroll = ((bool)(resources.GetObject("dstRel.AutoScroll")));
-			this.dstRel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("dstRel.AutoScrollMargin")));
-			this.dstRel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("dstRel.AutoScrollMinSize")));
-			this.dstRel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dstRel.BackgroundImage")));
-			this.dstRel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("dstRel.Dock")));
-			this.dstRel.Enabled = ((bool)(resources.GetObject("dstRel.Enabled")));
-			this.dstRel.Font = ((System.Drawing.Font)(resources.GetObject("dstRel.Font")));
-			this.dstRel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dstRel.ImeMode")));
-			this.dstRel.Location = ((System.Drawing.Point)(resources.GetObject("dstRel.Location")));
-			this.dstRel.Name = "dstRel";
-			this.dstRel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("dstRel.RightToLeft")));
-			this.dstRel.Size = ((System.Drawing.Size)(resources.GetObject("dstRel.Size")));
-			this.dstRel.Srel = null;
-			this.dstRel.TabIndex = ((int)(resources.GetObject("dstRel.TabIndex")));
-			this.dstRel.Visible = ((bool)(resources.GetObject("dstRel.Visible")));
 			// 
 			// pnMisc
 			// 
@@ -4555,6 +4567,169 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbmajor.WordWrap = ((bool)(resources.GetObject("tbmajor.WordWrap")));
 			this.tbmajor.TextChanged += new System.EventHandler(this.ChangedEP1);
 			// 
+			// pnEP2
+			// 
+			this.pnEP2.AccessibleDescription = resources.GetString("pnEP2.AccessibleDescription");
+			this.pnEP2.AccessibleName = resources.GetString("pnEP2.AccessibleName");
+			this.pnEP2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pnEP2.Anchor")));
+			this.pnEP2.AutoScroll = ((bool)(resources.GetObject("pnEP2.AutoScroll")));
+			this.pnEP2.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("pnEP2.AutoScrollMargin")));
+			this.pnEP2.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("pnEP2.AutoScrollMinSize")));
+			this.pnEP2.BackColor = System.Drawing.Color.Transparent;
+			this.pnEP2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnEP2.BackgroundImage")));
+			this.pnEP2.Controls.Add(this.lbTurnOff);
+			this.pnEP2.Controls.Add(this.label6);
+			this.pnEP2.Controls.Add(this.lbTurnOn);
+			this.pnEP2.Controls.Add(this.label5);
+			this.pnEP2.Controls.Add(this.lbTraits);
+			this.pnEP2.Controls.Add(this.label4);
+			this.pnEP2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pnEP2.Dock")));
+			this.pnEP2.Enabled = ((bool)(resources.GetObject("pnEP2.Enabled")));
+			this.pnEP2.Font = ((System.Drawing.Font)(resources.GetObject("pnEP2.Font")));
+			this.pnEP2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pnEP2.ImeMode")));
+			this.pnEP2.Location = ((System.Drawing.Point)(resources.GetObject("pnEP2.Location")));
+			this.pnEP2.Name = "pnEP2";
+			this.pnEP2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pnEP2.RightToLeft")));
+			this.pnEP2.Size = ((System.Drawing.Size)(resources.GetObject("pnEP2.Size")));
+			this.pnEP2.TabIndex = ((int)(resources.GetObject("pnEP2.TabIndex")));
+			this.pnEP2.Text = resources.GetString("pnEP2.Text");
+			this.pnEP2.Visible = ((bool)(resources.GetObject("pnEP2.Visible")));
+			// 
+			// lbTurnOff
+			// 
+			this.lbTurnOff.AccessibleDescription = resources.GetString("lbTurnOff.AccessibleDescription");
+			this.lbTurnOff.AccessibleName = resources.GetString("lbTurnOff.AccessibleName");
+			this.lbTurnOff.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbTurnOff.Anchor")));
+			this.lbTurnOff.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lbTurnOff.BackgroundImage")));
+			this.lbTurnOff.ColumnWidth = ((int)(resources.GetObject("lbTurnOff.ColumnWidth")));
+			this.lbTurnOff.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbTurnOff.Dock")));
+			this.lbTurnOff.Enabled = ((bool)(resources.GetObject("lbTurnOff.Enabled")));
+			this.lbTurnOff.Font = ((System.Drawing.Font)(resources.GetObject("lbTurnOff.Font")));
+			this.lbTurnOff.HorizontalExtent = ((int)(resources.GetObject("lbTurnOff.HorizontalExtent")));
+			this.lbTurnOff.HorizontalScrollbar = ((bool)(resources.GetObject("lbTurnOff.HorizontalScrollbar")));
+			this.lbTurnOff.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbTurnOff.ImeMode")));
+			this.lbTurnOff.IntegralHeight = ((bool)(resources.GetObject("lbTurnOff.IntegralHeight")));
+			this.lbTurnOff.Location = ((System.Drawing.Point)(resources.GetObject("lbTurnOff.Location")));
+			this.lbTurnOff.Name = "lbTurnOff";
+			this.lbTurnOff.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbTurnOff.RightToLeft")));
+			this.lbTurnOff.ScrollAlwaysVisible = ((bool)(resources.GetObject("lbTurnOff.ScrollAlwaysVisible")));
+			this.lbTurnOff.Size = ((System.Drawing.Size)(resources.GetObject("lbTurnOff.Size")));
+			this.lbTurnOff.TabIndex = ((int)(resources.GetObject("lbTurnOff.TabIndex")));
+			this.lbTurnOff.Visible = ((bool)(resources.GetObject("lbTurnOff.Visible")));
+			this.lbTurnOff.SelectedIndexChanged += new System.EventHandler(this.lbTurnOff_SelectedIndexChanged);
+			// 
+			// label6
+			// 
+			this.label6.AccessibleDescription = resources.GetString("label6.AccessibleDescription");
+			this.label6.AccessibleName = resources.GetString("label6.AccessibleName");
+			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label6.Anchor")));
+			this.label6.AutoSize = ((bool)(resources.GetObject("label6.AutoSize")));
+			this.label6.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label6.Dock")));
+			this.label6.Enabled = ((bool)(resources.GetObject("label6.Enabled")));
+			this.label6.Font = ((System.Drawing.Font)(resources.GetObject("label6.Font")));
+			this.label6.Image = ((System.Drawing.Image)(resources.GetObject("label6.Image")));
+			this.label6.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label6.ImageAlign")));
+			this.label6.ImageIndex = ((int)(resources.GetObject("label6.ImageIndex")));
+			this.label6.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label6.ImeMode")));
+			this.label6.Location = ((System.Drawing.Point)(resources.GetObject("label6.Location")));
+			this.label6.Name = "label6";
+			this.label6.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label6.RightToLeft")));
+			this.label6.Size = ((System.Drawing.Size)(resources.GetObject("label6.Size")));
+			this.label6.TabIndex = ((int)(resources.GetObject("label6.TabIndex")));
+			this.label6.Text = resources.GetString("label6.Text");
+			this.label6.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label6.TextAlign")));
+			this.label6.Visible = ((bool)(resources.GetObject("label6.Visible")));
+			// 
+			// lbTurnOn
+			// 
+			this.lbTurnOn.AccessibleDescription = resources.GetString("lbTurnOn.AccessibleDescription");
+			this.lbTurnOn.AccessibleName = resources.GetString("lbTurnOn.AccessibleName");
+			this.lbTurnOn.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbTurnOn.Anchor")));
+			this.lbTurnOn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lbTurnOn.BackgroundImage")));
+			this.lbTurnOn.ColumnWidth = ((int)(resources.GetObject("lbTurnOn.ColumnWidth")));
+			this.lbTurnOn.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbTurnOn.Dock")));
+			this.lbTurnOn.Enabled = ((bool)(resources.GetObject("lbTurnOn.Enabled")));
+			this.lbTurnOn.Font = ((System.Drawing.Font)(resources.GetObject("lbTurnOn.Font")));
+			this.lbTurnOn.HorizontalExtent = ((int)(resources.GetObject("lbTurnOn.HorizontalExtent")));
+			this.lbTurnOn.HorizontalScrollbar = ((bool)(resources.GetObject("lbTurnOn.HorizontalScrollbar")));
+			this.lbTurnOn.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbTurnOn.ImeMode")));
+			this.lbTurnOn.IntegralHeight = ((bool)(resources.GetObject("lbTurnOn.IntegralHeight")));
+			this.lbTurnOn.Location = ((System.Drawing.Point)(resources.GetObject("lbTurnOn.Location")));
+			this.lbTurnOn.Name = "lbTurnOn";
+			this.lbTurnOn.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbTurnOn.RightToLeft")));
+			this.lbTurnOn.ScrollAlwaysVisible = ((bool)(resources.GetObject("lbTurnOn.ScrollAlwaysVisible")));
+			this.lbTurnOn.Size = ((System.Drawing.Size)(resources.GetObject("lbTurnOn.Size")));
+			this.lbTurnOn.TabIndex = ((int)(resources.GetObject("lbTurnOn.TabIndex")));
+			this.lbTurnOn.Visible = ((bool)(resources.GetObject("lbTurnOn.Visible")));
+			this.lbTurnOn.SelectedIndexChanged += new System.EventHandler(this.lbTurnOn_SelectedIndexChanged);
+			// 
+			// label5
+			// 
+			this.label5.AccessibleDescription = resources.GetString("label5.AccessibleDescription");
+			this.label5.AccessibleName = resources.GetString("label5.AccessibleName");
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label5.Anchor")));
+			this.label5.AutoSize = ((bool)(resources.GetObject("label5.AutoSize")));
+			this.label5.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label5.Dock")));
+			this.label5.Enabled = ((bool)(resources.GetObject("label5.Enabled")));
+			this.label5.Font = ((System.Drawing.Font)(resources.GetObject("label5.Font")));
+			this.label5.Image = ((System.Drawing.Image)(resources.GetObject("label5.Image")));
+			this.label5.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label5.ImageAlign")));
+			this.label5.ImageIndex = ((int)(resources.GetObject("label5.ImageIndex")));
+			this.label5.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label5.ImeMode")));
+			this.label5.Location = ((System.Drawing.Point)(resources.GetObject("label5.Location")));
+			this.label5.Name = "label5";
+			this.label5.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label5.RightToLeft")));
+			this.label5.Size = ((System.Drawing.Size)(resources.GetObject("label5.Size")));
+			this.label5.TabIndex = ((int)(resources.GetObject("label5.TabIndex")));
+			this.label5.Text = resources.GetString("label5.Text");
+			this.label5.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label5.TextAlign")));
+			this.label5.Visible = ((bool)(resources.GetObject("label5.Visible")));
+			// 
+			// lbTraits
+			// 
+			this.lbTraits.AccessibleDescription = resources.GetString("lbTraits.AccessibleDescription");
+			this.lbTraits.AccessibleName = resources.GetString("lbTraits.AccessibleName");
+			this.lbTraits.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbTraits.Anchor")));
+			this.lbTraits.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lbTraits.BackgroundImage")));
+			this.lbTraits.ColumnWidth = ((int)(resources.GetObject("lbTraits.ColumnWidth")));
+			this.lbTraits.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbTraits.Dock")));
+			this.lbTraits.Enabled = ((bool)(resources.GetObject("lbTraits.Enabled")));
+			this.lbTraits.Font = ((System.Drawing.Font)(resources.GetObject("lbTraits.Font")));
+			this.lbTraits.HorizontalExtent = ((int)(resources.GetObject("lbTraits.HorizontalExtent")));
+			this.lbTraits.HorizontalScrollbar = ((bool)(resources.GetObject("lbTraits.HorizontalScrollbar")));
+			this.lbTraits.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbTraits.ImeMode")));
+			this.lbTraits.IntegralHeight = ((bool)(resources.GetObject("lbTraits.IntegralHeight")));
+			this.lbTraits.Location = ((System.Drawing.Point)(resources.GetObject("lbTraits.Location")));
+			this.lbTraits.Name = "lbTraits";
+			this.lbTraits.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbTraits.RightToLeft")));
+			this.lbTraits.ScrollAlwaysVisible = ((bool)(resources.GetObject("lbTraits.ScrollAlwaysVisible")));
+			this.lbTraits.Size = ((System.Drawing.Size)(resources.GetObject("lbTraits.Size")));
+			this.lbTraits.TabIndex = ((int)(resources.GetObject("lbTraits.TabIndex")));
+			this.lbTraits.Visible = ((bool)(resources.GetObject("lbTraits.Visible")));
+			this.lbTraits.SelectedIndexChanged += new System.EventHandler(this.lbTraits_SelectedIndexChanged);
+			// 
+			// label4
+			// 
+			this.label4.AccessibleDescription = resources.GetString("label4.AccessibleDescription");
+			this.label4.AccessibleName = resources.GetString("label4.AccessibleName");
+			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label4.Anchor")));
+			this.label4.AutoSize = ((bool)(resources.GetObject("label4.AutoSize")));
+			this.label4.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label4.Dock")));
+			this.label4.Enabled = ((bool)(resources.GetObject("label4.Enabled")));
+			this.label4.Font = ((System.Drawing.Font)(resources.GetObject("label4.Font")));
+			this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
+			this.label4.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label4.ImageAlign")));
+			this.label4.ImageIndex = ((int)(resources.GetObject("label4.ImageIndex")));
+			this.label4.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label4.ImeMode")));
+			this.label4.Location = ((System.Drawing.Point)(resources.GetObject("label4.Location")));
+			this.label4.Name = "label4";
+			this.label4.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label4.RightToLeft")));
+			this.label4.Size = ((System.Drawing.Size)(resources.GetObject("label4.Size")));
+			this.label4.TabIndex = ((int)(resources.GetObject("label4.TabIndex")));
+			this.label4.Text = resources.GetString("label4.Text");
+			this.label4.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label4.TextAlign")));
+			this.label4.Visible = ((bool)(resources.GetObject("label4.Visible")));
+			// 
 			// ExtSDesc
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -4563,6 +4738,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.pnEP2);
 			this.Controls.Add(this.toolBar1);
 			this.Controls.Add(this.pnChar);
 			this.Controls.Add(this.pnSkill);
@@ -4580,16 +4756,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Name = "ExtSDesc";
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
-			this.Commited += new System.EventHandler(this.ExtSDesc_Commited);
-			this.Controls.SetChildIndex(this.pnMisc, 0);
-			this.Controls.SetChildIndex(this.pnEP1, 0);
-			this.Controls.SetChildIndex(this.pnCareer, 0);
-			this.Controls.SetChildIndex(this.pnId, 0);
-			this.Controls.SetChildIndex(this.pnInt, 0);
-			this.Controls.SetChildIndex(this.pnRel, 0);
-			this.Controls.SetChildIndex(this.pnSkill, 0);
-			this.Controls.SetChildIndex(this.pnChar, 0);
-			this.Controls.SetChildIndex(this.toolBar1, 0);
 			this.pnId.ResumeLayout(false);
 			this.pnSkill.ResumeLayout(false);
 			this.pnChar.ResumeLayout(false);
@@ -4597,13 +4763,12 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnInt.ResumeLayout(false);
 			this.pnRel.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);
-			this.srcTb.ResumeLayout(false);
-			this.dstTb.ResumeLayout(false);
 			this.pnMisc.ResumeLayout(false);
 			this.xpTaskBoxSimple3.ResumeLayout(false);
 			this.xpTaskBoxSimple2.ResumeLayout(false);
 			this.xpTaskBoxSimple1.ResumeLayout(false);
 			this.pnEP1.ResumeLayout(false);
+			this.pnEP2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -4760,16 +4925,21 @@ namespace SimPe.PackedFiles.UserInterface
 
 				pnRel_VisibleChanged(null, null);
 
-				this.biEP1.Enabled = Sdesc.Version == SimPe.PackedFiles.Wrapper.SDescVersions.University;
+				this.biEP1.Enabled = Sdesc.Version == SimPe.PackedFiles.Wrapper.SDescVersions.University || Sdesc.Version == SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife;
+				this.biEP2.Enabled = Sdesc.Version == SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife;
 				if (pnEP1.Visible && !biEP1.Enabled) this.SelectButton(biId);
+				if (pnEP2.Visible && !biEP2.Enabled) this.SelectButton(biId);
 
 				if (biEP1.Enabled) RefreshEP1(Sdesc);
+				if (biEP2.Enabled) RefreshEP2(Sdesc);
 			} 
 			finally 
 			{
 				this.intern = false;
 			}
 		}
+
+		
 
 		void RefreshEP1(Wrapper.ExtSDesc sdesc)
 		{
@@ -5748,6 +5918,61 @@ namespace SimPe.PackedFiles.UserInterface
 			lv.EnsureVisible(lv.SelectedItems[0].Index);
 			lv_SelectedIndexChanged(lv, null);
 		}
+		#endregion
+
+		#region Nightlife
+		void SelectNightlifeItems(System.Windows.Forms.CheckedListBox clb, ushort v1, ushort v2)
+		{
+			uint cur = FileTable.ProviderRegistry.SimDescriptionProvider.BuildTurnOnIndex(v1, v2);
+			for (int i=0; i<clb.Items.Count; i++)
+			{
+				uint val = ((SimPe.Interfaces.IAlias)clb.Items[i]).Id;
+				clb.SetSelected(i, ((cur&val)==val));
+			}
+		}
+
+		uint SumSelection(System.Windows.Forms.CheckedListBox clb)
+		{
+			uint val = 0;
+			for (int i=0; i<clb.Items.Count; i++)
+				if (clb.GetSelected(i))
+					val += ((SimPe.Interfaces.IAlias)clb.Items[i]).Id;
+
+			return val;
+		}
+
+		void RefreshEP2(Wrapper.ExtSDesc sdesc)
+		{
+			SelectNightlifeItems(this.lbTraits, sdesc.Nightlife.AttractionTraits1, sdesc.Nightlife.AttractionTraits2);
+			SelectNightlifeItems(this.lbTurnOn, sdesc.Nightlife.AttractionTurnOns1, sdesc.Nightlife.AttractionTurnOns2);
+			SelectNightlifeItems(this.lbTurnOff, sdesc.Nightlife.AttractionTurnOffs1, sdesc.Nightlife.AttractionTurnOffs2);
+		}
+		
+
+		private void lbTraits_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (intern) return;
+			ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTraits));
+			Sdesc.Nightlife.AttractionTraits1 = v[0];
+			Sdesc.Nightlife.AttractionTraits2 = v[1];
+		}
+
+		private void lbTurnOn_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (intern) return;
+			ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOn));
+			Sdesc.Nightlife.AttractionTurnOns1 = v[0];
+			Sdesc.Nightlife.AttractionTurnOns2 = v[1];
+		}
+
+		private void lbTurnOff_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (intern) return;
+			ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOff));
+			Sdesc.Nightlife.AttractionTurnOffs1 = v[0];
+			Sdesc.Nightlife.AttractionTurnOffs2 = v[1];
+		}
+
 		#endregion
 	}
 }

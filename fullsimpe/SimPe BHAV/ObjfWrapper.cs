@@ -130,7 +130,7 @@ namespace SimPe.Plugin
 				"OBJf Wrapper",
 				"Quaxi",
 				"---",
-				4
+				5
 				); 
 		}
 

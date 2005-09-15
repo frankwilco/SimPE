@@ -14,7 +14,8 @@ namespace SimPe
 		SaveGameFolder = 0x3,
 		SimPEFolder = 0x4,
 		SimPEDataFolder = 0x5,
-		SimPEPluginFolder = 0x6
+		SimPEPluginFolder = 0x6,
+		EP2GameFolder = 0x7
 	}
 	/// <summary>
 	/// The type and location of a Folder/file
@@ -252,6 +253,12 @@ namespace SimPe
 													fti.Type = FileTableItemType.EP1GameFolder;
 													break;
 												}
+												case "ep2":
+												{
+													root = Helper.WindowsRegistry.SimsEP2Path;
+													fti.Type = FileTableItemType.EP2GameFolder;
+													break;
+												}
 												case "save":
 												{
 													root = Helper.WindowsRegistry.SimSavegameFolder;
@@ -318,6 +325,13 @@ namespace SimPe
 					tw.WriteLine("<folders>");
 					tw.WriteLine("  <filetable>");
 					tw.WriteLine("    <file root=\"save\">Downloads\\_EnableColorOptionsGMND.package</file>");
+					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Objects</path>");					
+					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\3D</path>");
+					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Catalog\\Materials</path>");
+					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Catalog\\Skins</path>");
+					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Catalog\\Patterns</path>");
+					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Wants</path>");
+					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\UI</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Objects</path>");					
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\3D</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\Materials</path>");

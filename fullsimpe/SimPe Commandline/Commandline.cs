@@ -452,12 +452,12 @@ namespace SimPe
 		#region Import Data
 		public static void ConvertData()
 		{
-			if (Helper.WindowsRegistry.PreviousVersion<=201999584204) 
+			if (Helper.WindowsRegistry.PreviousVersion<=206294785685) 
 			{
 				string name = System.IO.Path.Combine(Helper.SimPeDataPath, "folders.xreg");
 				if (System.IO.File.Exists(name)) 
 				{
-					if (Message.Show("The new ObjectWorkshop does now have support for Fences, Roofs, Terrains, Walls and Floors. For the new Feature to work, SimPE needs to reset your FileTable.\nThis means, that SimPe will delete the File \""+name+"\".\n\nDo you want SimPe to reset your FileTable?", "Update", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+					if (Message.Show("In order to support the new Expansion \"Nightlife\", SimPE need to reset your FileTable.\nThis means, that SimPe will delete the File \""+name+"\".\n\nDo you want SimPe to reset your FileTable?", "Update", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
 					{
 						try 
 						{						

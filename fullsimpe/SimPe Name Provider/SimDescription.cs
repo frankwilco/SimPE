@@ -152,6 +152,88 @@ namespace SimPe.Providers
 		#endregion
 
 
+		#region Nightlife Turn On/Off Extension
+		Hashtable turnons;
+		void LoadTurnOns()
+		{
+			if (turnons!=null) return;
+			turnons = new Hashtable();
+
+			if (Helper.WindowsRegistry.EPInstalled<2) return;
+
+			SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP2Path, @"TSData\Res\Text\UIText.package"));
+			SimPe.PackedFiles.Wrapper.Str str = new Str();
+			SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pkg.FindFile(Data.MetaData.STRING_FILE, 0 , Data.MetaData.LOCAL_GROUP, 0xe1);
+
+			if (pfd!=null) 
+			{
+				str.ProcessData(pfd, pkg);
+				SimPe.PackedFiles.Wrapper.StrItemList strs = str.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode);
+
+				for (int i=0; i<strs.Count; i++)
+					turnons[i] = strs[i].Title;
+			}
+		}
+
+		public SimPe.Interfaces.IAlias[] GetAllTurnOns()
+		{
+			if (turnons==null) LoadTurnOns();
+			SimPe.Interfaces.IAlias[] a = new SimPe.Interfaces.IAlias[turnons.Count];
+
+			int ct = 0;
+			foreach (int k in turnons.Keys)
+			{
+				string s = (string)turnons[k];
+#if DEBUG
+				a[ct++] = new SimPe.Data.Alias((uint)Math.Pow(2, k), s);
+#else
+				a[ct++] = new SimPe.Data.Alias((uint)Math.Pow(2, k), s, "{name}");
+#endif
+			}
+
+			return a;
+		}
+
+		public uint BuildTurnOnIndex(ushort val1, ushort val2)
+		{
+			return (uint)(val2 << 14 + val1);
+		}
+
+		public ushort[] GetFromTurnOnIndex(uint index)
+		{
+			ushort[] ret = new ushort[2];
+			ret[1] = (ushort)(index >> 14);
+			ret[0] = (ushort)(index & 0x3FFF);
+			
+			return ret;
+		}
+		
+
+		public string GetTurnOnName(ushort val1, ushort val2)
+		{
+			if (turnons==null) LoadTurnOns();
+
+			uint v = BuildTurnOnIndex(val1, val2);
+			string ret = "";			
+			int ct = 0;
+			while (v>0) 
+			{
+				uint s = v&1;
+				if (s==1) 
+				{
+					object o = turnons[ct];
+					if (o==null) return SimPe.Localization.GetString("Unknown");
+					if (ret!="") ret+= ", ";
+					ret += o.ToString();
+				}
+
+				v = v>>1;
+			}
+
+			return ret;
+		}
+		#endregion
+
 		/// <summary>
 		/// Called if the BaseBackae was changed
 		/// </summary>

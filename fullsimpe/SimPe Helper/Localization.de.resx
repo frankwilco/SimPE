@@ -664,6 +664,9 @@ Package: {filename}</value>
     <data name="SimPe.Data.ObjectTypes.Unknown">
         <value>Unbekannt</value>
     </data>
+    <data name="SimPe.Data.ObjectTypes.Tiles">
+        <value>Bodenbeläge und Teppiche</value>
+    </data>
     <data name="Other">
         <value>Sonstiges</value>
     </data>
@@ -763,8 +766,8 @@ Package: {filename}</value>
     <data name="SimPe.Data.ObjFunctionSubSort.Decorative_Curtain">
         <value>Dekoration / Vorhänge</value>
     </data>
-    <data name="SimPe.Data.ObjFunctionSubSort.Decorative_UnknownA">
-        <value>Dekoration / Unbekannt I</value>
+    <data name="SimPe.Data.ObjFunctionSubSort.Decorative_Rugs">
+        <value>Dekoration / Teppichböden</value>
     </data>
     <data name="SimPe.Data.ObjFunctionSubSort.Decorative_UnknownB">
         <value>Dekoration / Unbekannt II</value>
@@ -904,8 +907,8 @@ Package: {filename}</value>
     <data name="SimPe.Data.ObjFunctionSubSort.General_UnknownD">
         <value>Allgemein / Unbekannt IV</value>
     </data>
-    <data name="SimPe.Data.ObjFunctionSubSort.General_UnknownC">
-        <value>Allgemein / Unbekannt III</value>
+    <data name="SimPe.Data.ObjFunctionSubSort.General_Car">
+        <value>Allgemein / Autos</value>
     </data>
     <data name="SimPe.Data.ObjFunctionSubSort.General_UnknownA">
         <value>Allgemein / Unbekannt I</value>

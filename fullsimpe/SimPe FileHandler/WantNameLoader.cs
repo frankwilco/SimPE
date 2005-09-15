@@ -57,9 +57,16 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Create a New Instance
 		/// </summary>
-		public WantNameLoader()
+		public WantNameLoader() : this(SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife) 
 		{
-			ParseXml();
+		}
+
+		/// <summary>
+		/// Create a New Instance
+		/// </summary>
+		public WantNameLoader(SimPe.PackedFiles.Wrapper.SDescVersions version)
+		{
+			ParseXml(version);
 		}
 
 		/// <summary>
@@ -95,17 +102,21 @@ namespace SimPe.Plugin
 			return ht;
 		}		
 
+
 		/// <summary>
 		/// Create a HashTable with the needed Names from the UI xml File
 		/// </summary>
-		void ParseXml()
+		/// <param name="version">Version where you want to load the Description from</param>
+		void ParseXml(SimPe.PackedFiles.Wrapper.SDescVersions version)
 		{
-			map = new Hashtable();
+			map = new Hashtable();			
 			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(0x00000000, 0xCDA53B6F, 0x2D7EE26B, null);
-			if (items.Length>0) 
+			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 			
 			{
+				if (version==SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife && !item.Package.SaveFileName.Trim().ToLower().StartsWith(Helper.WindowsRegistry.SimsEP2Path.Trim().ToLower())) continue;
+				if (version==SimPe.PackedFiles.Wrapper.SDescVersions.University && !item.Package.SaveFileName.Trim().ToLower().StartsWith(Helper.WindowsRegistry.SimsEP1Path.Trim().ToLower())) continue;
 				SimPe.PackedFiles.Wrapper.Xml xml = new SimPe.PackedFiles.Wrapper.Xml();
-				xml.ProcessData(items[0]);
+				xml.ProcessData(item);
 
 				ParseXml(xml.Text);
 			}

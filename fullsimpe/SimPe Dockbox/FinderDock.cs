@@ -674,14 +674,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		
 				
 					Wait.Progress = ++ct;
-				}
-
-				//do the actual add
-				foreach (ScenegraphResultItem sri in items) 
-				{
-					sri.GroupIndex = (int)sri.Tag;
-					lv.Items.Add(sri);
-				}
+				}				
 			} 
 			catch (Exception ex)
 			{

@@ -124,6 +124,7 @@ namespace SimPe
 		private TD.SandDock.DockContainer dockContainer1;
 		private System.Windows.Forms.Timer resourceSelectionTimer;
 		private TD.SandBar.MenuButtonItem miSaveCopyAs;
+		private TD.SandBar.MenuButtonItem miOpenNightlifeRes;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -302,6 +303,7 @@ namespace SimPe
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.dockContainer1 = new TD.SandDock.DockContainer();
 			this.resourceSelectionTimer = new System.Windows.Forms.Timer(this.components);
+			this.miOpenNightlifeRes = new TD.SandBar.MenuButtonItem();
 			this.mybottomSandDock.SuspendLayout();
 			this.dcPlugin.SuspendLayout();
 			this.topSandBarDock.SuspendLayout();
@@ -874,6 +876,7 @@ namespace SimPe
 			this.miOpenIn.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
 																			  this.miOpenSimsRes,
 																			  this.miOpenUniRes,
+																			  this.miOpenNightlifeRes,
 																			  this.miOpenDownloads});
 			this.miOpenIn.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenIn.Shortcut")));
 			this.miOpenIn.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenIn.Shortcut2")));
@@ -1866,6 +1869,14 @@ namespace SimPe
 			this.resourceSelectionTimer.Interval = 75;
 			this.resourceSelectionTimer.Tick += new System.EventHandler(this.resourceSelectionTimer_Tick);
 			// 
+			// miOpenNightlifeRes
+			// 
+			this.miOpenNightlifeRes.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenNightlifeRes.Shortcut")));
+			this.miOpenNightlifeRes.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenNightlifeRes.Shortcut2")));
+			this.miOpenNightlifeRes.Text = resources.GetString("miOpenNightlifeRes.Text");
+			this.miOpenNightlifeRes.ToolTipText = resources.GetString("miOpenNightlifeRes.ToolTipText");
+			this.miOpenNightlifeRes.Activate += new System.EventHandler(this.Activate_miOpenNightlifeRes);
+			// 
 			// MainForm
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -2275,6 +2286,7 @@ namespace SimPe
 			this.miClose.Enabled = package.Loaded;
 
 			this.miOpenUniRes.Enabled = Helper.WindowsRegistry.EPInstalled>=1;
+			this.miOpenNightlifeRes.Enabled = Helper.WindowsRegistry.EPInstalled>=2;
 		}
 		#endregion
 
@@ -2848,12 +2860,21 @@ namespace SimPe
 		private void Activate_miOpenSimsRes(object sender, System.EventArgs e)
 		{
 			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res");
+			ofd.FileName = "";
 			this.Activate_miOpen(sender, e);
 		}
 
 		private void Activate_miOpenUniRes(object sender, System.EventArgs e)
 		{
 			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, "TSData\\Res");
+			ofd.FileName = "";
+			this.Activate_miOpen(sender, e);
+		}
+
+		private void Activate_miOpenNightlifeRes(object sender, System.EventArgs e)
+		{
+			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP2Path, "TSData\\Res");
+			ofd.FileName = "";
 			this.Activate_miOpen(sender, e);
 		}
 
@@ -2985,6 +3006,8 @@ namespace SimPe
 				package.UpdateRecentFileMenu(this.miRecent);
 			}
 		}
+
+		
 	}
 			
 }

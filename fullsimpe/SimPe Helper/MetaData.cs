@@ -179,7 +179,7 @@ namespace SimPe.Data
 
 		Decorative_Wall = 0x2001,
 		Decorative_Sculpture = 0x2002,
-		Decorative_UnknownA = 0x2004,
+		Decorative_Rugs = 0x2004,
 		Decorative_Plants = 0x2008,
 		Decorative_Mirror = 0x2010,
 		Decorative_Curtain = 0x2020,
@@ -236,7 +236,7 @@ namespace SimPe.Data
 		General_UnknownB = 0x4004,
 		General_Party = 0x4008,
 		General_Child = 0x4010,
-		General_UnknownC = 0x4020,
+		General_Car = 0x4020,
 		General_UnknownD = 0x4040,
 		General_Misc = 0x4080,
 				
@@ -277,7 +277,8 @@ namespace SimPe.Data
 		Vehicle = 0x000D,
 		Outfit = 0x000E,
 		Memory = 0x000F,
-		Template = 0x0010
+		Template = 0x0010,
+		Tiles = 0x0013
 	}
 
 	/// <summary>
