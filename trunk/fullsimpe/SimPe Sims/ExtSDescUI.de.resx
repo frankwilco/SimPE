@@ -535,4 +535,37 @@
   <data name="label98.Text">
     <value>Fachrichtung:</value>
   </data>
+  <data name="tbNTLove.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>160, 240</value>
+  </data>
+  <data name="tbNTPerfume.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>160, 216</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 20</value>
+  </data>
+  <data name="label8.Text">
+    <value>Liebestrank Wirkdauer:</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 20</value>
+  </data>
+  <data name="label7.Text">
+    <value>Parfum Wirkdauer:</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>88, 17</value>
+  </data>
+  <data name="label6.Text">
+    <value>Abneigungen:</value>
+  </data>
+  <data name="label5.Text">
+    <value>Vorlieben:</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>96, 17</value>
+  </data>
+  <data name="label4.Text">
+    <value>Eigenschaften:</value>
+  </data>
 </root>

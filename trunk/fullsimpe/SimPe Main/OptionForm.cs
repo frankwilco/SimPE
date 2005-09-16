@@ -127,6 +127,10 @@ namespace SimPe
 		private System.Windows.Forms.LinkLabel linkLabel3;
 		private System.Windows.Forms.CheckBox cbValid;
 		private System.Windows.Forms.LinkLabel linkLabel5;
+		private System.Windows.Forms.Button btNightlife;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.LinkLabel llNightlife;
+		private System.Windows.Forms.TextBox tbep2;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -226,6 +230,10 @@ namespace SimPe
 			this.tbscale = new System.Windows.Forms.TextBox();
 			this.cbjointname = new System.Windows.Forms.CheckBox();
 			this.hcFolders = new TD.Eyefinder.HeaderControl();
+			this.tbep2 = new System.Windows.Forms.TextBox();
+			this.btNightlife = new System.Windows.Forms.Button();
+			this.label14 = new System.Windows.Forms.Label();
+			this.llNightlife = new System.Windows.Forms.LinkLabel();
 			this.hcSettings = new TD.Eyefinder.HeaderControl();
 			this.button8 = new System.Windows.Forms.Button();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -1669,6 +1677,10 @@ namespace SimPe
 			this.hcFolders.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hcFolders.AutoScrollMargin")));
 			this.hcFolders.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hcFolders.AutoScrollMinSize")));
 			this.hcFolders.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hcFolders.BackgroundImage")));
+			this.hcFolders.Controls.Add(this.tbep2);
+			this.hcFolders.Controls.Add(this.btNightlife);
+			this.hcFolders.Controls.Add(this.label14);
+			this.hcFolders.Controls.Add(this.llNightlife);
 			this.hcFolders.Controls.Add(this.button2);
 			this.hcFolders.Controls.Add(this.tbsavegame);
 			this.hcFolders.Controls.Add(this.button3);
@@ -1699,6 +1711,106 @@ namespace SimPe
 			this.hcFolders.Text = resources.GetString("hcFolders.Text");
 			this.toolTip1.SetToolTip(this.hcFolders, resources.GetString("hcFolders.ToolTip"));
 			this.hcFolders.Visible = ((bool)(resources.GetObject("hcFolders.Visible")));
+			// 
+			// tbep2
+			// 
+			this.tbep2.AccessibleDescription = resources.GetString("tbep2.AccessibleDescription");
+			this.tbep2.AccessibleName = resources.GetString("tbep2.AccessibleName");
+			this.tbep2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbep2.Anchor")));
+			this.tbep2.AutoSize = ((bool)(resources.GetObject("tbep2.AutoSize")));
+			this.tbep2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbep2.BackgroundImage")));
+			this.tbep2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbep2.Dock")));
+			this.tbep2.Enabled = ((bool)(resources.GetObject("tbep2.Enabled")));
+			this.tbep2.Font = ((System.Drawing.Font)(resources.GetObject("tbep2.Font")));
+			this.tbep2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbep2.ImeMode")));
+			this.tbep2.Location = ((System.Drawing.Point)(resources.GetObject("tbep2.Location")));
+			this.tbep2.MaxLength = ((int)(resources.GetObject("tbep2.MaxLength")));
+			this.tbep2.Multiline = ((bool)(resources.GetObject("tbep2.Multiline")));
+			this.tbep2.Name = "tbep2";
+			this.tbep2.PasswordChar = ((char)(resources.GetObject("tbep2.PasswordChar")));
+			this.tbep2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbep2.RightToLeft")));
+			this.tbep2.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbep2.ScrollBars")));
+			this.tbep2.Size = ((System.Drawing.Size)(resources.GetObject("tbep2.Size")));
+			this.tbep2.TabIndex = ((int)(resources.GetObject("tbep2.TabIndex")));
+			this.tbep2.Text = resources.GetString("tbep2.Text");
+			this.tbep2.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbep2.TextAlign")));
+			this.toolTip1.SetToolTip(this.tbep2, resources.GetString("tbep2.ToolTip"));
+			this.tbep2.Visible = ((bool)(resources.GetObject("tbep2.Visible")));
+			this.tbep2.WordWrap = ((bool)(resources.GetObject("tbep2.WordWrap")));
+			// 
+			// btNightlife
+			// 
+			this.btNightlife.AccessibleDescription = resources.GetString("btNightlife.AccessibleDescription");
+			this.btNightlife.AccessibleName = resources.GetString("btNightlife.AccessibleName");
+			this.btNightlife.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btNightlife.Anchor")));
+			this.btNightlife.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btNightlife.BackgroundImage")));
+			this.btNightlife.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btNightlife.Dock")));
+			this.btNightlife.Enabled = ((bool)(resources.GetObject("btNightlife.Enabled")));
+			this.btNightlife.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btNightlife.FlatStyle")));
+			this.btNightlife.Font = ((System.Drawing.Font)(resources.GetObject("btNightlife.Font")));
+			this.btNightlife.Image = ((System.Drawing.Image)(resources.GetObject("btNightlife.Image")));
+			this.btNightlife.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btNightlife.ImageAlign")));
+			this.btNightlife.ImageIndex = ((int)(resources.GetObject("btNightlife.ImageIndex")));
+			this.btNightlife.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btNightlife.ImeMode")));
+			this.btNightlife.Location = ((System.Drawing.Point)(resources.GetObject("btNightlife.Location")));
+			this.btNightlife.Name = "btNightlife";
+			this.btNightlife.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btNightlife.RightToLeft")));
+			this.btNightlife.Size = ((System.Drawing.Size)(resources.GetObject("btNightlife.Size")));
+			this.btNightlife.TabIndex = ((int)(resources.GetObject("btNightlife.TabIndex")));
+			this.btNightlife.Text = resources.GetString("btNightlife.Text");
+			this.btNightlife.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btNightlife.TextAlign")));
+			this.toolTip1.SetToolTip(this.btNightlife, resources.GetString("btNightlife.ToolTip"));
+			this.btNightlife.Visible = ((bool)(resources.GetObject("btNightlife.Visible")));
+			this.btNightlife.Click += new System.EventHandler(this.btNightlife_Click);
+			// 
+			// label14
+			// 
+			this.label14.AccessibleDescription = resources.GetString("label14.AccessibleDescription");
+			this.label14.AccessibleName = resources.GetString("label14.AccessibleName");
+			this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label14.Anchor")));
+			this.label14.AutoSize = ((bool)(resources.GetObject("label14.AutoSize")));
+			this.label14.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label14.Dock")));
+			this.label14.Enabled = ((bool)(resources.GetObject("label14.Enabled")));
+			this.label14.Font = ((System.Drawing.Font)(resources.GetObject("label14.Font")));
+			this.label14.Image = ((System.Drawing.Image)(resources.GetObject("label14.Image")));
+			this.label14.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label14.ImageAlign")));
+			this.label14.ImageIndex = ((int)(resources.GetObject("label14.ImageIndex")));
+			this.label14.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label14.ImeMode")));
+			this.label14.Location = ((System.Drawing.Point)(resources.GetObject("label14.Location")));
+			this.label14.Name = "label14";
+			this.label14.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label14.RightToLeft")));
+			this.label14.Size = ((System.Drawing.Size)(resources.GetObject("label14.Size")));
+			this.label14.TabIndex = ((int)(resources.GetObject("label14.TabIndex")));
+			this.label14.Text = resources.GetString("label14.Text");
+			this.label14.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label14.TextAlign")));
+			this.toolTip1.SetToolTip(this.label14, resources.GetString("label14.ToolTip"));
+			this.label14.Visible = ((bool)(resources.GetObject("label14.Visible")));
+			// 
+			// llNightlife
+			// 
+			this.llNightlife.AccessibleDescription = resources.GetString("llNightlife.AccessibleDescription");
+			this.llNightlife.AccessibleName = resources.GetString("llNightlife.AccessibleName");
+			this.llNightlife.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llNightlife.Anchor")));
+			this.llNightlife.AutoSize = ((bool)(resources.GetObject("llNightlife.AutoSize")));
+			this.llNightlife.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llNightlife.Dock")));
+			this.llNightlife.Enabled = ((bool)(resources.GetObject("llNightlife.Enabled")));
+			this.llNightlife.Font = ((System.Drawing.Font)(resources.GetObject("llNightlife.Font")));
+			this.llNightlife.Image = ((System.Drawing.Image)(resources.GetObject("llNightlife.Image")));
+			this.llNightlife.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llNightlife.ImageAlign")));
+			this.llNightlife.ImageIndex = ((int)(resources.GetObject("llNightlife.ImageIndex")));
+			this.llNightlife.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llNightlife.ImeMode")));
+			this.llNightlife.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llNightlife.LinkArea")));
+			this.llNightlife.Location = ((System.Drawing.Point)(resources.GetObject("llNightlife.Location")));
+			this.llNightlife.Name = "llNightlife";
+			this.llNightlife.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llNightlife.RightToLeft")));
+			this.llNightlife.Size = ((System.Drawing.Size)(resources.GetObject("llNightlife.Size")));
+			this.llNightlife.TabIndex = ((int)(resources.GetObject("llNightlife.TabIndex")));
+			this.llNightlife.TabStop = true;
+			this.llNightlife.Text = resources.GetString("llNightlife.Text");
+			this.llNightlife.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llNightlife.TextAlign")));
+			this.toolTip1.SetToolTip(this.llNightlife, resources.GetString("llNightlife.ToolTip"));
+			this.llNightlife.Visible = ((bool)(resources.GetObject("llNightlife.Visible")));
+			this.llNightlife.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llNightlife_LinkClicked);
 			// 
 			// hcSettings
 			// 
@@ -2524,15 +2636,15 @@ namespace SimPe
 			this.BackColor = System.Drawing.SystemColors.Window;
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
-			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.hcFolders);
+			this.Controls.Add(this.hcSceneGraph);
+			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcIdent);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
 			this.Controls.Add(this.hcFileTable);
-			this.Controls.Add(this.hcFolders);
-			this.Controls.Add(this.hcSceneGraph);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -2573,6 +2685,7 @@ namespace SimPe
 			//linkLabel3.Enabled = (Helper.WindowsRegistry.EPInstalled>=1);
 			tbgame.Text = Helper.WindowsRegistry.SimsPath;
 			tbep1.Text = Helper.WindowsRegistry.SimsEP1Path;
+			tbep2.Text = Helper.WindowsRegistry.SimsEP2Path;
 			//tbep1.Text = Helper.WindowsRegistry.RealEP1GamePath;
 			tbsavegame.Text = Helper.WindowsRegistry.SimSavegameFolder;
 			tbdds.Text = Helper.WindowsRegistry.NvidiaDDSPath;
@@ -2602,8 +2715,11 @@ namespace SimPe
 			this.tbPassword.Text = Helper.WindowsRegistry.Password;
 
 			this.tbep1.ReadOnly = (Helper.WindowsRegistry.EPInstalled<1);
+			this.tbep2.ReadOnly = (Helper.WindowsRegistry.EPInstalled<2);
 			this.button5.Enabled = (Helper.WindowsRegistry.EPInstalled>=1);
+			this.btNightlife.Enabled = (Helper.WindowsRegistry.EPInstalled>=2);
 			llsetep1.Enabled = button5.Enabled;
+			llNightlife.Enabled = btNightlife.Enabled;
 
 			if (((byte)Helper.WindowsRegistry.LanguageCode <= cblang.Items.Count) && ((byte)Helper.WindowsRegistry.LanguageCode > 0))
 			{
@@ -2635,6 +2751,7 @@ namespace SimPe
 		{
 			Helper.WindowsRegistry.SimsPath = this.tbgame.Text;
 			Helper.WindowsRegistry.SimsEP1Path = this.tbep1.Text;
+			Helper.WindowsRegistry.SimsEP2Path = this.tbep2.Text;
 			Helper.WindowsRegistry.SimSavegameFolder = this.tbsavegame.Text;
 			Helper.WindowsRegistry.NvidiaDDSPath = tbdds.Text;
 			Helper.WindowsRegistry.LanguageCode = (Data.MetaData.Languages)cblang.SelectedIndex+1;
@@ -2729,7 +2846,7 @@ namespace SimPe
 
 		private void button5_Click(object sender, System.EventArgs e)
 		{
-			if (System.IO.Directory.Exists(tbgame.Text)) fbd.SelectedPath = tbep1.Text;
+			if (System.IO.Directory.Exists(tbep1.Text)) fbd.SelectedPath = tbep1.Text;
 			if (fbd.ShowDialog()==DialogResult.OK) this.tbep1.Text = fbd.SelectedPath;
 		}
 
@@ -3503,6 +3620,17 @@ namespace SimPe
 		private void linkLabel5_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			tbUserId.Text = "0x"+Helper.HexString(0);
+		}
+
+		private void llNightlife_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			tbep2.Text = Helper.WindowsRegistry.RealEP2GamePath;
+		}
+
+		private void btNightlife_Click(object sender, System.EventArgs e)
+		{
+			if (System.IO.Directory.Exists(tbep2.Text)) fbd.SelectedPath = tbep2.Text;
+			if (fbd.ShowDialog()==DialogResult.OK) this.tbep2.Text = fbd.SelectedPath;
 		}
 	}
 }

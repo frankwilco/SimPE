@@ -310,6 +310,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "NgbhForm.de-DE.resx"
+                    DependentUpon = "NgbhForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "NgbhForm.pl.resx"
                     DependentUpon = "NgbhForm.cs"
                     BuildAction = "EmbeddedResource"

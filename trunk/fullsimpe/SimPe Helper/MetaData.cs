@@ -522,7 +522,8 @@ namespace SimPe.Data
 			Fortune = 0x04,
 			Reputation = 0x10,
 			Knowledge = 0x20,
-			Growup = 0x40
+			Growup = 0x40,
+			Fun = 0x80
 		}
 
 		/// <summary>
@@ -584,8 +585,8 @@ namespace SimPe.Data
 			Sibling = 0x03,
 			Gradparent = 0x04,
 			Grandchild = 0x05,
-			Nice_Nephew = 0x06,
-			Aunt = 0x07,
+			Nice_Nephew = 0x07,
+			Aunt = 0x06,
 			Cousin = 0x08,
 			Spouses = 0x09
 		}

@@ -77,9 +77,12 @@ namespace SimPe.Plugin
 			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(NgbhForm));
 			this.ngbhPanel = new System.Windows.Forms.Panel();
+			this.cbtype = new System.Windows.Forms.ComboBox();
 			this.lbname = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.gbmem = new System.Windows.Forms.GroupBox();
+			this.tbUnk = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.btdown = new System.Windows.Forms.Button();
 			this.btup = new System.Windows.Forms.Button();
 			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
@@ -107,7 +110,6 @@ namespace SimPe.Plugin
 			this.ilist = new System.Windows.Forms.ImageList(this.components);
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.label27 = new System.Windows.Forms.Label();
-			this.cbtype = new System.Windows.Forms.ComboBox();
 			this.ngbhPanel.SuspendLayout();
 			this.gbmem.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -139,6 +141,37 @@ namespace SimPe.Plugin
 			this.ngbhPanel.TabIndex = ((int)(resources.GetObject("ngbhPanel.TabIndex")));
 			this.ngbhPanel.Text = resources.GetString("ngbhPanel.Text");
 			this.ngbhPanel.Visible = ((bool)(resources.GetObject("ngbhPanel.Visible")));
+			// 
+			// cbtype
+			// 
+			this.cbtype.AccessibleDescription = resources.GetString("cbtype.AccessibleDescription");
+			this.cbtype.AccessibleName = resources.GetString("cbtype.AccessibleName");
+			this.cbtype.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbtype.Anchor")));
+			this.cbtype.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbtype.BackgroundImage")));
+			this.cbtype.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbtype.Dock")));
+			this.cbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbtype.Enabled = ((bool)(resources.GetObject("cbtype.Enabled")));
+			this.cbtype.Font = ((System.Drawing.Font)(resources.GetObject("cbtype.Font")));
+			this.cbtype.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbtype.ImeMode")));
+			this.cbtype.IntegralHeight = ((bool)(resources.GetObject("cbtype.IntegralHeight")));
+			this.cbtype.ItemHeight = ((int)(resources.GetObject("cbtype.ItemHeight")));
+			this.cbtype.Items.AddRange(new object[] {
+														resources.GetString("cbtype.Items"),
+														resources.GetString("cbtype.Items1"),
+														resources.GetString("cbtype.Items2"),
+														resources.GetString("cbtype.Items3"),
+														resources.GetString("cbtype.Items4"),
+														resources.GetString("cbtype.Items5")});
+			this.cbtype.Location = ((System.Drawing.Point)(resources.GetObject("cbtype.Location")));
+			this.cbtype.MaxDropDownItems = ((int)(resources.GetObject("cbtype.MaxDropDownItems")));
+			this.cbtype.MaxLength = ((int)(resources.GetObject("cbtype.MaxLength")));
+			this.cbtype.Name = "cbtype";
+			this.cbtype.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbtype.RightToLeft")));
+			this.cbtype.Size = ((System.Drawing.Size)(resources.GetObject("cbtype.Size")));
+			this.cbtype.TabIndex = ((int)(resources.GetObject("cbtype.TabIndex")));
+			this.cbtype.Text = resources.GetString("cbtype.Text");
+			this.cbtype.Visible = ((bool)(resources.GetObject("cbtype.Visible")));
+			this.cbtype.SelectedIndexChanged += new System.EventHandler(this.SelectSim);
 			// 
 			// lbname
 			// 
@@ -192,6 +225,8 @@ namespace SimPe.Plugin
 			this.gbmem.AccessibleName = resources.GetString("gbmem.AccessibleName");
 			this.gbmem.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("gbmem.Anchor")));
 			this.gbmem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gbmem.BackgroundImage")));
+			this.gbmem.Controls.Add(this.tbUnk);
+			this.gbmem.Controls.Add(this.label5);
 			this.gbmem.Controls.Add(this.btdown);
 			this.gbmem.Controls.Add(this.btup);
 			this.gbmem.Controls.Add(this.linkLabel2);
@@ -227,6 +262,54 @@ namespace SimPe.Plugin
 			this.gbmem.TabStop = false;
 			this.gbmem.Text = resources.GetString("gbmem.Text");
 			this.gbmem.Visible = ((bool)(resources.GetObject("gbmem.Visible")));
+			// 
+			// tbUnk
+			// 
+			this.tbUnk.AccessibleDescription = resources.GetString("tbUnk.AccessibleDescription");
+			this.tbUnk.AccessibleName = resources.GetString("tbUnk.AccessibleName");
+			this.tbUnk.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbUnk.Anchor")));
+			this.tbUnk.AutoSize = ((bool)(resources.GetObject("tbUnk.AutoSize")));
+			this.tbUnk.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbUnk.BackgroundImage")));
+			this.tbUnk.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbUnk.Dock")));
+			this.tbUnk.Enabled = ((bool)(resources.GetObject("tbUnk.Enabled")));
+			this.tbUnk.Font = ((System.Drawing.Font)(resources.GetObject("tbUnk.Font")));
+			this.tbUnk.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbUnk.ImeMode")));
+			this.tbUnk.Location = ((System.Drawing.Point)(resources.GetObject("tbUnk.Location")));
+			this.tbUnk.MaxLength = ((int)(resources.GetObject("tbUnk.MaxLength")));
+			this.tbUnk.Multiline = ((bool)(resources.GetObject("tbUnk.Multiline")));
+			this.tbUnk.Name = "tbUnk";
+			this.tbUnk.PasswordChar = ((char)(resources.GetObject("tbUnk.PasswordChar")));
+			this.tbUnk.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbUnk.RightToLeft")));
+			this.tbUnk.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbUnk.ScrollBars")));
+			this.tbUnk.Size = ((System.Drawing.Size)(resources.GetObject("tbUnk.Size")));
+			this.tbUnk.TabIndex = ((int)(resources.GetObject("tbUnk.TabIndex")));
+			this.tbUnk.Text = resources.GetString("tbUnk.Text");
+			this.tbUnk.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbUnk.TextAlign")));
+			this.tbUnk.Visible = ((bool)(resources.GetObject("tbUnk.Visible")));
+			this.tbUnk.WordWrap = ((bool)(resources.GetObject("tbUnk.WordWrap")));
+			this.tbUnk.TextChanged += new System.EventHandler(this.tbUnk_TextChanged);
+			// 
+			// label5
+			// 
+			this.label5.AccessibleDescription = resources.GetString("label5.AccessibleDescription");
+			this.label5.AccessibleName = resources.GetString("label5.AccessibleName");
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label5.Anchor")));
+			this.label5.AutoSize = ((bool)(resources.GetObject("label5.AutoSize")));
+			this.label5.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label5.Dock")));
+			this.label5.Enabled = ((bool)(resources.GetObject("label5.Enabled")));
+			this.label5.Font = ((System.Drawing.Font)(resources.GetObject("label5.Font")));
+			this.label5.Image = ((System.Drawing.Image)(resources.GetObject("label5.Image")));
+			this.label5.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label5.ImageAlign")));
+			this.label5.ImageIndex = ((int)(resources.GetObject("label5.ImageIndex")));
+			this.label5.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label5.ImeMode")));
+			this.label5.Location = ((System.Drawing.Point)(resources.GetObject("label5.Location")));
+			this.label5.Name = "label5";
+			this.label5.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label5.RightToLeft")));
+			this.label5.Size = ((System.Drawing.Size)(resources.GetObject("label5.Size")));
+			this.label5.TabIndex = ((int)(resources.GetObject("label5.TabIndex")));
+			this.label5.Text = resources.GetString("label5.Text");
+			this.label5.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label5.TextAlign")));
+			this.label5.Visible = ((bool)(resources.GetObject("label5.Visible")));
 			// 
 			// btdown
 			// 
@@ -849,37 +932,6 @@ namespace SimPe.Plugin
 			this.label27.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label27.TextAlign")));
 			this.label27.Visible = ((bool)(resources.GetObject("label27.Visible")));
 			// 
-			// cbtype
-			// 
-			this.cbtype.AccessibleDescription = resources.GetString("cbtype.AccessibleDescription");
-			this.cbtype.AccessibleName = resources.GetString("cbtype.AccessibleName");
-			this.cbtype.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbtype.Anchor")));
-			this.cbtype.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbtype.BackgroundImage")));
-			this.cbtype.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbtype.Dock")));
-			this.cbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbtype.Enabled = ((bool)(resources.GetObject("cbtype.Enabled")));
-			this.cbtype.Font = ((System.Drawing.Font)(resources.GetObject("cbtype.Font")));
-			this.cbtype.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbtype.ImeMode")));
-			this.cbtype.IntegralHeight = ((bool)(resources.GetObject("cbtype.IntegralHeight")));
-			this.cbtype.ItemHeight = ((int)(resources.GetObject("cbtype.ItemHeight")));
-			this.cbtype.Items.AddRange(new object[] {
-														resources.GetString("cbtype.Items"),
-														resources.GetString("cbtype.Items1"),
-														resources.GetString("cbtype.Items2"),
-														resources.GetString("cbtype.Items3"),
-														resources.GetString("cbtype.Items4"),
-														resources.GetString("cbtype.Items5")});
-			this.cbtype.Location = ((System.Drawing.Point)(resources.GetObject("cbtype.Location")));
-			this.cbtype.MaxDropDownItems = ((int)(resources.GetObject("cbtype.MaxDropDownItems")));
-			this.cbtype.MaxLength = ((int)(resources.GetObject("cbtype.MaxLength")));
-			this.cbtype.Name = "cbtype";
-			this.cbtype.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbtype.RightToLeft")));
-			this.cbtype.Size = ((System.Drawing.Size)(resources.GetObject("cbtype.Size")));
-			this.cbtype.TabIndex = ((int)(resources.GetObject("cbtype.TabIndex")));
-			this.cbtype.Text = resources.GetString("cbtype.Text");
-			this.cbtype.Visible = ((bool)(resources.GetObject("cbtype.Visible")));
-			this.cbtype.SelectedIndexChanged += new System.EventHandler(this.SelectSim);
-			// 
 			// NgbhForm
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -942,6 +994,8 @@ namespace SimPe.Plugin
 		internal System.Windows.Forms.Button btdown;
 		internal System.Windows.Forms.Button btup;
 		private System.Windows.Forms.ComboBox cbtype;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox tbUnk;
 
 		internal IFileWrapperSaveExtension wrapper;
 
@@ -960,6 +1014,19 @@ namespace SimPe.Plugin
 			}
 
 			lbmem.Items.Add(lvi);
+		}
+
+		private void tbUnk_TextChanged(object sender, System.EventArgs e)
+		{
+			if (tbFlag.Tag!=null) return;
+			try 
+			{
+				GetSelectedItem().Unknown = Helper.StringToUInt32(tbUnk.Text, GetSelectedItem().Unknown, 16);
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
+			}
 		}
 
 		private void ItemUp(object sender, System.EventArgs e)
@@ -1128,6 +1195,10 @@ namespace SimPe.Plugin
 			this.cbvis.Checked = GetSelectedItem().Flags.IsVisible;
 			this.cbaction.Checked = GetSelectedItem().Flags.IsAction;
 			this.tbFlag.Text = "0x"+Helper.HexString(GetSelectedItem().Flags.Value);
+
+			this.tbUnk.Enabled = (uint)GetSelectedItem().ParentSlot.Version >= (uint)NgbhVersion.Nightlife;
+			this.tbUnk.Text = "0x"+Helper.HexString(GetSelectedItem().Unknown);
+
 			tbFlag.Tag = null;
 
 			tbguid.Tag = true;

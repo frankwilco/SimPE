@@ -206,6 +206,10 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.CheckedListBox lbTurnOff;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.TextBox tbNTPerfume;
+		private System.Windows.Forms.TextBox tbNTLove;
 
 		
 		System.Resources.ResourceManager strresources;
@@ -463,6 +467,10 @@ namespace SimPe.PackedFiles.UserInterface
 			this.label98 = new System.Windows.Forms.Label();
 			this.tbmajor = new System.Windows.Forms.TextBox();
 			this.pnEP2 = new System.Windows.Forms.Panel();
+			this.tbNTLove = new System.Windows.Forms.TextBox();
+			this.tbNTPerfume = new System.Windows.Forms.TextBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
 			this.lbTurnOff = new System.Windows.Forms.CheckedListBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.lbTurnOn = new System.Windows.Forms.CheckedListBox();
@@ -4577,6 +4585,10 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnEP2.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("pnEP2.AutoScrollMinSize")));
 			this.pnEP2.BackColor = System.Drawing.Color.Transparent;
 			this.pnEP2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnEP2.BackgroundImage")));
+			this.pnEP2.Controls.Add(this.tbNTLove);
+			this.pnEP2.Controls.Add(this.tbNTPerfume);
+			this.pnEP2.Controls.Add(this.label8);
+			this.pnEP2.Controls.Add(this.label7);
 			this.pnEP2.Controls.Add(this.lbTurnOff);
 			this.pnEP2.Controls.Add(this.label6);
 			this.pnEP2.Controls.Add(this.lbTurnOn);
@@ -4594,6 +4606,102 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnEP2.TabIndex = ((int)(resources.GetObject("pnEP2.TabIndex")));
 			this.pnEP2.Text = resources.GetString("pnEP2.Text");
 			this.pnEP2.Visible = ((bool)(resources.GetObject("pnEP2.Visible")));
+			// 
+			// tbNTLove
+			// 
+			this.tbNTLove.AccessibleDescription = resources.GetString("tbNTLove.AccessibleDescription");
+			this.tbNTLove.AccessibleName = resources.GetString("tbNTLove.AccessibleName");
+			this.tbNTLove.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbNTLove.Anchor")));
+			this.tbNTLove.AutoSize = ((bool)(resources.GetObject("tbNTLove.AutoSize")));
+			this.tbNTLove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbNTLove.BackgroundImage")));
+			this.tbNTLove.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbNTLove.Dock")));
+			this.tbNTLove.Enabled = ((bool)(resources.GetObject("tbNTLove.Enabled")));
+			this.tbNTLove.Font = ((System.Drawing.Font)(resources.GetObject("tbNTLove.Font")));
+			this.tbNTLove.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbNTLove.ImeMode")));
+			this.tbNTLove.Location = ((System.Drawing.Point)(resources.GetObject("tbNTLove.Location")));
+			this.tbNTLove.MaxLength = ((int)(resources.GetObject("tbNTLove.MaxLength")));
+			this.tbNTLove.Multiline = ((bool)(resources.GetObject("tbNTLove.Multiline")));
+			this.tbNTLove.Name = "tbNTLove";
+			this.tbNTLove.PasswordChar = ((char)(resources.GetObject("tbNTLove.PasswordChar")));
+			this.tbNTLove.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbNTLove.RightToLeft")));
+			this.tbNTLove.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbNTLove.ScrollBars")));
+			this.tbNTLove.Size = ((System.Drawing.Size)(resources.GetObject("tbNTLove.Size")));
+			this.tbNTLove.TabIndex = ((int)(resources.GetObject("tbNTLove.TabIndex")));
+			this.tbNTLove.Text = resources.GetString("tbNTLove.Text");
+			this.tbNTLove.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbNTLove.TextAlign")));
+			this.tbNTLove.Visible = ((bool)(resources.GetObject("tbNTLove.Visible")));
+			this.tbNTLove.WordWrap = ((bool)(resources.GetObject("tbNTLove.WordWrap")));
+			this.tbNTLove.TextChanged += new System.EventHandler(this.ChangedEP2);
+			// 
+			// tbNTPerfume
+			// 
+			this.tbNTPerfume.AccessibleDescription = resources.GetString("tbNTPerfume.AccessibleDescription");
+			this.tbNTPerfume.AccessibleName = resources.GetString("tbNTPerfume.AccessibleName");
+			this.tbNTPerfume.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbNTPerfume.Anchor")));
+			this.tbNTPerfume.AutoSize = ((bool)(resources.GetObject("tbNTPerfume.AutoSize")));
+			this.tbNTPerfume.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbNTPerfume.BackgroundImage")));
+			this.tbNTPerfume.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbNTPerfume.Dock")));
+			this.tbNTPerfume.Enabled = ((bool)(resources.GetObject("tbNTPerfume.Enabled")));
+			this.tbNTPerfume.Font = ((System.Drawing.Font)(resources.GetObject("tbNTPerfume.Font")));
+			this.tbNTPerfume.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbNTPerfume.ImeMode")));
+			this.tbNTPerfume.Location = ((System.Drawing.Point)(resources.GetObject("tbNTPerfume.Location")));
+			this.tbNTPerfume.MaxLength = ((int)(resources.GetObject("tbNTPerfume.MaxLength")));
+			this.tbNTPerfume.Multiline = ((bool)(resources.GetObject("tbNTPerfume.Multiline")));
+			this.tbNTPerfume.Name = "tbNTPerfume";
+			this.tbNTPerfume.PasswordChar = ((char)(resources.GetObject("tbNTPerfume.PasswordChar")));
+			this.tbNTPerfume.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbNTPerfume.RightToLeft")));
+			this.tbNTPerfume.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbNTPerfume.ScrollBars")));
+			this.tbNTPerfume.Size = ((System.Drawing.Size)(resources.GetObject("tbNTPerfume.Size")));
+			this.tbNTPerfume.TabIndex = ((int)(resources.GetObject("tbNTPerfume.TabIndex")));
+			this.tbNTPerfume.Text = resources.GetString("tbNTPerfume.Text");
+			this.tbNTPerfume.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbNTPerfume.TextAlign")));
+			this.tbNTPerfume.Visible = ((bool)(resources.GetObject("tbNTPerfume.Visible")));
+			this.tbNTPerfume.WordWrap = ((bool)(resources.GetObject("tbNTPerfume.WordWrap")));
+			this.tbNTPerfume.TextChanged += new System.EventHandler(this.ChangedEP2);
+			// 
+			// label8
+			// 
+			this.label8.AccessibleDescription = resources.GetString("label8.AccessibleDescription");
+			this.label8.AccessibleName = resources.GetString("label8.AccessibleName");
+			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label8.Anchor")));
+			this.label8.AutoSize = ((bool)(resources.GetObject("label8.AutoSize")));
+			this.label8.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label8.Dock")));
+			this.label8.Enabled = ((bool)(resources.GetObject("label8.Enabled")));
+			this.label8.Font = ((System.Drawing.Font)(resources.GetObject("label8.Font")));
+			this.label8.Image = ((System.Drawing.Image)(resources.GetObject("label8.Image")));
+			this.label8.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label8.ImageAlign")));
+			this.label8.ImageIndex = ((int)(resources.GetObject("label8.ImageIndex")));
+			this.label8.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label8.ImeMode")));
+			this.label8.Location = ((System.Drawing.Point)(resources.GetObject("label8.Location")));
+			this.label8.Name = "label8";
+			this.label8.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label8.RightToLeft")));
+			this.label8.Size = ((System.Drawing.Size)(resources.GetObject("label8.Size")));
+			this.label8.TabIndex = ((int)(resources.GetObject("label8.TabIndex")));
+			this.label8.Text = resources.GetString("label8.Text");
+			this.label8.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label8.TextAlign")));
+			this.label8.Visible = ((bool)(resources.GetObject("label8.Visible")));
+			// 
+			// label7
+			// 
+			this.label7.AccessibleDescription = resources.GetString("label7.AccessibleDescription");
+			this.label7.AccessibleName = resources.GetString("label7.AccessibleName");
+			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label7.Anchor")));
+			this.label7.AutoSize = ((bool)(resources.GetObject("label7.AutoSize")));
+			this.label7.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label7.Dock")));
+			this.label7.Enabled = ((bool)(resources.GetObject("label7.Enabled")));
+			this.label7.Font = ((System.Drawing.Font)(resources.GetObject("label7.Font")));
+			this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
+			this.label7.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label7.ImageAlign")));
+			this.label7.ImageIndex = ((int)(resources.GetObject("label7.ImageIndex")));
+			this.label7.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label7.ImeMode")));
+			this.label7.Location = ((System.Drawing.Point)(resources.GetObject("label7.Location")));
+			this.label7.Name = "label7";
+			this.label7.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label7.RightToLeft")));
+			this.label7.Size = ((System.Drawing.Size)(resources.GetObject("label7.Size")));
+			this.label7.TabIndex = ((int)(resources.GetObject("label7.TabIndex")));
+			this.label7.Text = resources.GetString("label7.Text");
+			this.label7.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label7.TextAlign")));
+			this.label7.Visible = ((bool)(resources.GetObject("label7.Visible")));
 			// 
 			// lbTurnOff
 			// 
@@ -4810,7 +4918,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Knowledge));
 			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Reputation));
 			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Romance));
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Growup));
+			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Growup));			
+			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Fun));
 
 			
 			this.cblifesection.Items.Clear();
@@ -5921,13 +6030,24 @@ namespace SimPe.PackedFiles.UserInterface
 		#endregion
 
 		#region Nightlife
+		void FillNightlifeListBox(System.Windows.Forms.CheckedListBox clb) 
+		{
+			if (clb.Items.Count>0) return;
+
+			SimPe.Interfaces.IAlias[] al = FileTable.ProviderRegistry.SimDescriptionProvider.GetAllTurnOns();
+			foreach (SimPe.Interfaces.IAlias a in al)
+				clb.Items.Add(a);
+		}
+
 		void SelectNightlifeItems(System.Windows.Forms.CheckedListBox clb, ushort v1, ushort v2)
 		{
+			FillNightlifeListBox(clb);
+
 			uint cur = FileTable.ProviderRegistry.SimDescriptionProvider.BuildTurnOnIndex(v1, v2);
 			for (int i=0; i<clb.Items.Count; i++)
 			{
 				uint val = ((SimPe.Interfaces.IAlias)clb.Items[i]).Id;
-				clb.SetSelected(i, ((cur&val)==val));
+				clb.SetItemChecked(i, ((cur&val)==val));
 			}
 		}
 
@@ -5935,7 +6055,7 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			uint val = 0;
 			for (int i=0; i<clb.Items.Count; i++)
-				if (clb.GetSelected(i))
+				if (clb.GetItemChecked(i))
 					val += ((SimPe.Interfaces.IAlias)clb.Items[i]).Id;
 
 			return val;
@@ -5946,6 +6066,9 @@ namespace SimPe.PackedFiles.UserInterface
 			SelectNightlifeItems(this.lbTraits, sdesc.Nightlife.AttractionTraits1, sdesc.Nightlife.AttractionTraits2);
 			SelectNightlifeItems(this.lbTurnOn, sdesc.Nightlife.AttractionTurnOns1, sdesc.Nightlife.AttractionTurnOns2);
 			SelectNightlifeItems(this.lbTurnOff, sdesc.Nightlife.AttractionTurnOffs1, sdesc.Nightlife.AttractionTurnOffs2);
+
+			this.tbNTPerfume.Text = sdesc.Nightlife.PerfumeDuration.ToString();
+			this.tbNTLove.Text = sdesc.Nightlife.LovePotionDuration.ToString();
 		}
 		
 
@@ -5971,6 +6094,23 @@ namespace SimPe.PackedFiles.UserInterface
 			ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOff));
 			Sdesc.Nightlife.AttractionTurnOffs1 = v[0];
 			Sdesc.Nightlife.AttractionTurnOffs2 = v[1];
+		}
+
+		private void ChangedEP2(object sender, System.EventArgs e)
+		{
+			if (intern) return;
+			intern = true;
+			try 
+			{								
+				Sdesc.Nightlife.PerfumeDuration = Helper.StringToUInt16(this.tbNTPerfume.Text, Sdesc.Nightlife.PerfumeDuration, 10);
+				Sdesc.Nightlife.LovePotionDuration = Helper.StringToUInt16(this.tbNTLove.Text, Sdesc.Nightlife.LovePotionDuration, 10);
+
+				Sdesc.Changed = true;
+			} 
+			finally 
+			{
+				intern = false;
+			}
 		}
 
 		#endregion

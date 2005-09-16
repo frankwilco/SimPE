@@ -772,6 +772,9 @@ namespace SimPe.Plugin
 
 			modelname =modelname.Trim().ToLower();
 			if (modelname.EndsWith("_cres")) modelname = modelname.Substring(0, modelname.Length-5);
+
+			//no Modelname => no Wallmask
+			if (modelname=="") return txmt;
 				
 			//this applies to all found NameMaps for TXTR Files
 			ArrayList foundnames = new ArrayList();

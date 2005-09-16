@@ -118,7 +118,10 @@ namespace SimPe.Packages
 			} 
 			finally
 			{
+				this.ForgetUpdate();				
 				this.EndUpdate();
+
+				FireSavedIndexEvent();
 			}
 		}
 
