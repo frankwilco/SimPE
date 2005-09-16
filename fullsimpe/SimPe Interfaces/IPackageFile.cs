@@ -308,6 +308,11 @@ namespace SimPe.Interfaces.Files
 		/// Triggered whenever the Content of the Package was changed
 		/// </summary>
 		event System.EventHandler IndexChanged;
+
+		/// <summary>
+		/// Triggered whenever the Complete ResourceList was saved
+		/// </summary>
+		event System.EventHandler SavedIndex;
 		#endregion
 	}
 }

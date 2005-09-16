@@ -129,6 +129,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "GmdcExportTo3ds.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "GmdcExportToMilkShapeAscii.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

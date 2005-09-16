@@ -23,6 +23,12 @@ using SimPe.Interfaces.Plugin;
 
 namespace SimPe.Plugin
 {
+	public enum NgbhVersion : uint
+	{
+		University = 0x70,
+		Nightlife = 0xbe
+	}
+
 	/// <summary>
 	/// This is the actual FileWrapper
 	/// </summary>
@@ -36,7 +42,16 @@ namespace SimPe.Plugin
 		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File
 		//,IPackedFileProperties		//This Interface can be used by thirdparties to retrive the FIleproperties, however you don't have to implement it!
 	{
+		
 		#region Attributes
+		uint version;
+		public NgbhVersion Version
+		{
+			get {return (NgbhVersion)version; }
+			set { version = (uint)value; }
+		}
+
+		byte[] id;
 		byte[] header;
 		byte[] zonename;
 		byte[] zero;
@@ -109,21 +124,26 @@ namespace SimPe.Plugin
 		/// </summary>
 		public Ngbh(Interfaces.IProviderRegistry provider) : base()
 		{
+			
 			this.provider = provider;
 
-			byte [] header = 
+
+			this.id = new byte [] 
 			{
 				(byte)'H',
 				(byte)'B',
 				(byte)'G',
-				(byte)'N',
-				(byte)'o', 0, 0, 0,
+				(byte)'N'				
+			};
+
+			this.Version = NgbhVersion.University;
+
+			this.header = new byte [] 
+			{				
 				0, 0, 0, 0,
 				0x80, 0x00, 0x00, 0x00,
 				0x80, 0x00, 0x00, 0x00
 			};
-
-			this.header = header;
 			zonename = Helper.ToBytes("temperate", 9);
 			zero = new byte[0x10];
 			preitems = new NgbhSlotList[0x03];
@@ -164,7 +184,7 @@ namespace SimPe.Plugin
 				"Neighborhood/Memory Wrapper",
 				"Quaxi",
 				"This File contains the Memories and Inventories of all Sims and Lots that Live in this Neighborhood.",
-				7,
+				8,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ngbh.png"))
 				); 
 		}
@@ -177,14 +197,19 @@ namespace SimPe.Plugin
 		{
 			ArrayList list = new ArrayList();
 
-			header = reader.ReadBytes(0x14);
+			id = reader.ReadBytes(id.Length);
+			version = reader.ReadUInt32();
+			header = reader.ReadBytes(header.Length);
+
 			int textlen = reader.ReadInt32();
 			zonename = reader.ReadBytes(textlen);
-			zero = reader.ReadBytes(0x10);
+			if (version>=(uint)NgbhVersion.Nightlife) zero = reader.ReadBytes(0x08);
+			else zero = reader.ReadBytes(0x10);
 
 			//read preitems
 			for (int i=0; i<preitems.Length; i++) preitems[i].Unserialize(reader);
 			
+
 			int blocklen = reader.ReadInt32();
 			slota = new NgbhSlot[blocklen];
 			for (int i=0; i<slota.Length; i++) 
@@ -222,9 +247,15 @@ namespace SimPe.Plugin
 		{
 			ArrayList list = new ArrayList();
 
+			writer.Write(id);
+			writer.Write(version);
 			writer.Write(header);
+
 			writer.Write((int)zonename.Length);
 			writer.Write(zonename);
+
+			if (version>=(uint)NgbhVersion.Nightlife) zero = Helper.SetLength(zero, 0x8);
+			else zero = Helper.SetLength(zero, 0x10);
 			writer.Write(zero);
 
 			//write preitems

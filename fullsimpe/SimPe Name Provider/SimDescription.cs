@@ -184,10 +184,12 @@ namespace SimPe.Providers
 			foreach (int k in turnons.Keys)
 			{
 				string s = (string)turnons[k];
+				int e = k;
+				//if (e>=0xE) e+=2;
 #if DEBUG
-				a[ct++] = new SimPe.Data.Alias((uint)Math.Pow(2, k), s);
+				a[ct++] = new SimPe.Data.Alias((uint)Math.Pow(2, e), s);
 #else
-				a[ct++] = new SimPe.Data.Alias((uint)Math.Pow(2, k), s, "{name}");
+				a[ct++] = new SimPe.Data.Alias((uint)Math.Pow(2, e), s, "{name}");
 #endif
 			}
 
@@ -196,7 +198,7 @@ namespace SimPe.Providers
 
 		public uint BuildTurnOnIndex(ushort val1, ushort val2)
 		{
-			return (uint)(val2 << 14 + val1);
+			return (uint)((val2 << 14) + val1);
 		}
 
 		public ushort[] GetFromTurnOnIndex(uint index)

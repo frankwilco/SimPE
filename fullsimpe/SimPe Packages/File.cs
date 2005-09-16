@@ -1149,6 +1149,10 @@ namespace SimPe.Packages
 		{			
 			FireIndexEvent(new System.EventArgs());
 		}
+		protected void FireSavedIndexEvent() 
+		{			
+			if (this.SavedIndex!=null) SavedIndex(this, new System.EventArgs());
+		}
 
 		protected void FireIndexEvent(System.EventArgs e)
 		{
@@ -1204,6 +1208,11 @@ namespace SimPe.Packages
 		/// Triggered whenever the Content of the Package was changed
 		/// </summary>
 		public event System.EventHandler IndexChanged;
+
+		/// <summary>
+		/// Triggered whenever the Complete ResourceList should get reloaded
+		/// </summary>
+		public event System.EventHandler SavedIndex;
 
 		/// <summary>
 		/// Triggered whenever a new Resource was added

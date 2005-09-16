@@ -752,4 +752,7 @@ Package: {filename}</value>
      <data name="SimPe.Data.XObjFunctionSubSort.Wall_Other">
 		<value>Walls / Other</value>
     </data>
+    <data name="Fun">
+        <value>Fun</value>
+    </data>
 </root>

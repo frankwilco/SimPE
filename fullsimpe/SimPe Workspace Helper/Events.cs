@@ -208,7 +208,7 @@ namespace SimPe.Events
 	/// <summary>
 	/// Used as Item in <see cref="ResourceEventArgs"/>
 	/// </summary>
-	public class ResourceContainer : SimPe.Interfaces.Plugin.IToolResult 
+	public class ResourceContainer : SimPe.Interfaces.Plugin.IToolResult, System.IDisposable 
 	{
 		public ResourceContainer(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item)
 		{
@@ -324,7 +324,16 @@ namespace SimPe.Events
 				if (Resource.Package.FileName==null) return "";
 				return Resource.Package.FileName;
 			}
-		}		
+		}
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			this.item = null;			
+		}
+
+		#endregion
 	}
 
 	#region ResourceContainers	

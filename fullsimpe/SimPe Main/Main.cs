@@ -1975,6 +1975,7 @@ namespace SimPe
 		TreeBuilder treebuilder;
 		ViewFilter filter;
 		TreeNodeTag lastusedtnt;
+		TreeView lasttreeview;
 		PluginManager plugger;
 		ResourceLoader resloader;
 		RemoteHandler remote;
@@ -2017,6 +2018,12 @@ namespace SimPe
 		{
 			UpdateFileInfo();
 			package.UpdateProviders();
+
+			if (lasttreeview!=null) 
+			{
+				System.Windows.Forms.TreeViewEventArgs tvea = new TreeViewEventArgs(this.lasttreeview.SelectedNode, TreeViewAction.ByMouse);
+				SelectResourceNode(this.lasttreeview, tvea);
+			}
 		}
 
 		/// <summary>
@@ -2503,6 +2510,9 @@ namespace SimPe
 		void SelectResourceNode(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		{
 			lastusedtnt = null;
+			if(sender==null) return;
+			lasttreeview = (TreeView)sender;
+			
 			if (e==null) return;
 			if (e.Node==null) return;
 			if (e.Node.Tag==null) return;
@@ -2630,15 +2640,18 @@ namespace SimPe
 			}
 			
 			SimPe.Events.ResourceEventArgs res = new SimPe.Events.ResourceEventArgs(package);
-			for (int i=0; i<lv.SelectedItems.Count; i++)
+			bool goon = (!fromdbl && !Helper.WindowsRegistry.SimpleResourceSelect && !frommiddle) || (lv.SelectedItems.Count>1);
+			foreach (ListViewItem lvi in lv.SelectedItems) 
 			{
-				ListViewTag lvt = (ListViewTag)lv.SelectedItems[i].Tag;
+				ListViewTag lvt = (ListViewTag)lvi.Tag;
+
 				res.Items.Add(new SimPe.Events.ResourceContainer(lvt.Resource));
 
-				if (!fromdbl && !Helper.WindowsRegistry.SimpleResourceSelect && !frommiddle) continue;
+				if (goon) continue;
 
 				//only the first one get's added to the Plugin View				
-				if ((lv.SelectedItems.Count==1 && !fromchg && lv.Tag==null)) resloader.AddResource(lvt.Resource, !fm);
+				if ((lv.SelectedItems.Count==1 && !fromchg && lv.Tag==null)) 				
+					resloader.AddResource(lvt.Resource, !fm);	
 			}
 
 			//notify the Action Tools that the selection was changed

@@ -160,6 +160,7 @@ namespace SimPe.Plugin
 						break;
 					}
 					case 0x8009:
+					case 0x8008:
 					case 0x8007: 
 					{
 						opcode = reader.ReadUInt16();

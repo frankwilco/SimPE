@@ -848,12 +848,12 @@ namespace SimPe.PackedFiles.Wrapper
 
 			writer.BaseStream.Seek(0x160, SeekOrigin.Begin);
 			writer.Write((uint)major);
-			writer.Write(time);
+			writer.Write((ushort)time);
 			writer.BaseStream.Seek(0x2, SeekOrigin.Current);
-			writer.Write(semester);
-			writer.Write(oncampus);
+			writer.Write((ushort)semester);
+			writer.Write((ushort)oncampus);
 			writer.BaseStream.Seek(0x4, SeekOrigin.Current);
-			writer.Write(influence);			
+			writer.Write((ushort)influence);			
 		}
 	}
 	#endregion
@@ -1956,7 +1956,10 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get
 			{
-				return "GUID=0x"+Helper.HexString(this.SimId)+", Filename="+this.CharacterFileName+", Name="+this.SimName+" "+this.SimFamilyName+", Age="+this.CharacterDescription.LifeSection.ToString()+", Job="+this.CharacterDescription.Career.ToString()+", Zodiac="+this.CharacterDescription.ZodiacSign.ToString()+", Major="+this.University.Major+", Grade="+this.CharacterDescription.Grade.ToString();
+				string s =  "GUID=0x"+Helper.HexString(this.SimId)+", Filename="+this.CharacterFileName+", Name="+this.SimName+" "+this.SimFamilyName+", Age="+this.CharacterDescription.LifeSection.ToString()+", Job="+this.CharacterDescription.Career.ToString()+", Zodiac="+this.CharacterDescription.ZodiacSign.ToString()+", Major="+this.University.Major+", Grade="+this.CharacterDescription.Grade.ToString();
+				if (this.Version == SDescVersions.Nightlife)
+					s += ", Species=0x"+Helper.HexString(Nightlife.Species);
+				return s;
 			}
 		}
 

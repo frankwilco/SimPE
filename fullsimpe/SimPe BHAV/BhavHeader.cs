@@ -95,6 +95,7 @@ namespace SimPe.Plugin
 			format = reader.ReadUInt16();
 			switch (format) 
 			{
+				case 0x8008: 
 				case 0x8009: 
 				{					
 					count = (uint)reader.ReadUInt16();
