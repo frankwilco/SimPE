@@ -138,7 +138,8 @@ namespace SimPe.Data
 		Floor_Wood = 0x0240,
 		Floor_Other = 0x0200,
 
-		Fence = 0x0400,
+		Fence_Rail = 0x0400,
+		Fence_Halfwall = 0x0401,
 
 		Wall_Brick = 0x0501,
 		Wall_Masonry = 0x0502,

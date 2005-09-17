@@ -692,8 +692,12 @@ Package: {filename}</value>
 		<value>Roofs</value>
     </data>
     
-    <data name="SimPe.Data.XObjFunctionSubSort.Fence">
-		<value>Fences</value>
+    <data name="SimPe.Data.XObjFunctionSubSort.Fence_Rail">
+		<value>Fences and Rails</value>
+    </data>
+    
+    <data name="SimPe.Data.XObjFunctionSubSort.Fence_Halfwall">
+		<value>Halfwalls</value>
     </data>
     
     <data name="SimPe.Data.XObjFunctionSubSort.Terrain">

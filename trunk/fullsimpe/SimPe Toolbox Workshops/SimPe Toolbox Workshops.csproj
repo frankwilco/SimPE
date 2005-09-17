@@ -199,6 +199,11 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "ActionEnableFence.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
