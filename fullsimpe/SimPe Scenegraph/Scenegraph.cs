@@ -872,8 +872,7 @@ namespace SimPe.Plugin
 				}
 			}			
 		}
-		#endregion
-		
+		#endregion		
 
 		#region 3IDR
 		/// <summary>

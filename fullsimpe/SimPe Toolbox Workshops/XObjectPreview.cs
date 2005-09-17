@@ -209,7 +209,8 @@ namespace SimPe.Plugin.Tool.Dockable
 				}					
 				case "fence" : 
 				{
-					return Data.XObjFunctionSubSort.Fence;
+					if (cpf.GetSaveItem("ishalfwall").UIntegerValue == 1) return Data.XObjFunctionSubSort.Fence_Halfwall;
+					return Data.XObjFunctionSubSort.Fence_Rail;
 				}
 				default :
 				{
@@ -229,7 +230,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			//get Thumbnail Type
 			uint[] types = new uint[] {0x8C311262, 0x8C31125E}; //floors, walls
 			if (fss == Data.XObjFunctionSubSort.Roof) types = new uint[] {0xCC489E46};
-			else if (fss == Data.XObjFunctionSubSort.Fence) types = new uint[] {0xCC30CDF8};
+			else if (fss == Data.XObjFunctionSubSort.Fence_Rail || fss == Data.XObjFunctionSubSort.Fence_Halfwall) types = new uint[] {0xCC30CDF8};
 			else if (fss == Data.XObjFunctionSubSort.Roof) types = new uint[] {0xCC489E46};
 			else if (fss == Data.XObjFunctionSubSort.Terrain) 
 			{

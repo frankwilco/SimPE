@@ -61,10 +61,22 @@ namespace SimPe.Plugin
 		{
 			get
 			{
-				IToolPlugin[] tools = {
-										  new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool(),
-										  new SimPe.Plugin.Tool.Dockable.PackageDetailDockTool()
-									  };
+				IToolPlugin[] tools = null;
+				if (Helper.WindowsRegistry.HiddenMode) 
+				{
+					tools = new IToolPlugin[]{
+											  new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool(),
+											  new SimPe.Plugin.Tool.Dockable.PackageDetailDockTool(),
+											  new SimPe.Plugin.Tool.Action.ActionEnableFenceInOriginalGame()
+										  };
+				} 
+				else 
+				{
+					tools =  new IToolPlugin[]{
+											  new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool(),
+											  new SimPe.Plugin.Tool.Dockable.PackageDetailDockTool()
+										  };
+				}
 				return tools;
 			}
 		}

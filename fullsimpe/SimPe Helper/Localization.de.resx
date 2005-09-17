@@ -981,8 +981,12 @@ Package: {filename}</value>
 		<value>Dächer</value>
     </data>
     
-    <data name="SimPe.Data.XObjFunctionSubSort.Fence">
+    <data name="SimPe.Data.XObjFunctionSubSort.Fence_Rail">
 		<value>Zäune</value>
+    </data>
+    
+    <data name="SimPe.Data.XObjFunctionSubSort.Fence_Halfwall">
+		<value>Halbwände</value>
     </data>
     
     <data name="SimPe.Data.XObjFunctionSubSort.Terrain">
