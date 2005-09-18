@@ -759,4 +759,21 @@ Package: {filename}</value>
     <data name="Fun">
         <value>Fun</value>
     </data>
+    <data name="Fix_Fence_Warning">
+        <value>"Making a Fence compatible with the Original Game, is a nasty Hack, which can cause conflicts in the Game. I would not suggest to do this, if you plan to Release the Fence!
+
+If you still want to offer the Fence for the original Game, please consider to release it in two seperate Packages. One with the Fence for University and higher, and one for the Original Game.
+
+Do you really want to make this Fence compatible with the original Game?"</value>
+    </data>
+    <data name="Censor_Install_Warn">
+		<value>You have installed Nightlife, this means, that SimPE needs to copy a File into your Downloads folder, in order to remove the Blur.
+    
+Do you want to continue?</value>
+    </data>
+    <data name="Censor_UnInstall_Warn">
+		<value>In order to bring the Blur back, SimPE has to delete the file {filename}.
+    
+Do you want to continue?</value>
+    </data>
 </root>

@@ -43,7 +43,7 @@ namespace SimPe.Plugin.Tool.Action
 		{
 			if (!ChangeEnabledStateEventHandler(null, e)) return;
 			
-			if (Message.Show("Making a Fence compatible with the Original Game, is a nasty Hack, which can cause conflicts in the Game. I would not suggest to do this, if you plan to Release the Fence!\n\nIf you still want to offer the Fence for the original Game, please consider to release it in two seperate Packages. One with the Fence for University and higher, and one for the Original Game.\n\nDo you really want to make this Fence compatible with the original Game?", "Warning", System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No) return;
+			if (Message.Show(SimPe.Localization.GetString("Fix_Fence_Warning"), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No) return;
 		
 			
 			

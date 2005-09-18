@@ -178,8 +178,8 @@ namespace SimPe
 #if MAC
 				return 0;
 #else
-				RegistryKey rkf = rk.CreateSubKey("Settings");	
-				return Convert.ToInt64(rkf.GetValue("LastVersion", (long)0));
+			RegistryKey rkf = rk.CreateSubKey("Settings");	
+			return Convert.ToInt64(rkf.GetValue("LastVersion", (long)0));
 #endif			
 		}
 
@@ -1160,13 +1160,125 @@ namespace SimPe
 				} 
 				catch (Exception) {}
 			}
-		}
+		}		
+		#endregion
 
+		#region Censor Patch
 		/// <summary>
 		/// Returns true if the Game will start in Debug Mode
 		/// </summary>
 		public bool BlurNudity 
 		{
+			get 
+			{
+				if (this.EPInstalled<=1) return BlurNudityPreEP2;
+				else if (this.EPInstalled==2) return BlurNudityEP2;
+				else return false;
+			}
+			set 
+			{
+				if (this.EPInstalled<=1) 
+				{
+					BlurNudityEP2 = false;
+					BlurNudityPreEP2 = value;
+				}
+				else if (this.EPInstalled==2) 
+				{
+					BlurNudityEP2 = value;
+				}
+				else 
+				{
+					BlurNudityEP2 = false;
+				}
+			}
+		}
+
+		protected string[] CensorFiles
+		{
+			get 
+			{
+				return new string[]{				    
+				    System.IO.Path.Combine(this.SimSavegameFolder, @"Config\quaxi_nl_censor_v1.package"),
+					System.IO.Path.Combine(this.SimSavegameFolder, @"Downloads\quaxi_nl_censor_v1.package"),										
+					System.IO.Path.Combine(this.SimSavegameFolder, @"Downloads\quaxi_nl_censor.package")
+								   };
+			}
+		}
+
+		protected bool BlurNudityEP2 
+		{
+			get 
+			{
+				string[] fls = CensorFiles;
+				foreach (string fl in fls)
+					if (System.IO.File.Exists(fl)) return false;
+
+				return true;
+			}
+			set 
+			{
+				string[] fls = CensorFiles;
+				if (!value) 
+				{					
+					string fl = fls[0];
+					string folder = System.IO.Path.GetDirectoryName(fl);
+
+					if (System.IO.File.Exists(fl)) return;
+
+					if (System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("Censor_Install_Warn").Replace("{filename}", fl), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No)
+						return;
+
+					try 
+					{
+						if (!System.IO.Directory.Exists(folder))
+							System.IO.Directory.CreateDirectory(folder);
+
+						System.IO.Stream s = typeof(Helper).Assembly.GetManifestResourceStream("SimPe.quaxi_nl_censor_v1.package");
+						System.IO.BinaryReader br = new BinaryReader(s);
+						try 
+						{
+							System.IO.BinaryWriter bw = new BinaryWriter(System.IO.File.Create(fl));
+							try 
+							{
+
+								bw.Write(br.ReadBytes((int)br.BaseStream.Length));
+							} 
+							finally 
+							{
+								bw.Close();
+							}
+						} 
+						finally 
+						{
+							br.Close();
+						}
+					}
+					catch (Exception ex) 
+					{
+						Helper.ExceptionMessage(ex);
+					}
+				} 
+				else 
+				{					
+					foreach (string fl in fls)
+						if (System.IO.File.Exists(fl)) 
+						{
+							try 
+							{
+								if (System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("Censor_UnInstall_Warn").Replace("{filename}", fl), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No)
+									return;
+								System.IO.File.Delete(fl);
+							} 
+							catch (Exception ex) 
+							{
+								Helper.ExceptionMessage(ex);
+							}
+						}
+				}
+			}
+		}
+
+		protected bool BlurNudityPreEP2 {
 			get 
 			{
 				if (!System.IO.File.Exists(this.StartupCheatFile)) return true;

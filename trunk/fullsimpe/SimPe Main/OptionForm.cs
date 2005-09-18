@@ -443,6 +443,7 @@ namespace SimPe
 			this.cbblur.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbblur.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbblur, resources.GetString("cbblur.ToolTip"));
 			this.cbblur.Visible = ((bool)(resources.GetObject("cbblur.Visible")));
+			this.cbblur.CheckedChanged += new System.EventHandler(this.cbblur_CheckedChanged);
 			// 
 			// cbsound
 			// 
@@ -2638,13 +2639,13 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.hcFolders);
-			this.Controls.Add(this.hcSceneGraph);
 			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcIdent);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
 			this.Controls.Add(this.hcFileTable);
+			this.Controls.Add(this.hcFolders);
+			this.Controls.Add(this.hcSceneGraph);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -2680,7 +2681,7 @@ namespace SimPe
 		#endregion
 
 		void Execute()
-		{
+		{			
 			this.Tag = true;
 			//linkLabel3.Enabled = (Helper.WindowsRegistry.EPInstalled>=1);
 			tbgame.Text = Helper.WindowsRegistry.SimsPath;
@@ -2757,7 +2758,7 @@ namespace SimPe
 			Helper.WindowsRegistry.LanguageCode = (Data.MetaData.Languages)cblang.SelectedIndex+1;
 			Helper.WindowsRegistry.GameDebug = cbdebug.Checked;
 			Helper.WindowsRegistry.AutoBackup = cbautobak.Checked;
-			Helper.WindowsRegistry.BlurNudity = cbblur.Checked;
+			//Helper.WindowsRegistry.BlurNudity = cbblur.Checked;
 			Helper.WindowsRegistry.EnableSound = cbsound.Checked;
 			Helper.WindowsRegistry.WaitingScreen = cbwait.Checked;
 			Helper.WindowsRegistry.LoadOWFast = cbow.Checked;
@@ -3631,6 +3632,12 @@ namespace SimPe
 		{
 			if (System.IO.Directory.Exists(tbep2.Text)) fbd.SelectedPath = tbep2.Text;
 			if (fbd.ShowDialog()==DialogResult.OK) this.tbep2.Text = fbd.SelectedPath;
+		}
+
+		private void cbblur_CheckedChanged(object sender, System.EventArgs e)
+		{
+			Helper.WindowsRegistry.BlurNudity = cbblur.Checked;
+			cbblur.Checked = Helper.WindowsRegistry.BlurNudity;
 		}
 	}
 }
