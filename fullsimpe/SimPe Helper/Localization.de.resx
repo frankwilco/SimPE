@@ -1045,4 +1045,22 @@ Package: {filename}</value>
      <data name="SimPe.Data.XObjFunctionSubSort.Wall_Other">
 		<value>Wände / Verschiedenes</value>
     </data>
+    <data name="Fix_Fence_Warning">
+        <value>"Zäune mit dem original Spiel kompatibel zu machen basiert auf einem unschönen Hack, der zu Konflikten im Spiel führen kann. Ich würde nicht Empfehlen, einen derartigen Zaun zu veröffentlichen!
+
+Soll er der Zaun dennoch auch im original Spiel verfügbar sein, sollte er in zwei Versionen angeboten werden. Einmal als Zaun für das original Spiel und einmal in einer Variante ab "Wilde Kampus-Jahre". 
+Die wahrscheinlichkeit für einen Konflikt, wenn ihr den Zaun nur für euren persönlichen Gebraucht in das Format des orginal Spieles umwandelt ist gering.
+
+Soll der Zaun in das Format des original Spieles umgewandelt werden?"</value>
+    </data>
+    <data name="Censor_Install_Warn">
+		<value>Da auf dem System Nightlife installiert wurde, muss SimPE nun eine Datei in den Downloads Ordner kopieren um die Verpixelung zu deaktivieren.
+    
+Soll SimPE fortfahren?</value>
+    </data>
+    <data name="Censor_UnInstall_Warn">
+		<value>Um die Verpixelung zu reaktivieren, muss SimPE nun die Dateo {filename} löschen.
+    
+Soll SimPE fortfahren?</value>
+    </data>
 </root>

@@ -55,6 +55,10 @@ namespace SimPe.Plugin.Tool.Dockable
 		private TD.SandBar.ButtonItem biTile;
 		private TD.SandBar.ButtonItem biDetail;
 		private System.Windows.Forms.Panel panel2;
+		private Ambertation.Windows.Forms.XPTaskBoxSimple tbTGI;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.TextBox tbType;
+		private System.Windows.Forms.Label label3;
 		private System.ComponentModel.IContainer components;
 
 		public FinderDock()
@@ -65,6 +69,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			tm = SimPe.ThemeManager.Global.CreateChild();
 			tm.AddControl(this.xpGradientPanel1);
 			tm.AddControl(this.tbNmap);
+			tm.AddControl(this.tbTGI);
 			tm.AddControl(this.tbResult);
 			tm.AddControl(this.toolBar1);
 			this.Guid = new System.Guid("9eea4f6c-b7fd-4a94-9dc5-200eb8531f68");
@@ -106,6 +111,10 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.tbResult = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.lv = new SteepValley.Windows.Forms.XPListView(this.components);
+			this.tbTGI = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+			this.button2 = new System.Windows.Forms.Button();
+			this.tbType = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.tbNmap = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.button1 = new System.Windows.Forms.Button();
 			this.tbNmapName = new System.Windows.Forms.TextBox();
@@ -127,6 +136,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.topSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.xpGradientPanel1.SuspendLayout();
 			this.tbResult.SuspendLayout();
+			this.tbTGI.SuspendLayout();
 			this.tbNmap.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -134,6 +144,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			// xpGradientPanel1
 			// 
 			this.xpGradientPanel1.Controls.Add(this.tbResult);
+			this.xpGradientPanel1.Controls.Add(this.tbTGI);
 			this.xpGradientPanel1.Controls.Add(this.tbNmap);
 			this.xpGradientPanel1.Controls.Add(this.panel1);
 			this.xpGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -161,10 +172,10 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbResult.IconLocation = new System.Drawing.Point(4, 12);
 			this.tbResult.IconSize = new System.Drawing.Size(32, 32);
 			this.tbResult.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
-			this.tbResult.Location = new System.Drawing.Point(8, 176);
+			this.tbResult.Location = new System.Drawing.Point(8, 288);
 			this.tbResult.Name = "tbResult";
 			this.tbResult.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-			this.tbResult.Size = new System.Drawing.Size(288, 232);
+			this.tbResult.Size = new System.Drawing.Size(288, 120);
 			this.tbResult.TabIndex = 4;
 			// 
 			// lv
@@ -176,7 +187,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lv.Location = new System.Drawing.Point(8, 48);
 			this.lv.MultiSelect = false;
 			this.lv.Name = "lv";
-			this.lv.Size = new System.Drawing.Size(272, 176);
+			this.lv.Size = new System.Drawing.Size(272, 64);
 			this.lv.TabIndex = 0;
 			this.lv.TileColumns = new int[] {
 												1};
@@ -184,6 +195,65 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lv.View = SteepValley.Windows.Forms.ExtendedView.Details;
 			this.lv.DoubleClick += new System.EventHandler(this.lv_DoubleClick);
 			this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_ColumnClick);
+			// 
+			// tbTGI
+			// 
+			this.tbTGI.BackColor = System.Drawing.Color.Transparent;
+			this.tbTGI.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
+			this.tbTGI.BorderColor = System.Drawing.SystemColors.Window;
+			this.tbTGI.Controls.Add(this.button2);
+			this.tbTGI.Controls.Add(this.tbType);
+			this.tbTGI.Controls.Add(this.label3);
+			this.tbTGI.Dock = System.Windows.Forms.DockStyle.Top;
+			this.tbTGI.DockPadding.Bottom = 4;
+			this.tbTGI.DockPadding.Left = 4;
+			this.tbTGI.DockPadding.Right = 4;
+			this.tbTGI.DockPadding.Top = 44;
+			this.tbTGI.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
+			this.tbTGI.HeaderText = "Types";
+			this.tbTGI.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.tbTGI.Icon = ((System.Drawing.Image)(resources.GetObject("tbTGI.Icon")));
+			this.tbTGI.IconLocation = new System.Drawing.Point(4, 12);
+			this.tbTGI.IconSize = new System.Drawing.Size(32, 32);
+			this.tbTGI.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
+			this.tbTGI.Location = new System.Drawing.Point(8, 176);
+			this.tbTGI.Name = "tbTGI";
+			this.tbTGI.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+			this.tbTGI.Size = new System.Drawing.Size(288, 112);
+			this.tbTGI.TabIndex = 6;
+			this.tbTGI.Visible = false;
+			// 
+			// button2
+			// 
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button2.Location = new System.Drawing.Point(197, 80);
+			this.button2.Name = "button2";
+			this.button2.TabIndex = 7;
+			this.button2.Text = "Start";
+			this.button2.Click += new System.EventHandler(this.FindByType);
+			// 
+			// tbType
+			// 
+			this.tbType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbType, "Resource Type");
+			this.tbType.Location = new System.Drawing.Point(64, 48);
+			this.tbType.Name = "tbType";
+			this.tbType.Size = new System.Drawing.Size(208, 21);
+			this.tbType.TabIndex = 6;
+			this.tbType.Text = "";
+			// 
+			// label3
+			// 
+			this.label3.BackColor = System.Drawing.Color.Transparent;
+			this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label3.Location = new System.Drawing.Point(8, 48);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(48, 23);
+			this.label3.TabIndex = 4;
+			this.label3.Text = "Type:";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// tbNmap
 			// 
@@ -281,7 +351,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbTask.Items.AddRange(new object[] {
 														"in Namemaps",
-														"in Text Lists"});
+														"in Text Lists",
+														"in TGI by Type"});
 			this.cbTask.Location = new System.Drawing.Point(48, 0);
 			this.cbTask.Name = "cbTask";
 			this.cbTask.Size = new System.Drawing.Size(240, 21);
@@ -402,6 +473,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.Text = "Resource Finder";
 			this.xpGradientPanel1.ResumeLayout(false);
 			this.tbResult.ResumeLayout(false);
+			this.tbTGI.ResumeLayout(false);
 			this.tbNmap.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -434,6 +506,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		void Show(Ambertation.Windows.Forms.XPTaskBoxSimple ctrl, string txt)
 		{
 			this.tbNmap.Visible = (ctrl==tbNmap);
+			this.tbTGI.Visible = (ctrl==tbTGI);
 
 			if (txt!=null) tbNmap.HeaderText = txt;
 		}
@@ -442,6 +515,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			if (cbTask.SelectedIndex==0) Show(tbNmap, SimPe.Localization.GetString("Namemaps"));
 			if (cbTask.SelectedIndex==1) Show(tbNmap, SimPe.Localization.GetString("Text Lists"));
+			if (cbTask.SelectedIndex==2) Show(tbTGI, SimPe.Localization.GetString("Types"));
 		}
 
 		public void ClearResults()
@@ -726,6 +800,50 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			((ColumnSorter)((ListView)sender).ListViewItemSorter).CurrentColumn = e.Column;
 			((ListView)sender).Sort();
+		}
+
+		
+
+		private void FindByType(object sender, System.EventArgs e)
+		{
+			FileTable.FileIndex.Load();
+			ClearResults();
+			lv.BeginUpdate();
+			CreateDefaultColumns();							
+			
+			uint type = Helper.StringToUInt32(tbType.Text, 0xffffffff, 16);
+
+			//get all known NMaps
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] nmaps = FileTable.FileIndex.FindFile(type, false);
+
+			SimPe.Wait.SubStart(nmaps.Length);
+			Wait.Message = SimPe.Localization.GetString("Searching - Please Wait");
+			try 
+			{
+				int ct = 0;
+				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii in nmaps)
+				{
+					ScenegraphResultItem sri = new ScenegraphResultItem(fii);
+
+					sri.GroupIndex = this.AddResultGroup(fii.Package.SaveFileName);
+					lv.Items.Add(sri);				
+				
+					Wait.Progress = ++ct;
+				}
+
+			} 
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage(ex);
+			}
+
+			lv.TileColumns = new int[] {1, 2, 3, 4, 5};
+			lv.ShowGroups = true;
+			
+			lv.Sort();
+			lv.EndUpdate();	
+			lv.DoubleBuffering = true;	
+			Wait.SubStop();
 		}
 
 		#region IToolExt Member
