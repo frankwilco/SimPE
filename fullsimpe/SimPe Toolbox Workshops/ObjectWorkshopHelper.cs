@@ -328,6 +328,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			WaitingScreen.UpdateMessage("Collecting needed Files");
 			
 			if ((package==null) && (pfd!=null)) package = RecolorClone(br, package, pfd, localgroup, settings);
+			
 			WaitingScreen.Stop();
 			
 			
@@ -349,7 +350,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			if (System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE)) gm_pkg = SimPe.Packages.GeneratableFile.LoadFromFile(ScenegraphHelper.MMAT_PACKAGE);
 			else gm_pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 			
-			SimPe.Packages.GeneratableFile npackage = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
+			SimPe.Packages.GeneratableFile npackage = SimPe.Packages.GeneratableFile.CreateNew();//.LoadFromStream((System.IO.BinaryReader)null);
 
 			//Create the Templae for an additional MMAT
 			npackage.FileName = sfd.FileName;	
