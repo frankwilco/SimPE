@@ -221,6 +221,7 @@ namespace SimPe.Plugin
 		/// <returns></returns>
 		public static string ReplaceOldUnique(string name, string newunique, bool force) 
 		{
+			newunique = newunique.Replace("_", ".");
 			string[] parts = name.Split("[".ToCharArray(), 2);
 			if (parts.Length>1) 
 			{
@@ -228,10 +229,26 @@ namespace SimPe.Plugin
 				if (ends.Length>1) return parts[0]+newunique+ends[1];
 			}
 			
+			//make sure the uniqe part is added to the ModelName
 			if (force) 
-				return name+"-"+newunique;
-			else
-				return name;
+			{				
+				parts = name.Split("_".ToCharArray(), 2);
+				
+				name = "";
+				bool first = true;
+				foreach (string s in parts)
+				{
+					if (!first) name += "_";
+					name += s;
+					if (first) 
+					{
+						first = false;
+						name += "-"+newunique;
+					}
+				}				
+			}		
+				
+			return name;
 		}
 
 		/// <summary>
@@ -244,6 +261,8 @@ namespace SimPe.Plugin
 		/// <returns></returns>
 		public static Hashtable GetNames(bool auto, SimPe.Interfaces.Files.IPackageFile package, ListView lv, string username) 
 		{
+			username = username.Replace("_", ".");
+
 			if (lv!=null) lv.Items.Clear();
 			Hashtable ht = new Hashtable(CaseInsensitiveHashCodeProvider.DefaultInvariant, CaseInsensitiveComparer.DefaultInvariant);
 			string old = Hashes.StripHashFromName(FindMainOldName(package).ToLower().Trim());

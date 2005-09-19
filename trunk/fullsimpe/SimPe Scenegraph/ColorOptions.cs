@@ -106,7 +106,7 @@ namespace SimPe.Plugin
 				if (name.ToLower().EndsWith("_txmt")) name = name.Substring(0, name.Length-5);
 				txmt.FileName = FixObject.GetUniqueTxmtName(name, unique, mmat.SubsetName, true);///*"##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+*/name+"_"+unique+"_txmt";							
 				txmt.FileDescriptor = ScenegraphHelper.BuildPfd(txmt.FileName, Data.MetaData.TXMT, Data.MetaData.CUSTOM_GROUP);														
-
+				
 				mmat.Name = "##0x"+Helper.HexString(txmt.FileDescriptor.Group)+"!"+FixObject.GetUniqueTxmtName(name, unique, mmat.SubsetName, false);
 							
 				MaterialDefinition md = (MaterialDefinition)txmt.Blocks[0];

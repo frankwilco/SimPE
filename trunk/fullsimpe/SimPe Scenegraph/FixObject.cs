@@ -87,12 +87,16 @@ namespace SimPe.Plugin
 		{
 			name = name.Trim();
 			name = RenameForm.ReplaceOldUnique(name, "", false);
-
-			if (name.ToLower().EndsWith("_txmt") ) name = name.Substring(0, name.Length-5);
+			
+			if (name.ToLower().EndsWith("_txmt") ) 
+				name = name.Substring(0, name.Length-5);
+			
 
 			string[] parts = name.Split("_".ToCharArray());
-			if (parts.Length>1) 
+			if (parts.Length>0) 
 			{
+				//oild method used to assigne the additional Name to the subset Part, now we assign it to the ModelName-Part
+				/*
 				subsetname = subsetname.Trim().ToLower();
 				name = "";
 				bool foundsubset = false;
@@ -111,7 +115,20 @@ namespace SimPe.Plugin
 					if (parts[i].ToLower()==subsetname) foundsubset=true;
 					
 				}
-				if (!addedunique) name += unique;				
+				if (!addedunique) name += unique;				*/
+
+				name = "";
+				bool first = true;
+				foreach (string s in parts)
+				{
+					if (!first) name += "_";
+					name += s;
+					if (first) 
+					{
+						first = false;
+						name += "-"+unique;
+					} 
+				}	
 			} 
 			else 
 			{
@@ -535,63 +552,12 @@ namespace SimPe.Plugin
 			FixXObject(map, completerefmap, grouphash);
 			FixSkin(map, completerefmap, grouphash);
 
-			//Now Fix the MMAT
-			WaitingScreen.UpdateMessage("Udating Material Overrides");
-			Interfaces.Files.IPackedFileDescriptor[] mpfds = package.FindFiles(Data.MetaData.MMAT);	//MMAT
-			Hashtable familymap = new Hashtable();
-			uint mininst = 0x5000;
-			foreach (Interfaces.Files.IPackedFileDescriptor pfd in mpfds) 
-			{
-				SimPe.PackedFiles.Wrapper.Cpf mmat = new SimPe.PackedFiles.Wrapper.Cpf();
-				mmat.ProcessData(pfd, package);
-				//make the MMAT Instance number unique
-				pfd.Instance = mininst++;
-
-				//get unique family value
-				if (uniquefamily) 
-				{
-					string family = mmat.GetSaveItem("family").StringValue;
-					string nfamily = (string)familymap[family];
-
-					if (nfamily==null) 
-					{
-						nfamily = System.Guid.NewGuid().ToString();
-						familymap[family] = nfamily;
-					}
-
-					mmat.GetSaveItem("family").StringValue = nfamily;
-				}
-
-
-				string newref = (string)map[Hashes.StripHashFromName(mmat.GetSaveItem("name").StringValue.Trim().ToLower())+"_txmt"];
-				if (newref!=null) 
-				{
-					newref = Hashes.StripHashFromName(newref);
-					newref = newref.Substring(0, newref.Length-5); 
-					mmat.GetSaveItem("name").StringValue = grouphash + newref;
-				} 
-				else 
-				{
-					mmat.GetSaveItem("name").StringValue = grouphash + Hashes.StripHashFromName(mmat.GetSaveItem("name").StringValue);
-				}
-
-				newref = (string)map[Hashes.StripHashFromName(mmat.GetSaveItem("modelName").StringValue.Trim().ToLower())];
-				if (newref!=null) 
-				{
-					newref = Hashes.StripHashFromName(newref);
-					mmat.GetSaveItem("modelName").StringValue = newref; 
-				}
-				else mmat.GetSaveItem("modelName").StringValue = Hashes.StripHashFromName(mmat.GetSaveItem("modelName").StringValue);
-
-				if (ver == FixVersion.UniversityReady)  mmat.GetSaveItem("modelName").StringValue = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+mmat.GetSaveItem("modelName").StringValue;
-
-				//mmat.FileDescriptor.Group = Data.MetaData.LOCAL_GROUP;
-				mmat.SynchronizeUserData();
-			}
+			//Make sure MMATs get fixed
+			FixMMAT(map, uniquefamily, grouphash);
 
 			//And finally the Root String
 			WaitingScreen.UpdateMessage("Udating Root");
-			mpfds = package.FindFiles(Data.MetaData.STRING_FILE);	
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] mpfds = package.FindFiles(Data.MetaData.STRING_FILE);	
 			string modelname = null;
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in mpfds) 
 			{
@@ -660,6 +626,79 @@ namespace SimPe.Plugin
 
 					nref.SynchronizeUserData();
 				}
+			}
+		}
+
+		/// <summary>
+		/// This takes care of the MMAT Resources
+		/// </summary>
+		/// <param name="map"></param>
+		/// <param name="uniquefamily"></param>
+		/// <param name="grouphash"></param>
+		void FixMMAT(Hashtable map, bool uniquefamily, string grouphash)
+		{
+			
+			WaitingScreen.UpdateMessage("Udating Material Overrides");
+			Interfaces.Files.IPackedFileDescriptor[] mpfds = package.FindFiles(Data.MetaData.MMAT);	//MMAT
+			Hashtable familymap = new Hashtable();
+			uint mininst = 0x5000;
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in mpfds) 
+			{
+				SimPe.Plugin.MmatWrapper mmat = new SimPe.Plugin.MmatWrapper();
+				mmat.ProcessData(pfd, package);
+				//make the MMAT Instance number unique
+				pfd.Instance = mininst++;
+
+				//get unique family value
+				if (uniquefamily) 
+				{
+					string family = mmat.GetSaveItem("family").StringValue;
+					string nfamily = (string)familymap[family];
+
+					if (nfamily==null) 
+					{
+						nfamily = System.Guid.NewGuid().ToString();
+						familymap[family] = nfamily;
+					}
+
+					mmat.Family = nfamily;					
+				}
+
+
+				string newref = (string)map[Hashes.StripHashFromName(mmat.GetSaveItem("name").StringValue.Trim().ToLower())+"_txmt"];
+				if (newref!=null) 
+				{
+					newref = Hashes.StripHashFromName(newref);
+					newref = newref.Substring(0, newref.Length-5); 
+					mmat.Name =  grouphash + newref;
+				} 
+				else 
+				{
+					mmat.Name = grouphash + Hashes.StripHashFromName(mmat.GetSaveItem("name").StringValue);
+				}
+
+				newref = (string)map[Hashes.StripHashFromName(mmat.ModelName.Trim().ToLower())];
+				if (newref!=null) 
+				{
+					newref = Hashes.StripHashFromName(newref);
+					mmat.ModelName = newref; 
+				}
+				else mmat.ModelName = Hashes.StripHashFromName(mmat.ModelName);
+
+				if (ver == FixVersion.UniversityReady)  
+				{
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(mmat.ModelName, Data.MetaData.CRES, Data.MetaData.GLOBAL_GROUP, true);
+					
+					bool addfl = true;
+					if (item!=null)						
+						if (item.FileDescriptor.Group==Data.MetaData.GLOBAL_GROUP) addfl=false;					
+
+					if (addfl)	
+						mmat.ModelName = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+mmat.ModelName;
+				}
+
+				//mmat.FileDescriptor.Group = Data.MetaData.LOCAL_GROUP;
+				mmat.SynchronizeUserData();
 			}
 		}
 

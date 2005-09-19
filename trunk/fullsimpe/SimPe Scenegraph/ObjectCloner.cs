@@ -274,11 +274,13 @@ namespace SimPe.Plugin
 				SimPe.Plugin.MmatWrapper mmat = new MmatWrapper();
 				mmat.ProcessData(pfd, package);
 
-				if (!guids.Contains(mmat.GetSaveItem("objectGUID").UIntegerValue)) 
-				{
-					mmat.GetSaveItem("objectGUID").UIntegerValue = primary;
+				
+				//this seems to cause problems with slave Objects
+				/*if (!guids.Contains(mmat.ObjectGUID)) 
+				{					
+					mmat.ObjectGUID = primary;
 					mmat.SynchronizeUserData();
-				}
+				}*/
 			}
 		}
 
