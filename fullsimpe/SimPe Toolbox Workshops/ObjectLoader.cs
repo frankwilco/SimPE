@@ -35,7 +35,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 
 		#region Cache Handling		
-		SimPe.Cache.ObjectCacheFile cachefile;
+		SimPe.Cache.ObjectLoaderCacheFile cachefile;
 		bool cachechg;
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			if (cachefile!=null) return;
 			
 			cachechg = false;
-			cachefile = new SimPe.Cache.ObjectCacheFile();
+			cachefile = new SimPe.Cache.ObjectLoaderCacheFile();
 		
 			if (!Helper.WindowsRegistry.UseCache) return;
 			Wait.Message = "Loading Cache";

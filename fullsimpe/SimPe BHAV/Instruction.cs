@@ -65,11 +65,11 @@ namespace SimPe.Plugin
 			set {addr2 = value;}
 		}
 
-		byte reserved_00;
+		byte nodeversion;
 		public byte Reserved0
 		{
-			get {return reserved_00;}
-			set {reserved_00 = value;}
+			get {return nodeversion;}
+			set {nodeversion = value;}
 		}
 
 		byte[] operands;
@@ -132,7 +132,7 @@ namespace SimPe.Plugin
 						opcode = reader.ReadUInt16();
 						addr1 = (ushort)reader.ReadByte();
 						addr2 = (ushort)reader.ReadByte();
-						reserved_00 = 0;
+						nodeversion = 0;
 						operands = reader.ReadBytes(8);
 						reserved_01 = new byte[8];
 						break;
@@ -143,7 +143,7 @@ namespace SimPe.Plugin
 						opcode = reader.ReadUInt16();
 						addr1 = (ushort)reader.ReadByte();
 						addr2 = (ushort)reader.ReadByte();
-						reserved_00 = 0;
+						nodeversion = 0;
 						operands = reader.ReadBytes(8);
 						reserved_01 = reader.ReadBytes(8);
 						break;
@@ -154,7 +154,7 @@ namespace SimPe.Plugin
 						opcode = reader.ReadUInt16();
 						addr1 = (ushort)reader.ReadByte();
 						addr2 = (ushort)reader.ReadByte();
-						reserved_00 = reader.ReadByte();
+						nodeversion = reader.ReadByte();
 						operands = reader.ReadBytes(8);
 						reserved_01 = reader.ReadBytes(8);
 						break;
@@ -166,7 +166,7 @@ namespace SimPe.Plugin
 						opcode = reader.ReadUInt16();
 						addr1 = reader.ReadUInt16();
 						addr2 = reader.ReadUInt16();
-						reserved_00 = reader.ReadByte();
+						nodeversion = reader.ReadByte();
 						operands = reader.ReadBytes(8);
 						reserved_01 = reader.ReadBytes(8);
 						break;
@@ -217,7 +217,7 @@ namespace SimPe.Plugin
 					writer.Write(opcode);
 					writer.Write((byte)addr1);
 					writer.Write((byte)addr2);
-					writer.Write(reserved_00);
+					writer.Write(nodeversion);
 					writer.Write(operands);
 					writer.Write(reserved_01);
 					break;
@@ -228,7 +228,7 @@ namespace SimPe.Plugin
 					writer.Write(opcode);
 					writer.Write(addr1);
 					writer.Write(addr2);
-					writer.Write(reserved_00);
+					writer.Write(nodeversion);
 					writer.Write(operands);
 					writer.Write(reserved_01);
 					break;

@@ -44,7 +44,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Extended Sim Relation Wrapper",
 				"Quaxi",
 				"This File Contians the Relationship states for two Sims.",
-				1,
+				2,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.srel.png"))
 				); 
 			
@@ -163,5 +163,11 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 		#endregion
+
+		protected override string GetResourceName(SimPe.Data.TypeAlias ta)
+		{
+			if (!this.Processed) ProcessData(FileDescriptor, Package);
+			return SourceSimName  + " "+SimPe.Localization.GetString("towards") + " "+TargetSimName;
+		}
 	}
 }
