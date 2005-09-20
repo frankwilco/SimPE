@@ -164,10 +164,40 @@ namespace SimPe.PackedFiles.Wrapper
 				"CPF Wrapper",
 				"Quaxi",
 				"This File is a structured Text File (like an .ini or .xml File), that contains Key Value Pairs.",
-				7,
+				8,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.cpf.png"))				
 				);   
 		}
+
+		protected override string GetResourceName(SimPe.Data.TypeAlias ta)
+		{
+			if (!this.Processed) ProcessData(FileDescriptor, Package);
+			CpfItem item = this.GetItem("name");
+			if (item == null) return base.GetResourceName (ta);
+			else return item.StringValue;
+		}
+
+#if DEBUG
+		public override string Description
+		{
+			get
+			{
+				string s="";
+
+				s += this.GetSaveItem("name").StringValue+"; ";
+				s += this.GetSaveItem("age").StringValue+"; ";
+				s += this.GetSaveItem("gender").StringValue+"; ";
+				s += this.GetSaveItem("fitness").StringValue+"; ";
+				s += this.GetSaveItem("override0subset").StringValue+"; ";
+				s += this.GetSaveItem("category").StringValue+"; ";
+				s += this.GetSaveItem("outfit").StringValue+"; ";
+				s += this.GetSaveItem("flags").StringValue+"; ";
+				return s;
+			}
+		}
+#endif
+
+
 
 		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance

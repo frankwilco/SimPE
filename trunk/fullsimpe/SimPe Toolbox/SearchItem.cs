@@ -32,7 +32,7 @@ namespace SimPe.Plugin
 		public SearchItem(Interfaces.Files.IPackedFileDescriptor pfd)
 		{
 			this.pfd = pfd;
-			this.flname = null;
+			this.flname = null;			
 		}
 
 		public SearchItem(string flname, Interfaces.Files.IPackedFileDescriptor pfd)

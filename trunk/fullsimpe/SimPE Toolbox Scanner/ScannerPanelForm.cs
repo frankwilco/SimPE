@@ -72,6 +72,7 @@ namespace SimPe.Plugin.Scanner
 		private System.Windows.Forms.SaveFileDialog sfd;
 		private System.Windows.Forms.CheckBox cbtxmt;
 		private System.Windows.Forms.CheckBox cbtxtr;
+		private System.Windows.Forms.CheckBox cbref;
 		internal System.Windows.Forms.CheckBox[] cbcategories = new CheckBox[8];
 		public ScannerPanelForm()
 		{
@@ -172,6 +173,7 @@ namespace SimPe.Plugin.Scanner
 			this.visualStyleLinkLabel2 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
+			this.cbref = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.pncloth.SuspendLayout();
@@ -515,9 +517,10 @@ namespace SimPe.Plugin.Scanner
 			this.pnskin.Controls.Add(this.cbskins);
 			this.pnskin.Controls.Add(this.label4);
 			this.pnskin.Controls.Add(this.visualStyleLinkLabel2);
+			this.pnskin.Controls.Add(this.cbref);
 			this.pnskin.Location = new System.Drawing.Point(24, 8);
 			this.pnskin.Name = "pnskin";
-			this.pnskin.Size = new System.Drawing.Size(368, 104);
+			this.pnskin.Size = new System.Drawing.Size(368, 120);
 			this.pnskin.TabIndex = 1;
 			this.visualStyleProvider1.SetVisualStyleSupport(this.pnskin, true);
 			// 
@@ -555,7 +558,8 @@ namespace SimPe.Plugin.Scanner
 														 "Alien",
 														 "Zombie",
 														 "Mannequin",
-														 "CAS Mannequin"});
+														 "CAS Mannequin",
+														 "Vampire"});
 			this.cbskins.Location = new System.Drawing.Point(16, 24);
 			this.cbskins.Name = "cbskins";
 			this.cbskins.Size = new System.Drawing.Size(256, 21);
@@ -576,7 +580,7 @@ namespace SimPe.Plugin.Scanner
 			// 
 			this.visualStyleLinkLabel2.AutoSize = true;
 			this.visualStyleLinkLabel2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.visualStyleLinkLabel2.Location = new System.Drawing.Point(0, 80);
+			this.visualStyleLinkLabel2.Location = new System.Drawing.Point(0, 96);
 			this.visualStyleLinkLabel2.Name = "visualStyleLinkLabel2";
 			this.visualStyleLinkLabel2.Size = new System.Drawing.Size(182, 17);
 			this.visualStyleLinkLabel2.TabIndex = 38;
@@ -588,6 +592,16 @@ namespace SimPe.Plugin.Scanner
 			// 
 			this.sfd.Filter = "Package File (*.package)|*.package|All Files (*.*)|*.*";
 			this.sfd.Title = "Skin Override";
+			// 
+			// cbref
+			// 
+			this.cbref.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cbref.Location = new System.Drawing.Point(16, 68);
+			this.cbref.Name = "cbref";
+			this.cbref.Size = new System.Drawing.Size(136, 24);
+			this.cbref.TabIndex = 43;
+			this.cbref.Text = "override Reference";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.cbref, false);
 			// 
 			// ScannerPanelForm
 			// 
@@ -631,7 +645,7 @@ namespace SimPe.Plugin.Scanner
 
 		private void CreateSkinOverride(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			if (!cbtxtr.Checked && !cbtxmt.Checked) 
+			if (!cbtxtr.Checked && !cbtxmt.Checked && !cbref.Checked) 
 			{
 				MessageBox.Show("Please select at least one Checkbox!");
 				return;
@@ -640,15 +654,23 @@ namespace SimPe.Plugin.Scanner
 			if (sfd.ShowDialog()==DialogResult.OK) 
 			{
 				string skintone = "";
-				if (cbskins.SelectedIndex<4)
-					skintone = "0000000"+(cbskins.SelectedIndex+1).ToString()+"-0000-0000-0000-000000000000";
+				string family = "";
+				if (cbskins.SelectedIndex<4) skintone = "0000000"+(cbskins.SelectedIndex+1).ToString()+"-0000-0000-0000-000000000000";
 				else if (cbskins.SelectedIndex==4) skintone = "6baf064a-85ad-4e37-8d81-a987e9f8da46"; //Alien Skin
 				else if (cbskins.SelectedIndex==5) skintone = "b6ee1dbc-5bb3-4146-8315-02bd64eda707"; //Zombie Skin
 				else if (cbskins.SelectedIndex==6) skintone = "b9a94827-7544-450c-a8f4-6f643ae89a71"; //Mannequin Skin
 				else if (cbskins.SelectedIndex==7) skintone = "6eea47c7-8a35-4be7-9242-dcd082f53b55"; //CAS Mannequin Skin
+				else if (cbskins.SelectedIndex==8) skintone = "00000000-0000-0000-0000-000000000000"; //Vampire
+
+				if (cbskins.SelectedIndex<4) family = "21afb87c-e872-4f4c-af3c-c3685ed4e220"; 
+				else if (cbskins.SelectedIndex==4) family = "ad5da337-bdd1-4593-acdd-19001595cbbb"; //Alien Skin
+				else if (cbskins.SelectedIndex==5) family = "b6ee1dbc-5bb3-4146-8315-02bd64eda707"; //Zombie Skin
+				else if (cbskins.SelectedIndex==6) family = "59621330-1005-4b88-b4f2-77deb751fcf3"; //Mannequin Skin
+				else if (cbskins.SelectedIndex==7) family = "59621330-1005-4b88-b4f2-77deb751fcf3"; //CAS Mannequin Skin
+				else if (cbskins.SelectedIndex==8) family = "13ae91e7-b825-4559-82a3-0ead8e8dd7fd"; //Vampire
 
 				SkinScanner cs = (SkinScanner)pnskin.Tag;
-				cs.CreateOverride(skintone, sfd.FileName, cbtxmt.Checked, cbtxtr.Checked);
+				cs.CreateOverride(skintone, family, sfd.FileName, cbtxmt.Checked, cbtxtr.Checked, cbref.Checked);
 			}
 		}
 	}

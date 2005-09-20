@@ -6654,7 +6654,7 @@ namespace SimPe.Plugin
 				wrp.Header.ArgumentCount = Convert.ToByte(tbargc.Text, 10);
 				wrp.Header.LocalVarCount = Convert.ToUInt16(tblocals.Text, 10);
 				wrp.Header.Type = Convert.ToByte(tbtype.Text, 16);
-				wrp.Header.Flags = Convert.ToUInt16(tbflags.Text, 16);
+				wrp.Header.TreeVersion = Convert.ToUInt16(tbflags.Text, 16);
 				wrp.Header.Zero = Convert.ToUInt16(tbzero.Text, 16);
 
 				wrp.FileName = lbbhav.Text;

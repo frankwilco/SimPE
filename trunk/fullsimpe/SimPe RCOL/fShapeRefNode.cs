@@ -507,9 +507,9 @@ namespace SimPe.Plugin
 			// 
 			this.tDirectionalLight.BackColor = System.Drawing.Color.White;
 			this.tDirectionalLight.Controls.Add(this.groupBox13);
-			this.tDirectionalLight.Location = new System.Drawing.Point(4, 22);
+			this.tDirectionalLight.Location = new System.Drawing.Point(4, 40);
 			this.tDirectionalLight.Name = "tDirectionalLight";
-			this.tDirectionalLight.Size = new System.Drawing.Size(792, 262);
+			this.tDirectionalLight.Size = new System.Drawing.Size(792, 244);
 			this.tDirectionalLight.TabIndex = 7;
 			this.tDirectionalLight.Text = "DirectionalLight";
 			// 
@@ -543,7 +543,7 @@ namespace SimPe.Plugin
 			this.groupBox13.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox13.Location = new System.Drawing.Point(8, 8);
 			this.groupBox13.Name = "groupBox13";
-			this.groupBox13.Size = new System.Drawing.Size(776, 176);
+			this.groupBox13.Size = new System.Drawing.Size(776, 208);
 			this.groupBox13.TabIndex = 12;
 			this.groupBox13.TabStop = false;
 			this.groupBox13.Text = "Settings";
@@ -551,7 +551,7 @@ namespace SimPe.Plugin
 			// tb_l_9
 			// 
 			this.tb_l_9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_9.Location = new System.Drawing.Point(528, 144);
+			this.tb_l_9.Location = new System.Drawing.Point(168, 168);
 			this.tb_l_9.Name = "tb_l_9";
 			this.tb_l_9.Size = new System.Drawing.Size(66, 21);
 			this.tb_l_9.TabIndex = 44;
@@ -562,7 +562,7 @@ namespace SimPe.Plugin
 			// 
 			this.label46.AutoSize = true;
 			this.label46.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label46.Location = new System.Drawing.Point(488, 152);
+			this.label46.Location = new System.Drawing.Point(128, 176);
 			this.label46.Name = "label46";
 			this.label46.Size = new System.Drawing.Size(34, 17);
 			this.label46.TabIndex = 43;
@@ -571,7 +571,7 @@ namespace SimPe.Plugin
 			// tb_l_8
 			// 
 			this.tb_l_8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_8.Location = new System.Drawing.Point(408, 144);
+			this.tb_l_8.Location = new System.Drawing.Point(48, 168);
 			this.tb_l_8.Name = "tb_l_8";
 			this.tb_l_8.Size = new System.Drawing.Size(66, 21);
 			this.tb_l_8.TabIndex = 42;
@@ -582,7 +582,7 @@ namespace SimPe.Plugin
 			// 
 			this.label45.AutoSize = true;
 			this.label45.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label45.Location = new System.Drawing.Point(368, 152);
+			this.label45.Location = new System.Drawing.Point(8, 176);
 			this.label45.Name = "label45";
 			this.label45.Size = new System.Drawing.Size(34, 17);
 			this.label45.TabIndex = 41;
@@ -611,7 +611,7 @@ namespace SimPe.Plugin
 			// tb_l_5
 			// 
 			this.tb_l_5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_5.Location = new System.Drawing.Point(528, 120);
+			this.tb_l_5.Location = new System.Drawing.Point(312, 168);
 			this.tb_l_5.Name = "tb_l_5";
 			this.tb_l_5.Size = new System.Drawing.Size(66, 21);
 			this.tb_l_5.TabIndex = 38;
@@ -620,18 +620,18 @@ namespace SimPe.Plugin
 			// 
 			// label43
 			// 
-			this.label43.AutoSize = true;
 			this.label43.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label43.Location = new System.Drawing.Point(488, 128);
+			this.label43.Location = new System.Drawing.Point(256, 176);
 			this.label43.Name = "label43";
-			this.label43.Size = new System.Drawing.Size(34, 17);
+			this.label43.Size = new System.Drawing.Size(48, 17);
 			this.label43.TabIndex = 37;
-			this.label43.Text = "Val5:";
+			this.label43.Text = "Blue:";
+			this.label43.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// tb_l_4
 			// 
 			this.tb_l_4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_4.Location = new System.Drawing.Point(408, 120);
+			this.tb_l_4.Location = new System.Drawing.Point(312, 144);
 			this.tb_l_4.Name = "tb_l_4";
 			this.tb_l_4.Size = new System.Drawing.Size(66, 21);
 			this.tb_l_4.TabIndex = 36;
@@ -640,18 +640,18 @@ namespace SimPe.Plugin
 			// 
 			// label42
 			// 
-			this.label42.AutoSize = true;
 			this.label42.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label42.Location = new System.Drawing.Point(368, 128);
+			this.label42.Location = new System.Drawing.Point(256, 152);
 			this.label42.Name = "label42";
-			this.label42.Size = new System.Drawing.Size(34, 17);
+			this.label42.Size = new System.Drawing.Size(48, 17);
 			this.label42.TabIndex = 35;
-			this.label42.Text = "Val4:";
+			this.label42.Text = "Green:";
+			this.label42.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// tb_l_3
 			// 
 			this.tb_l_3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_l_3.Location = new System.Drawing.Point(288, 120);
+			this.tb_l_3.Location = new System.Drawing.Point(312, 120);
 			this.tb_l_3.Name = "tb_l_3";
 			this.tb_l_3.Size = new System.Drawing.Size(66, 21);
 			this.tb_l_3.TabIndex = 34;
@@ -660,13 +660,13 @@ namespace SimPe.Plugin
 			// 
 			// label41
 			// 
-			this.label41.AutoSize = true;
 			this.label41.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label41.Location = new System.Drawing.Point(248, 128);
+			this.label41.Location = new System.Drawing.Point(256, 128);
 			this.label41.Name = "label41";
-			this.label41.Size = new System.Drawing.Size(34, 17);
+			this.label41.Size = new System.Drawing.Size(48, 17);
 			this.label41.TabIndex = 33;
-			this.label41.Text = "Val3:";
+			this.label41.Text = "Red:";
+			this.label41.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// tb_l_2
 			// 
@@ -775,9 +775,9 @@ namespace SimPe.Plugin
 			this.tResourceNode.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.tResourceNode.Controls.Add(this.groupBox5);
 			this.tResourceNode.Controls.Add(this.groupBox4);
-			this.tResourceNode.Location = new System.Drawing.Point(4, 22);
+			this.tResourceNode.Location = new System.Drawing.Point(4, 40);
 			this.tResourceNode.Name = "tResourceNode";
-			this.tResourceNode.Size = new System.Drawing.Size(792, 262);
+			this.tResourceNode.Size = new System.Drawing.Size(792, 244);
 			this.tResourceNode.TabIndex = 1;
 			this.tResourceNode.Text = "ResourceNode";
 			this.tResourceNode.Visible = false;
@@ -796,7 +796,7 @@ namespace SimPe.Plugin
 			this.groupBox5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox5.Location = new System.Drawing.Point(8, 8);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(120, 248);
+			this.groupBox5.Size = new System.Drawing.Size(120, 230);
 			this.groupBox5.TabIndex = 7;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Settings";
@@ -876,7 +876,7 @@ namespace SimPe.Plugin
 			this.groupBox4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox4.Location = new System.Drawing.Point(136, 8);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(256, 248);
+			this.groupBox4.Size = new System.Drawing.Size(256, 230);
 			this.groupBox4.TabIndex = 5;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Child Nodes:";
@@ -941,7 +941,7 @@ namespace SimPe.Plugin
 			this.lb_rn.IntegralHeight = false;
 			this.lb_rn.Location = new System.Drawing.Point(8, 24);
 			this.lb_rn.Name = "lb_rn";
-			this.lb_rn.Size = new System.Drawing.Size(136, 216);
+			this.lb_rn.Size = new System.Drawing.Size(136, 198);
 			this.lb_rn.TabIndex = 0;
 			this.lb_rn.SelectedIndexChanged += new System.EventHandler(this.RNSelect);
 			// 
@@ -963,9 +963,9 @@ namespace SimPe.Plugin
 			this.tShapeRefNode.Controls.Add(this.groupBox3);
 			this.tShapeRefNode.Controls.Add(this.groupBox2);
 			this.tShapeRefNode.Controls.Add(this.groupBox1);
-			this.tShapeRefNode.Location = new System.Drawing.Point(4, 22);
+			this.tShapeRefNode.Location = new System.Drawing.Point(4, 40);
 			this.tShapeRefNode.Name = "tShapeRefNode";
-			this.tShapeRefNode.Size = new System.Drawing.Size(792, 262);
+			this.tShapeRefNode.Size = new System.Drawing.Size(792, 244);
 			this.tShapeRefNode.TabIndex = 0;
 			this.tShapeRefNode.Text = "ShapeRefNode";
 			// 
@@ -995,7 +995,7 @@ namespace SimPe.Plugin
 			this.groupBox3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox3.Location = new System.Drawing.Point(8, 8);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(344, 248);
+			this.groupBox3.Size = new System.Drawing.Size(344, 230);
 			this.groupBox3.TabIndex = 6;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Settings";
@@ -1029,7 +1029,7 @@ namespace SimPe.Plugin
 			this.tb_srn_data.Location = new System.Drawing.Point(16, 192);
 			this.tb_srn_data.Multiline = true;
 			this.tb_srn_data.Name = "tb_srn_data";
-			this.tb_srn_data.Size = new System.Drawing.Size(312, 48);
+			this.tb_srn_data.Size = new System.Drawing.Size(312, 30);
 			this.tb_srn_data.TabIndex = 20;
 			this.tb_srn_data.Text = "";
 			this.tb_srn_data.TextChanged += new System.EventHandler(this.SRNChangeSettings);
@@ -1203,7 +1203,7 @@ namespace SimPe.Plugin
 			this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox2.Location = new System.Drawing.Point(360, 136);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(424, 120);
+			this.groupBox2.Size = new System.Drawing.Size(424, 102);
 			this.groupBox2.TabIndex = 5;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Unknown List B:";
@@ -1212,7 +1212,7 @@ namespace SimPe.Plugin
 			// 
 			this.linkLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.linkLabel4.AutoSize = true;
-			this.linkLabel4.Location = new System.Drawing.Point(344, 96);
+			this.linkLabel4.Location = new System.Drawing.Point(344, 78);
 			this.linkLabel4.Name = "linkLabel4";
 			this.linkLabel4.Size = new System.Drawing.Size(28, 17);
 			this.linkLabel4.TabIndex = 8;
@@ -1230,7 +1230,7 @@ namespace SimPe.Plugin
 			this.tb_srn_b_name.Multiline = true;
 			this.tb_srn_b_name.Name = "tb_srn_b_name";
 			this.tb_srn_b_name.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tb_srn_b_name.Size = new System.Drawing.Size(256, 24);
+			this.tb_srn_b_name.Size = new System.Drawing.Size(256, 6);
 			this.tb_srn_b_name.TabIndex = 6;
 			this.tb_srn_b_name.Text = "";
 			// 
@@ -1271,14 +1271,14 @@ namespace SimPe.Plugin
 			this.lb_srn_b.IntegralHeight = false;
 			this.lb_srn_b.Location = new System.Drawing.Point(8, 24);
 			this.lb_srn_b.Name = "lb_srn_b";
-			this.lb_srn_b.Size = new System.Drawing.Size(136, 88);
+			this.lb_srn_b.Size = new System.Drawing.Size(136, 70);
 			this.lb_srn_b.TabIndex = 2;
 			// 
 			// ll_srn_delb
 			// 
 			this.ll_srn_delb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.ll_srn_delb.AutoSize = true;
-			this.ll_srn_delb.Location = new System.Drawing.Point(372, 96);
+			this.ll_srn_delb.Location = new System.Drawing.Point(372, 78);
 			this.ll_srn_delb.Name = "ll_srn_delb";
 			this.ll_srn_delb.Size = new System.Drawing.Size(44, 17);
 			this.ll_srn_delb.TabIndex = 7;
@@ -1385,9 +1385,9 @@ namespace SimPe.Plugin
 			this.tGeometryNode.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.tGeometryNode.Controls.Add(this.groupBox11);
 			this.tGeometryNode.Controls.Add(this.groupBox17);
-			this.tGeometryNode.Location = new System.Drawing.Point(4, 22);
+			this.tGeometryNode.Location = new System.Drawing.Point(4, 40);
 			this.tGeometryNode.Name = "tGeometryNode";
-			this.tGeometryNode.Size = new System.Drawing.Size(792, 262);
+			this.tGeometryNode.Size = new System.Drawing.Size(792, 244);
 			this.tGeometryNode.TabIndex = 5;
 			this.tGeometryNode.Text = "GeometryNode";
 			// 
@@ -1523,7 +1523,7 @@ namespace SimPe.Plugin
 			this.groupBox17.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox17.Location = new System.Drawing.Point(240, 8);
 			this.groupBox17.Name = "groupBox17";
-			this.groupBox17.Size = new System.Drawing.Size(544, 250);
+			this.groupBox17.Size = new System.Drawing.Size(544, 232);
 			this.groupBox17.TabIndex = 23;
 			this.groupBox17.TabStop = false;
 			this.groupBox17.Text = "Embedded Blocks:";
@@ -1537,7 +1537,7 @@ namespace SimPe.Plugin
 			this.tc_gn.Location = new System.Drawing.Point(8, 56);
 			this.tc_gn.Name = "tc_gn";
 			this.tc_gn.SelectedIndex = 0;
-			this.tc_gn.Size = new System.Drawing.Size(528, 186);
+			this.tc_gn.Size = new System.Drawing.Size(528, 168);
 			this.tc_gn.TabIndex = 10;
 			// 
 			// cb_gn_list
@@ -1560,9 +1560,9 @@ namespace SimPe.Plugin
 			this.tTransformNode.Controls.Add(this.groupBox15);
 			this.tTransformNode.Controls.Add(this.groupBox16);
 			this.tTransformNode.Controls.Add(this.groupBox12);
-			this.tTransformNode.Location = new System.Drawing.Point(4, 22);
+			this.tTransformNode.Location = new System.Drawing.Point(4, 40);
 			this.tTransformNode.Name = "tTransformNode";
-			this.tTransformNode.Size = new System.Drawing.Size(792, 262);
+			this.tTransformNode.Size = new System.Drawing.Size(792, 244);
 			this.tTransformNode.TabIndex = 2;
 			this.tTransformNode.Text = "TransformNode";
 			// 
@@ -1636,7 +1636,7 @@ namespace SimPe.Plugin
 			this.groupBox6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox6.Location = new System.Drawing.Point(464, 8);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(256, 248);
+			this.groupBox6.Size = new System.Drawing.Size(256, 230);
 			this.groupBox6.TabIndex = 6;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Child Nodes:";
@@ -1701,7 +1701,7 @@ namespace SimPe.Plugin
 			this.lb_tn.IntegralHeight = false;
 			this.lb_tn.Location = new System.Drawing.Point(8, 24);
 			this.lb_tn.Name = "lb_tn";
-			this.lb_tn.Size = new System.Drawing.Size(136, 216);
+			this.lb_tn.Size = new System.Drawing.Size(136, 198);
 			this.lb_tn.TabIndex = 0;
 			this.lb_tn.SelectedIndexChanged += new System.EventHandler(this.TNSelect);
 			// 
@@ -1997,9 +1997,9 @@ namespace SimPe.Plugin
 			this.tObjectGraphNode.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.tObjectGraphNode.Controls.Add(this.groupBox8);
 			this.tObjectGraphNode.Controls.Add(this.groupBox9);
-			this.tObjectGraphNode.Location = new System.Drawing.Point(4, 22);
+			this.tObjectGraphNode.Location = new System.Drawing.Point(4, 40);
 			this.tObjectGraphNode.Name = "tObjectGraphNode";
-			this.tObjectGraphNode.Size = new System.Drawing.Size(792, 262);
+			this.tObjectGraphNode.Size = new System.Drawing.Size(792, 244);
 			this.tObjectGraphNode.TabIndex = 3;
 			this.tObjectGraphNode.Text = "ObjectGraphNode";
 			// 
@@ -2079,7 +2079,7 @@ namespace SimPe.Plugin
 			this.groupBox9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox9.Location = new System.Drawing.Point(528, 8);
 			this.groupBox9.Name = "groupBox9";
-			this.groupBox9.Size = new System.Drawing.Size(256, 248);
+			this.groupBox9.Size = new System.Drawing.Size(256, 230);
 			this.groupBox9.TabIndex = 9;
 			this.groupBox9.TabStop = false;
 			this.groupBox9.Text = "Datalist Extension Reference";
@@ -2168,7 +2168,7 @@ namespace SimPe.Plugin
 			this.lb_ogn.IntegralHeight = false;
 			this.lb_ogn.Location = new System.Drawing.Point(8, 24);
 			this.lb_ogn.Name = "lb_ogn";
-			this.lb_ogn.Size = new System.Drawing.Size(136, 216);
+			this.lb_ogn.Size = new System.Drawing.Size(136, 198);
 			this.lb_ogn.TabIndex = 0;
 			this.lb_ogn.SelectedIndexChanged += new System.EventHandler(this.OGNSelect);
 			// 
@@ -2188,9 +2188,9 @@ namespace SimPe.Plugin
 			// 
 			this.tLightT.BackColor = System.Drawing.Color.White;
 			this.tLightT.Controls.Add(this.groupBox14);
-			this.tLightT.Location = new System.Drawing.Point(4, 22);
+			this.tLightT.Location = new System.Drawing.Point(4, 40);
 			this.tLightT.Name = "tLightT";
-			this.tLightT.Size = new System.Drawing.Size(792, 262);
+			this.tLightT.Size = new System.Drawing.Size(792, 244);
 			this.tLightT.TabIndex = 8;
 			this.tLightT.Text = "LightT";
 			// 
@@ -2257,9 +2257,9 @@ namespace SimPe.Plugin
 			// 
 			this.tCres.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.tCres.Controls.Add(this.cres_tv);
-			this.tCres.Location = new System.Drawing.Point(4, 22);
+			this.tCres.Location = new System.Drawing.Point(4, 40);
 			this.tCres.Name = "tCres";
-			this.tCres.Size = new System.Drawing.Size(792, 262);
+			this.tCres.Size = new System.Drawing.Size(792, 244);
 			this.tCres.TabIndex = 9;
 			this.tCres.Text = "CRES Hierarchy";
 			// 
@@ -2273,7 +2273,7 @@ namespace SimPe.Plugin
 			this.cres_tv.ImageList = this.iCres;
 			this.cres_tv.Location = new System.Drawing.Point(8, 8);
 			this.cres_tv.Name = "cres_tv";
-			this.cres_tv.Size = new System.Drawing.Size(776, 250);
+			this.cres_tv.Size = new System.Drawing.Size(776, 232);
 			this.cres_tv.TabIndex = 0;
 			this.cres_tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SelectCresTv);
 			// 
@@ -3008,9 +3008,9 @@ namespace SimPe.Plugin
 				dl.Name = tb_l_name.Text;
 				dl.Val1 = Convert.ToSingle(tb_l_1.Text);
 				dl.Val2 = Convert.ToSingle(tb_l_2.Text);
-				dl.Val3 = Convert.ToSingle(tb_l_3.Text);
-				dl.Val4 = Convert.ToSingle(tb_l_4.Text);
-				dl.Val5 = Convert.ToSingle(tb_l_5.Text);
+				dl.Red = Convert.ToSingle(tb_l_3.Text);
+				dl.Green = Convert.ToSingle(tb_l_4.Text);
+				dl.Blue = Convert.ToSingle(tb_l_5.Text);
 
 				if (tDirectionalLight.Tag.GetType() == typeof(PointLight)) 
 				{

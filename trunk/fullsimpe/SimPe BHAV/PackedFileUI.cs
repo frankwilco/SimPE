@@ -83,7 +83,7 @@ namespace SimPe.Plugin
 
 			//form.tbopcode.Text = "0x0000";
 			form.tbargc.Text = mywrapper.Header.ArgumentCount.ToString();
-			form.tbflags.Text = "0x"+Helper.HexString(mywrapper.Header.Flags);
+			form.tbflags.Text = "0x"+Helper.HexString(mywrapper.Header.TreeVersion);
 			form.tbformat.Text = "0x"+Helper.HexString(mywrapper.Header.Format);
 			form.tblocals.Text = mywrapper.Header.LocalVarCount.ToString();
 			form.tbtype.Text = "0x"+Helper.HexString(mywrapper.Header.Type);

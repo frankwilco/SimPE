@@ -92,7 +92,7 @@ namespace SimPe.Plugin
 			}
 		}
 
-		protected RefFile ReferenceFile
+		public RefFile ReferenceFile
 		{
 			get
 			{
@@ -115,33 +115,113 @@ namespace SimPe.Plugin
 			}
 		}
 
-		public GenericRcol TXMT
+		protected GenericRcol LoadRcol(uint type, Interfaces.Files.IPackedFileDescriptor pfd)
+		{
+			if (pfd.Type == type) 
+			{
+				Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(pfd, null);
+				if (items.Length>0) 
+				{
+					SimPe.Plugin.GenericRcol rcol= new GenericRcol(null, false);
+					rcol.ProcessData(items[0], false);
+
+					return rcol;
+				}
+			}
+
+			return null;
+		}
+
+		protected GenericRcol LoadTXTR(GenericRcol txmt)
+		{
+			if (txmt==null) return null;
+
+			try 
+			{
+				MaterialDefinition md = (MaterialDefinition)txmt.Blocks[0];
+				string txtrname = md.FindProperty("stdMatBaseTextureName").Value.Trim().ToLower();
+				if (!txtrname.EndsWith("_txtr")) txtrname += "_txtr";
+
+				Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(txtrname, Data.MetaData.TXTR, Data.MetaData.LOCAL_GROUP, true);
+				if (item!=null) 
+				{
+					SimPe.Plugin.GenericRcol rcol= new GenericRcol(null, false);
+					rcol.ProcessData(item, false);
+
+					return rcol;
+				}
+ 
+			}
+			catch {}
+
+			return null;
+		}
+
+		
+		public GenericRcol[] TXMTs
 		{
 			get 
 			{
 				RefFile reffile = this.ReferenceFile;
+				System.Collections.ArrayList list = new System.Collections.ArrayList();
 				if (reffile!=null) 
 				{
 					try 
 					{
 						foreach (Interfaces.Files.IPackedFileDescriptor pfd in reffile.Items) 
 						{	
-							if (pfd.Type == Data.MetaData.TXMT) 
-							{
-								Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(pfd, null);
-								if (items.Length>0) 
-								{
-									SimPe.Plugin.GenericRcol rcol= new GenericRcol(null, false);
-									rcol.ProcessData(items[0]);
-
-									return rcol;
-								}
-							}
+							SimPe.Plugin.GenericRcol rcol=  LoadRcol(Data.MetaData.TXMT, pfd);
+							if (rcol!=null) list.Add(rcol);
 						}
 					}
 					catch {}
 				}
 
+				GenericRcol[] ret = new GenericRcol[list.Count];
+				list.CopyTo(ret);
+				return ret;
+			}
+		}
+
+		public GenericRcol[] TXTRs
+		{
+			get 
+			{
+				GenericRcol[] txmts = this.TXMTs;
+				System.Collections.ArrayList list = new System.Collections.ArrayList();
+				foreach (GenericRcol txmt in txmts)
+				{
+					SimPe.Plugin.GenericRcol rcol = this.LoadTXTR(txmt);
+					if (rcol!=null) list.Add(rcol);
+				}
+
+				GenericRcol[] ret = new GenericRcol[list.Count];
+				list.CopyTo(ret);
+				return ret;
+			}
+		}
+
+		public GenericRcol TXMT
+		{
+			get 
+			{								
+				RefFile reffile = this.ReferenceFile;
+				if (reffile!=null && cpf!=null) 
+				{
+
+					if (cpf.GetItem("override0resourcekeyidx")!=null) 
+					{
+						uint rki = cpf.GetSaveItem("override0resourcekeyidx").UIntegerValue;
+						if (rki>=0 && rki<reffile.Items.Length) 
+						{
+							Interfaces.Files.IPackedFileDescriptor pfd = reffile.Items[rki];
+							return LoadRcol(Data.MetaData.TXMT, pfd);
+						}
+					}
+				}
+
+				GenericRcol[] txmts = TXMTs;
+				if (txmts.Length>0) return txmts[0];
 				return null;
 			}
 		}
@@ -150,28 +230,11 @@ namespace SimPe.Plugin
 		{
 			get 
 			{
-				GenericRcol txmt = this.TXMT;
-				if (txmt!=null) 
-				{
-					try 
-					{
-						MaterialDefinition md = (MaterialDefinition)txmt.Blocks[0];
-						string txtrname = md.FindProperty("stdMatBaseTextureName").Value.Trim().ToLower();
-						if (!txtrname.EndsWith("_txtr")) txtrname += "_txtr";
+				SimPe.Plugin.GenericRcol rcol = LoadTXTR(TXMT);
+				if (rcol!=null) return rcol;
 
-						Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(txtrname, Data.MetaData.TXTR, Data.MetaData.LOCAL_GROUP, true);
-						if (item!=null) 
-						{
-							SimPe.Plugin.GenericRcol rcol= new GenericRcol(null, false);
-							rcol.ProcessData(item);
-
-							return rcol;
-						}
- 
-					}
-					catch {}
-				}
-
+				GenericRcol[] txtrs = TXTRs;
+				if (txtrs.Length>0) return txtrs[0];
 				return null;
 			}
 		}

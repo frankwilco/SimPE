@@ -119,11 +119,11 @@ namespace SimPe.Plugin.Scanner
 		/// <param name="filename"></param>
 		/// <param name="addtxtr">true, if you want to replace the default TXTR Files</param>
 		/// <param name="addtxmt">true if you want to replace the default TXMT Files</param>
-		public void CreateOverride(string skintone, string filename, bool addtxmt, bool addtxtr)
+		public void CreateOverride(string skintone, string family, string filename, bool addtxmt, bool addtxtr, bool addref)
 		{
 			if (selection.Length>1) return;
 
-			SimPe.Packages.GeneratableFile pkg = BuildOverride(selection[0], skintone, selection[0].Package, addtxmt, addtxtr);
+			SimPe.Packages.GeneratableFile pkg = BuildOverride(selection[0], skintone, family, selection[0].Package, addtxmt, addtxtr, addref);
 			pkg.Save(filename);
 		}
 
@@ -136,7 +136,7 @@ namespace SimPe.Plugin.Scanner
 		/// <param name="sitem"></param>
 		/// <param name="src"></param>
 		/// <returns>the replacement package</returns>
-		public SimPe.Packages.GeneratableFile BuildOverride(ScannerItem sitem, string skintone, SimPe.Interfaces.Files.IPackageFile src, bool addtxmt, bool addtxtr) 
+		public SimPe.Packages.GeneratableFile BuildOverride(ScannerItem sitem, string skintone, string family,SimPe.Interfaces.Files.IPackageFile src, bool addtxmt, bool addtxtr, bool addref) 
 		{
 			FileTable.FileIndex.Load();
 			SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
@@ -146,10 +146,13 @@ namespace SimPe.Plugin.Scanner
 			FileTable.FileIndex.Load();
 			FileTable.FileIndex.StoreCurrentState();			
 			FileTable.FileIndex.AddIndexFromPackage(src);
+
+			bool usefam = (skintone=="00000000-0000-0000-0000-000000000000");
 			try 
 			{
 				//find al description Files that belong to the Skintone that should be replaced
 				ArrayList basecpf = new ArrayList();
+				
 				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.GZPS, true);
 				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
 				{
@@ -157,6 +160,8 @@ namespace SimPe.Plugin.Scanner
 					cpf.ProcessData(item);
 
 					if (cpf.GetSaveItem("skintone").StringValue!=skintone) continue;
+					//if (usefam) 
+						if (cpf.GetSaveItem("family").StringValue!=family) continue;
 					if (cpf.GetSaveItem("type").StringValue!="skin") continue;
 
 					SimPe.Plugin.SkinChain sc = new SkinChain(cpf);
@@ -166,74 +171,155 @@ namespace SimPe.Plugin.Scanner
 
 				ArrayList compare = new ArrayList();
 				compare.Add("age");
-				compare.Add("category");
+				//compare.Add("category");
 				compare.Add("fitness");
 				compare.Add("gender");
-				compare.Add("outfit");
-				compare.Add("override0resourcekeyidx");
-				compare.Add("shapekeyidx");
+				//compare.Add("outfit");
+				compare.Add("override0subset");
+				//compare.Add("override0resourcekeyidx");
+				//compare.Add("shapekeyidx");
 
 				//now select matching Files
 				Interfaces.Files.IPackedFileDescriptor[] pfds = src.FindFiles(Data.MetaData.GZPS);
 
-				
-				
+#if DEBUG
+				//we could add Debug Code here to see which cpfs were pulled :)
+				/*SimPe.Packages.GeneratableFile f = SimPe.Packages.GeneratableFile.CreateNew();
+
+				foreach (SimPe.Plugin.SkinChain sc in basecpf)
+				{
+					sc.Cpf.SynchronizeUserData();
+					f.Add(sc.Cpf.FileDescriptor);								
+
+					RefFile r = sc.ReferenceFile;
+					if (r!=null) 
+					{
+						r.SynchronizeUserData();
+						f.Add(r.FileDescriptor);
+					}
+
+					//foreach (GenericRcol rcol in sc.TXTRs)
+					GenericRcol rcol = sc.TXTR;
+						if (rcol!=null) 
+						{
+							rcol.SynchronizeUserData();
+							f.Add(rcol.FileDescriptor);
+						}
+
+					//foreach (GenericRcol rcol in sc.TXMTs)
+					rcol = sc.TXMT;
+						if (rcol!=null) 
+						{
+							rcol.SynchronizeUserData();
+							f.Add(rcol.FileDescriptor);
+						}
+				}
+
+				f.Save(@"G:\skinbase.package");
+				return f;*/
+#endif
 				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
 				{
 					//load a description File for the new Skintone
 					SimPe.PackedFiles.Wrapper.Cpf cpf = new Cpf();
 					cpf.ProcessData(pfd, src);
 
+					int index = -1;
+					int maxpoint=0;
 					//check if File is a match
-					foreach (SimPe.Plugin.SkinChain sc in basecpf)
+					for (int i=0; i<basecpf.Count; i++) 
 					{
-						bool use = true;
+						SimPe.Plugin.SkinChain sc = (SimPe.Plugin.SkinChain)basecpf[i];
+						int point = compare.Count;						
 						//scan for valid CPF Files
 						foreach (string s in compare) 
 						{
-							if (sc.Cpf.GetSaveItem(s).UIntegerValue != cpf.GetSaveItem(s).UIntegerValue) 
+							if (s=="age" || s=="category" || s=="outfit") 
 							{
-								use = false;
-								break;
+								if ((sc.Cpf.GetSaveItem(s).UIntegerValue & cpf.GetSaveItem(s).UIntegerValue) == 0)  
+								{
+									point--;									
+								}
+							} 
+							else if (s=="override0subset")
+							{
+								string s1 = sc.Cpf.GetSaveItem(s).StringValue.Trim().ToLower();
+								string s2 = cpf.GetSaveItem(s).StringValue.Trim().ToLower();
+
+								if (s1=="bottom") s1="body"; else if (s1=="top") s1="body";
+								if (s2=="bottom") s2="body"; else if (s2=="top") s2="body";
+								
+								if (s1!=s2) point--;
+							}
+							else if (sc.Cpf.GetSaveItem(s).UIntegerValue != cpf.GetSaveItem(s).UIntegerValue) 
+							{								
+								point--;
 							}
 						}
 
-						//yes, yes :D this is a match
-						if (use) 
+						if (point>maxpoint) 
 						{
-							SkinChain newsc = new SkinChain(cpf);
-							if (sc.TXTR!=null && newsc.TXTR!=null && addtxtr) 
-							{
-								SimPe.Plugin.GenericRcol txtr = newsc.TXTR;
-								txtr.FileDescriptor = sc.TXTR.FileDescriptor.Clone();
-								txtr.FileDescriptor.MarkForReCompress = true;
-
-								txtr.FileName = sc.TXTR.FileName;
-
-								txtr.SynchronizeUserData();
-								if (pkg.FindFile(txtr.FileDescriptor)==null) pkg.Add(txtr.FileDescriptor);
-							}
-
-							if (sc.TXMT != null && newsc.TXMT != null && addtxmt) 
-							{
-								SimPe.Plugin.GenericRcol txmt = newsc.TXMT;
-								txmt.FileDescriptor = sc.TXMT.FileDescriptor.Clone();
-								txmt.FileDescriptor.MarkForReCompress = true;
-
-								MaterialDefinition md = (MaterialDefinition)txmt.Blocks[0];
-								MaterialDefinition mdorg = (MaterialDefinition)sc.TXMT.Blocks[0];
-								txmt.FileName = sc.TXMT.FileName;
-								md.FileDescription = mdorg.FileDescription;
-
-								txmt.SynchronizeUserData();
-								if (pkg.FindFile(txmt.FileDescriptor)==null) pkg.Add(txmt.FileDescriptor);
-							}
-
-							
+							index=i;						
+							maxpoint = point;
 						}
 					}
+
+					
+
+					//yes, yes :D this is a match
+					if (index>=0 && maxpoint==compare.Count) 
+					{
+						SimPe.Plugin.SkinChain sc = (SimPe.Plugin.SkinChain)basecpf[index];
+
+						SkinChain newsc = new SkinChain(cpf);
+						
+						if (sc.ReferenceFile!=null && newsc.ReferenceFile!=null && addref) 
+						{
+							RefFile r = newsc.ReferenceFile;
+							r.FileDescriptor = sc.ReferenceFile.FileDescriptor.Clone();
+														
+							r.SynchronizeUserData();
+							if (pkg.FindFile(r.FileDescriptor)==null) pkg.Add(r.FileDescriptor);
+						}
+
+						if (sc.TXTR!=null && newsc.TXTR!=null && addtxtr) 
+						{
+							SimPe.Plugin.GenericRcol txtr = newsc.TXTR;
+							txtr.FileDescriptor = sc.TXTR.FileDescriptor.Clone();
+#if DEBUG
+#else
+								txtr.FileDescriptor.MarkForReCompress = true;
+#endif
+
+							txtr.FileName = sc.TXTR.FileName;							
+
+							txtr.SynchronizeUserData();
+							if (pkg.FindFile(txtr.FileDescriptor)==null) pkg.Add(txtr.FileDescriptor);
+						}
+
+						if (sc.TXMT != null && newsc.TXMT != null && addtxmt) 
+						{
+							SimPe.Plugin.GenericRcol txmt = newsc.TXMT;
+							txmt.FileDescriptor = sc.TXMT.FileDescriptor.Clone();
+#if DEBUG
+#else
+								txmt.FileDescriptor.MarkForReCompress = true;
+#endif
+
+							MaterialDefinition md = (MaterialDefinition)txmt.Blocks[0];
+							MaterialDefinition mdorg = (MaterialDefinition)sc.TXMT.Blocks[0];
+							txmt.FileName = sc.TXMT.FileName;
+							md.FileDescription = mdorg.FileDescription;
+
+							txmt.SynchronizeUserData();
+							if (pkg.FindFile(txmt.FileDescriptor)==null) pkg.Add(txmt.FileDescriptor);
+						}
+
+							
+					}
+					
 				
-				}				
+				}			
 
 				SimPe.PackedFiles.Wrapper.Str str = new Str();
 				str.Add(new StrItem(0, 0, "SimPE Skin Override: "+skintone+" (from "+sitem.PackageCacheItem.Name+")", ""));

@@ -235,7 +235,7 @@ namespace SimPe.Plugin
 		{
 			get
 			{
-				string str = "references=";
+				string str = "objectGUID=0x"+Helper.HexString(this.ObjectGUID)+"; subset="+this.SubsetName+"; references=";
 				Hashtable map = this.ReferenceChains;
 				foreach (string s in map.Keys) 
 				{
