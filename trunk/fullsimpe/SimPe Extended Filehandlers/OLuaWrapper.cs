@@ -23,13 +23,19 @@ using SimPe.Interfaces.Plugin;
 
 namespace SimPe.PackedFiles.Wrapper
 {
+	
 	/// <summary>
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
-	public class ObjLua : AbstractWrapper, SimPe.Interfaces.Plugin.IFileWrapper, SimPe.Interfaces.Plugin.IFileWrapperSaveExtension, SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper
+	public class ObjLua : AbstractWrapper
+		, System.Collections.IEnumerable
+		, SimPe.Interfaces.Plugin.IFileWrapper
+		, SimPe.Interfaces.Plugin.IFileWrapperSaveExtension
+		, SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper		
 	{
 		#region Attributes
 		uint id;
+		string flname;
 		byte[] header;
 		ArrayList items;
 		bool complete;
@@ -63,6 +69,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{			
 			header = new byte[0x32];
 			items = new ArrayList();
+			flname = "";
 		}
 
 		
@@ -70,30 +77,29 @@ namespace SimPe.PackedFiles.Wrapper
 		{	
 			items.Clear();
 
+			flname = Helper.ToString(reader.ReadBytes(0x40));
 			id = reader.ReadUInt32();
 			header = reader.ReadBytes(header.Length);
 
-			int ct = reader.ReadInt32();
-			for (int i=0; i<ct; i++)
-			{
-				ObjLuaInstruction item = new ObjLuaInstruction(this);
-				item.Unserialize(reader);
+			
 
-				items.Add(item);
+			while (reader.BaseStream.Position<reader.BaseStream.Length)
+			{
+				ObjLuaFunction olf = new ObjLuaFunction(this);
+				olf.Unserialize(reader);
+				items.Add(olf);
 			}
 
-			complete = reader.BaseStream.Position==reader.BaseStream.Length;
 		}
 
 
 		protected override void Serialize(System.IO.BinaryWriter writer) 
 		{		
+			writer.Write(Helper.ToBytes(flname, 0x40));
 			writer.Write(id);
 			writer.Write(header);
 
-			writer.Write((int)items.Count);
-			foreach( ObjLuaInstruction item in items)
-				item.Serialize(writer);
+			///TODO: complete this write
 		}
 		#endregion
 
@@ -122,20 +128,173 @@ namespace SimPe.PackedFiles.Wrapper
 		}		
 		#endregion
 
+		#region IEnumerable Members
+		public System.Collections.IEnumerator GetEnumerator ()
+		{
+			return items.GetEnumerator();
+		}
+		#endregion
 	}
+
+	public class ObjLuaFunction : System.IDisposable, System.Collections.IEnumerable
+	{
+	
+
+		#region Attributes
+		ObjLua parent;
+	
+		ArrayList items;
+		ObjLuaBinaryData data;
+		#endregion
+
+		public ObjLuaFunction(ObjLua parent) 
+		{
+			this.parent = parent;
+			items = new ArrayList();
+			data = new ObjLuaBinaryData(this);
+		}
+
+		internal void Unserialize(System.IO.BinaryReader reader)
+		{	
+			int ct = reader.ReadInt32();
+			for (int i=0; i<ct; i++)
+			{
+				ObjLuaInstruction item = new ObjLuaInstruction(this);
+				item.Unserialize(reader);
+
+				items.Add(item);
+			}
+			data.Unserialize(reader);
+		}
+
+
+		internal void Serialize(System.IO.BinaryWriter writer) 
+		{		
+			
+		}
+
+		
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			parent = null;
+			if (items!=null) items.Clear();
+			items = null;
+		}
+
+		#endregion
+
+		public override string ToString()
+		{
+			return items.Count.ToString()+" Instructions";
+		}
+		#region IEnumerable Member
+
+		public IEnumerator GetEnumerator()
+		{
+			return items.GetEnumerator();
+		}
+
+		#endregion
+	}
+
+	public class ObjLuaBinaryData : System.IDisposable
+	{
+		public enum Type : uint
+		{
+			Variable = 0x00000000,
+			Unknown1 = 0x00000001,
+			Unknown2 = 0x00000002			
+		}
+		#region Attributes
+		ObjLuaFunction parent;
+	
+		Type type;
+		public Type BinaryType
+		{
+			get { return type; }
+			set { type = value; }
+		}
+
+
+		
+
+		uint[] bdata;
+		byte[] badd;
+		
+		#endregion
+
+		public ObjLuaBinaryData(ObjLuaFunction parent) 
+		{
+			this.parent = parent;
+			
+			bdata = new uint[0];
+			badd = new byte[0];
+			
+		}
+
+		internal void Unserialize(System.IO.BinaryReader reader)
+		{	
+			type = (Type)reader.ReadUInt32();
+
+			uint ct = 0;
+			if (type==Type.Variable) 
+				ct = reader.ReadUInt32();			
+			else if (type==Type.Unknown1 || type==Type.Unknown2)
+				ct = 6;
+			else 
+				throw new Exception("Unknown Memory Type: 0x"+Helper.HexString((uint)type)+", 0x"+Helper.HexString(reader.BaseStream.Position-0x40));
+			
+			
+
+			bdata = new uint[ct];
+			for (int i=0; i<bdata.Length; i++) 
+				bdata[i] = reader.ReadUInt32();
+
+			/*if (bdata.Length>0) 
+			{
+				if (bdata[0]!=0x000000005) 
+				{
+					badd = new byte[28];
+					for (int i=0; i<badd.Length; i++) 
+						badd[i] = reader.ReadByte();
+				}
+			}*/
+		}
+
+		internal void Serialize(System.IO.BinaryWriter writer) 
+		{		
+			
+		}
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			parent = null;			
+
+			badd = null;
+			bdata = null;
+		}
+
+		#endregion		
+
+	}
+
 
 
 	public class ObjLuaInstruction : System.IDisposable
 	{
 		public enum Type : byte
 		{
-			Unknown = 0x00,
+			Empty = 0x00,
 			Data = 0x03,
 			String = 0x04
 		}
 
 		#region Attributes
-		ObjLua parent;
+		ObjLuaFunction parent;
 	
 		Type type;
 		public Type InstructionType
@@ -159,7 +318,7 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 		public uint Unknown2
 		{
-			get { return data[10]; }
+			get { return data[1]; }
 			set { data[1] = value; }
 		}
 
@@ -169,7 +328,7 @@ namespace SimPe.PackedFiles.Wrapper
 		
 		#endregion
 
-		public ObjLuaInstruction(ObjLua parent) 
+		public ObjLuaInstruction(ObjLuaFunction parent) 
 		{
 			this.parent = parent;
 			str = "";
@@ -197,9 +356,9 @@ namespace SimPe.PackedFiles.Wrapper
 				data[0] = reader.ReadUInt32();
 				data[1] = reader.ReadUInt32();
 			}
-			else if (type==Type.Data) 
+			else if (type==Type.Empty) 
 			{
-				bheader = reader.ReadBytes(bheader.Length);
+				/*bheader = reader.ReadBytes(bheader.Length);
 				bdata = new uint[reader.ReadUInt32()];
 				for (int i=0; i<bdata.Length; i++) 
 					bdata[i] = reader.ReadUInt32();
@@ -212,11 +371,11 @@ namespace SimPe.PackedFiles.Wrapper
 						for (int i=0; i<badd.Length; i++) 
 							badd[i] = reader.ReadByte();
 					}
-				}
+				}*/
 			} 
 			else 
 			{
-				throw new Exception("Unknown Format: 0x"+Helper.ToString((byte)type));
+				throw new Exception("Unknown Instruction Format: 0x"+Helper.HexString((byte)type)+", 0x"+Helper.HexString(reader.BaseStream.Position-0x40));
 			}
 		}
 
@@ -239,5 +398,15 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		#endregion
+
+		public override string ToString()
+		{
+			string s = type.ToString()+": ";
+			if (type == Type.String) s += str;
+			else if (type == Type.Data) s += "0x"+Helper.HexString(this.Unknown1)+", "+"0x"+Helper.HexString(this.Unknown2);			
+										 
+			return s;
+		}
+
 	}
 }

@@ -16,7 +16,7 @@
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
                 OutputType = "WinExe"
-                PreBuildEvent = 'copy "C:\Dokumente und Einstellungen\Amilo\Eigene Dateien\DivElements\SandBar\sandbar.dll" "$(TargetDir)"&#xd;&#xa;copy "C:\Dokumente und Einstellungen\Amilo\Eigene Dateien\DivElements\SandDock\sanddock.dll" "$(TargetDir)"'
+                PreBuildEvent = 'copy "$(ProjectDir)\..\..\..\DivElements\SandBar\sandbar.dll" "$(TargetDir)"&#xd;&#xa;copy "$(ProjectDir)\..\..\..\DivElements\SandDock\sanddock.dll" "$(TargetDir)"'
                 PostBuildEvent = 'copy "$(TargetDir)\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)"&#xd;&#xa;copy "$(TargetDir)\*.pdb" "$(ProjectDir)\..\SimPe\$(OutDir)"&#xd;&#xa;copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;copy "$(TargetDir)\pl\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\pl\"'
                 RootNamespace = "SimPe"
                 RunPostBuildEvent = "OnBuildSuccess"

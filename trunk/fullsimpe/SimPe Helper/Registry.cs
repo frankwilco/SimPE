@@ -1189,6 +1189,7 @@ namespace SimPe
 				else 
 				{
 					BlurNudityEP2 = false;
+					BlurNudityPreEP2 = false;
 				}
 			}
 		}
@@ -1452,7 +1453,7 @@ namespace SimPe
 					if (o==null) return 0;
 
 					string name = o.ToString().ToLower();
-					if (name.IndexOf("sims2ep2.exe")!=-1) return 2;
+					if (name.IndexOf("sims2ep2.exe")>=0) return 2;
 					else return 1; //Sims2EP1.exe
 #endif
 				} 
