@@ -265,7 +265,7 @@
                 />
                 <File
                     RelPath = "ExtSDescUI.cs"
-                    SubType = "UserControl"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -290,7 +290,7 @@
                 />
                 <File
                     RelPath = "ExtSrelUI.cs"
-                    SubType = "UserControl"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -310,7 +310,7 @@
                 />
                 <File
                     RelPath = "FamilyTieGraph.cs"
-                    SubType = "Component"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -348,7 +348,7 @@
                 />
                 <File
                     RelPath = "SimListView.cs"
-                    SubType = "Component"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -358,7 +358,7 @@
                 />
                 <File
                     RelPath = "SimPoolControl.cs"
-                    SubType = "Component"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File

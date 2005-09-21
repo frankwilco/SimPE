@@ -345,7 +345,7 @@
                 />
                 <File
                     RelPath = "RoadTextureControl.cs"
-                    SubType = "UserControl"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
