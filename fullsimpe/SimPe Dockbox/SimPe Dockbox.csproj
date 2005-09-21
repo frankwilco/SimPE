@@ -165,11 +165,6 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "SandDock"
-                    AssemblyName = "SandDock"
-                    HintPath = "..\..\..\httpwww.divil.co.uknet\SandDock.dll"
-                />
-                <Reference
                     Name = "NewHexEdit"
                     AssemblyName = "NewHexEdit"
                     HintPath = "..\HexEdit\bin\Release\NewHexEdit.dll"
@@ -193,6 +188,11 @@
                     Name = "SimPe FileHandlers"
                     Project = "{97551C0A-6295-4E32-8E15-A4FF456E65A6}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SandDock"
+                    AssemblyName = "SandDock"
+                    HintPath = "..\..\..\DivElements\SandDock\SandDock.dll"
                 />
             </References>
         </Build>
@@ -234,7 +234,7 @@
                 />
                 <File
                     RelPath = "DebugDock.cs"
-                    SubType = "Component"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -249,7 +249,7 @@
                 />
                 <File
                     RelPath = "FinderDock.cs"
-                    SubType = "Component"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File

@@ -277,7 +277,7 @@
                 />
                 <File
                     RelPath = "ObjectsDock.cs"
-                    SubType = "Component"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -297,7 +297,7 @@
                 />
                 <File
                     RelPath = "PackageDetailDock.cs"
-                    SubType = "Component"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
