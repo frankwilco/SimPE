@@ -101,7 +101,8 @@ namespace SimPe.Plugin
 			get
 			{
 				IToolPlugin[] tools = {
-									new ImportSemiTool(this.LinkedRegistry, this.LinkedProvider)
+									new ImportSemiTool(this.LinkedRegistry, this.LinkedProvider),
+								    new OpenLuaTool()
 								};
 				return tools;
 			}

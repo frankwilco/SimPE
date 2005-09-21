@@ -34,6 +34,7 @@ namespace SimPe.PackedFiles.UserInterface
 	{
 		private System.Windows.Forms.CheckBox cbComplete;
 		private System.Windows.Forms.ListBox lb;
+		private System.Windows.Forms.ListBox lbinst;
 		/// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -72,6 +73,7 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			this.cbComplete = new System.Windows.Forms.CheckBox();
 			this.lb = new System.Windows.Forms.ListBox();
+			this.lbinst = new System.Windows.Forms.ListBox();
 			this.SuspendLayout();
 			// 
 			// cbComplete
@@ -84,17 +86,29 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// lb
 			// 
-			this.lb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left)));
 			this.lb.IntegralHeight = false;
 			this.lb.Location = new System.Drawing.Point(8, 32);
 			this.lb.Name = "lb";
-			this.lb.Size = new System.Drawing.Size(552, 360);
+			this.lb.Size = new System.Drawing.Size(184, 360);
 			this.lb.TabIndex = 1;
+			this.lb.SelectedIndexChanged += new System.EventHandler(this.lb_SelectedIndexChanged);
+			// 
+			// lbinst
+			// 
+			this.lbinst.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lbinst.IntegralHeight = false;
+			this.lbinst.Location = new System.Drawing.Point(200, 32);
+			this.lbinst.Name = "lbinst";
+			this.lbinst.Size = new System.Drawing.Size(360, 360);
+			this.lbinst.TabIndex = 2;
 			// 
 			// ObjLua
 			// 
+			this.Controls.Add(this.lbinst);
 			this.Controls.Add(this.lb);
 			this.Controls.Add(this.cbComplete);
 			this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -114,6 +128,11 @@ namespace SimPe.PackedFiles.UserInterface
 
 			this.cbComplete.Checked = lua.Complete;
 			lb.Items.Clear();
+
+			foreach (SimPe.PackedFiles.Wrapper.ObjLuaFunction item in lua)
+			{
+				lb.Items.Add(item);
+			}
 		}
 
 		public Control GUIHandle
@@ -134,5 +153,15 @@ namespace SimPe.PackedFiles.UserInterface
 		}
 
 		#endregion
+
+		private void lb_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (lb.SelectedIndex<0) return;
+			lbinst.Items.Clear();
+
+			SimPe.PackedFiles.Wrapper.ObjLuaFunction olf = (SimPe.PackedFiles.Wrapper.ObjLuaFunction)lb.SelectedItem;
+			foreach (SimPe.PackedFiles.Wrapper.ObjLuaInstruction oli in olf)
+				lbinst.Items.Add(oli);
+		}
 	}
 }

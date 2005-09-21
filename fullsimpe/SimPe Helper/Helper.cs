@@ -561,7 +561,7 @@ namespace SimPe
 		/// Returns the passed String as a Byte Array of the given Length
 		/// </summary>
 		/// <param name="str">The String to Convert</param>
-		/// <param name="len">Length of the Array</param>
+		/// <param name="len">Length of the Array (the returned Array will have this exact Length)</param>
 		/// <returns>A Byte Array of the given Length (filled with 0)</returns>
 		public static byte[] ToBytes(string str, int len) 
 		{
