@@ -122,6 +122,14 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get { return (byte)(this.OpcodeShift+this.OpcodeBits); }			
 		}
+
+		internal int Bias
+		{
+			get 
+			{
+				return ((int)Math.Pow(2, BBits+CBits)-1) / 2;
+			}
+		}
 		#endregion
 	
 
@@ -268,6 +276,21 @@ namespace SimPe.PackedFiles.Wrapper
 		public ArrayList Constants 
 		{
 			get { return contants; }
+		}
+
+		public ArrayList UpValues 
+		{
+			get { return upval; }
+		}
+
+		public ArrayList Locals 
+		{
+			get { return local; }
+		}
+
+		public ArrayList SourceLine 
+		{
+			get { return srcln; }
 		}
 
 		public ArrayList Functions 
@@ -648,7 +671,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 	public class ObjLuaCode : System.IDisposable
 	{		
-		#region OpCodes
+		#region OpCodes		
 		static string[] opcodes = new string[]{
 												  "MOVE",
 												  "LOADK",
@@ -784,26 +807,121 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 
-		public string OpcodeName
+		public string GetOpcodeName(byte oc)
 		{
-			get 
-			{
-				byte oc = Opcode;
-				if (oc>=0 && oc<opcodes.Length) return opcodes[oc];
-				else return "UNK_"+Helper.HexString(oc);
-			}
+			if (oc>=0 && oc<opcodes.Length) return opcodes[oc];
+			else return "UNK_"+Helper.HexString(oc);			
 		}
 
-		public string OpcodeDescription
+		public string GetOpcodeDescription(byte oc)
 		{
-			get 
-			{
-				byte oc = Opcode;
-				if (oc>=0 && oc<opcodedesc.Length) return opcodedesc[oc];
-				else return SimPe.Localization.GetString("Unknown");
-			}
+			if (oc>=0 && oc<opcodedesc.Length) return opcodedesc[oc];
+			else return SimPe.Localization.GetString("Unknown");			
 		}
 		
+		#endregion
+
+		#region Opcode Translation
+		string R(ushort v)
+		{
+			return "R"+v.ToString();
+		}
+		
+		string RK(ushort v)
+		{
+			return v.ToString();
+		}
+		string Kst(uint v)
+		{
+			if (v>=0 && v<parent.Constants.Count) 
+			{
+				ObjLuaConstant oci = (ObjLuaConstant)parent.Constants[(int)v];
+				if (oci.InstructionType==ObjLuaConstant.Type.String) return oci.String;
+				else if (oci.InstructionType==ObjLuaConstant.Type.Number) return oci.ToString();
+				else return "null";				
+			}
+			return v.ToString();
+		}
+
+		string UpValue(ushort v)
+		{
+			if (v>=0 && v<parent.UpValues.Count) return parent.UpValues[v].ToString();
+			return v.ToString();
+		}
+
+		string Bool(ushort v)
+		{
+			if (v==0) return "false";
+			else return "true";
+		}
+
+		string Gbl(string n)
+		{
+			return "(Global)"+n;
+		}
+
+		string Tbl(ushort v) 
+		{
+			return "Tbl"+v.ToString();
+		}
+
+		string TblFbp(ushort v)
+		{
+			int m = (v & 0x00F8) >> 3;
+			int b = (v & 0x0007);
+
+			double d = b * Math.Pow(2, m);
+			return ((int)Math.Round(d)).ToString();
+		}
+
+		string TblSz(ushort v)
+		{
+			return ((int)(Math.Log(5, 2) + 1)).ToString();
+		}
+
+		string TranslateOpcode(byte oc, ushort a, ushort b, ushort c) 
+		{
+			uint bx = ((b & parent.Parent.BMaks) << parent.Parent.CBits) | (c & parent.Parent.CMaks);
+			int sbx = (int)((long)bx - parent.Parent.Bias);
+			
+			string name = GetOpcodeName(oc);
+			string ret = "";			
+			if (name=="MOVE") ret =  R(a) + " := " + R(b);
+			else if (name=="LOADNIL") ret = R(a) + " :=  ... :=  " + R(b) + " := null";
+			else if (name=="LOADK") ret = R(a) +" := " + Kst(bx);
+			else if (name=="LOADBOOL") ret = R(a) + " := " + Bool(b) +"; if ("+Bool(c)+") PC++";
+			else if (name=="GETGLOBAL") ret = R(a) + " := " + Gbl(Kst(bx));
+			else if (name=="SETGLOBAL") ret = Gbl(Kst(bx)) + " := " + R(a);
+			else if (name=="GETUPVAL") ret = R(a) + " := " + UpValue(b);
+			else if (name=="SETUPVAL") ret = UpValue(b) + " := " + R(a);
+			else if (name=="GETTABLE") ret = R(a) + " := " + Tbl(b)+"["+RK(c)+"]";
+			else if (name=="SETTABLE") ret = Tbl(b)+"["+RK(c)+"]" + " := " + R(a);
+			else if (name=="ADD") ret = R(a) + " := " + RK(b) + " + " + RK(c);
+			else if (name=="SUB") ret = R(a) + " := " + RK(b) + " - " + RK(c);
+			else if (name=="MUL") ret = R(a) + " := " + RK(b) + " * " + RK(c);
+			else if (name=="DIV") ret = R(a) + " := " + RK(b) + " / " + RK(c);
+			else if (name=="POW") ret = R(a) + " := " + RK(b) + " ^ " + RK(c);
+			else if (name=="UNM") ret = R(a) + " := -" + R(b);
+			else if (name=="NOT") ret = R(a) + " := !" + R(b);
+			else if (name=="CONCAT") ret = R(a) + " := " + R(b) + " + ... + " + R(c);
+			else if (name=="JMP") ret = " PC += " + sbx.ToString();
+			else if (name=="CALL") ret = R(a) + ", ... ," + R((ushort)(a+c+2)) + " := " + R(a) + "("+R((ushort)(a+1))+", ..., "+R((ushort)(a+b-1))+")";
+			else if (name=="RETURN") ret = "return " + R(a) + ", ..., " + R((ushort)(a+b+2));
+			else if (name=="TAILCALL") ret = "return " + R(a) + "(" + R((ushort)(a+1)) + ", ..., " + R((ushort)(a+b-1)) + ")";
+			else if (name=="SELF") ret = R((ushort)(a+1)) + " := " + R(b) + "; " + R(a) + " := " + R(b) + "["+RK(c)+"]";			
+			else if (name=="EQ") ret = "if ((" + RK(b) + " == " + RK(c) + ") == " + Bool(a) + " then PC++";
+			else if (name=="LT") ret = "if ((" + RK(b) + " < " + RK(c) + ") == " + Bool(a) + " then PC++";
+			else if (name=="LE") ret = "if ((" + RK(b) + " <= " + RK(c) + ") == " + Bool(a) + " then PC++";
+			else if (name=="TEST") ret = "if (" + R(b) + " <=> " + c.ToString() + ") then " + R(a) + " := " + R(b) + " else PC++";
+			else if (name=="FORLOOP") ret = R(a) + " += " + R((ushort)(a+2)) + "; if " + R(a) + " <= " +  R((ushort)(a+1)) + " then PC += " + sbx.ToString();
+			else if (name=="TFORPREP") ret = "if type("+R(a)+") == table then " + R((ushort)(a+1)) + " := " + R(a) + "; " + R(a) + ":= next; PC += " + sbx.ToString();
+			else if (name=="TFORLOOP") ret = R((ushort)(a+2)) + ", ..., " + R((ushort)(a+2+c)) + " := " + R(a) + "("+R(a)+", "+R((ushort)(a+2))+"); if " +  R((ushort)(a+2)) + " == null then PC++";
+			else if (name=="NEWTABLE") ret = R(a) + " := new table["+TblFbp(b)+", "+TblSz(c)+"]";
+			else if (name=="CLOSURE") ret = R(a) + " := closure(KPROTO["+bx.ToString()+"], "+R(a)+", ...)";
+			else if (name=="CLOSE") ret = "close all to "+R(a);
+
+			return ret+"; //"+name+" (a=0x"+Helper.HexString(a)+", b=0x"+Helper.HexString(b)+", c=0x"+Helper.HexString(c)+", bx="+bx.ToString()+", sbx="+sbx.ToString()+") "+GetOpcodeDescription(oc);
+		}
 		#endregion
 
 		public ObjLuaCode(ObjLuaFunction parent) 
@@ -832,7 +950,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public override string ToString()
 		{
-			return "0x"+Helper.HexString(val)+": "+OpcodeName+" "+A.ToString()+" "+B.ToString()+" "+C.ToString();
+			return "0x"+Helper.HexString(val)+": "+TranslateOpcode(this.Opcode, this.A, this.B, this.C);
 		}
 
 	}

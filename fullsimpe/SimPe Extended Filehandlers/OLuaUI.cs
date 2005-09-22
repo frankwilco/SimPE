@@ -74,6 +74,9 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// tv
 			// 
+			this.tv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
 			this.tv.ImageIndex = -1;
 			this.tv.Location = new System.Drawing.Point(8, 8);
 			this.tv.Name = "tv";
