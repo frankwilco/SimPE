@@ -1032,6 +1032,9 @@ namespace SimPe.Packages
 						if (pfd!=null) pfd.MarkInvalid();	
 				}				
 			}
+
+			if (SimPe.Packages.PackageMaintainer.Maintainer.FileIndex.Contains(this.SaveFileName))
+				SimPe.Packages.PackageMaintainer.Maintainer.FileIndex.Clear();
 		}
 
 		/// <summary>

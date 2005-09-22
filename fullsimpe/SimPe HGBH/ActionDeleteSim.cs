@@ -69,8 +69,11 @@ namespace SimPe.Plugin.Tool.Action
 
 		void DeleteCharacterFile(uint inst, uint guid, SimPe.Interfaces.Files.IPackageFile pkg, SimPe.PackedFiles.Wrapper.ExtSDesc victim)
 		{
+			//do not delete for NPCs
+			if (victim.IsNPC) return;
+
 			if (System.IO.File.Exists(victim.CharacterFileName)) 
-			{
+			{				
 				if (Message.Show("SimPE can now delete the Character File \""+victim.CharacterFileName+"\" from your System. \n\nShould SimPE delete this File?", "Question", System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No) return;
 				try 
 				{
@@ -79,8 +82,8 @@ namespace SimPe.Plugin.Tool.Action
 
 					System.IO.File.Delete(victim.CharacterFileName);
 
-					FileTable.ProviderRegistry.SimNameProvider.BaseFolder = null;
-					FileTable.ProviderRegistry.SimNameProvider.BaseFolder = System.IO.Path.GetDirectoryName(pkg.SaveFileName);
+					/*FileTable.ProviderRegistry.SimNameProvider.BaseFolder = null;
+					FileTable.ProviderRegistry.SimNameProvider.BaseFolder = System.IO.Path.GetDirectoryName(pkg.SaveFileName);*/
 				} 
 				catch (Exception ex)
 				{

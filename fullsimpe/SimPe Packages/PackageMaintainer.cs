@@ -41,6 +41,15 @@ namespace SimPe.Packages
 		}
 
 		Hashtable ht;
+		SimPe.Interfaces.Scenegraph.IScenegraphFileIndex localfileindex;
+		/// <summary>
+		/// Set or Get the FileIndex used to hold loaded Packages
+		/// </summary>
+		public SimPe.Interfaces.Scenegraph.IScenegraphFileIndex FileIndex
+		{
+			get { return localfileindex;}
+			set { if (localfileindex==null) localfileindex = value; }
+		}
 
 		/// <summary>
 		/// Create a new instance
@@ -97,6 +106,13 @@ namespace SimPe.Packages
 			}
 		}
 
+		internal void SyncFileIndex(GeneratableFile pkg)
+		{
+			this.FileIndex.Clear();		
+			if (pkg.Index.Length<=Helper.WindowsRegistry.BigPackageResourceCount)
+				this.FileIndex.AddIndexFromPackage(pkg);
+		}
+
 		/// <summary>
 		/// Load a Package File from the Maintainer
 		/// </summary>
@@ -109,20 +125,35 @@ namespace SimPe.Packages
 		/// </remarks>
 		public GeneratableFile LoadPackageFromFile(string filename, bool sync) 
 		{
-			if (filename==null) return GeneratableFile.CreateNew();
+			GeneratableFile ret = null;			
+			if (filename==null) ret =  GeneratableFile.CreateNew();
+			else 
+			{
 
-			if (!Helper.WindowsRegistry.UsePackageMaintainer)  return new GeneratableFile(filename);
+			
+				if (!Helper.WindowsRegistry.UsePackageMaintainer)  ret = new GeneratableFile(filename);
+				else 
+				{
 
-			if (!ht.ContainsKey(filename)) ht[filename] = new GeneratableFile(filename);
-			else if (sync) 
-			{				
-				SimPe.FileTableBase.FileIndex.ClosePackage((GeneratableFile)ht[filename]);
-				//((GeneratableFile)ht[filename]).Close(true);
-				((GeneratableFile)ht[filename]).ReloadFromFile(filename);
-				SimPe.FileTableBase.FileIndex.AddIndexFromPackage((GeneratableFile)ht[filename]);
+					if (!ht.ContainsKey(filename)) ht[filename] = new GeneratableFile(filename);
+					else if (sync) 
+					{				
+						SimPe.FileTableBase.FileIndex.ClosePackage((GeneratableFile)ht[filename]);
+						//((GeneratableFile)ht[filename]).Close(true);
+						((GeneratableFile)ht[filename]).ReloadFromFile(filename);
+								
+					}
+
+					ret = (GeneratableFile)ht[filename];
+				}				
 			}
 
-			return (GeneratableFile)ht[filename];
+			if (sync) 
+			{
+				this.SyncFileIndex(ret);
+			}
+
+			return ret;
 		}
 	}
 }

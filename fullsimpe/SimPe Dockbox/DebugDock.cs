@@ -16,6 +16,8 @@ namespace SimPe.Plugin.Tool.Dockable
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label lbMem;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.ListBox lbft;
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -61,11 +63,15 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.lbMem = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.lbft = new System.Windows.Forms.ListBox();
 			this.xpGradientPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// xpGradientPanel1
 			// 
+			this.xpGradientPanel1.Controls.Add(this.lbft);
+			this.xpGradientPanel1.Controls.Add(this.label2);
 			this.xpGradientPanel1.Controls.Add(this.lbMem);
 			this.xpGradientPanel1.Controls.Add(this.label1);
 			this.xpGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -95,6 +101,27 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.label1.Name = "label1";
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Memory Usage:";
+			// 
+			// label2
+			// 
+			this.label2.BackColor = System.Drawing.Color.Transparent;
+			this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label2.Location = new System.Drawing.Point(8, 56);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(128, 23);
+			this.label2.TabIndex = 2;
+			this.label2.Text = "FileTable Content:";
+			this.label2.Click += new System.EventHandler(this.label2_Click);
+			// 
+			// lbft
+			// 
+			this.lbft.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lbft.Location = new System.Drawing.Point(16, 72);
+			this.lbft.Name = "lbft";
+			this.lbft.Size = new System.Drawing.Size(224, 316);
+			this.lbft.TabIndex = 3;
 			// 
 			// DebugDock
 			// 
@@ -135,6 +162,19 @@ namespace SimPe.Plugin.Tool.Dockable
 		private void lbMem_Click(object sender, System.EventArgs e)
 		{
 			RefreshDock(null, null);
+
+			FileTable.FileIndex.StoreCurrentState();
+			FileTable.FileIndex.RestoreLastState();
+		}
+
+		private void label2_Click(object sender, System.EventArgs e)
+		{
+			lbft.Items.Clear();
+
+			SimPe.Plugin.FileIndex fi = (SimPe.Plugin.FileIndex)FileTable.FileIndex;
+			ArrayList l = fi.StoredFiles;
+			foreach (string s in l)
+				lbft.Items.Add(s);
 		}
 
 		#region IToolExt Member

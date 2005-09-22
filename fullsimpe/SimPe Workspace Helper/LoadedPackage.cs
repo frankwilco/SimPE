@@ -29,9 +29,10 @@ namespace SimPe
 	/// <summary>
 	/// Used to load Packages from the FileSystem
 	/// </summary>
-	public class LoadedPackage
+	public class LoadedPackage : System.IDisposable
 	{		
 		
+
 		/// <summary>
 		/// Creates a new Instance
 		/// </summary>
@@ -125,7 +126,7 @@ namespace SimPe
 				if (pkg.FileName==null) return "";
 				return pkg.FileName;
 			}
-		}
+		}		
 
 		/// <summary>
 		/// Make sure the Events get Linked
@@ -133,6 +134,8 @@ namespace SimPe
 		/// <param name="add">false, if you want to remove linked Events</param>
 		void SetupEvents(bool add)
 		{
+			
+
 			if (add) 
 			{
 				pkg.IndexChanged += new EventHandler(IndexChangedHandler);
@@ -235,6 +238,7 @@ namespace SimPe
 				if (savetocopy) Package.FileName = oname;
 
 				Helper.WindowsRegistry.AddRecentFile(e.FileName);
+				
 
 				Wait.SubStop();
 
@@ -597,6 +601,15 @@ namespace SimPe
 			if (paused) removedResourcehandler = sender;
 			else if (this.RemovedResource!=null) RemovedResource(sender, e);
 		}
+		#endregion
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{			
+
+		}
+
 		#endregion
 	}
 }
