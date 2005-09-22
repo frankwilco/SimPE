@@ -28,7 +28,6 @@ namespace SimPe.PackedFiles.Wrapper
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
 	public class ObjLua : AbstractWrapper
-		, System.Collections.IEnumerable
 		, SimPe.Interfaces.Plugin.IFileWrapper
 		, SimPe.Interfaces.Plugin.IFileWrapperSaveExtension
 		, SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper		
@@ -76,8 +75,7 @@ namespace SimPe.PackedFiles.Wrapper
 			get {return nrsz; }
 		}
 		byte[] sample;
-
-		ArrayList items;	
+	
 	
 		ObjLuaFunction root;
 		public ObjLuaFunction Root 
@@ -165,9 +163,9 @@ namespace SimPe.PackedFiles.Wrapper
 			bits2 = 9;
 			bits3 = 9;
 			nrsz = 8;
+			id = 0x61754C1B;
 			sample = new byte[] {0xb6, 0x09, 0x93, 0x68, 0xe7, 0xf5, 0x7d, 0x41};
 			
-			items = new ArrayList();
 			flname = "";
 
 			root = new ObjLuaFunction(this);
@@ -176,8 +174,6 @@ namespace SimPe.PackedFiles.Wrapper
 		
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{	
-			items.Clear();
-
 			flname = Helper.ToString(reader.ReadBytes(0x40));
 			id = reader.ReadUInt32();
 			
@@ -203,7 +199,25 @@ namespace SimPe.PackedFiles.Wrapper
 
 		protected override void Serialize(System.IO.BinaryWriter writer) 
 		{		
-			///TODO: complete this write
+			writer.Write(Helper.ToBytes(flname, 0x40));
+			writer.Write(id);
+			
+			writer.Write(version);
+			writer.Write((byte)byteorder);
+
+			writer.Write(intsz);
+			writer.Write(sztsz);
+			writer.Write(instsz);
+
+			writer.Write(operandbits);
+			writer.Write(bits1);
+			writer.Write(bits2);
+			writer.Write(bits3);
+
+			writer.Write(nrsz);
+			writer.Write(sample);
+			
+			root.Serialize(writer);
 		}
 
 		internal static string ReadString(System.IO.BinaryReader reader)
@@ -245,12 +259,6 @@ namespace SimPe.PackedFiles.Wrapper
 		}		
 		#endregion
 
-		#region IEnumerable Members
-		public System.Collections.IEnumerator GetEnumerator ()
-		{
-			return items.GetEnumerator();
-		}
-		#endregion
 	}
 
 	public class ObjLuaFunction : System.IDisposable, System.Collections.IEnumerable
@@ -393,7 +401,31 @@ namespace SimPe.PackedFiles.Wrapper
 
 		internal void Serialize(System.IO.BinaryWriter writer) 
 		{		
+			ObjLua.WriteString(name, writer);
+
+			writer.Write(linedef);
+			writer.Write(nups);
+			writer.Write(argc);
+			writer.Write(isinout);
+			writer.Write(stacksz);
 			
+			writer.Write((uint)srcln.Count);
+			foreach (ObjLuaSourceLine item in srcln) item.Serialize(writer);
+			
+			writer.Write((uint)local.Count);
+			foreach (ObjLuaLocalVar item in local) item.Serialize(writer);
+			
+			writer.Write((uint)upval.Count);
+			foreach (ObjLuaUpValue item in upval) item.Serialize(writer);
+			
+			writer.Write((uint)contants.Count);
+			foreach (ObjLuaConstant item in contants) item.Serialize(writer);	
+		
+			writer.Write((uint)functions.Count);
+			foreach (ObjLuaFunction item in functions) item.Serialize(writer);			
+
+			writer.Write((uint)codes.Count);
+			foreach (ObjLuaCode item in codes) item.Serialize(writer);				
 		}
 
 		
@@ -411,7 +443,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public override string ToString()
 		{
-			return name+": "+contants.Count.ToString()+" Constants, "+functions.Count.ToString()+" Functions, "+codes.Count.ToString()+" Codes";
+			return name+": "+this.argc.ToString()+" Arguments, Stacksize"+this.stacksz.ToString()+", "+contants.Count.ToString()+" Constants, "+functions.Count.ToString()+" SubFunctions, "+codes.Count.ToString()+" Instructions";
 		}
 		#region IEnumerable Member
 
@@ -491,9 +523,7 @@ namespace SimPe.PackedFiles.Wrapper
 			badd = new byte[0];
 			if (type==Type.String) 
 			{
-				int ct = reader.ReadInt32();
-				byte[] data = reader.ReadBytes(ct);
-				str = Helper.ToString(data);
+				str = ObjLua.ReadString(reader);
 			} 
 			else if (type==Type.Number) 
 			{
@@ -520,7 +550,32 @@ namespace SimPe.PackedFiles.Wrapper
 
 		internal void Serialize(System.IO.BinaryWriter writer) 
 		{		
-			
+			writer.Write((byte)type);
+
+			if (type==Type.String) 
+			{
+				ObjLua.WriteString(str, writer);
+			} 
+			else if (type==Type.Number) 
+			{
+				if (parent.Parent.NumberSize==8) 
+				{
+					writer.Write(data[0]);
+					writer.Write(data[1]);
+				} 
+				else if (parent.Parent.NumberSize==4) 
+				{
+					writer.Write(data[0]);					
+				} 
+				else throw new Exception("Number Size "+parent.Parent.NumberSize.ToString()+" is not supported!");
+			}
+			else if (type==Type.Empty) 
+			{				
+			} 
+			else 
+			{
+				throw new Exception("Unknown Constant Type: 0x"+Helper.HexString((byte)type)+", 0x"+Helper.HexString(writer.BaseStream.Position-0x40));
+			}
 		}
 		#region IDisposable Member
 
