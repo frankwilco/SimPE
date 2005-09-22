@@ -33,17 +33,97 @@ namespace SimPe.PackedFiles.Wrapper
 		, SimPe.Interfaces.Plugin.IFileWrapperSaveExtension
 		, SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper		
 	{
-		#region Attributes
-		uint id;
-		string flname;
-		byte[] header;
-		ArrayList items;
-		bool complete;
-		public bool Complete
+		enum Endian : byte 
 		{
-			get { return complete; }
+			big = 0x0,
+			little = 0x1
+		}
+
+		#region Attributes
+		string flname; //this is only for the convenience of SimPE!
+
+		uint id;
+		byte version;
+		Endian byteorder;
+		byte intsz;
+		byte sztsz;
+		byte instsz;
+		byte operandbits;
+		public byte OpcodeBits
+		{
+			get {return operandbits; }
+		}
+
+		byte bits1;
+		public byte ABits
+		{
+			get {return bits1; }
+		}
+		byte bits2;
+		public byte BBits
+		{
+			get {return bits2; }
+		}
+		byte bits3;	
+		public byte CBits
+		{
+			get {return bits3; }
+		}
+
+		byte nrsz;
+		public byte NumberSize
+		{
+			get {return nrsz; }
+		}
+		byte[] sample;
+
+		ArrayList items;	
+	
+		ObjLuaFunction root;
+		public ObjLuaFunction Root 
+		{
+			get { return root; }
 		}
 		#endregion
+
+		#region Code Properties 
+		internal uint OpcodeMaks
+		{
+			get { return (uint)Math.Pow(2, this.OpcodeBits)-1;}
+		}
+		internal byte OpcodeShift 
+		{
+			get { return 0; }
+		}
+
+		internal uint AMaks
+		{
+			get { return (uint)Math.Pow(2, this.ABits)-1;}
+		}
+		internal byte AShift 
+		{
+			get { return (byte)(this.BShift + this.BBits); }
+		}
+
+		internal uint BMaks
+		{
+			get { return (uint)Math.Pow(2, this.BBits)-1;}
+		}
+		internal byte BShift 
+		{
+			get { return (byte)(this.CShift + this.CBits); }
+		}
+	
+		internal uint CMaks
+		{
+			get { return (uint)Math.Pow(2, this.CBits)-1;}
+		}
+		internal byte CShift 
+		{
+			get { return (byte)(this.OpcodeShift+this.OpcodeBits); }			
+		}
+		#endregion
+	
 
 		#region IWrapper Member
 		protected override IWrapperInfo CreateWrapperInfo()
@@ -67,9 +147,22 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public ObjLua() : base()
 		{			
-			header = new byte[0x32];
+			version = 0x50;
+			byteorder = Endian.little;
+			intsz = 4;
+			sztsz = 4;
+			instsz = 4;
+			operandbits = 6;
+			bits1 = 8;
+			bits2 = 9;
+			bits3 = 9;
+			nrsz = 8;
+			sample = new byte[] {0xb6, 0x09, 0x93, 0x68, 0xe7, 0xf5, 0x7d, 0x41};
+			
 			items = new ArrayList();
 			flname = "";
+
+			root = new ObjLuaFunction(this);
 		}
 
 		
@@ -79,27 +172,43 @@ namespace SimPe.PackedFiles.Wrapper
 
 			flname = Helper.ToString(reader.ReadBytes(0x40));
 			id = reader.ReadUInt32();
-			header = reader.ReadBytes(header.Length);
+			
+			version = reader.ReadByte();
+			byteorder = (Endian)reader.ReadByte();
+
+			intsz = reader.ReadByte();
+			sztsz = reader.ReadByte();
+			instsz = reader.ReadByte();
+
+			operandbits = reader.ReadByte();
+			bits1 = reader.ReadByte();
+			bits2 = reader.ReadByte();
+			bits3 = reader.ReadByte();
+
+			nrsz = reader.ReadByte();
+			sample = reader.ReadBytes(sample.Length);
 
 			
-
-			while (reader.BaseStream.Position<reader.BaseStream.Length)
-			{
-				ObjLuaFunction olf = new ObjLuaFunction(this);
-				olf.Unserialize(reader);
-				items.Add(olf);
-			}
-
+			root.Unserialize(reader);
 		}
 
 
 		protected override void Serialize(System.IO.BinaryWriter writer) 
 		{		
-			writer.Write(Helper.ToBytes(flname, 0x40));
-			writer.Write(id);
-			writer.Write(header);
-
 			///TODO: complete this write
+		}
+
+		internal static string ReadString(System.IO.BinaryReader reader)
+		{
+			int ct = reader.ReadInt32();
+			return Helper.ToString(reader.ReadBytes(ct));
+		}
+
+		internal static void WriteString(string s, System.IO.BinaryWriter writer)
+		{
+			writer.Write((uint)(s.Length+1));
+			writer.Write(Helper.ToBytes(s, s.Length));
+			writer.Write((byte)0);
 		}
 		#endregion
 
@@ -142,29 +251,120 @@ namespace SimPe.PackedFiles.Wrapper
 
 		#region Attributes
 		ObjLua parent;
+		public ObjLua Parent
+		{
+			get {return parent;}
+		}
 	
-		ArrayList items;
-		ObjLuaBinaryData data;
+		string name;
+		uint linedef;
+		byte nups;
+		byte argc;
+		byte isinout;
+		byte stacksz;
+
+		ArrayList contants, functions, codes, srcln, upval, local;
+
+		public ArrayList Constants 
+		{
+			get { return contants; }
+		}
+
+		public ArrayList Functions 
+		{
+			get { return functions; }
+		}
+
+		public ArrayList Codes 
+		{
+			get { return codes; }
+		}
 		#endregion
 
 		public ObjLuaFunction(ObjLua parent) 
 		{
 			this.parent = parent;
-			items = new ArrayList();
-			data = new ObjLuaBinaryData(this);
+			name = "";
+
+			contants = new ArrayList();
+			functions = new ArrayList();
+			codes = new ArrayList();
+			srcln = new ArrayList();
+			local = new ArrayList();
+			upval = new ArrayList();
 		}
 
 		internal void Unserialize(System.IO.BinaryReader reader)
 		{	
-			int ct = reader.ReadInt32();
-			for (int i=0; i<ct; i++)
+			contants.Clear();
+			functions.Clear();
+			codes.Clear();
+			srcln.Clear();
+			local.Clear();
+			upval.Clear();
+			
+			name = ObjLua.ReadString(reader);
+
+			linedef = reader.ReadUInt32();
+			nups = reader.ReadByte();
+			argc = reader.ReadByte();
+			isinout = reader.ReadByte();
+			stacksz = reader.ReadByte();
+			
+			uint linenfosz = reader.ReadUInt32();
+			for (uint i=0; i<linenfosz; i++)
 			{
-				ObjLuaInstruction item = new ObjLuaInstruction(this);
+				ObjLuaSourceLine item = new ObjLuaSourceLine(this);
 				item.Unserialize(reader);
 
-				items.Add(item);
+				srcln.Add(item);
 			}
-			data.Unserialize(reader);
+
+			uint locvarsz = reader.ReadUInt32();
+			for (uint i=0; i<locvarsz; i++)
+			{
+				ObjLuaLocalVar item = new ObjLuaLocalVar(this);
+				item.Unserialize(reader);
+
+				local.Add(item);
+			}
+
+			uint upvalsz = reader.ReadUInt32();
+			for (uint i=0; i<upvalsz; i++)
+			{
+				ObjLuaUpValue item = new ObjLuaUpValue(this);
+				item.Unserialize(reader);
+
+				upval.Add(item);
+			}
+
+			uint constsz = reader.ReadUInt32();
+			for (uint i=0; i<constsz; i++)
+			{
+				ObjLuaConstant item = new ObjLuaConstant(this);
+				item.Unserialize(reader);
+
+				contants.Add(item);
+			}
+
+			uint fncsz = reader.ReadUInt32();
+			for (uint i=0; i<fncsz; i++)
+			{
+				ObjLuaFunction item = new ObjLuaFunction(this.parent);
+				item.Unserialize(reader);
+
+				functions.Add(item);
+			}
+
+			uint codesz = reader.ReadUInt32();
+			for (uint i=0; i<codesz; i++)
+			{
+				ObjLuaCode item = new ObjLuaCode(this);
+				item.Unserialize(reader);
+				
+				codes.Add(item);
+			}
+
 		}
 
 
@@ -180,121 +380,42 @@ namespace SimPe.PackedFiles.Wrapper
 		public void Dispose()
 		{
 			parent = null;
-			if (items!=null) items.Clear();
-			items = null;
+			if (contants!=null) contants.Clear();
+			contants = null;
 		}
 
 		#endregion
 
 		public override string ToString()
 		{
-			return items.Count.ToString()+" Instructions";
+			return name+": "+contants.Count.ToString()+" Constants, "+functions.Count.ToString()+" Functions, "+codes.Count.ToString()+" Codes";
 		}
 		#region IEnumerable Member
 
 		public IEnumerator GetEnumerator()
 		{
-			return items.GetEnumerator();
+			return contants.GetEnumerator();
 		}
 
 		#endregion
 	}
 
-	public class ObjLuaBinaryData : System.IDisposable
-	{
-		public enum Type : uint
-		{
-			Variable = 0x00000000,
-			Unknown1 = 0x00000001,
-			Unknown2 = 0x00000002			
-		}
-		#region Attributes
-		ObjLuaFunction parent;
-	
-		Type type;
-		public Type BinaryType
-		{
-			get { return type; }
-			set { type = value; }
-		}
 
-
-		
-
-		uint[] bdata;
-		byte[] badd;
-		
-		#endregion
-
-		public ObjLuaBinaryData(ObjLuaFunction parent) 
-		{
-			this.parent = parent;
-			
-			bdata = new uint[0];
-			badd = new byte[0];
-			
-		}
-
-		internal void Unserialize(System.IO.BinaryReader reader)
-		{	
-			type = (Type)reader.ReadUInt32();
-
-			uint ct = 0;
-			if (type==Type.Variable) 
-				ct = reader.ReadUInt32();			
-			else if (type==Type.Unknown1 || type==Type.Unknown2)
-				ct = 6;
-			else 
-				throw new Exception("Unknown Memory Type: 0x"+Helper.HexString((uint)type)+", 0x"+Helper.HexString(reader.BaseStream.Position-0x40));
-			
-			
-
-			bdata = new uint[ct];
-			for (int i=0; i<bdata.Length; i++) 
-				bdata[i] = reader.ReadUInt32();
-
-			/*if (bdata.Length>0) 
-			{
-				if (bdata[0]!=0x000000005) 
-				{
-					badd = new byte[28];
-					for (int i=0; i<badd.Length; i++) 
-						badd[i] = reader.ReadByte();
-				}
-			}*/
-		}
-
-		internal void Serialize(System.IO.BinaryWriter writer) 
-		{		
-			
-		}
-		#region IDisposable Member
-
-		public void Dispose()
-		{
-			parent = null;			
-
-			badd = null;
-			bdata = null;
-		}
-
-		#endregion		
-
-	}
-
-
-
-	public class ObjLuaInstruction : System.IDisposable
+	public class ObjLuaConstant : System.IDisposable
 	{
 		public enum Type : byte
 		{
 			Empty = 0x00,
-			Data = 0x03,
+			Number = 0x03,
 			String = 0x04
 		}
 
 		#region Attributes
 		ObjLuaFunction parent;
+		public ObjLuaFunction Parent
+		{
+			get {return parent;}
+		}
 	
 		Type type;
 		public Type InstructionType
@@ -328,7 +449,7 @@ namespace SimPe.PackedFiles.Wrapper
 		
 		#endregion
 
-		public ObjLuaInstruction(ObjLuaFunction parent) 
+		public ObjLuaConstant(ObjLuaFunction parent) 
 		{
 			this.parent = parent;
 			str = "";
@@ -351,31 +472,25 @@ namespace SimPe.PackedFiles.Wrapper
 				byte[] data = reader.ReadBytes(ct);
 				str = Helper.ToString(data);
 			} 
-			else if (type==Type.Data) 
+			else if (type==Type.Number) 
 			{
-				data[0] = reader.ReadUInt32();
-				data[1] = reader.ReadUInt32();
+				if (parent.Parent.NumberSize==8) 
+				{
+					data[0] = reader.ReadUInt32();
+					data[1] = reader.ReadUInt32();
+				} 
+				else if (parent.Parent.NumberSize==4) 
+				{
+					data[0] = reader.ReadUInt32();
+					data[1] = 0;
+				} else throw new Exception("Number Size "+parent.Parent.NumberSize.ToString()+" is not supported!");
 			}
 			else if (type==Type.Empty) 
-			{
-				/*bheader = reader.ReadBytes(bheader.Length);
-				bdata = new uint[reader.ReadUInt32()];
-				for (int i=0; i<bdata.Length; i++) 
-					bdata[i] = reader.ReadUInt32();
-
-				if (bdata.Length>0) 
-				{
-					if (bdata[0]!=0x000000005) 
-					{
-						badd = new byte[28];
-						for (int i=0; i<badd.Length; i++) 
-							badd[i] = reader.ReadByte();
-					}
-				}*/
+			{				
 			} 
 			else 
 			{
-				throw new Exception("Unknown Instruction Format: 0x"+Helper.HexString((byte)type)+", 0x"+Helper.HexString(reader.BaseStream.Position-0x40));
+				throw new Exception("Unknown Constant Type: 0x"+Helper.HexString((byte)type)+", 0x"+Helper.HexString(reader.BaseStream.Position-0x40));
 			}
 		}
 
@@ -403,9 +518,321 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			string s = type.ToString()+": ";
 			if (type == Type.String) s += str;
-			else if (type == Type.Data) s += "0x"+Helper.HexString(this.Unknown1)+", "+"0x"+Helper.HexString(this.Unknown2);			
+			else if (type == Type.Number) s += "0x"+Helper.HexString(this.Unknown1)+", "+"0x"+Helper.HexString(this.Unknown2);			
 										 
 			return s;
+		}
+
+	}
+
+	public class ObjLuaSourceLine : System.IDisposable
+	{			
+
+		#region Attributes
+		ObjLuaFunction parent;
+	
+		uint val;
+		public uint Value
+		{
+			get { return val; }
+			set { val = value; }
+		}
+
+		
+		
+		#endregion
+
+		public ObjLuaSourceLine(ObjLuaFunction parent) 
+		{
+			this.parent = parent;				
+		}
+
+		internal void Unserialize(System.IO.BinaryReader reader)
+		{	
+			val = reader.ReadUInt32();
+		}
+
+
+		internal void Serialize(System.IO.BinaryWriter writer) 
+		{		
+			writer.Write(val);
+		}
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			
+		}
+
+		#endregion
+
+		public override string ToString()
+		{
+			return "0x"+Helper.HexString(val);
+		}
+
+	}
+
+	public class ObjLuaLocalVar : System.IDisposable
+	{			
+
+		#region Attributes
+		ObjLuaFunction parent;
+	
+		uint start, end;
+		public uint Start
+		{
+			get { return start; }
+			set { start = value; }
+		}
+
+		public uint End
+		{
+			get { return end; }
+			set { end = value; }
+		}
+
+		string name;
+		public string Name
+		{
+			get { return name; }
+			set { name = value; }
+		}
+
+		
+		
+		#endregion
+
+		public ObjLuaLocalVar(ObjLuaFunction parent) 
+		{
+			this.parent = parent;
+			name = "";	
+		}
+
+		internal void Unserialize(System.IO.BinaryReader reader)
+		{	
+			name = ObjLua.ReadString(reader);
+			start = reader.ReadUInt32();
+			end = reader.ReadUInt32();
+		}
+
+
+		internal void Serialize(System.IO.BinaryWriter writer) 
+		{	
+			ObjLua.WriteString(name, writer);
+			writer.Write(start);
+			writer.Write(end);
+		}
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			name = null;
+		}
+
+		#endregion
+
+		public override string ToString()
+		{
+			return Name+": 0x"+Helper.HexString(start)+" - 0x"+Helper.HexString(end);
+		}
+
+	}
+
+	public class ObjLuaUpValue : ObjLuaSourceLine
+	{			
+		public ObjLuaUpValue(ObjLuaFunction parent) : base(parent)
+		{			
+		}
+	}
+
+	public class ObjLuaCode : System.IDisposable
+	{		
+		#region OpCodes
+		static string[] opcodes = new string[]{
+												  "MOVE",
+												  "LOADK",
+												  "LOADBOOL",
+												  "LOADNIL",
+												  "GETUPVAL",
+												  "GETGLOBAL",
+												  "GETTABLE",
+												  "SETGLOBAL",
+												  "SETUPVAL",
+												  "SETTABLE",
+												  "NEWTABLE",
+												  "SELF",
+												  "ADD",
+												  "SUB",
+												  "MUL",
+												  "DIV",
+												  "POW",
+												  "UNM",
+												  "NOT",
+												  "CONCAT",
+												  "JMP",
+												  "EQ",
+												  "LT",
+												  "LE",
+												  "TEST",
+												  "CALL",
+												  "TAILCALL",
+												  "RETURN",
+												  "FORLOOP",
+												  "TFORLOOP",
+												  "TFORREP",
+												  "SETLIST",
+												  "SETLISTO",
+												  "CLOSE",
+												  "CLOSURE"
+											  };
+		static string[] opcodedesc = new string[]{
+												  "Copy a value between registers",
+												  "Load a constant into a register",
+												  "Load a boolean into a register",
+												  "Load null values into a range of registers",
+												  "Read an upvalue into a register",
+												  "Read a global variable into a register",
+												  "Read a table element into a register",
+												  "Write a register value into a global variable",
+												  "Write a register value into an upvalue",
+												  "Write a register value into a table element",
+												  "Create a new table",
+												  "Prepare an object method for calling",
+												  "Addition",
+												  "Subtraction",
+												  "Multiplication",
+												  "Division",
+												  "Exponentiation",
+												  "Unary minus",
+												  "Logical NOT",
+												  "Concatenate a range of registers",
+												  "Unconditional jump",
+												  "Equality test",
+												  "Less than test",
+												  "Less than or equal to test",
+												  "Test for short-circuit logical and and or evaluation",
+												  "Call a closure",
+												  "Perform a tail call",
+												  "Return from function call",
+												  "Iterate a numeric for loop",
+												  "Iterate a generic for loop",
+												  "Initialization for a generic for loop",
+												  "Set a range of array elements for a table",
+												  "Set a variable number of table elements",
+												  "Close a range of locals being used as upvalues",
+												  "Create a closure of a function prototype"
+											  };
+												  
+		#endregion
+
+		#region Attributes
+		ObjLuaFunction parent;
+	
+		uint val;
+		public uint Value
+		{
+			get { return val; }
+			set { val = value; }
+		}
+
+		public byte Opcode 
+		{
+			get 
+			{				
+				return (byte)((val & (parent.Parent.OpcodeMaks << parent.Parent.OpcodeShift)) >> parent.Parent.OpcodeShift);
+			}
+			set 
+			{
+				val = ((uint)(val & (0xFFFFFFFF - (parent.Parent.OpcodeMaks << parent.Parent.OpcodeShift))) | (uint)((value & parent.Parent.OpcodeMaks)<< parent.Parent.OpcodeShift));
+			}
+		}
+
+		public ushort A
+		{
+			get 
+			{				
+				return (ushort)((val & (parent.Parent.AMaks << parent.Parent.AShift)) >> parent.Parent.AShift);
+			}
+			set 
+			{
+				val = ((uint)(val & (0xFFFFFFFF - (parent.Parent.AMaks << parent.Parent.AShift))) | (uint)((value & parent.Parent.AMaks)<< parent.Parent.AShift));
+			}
+		}
+
+		public ushort B
+		{
+			get 
+			{				
+				return (ushort)((val & (parent.Parent.BMaks << parent.Parent.BShift)) >> parent.Parent.BShift);
+			}
+			set 
+			{
+				val = ((uint)(val & (0xFFFFFFFF - (parent.Parent.BMaks << parent.Parent.BShift))) | (uint)((value & parent.Parent.BMaks)<< parent.Parent.BShift));
+			}
+		}
+
+		public ushort C
+		{
+			get 
+			{				
+				return (ushort)((val & (parent.Parent.CMaks << parent.Parent.CShift)) >> parent.Parent.CShift);
+			}
+			set 
+			{
+				val = ((uint)(val & (0xFFFFFFFF - (parent.Parent.CMaks << parent.Parent.CShift))) | (uint)((value & parent.Parent.CMaks)<< parent.Parent.CShift));
+			}
+		}
+
+		public string OpcodeName
+		{
+			get 
+			{
+				byte oc = Opcode;
+				if (oc>=0 && oc<opcodes.Length) return opcodes[oc];
+				else return "UNK_"+Helper.HexString(oc);
+			}
+		}
+
+		public string OpcodeDescription
+		{
+			get 
+			{
+				byte oc = Opcode;
+				if (oc>=0 && oc<opcodedesc.Length) return opcodedesc[oc];
+				else return SimPe.Localization.GetString("Unknown");
+			}
+		}
+		
+		#endregion
+
+		public ObjLuaCode(ObjLuaFunction parent) 
+		{
+			this.parent = parent;				
+		}
+
+		internal void Unserialize(System.IO.BinaryReader reader)
+		{	
+			val = reader.ReadUInt32();
+		}
+
+
+		internal void Serialize(System.IO.BinaryWriter writer) 
+		{		
+			writer.Write(val);
+		}
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			
+		}
+
+		#endregion
+
+		public override string ToString()
+		{
+			return "0x"+Helper.HexString(val)+": "+OpcodeName+" "+A.ToString()+" "+B.ToString()+" "+C.ToString();
 		}
 
 	}
