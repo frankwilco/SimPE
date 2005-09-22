@@ -251,6 +251,7 @@ namespace SimPe.Plugin
 					//remove the Neighborhood
 					try 
 					{
+						SimPe.Packages.PackageMaintainer.Maintainer.RemovePackagesInPath(path);
 						System.IO.Directory.Delete(path, true);
 					} 
 					catch (Exception) {}

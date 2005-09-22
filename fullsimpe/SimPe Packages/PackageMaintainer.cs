@@ -66,6 +66,24 @@ namespace SimPe.Packages
 		/// Remove a given Package from the Maintainer
 		/// </summary>
 		/// <param name="pkg"></param>
+		public void RemovePackagesInPath(string folder)
+		{
+			if (folder==null) return;
+			folder = folder.Trim().ToLower();
+			
+
+			ArrayList list = new ArrayList();
+			foreach (string k in ht.Keys)
+				if (k.Trim().ToLower().StartsWith(folder)) list.Add(k);
+
+			foreach (string k in list)
+				RemovePackage(k);
+		}
+
+		/// <summary>
+		/// Remove a given Package from the Maintainer
+		/// </summary>
+		/// <param name="pkg"></param>
 		internal void RemovePackage(string flname)
 		{
 			if (flname==null) return;

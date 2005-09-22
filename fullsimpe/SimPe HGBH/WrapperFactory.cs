@@ -62,14 +62,19 @@ namespace SimPe.Plugin
 		{
 			get
 			{
-				IToolPlugin[] tools = {
-										 new Plugin.FixUidTool(),
-										 new ActionIntriguedNeighborhood()
-									 };
-				if (Helper.WindowsRegistry.HiddenMode) return tools;
+				if (Helper.WindowsRegistry.HiddenMode)
+					return new IToolPlugin[]{
+												new Plugin.FixUidTool(),
+												new ActionIntriguedNeighborhood(),
+												new ActionDeleteSim()
+											};
+				else
 
-				tools = new ITool[0];
-				return tools;
+					return new IToolPlugin[]
+					{
+						new ActionDeleteSim()
+					};
+				
 			}
 		}		
 

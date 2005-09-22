@@ -110,7 +110,7 @@
                 />
                 <File
                     RelPath = "EnumComboBox.cs"
-                    SubType = "Code"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File

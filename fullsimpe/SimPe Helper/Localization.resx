@@ -757,7 +757,7 @@ Package: {filename}</value>
 		<value>Walls / Other</value>
     </data>
     <data name="Fun">
-        <value>Fun</value>
+        <value>Pleasure</value>
     </data>
     <data name="Fix_Fence_Warning">
         <value>"Making a Fence compatible with the Original Game, is a nasty Hack, which can cause conflicts in the Game. I would not suggest to do this, if you plan to Release the Fence!
@@ -776,4 +776,10 @@ Do you want to continue?</value>
     
 Do you want to continue?</value>
     </data>
+    <data name="Check FileTable">
+		<value>Check FileTable</value>
+	</data>
+	<data name="Delete Sim">
+		<value>Delete Sim</value>
+	</data>
 </root>

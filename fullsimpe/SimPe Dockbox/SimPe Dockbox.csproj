@@ -234,7 +234,7 @@
                 />
                 <File
                     RelPath = "DebugDock.cs"
-                    SubType = "Code"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File
@@ -249,7 +249,7 @@
                 />
                 <File
                     RelPath = "FinderDock.cs"
-                    SubType = "Code"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File
