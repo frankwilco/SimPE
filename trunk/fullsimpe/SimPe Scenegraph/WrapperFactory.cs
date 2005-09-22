@@ -29,7 +29,7 @@ namespace SimPe.Plugin
 	/// GetWrappers() has to return a list of all Plugins provided by this Library. 
 	/// If a Plugin isn't returned, SimPe won't recognize it!
 	/// </remarks>
-	public class WrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory
+	public class ScenegraphWrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory
 	{
 		static bool inited = false;
 		/// <summary>
@@ -75,10 +75,11 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Creates the Class
 		/// </summary>
-		public WrapperFactory() : base() 
+		public ScenegraphWrapperFactory() : base() 
 		{
 			//prepare the FileIndex
-			FileTable.FileIndex = new FileIndex();			
+			FileTable.FileIndex = new FileIndex();	
+			SimPe.Packages.PackageMaintainer.Maintainer.FileIndex = FileTable.FileIndex.AddNewChild();
 		}
 
 		#region AbstractWrapperFactory Member

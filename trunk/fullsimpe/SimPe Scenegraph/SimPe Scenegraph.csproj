@@ -307,6 +307,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "mmat.simpe"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "MMATCacheFile.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

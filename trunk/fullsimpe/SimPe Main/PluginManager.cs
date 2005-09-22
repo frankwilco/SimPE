@@ -89,7 +89,7 @@ namespace SimPe
 			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ExtendedWrapperFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.DefaultWrapperFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.GenericWrapperFactory());
-			FileTable.WrapperRegistry.Register(new SimPe.Plugin.WrapperFactory());
+			FileTable.WrapperRegistry.Register(new SimPe.Plugin.ScenegraphWrapperFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.Plugin.RefFileFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ClstWrapperFactory());
 		}

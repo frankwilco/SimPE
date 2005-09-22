@@ -33,6 +33,11 @@ namespace SimPe.Interfaces.Scenegraph
 		IScenegraphFileIndex Clone();
 
 		/// <summary>
+		/// Make sure the FileTable is empty
+		/// </summary>
+		void Clear();
+
+		/// <summary>
 		/// Forces a Reload of the FileIndex
 		/// </summary>
 		/// <remarks>
@@ -234,5 +239,47 @@ namespace SimPe.Interfaces.Scenegraph
 		/// </summary>
 		/// <param name="pkg"></param>
 		void ClosePackage(SimPe.Interfaces.Files.IPackageFile pkg);
+
+		#region FileTable Childs
+		/// <summary>
+		/// True, if this Package was already added to the FileTable (or one of its Childs)
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <returns></returns>
+		bool Contains(SimPe.Interfaces.Files.IPackageFile pkg);
+
+		/// <summary>
+		/// True, if this File was already added to the FileTable (or one of its Childs)
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <returns></returns>
+		bool Contains(string flname);
+
+		/// <summary>
+		/// Creates a new FileIndex, adds it as a Child, and returns the new Instance
+		/// </summary>
+		/// <returns>A new, empty FileIndex</returns>
+		IScenegraphFileIndex AddNewChild();
+
+		/// <summary>
+		/// Add a new FileIndex as a Child.
+		/// </summary>
+		/// <param name="cld">The Child Index</param>
+		/// <remarks>Make sure, that you do not cretae circular dependecies! When 
+		/// searchin Resources, all Child FileTables will get search too, so 
+		/// keep the list small, otherwise you might increas searchtime!</remarks>
+		void AddChild(IScenegraphFileIndex cld);
+
+		/// <summary>
+		/// Remove all Childs from this Instance
+		/// </summary>
+		void ClearChilds();
+
+		/// <summary>
+		/// Remove the passed Child from the list of Childs
+		/// </summary>
+		/// <param name="cld">The FileIndex you want to remove</param>
+		void RemoveChild(IScenegraphFileIndex cld);
+		#endregion
 	}
 }

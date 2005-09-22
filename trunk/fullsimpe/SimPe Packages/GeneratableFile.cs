@@ -100,6 +100,7 @@ namespace SimPe.Packages
 				}
 
 			this.BeginUpdate();
+			bool wasinfileindex = PackageMaintainer.Maintainer.FileIndex.Contains(flname);
 			PackageMaintainer.Maintainer.RemovePackage(flname);
 			try 
 			{
@@ -120,6 +121,9 @@ namespace SimPe.Packages
 			{
 				this.ForgetUpdate();				
 				this.EndUpdate();
+
+				if (wasinfileindex)
+					PackageMaintainer.Maintainer.SyncFileIndex(this);
 
 				FireSavedIndexEvent();
 			}

@@ -68,7 +68,7 @@ namespace SimPe.Plugin
 			} 
 
 			//load the Group Cache
-			SimPe.Plugin.WrapperFactory.LoadGroupCache();
+			SimPe.Plugin.ScenegraphWrapperFactory.LoadGroupCache();
 
 			this.cbfolder.SelectedIndex = 0;
 			scanners = new ArrayList();
