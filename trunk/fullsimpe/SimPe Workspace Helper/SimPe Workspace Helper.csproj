@@ -254,7 +254,7 @@
                 />
                 <File
                     RelPath = "LoadFileWrappersExt.cs"
-                    SubType = "Code"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File
