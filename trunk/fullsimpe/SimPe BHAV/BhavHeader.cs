@@ -170,6 +170,7 @@ namespace SimPe.Plugin
 				case 0x8006: 
 				case 0x8005: 
 				case 0x8007: 
+				case 0x8008: 
 				{					
 					writer.Write((ushort)count);
 					writer.Write(type);
