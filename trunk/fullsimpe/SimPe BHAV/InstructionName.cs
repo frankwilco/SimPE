@@ -147,11 +147,11 @@ namespace SimPe.Plugin
 		public static Bhav LoadGlobalBHAV(ushort opcode) 
 		{
 			if (opcodes==null) return null;
-			Interfaces.Files.IPackedFileDescriptor pfd =  opcodes.LoadGlobalBHAV(opcode);
-			if (pfd==null) return null;
+			Interfaces.Scenegraph.IScenegraphFileIndexItem fii =  opcodes.LoadGlobalBHAV(opcode);
+			if (fii==null) return null;
 
 			Bhav b = new Bhav(opcodes);
-			b.ProcessData(pfd, opcodes.BasePackage);
+			b.ProcessData(fii);
 			return b;
 		}
 
@@ -163,10 +163,15 @@ namespace SimPe.Plugin
 		{
 			if (parent==null) return null;
 			if (opcodes==null) return null;
-			Interfaces.Files.IPackedFileDescriptor pfd = parent.Package.FindFile(Data.MetaData.BHAV_FILE, 0, parent.FileDescriptor.Group, opcode);
-			if (pfd==null)  
+			
+			SimPe.FileTable.FileIndex.Load();
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = SimPe.FileTable.FileIndex.FindFile(Data.MetaData.BHAV_FILE, parent.FileDescriptor.Group, opcode, null);
+			
+
+			
+			if (items.Length==0)  
 			{
-				pfd = parent.Package.FindFile(Data.MetaData.GLOB_FILE, 0, parent.FileDescriptor.Group, 0x01);
+				SimPe.Interfaces.Files.IPackedFileDescriptor pfd = parent.Package.FindFile(Data.MetaData.GLOB_FILE, 0, parent.FileDescriptor.Group, 0x01);
 				if (pfd==null) 
 				{
 					Interfaces.Files.IPackedFileDescriptor[] pfds = parent.Package.FindFiles(Data.MetaData.GLOB_FILE);
@@ -181,17 +186,18 @@ namespace SimPe.Plugin
 
 				Glob g = new Glob();
 				g.ProcessData(pfd, parent.Package);
-				pfd = opcodes.LoadSemiGlobalBHAV(opcode, g.SemiGlobalGroup);
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = opcodes.LoadSemiGlobalBHAV(opcode, g.SemiGlobalGroup);
 			
-				if (pfd==null) return null;
+				if (fii==null) return null;
 				Bhav b = new Bhav(opcodes);
-				b.ProcessData(pfd, opcodes.BasePackage);
+				b.ProcessData(fii);
 				return b;
 			} 
 			else 
 			{
+
 				Bhav b = new Bhav(opcodes);
-				b.ProcessData(pfd, parent.Package);
+				b.ProcessData(items[0]);
 				return b;
 			}
 			
