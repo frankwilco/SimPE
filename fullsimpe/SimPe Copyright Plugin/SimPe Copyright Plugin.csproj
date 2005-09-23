@@ -1,0 +1,250 @@
+<VisualStudioProject>
+    <CSHARP
+        ProjectType = "Local"
+        ProductVersion = "7.10.3077"
+        SchemaVersion = "2.0"
+        ProjectGuid = "{06D06A6A-C49E-44B8-8EE4-C0F107D3A50D}"
+    >
+        <Build>
+            <Settings
+                ApplicationIcon = ""
+                AssemblyKeyContainerName = ""
+                AssemblyName = "simpe.copyright.plugin"
+                AssemblyOriginatorKeyFile = ""
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Grid"
+                DefaultTargetSchema = "IE50"
+                DelaySign = "false"
+                OutputType = "Library"
+                PreBuildEvent = ""
+                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;copy "$(TargetDir)\pl\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\pl\"'
+                RootNamespace = "SimPe.Plugin"
+                RunPostBuildEvent = "OnBuildSuccess"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "DEBUG;TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "true"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "false"
+                    OutputPath = "bin\Debug\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+                <Config
+                    Name = "Release"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "false"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "true"
+                    OutputPath = "bin\Release\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+            </Settings>
+            <References>
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
+                />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                />
+                <Reference
+                    Name = "SandBar"
+                    AssemblyName = "SandBar"
+                    HintPath = "..\SimPe\bin\Release\SandBar.dll"
+                />
+                <Reference
+                    Name = "SandDock"
+                    AssemblyName = "SandDock"
+                    HintPath = "..\SimPe\bin\Release\SandDock.dll"
+                />
+                <Reference
+                    Name = "simpe.3idr"
+                    AssemblyName = "simpe.3idr"
+                    HintPath = "..\SimPe\bin\Release\simpe.3idr.dll"
+                />
+                <Reference
+                    Name = "simpe.cache"
+                    AssemblyName = "simpe.cache"
+                    HintPath = "..\SimPe\bin\Release\simpe.cache.dll"
+                />
+                <Reference
+                    Name = "simpe.clst"
+                    AssemblyName = "simpe.clst"
+                    HintPath = "..\SimPe\bin\Release\simpe.clst.dll"
+                />
+                <Reference
+                    Name = "simpe.commandline"
+                    AssemblyName = "simpe.commandline"
+                    HintPath = "..\SimPe\bin\Release\simpe.commandline.dll"
+                />
+                <Reference
+                    Name = "simpe.commonhandler"
+                    AssemblyName = "simpe.commonhandler"
+                    HintPath = "..\SimPe\bin\Release\simpe.commonhandler.dll"
+                />
+                <Reference
+                    Name = "simpe.extfilehandler"
+                    AssemblyName = "simpe.extfilehandler"
+                    HintPath = "..\SimPe\bin\Release\simpe.extfilehandler.dll"
+                />
+                <Reference
+                    Name = "simpe.filehandler"
+                    AssemblyName = "simpe.filehandler"
+                    HintPath = "..\SimPe\bin\Release\simpe.filehandler.dll"
+                />
+                <Reference
+                    Name = "simpe.genericbase"
+                    AssemblyName = "simpe.genericbase"
+                    HintPath = "..\SimPe\bin\Release\simpe.genericbase.dll"
+                />
+                <Reference
+                    Name = "simpe.generichandler"
+                    AssemblyName = "simpe.generichandler"
+                    HintPath = "..\SimPe\bin\Release\simpe.generichandler.dll"
+                />
+                <Reference
+                    Name = "simpe.geometry"
+                    AssemblyName = "simpe.geometry"
+                    HintPath = "..\SimPe\bin\Release\simpe.geometry.dll"
+                />
+                <Reference
+                    Name = "simpe.gmdc.exporter.base"
+                    AssemblyName = "simpe.gmdc.exporter.base"
+                    HintPath = "..\SimPe\bin\Release\simpe.gmdc.exporter.base.dll"
+                />
+                <Reference
+                    Name = "simpe.helper"
+                    AssemblyName = "simpe.helper"
+                    HintPath = "..\SimPe\bin\Release\simpe.helper.dll"
+                />
+                <Reference
+                    Name = "simpe.interfaces"
+                    AssemblyName = "simpe.interfaces"
+                    HintPath = "..\SimPe\bin\Release\simpe.interfaces.dll"
+                />
+                <Reference
+                    Name = "simpe.names"
+                    AssemblyName = "simpe.names"
+                    HintPath = "..\SimPe\bin\Release\simpe.names.dll"
+                />
+                <Reference
+                    Name = "simpe.package"
+                    AssemblyName = "simpe.package"
+                    HintPath = "..\SimPe\bin\Release\simpe.package.dll"
+                />
+                <Reference
+                    Name = "simpe.rcol"
+                    AssemblyName = "simpe.rcol"
+                    HintPath = "..\SimPe\bin\Release\simpe.rcol.dll"
+                />
+                <Reference
+                    Name = "simpe.resourcecontrol"
+                    AssemblyName = "simpe.resourcecontrol"
+                    HintPath = "..\SimPe\bin\Release\simpe.resourcecontrol.dll"
+                />
+                <Reference
+                    Name = "simpe.scenegraph"
+                    AssemblyName = "simpe.scenegraph"
+                    HintPath = "..\SimPe\bin\Release\simpe.scenegraph.dll"
+                />
+                <Reference
+                    Name = "simpe.sims"
+                    AssemblyName = "simpe.sims"
+                    HintPath = "..\SimPe\bin\Release\simpe.sims.dll"
+                />
+                <Reference
+                    Name = "simpe.workspace"
+                    AssemblyName = "simpe.workspace"
+                    HintPath = "..\SimPe\bin\Release\simpe.workspace.dll"
+                />
+                <Reference
+                    Name = "sims.guid"
+                    AssemblyName = "sims.guid"
+                    HintPath = "..\SimPe\bin\Release\sims.guid.dll"
+                />
+                <Reference
+                    Name = "tgaview"
+                    AssemblyName = "tgaview"
+                    HintPath = "..\SimPe\bin\Release\tgaview.dll"
+                />
+                <Reference
+                    Name = "XPCommonControls"
+                    AssemblyName = "XPCommonControls"
+                    HintPath = "..\SimPe\bin\Release\XPCommonControls.dll"
+                />
+                <Reference
+                    Name = "System.Windows.Forms"
+                    AssemblyName = "System.Windows.Forms"
+                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
+                />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
+                />
+            </References>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "ActionAddCopyright.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CopyrightToolFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "StringsForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "StringsForm.resx"
+                    DependentUpon = "StringsForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+            </Include>
+        </Files>
+    </CSHARP>
+</VisualStudioProject>
+

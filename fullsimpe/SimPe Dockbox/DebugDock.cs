@@ -163,8 +163,12 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			RefreshDock(null, null);
 
-			FileTable.FileIndex.StoreCurrentState();
-			FileTable.FileIndex.RestoreLastState();
+			FileTable.FileIndex.Load();
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(0x42484156, 0x7F01EC29, 0x000020AE, null);
+
+			lbft.Items.Clear();
+			foreach(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
+				lbft.Items.Add(item.Package.SaveFileName);
 		}
 
 		private void label2_Click(object sender, System.EventArgs e)
