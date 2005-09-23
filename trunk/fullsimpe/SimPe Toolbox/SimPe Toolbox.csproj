@@ -365,11 +365,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "NgbBackup.de-DE.resx"
-                    DependentUpon = "NgbBackup.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "NgbBackup.pl.resx"
                     DependentUpon = "NgbBackup.cs"
                     BuildAction = "EmbeddedResource"
