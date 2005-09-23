@@ -479,7 +479,7 @@ namespace SimPe.Providers
 		/// </summary>
 		/// <param name="opcode">the Opcode of the BHAV</param>
 		/// <returns>The Descriptor for the Bhav File in the BasePackage or null</returns>
-		public IPackedFileDescriptor LoadGlobalBHAV(ushort opcode)
+		public SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem LoadGlobalBHAV(ushort opcode)
 		{
 			return  LoadSemiGlobalBHAV(opcode, 0x7FD46CD0);
 		}
@@ -490,11 +490,14 @@ namespace SimPe.Providers
 		/// <param name="opcode">The Opcode</param>
 		/// <param name="group">The group of the SemiGlobal</param>
 		/// <returns>The Descriptor of the Bhaf File in the Base Packagee or null</returns>
-		public IPackedFileDescriptor LoadSemiGlobalBHAV(ushort opcode, uint group)
+		public SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem LoadSemiGlobalBHAV(ushort opcode, uint group)
 		{
-			LoadPackage();
-			if (BasePackage==null) return null;
-			return BasePackage.FindFile(Data.MetaData.BHAV_FILE, 0x0, group, opcode);
+			//LoadPackage();
+			//if (BasePackage==null) return null;
+			FileTable.FileIndex.Load();
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.BHAV_FILE, group, opcode, null);
+			if (items.Length>0) return items[0];
+			return null;
 		}
 
 
