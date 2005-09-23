@@ -373,6 +373,26 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "TattItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "TattUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "TattUI.resx"
+                    DependentUpon = "TattUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "TattWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "WantCacheFile.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
