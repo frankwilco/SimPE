@@ -19,6 +19,8 @@
  ***************************************************************************/
 using System;
 using System.IO;
+using System.Text;
+using System.Runtime.InteropServices;
 
 namespace SimPe
 {
@@ -907,5 +909,35 @@ namespace SimPe
 				return tgiload;
 			}
 		}
+
+		#region Folders
+		[DllImport("kernel32.dll", SetLastError=true, CharSet=CharSet.Auto)]
+		static extern uint GetLongPathName(
+			string lpszShortPath,
+			[Out] System.Text.StringBuilder lpszLongPath,
+			uint cchBuffer);
+
+		/// <summary>
+		/// The ToShortPathNameToLongPathName function retrieves the long path form of a specified short input path
+		/// </summary>
+		/// <param name="shortName">The short name path</param>
+		/// <returns>A long name path string</returns>
+		public static string ToLongPathName(string shortName)
+		{
+			StringBuilder longNameBuffer = new StringBuilder(256);
+			uint bufferSize = (uint)longNameBuffer.Capacity;
+
+			GetLongPathName(shortName, longNameBuffer, bufferSize);
+
+			return longNameBuffer.ToString();
+		}
+
+		public static string ToLongFileName(string shortName)
+		{			
+			return System.IO.Path.Combine(
+				ToLongPathName(System.IO.Path.GetDirectoryName(shortName)),
+				System.IO.Path.GetFileName(shortName));
+		}
+		#endregion
 	}
 }

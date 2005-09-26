@@ -131,6 +131,7 @@ namespace SimPe
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.LinkLabel llNightlife;
 		private System.Windows.Forms.TextBox tbep2;
+		private System.Windows.Forms.LinkLabel llchg;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -243,6 +244,7 @@ namespace SimPe
 			this.button7 = new System.Windows.Forms.Button();
 			this.hcTools = new TD.Eyefinder.HeaderControl();
 			this.hcFileTable = new TD.Eyefinder.HeaderControl();
+			this.llchg = new System.Windows.Forms.LinkLabel();
 			this.btdn = new System.Windows.Forms.Button();
 			this.btup = new System.Windows.Forms.Button();
 			this.hcSceneGraph = new TD.Eyefinder.HeaderControl();
@@ -2027,6 +2029,7 @@ namespace SimPe
 			this.hcFileTable.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hcFileTable.AutoScrollMargin")));
 			this.hcFileTable.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hcFileTable.AutoScrollMinSize")));
 			this.hcFileTable.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hcFileTable.BackgroundImage")));
+			this.hcFileTable.Controls.Add(this.llchg);
 			this.hcFileTable.Controls.Add(this.btdn);
 			this.hcFileTable.Controls.Add(this.btup);
 			this.hcFileTable.Controls.Add(this.lladddown);
@@ -2047,6 +2050,32 @@ namespace SimPe
 			this.hcFileTable.Text = resources.GetString("hcFileTable.Text");
 			this.toolTip1.SetToolTip(this.hcFileTable, resources.GetString("hcFileTable.ToolTip"));
 			this.hcFileTable.Visible = ((bool)(resources.GetObject("hcFileTable.Visible")));
+			// 
+			// llchg
+			// 
+			this.llchg.AccessibleDescription = resources.GetString("llchg.AccessibleDescription");
+			this.llchg.AccessibleName = resources.GetString("llchg.AccessibleName");
+			this.llchg.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llchg.Anchor")));
+			this.llchg.AutoSize = ((bool)(resources.GetObject("llchg.AutoSize")));
+			this.llchg.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llchg.Dock")));
+			this.llchg.Enabled = ((bool)(resources.GetObject("llchg.Enabled")));
+			this.llchg.Font = ((System.Drawing.Font)(resources.GetObject("llchg.Font")));
+			this.llchg.Image = ((System.Drawing.Image)(resources.GetObject("llchg.Image")));
+			this.llchg.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llchg.ImageAlign")));
+			this.llchg.ImageIndex = ((int)(resources.GetObject("llchg.ImageIndex")));
+			this.llchg.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llchg.ImeMode")));
+			this.llchg.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llchg.LinkArea")));
+			this.llchg.Location = ((System.Drawing.Point)(resources.GetObject("llchg.Location")));
+			this.llchg.Name = "llchg";
+			this.llchg.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llchg.RightToLeft")));
+			this.llchg.Size = ((System.Drawing.Size)(resources.GetObject("llchg.Size")));
+			this.llchg.TabIndex = ((int)(resources.GetObject("llchg.TabIndex")));
+			this.llchg.TabStop = true;
+			this.llchg.Text = resources.GetString("llchg.Text");
+			this.llchg.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llchg.TextAlign")));
+			this.toolTip1.SetToolTip(this.llchg, resources.GetString("llchg.ToolTip"));
+			this.llchg.Visible = ((bool)(resources.GetObject("llchg.Visible")));
+			this.llchg.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llchg_LinkClicked);
 			// 
 			// btdn
 			// 
@@ -2639,13 +2668,13 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.hcFileTable);
+			this.Controls.Add(this.hcFolders);
+			this.Controls.Add(this.hcSceneGraph);
 			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcIdent);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
-			this.Controls.Add(this.hcFileTable);
-			this.Controls.Add(this.hcFolders);
-			this.Controls.Add(this.hcSceneGraph);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -2883,7 +2912,7 @@ namespace SimPe
 
 		private void lladddown_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			FileTableItem fti = new FileTableItem("Downloads", true, false, true);
+			FileTableItem fti = new FileTableItem("Downloads", true, false, -1);
 			fti.Name = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads");
 			fti.Type = FileTableItemType.SaveGameFolder;
 			lbfolder.Items.Insert(0, fti);
@@ -2917,11 +2946,8 @@ namespace SimPe
 
 		private void lladd_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			if (fbd.ShowDialog()==DialogResult.OK) 
-			{
-				FileTableItem fti = new FileTableItem(fbd.SelectedPath);
-				lbfolder.Items.Insert(0, fti);
-			}
+			FileTableItem fti = FileTableItemForm.Execute();
+			if (fti!=null) lbfolder.Items.Insert(0, fti);			
 		}
 
 		void StoreFoldersXml()
@@ -3638,6 +3664,15 @@ namespace SimPe
 		{
 			Helper.WindowsRegistry.BlurNudity = cbblur.Checked;
 			cbblur.Checked = Helper.WindowsRegistry.BlurNudity;
+		}
+
+		private void llchg_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (lbfolder.SelectedItem!=null)
+				if (FileTableItemForm.Execute((FileTableItem)lbfolder.SelectedItem)) 
+				{
+					lbfolder.Items[lbfolder.SelectedIndex] = (FileTableItem)lbfolder.SelectedItem;
+				}
 		}
 	}
 }

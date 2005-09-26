@@ -404,6 +404,21 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "FileTableItemForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FileTableItemForm.de.resx"
+                    DependentUpon = "FileTableItemForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "FileTableItemForm.resx"
+                    DependentUpon = "FileTableItemForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Hidden.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
