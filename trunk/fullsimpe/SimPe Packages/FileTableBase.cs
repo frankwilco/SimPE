@@ -24,7 +24,7 @@ namespace SimPe
 	{
 		bool recursive;
 		bool file;
-		bool use;
+		int ver;
 		string relpath;
 		string path;
 		FileTableItemType type;
@@ -46,18 +46,21 @@ namespace SimPe
 
 			this.path = path;
 			this.relpath = path;
-			this.use = true;
+			this.ver = -1;
 			this.type = FileTableItemType.Absolute;
 		}
 
-		public FileTableItem( string relpath, bool rec, bool fl, bool use) 
+		public FileTableItem( string relpath, bool rec, bool fl) : this (relpath, rec, fl, -1)
 		{
-			this.relpath = relpath;
-			this.path = "";
+		}
+		public FileTableItem( string relpath, bool rec, bool fl, int ver) 
+		{			
+			
 			this.recursive = rec;
 			this.file = fl;
-			this.use = use;
+			this.ver = ver;
 			this.type = FileTableItemType.Absolute;
+			this.SetName(relpath);
 		}
 
 		internal void SetRecursive(bool state) 
@@ -70,9 +73,50 @@ namespace SimPe
 			this.file = state;
 		}
 
+		public static string GetRoot(FileTableItemType type)
+		{
+			if (type==FileTableItemType.EP1GameFolder) return Helper.WindowsRegistry.SimsEP1Path;
+			if (type==FileTableItemType.EP2GameFolder) return Helper.WindowsRegistry.SimsEP2Path;
+			if (type==FileTableItemType.GameFolder) return Helper.WindowsRegistry.SimsPath;
+			if (type==FileTableItemType.SaveGameFolder) return Helper.WindowsRegistry.SimSavegameFolder;
+			if (type==FileTableItemType.SimPEDataFolder) return Helper.SimPeDataPath;
+			if (type==FileTableItemType.SimPEFolder) return Helper.SimPePath;
+			if (type==FileTableItemType.SimPEPluginFolder) return Helper.SimPePluginPath;
+
+			return null;
+		}
+
+		bool CutName(string name, FileTableItemType type)
+		{
+			if (!System.IO.Path.IsPathRooted(name)) return false;
+
+			string root = GetRoot(type);
+			if (root==null) return false;
+			root = Helper.ToLongPathName(root).Trim().ToLower();
+
+			if (name.StartsWith(root))
+			{
+				this.path = name.Replace(root, "");
+				this.Type = type;				
+				return true;
+			} 
+
+			return false;
+		}
+
 		internal void SetName(string name) 
 		{
+			string n = Helper.ToLongPathName(name).Trim().ToLower();
+			if (CutName(n, FileTableItemType.GameFolder)) return;
+			if (CutName(n, FileTableItemType.EP1GameFolder)) return;
+			if (CutName(n, FileTableItemType.EP2GameFolder)) return;
+			if (CutName(n, FileTableItemType.SaveGameFolder)) return;
+			if (CutName(n, FileTableItemType.SimPEDataFolder)) return;
+			if (CutName(n, FileTableItemType.SimPEFolder)) return;
+			if (CutName(n, FileTableItemType.SimPEPluginFolder)) return;
+						
 			this.path = name;
+			
 		}
 
 		public FileTableItemType Type 
@@ -84,17 +128,24 @@ namespace SimPe
 		public bool IsRecursive 
 		{
 			get { return recursive; }
+			set { recursive = value; }
 		}
 
 		public bool IsFile
 		{
 			get { return file; }
+			set { file = value; }
 		}
 
 		public bool IsUseable
 		{
-			get { return use; }
-			set { use = value; }
+			get { return ver==-1 || ver==Helper.WindowsRegistry.EPInstalled; }			
+		}
+
+		public int EpVersion
+		{
+			get {return ver;}
+			set {ver = value;}
 		}
 
 		public bool IsAvail
@@ -103,20 +154,24 @@ namespace SimPe
 			{
 				if (!IsUseable) return false;
 
-				if (IsFile) return System.IO.File.Exists(path);
-				else return System.IO.Directory.Exists(path);
+				if (IsFile) return System.IO.File.Exists(Name);
+				else return System.IO.Directory.Exists(Name);
 			}
 		}
 
 		public string Name 
 		{
-			get { return path; }
+			get { 
+				string r = GetRoot(this.type);
+				if (r==null) return path; 
+				else return System.IO.Path.Combine(r, path);
+			}
 			set { SetName(value); }
 		}
 
 		public string RelativePath 
 		{
-			get { return relpath; }
+			get { return path; }
 		}
 
 		public string[] GetFiles()
@@ -150,8 +205,11 @@ namespace SimPe
 			else n += "Folder: ";
 
 			if (!IsUseable) n = "(Unused) "+n;
-			else if (!IsAvail) n = "(Missing in "+type.ToString()+") "+n;
-			return n + path;
+			else if (!IsAvail) n = "(Missing) "+n;
+			n += "{"+type.ToString()+"}"+path;
+
+			if (ver!=-1) n+= " (Only when GameVersion="+ver.ToString()+")";
+			return n;
 		}
 
 	}
@@ -214,7 +272,7 @@ namespace SimPe
 									if (foldernode.Name != "path" && foldernode.Name != "file") continue;									
 									string name = foldernode.InnerText.Trim();		
 							
-									FileTableItem fti = new FileTableItem(name, false, false, true);
+									FileTableItem fti = new FileTableItem(name, false, false);
 									
 									
 									#region add Path Root if needed
@@ -230,10 +288,9 @@ namespace SimPe
 											try 
 											{
 												int ver = Convert.ToInt32(a.Value);
-												if (Helper.WindowsRegistry.EPInstalled!=ver) fti.IsUseable = false;
+												fti.EpVersion = ver;
 											} 
-											catch {}
-											if (a.Value != "0") fti.SetRecursive(true);											
+											catch {}																				
 										}
 
 										if (a.Name=="root") 

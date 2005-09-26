@@ -61,10 +61,10 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(DebugDock));
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.lbft = new System.Windows.Forms.ListBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.lbMem = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.lbft = new System.Windows.Forms.ListBox();
 			this.xpGradientPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -79,6 +79,27 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpGradientPanel1.Name = "xpGradientPanel1";
 			this.xpGradientPanel1.Size = new System.Drawing.Size(250, 400);
 			this.xpGradientPanel1.TabIndex = 0;
+			// 
+			// lbft
+			// 
+			this.lbft.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lbft.Location = new System.Drawing.Point(16, 72);
+			this.lbft.Name = "lbft";
+			this.lbft.Size = new System.Drawing.Size(224, 316);
+			this.lbft.TabIndex = 3;
+			// 
+			// label2
+			// 
+			this.label2.BackColor = System.Drawing.Color.Transparent;
+			this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label2.Location = new System.Drawing.Point(8, 56);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(128, 23);
+			this.label2.TabIndex = 2;
+			this.label2.Text = "FileTable Content:";
+			this.label2.Click += new System.EventHandler(this.label2_Click);
 			// 
 			// lbMem
 			// 
@@ -101,27 +122,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.label1.Name = "label1";
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Memory Usage:";
-			// 
-			// label2
-			// 
-			this.label2.BackColor = System.Drawing.Color.Transparent;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label2.Location = new System.Drawing.Point(8, 56);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(128, 23);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "FileTable Content:";
-			this.label2.Click += new System.EventHandler(this.label2_Click);
-			// 
-			// lbft
-			// 
-			this.lbft.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.lbft.Location = new System.Drawing.Point(16, 72);
-			this.lbft.Name = "lbft";
-			this.lbft.Size = new System.Drawing.Size(224, 316);
-			this.lbft.TabIndex = 3;
+			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// DebugDock
 			// 
@@ -161,14 +162,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		private void lbMem_Click(object sender, System.EventArgs e)
 		{
-			RefreshDock(null, null);
-
-			FileTable.FileIndex.Load();
-			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(0x42484156, 0x7F01EC29, 0x000020AE, null);
-
-			lbft.Items.Clear();
-			foreach(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
-				lbft.Items.Add(item.Package.SaveFileName);
+			RefreshDock(null, null);			
 		}
 
 		private void label2_Click(object sender, System.EventArgs e)
@@ -179,6 +173,43 @@ namespace SimPe.Plugin.Tool.Dockable
 			ArrayList l = fi.StoredFiles;
 			foreach (string s in l)
 				lbft.Items.Add(s);
+		}
+
+		private void label1_Click(object sender, System.EventArgs e)
+		{		
+			System.IO.StreamWriter sw = System.IO.File.CreateText(@"i:\replicated.txt");			
+			string objname = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, @"TSData\Res\Objects\objects.package").Trim().ToLower();
+			sw.WriteLine(System.IO.Path.GetFileName(objname)+"----------------------------------------");
+			SimPe.Interfaces.Files.IPackageFile pkg = SimPe.Packages.File.LoadFromFile(objname);
+			FileTable.FileIndex.Load();
+			lbft.Items.Clear();
+
+			int[] ct = new int[3];
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Index) 
+			{
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(pfd, null);
+			
+				bool copy = false;
+				if ((items.Length-1)<4) ct[(items.Length-1)]++;
+				foreach(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
+				{
+					if (item.Package.FileName.Trim().ToLower()!=objname)
+						copy = true;
+				}
+
+				if (!copy) 
+				{
+					lbft.Items.Add(items.Length.ToString()+": "+pfd.ToString());
+					sw.WriteLine(items.Length.ToString()+": "+pfd.ToString());
+				}
+			}
+				
+			lbft.Items.Add(" m: "+pkg.Index.Length.ToString());
+			lbft.Items.Add(" 1: "+ct[0].ToString());
+			lbft.Items.Add(" 2: "+ct[1].ToString());
+			lbft.Items.Add(" 3: "+ct[2].ToString());
+
+			sw.Close();
 		}
 
 		#region IToolExt Member
