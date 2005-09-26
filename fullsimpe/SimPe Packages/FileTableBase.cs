@@ -189,8 +189,9 @@ namespace SimPe
 			} 
 			else 
 			{
-				if (System.IO.Directory.Exists(path))
-					files = System.IO.Directory.GetFiles(path, "*.package");
+				string n = this.Name;
+				if (System.IO.Directory.Exists(n))
+					files = System.IO.Directory.GetFiles(n, "*.package");
 				else files = new string[0];
 			}
 
@@ -382,21 +383,21 @@ namespace SimPe
 					tw.WriteLine("<folders>");
 					tw.WriteLine("  <filetable>");
 					tw.WriteLine("    <file root=\"save\">Downloads\\_EnableColorOptionsGMND.package</file>");
-					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Objects</path>");					
+					tw.WriteLine("    <path root=\"ep2\" epversion=\"2\">TSData\\Res\\Objects</path>");					
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\3D</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Catalog\\Materials</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Catalog\\Skins</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Catalog\\Patterns</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Wants</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\UI</path>");
-					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Objects</path>");					
+					tw.WriteLine("    <path root=\"ep1\" epversion=\"1\">TSData\\Res\\Objects</path>");					
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\3D</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\Materials</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\Skins</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\Patterns</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Wants</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\UI</path>");
-					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Objects</path>");
+					tw.WriteLine("    <path root=\"game\" epversion=\"0\">TSData\\Res\\Objects</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Sims3D</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Catalog\\Materials</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Catalog\\Skins</path>");

@@ -522,7 +522,7 @@ namespace SimPe.Plugin
 			package.Persistent = true;			
 			if (package.FileName!=null) 
 			{
-				if ((addedfilenames.Contains(package.FileName.Trim().ToLower())) && !overwrite) return;
+				if ((this.Contains(package.FileName.Trim().ToLower())) && !overwrite) return;
 				addedfilenames.Add(package.FileName.Trim().ToLower());
 			}
 
@@ -1197,11 +1197,11 @@ namespace SimPe.Plugin
 
 		public bool Contains(string flname)
 		{
-			foreach (IScenegraphFileIndex fi in childs) 
-				if (fi.Contains(flname)) return true;
-
 			flname = flname.Trim().ToLower();
 			if (addedfilenames.Contains(flname)) return true;
+
+			foreach (IScenegraphFileIndex fi in childs) 
+				if (fi.Contains(flname)) return true;			
 
 			return false;
 
