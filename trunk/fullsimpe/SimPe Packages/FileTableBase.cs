@@ -75,15 +75,18 @@ namespace SimPe
 
 		public static string GetRoot(FileTableItemType type)
 		{
-			if (type==FileTableItemType.EP1GameFolder) return Helper.WindowsRegistry.SimsEP1Path;
-			if (type==FileTableItemType.EP2GameFolder) return Helper.WindowsRegistry.SimsEP2Path;
-			if (type==FileTableItemType.GameFolder) return Helper.WindowsRegistry.SimsPath;
-			if (type==FileTableItemType.SaveGameFolder) return Helper.WindowsRegistry.SimSavegameFolder;
-			if (type==FileTableItemType.SimPEDataFolder) return Helper.SimPeDataPath;
-			if (type==FileTableItemType.SimPEFolder) return Helper.SimPePath;
-			if (type==FileTableItemType.SimPEPluginFolder) return Helper.SimPePluginPath;
+			string ret = null;
+			if (type==FileTableItemType.EP1GameFolder) ret = Helper.WindowsRegistry.SimsEP1Path;
+			else if (type==FileTableItemType.EP2GameFolder) ret = Helper.WindowsRegistry.SimsEP2Path;
+			else if (type==FileTableItemType.GameFolder) ret = Helper.WindowsRegistry.SimsPath;
+			else if (type==FileTableItemType.SaveGameFolder) ret = Helper.WindowsRegistry.SimSavegameFolder;
+			else if (type==FileTableItemType.SimPEDataFolder) ret = Helper.SimPeDataPath;
+			else if (type==FileTableItemType.SimPEFolder) ret = Helper.SimPePath;
+			else if (type==FileTableItemType.SimPEPluginFolder) ret = Helper.SimPePluginPath;
 
-			return null;
+			if (!ret.EndsWith(@"\")) ret+=@"\";
+
+			return ret;
 		}
 
 		bool CutName(string name, FileTableItemType type)
@@ -164,7 +167,10 @@ namespace SimPe
 			get { 
 				string r = GetRoot(this.type);
 				if (r==null) return path; 
-				else return System.IO.Path.Combine(r, path);
+				
+				string p = path.Trim();
+				if (p.StartsWith(@"\")) p = path.Substring(1);
+				return System.IO.Path.Combine(r, p);
 			}
 			set { SetName(value); }
 		}
