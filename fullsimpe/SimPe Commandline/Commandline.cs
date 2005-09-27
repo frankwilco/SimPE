@@ -452,7 +452,7 @@ namespace SimPe
 		#region Import Data
 		public static void ConvertData()
 		{
-			if (Helper.WindowsRegistry.PreviousVersion<=206294785685) 
+			if (Helper.WindowsRegistry.PreviousVersion<=210590783739) 
 			{
 				string name = System.IO.Path.Combine(Helper.SimPeDataPath, "folders.xreg");
 				if (System.IO.File.Exists(name)) 
