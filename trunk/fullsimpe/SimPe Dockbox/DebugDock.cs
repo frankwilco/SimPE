@@ -167,12 +167,14 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		private void label2_Click(object sender, System.EventArgs e)
 		{
+#if DEBUG
 			lbft.Items.Clear();
 
 			SimPe.Plugin.FileIndex fi = (SimPe.Plugin.FileIndex)FileTable.FileIndex;
 			ArrayList l = fi.StoredFiles;
 			foreach (string s in l)
 				lbft.Items.Add(s);
+#endif
 		}
 
 		private void label1_Click(object sender, System.EventArgs e)

@@ -1449,17 +1449,20 @@ namespace SimPe
 					return 0;
 #else
 					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2");
-					object o = rk.GetValue("EPsInstalled");
+					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 Nightlife", false)!=null) return 2;
+					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 University", false)!=null) return 1;
+					return 0;
+					/*object o = rk.GetValue("EPsInstalled");
 					if (o==null) return 0;
 
 					string name = o.ToString().ToLower();
 					if (name.IndexOf("sims2ep2.exe")>=0) return 2;
-					else return 1; //Sims2EP1.exe
+					else return 1; //Sims2EP1.exe*/
 #endif
 				} 
 				catch (Exception) 
 				{
-					return 1;
+					return 2;
 				}
 			}
 		}
