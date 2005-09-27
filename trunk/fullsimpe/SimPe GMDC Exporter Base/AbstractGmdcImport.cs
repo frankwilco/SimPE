@@ -455,6 +455,7 @@ namespace SimPe.Plugin.Gmdc
 			GmdcLink lnk = Gmdc.Links[grp.LinkIndex];
 
 			g.Group.LinkIndex = grp.LinkIndex;
+			g.Group.UsedJoints = grp.UsedJoints;
 			
 
 			for (int i=0; i<g.Link.ReferencedElement.Count; i++) 

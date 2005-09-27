@@ -2894,6 +2894,7 @@ namespace SimPe
 		private void Activate_miOpenDownloads(object sender, System.EventArgs e)
 		{
 			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads");
+			ofd.FileName = "";
 			this.Activate_miOpen(sender, e);
 		}
 
