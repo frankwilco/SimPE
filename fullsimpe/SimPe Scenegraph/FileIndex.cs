@@ -519,6 +519,8 @@ namespace SimPe.Plugin
 		/// <param name="overwrite">true, if an existing Instance of that File should be overwritten</param>
 		public void AddIndexFromPackage(SimPe.Interfaces.Files.IPackageFile package, bool overwrite)
 		{
+			if (package==null) return;
+
 			package.Persistent = true;			
 			if (package.FileName!=null) 
 			{

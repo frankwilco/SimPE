@@ -84,7 +84,8 @@ namespace SimPe
 			else if (type==FileTableItemType.SimPEFolder) ret = Helper.SimPePath;
 			else if (type==FileTableItemType.SimPEPluginFolder) ret = Helper.SimPePluginPath;
 
-			if (!ret.EndsWith(@"\")) ret+=@"\";
+			if (ret!=null)
+				if (!ret.EndsWith(@"\")) ret+=@"\";
 
 			return ret;
 		}
@@ -191,7 +192,7 @@ namespace SimPe
 			else if (IsFile) 
 			{
 				files = new string[1];
-				files[0] = path;
+				files[0] = this.Name;
 			} 
 			else 
 			{
