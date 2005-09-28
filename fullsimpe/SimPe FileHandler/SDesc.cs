@@ -303,7 +303,7 @@ namespace SimPe.PackedFiles.UserInterface
 			}
 
 			//University
-			if (sdesc.Version==SimPe.PackedFiles.Wrapper.SDescVersions.University) 
+			if ((int)sdesc.Version>=(int)SimPe.PackedFiles.Wrapper.SDescVersions.University) 
 			{
 				if (!form.tcsdesc.TabPages.Contains(form.tbuni)) form.tcsdesc.TabPages.Add(form.tbuni);
 				form.cbmajor.SelectedIndex = 0;

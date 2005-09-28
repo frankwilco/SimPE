@@ -450,7 +450,7 @@ namespace SimPe.Plugin
 			for (int i=0; i<v1.Count; i++) v1[i].Serialize(writer);
 
 			writer.Write((int)v2.Count);			
-			for (int i=0; i<v3.Count; i++) v2[i].Serialize(writer);
+			for (int i=0; i<v2.Count; i++) v2[i].Serialize(writer);
 
 			writer.Write((int)v3.Count);			
 			for (int i=0; i<v3.Count; i++) v3[i].Serialize(writer);			

@@ -132,6 +132,7 @@ namespace SimPe
 		private System.Windows.Forms.LinkLabel llNightlife;
 		private System.Windows.Forms.TextBox tbep2;
 		private System.Windows.Forms.LinkLabel llchg;
+		private System.Windows.Forms.CheckBox cbSimTemp;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -249,6 +250,7 @@ namespace SimPe
 			this.btup = new System.Windows.Forms.Button();
 			this.hcSceneGraph = new TD.Eyefinder.HeaderControl();
 			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.cbSimTemp = new System.Windows.Forms.CheckBox();
 			this.cbDeep = new System.Windows.Forms.CheckBox();
 			this.bb = new Divelements.Navisight.ButtonBar();
 			this.nbFolders = new Divelements.Navisight.NavigationButton();
@@ -2158,6 +2160,7 @@ namespace SimPe
 			this.groupBox7.AccessibleName = resources.GetString("groupBox7.AccessibleName");
 			this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox7.Anchor")));
 			this.groupBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox7.BackgroundImage")));
+			this.groupBox7.Controls.Add(this.cbSimTemp);
 			this.groupBox7.Controls.Add(this.cbDeep);
 			this.groupBox7.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("groupBox7.Dock")));
 			this.groupBox7.Enabled = ((bool)(resources.GetObject("groupBox7.Enabled")));
@@ -2173,6 +2176,32 @@ namespace SimPe
 			this.groupBox7.Text = resources.GetString("groupBox7.Text");
 			this.toolTip1.SetToolTip(this.groupBox7, resources.GetString("groupBox7.ToolTip"));
 			this.groupBox7.Visible = ((bool)(resources.GetObject("groupBox7.Visible")));
+			// 
+			// cbSimTemp
+			// 
+			this.cbSimTemp.AccessibleDescription = resources.GetString("cbSimTemp.AccessibleDescription");
+			this.cbSimTemp.AccessibleName = resources.GetString("cbSimTemp.AccessibleName");
+			this.cbSimTemp.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbSimTemp.Anchor")));
+			this.cbSimTemp.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbSimTemp.Appearance")));
+			this.cbSimTemp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbSimTemp.BackgroundImage")));
+			this.cbSimTemp.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbSimTemp.CheckAlign")));
+			this.cbSimTemp.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbSimTemp.Dock")));
+			this.cbSimTemp.Enabled = ((bool)(resources.GetObject("cbSimTemp.Enabled")));
+			this.cbSimTemp.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbSimTemp.FlatStyle")));
+			this.cbSimTemp.Font = ((System.Drawing.Font)(resources.GetObject("cbSimTemp.Font")));
+			this.cbSimTemp.Image = ((System.Drawing.Image)(resources.GetObject("cbSimTemp.Image")));
+			this.cbSimTemp.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbSimTemp.ImageAlign")));
+			this.cbSimTemp.ImageIndex = ((int)(resources.GetObject("cbSimTemp.ImageIndex")));
+			this.cbSimTemp.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbSimTemp.ImeMode")));
+			this.cbSimTemp.Location = ((System.Drawing.Point)(resources.GetObject("cbSimTemp.Location")));
+			this.cbSimTemp.Name = "cbSimTemp";
+			this.cbSimTemp.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbSimTemp.RightToLeft")));
+			this.cbSimTemp.Size = ((System.Drawing.Size)(resources.GetObject("cbSimTemp.Size")));
+			this.cbSimTemp.TabIndex = ((int)(resources.GetObject("cbSimTemp.TabIndex")));
+			this.cbSimTemp.Text = resources.GetString("cbSimTemp.Text");
+			this.cbSimTemp.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbSimTemp.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbSimTemp, resources.GetString("cbSimTemp.ToolTip"));
+			this.cbSimTemp.Visible = ((bool)(resources.GetObject("cbSimTemp.Visible")));
 			// 
 			// cbDeep
 			// 
@@ -2199,6 +2228,7 @@ namespace SimPe
 			this.cbDeep.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbDeep.TextAlign")));
 			this.toolTip1.SetToolTip(this.cbDeep, resources.GetString("cbDeep.ToolTip"));
 			this.cbDeep.Visible = ((bool)(resources.GetObject("cbDeep.Visible")));
+			this.cbDeep.CheckedChanged += new System.EventHandler(this.cbDeep_CheckedChanged);
 			// 
 			// bb
 			// 
@@ -2668,13 +2698,13 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.hcFileTable);
-			this.Controls.Add(this.hcFolders);
 			this.Controls.Add(this.hcSceneGraph);
 			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcIdent);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
+			this.Controls.Add(this.hcFileTable);
+			this.Controls.Add(this.hcFolders);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -2737,7 +2767,8 @@ namespace SimPe
 			cbmulti.Checked = Helper.WindowsRegistry.MultipleFiles;
 			cbSimple.Checked = Helper.WindowsRegistry.SimpleResourceSelect;
 			cbFirefox.Checked = Helper.WindowsRegistry.FirefoxTabbing;
-			cbDeep.Checked = Helper.WindowsRegistry.DeepSimScan;
+			cbDeep.Checked = Helper.WindowsRegistry.DeepSimScan;			
+			cbSimTemp.Checked = Helper.WindowsRegistry.DeepSimTemplateScan;
 			cbAsync.Checked = Helper.WindowsRegistry.AsynchronLoad;
 
 			this.tbUserId.Text = "0x"+Helper.HexString(Helper.WindowsRegistry.CachedUserId);
@@ -2773,6 +2804,9 @@ namespace SimPe
 				if ((GuiTheme)cbThemes.Items[i]==gt) 
 					cbThemes.SelectedIndex = i;
 
+			//state
+			cbSimTemp.Enabled = cbDeep.Checked;
+
 			this.Tag = null;
 			this.ShowDialog();
 		}
@@ -2803,6 +2837,7 @@ namespace SimPe
 			Helper.WindowsRegistry.SimpleResourceSelect = cbSimple.Checked;
 			Helper.WindowsRegistry.FirefoxTabbing = cbFirefox.Checked;
 			Helper.WindowsRegistry.DeepSimScan = cbDeep.Checked;
+			Helper.WindowsRegistry.DeepSimTemplateScan = cbSimTemp.Checked;
 			Helper.WindowsRegistry.AsynchronLoad = cbAsync.Checked;
 
 			Helper.WindowsRegistry.Username = tbUsername.Text;
@@ -3673,6 +3708,11 @@ namespace SimPe
 				{
 					lbfolder.Items[lbfolder.SelectedIndex] = (FileTableItem)lbfolder.SelectedItem;
 				}
+		}
+
+		private void cbDeep_CheckedChanged(object sender, System.EventArgs e)
+		{
+			cbSimTemp.Enabled = cbDeep.Checked;
 		}
 	}
 }

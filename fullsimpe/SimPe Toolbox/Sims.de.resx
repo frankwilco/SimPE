@@ -158,9 +158,12 @@
     <value>Details anzeigen</value>
   </data>
   <data name="lbUbi.Text">
-    <value>Die ist eine Campus Nachbarschaft. Um die darin lebenden Sims zu bearbeiten muss die Hauptnachbarschaft geöffnet werden!</value>
+    <value>Dies ist eine Campus oder Downtown Nachbarschaft. Um die darin lebenden Sims zu bearbeiten muss die Hauptnachbarschaft geöffnet werden!</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>400, 315</value>
+  </data>
+  <data name="panel3.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>376, 312</value>
   </data>
 </root>

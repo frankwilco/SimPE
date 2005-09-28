@@ -1679,7 +1679,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			if (target==step.Index) 
 			{
-				if (lb.Items.Count==0) 
+				if (lb.Items.Count==0 && tv.Nodes.Count==0) 
 				{			
 					tv.Enabled = false;
 					lb.Enabled = false;

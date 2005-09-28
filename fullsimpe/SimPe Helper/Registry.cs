@@ -958,6 +958,24 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Should we search the objects.package's for Sims?
+		/// </summary>
+		public bool DeepSimTemplateScan
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("DeepSimTemplateScan", false);
+				return Convert.ToBoolean(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("DeepSimTemplateScan", value);
+			}
+		}
+
+		/// <summary>
 		/// Schould we load Stuff Asynchron to the main Thread?
 		/// </summary>
 		public bool AsynchronLoad
