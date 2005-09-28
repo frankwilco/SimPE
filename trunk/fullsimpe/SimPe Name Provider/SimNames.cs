@@ -57,6 +57,11 @@ namespace SimPe.Providers
 		private string dir;
 
 		/// <summary>
+		/// Additional FileIndex fro template SimNames
+		/// </summary>
+		SimPe.Interfaces.Scenegraph.IScenegraphFileIndex characterfi;
+
+		/// <summary>
 		/// Creates the List for the specific Folder
 		/// </summary>
 		/// <param name="folder">The Folder with the Character Files</param>
@@ -64,6 +69,21 @@ namespace SimPe.Providers
 		{			
 			BaseFolder = folder;
 			this.opcodes = opcodes;
+
+			ArrayList folders = new ArrayList();
+			if (Helper.WindowsRegistry.EPInstalled>=1) 
+			{
+				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, @"TSData\Res\NeighborhoodTemplate\U001\Characters\")));
+				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, @"TSData\Res\NeighborhoodTemplate\U002\Characters\")));
+				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, @"TSData\Res\NeighborhoodTemplate\U003\Characters\")));
+			}
+			if (Helper.WindowsRegistry.EPInstalled>=2) 
+			{
+				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP2Path, @"TSData\Res\NeighborhoodTemplate\D001\Characters\")));
+				
+			}
+			
+			characterfi = new SimPe.Plugin.FileIndex(folders);
 		}
 
 		/// <summary>
@@ -208,10 +228,23 @@ namespace SimPe.Providers
 
 			return a;
 		}
+		
 
 		protected void ScanFileTable()
 		{
-			ScanFileTable(0x80);
+			if (Helper.StartedGui==Executable.Classic) return;
+			if (Helper.WindowsRegistry.DeepSimTemplateScan) characterfi.Load();
+
+			FileTable.FileIndex.AddChild(characterfi);
+			try 
+			{
+				ScanFileTable(0x80);
+			}
+			finally 
+			{
+				FileTable.FileIndex.RemoveChild(characterfi);
+			}
+			
 		}
 		
 		protected void ScanFileTable(uint inst)

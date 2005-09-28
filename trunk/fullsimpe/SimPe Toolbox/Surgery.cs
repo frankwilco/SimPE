@@ -737,11 +737,11 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
-		protected void AddImage(SimPe.PackedFiles.Wrapper.SDesc sdesc) 
+		protected void AddImage(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc) 
 		{
 			if (sdesc.Image!=null) 
 			{
-				if ((sdesc.Unlinked!=0x00) || (!sdesc.AvailableCharacterData))
+				if ((sdesc.Unlinked!=0x00) || (!sdesc.AvailableCharacterData) || sdesc.IsNPC)
 				{
 					Image img = (Image)sdesc.Image.Clone();
 					System.Drawing.Graphics g = Graphics.FromImage(img);
@@ -755,12 +755,17 @@ namespace SimPe.Plugin
 					int pos = 2;
 					if (sdesc.Unlinked!=0x00) 
 					{
-						g.FillRectangle(new Pen(Data.MetaData.UnlinkedSim, 1).Brush, pos, 2, 25, 25);
+						g.FillRectangle(new SolidBrush(Data.MetaData.UnlinkedSim), pos, 2, 25, 25);
 						pos += 28;
 					}
 					if (!sdesc.AvailableCharacterData) 
 					{
-						g.FillRectangle(new Pen(Data.MetaData.InactiveSim, 1).Brush, pos, 2, 25, 25);
+						g.FillRectangle(new SolidBrush(Data.MetaData.InactiveSim), pos, 2, 25, 25);
+						pos += 28;
+					}
+					if (sdesc.IsNPC) 
+					{
+						g.FillRectangle(new SolidBrush(Data.MetaData.NPCSim), pos, 2, 25, 25);
 						pos += 28;
 					}
 
@@ -777,10 +782,15 @@ namespace SimPe.Plugin
 			}
 		}
 
-		protected void AddSim(SimPe.PackedFiles.Wrapper.SDesc sdesc) 
+		protected void AddSim(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc) 
 		{
 			if (!sdesc.HasImage) return;
 			if (!sdesc.AvailableCharacterData) return;
+#if DEBUG
+#else
+			if (sdesc.IsNPC) return;
+#endif
+			
 
 			AddImage(sdesc);
 			ListViewItem lvi = new ListViewItem();
@@ -921,7 +931,7 @@ namespace SimPe.Plugin
 			foreach(Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
 			{
 				
-				PackedFiles.Wrapper.SDesc sdesc = new SimPe.PackedFiles.Wrapper.SDesc(prov.SimNameProvider, prov.SimFamilynameProvider, null);
+				PackedFiles.Wrapper.ExtSDesc sdesc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
 				sdesc.ProcessData(spfd, package);
 				
 				//WaitingScreen.UpdateImage(ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
@@ -1000,7 +1010,9 @@ namespace SimPe.Plugin
 			this.llusepatient.Enabled = false;
 			if (lv.SelectedItems.Count==0) return;
 			this.llusearche.Enabled = true;
-			this.llusepatient.Enabled = true;
+
+
+			this.llusepatient.Enabled = !((SimPe.PackedFiles.Wrapper.ExtSDesc)lv.SelectedItems[0].Tag).IsNPC;
 		}
 
 		SimPe.PackedFiles.Wrapper.SDesc spatient = null;

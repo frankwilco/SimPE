@@ -298,6 +298,11 @@ namespace SimPe.Data
 		public static Color UnlinkedSim = Color.FromArgb(0xEF, Color.SteelBlue);
 
 		/// <summary>
+		/// Color of a NPC Sim
+		/// </summary>
+		public static Color NPCSim = Color.FromArgb(0xEF, Color.YellowGreen);
+
+		/// <summary>
 		/// Color of a Sim that has no Character Data
 		/// </summary>
 		public static Color InactiveSim = Color.FromArgb(0xEF, Color.LightCoral);

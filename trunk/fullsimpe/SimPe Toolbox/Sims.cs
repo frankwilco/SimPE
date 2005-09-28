@@ -50,6 +50,8 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ColumnHeader columnHeader8;
 		private System.Windows.Forms.ColumnHeader columnHeader9;
 		private System.Windows.Forms.Label lbUbi;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Panel panel3;
 		private System.ComponentModel.IContainer components;
 
 		public Sims()
@@ -108,6 +110,8 @@ namespace SimPe.Plugin
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.cbdetail = new System.Windows.Forms.CheckBox();
 			this.lbUbi = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.panel3 = new System.Windows.Forms.Panel();
 			this.SuspendLayout();
 			// 
 			// ilist
@@ -387,6 +391,52 @@ namespace SimPe.Plugin
 			this.toolTip1.SetToolTip(this.lbUbi, resources.GetString("lbUbi.ToolTip"));
 			this.lbUbi.Visible = ((bool)(resources.GetObject("lbUbi.Visible")));
 			// 
+			// label3
+			// 
+			this.label3.AccessibleDescription = resources.GetString("label3.AccessibleDescription");
+			this.label3.AccessibleName = resources.GetString("label3.AccessibleName");
+			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label3.Anchor")));
+			this.label3.AutoSize = ((bool)(resources.GetObject("label3.AutoSize")));
+			this.label3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label3.Dock")));
+			this.label3.Enabled = ((bool)(resources.GetObject("label3.Enabled")));
+			this.label3.Font = ((System.Drawing.Font)(resources.GetObject("label3.Font")));
+			this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
+			this.label3.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label3.ImageAlign")));
+			this.label3.ImageIndex = ((int)(resources.GetObject("label3.ImageIndex")));
+			this.label3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label3.ImeMode")));
+			this.label3.Location = ((System.Drawing.Point)(resources.GetObject("label3.Location")));
+			this.label3.Name = "label3";
+			this.label3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label3.RightToLeft")));
+			this.label3.Size = ((System.Drawing.Size)(resources.GetObject("label3.Size")));
+			this.label3.TabIndex = ((int)(resources.GetObject("label3.TabIndex")));
+			this.label3.Text = resources.GetString("label3.Text");
+			this.label3.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label3.TextAlign")));
+			this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
+			this.label3.Visible = ((bool)(resources.GetObject("label3.Visible")));
+			// 
+			// panel3
+			// 
+			this.panel3.AccessibleDescription = resources.GetString("panel3.AccessibleDescription");
+			this.panel3.AccessibleName = resources.GetString("panel3.AccessibleName");
+			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel3.Anchor")));
+			this.panel3.AutoScroll = ((bool)(resources.GetObject("panel3.AutoScroll")));
+			this.panel3.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel3.AutoScrollMargin")));
+			this.panel3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel3.AutoScrollMinSize")));
+			this.panel3.BackColor = System.Drawing.Color.YellowGreen;
+			this.panel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel3.BackgroundImage")));
+			this.panel3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel3.Dock")));
+			this.panel3.Enabled = ((bool)(resources.GetObject("panel3.Enabled")));
+			this.panel3.Font = ((System.Drawing.Font)(resources.GetObject("panel3.Font")));
+			this.panel3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("panel3.ImeMode")));
+			this.panel3.Location = ((System.Drawing.Point)(resources.GetObject("panel3.Location")));
+			this.panel3.Name = "panel3";
+			this.panel3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("panel3.RightToLeft")));
+			this.panel3.Size = ((System.Drawing.Size)(resources.GetObject("panel3.Size")));
+			this.panel3.TabIndex = ((int)(resources.GetObject("panel3.TabIndex")));
+			this.panel3.Text = resources.GetString("panel3.Text");
+			this.toolTip1.SetToolTip(this.panel3, resources.GetString("panel3.ToolTip"));
+			this.panel3.Visible = ((bool)(resources.GetObject("panel3.Visible")));
+			// 
 			// Sims
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -397,6 +447,8 @@ namespace SimPe.Plugin
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.lbUbi);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -423,11 +475,11 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
-		protected void AddImage(SimPe.PackedFiles.Wrapper.SDesc sdesc) 
+		protected void AddImage(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc) 
 		{
 			if (sdesc.Image!=null) 
 			{
-				if ((sdesc.Unlinked!=0x00) || (!sdesc.AvailableCharacterData))
+				if ((sdesc.Unlinked!=0x00) || (!sdesc.AvailableCharacterData) || sdesc.IsNPC)
 				{
 					Image img = (Image)sdesc.Image.Clone();
 					System.Drawing.Graphics g = Graphics.FromImage(img);
@@ -441,12 +493,17 @@ namespace SimPe.Plugin
 					int pos = 2;
 					if (sdesc.Unlinked!=0x00) 
 					{
-						g.FillRectangle(new Pen(Data.MetaData.UnlinkedSim, 1).Brush, pos, 2, 25, 25);
+						g.FillRectangle(new SolidBrush(Data.MetaData.UnlinkedSim), pos, 2, 25, 25);
 						pos += 28;
 					}
 					if (!sdesc.AvailableCharacterData) 
 					{
-						g.FillRectangle(new Pen(Data.MetaData.InactiveSim, 1).Brush, pos, 2, 25, 25);
+						g.FillRectangle(new SolidBrush(Data.MetaData.InactiveSim), pos, 2, 25, 25);
+						pos += 28;
+					}
+					if (sdesc.IsNPC) 
+					{
+						g.FillRectangle(new SolidBrush(Data.MetaData.NPCSim), pos, 2, 25, 25);
 						pos += 28;
 					}
 
@@ -466,7 +523,7 @@ namespace SimPe.Plugin
 			}
 		}
 
-		protected void AddSim(SimPe.PackedFiles.Wrapper.SDesc sdesc) 
+		protected void AddSim(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc) 
 		{
 			if (!sdesc.HasImage) return;
 
@@ -518,7 +575,7 @@ namespace SimPe.Plugin
 			this.Cursor = Cursors.WaitCursor;
 			
 			SimPe.Plugin.Idno idno = SimPe.Plugin.Idno.FromPackage(package);
-			if (idno!=null) this.lbUbi.Visible = (idno.Type == NeighborhoodType.University);
+			if (idno!=null) this.lbUbi.Visible = (idno.Type != NeighborhoodType.Normal );
 			this.pfd = null;
 			ilist.Images.Clear();
 			lv.Items.Clear();
@@ -528,7 +585,7 @@ namespace SimPe.Plugin
 			foreach(Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
 			{
 				WaitingScreen.Wait();
-				PackedFiles.Wrapper.SDesc sdesc = new SimPe.PackedFiles.Wrapper.SDesc(prov.SimNameProvider, prov.SimFamilynameProvider, null);
+				PackedFiles.Wrapper.ExtSDesc sdesc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
 				sdesc.ProcessData(spfd, package);
 				
 				//WaitingScreen.UpdateImage(ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
