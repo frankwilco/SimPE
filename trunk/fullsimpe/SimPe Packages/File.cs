@@ -542,6 +542,7 @@ namespace SimPe.Packages
 		{
 			get 
 			{
+				if (fileindex==null) fileindex = new IPackedFileDescriptor[0];
 				return fileindex;
 			}
 			set 
