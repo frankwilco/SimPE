@@ -223,6 +223,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IListener.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ITool.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
