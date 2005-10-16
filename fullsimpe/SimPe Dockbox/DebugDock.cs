@@ -147,7 +147,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		public void RefreshDock(object sender, SimPe.Events.ResourceEventArgs es)
 		{
-			lbMem.Text = GC.GetTotalMemory(false).ToString("N0") + " Byte";			
+			lbMem.Text = GC.GetTotalMemory(false).ToString("N0") + " Byte";					
 		}
 
 

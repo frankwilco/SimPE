@@ -355,8 +355,24 @@ namespace SimPe
 				AddMenuItem(ref ev, mi.Items, item, parts);
 			}
 
+			
+
 			BuildToolBar(tb, mi.Items, new ArrayList());
 			//EnableMenuItems(null);
+		}
+
+		/// <summary>
+		/// Link all Listeners with the GUI Control
+		/// </summary>
+		/// <param name="ev"></param>
+		public void AddListeners(ref SimPe.Events.ChangedResourceEvent ev)
+		{
+			//load Listeners
+			foreach (IListener item in  FileTable.ToolRegistry.Listeners)
+			{
+				ev += new SimPe.Events.ChangedResourceEvent(item.SelectionChangedHandler);
+				item.SelectionChangedHandler(item, new SimPe.Events.ResourceEventArgs(null));
+			}
 		}
 
 		/*/// <summary>

@@ -20,7 +20,7 @@
 using System;
 
 namespace SimPe.Plugin.Tool.Action
-{
+{	
 	/// <summary>
 	/// The ReloadFileTable Action
 	/// </summary>
