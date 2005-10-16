@@ -218,7 +218,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Contains a List of all Folders you want to check
 		/// </summary>
-		ArrayList folders;
+		ArrayList folders;		
 
 		/// <summary>
 		/// Contains a List of the Filenames of all added packages
@@ -347,11 +347,39 @@ namespace SimPe.Plugin
 		#endregion
 
 		/// <summary>
+		/// Returns the List of all Folders this FileIndex is processing
+		/// </summary>
+		public ArrayList BaseFolders
+		{
+			get {return folders;}
+			set { folders = value; }
+		}
+
+		ArrayList ignoredfl;
+		/// <summary>
+		/// Returns a List of FileNames that should be Ignored
+		/// </summary>
+		/// <returns></returns>
+		public void LoadIgnoredFiles()
+		{
+			if (ignoredfl!=null) ignoredfl.Clear();
+			else ignoredfl = new ArrayList();
+
+			if (folders!=null) 
+			{
+				foreach (FileTableItem fti in folders)
+				{
+					if (fti.IsFile && fti.IsUseable && fti.Ignore) ignoredfl.Add(fti.Name.Trim().ToLower());
+				}
+			}			
+		}
+
+		/// <summary>
 		/// Initialize the instance Data
 		/// </summary>
 		/// <param name="folders">Fodlers to scan</param>
 		protected void Init(ArrayList folders)
-		{	
+		{				
 			addedfilenames = new ArrayList();
 			duplicates = false;			
 
@@ -368,7 +396,7 @@ namespace SimPe.Plugin
 			StoreCurrentState();
 
 			if (folders==null) folders = FileTable.DefaultFolders;
-			this.folders = folders;
+			this.folders = folders;			
 		}
 
 		/// <summary>
@@ -442,11 +470,12 @@ namespace SimPe.Plugin
 			ScenegraphWrapperFactory.LoadGroupCache();	
 						
 			this.Clear();
+			this.LoadIgnoredFiles();
 
 			int ct = 0;
 			foreach (FileTableItem fti in folders) 
 			{
-				if (HaveToStop) break;
+				if (HaveToStop) break;				
 				Wait.Progress = ct++;
 				AddIndexFromFolder(fti);
 			}
@@ -460,6 +489,8 @@ namespace SimPe.Plugin
 		/// <param name="fti">A FileTableItem describing the Location</param>
 		public void AddIndexFromFolder(FileTableItem fti)
 		{
+			if (fti.Ignore) return;
+
 			string[] files = fti.GetFiles();
 			
 			foreach (string afile in files)
@@ -493,6 +524,8 @@ namespace SimPe.Plugin
 		/// <remarks>Updates the WaitingScreen Message</remarks>
 		public void AddIndexFromPackage(string file)
 		{
+			if (this.ignoredfl.Contains(file.Trim().ToLower())) return;
+
 			Wait.Message = SimPe.Localization.GetString("Loading")+" \""+System.IO.Path.GetFileNameWithoutExtension(file)+"\"";
 			try 
 			{

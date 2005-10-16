@@ -416,10 +416,10 @@
     <value>16, 9</value>
   </data>
   <data name="lladddown.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>432, 336</value>
+    <value>424, 240</value>
   </data>
   <data name="lladddown.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>192, 23</value>
+    <value>192, 16</value>
   </data>
   <data name="lladddown.Text">
     <value>Downloads Verz. aufnehmen</value>
@@ -428,10 +428,10 @@
     <value>0, 7</value>
   </data>
   <data name="lldel.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>112, 336</value>
+    <value>88, 240</value>
   </data>
   <data name="lldel.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>64, 23</value>
+    <value>64, 16</value>
   </data>
   <data name="lldel.Text">
     <value>löschen</value>
@@ -442,26 +442,14 @@
   <data name="lladd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>0, 10</value>
   </data>
-  <data name="lladd.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>32, 336</value>
-  </data>
   <data name="lladd.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>80, 23</value>
+    <value>80, 16</value>
   </data>
   <data name="lladd.Text">
     <value>hinzufügen</value>
   </data>
   <data name="lladd.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>TopRight</value>
-  </data>
-  <data name="lbfolder.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>592, 277</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>192, 23</value>
-  </data>
-  <data name="label9.Text">
-    <value>Durchsuchte Verzeichnisse:</value>
   </data>
   <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>232, 80</value>
@@ -577,20 +565,89 @@
   <data name="hcFileTable.Text">
     <value>FileTable (Suchpfad)</value>
   </data>
-  <data name="llchg.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>176, 336</value>
+  <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>384, 64</value>
   </data>
-  <data name="llchg.Text">
-    <value>ändern</value>
+  <data name="groupBox8.Text">
+    <value>Einstellungen:</value>
+  </data>
+  <data name="cbIncNightlife.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>216, 36</value>
+  </data>
+  <data name="cbIncNightlife.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>160, 24</value>
+  </data>
+  <data name="cbIncNightlife.Text">
+    <value>Nightlife Dateien einbinden</value>
+  </data>
+  <data name="cbIncUni.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>216, 16</value>
+  </data>
+  <data name="cbIncUni.Text">
+    <value>WCJ Dateien einbinden</value>
+  </data>
+  <data name="cbIncGame.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>No</value>
+  </data>
+  <data name="cbIncGame.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>192, 24</value>
+  </data>
+  <data name="cbIncGame.Text">
+    <value>Orginal Spieledateien einbinden</value>
+  </data>
+  <data name="cbIncCep.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>96, 24</value>
+  </data>
+  <data name="cbIncCep.Text">
+    <value>CEP einbinden</value>
+  </data>
+  <data name="btReload.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>586, 2</value>
+  </data>
+  <data name="btReload.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>84, 22</value>
+  </data>
+  <data name="btReload.Text">
+    <value>neu laden  </value>
+  </data>
+  <data name="groupBox9.Text">
+    <value>Erweiterte Einstellungen:</value>
+  </data>
+  <data name="btup.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btup.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="btup.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAgdJREFUOE/NkltI
+        01EYwP9BRkSZlCmJOjV3sctWRHnb3IKuKkLZDDR8qRQK6SWIJKsHWbrAh95EC0RHW7U/WRErSRADy9Sy
+        C5VFeWmUWS5WtM3lfp2skCBkPQQd+HH4+M75fd93OJL0H6+UmI15F7tNW5o6RJNRf9toRGJmo+xwjWO7
+        Nk78WkuzEMwKW7LEYK2ravnAs+EvDIz4qLR5WLT+0PGwBJGm6v0H7J946J7gXL9vioGxr5Q7vKG5a0p2
+        zyiZk16eWyIHfL2jk1x6FSKleYJltiCXh0L0jIFZ/uiRVKbsP0vSS7X5std95z2cH4aMNki4IrgK2e0g
+        v4bbHtjjejMoxaqSf5fEamP0F0Z7a57D2UHY1AVJ4lLaLVguSO6A/B5oGgHLEKyr72qXpMULfkkidKc7
+        W4+8gFMvoaAflN2gE/vqRz/QCdT3YNdTqBPdHRYoT7Q0TAkicyuK9j2GSpEsuA853ztww9a3sO3dNJtF
+        vEGMUfQEqkSh4r5gcPYKQ5YUvfPk0bK7kNcJia3i4VwhVopYKypqH0yzqg9Sb4aId05iFvlSMdLC4uoy
+        KUp/8Jix8TMJ9V7izviIa/ChcPhRXg+gbvvJjQAKpx+F3U+SM0CqPUCOzct8Y8VeMcS8peqMHTWqzO1W
+        jaGwVmMw12qMMyDyKr3ZmpZVaBGXo8P6XP/00DfK/FVG/vJmNAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btup.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>624, 20</value>
+  </data>
+  <data name="btup.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>24, 24</value>
+  </data>
+  <data name="btup.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>35</value>
   </data>
   <data name="btdn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Bottom, Right</value>
   </data>
   <data name="btdn.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
-  </data>
-  <data name="btdn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Flat</value>
   </data>
   <data name="btdn.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -609,7 +666,7 @@
 </value>
   </data>
   <data name="btdn.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>632, 304</value>
+    <value>624, 56</value>
   </data>
   <data name="btdn.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>24, 24</value>
@@ -617,53 +674,35 @@
   <data name="btdn.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>36</value>
   </data>
-  <data name="btdn.Text">
-    <value />
+  <data name="linkLabel6.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0, 12</value>
   </data>
-  <data name="btup.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Bottom, Right</value>
+  <data name="linkLabel6.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>312, 240</value>
   </data>
-  <data name="btup.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="linkLabel6.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>104, 16</value>
+  </data>
+  <data name="linkLabel6.Text">
+    <value>zurücksetzen</value>
+  </data>
+  <data name="lbfolder.IntegralHeight" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
-  <data name="btup.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Flat</value>
+  <data name="lbfolder.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 20</value>
   </data>
-  <data name="btup.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAgdJREFUOE/NkltI
-        01EYwP9BRkSZlCmJOjV3sctWRHnb3IKuKkLZDDR8qRQK6SWIJKsHWbrAh95EC0RHW7U/WRErSRADy9Sy
-        C5VFeWmUWS5WtM3lfp2skCBkPQQd+HH4+M75fd93OJL0H6+UmI15F7tNW5o6RJNRf9toRGJmo+xwjWO7
-        Nk78WkuzEMwKW7LEYK2ravnAs+EvDIz4qLR5WLT+0PGwBJGm6v0H7J946J7gXL9vioGxr5Q7vKG5a0p2
-        zyiZk16eWyIHfL2jk1x6FSKleYJltiCXh0L0jIFZ/uiRVKbsP0vSS7X5std95z2cH4aMNki4IrgK2e0g
-        v4bbHtjjejMoxaqSf5fEamP0F0Z7a57D2UHY1AVJ4lLaLVguSO6A/B5oGgHLEKyr72qXpMULfkkidKc7
-        W4+8gFMvoaAflN2gE/vqRz/QCdT3YNdTqBPdHRYoT7Q0TAkicyuK9j2GSpEsuA853ztww9a3sO3dNJtF
-        vEGMUfQEqkSh4r5gcPYKQ5YUvfPk0bK7kNcJia3i4VwhVopYKypqH0yzqg9Sb4aId05iFvlSMdLC4uoy
-        KUp/8Jix8TMJ9V7izviIa/ChcPhRXg+gbvvJjQAKpx+F3U+SM0CqPUCOzct8Y8VeMcS8peqMHTWqzO1W
-        jaGwVmMw12qMMyDyKr3ZmpZVaBGXo8P6XP/00DfK/FVG/vJmNAAAAABJRU5ErkJggg==
-</value>
+  <data name="lbfolder.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>600, 216</value>
   </data>
-  <data name="btup.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
+  <data name="llchg.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>152, 240</value>
   </data>
-  <data name="btup.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>632, 272</value>
-  </data>
-  <data name="btup.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>24, 24</value>
-  </data>
-  <data name="btup.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>35</value>
-  </data>
-  <data name="btup.Text">
-    <value />
+  <data name="llchg.Text">
+    <value>ändern</value>
   </data>
   <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>248, 32</value>
-  </data>
-  <data name="checkBox1.Text">
-    <value>einschl. Templates</value>
   </data>
   <data name="cbDeep.Text">
     <value>Tiefensuche (by TazzMann)</value>
