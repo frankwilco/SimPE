@@ -526,11 +526,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "Surgery.de-DE.resx"
-                    DependentUpon = "Surgery.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "Surgery.pl.resx"
                     DependentUpon = "Surgery.cs"
                     BuildAction = "EmbeddedResource"

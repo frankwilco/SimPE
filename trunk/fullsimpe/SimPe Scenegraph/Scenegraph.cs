@@ -928,6 +928,10 @@ namespace SimPe.Plugin
 				//xobj
 				AddFromXml(cpf.GetItem("material"), "_txmt", Data.MetaData.TXMT);
 
+				//hood object
+				if (pfd.Type == Data.MetaData.XNGB) 
+					AddFromXml(cpf.GetItem("modelname"), "_cres", Data.MetaData.CRES);
+
 				//fences
 				AddFromXml(cpf.GetItem("diagrail"), "_cres", Data.MetaData.CRES);
 				AddFromXml(cpf.GetItem("post"), "_cres", Data.MetaData.CRES);

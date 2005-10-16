@@ -47,6 +47,9 @@ namespace Sims.GUID
 		private System.Windows.Forms.Button button2;
 		public System.Windows.Forms.TextBox tbobject;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label lbFree;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -103,6 +106,9 @@ namespace Sims.GUID
 			this.button2 = new System.Windows.Forms.Button();
 			this.tbobject = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
+			this.button3 = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
+			this.lbFree = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -111,25 +117,29 @@ namespace Sims.GUID
 			// 
 			// label1
 			// 
-			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label1.Location = new System.Drawing.Point(13, 32);
+			this.label1.Location = new System.Drawing.Point(13, 28);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(73, 17);
+			this.label1.Size = new System.Drawing.Size(115, 17);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Username:";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// tbusername
 			// 
-			this.tbusername.Location = new System.Drawing.Point(88, 24);
+			this.tbusername.Location = new System.Drawing.Point(136, 24);
 			this.tbusername.MaxLength = 200;
 			this.tbusername.Name = "tbusername";
 			this.tbusername.Size = new System.Drawing.Size(264, 21);
 			this.tbusername.TabIndex = 1;
 			this.tbusername.Text = "";
+			this.tbusername.TextChanged += new System.EventHandler(this.tbusername_TextChanged);
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.lbFree);
+			this.groupBox1.Controls.Add(this.label4);
+			this.groupBox1.Controls.Add(this.button3);
 			this.groupBox1.Controls.Add(this.linkLabel1);
 			this.groupBox1.Controls.Add(this.tbUserGUID);
 			this.groupBox1.Controls.Add(this.button1);
@@ -140,28 +150,28 @@ namespace Sims.GUID
 			this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox1.Location = new System.Drawing.Point(8, 8);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(360, 120);
+			this.groupBox1.Size = new System.Drawing.Size(408, 144);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "User Data";
 			// 
 			// linkLabel1
 			// 
-			this.linkLabel1.AutoSize = true;
 			this.linkLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.linkLabel1.LinkArea = new System.Windows.Forms.LinkArea(5, 4);
-			this.linkLabel1.Location = new System.Drawing.Point(16, 88);
+			this.linkLabel1.Location = new System.Drawing.Point(16, 92);
 			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.Size = new System.Drawing.Size(76, 17);
+			this.linkLabel1.Size = new System.Drawing.Size(112, 17);
 			this.linkLabel1.TabIndex = 7;
 			this.linkLabel1.TabStop = true;
 			this.linkLabel1.Text = "User GUID:";
+			this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.UpdateGUID);
 			// 
 			// tbUserGUID
 			// 
 			this.tbUserGUID.Enabled = false;
-			this.tbUserGUID.Location = new System.Drawing.Point(96, 88);
+			this.tbUserGUID.Location = new System.Drawing.Point(136, 88);
 			this.tbUserGUID.MaxLength = 200;
 			this.tbUserGUID.Name = "tbUserGUID";
 			this.tbUserGUID.Size = new System.Drawing.Size(96, 21);
@@ -171,7 +181,7 @@ namespace Sims.GUID
 			// button1
 			// 
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button1.Location = new System.Drawing.Point(224, 88);
+			this.button1.Location = new System.Drawing.Point(272, 86);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(128, 23);
 			this.button1.TabIndex = 4;
@@ -180,7 +190,7 @@ namespace Sims.GUID
 			// 
 			// tbpassword
 			// 
-			this.tbpassword.Location = new System.Drawing.Point(88, 48);
+			this.tbpassword.Location = new System.Drawing.Point(136, 48);
 			this.tbpassword.MaxLength = 200;
 			this.tbpassword.Name = "tbpassword";
 			this.tbpassword.PasswordChar = '*';
@@ -190,19 +200,19 @@ namespace Sims.GUID
 			// 
 			// label2
 			// 
-			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label2.Location = new System.Drawing.Point(16, 56);
+			this.label2.Location = new System.Drawing.Point(16, 52);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(70, 17);
+			this.label2.Size = new System.Drawing.Size(112, 17);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Password:";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// lbnames
 			// 
 			this.lbnames.Location = new System.Drawing.Point(8, 8);
 			this.lbnames.Name = "lbnames";
-			this.lbnames.Size = new System.Drawing.Size(304, 134);
+			this.lbnames.Size = new System.Drawing.Size(352, 134);
 			this.lbnames.TabIndex = 3;
 			this.lbnames.SelectedIndexChanged += new System.EventHandler(this.SelectedObject);
 			// 
@@ -211,7 +221,7 @@ namespace Sims.GUID
 			this.lluse.AutoSize = true;
 			this.lluse.Enabled = false;
 			this.lluse.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lluse.Location = new System.Drawing.Point(320, 128);
+			this.lluse.Location = new System.Drawing.Point(368, 128);
 			this.lluse.Name = "lluse";
 			this.lluse.Size = new System.Drawing.Size(26, 17);
 			this.lluse.TabIndex = 4;
@@ -223,10 +233,10 @@ namespace Sims.GUID
 			// 
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Location = new System.Drawing.Point(8, 136);
+			this.tabControl1.Location = new System.Drawing.Point(8, 160);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(360, 176);
+			this.tabControl1.Size = new System.Drawing.Size(408, 176);
 			this.tabControl1.TabIndex = 5;
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
@@ -236,7 +246,7 @@ namespace Sims.GUID
 			this.tabPage1.Controls.Add(this.lluse);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Size = new System.Drawing.Size(352, 150);
+			this.tabPage1.Size = new System.Drawing.Size(400, 150);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Existing Objects";
 			// 
@@ -247,14 +257,14 @@ namespace Sims.GUID
 			this.tabPage2.Controls.Add(this.label3);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Size = new System.Drawing.Size(352, 150);
+			this.tabPage2.Size = new System.Drawing.Size(400, 150);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "New Object";
 			// 
 			// button2
 			// 
 			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button2.Location = new System.Drawing.Point(216, 56);
+			this.button2.Location = new System.Drawing.Point(256, 56);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(128, 23);
 			this.button2.TabIndex = 10;
@@ -266,7 +276,7 @@ namespace Sims.GUID
 			this.tbobject.Location = new System.Drawing.Point(24, 32);
 			this.tbobject.MaxLength = 200;
 			this.tbobject.Name = "tbobject";
-			this.tbobject.Size = new System.Drawing.Size(320, 21);
+			this.tbobject.Size = new System.Drawing.Size(360, 21);
 			this.tbobject.TabIndex = 9;
 			this.tbobject.Text = "";
 			// 
@@ -280,10 +290,40 @@ namespace Sims.GUID
 			this.label3.TabIndex = 8;
 			this.label3.Text = "Object Name:";
 			// 
+			// button3
+			// 
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button3.Location = new System.Drawing.Point(272, 114);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(128, 23);
+			this.button3.TabIndex = 8;
+			this.button3.Text = "Add GUID Block";
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
+			// label4
+			// 
+			this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label4.Location = new System.Drawing.Point(16, 120);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(112, 17);
+			this.label4.TabIndex = 9;
+			this.label4.Text = "Available GUIDs:";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
+			// lbFree
+			// 
+			this.lbFree.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lbFree.Location = new System.Drawing.Point(136, 120);
+			this.lbFree.Name = "lbFree";
+			this.lbFree.Size = new System.Drawing.Size(112, 17);
+			this.lbFree.TabIndex = 10;
+			this.lbFree.Text = "0";
+			this.lbFree.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			// 
 			// GUIDGetterForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-			this.ClientSize = new System.Drawing.Size(378, 320);
+			this.ClientSize = new System.Drawing.Size(426, 344);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.groupBox1);
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -314,28 +354,63 @@ namespace Sims.GUID
 			uint userguid = 0xf000000;
 			if (username.Trim()!="") userguid = (uint)service.loginUser(username, password);
 
+			
 			return userguid;
 		}
 
 		public uint GetNewGUID(string user, string password, uint defguid) 
 		{
+			return GetNewGUID(user, password, defguid, null);
+		}
+
+		public uint GetNewGUID(string user, string password, uint defguid, string name) 
+		{
 			lluse.Enabled = false;
 			this.retguid = defguid;
 			
 			service = new Sims.GUID.Service.SimGUIDService();
+			
 			this.tbusername.Text = user;
 			this.tbpassword.Text = password;	
 			this.tabControl1.SelectedIndex=1;
+			if (name==null) name="";
+			this.tbobject.Text = name;
 						
+			UpdateGUID(false);
 			this.ShowDialog();
 
 			return retguid;
 		}
 
+		void FreeGuids()
+		{			
+			int free = 0;
+			try 
+			{
+				free = service.freeGuids(tbusername.Text, tbpassword.Text);
+			} 
+			catch (Exception ex) 
+			{
+				SimPe.Helper.ExceptionMessage(ex);
+			}
+			this.lbFree.Text = free.ToString();
+			button2.Enabled = (free>0);
+			button3.Enabled = (free<=0);
+		}
+
 		private void UpdateGUID(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			UpdateGUID(true);
+		}
+
+		private void UpdateGUID(bool all)
 		{
 			try 
 			{
+				button2.Enabled = false;
+				button3.Enabled = false;
+
+				this.lbFree.Text = "0";
 				uint userguid = 0xf000000;
 				if (tbusername.Text!="") userguid = (uint)service.loginUser(tbusername.Text, tbpassword.Text);
 
@@ -344,28 +419,36 @@ namespace Sims.GUID
 				{
 					this.tbUserGUID.Text = "0x"+userguid.ToString("X");
 
-				//	string res = service.listRegistredObjects(tbusername.Text, tbpassword.Text);					
-					string res = service.enumerateRegistredObjects(tbusername.Text, tbpassword.Text);
-					System.Collections.Hashtable ht = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
+					button1.Enabled = (userguid==0xf000000);
+					FreeGuids();
+					button3.Enabled = button3.Enabled && (!button1.Enabled);
+
+					if (all) 
+					{
+						//string res = service.listRegistredObjects(tbusername.Text, tbpassword.Text);					
+						string res = service.extEnumerateRegistredObjects(tbusername.Text, tbpassword.Text, 0);
+						System.Collections.Hashtable ht = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
 				
 
-					foreach (string s in ht.Values) 
-					{
-						string[] parts = s.Split(" ".ToCharArray(), 3);
-						if (parts.Length==3) 
+						foreach (string s in ht.Values) 
 						{
-							//res = service.describeRegistredObjects(tbusername.Text, tbpassword.Text, guid);
-							System.Collections.Hashtable data = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
-							uint objguid = Convert.ToUInt32(parts[0]);
-							objguid = BuildGUID(userguid, objguid);
-							this.lbnames.Items.Add(new ObjectListItem(objguid, parts[2]));
-							Application.DoEvents();
-						} else throw new Exception("Invalid Result while retriving Object Informations.");
+							string[] parts = s.Split(" ".ToCharArray(), 3);
+							if (parts.Length==3) 
+							{
+								//res = service.describeRegistredObjects(tbusername.Text, tbpassword.Text, guid);
+								System.Collections.Hashtable data = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
+								uint objguid = Convert.ToUInt32(parts[0]);
+								uint uguid = Convert.ToUInt32(parts[1]);
+								objguid = BuildGUID(uguid, objguid);
+								this.lbnames.Items.Add(new ObjectListItem(objguid, parts[2]));
+								Application.DoEvents();
+							} 
+							else throw new Exception("Invalid Result while retriving Object Informations.");
 						
+						}
 					}
 				}
-				else this.tbUserGUID.Text = "0x0";
-
+				else this.tbUserGUID.Text = "0x0";				
 			} 
 			catch (Exception ex)
 			{
@@ -376,6 +459,7 @@ namespace Sims.GUID
 
 		private void RegisterNewUser(object sender, System.EventArgs e)
 		{
+			if (System.Windows.Forms.MessageBox.Show("You will only need one User Account int the GUID-Database from now on.\nWhenever you run out of GUIDs, you can simply add another GUID-Block.\n\nAre you sure you want to create a new User?", "Confirm", MessageBoxButtons.YesNo)==DialogResult.No) return;
 			try 
 			{
 				bool res = this.service.registerUser(tbusername.Text, tbpassword.Text);
@@ -418,14 +502,15 @@ namespace Sims.GUID
 					MessageBox.Show("Your Login Data was not accepted by the GUID Database!");
 					return;
 				}
-				uint res = (uint)this.service.registerObject(tbusername.Text, tbpassword.Text, this.tbobject.Text, false);
-				if (res == 0xf00) 
+
+				uint res = (uint)this.service.extRegisterObject(tbusername.Text, tbpassword.Text, this.tbobject.Text, 0);
+				if (res == 0x00) 
 				{
-					MessageBox.Show("Failed to register a new Object.\n\nMaybe you have already Regsitred 256 Objects for this User?");
+					MessageBox.Show("Failed to register a new Object.\n\nMaybe you have no more free GUIDs?");
 					return;
 				}
 
-				this.retguid = BuildGUID(userguid, res);
+				this.retguid = res; //BuildGUID(userguid, res);
 				Close();
 			} 
 			catch (Exception ex) 
@@ -444,6 +529,29 @@ namespace Sims.GUID
 			if (tabControl1.SelectedIndex==0 && lbnames.Items.Count==0) 
 			{
 				this.BeginInvoke(new LinkLabelLinkClickedEventHandler(UpdateGUID), new object[2]);
+			}
+		}
+
+		private void tbusername_TextChanged(object sender, System.EventArgs e)
+		{
+			/*if (tbusername.Text.Trim()!="") button1.Enabled = false;
+			else button1.Enabled = true;*/
+		}
+
+		private void button3_Click(object sender, System.EventArgs e)
+		{
+			try 
+			{
+				if (!service.addUserRange(tbusername.Text, tbpassword.Text))
+				{
+					MessageBox.Show("Failed to register a new Range for this User.");
+				}
+				
+				FreeGuids();
+			} 
+			catch( Exception ex) 
+			{
+				SimPe.Helper.ExceptionMessage(ex);
 			}
 		}
 	}

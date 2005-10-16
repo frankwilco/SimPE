@@ -48,6 +48,7 @@ namespace SimPe.PackedFiles.UserInterface
 			tc.AddControl(this.panel2);
 			tc.AddControl(this.pool);
 			tc.AddControl(this.xpGradientPanel1);
+			tc.AddControl(this.miAddTie);
 
 			ties.Parent = null;
 			ties.Parent = this.panel1;
@@ -184,8 +185,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.ties.LineMode = Ambertation.Windows.Forms.Graph.LinkControlLineMode.Bezier;
 			this.ties.Location = ((System.Drawing.Point)(resources.GetObject("ties.Location")));
 			this.ties.LockItems = false;
-			this.ties.MinHeight = 0;
-			this.ties.MinWidth = 0;
+			this.ties.MinHeight = 296;
+			this.ties.MinWidth = 520;
 			this.ties.Name = "ties";
 			this.ties.Quality = true;
 			this.ties.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("ties.RightToLeft")));
@@ -528,28 +529,20 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pool.AutoScroll = ((bool)(resources.GetObject("pool.AutoScroll")));
 			this.pool.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("pool.AutoScrollMargin")));
 			this.pool.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("pool.AutoScrollMinSize")));
-			this.pool.AutoSize = true;
 			this.pool.BackColor = System.Drawing.SystemColors.Info;
 			this.pool.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pool.BackgroundImage")));
 			this.pool.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pool.Dock")));
 			this.pool.Enabled = ((bool)(resources.GetObject("pool.Enabled")));
 			this.pool.Font = ((System.Drawing.Font)(resources.GetObject("pool.Font")));
 			this.pool.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pool.ImeMode")));
-			this.pool.LineMode = Ambertation.Windows.Forms.Graph.LinkControlLineMode.Bezier;
 			this.pool.Location = ((System.Drawing.Point)(resources.GetObject("pool.Location")));
-			this.pool.LockItems = true;
-			this.pool.MinHeight = 0;
-			this.pool.MinWidth = 0;
 			this.pool.Name = "pool";
 			this.pool.Package = null;
-			this.pool.Quality = true;
 			this.pool.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pool.RightToLeft")));
 			this.menuBar1.SetSandBarMenu(this.pool, this.miTies);
-			this.pool.SaveBounds = false;
 			this.pool.SelectedElement = null;
 			this.pool.Size = ((System.Drawing.Size)(resources.GetObject("pool.Size")));
 			this.pool.TabIndex = ((int)(resources.GetObject("pool.TabIndex")));
-			this.pool.Text = resources.GetString("pool.Text");
 			this.pool.Visible = ((bool)(resources.GetObject("pool.Visible")));
 			this.pool.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.pool_SelectedSimChanged);
 			this.pool.ClickOverSim += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.pool_ClickOverSim);
@@ -883,8 +876,8 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			if (sdesc!=null && sdesc!=currentsdsc) 
 			{
-				Ambertation.Windows.Forms.Graph.ImagePanel ip = pool.FindItem(sdesc);				
-				pool.SelectedElement = ip;
+				//Ambertation.Windows.Forms.Graph.ImagePanel ip = pool.FindItem(sdesc);				
+				pool.SelectedElement = sdesc;
 			}
 			
 		}

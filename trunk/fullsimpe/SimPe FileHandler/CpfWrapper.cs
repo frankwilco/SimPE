@@ -384,7 +384,8 @@ namespace SimPe.PackedFiles.Wrapper
 								   0x8C93E35C, //Face Arch
 								   Data.MetaData.XROF, //Roofs
 								   Data.MetaData.XFLR, //Floors
-								   Data.MetaData.XFNC // Fences
+								   Data.MetaData.XFNC, // Fences
+								   Data.MetaData.XNGB  // Hood Objects
 							   };
 			
 				return types;

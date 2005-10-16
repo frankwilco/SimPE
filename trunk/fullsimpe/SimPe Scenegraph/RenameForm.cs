@@ -389,7 +389,7 @@ namespace SimPe.Plugin
 
 			string old = Hashes.StripHashFromName(FindMainOldName(package).ToLower().Trim());
 			current_unique = GetUniqueName();
-			if (old.IndexOf("_cres")==old.Length-5) old = old.Substring(0, old.Length-5);
+			if (old.EndsWith("_cres")) old = old.Substring(0, old.Length-5);
 			if (uniquename) 
 			{
 				string name = RenameForm.ReplaceOldUnique(old, current_unique, true);

@@ -345,11 +345,13 @@ namespace SimPe
 			
 			foreach (ITool tool in tools)
 			{
-				string name = tool.ToString();
+				string name = tool.ToString().Trim();
+				if (name=="") continue;
+
 				string[] parts = name.Split("\\".ToCharArray());
 				name = SimPe.Localization.GetString(parts[parts.Length-1]);
 				ToolMenuItemExt item = new ToolMenuItemExt(name, tool, chghandler);
-
+				
 				AddMenuItem(ref ev, mi.Items, item, parts);
 			}
 

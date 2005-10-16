@@ -789,7 +789,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 			try 
 			{
-				uint guid = form.GetNewGUID(reg.Username, reg.Password, this.wrapper.Guid);
+				uint guid = form.GetNewGUID(reg.Username, reg.Password, this.wrapper.Guid, this.tbflname.Text);
 
 				reg.Username = form.tbusername.Text;
 				reg.Password = form.tbpassword.Text;
