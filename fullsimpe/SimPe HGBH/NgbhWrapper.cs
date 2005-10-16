@@ -146,7 +146,7 @@ namespace SimPe.Plugin
 			};
 			zonename = Helper.ToBytes("temperate", 9);
 			zero = new byte[0x10];
-			preitems = new NgbhSlotList[0x03];
+			preitems = new NgbhSlotList[0x02];
 			for (int i=0; i<preitems.Length; i++) preitems[i] = new NgbhSlotList(this);
 			
 			slota = new NgbhSlot[0];
@@ -202,9 +202,9 @@ namespace SimPe.Plugin
 			header = reader.ReadBytes(header.Length);
 
 			int textlen = reader.ReadInt32();
-			zonename = reader.ReadBytes(textlen);
-			if (version>=(uint)NgbhVersion.Nightlife) zero = reader.ReadBytes(0x08);
-			else zero = reader.ReadBytes(0x10);
+			zonename = reader.ReadBytes(textlen);			
+			if (version>=(uint)NgbhVersion.Nightlife) zero = reader.ReadBytes(0x14);
+			else zero = reader.ReadBytes(0x1C);
 
 			//read preitems
 			for (int i=0; i<preitems.Length; i++) preitems[i].Unserialize(reader);
@@ -252,10 +252,10 @@ namespace SimPe.Plugin
 			writer.Write(header);
 
 			writer.Write((int)zonename.Length);
-			writer.Write(zonename);
+			writer.Write(zonename);			
 
-			if (version>=(uint)NgbhVersion.Nightlife) zero = Helper.SetLength(zero, 0x8);
-			else zero = Helper.SetLength(zero, 0x10);
+			if (version>=(uint)NgbhVersion.Nightlife) zero = Helper.SetLength(zero, 0x14);
+			else zero = Helper.SetLength(zero, 0x01C);
 			writer.Write(zero);
 
 			//write preitems

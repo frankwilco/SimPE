@@ -29,13 +29,27 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// You can use this Control whenever you need to display a SimPool
 	/// </summary>
-	public class SimPoolControl : GraphPanel
+	public class SimPoolControl : System.Windows.Forms.UserControl
 	{
 		public SimPoolControl()
 		{
-			this.AutoSize = true;
-			this.SaveBounds = false;
-			this.LockItems = true;
+			InitializeComponent();			
+		}
+
+		private SimListView gp;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.ColumnHeader chHouse;
+
+		public SimPe.PackedFiles.Wrapper.SDesc SelectedElement
+		{
+			get { 
+				if (gp.SelectedItems.Count<1) return null;
+				return (SimPe.PackedFiles.Wrapper.ExtSDesc)gp.SelectedItems[0].Tag;
+			}
+			set { FindItem(value); }
 		}
 
 		SimPe.Interfaces.Files.IPackageFile pkg;
@@ -57,28 +71,31 @@ namespace SimPe.PackedFiles.Wrapper
 
 		protected void UpdateContent()
 		{
-			this.BeginUpdate();			
-			this.Clear();
+			gp.BeginUpdate();			
+			gp.Items.Clear();
+			lastsel = null;
 
 			if (pkg==null) 
 			{
-				this.EndUpdate();				
+				gp.EndUpdate();				
 				return;
 			}
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE);
-			Wait.SubStart(pfds.Length);
-			int left = 12;
-			int top = 12;
-			bool auto = this.AutoSize;			
-			this.AutoSize = false;
+			Wait.SubStart(pfds.Length);						
 			int ct=0;
 
 			System.Collections.SortedList map = new System.Collections.SortedList();
 			
 			foreach(Interfaces.Files.IPackedFileDescriptor pfd in pfds)
-			{												
-				ExtendedImagePanel eip = this.CreateItem(pfd, left, top);				
-				string name = eip.Text;
+			{			
+				SimPe.PackedFiles.Wrapper.ExtSDesc sdsc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
+				sdsc.ProcessData(pfd, pkg);				
+				string name = sdsc.SimName+" "+sdsc.SimFamilyName;
+
+				SteepValley.Windows.Forms.XPListViewItem eip = gp.Add(sdsc);
+				eip.Tag = sdsc;
+				
+
 				if (map.ContainsKey(name)) name += " ("+pfd.Instance.ToString()+")";
 				map[name] = eip;
 				
@@ -88,21 +105,13 @@ namespace SimPe.PackedFiles.Wrapper
 				Wait.Message = eip.Text;
 			}			
 
-			Wait.Message=("Updating Canvas");
-			ct = 0;
-			foreach (string k in map.Keys) 
-			{
-
-				if (ct++==map.Keys.Count-1) this.AutoSize = auto;	
-				ExtendedImagePanel eip = (ExtendedImagePanel)map[k];				
-				eip.SetBounds(eip.Left, top, eip.Width, eip.Height);						
-				eip.EndUpdate();
-				eip.Parent = this;
-				if (ct==1) this.SelectedElement = eip;		
-				top += eip.Height +4;
-			}
+			gp.TileColumns = new int[]{1, 2, 6, 3, 4, 5};
+			gp.SetColumnStyle(1, gp.Font, System.Drawing.Color.Gray);
+			gp.SetColumnStyle(2, gp.Font, System.Drawing.Color.Gray);
+			gp.SetColumnStyle(3, gp.Font, System.Drawing.Color.Gray);			
+			gp.SetColumnStyle(4, gp.Font, System.Drawing.Color.Gray);
 			
-			this.EndUpdate();
+			gp.EndUpdate();
 			Wait.SubStop();
 		}
 
@@ -202,9 +211,9 @@ namespace SimPe.PackedFiles.Wrapper
 				eip.Properties["Error"].Value = ex.Message;
 			}
 
-			eip.GotFocus += new EventHandler(eip_GotFocus);
-			eip.MouseDown += new System.Windows.Forms.MouseEventHandler(eip_MouseDown);
-			eip.DoubleClick += new EventHandler(eip_DoubleClick);
+			//eip.GotFocus += new EventHandler(eip_GotFocus);
+			//eip.MouseDown += new System.Windows.Forms.MouseEventHandler(eip_MouseDown);
+			//eip.DoubleClick += new EventHandler(eip_DoubleClick);
 			
 			return eip;
 		}
@@ -216,46 +225,173 @@ namespace SimPe.PackedFiles.Wrapper
 		public event SelectedSimHandler DoubleClickSim;
 		#endregion
 
-		private void eip_GotFocus(object sender, EventArgs e)
-		{
-			if (SelectedSimChanged!=null && (sender is ExtendedImagePanel)) 
+		private void gp_SelectedIndexChanged(object sender, System.EventArgs e)
+		{			
+			if (SelectedSimChanged!=null && gp.SelectedItems.Count>0) 
 			{
-				SelectedSimChanged(this, ((Ambertation.Windows.Forms.Graph.ExtendedImagePanel)sender).Image, (Wrapper.SDesc)((Ambertation.Windows.Forms.Graph.ExtendedImagePanel)sender).Tag);
+				//SelectedSimChanged(this, gp.LargeImageList.Images[gp.SelectedItems[0].ImageIndex], (Wrapper.SDesc)((SimPe.PackedFiles.Wrapper.ExtSDesc)gp.SelectedItems[0].Tag));
 			}
 		}
 
-		private void eip_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+		private void gp_DoubleClick(object sender, System.EventArgs e)
 		{
-			if (ClickOverSim!=null && (sender is ExtendedImagePanel)) 
+			if (DoubleClickSim!=null && gp.SelectedItems.Count>0) 
 			{
-				ClickOverSim(this, ((Ambertation.Windows.Forms.Graph.ExtendedImagePanel)sender).Image, (Wrapper.SDesc)((Ambertation.Windows.Forms.Graph.ExtendedImagePanel)sender).Tag);
+				DoubleClickSim(this, gp.LargeImageList.Images[gp.SelectedItems[0].ImageIndex], (Wrapper.SDesc)((SimPe.PackedFiles.Wrapper.ExtSDesc)gp.SelectedItems[0].Tag));
 			}
 		}
 
-		private void eip_DoubleClick(object sender, EventArgs e)
+		SteepValley.Windows.Forms.XPListViewItem lastsel;
+
+		private void gp_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
-			if (DoubleClickSim!=null && (sender is ExtendedImagePanel)) 
+			SteepValley.Windows.Forms.XPListViewItem item = (SteepValley.Windows.Forms.XPListViewItem)gp.GetItemAt(e.X, e.Y);
+			if (ClickOverSim!=null && item!=null) 
 			{
-				DoubleClickSim(this, ((Ambertation.Windows.Forms.Graph.ExtendedImagePanel)sender).Image, (Wrapper.SDesc)((Ambertation.Windows.Forms.Graph.ExtendedImagePanel)sender).Tag);
+				ClickOverSim(this, ((SimPe.PackedFiles.Wrapper.ExtSDesc)item.Tag).Image, (Wrapper.SDesc)((SimPe.PackedFiles.Wrapper.ExtSDesc)item.Tag));
 			}
+
+			if (SelectedSimChanged!=null && item!=null && e.Button==System.Windows.Forms.MouseButtons.Left) 
+			{
+				lastsel = item;
+				SelectedSimChanged(this, ((SimPe.PackedFiles.Wrapper.ExtSDesc)item.Tag).Image, (Wrapper.SDesc)((SimPe.PackedFiles.Wrapper.ExtSDesc)item.Tag));				
+			} 
+			//if (lastsel!=null && e.Button!=System.Windows.Forms.MouseButtons.Left) lastsel.Selected = true;
 		}
+		
+
+		#region Designer
+		private void InitializeComponent()
+		{
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(SimPoolControl));
+			this.gp = new SimPe.PackedFiles.Wrapper.SimListView();
+			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			this.chHouse = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+			this.SuspendLayout();
+			// 
+			// gp
+			// 
+			this.gp.AccessibleDescription = resources.GetString("gp.AccessibleDescription");
+			this.gp.AccessibleName = resources.GetString("gp.AccessibleName");
+			this.gp.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("gp.Alignment")));
+			this.gp.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("gp.Anchor")));
+			this.gp.AutoGroupColumn = this.chHouse;
+			this.gp.AutoGroupMode = true;
+			this.gp.BackColor = System.Drawing.SystemColors.Info;
+			this.gp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gp.BackgroundImage")));
+			this.gp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.gp.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+																				 this.columnHeader1,
+																				 this.chHouse,
+																				 this.columnHeader2,
+																				 this.columnHeader3,
+																				 this.columnHeader4});
+			this.gp.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("gp.Dock")));
+			this.gp.Enabled = ((bool)(resources.GetObject("gp.Enabled")));
+			this.gp.Font = ((System.Drawing.Font)(resources.GetObject("gp.Font")));
+			this.gp.FullRowSelect = true;
+			this.gp.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+			this.gp.HideSelection = false;
+			this.gp.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("gp.ImeMode")));
+			this.gp.LabelWrap = ((bool)(resources.GetObject("gp.LabelWrap")));
+			this.gp.Location = ((System.Drawing.Point)(resources.GetObject("gp.Location")));
+			this.gp.MultiSelect = false;
+			this.gp.Name = "gp";
+			this.gp.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("gp.RightToLeft")));
+			this.gp.ShowGroups = true;
+			this.gp.Size = ((System.Drawing.Size)(resources.GetObject("gp.Size")));
+			this.gp.TabIndex = ((int)(resources.GetObject("gp.TabIndex")));
+			this.gp.Text = resources.GetString("gp.Text");
+			this.gp.TileColumns = new int[] {
+												1};
+			this.gp.View = SteepValley.Windows.Forms.ExtendedView.Tile;
+			this.gp.Visible = ((bool)(resources.GetObject("gp.Visible")));
+			this.gp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gp_MouseDown);
+			this.gp.DoubleClick += new System.EventHandler(this.gp_DoubleClick);
+			this.gp.SelectedIndexChanged += new System.EventHandler(this.gp_SelectedIndexChanged);
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = resources.GetString("columnHeader2.Text");
+			this.columnHeader2.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader2.TextAlign")));
+			this.columnHeader2.Width = ((int)(resources.GetObject("columnHeader2.Width")));
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = resources.GetString("columnHeader1.Text");
+			this.columnHeader1.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader1.TextAlign")));
+			this.columnHeader1.Width = ((int)(resources.GetObject("columnHeader1.Width")));
+			// 
+			// chHouse
+			// 
+			this.chHouse.Text = resources.GetString("chHouse.Text");
+			this.chHouse.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("chHouse.TextAlign")));
+			this.chHouse.Width = ((int)(resources.GetObject("chHouse.Width")));
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = resources.GetString("columnHeader3.Text");
+			this.columnHeader3.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader3.TextAlign")));
+			this.columnHeader3.Width = ((int)(resources.GetObject("columnHeader3.Width")));
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = resources.GetString("columnHeader4.Text");
+			this.columnHeader4.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader4.TextAlign")));
+			this.columnHeader4.Width = ((int)(resources.GetObject("columnHeader4.Width")));
+			// 
+			// SimPoolControl
+			// 
+			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
+			this.AccessibleName = resources.GetString("$this.AccessibleName");
+			this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
+			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
+			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
+			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.gp);
+			this.DockPadding.All = 1;
+			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
+			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
+			this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
+			this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
+			this.Name = "SimPoolControl";
+			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
+			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
+			this.ResumeLayout(false);
+
+		}
+		#endregion
 
 		/// <summary>
 		/// Returns the <see cref="ImagePanel"/> that contains the passed Sim
 		/// </summary>
 		/// <param name="sdsc"></param>
 		/// <returns></returns>
-		public ImagePanel FindItem(Wrapper.SDesc sdsc)
+		public void FindItem(Wrapper.SDesc sdsc)
 		{
-			foreach (GraphPanelElement gpe in this.Items)
+			foreach (SteepValley.Windows.Forms.XPListViewItem gpe in gp.Items)
 			{
-				if (gpe is ImagePanel)
+				if (gpe.Tag is Wrapper.SDesc)
 				{
-					if (sdsc.Equals(((ImagePanel)gpe).Tag)) return (ImagePanel)gpe;
+					if (sdsc.Equals((Wrapper.SDesc)gpe.Tag)) 
+					{
+						gpe.Selected = true;
+						gpe.EnsureVisible();
+						SelectedSimChanged(this, ((Wrapper.SDesc)gpe.Tag).Image, ((Wrapper.SDesc)gpe.Tag));
+					}
+					else
+						gpe.Selected = false;
 				}
 			}
-
-			return null;
 		}
+
+		
+
+		
+
+		
 	}
 }

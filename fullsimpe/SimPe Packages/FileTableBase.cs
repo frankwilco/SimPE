@@ -92,7 +92,20 @@ namespace SimPe
 
 		bool CutName(string name, FileTableItemType type)
 		{
-			if (!System.IO.Path.IsPathRooted(name)) return false;
+			try 
+			{
+				if (System.IO.Directory.Exists(name)) 
+					if (!System.IO.Path.IsPathRooted(name)) return false;
+			} 
+#if DEBUG
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage(ex);
+			}
+
+#else
+			catch {}
+#endif
 
 			string root = GetRoot(type);
 			if (root==null) return false;
@@ -390,11 +403,13 @@ namespace SimPe
 					tw.WriteLine("<folders>");
 					tw.WriteLine("  <filetable>");
 					tw.WriteLine("    <file root=\"save\">Downloads\\_EnableColorOptionsGMND.package</file>");
+					tw.WriteLine("    <file root=\"game\">TSData\\Res\\Sims3D\\_EnableColorOptionsMMAT.package</file>");
 					tw.WriteLine("    <path root=\"ep2\" epversion=\"2\">TSData\\Res\\Objects</path>");					
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\3D</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Catalog\\Materials</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Catalog\\Skins</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Catalog\\Patterns</path>");
+					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Catalog\\CANHObjects</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\Wants</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData\\Res\\UI</path>");
 					tw.WriteLine("    <path root=\"ep1\" epversion=\"1\">TSData\\Res\\Objects</path>");					
@@ -402,6 +417,7 @@ namespace SimPe
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\Materials</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\Skins</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\Patterns</path>");
+					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Catalog\\CANHObjects</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\Wants</path>");
 					tw.WriteLine("    <path root=\"ep1\">TSData\\Res\\UI</path>");
 					tw.WriteLine("    <path root=\"game\" epversion=\"0\">TSData\\Res\\Objects</path>");
@@ -409,6 +425,7 @@ namespace SimPe
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Catalog\\Materials</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Catalog\\Skins</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Catalog\\Patterns</path>");
+					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Catalog\\CANHObjects</path>");
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\Wants</path>");					
 					tw.WriteLine("    <path root=\"game\">TSData\\Res\\UI</path>");
 					tw.WriteLine("  </filetable>");

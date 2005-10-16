@@ -151,7 +151,14 @@ namespace SimPe.Data
 		Wall_Wallpaper = 0x0580,
 		Wall_Other = 0x0500,
 
-		Terrain = 0x0600
+		Terrain = 0x0600,
+
+		Hood_Landmark = 0x0701,
+		Hood_Flora = 0x0702,
+		Hood_Effects = 0x0703,
+		Hood_Misc = 0x0704,
+		Hood_Stone = 0x0705,
+		Hood_Other = 0x0700
 	}
 
 	/// <summary>
@@ -417,6 +424,7 @@ namespace SimPe.Data
 		public const uint XROF = 0xACA8EA06;
 		public const uint XFLR = 0x4DCADB7E;
 		public const uint XFNC = 0x2CB230B8;
+		public const uint XNGB = 0x6D619378;
 
 		public static string GMND_PACKAGE = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads\\_EnableColorOptionsGMND.package");
 		public static string MMAT_PACKAGE = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res\\Sims3D\\_EnableColorOptionsMMAT.package");

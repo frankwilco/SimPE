@@ -374,7 +374,7 @@ namespace SimPe.Plugin
 			}
 			if ((Setup.BaseResource & CloneSettings.BaseResourceType.Xml) == CloneSettings.BaseResourceType.Xml) 
 			{
-				WaitingScreen.UpdateMessage("Reading 3IDR References");
+				WaitingScreen.UpdateMessage("Reading XObject Definition");
 				sg.AddFromXml(package);
 			}
 			if (Setup.IncludeWallmask) 

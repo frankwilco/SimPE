@@ -756,6 +756,24 @@ Package: {filename}</value>
      <data name="SimPe.Data.XObjFunctionSubSort.Wall_Other">
 		<value>Walls / Other</value>
     </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Landmark">
+		<value>Neighborhood / Landmark</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Flora">
+		<value>Neighborhood / Flora</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Effects">
+		<value>Neighborhood / Effects</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Misc">
+		<value>Neighborhood / Misc</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Stone">
+		<value>Neighborhood / Stone</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Other">
+		<value>Neighborhood / Other</value>
+    </data>
     <data name="Fun">
         <value>Pleasure</value>
     </data>
@@ -767,7 +785,7 @@ If you still want to offer the Fence for the original Game, please consider to r
 Do you really want to make this Fence compatible with the original Game?"</value>
     </data>
     <data name="Censor_Install_Warn">
-		<value>You have installed Nightlife, this means, that SimPE needs to copy a File into your Downloads folder, in order to remove the Blur.
+		<value>You have installed Nightlife, this means, that SimPE needs to copy a File into your Config folder, in order to remove the Blur.
     
 Do you want to continue?</value>
     </data>

@@ -2168,7 +2168,7 @@ namespace SimPe.PackedFiles.UserInterface
 												1,
 												2,
 												3};
-			this.lv.View = SteepValley.Windows.Forms.ExtendedView.Tile;
+			this.lv.View = SteepValley.Windows.Forms.ExtendedView.Tile;			
 			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
 			this.lv.SelectedIndexChanged += new System.EventHandler(this.lv_SelectedIndexChanged);
 			// 

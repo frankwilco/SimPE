@@ -1039,6 +1039,24 @@ Package: {filename}</value>
 	<data name="SimPe.Data.XObjFunctionSubSort.Wall_Other">
 		<value>Wände / Verschiedenes</value>
 	</data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Landmark">
+		<value>Nachbarschaft / Sehenswürdigkeiten</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Flora">
+		<value>Nachbarschaft / Flora</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Effects">
+		<value>Nachbarschaft / Effekte</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Misc">
+		<value>Nachbarschaft / Verschiedenes</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Stone">
+		<value>Nachbarschaft / Steine</value>
+    </data>
+     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Other">
+		<value>Nachbarschaft / Sonstiges</value>
+    </data>
 	<data name="Fix_Fence_Warning">
 		<value>"Zäune mit dem original Spiel kompatibel zu machen basiert auf einem unschönen Hack, der zu Konflikten im Spiel führen kann. Ich würde nicht Empfehlen, einen derartigen Zaun zu veröffentlichen!
 
@@ -1048,7 +1066,7 @@ Die wahrscheinlichkeit für einen Konflikt, wenn ihr den Zaun nur für euren per
 Soll der Zaun in das Format des original Spieles umgewandelt werden?"</value>
 	</data>
 	<data name="Censor_Install_Warn">
-		<value>Da auf dem System Nightlife installiert wurde, muss SimPE nun eine Datei in den Downloads Ordner kopieren um die Verpixelung zu deaktivieren.
+		<value>Da auf dem System Nightlife installiert wurde, muss SimPE nun eine Datei in den Config Ordner kopieren um die Verpixelung zu deaktivieren.
     
 Soll SimPE fortfahren?</value>
 	</data>

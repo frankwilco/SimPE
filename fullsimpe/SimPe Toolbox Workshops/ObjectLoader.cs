@@ -245,6 +245,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				ProduceByXObj(Data.MetaData.XROF);
 				ProduceByXObj(Data.MetaData.XFLR);
 				ProduceByXObj(Data.MetaData.XFNC);
+				ProduceByXObj(Data.MetaData.XNGB);
 			}
 		}
 
@@ -290,14 +291,16 @@ namespace SimPe.Plugin.Tool.Dockable
 			oci.ObjectType = SimPe.Data.ObjectTypes.Normal;
 			
 			SetFunctionSortForXObj(cpf, oci);
-			
+						
 			oci.ObjectFileName = cpf.GetSaveItem("filename").StringValue;
-			oci.Useable = true;
+			if (oci.ObjectFileName=="") oci.ObjectFileName = cpf.GetSaveItem("name").StringValue;
+
+			oci.Useable = true; 
 			oci.Class = SimPe.Cache.ObjectClass.XObject;
 			
 
 			
-			Interfaces.Scenegraph.IScenegraphFileIndexItem[] ctssitems = FileTable.FileIndex.FindFile(Data.MetaData.STRING_FILE, cpf.GetSaveItem("stringsetgroupid").UIntegerValue, cpf.GetSaveItem("stringsetid").UIntegerValue, null);
+			Interfaces.Scenegraph.IScenegraphFileIndexItem[] ctssitems = FileTable.FileIndex.FindFile(cpf.GetSaveItem("stringsetrestypeid").UIntegerValue, cpf.GetSaveItem("stringsetgroupid").UIntegerValue, cpf.GetSaveItem("stringsetid").UIntegerValue, null); //Data.MetaData.STRING_FILE
 			if (ctssitems.Length>0) 
 			{
 				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();

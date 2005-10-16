@@ -426,7 +426,7 @@ namespace SimPe.Plugin
 			}
 
 			//is this a Fence package? If so, do special FenceFixes
-			if (package.FindFiles(Data.MetaData.XFNC).Length>0)
+			if (package.FindFiles(Data.MetaData.XFNC).Length>0 || package.FindFiles(Data.MetaData.XNGB).Length>0)
 				this.FixFence();
 		}
 
@@ -555,6 +555,9 @@ namespace SimPe.Plugin
 			//Make sure MMATs get fixed
 			FixMMAT(map, uniquefamily, grouphash);
 
+			//Make sure OBJd's get fixed too
+			FixOBJd();
+
 			//And finally the Root String
 			WaitingScreen.UpdateMessage("Udating Root");
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] mpfds = package.FindFiles(Data.MetaData.STRING_FILE);	
@@ -625,6 +628,49 @@ namespace SimPe.Plugin
 						nref.FileName = "SIMPE_v2_"+modelname;
 
 					nref.SynchronizeUserData();
+				}
+			}
+		}
+
+		/// <summary>
+		/// Make sure the fixes for OBJd Resources are considered
+		/// </summary>
+		/// <remarks>
+		/// Currently this implements the Fixes needed for Rugs
+		/// </remarks>
+		void FixOBJd()
+		{
+			WaitingScreen.UpdateMessage("Udating Object Descriuptions");
+			Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.OBJD_FILE);	//OBJd
+
+			bool updaterugs = false;
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+			{
+				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+				objd.ProcessData(pfd, package);
+
+				//is one of the objd's a rug?
+				if (objd.FunctionSubSort == SimPe.Data.ObjFunctionSubSort.Decorative_Rugs) 
+				{
+					updaterugs = true;				
+					break;
+				}
+			}
+
+			//found at least one OBJd describing a Rug
+			if (updaterugs) 
+			{
+				foreach (Interfaces.Files.IPackedFileDescriptor pfd in pfds) 
+				{
+					SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
+					objd.ProcessData(pfd, package);
+
+					//make sure the Type of a Rug is not a Tile, but Normal
+					if (objd.Type == SimPe.Data.ObjectTypes.Tiles)
+					{
+						objd.Type = SimPe.Data.ObjectTypes.Normal;
+						objd.SynchronizeUserData(true, true);
+					}
 				}
 			}
 		}
@@ -827,11 +873,13 @@ namespace SimPe.Plugin
 			Random rnd = new Random();
 
 			//set list of critical types
-			uint[] types = new uint[]{Data.MetaData.XOBJ, Data.MetaData.XFLR, Data.MetaData.XFNC, Data.MetaData.XROF};
+			uint[] types = new uint[]{Data.MetaData.XOBJ, Data.MetaData.XFLR, Data.MetaData.XFNC, Data.MetaData.XROF, Data.MetaData.XNGB};
 			string[] txtr_props = new string[] {"textureedges", "texturetop", "texturetopbump", "texturetrim", "textureunder", "texturetname", "texturetname" };
 			string[] txmt_props = new string[] {"material", "diagrail", "post", "rail"};
 			string[] cres_props = new string[] {"diagrail", "post", "rail"};
-			string[] groups = new string[] {"stringsetgroupid", "resourcegroupid"};			
+			string[] cres_props_ngb = new string[] {"modelname"};
+			string[] groups = new string[] {"stringsetgroupid", "resourcegroupid"};	
+			string[] set_to_guid = new string[] {"thumbnailinstanceid"};
 
 			//now fix the texture References in those Resources
 			foreach (uint t in types)
@@ -841,19 +889,23 @@ namespace SimPe.Plugin
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 				{
 					cpf.ProcessData(pfd, package);
+					uint guid = (uint)rnd.Next();
 
-					string pfx = grphash; if (t==Data.MetaData.XFNC) pfx = "";
+					string pfx = grphash; if (t==Data.MetaData.XFNC || t==Data.MetaData.XNGB) pfx = "";
 
 					FixCpfProperties(cpf, txtr_props, namemap, pfx, "_txtr");
 					FixCpfProperties(cpf, txmt_props, namemap, pfx, "_txmt");
 					FixCpfProperties(cpf, cres_props, namemap, pfx, "_cres");
+					if (pfd.Type == Data.MetaData.XNGB) 
+						FixCpfProperties(cpf, cres_props_ngb, namemap, pfx, "_cres");
 
 					FixCpfProperties(cpf, groups, Data.MetaData.LOCAL_GROUP);
+					FixCpfProperties(cpf, set_to_guid, guid);
 #if DEBUG
-					FixCpfProperties(cpf, "guid", (uint)(((uint)rnd.Next() & 0x00fffffe) | 0xfb000001));
+					FixCpfProperties(cpf, "guid", (uint)((guid & 0x00fffffe) | 0xfb000001));
 #else
 					
-					FixCpfProperties(cpf, "guid", (uint)(((uint)rnd.Next() & 0xfffffffe) | 0x00000001));
+					FixCpfProperties(cpf, "guid", (uint)((guid & 0xfffffffe) | 0x00000001));
 #endif
 					
 					cpf.SynchronizeUserData();

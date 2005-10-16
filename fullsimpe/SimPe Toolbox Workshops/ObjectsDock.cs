@@ -93,7 +93,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.op1.Location = new System.Drawing.Point(8, 44);
 			this.op1.Name = "op1";
 			this.op1.SelectedObject = null;
-			this.op1.Size = new System.Drawing.Size(304, 88);
+			this.op1.Size = new System.Drawing.Size(this.xpTaskBoxSimple2.Width-16, this.xpTaskBoxSimple2.Height-56); //320, 136
 			this.op1.TabIndex = 0;
 			this.xpTaskBoxSimple2.Controls.Add(this.op1);
 			// 
@@ -108,7 +108,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.op2.Location = new System.Drawing.Point(8, 44);
 			this.op2.Name = "op2";
 			this.op2.SelectedObject = null;
-			this.op2.Size = new System.Drawing.Size(304, 56);
+			this.op2.Size = new System.Drawing.Size(this.xpTaskBoxSimple1.Width-16, this.xpTaskBoxSimple1.Height-48);
 			this.op2.TabIndex = 1;
 			this.xpTaskBoxSimple1.Controls.Add(this.op2);
 
@@ -270,7 +270,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.wizard1.Controls.Add(this.wizardStepPanel3);
 			this.wizard1.Controls.Add(this.wizardStepPanel5);
 			this.wizard1.Controls.Add(this.wizardStepPanel4);
-			this.wizard1.CurrentStepNumber = 0;
+			this.wizard1.CurrentStepNumber = 2;
 			this.wizard1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("wizard1.Dock")));
 			this.wizard1.DockPadding.All = 8;
 			this.wizard1.Enabled = ((bool)(resources.GetObject("wizard1.Enabled")));
@@ -1965,7 +1965,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				} 
 				else 
 				{
-					cbclean.Enabled = true;
+					cbclean.Enabled = true && cbfix.Checked;
 					cbdefault.Enabled = true;
 					cbparent.Enabled = true;
 					cbTask.Enabled = true;
@@ -1985,10 +1985,10 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 
 		private void cbfix_CheckedChanged(object sender, System.EventArgs e)
-		{
+		{			
 			cbclean.Enabled = cbfix.Checked;
 			cbRemTxt.Enabled = cbfix.Checked;
-			UpdateEnabledOptions();
+			UpdateEnabledOptions();	
 		}
 
 		private void wizardStepPanel3_Activated(SimPe.Wizards.Wizard sender, SimPe.Wizards.WizardStepPanel step)
