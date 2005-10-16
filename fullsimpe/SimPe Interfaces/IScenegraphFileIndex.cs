@@ -240,6 +240,14 @@ namespace SimPe.Interfaces.Scenegraph
 		/// <param name="pkg"></param>
 		void ClosePackage(SimPe.Interfaces.Files.IPackageFile pkg);
 
+		/// <summary>
+		/// Returns the List of all Folders this FileIndex is processing
+		/// </summary>
+		System.Collections.ArrayList BaseFolders
+		{
+			get;set;
+		}
+
 		#region FileTable Childs
 		/// <summary>
 		/// True, if this Package was already added to the FileTable (or one of its Childs)

@@ -24,6 +24,7 @@ namespace SimPe
 	{
 		bool recursive;
 		bool file;
+		bool ignore;
 		int ver;
 		string relpath;
 		string path;
@@ -48,20 +49,31 @@ namespace SimPe
 			this.relpath = path;
 			this.ver = -1;
 			this.type = FileTableItemType.Absolute;
+			this.ignore = false;
 		}
 
-		public FileTableItem( string relpath, bool rec, bool fl) : this (relpath, rec, fl, -1)
+		public bool Ignore
+		{
+			get {return ignore;}
+			set {ignore = value;}
+		}
+
+		public FileTableItem( string relpath, bool rec, bool fl) : this (relpath, rec, fl, -1, false)
 		{
 		}
-		public FileTableItem( string relpath, bool rec, bool fl, int ver) 
-		{			
-			
+		public FileTableItem( string relpath, bool rec, bool fl, int ver) : this (relpath, rec, fl, ver, false)
+		{
+		}
+
+		public FileTableItem( string relpath, bool rec, bool fl, int ver, bool ign) 
+		{						
 			this.recursive = rec;
 			this.file = fl;
 			this.ver = ver;
 			this.type = FileTableItemType.Absolute;
 			this.SetName(relpath);
-		}
+			this.ignore = ign;
+		}		
 
 		internal void SetRecursive(bool state) 
 		{
@@ -110,10 +122,15 @@ namespace SimPe
 			string root = GetRoot(type);
 			if (root==null) return false;
 			root = Helper.ToLongPathName(root).Trim().ToLower();
+			if (!root.EndsWith("\\")) root+="\\";
 
-			if (name.StartsWith(root))
+			string ename = name.Trim().ToLower();
+			if (!ename.EndsWith("\\")) ename+="\\";
+
+			if (ename.StartsWith(root))
 			{
 				this.path = name.Replace(root, "");
+				if (this.path.StartsWith("\\")) path = path.Substring(1);
 				this.Type = type;				
 				return true;
 			} 
@@ -304,6 +321,11 @@ namespace SimPe
 											if (a.Value != "0") fti.SetRecursive(true);
 										}
 
+										if (a.Name=="ignore") 
+										{
+											fti.Ignore = (a.Value != "0");
+										}
+
 										if (a.Name=="epversion") 
 										{
 											try 
@@ -391,7 +413,7 @@ namespace SimPe
 		/// <summary>
 		/// Creates a default Folder xml
 		/// </summary>
-		protected static void BuildFolderXml()
+		public static void BuildFolderXml()
 		{
 			try 
 			{

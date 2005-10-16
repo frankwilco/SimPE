@@ -75,7 +75,7 @@ namespace SimPe.Plugin.Tool.Dockable
 									new CreateListFromPackageTool(),
 									new CreateListFromSelectionTool(),
 								    new HexDockTool(rd),
-									new FinderDock()									
+									new FinderDock()										
 #if DEBUG
 										  , new ActionCheckFiletable()
 										  , new DebugDock()
