@@ -343,7 +343,7 @@ namespace SimPe.PackedFiles
 						if (!toolsp.Contains(tool)) 					
 							toolsp.Add((SimPe.Interfaces.IToolPlus)tool);	
 					} 
-					else if (tool.GetType().GetInterface("SimPe.Interfaces.IListener", true) == typeof(SimPe.Interfaces.IListener)) 
+					else if (Helper.StartedGui != Executable.Classic && tool.GetType().GetInterface("SimPe.Interfaces.IListener", true) == typeof(SimPe.Interfaces.IListener)) 
 					{
 						if (!listeners.Contains((SimPe.Interfaces.IListener)tool)) 					
 							listeners.Add((SimPe.Interfaces.IListener)tool);	
