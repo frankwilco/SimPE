@@ -47,7 +47,10 @@ namespace SimPe.Packages
 			pfd.subtype = subtype;
 			pfd.type = type;
 			pfd.changed = changed;
-			pfd.wascomp = this.wascomp;			
+			pfd.wascomp = this.wascomp;	
+		
+			pfd.markcompress = this.markcompress;
+			pfd.markdeleted = this.markdeleted;
 
 			return (IPackedFileDescriptor)pfd;
 		}

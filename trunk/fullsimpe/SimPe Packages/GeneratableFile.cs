@@ -207,6 +207,26 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// This is used to enable SimPe to add compressed Resources
+		/// </summary>
+		void PrepareCompression()
+		{
+			if (fileindex==null) return;
+
+			if (filelistfile!=null) return;
+			
+			filelistfile = new SimPe.PackedFiles.Wrapper.CompressedFileList(this.Header.IndexType);
+			filelist = new PackedFileDescriptor();
+			filelist.Type = Data.MetaData.DIRECTORY_FILE;
+			filelist.LongInstance = 0x286B1F03;
+			filelist.Group = Data.MetaData.DIRECTORY_FILE;
+
+			filelistfile.FileDescriptor = filelist;
+			filelistfile.SynchronizeUserData();
+			this.Add(filelist);
+		}
+
+		/// <summary>
 		/// Compiles a new Package File from the currently stored Information
 		/// </summary>
 		/// <returns>The MemoryStream representing the new Package File</returns>
@@ -224,7 +244,7 @@ namespace SimPe.Packages
 				header.minorversion = 1;
 				header.majorversion = 1;
 				filelist = null;
-			}
+			}			
 
 			int oldcount = 0;
 			if (this.Index!=null) oldcount = this.Index.Length;
@@ -237,6 +257,8 @@ namespace SimPe.Packages
 			ArrayList tmpcmp = new ArrayList();
 			if (this.fileindex==null) fileindex = new SimPe.Interfaces.Files.IPackedFileDescriptor[0];
 
+			PrepareCompression();
+
 			foreach(PackedFileDescriptor pfd in this.fileindex)
 			{				
 				pfd.Changed = false;
@@ -247,7 +269,8 @@ namespace SimPe.Packages
 				if (pfd.MarkForDelete) continue;
 
 				//PackedFileDescriptor newpfd = (PackedFileDescriptor)pfd.Clone();				
-				PackedFileDescriptor newpfd = (PackedFileDescriptor)pfd;								
+				PackedFileDescriptor newpfd = (PackedFileDescriptor)pfd;
+							
 
 				PackedFile pf = null;
 				if (pfd.MarkForReCompress) 
@@ -257,15 +280,15 @@ namespace SimPe.Packages
 						if (pfd.HasUserdata) 
 						{
 							pf = new PackedFile(PackedFile.Compress(pfd.UserData));
-							pf.uncsize = (uint)pfd.UserData.Length;
+							pf.uncsize = (uint)pfd.UserData.Length;							
 						}
 						else 
 						{
 							byte[] data = ((PackedFile)this.Read(pfd)).UncompressedData;
 							pf = new PackedFile(PackedFile.Compress(data));
-							pf.uncsize = (uint)pf.data.Length;
+							pf.uncsize = (uint)data.Length;
 						}
-
+						
 						pf.size = pf.data.Length;
 						pf.signature = Data.MetaData.COMPRESS_SIGNATURE;
 						pf.headersize = 9;
@@ -288,7 +311,7 @@ namespace SimPe.Packages
 				{
 					pf = (PackedFile)this.Read(pfd);
 					newpfd.size = pf.data.Length;
-					newpfd.SetUserData(pfd.UserData, false);
+					newpfd.SetUserData(pfd.UserData, false);	
 				}
 				
 				newpfd.offset = (uint)writer.BaseStream.Position;
@@ -303,7 +326,7 @@ namespace SimPe.Packages
 				tmpindex.Add(newpfd);		
 				
 				writer.Write(pf.data);
-			}
+			}			
 
 			//Last Entry should be the Filelist			
 			WriteFileList(writer, ref tmpindex, tmpcmp);

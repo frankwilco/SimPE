@@ -144,7 +144,7 @@ namespace SimPe
 			map.Add(ExtensionType.ExtractedFile, new ExtensionDescriptor("Extracted File", GetExtractExtensions("")));
 			map.Add(ExtensionType.ExtractedFileDescriptor, new ExtensionDescriptor("Extracted File Descriptor", GetExtractExtensions(".xml")));
 			map.Add(ExtensionType.ExtrackedPackageDescriptor, new ExtensionDescriptor("Extracted Package", "package.xml"));
-			map.Add(ExtensionType.Sim2Pack, new ExtensionDescriptor("Packed Objects", "*.sim2pack"));
+			map.Add(ExtensionType.Sim2Pack, new ExtensionDescriptor("Packed Objects", "*.sims2pack"));
 			map.Add(ExtensionType.Sim2PackCommunity, new ExtensionDescriptor("Sims 2 Community Package", "*.s2cp"));
 			map.Add(ExtensionType.AllFiles, new ExtensionDescriptor("All Files", "*.*"));
 		}

@@ -4014,7 +4014,7 @@ namespace SimPe
 				{
 					found++;
 					if (fti.Ignore) ignored++;
-				}
+				}                
 			}
 
 			this.cbIncCep.Tag = true;
@@ -4034,6 +4034,7 @@ namespace SimPe
 
 		void ChangeFileTable(CheckBox cb, FileTableItemType epver, bool cep)
 		{
+			bool firstobjpkg = true;
 			this.cbIncCep.Tag = true;
 			for (int i=0; i< lbfolder.Items.Count; i++)
 			{
@@ -4054,6 +4055,25 @@ namespace SimPe
 				}
 
 				fti.Ignore = !lbfolder.GetItemChecked(i);
+
+				if (!fti.Ignore && (fti.Name.Trim().ToLower().EndsWith("tsdata\\res\\objects")|| fti.Name.Trim().ToLower().EndsWith("tsdata\\res\\objects\\"))) 
+				{
+					if (firstobjpkg) 
+					{
+						firstobjpkg = false;
+						fti.EpVersion = -1;
+					}
+					else 
+					{
+						fti.EpVersion = FileTableItem.GetEPVersion(fti.Type);
+					}
+
+					if (FileTableItem.GetEPVersion(fti.Type) == Helper.WindowsRegistry.EPInstalled) 
+						fti.EpVersion = FileTableItem.GetEPVersion(fti.Type);
+
+					lbfolder.Items[i] = fti;
+				}
+                
 			}
 			this.cbIncCep.Tag = null;
 		}

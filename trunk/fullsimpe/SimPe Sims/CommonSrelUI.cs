@@ -687,7 +687,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private void ChangedRelation(object sender, System.EventArgs e)
 		{
 			if (intern) return;
-			if (this.cbfamtype.SelectedIndex>0) 			
+			if (this.cbfamtype.SelectedIndex>=0) 			
 				this.tbRel.Text = "0x"+Helper.HexString((uint)((Data.MetaData.RelationshipTypes)((Data.LocalizedRelationshipTypes)cbfamtype.SelectedItem)));
 			
 		}

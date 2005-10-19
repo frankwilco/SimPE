@@ -336,5 +336,21 @@ namespace SimPe.Packages
 		}
 
 		#endregion
+
+		public object Clone()
+		{
+			HeaderData iph = new HeaderData();
+			iph.created = this.created;
+			iph.id = this.id;
+			iph.indextype = this.indextype;
+			iph.majorversion = this.majorversion;
+			iph.minorversion = this.minorversion;
+			iph.modified = this.modified;
+
+			iph.reserved_00 = this.reserved_00;
+			iph.reserved_02 = this.reserved_02;
+			
+			return (SimPe.Interfaces.Files.IPackageHeader)iph;
+		}
 	}
 }

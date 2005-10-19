@@ -3016,8 +3016,9 @@ namespace SimPe
 			sfd.FileName = package.FileName;
 			if (sfd.ShowDialog()==DialogResult.OK) 
 			{
-				package.Save(sfd.FileName, true);	
-				package.UpdateRecentFileMenu(this.miRecent);
+				SimPe.Packages.GeneratableFile gf = (SimPe.Packages.GeneratableFile)package.Package.Clone();
+				gf.Save(sfd.FileName);	
+				//package.UpdateRecentFileMenu(this.miRecent);
 			}
 		}
 

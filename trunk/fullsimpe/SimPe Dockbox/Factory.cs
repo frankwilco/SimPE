@@ -75,7 +75,9 @@ namespace SimPe.Plugin.Tool.Dockable
 									new CreateListFromPackageTool(),
 									new CreateListFromSelectionTool(),
 								    new HexDockTool(rd),
-									new FinderDock()										
+									new FinderDock(),
+									new SaveSims2PackTool(),
+									new LoadSims2PackTool()
 #if DEBUG
 										  , new ActionCheckFiletable()
 										  , new DebugDock()

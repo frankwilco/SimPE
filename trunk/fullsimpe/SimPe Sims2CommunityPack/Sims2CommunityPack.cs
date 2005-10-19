@@ -499,6 +499,37 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// Displays a Save Dialog for the Sims2Pack Files
+		/// </summary>
+		/// <param name="packages">The packages that should be added to the Sims2Pack Files (the user can add more!)</param>
+		/// a normal Sims2Pack File will be generated</param>
+		/// <returns>true if the File was saved</returns>
+		public static bool ShowSimpleSaveDialog(SimPe.Packages.GeneratableFile[] packages) 
+		{
+			SaveSims2Pack form = new SaveSims2Pack();
+			bool extension = false;
+			S2CPDescriptor[] desc = form.Execute(packages, ref extension);
+
+			if (desc!=null) 
+			{
+				MemoryStream ms = Create(desc, extension);
+
+				System.IO.FileStream fs = new FileStream(form.tbflname.Text, FileMode.Create);
+				try 
+				{
+					fs.Write(ms.ToArray(), 0, (int)ms.Length);
+				} 
+				finally 
+				{
+					fs.Close();
+				}
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
 		/// Displays a Save Dialog for the S2CP Files
 		/// </summary>
 		/// <param name="packages">The packages that should be added to the S2CP Files (the user can add more!)</param>
@@ -527,6 +558,19 @@ namespace SimPe.Packages
 			}
 
 			return false;
+		}
+
+		/// <summary>
+		/// Show the Package Selector Dialog for a Sims2Pack File
+		/// </summary>
+		/// <param name="filename">The Filename of the Sims2Pack File</param>
+		/// <param name="selmode">Selection Mode for the Listview</param>
+		/// <returns>All Packages that were selected in the Dialog by the User or null 
+		/// if the User Cancled the Dialog</returns>
+		public static S2CPDescriptor[] ShowSimpleOpenDialog(string filename, System.Windows.Forms.SelectionMode selmode) 
+		{
+			SaveSims2Pack form = new SaveSims2Pack();
+			return form.Execute(Open(filename), selmode);
 		}
 
 		/// <summary>
