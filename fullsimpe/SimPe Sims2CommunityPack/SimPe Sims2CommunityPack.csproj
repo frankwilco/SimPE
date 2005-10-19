@@ -102,6 +102,26 @@
                     TreatWarningsAsErrors = "false"
                     WarningLevel = "4"
                 />
+                <Config
+                    Name = "Release (QA)"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = ""
+                    DocumentationFile = "simpe.s2cp.xml"
+                    DebugSymbols = "true"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "false"
+                    OutputPath = "bin\Debug\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
             </Settings>
             <References>
                 <Reference
@@ -191,6 +211,16 @@
                 <File
                     RelPath = "SaveSims2CommunityPack.resx"
                     DependentUpon = "SaveSims2CommunityPack.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "SaveSims2Pack.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SaveSims2Pack.resx"
+                    DependentUpon = "SaveSims2Pack.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

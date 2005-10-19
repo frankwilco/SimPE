@@ -28,6 +28,12 @@ namespace SimPe.Interfaces.Files
 	public interface IPackageHeader
 	{
 		/// <summary>
+		/// Create a Clone of the Header
+		/// </summary>
+		/// <returns></returns>
+		object Clone();
+
+		/// <summary>
 		/// Returns the Identifier of the File
 		/// </summary>
 		/// <remarks>This value should be DBPF</remarks>

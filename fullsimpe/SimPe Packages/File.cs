@@ -271,15 +271,24 @@ namespace SimPe.Packages
 		/// <returns>the new Package File</returns>
 		public Interfaces.Files.IPackageFile Clone()
 		{
-			Interfaces.Files.IPackageFile fl = NewCloneBase();
+			File fl = (File)NewCloneBase();
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in this.Index) 
 			{
 				Interfaces.Files.IPackedFileDescriptor npfd = (Interfaces.Files.IPackedFileDescriptor)pfd.Clone();
 				npfd.UserData = Read(pfd).UncompressedData;
+				
 				fl.Add(npfd);
 			}
 
-			return fl;
+			fl.header = (HeaderData)this.Header.Clone();
+			fl.lcs = this.lcs;
+			if (this.filelist!=null) 
+			{
+				fl.filelist = (SimPe.Packages.PackedFileDescriptor)fl.FindFile(this.filelist);
+				fl.filelistfile = new SimPe.PackedFiles.Wrapper.CompressedFileList(fl.Header.IndexType);
+			}
+
+			return (Interfaces.Files.IPackageFile)fl;
 		}
 		
 
@@ -627,7 +636,7 @@ namespace SimPe.Packages
 		public void LoadCompressedState()
 		{
 			//Load the File Index File
-			if (FileList != null) 
+			if (fileindex != null) 
 			{
 				this.BeginUpdate();
 

@@ -200,6 +200,14 @@ namespace SimPe
 					{
 						
 						doc.FloatingSize = pan.Size;
+						doc.AllowFloat = true;	
+						doc.AllowDockBottom = true;
+						doc.AllowDockLeft = true;
+						doc.AllowDockRight = true;
+						doc.AllowDockTop = true;
+						doc.AllowDockCenter = true;
+						doc.AllowCollapse = true;
+
 						if (add) dc.TabPages.Add(doc);
 						pan.Parent = doc;
 						pan.Left = 0;
@@ -214,7 +222,10 @@ namespace SimPe
 						
 						if (add) doc.Closing += new TD.SandDock.DockControlClosingEventHandler(CloseResourceDocument);
 						dc.SelectedPage = (TD.SandDock.TabPage)doc;
-						doc.Manager = dc.Manager;
+						doc.Manager = dc.Manager;												
+						doc.LayoutSystem.LockControls = false;						
+						
+						
 						loaded[fii] = doc;
 
 						if (!wrapper.AllowMultipleInstances) single[wrapper.GetType().ToString()] = fii;

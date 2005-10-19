@@ -426,7 +426,7 @@ namespace SimPe.Plugin
 			}
 
 			//is this a Fence package? If so, do special FenceFixes
-			if (package.FindFiles(Data.MetaData.XFNC).Length>0 || package.FindFiles(Data.MetaData.XNGB).Length>0)
+			if (package.FindFiles(Data.MetaData.XFNC).Length>0 /*|| package.FindFiles(Data.MetaData.XNGB).Length>0*/)
 				this.FixFence();
 		}
 
@@ -879,7 +879,7 @@ namespace SimPe.Plugin
 			string[] cres_props = new string[] {"diagrail", "post", "rail"};
 			string[] cres_props_ngb = new string[] {"modelname"};
 			string[] groups = new string[] {"stringsetgroupid", "resourcegroupid"};	
-			string[] set_to_guid = new string[] {"thumbnailinstanceid"};
+			string[] set_to_guid = new string[] {}; //"thumbnailinstanceid"
 
 			//now fix the texture References in those Resources
 			foreach (uint t in types)
@@ -891,7 +891,7 @@ namespace SimPe.Plugin
 					cpf.ProcessData(pfd, package);
 					uint guid = (uint)rnd.Next();
 
-					string pfx = grphash; if (t==Data.MetaData.XFNC || t==Data.MetaData.XNGB) pfx = "";
+					string pfx = grphash; if (t==Data.MetaData.XFNC) pfx = "";
 
 					FixCpfProperties(cpf, txtr_props, namemap, pfx, "_txtr");
 					FixCpfProperties(cpf, txmt_props, namemap, pfx, "_txmt");

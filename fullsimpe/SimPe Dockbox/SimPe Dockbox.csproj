@@ -214,6 +214,11 @@
                     AssemblyName = "SandDock"
                     HintPath = "..\..\..\DivElements\SandDock\SandDock.dll"
                 />
+                <Reference
+                    Name = "SimPe Sims2CommunityPack"
+                    Project = "{2EF93119-5C98-4167-B1AF-966E6A45AB79}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
@@ -293,6 +298,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LoadSims2PackTool.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "package.png"
                     BuildAction = "EmbeddedResource"
                 />
@@ -347,6 +357,11 @@
                 />
                 <File
                     RelPath = "ResourceDockTool.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SaveSims2PackTool.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -154,7 +154,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				} 
 				else 
 				{
-					writer.Write(" 0.000000 0.000000");
+					writer.Write(" 0.000000 0.000000 ");
 				}
 
 

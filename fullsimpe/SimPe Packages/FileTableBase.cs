@@ -102,6 +102,15 @@ namespace SimPe
 			return ret;
 		}
 
+		public static int GetEPVersion(FileTableItemType type)
+		{
+			if (type==FileTableItemType.EP1GameFolder) return 1;
+			else if (type==FileTableItemType.EP2GameFolder) return 2;
+			else if (type==FileTableItemType.GameFolder) return 0;
+			
+			return -1;
+		}
+
 		bool CutName(string name, FileTableItemType type)
 		{
 			try 
