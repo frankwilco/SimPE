@@ -38,7 +38,8 @@ namespace SimPe.Geometry
 		public double X 
 		{
 			get { 
-				if (double.IsNaN(x)) return 0;
+				if (double.IsNaN(x)) 
+					return 0;
 				return x; 
 			}
 			set { x = value; }
