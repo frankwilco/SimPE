@@ -37,7 +37,10 @@ namespace SimPe.Geometry
 		/// </summary>
 		public double X 
 		{
-			get { return x; }
+			get { 
+				if (double.IsNaN(x)) return 0;
+				return x; 
+			}
 			set { x = value; }
 		}
 		/// <summary>
@@ -45,7 +48,11 @@ namespace SimPe.Geometry
 		/// </summary>
 		public double Y 
 		{
-			get { return y; }
+			get 
+			{ 
+				if (double.IsNaN(y)) return 0;
+				return y; 
+			}
 			set { y = value; }
 		}
 
@@ -125,7 +132,11 @@ namespace SimPe.Geometry
 		/// </summary>
 		public double Z 
 		{
-			get { return z; }
+			get 
+			{ 
+				if (double.IsNaN(z)) return 0;
+				return z; 
+			}
 			set { z = value; }
 		}
 
@@ -182,17 +193,34 @@ namespace SimPe.Geometry
 		}
 
 		/// <summary>
+		/// Returns the UnitVector for this Vector
+		/// </summary>
+		public Vector3f UnitVector 
+		{
+			get 
+			{
+				Vector3f uv = new Vector3f();
+
+				double l = Length;
+				if (l!=0) 
+				{
+					uv.X = X/l;
+					uv.Y = Y/l;
+					uv.Z = Z/l;
+				}
+				return uv;
+			}
+		}
+
+		/// <summary>
 		/// Makes sure this Vector is a Unit Vector (Length=1)
 		/// </summary>
 		public void MakeUnitVector()
 		{
-			double l = Length;
-			if (l!=0) 
-			{
-				X = X/l;
-				Y = Y/l;
-				Z = Z/l;
-			}
+			Vector3f uv = UnitVector;
+			X = uv.X;
+			Y = uv.Y;
+			Z = uv.Z;			
 		}
 
 		/// <summary>
@@ -530,7 +558,11 @@ namespace SimPe.Geometry
 		/// </summary>
 		public double W
 		{
-			get { return w; }
+			get 
+			{ 
+				if (double.IsNaN(w)) return 0;
+				return w; 
+			}
 			set { w = value; }
 		}
 
