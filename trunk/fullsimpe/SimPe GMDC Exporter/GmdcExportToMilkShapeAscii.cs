@@ -101,7 +101,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				writer.WriteLine("Frame: 1");
 			}
 
-			writer.WriteLine("Meshes: "+this.Groups.Count.ToString());
+			writer.WriteLine("Meshes: "+this.Groups.Count.ToString());			
 		}
 
 		/// <summary>
@@ -192,6 +192,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 				{
 					Vector3f v = new Vector3f(Link.GetValue(nr, i).Data[0], Link.GetValue(nr, i).Data[1], Link.GetValue(nr, i).Data[2]);
 					v = Component.TransformNormal(v);
+					
 					writer.WriteLine( 
 						v.X.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
 						v.Y.ToString("N12", AbstractGmdcExporter.DefaultCulture) + " "+
