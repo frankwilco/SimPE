@@ -42,7 +42,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		public void UpdateGUI(SimPe.Interfaces.Plugin.IFileWrapper wrapper)
 		{
-			
+			form.picwrapper = wrapper;
 			PictureBox pb = form.pb;
 			Image img = ((SimPe.PackedFiles.Wrapper.Picture)wrapper).Image;
 			pb.Image = img;

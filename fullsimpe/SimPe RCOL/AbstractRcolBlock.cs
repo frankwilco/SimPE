@@ -297,7 +297,7 @@ namespace SimPe.Plugin
 				Rcol r = new GenericRcol(null, false);
 
 				//try to open the File in the same package, not in the FileTable Package!
-				if (item.Package.FileName.Trim().ToLower()==parent.Package.FileName.Trim().ToLower()) 
+				if (item.Package.SaveFileName.Trim().ToLower()==parent.Package.SaveFileName.Trim().ToLower()) 
 					r.ProcessData(parent.Package.FindFile(item.FileDescriptor), parent.Package);
 				else
 					r.ProcessData(item);				

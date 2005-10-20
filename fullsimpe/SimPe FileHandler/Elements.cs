@@ -421,6 +421,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private Skybound.VisualStyles.VisualStyleLinkLabel linkLabel6;
 		private Skybound.VisualStyles.VisualStyleProvider visualStyleProvider1;
 		private Skybound.VisualStyles.VisualStyleLinkLabel llmore;
+		private System.Windows.Forms.Button btPicExport;
 
 
 		internal SimPe.Interfaces.Plugin.IFileWrapperSaveExtension wrapper = null;
@@ -467,9 +468,10 @@ namespace SimPe.PackedFiles.UserInterface
 			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Elements));
 			this.JpegPanel = new System.Windows.Forms.Panel();
-			this.pb = new System.Windows.Forms.PictureBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.banner = new System.Windows.Forms.Label();
+			this.btPicExport = new System.Windows.Forms.Button();
+			this.pb = new System.Windows.Forms.PictureBox();
 			this.xmlPanel = new System.Windows.Forms.Panel();
 			this.rtb = new System.Windows.Forms.RichTextBox();
 			this.panel3 = new System.Windows.Forms.Panel();
@@ -909,8 +911,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.JpegPanel.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("JpegPanel.AutoScrollMargin")));
 			this.JpegPanel.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("JpegPanel.AutoScrollMinSize")));
 			this.JpegPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("JpegPanel.BackgroundImage")));
-			this.JpegPanel.Controls.Add(this.pb);
 			this.JpegPanel.Controls.Add(this.panel2);
+			this.JpegPanel.Controls.Add(this.pb);
 			this.JpegPanel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("JpegPanel.Dock")));
 			this.JpegPanel.Enabled = ((bool)(resources.GetObject("JpegPanel.Enabled")));
 			this.JpegPanel.Font = ((System.Drawing.Font)(resources.GetObject("JpegPanel.Font")));
@@ -925,29 +927,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.JpegPanel.Visible = ((bool)(resources.GetObject("JpegPanel.Visible")));
 			this.visualStyleProvider1.SetVisualStyleSupport(this.JpegPanel, true);
 			// 
-			// pb
-			// 
-			this.pb.AccessibleDescription = resources.GetString("pb.AccessibleDescription");
-			this.pb.AccessibleName = resources.GetString("pb.AccessibleName");
-			this.pb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pb.Anchor")));
-			this.pb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb.BackgroundImage")));
-			this.pb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pb.Dock")));
-			this.pb.Enabled = ((bool)(resources.GetObject("pb.Enabled")));
-			this.pb.Font = ((System.Drawing.Font)(resources.GetObject("pb.Font")));
-			this.pb.Image = ((System.Drawing.Image)(resources.GetObject("pb.Image")));
-			this.pb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pb.ImeMode")));
-			this.pb.Location = ((System.Drawing.Point)(resources.GetObject("pb.Location")));
-			this.pb.Name = "pb";
-			this.pb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pb.RightToLeft")));
-			this.pb.Size = ((System.Drawing.Size)(resources.GetObject("pb.Size")));
-			this.pb.SizeMode = ((System.Windows.Forms.PictureBoxSizeMode)(resources.GetObject("pb.SizeMode")));
-			this.pb.TabIndex = ((int)(resources.GetObject("pb.TabIndex")));
-			this.pb.TabStop = false;
-			this.pb.Text = resources.GetString("pb.Text");
-			this.toolTip1.SetToolTip(this.pb, resources.GetString("pb.ToolTip"));
-			this.pb.Visible = ((bool)(resources.GetObject("pb.Visible")));
-			this.visualStyleProvider1.SetVisualStyleSupport(this.pb, true);
-			// 
 			// panel2
 			// 
 			this.panel2.AccessibleDescription = resources.GetString("panel2.AccessibleDescription");
@@ -959,6 +938,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
 			this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
 			this.panel2.Controls.Add(this.banner);
+			this.panel2.Controls.Add(this.btPicExport);
 			this.panel2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel2.Dock")));
 			this.panel2.Enabled = ((bool)(resources.GetObject("panel2.Enabled")));
 			this.panel2.Font = ((System.Drawing.Font)(resources.GetObject("panel2.Font")));
@@ -997,6 +977,57 @@ namespace SimPe.PackedFiles.UserInterface
 			this.toolTip1.SetToolTip(this.banner, resources.GetString("banner.ToolTip"));
 			this.banner.Visible = ((bool)(resources.GetObject("banner.Visible")));
 			this.visualStyleProvider1.SetVisualStyleSupport(this.banner, true);
+			// 
+			// btPicExport
+			// 
+			this.btPicExport.AccessibleDescription = resources.GetString("btPicExport.AccessibleDescription");
+			this.btPicExport.AccessibleName = resources.GetString("btPicExport.AccessibleName");
+			this.btPicExport.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btPicExport.Anchor")));
+			this.btPicExport.BackColor = System.Drawing.SystemColors.Control;
+			this.btPicExport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btPicExport.BackgroundImage")));
+			this.btPicExport.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btPicExport.Dock")));
+			this.btPicExport.Enabled = ((bool)(resources.GetObject("btPicExport.Enabled")));
+			this.btPicExport.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btPicExport.FlatStyle")));
+			this.btPicExport.Font = ((System.Drawing.Font)(resources.GetObject("btPicExport.Font")));
+			this.btPicExport.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.btPicExport.Image = ((System.Drawing.Image)(resources.GetObject("btPicExport.Image")));
+			this.btPicExport.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btPicExport.ImageAlign")));
+			this.btPicExport.ImageIndex = ((int)(resources.GetObject("btPicExport.ImageIndex")));
+			this.btPicExport.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btPicExport.ImeMode")));
+			this.btPicExport.Location = ((System.Drawing.Point)(resources.GetObject("btPicExport.Location")));
+			this.btPicExport.Name = "btPicExport";
+			this.btPicExport.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btPicExport.RightToLeft")));
+			this.btPicExport.Size = ((System.Drawing.Size)(resources.GetObject("btPicExport.Size")));
+			this.btPicExport.TabIndex = ((int)(resources.GetObject("btPicExport.TabIndex")));
+			this.btPicExport.Text = resources.GetString("btPicExport.Text");
+			this.btPicExport.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btPicExport.TextAlign")));
+			this.toolTip1.SetToolTip(this.btPicExport, resources.GetString("btPicExport.ToolTip"));
+			this.btPicExport.Visible = ((bool)(resources.GetObject("btPicExport.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.btPicExport, true);
+			this.btPicExport.Click += new System.EventHandler(this.btPicExport_Click);
+			// 
+			// pb
+			// 
+			this.pb.AccessibleDescription = resources.GetString("pb.AccessibleDescription");
+			this.pb.AccessibleName = resources.GetString("pb.AccessibleName");
+			this.pb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pb.Anchor")));
+			this.pb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb.BackgroundImage")));
+			this.pb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pb.Dock")));
+			this.pb.Enabled = ((bool)(resources.GetObject("pb.Enabled")));
+			this.pb.Font = ((System.Drawing.Font)(resources.GetObject("pb.Font")));
+			this.pb.Image = ((System.Drawing.Image)(resources.GetObject("pb.Image")));
+			this.pb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pb.ImeMode")));
+			this.pb.Location = ((System.Drawing.Point)(resources.GetObject("pb.Location")));
+			this.pb.Name = "pb";
+			this.pb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pb.RightToLeft")));
+			this.pb.Size = ((System.Drawing.Size)(resources.GetObject("pb.Size")));
+			this.pb.SizeMode = ((System.Windows.Forms.PictureBoxSizeMode)(resources.GetObject("pb.SizeMode")));
+			this.pb.TabIndex = ((int)(resources.GetObject("pb.TabIndex")));
+			this.pb.TabStop = false;
+			this.pb.Text = resources.GetString("pb.Text");
+			this.toolTip1.SetToolTip(this.pb, resources.GetString("pb.ToolTip"));
+			this.pb.Visible = ((bool)(resources.GetObject("pb.Visible")));
+			this.visualStyleProvider1.SetVisualStyleSupport(this.pb, true);
 			// 
 			// xmlPanel
 			// 
@@ -10619,9 +10650,9 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tabPage3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("tabPage3.AutoScrollMinSize")));
 			this.tabPage3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage3.BackgroundImage")));
 			this.tabPage3.Controls.Add(this.realPanel);
+			this.tabPage3.Controls.Add(this.JpegPanel);
 			this.tabPage3.Controls.Add(this.objdPanel);
 			this.tabPage3.Controls.Add(this.xmlPanel);
-			this.tabPage3.Controls.Add(this.JpegPanel);
 			this.tabPage3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tabPage3.Dock")));
 			this.tabPage3.Enabled = ((bool)(resources.GetObject("tabPage3.Enabled")));
 			this.tabPage3.Font = ((System.Drawing.Font)(resources.GetObject("tabPage3.Font")));
@@ -12395,6 +12426,26 @@ namespace SimPe.PackedFiles.UserInterface
 		private void cbschooltype_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 		
+		}
+
+		internal SimPe.Interfaces.Plugin.IFileWrapper picwrapper;
+		private void btPicExport_Click(object sender, System.EventArgs e)
+		{
+			SimPe.PackedFiles.Wrapper.Picture wrp = (SimPe.PackedFiles.Wrapper.Picture)picwrapper;
+			System.Windows.Forms.SaveFileDialog sfd = new SaveFileDialog();
+			sfd.Filter = "Image (*.png) | *.png";
+
+			if (sfd.ShowDialog()==DialogResult.OK) 
+			{
+				try 
+				{
+					wrp.Image.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Png);
+				} 
+				catch (Exception ex) 
+				{
+					Helper.ExceptionMessage(ex);
+				}
+			}
 		}
 
 		
