@@ -143,7 +143,7 @@ namespace SimPe
 			this.lbwait.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbwait.Dock")));
 			this.lbwait.Enabled = ((bool)(resources.GetObject("lbwait.Enabled")));
 			this.lbwait.Font = ((System.Drawing.Font)(resources.GetObject("lbwait.Font")));
-			this.lbwait.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(64)), ((System.Byte)(64)), ((System.Byte)(64)));
+			this.lbwait.ForeColor = System.Drawing.Color.Gray;
 			this.lbwait.Image = ((System.Drawing.Image)(resources.GetObject("lbwait.Image")));
 			this.lbwait.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbwait.ImageAlign")));
 			this.lbwait.ImageIndex = ((int)(resources.GetObject("lbwait.ImageIndex")));

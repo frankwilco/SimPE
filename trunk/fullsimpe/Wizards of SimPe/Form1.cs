@@ -70,7 +70,9 @@ namespace SimPe.Wizards
 				this.ShowOptions(null, null);
 			}
 
-			Wait.Bar = new SimPe.Wizards.WaitBarControl(this);			
+			Wait.Bar = new SimPe.Wizards.WaitBarControl(this);	
+			if (SimPe.FileTable.FileIndex==null) SimPe.FileTable.FileIndex = new SimPe.Plugin.FileIndex();
+			SimPe.Packages.PackageMaintainer.Maintainer.FileIndex = SimPe.FileTable.FileIndex;
 		}
 
 		/// <summary>
@@ -323,9 +325,19 @@ namespace SimPe.Wizards
 		{
 			try 
 			{
-				SimPe.Plugin.WrapperFactory.InitRcolBlocks();
+				bool adv = SimPe.Helper.WindowsRegistry.HiddenMode;
+				bool asy = SimPe.Helper.WindowsRegistry.AsynchronLoad;
+
+				SimPe.Helper.WindowsRegistry.HiddenMode = false;
+				SimPe.Helper.WindowsRegistry.AsynchronLoad = false;
+				SimPe.Plugin.ScenegraphWrapperFactory.InitRcolBlocks();
 				form1 = new Form1();
 				Application.Run(form1);
+
+				SimPe.Helper.WindowsRegistry.HiddenMode = adv;
+				SimPe.Helper.WindowsRegistry.AsynchronLoad = asy;
+
+				SimPe.Helper.WindowsRegistry.Flush();
 			} 
 			catch (Exception ex)
 			{

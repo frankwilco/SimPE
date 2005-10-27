@@ -1011,7 +1011,10 @@ namespace SimPe.Wizards
 				} 
 				else 
 				{
-					SimPe.Commandline.LoadTXTR(id, ofd.FileName, oldid.TextureSize, (int)oldid.MipMapLevels, oldid.Format);
+					id.Format = oldid.Format;
+					if ((oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT1Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT3Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT5Format)) 
+						id.Format = SimPe.Plugin.ImageLoader.TxtrFormats.Raw32Bit;
+					SimPe.Commandline.LoadTXTR(id, ofd.FileName, oldid.TextureSize, (int)oldid.MipMapLevels, id.Format);
 				}
 
 				

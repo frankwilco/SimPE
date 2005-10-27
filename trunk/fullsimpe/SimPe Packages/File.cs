@@ -1043,8 +1043,9 @@ namespace SimPe.Packages
 				}				
 			}
 
-			if (SimPe.Packages.PackageMaintainer.Maintainer.FileIndex.Contains(this.SaveFileName))
-				SimPe.Packages.PackageMaintainer.Maintainer.FileIndex.Clear();
+			if (SimPe.Packages.PackageMaintainer.Maintainer.FileIndex!=null)
+				if (SimPe.Packages.PackageMaintainer.Maintainer.FileIndex.Contains(this.SaveFileName))
+					SimPe.Packages.PackageMaintainer.Maintainer.FileIndex.Clear();
 		}
 
 		/// <summary>

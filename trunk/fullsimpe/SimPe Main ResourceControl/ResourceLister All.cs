@@ -29,7 +29,7 @@ namespace SimPe
 	{
 		public AllResourceLister(LoadedPackage pkg, ViewFilter filter) :base (pkg, filter) {}
 		
-		protected override bool BuildItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, int ct)
+		protected override bool BuildItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, int ct)		
 		{
 			if (filter.Active)
 				if (filter.IsFiltered(pfd)) return false;

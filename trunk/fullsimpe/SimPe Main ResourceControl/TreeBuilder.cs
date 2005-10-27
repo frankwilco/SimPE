@@ -88,7 +88,7 @@ namespace SimPe
 				}
 
 			lv.Items.Clear();
-			lv.ListViewItemSorter = null;
+			//lv.ListViewItemSorter = null; This is now done in the ResourceLister
 		}
 
 		/// <summary>

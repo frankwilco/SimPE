@@ -375,7 +375,7 @@
                 />
                 <File
                     RelPath = "RoadTextureControl.cs"
-                    SubType = "Code"
+                    SubType = "UserControl"
                     BuildAction = "Compile"
                 />
                 <File
@@ -399,7 +399,7 @@
                 />
                 <File
                     RelPath = "TattUI.cs"
-                    SubType = "Code"
+                    SubType = "UserControl"
                     BuildAction = "Compile"
                 />
                 <File

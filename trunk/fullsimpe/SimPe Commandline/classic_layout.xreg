@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<registry>
+<key name="Software">
+<key name="Ambertation">
+<key name="SimPe">
+<key name="Layout">
+<bool name="ActionToolExpanded">true</bool>
+<bool name="ActionDefExpanded">true</bool>
+<int name="ThemeID">0</int>
+<string name="SandDock">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;Layout&gt;
+  &lt;Window Guid="8846d9fc-3828-4354-94b4-6a89120bbab3" FloatingSize="250, 400" FloatingLocation="-1, -1" DockLocation="Right" PopupSize="0" /&gt;
+  &lt;Window Guid="08b8d9e4-7e3d-4458-8f9b-cd42de900a07" FloatingSize="336, 203" FloatingLocation="-1, -1" DockLocation="Bottom" PopupSize="0" /&gt;
+  &lt;Window Guid="da8908d7-800f-4200-894a-83653dbf5767" FloatingSize="856, 335" FloatingLocation="-1, -1" DockLocation="Bottom" PopupSize="0" /&gt;
+  &lt;Window Guid="42807573-e8db-405b-95fa-28913d1e292a" FloatingSize="300, 550" FloatingLocation="-1, -1" DockLocation="Right" PopupSize="299" /&gt;
+  &lt;Window Guid="92cdd0fd-9459-4ee1-996e-12209714eadb" FloatingSize="496, 155" FloatingLocation="-1, -1" DockLocation="Bottom" PopupSize="0" /&gt;
+  &lt;Window Guid="9eea4f6c-b7fd-4a94-9dc5-200eb8531f68" FloatingSize="250, 400" FloatingLocation="-1, -1" DockLocation="Bottom" PopupSize="0" /&gt;
+  &lt;Window Guid="c59bd96f-14b3-4922-a956-28fb5a9aec97" FloatingSize="250, 400" FloatingLocation="-1, -1" DockLocation="Right" PopupSize="0" /&gt;
+  &lt;Window Guid="1fc41585-f06c-418c-8226-523fdec0f9c4" FloatingSize="800, 400" FloatingLocation="-1, -1" DockLocation="Bottom" PopupSize="0" /&gt;
+  &lt;Window Guid="272cf68e-3128-415b-a1c3-ca8f1c75a0ec" FloatingSize="280, 400" FloatingLocation="-1, -1" DockLocation="Bottom" PopupSize="0" /&gt;
+  &lt;Window Guid="8ca80417-63c2-4b3f-ab5b-1a8f15d7026d" FloatingSize="152, 59" FloatingLocation="-1, -1" DockLocation="Right" PopupSize="0" /&gt;
+  &lt;Window Guid="4eac3301-7437-4391-81dd-743cf8e38995" FloatingSize="250, 400" FloatingLocation="-1, -1" DockLocation="Left" PopupSize="0" /&gt;
+  &lt;Window Guid="d259ab3a-94c5-4303-bdfc-c471f471b090" FloatingSize="250, 400" FloatingLocation="-1, -1" DockLocation="Bottom" PopupSize="0" /&gt;
+  &lt;Container Dock="3" ContentSize="246"&gt;
+    &lt;SplitLayoutSystem WorkingSize="250, 400" SplitMode="0"&gt;
+      &lt;ControlLayoutSystem WorkingSize="246, 206" Collapsed="0" SelectedControl="4eac3301-7437-4391-81dd-743cf8e38995"&gt;
+        &lt;Controls&gt;
+          &lt;Control Guid="4eac3301-7437-4391-81dd-743cf8e38995" /&gt;
+        &lt;/Controls&gt;
+      &lt;/ControlLayoutSystem&gt;
+    &lt;/SplitLayoutSystem&gt;
+  &lt;/Container&gt;
+  &lt;Container Dock="2" ContentSize="478"&gt;
+    &lt;SplitLayoutSystem WorkingSize="250, 400" SplitMode="1"&gt;
+      &lt;ControlLayoutSystem WorkingSize="1002, 478" Collapsed="0" SelectedControl="1fc41585-f06c-418c-8226-523fdec0f9c4"&gt;
+        &lt;Controls&gt;
+          &lt;Control Guid="1fc41585-f06c-418c-8226-523fdec0f9c4" /&gt;
+          &lt;Control Guid="d259ab3a-94c5-4303-bdfc-c471f471b090" /&gt;
+          &lt;Control Guid="92cdd0fd-9459-4ee1-996e-12209714eadb" /&gt;
+          &lt;Control Guid="da8908d7-800f-4200-894a-83653dbf5767" /&gt;
+        &lt;/Controls&gt;
+      &lt;/ControlLayoutSystem&gt;
+    &lt;/SplitLayoutSystem&gt;
+  &lt;/Container&gt;
+  &lt;Container Dock="4" ContentSize="263"&gt;
+    &lt;SplitLayoutSystem WorkingSize="250, 400" SplitMode="0"&gt;
+      &lt;ControlLayoutSystem WorkingSize="263, 688" Collapsed="1" SelectedControl="8ca80417-63c2-4b3f-ab5b-1a8f15d7026d"&gt;
+        &lt;Controls&gt;
+          &lt;Control Guid="8ca80417-63c2-4b3f-ab5b-1a8f15d7026d" /&gt;
+          &lt;Control Guid="c59bd96f-14b3-4922-a956-28fb5a9aec97" /&gt;
+        &lt;/Controls&gt;
+      &lt;/ControlLayoutSystem&gt;
+      &lt;ControlLayoutSystem WorkingSize="263, 688" Collapsed="1" SelectedControl="42807573-e8db-405b-95fa-28913d1e292a"&gt;
+        &lt;Controls&gt;
+          &lt;Control Guid="42807573-e8db-405b-95fa-28913d1e292a" /&gt;
+        &lt;/Controls&gt;
+      &lt;/ControlLayoutSystem&gt;
+    &lt;/SplitLayoutSystem&gt;
+  &lt;/Container&gt;
+&lt;/Layout&gt;</string>
+<string name="SandBar">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;Layout&gt;
+  &lt;Toolbar Guid="450cfa2c-067d-435a-bc20-a98c7b00b268" DockLine="1" DockOffset="0" Visible="False" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9"&gt;
+    &lt;Items&gt;
+      &lt;Item Offset="0" Visible="True" /&gt;
+      &lt;Item Offset="1" Visible="True" /&gt;
+      &lt;Item Offset="2" Visible="True" /&gt;
+      &lt;Item Offset="3" Visible="True" /&gt;
+      &lt;Item Offset="4" Visible="True" /&gt;
+      &lt;Item Offset="5" Visible="True" /&gt;
+      &lt;Item Offset="6" Visible="False" /&gt;
+    &lt;/Items&gt;
+  &lt;/Toolbar&gt;
+  &lt;Toolbar Guid="7caadbda-cf74-4748-8239-5cba76a9cfe3" DockLine="1" DockOffset="1" Visible="False" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9"&gt;
+    &lt;Items&gt;
+      &lt;Item Offset="0" Visible="True" /&gt;
+      &lt;Item Offset="1" Visible="True" /&gt;
+      &lt;Item Offset="2" Visible="True" /&gt;
+      &lt;Item Offset="3" Visible="True" /&gt;
+      &lt;Item Offset="4" Visible="True" /&gt;
+      &lt;Item Offset="5" Visible="True" /&gt;
+      &lt;Item Offset="6" Visible="True" /&gt;
+      &lt;Item Offset="7" Visible="True" /&gt;
+      &lt;Item Offset="8" Visible="True" /&gt;
+      &lt;Item Offset="9" Visible="True" /&gt;
+      &lt;Item Offset="10" Visible="True" /&gt;
+      &lt;Item Offset="11" Visible="True" /&gt;
+    &lt;/Items&gt;
+  &lt;/Toolbar&gt;
+  &lt;Toolbar Guid="078e55cf-63d2-4821-a167-a8ccb6446322" DockLine="1" DockOffset="2" Visible="False" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9"&gt;
+    &lt;Items&gt;
+      &lt;Item Offset="0" Visible="True" /&gt;
+      &lt;Item Offset="1" Visible="False" /&gt;
+      &lt;Item Offset="2" Visible="False" /&gt;
+      &lt;Item Offset="3" Visible="False" /&gt;
+      &lt;Item Offset="4" Visible="True" /&gt;
+      &lt;Item Offset="5" Visible="True" /&gt;
+      &lt;Item Offset="6" Visible="False" /&gt;
+      &lt;Item Offset="7" Visible="False" /&gt;
+      &lt;Item Offset="8" Visible="True" /&gt;
+      &lt;Item Offset="9" Visible="False" /&gt;
+      &lt;Item Offset="10" Visible="False" /&gt;
+      &lt;Item Offset="11" Visible="False" /&gt;
+      &lt;Item Offset="12" Visible="False" /&gt;
+      &lt;Item Offset="13" Visible="True" /&gt;
+      &lt;Item Offset="14" Visible="True" /&gt;
+      &lt;Item Offset="15" Visible="False" /&gt;
+      &lt;Item Offset="16" Visible="False" /&gt;
+      &lt;Item Offset="17" Visible="True" /&gt;
+      &lt;Item Offset="18" Visible="True" /&gt;
+      &lt;Item Offset="19" Visible="False" /&gt;
+    &lt;/Items&gt;
+  &lt;/Toolbar&gt;
+  &lt;Toolbar Guid="6c37bb3a-a49a-4467-b812-34eb2c2a85ef" DockLine="1" DockOffset="3" Visible="False" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9"&gt;
+    &lt;Items&gt;
+      &lt;Item Offset="0" Visible="True" /&gt;
+      &lt;Item Offset="1" Visible="True" /&gt;
+      &lt;Item Offset="2" Visible="True" /&gt;
+      &lt;Item Offset="3" Visible="True" /&gt;
+      &lt;Item Offset="4" Visible="True" /&gt;
+      &lt;Item Offset="5" Visible="True" /&gt;
+      &lt;Item Offset="6" Visible="True" /&gt;
+      &lt;Item Offset="7" Visible="True" /&gt;
+      &lt;Item Offset="8" Visible="True" /&gt;
+      &lt;Item Offset="9" Visible="True" /&gt;
+      &lt;Item Offset="10" Visible="True" /&gt;
+      &lt;Item Offset="11" Visible="True" /&gt;
+    &lt;/Items&gt;
+  &lt;/Toolbar&gt;
+  &lt;Toolbar Guid="df109020-5454-48c9-aae5-28b65f95af1d" DockLine="0" DockOffset="0" Visible="True" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9" /&gt;
+&lt;/Layout&gt;</string>
+<bool name="ActionPlugExpanded">true</bool>
+</key>
+</key>
+</key>
+</key>
+</registry>
