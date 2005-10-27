@@ -2693,7 +2693,7 @@ namespace SimPe.Plugin
 				{
 					GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
 					
-					StartImport(ofd, gmdc, ".obj", (ElementSorting)cbaxis.Items[cbaxis.SelectedIndex], false);
+					StartImport(ofd, gmdc, Helper.WindowsRegistry.GmdcExtension, (ElementSorting)cbaxis.Items[cbaxis.SelectedIndex], false);
 				}				
 			}
 			catch (Exception exception1)
@@ -2779,7 +2779,8 @@ namespace SimPe.Plugin
 			if (ofd.ShowDialog() == DialogResult.OK) 
 			{
 				//Now perpare the Import
-				IGmdcImporter importer = ExporterLoader.Importers[ofd.FilterIndex-1];	
+				IGmdcImporter importer = ExporterLoader.Importers[ofd.FilterIndex-1];
+				Helper.WindowsRegistry.GmdcExtension = importer.FileExtension;
 				importer.Component.Sorting = sorting;
 				System.IO.FileStream meshreader = File.OpenRead(ofd.FileName);
 
@@ -2830,6 +2831,7 @@ namespace SimPe.Plugin
 				{
 					//Now perfor the Export
 					IGmdcExporter exporter = ExporterLoader.Exporters[sfd.FilterIndex-1];
+					Helper.WindowsRegistry.GmdcExtension = exporter.FileExtension;
 					exporter.Component.Sorting = sorting;	
 					exporter.CorrectJointSetup = corjoints;
 					if (!sfd.FileName.Trim().ToLower().EndsWith(exporter.FileExtension.Trim().ToLower())) sfd.FileName += exporter.FileExtension;
@@ -2861,7 +2863,7 @@ namespace SimPe.Plugin
 				if (this.tMesh.Tag != null)
 				{
 					GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
-					StartExport(sfd, gmdc, ".obj", GetModelsExt(), (ElementSorting)cbaxis.Items[cbaxis.SelectedIndex], cbCorrect.Checked);
+					StartExport(sfd, gmdc, Helper.WindowsRegistry.GmdcExtension, GetModelsExt(), (ElementSorting)cbaxis.Items[cbaxis.SelectedIndex], cbCorrect.Checked);
 					
 				}				
 			}

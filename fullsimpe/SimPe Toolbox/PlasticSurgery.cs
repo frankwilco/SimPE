@@ -145,6 +145,7 @@ namespace SimPe.Plugin
 				tna.UserData = fl.UncompressedData;
 			}
 			
+			UpdateFaceStructure(ret);
 			return ret;
 		}
 		#endregion
@@ -232,9 +233,14 @@ namespace SimPe.Plugin
 		/// <param name="skinfiles">a Hashtable listing al Proerty Sets for each available skintone (key=skintone string, value= ArrayList of Cpf Objects)</param>	
 		void UpdateSkintone(SimPe.Plugin.RefFile reffile, string skin, Hashtable skinfiles)
 		{
+			if (reffile==null) return;
+			if (reffile.Items==null) return;
+			if (reffile.Package==null) return;
+
 			for (int i=0; i<reffile.Items.Length; i++)
-			{
+			{				
 				SimPe.Interfaces.Files.IPackedFileDescriptor pfd = (SimPe.Interfaces.Files.IPackedFileDescriptor)reffile.Items[i];
+				if (pfd==null) continue;
 				if (pfd.Type == Data.MetaData.GZPS) 
 				{
 
@@ -280,6 +286,7 @@ namespace SimPe.Plugin
 			try { age = (uint)Math.Pow(2, Convert.ToInt32(md.FindProperty("paramAge").Value));}  catch {}
 			try { patientgender = Convert.ToUInt32(md.FindProperty("paramGender").Value);}  catch {}
 
+			if (skinfiles[targetskin]==null) return;
 			foreach (Cpf newcpf in (ArrayList)skinfiles[targetskin]) 
 			{
 				if (newcpf.GetSaveItem("override0subset").StringValue.Trim().ToLower()=="face") 				
@@ -292,7 +299,7 @@ namespace SimPe.Plugin
 
 							Rcol txmt = sc.TXMT;
 							Rcol txtr = sc.TXTR;
-							if (txtr!=null) 
+							if (txtr!=null && txmt!=null)
 							{																		
 								string txmtname = txmt.FileName.Trim();
 								if (txmtname.ToLower().EndsWith("_txmt")) txmtname = txmtname.Substring(0, txmtname.Length-5);
@@ -484,7 +491,35 @@ namespace SimPe.Plugin
 				}
 			}			
 			
+			UpdateFaceStructure(ret);
 			return ret;
+		}
+
+		/// <summary>
+		/// Make sure the correct Face Structure is used (as desribed by Nukael)
+		/// </summary>
+		/// <remarks>http://www.modthesims2.com/showthread.php?t=56241</remarks>
+		/// <param name="pkg">The package with the Face Data</param>
+		public void UpdateFaceStructure(SimPe.Packages.GeneratableFile pkg) 
+		{
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles((uint)0xCCCEF852); //LxNR, Face
+			SimPe.Interfaces.Files.IPackedFileDescriptor oldpfd = null;
+			SimPe.Interfaces.Files.IPackedFileDescriptor newpfd = null;
+
+			uint oi = 1;
+			uint ni = 2;
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+			{
+				if (pfd.Instance<=oi) { oldpfd = pfd; oi = pfd.Instance; }
+				if (pfd.Instance>=ni) { newpfd = pfd; ni = pfd.Instance; }
+			}
+
+			if (oldpfd!=null && newpfd!=null) 
+			{
+				SimPe.Interfaces.Files.IPackedFile pf = pkg.Read(newpfd);
+				oldpfd.UserData = pf.UncompressedData;
+				oldpfd.Changed = true;
+			}
 		}
 		#endregion
 

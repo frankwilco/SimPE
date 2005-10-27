@@ -84,7 +84,7 @@ namespace SimPe
 			this.pbTop.Image = ((System.Drawing.Image)(resources.GetObject("pbTop.Image")));
 			this.pbTop.Location = new System.Drawing.Point(0, 0);
 			this.pbTop.Name = "pbTop";
-			this.pbTop.Size = new System.Drawing.Size(792, 128);
+			this.pbTop.Size = new System.Drawing.Size(786, 124);
 			this.pbTop.TabIndex = 0;
 			this.pbTop.TabStop = false;
 			// 
@@ -92,9 +92,9 @@ namespace SimPe
 			// 
 			this.pbBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pbBottom.Image = ((System.Drawing.Image)(resources.GetObject("pbBottom.Image")));
-			this.pbBottom.Location = new System.Drawing.Point(0, 414);
+			this.pbBottom.Location = new System.Drawing.Point(0, 406);
 			this.pbBottom.Name = "pbBottom";
-			this.pbBottom.Size = new System.Drawing.Size(792, 24);
+			this.pbBottom.Size = new System.Drawing.Size(786, 32);
 			this.pbBottom.TabIndex = 1;
 			this.pbBottom.TabStop = false;
 			// 
@@ -111,7 +111,7 @@ namespace SimPe
 			this.rtb.Name = "rtb";
 			this.rtb.ReadOnly = true;
 			this.rtb.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-			this.rtb.Size = new System.Drawing.Size(736, 288);
+			this.rtb.Size = new System.Drawing.Size(722, 280);
 			this.rtb.TabIndex = 2;
 			this.rtb.Text = "";
 			this.rtb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtb_LinkClicked);
@@ -128,7 +128,7 @@ namespace SimPe
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-			this.ClientSize = new System.Drawing.Size(792, 438);
+			this.ClientSize = new System.Drawing.Size(786, 438);
 			this.Controls.Add(this.rtb);
 			this.Controls.Add(this.pbBottom);
 			this.Controls.Add(this.pbTop);

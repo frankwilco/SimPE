@@ -75,6 +75,9 @@ namespace SimPe
 
 		internal void Start()
 		{
+			System.Collections.IComparer cmp = lv.ListViewItemSorter;
+			lv.ListViewItemSorter = null;
+			DateTime start = DateTime.Now;
 			run.Set();				
 			bool startedwait = false;
 			try 
@@ -114,7 +117,13 @@ namespace SimPe
 				if (Finished!=null) Finished(this, new EventArgs());
 				if (startedwait) 
 					Wait.SubStop();					
-			}	 
+			}	
+ 
+			TimeSpan dur = DateTime.Now-start;
+			lv.ListViewItemSorter = cmp;
+#if DEBUG
+			Message.Show(dur.ToString());
+#endif
 		}
 
 		ManualResetEvent run;

@@ -86,11 +86,18 @@ namespace SimPe
 		/// Reload the SimPe Registry
 		/// </summary>
 		public void Reload()
-		{
-			
+		{			
 			reg = new XmlRegistry(System.IO.Path.Combine(Helper.SimPeDataPath, "simpe.xreg"), true);
 			xrk = reg.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe");
-			lr = new LayoutRegistry(xrk.CreateSubKey("Layout"));			
+			ReloadLayout();
+		}
+
+		/// <summary>
+		/// Reload the SimPe Registry
+		/// </summary>
+		public void ReloadLayout()
+		{
+			lr = new LayoutRegistry(xrk.CreateSubKey("Layout"));		
 		}
 
 		/// <summary>
@@ -918,6 +925,25 @@ namespace SimPe
 			{
 				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
 				rkf.SetValue("GraphQuality", value);
+			}
+		}
+
+		/// <summary>
+		/// returns the last Extension used during a GMDC import/export
+		/// </summary>
+		public string GmdcExtension
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("GmdcExtension", ".obj");
+				string s = o.ToString();
+				return s.Replace("*", "");
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("GmdcExtension", value);
 			}
 		}
 

@@ -199,9 +199,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "classic_layout.xreg"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Commandline.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "modern_layout.xreg"
+                    BuildAction = "EmbeddedResource"
                 />
             </Include>
         </Files>
