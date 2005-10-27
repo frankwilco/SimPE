@@ -335,6 +335,32 @@ namespace SimPe.Packages
 
 		#region Compare Methods
 		/// <summary>
+		/// Same Equals, except this Version is also checking the Offset
+		/// </summary>
+		/// <param name="obj">The Object to compare to</param>
+		/// <returns>true if the TGI Values are the same</returns>
+		public bool SameAs(object obj)
+		{
+			if (obj==null) return false;
+
+			//passed a FileWrapper, so extract the FileDescriptor
+			if (typeof(IPackedFileWrapper) == obj.GetType().GetInterface("IPackedFileWrapper"))
+			{
+				IPackedFileWrapper pfw = (IPackedFileWrapper)obj;
+				obj = pfw.FileDescriptor;
+			} 
+			else 
+			{
+				// Check for null values and compare run-time types.
+				if (((typeof(IPackedFileDescriptor) != obj.GetType().GetInterface("IPackedFileDescriptor")) && (GetType() != obj.GetType()))) 
+					return false;
+			}
+
+			IPackedFileDescriptor pfd = (IPackedFileDescriptor)obj;			
+			return ((Type == pfd.Type) && (LongInstance == pfd.LongInstance) && (Group == pfd.Group) && (Offset == pfd.Offset));
+		}
+
+		/// <summary>
 		/// Allow compare with IPackedFileWrapper and IPackedFileDescriptor Objects
 		/// </summary>
 		/// <param name="obj">The Object to compare to</param>
@@ -352,7 +378,7 @@ namespace SimPe.Packages
 			else 
 			{
 				// Check for null values and compare run-time types.
-				if ((obj == null) || ((typeof(IPackedFileDescriptor) != obj.GetType().GetInterface("IPackedFileDescriptor")) && (GetType() != obj.GetType()))) 
+				if (((typeof(IPackedFileDescriptor) != obj.GetType().GetInterface("IPackedFileDescriptor")) && (GetType() != obj.GetType()))) 
 					return false;
 			}
 

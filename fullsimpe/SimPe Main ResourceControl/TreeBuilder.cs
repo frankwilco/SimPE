@@ -33,7 +33,7 @@ namespace SimPe
 		/// <summary>
 		/// All Generator Functions (=Functions that build a TreeView) must implement this delegate
 		/// </summary>
-		public delegate void GenerateView(TreeView tv);
+		public delegate void GenerateView(TreeView tv, bool autoselect);
 		TreeView tv;
 		GenerateView fkt;
 
@@ -60,9 +60,9 @@ namespace SimPe
 		/// <summary>
 		/// Build the TreeView
 		/// </summary>
-		public void Generate()
+		public void Generate(bool autoselect)
 		{
-			fkt(tv);
+			fkt(tv, autoselect);
 		}
 	}
 
@@ -146,9 +146,10 @@ namespace SimPe
 		/// Build a TreeView based on the Instance Values
 		/// </summary>
 		/// <param name="tv"></param>
-		public void InstanceView(TreeView tv)
+		public void InstanceView(TreeView tv, bool autoselect)
 		{
 			InstanceTreeBuilder instb = new InstanceTreeBuilder(pkg, filter, tv);
+			instb.AutoSelect = autoselect;
 			instb.Finished += new EventHandler(typetb_Finished);
 			TreeBuilderBase.Start(instb);		
 		}
@@ -157,9 +158,10 @@ namespace SimPe
 		/// Build a TreeView based on the Group Values
 		/// </summary>
 		/// <param name="tv"></param>
-		public void GroupView(TreeView tv)
+		public void GroupView(TreeView tv, bool autoselect)
 		{
 			GroupTreeBuilder grptb = new GroupTreeBuilder(pkg, filter, tv);
+			grptb.AutoSelect = autoselect;
 			grptb.Finished += new EventHandler(typetb_Finished);
 			TreeBuilderBase.Start(grptb);				
 		}
@@ -173,9 +175,10 @@ namespace SimPe
 		/// Build a TreeView based on the Group Values
 		/// </summary>
 		/// <param name="tv"></param>
-		public void TypeView(TreeView tv)
+		public void TypeView(TreeView tv, bool autoselect)
 		{
 			TypeTreeBuilder typetb = new TypeTreeBuilder(pkg, filter, tv);
+			typetb.AutoSelect = autoselect;
 			typetb.Finished += new EventHandler(typetb_Finished);
 			TreeBuilderBase.Start(typetb);			
 		}

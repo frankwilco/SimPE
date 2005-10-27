@@ -240,6 +240,13 @@ namespace SimPe.Interfaces.Files
 		bool Equals(object obj);
 
 		/// <summary>
+		/// Same <see cref="Equals"/>, except this Version is also checking the Offset
+		/// </summary>
+		/// <param name="obj">The Object to compare to</param>
+		/// <returns>true if the TGI Values are the same</returns>
+		bool SameAs(object obj);
+
+		/// <summary>
 		/// additional Data
 		/// </summary>
 		object Tag 

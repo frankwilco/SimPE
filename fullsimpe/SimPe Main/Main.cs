@@ -1997,7 +1997,7 @@ namespace SimPe
 		void AfterFileLoad(LoadedPackage sender)
 		{
 			sender.UpdateProviders();	
-			ShowNewFile();		
+			ShowNewFile(true);		
 		}	
 	
 		/// <summary>
@@ -2043,12 +2043,12 @@ namespace SimPe
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void AddedRemovedIndexResource(object sender, EventArgs e)
-		{
-			ShowNewFile();
+		{			
+			UpdateFileIndex();
 		}
 
 		/// <summary>
-		/// Thsi Method displays the content of a File
+		/// This Method displays the content of a File
 		/// </summary>
 		void UpdateFileInfo()
 		{
@@ -2057,9 +2057,67 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Selects the <see cref="TreeNode"/> that has the same Name as the passed <see cref="TreeNodeTag"/>
+		/// </summary>
+		/// <param name="nodes">List of TreeNode Object</param>
+		/// <param name="tnt"><see cref="TreeNodeTag"/> that should be used to find the matching TreeNode</param>
+		/// <returns>true if a selection was made</returns>
+		/// <remarks>also sets <see cref="lastusedtnt"/> to the selected Node</remarks>
+		bool ReSelectTreeNode(TreeNodeCollection nodes, TreeNodeTag tnt)
+		{
+			if (this.lasttreeview==null || tnt==null || nodes==null) return false;
+
+			foreach (TreeNode node in nodes)	
+			{		
+				if (node.Tag is TreeNodeTag)				
+					if (((TreeNodeTag)node.Tag).Name == tnt.Name) 
+					{
+						node.TreeView.SelectedNode = node;
+						this.lastusedtnt = (TreeNodeTag)node.Tag;
+						return true;
+					}
+
+				if (ReSelectTreeNode(node.Nodes, tnt)) return true;
+			}
+			
+			return false;
+		}
+
+		/// <summary>
+		/// When adding removing a Resource, the ResourceList and ResourceTree need to be Updated.
+		/// That is done in this Method
+		/// </summary>
+		void UpdateFileIndex()
+		{			
+			SimPe.Collections.PackedFileDescriptors list = new SimPe.Collections.PackedFileDescriptors();
+			
+			foreach (ListViewItem lvi in lv.Items) 
+			{
+				ListViewTag lvt = (ListViewTag)lvi.Tag;
+				if (lvi.Selected)
+					list.Add(lvt.Resource.FileDescriptor);									
+			}
+
+			TreeNodeTag tnt = lastusedtnt;
+			ShowNewFile(false);			
+			if (tnt!=null && lasttreeview!=null) {
+				tnt.Refresh(lv);
+				ReSelectTreeNode(this.lasttreeview.Nodes, tnt);
+			}
+					
+
+			
+			foreach (ListViewItem lvi in lv.Items) 
+			{
+				ListViewTag lvt = (ListViewTag)lvi.Tag;
+				if (list.Contains(lvt.Resource.FileDescriptor)) lvi.Selected = true;
+			}
+		}
+
+		/// <summary>
 		/// This Method displays the content of a File
 		/// </summary>
-		void ShowNewFile()
+		void ShowNewFile(bool autoselect)
 		{
 			plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));
 			tvInstance.Nodes.Clear();
@@ -2070,7 +2128,7 @@ namespace SimPe
 			TreeBuilder.ClearListView(lv);
 
 			
-			SetupActiveResourceView();	
+			SetupActiveResourceView(autoselect);	
 			package.UpdateRecentFileMenu(this.miRecent);			
 
 			UpdateFileInfo();
@@ -2348,13 +2406,13 @@ namespace SimPe
 				}
 			}
 
-			SetupActiveResourceView();
+			SetupActiveResourceView(true);
 		}
 
 		/// <summary>
 		/// Display the content of the current package in the choosen TreeView
 		/// </summary>
-		void SetupActiveResourceView()
+		void SetupActiveResourceView(bool autoselect)
 		{
 			foreach (TD.SandBar.ToolbarItemBase c in tbResource.Items) 
 			{
@@ -2368,9 +2426,10 @@ namespace SimPe
 					{
 						if (tbl.TreeView.Nodes.Count==0)
 						{
-							tbl.Generate();							
+							tbl.Generate(autoselect);							
 							if (tbl.TreeView.Nodes.Count>0) lastusedtnt = (TreeNodeTag)tbl.TreeView.Nodes[0].Tag;							
 						}
+
 						this.SelectResourceNode(tbl.TreeView, new TreeViewEventArgs(tbl.TreeView.SelectedNode, TreeViewAction.ByMouse));
 						//special Treatment for Neighborhood Files
 						if (Helper.IsNeighborhoodFile(package.FileName) && tbl.TreeView.Nodes.Count>0) tvType.SelectedNode = tbl.TreeView.Nodes[0];
@@ -2547,6 +2606,7 @@ namespace SimPe
 			if (lastusedtnt!=null) lastusedtnt.Refresh(lv);
 		}				
 		
+		
 		//int ct = 0;
 		/// <summary>
 		/// 
@@ -2555,6 +2615,7 @@ namespace SimPe
 		/// <param name="e">null to indicate, that his Method was called internal, and should NOT open a Resource!</param>
 		private void SelectResource(object sender, System.EventArgs e)
 		{		
+			
 			//ct++; this.Text=(ct/2).ToString();	//was used to test for a Bug related to opened Docks
 			if (lv.SelectedItems.Count<=2) SelectResource(sender, false, false);
 			else DereferedResourceSelect();
@@ -2820,7 +2881,7 @@ namespace SimPe
 			if (ClosePackage())
 			{
 				SimPe.Packages.StreamFactory.CloseAll();
-				this.ShowNewFile();
+				this.ShowNewFile(true);
 			}							
 		}
 

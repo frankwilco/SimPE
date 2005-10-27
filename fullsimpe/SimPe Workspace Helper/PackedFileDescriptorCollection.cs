@@ -27,7 +27,7 @@ namespace SimPe.Collections
 	/// Typesave ArrayList for IPackedFileDescriptor Objects
 	/// </summary>
 	public class PackedFileDescriptors : ArrayList 
-	{
+	{		
 		/// <summary>
 		/// Integer Indexer
 		/// </summary>
@@ -82,6 +82,13 @@ namespace SimPe.Collections
 		/// <returns>true, if it was found</returns>
 		public bool Contains(IPackedFileDescriptor item)
 		{
+			if (item==null) return false;
+			foreach (IPackedFileDescriptor pfd in this) 
+			{
+				if (item.SameAs(pfd)) return true;
+			}
+
+			return false;
 			return base.Contains(item);
 		}		
 
