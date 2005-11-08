@@ -219,10 +219,20 @@
                     Project = "{2EF93119-5C98-4167-B1AF-966E6A45AB79}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe Extended Filehandlers"
+                    Project = "{7EF7C30C-2968-46E8-AA74-79EDB0FE8F2A}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
             <Include>
+                <File
+                    RelPath = "ActionBuildPhpGUIDList.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
                 <File
                     RelPath = "ActionCheckFiletable.cs"
                     SubType = "Code"
