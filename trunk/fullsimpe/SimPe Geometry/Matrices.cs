@@ -93,7 +93,7 @@ namespace SimPe.Geometry
 		/// </summary>
 		public Matrixd GetTranspose()
 		{
-			Matrixd res = new Matrixd(Rows, Columns);
+            Matrixd res = new Matrixd(Columns, Rows);
 			for (int r=0; r<Rows; r++) 
 				for (int c=0; c<Columns; c++) 
 					res[c, r] = this[r, c];				
@@ -185,7 +185,7 @@ namespace SimPe.Geometry
 			Matrixd m = new Matrixd(m1.Rows, m1.Columns);
 			for (int r=0; r<m.Rows; r++) 
 				for (int c=0; c<m.Columns; c++)
-					m[r, c] *= m1[r, c] * d;
+					m[r, c] = m1[r, c] * d;
 			return m;
 		}
 

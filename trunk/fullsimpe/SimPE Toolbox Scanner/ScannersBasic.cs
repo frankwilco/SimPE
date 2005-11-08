@@ -22,6 +22,7 @@ using SimPe.Cache;
 using SimPe.PackedFiles.Wrapper;
 using System.Collections;
 using SimPe.Interfaces.Plugin.Scanner;
+using SimPe.Plugin;
 
 namespace SimPe.Plugin.Scanner
 {
@@ -392,7 +393,7 @@ namespace SimPe.Plugin.Scanner
 
 				foreach (string modelname in modelnames) 
 				{
-					System.Drawing.Image img = SimPe.Plugin.Workshop.GetThumbnail(group, modelname);
+					System.Drawing.Image img = Workshop.GetThumbnail(group, modelname);
 					if (img!=null) 
 					{
 						si.PackageCacheItem.Thumbnail = img;

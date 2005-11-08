@@ -250,21 +250,20 @@ namespace SimPe.Geometry
 		/// <summary>
 		/// Create the Inverse of a Vector
 		/// </summary>
+		public Vector3f GetInverse()
+		{
+			return !this;
+		}
+
+		/// <summary>
+		/// Create the Inverse of a Vector
+		/// </summary>
 		/// <param name="v">The Vector you want to Invert</param>
 		/// <returns>The inverted Vector</returns>
 		public static Vector3f operator !(Vector3f v)
 		{
-			return v.GetInverse();
-		}
-
-		/// <summary>
-		/// Returns the Inverse Vector
-		/// </summary>
-		/// <returns>The Inverse of this Vector</returns>
-		public Vector3f GetInverse()
-		{
-			return this * (double)(-1.0);
-		}
+            return v * (double)(-1.0);
+		}		
 
 		/// <summary>
 		/// Vector addition

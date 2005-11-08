@@ -80,6 +80,7 @@ namespace SimPe.Plugin.Tool.Dockable
 									new LoadSims2PackTool()
 #if DEBUG
 										  , new ActionCheckFiletable()
+										  , new ActionBuildPhpGuidList()
 										  , new DebugDock()
 #endif
 				};
