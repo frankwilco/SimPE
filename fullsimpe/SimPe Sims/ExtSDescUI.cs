@@ -309,6 +309,8 @@ namespace SimPe.PackedFiles.UserInterface
 			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup1 = new SteepValley.Windows.Forms.XPListViewGroup("Relations", 0);
 			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup2 = new SteepValley.Windows.Forms.XPListViewGroup("Unknown Relations", 2);
 			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup3 = new SteepValley.Windows.Forms.XPListViewGroup("Sim Pool", 1);
+			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup4 = new SteepValley.Windows.Forms.XPListViewGroup("NPC", 3);
+			SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup5 = new SteepValley.Windows.Forms.XPListViewGroup("Townie", 4);
 			this.toolBar1 = new TD.SandBar.ToolBar();
 			this.biId = new TD.SandBar.ButtonItem();
 			this.biCareer = new TD.SandBar.ButtonItem();
@@ -2148,9 +2150,15 @@ namespace SimPe.PackedFiles.UserInterface
 			xpListViewGroup2.GroupText = "Unknown Relations";
 			xpListViewGroup3.GroupIndex = 1;
 			xpListViewGroup3.GroupText = "Sim Pool";
+			xpListViewGroup4.GroupIndex = 3;
+			xpListViewGroup4.GroupText = "NPC";
+			xpListViewGroup5.GroupIndex = 4;
+			xpListViewGroup5.GroupText = "Townie";
 			this.lv.Groups.Add(xpListViewGroup1);
 			this.lv.Groups.Add(xpListViewGroup2);
 			this.lv.Groups.Add(xpListViewGroup3);
+			this.lv.Groups.Add(xpListViewGroup4);
+			this.lv.Groups.Add(xpListViewGroup5);
 			this.lv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.lv.HideSelection = false;
 			this.lv.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lv.ImeMode")));
@@ -2168,7 +2176,8 @@ namespace SimPe.PackedFiles.UserInterface
 												1,
 												2,
 												3};
-			this.lv.View = SteepValley.Windows.Forms.ExtendedView.Tile;			
+			this.lv.TileSize = new System.Drawing.Size(0, 0);
+			this.lv.View = SteepValley.Windows.Forms.ExtendedView.Tile;
 			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
 			this.lv.SelectedIndexChanged += new System.EventHandler(this.lv_SelectedIndexChanged);
 			// 
@@ -4846,16 +4855,16 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-			this.Controls.Add(this.pnEP2);
 			this.Controls.Add(this.toolBar1);
-			this.Controls.Add(this.pnChar);
-			this.Controls.Add(this.pnSkill);
 			this.Controls.Add(this.pnRel);
 			this.Controls.Add(this.pnInt);
 			this.Controls.Add(this.pnId);
 			this.Controls.Add(this.pnCareer);
 			this.Controls.Add(this.pnEP1);
 			this.Controls.Add(this.pnMisc);
+			this.Controls.Add(this.pnEP2);
+			this.Controls.Add(this.pnChar);
+			this.Controls.Add(this.pnSkill);
 			this.DockPadding.Top = 24;
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
@@ -4919,7 +4928,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Reputation));
 			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Romance));
 			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Growup));			
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Fun));
+			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Fun));			
+			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Chees));
 
 			
 			this.cblifesection.Items.Clear();
@@ -5821,6 +5831,8 @@ namespace SimPe.PackedFiles.UserInterface
 				inst.Add((ushort)sdesc.FileDescriptor.Instance);
 				SteepValley.Windows.Forms.XPListViewItem lvi = lv.Add(sdesc);
 				if (Sdesc.HasRelationWith(sdesc)) lvi.GroupIndex=0;
+				else if (sdesc.IsNPC) lvi.GroupIndex=3;
+				else if (sdesc.IsTownie) lvi.GroupIndex=4;
 				else lvi.GroupIndex=1;
 
 				lvi.Tag = sdesc;
@@ -5855,6 +5867,8 @@ namespace SimPe.PackedFiles.UserInterface
 				
 				inst.Add((ushort)sdesc.FileDescriptor.Instance);
 				if (Sdesc.HasRelationWith(sdesc)) lvi.GroupIndex=0;
+				else if (sdesc.IsNPC) lvi.GroupIndex=3;
+				else if (sdesc.IsTownie) lvi.GroupIndex=4;
 				else lvi.GroupIndex=1;
 			}
 

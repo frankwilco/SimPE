@@ -537,12 +537,12 @@ namespace SimPe
 			string layoutname = System.IO.Path.Combine(Helper.SimPeDataPath, "layout.xreg");
 			if (!System.IO.File.Exists(layoutname)) Commandline.MakeModern(null);
 
-			if (Helper.WindowsRegistry.PreviousVersion<=210591838129) 
+			if (Helper.WindowsRegistry.PreviousVersion<=219184142520) 
 			{
 				string name = System.IO.Path.Combine(Helper.SimPeDataPath, "folders.xreg");
 				if (System.IO.File.Exists(name)) 
 				{
-					if (Message.Show("In order to support the new Expansion \"Nightlife\", SimPE need to reset your FileTable.\nThis means, that SimPe will delete the File \""+name+"\".\n\nDo you want SimPe to reset your FileTable?", "Update", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+					if (Message.Show("In order to support the new Expansion \"Christmas Objects\", SimPE need to reset your FileTable.\nThis means, that SimPe will delete the File \""+name+"\".\n\nDo you want SimPe to reset your FileTable?", "Update", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
 					{
 						try 
 						{						

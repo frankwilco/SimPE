@@ -61,11 +61,22 @@ namespace SimPe
 				if (fii.Package!=null) 
 				{
 					if (!fii.Package.Equals(lp.Package)) 
-						if (!lp.LoadFromPackage((SimPe.Packages.GeneratableFile)fii.Package)) return false;
+					{
+						int bprc = Helper.WindowsRegistry.BigPackageResourceCount;
+						Helper.WindowsRegistry.BigPackageResourceCount = int.MaxValue;
+
+						if (!lp.LoadFromPackage((SimPe.Packages.GeneratableFile)fii.Package)) 
+						{
+							Helper.WindowsRegistry.BigPackageResourceCount = bprc;
+							return false;
+						}
+						Helper.WindowsRegistry.BigPackageResourceCount = bprc;
+					}
 				}
 			} 
-			catch 
+			catch (Exception ex)
 			{
+				Helper.ExceptionMessage(ex);
 				return false;
 			}
 

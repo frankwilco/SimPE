@@ -126,6 +126,12 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.tbResult = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.lv = new SteepValley.Windows.Forms.XPListView(this.components);
+			this.tbCpf = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+			this.tbCpfVal = new System.Windows.Forms.TextBox();
+			this.button3 = new System.Windows.Forms.Button();
+			this.tbCpfName = new System.Windows.Forms.TextBox();
+			this.cbCpfMatch = new TD.SandBar.FlatComboBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.tbTGI = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.button2 = new System.Windows.Forms.Button();
 			this.tbType = new System.Windows.Forms.TextBox();
@@ -149,18 +155,12 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.rightSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.bottomSandBarDock = new TD.SandBar.ToolBarContainer();
 			this.topSandBarDock = new TD.SandBar.ToolBarContainer();
-			this.tbCpf = new Ambertation.Windows.Forms.XPTaskBoxSimple();
-			this.button3 = new System.Windows.Forms.Button();
-			this.tbCpfName = new System.Windows.Forms.TextBox();
-			this.cbCpfMatch = new TD.SandBar.FlatComboBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.tbCpfVal = new System.Windows.Forms.TextBox();
 			this.xpGradientPanel1.SuspendLayout();
 			this.tbResult.SuspendLayout();
+			this.tbCpf.SuspendLayout();
 			this.tbTGI.SuspendLayout();
 			this.tbNmap.SuspendLayout();
 			this.panel1.SuspendLayout();
-			this.tbCpf.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// xpGradientPanel1
@@ -217,7 +217,97 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lv.TileSize = new System.Drawing.Size(350, 90);
 			this.lv.View = SteepValley.Windows.Forms.ExtendedView.Details;
 			this.lv.DoubleClick += new System.EventHandler(this.lv_DoubleClick);
+			this.lv.SelectedIndexChanged += new System.EventHandler(this.lv_SelectedIndexChanged);
 			this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_ColumnClick);
+			// 
+			// tbCpf
+			// 
+			this.tbCpf.BackColor = System.Drawing.Color.Transparent;
+			this.tbCpf.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
+			this.tbCpf.BorderColor = System.Drawing.SystemColors.Window;
+			this.tbCpf.Controls.Add(this.tbCpfVal);
+			this.tbCpf.Controls.Add(this.button3);
+			this.tbCpf.Controls.Add(this.tbCpfName);
+			this.tbCpf.Controls.Add(this.cbCpfMatch);
+			this.tbCpf.Controls.Add(this.label4);
+			this.tbCpf.Dock = System.Windows.Forms.DockStyle.Top;
+			this.tbCpf.DockPadding.Bottom = 4;
+			this.tbCpf.DockPadding.Left = 4;
+			this.tbCpf.DockPadding.Right = 4;
+			this.tbCpf.DockPadding.Top = 44;
+			this.tbCpf.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
+			this.tbCpf.HeaderText = "Property Sets";
+			this.tbCpf.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.tbCpf.Icon = ((System.Drawing.Image)(resources.GetObject("tbCpf.Icon")));
+			this.tbCpf.IconLocation = new System.Drawing.Point(4, 12);
+			this.tbCpf.IconSize = new System.Drawing.Size(32, 32);
+			this.tbCpf.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
+			this.tbCpf.Location = new System.Drawing.Point(8, 288);
+			this.tbCpf.Name = "tbCpf";
+			this.tbCpf.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+			this.tbCpf.Size = new System.Drawing.Size(288, 168);
+			this.tbCpf.TabIndex = 7;
+			this.tbCpf.Visible = false;
+			// 
+			// tbCpfVal
+			// 
+			this.tbCpfVal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbCpfVal, "Property Value");
+			this.tbCpfVal.Location = new System.Drawing.Point(16, 96);
+			this.tbCpfVal.Name = "tbCpfVal";
+			this.tbCpfVal.Size = new System.Drawing.Size(264, 21);
+			this.tbCpfVal.TabIndex = 7;
+			this.tbCpfVal.Text = "";
+			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button3.Location = new System.Drawing.Point(205, 136);
+			this.button3.Name = "button3";
+			this.button3.TabIndex = 8;
+			this.button3.Text = "Start";
+			this.button3.Click += new System.EventHandler(this.FindByStringMatch);
+			// 
+			// tbCpfName
+			// 
+			this.tbCpfName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbCpfName, "Property Name");
+			this.tbCpfName.Location = new System.Drawing.Point(16, 72);
+			this.tbCpfName.Name = "tbCpfName";
+			this.tbCpfName.Size = new System.Drawing.Size(264, 21);
+			this.tbCpfName.TabIndex = 6;
+			this.tbCpfName.Text = "";
+			// 
+			// cbCpfMatch
+			// 
+			this.cbCpfMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.xpCueBannerExtender1.SetCueBannerText(this.cbCpfMatch, "");
+			this.cbCpfMatch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbCpfMatch.Items.AddRange(new object[] {
+															"Exact",
+															"Begins with",
+															"Ends with",
+															"Contains",
+															"Regular Expression"});
+			this.cbCpfMatch.Location = new System.Drawing.Point(64, 48);
+			this.cbCpfMatch.Name = "cbCpfMatch";
+			this.cbCpfMatch.Size = new System.Drawing.Size(216, 21);
+			this.cbCpfMatch.TabIndex = 5;
+			// 
+			// label4
+			// 
+			this.label4.BackColor = System.Drawing.Color.Transparent;
+			this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label4.Location = new System.Drawing.Point(8, 48);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(48, 23);
+			this.label4.TabIndex = 4;
+			this.label4.Text = "Match:";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// tbTGI
 			// 
@@ -479,95 +569,6 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.topSandBarDock.Size = new System.Drawing.Size(304, 0);
 			this.topSandBarDock.TabIndex = 4;
 			// 
-			// tbCpf
-			// 
-			this.tbCpf.BackColor = System.Drawing.Color.Transparent;
-			this.tbCpf.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
-			this.tbCpf.BorderColor = System.Drawing.SystemColors.Window;
-			this.tbCpf.Controls.Add(this.tbCpfVal);
-			this.tbCpf.Controls.Add(this.button3);
-			this.tbCpf.Controls.Add(this.tbCpfName);
-			this.tbCpf.Controls.Add(this.cbCpfMatch);
-			this.tbCpf.Controls.Add(this.label4);
-			this.tbCpf.Dock = System.Windows.Forms.DockStyle.Top;
-			this.tbCpf.DockPadding.Bottom = 4;
-			this.tbCpf.DockPadding.Left = 4;
-			this.tbCpf.DockPadding.Right = 4;
-			this.tbCpf.DockPadding.Top = 44;
-			this.tbCpf.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
-			this.tbCpf.HeaderText = "Property Sets";
-			this.tbCpf.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.tbCpf.Icon = ((System.Drawing.Image)(resources.GetObject("tbCpf.Icon")));
-			this.tbCpf.IconLocation = new System.Drawing.Point(4, 12);
-			this.tbCpf.IconSize = new System.Drawing.Size(32, 32);
-			this.tbCpf.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
-			this.tbCpf.Location = new System.Drawing.Point(8, 288);
-			this.tbCpf.Name = "tbCpf";
-			this.tbCpf.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-			this.tbCpf.Size = new System.Drawing.Size(288, 168);
-			this.tbCpf.TabIndex = 7;
-			this.tbCpf.Visible = false;
-			// 
-			// button3
-			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button3.Location = new System.Drawing.Point(205, 136);
-			this.button3.Name = "button3";
-			this.button3.TabIndex = 8;
-			this.button3.Text = "Start";
-			this.button3.Click += new System.EventHandler(this.FindByStringMatch);
-			// 
-			// tbCpfName
-			// 
-			this.tbCpfName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.xpCueBannerExtender1.SetCueBannerText(this.tbCpfName, "Property Name");
-			this.tbCpfName.Location = new System.Drawing.Point(16, 72);
-			this.tbCpfName.Name = "tbCpfName";
-			this.tbCpfName.Size = new System.Drawing.Size(264, 21);
-			this.tbCpfName.TabIndex = 6;
-			this.tbCpfName.Text = "";
-			// 
-			// cbCpfMatch
-			// 
-			this.cbCpfMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.xpCueBannerExtender1.SetCueBannerText(this.cbCpfMatch, "");
-			this.cbCpfMatch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbCpfMatch.Items.AddRange(new object[] {
-															"Exact",
-															"Begins with",
-															"Ends with",
-															"Contains",
-															"Regular Expression"});
-			this.cbCpfMatch.Location = new System.Drawing.Point(64, 48);
-			this.cbCpfMatch.Name = "cbCpfMatch";
-			this.cbCpfMatch.Size = new System.Drawing.Size(216, 21);
-			this.cbCpfMatch.TabIndex = 5;
-			// 
-			// label4
-			// 
-			this.label4.BackColor = System.Drawing.Color.Transparent;
-			this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label4.Location = new System.Drawing.Point(8, 48);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(48, 23);
-			this.label4.TabIndex = 4;
-			this.label4.Text = "Match:";
-			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-			// 
-			// tbCpfVal
-			// 
-			this.tbCpfVal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.xpCueBannerExtender1.SetCueBannerText(this.tbCpfVal, "Property Value");
-			this.tbCpfVal.Location = new System.Drawing.Point(16, 96);
-			this.tbCpfVal.Name = "tbCpfVal";
-			this.tbCpfVal.Size = new System.Drawing.Size(264, 21);
-			this.tbCpfVal.TabIndex = 7;
-			this.tbCpfVal.Text = "";
-			// 
 			// FinderDock
 			// 
 			this.AutoScroll = true;
@@ -586,10 +587,10 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.Text = "Resource Finder";
 			this.xpGradientPanel1.ResumeLayout(false);
 			this.tbResult.ResumeLayout(false);
+			this.tbCpf.ResumeLayout(false);
 			this.tbTGI.ResumeLayout(false);
 			this.tbNmap.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
-			this.tbCpf.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -1053,6 +1054,11 @@ namespace SimPe.Plugin.Tool.Dockable
 			lv.EndUpdate();	
 			lv.DoubleBuffering = true;	
 			Wait.SubStop();
+		}
+
+		private void lv_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+		
 		}
 
 		#region IToolExt Member

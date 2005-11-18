@@ -800,4 +800,31 @@ Do you want to continue?</value>
 	<data name="Delete Sim">
 		<value>Delete Sim</value>
 	</data>
+	<data name="Nothing">
+		<value>Nothing</value>
+	</data>
+	<data name="Romance">
+		<value>Romance</value>
+	</data>
+	<data name="Family">
+		<value>Family</value>
+	</data>
+	<data name="Fortune">
+		<value>Fortune</value>
+	</data>
+	<data name="Reputation">
+		<value>Reputation</value>
+	</data>
+	<data name="Knowledge">
+		<value>Knowledge</value>
+	</data>
+	<data name="Growup">
+		<value>Grow Up</value>
+	</data>
+	<data name="Fun">
+		<value>Fun</value>
+	</data>
+	<data name="Chees">
+		<value>Chees</value>
+	</data>
 </root>
