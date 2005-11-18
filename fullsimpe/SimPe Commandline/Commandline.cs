@@ -59,6 +59,8 @@ namespace SimPe
 			Helper.WindowsRegistry.MultipleFiles = false;
 			Helper.WindowsRegistry.FirefoxTabbing = false;
 
+			if (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetClassic")), SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+				return false;
 			return true;
 		}
 
@@ -79,6 +81,8 @@ namespace SimPe
 			Helper.WindowsRegistry.MultipleFiles = true;
 			Helper.WindowsRegistry.FirefoxTabbing = true;
 
+			if (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetModern")), SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+				return false;
 			return true;
 		}
 
