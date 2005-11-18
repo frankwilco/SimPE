@@ -883,7 +883,7 @@ namespace SimPe
 			{
 				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
 				object o = rkf.GetValue("BigPackageResourceCount", 1000);
-				return Convert.ToInt16(o);
+				return Convert.ToInt32(o);
 			}
 			set
 			{

@@ -304,6 +304,7 @@ namespace SimPe.Plugin
 			this.llhash.Size = new System.Drawing.Size(72, 17);
 			this.llhash.TabIndex = 18;
 			this.llhash.TabStop = true;
+			this.llhash.Visible = false;
 			this.llhash.Text = "assign Hash";
 			this.llhash.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BuildFilename);
 			// 

@@ -32,9 +32,7 @@ namespace SimPe.Plugin
 			//
 			InitializeComponent();
 
-			//
-			// TODO: Fügen Sie den Konstruktorcode nach dem Aufruf von InitializeComponent hinzu
-			//
+			cbv2.Visible = Helper.WindowsRegistry.HiddenMode;
 		}
 
 		/// <summary>
@@ -151,6 +149,7 @@ namespace SimPe.Plugin
 			// cbv2
 			// 
 			this.cbv2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.cbv2.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.cbv2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbv2.Location = new System.Drawing.Point(16, 304);
 			this.cbv2.Name = "cbv2";

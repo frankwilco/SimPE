@@ -73,6 +73,7 @@ namespace SimPe.Plugin
 		{
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(LifoForm));
 			this.LifoPanel = new System.Windows.Forms.Panel();
+			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tbz = new System.Windows.Forms.TextBox();
@@ -100,7 +101,6 @@ namespace SimPe.Plugin
 			this.btcommit = new System.Windows.Forms.Button();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
-			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.LifoPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -128,6 +128,18 @@ namespace SimPe.Plugin
 			this.LifoPanel.Size = new System.Drawing.Size(768, 288);
 			this.LifoPanel.TabIndex = 19;
 			// 
+			// linkLabel2
+			// 
+			this.linkLabel2.AutoSize = true;
+			this.linkLabel2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel2.Location = new System.Drawing.Point(288, 80);
+			this.linkLabel2.Name = "linkLabel2";
+			this.linkLabel2.Size = new System.Drawing.Size(47, 17);
+			this.linkLabel2.TabIndex = 19;
+			this.linkLabel2.TabStop = true;
+			this.linkLabel2.Text = "fix TGI";
+			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FixTGI);
+			// 
 			// linkLabel1
 			// 
 			this.linkLabel1.AutoSize = true;
@@ -138,6 +150,7 @@ namespace SimPe.Plugin
 			this.linkLabel1.TabIndex = 18;
 			this.linkLabel1.TabStop = true;
 			this.linkLabel1.Text = "assign Hash";
+			this.linkLabel1.Visible = false;
 			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BuildFilename);
 			// 
 			// label1
@@ -377,18 +390,6 @@ namespace SimPe.Plugin
 				"|*.bmp|Gif (*.gif)|*.gif|JPEG File (*.jpg)|*.jpg|Png (*.png)|*.png|All Files (*." +
 				"*)|*.*";
 			this.ofd.FilterIndex = 5;
-			// 
-			// linkLabel2
-			// 
-			this.linkLabel2.AutoSize = true;
-			this.linkLabel2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.linkLabel2.Location = new System.Drawing.Point(288, 80);
-			this.linkLabel2.Name = "linkLabel2";
-			this.linkLabel2.Size = new System.Drawing.Size(47, 17);
-			this.linkLabel2.TabIndex = 19;
-			this.linkLabel2.TabStop = true;
-			this.linkLabel2.Text = "fix TGI";
-			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FixTGI);
 			// 
 			// LifoForm
 			// 

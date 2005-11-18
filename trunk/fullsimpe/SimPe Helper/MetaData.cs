@@ -537,7 +537,8 @@ namespace SimPe.Data
 			Reputation = 0x10,
 			Knowledge = 0x20,
 			Growup = 0x40,
-			Fun = 0x80
+			Fun = 0x80,
+			Chees = 0x100
 		}
 
 		/// <summary>
