@@ -1084,4 +1084,15 @@ Soll SimPE fortfahren?</value>
 	<data name="Delete Sim">
 		<value>Sim Löschen</value>
 	</data>
+	<data name="PresetClassic">
+	    <value>klassisch</value>
+	</data>
+	<data name="PresetModern">
+	    <value>modern</value>
+	</data>
+	<data name="PresetChanged">
+		<value>Das Aussehen und Verhalten von SimPE wurde auf "{name}" gesetzt.
+
+Soll SimPE nun gestartet werden?</value>
+	</data>
 </root>

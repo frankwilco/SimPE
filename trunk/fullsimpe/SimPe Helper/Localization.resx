@@ -827,4 +827,15 @@ Do you want to continue?</value>
 	<data name="Chees">
 		<value>Chees</value>
 	</data>
+	<data name="PresetClassic">
+	    <value>classic</value>
+	</data>
+	<data name="PresetModern">
+	    <value>modern</value>
+	</data>
+	<data name="PresetChanged">
+		<value>The Look and Feel of SimPE was changed to "{name}".
+
+Do you want to start SimPE now?</value>
+	</data>
 </root>
