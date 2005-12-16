@@ -224,6 +224,128 @@ namespace SimPe.Plugin.Gmdc
 			else 
 				return name + " (FaceCount="+(FaceCount).ToString()+", VertexCount=too many Faces)";
 		}
+
+		/// <summary>
+		/// Returns a List with all available Vertices
+		/// </summary>
+		/// <returns></returns>
+		public SimPe.Geometry.Vectors4f GetVectors(ElementIdentity id)
+		{
+			SimPe.Geometry.Vectors4f ret = new SimPe.Geometry.Vectors4f();
+			if (this.Link!=null) 
+			{
+				GmdcElement e = this.Link.FindElementType(id);
+				if (e!=null) 
+				{
+					int nr = this.Link.GetElementNr(e);
+
+					for (int i = 0; i < Link.ReferencedSize; i++)
+					{
+						GmdcElementValueBase vb = Link.GetValue(nr, i);
+						SimPe.Geometry.Vector4f v;
+						if (vb is GmdcElementValueOneInt) 
+						{
+							GmdcElementValueOneInt oi = (GmdcElementValueOneInt)vb;
+							byte[] data = oi.Bytes;
+							if (data.Length==4) v = new SimPe.Geometry.Vector4f(data[0], data[1], data[2], data[3]);
+							else if (data.Length==3) v = new SimPe.Geometry.Vector4f(data[0], data[1], data[2]);
+							else if (data.Length==2) v = new SimPe.Geometry.Vector4f(data[0], data[1], 0);
+							else v = new SimPe.Geometry.Vector4f(data[0], 0, 0);
+						}
+						else if (vb.Data.Length==3) v = new SimPe.Geometry.Vector4f(vb.Data[0], vb.Data[1], vb.Data[2]);
+						else if (vb.Data.Length==2) v = new SimPe.Geometry.Vector4f(vb.Data[0], vb.Data[1], 0);
+						else v = new SimPe.Geometry.Vector4f(vb.Data[0], 0, 0);
+
+						ret.Add(v);
+					}
+				}
+			}
+
+			return ret;
+		}
+
+		/// <summary>
+		/// Returns a List with all available Vertices
+		/// </summary>
+		/// <returns></returns>
+		public SimPe.Geometry.Vectors4f GetVertices()
+		{
+			return GetVectors(ElementIdentity.Vertex);
+		}
+
+		/// <summary>
+		/// Returns a List with all available Normals
+		/// </summary>
+		/// <returns></returns>
+		public SimPe.Geometry.Vectors4f GetNormals()
+		{
+			return GetVectors(ElementIdentity.Normal);
+		}
+
+		/// <summary>
+		/// Returns a List with all available UV-Coords
+		/// </summary>
+		/// <returns></returns>
+		public SimPe.Geometry.Vectors4f GetUV()
+		{
+			return GetVectors(ElementIdentity.UVCoordinate);
+		}
+
+		/// <summary>
+		/// Returns a List with all available UV-Coords
+		/// </summary>
+		/// <returns></returns>
+		public SimPe.Geometry.Vectors4f GetBones()
+		{
+			SimPe.Geometry.Vectors4f ret = GetVectors(ElementIdentity.BoneAssignment);
+
+			foreach (SimPe.Geometry.Vector4f v in ret)
+			{
+				if ((int)v.X!=0xff) v.X = this.UsedJoints[(byte)v.X];
+				if ((int)v.Y!=0xff) v.Y = this.UsedJoints[(byte)v.Y];
+				if ((int)v.Z!=0xff) v.Z = this.UsedJoints[(byte)v.Z];
+				if ((int)v.W!=0xff) v.W = this.UsedJoints[(byte)v.W];
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Returns the Face Indices
+		/// </summary>
+		/// <returns></returns>
+		public SimPe.Geometry.Vectors3i GetFaces()
+		{
+			SimPe.Geometry.Vectors3i ret = new SimPe.Geometry.Vectors3i();
+			SimPe.Geometry.Vector3i v = null;
+			for (int i = 0; i < Faces.Count; i++)
+			{
+				
+				if (i%3 == 0) 
+				{
+					v = new SimPe.Geometry.Vector3i();														
+					v.X = Faces[i];
+				}				
+				else if (i%3 == 2) 
+				{
+					ret.Add(v);	
+					v.Z = Faces[i];
+				}
+				else
+					v.Y = Faces[i];
+			}
+			
+			return ret;
+		}
+
+		public static SimPe.Geometry.Vectors3i GetUsingFaces(SimPe.Geometry.Vectors3i faces, int vertexid)
+		{
+			SimPe.Geometry.Vectors3i ret = new SimPe.Geometry.Vectors3i();
+			foreach (SimPe.Geometry.Vector3i v in faces)
+				if (v.X==vertexid || v.Y==vertexid || v.Z == vertexid)
+					ret.Add(v);
+
+			return ret;
+		}
 	}
 
 	#region Container

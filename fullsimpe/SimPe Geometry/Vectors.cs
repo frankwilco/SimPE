@@ -580,6 +580,16 @@ namespace SimPe.Geometry
 		/// <param name="x">X-Coordinate</param>
 		/// <param name="y">Y-Coordinate</param>
 		/// <param name="z">Z-Coordinate</param>
+		public Vector4f (double x, double y, double z) : this(x, y, z, 0)
+		{			
+		}
+
+		/// <summary>
+		/// Creates new Vector Instance
+		/// </summary>
+		/// <param name="x">X-Coordinate</param>
+		/// <param name="y">Y-Coordinate</param>
+		/// <param name="z">Z-Coordinate</param>
 		/// <param name="w">4th-Coordinate (often the focal Point)</param>
 		public Vector4f (double x, double y, double z, double w) : base(x, y, z)
 		{

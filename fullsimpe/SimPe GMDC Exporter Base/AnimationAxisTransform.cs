@@ -160,6 +160,12 @@ namespace SimPe.Plugin.Anim
 			Reset();
 		}
 
+		public AnimationAxisTransform() : this(null, -1) {}
+
+		public AnimationAxisTransform(AnimationAxisTransformBlock parent) : this(parent, -1)
+		{
+		}
+
 		public AnimationAxisTransform CloneBase()
 		{
 			AnimationAxisTransform aat = new AnimationAxisTransform(null, -1);

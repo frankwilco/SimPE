@@ -404,13 +404,30 @@ namespace SimPe.Plugin.Anim
 			return 0;
 		}
 
-		public void AddFrame(short tc, short x, short y, short z, bool linear)
+		public AnimationFrame GetFrameAtTimeCode(short tc)
 		{
+			AnimationFrame[] frames =this.Frames;
+			foreach (AnimationFrame f in frames) 
+			{
+				if (f.TimeCode == tc) return f;
+			}
+			
+			return null;
+		}
+
+		public AnimationFrame AddFrame(short tc, short x, short y, short z, bool linear)
+		{
+			AnimationFrame af = new AnimationFrame(tc, TransformationType);
+			//af.Blocks = new AnimationAxisTransform[AxisCount];
 			for (int i=0; i<AxisCount; i++)
 			{
 				AnimationAxisTransformBlock b = AxisSet[i];										
-				b.Add(tc, GetAxisValue(i, x, y, z), 0, 0, linear);				
+				AnimationAxisTransform aat = b.Add(tc, GetAxisValue(i, x, y, z), 0, 0, linear);											
+
+				if (i<4) af.Blocks[i] = aat;
 			}	
+
+			return af;
 		}
 
 		public void AddFrame(short tc, float x, float y, float z, bool linear)

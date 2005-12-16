@@ -76,7 +76,7 @@ namespace SimPe.Plugin.Anim
 		internal AnimationAxisTransform[] Blocks
 		{
 			get{ return block; }
-		}
+		}		
 
 		public AnimationAxisTransform XBlock
 		{
@@ -99,15 +99,16 @@ namespace SimPe.Plugin.Anim
 		
 		AnimationAxisTransform GetFrameAddonData(int part)
 		{
-			AnimationAxisTransform b = null;
-			int nr = 0;
-			if (part==1) b=block[1];
-			else if (part==2) b=block[2];
-			else if (part==0) b=block[0];
-
+			AnimationAxisTransform b = GetBlock((byte)(part%3));
+			
 			if (b==null) return new AnimationAxisTransform(null, -1);
 			return b;
-		}				
+		}	
+		
+		public AnimationAxisTransform GetBlock(byte nr)
+		{
+			return block[nr];
+		}
 
 		[DescriptionAttribute("The X Value for this Transformation"), CategoryAttribute("Data"), DefaultValueAttribute(0)]
 		public short X

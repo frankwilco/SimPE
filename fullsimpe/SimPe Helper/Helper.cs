@@ -910,6 +910,20 @@ namespace SimPe
 			}
 		}
 
+		/// <summary>
+		/// Returns a Save FileName
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <returns></returns>
+		public static string SaveFileName(string flname)
+		{
+			if (flname==null) flname="";
+			flname = flname.Replace("\\", "_");
+			flname = flname.Replace("/", "_");
+			flname = flname.Replace(":", "_");			
+			return flname;
+		}
+
 		#region Folders
 		[DllImport("kernel32.dll", SetLastError=true, CharSet=CharSet.Auto)]
 		static extern uint GetLongPathName(

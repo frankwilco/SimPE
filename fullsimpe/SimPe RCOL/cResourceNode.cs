@@ -144,7 +144,13 @@ namespace SimPe.Plugin
 			BlockID = 0xE519C933;
 		}
 
+
+
 		#region AbstractCresChildren Member
+		public override string GetName()
+		{
+			return ogn.FileName;
+		}
 		/// <summary>
 		/// Returns a List of all Child Blocks referenced by this Element
 		/// </summary>

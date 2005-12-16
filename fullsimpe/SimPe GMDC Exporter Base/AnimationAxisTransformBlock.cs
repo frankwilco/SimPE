@@ -201,7 +201,7 @@ namespace SimPe.Plugin.Anim
 		}		
 
 		
-		internal AnimationAxisTransformBlock(AnimationFrameBlock parent) 
+		public AnimationAxisTransformBlock(AnimationFrameBlock parent) 
 		{
 			items = new ArrayList();
 			datai = new uint[2];
@@ -357,7 +357,7 @@ namespace SimPe.Plugin.Anim
 			return this[0];
 		}
 
-		AnimationAxisTransform BuildAnimationAxisTransform(short timecode, short param, short u1, short u2, bool islinear, int index)
+		public AnimationAxisTransform BuildAnimationAxisTransform(short timecode, short param, short u1, short u2, bool islinear, int index)
 		{
 			AnimationAxisTransform aat = new AnimationAxisTransform(this, index);
 			aat.TimeCode = timecode;
@@ -569,10 +569,11 @@ namespace SimPe.Plugin.Anim
 		
 		public float GetScale(FrameType ft)
 		{			
-			float scale = SCALE;
-			if (Locked) scale = scale / 16f;
-			if (ft==FrameType.Rotation) scale=SCALEROT;			
+			float scale = SCALE;			
+			if (!Locked) scale = scale * 16f;
+			if (ft==FrameType.Rotation) scale=SCALEROT;					
 
+			
 			return scale;
 		}
 
@@ -587,19 +588,23 @@ namespace SimPe.Plugin.Anim
 		}
 
 		#region statics
-		public const float SCALE = 6.25f/1000f;//10/(float)short.MaxValue;
+		//public const float SCALE = 6.25f/1000f;//10/(float)short.MaxValue;
+		public const float SCALE = 1.0f/1000f;
 		public const float SCALEROT = (float)(((1f/180f) * Math.PI) / 64f);
 
 		
 
 		public static float GetCompressedFloat(short v, float scale)
 		{
-			return ((float)v * scale);
+			//if (scale==SCALEROT) 
+				return ((float)v * scale);		
+			//return ((float)((v - 7.33333) * 0.003));
+			//
 		}
 
 		public static short FromCompressedFloat(float v, float scale)
 		{
-			return (short)(v / scale);
+			return (short)(v / scale);			
 		}
 		#endregion
 		#endregion

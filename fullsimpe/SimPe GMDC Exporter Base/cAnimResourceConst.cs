@@ -81,6 +81,12 @@ namespace SimPe.Plugin.Anim
 		}
 
 		AnimationMeshBlock[] ab1;
+		[Browsable(false)]
+		public AnimationMeshBlock[] MeshBlock
+		{
+			get { return ab1; }
+		}
+
 		AnimBlock6[] ab6;
 		#endregion
 		

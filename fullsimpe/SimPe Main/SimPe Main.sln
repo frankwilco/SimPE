@@ -147,6 +147,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims2CommunityPack", 
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe 3D", "..\SimPe 3D\SimPe 3D.csproj", "{44911ACC-87B8-4FED-865C-1950F703C3D1}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -601,6 +605,18 @@ Global
 		{2EF93119-5C98-4167-B1AF-966E6A45AB79}.Release MAC.Build.0 = Release PLJ|.NET
 		{2EF93119-5C98-4167-B1AF-966E6A45AB79}.Release PLJ.ActiveCfg = Release PLJ|.NET
 		{2EF93119-5C98-4167-B1AF-966E6A45AB79}.Release PLJ.Build.0 = Release PLJ|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Debug.ActiveCfg = Debug|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Debug.Build.0 = Debug|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Debug Txtr.ActiveCfg = Debug|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Debug Txtr.Build.0 = Debug|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Release.ActiveCfg = Release|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Release.Build.0 = Release|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Release (QA).ActiveCfg = Release (QA)|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Release (QA).Build.0 = Release (QA)|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Release MAC.ActiveCfg = Release|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Release MAC.Build.0 = Release|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Release PLJ.ActiveCfg = Release|.NET
+		{44911ACC-87B8-4FED-865C-1950F703C3D1}.Release PLJ.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
