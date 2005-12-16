@@ -2775,7 +2775,7 @@ namespace SimPe.Plugin
 			ofd.FilterIndex = ExporterLoader.FindFirstImporterIndexByExtension(defext)+1;
 
 			ofd.AddExtension = true;												
-			ofd.FileName = Hashes.StripHashFromName(gmdc.Parent.FileName).Trim().ToLower();					
+			ofd.FileName = Helper.SaveFileName(Hashes.StripHashFromName(gmdc.Parent.FileName).Trim().ToLower());					
 			if (ofd.ShowDialog() == DialogResult.OK) 
 			{
 				//Now perpare the Import
@@ -2826,7 +2826,7 @@ namespace SimPe.Plugin
 				sfd.FilterIndex = ExporterLoader.FindFirstIndexByExtension(defext)+1;
 
 				sfd.AddExtension = true;												
-				sfd.FileName = Hashes.StripHashFromName(gmdc.Parent.FileName).Trim().ToLower();					
+				sfd.FileName = Helper.SaveFileName(Hashes.StripHashFromName(gmdc.Parent.FileName).Trim().ToLower());					
 				if (sfd.ShowDialog() == DialogResult.OK) 
 				{
 					//Now perfor the Export

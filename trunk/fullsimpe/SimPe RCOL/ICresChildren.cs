@@ -27,7 +27,7 @@ namespace SimPe.Interfaces.Scenegraph
 	/// <summary>
 	/// Implemented by Blocks available in a CRES Hirarchy to link to child Blocks
 	/// </summary>
-	public interface ICresChildren
+	public interface ICresChildren : System.Collections.IEnumerable
 	{
 		/// <summary>
 		/// Returns a List of all Child Blocks referenced by this Element
@@ -99,5 +99,7 @@ namespace SimPe.Interfaces.Scenegraph
 		/// </summary>
 		/// <returns>Effective Transformation</returns>
 		SimPe.Geometry.VectorTransformation GetEffectiveTransformation();
+
+		string GetName();		
 	}
 }
