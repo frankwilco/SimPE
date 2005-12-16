@@ -539,7 +539,8 @@ namespace SimPe
 		public static void ConvertData()
 		{
 			string layoutname = System.IO.Path.Combine(Helper.SimPeDataPath, "layout.xreg");
-			if (!System.IO.File.Exists(layoutname)) Commandline.MakeModern(null);
+			if (!System.IO.File.Exists(layoutname)) 
+				Commandline.MakeModern(null);
 
 			if (Helper.WindowsRegistry.PreviousVersion<=219184142520) 
 			{

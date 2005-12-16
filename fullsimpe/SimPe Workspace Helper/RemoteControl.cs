@@ -42,6 +42,20 @@ namespace SimPe
 		/// </summary>
 		public delegate bool OpenPackedFileDelegate(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii);
 
+		/// <summary>
+		/// Used to show/hide a Dock
+		/// </summary>
+		public delegate void ShowDockDelegate(TD.SandDock.DockControl doc, bool hide);
+
+		static ShowDockDelegate sdd;
+		/// <summary>
+		/// Returns/Sets the ShowDock Delegate
+		/// </summary>
+		public static ShowDockDelegate ShowDockFkt
+		{
+			get { return sdd; }
+			set { sdd = value; }
+		}
 
 		static OpenPackedFileDelegate opf;
 		/// <summary>
@@ -61,6 +75,17 @@ namespace SimPe
 		{
 			get { return op; }
 			set { op = value; }
+		}
+
+		/// <summary>
+		/// Show/Hide a given Dock
+		/// </summary>
+		/// <param name="doc"></param>
+		/// <param name="hide"></param>
+		public static void ShowDock(TD.SandDock.DockControl doc, bool hide)
+		{
+			if (sdd==null) return;
+			sdd(doc, hide);
 		}
 
 		/// <summary>
