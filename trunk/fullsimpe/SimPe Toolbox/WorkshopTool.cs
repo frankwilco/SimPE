@@ -59,7 +59,12 @@ namespace SimPe.Plugin
 
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
 		{
-			
+			if (Helper.StartedGui == Executable.Default) 
+			{
+				if (Message.Show(SimPe.Localization.GetString("ObsoleteOW"), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No)
+					return new ToolResult(false, false);
+			}
+
 			SimPe.Interfaces.Files.IPackageFile pkg = ws.Execute(prov, package);
 
 			if (pkg!=null) 
@@ -80,7 +85,10 @@ namespace SimPe.Plugin
 
 		public override string ToString()
 		{
-			return "Object Creation\\Object Workshop...";
+			if (Helper.StartedGui == Executable.Default) 
+				return "Object Creation\\Windowed Object Workshop...";
+			else
+				return "Object Creation\\Object Workshop...";
 		}
 
 		#endregion
@@ -90,14 +98,20 @@ namespace SimPe.Plugin
 		{
 			get
 			{
-				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.createpackage.png"));
+				if (Helper.StartedGui == Executable.Default)
+					return null;
+				else
+					return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.createpackage.png"));
 			}
 		}
 		public override System.Windows.Forms.Shortcut Shortcut
 		{
 			get
 			{
-				return System.Windows.Forms.Shortcut.CtrlW;
+				if (Helper.StartedGui == Executable.Default) 
+					return System.Windows.Forms.Shortcut.None;
+				else
+					return System.Windows.Forms.Shortcut.CtrlW;
 			}
 		}
 		#endregion

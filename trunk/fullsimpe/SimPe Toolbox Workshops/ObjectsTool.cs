@@ -19,69 +19,74 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces;
+using SimPe.Events;
+using SimPe.Plugin.Tool.Dockable;
 
-namespace SimPe.Plugin
+namespace SimPe.Plugin.Tool
 {
 	/// <summary>
-	/// Lists all Plugins (=FileType Wrappers) available in this Package
+	/// Zusammenfassung für ImportSemiTool.
 	/// </summary>
-	/// <remarks>
-	/// GetWrappers() has to return a list of all Plugins provided by this Library. 
-	/// If a Plugin isn't returned, SimPe won't recognize it!
-	/// </remarks>
-	public class WorkshopToolFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory, SimPe.Interfaces.Plugin.IToolFactory
+	public class ObjectsTool : SimPe.Interfaces.IToolPlus	
 	{
-		internal static IToolPlugin[] Last;
-		public WorkshopToolFactory()
+		internal ObjectsTool() 
 		{
 			
+		}		
+
+		#region ITool Member
+
+		public bool ChangeEnabledStateEventHandler(object sender, ResourceEventArgs e)
+		{
+			return (WorkshopToolFactory.Last != null);
 		}
 
-		#region AbstractWrapperFactory Member
-		/// <summary>
-		/// Returns a List of all available Plugins in this Package
-		/// </summary>
-		/// <returns>A List of all provided Plugins (=FileType Wrappers)</returns>
-		public override SimPe.Interfaces.IWrapper[] KnownWrappers
+		public void Execute(object sender, ResourceEventArgs es)
 		{
-			get 
+			if (!ChangeEnabledStateEventHandler(sender, es)) return;
+			
+			foreach (IToolPlugin pl in WorkshopToolFactory.Last)
 			{
-				// TODO:  You can add more Wrappers here
-				IWrapper[] wrappers = {
-										  
-									  };
-				return wrappers;
+				if (pl is ObectWorkshopDockTool)
+				{
+					ObectWorkshopDockTool o = (ObectWorkshopDockTool)pl;
+					RemoteControl.ShowDock(o.GetDockableControl(), false);					
+				}
 			}
+		}
+
+		
+
+
+		public override string ToString()
+		{
+			return "Object Creation\\Object Workshop...";
 		}
 
 		#endregion
 
-		#region IToolFactory Member
-
-		public IToolPlugin[] KnownTools
+		#region IToolExt Member
+		public System.Windows.Forms.Shortcut Shortcut
 		{
 			get
 			{
-				if (Helper.WindowsRegistry.HiddenMode) 
-				{
-					Last = new IToolPlugin[]{
-											  new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool(),
-											  new SimPe.Plugin.Tool.Dockable.PackageDetailDockTool(),
-											  new SimPe.Plugin.Tool.Action.ActionEnableFenceInOriginalGame(),
-											  new SimPe.Plugin.Tool.ObjectsTool()
-										  };
-				} 
-				else 
-				{
-					Last =  new IToolPlugin[]{
-												  new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool(),
-												  new SimPe.Plugin.Tool.Dockable.PackageDetailDockTool(),
-												  new SimPe.Plugin.Tool.ObjectsTool()
-										  };
-				}
-				return Last;
+				return System.Windows.Forms.Shortcut.CtrlW;
 			}
 		}
+
+		public System.Drawing.Image Icon
+		{
+			get
+			{
+				return System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.Tool.Dockable.createpackage.png"));
+			}
+		}
+
+		public virtual bool Visible 
+		{
+			get {return true;}
+		}
+
 		#endregion
 	}
 }

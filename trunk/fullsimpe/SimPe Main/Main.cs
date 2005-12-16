@@ -164,7 +164,7 @@ namespace SimPe
 			
 			resloader = new ResourceLoader(dc, package);
 
-			remote = new RemoteHandler(package, resloader);
+			remote = new RemoteHandler(package, resloader, plugger, miWindow);
 			remote.LoadedResource += new ChangedResourceEvent(rh_LoadedResource);
 			
 			SetupResourceViewToolBar();

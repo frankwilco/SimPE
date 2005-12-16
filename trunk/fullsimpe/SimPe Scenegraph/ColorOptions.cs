@@ -255,6 +255,7 @@ namespace SimPe.Plugin
 			int ct = 0;
 			foreach (string k in map.Keys) 
 			{
+				if (!fullmap.ContainsKey(k))
 				if (slavemap.ContainsKey(k)) 
 				{
 					if (map.ContainsKey(k)) 

@@ -838,4 +838,12 @@ Do you want to continue?</value>
 
 Do you want to start SimPE now?</value>
 	</data>
+	<data name="ObsoleteOW">
+		<value>The windowed ObjectWorkshop is obsololete. Please use the dockable ObjectWorkshop.
+
+You should use the dockable ObjectWorkshop, which can be activated with the "Windows->ObjectWorkshop" Menu.
+
+Continue anyway?
+		</value>
+	</data>
 </root>

@@ -27,14 +27,19 @@ namespace SimPe
 	{
 		LoadedPackage lp;
 		SimPe.ResourceLoader rl;
-		internal RemoteHandler(LoadedPackage lp, ResourceLoader rl) 
+		TD.SandBar.MenuBarItem docs;
+		PluginManager plugger;
+		internal RemoteHandler(LoadedPackage lp, ResourceLoader rl, PluginManager plugger, TD.SandBar.MenuBarItem docmenu) 
 		{
 			this.lp = lp;
 			this.rl = rl;
+			docs = docmenu;
+			this.plugger = plugger;
 
 			RemoteControl.OpenPackageFkt = new SimPe.RemoteControl.OpenPackageDelegate(OpenPackage);
 			RemoteControl.OpenPackedFileFkt = new SimPe.RemoteControl.OpenPackedFileDelegate(OpenPackedFile);
 			RemoteControl.OpenMemoryPackageFkt = new SimPe.RemoteControl.OpenMemPackageDelegate(OpenMemPackage);
+			RemoteControl.ShowDockFkt = new SimPe.RemoteControl.ShowDockDelegate(ShowDock);
 		}
 
 		public bool OpenPackage(string filename)
@@ -101,6 +106,27 @@ namespace SimPe
 		/// Fires when the Remote COntrol did select a File
 		/// </summary>
 		public event SimPe.Events.ChangedResourceEvent LoadedResource;
+
+		/// <summary>
+		/// Make a doc Visible or Hide it
+		/// </summary>
+		/// <param name="doc">The Doc you want to show/hide</param>
+		public void ShowDock(TD.SandDock.DockControl doc, bool hide)
+		{
+			if (hide && (doc.IsDocked || doc.IsFloating)) doc.Close();
+			if (!hide ) 
+			{
+				doc.Open();
+				if (!(doc.IsDocked || doc.IsFloating)) 
+					plugger.ChangedGuiResourceEventHandler();				
+			}
+
+			foreach (TD.SandBar.MenuButtonItem mi in docs.Items)
+			{
+				if (mi.Tag == doc) 				
+					mi.Checked = doc.IsDocked || doc.IsFloating;				
+			}
+		}
 	}
 
 	

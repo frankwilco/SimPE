@@ -229,6 +229,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "createpackage.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "custom.png"
                     BuildAction = "EmbeddedResource"
                 />
@@ -309,6 +313,11 @@
                     RelPath = "ObjectsDock.resx"
                     DependentUpon = "ObjectsDock.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ObjectsTool.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "ObjectWorkshopHelper.cs"

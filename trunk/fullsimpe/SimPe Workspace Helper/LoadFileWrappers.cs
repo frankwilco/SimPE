@@ -330,38 +330,53 @@ namespace SimPe
 			if (a==null) return new object[0];
 
 			ArrayList list = new ArrayList();
-			Type[] mytypes = a.GetTypes();
-
-			foreach(Type t in mytypes)
+			try 
 			{
-				if (t.IsInterface || t.IsAbstract) continue;
+				Type[] mytypes = a.GetTypes();
 
-				Type mit = t.GetInterface(interfaceType.FullName);
-				if (mit != null) 
+				foreach(Type t in mytypes)
 				{
+					if (t.IsInterface || t.IsAbstract) continue;
+
 					try 
 					{
-						object obj = null;
-						try
+						Type mit = t.GetInterface(interfaceType.FullName);
+						if (mit != null) 
 						{
-							obj = Activator.CreateInstance(t, args);
-						} 
-						catch 
-						{
-							//could crtea the Object with the passed Argument List, 
-							//try to call the default Cosntructor
-							obj = Activator.CreateInstance(t);
-						}
+							try 
+							{
+								object obj = null;
+								try
+								{
+									obj = Activator.CreateInstance(t, args);
+								} 
+								catch 
+								{
+									//could crtea the Object with the passed Argument List, 
+									//try to call the default Cosntructor
+									obj = Activator.CreateInstance(t);
+								}
 
-						if (obj!=null) list.Add(obj);
-					}
-					catch (Exception ex) 
+								if (obj!=null) list.Add(obj);
+							}
+							catch (Exception ex) 
+							{
+								Helper.ExceptionMessage("Unable to load "+t.Name+".", new Exception("Unable to load "+t.Name+" from '"+a.ToString()+"'.", ex));
+							}
+						}
+					} 
+					catch (Exception ex)
 					{
-						Helper.ExceptionMessage("Unable to load "+t.Name+".", new Exception("Unable to load "+t.Name+" from '"+a.ToString()+"'.", ex));
+						Helper.ExceptionMessage("Unable to get Interface for "+t.Name+".",  ex);
 					}
 				}
-			}
 			
+			} 
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage("Unable to load Plugin \""+a.FullName+"\".", ex);
+			}
+
 			object[] o = new object[list.Count];
 			list.CopyTo(o);
 			return o;

@@ -1094,5 +1094,14 @@ Soll SimPE fortfahren?</value>
 		<value>Das Aussehen und Verhalten von SimPE wurde auf "{name}" gesetzt.
 
 Soll SimPE nun gestartet werden?</value>
+	</data>	
+	<data name="ObsoleteOW">
+		<value>Der klassische ObjectWorkshop wird nicht weiter entwicklet und ist daher überflüssig.
+
+Stattdessen sollte der dockbare ObjectWorkshop verwendet werden.
+Er kann über den Menüpunkt "Fenster->Object Workshop" angezeigt werden.
+
+Trotzdem fortfahren?
+		</value>
 	</data>
 </root>
