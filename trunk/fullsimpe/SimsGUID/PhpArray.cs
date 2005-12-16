@@ -402,5 +402,76 @@ namespace Ambertation.Soap
 
 			return null;
 		}
+
+		#region Serialize
+		static string Serialize(string s)
+		{
+			s = s.Replace("\"", "\\\"");
+			return "s:"+s.Length.ToString()+":\""+s+"\"";
+		}
+
+		static string Serialize(char c)
+		{
+			return Serialize(""+c);
+		}
+
+		static string Serialize(long i)
+		{
+			return "i:"+i.ToString();
+		}
+
+		static string Serialize(bool b)
+		{
+			if (b) return "b:1";
+			else return "b:0";
+		}
+
+		static string Serialize(double d)
+		{
+			return "d:"+d.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		}
+
+		static string Serialize(Hashtable ht)
+		{
+			string ret = "a:"+ht.Count.ToString()+":{";
+			foreach (string k in ht.Keys)			
+				ret += BuildItem(ht, k);					
+
+			return ret + "}";
+		}
+
+		static string BuildItem(Hashtable ht, string k)
+		{
+			object o = ht[k];
+			string ret = Serialize(k)+";"; 
+			if (o==null) ret += "N";
+			else 
+			{
+				if (o is string) ret += Serialize((string)o);
+				else if (o is int) ret += Serialize((int)o);
+				else if (o is uint) ret += Serialize((uint)o);
+				else if (o is short) ret += Serialize((short)o);
+				else if (o is ushort) ret += Serialize((ushort)o);
+				else if (o is byte) ret += Serialize((byte)o);
+				else if (o is Hashtable) ret += Serialize((Hashtable)o);
+				else if (o is bool) ret += Serialize((bool)o);
+				else if (o is double) ret += Serialize((double)o);
+				else if (o is float) ret += Serialize((float)o);
+				else if (o is char) ret += Serialize((char)o);
+			}
+
+			return ret + ";";
+		}
+		#endregion
+
+		/// <summary>
+		/// Serialize the passed hashtable
+		/// </summary>
+		/// <param name="ht"></param>
+		/// <returns></returns>
+		public static string SerializeToArray(Hashtable ht)
+		{
+			return Serialize(ht);
+		}
 	}
 }

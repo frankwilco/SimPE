@@ -50,6 +50,9 @@ namespace Sims.GUID
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label lbFree;
+		private System.Windows.Forms.Label label5;
+		public System.Windows.Forms.TextBox tbemail;
+		private System.Windows.Forms.LinkLabel linkLabel2;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -93,6 +96,9 @@ namespace Sims.GUID
 			this.label1 = new System.Windows.Forms.Label();
 			this.tbusername = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.lbFree = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.button3 = new System.Windows.Forms.Button();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.tbUserGUID = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
@@ -106,9 +112,9 @@ namespace Sims.GUID
 			this.button2 = new System.Windows.Forms.Button();
 			this.tbobject = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.button3 = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.lbFree = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.tbemail = new System.Windows.Forms.TextBox();
+			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -137,6 +143,9 @@ namespace Sims.GUID
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.linkLabel2);
+			this.groupBox1.Controls.Add(this.tbemail);
+			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.lbFree);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.button3);
@@ -150,16 +159,46 @@ namespace Sims.GUID
 			this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.groupBox1.Location = new System.Drawing.Point(8, 8);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(408, 144);
+			this.groupBox1.Size = new System.Drawing.Size(408, 168);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "User Data";
+			// 
+			// lbFree
+			// 
+			this.lbFree.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lbFree.Location = new System.Drawing.Point(136, 144);
+			this.lbFree.Name = "lbFree";
+			this.lbFree.Size = new System.Drawing.Size(112, 17);
+			this.lbFree.TabIndex = 10;
+			this.lbFree.Text = "0";
+			this.lbFree.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			// 
+			// label4
+			// 
+			this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label4.Location = new System.Drawing.Point(16, 144);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(112, 17);
+			this.label4.TabIndex = 9;
+			this.label4.Text = "Available GUIDs:";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
+			// button3
+			// 
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button3.Location = new System.Drawing.Point(272, 136);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(128, 23);
+			this.button3.TabIndex = 8;
+			this.button3.Text = "Add GUID Block";
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// linkLabel1
 			// 
 			this.linkLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.linkLabel1.LinkArea = new System.Windows.Forms.LinkArea(5, 4);
-			this.linkLabel1.Location = new System.Drawing.Point(16, 92);
+			this.linkLabel1.Location = new System.Drawing.Point(16, 112);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(112, 17);
 			this.linkLabel1.TabIndex = 7;
@@ -171,7 +210,7 @@ namespace Sims.GUID
 			// tbUserGUID
 			// 
 			this.tbUserGUID.Enabled = false;
-			this.tbUserGUID.Location = new System.Drawing.Point(136, 88);
+			this.tbUserGUID.Location = new System.Drawing.Point(136, 112);
 			this.tbUserGUID.MaxLength = 200;
 			this.tbUserGUID.Name = "tbUserGUID";
 			this.tbUserGUID.Size = new System.Drawing.Size(96, 21);
@@ -181,7 +220,7 @@ namespace Sims.GUID
 			// button1
 			// 
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button1.Location = new System.Drawing.Point(272, 86);
+			this.button1.Location = new System.Drawing.Point(272, 104);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(128, 23);
 			this.button1.TabIndex = 4;
@@ -233,7 +272,7 @@ namespace Sims.GUID
 			// 
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Location = new System.Drawing.Point(8, 160);
+			this.tabControl1.Location = new System.Drawing.Point(8, 184);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(408, 176);
@@ -290,40 +329,42 @@ namespace Sims.GUID
 			this.label3.TabIndex = 8;
 			this.label3.Text = "Object Name:";
 			// 
-			// button3
+			// label5
 			// 
-			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button3.Location = new System.Drawing.Point(272, 114);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(128, 23);
-			this.button3.TabIndex = 8;
-			this.button3.Text = "Add GUID Block";
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label5.Location = new System.Drawing.Point(16, 76);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(112, 17);
+			this.label5.TabIndex = 11;
+			this.label5.Text = "eMail (optional):";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
-			// label4
+			// tbemail
 			// 
-			this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label4.Location = new System.Drawing.Point(16, 120);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(112, 17);
-			this.label4.TabIndex = 9;
-			this.label4.Text = "Available GUIDs:";
-			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.tbemail.Location = new System.Drawing.Point(136, 72);
+			this.tbemail.MaxLength = 200;
+			this.tbemail.Name = "tbemail";
+			this.tbemail.Size = new System.Drawing.Size(232, 21);
+			this.tbemail.TabIndex = 12;
+			this.tbemail.Text = "";
+			this.tbemail.TextChanged += new System.EventHandler(this.tbemail_TextChanged);
 			// 
-			// lbFree
+			// linkLabel2
 			// 
-			this.lbFree.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lbFree.Location = new System.Drawing.Point(136, 120);
-			this.lbFree.Name = "lbFree";
-			this.lbFree.Size = new System.Drawing.Size(112, 17);
-			this.lbFree.TabIndex = 10;
-			this.lbFree.Text = "0";
-			this.lbFree.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.linkLabel2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel2.Location = new System.Drawing.Point(368, 72);
+			this.linkLabel2.Name = "linkLabel2";
+			this.linkLabel2.Size = new System.Drawing.Size(32, 23);
+			this.linkLabel2.TabIndex = 13;
+			this.linkLabel2.TabStop = true;
+			this.linkLabel2.Text = "Set";
+			this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SetEmail);
 			// 
 			// GUIDGetterForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-			this.ClientSize = new System.Drawing.Size(426, 344);
+			this.ClientSize = new System.Drawing.Size(426, 368);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.groupBox1);
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -409,6 +450,7 @@ namespace Sims.GUID
 			{
 				button2.Enabled = false;
 				button3.Enabled = false;
+				linkLabel2.Enabled = false;
 
 				this.lbFree.Text = "0";
 				uint userguid = 0xf000000;
@@ -418,8 +460,10 @@ namespace Sims.GUID
 				if (userguid!=0xf000000) 
 				{
 					this.tbUserGUID.Text = "0x"+userguid.ToString("X");
+					LoadProfile();
 
 					button1.Enabled = (userguid==0xf000000);
+					linkLabel2.Enabled = true;
 					FreeGuids();
 					button3.Enabled = button3.Enabled && (!button1.Enabled);
 
@@ -430,21 +474,31 @@ namespace Sims.GUID
 						System.Collections.Hashtable ht = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
 				
 
-						foreach (string s in ht.Values) 
+						//this.lbnames.BeginUpdate();
+						try 
 						{
-							string[] parts = s.Split(" ".ToCharArray(), 3);
-							if (parts.Length==3) 
+							foreach (string s in ht.Values) 
 							{
-								//res = service.describeRegistredObjects(tbusername.Text, tbpassword.Text, guid);
-								System.Collections.Hashtable data = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
-								uint objguid = Convert.ToUInt32(parts[0]);
-								uint uguid = Convert.ToUInt32(parts[1]);
-								objguid = BuildGUID(uguid, objguid);
-								this.lbnames.Items.Add(new ObjectListItem(objguid, parts[2]));
-								Application.DoEvents();
-							} 
-							else throw new Exception("Invalid Result while retriving Object Informations.");
+								string[] parts = s.Split(" ".ToCharArray(), 3);
+								if (parts.Length==3) 
+								{
+									//res = service.describeRegistredObjects(tbusername.Text, tbpassword.Text, guid);
+									//System.Collections.Hashtable data = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(res);
+									uint objguid = Convert.ToUInt32(parts[0]);
+									uint uguid = Convert.ToUInt32(parts[1]);
+									objguid = BuildGUID(uguid, objguid);
+									this.lbnames.Items.Add(new ObjectListItem(objguid, parts[2]));
+									Application.DoEvents();
+								} 
+								else 														
+									throw new Exception("Invalid Result while retriving Object Informations.");
+							
 						
+							}
+						} 
+						finally 
+						{
+							//this.lbnames.EndUpdate();
 						}
 					}
 				}
@@ -457,14 +511,56 @@ namespace Sims.GUID
 
 		}
 
+		void LoadProfile()
+		{
+			Hashtable ht = Ambertation.Soap.PhpSerialized.GetHashtableFromSerializedArray(service.getUserProfile(tbusername.Text, tbpassword.Text));
+			if (ht["email"]!=null) 
+				this.tbemail.Text = ht["email"].ToString();
+		}
+
+		bool HaveEmail()
+		{
+			return (this.tbemail.Text.Trim()!="");
+		}
+
+		bool ValidEmail()
+		{
+			return ValidEmail(this.tbemail.Text);
+		}
+
+		bool ValidEmail(string email)
+		{
+			if (email.IndexOf("@")<0) return false;
+			if (email.IndexOf(":")>=0) return false;
+			if (email.IndexOf("/")>=0) return false;	
+			if (email.IndexOf("\"")>=0) return false;	
+			if (email.IndexOf("\\")>=0) return false;	
+			if (email.IndexOf("'")>=0) return false;	
+
+			return true;
+		}
+
 		private void RegisterNewUser(object sender, System.EventArgs e)
 		{
+			if (!HaveEmail()) System.Windows.Forms.MessageBox.Show("Giving an eMail Address is optional! However, you will not be able to recover your Password, if you do not specifiy a valid EMail address!");
+			else if (!ValidEmail()) 
+			{
+				System.Windows.Forms.MessageBox.Show("The specified eMail Addess is not valid.");
+				return;
+			}
+
 			if (System.Windows.Forms.MessageBox.Show("You will only need one User Account int the GUID-Database from now on.\nWhenever you run out of GUIDs, you can simply add another GUID-Block.\n\nAre you sure you want to create a new User?", "Confirm", MessageBoxButtons.YesNo)==DialogResult.No) return;
 			try 
 			{
 				bool res = this.service.registerUser(tbusername.Text, tbpassword.Text);
 				if (!res) System.Windows.Forms.MessageBox.Show("Could not Register the specified User!\n\nPlease try another Username.");
-				else MessageBox.Show("Welcome "+tbusername.Text+".");
+				else 
+				{
+					MessageBox.Show("Welcome "+tbusername.Text+".");
+
+					if (HaveEmail()) 					
+						this.SetEmail(null, null);					
+				}
 
 				UpdateGUID(null, null);
 			} 
@@ -553,6 +649,24 @@ namespace Sims.GUID
 			{
 				SimPe.Helper.ExceptionMessage(ex);
 			}
+		}
+
+		private void tbemail_TextChanged(object sender, System.EventArgs e)
+		{			
+		}
+
+		private void SetEmail(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (!this.ValidEmail())
+			{
+				System.Windows.Forms.MessageBox.Show("The specified eMail Addess is not valid.");
+				return;
+			}
+			
+			Hashtable ht = new Hashtable();
+			ht["email"] = this.tbemail.Text.Trim();
+			if (!service.changeUserProfile(tbusername.Text, tbpassword.Text, Ambertation.Soap.PhpSerialized.SerializeToArray(ht)))
+				System.Windows.Forms.MessageBox.Show("Could not set eMail Address!");
 		}
 	}
 }
