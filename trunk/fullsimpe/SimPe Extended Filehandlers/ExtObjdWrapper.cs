@@ -1,4 +1,6 @@
 /***************************************************************************
+ *   Copyright (C) 2005 by Peter L Jones                                   *
+ *   peter@drealm.info                                                     *
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
  *                                                                         *
@@ -24,6 +26,394 @@ using SimPe.Interfaces.Plugin;
 namespace SimPe.PackedFiles.Wrapper
 {
 	/// <summary>
+	/// Represents a PackedFile in SDsc Format
+	/// </summary>
+	public class ExtObjd : AbstractWrapper, IFileWrapper, IFileWrapperSaveExtension, IMultiplePackedFileWrapper
+	{
+		#region Attributes
+		/// <summary>
+		///the stored Filename		
+		/// </summary>
+        private byte[] filename = new byte[0x40];
+		private byte[] filename2 = new byte[0];
+
+		/// <summary>
+		/// The Type of this File
+		/// </summary>
+		private short[] data = new short[0xdc]; 
+
+		uint guid, proxyguid, originalguid;
+
+		ObjRoomSort rsort = new ObjRoomSort(0);
+		ObjFunctionSort fsort = new ObjFunctionSort(0);
+
+		Interfaces.Providers.IOpcodeProvider opcodes = null;
+		ObjdHealth ok;
+		static SimPe.PackedFiles.Wrapper.ObjdPropertyParser tpp;
+		#endregion
+
+		#region Accessor methods
+		/// <summary>
+		/// Returns/Sets the Name of a Sim
+		/// </summary>
+		public string FileName
+		{
+			get 
+			{
+				return Helper.ToString(filename);
+			}		
+			set 
+			{
+				filename = Helper.SetLength(Helper.ToBytes(value, 64), 64);
+			}
+		}
+
+		/// <summary>
+		/// Returs / Sets the stored Data
+		/// </summary>
+		public short[] Data
+		{
+			get { return data; }
+			set { data = value; }
+		}
+
+
+		/// <summary>
+		/// Returns the GUID of the Object
+		/// </summary>
+		public uint Guid
+		{
+			get { return guid; }
+			set { guid = value; }
+		}
+
+		/// <summary>
+		/// Returns the GUID of the Object
+		/// </summary>
+		public uint ProxyGuid
+		{
+			get { return proxyguid; }
+			set { proxyguid = value; }
+		}
+
+		/// <summary>
+		/// Returns the GUID of the Object
+		/// </summary>
+		public uint OriginalGuid
+		{
+			get { return originalguid; }
+			set { originalguid = value; }
+		}
+		
+
+		/// <summary>
+		/// returns the Instance of the assigned Catalog Description
+		/// </summary>
+		public ushort CTSSInstance 
+		{
+			get 
+			{ 
+				if (data.Length>0x29) return (ushort)data[0x29]; 
+				return 0;
+			}
+			set 
+			{ 
+				if (data.Length>0x29) data[0x29] = (short)value; 
+			}
+		}
+
+		/// <summary>
+		/// Retursn / Sets the Type of an Object
+		/// </summary>
+		public SimPe.Data.ObjectTypes Type 
+		{
+			get { 
+				if (data.Length>0x09) return (SimPe.Data.ObjectTypes)data[0x09]; 
+				return SimPe.Data.ObjectTypes.Normal;
+			}
+			set { 
+				if (data.Length>0x09) data[0x09] = (short)value; 
+			}
+		}
+
+		/// <summary>
+		/// Returns the Room Sort Flags
+		/// </summary>
+		public ObjRoomSort RoomSort
+		{
+			get { return rsort; }
+			set { rsort = value; }
+		}
+
+		/// <summary>
+		/// Returns the Function Sort Flags
+		/// </summary>
+		public ObjFunctionSort FunctionSort
+		{
+			get { return fsort; }
+			set { fsort = value; }
+		}
+
+		public Data.ObjFunctionSubSort FunctionSubSort
+		{
+			get 
+			{
+				uint val = (uint)((data[0x5e]&0xff) | ((fsort.Value&0xfff)<<8));
+				return (Data.ObjFunctionSubSort)val;
+			}
+			set 
+			{
+				uint val = (uint)value;
+				fsort.Value = (ushort)((val >> 8) & 0xfff);
+				data[0x5e] = (short)(val & 0xff);
+			}
+		}
+
+		public void UpdateFlags()
+		{
+			if (data.Length>0x28)
+			{
+				this.rsort = new ObjRoomSort(data[0x27]);
+				this.fsort = new ObjFunctionSort(data[0x28]);
+			}
+		}
+
+
+		public short Price 
+		{
+			get {return data[0x12];}
+			set {data[0x12] = value; }
+		}
+
+		/// <summary>
+		/// Returns the Length of the File
+		/// </summary>
+		protected int Length
+		{
+			get { return (int)(data.Length*2 + 0x40); }
+		}
+
+		/// <summary>
+		/// Null or an Opcode Provider
+		/// </summary>
+		public Interfaces.Providers.IOpcodeProvider Opcodes
+		{
+			get { return opcodes; }
+		}		
+
+		public ObjdHealth Ok
+		{
+			get {return ok; }
+		}
+
+
+		/// <summary>
+		/// Return a PropertyParser, that enumerates all known Properties as <see cref="Ambertation.PropertyDescription"/> Objects
+		/// </summary>
+		public static SimPe.PackedFiles.Wrapper.ObjdPropertyParser PropertyParser
+		{
+			get 
+			{
+				if (tpp==null) 
+					tpp = new SimPe.PackedFiles.Wrapper.ObjdPropertyParser(System.IO.Path.Combine(Helper.SimPeDataPath, "objddefinition.xml"));
+				return tpp;
+			}
+		}
+		#endregion
+
+		public ExtObjd(Interfaces.Providers.IOpcodeProvider opcodes) : base()
+		{			
+			this.opcodes = opcodes;
+			Type = SimPe.Data.ObjectTypes.Normal;
+		}
+
+
+		#region AbstractWrapper Member
+		protected override IPackedFileUI CreateDefaultUIHandler()
+		{
+			return new SimPe.PackedFiles.UserInterface.ExtObjdForm();
+		}
+
+		protected override IWrapperInfo CreateWrapperInfo()
+		{
+			return new AbstractWrapperInfo(
+				"Extended OBJD Wrapper",
+				"Quaxi, Peter L Jones",
+				"This file is used to set up the basic catalog properties of an Object. " + 
+					"It also contains the unique ID for the Object (or part of the Object).",
+				4,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.objd.png"))
+				); 
+		}
+		protected override void Serialize(System.IO.BinaryWriter writer) 
+		{		
+			const int MAX_VALUES = 0x6c;
+			if (data.Length>0x27)
+			{
+				data[0x27] = (short)this.rsort.Value;
+				data[0x28] = (short)this.fsort.Value;
+			}
+
+			writer.Write(filename);
+			int ct =0;			
+			foreach (short s in data) 
+			{
+				writer.Write(s);
+				ct++;
+				if (ct>=MAX_VALUES) break;
+			}
+
+			while (ct<MAX_VALUES) writer.Write((short)0);
+
+			string flname = this.FileName;
+			byte[] name = Helper.ToBytes(flname, 0);
+			writer.Write((uint)name.Length);
+			writer.Write(name);
+			
+			//write some special Fields
+			if (Length>0x5c+4)
+			{
+				writer.BaseStream.Seek(0x5c, System.IO.SeekOrigin.Begin);
+				writer.Write(guid);
+			}
+
+			if (Length>0x7a+4) 
+			{
+				writer.BaseStream.Seek(0x7a, System.IO.SeekOrigin.Begin);
+				writer.Write(proxyguid);
+			}
+
+			if (Length>0xcc+4)
+			{
+				writer.BaseStream.Seek(0xcc, System.IO.SeekOrigin.Begin);
+				writer.Write(originalguid);
+			}
+
+
+			
+			//if (free>0) writer.Write(new byte[free]);
+		}
+
+		protected override void Unserialize(System.IO.BinaryReader reader)
+		{	
+			ok = ObjdHealth.Ok;		
+			try 
+			{
+				UnserializeNew(reader);
+			} 
+			catch {
+				ok = ObjdHealth.Unreadable;
+				reader.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
+				UnserializeOld(reader);
+			}
+
+			//read some special Data
+			if (Length>0x5c+4)
+			{				
+				reader.BaseStream.Seek(0x5c, System.IO.SeekOrigin.Begin);
+				guid = reader.ReadUInt32();
+			}
+
+			if (Length>0x7a+4)
+			{				
+				reader.BaseStream.Seek(0x7a, System.IO.SeekOrigin.Begin);
+				proxyguid = reader.ReadUInt32();
+			}
+
+			if (Length>0xcc+4)
+			{
+				reader.BaseStream.Seek(0xcc, System.IO.SeekOrigin.Begin);
+				originalguid = reader.ReadUInt32();
+			}
+
+			
+			UpdateFlags();
+		}
+
+		protected void UnserializeNew(System.IO.BinaryReader reader)
+		{						
+			filename = reader.ReadBytes(0x40);				
+			int count = (int)((reader.BaseStream.Length - 0x40) / 2);
+			count = 0x6c;
+			data = new short[count];
+			for (int i=0; i<count; i++) data[i] = reader.ReadInt16();
+
+			int sz = reader.ReadInt32();
+			filename2 = reader.ReadBytes(sz);
+			
+			if (Helper.ToString(filename2) != this.FileName) 
+				ok = ObjdHealth.UnmatchingFilenames;
+
+			if (reader.BaseStream.Position != reader.BaseStream.Length)
+				ok = ObjdHealth.OverLength;
+		}
+
+		protected void UnserializeOld(System.IO.BinaryReader reader)
+		{						
+			filename = reader.ReadBytes(0x40);				
+			int count = (int)((reader.BaseStream.Length - 0x40) / 2);
+			data = new short[count];
+			for (int i=0; i<count; i++) 
+			{
+				try 
+				{
+					data[i] = reader.ReadInt16();			
+				} 
+				catch (System.IO.EndOfStreamException ex)
+				{
+					throw new System.IO.EndOfStreamException("Reading Error in OBJd at "+i.ToString()+".", ex);
+				}
+			}
+		}
+
+		#endregion
+
+		#region IFileWrapper Member
+		public uint[] AssignableTypes
+		{
+			get 
+			{
+				uint[] Types = {
+								   0x4F424A44
+							   };
+				return Types;
+			}
+		}
+
+		public Byte[] FileSignature
+		{
+			get 
+			{
+				Byte[] sig = {					 
+							 };
+				return sig;
+			}
+		}		
+
+		public override string Description
+		{
+			get
+			{
+				return "FileName="+this.FileName+",GUID=0x"+Helper.HexString(this.Guid)+",Type="+this.Type.ToString();
+			}
+		}
+
+		#endregion
+
+		#region IMultiplePackedFileWrapper Member
+
+		public override object[] GetConstructorArguments()
+		{
+			
+			return new object[] {this.opcodes};
+		}		
+
+		#endregion
+	}
+
+
+	#region ObjdHealth
+	/// <summary>
 	/// This is used to determin the Health of a OBJd File
 	/// </summary>
 	public enum ObjdHealth : byte 
@@ -33,6 +423,9 @@ namespace SimPe.PackedFiles.Wrapper
 		UnmatchingFilenames,
 		OverLength
 	}
+
+	#endregion
+
 	#region Room Sort
 	public class ObjRoomSort : FlagBase 
 	{
@@ -169,395 +562,4 @@ namespace SimPe.PackedFiles.Wrapper
 	}
 	#endregion
 
-	/// <summary>
-	/// Represents a PackedFile in SDsc Format
-	/// </summary>
-	public class ExtObjd : AbstractWrapper, SimPe.Interfaces.Plugin.IFileWrapper, SimPe.Interfaces.Plugin.IFileWrapperSaveExtension, SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper
-	{
-		#region Attributes
-		/// <summary>
-		///the stored Filename		
-		/// </summary>
-        private byte[] filename, filename2;
-
-		/// <summary>
-		/// The Type of this File
-		/// </summary>
-		private short[] data; 
-
-		
-
-		/// <summary>
-		/// Returns/Sets the Name of a Sim
-		/// </summary>
-		public string FileName
-		{
-			get 
-			{
-				return Helper.ToString(filename);
-			}		
-			set 
-			{
-				filename = Helper.SetLength(Helper.ToBytes(value, 64), 64);
-			}
-		}
-
-		/// <summary>
-		/// Returs / Sets the stored Data
-		/// </summary>
-		public short[] Data
-		{
-			get { return data; }
-			set { data = value; }
-		}
-
-		uint guid, proxyguid, originalguid;
-
-		/// <summary>
-		/// Returns the GUID of the Object
-		/// </summary>
-		public uint Guid
-		{
-			get { return guid; }
-			set { guid = value; }
-		}
-
-		/// <summary>
-		/// Returns the GUID of the Object
-		/// </summary>
-		public uint ProxyGuid
-		{
-			get { return proxyguid; }
-			set { proxyguid = value; }
-		}
-
-		/// <summary>
-		/// Returns the GUID of the Object
-		/// </summary>
-		public uint OriginalGuid
-		{
-			get { return originalguid; }
-			set { originalguid = value; }
-		}
-		
-
-		/// <summary>
-		/// returns the Instance of the assigned Catalog Description
-		/// </summary>
-		public ushort CTSSInstance 
-		{
-			get 
-			{ 
-				if (data.Length>0x29) return (ushort)data[0x29]; 
-				return 0;
-			}
-			set 
-			{ 
-				if (data.Length>0x29) data[0x29] = (short)value; 
-			}
-		}
-
-		/// <summary>
-		/// Retursn / Sets the Type of an Object
-		/// </summary>
-		public SimPe.Data.ObjectTypes Type 
-		{
-			get { 
-				if (data.Length>0x09) return (SimPe.Data.ObjectTypes)data[0x09]; 
-				return SimPe.Data.ObjectTypes.Normal;
-			}
-			set { 
-				if (data.Length>0x09) data[0x09] = (short)value; 
-			}
-		}
-
-		ObjRoomSort rsort;
-		/// <summary>
-		/// Returns the Room Sort Flags
-		/// </summary>
-		public ObjRoomSort RoomSort
-		{
-			get { return rsort; }
-			set { rsort = value; }
-		}
-
-		ObjFunctionSort fsort;
-		/// <summary>
-		/// Returns the Function Sort Flags
-		/// </summary>
-		public ObjFunctionSort FunctionSort
-		{
-			get { return fsort; }
-			set { fsort = value; }
-		}
-
-		public Data.ObjFunctionSubSort FunctionSubSort
-		{
-			get 
-			{
-				uint val = (uint)((data[0x5e]&0xff) | ((fsort.Value&0xfff)<<8));
-				return (Data.ObjFunctionSubSort)val;
-			}
-			set 
-			{
-				uint val = (uint)value;
-				fsort.Value = (ushort)((val >> 8) & 0xfff);
-				data[0x5e] = (short)(val & 0xff);
-			}
-		}
-
-		public short Price 
-		{
-			get {return data[0x12];}
-			set {data[0x12] = value; }
-		}
-		#endregion
-
-		/// <summary>
-		/// Returns the Length of the File
-		/// </summary>
-		protected int Length
-		{
-			get { return (int)(data.Length*2 + 0x40); }
-		}
-
-
-		#region IWrapper Member
-		protected override IWrapperInfo CreateWrapperInfo()
-		{
-			return new AbstractWrapperInfo(
-				"Extended OBJD Wrapper",
-				"Quaxi",
-				"This File is used to Set up the Basic Catalog Properties of an Object. It also contains the unique ID for the Objeect or a Part of the Object.",
-				3,
-				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.objd.png"))
-				); 
-		}
-		#endregion
-
-		#region AbstractWrapper Member
-		protected override IPackedFileUI CreateDefaultUIHandler()
-		{
-			return new SimPe.PackedFiles.UserInterface.ExtObjdUI();
-		}
-
-		Interfaces.Providers.IOpcodeProvider opcodes;
-		/// <summary>
-		/// Null or an Opcode Provider
-		/// </summary>
-		public Interfaces.Providers.IOpcodeProvider Opcodes
-		{
-			get { return opcodes; }
-		}		
-
-		public ExtObjd(Interfaces.Providers.IOpcodeProvider opcodes) : base()
-		{			
-			filename = new byte[0x40];
-			filename2 = new byte[0];
-			data = new short[0xdc];
-			this.opcodes = opcodes;
-			Type = SimPe.Data.ObjectTypes.Normal;
-			rsort = new ObjRoomSort(0);
-			fsort = new ObjFunctionSort(0);
-		}
-
-		public void UpdateFlags()
-		{
-			if (data.Length>0x28)
-			{
-				this.rsort = new ObjRoomSort(data[0x27]);
-				this.fsort = new ObjFunctionSort(data[0x28]);
-			}
-		}
-
-		ObjdHealth ok;
-		public ObjdHealth Ok
-		{
-			get {return ok; }
-		}
-		protected override void Unserialize(System.IO.BinaryReader reader)
-		{	
-			ok = ObjdHealth.Ok;		
-			try 
-			{
-				UnserializeNew(reader);
-			} 
-			catch {
-				ok = ObjdHealth.Unreadable;
-				reader.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
-				UnserializeOld(reader);
-			}
-
-			//read some special Data
-			if (Length>0x5c+4)
-			{				
-				reader.BaseStream.Seek(0x5c, System.IO.SeekOrigin.Begin);
-				guid = reader.ReadUInt32();
-			}
-
-			if (Length>0x7a+4)
-			{				
-				reader.BaseStream.Seek(0x7a, System.IO.SeekOrigin.Begin);
-				proxyguid = reader.ReadUInt32();
-			}
-
-			if (Length>0xcc+4)
-			{
-				reader.BaseStream.Seek(0xcc, System.IO.SeekOrigin.Begin);
-				originalguid = reader.ReadUInt32();
-			}
-
-			
-			UpdateFlags();
-		}
-
-		protected void UnserializeNew(System.IO.BinaryReader reader)
-		{						
-			filename = reader.ReadBytes(0x40);				
-			int count = (int)((reader.BaseStream.Length - 0x40) / 2);
-			count = 0x6c;
-			data = new short[count];
-			for (int i=0; i<count; i++) data[i] = reader.ReadInt16();
-
-			int sz = reader.ReadInt32();
-			filename2 = reader.ReadBytes(sz);
-			
-			if (Helper.ToString(filename2) != this.FileName) 
-				ok = ObjdHealth.UnmatchingFilenames;
-
-			if (reader.BaseStream.Position != reader.BaseStream.Length)
-				ok = ObjdHealth.OverLength;
-		}
-
-		protected void UnserializeOld(System.IO.BinaryReader reader)
-		{						
-			filename = reader.ReadBytes(0x40);				
-			int count = (int)((reader.BaseStream.Length - 0x40) / 2);
-			data = new short[count];
-			for (int i=0; i<count; i++) 
-			{
-				try 
-				{
-					data[i] = reader.ReadInt16();			
-				} 
-				catch (System.IO.EndOfStreamException ex)
-				{
-					throw new System.IO.EndOfStreamException("Reading Error in OBJd at "+i.ToString()+".", ex);
-				}
-			}
-		}
-
-		protected override void Serialize(System.IO.BinaryWriter writer) 
-		{		
-			const int MAX_VALUES = 0x6c;
-			if (data.Length>0x27)
-			{
-				data[0x27] = (short)this.rsort.Value;
-				data[0x28] = (short)this.fsort.Value;
-			}
-
-			writer.Write(filename);
-			int ct =0;			
-			foreach (short s in data) 
-			{
-				writer.Write(s);
-				ct++;
-				if (ct>=MAX_VALUES) break;
-			}
-
-			while (ct<MAX_VALUES) writer.Write((short)0);
-
-			string flname = this.FileName;
-			byte[] name = Helper.ToBytes(flname, 0);
-			writer.Write((uint)name.Length);
-			writer.Write(name);
-			
-			//write some special Fields
-			if (Length>0x5c+4)
-			{
-				writer.BaseStream.Seek(0x5c, System.IO.SeekOrigin.Begin);
-				writer.Write(guid);
-			}
-
-			if (Length>0x7a+4) 
-			{
-				writer.BaseStream.Seek(0x7a, System.IO.SeekOrigin.Begin);
-				writer.Write(proxyguid);
-			}
-
-			if (Length>0xcc+4)
-			{
-				writer.BaseStream.Seek(0xcc, System.IO.SeekOrigin.Begin);
-				writer.Write(originalguid);
-			}
-
-
-			
-			//if (free>0) writer.Write(new byte[free]);
-		}
-		#endregion
-
-		#region IPackedFileWrapper Member
-		public override string Description
-		{
-			get
-			{
-				return "FileName="+this.FileName+",GUID=0x"+Helper.HexString(this.Guid)+",Type="+this.Type.ToString();
-			}
-		}
-
-		public uint[] AssignableTypes
-		{
-			get 
-			{
-				uint[] Types = {
-								   0x4F424A44
-							   };
-				return Types;
-			}
-		}
-
-
-		public Byte[] FileSignature
-		{
-			get 
-			{
-				Byte[] sig = {					 
-							 };
-				return sig;
-			}
-		}		
-
-		
-
-		#endregion
-
-		#region Property Grid
-		static SimPe.PackedFiles.Wrapper.ObjdPropertyParser tpp;
-
-		/// <summary>
-		/// Return a PropertyParser, that enumerates all known Properties as <see cref="Ambertation.PropertyDescription"/> Objects
-		/// </summary>
-		public static SimPe.PackedFiles.Wrapper.ObjdPropertyParser PropertyParser
-		{
-			get 
-			{
-				if (tpp==null) 
-					tpp = new SimPe.PackedFiles.Wrapper.ObjdPropertyParser(System.IO.Path.Combine(Helper.SimPeDataPath, "objddefinition.xml"));
-				return tpp;
-			}
-		}
-
-		#endregion
-
-		#region IMultiplePackedFileWrapper Member
-
-		public override object[] GetConstructorArguments()
-		{
-			
-			return new object[] {this.opcodes};
-		}		
-
-		#endregion
-	}
 }
