@@ -1,4 +1,6 @@
 /***************************************************************************
+ *   Copyright (C) 2005 by Peter L Jones                                   *
+ *   peter@drealm.info                                                     *
  *   Copyright (C) 2005 by Ambertation                                     *
  *   quaxi@ambertation.de                                                  *
  *                                                                         *
@@ -22,6 +24,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using SimPe.Interfaces.Plugin;
 using SimPe.PackedFiles.Wrapper;
 
 namespace SimPe.PackedFiles.UserInterface
@@ -29,12 +32,64 @@ namespace SimPe.PackedFiles.UserInterface
 	/// <summary>
 	/// Zusammenfassung für ExtObjdForm.
 	/// </summary>
-	internal class ExtObjdForm : System.Windows.Forms.Form
+	internal class ExtObjdForm : System.Windows.Forms.Form, IPackedFileUI
 	{
+		#region Form variables
+		private System.Windows.Forms.LinkLabel linkLabel1;
+		internal System.Windows.Forms.PropertyGrid pg;
+		internal System.Windows.Forms.TabControl tc;
+		internal System.Windows.Forms.TabPage tpcatalogsort;
+		private System.Windows.Forms.TabPage tpraw;
+		internal System.Windows.Forms.CheckBox cbhobby;
+		internal System.Windows.Forms.CheckBox cbaspiration;
+		internal System.Windows.Forms.CheckBox cbcareer;
+		internal System.Windows.Forms.CheckBox cbkids;
+		private System.Windows.Forms.RadioButton rbbin;
+		private System.Windows.Forms.RadioButton rbdec;
+		private System.Windows.Forms.RadioButton rbhex;
+		private System.Windows.Forms.CheckBox cball;
+		internal System.Windows.Forms.Label lbIsOk;
+		private System.Windows.Forms.Label label1;
+		internal Ambertation.Windows.Forms.EnumComboBox cbsort;
+		private System.Windows.Forms.Label label63;
+		internal System.Windows.Forms.TextBox tbproxguid;
+		private System.Windows.Forms.Label label97;
+		internal System.Windows.Forms.TextBox tborgguid;
+		private System.Windows.Forms.LinkLabel llgetGUID;
+		private System.Windows.Forms.LinkLabel llcommitobjd;
+		private System.Windows.Forms.Label label65;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Panel panel6;
+		private System.Windows.Forms.Label label12;
+		internal System.Windows.Forms.TextBox tbflname;
+		internal System.Windows.Forms.TextBox tbguid;
+		internal System.Windows.Forms.ComboBox cbtype;
+		internal System.Windows.Forms.TextBox tbtype;
+		internal System.Windows.Forms.Panel pnobjd;
+		internal System.Windows.Forms.CheckBox cbbathroom;
+		internal System.Windows.Forms.CheckBox cbbedroom;
+		internal System.Windows.Forms.CheckBox cbdinigroom;
+		internal System.Windows.Forms.CheckBox cbkitchen;
+		internal System.Windows.Forms.CheckBox cbstudy;
+		internal System.Windows.Forms.CheckBox cblivingroom;
+		internal System.Windows.Forms.CheckBox cboutside;
+		internal System.Windows.Forms.CheckBox cbmisc;
+		internal System.Windows.Forms.CheckBox cbgeneral;
+		internal System.Windows.Forms.CheckBox cbelectronics;
+		internal System.Windows.Forms.CheckBox cbdecorative;
+		internal System.Windows.Forms.CheckBox cbappliances;
+		internal System.Windows.Forms.CheckBox cbsurfaces;
+		internal System.Windows.Forms.CheckBox cbseating;
+		internal System.Windows.Forms.CheckBox cbplumbing;
+		internal System.Windows.Forms.CheckBox cblightning;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.GroupBox groupBox2;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
+		#endregion
 
 		public ExtObjdForm()
 		{
@@ -48,6 +103,23 @@ namespace SimPe.PackedFiles.UserInterface
 			//label1.Visible = false;
 #endif
 
+			this.cbtype.Items.Add(Data.ObjectTypes.Unknown);
+			this.cbtype.Items.Add(Data.ObjectTypes.ArchitecturalSupport);
+			this.cbtype.Items.Add(Data.ObjectTypes.Door);
+			this.cbtype.Items.Add(Data.ObjectTypes.Memory);
+			this.cbtype.Items.Add(Data.ObjectTypes.ModularStairs);
+			this.cbtype.Items.Add(Data.ObjectTypes.ModularStairsPortal);
+			this.cbtype.Items.Add(Data.ObjectTypes.Normal);
+			this.cbtype.Items.Add(Data.ObjectTypes.Outfit);
+			this.cbtype.Items.Add(Data.ObjectTypes.Person);
+			this.cbtype.Items.Add(Data.ObjectTypes.SimType);
+			this.cbtype.Items.Add(Data.ObjectTypes.Stairs);
+			this.cbtype.Items.Add(Data.ObjectTypes.Template);
+			this.cbtype.Items.Add(Data.ObjectTypes.Vehicle);
+			this.cbtype.Items.Add(Data.ObjectTypes.Window);
+			this.cbtype.Items.Add(Data.ObjectTypes.Tiles);
+			
+			this.cbsort.Enum = typeof(Data.ObjFunctionSubSort);	
 			this.cbsort.ResourceManager = SimPe.Localization.Manager;
 		}
 
@@ -64,7 +136,173 @@ namespace SimPe.PackedFiles.UserInterface
 				}
 			}
 			base.Dispose( disposing );
+
+			wrapper = null;
 		}
+
+
+		#region ExtObjdForm
+		internal ExtObjd wrapper = null;
+		internal uint initialguid;
+		Ambertation.PropertyObjectBuilderExt pob;
+		ArrayList names;
+		bool propchanged;
+		string GetName(int i)
+		{
+			string name = "0x"+Helper.HexString((ushort)i) + ": ";
+			name += (string)names[i];
+
+			return name;
+		}
+
+		void ShowData()
+		{
+			propchanged = false;
+			this.pg.SelectedObject = null;
+			
+			names = new ArrayList();
+			names = wrapper.Opcodes.OBJDDescription((ushort)wrapper.Type);
+
+			Hashtable ht = new Hashtable();
+			for (int i=0; i<Math.Min(names.Count, wrapper.Data.Length); i++)
+			{
+				Ambertation.PropertyDescription pf = ExtObjd.PropertyParser.GetDescriptor((ushort)wrapper.Type, (ushort)i);
+				if (pf==null) 
+					pf = new Ambertation.PropertyDescription("Unknown", null, wrapper.Data[i]);
+				else 					
+					pf.Property = wrapper.Data[i];				
+
+				ht[GetName(i)] = pf;				
+			}
+
+			pob = new Ambertation.PropertyObjectBuilderExt(ht);
+			this.pg.SelectedObject = pob.Instance;
+		}
+
+		void UpdateData()
+		{
+			if (!propchanged) return;
+			propchanged = false;
+
+			try 
+			{
+				Hashtable ht = pob.Properties;
+
+				for (int i=0; i<Math.Min(names.Count, wrapper.Data.Length); i++)
+				{
+					string name = GetName(i);	
+					try 
+					{
+						if (ht.Contains(name)) 
+						{
+							object o = ht[name];
+							if (o is SimPe.FlagBase) 
+								wrapper.Data[i] = ((SimPe.FlagBase)ht[name]);
+							else
+								wrapper.Data[i] = Convert.ToInt16(ht[name]);
+						} 
+					}				
+					catch (Exception ex)
+					{
+						if (Helper.DebugMode) Helper.ExceptionMessage("Error converting "+name, ex);
+					}
+				}
+
+				wrapper.Changed = true;
+				wrapper.UpdateFlags();
+				wrapper.RefreshUI();
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage("", ex);
+			}
+
+		}
+
+		internal void SetFunctionCb(Wrapper.ExtObjd objd)
+		{			
+			this.cbappliances.Checked = objd.FunctionSort.InAppliances;
+			this.cbdecorative.Checked = objd.FunctionSort.InDecorative;
+			this.cbelectronics.Checked = objd.FunctionSort.InElectronics;
+			this.cbgeneral.Checked = objd.FunctionSort.InGeneral;
+			this.cblightning.Checked = objd.FunctionSort.InLighting;
+			this.cbplumbing.Checked = objd.FunctionSort.InPlumbing;
+			this.cbseating.Checked = objd.FunctionSort.InSeating;
+			this.cbsurfaces.Checked = objd.FunctionSort.InSurfaces;
+			this.cbhobby.Checked = objd.FunctionSort.InHobbies;
+			this.cbaspiration.Checked = objd.FunctionSort.InAspirationRewards;
+			this.cbcareer.Checked = objd.FunctionSort.InCareerRewards;
+
+			this.groupBox2.Refresh();
+		}
+
+		#endregion
+
+		#region IPackedFileUI Member
+
+		public Control GUIHandle
+		{
+			get 
+			{
+				return this.pnobjd;
+			}
+		}
+
+		public void UpdateGUI(SimPe.Interfaces.Plugin.IFileWrapper wrapper)
+		{
+			Wrapper.ExtObjd objd = (Wrapper.ExtObjd)wrapper;
+			this.wrapper = objd;
+			this.initialguid = objd.Guid;
+			this.Tag = true;
+
+			try 
+			{
+				this.lbIsOk.Visible = objd.Ok!=Wrapper.ObjdHealth.Ok;
+				if (Helper.WindowsRegistry.HiddenMode) 
+					this.lbIsOk.Text = "Please commit! ("+objd.Ok.ToString()+")";				
+				this.pg.SelectedObject = null;
+				this.tc.SelectedTab = this.tpcatalogsort;				
+
+				this.cbtype.SelectedIndex = 0;
+				for (int i=0; i<this.cbtype.Items.Count; i++)
+				{
+					Data.ObjectTypes ot = (Data.ObjectTypes)this.cbtype.Items[i];
+					if (ot==objd.Type) 
+					{
+						this.cbtype.SelectedIndex = i;
+						break;
+					}
+				}
+
+				this.tbtype.Text = "0x"+Helper.HexString((ushort)(objd.Type));
+
+				this.tbguid.Text = "0x"+Helper.HexString(objd.Guid);
+				this.tbproxguid.Text = "0x"+Helper.HexString(objd.ProxyGuid);
+				this.tborgguid.Text = "0x"+Helper.HexString(objd.OriginalGuid);
+
+				this.tbflname.Text = objd.FileName;
+
+				this.cbbathroom.Checked = (objd.RoomSort.InBathroom);
+				this.cbbedroom.Checked = (objd.RoomSort.InBedroom);
+				this.cbdinigroom.Checked = (objd.RoomSort.InDiningRoom);
+				this.cbkitchen.Checked = (objd.RoomSort.InKitchen);
+				this.cblivingroom.Checked = (objd.RoomSort.InLivingRoom);
+				this.cbmisc.Checked = (objd.RoomSort.InMisc);
+				this.cboutside.Checked = (objd.RoomSort.InOutside);
+				this.cbstudy.Checked = (objd.RoomSort.InStudy);
+				this.cbkids.Checked = (objd.RoomSort.InKids);
+
+				this.SetFunctionCb(objd);
+				this.cbsort.SelectedValue = objd.FunctionSubSort;
+			} 
+			finally 
+			{
+				this.Tag = null;
+			}
+		}
+
+		
+		#endregion
 
 		#region Vom Windows Form-Designer generierter Code
 		/// <summary>
@@ -728,60 +966,6 @@ namespace SimPe.PackedFiles.UserInterface
 		}
 		#endregion
 
-		private System.Windows.Forms.Label label63;
-		internal System.Windows.Forms.TextBox tbproxguid;
-		private System.Windows.Forms.Label label97;
-		internal System.Windows.Forms.TextBox tborgguid;
-		private System.Windows.Forms.LinkLabel llgetGUID;
-		private System.Windows.Forms.LinkLabel llcommitobjd;
-		private System.Windows.Forms.Label label65;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Panel panel6;
-		private System.Windows.Forms.Label label12;
-		internal System.Windows.Forms.TextBox tbflname;
-		internal System.Windows.Forms.TextBox tbguid;
-		internal System.Windows.Forms.ComboBox cbtype;
-		internal System.Windows.Forms.TextBox tbtype;
-		internal System.Windows.Forms.Panel pnobjd;
-		internal System.Windows.Forms.CheckBox cbbathroom;
-		internal System.Windows.Forms.CheckBox cbbedroom;
-		internal System.Windows.Forms.CheckBox cbdinigroom;
-		internal System.Windows.Forms.CheckBox cbkitchen;
-		internal System.Windows.Forms.CheckBox cbstudy;
-		internal System.Windows.Forms.CheckBox cblivingroom;
-		internal System.Windows.Forms.CheckBox cboutside;
-		internal System.Windows.Forms.CheckBox cbmisc;
-		internal System.Windows.Forms.CheckBox cbgeneral;
-		internal System.Windows.Forms.CheckBox cbelectronics;
-		internal System.Windows.Forms.CheckBox cbdecorative;
-		internal System.Windows.Forms.CheckBox cbappliances;
-		internal System.Windows.Forms.CheckBox cbsurfaces;
-		internal System.Windows.Forms.CheckBox cbseating;
-		internal System.Windows.Forms.CheckBox cbplumbing;
-		internal System.Windows.Forms.CheckBox cblightning;
-		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.GroupBox groupBox2;
-
-		internal ExtObjd wrapper;
-		private System.Windows.Forms.LinkLabel linkLabel1;
-		internal System.Windows.Forms.PropertyGrid pg;
-		internal System.Windows.Forms.TabControl tc;
-		internal System.Windows.Forms.TabPage tpcatalogsort;
-		private System.Windows.Forms.TabPage tpraw;
-		internal System.Windows.Forms.CheckBox cbhobby;
-		internal System.Windows.Forms.CheckBox cbaspiration;
-		internal System.Windows.Forms.CheckBox cbcareer;
-		internal System.Windows.Forms.CheckBox cbkids;
-		private System.Windows.Forms.RadioButton rbbin;
-		private System.Windows.Forms.RadioButton rbdec;
-		private System.Windows.Forms.RadioButton rbhex;
-		private System.Windows.Forms.CheckBox cball;
-		internal System.Windows.Forms.Label lbIsOk;
-		private System.Windows.Forms.Label label1;
-		internal Ambertation.Windows.Forms.EnumComboBox cbsort;
-		internal uint initialguid;
-
 		private void GetGuid(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			Sims.GUID.GUIDGetterForm form = new Sims.GUID.GUIDGetterForm();
@@ -928,81 +1112,6 @@ namespace SimPe.PackedFiles.UserInterface
 			wrapper.SynchronizeUserData();
 		}
 
-		Ambertation.PropertyObjectBuilderExt pob;
-		ArrayList names;
-		bool propchanged;
-		string GetName(int i)
-		{
-			string name = "0x"+Helper.HexString((ushort)i) + ": ";
-			name += (string)names[i];
-
-			return name;
-		}
-
-		void ShowData()
-		{
-			propchanged = false;
-			this.pg.SelectedObject = null;
-			
-			names = new ArrayList();
-			names = wrapper.Opcodes.OBJDDescription((ushort)wrapper.Type);
-
-			Hashtable ht = new Hashtable();
-			for (int i=0; i<Math.Min(names.Count, wrapper.Data.Length); i++)
-			{
-				Ambertation.PropertyDescription pf = ExtObjd.PropertyParser.GetDescriptor((ushort)wrapper.Type, (ushort)i);
-				if (pf==null) 
-					pf = new Ambertation.PropertyDescription("Unknown", null, wrapper.Data[i]);
-				else 					
-					pf.Property = wrapper.Data[i];				
-
-				ht[GetName(i)] = pf;				
-			}
-
-			pob = new Ambertation.PropertyObjectBuilderExt(ht);
-			this.pg.SelectedObject = pob.Instance;
-		}
-
-		void UpdateData()
-		{
-			if (!propchanged) return;
-			propchanged = false;
-
-			try 
-			{
-				Hashtable ht = pob.Properties;
-
-				for (int i=0; i<Math.Min(names.Count, wrapper.Data.Length); i++)
-				{
-					string name = GetName(i);	
-					try 
-					{
-						if (ht.Contains(name)) 
-						{
-							object o = ht[name];
-							if (o is SimPe.FlagBase) 
-								wrapper.Data[i] = ((SimPe.FlagBase)ht[name]);
-							else
-								wrapper.Data[i] = Convert.ToInt16(ht[name]);
-						} 
-					}				
-					catch (Exception ex)
-					{
-						if (Helper.DebugMode) Helper.ExceptionMessage("Error converting "+name, ex);
-					}
-				}
-
-				wrapper.Changed = true;
-				wrapper.UpdateFlags();
-				wrapper.RefreshUI();
-			} 
-			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage("", ex);
-			}
-
-		}
-
 		private void CangedTab(object sender, System.EventArgs e)
 		{
 			if (tc.SelectedTab == tpraw)
@@ -1096,21 +1205,5 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Tag = null;
 		}
 
-		internal void SetFunctionCb(Wrapper.ExtObjd objd)
-		{			
-			this.cbappliances.Checked = objd.FunctionSort.InAppliances;
-			this.cbdecorative.Checked = objd.FunctionSort.InDecorative;
-			this.cbelectronics.Checked = objd.FunctionSort.InElectronics;
-			this.cbgeneral.Checked = objd.FunctionSort.InGeneral;
-			this.cblightning.Checked = objd.FunctionSort.InLighting;
-			this.cbplumbing.Checked = objd.FunctionSort.InPlumbing;
-			this.cbseating.Checked = objd.FunctionSort.InSeating;
-			this.cbsurfaces.Checked = objd.FunctionSort.InSurfaces;
-			this.cbhobby.Checked = objd.FunctionSort.InHobbies;
-			this.cbaspiration.Checked = objd.FunctionSort.InAspirationRewards;
-			this.cbcareer.Checked = objd.FunctionSort.InCareerRewards;
-
-			this.groupBox2.Refresh();
-		}
 	}
 }

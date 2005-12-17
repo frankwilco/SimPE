@@ -219,11 +219,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "ExtObjdUI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "ExtObjdWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
