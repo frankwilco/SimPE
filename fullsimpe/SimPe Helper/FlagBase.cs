@@ -27,7 +27,7 @@ namespace SimPe
 	/// </summary>
 	[TypeConverterAttribute(typeof(FlagBaseConverter)),
 	DescriptionAttribute("This Property contains some Flags")]
-	public class FlagBase : Ambertation.IPropertyClass
+	public class FlagBase : Serializer, Ambertation.IPropertyClass
 	{
 		public FlagBase(ushort flags) 
 		{

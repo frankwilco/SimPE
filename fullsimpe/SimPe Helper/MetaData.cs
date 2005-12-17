@@ -392,7 +392,10 @@ namespace SimPe.Data
 		public const UInt32 NAME_MAP = 0x4E6D6150;
 
 		
-
+		/// <summary>
+		/// Sim DNA
+		/// </summary>
+		public const uint SDNA = 0xEBFEE33F;
 
 		/// <summary>
 		/// Signature identifying a compressed PackedFile

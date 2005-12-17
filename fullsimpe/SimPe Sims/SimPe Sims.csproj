@@ -269,6 +269,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "dna.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ExtFamilyTiesUI.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -359,6 +363,21 @@
                 />
                 <File
                     RelPath = "sdsc.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "SimDNA.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SimDNAUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SimDNAUI.resx"
+                    DependentUpon = "SimDNAUI.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

@@ -337,7 +337,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Returns the Signature that can be used to identify Files processable with this Plugin
 		/// </summary>
-		public byte[] FileSignature
+		public virtual byte[] FileSignature
 		{
 			get
 			{

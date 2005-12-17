@@ -243,6 +243,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "StrForm.es.resx"
+                    DependentUpon = "StrForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "StrForm.pl.resx"
                     DependentUpon = "StrForm.cs"
                     BuildAction = "EmbeddedResource"

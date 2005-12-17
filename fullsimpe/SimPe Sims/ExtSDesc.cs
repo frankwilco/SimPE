@@ -335,5 +335,83 @@ namespace SimPe.PackedFiles.Wrapper
 			return base.Equals (obj);
 		}
 
+		public override string Description
+		{
+			get
+			{
+				/** still Missing:
+				 *		DNA
+				 *		Lifetime Want
+				 *		Alive/Dead
+				 *		Traits, turnon, turnoff
+				 *		Personality, Skills, User Character File, Mother, Father, Children, Best Friends, Household Wealth, Household Funds 
+				**/
+
+				string s = Serializer.Property("GUID", "0x"+Helper.HexString(this.SimId));
+				s += Serializer.SEPERATOR + Serializer.Property("Filename", this.CharacterFileName);
+				s += Serializer.SEPERATOR + Serializer.Property("Name", this.SimName+" "+this.SimFamilyName);
+				s += Serializer.SEPERATOR + Serializer.Property("Household ", this.HouseholdName);
+				s += Serializer.SEPERATOR + Serializer.Property("isNPC" ,this.IsNPC.ToString());
+				s += Serializer.SEPERATOR + Serializer.Property("isTownie" , this.IsTownie.ToString());
+				s += Serializer.SEPERATOR + this.CharacterDescription.ToString();
+				s += Serializer.SEPERATOR + this.Interests.ToString();
+				s += Serializer.SEPERATOR + this.Skills.ToString();
+
+				if ((int)this.Version >= (int)SDescVersions.University)
+					s += Serializer.SEPERATOR + this.University.ToString();
+
+				if ((int)this.Version >= (int)SDescVersions.Nightlife)
+					s += Serializer.SEPERATOR +  this.Nightlife.ToString();
+				
+				return s;
+			}
+		}
+
+	}
+
+	public class LinkedSDesc : ExtSDesc
+	{
+		public LinkedSDesc() : base()
+		{			
+		}
+
+		protected override void Unserialize(System.IO.BinaryReader reader)
+		{
+			base.Unserialize(reader);
+
+			sdna = null;
+		}
+
+		SimPe.PackedFiles.Wrapper.SimDNA sdna;
+		public SimPe.PackedFiles.Wrapper.SimDNA SimDNA
+		{
+			get 
+			{
+				if (sdna==null) 
+				{
+					SimPe.Interfaces.Files.IPackedFileDescriptor pfd = package.FindFile(Data.MetaData.SDNA, 0, Data.MetaData.LOCAL_GROUP, this.FileDescriptor.Instance);
+					if (pfd!=null) 
+					{
+						sdna = new SimDNA();
+						sdna.ProcessData(pfd, this.package, true);
+					}
+
+				}
+
+				return sdna;
+			}
+		}
+
+		public override string Description
+		{
+			get
+			{
+				string s = base.Description;
+				if (this.SimDNA!=null)
+					s += Serializer.SEPERATOR + Serializer.SubProperty("DNA", this.SimDNA.Description);
+				return s;
+			}
+		}
+
 	}
 }

@@ -368,6 +368,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Serializer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "TGILoader.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -399,6 +404,11 @@
                 />
                 <File
                     RelPath = "WaitingForm.de.resx"
+                    DependentUpon = "WaitingForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "WaitingForm.es.resx"
                     DependentUpon = "WaitingForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
