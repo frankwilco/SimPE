@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\$(TargetName).pdb" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;copy "$(TargetDir)\pl\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\pl\"'
+                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\$(TargetName).pdb" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;copy "$(TargetDir)\pl\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\pl\"&#xd;&#xa;copy "$(TargetDir)\es\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\es\"'
                 RootNamespace = "SimPe.Plugin.Tool.Dockable"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -281,6 +281,11 @@
                 />
                 <File
                     RelPath = "ObjectPreview.de.resx"
+                    DependentUpon = "ObjectPreview.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ObjectPreview.es.resx"
                     DependentUpon = "ObjectPreview.cs"
                     BuildAction = "EmbeddedResource"
                 />

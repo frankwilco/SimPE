@@ -119,11 +119,11 @@ namespace SimPe.PackedFiles.Wrapper
 	}
 	#endregion
 
-	#region CharacterDescription
+	#region CharacterDescription 
 	/// <summary>
 	/// Holds some descriptive Properties about a Character
 	/// </summary>
-	public class CharacterDescription 
+	public class CharacterDescription : Serializer
 	{
 		GhostFlags ghostflags;
 		public GhostFlags GhostFlag 
@@ -315,7 +315,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get { return (uint)(lifelinescore * (ushort)10); }
 			set { lifelinescore = (ushort)(Math.Min(short.MaxValue, value / 10)); }
-		}
+		}		
 	}
 	#endregion
 
@@ -323,7 +323,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Stores character Attributes
 	/// </summary>
-	public class CharacterAttributes 
+	public class CharacterAttributes : Serializer
 	{				
 		
 
@@ -398,7 +398,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Decay Values of a Sim
 	/// </summary>
-	public class SimDecay
+	public class SimDecay : Serializer
 	{
 		private short hunger;
 		public short Hunger 
@@ -455,7 +455,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Skill Attributes of a Sim
 	/// </summary>
-	public class SkillAttributes 
+	public class SkillAttributes  : Serializer
 	{
 		private ushort romance;
 		public ushort Romance 
@@ -526,7 +526,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// What a Sim is interessted in
 	/// </summary>
-	public class InterestAttributes 
+	public class InterestAttributes  : Serializer
 	{
 		private ushort politics;
 		public ushort Politics 
@@ -756,7 +756,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// University specific Data
 	/// </summary>
-	public class SdscUniversity
+	public class SdscUniversity : Serializer
 	{
 		internal SdscUniversity()
 		{
@@ -862,7 +862,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// Nightlife specific Data
 	/// </summary>
-	public class SdscNightlife
+	public class SdscNightlife : Serializer
 	{
 		internal SdscNightlife()
 		{
