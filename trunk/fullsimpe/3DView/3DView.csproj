@@ -154,18 +154,21 @@
                     AssemblyName = "Microsoft.DirectX"
                     HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.dll"
                     AssemblyFolderKey = "hklm\current managed directx 9.2"
+                    Private = "False"
                 />
                 <Reference
                     Name = "Microsoft.DirectX.Direct3D"
                     AssemblyName = "Microsoft.DirectX.Direct3D"
                     HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.Direct3D.dll"
                     AssemblyFolderKey = "hklm\current managed directx 9.2"
+                    Private = "False"
                 />
                 <Reference
                     Name = "Microsoft.DirectX.Direct3DX"
                     AssemblyName = "Microsoft.DirectX.Direct3DX"
                     HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.Direct3DX.dll"
                     AssemblyFolderKey = "hklm\current managed directx 9.2"
+                    Private = "False"
                 />
             </References>
         </Build>

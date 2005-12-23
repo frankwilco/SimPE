@@ -49,11 +49,13 @@ namespace SimPe
 
 		public static string SubProperty(string name, string val)
 		{
+			if (val==null) val="";
 			return name+"={"+val+"}";
 		}
 
 		public static string Property(string name, string val)
 		{
+			if (val==null) val="";
 			return name+"="+SaveStr(val)+"";
 		}
 
