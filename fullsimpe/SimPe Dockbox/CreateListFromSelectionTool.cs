@@ -66,7 +66,7 @@ namespace SimPe.Plugin.Tool
 					
 			}
 			catch (Exception ex)
-			{
+			{				
 				error += ex.Message+Helper.lbr;
 			}
 
@@ -77,20 +77,31 @@ namespace SimPe.Plugin.Tool
 		{
 			WaitingScreen.Wait();
 			System.IO.StreamWriter sw = new System.IO.StreamWriter(new System.IO.MemoryStream());
-			string error = "";
-			int ct = 0;
-			string max = "/ "+es.Count.ToString();
-			foreach (SimPe.Events.ResourceContainer e in es)
+			try 
 			{
-				error += ProcessItem(sw, e);
-				WaitingScreen.UpdateMessage((ct++).ToString()+" / "+max.ToString());
-			}
-			WaitingScreen.Stop();
+				string error = "";
+				int ct = 0;
+				string max = "/ "+es.Count.ToString();
+				foreach (SimPe.Events.ResourceContainer e in es)
+				{
+					error += ProcessItem(sw, e);
+					WaitingScreen.UpdateMessage((ct++).ToString()+" / "+max.ToString());
+				}
+				WaitingScreen.Stop();
 		
-			if (error!="") throw new Warning("Not all Selected Files were processed.", error);
+				if (error!="") throw new Warning("Not all Selected Files were processed.", error);
 
-			if (f==null) f= new Report();
-			f.Execute(sw);
+				if (f==null) f= new Report();
+				f.Execute(sw);
+			}
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage(ex);
+			}
+			finally 
+			{
+				sw.Close();
+			}
 		}
 
 		#region ITool Member
