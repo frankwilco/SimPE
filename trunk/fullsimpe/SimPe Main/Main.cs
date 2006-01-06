@@ -249,6 +249,7 @@ namespace SimPe
 			this.miOpenIn = new TD.SandBar.MenuButtonItem();
 			this.miOpenSimsRes = new TD.SandBar.MenuButtonItem();
 			this.miOpenUniRes = new TD.SandBar.MenuButtonItem();
+			this.miOpenNightlifeRes = new TD.SandBar.MenuButtonItem();
 			this.miOpenDownloads = new TD.SandBar.MenuButtonItem();
 			this.miSaveCopyAs = new TD.SandBar.MenuButtonItem();
 			this.miRecent = new TD.SandBar.MenuButtonItem();
@@ -303,7 +304,6 @@ namespace SimPe
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.dockContainer1 = new TD.SandDock.DockContainer();
 			this.resourceSelectionTimer = new System.Windows.Forms.Timer(this.components);
-			this.miOpenNightlifeRes = new TD.SandBar.MenuButtonItem();
 			this.mybottomSandDock.SuspendLayout();
 			this.dcPlugin.SuspendLayout();
 			this.topSandBarDock.SuspendLayout();
@@ -898,6 +898,14 @@ namespace SimPe
 			this.miOpenUniRes.Text = resources.GetString("miOpenUniRes.Text");
 			this.miOpenUniRes.ToolTipText = resources.GetString("miOpenUniRes.ToolTipText");
 			this.miOpenUniRes.Activate += new System.EventHandler(this.Activate_miOpenUniRes);
+			// 
+			// miOpenNightlifeRes
+			// 
+			this.miOpenNightlifeRes.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenNightlifeRes.Shortcut")));
+			this.miOpenNightlifeRes.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenNightlifeRes.Shortcut2")));
+			this.miOpenNightlifeRes.Text = resources.GetString("miOpenNightlifeRes.Text");
+			this.miOpenNightlifeRes.ToolTipText = resources.GetString("miOpenNightlifeRes.ToolTipText");
+			this.miOpenNightlifeRes.Activate += new System.EventHandler(this.Activate_miOpenNightlifeRes);
 			// 
 			// miOpenDownloads
 			// 
@@ -1868,14 +1876,6 @@ namespace SimPe
 			// 
 			this.resourceSelectionTimer.Interval = 75;
 			this.resourceSelectionTimer.Tick += new System.EventHandler(this.resourceSelectionTimer_Tick);
-			// 
-			// miOpenNightlifeRes
-			// 
-			this.miOpenNightlifeRes.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenNightlifeRes.Shortcut")));
-			this.miOpenNightlifeRes.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenNightlifeRes.Shortcut2")));
-			this.miOpenNightlifeRes.Text = resources.GetString("miOpenNightlifeRes.Text");
-			this.miOpenNightlifeRes.ToolTipText = resources.GetString("miOpenNightlifeRes.ToolTipText");
-			this.miOpenNightlifeRes.Activate += new System.EventHandler(this.Activate_miOpenNightlifeRes);
 			// 
 			// MainForm
 			// 

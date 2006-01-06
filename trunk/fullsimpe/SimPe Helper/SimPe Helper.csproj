@@ -189,6 +189,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ASerializeFormater.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -225,6 +230,11 @@
                 />
                 <File
                     RelPath = "CRCStandard.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DescriptiveSerializer.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -289,7 +299,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IPackedFileDescriptorBasic.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IPackedFileName.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IPropertyClass.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ISerializeFormater.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

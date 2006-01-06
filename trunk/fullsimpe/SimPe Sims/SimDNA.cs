@@ -155,11 +155,29 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 
+		public override string DescriptionHeader
+		{
+			get
+			{
+				System.Collections.ArrayList list = new System.Collections.ArrayList();
+				
+				list.Add("Dominant "+Serializer.SerializeTypeHeader(this.Dominant));
+				list.Add("Recessive "+Serializer.SerializeTypeHeader(this.Recessive));
+
+				return Serializer.ConcatHeader(Serializer.ConvertArrayList(list));
+			}
+		}
+
+
 		public override string Description
 		{
 			get
 			{
-				return this.Dominant.ToString("Dominant") + Serializer.SEPERATOR + this.Recessive.ToString("Recessive");
+				System.Collections.ArrayList list = new System.Collections.ArrayList();
+				list.Add(this.Dominant.ToString("Dominant"));
+				list.Add(this.Recessive.ToString("Recessive"));
+
+				return Serializer.Concat(Serializer.ConvertArrayList(list));
 			}
 		}
 

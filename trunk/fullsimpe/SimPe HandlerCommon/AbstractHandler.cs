@@ -488,6 +488,17 @@ namespace SimPe.Interfaces.Plugin
 		}
 
 		/// <summary>
+		/// Get the Header for this Description(i.e. Fieldnames)
+		/// </summary>
+		public virtual string DescriptionHeader
+		{
+			get
+			{
+				return "";
+			}
+		}
+
+		/// <summary>
 		/// Returns the 64 Character Long embedded Filename
 		/// </summary>
 		/// <param name="ta">The Current Type</param>

@@ -1037,6 +1037,32 @@ namespace SimPe
 			}
 		}
 
+		#region Report Format
+		public enum ReportFormats : int
+		{
+			Descriptive,
+			CSV
+		}
+
+		/// <summary>
+		/// The Which Format do Reports have
+		/// </summary>
+		public ReportFormats ReportFormat
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("ReportFormat", (int)ReportFormats.Descriptive);
+				return (ReportFormats)Convert.ToInt32(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("ReportFormat", (int)value);
+			}
+		}
+		#endregion
+
 		#region Wrappers
 		/// <summary>
 		/// Returns the Priority for the Wrapper identified with the given UID

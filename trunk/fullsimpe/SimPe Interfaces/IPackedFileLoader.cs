@@ -26,7 +26,7 @@ namespace SimPe.Interfaces.Plugin.Internal
 	/// This Interface Implements Methods that must be provided by a PackedFile Wrapper
 	/// </summary>
 	/// <remarks>If you want to Implement a Wrapper you must use the SimPe.Interfaces.Plugin.IFileWrapper</remarks>
-	public interface IPackedFileWrapper : IWrapper, System.IDisposable
+	public interface IPackedFileWrapper : IWrapper, IPackedFileName, System.IDisposable
 	{
 		/// <summary>
 		/// Returns the Package where this File is assigned to (can be null)
@@ -139,21 +139,7 @@ namespace SimPe.Interfaces.Plugin.Internal
 		/// <param name="registry">The Wrapper Registry</param>
 		void Fix(IWrapperRegistry registry);
 
-		/// <summary>
-		/// Get a Description for this Package
-		/// </summary>
-		string Description
-		{
-			get;
-		}
-
-		/// <summary>
-		/// Get the Name of a Resource
-		/// </summary>
-		string ResourceName
-		{
-			get;
-		}
+					
 
 		/// <summary>
 		/// Return the content of the Files
