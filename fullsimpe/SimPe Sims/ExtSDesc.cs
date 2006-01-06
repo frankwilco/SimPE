@@ -335,6 +335,36 @@ namespace SimPe.PackedFiles.Wrapper
 			return base.Equals (obj);
 		}
 
+		
+
+		public override string DescriptionHeader
+		{
+			get
+			{
+				ArrayList list = new ArrayList();
+				list.Add("GUID");
+				list.Add("Filename");
+				list.Add("Name");
+				list.Add("Household ");
+				list.Add("isNPC");
+				list.Add("isTownie");
+				list.Add(SimPe.Serializer.SerializeTypeHeader(this.CharacterDescription));
+				list.Add(SimPe.Serializer.SerializeTypeHeader(this.Interests));
+				list.Add(SimPe.Serializer.SerializeTypeHeader(this.Skills));
+				list.Add("Version");
+
+				if ((int)this.Version >= (int)SDescVersions.University)
+					list.Add(SimPe.Serializer.SerializeTypeHeader(this.University));
+
+				if ((int)this.Version >= (int)SDescVersions.Nightlife)
+					list.Add(SimPe.Serializer.SerializeTypeHeader(this.Nightlife));
+				
+
+				return Serializer.ConcatHeader(Serializer.ConvertArrayList(list));
+			}
+		}
+
+
 		public override string Description
 		{
 			get
@@ -347,23 +377,25 @@ namespace SimPe.PackedFiles.Wrapper
 				 *		Personality, Skills, User Character File, Mother, Father, Children, Best Friends, Household Wealth, Household Funds 
 				**/
 
-				string s = Serializer.Property("GUID", "0x"+Helper.HexString(this.SimId));
-				s += Serializer.SEPERATOR + Serializer.Property("Filename", this.CharacterFileName);
-				s += Serializer.SEPERATOR + Serializer.Property("Name", this.SimName+" "+this.SimFamilyName);
-				s += Serializer.SEPERATOR + Serializer.Property("Household ", this.HouseholdName);
-				s += Serializer.SEPERATOR + Serializer.Property("isNPC" ,this.IsNPC.ToString());
-				s += Serializer.SEPERATOR + Serializer.Property("isTownie" , this.IsTownie.ToString());
-				s += Serializer.SEPERATOR + this.CharacterDescription.ToString();
-				s += Serializer.SEPERATOR + this.Interests.ToString();
-				s += Serializer.SEPERATOR + this.Skills.ToString();
+				ArrayList list = new ArrayList();
+				list.Add(Serializer.Property("GUID", "0x"+Helper.HexString(this.SimId)));
+				list.Add(Serializer.Property("Filename", this.CharacterFileName));
+				list.Add(Serializer.Property("Name", this.SimName+" "+this.SimFamilyName));
+				list.Add(Serializer.Property("Household ", this.HouseholdName));
+				list.Add(Serializer.Property("isNPC" ,this.IsNPC.ToString()));
+				list.Add(Serializer.Property("isTownie" , this.IsTownie.ToString()));
+				list.Add(this.CharacterDescription.ToString());
+				list.Add(this.Interests.ToString());
+				list.Add(this.Skills.ToString());
+				list.Add(Serializer.Property("Version", this.Version.ToString()));
 
 				if ((int)this.Version >= (int)SDescVersions.University)
-					s += Serializer.SEPERATOR + this.University.ToString();
+					list.Add(this.University.ToString());
 
 				if ((int)this.Version >= (int)SDescVersions.Nightlife)
-					s += Serializer.SEPERATOR +  this.Nightlife.ToString();
+					list.Add(this.Nightlife.ToString());
 				
-				return s;
+				return Serializer.Concat(Serializer.ConvertArrayList(list));
 			}
 		}
 
@@ -402,14 +434,27 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 
+		public override string DescriptionHeader
+		{
+			get
+			{				
+				ArrayList list = new ArrayList();
+				list.Add(base.DescriptionHeader);
+				if (this.SimDNA!=null)
+					list.Add(this.SimDNA.DescriptionHeader);
+				return Serializer.ConcatHeader(Serializer.ConvertArrayList(list));
+			}
+		}
+
 		public override string Description
 		{
 			get
-			{
-				string s = base.Description;
+			{				
+				ArrayList list = new ArrayList();
+				list.Add(base.Description);
 				if (this.SimDNA!=null)
-					s += Serializer.SEPERATOR + Serializer.SubProperty("DNA", this.SimDNA.Description);
-				return s;
+					list.Add(Serializer.SubProperty("DNA", this.SimDNA.Description));
+				return Serializer.Concat(Serializer.ConvertArrayList(list));
 			}
 		}
 

@@ -54,6 +54,15 @@ namespace SimPe
 		public const string PATH_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzﬂ0123456789.-_ ";
 
 		/// <summary>
+		/// Character used to Seperate Folders in a Path
+		/// </summary>
+#if MAC
+		public const string PATH_SEP = "/";
+#else
+		public const string PATH_SEP = "\\";
+#endif
+
+		/// <summary>
 		/// Contains a Link to the Registry Object
 		/// </summary>
 		static Registry reg = null;
@@ -925,6 +934,13 @@ namespace SimPe
 		}
 
 		#region Folders
+#if MAC
+		public static string ToLongPathName(string shortName)
+		{
+			return shortName.ToString();
+		}
+		
+#else
 		[DllImport("kernel32.dll", SetLastError=true, CharSet=CharSet.Auto)]
 		static extern uint GetLongPathName(
 			string lpszShortPath,
@@ -945,6 +961,7 @@ namespace SimPe
 
 			return longNameBuffer.ToString();
 		}
+#endif
 
 		public static string ToLongFileName(string shortName)
 		{			
@@ -952,6 +969,7 @@ namespace SimPe
 				ToLongPathName(System.IO.Path.GetDirectoryName(shortName)),
 				System.IO.Path.GetFileName(shortName));
 		}
+
 		#endregion
 	}
 }

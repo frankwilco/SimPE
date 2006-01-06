@@ -36,6 +36,13 @@ namespace SimPe.Wizards
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
+#if MAC
+		const string FONT_FAMILY = "Arial";
+		const string FONT_FAMILY_SERIF = "Arial";
+#else
+		const string FONT_FAMILY = "Verdana";
+		const string FONT_FAMILY_SERIF = "Georgia";
+#endif
 		public Option()
 		{
 			//
@@ -74,6 +81,8 @@ namespace SimPe.Wizards
 			this.pbtop = new System.Windows.Forms.PictureBox();
 			this.pbbottom = new System.Windows.Forms.PictureBox();
 			this.pnopt = new System.Windows.Forms.Panel();
+			this.lldds2 = new System.Windows.Forms.LinkLabel();
+			this.lldds = new System.Windows.Forms.Label();
 			this.llsave = new System.Windows.Forms.LinkLabel();
 			this.linkLabel4 = new System.Windows.Forms.LinkLabel();
 			this.tbdds = new System.Windows.Forms.TextBox();
@@ -88,8 +97,6 @@ namespace SimPe.Wizards
 			this.llsims = new System.Windows.Forms.LinkLabel();
 			this.pbstretch = new System.Windows.Forms.PictureBox();
 			this.fbd = new System.Windows.Forms.FolderBrowserDialog();
-			this.lldds = new System.Windows.Forms.Label();
-			this.lldds2 = new System.Windows.Forms.LinkLabel();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
 			this.pnopt.SuspendLayout();
 			this.SuspendLayout();
@@ -97,8 +104,8 @@ namespace SimPe.Wizards
 			// pbtop
 			// 
 			this.pbtop.BackColor = System.Drawing.Color.White;
-			this.pbtop.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbtop.BackgroundImage")));
 			this.pbtop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pbtop.Image = ((System.Drawing.Image)(resources.GetObject("pbtop.Image")));
 			this.pbtop.Location = new System.Drawing.Point(0, 0);
 			this.pbtop.Name = "pbtop";
 			this.pbtop.Size = new System.Drawing.Size(610, 153);
@@ -107,8 +114,8 @@ namespace SimPe.Wizards
 			// 
 			// pbbottom
 			// 
-			this.pbbottom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbbottom.BackgroundImage")));
 			this.pbbottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pbbottom.Image = ((System.Drawing.Image)(resources.GetObject("pbbottom.Image")));
 			this.pbbottom.Location = new System.Drawing.Point(0, 478);
 			this.pbbottom.Name = "pbbottom";
 			this.pbbottom.Size = new System.Drawing.Size(610, 24);
@@ -137,16 +144,40 @@ namespace SimPe.Wizards
 			this.pnopt.Size = new System.Drawing.Size(616, 328);
 			this.pnopt.TabIndex = 3;
 			// 
+			// lldds2
+			// 
+			this.lldds2.BackColor = System.Drawing.Color.White;
+			this.lldds2.ForeColor = System.Drawing.Color.Gray;
+			this.lldds2.LinkArea = new System.Windows.Forms.LinkArea(22, 4);
+			this.lldds2.LinkColor = System.Drawing.Color.Red;
+			this.lldds2.Location = new System.Drawing.Point(64, 232);
+			this.lldds2.Name = "lldds2";
+			this.lldds2.Size = new System.Drawing.Size(152, 23);
+			this.lldds2.TabIndex = 30;
+			this.lldds2.TabStop = true;
+			this.lldds2.Text = "You can download them here";
+			this.lldds2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkDDS);
+			// 
+			// lldds
+			// 
+			this.lldds.BackColor = System.Drawing.Color.White;
+			this.lldds.ForeColor = System.Drawing.Color.Gray;
+			this.lldds.Location = new System.Drawing.Point(64, 200);
+			this.lldds.Name = "lldds";
+			this.lldds.Size = new System.Drawing.Size(424, 32);
+			this.lldds.TabIndex = 29;
+			this.lldds.Text = "The Nvidia DDS Utilities were not found. You should install them in order to get " +
+				"a higher quality for you recolors.";
+			// 
 			// llsave
 			// 
 			this.llsave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.llsave.AutoSize = true;
 			this.llsave.BackColor = System.Drawing.Color.White;
-			this.llsave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.llsave.LinkColor = System.Drawing.Color.Red;
 			this.llsave.Location = new System.Drawing.Point(210, 88);
 			this.llsave.Name = "llsave";
-			this.llsave.Size = new System.Drawing.Size(64, 19);
+			this.llsave.Size = new System.Drawing.Size(44, 16);
 			this.llsave.TabIndex = 28;
 			this.llsave.TabStop = true;
 			this.llsave.Text = "suggest";
@@ -158,11 +189,10 @@ namespace SimPe.Wizards
 			this.linkLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.linkLabel4.AutoSize = true;
 			this.linkLabel4.BackColor = System.Drawing.Color.White;
-			this.linkLabel4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.linkLabel4.LinkColor = System.Drawing.Color.Red;
 			this.linkLabel4.Location = new System.Drawing.Point(504, 177);
 			this.linkLabel4.Name = "linkLabel4";
-			this.linkLabel4.Size = new System.Drawing.Size(61, 19);
+			this.linkLabel4.Size = new System.Drawing.Size(42, 16);
 			this.linkLabel4.TabIndex = 26;
 			this.linkLabel4.TabStop = true;
 			this.linkLabel4.Text = "Browse";
@@ -171,10 +201,9 @@ namespace SimPe.Wizards
 			// 
 			// tbdds
 			// 
-			this.tbdds.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.tbdds.Location = new System.Drawing.Point(64, 176);
 			this.tbdds.Name = "tbdds";
-			this.tbdds.Size = new System.Drawing.Size(432, 21);
+			this.tbdds.Size = new System.Drawing.Size(432, 20);
 			this.tbdds.TabIndex = 25;
 			this.tbdds.Text = "";
 			this.tbdds.TextChanged += new System.EventHandler(this.Change);
@@ -197,10 +226,9 @@ namespace SimPe.Wizards
 			// 
 			// tbsave
 			// 
-			this.tbsave.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.tbsave.Location = new System.Drawing.Point(64, 112);
 			this.tbsave.Name = "tbsave";
-			this.tbsave.Size = new System.Drawing.Size(432, 21);
+			this.tbsave.Size = new System.Drawing.Size(432, 20);
 			this.tbsave.TabIndex = 23;
 			this.tbsave.Text = "";
 			this.tbsave.TextChanged += new System.EventHandler(this.Change);
@@ -210,11 +238,10 @@ namespace SimPe.Wizards
 			this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.linkLabel2.AutoSize = true;
 			this.linkLabel2.BackColor = System.Drawing.Color.White;
-			this.linkLabel2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.linkLabel2.LinkColor = System.Drawing.Color.Red;
 			this.linkLabel2.Location = new System.Drawing.Point(504, 49);
 			this.linkLabel2.Name = "linkLabel2";
-			this.linkLabel2.Size = new System.Drawing.Size(61, 19);
+			this.linkLabel2.Size = new System.Drawing.Size(42, 16);
 			this.linkLabel2.TabIndex = 22;
 			this.linkLabel2.TabStop = true;
 			this.linkLabel2.Text = "Browse";
@@ -223,10 +250,9 @@ namespace SimPe.Wizards
 			// 
 			// tbsims
 			// 
-			this.tbsims.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.tbsims.Location = new System.Drawing.Point(64, 48);
 			this.tbsims.Name = "tbsims";
-			this.tbsims.Size = new System.Drawing.Size(432, 21);
+			this.tbsims.Size = new System.Drawing.Size(432, 20);
 			this.tbsims.TabIndex = 21;
 			this.tbsims.Text = "";
 			this.tbsims.TextChanged += new System.EventHandler(this.Change);
@@ -235,11 +261,10 @@ namespace SimPe.Wizards
 			// 
 			this.label2.AutoSize = true;
 			this.label2.BackColor = System.Drawing.Color.White;
-			this.label2.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(64)), ((System.Byte)(64)), ((System.Byte)(64)));
 			this.label2.Location = new System.Drawing.Point(32, 152);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(148, 18);
+			this.label2.Size = new System.Drawing.Size(106, 16);
 			this.label2.TabIndex = 20;
 			this.label2.Text = "Nvidia DDS Utilities:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -248,11 +273,10 @@ namespace SimPe.Wizards
 			// 
 			this.label1.AutoSize = true;
 			this.label1.BackColor = System.Drawing.Color.White;
-			this.label1.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(64)), ((System.Byte)(64)), ((System.Byte)(64)));
 			this.label1.Location = new System.Drawing.Point(32, 88);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(177, 18);
+			this.label1.Size = new System.Drawing.Size(134, 16);
 			this.label1.TabIndex = 19;
 			this.label1.Text = "Sims 2 Savegame Folder:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -261,11 +285,10 @@ namespace SimPe.Wizards
 			// 
 			this.lbmsg.AutoSize = true;
 			this.lbmsg.BackColor = System.Drawing.Color.White;
-			this.lbmsg.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lbmsg.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(64)), ((System.Byte)(64)), ((System.Byte)(64)));
 			this.lbmsg.Location = new System.Drawing.Point(32, 24);
 			this.lbmsg.Name = "lbmsg";
-			this.lbmsg.Size = new System.Drawing.Size(188, 18);
+			this.lbmsg.Size = new System.Drawing.Size(134, 16);
 			this.lbmsg.TabIndex = 18;
 			this.lbmsg.Text = "Sims 2 Installation Folder:";
 			this.lbmsg.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -275,11 +298,10 @@ namespace SimPe.Wizards
 			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.linkLabel1.AutoSize = true;
 			this.linkLabel1.BackColor = System.Drawing.Color.White;
-			this.linkLabel1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.linkLabel1.LinkColor = System.Drawing.Color.Red;
 			this.linkLabel1.Location = new System.Drawing.Point(24, 313);
 			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.Size = new System.Drawing.Size(45, 19);
+			this.linkLabel1.Size = new System.Drawing.Size(33, 16);
 			this.linkLabel1.TabIndex = 17;
 			this.linkLabel1.TabStop = true;
 			this.linkLabel1.Text = "Close";
@@ -291,11 +313,10 @@ namespace SimPe.Wizards
 			this.llsims.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.llsims.AutoSize = true;
 			this.llsims.BackColor = System.Drawing.Color.White;
-			this.llsims.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.llsims.LinkColor = System.Drawing.Color.Red;
 			this.llsims.Location = new System.Drawing.Point(224, 24);
 			this.llsims.Name = "llsims";
-			this.llsims.Size = new System.Drawing.Size(64, 19);
+			this.llsims.Size = new System.Drawing.Size(44, 16);
 			this.llsims.TabIndex = 27;
 			this.llsims.TabStop = true;
 			this.llsims.Text = "suggest";
@@ -311,33 +332,6 @@ namespace SimPe.Wizards
 			this.pbstretch.Size = new System.Drawing.Size(616, 328);
 			this.pbstretch.TabIndex = 8;
 			this.pbstretch.TabStop = false;
-			// 
-			// lldds
-			// 
-			this.lldds.BackColor = System.Drawing.Color.White;
-			this.lldds.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lldds.ForeColor = System.Drawing.Color.Gray;
-			this.lldds.Location = new System.Drawing.Point(64, 200);
-			this.lldds.Name = "lldds";
-			this.lldds.Size = new System.Drawing.Size(424, 32);
-			this.lldds.TabIndex = 29;
-			this.lldds.Text = "The Nvidia DDS Utilities were not found. You should install them in order to get " +
-				"a higher quality for you recolors.";
-			// 
-			// lldds2
-			// 
-			this.lldds2.BackColor = System.Drawing.Color.White;
-			this.lldds2.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lldds2.ForeColor = System.Drawing.Color.Gray;
-			this.lldds2.LinkArea = new System.Windows.Forms.LinkArea(22, 4);
-			this.lldds2.LinkColor = System.Drawing.Color.Red;
-			this.lldds2.Location = new System.Drawing.Point(64, 232);
-			this.lldds2.Name = "lldds2";
-			this.lldds2.Size = new System.Drawing.Size(152, 23);
-			this.lldds2.TabIndex = 30;
-			this.lldds2.TabStop = true;
-			this.lldds2.Text = "You can download them here";
-			this.lldds2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkDDS);
 			// 
 			// ofd
 			// 
@@ -372,7 +366,7 @@ namespace SimPe.Wizards
 
 		public static bool HaveObjects
 		{
-			get { return System.IO.File.Exists(System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res\\Objects\\objects.package")); }
+			get { return System.IO.File.Exists(System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Objects"+Helper.PATH_SEP+"objects.package")); }
 		}
 
 		public static bool HaveSavefolder
@@ -387,7 +381,7 @@ namespace SimPe.Wizards
 
 		private void Change(object sender, System.EventArgs e)
 		{
-			llsims.Visible = !System.IO.File.Exists(System.IO.Path.Combine(tbsims.Text, "TSData\\Res\\Objects\\objects.package"));;
+			llsims.Visible = !System.IO.File.Exists(System.IO.Path.Combine(tbsims.Text, "TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Objects"+Helper.PATH_SEP+"objects.package"));;
 			llsave.Visible = !System.IO.Directory.Exists(System.IO.Path.Combine(tbsave.Text, "Downloads"));	
 			lldds.Visible = !System.IO.File.Exists(System.IO.Path.Combine(tbdds.Text, "nvdxt.exe"));
 			lldds2.Visible = lldds.Visible;

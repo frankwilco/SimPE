@@ -140,6 +140,8 @@ namespace SimPe
 		private System.Windows.Forms.CheckBox cbIncNightlife;
 		private System.Windows.Forms.GroupBox groupBox9;
 		private System.Windows.Forms.LinkLabel linkLabel6;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.ComboBox cbReport;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -155,6 +157,10 @@ namespace SimPe
 			SimPe.GuiTheme[] gts = (SimPe.GuiTheme[])System.Enum.GetValues(typeof(SimPe.GuiTheme));
 			foreach (SimPe.GuiTheme gt in gts) cbThemes.Items.Add(gt);
 			cbThemes.SelectedIndex = 0;
+
+			SimPe.Registry.ReportFormats[] rfs = (SimPe.Registry.ReportFormats[])System.Enum.GetValues(typeof(SimPe.Registry.ReportFormats));
+			foreach (SimPe.Registry.ReportFormats rf in rfs) cbReport.Items.Add(rf);
+			cbReport.SelectedIndex = 0;
 		}
 
 		/// <summary>
@@ -216,6 +222,8 @@ namespace SimPe
 			this.tbthumb = new System.Windows.Forms.TextBox();
 			this.button6 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.cbReport = new System.Windows.Forms.ComboBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.cbAsync = new System.Windows.Forms.CheckBox();
 			this.cbpkgmaint = new System.Windows.Forms.CheckBox();
 			this.cbupdate = new System.Windows.Forms.CheckBox();
@@ -1108,6 +1116,8 @@ namespace SimPe
 			this.groupBox2.AccessibleName = resources.GetString("groupBox2.AccessibleName");
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox2.Anchor")));
 			this.groupBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox2.BackgroundImage")));
+			this.groupBox2.Controls.Add(this.cbReport);
+			this.groupBox2.Controls.Add(this.label9);
 			this.groupBox2.Controls.Add(this.cbAsync);
 			this.groupBox2.Controls.Add(this.cbpkgmaint);
 			this.groupBox2.Controls.Add(this.cbupdate);
@@ -1132,6 +1142,53 @@ namespace SimPe
 			this.groupBox2.Text = resources.GetString("groupBox2.Text");
 			this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
 			this.groupBox2.Visible = ((bool)(resources.GetObject("groupBox2.Visible")));
+			// 
+			// cbReport
+			// 
+			this.cbReport.AccessibleDescription = resources.GetString("cbReport.AccessibleDescription");
+			this.cbReport.AccessibleName = resources.GetString("cbReport.AccessibleName");
+			this.cbReport.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbReport.Anchor")));
+			this.cbReport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbReport.BackgroundImage")));
+			this.cbReport.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbReport.Dock")));
+			this.cbReport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbReport.Enabled = ((bool)(resources.GetObject("cbReport.Enabled")));
+			this.cbReport.Font = ((System.Drawing.Font)(resources.GetObject("cbReport.Font")));
+			this.cbReport.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbReport.ImeMode")));
+			this.cbReport.IntegralHeight = ((bool)(resources.GetObject("cbReport.IntegralHeight")));
+			this.cbReport.ItemHeight = ((int)(resources.GetObject("cbReport.ItemHeight")));
+			this.cbReport.Location = ((System.Drawing.Point)(resources.GetObject("cbReport.Location")));
+			this.cbReport.MaxDropDownItems = ((int)(resources.GetObject("cbReport.MaxDropDownItems")));
+			this.cbReport.MaxLength = ((int)(resources.GetObject("cbReport.MaxLength")));
+			this.cbReport.Name = "cbReport";
+			this.cbReport.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbReport.RightToLeft")));
+			this.cbReport.Size = ((System.Drawing.Size)(resources.GetObject("cbReport.Size")));
+			this.cbReport.TabIndex = ((int)(resources.GetObject("cbReport.TabIndex")));
+			this.cbReport.Text = resources.GetString("cbReport.Text");
+			this.toolTip1.SetToolTip(this.cbReport, resources.GetString("cbReport.ToolTip"));
+			this.cbReport.Visible = ((bool)(resources.GetObject("cbReport.Visible")));
+			// 
+			// label9
+			// 
+			this.label9.AccessibleDescription = resources.GetString("label9.AccessibleDescription");
+			this.label9.AccessibleName = resources.GetString("label9.AccessibleName");
+			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label9.Anchor")));
+			this.label9.AutoSize = ((bool)(resources.GetObject("label9.AutoSize")));
+			this.label9.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label9.Dock")));
+			this.label9.Enabled = ((bool)(resources.GetObject("label9.Enabled")));
+			this.label9.Font = ((System.Drawing.Font)(resources.GetObject("label9.Font")));
+			this.label9.Image = ((System.Drawing.Image)(resources.GetObject("label9.Image")));
+			this.label9.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label9.ImageAlign")));
+			this.label9.ImageIndex = ((int)(resources.GetObject("label9.ImageIndex")));
+			this.label9.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label9.ImeMode")));
+			this.label9.Location = ((System.Drawing.Point)(resources.GetObject("label9.Location")));
+			this.label9.Name = "label9";
+			this.label9.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label9.RightToLeft")));
+			this.label9.Size = ((System.Drawing.Size)(resources.GetObject("label9.Size")));
+			this.label9.TabIndex = ((int)(resources.GetObject("label9.TabIndex")));
+			this.label9.Text = resources.GetString("label9.Text");
+			this.label9.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label9.TextAlign")));
+			this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
+			this.label9.Visible = ((bool)(resources.GetObject("label9.Visible")));
 			// 
 			// cbAsync
 			// 
@@ -2899,13 +2956,13 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.hcFileTable);
-			this.Controls.Add(this.hcFolders);
-			this.Controls.Add(this.hcSceneGraph);
 			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcIdent);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
+			this.Controls.Add(this.hcFileTable);
+			this.Controls.Add(this.hcFolders);
+			this.Controls.Add(this.hcSceneGraph);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -3007,6 +3064,12 @@ namespace SimPe
 				if ((GuiTheme)cbThemes.Items[i]==gt) 
 					cbThemes.SelectedIndex = i;
 
+			//Report Format
+			SimPe.Registry.ReportFormats rf = (SimPe.Registry.ReportFormats)Helper.WindowsRegistry.ReportFormat;
+			for (int i=0; i<cbReport.Items.Count; i++) 			
+				if ((SimPe.Registry.ReportFormats)cbReport.Items[i]==rf) 
+					cbReport.SelectedIndex = i;
+
 			//state
 			cbSimTemp.Enabled = cbDeep.Checked;
 
@@ -3044,6 +3107,7 @@ namespace SimPe
 			Helper.WindowsRegistry.DeepSimScan = cbDeep.Checked;
 			Helper.WindowsRegistry.DeepSimTemplateScan = cbSimTemp.Checked;
 			Helper.WindowsRegistry.AsynchronLoad = cbAsync.Checked;
+			Helper.WindowsRegistry.ReportFormat = (Registry.ReportFormats)cbReport.SelectedItem;
 
 			Helper.WindowsRegistry.Username = tbUsername.Text;
 			Helper.WindowsRegistry.Password = tbPassword.Text;
