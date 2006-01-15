@@ -125,6 +125,7 @@ namespace SimPe
 		private System.Windows.Forms.Timer resourceSelectionTimer;
 		private TD.SandBar.MenuButtonItem miSaveCopyAs;
 		private TD.SandBar.MenuButtonItem miOpenNightlifeRes;
+		private TD.SandBar.ButtonItem biReset;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -241,6 +242,7 @@ namespace SimPe
 			this.miNewDc = new TD.SandBar.MenuButtonItem();
 			this.biUpdate = new TD.SandBar.ButtonItem();
 			this.miUpdate = new TD.SandBar.MenuButtonItem();
+			this.biReset = new TD.SandBar.ButtonItem();
 			this.tbAction = new TD.SandBar.ToolBar();
 			this.tbTools = new TD.SandBar.ToolBar();
 			this.tbWindow = new TD.SandBar.ToolBar();
@@ -633,7 +635,8 @@ namespace SimPe
 																			  this.biSaveAs,
 																			  this.biClose,
 																			  this.biNewDc,
-																			  this.biUpdate});
+																			  this.biUpdate,
+																			  this.biReset});
 			this.toolBar1.Location = ((System.Drawing.Point)(resources.GetObject("toolBar1.Location")));
 			this.toolBar1.Name = "toolBar1";
 			this.toolBar1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("toolBar1.RightToLeft")));
@@ -762,6 +765,13 @@ namespace SimPe
 			this.miUpdate.Text = resources.GetString("miUpdate.Text");
 			this.miUpdate.ToolTipText = resources.GetString("miUpdate.ToolTipText");
 			this.miUpdate.Activate += new System.EventHandler(this.Activate_miUpdate);
+			// 
+			// biReset
+			// 
+			this.biReset.Image = ((System.Drawing.Image)(resources.GetObject("biReset.Image")));
+			this.biReset.Text = resources.GetString("biReset.Text");
+			this.biReset.ToolTipText = resources.GetString("biReset.ToolTipText");
+			this.biReset.Activate += new System.EventHandler(this.Activate_biReset);
 			// 
 			// tbAction
 			// 
@@ -2100,7 +2110,8 @@ namespace SimPe
 
 			TreeNodeTag tnt = lastusedtnt;
 			ShowNewFile(false);			
-			if (tnt!=null && lasttreeview!=null) {
+			if (tnt!=null && lasttreeview!=null) 
+			{
 				tnt.Refresh(lv);
 				ReSelectTreeNode(this.lasttreeview.Nodes, tnt);
 			}
@@ -2537,7 +2548,9 @@ namespace SimPe
 				lv.Columns.RemoveAt(lv.Columns.Count-1);
 			}	
 			
-			cbsemig.Items.Add("");
+			cbsemig.Items.Add("[Group Filter]");
+			cbsemig.Items.Add(new SimPe.Data.SemiGlobalAlias(true, 0x7FD46CD0, "Globals"));
+			cbsemig.Items.Add(new SimPe.Data.SemiGlobalAlias(true, 0x7FE59FD0, "Behaviour"));
 			foreach (Data.SemiGlobalAlias sga in Data.MetaData.SemiGlobals)
 				if (sga.Known) this.cbsemig.Items.Add(sga);
 			if (cbsemig.Items.Count>0) cbsemig.SelectedIndex = 0;
@@ -2549,6 +2562,9 @@ namespace SimPe
 
 			//load Files passed on the commandline
 			package.LoadOrImportFiles(pargs, true);
+
+			//Set the Lock State of the Docks
+			MakeFloatable(!Helper.WindowsRegistry.LockDocks);
 		}
 
 		void Activate_miOpen(object sender, System.EventArgs e)
@@ -2725,6 +2741,8 @@ namespace SimPe
 			OptionForm of = new OptionForm();
 			of.NewTheme +=new ChangedThemeEvent(ChangedTheme);
 			of.ResetLayout += new EventHandler(ResetLayout);
+			of.UnlockDocks += new EventHandler(UnLockDocks);
+			of.LockDocks += new EventHandler(LockDocks);
 
 			System.Drawing.Icon icon = null;
 			if (miPref.Image is System.Drawing.Bitmap)
@@ -3004,7 +3022,8 @@ namespace SimPe
 						filter.Group = sga.Id;					
 						filter.FilterGroup = (cbsemig.Text.Trim()!="");					
 					}
-				} else filter.FilterGroup = false;
+				} 
+				else filter.FilterGroup = false;
 			} 
 			catch 
 			{
@@ -3083,7 +3102,50 @@ namespace SimPe
 			}
 		}
 
-		
+		private void Activate_biReset(object sender, System.EventArgs e)
+		{
+			ResetLayout(null, null);
+			
+		}
+
+		void MakeFloatable(TD.SandDock.DockableWindow dw, bool fl)
+		{
+			dw.AllowFloat = fl;
+			dw.AllowDockBottom = fl;
+			dw.AllowDockLeft = fl;
+			dw.AllowDockRight = fl;
+			dw.AllowDockTop = fl;
+			dw.AllowDockCenter = fl;
+
+			dw.AllowClose = fl;			
+		}
+
+		void MakeFloatable(bool fl)
+		{
+			foreach (TD.SandBar.MenuItemBase mi in this.miWindow.Items)
+			{
+				if (mi.Tag==null) continue;
+				TD.SandDock.DockableWindow dw = mi.Tag as TD.SandDock.DockableWindow;
+
+				MakeFloatable(dw, fl);
+			}
+
+			MakeFloatable(this.dcFilter, fl);
+			MakeFloatable(this.dcResource, fl);
+			MakeFloatable(this.dcPlugin, fl);
+
+			this.dcPlugin.AllowClose = false;
+		}
+
+		private void UnLockDocks(object sender, EventArgs e)
+		{
+			MakeFloatable(true);
+		}
+
+		private void LockDocks(object sender, EventArgs e)
+		{
+			MakeFloatable(false);
+		}
 	}
 			
 }

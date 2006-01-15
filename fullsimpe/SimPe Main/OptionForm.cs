@@ -142,6 +142,7 @@ namespace SimPe
 		private System.Windows.Forms.LinkLabel linkLabel6;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.ComboBox cbReport;
+		private System.Windows.Forms.CheckBox cbLock;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -222,6 +223,7 @@ namespace SimPe
 			this.tbthumb = new System.Windows.Forms.TextBox();
 			this.button6 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.cbLock = new System.Windows.Forms.CheckBox();
 			this.cbReport = new System.Windows.Forms.ComboBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.cbAsync = new System.Windows.Forms.CheckBox();
@@ -1116,6 +1118,7 @@ namespace SimPe
 			this.groupBox2.AccessibleName = resources.GetString("groupBox2.AccessibleName");
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox2.Anchor")));
 			this.groupBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox2.BackgroundImage")));
+			this.groupBox2.Controls.Add(this.cbLock);
 			this.groupBox2.Controls.Add(this.cbReport);
 			this.groupBox2.Controls.Add(this.label9);
 			this.groupBox2.Controls.Add(this.cbAsync);
@@ -1142,6 +1145,33 @@ namespace SimPe
 			this.groupBox2.Text = resources.GetString("groupBox2.Text");
 			this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
 			this.groupBox2.Visible = ((bool)(resources.GetObject("groupBox2.Visible")));
+			// 
+			// cbLock
+			// 
+			this.cbLock.AccessibleDescription = resources.GetString("cbLock.AccessibleDescription");
+			this.cbLock.AccessibleName = resources.GetString("cbLock.AccessibleName");
+			this.cbLock.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbLock.Anchor")));
+			this.cbLock.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbLock.Appearance")));
+			this.cbLock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbLock.BackgroundImage")));
+			this.cbLock.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbLock.CheckAlign")));
+			this.cbLock.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbLock.Dock")));
+			this.cbLock.Enabled = ((bool)(resources.GetObject("cbLock.Enabled")));
+			this.cbLock.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbLock.FlatStyle")));
+			this.cbLock.Font = ((System.Drawing.Font)(resources.GetObject("cbLock.Font")));
+			this.cbLock.Image = ((System.Drawing.Image)(resources.GetObject("cbLock.Image")));
+			this.cbLock.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbLock.ImageAlign")));
+			this.cbLock.ImageIndex = ((int)(resources.GetObject("cbLock.ImageIndex")));
+			this.cbLock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbLock.ImeMode")));
+			this.cbLock.Location = ((System.Drawing.Point)(resources.GetObject("cbLock.Location")));
+			this.cbLock.Name = "cbLock";
+			this.cbLock.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbLock.RightToLeft")));
+			this.cbLock.Size = ((System.Drawing.Size)(resources.GetObject("cbLock.Size")));
+			this.cbLock.TabIndex = ((int)(resources.GetObject("cbLock.TabIndex")));
+			this.cbLock.Text = resources.GetString("cbLock.Text");
+			this.cbLock.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbLock.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbLock, resources.GetString("cbLock.ToolTip"));
+			this.cbLock.Visible = ((bool)(resources.GetObject("cbLock.Visible")));
+			this.cbLock.CheckedChanged += new System.EventHandler(this.cbLock_CheckedChanged);
 			// 
 			// cbReport
 			// 
@@ -3031,6 +3061,9 @@ namespace SimPe
 			cbSimTemp.Checked = Helper.WindowsRegistry.DeepSimTemplateScan;
 			cbAsync.Checked = Helper.WindowsRegistry.AsynchronLoad;
 
+			cbLock.Checked = Helper.WindowsRegistry.LockDocks;
+			this.cbLock_CheckedChanged(cbLock, null);
+
 			this.tbUserId.Text = "0x"+Helper.HexString(Helper.WindowsRegistry.CachedUserId);
 			this.tbUsername.Text = Helper.WindowsRegistry.Username;
 			this.tbPassword.Text = Helper.WindowsRegistry.Password;
@@ -3108,6 +3141,7 @@ namespace SimPe
 			Helper.WindowsRegistry.DeepSimTemplateScan = cbSimTemp.Checked;
 			Helper.WindowsRegistry.AsynchronLoad = cbAsync.Checked;
 			Helper.WindowsRegistry.ReportFormat = (Registry.ReportFormats)cbReport.SelectedItem;
+			Helper.WindowsRegistry.LockDocks = cbLock.Checked;
 
 			Helper.WindowsRegistry.Username = tbUsername.Text;
 			Helper.WindowsRegistry.Password = tbPassword.Text;
@@ -3411,9 +3445,21 @@ namespace SimPe
 			if (ResetLayout!=null) ResetLayout(this, e);
 		}
 
+		private void LockDocksClick(object sender, System.EventArgs e)
+		{
+			if (LockDocks!=null) LockDocks(this, e);
+		}
+
+		private void UnlockDocksClick(object sender, System.EventArgs e)
+		{
+			if (UnlockDocks!=null) UnlockDocks(this, e);
+		}
+
 		#region Events
 		public event SimPe.Events.ChangedThemeEvent NewTheme;
 		public event System.EventHandler ResetLayout;
+		public event System.EventHandler LockDocks;
+		public event System.EventHandler UnlockDocks;
 		#endregion
 
 		#region Plugins
@@ -4155,5 +4201,13 @@ namespace SimPe
 			else if (cb==this.cbIncNightlife) ChangeFileTable(cb, FileTableItemType.EP2GameFolder, false);
 		}
 		#endregion
+
+		private void cbLock_CheckedChanged(object sender, System.EventArgs e)
+		{
+			CheckBox cb = sender as CheckBox;
+
+			if (cb.Checked) this.LockDocksClick(sender, e);
+			else this.UnlockDocksClick(sender, e);			
+		}
 	}
 }

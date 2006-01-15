@@ -34,12 +34,12 @@ namespace SimPe
 
 		public override string Seperator 
 		{
-			get { return  ";"; }
+			get { return  ","; }
 		}
 
 		public override string SaveStr(string val)
 		{
-			return val.Replace(";", ",").Replace("\n", " ");
+			return val.Replace(",", ";").Replace("\n", " ");
 		}
 
 		public override string SubProperty(string name, string val)
