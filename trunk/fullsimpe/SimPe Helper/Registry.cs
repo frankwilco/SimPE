@@ -1020,6 +1020,24 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Schould we lock the Docks?
+		/// </summary>
+		public bool LockDocks
+		{
+			get 
+			{
+				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("LockDocks", false);
+				return Convert.ToBoolean(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("LockDocks", value);
+			}
+		}
+
+		/// <summary>
 		/// When did whe perform the last UpdateCheck?
 		/// </summary>
 		public DateTime LastUpdateCheck

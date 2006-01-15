@@ -367,7 +367,16 @@ namespace SimPe.PackedFiles
 		{
 			factory.LinkedRegistry = this;
 			factory.LinkedProvider = this;
-			Register(factory.KnownTools);
+			string s = SimPe.Localization.GetString("Unknown");
+			try 
+			{
+				s = factory.FileName;
+				Register(factory.KnownTools);
+			} 
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage("Unable to load Tool \""+s+"\". You Probaly have a Plugin/Tool installed, that is not compatible with the current SimPE Release.", ex);
+			}
 		}
 
 		public SimPe.Collections.Listeners Listeners
