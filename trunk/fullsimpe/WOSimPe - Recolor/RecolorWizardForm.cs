@@ -290,7 +290,7 @@ namespace SimPe.Wizards
 			// 
 			this.pnSelect.BackColor = System.Drawing.Color.White;
 			this.pnSelect.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnSelect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.pnSelect.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.pnSelect.Location = new System.Drawing.Point(0, 0);
 			this.pnSelect.Name = "pnSelect";
 			this.pnSelect.Size = new System.Drawing.Size(82, 327);
@@ -319,7 +319,7 @@ namespace SimPe.Wizards
 			// 
 			this.cbauto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.cbauto.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbauto.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbauto.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cbauto.Location = new System.Drawing.Point(8, 128);
 			this.cbauto.Name = "cbauto";
 			this.cbauto.Size = new System.Drawing.Size(272, 24);
@@ -398,7 +398,7 @@ namespace SimPe.Wizards
 			// 
 			// lbno
 			// 
-			this.lbno.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lbno.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lbno.ForeColor = System.Drawing.Color.Gray;
 			this.lbno.Location = new System.Drawing.Point(32, 32);
 			this.lbno.Name = "lbno";
@@ -452,7 +452,7 @@ namespace SimPe.Wizards
 			// 
 			this.lberr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.lberr.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lberr.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lberr.ForeColor = System.Drawing.Color.Gray;
 			this.lberr.Location = new System.Drawing.Point(48, 104);
 			this.lberr.Name = "lberr";
@@ -475,7 +475,7 @@ namespace SimPe.Wizards
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label3.Location = new System.Drawing.Point(24, 64);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(73, 18);
@@ -505,7 +505,7 @@ namespace SimPe.Wizards
 			this.ClientSize = new System.Drawing.Size(648, 342);
 			this.Controls.Add(this.tabControl1);
 			this.DockPadding.All = 8;
-			this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.Name = "RecolorWizardForm";
 			this.Text = "RecolorWizardForm";
 			this.tabControl1.ResumeLayout(false);
@@ -702,7 +702,10 @@ namespace SimPe.Wizards
 			if (loaded) return;
 			
 
-			string sourcefile = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res\\Objects\\objects.package");
+			string sourcefile = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Objects"+Helper.PATH_SEP+"objects.package");
+#if MAC
+			Console.WriteLine("Objects at: "+sourcefile);
+#endif
 			if (!System.IO.File.Exists(sourcefile)) 
 			{
 				MessageBox.Show("The objects.package was not found.\n\nPlease set the Path to your Sims 2 installation in SimPE in the Extra->Options... Dialog.");
@@ -795,7 +798,9 @@ namespace SimPe.Wizards
 			loaded = true;
 			WaitingScreen.Stop();*/
 
-			
+#if MAC
+			Console.WriteLine("Start loading Objects...");
+#endif
 			SimPe.Plugin.Tool.Dockable.ObjectLoader ol = new SimPe.Plugin.Tool.Dockable.ObjectLoader(null);
 			ol.Finished += new EventHandler(ol_Finished);
 			ol.LoadedItem += new SimPe.Plugin.Tool.Dockable.ObjectLoader.LoadItemHandler(ol_LoadedItem);
@@ -1092,11 +1097,15 @@ namespace SimPe.Wizards
 		{
 			//this.Invoke(new InvokeTargetFinish(invoke_Finished), new object[] {sender, e});	
 			invoke_Finished(sender, e);
+			
 		}
 
 		private void invoke_Finished(object sender, EventArgs e)
 		{
 			loaded = true;
+#if MAC
+			Console.WriteLine("Finished loading Objects...");
+#endif
 			//if (Helper.StartedGui==Executable.Classic)  WaitingScreen.Stop(this);			
 		}
 

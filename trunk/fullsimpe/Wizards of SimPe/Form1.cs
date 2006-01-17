@@ -340,6 +340,11 @@ namespace SimPe.Wizards
 				SimPe.Helper.WindowsRegistry.HiddenMode = false;
 				SimPe.Helper.WindowsRegistry.AsynchronLoad = false;
 				SimPe.Plugin.ScenegraphWrapperFactory.InitRcolBlocks();
+
+#if MAC
+				Console.WriteLine("GameDir: "+Helper.WindowsRegistry.SimsPath);
+				Console.WriteLine("SaveDir: "+Helper.WindowsRegistry.SimSavegameFolder);
+#endif
 				form1 = new Form1();
 				Application.Run(form1);
 

@@ -100,7 +100,12 @@ namespace SimPe.Plugin.Tool.Dockable
 			{
 				ct++;
 				Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem = lnrefitem;
-				if (ct%134==1) Wait.Progress = ct;				
+				if (ct%134==1) 				
+					Wait.Progress = ct;				
+				
+#if MAC
+				Console.WriteLine(ct.ToString()+len);
+#endif
 
 				//if (nrefitem.FileDescriptor.Instance != 0x41A7) continue;
 				if (nrefitem.LocalGroup == Data.MetaData.LOCAL_GROUP) continue;
