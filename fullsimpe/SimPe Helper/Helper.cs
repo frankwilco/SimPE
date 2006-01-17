@@ -937,7 +937,7 @@ namespace SimPe
 #if MAC
 		public static string ToLongPathName(string shortName)
 		{
-			return shortName.ToString();
+			return shortName;
 		}
 		
 #else

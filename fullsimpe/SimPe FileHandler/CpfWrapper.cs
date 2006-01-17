@@ -293,10 +293,11 @@ namespace SimPe.PackedFiles.Wrapper
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{
 			id = reader.ReadBytes(0x06);
-			if (id[0]!=0xE0) 
+			if (id[0]!=SIGNATURE[0]) 
 			{
-				id = this.FileSignature;
+				id = SIGNATURE;
 				this.UnserializeXml(reader);
+				
 				return;
 			}
 			items = new CpfItem[reader.ReadUInt32()];
@@ -318,6 +319,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </remarks>
 		protected override void Serialize(System.IO.BinaryWriter writer)
 		{			
+			if (id.Length!=0x06) id = SIGNATURE;
 			writer.Write(id);
 			writer.Write((uint)items.Length);
 
@@ -333,23 +335,22 @@ namespace SimPe.PackedFiles.Wrapper
 		#endregion
 
 		#region IFileWrapper Member
-
+		protected static byte [] SIGNATURE = new byte[]{
+														  0xE0,
+														  0x50,
+														  0xE7,
+														  0xCB,
+														  0x02,
+														  0x00
+													  };
 		/// <summary>
 		/// Returns the Signature that can be used to identify Files processable with this Plugin
 		/// </summary>
 		public virtual byte[] FileSignature
 		{
 			get
-			{
-				Byte[] sig = {
-								 0xE0,
-								 0x50,
-								 0xE7,
-								 0xCB,
-								 0x02,
-								 0x00
-							 };
-				return sig;
+			{				
+				return SIGNATURE;
 			}
 		}
 

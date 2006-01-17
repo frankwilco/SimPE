@@ -349,6 +349,8 @@ namespace SimPe.PackedFiles.Wrapper
 				list.Add("isNPC");
 				list.Add("isTownie");
 				list.Add(SimPe.Serializer.SerializeTypeHeader(this.CharacterDescription));
+				list.Add(SimPe.Serializer.SerializeTypeHeader(this.Character));
+				list.Add("Genetic"+SimPe.Serializer.SerializeTypeHeader(this.GeneticCharacter));
 				list.Add(SimPe.Serializer.SerializeTypeHeader(this.Interests));
 				list.Add(SimPe.Serializer.SerializeTypeHeader(this.Skills));
 				list.Add("Version");
@@ -385,8 +387,11 @@ namespace SimPe.PackedFiles.Wrapper
 				list.Add(Serializer.Property("isNPC" ,this.IsNPC.ToString()));
 				list.Add(Serializer.Property("isTownie" , this.IsTownie.ToString()));
 				list.Add(this.CharacterDescription.ToString());
+				list.Add(this.Character.ToString());
+				list.Add(this.GeneticCharacter.ToString());
 				list.Add(this.Interests.ToString());
 				list.Add(this.Skills.ToString());
+				
 				list.Add(Serializer.Property("Version", this.Version.ToString()));
 
 				if ((int)this.Version >= (int)SDescVersions.University)

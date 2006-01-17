@@ -2215,6 +2215,17 @@ namespace SimPe
 			this.tbExtAction.IsExpanded = Helper.WindowsRegistry.Layout.ToolActionBoxExpanded;*/
 			
 
+			this.lv.Columns[0].Width = Helper.WindowsRegistry.Layout.TypeColumnWidth;
+			this.lv.Columns[1].Width = Helper.WindowsRegistry.Layout.GroupColumnWidth;
+			this.lv.Columns[2].Width = Helper.WindowsRegistry.Layout.InstanceHighColumnWidth;
+			this.lv.Columns[3].Width = Helper.WindowsRegistry.Layout.InstanceColumnWidth;
+
+			if (this.lv.Columns.Count>4) 
+			{
+				this.lv.Columns[4].Width = Helper.WindowsRegistry.Layout.OffsetColumnWidth;
+				this.lv.Columns[5].Width = Helper.WindowsRegistry.Layout.SizeColumnWidth;
+			}
+
 			UpdateDockMenus();
 		}
 		#endregion
@@ -2765,6 +2776,17 @@ namespace SimPe
 				Helper.WindowsRegistry.Layout.PluginActionBoxExpanded = this.tbPlugAction.IsExpanded;
 				Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded = this.tbDefaultAction.IsExpanded;
 				Helper.WindowsRegistry.Layout.ToolActionBoxExpanded = this.tbExtAction.IsExpanded;
+
+				Helper.WindowsRegistry.Layout.TypeColumnWidth = this.lv.Columns[0].Width;
+				Helper.WindowsRegistry.Layout.GroupColumnWidth = this.lv.Columns[1].Width;
+				Helper.WindowsRegistry.Layout.InstanceHighColumnWidth = this.lv.Columns[2].Width;
+				Helper.WindowsRegistry.Layout.InstanceColumnWidth = this.lv.Columns[3].Width;
+
+				if (lv.Columns.Count>4)
+				{
+					Helper.WindowsRegistry.Layout.OffsetColumnWidth = this.lv.Columns[4].Width;
+					Helper.WindowsRegistry.Layout.SizeColumnWidth = this.lv.Columns[5].Width;
+				}
 			}
 		}
 

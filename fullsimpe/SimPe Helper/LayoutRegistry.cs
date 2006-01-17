@@ -187,5 +187,101 @@ namespace SimPe
 				xrk.SetValue("ActionPlugExpanded", value);
 			}
 		}
+
+		/// <summary>
+		/// Width of the Column in the main Window
+		/// </summary>
+		public int TypeColumnWidth
+		{
+			get 
+			{
+				object o = xrk.GetValue("TypeColumnWidth", (int)204);
+				return Convert.ToInt32(o);
+			}
+			set
+			{
+				xrk.SetValue("TypeColumnWidth", value);
+			}
+		}
+
+		/// <summary>
+		/// Width of the Column in the main Window
+		/// </summary>
+		public int GroupColumnWidth
+		{
+			get 
+			{
+				object o = xrk.GetValue("GroupColumnWidth", (int)100);
+				return Convert.ToInt32(o);
+			}
+			set
+			{
+				xrk.SetValue("TypeColumnWidth", value);
+			}
+		}
+
+		/// <summary>
+		/// Width of the Column in the main Window
+		/// </summary>
+		public int InstanceHighColumnWidth
+		{
+			get 
+			{
+				object o = xrk.GetValue("InstanceHighColumnWidth", (int)100);
+				return Convert.ToInt32(o);
+			}
+			set
+			{
+				xrk.SetValue("InstanceHighColumnWidth", value);
+			}
+		}
+
+		/// <summary>
+		/// Width of the Column in the main Window
+		/// </summary>
+		public int InstanceColumnWidth
+		{
+			get 
+			{
+				object o = xrk.GetValue("InstanceColumnWidth", (int)100);
+				return Convert.ToInt32(o);
+			}
+			set
+			{
+				xrk.SetValue("InstanceColumnWidth", value);
+			}
+		}
+
+		/// <summary>
+		/// Width of the Column in the main Window
+		/// </summary>
+		public int OffsetColumnWidth
+		{
+			get 
+			{
+				object o = xrk.GetValue("OffsetColumnWidth", (int)100);
+				return Convert.ToInt32(o);
+			}
+			set
+			{
+				xrk.SetValue("OffsetColumnWidth", value);
+			}
+		}
+
+		/// <summary>
+		/// Width of the Column in the main Window
+		/// </summary>
+		public int SizeColumnWidth
+		{
+			get 
+			{
+				object o = xrk.GetValue("SizeColumnWidth", (int)100);
+				return Convert.ToInt32(o);
+			}
+			set
+			{
+				xrk.SetValue("SizeColumnWidth", value);
+			}
+		}
 	}
 }
