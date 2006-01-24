@@ -150,6 +150,23 @@ namespace SimPe.Geometry
 		}		
 
 		/// <summary>
+		/// Returns the Trace of the Matrix
+		/// </summary>
+		/// <exception cref="GeometryException">Thrown if the matrix is not a square Matrix</exception>
+		public double Trace
+		{
+			get 
+			{
+				if (Rows!=Columns)throw new GeometryException("Unable to get Trace for a non Square Matrix (" + this.ToString()+")");
+				double ret = 0;
+				for (int i=0; i<Rows; i++)
+					ret += this[i,i];
+
+				return ret;
+			}
+		}
+
+		/// <summary>
 		/// Matirx Multiplication
 		/// </summary>
 		/// <param name="m1">First Matrix</param>
@@ -599,6 +616,148 @@ namespace SimPe.Geometry
 
 				return true;
 			}
+		}
+
+		#region Static Function
+		/// <summary>
+		/// Create  Translation Matrixd
+		/// </summary>
+		/// <param name="v">The Translation Vector</param>
+		/// <returns>a new Translation Matrixd</returns>
+		public static Matrixd Translation(Vector3f v)
+		{
+			return Translation(v.X, v.Y, v.Z);
+		}		
+
+		/// <summary>
+		/// Create a Translation Matrixd
+		/// </summary>
+		/// <param name="x">Translation to x</param>
+		/// <param name="y">Translation to y</param>
+		/// <param name="z">Translation to z</param>
+		/// <returns>a new Translation Matrixd</returns>
+		public static Matrixd Translation(double x, double y, double z)
+		{
+			Matrixd m = new Matrixd(4, 4);
+			m[0, 0] = 1; m[0, 1] = 0; m[0, 2] = 0; m[0, 3] = x;
+			m[1, 0] = 0; m[1, 1] = 1; m[1, 2] = 0; m[1, 3] = y;
+			m[2, 0] = 0; m[2, 1] = 0; m[2, 2] = 1; m[2, 3] = z;
+			m[3, 0] = 0; m[3, 1] = 0; m[3, 2] = 0; m[3, 3] = 1;
+
+			return m;
+		}
+
+		/// <summary>
+		/// Create a UniformScale Matrixd
+		/// </summary>
+		/// <param name="x">Scales</param>
+		/// <returns>a new Translation Matrixd</returns>
+		public static Matrixd Scale(double s)
+		{
+			return Scale(s, s, s);
+		}
+
+		/// <summary>
+		/// Create a Scale Matrixd
+		/// </summary>
+		/// <param name="x">Scale in x</param>
+		/// <param name="y">Scale in y</param>
+		/// <param name="z">Scale in z</param>
+		/// <returns>a new Translation Matrixd</returns>
+		public static Matrixd Scale(double x, double y, double z)
+		{
+			Matrixd m = new Matrixd(4, 4);
+			m[0, 0] = x; m[0, 1] = 0; m[0, 2] = 0; m[0, 3] = 0;
+			m[1, 0] = 0; m[1, 1] = y; m[1, 2] = 0; m[1, 3] = 0;
+			m[2, 0] = 0; m[2, 1] = 0; m[2, 2] = z; m[2, 3] = 0;
+			m[3, 0] = 0; m[3, 1] = 0; m[3, 2] = 0; m[3, 3] = 1;
+
+			return m;
+		}
+            
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="yaw">Y-Component of a Rotation Vector</param>
+		/// <param name="pitch">X-Component of a Rotation Vector</param>
+		/// <param name="roll">Z-Component of a Rotation Vector</param>
+		/// <returns></returns>
+		public static Matrixd RotateYawPitchRoll(double yaw, double pitch, double roll)
+		{
+			return RotateY(yaw) * RotateX(pitch) * RotateZ(roll);
+		}
+
+		/// <summary>
+		/// Rotation round the X-Axis
+		/// </summary>
+		/// <param name="angle"></param>
+		/// <returns></returns>
+		public static Matrixd RotateX(double angle)
+		{
+			Matrixd m = Matrixd.GetIdentity(4, 4);
+
+			m[1, 1] = Math.Cos(angle);
+			m[1, 2] = -Math.Sin(angle);
+
+			m[2, 1] = Math.Sin(angle);
+			m[2, 2] = Math.Cos(angle);
+
+			return m;
+		}
+
+		/// <summary>
+		/// Rotation round the X-Axis
+		/// </summary>
+		/// <param name="angle"></param>
+		/// <returns></returns>
+		public static Matrixd RotateY(double angle)
+		{
+			Matrixd m = Matrixd.GetIdentity(4, 4);
+
+			m[0, 0] = Math.Cos(angle);
+			m[0, 2] = Math.Sin(angle);
+
+			m[2, 0] = -Math.Sin(angle);
+			m[2, 2] = Math.Cos(angle);
+
+			return m;
+		}
+
+		/// <summary>
+		/// Rotation round the X-Axis
+		/// </summary>
+		/// <param name="angle"></param>
+		/// <returns></returns>
+		public static Matrixd RotateZ(double angle)
+		{
+			Matrixd m = Matrixd.GetIdentity(4, 4);
+
+			m[0, 0] = Math.Cos(angle);
+			m[0, 1] = -Math.Sin(angle);
+
+			m[1, 0] = Math.Sin(angle);
+			m[1, 1] = Math.Cos(angle);
+
+			return m;
+		}
+		
+		#endregion
+
+		public string ToString(bool full)
+		{
+			if (!full) return this.ToString();
+
+			string s ="";
+			for (int r =0; r<Rows; r++)
+			{
+				for (int c = 0; c<Columns; c++)
+				{
+					s+= this[r, c].ToString("N3") + " | ";
+				}
+				s+= "\n";
+			}
+
+			return s;
 		}
 	}
 }

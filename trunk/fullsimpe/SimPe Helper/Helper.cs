@@ -648,7 +648,7 @@ namespace SimPe
 			{
 				case "DEU": return Data.MetaData.Languages.German;
 				case "ESP": return Data.MetaData.Languages.Spanish;
-				case "FIN": return Data.MetaData.Languages.Finish;
+				case "FIN": return Data.MetaData.Languages.Finnish;
 				case "CHS": return Data.MetaData.Languages.SimplifiedChinese;
 				case "CHT": return Data.MetaData.Languages.TraditionalChinese;
 				case "FRE": return Data.MetaData.Languages.French;

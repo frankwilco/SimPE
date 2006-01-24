@@ -216,7 +216,7 @@ namespace SimPe
 			}
 			set
 			{
-				xrk.SetValue("TypeColumnWidth", value);
+				xrk.SetValue("GroupColumnWidth", value);
 			}
 		}
 

@@ -1980,6 +1980,34 @@ namespace SimPe
 			}
 		}
 
+		private void ClosingForm(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			e.Cancel = !this.ClosePackage();
+			if (!e.Cancel) 
+			{
+				TreeBuilder.StopAll();
+				Wait.Stop(); Wait.Bar = null;
+
+				Helper.WindowsRegistry.Layout.SandBarLayout = sbm.GetLayout(true);
+				Helper.WindowsRegistry.Layout.SandDockLayout = sdm.GetLayout();
+				Helper.WindowsRegistry.Layout.PluginActionBoxExpanded = this.tbPlugAction.IsExpanded;
+				Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded = this.tbDefaultAction.IsExpanded;
+				Helper.WindowsRegistry.Layout.ToolActionBoxExpanded = this.tbExtAction.IsExpanded;
+
+				Helper.WindowsRegistry.Layout.TypeColumnWidth = this.lv.Columns[0].Width;
+				Helper.WindowsRegistry.Layout.GroupColumnWidth = this.lv.Columns[1].Width;
+				Helper.WindowsRegistry.Layout.InstanceHighColumnWidth = this.lv.Columns[2].Width;
+				Helper.WindowsRegistry.Layout.InstanceColumnWidth = this.lv.Columns[3].Width;
+
+				if (lv.Columns.Count>4)
+				{
+					Helper.WindowsRegistry.Layout.OffsetColumnWidth = this.lv.Columns[4].Width;
+					Helper.WindowsRegistry.Layout.SizeColumnWidth = this.lv.Columns[5].Width;
+				}
+			}
+		}
+
+
 		#region Custom Attributes
 		LoadedPackage package;
 		TreeBuilder treebuilder;
@@ -2193,6 +2221,14 @@ namespace SimPe
 			Helper.WindowsRegistry.Layout.PluginActionBoxExpanded = false;
 			Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded = true;
 			Helper.WindowsRegistry.Layout.ToolActionBoxExpanded = false;
+
+			Helper.WindowsRegistry.Layout.TypeColumnWidth = 204;
+			Helper.WindowsRegistry.Layout.GroupColumnWidth = 100;
+			Helper.WindowsRegistry.Layout.InstanceHighColumnWidth = 100;
+			Helper.WindowsRegistry.Layout.InstanceColumnWidth = 100;
+			Helper.WindowsRegistry.Layout.OffsetColumnWidth = 100;
+			Helper.WindowsRegistry.Layout.SizeColumnWidth = 100;
+				
 			ReloadLayout();
 		}
 
@@ -2763,33 +2799,7 @@ namespace SimPe
 			package.UpdateRecentFileMenu(this.miRecent);
 		}
 
-		private void ClosingForm(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			e.Cancel = !this.ClosePackage();
-			if (!e.Cancel) 
-			{
-				TreeBuilder.StopAll();
-				Wait.Stop(); Wait.Bar = null;
-
-				Helper.WindowsRegistry.Layout.SandBarLayout = sbm.GetLayout(true);
-				Helper.WindowsRegistry.Layout.SandDockLayout = sdm.GetLayout();
-				Helper.WindowsRegistry.Layout.PluginActionBoxExpanded = this.tbPlugAction.IsExpanded;
-				Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded = this.tbDefaultAction.IsExpanded;
-				Helper.WindowsRegistry.Layout.ToolActionBoxExpanded = this.tbExtAction.IsExpanded;
-
-				Helper.WindowsRegistry.Layout.TypeColumnWidth = this.lv.Columns[0].Width;
-				Helper.WindowsRegistry.Layout.GroupColumnWidth = this.lv.Columns[1].Width;
-				Helper.WindowsRegistry.Layout.InstanceHighColumnWidth = this.lv.Columns[2].Width;
-				Helper.WindowsRegistry.Layout.InstanceColumnWidth = this.lv.Columns[3].Width;
-
-				if (lv.Columns.Count>4)
-				{
-					Helper.WindowsRegistry.Layout.OffsetColumnWidth = this.lv.Columns[4].Width;
-					Helper.WindowsRegistry.Layout.SizeColumnWidth = this.lv.Columns[5].Width;
-				}
-			}
-		}
-
+		
 		
 
 		private void ClosedToolPlugin(object sender, PackageArg pk)
