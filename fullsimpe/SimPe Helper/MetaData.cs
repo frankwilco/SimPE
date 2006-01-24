@@ -485,7 +485,7 @@ namespace SimPe.Data
 			Danish = 0x08,
 			Swedish = 0x09,
 			Norwegian = 0x0a,
-			Finish = 0x0b,
+			Finnish = 0x0b,
 			Hebrew = 0x0c,
 			Russian = 0x0d,
 			Portuguese = 0x0e,
