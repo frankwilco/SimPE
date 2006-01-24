@@ -122,13 +122,12 @@ namespace SimPe.Plugin
 				
 				Microsoft.DirectX.Matrix m = Microsoft.DirectX.Matrix.Translation((float)v.X, (float)v.Y, (float)v.Z);
 				if (timecode!=0) nb.Transform =  m ;
-				//else nb.Transform = mt;
-					//this.nb.Transform.SetTranslation(af.Float_X, af.Float_Y, af.Float_Z);
+				//else nb.Transform = mt;				
 			}
 			else
-				this.nb.Transform.SetRotation((float)v.X, (float)v.Y, (float)v.Z);
+				this.nb.Transform.SetRotation((float)v.Y, (float)v.X, (float)v.Z);
 
-			nb.Transform.IsAbsolute = true;
+			nb.Transform.IsAbsolute = false;
 		}
 	}
 }

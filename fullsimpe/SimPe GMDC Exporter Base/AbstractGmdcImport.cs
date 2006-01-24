@@ -270,6 +270,14 @@ namespace SimPe.Plugin.Gmdc
 				//if (minct==int.MaxValue) minct=0;							
 			}
 
+			if (Helper.WindowsRegistry.ShowJointNames)
+			{
+				foreach (ImportedBone bn in bns)
+				{
+					Console.WriteLine(bn.ImportedName+" -- "+bn.ParentName);
+				}
+			}
+
 			importoptionsresult = ImportGmdcGroupsForm.Execute(gmdc, grps, bns);
 			return importoptionsresult.Result == System.Windows.Forms.DialogResult.OK;
 		}

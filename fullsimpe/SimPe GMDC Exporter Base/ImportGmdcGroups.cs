@@ -702,6 +702,7 @@ namespace SimPe.Plugin.Gmdc
 			foreach (ImportedBone a in joints)
 			{
 				a.Action = GmdcImporterAction.Update;
+				a.FindBestFitJoint(gmdc);
 				if (ct<gmdc.Joints.Length && a.TargetIndex==-1) 				
 					a.TargetIndex = ct;					
 				
