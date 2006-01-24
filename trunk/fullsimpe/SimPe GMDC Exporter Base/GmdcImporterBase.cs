@@ -189,17 +189,29 @@ namespace SimPe.Plugin.Gmdc
 		/// <param name="g">The current Group</param>
 		/// <param name="index">Index of the Element</param>
 		/// <param name="val">the Value you want to add</param>
-		void AddElement(ImportedGroup g, int index, object val) 
+		void AddElement(ImportedGroup g, int index, object val, int slotindex) 
 		{
-			//if (g.Scale==1) 
+			if (slotindex==-1)
 				g.Elements[index].Values.Add(val);
-			/*else 
+			else 
 			{
-				GmdcElementValueBase nval = ((GmdcElementValueBase)val).Clone();
-				for (int i=0; i<nval.Data.Length; i++) nval.Data[i] *= g.Scale;
-				g.Elements[index].Values.Add(nval);
-			}*/
+				while (g.Elements[index].Values.Count<=slotindex) g.Elements[index].Values.Add(null);
+				g.Elements[index].Values[slotindex] = val as Gmdc.GmdcElementValueBase;
+			}
 			
+		}
+
+		/// <summary>
+		/// Make sure, that the Listing does NOT contain null References
+		/// </summary>
+		/// <param name="g">The current Group</param>
+		/// <param name="index">Index of the Element</param>
+		/// <param name="val">the Value you want to add</param>
+		void FillMissingElements(ImportedGroup g, int index, Gmdc.GmdcElementValueBase val) 
+		{
+			if (val==null) return;
+			for (int i=0; i< g.Elements[index].Values.Count; i++)
+				if (g.Elements[index].Values[i]==null) g.Elements[index].Values[i] = val;						
 		}
 
 		void BuildAliasMap(Hashtable alias, ArrayList list)
@@ -265,9 +277,11 @@ namespace SimPe.Plugin.Gmdc
 					{
 						if (fc.V>=0) 
 						{
-							AddElement(g, 0, vertices[fc.V]);
-							/*if (fc.VN>=0 && fc.VN<normals.Count)*/ AddElement(g, 1, normals[fc.VN]);
-							/*if (fc.VU>=0 && fc.VU<uvmaps.Count)*/ AddElement(g, 2, uvmaps[fc.VU]);
+							if (f.Data[0]>0) c = (int)f.Data[0]-1;
+
+							AddElement(g, 0, vertices[fc.V], c);
+							AddElement(g, 1, normals[fc.VN], c);
+							AddElement(g, 2, uvmaps[fc.VU], c);
 						}
 						
 						facealias[fc] = c;						
@@ -286,9 +300,13 @@ namespace SimPe.Plugin.Gmdc
 					Helper.ExceptionMessage(ex);
 					return;
 				}
-#endif
-				
+#endif				
 			}
+
+			///Make sure all slots in the Elemnts are set
+			FillMissingElements(g, 0, new Gmdc.GmdcElementValueThreeFloat(0, 0, 0));
+			FillMissingElements(g, 1, new Gmdc.GmdcElementValueThreeFloat(0, 0, 0));
+			FillMissingElements(g, 2, new Gmdc.GmdcElementValueTwoFloat(0, 0));
 		}
 
 		/// <summary>
@@ -324,7 +342,7 @@ namespace SimPe.Plugin.Gmdc
 						ArrayList l = new ArrayList();
 						l.Add(g.Elements[0].Values.Count);
 						valias[v] = l;
-						AddElement(g, 0, vertices[v-1]);
+						AddElement(g, 0, vertices[v-1], -1);
 						newv = true;
 					}
 				
@@ -337,7 +355,7 @@ namespace SimPe.Plugin.Gmdc
 							ArrayList l = new ArrayList();
 							l.Add(g.Elements[1].Values.Count);
 							vnalias[vn] = l;
-							AddElement(g, 1, normals[vn-1]);
+							AddElement(g, 1, normals[vn-1], -1);
 							newvn = true;
 						}
 					}
@@ -351,7 +369,7 @@ namespace SimPe.Plugin.Gmdc
 							ArrayList l = new ArrayList();
 							l.Add(g.Elements[2].Values.Count);
 							vtalias[vt] = l;
-							AddElement(g, 2, uvmaps[vt-1]);	
+							AddElement(g, 2, uvmaps[vt-1], -1);	
 							newvt = true;
 						}
 					} 
@@ -408,19 +426,19 @@ namespace SimPe.Plugin.Gmdc
 						if (!newv && v>0) 
 						{
 							lv.Add(g.Elements[0].Values.Count);
-							AddElement(g, 0, vertices[v-1]);
+							AddElement(g, 0, vertices[v-1], -1);
 						}
 
 						if (!newvn && vn>0)
 						{
 							lvn.Add(g.Elements[1].Values.Count);
-							AddElement(g, 1, normals[vn-1]);
+							AddElement(g, 1, normals[vn-1], -1);
 						}
 
 						if (!newvt && vt>0) 
 						{
 							lvt.Add(g.Elements[2].Values.Count);
-							AddElement(g, 2, uvmaps[vt-1]);
+							AddElement(g, 2, uvmaps[vt-1], -1);
 						}	
 					
 						if (g.Elements[0].Values.Count!=g.Elements[1].Values.Count || g.Elements[0].Values.Count!=g.Elements[2].Values.Count)

@@ -161,6 +161,29 @@ namespace SimPe.Plugin.Gmdc
 
 			return null;
 		}
+
+		/// <summary>
+		/// Find a Joint with the same name as this one in tha passed GMDC, and set it as import Target
+		/// </summary>
+		/// <param name="gmdc"></param>
+		public void FindBestFitJoint(SimPe.Plugin.GeometryDataContainer gmdc)
+		{
+			FindBestFitJoint(gmdc.Joints);
+		}
+
+		protected void FindBestFitJoint(SimPe.Plugin.Gmdc.GmdcJoints joints)
+		{
+			int ct = 0;
+			foreach (SimPe.Plugin.Gmdc.GmdcJoint j in joints) 
+			{
+				if (j.Name==this.ImportedName)
+				{
+					this.TargetIndex = ct;
+					return;
+				}
+				ct++;
+			}
+		}
 	}
 
 	#region Container
