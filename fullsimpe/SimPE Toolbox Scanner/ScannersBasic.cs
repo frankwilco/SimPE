@@ -116,6 +116,45 @@ namespace SimPe.Plugin.Scanner
 		}
 		#endregion
 
+		#region FileIndex Addition
+		static SimPe.Interfaces.Scenegraph.IScenegraphFileIndex  mfi;
+		/// <summary>
+		/// Returns a FileTable, that is unly used for the event of scanning Files, and will be removed from the global FileTable afterwards
+		/// </summary>
+		public static SimPe.Interfaces.Scenegraph.IScenegraphFileIndex MyFileIndex 
+		{
+			get 
+			{
+				if (mfi==null) AssignFileTable();
+				return mfi;
+			}
+		}		
+
+		public static void AssignFileTable()
+		{
+			DeAssignFileTable();
+			if (mfi==null) mfi = FileTable.FileIndex.AddNewChild();
+			else FileTable.FileIndex.AddChild(mfi);
+		}
+
+		public static void DeAssignFileTable()
+		{
+			if (mfi!=null) 
+			{
+				FileTable.FileIndex.RemoveChild(mfi);
+				mfi.Clear();
+				mfi.ClearChilds();
+			}
+			
+			mfi = null;
+		}
+
+		protected SimPe.Interfaces.Scenegraph.IScenegraphFileIndex FileIndex
+		{
+			get {return MyFileIndex;}
+		}
+		#endregion
+
 		#region IScanner Implementations		
 
 		uint uid;
@@ -157,6 +196,8 @@ namespace SimPe.Plugin.Scanner
 		{
 			get { return lv; }
 		}
+
+		
 
 		protected AbstractScanner(System.Windows.Forms.ListView lv) 
 		{
@@ -561,9 +602,10 @@ namespace SimPe.Plugin.Scanner
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 			{
 				SimPe.PackedFiles.Wrapper.ExtObjd objd = new ExtObjd(null);
-				objd.ProcessData(pfd, si.Package, false);
+				objd.ProcessData(pfd, si.Package, false);				
 
 				mylist.Add(objd.Guid);
+				objd.Dispose();
 			}
 
 			uint[] guids = new uint[mylist.Count];
@@ -645,7 +687,9 @@ namespace SimPe.Plugin.Scanner
 	internal class RecolorBasemeshScanner : AbstractScanner, IScanner
 	{
 		static SimPe.Cache.MemoryCacheFile cachefile;
-		public RecolorBasemeshScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+
+		public RecolorBasemeshScanner (System.Windows.Forms.ListView lv) : base (lv) {		
+		}
 
 		#region IScannerBase Member
 		public uint Version 
@@ -669,14 +713,18 @@ namespace SimPe.Plugin.Scanner
 		}
 
 
+		
 		public void ScanPackage(ScannerItem si, SimPe.Cache.PackageState ps, System.Windows.Forms.ListViewItem lvi)
 		{			
 			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = si.Package.FindFiles(Data.MetaData.MMAT);
 			//ArrayList list = new ArrayList();
 
 			ps.State = TriState.True;
-			FileTable.FileIndex.StoreCurrentState();
-			FileTable.FileIndex.AddIndexFromPackage(si.Package);
+			//FileTable.FileIndex.StoreCurrentState();
+			if (!FileTable.FileIndex.ContainsPath(System.IO.Path.GetDirectoryName(si.FileName)))
+				FileIndex.AddIndexFromFolder(System.IO.Path.GetDirectoryName(si.FileName));
+
+			FileIndex.AddIndexFromPackage(si.Package);
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 			{
 				SimPe.Plugin.MmatWrapper mmat = new MmatWrapper();
@@ -694,7 +742,7 @@ namespace SimPe.Plugin.Scanner
 				mmat.Dispose();
 				m = null;
 			}		
-			FileTable.FileIndex.RestoreLastState();	
+			//FileTable.FileIndex.RestoreLastState();	
 
 			UpdateState(si, ps, lvi);
 		}

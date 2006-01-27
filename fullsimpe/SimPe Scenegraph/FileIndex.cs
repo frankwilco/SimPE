@@ -274,11 +274,8 @@ namespace SimPe.Plugin
 		/// Create a new Instance
 		/// </summary>
 		/// <remarks>Same as a call to FileIndex(null)</remarks>
-		public FileIndex() :base()
-		{
-			loaded = false;
-			childs = new ArrayList();
-			Init(null);
+		public FileIndex() :this(null)
+		{			
 		}
 
 		/// <summary>
@@ -288,7 +285,10 @@ namespace SimPe.Plugin
 		/// <remarks>The Default set is read from the Folder.xml File</remarks>
 		public FileIndex(ArrayList folders) :base()
 		{
+			loaded = false;
 			childs = new ArrayList();
+			paths = new ArrayList();
+			ignoredfl = new ArrayList();
 			Init(folders);
 		}
 
@@ -311,7 +311,7 @@ namespace SimPe.Plugin
 		#region StoreState
 		ArrayList oldnames;
 		Hashtable oldindex;
-		bool olddup;
+		bool olddup;		
 
 		/// <summary>
 		/// Stores the current State of the FileIndex.
@@ -380,6 +380,7 @@ namespace SimPe.Plugin
 		/// <param name="folders">Fodlers to scan</param>
 		protected void Init(ArrayList folders)
 		{				
+			paths = new ArrayList();
 			addedfilenames = new ArrayList();
 			duplicates = false;			
 
@@ -483,6 +484,22 @@ namespace SimPe.Plugin
 			Wait.SubStop();
 		}
 
+		ArrayList paths;
+		/// <summary>
+		/// True, if the given path was completley added
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		public bool ContainsPath(string path)
+		{
+			if (path==null) return false;
+
+			foreach (IScenegraphFileIndex fi in childs) 
+				if (fi.ContainsPath(path)) return true;		
+
+			return paths.Contains(path);
+		}
+
 		/// <summary>
 		/// Add all Files stored in all the packages found in the passed Folder
 		/// </summary>
@@ -491,10 +508,24 @@ namespace SimPe.Plugin
 		{
 			if (fti.Ignore) return;
 
+			if (!paths.Contains(fti.Name)) 
+				paths.Add(fti.Name);
+
 			string[] files = fti.GetFiles();
 			
-			foreach (string afile in files)
-				AddIndexFromPackage(afile);
+			string err="";
+			foreach (string afile in files) 
+			{
+				try 
+				{
+					AddIndexFromPackage(afile);
+				} 
+				catch (Exception ex)
+				{
+					Console.WriteLine("Error in AddIndexFromPackage: "+ex.Message+"\n"+ex.StackTrace);
+					err+=ex.Message+"\n";
+				}
+			}
 			
 			if (fti.IsRecursive) 
 			{
@@ -502,6 +533,8 @@ namespace SimPe.Plugin
 				foreach (string folder in folders)
 					AddIndexFromFolder(":"+folder);
 			}
+
+			//if (err!="") throw new Exception(err);
 		}
 
 		/// <summary>
@@ -596,6 +629,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public void Clear()
 		{
+			this.paths.Clear();
 			this.addedfilenames.Clear();
 			/*if (parent!=null) 
 			{

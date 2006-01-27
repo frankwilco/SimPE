@@ -282,6 +282,6 @@ namespace SimPe.Cache
 			a.Tag = o;
 
 			return a;
-		}
+		}		
 	}
 }

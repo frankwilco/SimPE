@@ -48,6 +48,8 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.TextBox tbflname;
 		private System.Windows.Forms.ComboBox lbprop;
+		private Skybound.VisualStyles.VisualStyleLinkLabel llSave;
+		private System.Windows.Forms.SaveFileDialog sfd;
 		private System.Windows.Forms.CheckBox cbrec;
 
 		/// <summary>
@@ -123,6 +125,8 @@ namespace SimPe.Plugin
 			pnop.Enabled = false;
 			sorter = new ColumnSorter();
 			lv.ListViewItemSorter = sorter;
+
+			llSave.Left = lv.Right-llSave.Width;
 		}
 
 		private Skybound.VisualStyles.VisualStyleLinkLabel linkLabel1;
@@ -218,6 +222,8 @@ namespace SimPe.Plugin
 			this.llopen = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.thumb = new System.Windows.Forms.PictureBox();
 			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
+			this.llSave = new Skybound.VisualStyles.VisualStyleLinkLabel();
+			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.tabControl1.SuspendLayout();
 			this.tbscanners.SuspendLayout();
 			this.tboperations.SuspendLayout();
@@ -627,10 +633,28 @@ namespace SimPe.Plugin
 			this.thumb.TabStop = false;
 			this.visualStyleProvider1.SetVisualStyleSupport(this.thumb, true);
 			// 
+			// llSave
+			// 
+			this.llSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.llSave.AutoSize = true;
+			this.llSave.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.llSave.Location = new System.Drawing.Point(736, 208);
+			this.llSave.Name = "llSave";
+			this.llSave.Size = new System.Drawing.Size(46, 17);
+			this.llSave.TabIndex = 8;
+			this.llSave.TabStop = true;
+			this.llSave.Text = "save...";
+			this.llSave.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llSave_LinkClicked);
+			// 
+			// sfd
+			// 
+			this.sfd.Filter = "Comma Seperated Values (*.csv)|*.csv|All Files (*.*)|*.*";
+			// 
 			// ScannerForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
 			this.ClientSize = new System.Drawing.Size(792, 437);
+			this.Controls.Add(this.llSave);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.lv);
 			this.Controls.Add(this.pb);
@@ -981,6 +1005,7 @@ namespace SimPe.Plugin
 		/// <param name="e"></param>
 		private void Scan(string folder, bool rec)
 		{
+			
 			//scan all Files
 			pb.Value = 0;
 			string[] files = System.IO.Directory.GetFiles(folder, "*.package"); 
@@ -1000,6 +1025,40 @@ namespace SimPe.Plugin
 			{
 				string[] dirs = System.IO.Directory.GetDirectories(folder, "*");
 				foreach (string dir in dirs) Scan(dir, true);
+			}
+
+		}
+
+		private void llSave_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (sfd.ShowDialog()==DialogResult.OK)
+			{
+				try 
+				{
+					System.IO.StreamWriter sw = System.IO.File.CreateText(sfd.FileName);
+					try 
+					{
+						foreach (ColumnHeader ch in lv.Columns)						
+							sw.Write(ch.Text.Replace(",", ";")+",");
+						sw.WriteLine();
+
+						foreach (ListViewItem lvi in lv.Items)
+						{
+							//sw.Write(lvi.Text.Replace(",", ";")+",");
+							foreach (ListViewItem.ListViewSubItem lvsi in lvi.SubItems)															
+								sw.Write(lvsi.Text.Replace(",", ";")+",");							
+							sw.WriteLine();
+						}
+					}
+					finally 
+					{
+						sw.Close();
+					}
+				} 
+				catch (Exception ex)
+				{
+					Helper.ExceptionMessage(ex);
+				}
 			}
 		}
 
@@ -1041,9 +1100,11 @@ namespace SimPe.Plugin
 					{
 						scanners.Add(scanner);
 						scanner.EnableControl(true);
-					} else scanner.EnableControl(false);
+					} 
+					else scanner.EnableControl(false);
 				}
 
+				SimPe.Plugin.Scanner.AbstractScanner.AssignFileTable();
 				//setup Scanners
 				foreach (IScanner s in scanners) s.InitScan();
 
@@ -1051,7 +1112,8 @@ namespace SimPe.Plugin
 				Scan(folder, cbrec.Checked);				
 
 				//finish Scanners
-				foreach (IScanner s in scanners) s.FinishScan();			
+				foreach (IScanner s in scanners) s.FinishScan();	
+				SimPe.Plugin.Scanner.AbstractScanner.DeAssignFileTable();
 
 				try 
 				{
@@ -1062,6 +1124,10 @@ namespace SimPe.Plugin
 					Helper.ExceptionMessage("", ex);
 				}				
 			} 
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage(ex);
+			}
 			finally 
 			{
 				WaitingScreen.Stop();
@@ -1085,6 +1151,7 @@ namespace SimPe.Plugin
 			foreach (string file in files) 
 			{
 				pb.Value = Math.Max(Math.Min(((ct++) * pb.Maximum) / count, pb.Maximum), pb.Minimum);
+				Application.DoEvents();
 				try 
 				{
 					//Load the Item from the cache (if possible)

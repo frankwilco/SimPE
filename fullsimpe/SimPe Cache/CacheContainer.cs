@@ -278,8 +278,15 @@ namespace SimPe.Cache
 
 		public virtual void Dispose()
 		{
-			if (items!=null)
+			if (items!=null) 
+			{
+				foreach (object o in items) 
+					if (o is IDisposable)
+						((IDisposable)o).Dispose();
+
 				items.Clear();
+			}
+			items = null;
 		}
 
 		#endregion

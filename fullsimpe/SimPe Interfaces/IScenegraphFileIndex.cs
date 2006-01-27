@@ -264,6 +264,13 @@ namespace SimPe.Interfaces.Scenegraph
 		bool Contains(string flname);
 
 		/// <summary>
+		/// True if the Path was already added as a whole to the FileTable (or one of its Childs)
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		bool ContainsPath(string path);
+
+		/// <summary>
 		/// Creates a new FileIndex, adds it as a Child, and returns the new Instance
 		/// </summary>
 		/// <returns>A new, empty FileIndex</returns>
