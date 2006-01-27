@@ -27,7 +27,7 @@ namespace SimPe.Cache
 	/// <summary>
 	/// Contains one ObjectCacheItem
 	/// </summary>
-	public class MemoryCacheItem : ICacheItem
+	public class MemoryCacheItem : ICacheItem, System.IDisposable
 	{
 		/// <summary>
 		/// The current Version
@@ -159,6 +159,17 @@ namespace SimPe.Cache
 			{
 				return version;
 			}
+		}
+
+		#endregion
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			thumb = null;
+			pfd = null;
+			name = null;
 		}
 
 		#endregion
