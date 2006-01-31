@@ -71,6 +71,15 @@ namespace SimPe.Plugin.Gmdc
 			get;
 		}
 
+		/// <summary>
+		/// Returns the FileName that is used to create the File. Changing the FileName has no effect
+		/// </summary>
+		string FileName
+		{
+			get;
+			set;
+		}
+
 	
 		/// <summary>
 		/// Process the Data stored in the passed Stream, and change/replace the passed Gmdc

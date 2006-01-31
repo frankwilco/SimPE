@@ -315,6 +315,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Package Tool.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "PackedFileDescriptorCollection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

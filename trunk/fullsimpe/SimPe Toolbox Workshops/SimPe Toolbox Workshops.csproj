@@ -375,6 +375,25 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "PackageRepair.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PackageRepairForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PackageRepairForm.resx"
+                    DependentUpon = "PackageRepairForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "repair.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "subitems.png"
                     BuildAction = "EmbeddedResource"
                 />

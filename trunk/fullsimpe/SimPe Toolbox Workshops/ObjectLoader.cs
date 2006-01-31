@@ -171,6 +171,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			int ct = 0;		
 			//this is the first part loading by objd Resources
 			Interfaces.Scenegraph.IScenegraphFileIndexItem[] nrefitems = FileTable.FileIndex.Sort(FileTable.FileIndex.FindFile(Data.MetaData.OBJD_FILE, true));
+		
 			string len = " / " + nrefitems.Length.ToString();
 
 			SimPe.Data.MetaData.Languages deflang = Helper.WindowsRegistry.LanguageCode;
@@ -280,12 +281,12 @@ namespace SimPe.Plugin.Tool.Dockable
 		
 		public event ObjectLoader.LoadItemHandler LoadedItem;
 
-		void SetFunctionSortForXObj(SimPe.PackedFiles.Wrapper.Cpf cpf, SimPe.Cache.ObjectCacheItem oci)
+		static void SetFunctionSortForXObj(SimPe.PackedFiles.Wrapper.Cpf cpf, SimPe.Cache.ObjectCacheItem oci)
 		{
 			oci.ObjectFunctionSort = (uint)ObjectPreview.GetFunctionSort(cpf);			
 		}
 
-		void ConsumeFromXobj(SimPe.Cache.ObjectCacheItem oci, Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem)
+		static void ConsumeFromXobj(SimPe.Cache.ObjectCacheItem oci, Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem, SimPe.Data.MetaData.Languages deflang)
 		{
 			SimPe.PackedFiles.Wrapper.Cpf cpf = new SimPe.PackedFiles.Wrapper.Cpf();
 			nrefitem.FileDescriptor.UserData = nrefitem.Package.Read(nrefitem.FileDescriptor).UncompressedData;
@@ -343,6 +344,11 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 
 		protected override bool Consume(Object o)
+		{
+			return DoConsume(o, LoadedItem, deflang);
+		}
+
+		internal static bool DoConsume(Object o, ObjectLoader.LoadItemHandler LoadedItem, SimPe.Data.MetaData.Languages deflang)
 		{				
 			
 			SimPe.Cache.ObjectCacheItem oci = (SimPe.Cache.ObjectCacheItem)o;
@@ -408,7 +414,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 			if ((!oci.Useable || oci.ObjectVersion!=SimPe.Cache.ObjectCacheItemVersions.DockableOW) && nrefitem.FileDescriptor.Type != Data.MetaData.OBJD_FILE)
 			{
-				ConsumeFromXobj(oci, nrefitem);
+				ConsumeFromXobj(oci, nrefitem, deflang);
 			}
 
 			if (oci.Thumbnail==null) 
@@ -463,6 +469,35 @@ namespace SimPe.Plugin.Tool.Dockable
 			ilist.ColorDepth = ColorDepth.Depth32Bit;
 
 			this.ilist = ilist;
+		}
+
+		public static SimPe.Cache.ObjectCacheItem ObjectCacheItemFromPackage(SimPe.Interfaces.Files.IPackageFile pkg)
+		{
+			SimPe.Cache.ObjectCacheItem oci = new SimPe.Cache.ObjectCacheItem();
+			
+			oci.Class = SimPe.Cache.ObjectClass.Object;
+			
+
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFiles(Data.MetaData.OBJD_FILE);
+			bool first = true;
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+			{
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(pfd, pkg);
+				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
+				{
+					if (first || item.FileDescriptor.Instance == 0x41A7 || item.FileDescriptor.Instance == 0x41AF) 
+					{
+						oci.Tag = item;
+						oci.Useable = false;
+
+						ObjectConsumer.DoConsume(oci, null, Helper.WindowsRegistry.LanguageCode);
+
+						first = false;
+					}
+				}
+			}
+				
+			return oci;
 		}
 
 		public void LoadData()

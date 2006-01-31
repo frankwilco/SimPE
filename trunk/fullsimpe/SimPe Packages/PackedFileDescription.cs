@@ -666,6 +666,16 @@ namespace SimPe.Packages
 			}
 		}
 
+		internal void LoadFromStream(SimPe.Interfaces.Files.IPackageHeader header, System.IO.BinaryReader reader)
+		{
+			this.type = reader.ReadUInt32();
+			this.group = reader.ReadUInt32();
+			this.instance = reader.ReadUInt32();
+			if ((header.IsVersion0101) && (header.Index.ItemSize>=24)) this.subtype = reader.ReadUInt32();
+			this.offset = reader.ReadUInt32();
+			this.size = reader.ReadInt32();					
+		}
+
 		#region IDisposable Member
 
 		public void Dispose()

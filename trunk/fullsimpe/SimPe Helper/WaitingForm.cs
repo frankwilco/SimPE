@@ -232,6 +232,7 @@ namespace SimPe
 			this.ShowInTaskbar = false;
 			this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
 			this.Text = resources.GetString("$this.Text");
+			this.TopMost = true;
 			this.TransparencyKey = System.Drawing.Color.Fuchsia;
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);

@@ -2214,9 +2214,10 @@ namespace SimPe
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		void ResetLayout(object sender, EventArgs e) 
-		{
+		{			
 			Helper.WindowsRegistry.Layout.SandBarLayout = sbmdef;
 			Helper.WindowsRegistry.Layout.SandDockLayout = sdmdef;
+			Commandline.ForceModernLayout();
 
 			Helper.WindowsRegistry.Layout.PluginActionBoxExpanded = false;
 			Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded = true;

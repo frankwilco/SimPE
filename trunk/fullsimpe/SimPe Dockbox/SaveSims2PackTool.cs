@@ -55,7 +55,7 @@ namespace SimPe.Plugin.Tool
 
 		public override string ToString()
 		{
-			return "Sims2Pack\\Create...";
+			return "Package Tool\\Create Sims2Pack...";
 		}
 
 		#endregion

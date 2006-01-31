@@ -245,7 +245,7 @@ namespace SimPe
 					mi = new TD.SandBar.MenuButtonItem(name);
 					
 					if (parent!=null) 
-					{
+					{						
 						System.IO.Stream imgstr = a.GetManifestResourceStream("SimPe."+parts[i]+".png");
 						if (imgstr!=null) mi.Image = System.Drawing.Image.FromStream(imgstr);
 						parent.Insert(0, mi);

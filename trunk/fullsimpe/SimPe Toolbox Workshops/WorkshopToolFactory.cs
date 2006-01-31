@@ -68,7 +68,8 @@ namespace SimPe.Plugin
 											  new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool(),
 											  new SimPe.Plugin.Tool.Dockable.PackageDetailDockTool(),
 											  new SimPe.Plugin.Tool.Action.ActionEnableFenceInOriginalGame(),
-											  new SimPe.Plugin.Tool.ObjectsTool()
+											  new SimPe.Plugin.Tool.ObjectsTool(),
+											  new SimPe.Plugin.Tool.Window.PackageRepairTool(),
 										  };
 				} 
 				else 

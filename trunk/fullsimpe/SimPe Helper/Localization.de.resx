@@ -1104,4 +1104,19 @@ Er kann über den Menüpunkt "Fenster->Object Workshop" angezeigt werden.
 Trotzdem fortfahren?
 		</value>
 	</data>
+	<data name="Package Tool">
+	    <value>Package Werkzeuge</value>
+	</data>
+	<data name="Repair Package...">
+	    <value>Package reparieren...</value>
+	</data>
+	<data name="Open Sims2Pack...">
+	    <value>Öffne Sims2Pack...</value>
+	</data>
+	<data name="Create Sims2Pack...">
+	    <value>Erstelle Sims2Pack...</value>
+	</data>
+	<data name="FinishedPackageRepair">
+		<value>Fehlersuche wurde abgeschlossen.</value>
+	</data>
 </root>
