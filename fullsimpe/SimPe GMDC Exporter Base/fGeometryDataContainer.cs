@@ -2786,6 +2786,7 @@ namespace SimPe.Plugin
 
 				try 
 				{
+					importer.FileName = ofd.FileName;
 					importer.Process(meshreader, gmdc, animationonly);	
 					if (!animationonly) 
 					{
@@ -2836,12 +2837,13 @@ namespace SimPe.Plugin
 					exporter.CorrectJointSetup = corjoints;
 					if (!sfd.FileName.Trim().ToLower().EndsWith(exporter.FileExtension.Trim().ToLower())) sfd.FileName += exporter.FileExtension;
 
+					exporter.FileName = sfd.FileName;
 					Stream s = exporter.Process(gmdc, groups);	
 					System.IO.BinaryReader br = new BinaryReader(s);
 					br.BaseStream.Seek(0, SeekOrigin.Begin);
 					
 						
-					System.IO.FileStream meshwriter = File.Create(sfd.FileName);
+					System.IO.FileStream meshwriter = File.Create(exporter.FileName);
 					meshwriter.Write(br.ReadBytes((int)s.Length), 0, (int)s.Length);
 					
 					//System.IO.StreamWriter meshwriter = File.CreateText(sfd.FileName);						

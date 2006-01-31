@@ -846,4 +846,18 @@ You should use the dockable ObjectWorkshop, which can be activated with the "Win
 Continue anyway?
 		</value>
 	</data>
+	<data name="Package Tool">
+	    <value>Package Tool</value>
+	</data>
+	<data name="Repair Package...">
+	    <value>Repair Package...</value>
+	</data><data name="Open Sims2Pack...">
+	    <value>pen Sims2Pack...</value>
+	</data>
+	<data name="Create Sims2Pack...">
+	    <value>Create Sims2Pack...</value>
+	</data>
+	<data name="FinishedPackageRepair">
+		<value>Finished search for Errors.</value>
+	</data>
 </root>

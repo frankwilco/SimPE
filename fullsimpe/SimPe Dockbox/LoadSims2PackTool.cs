@@ -61,7 +61,7 @@ namespace SimPe.Plugin.Tool
 
 		public override string ToString()
 		{
-			return "Sims2Pack\\Open...";
+			return "Package Tool\\Open Sims2Pack...";
 		}
 
 		#endregion

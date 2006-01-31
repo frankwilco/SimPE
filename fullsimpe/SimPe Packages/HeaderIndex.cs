@@ -26,6 +26,11 @@ namespace SimPe.Packages
 	/// </summary>
 	public class HeaderIndex : HeaderHole, SimPe.Interfaces.Files.IPackageHeaderIndex, System.IDisposable
 	{
+		Interfaces.Files.IPackageHeader parent;
+		internal HeaderIndex(Interfaces.Files.IPackageHeader hd) 
+		{
+			this.parent = hd;
+		}
 		/// <summary>
 		/// IndexType of the File
 		/// </summary>
@@ -46,6 +51,33 @@ namespace SimPe.Packages
 				type = value; 
 			}
 		}		
+
+		public override int ItemSize
+		{
+			get
+			{
+				if (parent.IndexType == SimPe.Data.MetaData.IndexTypes.ptLongFileIndex)
+					return 6*4;
+				else if (parent.IndexType == SimPe.Data.MetaData.IndexTypes.ptShortFileIndex)
+					return 5*4;
+				return base.ItemSize;
+			}
+		}
+
+		internal Interfaces.Files.IPackageHeader Parent
+		{
+			get {return parent;}
+		}
+
+		internal void UseInParent()
+		{
+			if (parent==null) return;
+			if (parent is HeaderData) 
+			{
+				HeaderData hd = parent as HeaderData;			
+				hd.index = this;
+			}
+		}
 
 		public virtual void Dispose()
 		{

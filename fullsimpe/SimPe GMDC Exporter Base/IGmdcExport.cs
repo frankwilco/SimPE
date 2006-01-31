@@ -47,6 +47,15 @@ namespace SimPe.Plugin.Gmdc
 		System.IO.Stream Process(GeometryDataContainer gmdc, GmdcGroups groups);
 		
 		/// <summary>
+		/// Retunrs or sets the FileName that is used to create the File
+		/// </summary>
+		string FileName
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Returns the Content of the File base on the last loaded GroupSet
 		/// </summary>
 		System.IO.StreamWriter FileContent 

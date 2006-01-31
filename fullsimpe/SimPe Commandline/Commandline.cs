@@ -66,6 +66,11 @@ namespace SimPe
 			return true;
 		}
 
+		public static void ForceModernLayout()
+		{
+			Overridelayout("modern_layout.xreg");
+		}
+
 		static bool MakeModern(string[] args) 
 		{
 			if (args!=null)

@@ -109,6 +109,15 @@ namespace SimPe.Packages
 			}
 		}
 
+		public void ReloadReader()
+		{
+			if (Reader!=null) return;
+			if (this.type == PackageBaseType.Stream) return;
+
+			StreamItem si = StreamFactory.UseStream(this.flname, System.IO.FileAccess.ReadWrite);
+			reader = new BinaryReader(si.FileStream);
+		}
+
 		/// <summary>
 		/// Returns the Stream used to read the Package
 		/// </summary>
@@ -150,6 +159,11 @@ namespace SimPe.Packages
 			Close(true);
 		}
 
+		internal void Reload()
+		{
+			ReloadFromFile(this.flname);
+		}
+
 		/// <summary>
 		/// Opens the Package File represented by a Stream
 		/// </summary>
@@ -160,7 +174,7 @@ namespace SimPe.Packages
 			higestoffset = 0;
 			fhg = 0;
 			reader = br;
-			header = new HeaderData();
+			if (header==null) header = new HeaderData();
 
 			if (br!= null) 
 			{
@@ -208,6 +222,7 @@ namespace SimPe.Packages
 			
 			if (si.StreamState!=StreamState.Removed) 
 			{
+				si.FileStream.Seek(0, SeekOrigin.Begin);
 				type = PackageBaseType.Filename;
 				flname = filename;
 				System.IO.BinaryReader br = new System.IO.BinaryReader(si.FileStream);
@@ -664,12 +679,7 @@ namespace SimPe.Packages
 		{
 			PackedFileDescriptor item = new PackedFileDescriptor();
 
-			item.type = reader.ReadUInt32();
-			item.group = reader.ReadUInt32();
-			item.instance = reader.ReadUInt32();
-			if ((header.IsVersion0101) && (header.index.ItemSize>=24)) item.subtype = reader.ReadUInt32();
-			item.offset = reader.ReadUInt32();
-			item.size = reader.ReadInt32();		
+			item.LoadFromStream(header, reader);
 			item.PackageInternalUserDataChange = new SimPe.Events.PackedFileChanged(ResourceChanged);
 			item.DescriptionChanged += new EventHandler(ResourceDescriptionChanged);
 

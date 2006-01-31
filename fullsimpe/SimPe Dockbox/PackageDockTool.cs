@@ -21,6 +21,8 @@ using System;
 
 namespace SimPe.Plugin.Tool.Dockable
 {
+	
+
 	/// <summary>
 	/// Dockable Tool that displays Package specific Informations
 	/// </summary>
@@ -42,6 +44,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		public event SimPe.Events.ChangedResourceEvent ShowNewResource;
 
 		SimPe.Interfaces.Files.IPackageFile pkg;
+		
 		public void RefreshDock(object sender, SimPe.Events.ResourceEventArgs es)
 		{
 			if (es.LoadedPackage!=null)
@@ -53,10 +56,15 @@ namespace SimPe.Plugin.Tool.Dockable
 					
 					if (newpkg) 
 					{
-						rd.pgHead.SelectedObject = es.LoadedPackage.Package.Header;	
+						SimPe.Packages.PackageRepair pr = new SimPe.Packages.PackageRepair(es.LoadedPackage.Package);
+						if (Helper.WindowsRegistry.HiddenMode)
+							rd.pgHead.SelectedObject = pr.IndexDetailsAdvanced;
+						else
+							rd.pgHead.SelectedObject = pr.IndexDetails;					
+						
 						pkg = es.LoadedPackage.Package;
 						
-						rd.lv.Items.Clear();
+						rd.lv.Items.Clear();						
 						for (uint i=0; i<pkg.Header.HoleIndex.Count; i++) 
 						{
 							System.Windows.Forms.ListViewItem lvi = new System.Windows.Forms.ListViewItem();
@@ -68,7 +76,7 @@ namespace SimPe.Plugin.Tool.Dockable
 					}
 					return;
 				}
-
+			
 			pkg = null;
 			rd.pgHead.SelectedObject = null;
 			rd.lv.Items.Clear();

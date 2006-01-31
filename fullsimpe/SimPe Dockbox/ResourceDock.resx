@@ -131,7 +131,7 @@
     <value />
   </data>
   <data name="bottomSandDock.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Bottom, Left</value>
+    <value>Top, Left</value>
   </data>
   <data name="bottomSandDock.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -146,7 +146,7 @@
     <value />
   </data>
   <data name="bottomSandDock.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
+    <value>Bottom</value>
   </data>
   <data name="bottomSandDock.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -158,7 +158,7 @@
     <value>Inherit</value>
   </data>
   <data name="bottomSandDock.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 56</value>
+    <value>0, 62</value>
   </data>
   <data name="bottomSandDock.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -179,7 +179,7 @@
     <value>bottomSandDock</value>
   </data>
   <data name="&gt;&gt;bottomSandDock.Type">
-    <value>TD.SandDock.DockContainer, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockContainer, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;bottomSandDock.Parent">
     <value>$this</value>
@@ -196,14 +196,14 @@
   <data name="dcHex.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
+  <data name="dcHex.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
   <data name="dcHex.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
   <data name="dcHex.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>8, 8</value>
-  </data>
-  <data name="dcHex.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
   </data>
   <data name="dcHex.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -281,7 +281,7 @@
     <value>dcHex</value>
   </data>
   <data name="&gt;&gt;dcHex.Type">
-    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dcHex.Parent">
     <value>bottomSandDock</value>
@@ -350,16 +350,13 @@
     <value>hvc</value>
   </data>
   <data name="&gt;&gt;hvc.Type">
-    <value>Ambertation.Windows.Forms.HexViewControl, NewHexEdit, Version=1.0.2046.21813, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.HexViewControl, NewHexEdit, Version=1.0.2054.29839, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;hvc.Parent">
     <value>dcHex</value>
   </data>
   <data name="&gt;&gt;hvc.ZOrder">
     <value>0</value>
-  </data>
-  <data name="panel1.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>8, 8</value>
   </data>
   <data name="panel1.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -369,6 +366,9 @@
   </data>
   <data name="panel1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
+  </data>
+  <data name="panel1.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 8</value>
   </data>
   <data name="panel1.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -442,11 +442,11 @@
   <data name="button1.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
-  <data name="button1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Assembly</value>
-  </data>
   <data name="button1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
+  </data>
+  <data name="button1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Assembly</value>
   </data>
   <data name="button1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -581,7 +581,7 @@
     <value>hexEditControl1</value>
   </data>
   <data name="&gt;&gt;hexEditControl1.Type">
-    <value>Ambertation.Windows.Forms.HexEditControl, NewHexEdit, Version=1.0.2046.21813, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.HexEditControl, NewHexEdit, Version=1.0.2054.29839, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;hexEditControl1.Parent">
     <value>dcHex</value>
@@ -641,13 +641,13 @@
     <value>Inherit</value>
   </data>
   <data name="dcResource.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1, 18</value>
+    <value>1, 22</value>
   </data>
   <data name="dcResource.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
   </data>
   <data name="dcResource.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>854, 336</value>
+    <value>854, 332</value>
   </data>
   <data name="dcResource.TabImage" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -684,7 +684,7 @@
     <value>dcResource</value>
   </data>
   <data name="&gt;&gt;dcResource.Type">
-    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dcResource.Parent">
     <value>bottomSandDock</value>
@@ -750,7 +750,7 @@
     <value>Inherit</value>
   </data>
   <data name="xpGradientPanel1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>854, 336</value>
+    <value>854, 332</value>
   </data>
   <data name="xpGradientPanel1.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>0</value>
@@ -1343,11 +1343,11 @@
   <data name="tbtype.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
-  <data name="tbtype.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Assembly</value>
-  </data>
   <data name="tbtype.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
+  </data>
+  <data name="tbtype.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Assembly</value>
   </data>
   <data name="tbtype.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1899,7 +1899,7 @@
     <value>dcConvert</value>
   </data>
   <data name="&gt;&gt;dcConvert.Type">
-    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dcConvert.Parent">
     <value>bottomSandDock</value>
@@ -2162,14 +2162,14 @@
   <data name="&gt;&gt;tbDec.ZOrder">
     <value>1</value>
   </data>
+  <data name="tbHex.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
   <data name="tbHex.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
   <data name="tbHex.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
-  </data>
-  <data name="tbHex.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
   </data>
   <data name="tbHex.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2255,14 +2255,14 @@
   <data name="dcPackage.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
+  <data name="dcPackage.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
   <data name="dcPackage.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
   <data name="dcPackage.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>8, 8</value>
-  </data>
-  <data name="dcPackage.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
   </data>
   <data name="dcPackage.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2298,13 +2298,13 @@
     <value>Inherit</value>
   </data>
   <data name="dcPackage.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1, 18</value>
+    <value>1, 22</value>
   </data>
   <data name="dcPackage.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
   </data>
   <data name="dcPackage.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>854, 336</value>
+    <value>854, 332</value>
   </data>
   <data name="dcPackage.TabImage" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2345,7 +2345,7 @@
     <value>dcPackage</value>
   </data>
   <data name="&gt;&gt;dcPackage.Type">
-    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dcPackage.Parent">
     <value>bottomSandDock</value>
@@ -2411,7 +2411,7 @@
     <value>Inherit</value>
   </data>
   <data name="xpGradientPanel3.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>854, 336</value>
+    <value>854, 332</value>
   </data>
   <data name="xpGradientPanel3.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>1</value>
@@ -2486,7 +2486,7 @@
     <value>Inherit</value>
   </data>
   <data name="lv.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>224, 293</value>
+    <value>224, 289</value>
   </data>
   <data name="lv.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>2</value>
@@ -2657,7 +2657,7 @@
     <value>Inherit</value>
   </data>
   <data name="pgHead.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>264, 309</value>
+    <value>264, 305</value>
   </data>
   <data name="pgHead.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>0</value>
@@ -2777,7 +2777,7 @@
     <value>dcWrapper</value>
   </data>
   <data name="&gt;&gt;dcWrapper.Type">
-    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.DockableWindow, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;dcWrapper.Parent">
     <value>bottomSandDock</value>
@@ -3614,7 +3614,7 @@
     <value />
   </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
+    <value>Inherit</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
@@ -3638,7 +3638,7 @@
     <value>sandDockManager1</value>
   </data>
   <data name="&gt;&gt;sandDockManager1.Type">
-    <value>TD.SandDock.SandDockManager, SandDock, Version=2.0.2.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>TD.SandDock.SandDockManager, SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;clOffset.Name">
     <value>clOffset</value>

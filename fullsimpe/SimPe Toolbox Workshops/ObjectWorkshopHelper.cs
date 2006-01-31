@@ -195,7 +195,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				objclone.Setup.BaseResource = br;
 				objclone.Setup.IncludeAnimationResources = settings.IncludeAnimationResources;
 				objclone.Setup.KeepOriginalMesh = settings.KeepOriginalMesh;
-				objclone.RcolModelClone(modelname, exclude);
+				objclone.RcolModelClone(modelname, exclude);				
 
 				//for clones only when cbparent is checked
 				if (settings is OWCloneSettings) 
@@ -261,7 +261,7 @@ namespace SimPe.Plugin.Tool.Dockable
 					SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 					str.ProcessData(npfd, item.Package);
 					SimPe.PackedFiles.Wrapper.StrItemList items = str.LanguageItems(1);
-					for (int i=1; i<items.Length; i++) list.Add(items[i].Title);
+					for (int i=1; i<items.Length; i++) list.Add((items[i].Title));
 				}
 			}
 
@@ -327,7 +327,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			WaitingScreen.Wait();
 			WaitingScreen.UpdateMessage("Collecting needed Files");
 			
-			if ((package==null) && (pfd!=null)) package = RecolorClone(br, package, pfd, localgroup, settings);
+			if (/*(package==null) && */(pfd!=null)) package = RecolorClone(br, /*package*/ null, pfd, localgroup, settings);
 			
 			WaitingScreen.Stop();
 			

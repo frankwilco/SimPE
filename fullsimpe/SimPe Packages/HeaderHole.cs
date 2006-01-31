@@ -79,10 +79,10 @@ namespace SimPe.Packages
 		/// <summary>
 		/// Returns the size of One Item stored in the index
 		/// </summary>
-		public int ItemSize
+		public virtual int ItemSize
 		{
 			get 
-			{
+			{				
 				if (Count!=0) 
 				{
 					return Size/Count;

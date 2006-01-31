@@ -723,5 +723,16 @@ namespace SimPe.Plugin.Gmdc
 			ab1.Clear();			
 		}
 		#endregion
+
+		string flname;
+		public string FileName
+		{
+			get 
+			{
+				if (flname==null) flname= "";
+				return flname;
+			}
+			set {flname=value;}
+		}
 	}
 }

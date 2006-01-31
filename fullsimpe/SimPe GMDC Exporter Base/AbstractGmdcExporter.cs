@@ -319,6 +319,14 @@ namespace SimPe.Plugin.Gmdc
 		protected abstract void FinishFile();
 		#endregion
 
-		
+		string flname;
+		public string FileName
+		{
+			get {
+				if (flname==null) flname= "";
+				return flname;
+			}
+			set {flname=value;}
+		}
 	}
 }

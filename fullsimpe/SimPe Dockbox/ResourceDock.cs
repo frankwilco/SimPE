@@ -199,17 +199,17 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.bottomSandDock.Controls.Add(this.dcConvert);
 			this.bottomSandDock.Controls.Add(this.dcPackage);
 			this.bottomSandDock.Controls.Add(this.dcWrapper);
-			this.bottomSandDock.Dock = DockStyle.Bottom;
+			this.bottomSandDock.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("bottomSandDock.Dock")));
 			this.bottomSandDock.Enabled = ((bool)(resources.GetObject("bottomSandDock.Enabled")));
 			this.bottomSandDock.Font = ((System.Drawing.Font)(resources.GetObject("bottomSandDock.Font")));
 			this.bottomSandDock.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("bottomSandDock.ImeMode")));
 			this.bottomSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-																																											   new TD.SandDock.ControlLayoutSystem(856, 376, new TD.SandDock.DockControl[] {
+																																											   new TD.SandDock.ControlLayoutSystem(856, 372, new TD.SandDock.DockControl[] {
 																																																															   this.dcPackage,
 																																																															   this.dcResource,
 																																																															   this.dcWrapper,
 																																																															   this.dcConvert,
-																																																															   this.dcHex}, this.dcResource, false)});
+																																																															   this.dcHex}, this.dcPackage, false)});
 			this.bottomSandDock.Location = ((System.Drawing.Point)(resources.GetObject("bottomSandDock.Location")));
 			this.bottomSandDock.Manager = this.sandDockManager1;
 			this.bottomSandDock.Name = "bottomSandDock";

@@ -33,7 +33,8 @@ namespace SimPe.Packages
 		/// </summary>
 		internal HeaderData ()
 		{
-			index = new HeaderIndex();
+			lidl = false;
+			index = new HeaderIndex(this);
 			hole = new HeaderHole();
 			id = new char[4];
 			reserved_00 = new Int32[3];
@@ -256,6 +257,13 @@ namespace SimPe.Packages
 			}
 		}
 
+		bool lidl;
+		internal bool LockIndexDuringLoad
+		{
+			get {return lidl;}
+			set {lidl = value;}
+		}
+
 
 		#region File Processing Methods
 		/// <summary>
@@ -276,11 +284,19 @@ namespace SimPe.Packages
 
 			this.created = reader.ReadUInt32();
 			this.modified = reader.ReadInt32();
-
+			
+			
 			this.index.type = reader.ReadInt32();
-			this.index.count = reader.ReadInt32();
-			this.index.offset = reader.ReadUInt32();
-			this.index.size = reader.ReadInt32();
+			if (!lidl)
+			{
+				this.index.count = reader.ReadInt32();
+				this.index.offset = reader.ReadUInt32();
+				this.index.size = reader.ReadInt32();
+			} 
+			else 
+			{
+				reader.ReadInt32(); reader.ReadInt32(); reader.ReadInt32(); //count, offset, size
+			}
 
 			this.hole.count = reader.ReadInt32();
 			this.hole.offset = reader.ReadUInt32();

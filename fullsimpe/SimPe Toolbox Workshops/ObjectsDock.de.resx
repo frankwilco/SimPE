@@ -113,7 +113,7 @@
     <value>Wilkommen im neuen "Object Workshop".</value>
   </data>
   <data name="label2.Text">
-    <value>Die Objectktdaten wurden noch nicht vollständig geladen. Bitte auf "Start" klicken, umd die Objektliste zu erstellen, oder mit "Öffnen..." eine direkt eine .package Datei laden.</value>
+    <value>Die Objektdaten wurden noch nicht vollständig geladen. Bitte auf "Start" klicken, umd die Objektliste zu erstellen, oder mit "Öffnen..." direkt eine .package Datei laden.</value>
   </data>
   <data name="xpTaskBoxSimple2.HeaderText">
     <value>Gewähltes Objekt</value>

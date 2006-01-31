@@ -72,11 +72,20 @@ namespace SimPe.Plugin.Tool.Dockable
 		private Ambertation.Windows.Forms.TransparentCheckBox cbDesc;
 		private System.ComponentModel.IContainer components;
 
+		SimPe.Interfaces.Scenegraph.IScenegraphFileIndex cfi;
+		protected SimPe.Interfaces.Scenegraph.IScenegraphFileIndex CustomFileIndex
+		{
+			get 
+			{
+				if (cfi==null) cfi = FileTable.FileIndex.AddNewChild();
+				return cfi;
+			}
+		}
 		public dcObjectWorkshop()
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
-
+			
 			//init the preview manually since the designer is way to stupid to do so >:-|
 			this.op1 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
 			this.op2 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
@@ -270,7 +279,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.wizard1.Controls.Add(this.wizardStepPanel3);
 			this.wizard1.Controls.Add(this.wizardStepPanel5);
 			this.wizard1.Controls.Add(this.wizardStepPanel4);
-			this.wizard1.CurrentStepNumber = 2;
+			this.wizard1.CurrentStepNumber = 0;
 			this.wizard1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("wizard1.Dock")));
 			this.wizard1.DockPadding.All = 8;
 			this.wizard1.Enabled = ((bool)(resources.GetObject("wizard1.Enabled")));
@@ -322,6 +331,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.wizardStepPanel1.TabIndex = ((int)(resources.GetObject("wizardStepPanel1.TabIndex")));
 			this.wizardStepPanel1.Text = resources.GetString("wizardStepPanel1.Text");
 			this.wizardStepPanel1.Visible = ((bool)(resources.GetObject("wizardStepPanel1.Visible")));
+			this.wizardStepPanel1.Prepare += new SimPe.Wizards.WizardStepChangeHandle(this.wizardStepPanel1_Prepare);
 			// 
 			// label4
 			// 
@@ -1744,6 +1754,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.biCatalog.Visible = (e.Step.Index==wizardStepPanel2.Index);
 		}
 
+
 		private void button2_Click(object sender, System.EventArgs e)
 		{
 			OpenFileDialog ofd = new OpenFileDialog();
@@ -1759,6 +1770,10 @@ namespace SimPe.Plugin.Tool.Dockable
 			if (ofd.ShowDialog()==DialogResult.OK) 
 			{
 				package = SimPe.Packages.GeneratableFile.LoadFromFile(ofd.FileName);
+				CustomFileIndex.AddIndexFromPackage(package);
+				SimPe.Cache.ObjectCacheItem oci = ObjectLoader.ObjectCacheItemFromPackage(package);
+
+				
 				wizard1.JumpToStep(2);
 			}
 		}
@@ -1880,6 +1895,9 @@ namespace SimPe.Plugin.Tool.Dockable
 					{
 						SimPe.Interfaces.Wrapper.IGroupCacheItem gci = SimPe.FileTable.GroupCache.GetItem(this.package.FileName);
 						if (gci!=null) localgroup = gci.LocalGroup;
+
+						SimPe.Cache.ObjectCacheItem oci = ObjectLoader.ObjectCacheItemFromPackage(this.package);
+						pfd = oci.FileDescriptor;
 					}
 				} 
 				else 
@@ -2029,6 +2047,11 @@ namespace SimPe.Plugin.Tool.Dockable
 		private void cbDesc_CheckedChanged(object sender, System.EventArgs e)
 		{
 			cbTask_SelectedIndexChanged(this.cbTask, null);
+		}
+
+		private void wizardStepPanel1_Prepare(SimPe.Wizards.Wizard sender, SimPe.Wizards.WizardStepPanel step, int target)
+		{
+			this.CustomFileIndex.Clear();
 		}
 
 	}
