@@ -569,10 +569,19 @@
     <value>FileTable (Suchpfad)</value>
   </data>
   <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>384, 64</value>
+    <value>552, 64</value>
   </data>
   <data name="groupBox8.Text">
     <value>Einstellungen:</value>
+  </data>
+  <data name="cbIncBusi.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>392, 16</value>
+  </data>
+  <data name="cbIncBusi.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>152, 24</value>
+  </data>
+  <data name="cbIncBusi.Text">
+    <value>Business Dateien einbinden</value>
   </data>
   <data name="cbIncNightlife.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>216, 36</value>
@@ -760,7 +769,7 @@
 </value>
   </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
+    <value>Inherit</value>
   </data>
   <data name="$this.Text">
     <value>Einstellungen</value>

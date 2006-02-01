@@ -21,6 +21,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			Original = 0x02,
 			University = 0x04,
 			Nightlife = 0x08,
+			Business = 0x10,
 			Custom = 0x01
 		}
 
@@ -547,6 +548,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			if (flname.StartsWith(Helper.WindowsRegistry.SimsPath.Trim().ToLower())) return Expansion.Original;
 			if (flname.StartsWith(Helper.WindowsRegistry.SimsEP1Path.Trim().ToLower())) return Expansion.University;
 			if (flname.StartsWith(Helper.WindowsRegistry.SimsEP2Path.Trim().ToLower())) return Expansion.Nightlife;
+			if (flname.StartsWith(Helper.WindowsRegistry.SimsEP3Path.Trim().ToLower())) return Expansion.Business;
 			if (flname.StartsWith(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Donwloads"))) return Expansion.Custom;
 			return Expansion.Unknown;
 		}

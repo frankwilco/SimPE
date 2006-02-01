@@ -620,12 +620,45 @@ namespace SimPe
 		/// <summary>
 		/// Name of the Sims Application
 		/// </summary>
+		public string SimsEP3Path
+		{
+			get 
+			{
+				try 
+				{
+					XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
+					object o = rkf.GetValue("SimsEP3Path");
+					if (o==null) return this.RealEP3GamePath;
+					else 
+					{
+						string fl = o.ToString();
+
+						if (!System.IO.Directory.Exists(fl)) return this.RealEP3GamePath;
+						return fl;
+					}
+				} 
+				catch (Exception) 
+				{
+					return this.RealEP3GamePath;
+				}
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("SimsEP3Path", value);
+			}
+		}
+
+		/// <summary>
+		/// Name of the Sims Application
+		/// </summary>
 		public string SimsApplication
 		{
 			get 
 			{
 				try 
 				{
+					if (this.EPInstalled==3) return System.IO.Path.Combine(this.SimsEP3Path, "TSBin\\Sims2EP3.exe");
 					if (this.EPInstalled==2) return System.IO.Path.Combine(this.SimsEP2Path, "TSBin\\Sims2EP2.exe");
 					if (this.EPInstalled==1) return System.IO.Path.Combine(this.SimsEP1Path, "TSBin\\Sims2EP1.exe");
 					else return System.IO.Path.Combine(this.SimsPath, "TSBin\\Sims2.exe");					
@@ -1501,7 +1534,7 @@ namespace SimPe
 						RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 University");
 						object o = rk.GetValue("Install Dir");
 						if (o==null) return "";
-						else return o.ToString();
+						else return Helper.ToLongPathName(o.ToString());
 					} 
 					catch (Exception) 
 					{
@@ -1530,7 +1563,36 @@ namespace SimPe
 						RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 Nightlife");
 						object o = rk.GetValue("Install Dir");
 						if (o==null) return "";
-						else return o.ToString();
+						else return Helper.ToLongPathName(o.ToString());
+					} 
+					catch (Exception) 
+					{
+						return "";
+					}
+				}
+				return "";
+#endif
+			}
+		}
+
+		/// <summary>
+		/// Returns the Real Instalation Folder
+		/// </summary>
+		public string RealEP3GamePath 
+		{
+			get 
+			{
+#if MAC
+				return "";
+#else
+				if (this.EPInstalled>=3) 
+				{
+					try 
+					{
+						RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 Open For Business");
+						object o = rk.GetValue("Install Dir");
+						if (o==null) return "";
+						else return Helper.ToLongPathName(o.ToString());
 					} 
 					catch (Exception) 
 					{
@@ -1555,8 +1617,9 @@ namespace SimPe
 					return 0;
 #else
 					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2");
+					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 Open For Business", false)!=null) return 3;
 					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 Nightlife", false)!=null) return 2;
-					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 University", false)!=null) return 1;
+					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 University", false)!=null) return 1;					
 					return 0;
 					/*object o = rk.GetValue("EPsInstalled");
 					if (o==null) return 0;
@@ -1581,7 +1644,7 @@ namespace SimPe
 				{
 					string path = System.IO.Path.Combine(this.PersonalFolder, "EA Games");
 					path = System.IO.Path.Combine(path, this.DisplayedName);
-					return path;
+					return Helper.ToLongPathName(path);
 				} 
 				catch (Exception) 
 				{
@@ -1641,7 +1704,7 @@ namespace SimPe
 					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2");
 					object o = rk.GetValue("Install Dir");
 					if (o==null) return "";
-					else return o.ToString();
+					else return Helper.ToLongPathName(o.ToString());
 #endif
 				} 
 				catch (Exception) 

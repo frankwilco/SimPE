@@ -179,6 +179,16 @@
                     AssemblyName = "System.Design"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Design.dll"
                 />
+                <Reference
+                    Name = "xpcommoncontrols"
+                    AssemblyName = "xpcommoncontrols"
+                    HintPath = "..\..\..\xpcommoncontrols\xpcommoncontrols.dll"
+                />
+                <Reference
+                    Name = "Microsoft.VisualBasic"
+                    AssemblyName = "Microsoft.VisualBasic"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\Microsoft.VisualBasic.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -274,6 +284,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "GlobalizedObject.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "HashAlgorithmParameters.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -364,6 +379,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "PathSettings.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "PropertyObjectBuilder.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -386,6 +406,16 @@
                     RelPath = "Registry.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SelectSimFolder.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SelectSimFolder.resx"
+                    DependentUpon = "SelectSimFolder.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "SemiGlobalAlias.cs"

@@ -479,7 +479,7 @@
                 />
                 <File
                     RelPath = "OptionForm.cs"
-                    SubType = "Form"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File
