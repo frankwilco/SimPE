@@ -727,7 +727,7 @@ namespace SimPe.Plugin
 		{
 			this.package = package;
 			this.pfd = null;
-			this.ShowDialog();
+			RemoteControl.ShowSubForm(this);
 
 			return pfd;
 		}

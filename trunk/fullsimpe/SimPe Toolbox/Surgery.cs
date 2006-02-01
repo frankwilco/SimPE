@@ -948,7 +948,7 @@ namespace SimPe.Plugin
 					
 			
 			WaitingScreen.Stop(this);
-			ShowDialog();
+			RemoteControl.ShowSubForm(this);
 
 			if (this.pfd!=null) pfd = this.pfd;
 			return new Plugin.ToolResult((this.pfd!=null), false);

@@ -61,6 +61,8 @@ namespace SimPe.Plugin
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();	
+
+			
 		
 			//hide the Identifier Tab in non Hiden Mode
 			if (!Helper.WindowsRegistry.HiddenMode) 
@@ -666,6 +668,8 @@ namespace SimPe.Plugin
 			this.Name = "ScannerForm";
 			this.Text = "Folder Scanner";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			this.Resize += new System.EventHandler(this.ScannerForm_Resize);
+			this.Load += new System.EventHandler(this.ScannerForm_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tbscanners.ResumeLayout(false);
 			this.tboperations.ResumeLayout(false);
@@ -1027,6 +1031,18 @@ namespace SimPe.Plugin
 				foreach (string dir in dirs) Scan(dir, true);
 			}
 
+		}
+
+		private void ScannerForm_Load(object sender, System.EventArgs e)
+		{
+			
+			
+		}
+
+		
+		private void ScannerForm_Resize(object sender, System.EventArgs e)
+		{
+			
 		}
 
 		private void llSave_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)

@@ -320,7 +320,7 @@ namespace SimPe.Plugin
 			this.Cursor = Cursors.Default;
 
 			
-			ShowDialog();
+			RemoteControl.ShowSubForm(this);
 			if (this.package!=null) package=this.package;
 			return new Plugin.ToolResult(false, ((this.package!=null) || (changed)));
 		}

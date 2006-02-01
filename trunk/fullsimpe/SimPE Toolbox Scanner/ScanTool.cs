@@ -45,7 +45,7 @@ namespace SimPe.Plugin
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
 		{
 			if (ds==null) ds = new ScannerForm();
-			ds.ShowDialog();
+			RemoteControl.ShowSubForm(ds);
 
 			if (ds.FileName==null) return new ToolResult(false, false);
 			else 

@@ -77,7 +77,8 @@ namespace SimPe.Plugin
 					Last =  new IToolPlugin[]{
 												  new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool(),
 												  new SimPe.Plugin.Tool.Dockable.PackageDetailDockTool(),
-												  new SimPe.Plugin.Tool.ObjectsTool()
+												  new SimPe.Plugin.Tool.ObjectsTool(),
+												  new SimPe.Plugin.Tool.Window.PackageRepairTool(),
 										  };
 				}
 				return Last;

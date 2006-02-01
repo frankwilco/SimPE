@@ -201,7 +201,6 @@ namespace SimPe.Plugin.Tool.Window
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "PackageRepairForm";
 			this.Text = "Package Repair";
 			this.xpGradientPanel1.ResumeLayout(false);

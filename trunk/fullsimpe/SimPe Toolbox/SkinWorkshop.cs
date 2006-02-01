@@ -908,7 +908,7 @@ namespace SimPe.Plugin
 			package = null;
 
 			BuildListing();			
-			this.ShowDialog();
+			RemoteControl.ShowSubForm(this);
 
 			WaitingScreen.Stop(this);
 			return package;
