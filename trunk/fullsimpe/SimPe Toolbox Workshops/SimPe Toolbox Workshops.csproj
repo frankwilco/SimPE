@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = 'copy "$(TargetPath)" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)\$(TargetName).pdb" "$(ProjectDir)\..\SimPe\$(OutDir)Plugins\"&#xd;&#xa;copy "$(TargetDir)\de\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\de\"&#xd;&#xa;copy "$(TargetDir)\pl\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\pl\"&#xd;&#xa;copy "$(TargetDir)\es\*.dll" "$(ProjectDir)\..\SimPe\$(OutDir)\es\"'
+                PostBuildEvent = 'if not exist "$(SolutionDir)$(OutDir)Plugins\" mkdir "$(SolutionDir)$(OutDir)Plugins\"&#xd;&#xa;if not exist "$(SolutionDir)$(OutDir)Plugins\de\" mkdir "$(SolutionDir)$(OutDir)Plugins\de\"&#xd;&#xa;if not exist "$(SolutionDir)$(OutDir)Plugins\es\" mkdir "$(SolutionDir)$(OutDir)Plugins\es\"&#xd;&#xa;if not exist "$(SolutionDir)$(OutDir)Plugins\pl\" mkdir "$(SolutionDir)$(OutDir)Plugins\pl\"&#xd;&#xa;copy "$(TargetPath)" "$(SolutionDir)$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)$(OutDir)Plugins\"&#xd;&#xa;copy "$(TargetDir)de\*.dll" "$(SolutionDir)$(OutDir)Plugins\de\"&#xd;&#xa;copy "$(TargetDir)pl\*.dll" "$(SolutionDir)$(OutDir)Plugins\pl\"&#xd;&#xa;copy "$(TargetDir)es\*.dll" "$(SolutionDir)$(OutDir)Plugins\es\" '
                 RootNamespace = "SimPe.Plugin.Tool.Dockable"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""

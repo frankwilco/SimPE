@@ -206,6 +206,16 @@ namespace SimPe.Plugin.Gmdc
 			set { useinbmesh = value; }
 		}
 
+		bool keeporder;
+		internal void SetKeepOrder(bool val)
+		{
+			keeporder = val;
+		}
+		public bool KeepOrder
+		{
+			get {return keeporder;}
+		}
+
 		/// <summary>
 		/// Returns the color that should be used to display this Group in the "Import Groups" ListView
 		/// </summary>
@@ -227,6 +237,7 @@ namespace SimPe.Plugin.Gmdc
 		/// <param name="parent">The gmdc that should act as Parent</param>
 		public ImportedGroup(GeometryDataContainer parent) : base()
 		{
+			keeporder = true;
 			group = new GmdcGroup(parent);
 			link = new GmdcLink(parent);
 			elements = new GmdcElements();

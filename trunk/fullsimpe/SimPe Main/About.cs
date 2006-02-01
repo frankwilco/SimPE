@@ -215,16 +215,17 @@ namespace SimPe
 		{
 			if (!show)
 			{
+				TimeSpan ts = DateTime.Now - Helper.WindowsRegistry.LastUpdateCheck;
 				//only check for new releases once a Day
 				if (!Helper.QARelease && !Helper.WindowsRegistry.WasQAUser) 
 				{
-					if (Helper.WindowsRegistry.LastUpdateCheck - DateTime.Now < new TimeSpan(1, 0, 0)) return;
+					if (ts < new TimeSpan(1, 0, 0)) return;
 				} 
 				else if (Helper.WindowsRegistry.WasQAUser) 
 				{
-					if (Helper.WindowsRegistry.LastUpdateCheck - DateTime.Now < new TimeSpan(0, 4, 0)) return;
+					if (ts < new TimeSpan(0, 4, 0)) return;
 				}
-				else if (Helper.WindowsRegistry.LastUpdateCheck - DateTime.Now < new TimeSpan(0, 1, 30)) return;
+				else if (ts < new TimeSpan(0, 1, 30)) return;
 			}
 
 			//scan for an Update
