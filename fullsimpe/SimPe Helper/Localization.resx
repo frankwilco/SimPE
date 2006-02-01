@@ -860,4 +860,62 @@ Continue anyway?
 	<data name="FinishedPackageRepair">
 		<value>Finished search for Errors.</value>
 	</data>
+	
+	<data name="[Property:GamePath]">
+		<value>Sims 2</value>
+	</data>
+	<data name="[Description:GamePath]">
+		<value>This should contain the installation directory of "The Sims 2". 
+The given Folder must contain a subfolder called "TSData".
+
+If this is empty, SimPE will use the default Folder.</value>
+	</data>
+	<data name="[Property:EP1Path]">
+		<value>1: University</value>
+	</data>
+	<data name="[Description:EP1Path]">
+		<value>This should contain the installation directory of "The Sims 2 - University". 
+The given Folder must contain a subfolder called "TSData".
+
+If this is empty, SimPE will use the default Folder.</value>
+	</data>
+	<data name="[Property:EP2Path]">
+		<value>2: Nightlife</value>
+	</data>
+	<data name="[Description:EP2Path]">
+		<value>This should contain the installation directory of "The Sims 2 - Nightlife". 
+The given Folder must contain a subfolder called "TSData".
+
+If this is empty, SimPE will use the default Folder.</value>
+	</data>
+	<data name="[Property:EP3Path]">
+		<value>3: Open for Business</value>
+	</data>
+	<data name="[Description:EP3Path]">
+		<value>This should contain the installation directory of "The Sims 2 - Open for Business". 
+The given Folder must contain a subfolder called "TSData".
+
+If this is empty, SimPE will use the default Folder.</value>
+	</data>
+	<data name="[Property:SaveGamePath]">
+		<value>Savegame</value>
+	</data>	
+	<data name="[Description:SaveGamePath]">
+		<value>This should contain the savegame directory of "The Sims 2". 
+The given Folder must contain subfolders called "Downloads" and "Neighborhoods".
+
+If this is empty, SimPE will use the default Folder.</value>
+	</data>
+	<data name="[Property:NvidadPath]">
+		<value>Nvidia DDS Tool</value>
+	</data>
+	<data name="[Description:NvidadPath]">
+		<value>This should contain the Folder pointing to the Nivida DDS Tool.</value>
+	</data>
+	<data name="[Category:BasicGame]">
+		<value>1. Original Game</value>
+	</data>
+	<data name="[Category:ExpansionPack]">
+		<value>2. Expansion Packs</value>
+	</data>
 </root>

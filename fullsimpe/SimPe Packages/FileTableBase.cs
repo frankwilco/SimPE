@@ -15,7 +15,8 @@ namespace SimPe
 		SimPEFolder = 0x4,
 		SimPEDataFolder = 0x5,
 		SimPEPluginFolder = 0x6,
-		EP2GameFolder = 0x7
+		EP2GameFolder = 0x7,
+		EP3GameFolder = 0x8
 	}
 	/// <summary>
 	/// The type and location of a Folder/file
@@ -90,6 +91,7 @@ namespace SimPe
 			string ret = null;
 			if (type==FileTableItemType.EP1GameFolder) ret = Helper.WindowsRegistry.SimsEP1Path;
 			else if (type==FileTableItemType.EP2GameFolder) ret = Helper.WindowsRegistry.SimsEP2Path;
+			else if (type==FileTableItemType.EP3GameFolder) ret = Helper.WindowsRegistry.SimsEP3Path;
 			else if (type==FileTableItemType.GameFolder) ret = Helper.WindowsRegistry.SimsPath;
 			else if (type==FileTableItemType.SaveGameFolder) ret = Helper.WindowsRegistry.SimSavegameFolder;
 			else if (type==FileTableItemType.SimPEDataFolder) ret = Helper.SimPeDataPath;
@@ -107,6 +109,7 @@ namespace SimPe
 		{
 			if (type==FileTableItemType.EP1GameFolder) return 1;
 			else if (type==FileTableItemType.EP2GameFolder) return 2;
+			else if (type==FileTableItemType.EP3GameFolder) return 3;
 			else if (type==FileTableItemType.GameFolder) return 0;
 			
 			return -1;
@@ -117,7 +120,7 @@ namespace SimPe
 			try 
 			{
 				if (System.IO.Directory.Exists(name)) 
-					if (!System.IO.Path.IsPathRooted(name)) return false;
+					if (!Helper.IsAbsolutePath(name)) return false;
 			} 
 #if DEBUG
 			catch (Exception ex)
@@ -152,10 +155,14 @@ namespace SimPe
 
 		internal void SetName(string name) 
 		{
-			string n = Helper.ToLongPathName(name).Trim().ToLower();
+			string n = name;
+
+			if (Helper.IsAbsolutePath(name)) Helper.ToLongPathName(name).Trim().ToLower();
+
 			if (CutName(n, FileTableItemType.GameFolder)) return;
 			if (CutName(n, FileTableItemType.EP1GameFolder)) return;
 			if (CutName(n, FileTableItemType.EP2GameFolder)) return;
+			if (CutName(n, FileTableItemType.EP3GameFolder)) return;
 			if (CutName(n, FileTableItemType.SaveGameFolder)) return;
 			if (CutName(n, FileTableItemType.SimPEDataFolder)) return;
 			if (CutName(n, FileTableItemType.SimPEFolder)) return;
@@ -374,6 +381,12 @@ namespace SimPe
 													root = Helper.WindowsRegistry.SimsEP2Path;
 													fti.Type = FileTableItemType.EP2GameFolder;
 													break;
+												}													
+												case "ep3":
+												{
+													root = Helper.WindowsRegistry.SimsEP3Path;
+													fti.Type = FileTableItemType.EP3GameFolder;
+													break;
 												}
 												case "save":
 												{
@@ -446,6 +459,14 @@ namespace SimPe
 					tw.WriteLine("  <filetable>");
 					tw.WriteLine("    <file root=\"save\">Downloads"+Helper.PATH_SEP+"_EnableColorOptionsGMND.package</file>");
 					tw.WriteLine("    <file root=\"game\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Sims3D"+Helper.PATH_SEP+"_EnableColorOptionsMMAT.package</file>");
+					tw.WriteLine("    <path root=\"ep3\" epversion=\"3\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Objects</path>");					
+					tw.WriteLine("    <path root=\"ep3\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"3D</path>");
+					tw.WriteLine("    <path root=\"ep3\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Catalog"+Helper.PATH_SEP+"Materials</path>");
+					tw.WriteLine("    <path root=\"ep3\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Catalog"+Helper.PATH_SEP+"Skins</path>");
+					tw.WriteLine("    <path root=\"ep3\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Catalog"+Helper.PATH_SEP+"Patterns</path>");
+					tw.WriteLine("    <path root=\"ep3\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Catalog"+Helper.PATH_SEP+"CANHObjects</path>");
+					tw.WriteLine("    <path root=\"ep3\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Wants</path>");
+					tw.WriteLine("    <path root=\"ep3\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"UI</path>");
 					tw.WriteLine("    <path root=\"ep2\" epversion=\"2\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Objects</path>");					
 					tw.WriteLine("    <path root=\"ep2\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"3D</path>");
 					tw.WriteLine("    <path root=\"ep2\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Catalog"+Helper.PATH_SEP+"Materials</path>");

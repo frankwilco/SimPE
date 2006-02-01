@@ -1042,24 +1042,24 @@ Package: {filename}</value>
 	<data name="SimPe.Data.XObjFunctionSubSort.Wall_Other">
 		<value>Wände / Verschiedenes</value>
 	</data>
-     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Landmark">
+	<data name="SimPe.Data.XObjFunctionSubSort.Hood_Landmark">
 		<value>Nachbarschaft / Sehenswürdigkeiten</value>
-    </data>
-     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Flora">
+	</data>
+	<data name="SimPe.Data.XObjFunctionSubSort.Hood_Flora">
 		<value>Nachbarschaft / Flora</value>
-    </data>
-     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Effects">
+	</data>
+	<data name="SimPe.Data.XObjFunctionSubSort.Hood_Effects">
 		<value>Nachbarschaft / Effekte</value>
-    </data>
-     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Misc">
+	</data>
+	<data name="SimPe.Data.XObjFunctionSubSort.Hood_Misc">
 		<value>Nachbarschaft / Verschiedenes</value>
-    </data>
-     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Stone">
+	</data>
+	<data name="SimPe.Data.XObjFunctionSubSort.Hood_Stone">
 		<value>Nachbarschaft / Steine</value>
-    </data>
-     <data name="SimPe.Data.XObjFunctionSubSort.Hood_Other">
+	</data>
+	<data name="SimPe.Data.XObjFunctionSubSort.Hood_Other">
 		<value>Nachbarschaft / Sonstiges</value>
-    </data>
+	</data>
 	<data name="Fix_Fence_Warning">
 		<value>"Zäune mit dem original Spiel kompatibel zu machen basiert auf einem unschönen Hack, der zu Konflikten im Spiel führen kann. Ich würde nicht Empfehlen, einen derartigen Zaun zu veröffentlichen!
 
@@ -1085,38 +1085,95 @@ Soll SimPE fortfahren?</value>
 		<value>Sim Löschen</value>
 	</data>
 	<data name="PresetClassic">
-	    <value>klassisch</value>
+		<value>klassisch</value>
 	</data>
 	<data name="PresetModern">
-	    <value>modern</value>
+		<value>modern</value>
 	</data>
 	<data name="PresetChanged">
 		<value>Das Aussehen und Verhalten von SimPE wurde auf "{name}" gesetzt.
 
 Soll SimPE nun gestartet werden?</value>
-	</data>	
+	</data>
 	<data name="ObsoleteOW">
 		<value>Der klassische ObjectWorkshop wird nicht weiter entwicklet und ist daher überflüssig.
 
 Stattdessen sollte der dockbare ObjectWorkshop verwendet werden.
-Er kann über den Menüpunkt "Fenster->Object Workshop" angezeigt werden.
+Er kann über den Menüpunkt "Fenster-&gt;Object Workshop" angezeigt werden.
 
 Trotzdem fortfahren?
 		</value>
 	</data>
 	<data name="Package Tool">
-	    <value>Package Werkzeuge</value>
+		<value>Package Werkzeuge</value>
 	</data>
 	<data name="Repair Package...">
-	    <value>Package reparieren...</value>
+		<value>Package reparieren...</value>
 	</data>
 	<data name="Open Sims2Pack...">
-	    <value>Öffne Sims2Pack...</value>
+		<value>Öffne Sims2Pack...</value>
 	</data>
 	<data name="Create Sims2Pack...">
-	    <value>Erstelle Sims2Pack...</value>
+		<value>Erstelle Sims2Pack...</value>
 	</data>
 	<data name="FinishedPackageRepair">
 		<value>Fehlersuche wurde abgeschlossen.</value>
+	</data>
+	<data name="[Property:GamePath]">
+		<value>Sims 2</value>
+	</data>
+	<data name="[Description:GamePath]">
+		<value>Hier sollte das Installationsverzeichnis von "Die Sims 2" stehen. 
+Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
+	</data>
+	<data name="[Property:EP1Path]">
+		<value>1: Wilde Kampus-Jahre</value>
+	</data>
+	<data name="[Description:EP1Path]">
+		<value>Hier sollte das Installationsverzeichnis von "Die Sims 2 - Wilde Kampus-Jahre" stehen. 
+Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
+	</data>
+	<data name="[Property:EP2Path]">
+		<value>2: Nightlife</value>
+	</data>
+	<data name="[Description:EP2Path]">
+		<value>Hier sollte das Installationsverzeichnis von "Die Sims 2 - Nightlife" stehen. 
+Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
+	</data>
+	<data name="[Property:EP3Path]">
+		<value>3: Open for Business</value>
+	</data>
+	<data name="[Description:EP3Path]">
+		<value>Hier sollte das Installationsverzeichnis von "Die Sims 2 - Open for Business" stehen. 
+Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
+	</data>
+	<data name="[Property:SaveGamePath]">
+		<value>Spielstände</value>
+	</data>	
+	<data name="[Description:SaveGamePath]">
+		<value>Hier sollte der Pfad zum Spielstand Verzeichnis von "Die Sims 2 " stehen. 
+Das angegebene Verzeichnis muss die Unterordner "Downloads" und "Neighborhoods" enthalten.
+
+Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
+	</data>
+	<data name="[Property:NvidadPath]">
+		<value>Nvidia DDS-Tool</value>
+	</data>
+	<data name="[Description:NvidadPath]">
+		<value>Hier sollte der Pfad zu den "Nvidia DDS-Tool" stehen</value>
+	</data>
+	<data name="[Category:BasicGame]">
+		<value>1. Original Spiel</value>
+	</data>
+	<data name="[Category:ExpansionPack]">
+		<value>2. Erweiterungen</value>
 	</data>
 </root>

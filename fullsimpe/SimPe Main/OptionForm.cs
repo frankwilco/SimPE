@@ -143,6 +143,8 @@ namespace SimPe
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.ComboBox cbReport;
 		private System.Windows.Forms.CheckBox cbLock;
+		private System.Windows.Forms.CheckBox cbIncBusi;
+		private MyPropertyGrid pgPaths;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -151,6 +153,9 @@ namespace SimPe
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
+
+			this.pgPaths.SelectedObject = new SimPe.PathSettings(Helper.WindowsRegistry);
+			
 
 			for (byte i=1; i<0x44; i++) this.cblang.Items.Add(new SimPe.PackedFiles.Wrapper.StrLanguage(i));
 			SelectCategory(nbFolders, null);
@@ -261,6 +266,7 @@ namespace SimPe
 			this.hcTools = new TD.Eyefinder.HeaderControl();
 			this.hcFileTable = new TD.Eyefinder.HeaderControl();
 			this.groupBox8 = new System.Windows.Forms.GroupBox();
+			this.cbIncBusi = new System.Windows.Forms.CheckBox();
 			this.cbIncNightlife = new System.Windows.Forms.CheckBox();
 			this.cbIncUni = new System.Windows.Forms.CheckBox();
 			this.cbIncGame = new System.Windows.Forms.CheckBox();
@@ -301,6 +307,7 @@ namespace SimPe
 			this.baloonTip = new SteepValley.Windows.Forms.XPBalloonTip(this.components);
 			this.navigationButton1 = new Divelements.Navisight.NavigationButton();
 			this.navigationButton2 = new Divelements.Navisight.NavigationButton();
+			this.pgPaths = new MyPropertyGrid();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -1738,6 +1745,7 @@ namespace SimPe
 			this.hcFolders.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hcFolders.AutoScrollMargin")));
 			this.hcFolders.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hcFolders.AutoScrollMinSize")));
 			this.hcFolders.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hcFolders.BackgroundImage")));
+			this.hcFolders.Controls.Add(this.pgPaths);
 			this.hcFolders.Controls.Add(this.tbep2);
 			this.hcFolders.Controls.Add(this.btNightlife);
 			this.hcFolders.Controls.Add(this.label14);
@@ -2110,6 +2118,7 @@ namespace SimPe
 			this.groupBox8.AccessibleName = resources.GetString("groupBox8.AccessibleName");
 			this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox8.Anchor")));
 			this.groupBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox8.BackgroundImage")));
+			this.groupBox8.Controls.Add(this.cbIncBusi);
 			this.groupBox8.Controls.Add(this.cbIncNightlife);
 			this.groupBox8.Controls.Add(this.cbIncUni);
 			this.groupBox8.Controls.Add(this.cbIncGame);
@@ -2128,6 +2137,33 @@ namespace SimPe
 			this.groupBox8.Text = resources.GetString("groupBox8.Text");
 			this.toolTip1.SetToolTip(this.groupBox8, resources.GetString("groupBox8.ToolTip"));
 			this.groupBox8.Visible = ((bool)(resources.GetObject("groupBox8.Visible")));
+			// 
+			// cbIncBusi
+			// 
+			this.cbIncBusi.AccessibleDescription = resources.GetString("cbIncBusi.AccessibleDescription");
+			this.cbIncBusi.AccessibleName = resources.GetString("cbIncBusi.AccessibleName");
+			this.cbIncBusi.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbIncBusi.Anchor")));
+			this.cbIncBusi.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbIncBusi.Appearance")));
+			this.cbIncBusi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbIncBusi.BackgroundImage")));
+			this.cbIncBusi.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbIncBusi.CheckAlign")));
+			this.cbIncBusi.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbIncBusi.Dock")));
+			this.cbIncBusi.Enabled = ((bool)(resources.GetObject("cbIncBusi.Enabled")));
+			this.cbIncBusi.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbIncBusi.FlatStyle")));
+			this.cbIncBusi.Font = ((System.Drawing.Font)(resources.GetObject("cbIncBusi.Font")));
+			this.cbIncBusi.Image = ((System.Drawing.Image)(resources.GetObject("cbIncBusi.Image")));
+			this.cbIncBusi.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbIncBusi.ImageAlign")));
+			this.cbIncBusi.ImageIndex = ((int)(resources.GetObject("cbIncBusi.ImageIndex")));
+			this.cbIncBusi.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbIncBusi.ImeMode")));
+			this.cbIncBusi.Location = ((System.Drawing.Point)(resources.GetObject("cbIncBusi.Location")));
+			this.cbIncBusi.Name = "cbIncBusi";
+			this.cbIncBusi.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbIncBusi.RightToLeft")));
+			this.cbIncBusi.Size = ((System.Drawing.Size)(resources.GetObject("cbIncBusi.Size")));
+			this.cbIncBusi.TabIndex = ((int)(resources.GetObject("cbIncBusi.TabIndex")));
+			this.cbIncBusi.Text = resources.GetString("cbIncBusi.Text");
+			this.cbIncBusi.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbIncBusi.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbIncBusi, resources.GetString("cbIncBusi.ToolTip"));
+			this.cbIncBusi.Visible = ((bool)(resources.GetObject("cbIncBusi.Visible")));
+			this.cbIncBusi.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
 			// 
 			// cbIncNightlife
 			// 
@@ -2973,6 +3009,32 @@ namespace SimPe
 			this.navigationButton2.Text = resources.GetString("navigationButton2.Text");
 			this.navigationButton2.ToolTipText = resources.GetString("navigationButton2.ToolTipText");
 			// 
+			// pgPaths
+			// 
+			this.pgPaths.AccessibleDescription = resources.GetString("pgPaths.AccessibleDescription");
+			this.pgPaths.AccessibleName = resources.GetString("pgPaths.AccessibleName");
+			this.pgPaths.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pgPaths.Anchor")));
+			this.pgPaths.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pgPaths.BackgroundImage")));
+			this.pgPaths.CommandsBackColor = System.Drawing.SystemColors.Window;
+			this.pgPaths.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pgPaths.Dock")));
+			this.pgPaths.Enabled = ((bool)(resources.GetObject("pgPaths.Enabled")));
+			this.pgPaths.Font = ((System.Drawing.Font)(resources.GetObject("pgPaths.Font")));
+			this.pgPaths.HelpVisible = ((bool)(resources.GetObject("pgPaths.HelpVisible")));
+			this.pgPaths.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pgPaths.ImeMode")));
+			this.pgPaths.LargeButtons = false;
+			this.pgPaths.LineColor = System.Drawing.SystemColors.ScrollBar;
+			this.pgPaths.Location = ((System.Drawing.Point)(resources.GetObject("pgPaths.Location")));
+			this.pgPaths.Name = "pgPaths";
+			this.pgPaths.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pgPaths.RightToLeft")));
+			this.pgPaths.Size = ((System.Drawing.Size)(resources.GetObject("pgPaths.Size")));
+			this.pgPaths.TabIndex = ((int)(resources.GetObject("pgPaths.TabIndex")));
+			this.pgPaths.Text = resources.GetString("pgPaths.Text");
+			this.pgPaths.ToolbarVisible = false;
+			this.toolTip1.SetToolTip(this.pgPaths, resources.GetString("pgPaths.ToolTip"));
+			this.pgPaths.ViewBackColor = System.Drawing.SystemColors.Window;
+			this.pgPaths.ViewForeColor = System.Drawing.SystemColors.WindowText;
+			this.pgPaths.Visible = ((bool)(resources.GetObject("pgPaths.Visible")));
+			// 
 			// OptionForm
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -2986,13 +3048,13 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.hcFolders);
+			this.Controls.Add(this.hcSceneGraph);
 			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcIdent);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
 			this.Controls.Add(this.hcFileTable);
-			this.Controls.Add(this.hcFolders);
-			this.Controls.Add(this.hcSceneGraph);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -4132,15 +4194,7 @@ namespace SimPe
 			else if (ignored!=found) cb.CheckState = CheckState.Indeterminate;
 			else cb.CheckState = CheckState.Unchecked;
 			this.cbIncCep.Tag = null;
-		}
-
-		void SetupFileTableCheckboxes()
-		{
-			SetupFileTableCheckboxe(this.cbIncGame, FileTableItemType.GameFolder, false);
-			SetupFileTableCheckboxe(this.cbIncUni, FileTableItemType.EP1GameFolder, false);
-			SetupFileTableCheckboxe(this.cbIncNightlife, FileTableItemType.EP2GameFolder, false);
-			SetupFileTableCheckboxe(this.cbIncCep, FileTableItemType.Absolute, true);
-		}
+		}		
 
 		void ChangeFileTable(CheckBox cb, FileTableItemType epver, bool cep)
 		{
@@ -4188,6 +4242,14 @@ namespace SimPe
 			this.cbIncCep.Tag = null;
 		}
 		
+		void SetupFileTableCheckboxes()
+		{
+			SetupFileTableCheckboxe(this.cbIncGame, FileTableItemType.GameFolder, false);
+			SetupFileTableCheckboxe(this.cbIncUni, FileTableItemType.EP1GameFolder, false);
+			SetupFileTableCheckboxe(this.cbIncNightlife, FileTableItemType.EP2GameFolder, false);
+			SetupFileTableCheckboxe(this.cbIncBusi, FileTableItemType.EP3GameFolder, false);
+			SetupFileTableCheckboxe(this.cbIncCep, FileTableItemType.Absolute, true);
+		}
 
 		private void cbIncNightlife_CheckedChanged(object sender, System.EventArgs e)
 		{
@@ -4199,7 +4261,9 @@ namespace SimPe
 			else if (cb==this.cbIncGame) ChangeFileTable(cb, FileTableItemType.GameFolder, false);
 			else if (cb==this.cbIncUni) ChangeFileTable(cb, FileTableItemType.EP1GameFolder, false);
 			else if (cb==this.cbIncNightlife) ChangeFileTable(cb, FileTableItemType.EP2GameFolder, false);
+			else if (cb==this.cbIncBusi) ChangeFileTable(cb, FileTableItemType.EP3GameFolder, false);
 		}
+		
 		#endregion
 
 		private void cbLock_CheckedChanged(object sender, System.EventArgs e)
@@ -4209,5 +4273,10 @@ namespace SimPe
 			if (cb.Checked) this.LockDocksClick(sender, e);
 			else this.UnlockDocksClick(sender, e);			
 		}
+	}
+
+	class MyPropertyGrid : PropertyGrid 
+	{		
+
 	}
 }
