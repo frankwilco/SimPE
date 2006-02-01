@@ -767,6 +767,24 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// true, if the user wants the Waiting Screen as a TopMost Window
+		/// </summary>
+		public bool WaitingScreenTopMost
+		{
+			get 
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("WaitingScreenTopMost", true);
+				return Convert.ToBoolean(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("WaitingScreenTopMost", value);
+			}
+		}
+
+		/// <summary>
 		/// true, if the user wants the Waiting Screen
 		/// </summary>
 		public bool LoadOWFast 

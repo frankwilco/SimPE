@@ -240,6 +240,14 @@ namespace SimPe.Plugin.Gmdc
 			}
 		}
 
+		bool CanKeepOrder(ArrayList faces)
+		{
+			foreach (GmdcElementValueThreeFloat f in faces)
+				if (f.Data[0]!=f.Data[1] || f.Data[0]!=f.Data[2]) return false;
+
+			return true;
+		}
+
 		/// <summary>
 		/// Build a Single Group from the Member Data generated with LoadLists()
 		/// </summary>
@@ -247,10 +255,12 @@ namespace SimPe.Plugin.Gmdc
 		/// <remarks>At this point, the faces Member contains the face List for 
 		/// the current Group</remarks>
 		void BuildGroup(ImportedGroup g)
-		{
+		{			
 			ArrayList fv = new ArrayList();
 			ElementAlias alias = new ElementAlias();
 			Hashtable facealias = new Hashtable();
+
+			g.SetKeepOrder(CanKeepOrder(faces));
 
 			
 			BuildAliasMap(alias.V, vertices);
@@ -277,11 +287,17 @@ namespace SimPe.Plugin.Gmdc
 					{
 						if (fc.V>=0) 
 						{
-							if (f.Data[0]>0) c = (int)f.Data[0]-1;
-
-							AddElement(g, 0, vertices[fc.V], c);
-							AddElement(g, 1, normals[fc.VN], c);
-							AddElement(g, 2, uvmaps[fc.VU], c);
+							int cv = -1;
+							if (g.KeepOrder) 
+							{
+								if (f.Data[0]>0) c = (int)f.Data[0]-1;
+								cv = c;
+							}
+							
+							
+							AddElement(g, 0, vertices[fc.V], cv);
+							AddElement(g, 1, normals[fc.VN], cv);
+							AddElement(g, 2, uvmaps[fc.VU], cv);							
 						}
 						
 						facealias[fc] = c;						
@@ -303,10 +319,13 @@ namespace SimPe.Plugin.Gmdc
 #endif				
 			}
 
-			///Make sure all slots in the Elemnts are set
-			FillMissingElements(g, 0, new Gmdc.GmdcElementValueThreeFloat(0, 0, 0));
-			FillMissingElements(g, 1, new Gmdc.GmdcElementValueThreeFloat(0, 0, 0));
-			FillMissingElements(g, 2, new Gmdc.GmdcElementValueTwoFloat(0, 0));
+			if (g.KeepOrder) 
+			{
+				///Make sure all slots in the Elemnts are set
+				FillMissingElements(g, 0, new Gmdc.GmdcElementValueThreeFloat(0, 0, 0));
+				FillMissingElements(g, 1, new Gmdc.GmdcElementValueThreeFloat(0, 0, 0));
+				FillMissingElements(g, 2, new Gmdc.GmdcElementValueTwoFloat(0, 0));
+			}
 		}
 
 		/// <summary>
