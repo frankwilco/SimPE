@@ -725,7 +725,7 @@ namespace SimPe.Plugin
 			}
 
 			this.Cursor = Cursors.Default;
-			ShowDialog();
+			RemoteControl.ShowSubForm(this);
 
 			if (this.pfd!=null) pfd = this.pfd;
 			if (this.package!=null) package = this.package;

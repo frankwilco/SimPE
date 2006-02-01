@@ -26,11 +26,12 @@ namespace SimPe.Plugin.Tool.Window
 				e.LoadedPackage.Package.Close(true);
 				f.Setup(flname);
 			}
-			f.ShowDialog();
+			RemoteControl.ShowSubForm(f);			
 		}
 
 		public bool ChangeEnabledStateEventHandler(object sender, SimPe.Events.ResourceEventArgs e)
 		{
+			if (!Helper.WindowsRegistry.HiddenMode) return false;
 			return !e.Loaded;
 		}
 

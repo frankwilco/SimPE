@@ -47,6 +47,82 @@ namespace SimPe
 		/// </summary>
 		public delegate void ShowDockDelegate(TD.SandDock.DockControl doc, bool hide);
 
+		#region Application Form
+		static System.Windows.Forms.Form appform;
+		/// <summary>
+		/// Returns the Main Application Form
+		/// </summary>
+		public static System.Windows.Forms.Form ApplicationForm
+		{
+			get {return appform;}
+			set {
+				appform = value;
+				if (appform!=null)
+					appstate = appform.WindowState;
+				else
+					appstate = System.Windows.Forms.FormWindowState.Maximized;
+			}
+		}
+
+		static bool VisibleForm(System.Windows.Forms.Form form)
+		{
+			if (!form.ShowInTaskbar) return false;
+			if (form.FormBorderStyle == System.Windows.Forms.FormBorderStyle.FixedToolWindow) return false;
+			if (form.FormBorderStyle == System.Windows.Forms.FormBorderStyle.SizableToolWindow) return false;
+			if (form.MinimizeBox == false) return false;
+
+			return true;
+		}
+
+		public static void ShowSubForm(System.Windows.Forms.Form form)
+		{
+			if (VisibleForm(form)) HideApplicationForm();
+			form.ShowDialog(ApplicationForm);
+			if (VisibleForm(form)) ShowApplicationForm();
+		}
+
+		public static void HideApplicationForm()
+		{
+			if (ApplicationForm==null) return;
+			
+			if (ApplicationForm.Visible) 
+			{
+				ApplicationForm.Hide();
+				ApplicationForm.ShowInTaskbar = true;
+			}
+		}
+
+		public static void ShowApplicationForm()
+		{			
+			if (ApplicationForm==null) return;
+			if (!ApplicationForm.Visible) 
+			{
+				ApplicationForm.Show();
+				ApplicationForm.ShowInTaskbar = true;
+			}			
+		}
+
+		static System.Windows.Forms.FormWindowState appstate;
+		public static void MinimizeApplicationForm()
+		{
+			if (ApplicationForm==null) return;
+			
+			if (ApplicationForm.WindowState!=System.Windows.Forms.FormWindowState.Minimized)
+			{
+				appstate = ApplicationForm.WindowState;
+				ApplicationForm.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+			}
+		}
+
+		public static void RestoreApplicationForm()
+		{
+			
+			if (ApplicationForm==null) return;
+			if (ApplicationForm.WindowState==System.Windows.Forms.FormWindowState.Minimized)
+				ApplicationForm.WindowState = appstate;
+		}
+		#endregion
+
 		static ShowDockDelegate sdd;
 		/// <summary>
 		/// Returns/Sets the ShowDock Delegate

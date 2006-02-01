@@ -29,7 +29,7 @@ namespace SimPe
 		SimPe.ResourceLoader rl;
 		TD.SandBar.MenuBarItem docs;
 		PluginManager plugger;
-		internal RemoteHandler(LoadedPackage lp, ResourceLoader rl, PluginManager plugger, TD.SandBar.MenuBarItem docmenu) 
+		internal RemoteHandler(System.Windows.Forms.Form form, LoadedPackage lp, ResourceLoader rl, PluginManager plugger, TD.SandBar.MenuBarItem docmenu) 
 		{
 			this.lp = lp;
 			this.rl = rl;
@@ -40,6 +40,8 @@ namespace SimPe
 			RemoteControl.OpenPackedFileFkt = new SimPe.RemoteControl.OpenPackedFileDelegate(OpenPackedFile);
 			RemoteControl.OpenMemoryPackageFkt = new SimPe.RemoteControl.OpenMemPackageDelegate(OpenMemPackage);
 			RemoteControl.ShowDockFkt = new SimPe.RemoteControl.ShowDockDelegate(ShowDock);
+
+			RemoteControl.ApplicationForm = form;
 		}
 
 		public bool OpenPackage(string filename)

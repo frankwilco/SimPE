@@ -362,7 +362,7 @@ namespace SimPe.Plugin
 				TimeSpan runtime = DateTime.Now.Subtract(start);
 				if (Helper.WindowsRegistry.HiddenMode)
 					Text = "Runtime: "+runtime.TotalSeconds+" sek. = " + runtime.TotalMinutes+ " min.";
-				ShowDialog();
+				RemoteControl.ShowSubForm(this);
 
 				pfd = this.pfd;
 			} 

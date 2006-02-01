@@ -303,21 +303,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "DownloadScan.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "DownloadScan.resx"
-                    DependentUpon = "DownloadScan.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "DownloadScanTool.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Factory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

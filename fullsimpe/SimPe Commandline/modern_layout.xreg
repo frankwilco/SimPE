@@ -4,12 +4,13 @@
 <key name="Ambertation">
 <key name="SimPe">
 <key name="Layout">
-<int name="SizeColumnWidth">88</int>
+<int name="SizeColumnWidth">100</int>
 <int name="GroupColumnWidth">100</int>
+<int name="InstanceHighColumnWidth">100</int>
 <int name="ThemeID">2</int>
-<int name="OffsetColumnWidth">91</int>
+<int name="OffsetColumnWidth">100</int>
 <int name="InstanceColumnWidth">100</int>
-<int name="TypeColumnWidth">215</int>
+<int name="TypeColumnWidth">204</int>
 <string name="SandDock">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;Layout&gt;
   &lt;Window Guid="8846d9fc-3828-4354-94b4-6a89120bbab3" FloatingSize="435, 553" FloatingLocation="1297, 91" DockLocation="Right" PopupSize="0" /&gt;
@@ -72,7 +73,6 @@
 &lt;/Layout&gt;</string>
 <bool name="ActionDefExpanded">true</bool>
 <bool name="ActionPlugExpanded">true</bool>
-<int name="InstanceHighColumnWidth">110</int>
 <bool name="ActionToolExpanded">true</bool>
 <string name="SandBar">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;Layout&gt;
@@ -101,10 +101,9 @@
       &lt;Item Offset="8" Visible="True" /&gt;
       &lt;Item Offset="9" Visible="True" /&gt;
       &lt;Item Offset="10" Visible="True" /&gt;
-      &lt;Item Offset="11" Visible="True" /&gt;
     &lt;/Items&gt;
   &lt;/Toolbar&gt;
-  &lt;Toolbar Guid="078e55cf-63d2-4821-a167-a8ccb6446322" DockLine="2" DockOffset="504" Visible="True" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9"&gt;
+  &lt;Toolbar Guid="078e55cf-63d2-4821-a167-a8ccb6446322" DockLine="2" DockOffset="470" Visible="True" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9"&gt;
     &lt;Items&gt;
       &lt;Item Offset="0" Visible="True" /&gt;
       &lt;Item Offset="1" Visible="False" /&gt;
@@ -124,12 +123,9 @@
       &lt;Item Offset="15" Visible="True" /&gt;
       &lt;Item Offset="16" Visible="False" /&gt;
       &lt;Item Offset="17" Visible="False" /&gt;
-      &lt;Item Offset="18" Visible="False" /&gt;
-      &lt;Item Offset="19" Visible="False" /&gt;
-      &lt;Item Offset="20" Visible="True" /&gt;
-      &lt;Item Offset="21" Visible="True" /&gt;
-      &lt;Item Offset="22" Visible="False" /&gt;
-      &lt;Item Offset="23" Visible="False" /&gt;
+      &lt;Item Offset="18" Visible="True" /&gt;
+      &lt;Item Offset="19" Visible="True" /&gt;
+      &lt;Item Offset="20" Visible="False" /&gt;
     &lt;/Items&gt;
   &lt;/Toolbar&gt;
   &lt;Toolbar Guid="6c37bb3a-a49a-4467-b812-34eb2c2a85ef" DockLine="2" DockOffset="3" Visible="False" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9"&gt;
@@ -148,7 +144,7 @@
       &lt;Item Offset="11" Visible="True" /&gt;
     &lt;/Items&gt;
   &lt;/Toolbar&gt;
-  &lt;Toolbar Guid="df109020-5454-48c9-aae5-28b65f95af1d" DockLine="-1" DockOffset="0" Visible="True" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9" /&gt;
+  &lt;Toolbar Guid="df109020-5454-48c9-aae5-28b65f95af1d" DockLine="-1" DockOffset="2" Visible="True" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9" /&gt;
 &lt;/Layout&gt;</string>
 </key>
 </key>

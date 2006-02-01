@@ -979,7 +979,7 @@ namespace SimPe.Plugin
 
 			if (!Helper.WindowsRegistry.LoadOWFast) BuildListing();
 			else tabControl2.SelectedIndex = 2;
-			this.ShowDialog();
+			RemoteControl.ShowSubForm(this);
 
 			WaitingScreen.Stop(this);
 			return package;
