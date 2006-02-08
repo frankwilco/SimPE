@@ -46,7 +46,6 @@ namespace SimPe.Plugin.Gmdc
 	/// </summary>
 	public class ElementOrder 
 	{
-		static byte[,] components = null;
 		ElementSorting s;
 
 		/// <summary>
@@ -60,33 +59,28 @@ namespace SimPe.Plugin.Gmdc
 				s = value; 
 				if (s==ElementSorting.XZY||s==ElementSorting.Preview) 
 				{
-					SimPe.Geometry.Matrixd mt = SimPe.Geometry.Matrixd.RotateYawPitchRoll(Math.PI, -Math.PI/2, 0);//.RotateX(Math.PI/-2) * SimPe.Geometry.Matrixd.RotateY(Math.PI);
+					SimPe.Geometry.Matrixd mt = SimPe.Geometry.Matrixd.RotateYawPitchRoll(Math.PI, -Math.PI/2, 0);
 					m = mt.To33Matrix();
-					//rotate 90° around X-Axis
-					/*m = new SimPe.Geometry.Matrixd(3, 3);
-					m[0,0] = -1;			m[0,1] = 0;			m[0,2] = 0;
-					m[1,0] = 0;			m[1,1] = 0;			m[1,2] = 1;
-					m[2,0] = 0;			m[2,1] = 1;			m[2,2] = 0;*/
+					
+					mt = SimPe.Geometry.Matrixd.RotateYawPitchRoll(Math.PI, -Math.PI/2, 0);
+					mi = mt.To33Matrix();
 				} 
-				else m=SimPe.Geometry.Matrixd.GetIdentity(3, 3);	
+				else 
+				{
+					m = SimPe.Geometry.Matrixd.GetIdentity(3, 3);	
+					mi = SimPe.Geometry.Matrixd.GetIdentity(3, 3);	
+				}
 
-				ms = new SimPe.Geometry.Matrixd(3, 3);
-				ms[0,0] = Helper.WindowsRegistry.ImportExportScaleFactor;	ms[0,1] = 0;												ms[0,2] = 0;
-				ms[1,0] = 0;												ms[1,1] = Helper.WindowsRegistry.ImportExportScaleFactor;	ms[1,2] = 0;
-				ms[2,0] = 0;												ms[2,1] = 0;												ms[2,2] = Helper.WindowsRegistry.ImportExportScaleFactor;
-				
-				//get the inverse
-				msi = !ms;
+				ms = SimPe.Geometry.Matrixd.Scale(Helper.WindowsRegistry.ImportExportScaleFactor).To33Matrix();
+				msi = SimPe.Geometry.Matrixd.Scale(1.0/Helper.WindowsRegistry.ImportExportScaleFactor).To33Matrix();				
 							
 				if (m.Orthogonal) 
 				{
-					mi = m.GetTranspose();
 					mn = m;
 					mni = mn.GetTranspose();
 				}
 				else 
 				{
-					mi = !m;
 					mn = mi.GetTranspose();
 					mni = !mn;
 				}
@@ -104,52 +98,16 @@ namespace SimPe.Plugin.Gmdc
 		public ElementOrder(ElementSorting sorting) 
 		{
 			Sorting = sorting;
-
-			if (components == null) 
-			{
-				components = new byte[2,3];
-
-				//XYZ-Order
-				components[0,0] = 0;
-				components[0,1] = 1;
-				components[0,2] = 2;
-
-				//XZY-Order
-				components[1,0] = 0;
-				components[1,1] = 2;
-				components[1,2] = 1;
-			}
-
-			
-		}
-
-		/// <summary>
-		/// Index of the X-Components
-		/// </summary>
-		public int X
-		{
-			get { return components[(int)s, 0]; }
-		}
-
-		/// <summary>
-		/// Index of the Y-Components
-		/// </summary>
-		public int Y
-		{
-			get { return components[(int)s, 1]; }
-		}
-
-		/// <summary>
-		/// Index of the Z-Components
-		/// </summary>
-		public int Z
-		{
-			get { return components[(int)s, 2]; }
 		}
 
 		public SimPe.Geometry.Matrixd TransformMatrix
 		{
 			get {return m;}
+		}
+
+		public SimPe.Geometry.Matrixd ScaleMatrix
+		{
+			get {return ms;}
 		}
 
 		/// <summary>
