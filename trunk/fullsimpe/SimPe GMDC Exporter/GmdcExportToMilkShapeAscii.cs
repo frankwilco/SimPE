@@ -317,7 +317,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 					Vector3f r = q.Axis;
 					r = Component.Transform(r);
 					q = Quaternion.FromAxisAngle(r, q.Angle);					
-					q.W = -q.W;
+					//q.W = -q.W;
 					r = q.GetEulerAngles();
 											
 					writer.WriteLine("8 " + 

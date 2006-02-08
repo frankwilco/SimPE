@@ -77,14 +77,20 @@ namespace SimPe.Geometry
 			this.y = y;
 		}
 
+		protected double EpsilonCorrect(double v)
+		{
+			if (Math.Abs(v)<0.00001) return 0;
+			return v;
+		}
+
 		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
 		/// </summary>
 		/// <param name="reader">The Stream that contains the FileData</param>
 		public virtual void Unserialize(System.IO.BinaryReader reader)
 		{
-			x = reader.ReadSingle();			
-			y = reader.ReadSingle();
+			x = EpsilonCorrect(reader.ReadSingle());			
+			y = EpsilonCorrect(reader.ReadSingle());
 		}
 
 		/// <summary>
@@ -167,7 +173,7 @@ namespace SimPe.Geometry
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
 			base.Unserialize(reader);
-			z = reader.ReadSingle();
+			z = EpsilonCorrect(reader.ReadSingle());
 		}
 
 		/// <summary>
@@ -455,6 +461,11 @@ namespace SimPe.Geometry
 			Vector3f v = new Vector3f(this.X, this.Y, this.Z);
 			return v;
 		}
+
+		/*public static implicit operator Ambertation.Geometry.Vector3(Vector3f v)
+		{
+			return new Ambertation.Geometry.Vector3(v.X, v.Y, v.Z);
+		}*/
 	}
 
 	/// <summary>
@@ -560,7 +571,7 @@ namespace SimPe.Geometry
 		{
 			get 
 			{ 
-				if (double.IsNaN(w)) return 0;
+				if (double.IsNaN(w)) return 0;				
 				return w; 
 			}
 			set { w = value; }
@@ -603,7 +614,8 @@ namespace SimPe.Geometry
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
 			base.Unserialize(reader);
-			w = reader.ReadSingle();			
+			w = EpsilonCorrect(reader.ReadSingle());	
+			
 		}
 
 		/// <summary>

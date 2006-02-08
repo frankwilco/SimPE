@@ -60,11 +60,13 @@ namespace SimPe.Plugin.Gmdc
 				s = value; 
 				if (s==ElementSorting.XZY||s==ElementSorting.Preview) 
 				{
+					SimPe.Geometry.Matrixd mt = SimPe.Geometry.Matrixd.RotateYawPitchRoll(Math.PI, -Math.PI/2, 0);//.RotateX(Math.PI/-2) * SimPe.Geometry.Matrixd.RotateY(Math.PI);
+					m = mt.To33Matrix();
 					//rotate 90° around X-Axis
-					m = new SimPe.Geometry.Matrixd(3, 3);
+					/*m = new SimPe.Geometry.Matrixd(3, 3);
 					m[0,0] = -1;			m[0,1] = 0;			m[0,2] = 0;
 					m[1,0] = 0;			m[1,1] = 0;			m[1,2] = 1;
-					m[2,0] = 0;			m[2,1] = 1;			m[2,2] = 0;
+					m[2,0] = 0;			m[2,1] = 1;			m[2,2] = 0;*/
 				} 
 				else m=SimPe.Geometry.Matrixd.GetIdentity(3, 3);	
 
@@ -92,6 +94,8 @@ namespace SimPe.Plugin.Gmdc
 		}
 
 		SimPe.Geometry.Matrixd m, mn, mi, mni, ms, msi;
+
+		
 
 		/// <summary>
 		/// Create a new Class with the given Sorting
@@ -141,6 +145,11 @@ namespace SimPe.Plugin.Gmdc
 		public int Z
 		{
 			get { return components[(int)s, 2]; }
+		}
+
+		public SimPe.Geometry.Matrixd TransformMatrix
+		{
+			get {return m;}
 		}
 
 		/// <summary>

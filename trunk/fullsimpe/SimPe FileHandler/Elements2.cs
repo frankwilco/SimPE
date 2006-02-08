@@ -431,7 +431,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.tbnrefhash.AutoSize = ((bool)(resources.GetObject("tbnrefhash.AutoSize")));
 			this.tbnrefhash.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbnrefhash.BackgroundImage")));
 			this.tbnrefhash.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbnrefhash.Dock")));
-			this.tbnrefhash.Enabled = ((bool)(resources.GetObject("tbnrefhash.Enabled")));
+			this.tbnrefhash.Enabled = true;
 			this.tbnrefhash.Font = ((System.Drawing.Font)(resources.GetObject("tbnrefhash.Font")));
 			this.tbnrefhash.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbnrefhash.ImeMode")));
 			this.tbnrefhash.Location = ((System.Drawing.Point)(resources.GetObject("tbnrefhash.Location")));
