@@ -567,38 +567,44 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <returns>null or the RCOl Ressource</returns>
 		public Rcol FindReferencingCRES()
-		{			
-			FileTable.FileIndex.Load();
-			FileTable.FileIndex.StoreCurrentState();
-			FileTable.FileIndex.AddIndexFromPackage(this.Parent.Package);
-			WaitingScreen.Wait();			
+		{		
+			WaitingScreen.Wait();	
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndex nfi = FileTable.FileIndex.AddNewChild();
+			nfi.AddIndexFromPackage(this.Parent.Package);					
+			Rcol cres = FindReferencingCRES_Int();
+			FileTable.FileIndex.RemoveChild(nfi);
+			nfi.Clear();	
 
-			WaitingScreen.UpdateMessage("Loading Geometry Node");
-			Rcol step = FindReferencingParent(Data.MetaData.GMND);
-			if (step==null) 
+			if (cres==null && !FileTable.FileIndex.Loaded) 
 			{
-				WaitingScreen.Stop();
-				return null;
+				FileTable.FileIndex.Load();
+				cres = FindReferencingCRES_Int();
 			}
+			
+
+			WaitingScreen.Stop();
+			return cres;
+		}
+		/// <summary>
+		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
+		/// </summary>
+		/// <returns>null or the RCOl Ressource</returns>
+		Rcol FindReferencingCRES_Int()
+		{		
+			WaitingScreen.UpdateMessage("Loading Geometry Node");
+			Rcol step = FindReferencingParent_NoLoad(Data.MetaData.GMND);
+			if (step==null) return null;
+			
 
 			WaitingScreen.UpdateMessage("Loading Shape");
-			step = ((GeometryNode)step.Blocks[0]).FindReferencingSHPE();
-			if (step==null) 
-			{
-				WaitingScreen.Stop();
-				return null;
-			}
+			
+			step = ((GeometryNode)step.Blocks[0]).FindReferencingSHPE_NoLoad();
+			if (step==null) return null;			
 			
 			WaitingScreen.UpdateMessage("Loading ResourceNode");
-			step = step.Blocks[0].FindReferencingParent(Data.MetaData.CRES);
-			if (step==null) 
-			{
-				WaitingScreen.Stop();
-				return null;
-			}
+			step = ((AbstractRcolBlock)step.Blocks[0]).FindReferencingParent_NoLoad(Data.MetaData.CRES);
+			if (step==null) return null;									
 			
-			FileTable.FileIndex.RestoreLastState();
-			WaitingScreen.Stop();
 			return step;
 		}
 

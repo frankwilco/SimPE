@@ -282,7 +282,6 @@ namespace SimPe.Plugin
 				return sgres.FileName + " ("+this.BlockName+")";
 			}
 		}
-
 		/// <summary>
 		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
 		/// </summary>
@@ -290,7 +289,30 @@ namespace SimPe.Plugin
 		/// <returns>null or the RCOl Ressource</returns>
 		public Rcol FindReferencingParent(uint type)
 		{
-			FileTable.FileIndex.Load();
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndex nfi = FileTable.FileIndex.AddNewChild();
+			nfi.AddIndexFromPackage(this.Parent.Package);
+			Rcol rcol = FindReferencingParent_NoLoad(type);
+			FileTable.FileIndex.RemoveChild(nfi);
+			nfi.Clear();
+
+			if (rcol==null&& !FileTable.FileIndex.Loaded) 
+			{
+				FileTable.FileIndex.Load();
+				rcol = FindReferencingParent_NoLoad(type);
+			}
+
+			if (rcol==null) throw new Warning("No Parent was found in the Search Path!", "Either there is no Scenegraph Resource that is referencing the File, or the package containing that Resource is not in the FileTable (see Extra->Preferences...)");
+			return rcol;			
+		}
+
+		/// <summary>
+		/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
+		/// </summary>
+		/// <param name="type">the Type of the ressource youar looking for</param>
+		/// <returns>null or the RCOl Ressource</returns>
+		/// <remarks>This Version will not load the FileTable</remarks>
+		public Rcol FindReferencingParent_NoLoad(uint type)
+		{
 			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(type, true);
 			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item  in items) 
 			{				
@@ -316,7 +338,7 @@ namespace SimPe.Plugin
 				}
 			}
 
-			throw new Warning("No Parent was found in the Search Path!", "Either there is no Scenegraph Resource that is referencing the File, or the package containing that Resource is not in the FileTable (see Extra->Preferences...)");
+			return null;
 		}
 
 		public abstract void Dispose();

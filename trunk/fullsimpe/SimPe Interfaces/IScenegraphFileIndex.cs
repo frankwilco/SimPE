@@ -248,6 +248,14 @@ namespace SimPe.Interfaces.Scenegraph
 			get;set;
 		}
 
+		/// <summary>
+		/// Returns true, if the FileTable is Loaded
+		/// </summary>
+		bool Loaded
+		{
+			get;
+		}
+
 		#region FileTable Childs
 		/// <summary>
 		/// True, if this Package was already added to the FileTable (or one of its Childs)

@@ -211,6 +211,16 @@ namespace SimPe.Plugin
 		public Rcol FindReferencingSHPE()
 		{
 			FileTable.FileIndex.Load();
+			return FindReferencingSHPE_NoLoad();
+		}
+			/// <summary>
+			/// Returns the RCOL which lists this Resource in it's ReferencedFiles Attribute
+			/// </summary>
+			/// <returns>null or the RCOl Ressource</returns>
+			/// <remarks>This Version will not Load the FileTable!</remarks>
+		public Rcol FindReferencingSHPE_NoLoad()
+		{
+			
 			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(SimPe.Data.MetaData.SHPE, true);
 			string mn = Hashes.StripHashFromName(this.Parent.FileName.Trim().ToLower());
 			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item  in items) 
