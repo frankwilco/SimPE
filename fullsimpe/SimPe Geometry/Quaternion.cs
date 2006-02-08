@@ -310,9 +310,10 @@ namespace SimPe.Geometry
 		public double Angle 
 		{
 			get 
-			{
+			{				
 				MakeRobust();
-				if (W==0) return 0;
+				this.MakeUnitQuaternion();
+				//if (W==0) return 0;
 				return (double)(Math.Acos(W) * 2.0);
 			}
 		}
@@ -323,9 +324,10 @@ namespace SimPe.Geometry
 		public Vector3f Axis 
 		{
 			get 
-			{
+			{				
 				MakeRobust();
-				if (W==0) return new Vector3f(0, 0, 1);
+				this.MakeUnitQuaternion();
+				//if (W==0) return new Vector3f(0, 0, 1);
 				double sina = Math.Sqrt(1-Math.Pow(W, 2)); //(double)Math.Sin(Angle/2.0);
 
 				if (sina == 0) return new Vector3f(0, 0, 0);		
@@ -349,7 +351,21 @@ namespace SimPe.Geometry
 
 			W = (double)Math.Cos(a/2.0);
 			MakeRobust();
+			this.MakeUnitQuaternion();
 		}
+
+		public Vector3f GetEulerAngles()
+		{
+			 return GetEulerAnglesYXZ();
+		}
+
+		protected double Clip1(double d)
+		{
+			if (d<-1) return -1;
+			if (d>1) return 1;
+			return d;
+		}
+
 		/// <summary>
 		/// Get the Euler Angles represented by this Quaternion
 		/// </summary>
@@ -358,23 +374,61 @@ namespace SimPe.Geometry
 		/// Y=Yaw
 		/// Z=Roll
 		/// </remarks>
-		public Vector3f GetEulerAngles()
+		public Vector3f GetEulerAnglesYXZ()
 		{			
 			Matrixd m = this.Matrix;
 			Vector3f v = new Vector3f(0, 0, 0);
 
-			v.X = Math.Asin(-m[1, 2]);
+			v.X = Math.Asin(-Clip1(m[1, 2]));
 			if (v.X < Math.PI / 2.0)
 			{
 				if (v.X > Math.PI / -2.0) 
 				{
-					v.Y = (float)Math.Atan2(m[0, 2], m[2, 2]);
-					v.Z = (float)Math.Atan2(m[1, 0], m[1, 1]);
+					v.Y = (float)Math.Atan2(Clip1(m[0, 2]), Clip1(m[2, 2]));
+					v.Z = (float)Math.Atan2(Clip1(m[1, 0]), Clip1(m[1, 1]));
 				} 
 				else 
 				{
-					v.Y = (float)(-1 * Math.Atan2(-m[0, 1], m[0, 0]));
+					v.Y = (float)(-1 * Math.Atan2(-Clip1(m[0, 1]), Clip1(m[0, 0])));
 				}
+			} 
+			else 
+			{
+				v.Y = (float)Math.Atan2(-Clip1(m[0, 1]), Clip1(m[0,0]));
+			}
+
+			return v;
+		}		
+
+		/// <summary>
+		/// Get the Euler Angles represented by this Quaternion
+		/// </summary>
+		/// <returns></returns>
+		/// X=Pitch
+		/// Y=Yaw
+		/// Z=Roll
+		/// </remarks>
+		public Vector3f GetEulerAnglesZXY()
+		{			
+			Matrixd m = this.Matrix;
+			Vector3f v = new Vector3f(0, 0, 0);
+
+			v.X = Math.Asin(m[2, 1]);
+			if (v.X < Math.PI / 2.0)
+			{
+				if (v.X > Math.PI / -2.0) 
+				{
+					v.Z = (float)Math.Atan2(-m[0, 1], m[1, 1]);
+					v.Y = (float)Math.Atan2(-m[2, 0], m[2, 2]);
+				} 
+				else 
+				{
+					v.Z = (float)(-1 * Math.Atan2(-m[0, 2], m[0, 0]));
+				}
+			} 
+			else 
+			{
+				v.Z = (float)Math.Atan2(m[0, 2], m[0,0]);
 			}
 
 			return v;
@@ -419,7 +473,8 @@ namespace SimPe.Geometry
 
 			Quaternion ret =  Quaternion.FromImaginaryReal(x, y, z, w);
 			ret.MakeRobust();
-			Console.WriteLine(ret.Length+" "+ret);
+			ret.MakeUnitQuaternion();
+			//Console.WriteLine(ret.Length+" "+ret);
 			return ret;
 		}
 
@@ -443,7 +498,7 @@ namespace SimPe.Geometry
 		/// </summary>
 		public static Quaternion FromEulerAngles(double yaw, double pitch, double roll) 
 		{			
-			return FromEulerAngles(new Vector3f(pitch, yaw, roll));
+			return FromRotationMatrix(Matrixd.RotateYawPitchRoll(yaw, pitch, roll));			
 		}
 
 		public static Quaternion FromAxisAngle(Vector3f v, double angle)
@@ -491,7 +546,24 @@ namespace SimPe.Geometry
 
 		
 
-		
+		public string ToLinedString()
+		{
+			string s ="";
+			s+= "X: "+X.ToString()+"\n";
+			s+= "Y: "+Y.ToString()+"\n";
+			s+= "Z: "+Z.ToString()+"\n";
+			s+= "W: "+W.ToString()+"\n";
+			s+= "-----\n";
+			s+= "X: "+Axis.X.ToString()+"\n";
+			s+= "Y: "+Axis.Y.ToString()+"\n";
+			s+= "Z: "+Axis.Z.ToString()+"\n";
+			s+= "A: "+RadToDeg(Angle)+"\n";
+			s+= "-----\n";
+			s+= "Y: "+RadToDeg(GetEulerAngles().Y)+"\n";
+			s+= "P: "+RadToDeg(GetEulerAngles().X)+"\n";
+			s+= "R: "+RadToDeg(GetEulerAngles().Z)+"\n";
+			return s;
+		}
 	
 
 		public override string ToString()
@@ -529,10 +601,16 @@ namespace SimPe.Geometry
 
 		protected void MakeRobust()
 		{
+			const float percision = 100000;
 			if (Math.Abs(X)<0.00001) X=0;
 			if (Math.Abs(Y)<0.00001) Y=0;
 			if (Math.Abs(Z)<0.00001) Z=0;
 			if (Math.Abs(W)<0.00001) W=0;
+
+			X = (float)((int)(X*percision))/percision;
+			Y = (float)((int)(Y*percision))/percision;
+			Z = (float)((int)(Z*percision))/percision;
+			W = (float)((int)(W*percision))/percision;
 		}
 
 		/// <summary>
@@ -544,9 +622,9 @@ namespace SimPe.Geometry
 		public Matrixd Matrix
 		{
 			get 
-			{
-				//this.MakeUnitQuaternion();
+			{				
 				MakeRobust();
+				this.MakeUnitQuaternion();
 
 				Matrixd m = new SimPe.Geometry.Matrixd(4, 4);
 				double sx = Math.Pow(X, 2);

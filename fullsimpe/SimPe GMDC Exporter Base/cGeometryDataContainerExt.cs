@@ -41,19 +41,19 @@ namespace SimPe.Plugin
 			this.gmdc = gmdc;
 		}		
 
-		public Ambertation.Scenes.Scene GetScene(string absimgpath, string imgfolder)
+		public Ambertation.Scenes.Scene GetScene(string absimgpath, string imgfolder, ElementOrder component)
 		{
-			return GetScene(gmdc.Groups, absimgpath, imgfolder);
+			return GetScene(gmdc.Groups, absimgpath, imgfolder, component);
 		}
 
-		public Ambertation.Scenes.Scene GetScene(string absimgpath)
+		public Ambertation.Scenes.Scene GetScene(string absimgpath, ElementOrder component)
 		{
-			return GetScene(gmdc.Groups, absimgpath, null);
+			return GetScene(gmdc.Groups, absimgpath, null, component);
 		}
 
-		public Ambertation.Scenes.Scene GetScene()
+		public Ambertation.Scenes.Scene GetScene(ElementOrder component)
 		{
-			return GetScene(gmdc.Groups, null, null);
+			return GetScene(gmdc.Groups, null, null, component);
 		}
 
 		void AddJoint(Ambertation.Scenes.Joint parent, int index, Hashtable jointmap, ElementOrder component)
@@ -66,16 +66,22 @@ namespace SimPe.Plugin
 			{
 				Vector3f tmp =  j.AssignedTransformNode.Transformation.Translation;
 				tmp = component.TransformScaled(tmp);			
+				//tmp = component.ScaleMatrix * tmp;
 				
 				nj.Translation.X = tmp.X; nj.Translation.Y = tmp.Y; nj.Translation.Z = tmp.Z;
 
 				Quaternion q = j.AssignedTransformNode.Transformation.Rotation;
-				/*Matrixd m = component.TransformMatrix*q.Matrix.To33Matrix();
-				q = Quaternion.FromRotationMatrix(m);*/
+				//Console.WriteLine(j.Name+": ");
+				//Console.WriteLine("    "+q.ToLinedString()+" --> ");
+				/*Quaternion qm = Quaternion.FromRotationMatrix(component.TransformMatrix);				
+				q = qm*q;*/
 				Vector3f r = q.Axis;
-				r = component.Transform(r);
+				
+				r = component.Transform(r);				
 				q = Quaternion.FromAxisAngle(r, q.Angle);	
+				
 				tmp = q.GetEulerAngles();
+				//Console.WriteLine("        "+q.ToLinedString());
 				nj.Rotation.X = tmp.X; nj.Rotation.Y = tmp.Y; nj.Rotation.Z = tmp.Z;
 
 				IntArrayList li = j.AssignedTransformNode.ChildBlocks;
@@ -99,6 +105,11 @@ namespace SimPe.Plugin
 			foreach (int k in relationmap.Keys)
 				if ((int)relationmap[k]==-1)
 					js.Add(k);
+
+			Quaternion r = Quaternion.FromRotationMatrix(component.TransformMatrix);
+			Vector3f tmp = r.GetEulerAngles();
+			scn.RootJoint.Name = "SIMPE_ROOT_IGNORE";
+			//scn.RootJoint.Rotation.X = tmp.X; scn.RootJoint.Rotation.Y = tmp.Y; scn.RootJoint.Rotation.Z = tmp.Z; 
 			
 			Hashtable jointmap = new Hashtable();
 			foreach (int index in js)
@@ -107,17 +118,17 @@ namespace SimPe.Plugin
 			return jointmap;
 		}	
 	
-		public Ambertation.Scenes.Scene GetScene(GmdcGroups groups)
+		public Ambertation.Scenes.Scene GetScene(GmdcGroups groups, ElementOrder component)
 		{
-			return GetScene(groups, null, null);
+			return GetScene(groups, null, null, component);
 		}
 
-		public Ambertation.Scenes.Scene GetScene(GmdcGroups groups, string absimgpath)
+		public Ambertation.Scenes.Scene GetScene(GmdcGroups groups, string absimgpath, ElementOrder component)
 		{
-			return GetScene(groups, absimgpath, null);
+			return GetScene(groups, absimgpath, null, component);
 		}
 
-		public Ambertation.Scenes.Scene GetScene(GmdcGroups groups, string absimgpath, string imgfolder)
+		public Ambertation.Scenes.Scene GetScene(GmdcGroups groups, string absimgpath, string imgfolder, ElementOrder component)
 		{
 			if (absimgpath!=null) 
 			{
@@ -128,7 +139,6 @@ namespace SimPe.Plugin
 				if (!System.IO.Directory.Exists(absimgpath)) System.IO.Directory.CreateDirectory(absimgpath);
 			}
 
-			ElementOrder component = new ElementOrder(ElementSorting.XZY);
 			Scene scn = new Scene();
 
 			Hashtable jointmap = AddJointsToScene(scn, component);

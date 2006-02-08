@@ -99,7 +99,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 			
 
 			GeometryDataContainerExt gext = new GeometryDataContainerExt(Gmdc);
-			Ambertation.Scenes.Scene scn = gext.GetScene(this.Groups, path, name+".IMG");
+			Ambertation.Scenes.Scene scn = gext.GetScene(this.Groups, path, name+".IMG", this.Component);
 
 			Ambertation.XSI.IO.AsciiFile xsi = Ambertation.XSI.IO.AsciiFile.FromScene(scn, FileName);
 			xsi.SaveToStream(this.writer);
