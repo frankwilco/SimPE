@@ -200,12 +200,19 @@ namespace SimPe.Plugin
 					foreach (SimPe.Plugin.Gmdc.GmdcElementValueOneInt vi in bonee.Values)
 					{
 						byte[] data = vi.Bytes;
+						IntArrayList used = new IntArrayList();
+						
 						for (int datapos=0; datapos<3; datapos++) //we can only store 3 bone weights
 						{
 							byte b = data[datapos];
 							if (b!=0xff && b< g.UsedJoints.Count)
 							{
+								
 								int bnr = g.UsedJoints[b];
+								if (used.Contains(bnr))
+									Console.WriteLine("...");
+
+								used.Add(bnr);
 								Ambertation.Scenes.Joint nj = jointmap[bnr] as Ambertation.Scenes.Joint;
 								if (nj!=null)
 								{
@@ -220,14 +227,21 @@ namespace SimPe.Plugin
 											}
 										}
 
-									Ambertation.Scenes.Envelope e = m.GetJointEnvelope(nj);
+									//if there is no envelope for nj, make sure we get a new one
+									//with pos 0-Weights inserted
+									Ambertation.Scenes.Envelope e = m.GetJointEnvelope(nj, pos);
 									e.Weights.Add(w);
+									//added = true;
 								}
 							}
 						}
-
+						
 						pos ++;
-						m.SyncEnvelopeLenghts(); //fill al unset Elements with 0
+						m.SyncEnvelopeLenghts(pos); //fill all unset EnvelopeWeights with 0
+
+						if (m.Envelopes[0].Weights.Count!=pos)
+							Console.WriteLine("out of sync");
+						
 					} // bonee.Values
 					
 				}

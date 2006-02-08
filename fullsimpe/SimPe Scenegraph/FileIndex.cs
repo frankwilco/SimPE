@@ -430,6 +430,10 @@ namespace SimPe.Plugin
 		}
 
 		bool loaded;
+		public bool Loaded
+		{
+			get {return loaded;}
+		}
 		/// <summary>
 		/// Load the FileIndex if it is not available yet
 		/// </summary>

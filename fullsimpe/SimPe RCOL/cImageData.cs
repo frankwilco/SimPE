@@ -253,7 +253,28 @@ namespace SimPe.Plugin
 		{
 			if (datatype == MipMapType.LifoReference) 
 			{
-				FileTable.FileIndex.Load();
+				SimPe.Interfaces.Scenegraph.IScenegraphFileIndex nfi = FileTable.FileIndex.AddNewChild();
+				nfi.AddIndexFromPackage(this.parent.Parent.Package);
+				bool succ = GetReferencedLifo_NoLoad();
+				FileTable.FileIndex.RemoveChild(nfi);
+				nfi.Clear();
+
+				if (!succ && !FileTable.FileIndex.Loaded)
+				{
+					FileTable.FileIndex.Load();
+					GetReferencedLifo_NoLoad();
+				}
+			}
+		}
+
+		/// <summary>
+		/// If this MipMap is a LifoReference, then this Method will try to load the Lifo Data
+		/// </summary>
+		protected bool GetReferencedLifo_NoLoad()
+		{
+			if (datatype == MipMapType.LifoReference) 
+			{
+				
 				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(this.lifofile, SimPe.Data.MetaData.LIFO, SimPe.Data.MetaData.LOCAL_GROUP, true);				
 				GenericRcol rcol = null;
 
@@ -282,8 +303,12 @@ namespace SimPe.Plugin
 
 					this.img = null;
 					this.Data = li.Data;
+
+					return true;
 				}
-			}
+			} else return true;
+
+			return false;
 		}
 
 		#region IDisposable Member
