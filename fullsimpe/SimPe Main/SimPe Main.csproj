@@ -289,6 +289,21 @@
                     Project = "{2EF93119-5C98-4167-B1AF-966E6A45AB79}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "xsi.library"
+                    AssemblyName = "xsi.library"
+                    HintPath = "..\xsi.library.dll"
+                />
+                <Reference
+                    Name = "ambertation.3D"
+                    AssemblyName = "ambertation.3D"
+                    HintPath = "..\ambertation.3D.dll"
+                />
+                <Reference
+                    Name = "ambertation.utilities"
+                    AssemblyName = "ambertation.utilities"
+                    HintPath = "..\ambertation.utilities.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -479,7 +494,7 @@
                 />
                 <File
                     RelPath = "OptionForm.cs"
-                    SubType = "Component"
+                    SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File

@@ -311,6 +311,7 @@ namespace SimPe.Geometry
 		{
 			get 
 			{
+				MakeRobust();
 				if (W==0) return 0;
 				return (double)(Math.Acos(W) * 2.0);
 			}
@@ -323,10 +324,11 @@ namespace SimPe.Geometry
 		{
 			get 
 			{
+				MakeRobust();
 				if (W==0) return new Vector3f(0, 0, 1);
 				double sina = Math.Sqrt(1-Math.Pow(W, 2)); //(double)Math.Sin(Angle/2.0);
 
-				
+				if (sina == 0) return new Vector3f(0, 0, 0);		
 				return new Vector3f(X / sina, Y /sina, Z / sina);
 			}
 		}
@@ -346,6 +348,7 @@ namespace SimPe.Geometry
 			Z = axis.Z * sina;
 
 			W = (double)Math.Cos(a/2.0);
+			MakeRobust();
 		}
 		/// <summary>
 		/// Get the Euler Angles represented by this Quaternion
@@ -356,7 +359,7 @@ namespace SimPe.Geometry
 		/// Z=Roll
 		/// </remarks>
 		public Vector3f GetEulerAngles()
-		{
+		{			
 			Matrixd m = this.Matrix;
 			Vector3f v = new Vector3f(0, 0, 0);
 
@@ -415,7 +418,7 @@ namespace SimPe.Geometry
 			}
 
 			Quaternion ret =  Quaternion.FromImaginaryReal(x, y, z, w);
-			
+			ret.MakeRobust();
 			Console.WriteLine(ret.Length+" "+ret);
 			return ret;
 		}
@@ -493,7 +496,7 @@ namespace SimPe.Geometry
 
 		public override string ToString()
 		{
-			return base.ToString() + " (X=" +Axis.X.ToString("N2") + ", Y=" + Axis.Y.ToString("N2") + ", Z=" + Axis.Z.ToString("N2") + ", a=" + RadToDeg(Angle).ToString("N1")+"    euler=h:"+Quaternion.RadToDeg(GetEulerAngles().X).ToString("N1")+"; p:"+Quaternion.RadToDeg(GetEulerAngles().Y).ToString("N1")+"; r:"+Quaternion.RadToDeg(GetEulerAngles().Z).ToString("N1") + ")";
+			return base.ToString() + " (X=" +Axis.X.ToString("N2") + ", Y=" + Axis.Y.ToString("N2") + ", Z=" + Axis.Z.ToString("N2") + ", a=" + RadToDeg(Angle).ToString("N1")+"    euler=y:"+Quaternion.RadToDeg(GetEulerAngles().Y).ToString("N1")+"; p:"+Quaternion.RadToDeg(GetEulerAngles().X).ToString("N1")+"; r:"+Quaternion.RadToDeg(GetEulerAngles().Z).ToString("N1") + ")";
 		}
 
 		/// <summary>
@@ -524,6 +527,14 @@ namespace SimPe.Geometry
 			return q;
 		}
 
+		protected void MakeRobust()
+		{
+			if (Math.Abs(X)<0.00001) X=0;
+			if (Math.Abs(Y)<0.00001) Y=0;
+			if (Math.Abs(Z)<0.00001) Z=0;
+			if (Math.Abs(W)<0.00001) W=0;
+		}
+
 		/// <summary>
 		/// Returns the Matirx for this Quaternion. 		
 		/// </summary>
@@ -535,6 +546,7 @@ namespace SimPe.Geometry
 			get 
 			{
 				//this.MakeUnitQuaternion();
+				MakeRobust();
 
 				Matrixd m = new SimPe.Geometry.Matrixd(4, 4);
 				double sx = Math.Pow(X, 2);
@@ -552,7 +564,7 @@ namespace SimPe.Geometry
 
 		void LoadCorrection()
 		{
-			W = -W;
+			//W = -W;
 			//X = -X;
 			//Y = Z;
 			//Z = -Z;

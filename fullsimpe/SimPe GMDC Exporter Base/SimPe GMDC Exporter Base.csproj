@@ -199,6 +199,16 @@
                     Project = "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "ambertation.3D"
+                    AssemblyName = "ambertation.3D"
+                    HintPath = "..\ambertation.3D.dll"
+                />
+                <Reference
+                    Name = "ambertation.utilities"
+                    AssemblyName = "ambertation.utilities"
+                    HintPath = "..\ambertation.utilities.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -295,6 +305,11 @@
                 />
                 <File
                     RelPath = "cGeometryDataContainer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "cGeometryDataContainerExt.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

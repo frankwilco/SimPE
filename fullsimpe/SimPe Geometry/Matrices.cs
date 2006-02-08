@@ -759,5 +759,16 @@ namespace SimPe.Geometry
 
 			return s;
 		}
+
+		public Matrixd To33Matrix()
+		{
+			Matrixd m = Matrixd.GetIdentity(3, 3);
+
+			for (int r=0; r<Math.Min(3, this.Rows); r++)
+				for (int c=0; c<Math.Min(3, this.Columns); c++)
+					m[r,c] = this[r,c];
+
+			return m;
+		}
 	}
 }
