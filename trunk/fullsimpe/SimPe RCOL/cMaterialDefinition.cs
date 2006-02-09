@@ -268,7 +268,7 @@ namespace SimPe.Plugin
 				form.lbfl.Items.Clear();
 				foreach (string fl in Listing) form.lbfl.Items.Add(fl);
 
-				if (Helper.WindowsRegistry.HiddenMode) 
+				//if (Helper.WindowsRegistry.HiddenMode) 
 				{
 					form.SetupGrid(this);
 				}				
@@ -284,14 +284,16 @@ namespace SimPe.Plugin
 			form.tabPage1.Tag = this;
 			tc.TabPages.Add(form.tabPage1);
 
+			
 			form.tabPage2.Tag = this;
 			tc.TabPages.Add(form.tabPage2);
+			
 
-			if (Helper.WindowsRegistry.HiddenMode) 
-			{
-				form.tGrid.Tag = this;
-				tc.TabPages.Add(form.tGrid);
-			}
+			//if (Helper.WindowsRegistry.HiddenMode) 
+		{
+			form.tGrid.Tag = this;
+			tc.TabPages.Add(form.tGrid);
+		}
 
 			tc.SelectedIndex = 1;			
 			if (parent!=null) parent.CallWhenTabPageChanged = new System.EventHandler(form.TxmtChangeTab);
@@ -398,9 +400,9 @@ namespace SimPe.Plugin
 		{
 			MaterialDefinitionProperty p;
 			Ambertation.Scenes.Material mat = scn.CreateMaterial(name);
-			p = this.GetProperty("stdMatSpecCoef");	if (p!=null) mat.Specular = p.ToRGB();
-			p = this.GetProperty("stdMatDiffCoef");	if (p!=null) mat.Diffuse = p.ToRGB();
-			p = this.GetProperty("stdMatEmissiveCoef");	if (p!=null) mat.Emmissive = p.ToRGB();
+			p = this.GetProperty("stdMatSpecCoef");	if (p!=null) mat.Specular = p.ToARGB();
+			p = this.GetProperty("stdMatDiffCoef");	if (p!=null) mat.Diffuse = p.ToARGB();
+			p = this.GetProperty("stdMatEmissiveCoef");	if (p!=null) mat.Emmissive = p.ToARGB();
 			p = this.GetProperty("stdMatSpecPower");	if (p!=null) mat.SpecularPower = p.ToValue();
 
 			p = this.GetProperty("stdMatAlphaBlendMode");
@@ -497,6 +499,7 @@ namespace SimPe.Plugin
 
 		public System.Drawing.Color ToARGB()
 		{			
+			if (this.ToFloat().Length<4) return ToRGB();
 			Ambertation.Geometry.Vector4 v = ToVector4();
 			return System.Drawing.Color.FromArgb((int)(v.X*0xff), (int)(v.Y*0xff), (int)(v.Z*0xff), (int)(v.W*0xff));
 		}

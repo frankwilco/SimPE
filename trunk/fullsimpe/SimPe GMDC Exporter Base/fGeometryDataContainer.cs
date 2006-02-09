@@ -2393,6 +2393,7 @@ namespace SimPe.Plugin
 		private void dxprev_ResetDevice(object sender, System.EventArgs e)
 		{
 			Ambertation.Graphics.DirectXPanel dx = sender as Ambertation.Graphics.DirectXPanel;
+			dx.CullMode = Microsoft.DirectX.Direct3D.Cull.None;
 			dx.Meshes.Clear();
 			dx.AddAxisMesh();
 			if (prevscn!=null)

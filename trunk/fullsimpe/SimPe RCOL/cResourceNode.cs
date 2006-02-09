@@ -335,6 +335,7 @@ namespace SimPe.Plugin
 			if (form==null) form = new fShapeRefNode();
 
 			form.cres_tv.Nodes.Clear();
+			form.tbfjoint.Text = "";
 			AddChildNode(form.cres_tv.Nodes, 0, this);
 			form.cres_tv.ExpandAll();
 		}

@@ -304,6 +304,53 @@ namespace SimPe.Geometry
 			}
 		}
 
+		bool IsNear(double val, double near, double delta)
+		{
+			return (Math.Abs(Math.Abs(val)-near)<delta);
+		}
+
+		protected double MakeRobustAngle(double rad)
+		{
+			return rad;
+			/*double sgn = 1; if (rad!=0) sgn = rad/Math.Abs(rad);
+			rad = Math.Abs(RadToDeg(rad));
+			if (rad>10)
+				rad = Math.Round(rad);
+
+			return DegToRad(sgn*rad);*/
+		}
+
+		protected void MakeRobust()
+		{
+			
+			/*const float percision = 100000;			
+
+			X = (float)((int)(X*percision))/percision;
+			Y = (float)((int)(Y*percision))/percision;
+			Z = (float)((int)(Z*percision))/percision;
+			W = (float)((int)(W*percision))/percision;*/
+
+			//this is a ingularity
+			if (IsNear(W, 0.7, 0.09) && IsNear(Z, 0.7, 0.09))
+			{
+
+				double sgnz = 1; if (Z!=0) sgnz = Z/Math.Abs(Z);
+				double sgnx = 1; //if (X!=0) sgnx = X/Math.Abs(X);
+				double sgny = 1; //if (Y!=0) sgny = Y/Math.Abs(Y);
+				Z = Z - (Math.Pow(X, 2) * sgnx+ Math.Pow(Y, 2) * sgny) *sgnz;
+				X= 0;
+				Y=0;
+				/*double d = (1 - Math.Pow(W, 2) -  Math.Pow(Z, 2));
+				Z = Math.Sqrt(Math.Pow(Z, 2) - d) * Z/Math.Abs(Z);
+				//W = Math.Sqrt(Math.Pow(W, 2) + d) * Z/Math.Abs(W);*/
+			}
+
+			if (IsNear(X, 1, 0.05)) { Y=0; Z=0; W=0;}
+			if (IsNear(Y, 1, 0.05)) { X=0; Z=0; W=0;}
+			if (IsNear(Z, 1, 0.05)) { Y=0; X=0; W=0;}
+			//if (IsNear(W, 1, 0.05)) { Y=0; Z=0; X=0;}
+		}
+
 		/// <summary>
 		/// Returns the Rotation Angle (in Radiants)
 		/// </summary>
@@ -356,7 +403,11 @@ namespace SimPe.Geometry
 
 		public Vector3f GetEulerAngles()
 		{
-			 return GetEulerAnglesYXZ();
+			Vector3f v =  GetEulerAnglesYXZ();
+			v.X = MakeRobustAngle(v.X);
+			v.Y = MakeRobustAngle(v.Y);
+			v.Z = MakeRobustAngle(v.Z);
+			return v;
 		}
 
 		protected double Clip1(double d)
@@ -599,19 +650,7 @@ namespace SimPe.Geometry
 			return q;
 		}
 
-		protected void MakeRobust()
-		{
-			const float percision = 100000;
-			if (Math.Abs(X)<0.00001) X=0;
-			if (Math.Abs(Y)<0.00001) Y=0;
-			if (Math.Abs(Z)<0.00001) Z=0;
-			if (Math.Abs(W)<0.00001) W=0;
-
-			X = (float)((int)(X*percision))/percision;
-			Y = (float)((int)(Y*percision))/percision;
-			Z = (float)((int)(Z*percision))/percision;
-			W = (float)((int)(W*percision))/percision;
-		}
+		
 
 		/// <summary>
 		/// Returns the Matirx for this Quaternion. 		

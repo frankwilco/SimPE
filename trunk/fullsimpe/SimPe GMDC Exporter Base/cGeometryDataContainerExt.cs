@@ -77,12 +77,12 @@ namespace SimPe.Plugin
 				//Console.WriteLine("    "+q.ToLinedString()+" --> ");
 				/*Quaternion qm = Quaternion.FromRotationMatrix(component.TransformMatrix);				
 				q = qm*q;*/
-				Vector3f r = q.Axis;
-				
-				r = component.Transform(r);				
+				Vector3f r = q.Axis;				
+				r = component.Transform(r);								
 				q = Quaternion.FromAxisAngle(r, q.Angle);	
 				
 				tmp = q.GetEulerAngles();
+
 				//Console.WriteLine("        "+q.ToLinedString());
 				nj.Rotation.X = tmp.X; nj.Rotation.Y = tmp.Y; nj.Rotation.Z = tmp.Z;
 
@@ -146,7 +146,7 @@ namespace SimPe.Plugin
 			Hashtable jointmap = new Hashtable();
 			try 
 			{
-				AddJointsToScene(scn, component);
+				jointmap = AddJointsToScene(scn, component);
 			} 
 			catch (Exception ex)
 			{
@@ -243,8 +243,8 @@ namespace SimPe.Plugin
 						{
 								
 							int bnr = g.UsedJoints[b];
-							if (used.Contains(bnr))
-								Console.WriteLine("...");
+							if (used.Contains(bnr)) continue;
+								
 
 							used.Add(bnr);
 							Ambertation.Scenes.Joint nj = jointmap[bnr] as Ambertation.Scenes.Joint;
@@ -271,11 +271,7 @@ namespace SimPe.Plugin
 					}
 						
 					pos ++;
-					m.SyncEnvelopeLenghts(pos); //fill all unset EnvelopeWeights with 0
-
-					if (m.Envelopes[0].Weights.Count!=pos)
-						Console.WriteLine("out of sync");
-						
+					m.SyncEnvelopeLenghts(pos); //fill all unset EnvelopeWeights with 0											
 				} // bonee.Values
 					
 			}
