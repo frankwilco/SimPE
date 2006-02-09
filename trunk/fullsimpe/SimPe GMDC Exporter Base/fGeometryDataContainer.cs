@@ -149,7 +149,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ComboBox cbaxis;
 		private System.Windows.Forms.LinkLabel linkLabel6;
 		private System.Windows.Forms.LinkLabel linkLabel7;
-		private Ambertation.Windows.Forms.DirectXPanel dxprev;
+		private Ambertation.Graphics.DirectXPanel dxprev;
 		private System.Windows.Forms.Label label21;
 		internal System.Windows.Forms.ComboBox cbGroupJoint;
 		private System.Windows.Forms.LinkLabel llAssign;
@@ -234,6 +234,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(fGeometryDataContainer));
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tGeometryDataContainer = new System.Windows.Forms.TabPage();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -298,7 +299,7 @@ namespace SimPe.Plugin
 			this.lb_itemsc3 = new System.Windows.Forms.ListBox();
 			this.tMesh = new System.Windows.Forms.TabPage();
 			this.cbCorrect = new System.Windows.Forms.CheckBox();
-			this.dxprev = new Ambertation.Windows.Forms.DirectXPanel();
+			this.dxprev = new Ambertation.Graphics.DirectXPanel();
 			this.cbaxis = new System.Windows.Forms.ComboBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
@@ -1174,11 +1175,25 @@ namespace SimPe.Plugin
 			// 
 			// dxprev
 			// 
+			this.dxprev.AlphaBlend = true;
+			this.dxprev.AlphaCullMode = Microsoft.DirectX.Direct3D.Cull.None;
+			this.dxprev.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.dxprev.AxisScale = 250F;
 			this.dxprev.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(128)), ((System.Byte)(255)));
+			this.dxprev.CullMode = Microsoft.DirectX.Direct3D.Cull.CounterClockwise;
+			this.dxprev.Effect = null;
+			this.dxprev.LineWidth = 0.1F;
 			this.dxprev.Location = new System.Drawing.Point(336, 8);
 			this.dxprev.Name = "dxprev";
+			this.dxprev.Pasue = false;
 			this.dxprev.Size = new System.Drawing.Size(304, 288);
 			this.dxprev.TabIndex = 31;
+			this.dxprev.UseEffect = false;
+			this.dxprev.UseLefthandedCoordinates = false;
+			this.dxprev.WorldMatrix = ((Microsoft.DirectX.Matrix)(resources.GetObject("dxprev.WorldMatrix")));
+			this.dxprev.ResetDevice += new System.EventHandler(this.dxprev_ResetDevice);
 			// 
 			// cbaxis
 			// 
@@ -1186,7 +1201,7 @@ namespace SimPe.Plugin
 			this.cbaxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbaxis.Location = new System.Drawing.Point(232, 240);
 			this.cbaxis.Name = "cbaxis";
-			this.cbaxis.Size = new System.Drawing.Size(96, 20);
+			this.cbaxis.Size = new System.Drawing.Size(96, 21);
 			this.cbaxis.TabIndex = 30;
 			this.cbaxis.SelectedIndexChanged += new System.EventHandler(this.ChangedAxis);
 			// 
@@ -1837,6 +1852,7 @@ namespace SimPe.Plugin
 			// lljointprev
 			// 
 			this.lljointprev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.lljointprev.Enabled = false;
 			this.lljointprev.Location = new System.Drawing.Point(528, 232);
 			this.lljointprev.Name = "lljointprev";
 			this.lljointprev.Size = new System.Drawing.Size(56, 23);
@@ -2235,10 +2251,55 @@ namespace SimPe.Plugin
 				lb_itemsc.Tag = null;
 			}
 		}
+
+		internal void ResetPreviewCamera(bool weak)
+		{
+			if (!weak) dxprev.ResetDefaultViewport();
+			dxprev.Viewport.NearPlane = Helper.WindowsRegistry.ImportExportScaleFactor / 10;
+			dxprev.Viewport.FarPlane = dxprev.Viewport.NearPlane * 10000;
+			dxprev.Viewport.BoundingSphereRadius = Math.Min(dxprev.Viewport.BoundingSphereRadius, Helper.WindowsRegistry.ImportExportScaleFactor);
+			//dxprev.Viewport.Aspect = (float)dxprev.Width/(float)dxprev.Height;
+		}
+
+		internal void ResetPreview()
+		{
+			prevscn = null;
+			dxprev.CullMode = Microsoft.DirectX.Direct3D.Cull.Clockwise;
+			dxprev.Reset();
+			ResetPreviewCamera(false);
+		}
 		
+		Ambertation.Scenes.Scene prevscn;
 		private void Preview(object sender, System.EventArgs e)
 		{
-			
+			GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
+			Wait.SubStart();
+			Wait.Message = "Loading Preview...";
+			try 
+			{
+				GeometryDataContainerExt gmdcext = new GeometryDataContainerExt(gmdc);
+				bool resetcam = prevscn==null;
+				prevscn = gmdcext.GetScene(GetModelsExt(), new ElementOrder(Gmdc.ElementSorting.Preview));
+				this.dxprev.Reset();	
+				this.ResetPreviewCamera(!resetcam);
+			} 
+			catch (System.IO.FileNotFoundException)
+			{
+				WaitingScreen.Stop();
+				if (MessageBox.Show("The Microsoft Managed DirectX Extensions were not found on your System. Without them, the Preview is not available.\n\nYou can install them manually, by extracting the content of the DirectX\\ManagedDX.CAB on your Sims 2 Installation CD #1. If you double click on the extracted msi File, all needed Files will be installed.\n\nYou can also let SimPE install it automatically. SimPE will download the needed Files (3.5MB) from the SimPE Homepage and install them. Do you want SimPE to download and install the Files?", "Warning", MessageBoxButtons.YesNo)==DialogResult.Yes)
+				{
+					if (WebUpdate.InstallMDX()) MessageBox.Show("Managed DirectX Extension were installed succesfully!");
+				}
+					
+				return;
+			}
+			catch (Exception ex) 
+			{
+				Console.WriteLine(ex+"\n"+ex.StackTrace);
+			}
+		
+			Wait.SubStop();
+			/*
 			if (this.tMesh.Tag != null)
 			{
 				WaitingScreen.Wait();
@@ -2277,7 +2338,7 @@ namespace SimPe.Plugin
 				dxprev.BackColor = cd.Color;
 				WaitingScreen.Stop();
 				
-			}		
+			}		*/
 		}
 
 		/// <summary>
@@ -2327,6 +2388,15 @@ namespace SimPe.Plugin
 				pg.SelectedObject = ((SimPe.CountedListItem)lb.Items[lb.SelectedIndex]).Object;
 				pg.Refresh();
 			}
+		}
+
+		private void dxprev_ResetDevice(object sender, System.EventArgs e)
+		{
+			Ambertation.Graphics.DirectXPanel dx = sender as Ambertation.Graphics.DirectXPanel;
+			dx.Meshes.Clear();
+			dx.AddAxisMesh();
+			if (prevscn!=null)
+				dx.AddScene(this.prevscn);			
 		}
 
 		private void llAddBB_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
@@ -2427,11 +2497,13 @@ namespace SimPe.Plugin
 
 		private void dxprev_SizeChanged(object sender, System.EventArgs e)
 		{
-			int width = label20.Left - lbmodel.Right - 16;
-			int height = label20.Height;
+		//	int width = label20.Left - lbmodel.Right - 16;
+	//		int height = label20.Height;
 
-			dxprev.Width = Math.Min(width, height);
-			dxprev.Height = dxprev.Width;
+		//	dxprev.Width = Math.Min(width, height);
+		//	dxprev.Height = dxprev.Width;
+		//	dxprev.Viewport.Aspect = (float)dxprev.Width/(float)dxprev.Height;
+			
 		}
 
 		public static int DefaultSelectedAxisIndex
@@ -2578,7 +2650,7 @@ namespace SimPe.Plugin
 
 					System.Collections.Hashtable txtrs = new Hashtable();
 
-					dxprev.LoadMesh(xfile, txtrs);
+					//dxprev.LoadMesh(xfile, txtrs);
 				} 
 				catch (Exception ex)
 				{

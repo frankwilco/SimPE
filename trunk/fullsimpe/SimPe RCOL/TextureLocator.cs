@@ -154,6 +154,19 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Collec all Material
+		/// </summary>
+		/// <param name="gmdc">The GMDC File you want to find the Textures for</param>
+		/// <returns>The Keys of the Hashtabel are the Subset names and the Values are the TXTR Files</returns>
+		public Hashtable FindMaterials(Rcol gmdc)
+		{
+			Rcol gmnd = this.FindReferencingGMND(gmdc, null);
+			Rcol shpe = this.FindReferencingSHPE(gmnd, null);
+			Hashtable txmts = this.FindReferencedTXMT(shpe, null);
+			return txmts;
+		}
+
+		/// <summary>
 		/// Collec all Textures
 		/// </summary>
 		/// <param name="gmdc">The GMDC File you want to find the Textures for</param>
@@ -165,6 +178,20 @@ namespace SimPe.Plugin
 			Hashtable txmts = this.FindReferencedTXMT(shpe, null);
 			Hashtable txtrs = this.FindReferencedTXTR(txmts, null);
 			return txtrs;
+		}
+
+		public Hashtable GetMaterials(Hashtable txmts, Ambertation.Scenes.Scene scn)
+		{
+			Hashtable list = new Hashtable();
+
+			foreach (string s in txmts.Keys) 
+			{
+				Rcol rcol = (Rcol)txmts[s];
+				MaterialDefinition md = (MaterialDefinition)rcol.Blocks[0];
+
+				list[s] = md.ToSceneMaterial(scn, Hashes.StripHashFromName(rcol.FileName));
+			}
+			return list;
 		}
 
 		/// <summary>

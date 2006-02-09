@@ -236,6 +236,7 @@ namespace SimPe.Plugin
 		protected override void InitTabPage() 
 		{
 			if (form==null) form = new fGeometryDataContainer(); 
+			form.ResetPreview();
 			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
 
 			if (Helper.WindowsRegistry.HiddenMode) 
