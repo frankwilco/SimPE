@@ -389,6 +389,28 @@ namespace SimPe.Plugin
 					}
 				}
 		}
+
+		/// <summary>
+		/// Creates a Material Object form this Block
+		/// </summary>
+		/// <returns></returns>
+		public Ambertation.Scenes.Material ToSceneMaterial(Ambertation.Scenes.Scene scn, string name)
+		{
+			MaterialDefinitionProperty p;
+			Ambertation.Scenes.Material mat = scn.CreateMaterial(name);
+			p = this.GetProperty("stdMatSpecCoef");	if (p!=null) mat.Specular = p.ToRGB();
+			p = this.GetProperty("stdMatDiffCoef");	if (p!=null) mat.Diffuse = p.ToRGB();
+			p = this.GetProperty("stdMatEmissiveCoef");	if (p!=null) mat.Emmissive = p.ToRGB();
+			p = this.GetProperty("stdMatSpecPower");	if (p!=null) mat.SpecularPower = p.ToValue();
+
+			p = this.GetProperty("stdMatAlphaBlendMode");
+			if (p!=null)
+			{
+				mat.Texture.AlphaBlend = p.Value=="blend";
+				//if (mat.Texture.AlphaBlend) mat.Diffuse = System.Drawing.Color.FromArgb(0x10, mat.Diffuse);
+			}
+			return mat;
+		}
 		
 
 		#region IDisposable Member
@@ -451,11 +473,74 @@ namespace SimPe.Plugin
 			writer.Write(val);
 		}
 
+		public double ToValue()
+		{
+			double[] list = ToFloat();
+			if (list.Length>0) return list[0];			
+			return 0;
+		}
+
+		public Ambertation.Geometry.Vector2 ToVector2()
+		{
+			double[] list = ToFloat();
+			Ambertation.Geometry.Vector2 v = Ambertation.Geometry.Vector2.Zero;
+			if (list.Length>0) v.X=list[0];
+			if (list.Length>1) v.Y=list[1];
+			return v;
+		}
+
+		public System.Drawing.Color ToRGB()
+		{			
+			Ambertation.Geometry.Vector3 v = ToVector3();
+			return System.Drawing.Color.FromArgb((int)(v.X*0xff), (int)(v.Y*0xff), (int)(v.Z*0xff));
+		}
+
+		public System.Drawing.Color ToARGB()
+		{			
+			Ambertation.Geometry.Vector4 v = ToVector4();
+			return System.Drawing.Color.FromArgb((int)(v.X*0xff), (int)(v.Y*0xff), (int)(v.Z*0xff), (int)(v.W*0xff));
+		}
+
+		public Ambertation.Geometry.Vector3 ToVector3()
+		{
+			double[] list = ToFloat();
+			Ambertation.Geometry.Vector3 v = Ambertation.Geometry.Vector3.Zero;
+			if (list.Length>0) v.X=list[0];
+			if (list.Length>1) v.Y=list[1];
+			if (list.Length>2) v.Z=list[2];
+			return v;
+		}
+
+		public Ambertation.Geometry.Vector4 ToVector4()
+		{
+			double[] list = ToFloat();
+			Ambertation.Geometry.Vector4 v = Ambertation.Geometry.Vector4.Zero;
+			if (list.Length>0) v.X=list[0];
+			if (list.Length>1) v.Y=list[1];
+			if (list.Length>2) v.Z=list[2];
+			if (list.Length>3) v.W=list[3];
+			return v;
+		}
+
+		public double[] ToFloat()
+		{
+			Ambertation.Collections.DoubleCollection dc = new Ambertation.Collections.DoubleCollection();
+			string[] parts = val.Split(new char[]{','});
+			foreach (string s in parts)
+				try 
+				{
+					dc.Add(Convert.ToDouble(s, System.Globalization.CultureInfo.InvariantCulture));
+				} 
+				catch {}
+
+			double[] ret = new double[dc.Count];
+			for (int i=0; i<dc.Count; i++) ret[i]=dc[i];
+			return ret;
+		}
+
 		public override string ToString()
 		{
 			return name + ": " + val;
-		}
-
-		
+		}		
 	}
 }

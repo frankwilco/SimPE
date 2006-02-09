@@ -58,6 +58,8 @@ namespace SimPe.Plugin
 
 		void AddJoint(Ambertation.Scenes.Joint parent, int index, Hashtable jointmap, ElementOrder component)
 		{
+			if (index<0 || index>=gmdc.Joints.Count) return;
+			
 			GmdcJoint j = gmdc.Joints[index];
 			Ambertation.Scenes.Joint nj = parent.CreateChild(j.Name);
 			jointmap[index] = nj;
@@ -141,25 +143,38 @@ namespace SimPe.Plugin
 
 			Scene scn = new Scene();
 
-			Hashtable jointmap = AddJointsToScene(scn, component);
+			Hashtable jointmap = new Hashtable();
+			try 
+			{
+				AddJointsToScene(scn, component);
+			} 
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message+"\n"+ex.StackTrace);
+			}
 			
 						
 			TextureLocator tl = new TextureLocator(gmdc.Parent.Package);
-			System.Collections.Hashtable txtrs = tl.GetLargestImages(tl.FindTextures(gmdc.Parent));
+			System.Collections.Hashtable txmts = tl.FindMaterials(gmdc.Parent);			
+			System.Collections.Hashtable txtrs = tl.GetLargestImages(tl.FindReferencedTXTR(txmts, null));
+			txmts = tl.GetMaterials(txmts, scn);
 
 			foreach (GmdcGroup g in groups)
 			{
 				
-				Ambertation.Scenes.Material mat = scn.CreateMaterial("mat_"+g.Name);
+				Ambertation.Scenes.Material mat = txmts[g.Name] as Ambertation.Scenes.Material;
+				if (mat == null) mat = scn.CreateMaterial("mat_"+g.Name);
+				else mat.Name = "mat_"+g.Name;
 				System.IO.MemoryStream s = txtrs[g.Name] as System.IO.MemoryStream;
-				if (s!=null && absimgpath!=null) 
+				if (s!=null ) 
 				{
 					try
 					{
 						System.Drawing.Image img = System.Drawing.Image.FromStream(s);
-						img.Save(System.IO.Path.Combine(absimgpath, g.Name+".png"), System.Drawing.Imaging.ImageFormat.Png);
+						if (absimgpath!=null) img.Save(System.IO.Path.Combine(absimgpath, g.Name+".png"), System.Drawing.Imaging.ImageFormat.Png);
 						mat.Texture.FileName = imgfolder+g.Name+".png";
-						mat.Texture.ImageSize = img.Size;
+						mat.Texture.Size = img.Size;
+						mat.Texture.TextureImage = img;
 					} 
 					catch {}
 				}
@@ -204,61 +219,66 @@ namespace SimPe.Plugin
 				for (int i = 0; i < g.Faces.Count-2; i+=3)				
 					m.FaceIndices.Add(g.Faces[i], g.Faces[i+1], g.Faces[i+2]);
 				
-				if (bonee!=null && true)
-				{
-					int pos = 0;
-					foreach (SimPe.Plugin.Gmdc.GmdcElementValueOneInt vi in bonee.Values)
-					{
-						byte[] data = vi.Bytes;
-						IntArrayList used = new IntArrayList();
-						
-						for (int datapos=0; datapos<3; datapos++) //we can only store 3 bone weights
-						{
-							byte b = data[datapos];
-							if (b!=0xff && b< g.UsedJoints.Count)
-							{
-								
-								int bnr = g.UsedJoints[b];
-								if (used.Contains(bnr))
-									Console.WriteLine("...");
-
-								used.Add(bnr);
-								Ambertation.Scenes.Joint nj = jointmap[bnr] as Ambertation.Scenes.Joint;
-								if (nj!=null)
-								{
-									double w = 1;
-									if (bonewighte!=null)
-										if (bonewighte.Values.Count>pos) 
-										{
-											SimPe.Plugin.Gmdc.GmdcElementValueBase v = bonewighte.Values[pos];
-											if (datapos< v.Data.Length)
-											{
-												w = v.Data[datapos];
-											}
-										}
-
-									//if there is no envelope for nj, make sure we get a new one
-									//with pos 0-Weights inserted
-									Ambertation.Scenes.Envelope e = m.GetJointEnvelope(nj, pos);
-									e.Weights.Add(w);
-									//added = true;
-								}
-							}
-						}
-						
-						pos ++;
-						m.SyncEnvelopeLenghts(pos); //fill all unset EnvelopeWeights with 0
-
-						if (m.Envelopes[0].Weights.Count!=pos)
-							Console.WriteLine("out of sync");
-						
-					} // bonee.Values
-					
-				}
+				AddEnvelopes(g, m, bonee, bonewighte, jointmap);
 				
 			}
 
 			return scn;
+		}
+
+		void AddEnvelopes(GmdcGroup g, Ambertation.Scenes.Mesh m, GmdcElement bonee, GmdcElement bonewighte, Hashtable jointmap)
+		{
+			if (bonee!=null && true)
+			{
+				int pos = 0;
+				foreach (SimPe.Plugin.Gmdc.GmdcElementValueOneInt vi in bonee.Values)
+				{
+					byte[] data = vi.Bytes;
+					IntArrayList used = new IntArrayList();
+						
+					for (int datapos=0; datapos<3; datapos++) //we can only store 3 bone weights
+					{
+						byte b = data[datapos];
+						if (b!=0xff && b< g.UsedJoints.Count)
+						{
+								
+							int bnr = g.UsedJoints[b];
+							if (used.Contains(bnr))
+								Console.WriteLine("...");
+
+							used.Add(bnr);
+							Ambertation.Scenes.Joint nj = jointmap[bnr] as Ambertation.Scenes.Joint;
+							if (nj!=null)
+							{
+								double w = 1;
+								if (bonewighte!=null)
+									if (bonewighte.Values.Count>pos) 
+									{
+										SimPe.Plugin.Gmdc.GmdcElementValueBase v = bonewighte.Values[pos];
+										if (datapos< v.Data.Length)
+										{
+											w = v.Data[datapos];
+										}
+									}
+
+								//if there is no envelope for nj, make sure we get a new one
+								//with pos 0-Weights inserted
+								Ambertation.Scenes.Envelope e = m.GetJointEnvelope(nj, pos);
+								e.Weights.Add(w);
+								//added = true;
+							}
+						}
+					}
+						
+					pos ++;
+					m.SyncEnvelopeLenghts(pos); //fill all unset EnvelopeWeights with 0
+
+					if (m.Envelopes[0].Weights.Count!=pos)
+						Console.WriteLine("out of sync");
+						
+				} // bonee.Values
+					
+			}
 		}
 	}
 }

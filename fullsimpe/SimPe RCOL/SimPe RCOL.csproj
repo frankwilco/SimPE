@@ -229,6 +229,16 @@
                     Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "ambertation.utilities"
+                    AssemblyName = "ambertation.utilities"
+                    HintPath = "..\ambertation.utilities.dll"
+                />
+                <Reference
+                    Name = "ambertation.3D"
+                    AssemblyName = "ambertation.3D"
+                    HintPath = "..\ambertation.3D.dll"
+                />
             </References>
         </Build>
         <Files>
