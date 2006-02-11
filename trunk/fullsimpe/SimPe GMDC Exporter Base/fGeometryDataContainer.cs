@@ -100,7 +100,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.SaveFileDialog sfd;
 		private System.Windows.Forms.Button button3;
 		internal System.Windows.Forms.CheckedListBox lbmodel;
-		private System.Windows.Forms.Label label20;
+		private Ambertation.Graphics.RenderSelection scenesel;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.ColorDialog cd;
 		internal System.Windows.Forms.TabPage tMesh;
@@ -168,7 +168,9 @@ namespace SimPe.Plugin
 			//
 			try 
 			{
-				InitializeComponent();		
+				InitializeComponent();	
+				dxprev.Settings.AddAxis = false;
+				dxprev.LoadSettings(Helper.SimPeViewportFile);
 			}
 			catch (System.IO.FileNotFoundException)
 			{
@@ -304,7 +306,7 @@ namespace SimPe.Plugin
 			this.label12 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
-			this.label20 = new System.Windows.Forms.Label();
+			this.scenesel = new Ambertation.Graphics.RenderSelection();
 			this.lbmodel = new System.Windows.Forms.CheckedListBox();
 			this.lb_models = new System.Windows.Forms.Label();
 			this.button3 = new System.Windows.Forms.Button();
@@ -1151,7 +1153,7 @@ namespace SimPe.Plugin
 			this.tMesh.Controls.Add(this.label12);
 			this.tMesh.Controls.Add(this.button1);
 			this.tMesh.Controls.Add(this.button5);
-			this.tMesh.Controls.Add(this.label20);
+			this.tMesh.Controls.Add(this.scenesel);
 			this.tMesh.Controls.Add(this.lbmodel);
 			this.tMesh.Controls.Add(this.lb_models);
 			this.tMesh.Controls.Add(this.button3);
@@ -1175,23 +1177,15 @@ namespace SimPe.Plugin
 			// 
 			// dxprev
 			// 
-			this.dxprev.AlphaBlend = true;
-			this.dxprev.AlphaCullMode = Microsoft.DirectX.Direct3D.Cull.None;
 			this.dxprev.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.dxprev.AxisScale = 250F;
 			this.dxprev.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(128)), ((System.Byte)(255)));
-			this.dxprev.CullMode = Microsoft.DirectX.Direct3D.Cull.CounterClockwise;
 			this.dxprev.Effect = null;
-			this.dxprev.LineWidth = 0.1F;
 			this.dxprev.Location = new System.Drawing.Point(336, 8);
 			this.dxprev.Name = "dxprev";
-			this.dxprev.Pasue = false;
-			this.dxprev.Size = new System.Drawing.Size(304, 288);
+			this.dxprev.Size = new System.Drawing.Size(344, 288);
 			this.dxprev.TabIndex = 31;
-			this.dxprev.UseEffect = false;
-			this.dxprev.UseLefthandedCoordinates = false;
 			this.dxprev.WorldMatrix = ((Microsoft.DirectX.Matrix)(resources.GetObject("dxprev.WorldMatrix")));
 			this.dxprev.ResetDevice += new System.EventHandler(this.dxprev_ResetDevice);
 			// 
@@ -1238,25 +1232,18 @@ namespace SimPe.Plugin
 			this.button5.Text = "Export...";
 			this.button5.Click += new System.EventHandler(this.Export);
 			// 
-			// label20
+			// scenesel
 			// 
-			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.scenesel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label20.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.label20.Location = new System.Drawing.Point(644, 8);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(232, 288);
-			this.label20.TabIndex = 25;
-			this.label20.Text = @"Camera Control:
-
- Translate Y: left Button + move vertical
- Translate X: left Button + move horizontal
- Scale: middle Button + move vertical
- Rotate Z: middle Button + move horizontal
- Rotate X: right Button + move vertical
- Rotate Y: right Button + move horizontal";
-			this.label20.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.scenesel.DirectXPanel = this.dxprev;
+			this.scenesel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.scenesel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.scenesel.Location = new System.Drawing.Point(688, 8);
+			this.scenesel.Name = "scenesel";
+			this.scenesel.Scene = null;
+			this.scenesel.Size = new System.Drawing.Size(184, 288);
+			this.scenesel.TabIndex = 25;
 			// 
 			// lbmodel
 			// 
@@ -1278,6 +1265,7 @@ namespace SimPe.Plugin
 			this.lb_models.Size = new System.Drawing.Size(45, 16);
 			this.lb_models.TabIndex = 23;
 			this.lb_models.Text = "Models:";
+			this.lb_models.Click += new System.EventHandler(this.lb_models_Click);
 			// 
 			// button3
 			// 
@@ -2255,21 +2243,18 @@ namespace SimPe.Plugin
 		internal void ResetPreviewCamera(bool weak)
 		{
 			if (!weak) dxprev.ResetDefaultViewport();
-			dxprev.Viewport.NearPlane = Helper.WindowsRegistry.ImportExportScaleFactor / 10;
+			/*dxprev.Viewport.NearPlane = Helper.WindowsRegistry.ImportExportScaleFactor / 10;
 			dxprev.Viewport.FarPlane = dxprev.Viewport.NearPlane * 10000;
-			dxprev.Viewport.BoundingSphereRadius = Math.Min(dxprev.Viewport.BoundingSphereRadius, Helper.WindowsRegistry.ImportExportScaleFactor);
+			dxprev.Viewport.BoundingSphereRadius = Math.Min(dxprev.Viewport.BoundingSphereRadius, Helper.WindowsRegistry.ImportExportScaleFactor);*/
 			//dxprev.Viewport.Aspect = (float)dxprev.Width/(float)dxprev.Height;
 		}
 
 		internal void ResetPreview()
 		{
-			prevscn = null;
-			dxprev.CullMode = Microsoft.DirectX.Direct3D.Cull.Clockwise;
-			dxprev.Reset();
-			ResetPreviewCamera(false);
+			this.scenesel.Scene = null;	
+			
 		}
-		
-		Ambertation.Scenes.Scene prevscn;
+				
 		private void Preview(object sender, System.EventArgs e)
 		{
 			GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
@@ -2277,11 +2262,20 @@ namespace SimPe.Plugin
 			Wait.Message = "Loading Preview...";
 			try 
 			{
-				GeometryDataContainerExt gmdcext = new GeometryDataContainerExt(gmdc);
-				bool resetcam = prevscn==null;
-				prevscn = gmdcext.GetScene(GetModelsExt(), new ElementOrder(Gmdc.ElementSorting.Preview));
-				this.dxprev.Reset();	
-				this.ResetPreviewCamera(!resetcam);
+				GeometryDataContainerExt gmdcext = new GeometryDataContainerExt(gmdc);	
+				if (this.scenesel.Scene!=null) this.scenesel.Scene.Dispose();
+				this.scenesel.Scene = gmdcext.GetScene(GetModelsExt(), new ElementOrder(Gmdc.ElementSorting.Preview));
+				
+				/*if (this.scenesel.Scene!=null) 
+				{
+					Ambertation.Scenes.Mesh m = this.scenesel.Scene.MeshCollection["body"];
+					if (m!=null)
+					{
+						Image img = m.CreateNormalMap();
+						img.Save(@"C:\Dokumente und Einstellungen\Wir\Desktop\test.bmp");
+						img.Dispose();
+					}
+				}*/
 			} 
 			catch (System.IO.FileNotFoundException)
 			{
@@ -2298,47 +2292,7 @@ namespace SimPe.Plugin
 				Console.WriteLine(ex+"\n"+ex.StackTrace);
 			}
 		
-			Wait.SubStop();
-			/*
-			if (this.tMesh.Tag != null)
-			{
-				WaitingScreen.Wait();
-				GeometryDataContainer gmdc = (GeometryDataContainer) this.tMesh.Tag;
-				
-				
-				Stream xfile = gmdc.GenerateX(GetModelsExt());		
-
-				try 
-				{
-					//stop all running Previews
-					//Ambertation.Panel3D.StopAll();
-
-					TextureLocator tl = new TextureLocator(gmdc.Parent.Package);
-					System.Collections.Hashtable txtrs = tl.GetLargestImages(tl.FindTextures(gmdc.Parent));
-
-					dxprev.LoadMesh(xfile, txtrs);
-					
-				} 
-				catch (System.IO.FileNotFoundException)
-				{
-					WaitingScreen.Stop();
-					if (MessageBox.Show("The Microsoft Managed DirectX Extensions were not found on your System. Without them, the Preview is not available.\n\nYou can install them manually, by extracting the content of the DirectX\\ManagedDX.CAB on your Sims 2 Installation CD #1. If you double click on the extracted msi File, all needed Files will be installed.\n\nYou can also let SimPE install it automatically. SimPE will download the needed Files (3.5MB) from the SimPE Homepage and install them. Do you want SimPE to download and install the Files?", "Warning", MessageBoxButtons.YesNo)==DialogResult.Yes)
-					{
-						if (WebUpdate.InstallMDX()) MessageBox.Show("Managed DirectX Extension were installed succesfully!");
-					}
-					
-					return;
-				}
-				catch (Exception ex)
-				{
-					WaitingScreen.Stop();
-					Helper.ExceptionMessage("", ex);
-					return;
-				}
-				dxprev.BackColor = cd.Color;
-				WaitingScreen.Stop();
-				
-			}		*/
+			Wait.SubStop();			
 		}
 
 		/// <summary>
@@ -2390,14 +2344,15 @@ namespace SimPe.Plugin
 			}
 		}
 
+		private void lb_models_Click(object sender, System.EventArgs e)
+		{
+		
+		}
+
 		private void dxprev_ResetDevice(object sender, System.EventArgs e)
 		{
-			Ambertation.Graphics.DirectXPanel dx = sender as Ambertation.Graphics.DirectXPanel;
-			dx.CullMode = Microsoft.DirectX.Direct3D.Cull.None;
-			dx.Meshes.Clear();
-			dx.AddAxisMesh();
-			if (prevscn!=null)
-				dx.AddScene(this.prevscn);			
+			Ambertation.Graphics.DirectXPanel dx = sender as Ambertation.Graphics.DirectXPanel;			
+			
 		}
 
 		private void llAddBB_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
@@ -2498,8 +2453,8 @@ namespace SimPe.Plugin
 
 		private void dxprev_SizeChanged(object sender, System.EventArgs e)
 		{
-		//	int width = label20.Left - lbmodel.Right - 16;
-	//		int height = label20.Height;
+		//	int width = scenesel.Left - lbmodel.Right - 16;
+	//		int height = scenesel.Height;
 
 		//	dxprev.Width = Math.Min(width, height);
 		//	dxprev.Height = dxprev.Width;

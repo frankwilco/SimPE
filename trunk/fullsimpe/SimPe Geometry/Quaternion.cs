@@ -322,6 +322,10 @@ namespace SimPe.Geometry
 
 		protected void MakeRobust()
 		{
+		}
+
+		protected void DoMakeRobust()
+		{
 			
 			/*const float percision = 100000;			
 
@@ -331,23 +335,37 @@ namespace SimPe.Geometry
 			W = (float)((int)(W*percision))/percision;*/
 
 			//this is a ingularity
-			if (IsNear(W, 0.7, 0.09) && IsNear(Z, 0.7, 0.09))
+			/*if (IsNear(W, 0.7, 0.09))
 			{
+				if (IsNear(Z, 0.7, 0.09))
+				{
+					double sgnz = 1; if (Z!=0) sgnz = Z/Math.Abs(Z);				
+				
+					X = 0;
+					Y = 0;
+					Z = Z - (Math.Pow(X, 2) + Math.Pow(Y, 2) ) *sgnz;
+				} 
+				else  if (IsNear(Y, 0.7, 0.09))
+				{
+					double sgny = 1; if (Y!=0) sgny = Y/Math.Abs(Y);				
+				
+					X = 0;
+					Y = Y - (Math.Pow(X, 2) + Math.Pow(Z, 2) ) *sgny;
+					Z = 0;
+				}
+				else  if (IsNear(X, 0.7, 0.09))
+				{
+					double sgnx = 1; if (X!=0) sgnx = X/Math.Abs(X);				
+									
+					X = X - (Math.Pow(Y, 2) + Math.Pow(Z, 2) ) *sgnx;
+					Y = 0;
+					Z = 0;
+				}
+			}*/
 
-				double sgnz = 1; if (Z!=0) sgnz = Z/Math.Abs(Z);
-				double sgnx = 1; //if (X!=0) sgnx = X/Math.Abs(X);
-				double sgny = 1; //if (Y!=0) sgny = Y/Math.Abs(Y);
-				Z = Z - (Math.Pow(X, 2) * sgnx+ Math.Pow(Y, 2) * sgny) *sgnz;
-				X= 0;
-				Y=0;
-				/*double d = (1 - Math.Pow(W, 2) -  Math.Pow(Z, 2));
-				Z = Math.Sqrt(Math.Pow(Z, 2) - d) * Z/Math.Abs(Z);
-				//W = Math.Sqrt(Math.Pow(W, 2) + d) * Z/Math.Abs(W);*/
-			}
-
-			if (IsNear(X, 1, 0.05)) { Y=0; Z=0; W=0;}
+			/*if (IsNear(X, 1, 0.05)) { Y=0; Z=0; W=0;}
 			if (IsNear(Y, 1, 0.05)) { X=0; Z=0; W=0;}
-			if (IsNear(Z, 1, 0.05)) { Y=0; X=0; W=0;}
+			if (IsNear(Z, 1, 0.05)) { Y=0; X=0; W=0;}*/
 			//if (IsNear(W, 1, 0.05)) { Y=0; Z=0; X=0;}
 		}
 
@@ -403,7 +421,10 @@ namespace SimPe.Geometry
 
 		public Vector3f GetEulerAngles()
 		{
-			Vector3f v =  GetEulerAnglesYXZ();
+			Quaternion q = this.Clone();
+			q.DoMakeRobust();
+			Vector3f v =  q.GetEulerAnglesZYX();
+
 			v.X = MakeRobustAngle(v.X);
 			v.Y = MakeRobustAngle(v.Y);
 			v.Z = MakeRobustAngle(v.Z);
@@ -480,6 +501,40 @@ namespace SimPe.Geometry
 			else 
 			{
 				v.Z = (float)Math.Atan2(m[0, 2], m[0,0]);
+			}
+
+			return v;
+		}
+
+		/// <summary>
+		/// Get the Euler Angles represented by this Quaternion
+		/// </summary>
+		/// <returns></returns>
+		/// X=Pitch
+		/// Y=Yaw
+		/// Z=Roll
+		/// </remarks>
+		public Vector3f GetEulerAnglesZYX()
+		{			
+			Matrixd m = this.Matrix;
+			Vector3f v = new Vector3f(0, 0, 0);
+
+			v.Y = Math.Asin(-m[2, 0]);
+			if (v.Y < Math.PI / 2.0)
+			{
+				if (v.Y > Math.PI / -2.0) 
+				{
+					v.Z = (float)Math.Atan2(m[1, 0], m[0, 0]);
+					v.X = (float)Math.Atan2(m[2, 1], m[2, 2]);
+				} 
+				else 
+				{
+					v.Z = (float)(-1 * Math.Atan2(-m[0, 1], m[0, 2]));
+				}
+			} 
+			else 
+			{
+				v.Z = (float)Math.Atan2(-m[0, 1], m[0,2]);
 			}
 
 			return v;
