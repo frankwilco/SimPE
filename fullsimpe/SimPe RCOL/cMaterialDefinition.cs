@@ -408,7 +408,8 @@ namespace SimPe.Plugin
 			p = this.GetProperty("stdMatAlphaBlendMode");
 			if (p!=null)
 			{
-				mat.Texture.AlphaBlend = p.Value=="blend";
+				if (p.Value=="blend")
+					mat.Mode = Ambertation.Scenes.Material.TextureModes.ShadowTexture;
 				//if (mat.Texture.AlphaBlend) mat.Diffuse = System.Drawing.Color.FromArgb(0x10, mat.Diffuse);
 			}
 			return mat;

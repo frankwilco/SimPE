@@ -76,11 +76,11 @@ namespace SimPe.Plugin
 				//Console.WriteLine(j.Name+": ");
 				//Console.WriteLine("    "+q.ToLinedString()+" --> ");
 				/*Quaternion qm = Quaternion.FromRotationMatrix(component.TransformMatrix);				
-				q = qm*q;*/
+				q = Quaternion.FromRotationMatrix( component.TransformMatrix * q.Matrix.To33Matrix());*/
 				Vector3f r = q.Axis;				
 				r = component.Transform(r);								
-				q = Quaternion.FromAxisAngle(r, q.Angle);	
-				
+				q = Quaternion.FromAxisAngle(r, q.Angle);
+								
 				tmp = q.GetEulerAngles();
 
 				//Console.WriteLine("        "+q.ToLinedString());
@@ -185,6 +185,7 @@ namespace SimPe.Plugin
 				GmdcElement texte = g.Link.FindElementType(ElementIdentity.UVCoordinate);
 				GmdcElement bonee = g.Link.FindElementType(ElementIdentity.BoneAssignment);
 				GmdcElement bonewighte = g.Link.FindElementType(ElementIdentity.BoneWeights);
+				GmdcElement bumpnormal = g.Link.FindElementType(ElementIdentity.BumpMapNormal);
 
 				int nr = g.Link.GetElementNr(vertexe);
 				for (int i = 0; i < g.Link.ReferencedSize; i++)
@@ -203,6 +204,17 @@ namespace SimPe.Plugin
 						Vector3f v = new Vector3f(g.Link.GetValue(nr, i).Data[0], g.Link.GetValue(nr, i).Data[1], g.Link.GetValue(nr, i).Data[2]);				
 						v = component.TransformNormal(v);						
 						m.Normals.Add(v.X, v.Y, v.Z);
+					}
+				}
+
+				if (bumpnormal!=null)
+				{
+					nr = g.Link.GetElementNr(bumpnormal);
+					for (int i = 0; i < g.Link.ReferencedSize; i++)
+					{
+						Vector3f v = new Vector3f(g.Link.GetValue(nr, i).Data[0], g.Link.GetValue(nr, i).Data[1], g.Link.GetValue(nr, i).Data[2]);				
+						v = component.TransformNormal(v);						
+						m.BumpMapNormalDelta.Add(v.X, v.Y, v.Z);
 					}
 				}
 

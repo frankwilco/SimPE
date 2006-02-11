@@ -405,6 +405,17 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Returns the File, that holds the users Viewport Data
+		/// </summary>
+		public static string SimPeViewportFile
+		{
+			get
+			{
+				return System.IO.Path.Combine(SimPeDataPath, "vport.set");
+			}
+		}
+
+		/// <summary>
 		/// Returns the Version Information for the started Executable
 		/// </summary>
 		public static System.Diagnostics.FileVersionInfo ExecutableVersion 
