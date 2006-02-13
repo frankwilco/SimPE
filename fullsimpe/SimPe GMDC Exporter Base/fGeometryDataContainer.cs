@@ -2815,14 +2815,16 @@ namespace SimPe.Plugin
 				try 
 				{
 					importer.FileName = ofd.FileName;
-					importer.Process(meshreader, gmdc, animationonly);	
-					if (!animationonly) 
+					if (importer.Process(meshreader, gmdc, animationonly)) 
 					{
-						gmdc.Refresh();
-						gmdc.Changed = true;
-					}
+						if (!animationonly) 
+						{
+							gmdc.Refresh();
+							gmdc.Changed = true;
+						}
 							
-					if (importer.ErrorMessage!="") Helper.ExceptionMessage("", new Warning("Problems while parsing the File.", importer.ErrorMessage));
+						if (importer.ErrorMessage!="") Helper.ExceptionMessage("", new Warning("Problems while parsing the File.", importer.ErrorMessage));
+					}
 				} 
 				finally 
 				{

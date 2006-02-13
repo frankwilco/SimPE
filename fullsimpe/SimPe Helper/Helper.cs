@@ -400,7 +400,32 @@ namespace SimPe
 		{
 			get
 			{
-				return System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath), "Data");
+				string path = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath), "Data");
+				try 
+				{
+					if (!System.IO.Directory.Exists(path))
+						System.IO.Directory.CreateDirectory(path);
+				} 
+				catch {}
+				return path;
+			}
+		}
+
+		/// <summary>
+		/// Returns the Path additional SimPe Files are located in
+		/// </summary>
+		public static string SimPePluginDataPath 
+		{
+			get
+			{
+				string path =  System.IO.Path.Combine(SimPeDataPath, "Plugins");
+				try 
+				{
+					if (!System.IO.Directory.Exists(path))
+						System.IO.Directory.CreateDirectory(path);
+				} 
+				catch {}
+				return path;
 			}
 		}
 

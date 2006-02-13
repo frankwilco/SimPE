@@ -133,6 +133,7 @@ namespace SimPe.Plugin.Gmdc
 			items1 = new IntArrayList();
 			items2 = new IntArrayList();
 			name = "";
+			alternate = -1;
 		}
 
 			

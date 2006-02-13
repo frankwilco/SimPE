@@ -596,7 +596,7 @@ namespace SimPe.Geometry
 		/// </remarks>
 		public static Quaternion FromEulerAngles(Vector3f ea) 
 		{	
-			return FromRotationMatrix(Matrixd.RotateYawPitchRoll(ea.Y, ea.X, ea.Z));			
+			return FromRotationMatrix(Matrixd.RotateZ(ea.Z) * Matrixd.RotateY(ea.Y) * Matrixd.RotateX(ea.X));			
 		}
 
 		/// <summary>
@@ -604,7 +604,7 @@ namespace SimPe.Geometry
 		/// </summary>
 		public static Quaternion FromEulerAngles(double yaw, double pitch, double roll) 
 		{			
-			return FromRotationMatrix(Matrixd.RotateYawPitchRoll(yaw, pitch, roll));			
+			return FromEulerAngles(new Vector3f(pitch, yaw, roll));		
 		}
 
 		public static Quaternion FromAxisAngle(Vector3f v, double angle)

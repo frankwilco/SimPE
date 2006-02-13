@@ -256,6 +256,24 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// true, if user wants to show the OBJD Filenames in OW
+		/// </summary>
+		public  int LastOWAction
+		{
+			get 
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				object o = rkf.GetValue("LastOWAction", 0);
+				return Convert.ToInt32(o);
+			}
+			set
+			{
+				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				rkf.SetValue("LastOWAction", value);
+			}
+		}
+
+		/// <summary>
 		/// true, if user wants to show the Name of a Joint in the GMDC Plugin
 		/// </summary>
 		public  bool ShowJointNames

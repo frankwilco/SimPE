@@ -110,6 +110,24 @@ namespace SimPe.Plugin.Gmdc
 			get {return ms;}
 		}
 
+		public SimPe.Geometry.Quaternion TransformRotation(SimPe.Geometry.Quaternion q) 
+		{
+			SimPe.Geometry.Vector3f r = q.Axis;				
+			r = this.Transform(r);								
+			q = SimPe.Geometry.Quaternion.FromAxisAngle(r, q.Angle);
+
+			return q;
+		}
+
+		public SimPe.Geometry.Quaternion InverseTransformRotation(SimPe.Geometry.Quaternion q) 
+		{
+			SimPe.Geometry.Vector3f r = q.Axis;				
+			r = this.InverseTransform(r);								
+			q = SimPe.Geometry.Quaternion.FromAxisAngle(r, q.Angle);
+
+			return q;
+		}
+
 		/// <summary>
 		/// Transform the passed vector to fit into the specified Coordinate System
 		/// </summary>
