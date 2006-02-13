@@ -318,6 +318,13 @@ namespace SimPe.Plugin.Gmdc
 			}
 		}
 
+		public void SetByte(int index, byte val)
+		{
+			byte[] r = Bytes;
+			r[index] = val;
+			Bytes = r;
+		}
+
 		/// <summary>
 		/// This output is used in the ListBox View
 		/// </summary>

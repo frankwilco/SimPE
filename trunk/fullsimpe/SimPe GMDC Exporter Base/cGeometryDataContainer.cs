@@ -547,6 +547,22 @@ namespace SimPe.Plugin
 			return -1;
 		}
 
+		/// <summary>
+		/// Returns the Index of the Joint in <see cref="Joints"/>.
+		/// </summary>
+		/// <param name="name">The name of the Joint</param>
+		/// <returns>-1 if the Joint is not found or the Index in <see cref="Joints"/></returns>
+		public int FindJointByName(string name) 
+		{
+			name = name.Trim().ToLower();
+			for (int i=0; i<Joints.Count; i++)
+			{
+				if (Joints[i].Name.Trim().ToLower() == name) return i;				
+			}
+
+			return -1;
+		}
+
 		#region LinkedCRES
 
 		Rcol cres;

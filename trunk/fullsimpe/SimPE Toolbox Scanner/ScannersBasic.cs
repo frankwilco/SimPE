@@ -770,5 +770,87 @@ namespace SimPe.Plugin.Scanner
 		}
 	}
 
+
+	/// <summary>
+	/// This class checks if the Base CRES for the Recolor is still available
+	/// </summary>
+	internal class MeshScanner : AbstractScanner, IScanner
+	{
+		static SimPe.Cache.MemoryCacheFile cachefile;
+
+		public MeshScanner (System.Windows.Forms.ListView lv) : base (lv) 
+		{		
+		}
+
+		#region IScannerBase Member
+		public uint Version 
+		{
+			get { return 1; }
+		}
+
+		public int Index 
+		{
+			get { return 850; }
+		}
+		#endregion
+
+		#region IScanner Member
+
+		protected override void DoInitScan()
+		{			
+			AbstractScanner.AddColumn(ListView, "Vertices", 60);
+			AbstractScanner.AddColumn(ListView, "Faces", 60);
+		}
+
+
+		
+		public void ScanPackage(ScannerItem si, SimPe.Cache.PackageState ps, System.Windows.Forms.ListViewItem lvi)
+		{			
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = si.Package.FindFiles(Data.MetaData.GMDC);
+			//ArrayList list = new ArrayList();
+
+			ps.State = TriState.True;			
+			
+			uint fct = 0; uint vct = 0;
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+			{
+				SimPe.Plugin.Rcol rcol = new GenericRcol();
+				rcol.ProcessData(pfd, si.Package, true);
+
+				SimPe.Plugin.GeometryDataContainer gmdc = rcol.Blocks[0] as SimPe.Plugin.GeometryDataContainer;
+				foreach (SimPe.Plugin.Gmdc.GmdcGroup g in gmdc.Groups)
+				{
+					fct += (uint)g.FaceCount;
+					vct += (uint)g.UsedVertexCount;
+				}
+				rcol.Dispose();
+			}		
+			ps.Data = new uint[] {vct, fct};	
+
+			UpdateState(si, ps, lvi);
+		}
+
+		public void UpdateState(ScannerItem si, SimPe.Cache.PackageState ps, System.Windows.Forms.ListViewItem lvi)
+		{	
+			uint fct = ps.Data[1];
+			uint vct = ps.Data[0];
+			AbstractScanner.SetSubItem(lvi, this.StartColum, vct.ToString(), ps);		
+			AbstractScanner.SetSubItem(lvi, this.StartColum+1, fct.ToString(), ps);	
+		}
+
+		public void FinishScan() { }
+
+		public override bool IsActiveByDefault
+		{
+			get { return false; }
+		}		
+		#endregion
+
+		public override string ToString()
+		{
+			return "Mesh Scanner";
+		}
+	}
+
 	
 }

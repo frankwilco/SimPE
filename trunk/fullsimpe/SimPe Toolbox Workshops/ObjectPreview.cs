@@ -36,6 +36,8 @@ namespace SimPe.Plugin.Tool.Dockable
 		protected TD.SandBar.FlatComboBox cbCat;
 		private System.Windows.Forms.Label label5;
 		protected System.Windows.Forms.Label lbExpansion;
+		private System.Windows.Forms.Label label6;
+		protected System.Windows.Forms.Label lbVert;
 		/// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -95,6 +97,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbCat = new TD.SandBar.FlatComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.lbExpansion = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.lbVert = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// pb
@@ -342,6 +346,50 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lbExpansion.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbExpansion.TextAlign")));
 			this.lbExpansion.Visible = ((bool)(resources.GetObject("lbExpansion.Visible")));
 			// 
+			// label6
+			// 
+			this.label6.AccessibleDescription = resources.GetString("label6.AccessibleDescription");
+			this.label6.AccessibleName = resources.GetString("label6.AccessibleName");
+			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label6.Anchor")));
+			this.label6.AutoSize = ((bool)(resources.GetObject("label6.AutoSize")));
+			this.label6.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label6.Dock")));
+			this.label6.Enabled = ((bool)(resources.GetObject("label6.Enabled")));
+			this.label6.Font = ((System.Drawing.Font)(resources.GetObject("label6.Font")));
+			this.label6.Image = ((System.Drawing.Image)(resources.GetObject("label6.Image")));
+			this.label6.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label6.ImageAlign")));
+			this.label6.ImageIndex = ((int)(resources.GetObject("label6.ImageIndex")));
+			this.label6.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label6.ImeMode")));
+			this.label6.Location = ((System.Drawing.Point)(resources.GetObject("label6.Location")));
+			this.label6.Name = "label6";
+			this.label6.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label6.RightToLeft")));
+			this.label6.Size = ((System.Drawing.Size)(resources.GetObject("label6.Size")));
+			this.label6.TabIndex = ((int)(resources.GetObject("label6.TabIndex")));
+			this.label6.Text = resources.GetString("label6.Text");
+			this.label6.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label6.TextAlign")));
+			this.label6.Visible = ((bool)(resources.GetObject("label6.Visible")));
+			// 
+			// lbVert
+			// 
+			this.lbVert.AccessibleDescription = resources.GetString("lbVert.AccessibleDescription");
+			this.lbVert.AccessibleName = resources.GetString("lbVert.AccessibleName");
+			this.lbVert.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbVert.Anchor")));
+			this.lbVert.AutoSize = ((bool)(resources.GetObject("lbVert.AutoSize")));
+			this.lbVert.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbVert.Dock")));
+			this.lbVert.Enabled = ((bool)(resources.GetObject("lbVert.Enabled")));
+			this.lbVert.Font = ((System.Drawing.Font)(resources.GetObject("lbVert.Font")));
+			this.lbVert.Image = ((System.Drawing.Image)(resources.GetObject("lbVert.Image")));
+			this.lbVert.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbVert.ImageAlign")));
+			this.lbVert.ImageIndex = ((int)(resources.GetObject("lbVert.ImageIndex")));
+			this.lbVert.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbVert.ImeMode")));
+			this.lbVert.Location = ((System.Drawing.Point)(resources.GetObject("lbVert.Location")));
+			this.lbVert.Name = "lbVert";
+			this.lbVert.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbVert.RightToLeft")));
+			this.lbVert.Size = ((System.Drawing.Size)(resources.GetObject("lbVert.Size")));
+			this.lbVert.TabIndex = ((int)(resources.GetObject("lbVert.TabIndex")));
+			this.lbVert.Text = resources.GetString("lbVert.Text");
+			this.lbVert.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lbVert.TextAlign")));
+			this.lbVert.Visible = ((bool)(resources.GetObject("lbVert.Visible")));
+			// 
 			// SimpleObjectPreview
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -350,6 +398,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.lbVert);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.lbExpansion);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.cbCat);
@@ -628,7 +678,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			UpdateScreen();			
 			if (oci.Thumbnail == null) pb.Image = defimg;
 			else pb.Image = GenerateImage(pb.Size, oci.Thumbnail, true);
-			lbName.Text = oci.Name;					
+			lbName.Text = oci.Name;	
+			lbVert.Text = "---";	
 		}
 
 		public virtual void SetFromPackage(SimPe.Interfaces.Files.IPackageFile pkg)
@@ -647,6 +698,24 @@ namespace SimPe.Plugin.Tool.Dockable
 				objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
 				objd.ProcessData(pfds[0], pkg);				
 			} 
+			int fct = 0; int vct = 0;
+			pfds = pkg.FindFiles(Data.MetaData.GMDC);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
+			{
+				SimPe.Plugin.Rcol rcol = new GenericRcol();
+				rcol.ProcessData(pfd, pkg, true);
+
+				SimPe.Plugin.GeometryDataContainer gmdc = rcol.Blocks[0] as SimPe.Plugin.GeometryDataContainer;
+				foreach (SimPe.Plugin.Gmdc.GmdcGroup g in gmdc.Groups)
+				{
+					fct += g.FaceCount;
+					vct += g.UsedVertexCount;
+				}
+
+				rcol.Dispose();
+			}
+			lbVert.Text = vct.ToString()+" ("+fct.ToString()+" Faces)";
+
 
 			UpdateScreen();
 		}

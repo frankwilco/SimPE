@@ -77,6 +77,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
+			
+
 			//init the preview manually since the designer is way to stupid to do so >:-|
 			this.op1 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
 			this.op2 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
@@ -129,7 +131,15 @@ namespace SimPe.Plugin.Tool.Dockable
 			biNext.Enabled = wizard1.NextEnabled;
 			biPrev.Enabled = wizard1.PrevEnabled;
 
-			this.cbTask.SelectedIndex = 0;
+			
+			try 
+			{
+				cbTask.SelectedIndex = Helper.WindowsRegistry.LastOWAction;
+			} 
+			catch 
+			{
+				this.cbTask.SelectedIndex = 0;
+			}
 			ilist.ImageSize = new Size(Helper.WindowsRegistry.OWThumbSize, Helper.WindowsRegistry.OWThumbSize);
 			this.Guid = new System.Guid("42807573-e8db-405b-95fa-28913d1e292a");
 
@@ -270,7 +280,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.wizard1.Controls.Add(this.wizardStepPanel3);
 			this.wizard1.Controls.Add(this.wizardStepPanel5);
 			this.wizard1.Controls.Add(this.wizardStepPanel4);
-			this.wizard1.CurrentStepNumber = 2;
+			this.wizard1.CurrentStepNumber = 0;
 			this.wizard1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("wizard1.Dock")));
 			this.wizard1.DockPadding.All = 8;
 			this.wizard1.Enabled = ((bool)(resources.GetObject("wizard1.Enabled")));
@@ -1475,6 +1485,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lberr.Text = resources.GetString("lberr.Text");
 			this.lberr.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lberr.TextAlign")));
 			this.lberr.Visible = ((bool)(resources.GetObject("lberr.Visible")));
+			this.lberr.Click += new System.EventHandler(this.lberr_Click);
 			// 
 			// lbfinload
 			// 
@@ -1800,6 +1811,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		private void cbTask_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
+			Helper.WindowsRegistry.LastOWAction = cbTask.SelectedIndex;
 			if (cbTask.SelectedIndex==1) 
 			{
 				gbRecolor.Visible = false;
@@ -2029,6 +2041,11 @@ namespace SimPe.Plugin.Tool.Dockable
 		private void cbDesc_CheckedChanged(object sender, System.EventArgs e)
 		{
 			cbTask_SelectedIndexChanged(this.cbTask, null);
+		}
+
+		private void lberr_Click(object sender, System.EventArgs e)
+		{
+		
 		}
 
 	}

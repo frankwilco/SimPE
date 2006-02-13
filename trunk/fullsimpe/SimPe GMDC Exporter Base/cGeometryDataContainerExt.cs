@@ -72,15 +72,7 @@ namespace SimPe.Plugin
 				
 				nj.Translation.X = tmp.X; nj.Translation.Y = tmp.Y; nj.Translation.Z = tmp.Z;
 
-				Quaternion q = j.AssignedTransformNode.Transformation.Rotation;
-				//Console.WriteLine(j.Name+": ");
-				//Console.WriteLine("    "+q.ToLinedString()+" --> ");
-				/*Quaternion qm = Quaternion.FromRotationMatrix(component.TransformMatrix);				
-				q = Quaternion.FromRotationMatrix( component.TransformMatrix * q.Matrix.To33Matrix());*/
-				Vector3f r = q.Axis;				
-				r = component.Transform(r);								
-				q = Quaternion.FromAxisAngle(r, q.Angle);
-								
+				Quaternion q = component.TransformRotation(j.AssignedTransformNode.Transformation.Rotation);												
 				tmp = q.GetEulerAngles();
 
 				//Console.WriteLine("        "+q.ToLinedString());

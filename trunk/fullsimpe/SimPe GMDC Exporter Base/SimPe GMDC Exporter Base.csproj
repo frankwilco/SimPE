@@ -200,21 +200,6 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "ambertation.3D"
-                    AssemblyName = "ambertation.3D"
-                    HintPath = "..\ambertation.3D.dll"
-                />
-                <Reference
-                    Name = "ambertation.utilities"
-                    AssemblyName = "ambertation.utilities"
-                    HintPath = "..\ambertation.utilities.dll"
-                />
-                <Reference
-                    Name = "ambertation.3D.mdx.binding"
-                    AssemblyName = "ambertation.3D.mdx.binding"
-                    HintPath = "..\ambertation.3D.mdx.binding.dll"
-                />
-                <Reference
                     Name = "Microsoft.DirectX"
                     AssemblyName = "Microsoft.DirectX"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.dll"
@@ -231,6 +216,21 @@
                     AssemblyName = "Microsoft.DirectX.Direct3DX"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.Direct3DX.dll"
                     AssemblyFolderKey = "hklm\current managed directx 9.2"
+                />
+                <Reference
+                    Name = "ambertation.utilities"
+                    AssemblyName = "ambertation.utilities"
+                    HintPath = "..\ambertation.utilities.dll"
+                />
+                <Reference
+                    Name = "ambertation.3D"
+                    AssemblyName = "ambertation.3D"
+                    HintPath = "..\ambertation.3D.dll"
+                />
+                <Reference
+                    Name = "ambertation.3D.mdx.binding"
+                    AssemblyName = "ambertation.3D.mdx.binding"
+                    HintPath = "..\ambertation.3D.mdx.binding.dll"
                 />
             </References>
         </Build>
@@ -317,6 +317,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "BoneListViewItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BoneListViewItemExt.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "cAnimResourceConst.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -397,6 +407,21 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "GenericImport.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "GenericImport.resx"
+                    DependentUpon = "GenericImport.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "GenericMeshImport.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "GmdcImporterBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -448,6 +473,21 @@
                 />
                 <File
                     RelPath = "ImportOptions.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListViewEx.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MeshListViewItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MeshListViewItemExt.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

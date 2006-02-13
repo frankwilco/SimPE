@@ -466,6 +466,47 @@ namespace SimPe.Geometry
 		{
 			return new Ambertation.Geometry.Vector3(v.X, v.Y, v.Z);
 		}*/
+
+		#region Skankyboy Extension
+		public Vector3f (string[] datarr)
+		{
+			this.X = double.Parse(datarr[0]);
+			this.Y = double.Parse(datarr[1]);
+			this.Z = double.Parse(datarr[2]);
+		}
+   
+		public Vector3f (string data)
+		{
+			string[] datarr = data.Split(" ".ToCharArray());
+			this.X = double.Parse(datarr[0]);
+			this.Y = double.Parse(datarr[1]);
+			this.Z = double.Parse(datarr[2]);
+		}
+   
+		public Vector3f (double[] data)
+		{
+			this.X = data[0];
+			this.Y = data[1];
+			this.Z = data[2];
+		}
+   
+		public string ToString2()
+		{
+			return X.ToString("N6")+" "+Y.ToString("N6")+" "+Z.ToString("N6");
+		} 
+		#endregion
+
+		#region Conversion
+		public static implicit operator Ambertation.Geometry.Vector3 (Vector3f v)
+		{
+			return new Ambertation.Geometry.Vector3(v.X, v.Y, v.Z);
+		}
+
+		public static implicit operator Vector3f (Ambertation.Geometry.Vector3 v)
+		{
+			return new Vector3f(v.X, v.Y, v.Z);
+		}
+		#endregion
 	}
 
 	/// <summary>

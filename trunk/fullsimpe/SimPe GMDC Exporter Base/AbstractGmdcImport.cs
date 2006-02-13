@@ -206,7 +206,7 @@ namespace SimPe.Plugin.Gmdc
 		/// <param name="input">A Stream with the Input Data</param>
 		/// <param name="gmdc">The Gmdc that should receive the Data</param>
 		/// <param name="animationonly">true, if only the Animation Data should be imported</param>
-		public virtual void Process(System.IO.Stream input, GeometryDataContainer gmdc, bool animationonly)
+		public virtual bool Process(System.IO.Stream input, GeometryDataContainer gmdc, bool animationonly)
 		{
 			animonly = animationonly;			
 
@@ -214,13 +214,15 @@ namespace SimPe.Plugin.Gmdc
 			this.gmdc = gmdc;
 			SetUpAnimationData();
 
-			if (gmdc==null || input==null) return;
+			if (gmdc==null || input==null) return false;
 
 			ImportedGroups g = LoadGroups();
 			ImportedBones b = LoadBones();
 
 			if (!animonly) if (ValidateImportedGroups(g, b)) ChangeGmdc(g, b);
 			this.ChangeAnim();
+
+			return true;
 		}
 
 		bool animonly;
