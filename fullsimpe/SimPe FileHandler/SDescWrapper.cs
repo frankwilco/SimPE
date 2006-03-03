@@ -34,7 +34,31 @@ namespace SimPe.PackedFiles.Wrapper
 		Unknown = 0,
 		OriginalGame = 0x20,
 		University = 0x22,
-		Nightlife = 0x29
+		Nightlife = 0x29,
+		Business = 0x2a
+	}
+
+	/// <summary>
+	/// ...from Text\Live.package
+	/// </summary>
+	public enum JobAssignment : ushort 
+	{
+		Nothing = 0x00,
+		Chef = 0x01,
+		Host = 0x02,
+		Server = 0x03,
+		Cashier = 0x04,
+		Bartender = 0x05,
+		Barista = 0x06,
+		DJ = 0x07,
+		SellLemonade = 0x08,
+		Stylist = 0x09,
+		Tidy = 0x0A,
+		Restock = 0x0B,
+		Sales = 0x0C,
+		MakeToys = 0x0D,
+		ArrangeFlowers = 0x0E,
+		BuildRobots = 0x0F
 	}
 
 	#region Ghost Flags
@@ -1035,6 +1059,67 @@ namespace SimPe.PackedFiles.Wrapper
 	}
 	#endregion
 
+	#region SdscBusiness
+	/// <summary>
+	/// Nightlife specific Data
+	/// </summary>
+	public class SdscBusiness : Serializer
+	{
+		internal SdscBusiness()
+		{
+			
+		}
+
+		ushort lotid;
+		public ushort LotID
+		{
+			get { return lotid; }			
+			set { lotid = value; }
+		}
+
+		
+		ushort salary;
+		public ushort Salary
+		{
+			get { return salary; }			
+			set { salary = value; }
+		}		
+
+		ushort flags;
+		public ushort Flags
+		{
+			get { return flags; }			
+			set { flags = value; }
+		}
+
+		ushort assignment;
+		public JobAssignment Assignment
+		{
+			get { return (JobAssignment)assignment; }			
+			set { assignment = (ushort)value; }
+		}
+		
+
+		internal void Serialize(BinaryReader reader)
+		{
+			reader.BaseStream.Seek(0x192, SeekOrigin.Begin);
+			this.lotid = reader.ReadUInt16();					
+			this.salary = reader.ReadUInt16();
+			this.flags = reader.ReadUInt16();			
+			this.assignment = reader.ReadUInt16();			
+		}
+
+		internal void Unserialize(BinaryWriter writer)
+		{
+			writer.BaseStream.Seek(0x192, SeekOrigin.Begin);
+			writer.Write((ushort)this.lotid);					
+			writer.Write((ushort)this.salary);
+			writer.Write((ushort)this.flags);			
+			writer.Write((ushort)this.assignment);
+		}
+	}
+	#endregion
+
 	/// <summary>
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
@@ -1157,10 +1242,20 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Returns Nightlife Specific Data
 		/// </summary>
-		/// <remarks>Only valid if Version == SDescVersions.Nightlife</remarks>
+		/// <remarks>Only valid if Version >= SDescVersions.Nightlife</remarks>
 		public SdscNightlife Nightlife
 		{
 			get { return nightlife; }
+		}
+
+		SdscBusiness business;
+		/// <summary>
+		/// Returns Nightlife Specific Data
+		/// </summary>
+		/// <remarks>Only valid if Version == SDescVersions.Business</remarks>
+		public SdscBusiness Business
+		{
+			get { return business; }
 		}
 
 
@@ -1527,7 +1622,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Sim Description Wrapper",
 				"Quaxi",
 				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
-				9,
+				10,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.sdsc.png"))				
 				); 
 		}
@@ -1589,6 +1684,7 @@ namespace SimPe.PackedFiles.Wrapper
 			relations = new SimRelationAttribute(this);
 			uni = new SdscUniversity();
 			nightlife = new SdscNightlife();
+			business = new SdscBusiness();
 
 			description.Aspiration = MetaData.AspirationTypes.Romance;
 			description.ZodiacSign = MetaData.ZodiacSignes.Virgo;
@@ -1622,13 +1718,15 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get 
 			{
+				if (version>=(int)SDescVersions.Business) return 0x19A+0xA;
 				if (version>=(int)SDescVersions.Nightlife) return 0x192+0xA;
 				if (version>=(int)SDescVersions.University) return 0x16A+0x12;
 				return 0x16A;
 			}
 		}
 		protected override void Unserialize(System.IO.BinaryReader reader)
-		{							
+		{					
+			//the formula offset = 0x0a + 2*pid
 			long startpos = reader.BaseStream.Position;
 			reserved_01 = reader.ReadBytes(0xC2);						
 			description.Age = reader.ReadUInt16();
@@ -1789,9 +1887,14 @@ namespace SimPe.PackedFiles.Wrapper
 			//university only Items
 			if (version>=(int)SDescVersions.University) 							
 				uni.Serialize(reader);
+
 			//nightlife only Items
 			if (version>=(int)SDescVersions.Nightlife) 							
 				nightlife.Serialize(reader);
+
+			//business only Items
+			if (version>=(int)SDescVersions.Business) 							
+				business.Serialize(reader);
 
 			reader.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
 		}
@@ -1942,9 +2045,14 @@ namespace SimPe.PackedFiles.Wrapper
 			//university only Items
 			if (version>=(int)SDescVersions.University) 							
 				uni.Unserialize(writer);
+
 			//nightlife only Items
 			if (version>=(int)SDescVersions.Nightlife) 							
 				nightlife.Unserialize(writer);
+
+			//business only Items
+			if (version>=(int)SDescVersions.Business) 							
+				business.Unserialize(writer);
 			
 
 			writer.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);

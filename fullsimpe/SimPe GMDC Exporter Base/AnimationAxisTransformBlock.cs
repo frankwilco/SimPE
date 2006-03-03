@@ -566,12 +566,18 @@ namespace SimPe.Plugin.Anim
 		{			
 			return FromCompressedFloat(val, GetScale());
 		}
+
+		public  float GetScale(FrameType ft)
+		{
+			return GetScale(Locked, ft);
+		}
 		
-		public float GetScale(FrameType ft)
+		public static float GetScale(bool locked, FrameType ft)
 		{			
 			float scale = SCALE;			
-			if (!Locked) scale = scale * 16f;
-			if (ft==FrameType.Rotation) scale=SCALEROT;					
+			if (!locked) scale = scale * 16f;
+			if (ft==FrameType.Rotation) 
+				scale=SCALEROT;					
 
 			
 			return scale;

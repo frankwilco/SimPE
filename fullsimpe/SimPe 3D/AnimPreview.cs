@@ -32,7 +32,7 @@ namespace SimPe.Plugin
 	{
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
 		private System.Windows.Forms.Panel panel1;
-		private Teichion.Graphics.DirectXPanel dx;
+		private Ambertation.Graphics.DirectXPanel dx;
 		private SimPe.ThemeManager tm;
 		private System.Windows.Forms.ListBox lb;
 		private System.Windows.Forms.TreeView tv;
@@ -52,7 +52,7 @@ namespace SimPe.Plugin
 			tm = SimPe.ThemeManager.Global.CreateChild();
 			tm.AddControl(this.xpGradientPanel1);
 
-			dx = new Teichion.Graphics.DirectXPanel();
+			dx = new Ambertation.Graphics.DirectXPanel();
 			dx.Parent = this.panel1;
 			dx.Dock = DockStyle.Fill;
 
@@ -223,146 +223,80 @@ namespace SimPe.Plugin
 		}
 
 		SimPe.Plugin.Gmdc.ElementOrder eo = new SimPe.Plugin.Gmdc.ElementOrder(SimPe.Plugin.Gmdc.ElementSorting.XYZ);
-		Microsoft.DirectX.Direct3D.Material mat = new Microsoft.DirectX.Direct3D.Material();
-		Microsoft.DirectX.Direct3D.Material smat = new Microsoft.DirectX.Direct3D.Material();
-
-		void CreateMesh(ListedMeshBlocks lmb, Teichion.Graphics.NodeBox joint, int index)
-		{
-			SimPe.Plugin.GeometryDataContainer gmdc = (SimPe.Plugin.GeometryDataContainer)lmb.GMDC.Blocks[0];								
-
-			ArrayList list = new ArrayList();
-			SimPe.Geometry.Vectors3i facelist = new SimPe.Geometry.Vectors3i();
-			Hashtable map = new Hashtable();
-			Microsoft.DirectX.Matrix m = joint.GetEffectiveTransform();
-			m.Invert();
-			foreach (SimPe.Plugin.Gmdc.GmdcGroup grp in gmdc.Groups)
-			{
-				list.Clear();
-				facelist.Clear();
-				map.Clear();
-
-				SimPe.Geometry.Vectors3i faces = grp.GetFaces();
-				SimPe.Geometry.Vectors4f bones = grp.GetBones();
-				SimPe.Geometry.Vectors4f vertices = grp.GetVertices();
-				SimPe.Geometry.Vectors4f normals = grp.GetNormals();
-				SimPe.Geometry.Vectors4f uvs = grp.GetUV();
-
-				for (int i=0; i<vertices.Count; i++)
-				{
-					if ((int)bones[i].X==index)
-					{
-						map[i] = (short)list.Count;
-						SimPe.Geometry.Vector3f v = eo.Transform(vertices[i]);
-						Microsoft.DirectX.Vector3 mv = new Microsoft.DirectX.Vector3((float)v.X, (float)v.Y, (float)v.Z);
-						mv.TransformCoordinate(m);
-
-						list.Add(new Microsoft.DirectX.Direct3D.CustomVertex.PositionNormal(
-							mv.X, mv.Y, mv.Z,
-							(float)normals[i].X, (float)normals[i].Y, (float)normals[i].Z
-							)
-							);
-
-						SimPe.Geometry.Vectors3i ufaces = SimPe.Plugin.Gmdc.GmdcGroup.GetUsingFaces(faces, i);
-
-						foreach (SimPe.Geometry.Vector3i f in ufaces)
-							if (!facelist.Contains(f)) facelist.Add(f);
-					}					
-				}
-
-				if (facelist.Count==0) return;
-
-				short[] fcs = new short[facelist.Count * 3];
-				int ct = 0;
-				foreach (SimPe.Geometry.Vector3i f in facelist)
-				{
-					try 
-					{
-						short c1 = (short)map[f.X];
-						short c2 = (short)map[f.Y];
-						short c3 = (short)map[f.Z];
-						fcs[ct++] = c1; fcs[ct++] = c2; fcs[ct++] = c3;
-					} 
-					catch {}
-				}
-
-				Microsoft.DirectX.Direct3D.CustomVertex.PositionNormal[] vcs = new Microsoft.DirectX.Direct3D.CustomVertex.PositionNormal[list.Count];
-				list.CopyTo(vcs);
-
-				Microsoft.DirectX.Direct3D.Mesh mesh = new Microsoft.DirectX.Direct3D.Mesh(
-					fcs.Length/3,    
-					vcs.Length,
-					0,								 
-					Microsoft.DirectX.Direct3D.VertexFormats.PositionNormal,   
-					dx.Device
-					); 
-
-				Microsoft.DirectX.Direct3D.Material mat = new Microsoft.DirectX.Direct3D.Material();
-				mat.Diffuse = Color.LightSteelBlue;
-				mesh.SetVertexBufferData(vcs, Microsoft.DirectX.Direct3D.LockFlags.None); 
-				mesh.SetIndexBufferData(fcs, Microsoft.DirectX.Direct3D.LockFlags.None); 
-
-				int[] adjacency = new int[mesh.NumberFaces * 3];
-				mesh.GenerateAdjacency(0.01F, adjacency); 
-				mesh.OptimizeInPlace(Microsoft.DirectX.Direct3D.MeshFlags.OptimizeVertexCache, adjacency); 
-
-				Teichion.Graphics.MeshBox mb = new Teichion.Graphics.MeshBox("Mesh", mesh, 1, mat);
-				mb.Wire = true;
 				
-				joint.AddChild(mb);
-			}
-		}
-
-
-		void AddJoint(ListedMeshBlocks lmb, SimPe.Interfaces.Scenegraph.ICresChildren bl, Teichion.Graphics.NodeBox parent, System.Windows.Forms.TreeNodeCollection nodes)
+		void AddJoint(ListedMeshBlocks lmb, SimPe.Interfaces.Scenegraph.ICresChildren bl, Ambertation.Graphics.MeshList parent, System.Windows.Forms.TreeNodeCollection nodes)
 		{
-			SimPe.Plugin.TransformNode tn = bl.StoredTransformNode;			
-			Teichion.Graphics.MeshBox node;
-
-			Microsoft.DirectX.Direct3D.Mesh mesh = Microsoft.DirectX.Direct3D.Mesh.Box(dx.Device, 0.01f, 0.01f, 0.01f);
-			mat.Diffuse = Color.FromArgb(10, Color.Yellow);
-			mat.Ambient = Color.FromArgb(10, Color.DarkGray);
-			mat.Specular = Color.FromArgb(10, Color.LightYellow);
-			smat.Diffuse = Color.Red;
+			SimPe.Plugin.TransformNode tn = bl.StoredTransformNode;						
+			
+			
 			if (tn!=null)
 			{
-				SimPe.Geometry.Vector3f rot = tn.Rotation.GetEulerAngles();
-				Microsoft.DirectX.Quaternion q = new Microsoft.DirectX.Quaternion((float)tn.Rotation.X, (float)tn.Rotation.Y, (float)tn.Rotation.Z, (float)tn.Rotation.W);
-				Teichion.Graphics.MeshTransform mt 
-					= new Teichion.Graphics.MeshTransform(tn.TransformX, tn.TransformY, tn.TransformZ, 
-					rot.X, rot.Y, rot.Z);
-				mt.SetRotation(q);
-				node = new Teichion.Graphics.MeshBox(bl.ToString(), mesh, 1, mat, mt);
+				Ambertation.Graphics.MeshBox mb = new Ambertation.Graphics.MeshBox(
+					Microsoft.DirectX.Direct3D.Mesh.Sphere(dx.Device, 0.02f, 12, 24),
+					1,
+					Ambertation.Graphics.DirectXPanel.GetMaterial(Color.Wheat)
+					);
+				mb.Wire = false;
+
+				Ambertation.Scenes.Transformation trans = new Ambertation.Scenes.Transformation();
+				trans.Rotation.X = tn.Rotation.GetEulerAngles().X;
+				trans.Rotation.Y = tn.Rotation.GetEulerAngles().Y;
+				trans.Rotation.Z = tn.Rotation.GetEulerAngles().Z;
 				
-			} else
-				node = new Teichion.Graphics.MeshBox(bl.ToString(), mesh, 1, mat);
-			
-			node.Wire = false;
-			parent.AddChild(node);
-			TreeNode tnode = new TreeNode(node.ToString());
-			tnode.Tag = node;
-			nodes.Add(tnode);
-			
-			jointmap[bl.GetName()] = node;
+				trans.Translation.X = tn.TransformX;
+				trans.Translation.Y = tn.TransformY;
+				trans.Translation.Z = tn.TransformZ;
 
-			if (bl.StoredTransformNode!=null)
-				CreateMesh(lmb, node, bl.StoredTransformNode.JointReference);
+				mb.Transform = Ambertation.Scenes.Converter.ToDx(trans);
 
-			foreach (SimPe.Interfaces.Scenegraph.ICresChildren cld in bl)
-				AddJoint(lmb, cld, node, tnode.Nodes);
+				TreeNode tnode = new TreeNode(tn.ToString());
+				tnode.Tag = mb;
+				nodes.Add(tnode);
+				jointmap[bl.GetName()] = mb;	
+
+				parent.Add(mb);
+
+				foreach (SimPe.Interfaces.Scenegraph.ICresChildren cld in bl)
+					AddJoint(lmb, cld, mb, tnode.Nodes);
+				
+			} 		
+			else 
+			{
+				foreach (SimPe.Interfaces.Scenegraph.ICresChildren cld in bl)
+					AddJoint(lmb, cld, parent, nodes);
+			}
+	
+			
 		}
 
 		
 
 		private void dx_ResetDevice(object sender, EventArgs e)
 		{			
-			dx.Meshes.Clear();
-			dx.AddAxisMesh();
+			
+
+			if (!inter) 
+			{
+				dx.Meshes.Clear(true);
+				inter = true;
+				lb_SelectedIndexChanged(null, null);
+				inter = false;
+			} 
+			else 
+			{
+				dx.Meshes.Clear(false);
+			}
 		
-			dx.Meshes.Add(root);	
+			if (root!=null) 
+			{
+				foreach (Ambertation.Graphics.MeshBox mb in root)
+					dx.Meshes.Add(mb);
+			}			
 		}
 
-		Teichion.Graphics.NodeBox root;
+		Ambertation.Graphics.MeshList root;
 		Hashtable jointmap = new Hashtable();
+		bool inter;
 		private void lb_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			if (lb.SelectedItem==null) return;
@@ -373,7 +307,9 @@ namespace SimPe.Plugin
 
 			SimPe.Plugin.ResourceNode rn = (SimPe.Plugin.ResourceNode)lmb.CRES.Blocks[0];
 						
-			root = new Teichion.Graphics.NodeBox("---");
+			if (root!=null) root.Dispose();
+			root = new Ambertation.Graphics.MeshList();
+			
 
 			AddJoint(lmb, rn, root, tv.Nodes);
 
@@ -383,23 +319,26 @@ namespace SimPe.Plugin
 				SimPe.Plugin.Anim.AnimationFrameBlock afb2 = afb.CloneBase(true);
 				object o = jointmap[afb.Name];
 				if (o==null) continue;
-				Teichion.Graphics.NodeBox nb = (Teichion.Graphics.NodeBox)o;
-
-				animdata.Add(new AnimationData(afb2, nb, lmb.ANIMBlock.Animation.TotalTime));
+				Ambertation.Graphics.MeshBox mb = (Ambertation.Graphics.MeshBox)o;
+				
+				animdata.Add(new AnimationData(afb2, mb, lmb.ANIMBlock.Animation.TotalTime));
 			}
 
-			dx.Reset();
-			dx.ResetDefaultViewport();
+			if (inter) return;
+			inter = true;
+			//dx.Reset();
+			dx.ResetViewport(new Microsoft.DirectX.Vector3(-2, -2, -2), new Microsoft.DirectX.Vector3(2, 2, 2));
 			dx.Render();
+			inter = false;
 		}
 
-		Teichion.Graphics.MeshBox lastmb;
+		Ambertation.Graphics.MeshBox lastmb;
 		private void tv_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		{
 			if (e.Node==null) return;
 			if (e.Node.Tag==null) return;
 
-			if (lastmb!=null) lastmb.Material = mat;
+			/*if (lastmb!=null) lastmb.Material = mat;
 			Teichion.Graphics.MeshBox mb = (Teichion.Graphics.MeshBox)e.Node.Tag;
 			mb.Material = smat;
 
@@ -409,7 +348,7 @@ namespace SimPe.Plugin
 
 			dx.Render();
 
-			lastmb = mb;
+			lastmb = mb;*/
 		}
 
 		ArrayList animdata = new ArrayList();
@@ -448,7 +387,7 @@ namespace SimPe.Plugin
 			foreach (AnimationData ad in animdata)	
 				ad.SetFrame(timecode);
 			
-
+			
 			dx.Render();
 			//Application.DoEvents();
 

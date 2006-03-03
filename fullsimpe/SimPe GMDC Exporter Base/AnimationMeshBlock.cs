@@ -366,6 +366,7 @@ namespace SimPe.Plugin.Anim
 					return rcol;
 			} 
 
+			if (this.Name!="auskel" && this.Name!="causkel") return null;
 			FileTable.FileIndex.Load();
 			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.CRES, true);
 			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)

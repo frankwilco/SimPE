@@ -34,6 +34,13 @@ namespace SimPe.PackedFiles.Wrapper
 		BadMemory = 0xfff8
 	}
 
+	public enum FamiVersions : int 
+	{
+		Original = 0x4e,
+		University = 0x4f,
+		Business = 0x51
+	}
+
 	public class FamiFlags : FlagBase 
 	{
 		public FamiFlags(ushort flags) : base(flags) {}
@@ -75,12 +82,12 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Instance Number of the Lot this Familie lives in
 		/// </summary>
-		private uint lotinstance;
+		private uint lotinstance, businesslot;
 
 		/// <summary>
 		/// Money of the Family
 		/// </summary>
-		private int money;
+		private int money, businessmoney;
 
 		/// <summary>
 		/// Friends of this Family
@@ -95,10 +102,15 @@ namespace SimPe.PackedFiles.Wrapper
 		private uint[] sims; 
 
 		private uint id;
-		private uint version;
+		private FamiVersions version;
 		private uint unknown;
 		private uint flags;
 		private uint albumGUID;
+
+		public FamiVersions Version
+		{
+			get {return version;}
+		}
 		
 		/// <summary>
 		/// Returns/Sets the Flags
@@ -116,6 +128,15 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get { return albumGUID; }
 			set { albumGUID = value; }
+		}
+
+		/// <summary>
+		/// Returns/Sets the Business Money (???)
+		/// </summary>
+		public int BusinessMoney 
+		{
+			get { return businessmoney; }
+			set { businessmoney = value; }
 		}
 
 		/// <summary>
@@ -187,6 +208,15 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get { return lotinstance; }
 			set { lotinstance = value; }
+		}
+
+		/// <summary>
+		/// Returns the INstance of the Lot, where the Player last left the Family
+		/// </summary>
+		public uint CurrentlyOnLotInstance
+		{
+			get { return businesslot; }
+			set { businesslot = value; }
 		}
 
 		uint subhood;
@@ -309,7 +339,7 @@ namespace SimPe.PackedFiles.Wrapper
 		public Fami(SimPe.Interfaces.Providers.ISimNames names) : base()
 		{
 			id = 0x46414D49;
-			version = 0x0000004E;
+			version = FamiVersions.Original;
 			unknown = 0;
 			nameprovider = names;
 			flags = 0x04;
@@ -318,9 +348,10 @@ namespace SimPe.PackedFiles.Wrapper
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{						
 			id = reader.ReadUInt32();
-			version = reader.ReadUInt32();
+			version = (FamiVersions)reader.ReadUInt32();
 			unknown = reader.ReadUInt32();
 			lotinstance = reader.ReadUInt32();
+			if ((int)version>=(int)FamiVersions.Business) businesslot = reader.ReadUInt32();
 			strinstance = reader.ReadUInt32();
 			money = reader.ReadInt32();
 			friends = reader.ReadUInt32();
@@ -333,15 +364,17 @@ namespace SimPe.PackedFiles.Wrapper
 				sims[i] = reader.ReadUInt32();
 			}
 			this.albumGUID = reader.ReadUInt32(); //relations??
-			if (version==0x4f) this.subhood = reader.ReadUInt32();
+			if ((int)version>=(int)FamiVersions.University) this.subhood = reader.ReadUInt32();
+			if ((int)version>=(int)FamiVersions.Business) businessmoney = reader.ReadInt32();
 		}
 
 		protected override void Serialize(System.IO.BinaryWriter writer) 
 		{		
 			writer.Write(id);
-			writer.Write(version);
+			writer.Write((uint)version);
 			writer.Write(unknown);
 			writer.Write(lotinstance);
+			if ((int)version>=(int)FamiVersions.Business) writer.Write(businesslot);
 			writer.Write(strinstance);
 			writer.Write(money);
 			writer.Write(friends);
@@ -354,7 +387,8 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 			writer.Write(this.albumGUID);
 
-			if (version==0x4f) writer.Write(this.subhood);
+			if ((int)version>=(int)FamiVersions.University) writer.Write(this.subhood);
+			if ((int)version>=(int)FamiVersions.Business) writer.Write(businessmoney);
 		}
 		#endregion
 
@@ -365,7 +399,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"FAMi Wrapper",
 				"Quaxi",
 				"This File contains Informations about one Sim Family.",
-				3,
+				4,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.fami.png"))				
 				); 
 		}

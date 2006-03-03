@@ -113,6 +113,7 @@ namespace SimPe.Plugin
 			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(0x00000000, 0xCDA53B6F, 0x2D7EE26B, null);
 			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 			
 			{
+				if (version==SimPe.PackedFiles.Wrapper.SDescVersions.Business && !item.Package.SaveFileName.Trim().ToLower().StartsWith(Helper.WindowsRegistry.SimsEP3Path.Trim().ToLower())) continue;
 				if (version==SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife && !item.Package.SaveFileName.Trim().ToLower().StartsWith(Helper.WindowsRegistry.SimsEP2Path.Trim().ToLower())) continue;
 				if (version==SimPe.PackedFiles.Wrapper.SDescVersions.University && !item.Package.SaveFileName.Trim().ToLower().StartsWith(Helper.WindowsRegistry.SimsEP1Path.Trim().ToLower())) continue;
 				SimPe.PackedFiles.Wrapper.Xml xml = new SimPe.PackedFiles.Wrapper.Xml();

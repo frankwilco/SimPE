@@ -26,7 +26,8 @@ namespace SimPe.Plugin
 	public enum NgbhVersion : uint
 	{
 		University = 0x70,
-		Nightlife = 0xbe
+		Nightlife = 0xbe,
+		Business = 0xc2
 	}
 
 	/// <summary>
@@ -184,7 +185,7 @@ namespace SimPe.Plugin
 				"Neighborhood/Memory Wrapper",
 				"Quaxi",
 				"This File contains the Memories and Inventories of all Sims and Lots that Live in this Neighborhood.",
-				8,
+				9,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ngbh.png"))
 				); 
 		}

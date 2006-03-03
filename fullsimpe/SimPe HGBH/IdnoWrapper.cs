@@ -31,7 +31,8 @@ namespace SimPe.Plugin
 		Unknown = 0x00,
 		Normal = 0x01,
 		University = 0x02,
-		Downtown = 0x03
+		Downtown = 0x03,
+		Suburb = 0x04
 	}
 
 	/// <summary>
@@ -42,7 +43,8 @@ namespace SimPe.Plugin
 		Unknown = 0x00,
 		Sims2 = 0x03,
 		Sims2_University = 0x05,
-		Sims2_Nightlife = 0x07
+		Sims2_Nightlife = 0x07,
+		Sims2_Business = 0x08
 	}
 
 	/// <summary>
@@ -355,7 +357,7 @@ namespace SimPe.Plugin
 				"Neighborhood ID Wrapper",
 				"Quaxi",
 				"Contains the ID for this Neighborhood. The Neighborhood ID must be Unique for all packages the Game is loading.",
-				2,
+				3,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.idno.png"))
 				); 
 		}
@@ -371,10 +373,10 @@ namespace SimPe.Plugin
 			name = Helper.ToString(reader.ReadBytes(ct));
 			uid = reader.ReadUInt32();
 
-			if (version>=5) 
+			if (version>=(int)NeighborhoodVersion.Sims2_University) 
 			{
 				type = (NeighborhoodType)reader.ReadUInt32();
-				if (type==NeighborhoodType.University) 
+				if ((int)type>=(int)NeighborhoodType.University) 
 				{
 					ct = reader.ReadInt32();
 					subname = Helper.ToString(reader.ReadBytes(ct));				
@@ -404,10 +406,10 @@ namespace SimPe.Plugin
 			writer.Write(b);
 			writer.Write(uid);
 
-			if (version>=5) 
+			if (version>=(int)NeighborhoodVersion.Sims2_University) 
 			{
 				writer.Write((uint)type);
-				if (type==NeighborhoodType.University) 
+				if ((int)type>=(int)NeighborhoodType.University) 
 				{
 					b = Helper.ToBytes(subname, 0);
 					writer.Write((int)b.Length);

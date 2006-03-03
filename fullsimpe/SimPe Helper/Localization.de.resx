@@ -748,8 +748,8 @@ Package: {filename}</value>
 	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Coffeetable">
 		<value>Oberflächen / Kaffeetische</value>
 	</data>
-	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_UnknownA">
-		<value>Oberflächen / Unbekannt I</value>
+	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Business">
+		<value>Oberflächen / Ladentheken</value>
 	</data>
 	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_UnknownB">
 		<value>Oberflächen / Unbekannt II</value>
@@ -1069,12 +1069,12 @@ Die wahrscheinlichkeit für einen Konflikt, wenn ihr den Zaun nur für euren per
 Soll der Zaun in das Format des original Spieles umgewandelt werden?"</value>
 	</data>
 	<data name="Censor_Install_Warn">
-		<value>Da auf dem System Nightlife installiert wurde, muss SimPE nun eine Datei in den Config Ordner kopieren um die Verpixelung zu deaktivieren.
+		<value>Da auf dem System Nightlife (oder eine neuere Erweiterung) installiert wurde, muss SimPE nun eine Datei in den Config Ordner kopieren um die Verpixelung zu deaktivieren.
     
 Soll SimPE fortfahren?</value>
 	</data>
 	<data name="Censor_UnInstall_Warn">
-		<value>Um die Verpixelung zu reaktivieren, muss SimPE nun die Dateo {filename} löschen.
+		<value>Um die Verpixelung zu reaktivieren, muss SimPE nun die Datei {filename} löschen.
     
 Soll SimPE fortfahren?</value>
 	</data>
@@ -1176,4 +1176,53 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
 	<data name="[Category:ExpansionPack]">
 		<value>2. Erweiterungen</value>
 	</data>
+	
+	<data name="SimPe.PackedFiles.Wrapper.JobAssignment.Nothing">
+		<value>Nothing</value>
+    </data>
+	<data name="SimPe.PackedFiles.Wrapper.JobAssignment.Chef">
+		<value>Koch</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Host">
+		<value>Empfangschef</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Server">
+		<value>Kellner</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Cashier">
+		<value>Kassierer</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Bartender">
+		<value>Barkeeper</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Barista">
+		<value>Barista</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.DJ">
+		<value>DJ</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.SellLemonade">
+		<value>Limonade verkaufen</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Stylist">
+		<value>Stylist</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Tidy">
+		<value>Aufräumen</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Restock">
+		<value>Auffüllen</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Sales">
+		<value>Verkaufen</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.MakeToys">
+		<value>Spielzeug herstellen</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.ArrangeFlowers">
+		<value>Blumensträuße binden</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.BuildRobots">
+		<value>Roboter bauen</value>
+    </data>
 </root>

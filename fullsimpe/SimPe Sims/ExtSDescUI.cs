@@ -270,7 +270,7 @@ namespace SimPe.PackedFiles.UserInterface
 		}
 
 		void Initialize()
-		{
+		{			
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ExtSDesc));
 			this.Commited += new System.EventHandler(this.ExtSDesc_Commited);
 
@@ -5044,8 +5044,8 @@ namespace SimPe.PackedFiles.UserInterface
 
 				pnRel_VisibleChanged(null, null);
 
-				this.biEP1.Enabled = Sdesc.Version == SimPe.PackedFiles.Wrapper.SDescVersions.University || Sdesc.Version == SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife;
-				this.biEP2.Enabled = Sdesc.Version == SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife;
+				this.biEP1.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.University;
+				this.biEP2.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife;
 				if (pnEP1.Visible && !biEP1.Enabled) this.SelectButton(biId);
 				if (pnEP2.Visible && !biEP2.Enabled) this.SelectButton(biId);
 

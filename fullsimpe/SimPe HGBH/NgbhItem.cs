@@ -57,6 +57,7 @@ namespace SimPe.Plugin
 
 		uint guid;
 		NgbhItemFlags flags;
+		uint flags2;
 		ushort[] data;
 
 		uint unknown;
@@ -233,7 +234,10 @@ namespace SimPe.Plugin
 		internal void Unserialize(System.IO.BinaryReader reader)
 		{
 			guid = reader.ReadUInt32();
+						
 			flags = new NgbhItemFlags(reader.ReadUInt16());
+			if ((uint)parent.Version>=(uint)NgbhVersion.Business)
+				flags2 = new NgbhItemFlags(reader.ReadUInt16());
 			if ((uint)parent.Version>=(uint)NgbhVersion.Nightlife) unknown = reader.ReadUInt32();
 			data = new ushort[reader.ReadInt32()];
 			for (int i=0; i<data.Length; i++) 
@@ -254,6 +258,8 @@ namespace SimPe.Plugin
 		{
 			writer.Write(guid);
 			writer.Write(flags.Value); 
+			if ((uint)parent.Version>=(uint)NgbhVersion.Business) 
+				writer.Write((ushort)flags2);
 			if ((uint)parent.Version>=(uint)NgbhVersion.Nightlife) writer.Write(unknown);
 			writer.Write((int)data.Length);
 			for (int i=0; i<data.Length; i++) 

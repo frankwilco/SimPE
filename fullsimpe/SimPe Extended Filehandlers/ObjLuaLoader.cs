@@ -39,8 +39,8 @@ namespace SimPe
 		{
 			pkg = SimPe.Packages.File.CreateNew();
 
-			LoadFromFolder(System.IO.Path.Combine(SimPe.Helper.WindowsRegistry.SimsEP2Path, "TSData/Res/ObjectScripts"), "globalObjLua", 0x0);
-			LoadFromFolder(System.IO.Path.Combine(SimPe.Helper.WindowsRegistry.SimsEP2Path, "TSData/Res/ObjectScripts"), "ObjLua", 0x2000);
+			LoadFromFolder(System.IO.Path.Combine(SimPe.Helper.WindowsRegistry.SimsEP2Path, "TSData/Res/ObjectScripts"), "globalObjLua", true);
+			LoadFromFolder(System.IO.Path.Combine(SimPe.Helper.WindowsRegistry.SimsEP2Path, "TSData/Res/ObjectScripts"), "ObjLua", false);
 		}
 
 		/// <summary>
@@ -48,9 +48,9 @@ namespace SimPe
 		/// </summary>
 		/// <param name="dir">The directory you want to scan</param>
 		/// <param name="ext">The fiel extension to check</param>
-		/// <param name="group">The group you want to assigne the loaded Files to</param>
+		/// <param name="global">true, if this is a global LUA</param>
 		/// <remarks>Instance of the loaded resources will be the hash over the FeleName</remarks>
-		static void LoadFromFolder(string dir, string ext, uint group)
+		static void LoadFromFolder(string dir, string ext, bool global)
 		{
 			if (!System.IO.Directory.Exists(dir)) return;
 			
@@ -61,7 +61,9 @@ namespace SimPe
 				System.IO.BinaryWriter bw = new System.IO.BinaryWriter(new System.IO.MemoryStream());
 				try 
 				{
-					bw.Write(Helper.ToBytes(name, 0x40));
+					bw.Write((int)0);
+					bw.Write((int)name.Length);
+					bw.Write(Helper.ToBytes(name, name.Length));
 
 					System.IO.BinaryReader br = new System.IO.BinaryReader(System.IO.File.Open(fl, System.IO.FileMode.Open));
 					try 
@@ -76,11 +78,13 @@ namespace SimPe
 					br = new System.IO.BinaryReader(bw.BaseStream);
 					br.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
 
+					uint type = SimPe.Data.MetaData.OLUA;
+					if (global) type = SimPe.Data.MetaData.GLUA;
 					
 					SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pkg.NewDescriptor(
-						0x61754C1B, 
+						type, 
 						Hashes.SubTypeHash(name),
-						group,
+						SimPe.Data.MetaData.LOCAL_GROUP,
 						Hashes.InstanceHash(name)
 						);
 

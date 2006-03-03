@@ -1329,7 +1329,7 @@ namespace SimPe
 			get 
 			{
 				if (this.EPInstalled<=1) return BlurNudityPreEP2;
-				else if (this.EPInstalled==2) return BlurNudityEP2;
+				else if (this.EPInstalled>=2) return BlurNudityEP2;					
 				else return false;
 			}
 			set 
@@ -1339,7 +1339,7 @@ namespace SimPe
 					BlurNudityEP2 = false;
 					BlurNudityPreEP2 = value;
 				}
-				else if (this.EPInstalled==2) 
+				else if (this.EPInstalled>=2) 
 				{
 					BlurNudityEP2 = value;
 				}

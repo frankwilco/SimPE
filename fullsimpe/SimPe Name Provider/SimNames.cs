@@ -148,7 +148,7 @@ namespace SimPe.Providers
 			tags[0] = fl.FileName;
 			tags[1] = null;
 			tags[2] = Localization.Manager.GetString("Unknown");
-			tags[3] = (fl.FindFiles(0xAC598EAC).Length>0); //has Age Data?
+			tags[3] = (fl.FindFiles(0xAC506764).Length>0); //has 3IDR
 			tags[4] = null; 
 
 			//set stuff for NPCs
