@@ -518,7 +518,7 @@ namespace SimPe.Plugin
 		public Ambertation.Geometry.Vector4 ToVector4()
 		{
 			double[] list = ToFloat();
-			Ambertation.Geometry.Vector4 v = Ambertation.Geometry.Vector4.Zero;
+			Ambertation.Geometry.Vector4 v = new Ambertation.Geometry.Vector4(0, 0, 0, 0);
 			if (list.Length>0) v.X=list[0];
 			if (list.Length>1) v.Y=list[1];
 			if (list.Length>2) v.Z=list[2];

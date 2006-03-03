@@ -145,7 +145,7 @@ namespace SimPe.Plugin
 				Console.WriteLine(ex.Message+"\n"+ex.StackTrace);
 			}
 			
-						
+								
 			TextureLocator tl = new TextureLocator(gmdc.Parent.Package);
 			System.Collections.Hashtable txmts = tl.FindMaterials(gmdc.Parent);			
 			System.Collections.Hashtable txtrs = tl.GetLargestImages(tl.FindReferencedTXTR(txmts, null));
@@ -173,6 +173,7 @@ namespace SimPe.Plugin
 				Ambertation.Scenes.Mesh m = scn.CreateMesh(g.Name, mat);
 
 				GmdcElement vertexe = g.Link.FindElementType(ElementIdentity.Vertex);
+			//	GmdcElement vertexme = g.Link.FindElementType(ElementIdentity.MorphVertexDelta);
 				GmdcElement normale = g.Link.FindElementType(ElementIdentity.Normal);
 				GmdcElement texte = g.Link.FindElementType(ElementIdentity.UVCoordinate);
 				GmdcElement bonee = g.Link.FindElementType(ElementIdentity.BoneAssignment);
@@ -180,9 +181,12 @@ namespace SimPe.Plugin
 				GmdcElement bumpnormal = g.Link.FindElementType(ElementIdentity.BumpMapNormal);
 
 				int nr = g.Link.GetElementNr(vertexe);
+			//	int mnr = g.Link.GetElementNr(vertexme);
 				for (int i = 0; i < g.Link.ReferencedSize; i++)
 				{
 					Vector3f v = new Vector3f(g.Link.GetValue(nr, i).Data[0], g.Link.GetValue(nr, i).Data[1], g.Link.GetValue(nr, i).Data[2]);				
+					/*Vector3f vm = new Vector3f(g.Link.GetValue(mnr, i).Data[0], g.Link.GetValue(mnr, i).Data[1], g.Link.GetValue(mnr, i).Data[2]);				
+					v += vm;*/
 					v = component.TransformScaled(v);
 					
 					m.Vertices.Add(v.X, v.Y, v.Z);

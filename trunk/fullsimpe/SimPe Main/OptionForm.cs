@@ -252,6 +252,7 @@ namespace SimPe
 			this.tbscale = new System.Windows.Forms.TextBox();
 			this.cbjointname = new System.Windows.Forms.CheckBox();
 			this.hcFolders = new TD.Eyefinder.HeaderControl();
+			this.pgPaths = new SimPe.MyPropertyGrid();
 			this.tbep2 = new System.Windows.Forms.TextBox();
 			this.btNightlife = new System.Windows.Forms.Button();
 			this.label14 = new System.Windows.Forms.Label();
@@ -307,7 +308,6 @@ namespace SimPe
 			this.baloonTip = new SteepValley.Windows.Forms.XPBalloonTip(this.components);
 			this.navigationButton1 = new Divelements.Navisight.NavigationButton();
 			this.navigationButton2 = new Divelements.Navisight.NavigationButton();
-			this.pgPaths = new MyPropertyGrid();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -1781,6 +1781,33 @@ namespace SimPe
 			this.toolTip1.SetToolTip(this.hcFolders, resources.GetString("hcFolders.ToolTip"));
 			this.hcFolders.Visible = ((bool)(resources.GetObject("hcFolders.Visible")));
 			// 
+			// pgPaths
+			// 
+			this.pgPaths.AccessibleDescription = resources.GetString("pgPaths.AccessibleDescription");
+			this.pgPaths.AccessibleName = resources.GetString("pgPaths.AccessibleName");
+			this.pgPaths.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pgPaths.Anchor")));
+			this.pgPaths.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pgPaths.BackgroundImage")));
+			this.pgPaths.CommandsBackColor = System.Drawing.SystemColors.Window;
+			this.pgPaths.CommandsVisibleIfAvailable = true;
+			this.pgPaths.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pgPaths.Dock")));
+			this.pgPaths.Enabled = ((bool)(resources.GetObject("pgPaths.Enabled")));
+			this.pgPaths.Font = ((System.Drawing.Font)(resources.GetObject("pgPaths.Font")));
+			this.pgPaths.HelpVisible = ((bool)(resources.GetObject("pgPaths.HelpVisible")));
+			this.pgPaths.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pgPaths.ImeMode")));
+			this.pgPaths.LargeButtons = false;
+			this.pgPaths.LineColor = System.Drawing.SystemColors.ScrollBar;
+			this.pgPaths.Location = ((System.Drawing.Point)(resources.GetObject("pgPaths.Location")));
+			this.pgPaths.Name = "pgPaths";
+			this.pgPaths.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pgPaths.RightToLeft")));
+			this.pgPaths.Size = ((System.Drawing.Size)(resources.GetObject("pgPaths.Size")));
+			this.pgPaths.TabIndex = ((int)(resources.GetObject("pgPaths.TabIndex")));
+			this.pgPaths.Text = resources.GetString("pgPaths.Text");
+			this.pgPaths.ToolbarVisible = false;
+			this.toolTip1.SetToolTip(this.pgPaths, resources.GetString("pgPaths.ToolTip"));
+			this.pgPaths.ViewBackColor = System.Drawing.SystemColors.Window;
+			this.pgPaths.ViewForeColor = System.Drawing.SystemColors.WindowText;
+			this.pgPaths.Visible = ((bool)(resources.GetObject("pgPaths.Visible")));
+			// 
 			// tbep2
 			// 
 			this.tbep2.AccessibleDescription = resources.GetString("tbep2.AccessibleDescription");
@@ -3009,32 +3036,6 @@ namespace SimPe
 			this.navigationButton2.Text = resources.GetString("navigationButton2.Text");
 			this.navigationButton2.ToolTipText = resources.GetString("navigationButton2.ToolTipText");
 			// 
-			// pgPaths
-			// 
-			this.pgPaths.AccessibleDescription = resources.GetString("pgPaths.AccessibleDescription");
-			this.pgPaths.AccessibleName = resources.GetString("pgPaths.AccessibleName");
-			this.pgPaths.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pgPaths.Anchor")));
-			this.pgPaths.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pgPaths.BackgroundImage")));
-			this.pgPaths.CommandsBackColor = System.Drawing.SystemColors.Window;
-			this.pgPaths.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pgPaths.Dock")));
-			this.pgPaths.Enabled = ((bool)(resources.GetObject("pgPaths.Enabled")));
-			this.pgPaths.Font = ((System.Drawing.Font)(resources.GetObject("pgPaths.Font")));
-			this.pgPaths.HelpVisible = ((bool)(resources.GetObject("pgPaths.HelpVisible")));
-			this.pgPaths.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pgPaths.ImeMode")));
-			this.pgPaths.LargeButtons = false;
-			this.pgPaths.LineColor = System.Drawing.SystemColors.ScrollBar;
-			this.pgPaths.Location = ((System.Drawing.Point)(resources.GetObject("pgPaths.Location")));
-			this.pgPaths.Name = "pgPaths";
-			this.pgPaths.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pgPaths.RightToLeft")));
-			this.pgPaths.Size = ((System.Drawing.Size)(resources.GetObject("pgPaths.Size")));
-			this.pgPaths.TabIndex = ((int)(resources.GetObject("pgPaths.TabIndex")));
-			this.pgPaths.Text = resources.GetString("pgPaths.Text");
-			this.pgPaths.ToolbarVisible = false;
-			this.toolTip1.SetToolTip(this.pgPaths, resources.GetString("pgPaths.ToolTip"));
-			this.pgPaths.ViewBackColor = System.Drawing.SystemColors.Window;
-			this.pgPaths.ViewForeColor = System.Drawing.SystemColors.WindowText;
-			this.pgPaths.Visible = ((bool)(resources.GetObject("pgPaths.Visible")));
-			// 
 			// OptionForm
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -3048,13 +3049,13 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.hcFolders);
-			this.Controls.Add(this.hcSceneGraph);
 			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcIdent);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
 			this.Controls.Add(this.hcFileTable);
+			this.Controls.Add(this.hcFolders);
+			this.Controls.Add(this.hcSceneGraph);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

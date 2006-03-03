@@ -34,7 +34,8 @@ namespace SimPe
 		ExtrackedPackageDescriptor = 0x10,
 		Sim2Pack = 0x20,
 		Sim2PackCommunity = 0x40,
-		AllFiles = 0x80
+		AllFiles = 0x80,
+		LuaScript = 0x100
 	}
 
 	/// <summary>
@@ -147,6 +148,7 @@ namespace SimPe
 			map.Add(ExtensionType.Sim2Pack, new ExtensionDescriptor("Packed Objects", "*.sims2pack"));
 			map.Add(ExtensionType.Sim2PackCommunity, new ExtensionDescriptor("Sims 2 Community Package", "*.s2cp"));
 			map.Add(ExtensionType.AllFiles, new ExtensionDescriptor("All Files", "*.*"));
+			map.Add(ExtensionType.LuaScript, new ExtensionDescriptor("LUA Script", "*.lua;*.globalObjLua;*.objLua;luac.out"));
 		}
 
 		/// <summary>

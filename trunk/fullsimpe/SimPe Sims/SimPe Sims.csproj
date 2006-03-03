@@ -362,6 +362,26 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ScorItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ScorUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ScorUI.resx"
+                    DependentUpon = "ScorUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ScorWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "sdsc.png"
                     BuildAction = "EmbeddedResource"
                 />

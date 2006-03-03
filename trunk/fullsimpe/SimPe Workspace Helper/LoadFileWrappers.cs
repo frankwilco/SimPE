@@ -265,18 +265,25 @@ namespace SimPe
 			}
 			
 			Assembly a = System.Reflection.Assembly.LoadFrom(file);
-			Type[] mytypes = a.GetTypes();
-
-			foreach(Type t in mytypes)
+			try 
 			{
-				Type mit = t.GetInterface(interfaceType.FullName);
-				if (mit != null) 
+				Type[] mytypes = a.GetTypes();
+
+				foreach(Type t in mytypes)
 				{
+					Type mit = t.GetInterface(interfaceType.FullName);
+					if (mit != null) 
+					{
 					
-					object obj = Activator.CreateInstance(t);
-					return obj;
+						object obj = Activator.CreateInstance(t);
+						return obj;
 					
+					}
 				}
+			} 
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
 			}
 			
 			return null;

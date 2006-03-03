@@ -69,7 +69,16 @@ namespace Teichion.Graphics
         /// <param name="rot"></param>
         public void SetRotation(Microsoft.DirectX.Vector3 rot)
         {
-            SetRotation(Microsoft.DirectX.Quaternion.RotationYawPitchRoll(rot.Y, rot.X, rot.Z));
+            SetRotation(
+				Microsoft.DirectX.Quaternion.RotationMatrix(
+				Microsoft.DirectX.Matrix.Multiply(
+					Microsoft.DirectX.Matrix.RotationX(rot.X),
+					Microsoft.DirectX.Matrix.Multiply(
+						Microsoft.DirectX.Matrix.RotationY(rot.Y),
+						Microsoft.DirectX.Matrix.RotationZ(rot.Z)
+					)
+				)				
+				));
         }
 
         /// <summary>

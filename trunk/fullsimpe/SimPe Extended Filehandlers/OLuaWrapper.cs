@@ -39,7 +39,13 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		#region Attributes
-		string flname; //this is only for the convenience of SimPE!
+		string flname; 
+		public string FileName 
+		{
+			get {return flname;}
+			set {flname = value;}
+		}
+		uint resversion;
 
 		uint id;
 		byte version;
@@ -153,6 +159,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public ObjLua() : base()
 		{			
+			resversion = 0;
 			version = 0x50;
 			byteorder = Endian.little;
 			intsz = 4;
@@ -174,7 +181,97 @@ namespace SimPe.PackedFiles.Wrapper
 		
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{	
-			flname = Helper.ToString(reader.ReadBytes(0x40));
+			resversion = reader.ReadUInt32();
+			int ct = reader.ReadInt32();
+			flname = Helper.ToString(reader.ReadBytes(ct));
+
+			UnserializeLua(reader);
+		}
+
+		protected override void Serialize(System.IO.BinaryWriter writer) 
+		{		
+			writer.Write(resversion);
+			int ct = flname.Length;
+			writer.Write(ct);
+			writer.Write(Helper.ToBytes(flname, ct));
+			SerializeLua(writer);
+		}
+
+		public string ToSource()
+		{
+			try 
+			{
+				System.IO.StreamWriter sw = new System.IO.StreamWriter(new System.IO.MemoryStream());
+				try 
+				{
+				
+
+					string[] regs = new string[0xff];
+					for (int i=0; i<regs.Length; i++) regs[i] = "";
+
+					Lua.Context cx = new SimPe.PackedFiles.Wrapper.Lua.Context();
+					root.ToSource(sw, cx);
+					sw.Flush();
+
+					System.IO.StreamReader sr = new System.IO.StreamReader(sw.BaseStream);
+					sw.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
+					return sr.ReadToEnd();
+				} 
+				finally 
+				{
+					sw.Close();
+				}
+			} 
+			catch( Exception ex)
+			{
+				Helper.ExceptionMessage(ex);
+			}
+
+			return "";
+		}
+
+		public void ExportLua(string flname)
+		{
+			try 
+			{
+				System.IO.BinaryWriter writer = new System.IO.BinaryWriter(System.IO.File.Create(flname));
+				try 
+				{
+					SerializeLua(writer);
+				} 
+				finally 
+				{
+					writer.Close();
+				}
+			} 
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage(ex);
+			}
+		}
+
+		public void ImportLua(string flname)
+		{
+			try 
+			{
+				System.IO.BinaryReader reader = new System.IO.BinaryReader(System.IO.File.OpenRead(flname));
+				try 
+				{
+					UnserializeLua(reader);
+				} 
+				finally 
+				{
+					reader.Close();
+				}
+			} 
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage(ex);
+			}
+		}
+
+		protected void UnserializeLua(System.IO.BinaryReader reader)
+		{	
 			id = reader.ReadUInt32();
 			
 			version = reader.ReadByte();
@@ -196,10 +293,8 @@ namespace SimPe.PackedFiles.Wrapper
 			root.Unserialize(reader);
 		}
 
-
-		protected override void Serialize(System.IO.BinaryWriter writer) 
+		protected void SerializeLua(System.IO.BinaryWriter writer) 
 		{		
-			writer.Write(Helper.ToBytes(flname, 0x40));
 			writer.Write(id);
 			
 			writer.Write(version);
@@ -220,6 +315,8 @@ namespace SimPe.PackedFiles.Wrapper
 			root.Serialize(writer);
 		}
 
+		
+
 		internal static string ReadString(System.IO.BinaryReader reader)
 		{
 			int ct = reader.ReadInt32();
@@ -228,9 +325,16 @@ namespace SimPe.PackedFiles.Wrapper
 
 		internal static void WriteString(string s, System.IO.BinaryWriter writer)
 		{
-			writer.Write((uint)(s.Length+1));
-			writer.Write(Helper.ToBytes(s, s.Length));
-			writer.Write((byte)0);
+			if (s.Length>=0) 
+			{
+				writer.Write((uint)(s.Length+1));
+				writer.Write(Helper.ToBytes(s, s.Length));
+				writer.Write((byte)0);
+			}
+			else 
+			{
+				writer.Write((uint)0);
+			}
 		}
 		#endregion
 
@@ -241,7 +345,7 @@ namespace SimPe.PackedFiles.Wrapper
 			get 
 			{
 				uint[] Types = {
-								   0x61754C1B
+								   Data.MetaData.GLUA, Data.MetaData.OLUA
 							   };
 				return Types;
 			}
@@ -257,13 +361,19 @@ namespace SimPe.PackedFiles.Wrapper
 				return sig;
 			}
 		}		
+		
 		#endregion
 
+		protected override string GetResourceName(SimPe.Data.TypeAlias ta)
+		{
+			if (!this.Processed) ProcessData(FileDescriptor, Package);
+			return flname;
+		}
 	}
 
 	public class ObjLuaFunction : System.IDisposable, System.Collections.IEnumerable
 	{
-	
+		internal static bool DEBUG = false;
 
 		#region Attributes
 		ObjLua parent;
@@ -276,8 +386,16 @@ namespace SimPe.PackedFiles.Wrapper
 		uint linedef;
 		byte nups;
 		byte argc;
+		public byte ArgumentCount
+		{
+			get {return argc;}
+		}
 		byte isinout;
 		byte stacksz;
+		public byte StackSize
+		{
+			get {return stacksz;}
+		}
 
 		ArrayList contants, functions, codes, srcln, upval, local;
 
@@ -324,6 +442,113 @@ namespace SimPe.PackedFiles.Wrapper
 			local = new ArrayList();
 			upval = new ArrayList();
 		}
+
+		#region Source Code
+		void PrintLine(System.IO.StreamWriter sw, Lua.Context cx, ObjLuaCode line, string plusindent)
+		{
+			if (line!=null)
+			{
+				string content = "";
+				if (line is Lua.IOperator) 
+				{
+					Lua.IOperator lop = line as Lua.IOperator;	
+					if (ObjLuaFunction.DEBUG)						
+						content = lop.ToString(cx) +" #"+line.GetType().Name;					
+					else 						
+						content = lop.ToString(cx);						
+					lop.Run(cx);
+				} 
+				else 
+				{
+					content = line.ToString();
+				}
+
+				if (content.Trim()!="") 
+				{
+					if (ObjLuaFunction.DEBUG)
+						sw.WriteLine(Helper.HexString(cx.PC)+": " + plusindent + cx.Indent + content);
+					else
+						sw.WriteLine(plusindent+cx.Indent+content);
+				}
+			}
+		}
+
+		void AddIndent(ref string indent)
+		{
+			indent += "\t";
+		}
+		void BackIndent(ref string indent)
+		{
+			if (indent.Length>0) indent = indent.Substring(0, indent.Length-1);
+		}
+
+		internal void ToSource(System.IO.StreamWriter sw, Lua.Context cx)
+		{
+			cx.Init(this);
+
+			ObjLuaCode line = null;
+			ArrayList endline = new ArrayList();
+			ArrayList elseline = new ArrayList();
+			string pindent = "";
+			for (int i=0; i<codes.Count-1; i++)
+			{
+				cx.GoToLine(i);
+				line = cx.CurrentLine;
+				PrintLine(sw, cx, line, pindent);
+
+				if (line is Lua.IIfOperator) 
+				{
+					AddIndent(ref pindent);
+					int pc = cx.PC;
+					line = cx.NextLine();
+					int ifblsz = line.SBX;
+					cx.PrepareJumpToLine(cx.PC + ifblsz);
+					line = cx.NextLine();
+					if (line is Lua.JMP)  //having an else Block
+					{
+						elseline.Add(cx.PC - 1);
+						endline.Add(cx.PC + line.SBX);
+					} 
+					else 					
+						endline.Add(cx.PC);
+					
+
+					cx.GoToLine(pc);
+				}
+
+				while (endline.Contains(i)) 
+				{
+					BackIndent(ref pindent);
+					sw.WriteLine(pindent+cx.Indent+"end");
+					endline.Remove(i);
+				}
+				if (elseline.Contains(i)) 
+				{
+					BackIndent(ref pindent);
+					sw.WriteLine(pindent+cx.Indent+"else");
+					AddIndent(ref pindent);
+				}
+			} 
+		}
+
+		internal bool IsLocalRegister(ushort regnr, Lua.Context cx)
+		{
+			ObjLuaCode line = null;
+			for (int i=cx.PC+1; i<codes.Count; i++)
+			{
+				line = codes[i] as ObjLuaCode;
+				if (line!=null)
+				
+					if (line is Lua.ILoadOperator) 
+					{
+						Lua.ILoadOperator lop = line as Lua.ILoadOperator;					
+						if (lop.LoadsRegister(regnr)) return false;
+					} 									
+			} 
+			
+			return true;
+		}
+		#endregion
 
 		internal void Unserialize(System.IO.BinaryReader reader)
 		{	
@@ -390,8 +615,7 @@ namespace SimPe.PackedFiles.Wrapper
 			uint codesz = reader.ReadUInt32();
 			for (uint i=0; i<codesz; i++)
 			{
-				ObjLuaCode item = new ObjLuaCode(this);
-				item.Unserialize(reader);
+				ObjLuaCode item = ObjLuaCode.Unserialize(reader, this);				
 				
 				codes.Add(item);
 			}
@@ -443,7 +667,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public override string ToString()
 		{
-			return name+": "+this.argc.ToString()+" Arguments, Stacksize"+this.stacksz.ToString()+", "+contants.Count.ToString()+" Constants, "+functions.Count.ToString()+" SubFunctions, "+codes.Count.ToString()+" Instructions";
+			return name+": "+this.argc.ToString()+" Arguments, Stacksize "+this.stacksz.ToString()+", "+contants.Count.ToString()+" Constants, "+functions.Count.ToString()+" SubFunctions, "+codes.Count.ToString()+" Instructions";
 		}
 		#region IEnumerable Member
 
@@ -453,6 +677,9 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		#endregion
+
+	
+		
 	}
 
 
@@ -486,16 +713,12 @@ namespace SimPe.PackedFiles.Wrapper
 			set { str = value; }
 		}
 
-		uint[] data;
-		public uint Unknown1
+	
+		double dval;		
+		public double Value
 		{
-			get { return data[0]; }
-			set { data[0] = value; }
-		}
-		public uint Unknown2
-		{
-			get { return data[1]; }
-			set { data[1] = value; }
+			get { return dval; }
+			set { dval = value; }
 		}
 
 		uint[] bdata;
@@ -508,7 +731,8 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			this.parent = parent;
 			str = "";
-			data = new uint[2];
+			
+			
 			bdata = new uint[0];
 			badd = new byte[0];
 			bheader = new byte[3];
@@ -529,13 +753,12 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				if (parent.Parent.NumberSize==8) 
 				{
-					data[0] = reader.ReadUInt32();
-					data[1] = reader.ReadUInt32();
+					dval = reader.ReadDouble();
 				} 
 				else if (parent.Parent.NumberSize==4) 
 				{
-					data[0] = reader.ReadUInt32();
-					data[1] = 0;
+					dval = reader.ReadSingle();
+					
 				} else throw new Exception("Number Size "+parent.Parent.NumberSize.ToString()+" is not supported!");
 			}
 			else if (type==Type.Empty) 
@@ -560,12 +783,11 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				if (parent.Parent.NumberSize==8) 
 				{
-					writer.Write(data[0]);
-					writer.Write(data[1]);
+					writer.Write((double)dval);					
 				} 
 				else if (parent.Parent.NumberSize==4) 
 				{
-					writer.Write(data[0]);					
+					writer.Write((float)dval);					
 				} 
 				else throw new Exception("Number Size "+parent.Parent.NumberSize.ToString()+" is not supported!");
 			}
@@ -586,8 +808,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 			badd = null;
 			bheader = null;
-			bdata = null;
-			data = null;
+			bdata = null;		
 		}
 
 		#endregion
@@ -596,7 +817,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			string s = type.ToString()+": ";
 			if (type == Type.String) s += str;
-			else if (type == Type.Number) s += "0x"+Helper.HexString(this.Unknown1)+", "+"0x"+Helper.HexString(this.Unknown2);			
+			else if (type == Type.Number) s += dval.ToString();			
 										 
 			return s;
 		}
@@ -726,6 +947,56 @@ namespace SimPe.PackedFiles.Wrapper
 
 	public class ObjLuaCode : System.IDisposable
 	{		
+		static Hashtable ocmap;
+		protected static void PrepareOpcodeMap()
+		{
+			ocmap = new Hashtable();
+
+			ocmap["MOVE"] = typeof(Lua.MOVE);
+			ocmap["LOADNIL"] = typeof(Lua.LOADNIL);
+			ocmap["LOADK"] = typeof(Lua.LOADK);
+			ocmap["SETGLOBAL"] = typeof(Lua.SETGLOBAL);
+			ocmap["GETGLOBAL"] = typeof(Lua.GETGLOBAL);
+			ocmap["CALL"] = typeof(Lua.CALL);
+			ocmap["CLOSURE"] = typeof(Lua.CLOSURE);
+			ocmap["NEWTABLE"] = typeof(Lua.NEWTABLE);
+			ocmap["SETTABLE"] = typeof(Lua.SETTABLE);
+			ocmap["GETTABLE"] = typeof(Lua.GETTABLE);
+			ocmap["RETURN"] = typeof(Lua.RETURN);
+			ocmap["ADD"] = typeof(Lua.ADD);
+			ocmap["SUB"] = typeof(Lua.SUB);
+			ocmap["MUL"] = typeof(Lua.MUL);
+			ocmap["DIV"] = typeof(Lua.DIV);
+			ocmap["GETUPVAL"] = typeof(Lua.GETUPVAL);
+
+			ocmap["JMP"] = typeof(Lua.JMP);
+			ocmap["EQ"] = typeof(Lua.EQ);
+			ocmap["LE"] = typeof(Lua.LE);
+			ocmap["GE"] = typeof(Lua.GE);
+			ocmap["LT"] = typeof(Lua.LT);
+			ocmap["GT"] = typeof(Lua.GT);
+		}
+
+		protected static Type GetOpcodeType(byte opcode)
+		{
+			PrepareOpcodeMap();
+			string n = GetOpcodeName(opcode);
+			Type t = ocmap[n] as Type;
+
+			if (t==null) return typeof(ObjLuaCode);
+			return t;
+		}
+
+		public static ObjLuaCode CreateOperator(uint val, ObjLuaFunction parent)
+		{
+			byte oc = GetOpCode(val, parent);
+			Type t = GetOpcodeType(oc);
+
+			ObjLuaCode ret = (ObjLuaCode)System.Activator.CreateInstance(t, new object[] {val, parent});
+			return ret;
+		}
+
+		public const int RK_OFFSET = 250;
 		#region OpCodes		
 		static string[] opcodes = new string[]{
 												  "MOVE",
@@ -806,6 +1077,11 @@ namespace SimPe.PackedFiles.Wrapper
 
 		#region Attributes
 		ObjLuaFunction parent;
+
+		protected ObjLuaFunction Parent
+		{
+			get {return parent;}
+		}
 	
 		uint val;
 		public uint Value
@@ -814,16 +1090,26 @@ namespace SimPe.PackedFiles.Wrapper
 			set { val = value; }
 		}
 
+		protected static byte GetOpCode(uint val, ObjLuaFunction parent)
+		{
+			return (byte)((val & (parent.Parent.OpcodeMaks << parent.Parent.OpcodeShift)) >> parent.Parent.OpcodeShift);
+		}
+
+		protected void SetOpcode(byte oc)
+		{
+			val = ((uint)(val & (0xFFFFFFFF - (parent.Parent.OpcodeMaks << parent.Parent.OpcodeShift))) | (uint)((oc & parent.Parent.OpcodeMaks)<< parent.Parent.OpcodeShift));
+		}
+
 		public byte Opcode 
 		{
 			get 
 			{				
-				return (byte)((val & (parent.Parent.OpcodeMaks << parent.Parent.OpcodeShift)) >> parent.Parent.OpcodeShift);
+				return GetOpCode(val, this.parent);
 			}
-			set 
+			/*set 
 			{
-				val = ((uint)(val & (0xFFFFFFFF - (parent.Parent.OpcodeMaks << parent.Parent.OpcodeShift))) | (uint)((value & parent.Parent.OpcodeMaks)<< parent.Parent.OpcodeShift));
-			}
+				SetOpcode(value);
+			}*/
 		}
 
 		public ushort A
@@ -862,13 +1148,23 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 
-		public string GetOpcodeName(byte oc)
+		public uint BX
+		{
+			get { return ((B & parent.Parent.BMaks) << parent.Parent.CBits) | (C & parent.Parent.CMaks); }
+		}
+
+		public int SBX
+		{
+			get { return (int)((long)BX - parent.Parent.Bias); }
+		}
+
+		public static string GetOpcodeName(byte oc)
 		{
 			if (oc>=0 && oc<opcodes.Length) return opcodes[oc];
 			else return "UNK_"+Helper.HexString(oc);			
 		}
 
-		public string GetOpcodeDescription(byte oc)
+		public static string GetOpcodeDescription(byte oc)
 		{
 			if (oc>=0 && oc<opcodedesc.Length) return opcodedesc[oc];
 			else return SimPe.Localization.GetString("Unknown");			
@@ -877,116 +1173,162 @@ namespace SimPe.PackedFiles.Wrapper
 		#endregion
 
 		#region Opcode Translation
-		string R(ushort v)
+
+		string TranslateOpcode(byte oc, ushort a, ushort b, ushort c) 
 		{
-			return "R"+v.ToString();
+			uint bx = BX;
+			int sbx = SBX;
+			
+			string name = GetOpcodeName(oc);
+			string ret = "";			
+			//if (name=="MOVE") ret =  R(a) + " = " + R(b);
+			//else if (name=="LOADNIL") ret = ListR(a, b, " = ", " = ... = ")+"null";
+			//else if (name=="LOADK") ret = R(a) +" = " + Kst(bx);
+			if (name=="LOADBOOL") ret = R(a) + " = " + Bool(b) +"; if ("+Bool(c)+") PC++";
+			//else if (name=="GETGLOBAL") ret = R(a) + " = " + Gbl(Kst(bx));
+			//else if (name=="SETGLOBAL") ret = Gbl(Kst(bx)) + " = " + R(a);
+			//else if (name=="GETUPVAL") ret = R(a) + " = " + UpValue(b);
+			else if (name=="SETUPVAL") ret = UpValue(b) + " = " + R(a);
+			//else if (name=="GETTABLE") ret = R(a) + " = " + R(b)+"["+RK(c)+"]";
+			//else if (name=="SETTABLE") ret = R(a)+"["+RK(b)+"]" + " = " + RK(c);
+			//else if (name=="ADD") ret = R(a) + " = " + RK(b) + " + " + RK(c);
+			//else if (name=="SUB") ret = R(a) + " = " + RK(b) + " - " + RK(c);
+			//else if (name=="MUL") ret = R(a) + " = " + RK(b) + " * " + RK(c);
+			//else if (name=="DIV") ret = R(a) + " = " + RK(b) + " / " + RK(c);
+			else if (name=="POW") ret = R(a) + " = " + RK(b) + " ^ " + RK(c);
+			else if (name=="UNM") ret = R(a) + " = -" + R(b);
+			else if (name=="NOT") ret = R(a) + " = !" + R(b);
+			else if (name=="CONCAT") ret = R(a) + " = " + ListR(b, c);
+			//else if (name=="JMP") ret = " PC += " + sbx.ToString();
+			//else if (name=="CALL") ret = ListR(a, a+c-2, " = ", ", ..., ") + R(a) + "(" + ListR(a+1, a+b-1, "", ", ..., ") + ")";
+			//else if (name=="RETURN") ret = "return " + ListR(a, a+b-2, "", ", ..., ");
+			else if (name=="TAILCALL") ret = "return " + R(a) + "(" + ListR(a+1, a+b-1, "", ", ..., ") + ")";
+			else if (name=="SELF") ret = R((ushort)(a+1)) + " = " + R(b) + "; " + R(a) + " = " + R(b) + "["+RK(c)+"]";			
+			//else if (name=="EQ") ret = "if ((" + RK(b) + " == " + RK(c) + ") == " + Bool(a) + " then PC++";
+			//else if (name=="LT") ret = "if ((" + RK(b) + " < " + RK(c) + ") == " + Bool(a) + " then PC++";
+			//else if (name=="LE") ret = "if ((" + RK(b) + " <= " + RK(c) + ") == " + Bool(a) + " then PC++";
+			else if (name=="TEST") ret = "if (" + R(b) + " <=> " + c.ToString() + ") then " + R(a) + " = " + R(b) + " else PC++";
+			else if (name=="FORLOOP") ret = R(a) + " += " + R((ushort)(a+2)) + "; if " + R(a) + " <= " +  R((ushort)(a+1)) + " then PC += " + sbx.ToString();
+			else if (name=="TFORPREP") ret = "if type("+R(a)+") == table then " + R((ushort)(a+1)) + " = " + R(a) + "; " + R(a) + "= next; PC += " + sbx.ToString();
+			else if (name=="TFORLOOP") ret = R((ushort)(a+2)) + ", ..., " + R((ushort)(a+2+c)) + " = " + R(a) + "("+R(a)+", "+R((ushort)(a+2))+"); if " +  R((ushort)(a+2)) + " == null then PC++";
+			//else if (name=="NEWTABLE") ret = R(a) + " = new table["+TblFbp(b)+", "+TblSz(c)+"]";
+			//else if (name=="CLOSURE") ret = R(a) + " = closure(KPROTO["+bx.ToString()+"], "+R(a)+", ...)";
+			else if (name=="CLOSE") ret = "close all to "+R(a);
+
+			if (ObjLuaFunction.DEBUG )
+			{
+				if (SimPe.Helper.WindowsRegistry.HiddenMode)
+					return ret+"; //"+name;
+				else
+					return ret+"; //"+name+": "+GetOpcodeDescription(oc);
+			} 
+			else 
+			{
+				if (SimPe.Helper.WindowsRegistry.HiddenMode)
+					return ret+"; //"+name;
+				else
+					return ret+"; //"+GetOpcodeDescription(oc);
+			}
+			//return ret+"; //"+name+" (a=0x"+Helper.HexString(a)+", b=0x"+Helper.HexString(b)+", c=0x"+Helper.HexString(c)+", bx="+bx.ToString()+", sbx="+sbx.ToString()+") "+GetOpcodeDescription(oc);
+		}
+
+		protected static string R(ushort v, string[]regs, bool use)
+		{
+			if (use) return R(v, regs);
+			else return R(v);
+		}
+
+		protected static string R(ushort v)
+		{
+			return "{R"+v.ToString()+"}";
+		}
+
+		protected static string R(ushort v, string[]regs)
+		{
+			if (regs[v]==null) return "null";
+			return regs[v];
 		}
 		
-		string RK(ushort v)
+		protected string RK(ushort v)
 		{
-			return v.ToString();
+			if (v<RK_OFFSET) return R(v);
+			else return (Kst((uint)(v-RK_OFFSET)));			
 		}
-		string Kst(uint v)
+		protected string Kst(uint v)
 		{
 			if (v>=0 && v<parent.Constants.Count) 
 			{
 				ObjLuaConstant oci = (ObjLuaConstant)parent.Constants[(int)v];
 				if (oci.InstructionType==ObjLuaConstant.Type.String) return oci.String;
-				else if (oci.InstructionType==ObjLuaConstant.Type.Number) return oci.ToString();
+				else if (oci.InstructionType==ObjLuaConstant.Type.Number) return oci.Value.ToString();
 				else return "null";				
 			}
 			return v.ToString();
 		}
 
-		string UpValue(ushort v)
+		protected string UpValue(ushort v)
 		{
 			if (v>=0 && v<parent.UpValues.Count) return parent.UpValues[v].ToString();
 			return v.ToString();
 		}
 
-		string Bool(ushort v)
+		protected static string Bool(ushort v)
 		{
 			if (v==0) return "false";
 			else return "true";
 		}
 
-		string Gbl(string n)
+		protected static string Gbl(string n)
 		{
-			return "(Global)"+n;
+			return "GLOBAL["+n+"]";
 		}
 
-		string Tbl(ushort v) 
+		protected static string Tbl(ushort v) 
 		{
 			return "Tbl"+v.ToString();
 		}
 
-		string TblFbp(ushort v)
+		protected static string TblFbp(ushort v)
 		{
-			int m = (v & 0x00F8) >> 3;
-			int b = (v & 0x0007);
-
-			double d = b * Math.Pow(2, m);
-			return ((int)Math.Round(d)).ToString();
+			return Lua.Context.TblFbp(v).ToString();
 		}
 
-		string TblSz(ushort v)
+		protected static string TblSz(ushort v)
 		{
-			return ((int)(Math.Log(5, 2) + 1)).ToString();
+			return Lua.Context.TblSz(v).ToString();
 		}
 
-		string TranslateOpcode(byte oc, ushort a, ushort b, ushort c) 
+		protected static string ListR(int start, int end)
 		{
-			uint bx = ((b & parent.Parent.BMaks) << parent.Parent.CBits) | (c & parent.Parent.CMaks);
-			int sbx = (int)((long)bx - parent.Parent.Bias);
-			
-			string name = GetOpcodeName(oc);
-			string ret = "";			
-			if (name=="MOVE") ret =  R(a) + " := " + R(b);
-			else if (name=="LOADNIL") ret = R(a) + " :=  ... :=  " + R(b) + " := null";
-			else if (name=="LOADK") ret = R(a) +" := " + Kst(bx);
-			else if (name=="LOADBOOL") ret = R(a) + " := " + Bool(b) +"; if ("+Bool(c)+") PC++";
-			else if (name=="GETGLOBAL") ret = R(a) + " := " + Gbl(Kst(bx));
-			else if (name=="SETGLOBAL") ret = Gbl(Kst(bx)) + " := " + R(a);
-			else if (name=="GETUPVAL") ret = R(a) + " := " + UpValue(b);
-			else if (name=="SETUPVAL") ret = UpValue(b) + " := " + R(a);
-			else if (name=="GETTABLE") ret = R(a) + " := " + Tbl(b)+"["+RK(c)+"]";
-			else if (name=="SETTABLE") ret = Tbl(b)+"["+RK(c)+"]" + " := " + R(a);
-			else if (name=="ADD") ret = R(a) + " := " + RK(b) + " + " + RK(c);
-			else if (name=="SUB") ret = R(a) + " := " + RK(b) + " - " + RK(c);
-			else if (name=="MUL") ret = R(a) + " := " + RK(b) + " * " + RK(c);
-			else if (name=="DIV") ret = R(a) + " := " + RK(b) + " / " + RK(c);
-			else if (name=="POW") ret = R(a) + " := " + RK(b) + " ^ " + RK(c);
-			else if (name=="UNM") ret = R(a) + " := -" + R(b);
-			else if (name=="NOT") ret = R(a) + " := !" + R(b);
-			else if (name=="CONCAT") ret = R(a) + " := " + R(b) + " + ... + " + R(c);
-			else if (name=="JMP") ret = " PC += " + sbx.ToString();
-			else if (name=="CALL") ret = R(a) + ", ... ," + R((ushort)(a+c+2)) + " := " + R(a) + "("+R((ushort)(a+1))+", ..., "+R((ushort)(a+b-1))+")";
-			else if (name=="RETURN") ret = "return " + R(a) + ", ..., " + R((ushort)(a+b+2));
-			else if (name=="TAILCALL") ret = "return " + R(a) + "(" + R((ushort)(a+1)) + ", ..., " + R((ushort)(a+b-1)) + ")";
-			else if (name=="SELF") ret = R((ushort)(a+1)) + " := " + R(b) + "; " + R(a) + " := " + R(b) + "["+RK(c)+"]";			
-			else if (name=="EQ") ret = "if ((" + RK(b) + " == " + RK(c) + ") == " + Bool(a) + " then PC++";
-			else if (name=="LT") ret = "if ((" + RK(b) + " < " + RK(c) + ") == " + Bool(a) + " then PC++";
-			else if (name=="LE") ret = "if ((" + RK(b) + " <= " + RK(c) + ") == " + Bool(a) + " then PC++";
-			else if (name=="TEST") ret = "if (" + R(b) + " <=> " + c.ToString() + ") then " + R(a) + " := " + R(b) + " else PC++";
-			else if (name=="FORLOOP") ret = R(a) + " += " + R((ushort)(a+2)) + "; if " + R(a) + " <= " +  R((ushort)(a+1)) + " then PC += " + sbx.ToString();
-			else if (name=="TFORPREP") ret = "if type("+R(a)+") == table then " + R((ushort)(a+1)) + " := " + R(a) + "; " + R(a) + ":= next; PC += " + sbx.ToString();
-			else if (name=="TFORLOOP") ret = R((ushort)(a+2)) + ", ..., " + R((ushort)(a+2+c)) + " := " + R(a) + "("+R(a)+", "+R((ushort)(a+2))+"); if " +  R((ushort)(a+2)) + " == null then PC++";
-			else if (name=="NEWTABLE") ret = R(a) + " := new table["+TblFbp(b)+", "+TblSz(c)+"]";
-			else if (name=="CLOSURE") ret = R(a) + " := closure(KPROTO["+bx.ToString()+"], "+R(a)+", ...)";
-			else if (name=="CLOSE") ret = "close all to "+R(a);
+			return ListR(start, end, "", " ... ");
+		}		
 
-			return ret+"; //"+name+" (a=0x"+Helper.HexString(a)+", b=0x"+Helper.HexString(b)+", c=0x"+Helper.HexString(c)+", bx="+bx.ToString()+", sbx="+sbx.ToString()+") "+GetOpcodeDescription(oc);
+		protected static string ListR(int start, int end, string prefix, string infix)
+		{
+			if (end<start) return "";
+			if (end==start) return R((ushort)start)+prefix;
+			return R((ushort)start) + infix + R((ushort)end)+prefix;
 		}
+
+		
 		#endregion
 
-		public ObjLuaCode(ObjLuaFunction parent) 
-		{
-			this.parent = parent;				
+		public ObjLuaCode(ObjLuaFunction parent) : this(0, parent)
+		{			
 		}
 
-		internal void Unserialize(System.IO.BinaryReader reader)
+		public ObjLuaCode(uint val, ObjLuaFunction parent) 
+		{
+			this.parent = parent;
+			this.val = val;	
+		}
+
+
+		internal static ObjLuaCode Unserialize(System.IO.BinaryReader reader, ObjLuaFunction parent)
 		{	
-			val = reader.ReadUInt32();
+			uint val = reader.ReadUInt32();
+			ObjLuaCode ret = ObjLuaCode.CreateOperator(val, parent);
+			return ret;
 		}
 
 
@@ -1005,7 +1347,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public override string ToString()
 		{
-			return "0x"+Helper.HexString(val)+": "+TranslateOpcode(this.Opcode, this.A, this.B, this.C);
+			return /*"0x"+Helper.HexString(val)+": "+*/TranslateOpcode(this.Opcode, this.A, this.B, this.C);
 		}
 
 	}

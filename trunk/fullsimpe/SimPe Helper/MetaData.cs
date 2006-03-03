@@ -181,7 +181,7 @@ namespace SimPe.Data
 		Surfaces_EndTable = 0x204,
 		Surfaces_Desks = 0x208,
 		Surfaces_Coffeetable = 0x210,
-		Surfaces_UnknownA = 0x220,
+		Surfaces_Business = 0x220,
 		Surfaces_UnknownB = 0x240,
 		Surfaces_Misc = 0x280,
 
@@ -314,7 +314,7 @@ namespace SimPe.Data
 		/// </summary>
 		public static Color InactiveSim = Color.FromArgb(0xEF, Color.LightCoral);
 
-		#region Constants
+		#region Constants		
 
 		/// <summary>
 		/// Group for Costum Content
@@ -428,6 +428,10 @@ namespace SimPe.Data
 		public const uint XFLR = 0x4DCADB7E;
 		public const uint XFNC = 0x2CB230B8;
 		public const uint XNGB = 0x6D619378;
+
+		public const uint GLUA = 0x9012468A;
+		public const uint OLUA = 0x9012468B;
+
 
 		public static string GMND_PACKAGE = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads\\_EnableColorOptionsGMND.package");
 		public static string MMAT_PACKAGE = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res\\Sims3D\\_EnableColorOptionsMMAT.package");

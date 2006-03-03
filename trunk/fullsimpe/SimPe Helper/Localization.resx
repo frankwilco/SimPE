@@ -455,8 +455,8 @@ Package: {filename}</value>
 	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Coffeetable">
 		<value>Surfaces / Coffetable</value>
 	</data>
-	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_UnknownA">
-		<value>Surfaces / Unknown I</value>
+	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Business">
+		<value>Surfaces / Business</value>
 	</data>
 	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_UnknownB">
 		<value>Surfaces / Unknown II</value>
@@ -785,7 +785,7 @@ If you still want to offer the Fence for the original Game, please consider to r
 Do you really want to make this Fence compatible with the original Game?"</value>
     </data>
     <data name="Censor_Install_Warn">
-		<value>You have installed Nightlife, this means, that SimPE needs to copy a File into your Config folder, in order to remove the Blur.
+		<value>You have installed Nightlife (or a newer Expansion). This means, that SimPE needs to copy a File into your Config folder, in order to remove the Blur.
     
 Do you want to continue?</value>
     </data>
@@ -918,4 +918,53 @@ If this is empty, SimPE will use the default Folder.</value>
 	<data name="[Category:ExpansionPack]">
 		<value>2. Expansion Packs</value>
 	</data>
+	
+	<data name="SimPe.PackedFiles.Wrapper.JobAssignment.Nothing">
+		<value>Nothing</value>
+    </data>
+	<data name="SimPe.PackedFiles.Wrapper.JobAssignment.Chef">
+		<value>Chef</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Host">
+		<value>Host</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Server">
+		<value>Server</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Cashier">
+		<value>Cashier</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Bartender">
+		<value>Bartender</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Barista">
+		<value>Barista</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.DJ">
+		<value>DJ</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.SellLemonade">
+		<value>Sell Lemonade</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Stylist">
+		<value>Stylist</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Tidy">
+		<value>Tidy</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Restock">
+		<value>Restock</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Sales">
+		<value>Sales</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.MakeToys">
+		<value>Make Toys</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.ArrangeFlowers">
+		<value>Arrange Flowers</value>
+    </data>
+    <data name="SimPe.PackedFiles.Wrapper.JobAssignment.BuildRobots">
+		<value>Build Robots</value>
+    </data>
 </root>

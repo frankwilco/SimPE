@@ -18,41 +18,41 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
-using SimPe.Interfaces.Plugin;
-using SimPe.Interfaces;
 
-namespace SimPe.PackedFiles.Wrapper.Factory
+namespace SimPe
 {
-
 	/// <summary>
-	/// The Wrapper Factory for Default Wrappers that ship with SimPe
+	/// Some usefull Methods to Read Data
 	/// </summary>
-	public class SimFactory : AbstractWrapperFactory
+	public class StreamHelper
 	{
-		#region AbstractWrapperFactory Member
-		public override SimPe.Interfaces.IWrapper[] KnownWrappers
+		/// <summary>
+		/// Reads a string from the Stream, that is 32-Bit Length Encoded
+		/// </summary>
+		/// <param name="reader"></param>
+		/// <returns></returns>
+		public static string ReadString(System.IO.BinaryReader reader)
 		{
-			get 
-			{				
-				if (Helper.StartedGui == Executable.Classic) 
-				{
-					return new IWrapper[0];
-				} 
-				else 
-				{
-					IWrapper[] wrappers = {
-											  new SimPe.PackedFiles.Wrapper.ExtFamilyTies()	,
-											  new SimPe.PackedFiles.Wrapper.LinkedSDesc(),
-											  new SimPe.PackedFiles.Wrapper.ExtSrel(),
-											  new SimPe.PackedFiles.Wrapper.SimDNA(),
-											  new SimPe.PackedFiles.Wrapper.Scor()
-										  };
-					return wrappers;
-				}
-			}
+			int ct = reader.ReadInt32();
+			return Helper.ToString(reader.ReadBytes(ct));
 		}
 
-		#endregion
-
+		/// <summary>
+		/// Writes a 32-Bit Length Encoded String
+		/// </summary>
+		/// <param name="writer"></param>
+		/// <param name="s"></param>
+		public static void WriteString(System.IO.BinaryWriter writer, string s)
+		{
+			if (s.Length>0) 
+			{
+				writer.Write((uint)(s.Length));
+				writer.Write(Helper.ToBytes(s, s.Length));
+			}
+			else 
+			{
+				writer.Write((uint)0);
+			}
+		}
 	}
 }

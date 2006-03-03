@@ -537,6 +537,7 @@ namespace SimPe.Interfaces.Plugin
 					res = GetResourceName(ta);
 					if (res==null) res = GetEmbeddedFileName(ta);
 					if (res==null) res = FileDescriptor.ToString();
+					else if (ta.Name==null) res = SimPe.Localization.GetString("Unknown")+": "+res;
 					else  res = ta.Name+": "+res;
 				} 
 				else 

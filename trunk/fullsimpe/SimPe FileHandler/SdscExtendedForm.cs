@@ -221,7 +221,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		void ShowData(byte[] data)
 		{
-			shortdata = new short[(data.Length-0x9) / 2 +1];
+			shortdata = new short[(data.Length-0xA) / 2 +1];
 			int j=0;
 			for (int i=0xa; i<data.Length-1; i +=2) 
 			{
@@ -246,13 +246,13 @@ namespace SimPe.PackedFiles.UserInterface
 
 			
 			
-			int max = 0;
+			int max = -1;
 			foreach (SimPe.Interfaces.IAlias a in ns) 
 			{
 				max = (int)Math.Max(a.Id, max);
-				names[(int)a.Id] = a.Name;			
-				
+				names[(int)a.Id] = a.Name;							
 			}
+			max++;
 			
 			
 			Hashtable ht = new Hashtable();

@@ -218,14 +218,7 @@ namespace SimPe.Plugin
 			get
 			{			
 				if (form==null) form = new fGeometryDataContainer();
-				if (Helper.WindowsRegistry.HiddenMode) 
-				{				
-					return form.tDebug;
-				} 
-				else 
-				{
-					return form.tMesh;
-				}
+				return form.tMesh;				
 			}
 		}
 		#endregion
@@ -314,11 +307,7 @@ namespace SimPe.Plugin
 		/// <param name="tc">The TabPage will be added here.</param>
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
 		{
-			if (Helper.WindowsRegistry.HiddenMode) 
-			{
-				form.tMesh.Tag = this;
-				tc.TabPages.Add(form.tMesh);
-			}
+			
 
 			form.tGeometryDataContainer.Tag = this;
 			tc.TabPages.Add(form.tGeometryDataContainer);
@@ -334,6 +323,12 @@ namespace SimPe.Plugin
 
 			form.tSubset.Tag = this;
 			tc.TabPages.Add(form.tSubset);
+
+			if (Helper.WindowsRegistry.HiddenMode) 
+			{
+				form.tDebug.Tag = this;
+				tc.TabPages.Add(form.tDebug);
+			}
 		}
 
 		#region .x-Files

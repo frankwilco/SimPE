@@ -126,6 +126,7 @@ namespace SimPe
 		private TD.SandBar.MenuButtonItem miSaveCopyAs;
 		private TD.SandBar.MenuButtonItem miOpenNightlifeRes;
 		private TD.SandBar.ButtonItem biReset;
+		private TD.SandBar.MenuButtonItem miOpenBusinessRes;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -252,6 +253,7 @@ namespace SimPe
 			this.miOpenSimsRes = new TD.SandBar.MenuButtonItem();
 			this.miOpenUniRes = new TD.SandBar.MenuButtonItem();
 			this.miOpenNightlifeRes = new TD.SandBar.MenuButtonItem();
+			this.miOpenBusinessRes = new TD.SandBar.MenuButtonItem();
 			this.miOpenDownloads = new TD.SandBar.MenuButtonItem();
 			this.miSaveCopyAs = new TD.SandBar.MenuButtonItem();
 			this.miRecent = new TD.SandBar.MenuButtonItem();
@@ -887,6 +889,7 @@ namespace SimPe
 																			  this.miOpenSimsRes,
 																			  this.miOpenUniRes,
 																			  this.miOpenNightlifeRes,
+																			  this.miOpenBusinessRes,
 																			  this.miOpenDownloads});
 			this.miOpenIn.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenIn.Shortcut")));
 			this.miOpenIn.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenIn.Shortcut2")));
@@ -916,6 +919,14 @@ namespace SimPe
 			this.miOpenNightlifeRes.Text = resources.GetString("miOpenNightlifeRes.Text");
 			this.miOpenNightlifeRes.ToolTipText = resources.GetString("miOpenNightlifeRes.ToolTipText");
 			this.miOpenNightlifeRes.Activate += new System.EventHandler(this.Activate_miOpenNightlifeRes);
+			// 
+			// miOpenBusinessRes
+			// 
+			this.miOpenBusinessRes.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenBusinessRes.Shortcut")));
+			this.miOpenBusinessRes.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenBusinessRes.Shortcut2")));
+			this.miOpenBusinessRes.Text = resources.GetString("miOpenBusinessRes.Text");
+			this.miOpenBusinessRes.ToolTipText = resources.GetString("miOpenBusinessRes.ToolTipText");
+			this.miOpenBusinessRes.Activate += new System.EventHandler(this.Activate_miOpenBusinessRes);
 			// 
 			// miOpenDownloads
 			// 
@@ -2411,6 +2422,7 @@ namespace SimPe
 
 			this.miOpenUniRes.Enabled = Helper.WindowsRegistry.EPInstalled>=1;
 			this.miOpenNightlifeRes.Enabled = Helper.WindowsRegistry.EPInstalled>=2;
+			this.miOpenBusinessRes.Enabled = Helper.WindowsRegistry.EPInstalled>=3;
 		}
 		#endregion
 
@@ -3003,6 +3015,13 @@ namespace SimPe
 			this.Activate_miOpen(sender, e);
 		}
 
+		private void Activate_miOpenBusinessRes(object sender, System.EventArgs e)
+		{
+			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP3Path, "TSData\\Res");
+			ofd.FileName = "";
+			this.Activate_miOpen(sender, e);
+		}
+
 		private void Activate_miOpenDownloads(object sender, System.EventArgs e)
 		{
 			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads");
@@ -3179,6 +3198,8 @@ namespace SimPe
 		{
 			MakeFloatable(false);
 		}
+
+		
 	}
 			
 }

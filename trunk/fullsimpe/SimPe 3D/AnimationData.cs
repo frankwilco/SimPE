@@ -9,17 +9,14 @@ namespace SimPe.Plugin
 	class AnimationData
 	{
 		SimPe.Plugin.Anim.AnimationFrameBlock afb;
-		Teichion.Graphics.NodeBox nb;
-		Teichion.Graphics.MeshTransform mt;
+		Ambertation.Graphics.MeshBox mb;
 		int fct;
 		SimPe.Geometry.Vectors3f frames;
-		SimPe.Geometry.Vector3f scale;
-		public AnimationData(SimPe.Plugin.Anim.AnimationFrameBlock afb, Teichion.Graphics.NodeBox nb, int framecount)
+		public AnimationData(SimPe.Plugin.Anim.AnimationFrameBlock afb, Ambertation.Graphics.MeshBox mb, int framecount)
 		{
-			Console.WriteLine(nb.ToString());
+			Console.WriteLine(mb.ToString());
 			this.afb = afb;
-			this.nb = nb;
-			mt = (Teichion.Graphics.MeshTransform)nb.Transform.Clone();
+			this.mb = mb;
 			this.fct = framecount;
 			frames = new SimPe.Geometry.Vectors3f();
 
@@ -89,7 +86,7 @@ namespace SimPe.Plugin
 				last = new AnimationFrame(max, first.Type);
 				last.X = first.X;
 				last.Y = first.Y;
-				last.Z = first.Z;
+				last.Z = first.Z;				
 			}			
 			
 			for (short i=(short)(first.TimeCode); i<=max; i++)
@@ -102,32 +99,44 @@ namespace SimPe.Plugin
 			double pos = (index-first.TimeCode) / (double)(last.TimeCode - first.TimeCode);
 			double v = Interpolate(axis, pos, first.GetBlock(axis), last.GetBlock(axis));
 
-			frames[index].SetComponent(axis, v);			
+			frames[index].SetComponent(axis, v);
 		}
 
 		double Interpolate(byte axis, double pos, AnimationAxisTransform first, AnimationAxisTransform last)
 		{
 			double f = 0;
-			if (first!=null) f = (float)first.ParameterFloat;
+			if (first!=null) f = AnimationAxisTransformBlock.GetCompressedFloat(first.Parameter, AnimationAxisTransformBlock.GetScale(first.ParentLocked, afb.TransformationType));
 			double l = f;
-			if (last!=null) l = (float)last.ParameterFloat;
+			if (last!=null) l = (float)AnimationAxisTransformBlock.GetCompressedFloat(last.Parameter, AnimationAxisTransformBlock.GetScale(last.ParentLocked, afb.TransformationType));
 			return  (f + (pos*(l-f)));
 		}
 
 		public void SetFrame(int timecode)
 		{
 			SimPe.Geometry.Vector3f v = this.frames[timecode];
+			Ambertation.Scenes.Transformation trans = new Ambertation.Scenes.Transformation();
 			if (afb.TransformationType == FrameType.Translation)
-			{
-				
-				Microsoft.DirectX.Matrix m = Microsoft.DirectX.Matrix.Translation((float)v.X, (float)v.Y, (float)v.Z);
-				if (timecode!=0) nb.Transform =  m ;
+			{				
+				if (timecode!=0) 
+				{
+					trans.Translation.X = v.X;
+					trans.Translation.Y = v.Y;
+					trans.Translation.Z = v.Z;
+				}
 				//else nb.Transform = mt;				
 			}
-			else
-				this.nb.Transform.SetRotation((float)v.Y, (float)v.X, (float)v.Z);
+			else 
+			{
+				if (timecode!=0) 
+				{
+					trans.Rotation.X = v.X;
+					trans.Rotation.Y = v.Y;
+					trans.Rotation.Z = v.Z;
+				}
+			}
 
-			nb.Transform.IsAbsolute = false;
+			//mb.Transform = Microsoft.DirectX.Matrix.Multiply(mb.Transform, Ambertation.Scenes.Converter.ToDx(trans));
+			mb.Transform = Ambertation.Scenes.Converter.ToDx(trans);
 		}
 	}
 }

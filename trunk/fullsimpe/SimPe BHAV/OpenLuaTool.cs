@@ -50,7 +50,7 @@ namespace SimPe.Plugin
 
 		#region IToolPlugin Member
 
-		public string ToString()
+		public override string ToString()
 		{
 			return "Object Tool\\Open virtual LUA package";
 		}

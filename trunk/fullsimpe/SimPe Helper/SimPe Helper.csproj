@@ -181,7 +181,7 @@
                 />
                 <Reference
                     Name = "xpcommoncontrols"
-                    AssemblyName = "xpcommoncontrols"
+                    AssemblyName = "XPCommonControls"
                     HintPath = "..\..\..\xpcommoncontrols\xpcommoncontrols.dll"
                 />
                 <Reference
@@ -424,6 +424,11 @@
                 />
                 <File
                     RelPath = "Serializer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "StreamHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

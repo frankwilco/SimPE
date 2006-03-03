@@ -19,111 +19,71 @@
  ***************************************************************************/
 using System;
 using SimPe.Interfaces.Plugin;
+using SimPe.Interfaces;
+using SimPe.PackedFiles.Wrapper.Supporting;
+using SimPe.Data;
+using System.Collections;
 
-namespace SimPe.Plugin
+namespace SimPe.PackedFiles.Wrapper
 {
 	/// <summary>
-	/// This is the actual FileWrapper
+	/// Zusammenfassung für ScorWrapper.
 	/// </summary>
-	/// <remarks>
-	/// The wrapper is used to (un)serialize the Data of a file into it's Attributes. So Basically it reads 
-	/// a BinaryStream and translates the data into some userdefine Attributes.
-	/// </remarks>
-	public class Bhav
+	public class Scor
 		: AbstractWrapper				//Implements some of the default Behaviur of a Handler, you can Implement yourself if you want more flexibility!
 		, IFileWrapper					//This Interface is used when loading a File
 		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File
-		//,IPackedFileProperties		//This Interface can be used by thirdparties to retrive the FIleproperties, however you don't have to implement it!
-	{
+		, IMultiplePackedFileWrapper
+	{		
+
 		#region Attributes
-		/// <summary>
-		/// Contains the Filename
-		/// </summary>
-		byte[] filename;
-
-		/// <summary>
-		/// Returns the Filename
-		/// </summary>
-		public string FileName 
+		ScorItems items;
+		public ScorItems Items
 		{
-			get { return Helper.ToString(filename); }
-			set { filename = Helper.ToBytes(value, 0x40); }
+			get {return items;}
+		}
+		uint version;
+		/// <summary>
+		/// Returns the Version of this File
+		/// </summary>
+		public uint Version 
+		{
+			get { return version; }
+		}		
+
+		uint unk1, unk2;
+
+		public uint Unknown1
+		{
+			get {return unk1;}
 		}
 
-		/// <summary>
-		/// Stores the Header
-		/// </summary>
-		private BhavHeader header;
-
-		/// <summary>
-		/// Returns / Sets the Header
-		/// </summary>
-		public BhavHeader Header 
+		public uint Unknown2
 		{
-			get { return header;	}			
-			set { header = value; }
-		}
-
-		/// <summary>
-		/// Contains all available Instruction 
-		/// </summary>		
-		private Instruction[] instructions;
-
-		/// <summary>
-		/// Returns/Sets the Instructions
-		/// </summary>
-		public Instruction[] Instructions
-		{
-			get { return instructions;	}			
-			set { instructions = value; }
+			get {return unk2;}
 		}
 		#endregion
-
-		/// <summary>
-		/// Contains an Opcode Provider
-		/// </summary>
-		SimPe.Interfaces.Providers.IOpcodeProvider opcodes;
-
-		/// <summary>
-		/// Opcode Provider
-		/// </summary>
-		public SimPe.Interfaces.Providers.IOpcodeProvider Opcodes 
-		{
-			get { return opcodes; }
-		}
-
+				
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Bhav(SimPe.Interfaces.Providers.IOpcodeProvider opcodes) : base()
+		public Scor() : base()
 		{
-			Instruction.OpcodeProvider = opcodes;
-			//Instruction.Package = package;
-
-			instructions = new Instruction[0];
-			header = new BhavHeader();
-			filename = new byte[64];
-			this.opcodes = opcodes;
+			version = 0;
+			items = new ScorItems();
 		}
 
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
 		{
-			if ( (version==0012) //0.00
-				|| (version==0013) //0.10
-				) 
-			{
-				return true;
-			}
-
-			return false;
+			return true;
 		}
 		#endregion
 		
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new BhavUI();
+			return new UserInterface.ScorUI();
 		}
 
 		/// <summary>
@@ -132,15 +92,12 @@ namespace SimPe.Plugin
 		/// <returns>Human Readable Description</returns>
 		protected override IWrapperInfo CreateWrapperInfo()
 		{
-			///
-			/// TODO: Change the Description passed here
-			/// 
 			return new AbstractWrapperInfo(
-				"BHAV Wrapper",
+				"Sim Score Wrapper",
 				"Quaxi",
-				"Contains a SimAntic Script.",
-				13,
-				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.bhav.png"))
+				"Seems to contain some sort of Scores for a specific Sim",
+				1,
+				null
 				); 
 		}
 
@@ -150,28 +107,17 @@ namespace SimPe.Plugin
 		/// <param name="reader">The Stream that contains the FileData</param>
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{
-			//Instruction.Package = package;
+			version = reader.ReadUInt32();
+			unk1 = reader.ReadUInt32();
+			unk2 = reader.ReadUInt32();
 
-			long pos = reader.BaseStream.Position;
-			filename = reader.ReadBytes(64);
-			try 
+			items.Clear();
+			while (reader.BaseStream.Position<reader.BaseStream.Length) 
 			{
-				header.Unserialize(reader);
-			} 
-			catch (Exception) 
-			{
-				filename = new byte[0];
-				reader.BaseStream.Seek(pos, System.IO.SeekOrigin.Begin);
-				header.Unserialize(reader);
-			}
-					
-			instructions = new Instruction[header.InstructionCount];
- 
-			for (int i=0; i < instructions.Length; i++) 
-			{
-				Instruction inst = new Instruction(i, this);
-				inst.Unserialize(header.Format, reader);
-				instructions[i] = inst;
+				ScorItem si = new ScorItem(this);
+				si.Unserialize(reader);
+
+				items.Add(si);
 			}
 		}
 
@@ -185,30 +131,21 @@ namespace SimPe.Plugin
 		/// </remarks>
 		protected override void Serialize(System.IO.BinaryWriter writer)
 		{
-			//if (header.Format>0x8004) 
-			writer.Write(filename);
-			header.InstructionCount = (uint)instructions.Length;
-			header.Serialize(writer);
-					
-			for (int i=0; i < instructions.Length; i++) 
-			{
-				instructions[i].Serialize(header.Format, writer);
-			} 			
+			writer.Write(version);
+			writer.Write(unk1);
+			writer.Write(unk2);
+
+			foreach (ScorItem si in items)
+				si.Serialize(writer);
 		}
 		#endregion
 
 		#region IFileWrapperSaveExtension Member		
-			//all covered by Serialize()
+		//all covered by Serialize()
 		#endregion
 
 		#region IFileWrapper Member
-		public override string Description
-		{
-			get
-			{
-				return "FileName="+this.FileName+", Lines="+this.Instructions.Length+", TreeVersion=0x"+Helper.HexString(this.header.TreeVersion)+", Format=0x"+Helper.HexString(this.header.Format)+", Type=0x"+Helper.HexString(this.header.Type);
-			}
-		}
+
 		/// <summary>
 		/// Returns the Signature that can be used to identify Files processable with this Plugin
 		/// </summary>
@@ -228,8 +165,7 @@ namespace SimPe.Plugin
 			get
 			{
 				uint[] types = {
-								   0x42484156  //handles the BHAV File
-//								   ,0x54544142 //handles the TTAB File
+								  0x3053CF74
 							   };
 				return types;
 			}
