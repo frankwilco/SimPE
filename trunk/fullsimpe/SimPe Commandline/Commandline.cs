@@ -551,16 +551,39 @@ namespace SimPe
 			if (!System.IO.File.Exists(layoutname)) 
 				Commandline.MakeModern(null);
 
+			if (Helper.WindowsRegistry.PreviousEp<3) 
+				Helper.WindowsRegistry.BlurNudityUpdate();
+
 			if (Helper.WindowsRegistry.PreviousVersion<=236370815320) 
 			{
 				string name = System.IO.Path.Combine(Helper.SimPeDataPath, "folders.xreg");
 				if (System.IO.File.Exists(name)) 
 				{
-					if (Message.Show("To support the new Expansion \"Open for Business\", SimPE needs to reset your FileTable.\nThis means, that SimPe will delete the File \""+name+"\".\n\nDo you want SimPe to reset your FileTable?", "Update", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+					if (Message.Show(SimPe.Localization.GetString("Reset Filetable").Replace("{flname}", name), "Update", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+					{
+						try 
+						{						
+							System.IO.File.Delete(name);							
+						} 
+						catch (Exception ex)
+						{
+							Helper.ExceptionMessage(ex);
+						}
+					}
+				}
+			}
+
+			if (Helper.WindowsRegistry.PreviousVersion<236370882908) 
+			{
+				string name = Helper.SimPeLanguageCache;
+				if (System.IO.File.Exists(name)) 
+				{
+					if (Message.Show(SimPe.Localization.GetString("Reset Cache").Replace("{flname}", name), "Update", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
 					{
 						try 
 						{						
 							System.IO.File.Delete(name);
+							
 						} 
 						catch (Exception ex)
 						{
@@ -629,6 +652,9 @@ namespace SimPe
 									string[] files = System.IO.Directory.GetFiles(Helper.WindowsRegistry.PreviousDataFolder, "*.*");
 									foreach (string file in files) 
 									{
+										string name = System.IO.Path.GetFileName(file).Trim().ToLower();
+										if (name=="tgi.xml") continue;
+
 										string newfile = file.Trim().ToLower().Replace(Helper.WindowsRegistry.PreviousDataFolder.Trim().ToLower(),Helper.SimPeDataPath.Trim()); 
 										WaitingScreen.UpdateMessage((ct++).ToString()+" / "+files.Length);
 										System.IO.File.Copy(file, newfile, true);

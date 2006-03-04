@@ -32,7 +32,7 @@ namespace SimPe.Cache
 		/// <summary>
 		/// The current Version
 		/// </summary>
-		public const byte VERSION = 1;
+		public const byte VERSION = 2;
 
 		public MemoryCacheItem()
 		{			
@@ -43,6 +43,7 @@ namespace SimPe.Cache
 
 		byte version;		
 		Interfaces.Files.IPackedFileDescriptor pfd;
+		
 		
 
 		/// <summary>
@@ -78,6 +79,16 @@ namespace SimPe.Cache
 			set { name = value; }
 		}
 
+		string objdname;
+		public string ObjdName
+		{
+			get { 
+				if (objdname==null) return Name;
+				return objdname; 
+			}
+			set { objdname = value; }
+		}
+
 		Image thumb;
 		public Image Icon
 		{
@@ -106,6 +117,9 @@ namespace SimPe.Cache
 			if (version>VERSION) throw new CacheException("Unknown CacheItem Version.", null, version);
 							
 			name = reader.ReadString();
+			if (version>=2) objdname = reader.ReadString();
+			else objdname = null;
+
 			type = (SimPe.Data.ObjectTypes)reader.ReadUInt16();
 			pfd = new Packages.PackedFileDescriptor();
 			pfd.Type = reader.ReadUInt32();
@@ -133,6 +147,7 @@ namespace SimPe.Cache
 			version = VERSION;
 			writer.Write(version);
 			writer.Write(name);
+			writer.Write(objdname);
 			writer.Write((ushort)type);			
 			writer.Write(pfd.Type);
 			writer.Write(pfd.Group);

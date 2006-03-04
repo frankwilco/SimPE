@@ -189,12 +189,17 @@ namespace SimPe.Plugin.Tool.Dockable
 				}
 
 				//do the recolor
+				objclone.Setup = settings;
+				objclone.Setup.BaseResource = br;
 				objclone.Setup.OnlyDefaultMmats = (settings.OnlyDefaultMmats && br!=CloneSettings.BaseResourceType.Xml);
 				objclone.Setup.UpdateMmatGuids = objclone.Setup.OnlyDefaultMmats ;
-				objclone.Setup.IncludeWallmask = settings.IncludeWallmask;
-				objclone.Setup.BaseResource = br;
+				/*objclone.Setup.IncludeWallmask = settings.IncludeWallmask;				
 				objclone.Setup.IncludeAnimationResources = settings.IncludeAnimationResources;
 				objclone.Setup.KeepOriginalMesh = settings.KeepOriginalMesh;
+				objclone.Setup.PullResourcesByStr = settings.PullResourcesByStr;
+				objclone.Setup.StrInstances = settings.StrInstances;*/
+
+				
 				objclone.RcolModelClone(modelname, exclude);
 
 				//for clones only when cbparent is checked
@@ -206,12 +211,17 @@ namespace SimPe.Plugin.Tool.Dockable
 						SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(null);
 
 						ObjectCloner pobj = new ObjectCloner(pkg);
+						pobj.Setup = settings;
+						pobj.Setup.BaseResource = br;
 						pobj.Setup.OnlyDefaultMmats = (settings.OnlyDefaultMmats && br!=CloneSettings.BaseResourceType.Xml);;
 						pobj.Setup.UpdateMmatGuids = pobj.Setup.OnlyDefaultMmats;
-						pobj.Setup.IncludeWallmask = settings.IncludeWallmask;
-						pobj.Setup.IncludeAnimationResources = settings.IncludeAnimationResources;
-						pobj.Setup.BaseResource = br;
+						/*pobj.Setup.IncludeWallmask = settings.IncludeWallmask;
+						pobj.Setup.IncludeAnimationResources = settings.IncludeAnimationResources;						
 						pobj.Setup.KeepOriginalMesh = settings.KeepOriginalMesh;
+						pobj.Setup.PullResourcesByStr = settings.PullResourcesByStr;
+						pobj.Setup.StrInstances = settings.StrInstances;*/
+						
+
 						pobj.RcolModelClone(names, exclude);
 						pobj.AddParentFiles(modelname, package);				
 					} 
@@ -342,13 +352,13 @@ namespace SimPe.Plugin.Tool.Dockable
 				ObjectCloner oc = new ObjectCloner(package);				
 			}*/
 
-			SimPe.Packages.GeneratableFile dn_pkg = null;
+			/*SimPe.Packages.GeneratableFile dn_pkg = null;
 			if (System.IO.File.Exists(ScenegraphHelper.GMND_PACKAGE)) dn_pkg = SimPe.Packages.GeneratableFile.LoadFromFile(ScenegraphHelper.GMND_PACKAGE);
 			else dn_pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
 
 			SimPe.Packages.GeneratableFile gm_pkg = null;
 			if (System.IO.File.Exists(ScenegraphHelper.MMAT_PACKAGE)) gm_pkg = SimPe.Packages.GeneratableFile.LoadFromFile(ScenegraphHelper.MMAT_PACKAGE);
-			else gm_pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);
+			else gm_pkg = SimPe.Packages.GeneratableFile.LoadFromStream((System.IO.BinaryReader)null);*/
 			
 			SimPe.Packages.GeneratableFile npackage = SimPe.Packages.GeneratableFile.CreateNew();//.LoadFromStream((System.IO.BinaryReader)null);
 

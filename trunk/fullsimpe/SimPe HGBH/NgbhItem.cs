@@ -332,5 +332,21 @@ namespace SimPe.Plugin
 		{
 			parentslot.ItemsB = NgbhSlot.Add(parentslot.ItemsB, this);
 		}
+
+		/// <summary>
+		/// removes this Item from its parent
+		/// </summary>
+		public void RemoveFromParentA()
+		{
+			parentslot.ItemsA = NgbhSlot.Remove(parentslot.ItemsA, this);
+		}
+
+		/// <summary>
+		/// Adds this Item to the assignd Parent Slot
+		/// </summary>
+		public void AddToParentA()
+		{
+			parentslot.ItemsA = NgbhSlot.Add(parentslot.ItemsA, this);
+		}
 	}
 }

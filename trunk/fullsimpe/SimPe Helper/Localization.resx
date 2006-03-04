@@ -456,7 +456,7 @@ Package: {filename}</value>
 		<value>Surfaces / Coffetable</value>
 	</data>
 	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Business">
-		<value>Surfaces / Business</value>
+		<value>Surfaces / Shelfs</value>
 	</data>
 	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_UnknownB">
 		<value>Surfaces / Unknown II</value>
@@ -966,5 +966,17 @@ If this is empty, SimPE will use the default Folder.</value>
     </data>
     <data name="SimPe.PackedFiles.Wrapper.JobAssignment.BuildRobots">
 		<value>Build Robots</value>
+    </data>
+    <data name="Reset Filetable">
+		<value>To support the new Expansion "Open for Business", SimPE needs to reset your FileTable.
+This means, that SimPe will delete the File "{flname}".
+
+Do you want SimPe to reset your FileTable?</value>
+    </data>
+    <data name="Reset Cache">
+		<value>The format for the SimPe Cache was extended. This was done to support new Features from "Open for Business". For them to work correct, SimPe has to reset it's Cache.
+This means, that SimPe will delete the File "{flname}".
+
+Do you want SimPe to reset the Cache?</value>
     </data>
 </root>

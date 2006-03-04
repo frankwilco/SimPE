@@ -248,7 +248,7 @@
     <value>wizard1</value>
   </data>
   <data name="&gt;&gt;wizard1.Type">
-    <value>SimPe.Wizards.Wizard, simpe.wizardbase, Version=1.0.2235.37458, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.Wizard, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizard1.Parent">
     <value>xpGradientPanel1</value>
@@ -265,14 +265,14 @@
   <data name="wizardStepPanel1.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="wizardStepPanel1.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>8, 8</value>
-  </data>
   <data name="wizardStepPanel1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
   <data name="wizardStepPanel1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
+  </data>
+  <data name="wizardStepPanel1.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 8</value>
   </data>
   <data name="wizardStepPanel1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -329,7 +329,7 @@
     <value>wizardStepPanel1</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel1.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2235.37458, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel1.Parent">
     <value>wizard1</value>
@@ -791,7 +791,7 @@
     <value>wizardStepPanel2</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel2.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2235.37458, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel2.Parent">
     <value>wizard1</value>
@@ -1215,7 +1215,7 @@
     <value>xpTaskBoxSimple2</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple2.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple2.Parent">
     <value>panel1</value>
@@ -1296,7 +1296,7 @@
     <value>wizardStepPanel3</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel3.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2235.37458, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel3.Parent">
     <value>wizard1</value>
@@ -1399,13 +1399,13 @@
     <value>Inherit</value>
   </data>
   <data name="xpTaskBoxSimple1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 440</value>
+    <value>0, 468</value>
   </data>
   <data name="xpTaskBoxSimple1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
   </data>
   <data name="xpTaskBoxSimple1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>320, 61</value>
+    <value>320, 33</value>
   </data>
   <data name="xpTaskBoxSimple1.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>3</value>
@@ -1420,7 +1420,7 @@
     <value>xpTaskBoxSimple1</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple1.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple1.Parent">
     <value>wizardStepPanel3</value>
@@ -1526,7 +1526,7 @@
     <value>Inherit</value>
   </data>
   <data name="gbRecolor.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 364</value>
+    <value>0, 392</value>
   </data>
   <data name="gbRecolor.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -1547,7 +1547,7 @@
     <value>gbRecolor</value>
   </data>
   <data name="&gt;&gt;gbRecolor.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gbRecolor.Parent">
     <value>wizardStepPanel3</value>
@@ -1631,7 +1631,7 @@
     <value>cbColorExt</value>
   </data>
   <data name="&gt;&gt;cbColorExt.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbColorExt.Parent">
     <value>gbRecolor</value>
@@ -1730,7 +1730,7 @@
     <value>Inherit</value>
   </data>
   <data name="gbClone.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>320, 284</value>
+    <value>320, 312</value>
   </data>
   <data name="gbClone.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>0</value>
@@ -1745,13 +1745,97 @@
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;gbClone.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gbClone.Parent">
     <value>wizardStepPanel3</value>
   </data>
   <data name="&gt;&gt;gbClone.ZOrder">
     <value>2</value>
+  </data>
+  <data name="cbstrlink.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="cbstrlink.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="cbstrlink.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Assembly</value>
+  </data>
+  <data name="cbstrlink.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="cbstrlink.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="cbstrlink.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="cbstrlink.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Normal</value>
+  </data>
+  <data name="cbstrlink.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="cbstrlink.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="cbstrlink.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="cbstrlink.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="cbstrlink.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>System</value>
+  </data>
+  <data name="cbstrlink.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="cbstrlink.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="cbstrlink.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cbstrlink.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="cbstrlink.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="cbstrlink.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 232</value>
+  </data>
+  <data name="cbstrlink.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="cbstrlink.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>256, 24</value>
+  </data>
+  <data name="cbstrlink.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>20</value>
+  </data>
+  <data name="cbstrlink.Text">
+    <value>Pull #STR-Linked Resources</value>
+  </data>
+  <data name="cbstrlink.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="cbstrlink.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;cbstrlink.Name">
+    <value>cbstrlink</value>
+  </data>
+  <data name="&gt;&gt;cbstrlink.Type">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbstrlink.Parent">
+    <value>gbClone</value>
+  </data>
+  <data name="&gt;&gt;cbstrlink.ZOrder">
+    <value>0</value>
   </data>
   <data name="cbDesc.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -1760,7 +1844,7 @@
     <value>Private</value>
   </data>
   <data name="cbDesc.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbDesc.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1805,7 +1889,7 @@
     <value>NoControl</value>
   </data>
   <data name="cbDesc.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>16, 256</value>
+    <value>16, 280</value>
   </data>
   <data name="cbDesc.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -1829,13 +1913,13 @@
     <value>cbDesc</value>
   </data>
   <data name="&gt;&gt;cbDesc.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbDesc.Parent">
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;cbDesc.ZOrder">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cbOrgGmdc.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -1844,7 +1928,7 @@
     <value>Private</value>
   </data>
   <data name="cbOrgGmdc.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbOrgGmdc.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1889,7 +1973,7 @@
     <value>NoControl</value>
   </data>
   <data name="cbOrgGmdc.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>16, 232</value>
+    <value>16, 256</value>
   </data>
   <data name="cbOrgGmdc.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -1913,13 +1997,13 @@
     <value>cbOrgGmdc</value>
   </data>
   <data name="&gt;&gt;cbOrgGmdc.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbOrgGmdc.Parent">
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;cbOrgGmdc.ZOrder">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cbRemTxt.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -1928,7 +2012,7 @@
     <value>Private</value>
   </data>
   <data name="cbRemTxt.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbRemTxt.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1997,13 +2081,13 @@
     <value>cbRemTxt</value>
   </data>
   <data name="&gt;&gt;cbRemTxt.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbRemTxt.Parent">
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;cbRemTxt.ZOrder">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cbanim.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -2012,7 +2096,7 @@
     <value>Private</value>
   </data>
   <data name="cbanim.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbanim.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2081,13 +2165,13 @@
     <value>cbanim</value>
   </data>
   <data name="&gt;&gt;cbanim.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbanim.Parent">
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;cbanim.ZOrder">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cbwallmask.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -2096,7 +2180,7 @@
     <value>Private</value>
   </data>
   <data name="cbwallmask.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbwallmask.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2165,13 +2249,13 @@
     <value>cbwallmask</value>
   </data>
   <data name="&gt;&gt;cbwallmask.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbwallmask.Parent">
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;cbwallmask.ZOrder">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cbparent.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -2180,7 +2264,7 @@
     <value>Private</value>
   </data>
   <data name="cbparent.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbparent.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2249,13 +2333,13 @@
     <value>cbparent</value>
   </data>
   <data name="&gt;&gt;cbparent.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbparent.Parent">
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;cbparent.ZOrder">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="cbclean.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -2264,7 +2348,7 @@
     <value>Private</value>
   </data>
   <data name="cbclean.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbclean.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2333,13 +2417,13 @@
     <value>cbclean</value>
   </data>
   <data name="&gt;&gt;cbclean.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbclean.Parent">
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;cbclean.ZOrder">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="cbfix.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -2348,7 +2432,7 @@
     <value>Private</value>
   </data>
   <data name="cbfix.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbfix.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2417,13 +2501,13 @@
     <value>cbfix</value>
   </data>
   <data name="&gt;&gt;cbfix.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbfix.Parent">
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;cbfix.ZOrder">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="cbdefault.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -2432,7 +2516,7 @@
     <value>Private</value>
   </data>
   <data name="cbdefault.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbdefault.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2501,13 +2585,13 @@
     <value>cbdefault</value>
   </data>
   <data name="&gt;&gt;cbdefault.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbdefault.Parent">
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;cbdefault.ZOrder">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="cbgid.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -2516,7 +2600,7 @@
     <value>Private</value>
   </data>
   <data name="cbgid.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbgid.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2585,13 +2669,13 @@
     <value>cbgid</value>
   </data>
   <data name="&gt;&gt;cbgid.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbgid.Parent">
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;cbgid.ZOrder">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="panel2.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -2759,7 +2843,7 @@
     <value>False</value>
   </data>
   <data name="cbTask.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+    <value>Assembly</value>
   </data>
   <data name="cbTask.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2984,7 +3068,7 @@
     <value>wizardStepPanel5</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel5.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2235.37458, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel5.Parent">
     <value>wizard1</value>
@@ -3108,7 +3192,7 @@
     <value>xpTaskBoxSimple3</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple3.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple3.Parent">
     <value>wizardStepPanel5</value>
@@ -3596,9 +3680,6 @@
   <data name="&gt;&gt;label5.ZOrder">
     <value>5</value>
   </data>
-  <data name="wizardStepPanel4.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
   <data name="wizardStepPanel4.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
@@ -3607,6 +3688,9 @@
   </data>
   <data name="wizardStepPanel4.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
+  </data>
+  <data name="wizardStepPanel4.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
   </data>
   <data name="wizardStepPanel4.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
@@ -3669,7 +3753,7 @@
     <value>wizardStepPanel4</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel4.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2235.37458, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel4.Parent">
     <value>wizard1</value>
@@ -3948,7 +4032,7 @@
     <value>animatedImagelist1</value>
   </data>
   <data name="&gt;&gt;animatedImagelist1.Type">
-    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2235.37457, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;animatedImagelist1.Parent">
     <value>pnWait</value>
@@ -4472,17 +4556,17 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="$this.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
+  <data name="$this.Name">
+    <value>dcObjectWorkshop</value>
+  </data>
   <data name="$this.Localizable" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
-  <data name="$this.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>8, 8</value>
   </data>
   <data name="$this.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="$this.Name">
-    <value>dcObjectWorkshop</value>
+  <data name="$this.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 8</value>
   </data>
   <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>(Default)</value>

@@ -403,6 +403,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "quaxi_ofb_censor_v1.package"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Registry.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

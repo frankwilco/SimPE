@@ -136,7 +136,7 @@ namespace SimPe.Providers
 		/// [1] : Thumbnail
 		/// [2] : FamilyName
 		/// [3] : Contains Age Data
-		/// [4] : When NPC, this will get the Flename
+		/// [4] : When NPC, this will get the Flename		
 		/// </remarks>
 		protected Alias AddSim(SimPe.PackedFiles.Wrapper.ExtObjd objd, ref int ct, int step, bool npc)
 		{
@@ -144,12 +144,17 @@ namespace SimPe.Providers
 
 			SimPe.Interfaces.Files.IPackageFile fl = objd.Package;
 			//BinaryReader br = new BinaryReader(File.OpenRead(file));//new StreamReader(file)
+			bool hasagedata = fl.FindFiles(0xAC598EAC).Length>0; //has Age Data
 			object[] tags = new object[5];
 			tags[0] = fl.FileName;
 			tags[1] = null;
 			tags[2] = Localization.Manager.GetString("Unknown");
-			tags[3] = (fl.FindFiles(0xAC506764).Length>0); //has 3IDR
+			tags[3] = hasagedata;
 			tags[4] = null; 
+			/*if (Helper.WindowsRegistry.HiddenMode)
+				tags[5] = (!hasagedata) && (fl.FindFiles(0xAC506764).Length>0); //if this is true, the Sim has a Problem, and the package was probably split
+			else
+				tags[5] = false;*/
 
 			//set stuff for NPCs
 			if (npc) 

@@ -85,10 +85,10 @@ namespace SimPe.Plugin
 					}
 					else if (mci.ObjectType == Data.ObjectTypes.Normal) 
 					{
-						if (a.Name.ToLower().IndexOf("token")!=-1) form.cbguid.Items.Add(a);
-					}
+						if (mci.ObjdName.ToLower().IndexOf("token")!=-1) 
+							form.cbguid.Items.Add(a);						
+					} 					
 				}
-
 				form.cbguid.Sorted = true;
 			}			
 		}
