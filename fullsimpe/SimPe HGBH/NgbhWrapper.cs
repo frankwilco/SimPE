@@ -271,8 +271,13 @@ namespace SimPe.Plugin
 			writer.Write((int)slotc.Length);
 			for (int i=0; i<slotc.Length; i++) slotc[i].Serialize(writer);
 
-			writer.Write((int)0);
-			writer.Write((int)writer.BaseStream.Position);
+			/*writer.Write((int)0);
+			writer.Write((int)writer.BaseStream.Position);*/
+			writer.Write((byte)0);
+			writer.Write((byte)1);
+			writer.Write((byte)0);
+			writer.Write((byte)0);
+			writer.Write((byte)0);
 		}
 		#endregion
 

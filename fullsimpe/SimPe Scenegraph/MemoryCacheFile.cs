@@ -93,6 +93,7 @@ namespace SimPe.Cache
 			mci.FileDescriptor = objd.FileDescriptor;
 			mci.Guid = objd.Guid;			
 			mci.ObjectType = objd.Type;		
+			mci.ObjdName = objd.FileName;
 
 			try 
 			{

@@ -30,6 +30,27 @@ namespace SimPe.Plugin
 	/// </summary>
 	public class CloneSettings 
 	{
+		public class StrIntsanceAlias : SimPe.Data.Alias
+		{
+			internal StrIntsanceAlias(uint inst, uint type, string ext) : base(inst, ext, new object[] {type})
+			{
+			}
+
+			public uint Type
+			{
+				get {return (uint)Tag[0];}
+			}
+
+			public uint Instance
+			{
+				get {return this.Id;}
+			}
+
+			public string Extension
+			{
+				get {return Name;}
+			}
+		}
 		public enum BaseResourceType : byte
 		{
 			Objd = 0x01,
@@ -106,12 +127,35 @@ namespace SimPe.Plugin
 			get { return loadanim; }
 			set { loadanim = value; }
 		}
+
+		StrIntsanceAlias[] pullfromstrinst;
+		/// <summary>
+		/// The INstances of StrResources, that can contain valid Links to Scenegraph Resources
+		/// </summary>
+		public StrIntsanceAlias[] StrInstances
+		{
+			get { return pullfromstrinst; }
+			set {pullfromstrinst = value;}
+		}
+
+		bool pullfromstr;
+		/// <summary>
+		/// If true, SimPE will check all Str resources with the instance listed in <see cref="PullFromStrInstances"/>
+		/// and pull all Resources linked from there too
+		/// </summary>
+		public bool PullResourcesByStr
+		{
+			get { return pullfromstr;}
+			set {pullfromstr = value;}
+		}
 		
 		/// <summary>
 		/// Create a new Instance and set everything to default
 		/// </summary>
 		public CloneSettings()
 		{
+			pullfromstrinst = new StrIntsanceAlias[] {new StrIntsanceAlias(0x88, Data.MetaData.TXMT, "_txmt")};
+			pullfromstr = true;
 			includeWallmask = true;
 			exception = true;
 			updateguid = true;
@@ -148,6 +192,7 @@ namespace SimPe.Plugin
 		public CloneSettings Setup 
 		{
 			get { return setup; }
+			set { setup = value; }
 		}
 		/// <summary>
 		/// Creates a new Isntance based on an existing Package
@@ -381,6 +426,11 @@ namespace SimPe.Plugin
 			{
 				WaitingScreen.UpdateMessage("Scanning for Wallmasks");
 				sg.AddWallmasks(modelnames);
+			}
+			if (Setup.PullResourcesByStr) 
+			{
+				WaitingScreen.UpdateMessage("Scanning for #Str-linked Resources");
+				sg.AddStrLinked(package, Setup.StrInstances);
 			}
 			if (Setup.IncludeAnimationResources) 
 			{

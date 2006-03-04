@@ -48,20 +48,34 @@ namespace SimPe.Data
 		/// </summary>
 		private string template;
 
+		static string DefaultTemplate 
+		{
+			get 
+			{
+#if DEBUG
+			return "{name} (0x{id})";
+#else
+			return "{name} (0x{id})";
+#endif
+			}
+		}
 		/// <summary>
 		/// Cosntructor of the class
 		/// </summary>
 		/// <param name="val">The id</param>
 		/// <param name="name">The name</param>
-		public Alias(uint val, string name)
+		public Alias(uint val, string name) : this(val, name, DefaultTemplate)
+		{			
+		}
+
+		/// <summary>
+		/// Cosntructor of the class
+		/// </summary>
+		/// <param name="val">The id</param>
+		/// <param name="name">The name</param>
+		/// <param name="tag"></param>
+		public Alias(uint val, string name, object[] tag) : this(val, name, tag, DefaultTemplate)
 		{
-			id = val;
-			this.name = name;
-#if DEBUG
-			template = "{name} (0x{id})";
-#else
-			template = "{name} (0x{id})";
-#endif
 		}
 
 		/// <summary>
@@ -70,11 +84,23 @@ namespace SimPe.Data
 		/// <param name="val">The id</param>
 		/// <param name="name">The name</param>
 		/// <param name="template">The ToString Template</param>
-		public Alias(uint val, string name, string template)
+		public Alias(uint val, string name, string template) : this(val, name, null, template)
+		{
+		}
+
+		/// <summary>
+		/// Cosntructor of the class
+		/// </summary>
+		/// <param name="val">The id</param>
+		/// <param name="name">The name</param>
+		/// <param name="tag"></param>
+		/// <param name="template">The ToString Template</param>
+		public Alias(uint val, string name, object[] tag, string template)
 		{
 			id = val;
 			this.name = name;
 			this.template = template;
+			this.tag = tag;
 		}
 
 		/// <summary>

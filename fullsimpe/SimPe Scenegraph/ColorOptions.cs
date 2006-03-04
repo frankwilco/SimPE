@@ -118,53 +118,124 @@ namespace SimPe.Plugin
 
 				//Get/Update Texture
 				if (txtr!=null) 
-				{
-					//this was the old TextureName
-					string old = Hashes.StripHashFromName(txtr.FileName.Trim().ToLower());
-					if (old.EndsWith("_txtr")) old = old.Substring(0, old.Length-5);
+				{														
+					name = AddTxtr(txtr, unique, txmt, md);										
 
-					name = txtr.FileName.Trim();
-					if (name.ToLower().EndsWith("_txtr")) name = name.Substring(0, name.Length-5);
-
-					string tname = RenameForm.ReplaceOldUnique(name, unique, true);
-					txtr.FileName = tname+"_txtr";							
-								
-					txtr.FileDescriptor = ScenegraphHelper.BuildPfd(txtr.FileName, Data.MetaData.TXTR, Data.MetaData.CUSTOM_GROUP);	
-
-					
-					for (int i=0; i<md.Listing.Length; i++) 
-					{
-						if (Hashes.StripHashFromName(md.Listing[i].Trim().ToLower())==old) md.Listing[i] = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+tname;
-					}
-								
-					//update References
-					foreach (string k in txmt.ReferenceChains.Keys) 
-					{
-						if (k=="TXTR" || k=="Generic") continue;
-						string thisname = Hashes.StripHashFromName(md.FindProperty(k).Value.Trim().ToLower());
-						if (thisname==old)
-							md.FindProperty(k).Value = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+tname;
-					}	
 					md.FileDescription = Hashes.StripHashFromName(txmt.FileName).Trim();
-					if (md.FileDescription.ToLower().EndsWith("_txmt")) md.FileDescription = md.FileDescription.Substring(0, md.FileDescription.Length-5);
-							
-					//Load the Lifos into the Texture File
-					ImageData id = (ImageData)txtr.Blocks[0];
-					id.GetReferencedLifos();
+					if (md.FileDescription.ToLower().EndsWith("_txmt")) md.FileDescription = md.FileDescription.Substring(0, md.FileDescription.Length-5);												
 				}	
-				
+								
+				if (txtr!=null) 
+				{
+					txtr.SynchronizeUserData();
+					if (newpkg.FindFile(txtr.FileDescriptor)==null)
+						newpkg.Add(txtr.FileDescriptor);
+				}
+
+				AddReferencedTxtr(newpkg, txmt, md, unique);
+
 				if (txmt!=null) 
 				{
 					txmt.SynchronizeUserData();
 					if (newpkg.FindFile(txmt.FileDescriptor)==null)
 						newpkg.Add(txmt.FileDescriptor);
 				}
+			}
+		}
 
-				if (txtr!=null) 
+		protected string AddTxtr(GenericRcol txtr, string unique, GenericRcol txmt, MaterialDefinition md)
+		{
+			string old = Hashes.StripHashFromName(txtr.FileName.Trim().ToLower());
+			if (old.EndsWith("_txtr")) old = old.Substring(0, old.Length-5);
+			Console.WriteLine("Adding Texture: "+old);
+
+			string name = txtr.FileName.Trim();
+			if (name.ToLower().EndsWith("_txtr")) name = name.Substring(0, name.Length-5);
+
+			string tname = RenameForm.ReplaceOldUnique(name, unique, true);
+			txtr.FileName = tname+"_txtr";							
+								
+			txtr.FileDescriptor = ScenegraphHelper.BuildPfd(txtr.FileName, Data.MetaData.TXTR, Data.MetaData.CUSTOM_GROUP);	
+
+			for (int i=0; i<md.Listing.Length; i++) 
+			{
+				if (Hashes.StripHashFromName(md.Listing[i].Trim().ToLower())==old) md.Listing[i] = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+tname;
+			}
+								
+			//update References
+			foreach (string k in txmt.ReferenceChains.Keys) 
+			{
+				if (k=="TXTR" || k=="Generic") continue;
+				Console.WriteLine("    Checking Property "+k);						
+				string thisname = Hashes.StripHashFromName(md.FindProperty(k).Value.Trim().ToLower());
+				
+				if (thisname==old) 
 				{
-					txtr.SynchronizeUserData();
-					if (newpkg.FindFile(txtr.FileDescriptor)==null)
-						newpkg.Add(txtr.FileDescriptor);
+					string nname = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+tname;
+					Console.WriteLine("    --> Updating to "+nname);
+					md.FindProperty(k).Value = nname;
+				}
+			}	
+
+			//Load the Lifos into the Texture File
+			ImageData id = (ImageData)txtr.Blocks[0];
+			id.GetReferencedLifos();
+
+			return name;
+		}
+
+		protected string AddTxtr(IPackageFile newpkg, GenericRcol txtr, string unique, GenericRcol txmt, MaterialDefinition md)
+		{
+			string name = AddTxtr(txtr, unique, txmt, md);
+			txtr.SynchronizeUserData();
+			if (newpkg.FindFile(txtr.FileDescriptor)==null)
+				newpkg.Add(txtr.FileDescriptor);
+
+			return name;
+		}
+
+		/// <summary>
+		/// This adds all second Leve Textures to the Recolor (like normal Maps)
+		/// </summary>
+		/// <param name="newpkg"></param>
+		/// <param name="md"></param>
+		protected void AddReferencedTxtr(IPackageFile newpkg, GenericRcol txmt, MaterialDefinition md, string unique)
+		{
+			foreach (string k in txmt.ReferenceChains.Keys) 
+			{
+				if (k.ToLower()=="stdmatnormalmaptexturename") //at the moment i only know of NormalMaps that need to be added
+				{
+					MaterialDefinitionProperty mdp = md.GetProperty(k);
+					if (mdp!=null) 
+					{
+						string name = Hashes.StripHashFromName(mdp.Value).Trim();
+						if (!name.EndsWith("_txtr")) name+="_txtr";
+
+						Console.Write("loading second txtr "+mdp.Name+" = "+mdp.Value);
+						IPackageFile pkg = txmt.Package;
+						SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFile(name, Data.MetaData.TXTR);
+						if (pfds.Length>0) 
+						{
+							SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pfds[0];
+							Console.Write(" [found in local Package]");	
+	
+							GenericRcol txtr = new GenericRcol();
+							txtr.ProcessData(pfd, pkg);
+
+							AddTxtr(newpkg, txtr, unique, txmt, md);							
+						} 
+						/*else  //we don't pull from the Filetable, as we expect, that all needed Files are already cloned!
+						{
+							SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item = FileTable.FileIndex.FindFileByName(name, Data.MetaData.TXTR, Hashes.GetHashGroupFromName(mdp.Value, Data.MetaData.GLOBAL_GROUP), true);
+							if (item!=null) 
+							{
+								Console.Write(" [found in FileTable]");							
+							} 														
+						}*/
+
+
+						Console.WriteLine();
+					}
 				}
 			}
 		}

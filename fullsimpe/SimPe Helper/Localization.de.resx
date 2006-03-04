@@ -749,7 +749,7 @@ Package: {filename}</value>
 		<value>Oberflächen / Kaffeetische</value>
 	</data>
 	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Business">
-		<value>Oberflächen / Ladentheken</value>
+		<value>Oberflächen / Regale</value>
 	</data>
 	<data name="SimPe.Data.ObjFunctionSubSort.Surfaces_UnknownB">
 		<value>Oberflächen / Unbekannt II</value>
@@ -1224,5 +1224,18 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
     </data>
     <data name="SimPe.PackedFiles.Wrapper.JobAssignment.BuildRobots">
 		<value>Roboter bauen</value>
+    </data>
+    
+    <data name="Reset Filetable">
+		<value>Um die Erweiterung "Open for Business" unterstützen zu können, muss SimPE den "FileTable" zurücksetzen.
+Dazu muss die Datei "{flname}" gelöscht werden.
+
+Soll SimPe nun den "FileTable" zurücksetzen?</value>
+    </data>
+    <data name="Reset Cache">
+		<value>Um die Neuerungen aus "Open for Business" voll unterstützen zu können, muss SimPE den Cache zurücksetzen.
+Dazu muss die Datei "{flname}" gelöscht werden.
+
+Soll SimPe nun den Cache zurücksetzen?</value>
     </data>
 </root>

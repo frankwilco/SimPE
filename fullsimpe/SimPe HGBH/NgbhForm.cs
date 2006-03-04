@@ -1414,7 +1414,10 @@ namespace SimPe.Plugin
 		private void DeleteItem(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			if (lbmem.SelectedItems.Count==0) return;
-			GetSelectedItem().RemoveFromParentB();
+			if (cbtype.SelectedIndex%2==1)
+				GetSelectedItem().RemoveFromParentB();
+			else
+				GetSelectedItem().RemoveFromParentA();
 
 			lbmem.Items.Remove(lbmem.SelectedItems[0]);
 		}
@@ -1429,9 +1432,19 @@ namespace SimPe.Plugin
 				PackedFiles.Wrapper.SDesc sdesc = (PackedFiles.Wrapper.SDesc)lv.SelectedItems[0].Tag;
 			
 				Ngbh wrp = (Ngbh)wrapper;
-				NgbhSlot slot = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
+				NgbhSlot slot;// = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
+				if (cbtype.SelectedIndex==0 || cbtype.SelectedIndex==1)
+					slot = wrp.GetSlot(wrp.SlotsA, sdesc.Instance);
+				else if (cbtype.SelectedIndex==2 || cbtype.SelectedIndex==3)
+					slot = wrp.GetSlot(wrp.SlotsB, sdesc.Instance);
+				else 
+					slot = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
 				NgbhItem item = new NgbhItem(wrp, slot);
-				item.AddToParentB();
+
+				if (cbtype.SelectedIndex%2==1)
+					item.AddToParentB();
+				else
+					item.AddToParentA();
 				item.PutValue(0x01, 0x07CD);
 				item.PutValue(0x02, 0x0007);
 				item.PutValue(0x0B, 0);

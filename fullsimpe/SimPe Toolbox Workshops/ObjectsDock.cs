@@ -31,16 +31,16 @@ namespace SimPe.Plugin.Tool.Dockable
 		private Ambertation.Windows.Forms.XPTaskBoxSimple gbRecolor;
 		private Ambertation.Windows.Forms.TransparentCheckBox cbColorExt;
 		private Ambertation.Windows.Forms.XPTaskBoxSimple gbClone;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbanim;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbwallmask;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbparent;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbclean;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbfix;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbdefault;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbgid;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbanim;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbwallmask;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbparent;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbclean;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbfix;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbdefault;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbgid;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Button button3;
-		private TD.SandBar.FlatComboBox cbTask;
+		internal TD.SandBar.FlatComboBox cbTask;
 		private System.Windows.Forms.Label label3;
 		private SimPe.Wizards.WizardStepPanel wizardStepPanel4;
 		private System.Windows.Forms.Panel pnWait;
@@ -59,8 +59,8 @@ namespace SimPe.Plugin.Tool.Dockable
 		private System.Windows.Forms.ImageList ilist;
 		private SimPe.Plugin.Tool.Dockable.ObjectPreview op1;
 		private SimPe.Plugin.Tool.Dockable.ObjectPreview op2;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbRemTxt;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbOrgGmdc;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbRemTxt;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbOrgGmdc;
 		private SimPe.Wizards.WizardStepPanel wizardStepPanel5;
 		private Ambertation.Windows.Forms.XPTaskBoxSimple xpTaskBoxSimple3;
 		private System.Windows.Forms.Label label5;
@@ -69,14 +69,15 @@ namespace SimPe.Plugin.Tool.Dockable
 		private System.Windows.Forms.TextBox tbName;
 		private System.Windows.Forms.TextBox tbPrice;
 		private System.Windows.Forms.RichTextBox tbDesc;
-		private Ambertation.Windows.Forms.TransparentCheckBox cbDesc;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbDesc;
+		internal Ambertation.Windows.Forms.TransparentCheckBox cbstrlink;
 		private System.ComponentModel.IContainer components;
 
+		ObjectWorkshopRegistry registry;
 		public dcObjectWorkshop()
 		{
 			// This call is required by the Windows.Forms Form Designer.
-			InitializeComponent();
-
+			InitializeComponent();			
 			
 
 			//init the preview manually since the designer is way to stupid to do so >:-|
@@ -95,7 +96,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.op1.Location = new System.Drawing.Point(8, 44);
 			this.op1.Name = "op1";
 			this.op1.SelectedObject = null;
-			this.op1.Size = new System.Drawing.Size(this.xpTaskBoxSimple2.Width-16, this.xpTaskBoxSimple2.Height-56); //320, 136
+			this.op1.Size = new System.Drawing.Size(this.xpTaskBoxSimple2.Width-16, this.xpTaskBoxSimple2.Height-100); //320, 136
 			this.op1.TabIndex = 0;
 			this.xpTaskBoxSimple2.Controls.Add(this.op1);
 			// 
@@ -131,19 +132,13 @@ namespace SimPe.Plugin.Tool.Dockable
 			biNext.Enabled = wizard1.NextEnabled;
 			biPrev.Enabled = wizard1.PrevEnabled;
 
-			
-			try 
-			{
-				cbTask.SelectedIndex = Helper.WindowsRegistry.LastOWAction;
-			} 
-			catch 
-			{
-				this.cbTask.SelectedIndex = 0;
-			}
+						
 			ilist.ImageSize = new Size(Helper.WindowsRegistry.OWThumbSize, Helper.WindowsRegistry.OWThumbSize);
 			this.Guid = new System.Guid("42807573-e8db-405b-95fa-28913d1e292a");
 
 			tv.ItemHeight = Helper.WindowsRegistry.OWThumbSize + 1;
+
+			registry = new ObjectWorkshopRegistry(this);
 		}
 
 		/// <summary> 
@@ -153,6 +148,8 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			if( disposing )
 			{
+				if (registry!=null) registry.Dispose();
+				registry = null;
 				if(components != null)
 				{
 					components.Dispose();
@@ -189,6 +186,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.gbRecolor = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.cbColorExt = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.gbClone = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+			this.cbstrlink = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.cbDesc = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.cbOrgGmdc = new Ambertation.Windows.Forms.TransparentCheckBox();
 			this.cbRemTxt = new Ambertation.Windows.Forms.TransparentCheckBox();
@@ -747,6 +745,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.gbClone.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gbClone.BackgroundImage")));
 			this.gbClone.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
 			this.gbClone.BorderColor = System.Drawing.SystemColors.Window;
+			this.gbClone.Controls.Add(this.cbstrlink);
 			this.gbClone.Controls.Add(this.cbDesc);
 			this.gbClone.Controls.Add(this.cbOrgGmdc);
 			this.gbClone.Controls.Add(this.cbRemTxt);
@@ -780,6 +779,31 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.gbClone.TabIndex = ((int)(resources.GetObject("gbClone.TabIndex")));
 			this.gbClone.Text = resources.GetString("gbClone.Text");
 			this.gbClone.Visible = ((bool)(resources.GetObject("gbClone.Visible")));
+			// 
+			// cbstrlink
+			// 
+			this.cbstrlink.AccessibleDescription = resources.GetString("cbstrlink.AccessibleDescription");
+			this.cbstrlink.AccessibleName = resources.GetString("cbstrlink.AccessibleName");
+			this.cbstrlink.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbstrlink.Anchor")));
+			this.cbstrlink.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbstrlink.Appearance")));
+			this.cbstrlink.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbstrlink.BackgroundImage")));
+			this.cbstrlink.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbstrlink.CheckAlign")));
+			this.cbstrlink.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbstrlink.Dock")));
+			this.cbstrlink.Enabled = ((bool)(resources.GetObject("cbstrlink.Enabled")));
+			this.cbstrlink.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbstrlink.FlatStyle")));
+			this.cbstrlink.Font = ((System.Drawing.Font)(resources.GetObject("cbstrlink.Font")));
+			this.cbstrlink.Image = ((System.Drawing.Image)(resources.GetObject("cbstrlink.Image")));
+			this.cbstrlink.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbstrlink.ImageAlign")));
+			this.cbstrlink.ImageIndex = ((int)(resources.GetObject("cbstrlink.ImageIndex")));
+			this.cbstrlink.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbstrlink.ImeMode")));
+			this.cbstrlink.Location = ((System.Drawing.Point)(resources.GetObject("cbstrlink.Location")));
+			this.cbstrlink.Name = "cbstrlink";
+			this.cbstrlink.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbstrlink.RightToLeft")));
+			this.cbstrlink.Size = ((System.Drawing.Size)(resources.GetObject("cbstrlink.Size")));
+			this.cbstrlink.TabIndex = ((int)(resources.GetObject("cbstrlink.TabIndex")));
+			this.cbstrlink.Text = resources.GetString("cbstrlink.Text");
+			this.cbstrlink.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbstrlink.TextAlign")));
+			this.cbstrlink.Visible = ((bool)(resources.GetObject("cbstrlink.Visible")));
 			// 
 			// cbDesc
 			// 
@@ -1810,8 +1834,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 
 		private void cbTask_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
-			Helper.WindowsRegistry.LastOWAction = cbTask.SelectedIndex;
+		{			
 			if (cbTask.SelectedIndex==1) 
 			{
 				gbRecolor.Visible = false;
@@ -1916,6 +1939,7 @@ namespace SimPe.Plugin.Tool.Dockable
 					cs.StandAloneObject = this.cbparent.Checked;					
 					cs.RemoveNonDefaultTextReferences = this.cbRemTxt.Checked;
 					cs.KeepOriginalMesh = this.cbOrgGmdc.Checked;
+					cs.PullResourcesByStr = this.cbstrlink.Checked;
 
 					cs.ChangeObjectDescription = cbDesc.Checked;
 					cs.Title = this.tbName.Text;

@@ -65,6 +65,8 @@ namespace SimPe
 		{
 			get {return lr;}
 		}
+
+		int pep; long pver;
 		#endregion
 
 		#region Management
@@ -78,6 +80,7 @@ namespace SimPe
 			rk = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe");
 #endif
 			pver = this.GetPreviousVersion();
+			pep = this.GetPreviousEp();
 			Reload();
 			if (Helper.QARelease) this.WasQAUser=true;
 		}
@@ -174,8 +177,7 @@ namespace SimPe
 #endif
 			}
 		}
-
-		long pver;
+		
 		/// <summary>
 		/// Returns the DataFolder as set by the last SimPe run
 		/// </summary>
@@ -190,14 +192,43 @@ namespace SimPe
 #endif			
 		}
 
+		
 		/// <summary>
-		/// Returns the DataFolder as set by the last SimPe run
+		/// Returns the number of the latest EP used, and writes the new Number to the Registry
+		/// </summary>
+		protected int GetPreviousEp()
+		{
+			
+#if MAC
+				return this.EPInstalled;
+#else
+			RegistryKey rkf = rk.CreateSubKey("Settings");	
+			int res = Convert.ToInt32(rkf.GetValue("LatestEP", 0));
+
+			rkf.SetValue("LatestEP", this.EPInstalled);
+			return res;
+#endif			
+		}
+
+		/// <summary>
+		/// Returns the Version of the latest SimPE used so far
 		/// </summary>
 		public long PreviousVersion
 		{
 			get
 			{
 				return pver;
+			}
+		}
+
+		/// <summary>
+		/// Returns the latest number of the Expansion used so far
+		/// </summary>
+		public int PreviousEp
+		{
+			get
+			{
+				return pep;
 			}
 		}
 
@@ -255,23 +286,7 @@ namespace SimPe
 			}
 		}
 
-		/// <summary>
-		/// true, if user wants to show the OBJD Filenames in OW
-		/// </summary>
-		public  int LastOWAction
-		{
-			get 
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				object o = rkf.GetValue("LastOWAction", 0);
-				return Convert.ToInt32(o);
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				rkf.SetValue("LastOWAction", value);
-			}
-		}
+		
 
 		/// <summary>
 		/// true, if user wants to show the Name of a Joint in the GMDC Plugin
@@ -1337,11 +1352,16 @@ namespace SimPe
 				if (this.EPInstalled<=1) 
 				{
 					BlurNudityEP2 = false;
+					BlurNudityEP3 = false;
 					BlurNudityPreEP2 = value;
 				}
-				else if (this.EPInstalled>=2) 
+				else if (this.EPInstalled==2) 
 				{
 					BlurNudityEP2 = value;
+				}
+				else if (this.EPInstalled>=3) 
+				{
+					BlurNudityEP3 = value;
 				}
 				else 
 				{
@@ -1356,6 +1376,7 @@ namespace SimPe
 			get 
 			{
 				return new string[]{				    
+					System.IO.Path.Combine(this.SimSavegameFolder, @"Config\quaxi_ofb_censor_v1.package"),
 				    System.IO.Path.Combine(this.SimSavegameFolder, @"Config\quaxi_nl_censor_v1.package"),
 					System.IO.Path.Combine(this.SimSavegameFolder, @"Downloads\quaxi_nl_censor_v1.package"),										
 					System.IO.Path.Combine(this.SimSavegameFolder, @"Downloads\quaxi_nl_censor.package")
@@ -1365,75 +1386,95 @@ namespace SimPe
 
 		protected bool BlurNudityEP2 
 		{
-			get 
-			{
-				string[] fls = CensorFiles;
-				foreach (string fl in fls)
-					if (System.IO.File.Exists(fl)) return false;
+			get { return GetBlurNudity(); }
+			set { SetBlurNudity(value, "quaxi_nl_censor_v1.package", false);	}
+		}
 
-				return true;
+		protected bool BlurNudityEP3 
+		{
+			get { return GetBlurNudity(); }
+			set { SetBlurNudity(value, "quaxi_ofb_censor_v1.package", false);	}
+		}
+
+		public void BlurNudityUpdate()
+		{
+			if (EPInstalled>=3 &&  !GetBlurNudity())
+			{
+				SetBlurNudity(true, System.IO.Path.GetFileName(CensorFiles[0]), true);
+				SetBlurNudity(false, System.IO.Path.GetFileName(CensorFiles[0]), true);
 			}
-			set 
-			{
-				string[] fls = CensorFiles;
-				if (!value) 
-				{					
-					string fl = fls[0];
-					string folder = System.IO.Path.GetDirectoryName(fl);
+		}
 
-					if (System.IO.File.Exists(fl)) return;
+		bool GetBlurNudity()
+		{
+			string[] fls = CensorFiles;
+			foreach (string fl in fls)
+				if (System.IO.File.Exists(fl)) return false;
 
+			return true;
+		}
+		void SetBlurNudity(bool value, string resname, bool silent)
+		{
+			string[] fls = CensorFiles;
+			if (!value) 
+			{					
+				string fl = fls[0];
+				string folder = System.IO.Path.GetDirectoryName(fl);
+
+				if (System.IO.File.Exists(fl)) return;
+
+				if (!silent)
 					if (System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("Censor_Install_Warn").Replace("{filename}", fl), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No)
 						return;
 
+				try 
+				{
+					if (!System.IO.Directory.Exists(folder))
+						System.IO.Directory.CreateDirectory(folder);
+
+					System.IO.Stream s = typeof(Helper).Assembly.GetManifestResourceStream("SimPe."+resname);
+					System.IO.BinaryReader br = new BinaryReader(s);
 					try 
 					{
-						if (!System.IO.Directory.Exists(folder))
-							System.IO.Directory.CreateDirectory(folder);
-
-						System.IO.Stream s = typeof(Helper).Assembly.GetManifestResourceStream("SimPe.quaxi_nl_censor_v1.package");
-						System.IO.BinaryReader br = new BinaryReader(s);
+						System.IO.BinaryWriter bw = new BinaryWriter(System.IO.File.Create(fl));
 						try 
 						{
-							System.IO.BinaryWriter bw = new BinaryWriter(System.IO.File.Create(fl));
-							try 
-							{
 
-								bw.Write(br.ReadBytes((int)br.BaseStream.Length));
-							} 
-							finally 
-							{
-								bw.Close();
-							}
+							bw.Write(br.ReadBytes((int)br.BaseStream.Length));
 						} 
 						finally 
 						{
-							br.Close();
+							bw.Close();
 						}
-					}
-					catch (Exception ex) 
+					} 
+					finally 
 					{
-						Helper.ExceptionMessage(ex);
+						br.Close();
 					}
-				} 
-				else 
-				{					
-					foreach (string fl in fls)
-						if (System.IO.File.Exists(fl)) 
+				}
+				catch (Exception ex) 
+				{
+					Helper.ExceptionMessage(ex);
+				}
+			} 
+			else 
+			{					
+				foreach (string fl in fls)
+					if (System.IO.File.Exists(fl)) 
+					{
+						try 
 						{
-							try 
-							{
+							if (!silent)
 								if (System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("Censor_UnInstall_Warn").Replace("{filename}", fl), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No)
 									return;
-								System.IO.File.Delete(fl);
-							} 
-							catch (Exception ex) 
-							{
-								Helper.ExceptionMessage(ex);
-							}
+							System.IO.File.Delete(fl);
+						} 
+						catch (Exception ex) 
+						{
+							Helper.ExceptionMessage(ex);
 						}
-				}
-			}
+					}
+			}		
 		}
 
 		protected bool BlurNudityPreEP2 {

@@ -748,6 +748,53 @@ namespace SimPe.Plugin
 			return ret;
 		}
 
+		#region Str Linked Resources
+		protected ArrayList LoadStrLinked(SimPe.Interfaces.Files.IPackageFile pkg, CloneSettings.StrIntsanceAlias instance)
+		{
+			ArrayList list = new ArrayList();
+			SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = pkg.FindFile(Data.MetaData.STRING_FILE, 0, instance.Instance);
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)			
+			{
+				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+				str.ProcessData(pfd, pkg);
+				foreach (SimPe.PackedFiles.Wrapper.StrItem si in str.Items)
+				{
+					string name = Hashes.StripHashFromName(si.Title).Trim() ;
+					if (name=="") continue;
+
+					name += instance.Extension;
+					Console.WriteLine("Str Linked: "+name);
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = FileTable.FileIndex.FindFileByName(name, instance.Type, Hashes.GetHashGroupFromName(si.Title, Data.MetaData.GLOBAL_GROUP), true);
+					if (fii!=null)
+					{
+						Console.WriteLine("    --> found");
+						list.Add(fii);
+					}
+				}
+			}
+			return list;
+		}
+
+		/// <summary>
+		/// Add Wallmasks (if available) to the Clone
+		/// </summary>
+		/// <param name="instances"></param>
+		public void AddStrLinked(SimPe.Interfaces.Files.IPackageFile pkg, CloneSettings.StrIntsanceAlias[] instances)
+		{			
+			foreach (CloneSettings.StrIntsanceAlias instance in instances) 
+			{
+				ArrayList rcols = LoadStrLinked(pkg, instance);
+
+				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in rcols) 
+				{
+					SimPe.Plugin.GenericRcol sub = new GenericRcol(null, false);	
+					sub.ProcessData(item);
+					LoadReferenced(this.modelnames, this.exclude, files, itemlist, sub, item, true, setup);
+				}
+			}			
+		}
+		#endregion
+
 		#region Wallmask
 		/// <summary>
 		/// Load all pending Wallmask Files
