@@ -18,57 +18,53 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.Collections;
+using SimPe.Interfaces.Files;
 
-namespace SimPe.Interfaces
+namespace SimPe.Interfaces.Providers
 {
+	public interface ILotItem
+	{
+		uint Instance
+		{
+			get;
+		}
+
+		System.Drawing.Image Image
+		{
+			get;
+		}
+
+		string Name
+		{
+			get;
+		}
+	}
 	/// <summary>
-	/// Stores a List of dedicated Providers
+	/// Interface to obtain Lot Informations
 	/// </summary>
-	public interface IProviderRegistry
+	public interface ILotProvider
 	{
 		/// <summary>
-		/// Returns the Provider for SimNames
+		/// Returns or sets the Folder where the Character Files are stored
 		/// </summary>
-		SimPe.Interfaces.Providers.ISimNames SimNameProvider 
+		/// <remarks>Sets the names List to null</remarks>
+		string BaseFolder
 		{
-			get;
+			get; set;
 		}
 
 		/// <summary>
-		/// Returns the Provider for Sim Family Names
+		/// returns a List of all Lot Names
 		/// </summary>
-		SimPe.Interfaces.Providers.ISimFamilyNames SimFamilynameProvider 
+		/// <returns></returns>
+		string[] GetNames();
+
+		Hashtable StoredData
 		{
 			get;
 		}
 
-		/// <summary>
-		/// Returns the Provider for SimDescription Files
-		/// </summary>
-		SimPe.Interfaces.Providers.ISimDescriptions SimDescriptionProvider 
-		{
-			get;
-		}
-
-		/// <summary>
-		/// Returns the Provider for Opcode Names
-		/// </summary>
-		SimPe.Interfaces.Providers.IOpcodeProvider OpcodeProvider
-		{
-			get;
-		}
-
-		/// <summary>
-		/// Returns the Provider for Skin Data
-		/// </summary>
-		Interfaces.Providers.ISkinProvider SkinProvider
-		{
-			get;
-		}
-
-		SimPe.Interfaces.Providers.ILotProvider LotProvider 
-		{
-			get;
-		}
+		SimPe.Interfaces.Providers.ILotItem FindLot(uint inst);
 	}
 }

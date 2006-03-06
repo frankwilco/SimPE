@@ -152,6 +152,7 @@ namespace SimPe.Plugin.Identifiers
 		{
 			if (pkg.FindFiles(Data.MetaData.OBJD_FILE).Length==0) return SimPe.Cache.PackageType.Unknown;
 
+			if (pkg.FindFiles(0x484F5553).Length>0) return SimPe.Cache.PackageType.Lot; //HOUS Resources
 			if (pkg.FindFilesByGroup(Data.MetaData.CUSTOM_GROUP).Length>0) return SimPe.Cache.PackageType.Object;
 			else return SimPe.Cache.PackageType.MaxisObject;
 		}

@@ -39,7 +39,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.ImageList iListSmall;
-		private System.Windows.Forms.CheckBox cbdetail;
+		internal System.Windows.Forms.CheckBox cbdetail;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -52,18 +52,22 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label lbUbi;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Panel panel3;
+		internal System.Windows.Forms.CheckBox cbNpc;
+		internal System.Windows.Forms.CheckBox cbTownie;
+		private System.Windows.Forms.ColumnHeader chKind;
+		private System.Windows.Forms.ColumnHeader columnHeader10;
 		private System.ComponentModel.IContainer components;
 
+		SimsRegistry reg;
 		public Sims()
 		{
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
+			sorter = new ColumnSorter();
 
-			//
-			// TODO: Fügen Sie den Konstruktorcode nach dem Aufruf von InitializeComponent hinzu
-			//
+			reg = new SimsRegistry(this);
 		}
 
 		/// <summary>
@@ -73,6 +77,8 @@ namespace SimPe.Plugin
 		{
 			if( disposing )
 			{
+				if (reg!=null) reg.Dispose();
+				reg = null;
 				if(components != null)
 				{
 					components.Dispose();
@@ -95,12 +101,14 @@ namespace SimPe.Plugin
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+			this.chKind = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
 			this.iListSmall = new System.Windows.Forms.ImageList(this.components);
 			this.button1 = new System.Windows.Forms.Button();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -112,6 +120,8 @@ namespace SimPe.Plugin
 			this.lbUbi = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.cbNpc = new System.Windows.Forms.CheckBox();
+			this.cbTownie = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// ilist
@@ -131,12 +141,14 @@ namespace SimPe.Plugin
 																				 this.columnHeader1,
 																				 this.columnHeader2,
 																				 this.columnHeader3,
+																				 this.chKind,
 																				 this.columnHeader4,
 																				 this.columnHeader5,
 																				 this.columnHeader6,
 																				 this.columnHeader9,
 																				 this.columnHeader7,
-																				 this.columnHeader8});
+																				 this.columnHeader8,
+																				 this.columnHeader10});
 			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
 			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
 			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
@@ -178,6 +190,12 @@ namespace SimPe.Plugin
 			this.columnHeader3.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader3.TextAlign")));
 			this.columnHeader3.Width = ((int)(resources.GetObject("columnHeader3.Width")));
 			// 
+			// chKind
+			// 
+			this.chKind.Text = resources.GetString("chKind.Text");
+			this.chKind.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("chKind.TextAlign")));
+			this.chKind.Width = ((int)(resources.GetObject("chKind.Width")));
+			// 
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = resources.GetString("columnHeader4.Text");
@@ -213,6 +231,12 @@ namespace SimPe.Plugin
 			this.columnHeader8.Text = resources.GetString("columnHeader8.Text");
 			this.columnHeader8.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader8.TextAlign")));
 			this.columnHeader8.Width = ((int)(resources.GetObject("columnHeader8.Width")));
+			// 
+			// columnHeader10
+			// 
+			this.columnHeader10.Text = resources.GetString("columnHeader10.Text");
+			this.columnHeader10.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("columnHeader10.TextAlign")));
+			this.columnHeader10.Width = ((int)(resources.GetObject("columnHeader10.Width")));
 			// 
 			// iListSmall
 			// 
@@ -437,6 +461,64 @@ namespace SimPe.Plugin
 			this.toolTip1.SetToolTip(this.panel3, resources.GetString("panel3.ToolTip"));
 			this.panel3.Visible = ((bool)(resources.GetObject("panel3.Visible")));
 			// 
+			// cbNpc
+			// 
+			this.cbNpc.AccessibleDescription = resources.GetString("cbNpc.AccessibleDescription");
+			this.cbNpc.AccessibleName = resources.GetString("cbNpc.AccessibleName");
+			this.cbNpc.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbNpc.Anchor")));
+			this.cbNpc.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbNpc.Appearance")));
+			this.cbNpc.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbNpc.BackgroundImage")));
+			this.cbNpc.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbNpc.CheckAlign")));
+			this.cbNpc.Checked = true;
+			this.cbNpc.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbNpc.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbNpc.Dock")));
+			this.cbNpc.Enabled = ((bool)(resources.GetObject("cbNpc.Enabled")));
+			this.cbNpc.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbNpc.FlatStyle")));
+			this.cbNpc.Font = ((System.Drawing.Font)(resources.GetObject("cbNpc.Font")));
+			this.cbNpc.Image = ((System.Drawing.Image)(resources.GetObject("cbNpc.Image")));
+			this.cbNpc.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbNpc.ImageAlign")));
+			this.cbNpc.ImageIndex = ((int)(resources.GetObject("cbNpc.ImageIndex")));
+			this.cbNpc.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbNpc.ImeMode")));
+			this.cbNpc.Location = ((System.Drawing.Point)(resources.GetObject("cbNpc.Location")));
+			this.cbNpc.Name = "cbNpc";
+			this.cbNpc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbNpc.RightToLeft")));
+			this.cbNpc.Size = ((System.Drawing.Size)(resources.GetObject("cbNpc.Size")));
+			this.cbNpc.TabIndex = ((int)(resources.GetObject("cbNpc.TabIndex")));
+			this.cbNpc.Text = resources.GetString("cbNpc.Text");
+			this.cbNpc.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbNpc.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbNpc, resources.GetString("cbNpc.ToolTip"));
+			this.cbNpc.Visible = ((bool)(resources.GetObject("cbNpc.Visible")));
+			this.cbNpc.CheckedChanged += new System.EventHandler(this.cbNpc_CheckedChanged);
+			// 
+			// cbTownie
+			// 
+			this.cbTownie.AccessibleDescription = resources.GetString("cbTownie.AccessibleDescription");
+			this.cbTownie.AccessibleName = resources.GetString("cbTownie.AccessibleName");
+			this.cbTownie.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbTownie.Anchor")));
+			this.cbTownie.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbTownie.Appearance")));
+			this.cbTownie.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbTownie.BackgroundImage")));
+			this.cbTownie.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbTownie.CheckAlign")));
+			this.cbTownie.Checked = true;
+			this.cbTownie.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbTownie.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbTownie.Dock")));
+			this.cbTownie.Enabled = ((bool)(resources.GetObject("cbTownie.Enabled")));
+			this.cbTownie.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbTownie.FlatStyle")));
+			this.cbTownie.Font = ((System.Drawing.Font)(resources.GetObject("cbTownie.Font")));
+			this.cbTownie.Image = ((System.Drawing.Image)(resources.GetObject("cbTownie.Image")));
+			this.cbTownie.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbTownie.ImageAlign")));
+			this.cbTownie.ImageIndex = ((int)(resources.GetObject("cbTownie.ImageIndex")));
+			this.cbTownie.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbTownie.ImeMode")));
+			this.cbTownie.Location = ((System.Drawing.Point)(resources.GetObject("cbTownie.Location")));
+			this.cbTownie.Name = "cbTownie";
+			this.cbTownie.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbTownie.RightToLeft")));
+			this.cbTownie.Size = ((System.Drawing.Size)(resources.GetObject("cbTownie.Size")));
+			this.cbTownie.TabIndex = ((int)(resources.GetObject("cbTownie.TabIndex")));
+			this.cbTownie.Text = resources.GetString("cbTownie.Text");
+			this.cbTownie.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbTownie.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbTownie, resources.GetString("cbTownie.ToolTip"));
+			this.cbTownie.Visible = ((bool)(resources.GetObject("cbTownie.Visible")));
+			this.cbTownie.CheckedChanged += new System.EventHandler(this.cbTownie_CheckedChanged);
+			// 
 			// Sims
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -447,6 +529,8 @@ namespace SimPe.Plugin
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
+			this.Controls.Add(this.cbTownie);
+			this.Controls.Add(this.cbNpc);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.lbUbi);
@@ -535,6 +619,12 @@ namespace SimPe.Plugin
 
 			lvi.SubItems.Add(sdesc.HouseholdName);
 			lvi.SubItems.Add(new Data.LocalizedLifeSections(sdesc.CharacterDescription.LifeSection).ToString());
+
+			string kind = "";
+			if (sdesc.IsNPC) kind = "NPC";
+			else if (sdesc.IsTownie) kind = "Townie";
+			lvi.SubItems.Add(kind);
+
 			if (sdesc.University.OnCampus==0x1) lvi.SubItems.Add(Localization.Manager.GetString("yes")); else lvi.SubItems.Add(Localization.Manager.GetString("no"));
 			lvi.SubItems.Add("0x"+Helper.HexString(sdesc.FileDescriptor.Instance));
 
@@ -568,19 +658,12 @@ namespace SimPe.Plugin
 			lv.Items.Add(lvi);
 		}
 
-		SimPe.Interfaces.Files.IPackedFileDescriptor pfd;
-		public Interfaces.Plugin.IToolResult Execute(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package, Interfaces.IProviderRegistry prov) 
+		protected void FillList()
 		{
-			sorter = new ColumnSorter();
-			this.Cursor = Cursors.WaitCursor;
-			
-			SimPe.Plugin.Idno idno = SimPe.Plugin.Idno.FromPackage(package);
-			if (idno!=null) this.lbUbi.Visible = (idno.Type != NeighborhoodType.Normal );
-			this.pfd = null;
 			ilist.Images.Clear();
+			this.iListSmall.Images.Clear();
+			lv.BeginUpdate();
 			lv.Items.Clear();
-			lv.Sorting = SortOrder.Ascending;			
-
 			Interfaces.Files.IPackedFileDescriptor[] pfds = package.FindFiles(Data.MetaData.SIM_DESCRIPTION_FILE);
 			foreach(Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
 			{
@@ -588,14 +671,43 @@ namespace SimPe.Plugin
 				PackedFiles.Wrapper.ExtSDesc sdesc = new SimPe.PackedFiles.Wrapper.ExtSDesc();
 				sdesc.ProcessData(spfd, package);
 				
+				if (!this.cbNpc.Checked && sdesc.IsNPC) continue;
+				if (!this.cbTownie.Checked && sdesc.IsTownie) continue;
 				//WaitingScreen.UpdateImage(ImageLoader.Preview(sdesc.Image, new Size(64, 64)));
 				AddSim(sdesc);
 			}
 
+			sorter.Sorting = lv.Sorting;
 			lv.Sort();
-			this.Cursor = Cursors.Default;
+
+			lv.EndUpdate();
 			WaitingScreen.Stop(this);
+		}
+
+		SimPe.Interfaces.Files.IPackedFileDescriptor pfd;
+		SimPe.Interfaces.Files.IPackageFile package;
+		public Interfaces.Plugin.IToolResult Execute(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package, Interfaces.IProviderRegistry prov) 
+		{
+			this.package = package;
+			
+			lv.ListViewItemSorter = sorter;
+			this.Cursor = Cursors.WaitCursor;
+			
+			SimPe.Plugin.Idno idno = SimPe.Plugin.Idno.FromPackage(package);
+			if (idno!=null) this.lbUbi.Visible = (idno.Type != NeighborhoodType.Normal );
+			this.pfd = null;
+			
+			
+			lv.Sorting = SortOrder.Ascending;
+			sorter.CurrentColumn = 3;
+
+			FillList();
+			
+			this.Cursor = Cursors.Default;
+			
 			RemoteControl.ShowSubForm(this);
+
+			this.package = null;
 
 			if (this.pfd!=null) pfd = this.pfd;
 			return new Plugin.ToolResult((this.pfd!=null), false);
@@ -615,7 +727,7 @@ namespace SimPe.Plugin
 			else lv.View = View.LargeIcon;
 		}
 
-		ColumnSorter sorter;
+		internal ColumnSorter sorter;
 		private void SortList(object sender, System.Windows.Forms.ColumnClickEventArgs e)
 		{
 			if (sorter.CurrentColumn == e.Column) 
@@ -630,6 +742,18 @@ namespace SimPe.Plugin
 			}
 			sorter.Sorting = lv.Sorting;
 			lv.Sort();
+		}
+
+		private void cbNpc_CheckedChanged(object sender, System.EventArgs e)
+		{
+			if (package!=null)
+				this.FillList();
+		}
+
+		private void cbTownie_CheckedChanged(object sender, System.EventArgs e)
+		{
+			if (package!=null)
+				this.FillList();
 		}
 	}
 }

@@ -360,6 +360,9 @@ namespace SimPe.PackedFiles.Wrapper
 
 				if ((int)this.Version >= (int)SDescVersions.Nightlife)
 					list.Add(SimPe.Serializer.SerializeTypeHeader(this.Nightlife));
+
+				if ((int)this.Version >= (int)SDescVersions.Business)
+					list.Add(SimPe.Serializer.SerializeTypeHeader(this.Business));
 				
 
 				return Serializer.ConcatHeader(Serializer.ConvertArrayList(list));
@@ -399,6 +402,9 @@ namespace SimPe.PackedFiles.Wrapper
 
 				if ((int)this.Version >= (int)SDescVersions.Nightlife)
 					list.Add(this.Nightlife.ToString());
+
+				if ((int)this.Version >= (int)SDescVersions.Business)
+					list.Add(this.Business.ToString());
 				
 				return Serializer.Concat(Serializer.ConvertArrayList(list));
 			}

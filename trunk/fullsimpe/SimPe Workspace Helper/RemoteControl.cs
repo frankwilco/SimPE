@@ -27,6 +27,82 @@ namespace SimPe
 	/// </summary>
 	public class RemoteControl
 	{
+		public class ControlEventArgs : System.EventArgs 
+		{
+			object[] data;
+			uint target;
+			public ControlEventArgs(uint target) : this(target, new object[0]) {}
+			public ControlEventArgs(uint target, object data) : this(target, new object[]{data}) {}
+			public ControlEventArgs(uint target, object[] data)
+			{
+				if (data==null) data = new object[0];
+				this.data = data;
+
+				this.target = target;
+			}
+
+			public uint TargetType
+			{
+				get {return target;}
+			}
+
+			public object Item
+			{
+				get 
+				{ 
+					if (data.Length==0) return null;
+					else return data[0];
+				}
+			}
+
+			public object Items
+			{
+				get 
+				{
+					return data;
+				}
+			}
+		}
+
+		struct MessageQueueItemInfo
+		{
+			public uint target;
+			public ControlEvent fkt;
+		}
+
+		public delegate void ControlEvent(object sender, ControlEventArgs e);
+		static System.Collections.ArrayList events = new System.Collections.ArrayList();
+
+		public static void HookToMessageQueue(uint type, ControlEvent fkt)
+		{
+			MessageQueueItemInfo mqi = new MessageQueueItemInfo();
+			mqi.target = type;
+			mqi.fkt = fkt;
+
+			events.Add(mqi);
+		}
+
+		public static void UnhookFromMessageQueue(uint type, ControlEvent fkt)
+		{
+			for (int i=events.Count-1; i>=0; i--)
+			{
+				MessageQueueItemInfo mqi = (MessageQueueItemInfo)events[i];
+				if (mqi.target == type)
+					if (mqi.fkt == fkt)
+						events.RemoveAt(i);
+			}
+		}
+
+
+		public static void AddMessage(object sender, ControlEventArgs e)
+		{
+			foreach (MessageQueueItemInfo mqi in events)
+			{
+				if (mqi.target == e.TargetType || mqi.target==0xffffffff || e.TargetType==0xffffffff)
+					mqi.fkt(sender, e);
+			}
+		}
+
 		/// <summary>
 		/// Delegate you have to implement for the remote Package opener
 		/// </summary>

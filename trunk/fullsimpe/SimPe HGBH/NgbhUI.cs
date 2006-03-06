@@ -213,6 +213,9 @@ namespace SimPe.Plugin
 			form.cbsub.Sorted = true;
 			form.cbown.Sorted = true;
 			form.lv.Sort();
+
+			
+
 			form.lv.EndUpdate();
 			
 			WaitingScreen.Stop();

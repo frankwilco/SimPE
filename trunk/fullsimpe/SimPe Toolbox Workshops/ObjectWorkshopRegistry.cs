@@ -60,13 +60,13 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			get 
 			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				XmlRegistryKey rkf = xrk.CreateSubKey("ObjectWorkshop");
 				object o = rkf.GetValue("LastOWAction", 0);
 				return Convert.ToInt32(o);
 			}
 			set
 			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+				XmlRegistryKey rkf = xrk.CreateSubKey("ObjectWorkshop");
 				rkf.SetValue("LastOWAction", value);
 			}
 		}

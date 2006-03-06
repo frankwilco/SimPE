@@ -79,8 +79,12 @@ namespace SimPe.Providers
 			}
 			if (Helper.WindowsRegistry.EPInstalled>=2) 
 			{
-				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP2Path, @"TSData\Res\NeighborhoodTemplate\D001\Characters\")));
-				
+				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP2Path, @"TSData\Res\NeighborhoodTemplate\D001\Characters\")));				
+			}
+
+			if (Helper.WindowsRegistry.EPInstalled>=3) 
+			{
+				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP3Path, @"TSData\Res\NeighborhoodTemplate\B001\Characters\")));				
 			}
 			
 			characterfi = new SimPe.Plugin.FileIndex(folders);

@@ -407,7 +407,7 @@
                 />
                 <File
                     RelPath = "SimListView.cs"
-                    SubType = "Code"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File

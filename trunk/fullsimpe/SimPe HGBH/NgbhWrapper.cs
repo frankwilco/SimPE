@@ -75,7 +75,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns / Sets a Slot
 		/// </summary>
-		public NgbhSlot[] SlotsA 
+		public NgbhSlot[] Lots//SlotsA 
 		{
 			get { return slota;	}			
 			set { slota = value; }
@@ -84,7 +84,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns / Sets a Slot
 		/// </summary>
-		public NgbhSlot[] SlotsB 
+		public NgbhSlot[] Families//SlotsB 
 		{
 			get { return slotb;	}			
 			set { slotb = value; }
@@ -93,7 +93,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns / Sets a Slot
 		/// </summary>
-		public NgbhSlot[] SlotsC 
+		public NgbhSlot[] Sims//SlotsC 
 		{
 			get { return slotc;	}			
 			set { slotc = value; }

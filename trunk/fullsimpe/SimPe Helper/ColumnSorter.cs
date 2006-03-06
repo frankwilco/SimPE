@@ -28,15 +28,46 @@ namespace SimPe
 	/// </summary>
 	public class  ColumnSorter : IComparer
 	{
+		public ColumnSorter()
+		{
+			cc = 0;
+			so = SortOrder.Ascending;
+		}
+		int cc;
+		SortOrder so;
 		/// <summary>
 		/// The Currently active Column
 		/// </summary>
-		public int CurrentColumn = 0;
+		public int CurrentColumn 
+		{
+			get {return cc;}
+			set {
+				if (cc!=value) 
+				{
+					cc = value;
+					if (Changed!=null) Changed(this, new EventArgs());
+				}
+			}
+		}
+
+
 
 		/// <summary>
 		/// The Sort Order
 		/// </summary>
-		public SortOrder Sorting = SortOrder.Ascending;
+		public SortOrder Sorting 
+		{
+			get {return so;}
+			set {
+				if (so!=value)
+				{
+					so = value;
+					if (Changed!=null) Changed(this, new EventArgs());
+				}
+			}
+		}
+
+		public event EventHandler Changed;
 
 		/// <summary>
 		/// The Compare Function to use

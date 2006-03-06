@@ -180,6 +180,22 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns/Sets the Instance of the Sim that owns the Event (not the Memory!)
 		/// </summary>
+		public ushort Value 
+		{
+			get 
+			{
+				return this.GetValue(0x00);
+			}
+
+			set 
+			{
+				this.PutValue(0x00, value);
+			}
+		}
+
+		/// <summary>
+		/// Returns/Sets the Instance of the Sim that owns the Event (not the Memory!)
+		/// </summary>
 		public ushort OwnerInstance 
 		{
 			get 
