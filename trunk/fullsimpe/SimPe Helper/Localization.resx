@@ -979,4 +979,15 @@ This means, that SimPe will delete the File "{flname}".
 
 Do you want SimPe to reset the Cache?</value>
     </data>
+    <data name="Unknown EP found">
+		<value>SimPE detected a new Expansion Pack for "The Sims 2".
+		
+This SimPE Version does only work with Game Versions up to "Open for Business". Newer Game Files might cause Errors when opened with this Version of SimPE!
+(For more Informations, please visit http://sims.ambertation.de/en/).
+
+Run SimPE anyway?</value>
+    </data>
+    <data name="Warning">
+		<value>Warning!</value>
+    </data>    
 </root>

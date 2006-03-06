@@ -1238,4 +1238,15 @@ Dazu muss die Datei "{flname}" gelöscht werden.
 
 Soll SimPe nun den Cache zurücksetzen?</value>
     </data>
+    <data name="Unknown EP found">
+		<value>SimPE hat festgestellt, dass wahrscheinlich eine neue Erweiterung für "Die Sims 2" installiert wurde.
+		
+Diese Version von SimPE kann nur mit Versionen des Spiels bis einschließlich "Open for Business" umgehen. Dateien die mit neueren Versionene erstellt wurden, können zu Fehlern führen! 
+(Weitere Informationen findet ihr unter http://sims.ambertation.de/de/).
+
+Soll SimPE dennoch gestartet werden?</value>
+    </data>  
+    <data name="Warning">
+		<value>Warnung!</value>
+    </data>    
 </root>
