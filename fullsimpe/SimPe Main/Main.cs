@@ -1966,7 +1966,8 @@ namespace SimPe
 				Application.DoEvents();		
 				Application.Idle += new EventHandler(Application_Idle);				
 
-				Commandline.ImportOldData();								
+				if (!Commandline.ImportOldData()) return;
+
 				if (!Commandline.Start(args))  
 				{
 					Helper.WindowsRegistry.UpdateSimPEDirectory();

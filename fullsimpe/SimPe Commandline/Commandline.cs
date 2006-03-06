@@ -545,12 +545,13 @@ namespace SimPe
 		#endregion
 
 		#region Import Data
-		public static void ConvertData()
+		public static bool ConvertData()
 		{
 			string layoutname = System.IO.Path.Combine(Helper.SimPeDataPath, "layout.xreg");
 			if (!System.IO.File.Exists(layoutname)) 
 				Commandline.MakeModern(null);
 
+						
 			if (Helper.WindowsRegistry.PreviousEp<3) 
 				Helper.WindowsRegistry.BlurNudityUpdate();
 
@@ -592,6 +593,13 @@ namespace SimPe
 					}
 				}
 			}
+
+			if (Helper.WindowsRegistry.FoundUnknownEP())
+				if (Message.Show(SimPe.Localization.GetString("Unknown EP found"), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+					return false;
+
+
+			return true;
 		}
 
 		static void CheckXML(string file)
@@ -632,7 +640,7 @@ namespace SimPe
 			}
 		}
 
-		public static void ImportOldData()
+		public static bool ImportOldData()
 		{
 			if (!System.IO.Directory.Exists(Helper.SimPeDataPath)) 
 				System.IO.Directory.CreateDirectory(Helper.SimPeDataPath);
@@ -675,7 +683,7 @@ namespace SimPe
 						}
 			}
 
-			ConvertData();
+			return ConvertData();
 		}
 		#endregion
 	}

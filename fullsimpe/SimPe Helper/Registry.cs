@@ -66,7 +66,7 @@ namespace SimPe
 			get {return lr;}
 		}
 
-		int pep; long pver;
+		int pep, pepct; long pver;
 		#endregion
 
 		#region Management
@@ -81,6 +81,7 @@ namespace SimPe
 #endif
 			pver = this.GetPreviousVersion();
 			pep = this.GetPreviousEp();
+			pepct = this.GetPreviousEpCount();
 			Reload();
 			if (Helper.QARelease) this.WasQAUser=true;
 		}
@@ -208,7 +209,7 @@ namespace SimPe
 			rkf.SetValue("LatestEP", this.EPInstalled);
 			return res;
 #endif			
-		}
+		}		
 
 		/// <summary>
 		/// Returns the Version of the latest SimPE used so far
@@ -231,6 +232,82 @@ namespace SimPe
 				return pep;
 			}
 		}
+
+		#region EP Handler
+		public bool FoundUnknownEP()
+		{
+			//if (PreviousEpCount<EpCount) return true;
+
+			string[] inst = InstalledEPExecutables;
+			foreach (string si in inst)
+			{
+				bool found = false;
+				foreach(string s in Registry.EPExecutables)				
+					if (si==s.ToLower().Trim())
+					{
+						found = true;
+						break;
+					}
+
+				if (!found) return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Returns the latest number of the Expansion used so far
+		/// </summary>
+		protected int PreviousEpCount
+		{
+			get
+			{
+				return pep;
+			}
+		}
+
+		protected string[] InstalledEPExecutables
+		{
+			get 
+			{
+				Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2\", false);
+				string s = rk.GetValue("EPsInstalled", "").ToString();
+				
+				string[] ret = s.Split(new char[] {','});
+				for (int i=0; i<ret.Length; i++)
+					ret[i] = ret[i].ToLower().Trim();
+
+				return ret;
+			}
+		}
+
+		protected int EPCount
+		{
+			get 
+			{
+				Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\EA GAMES\", false);
+				if (rk!=null) return rk.SubKeyCount;
+				else return 0;
+			}
+		}
+
+		/// <summary>
+		/// Returns the number of the latest EP used, and writes the new Number to the Registry
+		/// </summary>
+		protected int GetPreviousEpCount()
+		{
+			
+#if MAC
+				return 0;
+#else
+			RegistryKey rkf = rk.CreateSubKey("Settings");	
+			int res = Convert.ToInt32(rkf.GetValue("LastEPCount", this.EPCount));
+
+			rkf.SetValue("LastEPCount", this.EPCount);
+			return res;
+#endif			
+		}
+		#endregion
 
 		/// <summary>
 		/// true, if the user wants the Pescado Mode
@@ -682,6 +759,20 @@ namespace SimPe
 			}
 		}
 
+		protected static string[] EPExecutables = new string[] {
+			"Sims2.exe",
+			"Sims2EP1.exe",
+			"Sims2EP2.exe",
+			"Sims2EP3.exe"
+		};
+
+		protected static string GetExecutableName(int index)
+		{
+			if (index<0) index=0;
+			if (index>=EPExecutables.Length) index = EPExecutables.Length-1;
+			return EPExecutables[index];
+		}
+
 		/// <summary>
 		/// Name of the Sims Application
 		/// </summary>
@@ -691,10 +782,7 @@ namespace SimPe
 			{
 				try 
 				{
-					if (this.EPInstalled==3) return System.IO.Path.Combine(this.SimsEP3Path, "TSBin\\Sims2EP3.exe");
-					if (this.EPInstalled==2) return System.IO.Path.Combine(this.SimsEP2Path, "TSBin\\Sims2EP2.exe");
-					if (this.EPInstalled==1) return System.IO.Path.Combine(this.SimsEP1Path, "TSBin\\Sims2EP1.exe");
-					else return System.IO.Path.Combine(this.SimsPath, "TSBin\\Sims2.exe");					
+					return System.IO.Path.Combine(this.SimsPath, "TSBin\\"+GetExecutableName(this.EPInstalled));
 				} 
 				catch (Exception) 
 				{
