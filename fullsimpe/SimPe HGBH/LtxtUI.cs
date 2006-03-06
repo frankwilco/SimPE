@@ -74,12 +74,35 @@ namespace SimPe.Plugin
 			Ltxt wrp = (Ltxt) wrapper;
 			form.wrapper = null;
 
-			form.tbdata.Text = Helper.BytesToHexList(wrp.Unknown);
+			form.tbData.Text = Helper.BytesToHexList(wrp.Followup);
 			form.tbhouseinst.Text = "0x"+Helper.HexString(wrp.HouseInstance);
 			form.tbhousename.Text = wrp.HouseName;
-			form.tblotinst.Text = "0x"+Helper.HexString(wrp.LotInstance);
+			form.tblotinst.Text = "0x"+Helper.HexString(wrp.LotID);
 			form.tblotname.Text = wrp.LotName;
 			form.tbname.Text = wrp.Name;
+
+			form.tbwd.Text = wrp.LotSize.Width.ToString();
+			form.tbhg.Text = wrp.LotSize.Height.ToString();
+			form.tbleft.Text = wrp.LotPosition.X.ToString();
+			form.tbtop.Text = wrp.LotPosition.Y.ToString();
+			form.tbz.Text = "0x"+Helper.HexString(wrp.GroundLevel);
+			form.tbver.Text = wrp.Version.ToString();
+			form.tbunk1.Text = "0x"+Helper.HexString(wrp.Unknown2);
+			form.tbu0.Text = "0x"+Helper.HexString(wrp.Unknown0);
+			form.tbu2.Text = "0x"+Helper.HexString(wrp.Unknown1);
+			form.tbu4.Text = "0x"+Helper.HexString(wrp.Unknown4);
+			form.tbowner.Text = "0x"+Helper.HexString(wrp.OwnerInstance);
+			form.tbowner.ReadOnly = (int)wrp.Version<(int)LtxtVersion.Business;
+
+			form.cborient.SelectedValue = wrp.Orientation;
+			form.tbinst.Text = "0x"+Helper.HexString(wrp.LotInstance);
+
+			form.pb.Image = wrp.LotDescription.Image;
+
+			form.lb.Items.Clear();
+			foreach (int i in wrp.Unknown3)
+				form.lb.Items.Add("0x"+Helper.HexString(i));
+			
 
 			form.cbtype.SelectedIndex = 0;
 			for(int i=0; i<form.cbtype.Items.Count; i++)

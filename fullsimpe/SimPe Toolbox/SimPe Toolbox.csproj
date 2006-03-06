@@ -482,6 +482,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "SimsRegistry.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "SimsTool.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

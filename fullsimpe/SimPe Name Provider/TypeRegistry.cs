@@ -85,6 +85,7 @@ namespace SimPe.PackedFiles
 			simnames = new SimPe.Providers.SimNames(null); //opcodeprovider
 			sdescprovider = new SimPe.Providers.SimDescriptions(simnames, simfamilynames);
 			skinprovider = new SimPe.Providers.Skins();
+			lotprov = new SimPe.Providers.LotProvider();
 			
 			tools = new ArrayList();
 			toolsp = new ArrayList();
@@ -259,6 +260,12 @@ namespace SimPe.PackedFiles
 		}
 
 		#region IProviderRegistry Member
+
+		SimPe.Providers.LotProvider lotprov;
+		public SimPe.Interfaces.Providers.ILotProvider LotProvider
+		{
+			get {return lotprov;}
+		}
 
 		/// <summary>
 		/// Provider for Sim Names

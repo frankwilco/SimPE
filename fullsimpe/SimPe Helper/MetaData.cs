@@ -23,6 +23,15 @@ using System.Collections;
 
 namespace SimPe.Data
 {
+	public enum NeighborhoodSlots
+	{
+		LotsIntern = 0,
+		Lots = 1,
+		FamiliesIntern = 2,
+		Families = 3,
+		SimsIntern = 4,
+		Sims = 5
+	}
 	/// <summary>
 	/// Determins the concrete Type of an Overlay Item (texture or mesh overlay)
 	/// </summary>

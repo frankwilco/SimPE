@@ -19,10 +19,24 @@
  ***************************************************************************/
 using System;
 using System.Collections;
+using System.Drawing;
 using SimPe.Interfaces.Plugin;
 
 namespace SimPe.Plugin
 {
+	public enum LtxtVersion: ushort 
+	{		
+		Original = 0x000D,
+		Business = 0x000E
+	}
+
+	public enum LotOrientation : byte
+	{
+		Below = 0,
+		Left = 1,
+		Above = 2,
+		Right = 3,
+	}
 	/// <summary>
 	/// This is the actual FileWrapper
 	/// </summary>
@@ -47,8 +61,78 @@ namespace SimPe.Plugin
 		}
 
 		#region Attributes
-		byte[] header;
 		LotType type;
+		Size sz;
+		Point loc;
+		byte orient;
+		ushort unknown_2;
+		byte unknown_4;
+		ushort ver;
+		short groundlevel;
+		uint inst, owner;
+
+		public SimPe.Interfaces.Providers.ILotItem LotDescription
+		{
+			get 
+			{
+				return SimPe.FileTable.ProviderRegistry.LotProvider.FindLot(this.LotInstance);
+			}
+		}
+
+		internal ushort Unknown2 
+		{
+			get {return  unknown_2;}
+			set {unknown_2 = value;}
+		}
+
+		internal byte Unknown4 
+		{
+			get {return  unknown_4;}
+			set {unknown_4 = value;}
+		}
+
+		internal uint Unknown0
+		{
+			get {return  unknown_0;}
+			set {unknown_0 = value;}
+		}
+
+		public uint OwnerInstance
+		{
+			get {return owner;}
+			set {owner = value;}
+		}
+
+		public LtxtVersion Version 
+		{
+			get {return (LtxtVersion)ver;}
+			set { ver = (ushort)value;}
+		}
+
+		public LotOrientation Orientation 
+		{
+			get {return (LotOrientation)orient;}
+			set { orient = (byte)value;}
+		}
+
+		public Size LotSize
+		{
+			get {return sz;}
+			set {sz = value;}
+		}
+
+		public Point LotPosition
+		{
+			get {return loc;}
+			set {loc = value;}
+		}
+
+		public short GroundLevel
+		{
+			get {return groundlevel;}
+			set {groundlevel = value;}
+		}
+
 		public LotType Type 
 		{
 			get { return type; }
@@ -56,10 +140,16 @@ namespace SimPe.Plugin
 		}
 
 		byte lotinst;
-		public byte LotInstance 
+		public byte LotID 
 		{
 			get { return lotinst; }
 			set { lotinst = value; }
+		}
+
+		public uint LotInstance 
+		{
+			get { return inst; }
+			set { inst = value; }
 		}
 
 		byte houseinst;
@@ -83,12 +173,16 @@ namespace SimPe.Plugin
 			get { return housename; }
 			set { housename = value; }
 		}
-		
-		byte[] unknown_1;
-		public byte[] Unknown 
+		internal ushort Unknown1
 		{
-			get { return unknown_1; }
-			set { unknown_1 = value; }
+			get {return unknown_1;}
+			set { unknown_1 = value;}
+		}
+		ushort unknown_1;
+		public byte[] Followup 
+		{
+			get { return followup; }
+			set { followup = value; }
 		}
 
 		string name;
@@ -99,6 +193,12 @@ namespace SimPe.Plugin
 		}
 
 		byte[] followup;
+
+		SimPe.IntArrayList unknown_3;
+		internal SimPe.IntArrayList Unknown3
+		{
+			get {return unknown_3;}
+		}
 		#endregion
 
 		Interfaces.IProviderRegistry provider;
@@ -107,6 +207,7 @@ namespace SimPe.Plugin
 			get { return provider; }
 		}
 
+		public Ltxt() : this(FileTable.ProviderRegistry) {}
 		/// <summary>
 		/// Constructor
 		/// </summary>
@@ -114,16 +215,15 @@ namespace SimPe.Plugin
 		{
 			this.provider = provider;
 
-			byte [] header = 
-			{
-				0x0D, 0x00, 0x06, 0x00,
-				0x03, 0x00, 0x00, 0x00,
-				0x03, 0x00, 0x00, 0x00
-			};
-			this.header = header;
+			unknown_3 = new IntArrayList();
+			unknown_2 = 0;
+			this.ver = (ushort)LtxtVersion.Original;
+			orient = (byte)LotOrientation.Below;
+			sz = new Size(1, 1);
 			lotname = "";
 			housename = "";
-			this.unknown_1 = new byte[0x51];
+			groundlevel = 0x439D;
+			
 			name = "";
 			this.followup = new byte[1];
 		}
@@ -158,7 +258,7 @@ namespace SimPe.Plugin
 				"Lot Description Wrapper",
 				"Quaxi",
 				"This File contains the Description for a Lot.",
-				3,
+				4,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ltxt.png"))
 				); 
 		}
@@ -168,26 +268,42 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="reader">The Stream that contains the FileData</param>
 		protected override void Unserialize(System.IO.BinaryReader reader)
-		{
-			header = reader.ReadBytes(0x0c);
+		{			
+			ver = reader.ReadUInt16();
+			unknown_2 = reader.ReadUInt16();
+			sz.Width = reader.ReadInt32();
+			sz.Height = reader.ReadInt32();			
 			type = (LotType)reader.ReadByte();
+			
+
 			lotinst = reader.ReadByte();
-			houseinst = reader.ReadByte();
+			houseinst = reader.ReadByte();			
 			unknown_0 = reader.ReadUInt32();
 
-			int len = reader.ReadInt32();
-			lotname = Helper.ToString(reader.ReadBytes(len));
+						
+			lotname = StreamHelper.ReadString(reader);			
+			housename = StreamHelper.ReadString(reader);		
 
-			len = reader.ReadInt32();
-			housename = Helper.ToString(reader.ReadBytes(len));
+			this.unknown_3.Clear();
+			int len = reader.ReadInt32();			
+			for (int i=0; i<len; i++) 			
+				this.unknown_3.Add(reader.ReadInt32());			
 
-			len = reader.ReadInt32();
-			unknown_1 = reader.ReadBytes(len*4 + 0x11);
+			int y = reader.ReadInt32();
+			int x = reader.ReadInt32();
+			loc = new Point(x, y);			
+			unknown_1 = reader.ReadUInt16();
+			groundlevel = reader.ReadInt16();
+			inst = reader.ReadUInt32();
+			orient = reader.ReadByte();
 
-			len = reader.ReadInt32();
-			name = Helper.ToString(reader.ReadBytes(len));
+			name = StreamHelper.ReadString(reader);		
 
-			followup = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));
+			unknown_4 = reader.ReadByte();
+			if (ver>=(int)LtxtVersion.Business) owner = reader.ReadUInt32();
+			else owner = 0;
+
+			followup = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));			
 		}
 
 		/// <summary>
@@ -199,25 +315,35 @@ namespace SimPe.Plugin
 		/// return (i.e. must point to the first Byte after your actual File)
 		/// </remarks>
 		protected override void Serialize(System.IO.BinaryWriter writer)
-		{
-			writer.Write(header);
+		{			
+			writer.Write((ushort)ver);
+			writer.Write((ushort)this.unknown_2);
+			writer.Write((int)sz.Width);
+			writer.Write((int)sz.Height);			
 			writer.Write((byte)type);
+			
 			writer.Write(lotinst);
-			writer.Write(houseinst);
+			writer.Write(houseinst);			
 			writer.Write(unknown_0);
 
-			writer.Write((int)lotname.Length);
-			writer.Write(Helper.ToBytes(lotname, (int)lotname.Length));
+			StreamHelper.WriteString(writer, lotname);
+			StreamHelper.WriteString(writer, housename);			
 
-			writer.Write((int)housename.Length);
-			writer.Write(Helper.ToBytes(housename, (int)housename.Length));
+			writer.Write((int)unknown_3.Count);
+			foreach (int i in unknown_3)
+				writer.Write(i);
 
-			writer.Write((int)((unknown_1.Length - 0x11) / 4));
+			writer.Write((int)loc.Y);
+			writer.Write((int)loc.X);			
 			writer.Write(unknown_1);
+			writer.Write(groundlevel);
+			writer.Write(inst);
+			writer.Write((byte)orient);
 
-			writer.Write((int)name.Length);
-			writer.Write(Helper.ToBytes(name, (int)name.Length));
+			StreamHelper.WriteString(writer, name);		
 
+			writer.Write(unknown_4);
+			if (ver>=(int)LtxtVersion.Business) writer.Write(owner);
 			writer.Write(followup);
 		}
 		#endregion
@@ -254,5 +380,12 @@ namespace SimPe.Plugin
 		}
 
 		#endregion		
+
+		protected override string GetResourceName(SimPe.Data.TypeAlias ta)
+		{
+			if (!this.Processed) ProcessData(FileDescriptor, Package);
+			return LotName;
+		}
+
 	}
 }

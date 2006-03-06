@@ -158,7 +158,7 @@ namespace SimPe.Plugin.Tool.Action
 				n.ProcessData(pfd, pkg);
 
 				ArrayList slots = new ArrayList();
-				foreach (NgbhSlot s in n.SlotsC)
+				foreach (NgbhSlot s in n.Sims)
 				{
 					if (s.SlotID!=inst) 
 					{
@@ -183,8 +183,8 @@ namespace SimPe.Plugin.Tool.Action
 					}
 				}	
 			
-				n.SlotsC = new NgbhSlot[slots.Count];
-				slots.CopyTo(n.SlotsC);
+				n.Sims = new NgbhSlot[slots.Count];
+				slots.CopyTo(n.Sims);
 
 				n.SynchronizeUserData();
 			}

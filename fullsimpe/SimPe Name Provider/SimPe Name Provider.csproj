@@ -252,6 +252,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "LotProvider.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "OpcodeProvider.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

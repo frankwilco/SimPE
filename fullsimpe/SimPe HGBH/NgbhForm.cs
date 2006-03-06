@@ -50,6 +50,30 @@ namespace SimPe.Plugin
 			this.tbsubid.Visible = false;
 			this.tbown.Visible = false;*/
 #endif
+
+			SimPe.RemoteControl.HookToMessageQueue(0x4E474248, new SimPe.RemoteControl.ControlEvent(ControlEvent));
+		}
+
+		public void ControlEvent(object sender, SimPe.RemoteControl.ControlEventArgs e)
+		{			
+			object[] os = e.Items as object[];
+			if (os!=null) 
+			{
+				this.cbtype.SelectedIndex = (int)((Data.NeighborhoodSlots)os[1]);
+				uint inst = (uint)os[0];
+				foreach (ListViewItem lvi in this.lv.Items)
+				{
+					
+					PackedFiles.Wrapper.SDesc sdesc = lvi.Tag as PackedFiles.Wrapper.SDesc;
+					if (sdesc.FileDescriptor.Instance == inst) 
+					{
+						lvi.Selected = true;
+						lvi.EnsureVisible();						
+					} else lvi.Selected = false;
+				}
+
+				lv.Refresh();
+			}			
 		}
 
 		/// <summary>
@@ -59,6 +83,7 @@ namespace SimPe.Plugin
 		{
 			if( disposing )
 			{
+				SimPe.RemoteControl.UnhookFromMessageQueue(0x4E474248, new SimPe.RemoteControl.ControlEvent(ControlEvent));
 				if(components != null)
 				{
 					components.Dispose();
@@ -81,6 +106,9 @@ namespace SimPe.Plugin
 			this.lbname = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.gbmem = new System.Windows.Forms.GroupBox();
+			this.cbown = new System.Windows.Forms.ComboBox();
+			this.tbval = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
 			this.tbUnk = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.btdown = new System.Windows.Forms.Button();
@@ -88,14 +116,11 @@ namespace SimPe.Plugin
 			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.lbmem = new System.Windows.Forms.ListView();
 			this.memilist = new System.Windows.Forms.ImageList(this.components);
-			this.cbown = new System.Windows.Forms.ComboBox();
 			this.tbown = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.pb = new System.Windows.Forms.PictureBox();
 			this.lladd = new System.Windows.Forms.LinkLabel();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.tbsubid = new System.Windows.Forms.TextBox();
-			this.lbdata = new System.Windows.Forms.TextBox();
 			this.cbsub = new System.Windows.Forms.ComboBox();
 			this.tbsub = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -106,6 +131,8 @@ namespace SimPe.Plugin
 			this.cbvis = new System.Windows.Forms.CheckBox();
 			this.tbFlag = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.pb = new System.Windows.Forms.PictureBox();
+			this.lbdata = new System.Windows.Forms.TextBox();
 			this.lv = new System.Windows.Forms.ListView();
 			this.ilist = new System.Windows.Forms.ImageList(this.components);
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -225,20 +252,20 @@ namespace SimPe.Plugin
 			this.gbmem.AccessibleName = resources.GetString("gbmem.AccessibleName");
 			this.gbmem.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("gbmem.Anchor")));
 			this.gbmem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gbmem.BackgroundImage")));
+			this.gbmem.Controls.Add(this.cbown);
+			this.gbmem.Controls.Add(this.tbval);
+			this.gbmem.Controls.Add(this.label6);
 			this.gbmem.Controls.Add(this.tbUnk);
 			this.gbmem.Controls.Add(this.label5);
 			this.gbmem.Controls.Add(this.btdown);
 			this.gbmem.Controls.Add(this.btup);
 			this.gbmem.Controls.Add(this.linkLabel2);
 			this.gbmem.Controls.Add(this.lbmem);
-			this.gbmem.Controls.Add(this.cbown);
 			this.gbmem.Controls.Add(this.tbown);
 			this.gbmem.Controls.Add(this.label4);
-			this.gbmem.Controls.Add(this.pb);
 			this.gbmem.Controls.Add(this.lladd);
 			this.gbmem.Controls.Add(this.linkLabel1);
 			this.gbmem.Controls.Add(this.tbsubid);
-			this.gbmem.Controls.Add(this.lbdata);
 			this.gbmem.Controls.Add(this.cbsub);
 			this.gbmem.Controls.Add(this.tbsub);
 			this.gbmem.Controls.Add(this.label3);
@@ -249,6 +276,8 @@ namespace SimPe.Plugin
 			this.gbmem.Controls.Add(this.cbvis);
 			this.gbmem.Controls.Add(this.tbFlag);
 			this.gbmem.Controls.Add(this.label1);
+			this.gbmem.Controls.Add(this.pb);
+			this.gbmem.Controls.Add(this.lbdata);
 			this.gbmem.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("gbmem.Dock")));
 			this.gbmem.Enabled = ((bool)(resources.GetObject("gbmem.Enabled")));
 			this.gbmem.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -262,6 +291,78 @@ namespace SimPe.Plugin
 			this.gbmem.TabStop = false;
 			this.gbmem.Text = resources.GetString("gbmem.Text");
 			this.gbmem.Visible = ((bool)(resources.GetObject("gbmem.Visible")));
+			// 
+			// cbown
+			// 
+			this.cbown.AccessibleDescription = resources.GetString("cbown.AccessibleDescription");
+			this.cbown.AccessibleName = resources.GetString("cbown.AccessibleName");
+			this.cbown.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbown.Anchor")));
+			this.cbown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbown.BackgroundImage")));
+			this.cbown.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbown.Dock")));
+			this.cbown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbown.Enabled = ((bool)(resources.GetObject("cbown.Enabled")));
+			this.cbown.Font = ((System.Drawing.Font)(resources.GetObject("cbown.Font")));
+			this.cbown.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbown.ImeMode")));
+			this.cbown.IntegralHeight = ((bool)(resources.GetObject("cbown.IntegralHeight")));
+			this.cbown.ItemHeight = ((int)(resources.GetObject("cbown.ItemHeight")));
+			this.cbown.Location = ((System.Drawing.Point)(resources.GetObject("cbown.Location")));
+			this.cbown.MaxDropDownItems = ((int)(resources.GetObject("cbown.MaxDropDownItems")));
+			this.cbown.MaxLength = ((int)(resources.GetObject("cbown.MaxLength")));
+			this.cbown.Name = "cbown";
+			this.cbown.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbown.RightToLeft")));
+			this.cbown.Size = ((System.Drawing.Size)(resources.GetObject("cbown.Size")));
+			this.cbown.TabIndex = ((int)(resources.GetObject("cbown.TabIndex")));
+			this.cbown.Text = resources.GetString("cbown.Text");
+			this.cbown.Visible = ((bool)(resources.GetObject("cbown.Visible")));
+			this.cbown.SelectedIndexChanged += new System.EventHandler(this.ChgOwnerItem);
+			// 
+			// tbval
+			// 
+			this.tbval.AccessibleDescription = resources.GetString("tbval.AccessibleDescription");
+			this.tbval.AccessibleName = resources.GetString("tbval.AccessibleName");
+			this.tbval.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbval.Anchor")));
+			this.tbval.AutoSize = ((bool)(resources.GetObject("tbval.AutoSize")));
+			this.tbval.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbval.BackgroundImage")));
+			this.tbval.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbval.Dock")));
+			this.tbval.Enabled = ((bool)(resources.GetObject("tbval.Enabled")));
+			this.tbval.Font = ((System.Drawing.Font)(resources.GetObject("tbval.Font")));
+			this.tbval.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbval.ImeMode")));
+			this.tbval.Location = ((System.Drawing.Point)(resources.GetObject("tbval.Location")));
+			this.tbval.MaxLength = ((int)(resources.GetObject("tbval.MaxLength")));
+			this.tbval.Multiline = ((bool)(resources.GetObject("tbval.Multiline")));
+			this.tbval.Name = "tbval";
+			this.tbval.PasswordChar = ((char)(resources.GetObject("tbval.PasswordChar")));
+			this.tbval.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbval.RightToLeft")));
+			this.tbval.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbval.ScrollBars")));
+			this.tbval.Size = ((System.Drawing.Size)(resources.GetObject("tbval.Size")));
+			this.tbval.TabIndex = ((int)(resources.GetObject("tbval.TabIndex")));
+			this.tbval.Text = resources.GetString("tbval.Text");
+			this.tbval.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbval.TextAlign")));
+			this.tbval.Visible = ((bool)(resources.GetObject("tbval.Visible")));
+			this.tbval.WordWrap = ((bool)(resources.GetObject("tbval.WordWrap")));
+			this.tbval.TextChanged += new System.EventHandler(this.tbval_TextChanged);
+			// 
+			// label6
+			// 
+			this.label6.AccessibleDescription = resources.GetString("label6.AccessibleDescription");
+			this.label6.AccessibleName = resources.GetString("label6.AccessibleName");
+			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label6.Anchor")));
+			this.label6.AutoSize = ((bool)(resources.GetObject("label6.AutoSize")));
+			this.label6.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label6.Dock")));
+			this.label6.Enabled = ((bool)(resources.GetObject("label6.Enabled")));
+			this.label6.Font = ((System.Drawing.Font)(resources.GetObject("label6.Font")));
+			this.label6.Image = ((System.Drawing.Image)(resources.GetObject("label6.Image")));
+			this.label6.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label6.ImageAlign")));
+			this.label6.ImageIndex = ((int)(resources.GetObject("label6.ImageIndex")));
+			this.label6.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label6.ImeMode")));
+			this.label6.Location = ((System.Drawing.Point)(resources.GetObject("label6.Location")));
+			this.label6.Name = "label6";
+			this.label6.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label6.RightToLeft")));
+			this.label6.Size = ((System.Drawing.Size)(resources.GetObject("label6.Size")));
+			this.label6.TabIndex = ((int)(resources.GetObject("label6.TabIndex")));
+			this.label6.Text = resources.GetString("label6.Text");
+			this.label6.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label6.TextAlign")));
+			this.label6.Visible = ((bool)(resources.GetObject("label6.Visible")));
 			// 
 			// tbUnk
 			// 
@@ -417,30 +518,6 @@ namespace SimPe.Plugin
 			this.memilist.ImageSize = ((System.Drawing.Size)(resources.GetObject("memilist.ImageSize")));
 			this.memilist.TransparentColor = System.Drawing.Color.Transparent;
 			// 
-			// cbown
-			// 
-			this.cbown.AccessibleDescription = resources.GetString("cbown.AccessibleDescription");
-			this.cbown.AccessibleName = resources.GetString("cbown.AccessibleName");
-			this.cbown.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbown.Anchor")));
-			this.cbown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbown.BackgroundImage")));
-			this.cbown.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbown.Dock")));
-			this.cbown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbown.Enabled = ((bool)(resources.GetObject("cbown.Enabled")));
-			this.cbown.Font = ((System.Drawing.Font)(resources.GetObject("cbown.Font")));
-			this.cbown.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbown.ImeMode")));
-			this.cbown.IntegralHeight = ((bool)(resources.GetObject("cbown.IntegralHeight")));
-			this.cbown.ItemHeight = ((int)(resources.GetObject("cbown.ItemHeight")));
-			this.cbown.Location = ((System.Drawing.Point)(resources.GetObject("cbown.Location")));
-			this.cbown.MaxDropDownItems = ((int)(resources.GetObject("cbown.MaxDropDownItems")));
-			this.cbown.MaxLength = ((int)(resources.GetObject("cbown.MaxLength")));
-			this.cbown.Name = "cbown";
-			this.cbown.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbown.RightToLeft")));
-			this.cbown.Size = ((System.Drawing.Size)(resources.GetObject("cbown.Size")));
-			this.cbown.TabIndex = ((int)(resources.GetObject("cbown.TabIndex")));
-			this.cbown.Text = resources.GetString("cbown.Text");
-			this.cbown.Visible = ((bool)(resources.GetObject("cbown.Visible")));
-			this.cbown.SelectedIndexChanged += new System.EventHandler(this.ChgOwnerItem);
-			// 
 			// tbown
 			// 
 			this.tbown.AccessibleDescription = resources.GetString("tbown.AccessibleDescription");
@@ -488,27 +565,6 @@ namespace SimPe.Plugin
 			this.label4.Text = resources.GetString("label4.Text");
 			this.label4.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label4.TextAlign")));
 			this.label4.Visible = ((bool)(resources.GetObject("label4.Visible")));
-			// 
-			// pb
-			// 
-			this.pb.AccessibleDescription = resources.GetString("pb.AccessibleDescription");
-			this.pb.AccessibleName = resources.GetString("pb.AccessibleName");
-			this.pb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pb.Anchor")));
-			this.pb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb.BackgroundImage")));
-			this.pb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pb.Dock")));
-			this.pb.Enabled = ((bool)(resources.GetObject("pb.Enabled")));
-			this.pb.Font = ((System.Drawing.Font)(resources.GetObject("pb.Font")));
-			this.pb.Image = ((System.Drawing.Image)(resources.GetObject("pb.Image")));
-			this.pb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pb.ImeMode")));
-			this.pb.Location = ((System.Drawing.Point)(resources.GetObject("pb.Location")));
-			this.pb.Name = "pb";
-			this.pb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pb.RightToLeft")));
-			this.pb.Size = ((System.Drawing.Size)(resources.GetObject("pb.Size")));
-			this.pb.SizeMode = ((System.Windows.Forms.PictureBoxSizeMode)(resources.GetObject("pb.SizeMode")));
-			this.pb.TabIndex = ((int)(resources.GetObject("pb.TabIndex")));
-			this.pb.TabStop = false;
-			this.pb.Text = resources.GetString("pb.Text");
-			this.pb.Visible = ((bool)(resources.GetObject("pb.Visible")));
 			// 
 			// lladd
 			// 
@@ -585,32 +641,6 @@ namespace SimPe.Plugin
 			this.tbsubid.Visible = ((bool)(resources.GetObject("tbsubid.Visible")));
 			this.tbsubid.WordWrap = ((bool)(resources.GetObject("tbsubid.WordWrap")));
 			this.tbsubid.TextChanged += new System.EventHandler(this.ChgSubjectID);
-			// 
-			// lbdata
-			// 
-			this.lbdata.AccessibleDescription = resources.GetString("lbdata.AccessibleDescription");
-			this.lbdata.AccessibleName = resources.GetString("lbdata.AccessibleName");
-			this.lbdata.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbdata.Anchor")));
-			this.lbdata.AutoSize = ((bool)(resources.GetObject("lbdata.AutoSize")));
-			this.lbdata.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lbdata.BackgroundImage")));
-			this.lbdata.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbdata.Dock")));
-			this.lbdata.Enabled = ((bool)(resources.GetObject("lbdata.Enabled")));
-			this.lbdata.Font = ((System.Drawing.Font)(resources.GetObject("lbdata.Font")));
-			this.lbdata.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbdata.ImeMode")));
-			this.lbdata.Location = ((System.Drawing.Point)(resources.GetObject("lbdata.Location")));
-			this.lbdata.MaxLength = ((int)(resources.GetObject("lbdata.MaxLength")));
-			this.lbdata.Multiline = ((bool)(resources.GetObject("lbdata.Multiline")));
-			this.lbdata.Name = "lbdata";
-			this.lbdata.PasswordChar = ((char)(resources.GetObject("lbdata.PasswordChar")));
-			this.lbdata.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbdata.RightToLeft")));
-			this.lbdata.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("lbdata.ScrollBars")));
-			this.lbdata.Size = ((System.Drawing.Size)(resources.GetObject("lbdata.Size")));
-			this.lbdata.TabIndex = ((int)(resources.GetObject("lbdata.TabIndex")));
-			this.lbdata.Text = resources.GetString("lbdata.Text");
-			this.lbdata.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("lbdata.TextAlign")));
-			this.lbdata.Visible = ((bool)(resources.GetObject("lbdata.Visible")));
-			this.lbdata.WordWrap = ((bool)(resources.GetObject("lbdata.WordWrap")));
-			this.lbdata.TextChanged += new System.EventHandler(this.ChgData);
 			// 
 			// cbsub
 			// 
@@ -856,6 +886,53 @@ namespace SimPe.Plugin
 			this.label1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label1.TextAlign")));
 			this.label1.Visible = ((bool)(resources.GetObject("label1.Visible")));
 			// 
+			// pb
+			// 
+			this.pb.AccessibleDescription = resources.GetString("pb.AccessibleDescription");
+			this.pb.AccessibleName = resources.GetString("pb.AccessibleName");
+			this.pb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pb.Anchor")));
+			this.pb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb.BackgroundImage")));
+			this.pb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pb.Dock")));
+			this.pb.Enabled = ((bool)(resources.GetObject("pb.Enabled")));
+			this.pb.Font = ((System.Drawing.Font)(resources.GetObject("pb.Font")));
+			this.pb.Image = ((System.Drawing.Image)(resources.GetObject("pb.Image")));
+			this.pb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pb.ImeMode")));
+			this.pb.Location = ((System.Drawing.Point)(resources.GetObject("pb.Location")));
+			this.pb.Name = "pb";
+			this.pb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pb.RightToLeft")));
+			this.pb.Size = ((System.Drawing.Size)(resources.GetObject("pb.Size")));
+			this.pb.SizeMode = ((System.Windows.Forms.PictureBoxSizeMode)(resources.GetObject("pb.SizeMode")));
+			this.pb.TabIndex = ((int)(resources.GetObject("pb.TabIndex")));
+			this.pb.TabStop = false;
+			this.pb.Text = resources.GetString("pb.Text");
+			this.pb.Visible = ((bool)(resources.GetObject("pb.Visible")));
+			// 
+			// lbdata
+			// 
+			this.lbdata.AccessibleDescription = resources.GetString("lbdata.AccessibleDescription");
+			this.lbdata.AccessibleName = resources.GetString("lbdata.AccessibleName");
+			this.lbdata.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lbdata.Anchor")));
+			this.lbdata.AutoSize = ((bool)(resources.GetObject("lbdata.AutoSize")));
+			this.lbdata.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lbdata.BackgroundImage")));
+			this.lbdata.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lbdata.Dock")));
+			this.lbdata.Enabled = ((bool)(resources.GetObject("lbdata.Enabled")));
+			this.lbdata.Font = ((System.Drawing.Font)(resources.GetObject("lbdata.Font")));
+			this.lbdata.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lbdata.ImeMode")));
+			this.lbdata.Location = ((System.Drawing.Point)(resources.GetObject("lbdata.Location")));
+			this.lbdata.MaxLength = ((int)(resources.GetObject("lbdata.MaxLength")));
+			this.lbdata.Multiline = ((bool)(resources.GetObject("lbdata.Multiline")));
+			this.lbdata.Name = "lbdata";
+			this.lbdata.PasswordChar = ((char)(resources.GetObject("lbdata.PasswordChar")));
+			this.lbdata.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lbdata.RightToLeft")));
+			this.lbdata.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("lbdata.ScrollBars")));
+			this.lbdata.Size = ((System.Drawing.Size)(resources.GetObject("lbdata.Size")));
+			this.lbdata.TabIndex = ((int)(resources.GetObject("lbdata.TabIndex")));
+			this.lbdata.Text = resources.GetString("lbdata.Text");
+			this.lbdata.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("lbdata.TextAlign")));
+			this.lbdata.Visible = ((bool)(resources.GetObject("lbdata.Visible")));
+			this.lbdata.WordWrap = ((bool)(resources.GetObject("lbdata.WordWrap")));
+			this.lbdata.TextChanged += new System.EventHandler(this.ChgData);
+			// 
 			// lv
 			// 
 			this.lv.AccessibleDescription = resources.GetString("lv.AccessibleDescription");
@@ -993,9 +1070,11 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.LinkLabel linkLabel2;
 		internal System.Windows.Forms.Button btdown;
 		internal System.Windows.Forms.Button btup;
-		private System.Windows.Forms.ComboBox cbtype;
+		internal System.Windows.Forms.ComboBox cbtype;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox tbUnk;
+		private System.Windows.Forms.TextBox tbval;
+		private System.Windows.Forms.Label label6;
 
 		internal IFileWrapperSaveExtension wrapper;
 
@@ -1014,6 +1093,22 @@ namespace SimPe.Plugin
 			}
 
 			lbmem.Items.Add(lvi);
+		}
+
+		private void tbval_TextChanged(object sender, System.EventArgs e)
+		{
+			if (tbFlag.Tag!=null) return;
+			try 
+			{
+				if (Helper.WindowsRegistry.HiddenMode)
+					GetSelectedItem().Value = Helper.StringToUInt16(tbval.Text, GetSelectedItem().Value, 16);
+				else
+					GetSelectedItem().Value = Helper.StringToUInt16(tbval.Text, GetSelectedItem().Value, 10);
+			} 
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), ex);
+			}
 		}
 
 		private void tbUnk_TextChanged(object sender, System.EventArgs e)
@@ -1047,7 +1142,7 @@ namespace SimPe.Plugin
 				//change also in the Items List
 				Ngbh wrp = (Ngbh)wrapper;
 				PackedFiles.Wrapper.SDesc sdesc = (PackedFiles.Wrapper.SDesc)lv.SelectedItems[0].Tag;
-				NgbhSlot slot = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
+				NgbhSlot slot = wrp.GetSlot(wrp.Sims, sdesc.Instance);
 				NgbhItem i = slot.ItemsB[SelectedIndex- 1];
 				slot.ItemsB[SelectedIndex-1] = slot.ItemsB[SelectedIndex];
 				slot.ItemsB[SelectedIndex] = i;
@@ -1075,7 +1170,7 @@ namespace SimPe.Plugin
 				//change also in the Items List
 				Ngbh wrp = (Ngbh)wrapper;
 				PackedFiles.Wrapper.SDesc sdesc = (PackedFiles.Wrapper.SDesc)lv.SelectedItems[0].Tag;
-				NgbhSlot slot = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
+				NgbhSlot slot = wrp.GetSlot(wrp.Sims, sdesc.Instance);
 				NgbhItem i = slot.ItemsB[SelectedIndex + 1];
 				slot.ItemsB[SelectedIndex + 1] = slot.ItemsB[SelectedIndex];
 				slot.ItemsB[SelectedIndex] = i;
@@ -1158,11 +1253,11 @@ namespace SimPe.Plugin
 				Ngbh wrp = (Ngbh)wrapper;
 				NgbhSlot slot;
 				if (cbtype.SelectedIndex==0 || cbtype.SelectedIndex==1)
-					slot = wrp.GetSlot(wrp.SlotsA, sdesc.Instance);
+					slot = wrp.GetSlot(wrp.Lots, sdesc.Instance);
 				else if (cbtype.SelectedIndex==2 || cbtype.SelectedIndex==3)
-					slot = wrp.GetSlot(wrp.SlotsB, sdesc.Instance);
+					slot = wrp.GetSlot(wrp.Families, sdesc.Instance);
 				else 
-					slot = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
+					slot = wrp.GetSlot(wrp.Sims, sdesc.Instance);
 				if (slot!=null) 
 				{
 					if (cbtype.SelectedIndex%2==1)
@@ -1198,6 +1293,10 @@ namespace SimPe.Plugin
 
 			this.tbUnk.Enabled = (uint)GetSelectedItem().ParentSlot.Version >= (uint)NgbhVersion.Nightlife;
 			this.tbUnk.Text = "0x"+Helper.HexString(GetSelectedItem().Unknown);
+			if (Helper.WindowsRegistry.HiddenMode)
+				this.tbval.Text = "0x"+Helper.HexString(GetSelectedItem().Value);
+			else
+				this.tbval.Text = GetSelectedItem().Value.ToString();
 
 			tbFlag.Tag = null;
 
@@ -1434,11 +1533,11 @@ namespace SimPe.Plugin
 				Ngbh wrp = (Ngbh)wrapper;
 				NgbhSlot slot;// = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
 				if (cbtype.SelectedIndex==0 || cbtype.SelectedIndex==1)
-					slot = wrp.GetSlot(wrp.SlotsA, sdesc.Instance);
+					slot = wrp.GetSlot(wrp.Lots, sdesc.Instance);
 				else if (cbtype.SelectedIndex==2 || cbtype.SelectedIndex==3)
-					slot = wrp.GetSlot(wrp.SlotsB, sdesc.Instance);
+					slot = wrp.GetSlot(wrp.Families, sdesc.Instance);
 				else 
-					slot = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
+					slot = wrp.GetSlot(wrp.Sims, sdesc.Instance);
 				NgbhItem item = new NgbhItem(wrp, slot);
 
 				if (cbtype.SelectedIndex%2==1)

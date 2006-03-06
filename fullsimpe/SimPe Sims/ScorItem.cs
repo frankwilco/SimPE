@@ -39,8 +39,8 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 		Scor parent;
 		byte flag;
-		ushort cont1, cont2;
-		float test;
+		ushort cont2;		
+		byte[] data;
 		/// <summary>
 		/// Constructor
 		/// </summary>
@@ -52,6 +52,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		internal ScorItem(Scor parent) 
 		{
+			this.data = new byte[0];
 			this.parent = parent;		
 		}
 						
@@ -63,11 +64,10 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			name = StreamHelper.ReadString(reader);
 			flag = reader.ReadByte();
-			cont1 = reader.ReadUInt16();
+			ushort cont1 = reader.ReadUInt16();
+			data = reader.ReadBytes(cont1);
 			cont2 = reader.ReadUInt16();
-
-			reader.BaseStream.Seek(-4, System.IO.SeekOrigin.Current);
-			test = reader.ReadSingle();
+			//if (flag==1) reader.ReadByte();			
 		}
 
 		/// <summary>
@@ -82,13 +82,14 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			StreamHelper.WriteString(writer, name);
 			writer.Write(flag);
-			writer.Write(cont1);
+			writer.Write((ushort)data.Length);
+			writer.Write(data);
 			writer.Write(cont2);
 		}		
 
 		public override string ToString()
 		{
-			return Name+" [flag="+flag.ToString()+", cont1="+cont1.ToString()+", cont2="+cont2.ToString()+", test="+test.ToString()+"]";
+			return Name+" [flag="+flag.ToString()+", cont1="+data.Length.ToString()+", cont2="+cont2.ToString()+"]";
 		}
 
 	}
