@@ -115,6 +115,23 @@ namespace SimPe.Cache
 
 			}
 			catch (Exception) {}
+
+			try 
+			{
+				Interfaces.Scenegraph.IScenegraphFileIndexItem[] sitems = FileTable.FileIndex.FindFile(Data.MetaData.STRING_FILE, objd.FileDescriptor.Group, 0x100, null);
+				if (sitems.Length>0) 
+				{
+					SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+					str.ProcessData(sitems[0]);
+					SimPe.PackedFiles.Wrapper.StrItemList strs = str.LanguageItems(Data.MetaData.Languages.English);																
+					string[] res = new string[strs.Count];
+					for (int i=0; i<res.Length; i++)					
+						res[i] = strs[i].Title;
+					mci.ValueNames = res;
+				}
+
+			}
+			catch (Exception) {}
 			
 			//still no name?
 			if (mci.Name == "") mci.Name = objd.FileName;

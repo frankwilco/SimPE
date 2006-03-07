@@ -59,9 +59,9 @@ namespace SimPe.Plugin
 
 		
 		NgbhSlotList[] preitems;
-		NgbhSlot[] slota;
-		NgbhSlot[] slotb;
-		NgbhSlot[] slotc;
+		Collections.NgbhSlots slota;
+		Collections.NgbhSlots slotb;
+		Collections.NgbhSlots slotc;
 
 		/// <summary>
 		/// Returns / Sets a Slot
@@ -75,7 +75,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns / Sets a Slot
 		/// </summary>
-		public NgbhSlot[] Lots//SlotsA 
+		public Collections.NgbhSlots Lots//SlotsA 
 		{
 			get { return slota;	}			
 			set { slota = value; }
@@ -84,7 +84,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns / Sets a Slot
 		/// </summary>
-		public NgbhSlot[] Families//SlotsB 
+		public Collections.NgbhSlots Families//SlotsB 
 		{
 			get { return slotb;	}			
 			set { slotb = value; }
@@ -93,7 +93,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Returns / Sets a Slot
 		/// </summary>
-		public NgbhSlot[] Sims//SlotsC 
+		public Collections.NgbhSlots Sims//SlotsC 
 		{
 			get { return slotc;	}			
 			set { slotc = value; }
@@ -105,20 +105,7 @@ namespace SimPe.Plugin
 		public Interfaces.IProviderRegistry Provider 
 		{
 			get { return provider; }
-		}
-
-		/// <summary>
-		/// Returns a List of all items stored for a Sim in the gven Slot
-		/// </summary>
-		/// <param name="slots">The Slots of a sertain Block</param>
-		/// <param name="instance">Instance Number of a Sim</param>
-		/// <returns>the Slot for the given Sim or null</returns>
-		public NgbhSlot GetSlot(NgbhSlot[] slots, uint instance)
-		{
-			foreach (NgbhSlot s in slots) if (s.SlotID == instance) return s;
-
-			return null;
-		}
+		}		
 
 		/// <summary>
 		/// Constructor
@@ -150,22 +137,15 @@ namespace SimPe.Plugin
 			preitems = new NgbhSlotList[0x02];
 			for (int i=0; i<preitems.Length; i++) preitems[i] = new NgbhSlotList(this);
 			
-			slota = new NgbhSlot[0];
-			slotb = new NgbhSlot[0];
-			slotc = new NgbhSlot[0];
+			slota = new Collections.NgbhSlots(this);
+			slotb = new Collections.NgbhSlots(this);
+			slotc = new Collections.NgbhSlots(this);
 		}
 
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
 		{
-			if ( (version==0012) //0.10
-				|| (version==0013) //0.12
-				) 
-			{
-				return true;
-			}
-
-			return false;
+			return true;
 		}
 		#endregion
 		
@@ -185,10 +165,38 @@ namespace SimPe.Plugin
 				"Neighborhood/Memory Wrapper",
 				"Quaxi",
 				"This File contains the Memories and Inventories of all Sims and Lots that Live in this Neighborhood.",
-				9,
+				10,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ngbh.png"))
 				); 
 		}
+
+		public Collections.NgbhSlots GetSlots(Data.NeighborhoodSlots id)
+		{
+			if (id==Data.NeighborhoodSlots.Families || id==Data.NeighborhoodSlots.FamiliesIntern)
+				return Families;
+
+			if (id==Data.NeighborhoodSlots.Lots || id==Data.NeighborhoodSlots.LotsIntern)
+				return Lots;
+
+			return Sims;
+		}	
+	
+		public Collections.NgbhItems GetItems(Data.NeighborhoodSlots id, uint inst)
+		{
+			Collections.NgbhSlots slots = Sims;
+			if (id==Data.NeighborhoodSlots.Families || id==Data.NeighborhoodSlots.FamiliesIntern)
+				slots = Families;
+
+			if (id==Data.NeighborhoodSlots.Lots || id==Data.NeighborhoodSlots.LotsIntern)
+				slots = Lots;
+
+			NgbhSlot slot = slots.GetInstanceSlot(inst);
+			if (slot!=null)
+				return slot.GetItems(id);
+
+			return null;
+		}	
+
 
 		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
@@ -212,27 +220,30 @@ namespace SimPe.Plugin
 			
 
 			int blocklen = reader.ReadInt32();
-			slota = new NgbhSlot[blocklen];
-			for (int i=0; i<slota.Length; i++) 
+			slota.Clear();
+			for (int i=0; i<blocklen; i++) 
 			{
-				slota[i] = new NgbhSlot(this);
-				slota[i].Unserialize(reader);
+				NgbhSlot item = new NgbhSlot(this);
+				item.Unserialize(reader);
+				slota.Add(item);
 			}
 
 			blocklen = reader.ReadInt32();
-			slotb = new NgbhSlot[blocklen];
-			for (int i=0; i<slotb.Length; i++) 
+			slotb.Clear();
+			for (int i=0; i<blocklen; i++) 
 			{
-				slotb[i] = new NgbhSlot(this);
-				slotb[i].Unserialize(reader);
+				NgbhSlot item = new NgbhSlot(this);
+				item.Unserialize(reader);
+				slotb.Add(item);
 			}
 
 			blocklen = reader.ReadInt32();
-			slotc = new NgbhSlot[blocklen];
-			for (int i=0; i<slotc.Length; i++) 
+			slotc.Clear();
+			for (int i=0; i<blocklen; i++) 
 			{
-				slotc[i] = new NgbhSlot(this);
-				slotc[i].Unserialize(reader);
+				NgbhSlot item = new NgbhSlot(this);
+				item.Unserialize(reader);
+				slotc.Add(item);
 			}
 		}
 

@@ -21,6 +21,11 @@ using System;
 
 namespace SimPe.Plugin
 {
+	public enum SimMemoryType : byte 
+	{
+		Memory,	Gossip,	Skill, Inventory, Token, Object, Badge, Aspiration
+	}
+
 	public class NgbhItemFlags : FlagBase
 	{
 		public NgbhItemFlags(ushort flags) : base(flags) {}
@@ -44,12 +49,13 @@ namespace SimPe.Plugin
 	/// </summary>
 	public class NgbhItem
 	{
+		internal const int ICON_SIZE = 24; 
 		Ngbh parent;
 		NgbhSlotList parentslot;
-		public NgbhItem(Ngbh parent, NgbhSlotList parentslot)
+		internal NgbhItem(NgbhSlotList parentslot)
 		{
 			this.parentslot = parentslot;
-			this.parent = parent;
+			this.parent = parentslot.Parent;
 			data = new ushort[0];
 			flags = new NgbhItemFlags();
 			objd = null;
@@ -61,7 +67,7 @@ namespace SimPe.Plugin
 		ushort[] data;
 
 		uint unknown;
-		public uint Unknown
+		public uint InventoryNumber
 		{
 			get {return unknown; }
 			set { unknown = value; }
@@ -85,8 +91,12 @@ namespace SimPe.Plugin
 			get { return guid; }
 			set 
 			{
-				guid = value;
-				objd = null;
+				if (guid!=value) 
+				{
+					guid = value;
+					objd = null;
+					mci = null;
+				}
 			}
 		}
 
@@ -132,40 +142,75 @@ namespace SimPe.Plugin
 			}
 		}
 
-		public string Text
-		{
-			get 
-			{
-				
-				try 
-				{
-					SimPe.Cache.MemoryCacheItem mci = NgbhUI.ObjectCache.FindItem(guid);
-					if (mci!=null) return mci.Name;
-				} 
-				catch (Exception) {}
-
-				return ObjectDataFile.FileName;
-									
-			}
-		}
-
-		/// <summary>
-		/// Returns the Image associated with that Item
-		/// </summary>
-		public System.Drawing.Image Image 
+		
+		SimPe.Cache.MemoryCacheItem mci;
+		public SimPe.Cache.MemoryCacheItem  MemoryCacheItem
 		{
 			get 
 			{
 				try 
 				{
-					SimPe.Cache.MemoryCacheItem mci = NgbhUI.ObjectCache.FindItem(guid);
-					if (mci!=null) return mci.Icon;
+					if (mci==null) mci = NgbhUI.ObjectCache.FindItem(guid);					
 				} 
 				catch (Exception) {}
-				return new System.Drawing.Bitmap(1, 1);
+
+				if (mci==null) mci = new SimPe.Cache.MemoryCacheItem();
+				return mci;
 			}
 		}
 
+		public System.Drawing.Image Icon
+		{
+			get 
+			{
+				return Ambertation.Drawing.GraphicRoutines.ScaleImage(MemoryCacheItem.Image, ICON_SIZE, ICON_SIZE, true);
+			}
+		}
+
+		public bool IsInventory
+		{
+			get {return this.InventoryNumber!=0;}
+		}
+		public  bool IsGossip
+		{
+			get 
+			{
+				if (ParentSlot is NgbhSlot)
+					if (this.OwnerInstance != ((NgbhSlot)ParentSlot).SlotID && this.OwnerInstance!=0) return true;
+
+				return false;
+			}
+		}
+
+		public SimMemoryType MemoryType
+		{
+			get 
+			{			
+				bool gossip = IsGossip;									
+
+				if (IsInventory && !gossip) return SimMemoryType.Inventory;
+
+				if (this.Flags.IsAction) 
+				{
+					if (this.MemoryCacheItem.IsBadge)
+						return SimMemoryType.Badge;
+					if (this.MemoryCacheItem.IsSkill)
+						return SimMemoryType.Skill;
+					if (this.MemoryCacheItem.IsAspiration)
+						return SimMemoryType.Aspiration;
+					if (this.Data.Length<3)
+						return SimMemoryType.Token;					
+
+					return SimMemoryType.Object;
+				}
+
+				if (gossip) return SimMemoryType.Gossip;
+
+				return SimMemoryType.Memory;
+			}
+		}
+
+		
 		/// <summary>
 		/// True if this Item can be processed as a Memory
 		/// </summary>
@@ -228,6 +273,29 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Returns/Sets the value that is possible a Guid to a referenced Object
+		/// </summary>
+		/// <remarks>
+		/// This is only valid if <see cref="MemoryType"/> is set to <see cref="SimMemoryType.Object"/>
+		/// </remarks>
+		public uint ReferencedObjectGuid 
+		{
+			get 
+			{
+				if (MemoryType!=SimMemoryType.Object) return 0;
+				int sid = (this.GetValue(0x02) << 16) + this.GetValue(0x01);
+				return (uint)sid;
+			}
+
+			set 
+			{
+				if (MemoryType!=SimMemoryType.Object) return;
+				this.PutValue(0x01, (ushort)(value & 0x0000ffff));
+				this.PutValue(0x02, (ushort)((value >> 16) & 0x0000ffff));
+			}
+		}
+
+		/// <summary>
 		/// Returns/Sets the value that is possible the Instance of a Sim
 		/// </summary>
 		public ushort SimInstance 
@@ -249,7 +317,7 @@ namespace SimPe.Plugin
 		/// <param name="reader">The Stream that contains the FileData</param>
 		internal void Unserialize(System.IO.BinaryReader reader)
 		{
-			guid = reader.ReadUInt32();
+			Guid = reader.ReadUInt32();
 						
 			flags = new NgbhItemFlags(reader.ReadUInt16());
 			if ((uint)parent.Version>=(uint)NgbhVersion.Business)
@@ -305,15 +373,31 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="slot">Slotnumber</param>
 		/// <returns>the stored Value</returns>
-		protected ushort GetValue(int slot) 
+		internal ushort GetValue(int slot) 
 		{
 			if (data.Length>slot) return data[slot];
 			else return 0;	
 		}
 
+		protected string GetSubjectName()
+		{
+
+			string ext = " (0x"+Helper.HexString(this.SimID)+")";
+			string n = SimPe.Localization.GetString("Unknown")+ext;
+			if (parent.Provider.SimNameProvider.StoredData.ContainsKey(this.SimID))
+				n = parent.Provider.SimNameProvider.FindName(this.SimID).ToString();
+			else
+			{
+				SimPe.Cache.MemoryCacheItem mci = NgbhUI.ObjectCache.FindItem(this.SimID);
+				if (mci!=null) n = mci.Name + ext;
+			}
+
+			return n;
+		}
+
 		public override string ToString()
 		{
-			string name = Text.Replace("$Subject", parent.Provider.SimNameProvider.FindName(this.SimID).ToString());
+			string name = this.MemoryCacheItem.Name.Replace("$Subject", GetSubjectName());
 			if (name.Trim()=="") name = "---";
 
 			if (!this.Flags.IsVisible) name = "[invisible] "+name;
@@ -324,21 +408,30 @@ namespace SimPe.Plugin
 				{
 					uint sid = parent.Provider.SimDescriptionProvider.FindSim(OwnerInstance).SimId;
 				
-					name += " (owned by ";
+					name += " ("+SimPe.Localization.GetString("Gossip about")+" ";
 					name += parent.Provider.SimNameProvider.FindName(sid);
 					name += ")";
-				}
+				}				
 			} 
 			catch (Exception)  {}
-			return name;
-		}
+
+			if (MemoryType== SimMemoryType.Object) 
+			{
+				name += " {";
+				SimPe.Cache.MemoryCacheItem mci = NgbhUI.ObjectCache.FindItem(this.ReferencedObjectGuid);
+				if (mci!=null) name += mci.Name;
+				name += "}";
+			}
+
+			return /*data.Length.ToString()+" "+*/name;
+		}		
 
 		/// <summary>
 		/// removes this Item from its parent
 		/// </summary>
 		public void RemoveFromParentB()
 		{
-			parentslot.ItemsB = NgbhSlot.Remove(parentslot.ItemsB, this);
+			parentslot.ItemsB.Remove(this);// = NgbhSlot.Remove(parentslot.ItemsB, this);
 		}
 
 		/// <summary>
@@ -346,7 +439,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public void AddToParentB()
 		{
-			parentslot.ItemsB = NgbhSlot.Add(parentslot.ItemsB, this);
+			parentslot.ItemsB.Add(this);// = NgbhSlot.Add(parentslot.ItemsB, this);
 		}
 
 		/// <summary>
@@ -354,7 +447,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public void RemoveFromParentA()
 		{
-			parentslot.ItemsA = NgbhSlot.Remove(parentslot.ItemsA, this);
+			parentslot.ItemsA.Remove(this);// = NgbhSlot.Remove(parentslot.ItemsA, this);
 		}
 
 		/// <summary>
@@ -362,7 +455,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public void AddToParentA()
 		{
-			parentslot.ItemsA = NgbhSlot.Add(parentslot.ItemsA, this);
+			parentslot.ItemsA.Add(this);// = NgbhSlot.Add(parentslot.ItemsA, this);
 		}
 	}
 }

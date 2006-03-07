@@ -3177,10 +3177,10 @@ namespace SimPe
 
 		private void SaveOptionsClick(object sender, System.EventArgs e)
 		{
-			Helper.WindowsRegistry.SimsPath = this.tbgame.Text;
+			/*Helper.WindowsRegistry.SimsPath = this.tbgame.Text;
 			Helper.WindowsRegistry.SimsEP1Path = this.tbep1.Text;
 			Helper.WindowsRegistry.SimsEP2Path = this.tbep2.Text;
-			Helper.WindowsRegistry.SimSavegameFolder = this.tbsavegame.Text;
+			Helper.WindowsRegistry.SimSavegameFolder = this.tbsavegame.Text;*/
 			Helper.WindowsRegistry.NvidiaDDSPath = tbdds.Text;
 			Helper.WindowsRegistry.LanguageCode = (Data.MetaData.Languages)cblang.SelectedIndex+1;
 			Helper.WindowsRegistry.GameDebug = cbdebug.Checked;
@@ -3394,6 +3394,11 @@ namespace SimPe
 						{
 							switch (fti.Type) 
 							{
+								case FileTableItemType.EP3GameFolder: 
+								{
+									tw.Write(" root=\"ep3\"");
+									break;
+								}
 								case FileTableItemType.EP2GameFolder: 
 								{
 									tw.Write(" root=\"ep2\"");

@@ -71,6 +71,19 @@ namespace SimPe.Interfaces.Providers
 			get;
 		}
 
+		/// <summary>
+		/// Returns a List containing all Household Names
+		/// </summary>
+		/// <returns></returns>
+		ArrayList GetHouseholdNames();
+
+		/// <summary>
+		/// Returns a List containing all Household Names
+		/// </summary>
+		/// <param name="firstcustom">Returns the name of the first household with a custom Sim in it</param>
+		/// <returns></returns>
+		ArrayList GetHouseholdNames(out string firstcustom);
+
 		#region Nightlife
 		/// <summary>
 		/// Returns the name of a Turnon/Turnoff

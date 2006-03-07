@@ -36,6 +36,10 @@ namespace SimPe.Plugin
 		}
 
 		Ngbh parent;
+		public Ngbh Parent
+		{
+			get {return parent;}
+		}
 		public NgbhSlotList(Ngbh parent)
 		{
 			if (parent!=null) 
@@ -43,8 +47,8 @@ namespace SimPe.Plugin
 			else 
 				this.Version = NgbhVersion.University;
 			this.parent = parent;
-			itemsa = new NgbhItem[0];
-			itemsb = new NgbhItem[0];
+			itemsa = new SimPe.Plugin.Collections.NgbhItems(this);
+			itemsb = new SimPe.Plugin.Collections.NgbhItems(this);
 		}
 
 		/// <summary>
@@ -64,12 +68,12 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// stored items
 		/// </summary>
-		NgbhItem[] itemsa;
+		Collections.NgbhItems itemsa;
 
 		/// <summary>
 		/// Returns / Sets the stored NgbhItem
 		/// </summary>
-		public NgbhItem[] ItemsA 
+		public Collections.NgbhItems ItemsA 
 		{
 			get { return itemsa; }
 			set { itemsa = value; }
@@ -78,50 +82,24 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// stored items
 		/// </summary>
-		NgbhItem[] itemsb;
+		Collections.NgbhItems itemsb;
 
 		/// <summary>
 		/// Returns / Sets the stored NgbhItem
 		/// </summary>
-		public NgbhItem[] ItemsB 
+		public Collections.NgbhItems ItemsB 
 		{
 			get { return itemsb; }
 			set { itemsb = value; }
-		}
-
-		/// <summary>
-		/// Removes the passed item from the given List of items
-		/// </summary>
-		/// <param name="items"></param>
-		/// <param name="item"></param>
-		/// <returns>The passed Array without any instance of the passed item</returns>
-		public static NgbhItem[] Remove(NgbhItem[] items, NgbhItem item)
+		}	
+	
+		public Collections.NgbhItems GetItems(Data.NeighborhoodSlots id)
 		{
-			ArrayList list = new ArrayList();
-			for (int i=0; i<items.Length; i++)
-			{
-				if (items[i]!=item) list.Add(items[i]);
-			}
+			if (id==Data.NeighborhoodSlots.Families || id==Data.NeighborhoodSlots.Lots || id==Data.NeighborhoodSlots.Sims)
+				return ItemsB;			
 
-			items = new NgbhItem[list.Count];
-			list.CopyTo(items);
-			return items;
-		}
-
-		/// <summary>
-		/// Adds the passed item from the given List of items
-		/// </summary>
-		/// <param name="items"></param>
-		/// <param name="item"></param>
-		/// <returns>The passed Array with a new instance of the passed item</returns>
-		public static NgbhItem[] Add(NgbhItem[] items, NgbhItem item)
-		{
-			NgbhItem[] nitems = new NgbhItem[items.Length+1];
-			items.CopyTo(nitems, 0);
-			nitems[items.Length] = item;
-			return nitems;
-		}
-
+			return ItemsA;
+		}	
 		
 
 		/// <summary>
@@ -131,20 +109,22 @@ namespace SimPe.Plugin
 		internal virtual void Unserialize(System.IO.BinaryReader reader)
 		{
 			if ((uint)parent.Version>=(uint)NgbhVersion.Nightlife) version = reader.ReadUInt32();
-			itemsa = new NgbhItem[reader.ReadUInt32()];			
-			for (int j=0; j<itemsa.Length; j++) 
+			uint ct = reader.ReadUInt32();
+			itemsa.Clear();			
+			for (int j=0; j<ct; j++) 
 			{
-				itemsa[j] = new NgbhItem(parent, this);
-				itemsa[j].Unserialize(reader);
+				NgbhItem item = itemsa.AddNew();
+				item.Unserialize(reader);				
 			}
 
 			
 
-			itemsb = new NgbhItem[reader.ReadUInt32()];
-			for (int j=0; j<itemsb.Length; j++) 
+			ct = reader.ReadUInt32();
+			itemsb.Clear();
+			for (int j=0; j<ct; j++) 
 			{
-				itemsb[j] = new NgbhItem(parent, this);
-				itemsb[j].Unserialize(reader);
+				NgbhItem item = itemsb.AddNew();
+				item.Unserialize(reader);
 			}
 		}
 

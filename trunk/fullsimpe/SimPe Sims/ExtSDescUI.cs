@@ -235,6 +235,8 @@ namespace SimPe.PackedFiles.UserInterface
 			Initialize();
 
 			toolBar1.Renderer = new TD.SandBar.MediaPlayerRenderer();
+			toolBar1.Overflow = TD.SandBar.ToolBarOverflow.Chevron;
+
 			ThemeManager.AddControl(this.toolBar1);
 			ThemeManager.AddControl(this.menuBar1);
 			ThemeManager.AddControl(this.srcTb);
