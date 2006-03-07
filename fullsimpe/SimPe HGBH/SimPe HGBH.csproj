@@ -249,6 +249,11 @@
                     Project = "{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "sanddock"
+                    AssemblyName = "sanddock"
+                    HintPath = "..\..\..\divelements\sanddock\sanddock.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -270,6 +275,21 @@
                 />
                 <File
                     RelPath = "emoticon.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ExtNgbh.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ExtNgbhUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ExtNgbhUI.resx"
+                    DependentUpon = "ExtNgbhUI.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -302,6 +322,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ItemsListView.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ltxt.png"
                     BuildAction = "EmbeddedResource"
                 />
@@ -324,6 +349,16 @@
                     RelPath = "LtxtWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MemoryProperties.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MemoryProperties.resx"
+                    DependentUpon = "MemoryProperties.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "ngbh.png"
@@ -355,7 +390,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "NgbhItems.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "NgbhSlot.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhSlots.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -387,6 +432,16 @@
                     RelPath = "RoadTextureWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SlotUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SlotUI.resx"
+                    DependentUpon = "SlotUI.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "subitems.png"

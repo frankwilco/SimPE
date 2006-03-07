@@ -1006,7 +1006,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 					
 					bool found = false;
-					string n = cpf.GetSaveItem(this.tbCpfName.Text).StringValue;
+					string n = cpf.GetSaveItem(this.tbCpfName.Text).StringValue.ToLower();
 					if (this.cbCpfMatch.SelectedIndex==0) 
 					{
 						found = n==name;

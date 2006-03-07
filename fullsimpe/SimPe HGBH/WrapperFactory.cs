@@ -42,13 +42,14 @@ namespace SimPe.Plugin
 			get 
 			{
 				IWrapper[] wrappers = {
+										  new Plugin.ExtNgbh(),
 										  new Plugin.Ngbh(this.LinkedProvider),
 										  new Plugin.Ltxt(this.LinkedProvider),
 										  new Plugin.Want(this.LinkedProvider),
 										  new Plugin.XWant(),
 										  new Plugin.Idno(),
 									      new Plugin.RoadTexture(),
-										  new Plugin.Tatt()
+										  new Plugin.Tatt(),										  
 									  };
 				return wrappers;
 			}

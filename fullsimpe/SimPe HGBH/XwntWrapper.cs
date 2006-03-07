@@ -120,6 +120,12 @@ namespace SimPe.Plugin
 			set { this.GetSaveItem("objectType").StringValue = value; }
 		}
 
+		public string NodeText
+		{
+			get { return this.GetSaveItem("nodeText").StringValue; }
+			set { this.GetSaveItem("nodeText").StringValue = value; }
+		}
+
 		
 		public WantType WantType
 		{
@@ -161,6 +167,12 @@ namespace SimPe.Plugin
 			{
 				return "GUID=0x"+Helper.HexString(this.FileDescriptor.Instance)+", Folder="+this.Folder+", ObjectType="+this.ObjectType;
 			}
+		}
+
+		protected override string GetResourceName(SimPe.Data.TypeAlias ta)
+		{
+			if (!this.Processed) ProcessData(FileDescriptor, Package);
+			return this.Folder+" / "+this.NodeText+" ("+this.ObjectType+")";
 		}
 	}
 }

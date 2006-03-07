@@ -157,34 +157,30 @@ namespace SimPe.Plugin.Tool.Action
 				SimPe.Plugin.Ngbh n = new Ngbh(null);
 				n.ProcessData(pfd, pkg);
 
-				ArrayList slots = new ArrayList();
+				SimPe.Plugin.Collections.NgbhSlots slots = new SimPe.Plugin.Collections.NgbhSlots(n);
 				foreach (NgbhSlot s in n.Sims)
 				{
 					if (s.SlotID!=inst) 
 					{
 						slots.Add(s);
-						ArrayList list = new ArrayList();
+						SimPe.Plugin.Collections.NgbhItems list = new SimPe.Plugin.Collections.NgbhItems(s);
 						foreach (NgbhItem i in s.ItemsA)
 						{
 							if (i.SimID != guid && i.SimInstance!=inst && i.OwnerInstance!=inst) list.Add(i);
 						}
+						s.ItemsA = list;
 
-						s.ItemsA = new NgbhItem[list.Count];
-						list.CopyTo(s.ItemsA);
-
-						list = new ArrayList();
+						list = new SimPe.Plugin.Collections.NgbhItems(s);
 						foreach (NgbhItem i in s.ItemsB)
 						{
 							if (i.SimID != guid && i.SimInstance!=inst && i.OwnerInstance!=inst) list.Add(i);
 						}
 
-						s.ItemsB = new NgbhItem[list.Count];
-						list.CopyTo(s.ItemsB);
+						s.ItemsB = list;						
 					}
 				}	
 			
-				n.Sims = new NgbhSlot[slots.Count];
-				slots.CopyTo(n.Sims);
+				n.Sims = slots;
 
 				n.SynchronizeUserData();
 			}

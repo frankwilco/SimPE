@@ -1248,5 +1248,53 @@ Soll SimPE dennoch gestartet werden?</value>
     </data>  
     <data name="Warning">
 		<value>Warnung!</value>
+    </data> 
+     <data name="[All Households]">
+		<value>[Alle Haushalte]</value>
+    </data>  
+    <data name="SimPe.Data.NeighborhoodSlots.Sims">
+		<value>Erinnerungen</value>
+    </data> 
+    <data name="SimPe.Data.NeighborhoodSlots.SimsIntern">
+		<value>Token (Fähigkeiten, Abzeichen, Inventar...)</value>
+    </data>  
+    <data name="SimPe.Data.NeighborhoodSlots.Lots">
+		<value>Lots</value>
+    </data> 
+    <data name="SimPe.Data.NeighborhoodSlots.LotsIntern">
+		<value>Lots Intern</value>
+    </data>  
+    <data name="SimPe.Data.NeighborhoodSlots.Families">
+		<value>Families</value>
+    </data> 
+    <data name="SimPe.Data.NeighborhoodSlots.FamiliesIntern">
+		<value>Families Intern</value>
+    </data>      
+    <data name="Gossip about">
+		<value>Gerücht über</value>
+    </data>
+    <data name="SimPe.Plugin.SimMemoryType.Memory">
+		<value>Erinnerung</value>
+    </data>  
+    <data name="SimPe.Plugin.SimMemoryType.Gossip">
+		<value>Gerücht</value>
+    </data>
+    <data name="SimPe.Plugin.SimMemoryType.Skill">
+		<value>Fähigkeit</value>
+    </data>
+    <data name="SimPe.Plugin.SimMemoryType.Inventory">
+		<value>Inventar</value>
+    </data>
+    <data name="SimPe.Plugin.SimMemoryType.Token">
+		<value>Token</value>
+    </data>  
+    <data name="SimPe.Plugin.SimMemoryType.Object">
+		<value>Objekt</value>
+    </data>   
+    <data name="SimPe.Plugin.SimMemoryType.Aspiration">
+		<value>Lebensziel</value>
+    </data>    
+    <data name="SimPe.Plugin.SimMemoryType.Badge">
+		<value>Abzeichen</value>
     </data>    
 </root>

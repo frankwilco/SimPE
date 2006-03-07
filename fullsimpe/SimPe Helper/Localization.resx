@@ -989,5 +989,53 @@ Run SimPE anyway?</value>
     </data>
     <data name="Warning">
 		<value>Warning!</value>
+    </data> 
+    <data name="[All Households]">
+		<value>[All Households]</value>
+    </data>  
+    <data name="SimPe.Data.NeighborhoodSlots.Sims">
+		<value>Memories</value>
+    </data> 
+    <data name="SimPe.Data.NeighborhoodSlots.SimsIntern">
+		<value>Tokens (Skills, Badges, Inventory...)</value>
+    </data>  
+    <data name="SimPe.Data.NeighborhoodSlots.Lots">
+		<value>Lots</value>
+    </data> 
+    <data name="SimPe.Data.NeighborhoodSlots.LotsIntern">
+		<value>Lots Intern</value>
+    </data>  
+    <data name="SimPe.Data.NeighborhoodSlots.Families">
+		<value>Families</value>
+    </data> 
+    <data name="SimPe.Data.NeighborhoodSlots.FamiliesIntern">
+		<value>Families Intern</value>
+    </data>     
+    <data name="Gossip about">
+		<value>Gossip about</value>
+    </data>
+    <data name="SimPe.Plugin.SimMemoryType.Memory">
+		<value>Memory</value>
+    </data>  
+    <data name="SimPe.Plugin.SimMemoryType.Gossip">
+		<value>Gossip</value>
+    </data>
+    <data name="SimPe.Plugin.SimMemoryType.Skill">
+		<value>Skill</value>
+    </data>
+    <data name="SimPe.Plugin.SimMemoryType.Inventory">
+		<value>Inventory</value>
+    </data>
+    <data name="SimPe.Plugin.SimMemoryType.Token">
+		<value>Token</value>
+    </data>  
+    <data name="SimPe.Plugin.SimMemoryType.Object">
+		<value>Object</value>
+    </data>  
+    <data name="SimPe.Plugin.SimMemoryType.Aspiration">
+		<value>Aspiration</value>
     </data>    
+    <data name="SimPe.Plugin.SimMemoryType.Badge">
+		<value>Badge</value>
+    </data> 
 </root>

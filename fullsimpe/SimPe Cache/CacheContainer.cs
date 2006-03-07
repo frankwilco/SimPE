@@ -212,13 +212,14 @@ namespace SimPe.Cache
 								break;
 							}	
 							case ContainerType.Memory:
-							{														
+							{								
 								for (int i=0; i<count; i++) 
 								{
 									MemoryCacheItem oci = new MemoryCacheItem();
 									oci.Load(reader);
 									oci.ParentCacheContainer = this;
-									items.Add(oci);
+									if (oci.Version >= MemoryCacheItem.DISCARD_VERSIONS_SMALLER_THAN) 																			
+										items.Add(oci);									
 								}
 							
 								break;

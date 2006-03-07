@@ -59,19 +59,23 @@ namespace SimPe
 			set {ignore = value;}
 		}
 
-		public FileTableItem( string relpath, bool rec, bool fl) : this (relpath, rec, fl, -1, false)
+		public FileTableItem(string path, bool rec, bool fl) : this (path, rec, fl, -1, false)
 		{
 		}
-		public FileTableItem( string relpath, bool rec, bool fl, int ver) : this (relpath, rec, fl, ver, false)
+		public FileTableItem(string path, bool rec, bool fl, int ver) : this (path, rec, fl, ver, false)
 		{
 		}
 
-		public FileTableItem( string relpath, bool rec, bool fl, int ver, bool ign) 
+		public FileTableItem(string path, bool rec, bool fl, int ver, bool ign) : this(path, FileTableItemType.Absolute, rec, fl, ver, ign)
+		{
+		}
+
+		public FileTableItem(string relpath, FileTableItemType type, bool rec, bool fl, int ver, bool ign) 
 		{						
 			this.recursive = rec;
 			this.file = fl;
 			this.ver = ver;
-			this.type = FileTableItemType.Absolute;
+			this.type = type;
 			this.SetName(relpath);
 			this.ignore = ign;
 		}		
@@ -99,7 +103,7 @@ namespace SimPe
 			else if (type==FileTableItemType.SimPEPluginFolder) ret = Helper.SimPePluginPath;
 
 			if (ret!=null)
-				if (!ret.EndsWith(Helper.PATH_SEP)) ret+=Helper.PATH_SEP;
+				if (!ret.EndsWith(Helper.PATH_SEP)) ret += Helper.PATH_SEP;
 
 			if (ret==Helper.PATH_SEP) ret=null;
 			return ret;
@@ -143,9 +147,9 @@ namespace SimPe
 
 			if (ename.StartsWith(root))
 			{
-
-				this.path = name.Replace(root, "");
-				if (this.path.StartsWith(Helper.PATH_SEP)) path = path.Substring(1);
+				this.path = ename.Replace(root, "");
+				if (!this.IsFile)
+					if (this.path.StartsWith(Helper.PATH_SEP)) path = path.Substring(1);
 				this.Type = type;				
 				return true;
 			} 
@@ -157,7 +161,7 @@ namespace SimPe
 		{
 			string n = name;
 
-			if (Helper.IsAbsolutePath(name)) Helper.ToLongPathName(name).Trim().ToLower();
+			if (Helper.IsAbsolutePath(name)) name = Helper.ToLongPathName(name).Trim().ToLower();
 
 			if (CutName(n, FileTableItemType.GameFolder)) return;
 			if (CutName(n, FileTableItemType.EP1GameFolder)) return;
@@ -222,6 +226,8 @@ namespace SimPe
 				if (p.StartsWith(Helper.PATH_SEP)) p = path.Substring(1);
 				string ret = System.IO.Path.Combine(r, p);
 
+				if (this.IsFile)
+					if (ret.EndsWith(Helper.PATH_SEP)) ret = ret.Substring(0, ret.Length-1);
 				return ret;
 			}
 			set { SetName(value); }
@@ -229,7 +235,11 @@ namespace SimPe
 
 		public string RelativePath 
 		{
-			get { return path; }
+			get { 
+				if (this.IsFile)
+					if (path.EndsWith(Helper.PATH_SEP)) path = path.Substring(0, path.Length-1);
+				return path; 
+			}
 		}
 
 		public string[] GetFiles()
@@ -332,8 +342,11 @@ namespace SimPe
 								{
 									if (foldernode.Name != "path" && foldernode.Name != "file") continue;									
 									string name = foldernode.InnerText.Trim();		
-							
-									FileTableItem fti = new FileTableItem(name, false, false);
+									int ftiver = -1;
+									bool ftiignore = false;
+									bool ftirec = false;
+									FileTableItemType ftitype = FileTableItemType.Absolute;									
+									
 									
 									
 									#region add Path Root if needed
@@ -341,12 +354,12 @@ namespace SimPe
 									{
 										if (a.Name=="recursive") 
 										{
-											if (a.Value != "0") fti.SetRecursive(true);
+											if (a.Value != "0") ftirec = true;
 										}
 
 										if (a.Name=="ignore") 
 										{
-											fti.Ignore = (a.Value != "0");
+											ftiignore = (a.Value != "0");
 										}
 
 										if (a.Name=="epversion") 
@@ -354,7 +367,7 @@ namespace SimPe
 											try 
 											{
 												int ver = Convert.ToInt32(a.Value);
-												fti.EpVersion = ver;
+												ftiver = ver;
 											} 
 											catch {}																				
 										}
@@ -367,59 +380,61 @@ namespace SimPe
 												case "game":
 												{
 													root = Helper.WindowsRegistry.SimsPath;
-													fti.Type = FileTableItemType.GameFolder;
+													ftitype = FileTableItemType.GameFolder;
 													break;
 												}
 												case "ep1":
 												{
 													root = Helper.WindowsRegistry.SimsEP1Path;
-													fti.Type = FileTableItemType.EP1GameFolder;
+													ftitype = FileTableItemType.EP1GameFolder;
 													break;
 												}
 												case "ep2":
 												{
 													root = Helper.WindowsRegistry.SimsEP2Path;
-													fti.Type = FileTableItemType.EP2GameFolder;
+													ftitype = FileTableItemType.EP2GameFolder;
 													break;
 												}													
 												case "ep3":
 												{
 													root = Helper.WindowsRegistry.SimsEP3Path;
-													fti.Type = FileTableItemType.EP3GameFolder;
+													ftitype = FileTableItemType.EP3GameFolder;
 													break;
 												}
 												case "save":
 												{
 													root = Helper.WindowsRegistry.SimSavegameFolder;
-													fti.Type = FileTableItemType.SaveGameFolder;
+													ftitype = FileTableItemType.SaveGameFolder;
 													break;
 												}
 												case "simpe":
 												{
 													root = Helper.SimPePath;
-													fti.Type = FileTableItemType.SimPEFolder;
+													ftitype = FileTableItemType.SimPEFolder;
 													break;
 												}
 												case "simpeData":
 												{
 													root = Helper.SimPeDataPath;
-													fti.Type = FileTableItemType.SimPEDataFolder;
+													ftitype = FileTableItemType.SimPEDataFolder;
 													break;
 												}
 												case "simpePlugin":
 												{
 													root = Helper.SimPePluginPath;
-													fti.Type = FileTableItemType.SimPEPluginFolder;
+													ftitype = FileTableItemType.SimPEPluginFolder;
 													break;
 												}
 											}//switch
 
-											name = System.IO.Path.Combine(root, name);
+											//name = System.IO.Path.Combine(root, name);
 										}
 									} //foreach
 
-									fti.SetName(name);
-									if (foldernode.Name == "file") fti.SetFile(true);
+
+									FileTableItem fti;
+									if (foldernode.Name == "file") fti = new FileTableItem(name, ftitype, false, true, ftiver, ftiignore);
+									else  fti = new FileTableItem(name, ftitype, ftirec, false, ftiver, ftiignore);
 
 #if MAC
 									Console.WriteLine("    -> "+fti.Name);

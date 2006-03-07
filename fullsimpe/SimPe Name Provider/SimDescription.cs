@@ -120,6 +120,37 @@ namespace SimPe.Providers
 				byinstance[(ushort)sdesc.Instance] = sdesc;
 			}
 		}
+		public ArrayList GetHouseholdNames()
+		{
+			string fc;
+			return GetHouseholdNames(out fc);
+		}
+
+		public ArrayList GetHouseholdNames(out string firstcustum)
+		{
+			Hashtable ht = SimPe.FileTable.ProviderRegistry.SimDescriptionProvider.SimInstance;
+			ArrayList list = new ArrayList();
+			firstcustum = null;
+			foreach (SimPe.PackedFiles.Wrapper.ExtSDesc sdesc in ht.Values)
+			{
+				string n = sdesc.HouseholdName;
+				if (n==null) n=SimPe.Localization.GetString("Unknown");
+				if (!list.Contains(n)) 
+				{
+					list.Add(n);
+					if (firstcustum==null && !sdesc.IsNPC && !sdesc.IsTownie) firstcustum = n;
+				}				
+			}
+
+			if (firstcustum==null) 
+			{
+				if (list.Count>0) firstcustum = (string)list[0];
+				else firstcustum = SimPe.Localization.GetString("Unknown");
+			}
+
+			list.Sort();
+			return list;
+		}
 		
 		#region ISimDescription Member
 

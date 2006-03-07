@@ -54,7 +54,7 @@ namespace SimPe.Plugin
 			SimPe.RemoteControl.HookToMessageQueue(0x4E474248, new SimPe.RemoteControl.ControlEvent(ControlEvent));
 		}
 
-		public void ControlEvent(object sender, SimPe.RemoteControl.ControlEventArgs e)
+		protected void ControlEvent(object sender, SimPe.RemoteControl.ControlEventArgs e)
 		{			
 			object[] os = e.Items as object[];
 			if (os!=null) 
@@ -1085,11 +1085,11 @@ namespace SimPe.Plugin
 			lvi.Text = item.ToString();
 			lvi.Tag = item;
 
-			if (item.Image!=null) 
+			if (item.MemoryCacheItem.Icon!=null) 
 			{
 				lvi.ImageIndex = memilist.Images.Count;
 
-				memilist.Images.Add(item.Image);
+				memilist.Images.Add(item.MemoryCacheItem.Icon);
 			}
 
 			lbmem.Items.Add(lvi);
@@ -1116,7 +1116,7 @@ namespace SimPe.Plugin
 			if (tbFlag.Tag!=null) return;
 			try 
 			{
-				GetSelectedItem().Unknown = Helper.StringToUInt32(tbUnk.Text, GetSelectedItem().Unknown, 16);
+				GetSelectedItem().InventoryNumber = Helper.StringToUInt32(tbUnk.Text, GetSelectedItem().InventoryNumber, 16);
 			} 
 			catch (Exception ex) 
 			{
@@ -1142,7 +1142,7 @@ namespace SimPe.Plugin
 				//change also in the Items List
 				Ngbh wrp = (Ngbh)wrapper;
 				PackedFiles.Wrapper.SDesc sdesc = (PackedFiles.Wrapper.SDesc)lv.SelectedItems[0].Tag;
-				NgbhSlot slot = wrp.GetSlot(wrp.Sims, sdesc.Instance);
+				NgbhSlot slot = wrp.Sims.GetInstanceSlot(sdesc.Instance);
 				NgbhItem i = slot.ItemsB[SelectedIndex- 1];
 				slot.ItemsB[SelectedIndex-1] = slot.ItemsB[SelectedIndex];
 				slot.ItemsB[SelectedIndex] = i;
@@ -1170,7 +1170,7 @@ namespace SimPe.Plugin
 				//change also in the Items List
 				Ngbh wrp = (Ngbh)wrapper;
 				PackedFiles.Wrapper.SDesc sdesc = (PackedFiles.Wrapper.SDesc)lv.SelectedItems[0].Tag;
-				NgbhSlot slot = wrp.GetSlot(wrp.Sims, sdesc.Instance);
+				NgbhSlot slot = wrp.Sims.GetInstanceSlot(sdesc.Instance);
 				NgbhItem i = slot.ItemsB[SelectedIndex + 1];
 				slot.ItemsB[SelectedIndex + 1] = slot.ItemsB[SelectedIndex];
 				slot.ItemsB[SelectedIndex] = i;
@@ -1187,11 +1187,11 @@ namespace SimPe.Plugin
 			{
 				lbmem.SelectedItems[0].Text = item.ToString();
 
-				if ((item.Image!=null) && (lbmem.SelectedItems[0].ImageIndex>=0)) 
+				if ((item.MemoryCacheItem.Icon!=null) && (lbmem.SelectedItems[0].ImageIndex>=0)) 
 				{
 					int id = lbmem.SelectedItems[0].ImageIndex;
 					lbmem.SelectedItems[0].ImageIndex = -1;
-					System.Drawing.Image simg = item.Image;
+					System.Drawing.Image simg = item.MemoryCacheItem.Icon;
 					Bitmap img = new Bitmap(memilist.ImageSize.Width, memilist.ImageSize.Height);
 					Graphics gr = Graphics.FromImage(img);
 					gr.DrawImage(
@@ -1251,20 +1251,10 @@ namespace SimPe.Plugin
 				lbmem.Items.Clear();
 			
 				Ngbh wrp = (Ngbh)wrapper;
-				NgbhSlot slot;
-				if (cbtype.SelectedIndex==0 || cbtype.SelectedIndex==1)
-					slot = wrp.GetSlot(wrp.Lots, sdesc.Instance);
-				else if (cbtype.SelectedIndex==2 || cbtype.SelectedIndex==3)
-					slot = wrp.GetSlot(wrp.Families, sdesc.Instance);
-				else 
-					slot = wrp.GetSlot(wrp.Sims, sdesc.Instance);
-				if (slot!=null) 
-				{
-					if (cbtype.SelectedIndex%2==1)
-						foreach (NgbhItem item in slot.ItemsB) this.AddItem(item);
-					else
-						foreach (NgbhItem item in slot.ItemsA) this.AddItem(item);
-				}
+				Collections.NgbhItems items = wrp.GetItems((Data.NeighborhoodSlots)cbtype.SelectedIndex, sdesc.Instance);							
+				
+				if (items!=null)
+					foreach (NgbhItem item in items) this.AddItem(item);				
 
 				if (lbmem.Items.Count>0) lbmem.Items[0].Selected = true;
 			} 
@@ -1278,7 +1268,7 @@ namespace SimPe.Plugin
 
 		protected NgbhItem GetSelectedItem()
 		{
-			if (this.lbmem.SelectedItems.Count==0) return new NgbhItem((Ngbh)wrapper, new NgbhSlot((Ngbh)wrapper));
+			if (this.lbmem.SelectedItems.Count==0) return new NgbhItem(new NgbhSlot((Ngbh)wrapper));
 			return (NgbhItem)lbmem.SelectedItems[0].Tag;
 		}
 
@@ -1292,7 +1282,7 @@ namespace SimPe.Plugin
 			this.tbFlag.Text = "0x"+Helper.HexString(GetSelectedItem().Flags.Value);
 
 			this.tbUnk.Enabled = (uint)GetSelectedItem().ParentSlot.Version >= (uint)NgbhVersion.Nightlife;
-			this.tbUnk.Text = "0x"+Helper.HexString(GetSelectedItem().Unknown);
+			this.tbUnk.Text = "0x"+Helper.HexString(GetSelectedItem().InventoryNumber);
 			if (Helper.WindowsRegistry.HiddenMode)
 				this.tbval.Text = "0x"+Helper.HexString(GetSelectedItem().Value);
 			else
@@ -1350,7 +1340,7 @@ namespace SimPe.Plugin
 			foreach (ushort s in GetSelectedItem().Data) lbdata.Text += Helper.HexString(s) + " ";
 			lbdata.Tag = null;
 
-			pb.Image = GetSelectedItem().Image;
+			pb.Image = GetSelectedItem().MemoryCacheItem.Icon;
 		}
 
 		private void ChgFlags(object sender, System.EventArgs e)
@@ -1531,26 +1521,19 @@ namespace SimPe.Plugin
 				PackedFiles.Wrapper.SDesc sdesc = (PackedFiles.Wrapper.SDesc)lv.SelectedItems[0].Tag;
 			
 				Ngbh wrp = (Ngbh)wrapper;
-				NgbhSlot slot;// = wrp.GetSlot(wrp.SlotsC, sdesc.Instance);
-				if (cbtype.SelectedIndex==0 || cbtype.SelectedIndex==1)
-					slot = wrp.GetSlot(wrp.Lots, sdesc.Instance);
-				else if (cbtype.SelectedIndex==2 || cbtype.SelectedIndex==3)
-					slot = wrp.GetSlot(wrp.Families, sdesc.Instance);
-				else 
-					slot = wrp.GetSlot(wrp.Sims, sdesc.Instance);
-				NgbhItem item = new NgbhItem(wrp, slot);
-
-				if (cbtype.SelectedIndex%2==1)
-					item.AddToParentB();
-				else
-					item.AddToParentA();
-				item.PutValue(0x01, 0x07CD);
-				item.PutValue(0x02, 0x0007);
-				item.PutValue(0x0B, 0);
-				item.Flags.IsVisible = true;
-				item.Flags.IsAction = false;
-				this.AddItem(item);
-				lbmem.Items[lbmem.Items.Count-1].Selected = true;
+				NgbhSlot slot = wrp.GetSlots((Data.NeighborhoodSlots)cbtype.SelectedIndex).GetInstanceSlot(sdesc.Instance, true);
+				if (slot!=null) 
+				{
+					NgbhItem item = slot.GetItems((Data.NeighborhoodSlots)cbtype.SelectedIndex).AddNew();
+				 
+					item.PutValue(0x01, 0x07CD);
+					item.PutValue(0x02, 0x0007);
+					item.PutValue(0x0B, 0);
+					item.Flags.IsVisible = true;
+					item.Flags.IsAction = false;
+					this.AddItem(item);
+					lbmem.Items[lbmem.Items.Count-1].Selected = true;
+				}
 			} 
 			catch (Exception ex) 
 			{
