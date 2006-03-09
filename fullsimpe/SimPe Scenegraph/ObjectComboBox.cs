@@ -118,6 +118,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 		void SetContent()
 		{
+			System.Collections.ArrayList names = new ArrayList();
 			if (this.DesignMode) return;
 			cb.Items.Clear();
 			cb.Sorted = false;
@@ -133,8 +134,12 @@ namespace SimPe.PackedFiles.Wrapper
 				if (this.ShowSkill && mci.IsSkill) use = true;
 
 				if (!use) continue;
+				
 
 				SimPe.Interfaces.IAlias a = new SimPe.Data.Alias(mci.Guid, mci.Name, new object[] {mci});
+
+				if (names.Contains(a.ToString())) continue;
+				names.Add(a.ToString());
 				cb.Items.Add(a);
 			}		
 			cb.Sorted = true;
