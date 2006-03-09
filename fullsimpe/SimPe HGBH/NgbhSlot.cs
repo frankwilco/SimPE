@@ -146,6 +146,11 @@ namespace SimPe.Plugin
 			writer.Write((uint)itemsb.Length);
 			for (int j=0; j<itemsb.Length; j++) itemsb[j].Serialize(writer);
 		}
+
+		public uint GetNextInventoryNumber()
+		{
+			return Math.Max(itemsa.GetMaxInventoryNumber(), itemsb.GetMaxInventoryNumber()) + 1;			
+		}
 	}
 
 	/// <summary>

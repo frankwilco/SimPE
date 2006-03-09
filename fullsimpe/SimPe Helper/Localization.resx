@@ -1026,8 +1026,14 @@ Run SimPE anyway?</value>
     <data name="SimPe.Plugin.SimMemoryType.Inventory">
 		<value>Inventory</value>
     </data>
+    <data name="SimPe.Plugin.SimMemoryType.GossipInventory">
+		<value>Inventory (Gossip)</value>
+    </data>
     <data name="SimPe.Plugin.SimMemoryType.Token">
 		<value>Token</value>
+    </data>  
+    <data name="SimPe.Plugin.SimMemoryType.ValueToken">
+		<value>Value</value>
     </data>  
     <data name="SimPe.Plugin.SimMemoryType.Object">
 		<value>Object</value>

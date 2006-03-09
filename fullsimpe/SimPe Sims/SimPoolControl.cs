@@ -29,6 +29,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// You can use this Control whenever you need to display a SimPool
 	/// </summary>
+	[System.ComponentModel.DefaultEvent("SelectedSimChanged")]
 	public class SimPoolControl : System.Windows.Forms.UserControl
 	{
 		public SimPoolControl()

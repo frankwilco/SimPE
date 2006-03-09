@@ -1278,7 +1278,7 @@ namespace SimPe.Plugin
 		{
 			tbFlag.Tag = true;
 			this.cbvis.Checked = GetSelectedItem().Flags.IsVisible;
-			this.cbaction.Checked = GetSelectedItem().Flags.IsAction;
+			this.cbaction.Checked = GetSelectedItem().Flags.IsControler;
 			this.tbFlag.Text = "0x"+Helper.HexString(GetSelectedItem().Flags.Value);
 
 			this.tbUnk.Enabled = (uint)GetSelectedItem().ParentSlot.Version >= (uint)NgbhVersion.Nightlife;
@@ -1348,7 +1348,7 @@ namespace SimPe.Plugin
 			if (tbFlag.Tag!=null) return;
 			tbFlag.Tag = true;
 			GetSelectedItem().Flags.IsVisible = this.cbvis.Checked;
-			GetSelectedItem().Flags.IsAction = this.cbaction.Checked;
+			GetSelectedItem().Flags.IsControler = this.cbaction.Checked;
 			this.tbFlag.Text = "0x"+Helper.HexString(GetSelectedItem().Flags.Value);
 			this.UpdateMemItem(GetSelectedItem());
 			tbFlag.Tag = null;
@@ -1530,7 +1530,7 @@ namespace SimPe.Plugin
 					item.PutValue(0x02, 0x0007);
 					item.PutValue(0x0B, 0);
 					item.Flags.IsVisible = true;
-					item.Flags.IsAction = false;
+					item.Flags.IsControler = false;
 					this.AddItem(item);
 					lbmem.Items[lbmem.Items.Count-1].Selected = true;
 				}

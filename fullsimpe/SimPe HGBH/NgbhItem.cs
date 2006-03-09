@@ -23,7 +23,7 @@ namespace SimPe.Plugin
 {
 	public enum SimMemoryType : byte 
 	{
-		Memory,	Gossip,	Skill, Inventory, Token, Object, Badge, Aspiration
+		Memory,	Gossip,	Skill, Inventory, GossipInventory, ValueToken, Token, Object, Badge, Aspiration
 	}
 
 	public class NgbhItemFlags : FlagBase
@@ -37,7 +37,7 @@ namespace SimPe.Plugin
 			set { SetBit(0, value); }
 		}
 
-		public bool IsAction
+		public bool IsControler
 		{
 			get { return !GetBit(1); }
 			set { SetBit(1, !value); }
@@ -52,13 +52,87 @@ namespace SimPe.Plugin
 		internal const int ICON_SIZE = 24; 
 		Ngbh parent;
 		NgbhSlotList parentslot;
-		internal NgbhItem(NgbhSlotList parentslot)
+		internal NgbhItem(NgbhSlotList parentslot) : this (parentslot, SimMemoryType.Memory) {}
+		internal NgbhItem(NgbhSlotList parentslot, SimMemoryType type)
 		{
 			this.parentslot = parentslot;
 			this.parent = parentslot.Parent;
 			data = new ushort[0];
 			flags = new NgbhItemFlags();
 			objd = null;
+
+			if (type == SimMemoryType.Aspiration || type == SimMemoryType.Skill || type == SimMemoryType.ValueToken || type == SimMemoryType.Badge)
+			{
+				Flags.IsVisible = false;
+				Flags.IsControler = true;
+				data = new ushort[2];
+			} 
+			else if (type == SimMemoryType.Token)
+			{
+				Flags.IsVisible = false;
+				Flags.IsControler = true;
+			}
+			else if (type == SimMemoryType.Object) 
+			{
+				Flags.IsVisible = false;
+				Flags.IsControler = true;
+				data = new ushort[3];
+			}
+			else if (type == SimMemoryType.Gossip || type == SimMemoryType.Memory)
+			{
+				PutValue(0x01, 0x07CD);
+				PutValue(0x02, 0x0006);
+				PutValue(0x0B, 0);
+				Flags.IsVisible = true;
+				Flags.IsControler = false;
+				if (type == SimMemoryType.Gossip) this.SimInstance = 1;
+			}
+			else if (type == SimMemoryType.GossipInventory || type == SimMemoryType.Inventory) 
+			{
+				Flags.IsVisible = true;
+				Flags.IsControler = true;				
+			
+				if (type == SimMemoryType.GossipInventory)
+				{
+					data = new ushort[8];
+					PutValue(0x01, 0x0);
+				}		
+		
+				this.InventoryNumber = this.ParentSlot.GetNextInventoryNumber();
+			}
+
+			SetGuidForType(type);
+		}
+
+		void SetGuidForType(SimMemoryType type)
+		{			
+			foreach (SimPe.Cache.MemoryCacheItem mci in SimPe.PackedFiles.Wrapper.ObjectComboBox.ObjectCache.List)
+			{
+				if (type==	SimMemoryType.Inventory || type==SimMemoryType.GossipInventory || type==SimMemoryType.Object) 
+				{
+					if (mci.IsInventory && !mci.IsToken)
+					{
+						Guid = mci.Guid;
+						return;
+					}
+				}
+				else if ( type == SimMemoryType.Memory || type == SimMemoryType.Gossip)
+				{
+					if (!mci.IsInventory && !mci.IsToken && mci.IsMemory)
+					{
+						Guid = mci.Guid;
+						return;
+					}		
+				} 
+				else 
+				{
+					if (!mci.IsInventory && mci.IsToken)
+					{
+						Guid = mci.Guid;
+						return;
+					}
+				}
+			}
 		}
 
 		uint guid;
@@ -129,7 +203,7 @@ namespace SimPe.Plugin
 
 				this.objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
 
-				SimPe.Cache.MemoryCacheItem mci = NgbhUI.ObjectCache.FindItem(guid);
+				SimPe.Cache.MemoryCacheItem mci = SimPe.PackedFiles.Wrapper.ObjectComboBox.ObjectCache.FindItem(guid);
 				if (mci!=null) 
 				{
 					objd.Type = mci.ObjectType;
@@ -150,7 +224,7 @@ namespace SimPe.Plugin
 			{
 				try 
 				{
-					if (mci==null) mci = NgbhUI.ObjectCache.FindItem(guid);					
+					if (mci==null) mci = SimPe.PackedFiles.Wrapper.ObjectComboBox.ObjectCache.FindItem(guid);					
 				} 
 				catch (Exception) {}
 
@@ -188,9 +262,13 @@ namespace SimPe.Plugin
 			{			
 				bool gossip = IsGossip;									
 
-				if (IsInventory && !gossip) return SimMemoryType.Inventory;
+				if (IsInventory) 
+				{
+					if (gossip) return SimMemoryType.GossipInventory;
+					return SimMemoryType.Inventory;
+				}
 
-				if (this.Flags.IsAction) 
+				if (this.Flags.IsControler) 
 				{
 					if (this.MemoryCacheItem.IsBadge)
 						return SimMemoryType.Badge;
@@ -198,8 +276,10 @@ namespace SimPe.Plugin
 						return SimMemoryType.Skill;
 					if (this.MemoryCacheItem.IsAspiration)
 						return SimMemoryType.Aspiration;
+					if (this.Data.Length<2)
+						return SimMemoryType.Token;	
 					if (this.Data.Length<3)
-						return SimMemoryType.Token;					
+						return SimMemoryType.ValueToken;	
 
 					return SimMemoryType.Object;
 				}
@@ -251,7 +331,14 @@ namespace SimPe.Plugin
 			set 
 			{
 				this.PutValue(0x04, value);
+				//flags.IsGossip = this.IsGossip;
 			}
+		}
+
+		public uint SubjectGuid
+		{
+			get { return SimID; }
+			set { SimID = value; }
 		}
 
 		/// <summary>
@@ -309,6 +396,36 @@ namespace SimPe.Plugin
 			{
 				this.PutValue(0x0C, value);
 			}
+		}
+
+		public bool IsSimSubject
+		{
+			get {return this.SimInstance>0;}
+		}		
+
+		public void SetSubject(ushort inst, uint guid)
+		{
+			if (inst!=0)
+				SimInstance = inst;
+			else 
+			{
+				if (data.Length == 0xD)
+				{
+					ushort[] nd = new ushort[data.Length-1];
+					for (int i=0; i<nd.Length; i++)
+						nd[i] = data[i];
+					data = nd;
+				}
+					
+			}
+			SimID = guid;
+		}
+
+		public void SetSubject(uint guid)
+		{
+			SimPe.Interfaces.Wrapper.ISDesc sdsc = FileTable.ProviderRegistry.SimDescriptionProvider.SimGuidMap[guid] as SimPe.Interfaces.Wrapper.ISDesc;
+			if (sdsc!=null) SetSubject(sdsc.Instance, guid);
+			else SetSubject(0, guid);
 		}
 
 		/// <summary>
@@ -369,6 +486,17 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Assignes a Value to the given Slot
+		/// </summary>
+		/// <param name="slot">Slot Number</param>
+		/// <param name="val">new Value</param>
+		public void SetValue(int slot, ushort val) 
+		{
+			if (data.Length>slot) 
+				data[slot] = val;			
+		}
+
+		/// <summary>
 		/// Returns the Value of teh Slot
 		/// </summary>
 		/// <param name="slot">Slotnumber</param>
@@ -388,7 +516,7 @@ namespace SimPe.Plugin
 				n = parent.Provider.SimNameProvider.FindName(this.SimID).ToString();
 			else
 			{
-				SimPe.Cache.MemoryCacheItem mci = NgbhUI.ObjectCache.FindItem(this.SimID);
+				SimPe.Cache.MemoryCacheItem mci = SimPe.PackedFiles.Wrapper.ObjectComboBox.ObjectCache.FindItem(this.SimID);
 				if (mci!=null) n = mci.Name + ext;
 			}
 
@@ -418,7 +546,7 @@ namespace SimPe.Plugin
 			if (MemoryType== SimMemoryType.Object) 
 			{
 				name += " {";
-				SimPe.Cache.MemoryCacheItem mci = NgbhUI.ObjectCache.FindItem(this.ReferencedObjectGuid);
+				SimPe.Cache.MemoryCacheItem mci = SimPe.PackedFiles.Wrapper.ObjectComboBox.ObjectCache.FindItem(this.ReferencedObjectGuid);
 				if (mci!=null) name += mci.Name;
 				name += "}";
 			}

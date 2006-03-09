@@ -113,11 +113,11 @@ namespace SimPe.Plugin
 			this.cbtypes = new System.Windows.Forms.ComboBox();
 			this.llcommit = new System.Windows.Forms.LinkLabel();
 			this.lblist = new System.Windows.Forms.ListBox();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
 			this.contextMenu1 = new System.Windows.Forms.ContextMenu();
 			this.miAdd = new System.Windows.Forms.MenuItem();
 			this.miRem = new System.Windows.Forms.MenuItem();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.wrapperPanel.SuspendLayout();
 			this.gbtypes.SuspendLayout();
 			this.pntypes.SuspendLayout();
@@ -401,6 +401,24 @@ namespace SimPe.Plugin
 			this.lblist.DragEnter += new System.Windows.Forms.DragEventHandler(this.PackageItemDragEnter);
 			this.lblist.SelectedIndexChanged += new System.EventHandler(this.SelectFile);
 			// 
+			// contextMenu1
+			// 
+			this.contextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+																						 this.miAdd,
+																						 this.miRem});
+			// 
+			// miAdd
+			// 
+			this.miAdd.Index = 0;
+			this.miAdd.Text = "&Add";
+			this.miAdd.Click += new System.EventHandler(this.miAdd_Click);
+			// 
+			// miRem
+			// 
+			this.miRem.Index = 1;
+			this.miRem.Text = "&Delete";
+			this.miRem.Click += new System.EventHandler(this.menuItem1_Click);
+			// 
 			// panel3
 			// 
 			this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -423,24 +441,6 @@ namespace SimPe.Plugin
 			this.label1.Size = new System.Drawing.Size(201, 19);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "3D Referencing File Editor";
-			// 
-			// contextMenu1
-			// 
-			this.contextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																						 this.miAdd,
-																						 this.miRem});
-			// 
-			// miAdd
-			// 
-			this.miAdd.Index = 0;
-			this.miAdd.Text = "&Add";
-			this.miAdd.Click += new System.EventHandler(this.miAdd_Click);
-			// 
-			// miRem
-			// 
-			this.miRem.Index = 1;
-			this.miRem.Text = "&Delete";
-			this.miRem.Click += new System.EventHandler(this.menuItem1_Click);
 			// 
 			// RefFileForm
 			// 

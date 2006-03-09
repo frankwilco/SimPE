@@ -142,6 +142,35 @@ namespace SimPe.Plugin
 			slotc = new Collections.NgbhSlots(this);
 		}
 
+		public static SimMemoryType[] AllowedMemoryTypes(Data.NeighborhoodSlots type)
+		{
+			if (type == Data.NeighborhoodSlots.Sims)
+			{
+				return new SimMemoryType[] {
+											   SimMemoryType.Memory,
+											   SimMemoryType.Gossip,
+											   SimMemoryType.Inventory,
+											   SimMemoryType.GossipInventory,
+											   SimMemoryType.Object,
+											   SimMemoryType.Aspiration,										
+											   SimMemoryType.Token,
+											   SimMemoryType.ValueToken	
+										   };
+			}
+
+			if (type == Data.NeighborhoodSlots.SimsIntern)
+			{
+				return new SimMemoryType[] {
+											   SimMemoryType.Badge,
+											   SimMemoryType.Skill,
+											   SimMemoryType.Token,
+											   SimMemoryType.ValueToken	
+										   };
+			}
+
+			return new SimMemoryType[0]; 
+		}
+
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
 		{
