@@ -121,7 +121,7 @@ namespace SimPe.Providers
 		/// <summary>
 		/// Called if the BaseBackae was changed
 		/// </summary>
-		protected override void BasePackageChanged() 
+		protected override void OnChangedPackage() 
 		{
 			names = null;
 		}

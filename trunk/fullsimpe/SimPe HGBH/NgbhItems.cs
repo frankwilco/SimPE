@@ -33,6 +33,7 @@ namespace SimPe.Plugin.Collections
 		{
 			get {return parent;}
 		}
+		
 		internal NgbhItems(NgbhSlotList parent)
 		{
 			this.parent = parent;
@@ -42,6 +43,13 @@ namespace SimPe.Plugin.Collections
 		public NgbhItem AddNew()
 		{
 			NgbhItem item = new NgbhItem(parent);
+			Add(item);
+			return item;
+		}
+
+		public NgbhItem AddNew(SimMemoryType type)
+		{
+			NgbhItem item = new NgbhItem(parent, type);
 			Add(item);
 			return item;
 		}
@@ -99,6 +107,16 @@ namespace SimPe.Plugin.Collections
 				ret.Add(i);
 
 			return ret;
+		}
+
+		public const uint MIN_INVENTORY_NUMBER = 1000;
+		internal uint GetMaxInventoryNumber()
+		{
+			uint nr = MIN_INVENTORY_NUMBER - 1;
+			foreach (NgbhItem i in list)			
+				if (i.InventoryNumber>nr) nr = i.InventoryNumber;
+
+			return nr;
 		}
 
 		#region IDisposable Member

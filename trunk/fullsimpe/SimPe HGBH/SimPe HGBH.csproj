@@ -251,7 +251,7 @@
                 />
                 <Reference
                     Name = "sanddock"
-                    AssemblyName = "sanddock"
+                    AssemblyName = "SandDock"
                     HintPath = "..\..\..\divelements\sanddock\sanddock.dll"
                 />
             </References>
@@ -323,7 +323,7 @@
                 />
                 <File
                     RelPath = "ItemsListView.cs"
-                    SubType = "Component"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -393,6 +393,16 @@
                     RelPath = "NgbhItems.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhItemsListView.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhItemsListView.resx"
+                    DependentUpon = "NgbhItemsListView.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "NgbhSlot.cs"

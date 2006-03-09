@@ -36,5 +36,10 @@ namespace SimPe.Interfaces.Providers
 			get;
 			set;
 		}
+
+		/// <summary>
+		/// Fired, whenever the <see cref="BasePackage"/> was changed
+		/// </summary>
+		event EventHandler ChangedPackage;
 	}
 }

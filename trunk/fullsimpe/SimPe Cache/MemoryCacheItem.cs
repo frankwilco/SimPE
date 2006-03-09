@@ -133,6 +133,11 @@ namespace SimPe.Cache
 			get { return IsAspiration || (ObjdName.Trim().ToLower().StartsWith("token") && (this.ObjectType == Data.ObjectTypes.Normal || this.ObjectType == Data.ObjectTypes.Memory));}
 		}
 
+		public bool IsJobData
+		{
+			get { return ObjdName.Trim().ToLower().StartsWith("jobdata") && this.ObjectType == Data.ObjectTypes.Normal;}
+		}
+
 		public bool IsMemory
 		{
 			get { return IsToken || this.ObjectType == Data.ObjectTypes.Memory; }
@@ -156,7 +161,7 @@ namespace SimPe.Cache
 
 		public bool IsInventory
 		{
-			get { return !IsMemory && this.ObjectType == Data.ObjectTypes.Normal; }
+			get { return !IsAspiration && !IsToken && !IsJobData && !IsMemory && this.ObjectType == Data.ObjectTypes.Normal; }
 		}
 
 		SimPe.Cache.CacheContainer cc;

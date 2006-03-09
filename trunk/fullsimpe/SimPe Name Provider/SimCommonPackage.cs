@@ -41,7 +41,8 @@ namespace SimPe.Providers
 		{			
 			BasePackage = package;
 		}
-
+		
+		public event EventHandler ChangedPackage;
 		/// <summary>
 		/// Returns or sets the Folder where the Character Files are stored
 		/// </summary>
@@ -54,7 +55,11 @@ namespace SimPe.Providers
 			}
 			set 
 			{
-				if (package != value) BasePackageChanged();
+				if (package != value) 
+				{
+
+					BasePackageChanged();
+				}
 				package = value;
 				
 			}
@@ -63,6 +68,12 @@ namespace SimPe.Providers
 		/// <summary>
 		/// Called if the BaseBackae was changed
 		/// </summary>
-		protected abstract void BasePackageChanged();
+		protected void BasePackageChanged()
+		{			
+			OnChangedPackage();
+			if (ChangedPackage!=null) ChangedPackage(this, new EventArgs());
+		}
+
+		protected abstract void OnChangedPackage();
 	}
 }

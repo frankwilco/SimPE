@@ -55,7 +55,7 @@ namespace SimPe.Plugin
 
 				form.ListWants();
 
-				WantLoader.WantNameLoader.AddObjects(NgbhUI.ObjectCache.List);
+				WantLoader.WantNameLoader.AddObjects(SimPe.PackedFiles.Wrapper.ObjectComboBox.ObjectCache.List);
 			}
 		}
 		#endregion

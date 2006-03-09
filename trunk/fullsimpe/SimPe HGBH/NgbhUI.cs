@@ -29,19 +29,15 @@ namespace SimPe.Plugin
 	/// This class is used to fill the UI for this FileType with Data
 	/// </summary>
 	public class NgbhUI : IPackedFileUI
-	{
-		static MemoryCacheFile cachefile;
-
+	{		
 		/// <summary>
 		/// Returns the MemoryObject Cache
 		/// </summary>
-		internal static MemoryCacheFile ObjectCache 
+		internal static MemoryCacheFile ObjectCache
 		{
 			get 
 			{
-				if (cachefile==null) cachefile = MemoryCacheFile.InitCacheFile();				
-
-				return cachefile;
+				return SimPe.PackedFiles.Wrapper.ObjectComboBox.ObjectCache;
 			}
 		}
 		#region Code to Startup the UI

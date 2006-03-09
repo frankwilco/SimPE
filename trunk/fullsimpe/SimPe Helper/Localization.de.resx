@@ -1277,7 +1277,7 @@ Soll SimPE dennoch gestartet werden?</value>
 		<value>Erinnerung</value>
     </data>  
     <data name="SimPe.Plugin.SimMemoryType.Gossip">
-		<value>Gerücht</value>
+		<value>Hörensagen</value>
     </data>
     <data name="SimPe.Plugin.SimMemoryType.Skill">
 		<value>Fähigkeit</value>
@@ -1285,9 +1285,15 @@ Soll SimPE dennoch gestartet werden?</value>
     <data name="SimPe.Plugin.SimMemoryType.Inventory">
 		<value>Inventar</value>
     </data>
+    <data name="SimPe.Plugin.SimMemoryType.GossipInventory">
+		<value>Inventar (Hörensagen)</value>
+    </data>
     <data name="SimPe.Plugin.SimMemoryType.Token">
 		<value>Token</value>
     </data>  
+    <data name="SimPe.Plugin.SimMemoryType.ValueToken">
+		<value>Wert</value>
+    </data>    
     <data name="SimPe.Plugin.SimMemoryType.Object">
 		<value>Objekt</value>
     </data>   
