@@ -79,6 +79,14 @@ namespace SimPe.Plugin.Collections
 			return list.Contains(item);
 		}
 
+		public void Swap(int i1, int i2)
+		{
+			if (i1<0 || i2<0 || i1>=list.Count || i2>=list.Count) return;
+			object o = list[i1];
+			list[i1] = list[i2];
+			list[i2] = o;
+		}
+
 		public NgbhItem this[int index]
 		{
 			get {return list[index] as NgbhItem;}
@@ -117,6 +125,13 @@ namespace SimPe.Plugin.Collections
 				if (i.InventoryNumber>nr) nr = i.InventoryNumber;
 
 			return nr;
+		}
+
+		public NgbhItem FindItemByGuid(uint guid)
+		{
+			foreach (NgbhItem i in list)
+				if (i.Guid == guid) return i;
+			return null;
 		}
 
 		#region IDisposable Member

@@ -101,6 +101,11 @@ namespace SimPe.Plugin
 				this.InventoryNumber = this.ParentSlot.GetNextInventoryNumber();
 			}
 
+			//SetGuidForType(type);
+		}
+
+		public void SetInitialGuid(SimMemoryType type)
+		{
 			SetGuidForType(type);
 		}
 

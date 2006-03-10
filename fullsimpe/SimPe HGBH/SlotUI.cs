@@ -45,6 +45,15 @@ namespace SimPe.Plugin
 
 		public NgbhSlotUI()
 		{
+			SetStyle(
+				ControlStyles.SupportsTransparentBackColor |
+				ControlStyles.AllPaintingInWmPaint |
+				//ControlStyles.Opaque |
+				ControlStyles.UserPaint |
+				ControlStyles.ResizeRedraw 
+				| ControlStyles.DoubleBuffer
+				,true);
+
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
 			InitializeComponent();
 
@@ -93,45 +102,49 @@ namespace SimPe.Plugin
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl1.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-																																											new TD.SandDock.DocumentLayoutSystem(504, 141, new TD.SandDock.DockControl[] {
+																																											new TD.SandDock.DocumentLayoutSystem(504, 165, new TD.SandDock.DockControl[] {
 																																																															 this.tabPage1,
 																																																															 this.tabPage2}, this.tabPage1)});
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.Size = new System.Drawing.Size(504, 141);
+			this.tabControl1.Size = new System.Drawing.Size(504, 165);
 			this.tabControl1.TabIndex = 3;
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.BackColor = System.Drawing.Color.Transparent;
 			this.tabPage1.Controls.Add(this.lv);
 			this.tabPage1.FloatingSize = new System.Drawing.Size(550, 400);
 			this.tabPage1.Guid = new System.Guid("951f2dbf-63ee-4eb5-8342-1e80d72570b8");
 			this.tabPage1.Location = new System.Drawing.Point(2, 22);
 			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Size = new System.Drawing.Size(500, 117);
+			this.tabPage1.Size = new System.Drawing.Size(500, 141);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.TabText = "Memories";
 			this.tabPage1.Text = "Memories";
 			// 
 			// lv
-			// 			
-			this.lv.Dock = System.Windows.Forms.DockStyle.Fill;			
+			// 
+			this.lv.BackColor = System.Drawing.Color.Transparent;
+			this.lv.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.lv.Font = new System.Drawing.Font("Tahoma", 8.25F);
 			this.lv.Location = new System.Drawing.Point(0, 0);
 			this.lv.Name = "lv";
 			this.lv.NgbhItems = null;
-			this.lv.Size = new System.Drawing.Size(500, 117);
+			this.lv.Size = new System.Drawing.Size(500, 141);
 			this.lv.Slot = null;
 			this.lv.SlotType = SimPe.Data.NeighborhoodSlots.Sims;
 			this.lv.TabIndex = 0;
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.BackColor = System.Drawing.Color.Transparent;
 			this.tabPage2.Controls.Add(this.lvint);
 			this.tabPage2.FloatingSize = new System.Drawing.Size(550, 400);
 			this.tabPage2.Guid = new System.Guid("88419e31-43c9-4409-8d97-7ef80e549ee5");
 			this.tabPage2.Location = new System.Drawing.Point(2, 22);
 			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Size = new System.Drawing.Size(500, 197);
+			this.tabPage2.Size = new System.Drawing.Size(500, 117);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.TabText = "Tokens (Skills, Badges...)";
 			this.tabPage2.Text = "Tokens (Skills, Badges...)";
@@ -139,21 +152,22 @@ namespace SimPe.Plugin
 			this.tabPage2.VisibleChanged += new System.EventHandler(this.tabPage2_VisibleChanged);
 			// 
 			// lvint
-			// 			
-			this.lvint.Dock = System.Windows.Forms.DockStyle.Fill;			
-			this.lvint.Location = new System.Drawing.Point(0, 0);			
+			// 
+			this.lvint.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.lvint.Font = new System.Drawing.Font("Tahoma", 8.25F);
+			this.lvint.Location = new System.Drawing.Point(0, 0);
 			this.lvint.Name = "lvint";
 			this.lvint.NgbhItems = null;
-			this.lvint.Size = new System.Drawing.Size(500, 197);
+			this.lvint.Size = new System.Drawing.Size(500, 117);
 			this.lvint.Slot = null;
 			this.lvint.SlotType = SimPe.Data.NeighborhoodSlots.Sims;
-			this.lvint.TabIndex = 1;			
+			this.lvint.TabIndex = 1;
 			// 
 			// splitter1
 			// 
 			this.splitter1.BackColor = System.Drawing.SystemColors.AppWorkspace;
 			this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.splitter1.Location = new System.Drawing.Point(0, 141);
+			this.splitter1.Location = new System.Drawing.Point(0, 165);
 			this.splitter1.Name = "splitter1";
 			this.splitter1.Size = new System.Drawing.Size(504, 3);
 			this.splitter1.TabIndex = 3;
@@ -161,13 +175,14 @@ namespace SimPe.Plugin
 			// 
 			// memprop
 			// 
+			this.memprop.BackColor = System.Drawing.Color.Transparent;
 			this.memprop.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.memprop.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.memprop.Item = null;
-			this.memprop.Location = new System.Drawing.Point(0, 144);
+			this.memprop.Location = new System.Drawing.Point(0, 168);
 			this.memprop.Name = "memprop";
 			this.memprop.NgbhItemsListView = null;
-			this.memprop.Size = new System.Drawing.Size(504, 216);
+			this.memprop.Size = new System.Drawing.Size(504, 192);
 			this.memprop.TabIndex = 4;
 			// 
 			// NgbhSlotUI
@@ -272,6 +287,13 @@ namespace SimPe.Plugin
 		{
 			lv.Slot = slot;
 			lvint.Slot = slot;			
+		}
+
+		public new void Refresh()
+		{
+			lv.Refresh();
+			lvint.Refresh();
+			base.Refresh();
 		}
 
 		private void pc_SelectedSimChanged(object sender, Image thumb, SimPe.PackedFiles.Wrapper.SDesc sdesc)

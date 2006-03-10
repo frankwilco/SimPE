@@ -254,6 +254,41 @@
                     AssemblyName = "SandDock"
                     HintPath = "..\..\..\divelements\sanddock\sanddock.dll"
                 />
+                <Reference
+                    Name = "xpcommoncontrols"
+                    AssemblyName = "xpcommoncontrols"
+                    HintPath = "..\..\..\xpcommoncontrols\xpcommoncontrols.dll"
+                />
+                <Reference
+                    Name = "Microsoft.VisualBasic"
+                    AssemblyName = "Microsoft.VisualBasic"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\Microsoft.VisualBasic.dll"
+                />
+                <Reference
+                    Name = "System.Drawing.Design"
+                    AssemblyName = "System.Drawing.Design"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.Design.dll"
+                />
+                <Reference
+                    Name = "System.Design"
+                    AssemblyName = "System.Design"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Design.dll"
+                />
+                <Reference
+                    Name = "3DView"
+                    Project = "{F2CCCDBC-B05F-4C9C-B57F-27A07ACEF9BE}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe GMDC Exporter Base"
+                    Project = "{76D6A8B3-10DF-4948-9028-C63A416AB00E}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe 3IDR"
+                    Project = "{37D97490-DC9F-4DB7-9215-998C6BC06078}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
@@ -286,6 +321,11 @@
                     RelPath = "ExtNgbhUI.cs"
                     SubType = "UserControl"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ExtNgbhUI.de.resx"
+                    DependentUpon = "ExtNgbhUI.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "ExtNgbhUI.resx"
@@ -356,6 +396,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "MemoryProperties.de.resx"
+                    DependentUpon = "MemoryProperties.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "MemoryProperties.resx"
                     DependentUpon = "MemoryProperties.cs"
                     BuildAction = "EmbeddedResource"
@@ -400,8 +445,38 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "NgbhItemsListView.de.resx"
+                    DependentUpon = "NgbhItemsListView.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "NgbhItemsListView.resx"
                     DependentUpon = "NgbhItemsListView.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "NgbhSkillHelper.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhSkillHelper.de.resx"
+                    DependentUpon = "NgbhSkillHelper.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "NgbhSkillHelper.resx"
+                    DependentUpon = "NgbhSkillHelper.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "NgbhSkillHelperElement.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhSkillHelperElement.resx"
+                    DependentUpon = "NgbhSkillHelperElement.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -410,14 +485,64 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "NgbhSlotListView.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhSlotListView.resx"
+                    DependentUpon = "NgbhSlotListView.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "NgbhSlots.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "NgbhSlotSelection.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhSlotSelection.resx"
+                    DependentUpon = "NgbhSlotSelection.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "NgbhUI.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhValueDescriptor.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhValueDescriptorSelection.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhValueDescriptorSelection.resx"
+                    DependentUpon = "NgbhValueDescriptorSelection.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "NgbhValueDescriptorUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NgbhValueDescriptorUI.de.resx"
+                    DependentUpon = "NgbhValueDescriptorUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "NgbhValueDescriptorUI.resx"
+                    DependentUpon = "NgbhValueDescriptorUI.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "NgbhWrapper.cs"

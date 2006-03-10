@@ -118,31 +118,43 @@ namespace SimPe.PackedFiles.Wrapper
 
 		void SetContent()
 		{
-			System.Collections.ArrayList names = new ArrayList();
-			if (this.DesignMode) return;
-			cb.Items.Clear();
-			cb.Sorted = false;
-			foreach (SimPe.Cache.MemoryCacheItem mci in ObjectCache.List)
+			cb.BeginUpdate();
+			try 
 			{
-				bool use = false;
-				if (this.ShowInventory && mci.IsInventory && !mci.IsToken && !mci.IsMemory && !mci.IsJobData) use = true;
-				if (this.ShowTokens && mci.IsToken) use = true;
-				if (this.ShowMemories && !mci.IsToken && mci.IsMemory) use = true;
-				if (this.ShowJobData && mci.IsJobData) use = true;
-				if (this.ShowAspiration && mci.IsAspiration) use = true;
-				if (this.ShowBadge && mci.IsBadge) use = true;
-				if (this.ShowSkill && mci.IsSkill) use = true;
+				if (!loaded) return;
+				System.Collections.ArrayList names = new ArrayList();
+				if (this.DesignMode) return;
+				
+				cb.Items.Clear();
+				cb.Sorted = false;
+				foreach (SimPe.Cache.MemoryCacheItem mci in ObjectCache.List)
+				{
+					bool use = false;
+					if (this.ShowInventory && mci.IsInventory && !mci.IsToken && !mci.IsMemory && !mci.IsJobData) use = true;
+					if (this.ShowTokens && mci.IsToken) use = true;
+					if (this.ShowMemories && !mci.IsToken && mci.IsMemory) use = true;
+					if (this.ShowJobData && mci.IsJobData) use = true;
+					if (this.ShowAspiration && mci.IsAspiration) use = true;
+					if (this.ShowBadge && mci.IsBadge) use = true;
+					if (this.ShowSkill && mci.IsSkill) use = true;
 
-				if (!use) continue;
+					if (!use) continue;
 				
 
-				SimPe.Interfaces.IAlias a = new SimPe.Data.Alias(mci.Guid, mci.Name, new object[] {mci});
+					SimPe.Interfaces.IAlias a = new SimPe.Data.StaticAlias(mci.Guid, mci.Name, new object[] {mci});
 
-				if (names.Contains(a.ToString())) continue;
-				names.Add(a.ToString());
-				cb.Items.Add(a);
-			}		
-			cb.Sorted = true;
+					if (names.Contains(a.ToString())) continue;
+					names.Add(a.ToString());
+					cb.Items.Add(a);
+				}		
+				cb.Sorted = true;			
+				
+			} 
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+			cb.EndUpdate();
 		}
 
 		bool si, st, sm, sjd, sa, sb, sk;

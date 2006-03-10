@@ -73,6 +73,11 @@ namespace SimPe.Plugin.Scanner
 		private System.Windows.Forms.CheckBox cbtxmt;
 		private System.Windows.Forms.CheckBox cbtxtr;
 		private System.Windows.Forms.CheckBox cbref;
+		private System.Windows.Forms.TabPage tabPage4;
+		internal System.Windows.Forms.Panel pnShelve;
+		private System.Windows.Forms.Label label5;
+		internal Ambertation.Windows.Forms.EnumComboBox cbshelve;
+		private Skybound.VisualStyles.VisualStyleLinkLabel llShelve;		
 		internal System.Windows.Forms.CheckBox[] cbcategories = new CheckBox[8];
 		public ScannerPanelForm()
 		{
@@ -103,6 +108,9 @@ namespace SimPe.Plugin.Scanner
 
 			this.cbskins.SelectedIndex = 0;
 			sfd.InitialDirectory = Helper.WindowsRegistry.SimSavegameFolder;
+
+			cbshelve.Enum = typeof(SimPe.PackedFiles.Wrapper.ShelveDimension);
+			cbshelve.ResourceManager = SimPe.Localization.Manager;
 		}
 
 		/// <summary>
@@ -136,8 +144,13 @@ namespace SimPe.Plugin.Scanner
 		/// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
 		/// </summary>
 		private void InitializeComponent()
-		{
+		{			
 			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.pnep = new System.Windows.Forms.Panel();
+			this.tbname = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.visualStyleLinkLabel1 = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.pncloth = new System.Windows.Forms.Panel();
 			this.llsetcat = new Skybound.VisualStyles.VisualStyleLinkLabel();
@@ -159,11 +172,11 @@ namespace SimPe.Plugin.Scanner
 			this.cbbaby = new System.Windows.Forms.CheckBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.pnep = new System.Windows.Forms.Panel();
-			this.tbname = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.visualStyleLinkLabel1 = new Skybound.VisualStyles.VisualStyleLinkLabel();
+			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.pnShelve = new System.Windows.Forms.Panel();
+			this.cbshelve = new Ambertation.Windows.Forms.EnumComboBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.llShelve = new Skybound.VisualStyles.VisualStyleLinkLabel();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.pnskin = new System.Windows.Forms.Panel();
 			this.cbtxtr = new System.Windows.Forms.CheckBox();
@@ -171,22 +184,25 @@ namespace SimPe.Plugin.Scanner
 			this.cbskins = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.visualStyleLinkLabel2 = new Skybound.VisualStyles.VisualStyleLinkLabel();
+			this.cbref = new System.Windows.Forms.CheckBox();
 			this.visualStyleProvider1 = new Skybound.VisualStyles.VisualStyleProvider();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
-			this.cbref = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
-			this.tabPage1.SuspendLayout();
-			this.pncloth.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.pnep.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			this.pncloth.SuspendLayout();
+			this.tabPage4.SuspendLayout();
+			this.pnShelve.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.pnskin.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage4);
 			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Location = new System.Drawing.Point(8, 8);
 			this.tabControl1.Name = "tabControl1";
@@ -194,6 +210,61 @@ namespace SimPe.Plugin.Scanner
 			this.tabControl1.Size = new System.Drawing.Size(408, 176);
 			this.tabControl1.TabIndex = 0;
 			this.visualStyleProvider1.SetVisualStyleSupport(this.tabControl1, true);
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.pnep);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Size = new System.Drawing.Size(400, 150);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "EP-Ready?";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage2, true);
+			// 
+			// pnep
+			// 
+			this.pnep.Controls.Add(this.tbname);
+			this.pnep.Controls.Add(this.label3);
+			this.pnep.Controls.Add(this.visualStyleLinkLabel1);
+			this.pnep.Location = new System.Drawing.Point(24, 8);
+			this.pnep.Name = "pnep";
+			this.pnep.Size = new System.Drawing.Size(368, 72);
+			this.pnep.TabIndex = 0;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.pnep, true);
+			// 
+			// tbname
+			// 
+			this.tbname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbname.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbname.Location = new System.Drawing.Point(16, 24);
+			this.tbname.Name = "tbname";
+			this.tbname.Size = new System.Drawing.Size(152, 21);
+			this.tbname.TabIndex = 40;
+			this.tbname.Text = "SimPE-";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tbname, true);
+			// 
+			// label3
+			// 
+			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label3.Location = new System.Drawing.Point(0, 8);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(128, 16);
+			this.label3.TabIndex = 39;
+			this.label3.Text = "Name Prefix:";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label3, true);
+			// 
+			// visualStyleLinkLabel1
+			// 
+			this.visualStyleLinkLabel1.AutoSize = true;
+			this.visualStyleLinkLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.visualStyleLinkLabel1.Location = new System.Drawing.Point(0, 56);
+			this.visualStyleLinkLabel1.Name = "visualStyleLinkLabel1";
+			this.visualStyleLinkLabel1.Size = new System.Drawing.Size(152, 17);
+			this.visualStyleLinkLabel1.TabIndex = 38;
+			this.visualStyleLinkLabel1.TabStop = true;
+			this.visualStyleLinkLabel1.Text = "make University-Ready";
+			this.visualStyleLinkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakeEPReady);
 			// 
 			// tabPage1
 			// 
@@ -445,60 +516,62 @@ namespace SimPe.Plugin.Scanner
 			this.label1.Text = "Ages:";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.label1, true);
 			// 
-			// tabPage2
+			// tabPage4
 			// 
-			this.tabPage2.Controls.Add(this.pnep);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Size = new System.Drawing.Size(400, 150);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "EP-Ready?";
-			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage2, true);
+			this.tabPage4.Controls.Add(this.pnShelve);
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
+			this.tabPage4.Name = "tabPage4";
+			this.tabPage4.Size = new System.Drawing.Size(400, 150);
+			this.tabPage4.TabIndex = 3;
+			this.tabPage4.Text = "SheleveReady?";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.tabPage4, true);
 			// 
-			// pnep
+			// pnShelve
 			// 
-			this.pnep.Controls.Add(this.tbname);
-			this.pnep.Controls.Add(this.label3);
-			this.pnep.Controls.Add(this.visualStyleLinkLabel1);
-			this.pnep.Location = new System.Drawing.Point(24, 8);
-			this.pnep.Name = "pnep";
-			this.pnep.Size = new System.Drawing.Size(368, 72);
-			this.pnep.TabIndex = 0;
-			this.visualStyleProvider1.SetVisualStyleSupport(this.pnep, true);
+			this.pnShelve.Controls.Add(this.cbshelve);
+			this.pnShelve.Controls.Add(this.label5);
+			this.pnShelve.Controls.Add(this.llShelve);
+			this.pnShelve.Location = new System.Drawing.Point(8, 8);
+			this.pnShelve.Name = "pnShelve";
+			this.pnShelve.Size = new System.Drawing.Size(368, 72);
+			this.pnShelve.TabIndex = 1;
+			this.visualStyleProvider1.SetVisualStyleSupport(this.pnShelve, true);
 			// 
-			// tbname
+			// cbshelve
 			// 
-			this.tbname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbname.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbname.Location = new System.Drawing.Point(16, 24);
-			this.tbname.Name = "tbname";
-			this.tbname.Size = new System.Drawing.Size(152, 21);
-			this.tbname.TabIndex = 40;
-			this.tbname.Text = "SimPE-";
-			this.visualStyleProvider1.SetVisualStyleSupport(this.tbname, true);
+			this.cbshelve.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.cbshelve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbshelve.Enum = null;
+			this.cbshelve.Location = new System.Drawing.Point(16, 24);
+			this.cbshelve.Name = "cbshelve";
+			this.cbshelve.ResourceManager = null;
+			this.cbshelve.Size = new System.Drawing.Size(336, 21);
+			this.cbshelve.TabIndex = 40;
+			this.cbshelve.SelectedIndexChanged += new System.EventHandler(this.cbshelve_SelectedIndexChanged);
 			// 
-			// label3
+			// label5
 			// 
-			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label3.Location = new System.Drawing.Point(0, 8);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(128, 16);
-			this.label3.TabIndex = 39;
-			this.label3.Text = "Name Prefix:";
-			this.visualStyleProvider1.SetVisualStyleSupport(this.label3, true);
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label5.Location = new System.Drawing.Point(0, 8);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(128, 16);
+			this.label5.TabIndex = 39;
+			this.label5.Text = "Dimension:";
+			this.visualStyleProvider1.SetVisualStyleSupport(this.label5, true);
 			// 
-			// visualStyleLinkLabel1
+			// llShelve
 			// 
-			this.visualStyleLinkLabel1.AutoSize = true;
-			this.visualStyleLinkLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.visualStyleLinkLabel1.Location = new System.Drawing.Point(0, 56);
-			this.visualStyleLinkLabel1.Name = "visualStyleLinkLabel1";
-			this.visualStyleLinkLabel1.Size = new System.Drawing.Size(152, 17);
-			this.visualStyleLinkLabel1.TabIndex = 38;
-			this.visualStyleLinkLabel1.TabStop = true;
-			this.visualStyleLinkLabel1.Text = "make University-Ready";
-			this.visualStyleLinkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakeEPReady);
+			this.llShelve.AutoSize = true;
+			this.llShelve.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.llShelve.Location = new System.Drawing.Point(0, 56);
+			this.llShelve.Name = "llShelve";
+			this.llShelve.Size = new System.Drawing.Size(141, 17);
+			this.llShelve.TabIndex = 38;
+			this.llShelve.TabStop = true;
+			this.llShelve.Text = "set Shelve Dimension";
+			this.llShelve.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.visualStyleLinkLabel3_LinkClicked);
 			// 
 			// tabPage3
 			// 
@@ -588,11 +661,6 @@ namespace SimPe.Plugin.Scanner
 			this.visualStyleLinkLabel2.Text = "create default Skin override";
 			this.visualStyleLinkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CreateSkinOverride);
 			// 
-			// sfd
-			// 
-			this.sfd.Filter = "Package File (*.package)|*.package|All Files (*.*)|*.*";
-			this.sfd.Title = "Skin Override";
-			// 
 			// cbref
 			// 
 			this.cbref.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -603,6 +671,11 @@ namespace SimPe.Plugin.Scanner
 			this.cbref.Text = "override Reference";
 			this.visualStyleProvider1.SetVisualStyleSupport(this.cbref, false);
 			// 
+			// sfd
+			// 
+			this.sfd.Filter = "Package File (*.package)|*.package|All Files (*.*)|*.*";
+			this.sfd.Title = "Skin Override";
+			// 
 			// ScannerPanelForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -612,10 +685,12 @@ namespace SimPe.Plugin.Scanner
 			this.Name = "ScannerPanelForm";
 			this.Text = "ScannerPanelForm";
 			this.tabControl1.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
-			this.pncloth.ResumeLayout(false);
 			this.tabPage2.ResumeLayout(false);
 			this.pnep.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.pncloth.ResumeLayout(false);
+			this.tabPage4.ResumeLayout(false);
+			this.pnShelve.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
 			this.pnskin.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -672,6 +747,19 @@ namespace SimPe.Plugin.Scanner
 				SkinScanner cs = (SkinScanner)pnskin.Tag;
 				cs.CreateOverride(skintone, family, sfd.FileName, cbtxmt.Checked, cbtxtr.Checked, cbref.Checked);
 			}
+		}
+
+		private void visualStyleLinkLabel3_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			SimPe.PackedFiles.Wrapper.ShelveDimension sd = (SimPe.PackedFiles.Wrapper.ShelveDimension)cbshelve.SelectedValue;
+			ShelveScanner cs = (ShelveScanner)this.pnShelve.Tag;
+			cs.Set(sd);
+		}
+
+		private void cbshelve_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			SimPe.PackedFiles.Wrapper.ShelveDimension sd = (SimPe.PackedFiles.Wrapper.ShelveDimension)cbshelve.SelectedValue;
+			llShelve.Enabled = (sd != SimPe.PackedFiles.Wrapper.ShelveDimension.Indetermined && sd != SimPe.PackedFiles.Wrapper.ShelveDimension.Multitile && sd!= SimPe.PackedFiles.Wrapper.ShelveDimension.Unknown1 && sd != SimPe.PackedFiles.Wrapper.ShelveDimension.Unknown2);
 		}
 	}
 }

@@ -151,6 +151,13 @@ namespace SimPe.Plugin
 		{
 			return Math.Max(itemsa.GetMaxInventoryNumber(), itemsb.GetMaxInventoryNumber()) + 1;			
 		}
+
+		public NgbhItem FindItem(uint guid)
+		{
+			NgbhItem res = itemsa.FindItemByGuid(guid);
+			if (res==null) res = itemsb.FindItemByGuid(guid);
+			return res;
+		}
 	}
 
 	/// <summary>
@@ -188,5 +195,11 @@ namespace SimPe.Plugin
 
 			base.Serialize(writer);
 		}
+
+		public override string ToString()
+		{
+			return "0x"+Helper.HexString(SlotID)+": "+this.ItemsA.Count +", "+this.ItemsB.Count;
+		}
+
 	}
 }

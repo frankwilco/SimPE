@@ -405,9 +405,10 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// btnUpdateMMAT
 			// 
-			this.btnUpdateMMAT.Location = new System.Drawing.Point(56, 120);
+			this.btnUpdateMMAT.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.btnUpdateMMAT.Location = new System.Drawing.Point(56, 117);
 			this.btnUpdateMMAT.Name = "btnUpdateMMAT";
-			this.btnUpdateMMAT.Size = new System.Drawing.Size(56, 20);
+			this.btnUpdateMMAT.Size = new System.Drawing.Size(56, 24);
 			this.btnUpdateMMAT.TabIndex = 32;
 			this.btnUpdateMMAT.Text = "Update";
 			this.btnUpdateMMAT.Click += new System.EventHandler(this.btnUpdateMMAT_Click);
@@ -424,6 +425,7 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// btnCommit
 			// 
+			this.btnCommit.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.btnCommit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
 			this.btnCommit.Location = new System.Drawing.Point(36, 56);
 			this.btnCommit.Name = "btnCommit";
@@ -678,7 +680,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbdinigroom.Location = new System.Drawing.Point(16, 64);
 			this.cbdinigroom.Name = "cbdinigroom";
 			this.cbdinigroom.TabIndex = 2;
-			this.cbdinigroom.Text = "Dinigroom";
+			this.cbdinigroom.Text = "Diningroom";
 			this.cbdinigroom.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
 			// 
 			// cbkitchen

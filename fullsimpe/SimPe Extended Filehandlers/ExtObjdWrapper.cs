@@ -25,6 +25,16 @@ using SimPe.Interfaces.Plugin;
 
 namespace SimPe.PackedFiles.Wrapper
 {
+	public enum ShelveDimension : uint 
+	{
+		Big = 0x0,
+		Medium = 0x1,
+		Small = 0x2,
+		Unknown2 = 0x64,
+		Unknown1 = 0x96,			
+		Multitile = 0xffff00fe,
+		Indetermined = 0xffff00ff
+	}
 	/// <summary>
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
@@ -105,6 +115,28 @@ namespace SimPe.PackedFiles.Wrapper
 			set { originalguid = value; }
 		}
 		
+
+		/// <summary>
+		/// returns the dimension of an Object on the Shelve
+		/// </summary>
+		public ShelveDimension ShelveDimension 
+		{
+			get 
+			{ 
+				if (data.Length>0x004F) 
+				{
+					
+					short v = data[0x004F];
+					if (v!= 0x64 && v!=0x96 && v!=0 && v!=1 && v!=2) return ShelveDimension.Indetermined;
+					return (ShelveDimension)v; 
+				}
+				return 0;
+			}
+			set 
+			{ 
+				if (data.Length>0x004F) data[0x004F] = (short)value; 
+			}
+		}
 
 		/// <summary>
 		/// returns the Instance of the assigned Catalog Description
@@ -221,6 +253,7 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 		#endregion
 
+		public ExtObjd() : this(FileTable.ProviderRegistry.OpcodeProvider) {}
 		public ExtObjd(Interfaces.Providers.IOpcodeProvider opcodes) : base()
 		{			
 			this.opcodes = opcodes;
@@ -241,7 +274,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Quaxi, Peter L Jones",
 				"This file is used to set up the basic catalog properties of an Object. " + 
 					"It also contains the unique ID for the Object (or part of the Object).",
-				4,
+				5,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.objd.png"))
 				); 
 		}

@@ -221,6 +221,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.TextBox tbEp3Salery;
 		private System.Windows.Forms.Label label14;
 		private TD.SandBar.MenuButtonItem miOpenMem;
+		private TD.SandBar.MenuButtonItem miOpenBadge;
 
 		
 		System.Resources.ResourceManager strresources;
@@ -396,6 +397,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.miOpenChar = new TD.SandBar.MenuButtonItem();
 			this.miOpenWf = new TD.SandBar.MenuButtonItem();
 			this.miOpenMem = new TD.SandBar.MenuButtonItem();
+			this.miOpenBadge = new TD.SandBar.MenuButtonItem();
 			this.miOpenDNA = new TD.SandBar.MenuButtonItem();
 			this.miOpenFamily = new TD.SandBar.MenuButtonItem();
 			this.miOpenCloth = new TD.SandBar.MenuButtonItem();
@@ -2056,6 +2058,7 @@ namespace SimPe.PackedFiles.UserInterface
 																			 this.miOpenChar,
 																			 this.miOpenWf,
 																			 this.miOpenMem,
+																			 this.miOpenBadge,
 																			 this.miOpenDNA,
 																			 this.miOpenFamily,
 																			 this.miOpenCloth,
@@ -2094,11 +2097,21 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// miOpenMem
 			// 
+			this.miOpenMem.Image = ((System.Drawing.Image)(resources.GetObject("miOpenMem.Image")));
 			this.miOpenMem.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenMem.Shortcut")));
 			this.miOpenMem.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenMem.Shortcut2")));
 			this.miOpenMem.Text = resources.GetString("miOpenMem.Text");
 			this.miOpenMem.ToolTipText = resources.GetString("miOpenMem.ToolTipText");
 			this.miOpenMem.Activate += new System.EventHandler(this.Activate_miOpenMem);
+			// 
+			// miOpenBadge
+			// 
+			this.miOpenBadge.Image = ((System.Drawing.Image)(resources.GetObject("miOpenBadge.Image")));
+			this.miOpenBadge.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenBadge.Shortcut")));
+			this.miOpenBadge.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenBadge.Shortcut2")));
+			this.miOpenBadge.Text = resources.GetString("miOpenBadge.Text");
+			this.miOpenBadge.ToolTipText = resources.GetString("miOpenBadge.ToolTipText");
+			this.miOpenBadge.Activate += new System.EventHandler(this.Activate_miOpenBadge);
 			// 
 			// miOpenDNA
 			// 
@@ -5003,6 +5016,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbEp3Asgn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbEp3Asgn.BackgroundImage")));
 			this.cbEp3Asgn.DefaultText = resources.GetString("cbEp3Asgn.DefaultText");
 			this.cbEp3Asgn.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbEp3Asgn.Dock")));
+			this.cbEp3Asgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbEp3Asgn.Enabled = ((bool)(resources.GetObject("cbEp3Asgn.Enabled")));
 			this.cbEp3Asgn.Enum = null;
 			this.cbEp3Asgn.Font = ((System.Drawing.Font)(resources.GetObject("cbEp3Asgn.Font")));
@@ -5020,7 +5034,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbEp3Asgn.TabIndex = ((int)(resources.GetObject("cbEp3Asgn.TabIndex")));
 			this.cbEp3Asgn.Text = resources.GetString("cbEp3Asgn.Text");
 			this.cbEp3Asgn.Visible = ((bool)(resources.GetObject("cbEp3Asgn.Visible")));
-			this.cbEp3Asgn.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cbEp3Asgn.SelectedValueChanged += new System.EventHandler(this.ChangedEP3);
 			// 
 			// tbEp3Flag
@@ -5128,6 +5141,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.Controls.Add(this.toolBar1);
+			this.Controls.Add(this.pnChar);
+			this.Controls.Add(this.pnSkill);
 			this.Controls.Add(this.pnEP3);
 			this.Controls.Add(this.pnEP2);
 			this.Controls.Add(this.pnRel);
@@ -5136,16 +5151,26 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Controls.Add(this.pnCareer);
 			this.Controls.Add(this.pnEP1);
 			this.Controls.Add(this.pnMisc);
-			this.Controls.Add(this.pnChar);
-			this.Controls.Add(this.pnSkill);
 			this.DockPadding.Top = 24;
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
+			this.HeaderText = resources.GetString("$this.HeaderText");
 			this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
 			this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
 			this.Name = "ExtSDesc";
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
+			this.Controls.SetChildIndex(this.pnMisc, 0);
+			this.Controls.SetChildIndex(this.pnEP1, 0);
+			this.Controls.SetChildIndex(this.pnCareer, 0);
+			this.Controls.SetChildIndex(this.pnId, 0);
+			this.Controls.SetChildIndex(this.pnInt, 0);
+			this.Controls.SetChildIndex(this.pnRel, 0);
+			this.Controls.SetChildIndex(this.pnEP2, 0);
+			this.Controls.SetChildIndex(this.pnEP3, 0);
+			this.Controls.SetChildIndex(this.pnSkill, 0);
+			this.Controls.SetChildIndex(this.pnChar, 0);
+			this.Controls.SetChildIndex(this.toolBar1, 0);
 			this.pnId.ResumeLayout(false);
 			this.pnSkill.ResumeLayout(false);
 			this.pnChar.ResumeLayout(false);
@@ -6083,6 +6108,24 @@ namespace SimPe.PackedFiles.UserInterface
 			}
 		}
 
+		private void Activate_miOpenBadge(object sender, System.EventArgs e)
+		{
+			try 
+			{
+				//Open File
+				Interfaces.Files.IPackedFileDescriptor pfd = Sdesc.Package.NewDescriptor(0x4E474248, 0, Data.MetaData.LOCAL_GROUP, 1); //try the memory Resource
+				pfd = Sdesc.Package.FindFile(pfd);				
+				SimPe.RemoteControl.OpenPackedFile(pfd, Sdesc.Package);				
+
+				object[] data = new object[] {Sdesc.FileDescriptor.Instance, Data.NeighborhoodSlots.SimsIntern}; 
+				SimPe.RemoteControl.AddMessage(this, new SimPe.RemoteControl.ControlEventArgs(0x4E474248, data));
+			}
+			catch (Exception ex) 
+			{
+				Helper.ExceptionMessage(ex);
+			}
+		}
+
 		private void Activate_miOpenDNA(object sender, System.EventArgs e)
 		{
 			try 
@@ -6451,6 +6494,8 @@ namespace SimPe.PackedFiles.UserInterface
 		}
 
 		#endregion
+
+		
 
 		
 	}
