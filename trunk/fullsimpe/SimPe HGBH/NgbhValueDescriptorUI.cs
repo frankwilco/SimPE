@@ -331,8 +331,11 @@ namespace SimPe.Plugin
 		}
 
 		NgbhItem item;
+		bool inter;
 		void SetContent()
-		{			
+		{		
+			if (inter) return;
+			inter = true;
 			if (des!=null && slot!=null)
 			{
 				item = slot.FindItem(des.Guid);
@@ -360,6 +363,7 @@ namespace SimPe.Plugin
 			
 
 			SetVisible();
+			inter = false;
 		}
 
 		private void vds_SelectedDescriptorChanged(object sender, EventArgs e)
@@ -401,6 +405,7 @@ namespace SimPe.Plugin
 
 		private void cb_CheckedChanged(object sender, System.EventArgs e)
 		{
+			if (inter) return;
 			if (item==null) return;
 			if (des==null) return;
 			if (!des.HasComplededFlag) return;
@@ -413,6 +418,7 @@ namespace SimPe.Plugin
 
 		private void pb_Changed(object sender, System.EventArgs e)
 		{
+			if (inter) return;
 			if (item==null) return;
 			if (des==null) return;			
 

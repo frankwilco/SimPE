@@ -5140,13 +5140,13 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.pnInt);
 			this.Controls.Add(this.toolBar1);
 			this.Controls.Add(this.pnChar);
 			this.Controls.Add(this.pnSkill);
 			this.Controls.Add(this.pnEP3);
 			this.Controls.Add(this.pnEP2);
 			this.Controls.Add(this.pnRel);
-			this.Controls.Add(this.pnInt);
 			this.Controls.Add(this.pnId);
 			this.Controls.Add(this.pnCareer);
 			this.Controls.Add(this.pnEP1);
@@ -5164,13 +5164,13 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Controls.SetChildIndex(this.pnEP1, 0);
 			this.Controls.SetChildIndex(this.pnCareer, 0);
 			this.Controls.SetChildIndex(this.pnId, 0);
-			this.Controls.SetChildIndex(this.pnInt, 0);
 			this.Controls.SetChildIndex(this.pnRel, 0);
 			this.Controls.SetChildIndex(this.pnEP2, 0);
 			this.Controls.SetChildIndex(this.pnEP3, 0);
 			this.Controls.SetChildIndex(this.pnSkill, 0);
 			this.Controls.SetChildIndex(this.pnChar, 0);
 			this.Controls.SetChildIndex(this.toolBar1, 0);
+			this.Controls.SetChildIndex(this.pnInt, 0);
 			this.pnId.ResumeLayout(false);
 			this.pnSkill.ResumeLayout(false);
 			this.pnChar.ResumeLayout(false);
@@ -5613,7 +5613,7 @@ namespace SimPe.PackedFiles.UserInterface
 				foreach (Control c in pnChar.Controls)
 					if (c is LabeledProgressBar)
 						((LabeledProgressBar)c).Value = ((LabeledProgressBar)c).Maximum;
-				intern = false;	this.ChangedSkill(null, null);
+				intern = false;	this.ChangedChar(null, null);
 			}
 			else if(this.pnInt.Visible) 
 			{
@@ -5621,7 +5621,7 @@ namespace SimPe.PackedFiles.UserInterface
 				foreach (Control c in pnInt.Controls)
 					if (c is LabeledProgressBar)
 						((LabeledProgressBar)c).Value = ((LabeledProgressBar)c).Maximum;
-				intern = false;	this.ChangedSkill(null, null);
+				intern = false;	this.ChangedInt(null, null);
 			} 
 			else if (this.pnRel.Visible)
 			{
