@@ -773,6 +773,15 @@ namespace SimPe
 			return EPExecutables[index];
 		}
 
+		 
+		protected string GetExecutableFolder(int index)
+		{
+			if (index==1) return this.SimsEP1Path;
+			if (index==2) return this.SimsEP2Path;
+			if (index==3) return this.SimsEP3Path;
+			return this.SimsPath;
+		}
+
 		/// <summary>
 		/// Name of the Sims Application
 		/// </summary>
@@ -782,7 +791,7 @@ namespace SimPe
 			{
 				try 
 				{
-					return System.IO.Path.Combine(this.SimsPath, "TSBin\\"+GetExecutableName(this.EPInstalled));
+					return System.IO.Path.Combine(GetExecutableFolder(this.EPInstalled), "TSBin\\"+GetExecutableName(this.EPInstalled));
 				} 
 				catch (Exception) 
 				{

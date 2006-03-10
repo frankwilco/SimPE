@@ -106,7 +106,7 @@ namespace SimPe.PackedFiles.Wrapper
 			cb.Sorted = false;
 			foreach (SimPe.PackedFiles.Wrapper.ExtSDesc sdsc in FileTable.ProviderRegistry.SimDescriptionProvider.SimInstance.Values)
 			{
-				SimPe.Interfaces.IAlias a = new SimPe.Data.Alias(sdsc.SimId, sdsc.SimName+" "+sdsc.SimFamilyName, new object[] {sdsc});
+				SimPe.Interfaces.IAlias a = new SimPe.Data.StaticAlias(sdsc.SimId, sdsc.SimName+" "+sdsc.SimFamilyName, new object[] {sdsc});
 				cb.Items.Add(a);
 			}
 			cb.Sorted = true;

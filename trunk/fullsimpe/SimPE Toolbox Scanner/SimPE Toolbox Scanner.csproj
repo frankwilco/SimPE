@@ -229,6 +229,16 @@
                     Project = "{76D6A8B3-10DF-4948-9028-C63A416AB00E}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "EnumComboBox"
+                    Project = "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "sandbar"
+                    AssemblyName = "sandbar"
+                    HintPath = "..\..\..\divelements\sandbar\sandbar.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -309,6 +319,11 @@
                 />
                 <File
                     RelPath = "ScannersBasic.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ScannerShelveReady.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

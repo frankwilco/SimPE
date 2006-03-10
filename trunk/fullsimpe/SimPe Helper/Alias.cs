@@ -26,23 +26,90 @@ namespace SimPe.Data
 	/// <summary>
 	/// Conects an value with a name
 	/// </summary>
-	public class Alias : SimPe.Interfaces.IAlias
+	public class StaticAlias : SimPe.Interfaces.IAlias
 	{
 		/// <summary>
 		/// Stores arbitary Data
 		/// </summary>
-		private object[] tag;
+		protected object[] tag;
 
 		/// <summary>
 		/// The id Value
 		/// </summary>
-		private uint id;
+		protected uint id;
 
 		/// <summary>
 		/// The long Name
 		/// </summary>
-		private string name;
+		protected string name;
 
+				
+		/// <summary>
+		/// Cosntructor of the class
+		/// </summary>
+		/// <param name="val">The id</param>
+		/// <param name="name">The name</param>
+		public StaticAlias(uint val, string name) : this(val, name, new object[0])
+		{			
+		}			
+
+		/// <summary>
+		/// Cosntructor of the class
+		/// </summary>
+		/// <param name="val">The id</param>
+		/// <param name="name">The name</param>
+		/// <param name="tag"></param>
+		public StaticAlias(uint val, string name, object[] tag)
+		{
+			id = val;
+			this.name = name;
+			this.tag = tag;
+		}
+
+		/// <summary>
+		/// Craetes a String from the Object
+		/// </summary>
+		/// <returns>Simply Returns the Name Attribute</returns>
+		public override string ToString()
+		{
+			return name;
+		}
+
+		#region IAlias Member
+
+		public uint Id
+		{
+			get
+			{
+				return id;
+			}
+		}
+
+		public string Name
+		{
+			get { return name; }
+			set { name = value; }
+		}
+
+		public object[] Tag 
+		{
+			get 
+			{
+				return tag;
+			}
+			set
+			{
+				tag = value;
+			}
+		}
+
+		#endregion		
+	}
+	/// <summary>
+	/// Conects an value with a name
+	/// </summary>
+	public class Alias : StaticAlias
+	{		
 		/// <summary>
 		/// This is used to format the ToString() Output
 		/// </summary>
@@ -95,12 +162,9 @@ namespace SimPe.Data
 		/// <param name="name">The name</param>
 		/// <param name="tag"></param>
 		/// <param name="template">The ToString Template</param>
-		public Alias(uint val, string name, object[] tag, string template)
+		public Alias(uint val, string name, object[] tag, string template) : base(val, name, tag)
 		{
-			id = val;
-			this.name = name;
-			this.template = template;
-			this.tag = tag;
+			this.template = template;			
 		}
 
 		/// <summary>
@@ -127,35 +191,6 @@ namespace SimPe.Data
 			return ret;
 		}
 
-		#region IAlias Member
-
-		public uint Id
-		{
-			get
-			{
-				return id;
-			}
-		}
-
-		public string Name
-		{
-			get { return name; }
-			set { name = value; }
-		}
-
-		public object[] Tag 
-		{
-			get 
-			{
-				return tag;
-			}
-			set
-			{
-				tag = value;
-			}
-		}
-
-		#endregion
 
 		#region static Loader
 		/// <summary>
