@@ -204,6 +204,36 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Creg3.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Creg3UI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Creg3UI.resx"
+                    DependentUpon = "Creg3UI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "CregUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CregUI.resx"
+                    DependentUpon = "CregUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "CregWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ExtendedWrapperFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

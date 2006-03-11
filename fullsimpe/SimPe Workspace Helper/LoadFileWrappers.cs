@@ -160,6 +160,13 @@ namespace SimPe
 		/// </summary>
 		IToolRegistry treg;
 
+		System.Collections.ArrayList ignore;
+
+		void CreateIgnoreList(){
+			ignore = new ArrayList();
+			ignore.Add("simpe.3d.plugin.dll");
+		}
+
 		/// <summary>
 		/// Constructor of The class
 		/// </summary>
@@ -169,6 +176,8 @@ namespace SimPe
 		/// <param name="toolreg">Registry the tools should be added to</param>
 		public LoadFileWrappers(IWrapperRegistry registry, IToolRegistry toolreg)
 		{
+			CreateIgnoreList();
+
 			reg = registry;
 			treg = toolreg;
 		}
@@ -185,6 +194,11 @@ namespace SimPe
 
 			foreach(string file in files) 
 			{
+				string flname = System.IO.Path.GetFileName(file).Trim().ToLower();
+
+				//this is a manua List of Wrappers that are know to cause Problems
+				if (ignore.Contains(flname)) continue;
+
 				try 
 				{
 					IWrapperFactory factory = LoadWrapperFactory(file);
