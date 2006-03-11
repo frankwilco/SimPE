@@ -28,7 +28,7 @@ namespace SimPe.Cache
 	/// <summary>
 	/// Contains an Instance of a CacheFile
 	/// </summary>
-	public class CacheFile:  System.IDisposable
+	public class CacheFile:  System.IDisposable, SimPe.Interfaces.ICacheFileTest
 	{
 		/// <summary>
 		/// This is the 64-Bit Int, a cache File needs to start with

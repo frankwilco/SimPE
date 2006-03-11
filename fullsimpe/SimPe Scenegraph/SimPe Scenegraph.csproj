@@ -293,6 +293,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ImageSize.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ImageSize.resx"
+                    DependentUpon = "ImageSize.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "LifoForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"

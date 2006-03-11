@@ -982,7 +982,7 @@ Do you want SimPe to reset the Cache?</value>
     <data name="Unknown EP found">
 		<value>SimPE detected a new Expansion Pack for "The Sims 2".
 		
-This SimPE Version does only work with Game Versions up to "Open for Business". Newer Game Files might cause Errors when opened with this Version of SimPE!
+This SimPE Version does only work with Game Versions up to "{name}". Newer Game Files might cause Errors when opened with this Version of SimPE!
 (For more Informations, please visit http://sims.ambertation.de/en/).
 
 Run SimPE anyway?</value>
@@ -1043,5 +1043,41 @@ Run SimPE anyway?</value>
     </data>    
     <data name="SimPe.Plugin.SimMemoryType.Badge">
 		<value>Badge</value>
+    </data> 
+    <data name="EP NAME 0">
+		<value>The Sims 2</value>
+    </data> 
+    <data name="EP NAME 1">
+		<value>The Sims 2 - University</value>
+    </data> 
+    <data name="EP NAME 2">
+		<value>The Sims 2 - Nightlife</value>
+    </data> 
+    <data name="EP NAME 3">
+		<value>The Sims 2 - Open for Business</value>
+    </data> 
+    <data name="Check: Folder not found">
+		<value>Folder for "{name}" was not found.</value>
+    </data> 
+    <data name="Check: CEP not found">
+		<value>The CEP was not found.</value>
+    </data> 
+    <data name="Check: Unable to locate">
+		<value>Unable to locate "{name}".</value>
+    </data>
+    <data name="Check: Error while load">
+		<value>Unable to load "{name}".</value>
+    </data>  
+    <data name="Check: Unable to load cache">
+		<value>Unable to the SimPE Cache.</value>
+    </data>
+    <data name="Check: No Objects">
+		<value>Unable to locate Objects.</value>
+    </data> 
+    <data name="Check: No Textures">
+		<value>Unable to locate Texturdata.</value>
+    </data>  
+    <data name="Savegames">
+		<value>Savegames</value>
     </data> 
 </root>

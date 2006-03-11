@@ -21,6 +21,12 @@ namespace SimPe
 			set { treg = value;}
 		}
 
+		public static void Reload()
+		{
+			FileTable.FileIndex.BaseFolders.Clear();			
+			FileTable.FileIndex.BaseFolders = FileTable.DefaultFolders;
+			FileTable.FileIndex.ForceReload();
+		}
 		
 	}
 }

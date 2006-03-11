@@ -239,15 +239,22 @@ namespace SimPe
 			//if (PreviousEpCount<EpCount) return true;
 
 			string[] inst = InstalledEPExecutables;
+			if (inst.Length==0) return false;
+
 			foreach (string si in inst)
 			{
+				if (si=="") continue;
 				bool found = false;
-				foreach(string s in Registry.EPExecutables)				
-					if (si==s.ToLower().Trim())
+				foreach(string s in Registry.EPExecutables)		
+				{		
+					string n = s.ToLower().Trim();
+					if (n=="") continue;
+					if (si==n)
 					{
 						found = true;
 						break;
 					}
+				}
 
 				if (!found) return true;
 			}
@@ -270,14 +277,25 @@ namespace SimPe
 		{
 			get 
 			{
+#if MAC
+				return new string[0];
+#else
 				Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2\", false);
-				string s = rk.GetValue("EPsInstalled", "").ToString();
-				
-				string[] ret = s.Split(new char[] {','});
-				for (int i=0; i<ret.Length; i++)
-					ret[i] = ret[i].ToLower().Trim();
+				if (rk!=null)
+				{
+					object o = rk.GetValue("EPsInstalled", "");
+					if (o==null) return new string[0];
 
-				return ret;
+					string s = o.ToString();
+				
+					string[] ret = s.Split(new char[] {','});
+					for (int i=0; i<ret.Length; i++)
+						ret[i] = ret[i].ToLower().Trim();
+
+					return ret;
+				}
+				else return new string[0];
+#endif
 			}
 		}
 
@@ -285,9 +303,16 @@ namespace SimPe
 		{
 			get 
 			{
+#if MAC
+				return 0;
+#else
 				Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\EA GAMES\", false);
-				if (rk!=null) return rk.SubKeyCount;
-				else return 0;
+				if (rk!=null)
+				{
+					if (rk!=null) return rk.SubKeyCount;
+				}
+				return 0;
+#endif
 			}
 		}
 
@@ -766,7 +791,17 @@ namespace SimPe
 			"Sims2EP3.exe"
 		};
 
-		protected static string GetExecutableName(int index)
+		public static string GetEpName(int index)
+		{
+			return SimPe.Localization.GetString("EP NAME "+index);			
+		}
+
+		public string CurrentEPName
+		{
+			get { return GetEpName(this.EPInstalled);}
+		}
+
+		public static string GetExecutableName(int index)
 		{
 			if (index<0) index=0;
 			if (index>=EPExecutables.Length) index = EPExecutables.Length-1;
@@ -774,7 +809,7 @@ namespace SimPe
 		}
 
 		 
-		protected string GetExecutableFolder(int index)
+		public string GetExecutableFolder(int index)
 		{
 			if (index==1) return this.SimsEP1Path;
 			if (index==2) return this.SimsEP2Path;
@@ -1673,6 +1708,15 @@ namespace SimPe
 
 
 		#region Getters
+		public void SetDefaultPaths()
+		{
+			this.SimsPath = this.RealGamePath;
+			this.SimsEP1Path = this.RealEP1GamePath;
+			this.SimsEP2Path = this.RealEP2GamePath;
+			this.SimsEP3Path = this.RealEP3GamePath;
+
+			this.SimSavegameFolder = this.RealSavegamePath;
+		}
 		/// <summary>
 		/// Returns the Real Instalation Folder
 		/// </summary>

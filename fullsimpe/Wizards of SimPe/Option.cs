@@ -41,6 +41,7 @@ namespace SimPe.Wizards
 		const string FONT_FAMILY_SERIF = "Arial";
 #else
 		const string FONT_FAMILY = "Verdana";
+		private System.Windows.Forms.LinkLabel linkLabel5;
 		const string FONT_FAMILY_SERIF = "Georgia";
 #endif
 		public Option()
@@ -98,6 +99,7 @@ namespace SimPe.Wizards
 			this.pbstretch = new System.Windows.Forms.PictureBox();
 			this.fbd = new System.Windows.Forms.FolderBrowserDialog();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
+			this.linkLabel5 = new System.Windows.Forms.LinkLabel();
 			this.pnopt.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -124,6 +126,7 @@ namespace SimPe.Wizards
 			// 
 			// pnopt
 			// 
+			this.pnopt.Controls.Add(this.linkLabel5);
 			this.pnopt.Controls.Add(this.lldds2);
 			this.pnopt.Controls.Add(this.lldds);
 			this.pnopt.Controls.Add(this.llsave);
@@ -175,7 +178,7 @@ namespace SimPe.Wizards
 			this.llsave.AutoSize = true;
 			this.llsave.BackColor = System.Drawing.Color.White;
 			this.llsave.LinkColor = System.Drawing.Color.Red;
-			this.llsave.Location = new System.Drawing.Point(210, 88);
+			this.llsave.Location = new System.Drawing.Point(168, 88);
 			this.llsave.Name = "llsave";
 			this.llsave.Size = new System.Drawing.Size(44, 16);
 			this.llsave.TabIndex = 28;
@@ -213,11 +216,11 @@ namespace SimPe.Wizards
 			this.linkLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.linkLabel3.AutoSize = true;
 			this.linkLabel3.BackColor = System.Drawing.Color.White;
-			this.linkLabel3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
 			this.linkLabel3.LinkColor = System.Drawing.Color.Red;
 			this.linkLabel3.Location = new System.Drawing.Point(504, 113);
 			this.linkLabel3.Name = "linkLabel3";
-			this.linkLabel3.Size = new System.Drawing.Size(61, 19);
+			this.linkLabel3.Size = new System.Drawing.Size(42, 16);
 			this.linkLabel3.TabIndex = 24;
 			this.linkLabel3.TabStop = true;
 			this.linkLabel3.Text = "Browse";
@@ -314,7 +317,7 @@ namespace SimPe.Wizards
 			this.llsims.AutoSize = true;
 			this.llsims.BackColor = System.Drawing.Color.White;
 			this.llsims.LinkColor = System.Drawing.Color.Red;
-			this.llsims.Location = new System.Drawing.Point(224, 24);
+			this.llsims.Location = new System.Drawing.Point(168, 24);
 			this.llsims.Name = "llsims";
 			this.llsims.Size = new System.Drawing.Size(44, 16);
 			this.llsims.TabIndex = 27;
@@ -337,6 +340,21 @@ namespace SimPe.Wizards
 			// 
 			this.ofd.Filter = "DDS Utilities (nvdxt.exe)|nvdxt.exe";
 			this.ofd.Title = "Locate Nvidia DDS Tools";
+			// 
+			// linkLabel5
+			// 
+			this.linkLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.linkLabel5.AutoSize = true;
+			this.linkLabel5.BackColor = System.Drawing.Color.White;
+			this.linkLabel5.LinkColor = System.Drawing.Color.Red;
+			this.linkLabel5.Location = new System.Drawing.Point(72, 312);
+			this.linkLabel5.Name = "linkLabel5";
+			this.linkLabel5.Size = new System.Drawing.Size(67, 16);
+			this.linkLabel5.TabIndex = 31;
+			this.linkLabel5.TabStop = true;
+			this.linkLabel5.Text = "System Test";
+			this.linkLabel5.VisitedLinkColor = System.Drawing.Color.Maroon;
+			this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
 			// 
 			// Option
 			// 
@@ -418,6 +436,12 @@ namespace SimPe.Wizards
 		{
 			if (System.IO.File.Exists(@"C:\Program Files\NVIDIA Corporation\DDS Utilities\nvdxt.exe")) ofd.FileName = @"C:\Program Files\NVIDIA Corporation\DDS Utilities\nvdxt.exe";
 			if (ofd.ShowDialog()==DialogResult.OK) tbdds.Text = System.IO.Path.GetDirectoryName(ofd.FileName);
+		}
+
+		private void linkLabel5_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			CheckForm f = new CheckForm();
+			f.ShowDialog();
 		}
 	}
 }

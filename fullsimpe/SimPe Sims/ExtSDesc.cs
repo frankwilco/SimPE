@@ -359,10 +359,7 @@ namespace SimPe.PackedFiles.Wrapper
 					list.Add(SimPe.Serializer.SerializeTypeHeader(this.University));
 
 				if ((int)this.Version >= (int)SDescVersions.Nightlife)
-					list.Add(SimPe.Serializer.SerializeTypeHeader(this.Nightlife));
-
-				if ((int)this.Version >= (int)SDescVersions.Business)
-					list.Add(SimPe.Serializer.SerializeTypeHeader(this.Business));
+					list.Add(SimPe.Serializer.SerializeTypeHeader(this.Nightlife));				
 				
 
 				return Serializer.ConcatHeader(Serializer.ConvertArrayList(list));
@@ -401,10 +398,7 @@ namespace SimPe.PackedFiles.Wrapper
 					list.Add(this.University.ToString());
 
 				if ((int)this.Version >= (int)SDescVersions.Nightlife)
-					list.Add(this.Nightlife.ToString());
-
-				if ((int)this.Version >= (int)SDescVersions.Business)
-					list.Add(this.Business.ToString());
+					list.Add(this.Nightlife.ToString());				
 				
 				return Serializer.Concat(Serializer.ConvertArrayList(list));
 			}
@@ -453,6 +447,10 @@ namespace SimPe.PackedFiles.Wrapper
 				list.Add(base.DescriptionHeader);
 				if (this.SimDNA!=null)
 					list.Add(this.SimDNA.DescriptionHeader);
+
+				if ((int)this.Version >= (int)SDescVersions.Business)
+					list.Add(SimPe.Serializer.SerializeTypeHeader(this.Business));
+
 				return Serializer.ConcatHeader(Serializer.ConvertArrayList(list));
 			}
 		}
@@ -465,6 +463,10 @@ namespace SimPe.PackedFiles.Wrapper
 				list.Add(base.Description);
 				if (this.SimDNA!=null)
 					list.Add(Serializer.SubProperty("DNA", this.SimDNA.Description));
+
+				if ((int)this.Version >= (int)SDescVersions.Business)
+					list.Add(this.Business.ToString());
+
 				return Serializer.Concat(Serializer.ConvertArrayList(list));
 			}
 		}

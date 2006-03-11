@@ -145,6 +145,9 @@ namespace SimPe
 		private System.Windows.Forms.CheckBox cbLock;
 		private System.Windows.Forms.CheckBox cbIncBusi;
 		private MyPropertyGrid pgPaths;
+		private Divelements.Navisight.NavigationButton nbCheck;
+		private TD.Eyefinder.HeaderControl hcCheck;
+		private SimPe.CheckControl checkControl1;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -285,11 +288,12 @@ namespace SimPe
 			this.cbDeep = new System.Windows.Forms.CheckBox();
 			this.bb = new Divelements.Navisight.ButtonBar();
 			this.nbFolders = new Divelements.Navisight.NavigationButton();
+			this.nbCheck = new Divelements.Navisight.NavigationButton();
 			this.nbSettings = new Divelements.Navisight.NavigationButton();
-			this.nbTools = new Divelements.Navisight.NavigationButton();
-			this.nbFileTable = new Divelements.Navisight.NavigationButton();
 			this.nbSceneGraph = new Divelements.Navisight.NavigationButton();
+			this.nbFileTable = new Divelements.Navisight.NavigationButton();
 			this.nbPlugins = new Divelements.Navisight.NavigationButton();
+			this.nbTools = new Divelements.Navisight.NavigationButton();
 			this.nbIdent = new Divelements.Navisight.NavigationButton();
 			this.hcPlugins = new TD.Eyefinder.HeaderControl();
 			this.btpup = new System.Windows.Forms.Button();
@@ -305,6 +309,8 @@ namespace SimPe
 			this.label12 = new System.Windows.Forms.Label();
 			this.tbUsername = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
+			this.hcCheck = new TD.Eyefinder.HeaderControl();
+			this.checkControl1 = new SimPe.CheckControl();
 			this.baloonTip = new SteepValley.Windows.Forms.XPBalloonTip(this.components);
 			this.navigationButton1 = new Divelements.Navisight.NavigationButton();
 			this.navigationButton2 = new Divelements.Navisight.NavigationButton();
@@ -324,6 +330,7 @@ namespace SimPe
 			this.groupBox7.SuspendLayout();
 			this.hcPlugins.SuspendLayout();
 			this.hcIdent.SuspendLayout();
+			this.hcCheck.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -2592,11 +2599,12 @@ namespace SimPe
 			this.bb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bb.BackgroundImage")));
 			this.bb.Buttons.AddRange(new Divelements.Navisight.NavigationButton[] {
 																					  this.nbFolders,
+																					  this.nbCheck,
 																					  this.nbSettings,
-																					  this.nbTools,
-																					  this.nbFileTable,
 																					  this.nbSceneGraph,
+																					  this.nbFileTable,
 																					  this.nbPlugins,
+																					  this.nbTools,
 																					  this.nbIdent});
 			this.bb.ButtonSpacing = 16;
 			this.bb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("bb.Dock")));
@@ -2620,26 +2628,19 @@ namespace SimPe
 			this.nbFolders.ToolTipText = resources.GetString("nbFolders.ToolTipText");
 			this.nbFolders.Activate += new System.EventHandler(this.SelectCategory);
 			// 
+			// nbCheck
+			// 
+			this.nbCheck.Image = ((System.Drawing.Image)(resources.GetObject("nbCheck.Image")));
+			this.nbCheck.Text = resources.GetString("nbCheck.Text");
+			this.nbCheck.ToolTipText = resources.GetString("nbCheck.ToolTipText");
+			this.nbCheck.Activate += new System.EventHandler(this.SelectCategory);
+			// 
 			// nbSettings
 			// 
 			this.nbSettings.Image = ((System.Drawing.Image)(resources.GetObject("nbSettings.Image")));
 			this.nbSettings.Text = resources.GetString("nbSettings.Text");
 			this.nbSettings.ToolTipText = resources.GetString("nbSettings.ToolTipText");
 			this.nbSettings.Activate += new System.EventHandler(this.SelectCategory);
-			// 
-			// nbTools
-			// 
-			this.nbTools.Image = ((System.Drawing.Image)(resources.GetObject("nbTools.Image")));
-			this.nbTools.Text = resources.GetString("nbTools.Text");
-			this.nbTools.ToolTipText = resources.GetString("nbTools.ToolTipText");
-			this.nbTools.Activate += new System.EventHandler(this.SelectCategory);
-			// 
-			// nbFileTable
-			// 
-			this.nbFileTable.Image = ((System.Drawing.Image)(resources.GetObject("nbFileTable.Image")));
-			this.nbFileTable.Text = resources.GetString("nbFileTable.Text");
-			this.nbFileTable.ToolTipText = resources.GetString("nbFileTable.ToolTipText");
-			this.nbFileTable.Activate += new System.EventHandler(this.SelectCategory);
 			// 
 			// nbSceneGraph
 			// 
@@ -2648,12 +2649,26 @@ namespace SimPe
 			this.nbSceneGraph.ToolTipText = resources.GetString("nbSceneGraph.ToolTipText");
 			this.nbSceneGraph.Activate += new System.EventHandler(this.SelectCategory);
 			// 
+			// nbFileTable
+			// 
+			this.nbFileTable.Image = ((System.Drawing.Image)(resources.GetObject("nbFileTable.Image")));
+			this.nbFileTable.Text = resources.GetString("nbFileTable.Text");
+			this.nbFileTable.ToolTipText = resources.GetString("nbFileTable.ToolTipText");
+			this.nbFileTable.Activate += new System.EventHandler(this.SelectCategory);
+			// 
 			// nbPlugins
 			// 
 			this.nbPlugins.Image = ((System.Drawing.Image)(resources.GetObject("nbPlugins.Image")));
 			this.nbPlugins.Text = resources.GetString("nbPlugins.Text");
 			this.nbPlugins.ToolTipText = resources.GetString("nbPlugins.ToolTipText");
 			this.nbPlugins.Activate += new System.EventHandler(this.SelectCategory);
+			// 
+			// nbTools
+			// 
+			this.nbTools.Image = ((System.Drawing.Image)(resources.GetObject("nbTools.Image")));
+			this.nbTools.Text = resources.GetString("nbTools.Text");
+			this.nbTools.ToolTipText = resources.GetString("nbTools.ToolTipText");
+			this.nbTools.Activate += new System.EventHandler(this.SelectCategory);
 			// 
 			// nbIdent
 			// 
@@ -3022,6 +3037,51 @@ namespace SimPe
 			this.toolTip1.SetToolTip(this.label11, resources.GetString("label11.ToolTip"));
 			this.label11.Visible = ((bool)(resources.GetObject("label11.Visible")));
 			// 
+			// hcCheck
+			// 
+			this.hcCheck.AccessibleDescription = resources.GetString("hcCheck.AccessibleDescription");
+			this.hcCheck.AccessibleName = resources.GetString("hcCheck.AccessibleName");
+			this.hcCheck.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("hcCheck.Anchor")));
+			this.hcCheck.AutoScroll = ((bool)(resources.GetObject("hcCheck.AutoScroll")));
+			this.hcCheck.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hcCheck.AutoScrollMargin")));
+			this.hcCheck.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hcCheck.AutoScrollMinSize")));
+			this.hcCheck.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hcCheck.BackgroundImage")));
+			this.hcCheck.Controls.Add(this.checkControl1);
+			this.hcCheck.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("hcCheck.Dock")));
+			this.hcCheck.Enabled = ((bool)(resources.GetObject("hcCheck.Enabled")));
+			this.hcCheck.Font = ((System.Drawing.Font)(resources.GetObject("hcCheck.Font")));
+			this.hcCheck.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+			this.hcCheck.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("hcCheck.ImeMode")));
+			this.hcCheck.Location = ((System.Drawing.Point)(resources.GetObject("hcCheck.Location")));
+			this.hcCheck.Name = "hcCheck";
+			this.hcCheck.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("hcCheck.RightToLeft")));
+			this.hcCheck.Size = ((System.Drawing.Size)(resources.GetObject("hcCheck.Size")));
+			this.hcCheck.TabIndex = ((int)(resources.GetObject("hcCheck.TabIndex")));
+			this.hcCheck.Text = resources.GetString("hcCheck.Text");
+			this.toolTip1.SetToolTip(this.hcCheck, resources.GetString("hcCheck.ToolTip"));
+			this.hcCheck.Visible = ((bool)(resources.GetObject("hcCheck.Visible")));
+			// 
+			// checkControl1
+			// 
+			this.checkControl1.AccessibleDescription = resources.GetString("checkControl1.AccessibleDescription");
+			this.checkControl1.AccessibleName = resources.GetString("checkControl1.AccessibleName");
+			this.checkControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("checkControl1.Anchor")));
+			this.checkControl1.AutoScroll = ((bool)(resources.GetObject("checkControl1.AutoScroll")));
+			this.checkControl1.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("checkControl1.AutoScrollMargin")));
+			this.checkControl1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("checkControl1.AutoScrollMinSize")));
+			this.checkControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("checkControl1.BackgroundImage")));
+			this.checkControl1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("checkControl1.Dock")));
+			this.checkControl1.Enabled = ((bool)(resources.GetObject("checkControl1.Enabled")));
+			this.checkControl1.Font = ((System.Drawing.Font)(resources.GetObject("checkControl1.Font")));
+			this.checkControl1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("checkControl1.ImeMode")));
+			this.checkControl1.Location = ((System.Drawing.Point)(resources.GetObject("checkControl1.Location")));
+			this.checkControl1.Name = "checkControl1";
+			this.checkControl1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("checkControl1.RightToLeft")));
+			this.checkControl1.Size = ((System.Drawing.Size)(resources.GetObject("checkControl1.Size")));
+			this.checkControl1.TabIndex = ((int)(resources.GetObject("checkControl1.TabIndex")));
+			this.toolTip1.SetToolTip(this.checkControl1, resources.GetString("checkControl1.ToolTip"));
+			this.checkControl1.Visible = ((bool)(resources.GetObject("checkControl1.Visible")));
+			// 
 			// baloonTip
 			// 
 			this.baloonTip.Enabled = true;
@@ -3049,13 +3109,14 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.hcFileTable);
+			this.Controls.Add(this.hcCheck);
+			this.Controls.Add(this.hcFolders);
+			this.Controls.Add(this.hcSceneGraph);
 			this.Controls.Add(this.hcSettings);
 			this.Controls.Add(this.hcIdent);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
-			this.Controls.Add(this.hcFileTable);
-			this.Controls.Add(this.hcFolders);
-			this.Controls.Add(this.hcSceneGraph);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -3087,6 +3148,7 @@ namespace SimPe
 			this.groupBox7.ResumeLayout(false);
 			this.hcPlugins.ResumeLayout(false);
 			this.hcIdent.ResumeLayout(false);
+			this.hcCheck.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -3287,20 +3349,7 @@ namespace SimPe
 
 		private void ClearCaches(object sender, System.EventArgs e)
 		{
-			string[] files = System.IO.Directory.GetFiles(Helper.SimPeDataPath, "*.simpepkg");
-			foreach (string file in files) 
-			{
-				try 
-				{
-					System.IO.File.Delete(file);
-				} 
-				catch (Exception ex) 
-				{
-					Helper.ExceptionMessage("", ex);
-				}
-			}
-
-			Message.Show(SimPe.Localization.GetString("cache_cleared"), "Information", MessageBoxButtons.OK);
+			SimPe.CheckControl.ClearCache();
 		}
 
 		private void DDSChanged(object sender, System.EventArgs e)
@@ -3482,6 +3531,7 @@ namespace SimPe
 			hcSceneGraph.Visible = (panel==nbSceneGraph);
 			hcPlugins.Visible = (panel==nbPlugins);
 			hcIdent.Visible = (panel==nbIdent);
+			hcCheck.Visible = (panel==nbCheck);
 		}
 
 		private void SelectCategory(object sender, System.EventArgs e)
@@ -3499,6 +3549,7 @@ namespace SimPe
 					else if (nb == nbSceneGraph) EnablePanel(nbSceneGraph);
 					else if (nb == nbPlugins) EnablePanel(nbPlugins);
 					else if (nb == nbIdent) EnablePanel(nbIdent);
+					else if (nb == nbCheck) EnablePanel(nbCheck);
 				}
 			}
 		}
@@ -4143,9 +4194,7 @@ namespace SimPe
 		private void btReload_Click(object sender, System.EventArgs e)
 		{
 			StoreFoldersXml();
-			FileTable.FileIndex.BaseFolders.Clear();			
-			FileTable.FileIndex.BaseFolders = FileTable.DefaultFolders;
-			FileTable.FileIndex.ForceReload();
+			FileTable.Reload();
 			btReload.Enabled = false;
 		}
 

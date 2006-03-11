@@ -76,6 +76,11 @@ namespace SimPe.Plugin
 		public void UpdateGUI(IFileWrapper wrapper)
 		{
 			Txtr wrp = (Txtr) wrapper;
+			if (wrp.Blocks.Length==0) 
+			{
+				wrp.Blocks = new SimPe.Interfaces.Scenegraph.IRcolBlock[1];
+				wrp.Blocks[0] = new ImageData(wrp);
+			}
 			form.wrapper = wrp;
 
 			form.btex.Enabled = false;
@@ -90,7 +95,7 @@ namespace SimPe.Plugin
 				form.cbitem.Items.Add(id);
 			}
 
-			if (form.cbitem.Items.Count>=0) form.cbitem.SelectedIndex = 0;
+			if (form.cbitem.Items.Count>0) form.cbitem.SelectedIndex = 0;
 			//if (form.lbimg.Items.Count>0) form.lbimg.SelectedIndex = 0;
 			
 			
