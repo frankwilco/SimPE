@@ -36,7 +36,8 @@ namespace SimPe.PackedFiles.Wrapper.Factory
 			{				
 				IWrapper[] wrappers = {
 										  new SimPe.PackedFiles.Wrapper.ExtObjd(this.LinkedProvider.OpcodeProvider),
-										  new SimPe.PackedFiles.Wrapper.ObjLua()
+										  new SimPe.PackedFiles.Wrapper.ObjLua(),
+										  new SimPe.PackedFiles.Wrapper.Creg()
 									  };
 				return wrappers;
 			}
