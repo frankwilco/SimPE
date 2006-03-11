@@ -168,6 +168,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "CheckForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CheckForm.resx"
+                    DependentUpon = "CheckForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Form1.cs"
                     SubType = "Form"
                     BuildAction = "Compile"

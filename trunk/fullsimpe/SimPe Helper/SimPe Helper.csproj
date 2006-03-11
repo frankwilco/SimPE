@@ -314,6 +314,15 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ICacheFileTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "important.png"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "IPackedFileDescriptorBasic.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

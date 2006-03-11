@@ -174,6 +174,11 @@
                     Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe Cache"
+                    Project = "{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
@@ -194,6 +199,36 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "CheckControl.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CheckControl.de.resx"
+                    DependentUpon = "CheckControl.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "CheckControl.resx"
+                    DependentUpon = "CheckControl.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "CheckItem.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CheckItem.de.resx"
+                    DependentUpon = "CheckItem.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "CheckItem.resx"
+                    DependentUpon = "CheckItem.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Create Description.png"
                     BuildAction = "EmbeddedResource"
                 />
@@ -211,6 +246,10 @@
                     RelPath = "ExtensionProvider.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "fail.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "FileTable.cs"
@@ -315,6 +354,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ok.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Package Tool.png"
                     BuildAction = "EmbeddedResource"
                 />
@@ -352,6 +395,10 @@
                     RelPath = "ToolResult.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "unk.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "WrapperBaseControl.cs"

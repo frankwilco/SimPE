@@ -595,7 +595,7 @@ namespace SimPe
 			}*/
 
 			if (Helper.WindowsRegistry.FoundUnknownEP())
-				if (Message.Show(SimPe.Localization.GetString("Unknown EP found"), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+				if (Message.Show(SimPe.Localization.GetString("Unknown EP found").Replace("{name}", SimPe.Registry.GetEpName(3)), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
 					return false;
 
 

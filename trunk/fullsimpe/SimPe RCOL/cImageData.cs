@@ -353,6 +353,8 @@ namespace SimPe.Plugin
 			mipmaps = new MipMap[0];
 			creator = 0xffffffff;
 			unknown_1 = 0x41200000;
+
+			
 		}
 
 		/// <summary>
@@ -531,7 +533,7 @@ namespace SimPe.Plugin
 	/// </remarks>
 	public class ImageData
 		: AbstractRcolBlock, IScenegraphBlock, System.IDisposable
-	{
+	{		
 		#region Attributes
 		
 		Size texturesize;
@@ -541,6 +543,7 @@ namespace SimPe.Plugin
 		uint unknown_1;
 		string filenamerep;
 		MipMapBlock[] mipmapblocks;
+		
 
 		public MipMapBlock[] MipMapBlocks
 		{
@@ -592,13 +595,16 @@ namespace SimPe.Plugin
 		/// </summary>
 		public ImageData(Rcol parent) : base(parent)
 		{
-			texturesize = new Size(0, 0);
-			mipmapblocks = new MipMapBlock[0];
+			texturesize = new Size(1, 1);
+			mipmapblocks = new MipMapBlock[1];
+			mipmapblocks[0] = new MipMapBlock(this);
+			mipmaplevels = 1;
 			sgres = new SGResource(null);
 			BlockID = 0x1c4a276c;
 			filenamerep = "";
 			this.version = 0x09;
 			unknown_0 = (float)1.0;
+			format = SimPe.Plugin.ImageLoader.TxtrFormats.ExtRaw24Bit;
 		}
 		
 		#region IRcolBlock Member

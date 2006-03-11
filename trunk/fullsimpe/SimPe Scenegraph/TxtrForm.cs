@@ -862,7 +862,8 @@ namespace SimPe.Plugin
 		private void Add(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			MipMap mm = new MipMap(SelectedImageData());
-			mm.LifoFile = "null";
+			mm.LifoFile = null;
+			mm.Texture = new Bitmap(512, 256);
 			lbimg.Items.Add(mm);
 			UpdateMimMaps();
 		}
@@ -901,14 +902,25 @@ namespace SimPe.Plugin
 				id.MipMapBlocks.CopyTo(mmp, 0);
 				mmp[mmp.Length-1] = new MipMapBlock(id);
 				id.MipMapBlocks = mmp;
-				cbmipmaps.Items.Add(mmp);
+				cbmipmaps.Items.Add(mmp[mmp.Length-1]);
 				cbmipmaps.SelectedIndex = cbmipmaps.Items.Count-1;
 
 				return mmp[mmp.Length-1];
 			} 
 			else 
 			{
-				return (MipMapBlock)cbmipmaps.Items[cbmipmaps.SelectedIndex];
+				object o = cbmipmaps.SelectedItem;
+				if (o is MipMapBlock) return o as MipMapBlock;
+				
+				try 
+				{
+					MipMapBlock[] mmb = o as MipMapBlock[];
+					return mmb[mmb.Length-1];
+				} 
+				catch 
+				{
+					return new MipMapBlock(id);
+				}
 			}
 		}
 
@@ -1158,6 +1170,7 @@ namespace SimPe.Plugin
 		private void ContextPopUp(object sender, System.EventArgs e)
 		{
 			milifo.Enabled = false;
+			this.mibuild.Enabled = System.IO.File.Exists(Helper.WindowsRegistry.NvidiaDDSTool);
 			if (lbimg.SelectedIndex<0) return;
 			try 
 			{
@@ -1208,6 +1221,7 @@ namespace SimPe.Plugin
 		{
 			try 
 			{
+				Size sz = SimPe.Plugin.ImageSize.Execute(SelectedImageData().TextureSize);
 				cbitem.Tag = true;
 				lbimg.Items.Clear();
 				int wd = 1;
@@ -1222,7 +1236,7 @@ namespace SimPe.Plugin
 				int levels = Convert.ToInt32(tblevel.Text);
 				for (int i=0; i<levels; i++)
 				{
-					MipMap mm = new MipMap(SelectedImageData());
+					MipMap mm = new MipMap(SelectedImageData());					
 					mm.Texture = new Bitmap(wd, hg);
 
 					if (i==levels-1) 
@@ -1232,8 +1246,8 @@ namespace SimPe.Plugin
 
 					if ((wd==hg) && (wd==1))
 					{
-						wd = SelectedImageData().TextureSize.Width/SelectedImageData().TextureSize.Height;
-						hg = 1;
+						wd =  Math.Max(1, (sz.Width / Math.Max(1, sz.Height)));
+						hg =  Math.Max(1, (sz.Height / Math.Max(1, sz.Width)));
 
 						if ((wd==hg) && (wd==1)) 
 						{

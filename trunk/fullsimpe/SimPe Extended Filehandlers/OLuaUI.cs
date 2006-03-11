@@ -49,8 +49,7 @@ namespace SimPe.PackedFiles.UserInterface
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
 			InitializeComponent();
 
-			// TODO: Initialisierungen nach dem Aufruf von InitializeComponent hinzufügen
-
+			this.button2.Enabled = Helper.QARelease;
 		}
 
 		/// <summary> 

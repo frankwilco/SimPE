@@ -1241,7 +1241,7 @@ Soll SimPe nun den Cache zurücksetzen?</value>
     <data name="Unknown EP found">
 		<value>SimPE hat festgestellt, dass wahrscheinlich eine neue Erweiterung für "Die Sims 2" installiert wurde.
 		
-Diese Version von SimPE kann nur mit Versionen des Spiels bis einschließlich "Open for Business" umgehen. Dateien die mit neueren Versionene erstellt wurden, können zu Fehlern führen! 
+Diese Version von SimPE kann nur mit Versionen des Spiels bis einschließlich "{name}" umgehen. Dateien die mit neueren Versionene erstellt wurden, können zu Fehlern führen! 
 (Weitere Informationen findet ihr unter http://sims.ambertation.de/de/).
 
 Soll SimPE dennoch gestartet werden?</value>
@@ -1303,4 +1303,40 @@ Soll SimPE dennoch gestartet werden?</value>
     <data name="SimPe.Plugin.SimMemoryType.Badge">
 		<value>Abzeichen</value>
     </data>    
+    <data name="EP NAME 0">
+		<value>Die Sims 2</value>
+    </data> 
+    <data name="EP NAME 1">
+		<value>Die Sims 2 - University</value>
+    </data> 
+    <data name="EP NAME 2">
+		<value>Die Sims 2 - Nightlife</value>
+    </data> 
+    <data name="EP NAME 3">
+		<value>Die Sims 2 - Open for Business</value>
+    </data> 
+    <data name="Check: Folder not found">
+		<value>Verzeichniss für "{name}" wurde nicht gefunden.</value>
+    </data> 
+    <data name="Check: Unable to locate">
+		<value>Konnte "{name}" nicht finden.</value>
+    </data> 
+    <data name="Check: CEP not found">
+		<value>Das CEP konnte nicht gefunden werden.</value>
+    </data> 
+    <data name="Check: Unable to load cache">
+		<value>Konnte den SimPE Cache nicht lesen.</value>
+    </data>
+    <data name="Check: Error while load">
+		<value>Konnte "{name}" nicht laden.</value>
+    </data>  
+    <data name="Check: No Objects">
+		<value>Konnte keine Objekte finden.</value>
+    </data>  
+    <data name="Check: No Textures">
+		<value>Konnte keine Texturdaten finden.</value>
+    </data>  
+    <data name="Savegames">
+		<value>Spielstände</value>
+    </data> 
 </root>
