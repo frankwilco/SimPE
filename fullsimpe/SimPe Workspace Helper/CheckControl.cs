@@ -384,6 +384,8 @@ namespace SimPe
 			Message.Show(SimPe.Localization.GetString("cache_cleared"), "Information", MessageBoxButtons.OK);
 		}
 
+		public event System.EventHandler FixedFileTable;
+
 		#region Sims Path Test
 		private SimPe.CheckItemState chkSimFolder_CalledCheck(object sender, SimPe.CheckItemState isok)
 		{
@@ -559,6 +561,8 @@ namespace SimPe
 			{
 				System.IO.File.Delete(FileTable.FolderFile);
 				FileTable.Reload();
+
+				if (FixedFileTable!=null) FixedFileTable(this, new EventArgs());
 			} 
 			catch 
 			{

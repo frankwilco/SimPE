@@ -52,7 +52,7 @@ namespace SimPe
 	/// <summary>
 	/// Classes used to manage the Theme of our GUI
 	/// </summary>
-	public class ThemeManager 
+	public class ThemeManager : System.IDisposable
 	{
 		#region Fields, Properties, Constructors
 		GuiTheme ctheme;
@@ -86,7 +86,11 @@ namespace SimPe
 
 		~ThemeManager()
 		{
-			Parent = null;
+			try 
+			{
+				this.Dispose();
+			} 
+			catch {}
 		}
 	
 		/// <summary>
@@ -284,5 +288,14 @@ namespace SimPe
 				return tm;
 			}
 		}
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			this.Parent = null;
+			this.Clear();
+		}
+
+		#endregion
 	}
 }

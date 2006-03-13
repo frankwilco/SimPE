@@ -368,6 +368,10 @@ namespace SimPe.Plugin
 		public override void Dispose()
 		{
 			if (this.form!=null) this.form.Dispose();
+			sgres = null;
+			ogn = null;
+			ctn = null;
+			items = new ResourceNodeItem[0];
 		}
 
 		#endregion

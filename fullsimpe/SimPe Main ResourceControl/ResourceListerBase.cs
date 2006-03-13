@@ -121,9 +121,6 @@ namespace SimPe
  
 			TimeSpan dur = DateTime.Now-start;
 			lv.ListViewItemSorter = cmp;
-#if DEBUG
-			Message.Show(dur.ToString());
-#endif
 		}
 
 		ManualResetEvent run;

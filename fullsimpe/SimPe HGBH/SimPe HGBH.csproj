@@ -256,7 +256,7 @@
                 />
                 <Reference
                     Name = "xpcommoncontrols"
-                    AssemblyName = "xpcommoncontrols"
+                    AssemblyName = "XPCommonControls"
                     HintPath = "..\..\..\xpcommoncontrols\xpcommoncontrols.dll"
                 />
                 <Reference
@@ -305,6 +305,51 @@
                 />
                 <File
                     RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BnfoCustomerItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BnfoCustomerItems.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BnfoCustomerItemsUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BnfoCustomerItemsUI.resx"
+                    DependentUpon = "BnfoCustomerItemsUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "BnfoCustomerItemUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BnfoCustomerItemUI.resx"
+                    DependentUpon = "BnfoCustomerItemUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "BnfoUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BnfoUI.resx"
+                    DependentUpon = "BnfoUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "BnfoWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

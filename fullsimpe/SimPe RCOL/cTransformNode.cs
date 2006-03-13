@@ -407,6 +407,10 @@ namespace SimPe.Plugin
 		public override void Dispose()
 		{
 			if (this.form!=null) this.form.Dispose();
+			ctn = null;
+			ogn = null;
+			items = null;
+			trans = null;
 		}
 
 		#endregion

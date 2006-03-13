@@ -150,7 +150,8 @@ namespace SimPe.Interfaces.Plugin
 			if (this.img!=null) img.Dispose();
 			this.img = null;
 			this.name = null;
-			this.author = null;			
+			this.author = null;		
+			
 		}
 		#endregion
 	}

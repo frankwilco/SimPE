@@ -26,7 +26,7 @@ namespace SimPe.Data
 	/// <summary>
 	/// Conects an value with a name
 	/// </summary>
-	public class StaticAlias : SimPe.Interfaces.IAlias
+	public class StaticAlias : SimPe.Interfaces.IAlias, System.IDisposable
 	{
 		/// <summary>
 		/// Stores arbitary Data
@@ -51,7 +51,16 @@ namespace SimPe.Data
 		/// <param name="name">The name</param>
 		public StaticAlias(uint val, string name) : this(val, name, new object[0])
 		{			
-		}			
+		}	
+		
+		~StaticAlias()
+		{
+			try 
+			{
+				this.Dispose();
+			} 
+			catch {}
+		}
 
 		/// <summary>
 		/// Cosntructor of the class
@@ -104,6 +113,16 @@ namespace SimPe.Data
 		}
 
 		#endregion		
+
+		#region IDisposable Member
+
+		public virtual void Dispose()
+		{
+			tag = null;
+			name = null;
+		}
+
+		#endregion
 	}
 	/// <summary>
 	/// Conects an value with a name
