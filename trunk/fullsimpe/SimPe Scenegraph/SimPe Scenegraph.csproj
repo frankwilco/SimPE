@@ -254,7 +254,7 @@
                 />
                 <File
                     RelPath = "FileSelect.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -269,7 +269,7 @@
                 />
                 <File
                     RelPath = "GroupCacheForm.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -294,7 +294,7 @@
                 />
                 <File
                     RelPath = "ImageSize.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -304,7 +304,7 @@
                 />
                 <File
                     RelPath = "LifoForm.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -324,7 +324,7 @@
                 />
                 <File
                     RelPath = "Listing.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -367,7 +367,7 @@
                 />
                 <File
                     RelPath = "ObjectComboBox.cs"
-                    SubType = "UserControl"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -382,7 +382,7 @@
                 />
                 <File
                     RelPath = "PackedFileForm.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -417,7 +417,7 @@
                 />
                 <File
                     RelPath = "PreviewForm.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -427,7 +427,7 @@
                 />
                 <File
                     RelPath = "RenameForm.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -456,7 +456,7 @@
                 />
                 <File
                     RelPath = "SlotForm.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -481,7 +481,7 @@
                 />
                 <File
                     RelPath = "SubsetSelectForm.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -495,7 +495,7 @@
                 />
                 <File
                     RelPath = "TxtrForm.cs"
-                    SubType = "Form"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File

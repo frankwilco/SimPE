@@ -3081,6 +3081,7 @@ namespace SimPe
 			this.checkControl1.TabIndex = ((int)(resources.GetObject("checkControl1.TabIndex")));
 			this.toolTip1.SetToolTip(this.checkControl1, resources.GetString("checkControl1.ToolTip"));
 			this.checkControl1.Visible = ((bool)(resources.GetObject("checkControl1.Visible")));
+			this.checkControl1.FixedFileTable += new System.EventHandler(this.checkControl1_FixedFileTable);
 			// 
 			// baloonTip
 			// 
@@ -3109,7 +3110,6 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.hcFileTable);
 			this.Controls.Add(this.hcCheck);
 			this.Controls.Add(this.hcFolders);
 			this.Controls.Add(this.hcSceneGraph);
@@ -3117,6 +3117,7 @@ namespace SimPe
 			this.Controls.Add(this.hcIdent);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
+			this.Controls.Add(this.hcFileTable);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -4198,17 +4199,22 @@ namespace SimPe
 			btReload.Enabled = false;
 		}
 
-		private void linkLabel6_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		void RebuildFileTableList()
 		{
-			FileTable.BuildFolderXml();
-			FileTable.FileIndex.BaseFolders.Clear();			
-			FileTable.FileIndex.BaseFolders = FileTable.DefaultFolders;
-			
 			lbfolder.Items.Clear();
 			foreach (FileTableItem fti in FileTable.FileIndex.BaseFolders) 
 			{
 				lbfolder.Items.Add(fti, !fti.Ignore);
 			}
+		}
+
+		private void linkLabel6_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{			
+			FileTable.BuildFolderXml();
+			FileTable.FileIndex.BaseFolders.Clear();			
+			FileTable.FileIndex.BaseFolders = FileTable.DefaultFolders;
+						
+			RebuildFileTableList();
 
 			btReload.Enabled = true;
 			SetupFileTableCheckboxes();
@@ -4327,6 +4333,11 @@ namespace SimPe
 
 			if (cb.Checked) this.LockDocksClick(sender, e);
 			else this.UnlockDocksClick(sender, e);			
+		}
+
+		private void checkControl1_FixedFileTable(object sender, System.EventArgs e)
+		{
+			RebuildFileTableList();
 		}
 	}
 

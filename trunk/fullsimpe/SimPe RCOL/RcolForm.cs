@@ -82,7 +82,7 @@ namespace SimPe.Plugin
 		/// Erforderliche Designervariable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
-
+		ThemeManager tm;
 		public RcolForm()
 		{
 			//
@@ -90,7 +90,7 @@ namespace SimPe.Plugin
 			//
 			InitializeComponent();
 
-			ThemeManager tm = ThemeManager.Global.CreateChild();
+			tm = ThemeManager.Global.CreateChild();
 			tm.AddControl(RcolPanel);
 			tm.AddControl(this.xpGradientPanel1);
 			tm.AddControl(this.xpGradientPanel2);
@@ -112,6 +112,13 @@ namespace SimPe.Plugin
 		{
 			if( disposing )
 			{
+				if (tm!=null)
+				{
+					tm.Dispose();
+					tm = null;
+				}
+				
+				this.ClearControlTags();
 				if(components != null)
 				{
 					components.Dispose();
@@ -1253,5 +1260,20 @@ namespace SimPe.Plugin
 				Helper.ExceptionMessage("", ex);
 			}
 		}*/
+
+		void ClearControlTags(Control c)
+		{
+			foreach (Control cc in c.Controls)
+			{
+				cc.Tag = null;
+				ClearControlTags(cc);
+			}
+
+		}
+		internal void ClearControlTags()
+		{
+			if (this.Controls==null) return;
+			ClearControlTags(this);
+		}
 	}
 }

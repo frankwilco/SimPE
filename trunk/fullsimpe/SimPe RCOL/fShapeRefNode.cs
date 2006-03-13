@@ -220,6 +220,8 @@ namespace SimPe.Plugin
 		{
 			if( disposing )
 			{
+				ClearCresTv();
+				ClearControlTags();
 				if(components != null)
 				{
 					components.Dispose();
@@ -3347,6 +3349,36 @@ namespace SimPe.Plugin
 		}
 		
 
+		void ClearCresTv(System.Windows.Forms.TreeNodeCollection nodes)
+		{
+			foreach (System.Windows.Forms.TreeNode n in nodes)
+			{
+				n.Tag = null;
+				ClearCresTv(n.Nodes);
+			}
 
+			nodes.Clear();
+		}
+		internal void ClearCresTv()
+		{
+			if (cres_tv==null) return;	
+			try 
+			{
+				cres_tv.BeginUpdate();
+				ClearCresTv(cres_tv.Nodes);
+				cres_tv.EndUpdate();
+			} 
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+			}
+		}
+
+		internal void ClearControlTags()
+		{
+			if (this.Controls==null) return;
+			foreach (Control c in this.Controls)
+				c.Tag = null;
+		}
 	}
 }

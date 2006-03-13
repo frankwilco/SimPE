@@ -181,7 +181,12 @@ namespace SimPe
 				TD.SandDock.DockControl doc = null;
 				bool add = !overload;
 				if (overload) doc = dc.SelectedPage;				
-				if (doc == null) {add = true; doc = new TD.SandDock.TabPage(); doc.AllowClose=true; doc.AllowDockCenter=true;}
+				if (doc == null) {
+					add = true; 
+					doc = new TD.SandDock.TabPage(); 
+					doc.AllowClose=true; 
+					doc.AllowDockCenter=true;
+				}
 				else if (!this.UnloadWrapper(doc)) return false;
 
 				doc.Text = wrapper.ResourceName;
@@ -455,6 +460,15 @@ namespace SimPe
 			ctrls.Clear();
 		}
 
+		void ClearControls(Control c)
+		{
+			c.Tag = null;
+			foreach (Control cc in c.Controls)							
+				ClearControls(cc);
+			
+			c.Controls.Clear();
+		}
+
 		/// <summary>
 		/// Call this if you want to unload a Wrapper
 		/// </summary>
@@ -471,8 +485,12 @@ namespace SimPe
 				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = this.GetResourceFromDocument(doc);
 				RemoveResource(fii, wrapper);
 
-				if (multi) DisposeSubControls(doc.Controls);
-				doc.Controls.Clear();						
+				if (multi) 
+				{
+					DisposeSubControls(doc.Controls);
+					ClearControls(doc);
+				}
+				else doc.Controls.Clear();						
 				
 				this.UnlinkWrapper(wrapper);
 			}
@@ -598,6 +616,8 @@ namespace SimPe
 						}
 					}
 			}
-		}		
+		}
+
+		
 	}
 }
