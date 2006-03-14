@@ -607,6 +607,34 @@ namespace SimPe.Plugin
 		}
 
 		/// <summary>
+		/// Add all Files stored in the passed package
+		/// </summary>
+		/// <param name="package">The package File</param>
+		/// <param name="type">Resources of this Type will get added</param>
+		/// <param name="overwrite">true, if an existing Instance of that File should be overwritten</param>
+		public void AddTypesIndexFromPackage(SimPe.Interfaces.Files.IPackageFile package, uint type, bool overwrite)
+		{
+			if (package==null) return;
+
+			package.Persistent = true;			
+			if (package.FileName!=null) 
+			{
+				if ((this.Contains(package.FileName.Trim().ToLower())) && !overwrite) return;
+				addedfilenames.Add(package.FileName.Trim().ToLower());
+			}
+
+			uint local = GetLocalGroup(package);
+
+			foreach (Interfaces.Files.IPackedFileDescriptor pfd in package.Index) 
+			{
+				if (pfd.Type!=type) continue;
+				AddIndexFromPfd(pfd, package, local);
+			}
+
+			package.Persistent = false;
+		}
+
+		/// <summary>
 		/// Add a Filedescriptor to the Index
 		/// </summary>
 		/// <param name="pfd">The Descriptor</param>

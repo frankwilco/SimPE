@@ -86,6 +86,7 @@ namespace SimPe.PackedFiles
 			sdescprovider = new SimPe.Providers.SimDescriptions(simnames, simfamilynames);
 			skinprovider = new SimPe.Providers.Skins();
 			lotprov = new SimPe.Providers.LotProvider();
+			sdescprovider.ChangedPackage += new EventHandler(lotprov.sdescprovider_ChangedPackage);
 			
 			tools = new ArrayList();
 			toolsp = new ArrayList();
@@ -435,7 +436,7 @@ namespace SimPe.PackedFiles
 			}
 		}
 
-		#endregion
+		#endregion		
 	}
 }
 

@@ -153,12 +153,13 @@ namespace SimPe
 					} 
 					else 
 					{
-						string[] part = System.IO.Path.GetFileNameWithoutExtension(filename).Split("-".ToCharArray(), 3);
+						string[] part = System.IO.Path.GetFileNameWithoutExtension(filename).Split("-".ToCharArray(), 4);
 						try 
 						{
-							pfd.SubType = Convert.ToUInt32(part[0].Trim(), 16);
-							pfd.Group = Convert.ToUInt32(part[1].Trim(), 16);
-							pfd.Instance = Convert.ToUInt32(part[2].Trim(), 16);
+							pfd.Type = Convert.ToUInt32(part[0].Trim(), 16);
+							pfd.SubType = Convert.ToUInt32(part[1].Trim(), 16);
+							pfd.Group = Convert.ToUInt32(part[2].Trim(), 16);
+							pfd.Instance = Convert.ToUInt32(part[3].Trim(), 16);
 						} 
 						catch (Exception) {
 							part = System.IO.Path.GetFileNameWithoutExtension(filename).Split("-".ToCharArray(), 5);

@@ -439,6 +439,16 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 
+		public SimPe.Interfaces.Providers.ILotItem[] BusinessList
+		{
+			get 
+			{
+				if ((uint)this.Version < (uint)SDescVersions.Business) return new SimPe.Interfaces.Providers.ILotItem[0];
+
+				return FileTable.ProviderRegistry.LotProvider.FindLotsOwnedBySim(this.Instance);
+			}
+		}
+
 		public override string DescriptionHeader
 		{
 			get

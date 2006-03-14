@@ -904,6 +904,24 @@ namespace SimPe
 			}
 		}
 
+		/// <summary>
+		/// Returns filename of the Main Neighborhood
+		/// </summary>
+		/// <param name="flname"></param>
+		/// <returns></returns>
+		public static string GetMainNeighborhoodFile(string filename) 
+		{
+			if (filename==null) return "";
+			string flname = System.IO.Path.GetFileName(filename);
+			flname = flname.Trim().ToLower();
+
+			if (flname.EndsWith("neighborhood.package")) return filename;	
+			flname = System.IO.Path.GetFileNameWithoutExtension(flname);
+			string[] parts = flname.Split(new char[] {'_'}, 2);
+			if (parts.Length==0) return filename;
+			return System.IO.Path.Combine(System.IO.Path.GetDirectoryName(filename), parts[0]+"_Neighborhood.package");
+		}
+
 		
 		/// <summary>
 		/// Returns true if this is a Neighborhood File

@@ -16,15 +16,21 @@ namespace SimPe.Plugin
 				sdsc = null;
 			}
 		}
-		int appraisal;
+		int loyalty;
 		public int LoyaltyScore
 		{
-			get {return appraisal;}
-			set {appraisal = value;}
+			get {return loyalty;}
+			set {loyalty = value;}
 		}
 
-		int loyalty;
-		public int DisplayedLoyalty
+		public int LoyaltyStars
+		{
+			get {return (int)Math.Ceiling((float)LoyaltyScore / 200.0);}
+			set {LoyaltyScore = (value * 200);}
+		}
+
+		int lloyalty;
+		public int LoadedLoyalty
 		{
 			get {return loyalty;}
 			set {loyalty = value;}
@@ -59,9 +65,9 @@ namespace SimPe.Plugin
 		internal void Unserialize(System.IO.BinaryReader reader)
 		{	
 			SimInstance = reader.ReadUInt16();
-			appraisal = reader.ReadInt32();
-			data = reader.ReadBytes(data.Length);
 			loyalty = reader.ReadInt32();
+			data = reader.ReadBytes(data.Length);
+			lloyalty = reader.ReadInt32();
 
 			endpos = reader.BaseStream.Position;
 			
@@ -70,9 +76,9 @@ namespace SimPe.Plugin
 		internal  void Serialize(System.IO.BinaryWriter writer) 
 		{		
 			writer.Write(siminst);
-			writer.Write(appraisal);
-			writer.Write(data);
 			writer.Write(loyalty);
+			writer.Write(data);
+			writer.Write(this.LoyaltyStars);
 		}
 
 		public override string ToString()
@@ -81,7 +87,7 @@ namespace SimPe.Plugin
 			if (SimDescription!=null) 
 				s = SimDescription.SimName+" "+SimDescription.SimFamilyName;
 
-			return Helper.HexString((ushort)endpos)+": "+s + " (0x"+Helper.HexString(SimInstance)+"): "+" "+loyalty.ToString()+" "+appraisal.ToString();
+			return /*Helper.HexString((ushort)endpos)+": "+*/s + " (0x"+Helper.HexString(SimInstance)+"): "+" "+loyalty.ToString()+" ("+lloyalty.ToString()+")";
 		}
 
 	}

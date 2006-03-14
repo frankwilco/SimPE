@@ -41,6 +41,7 @@ namespace SimPe.Plugin
 		{
 			get 
 			{
+				FileTable.ProviderRegistry.LotProvider.LoadingLot += new SimPe.Interfaces.Providers.LoadLotData(LotProvider_LoadingLot);
 				IWrapper[] wrappers = {
 										  new Plugin.ExtNgbh(),
 										  new Plugin.Ngbh(this.LinkedProvider),
@@ -82,5 +83,22 @@ namespace SimPe.Plugin
 
 
 		#endregion
+
+		private void LotProvider_LoadingLot(object sender, SimPe.Interfaces.Providers.ILotItem item)
+		{
+			SimPe.Interfaces.Files.IPackageFile pkg = FileTable.ProviderRegistry.SimDescriptionProvider.BasePackage;
+			if (pkg!=null)
+			{
+				SimPe.Providers.LotProvider.LotItem li = item as SimPe.Providers.LotProvider.LotItem;
+				//SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pkg.FindFile(0x0BF999E7, 0, Data.MetaData.LOCAL_GROUP, item.Instance);
+				if (item.LtxtFileIndexItem!=null)
+				{
+					SimPe.Plugin.Ltxt ltxt = new Ltxt();
+					ltxt.ProcessData(item.LtxtFileIndexItem);
+					item.Tags.Add(ltxt);
+					li.Owner = ltxt.OwnerInstance;
+				}
+			}
+		}
 	}
 }

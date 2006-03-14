@@ -39,7 +39,32 @@ namespace SimPe.Interfaces.Providers
 		{
 			get;
 		}
+
+		object FindTag(Type t);
+		System.Collections.ArrayList Tags
+		{
+			get;
+		}
+
+		uint Owner
+		{
+			get;
+		}
+
+		SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem LtxtFileIndexItem
+		{
+			get;
+		}
+
+		SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem BnfoFileIndexItem
+		{
+			get;
+		}
+
 	}
+
+	public delegate void LoadLotData(object sender, ILotItem item);
+
 	/// <summary>
 	/// Interface to obtain Lot Informations
 	/// </summary>
@@ -66,5 +91,9 @@ namespace SimPe.Interfaces.Providers
 		}
 
 		SimPe.Interfaces.Providers.ILotItem FindLot(uint inst);
+		SimPe.Interfaces.Providers.ILotItem[] FindLotsOwnedBySim(uint siminst);
+
+		event SimPe.Interfaces.Providers.LoadLotData LoadingLot;
+		
 	}
 }

@@ -294,9 +294,17 @@ namespace SimPe
 		{
 			if (Helper.IsNeighborhoodFile(FileName) && (Helper.WindowsRegistry.LoadMetaInfo))
 			{
+				SimPe.Interfaces.Files.IPackageFile pkg = Package;
+				try 
+				{
+					string mname = Helper.GetMainNeighborhoodFile(pkg.SaveFileName);
+					if (mname != pkg.SaveFileName)
+						pkg = SimPe.Packages.GeneratableFile.LoadFromFile(mname);
+				} 
+				catch {}
+				FileTable.ProviderRegistry.SimFamilynameProvider.BasePackage = pkg;
+				FileTable.ProviderRegistry.SimDescriptionProvider.BasePackage = pkg;				
 				FileTable.ProviderRegistry.SimNameProvider.BaseFolder = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(FileName), "Characters");
-				FileTable.ProviderRegistry.SimFamilynameProvider.BasePackage = Package;
-				FileTable.ProviderRegistry.SimDescriptionProvider.BasePackage = Package;
 				FileTable.ProviderRegistry.LotProvider.BaseFolder  = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(FileName), "Lots");				
 			} 
 			else 

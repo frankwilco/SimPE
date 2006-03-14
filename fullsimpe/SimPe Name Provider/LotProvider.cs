@@ -35,16 +35,44 @@ namespace SimPe.Providers
 	/// </summary>
 	public class LotProvider : StoppableThread, SimPe.Interfaces.Providers.ILotProvider
 	{
-		public class LotItem : SimPe.Interfaces.Providers.ILotItem
+		public class LotItem : SimPe.Interfaces.Providers.ILotItem, System.IDisposable
 		{
 			string name;
 			System.Drawing.Image img;
-			uint inst;
-			internal LotItem(uint inst, string name, System.Drawing.Image img)
+			uint inst, owner;
+			
+			System.Collections.ArrayList tags;
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii;
+			internal LotItem(uint inst, string name, System.Drawing.Image img, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii)
 			{
 				this.name = name;
 				this.img = img;
 				this.inst = inst;
+				owner = 0;
+				tags = new ArrayList();
+				this.fii = fii;
+			}
+
+			public object FindTag(System.Type tp)
+			{
+				foreach (object o in tags)				
+				{
+					if (o==null) continue;
+					if (tp == o.GetType()) return o;
+				}
+
+				return null;				
+			}
+
+			public System.Collections.ArrayList Tags
+			{
+				get {return tags;}
+			}
+
+			public uint Owner
+			{
+				get {return owner;}
+				set {owner = value;}
 			}
 
 			public uint Instance
@@ -72,7 +100,37 @@ namespace SimPe.Providers
 				return name;
 			}
 
+			public SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem LtxtFileIndexItem
+			{
+				get {return fii;}
+				set {fii = value;}
+			}
 
+			public SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem BnfoFileIndexItem
+			{
+				get {
+					if (LtxtFileIndexItem==null) return null;
+
+					
+					SimPe.Interfaces.Files.IPackedFileDescriptor pfd = LtxtFileIndexItem.Package.FindFile(0x104F6A6E, 0, Data.MetaData.LOCAL_GROUP, this.Instance);
+					if (pfd==null) return null;
+
+					return new SimPe.Plugin.FileIndexItem(pfd, LtxtFileIndexItem.Package);
+				}			
+			}
+
+			#region IDisposable Member
+
+			public void Dispose()
+			{
+				img = null;
+				name = null;
+				if (tags!=null) tags.Clear();
+				tags = null;
+				fii = null;
+			}
+
+			#endregion
 		}
 		Hashtable content;
 		/// <summary>
@@ -148,10 +206,14 @@ namespace SimPe.Providers
 			return Helper.StringToUInt32(flname, 0, 10);
 		}
 
+		
+		public event SimPe.Interfaces.Providers.LoadLotData LoadingLot;
 		protected override void StartThread()
 		{			
 			lotfi.Load();
 			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = lotfi.FindFile(0x856DDBAC, Data.MetaData.LOCAL_GROUP, 0x35CA0002, null);
+			bool run = Wait.Running;
+			if (!run) Wait.Start();
 			Wait.SubStart(items.Length);
 			try 
 			{
@@ -180,7 +242,14 @@ namespace SimPe.Providers
 					SimPe.PackedFiles.Wrapper.Picture pic = new SimPe.PackedFiles.Wrapper.Picture();
 					pic.ProcessData(item);
 
-					LotItem li = new LotItem(GetInstanceFromFilename(pkg.SaveFileName), name, pic.Image);
+					uint inst = GetInstanceFromFilename(pkg.SaveFileName);
+
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] ltxtitems = ngbhfi.FindFile(0x0BF999E7, Data.MetaData.LOCAL_GROUP, inst, null);
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem ltxt = null;
+					if (ltxtitems.Length>0) ltxt = ltxtitems[0];
+
+					LotItem li = new LotItem(inst, name, pic.Image, ltxt);
+					if (LoadingLot!=null) LoadingLot(this, li);
 					content[li.Instance] = li;
 					ct++;
 					if (ct%step==0)
@@ -198,6 +267,7 @@ namespace SimPe.Providers
 			finally 
 			{
 				Wait.SubStop();
+				if (!run)Wait.Stop();
 			}
 				
 			ended.Set();
@@ -205,9 +275,29 @@ namespace SimPe.Providers
 		}
 
 		
-		object sync = new object();
+		object sync = new object();		
 
-		
+		void AddHoodsToFileIndex()
+		{
+			string mydir = System.IO.Directory.GetParent(dir).FullName;			
+			string[] names = System.IO.Directory.GetFiles(mydir, "N*.package");
+			foreach (string name in names)
+			{
+				SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromFile(name);
+				ngbhfi.AddTypesIndexFromPackage(pkg, 0x0BF999E7, false);
+			}
+		}
+
+		void AddLotsToFileIndex()
+		{
+			//ngbhfi.AddIndexFromFolder(dir);
+			string[] names = System.IO.Directory.GetFiles(dir, "N*.package");
+			foreach (string name in names)
+			{
+				SimPe.Packages.GeneratableFile pkg = SimPe.Packages.GeneratableFile.LoadFromFile(name);
+				ngbhfi.AddTypesIndexFromPackage(pkg, 0x856DDBAC, false);				
+			}
+		}
 
 		/// <summary>
 		/// Loads all package Files in the directory and scans them for Name Informations
@@ -215,21 +305,40 @@ namespace SimPe.Providers
 		public void LoadLotsFromFolder() 
 		{
 			WaitForEnd();
-
 			content = new Hashtable();
-			if (!Directory.Exists(dir)) return;
-			ngbhfi.Clear();
-			ngbhfi.AddIndexFromFolder(dir);
-							
+			
 			if (Helper.StartedGui==Executable.Classic) return;
+			if (!Directory.Exists(dir)) return;
+
+			Wait.SubStart();
+			ngbhfi.Clear();
+
+			AddLotsToFileIndex();			
+			AddHoodsToFileIndex();
+			Wait.SubStop();
+							
+			
 			this.ExecuteThread(ThreadPriority.AboveNormal, "Lot Provider", true, true);						
 		}
 
 		public SimPe.Interfaces.Providers.ILotItem FindLot(uint inst)
 		{
 			object o = StoredData[inst];
-			if (o==null) return new LotItem(inst, SimPe.Localization.GetString("Unknown"), null);
+			if (o==null) return new LotItem(inst, SimPe.Localization.GetString("Unknown"), null, null);
 			return o as SimPe.Interfaces.Providers.ILotItem;
+		}
+
+		public SimPe.Interfaces.Providers.ILotItem[] FindLotsOwnedBySim(uint siminst)
+		{
+			ArrayList list = new ArrayList();
+
+			Hashtable ht = this.StoredData;
+			foreach (SimPe.Interfaces.Providers.ILotItem item in ht.Values)
+				if (item.Owner == siminst) list.Add(item);
+
+			SimPe.Interfaces.Providers.ILotItem[] ret = new SimPe.Interfaces.Providers.ILotItem[list.Count];
+			list.CopyTo(ret);
+			return ret;
 		}
 
 		public string[] GetNames()
@@ -260,5 +369,9 @@ namespace SimPe.Providers
 		}
 
 		
+		internal void sdescprovider_ChangedPackage(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
