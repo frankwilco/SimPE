@@ -86,6 +86,15 @@ namespace SimPe.Interfaces.Scenegraph
 		void AddIndexFromPackage(SimPe.Interfaces.Files.IPackageFile package);
 
 		/// <summary>
+		/// Add all Files stored in the passed package
+		/// </summary>
+		/// <param name="package">The package File</param>
+		/// <param name="type">Resources of this Type will get added</param>
+		/// <param name="overwrite">true, if an existing Instance of that File should be overwritten</param>
+		void AddTypesIndexFromPackage(SimPe.Interfaces.Files.IPackageFile package, uint type, bool overwrite);
+		
+
+		/// <summary>
 		/// Add a Filedescriptor to the Index
 		/// </summary>
 		/// <param name="pfd">The Descriptor</param>

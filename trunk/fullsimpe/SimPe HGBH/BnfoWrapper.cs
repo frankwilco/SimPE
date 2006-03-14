@@ -46,6 +46,17 @@ namespace SimPe.Plugin
 		}
 
 		uint level1, level2;
+		public uint CurrentBusinessState
+		{
+			get {return level1;}
+			set {level1 = value;}
+		}
+		public uint MaxSeenBusinessState
+		{
+			get {return level2;}
+			set {level2 = value;}
+		}
+
 		uint unk1, unk2;
 		uint empct;
 

@@ -289,6 +289,11 @@
                     Project = "{37D97490-DC9F-4DB7-9215-998C6BC06078}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "SimPe Name Provider"
+                    Project = "{38259F2B-9C90-48BE-A519-E4EEC62C242C}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>

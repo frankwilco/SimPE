@@ -386,6 +386,16 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "SimBusinessList.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SimBusinessList.resx"
+                    DependentUpon = "SimBusinessList.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "SimComboBox.cs"
                     SubType = "UserControl"
                     BuildAction = "Compile"

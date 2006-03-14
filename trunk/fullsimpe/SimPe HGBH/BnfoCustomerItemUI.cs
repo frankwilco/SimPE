@@ -172,7 +172,7 @@ namespace SimPe.Plugin
 			{
 				tb.Text = Helper.BytesToHexList(item.Data);
 				tbap.Text = item.LoyaltyScore.ToString();
-				this.tbloy.Text = item.DisplayedLoyalty.ToString();
+				this.tbloy.Text = item.LoyaltyStars.ToString();
 			} 
 			else 
 			{
@@ -196,7 +196,10 @@ namespace SimPe.Plugin
 			if (intern) return;
 			if (item==null) return;
 
-			item.DisplayedLoyalty = Helper.StringToInt32(tbloy.Text, item.DisplayedLoyalty, 10);
+			item.LoyaltyStars = Helper.StringToInt32(tbloy.Text, item.LoyaltyStars, 10);
+			intern = true;
+			this.tbap.Text = item.LoyaltyScore.ToString();
+			intern = false;
 		}
 
 		private void tbap_TextChanged(object sender, System.EventArgs e)
@@ -205,6 +208,9 @@ namespace SimPe.Plugin
 			if (item==null) return;
 
 			item.LoyaltyScore = Helper.StringToInt32(tbap.Text, item.LoyaltyScore, 10);
+			intern = true;
+			this.tbloy.Text = item.LoyaltyStars.ToString();
+			intern = false;
 		}
 	}
 }

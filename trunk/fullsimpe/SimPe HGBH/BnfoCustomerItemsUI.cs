@@ -115,6 +115,12 @@ namespace SimPe.Plugin
 			}
 		}
 
+		public new void Refresh()
+		{
+			SetContent();
+			base.Refresh();
+		}
+
 		public event System.EventHandler SelectedItemChanged;
 		private void lb_SelectedIndexChanged(object sender, System.EventArgs e)
 		{

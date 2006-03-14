@@ -222,6 +222,10 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label14;
 		private TD.SandBar.MenuButtonItem miOpenMem;
 		private TD.SandBar.MenuButtonItem miOpenBadge;
+		private SimPe.PackedFiles.Wrapper.SimBusinessList sblb;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.LinkLabel llep3openinfo;
+		private System.Windows.Forms.PictureBox pictureBox1;
 
 		
 		System.Resources.ResourceManager strresources;
@@ -504,6 +508,10 @@ namespace SimPe.PackedFiles.UserInterface
 			this.lbTraits = new System.Windows.Forms.CheckedListBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.pnEP3 = new System.Windows.Forms.Panel();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.llep3openinfo = new System.Windows.Forms.LinkLabel();
+			this.label15 = new System.Windows.Forms.Label();
+			this.sblb = new SimPe.PackedFiles.Wrapper.SimBusinessList();
 			this.tbEp3Salery = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
@@ -4918,6 +4926,10 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnEP3.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("pnEP3.AutoScrollMinSize")));
 			this.pnEP3.BackColor = System.Drawing.Color.Transparent;
 			this.pnEP3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnEP3.BackgroundImage")));
+			this.pnEP3.Controls.Add(this.pictureBox1);
+			this.pnEP3.Controls.Add(this.llep3openinfo);
+			this.pnEP3.Controls.Add(this.label15);
+			this.pnEP3.Controls.Add(this.sblb);
 			this.pnEP3.Controls.Add(this.tbEp3Salery);
 			this.pnEP3.Controls.Add(this.label14);
 			this.pnEP3.Controls.Add(this.label12);
@@ -4937,6 +4949,96 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pnEP3.TabIndex = ((int)(resources.GetObject("pnEP3.TabIndex")));
 			this.pnEP3.Text = resources.GetString("pnEP3.Text");
 			this.pnEP3.Visible = ((bool)(resources.GetObject("pnEP3.Visible")));
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.AccessibleDescription = resources.GetString("pictureBox1.AccessibleDescription");
+			this.pictureBox1.AccessibleName = resources.GetString("pictureBox1.AccessibleName");
+			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pictureBox1.Anchor")));
+			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+			this.pictureBox1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pictureBox1.Dock")));
+			this.pictureBox1.Enabled = ((bool)(resources.GetObject("pictureBox1.Enabled")));
+			this.pictureBox1.Font = ((System.Drawing.Font)(resources.GetObject("pictureBox1.Font")));
+			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.pictureBox1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pictureBox1.ImeMode")));
+			this.pictureBox1.Location = ((System.Drawing.Point)(resources.GetObject("pictureBox1.Location")));
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pictureBox1.RightToLeft")));
+			this.pictureBox1.Size = ((System.Drawing.Size)(resources.GetObject("pictureBox1.Size")));
+			this.pictureBox1.SizeMode = ((System.Windows.Forms.PictureBoxSizeMode)(resources.GetObject("pictureBox1.SizeMode")));
+			this.pictureBox1.TabIndex = ((int)(resources.GetObject("pictureBox1.TabIndex")));
+			this.pictureBox1.TabStop = false;
+			this.pictureBox1.Text = resources.GetString("pictureBox1.Text");
+			this.pictureBox1.Visible = ((bool)(resources.GetObject("pictureBox1.Visible")));
+			// 
+			// llep3openinfo
+			// 
+			this.llep3openinfo.AccessibleDescription = resources.GetString("llep3openinfo.AccessibleDescription");
+			this.llep3openinfo.AccessibleName = resources.GetString("llep3openinfo.AccessibleName");
+			this.llep3openinfo.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llep3openinfo.Anchor")));
+			this.llep3openinfo.AutoSize = ((bool)(resources.GetObject("llep3openinfo.AutoSize")));
+			this.llep3openinfo.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llep3openinfo.Dock")));
+			this.llep3openinfo.Enabled = ((bool)(resources.GetObject("llep3openinfo.Enabled")));
+			this.llep3openinfo.Font = ((System.Drawing.Font)(resources.GetObject("llep3openinfo.Font")));
+			this.llep3openinfo.Image = ((System.Drawing.Image)(resources.GetObject("llep3openinfo.Image")));
+			this.llep3openinfo.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llep3openinfo.ImageAlign")));
+			this.llep3openinfo.ImageIndex = ((int)(resources.GetObject("llep3openinfo.ImageIndex")));
+			this.llep3openinfo.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llep3openinfo.ImeMode")));
+			this.llep3openinfo.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llep3openinfo.LinkArea")));
+			this.llep3openinfo.Location = ((System.Drawing.Point)(resources.GetObject("llep3openinfo.Location")));
+			this.llep3openinfo.Name = "llep3openinfo";
+			this.llep3openinfo.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llep3openinfo.RightToLeft")));
+			this.llep3openinfo.Size = ((System.Drawing.Size)(resources.GetObject("llep3openinfo.Size")));
+			this.llep3openinfo.TabIndex = ((int)(resources.GetObject("llep3openinfo.TabIndex")));
+			this.llep3openinfo.TabStop = true;
+			this.llep3openinfo.Text = resources.GetString("llep3openinfo.Text");
+			this.llep3openinfo.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llep3openinfo.TextAlign")));
+			this.llep3openinfo.Visible = ((bool)(resources.GetObject("llep3openinfo.Visible")));
+			this.llep3openinfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llep3openinfo_LinkClicked);
+			// 
+			// label15
+			// 
+			this.label15.AccessibleDescription = resources.GetString("label15.AccessibleDescription");
+			this.label15.AccessibleName = resources.GetString("label15.AccessibleName");
+			this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label15.Anchor")));
+			this.label15.AutoSize = ((bool)(resources.GetObject("label15.AutoSize")));
+			this.label15.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label15.Dock")));
+			this.label15.Enabled = ((bool)(resources.GetObject("label15.Enabled")));
+			this.label15.Font = ((System.Drawing.Font)(resources.GetObject("label15.Font")));
+			this.label15.Image = ((System.Drawing.Image)(resources.GetObject("label15.Image")));
+			this.label15.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label15.ImageAlign")));
+			this.label15.ImageIndex = ((int)(resources.GetObject("label15.ImageIndex")));
+			this.label15.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label15.ImeMode")));
+			this.label15.Location = ((System.Drawing.Point)(resources.GetObject("label15.Location")));
+			this.label15.Name = "label15";
+			this.label15.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label15.RightToLeft")));
+			this.label15.Size = ((System.Drawing.Size)(resources.GetObject("label15.Size")));
+			this.label15.TabIndex = ((int)(resources.GetObject("label15.TabIndex")));
+			this.label15.Text = resources.GetString("label15.Text");
+			this.label15.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label15.TextAlign")));
+			this.label15.Visible = ((bool)(resources.GetObject("label15.Visible")));
+			// 
+			// sblb
+			// 
+			this.sblb.AccessibleDescription = resources.GetString("sblb.AccessibleDescription");
+			this.sblb.AccessibleName = resources.GetString("sblb.AccessibleName");
+			this.sblb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("sblb.Anchor")));
+			this.sblb.AutoScroll = ((bool)(resources.GetObject("sblb.AutoScroll")));
+			this.sblb.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("sblb.AutoScrollMargin")));
+			this.sblb.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("sblb.AutoScrollMinSize")));
+			this.sblb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("sblb.BackgroundImage")));
+			this.sblb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("sblb.Dock")));
+			this.sblb.Enabled = ((bool)(resources.GetObject("sblb.Enabled")));
+			this.sblb.Font = ((System.Drawing.Font)(resources.GetObject("sblb.Font")));
+			this.sblb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("sblb.ImeMode")));
+			this.sblb.Location = ((System.Drawing.Point)(resources.GetObject("sblb.Location")));
+			this.sblb.Name = "sblb";
+			this.sblb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("sblb.RightToLeft")));
+			this.sblb.SimDescription = null;
+			this.sblb.Size = ((System.Drawing.Size)(resources.GetObject("sblb.Size")));
+			this.sblb.TabIndex = ((int)(resources.GetObject("sblb.TabIndex")));
+			this.sblb.Visible = ((bool)(resources.GetObject("sblb.Visible")));
+			this.sblb.SelectedBusinessChanged += new System.EventHandler(this.sblb_SelectedBusinessChanged);
 			// 
 			// tbEp3Salery
 			// 
@@ -5140,11 +5242,11 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.pnEP3);
 			this.Controls.Add(this.pnInt);
 			this.Controls.Add(this.toolBar1);
 			this.Controls.Add(this.pnChar);
 			this.Controls.Add(this.pnSkill);
-			this.Controls.Add(this.pnEP3);
 			this.Controls.Add(this.pnEP2);
 			this.Controls.Add(this.pnRel);
 			this.Controls.Add(this.pnId);
@@ -5166,11 +5268,11 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Controls.SetChildIndex(this.pnId, 0);
 			this.Controls.SetChildIndex(this.pnRel, 0);
 			this.Controls.SetChildIndex(this.pnEP2, 0);
-			this.Controls.SetChildIndex(this.pnEP3, 0);
 			this.Controls.SetChildIndex(this.pnSkill, 0);
 			this.Controls.SetChildIndex(this.pnChar, 0);
 			this.Controls.SetChildIndex(this.toolBar1, 0);
 			this.Controls.SetChildIndex(this.pnInt, 0);
+			this.Controls.SetChildIndex(this.pnEP3, 0);
 			this.pnId.ResumeLayout(false);
 			this.pnSkill.ResumeLayout(false);
 			this.pnChar.ResumeLayout(false);
@@ -6430,6 +6532,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbEp3Salery.Text = sdesc.Business.Salary.ToString();
 
 			this.cbEp3Asgn.SelectedValue = sdesc.Business.Assignment;
+			this.sblb.SimDescription = sdesc;
 		}
 		
 
@@ -6494,6 +6597,25 @@ namespace SimPe.PackedFiles.UserInterface
 		}
 
 		#endregion
+
+		private void sblb_SelectedBusinessChanged(object sender, System.EventArgs e)
+		{
+			this.llep3openinfo.Enabled = (sblb.SelectedBusiness!=null);
+			if (sblb.SelectedBusiness!=null)
+			{
+				if (sblb.SelectedBusiness.BnfoFileIndexItem==null) llep3openinfo.Enabled = false;
+			}
+		}
+
+
+		private void llep3openinfo_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			if (sblb.SelectedBusiness==null) return;
+			
+			SimPe.RemoteControl.OpenPackedFile(sblb.SelectedBusiness.BnfoFileIndexItem);
+		}
+
+		
 
 		
 

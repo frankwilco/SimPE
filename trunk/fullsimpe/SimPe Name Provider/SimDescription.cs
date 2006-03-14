@@ -110,7 +110,7 @@ namespace SimPe.Providers
 			foreach (IPackedFileDescriptor pfd in files) 
 			{
 				//SDesc sdesc = new SDesc(this.names, this.famnames, this);
-				ExtSDesc sdesc = new ExtSDesc();
+				LinkedSDesc sdesc = new LinkedSDesc();
 				sdesc.ProcessData(pfd, BasePackage);
 
 				if (bysimid.ContainsKey((uint)sdesc.SimId) || byinstance.ContainsKey((ushort)sdesc.Instance))
@@ -131,7 +131,7 @@ namespace SimPe.Providers
 			Hashtable ht = SimPe.FileTable.ProviderRegistry.SimDescriptionProvider.SimInstance;
 			ArrayList list = new ArrayList();
 			firstcustum = null;
-			foreach (SimPe.PackedFiles.Wrapper.ExtSDesc sdesc in ht.Values)
+			foreach (SimPe.PackedFiles.Wrapper.LinkedSDesc sdesc in ht.Values)
 			{
 				string n = sdesc.HouseholdName;
 				if (n==null) n=SimPe.Localization.GetString("Unknown");
