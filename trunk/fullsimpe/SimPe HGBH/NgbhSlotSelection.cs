@@ -61,46 +61,82 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(NgbhSlotSelection));
 			this.lv = new SimPe.Plugin.NgbhSlotListView();
 			this.cb = new Ambertation.Windows.Forms.EnumComboBox();
 			this.SuspendLayout();
 			// 
 			// lv
 			// 
-			this.lv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lv.AccessibleDescription = resources.GetString("lv.AccessibleDescription");
+			this.lv.AccessibleName = resources.GetString("lv.AccessibleName");
+			this.lv.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lv.Anchor")));
+			this.lv.AutoScroll = ((bool)(resources.GetObject("lv.AutoScroll")));
+			this.lv.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("lv.AutoScrollMargin")));
+			this.lv.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("lv.AutoScrollMinSize")));
+			this.lv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lv.BackgroundImage")));
+			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
 			this.lv.DockPadding.All = 1;
-			this.lv.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lv.Location = new System.Drawing.Point(0, 24);
+			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
+			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
+			this.lv.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lv.ImeMode")));
+			this.lv.Location = ((System.Drawing.Point)(resources.GetObject("lv.Location")));
 			this.lv.Name = "lv";
 			this.lv.NgbhResource = null;
-			this.lv.Size = new System.Drawing.Size(424, 176);
+			this.lv.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lv.RightToLeft")));
+			this.lv.Size = ((System.Drawing.Size)(resources.GetObject("lv.Size")));
 			this.lv.Slot = null;
 			this.lv.Slots = null;
 			this.lv.SlotType = SimPe.Data.NeighborhoodSlots.LotsIntern;
-			this.lv.TabIndex = 0;
+			this.lv.TabIndex = ((int)(resources.GetObject("lv.TabIndex")));
+			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
 			this.lv.SelectedSlotChanged += new System.EventHandler(this.lv_SelectedSlotChanged);
 			// 
 			// cb
 			// 
-			this.cb.Dock = System.Windows.Forms.DockStyle.Top;
+			this.cb.AccessibleDescription = resources.GetString("cb.AccessibleDescription");
+			this.cb.AccessibleName = resources.GetString("cb.AccessibleName");
+			this.cb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cb.Anchor")));
+			this.cb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cb.BackgroundImage")));
+			this.cb.DefaultText = resources.GetString("cb.DefaultText");
+			this.cb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cb.Dock")));
 			this.cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cb.Enabled = ((bool)(resources.GetObject("cb.Enabled")));
 			this.cb.Enum = null;
-			this.cb.Location = new System.Drawing.Point(0, 0);
+			this.cb.Font = ((System.Drawing.Font)(resources.GetObject("cb.Font")));
+			this.cb.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.cb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cb.ImeMode")));
+			this.cb.IntegralHeight = ((bool)(resources.GetObject("cb.IntegralHeight")));
+			this.cb.ItemHeight = ((int)(resources.GetObject("cb.ItemHeight")));
+			this.cb.Location = ((System.Drawing.Point)(resources.GetObject("cb.Location")));
+			this.cb.MaxDropDownItems = ((int)(resources.GetObject("cb.MaxDropDownItems")));
+			this.cb.MaxLength = ((int)(resources.GetObject("cb.MaxLength")));
 			this.cb.Name = "cb";
 			this.cb.ResourceManager = null;
-			this.cb.Size = new System.Drawing.Size(424, 21);
-			this.cb.TabIndex = 1;
+			this.cb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cb.RightToLeft")));
+			this.cb.Size = ((System.Drawing.Size)(resources.GetObject("cb.Size")));
+			this.cb.TabIndex = ((int)(resources.GetObject("cb.TabIndex")));
+			this.cb.Text = resources.GetString("cb.Text");
+			this.cb.Visible = ((bool)(resources.GetObject("cb.Visible")));
 			this.cb.SelectedIndexChanged += new System.EventHandler(this.cb_SelectedIndexChanged);
 			// 
 			// NgbhSlotSelection
 			// 
+			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
+			this.AccessibleName = resources.GetString("$this.AccessibleName");
+			this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
+			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
+			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
+			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.Controls.Add(this.cb);
 			this.Controls.Add(this.lv);
-			this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
+			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
+			this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
+			this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
 			this.Name = "NgbhSlotSelection";
-			this.Size = new System.Drawing.Size(424, 200);
+			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
+			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
 			this.ResumeLayout(false);
 
 		}
@@ -137,6 +173,8 @@ namespace SimPe.Plugin
 			if (SelectedSlotChanged!=null) SelectedSlotChanged(this, e);
 		}
 
+					
+
 		public NgbhSlot SelectedSlot
 		{
 			get 
@@ -154,5 +192,7 @@ namespace SimPe.Plugin
 		}
 
 		public event EventHandler SelectedSlotChanged;
+
+		
 	}
 }

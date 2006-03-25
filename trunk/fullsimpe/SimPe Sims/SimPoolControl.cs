@@ -482,7 +482,11 @@ namespace SimPe.PackedFiles.Wrapper
 			this.cbhousehold.SelectedIndex = index;
 		}
 		
-
+		public new void Refresh()
+		{
+			this.UpdateContent();
+			base.Refresh();
+		}
 		
 	}
 }

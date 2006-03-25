@@ -135,8 +135,11 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write(unk1);
 			writer.Write(unk2);
 
-			foreach (ScorItem si in items)
-				si.Serialize(writer);
+			for (int i=0; i<items.Count; i++) 
+			{
+				ScorItem si = items[i];
+				si.Serialize(writer, (i==items.Count-1));
+			}
 		}
 		#endregion
 

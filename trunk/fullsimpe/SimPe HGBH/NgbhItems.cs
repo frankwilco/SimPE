@@ -29,6 +29,7 @@ namespace SimPe.Plugin.Collections
 	{
 		ArrayList list = new ArrayList();
 		NgbhSlotList parent;
+		Ngbh ngbh;
 		public NgbhSlotList Parent 
 		{
 			get {return parent;}
@@ -37,6 +38,7 @@ namespace SimPe.Plugin.Collections
 		internal NgbhItems(NgbhSlotList parent)
 		{
 			this.parent = parent;
+			if (parent!=null) ngbh = parent.Parent;
 			list = new ArrayList();
 		}
 
@@ -47,6 +49,13 @@ namespace SimPe.Plugin.Collections
 			return item;
 		}
 
+		public NgbhItem InsertNew(int index)
+		{
+			NgbhItem item = new NgbhItem(parent);
+			Insert(index, item);
+			return item;
+		}
+
 		public NgbhItem AddNew(SimMemoryType type)
 		{
 			NgbhItem item = new NgbhItem(parent, type);
@@ -54,24 +63,57 @@ namespace SimPe.Plugin.Collections
 			return item;
 		}
 
+		public NgbhItem InsertNew(int index, SimMemoryType type)
+		{
+			NgbhItem item = new NgbhItem(parent, type);
+			Insert(index, item);
+			return item;
+		}
+
 		public void Add(NgbhItem item)
 		{
 			list.Add(item);
+			if (ngbh!=null) ngbh.Changed = true;
+		}
+
+		public void Insert(int index, NgbhItem item)
+		{
+			list.Insert(index, item);
+			if (ngbh!=null) ngbh.Changed = true;
 		}
 
 		public void Remove(NgbhItem item)
 		{
 			list.Remove(item);
+			if (ngbh!=null) ngbh.Changed = true;
+		}
+
+		public void Remove(NgbhItem[] items)
+		{
+			foreach (NgbhItem item in items)
+				Remove(item);
+
+			if (ngbh!=null) ngbh.Changed = true;
+		}
+
+		public void Remove(NgbhItems items)
+		{
+			foreach (NgbhItem item in items)
+				Remove(item);
+
+			if (ngbh!=null) ngbh.Changed = true;
 		}
 
 		public void RemoveAt(int index)
 		{
 			list.RemoveAt(index);
+			if (ngbh!=null) ngbh.Changed = true;
 		}
 
 		public void Clear()
 		{
 			list.Clear();
+			if (ngbh!=null) ngbh.Changed = true;
 		}
 
 		public bool Contains(NgbhItem item)
@@ -85,12 +127,17 @@ namespace SimPe.Plugin.Collections
 			object o = list[i1];
 			list[i1] = list[i2];
 			list[i2] = o;
+
+			if (ngbh!=null) ngbh.Changed = true;
 		}
 
 		public NgbhItem this[int index]
 		{
 			get {return list[index] as NgbhItem;}
-			set {list[index] = value;}
+			set {
+				list[index] = value;
+				if (ngbh!=null) ngbh.Changed = true;
+			}
 		}
 
 		public int Count

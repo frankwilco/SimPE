@@ -1208,7 +1208,7 @@ namespace SimPe
 			{
 				XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
 				object o = rkf.GetValue("DeepSimTemplateScan", false);
-				return Convert.ToBoolean(o);
+				return Convert.ToBoolean(o) && DeepSimScan;
 			}
 			set
 			{

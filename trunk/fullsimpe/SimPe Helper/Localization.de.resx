@@ -1338,5 +1338,8 @@ Soll SimPE dennoch gestartet werden?</value>
     </data>  
     <data name="Savegames">
 		<value>Spielstände</value>
-    </data> 
+    </data>     
+    <data name="Max Relation to this Sim">
+		<value>Beziehung zu {name} maximieren</value>
+    </data>
 </root>

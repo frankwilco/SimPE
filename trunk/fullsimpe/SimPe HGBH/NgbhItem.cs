@@ -149,7 +149,13 @@ namespace SimPe.Plugin
 		public uint InventoryNumber
 		{
 			get {return unknown; }
-			set { unknown = value; }
+			set { 
+				if (unknown!=value)
+				{
+					unknown = value; 
+					if (parent!=null) parent.Changed = true;
+				}
+			}
 		}
 
 		protected SimPe.PackedFiles.Wrapper.ExtObjd objd = null;
@@ -175,6 +181,8 @@ namespace SimPe.Plugin
 					guid = value;
 					objd = null;
 					mci = null;
+
+					if (parent!=null) parent.Changed = true;
 				}
 			}
 		}
@@ -185,7 +193,10 @@ namespace SimPe.Plugin
 		public NgbhItemFlags Flags
 		{
 			get { return flags; }
-			set { flags = value; }
+			set { 
+				flags = value; 
+				if (parent!=null) parent.Changed = true;
+			}
 		}
 
 		/// <summary>
@@ -194,7 +205,10 @@ namespace SimPe.Plugin
 		public ushort[] Data 
 		{
 			get { return data; }
-			set { data = value; }
+			set { 
+				data = value; 
+				if (parent!=null) parent.Changed = true;
+			}
 		}
 
 		/// <summary>
@@ -304,6 +318,17 @@ namespace SimPe.Plugin
 			get 
 			{
 				return ((SimPe.Data.ObjectTypes)this.ObjectDataFile.Type == SimPe.Data.ObjectTypes.Memory);
+			}
+		}
+
+		/// <summary>
+		/// Extension by Theo. Returns true, if this Memory is a Spam Token
+		/// </summary>
+		public bool IsSpam
+		{
+			get
+			{
+				return NgbhMetaData.Memory.IsSpamMemory(this.guid);
 			}
 		}
 
@@ -450,6 +475,8 @@ namespace SimPe.Plugin
 			{
 				data[i] = reader.ReadUInt16();
 			}
+
+			if (parent!=null) parent.Changed = false;
 		}
 
 		/// <summary>
@@ -487,7 +514,9 @@ namespace SimPe.Plugin
 				data.CopyTo(tmp, 0);
 				data = tmp;
 			} 
-			data[slot] = val;			
+			data[slot] = val;	
+		
+			if (parent!=null) parent.Changed = true;
 		}
 
 		/// <summary>
@@ -589,6 +618,29 @@ namespace SimPe.Plugin
 		public void AddToParentA()
 		{
 			parentslot.ItemsA.Add(this);// = NgbhSlot.Add(parentslot.ItemsA, this);
+		}
+
+		public NgbhItem Clone()
+		{
+			return Clone(this.parent, this.parentslot);
+		}
+
+		public NgbhItem Clone(NgbhSlotList parentslot)
+		{
+			return Clone(this.parent, parentslot);
+		}
+
+		public NgbhItem Clone(Ngbh parent, NgbhSlotList parentslot)
+		{
+			NgbhItem ret = new NgbhItem(parentslot);
+
+			ret.guid = this.guid;
+			ret.data = this.data.Clone() as ushort[];
+			ret.flags = this.flags;
+			ret.flags2 = this.flags2;
+			ret.parent = parent;
+			ret.unknown = this.unknown;
+			return ret;
 		}
 	}
 }

@@ -339,6 +339,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "BnfoCustomerItemUI.de.resx"
+                    DependentUpon = "BnfoCustomerItemUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "BnfoCustomerItemUI.resx"
                     DependentUpon = "BnfoCustomerItemUI.cs"
                     BuildAction = "EmbeddedResource"
@@ -347,6 +352,11 @@
                     RelPath = "BnfoUI.cs"
                     SubType = "UserControl"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BnfoUI.de.resx"
+                    DependentUpon = "BnfoUI.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "BnfoUI.resx"
@@ -555,6 +565,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "NgbhSlotSelection.de.resx"
+                    DependentUpon = "NgbhSlotSelection.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "NgbhSlotSelection.resx"
                     DependentUpon = "NgbhSlotSelection.cs"
                     BuildAction = "EmbeddedResource"
@@ -649,6 +664,11 @@
                 />
                 <File
                     RelPath = "TattWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "TheosEnhancedNgbh.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

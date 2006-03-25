@@ -27,7 +27,7 @@ using System.Windows.Forms;
 namespace SimPe.PackedFiles.UserInterface
 {
 	/// <summary>
-	/// Zusammenfassung für SimDNAUI.
+	/// Zusammenfassung für ScorUI.
 	/// </summary>
 	public class ScorUI : 
 		//System.Windows.Forms.UserControl 
@@ -50,6 +50,8 @@ namespace SimPe.PackedFiles.UserInterface
 
 			this.Text = "Sim Scores";
 			this.Commited += new EventHandler(ScorUI_Commited);
+
+			this.CanCommit = false;
 		}
 
 		/// <summary> 
@@ -131,6 +133,7 @@ namespace SimPe.PackedFiles.UserInterface
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.lb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.lb.HorizontalScrollbar = true;
 			this.lb.IntegralHeight = false;
 			this.lb.Location = new System.Drawing.Point(8, 96);
 			this.lb.Name = "lb";
@@ -144,9 +147,15 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.tbunk1);
 			this.Controls.Add(this.label1);
+			this.DockPadding.Top = 24;
 			this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.Name = "ScorUI";
 			this.Size = new System.Drawing.Size(288, 272);
+			this.Controls.SetChildIndex(this.label1, 0);
+			this.Controls.SetChildIndex(this.tbunk1, 0);
+			this.Controls.SetChildIndex(this.label2, 0);
+			this.Controls.SetChildIndex(this.tbunk2, 0);
+			this.Controls.SetChildIndex(this.lb, 0);
 			this.ResumeLayout(false);
 
 		}

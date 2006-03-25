@@ -820,13 +820,17 @@ namespace SimPe.Plugin.Tool.Dockable
 
 			//get all known NMaps
 			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] strs = FileTable.FileIndex.FindFile(Data.MetaData.STRING_FILE, true);
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] ctss = FileTable.FileIndex.FindFile(Data.MetaData.CTSS_FILE, true);
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] citems = new SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[strs.Length+ctss.Length];
+			for (int i=0; i<strs.Length; i++) citems[i] = strs[i];
+			for (int i=0; i<ctss.Length; i++) citems[i+strs.Length] = ctss[i];
 
 			SimPe.Wait.SubStart(strs.Length);
 			Wait.Message = SimPe.Localization.GetString("Searching - Please Wait");
 			try 
 			{
 				int ct = 0;
-				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii in strs)
+				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii in citems)
 				{
 					SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 					str.ProcessData(fii);

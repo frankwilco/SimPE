@@ -101,10 +101,11 @@ namespace SimPe.Plugin
 		{
 			lb.Items.Clear();
 			if (items!=null)
-			{
+			{				
 				foreach (Plugin.BnfoCustomerItem item in items)
-					lb.Items.Add(item);
+					lb.Items.Add(item);				
 			}
+			lb_SelectedIndexChanged(lb, new EventArgs());
 		}
 
 		public BnfoCustomerItem SelectedItem

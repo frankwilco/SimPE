@@ -39,7 +39,7 @@ namespace Ambertation.Windows.Forms
 	/// <summary>
 	/// Zusammenfassung für LabledProgressBar.
 	/// </summary>
-	[ToolboxBitmapAttribute(typeof(ProgressBar))]
+	[ToolboxBitmapAttribute(typeof(ProgressBar)), DefaultEvent("ChangedValue")]
 	public class ExtProgressBar : System.Windows.Forms.UserControl
 	{
 		/// <summary> 
@@ -135,7 +135,7 @@ namespace Ambertation.Windows.Forms
 				{
 					min = Math.Min(value, Maximum);
 					Refresh();
-					if (Changed!=null) Changed(this, new EventArgs());
+					FireChangedEvent(true);					
 				}
 			}
 		}
@@ -148,7 +148,7 @@ namespace Ambertation.Windows.Forms
 				{
 					max = Math.Max(Minimum, Math.Max(1, value));
 					Refresh();
-					if (Changed!=null) Changed(this, new EventArgs());
+					FireChangedEvent(true);					
 				}
 			}
 		}
@@ -162,7 +162,7 @@ namespace Ambertation.Windows.Forms
 				{
 					val = Math.Max(Minimum, Math.Min(Maximum, value));
 					Refresh();
-					if (Changed!=null) Changed(this, new EventArgs());
+					FireChangedEvent(true);					
 				}
 			}
 		}
@@ -281,6 +281,10 @@ namespace Ambertation.Windows.Forms
 
 		#region Events
 		public event EventHandler Changed;
+		protected void FireChangedEvent(bool both)
+		{
+			if (Changed!=null) Changed(this, new EventArgs());			
+		}
 
 		#endregion
 

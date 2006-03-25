@@ -1080,4 +1080,7 @@ Run SimPE anyway?</value>
     <data name="Savegames">
 		<value>Savegames</value>
     </data> 
+    <data name="Max Relation to this Sim">
+		<value>Max Relation to {name}</value>
+    </data>
 </root>

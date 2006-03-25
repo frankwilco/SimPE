@@ -33,7 +33,9 @@ namespace SimPe.Plugin
 		{
 			get {return item;}
 		}
-		public NgbhItemsListViewItem(NgbhItemsListView parent, NgbhItem item) : base()
+
+		public NgbhItemsListViewItem(NgbhItemsListView parent, NgbhItem item) : this(parent, item, true) {}
+		public NgbhItemsListViewItem(NgbhItemsListView parent, NgbhItem item, bool autoadd) : base()
 		{
 			this.item = item;
 			this.parent = parent;
@@ -42,7 +44,7 @@ namespace SimPe.Plugin
 						
 			
 			Update();
-			parent.Items.Add(this);
+			if (autoadd) parent.Items.Add(this);
 		}
 
 		internal void Update()

@@ -140,7 +140,7 @@ namespace SimPe.Providers
 		/// [1] : Thumbnail
 		/// [2] : FamilyName
 		/// [3] : Contains Age Data
-		/// [4] : When NPC, this will get the Flename		
+		/// [4] : When NPC, this will get the Filename		
 		/// </remarks>
 		protected Alias AddSim(SimPe.PackedFiles.Wrapper.ExtObjd objd, ref int ct, int step, bool npc)
 		{
@@ -270,8 +270,8 @@ namespace SimPe.Providers
 				SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
 				objd.ProcessData(item);
 
-				if (objd.Type==Data.ObjectTypes.Person || objd.Type==Data.ObjectTypes.Template) AddSim(objd, ref ct, step, true);
-				
+				if (objd.Type==Data.ObjectTypes.Person || objd.Type==Data.ObjectTypes.Template) 
+					AddSim(objd, ref ct, step, true);				
 			}
 		}
 

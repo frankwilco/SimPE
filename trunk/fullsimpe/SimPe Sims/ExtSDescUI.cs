@@ -226,6 +226,8 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.LinkLabel llep3openinfo;
 		private System.Windows.Forms.PictureBox pictureBox1;
+		private TD.SandBar.MenuButtonItem mbiMaxThisRel;
+		private TD.SandBar.MenuButtonItem mbiMaxKnownRel;
 
 		
 		System.Resources.ResourceManager strresources;
@@ -410,6 +412,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.miRel = new TD.SandBar.ContextMenuBarItem();
 			this.miAddRelation = new TD.SandBar.MenuButtonItem();
 			this.miRemRelation = new TD.SandBar.MenuButtonItem();
+			this.mbiMaxThisRel = new TD.SandBar.MenuButtonItem();
+			this.mbiMaxKnownRel = new TD.SandBar.MenuButtonItem();
 			this.lv = new SimPe.PackedFiles.Wrapper.SimListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
@@ -2171,7 +2175,9 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			this.miRel.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
 																		   this.miAddRelation,
-																		   this.miRemRelation});
+																		   this.miRemRelation,
+																		   this.mbiMaxThisRel,
+																		   this.mbiMaxKnownRel});
 			this.miRel.Text = resources.GetString("miRel.Text");
 			this.miRel.ToolTipText = resources.GetString("miRel.ToolTipText");
 			this.miRel.Visible = true;
@@ -2194,6 +2200,23 @@ namespace SimPe.PackedFiles.UserInterface
 			this.miRemRelation.Text = resources.GetString("miRemRelation.Text");
 			this.miRemRelation.ToolTipText = resources.GetString("miRemRelation.ToolTipText");
 			this.miRemRelation.Activate += new System.EventHandler(this.Activate_miRemRelation);
+			// 
+			// mbiMaxThisRel
+			// 
+			this.mbiMaxThisRel.BeginGroup = true;
+			this.mbiMaxThisRel.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mbiMaxThisRel.Shortcut")));
+			this.mbiMaxThisRel.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("mbiMaxThisRel.Shortcut2")));
+			this.mbiMaxThisRel.Text = resources.GetString("mbiMaxThisRel.Text");
+			this.mbiMaxThisRel.ToolTipText = resources.GetString("mbiMaxThisRel.ToolTipText");
+			this.mbiMaxThisRel.Activate += new System.EventHandler(this.Activate_mbiMaxThisRel);
+			// 
+			// mbiMaxKnownRel
+			// 
+			this.mbiMaxKnownRel.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mbiMaxKnownRel.Shortcut")));
+			this.mbiMaxKnownRel.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("mbiMaxKnownRel.Shortcut2")));
+			this.mbiMaxKnownRel.Text = resources.GetString("mbiMaxKnownRel.Text");
+			this.mbiMaxKnownRel.ToolTipText = resources.GetString("mbiMaxKnownRel.ToolTipText");
+			this.mbiMaxKnownRel.Activate += new System.EventHandler(this.Activate_mbiMaxKnownRel);
 			// 
 			// lv
 			// 
@@ -5242,8 +5265,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-			this.Controls.Add(this.pnEP3);
-			this.Controls.Add(this.pnInt);
 			this.Controls.Add(this.toolBar1);
 			this.Controls.Add(this.pnChar);
 			this.Controls.Add(this.pnSkill);
@@ -5253,6 +5274,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Controls.Add(this.pnCareer);
 			this.Controls.Add(this.pnEP1);
 			this.Controls.Add(this.pnMisc);
+			this.Controls.Add(this.pnEP3);
+			this.Controls.Add(this.pnInt);
 			this.DockPadding.Top = 24;
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
@@ -5262,6 +5285,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Name = "ExtSDesc";
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
+			this.Controls.SetChildIndex(this.pnInt, 0);
+			this.Controls.SetChildIndex(this.pnEP3, 0);
 			this.Controls.SetChildIndex(this.pnMisc, 0);
 			this.Controls.SetChildIndex(this.pnEP1, 0);
 			this.Controls.SetChildIndex(this.pnCareer, 0);
@@ -5271,8 +5296,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Controls.SetChildIndex(this.pnSkill, 0);
 			this.Controls.SetChildIndex(this.pnChar, 0);
 			this.Controls.SetChildIndex(this.toolBar1, 0);
-			this.Controls.SetChildIndex(this.pnInt, 0);
-			this.Controls.SetChildIndex(this.pnEP3, 0);
 			this.pnId.ResumeLayout(false);
 			this.pnSkill.ResumeLayout(false);
 			this.pnChar.ResumeLayout(false);
@@ -5727,6 +5750,9 @@ namespace SimPe.PackedFiles.UserInterface
 			} 
 			else if (this.pnRel.Visible)
 			{
+				int index = -1;
+				if (lv.SelectedIndices.Count>0)
+					index = lv.SelectedIndices[0];
 				foreach (SteepValley.Windows.Forms.XPListViewItem lvi in lv.Items)
 				{
 					
@@ -5748,7 +5774,8 @@ namespace SimPe.PackedFiles.UserInterface
 						}
 					}
 				}
-				if (lv.Items.Count>0) lv.Items[0].Selected= true;
+				if (index>=0) lv.Items[index].Selected = true;
+				else if (lv.Items.Count>0) lv.Items[0].Selected= true;
 			}
 		}
 
@@ -6424,11 +6451,19 @@ namespace SimPe.PackedFiles.UserInterface
 
 				name = SimPe.Localization.GetString("RemoveRelationCaption").Replace("{name}", lv.SelectedItems[0].Text);
 				this.miRemRelation.Text = name;
+
+				name = SimPe.Localization.GetString("Max Relation to this Sim").Replace("{name}", lv.SelectedItems[0].Text);
+				this.mbiMaxThisRel.Text = name;
+				this.mbiMaxThisRel.Enabled = this.miRemRelation.Enabled;
+
+				this.mbiMaxKnownRel.Enabled = true;
 			} 
 			else 
 			{
 				this.miAddRelation.Enabled = false;
 				this.miRemRelation.Enabled = false;
+				this.mbiMaxThisRel.Enabled = false;
+				this.mbiMaxKnownRel.Enabled = false;
 
 				string name = SimPe.Localization.GetString("AddRelationCaption").Replace("{name}", SimPe.Localization.GetString("Unknown"));
 				this.miAddRelation.Text = name;
@@ -6480,6 +6515,66 @@ namespace SimPe.PackedFiles.UserInterface
 			
 			lv.EnsureVisible(lv.SelectedItems[0].Index);
 			lv_SelectedIndexChanged(lv, null);
+		}
+
+		private void Activate_mbiMaxThisRel(object sender, System.EventArgs e)
+		{
+			foreach (SteepValley.Windows.Forms.XPListViewItem lvi in lv.SelectedItems)
+			{					
+				if (lvi.GroupIndex!=1) 
+				{
+					if (this.srcRel.Srel!=null) 
+					{
+						srcRel.Srel.Longterm = 100;
+						srcRel.Srel.Shortterm = 100;
+						srcRel.Srel.Changed = true;						
+					}
+
+					if (this.dstRel.Srel!=null) 
+					{						
+						dstRel.Srel.Longterm = 100;
+						dstRel.Srel.Shortterm = 100;
+						dstRel.Srel.Changed = true;					
+					}
+				}
+			}	
+		
+			this.lv_SelectedIndexChanged(lv, null);
+		}
+
+		private void Activate_mbiMaxKnownRel(object sender, System.EventArgs e)
+		{
+			int index = -1;
+			if (lv.SelectedIndices.Count>0)
+				index = lv.SelectedIndices[0];
+			foreach (SteepValley.Windows.Forms.XPListViewItem lvi in lv.Items)
+			{					
+				if (lvi.GroupIndex!=1) 
+				{
+					lvi.Selected = true;
+					if (this.srcRel.Srel!=null) 
+					{
+						if (srcRel.Srel.RelationState.IsKnown) 
+						{
+							srcRel.Srel.Longterm = 100;
+							srcRel.Srel.Shortterm = 100;
+							srcRel.Srel.Changed = true;
+						}
+					}
+
+					if (this.dstRel.Srel!=null) 
+					{
+						if (dstRel.Srel.RelationState.IsKnown) 
+						{
+							dstRel.Srel.Longterm = 100;
+							dstRel.Srel.Shortterm = 100;
+							dstRel.Srel.Changed = true;
+						}
+					}
+				}
+			}
+
+			if (index>=0) lv.Items[index].Selected = true;
 		}
 		#endregion
 
@@ -6614,6 +6709,8 @@ namespace SimPe.PackedFiles.UserInterface
 			
 			SimPe.RemoteControl.OpenPackedFile(sblb.SelectedBusiness.BnfoFileIndexItem);
 		}
+
+		
 
 		
 

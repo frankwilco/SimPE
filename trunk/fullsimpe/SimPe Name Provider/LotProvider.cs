@@ -97,7 +97,7 @@ namespace SimPe.Providers
 
 			public override string ToString()
 			{
-				return name;
+				return LotName;
 			}
 
 			public SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem LtxtFileIndexItem
@@ -117,6 +117,43 @@ namespace SimPe.Providers
 
 					return new SimPe.Plugin.FileIndexItem(pfd, LtxtFileIndexItem.Package);
 				}			
+			}
+
+			public SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem StrFileIndexItem
+			{
+				get 
+				{
+					if (LtxtFileIndexItem==null) return null;
+
+					
+					SimPe.Interfaces.Files.IPackedFileDescriptor pfd = LtxtFileIndexItem.Package.FindFile(Data.MetaData.STRING_FILE, 0, Data.MetaData.LOCAL_GROUP, this.Instance | 0x8000);
+					if (pfd==null) return null;
+
+					return new SimPe.Plugin.FileIndexItem(pfd, LtxtFileIndexItem.Package);
+				}			
+			}
+
+			public string LotName
+			{
+				get 
+				{
+					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem stri = StrFileIndexItem;
+					if (stri!=null)
+					{
+						SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+						str.ProcessData(stri);
+						SimPe.PackedFiles.Wrapper.StrItemList items = str.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode);						
+						if (items.Length>0) 
+						{
+							string ret = items[0].Title;
+							str.Dispose();
+							return ret;
+						}
+						str.Dispose();
+					}					
+					
+					return Name;
+				}
 			}
 
 			#region IDisposable Member

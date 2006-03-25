@@ -99,7 +99,9 @@ namespace SimPe.PackedFiles.Wrapper
 			
 			this.Items.Add(lvi);
 			return lvi;
-		}				
+		}		
+		
+		
 
 	}
 }

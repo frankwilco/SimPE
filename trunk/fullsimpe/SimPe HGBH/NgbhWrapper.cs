@@ -49,7 +49,10 @@ namespace SimPe.Plugin
 		public NgbhVersion Version
 		{
 			get {return (NgbhVersion)version; }
-			set { version = (uint)value; }
+			set { 
+				version = (uint)value; 
+				Changed = true;
+			}
 		}
 
 		byte[] id;
@@ -69,7 +72,10 @@ namespace SimPe.Plugin
 		public NgbhSlotList[] PreItems
 		{
 			get { return preitems;	}			
-			set { preitems = value; }
+			set { 
+				preitems = value; 
+				Changed = true;
+			}
 		}
 
 		/// <summary>
@@ -78,7 +84,10 @@ namespace SimPe.Plugin
 		public Collections.NgbhSlots Lots//SlotsA 
 		{
 			get { return slota;	}			
-			set { slota = value; }
+			set { 
+				slota = value; 
+				Changed = true;
+			}
 		}
 
 		/// <summary>
@@ -87,7 +96,10 @@ namespace SimPe.Plugin
 		public Collections.NgbhSlots Families//SlotsB 
 		{
 			get { return slotb;	}			
-			set { slotb = value; }
+			set { 
+				slotb = value; 
+				Changed = true;
+			}
 		}
 
 		/// <summary>
@@ -96,7 +108,10 @@ namespace SimPe.Plugin
 		public Collections.NgbhSlots Sims//SlotsC 
 		{
 			get { return slotc;	}			
-			set { slotc = value; }
+			set { 
+				slotc = value; 
+				Changed = true;
+			}
 		}
 
 		#endregion
@@ -137,9 +152,9 @@ namespace SimPe.Plugin
 			preitems = new NgbhSlotList[0x02];
 			for (int i=0; i<preitems.Length; i++) preitems[i] = new NgbhSlotList(this);
 			
-			slota = new Collections.NgbhSlots(this);
-			slotb = new Collections.NgbhSlots(this);
-			slotc = new Collections.NgbhSlots(this);
+			slota = new Collections.NgbhSlots(this, Data.NeighborhoodSlots.Lots);
+			slotb = new Collections.NgbhSlots(this, Data.NeighborhoodSlots.Families);
+			slotc = new Collections.NgbhSlots(this, Data.NeighborhoodSlots.Sims);
 		}
 
 		public static SimMemoryType[] AllowedMemoryTypes(Data.NeighborhoodSlots type)
@@ -252,28 +267,27 @@ namespace SimPe.Plugin
 			slota.Clear();
 			for (int i=0; i<blocklen; i++) 
 			{
-				NgbhSlot item = new NgbhSlot(this);
-				item.Unserialize(reader);
-				slota.Add(item);
+				NgbhSlot item = slota.AddNew(0);
+				item.Unserialize(reader);				
 			}
 
 			blocklen = reader.ReadInt32();
 			slotb.Clear();
 			for (int i=0; i<blocklen; i++) 
 			{
-				NgbhSlot item = new NgbhSlot(this);
+				NgbhSlot item = slotb.AddNew(0);
 				item.Unserialize(reader);
-				slotb.Add(item);
 			}
 
 			blocklen = reader.ReadInt32();
 			slotc.Clear();
 			for (int i=0; i<blocklen; i++) 
 			{
-				NgbhSlot item = new NgbhSlot(this);
+				NgbhSlot item = slotc.AddNew(0);
 				item.Unserialize(reader);
-				slotc.Add(item);
 			}
+
+			Changed = false;
 		}
 
 		/// <summary>

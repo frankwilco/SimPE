@@ -1177,9 +1177,6 @@ namespace SimPe.Plugin
 			// 
 			// dxprev
 			// 
-			this.dxprev.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
 			this.dxprev.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(128)), ((System.Byte)(255)));
 			this.dxprev.Effect = null;
 			this.dxprev.Location = new System.Drawing.Point(336, 8);
@@ -2242,7 +2239,12 @@ namespace SimPe.Plugin
 
 		internal void ResetPreviewCamera(bool weak)
 		{
-			if (!weak) dxprev.ResetDefaultViewport();
+			if (!weak) 
+			{
+				//dxprev.Settings.Aspect = (float)dxprev.Height/(float)dxprev.Width;	
+				dxprev.ResetDefaultViewport();
+				//dxprev.Settings.Aspect = (float)dxprev.Width/(float)dxprev.Height;	
+			}
 			/*dxprev.Viewport.NearPlane = Helper.WindowsRegistry.ImportExportScaleFactor / 10;
 			dxprev.Viewport.FarPlane = dxprev.Viewport.NearPlane * 10000;
 			dxprev.Viewport.BoundingSphereRadius = Math.Min(dxprev.Viewport.BoundingSphereRadius, Helper.WindowsRegistry.ImportExportScaleFactor);*/
@@ -2266,6 +2268,7 @@ namespace SimPe.Plugin
 				if (this.scenesel.Scene!=null) this.scenesel.Scene.Dispose();
 				this.scenesel.Scene = gmdcext.GetScene(GetModelsExt(), new ElementOrder(Gmdc.ElementSorting.Preview));
 				
+				ResetPreviewCamera(false);
 				/*if (this.scenesel.Scene!=null) 
 				{
 					Ambertation.Scenes.Mesh m = this.scenesel.Scene.MeshCollection["body"];
@@ -2453,13 +2456,14 @@ namespace SimPe.Plugin
 
 		private void dxprev_SizeChanged(object sender, System.EventArgs e)
 		{
-		//	int width = scenesel.Left - lbmodel.Right - 16;
-	//		int height = scenesel.Height;
+			int width = scenesel.Left - lbmodel.Right - 16;
+			int height = scenesel.Height;
 
-		//	dxprev.Width = Math.Min(width, height);
-		//	dxprev.Height = dxprev.Width;
-		//	dxprev.Viewport.Aspect = (float)dxprev.Width/(float)dxprev.Height;
-			
+			dxprev.Left = lbmodel.Right + 8;
+			dxprev.Top = scenesel.Top;
+			dxprev.Width = Math.Max(1, width);
+			dxprev.Height = Math.Max(1, height);
+			//dxprev.Settings.Aspect = (float)dxprev.Width/(float)dxprev.Height;			
 		}
 
 		public static int DefaultSelectedAxisIndex

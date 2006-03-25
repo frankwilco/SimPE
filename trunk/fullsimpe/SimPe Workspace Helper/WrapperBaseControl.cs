@@ -68,6 +68,8 @@ namespace SimPe.Windows.Forms
 				tm.AddControl(this);
 
 				txt = "";
+
+				CanCommit = true;
 			}
 			catch {}
 
@@ -199,6 +201,17 @@ namespace SimPe.Windows.Forms
 			set
 			{
 				this.mGradient = value;
+			}
+		}
+
+		bool cc;
+		public bool CanCommit
+		{
+			get {return cc;}
+			set 
+			{
+				cc = value;
+				this.btCommit.Visible = cc;
 			}
 		}
 		#endregion

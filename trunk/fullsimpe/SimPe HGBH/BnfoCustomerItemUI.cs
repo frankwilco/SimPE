@@ -31,7 +31,12 @@ namespace SimPe.Plugin
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
 			InitializeComponent();
 
-			SetContent();
+			try 
+			{
+				tb.Visible = Helper.WindowsRegistry.HiddenMode;
+				SetContent();
+			} 
+			catch {}
 		}
 
 		/// <summary> 
@@ -57,73 +62,92 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(BnfoCustomerItemUI));
 			this.tb = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.tbap = new System.Windows.Forms.TextBox();
-			this.tbloy = new System.Windows.Forms.TextBox();
+			this.pb = new Ambertation.Windows.Forms.LabeledProgressBar();
 			this.SuspendLayout();
 			// 
 			// tb
 			// 
-			this.tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left)));
-			this.tb.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb.AccessibleDescription = resources.GetString("tb.AccessibleDescription");
+			this.tb.AccessibleName = resources.GetString("tb.AccessibleName");
+			this.tb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tb.Anchor")));
+			this.tb.AutoSize = ((bool)(resources.GetObject("tb.AutoSize")));
+			this.tb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tb.BackgroundImage")));
+			this.tb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tb.Dock")));
+			this.tb.Enabled = ((bool)(resources.GetObject("tb.Enabled")));
+			this.tb.Font = ((System.Drawing.Font)(resources.GetObject("tb.Font")));
 			this.tb.HideSelection = false;
-			this.tb.Location = new System.Drawing.Point(8, 64);
-			this.tb.Multiline = true;
+			this.tb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tb.ImeMode")));
+			this.tb.Location = ((System.Drawing.Point)(resources.GetObject("tb.Location")));
+			this.tb.MaxLength = ((int)(resources.GetObject("tb.MaxLength")));
+			this.tb.Multiline = ((bool)(resources.GetObject("tb.Multiline")));
 			this.tb.Name = "tb";
+			this.tb.PasswordChar = ((char)(resources.GetObject("tb.PasswordChar")));
 			this.tb.ReadOnly = true;
-			this.tb.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.tb.Size = new System.Drawing.Size(400, 144);
-			this.tb.TabIndex = 0;
-			this.tb.Text = "00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00";
+			this.tb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tb.RightToLeft")));
+			this.tb.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tb.ScrollBars")));
+			this.tb.Size = ((System.Drawing.Size)(resources.GetObject("tb.Size")));
+			this.tb.TabIndex = ((int)(resources.GetObject("tb.TabIndex")));
+			this.tb.Text = resources.GetString("tb.Text");
+			this.tb.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tb.TextAlign")));
+			this.tb.Visible = ((bool)(resources.GetObject("tb.Visible")));
+			this.tb.WordWrap = ((bool)(resources.GetObject("tb.WordWrap")));
 			this.tb.TextChanged += new System.EventHandler(this.tb_TextChanged);
 			// 
-			// label1
+			// pb
 			// 
-			this.label1.Location = new System.Drawing.Point(8, 8);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(64, 23);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Appraisal:";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-			// 
-			// label2
-			// 
-			this.label2.Location = new System.Drawing.Point(8, 32);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(64, 23);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "Loyalty:";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-			// 
-			// tbap
-			// 
-			this.tbap.Location = new System.Drawing.Point(80, 8);
-			this.tbap.Name = "tbap";
-			this.tbap.TabIndex = 3;
-			this.tbap.Text = "";
-			this.tbap.TextChanged += new System.EventHandler(this.tbap_TextChanged);
-			// 
-			// tbloy
-			// 
-			this.tbloy.Location = new System.Drawing.Point(80, 32);
-			this.tbloy.Name = "tbloy";
-			this.tbloy.TabIndex = 4;
-			this.tbloy.Text = "";
-			this.tbloy.TextChanged += new System.EventHandler(this.tbloy_TextChanged);
+			this.pb.AccessibleDescription = resources.GetString("pb.AccessibleDescription");
+			this.pb.AccessibleName = resources.GetString("pb.AccessibleName");
+			this.pb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pb.Anchor")));
+			this.pb.AutoScroll = ((bool)(resources.GetObject("pb.AutoScroll")));
+			this.pb.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("pb.AutoScrollMargin")));
+			this.pb.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("pb.AutoScrollMinSize")));
+			this.pb.BackColor = System.Drawing.Color.Transparent;
+			this.pb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb.BackgroundImage")));
+			this.pb.DisplayOffset = 0;
+			this.pb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pb.Dock")));
+			this.pb.DockPadding.Bottom = 5;
+			this.pb.Enabled = ((bool)(resources.GetObject("pb.Enabled")));
+			this.pb.Font = ((System.Drawing.Font)(resources.GetObject("pb.Font")));
+			this.pb.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pb.ImeMode")));
+			this.pb.LabelText = resources.GetString("pb.LabelText");
+			this.pb.LabelWidth = ((int)(resources.GetObject("pb.LabelWidth")));
+			this.pb.Location = ((System.Drawing.Point)(resources.GetObject("pb.Location")));
+			this.pb.Maximum = 2000;
+			this.pb.Name = "pb";
+			this.pb.NumberFormat = "N0";
+			this.pb.NumberOffset = -1000;
+			this.pb.NumberScale = 0.005;
+			this.pb.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pb.RightToLeft")));
+			this.pb.SelectedColor = System.Drawing.Color.Gold;
+			this.pb.Size = ((System.Drawing.Size)(resources.GetObject("pb.Size")));
+			this.pb.Style = Ambertation.Windows.Forms.ProgresBarStyle.Balance;
+			this.pb.TabIndex = ((int)(resources.GetObject("pb.TabIndex")));
+			this.pb.TextboxWidth = ((int)(resources.GetObject("pb.TextboxWidth")));
+			this.pb.TokenCount = 11;
+			this.pb.UnselectedColor = System.Drawing.Color.Black;
+			this.pb.Value = 1000;
+			this.pb.Visible = ((bool)(resources.GetObject("pb.Visible")));
+			this.pb.ChangedValue += new System.EventHandler(this.pb_Changed);
 			// 
 			// BnfoCustomerItemUI
 			// 
-			this.Controls.Add(this.tbloy);
-			this.Controls.Add(this.tbap);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
+			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
+			this.AccessibleName = resources.GetString("$this.AccessibleName");
+			this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
+			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
+			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
+			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+			this.Controls.Add(this.pb);
 			this.Controls.Add(this.tb);
-			this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
+			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
+			this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
+			this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
 			this.Name = "BnfoCustomerItemUI";
-			this.Size = new System.Drawing.Size(472, 216);
+			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
+			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
 			this.ResumeLayout(false);
 
 		}
@@ -131,10 +155,6 @@ namespace SimPe.Plugin
 
 		BnfoCustomerItem item;
 		private System.Windows.Forms.TextBox tb;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TextBox tbap;
-		private System.Windows.Forms.TextBox tbloy;
 	
 		[System.ComponentModel.Browsable(false)]
 		public BnfoCustomerItem Item
@@ -142,12 +162,18 @@ namespace SimPe.Plugin
 			get {return item;}
 			set 
 			{
+				/*if (item!=null) 
+				{
+					item.LoyaltyScore = pb.Value;
+				}*/
 				item = value;
 				SetContent();
 			}
 		}
 
 		BnfoCustomerItemsUI ui;
+		private Ambertation.Windows.Forms.LabeledProgressBar pb;
+	
 		public BnfoCustomerItemsUI BnfoCustomerItemsUI
 		{
 			get {return ui;}
@@ -171,12 +197,14 @@ namespace SimPe.Plugin
 			if (item!=null) 
 			{
 				tb.Text = Helper.BytesToHexList(item.Data);
-				tbap.Text = item.LoyaltyScore.ToString();
-				this.tbloy.Text = item.LoyaltyStars.ToString();
+				pb.Value = item.LoyaltyScore;				
+				pb.Enabled = true;
 			} 
 			else 
 			{
 				tb.Text = "";
+				pb.Value = 0;
+				pb.Enabled = false;
 			}
 			intern = false;
 		}
@@ -189,28 +217,24 @@ namespace SimPe.Plugin
 		private void tb_TextChanged(object sender, System.EventArgs e)
 		{
 		
-		}
+		}		
 
-		private void tbloy_TextChanged(object sender, System.EventArgs e)
+		private void pb_Changed(object sender, System.EventArgs e)
 		{
 			if (intern) return;
 			if (item==null) return;
+			if (pb.Value<0 && pb.SelectedColor!=Color.Coral) 
+			{
+				pb.SelectedColor = Color.Coral;
+				pb.CompleteRedraw();
+			}
+			else if (pb.Value>=0 && pb.SelectedColor!=Color.Gold) 
+			{
+				pb.SelectedColor = Color.Gold;
+				pb.CompleteRedraw();
+			}
 
-			item.LoyaltyStars = Helper.StringToInt32(tbloy.Text, item.LoyaltyStars, 10);
-			intern = true;
-			this.tbap.Text = item.LoyaltyScore.ToString();
-			intern = false;
-		}
-
-		private void tbap_TextChanged(object sender, System.EventArgs e)
-		{
-			if (intern) return;
-			if (item==null) return;
-
-			item.LoyaltyScore = Helper.StringToInt32(tbap.Text, item.LoyaltyScore, 10);
-			intern = true;
-			this.tbloy.Text = item.LoyaltyStars.ToString();
-			intern = false;
+			item.LoyaltyScore = pb.Value;
 		}
 	}
 }

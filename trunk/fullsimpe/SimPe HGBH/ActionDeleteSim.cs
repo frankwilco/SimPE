@@ -157,7 +157,7 @@ namespace SimPe.Plugin.Tool.Action
 				SimPe.Plugin.Ngbh n = new Ngbh(null);
 				n.ProcessData(pfd, pkg);
 
-				SimPe.Plugin.Collections.NgbhSlots slots = new SimPe.Plugin.Collections.NgbhSlots(n);
+				SimPe.Plugin.Collections.NgbhSlots slots = new SimPe.Plugin.Collections.NgbhSlots(n, Data.NeighborhoodSlots.Sims);
 				foreach (NgbhSlot s in n.Sims)
 				{
 					if (s.SlotID!=inst) 

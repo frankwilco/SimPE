@@ -54,6 +54,10 @@ namespace SimPe.Plugin
 		private TD.SandBar.ButtonItem biBadge;
 		private TD.SandBar.ButtonItem biDebug;
 		private SimPe.Plugin.NgbhSkillHelper shelper;
+		private TD.SandBar.MenuBar menuBar1;
+		private TD.SandBar.ContextMenuBarItem menu;
+		private TD.SandBar.MenuButtonItem miNuke;
+		private TD.SandBar.MenuButtonItem miFix;
 		SimPe.Plugin.NgbhSlotUI simslot = null;		
 
 		public ExtNgbhUI()
@@ -70,7 +74,7 @@ namespace SimPe.Plugin
 			biDebug.Tag = pnDebug;
 			biBadge.Tag = pnBadge;
 			
-
+			
 			biDebug.Visible = Helper.WindowsRegistry.HiddenMode;
 			this.SelectButton(biSim);
 
@@ -151,7 +155,11 @@ namespace SimPe.Plugin
 		{
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ExtNgbhUI));
 			this.pnSims = new System.Windows.Forms.Panel();
+			this.menuBar1 = new TD.SandBar.MenuBar();
 			this.spc = new SimPe.PackedFiles.Wrapper.SimPoolControl();
+			this.menu = new TD.SandBar.ContextMenuBarItem();
+			this.miNuke = new TD.SandBar.MenuButtonItem();
+			this.miFix = new TD.SandBar.MenuButtonItem();
 			this.simslot = new SimPe.Plugin.NgbhSlotUI();
 			this.pnDebug = new System.Windows.Forms.Panel();
 			this.nsui = new SimPe.Plugin.NgbhSlotUI();
@@ -177,6 +185,7 @@ namespace SimPe.Plugin
 			this.pnSims.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("pnSims.AutoScrollMinSize")));
 			this.pnSims.BackColor = System.Drawing.Color.Transparent;
 			this.pnSims.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnSims.BackgroundImage")));
+			this.pnSims.Controls.Add(this.menuBar1);
 			this.pnSims.Controls.Add(this.spc);
 			this.pnSims.Controls.Add(this.simslot);
 			this.pnSims.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pnSims.Dock")));
@@ -190,6 +199,28 @@ namespace SimPe.Plugin
 			this.pnSims.TabIndex = ((int)(resources.GetObject("pnSims.TabIndex")));
 			this.pnSims.Text = resources.GetString("pnSims.Text");
 			this.pnSims.Visible = ((bool)(resources.GetObject("pnSims.Visible")));
+			// 
+			// menuBar1
+			// 
+			this.menuBar1.AccessibleDescription = resources.GetString("menuBar1.AccessibleDescription");
+			this.menuBar1.AccessibleName = resources.GetString("menuBar1.AccessibleName");
+			this.menuBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("menuBar1.Anchor")));
+			this.menuBar1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("menuBar1.BackgroundImage")));
+			this.menuBar1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("menuBar1.Dock")));
+			this.menuBar1.Enabled = ((bool)(resources.GetObject("menuBar1.Enabled")));
+			this.menuBar1.Font = ((System.Drawing.Font)(resources.GetObject("menuBar1.Font")));
+			this.menuBar1.Guid = new System.Guid("8f2975d2-7ee6-4ad8-a586-fde678c08339");
+			this.menuBar1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("menuBar1.ImeMode")));
+			this.menuBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																			  this.menu});
+			this.menuBar1.Location = ((System.Drawing.Point)(resources.GetObject("menuBar1.Location")));
+			this.menuBar1.Name = "menuBar1";
+			this.menuBar1.OwnerForm = null;
+			this.menuBar1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("menuBar1.RightToLeft")));
+			this.menuBar1.Size = ((System.Drawing.Size)(resources.GetObject("menuBar1.Size")));
+			this.menuBar1.TabIndex = ((int)(resources.GetObject("menuBar1.TabIndex")));
+			this.menuBar1.Text = resources.GetString("menuBar1.Text");
+			this.menuBar1.Visible = ((bool)(resources.GetObject("menuBar1.Visible")));
 			// 
 			// spc
 			// 
@@ -210,12 +241,40 @@ namespace SimPe.Plugin
 			this.spc.Name = "spc";
 			this.spc.Package = null;
 			this.spc.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("spc.RightToLeft")));
+			this.menuBar1.SetSandBarMenu(this.spc, this.menu);
 			this.spc.SelectedElement = null;
 			this.spc.SelectedSim = null;
 			this.spc.Size = ((System.Drawing.Size)(resources.GetObject("spc.Size")));
 			this.spc.TabIndex = ((int)(resources.GetObject("spc.TabIndex")));
 			this.spc.Visible = ((bool)(resources.GetObject("spc.Visible")));
 			this.spc.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.spc_SelectedSimChanged);
+			// 
+			// menu
+			// 
+			this.menu.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																		  this.miNuke,
+																		  this.miFix});
+			this.menu.Text = resources.GetString("menu.Text");
+			this.menu.ToolTipText = resources.GetString("menu.ToolTipText");
+			this.menu.BeforePopup += new TD.SandBar.MenuItemBase.BeforePopupEventHandler(this.menu_BeforePopup);
+			// 
+			// miNuke
+			// 
+			this.miNuke.Image = ((System.Drawing.Image)(resources.GetObject("miNuke.Image")));
+			this.miNuke.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNuke.Shortcut")));
+			this.miNuke.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miNuke.Shortcut2")));
+			this.miNuke.Text = resources.GetString("miNuke.Text");
+			this.miNuke.ToolTipText = resources.GetString("miNuke.ToolTipText");
+			this.miNuke.Activate += new System.EventHandler(this.miNuke_Activate);
+			// 
+			// miFix
+			// 
+			this.miFix.Image = ((System.Drawing.Image)(resources.GetObject("miFix.Image")));
+			this.miFix.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miFix.Shortcut")));
+			this.miFix.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miFix.Shortcut2")));
+			this.miFix.Text = resources.GetString("miFix.Text");
+			this.miFix.ToolTipText = resources.GetString("miFix.ToolTipText");
+			this.miFix.Activate += new System.EventHandler(this.miFix_Activate);
 			// 
 			// simslot
 			// 
@@ -420,10 +479,10 @@ namespace SimPe.Plugin
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-			this.Controls.Add(this.pnBadge);
-			this.Controls.Add(this.pnDebug);
 			this.Controls.Add(this.pnSims);
 			this.Controls.Add(this.toolBar1);
+			this.Controls.Add(this.pnBadge);
+			this.Controls.Add(this.pnDebug);
 			this.DockPadding.Top = 24;
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
@@ -433,10 +492,10 @@ namespace SimPe.Plugin
 			this.Name = "ExtNgbhUI";
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
-			this.Controls.SetChildIndex(this.toolBar1, 0);
-			this.Controls.SetChildIndex(this.pnSims, 0);
 			this.Controls.SetChildIndex(this.pnDebug, 0);
 			this.Controls.SetChildIndex(this.pnBadge, 0);
+			this.Controls.SetChildIndex(this.toolBar1, 0);
+			this.Controls.SetChildIndex(this.pnSims, 0);
 			this.pnSims.ResumeLayout(false);
 			this.pnDebug.ResumeLayout(false);
 			this.pnBadge.ResumeLayout(false);
@@ -533,6 +592,44 @@ namespace SimPe.Plugin
 			
 		}
 
-				
+		#region Extensions by Theo
+		private void menu_BeforePopup(object sender, TD.SandBar.MenuPopupEventArgs e)
+		{			
+			miFix.Enabled = (this.Ngbh != null) && Helper.WindowsRegistry.HiddenMode;
+			miNuke.Enabled = (spc.SelectedSim != null);			
+		}
+
+		private void miNuke_Activate(object sender, System.EventArgs e)
+		{
+			if (spc.SelectedSim != null) 
+			{
+				Collections.NgbhSlots slots = this.Ngbh.GetSlots(Data.NeighborhoodSlots.Sims);
+				if (slots!=null) 
+				{
+					NgbhSlot slot = slots.GetInstanceSlot(spc.SelectedSim.Instance);
+					if (slot!=null)
+					{
+						slot.RemoveMyMemories();
+						int deletedCount = slot.RemoveMemoriesAboutMe();
+
+						if (deletedCount > 0)					
+							Message.Show(String.Format("Deleted {0} memories from the sim pool", deletedCount));
+					
+						spc.Refresh();
+					}
+				}
+			}
+		}		
+
+		private void miFix_Activate(object sender, System.EventArgs e)
+		{
+			EnhancedNgbh ngbh = this.Ngbh as EnhancedNgbh;
+			if (ngbh!=null) 
+			{
+				ngbh.FixNeighborhoodMemories();
+				this.RefreshGUI();
+			}
+		}
+		#endregion				
 	}
 }
