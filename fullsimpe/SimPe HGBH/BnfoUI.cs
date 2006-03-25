@@ -42,10 +42,16 @@ namespace SimPe.Plugin
 	{
 		private SimPe.Plugin.BnfoCustomerItemsUI lv;
 		private SimPe.Plugin.BnfoCustomerItemUI bnfoCustomerItemUI1;
-		private System.Windows.Forms.LinkLabel llmax;
-		private System.Windows.Forms.LinkLabel llrew;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label lblot;
+		private TD.SandBar.ToolBar toolBar1;
+		private System.Windows.Forms.Panel panel1;
+		private TD.SandBar.ButtonItem biMax;
+		private TD.SandBar.ButtonItem biReward;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.TextBox tbCur;
+		private System.Windows.Forms.TextBox tbMax;
 		
 		/// <summary> 
 		/// Erforderliche Designervariable.
@@ -56,7 +62,12 @@ namespace SimPe.Plugin
 		public BnfoUI()
 		{			
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
-			InitializeComponent();			
+			InitializeComponent();	
+		
+			toolBar1.Renderer = new TD.SandBar.MediaPlayerRenderer();
+			toolBar1.Overflow = TD.SandBar.ToolBarOverflow.Chevron;
+
+			ThemeManager.AddControl(this.toolBar1);
 		}
 		
 
@@ -86,10 +97,17 @@ namespace SimPe.Plugin
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(BnfoUI));
 			this.lv = new SimPe.Plugin.BnfoCustomerItemsUI();
 			this.bnfoCustomerItemUI1 = new SimPe.Plugin.BnfoCustomerItemUI();
-			this.llmax = new System.Windows.Forms.LinkLabel();
-			this.llrew = new System.Windows.Forms.LinkLabel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblot = new System.Windows.Forms.Label();
+			this.toolBar1 = new TD.SandBar.ToolBar();
+			this.biMax = new TD.SandBar.ButtonItem();
+			this.biReward = new TD.SandBar.ButtonItem();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.tbMax = new System.Windows.Forms.TextBox();
+			this.tbCur = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lv
@@ -135,58 +153,6 @@ namespace SimPe.Plugin
 			this.bnfoCustomerItemUI1.Size = ((System.Drawing.Size)(resources.GetObject("bnfoCustomerItemUI1.Size")));
 			this.bnfoCustomerItemUI1.TabIndex = ((int)(resources.GetObject("bnfoCustomerItemUI1.TabIndex")));
 			this.bnfoCustomerItemUI1.Visible = ((bool)(resources.GetObject("bnfoCustomerItemUI1.Visible")));
-			// 
-			// llmax
-			// 
-			this.llmax.AccessibleDescription = resources.GetString("llmax.AccessibleDescription");
-			this.llmax.AccessibleName = resources.GetString("llmax.AccessibleName");
-			this.llmax.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llmax.Anchor")));
-			this.llmax.AutoSize = ((bool)(resources.GetObject("llmax.AutoSize")));
-			this.llmax.BackColor = System.Drawing.Color.Transparent;
-			this.llmax.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llmax.Dock")));
-			this.llmax.Enabled = ((bool)(resources.GetObject("llmax.Enabled")));
-			this.llmax.Font = ((System.Drawing.Font)(resources.GetObject("llmax.Font")));
-			this.llmax.Image = ((System.Drawing.Image)(resources.GetObject("llmax.Image")));
-			this.llmax.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llmax.ImageAlign")));
-			this.llmax.ImageIndex = ((int)(resources.GetObject("llmax.ImageIndex")));
-			this.llmax.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llmax.ImeMode")));
-			this.llmax.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llmax.LinkArea")));
-			this.llmax.Location = ((System.Drawing.Point)(resources.GetObject("llmax.Location")));
-			this.llmax.Name = "llmax";
-			this.llmax.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llmax.RightToLeft")));
-			this.llmax.Size = ((System.Drawing.Size)(resources.GetObject("llmax.Size")));
-			this.llmax.TabIndex = ((int)(resources.GetObject("llmax.TabIndex")));
-			this.llmax.TabStop = true;
-			this.llmax.Text = resources.GetString("llmax.Text");
-			this.llmax.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llmax.TextAlign")));
-			this.llmax.Visible = ((bool)(resources.GetObject("llmax.Visible")));
-			this.llmax.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llmax_LinkClicked);
-			// 
-			// llrew
-			// 
-			this.llrew.AccessibleDescription = resources.GetString("llrew.AccessibleDescription");
-			this.llrew.AccessibleName = resources.GetString("llrew.AccessibleName");
-			this.llrew.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("llrew.Anchor")));
-			this.llrew.AutoSize = ((bool)(resources.GetObject("llrew.AutoSize")));
-			this.llrew.BackColor = System.Drawing.Color.Transparent;
-			this.llrew.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("llrew.Dock")));
-			this.llrew.Enabled = ((bool)(resources.GetObject("llrew.Enabled")));
-			this.llrew.Font = ((System.Drawing.Font)(resources.GetObject("llrew.Font")));
-			this.llrew.Image = ((System.Drawing.Image)(resources.GetObject("llrew.Image")));
-			this.llrew.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llrew.ImageAlign")));
-			this.llrew.ImageIndex = ((int)(resources.GetObject("llrew.ImageIndex")));
-			this.llrew.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("llrew.ImeMode")));
-			this.llrew.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("llrew.LinkArea")));
-			this.llrew.Location = ((System.Drawing.Point)(resources.GetObject("llrew.Location")));
-			this.llrew.Name = "llrew";
-			this.llrew.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("llrew.RightToLeft")));
-			this.llrew.Size = ((System.Drawing.Size)(resources.GetObject("llrew.Size")));
-			this.llrew.TabIndex = ((int)(resources.GetObject("llrew.TabIndex")));
-			this.llrew.TabStop = true;
-			this.llrew.Text = resources.GetString("llrew.Text");
-			this.llrew.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("llrew.TextAlign")));
-			this.llrew.Visible = ((bool)(resources.GetObject("llrew.Visible")));
-			this.llrew.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llrew_LinkClicked);
 			// 
 			// label1
 			// 
@@ -234,6 +200,172 @@ namespace SimPe.Plugin
 			this.lblot.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblot.TextAlign")));
 			this.lblot.Visible = ((bool)(resources.GetObject("lblot.Visible")));
 			// 
+			// toolBar1
+			// 
+			this.toolBar1.AccessibleDescription = resources.GetString("toolBar1.AccessibleDescription");
+			this.toolBar1.AccessibleName = resources.GetString("toolBar1.AccessibleName");
+			this.toolBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("toolBar1.Anchor")));
+			this.toolBar1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolBar1.BackgroundImage")));
+			this.toolBar1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("toolBar1.Dock")));
+			this.toolBar1.Enabled = ((bool)(resources.GetObject("toolBar1.Enabled")));
+			this.toolBar1.Font = ((System.Drawing.Font)(resources.GetObject("toolBar1.Font")));
+			this.toolBar1.Guid = new System.Guid("1b9c3745-6103-4a33-9fa3-912463438a13");
+			this.toolBar1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("toolBar1.ImeMode")));
+			this.toolBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																			  this.biMax,
+																			  this.biReward});
+			this.toolBar1.Location = ((System.Drawing.Point)(resources.GetObject("toolBar1.Location")));
+			this.toolBar1.Name = "toolBar1";
+			this.toolBar1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("toolBar1.RightToLeft")));
+			this.toolBar1.Size = ((System.Drawing.Size)(resources.GetObject("toolBar1.Size")));
+			this.toolBar1.TabIndex = ((int)(resources.GetObject("toolBar1.TabIndex")));
+			this.toolBar1.Text = resources.GetString("toolBar1.Text");
+			this.toolBar1.TextAlign = TD.SandBar.ToolBarTextAlign.Underneath;
+			this.toolBar1.Visible = ((bool)(resources.GetObject("toolBar1.Visible")));
+			// 
+			// biMax
+			// 
+			this.biMax.Image = ((System.Drawing.Image)(resources.GetObject("biMax.Image")));
+			this.biMax.MinimumSize = 50;
+			this.biMax.Text = resources.GetString("biMax.Text");
+			this.biMax.ToolTipText = resources.GetString("biMax.ToolTipText");
+			this.biMax.Activate += new System.EventHandler(this.biMax_Activate);
+			// 
+			// biReward
+			// 
+			this.biReward.Image = ((System.Drawing.Image)(resources.GetObject("biReward.Image")));
+			this.biReward.Text = resources.GetString("biReward.Text");
+			this.biReward.ToolTipText = resources.GetString("biReward.ToolTipText");
+			this.biReward.Activate += new System.EventHandler(this.biReward_Activate);
+			// 
+			// panel1
+			// 
+			this.panel1.AccessibleDescription = resources.GetString("panel1.AccessibleDescription");
+			this.panel1.AccessibleName = resources.GetString("panel1.AccessibleName");
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel1.Anchor")));
+			this.panel1.AutoScroll = ((bool)(resources.GetObject("panel1.AutoScroll")));
+			this.panel1.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel1.AutoScrollMargin")));
+			this.panel1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel1.AutoScrollMinSize")));
+			this.panel1.BackColor = System.Drawing.Color.Transparent;
+			this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+			this.panel1.Controls.Add(this.tbMax);
+			this.panel1.Controls.Add(this.tbCur);
+			this.panel1.Controls.Add(this.label3);
+			this.panel1.Controls.Add(this.label2);
+			this.panel1.Controls.Add(this.lv);
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.bnfoCustomerItemUI1);
+			this.panel1.Controls.Add(this.lblot);
+			this.panel1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel1.Dock")));
+			this.panel1.Enabled = ((bool)(resources.GetObject("panel1.Enabled")));
+			this.panel1.Font = ((System.Drawing.Font)(resources.GetObject("panel1.Font")));
+			this.panel1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("panel1.ImeMode")));
+			this.panel1.Location = ((System.Drawing.Point)(resources.GetObject("panel1.Location")));
+			this.panel1.Name = "panel1";
+			this.panel1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("panel1.RightToLeft")));
+			this.panel1.Size = ((System.Drawing.Size)(resources.GetObject("panel1.Size")));
+			this.panel1.TabIndex = ((int)(resources.GetObject("panel1.TabIndex")));
+			this.panel1.Text = resources.GetString("panel1.Text");
+			this.panel1.Visible = ((bool)(resources.GetObject("panel1.Visible")));
+			// 
+			// tbMax
+			// 
+			this.tbMax.AccessibleDescription = resources.GetString("tbMax.AccessibleDescription");
+			this.tbMax.AccessibleName = resources.GetString("tbMax.AccessibleName");
+			this.tbMax.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbMax.Anchor")));
+			this.tbMax.AutoSize = ((bool)(resources.GetObject("tbMax.AutoSize")));
+			this.tbMax.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbMax.BackgroundImage")));
+			this.tbMax.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbMax.Dock")));
+			this.tbMax.Enabled = ((bool)(resources.GetObject("tbMax.Enabled")));
+			this.tbMax.Font = ((System.Drawing.Font)(resources.GetObject("tbMax.Font")));
+			this.tbMax.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbMax.ImeMode")));
+			this.tbMax.Location = ((System.Drawing.Point)(resources.GetObject("tbMax.Location")));
+			this.tbMax.MaxLength = ((int)(resources.GetObject("tbMax.MaxLength")));
+			this.tbMax.Multiline = ((bool)(resources.GetObject("tbMax.Multiline")));
+			this.tbMax.Name = "tbMax";
+			this.tbMax.PasswordChar = ((char)(resources.GetObject("tbMax.PasswordChar")));
+			this.tbMax.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbMax.RightToLeft")));
+			this.tbMax.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbMax.ScrollBars")));
+			this.tbMax.Size = ((System.Drawing.Size)(resources.GetObject("tbMax.Size")));
+			this.tbMax.TabIndex = ((int)(resources.GetObject("tbMax.TabIndex")));
+			this.tbMax.Text = resources.GetString("tbMax.Text");
+			this.tbMax.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbMax.TextAlign")));
+			this.tbMax.Visible = ((bool)(resources.GetObject("tbMax.Visible")));
+			this.tbMax.WordWrap = ((bool)(resources.GetObject("tbMax.WordWrap")));
+			this.tbMax.TextChanged += new System.EventHandler(this.tbMax_TextChanged);
+			// 
+			// tbCur
+			// 
+			this.tbCur.AccessibleDescription = resources.GetString("tbCur.AccessibleDescription");
+			this.tbCur.AccessibleName = resources.GetString("tbCur.AccessibleName");
+			this.tbCur.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbCur.Anchor")));
+			this.tbCur.AutoSize = ((bool)(resources.GetObject("tbCur.AutoSize")));
+			this.tbCur.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbCur.BackgroundImage")));
+			this.tbCur.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbCur.Dock")));
+			this.tbCur.Enabled = ((bool)(resources.GetObject("tbCur.Enabled")));
+			this.tbCur.Font = ((System.Drawing.Font)(resources.GetObject("tbCur.Font")));
+			this.tbCur.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbCur.ImeMode")));
+			this.tbCur.Location = ((System.Drawing.Point)(resources.GetObject("tbCur.Location")));
+			this.tbCur.MaxLength = ((int)(resources.GetObject("tbCur.MaxLength")));
+			this.tbCur.Multiline = ((bool)(resources.GetObject("tbCur.Multiline")));
+			this.tbCur.Name = "tbCur";
+			this.tbCur.PasswordChar = ((char)(resources.GetObject("tbCur.PasswordChar")));
+			this.tbCur.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbCur.RightToLeft")));
+			this.tbCur.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbCur.ScrollBars")));
+			this.tbCur.Size = ((System.Drawing.Size)(resources.GetObject("tbCur.Size")));
+			this.tbCur.TabIndex = ((int)(resources.GetObject("tbCur.TabIndex")));
+			this.tbCur.Text = resources.GetString("tbCur.Text");
+			this.tbCur.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbCur.TextAlign")));
+			this.tbCur.Visible = ((bool)(resources.GetObject("tbCur.Visible")));
+			this.tbCur.WordWrap = ((bool)(resources.GetObject("tbCur.WordWrap")));
+			this.tbCur.TextChanged += new System.EventHandler(this.tbCur_TextChanged);
+			// 
+			// label3
+			// 
+			this.label3.AccessibleDescription = resources.GetString("label3.AccessibleDescription");
+			this.label3.AccessibleName = resources.GetString("label3.AccessibleName");
+			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label3.Anchor")));
+			this.label3.AutoSize = ((bool)(resources.GetObject("label3.AutoSize")));
+			this.label3.BackColor = System.Drawing.Color.Transparent;
+			this.label3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label3.Dock")));
+			this.label3.Enabled = ((bool)(resources.GetObject("label3.Enabled")));
+			this.label3.Font = ((System.Drawing.Font)(resources.GetObject("label3.Font")));
+			this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
+			this.label3.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label3.ImageAlign")));
+			this.label3.ImageIndex = ((int)(resources.GetObject("label3.ImageIndex")));
+			this.label3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label3.ImeMode")));
+			this.label3.Location = ((System.Drawing.Point)(resources.GetObject("label3.Location")));
+			this.label3.Name = "label3";
+			this.label3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label3.RightToLeft")));
+			this.label3.Size = ((System.Drawing.Size)(resources.GetObject("label3.Size")));
+			this.label3.TabIndex = ((int)(resources.GetObject("label3.TabIndex")));
+			this.label3.Text = resources.GetString("label3.Text");
+			this.label3.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label3.TextAlign")));
+			this.label3.Visible = ((bool)(resources.GetObject("label3.Visible")));
+			// 
+			// label2
+			// 
+			this.label2.AccessibleDescription = resources.GetString("label2.AccessibleDescription");
+			this.label2.AccessibleName = resources.GetString("label2.AccessibleName");
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("label2.Anchor")));
+			this.label2.AutoSize = ((bool)(resources.GetObject("label2.AutoSize")));
+			this.label2.BackColor = System.Drawing.Color.Transparent;
+			this.label2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("label2.Dock")));
+			this.label2.Enabled = ((bool)(resources.GetObject("label2.Enabled")));
+			this.label2.Font = ((System.Drawing.Font)(resources.GetObject("label2.Font")));
+			this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
+			this.label2.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.ImageAlign")));
+			this.label2.ImageIndex = ((int)(resources.GetObject("label2.ImageIndex")));
+			this.label2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("label2.ImeMode")));
+			this.label2.Location = ((System.Drawing.Point)(resources.GetObject("label2.Location")));
+			this.label2.Name = "label2";
+			this.label2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("label2.RightToLeft")));
+			this.label2.Size = ((System.Drawing.Size)(resources.GetObject("label2.Size")));
+			this.label2.TabIndex = ((int)(resources.GetObject("label2.TabIndex")));
+			this.label2.Text = resources.GetString("label2.Text");
+			this.label2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label2.TextAlign")));
+			this.label2.Visible = ((bool)(resources.GetObject("label2.Visible")));
+			// 
 			// BnfoUI
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -242,12 +374,8 @@ namespace SimPe.Plugin
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-			this.Controls.Add(this.bnfoCustomerItemUI1);
-			this.Controls.Add(this.lblot);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.llrew);
-			this.Controls.Add(this.llmax);
-			this.Controls.Add(this.lv);
+			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.toolBar1);
 			this.DockPadding.Top = 24;
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
@@ -257,12 +385,9 @@ namespace SimPe.Plugin
 			this.Name = "BnfoUI";
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
-			this.Controls.SetChildIndex(this.lv, 0);
-			this.Controls.SetChildIndex(this.llmax, 0);
-			this.Controls.SetChildIndex(this.llrew, 0);
-			this.Controls.SetChildIndex(this.label1, 0);
-			this.Controls.SetChildIndex(this.lblot, 0);
-			this.Controls.SetChildIndex(this.bnfoCustomerItemUI1, 0);
+			this.Controls.SetChildIndex(this.toolBar1, 0);
+			this.Controls.SetChildIndex(this.panel1, 0);
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -273,28 +398,42 @@ namespace SimPe.Plugin
 			get { return (Bnfo)Wrapper; }
 		}
 
+		bool intern;
 		protected override void RefreshGUI()
 		{			
+			if (intern) return;
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(BnfoUI));
+			this.HeaderText = resources.GetString("$this.HeaderText");
+			intern = true;
 			if (Bnfo!=null) 
 			{
 				lv.Items = Bnfo.CustomerItems;
-				llmax.Enabled = true;
-				llrew.Enabled = true;
+				biMax.Enabled = true;
+				biReward.Enabled = true;
 
 				SimPe.Interfaces.Providers.ILotItem ili = FileTable.ProviderRegistry.LotProvider.FindLot(Bnfo.FileDescriptor.Instance);
 				if (ili!=null)
-					this.lblot.Text = ili.Name;
+					this.lblot.Text = ili.LotName;
 				else
 					this.lblot.Text = SimPe.Localization.GetString("Unknown");
+
+				tbCur.Text = Bnfo.CurrentBusinessState.ToString();
+				tbMax.Text = Bnfo.MaxSeenBusinessState.ToString();
+
+				this.HeaderText += ": " + lblot.Text;
 			} 
 			else 
 			{
 				lv.Items = null;
 				this.lblot.Text = "";
 				
-				llmax.Enabled = false;
-				llrew.Enabled = false;
+				biMax.Enabled = false;
+				biReward.Enabled = false;				
 			}
+
+			tbMax.Enabled = biMax.Enabled;
+			tbCur.Enabled = biMax.Enabled;
+			intern=false;
 		}
 
 		public override void OnCommit()
@@ -302,20 +441,36 @@ namespace SimPe.Plugin
 			Bnfo.SynchronizeUserData(true, false);
 		}
 
-		private void llmax_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+
+		private void biMax_Activate(object sender, System.EventArgs e)
 		{
 			if (lv.Items==null) return;
 			foreach (BnfoCustomerItem item in lv.Items)			
 				item.LoyaltyScore = 1000;
-			
+						
 			lv.Refresh();
 		}
 
-		private void llrew_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		private void biReward_Activate(object sender, System.EventArgs e)
 		{
 			if (Bnfo==null) return;
 			Bnfo.CurrentBusinessState = 0;
 			Bnfo.MaxSeenBusinessState = 0;
+			RefreshGUI();
+		}
+
+		private void tbCur_TextChanged(object sender, System.EventArgs e)
+		{
+			if (intern) return;
+			if (Bnfo==null) return;
+			Bnfo.CurrentBusinessState = Helper.StringToUInt32(tbCur.Text, Bnfo.CurrentBusinessState, 10);
+		}
+
+		private void tbMax_TextChanged(object sender, System.EventArgs e)
+		{
+			if (intern) return;
+			if (Bnfo==null) return;
+			Bnfo.MaxSeenBusinessState = Helper.StringToUInt32(tbMax.Text, Bnfo.MaxSeenBusinessState, 10);
 		}
 
 								

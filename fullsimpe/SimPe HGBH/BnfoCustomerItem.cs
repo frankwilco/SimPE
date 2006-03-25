@@ -87,7 +87,14 @@ namespace SimPe.Plugin
 			if (SimDescription!=null) 
 				s = SimDescription.SimName+" "+SimDescription.SimFamilyName;
 
-			return /*Helper.HexString((ushort)endpos)+": "+*/s + " (0x"+Helper.HexString(SimInstance)+"): "+" "+loyalty.ToString()+" ("+lloyalty.ToString()+")";
+			if (Helper.WindowsRegistry.HiddenMode) 
+			{
+				return s + " (0x"+Helper.HexString(SimInstance)+"): "+" "+loyalty.ToString()+" ("+this.LoyaltyStars.ToString()+")";
+			} 
+			else 
+			{
+				return s + ": "+" "+this.LoyaltyStars.ToString();
+			}
 		}
 
 	}

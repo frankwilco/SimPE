@@ -97,8 +97,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="$this.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="miNuke.Text">
+    <value>Alle Erinnerungen/Gerüchte entfernen</value>
+  </data>
+  <data name="miFix.Text">
+    <value>Fehler korrigiren</value>
   </data>
   <data name="$this.HeaderText">
     <value>Nachbarschafts und Erinnerungs Editor</value>

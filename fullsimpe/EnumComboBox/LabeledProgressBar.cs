@@ -29,7 +29,7 @@ namespace Ambertation.Windows.Forms
 	/// <summary>
 	/// Zusammenfassung für LabledProgressBar.
 	/// </summary>
-	[ToolboxBitmapAttribute(typeof(ProgressBar))]
+	[ToolboxBitmapAttribute(typeof(ProgressBar)), DefaultEvent("ChangedValue")]
 	public class LabeledProgressBar : System.Windows.Forms.UserControl
 	{
 		private System.Windows.Forms.Panel pntb;
@@ -234,6 +234,13 @@ namespace Ambertation.Windows.Forms
 
 		#region Events
 		public event System.EventHandler Changed;
+		public event EventHandler ChangedValue;
+
+		protected void FireChangedEvent(bool both)
+		{
+			if (Changed!=null && both) Changed(this, new EventArgs());
+			if (ChangedValue!=null) ChangedValue(this, new EventArgs());
+		}
 		#endregion
 
 		/// <summary> 
@@ -385,7 +392,7 @@ namespace Ambertation.Windows.Forms
 			
 			if (internalupdate) 
 			{
-				if (Changed!=null) Changed(this, e);
+				FireChangedEvent(true);
 				return;
 			}
 			internalupdate = true;
@@ -397,7 +404,7 @@ namespace Ambertation.Windows.Forms
 			catch {}
 			finally 
 			{
-				if (Changed!=null) Changed(this, e);
+				FireChangedEvent(true);
 				internalupdate = false;
 			}	
 		
@@ -408,7 +415,10 @@ namespace Ambertation.Windows.Forms
 		{
 			if (e!=null) 
 			{
-				pb.Value = Math.Max(pb.Minimum, Math.Min(pb.Maximum, Convert.ToInt32(Math.Round(((double)e.X / (double)pb.SensitiveWidth) * pb.Maximum))));			
+				int nval = Math.Max(pb.Minimum, Math.Min(pb.Maximum, Convert.ToInt32(Math.Round(((double)e.X / (double)pb.SensitiveWidth) * pb.Maximum))));			
+				bool update = nval != pb.Value;
+				pb.Value = nval;
+				if (update) FireChangedEvent(false);
 				Update();
 			}
 		}

@@ -40,6 +40,13 @@ namespace SimPe.Interfaces.Providers
 			get;
 		}
 
+		string LotName
+		{
+			get;
+		}
+			
+
+
 		object FindTag(Type t);
 		System.Collections.ArrayList Tags
 		{
@@ -57,6 +64,11 @@ namespace SimPe.Interfaces.Providers
 		}
 
 		SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem BnfoFileIndexItem
+		{
+			get;
+		}
+
+		SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem StrFileIndexItem
 		{
 			get;
 		}

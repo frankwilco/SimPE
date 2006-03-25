@@ -43,7 +43,7 @@ namespace SimPe.Plugin
 			{
 				FileTable.ProviderRegistry.LotProvider.LoadingLot += new SimPe.Interfaces.Providers.LoadLotData(LotProvider_LoadingLot);
 				IWrapper[] wrappers = {
-										  new Plugin.ExtNgbh(),
+										  new Plugin.EnhancedNgbh(),
 										  new Plugin.Ngbh(this.LinkedProvider),
 										  new Plugin.Ltxt(this.LinkedProvider),
 										  new Plugin.Want(this.LinkedProvider),

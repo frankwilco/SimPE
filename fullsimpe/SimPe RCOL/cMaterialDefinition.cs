@@ -495,13 +495,30 @@ namespace SimPe.Plugin
 		public System.Drawing.Color ToRGB()
 		{			
 			Ambertation.Geometry.Vector3 v = ToVector3();
+			Clamp(v);
 			return System.Drawing.Color.FromArgb((int)(v.X*0xff), (int)(v.Y*0xff), (int)(v.Z*0xff));
+		}
+
+		void Clamp(Ambertation.Geometry.Vector4 v)
+		{
+			v.X = Math.Max(0, Math.Min(1, v.X));
+			v.Y = Math.Max(0, Math.Min(1, v.Y));
+			v.Z = Math.Max(0, Math.Min(1, v.Z));
+			v.W = Math.Max(0, Math.Min(1, v.W));
+		}
+
+		void Clamp(Ambertation.Geometry.Vector3 v)
+		{
+			v.X = Math.Max(0, Math.Min(1, v.X));
+			v.Y = Math.Max(0, Math.Min(1, v.Y));
+			v.Z = Math.Max(0, Math.Min(1, v.Z));
 		}
 
 		public System.Drawing.Color ToARGB()
 		{			
 			if (this.ToFloat().Length<4) return ToRGB();
 			Ambertation.Geometry.Vector4 v = ToVector4();
+			Clamp(v);
 			return System.Drawing.Color.FromArgb((int)(v.X*0xff), (int)(v.Y*0xff), (int)(v.Z*0xff), (int)(v.W*0xff));
 		}
 

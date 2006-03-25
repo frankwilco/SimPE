@@ -185,7 +185,7 @@ namespace Ambertation
 				catch 
 				{
 					throw new ArgumentException(
-						"Can not convert '" + (string)value + "'. This is not a valid "+BaseChangeableNumber.BaseName+" Number!");						
+						"Can not convert '" + (string)value + "'. This is not a valid "+BaseChangeableNumber.BaseName+" Number of Type "+type.Name+"!");						
 				}
 			}  
 			return base.ConvertFrom(context, culture, value);
@@ -241,20 +241,32 @@ namespace Ambertation
 		public static BaseChangeableNumber Convert(string s, Type type)
 		{
 			s = s.Trim().ToLower();
-			long val = 0;
+			object val = 0;
+
+			int b = 10;
+			int o = 0;
 			if (s.StartsWith("0x")) 
 			{
-				val = System.Convert.ToInt64(s, 16);
+				b = 16;
+				o=0;				
 			} 
 			else if (s.StartsWith("b")) 
 			{
-				val = System.Convert.ToInt64(s.Substring(1), 2);
+				b = 2;
+				o = 1;
 			}
-			else 
-			{
-				val = System.Convert.ToInt64(s, 10);
-			}
+
+			s = s.Substring(o);
+			if (type==typeof(byte)) val = System.Convert.ToByte(s, b);			
+			else if (type==typeof(sbyte)) val = System.Convert.ToSByte(s, b);			
+			else if (type==typeof(short)) val = System.Convert.ToInt16(s, b);
+			else if (type==typeof(ushort)) val = System.Convert.ToUInt16(s, b);
+			else if (type==typeof(int)) val = System.Convert.ToInt32(s, b);
+			else if (type==typeof(uint)) val = System.Convert.ToUInt32(s, b);
+			else if (type==typeof(long)) val = System.Convert.ToInt64(s, b);
+			else if (type==typeof(ulong)) val = (long)System.Convert.ToUInt64(s, b);
 			
+			//SetValue(val, type);
 			return new BaseChangeableNumber(val, type);
 		}
 
@@ -263,6 +275,7 @@ namespace Ambertation
 		public BaseChangeableNumber(object v) 
 		{ 
 			ObjectValue = v;
+			if (v!=null) type = v.GetType();
 		}
 
 		internal BaseChangeableNumber(object v, Type t) 
@@ -302,18 +315,21 @@ namespace Ambertation
 			get { return val; }
 			set { val = value; }
 		}
+		
 
-		internal void SetValue(object o, Type t) 
+		internal  void SetValue(object o, Type t) 
 		{
-			type = o.GetType();
-			
-			if (type==typeof(int)) val = (int)o;
-			else if (type==typeof(uint)) val = (uint)o;
-			else if (type==typeof(short)) val = (short)o;
-			else if (type==typeof(ushort)) val = (ushort)o;				
-			else if (type==typeof(byte)) val = (byte)o;								
-			else if (type==typeof(ulong)) val = (long)((ulong)o);
-			else val = (long)o;		
+			type = t;//o.GetType();			
+
+
+			if (type==typeof(byte)) val = System.Convert.ToByte(o);			
+			else if (type==typeof(sbyte)) val = System.Convert.ToSByte(o);			
+			else if (type==typeof(short)) val = System.Convert.ToInt16(o);
+			else if (type==typeof(ushort)) val = System.Convert.ToUInt16(o);
+			else if (type==typeof(int)) val = System.Convert.ToInt32(o);
+			else if (type==typeof(uint)) val = System.Convert.ToUInt32(o);
+			else if (type==typeof(long)) val = System.Convert.ToInt64(o);
+			else val = (long)System.Convert.ToUInt64(o);			
 
 			type = t;
 		}
@@ -344,13 +360,24 @@ namespace Ambertation
 		/// <returns>A String</returns>
 		public override string ToString()
 		{
+			int len = 64;
+			if (type==typeof(byte)) len = 8;		
+			else if (type==typeof(sbyte)) len = 8;			
+			else if (type==typeof(short)) len = 16;	
+			else if (type==typeof(ushort)) len = 16;
+			else if (type==typeof(int)) len = 32;
+			else if (type==typeof(uint)) len = 32;
+			else if (type==typeof(long)) len = 64;
+			else if (type==typeof(ulong)) len = 64;
+
 			if (digitbase==16) 
 			{
-				return "0x"+val.ToString("x");
+				len = len / 4;
+				return "0x"+SimPe.Helper.StrLength(val.ToString("x"), len);
 			} 
 			else if (digitbase==2) 
 			{
-				return "b"+System.Convert.ToString(val, 2);
+				return "b"+SimPe.Helper.StrLength(System.Convert.ToString(val, 2), len);
 			}
 			else 
 			{

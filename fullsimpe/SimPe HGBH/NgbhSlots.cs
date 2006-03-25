@@ -29,15 +29,22 @@ namespace SimPe.Plugin.Collections
 	{
 		ArrayList list = new ArrayList();
 		Ngbh parent;
-		internal NgbhSlots(Ngbh parent)
+
+		Data.NeighborhoodSlots type;
+		public Data.NeighborhoodSlots Type
+		{
+			get {return type;}
+		}
+		internal NgbhSlots(Ngbh parent, Data.NeighborhoodSlots type)
 		{
 			list = new ArrayList();
 			this.parent = parent;
+			this.type = type;
 		}
 
 		public NgbhSlot AddNew(uint inst)
 		{
-			NgbhSlot s = new NgbhSlot(parent);
+			NgbhSlot s = new NgbhSlot(parent, type);
 			s.SlotID = inst;
 
 			Add(s);
@@ -48,21 +55,25 @@ namespace SimPe.Plugin.Collections
 		public void Add(NgbhSlot item)
 		{
 			list.Add(item);
+			if (parent!=null) parent.Changed = true;
 		}
 
 		public void Remove(NgbhSlot item)
 		{
 			list.Remove(item);
+			if (parent!=null) parent.Changed = true;
 		}
 
 		public void RemoveAt(int index)
 		{
 			list.RemoveAt(index);
+			if (parent!=null) parent.Changed = true;
 		}
 
 		public void Clear()
 		{
 			list.Clear();
+			if (parent!=null) parent.Changed = true;
 		}
 
 		public bool Contains(NgbhSlot item)
@@ -73,7 +84,10 @@ namespace SimPe.Plugin.Collections
 		public NgbhSlot this[int index]
 		{
 			get {return list[index] as NgbhSlot;}
-			set {list[index] = value;}
+			set {
+				list[index] = value;
+				if (parent!=null) parent.Changed = true;
+			}
 		}
 
 		public int Count
@@ -93,7 +107,7 @@ namespace SimPe.Plugin.Collections
 
 		public NgbhSlots Clone(Ngbh newparent)
 		{
-			NgbhSlots ret = new NgbhSlots(newparent);
+			NgbhSlots ret = new NgbhSlots(newparent, type);
 			foreach (NgbhSlot s in list)
 				ret.Add(s);
 

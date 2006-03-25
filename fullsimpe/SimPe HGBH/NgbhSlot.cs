@@ -40,6 +40,8 @@ namespace SimPe.Plugin
 		{
 			get {return parent;}
 		}
+
+		
 		public NgbhSlotList(Ngbh parent)
 		{
 			if (parent!=null) 
@@ -62,7 +64,13 @@ namespace SimPe.Plugin
 		public uint SlotID
 		{
 			get { return slotid; }
-			set { slotid = value; }
+			set { 
+				if (slotid!=value)
+				{
+					slotid = value; 
+					if (parent!=null) parent.Changed = true;
+				}
+			}
 		}
 
 		/// <summary>
@@ -76,7 +84,10 @@ namespace SimPe.Plugin
 		public Collections.NgbhItems ItemsA 
 		{
 			get { return itemsa; }
-			set { itemsa = value; }
+			set { 
+				itemsa = value; 
+				if (parent!=null) parent.Changed = true;
+			}
 		}
 
 		/// <summary>
@@ -90,7 +101,10 @@ namespace SimPe.Plugin
 		public Collections.NgbhItems ItemsB 
 		{
 			get { return itemsb; }
-			set { itemsb = value; }
+			set { 
+				itemsb = value; 
+				if (parent!=null) parent.Changed = true;
+			}
 		}	
 	
 		public Collections.NgbhItems GetItems(Data.NeighborhoodSlots id)
@@ -126,6 +140,8 @@ namespace SimPe.Plugin
 				NgbhItem item = itemsb.AddNew();
 				item.Unserialize(reader);
 			}
+
+			if (parent!=null) parent.Changed = false;
 		}
 
 		/// <summary>
@@ -165,8 +181,16 @@ namespace SimPe.Plugin
 	/// </summary>
 	public class NgbhSlot : NgbhSlotList
 	{
-		public NgbhSlot(Ngbh parent) : base(parent)
+		Data.NeighborhoodSlots type;
+		public Data.NeighborhoodSlots Type
 		{
+			get {return type;}
+		}
+
+
+		internal NgbhSlot(Ngbh parent, Data.NeighborhoodSlots type) : base(parent)
+		{
+			this.type = type;
 		}
 
 		/// <summary>
@@ -201,5 +225,54 @@ namespace SimPe.Plugin
 			return "0x"+Helper.HexString(SlotID)+": "+this.ItemsA.Count +", "+this.ItemsB.Count;
 		}
 
+		#region extension by Theo
+		/// <summary>
+		/// 1. Delete my memories shared by others,
+		/// 2. Delete others' memories whose subject is me
+		/// </summary>
+		/// <returns>Number of deleted Memories</returns>
+		public int RemoveMemoriesAboutMe()
+		{
+			int deletedCount = 0;
+			Collections.NgbhItems memoriesToRemove = new SimPe.Plugin.Collections.NgbhItems(null);
+
+			Collections.NgbhSlots slots = Parent.GetSlots(Data.NeighborhoodSlots.Sims);
+			foreach (NgbhSlot slot in slots)
+			{
+				memoriesToRemove.Clear(); 
+				foreach (NgbhItem simMemory in slot.ItemsB)
+				{	
+					if (
+						simMemory.IsMemory && (
+								
+						//1,
+						simMemory.SimInstance == this.SlotID ||
+
+						//2.
+						simMemory.OwnerInstance == this.SlotID
+						)
+						)
+
+						memoriesToRemove.Add(simMemory);
+				}
+
+
+				if (memoriesToRemove.Count > 0)
+				{
+					deletedCount += memoriesToRemove.Count;
+					slot.ItemsB.Remove(memoriesToRemove);
+				}				
+			}
+
+			return deletedCount;
+		}
+
+		public void RemoveMyMemories()
+		{
+			this.ItemsA.Clear();
+			this.ItemsB.Clear();
+
+		}
+		#endregion
 	}
 }

@@ -444,7 +444,7 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 		#region Source Code
-		void PrintLine(System.IO.StreamWriter sw, Lua.Context cx, ObjLuaCode line, string plusindent)
+		void PrintLine(ArrayList sw, Lua.Context cx, ObjLuaCode line, string plusindent)
 		{
 			if (line!=null)
 			{
@@ -466,9 +466,9 @@ namespace SimPe.PackedFiles.Wrapper
 				if (content.Trim()!="") 
 				{
 					if (ObjLuaFunction.DEBUG)
-						sw.WriteLine(Helper.HexString(cx.PC)+": " + plusindent + cx.Indent + content);
+						sw.Add(Helper.HexString(cx.PC)+": " + plusindent + cx.Indent + content);
 					else
-						sw.WriteLine(plusindent+cx.Indent+content);
+						sw.Add(plusindent+cx.Indent+content);
 				}
 			}
 		}
@@ -482,53 +482,128 @@ namespace SimPe.PackedFiles.Wrapper
 			if (indent.Length>0) indent = indent.Substring(0, indent.Length-1);
 		}
 
-		internal void ToSource(System.IO.StreamWriter sw, Lua.Context cx)
+		internal void ToSource(System.IO.StreamWriter writer, Lua.Context cx)
 		{
 			cx.Init(this);
 
 			ObjLuaCode line = null;
 			ArrayList endline = new ArrayList();
 			ArrayList elseline = new ArrayList();
+			ArrayList oplines = new ArrayList();
+			ArrayList sw = new ArrayList();
 			string pindent = "";
 			for (int i=0; i<codes.Count-1; i++)
 			{
+				oplines.Add(sw.Count);
 				cx.GoToLine(i);
 				line = cx.CurrentLine;
-				PrintLine(sw, cx, line, pindent);
+
+				//for loop check
+				if (line is Lua.SUB)
+				{
+					int pc = cx.PC;
+					ObjLuaCode nline = cx.NextLine();
+					if (nline is Lua.JMP)
+					{
+						cx.GoToLine(cx.PC + nline.SBX + 1);
+						ObjLuaCode fline = cx.CurrentLine;
+						if (fline is Lua.FORLOOP)
+						{
+							cx.GoToLine(pc);
+							Lua.FORLOOP fl = fline as Lua.FORLOOP;
+							fl.IsStart = true;
+							PrintLine(sw, cx, fline, pindent);
+							fl.IsStart = false;
+
+							continue;
+						}
+					}
+					cx.GoToLine(pc);					
+				}
+
+				
+				
+
+				if (line is Lua.IAddEnd)
+				{
+					Lua.IAddEnd end = line as Lua.IAddEnd;
+					endline.Add(cx.PC + end.Offset);
+				}
 
 				if (line is Lua.IIfOperator) 
 				{
 					AddIndent(ref pindent);
 					int pc = cx.PC;
+					ObjLuaCode oline = line;
 					line = cx.NextLine();
 					int ifblsz = line.SBX;
-					cx.PrepareJumpToLine(cx.PC + ifblsz);
-					line = cx.NextLine();
-					if (line is Lua.JMP)  //having an else Block
+					if (ifblsz<0) //while block
 					{
-						elseline.Add(cx.PC - 1);
-						endline.Add(cx.PC + line.SBX);
+						
+						int npc = (int)oplines[oplines.Count + line.SBX + 1];
+						for (int id=npc; id<sw.Count; id++)
+							sw[id] = "\t"+sw[id].ToString();
+
+						oline.A = (ushort)Math.Abs(oline.A-1);
+						sw.Insert(npc, pindent+"while "+((Lua.IOperator)oline).ToString(cx).Replace("if ", "").Replace(" then", "")+" do");
+						oline.A = (ushort)Math.Abs(oline.A-1);
+
+						this.BackIndent(ref pindent);
+						PrintLine(sw, cx, new Lua.TextLine(0, this, "end"), pindent);
+						
+						continue;
 					} 
-					else 					
-						endline.Add(cx.PC);
-					
+					else 
+					{
+						cx.PrepareJumpToLine(cx.PC + ifblsz);
+						line = cx.NextLine();
+						if (line is Lua.JMP)  //having an else Block
+						{
+							elseline.Add(cx.PC - 1);
+							endline.Add(cx.PC + line.SBX);
+						} 
+						else 					
+							endline.Add(cx.PC);
+					}
 
 					cx.GoToLine(pc);
+					line = cx.CurrentLine;
 				}
+
+				PrintLine(sw, cx, line, pindent);
+
+				if (line is Lua.TFORREP)
+				{
+					int pc = cx.PC;
+					ObjLuaCode eline = line;
+					while (!(eline is Lua.TFORLOOP))
+						eline = cx.NextLine();
+
+					((Lua.TFORLOOP)eline).Setup(cx);					
+					cx.GoToLine(pc);
+
+					((Lua.TFORREP)line).TFORLOOP = eline as Lua.TFORLOOP;
+					PrintLine(sw, cx, line, pindent);
+					((Lua.TFORREP)line).TFORLOOP = null;
+				}
+				
 
 				while (endline.Contains(i)) 
 				{
 					BackIndent(ref pindent);
-					sw.WriteLine(pindent+cx.Indent+"end");
+					sw.Add(	pindent+cx.Indent+"end");
 					endline.Remove(i);
 				}
 				if (elseline.Contains(i)) 
 				{
 					BackIndent(ref pindent);
-					sw.WriteLine(pindent+cx.Indent+"else");
+					sw.Add(pindent+cx.Indent+"else");
 					AddIndent(ref pindent);
 				}
 			} 
+
+			foreach (string ln in sw)
+				writer.WriteLine(ln);
 		}
 
 		internal bool IsLocalRegister(ushort regnr, Lua.Context cx)
@@ -955,18 +1030,28 @@ namespace SimPe.PackedFiles.Wrapper
 			ocmap["MOVE"] = typeof(Lua.MOVE);
 			ocmap["LOADNIL"] = typeof(Lua.LOADNIL);
 			ocmap["LOADK"] = typeof(Lua.LOADK);
+			ocmap["LOADBOOL"] = typeof(Lua.LOADBOOL);
 			ocmap["SETGLOBAL"] = typeof(Lua.SETGLOBAL);
 			ocmap["GETGLOBAL"] = typeof(Lua.GETGLOBAL);
 			ocmap["CALL"] = typeof(Lua.CALL);
 			ocmap["CLOSURE"] = typeof(Lua.CLOSURE);
+			ocmap["CONCAT"] = typeof(Lua.CONCAT);
 			ocmap["NEWTABLE"] = typeof(Lua.NEWTABLE);
+			ocmap["SELF"] = typeof(Lua.SELF);
 			ocmap["SETTABLE"] = typeof(Lua.SETTABLE);
+			ocmap["TEST"] = typeof(Lua.TEST);
+			ocmap["TFORLOOP"] = typeof(Lua.TFORLOOP);
+			ocmap["TFORREP"] = typeof(Lua.TFORREP);
+			ocmap["FORLOOP"] = typeof(Lua.FORLOOP);
 			ocmap["GETTABLE"] = typeof(Lua.GETTABLE);
 			ocmap["RETURN"] = typeof(Lua.RETURN);
 			ocmap["ADD"] = typeof(Lua.ADD);
 			ocmap["SUB"] = typeof(Lua.SUB);
 			ocmap["MUL"] = typeof(Lua.MUL);
+			ocmap["POW"] = typeof(Lua.POW);
 			ocmap["DIV"] = typeof(Lua.DIV);
+			ocmap["UNM"] = typeof(Lua.UNM);
+			ocmap["NOT"] = typeof(Lua.NOT);
 			ocmap["GETUPVAL"] = typeof(Lua.GETUPVAL);
 
 			ocmap["JMP"] = typeof(Lua.JMP);
@@ -1184,33 +1269,33 @@ namespace SimPe.PackedFiles.Wrapper
 			//if (name=="MOVE") ret =  R(a) + " = " + R(b);
 			//else if (name=="LOADNIL") ret = ListR(a, b, " = ", " = ... = ")+"null";
 			//else if (name=="LOADK") ret = R(a) +" = " + Kst(bx);
-			if (name=="LOADBOOL") ret = R(a) + " = " + Bool(b) +"; if ("+Bool(c)+") PC++";
+			//if (name=="LOADBOOL") ret = R(a) + " = " + Bool(b) +"; if ("+Bool(c)+") PC++";
 			//else if (name=="GETGLOBAL") ret = R(a) + " = " + Gbl(Kst(bx));
 			//else if (name=="SETGLOBAL") ret = Gbl(Kst(bx)) + " = " + R(a);
 			//else if (name=="GETUPVAL") ret = R(a) + " = " + UpValue(b);
-			else if (name=="SETUPVAL") ret = UpValue(b) + " = " + R(a);
+			if (name=="SETUPVAL") ret = UpValue(b) + " = " + R(a);
 			//else if (name=="GETTABLE") ret = R(a) + " = " + R(b)+"["+RK(c)+"]";
 			//else if (name=="SETTABLE") ret = R(a)+"["+RK(b)+"]" + " = " + RK(c);
 			//else if (name=="ADD") ret = R(a) + " = " + RK(b) + " + " + RK(c);
 			//else if (name=="SUB") ret = R(a) + " = " + RK(b) + " - " + RK(c);
 			//else if (name=="MUL") ret = R(a) + " = " + RK(b) + " * " + RK(c);
 			//else if (name=="DIV") ret = R(a) + " = " + RK(b) + " / " + RK(c);
-			else if (name=="POW") ret = R(a) + " = " + RK(b) + " ^ " + RK(c);
-			else if (name=="UNM") ret = R(a) + " = -" + R(b);
-			else if (name=="NOT") ret = R(a) + " = !" + R(b);
-			else if (name=="CONCAT") ret = R(a) + " = " + ListR(b, c);
+			//else if (name=="POW") ret = R(a) + " = " + RK(b) + " ^ " + RK(c);
+			//else if (name=="UNM") ret = R(a) + " = -" + R(b);
+			//else if (name=="NOT") ret = R(a) + " = !" + R(b);
+			//else if (name=="CONCAT") ret = R(a) + " = " + ListR(b, c);
 			//else if (name=="JMP") ret = " PC += " + sbx.ToString();
 			//else if (name=="CALL") ret = ListR(a, a+c-2, " = ", ", ..., ") + R(a) + "(" + ListR(a+1, a+b-1, "", ", ..., ") + ")";
 			//else if (name=="RETURN") ret = "return " + ListR(a, a+b-2, "", ", ..., ");
 			else if (name=="TAILCALL") ret = "return " + R(a) + "(" + ListR(a+1, a+b-1, "", ", ..., ") + ")";
-			else if (name=="SELF") ret = R((ushort)(a+1)) + " = " + R(b) + "; " + R(a) + " = " + R(b) + "["+RK(c)+"]";			
+			//else if (name=="SELF") ret = R((ushort)(a+1)) + " = " + R(b) + "; " + R(a) + " = " + R(b) + "["+RK(c)+"]";			
 			//else if (name=="EQ") ret = "if ((" + RK(b) + " == " + RK(c) + ") == " + Bool(a) + " then PC++";
 			//else if (name=="LT") ret = "if ((" + RK(b) + " < " + RK(c) + ") == " + Bool(a) + " then PC++";
 			//else if (name=="LE") ret = "if ((" + RK(b) + " <= " + RK(c) + ") == " + Bool(a) + " then PC++";
-			else if (name=="TEST") ret = "if (" + R(b) + " <=> " + c.ToString() + ") then " + R(a) + " = " + R(b) + " else PC++";
-			else if (name=="FORLOOP") ret = R(a) + " += " + R((ushort)(a+2)) + "; if " + R(a) + " <= " +  R((ushort)(a+1)) + " then PC += " + sbx.ToString();
-			else if (name=="TFORPREP") ret = "if type("+R(a)+") == table then " + R((ushort)(a+1)) + " = " + R(a) + "; " + R(a) + "= next; PC += " + sbx.ToString();
-			else if (name=="TFORLOOP") ret = R((ushort)(a+2)) + ", ..., " + R((ushort)(a+2+c)) + " = " + R(a) + "("+R(a)+", "+R((ushort)(a+2))+"); if " +  R((ushort)(a+2)) + " == null then PC++";
+			//else if (name=="TEST") ret = "if (" + R(b) + " <=> " + c.ToString() + ") then " + R(a) + " = " + R(b) + " else PC++";
+			//else if (name=="FORLOOP") ret = R(a) + " += " + R((ushort)(a+2)) + "; if " + R(a) + " <= " +  R((ushort)(a+1)) + " then PC += " + sbx.ToString();
+			//else if (name=="TFORREP") ret = "if type("+R(a)+") == table then " + R((ushort)(a+1)) + " = " + R(a) + "; " + R(a) + "= next; PC += " + sbx.ToString();
+			//else if (name=="TFORLOOP") ret = R((ushort)(a+2)) + ", ..., " + R((ushort)(a+2+c)) + " = " + R(a) + "("+R(a)+", "+R((ushort)(a+2))+"); if " +  R((ushort)(a+2)) + " == null then PC++";
 			//else if (name=="NEWTABLE") ret = R(a) + " = new table["+TblFbp(b)+", "+TblSz(c)+"]";
 			//else if (name=="CLOSURE") ret = R(a) + " = closure(KPROTO["+bx.ToString()+"], "+R(a)+", ...)";
 			else if (name=="CLOSE") ret = "close all to "+R(a);

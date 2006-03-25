@@ -290,14 +290,14 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "ambertation.utilities"
-                    AssemblyName = "ambertation.utilities"
-                    HintPath = "..\ambertation.utilities.dll"
-                />
-                <Reference
                     Name = "xsi.lib"
                     AssemblyName = "xsi.lib"
                     HintPath = "..\xsi.lib.dll"
+                />
+                <Reference
+                    Name = "ambertation.utilities"
+                    AssemblyName = "ambertation.utilities"
+                    HintPath = "..\ambertation.utilities.dll"
                 />
                 <Reference
                     Name = "ambertation.3D"

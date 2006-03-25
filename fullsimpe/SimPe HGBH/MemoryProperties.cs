@@ -1516,7 +1516,7 @@ namespace SimPe.Plugin
 			if (nilv!=null) 
 			{
 				Plugin.NgbhItemsListViewItem lvi = nilv.SelectedItem;
-				if (lvi!=null)
+				if (lvi!=null && !nilv.SelectedMultiple)
 					Item = lvi.Item;
 				else 
 					Item = null;
@@ -1662,7 +1662,7 @@ namespace SimPe.Plugin
 			if (inter) return;
 			if (item==null) return;
 
-			item.Value = Helper.StringToUInt16(this.tbInv.Text, item.Value, 10);			
+			item.Value = Helper.StringToUInt16(this.tbValue.Text, item.Value, 10);			
 			this.FireChangeEvent();
 		}
 

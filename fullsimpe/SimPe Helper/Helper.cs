@@ -115,6 +115,19 @@ namespace SimPe
 		}
 
 		/// <summary>
+		/// Creates a HexString (with Leading 0) of the given Length
+		/// </summary>
+		/// <param name="input">The HexFormated String with arbitrary Length</param>
+		/// <param name="length">The min. Length for the String</param>
+		/// <returns>The input String with added zeros.</returns>
+		public static string StrLength(string input, int length)
+		{
+			while (input.Length<length) input = "0"+input;
+			if (input.Length>length) input = input.Substring(0, length);
+			return input;
+		}
+
+		/// <summary>
 		/// Returns the Value as HexString
 		/// </summary>
 		/// <param name="input">the Input Value</param>

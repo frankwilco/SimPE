@@ -133,7 +133,7 @@ namespace SimPe.Actions.Default
 				if (!run)WaitingScreen.Stop();
 			}
 
-			Message.Show(Localization.Manager.GetString("nfo000").Replace("{0}", filecount.ToString()));			
+			Message.Show(Localization.Manager.GetString("nfo000").Replace("{0}", filecount.ToString()), "Info", System.Windows.Forms.MessageBoxButtons.OK);			
 		}
 		#region IToolAction Member		
 

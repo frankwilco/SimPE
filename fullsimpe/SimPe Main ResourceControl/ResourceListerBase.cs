@@ -75,6 +75,8 @@ namespace SimPe
 
 		internal void Start()
 		{
+			if (pkg==null) return;
+			if (pkg.Package==null) return;
 			System.Collections.IComparer cmp = lv.ListViewItemSorter;
 			lv.ListViewItemSorter = null;
 			DateTime start = DateTime.Now;

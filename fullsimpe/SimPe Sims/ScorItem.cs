@@ -38,8 +38,7 @@ namespace SimPe.PackedFiles.Wrapper
 			set {name = value;}
 		}
 		Scor parent;
-		byte flag;
-		ushort cont2;		
+		
 		byte[] data;
 		/// <summary>
 		/// Constructor
@@ -62,12 +61,26 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <param name="reader">The Stream that contains the FileData</param>
 		internal void Unserialize(System.IO.BinaryReader reader)
 		{
-			name = StreamHelper.ReadString(reader);
-			flag = reader.ReadByte();
-			ushort cont1 = reader.ReadUInt16();
-			data = reader.ReadBytes(cont1);
-			cont2 = reader.ReadUInt16();
-			//if (flag==1) reader.ReadByte();			
+			name = StreamHelper.ReadString(reader);			
+			if (reader.BaseStream.Position > reader.BaseStream.Length-1) return;
+			System.Collections.ArrayList bytes = new ArrayList();
+			
+			byte test = reader.ReadByte();			
+			byte last = test;
+			while (last!=0x00 || test!=0x04) 
+			{				
+				bytes.Add(test);
+				if (reader.BaseStream.Position > reader.BaseStream.Length-1) break;
+				last = test;
+				test = reader.ReadByte();
+			}		
+	
+			if (reader.BaseStream.Position <= reader.BaseStream.Length-1)
+				if (bytes.Count>0) 
+					bytes.RemoveAt(bytes.Count-1);
+
+			data = new byte[bytes.Count];
+			bytes.CopyTo(data);
 		}
 
 		/// <summary>
@@ -78,18 +91,29 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Be sure that the Position of the stream is Proper on 
 		/// return (i.e. must point to the first Byte after your actual File)
 		/// </remarks>
-		internal  void Serialize(System.IO.BinaryWriter writer)
+		internal  void Serialize(System.IO.BinaryWriter writer, bool last)
 		{
 			StreamHelper.WriteString(writer, name);
-			writer.Write(flag);
-			writer.Write((ushort)data.Length);
 			writer.Write(data);
-			writer.Write(cont2);
+			if (!last) writer.Write((ushort)0x0400);			
 		}		
 
 		public override string ToString()
 		{
-			return Name+" [flag="+flag.ToString()+", cont1="+data.Length.ToString()+", cont2="+cont2.ToString()+"]";
+			if (Helper.WindowsRegistry.HiddenMode) 
+			{
+				string s = "";
+				s += Helper.BytesToHexList(data);
+				s +=  " [" + Name + "]";
+				return s;
+			} 
+			else 
+			{
+				string s = Name+ " [";
+				s += Helper.BytesToHexList(data);
+				s += "]";
+				return s;
+			}
 		}
 
 	}
@@ -115,6 +139,11 @@ namespace SimPe.PackedFiles.Wrapper
 		public void Clear()
 		{
 			list.Clear();
+		}
+
+		public int Count
+		{
+			get {return list.Count;}
 		}
 
 		public bool Contains(ScorItem si)

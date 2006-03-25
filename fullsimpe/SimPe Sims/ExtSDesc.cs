@@ -83,7 +83,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get 
 			{
-				return ((this.FamilyInstance & 0x7f00) == 0x7f00) || this.FamilyInstance==0;
+				return (((this.FamilyInstance & 0x7f00) == 0x7f00) || this.FamilyInstance==0) && !IsNPC;
 			}
 		}
 		

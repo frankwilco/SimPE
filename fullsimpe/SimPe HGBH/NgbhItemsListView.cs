@@ -1,3 +1,22 @@
+/***************************************************************************
+ *   Copyright (C) 2005 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -22,6 +41,13 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.LinkLabel lldel;
 		private Button btUp;
 		private Button btDown;
+		private TD.SandBar.MenuBar menuBar1;
+		private TD.SandBar.MenuButtonItem miCopy;
+		private TD.SandBar.MenuButtonItem miPaste;
+		private TD.SandBar.ContextMenuBarItem menu;
+		private TD.SandBar.MenuButtonItem miPasteGossip;
+		private TD.SandBar.MenuButtonItem miClone;
+		private TD.SandBar.MenuButtonItem miDelCascade;
 		private ListView lv;
 
 		public NgbhItemsListView()
@@ -44,6 +70,8 @@ namespace SimPe.Plugin
 			lv.SelectedIndexChanged += new EventHandler(lv_SelectedIndexChanged);
 			
 			SlotType = Data.NeighborhoodSlots.Sims;
+
+			InitTheo();
 		}
 
 		/// <summary> 
@@ -76,6 +104,13 @@ namespace SimPe.Plugin
 			this.lldel = new System.Windows.Forms.LinkLabel();
 			this.btUp = new System.Windows.Forms.Button();
 			this.btDown = new System.Windows.Forms.Button();
+			this.menuBar1 = new TD.SandBar.MenuBar();
+			this.menu = new TD.SandBar.ContextMenuBarItem();
+			this.miCopy = new TD.SandBar.MenuButtonItem();
+			this.miPaste = new TD.SandBar.MenuButtonItem();
+			this.miPasteGossip = new TD.SandBar.MenuButtonItem();
+			this.miClone = new TD.SandBar.MenuButtonItem();
+			this.miDelCascade = new TD.SandBar.MenuButtonItem();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -95,9 +130,9 @@ namespace SimPe.Plugin
 			this.lv.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lv.ImeMode")));
 			this.lv.LabelWrap = ((bool)(resources.GetObject("lv.LabelWrap")));
 			this.lv.Location = ((System.Drawing.Point)(resources.GetObject("lv.Location")));
-			this.lv.MultiSelect = false;
 			this.lv.Name = "lv";
 			this.lv.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lv.RightToLeft")));
+			this.menuBar1.SetSandBarMenu(this.lv, this.menu);
 			this.lv.Size = ((System.Drawing.Size)(resources.GetObject("lv.Size")));
 			this.lv.TabIndex = ((int)(resources.GetObject("lv.TabIndex")));
 			this.lv.Text = resources.GetString("lv.Text");
@@ -120,6 +155,7 @@ namespace SimPe.Plugin
 			this.panel1.Controls.Add(this.lldel);
 			this.panel1.Controls.Add(this.btUp);
 			this.panel1.Controls.Add(this.btDown);
+			this.panel1.Controls.Add(this.menuBar1);
 			this.panel1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel1.Dock")));
 			this.panel1.Enabled = ((bool)(resources.GetObject("panel1.Enabled")));
 			this.panel1.Font = ((System.Drawing.Font)(resources.GetObject("panel1.Font")));
@@ -256,6 +292,84 @@ namespace SimPe.Plugin
 			this.btDown.Visible = ((bool)(resources.GetObject("btDown.Visible")));
 			this.btDown.Click += new System.EventHandler(this.btDown_Click);
 			// 
+			// menuBar1
+			// 
+			this.menuBar1.AccessibleDescription = resources.GetString("menuBar1.AccessibleDescription");
+			this.menuBar1.AccessibleName = resources.GetString("menuBar1.AccessibleName");
+			this.menuBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("menuBar1.Anchor")));
+			this.menuBar1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("menuBar1.BackgroundImage")));
+			this.menuBar1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("menuBar1.Dock")));
+			this.menuBar1.Enabled = ((bool)(resources.GetObject("menuBar1.Enabled")));
+			this.menuBar1.Font = ((System.Drawing.Font)(resources.GetObject("menuBar1.Font")));
+			this.menuBar1.Guid = new System.Guid("76f91bf3-cf27-473c-951c-2f9066087017");
+			this.menuBar1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("menuBar1.ImeMode")));
+			this.menuBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																			  this.menu});
+			this.menuBar1.Location = ((System.Drawing.Point)(resources.GetObject("menuBar1.Location")));
+			this.menuBar1.Name = "menuBar1";
+			this.menuBar1.OwnerForm = null;
+			this.menuBar1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("menuBar1.RightToLeft")));
+			this.menuBar1.Size = ((System.Drawing.Size)(resources.GetObject("menuBar1.Size")));
+			this.menuBar1.TabIndex = ((int)(resources.GetObject("menuBar1.TabIndex")));
+			this.menuBar1.Text = resources.GetString("menuBar1.Text");
+			this.menuBar1.Visible = ((bool)(resources.GetObject("menuBar1.Visible")));
+			// 
+			// menu
+			// 
+			this.menu.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+																		  this.miCopy,
+																		  this.miPaste,
+																		  this.miPasteGossip,
+																		  this.miClone,
+																		  this.miDelCascade});
+			this.menu.Text = resources.GetString("menu.Text");
+			this.menu.ToolTipText = resources.GetString("menu.ToolTipText");
+			this.menu.BeforePopup += new TD.SandBar.MenuItemBase.BeforePopupEventHandler(this.contextMenuBarItem1_BeforePopup);
+			// 
+			// miCopy
+			// 
+			this.miCopy.Image = ((System.Drawing.Image)(resources.GetObject("miCopy.Image")));
+			this.miCopy.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miCopy.Shortcut")));
+			this.miCopy.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miCopy.Shortcut2")));
+			this.miCopy.Text = resources.GetString("miCopy.Text");
+			this.miCopy.ToolTipText = resources.GetString("miCopy.ToolTipText");
+			this.miCopy.Activate += new System.EventHandler(this.CopyItems);
+			// 
+			// miPaste
+			// 
+			this.miPaste.Image = ((System.Drawing.Image)(resources.GetObject("miPaste.Image")));
+			this.miPaste.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miPaste.Shortcut")));
+			this.miPaste.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miPaste.Shortcut2")));
+			this.miPaste.Text = resources.GetString("miPaste.Text");
+			this.miPaste.ToolTipText = resources.GetString("miPaste.ToolTipText");
+			this.miPaste.Activate += new System.EventHandler(this.PasteItems);
+			// 
+			// miPasteGossip
+			// 
+			this.miPasteGossip.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miPasteGossip.Shortcut")));
+			this.miPasteGossip.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miPasteGossip.Shortcut2")));
+			this.miPasteGossip.Text = resources.GetString("miPasteGossip.Text");
+			this.miPasteGossip.ToolTipText = resources.GetString("miPasteGossip.ToolTipText");
+			this.miPasteGossip.Activate += new System.EventHandler(this.PasteItemsAsGossip);
+			// 
+			// miClone
+			// 
+			this.miClone.BeginGroup = true;
+			this.miClone.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miClone.Shortcut")));
+			this.miClone.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miClone.Shortcut2")));
+			this.miClone.Text = resources.GetString("miClone.Text");
+			this.miClone.ToolTipText = resources.GetString("miClone.ToolTipText");
+			this.miClone.Activate += new System.EventHandler(this.CloneItem);
+			// 
+			// miDelCascade
+			// 
+			this.miDelCascade.Image = ((System.Drawing.Image)(resources.GetObject("miDelCascade.Image")));
+			this.miDelCascade.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miDelCascade.Shortcut")));
+			this.miDelCascade.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miDelCascade.Shortcut2")));
+			this.miDelCascade.Text = resources.GetString("miDelCascade.Text");
+			this.miDelCascade.ToolTipText = resources.GetString("miDelCascade.ToolTipText");
+			this.miDelCascade.Activate += new System.EventHandler(this.DeleteCascadeItems);
+			// 
 			// NgbhItemsListView
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -340,15 +454,29 @@ namespace SimPe.Plugin
 			}
 		}
 
+		public  void Refresh(bool full)
+		{
+			if (full) SetContent();
+			base.Refresh();
+		}
 		public new void Refresh()
 		{
-			SetContent();
-			base.Refresh();
+			Refresh(true);
 		}
 
 		void AddItemToList(NgbhItem item)
 		{
+			if (item==null) return;
+
 			NgbhItemsListViewItem lvi = new NgbhItemsListViewItem(this, item); 
+		}
+
+		void InsertItemToList(int index, NgbhItem item)
+		{
+			if (item==null) return;
+
+			NgbhItemsListViewItem lvi = new NgbhItemsListViewItem(this, item, false); 
+			lv.Items.Insert(index, lvi);
 		}
 
 		void SetAvailableAddTypes()
@@ -368,13 +496,49 @@ namespace SimPe.Plugin
 		}
 
 
+		[System.ComponentModel.Browsable(false)]
 		public NgbhItemsListViewItem SelectedItem
 		{
 			get 
 			{
 				if (lv.SelectedItems.Count==0) return null;
-				else return lv.SelectedItems[0] as NgbhItemsListViewItem;
+				
+				if (lv.FocusedItem!=null) 
+					if (lv.FocusedItem.Selected) return lv.FocusedItem as NgbhItemsListViewItem;				
+				
+				return lv.SelectedItems[0] as NgbhItemsListViewItem;
 			}
+		}
+
+		[System.ComponentModel.Browsable(false)]
+		public NgbhItem SelectedNgbhItem
+		{
+			get 
+			{
+				if (SelectedItem==null) return null;
+				return SelectedItem.Item;
+			}
+		}
+
+		[System.ComponentModel.Browsable(false)]
+		public Collections.NgbhItems SelectedNgbhItems
+		{
+			get 
+			{
+				NgbhSlotList parent = null;
+				if (items != null) parent = items.Parent;
+				Collections.NgbhItems ret = new Collections.NgbhItems(parent);
+				foreach (NgbhItemsListViewItem lvi in lv.SelectedItems)
+					ret.Add(lvi.Item);
+
+				return ret;
+			}
+		}
+
+		[System.ComponentModel.Browsable(false)]
+		public bool SelectedMultiple
+		{
+			get {return lv.SelectedItems.Count>1;}
 		}
 
 		internal void UpdateSelected(NgbhItem item)
@@ -383,7 +547,7 @@ namespace SimPe.Plugin
 			if (SelectedItem==null) return;
 
 			SelectedItem.Update();
-			this.Refresh();
+			this.Refresh(false);
 
 			
 		}
@@ -397,7 +561,8 @@ namespace SimPe.Plugin
 		public ImageList SmallImageList
 		{
 			get { return sil;}
-			set { 
+			set 
+			{ 
 				lv.SmallImageList = value;
 				sil = value;
 			}
@@ -437,20 +602,24 @@ namespace SimPe.Plugin
 			Data.Alias a = cbadd.SelectedItem as Data.Alias;
 			SimMemoryType smt = (SimMemoryType)a.Id;
 
-			NgbhItem item = items.AddNew(smt);
+			int index = this.NextItemIndex(true);
+			NgbhItem item = items.InsertNew(index, smt);
 			item.SetInitialGuid(smt);
-			AddItemToList(item);
+			InsertItemToList(index, item);
 			
-			lv.Items[lv.Items.Count-1].Selected = true;
-			lv.Items[lv.Items.Count-1].EnsureVisible();
+			lv.Items[index].Selected = true;
+			lv.Items[index].EnsureVisible();
 		}
 
 		private void lldel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 			if (lv.SelectedItems.Count==0 ||items==null) return;
-			NgbhItemsListViewItem item = this.SelectedItem;
-			lv.Items.Remove(item);
-			items.Remove(item.Item);
+			//NgbhItemsListViewItem item = this.SelectedItem;
+			Collections.NgbhItems nitems = this.SelectedNgbhItems;			
+			items.Remove(nitems);
+
+			for (int i=lv.SelectedItems.Count; i>0; i--)
+				lv.Items.Remove(lv.SelectedItems[0]);
 		}
 
 		void SwapListViewItem(int i1, int i2)
@@ -486,6 +655,265 @@ namespace SimPe.Plugin
 			items.Swap(index, index+1);
 			SwapListViewItem(index, index+1);
 		}
+
+		
+		#region Extensions by Theo
+		System.Collections.Queue clipboard;
+
+		void InitTheo()
+		{
+			clipboard = new Queue();
+		}
+
+		
+		void CopyItems(object sender, EventArgs e)
+		{
+			CopyItems();
+		}
+
+		void CopyItems()
+		{
+			Collections.NgbhItems selitems =  SelectedNgbhItems;
+			if (selitems.Count > 0)
+			{
+				this.Cursor = Cursors.WaitCursor;
+				try
+				{
+					clipboard.Clear();
+					foreach (NgbhItem item in selitems)
+					{
+						clipboard.Enqueue(item);
+					}
+				}
+				catch (Exception exception1)
+				{
+					this.Cursor = Cursors.Default;
+					Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), exception1);
+				}
+				this.Cursor = Cursors.Default;
+			}
+
+		}
+
+		void PasteItems(object sender, EventArgs e)
+		{
+			PasteItems(false);
+		}
+
+		void PasteItemsAsGossip(object sender, EventArgs e)
+		{
+			PasteItems(true);
+		}
+
+		void PasteItems(bool asgossip)
+		{
+			int itemIndex = this.NextItemIndex(false);
+			this.Cursor = Cursors.WaitCursor;
+			try
+			{
+				while (clipboard.Count > 0)
+				{
+					NgbhItem item = clipboard.Dequeue() as NgbhItem;
+					
+					if (item != null)
+					{
+						item = item.Clone(this.Slot);
+
+						if (item.IsMemory && item.OwnerInstance > 0 && !asgossip)
+							item.OwnerInstance = (ushort)items.Parent.SlotID;								
+
+						AddItemAfterSelected(item);
+					}
+				}
+			}
+			catch (Exception exception1)
+			{
+				this.Cursor = Cursors.Default;
+				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), exception1);
+			}
+			this.Cursor = Cursors.Default;			
+		}
+
+		void AddItemAfterSelected(NgbhItem item)
+		{
+			//if (this.lv.SelectedItems.Count > 0)
+			{
+				this.Cursor = Cursors.WaitCursor;
+				try
+				{
+					int selectedIndex = this.NextItemIndex(true);
+
+					NgbhItems.Insert(selectedIndex, item);					
+					this.AddItemAt(item, selectedIndex);
+					this.lv.Items[selectedIndex].Selected = true;
+					this.lv.Items[selectedIndex].EnsureVisible();					
+				}
+				catch (Exception exception1)
+				{
+					this.Cursor = Cursors.Default;
+					Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), exception1);
+				}
+
+				this.Cursor = Cursors.Default;
+			}
+		}
+
+		private void AddItemAt(NgbhItem item, int index)
+		{
+			this.InsertItemToList(index, item);
+			this.lv.SelectedItems.Clear();
+			this.lv.Items[index].Selected = true;
+			this.lv.Items[index].EnsureVisible();	
+			if (this.SelectedIndexChanged!=null) SelectedIndexChanged(this, new EventArgs());
+		}
+
+		int NextItemIndex(bool clearSelection)
+		{
+			int selectedIndex = this.lv.Items.Count - 1;
+
+			// get index of the last selected item (if any)
+			if (this.lv.SelectedIndices.Count > 0)
+				selectedIndex = this.lv.SelectedIndices[this.lv.SelectedIndices.Count - 1];
+
+			// deselect previous (if applicable)
+			if (clearSelection)
+				this.lv.SelectedItems.Clear();
+
+			// should not exceed the number of items (?)
+			selectedIndex = Math.Min(++selectedIndex, this.lv.Items.Count);
+
+			return selectedIndex;
+		}
+
+		void CloneItem(object sender, EventArgs e)
+		{
+			CloneItem();
+		}
+
+		void CloneItem()
+		{
+			if (this.lv.SelectedItems.Count > 0)
+			{
+				this.Cursor = Cursors.WaitCursor;
+				try
+				{
+					// this command operates on a single item only;
+					// to avoid ambiguity, use the focused item
+					NgbhItem item = this.GetFocusedItem();
+					if (item != null)
+					{
+						int itemIndex = this.lv.FocusedItem.Index + 1;
+						NgbhItem item1 = item.Clone();
+
+						items.Insert(itemIndex, item1);											
+						this.AddItemAt(item1, itemIndex);
+
+						this.lv.FocusedItem.Focused = false;
+					}
+				}
+				catch (Exception exception1)
+				{
+					this.Cursor = Cursors.Default;
+					Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), exception1);
+				}
+				this.Cursor = Cursors.Default;
+			}
+
+		}
+
+		NgbhItem GetFocusedItem()
+		{
+			NgbhItemsListViewItem li = this.SelectedItem;
+			if (li==null) return null;
+			return li.Item;
+		}
+
+		public void SelectMemoriesByGuid(Collections.NgbhItems items)
+		{
+			if (items.Length > 0)
+			{
+				this.lv.Enabled = false;
+
+				ArrayList guidList = new ArrayList();
+				foreach (NgbhItem item in items)
+					if (!guidList.Contains(item.Guid))
+						guidList.Add(item.Guid);
+
+				foreach (ListViewItem li in this.lv.Items)
+				{
+					NgbhItem item = li.Tag as NgbhItem;
+					if (guidList.Contains(item.Guid))
+						li.Selected = true;
+				}
+
+				this.lv.Enabled = true;
+			}
+		}
+
+		void DeleteItems(object sender, EventArgs e)
+		{
+			this.DeleteItems(false);
+		}		
+
+		void DeleteCascadeItems(object sender, EventArgs e)
+		{
+			this.DeleteItems(true);
+		}		
+
+		void DeleteItems(bool cascade)
+		{
+			if (lv.SelectedItems.Count != 0)
+			{
+				this.Cursor = Cursors.WaitCursor;
+				try
+				{
+					ArrayList items = new ArrayList();
+					foreach (ListViewItem li in lv.SelectedItems)
+						items.Add(li);
+
+					Collections.NgbhItems memoryItems = this.SelectedNgbhItems;
+
+					if (cascade)
+						((EnhancedNgbh)Slot.Parent).DeleteMemoryEchoes(memoryItems, Slot.SlotID);
+
+					memoryItems[0].ParentSlot.ItemsB.Remove(memoryItems);
+
+					foreach (ListViewItem li in items)
+						lv.Items.Remove(li);
+
+					lv.SelectedItems.Clear();
+				}
+				catch (Exception exception1)
+				{
+					this.Cursor = Cursors.Default;
+					Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), exception1);
+				}
+				this.Cursor = Cursors.Default;
+			}
+		}
+
+		private void contextMenuBarItem1_BeforePopup(object sender, TD.SandBar.MenuPopupEventArgs e)
+		{
+			miCopy.Enabled = lv.SelectedItems.Count>0;
+			miClone.Enabled = miCopy.Enabled;			
+			miPaste.Enabled = clipboard.Count>0;
+
+			if (((NgbhSlot)items.Parent).Type == Data.NeighborhoodSlots.Sims || ((NgbhSlot)items.Parent).Type == Data.NeighborhoodSlots.SimsIntern)
+			{
+				miDelCascade.Enabled = miCopy.Enabled;				
+				miPasteGossip.Enabled = miPaste.Enabled;
+			} 
+			else 
+			{
+				miDelCascade.Enabled = false;
+				miPasteGossip.Enabled = false;
+			}
+		}
+		
+
+
+		
+		#endregion
 
 		
 	}

@@ -54,7 +54,7 @@ namespace SimPe.Plugin
 														 new NgbhValueDescriptor("Dance Experience", true, NgbhValueDescriptorType.Skill, 0x6fe7e453, 0, 0, 1000),
 														 new NgbhValueDescriptor("Meditation Skill", false, NgbhValueDescriptorType.Skill, 0x4d8b0cc3, 2, 0, 1000),
 														 new NgbhValueDescriptor("Study Skill", false, NgbhValueDescriptorType.Skill, 0x4d8b0cc3, 3, 0, 1000),
-														 //new NgbhValueDescriptor("Unknown", NgbhValueDescriptorType.Skill, 0x4d8b0cc3, 4, 0, 1000),
+														 //new NgbhValueDescriptor("Swimming Skill", false, NgbhValueDescriptorType.Skill, 0x4d8b0cc3, 4, 0, 1000),
 														 new NgbhValueDescriptor("Learned to walk", false, NgbhValueDescriptorType.ToddlerSkill, 0x4ddf0e12, 1, 0, 1000, 4),								
 														 new NgbhValueDescriptor("Learned to talk", false, NgbhValueDescriptorType.ToddlerSkill, 0x4ddf0e12, 2, 0, 1000, 4),
 														 new NgbhValueDescriptor("Pottytrained", false, NgbhValueDescriptorType.ToddlerSkill, 0x4ddf0e12, 3, 0, 1000, 4)
@@ -85,10 +85,10 @@ namespace SimPe.Plugin
 				"Extended Neighborhood/Memory Wrapper",
 				"Quaxi",
 				"This File contains the Memories and Inventories of all Sims and Lots that Live in this Neighborhood.",
-				1,
+				2,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ngbh.png"))
 				); 
 		}
-		#endregion
+		#endregion		
 	}
 }
