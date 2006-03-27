@@ -75,7 +75,7 @@ namespace SimPe.PackedFiles.Wrapper
 				return;
 			}
 			
-			FamilyTieSim tie = famt.FindTies(sdsc);
+			FamilyTieSim tie = famt.FindTies(sdsc);			
 			Wrapper.SDesc[] parents = famt.ParentSims(sdsc);
 			Wrapper.SDesc[] siblings = famt.SiblingSims(sdsc);
 			Wrapper.SDesc[] childs = famt.ChildSims(sdsc);
@@ -104,27 +104,28 @@ namespace SimPe.PackedFiles.Wrapper
 
 			int ct = 0;	
 		
-			foreach (SDesc s in childs) 
+			if (tie!=null) 
 			{
-				ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
-				ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
-				ip.EndUpdate();
-			}
+				foreach (SDesc s in childs) 
+				{
+					ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
+					ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
+					ip.EndUpdate();
+				}
 
-			foreach (SDesc s in siblings) 
-			{
-				ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
-				ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
-				ip.EndUpdate();
-			}
-
+				foreach (SDesc s in siblings) 
+				{
+					ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
+					ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
+					ip.EndUpdate();
+				}
 			
-
-			foreach (SDesc s in parents) 
-			{
-				ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
-				ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
-				ip.EndUpdate();
+				foreach (SDesc s in parents) 
+				{
+					ImagePanel ip = AddTieToGraph(s, 0, 0, tie.FindTie(s).Type, false);
+					ip.Location = GraphPanel.GetItemLocationOnPinCricle(center,r, ct++, maxct, ItemSize);
+					ip.EndUpdate();
+				}
 			}
 
 			
@@ -146,6 +147,8 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 			
 			FamilyTieSim tie = famt.FindTies(sdsc);
+			
+
 			Wrapper.SDesc[] parents = famt.ParentSims(sdsc);
 			Wrapper.SDesc[] siblings = famt.SiblingSims(sdsc);
 			Wrapper.SDesc[] childs = famt.ChildSims(sdsc);
@@ -165,39 +168,42 @@ namespace SimPe.PackedFiles.Wrapper
 			baseip.ForeColor = Color.White;
 			baseip.EndUpdate();
 
-			left = (maxw -prect.Width)/2+16;
-			top = 0;
-			foreach (SDesc s in parents) 
+			if (tie!=null) 
 			{
-				ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type, true);
-				left += ip.Width+8;
-			}
-
-			left = (maxw - srect.Width)/2+16;
-			int ct = 0;
-			top =  prect.Height;
-			foreach (SDesc s in siblings) 
-			{
-				ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type, true);
-				left += ip.Width+24;
-				
-				ct++;
-				if (ct==siblings.Length/2 || siblings.Length==1) 
+				left = (maxw -prect.Width)/2+16;
+				top = 0;
+				foreach (SDesc s in parents) 
 				{
-					left += 70;
-					baseip.SetBounds(left, top+24, baseip.Width, baseip.Height);
-					left += ip.Width+94;				
+					ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type, true);
+					left += ip.Width+8;
 				}
-				else if (ct>siblings.Length/2) top -= 4;
-				else top += 4;
-			}
 
-			left = (maxw - crect.Width)/2+16;
-			top =  prect.Height +srect.Height;
-			foreach (SDesc s in childs) 
-			{
-				ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type, true);
-				left += ip.Width+8;
+				left = (maxw - srect.Width)/2+16;
+				int ct = 0;
+				top =  prect.Height;
+				foreach (SDesc s in siblings) 
+				{
+					ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type, true);
+					left += ip.Width+24;
+				
+					ct++;
+					if (ct==siblings.Length/2 || siblings.Length==1) 
+					{
+						left += 70;
+						baseip.SetBounds(left, top+24, baseip.Width, baseip.Height);
+						left += ip.Width+94;				
+					}
+					else if (ct>siblings.Length/2) top -= 4;
+					else top += 4;
+				}
+
+				left = (maxw - crect.Width)/2+16;
+				top =  prect.Height +srect.Height;
+				foreach (SDesc s in childs) 
+				{
+					ImagePanel ip = AddTieToGraph(s, left, top, tie.FindTie(s).Type, true);
+					left += ip.Width+8;
+				}
 			}
 
 			

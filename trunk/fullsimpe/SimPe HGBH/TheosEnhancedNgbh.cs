@@ -48,7 +48,7 @@ namespace SimPe.Plugin
 				"Extended Neighborhood/Memory Wrapper",
 				"Quaxi (with extensions developed by Theo)",
 				"This File contains the Memories and Inventories of all Sims and Lots that Live in this Neighborhood.",
-				1,
+				2,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ngbh.png"))
 				); 
 		}		

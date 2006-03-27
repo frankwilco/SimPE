@@ -615,6 +615,26 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Nhtr.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NhtrItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NhtrUI.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NhtrUI.resx"
+                    DependentUpon = "NhtrUI.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "nothumb.png"
                     BuildAction = "EmbeddedResource"
                 />

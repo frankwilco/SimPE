@@ -479,10 +479,10 @@ namespace SimPe.Plugin
 			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
 			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-			this.Controls.Add(this.pnSims);
-			this.Controls.Add(this.toolBar1);
+			this.Controls.Add(this.pnSims);			
 			this.Controls.Add(this.pnBadge);
 			this.Controls.Add(this.pnDebug);
+			this.Controls.Add(this.toolBar1);
 			this.DockPadding.Top = 24;
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
@@ -492,9 +492,9 @@ namespace SimPe.Plugin
 			this.Name = "ExtNgbhUI";
 			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
 			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
+			this.Controls.SetChildIndex(this.toolBar1, 0);
 			this.Controls.SetChildIndex(this.pnDebug, 0);
 			this.Controls.SetChildIndex(this.pnBadge, 0);
-			this.Controls.SetChildIndex(this.toolBar1, 0);
 			this.Controls.SetChildIndex(this.pnSims, 0);
 			this.pnSims.ResumeLayout(false);
 			this.pnDebug.ResumeLayout(false);

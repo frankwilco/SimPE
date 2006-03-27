@@ -6,12 +6,16 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// Used to find the Texture for a given Subset
 	/// </summary>
-	public class TextureLocator
+	public class TextureLocator : System.IDisposable
 	{
 		SimPe.Interfaces.Files.IPackageFile package;
+		SimPe.Interfaces.Scenegraph.IScenegraphFileIndex fii;
 		public TextureLocator(SimPe.Interfaces.Files.IPackageFile package)
 		{
 			this.package = package;
+			fii = SimPe.FileTable.FileIndex.AddNewChild();
+
+			//fii.AddIndexFromPackage(package);
 		}
 
 		/// <summary>
@@ -230,5 +234,14 @@ namespace SimPe.Plugin
 
 			return list;
 		}
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			SimPe.FileTable.FileIndex.RemoveChild(fii);
+			fii.Clear();
+		}
+
+		#endregion
 	}
 }

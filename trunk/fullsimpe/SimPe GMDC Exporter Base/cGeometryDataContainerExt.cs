@@ -33,13 +33,38 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// This class contains the Geometric Data of an Object
 	/// </summary>
-	public class GeometryDataContainerExt 
+	public class GeometryDataContainerExt  : System.IDisposable
 	{
 		GeometryDataContainer gmdc;
 		public GeometryDataContainerExt(GeometryDataContainer gmdc) 
 		{
 			this.gmdc = gmdc;
+			txtrmap = new Hashtable();
+			txmtmap = new Hashtable();
 		}		
+
+		Hashtable txtrmap, txmtmap;
+		/// <summary>
+		/// Used as a User Override for the automatically created List of TXMTs, which is used for 
+		/// the Objects Textures
+		/// </summary>
+		/// <remarks>Keyas are the SubSet Names, the Values are <see cref="GenericRcol"/> Instances, 
+		/// that hold the TXMT for that Subset</remarks>
+		public Hashtable UserTxtrMap
+		{
+			get {return txtrmap;}
+		}
+
+		/// <summary>
+		/// Used as a User Override for the automatically created List of TXTRs, which is used for 
+		/// the Objects Textures
+		/// </summary>
+		/// <remarks>Keyas are the SubSet Names, the Values are <see cref="GenericRcol"/> Instances, 
+		/// that hold the TXTR for that Subset</remarks>
+		public Hashtable UserTxmtMap
+		{
+			get {return txmtmap;}
+		}
 
 		public Ambertation.Scenes.Scene GetScene(string absimgpath, string imgfolder, ElementOrder component)
 		{
@@ -148,8 +173,23 @@ namespace SimPe.Plugin
 								
 			TextureLocator tl = new TextureLocator(gmdc.Parent.Package);
 			System.Collections.Hashtable txmts = tl.FindMaterials(gmdc.Parent);			
-			System.Collections.Hashtable txtrs = tl.GetLargestImages(tl.FindReferencedTXTR(txmts, null));
+			foreach (string key in txmtmap.Keys)
+			{
+				object o = txmtmap[key];
+				if (o!=null) txmts[key] = txmtmap[key];
+			}
+
+
+			Hashtable txtrs = tl.FindReferencedTXTR(txmts, null);			
+			foreach (string key in txtrmap.Keys) 
+			{
+				object o = txtrmap[key];
+				if (o!=null) txtrs[key] = o;
+			}
+
+			txtrs = tl.GetLargestImages(txtrs);
 			txmts = tl.GetMaterials(txmts, scn);
+			tl.Dispose();
 
 			foreach (GmdcGroup g in groups)
 			{
@@ -284,5 +324,15 @@ namespace SimPe.Plugin
 					
 			}
 		}
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+			txtrmap.Clear();
+			txmtmap.Clear();
+			gmdc = null;
+		}
+
+		#endregion
 	}
 }

@@ -716,7 +716,6 @@ namespace SimPe
 
 			return lng;
 		}
-
 		/// <summary>
 		/// Creates a HexList from teh Byte Array
 		/// </summary>
@@ -724,12 +723,36 @@ namespace SimPe
 		/// <returns></returns>
 		public static string  BytesToHexList(byte[] data) 
 		{
+			return BytesToHexList(data, -1);
+		}
+
+
+		/// <summary>
+		/// Creates a HexList from teh Byte Array
+		/// </summary>
+		/// <param name="data"></param>
+		/// <returns></returns>
+		public static string  BytesToHexList(byte[] data, int dwordperrow) 
+		{
+			if (dwordperrow>0) dwordperrow++;
 			string s = "";
+			int dwords = 0;
 			for (int i=0; i<data.Length; i++) 
 			{
 				byte b = data[i];
 				s += HexString(b)+" ";
-				if (i % 4 == 3) s += " ";
+				if (i % 4 == 3) 
+				{
+					s += " ";
+					dwords++;
+				}
+				if (dwordperrow>0)
+					if (dwords%dwordperrow == dwordperrow-1) 	
+					{		
+						dwords = 0;
+						s += Helper.lbr;
+					}
+					
 			}
 			return s.Trim();
 		}

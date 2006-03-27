@@ -3098,7 +3098,7 @@ namespace SimPe
 		static TimeSpan waitfi = new TimeSpan(0, 2, 10, 0, 0);
 		private static void Application_Idle(object sender, EventArgs e)
 		{
-			DateTime now = DateTime.Now;
+			/*DateTime now = DateTime.Now;
 			if (now.Subtract(lastgc) > waitgc) 
 			{
 				GC.Collect();
@@ -3113,7 +3113,7 @@ namespace SimPe
 				} 
 				catch {}
 				lastfi = now;
-			}
+			}*/
 		}
 		#endregion
 
