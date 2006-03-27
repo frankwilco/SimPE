@@ -51,7 +51,8 @@ namespace SimPe.Plugin
 										  new Plugin.Idno(),
 									      new Plugin.RoadTexture(),
 										  new Plugin.Tatt(),		
-										  new Plugin.Bnfo()
+										  new Plugin.Bnfo(),
+										  new Plugin.Nhtr()
 									  };
 				return wrappers;
 			}

@@ -45,6 +45,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			if( disposing )
 			{
+				Clear();
 				if(components != null)
 				{
 					components.Dispose();
@@ -75,26 +76,48 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			//Image imgbig = SimPoolControl.CreateItem(sdesc).SourceImage;
 			Image imgbig = sdesc.Image;
-			if (imgbig.Width<16) imgbig = null;
+			if (imgbig != null) 
+				if (imgbig.Width<16) 
+					imgbig = null;
 
 			if (imgbig!=null) 			
 				imgbig = Ambertation.Drawing.GraphicRoutines.KnockoutImage(imgbig, new Point(0, 0), Color.Magenta);								
 			else 
-				imgbig = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png"));			
+				imgbig = Image.FromStream(
+					this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png")
+				);			
 
-			imgbig = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(imgbig, this.LargeImageList.ImageSize, 8, Color.FromArgb(90, Color.Black), SimPe.PackedFiles.Wrapper.SimPoolControl.GetImagePanelColor(sdesc), Color.White, Color.FromArgb(80, Color.White), true, 0, 0);
+			imgbig = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(
+				imgbig, 
+				this.LargeImageList.ImageSize, 
+				8, 
+				Color.FromArgb(90, Color.Black), 
+				SimPe.PackedFiles.Wrapper.SimPoolControl.GetImagePanelColor(sdesc), 
+				Color.White, 
+				Color.FromArgb(80, Color.White), 
+				true, 
+				0, 
+				0
+				);
 			//imgbig = Ambertation.Drawing.GraphicRoutines.ScaleImage(imgbig, this.LargeImageList.ImageSize.Width, this.LargeImageList.ImageSize.Height, true);
 
-			this.LargeImageList.Images.Add(imgbig);
-
 			SteepValley.Windows.Forms.XPListViewItem lvi = new SteepValley.Windows.Forms.XPListViewItem();
+			try 
+			{
+				this.LargeImageList.Images.Add(imgbig);
+				lvi.ImageIndex = LargeImageList.Images.Count-1;				
+			} 
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+			}
+
+			
 			lvi.Text = " "+sdesc.SimName+" "+sdesc.SimFamilyName;
 			if (this.Columns.Count>1) lvi.SubItems.Add("    "+Columns[1].Text+": "+sdesc.HouseholdName);
 			if (this.Columns.Count>2) lvi.SubItems.Add("    "+Columns[2].Text+": 0x"+Helper.HexString(sdesc.SimId));
 			if (this.Columns.Count>3) lvi.SubItems.Add("    "+Columns[3].Text+": 0x"+Helper.HexString((ushort)sdesc.FileDescriptor.Instance));
-			if (this.Columns.Count>4) lvi.SubItems.Add("    "+Columns[4].Text+": "+new Data.LocalizedLifeSections(sdesc.CharacterDescription.LifeSection).ToString());
-			lvi.ImageIndex = LargeImageList.Images.Count-1;
-			
+			if (this.Columns.Count>4) lvi.SubItems.Add("    "+Columns[4].Text+": "+new Data.LocalizedLifeSections(sdesc.CharacterDescription.LifeSection).ToString());							
 			
 			
 			this.Items.Add(lvi);

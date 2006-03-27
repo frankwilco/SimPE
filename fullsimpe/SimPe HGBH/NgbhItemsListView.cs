@@ -81,6 +81,7 @@ namespace SimPe.Plugin
 		{
 			if( disposing )
 			{
+				if (clipboard!=null) clipboard.Clear();
 				if(components != null)
 				{
 					components.Dispose();
@@ -709,18 +710,23 @@ namespace SimPe.Plugin
 		{
 			int itemIndex = this.NextItemIndex(false);
 			this.Cursor = Cursors.WaitCursor;
+			System.Collections.Queue newq = new Queue();
 			try
 			{
 				while (clipboard.Count > 0)
 				{
 					NgbhItem item = clipboard.Dequeue() as NgbhItem;
+					newq.Enqueue(item);
 					
 					if (item != null)
 					{
 						item = item.Clone(this.Slot);
-
+						
 						if (item.IsMemory && item.OwnerInstance > 0 && !asgossip)
-							item.OwnerInstance = (ushort)items.Parent.SlotID;								
+							item.OwnerInstance = (ushort)items.Parent.SlotID;	
+
+						if (asgossip)
+							item.Flags.IsVisible = false;						
 
 						AddItemAfterSelected(item);
 					}
@@ -731,6 +737,9 @@ namespace SimPe.Plugin
 				this.Cursor = Cursors.Default;
 				Helper.ExceptionMessage(Localization.Manager.GetString("errconvert"), exception1);
 			}
+
+			clipboard.Clear();			
+			clipboard = newq;
 			this.Cursor = Cursors.Default;			
 		}
 

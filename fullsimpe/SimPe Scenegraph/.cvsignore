@@ -4,3 +4,5 @@ obj
 Thumbs.db
 *.csproj.user
 bin
+PreviewFormOld.cs
+PreviewFormOld.resx

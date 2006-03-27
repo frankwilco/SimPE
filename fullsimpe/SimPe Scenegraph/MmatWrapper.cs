@@ -51,7 +51,7 @@ namespace SimPe.Plugin
 				"MMAT Wrapper",
 				"Quaxi",
 				"This File describes a ColorOption for a Mesh Group / Subset. It is needed to provide an additional Color for Objects.",
-				3,
+				4,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.mmat.png"))
 				);   
 		}
@@ -78,7 +78,7 @@ namespace SimPe.Plugin
 		/// You should store this value in a temp var if you need it multiple times, 
 		/// as the File is reloaded with each call
 		/// </remarks>
-		public GenericRcol LocalCRES 
+		public GenericRcol CRES 
 		{
 			get 
 			{
@@ -103,9 +103,9 @@ namespace SimPe.Plugin
 							return cres;
 						}
 
-						/*if (pfd==null) //FileTable fallback code
+						if (pfd==null) //FileTable fallback code
 						{
-							Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)cress[0], null);
+							Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFileDiscardingGroup((Interfaces.Files.IPackedFileDescriptor)cress[0]);
 							if (items.Length>0) 
 							{
 								GenericRcol cres = new GenericRcol(null, false);
@@ -113,7 +113,7 @@ namespace SimPe.Plugin
 
 								return cres;
 							}
-						}*/
+						}
 					}
 				}
 				return null;
@@ -154,7 +154,7 @@ namespace SimPe.Plugin
 
 						if (pfd==null) //FileTable fallback code
 						{
-							Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)txmts[0], null);
+							Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFileDiscardingGroup((Interfaces.Files.IPackedFileDescriptor)txmts[0]);
 							if (items.Length>0) 
 							{
 								GenericRcol txmt = new GenericRcol(null, false);
@@ -199,7 +199,7 @@ namespace SimPe.Plugin
 
 					if (pfd==null) //FileTable fallback code
 					{
-						Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)txtrs[0], null);
+						Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFileDiscardingGroup((Interfaces.Files.IPackedFileDescriptor)txtrs[0]);
 						if (items.Length>0) 
 						{
 							GenericRcol txtr = new GenericRcol(null, false);
@@ -228,6 +228,71 @@ namespace SimPe.Plugin
 				GenericRcol txmt = this.TXMT;
 				return GetTxtr(txmt);
 				
+			}
+		}
+
+		protected GenericRcol GetGmdc()
+		{
+			GenericRcol rcol = CRES;
+			if (rcol!=null)
+			{
+				Hashtable refs = rcol.ReferenceChains;
+				ArrayList shps = (ArrayList)refs["Generic"];
+				if (shps!=null)
+					if (shps.Count>0)
+					{
+						Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)shps[0], null);
+						if (items.Length>0) 
+						{
+							GenericRcol shpe = new GenericRcol(null, false);
+							shpe.ProcessData(items[0].FileDescriptor, items[0].Package);
+
+							refs = shpe.ReferenceChains;
+							ArrayList gmnds = (ArrayList)refs["Models"];
+							if (gmnds!=null) 
+								if (gmnds.Count>0)
+								{
+									items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)gmnds[0], null);
+									if (items.Length>0) 
+									{
+										GenericRcol gmnd = new GenericRcol(null, false);
+										gmnd.ProcessData(items[0].FileDescriptor, items[0].Package);
+
+										refs = gmnd.ReferenceChains;
+										ArrayList gmdcs = (ArrayList)refs["Generic"];
+										if (gmdcs!=null) 
+											if (gmdcs.Count>0)
+											{
+												items = FileTable.FileIndex.FindFile((Interfaces.Files.IPackedFileDescriptor)gmdcs[0], null);
+												if (items.Length>0) 
+												{
+													GenericRcol gmdc = new GenericRcol(null, false);
+													gmdc.ProcessData(items[0].FileDescriptor, items[0].Package);
+
+													return gmdc;
+												}
+											}
+									}
+								}
+						}
+					}
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Load and return the used GMDC File (through the CRES, null if none was available)
+		/// </summary>
+		/// <remarks>
+		/// You should store this value in a temp var if you need it multiple times, 
+		/// as the File is reloaded with each call
+		/// </remarks>
+		public GenericRcol GMDC 
+		{
+			get 
+			{
+				return GetGmdc();				
 			}
 		}
 
