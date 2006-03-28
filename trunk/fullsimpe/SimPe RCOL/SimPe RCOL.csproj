@@ -449,26 +449,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "fExtension.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "fExtension.resx"
-                    DependentUpon = "fExtension.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "fShapeRefNode.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "fShapeRefNode.resx"
-                    DependentUpon = "fShapeRefNode.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "GeneralRcolWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -489,18 +469,8 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "MatdForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "MatdForm.resx"
-                    DependentUpon = "MatdForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "RcolForm.cs"
-                    SubType = "Form"
+                    SubType = "UserControl"
                     BuildAction = "Compile"
                 />
                 <File
@@ -528,19 +498,179 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ShpeForm.cs"
-                    SubType = "Form"
+                    RelPath = "tCresHierarchy.cs"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ShpeForm.resx"
-                    DependentUpon = "ShpeForm.cs"
+                    RelPath = "tCresHierarchy.resx"
+                    DependentUpon = "tCresHierarchy.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tDirectionalLight.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tDirectionalLight.resx"
+                    DependentUpon = "tDirectionalLight.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tExtension.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tExtension.resx"
+                    DependentUpon = "tExtension.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "TextureLocator.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tGenericRcol.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tGenericRcol.resx"
+                    DependentUpon = "tGenericRcol.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tGeometryNode.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tGeometryNode.resx"
+                    DependentUpon = "tGeometryNode.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tLightT.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tLightT.resx"
+                    DependentUpon = "tLightT.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tMaterialDefinition.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tMaterialDefinition.resx"
+                    DependentUpon = "tMaterialDefinition.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tMaterialDefinitionCategories.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tMaterialDefinitionCategories.resx"
+                    DependentUpon = "tMaterialDefinitionCategories.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tMaterialDefinitionFiles.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tMaterialDefinitionFiles.resx"
+                    DependentUpon = "tMaterialDefinitionFiles.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tMaterialDefinitionProperties.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tMaterialDefinitionProperties.resx"
+                    DependentUpon = "tMaterialDefinitionProperties.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tObjectGraphNode.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tObjectGraphNode.resx"
+                    DependentUpon = "tObjectGraphNode.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tResourceNode.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tResourceNode.resx"
+                    DependentUpon = "tResourceNode.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tShapeRefNode.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tShapeRefNode.resx"
+                    DependentUpon = "tShapeRefNode.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tShpeItems.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tShpeItems.resx"
+                    DependentUpon = "tShpeItems.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tShpeLod.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tShpeLod.resx"
+                    DependentUpon = "tShpeLod.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tShpeParts.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tShpeParts.resx"
+                    DependentUpon = "tShpeParts.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "tTransformNode.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "tTransformNode.resx"
+                    DependentUpon = "tTransformNode.cs"
+                    BuildAction = "EmbeddedResource"
                 />
             </Include>
         </Files>

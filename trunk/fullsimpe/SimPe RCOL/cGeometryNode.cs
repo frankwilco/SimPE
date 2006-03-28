@@ -164,13 +164,13 @@ namespace SimPe.Plugin
 			}
 		}
 
-		fShapeRefNode form = null;
+		TabPage.GeometryNode tGeometryNode;
 		public override System.Windows.Forms.TabPage TabPage
 		{
 			get
 			{
-				if (form==null) form = new fShapeRefNode(); 
-				return form.tGeometryNode;
+				if (tGeometryNode==null) tGeometryNode = new SimPe.Plugin.TabPage.GeometryNode();
+				return tGeometryNode;
 			}
 		}
 		#endregion
@@ -180,21 +180,21 @@ namespace SimPe.Plugin
 		/// </summary>
 		protected override void InitTabPage() 
 		{
-			if (form==null) form = new fShapeRefNode(); 
+			if (tGeometryNode==null) tGeometryNode = new SimPe.Plugin.TabPage.GeometryNode();
 
-			form.tb_gn_ver.Text = "0x"+Helper.HexString(this.version);
+			tGeometryNode.tb_gn_ver.Text = "0x"+Helper.HexString(this.version);
 
-			form.tb_gn_uk1.Text = "0x"+Helper.HexString((ushort)this.unknown1);
-			form.tb_gn_uk2.Text = "0x"+Helper.HexString((ushort)this.unknown2);
-			form.tb_gn_uk3.Text = "0x"+Helper.HexString(this.unknown3);
+			tGeometryNode.tb_gn_uk1.Text = "0x"+Helper.HexString((ushort)this.unknown1);
+			tGeometryNode.tb_gn_uk2.Text = "0x"+Helper.HexString((ushort)this.unknown2);
+			tGeometryNode.tb_gn_uk3.Text = "0x"+Helper.HexString(this.unknown3);
 
-			form.tb_gn_count.Text = Count.ToString();
+			tGeometryNode.tb_gn_count.Text = Count.ToString();
 
-			form.cb_gn_list.Items.Clear();
+			tGeometryNode.cb_gn_list.Items.Clear();
 			
-			foreach (IRcolBlock irb in this.data) SimPe.CountedListItem.Add(form.cb_gn_list, irb);
-			if (form.cb_gn_list.Items.Count>0) form.cb_gn_list.SelectedIndex = 0;
-			else form.BuildChildTabControl(null);
+			foreach (IRcolBlock irb in this.data) SimPe.CountedListItem.Add(tGeometryNode.cb_gn_list, irb);
+			if (tGeometryNode.cb_gn_list.Items.Count>0) tGeometryNode.cb_gn_list.SelectedIndex = 0;
+			else tGeometryNode.BuildChildTabControl(null);
 		}
 
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
@@ -249,7 +249,8 @@ namespace SimPe.Plugin
 
 		public override void Dispose()
 		{
-			if (this.form!=null) this.form.Dispose();
+			if (this.tGeometryNode!=null) this.tGeometryNode.Dispose();
+			tGeometryNode = null;
 		}
 
 		#endregion

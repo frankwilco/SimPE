@@ -431,7 +431,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			get { return objd; }
 			set 
 			{
-				if (objd!=value)
+				if (objd!=value || value==null)
 				{
 					objd = value;
 					UpdateScreen();
@@ -735,6 +735,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			ClearScreen();
 			if (objd==null) return;
+			
 			
 			this.lbExpansion.Text = SimPe.Localization.GetString(FileFrom(objd.FileDescriptor).ToString());
 			

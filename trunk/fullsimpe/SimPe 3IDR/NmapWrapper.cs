@@ -111,7 +111,8 @@ namespace SimPe.Plugin
 				"Name Map Wrapper",
 				"Quaxi",
 				"---",
-				4
+				4,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.view_tree.png"))
 				); 
 		}
 

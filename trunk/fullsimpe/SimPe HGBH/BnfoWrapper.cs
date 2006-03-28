@@ -81,8 +81,8 @@ namespace SimPe.Plugin
 				"Business Info Wrapper",
 				"Quaxi",
 				"Contains Informations about the Business on a Lot (like Cutomer Loiality)",
-				1,
-				null
+				2,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.bookmark.png"))
 				); 
 		}
 		#endregion

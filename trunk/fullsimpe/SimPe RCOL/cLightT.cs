@@ -24,7 +24,7 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// this is basicall te same as StandardLightBase
 	/// </summary>
-	public class LightT : StandardLightBase 
+	public class LightT : StandardLightBase , System.IDisposable
 	{
 		#region Attributes
 
@@ -74,13 +74,13 @@ namespace SimPe.Plugin
 			sgres.Serialize(writer);
 		}
 
-		fShapeRefNode form = null;
+		TabPage.LightT tLightT;
 		public override System.Windows.Forms.TabPage TabPage
 		{
 			get
 			{
-				if (form==null) form = new fShapeRefNode(); 
-				return form.tLightT;
+				if (tLightT==null) tLightT = new SimPe.Plugin.TabPage.LightT();
+				return tLightT;
 			}
 		}
 		#endregion
@@ -90,9 +90,19 @@ namespace SimPe.Plugin
 		/// </summary>
 		protected override void InitTabPage() 
 		{
-			if (form==null) form = new fShapeRefNode(); 
-			form.tb_lt_ver.Text = "0x"+Helper.HexString(this.version);
-			form.tb_lt_name.Text = sgres.FileName;
+			if (tLightT==null) tLightT = new SimPe.Plugin.TabPage.LightT();
+			tLightT.tb_lt_ver.Text = "0x"+Helper.HexString(this.version);
+			tLightT.tb_lt_name.Text = sgres.FileName;
 		}
+
+		#region IDisposable Member
+
+		public override void Dispose()
+		{
+			if (tLightT!=null) tLightT.Dispose();
+			tLightT = null;
+		}
+
+		#endregion
 	}
 }

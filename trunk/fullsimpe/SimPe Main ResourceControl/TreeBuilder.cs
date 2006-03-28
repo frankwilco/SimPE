@@ -28,7 +28,7 @@ namespace SimPe
 	/// <summary>
 	/// This classed is used to associate a TreeView with a certain Generator Function
 	/// </summary>
-	public class TreeBuilderList 
+	public class TreeBuilderList  : System.IDisposable
 	{
 		/// <summary>
 		/// All Generator Functions (=Functions that build a TreeView) must implement this delegate
@@ -36,7 +36,22 @@ namespace SimPe
 		public delegate void GenerateView(TreeView tv, bool autoselect);
 		TreeView tv;
 		GenerateView fkt;
+		static TreeBuilder tbl;		
+		public static TreeBuilder TreeBuilder
+		{
+			get {return tbl;}
+			set {
+				if (tbl!=null)tbl.Finished -= new EventHandler(tbl_Finished);				
+				tbl = value;
+				if (tbl!=null)tbl.Finished += new EventHandler(tbl_Finished);
+			}
+		}
 
+		public static System.EventHandler Finished;
+		private static void tbl_Finished(object sender, EventArgs e)
+		{
+			if (Finished!=null) Finished(sender, e);
+		}
 		/// <summary>
 		/// Create a new Instance
 		/// </summary>
@@ -61,9 +76,22 @@ namespace SimPe
 		/// Build the TreeView
 		/// </summary>
 		public void Generate(bool autoselect)
-		{
+		{			
 			fkt(tv, autoselect);
 		}
+
+		#region IDisposable Member
+
+		public void Dispose()
+		{
+						
+			fkt = null;
+			tv = null;
+		}
+
+		#endregion
+
+		
 	}
 
 
@@ -85,7 +113,7 @@ namespace SimPe
 				{
 					UpdatableListViewItem lvi = (UpdatableListViewItem)o;
 					lvi.Dispose();				
-				}
+				}						
 
 			lv.Items.Clear();
 			//lv.ListViewItemSorter = null; This is now done in the ResourceLister

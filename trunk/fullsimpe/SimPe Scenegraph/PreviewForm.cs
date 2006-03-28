@@ -86,7 +86,7 @@ namespace SimPe.Plugin
 
 		static void Exception()
 		{
-			throw new SimPe.Warning("This Item can't be previewed!", "SimPE was unable to build the Scengraph.");
+			throw new SimPe.Warning("This Item can't be previewed!", "SimPE was unable to build the Scenegraph.");
 		}
 
 		//static Ambertation.Panel3D p3d;

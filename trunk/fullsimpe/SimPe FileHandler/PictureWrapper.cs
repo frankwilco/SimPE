@@ -51,7 +51,8 @@ namespace SimPe.PackedFiles.Wrapper
 				"Picture Wrapper",
 				"Quaxi",
 				"---",
-				1
+				2,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.pic.png"))
 				); 
 		}
 		#endregion

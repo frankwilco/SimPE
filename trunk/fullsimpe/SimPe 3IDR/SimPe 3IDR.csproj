@@ -243,6 +243,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "view_tree.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "WrapperFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

@@ -79,6 +79,7 @@ namespace SimPe
 		}
 
 		internal bool AutoSelect;
+		
 
 		protected delegate void AddNodeDelegate(TreeNodeCollection nodes, TreeNode node);
 		protected void AddNode(TreeNodeCollection nodes, TreeNode node)

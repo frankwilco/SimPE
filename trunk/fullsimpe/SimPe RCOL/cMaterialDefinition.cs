@@ -236,13 +236,16 @@ namespace SimPe.Plugin
 			}
 		}
 
-		MatdForm form = null;
+		TabPage.MaterialDefinition tMaterialDefinition;
+		TabPage.MaterialDefinitionProperties tMaterialDefinitionProperties;
+		TabPage.MaterialDefinitionCategories tMaterialDefinitionCat;
+		TabPage.MaterialDefinitionFiles tMaterialDefinitionFiles;
 		public override System.Windows.Forms.TabPage TabPage
 		{
 			get
 			{
-				if (form==null) form = new MatdForm(); 
-				return form.tabPage3;
+				if (tMaterialDefinition==null) tMaterialDefinition = new SimPe.Plugin.TabPage.MaterialDefinition();			
+				return tMaterialDefinition;
 			}
 		}
 		#endregion
@@ -252,51 +255,60 @@ namespace SimPe.Plugin
 		/// </summary>
 		protected override void InitTabPage() 
 		{
-			if (form==null) form = new MatdForm(); 
-			form.tbname.Tag = true;
+			if (tMaterialDefinition==null) tMaterialDefinition = new SimPe.Plugin.TabPage.MaterialDefinition();			
+			if (tMaterialDefinitionProperties==null) tMaterialDefinitionProperties = new SimPe.Plugin.TabPage.MaterialDefinitionProperties();
+			if (tMaterialDefinitionCat==null) tMaterialDefinitionCat = new SimPe.Plugin.TabPage.MaterialDefinitionCategories();
+			if (tMaterialDefinitionFiles==null) tMaterialDefinitionFiles = new SimPe.Plugin.TabPage.MaterialDefinitionFiles();
+			tMaterialDefinitionProperties.tbname.Tag = true;
+			tMaterialDefinition.tbdsc.Tag = true;
 			try 
 			{
-				form.tb_ver.Text = "0x"+Helper.HexString(this.version);
+				tMaterialDefinition.tb_ver.Text = "0x"+Helper.HexString(this.version);
 		
-				form.lldel.Enabled = false;
-				form.lbprop.Items.Clear();
-				foreach (MaterialDefinitionProperty mdp in this.Properties) form.lbprop.Items.Add(mdp);
+				tMaterialDefinitionProperties.lldel.Enabled = false;
+				tMaterialDefinitionProperties.lbprop.Items.Clear();
+				foreach (MaterialDefinitionProperty mdp in this.Properties) tMaterialDefinitionProperties.lbprop.Items.Add(mdp);
 				
-				form.tbdsc.Text = FileDescription;
-				form.tbtype.Text = MatterialType;
+				tMaterialDefinition.tbdsc.Text = FileDescription;
+				tMaterialDefinition.tbtype.Text = MatterialType;
 
-				form.lbfl.Items.Clear();
-				foreach (string fl in Listing) form.lbfl.Items.Add(fl);
+				tMaterialDefinitionFiles.lbfl.Items.Clear();
+				foreach (string fl in Listing) tMaterialDefinitionFiles.lbfl.Items.Add(fl);
 
 				//if (Helper.WindowsRegistry.HiddenMode) 
 				{
-					form.SetupGrid(this);
+					tMaterialDefinitionCat.SetupGrid(this);
 				}				
 			} 
 			finally 
 			{
-				form.tbname.Tag = null;
+				tMaterialDefinitionProperties.tbname.Tag = null;
+				tMaterialDefinition.tbdsc.Tag = null;
 			}
 		}
 
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
 		{
-			form.tabPage1.Tag = this;
-			tc.TabPages.Add(form.tabPage1);
+			tMaterialDefinitionProperties.Tag = this;
+			tc.TabPages.Add(tMaterialDefinitionProperties);
 
 			
-			form.tabPage2.Tag = this;
-			tc.TabPages.Add(form.tabPage2);
+			tMaterialDefinitionFiles.Tag = this;
+			tc.TabPages.Add(tMaterialDefinitionFiles);
 			
 
 			//if (Helper.WindowsRegistry.HiddenMode) 
 		{
-			form.tGrid.Tag = this;
-			tc.TabPages.Add(form.tGrid);
+			tMaterialDefinitionCat.Tag = this;
+			tc.TabPages.Add(tMaterialDefinitionCat);
 		}
 
 			tc.SelectedIndex = 1;			
-			if (parent!=null) parent.CallWhenTabPageChanged = new System.EventHandler(form.TxmtChangeTab);
+			if (parent!=null) 
+			{
+				parent.TabPageChanged += new EventHandler(tMaterialDefinitionProperties.TxmtChangeTab);				
+				parent.TabPageChanged += new EventHandler(tMaterialDefinitionCat.TxmtChangeTab);
+			}
 		}
 
 		#region IScenegraphBlock Member
@@ -420,7 +432,14 @@ namespace SimPe.Plugin
 
 		public override void Dispose()
 		{
-			if (this.form!=null) this.form.Dispose();
+			if (this.tMaterialDefinition!=null) this.tMaterialDefinition.Dispose();
+			if (tMaterialDefinitionProperties!=null) tMaterialDefinitionProperties.Dispose();
+			if (tMaterialDefinitionCat!=null) tMaterialDefinitionCat.Dispose();
+			if (tMaterialDefinitionFiles!=null) tMaterialDefinitionFiles.Dispose();
+			tMaterialDefinitionFiles = null;
+			tMaterialDefinitionCat = null;
+			tMaterialDefinitionProperties = null;
+			tMaterialDefinition = null;
 		}
 
 		#endregion

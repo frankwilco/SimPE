@@ -145,7 +145,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Quaxi",
 				"LUA Resources are external Resources, which contain additional SimAntic Scripts.",
 				1,
-				null
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.bhav.png"))
 				); 
 		}
 		#endregion

@@ -101,7 +101,7 @@ namespace SimPe.PackedFiles.UserInterface
 			form.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Athletic));
 			form.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.LawEnforcement));
 			form.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Culinary));
-			form.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Business));
+			form.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Economy));
 			form.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Slacker));
 			form.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Criminal));
 			form.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Military));

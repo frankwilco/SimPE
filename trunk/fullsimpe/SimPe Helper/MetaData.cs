@@ -655,7 +655,7 @@ namespace SimPe.Data
 			Science = 0x0C9EBD47,
 			Medical = 0x0C7761FD,
 			Athletic = 0x2C89E95F,			
-			Business = 0x45196555,
+			Economy = 0x45196555,
 			LawEnforcement = 0xAC9EBCE3,
 			Culinary = 0xEC9EBD5F,
 			Slacker = 0xEC77620B,

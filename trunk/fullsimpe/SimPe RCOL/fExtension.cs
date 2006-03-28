@@ -26,7 +26,7 @@ using System.Windows.Forms;
 namespace SimPe.Plugin
 {
 	/// <summary>
-	/// Zusammenfassung für fExtension.
+	/// This Form is no longer Used
 	/// </summary>
 	public class fExtension : System.Windows.Forms.Form
 	{

@@ -344,7 +344,7 @@ namespace SimPe.Plugin
 		{
 			if (source_package!=null)
 			{
-				if (source_package.FileName.Trim().ToLower().StartsWith(path.ToLower()))
+				if (source_package.SaveFileName.Trim().ToLower().StartsWith(path.ToLower()))
 				{
 					if(source_package.Reader != null)				
 					{

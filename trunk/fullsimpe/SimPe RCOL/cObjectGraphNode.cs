@@ -164,14 +164,14 @@ namespace SimPe.Plugin
 
 			if (version == 0x04) writer.Write(filename); 
 		}
-
-		fShapeRefNode form = null;
+		
+		TabPage.ObjectGraphNode tObjectGraphNode;
 		public override System.Windows.Forms.TabPage TabPage
 		{
 			get
 			{
-				if (form==null) form = new fShapeRefNode(); 
-				return form.tObjectGraphNode;
+				if (tObjectGraphNode==null) tObjectGraphNode = new SimPe.Plugin.TabPage.ObjectGraphNode();
+				return tObjectGraphNode;
 			}
 		}
 		#endregion
@@ -181,13 +181,13 @@ namespace SimPe.Plugin
 		/// </summary>
 		protected override void InitTabPage() 
 		{
-			if (form==null) form = new fShapeRefNode(); 
+			if (tObjectGraphNode==null) tObjectGraphNode = new SimPe.Plugin.TabPage.ObjectGraphNode();
 			
-			form.lb_ogn.Items.Clear();
-			for(int i=0; i<this.items.Length; i++) form.lb_ogn.Items.Add(items[i]);
+			tObjectGraphNode.lb_ogn.Items.Clear();
+			for(int i=0; i<this.items.Length; i++) tObjectGraphNode.lb_ogn.Items.Add(items[i]);
 
-			form.tb_ogn_file.Text = this.filename;
-			form.tb_ogn_ver.Text = "0x"+Helper.HexString(this.version);
+			tObjectGraphNode.tb_ogn_file.Text = this.filename;
+			tObjectGraphNode.tb_ogn_ver.Text = "0x"+Helper.HexString(this.version);
 		}
 
 		public override string ToString()
@@ -199,7 +199,8 @@ namespace SimPe.Plugin
 
 		public override void Dispose()
 		{
-			if (this.form!=null) this.form.Dispose();
+			if (this.tObjectGraphNode!=null) this.tObjectGraphNode.Dispose();
+			tObjectGraphNode = null;
 		}
 
 		#endregion

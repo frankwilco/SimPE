@@ -2133,37 +2133,66 @@ namespace SimPe
 			return false;
 		}
 
+		TreeNodeTag reselecttnt;
+		SimPe.Collections.PackedFileDescriptors reselectlist;
+		private void TreeBuilder_Finished(object sender, EventArgs e)
+		{
+			if (sender == null) return;
+
+			if (sender is TreeBuilderBase)
+			{
+				if (reselecttnt!=null && lasttreeview!=null) 
+				{
+					reselecttnt.Refresh(lv);
+					ReSelectTreeNode(this.lasttreeview.Nodes, reselecttnt);				
+				}
+				
+				reselecttnt = null;
+			} 
+			else if (sender is ResourceListerBase)
+			{
+				if (reselectlist!=null) 
+				{
+					lock (lv)
+					{
+						foreach (ListViewItem lvi in lv.Items) 
+						{
+							if (lvi==null) continue;
+							if (lvi.Tag == null) continue;
+							ListViewTag lvt = (ListViewTag)lvi.Tag;
+							if (reselectlist.Contains(lvt.Resource.FileDescriptor)) lvi.Selected = true;
+						}
+
+						reselectlist.Clear();
+					}
+				}
+			}
+
+		}
+
 		/// <summary>
 		/// When adding removing a Resource, the ResourceList and ResourceTree need to be Updated.
 		/// That is done in this Method
 		/// </summary>
 		void UpdateFileIndex()
 		{			
-			SimPe.Collections.PackedFileDescriptors list = new SimPe.Collections.PackedFileDescriptors();
-			
+			if (reselectlist==null) reselectlist = new SimPe.Collections.PackedFileDescriptors();
 			foreach (ListViewItem lvi in lv.Items) 
 			{
 				ListViewTag lvt = (ListViewTag)lvi.Tag;
 				if (lvi.Selected)
-					list.Add(lvt.Resource.FileDescriptor);									
+					reselectlist.Add(lvt.Resource.FileDescriptor);									
 			}
 
-			TreeNodeTag tnt = lastusedtnt;
-			ShowNewFile(false);			
-			if (tnt!=null && lasttreeview!=null) 
-			{
-				tnt.Refresh(lv);
-				ReSelectTreeNode(this.lasttreeview.Nodes, tnt);
-			}
-					
+			 //the TreeBuilder_Finished Event Handler is going to be called when ShowNewFile() finishes.
+			reselecttnt = lastusedtnt;			
+			ShowNewFile(false);							
 
 			
-			foreach (ListViewItem lvi in lv.Items) 
-			{
-				ListViewTag lvt = (ListViewTag)lvi.Tag;
-				if (list.Contains(lvt.Resource.FileDescriptor)) lvi.Selected = true;
-			}
+			
 		}
+
+
 
 		/// <summary>
 		/// This Method displays the content of a File
@@ -2433,6 +2462,8 @@ namespace SimPe
 		/// </summary>
 		void SetupResourceViewToolBar()
 		{
+			TreeBuilderList.TreeBuilder = this.treebuilder;
+			TreeBuilderList.TreeBuilder.Finished += new EventHandler(TreeBuilder_Finished);
 			this.biGroupList.Tag = new TreeBuilderList(new TreeBuilderList.GenerateView(treebuilder.GroupView), tvGroup);
 			this.biInstanceList.Tag = new TreeBuilderList(new TreeBuilderList.GenerateView(treebuilder.InstanceView), tvInstance);
 			this.biTypeList.Tag = new TreeBuilderList(new TreeBuilderList.GenerateView(treebuilder.TypeView), tvType);			
@@ -2497,7 +2528,7 @@ namespace SimPe
 					if (bi.Checked) 
 					{
 						if (tbl.TreeView.Nodes.Count==0)
-						{
+						{							
 							tbl.Generate(autoselect);							
 							if (tbl.TreeView.Nodes.Count>0) lastusedtnt = (TreeNodeTag)tbl.TreeView.Nodes[0].Tag;							
 						}

@@ -397,17 +397,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "pic.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Picture.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "PictureWrapper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "SDesc.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

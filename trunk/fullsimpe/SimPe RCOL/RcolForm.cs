@@ -29,9 +29,9 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// Zusammenfassung für RcolForm.
 	/// </summary>
-	public class RcolForm : System.Windows.Forms.Form
+	public class RcolForm : SimPe.Windows.Forms.WrapperBaseControl
 	{
-		internal SimPe.Windows.Forms.WrapperBaseControl RcolPanel;
+		
 		private System.Windows.Forms.LinkLabel llfix;
 		private System.Windows.Forms.LinkLabel llhash;
 		private System.Windows.Forms.TextBox tbflname;
@@ -82,22 +82,20 @@ namespace SimPe.Plugin
 		/// Erforderliche Designervariable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
-		ThemeManager tm;
-		public RcolForm()
+		
+		public RcolForm() : base()
 		{
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
-
-			tm = ThemeManager.Global.CreateChild();
-			tm.AddControl(RcolPanel);
-			tm.AddControl(this.xpGradientPanel1);
-			tm.AddControl(this.xpGradientPanel2);
-			tm.AddControl(this.xpGradientPanel3);
-			tm.AddControl(this.xpGradientPanel4);
-			tm.AddControl(this.xpTaskBoxSimple1);
-			tm.AddControl(this.xpTaskBoxSimple2);
+						
+			this.ThemeManager.AddControl(this.xpGradientPanel1);
+			ThemeManager.AddControl(this.xpGradientPanel2);
+			ThemeManager.AddControl(this.xpGradientPanel3);
+			ThemeManager.AddControl(this.xpGradientPanel4);
+			ThemeManager.AddControl(this.xpTaskBoxSimple1);
+			ThemeManager.AddControl(this.xpTaskBoxSimple2);
 			foreach (Interfaces.IAlias alias in SimPe.Helper.TGILoader.FileTypes) cbtypes.Items.Add(alias);
 #if DEBUG
 #else
@@ -111,12 +109,7 @@ namespace SimPe.Plugin
 		protected override void Dispose( bool disposing )
 		{
 			if( disposing )
-			{
-				if (tm!=null)
-				{
-					tm.Dispose();
-					tm = null;
-				}
+			{				
 				
 				this.ClearControlTags();
 				if(components != null)
@@ -134,7 +127,6 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.RcolPanel = new SimPe.Windows.Forms.WrapperBaseControl();
 			this.tbResource = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
@@ -147,6 +139,7 @@ namespace SimPe.Plugin
 			this.cbitem = new System.Windows.Forms.ComboBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.xpGradientPanel2 = new SteepValley.Windows.Forms.XPGradientPanel();
+			this.lbref = new System.Windows.Forms.ListBox();
 			this.xpTaskBoxSimple2 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
 			this.pntypes = new System.Windows.Forms.Panel();
 			this.lladd = new System.Windows.Forms.LinkLabel();
@@ -161,7 +154,6 @@ namespace SimPe.Plugin
 			this.tbgroup = new System.Windows.Forms.TextBox();
 			this.cbtypes = new System.Windows.Forms.ComboBox();
 			this.btref = new System.Windows.Forms.Button();
-			this.lbref = new System.Windows.Forms.ListBox();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.xpGradientPanel3 = new SteepValley.Windows.Forms.XPGradientPanel();
 			this.btup = new System.Windows.Forms.Button();
@@ -181,7 +173,6 @@ namespace SimPe.Plugin
 			this.tbrefinst = new System.Windows.Forms.TextBox();
 			this.tbrefgroup = new System.Windows.Forms.TextBox();
 			this.tv = new System.Windows.Forms.TreeView();
-			this.RcolPanel.SuspendLayout();
 			this.tbResource.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.xpGradientPanel1.SuspendLayout();
@@ -195,24 +186,6 @@ namespace SimPe.Plugin
 			this.xpGradientPanel4.SuspendLayout();
 			this.xpTaskBoxSimple1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// RcolPanel
-			// 
-			this.RcolPanel.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-			this.RcolPanel.Controls.Add(this.tbResource);
-			this.RcolPanel.DockPadding.Top = 24;
-			this.RcolPanel.Font = new System.Drawing.Font("Tahoma", 8.25F);
-			this.RcolPanel.Gradient = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-			this.RcolPanel.GradientColor = System.Drawing.SystemColors.InactiveCaption;
-			this.RcolPanel.HeadBackColor = System.Drawing.Color.FromArgb(((System.Byte)(120)), ((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(0)));
-			this.RcolPanel.HeaderText = "Generic Rcol Editor";
-			this.RcolPanel.HeadFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-			this.RcolPanel.HeadForeColor = System.Drawing.Color.White;
-			this.RcolPanel.Location = new System.Drawing.Point(48, 32);
-			this.RcolPanel.Name = "RcolPanel";
-			this.RcolPanel.Size = new System.Drawing.Size(768, 301);
-			this.RcolPanel.TabIndex = 20;
-			this.RcolPanel.Commited += new System.EventHandler(this.Commit);
 			// 
 			// tbResource
 			// 
@@ -311,8 +284,8 @@ namespace SimPe.Plugin
 			this.llhash.Size = new System.Drawing.Size(72, 17);
 			this.llhash.TabIndex = 18;
 			this.llhash.TabStop = true;
-			this.llhash.Visible = false;
 			this.llhash.Text = "assign Hash";
+			this.llhash.Visible = false;
 			this.llhash.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BuildFilename);
 			// 
 			// llfix
@@ -358,6 +331,22 @@ namespace SimPe.Plugin
 			this.xpGradientPanel2.Name = "xpGradientPanel2";
 			this.xpGradientPanel2.Size = new System.Drawing.Size(744, 235);
 			this.xpGradientPanel2.TabIndex = 43;
+			// 
+			// lbref
+			// 
+			this.lbref.AllowDrop = true;
+			this.lbref.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.lbref.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.lbref.IntegralHeight = false;
+			this.lbref.Location = new System.Drawing.Point(0, 0);
+			this.lbref.Name = "lbref";
+			this.lbref.Size = new System.Drawing.Size(288, 235);
+			this.lbref.TabIndex = 0;
+			this.lbref.DragDrop += new System.Windows.Forms.DragEventHandler(this.PackageItemDrop);
+			this.lbref.DragEnter += new System.Windows.Forms.DragEventHandler(this.PackageItemDragEnter);
+			this.lbref.SelectedIndexChanged += new System.EventHandler(this.SelectReference);
 			// 
 			// xpTaskBoxSimple2
 			// 
@@ -534,22 +523,6 @@ namespace SimPe.Plugin
 			this.btref.TabIndex = 42;
 			this.btref.Text = "u";
 			this.btref.Click += new System.EventHandler(this.ShowPackageSelector);
-			// 
-			// lbref
-			// 
-			this.lbref.AllowDrop = true;
-			this.lbref.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.lbref.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.lbref.IntegralHeight = false;
-			this.lbref.Location = new System.Drawing.Point(0, 0);
-			this.lbref.Name = "lbref";
-			this.lbref.Size = new System.Drawing.Size(288, 235);
-			this.lbref.TabIndex = 0;
-			this.lbref.DragDrop += new System.Windows.Forms.DragEventHandler(this.PackageItemDrop);
-			this.lbref.DragEnter += new System.Windows.Forms.DragEventHandler(this.PackageItemDragEnter);
-			this.lbref.SelectedIndexChanged += new System.EventHandler(this.SelectReference);
 			// 
 			// tabPage3
 			// 
@@ -773,13 +746,14 @@ namespace SimPe.Plugin
 			// 
 			// RcolForm
 			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-			this.ClientSize = new System.Drawing.Size(848, 358);
-			this.Controls.Add(this.RcolPanel);
-			this.Font = new System.Drawing.Font("Tahoma", 8.25F);
+			this.Controls.Add(this.tbResource);
+			this.DockPadding.Top = 24;
+			this.HeaderText = "Generic Rcol Editor";
+			this.Location = new System.Drawing.Point(48, 32);
 			this.Name = "RcolForm";
-			this.Text = "RcolForm";
-			this.RcolPanel.ResumeLayout(false);
+			this.Size = new System.Drawing.Size(768, 301);
+			this.Commited += new System.EventHandler(this.Commit);
+			this.Controls.SetChildIndex(this.tbResource, 0);
 			this.tbResource.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.xpGradientPanel1.ResumeLayout(false);
@@ -800,7 +774,7 @@ namespace SimPe.Plugin
 		internal Rcol wrapper = null;
 
 		internal void BuildChildTabControl(AbstractRcolBlock rb)
-		{
+		{			
 			childtc.TabPages.Clear();
 
 			if (rb==null) return;
@@ -1240,8 +1214,7 @@ namespace SimPe.Plugin
 
 		private void ChildTabPageChanged(object sender, System.EventArgs e)
 		{
-			if (wrapper.CallWhenTabPageChanged!=null) 
-				wrapper.CallWhenTabPageChanged(sender, e);	
+			wrapper.ChildTabPageChanged(this, e);
 		}
 
 		/*private void ChildTabPageChanged(object sender, System.EventArgs e)

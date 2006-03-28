@@ -2101,6 +2101,7 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// miOpenWf
 			// 
+			this.miOpenWf.Image = ((System.Drawing.Image)(resources.GetObject("miOpenWf.Image")));
 			this.miOpenWf.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenWf.Shortcut")));
 			this.miOpenWf.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenWf.Shortcut2")));
 			this.miOpenWf.Text = resources.GetString("miOpenWf.Text");
@@ -2127,6 +2128,7 @@ namespace SimPe.PackedFiles.UserInterface
 			// 
 			// miOpenDNA
 			// 
+			this.miOpenDNA.Image = ((System.Drawing.Image)(resources.GetObject("miOpenDNA.Image")));
 			this.miOpenDNA.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenDNA.Shortcut")));
 			this.miOpenDNA.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenDNA.Shortcut2")));
 			this.miOpenDNA.Text = resources.GetString("miOpenDNA.Text");
@@ -5376,7 +5378,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Athletic));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.LawEnforcement));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Culinary));
-			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Business));
+			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Economy));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Slacker));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Criminal));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Military));

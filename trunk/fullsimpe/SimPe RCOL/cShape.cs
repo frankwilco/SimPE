@@ -349,15 +349,18 @@ namespace SimPe.Plugin
 			writer.Write((uint)parts.Length);
 			for (int i=0; i<parts.Length; i++) parts[i].Serialize(writer);
 		}
-
-		fShapeRefNode form = null;
-		ShpeForm sform = null;
+		
+		TabPage.ObjectGraphNode tObjectGraphNode;
+		TabPage.GenericRcol tGenericRcol;
+		TabPage.ShpeLod tShpeLod;
+		TabPage.ShpeItems tShpeItems;
+		TabPage.ShpeParts tShpeParts;
 		public override System.Windows.Forms.TabPage TabPage
 		{
 			get
 			{
-				if (form==null) form = new fShapeRefNode(); 
-				return form.tGenericRcol;
+				if (tGenericRcol==null) tGenericRcol = new SimPe.Plugin.TabPage.GenericRcol();
+				return tGenericRcol;
 			}
 		}
 		#endregion
@@ -366,26 +369,28 @@ namespace SimPe.Plugin
 		/// You can use this to setop the Controls on a TabPage befor it is dispplayed
 		/// </summary>
 		protected override void InitTabPage() 
-		{
-			if (form==null) form = new fShapeRefNode(); 
-			if (sform==null) sform = new ShpeForm();
-			form.tb_ver.Text = "0x"+Helper.HexString(this.version);	
-			form.gen_pg.SelectedObject = this;
+		{			
+			if (tObjectGraphNode==null) tObjectGraphNode= new SimPe.Plugin.TabPage.ObjectGraphNode();
+			if (tGenericRcol==null) tGenericRcol = new SimPe.Plugin.TabPage.GenericRcol();
+			if (tShpeLod==null) tShpeLod = new SimPe.Plugin.TabPage.ShpeLod();
+			if (tShpeItems==null) tShpeItems = new SimPe.Plugin.TabPage.ShpeItems();
+			if (tShpeParts==null) tShpeParts = new SimPe.Plugin.TabPage.ShpeParts();
+			tGenericRcol.tb_ver.Text = "0x"+Helper.HexString(this.version);	
+			tGenericRcol.gen_pg.SelectedObject = this;
 		
-			sform.lbunk.Items.Clear();
-			sform.lbitem.Items.Clear();
-			sform.lbpart.Items.Clear();
-			sform.lbnode.Items.Clear();
+			tShpeLod.lbunk.Items.Clear();
+			tShpeItems.lbitem.Items.Clear();
+			tShpeParts.lbpart.Items.Clear();
 			try 
 			{
 				Shape wrp = this;
 				
-				foreach (uint val in wrp.Unknwon) sform.lbunk.Items.Add(val);
-				foreach (ShapeItem item in wrp.Items) sform.lbitem.Items.Add(item);
-				foreach (ShapePart part in wrp.Parts) sform.lbpart.Items.Add(part);
-				foreach (ObjectGraphNodeItem ogni in wrp.GraphNode.Items) form.lb_ogn.Items.Add(ogni);
-				form.tb_ogn_file.Text = wrp.GraphNode.FileName;
-				form.tb_ogn_ver.Text = Helper.HexString(wrp.GraphNode.Version);
+				foreach (uint val in wrp.Unknwon) tShpeLod.lbunk.Items.Add(val);
+				foreach (ShapeItem item in wrp.Items) tShpeItems.lbitem.Items.Add(item);
+				foreach (ShapePart part in wrp.Parts) tShpeParts.lbpart.Items.Add(part);
+				foreach (ObjectGraphNodeItem ogni in wrp.GraphNode.Items) tObjectGraphNode.lb_ogn.Items.Add(ogni);
+				tObjectGraphNode.tb_ogn_file.Text = wrp.GraphNode.FileName;
+				tObjectGraphNode.tb_ogn_ver.Text = Helper.HexString(wrp.GraphNode.Version);
 			} 
 			catch (Exception ex) 
 			{
@@ -393,19 +398,21 @@ namespace SimPe.Plugin
 			} 
 		}
 
+		
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
 		{
-			sform.tabPage1.Tag = this;
-			tc.TabPages.Add(sform.tabPage1);
+			tShpeLod.Tag = this;
+			tc.TabPages.Add(tShpeLod);
 
-			sform.tabPage2.Tag = this;
-			tc.TabPages.Add(sform.tabPage2);
+			tShpeItems.Tag = this;
+			tc.TabPages.Add(tShpeItems);
 
-			sform.tabPage3.Tag = this;
-			tc.TabPages.Add(sform.tabPage3);
+			tShpeParts.Tag = this;
+			tc.TabPages.Add(tShpeParts);
 
-			form.tObjectGraphNode.Tag = this.GraphNode;
-			tc.TabPages.Add(form.tObjectGraphNode);
+			if (tObjectGraphNode==null) tObjectGraphNode= new SimPe.Plugin.TabPage.ObjectGraphNode();
+			tObjectGraphNode.Tag = this.GraphNode;
+			tc.TabPages.Add(tObjectGraphNode);
 		}
 
 		#region IScenegraphItem Member
@@ -433,7 +440,20 @@ namespace SimPe.Plugin
 
 		public override void Dispose()
 		{
-			if (this.form!=null) this.form.Dispose();
+			if (this.tObjectGraphNode!=null) this.tObjectGraphNode.Dispose();
+			tObjectGraphNode = null;
+
+			if (this.tGenericRcol!=null) this.tGenericRcol.Dispose();
+			tGenericRcol = null;
+
+			if (tShpeLod!=null) tShpeLod.Dispose();
+			tShpeLod = null;
+
+			if (tShpeItems!=null) tShpeItems.Dispose();
+			tShpeItems = null;
+
+			if (tShpeParts!=null) tShpeParts.Dispose();
+			tShpeParts = null;
 		}
 
 		#endregion

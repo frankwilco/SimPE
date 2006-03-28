@@ -123,7 +123,7 @@ namespace SimPe.Plugin
 		public void AddToTabControl(TabControl tc)
 		{
 			if (parent!=null) 
-				parent.CallWhenTabPageChanged = null;
+				parent.ClearTabPageChanged();
 			if (TabPage!=null) 
 			{
 				TabPage.Tag = null;

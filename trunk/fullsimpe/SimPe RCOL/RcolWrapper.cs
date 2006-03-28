@@ -68,17 +68,23 @@ namespace SimPe.Plugin
 
 		/// <summary>
 		/// contains null or a delegate that should be called when the TabPage did change
-		/// </summary>
-		protected System.EventHandler tabpagechanged;
+		/// </summary>		
+		public event EventHandler TabPageChanged;
 
-		/// <summary>
-		/// contains null or a delegate that should be called when the TabPage did change
-		/// </summary>
-		public System.EventHandler CallWhenTabPageChanged 
+		internal void ClearTabPageChanged()
 		{
-			get { return tabpagechanged; }
-			set { tabpagechanged = value; }
+			if (TabPageChanged==null) return;
+
+			System.Delegate[] list = TabPageChanged.GetInvocationList();
+			foreach (EventHandler d in list)
+				TabPageChanged -= d;
 		}
+
+		internal void ChildTabPageChanged(object sender, System.EventArgs e)
+		{
+			if (TabPageChanged!=null) TabPageChanged(sender, e);	
+		}
+		
 
 		static Hashtable tokens;
 		public static Hashtable Tokens 
@@ -202,7 +208,7 @@ namespace SimPe.Plugin
 				"RCOL Wrapper",
 				"Quaxi",
 				"This File is part of the Scenegraph. The Scenegraph is used to build the 3D Objects in \"The Sims 2\".",
-				9,
+				10,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.resource.png"))
 				); 
 		}

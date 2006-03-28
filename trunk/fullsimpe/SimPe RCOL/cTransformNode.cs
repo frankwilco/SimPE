@@ -302,13 +302,13 @@ namespace SimPe.Plugin
 			writer.Write(unknown);
 		}
 
-		fShapeRefNode form = null;
+		TabPage.TransformNode tTransformNode;
 		public override System.Windows.Forms.TabPage TabPage
 		{
 			get
 			{
-				if (form==null) form = new fShapeRefNode(); 
-				return form.tTransformNode;
+				if (tTransformNode==null) tTransformNode = new SimPe.Plugin.TabPage.TransformNode();
+				return tTransformNode;
 			}
 		}
 		#endregion
@@ -318,18 +318,18 @@ namespace SimPe.Plugin
 		/// </summary>
 		protected override void InitTabPage() 
 		{
-			if (form==null) form = new fShapeRefNode(); 
-			form.tb_tn_a.Tag = true;
+			if (tTransformNode==null) tTransformNode = new SimPe.Plugin.TabPage.TransformNode();
+			tTransformNode.tb_tn_a.Tag = true;
 			
-			form.lb_tn.Items.Clear();
-			for(int i=0; i<this.items.Length; i++) form.lb_tn.Items.Add(items[i]);
+			tTransformNode.lb_tn.Items.Clear();
+			for(int i=0; i<this.items.Length; i++) tTransformNode.lb_tn.Items.Add(items[i]);
 
-			form.tb_tn_ver.Text = "0x"+Helper.HexString(this.version);
-			form.tb_tn_ukn.Text = "0x"+Helper.HexString(this.unknown);
+			tTransformNode.tb_tn_ver.Text = "0x"+Helper.HexString(this.version);
+			tTransformNode.tb_tn_ukn.Text = "0x"+Helper.HexString(this.unknown);
 
-			form.tb_tn_tx.Text = trans.Translation.X.ToString("N6");
-			form.tb_tn_ty.Text = trans.Translation.Y.ToString("N6");
-			form.tb_tn_tz.Text = trans.Translation.Z.ToString("N6");
+			tTransformNode.tb_tn_tx.Text = trans.Translation.X.ToString("N6");
+			tTransformNode.tb_tn_ty.Text = trans.Translation.Y.ToString("N6");
+			tTransformNode.tb_tn_tz.Text = trans.Translation.Z.ToString("N6");
 
 			/*form.tb_tn_rx.Text = trans.Rotation.X.ToString("N6");
 			form.tb_tn_ry.Text = trans.Rotation.Y.ToString("N6");
@@ -340,9 +340,9 @@ namespace SimPe.Plugin
 			form.tb_tn_ay.Text = trans.Rotation.Axis.Y.ToString("N6");
 			form.tb_tn_az.Text = trans.Rotation.Axis.Z.ToString("N6");
 			form.tb_tn_a.Text = Quaternion.RadToDeg(trans.Rotation.Angle).ToString("N6");*/
-			form.TNUpdateTextValues(trans.Rotation, true, true, true);
+			tTransformNode.TNUpdateTextValues(trans.Rotation, true, true, true);
 
-			form.tb_tn_a.Tag = null;
+			tTransformNode.tb_tn_a.Tag = null;
 		}
 
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
@@ -406,7 +406,8 @@ namespace SimPe.Plugin
 
 		public override void Dispose()
 		{
-			if (this.form!=null) this.form.Dispose();
+			if (this.tTransformNode!=null) this.tTransformNode.Dispose();
+			tTransformNode = null;
 			ctn = null;
 			ogn = null;
 			items = null;

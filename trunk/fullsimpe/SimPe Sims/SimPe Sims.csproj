@@ -338,6 +338,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "familyties.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "FamilyTiesForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
