@@ -248,7 +248,7 @@
     <value>wizard1</value>
   </data>
   <data name="&gt;&gt;wizard1.Type">
-    <value>SimPe.Wizards.Wizard, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.Wizard, simpe.wizardbase, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizard1.Parent">
     <value>xpGradientPanel1</value>
@@ -329,7 +329,7 @@
     <value>wizardStepPanel1</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel1.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel1.Parent">
     <value>wizard1</value>
@@ -410,7 +410,7 @@
     <value>wizardStepPanel1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="button2.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -488,7 +488,7 @@
     <value>wizardStepPanel1</value>
   </data>
   <data name="&gt;&gt;button2.ZOrder">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label1.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -563,7 +563,7 @@
     <value>wizardStepPanel1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="button1.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -641,7 +641,7 @@
     <value>wizardStepPanel1</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label2.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -716,7 +716,7 @@
     <value>wizardStepPanel1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="wizardStepPanel2.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -791,7 +791,7 @@
     <value>wizardStepPanel2</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel2.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel2.Parent">
     <value>wizard1</value>
@@ -1215,7 +1215,7 @@
     <value>xpTaskBoxSimple2</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple2.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple2.Parent">
     <value>panel1</value>
@@ -1296,7 +1296,7 @@
     <value>wizardStepPanel3</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel3.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel3.Parent">
     <value>wizard1</value>
@@ -1420,7 +1420,7 @@
     <value>xpTaskBoxSimple1</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple1.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple1.Parent">
     <value>wizardStepPanel3</value>
@@ -1547,7 +1547,7 @@
     <value>gbRecolor</value>
   </data>
   <data name="&gt;&gt;gbRecolor.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gbRecolor.Parent">
     <value>wizardStepPanel3</value>
@@ -1631,7 +1631,7 @@
     <value>cbColorExt</value>
   </data>
   <data name="&gt;&gt;cbColorExt.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbColorExt.Parent">
     <value>gbRecolor</value>
@@ -1745,7 +1745,7 @@
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;gbClone.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gbClone.Parent">
     <value>wizardStepPanel3</value>
@@ -1753,14 +1753,14 @@
   <data name="&gt;&gt;gbClone.ZOrder">
     <value>2</value>
   </data>
+  <data name="cbstrlink.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Assembly</value>
+  </data>
   <data name="cbstrlink.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
   <data name="cbstrlink.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
-  </data>
-  <data name="cbstrlink.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Assembly</value>
   </data>
   <data name="cbstrlink.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -1829,7 +1829,7 @@
     <value>cbstrlink</value>
   </data>
   <data name="&gt;&gt;cbstrlink.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbstrlink.Parent">
     <value>gbClone</value>
@@ -1913,7 +1913,7 @@
     <value>cbDesc</value>
   </data>
   <data name="&gt;&gt;cbDesc.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbDesc.Parent">
     <value>gbClone</value>
@@ -1997,7 +1997,7 @@
     <value>cbOrgGmdc</value>
   </data>
   <data name="&gt;&gt;cbOrgGmdc.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbOrgGmdc.Parent">
     <value>gbClone</value>
@@ -2081,7 +2081,7 @@
     <value>cbRemTxt</value>
   </data>
   <data name="&gt;&gt;cbRemTxt.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbRemTxt.Parent">
     <value>gbClone</value>
@@ -2165,7 +2165,7 @@
     <value>cbanim</value>
   </data>
   <data name="&gt;&gt;cbanim.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbanim.Parent">
     <value>gbClone</value>
@@ -2249,7 +2249,7 @@
     <value>cbwallmask</value>
   </data>
   <data name="&gt;&gt;cbwallmask.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbwallmask.Parent">
     <value>gbClone</value>
@@ -2333,7 +2333,7 @@
     <value>cbparent</value>
   </data>
   <data name="&gt;&gt;cbparent.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbparent.Parent">
     <value>gbClone</value>
@@ -2417,7 +2417,7 @@
     <value>cbclean</value>
   </data>
   <data name="&gt;&gt;cbclean.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbclean.Parent">
     <value>gbClone</value>
@@ -2501,7 +2501,7 @@
     <value>cbfix</value>
   </data>
   <data name="&gt;&gt;cbfix.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbfix.Parent">
     <value>gbClone</value>
@@ -2585,7 +2585,7 @@
     <value>cbdefault</value>
   </data>
   <data name="&gt;&gt;cbdefault.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbdefault.Parent">
     <value>gbClone</value>
@@ -2669,7 +2669,7 @@
     <value>cbgid</value>
   </data>
   <data name="&gt;&gt;cbgid.Type">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbgid.Parent">
     <value>gbClone</value>
@@ -3068,7 +3068,7 @@
     <value>wizardStepPanel5</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel5.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel5.Parent">
     <value>wizard1</value>
@@ -3192,7 +3192,7 @@
     <value>xpTaskBoxSimple3</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple3.Type">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple3.Parent">
     <value>wizardStepPanel5</value>
@@ -3680,6 +3680,9 @@
   <data name="&gt;&gt;label5.ZOrder">
     <value>5</value>
   </data>
+  <data name="wizardStepPanel4.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
   <data name="wizardStepPanel4.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
@@ -3688,9 +3691,6 @@
   </data>
   <data name="wizardStepPanel4.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
-  </data>
-  <data name="wizardStepPanel4.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
   </data>
   <data name="wizardStepPanel4.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
@@ -3753,7 +3753,7 @@
     <value>wizardStepPanel4</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel4.Type">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2254.28617, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel4.Parent">
     <value>wizard1</value>
@@ -4032,7 +4032,7 @@
     <value>animatedImagelist1</value>
   </data>
   <data name="&gt;&gt;animatedImagelist1.Type">
-    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2254.28618, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;animatedImagelist1.Parent">
     <value>pnWait</value>
@@ -4540,6 +4540,618 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   </data>
   <data name="ilist.ImageSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 16</value>
+  </data>
+  <data name="button4.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="button4.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="button4.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="button4.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button4.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Right</value>
+  </data>
+  <data name="button4.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="button4.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="button4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>System</value>
+  </data>
+  <data name="button4.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button4.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button4.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="button4.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="button4.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>192, 48</value>
+  </data>
+  <data name="button4.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Yes</value>
+  </data>
+  <data name="button4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 23</value>
+  </data>
+  <data name="button4.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>27</value>
+  </data>
+  <data name="button4.Text">
+    <value>Open by Group ID</value>
+  </data>
+  <data name="button4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="button4.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;button4.Name">
+    <value>button4</value>
+  </data>
+  <data name="&gt;&gt;button4.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button4.Parent">
+    <value>xpAdvanced</value>
+  </data>
+  <data name="&gt;&gt;button4.ZOrder">
+    <value>4</value>
+  </data>
+  <data name="tbGroup.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="tbGroup.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="tbGroup.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="tbGroup.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbGroup.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbGroup.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="tbGroup.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="tbGroup.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbGroup.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="tbGroup.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="tbGroup.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbGroup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="tbGroup.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 48</value>
+  </data>
+  <data name="tbGroup.MaxLength" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>32767</value>
+  </data>
+  <data name="tbGroup.Multiline" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="tbGroup.PasswordChar" type="System.Char, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbGroup.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="tbGroup.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="tbGroup.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>176, 21</value>
+  </data>
+  <data name="tbGroup.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>28</value>
+  </data>
+  <data name="tbGroup.Text">
+    <value>0x7F000000</value>
+  </data>
+  <data name="tbGroup.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Left</value>
+  </data>
+  <data name="tbGroup.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="tbGroup.WordWrap" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tbGroup.Name">
+    <value>tbGroup</value>
+  </data>
+  <data name="&gt;&gt;tbGroup.Type">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbGroup.Parent">
+    <value>xpAdvanced</value>
+  </data>
+  <data name="&gt;&gt;tbGroup.ZOrder">
+    <value>5</value>
+  </data>
+  <data name="xpAdvanced.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="xpAdvanced.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="xpAdvanced.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="xpAdvanced.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="xpAdvanced.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="xpAdvanced.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 8</value>
+  </data>
+  <data name="xpAdvanced.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="xpAdvanced.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="xpAdvanced.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="xpAdvanced.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="xpAdvanced.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </data>
+  <data name="xpAdvanced.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </data>
+  <data name="xpAdvanced.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="xpAdvanced.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="xpAdvanced.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="xpAdvanced.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="xpAdvanced.HeaderText">
+    <value>Advanced</value>
+  </data>
+  <data name="xpAdvanced.Icon" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        TkSuQmCC
+</value>
+  </data>
+  <data name="xpAdvanced.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="xpAdvanced.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 176</value>
+  </data>
+  <data name="xpAdvanced.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="xpAdvanced.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>320, 152</value>
+  </data>
+  <data name="xpAdvanced.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>29</value>
+  </data>
+  <data name="xpAdvanced.Text">
+    <value />
+  </data>
+  <data name="xpAdvanced.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;xpAdvanced.Name">
+    <value>xpAdvanced</value>
+  </data>
+  <data name="&gt;&gt;xpAdvanced.Type">
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2277.28990, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;xpAdvanced.Parent">
+    <value>wizardStepPanel1</value>
+  </data>
+  <data name="&gt;&gt;xpAdvanced.ZOrder">
+    <value>0</value>
+  </data>
+  <data name="button5.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="button5.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="button5.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="button5.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button5.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Right</value>
+  </data>
+  <data name="button5.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="button5.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="button5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>System</value>
+  </data>
+  <data name="button5.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button5.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button5.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="button5.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="button5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="button5.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>192, 112</value>
+  </data>
+  <data name="button5.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Yes</value>
+  </data>
+  <data name="button5.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 23</value>
+  </data>
+  <data name="button5.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>29</value>
+  </data>
+  <data name="button5.Text">
+    <value>Open by CRES-Name</value>
+  </data>
+  <data name="button5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="button5.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;button5.Name">
+    <value>button5</value>
+  </data>
+  <data name="&gt;&gt;button5.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button5.Parent">
+    <value>xpAdvanced</value>
+  </data>
+  <data name="&gt;&gt;button5.ZOrder">
+    <value>2</value>
+  </data>
+  <data name="tbCresName.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="tbCresName.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="tbCresName.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="tbCresName.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbCresName.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbCresName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="tbCresName.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="tbCresName.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbCresName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="tbCresName.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="tbCresName.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbCresName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="tbCresName.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 112</value>
+  </data>
+  <data name="tbCresName.MaxLength" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>32767</value>
+  </data>
+  <data name="tbCresName.Multiline" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="tbCresName.PasswordChar" type="System.Char, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbCresName.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="tbCresName.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="tbCresName.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>176, 21</value>
+  </data>
+  <data name="tbCresName.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>30</value>
+  </data>
+  <data name="tbCresName.Text">
+    <value />
+  </data>
+  <data name="tbCresName.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Left</value>
+  </data>
+  <data name="tbCresName.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="tbCresName.WordWrap" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tbCresName.Name">
+    <value>tbCresName</value>
+  </data>
+  <data name="&gt;&gt;tbCresName.Type">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbCresName.Parent">
+    <value>xpAdvanced</value>
+  </data>
+  <data name="&gt;&gt;tbCresName.ZOrder">
+    <value>3</value>
+  </data>
+  <data name="button6.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="button6.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="button6.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="button6.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button6.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Right</value>
+  </data>
+  <data name="button6.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="button6.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="button6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>System</value>
+  </data>
+  <data name="button6.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button6.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="button6.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="button6.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="button6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="button6.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>192, 80</value>
+  </data>
+  <data name="button6.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Yes</value>
+  </data>
+  <data name="button6.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 23</value>
+  </data>
+  <data name="button6.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>31</value>
+  </data>
+  <data name="button6.Text">
+    <value>Open by GUID</value>
+  </data>
+  <data name="button6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="button6.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;button6.Name">
+    <value>button6</value>
+  </data>
+  <data name="&gt;&gt;button6.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button6.Parent">
+    <value>xpAdvanced</value>
+  </data>
+  <data name="&gt;&gt;button6.ZOrder">
+    <value>0</value>
+  </data>
+  <data name="tbGUID.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="tbGUID.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="tbGUID.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="tbGUID.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbGUID.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbGUID.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="tbGUID.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="tbGUID.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbGUID.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="tbGUID.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="tbGUID.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbGUID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="tbGUID.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 80</value>
+  </data>
+  <data name="tbGUID.MaxLength" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>32767</value>
+  </data>
+  <data name="tbGUID.Multiline" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="tbGUID.PasswordChar" type="System.Char, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="tbGUID.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="tbGUID.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="tbGUID.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>176, 21</value>
+  </data>
+  <data name="tbGUID.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>32</value>
+  </data>
+  <data name="tbGUID.Text">
+    <value>0x00000000</value>
+  </data>
+  <data name="tbGUID.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Left</value>
+  </data>
+  <data name="tbGUID.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="tbGUID.WordWrap" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tbGUID.Name">
+    <value>tbGUID</value>
+  </data>
+  <data name="&gt;&gt;tbGUID.Type">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbGUID.Parent">
+    <value>xpAdvanced</value>
+  </data>
+  <data name="&gt;&gt;tbGUID.ZOrder">
+    <value>1</value>
   </data>
   <data name="$this.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>

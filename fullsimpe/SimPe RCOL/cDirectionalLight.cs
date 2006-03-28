@@ -199,13 +199,13 @@ namespace SimPe.Plugin
 			writer.Write(blue);
 		}
 
-		protected fShapeRefNode form = null;
+		protected TabPage.DirectionalLight tDirectionalLight;
 		public override System.Windows.Forms.TabPage TabPage
 		{
 			get
 			{
-				if (form==null) form = new fShapeRefNode(); 
-				return form.tDirectionalLight;
+				if (tDirectionalLight==null) tDirectionalLight = new SimPe.Plugin.TabPage.DirectionalLight();
+				return tDirectionalLight;
 			}
 		}
 		#endregion
@@ -215,25 +215,25 @@ namespace SimPe.Plugin
 		/// </summary>
 		protected override void InitTabPage() 
 		{
-			if (form==null) form = new fShapeRefNode(); 
-			form.tb_l_ver.Text = "0x"+Helper.HexString(this.version);
-			form.tb_l_name.Text = unknown2;
+			if (tDirectionalLight==null) tDirectionalLight = new SimPe.Plugin.TabPage.DirectionalLight();
+			tDirectionalLight.tb_l_ver.Text = "0x"+Helper.HexString(this.version);
+			tDirectionalLight.tb_l_name.Text = unknown2;
 
-			form.tb_l_1.Text = unknown3.ToString();
-			form.tb_l_2.Text = unknown4.ToString();
-			form.tb_l_3.Text = red.ToString();
-			form.tb_l_4.Text = green.ToString();
-			form.tb_l_5.Text = blue.ToString();
+			tDirectionalLight.tb_l_1.Text = unknown3.ToString();
+			tDirectionalLight.tb_l_2.Text = unknown4.ToString();
+			tDirectionalLight.tb_l_3.Text = red.ToString();
+			tDirectionalLight.tb_l_4.Text = green.ToString();
+			tDirectionalLight.tb_l_5.Text = blue.ToString();
 
-			form.label39.Visible = false;
-			form.label44.Visible = false;
-			form.label45.Visible = false;
-			form.label46.Visible = false;
+			tDirectionalLight.label39.Visible = false;
+			tDirectionalLight.label44.Visible = false;
+			tDirectionalLight.label45.Visible = false;
+			tDirectionalLight.label46.Visible = false;
 
-			form.tb_l_6.Visible = false;
-			form.tb_l_7.Visible = false;
-			form.tb_l_8.Visible = false;
-			form.tb_l_9.Visible = false;
+			tDirectionalLight.tb_l_6.Visible = false;
+			tDirectionalLight.tb_l_7.Visible = false;
+			tDirectionalLight.tb_l_8.Visible = false;
+			tDirectionalLight.tb_l_9.Visible = false;
 		}
 
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
@@ -249,7 +249,8 @@ namespace SimPe.Plugin
 
 		public override void Dispose()
 		{
-			if (this.form!=null) this.form.Dispose();
+			if (this.tDirectionalLight!=null) this.tDirectionalLight.Dispose();
+			tDirectionalLight = null;
 		}
 
 		#endregion

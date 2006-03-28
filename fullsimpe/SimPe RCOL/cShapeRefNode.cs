@@ -326,13 +326,13 @@ namespace SimPe.Plugin
 			writer.Write(unknown6);
 		}
 
-		fShapeRefNode form = null;
+		TabPage.ShapeRefNode tShapeRefNode;		
 		public override System.Windows.Forms.TabPage TabPage
 		{
 			get
 			{
-				if (form==null) form = new fShapeRefNode(); 
-				return form.tShapeRefNode;
+				if (tShapeRefNode==null) tShapeRefNode = new SimPe.Plugin.TabPage.ShapeRefNode(); 
+				return tShapeRefNode;
 			}
 		}
 		#endregion
@@ -370,25 +370,25 @@ namespace SimPe.Plugin
 		/// </summary>
 		protected override void InitTabPage() 
 		{
-			if (form==null) form = new fShapeRefNode(); 
+			if (tShapeRefNode==null) tShapeRefNode = new SimPe.Plugin.TabPage.ShapeRefNode(); 
 			
-			form.lb_srn_a.Items.Clear();
-			for(int i=0; i<this.itemsa.Length; i++) form.lb_srn_a.Items.Add(itemsa[i]);
+			tShapeRefNode.lb_srn_a.Items.Clear();
+			for(int i=0; i<this.itemsa.Length; i++) tShapeRefNode.lb_srn_a.Items.Add(itemsa[i]);
 
-			form.lb_srn_b.Items.Clear();
-			for(int i=0; i<this.itemsb.Length; i++) form.lb_srn_b.Items.Add(itemsb[i]);
+			tShapeRefNode.lb_srn_b.Items.Clear();
+			for(int i=0; i<this.itemsb.Length; i++) tShapeRefNode.lb_srn_b.Items.Add(itemsb[i]);
 
-			form.tb_srn_uk1.Text = "0x"+Helper.HexString((ushort)this.unknown1);
-			form.tb_srn_uk2.Text = "0x"+Helper.HexString((uint)this.unknown2);
-			form.tb_srn_uk3.Text = "0x"+Helper.HexString((uint)this.unknown3);
-			form.tb_srn_uk4.Text = "0x"+Helper.HexString(this.unknown4);
-			form.tb_srn_uk5.Text = "0x"+Helper.HexString((uint)this.unknown5);
-			form.tb_srn_uk6.Text = "0x"+Helper.HexString((uint)this.unknown6);
+			tShapeRefNode.tb_srn_uk1.Text = "0x"+Helper.HexString((ushort)this.unknown1);
+			tShapeRefNode.tb_srn_uk2.Text = "0x"+Helper.HexString((uint)this.unknown2);
+			tShapeRefNode.tb_srn_uk3.Text = "0x"+Helper.HexString((uint)this.unknown3);
+			tShapeRefNode.tb_srn_uk4.Text = "0x"+Helper.HexString(this.unknown4);
+			tShapeRefNode.tb_srn_uk5.Text = "0x"+Helper.HexString((uint)this.unknown5);
+			tShapeRefNode.tb_srn_uk6.Text = "0x"+Helper.HexString((uint)this.unknown6);
 
-			form.tb_srn_kind.Text = this.name;
-			form.tb_srn_data.Text = Helper.BytesToHexList(this.data);
+			tShapeRefNode.tb_srn_kind.Text = this.name;
+			tShapeRefNode.tb_srn_data.Text = Helper.BytesToHexList(this.data);
 
-			form.tb_srn_ver.Text = "0x"+Helper.HexString(this.version);
+			tShapeRefNode.tb_srn_ver.Text = "0x"+Helper.HexString(this.version);
 		}
 
 		public override void ExtendTabControl(System.Windows.Forms.TabControl tc)
@@ -409,7 +409,8 @@ namespace SimPe.Plugin
 
 		public override void Dispose()
 		{
-			if (this.form!=null) this.form.Dispose();
+			if (this.tShapeRefNode!=null) this.tShapeRefNode.Dispose();
+			tShapeRefNode = null;
 		}
 
 		#endregion

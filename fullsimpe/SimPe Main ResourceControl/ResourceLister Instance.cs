@@ -29,13 +29,13 @@ namespace SimPe
 	{
 		public InstanceResourceLister(LoadedPackage pkg, ViewFilter filter) :base (pkg, filter) {}
 		
-		protected override bool BuildItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, int ct)
+		protected override bool BuildItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, int ct, ulong threadguid)
 		{
 			if (pfd.LongInstance!=p.LongInstance) return false;
 			if (filter.Active)
 				if (filter.IsFiltered(pfd)) return false;
 
-			lv.Items.Add(CreateItem(pfd));
+			lv.Invoke(new AddItemDelegate(AddItem), new object[] { lv, CreateItem(pfd), threadguid});	
 			return true;
 		}
 	}

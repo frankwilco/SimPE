@@ -476,13 +476,13 @@ namespace SimPe.Plugin
 			}
 		}
 
-		fExtension form = null;
+		TabPage.Extension form = null;
 		public override System.Windows.Forms.TabPage TabPage
 		{
 			get
 			{
-				if (form==null) form = new fExtension(); 
-				return form.tExtension;
+				if (form==null) form = new TabPage.Extension(); 
+				return form;
 			}
 		}
 		#endregion
@@ -492,7 +492,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		protected override void InitTabPage() 
 		{
-			if (form==null) form = new fExtension(); 
+			if (form==null) form = new TabPage.Extension(); 
 			
 			form.tb_ver.Text = "0x"+Helper.HexString(version);
 			form.tb_type.Text = "0x"+Helper.HexString(typecode);
@@ -509,6 +509,7 @@ namespace SimPe.Plugin
 		public override void Dispose()
 		{
 			if (this.form!=null) this.form.Dispose();
+			form = null;
 		}
 
 		#endregion

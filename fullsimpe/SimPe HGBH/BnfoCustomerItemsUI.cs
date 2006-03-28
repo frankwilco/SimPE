@@ -66,6 +66,7 @@ namespace SimPe.Plugin
 			this.lb.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.lb.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lb.HorizontalScrollbar = true;
+			this.lb.IntegralHeight = false;
 			this.lb.Location = new System.Drawing.Point(0, 0);
 			this.lb.Name = "lb";
 			this.lb.Size = new System.Drawing.Size(304, 104);

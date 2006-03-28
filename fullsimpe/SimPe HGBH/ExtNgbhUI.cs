@@ -103,7 +103,7 @@ namespace SimPe.Plugin
 					SelectSimByInstance(sdesc);
 				}
 
-				spc.Refresh();
+				spc.Refresh(false);
 			}			
 		}
 

@@ -369,6 +369,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "bookmark.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "emoticon.png"
                     BuildAction = "EmbeddedResource"
                 />
@@ -425,6 +429,10 @@
                     RelPath = "ItemsListView.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "kweather.png"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "ltxt.png"

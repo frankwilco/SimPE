@@ -155,7 +155,8 @@ namespace SimPe.Plugin
 				"Sim Wants and Fear Wrapper",
 				"Quaxi",
 				"---",
-				3
+				4,
+				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.kweather.png"))
 				); 
 		}
 

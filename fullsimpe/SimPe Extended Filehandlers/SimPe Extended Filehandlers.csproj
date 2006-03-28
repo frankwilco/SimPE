@@ -204,6 +204,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "bhav.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Creg3.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

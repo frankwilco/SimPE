@@ -33,6 +33,12 @@ namespace SimPe
 		protected LoadedPackage pkg;
 		protected ViewFilter filter;
 
+		/// <summary>
+		/// this is used to determin the running instance
+		/// </summary>
+
+		internal static ulong LATEST_THREAD_GUID = 0;
+
 		protected ResourceListerBase (LoadedPackage pkg, ViewFilter filter)
 		{			
 			this.pkg = pkg;
@@ -54,22 +60,34 @@ namespace SimPe
 			return lvi;
 		}
 
-		protected delegate void AddItemDelegate(ListView lv, ListViewItem lvi);
-		protected void AddItem(ListView lv, ListViewItem lvi)
+		protected delegate void AddItemDelegate(ListView lv, ListViewItem lvi, ulong threadguid);
+		protected void AddItem(ListView lv, ListViewItem lvi, ulong threadguid)
 		{
-			lv.Items.Add(lvi);
+			if (threadguid==ResourceListerBase.LATEST_THREAD_GUID)
+				lv.Items.Add(lvi);
 		}
 
-		protected void ClearList(ListView lv, ListViewItem lvi)
+		protected void ClearList(ListView lv, ListViewItem lvi, ulong threadguid)
 		{
 			TreeBuilder.ClearListView(lv);			
 		}
 
 		internal event System.EventHandler Finished;		
-		protected abstract bool BuildItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, int ct);
+		protected abstract bool BuildItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, int ct, ulong threadguid);
 
 		
+		void DoFinish(ulong threadguid)
+		{
+			if (threadguid!=LATEST_THREAD_GUID) return;
+			
+			OnFinish();
+			if (Finished!=null) Finished(this, new EventArgs());
+			ResourceListerBase.LATEST_THREAD_GUID++;
+		}
 
+		protected virtual void OnFinish()
+		{
+		}
 		
 		
 
@@ -82,6 +100,9 @@ namespace SimPe
 			DateTime start = DateTime.Now;
 			run.Set();				
 			bool startedwait = false;
+			LATEST_THREAD_GUID++;
+			ulong threadguid = LATEST_THREAD_GUID;
+
 			try 
 			{			
 				stop.Reset();			
@@ -92,10 +113,13 @@ namespace SimPe
 				int ct = 0;
 				int rct = 0;
 					
-				lv.Invoke(new AddItemDelegate(ClearList), new object[] {lv, null});
+				lock (lv)
+				{
+					lv.Invoke(new AddItemDelegate(ClearList), new object[] {lv, null, threadguid});
+				}
 				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Package.Index) 
 				{						
-					if (BuildItem(pfd, ct++)) rct++;	
+					if (BuildItem(pfd, ct++, threadguid)) rct++;	
 					if (rct==50 && !startedwait) 
 					{
 						startedwait = true;
@@ -116,7 +140,7 @@ namespace SimPe
 			}
 			finally 
 			{				
-				if (Finished!=null) Finished(this, new EventArgs());
+				DoFinish(threadguid);
 				if (startedwait) 
 					Wait.SubStop();					
 			}	
@@ -158,11 +182,12 @@ namespace SimPe
 		public static void Stop()
 		{			
 			if (last!=null) 
-			{		
+			{	
+				ResourceListerBase.LATEST_THREAD_GUID++;
+
 				last.StopEvent.Set();					
 				last.Running.WaitOne();
-				last.Running.Reset();
-					
+				last.Running.Reset();									
 
 				last = null;
 				lastthread = null;

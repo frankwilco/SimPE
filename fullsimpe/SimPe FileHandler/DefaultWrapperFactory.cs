@@ -39,8 +39,7 @@ namespace SimPe.PackedFiles.Wrapper.Factory
 					IWrapper[] wrappers = {
 											  new SimPe.PackedFiles.Wrapper.Picture(),
 											  new SimPe.PackedFiles.Wrapper.Xml(),										 
-											  new SimPe.PackedFiles.Wrapper.Fami(this.LinkedProvider.SimNameProvider),
-											  new SimPe.PackedFiles.Wrapper.SDesc(this.LinkedProvider.SimNameProvider, this.LinkedProvider.SimFamilynameProvider, this.LinkedProvider.SimDescriptionProvider),
+											  new SimPe.PackedFiles.Wrapper.Fami(this.LinkedProvider.SimNameProvider),											  
 											  new SimPe.PackedFiles.Wrapper.SRel(),
 											  new SimPe.PackedFiles.Wrapper.Cpf(),
 											  new SimPe.PackedFiles.Wrapper.FamilyTies(this.LinkedProvider.SimNameProvider),

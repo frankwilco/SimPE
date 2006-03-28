@@ -482,7 +482,7 @@ namespace SimPe
 				frm.Text = "Warning";
 				frm.lberr.Text = "Warning: "+frm.lberr.Text;
 				frm.linkLabel2.Visible = false;
-				text += @"\viewkind4\uc1\pard\cf1\b\f0\fs16 This is just a Warning. It is supposed to keep you informed about a Problem. Most of the Time this is not a Bug!\b0\par";				
+				text += @"\viewkind4\uc1\pard\cf1\b\f0\fs16 This is just a Warning. It is supposed to keep you informed about a Problem. Most of the time this is not a Bug!\b0\par";				
 				text += @"\pard\par";
 				text += @"\pard\li284 "+((Warning)ex).Details.Trim().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284")+@"\par" ;
 			} 

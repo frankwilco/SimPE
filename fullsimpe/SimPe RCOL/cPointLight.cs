@@ -72,14 +72,14 @@ namespace SimPe.Plugin
 		protected override void InitTabPage() 
 		{
 			base.InitTabPage();
-			form.tb_l_6.Text = unknown8.ToString();
-			form.tb_l_7.Text = unknown9.ToString();
+			tDirectionalLight.tb_l_6.Text = unknown8.ToString();
+			tDirectionalLight.tb_l_7.Text = unknown9.ToString();
 			
-			form.label39.Visible = true;
-			form.label44.Visible = true;
+			tDirectionalLight.label39.Visible = true;
+			tDirectionalLight.label44.Visible = true;
 
-			form.tb_l_6.Visible = true;
-			form.tb_l_7.Visible = true;
+			tDirectionalLight.tb_l_6.Visible = true;
+			tDirectionalLight.tb_l_7.Visible = true;
 		}
 
 	}

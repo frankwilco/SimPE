@@ -149,16 +149,16 @@ namespace SimPe.Plugin.Tool.Dockable
 		/// <param name="pfd"></param>
 		/// <param name="localgroup"></param>
 		/// <param name="onlydefault"></param>
-		protected static SimPe.Packages.GeneratableFile RecolorClone(CloneSettings.BaseResourceType br, SimPe.Packages.GeneratableFile ppkg, Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings) 
+		protected static SimPe.Packages.GeneratableFile RecolorClone(CloneSettings.BaseResourceType br, SimPe.Packages.GeneratableFile ppkg, Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings, bool pkgcontainsonlybase) 
 		{
 			SimPe.Packages.GeneratableFile package = null;
 			if (ppkg!=null) package = (SimPe.Packages.GeneratableFile)ppkg.Clone();
-			else 
+			if (ppkg==null || pkgcontainsonlybase)
 			{
-				package = SimPe.Packages.GeneratableFile.CreateNew();
+				if (!pkgcontainsonlybase) package = SimPe.Packages.GeneratableFile.CreateNew();
 				//Get the Base Object Data from the Objects.package File
 				string[] modelname = new string[0];
-				if (br == CloneSettings.BaseResourceType.Objd) modelname = BaseClone(pfd, localgroup, package);
+				if (br == CloneSettings.BaseResourceType.Objd) modelname = BaseClone(localgroup, package, pkgcontainsonlybase);
 				else 
 				{
 					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] fii = FileTable.FileIndex.FindFile(pfd, null);
@@ -237,41 +237,58 @@ namespace SimPe.Plugin.Tool.Dockable
 			return package;
 		}
 
+		static void LoadModelName(ArrayList list, SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg)
+		{
+			SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+			str.ProcessData(pfd, pkg);
+			SimPe.PackedFiles.Wrapper.StrItemList items = str.LanguageItems(1);
+			for (int i=1; i<items.Length; i++) list.Add(items[i].Title);	
+			str.Dispose();
+		}
+
 		/// <summary>
 		/// Reads all Data from the Objects.package blonging to the same group as the passed pfd
 		/// </summary>
-		/// <param name="pfd">Desciptor for one of files belonging to the Object (Name Map)</param>
-		/// <param name="objpkg">The Object Package you wanna process</param>
+		/// <param name="localgroup">Thr Group of the Source Object</param>
 		/// <param name="package">The package that should get the Files</param>
+		/// <param name="pkgcontainsbase">true, if the package does already contain the Base Object</param>
 		/// <returns>The Modlename of that Object or null if none</returns>
-		public static string[] BaseClone(Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, SimPe.Packages.File package) 
+		public static string[] BaseClone(uint localgroup, SimPe.Packages.File package, bool pkgcontainsbase) 
 		{
 			//Get the Base Object Data from the Objects.package File
-			
-			Interfaces.Scenegraph.IScenegraphFileIndexItem[] files = FileTable.FileIndex.FindFileByGroup(localgroup);
-
 			ArrayList list = new ArrayList();
-			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in files) 
+			if (pkgcontainsbase)
 			{
-				Interfaces.Files.IPackedFile file = item.Package.Read(item.FileDescriptor);
-
-				SimPe.Packages.PackedFileDescriptor npfd = new SimPe.Packages.PackedFileDescriptor();
-
-				npfd.UserData = file.UncompressedData;
-				npfd.Group = item.FileDescriptor.Group;
-				npfd.Instance = item.FileDescriptor.Instance;
-				npfd.SubType = item.FileDescriptor.SubType;
-				npfd.Type = item.FileDescriptor.Type;
-
-				if (package.FindFile(npfd)==null)
-					package.Add(npfd);
-
-				if ((npfd.Instance == 0x85) && (npfd.Type == Data.MetaData.STRING_FILE)) 
+				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in package.Index)
 				{
-					SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
-					str.ProcessData(npfd, item.Package);
-					SimPe.PackedFiles.Wrapper.StrItemList items = str.LanguageItems(1);
-					for (int i=1; i<items.Length; i++) list.Add(items[i].Title);
+					if ((pfd.Instance == 0x85) && (pfd.Type == Data.MetaData.STRING_FILE)) 					
+						LoadModelName(list, pfd, package);					
+				}
+			} 
+			else 
+			{
+				Interfaces.Scenegraph.IScenegraphFileIndexItem[] files = FileTable.FileIndex.FindFileByGroup(localgroup);
+
+				
+				foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in files) 
+				{
+					Interfaces.Files.IPackedFile file = item.Package.Read(item.FileDescriptor);
+
+					SimPe.Packages.PackedFileDescriptor npfd = new SimPe.Packages.PackedFileDescriptor();
+
+					npfd.UserData = file.UncompressedData;
+					npfd.Group = item.FileDescriptor.Group;
+					npfd.Instance = item.FileDescriptor.Instance;
+					npfd.SubType = item.FileDescriptor.SubType;
+					npfd.Type = item.FileDescriptor.Type;
+
+					if (package.FindFile(npfd)==null)
+						package.Add(npfd);
+
+					if ((npfd.Instance == 0x85) && (npfd.Type == Data.MetaData.STRING_FILE)) 
+					{
+						LoadModelName(list, npfd, item.Package);							
+					}
 				}
 			}
 
@@ -305,7 +322,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			WaitingScreen.Wait();
 			WaitingScreen.UpdateMessage("Collecting needed Files");
 			
-			if ((package==null) && (pfd!=null)) package = RecolorClone(br, package, pfd, localgroup, settings);
+			if ((package==null) && (pfd!=null)) package = RecolorClone(br, package, pfd, localgroup, settings, false);
 			WaitingScreen.Stop();
 					
 			package.FileName = sfd.FileName;		
@@ -314,7 +331,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			return package;
 		}
 
-		protected static SimPe.Packages.GeneratableFile ReColor(CloneSettings.BaseResourceType br, SimPe.Packages.GeneratableFile pkg, Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings) 
+		protected static SimPe.Packages.GeneratableFile ReColor(CloneSettings.BaseResourceType br, SimPe.Packages.GeneratableFile pkg, Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings, bool pkgcontainsonlybase) 
 		{
 			SimPe.Packages.GeneratableFile package = pkg;
 			// we need packages in the Gmaes and the Download Folder
@@ -337,7 +354,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			WaitingScreen.Wait();
 			WaitingScreen.UpdateMessage("Collecting needed Files");
 			
-			if ((package==null) && (pfd!=null)) package = RecolorClone(br, package, pfd, localgroup, settings);
+			if ((package==null) && (pfd!=null)) package = RecolorClone(br, package, pfd, localgroup, settings, pkgcontainsonlybase);
 			
 			WaitingScreen.Stop();
 			
@@ -382,6 +399,10 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 
 		public static SimPe.Packages.GeneratableFile Start(SimPe.Packages.GeneratableFile pkg, SimPe.Interfaces.IAlias a, ref Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings)
+		{
+			return Start(pkg, a, ref pfd, localgroup, settings, false);
+		}
+		public static SimPe.Packages.GeneratableFile Start(SimPe.Packages.GeneratableFile pkg, SimPe.Interfaces.IAlias a, ref Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings, bool containsonlybaseclone)
 		{			
 			SimPe.Packages.GeneratableFile package = pkg;
 			SimPe.Plugin.CloneSettings.BaseResourceType br = SimPe.Plugin.CloneSettings.BaseResourceType.Objd;
@@ -392,7 +413,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			{
 				OWCloneSettings cs = (OWCloneSettings)settings;				
 				
-				package = RecolorClone(br, package, pfd, localgroup, settings);						
+				package = RecolorClone(br, package, pfd, localgroup, settings, containsonlybaseclone);						
 					
 
 				FixObject fo = new FixObject(package, FixVersion.UniversityReady, settings.RemoveNonDefaultTextReferences);
@@ -449,7 +470,7 @@ namespace SimPe.Plugin.Tool.Dockable
 				/*if (br == SimPe.Plugin.CloneSettings.BaseResourceType.Xml)
 					package = ReColorXObject(br, package, pfd, localgroup, new OWRecolorSettings());
 				else*/
-					package = ReColor(br, package, pfd, localgroup, new OWRecolorSettings());
+					package = ReColor(br, package, pfd, localgroup, new OWRecolorSettings(), containsonlybaseclone);
 
 				//select a resource for display in SimPE
 				pfd=null;

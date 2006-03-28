@@ -484,7 +484,12 @@ namespace SimPe.PackedFiles.Wrapper
 		
 		public new void Refresh()
 		{
-			this.UpdateContent();
+			Refresh(true);
+		}
+
+		public void Refresh(bool full)
+		{
+			if (full) this.UpdateContent();
 			base.Refresh();
 		}
 		

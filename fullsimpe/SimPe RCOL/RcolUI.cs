@@ -59,7 +59,7 @@ namespace SimPe.Plugin
 			get
 			{
 				if (form==null) return null;
-				return form.RcolPanel;
+				return form;
 			}
 		}
 

@@ -91,13 +91,14 @@ namespace SimPe.Plugin
 			writer.Write(s1);
 		}
 
-		fShapeRefNode form = null;
+		//fShapeRefNode form = null;
+		TabPage.GenericRcol tGenericRcol;
 		public override System.Windows.Forms.TabPage TabPage
 		{
 			get
 			{
-				if (form==null) form = new fShapeRefNode(); 
-				return form.tGenericRcol;
+				if (tGenericRcol==null) tGenericRcol = new SimPe.Plugin.TabPage.GenericRcol();
+				return tGenericRcol;
 			}
 		}
 		#endregion
@@ -107,17 +108,17 @@ namespace SimPe.Plugin
 		/// </summary>
 		protected override void InitTabPage() 
 		{
-			if (form==null) form = new fShapeRefNode(); 
-			form.tb_ver.Text = "0x"+Helper.HexString(this.version);
-			form.gen_pg.SelectedObject = this;
+			if (tGenericRcol==null) tGenericRcol = new SimPe.Plugin.TabPage.GenericRcol();
+			tGenericRcol.tb_ver.Text = "0x"+Helper.HexString(this.version);
+			tGenericRcol.gen_pg.SelectedObject = this;
 		}
-
 
 		#region IDisposable Member
 
 		public override void Dispose()
 		{
-			if (this.form!=null) this.form.Dispose();
+			if (this.tGenericRcol!=null) this.tGenericRcol.Dispose();
+			tGenericRcol = null;
 		}
 
 		#endregion

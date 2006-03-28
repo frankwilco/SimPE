@@ -83,7 +83,12 @@ namespace SimPe.Windows.Forms
 		{
 			if( disposing )
 			{
-				if (tm!=null) tm.Dispose();			
+				if (tm!=null) 
+				{
+					tm.Parent = null;
+					tm.CreateChild();
+					tm.Dispose();			
+				}
 				tm = null;
 				if(components != null)
 				{

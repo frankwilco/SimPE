@@ -1083,4 +1083,7 @@ Run SimPE anyway?</value>
     <data name="Max Relation to this Sim">
 		<value>Max Relation to {name}</value>
     </data>
+    <data name="Economy">
+		<value>Business</value>
+    </data>
 </root>

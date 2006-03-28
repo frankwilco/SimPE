@@ -290,7 +290,7 @@ namespace SimPe.Packages
 			foreach (Interfaces.Files.IPackedFileDescriptor pfd in this.Index) 
 			{
 				Interfaces.Files.IPackedFileDescriptor npfd = (Interfaces.Files.IPackedFileDescriptor)pfd.Clone();
-				npfd.UserData = Read(pfd).UncompressedData;
+				npfd.UserData = Read(pfd).UncompressedData;				
 				
 				fl.Add(npfd);
 			}
