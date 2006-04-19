@@ -37,42 +37,66 @@ namespace SimPe.Cache
 		/// <returns></returns>
 		public static MemoryCacheFile InitCacheFile() 
 		{
+			FileTable.FileIndex.Load();
+			return InitCacheFile(FileTable.FileIndex);
+		}
+		/// <summary>
+		/// Updates and Loads the Memory Cache
+		/// </summary>
+		/// <returns></returns>
+		public static MemoryCacheFile InitCacheFile(SimPe.Interfaces.Scenegraph.IScenegraphFileIndex fileindex) 
+		{
 			bool running = WaitingScreen.Running;
 			if (!running) WaitingScreen.Wait();
 			WaitingScreen.UpdateMessage("Loading Cache");
 
 			MemoryCacheFile cachefile = new MemoryCacheFile();
 			cachefile.Load(Helper.SimPeLanguageCache);
+			cachefile.ReloadCache(fileindex, true);
+			if (!running) WaitingScreen.Stop();
 
+			return cachefile;
+		}
+
+		public void ReloadCache()
+		{
+			ReloadCache(true);
+		}
+
+		public void ReloadCache(bool save)
+		{
 			FileTable.FileIndex.Load();
-			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.OBJD_FILE, true);
+			ReloadCache(FileTable.FileIndex, save);
+		}
+
+		public void ReloadCache(SimPe.Interfaces.Scenegraph.IScenegraphFileIndex fileindex, bool save)
+		{			
+			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = fileindex.FindFile(Data.MetaData.OBJD_FILE, true);
 			
 			bool added = false;
 			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
 			{
-				Interfaces.Scenegraph.IScenegraphFileIndexItem[] citems = cachefile.FileIndex.FindFile(item.FileDescriptor, null);
+				Interfaces.Scenegraph.IScenegraphFileIndexItem[] citems = this.FileIndex.FindFile(item.GetLocalFileDescriptor(), null);
 				if (citems.Length==0) 
 				{
 					WaitingScreen.UpdateMessage("Updating Cache");
 					SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
 					objd.ProcessData(item);
 
-					cachefile.AddItem(objd);					
+					this.AddItem(objd);					
 					added = true;
 				}
 			}
 
 			if (added) 
 			{
-				cachefile.Save(cachefile.FileName);
-				cachefile.LoadMemTable();
-				cachefile.LoadMemList();
-			}
-
-			if (!running) WaitingScreen.Stop();
-
-			return cachefile;
+				this.map = null;
+				if (save) this.Save(this.FileName);				
+				this.LoadMemTable();
+				this.LoadMemList();
+			}			
 		}
+
 		/// <summary>
 		/// Creaet a new Instance for an empty File
 		/// </summary>
@@ -94,6 +118,7 @@ namespace SimPe.Cache
 			mci.Guid = objd.Guid;			
 			mci.ObjectType = objd.Type;		
 			mci.ObjdName = objd.FileName;
+			mci.ParentCacheContainer = mycc;
 
 			try 
 			{

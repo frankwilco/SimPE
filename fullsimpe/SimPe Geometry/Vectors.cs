@@ -28,6 +28,7 @@ namespace SimPe.Geometry
 	/// <summary>
 	/// Contains the a 2D Vector (when (un)serialized, it will be interpreted as SingleFloat!)
 	/// </summary>
+	[System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
 	public class Vector2f 
 	{
 		double x, y;
@@ -113,7 +114,7 @@ namespace SimPe.Geometry
 		/// <returns>A String Describing the Data</returns>
 		public override string ToString()
 		{
-			return x.ToString("N2")+", "+y.ToString("N2");
+			return x.ToString("N2")+"; "+y.ToString("N2");
 		}
 
 		/// <summary>
@@ -125,11 +126,17 @@ namespace SimPe.Geometry
 			Vector2f v = new Vector2f(this.X, this.Y);
 			return v;
 		}
+
+		public static Vector2f Zero
+		{
+			get { return new Vector2f(0, 0); }
+		}
 	}
 
 	/// <summary>
 	/// Contains the a 3D Vector (when (un)serialized, it will be interpreted as SingleFloat!)
 	/// </summary>
+	[System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
 	public class Vector3f : Vector2f
 	{
 		double  z;
@@ -196,12 +203,13 @@ namespace SimPe.Geometry
 		/// <returns>A String Describing the Data</returns>
 		public override string ToString()
 		{
-			return base.ToString()+", "+z.ToString("N2");
+			return base.ToString()+"; "+z.ToString("N2");
 		}
 
 		/// <summary>
 		/// Returns the UnitVector for this Vector
 		/// </summary>
+		[System.ComponentModel.Browsable(false)]
 		public Vector3f UnitVector 
 		{
 			get 
@@ -507,6 +515,11 @@ namespace SimPe.Geometry
 			return new Vector3f(v.X, v.Y, v.Z);
 		}
 		#endregion
+
+		public static new Vector3f Zero
+		{
+			get { return new Vector3f(0, 0, 0); }
+		}
 	}
 
 	/// <summary>
@@ -602,6 +615,7 @@ namespace SimPe.Geometry
 	/// <summary>
 	/// Contains the a 4D Vector (when (un)serialized, it will be interpreted as SingleFloat!)
 	/// </summary>
+	[System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
 	public class Vector4f : Vector3f
 	{
 		double w;

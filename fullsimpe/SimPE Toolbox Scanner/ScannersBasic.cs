@@ -199,16 +199,16 @@ namespace SimPe.Plugin.Scanner
 
 		
 
-		protected AbstractScanner(System.Windows.Forms.ListView lv) 
+		protected AbstractScanner() 
 		{
 			byte[] b = Helper.ToBytes(this.UniqueName);
 			this.uid = BitConverter.ToUInt32(Hashes.Crc32.ComputeHash(b, 0 , b.Length), 0);
-			this.startcolumn = lv.Columns.Count;
-			this.lv = lv;
+			this.startcolumn = 0;			
 		}
 
-		public void InitScan()
+		public void InitScan(System.Windows.Forms.ListView lv)
 		{
+			this.lv = lv;
 			this.startcolumn = lv.Columns.Count;
 			DoInitScan();
 		}
@@ -291,7 +291,7 @@ namespace SimPe.Plugin.Scanner
 	/// </summary>
 	internal class NameScanner : AbstractScanner, IScanner
 	{
-		public NameScanner (System.Windows.Forms.ListView lv) : base (lv) {}
+		public NameScanner () : base () {}
 
 		
 		#region IScannerBase Member
@@ -388,7 +388,7 @@ namespace SimPe.Plugin.Scanner
 	/// </summary>
 	internal class ImageScanner : AbstractScanner, IScanner
 	{
-		public ImageScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+		public ImageScanner () : base () { }
 
 		
 		#region IScannerBase Member
@@ -535,7 +535,7 @@ namespace SimPe.Plugin.Scanner
 	internal class GuidScanner : AbstractScanner, IScanner
 	{
 		static SimPe.Cache.MemoryCacheFile cachefile;
-		public GuidScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+		public GuidScanner () : base () { }
 
 		#region IScannerBase Member
 		public uint Version 
@@ -688,7 +688,7 @@ namespace SimPe.Plugin.Scanner
 	{
 		static SimPe.Cache.MemoryCacheFile cachefile;
 
-		public RecolorBasemeshScanner (System.Windows.Forms.ListView lv) : base (lv) {		
+		public RecolorBasemeshScanner () : base () {		
 		}
 
 		#region IScannerBase Member
@@ -778,7 +778,7 @@ namespace SimPe.Plugin.Scanner
 	{
 		static SimPe.Cache.MemoryCacheFile cachefile;
 
-		public MeshScanner (System.Windows.Forms.ListView lv) : base (lv) 
+		public MeshScanner () : base () 
 		{		
 		}
 

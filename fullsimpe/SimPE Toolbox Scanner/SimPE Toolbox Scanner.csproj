@@ -236,7 +236,7 @@
                 />
                 <Reference
                     Name = "sandbar"
-                    AssemblyName = "sandbar"
+                    AssemblyName = "SandBar"
                     HintPath = "..\..\..\divelements\sandbar\sandbar.dll"
                 />
             </References>
@@ -283,6 +283,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ScannerCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ScannerCompression.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -316,6 +321,11 @@
                     RelPath = "ScannerPanelForm.resx"
                     DependentUpon = "ScannerPanelForm.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ScannerRegistry.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "ScannersBasic.cs"

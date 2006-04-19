@@ -32,7 +32,7 @@ namespace SimPe.Plugin.Scanner
 	/// </summary>
 	internal class ClothingScanner : AbstractScanner, IScanner
 	{		
-		public ClothingScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+		public ClothingScanner () : base () { }
 
 	    #region IScannerBase Member
 		public uint Version 

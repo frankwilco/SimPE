@@ -35,7 +35,7 @@ namespace SimPe.PackedFiles
 	/// provide Infoformations from the Main Application to the Plugins, you have to use the 
 	/// TypeRegistry!
 	/// </remarks>	 
-	public sealed class TypeRegistry : IWrapperRegistry, IProviderRegistry, IToolRegistry
+	public sealed class TypeRegistry : IWrapperRegistry, IProviderRegistry, IToolRegistry, IHelpRegistry, ISettingsRegistry
 	{		
 		/// <summary>
 		/// Coontains all available handler Objects
@@ -57,6 +57,16 @@ namespace SimPe.PackedFiles
 		/// Contains all available action Tool Plugins
 		/// </summary>
 		ArrayList atools;
+
+		/// <summary>
+		/// Contains all known Helptopics
+		/// </summary>
+		ArrayList helptopics;
+
+		/// <summary>
+		/// Contains all known Custom Settings
+		/// </summary>
+		ArrayList settings;
 
 		/// <summary>
 		/// Contains all available Listeners
@@ -92,6 +102,8 @@ namespace SimPe.PackedFiles
 			toolsp = new ArrayList();
 			dtools = new ArrayList();
 			atools = new ArrayList();
+			helptopics = new ArrayList();
+			settings = new ArrayList();
 			listeners = new SimPe.Collections.InternalListeners();
 
 			il = new System.Windows.Forms.ImageList();
@@ -153,7 +165,15 @@ namespace SimPe.PackedFiles
 			factory.LinkedRegistry = this;
 			factory.LinkedProvider = this;
 			Register(factory.KnownWrappers, factory.KnownWrappers);
+
+			if (factory.GetType().GetInterface("SimPe.Interfaces.Plugin.IHelpFactory", false) == typeof(SimPe.Interfaces.Plugin.IHelpFactory))			
+				Register((factory as SimPe.Interfaces.Plugin.IHelpFactory));
+			
+			if (factory.GetType().GetInterface("SimPe.Interfaces.Plugin.ISettingsFactory", false) == typeof(SimPe.Interfaces.Plugin.ISettingsFactory))			
+				Register((factory as SimPe.Interfaces.Plugin.ISettingsFactory));
 		}
+
+		
 
 		public IWrapper[] Wrappers
 		{
@@ -437,6 +457,74 @@ namespace SimPe.PackedFiles
 		}
 
 		#endregion		
+
+		#region IHelpRegistry Member
+		public void Register(SimPe.Interfaces.Plugin.IHelpFactory factory)
+		{
+			if (factory==null) return;
+			RegisterHelpTopic(factory.KnownHelpTopics);
+		}
+
+		public void RegisterHelpTopic(SimPe.Interfaces.IHelp[] topics)
+		{
+			if (topics==null) return;
+			foreach (SimPe.Interfaces.IHelp topic in topics)
+				RegisterHelpTopic(topic);
+		}
+
+		public void RegisterHelpTopic(SimPe.Interfaces.IHelp topic)
+		{
+			if (topic!=null && !helptopics.Contains(topic))
+				this.helptopics.Add(topic);
+		}
+
+		/// <summary>
+		/// Returns the List of Known Help Topics
+		/// </summary>
+		public IHelp[] HelpTopics
+		{
+			get
+			{
+				SimPe.Interfaces.IHelp[] ret = new SimPe.Interfaces.IHelp[helptopics.Count];
+				helptopics.CopyTo(ret);
+				return ret;
+			}
+		}	
+		#endregion
+
+		#region ISettingsRegistry Member
+
+		public void Register(ISettingsFactory factory)
+		{
+			if (factory==null) return;
+			RegisterSettings(factory.KnownSettings);
+		}
+
+		public ISettings[] Settings
+		{
+			get
+			{
+				ISettings[] ret = new ISettings[settings.Count];
+				settings.CopyTo(ret);
+				return ret;
+			}
+		}
+
+		public void RegisterSettings(ISettings[] settings)
+		{
+			if (settings==null) return;
+			foreach (ISettings s in settings)
+				RegisterSettings(s as ISettings);
+		}
+
+		public void RegisterSettings(ISettings setting)
+		{
+			if (settings==null) return;
+			if (!settings.Contains(setting))
+				settings.Add(setting);
+		}
+
+		#endregion
 	}
 }
 

@@ -110,6 +110,21 @@ namespace SimPe.Interfaces.Scenegraph
 		void AddIndexFromPfd(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package, uint localgroup);
 
 		/// <summary>
+		/// Used to Debug the Filetable
+		/// </summary>
+		void WriteContentToConsole();
+
+		/// <summary>
+		/// Recreates the List of added Filenames
+		/// </summary>
+		void UpdateListOfAddedFilenames();
+
+		/// <summary>
+		/// Clears the FileTable, and Closes all packages it did refern to
+		/// </summary>
+		void CloseAssignedPackages();		
+
+		/// <summary>
 		/// Removes an Item from the Table
 		/// </summary>
 		/// <param name="item">The item you want to remove</param>

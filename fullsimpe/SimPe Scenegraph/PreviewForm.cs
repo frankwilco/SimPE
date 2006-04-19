@@ -26,6 +26,7 @@ namespace SimPe.Plugin
 
 			dx.Settings.AddAxis = false;
 			dx.LoadSettings(Helper.SimPeViewportFile);
+			dx.ResetDevice += new EventHandler(dx_ResetDevice);
 		}
 
 		/// <summary>
@@ -89,6 +90,10 @@ namespace SimPe.Plugin
 			throw new SimPe.Warning("This Item can't be previewed!", "SimPE was unable to build the Scenegraph.");
 		}
 
+		public static Ambertation.Scenes.Scene BuildScene(SimPe.PackedFiles.Wrapper.Cpf cmmat, SimPe.Interfaces.Files.IPackageFile package)
+		{
+		}
+
 		//static Ambertation.Panel3D p3d;
 		public static void Execute(SimPe.PackedFiles.Wrapper.Cpf cmmat, SimPe.Interfaces.Files.IPackageFile package) 
 		{
@@ -101,7 +106,8 @@ namespace SimPe.Plugin
 			{
 				FileTable.FileIndex.Load();
 				fii.AddIndexFromPackage(package);
-				fii.AddIndexFromFolder(System.IO.Path.GetDirectoryName(package.SaveFileName));
+				if (System.IO.File.Exists(package.SaveFileName))
+					fii.AddIndexFromFolder(System.IO.Path.GetDirectoryName(package.SaveFileName));
 
 
 				GenericRcol rcol = mmat.GMDC;
@@ -142,6 +148,11 @@ namespace SimPe.Plugin
 				fii.Clear();
 			}
 			Wait.Stop();				
-		}			
+		}
+
+		private void dx_ResetDevice(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

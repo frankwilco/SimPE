@@ -332,7 +332,8 @@ namespace SimPe.Plugin.TabPage
 		#region Select OGN Items 
 		private void OGNSelect(object sender, System.EventArgs e)
 		{
-			if (Tag != null) return;
+			if (Tag == null) return;
+			if (lb_ogn.Tag!=null) return;
 			if (this.lb_ogn.SelectedIndex<0) return;
 
 			try 
@@ -358,7 +359,8 @@ namespace SimPe.Plugin.TabPage
 
 		private void OGNChangedItems(object sender, System.EventArgs e)
 		{
-			if (Tag != null) return;
+			if (Tag == null) return;
+			if (lb_ogn.Tag!=null) return;
 			if (this.lb_ogn.SelectedIndex<0) return;
 
 			try 

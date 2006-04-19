@@ -497,6 +497,21 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// Copies the FileDescriptors form the passed Package to this one. The Method creats 
+		/// a Clone for each Descriptor, and read it' Userdata form the original package. 
+		/// </summary>
+		/// <param name="package">The package that should get copied into this one</param>
+		public void CopyDescriptors(SimPe.Interfaces.Files.IPackageFile package)
+		{
+			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in package.Index)
+			{
+				SimPe.Interfaces.Files.IPackedFileDescriptor npfd = pfd.Clone();
+				npfd.UserData = package.Read(pfd).UncompressedData;						
+				Add(npfd, true);
+			}
+		}
+
+		/// <summary>
 		/// Ads a list of Descriptors to the Index
 		/// </summary>
 		/// <param name="pfds">List of Descriptors</param>

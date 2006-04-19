@@ -229,6 +229,23 @@ namespace SimPe
 		/// </summary>
 		/// <param name="txt">The hex String</param>
 		/// <returns>the represented value</returns>
+		public static float StringToFloat(string txt, float def)
+		{
+			try 
+			{
+				return Convert.ToSingle(txt);
+			} 
+			catch 
+			{
+				return def;
+			}
+		}
+
+		/// <summary>
+		/// Returns the Value represented by the HexString
+		/// </summary>
+		/// <param name="txt">The hex String</param>
+		/// <returns>the represented value</returns>
 		public static int StringToInt32(string txt, int def, byte bbase)
 		{
 			try 
@@ -369,6 +386,24 @@ namespace SimPe
 				return System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath), "Plugins");
 			}
 		}
+
+		/// <summary>
+		/// Returns the Path for SimPe Teleports
+		/// </summary>
+		public static string SimPeTeleportPath 
+		{
+			get
+			{
+				string dir = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath), "Teleport");
+				try 
+				{
+					if (!System.IO.Directory.Exists(dir))
+						System.IO.Directory.CreateDirectory(dir);
+				} 
+				catch {}
+				return dir;
+			}
+		}		
 
 		/// <summary>
 		/// Returns the Name of a Language Cache File with the passed Prefix
@@ -1022,6 +1057,35 @@ namespace SimPe
 			flname = flname.Replace("/", "_");
 			flname = flname.Replace(":", "_");			
 			return flname;
+		}
+
+		/// <summary>
+		/// Compares tow Filenames, or parts of FileNames
+		/// </summary>
+		/// <param name="fl1"></param>
+		/// <param name="fl2"></param>
+		/// <returns></returns>
+		public static bool EqualFileName(string fl1, string fl2)
+		{
+#if MAC
+			return fl1.Trim()==fl2.Trim();
+#else
+			return fl1.Trim().ToLower()==fl2.Trim().ToLower();
+#endif
+		}
+
+		/// <summary>
+		/// Returns a compareable Filename
+		/// </summary>
+		/// <param name="fl"></param>
+		/// <returns></returns>
+		public static string CompareableFileName(string fl)
+		{
+#if MAC
+			return fl.Trim();
+#else
+			return fl.Trim().ToLower();
+#endif
 		}
 
 		#region Folders

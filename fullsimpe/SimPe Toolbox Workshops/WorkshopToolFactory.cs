@@ -34,7 +34,7 @@ namespace SimPe.Plugin
 		internal static IToolPlugin[] Last;
 		public WorkshopToolFactory()
 		{
-			
+			SimPe.Plugin.MmatWrapper.GlobalCpfPreview = new SimPe.PackedFiles.UserInterface.CpfUI.ExecutePreview(SimPe.Plugin.PreviewForm.Execute);
 		}
 
 		#region AbstractWrapperFactory Member

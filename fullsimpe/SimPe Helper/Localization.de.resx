@@ -1155,6 +1155,15 @@ Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
 
 Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
 	</data>
+	<data name="[Property:SP1Path]">
+		<value>1: Family Fun Accessoires</value>
+	</data>
+	<data name="[Description:SP1Path]">
+		<value>Hier sollte das Installationsverzeichnis von "Die Sims 2 - Family Fun Accessoires" stehen. 
+Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
+	</data>
 	<data name="[Property:SaveGamePath]">
 		<value>Spielstände</value>
 	</data>	
@@ -1175,6 +1184,9 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
 	</data>
 	<data name="[Category:ExpansionPack]">
 		<value>2. Erweiterungen</value>
+	</data>
+	<data name="[Category:SmallExpansionPack]">
+		<value>3. Mini-Erweiterungen</value>
 	</data>
 	
 	<data name="SimPe.PackedFiles.Wrapper.JobAssignment.Nothing">
@@ -1227,8 +1239,7 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
     </data>
     
     <data name="Reset Filetable">
-		<value>Um die Erweiterung "Open for Business" unterstützen zu können, muss SimPE den "FileTable" zurücksetzen.
-Dazu muss die Datei "{flname}" gelöscht werden.
+		<value>SimPE muss den "FileTable" zurücksetzen. Dazu wird die Datei "{flname}" gelöscht.
 
 Soll SimPe nun den "FileTable" zurücksetzen?</value>
     </data>

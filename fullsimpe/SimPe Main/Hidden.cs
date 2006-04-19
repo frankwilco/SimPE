@@ -37,6 +37,8 @@ namespace SimPe
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label lbMem;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button3;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -49,9 +51,7 @@ namespace SimPe
 			//
 			InitializeComponent();
 
-			//
-			// TODO: Fügen Sie den Konstruktorcode nach dem Aufruf von InitializeComponent hinzu
-			//
+			button3.Visible = Helper.WindowsRegistry.HiddenMode;
 		}
 
 		/// <summary>
@@ -84,6 +84,8 @@ namespace SimPe
 			this.label3 = new System.Windows.Forms.Label();
 			this.lbMem = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -148,10 +150,32 @@ namespace SimPe
 			this.button1.Text = "Collect Garbage";
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
+			// button2
+			// 
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button2.Location = new System.Drawing.Point(8, 160);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(128, 23);
+			this.button2.TabIndex = 8;
+			this.button2.Text = "StreamManager";
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// button3
+			// 
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button3.Location = new System.Drawing.Point(144, 160);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(128, 23);
+			this.button3.TabIndex = 9;
+			this.button3.Text = "FileTable Content";
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
 			// Hidden
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-			this.ClientSize = new System.Drawing.Size(458, 144);
+			this.ClientSize = new System.Drawing.Size(458, 192);
+			this.Controls.Add(this.button3);
+			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.lbMem);
 			this.Controls.Add(this.label3);
@@ -200,6 +224,16 @@ namespace SimPe
 			this.lbMem.Text = GC.GetTotalMemory(false).ToString("N0") + " Byte";
 
 			this.Cursor = Cursors.Default;
+		}
+
+		private void button2_Click(object sender, System.EventArgs e)
+		{
+			SimPe.Packages.StreamFactory.WriteToConsole();
+		}
+
+		private void button3_Click(object sender, System.EventArgs e)
+		{
+			SimPe.FileTable.FileIndex.WriteContentToConsole();
 		}
 	}
 }

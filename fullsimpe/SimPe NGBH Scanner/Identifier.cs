@@ -27,7 +27,7 @@ namespace SimPe.Plugin
 	/// </summary>
 	internal class NeighborhoodIdentifier : IIdentifier
 	{
-		public NeighborhoodIdentifier(System.Windows.Forms.ListView lv) {}
+		public NeighborhoodIdentifier() {}
 
 		#region IIdentifierBase Member
 		public uint Version 

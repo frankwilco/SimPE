@@ -5,41 +5,32 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// Zusammenfassung für TileItem.
 	/// </summary>
-	public class NhtrItem
-	{
-		uint offset;
-		byte[] data;		
-		byte type;
+	public abstract class NhtrItem
+	{			
+		protected byte marker;
+		NhtrList parent;
 		
-		public NhtrItem()
+		internal NhtrItem(NhtrList parent)
 		{
-			offset = 0xffffffff;
-			data = new byte[0];
+			this.parent = parent;			
+			marker = 2;			
 		}
-		public byte[] Data 
+		
+		public byte Marker
 		{
-			get {return data;}
+			get {return marker;}
 		}
 
-		internal void Unserialize(System.IO.BinaryReader reader, int ct)
-		{	
-			offset = (uint)reader.BaseStream.Position;
-			type = reader.ReadByte();
-										
-			data = reader.ReadBytes(ct);
+		internal virtual void Unserialize(System.IO.BinaryReader reader)
+		{				
+			marker = reader.ReadByte();													
 		}
 
-		internal void Serialize(System.IO.BinaryWriter writer) 
+		internal virtual void Serialize(System.IO.BinaryWriter writer) 
 		{		
-			writer.Write(data);
+			writer.Write(marker);
 		}
 
-		public override string ToString()
-		{
-			string s = Helper.HexString(offset)+": "+Helper.HexString(type)+"   "+Helper.BytesToHexList(data);
-			if (s.Length>0xff) s = s.Substring(0, 0xff)+"...";
-			return s;
-		}
-
-	}
+		public abstract string ToLongString();
+	}	
 }

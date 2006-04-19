@@ -194,6 +194,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "agt_support.png"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -262,7 +266,37 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "IHelp.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IHelpFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IHelpRegistry.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "IListener.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ISettings.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ISettingsFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ISettingsRegistry.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -327,6 +361,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "LoadHelpTopics.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MediaPlayerRenderer.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -378,6 +417,11 @@
                 />
                 <File
                     RelPath = "ResourceLoader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ShowHelpEventArgs.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -214,6 +214,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "FileTableItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "GeneratableFile.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

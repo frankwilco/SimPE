@@ -64,8 +64,6 @@ namespace SimPe.Plugin
 		internal Ambertation.Windows.Forms.EnumComboBox cborient;
 		internal System.Windows.Forms.TextBox tbinst;
 		private System.Windows.Forms.Label label15;
-		internal System.Windows.Forms.TextBox tbu2;
-		private System.Windows.Forms.Label label16;
 		internal System.Windows.Forms.TextBox tbowner;
 		private System.Windows.Forms.Label label17;
 		internal System.Windows.Forms.TextBox tbu4;
@@ -130,8 +128,6 @@ namespace SimPe.Plugin
 			this.label18 = new System.Windows.Forms.Label();
 			this.tbowner = new System.Windows.Forms.TextBox();
 			this.label17 = new System.Windows.Forms.Label();
-			this.tbu2 = new System.Windows.Forms.TextBox();
-			this.label16 = new System.Windows.Forms.Label();
 			this.tbinst = new System.Windows.Forms.TextBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.cborient = new Ambertation.Windows.Forms.EnumComboBox();
@@ -184,8 +180,6 @@ namespace SimPe.Plugin
 			this.ltxtPanel.Controls.Add(this.label18);
 			this.ltxtPanel.Controls.Add(this.tbowner);
 			this.ltxtPanel.Controls.Add(this.label17);
-			this.ltxtPanel.Controls.Add(this.tbu2);
-			this.ltxtPanel.Controls.Add(this.label16);
 			this.ltxtPanel.Controls.Add(this.tbinst);
 			this.ltxtPanel.Controls.Add(this.label15);
 			this.ltxtPanel.Controls.Add(this.cborient);
@@ -225,7 +219,7 @@ namespace SimPe.Plugin
 			// 
 			// tbu0
 			// 
-			this.tbu0.Location = new System.Drawing.Point(632, 32);
+			this.tbu0.Location = new System.Drawing.Point(568, 32);
 			this.tbu0.Name = "tbu0";
 			this.tbu0.Size = new System.Drawing.Size(104, 21);
 			this.tbu0.TabIndex = 51;
@@ -236,7 +230,7 @@ namespace SimPe.Plugin
 			// 
 			this.label21.AutoSize = true;
 			this.label21.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label21.Location = new System.Drawing.Point(600, 40);
+			this.label21.Location = new System.Drawing.Point(536, 40);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(26, 17);
 			this.label21.TabIndex = 50;
@@ -305,7 +299,7 @@ namespace SimPe.Plugin
 			// 
 			// tbu4
 			// 
-			this.tbu4.Location = new System.Drawing.Point(544, 32);
+			this.tbu4.Location = new System.Drawing.Point(480, 32);
 			this.tbu4.Name = "tbu4";
 			this.tbu4.Size = new System.Drawing.Size(48, 21);
 			this.tbu4.TabIndex = 44;
@@ -316,7 +310,7 @@ namespace SimPe.Plugin
 			// 
 			this.label18.AutoSize = true;
 			this.label18.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label18.Location = new System.Drawing.Point(512, 40);
+			this.label18.Location = new System.Drawing.Point(448, 40);
 			this.label18.Name = "label18";
 			this.label18.Size = new System.Drawing.Size(26, 17);
 			this.label18.TabIndex = 43;
@@ -341,25 +335,6 @@ namespace SimPe.Plugin
 			this.label17.Size = new System.Drawing.Size(51, 17);
 			this.label17.TabIndex = 41;
 			this.label17.Text = "Owner:";
-			// 
-			// tbu2
-			// 
-			this.tbu2.Location = new System.Drawing.Point(440, 32);
-			this.tbu2.Name = "tbu2";
-			this.tbu2.Size = new System.Drawing.Size(64, 21);
-			this.tbu2.TabIndex = 40;
-			this.tbu2.Text = "0x0000";
-			this.tbu2.TextChanged += new System.EventHandler(this.CommonChange);
-			// 
-			// label16
-			// 
-			this.label16.AutoSize = true;
-			this.label16.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label16.Location = new System.Drawing.Point(408, 40);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(26, 17);
-			this.label16.TabIndex = 39;
-			this.label16.Text = "U2:";
 			// 
 			// tbinst
 			// 
@@ -478,7 +453,7 @@ namespace SimPe.Plugin
 			// 
 			// tbunk1
 			// 
-			this.tbunk1.Location = new System.Drawing.Point(344, 32);
+			this.tbunk1.Location = new System.Drawing.Point(392, 32);
 			this.tbunk1.Name = "tbunk1";
 			this.tbunk1.Size = new System.Drawing.Size(48, 21);
 			this.tbunk1.TabIndex = 26;
@@ -488,7 +463,7 @@ namespace SimPe.Plugin
 			// 
 			this.label11.AutoSize = true;
 			this.label11.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label11.Location = new System.Drawing.Point(312, 40);
+			this.label11.Location = new System.Drawing.Point(360, 40);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(26, 17);
 			this.label11.TabIndex = 25;
@@ -524,7 +499,7 @@ namespace SimPe.Plugin
 			// 
 			// tbhouseinst
 			// 
-			this.tbhouseinst.Location = new System.Drawing.Point(784, 56);
+			this.tbhouseinst.Location = new System.Drawing.Point(720, 56);
 			this.tbhouseinst.Name = "tbhouseinst";
 			this.tbhouseinst.Size = new System.Drawing.Size(48, 21);
 			this.tbhouseinst.TabIndex = 16;
@@ -533,7 +508,7 @@ namespace SimPe.Plugin
 			// 
 			// tblotinst
 			// 
-			this.tblotinst.Location = new System.Drawing.Point(784, 32);
+			this.tblotinst.Location = new System.Drawing.Point(720, 32);
 			this.tblotinst.Name = "tblotinst";
 			this.tblotinst.Size = new System.Drawing.Size(48, 21);
 			this.tblotinst.TabIndex = 15;
@@ -617,7 +592,7 @@ namespace SimPe.Plugin
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label3.Location = new System.Drawing.Point(744, 64);
+			this.label3.Location = new System.Drawing.Point(680, 64);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(34, 17);
 			this.label3.TabIndex = 6;
@@ -627,7 +602,7 @@ namespace SimPe.Plugin
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label2.Location = new System.Drawing.Point(744, 40);
+			this.label2.Location = new System.Drawing.Point(680, 40);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(34, 17);
 			this.label2.TabIndex = 5;
@@ -755,10 +730,9 @@ namespace SimPe.Plugin
 
 				wrapper.LotInstance = Helper.StringToUInt32(tbinst.Text, wrapper.LotInstance, 16);
 				wrapper.Unknown0 = Helper.StringToUInt32(tbu0.Text, wrapper.Unknown0, 16);
-				wrapper.Unknown1 = Helper.StringToUInt16(tbu2.Text, wrapper.Unknown1, 16);
 				wrapper.Unknown4 = (byte)Helper.StringToUInt16(tbu4.Text, wrapper.Unknown4, 16);
 				wrapper.OwnerInstance = Helper.StringToUInt32(tbowner.Text, wrapper.OwnerInstance, 16);
-				wrapper.GroundLevel = Helper.StringToInt16(tbz.Text, wrapper.GroundLevel, 16);
+				wrapper.GroundLevel = Helper.StringToFloat(tbz.Text, wrapper.GroundLevel);
 
 				wrapper.Changed = true;
 			} 

@@ -141,8 +141,146 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 	}
 
+	 
 	public class ObjectWorkshopHelper 
 	{
+		internal static void PrepareForClone(SimPe.Interfaces.Files.IPackageFile package, SimPe.Interfaces.IAlias current, out SimPe.Interfaces.IAlias a, out uint localgroup, out SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
+		{
+			FileTable.FileIndex.Load();
+			a = null;
+			pfd = null;
+			localgroup = Data.MetaData.LOCAL_GROUP;
+			if (package!=null) 
+			{
+				if (package.FileName!=null) 
+				{
+					SimPe.Interfaces.Wrapper.IGroupCacheItem gci = SimPe.FileTable.GroupCache.GetItem(package.FileName);
+					if (gci!=null) localgroup = gci.LocalGroup;
+				}
+			} 
+			else 
+			{
+				if (current!=null) 
+				{
+					a = current;
+					pfd =(Interfaces.Files.IPackedFileDescriptor)a.Tag[0];			
+					localgroup = (uint)a.Tag[1];
+				}
+			}
+		}
+
+		protected static void PrepareForClone(SimPe.Interfaces.Files.IPackageFile package, out SimPe.Interfaces.IAlias a, out uint localgroup, out SimPe.Interfaces.Files.IPackedFileDescriptor pfd, out OWCloneSettings cs)
+		{
+			ObjectWorkshopHelper.PrepareForClone(package, null, out a, out localgroup, out pfd);
+
+			cs = new OWCloneSettings();
+			cs.IncludeWallmask = false;
+			cs.OnlyDefaultMmats = false;
+			cs.IncludeAnimationResources = false;
+			cs.CustomGroup = false;
+			cs.FixResources = false;
+			cs.RemoveUselessResource = false;
+			cs.StandAloneObject = false;					
+			cs.RemoveNonDefaultTextReferences = false;
+			cs.KeepOriginalMesh = false;
+			cs.PullResourcesByStr = true;
+			cs.ChangeObjectDescription = false;
+			cs.OpenWithRemoteControl = false;
+		}
+
+		/// <summary>
+		/// Create a 1:1 Clone based on the passed Group Number
+		/// </summary>
+		/// <param name="gid"></param>
+		/// <returns></returns>
+		public static SimPe.Packages.GeneratableFile CreatCloneByGroup(uint gid)
+		{
+			SimPe.Packages.GeneratableFile package = SimPe.Packages.GeneratableFile.CreateNew();
+			SimPe.Interfaces.IAlias a;
+			Interfaces.Files.IPackedFileDescriptor pfd;
+			uint localgroup;
+			OWCloneSettings cs;
+			ObjectWorkshopHelper.PrepareForClone(package, out a, out localgroup, out pfd, out cs);			
+
+			ObjectWorkshopHelper.BaseClone(gid, package, false);			
+			
+			return ObjectWorkshopHelper.Start(package, a, ref pfd, localgroup, cs, true);			
+		}
+
+		/// <summary>
+		/// Create a 1:1 Clone based on the passed GUID
+		/// </summary>
+		/// <param name="guid"></param>
+		/// <returns></returns>
+		public static SimPe.Packages.GeneratableFile CreatCloneByGuid(uint guid)
+		{
+			SimPe.Packages.GeneratableFile package = SimPe.Packages.GeneratableFile.CreateNew();
+			SimPe.Interfaces.IAlias a;
+			Interfaces.Files.IPackedFileDescriptor pfd;
+			uint localgroup;
+			OWCloneSettings cs;
+			ObjectWorkshopHelper.PrepareForClone(package, out a, out localgroup, out pfd, out cs);	
+			SimPe.Interfaces.Scenegraph.IScenegraphFileIndex fii = FileTable.FileIndex.AddNewChild();
+
+			SimPe.Cache.MemoryCacheItem mci = SimPe.PackedFiles.Wrapper.ObjectComboBox.ObjectCache.FindItem(guid);						
+			if (mci!=null)
+			{
+				localgroup = mci.FileDescriptor.Group;
+				if (localgroup == Data.MetaData.LOCAL_GROUP)
+				{
+					SimPe.Interfaces.Wrapper.IGroupCacheItem gci = SimPe.FileTable.GroupCache.GetItem(mci.ParentCacheContainer.FileName);
+					if (gci!=null) 
+					{
+						if (!FileTable.FileIndex.Contains(mci.ParentCacheContainer.FileName))											
+							fii.AddIndexFromPackage(mci.ParentCacheContainer.FileName);
+					
+						localgroup = gci.LocalGroup;
+					}
+				}
+				ObjectWorkshopHelper.BaseClone(localgroup, package, false);			
+			}
+			
+			SimPe.Packages.GeneratableFile ret =  ObjectWorkshopHelper.Start(package, a, ref pfd, localgroup, cs, true);			
+			fii.CloseAssignedPackages();
+			FileTable.FileIndex.RemoveChild(fii);
+
+			return ret;
+		}
+
+		/// <summary>
+		/// Create a 1:1 Clone based on the CRES Name
+		/// </summary>
+		/// <param name="cres"></param>
+		/// <returns></returns>
+		public static SimPe.Packages.GeneratableFile CreatCloneByCres(string cres)
+		{
+			SimPe.Packages.GeneratableFile package = SimPe.Packages.GeneratableFile.CreateNew();
+			SimPe.Interfaces.IAlias a;
+			Interfaces.Files.IPackedFileDescriptor pfd;
+			uint localgroup;
+			OWCloneSettings cs;
+			ObjectWorkshopHelper.PrepareForClone(package, out a, out localgroup, out pfd, out cs);			
+
+			SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+			str.FileDescriptor = new SimPe.Packages.PackedFileDescriptor();
+			str.FileDescriptor.Type = Data.MetaData.STRING_FILE;
+			str.FileDescriptor.LongInstance = 0x85;
+			str.FileDescriptor.Group = 0x7F000000;
+			package.Add(str.FileDescriptor);			
+
+			string name = cres.ToLower().Trim();
+			if (!name.EndsWith("_cres")) name += "_cres";
+
+			str.FileName = "Model - Names";
+			str.Add(new SimPe.PackedFiles.Wrapper.StrItem(0, (byte)Data.MetaData.Languages.English, "", ""));
+			str.Add(new SimPe.PackedFiles.Wrapper.StrItem(1, (byte)Data.MetaData.Languages.English, name, ""));
+			str.SynchronizeUserData();
+
+			str.FileDescriptor.MarkForDelete = true;			
+			
+			return ObjectWorkshopHelper.Start(package, a, ref pfd, localgroup, cs, true);			
+		}
+
 		/// <summary>
 		/// Clone an object based on way Files are linked
 		/// </summary>
@@ -402,8 +540,9 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			return Start(pkg, a, ref pfd, localgroup, settings, false);
 		}
+
 		public static SimPe.Packages.GeneratableFile Start(SimPe.Packages.GeneratableFile pkg, SimPe.Interfaces.IAlias a, ref Interfaces.Files.IPackedFileDescriptor pfd, uint localgroup, ObjectWorkshopSettings settings, bool containsonlybaseclone)
-		{			
+		{						
 			SimPe.Packages.GeneratableFile package = pkg;
 			SimPe.Plugin.CloneSettings.BaseResourceType br = SimPe.Plugin.CloneSettings.BaseResourceType.Objd;
 			if (pfd!=null) 

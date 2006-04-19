@@ -32,7 +32,7 @@ namespace SimPe.Plugin.Scanner
 	{		
 		
 
-		public ShelveScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+		public ShelveScanner () : base () { }
 
 		
 		#region IScannerBase Member
@@ -117,8 +117,11 @@ namespace SimPe.Plugin.Scanner
 			else if (items.Length == 1)
 			{
 				SimPe.Cache.PackageState ps = items[0].PackageCacheItem.FindState(this.Uid, true);
-				ScannerPanelForm.Form.cbshelve.SelectedValue = (SimPe.PackedFiles.Wrapper.ShelveDimension)ps.Data[0];
-				OperationControl.Enabled = true;
+				if (ps.Data.Length>0)
+				{
+					ScannerPanelForm.Form.cbshelve.SelectedValue = (SimPe.PackedFiles.Wrapper.ShelveDimension)ps.Data[0];
+					OperationControl.Enabled = true;
+				}
 			}
 			else 
 			{

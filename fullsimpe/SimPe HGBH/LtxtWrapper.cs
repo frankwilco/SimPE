@@ -68,7 +68,7 @@ namespace SimPe.Plugin
 		ushort unknown_2;
 		byte unknown_4;
 		ushort ver;
-		short groundlevel;
+		float groundlevel;
 		uint inst, owner;
 
 		public SimPe.Interfaces.Providers.ILotItem LotDescription
@@ -127,7 +127,7 @@ namespace SimPe.Plugin
 			set {loc = value;}
 		}
 
-		public short GroundLevel
+		public float GroundLevel
 		{
 			get {return groundlevel;}
 			set {groundlevel = value;}
@@ -173,12 +173,8 @@ namespace SimPe.Plugin
 			get { return housename; }
 			set { housename = value; }
 		}
-		internal ushort Unknown1
-		{
-			get {return unknown_1;}
-			set { unknown_1 = value;}
-		}
-		ushort unknown_1;
+		
+		
 		public byte[] Followup 
 		{
 			get { return followup; }
@@ -231,14 +227,7 @@ namespace SimPe.Plugin
 		#region IWrapper member
 		public override bool CheckVersion(uint version) 
 		{
-			if ( (version==0012) //0.10
-				|| (version==0013) //0.12
-				) 
-			{
-				return true;
-			}
-
-			return false;
+			return true;
 		}
 		#endregion
 		
@@ -258,7 +247,7 @@ namespace SimPe.Plugin
 				"Lot Description Wrapper",
 				"Quaxi",
 				"This File contains the Description for a Lot.",
-				4,
+				5,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ltxt.png"))
 				); 
 		}
@@ -292,8 +281,7 @@ namespace SimPe.Plugin
 			int y = reader.ReadInt32();
 			int x = reader.ReadInt32();
 			loc = new Point(x, y);			
-			unknown_1 = reader.ReadUInt16();
-			groundlevel = reader.ReadInt16();
+			groundlevel = reader.ReadSingle();
 			inst = reader.ReadUInt32();
 			orient = reader.ReadByte();
 
@@ -335,7 +323,6 @@ namespace SimPe.Plugin
 
 			writer.Write((int)loc.Y);
 			writer.Write((int)loc.X);			
-			writer.Write(unknown_1);
 			writer.Write(groundlevel);
 			writer.Write(inst);
 			writer.Write((byte)orient);

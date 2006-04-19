@@ -73,7 +73,7 @@ namespace SimPe.Interfaces.Plugin
 									  };
 				return wrappers;
 			}
-		}
+		}		
 
 		public string FileName
 		{

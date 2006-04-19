@@ -8,6 +8,12 @@ namespace SimPe.Plugin
 	/// </summary>
 	public class MmatWrapper : SimPe.PackedFiles.Wrapper.Cpf, SimPe.Interfaces.Scenegraph.IScenegraphBlock, SimPe.Interfaces.Scenegraph.IScenegraphItem
 	{
+		static SimPe.PackedFiles.UserInterface.CpfUI.ExecutePreview prev;
+		public static SimPe.PackedFiles.UserInterface.CpfUI.ExecutePreview GlobalCpfPreview
+		{
+			get {return prev;}
+			set {prev=value;}
+		}
 		#region IScenegraphBlock Member
 
 		public void ReferencedItems(System.Collections.Hashtable refmap, uint parentgroup)
@@ -38,7 +44,7 @@ namespace SimPe.Plugin
 
 		protected override SimPe.Interfaces.Plugin.IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new SimPe.PackedFiles.UserInterface.CpfUI(new SimPe.PackedFiles.UserInterface.CpfUI.ExecutePreview(SimPe.Plugin.PreviewForm.Execute));
+			return new SimPe.PackedFiles.UserInterface.CpfUI(prev);
 		}
 
 		/// <summary>
@@ -229,6 +235,10 @@ namespace SimPe.Plugin
 				return GetTxtr(txmt);
 				
 			}
+		}
+
+		protected void FindRcolr(Interfaces.Files.IPackedFileDescriptor pfd)
+		{
 		}
 
 		protected GenericRcol GetGmdc()

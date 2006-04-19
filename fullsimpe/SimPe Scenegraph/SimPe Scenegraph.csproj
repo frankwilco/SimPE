@@ -449,16 +449,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "PreviewForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PreviewForm.resx"
-                    DependentUpon = "PreviewForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "RenameForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"

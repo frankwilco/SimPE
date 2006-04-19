@@ -76,6 +76,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		internal System.Windows.Forms.PictureBox pb;
 		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.TextBox tbFloat;
 		private System.ComponentModel.IContainer components;
 
 		public ResourceDock()
@@ -94,6 +95,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			foreach (SimPe.Data.TypeAlias a in SimPe.Helper.TGILoader.FileTypes) 
 				cbtypes.Items.Add(a);			
 			cbtypes.Sorted = true;
+			tbFloat.Width = tbBin.Width;
 		}
 
 		/// <summary>
@@ -166,6 +168,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.label1 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
+			this.tbFloat = new System.Windows.Forms.TextBox();
 			this.bottomSandDock.SuspendLayout();
 			this.dcHex.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -194,9 +197,9 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.bottomSandDock.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("bottomSandDock.AutoScrollMargin")));
 			this.bottomSandDock.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("bottomSandDock.AutoScrollMinSize")));
 			this.bottomSandDock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bottomSandDock.BackgroundImage")));
+			this.bottomSandDock.Controls.Add(this.dcConvert);
 			this.bottomSandDock.Controls.Add(this.dcHex);
 			this.bottomSandDock.Controls.Add(this.dcResource);
-			this.bottomSandDock.Controls.Add(this.dcConvert);
 			this.bottomSandDock.Controls.Add(this.dcPackage);
 			this.bottomSandDock.Controls.Add(this.dcWrapper);
 			this.bottomSandDock.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("bottomSandDock.Dock")));
@@ -209,7 +212,7 @@ namespace SimPe.Plugin.Tool.Dockable
 																																																															   this.dcResource,
 																																																															   this.dcWrapper,
 																																																															   this.dcConvert,
-																																																															   this.dcHex}, this.dcPackage, false)});
+																																																															   this.dcHex}, this.dcConvert, false)});
 			this.bottomSandDock.Location = ((System.Drawing.Point)(resources.GetObject("bottomSandDock.Location")));
 			this.bottomSandDock.Manager = this.sandDockManager1;
 			this.bottomSandDock.Name = "bottomSandDock";
@@ -800,6 +803,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.xpGradientPanel4.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel4.AutoScrollMargin")));
 			this.xpGradientPanel4.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("xpGradientPanel4.AutoScrollMinSize")));
 			this.xpGradientPanel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("xpGradientPanel4.BackgroundImage")));
+			this.xpGradientPanel4.Controls.Add(this.tbFloat);
 			this.xpGradientPanel4.Controls.Add(this.tbBin);
 			this.xpGradientPanel4.Controls.Add(this.tbDec);
 			this.xpGradientPanel4.Controls.Add(this.tbHex);
@@ -842,6 +846,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.tbBin.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbBin.TextAlign")));
 			this.tbBin.Visible = ((bool)(resources.GetObject("tbBin.Visible")));
 			this.tbBin.WordWrap = ((bool)(resources.GetObject("tbBin.WordWrap")));
+			this.tbBin.SizeChanged += new System.EventHandler(this.tbBin_SizeChanged);
 			this.tbBin.TextChanged += new System.EventHandler(this.BinChanged);
 			// 
 			// tbDec
@@ -1304,6 +1309,33 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.label3.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("label3.TextAlign")));
 			this.label3.Visible = ((bool)(resources.GetObject("label3.Visible")));
 			// 
+			// tbFloat
+			// 
+			this.tbFloat.AccessibleDescription = resources.GetString("tbFloat.AccessibleDescription");
+			this.tbFloat.AccessibleName = resources.GetString("tbFloat.AccessibleName");
+			this.tbFloat.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tbFloat.Anchor")));
+			this.tbFloat.AutoSize = ((bool)(resources.GetObject("tbFloat.AutoSize")));
+			this.tbFloat.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbFloat.BackgroundImage")));
+			this.xpCueBannerExtender1.SetCueBannerText(this.tbFloat, "Float");
+			this.tbFloat.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tbFloat.Dock")));
+			this.tbFloat.Enabled = ((bool)(resources.GetObject("tbFloat.Enabled")));
+			this.tbFloat.Font = ((System.Drawing.Font)(resources.GetObject("tbFloat.Font")));
+			this.tbFloat.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tbFloat.ImeMode")));
+			this.tbFloat.Location = ((System.Drawing.Point)(resources.GetObject("tbFloat.Location")));
+			this.tbFloat.MaxLength = ((int)(resources.GetObject("tbFloat.MaxLength")));
+			this.tbFloat.Multiline = ((bool)(resources.GetObject("tbFloat.Multiline")));
+			this.tbFloat.Name = "tbFloat";
+			this.tbFloat.PasswordChar = ((char)(resources.GetObject("tbFloat.PasswordChar")));
+			this.tbFloat.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tbFloat.RightToLeft")));
+			this.tbFloat.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("tbFloat.ScrollBars")));
+			this.tbFloat.Size = ((System.Drawing.Size)(resources.GetObject("tbFloat.Size")));
+			this.tbFloat.TabIndex = ((int)(resources.GetObject("tbFloat.TabIndex")));
+			this.tbFloat.Text = resources.GetString("tbFloat.Text");
+			this.tbFloat.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbFloat.TextAlign")));
+			this.tbFloat.Visible = ((bool)(resources.GetObject("tbFloat.Visible")));
+			this.tbFloat.WordWrap = ((bool)(resources.GetObject("tbFloat.WordWrap")));
+			this.tbFloat.TextChanged += new System.EventHandler(this.FloatChanged);
+			// 
 			// ResourceDock
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -1531,20 +1563,48 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		#region Hex <-> Dec Converter
 		bool sysupdate = false;
+		void SetConverted(object exclude, long val)
+		{
+			if (exclude!=this.tbDec) this.tbDec.Text = val.ToString();
+			if (exclude!=this.tbHex) this.tbHex.Text = Helper.HexString(val);		
+			if (exclude!=this.tbBin) this.tbBin.Text = Convert.ToString(val, 2);;	
+			if (exclude!=this.tbFloat) this.tbFloat.Text = BitConverter.ToSingle(BitConverter.GetBytes((int)val), 0).ToString();			
+		}
+		void ClearConverted(object exclude)
+		{
+			if (exclude!=this.tbDec) this.tbDec.Text = "";
+			if (exclude!=this.tbHex) this.tbHex.Text = "";	
+			if (exclude!=this.tbBin) this.tbBin.Text = "";	
+			if (exclude!=this.tbFloat) this.tbFloat.Text = "";	
+		}
+		private void FloatChanged(object sender, System.EventArgs e)
+		{
+			if (sysupdate) return;
+			sysupdate = true;
+			try 
+			{
+				float f = Convert.ToSingle(tbFloat.Text);
+				long val = BitConverter.ToInt32(BitConverter.GetBytes(f), 0);
+				SetConverted(this.tbFloat, val);
+			} 
+			catch 
+			{
+				ClearConverted(this.tbFloat);
+			}
+			sysupdate = false;
+		}
 		private void BinChanged(object sender, System.EventArgs e)
 		{
 			if (sysupdate) return;
 			sysupdate = true;
 			try 
 			{
-				long val = Convert.ToInt64(tbBin.Text, 2);
-				this.tbDec.Text = val.ToString();
-				this.tbHex.Text = Helper.HexString(val);
+				long val = Convert.ToInt64(tbBin.Text.Replace(" ", ""), 2);
+				SetConverted(this.tbBin, val);
 			} 
-			catch (Exception) 
+			catch
 			{
-				this.tbDec.Text = "";
-				this.tbHex.Text = "";
+				ClearConverted(this.tbBin);
 			}
 			sysupdate = false;
 		}
@@ -1554,13 +1614,11 @@ namespace SimPe.Plugin.Tool.Dockable
 			sysupdate = true;
 			try 
 			{
-				long val = Convert.ToInt64(tbHex.Text, 16);				
-				this.tbBin.Text = Convert.ToString(val, 2);
-				this.tbDec.Text = val.ToString();
+				long val = Convert.ToInt64(tbHex.Text.Replace(" ", ""), 16);				
+				SetConverted(this.tbHex, val);
 			} 
-			catch (Exception) {
-				this.tbDec.Text = "";
-				this.tbBin.Text = "";
+			catch{
+				ClearConverted(this.tbHex);
 			}
 			sysupdate = false;
 		}
@@ -1571,13 +1629,11 @@ namespace SimPe.Plugin.Tool.Dockable
 			sysupdate = true;
 			try 
 			{
-				ulong val = (ulong)Convert.ToInt64(tbDec.Text);				
-				this.tbBin.Text = Convert.ToString((long)val, 2);
-				tbHex.Text = "0x"+Helper.HexString(val);
+				long val = Convert.ToInt64(tbDec.Text);				
+				SetConverted(this.tbDec, val);
 			} 
 			catch (Exception) {
-				this.tbHex.Text = "";
-				this.tbBin.Text = "";
+				ClearConverted(this.tbDec);
 			}
 			sysupdate = false;
 		}
@@ -1621,6 +1677,11 @@ namespace SimPe.Plugin.Tool.Dockable
 				catch {}
 			}
 			guipackage.RestartIndexChangedEvents();		
+		}
+
+		private void tbBin_SizeChanged(object sender, System.EventArgs e)
+		{
+			tbFloat.Width = tbBin.Width;
 		}
 
 		
