@@ -232,7 +232,15 @@ namespace SimPe.PackedFiles.Wrapper
 			if (l==Data.MetaData.Languages.English) return this.LanguageItems(l);
 
 			StrItemList real = (StrItemList)LanguageItems(l).Clone();
-			StrItemList fallback = LanguageItems(Data.MetaData.Languages.English);			
+			StrItemList fallback = null;	
+			if (this.Languages.Contains(Data.MetaData.Languages.English))
+				fallback = LanguageItems(Data.MetaData.Languages.English);	
+			else if (this.Languages.Count>0)
+			{
+				fallback = LanguageItems(Languages[0]);	
+			}
+			else fallback = LanguageItems(Data.MetaData.Languages.English);	
+					
 
 			for (int i=0; i<fallback.Length; i++) 
 				if (real.Length <= i) real.Add(fallback[i]);

@@ -114,6 +114,16 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
+		/// Checks if the package on the passed Filename is already maintained here
+		/// </summary>
+		/// <param name="filename"></param>
+		/// <returns></returns>
+		public bool Contains(string filename)
+		{
+			return ht.ContainsKey(filename);
+		}
+
+		/// <summary>
 		/// Load a Package File from the Maintainer
 		/// </summary>
 		/// <param name="filename">the name of the package</param>

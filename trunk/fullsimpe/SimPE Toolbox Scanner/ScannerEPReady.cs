@@ -37,7 +37,7 @@ namespace SimPe.Plugin.Scanner
 			Indetermined = 0x2
 		}
 
-		public EPReadyScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+		public EPReadyScanner () : base () { }
 
 		
 		#region IScannerBase Member

@@ -81,12 +81,12 @@ namespace SimPe.Plugin
 			get 
 			{
 				IWrapper[] wrappers = {
-										  new Bhav(LinkedProvider.OpcodeProvider),
+										  /*new Bhav(LinkedProvider.OpcodeProvider),
 										  new Bcon(),
 										  new Ttab(LinkedProvider.OpcodeProvider),
-										  new Objf(LinkedProvider.OpcodeProvider),
-										  new Glob(),
-										  new Trcn()
+										  new Objf(LinkedProvider.OpcodeProvider),*/
+										  new Glob()
+										  //new Trcn()
 									  };
 				return wrappers;
 			}

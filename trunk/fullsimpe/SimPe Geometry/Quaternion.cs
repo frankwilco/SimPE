@@ -25,7 +25,7 @@ namespace SimPe.Geometry
 {
 	/// <summary>
 	/// Determins the type of the passed Arguments
-	/// </summary>
+	/// </summary>	
 	internal enum QuaternionParameterType : byte
 	{
 		/*/// <summary>
@@ -44,6 +44,7 @@ namespace SimPe.Geometry
 	/// <summary>
 	/// Zusammenfassung für Quaternion.
 	/// </summary>
+	[System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
 	public class Quaternion : Vector4f
 	{
 		/// <summary>

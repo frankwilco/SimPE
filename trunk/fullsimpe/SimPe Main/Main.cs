@@ -127,6 +127,8 @@ namespace SimPe
 		private TD.SandBar.MenuButtonItem miOpenNightlifeRes;
 		private TD.SandBar.ButtonItem biReset;
 		private TD.SandBar.MenuButtonItem miOpenBusinessRes;
+		private TD.SandBar.MenuButtonItem mbiTopics;
+		private TD.SandBar.MenuButtonItem miOpenFamilyFunRes;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -161,7 +163,8 @@ namespace SimPe
 				tbExtAction,
 				tbPlugAction,
 				tbAction,
-				dcPlugin);
+				dcPlugin,
+				this.mbiTopics);
 			plugger.ClosedToolPlugin += new ToolMenuItemExt.ExternalToolNotify(ClosedToolPlugin);
 			
 			resloader = new ResourceLoader(dc, package);
@@ -267,6 +270,7 @@ namespace SimPe
 			this.miWindow = new TD.SandBar.MenuBarItem();
 			this.menuBarItem5 = new TD.SandBar.MenuBarItem();
 			this.miTutorials = new TD.SandBar.MenuButtonItem();
+			this.mbiTopics = new TD.SandBar.MenuButtonItem();
 			this.miAbout = new TD.SandBar.MenuButtonItem();
 			this.miAction = new TD.SandBar.ContextMenuBarItem();
 			this.lv = new System.Windows.Forms.ListView();
@@ -308,6 +312,7 @@ namespace SimPe
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.dockContainer1 = new TD.SandDock.DockContainer();
 			this.resourceSelectionTimer = new System.Windows.Forms.Timer(this.components);
+			this.miOpenFamilyFunRes = new TD.SandBar.MenuButtonItem();
 			this.mybottomSandDock.SuspendLayout();
 			this.dcPlugin.SuspendLayout();
 			this.topSandBarDock.SuspendLayout();
@@ -890,6 +895,7 @@ namespace SimPe
 																			  this.miOpenUniRes,
 																			  this.miOpenNightlifeRes,
 																			  this.miOpenBusinessRes,
+																			  this.miOpenFamilyFunRes,
 																			  this.miOpenDownloads});
 			this.miOpenIn.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenIn.Shortcut")));
 			this.miOpenIn.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenIn.Shortcut2")));
@@ -1026,9 +1032,11 @@ namespace SimPe
 			this.menuBarItem5.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
 																				  this.miUpdate,
 																				  this.miTutorials,
+																				  this.mbiTopics,
 																				  this.miAbout});
 			this.menuBarItem5.Text = resources.GetString("menuBarItem5.Text");
 			this.menuBarItem5.ToolTipText = resources.GetString("menuBarItem5.ToolTipText");
+			this.menuBarItem5.BeforePopup += new TD.SandBar.MenuItemBase.BeforePopupEventHandler(this.menuBarItem5_BeforePopup);
 			// 
 			// miTutorials
 			// 
@@ -1038,6 +1046,14 @@ namespace SimPe
 			this.miTutorials.Text = resources.GetString("miTutorials.Text");
 			this.miTutorials.ToolTipText = resources.GetString("miTutorials.ToolTipText");
 			this.miTutorials.Activate += new System.EventHandler(this.Activate_miTutorials);
+			// 
+			// mbiTopics
+			// 
+			this.mbiTopics.Image = ((System.Drawing.Image)(resources.GetObject("mbiTopics.Image")));
+			this.mbiTopics.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mbiTopics.Shortcut")));
+			this.mbiTopics.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("mbiTopics.Shortcut2")));
+			this.mbiTopics.Text = resources.GetString("mbiTopics.Text");
+			this.mbiTopics.ToolTipText = resources.GetString("mbiTopics.ToolTipText");
 			// 
 			// miAbout
 			// 
@@ -1898,6 +1914,14 @@ namespace SimPe
 			this.resourceSelectionTimer.Interval = 75;
 			this.resourceSelectionTimer.Tick += new System.EventHandler(this.resourceSelectionTimer_Tick);
 			// 
+			// miOpenFamilyFunRes
+			// 
+			this.miOpenFamilyFunRes.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenFamilyFunRes.Shortcut")));
+			this.miOpenFamilyFunRes.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miOpenFamilyFunRes.Shortcut2")));
+			this.miOpenFamilyFunRes.Text = resources.GetString("miOpenFamilyFunRes.Text");
+			this.miOpenFamilyFunRes.ToolTipText = resources.GetString("miOpenFamilyFunRes.ToolTipText");
+			this.miOpenFamilyFunRes.Activate += new System.EventHandler(this.Activate_miOpenFamilyFunRes);
+			// 
 			// MainForm
 			// 
 			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -1957,7 +1981,7 @@ namespace SimPe
 		static void Main(string[] args) 
 		{
 			try 
-			{				
+			{			
 				Commandline.CheckFiles();
 			
 				//do the real Startup
@@ -1990,6 +2014,14 @@ namespace SimPe
 					MessageBox.Show("SimPE will shutdown due to an unhandled Exception.\n\nMessage: "+ex2.Message);
 				}
 			}
+
+			try 
+			{
+				SimPe.Packages.StreamFactory.UnlockAll();
+				SimPe.Packages.StreamFactory.CloseAll(true);
+				SimPe.Packages.StreamFactory.CleanupTeleport();
+			} 
+			catch{}
 		}
 
 		private void ClosingForm(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2453,6 +2485,7 @@ namespace SimPe
 			this.miOpenUniRes.Enabled = Helper.WindowsRegistry.EPInstalled>=1;
 			this.miOpenNightlifeRes.Enabled = Helper.WindowsRegistry.EPInstalled>=2;
 			this.miOpenBusinessRes.Enabled = Helper.WindowsRegistry.EPInstalled>=3;
+			this.miOpenFamilyFunRes.Enabled = Helper.WindowsRegistry.SPInstalled>=1;
 		}
 		#endregion
 
@@ -2975,7 +3008,7 @@ namespace SimPe
 		{
 			if (ClosePackage())
 			{
-				SimPe.Packages.StreamFactory.CloseAll();
+				SimPe.Packages.StreamFactory.CloseAll(false);
 				this.ShowNewFile(true);
 			}							
 		}
@@ -3050,6 +3083,13 @@ namespace SimPe
 		private void Activate_miOpenBusinessRes(object sender, System.EventArgs e)
 		{
 			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP3Path, "TSData\\Res");
+			ofd.FileName = "";
+			this.Activate_miOpen(sender, e);
+		}
+
+		private void Activate_miOpenFamilyFunRes(object sender, System.EventArgs e)
+		{
+			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsSP1Path, "TSData\\Res");
 			ofd.FileName = "";
 			this.Activate_miOpen(sender, e);
 		}
@@ -3229,6 +3269,11 @@ namespace SimPe
 		private void LockDocks(object sender, EventArgs e)
 		{
 			MakeFloatable(false);
+		}
+
+		private void menuBarItem5_BeforePopup(object sender, TD.SandBar.MenuPopupEventArgs e)
+		{
+			this.mbiTopics.Visible = mbiTopics.Items.Count>0;
 		}
 
 		

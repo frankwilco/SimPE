@@ -140,11 +140,6 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "SimPe BHAV"
-                    Project = "{6AA664E9-B45F-4D61-9B9F-E68341C16473}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
                     Name = "SimPe Clst"
                     Project = "{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
@@ -187,6 +182,11 @@
                 <Reference
                     Name = "SimPe Workspace Helper"
                     Project = "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "SimPe BHAV"
+                    Project = "{6AA664E9-B45F-4D61-9B9F-E68341C16473}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>

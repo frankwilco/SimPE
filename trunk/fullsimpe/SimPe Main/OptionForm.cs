@@ -148,6 +148,11 @@ namespace SimPe
 		private Divelements.Navisight.NavigationButton nbCheck;
 		private TD.Eyefinder.HeaderControl hcCheck;
 		private SimPe.CheckControl checkControl1;
+		private TD.Eyefinder.HeaderControl hcCustom;
+		private Divelements.Navisight.NavigationButton nbCustom;
+		private System.Windows.Forms.ComboBox cbCustom;
+		private System.Windows.Forms.PropertyGrid pgcustom;
+		private System.Windows.Forms.CheckBox cbIncFF;
 		private System.ComponentModel.IContainer components;		
 
 		public OptionForm()
@@ -170,6 +175,10 @@ namespace SimPe
 			SimPe.Registry.ReportFormats[] rfs = (SimPe.Registry.ReportFormats[])System.Enum.GetValues(typeof(SimPe.Registry.ReportFormats));
 			foreach (SimPe.Registry.ReportFormats rf in rfs) cbReport.Items.Add(rf);
 			cbReport.SelectedIndex = 0;
+
+			foreach (SimPe.Interfaces.ISettings settings in FileTable.SettingsRegistry.Settings)
+				this.cbCustom.Items.Add(settings);
+			if (cbCustom.Items.Count>0) cbCustom.SelectedIndex = 0;
 		}
 
 		/// <summary>
@@ -270,6 +279,7 @@ namespace SimPe
 			this.hcTools = new TD.Eyefinder.HeaderControl();
 			this.hcFileTable = new TD.Eyefinder.HeaderControl();
 			this.groupBox8 = new System.Windows.Forms.GroupBox();
+			this.cbIncFF = new System.Windows.Forms.CheckBox();
 			this.cbIncBusi = new System.Windows.Forms.CheckBox();
 			this.cbIncNightlife = new System.Windows.Forms.CheckBox();
 			this.cbIncUni = new System.Windows.Forms.CheckBox();
@@ -290,6 +300,7 @@ namespace SimPe
 			this.nbFolders = new Divelements.Navisight.NavigationButton();
 			this.nbCheck = new Divelements.Navisight.NavigationButton();
 			this.nbSettings = new Divelements.Navisight.NavigationButton();
+			this.nbCustom = new Divelements.Navisight.NavigationButton();
 			this.nbSceneGraph = new Divelements.Navisight.NavigationButton();
 			this.nbFileTable = new Divelements.Navisight.NavigationButton();
 			this.nbPlugins = new Divelements.Navisight.NavigationButton();
@@ -311,6 +322,9 @@ namespace SimPe
 			this.label11 = new System.Windows.Forms.Label();
 			this.hcCheck = new TD.Eyefinder.HeaderControl();
 			this.checkControl1 = new SimPe.CheckControl();
+			this.hcCustom = new TD.Eyefinder.HeaderControl();
+			this.pgcustom = new System.Windows.Forms.PropertyGrid();
+			this.cbCustom = new System.Windows.Forms.ComboBox();
 			this.baloonTip = new SteepValley.Windows.Forms.XPBalloonTip(this.components);
 			this.navigationButton1 = new Divelements.Navisight.NavigationButton();
 			this.navigationButton2 = new Divelements.Navisight.NavigationButton();
@@ -331,6 +345,7 @@ namespace SimPe
 			this.hcPlugins.SuspendLayout();
 			this.hcIdent.SuspendLayout();
 			this.hcCheck.SuspendLayout();
+			this.hcCustom.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -2152,6 +2167,7 @@ namespace SimPe
 			this.groupBox8.AccessibleName = resources.GetString("groupBox8.AccessibleName");
 			this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("groupBox8.Anchor")));
 			this.groupBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox8.BackgroundImage")));
+			this.groupBox8.Controls.Add(this.cbIncFF);
 			this.groupBox8.Controls.Add(this.cbIncBusi);
 			this.groupBox8.Controls.Add(this.cbIncNightlife);
 			this.groupBox8.Controls.Add(this.cbIncUni);
@@ -2171,6 +2187,33 @@ namespace SimPe
 			this.groupBox8.Text = resources.GetString("groupBox8.Text");
 			this.toolTip1.SetToolTip(this.groupBox8, resources.GetString("groupBox8.ToolTip"));
 			this.groupBox8.Visible = ((bool)(resources.GetObject("groupBox8.Visible")));
+			// 
+			// cbIncFF
+			// 
+			this.cbIncFF.AccessibleDescription = resources.GetString("cbIncFF.AccessibleDescription");
+			this.cbIncFF.AccessibleName = resources.GetString("cbIncFF.AccessibleName");
+			this.cbIncFF.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbIncFF.Anchor")));
+			this.cbIncFF.Appearance = ((System.Windows.Forms.Appearance)(resources.GetObject("cbIncFF.Appearance")));
+			this.cbIncFF.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbIncFF.BackgroundImage")));
+			this.cbIncFF.CheckAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbIncFF.CheckAlign")));
+			this.cbIncFF.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbIncFF.Dock")));
+			this.cbIncFF.Enabled = ((bool)(resources.GetObject("cbIncFF.Enabled")));
+			this.cbIncFF.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("cbIncFF.FlatStyle")));
+			this.cbIncFF.Font = ((System.Drawing.Font)(resources.GetObject("cbIncFF.Font")));
+			this.cbIncFF.Image = ((System.Drawing.Image)(resources.GetObject("cbIncFF.Image")));
+			this.cbIncFF.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbIncFF.ImageAlign")));
+			this.cbIncFF.ImageIndex = ((int)(resources.GetObject("cbIncFF.ImageIndex")));
+			this.cbIncFF.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbIncFF.ImeMode")));
+			this.cbIncFF.Location = ((System.Drawing.Point)(resources.GetObject("cbIncFF.Location")));
+			this.cbIncFF.Name = "cbIncFF";
+			this.cbIncFF.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbIncFF.RightToLeft")));
+			this.cbIncFF.Size = ((System.Drawing.Size)(resources.GetObject("cbIncFF.Size")));
+			this.cbIncFF.TabIndex = ((int)(resources.GetObject("cbIncFF.TabIndex")));
+			this.cbIncFF.Text = resources.GetString("cbIncFF.Text");
+			this.cbIncFF.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("cbIncFF.TextAlign")));
+			this.toolTip1.SetToolTip(this.cbIncFF, resources.GetString("cbIncFF.ToolTip"));
+			this.cbIncFF.Visible = ((bool)(resources.GetObject("cbIncFF.Visible")));
+			this.cbIncFF.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
 			// 
 			// cbIncBusi
 			// 
@@ -2601,6 +2644,7 @@ namespace SimPe
 																					  this.nbFolders,
 																					  this.nbCheck,
 																					  this.nbSettings,
+																					  this.nbCustom,
 																					  this.nbSceneGraph,
 																					  this.nbFileTable,
 																					  this.nbPlugins,
@@ -2641,6 +2685,13 @@ namespace SimPe
 			this.nbSettings.Text = resources.GetString("nbSettings.Text");
 			this.nbSettings.ToolTipText = resources.GetString("nbSettings.ToolTipText");
 			this.nbSettings.Activate += new System.EventHandler(this.SelectCategory);
+			// 
+			// nbCustom
+			// 
+			this.nbCustom.Image = ((System.Drawing.Image)(resources.GetObject("nbCustom.Image")));
+			this.nbCustom.Text = resources.GetString("nbCustom.Text");
+			this.nbCustom.ToolTipText = resources.GetString("nbCustom.ToolTipText");
+			this.nbCustom.Activate += new System.EventHandler(this.SelectCategory);
 			// 
 			// nbSceneGraph
 			// 
@@ -3083,6 +3134,82 @@ namespace SimPe
 			this.checkControl1.Visible = ((bool)(resources.GetObject("checkControl1.Visible")));
 			this.checkControl1.FixedFileTable += new System.EventHandler(this.checkControl1_FixedFileTable);
 			// 
+			// hcCustom
+			// 
+			this.hcCustom.AccessibleDescription = resources.GetString("hcCustom.AccessibleDescription");
+			this.hcCustom.AccessibleName = resources.GetString("hcCustom.AccessibleName");
+			this.hcCustom.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("hcCustom.Anchor")));
+			this.hcCustom.AutoScroll = ((bool)(resources.GetObject("hcCustom.AutoScroll")));
+			this.hcCustom.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("hcCustom.AutoScrollMargin")));
+			this.hcCustom.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("hcCustom.AutoScrollMinSize")));
+			this.hcCustom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hcCustom.BackgroundImage")));
+			this.hcCustom.Controls.Add(this.pgcustom);
+			this.hcCustom.Controls.Add(this.cbCustom);
+			this.hcCustom.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("hcCustom.Dock")));
+			this.hcCustom.Enabled = ((bool)(resources.GetObject("hcCustom.Enabled")));
+			this.hcCustom.Font = ((System.Drawing.Font)(resources.GetObject("hcCustom.Font")));
+			this.hcCustom.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+			this.hcCustom.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("hcCustom.ImeMode")));
+			this.hcCustom.Location = ((System.Drawing.Point)(resources.GetObject("hcCustom.Location")));
+			this.hcCustom.Name = "hcCustom";
+			this.hcCustom.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("hcCustom.RightToLeft")));
+			this.hcCustom.Size = ((System.Drawing.Size)(resources.GetObject("hcCustom.Size")));
+			this.hcCustom.TabIndex = ((int)(resources.GetObject("hcCustom.TabIndex")));
+			this.hcCustom.Text = resources.GetString("hcCustom.Text");
+			this.toolTip1.SetToolTip(this.hcCustom, resources.GetString("hcCustom.ToolTip"));
+			this.hcCustom.Visible = ((bool)(resources.GetObject("hcCustom.Visible")));
+			// 
+			// pgcustom
+			// 
+			this.pgcustom.AccessibleDescription = resources.GetString("pgcustom.AccessibleDescription");
+			this.pgcustom.AccessibleName = resources.GetString("pgcustom.AccessibleName");
+			this.pgcustom.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("pgcustom.Anchor")));
+			this.pgcustom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pgcustom.BackgroundImage")));
+			this.pgcustom.CommandsBackColor = System.Drawing.SystemColors.Window;
+			this.pgcustom.CommandsVisibleIfAvailable = true;
+			this.pgcustom.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pgcustom.Dock")));
+			this.pgcustom.Enabled = ((bool)(resources.GetObject("pgcustom.Enabled")));
+			this.pgcustom.Font = ((System.Drawing.Font)(resources.GetObject("pgcustom.Font")));
+			this.pgcustom.HelpVisible = ((bool)(resources.GetObject("pgcustom.HelpVisible")));
+			this.pgcustom.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("pgcustom.ImeMode")));
+			this.pgcustom.LargeButtons = false;
+			this.pgcustom.LineColor = System.Drawing.SystemColors.ScrollBar;
+			this.pgcustom.Location = ((System.Drawing.Point)(resources.GetObject("pgcustom.Location")));
+			this.pgcustom.Name = "pgcustom";
+			this.pgcustom.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("pgcustom.RightToLeft")));
+			this.pgcustom.Size = ((System.Drawing.Size)(resources.GetObject("pgcustom.Size")));
+			this.pgcustom.TabIndex = ((int)(resources.GetObject("pgcustom.TabIndex")));
+			this.pgcustom.Text = resources.GetString("pgcustom.Text");
+			this.toolTip1.SetToolTip(this.pgcustom, resources.GetString("pgcustom.ToolTip"));
+			this.pgcustom.ViewBackColor = System.Drawing.SystemColors.Window;
+			this.pgcustom.ViewForeColor = System.Drawing.SystemColors.WindowText;
+			this.pgcustom.Visible = ((bool)(resources.GetObject("pgcustom.Visible")));
+			// 
+			// cbCustom
+			// 
+			this.cbCustom.AccessibleDescription = resources.GetString("cbCustom.AccessibleDescription");
+			this.cbCustom.AccessibleName = resources.GetString("cbCustom.AccessibleName");
+			this.cbCustom.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbCustom.Anchor")));
+			this.cbCustom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbCustom.BackgroundImage")));
+			this.cbCustom.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbCustom.Dock")));
+			this.cbCustom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbCustom.Enabled = ((bool)(resources.GetObject("cbCustom.Enabled")));
+			this.cbCustom.Font = ((System.Drawing.Font)(resources.GetObject("cbCustom.Font")));
+			this.cbCustom.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbCustom.ImeMode")));
+			this.cbCustom.IntegralHeight = ((bool)(resources.GetObject("cbCustom.IntegralHeight")));
+			this.cbCustom.ItemHeight = ((int)(resources.GetObject("cbCustom.ItemHeight")));
+			this.cbCustom.Location = ((System.Drawing.Point)(resources.GetObject("cbCustom.Location")));
+			this.cbCustom.MaxDropDownItems = ((int)(resources.GetObject("cbCustom.MaxDropDownItems")));
+			this.cbCustom.MaxLength = ((int)(resources.GetObject("cbCustom.MaxLength")));
+			this.cbCustom.Name = "cbCustom";
+			this.cbCustom.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbCustom.RightToLeft")));
+			this.cbCustom.Size = ((System.Drawing.Size)(resources.GetObject("cbCustom.Size")));
+			this.cbCustom.TabIndex = ((int)(resources.GetObject("cbCustom.TabIndex")));
+			this.cbCustom.Text = resources.GetString("cbCustom.Text");
+			this.toolTip1.SetToolTip(this.cbCustom, resources.GetString("cbCustom.ToolTip"));
+			this.cbCustom.Visible = ((bool)(resources.GetObject("cbCustom.Visible")));
+			this.cbCustom.SelectedIndexChanged += new System.EventHandler(this.cbCustom_SelectedIndexChanged);
+			// 
 			// baloonTip
 			// 
 			this.baloonTip.Enabled = true;
@@ -3110,6 +3237,8 @@ namespace SimPe
 			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
 			this.Controls.Add(this.bb);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.hcFileTable);
+			this.Controls.Add(this.hcCustom);
 			this.Controls.Add(this.hcCheck);
 			this.Controls.Add(this.hcFolders);
 			this.Controls.Add(this.hcSceneGraph);
@@ -3117,7 +3246,6 @@ namespace SimPe
 			this.Controls.Add(this.hcIdent);
 			this.Controls.Add(this.hcPlugins);
 			this.Controls.Add(this.hcTools);
-			this.Controls.Add(this.hcFileTable);
 			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
 			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -3150,6 +3278,7 @@ namespace SimPe
 			this.hcPlugins.ResumeLayout(false);
 			this.hcIdent.ResumeLayout(false);
 			this.hcCheck.ResumeLayout(false);
+			this.hcCustom.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -3444,6 +3573,11 @@ namespace SimPe
 						{
 							switch (fti.Type) 
 							{
+								case FileTableItemType.SP1GameFolder: 
+								{
+									tw.Write(" root=\"sp1\"");
+									break;
+								}
 								case FileTableItemType.EP3GameFolder: 
 								{
 									tw.Write(" root=\"ep3\"");
@@ -3488,7 +3622,7 @@ namespace SimPe
 						}
 	
 						if (fti.IsRecursive) tw.Write(" recursive=\"1\"");						
-						if (fti.EpVersion>=0) tw.Write(" epversion=\""+fti.EpVersion.ToString()+"\"");
+						if (fti.EpVersion>=0) tw.Write(" version=\""+fti.EpVersion.ToString()+"\"");
 						if (fti.Ignore) tw.Write(" ignore=\"1\"");
 
 						tw.Write(">");
@@ -3533,6 +3667,7 @@ namespace SimPe
 			hcPlugins.Visible = (panel==nbPlugins);
 			hcIdent.Visible = (panel==nbIdent);
 			hcCheck.Visible = (panel==nbCheck);
+			hcCustom.Visible = (panel==nbCustom);
 		}
 
 		private void SelectCategory(object sender, System.EventArgs e)
@@ -3551,6 +3686,7 @@ namespace SimPe
 					else if (nb == nbPlugins) EnablePanel(nbPlugins);
 					else if (nb == nbIdent) EnablePanel(nbIdent);
 					else if (nb == nbCheck) EnablePanel(nbCheck);
+					else if (nb == nbCustom) EnablePanel(nbCustom);
 				}
 			}
 		}
@@ -4232,7 +4368,7 @@ namespace SimPe
 			{		
 				if (fti.IsFile) 
 				{					
-					if (fti.Name.Trim().ToLower()==Data.MetaData.GMND_PACKAGE.Trim().ToLower() || fti.Name.Trim().ToLower()==Data.MetaData.MMAT_PACKAGE.Trim().ToLower()) 
+					if (Helper.CompareableFileName(fti.Name)==Helper.CompareableFileName(Data.MetaData.GMND_PACKAGE) || Helper.CompareableFileName(fti.Name)==Helper.CompareableFileName(Data.MetaData.MMAT_PACKAGE)) 
 					{
 						if (!cep) continue;					
 						else 
@@ -4267,7 +4403,7 @@ namespace SimPe
 			
 				if (fti.IsFile) 
 				{					
-					if (fti.Name.Trim().ToLower()==Data.MetaData.GMND_PACKAGE.Trim().ToLower() || fti.Name.Trim().ToLower()==Data.MetaData.MMAT_PACKAGE.Trim().ToLower()) 
+					if (Helper.CompareableFileName(fti.Name)==Helper.CompareableFileName(Data.MetaData.GMND_PACKAGE) || Helper.CompareableFileName(fti.Name)==Helper.CompareableFileName(Data.MetaData.MMAT_PACKAGE)) 
 					{
 						if (!cep) continue;					
 						else lbfolder.SetItemChecked(i, cb.CheckState!=CheckState.Unchecked);						
@@ -4281,7 +4417,7 @@ namespace SimPe
 
 				fti.Ignore = !lbfolder.GetItemChecked(i);
 
-				if (!fti.Ignore && (fti.Name.Trim().ToLower().EndsWith("tsdata\\res\\objects")|| fti.Name.Trim().ToLower().EndsWith("tsdata\\res\\objects\\"))) 
+				if (!fti.Ignore && (Helper.CompareableFileName(fti.Name).EndsWith("tsdata\\res\\objects")|| Helper.CompareableFileName(fti.Name).EndsWith("tsdata\\res\\objects\\"))) 
 				{
 					if (firstobjpkg) 
 					{
@@ -4293,7 +4429,7 @@ namespace SimPe
 						fti.EpVersion = FileTableItem.GetEPVersion(fti.Type);
 					}
 
-					if (FileTableItem.GetEPVersion(fti.Type) == Helper.WindowsRegistry.EPInstalled) 
+					if (FileTableItem.GetEPVersion(fti.Type) == Helper.WindowsRegistry.GameVersion) 
 						fti.EpVersion = FileTableItem.GetEPVersion(fti.Type);
 
 					lbfolder.Items[i] = fti;
@@ -4309,7 +4445,8 @@ namespace SimPe
 			SetupFileTableCheckboxe(this.cbIncUni, FileTableItemType.EP1GameFolder, false);
 			SetupFileTableCheckboxe(this.cbIncNightlife, FileTableItemType.EP2GameFolder, false);
 			SetupFileTableCheckboxe(this.cbIncBusi, FileTableItemType.EP3GameFolder, false);
-			SetupFileTableCheckboxe(this.cbIncCep, FileTableItemType.Absolute, true);
+			SetupFileTableCheckboxe(this.cbIncFF, FileTableItemType.SP1GameFolder, false);
+			SetupFileTableCheckboxe(this.cbIncCep, FileTableItemType.Absolute, true);			
 		}
 
 		private void cbIncNightlife_CheckedChanged(object sender, System.EventArgs e)
@@ -4323,6 +4460,7 @@ namespace SimPe
 			else if (cb==this.cbIncUni) ChangeFileTable(cb, FileTableItemType.EP1GameFolder, false);
 			else if (cb==this.cbIncNightlife) ChangeFileTable(cb, FileTableItemType.EP2GameFolder, false);
 			else if (cb==this.cbIncBusi) ChangeFileTable(cb, FileTableItemType.EP3GameFolder, false);
+			else if (cb==this.cbIncFF) ChangeFileTable(cb, FileTableItemType.SP1GameFolder, false);
 		}
 		
 		#endregion
@@ -4338,6 +4476,11 @@ namespace SimPe
 		private void checkControl1_FixedFileTable(object sender, System.EventArgs e)
 		{
 			RebuildFileTableList();
+		}
+
+		private void cbCustom_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			this.pgcustom.SelectedObject = cbCustom.SelectedItem;
 		}
 	}
 

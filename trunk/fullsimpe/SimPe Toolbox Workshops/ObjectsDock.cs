@@ -2117,25 +2117,11 @@ namespace SimPe.Plugin.Tool.Dockable
 				sender.FinishEnabled = false;
 			} 
 			else 
-			{				
-				FileTable.FileIndex.Load();
-				SimPe.Interfaces.IAlias a = null;
-				Interfaces.Files.IPackedFileDescriptor pfd = null;
-				uint localgroup = Data.MetaData.LOCAL_GROUP;
-				if (this.package!=null) 
-				{
-					if (this.package.FileName!=null) 
-					{
-						SimPe.Interfaces.Wrapper.IGroupCacheItem gci = SimPe.FileTable.GroupCache.GetItem(this.package.FileName);
-						if (gci!=null) localgroup = gci.LocalGroup;
-					}
-				} 
-				else 
-				{
-					a = this.lastselected;
-					pfd =(Interfaces.Files.IPackedFileDescriptor)a.Tag[0];			
-					localgroup = (uint)a.Tag[1];
-				}
+			{								
+				SimPe.Interfaces.IAlias a;
+				Interfaces.Files.IPackedFileDescriptor pfd;
+				uint localgroup;
+				ObjectWorkshopHelper.PrepareForClone(this.package, this.lastselected, out a, out localgroup, out pfd);
 				
 				ObjectWorkshopSettings settings;
 
@@ -2290,10 +2276,9 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			lastselected = null;
 			this.tv.SelectedNode = null;
-			onlybase = true;
-			package = SimPe.Packages.GeneratableFile.CreateNew();
-			FileTable.FileIndex.Load();
-			ObjectWorkshopHelper.BaseClone(Helper.StringToUInt32(tbGroup.Text, 0x7f000000, 16), package, false);
+			onlybase = false;			
+			package = ObjectWorkshopHelper.CreatCloneByGroup(Helper.StringToUInt32(tbGroup.Text, 0x7f000000, 16));
+
 			wizard1.JumpToStep(2);
 		}
 
@@ -2301,37 +2286,18 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			lastselected = null;
 			this.tv.SelectedNode = null;
-			onlybase = true;
-			package = SimPe.Packages.GeneratableFile.CreateNew();
-			SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
-			str.FileDescriptor = new SimPe.Packages.PackedFileDescriptor();
-			str.FileDescriptor.Type = Data.MetaData.STRING_FILE;
-			str.FileDescriptor.LongInstance = 0x85;
-			str.FileDescriptor.Group = 0x7F000000;
-			package.Add(str.FileDescriptor);			
-
-			string name = tbCresName.Text.ToLower().Trim();
-			if (!name.EndsWith("_cres")) name += "_cres";
-
-			str.FileName = "Model - Names";
-			str.Add(new SimPe.PackedFiles.Wrapper.StrItem(0, (byte)Data.MetaData.Languages.English, "", ""));
-			str.Add(new SimPe.PackedFiles.Wrapper.StrItem(1, (byte)Data.MetaData.Languages.English, name, ""));
-			str.SynchronizeUserData();
-
-			str.FileDescriptor.MarkForDelete = true;
+			onlybase = false;
+			package = ObjectWorkshopHelper.CreatCloneByCres(this.tbCresName.Text);
+			
 			wizard1.JumpToStep(2);
 		}
 
 		private void button6_Click(object sender, System.EventArgs e)
 		{
 			lastselected = null;
-			this.tv.SelectedNode = null;
-			SimPe.Cache.MemoryCacheItem mci = SimPe.PackedFiles.Wrapper.ObjectComboBox.ObjectCache.FindItem(Helper.StringToUInt32(this.tbGUID.Text, 0x00000000, 16));			
-			onlybase = true;
-			package = SimPe.Packages.GeneratableFile.CreateNew();
-			FileTable.FileIndex.Load();
-			if (mci!=null)
-				ObjectWorkshopHelper.BaseClone(mci.FileDescriptor.Group, package, false);
+			this.tv.SelectedNode = null;			
+			onlybase = false;
+			package = ObjectWorkshopHelper.CreatCloneByGuid(Helper.StringToUInt32(this.tbGUID.Text, 0x00000000, 16));
 
 			wizard1.JumpToStep(2);
 		}

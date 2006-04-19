@@ -44,7 +44,7 @@ namespace SimPe.Plugin.Scanner
 
 		}
 
-		public CompressionScanner (System.Windows.Forms.ListView lv) : base (lv) { }
+		public CompressionScanner () : base () { }
 
 		
 		#region IScannerBase Member

@@ -23,11 +23,62 @@ using SimPe.Interfaces;
 
 namespace SimPe.PackedFiles.Wrapper.Factory
 {
+	class HelpTopic : IHelp
+	{
+		#region IHelp Member
+
+		public void ShowHelp(ShowHelpEventArgs e)
+		{
+			Message.Show("Executed");
+		}
+
+		public override string ToString()
+		{
+			return "Test\\My Custom Help";
+		}
+
+		public System.Drawing.Image Icon
+		{
+			get
+			{
+				return null;
+			}
+		}
+
+		#endregion
+
+	}
+
+	class HelpTopic2 : IHelp
+	{
+		#region IHelp Member
+
+		public void ShowHelp(ShowHelpEventArgs e)
+		{
+			Message.Show("Executed");
+		}
+
+		public override string ToString()
+		{
+			return "Test\\My Custom Help2";
+		}
+
+		public System.Drawing.Image Icon
+		{
+			get
+			{
+				return null;
+			}
+		}
+
+		#endregion
+
+	}
 
 	/// <summary>
 	/// The Wrapper Factory for Default Wrappers that ship with SimPe
 	/// </summary>
-	public class ExtendedWrapperFactory : AbstractWrapperFactory
+	public class ExtendedWrapperFactory : AbstractWrapperFactory, SimPe.Interfaces.Plugin.IHelpFactory
 	{
 		#region AbstractWrapperFactory Member
 		public override SimPe.Interfaces.IWrapper[] KnownWrappers
@@ -45,5 +96,19 @@ namespace SimPe.PackedFiles.Wrapper.Factory
 
 		#endregion
 
+		#region IHelpFactory Member
+
+		public IHelp[] KnownHelpTopics
+		{
+			get
+			{
+				return new IHelp[]{
+									  /*new HelpTopic(),
+									  new HelpTopic2()*/
+								  };
+			}
+		}
+
+		#endregion
 	}
 }

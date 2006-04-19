@@ -27,6 +27,7 @@ namespace SimPe
 	public class PluginManager : Ambertation.Threading.StoppableThread
 	{
 		LoadFileWrappersExt wloader;
+		SimPe.LoadHelpTopics lht;
 		internal PluginManager(
 			TD.SandBar.MenuBarItem toolmenu, 
 			TD.SandBar.ToolBar tootoolbar,
@@ -37,13 +38,16 @@ namespace SimPe
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox toolactiontaskbox, 
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox extactiontaskbox,
 			TD.SandBar.ToolBar actiontoolbar,
-			TD.SandDock.DockControl docktooldc) : base(true)
+			TD.SandDock.DockControl docktooldc,
+			TD.SandBar.MenuItemBase helpmenu) : base(true)
 		{
 			SimPe.PackedFiles.TypeRegistry tr = new SimPe.PackedFiles.TypeRegistry();
 
 			FileTable.ProviderRegistry = tr;
 			FileTable.ToolRegistry = tr;
 			FileTable.WrapperRegistry = tr;
+			FileTable.HelpTopicRegistry = tr;
+			FileTable.SettingsRegistry = tr;
 
 			wloader = new LoadFileWrappersExt();
 			
@@ -61,6 +65,8 @@ namespace SimPe
 			LoadActionTools(extactiontaskbox, actiontoolbar, null, null);
 			
 			LoadDocks(docktooldc, lp);
+
+			lht = new LoadHelpTopics(helpmenu);
 		}
 
 		/// <summary>

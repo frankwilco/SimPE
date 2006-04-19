@@ -53,9 +53,9 @@ namespace SimPe
 		private String localizedDescription = "";
 		private String localizedCategory = "";
 
-		public GlobalizedPropertyDescriptor(PropertyDescriptor basePropertyDescriptor) : base(basePropertyDescriptor)
+		public GlobalizedPropertyDescriptor(System.Resources.ResourceManager resource, PropertyDescriptor basePropertyDescriptor) : base(basePropertyDescriptor)
 		{
-			resource = SimPe.Localization.Manager;
+			this.resource = resource;
 			this.basePropertyDescriptor = basePropertyDescriptor;
 		}
 
@@ -222,6 +222,12 @@ namespace SimPe
 	/// </summary>
 	public class GlobalizedObject : ICustomTypeDescriptor
 	{
+		System.Resources.ResourceManager resource;
+		public GlobalizedObject() : this (SimPe.Localization.Manager) {}
+		public GlobalizedObject(System.Resources.ResourceManager resource) : base()
+		{
+			this.resource = resource;
+		}
 		private PropertyDescriptorCollection globalizedProps;
 
 		public String GetClassName()
@@ -286,7 +292,7 @@ namespace SimPe
 				// For each property use a property descriptor of our own that is able to be globalized
 				foreach( PropertyDescriptor oProp in baseProps )
 				{
-					globalizedProps.Add(new GlobalizedPropertyDescriptor(oProp));
+					globalizedProps.Add(new GlobalizedPropertyDescriptor(resource, oProp));
 				}
 			}
 			return globalizedProps;
@@ -304,7 +310,7 @@ namespace SimPe
 				// For each property use a property descriptor of our own that is able to be globalized
 				foreach( PropertyDescriptor oProp in baseProps )
 				{
-					globalizedProps.Add(new GlobalizedPropertyDescriptor(oProp));
+					globalizedProps.Add(new GlobalizedPropertyDescriptor(resource, oProp));
 				}
 			}
 			return globalizedProps;

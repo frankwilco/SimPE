@@ -33,12 +33,25 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// The Descriptor of that File
 		/// </summary>
-		/// <remarks>Contains the original Group </remarks>
+		/// <remarks>Contains the original Group (can be 0xffffffff)</remarks>
 		public SimPe.Interfaces.Files.IPackedFileDescriptor FileDescriptor
 		{
 			get { return pfd; }
 			set { pfd = value; }
 		}
+
+		/// <summary>
+		/// The Descriptor of that File, with a real Group value
+		/// </summary>
+		/// <returns>A Clonde FileDescriptor, that contains the correct Group</returns>
+		/// <remarks>Contains the local Group (can never be 0xffffffff)</remarks>
+		public SimPe.Interfaces.Files.IPackedFileDescriptor GetLocalFileDescriptor()
+		{
+			SimPe.Interfaces.Files.IPackedFileDescriptor p = pfd.Clone() as SimPe.Interfaces.Files.IPackedFileDescriptor;
+			p.Group = this.LocalGroup;
+			return p;			
+		}
+
 
 		SimPe.Interfaces.Files.IPackageFile package;
 		/// <summary>
@@ -407,7 +420,7 @@ namespace SimPe.Plugin
 		/// <returns>the local Group</returns>
 		public static uint GetLocalGroup(SimPe.Interfaces.Files.IPackageFile package)
 		{
-			string flname = package.FileName;
+			string flname = package.SaveFileName;
 			return GetLocalGroup(flname);
 		}
 
@@ -898,7 +911,7 @@ namespace SimPe.Plugin
 								if (fii.Package.Equals(pkg)) list.Add(fii);
 							}
 						} 
-						else */	list = (ArrayList)instances[pfd.LongInstance];
+						else */	list.AddRange((ArrayList)instances[pfd.LongInstance]);
 					}
 				}
 			}
@@ -907,6 +920,74 @@ namespace SimPe.Plugin
 			FileIndexItem[] files = new FileIndexItem[list.Count];
 			list.CopyTo(files);
 			return files;
+		}
+
+		public void UpdateListOfAddedFilenames()
+		{
+			addedfilenames.Clear();
+			Hashtable known = new Hashtable();
+
+				
+			foreach (uint type  in index.Keys)
+			{
+				Hashtable groups = (Hashtable)index[type];
+				foreach (uint group in groups.Keys) 
+				{
+					Hashtable instances = (Hashtable)groups[group];
+					foreach (ulong inst in instances.Keys)
+					{
+						ArrayList list = (ArrayList)instances[inst];
+						foreach (object o in list)
+						{
+							FileIndexItem fii = o as FileIndexItem;
+							string sfn = fii.Package.SaveFileName.Trim().ToLower();
+							if (!known.ContainsKey(sfn))
+							{
+								known[sfn] = true;
+								addedfilenames.Add(sfn);
+							}
+						}
+					}
+				}
+			}	
+
+			foreach (IScenegraphFileIndex fi in childs) 
+			{
+				fi.UpdateListOfAddedFilenames();				
+			}
+		}
+
+		public void WriteContentToConsole()
+		{
+			System.Windows.Forms.Form f = new System.Windows.Forms.Form();
+			System.Windows.Forms.ListBox lb = new System.Windows.Forms.ListBox();
+			f.Controls.Add(lb);
+			lb.Dock = System.Windows.Forms.DockStyle.Fill;
+
+			foreach (IScenegraphFileIndex fi in childs) 
+			{
+				if (fi is FileIndex) ((FileIndex)fi).WriteContentToConsole();				
+			}
+			foreach (uint type  in index.Keys)
+			{
+				Hashtable groups = (Hashtable)index[type];
+				foreach (uint group in groups.Keys) 
+				{
+					Hashtable instances = (Hashtable)groups[group];
+					foreach (ulong inst in instances.Keys)
+					{
+						ArrayList list = (ArrayList)instances[inst];
+						foreach (object o in list)
+						{
+							FileIndexItem fii = o as FileIndexItem;
+							lb.Items.Add(fii.FileDescriptor.ToString()+" in "+fii.Package.SaveFileName);
+						}
+					}
+				}
+			}	
+			
+			f.ShowDialog();
+			f.Dispose();
 		}
 
 		/// <summary>
@@ -1288,6 +1369,36 @@ namespace SimPe.Plugin
 			SimPe.Plugin.FileIndex fi =  new SimPe.Plugin.FileIndex();
 			if (pfds!=null) fi.AddIndexFromPfd(pfds, package);
 			return fi;
+		}		
+
+		/// <summary>
+		/// Clear Table and close all assigned Packages
+		/// </summary>
+		public void CloseAssignedPackages()
+		{
+			ArrayList files = addedfilenames.Clone() as ArrayList;
+			addedfilenames.Clear();
+			foreach (string file in files)
+			{				
+				if (parent!=null)
+					if (parent.addedfilenames.Contains(file)) continue;
+				bool close = true;
+				if (childs!=null) 
+				{
+					foreach (FileIndex fi in this.childs)
+						if (fi.addedfilenames.Contains(file))
+						{
+							close = false;
+							break;
+						}
+				}
+				if (close) 
+				{					
+					SimPe.Packages.StreamFactory.CloseStream(file);
+				}
+			}
+
+			this.Clear();
 		}
 
 		#region Handle FileTableChains

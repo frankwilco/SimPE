@@ -211,7 +211,8 @@ namespace SimPe
 														 resources.GetString("cbEpVer.Items1"),
 														 resources.GetString("cbEpVer.Items2"),
 														 resources.GetString("cbEpVer.Items3"),
-														 resources.GetString("cbEpVer.Items4")});
+														 resources.GetString("cbEpVer.Items4"),
+														 resources.GetString("cbEpVer.Items5")});
 			this.cbEpVer.Location = ((System.Drawing.Point)(resources.GetObject("cbEpVer.Location")));
 			this.cbEpVer.MaxDropDownItems = ((int)(resources.GetObject("cbEpVer.MaxDropDownItems")));
 			this.cbEpVer.MaxLength = ((int)(resources.GetObject("cbEpVer.MaxLength")));
@@ -272,6 +273,7 @@ namespace SimPe
 			this.tbName.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("tbName.TextAlign")));
 			this.tbName.Visible = ((bool)(resources.GetObject("tbName.Visible")));
 			this.tbName.WordWrap = ((bool)(resources.GetObject("tbName.WordWrap")));
+			this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
 			// 
 			// cbRec
 			// 
@@ -484,6 +486,11 @@ namespace SimPe
 				UpdateType();	
 				UpdateRec();
 			}
+		}
+
+		private void tbName_TextChanged(object sender, System.EventArgs e)
+		{
+		
 		}
 	}
 }

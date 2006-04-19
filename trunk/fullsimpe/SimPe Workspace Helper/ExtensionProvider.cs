@@ -140,7 +140,7 @@ namespace SimPe
 		static void BuildMap()
 		{
 			map = new Hashtable();
-			map.Add(ExtensionType.Package, new ExtensionDescriptor("DBPF Package", "*.package;*.cache;*.template"));
+			map.Add(ExtensionType.Package, new ExtensionDescriptor("DBPF Package", "*.package;*.cache;*.template;*.sims"));
 			map.Add(ExtensionType.DisabledPackage, new ExtensionDescriptor("Disabled DBPF Package", "*.packagedisabled;*.simpedis"));
 			map.Add(ExtensionType.ExtractedFile, new ExtensionDescriptor("Extracted File", GetExtractExtensions("")));
 			map.Add(ExtensionType.ExtractedFileDescriptor, new ExtensionDescriptor("Extracted File Descriptor", GetExtractExtensions(".xml")));

@@ -32,7 +32,7 @@ namespace SimPe.Plugin
 	internal class NeighborhoodScanner : AbstractScanner, IScanner
 	{
 		ArrayList ids;
-		public NeighborhoodScanner (System.Windows.Forms.ListView lv) : base (lv) 
+		public NeighborhoodScanner () : base () 
 		{
 			ids = new ArrayList();
 		}

@@ -191,10 +191,13 @@ namespace SimPe.Plugin.Gmdc
 		public int UsedVertexCount 
 		{
 			get 
-			{				
-				ArrayList refs = new ArrayList();			
-				foreach (int i in Faces) if (!refs.Contains(i)) refs.Add(i);			
-				return refs.Count;
+			{		
+				System.Collections.Hashtable refs = new Hashtable();
+				foreach (int i in Faces) if (!refs.ContainsKey(i)) refs[i] = 1;			
+				int ret = refs.Count;
+				refs.Clear();
+				refs = null;
+				return ret;
 			}
 		}
 

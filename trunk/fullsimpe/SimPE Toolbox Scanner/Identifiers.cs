@@ -53,7 +53,7 @@ namespace SimPe.Plugin.Identifiers
 	/// </summary>
 	internal class CepIdentifier : IIdentifier
 	{
-		public CepIdentifier(System.Windows.Forms.ListView lv) {}
+		public CepIdentifier() {}
 
 		#region IIdentifierBase Member
 		public uint Version 
@@ -92,7 +92,7 @@ namespace SimPe.Plugin.Identifiers
 	/// </summary>
 	internal class SimIdentifier : IIdentifier
 	{
-		public SimIdentifier(System.Windows.Forms.ListView lv) {}
+		public SimIdentifier() {}
 
 		#region IIdentifierBase Member
 		public uint Version 
@@ -116,6 +116,7 @@ namespace SimPe.Plugin.Identifiers
 		public SimPe.Cache.PackageType GetType(SimPe.Interfaces.Files.IPackageFile pkg)
 		{
 			if (pkg.FindFiles(0xCCCEF852).Length!=0) return SimPe.Cache.PackageType.Sim; //Facial Structure
+			if (pkg.FindFiles(0xAC598EAC).Length!=0) return SimPe.Cache.PackageType.Sim; //Age Data
 			return SimPe.Cache.PackageType.Unknown;
 		}
 
@@ -127,7 +128,7 @@ namespace SimPe.Plugin.Identifiers
 	/// </summary>
 	internal class ObjectIdentifier : IIdentifier
 	{
-		public ObjectIdentifier(System.Windows.Forms.ListView lv) {}
+		public ObjectIdentifier() {}
 
 		#region IIdentifierBase Member
 		public uint Version 
@@ -165,7 +166,7 @@ namespace SimPe.Plugin.Identifiers
 	/// </summary>
 	internal class CpfIdentifier : IIdentifier
 	{
-		public CpfIdentifier(System.Windows.Forms.ListView lv) {}
+		public CpfIdentifier() {}
 
 		#region IIdentifierBase Member
 		public uint Version 
@@ -266,7 +267,7 @@ namespace SimPe.Plugin.Identifiers
 	/// </summary>
 	internal class ReColorIdentifier : IIdentifier
 	{
-		public ReColorIdentifier(System.Windows.Forms.ListView lv) {}
+		public ReColorIdentifier() {}
 
 		#region IIdentifierBase Member
 		public uint Version 

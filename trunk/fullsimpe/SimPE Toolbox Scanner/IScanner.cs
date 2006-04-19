@@ -38,7 +38,7 @@ namespace SimPe.Interfaces.Plugin.Scanner
 		/// <summary>
 		/// Caleed before a new Scan is stared
 		/// </summary>
-		void InitScan();
+		void InitScan(System.Windows.Forms.ListView lv);
 
 		/// <summary>
 		/// Called if a non Cached Item was found that should be displayed

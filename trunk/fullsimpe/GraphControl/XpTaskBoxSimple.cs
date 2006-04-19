@@ -43,6 +43,7 @@ namespace Ambertation.Windows.Forms
 		// Methods
 		public XPTaskBoxSimple()
 		{
+			headerh = 22;
 			this.mstrHeaderText = "";
 			this.InitializeComponent();
 			this.SetStyle(ControlStyles.ResizeRedraw, true);
@@ -149,6 +150,8 @@ namespace Ambertation.Windows.Forms
 		{
 			if (disposing && (this.components != null))
 			{
+				if (canvas!=null) canvas.Dispose();
+				canvas = null;
 				this.components.Dispose();
 			}
 			base.Dispose(disposing);
@@ -200,14 +203,23 @@ namespace Ambertation.Windows.Forms
 				}
 			}
 		}
-		
-		protected override void OnPaint(PaintEventArgs e)
+
+		System.Drawing.Bitmap canvas;
+		protected void RebuildCanvas()
 		{
+			if (canvas!=null) canvas.Dispose();
+			if (this.Width<=7 || this.Height<=headerh+21) 
+			{
+				canvas = null;
+				return;
+			}
+			canvas = new Bitmap(this.Width, this.Height);
+			Graphics g = Graphics.FromImage(canvas);
 			Rectangle ef4;
-			e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-			Rectangle ef3 = new Rectangle(0, 16, this.Width-1, 22);
+			g.SmoothingMode = SmoothingMode.HighQuality;
+			Rectangle ef3 = new Rectangle(0, 16, this.Width-1, headerh);
 			Rectangle ef3b = new Rectangle(3, ef3.Bottom, this.Width-7, this.Height-ef3.Bottom-4);
-			Rectangle ef2 = new Rectangle(0, 40, this.Width-1, (this.Height - 41));
+			Rectangle ef2 = new Rectangle(0, 16+headerh+2, this.Width-1, (this.Height - 16+headerh+3));
 			Rectangle ef1 = new Rectangle(0, 16, this.Width-1,(this.Height - 0x11));
 			GraphicsPath path = new GraphicsPath();
 			LinearGradientBrush brush1 = new LinearGradientBrush(ef3, LeftHeaderColor, RightHeaderColor, LinearGradientMode.Horizontal);
@@ -221,38 +233,58 @@ namespace Ambertation.Windows.Forms
 			
 			
 			path = Ambertation.Drawing.GraphicRoutines.GethRoundRectPath(ef1, 7);
-			e.Graphics.FillPath(brush1, path);
+			g.FillPath(brush1, path);
 			
 
 			path = Ambertation.Drawing.GraphicRoutines.GethRoundRectPath(ef3b, 7);			
-			e.Graphics.FillPath(new SolidBrush(BodyColor), path);
+			g.FillPath(new SolidBrush(BodyColor), path);
 
 			path = Ambertation.Drawing.GraphicRoutines.GethRoundRectPath(ef1, 7);			
-			e.Graphics.DrawPath(borderpen, path);
+			g.DrawPath(borderpen, path);
 			if (this.mIcon != null)
 			{
 				Size size1 = mIcon.Size;
 				Rectangle rectangle1 = new Rectangle(IconLocation, size1);
-				e.Graphics.DrawImage(
+				g.DrawImage(
 					//Ambertation.Drawing.GraphicRoutines.ScaleImage(mIcon, size1.Width, size1.Height, true)					
 					mIcon
 					, rectangle1,
 					new Rectangle(0, 0, mIcon.Width, mIcon.Height), 
 					GraphicsUnit.Pixel);
-				ef4 = new Rectangle(8+size1.Width+IconLocation.X, 16, (this.Width - (size1.Width+IconLocation.X)), 22);
+				ef4 = new Rectangle(8+size1.Width+IconLocation.X, 16, (this.Width - (size1.Width+IconLocation.X)), headerh);
 			}
 			else
 			{
-				ef4 = new Rectangle(8, 16, (this.Width - 0x18), 22);
+				ef4 = new Rectangle(8, 16, (this.Width - 0x18), headerh);
 			}
-			e.Graphics.DrawString(this.mstrHeaderText, this.HeaderFont, new SolidBrush(this.HeaderTextColor), ef4, format1);
+			g.DrawString(this.mstrHeaderText, this.HeaderFont, new SolidBrush(this.HeaderTextColor), ef4, format1);
 			
 			path.Dispose();
 			brush1.Dispose();
 			borderpen.Dispose();
 			format1.Dispose();
+			g.Dispose();
+		}
+		
+		protected override void OnPaint(PaintEventArgs e)
+		{
+			if (canvas==null) RebuildCanvas();
+			if (canvas!=null) e.Graphics.DrawImage(canvas, e.ClipRectangle, e.ClipRectangle, GraphicsUnit.Pixel);
 			base.OnPaint(e);
 		}
+
+		protected override void OnSizeChanged(EventArgs e)
+		{
+			base.OnSizeChanged (e);
+			RebuildCanvas();
+		}
+
+		public new void Invalidate()
+		{
+			RebuildCanvas();
+			base.Invalidate();
+		}
+
 
 		
 
@@ -283,6 +315,21 @@ namespace Ambertation.Windows.Forms
 			set
 			{
 				this.mIcon = value;
+				this.Invalidate();
+			}
+		}
+
+		int headerh;
+		[Localizable(true), Description("Hight of the Headline"), Category("Appearance"), DefaultValue(typeof(int), "22")]
+		public int HeaderHeight
+		{
+			get
+			{
+				return headerh;
+			}
+			set
+			{
+				headerh = value;
 				this.Invalidate();
 			}
 		}

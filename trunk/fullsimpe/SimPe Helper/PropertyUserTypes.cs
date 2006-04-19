@@ -160,6 +160,11 @@ namespace Ambertation
 
 				return so.ToString();
 			}
+			else if (destinationType == typeof(System.String))
+			{
+				BaseChangeableNumber so = new BaseChangeableNumber(value);
+				return so.ToString();
+			}
 			return base.ConvertTo(context, culture, value, destinationType);
 		}
 
@@ -180,7 +185,19 @@ namespace Ambertation
 				try 
 				{
 					string s = (string) value;					
-					return BaseChangeableNumber.Convert(s, type);
+					
+					if (type == null) type = context.PropertyDescriptor.PropertyType;
+
+					BaseChangeableNumber bcn =  BaseChangeableNumber.Convert(s, type);
+					if (context.PropertyDescriptor.PropertyType == typeof(long)) return bcn.LongValue;
+					if (context.PropertyDescriptor.PropertyType == typeof(ulong)) return (ulong)bcn.LongValue;					
+					if (context.PropertyDescriptor.PropertyType == typeof(int)) return bcn.IntegerValue;
+					if (context.PropertyDescriptor.PropertyType == typeof(uint)) return (uint)bcn.IntegerValue;
+					if (context.PropertyDescriptor.PropertyType == typeof(short)) return (short)bcn.IntegerValue;
+					if (context.PropertyDescriptor.PropertyType == typeof(ushort)) return (ushort)bcn.IntegerValue;
+					if (context.PropertyDescriptor.PropertyType == typeof(byte)) return (byte)bcn.IntegerValue;
+					if (context.PropertyDescriptor.PropertyType == typeof(sbyte)) return (sbyte)bcn.IntegerValue;
+					return bcn;
 				}
 				catch 
 				{
@@ -385,5 +402,9 @@ namespace Ambertation
 			}
 		}
 
+		public static implicit operator uint(BaseChangeableNumber bcn)
+		{
+			return (uint)bcn.IntegerValue;
+		}
 	}
 }

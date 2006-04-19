@@ -97,6 +97,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>717, 392</value>
+  </data>
   <data name="tbgame.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>200, 72</value>
   </data>
@@ -484,6 +487,9 @@
   <data name="cbjointname.Text">
     <value>GMDC: Zeige Joint-Bezeichnung</value>
   </data>
+  <data name="hcFolders.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 8</value>
+  </data>
   <data name="hcFolders.Text">
     <value>System Verzeichnisse</value>
   </data>
@@ -516,6 +522,9 @@
   </data>
   <data name="llNightlife.Text">
     <value>Standard Verzeichnis:</value>
+  </data>
+  <data name="hcSettings.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 8</value>
   </data>
   <data name="hcSettings.Text">
     <value>Einstellungen</value>
@@ -562,41 +571,44 @@
   <data name="button7.ToolTip">
     <value>Setzt die Layout Einstellungen des Hauptbildschirms zurück.</value>
   </data>
+  <data name="hcTools.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 8</value>
+  </data>
   <data name="hcTools.Text">
     <value>Externe Programme</value>
+  </data>
+  <data name="hcFileTable.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 8</value>
   </data>
   <data name="hcFileTable.Text">
     <value>FileTable (Suchpfad)</value>
   </data>
-  <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>552, 64</value>
-  </data>
   <data name="groupBox8.Text">
     <value>Einstellungen:</value>
   </data>
-  <data name="cbIncBusi.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>392, 16</value>
+  <data name="cbIncFF.Text">
+    <value>Family Fun einbinden</value>
   </data>
   <data name="cbIncBusi.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>152, 24</value>
+    <value>120, 24</value>
   </data>
   <data name="cbIncBusi.Text">
-    <value>Business Dateien einbinden</value>
+    <value>Business einbinden</value>
   </data>
   <data name="cbIncNightlife.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>216, 36</value>
+    <value>200, 36</value>
   </data>
   <data name="cbIncNightlife.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>160, 24</value>
   </data>
   <data name="cbIncNightlife.Text">
-    <value>Nightlife Dateien einbinden</value>
+    <value>Nightlife einbinden</value>
   </data>
   <data name="cbIncUni.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>216, 16</value>
+    <value>200, 16</value>
   </data>
   <data name="cbIncUni.Text">
-    <value>WCJ Dateien einbinden</value>
+    <value>WCJ einbinden</value>
   </data>
   <data name="cbIncGame.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>No</value>
@@ -713,6 +725,9 @@
   <data name="llchg.Text">
     <value>ändern</value>
   </data>
+  <data name="hcSceneGraph.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 8</value>
+  </data>
   <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>248, 32</value>
   </data>
@@ -720,7 +735,10 @@
     <value>Tiefensuche (by TazzMann)</value>
   </data>
   <data name="bb.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 504</value>
+    <value>0, 648</value>
+  </data>
+  <data name="bb.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>112, 424</value>
   </data>
   <data name="nbFolders.Text">
     <value>Verzeichnisse</value>
@@ -728,11 +746,17 @@
   <data name="nbSettings.Text">
     <value>Einstellungen</value>
   </data>
-  <data name="nbTools.Text">
-    <value>Programme</value>
+  <data name="nbCustom.Text">
+    <value>Erweiterte Einstellungen</value>
   </data>
   <data name="nbPlugins.Text">
     <value>Erweiterungen</value>
+  </data>
+  <data name="nbTools.Text">
+    <value>Programme</value>
+  </data>
+  <data name="hcPlugins.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 8</value>
   </data>
   <data name="hcPlugins.Text">
     <value>Erweiterungen</value>
@@ -768,8 +792,29 @@
         jaGwVmMw12qMMyDyKr3ZmpZVaBGXo8P6XP/00DfK/FVG/vJmNAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="hcIdent.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 8</value>
+  </data>
+  <data name="hcCheck.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 8</value>
+  </data>
+  <data name="hcCustom.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 8</value>
+  </data>
+  <data name="hcCustom.Text">
+    <value>Einstellungen für</value>
+  </data>
+  <data name="cbCustom.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>152, 2</value>
+  </data>
+  <data name="cbCustom.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>512, 21</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>802, 424</value>
+  </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
+    <value>NoControl</value>
   </data>
   <data name="$this.Text">
     <value>Einstellungen</value>

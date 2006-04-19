@@ -234,6 +234,39 @@
                     Project = "{2A67C9C3-9577-4922-991F-291EAA6B4F2D}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "Microsoft.DirectX"
+                    AssemblyName = "Microsoft.DirectX"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.dll"
+                    AssemblyFolderKey = "hklm\current managed directx 9.2"
+                />
+                <Reference
+                    Name = "Microsoft.DirectX.Direct3D"
+                    AssemblyName = "Microsoft.DirectX.Direct3D"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.Direct3D.dll"
+                    AssemblyFolderKey = "hklm\current managed directx 9.2"
+                />
+                <Reference
+                    Name = "Microsoft.DirectX.Direct3DX"
+                    AssemblyName = "Microsoft.DirectX.Direct3DX"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.Direct3DX.dll"
+                    AssemblyFolderKey = "hklm\current managed directx 9.2"
+                />
+                <Reference
+                    Name = "ambertation.3D"
+                    AssemblyName = "ambertation.3D"
+                    HintPath = "..\ambertation.3D.dll"
+                />
+                <Reference
+                    Name = "ambertation.3D.mdx.binding"
+                    AssemblyName = "ambertation.3D.mdx.binding"
+                    HintPath = "..\ambertation.3D.mdx.binding.dll"
+                />
+                <Reference
+                    Name = "ambertation.utilities"
+                    AssemblyName = "ambertation.utilities"
+                    HintPath = "..\ambertation.utilities.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -392,6 +425,16 @@
                 <File
                     RelPath = "PackageRepairForm.resx"
                     DependentUpon = "PackageRepairForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PreviewForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PreviewForm.resx"
+                    DependentUpon = "PreviewForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

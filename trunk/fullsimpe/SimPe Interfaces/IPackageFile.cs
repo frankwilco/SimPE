@@ -100,6 +100,13 @@ namespace SimPe.Interfaces.Files
 		void Add(IPackedFileDescriptor pfd, bool isnew);
 
 		/// <summary>
+		/// Copies the FileDescriptors form the passed Package to this one. The Method creats 
+		/// a Clone for each Descriptor, and read it' Userdata form the original package. 
+		/// </summary>
+		/// <param name="package">The package that should get copied into this one</param>
+		void CopyDescriptors(SimPe.Interfaces.Files.IPackageFile package);		
+
+		/// <summary>
 		/// Returns or Changes the stored Fileindex
 		/// </summary>
 		IPackedFileDescriptor[] Index 

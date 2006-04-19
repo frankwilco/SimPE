@@ -37,6 +37,13 @@ namespace SimPe.Interfaces.Scenegraph
 		}
 
 		/// <summary>
+		/// The Descriptor of that File, with a real Group value
+		/// </summary>
+		/// <returns>A Clonde FileDescriptor, that contains the correct Group</returns>
+		/// <remarks>Contains the local Group (can never be 0xffffffff)</remarks>
+		SimPe.Interfaces.Files.IPackedFileDescriptor GetLocalFileDescriptor();
+
+		/// <summary>
 		/// The package the File is stored in
 		/// </summary>
 		SimPe.Interfaces.Files.IPackageFile Package

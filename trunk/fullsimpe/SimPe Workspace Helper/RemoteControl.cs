@@ -321,5 +321,47 @@ namespace SimPe
 			}
 			return false;
 		}
+
+		/// <summary>
+		/// Displays a certain Help Topic
+		/// </summary>
+		/// <param name="url">Url (can be a local File) of the Help Document</param>
+		public static void ShowHelp(string url)
+		{
+			System.Windows.Forms.Help.ShowHelp(ApplicationForm, url);
+		}
+
+		/// <summary>
+		/// Displays a certain Help Topic
+		/// </summary>
+		/// <param name="url">Url (can be a local File) of the Help Document</param>
+		/// <param name="topic">the Topic in that document</param>
+		/// <remarks>Produces an URL like "url#topic"</remarks>
+		public static void ShowHelp(string url, string topic)
+		{
+			System.Windows.Forms.Help.ShowHelp(ApplicationForm, url, topic);
+		}
+
+		/// <summary>
+		/// Displays a Form, with the passed Custom Settings
+		/// </summary>
+		/// <param name="settings"></param>
+		public static void ShowCustomSettings(SimPe.Interfaces.ISettings settings)
+		{
+			System.Windows.Forms.Form f = new System.Windows.Forms.Form();
+			f.Text = settings.ToString();
+			f.Width = 400;
+			f.Height = 300;
+			f.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			f.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+
+			System.Windows.Forms.PropertyGrid pg = new System.Windows.Forms.PropertyGrid();
+			f.Controls.Add(pg);
+			pg.Dock = System.Windows.Forms.DockStyle.Fill;
+			pg.SelectedObject = settings.GetSettingsObject();
+
+			RemoteControl.ShowSubForm(f);
+			f.Dispose();
+		}
 	}
 }

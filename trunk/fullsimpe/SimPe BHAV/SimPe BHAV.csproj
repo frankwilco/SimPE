@@ -218,11 +218,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "BconUI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "BconWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -325,11 +320,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ObjfUI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "ObjfWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -360,32 +350,12 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "PackedFileUI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "PackedFileWrapper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "TrcnForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "TrcnForm.resx"
-                    DependentUpon = "TrcnForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "TrcnItem.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "TrcnUI.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -396,11 +366,6 @@
                 />
                 <File
                     RelPath = "TtabItem.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "TtabUI.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

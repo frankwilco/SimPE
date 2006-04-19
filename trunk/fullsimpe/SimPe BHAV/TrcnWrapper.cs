@@ -97,7 +97,7 @@ namespace SimPe.Plugin
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
 		{
-			return new TrcnUI();
+			return null;
 		}
 
 		/// <summary>

@@ -81,6 +81,16 @@ namespace SimPe
 			set {r.SimsEP3Path = value;}
 		}
 
+		[Category("SmallExpansionPack"),System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]
+		public string SP1Path
+		{
+			get 
+			{
+				return GetPath(r.SimsSP1Path, r.RealSP1GamePath);
+			}
+			set {r.SimsSP1Path = value;}
+		}
+
 		[Category("BasicGame"),System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]
 		public string SaveGamePath
 		{

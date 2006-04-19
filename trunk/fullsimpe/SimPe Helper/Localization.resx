@@ -897,6 +897,15 @@ The given Folder must contain a subfolder called "TSData".
 
 If this is empty, SimPE will use the default Folder.</value>
 	</data>
+	<data name="[Property:SP1Path]">
+		<value>1: Family Fun Accessoires</value>
+	</data>
+	<data name="[Description:SP1Path]">
+		<value>This should contain the installation directory of "The Sims 2 - Family Fun Accessoires". 
+The given Folder must contain a subfolder called "TSData".
+
+If this is empty, SimPE will use the default Folder.</value>
+	</data>
 	<data name="[Property:SaveGamePath]">
 		<value>Savegame</value>
 	</data>	
@@ -917,6 +926,9 @@ If this is empty, SimPE will use the default Folder.</value>
 	</data>
 	<data name="[Category:ExpansionPack]">
 		<value>2. Expansion Packs</value>
+	</data>
+	<data name="[Category:SmallExpansionPack]">
+		<value>3. Mini Expansion Packs</value>
 	</data>
 	
 	<data name="SimPe.PackedFiles.Wrapper.JobAssignment.Nothing">
@@ -968,8 +980,7 @@ If this is empty, SimPE will use the default Folder.</value>
 		<value>Build Robots</value>
     </data>
     <data name="Reset Filetable">
-		<value>To support the new Expansion "Open for Business", SimPE needs to reset your FileTable.
-This means, that SimPe will delete the File "{flname}".
+		<value>SimPE needs to reset your FileTable. This means, that SimPe will delete the File "{flname}".
 
 Do you want SimPe to reset your FileTable?</value>
     </data>
@@ -1055,6 +1066,9 @@ Run SimPE anyway?</value>
     </data> 
     <data name="EP NAME 3">
 		<value>The Sims 2 - Open for Business</value>
+    </data> 
+    <data name="EP NAME 4">
+		<value>The Sims 2 - Family Fun Accesoires</value>
     </data> 
     <data name="Check: Folder not found">
 		<value>Folder for "{name}" was not found.</value>

@@ -41,7 +41,12 @@ namespace SimPe.Plugin
 			this.gmdc = gmdc;
 			txtrmap = new Hashtable();
 			txmtmap = new Hashtable();
-		}		
+		}	
+	
+		public GeometryDataContainer Gmdc
+		{
+			get {return gmdc;}
+		}
 
 		Hashtable txtrmap, txmtmap;
 		/// <summary>

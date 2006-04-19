@@ -133,18 +133,20 @@ namespace SimPe
 		/// </summary>
 		/// <param name="add">false, if you want to remove linked Events</param>
 		void SetupEvents(bool add)
-		{
-			
-
+		{			
 			if (add) 
 			{
 				pkg.IndexChanged += new EventHandler(IndexChangedHandler);
 				pkg.AddedResource += new EventHandler(AddedResourceHandler);
 				pkg.RemovedResource += new EventHandler(RemovedResourcehandler);
 				pkg.SavedIndex += new EventHandler(SavedIndexHandler);
+
+				SimPe.Packages.StreamFactory.LockStream(pkg.SaveFileName);
 			} 
 			else 
 			{
+				SimPe.Packages.StreamFactory.UnlockStream(pkg.SaveFileName);
+
 				pkg.IndexChanged -= new EventHandler(IndexChangedHandler);
 				pkg.AddedResource -= new EventHandler(AddedResourceHandler);
 				pkg.RemovedResource -= new EventHandler(RemovedResourcehandler);

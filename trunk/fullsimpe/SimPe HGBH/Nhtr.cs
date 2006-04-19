@@ -46,8 +46,8 @@ namespace SimPe.Plugin
 			set {ver = (uint)value;}
 		}
 
-		ArrayList[] items;
-		public ArrayList[] Items
+		NhtrList[] items;
+		public NhtrList[] Items
 		{
 			get {return items;}
 		}
@@ -58,10 +58,12 @@ namespace SimPe.Plugin
 		
 		public Nhtr() : base()
 		{			
+			Ambertation.BaseChangeableNumber.DigitBase = 16;
 			Version = NhtrVersions.Business;
-			items = new ArrayList[4];
-			for (int i=0; i<items.Length; i++)
-				items[i] = new ArrayList();
+			NhtrListType[] types = Enum.GetValues(typeof(NhtrListType)) as NhtrListType[];
+			items = new NhtrList[types.Length];
+			foreach (NhtrListType tp in types)
+				items[(int)tp] = new NhtrList(this, tp);			
 		}
 
 		#region IWrapper Member
@@ -69,9 +71,9 @@ namespace SimPe.Plugin
 		{
 			return new AbstractWrapperInfo(
 				"Neighborhood Terrain Wrapper",
-				"Quaxi (with help by TickleOnTheTum)",
+				"TickleOnTheTum, jaxad0127 and Quaxi",
 				"Contains Informations about the Neighborhood Terrain.",
-				1,
+				3,
 				null
 				); 
 		}
@@ -85,25 +87,15 @@ namespace SimPe.Plugin
 			return new NhtrUI();
 		}						
 		
+		
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{	
-			int[] lengths = new int[] {37, 123, 164, 37};
+			
 			ver = reader.ReadUInt32();
-			for (int i=0; i<items.Length; i++) 
+			foreach (NhtrList list in items)
 			{
-				ArrayList itemlist = items[i] as ArrayList;
-				int len = reader.ReadUInt16();
-				uint ct = reader.ReadUInt32();
-
-				itemlist.Clear();
-				Console.WriteLine(lengths[i]+": "+len+", "+ct);
-				while (ct>0)
-				{
-					NhtrItem ti = new NhtrItem();
-					ti.Unserialize(reader, lengths[i]); 
-					itemlist.Add(ti);				
-					ct--;
-				}
+				list.Clear();
+				list.Unserialize(reader);
 			}
 			
 			Console.WriteLine(reader.BaseStream.Position - reader.BaseStream.Length);			
@@ -111,7 +103,9 @@ namespace SimPe.Plugin
 
 		protected override void Serialize(System.IO.BinaryWriter writer) 
 		{		
-			
+			writer.Write(ver);
+			foreach (NhtrList list in items)			
+				list.Serialize(writer);			
 		}		
 		#endregion
 

@@ -85,11 +85,10 @@ namespace SimPe.Plugin
 			form.tbhg.Text = wrp.LotSize.Height.ToString();
 			form.tbleft.Text = wrp.LotPosition.X.ToString();
 			form.tbtop.Text = wrp.LotPosition.Y.ToString();
-			form.tbz.Text = "0x"+Helper.HexString(wrp.GroundLevel);
+			form.tbz.Text = wrp.GroundLevel.ToString();
 			form.tbver.Text = wrp.Version.ToString();
 			form.tbunk1.Text = "0x"+Helper.HexString(wrp.Unknown2);
-			form.tbu0.Text = "0x"+Helper.HexString(wrp.Unknown0);
-			form.tbu2.Text = "0x"+Helper.HexString(wrp.Unknown1);
+			form.tbu0.Text = "0x"+Helper.HexString(wrp.Unknown0);			
 			form.tbu4.Text = "0x"+Helper.HexString(wrp.Unknown4);
 			form.tbowner.Text = "0x"+Helper.HexString(wrp.OwnerInstance);
 			form.tbowner.ReadOnly = (int)wrp.Version<(int)LtxtVersion.Business;

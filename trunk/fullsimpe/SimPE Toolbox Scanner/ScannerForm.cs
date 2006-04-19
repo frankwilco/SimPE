@@ -23,6 +23,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using SimPe.Interfaces.Plugin.Scanner;
+using SimPe.Plugin.Scanner;
 
 namespace SimPe.Plugin
 {
@@ -50,7 +51,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ComboBox lbprop;
 		private Skybound.VisualStyles.VisualStyleLinkLabel llSave;
 		private System.Windows.Forms.SaveFileDialog sfd;
-		private System.Windows.Forms.CheckBox cbrec;
+		private System.Windows.Forms.CheckBox cbrec;		
 
 		/// <summary>
 		/// Create a new Instance
@@ -75,8 +76,6 @@ namespace SimPe.Plugin
 			SimPe.Plugin.ScenegraphWrapperFactory.LoadGroupCache();
 
 			this.cbfolder.SelectedIndex = 0;
-			scanners = new ArrayList();
-			identifiers = new ArrayList();
 
 			cachefile = new SimPe.Cache.PackageCacheFile();
 			try 
@@ -88,11 +87,11 @@ namespace SimPe.Plugin
 				Helper.ExceptionMessage("Unable to reload the Cache File.", ex);
 			}
 
-			//Load Plugins
-			LoadScanners();
+			
+			
 			
 			//display the list of identifiers
-			foreach (IIdentifier id in identifiers)
+			foreach (IIdentifier id in ScannerRegistry.Global.Identifiers)
 			{
 				lbid.Items.Add(id.GetType().Name+" (version="+id.Version.ToString()+", index="+id.Index.ToString()+")");
 			}
@@ -100,7 +99,7 @@ namespace SimPe.Plugin
 			//add the scanners to the Selection and show the Scanner Controls (if available)
 			SimPe.Plugin.Scanner.AbstractScanner.UpdateList finishcallback = new SimPe.Plugin.Scanner.AbstractScanner.UpdateList(this.UpdateList);
 			ArrayList uids = new ArrayList();
-			foreach (IScanner i in scanners) 
+			foreach (IScanner i in ScannerRegistry.Global.Scanners) 
 			{
 				string name = i.GetType().Name+" (version="+i.Version.ToString()+", uid=0x"+Helper.HexString(i.Uid)+", index="+i.Index.ToString()+")";
 				if (!uids.Contains(i.Uid)) 
@@ -135,9 +134,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ComboBox cbfolder;
 		private System.Windows.Forms.FolderBrowserDialog fbd;
 
-		SimPe.Cache.PackageCacheFile cachefile;
-		ArrayList scanners;
-		ArrayList identifiers;
+		SimPe.Cache.PackageCacheFile cachefile;		
 		private System.Windows.Forms.ProgressBar pb;
 		private System.Windows.Forms.ListView lv;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -681,54 +678,7 @@ namespace SimPe.Plugin
 		}
 		#endregion
 
-		/// <summary>
-		/// Load all available Scanners in the plugins Folder (everything with the Extension *.plugin.dll)
-		/// </summary>
-		void LoadScanners() 
-		{
-			string[] files = System.IO.Directory.GetFiles(Helper.SimPePluginPath, "*.plugin.dll");
-			scanners.Clear();
-
-			foreach (string file in files) 
-			{
-				object[] args = new object[1];
-				args[0] = lv;
-				object[] scnrs = SimPe.LoadFileWrappers.LoadPlugins(file, typeof(SimPe.Interfaces.Plugin.Scanner.IScannerPluginBase), args);
-				foreach (IScannerPluginBase isb in scnrs) 
-				{
-					if (isb.Version==1) 
-					{
-						if (((byte)isb.PluginType&(byte)ScannerPluginType.Scanner)!=0) 
-						{
-							try 
-							{
-								IScanner sc = (IScanner)isb;
-								scanners.Add(sc);
-							} 
-							catch (Exception ex) 
-							{
-								Helper.ExceptionMessage("Unable to load Scanner.", ex);
-							}
-						} 
-						else 
-						{
-							try 
-							{
-								IIdentifier i = (IIdentifier)isb;
-								identifiers.Add(i);
-							} 
-							catch (Exception ex) 
-							{
-								Helper.ExceptionMessage("Unable to load Identifier.", ex);
-							}
-						}
-					}
-				}
-			}
-
-			scanners.Sort(new SimPe.Plugin.Identifiers.PluginScannerBaseComparer());
-			identifiers.Sort(new SimPe.Plugin.Identifiers.PluginScannerBaseComparer());
-		}
+		
 
 		int controltop = 0;
 		/// <summary>
@@ -990,7 +940,7 @@ namespace SimPe.Plugin
 				//Enable the Scanner Controls
 				foreach(IScanner scanner in this.lbscanners.Items) 
 				{
-					scanner.EnableControl(items, scanners.Contains(scanner));			
+					scanner.EnableControl(items, ScannerRegistry.Global.Scanners.Contains(scanner));			
 				
 				}//foreach
 			} 
@@ -1007,7 +957,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void Scan(string folder, bool rec)
+		private void Scan(string folder, bool rec, ScannerCollection usedscanners)
 		{
 			
 			//scan all Files
@@ -1018,17 +968,17 @@ namespace SimPe.Plugin
 			string[] tfiles = System.IO.Directory.GetFiles(folder, "*.Sims2Tmp");
 			
 			int ct = files.Length + dfiles.Length + dofiles.Length + tfiles.Length;
-			Scan(files, true, 0, ct);
-			Scan(dfiles, false, files.Length, ct);			
-			Scan(dofiles, false, files.Length + dfiles.Length, ct);	
-			Scan(tfiles, false, files.Length + dfiles.Length + dofiles.Length, ct);
+			Scan(files, true, 0, ct, usedscanners );
+			Scan(dfiles, false, files.Length, ct, usedscanners);			
+			Scan(dofiles, false, files.Length + dfiles.Length, ct, usedscanners);	
+			Scan(tfiles, false, files.Length + dfiles.Length + dofiles.Length, ct, usedscanners);
 			pb.Value = 0;
 
 			//issue a recursive Scan
 			if (rec) 
 			{
 				string[] dirs = System.IO.Directory.GetDirectories(folder, "*");
-				foreach (string dir in dirs) Scan(dir, true);
+				foreach (string dir in dirs) Scan(dir, true, usedscanners);
 			}
 
 		}
@@ -1108,7 +1058,7 @@ namespace SimPe.Plugin
 			
 
 				//Select only checked Scanners
-				scanners.Clear();
+				ScannerCollection scanners = new ScannerCollection();
 				for (int i=0; i<lbscanners.Items.Count; i++) 
 				{
 					IScanner scanner = (IScanner)lbscanners.Items[i];
@@ -1122,10 +1072,10 @@ namespace SimPe.Plugin
 
 				SimPe.Plugin.Scanner.AbstractScanner.AssignFileTable();
 				//setup Scanners
-				foreach (IScanner s in scanners) s.InitScan();
+				foreach (IScanner s in scanners) s.InitScan(this.lv);
 
 				//scan all Files
-				Scan(folder, cbrec.Checked);				
+				Scan(folder, cbrec.Checked, scanners);				
 
 				//finish Scanners
 				foreach (IScanner s in scanners) s.FinishScan();	
@@ -1161,7 +1111,7 @@ namespace SimPe.Plugin
 		/// <param name="enabled"></param>
 		/// <param name="pboffset"></param>
 		/// <param name="count"></param>
-		void Scan(string[] files, bool enabled, int pboffset, int count)
+		void Scan(string[] files, bool enabled, int pboffset, int count, ScannerCollection usedscanners)
 		{
 			int ct = pboffset;
 			foreach (string file in files) 
@@ -1179,7 +1129,7 @@ namespace SimPe.Plugin
 
 					//determin Type
 					SimPe.Cache.PackageType pt = si.PackageCacheItem.Type;
-					foreach (IIdentifier id in this.identifiers) 
+					foreach (IIdentifier id in ScannerRegistry.Global.Identifiers) 
 					{
 						if ((si.PackageCacheItem.Type != SimPe.Cache.PackageType.Unknown) && (si.PackageCacheItem.Type != SimPe.Cache.PackageType.Undefined)) 
 							break;
@@ -1201,7 +1151,7 @@ namespace SimPe.Plugin
 					if (!si.PackageCacheItem.Enabled) lvi.ForeColor = Color.Gray;
 					
 					//run file through available scanners
-					foreach (IScanner s in scanners) 
+					foreach (IScanner s in usedscanners) 
 					{
 						SimPe.Cache.PackageState ps = si.PackageCacheItem.FindState(s.Uid, true);
 						if (ps.State == SimPe.Cache.TriState.Null) 

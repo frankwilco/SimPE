@@ -1,0 +1,7 @@
+CodeCommentReport
+obj
+*.suo
+Thumbs.db
+*.csproj.user
+bin
+*.sln

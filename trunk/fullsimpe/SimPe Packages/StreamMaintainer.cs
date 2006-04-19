@@ -150,7 +150,114 @@ namespace SimPe.Packages
 	/// </summary>
 	public class StreamFactory
 	{
-		public static Hashtable streams;
+		internal static Hashtable streams;
+		static ArrayList locked = new ArrayList();
+
+		/// <summary>
+		/// marks a stream locked, which means, that it cannot be closed
+		/// </summary>
+		/// <param name="filename"></param>
+		/// <returns></returns>
+		public static bool LockStream(string filename)
+		{
+			InitTable();
+			filename = filename.Trim().ToLower();
+			if (streams.ContainsKey(filename)) 
+			{
+				if (!locked.Contains(filename)) locked.Add(filename);
+				return true;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// marks a stream unlocked, which means, that it can be closed
+		/// </summary>
+		/// <param name="filename"></param>
+		/// <returns></returns>
+		public static bool UnlockStream(string filename)
+		{
+			InitTable();
+			filename = filename.Trim().ToLower();
+			if (streams.ContainsKey(filename)) 
+			{
+				if (locked.Contains(filename)) 
+				{
+					locked.Remove(filename);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Returns true, if the passed Stream is locked
+		/// </summary>
+		/// <param name="filename"></param>
+		/// <param name="checkfiletable">true, if you want to check the FileTable for references (which counta s locked)</param>
+		/// <returns></returns>
+		public static bool IsLocked(string filename, bool checkfiletable)
+		{
+			filename = filename.Trim().ToLower();
+			bool res = locked.Contains(filename);
+			if (res || !checkfiletable) return res;
+
+			return SimPe.FileTableBase.FileIndex.Contains(filename);			
+		}
+
+		/// <summary>
+		/// Unlocks all Streams
+		/// </summary>
+		public static void UnlockAll()
+		{
+			InitTable();
+			InitTable();
+			foreach (string k in streams.Keys) 			
+				UnlockStream(k);			
+		}
+
+		public static void WriteToConsole()
+		{
+			InitTable();
+			System.Windows.Forms.Form f = new System.Windows.Forms.Form();
+			System.Windows.Forms.ListBox lb = new System.Windows.Forms.ListBox();
+			f.Controls.Add(lb);
+			lb.Dock = System.Windows.Forms.DockStyle.Fill;
+
+			foreach (string k in streams.Keys) 
+			{
+				StreamItem si = streams[k] as StreamItem;
+				string add = k;
+				if (si!=null) add +=" ["+si.StreamState+"]";	
+				if (IsLocked(k, false)) add = "[locked] "+add;
+				else if (IsLocked(k, true)) add = "[ftlocked] "+add;
+				if (PackageMaintainer.Maintainer.Contains(k)) add += "[managed]";
+				lb.Items.Add(add);
+			}
+
+			lb.Sorted = true;
+			f.ShowDialog();
+			f.Dispose();
+		}
+		/// <summary>
+		/// Removes all Files from the Teleport Folder
+		/// </summary>
+		public static void CleanupTeleport()
+		{
+			string[] files = System.IO.Directory.GetFiles(Helper.SimPeTeleportPath);
+			foreach (string file in files)
+			{
+				try 
+				{
+					SimPe.Packages.StreamFactory.CloseStream(file);
+					System.IO.File.Delete(file);
+				} 
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex);
+				}
+			}
+		}
 
 		static void InitTable()
 		{
@@ -297,12 +404,16 @@ namespace SimPe.Packages
 		/// <returns>true if the File is closed now</returns>
 		public static bool CloseStream(string filename)
 		{
+			if (IsLocked(filename, false))  return false;
+
 			StreamItem si = GetStreamItem(filename, false);
 			if (si!=null) 
 			{
 				try 
 				{
 					si.Close();
+					if (!IsLocked(filename, true)) 
+						PackageMaintainer.Maintainer.RemovePackage(filename);
 					return (si.StreamState!=StreamState.Opened);
 				}
 				catch {}
@@ -311,14 +422,28 @@ namespace SimPe.Packages
 		}
 
 		/// <summary>
-		/// Closes all opened Streams
+		/// Closes all opened Streams (that are not locked and not referenced in the FileTable)
 		/// </summary>
 		public static void CloseAll()
 		{
+			CloseAll(false);
+		}
+
+		/// <summary>
+		/// Closes all opened Streams (that are not locked and not referenced in the FileTable)
+		/// </summary>
+		/// <param name="force">true, if you want to close all Resources without checking the lock state</param>
+		public static void CloseAll(bool force)
+		{
 			InitTable();
-			foreach (StreamItem si in streams.Values) 
-			{
-				si.Close();
+			foreach (string k in streams.Keys) 
+			{				
+				if (!IsLocked(k, true) || force) 
+				{
+					StreamItem si = streams[k] as StreamItem;
+					si.Close();
+					PackageMaintainer.Maintainer.RemovePackage(k);
+				}
 			}
 		}
 	}

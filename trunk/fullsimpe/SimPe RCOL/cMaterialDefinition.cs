@@ -418,10 +418,19 @@ namespace SimPe.Plugin
 			p = this.GetProperty("stdMatSpecPower");	if (p!=null) mat.SpecularPower = p.ToValue();
 
 			p = this.GetProperty("stdMatAlphaBlendMode");
+			
+			
 			if (p!=null)
-			{
-				if (p.Value=="blend")
-					mat.Mode = Ambertation.Scenes.Material.TextureModes.ShadowTexture;
+			{				
+				if (p.Value=="blend") 
+				{
+					MaterialDefinitionProperty p2 = this.GetProperty("stdMatLightingEnabled");
+					if (p2!=null) 
+					{
+						if (p2.ToValue()==0)
+							mat.Mode = Ambertation.Scenes.Material.TextureModes.ShadowTexture;
+					}
+				}
 				//if (mat.Texture.AlphaBlend) mat.Diffuse = System.Drawing.Color.FromArgb(0x10, mat.Diffuse);
 			}
 			return mat;
@@ -538,7 +547,7 @@ namespace SimPe.Plugin
 			if (this.ToFloat().Length<4) return ToRGB();
 			Ambertation.Geometry.Vector4 v = ToVector4();
 			Clamp(v);
-			return System.Drawing.Color.FromArgb((int)(v.X*0xff), (int)(v.Y*0xff), (int)(v.Z*0xff), (int)(v.W*0xff));
+			return System.Drawing.Color.FromArgb((int)(v.W*0xff), (int)(v.X*0xff), (int)(v.Y*0xff), (int)(v.Z*0xff));
 		}
 
 		public Ambertation.Geometry.Vector3 ToVector3()
