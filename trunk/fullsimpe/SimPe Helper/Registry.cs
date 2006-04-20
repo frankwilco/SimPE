@@ -1583,6 +1583,7 @@ namespace SimPe
 
 			return true;
 		}
+
 		void SetBlurNudity(bool value, string resname, bool silent)
 		{
 			string[] fls = CensorFiles;
@@ -1592,6 +1593,7 @@ namespace SimPe
 				string folder = System.IO.Path.GetDirectoryName(fl);
 
 				if (System.IO.File.Exists(fl)) return;
+				if (EPInstalled<2) return;
 
 				if (!silent)
 					if (System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("Censor_Install_Warn").Replace("{filename}", fl), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No)

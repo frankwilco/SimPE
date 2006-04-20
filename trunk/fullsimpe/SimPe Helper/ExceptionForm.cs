@@ -432,7 +432,7 @@ namespace SimPe
 		{
 #if MAC
 #else
-			Clipboard.SetDataObject(rtb.Text, true);
+			Clipboard.SetDataObject("[error]"+rtb.Text+"[/error]", true);
 #endif
 		}
 
