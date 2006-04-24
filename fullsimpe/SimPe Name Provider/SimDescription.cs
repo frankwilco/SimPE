@@ -192,7 +192,7 @@ namespace SimPe.Providers
 
 			if (Helper.WindowsRegistry.EPInstalled<2) return;
 
-			SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP2Path, @"TSData\Res\Text\UIText.package"));
+            SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.GetExecutableFolder(Helper.WindowsRegistry.InstalledVersions), @"TSData\Res\Text\UIText.package"));
 			SimPe.PackedFiles.Wrapper.Str str = new Str();
 			SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pkg.FindFile(Data.MetaData.STRING_FILE, 0 , Data.MetaData.LOCAL_GROUP, 0xe1);
 

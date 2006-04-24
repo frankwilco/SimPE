@@ -104,11 +104,18 @@ namespace SimPe
 			return node;
 		}
 
-		protected virtual void OnFinish(TreeNode root, int ct, bool autoselect)
+        delegate void OnFinishHandler(TreeNode root, int ct, bool autoselect);
+
+        protected virtual void OnFinish(TreeNode root, int ct, bool autoselect)
 		{
-			root.Expand();
-			if ((Helper.WindowsRegistry.AsynchronLoad || ct<Helper.WindowsRegistry.BigPackageResourceCount) && autoselect)
-				tv.SelectedNode = root;
+            if (tv.InvokeRequired) tv.Invoke(new OnFinishHandler(InvokeOnFinish), new object[] { root, ct, autoselect });
+            else InvokeOnFinish(root, ct, autoselect);
+        }
+
+        protected virtual void InvokeOnFinish(TreeNode root, int ct, bool autoselect){
+            root.Expand();
+            if ((Helper.WindowsRegistry.AsynchronLoad || ct < Helper.WindowsRegistry.BigPackageResourceCount) && autoselect)            
+                tv.SelectedNode = root;                          
 			
 			nodemap.Clear();
 			UpdateLabels(tv);

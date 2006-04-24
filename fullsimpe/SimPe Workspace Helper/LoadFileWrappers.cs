@@ -264,7 +264,7 @@ namespace SimPe
 		/// <param name="file">The File the Class is stored in</param>
 		/// <param name="interfaceType">The Type of the FIle</param>
 		/// <returns>The Class Implementing the given type or null if none was found</returns>
-		public static object LoadPlugin(string file,Type interfaceType)
+		public static object LoadPlugin(string file, Type interfaceType)
 		{
 			if (!File.Exists(file)) return null;
 

@@ -64,7 +64,7 @@ namespace SimPe
 		/// <param name="tool"></param>
 		public ActionToolDescriptor(SimPe.Interfaces.IToolAction tool)
 		{
-			this.lp = lp;
+			//this.lp = lp;
 			this.tool = tool;
 
 			ll = new SteepValley.Windows.Forms.XPLinkedLabelIcon();

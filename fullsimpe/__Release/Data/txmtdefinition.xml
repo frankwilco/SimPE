@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="propertydefinition.xsd">
+	<enum name="BlendMode" writeas="name">
+		<field value="0">none</field>
+		<field value="1">blend</field>
+		<field value="2">additive</field>
+		<field value="3">addNoSrcAlphaScale</field>
+	</enum>
+	<enum name="CubeMode" writeas="name">
+		<field value="0">none</field>
+		<field value="1">reflection</field>
+	</enum>
+	<enum name="WaveForm" writeas="name">
+		<field value="0">triangular</field>
+		<field value="1">sawtooth</field>
+		<field value="2">sine</field>
+	</enum>
+	<enum name="AnimMode" writeas="name">
+		<field value="0">none</field>
+		<field value="1">tile</field>
+		<field value="2">transform</field>
+	</enum>
+	<enum name="Addressing" writeas="name">
+		<field value="0">tile</field>
+	</enum>
+	<enum name="FillMode" writeas="name">
+		<field value="0">solid</field>
+	</enum>
+	<enum name="CullMode" writeas="name">
+		<field value="0">none</field>
+		<field value="1">cullClockwise</field>
+	</enum>
+	<category name="SimBody">
+		<property type="guid">
+			<name>cafHairTone</name>
+			<help>GUID of the Hairtone you want to assign</help>
+			<default>00000000-0000-0000-0000-000000000000</default>
+		</property>
+		<property type="int">
+			<name>cafNumOverlays</name>
+			<help>Number of assignable Texture Overlays</help>
+			<default>0</default>
+		</property>
+		<property type="guid">
+			<name>cafSkinTone</name>
+			<help>GUID of the Skintone  you want to assign</help>
+			<default>00000000-0000-0000-0000-000000000000</default>
+		</property>
+		<property type="string">
+			<name>compositeBaseTextureName</name>
+			<help>Composition of all cafOverlay Texturenames</help>
+			<default/>
+		</property>
+		<property type="bool">
+			<name>eyeGizmoEnable</name>
+			<help>Is an eye Gizmo assigned?</help>
+			<default>0</default>
+		</property>
+	</category>
+	
+	<category name="Default Texture Blending">
+		<property type="bool">
+			<name>stdMatAlphaTestEnabled</name>
+			<help>Should the engine scan for TextureTransparence when showing a Mesh</help>
+			<default>0</default>
+		</property>
+		<property type="enum:BlendMode">
+			<name>stdMatAlphaBlendMode</name>
+			<help>How dou you want to belnd the Alpha Channel of the Texture</help>
+			<default>0</default>
+		</property>
+		<property type="float">
+			<name>blendStrength</name>
+			<help>Maximum value of the Blended Texture</help>
+			<default>1.000000</default>
+		</property>
+				<property type="int">
+		<name>stdMatAlphaRefValue</name>
+		<help/>
+		<default>1</default>
+	</property>
+		<property type="float">
+		<name>stdMatAlphaMultiplier</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	</category>
+	
+	<category name="Default Textures">
+				<property type="color">
+			<name>stdMatSpecCoef</name>
+			<help>Specular Color of the Surface (0.0 &lt; n &lt; 1.0)</help>
+			<default>0,0,0</default>
+			<min>0</min>
+			<max>1</max>
+		</property>
+	
+		<property type="int">
+			<name>stdMatSpecPower</name>
+			<help>Exponent for Specular Lightning. (2 &lt; n &lt; 500)</help>
+			<default>2</default>
+			<min>2</min>
+			<max>500</max>
+		</property>
+		<property type="float">
+			<name>stdMatUntexturedDiffAlpha</name>
+			<help>Amount of Transperency for diffuse lit Surface. (0.0 &lt; n &lt; 1.0)</help>
+			<default>1</default>
+			<min>0</min>
+			<max>1</max>
+		</property>
+		
+		<property type="int">
+			<name>stdMatLayer</name>
+			<help>Seems to be allways 0</help>
+			<default>0</default>
+		</property>
+		<property type="color">
+			<name>stdMatEmissiveCoef</name>
+			<help>Emissive Color of the Surface</help>
+			<default>0,0,0</default>
+		</property>
+		<property type="int">
+			<name>deprecatedStdMatInvDiffuseCoeffMultiplier</name>
+			<help>Unused?</help>
+			<default>1</default>
+		</property>
+		<property type="color">
+			<name>stdMatDiffCoef</name>
+			<help>Diffuse Color of the Surface</help>
+			<default>0,0,0</default>			
+		</property>
+		<property type="bool">
+			<name>stdMatBaseTextureAlphaReplicate</name>
+			<help/>
+			<default>0</default>
+		</property>
+		<property type="enum:FillMode">
+			<name>stdMatFillMode</name>
+			<help/>
+			<default>0</default>
+		</property>
+		<property type="enum:Addressing">
+			<name>stdMatBaseTextureAddressingU</name>
+			<help/>
+			<default>0</default>
+		</property>
+		<property type="enum:Addressing">
+			<name>stdMatBaseTextureAddressingV</name>
+			<help/>
+			<default>0</default>
+		</property>
+		<property type="txtrref">
+			<name>stdMatBaseTextureName</name>
+			<help>Name of the Resource that contains the Texture (without ending _txtr)</help>
+			<default></default>
+		</property>
+		<property type="enum:CullMode">
+			<name>stdMatCullMode</name>
+			<help/>
+			<default>0</default>
+		</property>
+		<property type="bool">
+			<name>stdMatBaseTextureEnabled</name>
+			<help/>
+			<default>1</default>
+		</property>
+		<property type="bool">
+			<name>stdMatLightingEnabled</name>
+			<help/>
+			<default>1</default>
+		</property>
+		<property type="float">
+			<name>stdMatMinLightRangeHint</name>
+			<help>Only 4 and 0 are used</help>
+			<default>4</default>
+		</property>
+	</category>
+	
+	<category name="Default NormalMap">
+		<property type="bool">
+			<name>stdMatNormalMapTextureEnabled</name>
+			<help>If the parameter exists, it's always "true"</help>
+			<default>1</default>
+		</property>
+	
+		<property type="enum:Addressing">
+			<name>stdMatNormalMapTextureAddressingU</name>
+			<help/>
+			<default>0</default>
+		</property>
+	
+		<property type="enum:Addressing">
+			<name>stdMatNormalMapTextureAddressingV</name>
+			<help/>
+			<default>0</default>
+		</property>
+	
+		<property type="txtrref">
+			<name>stdMatNormalMapTextureName</name>
+			<help>Name of the Texture Resource that is used as NormalMap</help>
+			<default>umhairclosecrop-all-bump</default>
+		</property>
+	</category>	
+	
+	<category name="Default Environment Map">
+		<property type="color">
+			<name>stdMatEnvCubeCoef</name>
+			<help/>
+			<default>0,0,0</default>
+		</property>
+		<property type="enum:CubeMode">
+			<name>stdMatEnvCubeMode</name>
+			<help/>
+			<default>0</default>
+		</property>
+		<property type="float">
+			<name>stdMatEnvCubeBlurFactor</name>
+			<help/>
+			<default>0.000000</default>
+		</property>
+		<property type="bool">
+			<name>stdMatEnvCubeLockedToCamera</name>
+			<help/>
+			<default>0</default>
+		</property>
+		<property type="string">
+			<name>stdMatEnvCubeTextureName</name>
+			<help>Name of the Environment CubeMap textur (without _txtr-Extension)</help>
+			<default/>
+		</property>
+	</category>
+	
+	<category name="Texture Coord Animation">
+		<property type="enum:AnimMode">
+			<name>stdMatTextureCoordAnimMode</name>
+			<help>If the parameter exists, it's usually "tile".</help>
+			<default>0</default>
+		</property>
+		<property type="string">
+			<name>stdMatTextureCoordAnimNumTiles</name>
+			<help>n &gt; 1.0</help>
+			<default>1.000000,1.000000</default>
+			<min>1</min>
+		</property>
+		<property type="string">
+			<name>stdMatTextureCoordTfAnimScaleStartEnd</name>
+			<help>0 &lt; n &lt; 1.0</help>
+			<default>0.000000,1.000000</default>
+			<min>0</min>
+			<max>1</max>
+		</property>
+		<property type="float">
+			<name>stdMatTextureCoordTfAnimRotSpeed</name>
+			<help>n &gt; 0 </help>
+			<default>0.000000</default>
+			<min>0</min>			
+		</property>
+		<property type="string">
+			<name>stdMatTextureCoordTfAnimOrigin</name>
+			<help>0 &lt; n &lt; 0.5</help>
+			<default>0.500000,0.500000</default>
+			<min>0</min>
+			<max>0.5</max>
+		</property>
+		<property type="string">
+			<name>stdMatTextureCoordTfAnimTransEnd</name>
+			<help>0 &lt; n &lt; 1.0</help>
+			<default>0.000000,0.000000</default>
+			<min>0</min>
+			<max>1</max>
+		</property>
+		<property type="float">
+			<name>stdMatTextureCoordTfAnimTransStartY</name>
+			<help>No other known Values (0 &lt; n &lt; 1.0)</help>
+			<default>0.000000</default>
+			<min>0</min>
+			<max>1</max>
+		</property>
+		<property type="string">
+			<name>stdMatTextureCoordTfAnimRotStartEnd</name>
+			<help>0 &lt; n &lt; 1.0</help>
+			<default>0.000000,0.000000</default>
+			<min>0</min>
+			<max>1</max>
+		</property>
+		<property type="float">
+			<name>stdMatTextureCoordTfAnimTransSpeed</name>
+			<help>n &gt; 0 </help>
+			<default>0.000000</default>
+			<min>0</min>	
+		</property>
+		<property type="enum:WaveForm">
+			<name>stdMatTextureCoordTfAnimScaleWaveform</name>
+			<help/>
+			<default>0</default>
+		</property>
+		<property type="enum:WaveForm">
+			<name>stdMatTextureCoordTfAnimTransWaveform</name>
+			<help/>
+			<default>0</default>
+		</property>
+		<property type="float">
+			<name>stdMatTextureCoordTfAnimScaleSpeed</name>
+			<help>n &gt; 0 </help>
+			<default>0.000000</default>
+			<min>0</min>	
+		</property>
+		<property type="string">
+			<name>stdMatTextureCoordTfAnimTransStart</name>
+			<help>No other known Values (0 &lt; n &lt; 1.0)</help>
+			<default>0.000000,0.000000</default>
+			<min>0</min>
+			<max>1</max>
+		</property>
+		<property type="enum:WaveForm">
+			<name>stdMatTextureCoordTfAnimRotWaveform</name>
+			<help/>
+			<default>0</default>
+		</property>
+		<property type="float">
+			<name>stdMatTextureCoordTileAnimSpeed</name>
+			<help>n &gt; 0</help>
+			<default>0.000000</default>
+			<min>0</min>
+		</property>
+	</category>
+	<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		here is a list of uncategorized Properties, yes the "Unknown Sim Stuff"
+		category is also uncategorized :)
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<category name="Unknown Sim Stuff">
+    <property type="string">
+        <name>lightMapTint</name>
+        <help></help>
+        <default>(1.0, 1.0, 1.0)</default>
+    </property>
+
+    <property type="string">
+        <name>cafOverlay4</name>
+        <help></help>
+        <default>f2780e00-c290-4ba2-a9fd-064823c1f6c4,</default>
+    </property>
+
+    <property type="string">
+        <name>cafOverlay6</name>
+        <help></help>
+        <default>8b3f2678-ff69-4692-9a3e-6b48ef378f5b,</default>
+    </property>
+
+    <property type="string">
+        <name>textureCoordSet</name>
+        <help></help>
+        <default>1</default>
+    </property>
+
+    <property type="string">
+        <name>includeLightMap</name>
+        <help></help>
+        <default>1</default>
+    </property>
+
+    <property type="string">
+        <name>page</name>
+        <help></help>
+        <default>1</default>
+    </property>
+
+    <property type="string">
+        <name>kRemoveFromSegmentWhenUnused</name>
+        <help></help>
+        <default>true</default>
+    </property>
+
+    <property type="string">
+        <name>baseTexture4</name>
+        <help></help>
+        <default>uuface-eyelinerlight</default>
+    </property>
+
+    <property type="string">
+        <name>baseTexture6</name>
+        <help></help>
+        <default>uuface-browbushy-blond</default>
+    </property>
+
+    <property type="string">
+        <name>id</name>
+        <help></help>
+        <default></default>
+    </property>
+
+    <property type="string">
+        <name>includeCanvas</name>
+        <help></help>
+        <default>0</default>
+    </property>
+
+    <property type="string">
+        <name>baseTexture5</name>
+        <help></help>
+        <default>uuface-browtweased-grey</default>
+    </property>
+
+    <property type="string">
+        <name>cafOverlay5</name>
+        <help></help>
+        <default>f2780e00-c290-4ba2-a9fd-064823c1f6c4,</default>
+    </property>
+
+</category>
+	<property type="float">
+		<name>rampAddEnvironmentMap</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="float">
+		<name>steamLayer1RotationSpeed</name>
+		<help/>
+		<default>0.020000</default>
+	</property>
+	<property type="string">
+		<name>wmXWaveHeight</name>
+		<help/>
+		<default>0.100000</default>
+	</property>
+	<property type="string">
+		<name>wmRefractionTexture</name>
+		<help/>
+		<default>reflectionoutdoorwater-envcube</default>
+	</property>
+	<property type="string">
+		<name>csEdgeOffset</name>
+		<help/>
+		<default>0.300000</default>
+	</property>
+	<property type="string">
+		<name>csOutlineAlpha</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>forceHighQualitySkinning</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>steamLayer2RotationY</name>
+		<help/>
+		<default>0.500000</default>
+	</property>
+	<property type="string">
+		<name>steamLayer2RotationX</name>
+		<help/>
+		<default>0.500000</default>
+	</property>
+	<property type="string">
+		<name>rampEdgeOffset</name>
+		<help/>
+		<default>0.000000</default>
+	</property>
+	<property type="string">
+		<name>rampRampTexture</name>
+		<help/>
+		<default>blackwhite</default>
+	</property>
+	<property type="string">
+		<name>resFactor</name>
+		<help/>
+		<default>16</default>
+	</property>
+	<property type="string">
+		<name>blurFactor</name>
+		<help/>
+		<default>0.000000</default>
+	</property>
+	<property type="string">
+		<name>csEnvironmentMapTint</name>
+		<help/>
+		<default>1.000000,1.000000,1.000000</default>
+	</property>
+	
+	<property type="string">
+		<name>csOutlineColorY</name>
+		<help/>
+		<default>0.200000</default>
+	</property>
+	<property type="string">
+		<name>rampSpecTintColor</name>
+		<help/>
+		<default>1.000000,1.000000,1.000000</default>
+	</property>
+	<property type="string">
+		<name>rampOutlineWidth</name>
+		<help/>
+		<default>0.010000</default>
+	</property>
+	<property type="string">
+		<name>cafOverlay0</name>
+		<help/>
+		<default>439e069c-0b17-4d85-8272-47cbf3facce7,</default>
+	</property>
+	<property type="string">
+		<name>cafOverlay2</name>
+		<help/>
+		<default>56e7e0ec-1280-4e1b-aaf2-4fd64b66d14b,</default>
+	</property>
+	<property type="string">
+		<name>cafOverlay3</name>
+		<help/>
+		<default>5c692e7c-c618-41b6-ab8d-679c3be64981,</default>
+	</property>
+	
+	<property type="string">
+		<name>rampSpecTintColorZ</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+
+	<property type="string">
+		<name>steamLayer2RotationSpeed</name>
+		<help/>
+		<default>0.020000</default>
+	</property>
+	<property type="string">
+		<name>rampEdgeRampTextureAlphaInvert</name>
+		<help/>
+		<default>1</default>
+	</property>
+	<property type="string">
+		<name>rampEnvironmentMapTexture</name>
+		<help/>
+		<default>reflectionoutdoorwater-envcube</default>
+	</property>
+	<property type="string">
+		<name>resolution</name>
+		<help/>
+		<default>256</default>
+	</property>
+	<property type="string">
+		<name>rampRouteColorFromAlpha</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>baseTexture2</name>
+		<help/>
+		<default>uuface-lip-faintred</default>
+	</property>
+	
+	<property type="string">
+		<name>wmYWaveHeight</name>
+		<help/>
+		<default>0.200000</default>
+	</property>
+	<property type="string">
+		<name>rampEnvironmentMapCameraRelative</name>
+		<help/>
+		<default>0</default>
+	</property>
+	
+	<property type="string">
+		<name>rampSpecRampTexture</name>
+		<help/>
+		<default>blackwhite</default>
+	</property>
+	
+	<property type="string">
+		<name>csColorFilter</name>
+		<help/>
+		<default>point</default>
+	</property>
+	<property type="string">
+		<name>csSpecRampTexture</name>
+		<help/>
+		<default>blackwhite</default>
+	</property>
+	
+
+	<property type="string">
+		<name>csRouteColorFromAlpha</name>
+		<help/>
+		<default>1</default>
+	</property>
+	
+
+	<property type="string">
+		<name>wmYRepeat</name>
+		<help/>
+		<default>1.800000</default>
+	</property>
+	<property type="string">
+		<name>floorMaterialScaleV</name>
+		<help/>
+		<default>2.000000</default>
+	</property>
+	<property type="string">
+		<name>rampColorFilter</name>
+		<help/>
+		<default>point</default>
+	</property>
+	<property type="string">
+		<name>rampRouteColorFromTexture</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>reflectivity</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>csAddEdge</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>csParticleMode</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>rampEdgeFilter</name>
+		<help/>
+		<default>point</default>
+	</property>
+	<property type="string">
+		<name>rampAddSpecular</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>bumpMultiplier</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>csEnvironmentMapTintZ</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>csOutlineColorX</name>
+		<help/>
+		<default>0.200000</default>
+	</property>
+	<property type="string">
+		<name>csEdgeLightDamping</name>
+		<help/>
+		<default>0.000000</default>
+	</property>
+	<property type="string">
+		<name>csShininess</name>
+		<help/>
+		<default>100.000000</default>
+	</property>
+	<property type="string">
+		<name>rampOutlineColor</name>
+		<help/>
+		<default>1.000000,0.300000,0.000000</default>
+	</property>
+	<property type="string">
+		<name>rampEnvironmentMapTint</name>
+		<help/>
+		<default>1.000000,1.000000,1.000000</default>
+	</property>
+	<property type="string">
+		<name>rampOutlineColorZ</name>
+		<help/>
+		<default>0.000000</default>
+	</property>
+	<property type="string">
+		<name>tileCountU</name>
+		<help/>
+		<default>9</default>
+	</property>
+	<property type="string">
+		<name>csShadeFilter</name>
+		<help/>
+		<default>point</default>
+	</property>
+	<property type="string">
+		<name>tileCountV</name>
+		<help/>
+		<default>9</default>
+	</property>
+	<property type="string">
+		<name>mirrorWallMask</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>rampEnvironmentMapStrength</name>
+		<help/>
+		<default>0.400000</default>
+	</property>
+	<property type="string">
+		<name>csUseCameraLight</name>
+		<help/>
+		<default>1</default>
+	</property>
+			
+	<property type="string">
+		<name>wallpaperTakesCutouts</name>
+		<help/>
+		<default>1</default>
+	</property>
+	<property type="string">
+		<name>notes</name>
+		<help/>
+		<default/>
+	</property>
+	<property type="string">
+		<name>rampEdgeLightDamping</name>
+		<help/>
+		<default>0.000000</default>
+	</property>
+	<property type="string">
+		<name>csEnvironmentMapCameraRelative</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>model</name>
+		<help/>
+		<default>0.000000</default>
+	</property>
+	<property type="string">
+		<name>tsNoShadow</name>
+		<help/>
+		<default>0</default>
+	</property>	
+	<property type="string">
+		<name>wmRefractionEnabled</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>csMatLayer</name>
+		<help/>
+		<default>23</default>
+	</property>
+	<property type="string">
+		<name>floorMaterialScaleU</name>
+		<help/>
+		<default>2.000000</default>
+	</property>
+	<property type="string">
+		<name>waterSpeed</name>
+		<help/>
+		<default>0.750000</default>
+	</property>
+	<property type="string">
+		<name>rampSpecTintAmount</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>shaderNotifyString</name>
+		<help/>
+		<default>teachToWalkBoots</default>
+	</property>
+	<property type="string">
+		<name>csAddSpecular</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>tsMirrorWallMask</name>
+		<help/>
+		<default>1</default>
+	</property>
+	<property type="string">
+		<name>floorCausticsPass</name>
+		<help/>
+		<default>1</default>
+	</property>
+	
+	
+	<property type="string">
+		<name>rampSpecTintColorY</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>rampSpecTintColorX</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>numTexturesToComposite</name>
+		<help/>
+		<default>2</default>
+	</property>
+	
+	<property type="string">
+		<name>tsCausticsPass</name>
+		<help/>
+		<default>1</default>
+	</property>
+	<property type="string">
+		<name>csEnvironmentMapStrength</name>
+		<help/>
+		<default>0.400000</default>
+	</property>
+	<property type="string">
+		<name>wmTransparency</name>
+		<help/>
+		<default>0.500000</default>
+	</property>
+	<property type="string">
+		<name>rampAddOutline</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>neighborhoodMaterialScaleU</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>csEdgeRampTextureAlphaInvert</name>
+		<help/>
+		<default>1</default>
+	</property>
+	<property type="string">
+		<name>rampShininess</name>
+		<help/>
+		<default>100.000000</default>
+	</property>
+	<property type="string">
+		<name>rampShadeFilter</name>
+		<help/>
+		<default>bilinear</default>
+	</property>
+	<property type="string">
+		<name>steamLayer1Rotation</name>
+		<help/>
+		<default>0.500000,0.500000</default>
+	</property>
+	<property type="string">
+		<name>reflectStrength</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>csEnvironmentMapTexture</name>
+		<help/>
+		<default>reflectionoutdoorwater-envcube</default>
+	</property>
+	<property type="string">
+		<name>wmXRepeat</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>csEnvironmentMapTintX</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>csEnvironmentMapTintY</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>rampOutlineAlpha</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>csRampTexture</name>
+		<help/>
+		<default>firstHomeLtBlue-ramp</default>
+	</property>
+	<property type="string">
+		<name>rampAddEdge</name>
+		<help/>
+		<default>0</default>
+	</property>
+	
+	
+	<property type="string">
+		<name>csOutlineWidth</name>
+		<help/>
+		<default>0.004000</default>
+	</property>
+	<property type="string">
+		<name>neighborhoodMaterialScaleV</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>playSpeed</name>
+		<help/>
+		<default>5</default>
+	</property>
+	<property type="string">
+		<name>wmXSpeed</name>
+		<help/>
+		<default>3.000000</default>
+	</property>
+	<property type="string">
+		<name>paramAge</name>
+		<help/>
+		<default>4</default>
+	</property>
+	<property type="string">
+		<name>rampEdgeRampTexture</name>
+		<help/>
+		<default>blackwhite</default>
+	</property>
+	<property type="string">
+		<name>rampEnvironmentMapTintZ</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>rampEnvironmentMapTintX</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>rampEnvironmentMapTintY</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	
+	<property type="string">
+		<name>csAddEnvironmentMap</name>
+		<help/>
+		<default>0</default>
+	</property>
+
+	<property type="string">
+		<name>csAddOutline</name>
+		<help/>
+		<default>1</default>
+	</property>
+	
+	
+
+	
+		<property type="string">
+		<name>paramGender</name>
+		<help/>
+		<default>0</default>
+	</property>
+	<property type="string">
+		<name>wmReflectionTexture</name>
+		<help/>
+		<default>reflectionoutdoorwater-envcube</default>
+	</property>
+	<property type="string">
+		<name>csOutlineColor</name>
+		<help/>
+		<default>0.200000,0.200000,0.200000</default>
+	</property>
+	<property type="string">
+		<name>csEdgeRampTexture</name>
+		<help/>
+		<default>blackwhite</default>
+	</property>
+	<property type="string">
+		<name>csEdgeFilter</name>
+		<help/>
+		<default>point</default>
+	</property>
+	<property type="string">
+		<name>rampOutlineColorY</name>
+		<help/>
+		<default>0.300000</default>
+	</property>
+	<property type="string">
+		<name>rampOutlineColorX</name>
+		<help/>
+		<default>1.000000</default>
+	</property>
+	<property type="string">
+		<name>csOutlineColorZ</name>
+		<help/>
+		<default>0.200000</default>
+	</property>
+	<property type="string">
+		<name>baseTexture0</name>
+		<help/>
+		<default>emface-s1</default>
+	</property>
+	<property type="string">
+		<name>baseTexture1</name>
+		<help/>
+		<default>uuface-eye-dkblue</default>
+	</property>
+	<property type="string">
+		<name>cafOverlay1</name>
+		<help/>
+		<default>2d6839c5-0b7c-48a1-9c55-4bd9cc873b0f,</default>
+	</property>
+	<property type="string">
+		<name>baseTexture3</name>
+		<help/>
+		<default>uuface-browtweased-black</default>
+	</property>
+	<property type="string">
+		<name>wmYSpeed</name>
+		<help/>
+		<default>5.000000</default>
+	</property>
+	<property type="string">
+		<name>alphaRefValue</name>
+		<help/>
+		<default>128</default>
+	</property>
+</properties>

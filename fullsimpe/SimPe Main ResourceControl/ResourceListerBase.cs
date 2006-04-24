@@ -146,8 +146,12 @@ namespace SimPe
 			}	
  
 			TimeSpan dur = DateTime.Now-start;
-			lv.ListViewItemSorter = cmp;
+            lv.Invoke(new System.EventHandler(SetSorter), new object[] {cmp, null});
 		}
+
+        void SetSorter(object sender, System.EventArgs e){
+            lv.ListViewItemSorter = sender as IComparer;
+        }
 
 		ManualResetEvent run;
 		protected ManualResetEvent Running

@@ -340,7 +340,7 @@ namespace SimPe.Packages
 		/// <returns>All the Packages the user has selected</returns>
 		public S2CPDescriptor[] Execute(S2CPDescriptor[] files, SelectionMode selmode)
 		{
-			this.extension = extension;
+			this.extension = false;
 			ok = false;
 
 			for (int i=0; i<files.Length; i++) lblist.Items.Add(files[i]);

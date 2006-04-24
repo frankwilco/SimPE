@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2005 rel. 3 U bearbeitet (http://www.altova.com) von F. Bauer (Privat) -->
+<!-- Mit XMLSpy v2005 rel. 3 U bearbeitet (http://www.altova.com) von F. Bauer (Privat) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="idType">
+		<xs:restriction base="xs:ID">
+			<xs:pattern value="[0-9a-fA-F]{1,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="tgi">
+		<xs:annotation>
+			<xs:documentation>Container for all Type Definitions</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="type" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="name"/>
+							<xs:element name="shortname"/>
+							<xs:element name="extension" minOccurs="0"/>
+							<xs:element name="known" minOccurs="0"/>
+							<xs:element name="embeddedfilename" minOccurs="0"/>
+						</xs:sequence>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="idType">
+									<xs:whiteSpace value="collapse"/>
+									<xs:maxLength value="8"/>
+									<xs:minLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

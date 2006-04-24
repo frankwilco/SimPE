@@ -1,0 +1,7 @@
+This Setup will install some Templates for the SimPE PhotoStudio.
+
+Most of the templates were not created by me, they were created by Deedee, Pinhead, Galcier1701 and Havelock.
+
+For the "Photo Studio" to work correct, you also need to install the Colour Options Enabler Package (http://sims.ambertation.de/cep.shtml).
+
+In order to get better Result for the Texture Compression in the PhotoStudio, you should install teh "Nvidia DDS utilities" (http://developer.nvidia.com/object/nv_texture_tools.html) and set up the Path to it in the Extra->Options Window.

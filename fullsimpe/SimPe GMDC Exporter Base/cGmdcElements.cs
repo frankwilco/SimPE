@@ -294,9 +294,12 @@ namespace SimPe.Plugin.Gmdc
 		public int Value 
 		{
 			get {
-				return (int)Data[0];
+				return val;//(int)Data[0];
 			}
-			set {Data[0] = (float)value;}
+			set {
+				Data[0] = (float)value;
+				val = value;
+			}
 		}
 
 		/// <summary>
@@ -340,13 +343,15 @@ namespace SimPe.Plugin.Gmdc
 
 		internal override void Serialize(BinaryWriter writer)
 		{
-			writer.Write((int)Data[0]);
+			//writer.Write((int)Data[0]);
+			writer.Write(val);
 		}
 
+		int val;
 		internal override void Unserialize(BinaryReader reader)
 		{
-			int i = reader.ReadInt32();
-			Data[0] = (float)i;
+			val = reader.ReadInt32();
+			Data[0] = (float)val;
 		}
 
 		/// <summary>
@@ -461,9 +466,10 @@ namespace SimPe.Plugin.Gmdc
 		/// <returns>A class Instance</returns>
 		/// <remarks>The Type of the instance is determined using the SubType</remarks>
 		public GmdcElementValueBase GetValueInstance()
-		{
+		{			
 			switch (blockformat) 
 			{
+					
 				case BlockFormat.OneDword :
 					return new Gmdc.GmdcElementValueOneInt();
 				case BlockFormat.OneFloat:
@@ -484,7 +490,8 @@ namespace SimPe.Plugin.Gmdc
 		public  void Unserialize(System.IO.BinaryReader reader)
 		{
 			number = reader.ReadInt32();
-			identity = (ElementIdentity)reader.ReadInt32();
+			uint id = reader.ReadUInt32();
+			identity = (ElementIdentity)id;
 			repeat = reader.ReadInt32();
 			blockformat = (SimPe.Plugin.Gmdc.BlockFormat)reader.ReadInt32();
 			setformat = (SimPe.Plugin.Gmdc.SetFormat)reader.ReadInt32();
@@ -493,7 +500,7 @@ namespace SimPe.Plugin.Gmdc
 			int len = reader.ReadInt32() / (4 * dummy.Size);
 			data.Clear();
 			for (int i=0; i<len; i++) 
-			{
+			{				
 				dummy = GetValueInstance();
 				dummy.Unserialize(reader);
 				data.Add(dummy);

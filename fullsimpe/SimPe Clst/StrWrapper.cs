@@ -235,7 +235,7 @@ namespace SimPe.PackedFiles.Wrapper
 			StrItemList fallback = null;	
 			if (this.Languages.Contains(Data.MetaData.Languages.English))
 				fallback = LanguageItems(Data.MetaData.Languages.English);	
-			else if (this.Languages.Count>0)
+			else if (this.Languages.Count==1)
 			{
 				fallback = LanguageItems(Languages[0]);	
 			}

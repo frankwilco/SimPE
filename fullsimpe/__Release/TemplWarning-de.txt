@@ -1,0 +1,7 @@
+Diese Setup installiert einige Vorlagen für das SimPE PhotoStudio.
+
+Die meisten enthaltenen Vorlagen wurden nicht dvon mir erstellt, sondern von Deedee Pinhead, Glacier1701 und >Havelock.
+
+Damit das "Photo Studio" korrekt funktionieren, muss zusätzlich das Colour Options Enabler Packet (http://sims.ambertation.de/cep.shtml) installiert werden.
+
+Um optimale Ergebnisse beim erstellen der Photos zu erreichen, wird empfohlen die "Nvidia DDS utilities" (http://developer.nvidia.com/object/nv_texture_tools.html) zu instalieren, und anschließende dessen Pfade in Extra->Optionen... Dialog zu setzten.

@@ -58,10 +58,28 @@ namespace SimPe.Plugin
 
 		#region IToolFactory Member
 
+        delegate void LoadDocksHandler(System.Collections.ArrayList docks);
+        void InvokeLoadDocks(System.Collections.ArrayList docks)
+        {
+            docks.Add(new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool());
+            docks.Add(new SimPe.Plugin.Tool.Dockable.PackageDetailDockTool());
+            if (Helper.WindowsRegistry.HiddenMode) docks.Add(new SimPe.Plugin.Tool.Action.ActionEnableFenceInOriginalGame());
+            docks.Add(new SimPe.Plugin.Tool.ObjectsTool());
+            docks.Add(new SimPe.Plugin.Tool.Window.PackageRepairTool());            
+        }
+
 		public IToolPlugin[] KnownTools
 		{
 			get
 			{
+                if (Last != null) return Last;
+                System.Collections.ArrayList list = new System.Collections.ArrayList();
+                InvokeLoadDocks(list);
+
+                Last = new IToolPlugin[list.Count];
+                list.CopyTo(Last);
+                return Last;
+
 				if (Helper.WindowsRegistry.HiddenMode) 
 				{
 					Last = new IToolPlugin[]{

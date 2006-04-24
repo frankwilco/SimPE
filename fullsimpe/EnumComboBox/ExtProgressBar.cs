@@ -587,7 +587,7 @@ namespace Ambertation.Windows.Forms
 		{
 			if (tw==val) return;
 			tw = Math.Max(4, val);
-			tc =  Math.Max(2, (int)Math.Floor((Width-1) / (tw+2))); 	
+			tc =  Math.Max(2, (int)Math.Floor((double)((Width-1) / (tw+2)))); 	
 			CompleteRedraw();	
 			Invalidate();
 		}

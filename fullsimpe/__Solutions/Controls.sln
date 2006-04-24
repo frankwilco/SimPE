@@ -1,0 +1,54 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumComboBox", "..\EnumComboBox\EnumComboBox.csproj", "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphControl", "..\GraphControl\GraphControl.csproj", "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewHexEdit", "..\HexEdit\NewHexEdit.csproj", "{57FB03C0-014D-4347-BF66-16E62ECA1EFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGA_View", "..\TGA_View\TGA_View.csproj", "{320E7C5E-60E6-4069-9852-D296DB688F5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimsGUID", "..\SimsGUID\SimsGUID.csproj", "{8A2A1FCD-F166-4AE8-A87A-7424215C93AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release MAC|Any CPU = Release MAC|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C663721-B4E3-43F7-A39F-9E6060FA5433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release MAC|Any CPU.ActiveCfg = Release Mac|Any CPU
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release MAC|Any CPU.Build.0 = Release Mac|Any CPU
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320E7C5E-60E6-4069-9852-D296DB688F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320E7C5E-60E6-4069-9852-D296DB688F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320E7C5E-60E6-4069-9852-D296DB688F5D}.Release MAC|Any CPU.ActiveCfg = Release MAC|Any CPU
+		{320E7C5E-60E6-4069-9852-D296DB688F5D}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
+		{320E7C5E-60E6-4069-9852-D296DB688F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320E7C5E-60E6-4069-9852-D296DB688F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A2A1FCD-F166-4AE8-A87A-7424215C93AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A2A1FCD-F166-4AE8-A87A-7424215C93AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A2A1FCD-F166-4AE8-A87A-7424215C93AF}.Release MAC|Any CPU.ActiveCfg = Release MAC|Any CPU
+		{8A2A1FCD-F166-4AE8-A87A-7424215C93AF}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
+		{8A2A1FCD-F166-4AE8-A87A-7424215C93AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A2A1FCD-F166-4AE8-A87A-7424215C93AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

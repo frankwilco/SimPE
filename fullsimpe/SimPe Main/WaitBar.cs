@@ -132,9 +132,9 @@ namespace SimPe
 			{
 				if (value!=f.lbOp.Text) 
 				{	
-					//f.lbOp.Invoke(new SetStuff(SetMessage), new object[] { " "+value });
-					f.lbOp.Text = " "+value;
-					f.lbOp.Refresh();
+					f.lbOp.Invoke(new SetStuff(SetMessage), new object[] { " "+value });
+					//f.lbOp.Text = " "+value;
+					//f.lbOp.Refresh();
 					//Application.DoEvents();
 				}
 			}
@@ -161,9 +161,9 @@ namespace SimPe
 			{
 				if (value!=f.pb.Value) 
 				{	
-					SetProgress(value);
+					//SetProgress(value);
 					//f.pb.Value = value;
-					//f.pb.Invoke(new SetStuff(SetProgress), new object[] { value });
+					f.pb.Invoke(new SetStuff(SetProgress), new object[] { value });
 				}
 			}
 		}
@@ -176,8 +176,8 @@ namespace SimPe
 				if (value!=f.pb.Maximum)
 				{
 					f.Invoke(new ShowStuff(ShowProgress), new object[] {true});
-					//f.pb.Invoke(new SetStuff(SetMaxProgress), new object[] { value });
-					f.pb.Maximum = value;
+					f.pb.Invoke(new SetStuff(SetMaxProgress), new object[] { value });
+					//f.pb.Maximum = value;
 				}
 			}
 		}

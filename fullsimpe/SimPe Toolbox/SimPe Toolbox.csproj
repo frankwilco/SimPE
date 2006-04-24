@@ -1,562 +1,362 @@
-<VisualStudioProject>
-    <CSHARP
-        ProjectType = "Local"
-        ProductVersion = "7.10.3077"
-        SchemaVersion = "2.0"
-        ProjectGuid = "{4B573801-C012-4C34-88A8-3D4CE694C905}"
-    >
-        <Build>
-            <Settings
-                ApplicationIcon = ""
-                AssemblyKeyContainerName = ""
-                AssemblyName = "simpe.toolbox.plugin"
-                AssemblyOriginatorKeyFile = ""
-                DefaultClientScript = "JScript"
-                DefaultHTMLPageLayout = "Grid"
-                DefaultTargetSchema = "IE50"
-                DelaySign = "false"
-                OutputType = "Library"
-                PreBuildEvent = ""
-                PostBuildEvent = 'if not exist "$(SolutionDir)$(OutDir)Plugins\" mkdir "$(SolutionDir)$(OutDir)Plugins\"&#xd;&#xa;if not exist "$(SolutionDir)$(OutDir)Plugins\de\" mkdir "$(SolutionDir)$(OutDir)Plugins\de\"&#xd;&#xa;if not exist "$(SolutionDir)$(OutDir)Plugins\es\" mkdir "$(SolutionDir)$(OutDir)Plugins\es\"&#xd;&#xa;if not exist "$(SolutionDir)$(OutDir)Plugins\pl\" mkdir "$(SolutionDir)$(OutDir)Plugins\pl\"&#xd;&#xa;copy "$(TargetPath)" "$(SolutionDir)$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)$(OutDir)Plugins\"&#xd;&#xa;copy "$(TargetDir)de\*.dll" "$(SolutionDir)$(OutDir)de\"&#xd;&#xa;copy "$(TargetDir)pl\*.dll" "$(SolutionDir)$(OutDir)pl\"&#xd;&#xa;copy "$(TargetDir)es\*.dll" "$(SolutionDir)$(OutDir)es\" '
-                RootNamespace = "SimPe.Plugin"
-                RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = ""
-            >
-                <Config
-                    Name = "Debug"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "true"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Debug\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Debug Txtr"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "true"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Debug\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release PLJ"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release MAC"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release (QA)"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = ""
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-            </Settings>
-            <References>
-                <Reference
-                    Name = "System"
-                    AssemblyName = "System"
-                    HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
-                />
-                <Reference
-                    Name = "System.Data"
-                    AssemblyName = "System.Data"
-                    HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
-                />
-                <Reference
-                    Name = "System.Drawing"
-                    AssemblyName = "System.Drawing"
-                    HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
-                />
-                <Reference
-                    Name = "System.Windows.Forms"
-                    AssemblyName = "System.Windows.Forms"
-                    HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
-                />
-                <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
-                />
-                <Reference
-                    Name = "SimPe HandlerCommon"
-                    Project = "{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Helper"
-                    Project = "{59E3C353-1350-42D8-A045-CBBAD232F228}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Interfaces"
-                    Project = "{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Packages"
-                    Project = "{1C6C45BF-FE19-4C23-B327-01F45B0F269C}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe FileHandlers"
-                    Project = "{97551C0A-6295-4E32-8E15-A4FF456E65A6}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe 3IDR"
-                    Project = "{37D97490-DC9F-4DB7-9215-998C6BC06078}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Clst"
-                    Project = "{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe RCOL"
-                    Project = "{74517907-2236-4C45-80ED-E188D5E5CE0E}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Scenegraph"
-                    Project = "{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Commandline"
-                    Project = "{0D63B13E-F41B-456C-92D0-C0BB3FE8744F}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Extended Filehandlers"
-                    Project = "{7EF7C30C-2968-46E8-AA74-79EDB0FE8F2A}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Cache"
-                    Project = "{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "Skybound.VisualStyles"
-                    AssemblyName = "Skybound.VisualStyles"
-                    HintPath = "..\Skybound.VisualStyles.dll"
-                />
-                <Reference
-                    Name = "SimPe Workspace Helper"
-                    Project = "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Toolbox Workshops"
-                    Project = "{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe HGBH"
-                    Project = "{2A67C9C3-9577-4922-991F-291EAA6B4F2D}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Sims"
-                    Project = "{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe BHAV"
-                    Project = "{6AA664E9-B45F-4D61-9B9F-E68341C16473}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-            </References>
-        </Build>
-        <Files>
-            <Include>
-                <File
-                    RelPath = "3d.simpe"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "ActionBuildNameMap.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ActionGlobalFixTGI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "bin.simpe"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "camera.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "contents.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "createpackage.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "custom.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Factory.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "FixTool.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Hash.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Hash.resx"
-                    DependentUpon = "Hash.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "HashTool.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "mmat.simpe"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "neighboorhood.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Neighborhood.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Neighborhood.de.resx"
-                    DependentUpon = "Neighborhood.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Neighborhood.pl.resx"
-                    DependentUpon = "Neighborhood.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Neighborhood.resx"
-                    DependentUpon = "Neighborhood.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "NeighborhoodTool.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Network.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "NgbBackup.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "NgbBackup.de.resx"
-                    DependentUpon = "NgbBackup.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "NgbBackup.es.resx"
-                    DependentUpon = "NgbBackup.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "NgbBackup.pl.resx"
-                    DependentUpon = "NgbBackup.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "NgbBackup.resx"
-                    DependentUpon = "NgbBackup.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "nothumb.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "ObjectCacheFile.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PhotoStudio.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PhotoStudio.de.resx"
-                    DependentUpon = "PhotoStudio.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "PhotoStudio.pl.resx"
-                    DependentUpon = "PhotoStudio.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "PhotoStudio.resx"
-                    DependentUpon = "PhotoStudio.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "PhotoStudioTemplate.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PhotoStudioTool.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PlasticSurgery.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "readonlyevent.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Search.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Search.resx"
-                    DependentUpon = "Search.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "SearchItem.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "SearchTool.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "simbrowser.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Sims.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Sims.de.resx"
-                    DependentUpon = "Sims.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Sims.pl.resx"
-                    DependentUpon = "Sims.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Sims.resx"
-                    DependentUpon = "Sims.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "SimsRegistry.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "SimsTool.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "SkinWorkshop.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "SkinWorkshop.resx"
-                    DependentUpon = "SkinWorkshop.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "SkinWorkshopTool.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "subitems.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Surgery.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Surgery.de.resx"
-                    DependentUpon = "Surgery.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Surgery.es.resx"
-                    DependentUpon = "Surgery.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Surgery.pl.resx"
-                    DependentUpon = "Surgery.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Surgery.resx"
-                    DependentUpon = "Surgery.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "SurgeryTool.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Workshop.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Workshop.resx"
-                    DependentUpon = "Workshop.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "WorkshopTool.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-            </Include>
-        </Files>
-    </CSHARP>
-</VisualStudioProject>
-
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4B573801-C012-4C34-88A8-3D4CE694C905}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>simpe.toolbox.plugin</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SimPe.Plugin</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release MAC|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="simpe.3idr, Version=1.0.2305.30297, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.3idr.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.bhav.plugin, Version=1.0.2305.30675, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\Plugins\simpe.bhav.plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.cache, Version=1.0.2305.30292, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.cache.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.clst, Version=1.0.2305.30291, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.clst.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.commandline, Version=1.0.2305.30299, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.commandline.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.commonhandler, Version=1.0.2305.30291, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.commonhandler.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.extfilehandler, Version=1.0.2305.30296, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.extfilehandler.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.filehandler, Version=1.0.2305.30295, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.filehandler.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.helper, Version=0.59.0.30250, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.helper.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.interfaces, Version=1.0.2305.30290, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.ngbh.plugin, Version=1.0.2305.31166, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\Plugins\simpe.ngbh.plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.package, Version=1.0.2305.30291, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.package.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.rcol, Version=1.0.2305.30294, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.rcol.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.scenegraph, Version=1.0.2305.30299, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.scenegraph.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.sims, Version=1.0.2305.30301, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.sims.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.workspace, Version=1.0.2305.30293, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.workspace.dll</HintPath>
+    </Reference>
+    <Reference Include="Skybound.VisualStyles">
+      <Name>Skybound.VisualStyles</Name>
+      <HintPath>..\Skybound.VisualStyles.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\SimPe Toolbox Workshops\SimPe Toolbox Workshops.csproj">
+      <Name>SimPe Toolbox Workshops</Name>
+      <Project>{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="3d.simpe" />
+    <EmbeddedResource Include="bin.simpe" />
+    <EmbeddedResource Include="camera.png" />
+    <EmbeddedResource Include="contents.png" />
+    <EmbeddedResource Include="createpackage.png" />
+    <EmbeddedResource Include="custom.png" />
+    <EmbeddedResource Include="Hash.resx">
+      <DependentUpon>Hash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mmat.simpe" />
+    <EmbeddedResource Include="neighboorhood.png" />
+    <EmbeddedResource Include="Neighborhood.de.resx">
+      <DependentUpon>Neighborhood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neighborhood.pl.resx">
+      <DependentUpon>Neighborhood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neighborhood.resx">
+      <DependentUpon>Neighborhood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Network.png" />
+    <EmbeddedResource Include="NgbBackup.de.resx">
+      <DependentUpon>NgbBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NgbBackup.es.resx">
+      <DependentUpon>NgbBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NgbBackup.pl.resx">
+      <DependentUpon>NgbBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NgbBackup.resx">
+      <DependentUpon>NgbBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="nothumb.png" />
+    <EmbeddedResource Include="PhotoStudio.de.resx">
+      <DependentUpon>PhotoStudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhotoStudio.pl.resx">
+      <DependentUpon>PhotoStudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhotoStudio.resx">
+      <DependentUpon>PhotoStudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="readonlyevent.png" />
+    <EmbeddedResource Include="Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="simbrowser.png" />
+    <EmbeddedResource Include="Sims.de.resx">
+      <DependentUpon>Sims.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sims.pl.resx">
+      <DependentUpon>Sims.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sims.resx">
+      <DependentUpon>Sims.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkinWorkshop.resx">
+      <DependentUpon>SkinWorkshop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="subitems.png" />
+    <EmbeddedResource Include="Surgery.de.resx">
+      <DependentUpon>Surgery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery.es.resx">
+      <DependentUpon>Surgery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery.pl.resx">
+      <DependentUpon>Surgery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery.resx">
+      <DependentUpon>Surgery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Workshop.resx">
+      <DependentUpon>Workshop.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="ActionBuildNameMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ActionGlobalFixTGI.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Factory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FixTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HashTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Neighborhood.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NeighborhoodTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NgbBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectCacheFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhotoStudio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhotoStudioTemplate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhotoStudioTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlasticSurgery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SearchTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sims.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimsRegistry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimsTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SkinWorkshop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SkinWorkshopTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Surgery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SurgeryTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Workshop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkshopTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>if not exist "$(SolutionDir)..\__Release\Plugins\" mkdir "$(SolutionDir)..\__Release\Plugins\"
+if not exist "$(SolutionDir)..\__Release\de\" mkdir "$(SolutionDir)..\__Release\de\"
+if not exist "$(SolutionDir)..\__Release\es\" mkdir "$(SolutionDir)..\__Release\es\"
+if not exist "$(SolutionDir)..\__Release\pl\" mkdir "$(SolutionDir)..\__Release\pl\"
+copy "$(TargetPath)" "$(SolutionDir)..\__Release\Plugins\$(TargetFileName)"
+copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\__Release\Plugins\"
+copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
+copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
+copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

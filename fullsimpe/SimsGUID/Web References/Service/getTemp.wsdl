@@ -1,202 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://sims.ambertation.de/type" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://sims.ambertation.de/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://sims.ambertation.de/" name="getTemp" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:types>
-    <s:schema xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://sims.ambertation.de/type" />
-  </wsdl:types>
-  <wsdl:message name="RegisterUserRequest">
-    <wsdl:part name="username" type="s:string" />
-    <wsdl:part name="password" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="extEnumerateRegistredObjectsRequest">
-    <wsdl:part name="username" type="s:string" />
-    <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="reserved" type="s:int" />
-  </wsdl:message>
-  <wsdl:message name="RegisterObjectRequest">
-    <wsdl:part name="username" type="s:string" />
-    <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="name" type="s:string" />
-    <wsdl:part name="fullguid" type="s:boolean" />
-  </wsdl:message>
-  <wsdl:message name="ExtRegisterObjectRequest">
-    <wsdl:part name="username" type="s:string" />
-    <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="name" type="s:string" />
-    <wsdl:part name="reserved" type="s:int" />
-  </wsdl:message>
-  <wsdl:message name="DescribeRegistredObjectsRequest">
-    <wsdl:part name="username" type="s:string" />
-    <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="update" type="s:int" />
-  </wsdl:message>
-  <wsdl:message name="RegisterUserResponse">
-    <wsdl:part name="return" type="s:boolean" />
-  </wsdl:message>
-  <wsdl:message name="AddUserRangeResponse">
-    <wsdl:part name="return" type="s:boolean" />
-  </wsdl:message>
-  <wsdl:message name="loginUserResponse">
-    <wsdl:part name="return" type="s:int" />
-  </wsdl:message>
-  <wsdl:message name="ListRegistredObjectsResponse">
-    <wsdl:part name="return" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="lockGuidResponse">
-    <wsdl:part name="guid" type="s:int" />
-    <wsdl:part name="name" type="s:string" />
-  </wsdl:message>
-  <wsdl:portType name="SimsGUIDPortType">
-    <wsdl:operation name="registerUser">
-      <wsdl:input message="tns:RegisterUserRequest" />
-      <wsdl:output message="tns:RegisterUserResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="registerObject">
-      <wsdl:input message="tns:RegisterObjectRequest" />
-      <wsdl:output message="tns:loginUserResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="extRegisterObject">
-      <wsdl:input message="tns:ExtRegisterObjectRequest" />
-      <wsdl:output message="tns:loginUserResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="listRegistredObjects">
-      <wsdl:input message="tns:RegisterUserRequest" />
-      <wsdl:output message="tns:ListRegistredObjectsResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="enumerateRegistredObjects">
-      <wsdl:input message="tns:RegisterUserRequest" />
-      <wsdl:output message="tns:ListRegistredObjectsResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="extEnumerateRegistredObjects">
-      <wsdl:input message="tns:extEnumerateRegistredObjectsRequest" />
-      <wsdl:output message="tns:ListRegistredObjectsResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="describeRegistredObjects">
-      <wsdl:input message="tns:DescribeRegistredObjectsRequest" />
-      <wsdl:output message="tns:ListRegistredObjectsResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="loginUser">
-      <wsdl:input message="tns:RegisterUserRequest" />
-      <wsdl:output message="tns:loginUserResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="lockGuid">
-      <wsdl:input message="tns:lockGuidResponse" />
-      <wsdl:output message="tns:RegisterUserResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="addUserRange">
-      <wsdl:input message="tns:RegisterUserRequest" />
-      <wsdl:output message="tns:RegisterUserResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="freeGuids">
-      <wsdl:input message="tns:RegisterUserRequest" />
-      <wsdl:output message="tns:loginUserResponse" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="SimsGUIDBinding" type="tns:SimsGUIDPortType">
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://sims.ambertation.de/type" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://sims.ambertation.de/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://sims.ambertation.de/" name="getTemp" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://sims.ambertation.de/type" />
+  </types>
+  <message name="RegisterUserRequest">
+    <part name="username" type="s:string" />
+    <part name="password" type="s:string" />
+  </message>
+  <message name="ChangeProfileRequest">
+    <part name="username" type="s:string" />
+    <part name="password" type="s:string" />
+    <part name="data" type="s:string" />
+  </message>
+  <message name="ExtEnumerateRegistredObjectsRequest">
+    <part name="username" type="s:string" />
+    <part name="password" type="s:string" />
+    <part name="reserved" type="s:int" />
+  </message>
+  <message name="RegisterObjectRequest">
+    <part name="username" type="s:string" />
+    <part name="password" type="s:string" />
+    <part name="name" type="s:string" />
+    <part name="fullguid" type="s:boolean" />
+  </message>
+  <message name="ExtRegisterObjectRequest">
+    <part name="username" type="s:string" />
+    <part name="password" type="s:string" />
+    <part name="name" type="s:string" />
+    <part name="reserved" type="s:int" />
+  </message>
+  <message name="DescribeRegistredObjectsRequest">
+    <part name="username" type="s:string" />
+    <part name="password" type="s:string" />
+    <part name="update" type="s:int" />
+  </message>
+  <message name="RegisterUserResponse">
+    <part name="return" type="s:boolean" />
+  </message>
+  <message name="LoginUserResponse">
+    <part name="return" type="s:int" />
+  </message>
+  <message name="ListRegistredObjectsResponse">
+    <part name="return" type="s:string" />
+  </message>
+  <message name="lockGuidResponse">
+    <part name="guid" type="s:int" />
+    <part name="name" type="s:string" />
+  </message>
+  <portType name="SimsGUIDPortType">
+    <operation name="registerUser">
+      <input message="tns:RegisterUserRequest" />
+      <output message="tns:RegisterUserResponse" />
+    </operation>
+    <operation name="registerObject">
+      <input message="tns:RegisterObjectRequest" />
+      <output message="tns:LoginUserResponse" />
+    </operation>
+    <operation name="extRegisterObject">
+      <input message="tns:ExtRegisterObjectRequest" />
+      <output message="tns:LoginUserResponse" />
+    </operation>
+    <operation name="listRegistredObjects">
+      <input message="tns:RegisterUserRequest" />
+      <output message="tns:ListRegistredObjectsResponse" />
+    </operation>
+    <operation name="enumerateRegistredObjects">
+      <input message="tns:RegisterUserRequest" />
+      <output message="tns:ListRegistredObjectsResponse" />
+    </operation>
+    <operation name="extEnumerateRegistredObjects">
+      <input message="tns:ExtEnumerateRegistredObjectsRequest" />
+      <output message="tns:ListRegistredObjectsResponse" />
+    </operation>
+    <operation name="describeRegistredObjects">
+      <input message="tns:DescribeRegistredObjectsRequest" />
+      <output message="tns:ListRegistredObjectsResponse" />
+    </operation>
+    <operation name="loginUser">
+      <input message="tns:RegisterUserRequest" />
+      <output message="tns:LoginUserResponse" />
+    </operation>
+    <operation name="lockGuid">
+      <input message="tns:lockGuidResponse" />
+      <output message="tns:RegisterUserResponse" />
+    </operation>
+    <operation name="addUserRange">
+      <input message="tns:RegisterUserRequest" />
+      <output message="tns:RegisterUserResponse" />
+    </operation>
+    <operation name="freeGuids">
+      <input message="tns:RegisterUserRequest" />
+      <output message="tns:LoginUserResponse" />
+    </operation>
+    <operation name="getUserProfile">
+      <input message="tns:RegisterUserRequest" />
+      <output message="tns:ListRegistredObjectsResponse" />
+    </operation>
+    <operation name="changeUserProfile">
+      <input message="tns:ChangeProfileRequest" />
+      <output message="tns:RegisterUserResponse" />
+    </operation>
+  </portType>
+  <binding name="SimsGUIDBinding" type="tns:SimsGUIDPortType">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
-    <wsdl:operation name="registerUser">
+    <operation name="registerUser">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/RegisterUser" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="registerObject">
+      </output>
+    </operation>
+    <operation name="registerObject">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/RegisterObject" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="extRegisterObject">
+      </output>
+    </operation>
+    <operation name="extRegisterObject">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/ExtRegisterObject" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="enumerateRegistredObjects">
+      </output>
+    </operation>
+    <operation name="enumerateRegistredObjects">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/EnumerateRegistredObjects" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="extEnumerateRegistredObjects">
+      </output>
+    </operation>
+    <operation name="extEnumerateRegistredObjects">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/ExtEnumerateRegistredObjects" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="listRegistredObjects">
+      </output>
+    </operation>
+    <operation name="listRegistredObjects">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/ListRegistredObject" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="loginUser">
+      </output>
+    </operation>
+    <operation name="loginUser">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/LoginUser" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="describeRegistredObjects">
+      </output>
+    </operation>
+    <operation name="describeRegistredObjects">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/DescribeRegistredObjects" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="lockGuid">
+      </output>
+    </operation>
+    <operation name="lockGuid">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/lockGuid" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="addUserRange">
+      </output>
+    </operation>
+    <operation name="addUserRange">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/AddUserRange" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="freeGuids">
+      </output>
+    </operation>
+    <operation name="freeGuids">
       <soap:operation soapAction="http://sims.ambertation.de/GUID/FreeGuids" />
-      <wsdl:input>
+      <input>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="SimGUIDService">
-    <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Sim GUID Service</documentation>
-    <wsdl:port name="SimsGUIDPort" binding="tns:SimsGUIDBinding">
+      </output>
+    </operation>
+    <operation name="getUserProfile">
+      <soap:operation soapAction="http://sims.ambertation.de/GUID/GetUserProfile" />
+      <input>
+        <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="changeUserProfile">
+      <soap:operation soapAction="http://sims.ambertation.de/GUID/ChangeUserProfile" />
+      <input>
+        <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://sims.ambertation.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="SimGUIDService">
+    <documentation>Sim GUID Service</documentation>
+    <port name="SimsGUIDPort" binding="tns:SimsGUIDBinding">
       <soap:address location="http://sims.ambertation.de/GUID/guidserver.php" />
-    </wsdl:port>
-  </wsdl:service>
-</wsdl:definitions>
+    </port>
+  </service>
+</definitions>

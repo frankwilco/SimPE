@@ -90,8 +90,8 @@ namespace SimPe.Geometry
 		/// <param name="reader">The Stream that contains the FileData</param>
 		public virtual void Unserialize(System.IO.BinaryReader reader)
 		{
-			x = EpsilonCorrect(reader.ReadSingle());			
-			y = EpsilonCorrect(reader.ReadSingle());
+			x = (reader.ReadSingle());			
+			y = (reader.ReadSingle());
 		}
 
 		/// <summary>
@@ -180,7 +180,7 @@ namespace SimPe.Geometry
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
 			base.Unserialize(reader);
-			z = EpsilonCorrect(reader.ReadSingle());
+			z = (reader.ReadSingle());
 		}
 
 		/// <summary>
@@ -669,7 +669,7 @@ namespace SimPe.Geometry
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
 			base.Unserialize(reader);
-			w = EpsilonCorrect(reader.ReadSingle());	
+			w = (reader.ReadSingle());	
 			
 		}
 

@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Downloads", "..\SimPe Downloads\SimPe Downloads.csproj", "{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPE Toolbox Scanner", "..\SimPE Toolbox Scanner\SimPE Toolbox Scanner.csproj", "{2EA51E60-64FA-4822-AE2A-A996BA79AA76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Toolbox Workshops", "..\SimPe Toolbox Workshops\SimPe Toolbox Workshops.csproj", "{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release (QA)|Any CPU = Release (QA)|Any CPU
+		Release MAC|Any CPU = Release MAC|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Release (QA)|Any CPU.ActiveCfg = Release|Any CPU
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Release (QA)|Any CPU.Build.0 = Release|Any CPU
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EA51E60-64FA-4822-AE2A-A996BA79AA76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EA51E60-64FA-4822-AE2A-A996BA79AA76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EA51E60-64FA-4822-AE2A-A996BA79AA76}.Release (QA)|Any CPU.ActiveCfg = Release MAC|Any CPU
+		{2EA51E60-64FA-4822-AE2A-A996BA79AA76}.Release (QA)|Any CPU.Build.0 = Release MAC|Any CPU
+		{2EA51E60-64FA-4822-AE2A-A996BA79AA76}.Release MAC|Any CPU.ActiveCfg = Release MAC|Any CPU
+		{2EA51E60-64FA-4822-AE2A-A996BA79AA76}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
+		{2EA51E60-64FA-4822-AE2A-A996BA79AA76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EA51E60-64FA-4822-AE2A-A996BA79AA76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Release (QA)|Any CPU.ActiveCfg = Release (QA)|Any CPU
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Release (QA)|Any CPU.Build.0 = Release (QA)|Any CPU
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Release MAC|Any CPU.ActiveCfg = Release MAC|Any CPU
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

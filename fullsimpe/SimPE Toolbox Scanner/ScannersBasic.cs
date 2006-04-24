@@ -433,8 +433,8 @@ namespace SimPe.Plugin.Scanner
 				string[] modelnames = SimPe.Plugin.Scenegraph.FindModelNames(si.Package);
 
 				foreach (string modelname in modelnames) 
-				{
-					System.Drawing.Image img = Workshop.GetThumbnail(group, modelname);
+				{                    
+                    System.Drawing.Image img = SimPe.Plugin.Workshop.GetThumbnail(group, modelname);
 					if (img!=null) 
 					{
 						si.PackageCacheItem.Thumbnail = img;
