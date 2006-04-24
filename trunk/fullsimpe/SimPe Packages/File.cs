@@ -1148,7 +1148,8 @@ namespace SimPe.Packages
 
 			if (f.FileName==null) 
 			{
-				if (this.FileName!=null) return false;				
+				//if (this.FileName!=null) return false;
+                return base.Equals(obj);
 			} else if (this.FileName==null) return false;
 
 			if (f.FileName==null && this.FileName==null) 

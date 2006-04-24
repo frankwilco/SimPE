@@ -1,679 +1,436 @@
-<VisualStudioProject>
-    <CSHARP
-        ProjectType = "Local"
-        ProductVersion = "7.10.3077"
-        SchemaVersion = "2.0"
-        ProjectGuid = "{74517907-2236-4C45-80ED-E188D5E5CE0E}"
-    >
-        <Build>
-            <Settings
-                ApplicationIcon = ""
-                AssemblyKeyContainerName = ""
-                AssemblyName = "simpe.rcol"
-                AssemblyOriginatorKeyFile = ""
-                DefaultClientScript = "JScript"
-                DefaultHTMLPageLayout = "Grid"
-                DefaultTargetSchema = "IE50"
-                DelaySign = "false"
-                OutputType = "Library"
-                PreBuildEvent = ""
-                PostBuildEvent = ""
-                RootNamespace = "SimPe.Plugin"
-                RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = ""
-            >
-                <Config
-                    Name = "Debug"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "true"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Debug\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Debug Txtr"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "true"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Debug\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release PLJ"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release MAC"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release (QA)"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = ""
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-            </Settings>
-            <References>
-                <Reference
-                    Name = "System"
-                    AssemblyName = "System"
-                    HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
-                />
-                <Reference
-                    Name = "System.Data"
-                    AssemblyName = "System.Data"
-                    HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
-                />
-                <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
-                />
-                <Reference
-                    Name = "SimPe HandlerCommon"
-                    Project = "{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Helper"
-                    Project = "{59E3C353-1350-42D8-A045-CBBAD232F228}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Interfaces"
-                    Project = "{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "System.Drawing"
-                    AssemblyName = "System.Drawing"
-                    HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
-                />
-                <Reference
-                    Name = "System.Windows.Forms"
-                    AssemblyName = "System.Windows.Forms"
-                    HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
-                />
-                <Reference
-                    Name = "SimPe Packages"
-                    Project = "{1C6C45BF-FE19-4C23-B327-01F45B0F269C}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "3DView"
-                    Project = "{F2CCCDBC-B05F-4C9C-B57F-27A07ACEF9BE}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Geometry"
-                    Project = "{60367A6D-8FF1-4289-B546-C68A2C395843}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "xpcommoncontrols"
-                    AssemblyName = "XPCommonControls"
-                    HintPath = "..\..\..\xpcommoncontrols\xpcommoncontrols.dll"
-                />
-                <Reference
-                    Name = "Microsoft.VisualBasic"
-                    AssemblyName = "Microsoft.VisualBasic"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\Microsoft.VisualBasic.dll"
-                />
-                <Reference
-                    Name = "System.Drawing.Design"
-                    AssemblyName = "System.Drawing.Design"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.Design.dll"
-                />
-                <Reference
-                    Name = "System.Design"
-                    AssemblyName = "System.Design"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Design.dll"
-                />
-                <Reference
-                    Name = "SimPe Workspace Helper"
-                    Project = "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "GraphControl"
-                    Project = "{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "ambertation.utilities"
-                    AssemblyName = "ambertation.utilities"
-                    HintPath = "..\ambertation.utilities.dll"
-                />
-                <Reference
-                    Name = "ambertation.3D"
-                    AssemblyName = "ambertation.3D"
-                    HintPath = "..\ambertation.3D.dll"
-                />
-            </References>
-        </Build>
-        <Files>
-            <Include>
-                <File
-                    RelPath = "AbstractCresChildren.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "AbstractRcolBlock.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cAmbientLight.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cBoneDataExtension.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cBoundedNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cBoundingVolumeBuilder.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cCinematicScene.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cCompactorBuilder.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cCompositionTreeNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cDataListExtension.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cDirectionalLight.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cExtension.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cGeometryBuilder.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cGeometryNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cImageData.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cIndexedMeshBuilder.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cLevelInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cLightRefNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cLightT.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cMaterialDefinition.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cObjectGraphNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cPointLight.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cProcessDeformationsBuilder.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cReferentNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cRenderableNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cResourceNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cSGResource.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cShape.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cShapeRefNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cSpotLight.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cStandardLightBase.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cTagExtension.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cTangentSpaceBuilder.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cTransformNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cTSFaceGeometryBuilder.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cViewerRefNode.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cViewerRefNodeBase.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "cViewerRefNodeRecursive.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "DDSTool.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "DDSTool.resx"
-                    DependentUpon = "DDSTool.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "GeneralRcolWrapper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ICresChildren.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ImageLoader.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IRcolBlock.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "RcolForm.cs"
-                    SubType = "UserControl"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "RcolForm.resx"
-                    DependentUpon = "RcolForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "RcolUI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "RcolWrapper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "resource.png"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "ScenegraphHelper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tCresHierarchy.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tCresHierarchy.resx"
-                    DependentUpon = "tCresHierarchy.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tDirectionalLight.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tDirectionalLight.resx"
-                    DependentUpon = "tDirectionalLight.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tExtension.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tExtension.resx"
-                    DependentUpon = "tExtension.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "TextureLocator.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tGenericRcol.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tGenericRcol.resx"
-                    DependentUpon = "tGenericRcol.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tGeometryNode.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tGeometryNode.resx"
-                    DependentUpon = "tGeometryNode.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tLightT.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tLightT.resx"
-                    DependentUpon = "tLightT.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tMaterialDefinition.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tMaterialDefinition.resx"
-                    DependentUpon = "tMaterialDefinition.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tMaterialDefinitionCategories.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tMaterialDefinitionCategories.resx"
-                    DependentUpon = "tMaterialDefinitionCategories.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tMaterialDefinitionFiles.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tMaterialDefinitionFiles.resx"
-                    DependentUpon = "tMaterialDefinitionFiles.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tMaterialDefinitionProperties.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tMaterialDefinitionProperties.resx"
-                    DependentUpon = "tMaterialDefinitionProperties.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tObjectGraphNode.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tObjectGraphNode.resx"
-                    DependentUpon = "tObjectGraphNode.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tResourceNode.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tResourceNode.resx"
-                    DependentUpon = "tResourceNode.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tShapeRefNode.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tShapeRefNode.resx"
-                    DependentUpon = "tShapeRefNode.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tShpeItems.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tShpeItems.resx"
-                    DependentUpon = "tShpeItems.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tShpeLod.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tShpeLod.resx"
-                    DependentUpon = "tShpeLod.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tShpeParts.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tShpeParts.resx"
-                    DependentUpon = "tShpeParts.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "tTransformNode.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "tTransformNode.resx"
-                    DependentUpon = "tTransformNode.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-            </Include>
-        </Files>
-    </CSHARP>
-</VisualStudioProject>
-
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{74517907-2236-4C45-80ED-E188D5E5CE0E}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>simpe.rcol</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SimPe.Plugin</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release MAC|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ambertation.3D">
+      <Name>ambertation.3D</Name>
+      <HintPath>..\ambertation.3D.dll</HintPath>
+    </Reference>
+    <Reference Include="ambertation.utilities">
+      <Name>ambertation.utilities</Name>
+      <HintPath>..\ambertation.utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="graphcontrol, Version=1.0.2301.39046, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\graphcontrol.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic">
+      <Name>Microsoft.VisualBasic</Name>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Drawing.Design">
+      <Name>System.Drawing.Design</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="XPCommonControls">
+      <Name>xpcommoncontrols</Name>
+      <HintPath>..\..\..\xpcommoncontrols\xpcommoncontrols.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\SimPe Geometry\SimPe Geometry.csproj">
+      <Name>SimPe Geometry</Name>
+      <Project>{60367A6D-8FF1-4289-B546-C68A2C395843}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
+      <Name>SimPe HandlerCommon</Name>
+      <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Helper\SimPe Helper.csproj">
+      <Name>SimPe Helper</Name>
+      <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Interfaces\SimPe Interfaces.csproj">
+      <Name>SimPe Interfaces</Name>
+      <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Packages\SimPe Packages.csproj">
+      <Name>SimPe Packages</Name>
+      <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
+      <Name>SimPe Workspace Helper</Name>
+      <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractCresChildren.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AbstractRcolBlock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cAmbientLight.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cBoneDataExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cBoundedNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cBoundingVolumeBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cCinematicScene.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cCompactorBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cCompositionTreeNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cDataListExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cDirectionalLight.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cGeometryBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cGeometryNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cImageData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cIndexedMeshBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cLevelInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cLightRefNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cLightT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cMaterialDefinition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cObjectGraphNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cPointLight.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cProcessDeformationsBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cReferentNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cRenderableNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cResourceNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cSGResource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cShape.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cShapeRefNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cSpotLight.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cStandardLightBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cTagExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cTangentSpaceBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cTransformNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cTSFaceGeometryBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cViewerRefNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cViewerRefNodeBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cViewerRefNodeRecursive.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDSTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralRcolWrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ICresChildren.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImageLoader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IRcolBlock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RcolForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RcolUI.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RcolWrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScenegraphHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tCresHierarchy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tDirectionalLight.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tExtension.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextureLocator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tGenericRcol.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tGeometryNode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tLightT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tMaterialDefinition.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tMaterialDefinitionCategories.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tMaterialDefinitionFiles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tMaterialDefinitionProperties.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tObjectGraphNode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tResourceNode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tShapeRefNode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tShpeItems.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tShpeLod.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tShpeParts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tTransformNode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="DDSTool.resx">
+      <DependentUpon>DDSTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RcolForm.resx">
+      <DependentUpon>RcolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resource.png" />
+    <EmbeddedResource Include="tCresHierarchy.resx">
+      <DependentUpon>tCresHierarchy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tDirectionalLight.resx">
+      <DependentUpon>tDirectionalLight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tExtension.resx">
+      <DependentUpon>tExtension.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tGenericRcol.resx">
+      <DependentUpon>tGenericRcol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tGeometryNode.resx">
+      <DependentUpon>tGeometryNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tLightT.resx">
+      <DependentUpon>tLightT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tMaterialDefinition.resx">
+      <DependentUpon>tMaterialDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tMaterialDefinitionCategories.resx">
+      <DependentUpon>tMaterialDefinitionCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tMaterialDefinitionFiles.resx">
+      <DependentUpon>tMaterialDefinitionFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tMaterialDefinitionProperties.resx">
+      <DependentUpon>tMaterialDefinitionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tObjectGraphNode.resx">
+      <DependentUpon>tObjectGraphNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tResourceNode.resx">
+      <DependentUpon>tResourceNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tShapeRefNode.resx">
+      <DependentUpon>tShapeRefNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tShpeItems.resx">
+      <DependentUpon>tShpeItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tShpeLod.resx">
+      <DependentUpon>tShpeLod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tShpeParts.resx">
+      <DependentUpon>tShpeParts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tTransformNode.resx">
+      <DependentUpon>tTransformNode.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

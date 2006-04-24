@@ -1,205 +1,172 @@
-<VisualStudioProject>
-    <CSHARP
-        ProjectType = "Local"
-        ProductVersion = "7.10.3077"
-        SchemaVersion = "2.0"
-        ProjectGuid = "{F7DD4A1A-8C32-4247-9AE9-AE4372455A24}"
-    >
-        <Build>
-            <Settings
-                ApplicationIcon = ""
-                AssemblyKeyContainerName = ""
-                AssemblyName = "simpe.default.gmdc.exporter"
-                AssemblyOriginatorKeyFile = ""
-                DefaultClientScript = "JScript"
-                DefaultHTMLPageLayout = "Grid"
-                DefaultTargetSchema = "IE50"
-                DelaySign = "false"
-                OutputType = "Library"
-                PreBuildEvent = ""
-                PostBuildEvent = 'if not exist "$(SolutionDir)$(OutDir)Plugins\" mkdir "$(SolutionDir)$(OutDir)Plugins\"&#xd;&#xa;if not exist "$(SolutionDir)$(OutDir)Plugins\de\" mkdir "$(SolutionDir)$(OutDir)Plugins\de\"&#xd;&#xa;if not exist "$(SolutionDir)$(OutDir)Plugins\es\" mkdir "$(SolutionDir)$(OutDir)Plugins\es\"&#xd;&#xa;if not exist "$(SolutionDir)$(OutDir)Plugins\pl\" mkdir "$(SolutionDir)$(OutDir)Plugins\pl\"&#xd;&#xa;copy "$(TargetPath)" "$(SolutionDir)$(OutDir)Plugins\$(TargetFileName)"&#xd;&#xa;copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)$(OutDir)Plugins\"&#xd;&#xa;copy "$(TargetDir)de\*.dll" "$(SolutionDir)$(OutDir)de\"&#xd;&#xa;copy "$(TargetDir)pl\*.dll" "$(SolutionDir)$(OutDir)pl\"&#xd;&#xa;copy "$(TargetDir)es\*.dll" "$(SolutionDir)$(OutDir)es\" '
-                RootNamespace = "SimPe.Plugin.Gmdc"
-                RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = ""
-            >
-                <Config
-                    Name = "Debug"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Debug\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = "simpe.default.gmdc.exporter.xml"
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release (QA)"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = ""
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-            </Settings>
-            <References>
-                <Reference
-                    Name = "System"
-                    AssemblyName = "System"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
-                />
-                <Reference
-                    Name = "System.Data"
-                    AssemblyName = "System.Data"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
-                />
-                <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
-                />
-                <Reference
-                    Name = "SimPe RCOL"
-                    Project = "{74517907-2236-4C45-80ED-E188D5E5CE0E}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Helper"
-                    Project = "{59E3C353-1350-42D8-A045-CBBAD232F228}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe GMDC Exporter Base"
-                    Project = "{76D6A8B3-10DF-4948-9028-C63A416AB00E}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Geometry"
-                    Project = "{60367A6D-8FF1-4289-B546-C68A2C395843}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "System.Windows.Forms"
-                    AssemblyName = "System.Windows.Forms"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
-                />
-                <Reference
-                    Name = "SimPe HandlerCommon"
-                    Project = "{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "SimPe Interfaces"
-                    Project = "{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "3DView"
-                    Project = "{F2CCCDBC-B05F-4C9C-B57F-27A07ACEF9BE}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "ambertation.3D"
-                    AssemblyName = "ambertation.3D"
-                    HintPath = "..\ambertation.3D.dll"
-                />
-                <Reference
-                    Name = "ambertation.utilities"
-                    AssemblyName = "ambertation.utilities"
-                    HintPath = "..\ambertation.utilities.dll"
-                />
-                <Reference
-                    Name = "xsi.lib"
-                    AssemblyName = "xsi.lib"
-                    HintPath = "..\xsi.lib.dll"
-                />
-            </References>
-        </Build>
-        <Files>
-            <Include>
-                <File
-                    RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GmdcExportToMilkShapeAscii.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GmdcExportToObj.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GmdcExportToX.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GmdcExportToXSI.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GmdcImportFromMilkShapeAscii.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GmdcImportFromObj.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GmdcImportFromXsi.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-            </Include>
-        </Files>
-    </CSHARP>
-</VisualStudioProject>
-
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F7DD4A1A-8C32-4247-9AE9-AE4372455A24}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>simpe.default.gmdc.exporter</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SimPe.Plugin.Gmdc</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>simpe.default.gmdc.exporter.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ambertation.3D">
+      <Name>ambertation.3D</Name>
+      <HintPath>..\ambertation.3D.dll</HintPath>
+    </Reference>
+    <Reference Include="ambertation.utilities">
+      <Name>ambertation.utilities</Name>
+      <HintPath>..\ambertation.utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.commonhandler, Version=1.0.2305.29248, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.commonhandler.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.gmdc.exporter.base, Version=1.0.2305.29253, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.gmdc.exporter.base.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.interfaces, Version=1.0.2305.29248, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.rcol, Version=1.0.2305.29251, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\simpe.rcol.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="xsi.lib">
+      <Name>xsi.lib</Name>
+      <HintPath>..\xsi.lib.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\3DView\3DView.csproj">
+      <Name>3DView</Name>
+      <Project>{F2CCCDBC-B05F-4C9C-B57F-27A07ACEF9BE}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Geometry\SimPe Geometry.csproj">
+      <Name>SimPe Geometry</Name>
+      <Project>{60367A6D-8FF1-4289-B546-C68A2C395843}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Helper\SimPe Helper.csproj">
+      <Name>SimPe Helper</Name>
+      <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GmdcExportToMilkShapeAscii.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GmdcExportToObj.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GmdcExportToX.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GmdcExportToXSI.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GmdcImportFromMilkShapeAscii.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GmdcImportFromObj.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GmdcImportFromXsi.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>if not exist "$(SolutionDir)..\__Release\Plugins\" mkdir "$(SolutionDir)..\__Release\Plugins\"
+if not exist "$(SolutionDir)..\__Release\de\" mkdir "$(SolutionDir)..\__Release\de\"
+if not exist "$(SolutionDir)..\__Release\es\" mkdir "$(SolutionDir)..\__Release\es\"
+if not exist "$(SolutionDir)..\__Release\pl\" mkdir "$(SolutionDir)..\__Release\pl\"
+copy "$(TargetPath)" "$(SolutionDir)..\__Release\Plugins\$(TargetFileName)"
+copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\__Release\Plugins\"
+copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
+copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
+copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

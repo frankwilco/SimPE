@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2005 rel. 3 U bearbeitet (http://www.altova.com) von F. Bauer (Privat) -->
+<!-- Mit XMLSpy v2005 rel. 3 U bearbeitet (http://www.altova.com) von F. Bauer (Privat) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="registry">
+		<xs:annotation>
+			<xs:documentation>Contains a plattform independent Registry</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="key" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="key">
+		<xs:annotation>
+			<xs:documentation>This a Registry Key (=Group). Keys can contain Values or other Keys</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="key" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="bool"/>
+					<xs:element ref="float"/>
+					<xs:element ref="list"/>
+					<xs:element ref="long"/>
+					<xs:element ref="int"/>
+					<xs:element ref="string"/>
+					<xs:element ref="cilist"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="int">
+		<xs:annotation>
+			<xs:documentation>A Integer Value</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="long">
+		<xs:annotation>
+			<xs:documentation>A 64-Bit Integer Value</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="float">
+		<xs:annotation>
+			<xs:documentation>A floatingpoint Value</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bool">
+		<xs:annotation>
+			<xs:documentation>A boolean Value (true, false)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="string">
+		<xs:annotation>
+			<xs:documentation>A text Value</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="list">
+		<xs:annotation>
+			<xs:documentation>Contains a Listing of values</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="bool"/>
+				<xs:element ref="float"/>
+				<xs:element ref="long"/>
+				<xs:element ref="int"/>
+				<xs:element ref="string"/>
+			</xs:choice>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cilist">
+		<xs:annotation>
+			<xs:documentation>Contains a case-Invariant Listing of values</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="bool"/>
+				<xs:element ref="float"/>
+				<xs:element ref="long"/>
+				<xs:element ref="int"/>
+				<xs:element ref="string"/>
+			</xs:choice>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

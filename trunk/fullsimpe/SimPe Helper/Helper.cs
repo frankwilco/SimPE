@@ -1074,6 +1074,18 @@ namespace SimPe
 #endif
 		}
 
+        public static bool IsAbsolutePath(string path)
+        {
+            if (path == null) return false;
+            path = path.Trim();
+#if MAC
+            if (path.IndexOf("/") == 0) return true;
+#else
+			if (path.IndexOf(":")==1) return true;
+#endif
+            return false;
+        }
+
 		/// <summary>
 		/// Returns a compareable Filename
 		/// </summary>
@@ -1096,17 +1108,7 @@ namespace SimPe
 		}
 		
 #else
-		public static bool IsAbsolutePath(string path)
-		{
-			if (path==null) return false;
-			path = path.Trim();
-#if MAC
-			if (path.IndexOf("/")==0) return true;
-#else
-			if (path.IndexOf(":")==1) return true;
-#endif
-			return false;
-		}
+		
 		[DllImport("kernel32.dll", SetLastError=true, CharSet=CharSet.Auto)]
 		static extern uint GetLongPathName(
 			string lpszShortPath,

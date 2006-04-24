@@ -1,0 +1,46 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe HGBH", "..\SimPe HGBH\SimPe HGBH.csproj", "{2A67C9C3-9577-4922-991F-291EAA6B4F2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims", "..\SimPe Sims\SimPe Sims.csproj", "{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe NGBH Scanner", "..\SimPe NGBH Scanner\SimPe NGBH Scanner.csproj", "{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Name Provider", "..\SimPe Name Provider\SimPe Name Provider.csproj", "{38259F2B-9C90-48BE-A519-E4EEC62C242C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release MAC|Any CPU = Release MAC|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A67C9C3-9577-4922-991F-291EAA6B4F2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A67C9C3-9577-4922-991F-291EAA6B4F2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A67C9C3-9577-4922-991F-291EAA6B4F2D}.Release MAC|Any CPU.ActiveCfg = Release MAC|Any CPU
+		{2A67C9C3-9577-4922-991F-291EAA6B4F2D}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
+		{2A67C9C3-9577-4922-991F-291EAA6B4F2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A67C9C3-9577-4922-991F-291EAA6B4F2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38259F2B-9C90-48BE-A519-E4EEC62C242C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38259F2B-9C90-48BE-A519-E4EEC62C242C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38259F2B-9C90-48BE-A519-E4EEC62C242C}.Release MAC|Any CPU.ActiveCfg = Release MAC|Any CPU
+		{38259F2B-9C90-48BE-A519-E4EEC62C242C}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
+		{38259F2B-9C90-48BE-A519-E4EEC62C242C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38259F2B-9C90-48BE-A519-E4EEC62C242C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

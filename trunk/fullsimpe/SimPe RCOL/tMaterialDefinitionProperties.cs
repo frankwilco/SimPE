@@ -349,9 +349,9 @@ namespace SimPe.Plugin.TabPage
 				SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(Data.MetaData.TXMT, true);
 				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items)
 				{
-					Rcol txmt = new GenericRcol(null, false);
+                    Rcol txmt = new SimPe.Plugin.GenericRcol(null, false);
 					txmt.ProcessData(item);
-					MaterialDefinition md = (MaterialDefinition)txmt.Blocks[0];
+                    SimPe.Plugin.MaterialDefinition md = (SimPe.Plugin.MaterialDefinition)txmt.Blocks[0];
 					foreach (MaterialDefinitionProperty mdp in md.Properties) 
 					{
 						if (!ht.ContainsKey(mdp.Name)) ht.Add(mdp.Name, "| " + mdp.Value + " | ");

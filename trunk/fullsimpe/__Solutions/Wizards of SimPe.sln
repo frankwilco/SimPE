@@ -1,0 +1,38 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPE - Interfaces", "..\WOSimPE - Interfaces\WOSimPE - Interfaces.csproj", "{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPe - Recolor", "..\WOSimPe - Recolor\WOSimPe - Recolor.csproj", "{55A67A5D-43E8-4290-B52F-230233B1439D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards of SimPe", "..\Wizards of SimPe\Wizards of SimPe.csproj", "{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release MAC|Any CPU = Release MAC|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55A67A5D-43E8-4290-B52F-230233B1439D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55A67A5D-43E8-4290-B52F-230233B1439D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55A67A5D-43E8-4290-B52F-230233B1439D}.Release MAC|Any CPU.ActiveCfg = Release MAC|Any CPU
+		{55A67A5D-43E8-4290-B52F-230233B1439D}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
+		{55A67A5D-43E8-4290-B52F-230233B1439D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55A67A5D-43E8-4290-B52F-230233B1439D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}.Release MAC|Any CPU.ActiveCfg = Release MAC|Any CPU
+		{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
+		{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

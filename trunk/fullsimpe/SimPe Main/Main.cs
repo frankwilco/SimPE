@@ -152,6 +152,8 @@ namespace SimPe
 			
 			filter = new ViewFilter();
 			treebuilder = new TreeBuilder(package, filter);
+            resloader = new ResourceLoader(dc, package);
+            remote = new RemoteHandler(this, package, resloader, miWindow);
 
 			plugger = new PluginManager(
 				miTools, 
@@ -166,10 +168,9 @@ namespace SimPe
 				dcPlugin,
 				this.mbiTopics);
 			plugger.ClosedToolPlugin += new ToolMenuItemExt.ExternalToolNotify(ClosedToolPlugin);
-			
-			resloader = new ResourceLoader(dc, package);
+            remote.SetPlugger(plugger);
 
-			remote = new RemoteHandler(this, package, resloader, plugger, miWindow);
+						
 			remote.LoadedResource += new ChangedResourceEvent(rh_LoadedResource);
 			
 			SetupResourceViewToolBar();
@@ -2316,8 +2317,15 @@ namespace SimPe
 			if (sdmdef==null) sdmdef = sdm.GetLayout();
 			if (sbmdef==null) sbmdef = sbm.GetLayout(true);
 
-			if (Helper.WindowsRegistry.Layout.SandBarLayout!="") sbm.SetLayout(Helper.WindowsRegistry.Layout.SandBarLayout);
-			if (Helper.WindowsRegistry.Layout.SandDockLayout!="") sdm.SetLayout(Helper.WindowsRegistry.Layout.SandDockLayout);
+            try
+            {
+                if (Helper.WindowsRegistry.Layout.SandBarLayout != "") sbm.SetLayout(Helper.WindowsRegistry.Layout.SandBarLayout);
+                if (Helper.WindowsRegistry.Layout.SandDockLayout != "") sdm.SetLayout(Helper.WindowsRegistry.Layout.SandDockLayout);
+            }
+            catch (Exception ex)
+            {
+                Helper.ExceptionMessage(ex);
+            }
 
 			
 			/*this.tbDefaultAction.IsExpanded = Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded;			
@@ -2443,7 +2451,7 @@ namespace SimPe
 					if (mi.Checked) c.Close();
 					else 
 					{
-						c.Open();
+                        c.OpenFloating();
 						mi.Checked = c.IsOpen;
 						plugger.ChangedGuiResourceEventHandler();
 					}

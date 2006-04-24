@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2005 rel. 3 U bearbeitet (http://www.altova.com) von F. Bauer (Privat) -->
+<!-- Mit XMLSpy v2005 rel. 3 U bearbeitet (http://www.altova.com) von F. Bauer (Privat) -->
+<!-- Mit XMLSpy v2005 rel. 3 U bearbeitet (http://www.altova.com) von F. Bauer (Privat) -->
+<!-- Mit XMLSpy v2005 rel. 3 U bearbeitet (http://www.altova.com) von F. Bauer (Privat) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Frank Bauer (Privat) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:attribute name="type" type="xs:NMTOKEN"/>
+	<xs:complexType name="PropertyType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="help" type="xs:string" minOccurs="0"/>
+			<xs:element name="default" type="xs:string"/>
+			<xs:element name="min" type="xs:string" minOccurs="0"/>
+			<xs:element name="max" type="xs:string" minOccurs="0"/>
+			<xs:element name="readonly" minOccurs="0"/>
+			<xs:element name="index" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:unsignedInt">
+							<xs:attribute name="type" type="xs:unsignedShort" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="type" use="required"/>
+	</xs:complexType>
+	<xs:element name="properties">
+		<xs:annotation>
+			<xs:documentation>Lists all known Properties for TXMT Files</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="enum" minOccurs="0" maxOccurs="32">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="field" maxOccurs="256">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="value" type="xs:int" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="writeas" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="name"/>
+									<xs:enumeration value="value"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="category" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="property" type="PropertyType" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

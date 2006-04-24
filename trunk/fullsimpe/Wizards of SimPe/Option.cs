@@ -40,10 +40,11 @@ namespace SimPe.Wizards
 		const string FONT_FAMILY = "Arial";
 		const string FONT_FAMILY_SERIF = "Arial";
 #else
-		const string FONT_FAMILY = "Verdana";
-		private System.Windows.Forms.LinkLabel linkLabel5;
+		const string FONT_FAMILY = "Verdana";		
 		const string FONT_FAMILY_SERIF = "Georgia";
 #endif
+
+        private System.Windows.Forms.LinkLabel linkLabel5;
 		public Option()
 		{
 			//

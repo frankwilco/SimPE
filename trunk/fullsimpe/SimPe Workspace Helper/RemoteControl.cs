@@ -316,8 +316,8 @@ namespace SimPe
 				return opf(fii);
 			} 
 			catch (Exception ex) 
-			{
-				Helper.ExceptionMessage("Unable to open a Packaed File in the SimPE GUI. ("+fii.ToString()+")", ex);
+			{                
+				Helper.ExceptionMessage("Unable to open a resource in the SimPE GUI. ("+fii.ToString()+")", ex);
 			}
 			return false;
 		}

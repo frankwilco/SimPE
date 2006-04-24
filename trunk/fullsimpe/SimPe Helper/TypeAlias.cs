@@ -87,7 +87,7 @@ namespace SimPe.Data
 		{
 
 			this.shortname = shortname;
-			this.extension = extension;
+			this.extension = "";
 			knowntype = known;
 			this.containsfilename = containsflname;
 		}
