@@ -36,8 +36,11 @@ namespace SimPe.Plugin
 	public class GeometryDataContainerExt  : System.IDisposable
 	{
 		GeometryDataContainer gmdc;
-		public GeometryDataContainerExt(GeometryDataContainer gmdc) 
+        bool joints;
+        public GeometryDataContainerExt(GeometryDataContainer gmdc) : this(gmdc, true) { }
+		public GeometryDataContainerExt(GeometryDataContainer gmdc, bool withjoints) 
 		{
+            joints = withjoints;
 			this.gmdc = gmdc;
 			txtrmap = new Hashtable();
 			txmtmap = new Hashtable();
@@ -88,6 +91,7 @@ namespace SimPe.Plugin
 
 		void AddJoint(Ambertation.Scenes.Joint parent, int index, Hashtable jointmap, ElementOrder component)
 		{
+            if (!joints) return;
 			if (index<0 || index>=gmdc.Joints.Count) return;
 			
 			GmdcJoint j = gmdc.Joints[index];
@@ -124,8 +128,10 @@ namespace SimPe.Plugin
 
 		Hashtable AddJointsToScene(Scene scn, ElementOrder component)
 		{
+            if (!joints) return new Hashtable();
 			IntArrayList js = new IntArrayList();
-			Hashtable relationmap = gmdc.LoadJointRelationMap();
+			Hashtable relationmap = gmdc.LoadJointRelationMap();            
+
 			foreach (int k in relationmap.Keys)
 				if ((int)relationmap[k]==-1)
 					js.Add(k);

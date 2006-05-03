@@ -130,6 +130,7 @@
     <Compile Include="ListViewTag.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ResourceColumnSorter.cs" />
     <Compile Include="ResourceLister All.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -147,6 +148,9 @@
     </Compile>
     <Compile Include="ResourceListerBase.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResourceListView.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TreeBuilder Group.cs">
       <SubType>Code</SubType>

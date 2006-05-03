@@ -430,36 +430,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 					writer.WriteLine("0");				
 				}
 			}
-#if DEBUG
-			if (Gmdc.LinkedAnimation!=null) 
-			{
-				System.IO.StreamWriter sw = System.IO.File.CreateText(@"g:\joints.txt");
-				try 
-				{
-					foreach (string s in animbname) sw.WriteLine(s);
 
-					sw.WriteLine("--------------------");
-					foreach (Anim.AnimationFrameBlock p in Gmdc.LinkedAnimation.Part2) 
-					{
-						if (animbname.Contains("rot: "+p.Name)) sw.Write("[***rot***] ");
-						if (animbname.Contains("trn: "+p.Name)) sw.Write("[***trn***] ");
-						sw.WriteLine(p.Name);
-					}
-
-					sw.WriteLine("--------------------");
-					foreach (int i in js)
-					{
-						if (animbname.Contains("rot: "+Gmdc.Joints[i].Name)) sw.Write("[***rot***] ");
-						if (animbname.Contains("trn: "+Gmdc.Joints[i].Name)) sw.Write("[***trn**] ");
-						sw.WriteLine(Gmdc.Joints[i].Name);
-					}
-				} 
-				finally 
-				{
-					sw.Close();
-				}
-			}
-#endif
 
 			//Write Footer
 			writer.WriteLine("GroupComments: 0");

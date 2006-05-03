@@ -95,7 +95,7 @@ namespace SimPe
 			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.SimFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ExtendedWrapperFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.DefaultWrapperFactory());
-			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.GenericWrapperFactory());
+			//FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.GenericWrapperFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.Plugin.ScenegraphWrapperFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.Plugin.RefFileFactory());
 			FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ClstWrapperFactory());
@@ -248,6 +248,7 @@ namespace SimPe
 				TD.SandDock.DockControl dctrl = idt.GetDockableControl();
 				if (dctrl!=null) 
 				{
+                    dctrl.Name = "dc."+idt.GetType().Namespace + "." + idt.GetType().Name;
 					dctrl.Manager = dc.Manager;
 					dctrl.DockNextTo(dc);
 

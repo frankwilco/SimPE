@@ -45,13 +45,15 @@ namespace SimPe
 			this.filter = filter;	
 			run = new ManualResetEvent(false);
 			stop = new ManualResetEvent(false);
+
+            this.additemdelegate = new AddItemDelegate(AddItem);
 		}
 
 		public void Prepare(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
 		{
 			this.lv = lv;
 			this.p = p;
-			this.tag = tag;
+			this.tag = tag;            
 		}
 
 		protected ListViewItem CreateItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd) 
@@ -61,28 +63,53 @@ namespace SimPe
 		}
 
 		protected delegate void AddItemDelegate(ListView lv, ListViewItem lvi, ulong threadguid);
+        protected AddItemDelegate additemdelegate;
 		protected void AddItem(ListView lv, ListViewItem lvi, ulong threadguid)
 		{
-			if (threadguid==ResourceListerBase.LATEST_THREAD_GUID)
-				lv.Items.Add(lvi);
+            if (threadguid == ResourceListerBase.LATEST_THREAD_GUID)
+            {
+                if (lv.ListViewItemSorter != null) ((UpdatableListViewItem)lvi).ForceLoad();
+                lv.Items.Add(lvi);
+                
+                if (Helper.WindowsRegistry.AsynchronLoad)
+                    if (lv.Items.Count % 50 == 49) Application.DoEvents();
+            }
 		}
 
 		protected void ClearList(ListView lv, ListViewItem lvi, ulong threadguid)
 		{
-			TreeBuilder.ClearListView(lv);			
+			TreeBuilder.ClearListView(lv);  
+          
+            ResourceListView rlv = lv as ResourceListView;
+            if (rlv != null)
+            {
+                rlv.InvokeBeginUpdate();
+            } else lv.BeginUpdate();
 		}
 
 		internal event System.EventHandler Finished;		
 		protected abstract bool BuildItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, int ct, ulong threadguid);
 
+        void ReenableListViewUpdate(object lv, EventArgs e)
+        {            
+            ResourceListView rlv = lv as ResourceListView;
+            if (rlv != null) {
+                rlv.StopLoad();
+                rlv.InvokeEndUpdate();
+            }
+            else (lv as ListView).EndUpdate();
+            
+        }
 		
 		void DoFinish(ulong threadguid)
 		{
 			if (threadguid!=LATEST_THREAD_GUID) return;
 			
 			OnFinish();
-			if (Finished!=null) Finished(this, new EventArgs());
+			if (Finished!=null) lv.Invoke(new System.EventHandler(Finished), new object[] {this, new EventArgs()});
 			ResourceListerBase.LATEST_THREAD_GUID++;
+
+            lv.BeginInvoke(new System.EventHandler(ReenableListViewUpdate), new object[] { lv, null });
 		}
 
 		protected virtual void OnFinish()
@@ -149,7 +176,9 @@ namespace SimPe
             lv.Invoke(new System.EventHandler(SetSorter), new object[] {cmp, null});
 		}
 
-        void SetSorter(object sender, System.EventArgs e){
+        void SetSorter(object sender, System.EventArgs e){            
+            if (sender != null)
+                ((ResourceListView)lv).LoadAll();
             lv.ListViewItemSorter = sender as IComparer;
         }
 
@@ -191,10 +220,13 @@ namespace SimPe
 
 				last.StopEvent.Set();					
 				last.Running.WaitOne();
-				last.Running.Reset();									
+				last.Running.Reset();
+                last.ReenableListViewUpdate(last.lv, null);			
 
 				last = null;
 				lastthread = null;
+
+
 			}
 		}
 		#endregion

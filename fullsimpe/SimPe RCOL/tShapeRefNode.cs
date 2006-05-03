@@ -83,7 +83,9 @@ namespace SimPe.Plugin.TabPage
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
-			InitializeComponent();			
+            InitializeComponent();
+
+            this.UseVisualStyleBackColor = true;		
 		}
 
 		/// <summary>

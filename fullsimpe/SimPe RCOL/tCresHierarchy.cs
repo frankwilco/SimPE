@@ -55,8 +55,9 @@ namespace SimPe.Plugin.TabPage
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
-
+            
 			this.Text = SimPe.Localization.GetString("CRES Hierarchie");
+            this.UseVisualStyleBackColor = true;
 		}
 
 		/// <summary>

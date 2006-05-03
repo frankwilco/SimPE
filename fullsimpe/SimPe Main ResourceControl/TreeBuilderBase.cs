@@ -169,22 +169,26 @@ namespace SimPe
 				Wait.Message = "Loading Resource Tree...";
 				TreeNode root = OnInit();
 				int ct = 0;
-				try 
-				{
-					foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Package.Index) 
-					{ 			
-						BuildNode(root, pfd, ct++);
+                try
+                {
+                    foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Package.Index)
+                    {
+                        BuildNode(root, pfd, ct++);
 
-						if (ct==20 && !startedwait) 
-						{
-							Wait.SubStart();
-							startedwait = true;
-						}
-						if (Helper.WindowsRegistry.AsynchronLoad) 						
-							if (stop.WaitOne(0, false)) 
-								break;
-					}
-				} 
+                        if (ct == 20 && !startedwait)
+                        {
+                            Wait.SubStart();
+                            startedwait = true;
+                        }
+                        if (Helper.WindowsRegistry.AsynchronLoad)
+                            if (stop.WaitOne(0, false))
+                                break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
 				finally 
 				{
 					OnFinish(root, ct, this.AutoSelect);

@@ -64,7 +64,9 @@ namespace SimPe.Plugin.TabPage
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
-			InitializeComponent();
+            InitializeComponent();
+
+            this.UseVisualStyleBackColor = true;
 		}
 
 		/// <summary>
@@ -133,7 +135,7 @@ namespace SimPe.Plugin.TabPage
 			this.groupBox5.Controls.Add(this.label15);
 			this.groupBox5.Controls.Add(this.tb_rn_uk1);
 			this.groupBox5.Controls.Add(this.label22);
-			this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
 			this.groupBox5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox5.Location = new System.Drawing.Point(8, 8);
 			this.groupBox5.Name = "groupBox5";
@@ -213,7 +215,7 @@ namespace SimPe.Plugin.TabPage
 			this.groupBox4.Controls.Add(this.label14);
 			this.groupBox4.Controls.Add(this.lb_rn);
 			this.groupBox4.Controls.Add(this.ll_rn_delete);
-			this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
 			this.groupBox4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.groupBox4.Location = new System.Drawing.Point(136, 8);
 			this.groupBox4.Name = "groupBox4";

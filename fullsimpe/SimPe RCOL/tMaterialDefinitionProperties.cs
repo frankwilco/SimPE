@@ -54,7 +54,9 @@ namespace SimPe.Plugin.TabPage
 			//
 			InitializeComponent();
 
-			llscan.Visible = Helper.DebugMode;
+            llscan.Visible = Helper.DebugMode;
+
+            this.UseVisualStyleBackColor = true;
 		}
 
 		/// <summary>

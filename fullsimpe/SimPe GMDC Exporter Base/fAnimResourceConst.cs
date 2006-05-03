@@ -25,8 +25,7 @@ namespace SimPe.Plugin.Anim
 		private System.Windows.Forms.LinkLabel llClear;
 		private System.Windows.Forms.LinkLabel llTxt;
 		internal SimPe.Plugin.Anim.AnimMeshBlockControl ambc;
-		internal System.Windows.Forms.TabPage tMesh;
-		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
+        internal System.Windows.Forms.TabPage tMesh;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -42,7 +41,6 @@ namespace SimPe.Plugin.Anim
 			llTxt.Visible = Helper.WindowsRegistry.HiddenMode;
 
 			SimPe.ThemeManager tm = SimPe.ThemeManager.Global.CreateChild();
-			tm.AddControl(this.xpGradientPanel1);
 
 			// 
 			// ambc
@@ -58,7 +56,7 @@ namespace SimPe.Plugin.Anim
 			this.ambc.Size = new System.Drawing.Size(776, 246);
 			this.ambc.TabIndex = 1;
 			this.ambc.Changed += new System.EventHandler(this.ambc_Changed);
-			this.xpGradientPanel1.Controls.Add(this.ambc);
+			this.tMesh.Controls.Add(this.ambc);
 		}
 
 		/// <summary>
@@ -83,226 +81,209 @@ namespace SimPe.Plugin.Anim
 		/// </summary>
 		private void InitializeComponent()
 		{
-			
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tAnimResourceConst = new System.Windows.Forms.TabPage();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.llTxt = new System.Windows.Forms.LinkLabel();
-			this.llClear = new System.Windows.Forms.LinkLabel();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.tv = new System.Windows.Forms.TreeView();
-			this.llAdd = new System.Windows.Forms.LinkLabel();
-			this.pg = new System.Windows.Forms.PropertyGrid();
-			this.tMisc = new System.Windows.Forms.TabPage();
-			this.groupBox12 = new System.Windows.Forms.GroupBox();
-			this.tb_arc_ver = new System.Windows.Forms.TextBox();
-			this.label30 = new System.Windows.Forms.Label();
-			this.tMesh = new System.Windows.Forms.TabPage();
-			this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
-			this.tabControl1.SuspendLayout();
-			this.tAnimResourceConst.SuspendLayout();
-			this.groupBox2.SuspendLayout();
-			this.tMisc.SuspendLayout();
-			this.groupBox12.SuspendLayout();
-			this.tMesh.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// tabControl1
-			// 
-			this.tabControl1.Controls.Add(this.tAnimResourceConst);
-			this.tabControl1.Controls.Add(this.tMisc);
-			this.tabControl1.Controls.Add(this.tMesh);
-			this.tabControl1.Location = new System.Drawing.Point(8, 8);
-			this.tabControl1.Multiline = true;
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(800, 288);
-			this.tabControl1.TabIndex = 2;
-			// 
-			// tAnimResourceConst
-			// 
-			this.tAnimResourceConst.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.tAnimResourceConst.Controls.Add(this.groupBox2);
-			this.tAnimResourceConst.Location = new System.Drawing.Point(4, 22);
-			this.tAnimResourceConst.Name = "tAnimResourceConst";
-			this.tAnimResourceConst.Size = new System.Drawing.Size(792, 262);
-			this.tAnimResourceConst.TabIndex = 6;
-			this.tAnimResourceConst.Text = "Raw View";
-			this.tAnimResourceConst.Visible = false;
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.llTxt);
-			this.groupBox2.Controls.Add(this.llClear);
-			this.groupBox2.Controls.Add(this.checkBox1);
-			this.groupBox2.Controls.Add(this.tv);
-			this.groupBox2.Controls.Add(this.llAdd);
-			this.groupBox2.Controls.Add(this.pg);
-			this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox2.Location = new System.Drawing.Point(8, 8);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(776, 248);
-			this.groupBox2.TabIndex = 39;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Content";
-			// 
-			// llTxt
-			// 
-			this.llTxt.Enabled = false;
-			this.llTxt.Location = new System.Drawing.Point(640, 32);
-			this.llTxt.Name = "llTxt";
-			this.llTxt.Size = new System.Drawing.Size(56, 16);
-			this.llTxt.TabIndex = 44;
-			this.llTxt.TabStop = true;
-			this.llTxt.Text = "Text";
-			this.llTxt.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTxt_LinkClicked);
-			// 
-			// llClear
-			// 
-			this.llClear.Enabled = false;
-			this.llClear.Location = new System.Drawing.Point(480, 32);
-			this.llClear.Name = "llClear";
-			this.llClear.Size = new System.Drawing.Size(88, 16);
-			this.llClear.TabIndex = 43;
-			this.llClear.TabStop = true;
-			this.llClear.Text = "Clear Frames";
-			this.llClear.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llClear_LinkClicked);
-			// 
-			// checkBox1
-			// 
-			this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkBox1.Location = new System.Drawing.Point(704, 32);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(56, 16);
-			this.checkBox1.TabIndex = 42;
-			this.checkBox1.Text = "Help";
-			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-			// 
-			// tv
-			// 
-			this.tv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left)));
-			this.tv.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tv.FullRowSelect = true;
-			this.tv.HideSelection = false;
-			this.tv.ImageIndex = -1;
-			this.tv.Location = new System.Drawing.Point(8, 24);
-			this.tv.Name = "tv";
-			this.tv.SelectedImageIndex = -1;
-			this.tv.Size = new System.Drawing.Size(296, 216);
-			this.tv.TabIndex = 0;
-			this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
-			// 
-			// llAdd
-			// 
-			this.llAdd.Enabled = false;
-			this.llAdd.Location = new System.Drawing.Point(400, 32);
-			this.llAdd.Name = "llAdd";
-			this.llAdd.Size = new System.Drawing.Size(80, 16);
-			this.llAdd.TabIndex = 2;
-			this.llAdd.TabStop = true;
-			this.llAdd.Text = "Add Frame";
-			this.llAdd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAdd_LinkClicked);
-			// 
-			// pg
-			// 
-			this.pg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.pg.CommandsBackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.pg.CommandsVisibleIfAvailable = true;
-			this.pg.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.pg.HelpVisible = false;
-			this.pg.LargeButtons = false;
-			this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
-			this.pg.Location = new System.Drawing.Point(312, 24);
-			this.pg.Name = "pg";
-			this.pg.Size = new System.Drawing.Size(456, 216);
-			this.pg.TabIndex = 1;
-			this.pg.Text = "pg";
-			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
-			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
-			// 
-			// tMisc
-			// 
-			this.tMisc.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.tMisc.Controls.Add(this.groupBox12);
-			this.tMisc.Location = new System.Drawing.Point(4, 22);
-			this.tMisc.Name = "tMisc";
-			this.tMisc.Size = new System.Drawing.Size(792, 262);
-			this.tMisc.TabIndex = 7;
-			this.tMisc.Text = "Misc.";
-			// 
-			// groupBox12
-			// 
-			this.groupBox12.Controls.Add(this.tb_arc_ver);
-			this.groupBox12.Controls.Add(this.label30);
-			this.groupBox12.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox12.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox12.Location = new System.Drawing.Point(8, 8);
-			this.groupBox12.Name = "groupBox12";
-			this.groupBox12.Size = new System.Drawing.Size(120, 72);
-			this.groupBox12.TabIndex = 12;
-			this.groupBox12.TabStop = false;
-			this.groupBox12.Text = "Settings";
-			// 
-			// tb_arc_ver
-			// 
-			this.tb_arc_ver.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tb_arc_ver.Location = new System.Drawing.Point(16, 40);
-			this.tb_arc_ver.Name = "tb_arc_ver";
-			this.tb_arc_ver.Size = new System.Drawing.Size(88, 21);
-			this.tb_arc_ver.TabIndex = 24;
-			this.tb_arc_ver.Text = "0x00000000";
-			this.tb_arc_ver.TextChanged += new System.EventHandler(this.tb_arc_ver_TextChanged);
-			// 
-			// label30
-			// 
-			this.label30.AutoSize = true;
-			this.label30.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label30.Location = new System.Drawing.Point(8, 24);
-			this.label30.Name = "label30";
-			this.label30.Size = new System.Drawing.Size(52, 17);
-			this.label30.TabIndex = 23;
-			this.label30.Text = "Version:";
-			// 
-			// tMesh
-			// 
-			this.tMesh.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.tMesh.Controls.Add(this.xpGradientPanel1);
-			this.tMesh.Location = new System.Drawing.Point(4, 22);
-			this.tMesh.Name = "tMesh";
-			this.tMesh.Size = new System.Drawing.Size(792, 262);
-			this.tMesh.TabIndex = 8;
-			this.tMesh.Text = "Mesh Animations";
-			// 
-			// xpGradientPanel1
-			// 
-			this.xpGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xpGradientPanel1.DockPadding.All = 8;
-			this.xpGradientPanel1.Location = new System.Drawing.Point(0, 0);
-			this.xpGradientPanel1.Name = "xpGradientPanel1";
-			this.xpGradientPanel1.Size = new System.Drawing.Size(792, 262);
-			this.xpGradientPanel1.TabIndex = 2;
-			// 
-			// fAnimResourceConst
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(816, 350);
-			this.Controls.Add(this.tabControl1);
-			this.Name = "fAnimResourceConst";
-			this.Text = "fAnimResourceConst";
-			this.tabControl1.ResumeLayout(false);
-			this.tAnimResourceConst.ResumeLayout(false);
-			this.groupBox2.ResumeLayout(false);
-			this.tMisc.ResumeLayout(false);
-			this.groupBox12.ResumeLayout(false);
-			this.tMesh.ResumeLayout(false);
-			this.ResumeLayout(false);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tAnimResourceConst = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.llTxt = new System.Windows.Forms.LinkLabel();
+            this.llClear = new System.Windows.Forms.LinkLabel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.tv = new System.Windows.Forms.TreeView();
+            this.llAdd = new System.Windows.Forms.LinkLabel();
+            this.pg = new System.Windows.Forms.PropertyGrid();
+            this.tMisc = new System.Windows.Forms.TabPage();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.tb_arc_ver = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.tMesh = new System.Windows.Forms.TabPage();
+            this.tabControl1.SuspendLayout();
+            this.tAnimResourceConst.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.tMisc.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tAnimResourceConst);
+            this.tabControl1.Controls.Add(this.tMisc);
+            this.tabControl1.Controls.Add(this.tMesh);
+            this.tabControl1.Location = new System.Drawing.Point(8, 8);
+            this.tabControl1.Multiline = true;
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(800, 288);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tAnimResourceConst
+            // 
+            this.tAnimResourceConst.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tAnimResourceConst.Controls.Add(this.groupBox2);
+            this.tAnimResourceConst.Location = new System.Drawing.Point(4, 22);
+            this.tAnimResourceConst.Name = "tAnimResourceConst";
+            this.tAnimResourceConst.Size = new System.Drawing.Size(792, 262);
+            this.tAnimResourceConst.TabIndex = 6;
+            this.tAnimResourceConst.Text = "Raw View";
+            this.tAnimResourceConst.UseVisualStyleBackColor = true;
+            this.tAnimResourceConst.Visible = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.llTxt);
+            this.groupBox2.Controls.Add(this.llClear);
+            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.tv);
+            this.groupBox2.Controls.Add(this.llAdd);
+            this.groupBox2.Controls.Add(this.pg);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(8, 8);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(776, 248);
+            this.groupBox2.TabIndex = 39;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Content";
+            // 
+            // llTxt
+            // 
+            this.llTxt.Enabled = false;
+            this.llTxt.Location = new System.Drawing.Point(640, 32);
+            this.llTxt.Name = "llTxt";
+            this.llTxt.Size = new System.Drawing.Size(56, 16);
+            this.llTxt.TabIndex = 44;
+            this.llTxt.TabStop = true;
+            this.llTxt.Text = "Text";
+            this.llTxt.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTxt_LinkClicked);
+            // 
+            // llClear
+            // 
+            this.llClear.Enabled = false;
+            this.llClear.Location = new System.Drawing.Point(480, 32);
+            this.llClear.Name = "llClear";
+            this.llClear.Size = new System.Drawing.Size(88, 16);
+            this.llClear.TabIndex = 43;
+            this.llClear.TabStop = true;
+            this.llClear.Text = "Clear Frames";
+            this.llClear.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llClear_LinkClicked);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox1.Location = new System.Drawing.Point(704, 32);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(56, 16);
+            this.checkBox1.TabIndex = 42;
+            this.checkBox1.Text = "Help";
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // tv
+            // 
+            this.tv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.tv.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tv.FullRowSelect = true;
+            this.tv.HideSelection = false;
+            this.tv.Location = new System.Drawing.Point(8, 24);
+            this.tv.Name = "tv";
+            this.tv.Size = new System.Drawing.Size(296, 216);
+            this.tv.TabIndex = 0;
+            this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
+            // 
+            // llAdd
+            // 
+            this.llAdd.Enabled = false;
+            this.llAdd.Location = new System.Drawing.Point(400, 32);
+            this.llAdd.Name = "llAdd";
+            this.llAdd.Size = new System.Drawing.Size(80, 16);
+            this.llAdd.TabIndex = 2;
+            this.llAdd.TabStop = true;
+            this.llAdd.Text = "Add Frame";
+            this.llAdd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAdd_LinkClicked);
+            // 
+            // pg
+            // 
+            this.pg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg.CommandsBackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pg.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pg.HelpVisible = false;
+            this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
+            this.pg.Location = new System.Drawing.Point(312, 24);
+            this.pg.Name = "pg";
+            this.pg.Size = new System.Drawing.Size(456, 216);
+            this.pg.TabIndex = 1;
+            // 
+            // tMisc
+            // 
+            this.tMisc.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tMisc.Controls.Add(this.groupBox12);
+            this.tMisc.Location = new System.Drawing.Point(4, 22);
+            this.tMisc.Name = "tMisc";
+            this.tMisc.Size = new System.Drawing.Size(792, 262);
+            this.tMisc.TabIndex = 7;
+            this.tMisc.Text = "Misc.";
+            this.tMisc.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.tb_arc_ver);
+            this.groupBox12.Controls.Add(this.label30);
+            this.groupBox12.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox12.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox12.Location = new System.Drawing.Point(8, 8);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(120, 72);
+            this.groupBox12.TabIndex = 12;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Settings";
+            // 
+            // tb_arc_ver
+            // 
+            this.tb_arc_ver.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_arc_ver.Location = new System.Drawing.Point(16, 40);
+            this.tb_arc_ver.Name = "tb_arc_ver";
+            this.tb_arc_ver.Size = new System.Drawing.Size(88, 21);
+            this.tb_arc_ver.TabIndex = 24;
+            this.tb_arc_ver.Text = "0x00000000";
+            this.tb_arc_ver.TextChanged += new System.EventHandler(this.tb_arc_ver_TextChanged);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(8, 24);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(55, 13);
+            this.label30.TabIndex = 23;
+            this.label30.Text = "Version:";
+            // 
+            // tMesh
+            // 
+            this.tMesh.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tMesh.Location = new System.Drawing.Point(4, 22);
+            this.tMesh.Name = "tMesh";
+            this.tMesh.Size = new System.Drawing.Size(792, 262);
+            this.tMesh.TabIndex = 8;
+            this.tMesh.Text = "Mesh Animations";
+            this.tMesh.UseVisualStyleBackColor = true;
+            // 
+            // fAnimResourceConst
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(816, 350);
+            this.Controls.Add(this.tabControl1);
+            this.Name = "fAnimResourceConst";
+            this.Text = "fAnimResourceConst";
+            this.tabControl1.ResumeLayout(false);
+            this.tAnimResourceConst.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.tMisc.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.ResumeLayout(false);
 
 		}
 		#endregion

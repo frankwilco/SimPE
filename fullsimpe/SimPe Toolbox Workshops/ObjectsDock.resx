@@ -370,7 +370,7 @@
     <value>xpAdvanced</value>
   </data>
   <data name="&gt;&gt;xpAdvanced.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xpAdvanced.Parent" xml:space="preserve">
     <value>wizardStepPanel1</value>
@@ -547,7 +547,7 @@
     <value>wizardStepPanel1</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel1.Type" xml:space="preserve">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2301.39047, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2305.39525, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel1.Parent" xml:space="preserve">
     <value>wizard1</value>
@@ -698,7 +698,7 @@
     <value>xpTaskBoxSimple2</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple2.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple2.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -746,7 +746,7 @@
     <value>wizardStepPanel2</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel2.Type" xml:space="preserve">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2301.39047, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2305.39525, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel2.Parent" xml:space="preserve">
     <value>wizard1</value>
@@ -816,7 +816,7 @@
     <value>xpTaskBoxSimple1</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple1.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple1.Parent" xml:space="preserve">
     <value>wizardStepPanel3</value>
@@ -849,7 +849,7 @@
     <value>cbColorExt</value>
   </data>
   <data name="&gt;&gt;cbColorExt.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbColorExt.Parent" xml:space="preserve">
     <value>gbRecolor</value>
@@ -925,7 +925,7 @@
     <value>gbRecolor</value>
   </data>
   <data name="&gt;&gt;gbRecolor.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gbRecolor.Parent" xml:space="preserve">
     <value>wizardStepPanel3</value>
@@ -955,7 +955,7 @@
     <value>cbstrlink</value>
   </data>
   <data name="&gt;&gt;cbstrlink.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbstrlink.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -985,7 +985,7 @@
     <value>cbDesc</value>
   </data>
   <data name="&gt;&gt;cbDesc.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbDesc.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -1015,7 +1015,7 @@
     <value>cbOrgGmdc</value>
   </data>
   <data name="&gt;&gt;cbOrgGmdc.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbOrgGmdc.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -1045,7 +1045,7 @@
     <value>cbRemTxt</value>
   </data>
   <data name="&gt;&gt;cbRemTxt.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbRemTxt.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -1075,7 +1075,7 @@
     <value>cbanim</value>
   </data>
   <data name="&gt;&gt;cbanim.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbanim.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -1105,7 +1105,7 @@
     <value>cbwallmask</value>
   </data>
   <data name="&gt;&gt;cbwallmask.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbwallmask.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -1135,7 +1135,7 @@
     <value>cbparent</value>
   </data>
   <data name="&gt;&gt;cbparent.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbparent.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -1165,7 +1165,7 @@
     <value>cbclean</value>
   </data>
   <data name="&gt;&gt;cbclean.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbclean.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -1195,7 +1195,7 @@
     <value>cbfix</value>
   </data>
   <data name="&gt;&gt;cbfix.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbfix.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -1225,7 +1225,7 @@
     <value>cbdefault</value>
   </data>
   <data name="&gt;&gt;cbdefault.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbdefault.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -1255,7 +1255,7 @@
     <value>cbgid</value>
   </data>
   <data name="&gt;&gt;cbgid.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbgid.Parent" xml:space="preserve">
     <value>gbClone</value>
@@ -1315,7 +1315,7 @@
     <value>gbClone</value>
   </data>
   <data name="&gt;&gt;gbClone.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gbClone.Parent" xml:space="preserve">
     <value>wizardStepPanel3</value>
@@ -1459,7 +1459,7 @@
     <value>wizardStepPanel3</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel3.Type" xml:space="preserve">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2301.39047, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2305.39525, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel3.Parent" xml:space="preserve">
     <value>wizard1</value>
@@ -1703,7 +1703,7 @@
     <value>xpTaskBoxSimple3</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple3.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple3.Parent" xml:space="preserve">
     <value>wizardStepPanel5</value>
@@ -1727,7 +1727,7 @@
     <value>wizardStepPanel5</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel5.Type" xml:space="preserve">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2301.39047, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2305.39525, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel5.Parent" xml:space="preserve">
     <value>wizard1</value>
@@ -1877,7 +1877,7 @@
     <value>animatedImagelist1</value>
   </data>
   <data name="&gt;&gt;animatedImagelist1.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2301.39046, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.AnimatedImagelist, graphcontrol, Version=1.0.2305.39546, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;animatedImagelist1.Parent" xml:space="preserve">
     <value>pnWait</value>
@@ -2056,7 +2056,7 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
     <value>wizardStepPanel4</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel4.Type" xml:space="preserve">
-    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2301.39047, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.WizardStepPanel, simpe.wizardbase, Version=1.0.2305.39525, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardStepPanel4.Parent" xml:space="preserve">
     <value>wizard1</value>
@@ -2083,7 +2083,7 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
     <value>wizard1</value>
   </data>
   <data name="&gt;&gt;wizard1.Type" xml:space="preserve">
-    <value>SimPe.Wizards.Wizard, simpe.wizardbase, Version=1.0.2301.39047, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Wizards.Wizard, simpe.wizardbase, Version=1.0.2305.39525, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizard1.Parent" xml:space="preserve">
     <value>xpGradientPanel1</value>
@@ -2101,14 +2101,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAcJJREFUOE9jYBgF
-        mCFgWCpll3dgddLk29e5RLUkkBXw598XsCy/Nie1//4jaW0vRxTNnNEnZHSLr7anz7//euHpH//X3vj9
-        xSltWj1YkV8nr0bntayEtZ/vzTz6+f/a0z//OSZNXwyW49RPlxbKuN8tV3H7bdKqD/8r937/33D05//+
-        i7//Otdv2yVavTleYfGHK/GHfv+pOv7nf83uL/97dn/9716++zxQOyODbOiMJX6Lfv3fcOvX/ykXf/8P
-        2vP3f+zx//8LLvz/H3Py99/g07//bXj2+9+Me///Bx38/z9y39//Gbt+//eY8eBz9aKLNQxsBsm1EpXX
-        fxmv+/vf99T//4ue/v+/7Nn//+33///3P/3jn+qWt1+tz/39H3gHKPfi//+lT/7/b7wClNv7/79WSn8n
-        yBesDKwC+mzm4dX8FauOq2x+88vpLtD2V///L//2/79Ccnkvk5ZtvEjl/N3Km159sb70/38A0IBmoAVG
-        2QtPoccCN4OIjB1fcF6v9LyD12zf/f8vV9zQDlXExsAvYszlllAv2rjptMb2f/9VKzYfx5eQRdjUjUNt
-        YprLsCjiNfYvbzAOrmoczQkMDAD6OOnBQGeBvQAAAABJRU5ErkJggg==
+        mCFgWCpll3dgddLk29e5RLUkkBXw598XsCy/Nie1//4jaW0vRxTNnNEnZHSLr7anz7//euHpH//X3vjx
+        xSltWj1YkV8nr0bntayEtZ/vzTz6+f+qE9/+OSZNXwyW49RPlxbKuN8tV3H7bdKqD/8r937/33D05//+
+        cz/+Otdv2yVavTleYfGHK/GHfvypOv7nf83uL/97dn/9716++zxQOyODbOiMJX6Lfv3fcOvX/ykXf/8P
+        2vP3f+zx//8LLvz/H3nsx9/gEz/+rX3849+Me///Bx0Eiu37+z9j1+//HjPuf65edLGGgc0guVai8vov
+        43V///ue+v9/0dP//5c9+/+//f7///4nvv5T3fL2q/W5v/8D7wDlXvz/v/TJ//+NV4Bye///10rp7wT5
+        gpWBVUCfzTy8mr9i1XHFTS9/Od39/z/m1f//y7/9/6+QXN7LpGUbL1I5f7fS+ldfrC/9/x8ANKAZaIFR
+        9sJT6LHAzSAiY8cXnNcrPe/gNdt3///LFTe0QxWxMfCLGHO5JdSLNm46rbH933/Vis3H8SVkETZ141Cb
+        mOYyLIp4jf3LG4yDqxpHcwIDAwBxremCTqIKYgAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="biPrev.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -2126,17 +2126,17 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="biNext.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAhdJREFUOE/dk99L
-        k1Ecxg/YXNYbzqZiWSsnWxNlI4mkKEEiSHO9hg5HY4kKeVM2VrHRigjnkNFNUC5oZBeSwiqEydTmep3U
-        dBfTDPIHREj2QwydQeN1DN+ns4t5kfYPeODcnM+X53yf73kOIdtjHdDUXTxv8nmJpET9ryNxrkKus0cm
-        GGUN+1+35TqbI/AZsPT8iCpY223C7MtOFUvV57S+OQHOgahw9NKjp4RRqjYJsVZP//NgDI/HeNgjQHX3
-        /Bxzpqk2Wag22KzPZgBXmIdzdB21roWVnHKLhaJdKSHG2Dm90Db4BzfexND6bh36caDQB8jah/vYrolx
-        5zRgDSVwbYiH8VUMBY5V5DZykT3KykoiKiwtbfAsJ1r8CdRzAqqDgHkKcH8FBlaA5o+A6QNgpKLaYQGt
-        XBwvZ+MIfRdw5MprP9lbdbWZDQA1I4CdttrzE/BFgdP01qL3wIVJAXoq2PUN8P8Cxigr8wL5D3hknO14
-        QZRm98MkDK8Cuk/Acbrl/Uu89OaTQZm5s8+9GBdm14DLdMinaDcyz28h65Z3SqypayckXUWOuUJDFZNA
-        cRjY3zsflTTc602THtTSAaWrTHfu1gM4uQgUcEvx7Ouut6JDmkbK8jdeIuc+F5A6Al92Vxg6yM6sExSI
-        UzDP4nQouJllicHsTsuTV9HzzM1ZEEmS4SneMiTizMNkR0YZZaLt8WW2dPEXyVcTK7CDRocAAAAASUVO
-        RK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAhlJREFUOE/dk91L
+        k1Ecxw/YXNYTTqdmWDM3XAtjI4mkKEEiSHM9Wg6lscSEuikbq9hoRURzyegmKFc0tItogzKMydLmfFRq
+        uotpBvkCEZLZi9XmRetpDJ9vZxfrIu0f8MC5OZ/f+f5ezvcQsjrWZk1d7WGjz0skO9T/diTOK5brbOEx
+        RlnD/rfbcp3VHngHmN2fosWs9RJhNuWkgqXqQ1rfjIAbPd+Fncdv3yeMUrVMiLU87nkwFMOdER62MFD9
+        cHaGOXDyWDJQrbdaOqYAZ4iHY3gJR51zkdxys5midSkhxtA+OXe99yfOv4ih5eUSGkYBhQ+QtfZ3s51j
+        o45JwBJM4GwfD0NXDEX2ReQ1ceENyspKIlKUljZ6FhKn/QnUcwKqhwDTBOD6ADyPAM1vAONrwEBFtf0C
+        Wrg4nkzHEZwXsO3UUz/JrjrTzAaAmkHARkt1fwZ8UWA/zbr9FXBkXEADFez8CPi/ASOUlXmBgps8Mg62
+        PSJKk+tWEoYWAd1bYDfd8mcLvPTC3V6Zqb373vwvYfo3cIIOeR+tRuaJCFkXvRNiTV0rIekqsssZ7KsY
+        B0pCwEb3bFTSeNWTJt2ipQNKVxkvX6kHsPcLvch9jeeccw6ICjVNlBX8fYnca1xAag+8X1+hbyNrs/ZQ
+        IE7BfLPDruCmfkj0JldavryKnmcu94JIkjRPyYomEWduJWsyyigTrY4vs2IXfwB0RBL/3zuSVQAAAABJ
+        RU5ErkJggg==
 </value>
   </data>
   <data name="biNext.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -2156,14 +2156,14 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAgVJREFUOE9jYKA7
         4GdQYuBnUCDXXvGQHpezXm0Wp4EGiJJmiAiDWvoc/+sf/rz+//Tb/f+Rk9yvsQkzaMANYZNg0ASaqYLN
-        VE4FFvPS9WHPbn+88P/Gy3P/H7y7+X/FzQn/5eJ4doHV8yiy2OasDviUscr5NacsiwmyIaKGzB4N+8O/
-        nHq+7f/hBxv+H3245f/MM2X/9dqE/7PosCxkEDZk88ve7Ppz2+15/zfdmva/aIf9VzEDZleQIcouXLFd
-        J6L/7bw/8/+mm5P/b7455X/vqej/xh1AzdosG4BK+Bn08vguxW1V+d+4P/j/7HPF/5ddq/tfud/+p3u9
+        VE4FFvPS9WHPbn+88P/Gy3P/H7y7+X/FzQn/5eJ4doHV8yiy2GavCPiUscr5NacsiwmyIaKGzB71+0O+
+        nHq+7f/hBxv+H3245f/MM2X/9dqE/7PosCxkEDZk88va7PRz2+15/zfdmva/aIf9VzEDZleQIcouXLHt
+        R6P/7bw/8/+mm5P/b7455X/vqej/xh1AzdosG4BK+Bn08vguxW1V+d+4P/j/7HPF/5ddq/tftt/+p3u9
         6IqJ58P/r75Z/3/JlbL/8y/n/W897fDfvEvkP7MS8xygZmawS5nVmGda94r8T9oh9T9tm9z/8gMG/9tP
         Ov/vuej8v/+81//207b/a49r/685pfzfpkPsP7MEcxt6OLEyyzNPcZ4o/r/8uPz//IPS/0uPyvyvOC7z
-        v+qk7P/qM7L/O6/o/HdqU/3PIMCUjzPqWGRY6kLmqAIVa/9vOCf7v+WC3P+2K3L/Z91z+O/fbvCDgY8h
-        imC8s0sxZcYuMvw7+4HN//7b8v9XPQv5H9lv+Rao2Z2gZpgCDimmsJzFpp+3vsz6H9dv+oCBk8GcaM0w
-        hVwSzF4mKfxbGFgZtEnWDNXACKTJzjAkWQoA7vzUEf7qRPQAAAAASUVORK5CYII=
+        v+qk7P/qM7L/O6/o/HdqU/3PIMCUjzPqWGRY6kLmqAIVa/9vOCf7v+WC3P+2K3L/Z91z+O/fYvCDgY8h
+        imC8s0sxZUYtMvw7+4HN//7b8v9XPQv5H9lv+Rao2Z2gZpgCDimmsJwFpp+3vsz6H9dv+oCBk8GcaM0w
+        hVwSzF4mKfxbGFgZtEnWDNXACKTJzjAkWQoAr8LT83j/czUAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="biFinish.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -2181,19 +2181,19 @@ Another reason might be, that the selected Object "borrows" it's Textures from a
   <data name="biAbort.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAqFJREFUOE+VkwtI
-        U1EYx785nziTlPIR+IKmZUG1rITUIaIZFmXUFqFRGpaOpMRelmllUQtLexGWFWRiOMV3atFm2bYyE2sq
-        lKNICYwWNMpH6r9vS6Si0A78OOd+j9+5h3uukKYYoQHOkaHzZ4U7jpudPphpgMvHpur5LV93WqYHTMDH
-        NhhUx15vD/dO/S9B+fF4NUb7gM/dwLe3PGtRrAgtY4lwWqLyjCVqvLkBvG9i7gN9D4H+SqRHe2dZBct9
-        hdLYYPs4ZyKPvxlvriXtYBZhsEAMPFcCXbeA3lJ8UqV99XAgf7qe7FeL7jyYqpK/aHIl2swYt0MLvUjC
-        MieL0N2BpGvEVNAQT6bvF/yA9lPAM6Y9G/IQ0U46u05UAv0eQH+YE1nA073Ag63oLYrqq9gfVJUa7aaY
-        60nz7IiCVYmCHjxOBFrTuT4NmbFuStoRIshB/Wrg3hZGzs0yoGUzoOPnF1xsWI/OEzP6LW8TL7FVQMu1
-        mo1AnRj7oiifInxJjtsLgOoooFYKNEawJIwl4YB6GUYuuaAohnTc79qc56WBbgVQ4wmoCBmRpCQfV5KY
-        ztiMocQdqPAB6v2B5gAWBGC82gXGXBrOTxBUdVxxfAXdTKBJCDQQUEqIE5P1Tsw2ZNMA7nDwLlMrYAEX
-        aRidLdDGc6cN0MHxJ5y3oCYYD9KQyJ6CLAJh425qQ6WlmalmWph2poN5yRiYLqbnp2D8PCFFQhcnP/u5
-        TVSCJk4WE8wHCMMnec1ntAqMzLuJZt5k6CjhiJRquFk0KUgLoxxcIxgUNJqwmC7nr6JWo4IwouRGy9HK
-        eF1I0CeROXGRdWe+d7+MMD+SPUqigUBP2jARtpvjSpFxQZSdEkJXty2lwpW+tMueKPBf99+FEz7T+jn+
-        KPoBOKyTO4Uwa6YAAAAASUVORK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAqJJREFUOE+VkwtI
+        U1EYx785nziTlPIR+IKmZUG1rITUIaIZFmWURmgvw9KRlNjLMq0samFpL8SygkwUp8xnatFm2bYyG+YL
+        ylGkBEoGjfKR+u/bEqkotAM/zrnf43fu4Z4rpGlGoI99aODCOcG2E0a7j0bq5/Lx6Xp+y9ecj9EBg8BA
+        CzoUp97sCnZP+i9B2eloFcZ6gc9dwLd3PGtQKAssYYlwRqKy1GUqvL0NfGhgHgK9j4G+CqSEu6ebBSs9
+        hdJIf+soeyKXvxnvrCfNUDphKFcMvJQDnXeBnmJ8Kk3+6mJD3nQrwasaXdkYVCZ8UWdJNGkRTscWu5GE
+        ZXYmobMNSdeJKbcumga/X/ECWs8BL5jWDMQGiPbSxQ2iIugOALrjnEgHnh8EHm1HT0FYb/lhP2VSuJNs
+        vistsCLyV8QLuvE0HmhO4fpkpEU6yWlPgCATtWuBB9uYWG6OAZq2Alp+fsXFHRvRdmZWn+ltoiWWMmi4
+        Vr0ZqBHjUBjlUIgnxeLeIqAyDKiWAvUhLAliSTCgWoHRaw4oiCAt9zs2ZrupoV0FVLkCCkJqKMnJw5Ek
+        AxcsxlHkDJR7ALXeQKMPC3wwUekAQxaN5MQJlPobtu3QzgYahEAdAcWEKDGZ78Tc9gzqx30OljLVAhZw
+        kZrRWgItPLdZAHqOP+O8CRXBcJSGRdbkZxII6/dTCypMzUwl08S0MnrmNdPBdDLdPwUTlwmJEro69dkv
+        baEiNHCykGA8Qhg5y2s+o1lgYN5PNvMmwycJJ6RUxc2iKUFyEGXiJqFdRmNxS+l6zhpqNsgIo3JuNB2t
+        hNd5BN0OMsYvMe/M9+6XEeRFMU92U7+vK22aDFvNc6TQKD/KSAyg/J3LKW+1J+2zJvL91/134ITHjH6O
+        P4p+ACb6kzCUyEsLAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="biAbort.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">

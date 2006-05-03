@@ -530,7 +530,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			Wait.SubStop();
 			if (Finished!=null) Finished(this, new System.EventArgs());
-		}
+		}        
 
 		public static TreeNode GetParentNode(TreeNodeCollection nodes, string[] names, int id, SimPe.Cache.ObjectCacheItem oci, SimPe.Data.Alias a, ImageList ilist)
 		{	

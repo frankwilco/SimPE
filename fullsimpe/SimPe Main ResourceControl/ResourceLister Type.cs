@@ -33,9 +33,9 @@ namespace SimPe
 		{
 			if (pfd.Type!=p.Type) return false;
 			if (filter.Active)
-				if (filter.IsFiltered(pfd)) return false;			
+				if (filter.IsFiltered(pfd)) return false;
 
-			lv.Invoke(new AddItemDelegate(AddItem), new object[] { lv, CreateItem(pfd), threadguid });
+            lv.Invoke(additemdelegate, new object[] { lv, CreateItem(pfd), threadguid });
 			return true;
 		}
 	}

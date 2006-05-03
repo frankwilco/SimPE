@@ -195,15 +195,19 @@ namespace SimPe
 		/// </summary>
 		public static void ShowUpdate()
 		{
-			System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(StartShowUpdate));
+			System.Threading.Thread t = new System.Threading.Thread(
+                new System.Threading.ThreadStart(StartShowUpdate)
+            );
+            t.SetApartmentState(System.Threading.ApartmentState.STA);
 			t.Start();
 		}
 
 		/// <summary>
 		/// used to start the Check thread
 		/// </summary>
+        [STAThread]
 		static void StartShowUpdate()
-		{
+		{            
 			ShowUpdate(false);
 		}
 
