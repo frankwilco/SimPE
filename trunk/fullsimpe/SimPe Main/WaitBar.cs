@@ -30,9 +30,11 @@ namespace SimPe
 	internal class WaitBarControl : IWaitingBarControl
 	{
 		MainForm f;
+        WaitControl wc;
 		public WaitBarControl(MainForm mf)
 		{
 			f = mf;
+            wc = f.waitControl1;
 			ShowProgress(false);
 		}
 
@@ -42,67 +44,51 @@ namespace SimPe
 		#region Visible Control
 		protected void ShowMain(bool visible)
 		{
-			f.sb.Visible = visible;
+            wc.Waiting = visible;
+            Application.DoEvents();
 		}
 
 		protected void ShowAnimation(bool visible)
 		{
-			f.xpLine1.Visible = visible;
-			f.pbWait.Visible = visible;
+            wc.ShowAnimation = visible;
+            Application.DoEvents();
 		}
 
 		protected void ShowProgress(bool visible)
 		{
-			//f.lnProg.Visible = visible;
-			f.pb.Visible = visible;
-			f.lbPercent.Visible = visible;
+            wc.ShowProgress = visible;
+            Application.DoEvents();
 		}
 
 		protected void ShowImage(bool visible)
 		{			
-			f.pbimg.Visible = visible;
-			//f.lnProg2.Visible = f.lbOp.Visible || f.pbimg.Visible;
+			
 		}
 
 		protected void ShowDescription(bool visible)
-		{			
-			f.lbOp.Visible = visible;
-			//f.lnProg2.Visible = f.lbOp.Visible || f.pbimg.Visible;
+		{
+            wc.ShowText = visible;
+            Application.DoEvents();
 		}
 		#endregion
 
 		#region Setters
 		protected void SetMessage(object text)
 		{
-			f.lbOp.Text = text.ToString();
-			//Application.DoEvents();
+            string t = "";
+            if (text != null) t = text.ToString();
+            wc.Message = t;		
 		}
 
 		protected void SetImage(object img)
 		{
-			if (img!=null) 
-			{
-				f.pbimg.Image = Ambertation.Drawing.GraphicRoutines.ScaleImage((Image)img, f.pbimg.Width, f.pbimg.Height, true);
-				//Application.DoEvents();
-			}
-			else 
-				f.pbimg.Image = null;
+			
 		}
 
 		protected void SetProgress(object val)
 		{
 			int i = (int)val;
-			if (i>=f.pb.Minimum && i<=f.pb.Maximum) 
-			{
-				f.pb.Value = i;
-				if (f.pb.Maximum!=0) 
-				{
-					int p = (f.pb.Value * 100) / f.pb.Maximum;
-					f.lbPercent.Text = p.ToString()+"%";
-					f.lbPercent.Refresh();
-				}
-				//Application.DoEvents();
-			}
+            wc.Value = i;
 		}
 
 
@@ -110,88 +96,64 @@ namespace SimPe
 		protected void SetMaxProgress(object val)
 		{
 			int i = (int)val;
-			f.pb.Maximum = i;
+            wc.Maximum = i;
 		}
 
 		protected void StartAnimation(bool b)
 		{
-			if (b) f.pbWait.Start();
-			else f.pbWait.Pause();
+			
 		}
 		#endregion
 
 		public bool Running
 		{
-			get { return f.sb.Visible; }
+			get { return wc.Waiting; }
 		}
 
 		public string Message
 		{
-			get { return f.lbOp.Text; }
+			get { return wc.Message; }
 			set 
 			{
-				if (value!=f.lbOp.Text) 
-				{	
-					f.lbOp.Invoke(new SetStuff(SetMessage), new object[] { " "+value });
-					//f.lbOp.Text = " "+value;
-					//f.lbOp.Refresh();
-					//Application.DoEvents();
-				}
+				wc.Invoke(new SetStuff(SetMessage), new object[] { " "+value });									
 			}
 		}
 
 		public Image Image
 		{
-			get { return f.pbimg.Image; }
-			set 
-			{
-				if (value!=f.pbimg.Image) 
-				{				
-					if (value!=null && !f.pbimg.Visible) ShowImage(true);
-					f.pbimg.Invoke(new SetStuff(SetImage), new object[] { value });
-				}
-			
-			}
+			get { return null; }
+			set { }
 		}
 
 		public int Progress
 		{
-			get { return f.pb.Value; }
+			get { return wc.Value; }
 			set 
 			{
-				if (value!=f.pb.Value) 
-				{	
-					//SetProgress(value);
-					//f.pb.Value = value;
-					f.pb.Invoke(new SetStuff(SetProgress), new object[] { value });
-				}
+				wc.Invoke(new SetStuff(SetProgress), new object[] { value });				
 			}
 		}
 
 		public int MaxProgress
 		{
-			get { return f.pb.Maximum; }
+			get { return wc.Maximum; }
 			set 
 			{
-				if (value!=f.pb.Maximum)
-				{
-					f.Invoke(new ShowStuff(ShowProgress), new object[] {true});
-					f.pb.Invoke(new SetStuff(SetMaxProgress), new object[] { value });
-					//f.pb.Maximum = value;
-				}
+				wc.Invoke(new ShowStuff(ShowProgress), new object[] {true});
+				wc.Invoke(new SetStuff(SetMaxProgress), new object[] { value });									
 			}
 		}
 
 		protected void StartWait()
 		{
-			f.Invoke(new ShowStuff(ShowImage), new object[] {false});
-			f.Invoke(new ShowStuff(ShowDescription), new object[] {true});
-			f.Invoke(new ShowStuff(ShowAnimation), new object[] {true});
+			//wc.Invoke(new ShowStuff(ShowImage), new object[] {false});
+			wc.Invoke(new ShowStuff(ShowDescription), new object[] {true});
+			wc.Invoke(new ShowStuff(ShowAnimation), new object[] {true});
 
 			Message = SimPe.Localization.GetString("Please Wait");
 			Image = null;
-			f.sb.Invoke(new ShowStuff(ShowMain), new object[] {true});			
-			f.pbWait.Invoke(new ShowStuff(StartAnimation), new object[] {true});
+			wc.Invoke(new ShowStuff(ShowMain), new object[] {true});			
+			//wc.Invoke(new ShowStuff(StartAnimation), new object[] {true});
 			Application.DoEvents();
 		}
 
@@ -211,9 +173,9 @@ namespace SimPe
 		{	
 			try  
 			{ 		
-				f.sb.Invoke(new ShowStuff(ShowMain), new object[] {false});			
-				f.pbWait.Invoke(new ShowStuff(StartAnimation), new object[] {false});
-				f.Invoke(new ShowStuff(ShowProgress), new object[] {false});
+				wc.Invoke(new ShowStuff(ShowMain), new object[] {false});			
+				//wc.Invoke(new ShowStuff(StartAnimation), new object[] {false});
+				wc.Invoke(new ShowStuff(ShowProgress), new object[] {false});
 				//Application.DoEvents();
 			} 
 			catch {}

@@ -685,13 +685,21 @@ namespace SimPe.Plugin.Tool.Dockable
 			thread.Execute();
 		}
 
-		internal void FindByStringMatch()
+        delegate void InvokeHandler();
+
+		internal void InvokeFindByStringMatch()
 		{
 			if (this.cbTask.SelectedIndex==0) FindByNmap(null, null);
 			else if (this.cbTask.SelectedIndex==1) FindByStr(null, null);
 			else if (this.cbTask.SelectedIndex==2) this.FindByType(null, null);
 			else if (this.cbTask.SelectedIndex==3) this.FindByCpf(null, null);
 		}
+
+        internal void FindByStringMatch()
+        {
+            if (cbTask.InvokeRequired) cbTask.Invoke(new InvokeHandler(InvokeFindByStringMatch));
+            else InvokeFindByStringMatch();
+        }
 
 		private void FindByNmap(object sender, System.EventArgs e)
 		{
@@ -1105,7 +1113,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		public void Execute()
 		{
-			this.ExecuteThread(System.Threading.ThreadPriority.Normal, "Finder");
+			this.ExecuteThread(System.Threading.ThreadPriority.Normal, "Finder", false);
 		}
 		#region IDisposable Member
 

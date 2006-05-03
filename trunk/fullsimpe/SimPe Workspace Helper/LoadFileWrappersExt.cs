@@ -24,9 +24,123 @@ using System.IO;
 using SimPe.Interfaces;
 using SimPe.Interfaces.Plugin;
 using SimPe.Events;
+using System.Windows.Forms;
 
 namespace SimPe
 {
+    public class MyButtonItem : TD.SandBar.ButtonItem
+    {        
+        static int counter = 0;
+
+        #region Layout stuff
+        public static void GetLayoutInformations(Control b)
+        {
+            ArrayList list = Helper.WindowsRegistry.Layout.VisibleToolbarButtons;
+            GetLayoutInformations(b, list);
+        }
+
+        static void GetLayoutInformations(Control b, ArrayList list)
+        {
+            foreach (Control c in b.Controls)
+                GetLayoutInformations(c, list);
+
+            TD.SandBar.ToolBar tb = b as TD.SandBar.ToolBar;
+            if (tb != null)
+            {
+                foreach (object o in tb.Items)
+                {
+                    MyButtonItem mbi = o as MyButtonItem;
+                    if (mbi != null)
+                        //if (!mbi.HaveDock)
+                            mbi.Visible = list.Contains(mbi.Name);
+                }
+            }
+
+        }
+
+        public static void SetLayoutInformations(Control b){
+            ArrayList list = new ArrayList();
+            SetLayoutInformations(b, list);
+
+            Helper.WindowsRegistry.Layout.VisibleToolbarButtons = list;
+        }
+
+        static void SetLayoutInformations(Control b, ArrayList list)
+        {
+            foreach (Control c in b.Controls)
+                SetLayoutInformations(c, list);
+
+            TD.SandBar.ToolBar tb = b as TD.SandBar.ToolBar;
+            if (tb != null)
+            {
+                foreach (object o in tb.Items)
+                {
+                    MyButtonItem mbi = o as MyButtonItem;
+                    if (mbi != null)
+                        if (mbi.Visible /*&& !mbi.HaveDock*/)
+                            list.Add(mbi.Name);
+                }
+            }
+            
+        }
+        #endregion
+
+        string name;
+        public string Name
+        {
+            get { return name; }
+        }
+
+        bool havedock;
+        public bool HaveDock
+        {
+            get { return havedock; }
+        }
+
+        public MyButtonItem(string name)
+            : this(null, name) { }
+
+        internal MyButtonItem(TD.SandBar.MenuButtonItem item)
+            : this(item, null) { }
+
+        MyButtonItem(TD.SandBar.MenuButtonItem item, string name)
+            : base()
+        {
+            if (item != null)
+            {
+                this.Image = item.Image;
+                this.Visible = (item.Image != null);
+                if (this.Image == null) this.Text = item.Text;
+                this.ToolTipText = item.Text.Replace("&", "");
+                this.Enabled = item.Enabled;
+                this.BuddyMenu = item;
+                this.ToolTipText = item.Text;
+
+                havedock = false;
+                ToolMenuItemExt tmie = item as ToolMenuItemExt;
+                if (tmie != null) this.name = tmie.Name;
+                else
+                {
+                    TD.SandDock.DockableWindow dw = item.Tag as TD.SandDock.DockableWindow;
+
+                    if (dw != null)
+                    {
+                        this.name = dw.Name;
+                        havedock = true;
+                    }
+                    else this.name = "Button_" + (counter++);
+                }
+            }
+            else
+            {
+                havedock = false;
+                this.name = name;
+            }
+
+
+            
+        }
+    }
 	public class ToolMenuItemExt  : TD.SandBar.MenuButtonItem
 	{
 		/// <summary>
@@ -85,6 +199,11 @@ namespace SimPe
 			set {chghandler = value; }
 		}
 
+        string name;
+        public string Name
+        {
+            get { return name; }
+        }
 		public ToolMenuItemExt(IToolPlus tool, ExternalToolNotify chghnd) : this(tool.ToString(), tool, chghnd)
 		{			
 		}
@@ -97,6 +216,8 @@ namespace SimPe
 			Activate += new EventHandler(LinkClicked);
 			Activate += new EventHandler(ClickItem);
 			chghandler = chghnd;
+
+            name = tool.GetType().Namespace + "." + tool.GetType().Name;
 		}
 		
 		private void ClickItem(object sender, System.EventArgs e) 
@@ -294,15 +415,8 @@ namespace SimPe
 			for (int i=0; i<items.Count; i++)
 			{
 				TD.SandBar.MenuButtonItem item = (TD.SandBar.MenuButtonItem)items[i];				
-				TD.SandBar.ButtonItem bi = new TD.SandBar.ButtonItem();
-				bi.Image = item.Image;				
-				bi.Visible = (item.Image!=null);
-				if (bi.Image==null) bi.Text = item.Text;
-				bi.ToolTipText = item.Text.Replace("&", "");
-				bi.Enabled = item.Enabled;
-				bi.BuddyMenu = item;
-				bi.BeginGroup = (i==0 && tb.Items.Count>0) || item.BeginGroup;
-				bi.ToolTipText = item.Text;
+				TD.SandBar.ButtonItem bi = new MyButtonItem(item);				
+				bi.BeginGroup = (i==0 && tb.Items.Count>0) || item.BeginGroup;				                
 
 				tb.Items.Add(bi);
 			}

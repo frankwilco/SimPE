@@ -102,7 +102,7 @@ namespace SimPe
 			{
 				try 
 				{
-					System.IO.StreamWriter sw = System.IO.File.CreateText(System.IO.Path.Combine(Helper.SimPeDataPath, "layout.xreg"));
+                    System.IO.StreamWriter sw = System.IO.File.CreateText(LayoutRegistry.LayoutFile);
 					try 
 					{
 						System.IO.StreamReader sr = new System.IO.StreamReader(s);
@@ -547,7 +547,7 @@ namespace SimPe
 		#region Import Data
 		public static bool ConvertData()
 		{
-			string layoutname = System.IO.Path.Combine(Helper.SimPeDataPath, "layout.xreg");
+			string layoutname = LayoutRegistry.LayoutFile;
 			if (!System.IO.File.Exists(layoutname)) 
 				Commandline.MakeModern(null);
 

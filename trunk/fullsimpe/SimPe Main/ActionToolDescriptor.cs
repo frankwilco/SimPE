@@ -87,7 +87,7 @@ namespace SimPe
 
 			if (tool.Icon!=null) 
 			{
-				bi = new TD.SandBar.ButtonItem();
+				bi = new MyButtonItem("action."+tool.GetType().Namespace+"."+tool.GetType().Name);
 				bi.Text = "";
 				bi.ToolTipText = ll.Text;
 				bi.Image = tool.Icon;

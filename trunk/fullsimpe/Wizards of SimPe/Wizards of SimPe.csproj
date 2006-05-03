@@ -6,7 +6,7 @@
     <ProjectGuid>{9C10B224-7ABC-46D1-9ADC-58A817D6AF59}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>..\SimPe\img\simpe.ico</ApplicationIcon>
+    <ApplicationIcon>simpenew.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>Wizards of SimPE</AssemblyName>
@@ -96,7 +96,8 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EnumComboBox, Version=1.0.2305.28723, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="EnumComboBox, Version=1.0.2314.23625, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="graphcontrol, Version=1.0.2314.23625, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="simpe.commonhandler, Version=1.0.2305.30291, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.commonhandler.dll</HintPath>
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
+    <Content Include="simpenew.ico" />
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

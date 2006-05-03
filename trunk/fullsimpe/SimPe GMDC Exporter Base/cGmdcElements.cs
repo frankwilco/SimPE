@@ -519,7 +519,16 @@ namespace SimPe.Plugin.Gmdc
 		/// </remarks>
 		public  void Serialize(System.IO.BinaryWriter writer)
 		{
-			writer.Write(number);
+            //automatically keep the Number Field correct
+            if (items.Length == 0)
+            {
+                number = data.Length;
+                foreach (int i in this.items)
+                    if (i > number) number = i - 1;
+            }
+
+            writer.Write(number); 
+
 			writer.Write((int)identity);
 			writer.Write(repeat);
 			writer.Write((uint)blockformat);

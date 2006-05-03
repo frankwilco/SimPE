@@ -717,9 +717,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 
 			//stores a list of all Indices that should be removed
 			ArrayList remove = new ArrayList();
-#if DEBUG
-			System.IO.StreamWriter sw = System.IO.File.CreateText("g:\\debug_"+g.Group.Name+".txt");
-#endif
+
 			int offset = 0;
 			for (int i=0; i<g.Link.AliasValues[0].Length; i++)
 			{
@@ -761,9 +759,7 @@ namespace SimPe.Plugin.Gmdc.Importer
 					offsetmap[i] = offset;
 				}
 
-#if DEBUG
-				sw.WriteLine(i.ToString()+": "+offset.ToString());				
-#endif
+
 			}
 
 			//remove the unused references
@@ -776,16 +772,6 @@ namespace SimPe.Plugin.Gmdc.Importer
 				}
 			}
 
-#if DEBUG
-			try 
-			{
-				foreach (int i in map.Keys) sw.WriteLine(i.ToString()+" --> "+map[i].ToString());
-			} 
-			finally 
-			{
-				sw.Close();
-			}
-#endif
 
 
 			//Adjust the face List

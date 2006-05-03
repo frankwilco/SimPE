@@ -55,12 +55,12 @@ namespace SimPe.PackedFiles.Wrapper.Factory
 										 
 											  new SimPe.PackedFiles.Wrapper.Fami(this.LinkedProvider.SimNameProvider),											 										  
 											  new SimPe.PackedFiles.Wrapper.Cpf(),
-#if DEBUG
+/*#if DEBUG
 											  new SimPe.PackedFiles.Wrapper.SRel(),	
 											  new SimPe.PackedFiles.Wrapper.SDesc(this.LinkedProvider.SimNameProvider, this.LinkedProvider.SimFamilynameProvider, this.LinkedProvider.SimDescriptionProvider),											  
 											  new SimPe.PackedFiles.Wrapper.Objd(this.LinkedProvider.OpcodeProvider),
 											  new SimPe.PackedFiles.Wrapper.FamilyTies(this.LinkedProvider.SimNameProvider),
-#endif										  
+#endif	*/
 											  new SimPe.PackedFiles.Wrapper.Nref()
 										  };
 					return wrappers;

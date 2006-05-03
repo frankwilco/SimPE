@@ -44,6 +44,11 @@ namespace SimPe
 		XmlRegistryKey xrk;
 		#endregion
 
+        public static string LayoutFile
+        {
+            get { return System.IO.Path.Combine(Helper.SimPeDataPath, "layout2.xreg"); }
+        }
+
 		#region Management
 		XmlRegistry reg;
 		/// <summary>
@@ -52,7 +57,7 @@ namespace SimPe
 		/// <param name="layoutkey">Key to the Layout</param>
 		internal LayoutRegistry(XmlRegistryKey layoutkey)
 		{
-			reg = new XmlRegistry(System.IO.Path.Combine(Helper.SimPeDataPath, "layout.xreg"), true);
+            reg = new XmlRegistry(LayoutFile, true);
 			xrk = reg.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe\\Layout");						
 		}	
 
@@ -90,6 +95,22 @@ namespace SimPe
 		
 		#endregion
 
+        /// <summary>
+        /// returns a list of Strings that hold the names of all available ToolbarButtons
+        /// </summary>
+        /// <remarks>Adding to tha list will not update the value! You have to use the Setter again!</remarks>
+        public ArrayList VisibleToolbarButtons
+        {
+            get
+            {
+                object o = xrk.GetValue("TBButtons", new ArrayList());
+                return o as ArrayList;
+            }
+            set
+            {
+                xrk.SetValue("TBButtons", value);
+            }
+        }
 		
 
 		/// <summary>

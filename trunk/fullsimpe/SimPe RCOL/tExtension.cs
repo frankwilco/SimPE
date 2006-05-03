@@ -94,7 +94,9 @@ namespace SimPe.Plugin.TabPage
 			cbtype.Items.Add(ExtensionItem.ItemTypes.String);
 			cbtype.Items.Add(ExtensionItem.ItemTypes.Translation);
 			cbtype.Items.Add(ExtensionItem.ItemTypes.Value);
-			cbtype.SelectedIndex = 0;
+            cbtype.SelectedIndex = 0;
+
+            this.UseVisualStyleBackColor = true;
 		}
 
 		/// <summary>

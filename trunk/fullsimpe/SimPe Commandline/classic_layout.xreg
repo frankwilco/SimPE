@@ -13,6 +13,44 @@
 <bool name="ActionPlugExpanded">true</bool>
 <int name="OffsetColumnWidth">100</int>
 <int name="InstanceHighColumnWidth">100</int>
+<list name="TBButtons">
+<string name="0">action.SimPe.Actions.Default.AddAction</string>
+<string name="1">action.SimPe.Actions.Default.ExportAction</string>
+<string name="2">action.SimPe.Actions.Default.ReplaceAction</string>
+<string name="3">action.SimPe.Actions.Default.DeleteAction</string>
+<string name="4">action.SimPe.Actions.Default.RestoreAction</string>
+<string name="5">action.SimPe.Actions.Default.CloneAction</string>
+<string name="6">action.SimPe.Actions.Default.CreateAction</string>
+<string name="7">action.SimPe.Plugin.Tool.Action.ActionReloadFiletable</string>
+<string name="8">action.SimPe.Plugin.Tool.Action.ActionUniqueInstance</string>
+<string name="9">action.SimPe.Plugin.Tool.Action.ActionIntriguedNeighborhood</string>
+<string name="10">action.SimPe.Plugin.Tool.Action.ActionGlobalFixTGI</string>
+<string name="11">action.SimPe.Plugin.Tool.Action.ActionBuildNameMap</string>
+<string name="12">SimPe.Plugin.Tool.Window.InstallerTool</string>
+<string name="13">SimPe.Plugin.ScanerTool</string>
+<string name="14">SimPe.Plugin.Tool.AnimTool</string>
+<string name="15">SimPe.Plugin.ScenegraphTool</string>
+<string name="16">SimPe.Plugin.Tool.CreateListFromPackageTool</string>
+<string name="17">SimPe.Plugin.Tool.CreateListFromSelectionTool</string>
+<string name="18">SimPe.Plugin.Tool.Window.PackageRepairTool</string>
+<string name="19">SimPe.Plugin.Tool.ObjectsTool</string>
+<string name="20">SimPe.Plugin.PhotoStudioTool</string>
+<string name="21">SimPe.Plugin.NeighborhoodTool</string>
+<string name="22">SimPe.Plugin.SimsTool</string>
+<string name="23">dcAction</string>
+<string name="24">dcFilter</string>
+<string name="25">dcPlugin</string>
+<string name="26">dcResource</string>
+<string name="27">dc.SimPe.Plugin.Tool.Dockable.WrapperDockTool</string>
+<string name="28">dc.SimPe.Plugin.Tool.Dockable.HexDockTool</string>
+<string name="29">dc.SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool</string>
+<string name="30">dc.SimPe.Plugin.Tool.Dockable.DebugDock</string>
+<string name="31">dc.SimPe.Plugin.Tool.Dockable.ResourceDockTool</string>
+<string name="32">dc.SimPe.Plugin.Tool.Dockable.FinderDock</string>
+<string name="33">dc.SimPe.Plugin.Tool.Dockable.PackageDetailDockTool</string>
+<string name="34">dc.SimPe.Plugin.Tool.Dockable.HexDecConverterTool</string>
+<string name="35">dc.SimPe.Plugin.Tool.Dockable.PackageDockTool</string>
+</list>
 <string name="SandBar">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;Layout&gt;
   &lt;Toolbar Guid="450cfa2c-067d-435a-bc20-a98c7b00b268" DockLine="1" DockOffset="0" Visible="False" Container="4e621434-1359-4257-9c51-7ad4b9ca98c9"&gt;

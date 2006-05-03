@@ -53,7 +53,9 @@ namespace SimPe.Plugin.TabPage
 			//
 			InitializeComponent();
 
-			this.gen_pg.Enabled = Helper.WindowsRegistry.HiddenMode;
+            this.gen_pg.Enabled = Helper.WindowsRegistry.HiddenMode;
+
+            this.UseVisualStyleBackColor = true;
 		}
 
 		/// <summary>

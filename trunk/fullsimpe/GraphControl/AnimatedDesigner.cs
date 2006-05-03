@@ -157,5 +157,5 @@ namespace Ambertation.Windows.Forms
 			base.OnSetComponentDefaults ();
 		}
 
-	}
+	}    
 }

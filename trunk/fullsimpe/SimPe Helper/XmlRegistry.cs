@@ -345,6 +345,7 @@ namespace SimPe
 			ArrayList names = new ArrayList();
 			foreach (XmlNode subnode in node) 
 			{
+                if (subnode.Attributes == null) continue;
 				names.Add(subnode.Attributes["name"].Value);
 				ParseValues(subnode, subkey);			
 			}

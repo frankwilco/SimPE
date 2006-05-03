@@ -12,7 +12,27 @@ namespace SimPe.Plugin.Tool.Dockable
 	/// Summary description for DoackableObjectWorkshop.
 	/// </summary>
 	public class dcObjectWorkshop : TD.SandDock.UserDockableWindow
-	{
+	{        
+        class MyTreeView : System.Windows.Forms.TreeView
+        {            
+            public MyTreeView()
+                : base()
+            {                                
+            }
+
+            public void DoBeginUpdate()
+            {
+                this.BeginUpdate();
+                //this.Visible = false;
+            }
+
+            public void DoEndUpdate(bool vis)
+            {
+                this.EndUpdate();
+                //this.Visible = vis;
+            }
+                                   
+        }
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
 		private SimPe.Wizards.Wizard wizard1;
 		private SimPe.Wizards.WizardStepPanel wizardStepPanel1;
@@ -22,7 +42,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		private System.Windows.Forms.Button button1;
 		private SimPe.Wizards.WizardStepPanel wizardStepPanel2;
 		private System.Windows.Forms.ListBox lb;
-		private System.Windows.Forms.TreeView tv;
+		private MyTreeView tv;
 		private System.Windows.Forms.Splitter splitter1;
 		private System.Windows.Forms.Panel panel1;
 		private Ambertation.Windows.Forms.XPTaskBoxSimple xpTaskBoxSimple2;
@@ -195,7 +215,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.label2 = new System.Windows.Forms.Label();
             this.wizardStepPanel2 = new SimPe.Wizards.WizardStepPanel();
             this.lb = new System.Windows.Forms.ListBox();
-            this.tv = new System.Windows.Forms.TreeView();
+            this.tv = new MyTreeView();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel1 = new System.Windows.Forms.Panel();
             this.xpTaskBoxSimple2 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
@@ -868,6 +888,9 @@ namespace SimPe.Plugin.Tool.Dockable
 			Activate_biNext(biNext, e);
 		}
 
+        delegate void TreeViewSetUpdateHandler(TreeView tv, bool begin);
+
+       
 		private void wizardStepPanel2_Prepare(SimPe.Wizards.Wizard sender, SimPe.Wizards.WizardStepPanel step, int target)
 		{
 			if (target==step.Index) 
@@ -888,6 +911,8 @@ namespace SimPe.Plugin.Tool.Dockable
 					tv.Nodes.Clear();
 					tv.Sorted = true;
 					tv.ImageList = ilist;
+                    lb.BeginUpdate();
+                    tv.DoBeginUpdate();
 				
 					ObjectLoader ol = new ObjectLoader(null);
 					ol.LoadedItem += new SimPe.Plugin.Tool.Dockable.ObjectLoader.LoadItemHandler(ol_LoadedItem);
@@ -909,12 +934,17 @@ namespace SimPe.Plugin.Tool.Dockable
 			string[][] cats = oci.ObjectCategory;			
 			foreach (string[] ss in cats)				
 			{			
-				this.tv.BeginInvoke(new GetParentNodeHandler(ObjectLoader.GetParentNode), new object[] {tv.Nodes, ss, 0, oci, a, ilist});				
+				this.tv.Invoke(new GetParentNodeHandler(ObjectLoader.GetParentNode), new object[] {tv.Nodes, ss, 0, oci, a, ilist});				
 			}
 
 			//if (oci.Thumbnail!=null) a.Name = "* "+a.Name;				
-			lb.Items.Add(a);			
+            lb.Invoke(new System.EventHandler(AddItemToListBox), new object[] { a });			
 		}
+
+        private void AddItemToListBox(object obj, EventArgs e)
+        {
+            lb.Items.Add(obj);
+        }
 
         private void ol_Finished(object sender, EventArgs e)
         {
@@ -927,11 +957,13 @@ namespace SimPe.Plugin.Tool.Dockable
 			lb.Sorted = true;	
 			tv.Enabled = true;
 			lb.Enabled = true;
+
+            tv.DoEndUpdate(biCatalog.Checked);
+            lb.EndUpdate();
 		}
 
 		private void Activate_biCatalog(object sender, System.EventArgs e)
 		{
-			biCatalog.Checked = !biCatalog.Checked;
 			this.tv.Visible = biCatalog.Checked;
 			this.lb.Visible = !biCatalog.Checked;
 			

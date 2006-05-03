@@ -29,14 +29,15 @@ namespace SimPe
 	public class UpdatableListViewItem : ListViewItem, System.IDisposable
 	{
 		SimPe.Interfaces.Files.IPackedFileDescriptor pfd;
-		SimPe.Interfaces.Files.IPackageFile pkg;
-
-		/// <summary>
+		SimPe.Interfaces.Files.IPackageFile pkg;        
+                
+        /// <summary>
 		/// Create a new Instance with the passed Descriptor
 		/// </summary>
 		/// <param name="pfd"></param>
 		public UpdatableListViewItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg) : base("")
 		{
+            
 			this.pfd = pfd;
 			this.pkg = pkg;
 			ChangeDescription();
@@ -79,10 +80,24 @@ namespace SimPe
 			ChangeDescription();
 		}
 
+        bool load;
+        /// <summary>
+		/// Set the Description for this ListViewItem
+		/// </summary>
+        void ChangeDescription()
+        {
+            load = false;
+        }
+
+        public void ForceLoad()
+        {
+            if (!load) DerefferedChangeDescription();
+        }
+
 		/// <summary>
 		/// Set the Description for this ListViewItem
 		/// </summary>
-		void ChangeDescription()
+		void DerefferedChangeDescription()
 		{
 			while (SubItems.Count<6) SubItems.Add("");
 
@@ -111,7 +126,9 @@ namespace SimPe
 				Font = new System.Drawing.Font(Font.FontFamily, Font.Size, Font.Style | System.Drawing.FontStyle.Bold, Font.Unit);
 
 			if (pfd.Changed)
-				Font = new System.Drawing.Font(Font.FontFamily, Font.Size, Font.Style | System.Drawing.FontStyle.Italic, Font.Unit);						
+				Font = new System.Drawing.Font(Font.FontFamily, Font.Size, Font.Style | System.Drawing.FontStyle.Italic, Font.Unit);
+
+            load = true;
 		}
 
 		/// <summary>

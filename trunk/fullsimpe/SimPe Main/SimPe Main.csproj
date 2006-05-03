@@ -192,11 +192,6 @@
       <Project>{97551C0A-6295-4E32-8E15-A4FF456E65A6}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe GenericHandlers\SimPe GenericFileHandlers.csproj">
-      <Name>SimPe GenericFileHandlers</Name>
-      <Project>{CE6B173A-B19F-40B6-94A3-D8FB8A3FB74B}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
     <ProjectReference Include="..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
       <Name>SimPe HandlerCommon</Name>
       <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
@@ -280,10 +275,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ActionToolDescriptor.cs">
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="AddExtTool.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnimatedToolStripItem.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -298,16 +295,27 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OptionForm.cs">
-      <SubType>Component</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RemoteHandler.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="WaitBar.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WaitControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WaitControl.Designer.cs">
+      <DependentUpon>WaitControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="about-de.rtf" />
     <EmbeddedResource Include="about-en.rtf" />
@@ -360,10 +368,27 @@
     <EmbeddedResource Include="OptionForm.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="shrink.png" />
     <EmbeddedResource Include="smallmultienabled.png" />
+    <EmbeddedResource Include="WaitControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WaitControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="welcome-de.rtf" />
     <EmbeddedResource Include="welcome-en.rtf" />
+    <EmbeddedResource Include="1.png" />
+    <EmbeddedResource Include="2.png" />
+    <EmbeddedResource Include="3.png" />
+    <EmbeddedResource Include="4.png" />
+    <EmbeddedResource Include="5.png" />
+    <EmbeddedResource Include="6.png" />
+    <EmbeddedResource Include="7.png" />
+    <EmbeddedResource Include="8.png" />
     <Content Include="App.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

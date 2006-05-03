@@ -428,11 +428,12 @@ namespace SimPe
 			}
 		}
 
+        [STAThread]
 		private void CopyToClipboard(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
 #if MAC
-#else
-			Clipboard.SetDataObject(rtb.Text, true);
+#else            
+			Clipboard.SetDataObject(rtb.Text, true);            
 #endif
 		}
 

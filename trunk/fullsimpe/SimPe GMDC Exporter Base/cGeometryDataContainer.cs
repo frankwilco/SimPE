@@ -660,8 +660,12 @@ namespace SimPe.Plugin
 			ResourceNode rn = this.ParentResourceNode;
 
 			System.Collections.Hashtable parentmap = new System.Collections.Hashtable();
-			if (rn==null) System.Windows.Forms.MessageBox.Show("The parent CRES was not found. \n\nThis measn, that SimPe is unable to build the Joint Hirarchy.", "Information", System.Windows.Forms.MessageBoxButtons.OK);
-			else LoadJointRelationRec(parentmap, -1, rn);
+            if (rn == null)
+            {
+                System.Windows.Forms.MessageBox.Show("The parent CRES was not found. \n\nThis measn, that SimPe is unable to build the Joint Hirarchy.", "Information", System.Windows.Forms.MessageBoxButtons.OK);
+                return parentmap;
+            }
+            else LoadJointRelationRec(parentmap, -1, rn);
 
 			//make sure Bones not defined in the CRES are listed here too
 			for (int i=0; i<Joints.Count; i++)

@@ -79,7 +79,7 @@ namespace SimPe
 		{
 			ListViewItem rowA = (ListViewItem)x;
 			ListViewItem rowB = (ListViewItem)y;
-
+            
 			if (Sorting==SortOrder.Ascending) 
 			{
 				return String.Compare(rowA.SubItems[CurrentColumn].Text,
