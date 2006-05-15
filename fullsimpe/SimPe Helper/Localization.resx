@@ -1099,5 +1099,10 @@ Run SimPE anyway?</value>
     </data>
     <data name="Economy">
 		<value>Business</value>
-    </data>
+	</data>
+	<data name="NO_CRES_FOUND">
+		<value>The parent CRES was not found.
+
+This means, that SimPE is unable to build the Joint Hirarchy.</value>
+	</data>
 </root>

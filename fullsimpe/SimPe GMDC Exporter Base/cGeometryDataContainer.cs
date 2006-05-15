@@ -102,7 +102,8 @@ namespace SimPe.Plugin
 
 			model = new GmdcModel(this);
 
-			joints = new GmdcJoints();		
+			joints = new GmdcJoints();
+            tried = false;
 		}
 		
 		#region IRcolBlock Member
@@ -113,6 +114,7 @@ namespace SimPe.Plugin
 		/// <param name="reader">The Stream that contains the FileData</param>
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
+            tried = false;
 			version = reader.ReadUInt32();
 
 			string name = reader.ReadString();
@@ -561,15 +563,26 @@ namespace SimPe.Plugin
 		#region LinkedCRES
 
 		Rcol cres;
+        bool tried;
+        public bool TriedToLoadParentResourceNode
+        {
+            get { return tried; }
+            set { tried = value; }
+        }
 
 		/// <summary>
 		/// Get the attached ResourceNode
 		/// </summary>
 		public  ResourceNode ParentResourceNode 
 		{
-			get { 
-				if (cres==null) cres = FindReferencingCRES();
-				if (cres==null) return null;
+			get {
+                if (!tried)
+                {
+                    if (cres == null) cres = FindReferencingCRES();
+                    tried = true;                                        
+                }
+
+                if (cres == null) return null;
 				return (ResourceNode) cres.Blocks[0]; 
 			}
 		}
@@ -662,7 +675,7 @@ namespace SimPe.Plugin
 			System.Collections.Hashtable parentmap = new System.Collections.Hashtable();
             if (rn == null)
             {
-                System.Windows.Forms.MessageBox.Show("The parent CRES was not found. \n\nThis measn, that SimPe is unable to build the Joint Hirarchy.", "Information", System.Windows.Forms.MessageBoxButtons.OK);
+                Message.Show(SimPe.Localization.GetString("NO_CRES_FOUND"), SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.OK);
                 return parentmap;
             }
             else LoadJointRelationRec(parentmap, -1, rn);

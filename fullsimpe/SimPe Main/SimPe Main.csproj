@@ -297,7 +297,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OptionForm.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>
@@ -347,6 +347,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Hidden.resx">
       <DependentUpon>Hidden.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.de.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -356,6 +357,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="multienabled.png" />
     <EmbeddedResource Include="OptionForm.de.resx">
@@ -369,6 +371,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OptionForm.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>

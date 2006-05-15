@@ -195,15 +195,16 @@ namespace SimPe
 		static object syncstart = 0;
 		static void SubStartCommon()
 		{
-			System.Threading.Monitor.TryEnter(sync, TIMEOUT);		
-			
-			running++;
-			mystack.Push(Progress);
-			mystack.Push(MaxProgress);
-			mystack.Push(Message);
-
-			//System.Threading.Monitor.PulseAll(sync);
-			System.Threading.Monitor.Exit(sync);
+            Console.WriteLine("SubStartCommon 1");
+            lock (sync)
+            {
+                Console.WriteLine("SubStartCommon 2");
+                running++;
+                mystack.Push(Progress);
+                mystack.Push(MaxProgress);
+                mystack.Push(Message);
+            }
+            Console.WriteLine("SubStartCommon 3");
 		}
 		public static void SubStart()
 		{			
@@ -223,28 +224,30 @@ namespace SimPe
 
 		public static void SubStop()
 		{
-			System.Threading.Monitor.TryEnter(sync, TIMEOUT);								
-			if (running>0) running--;			
-			try 
-			{
-				if (mystack.Count>0) 
-				{
-					IntMessage = (string)mystack.Pop();
-					//if (mystack.Count>0) 
-					IntMaxProgress = (int)mystack.Pop();
-					//if (mystack.Count>0) 
-					IntProgress = (int)mystack.Pop();
-				}
-			} 
-			catch (Exception ex)
-			{
-				if (Helper.DebugMode) Helper.ExceptionMessage(ex);
-			}
-							
-			if (running==0) Stop();
+            Console.WriteLine("SubStop 1");
+            lock (sync)
+            {
+                Console.WriteLine("SubStop 2");
+                if (running > 0) running--;
+                try
+                {
+                    if (mystack.Count > 0)
+                    {
+                        IntMessage = (string)mystack.Pop();
+                        //if (mystack.Count>0) 
+                        IntMaxProgress = (int)mystack.Pop();
+                        //if (mystack.Count>0) 
+                        IntProgress = (int)mystack.Pop();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (Helper.DebugMode) Helper.ExceptionMessage(ex);
+                }
 
-			System.Threading.Monitor.Exit(sync);
-			
+                if (running == 0) Stop();
+            }
+            Console.WriteLine("SubStop 3");
 		}
 	}
 }
