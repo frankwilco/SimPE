@@ -41,7 +41,7 @@ namespace SimPe
 
 			TreeNode node = new TreeNode(name);
 			nodemap[o] = node;
-
+            
 			if (pfd!=null) 
 			{
 				SimPe.Interfaces.Plugin.Internal.IPackedFileWrapper wrp = FileTable.WrapperRegistry.FindHandler(pfd.Type);
@@ -125,7 +125,7 @@ namespace SimPe
 
 		
 
-		protected void RefreshAll(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
+		protected void RefreshAll(ResourceListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
 		{
 			if (!pkg.Loaded) return;
 			arl.Prepare(lv, p, tag);						

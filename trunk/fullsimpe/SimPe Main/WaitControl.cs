@@ -21,6 +21,7 @@ namespace SimPe
             ShowProgress = false;
             ShowAnimation = true;
             ShowText = true;
+            nowp = -1;
 
             System.Reflection.Assembly a = this.GetType().Assembly;
             for (int i = 1; i <= 8; i++)
@@ -55,6 +56,7 @@ namespace SimPe
         }
 
         int val;
+        float nowp;
         public int Value
         {
             get { return val; }
@@ -63,8 +65,14 @@ namespace SimPe
                 val = Math.Min(pb.Maximum, value);
                 this.pb.Value = val;
 
-                tbPercent.Text = (((float)val / (float)pb.Maximum) * 100).ToString("N1") + "%";
-                this.statusStrip1.Refresh();
+                float perc = (((float)val / (float)pb.Maximum) * 100);
+                tbPercent.Text = perc.ToString("N1") + "%";
+
+                if (Math.Abs(nowp - perc) > 0.5)
+                {
+                    this.statusStrip1.Refresh();
+                    nowp = perc;
+                }
             }
         }
 

@@ -269,7 +269,32 @@ namespace Ambertation.Viewer
 				else
 					decodeLine (b, j, byp, linebuffer, ref cd);
 			}
-		}
+		}       
+
+
+        static void decodeStandard8(
+            System.Drawing.Imaging.BitmapData b,
+            tgaHeader hdr,
+            System.IO.BinaryReader br)
+        {
+            // i must convert the input stream to a sequence of uint values
+            // which I then unpack.
+            tgaCD cd = new tgaCD();
+            cd.RMask = 0x000000ff;	// from 0xF800
+            cd.GMask = 0x0000ff00;	// from 0x07E0
+            cd.BMask = 0x00ff0000;  // from 0x001F
+            cd.AMask = 0x00000000;
+            cd.RShift = 0;
+            cd.GShift = 8;
+            cd.BShift = 16;
+            cd.AShift = 0;
+            cd.FinalOr = 0xff000000;
+
+            if (hdr.RleEncoded)
+                decodeRle(b, 1, cd, br, hdr.ImageSpec.BottomUp);
+            else
+                decodePlain(b, 1, cd, br, hdr.ImageSpec.BottomUp);
+        }
 
 		static void decodeSpecial16 (
 			System.Drawing.Imaging.BitmapData b, tgaHeader hdr, System.IO.BinaryReader br)
@@ -413,10 +438,11 @@ namespace Ambertation.Viewer
 			tgaHeader header = new tgaHeader ();
 			header.Read (br);
 
-			if (header.ImageSpec.PixelDepth != 16 &&
+            if (header.ImageSpec.PixelDepth != 8 && 
+                header.ImageSpec.PixelDepth != 16 &&
 				header.ImageSpec.PixelDepth != 24 && 
 				header.ImageSpec.PixelDepth != 32)
-				throw new ArgumentException ("Not a supported tga file.");
+                throw new ArgumentException("Not a supported tga file. (Pixeldepth=" + header.ImageSpec.PixelDepth+")");
 
 			if (header.ImageSpec.AlphaBits > 8)
 				throw new ArgumentException ("Not a supported tga file.");
@@ -435,6 +461,12 @@ namespace Ambertation.Viewer
 				System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
 			switch (header.ImageSpec.PixelDepth)
 			{
+                case 8:
+                    if (header.ImageSpec.AlphaBits > 0)
+                        decodeStandard8(bd, header, br);
+                    else
+                        decodeStandard8(bd, header, br);
+                    break;
 				case 16:
 					if (header.ImageSpec.AlphaBits > 0)
 						decodeSpecial16 (bd, header, br);

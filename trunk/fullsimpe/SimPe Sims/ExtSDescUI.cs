@@ -269,10 +269,12 @@ namespace SimPe.PackedFiles.UserInterface
 			InitDropDowns();
 			SelectButton(biId);
 
+            intern = true;
 			if (System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName=="en")
 				pbLastGrade.DisplayOffset = 0;
 			else
 				pbLastGrade.DisplayOffset = 1;
+            intern = false;
 		}
 
 		/// <summary> 

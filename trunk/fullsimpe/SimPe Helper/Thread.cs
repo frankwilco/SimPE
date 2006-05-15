@@ -88,6 +88,7 @@ namespace Ambertation.Threading
 			ExecuteThread(tp, name, sync, events, 500);
 		}
 
+        protected Thread worker;
 		protected void ExecuteThread(ThreadPriority tp, string name, bool sync, bool events, int synctime)
 		{
 			WaitForEnd();
@@ -97,15 +98,16 @@ namespace Ambertation.Threading
 			} 
 			else 
 			{
-				Thread t = new Thread(new ThreadStart(ThreadEntry));
-				t.Priority = tp;
-				t.Name = name;
-				t.Start();
+                worker = new Thread(new ThreadStart(ThreadEntry));
+                worker.Priority = tp;
+                worker.Name = name;
+                //worker.SetApartmentState(ApartmentState.STA);
+                worker.Start();
 
 				if (sync)
-					while (t.IsAlive) 
+                    while (worker.IsAlive) 
 					{
-						t.Join(synctime);
+                        worker.Join(synctime);
 						if (events) System.Windows.Forms.Application.DoEvents();
 					}
 			}

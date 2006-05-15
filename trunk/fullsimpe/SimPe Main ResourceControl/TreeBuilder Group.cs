@@ -44,9 +44,9 @@ namespace SimPe
 			((TreeNodeTag)parent.Tag).ResourceCount++;
 			((TreeNodeTag)child.Tag).ResourceCount++;
 			((TreeNodeTag)root.Tag).ResourceCount++;			
-		}		
+		}
 
-		void RefreshGroup(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
+        void RefreshGroup(ResourceListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
 		{
 			if (!pkg.Loaded) return;
 			garl.Prepare(lv, p, tag);						

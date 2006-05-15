@@ -26,20 +26,36 @@ namespace SimPe
 	/// <summary>
 	/// This class is used to notify a ListViewItem of a state Change
 	/// </summary>
-	public class UpdatableListViewItem : ListViewItem, System.IDisposable
+	public class ResourceListViewItem :  ListViewItem, System.IDisposable
 	{
+        static System.Drawing.Font regular = null;
+        static System.Drawing.Font strike = null;
+        
+
 		SimPe.Interfaces.Files.IPackedFileDescriptor pfd;
-		SimPe.Interfaces.Files.IPackageFile pkg;        
+		SimPe.Interfaces.Files.IPackageFile pkg;
+        ResourceListView parent;
+       
+        string[] content;
+        System.Drawing.Color fg;
+        System.Drawing.Font font;
+        int imageindex;
                 
         /// <summary>
 		/// Create a new Instance with the passed Descriptor
 		/// </summary>
 		/// <param name="pfd"></param>
-		public UpdatableListViewItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg) : base("")
+		public ResourceListViewItem(ResourceListView parent, SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile pkg)
 		{
-            
+            if (regular==null) {
+                regular = new System.Drawing.Font(Font.FontFamily, Font.Size, System.Drawing.FontStyle.Regular, Font.Unit);
+                strike = new System.Drawing.Font(Font.FontFamily, Font.Size, System.Drawing.FontStyle.Strikeout, Font.Unit);
+            }
+        
+            this.parent = parent;
 			this.pfd = pfd;
 			this.pkg = pkg;
+            content = new string[6];
 			ChangeDescription();
 
 			Tag = new ListViewTag(pfd, pkg);
@@ -48,13 +64,19 @@ namespace SimPe
 		}
 
 		
-		~UpdatableListViewItem()
+		~ResourceListViewItem()
 		{
 			Close();
 		}
+        
+
+        internal string[] Content
+        {
+            get { return content; }
+        }
 
 		public void Close()
-		{
+		{            
 			if (pfd!=null)
 			{
 				pfd.DescriptionChanged -= new EventHandler(pfd_DescriptionChanged);
@@ -84,60 +106,83 @@ namespace SimPe
         /// <summary>
 		/// Set the Description for this ListViewItem
 		/// </summary>
-        void ChangeDescription()
+        void LoadName()
         {
-            load = false;
+            if (Helper.WindowsRegistry.AsynchronSort /*&& !parent.Sorter.ForceLoad*/)
+            {
+                load = false;
+                content[0] = pfd.TypeName.ToString();
+            }
+            else
+            {
+                DerefferedLoadName();
+                BuildItem();
+            }
         }
 
         public void ForceLoad()
         {
-            if (!load) DerefferedChangeDescription();
+            if (!load)
+            {
+                DerefferedLoadName();                                
+                BuildItem();
+            }
         }
-
+        
 		/// <summary>
 		/// Set the Description for this ListViewItem
 		/// </summary>
-		void DerefferedChangeDescription()
-		{
-			while (SubItems.Count<6) SubItems.Add("");
+		void ChangeDescription()
+		{                       
+            content[1] = "0x" + Helper.HexString(pfd.Group);
+            content[2] = "0x" + Helper.HexString(pfd.SubType);
+            content[3] = "0x" + Helper.HexString(pfd.Instance);
+            content[4] = "0x" + Helper.HexString(pfd.Offset);
+            content[5] = "0x" + Helper.HexString(pfd.Size);
 
-			SubItems[0].Text = GetName();
-			SubItems[1].Text = "0x"+Helper.HexString(pfd.Group);
-			SubItems[2].Text = "0x"+Helper.HexString(pfd.SubType);
-			SubItems[3].Text = "0x"+Helper.HexString(pfd.Instance);						
-			SubItems[4].Text = "0x"+Helper.HexString(pfd.Offset);
-			SubItems[5].Text = "0x"+Helper.HexString(pfd.Size);
-
-			ForeColor = System.Drawing.SystemColors.WindowText;
-			Font = new System.Drawing.Font(Font.FontFamily, Font.Size, System.Drawing.FontStyle.Regular, Font.Unit);
+			fg = System.Drawing.SystemColors.WindowText;
+            font = regular;
 
 			if (pfd.MarkForDelete) 
 			{
-				ForeColor = System.Drawing.SystemColors.GrayText;
-				Font = new System.Drawing.Font(Font.FontFamily, Font.Size, System.Drawing.FontStyle.Strikeout, Font.Unit);
+				fg = System.Drawing.SystemColors.GrayText;
+                font = strike;
 			}
 			if (pfd.MarkForReCompress || (pfd.WasCompressed && !pfd.HasUserdata))
 			{
-				ForeColor = System.Drawing.SystemColors.Highlight;
-				Font = new System.Drawing.Font(Font.FontFamily, Font.Size, Font.Style, Font.Unit);
+				fg = System.Drawing.SystemColors.Highlight;
+				//font = new System.Drawing.Font(font.FontFamily, font.Size, font.Style, font.Unit);
 			}
 			
 			if (pfd.MarkForReCompress)
-				Font = new System.Drawing.Font(Font.FontFamily, Font.Size, Font.Style | System.Drawing.FontStyle.Bold, Font.Unit);
+				font = new System.Drawing.Font(font.FontFamily, font.Size, font.Style | System.Drawing.FontStyle.Bold, font.Unit);
 
 			if (pfd.Changed)
-				Font = new System.Drawing.Font(Font.FontFamily, Font.Size, Font.Style | System.Drawing.FontStyle.Italic, Font.Unit);
+				font = new System.Drawing.Font(font.FontFamily, font.Size, font.Style | System.Drawing.FontStyle.Italic, font.Unit);
 
-            load = true;
+            LoadName();
 		}
 
+      
+        void BuildItem()
+        {
+            SubItems.Clear();
+            Text = content[0];
+            for (int i=1; i<content.Length; i++)
+                SubItems.Add(content[i]);
+
+            ForeColor = fg;
+            Font = font;
+            ImageIndex = imageindex;            
+        }        
+        
 		/// <summary>
 		/// Try to load the name for this Item
 		/// </summary>
 		/// <returns></returns>
-		public string GetName()
+        public void DerefferedLoadName()
 		{
-			string name = Data.MetaData.FindTypeAlias(pfd.Type).ToString();
+			string name = Data.MetaData.FindTypeAlias(pfd.Type).ToString();            
 			
 			//User want's the real Filename
 			if (Helper.WindowsRegistry.DecodeFilenamesState) 
@@ -186,12 +231,13 @@ namespace SimPe
 							}
 					}
 
-					this.ImageIndex = wrp.WrapperDescription.IconIndex;
-				} 
-				else this.ImageIndex = 0;
+                    this.imageindex = wrp.WrapperDescription.IconIndex;
+				}
+                else this.imageindex = 0;
 			}
 
-			return name;
+            load = true;
+            content[0] = name;
 		}		
 		#region IDisposable Member
 

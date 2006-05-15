@@ -33,7 +33,7 @@ namespace SimPe
 		/// <summary>
 		/// This delegate is used to call the ListView Update Functions
 		/// </summary>
-		public delegate void RefreshResourceList(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor pfd, object tag);
+        public delegate void RefreshResourceList(ResourceListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor pfd, object tag);
 
 		RefreshResourceList fkt;
 		SimPe.Interfaces.Files.IPackedFileDescriptor pfd;
@@ -60,7 +60,7 @@ namespace SimPe
 		/// Refresh the content of the passed ListView
 		/// </summary>
 		/// <param name="lv"></param>
-		public void Refresh(ListView lv) 
+        public void Refresh(ResourceListView lv) 
 		{
 			if (fkt==null) return;
 			//lv.BeginUpdate();
