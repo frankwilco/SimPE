@@ -230,20 +230,38 @@ namespace SimPe
 
         protected override void  OnSelectedIndexChanged(EventArgs e)
         {
-            sel.Clear();
-            foreach (int i in this.SelectedIndices)            
-                sel.Add(items[i]);
+            UpdateSelectionList();
 
             Console.WriteLine(sel.Count + " items selected");
             base.OnSelectedIndexChanged(e);
         }
 
+        private void UpdateSelectionList()
+        {
+            sel.Clear();
+            foreach (int i in this.SelectedIndices)
+                sel.Add(items[i]);
+        }   
+
         protected override void OnVirtualItemsSelectionRangeChanged(ListViewVirtualItemsSelectionRangeChangedEventArgs e)
         {
-            Console.WriteLine(e.StartIndex + " " + e.EndIndex + " " + e.IsSelected);
+            
+            if (e.IsSelected)
+            {
+                UpdateSelectionList();                
+            }
+            else
+            {
+                for (int i = e.StartIndex; i <= e.EndIndex; i++)
+                    sel.Remove(items[i]);
+            }
+
+            Console.WriteLine(e.StartIndex + " " + e.EndIndex + " " + e.IsSelected+ " "+sel.Count);
+            base.OnVirtualItemsSelectionRangeChanged(e);
+            base.OnSelectedIndexChanged(e);
         }
 
-
+        
         delegate void SetUpdateHandler(bool begin, bool setevent);
         void SetUpdate(bool begin, bool setevent)
         {

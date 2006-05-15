@@ -1353,4 +1353,10 @@ Soll SimPE dennoch gestartet werden?</value>
     <data name="Max Relation to this Sim">
 		<value>Beziehung zu {name} maximieren</value>
     </data>
+	<data name="NO_CRES_FOUND">
+		<value>Die definierende CRES-Resource wurde nicht gefunden.
+
+Dies hat zur Folge, dass SimPE die Joint-Hierarchie nicht aufbauen kann.
+		</value>
+	</data>
 </root>

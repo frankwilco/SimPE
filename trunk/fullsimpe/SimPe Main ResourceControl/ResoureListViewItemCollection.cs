@@ -25,6 +25,13 @@ namespace SimPe
             if (Added != null) Added(this, new EventArgs());
         }
 
+        public event System.EventHandler Removed;
+        internal void Remove(ResourceListViewItem lvi)
+        {
+            list.Remove(lvi);
+            if (Removed != null) Removed(this, new EventArgs());
+        }
+
         public event System.EventHandler Cleared;
         public void Clear()
         {
