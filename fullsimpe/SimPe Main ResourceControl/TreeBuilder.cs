@@ -105,28 +105,22 @@ namespace SimPe
 		ViewFilter filter;
 
 		#region ListView Update
-		public static void ClearListView(ListView lv) 
+		public static void ClearListView(ResourceListView lv) 
 		{
-			foreach (object o in lv.Items) 
-			
-				if (o is UpdatableListViewItem) 
-				{
-					UpdatableListViewItem lvi = (UpdatableListViewItem)o;
-					lvi.Dispose();				
-				}						
+            foreach (ResourceListViewItem o in lv.VirtualItems) 							
+				o.Dispose();								
 
-			lv.Items.Clear();
-			//lv.ListViewItemSorter = null; This is now done in the ResourceLister
+            lv.VirtualItems.Clear();			
 		}
 
 		/// <summary>
 		/// Deselects all items in te ListView
 		/// </summary>
 		/// <param name="lv"></param>
-		public void DeselectAll(ListView lv)
+        public void DeselectAll(ResourceListView lv)
 		{
 			lv.BeginUpdate();
-			foreach (ListViewItem lvi in lv.Items)
+			foreach (ListViewItem lvi in lv.VirtualItems)
 				lvi.Selected = false;
 			lv.EndUpdate();
 		}
@@ -136,19 +130,21 @@ namespace SimPe
 		/// </summary>
 		/// <param name="lv"></param>
 		/// <param name="fii"></param>
-		public void SelectResource(ListView lv, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii)
+        public void SelectResource(ResourceListView lv, SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii)
 		{
-			foreach (ListViewItem lvi in lv.Items)
-			{
+            int ct = 0;
+			foreach (ListViewItem lvi in lv.VirtualItems)
+			{                
 				if (lvi.Tag is ListViewTag) 
 				{
 					ListViewTag lvt = (ListViewTag)lvi.Tag;
 					if (lvt.Resource.Equals(fii)) 
 					{
 						lvi.Selected = true;
-						lv.EnsureVisible(lvi.Index);
+						lv.EnsureVisible(ct);
 					}
 				}
+                ct++;
 			}
 		}		
 		#endregion

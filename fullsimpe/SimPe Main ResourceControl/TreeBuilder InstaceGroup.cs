@@ -33,9 +33,9 @@ namespace SimPe
 			giarl = new GroupInstanceResourceLister(pkg, filter);
 			giarl.Finished += new EventHandler(OnFinishedThread);
 		}
-			
-			
-		protected void RefreshGroupInstance(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
+
+
+        protected void RefreshGroupInstance(ResourceListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
 		{
 			if (!pkg.Loaded) return;
 			giarl.Prepare(lv, p, tag);						

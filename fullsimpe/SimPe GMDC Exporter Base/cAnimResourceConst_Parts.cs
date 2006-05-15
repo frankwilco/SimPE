@@ -326,17 +326,18 @@ namespace SimPe.Plugin.Anim
 		internal void UnserializeData(System.IO.BinaryReader reader)
 		{
 			long pos = reader.BaseStream.Position;
-			if (reader.BaseStream.Length-pos < 4+4+data.Length) return;
+			/*if (reader.BaseStream.Length-pos < 4+4+data.Length) 
+                return;*/
 
 			datai[0] = reader.ReadUInt32();
 			datai[1] = reader.ReadUInt32();	
 			data = reader.ReadBytes(data.Length);
 
-			if (datai[0]!=0x11BA05F0 || datai[1]!=0x11BA05F0) 
+			/*if (datai[0]!=0x11BA05F0 || datai[1]!=0x11BA05F0) 
 			{	
 				reader.BaseStream.Seek(pos, System.IO.SeekOrigin.Begin);
 				return;
-			}
+			}*/
 		}
 		
 		/// <summary>

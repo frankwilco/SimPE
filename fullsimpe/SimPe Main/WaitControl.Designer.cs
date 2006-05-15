@@ -82,7 +82,7 @@
             this.tbWait.BackColor = System.Drawing.Color.Transparent;
             this.tbWait.CurrentIndex = 0;
             this.tbWait.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbWait.DoEvents = true;
+            this.tbWait.DoEvents = false;
             this.tbWait.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tbWait.Name = "tbWait";
             this.tbWait.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;

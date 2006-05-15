@@ -736,7 +736,6 @@ namespace SimPe
             this.lv.FullRowSelect = true;
             this.lv.HideSelection = false;
             this.lv.Name = "lv";
-            this.lv.OwnerDraw = true;
             this.menuBar1.SetSandBarMenu(this.lv, this.miAction);
             this.lv.UseCompatibleStateImageBehavior = false;
             this.lv.View = System.Windows.Forms.View.Details;
@@ -747,7 +746,7 @@ namespace SimPe
             this.lv.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SelectResource);
             this.lv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyDown);
             this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.SortResourceListClick);
-            this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
+            this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);            
             // 
             // clType
             // 
@@ -1074,7 +1073,7 @@ namespace SimPe
             this.dockContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
-		}
+		}       
 		#endregion
 
 		static string[] pargs;
@@ -1870,8 +1869,7 @@ namespace SimPe
 				filter.FilterGroup = false;
 			}
 			if (lastusedtnt!=null) lastusedtnt.Refresh(lv);
-		}				
-		
+		}        
 		
 		//int ct = 0;
 		/// <summary>
@@ -1880,10 +1878,9 @@ namespace SimPe
 		/// <param name="sender"></param>
 		/// <param name="e">null to indicate, that his Method was called internal, and should NOT open a Resource!</param>
 		private void SelectResource(object sender, System.EventArgs e)
-		{		
-			
+		{            
 			//ct++; this.Text=(ct/2).ToString();	//was used to test for a Bug related to opened Docks
-			if (lv.SelectedItems.Count<=2) SelectResource(sender, false, false);
+			if (lv.SelectedItems.Count<=2) SelectResource(sender, false, false);                
 			else DereferedResourceSelect();
 		}
 
@@ -1948,7 +1945,7 @@ namespace SimPe
 		/// <summary>
 		/// Selected Resource did change
 		/// </summary>
-		/// <param name="sender">The ListView</param>
+		/// <param name="sender">The ResourceListView</param>
 		/// <param name="fromdbl">Select was issued by a doubleClick</param>
 		/// <param name="fromchg">Select was issued by an internal Change of a pfd Resource</param>
 		/// <remarks>Uses the frommiddle field to determin if the middle Button was clicked</remarks>
@@ -1957,7 +1954,7 @@ namespace SimPe
 			bool fm = frommiddle;
 			if (!Helper.WindowsRegistry.FirefoxTabbing) fm=true;
 
-			ListView lv = (ListView)sender;
+			ResourceListView lv = (ResourceListView)sender;
 			
 
 			if (lv.SelectedItems.Count==0) 
@@ -1971,6 +1968,7 @@ namespace SimPe
 			foreach (ListViewItem lvi in lv.SelectedItems) 
 			{
 				ListViewTag lvt = (ListViewTag)lvi.Tag;
+                if (lvt == null) continue;
 
 				res.Items.Add(new SimPe.Events.ResourceContainer(lvt.Resource));
 
@@ -2146,21 +2144,16 @@ namespace SimPe
 		
 		private void SortResourceListClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
 		{
-            ResourceColumnSorter sorter = ((ListView)sender).ListViewItemSorter as ResourceColumnSorter;
-			if (sorter == null) 
-			{
-                sorter = new ResourceColumnSorter();
-				sorter.CurrentColumn = 0;
-				((ListView)sender).ListViewItemSorter = sorter;
-			} 
+            ResourceColumnSorter sorter = ((ResourceListView)sender).ListViewItemSorter as ResourceColumnSorter;
+            if (sorter == null) return;
+
             if (sorter.CurrentColumn == e.Column)
                 sorter.Asc=!sorter.Asc;
             else
                 sorter.Asc = true;
 
             sorter.CurrentColumn = e.Column;
-            ((ResourceListView)sender).LoadAll();
-			((ListView)sender).Sort();
+            ((ResourceListView)sender).Sort();			
 		}
 
 		private void SelectResource(object sender, System.Windows.Forms.MouseEventArgs e)

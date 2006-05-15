@@ -27,7 +27,8 @@ using Ambertation.Collections;
 using System.Threading;
 
 namespace Ambertation.Windows.Forms
-{
+{   
+    /*
     class ThreadTimer : Ambertation.Threading.StoppableThread
     {
         Control ctrl;
@@ -117,7 +118,7 @@ namespace Ambertation.Windows.Forms
             running = false;
         }
     }
-
+    */
     [ToolboxBitmapAttribute(typeof(ImageList))]
     public class AnimatedToolstripItem : System.Windows.Forms.ToolStripStatusLabel
     {
@@ -132,7 +133,7 @@ namespace Ambertation.Windows.Forms
             index = 0;
             timer = new System.Timers.Timer(40);
             timer.Enabled = false;
-            TimeOut = 1000 / 15;
+            TimeOut = 1000 / 10;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
             ih = new System.Timers.ElapsedEventHandler(InvokeTimerElapsed);
 
@@ -151,25 +152,20 @@ namespace Ambertation.Windows.Forms
 
             this.Image = this.list[index];
             this.Parent.Refresh();
-            if (doevents) Application.DoEvents();
-            
+            if (doevents) Application.DoEvents();            
         }
        
         
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            return;
             if (init) return;
-            lock (timer)
+            //lock (timer)
             {
-                if (this.Parent != null)
-                {
-                    if (this.Parent.Visible)
-                    {
-                        this.Parent.Invoke(ih, new object[] { sender, e });
-                        //InvokeTimerElapsed(sender, e);
-                    }
-                }
-                if (doevents) Application.DoEvents();
+                if (this.Parent != null)                
+                    if (this.Parent.Visible)                    
+                        this.Parent.Invoke(ih, new object[] { sender, e });                                     
+                //if (doevents) Application.DoEvents();
             }
         }
 
@@ -226,7 +222,8 @@ namespace Ambertation.Windows.Forms
 
         public void Start()
         {
-            timer.Enabled = true;
+            InvokeTimerElapsed(timer, null);
+            //timer.Enabled = true;
             //timer.InvokeControl = this.Parent;
         }
 

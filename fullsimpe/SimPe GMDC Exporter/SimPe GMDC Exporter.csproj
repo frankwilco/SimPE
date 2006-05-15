@@ -154,6 +154,7 @@
     <Compile Include="GmdcImportFromXsi.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="NormalMap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

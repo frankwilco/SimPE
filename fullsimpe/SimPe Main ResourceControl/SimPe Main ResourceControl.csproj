@@ -152,6 +152,7 @@
     <Compile Include="ResourceListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ResoureListViewItemCollection.cs" />
     <Compile Include="TreeBuilder Group.cs">
       <SubType>Code</SubType>
     </Compile>

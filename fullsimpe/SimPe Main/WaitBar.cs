@@ -115,7 +115,7 @@ namespace SimPe
 			get { return wc.Message; }
 			set 
 			{
-				wc.Invoke(new SetStuff(SetMessage), new object[] { " "+value });									
+				wc.BeginInvoke(new SetStuff(SetMessage), new object[] { " "+value });									
 			}
 		}
 
@@ -130,7 +130,7 @@ namespace SimPe
 			get { return wc.Value; }
 			set 
 			{
-				wc.Invoke(new SetStuff(SetProgress), new object[] { value });				
+				wc.BeginInvoke(new SetStuff(SetProgress), new object[] { value });				
 			}
 		}
 

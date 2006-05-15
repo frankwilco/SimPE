@@ -132,7 +132,7 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <Reference Include="tgaview, Version=1.0.2305.27604, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="tgaview, Version=1.0.2321.32694, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\tgaview.dll</HintPath>
     </Reference>

@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace SimPe
 {
@@ -13,87 +15,170 @@ namespace SimPe
     {
         class ItemLoader : Ambertation.Threading.StoppableThread
         {
+            internal bool loaded;
             ResourceListView lv;
-            bool dostop;
+           
+
             public ItemLoader(ResourceListView lv)
             {
                 this.lv = lv;
+                loaded = false;
             }
 
-            delegate void LoadItemHandler(UpdatableListViewItem lvi);
-            void LoadItem(UpdatableListViewItem lvi)
+            delegate void LoadItemHandler(ResourceListViewItem lvi);
+            void LoadItem(ResourceListViewItem lvi)
             {
                 lvi.ForceLoad();
             }
 
             protected override void StartThread()
-            {
-                //lv.InvokeBeginUpdate();
+            {                
+                bool doloads = !loaded;
+                doloads = doloads && (lv.Sorter.ForceLoad);                
+
+                if (!doloads) return;
+
+                
+                Console.WriteLine("Sorting for " + lv.Sorter.CurrentColumn+ " "+lv.VirtualItems.Count+" items");
+                
                 LoadItemHandler lih = new LoadItemHandler(LoadItem);
                 Wait.SubStart(lv.Items.Count);
                 Wait.Message = "Sorting...";
                 int ct = 0;
+                bool all = true;
                 try
                 {
-                    foreach (UpdatableListViewItem lvi in lv.Items)
+
+                    foreach (ResourceListViewItem lvi in lv.VirtualItems)
                     {
-                        Wait.Progress = ct++;
+                        ct++;
+                        if (ct%250==0) Wait.Progress = ct;
                         try
                         {
-                            lvi.ForceLoad();                           
+                            lvi.ForceLoad();
                             Application.DoEvents();
-                            if (dostop) return;
+                            if (stop.WaitOne(0, false))
+                            {
+                                all = false;
+                                break;
+                            }
                         }
                         catch (Exception ex)
                         {
                             Console.WriteLine(ex);
+                            all = false;
                             break;
                         }
                     }
+
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                 }
                 Wait.SubStop();
-                //lv.InvokeEndUpdate();
+
+                if (all) loaded = true;
             }
 
             
             public void Load(){
-                dostop = false;
-               StartThread();
+               this.ExecuteThread(ThreadPriority.Normal, "Sorter", true, true, 100);               
+               Console.WriteLine("Finished loading");                              
             }
 
-            public void Stop()
+            public void Stop(bool wait)
             {
-                dostop = true;
-                //WaitForEnd();
+                this.WaitForEnd();
             }
-        }        
+        }
 
-
+        ResoureListViewItemCollection items, sel;
         ItemLoader il;
         public ResourceListView() : base()
         {
             beginct = 0;
-            this.OwnerDraw = true;
+            this.OwnerDraw = false;
             
             il = new ItemLoader(this);
 
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.AutoArrange = false;
+
+            sel = new ResoureListViewItemCollection(this);
+            items = new ResoureListViewItemCollection(this);
+            items.Cleared += new EventHandler(items_Cleared);
+            items.Added += new EventHandler(items_Added);
+            this.VirtualMode = true;
+
+            SetupSorter();
+        }
+
+        void items_Added(object sender, EventArgs e)
+        {
+            this.VirtualListSize = items.Count;            
+        }
+
+        void items_Cleared(object sender, EventArgs e)
+        {
+            il.loaded = false;
+            this.VirtualListSize = 0;
+            //this.Refresh();
+        }
+
+        public ResoureListViewItemCollection VirtualItems
+        {
+            get { return items;}
+        }
+        ResourceColumnSorter sorter;
+        internal ResourceColumnSorter Sorter
+        {
+            get { return sorter; }
+        }       
+
+        void SetupSorter()
+        {
+            if (sorter != null) return;
+
+            sorter = new ResourceColumnSorter();
+            sorter.CurrentColumn = -1;
+            ListViewItemSorter = sorter;             
+        }
+
+        public new void Sort()
+        {
+            Sort(false);
+        }
+
+        delegate void InvokeRefreshHandler();
+        void InvokeRefresh()
+        {
+            this.Refresh();
+        }
+
+        protected void Sort(bool intern){
+            if (sorter.CurrentColumn < 0) return;
+
+            this.LoadAll();
+            items.Sort();
+            if (!intern) this.Refresh();            
+            Console.WriteLine("Done sorting");
         }
 
         public void LoadAll()
         {
-            il.Load();
+            if (Helper.WindowsRegistry.AsynchronSort) il.Load();
         }
 
         public void StopLoad()
         {
-            il.Stop();
+            il.Stop(true);
+        }
+
+        public void UpdateContent()
+        {
+            il.loaded = !Helper.WindowsRegistry.AsynchronSort;            
         }
 
         int beginct;
@@ -101,8 +186,8 @@ namespace SimPe
         {
             beginct++;
             if (this.InvokeRequired)
-                this.Invoke(new SetUpdateHandler(SetUpdate), new object[] { true });
-            else SetUpdate(true);
+                this.Invoke(new SetUpdateHandler(SetUpdate), new object[] { true, true });
+            else SetUpdate(true, true);
         }
 
         internal void InvokeEndUpdate()
@@ -111,27 +196,75 @@ namespace SimPe
             {
                 beginct--;
                 if (this.InvokeRequired)
-                    this.Invoke(new SetUpdateHandler(SetUpdate), new object[] { false });
+                    this.Invoke(new SetUpdateHandler(SetUpdate), new object[] { false, true });
                 else
-                    SetUpdate(false);
+                    SetUpdate(false, true);
+            }
+
+            this.VirtualListSize = this.items.Count;
+        }        
+
+        protected override void OnRetrieveVirtualItem(RetrieveVirtualItemEventArgs e)
+        {
+            base.OnRetrieveVirtualItem(e);
+
+            //if (e.Item == null)
+            {
+                if (e.ItemIndex < items.Count)
+                {
+                    ResourceListViewItem lvi = items[e.ItemIndex] as ResourceListViewItem;
+                    lvi.ForceLoad();
+                    e.Item = lvi;
+                }
             }
         }
 
-        delegate void SetUpdateHandler(bool begin);
-        void SetUpdate(bool begin)
-        {                        
+        public new ResoureListViewItemCollection Items
+        {
+            get { return items; }
+        }
+        public new ResoureListViewItemCollection SelectedItems
+        {
+            get { return sel; }
+        }
+
+        protected override void  OnSelectedIndexChanged(EventArgs e)
+        {
+            sel.Clear();
+            foreach (int i in this.SelectedIndices)            
+                sel.Add(items[i]);
+
+            Console.WriteLine(sel.Count + " items selected");
+            base.OnSelectedIndexChanged(e);
+        }
+
+        protected override void OnVirtualItemsSelectionRangeChanged(ListViewVirtualItemsSelectionRangeChangedEventArgs e)
+        {
+            Console.WriteLine(e.StartIndex + " " + e.EndIndex + " " + e.IsSelected);
+        }
+
+
+        delegate void SetUpdateHandler(bool begin, bool setevent);
+        void SetUpdate(bool begin, bool setevent)
+        {
+            if (setevent)
+            {
+                if (begin) items.Added -= new EventHandler(items_Added);
+                else items.Added += new EventHandler(items_Added);
+            }
+
+            if (Helper.WindowsRegistry.ShowResourceListContentAtOnce && begin) return;
+
+            //this.Enabled = !begin;
             if (begin) this.BeginUpdate();
             else this.EndUpdate();
         }
 
         protected override void OnDrawItem(DrawListViewItemEventArgs e)
         {
-            UpdatableListViewItem lvi = e.Item as UpdatableListViewItem;
-            if (lvi != null)
-            {
-                lvi.ForceLoad();
-                //Console.WriteLine("Load "+this.Items.Count+" "+e.ItemIndex);
-            }
+
+            ResourceListViewItem lvi = e.Item as ResourceListViewItem;
+            if (lvi != null) lvi.ForceLoad();            
 
             e.DrawDefault = true;            
             base.OnDrawItem(e);
@@ -139,19 +272,14 @@ namespace SimPe
 
         protected override void OnDrawSubItem(DrawListViewSubItemEventArgs e)
         {
-            UpdatableListViewItem lvi = e.Item as UpdatableListViewItem;
-            if (lvi != null)
-            {
-            }
-            
-            e.DrawDefault = true;            
-            base.OnDrawSubItem(e);
+           e.DrawDefault = true;            
+           base.OnDrawSubItem(e);
         }
 
         protected override void OnDrawColumnHeader(DrawListViewColumnHeaderEventArgs e)
         {
             e.DrawDefault = true;
             base.OnDrawColumnHeader(e);
-        }        
+        }      
     }
 }

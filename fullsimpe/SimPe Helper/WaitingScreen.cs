@@ -89,7 +89,9 @@ namespace SimPe
 		static WSEvent nextevent = new WSEvent();
 		static TimeSpan ts = new TimeSpan(0, 0, 0, 0, 100);
 
-        static object mylock = new object();
+        static System.Threading.ManualResetEvent wait = new ManualResetEvent(true);
+        static System.Threading.ManualResetEvent ended = new ManualResetEvent(true);        
+        static  System.Threading.ManualResetEvent stop = new ManualResetEvent(false);        
 
 		/// <summary>
 		/// True if the WaitingScreen is available at the Moment
@@ -110,37 +112,26 @@ namespace SimPe
 		/// <summary>
 		/// Show the Waitingscreen
 		/// </summary>
-		public static void Wait()
-		{
-			if (!Helper.WindowsRegistry.WaitingScreen) return;
-
-            lock (mylock)
+        public static void Wait()
+        {
+            if (!Helper.WindowsRegistry.WaitingScreen) return;
+            Console.WriteLine("starting...");
+            lock (wait)
             {
                 if (!Running)
                 {
-                    //Wait until the WaitingScreen is inactive
-                    if (state != WSState.Inactive)
-                    {
-                        Monitor.Exit(mylock);
-                        while (true)
-                        {
-                            Monitor.Enter(mylock);
-                            if (state == WSState.Inactive) break;
-                            Monitor.Exit(mylock);
-                        }
-
-                        Monitor.Enter(mylock);
-                    }
-
                     state = WSState.Initializing;
 
                     thread = new Thread(new ThreadStart(Start));
                     thread.IsBackground = true;
-                    thread.ApartmentState = ApartmentState.STA;
+                    thread.SetApartmentState(ApartmentState.STA);
                     thread.Start();
+                    Console.WriteLine("Started thread");
                 }
+                
             }
-		}
+        }
+        
 
 		/// <summary>
 		/// Stop the WaitingScreen ad focus the given Form
@@ -155,103 +146,103 @@ namespace SimPe
 		/// <summary>
 		/// Stop the Waiting Thread
 		/// </summary>
-		public static void Stop()
-		{
-			Application.DoEvents();
-			while ((state!=WSState.Finalized) && (state!=WSState.Inactive))
-			{
-                lock (mylock)
-                {
-                    state = WSState.WaitFinalizing;
-                }
-				Thread.CurrentThread.Join(ts);
-			}
-
-            lock (mylock)
+        public static void Stop()
+        {
+            Console.WriteLine("stopping...");
+            lock (wait)
             {
+                stop.Set();
+                ended.WaitOne(5000, false);
+                ended.Set();
+                Application.DoEvents();
+
+
+
                 thread = null;
                 state = WSState.Inactive;
-
-            }		
-		}
+                Console.WriteLine("Stopped thread");                             
+            }
+        }
 		
 		/// <summary>
 		/// Internal Method to start the Thread
 		/// </summary>
-		internal static void Start()
-		{
-            lock (mylock)
+        internal static void Start()
+        {
+            if (stop.WaitOne(1, false))
             {
+                ended.Set();
+                return;
+            }
 
-                if (state == WSState.Initializing)
+            stop.Reset();
+            WaitingForm wf = new WaitingForm();
+            lock (wait)
+            {
+                Console.WriteLine("In Thread");
+                ended.Reset();
+
+                Console.WriteLine("Init...");
+                state = WSState.Running;                
+                
+                wf.timer1.Enabled = true;
+                lock (nextevent)
                 {
-                    state = WSState.Running;
-                    WaitingForm wf = new WaitingForm();
-                    wf.timer1.Enabled = true;
-
                     nextevent.Message = "";
                     nextevent.Image = wf.pbsimpe.Image;
                     nextevent.Kind = WSUpdate.Both;
-
-                    wf.Visible = true;
-                    wf.Update();
-                    System.Windows.Forms.Application.DoEvents();
-                    Monitor.Exit(mylock);
-
-                    StartUpdates(wf);
-
-                    Monitor.Enter(mylock);
-                    state = WSState.Finalized;
-                    if (wf != null) wf.Visible = false;
-                    wf = null;
                 }
-                else
-                {
-                    state = WSState.Finalized;
-                    return;
-                }
+
+                wf.Visible = true;
+                wf.Update();
+                System.Windows.Forms.Application.DoEvents();
             }
-		}
+            ended.Set();
+            StartUpdates(wf);
+
+            state = WSState.Finalized;
+            if (wf != null) wf.Visible = false;
+            wf = null;
+
+            ended.Set();
+        }
 
 		/// <summary>
 		/// Updates to indicate activity are triggered by an additional Thread started where
 		/// </summary>
-		internal static void StartUpdates(WaitingForm wf)
-		{
-			while (true) 
-			{
-                lock (mylock)
-                {
-                    if (state != WSState.Running)
-                    {
-//                        Monitor.Exit(mylock);
-                        return;
-                    }
+        internal static void StartUpdates(WaitingForm wf)
+        {
+            Console.WriteLine("Launched");
+            while (true)
+            {
+                ended.Reset();
+                
+                if (state != WSState.Running) return;                
 
-                    state = WSState.Updating;
+                state = WSState.Updating;
+
+
+                lock (nextevent)
+                {
+                    if (((byte)nextevent.Kind & (byte)WSUpdate.Image) != 0) wf.ChangeImage(nextevent.Image);
+                    if (((byte)nextevent.Kind & (byte)WSUpdate.Message) != 0) wf.ChangeMessage(nextevent.Message);
+                    nextevent.Kind = WSUpdate.Nothing;
                 }
 
-				Monitor.Enter(nextevent);
-				if (((byte)nextevent.Kind & (byte)WSUpdate.Image) != 0) wf.ChangeImage(nextevent.Image);
-				if (((byte)nextevent.Kind & (byte)WSUpdate.Message) != 0) wf.ChangeMessage(nextevent.Message);
-				nextevent.Kind = WSUpdate.Nothing;
-				Monitor.Exit(nextevent);
+                wf.Update();
+                System.Windows.Forms.Application.DoEvents();
 
-				wf.Update();
-				System.Windows.Forms.Application.DoEvents();
 
-                lock (mylock)
+                if (state == WSState.Updating) state = WSState.Running;
+                else return;
+
+                if (stop.WaitOne(ts, false))
                 {
-                    if (state == WSState.Updating) state = WSState.Running;
-                    else
-                    {
-//                        Monitor.Exit(mylock);
-                        return;
-                    }
-                }	
-				thread.Join(ts);
-			}
-		}
+                    Console.WriteLine("Stopped");
+                    return;
+                }
+            }
+        }
 
 		
 		/// <summary>

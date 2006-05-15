@@ -1256,7 +1256,7 @@ namespace SimPe
 		}
 
 		/// <summary>
-		/// Schould we load Stuff Asynchron to the main Thread?
+		/// Should we load Stuff Asynchron to the main Thread?
 		/// </summary>
 		public bool AsynchronLoad
 		{
@@ -1272,6 +1272,42 @@ namespace SimPe
 				rkf.SetValue("AsynchronLoad", value);
 			}
 		}
+
+        /// <summary>
+        /// Should we sort Stuff Asynchron to the main Thread?
+        /// </summary>
+        public bool AsynchronSort
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("AsynchronSort", true);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("AsynchronSort", value);
+            }
+        }
+
+        /// <summary>
+        /// True, if you want to see items added to the resoruceList at once (ie. no BeginUpdate)
+        /// </summary>
+        public bool ShowResourceListContentAtOnce
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("ShowResourceListContentAtOnce", false);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("ShowResourceListContentAtOnce", value);
+            }
+        }
 
 		/// <summary>
 		/// Schould we lock the Docks?

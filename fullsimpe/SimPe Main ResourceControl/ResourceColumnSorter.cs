@@ -9,11 +9,11 @@ namespace SimPe
     /// <summary>
     /// ListView Column Sorter
     /// </summary>
-    public class ResourceColumnSorter : IComparer
+    public class ResourceColumnSorter : IComparer<ResourceListViewItem>, IComparer
     {
         public ResourceColumnSorter()
         {
-            cc = 0;
+            cc = -1;
             so = SortOrder.Ascending;
         }
         int cc;
@@ -64,30 +64,58 @@ namespace SimPe
             }
         }
 
-        public event EventHandler Changed;
+        /// <summary>
+        /// True if we need to have everything loaded before we can sort
+        /// </summary>
+        public bool ForceLoad
+        {
+            get { return cc == 0; }
+        }
+
+        public event EventHandler Changed;       
+
+        #region IComparer<ResourceListViewItem> Member
 
         /// <summary>
         /// The Compare Function to use
         /// </summary>
-        /// <param name="x">fisrt ListViewItem</param>
-        /// <param name="y">second ListViewItem</param>
+        /// <param name="rowA">fisrt ListViewItem</param>
+        /// <param name="rowB">second ListViewItem</param>
         /// <returns>0 if the ListViewItem match</returns>
-        public int Compare(object x, object y)
+        public int Compare(ResourceListViewItem rowA, ResourceListViewItem rowB)
         {
-            UpdatableListViewItem rowA = (UpdatableListViewItem)x;
-            UpdatableListViewItem rowB = (UpdatableListViewItem)y;            
+            if (cc < 0) return 0;
 
-            if (Sorting == SortOrder.Ascending)
+            if (so == SortOrder.Ascending)
             {
-                return String.Compare(rowA.SubItems[CurrentColumn].Text,
-                    rowB.SubItems[CurrentColumn].Text);
+                return String.Compare(rowA.Content[cc], rowB.Content[cc]);
             }
             else
             {
-                return String.Compare(rowB.SubItems[CurrentColumn].Text,
-                    rowA.SubItems[CurrentColumn].Text);
+                return String.Compare(rowB.Content[cc], rowA.Content[cc]);
             }
-
         }
+
+        #endregion
+
+        #region IComparer Member
+
+        public int Compare(object x, object y)
+        {
+            if (cc < 0) return 0;
+            ResourceListViewItem rowA = x as ResourceListViewItem;
+            ResourceListViewItem rowB = y as ResourceListViewItem;
+
+            if (so == SortOrder.Ascending)
+            {
+                return String.Compare(rowA.Content[cc], rowB.Content[cc]);
+            }
+            else
+            {
+                return String.Compare(rowB.Content[cc], rowA.Content[cc]);
+            }
+        }
+
+        #endregion
     }
 }

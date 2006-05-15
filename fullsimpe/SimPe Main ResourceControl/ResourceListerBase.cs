@@ -27,7 +27,7 @@ namespace SimPe
 {
 	public abstract class ResourceListerBase 
 	{
-		protected ListView lv;
+        protected ResourceListView lv;
 		protected SimPe.Interfaces.Files.IPackedFileDescriptor p;
 		protected object tag;
 		protected LoadedPackage pkg;
@@ -49,42 +49,38 @@ namespace SimPe
             this.additemdelegate = new AddItemDelegate(AddItem);
 		}
 
-		public void Prepare(ListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
+        public void Prepare(ResourceListView lv, SimPe.Interfaces.Files.IPackedFileDescriptor p, object tag)
 		{
 			this.lv = lv;
 			this.p = p;
 			this.tag = tag;            
 		}
 
-		protected ListViewItem CreateItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd) 
+		protected ResourceListViewItem CreateItem(SimPe.Interfaces.Files.IPackedFileDescriptor pfd) 
 		{			
-			UpdatableListViewItem lvi = new UpdatableListViewItem(pfd, pkg.Package);
+			ResourceListViewItem lvi = new ResourceListViewItem(lv, pfd, pkg.Package);
 			return lvi;
 		}
 
-		protected delegate void AddItemDelegate(ListView lv, ListViewItem lvi, ulong threadguid);
+        protected delegate void AddItemDelegate(ResourceListView lv, ResourceListViewItem lvi, ulong threadguid);
         protected AddItemDelegate additemdelegate;
-		protected void AddItem(ListView lv, ListViewItem lvi, ulong threadguid)
+        protected void AddItem(ResourceListView lv, ResourceListViewItem lvi, ulong threadguid)
 		{
             if (threadguid == ResourceListerBase.LATEST_THREAD_GUID)
-            {
-                if (lv.ListViewItemSorter != null) ((UpdatableListViewItem)lvi).ForceLoad();
-                lv.Items.Add(lvi);
+            {                
+                lv.VirtualItems.Add(lvi);
                 
                 if (Helper.WindowsRegistry.AsynchronLoad)
                     if (lv.Items.Count % 50 == 49) Application.DoEvents();
             }
 		}
 
-		protected void ClearList(ListView lv, ListViewItem lvi, ulong threadguid)
+        protected void ClearList(ResourceListView lv, ResourceListViewItem lvi, ulong threadguid)
 		{
 			TreeBuilder.ClearListView(lv);  
           
-            ResourceListView rlv = lv as ResourceListView;
-            if (rlv != null)
-            {
-                rlv.InvokeBeginUpdate();
-            } else lv.BeginUpdate();
+            lv.InvokeBeginUpdate();
+            lv.UpdateContent();            
 		}
 
 		internal event System.EventHandler Finished;		
@@ -122,8 +118,7 @@ namespace SimPe
 		{
 			if (pkg==null) return;
 			if (pkg.Package==null) return;
-			System.Collections.IComparer cmp = lv.ListViewItemSorter;
-			lv.ListViewItemSorter = null;
+			
 			DateTime start = DateTime.Now;
 			run.Set();				
 			bool startedwait = false;
@@ -170,16 +165,30 @@ namespace SimPe
 				DoFinish(threadguid);
 				if (startedwait) 
 					Wait.SubStop();					
-			}	
- 
-			TimeSpan dur = DateTime.Now-start;
-            lv.Invoke(new System.EventHandler(SetSorter), new object[] {cmp, null});
+			}
+
+            TimeSpan dur = DateTime.Now - start;
+            try
+            {                
+                Console.WriteLine("Displayed " + pkg.Package.Index.Length + " items in " + dur);
+                start = DateTime.Now;
+            }
+            catch { }
+            lv.Invoke(new System.EventHandler(SetSorter), new object[] {null, null});
+
+            try
+            {
+                dur = DateTime.Now - start;
+                Console.WriteLine("Sorted " + pkg.Package.Index.Length + " items in " + dur);
+            }
+            catch { }
 		}
 
-        void SetSorter(object sender, System.EventArgs e){            
-            if (sender != null)
+        void SetSorter(object sender, System.EventArgs e){
+            lv.Sort();
+            /*if (sender != null)
                 ((ResourceListView)lv).LoadAll();
-            lv.ListViewItemSorter = sender as IComparer;
+            lv.ListViewItemSorter = lv.Sorter;*/
         }
 
 		ManualResetEvent run;
@@ -220,7 +229,7 @@ namespace SimPe
 
 				last.StopEvent.Set();					
 				last.Running.WaitOne();
-				last.Running.Reset();
+				last.Running.Set();
                 last.ReenableListViewUpdate(last.lv, null);			
 
 				last = null;
