@@ -96,7 +96,7 @@ namespace SimPe
         ResoureListViewItemCollection items, sel;
         ItemLoader il;
         public ResourceListView() : base()
-        {
+        {            
             beginct = 0;
             this.OwnerDraw = false;
             
@@ -228,41 +228,67 @@ namespace SimPe
             get { return sel; }
         }
 
-        protected override void  OnSelectedIndexChanged(EventArgs e)
+        protected override void OnSelectedIndexChanged(EventArgs e)
         {
-            UpdateSelectionList();
+            lock (SYNC)
+            {
+                UpdateSelectionList();
 
-            Console.WriteLine(sel.Count + " items selected");
-            base.OnSelectedIndexChanged(e);
+                Console.WriteLine(sel.Count + " items selected");
+                base.OnSelectedIndexChanged(e);
+                FireOnChange();
+            }
         }
 
+        public event System.EventHandler SyncedSelectionChanged;
         private void UpdateSelectionList()
         {
-            sel.Clear();
+            sel.Clear();            
             foreach (int i in this.SelectedIndices)
                 sel.Add(items[i]);
-        }   
+        }
+
+        public static object SYNC = new object();
 
         protected override void OnVirtualItemsSelectionRangeChanged(ListViewVirtualItemsSelectionRangeChangedEventArgs e)
         {
-            
-            if (e.IsSelected)
+            lock (SYNC)
             {
-                UpdateSelectionList();                
-            }
-            else
-            {
-                for (int i = e.StartIndex; i <= e.EndIndex; i++)
-                    sel.Remove(items[i]);
-            }
+                if (e.IsSelected)
+                {
+                    UpdateSelectionList();
+                }
+                else
+                {
+                    for (int i = e.StartIndex; i <= e.EndIndex; i++)
+                        sel.Remove(items[i]);
+                }
 
-            Console.WriteLine(e.StartIndex + " " + e.EndIndex + " " + e.IsSelected+ " "+sel.Count);
-            base.OnVirtualItemsSelectionRangeChanged(e);
-            base.OnSelectedIndexChanged(e);
+
+                Console.WriteLine(e.StartIndex + " " + e.EndIndex + " " + e.IsSelected + " " + sel.Count);
+                base.OnVirtualItemsSelectionRangeChanged(e);
+                base.OnSelectedIndexChanged(e);
+                FireOnChange();
+            }
         }
 
+        void FireOnChange()
+        {
+            firechange = true;
+            if (!Paused)
+            {
+                if (SyncedSelectionChanged != null) SyncedSelectionChanged(this, new EventArgs());
+            }
+        }
         
         delegate void SetUpdateHandler(bool begin, bool setevent);
+
+        bool firechange;
+        bool Paused
+        {
+            get { return beginct > 0; }
+        }
+
         void SetUpdate(bool begin, bool setevent)
         {
             if (setevent)
@@ -274,8 +300,19 @@ namespace SimPe
             if (Helper.WindowsRegistry.ShowResourceListContentAtOnce && begin) return;
 
             //this.Enabled = !begin;
-            if (begin) this.BeginUpdate();
-            else this.EndUpdate();
+            if (begin)
+            {
+                this.BeginUpdate();
+                firechange = false;
+            }
+            else
+            {
+                this.EndUpdate();
+                lock (SYNC)
+                {
+                    if (firechange) this.FireOnChange();
+                }
+            }
         }
 
         protected override void OnDrawItem(DrawListViewItemEventArgs e)

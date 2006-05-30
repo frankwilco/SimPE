@@ -1014,7 +1014,9 @@ namespace SimPe.Plugin.Anim
 			if (!(tv.SelectedNode.Tag is AnimationFrame)) return;
 			AnimationFrame af = (AnimationFrame)tv.SelectedNode.Tag;
 			while (afb.AxisSet.Length<3) afb.AddNewAxis();
-			
+
+            if (afb.AxisSet[2].Type == AnimationTokenType.TwoByte)
+                afb.AxisSet[2].Type = AnimationTokenType.SixByte;
 			AnimationAxisTransform aat = afb.AxisSet[2].Add(af.TimeCode, 0, 0, 0, af.Linear);
 			af.ZBlock = afb.AxisSet[2].GetLast();
 			this.AddFrame(tv.SelectedNode, aat, "Z: ");

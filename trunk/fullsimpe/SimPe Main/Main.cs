@@ -739,14 +739,15 @@ namespace SimPe
             this.menuBar1.SetSandBarMenu(this.lv, this.miAction);
             this.lv.UseCompatibleStateImageBehavior = false;
             this.lv.View = System.Windows.Forms.View.Details;
+            this.lv.VirtualMode = true;
             this.lv.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnterFile);
             this.lv.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropFile);
             this.lv.DoubleClick += new System.EventHandler(this.SelectResourceDBClick);
-            this.lv.SelectedIndexChanged += new System.EventHandler(this.SelectResource);
+            this.lv.SyncedSelectionChanged += new System.EventHandler(this.SelectResource);
             this.lv.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SelectResource);
             this.lv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyDown);
             this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.SortResourceListClick);
-            this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);            
+            this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
             // 
             // clType
             // 
@@ -883,6 +884,7 @@ namespace SimPe
             resources.ApplyResources(this.dcFilter, "dcFilter");
             this.dcFilter.Name = "dcFilter";
             this.dcFilter.TabImage = ((System.Drawing.Image)(resources.GetObject("dcFilter.TabImage")));
+            this.dcFilter.SizeChanged += new System.EventHandler(this.dcFilter_SizeChanged);
             // 
             // xpGradientPanel1
             // 
@@ -1949,40 +1951,52 @@ namespace SimPe
 		/// <param name="fromdbl">Select was issued by a doubleClick</param>
 		/// <param name="fromchg">Select was issued by an internal Change of a pfd Resource</param>
 		/// <remarks>Uses the frommiddle field to determin if the middle Button was clicked</remarks>
-		private void SelectResource(object sender, bool fromdbl, bool fromchg)
-		{			
-			bool fm = frommiddle;
-			if (!Helper.WindowsRegistry.FirefoxTabbing) fm=true;
+        private void SelectResource(object sender, bool fromdbl, bool fromchg)
+        {
+            bool fm = frommiddle;
+            if (!Helper.WindowsRegistry.FirefoxTabbing) fm = true;
 
-			ResourceListView lv = (ResourceListView)sender;
-			
+            ResourceListView lv = (ResourceListView)sender;
 
-			if (lv.SelectedItems.Count==0) 
-			{
-				plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));
-				return;
-			}
-			
-			SimPe.Events.ResourceEventArgs res = new SimPe.Events.ResourceEventArgs(package);
-			bool goon = (!fromdbl && !Helper.WindowsRegistry.SimpleResourceSelect && !frommiddle) || (lv.SelectedItems.Count>1);
-			foreach (ListViewItem lvi in lv.SelectedItems) 
-			{
-				ListViewTag lvt = (ListViewTag)lvi.Tag;
-                if (lvt == null) continue;
 
-				res.Items.Add(new SimPe.Events.ResourceContainer(lvt.Resource));
+            if (lv.SelectedItems.Count == 0)
+            {
+                plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));
+                return;
+            }
 
-				if (goon) continue;
+            SimPe.Events.ResourceEventArgs res = new SimPe.Events.ResourceEventArgs(package);
+            bool goon = (!fromdbl && !Helper.WindowsRegistry.SimpleResourceSelect && !frommiddle) || (lv.SelectedItems.Count > 1);
 
-				//only the first one get's added to the Plugin View				
-				if ((lv.SelectedItems.Count==1 && !fromchg && lv.Tag==null)) 				
-					resloader.AddResource(lvt.Resource, !fm);	
-			}
+            lock (ResourceListView.SYNC)
+            {
+                try
+                {
+                    foreach (ListViewItem lvi in lv.SelectedItems)
+                    {
+                        ListViewTag lvt = (ListViewTag)lvi.Tag;
+                        if (lvt == null) continue;
 
-			//notify the Action Tools that the selection was changed
-			plugger.ChangedGuiResourceEventHandler(this, res);
-			lv.Focus();
-		}
+                        res.Items.Add(new SimPe.Events.ResourceContainer(lvt.Resource));
+
+                        if (goon) continue;
+
+                        //only the first one get's added to the Plugin View				
+                        if ((lv.SelectedItems.Count == 1 && !fromchg && lv.Tag == null))
+                            resloader.AddResource(lvt.Resource, !fm);
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+
+            //notify the Action Tools that the selection was changed
+            plugger.ChangedGuiResourceEventHandler(this, res);
+            lv.Focus();
+        }
 
 		private void ShowPreferences(object sender, System.EventArgs e)
 		{
@@ -2399,6 +2413,11 @@ namespace SimPe
 		{
 			this.mbiTopics.Visible = mbiTopics.Items.Count>0;
 		}
+
+        private void dcFilter_SizeChanged(object sender, EventArgs e)
+        {
+            cbsemig.Width = dcFilter.Width - 24;
+        }
 
 		
 	}
