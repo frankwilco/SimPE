@@ -85,6 +85,7 @@ namespace SimPe
 	public class WaitingScreen
 	{
 		static System.Threading.Thread thread = null;
+        static System.Threading.ManualResetEvent run = new ManualResetEvent(false);
 		static WSState state = WSState.Inactive;
 		static WSEvent nextevent = new WSEvent();
 		static TimeSpan ts = new TimeSpan(0, 0, 0, 0, 100);
@@ -114,10 +115,12 @@ namespace SimPe
 		/// </summary>
         public static void Wait()
         {
-            if (!Helper.WindowsRegistry.WaitingScreen) return;
-            Console.WriteLine("starting...");
             lock (wait)
-            {
+            {                
+                if (!Helper.WindowsRegistry.WaitingScreen) return;
+                run.Set();
+                Console.WriteLine("starting...");
+
                 if (!Running)
                 {
                     state = WSState.Initializing;
@@ -128,7 +131,6 @@ namespace SimPe
                     thread.Start();
                     Console.WriteLine("Started thread");
                 }
-                
             }
         }
         
@@ -148,9 +150,11 @@ namespace SimPe
 		/// </summary>
         public static void Stop()
         {
-            Console.WriteLine("stopping...");
+            if (!run.WaitOne(250, false)) return;
             lock (wait)
             {
+                Console.WriteLine("stopping...");
+
                 stop.Set();
                 ended.WaitOne(5000, false);
                 ended.Set();
@@ -160,7 +164,7 @@ namespace SimPe
 
                 thread = null;
                 state = WSState.Inactive;
-                Console.WriteLine("Stopped thread");                             
+                Console.WriteLine("Stopped thread");
             }
         }
 		
@@ -168,7 +172,7 @@ namespace SimPe
 		/// Internal Method to start the Thread
 		/// </summary>
         internal static void Start()
-        {
+        {            
             if (stop.WaitOne(1, false))
             {
                 ended.Set();

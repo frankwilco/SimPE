@@ -21,24 +21,35 @@ namespace Ambertation.Threading
 		protected ManualResetEvent stop;
 		protected ManualResetEvent ended;
 
+        /// <summary>
+		/// block until the loader thread is cancled
+		/// </summary>
+        protected void WaitForEnd()
+        {
+            WaitForEnd(SimPe.Wait.TIMEOUT / 100);
+        }
+
 		/// <summary>
 		/// block until the loader thread is cancled
 		/// </summary>
-		protected void WaitForEnd()
+		protected bool WaitForEnd(int timeout)
 		{
-			if (!async) return;
-			if (stop==null) return;
+			if (!async) return true;
+            if (stop == null) return true;
+            if (worker == null) return true;
+
 			stop.Set();
-			const int wait = 100;
 			int ct=0;
-			while (!ended.WaitOne(SimPe.Wait.TIMEOUT/(2*wait), false) && ct<wait) 
+            while (worker.IsAlive && (ct <= timeout || timeout<0)) 
 			{
 				ct++;
 				stop.Set();
 				System.Windows.Forms.Application.DoEvents();
-				Thread.Sleep(SimPe.Wait.TIMEOUT/(2*wait));				
-			}
+                Thread.Sleep(100);                
+			}            
+            
 			ended.Set();
+            return !worker.IsAlive;
 		}
 
 		public virtual void Dispose()
@@ -51,7 +62,7 @@ namespace Ambertation.Threading
 		void ThreadEntry()
 		{
 			stop.Reset();
-			ended.Reset();
+            ended.Reset();
 
 			try 
 			{

@@ -991,6 +991,33 @@ namespace SimPe.Data
 		static ArrayList rcollist;
 		static ArrayList complist;
 		static Hashtable agelist;
+        static System.Collections.Generic.List<uint> cachedft;
+
+        public static System.Collections.Generic.List<uint> CachedFileTypes
+        {
+            get
+            {
+                if (cachedft == null)
+                {
+                    cachedft = new System.Collections.Generic.List<uint>();
+
+                    foreach (uint i in RcolList)
+                        cachedft.Add(i);
+
+                    cachedft.Add(OBJD_FILE);
+                    cachedft.Add(CTSS_FILE);
+                    cachedft.Add(STRING_FILE);
+
+                    cachedft.Add(XFLR);
+                    cachedft.Add(XFNC);
+                    cachedft.Add(XNGB);
+                    cachedft.Add(XOBJ);
+                    cachedft.Add(XROF);
+                    cachedft.Add(XWNT);
+                }
+                return cachedft;
+            }
+        }
 
 		//Returns a List of all RCOl Compatible File Types
 		public static ArrayList RcolList 

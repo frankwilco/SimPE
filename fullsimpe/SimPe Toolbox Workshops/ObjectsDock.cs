@@ -767,6 +767,7 @@ namespace SimPe.Plugin.Tool.Dockable
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ShowItemToolTips = false;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.biPrev,
@@ -776,30 +777,34 @@ namespace SimPe.Plugin.Tool.Dockable
             this.biCatalog});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             resources.ApplyResources(this.toolStrip1, "toolStrip1");
-            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Name = "toolStrip1";            
             // 
             // biPrev
             // 
             resources.ApplyResources(this.biPrev, "biPrev");
             this.biPrev.Name = "biPrev";
+            this.biPrev.ToolTipText = "";
             this.biPrev.Click += new System.EventHandler(this.Activate_biPrev);
             // 
             // biNext
             // 
             resources.ApplyResources(this.biNext, "biNext");
             this.biNext.Name = "biNext";
+            this.biNext.ToolTipText = "";
             this.biNext.Click += new System.EventHandler(this.Activate_biNext);
             // 
             // biFinish
             // 
             resources.ApplyResources(this.biFinish, "biFinish");
             this.biFinish.Name = "biFinish";
+            this.biFinish.ToolTipText = "";
             this.biFinish.Click += new System.EventHandler(this.ActivateFinish);
             // 
             // biAbort
             // 
             resources.ApplyResources(this.biAbort, "biAbort");
             this.biAbort.Name = "biAbort";
+            this.biAbort.ToolTipText = "";
             this.biAbort.Click += new System.EventHandler(this.biAbort_Activate);
             // 
             // biCatalog
@@ -811,6 +816,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.biCatalog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             resources.ApplyResources(this.biCatalog, "biCatalog");
             this.biCatalog.Name = "biCatalog";
+            this.biCatalog.ToolTipText = "";
             this.biCatalog.Click += new System.EventHandler(this.Activate_biCatalog);
             // 
             // ilist
