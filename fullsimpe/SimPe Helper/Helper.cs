@@ -113,6 +113,18 @@ namespace SimPe
 			while (input.Length<length) input = "0"+input;
 			return input;
 		}
+        /// <summary>
+		/// Creates a HexString (with Leading 0) of the given Length
+		/// </summary>
+		/// <param name="input">The HexFormated String with arbitrary Length</param>
+		/// <param name="length">The min. Length for the String</param>
+		/// <returns>The input String with added zeros.</returns>
+        public static string StrLength(string input, int length)
+        {
+            while (input.Length < length) input += "0";
+            if (input.Length > length) input = input.Substring(0, length);
+            return input;
+        }
 
 		/// <summary>
 		/// Creates a HexString (with Leading 0) of the given Length
@@ -120,10 +132,12 @@ namespace SimPe
 		/// <param name="input">The HexFormated String with arbitrary Length</param>
 		/// <param name="length">The min. Length for the String</param>
 		/// <returns>The input String with added zeros.</returns>
-		public static string StrLength(string input, int length)
+        /// <param name="left">True, if you want to add from the left, and cut from the right</param>
+		public static string StrLength(string input, int length, bool left)
 		{
+            if (left) return StrLength(input, length);
 			while (input.Length<length) input = "0"+input;
-			if (input.Length>length) input = input.Substring(0, length);
+			if (input.Length>length) input = input.Substring(input.Length-length, length);
 			return input;
 		}
 

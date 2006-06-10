@@ -390,7 +390,7 @@ namespace Ambertation
 			if (digitbase==16) 
 			{
 				len = len / 4;
-				return "0x"+SimPe.Helper.StrLength(val.ToString("x"), len);
+				return "0x"+SimPe.Helper.StrLength(val.ToString("x"), len, false);
 			} 
 			else if (digitbase==2) 
 			{

@@ -41,8 +41,12 @@ namespace SimPe
 
         public ResourceListViewItem this[int index]
         {
-            get { return list[index] as ResourceListViewItem; }
-            set { list[index] = value; }
+            get { 
+                return list[Math.Min(list.Count-1, index)] as ResourceListViewItem; 
+            }
+            set {
+                list[Math.Min(list.Count - 1, index)] = value; 
+            }
         }
 
         public int Count

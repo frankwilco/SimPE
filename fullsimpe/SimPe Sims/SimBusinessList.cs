@@ -31,7 +31,7 @@ namespace SimPe.PackedFiles.Wrapper
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
 			InitializeComponent();
 
-			SetContent();
+            if (!DesignMode) SetContent();
 		}
 
 		/// <summary> 

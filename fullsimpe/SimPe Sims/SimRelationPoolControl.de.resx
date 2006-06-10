@@ -117,121 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cbhousehold.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cbhousehold.ItemHeight" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cbhousehold.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 1</value>
+  <data name="cbNoRelation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 26</value>
   </data>
-  <data name="cbhousehold.Size" type="System.Drawing.Size, System.Drawing">
-    <value>502, 21</value>
+  <data name="cbNoRelation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 17</value>
   </data>
-  <data name="cbhousehold.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="cbNoRelation.Text" xml:space="preserve">
+    <value>keine Beziehung</value>
   </data>
-  <data name="&gt;&gt;cbhousehold.Name" xml:space="preserve">
-    <value>cbhousehold</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cbRelation.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
-  <data name="&gt;&gt;cbhousehold.Type" xml:space="preserve">
-    <value>TD.SandBar.FlatComboBox, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+  <data name="cbRelation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 17</value>
   </data>
-  <data name="&gt;&gt;cbhousehold.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cbhousehold.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="chHouse.Text" xml:space="preserve">
-    <value>Household</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>GUID</value>
-  </data>
-  <data name="columnHeader3.Text" xml:space="preserve">
-    <value>Instance</value>
-  </data>
-  <data name="columnHeader4.Text" xml:space="preserve">
-    <value>Lifestage</value>
-  </data>
-  <data name="gp.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="gp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 22</value>
-  </data>
-  <data name="gp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>502, 353</value>
-  </data>
-  <data name="gp.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;gp.Name" xml:space="preserve">
-    <value>gp</value>
-  </data>
-  <data name="&gt;&gt;gp.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.SimListView, simpe.sims, Version=1.0.2352.23827, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;gp.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gp.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
-  </data>
-  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>1, 1, 1, 1</value>
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>504, 376</value>
-  </data>
-  <data name="&gt;&gt;chHouse.Name" xml:space="preserve">
-    <value>chHouse</value>
-  </data>
-  <data name="&gt;&gt;chHouse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
-    <value>columnHeader1</value>
-  </data>
-  <data name="&gt;&gt;columnHeader1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader2.Name" xml:space="preserve">
-    <value>columnHeader2</value>
-  </data>
-  <data name="&gt;&gt;columnHeader2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader3.Name" xml:space="preserve">
-    <value>columnHeader3</value>
-  </data>
-  <data name="&gt;&gt;columnHeader3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader4.Name" xml:space="preserve">
-    <value>columnHeader4</value>
-  </data>
-  <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>SimPoolControl</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="cbRelation.Text" xml:space="preserve">
+    <value>Beziehung</value>
   </data>
 </root>

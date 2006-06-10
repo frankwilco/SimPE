@@ -1117,30 +1117,33 @@ namespace SimPe.Plugin.Tool.Dockable
 				ObjectWorkshopSettings settings;
 
 				//Clone an Object
-				if (this.cbTask.SelectedIndex==1) 
-				{
-					OWCloneSettings cs = new OWCloneSettings();
-					cs.IncludeWallmask = this.cbwallmask.Checked;
-					cs.OnlyDefaultMmats = this.cbdefault.Checked;
-					cs.IncludeAnimationResources = this.cbanim.Checked;
-					cs.CustomGroup = this.cbgid.Checked;
-					cs.FixResources = this.cbfix.Checked;
-					cs.RemoveUselessResource = this.cbclean.Checked;
-					cs.StandAloneObject = this.cbparent.Checked;					
-					cs.RemoveNonDefaultTextReferences = this.cbRemTxt.Checked;
-					cs.KeepOriginalMesh = this.cbOrgGmdc.Checked;
-					cs.PullResourcesByStr = this.cbstrlink.Checked;
+                if (this.cbTask.SelectedIndex == 1)
+                {
+                    OWCloneSettings cs = new OWCloneSettings();
+                    cs.IncludeWallmask = this.cbwallmask.Checked;
+                    cs.OnlyDefaultMmats = this.cbdefault.Checked;
+                    cs.IncludeAnimationResources = this.cbanim.Checked;
+                    cs.CustomGroup = this.cbgid.Checked;
+                    cs.FixResources = this.cbfix.Checked;
+                    cs.RemoveUselessResource = this.cbclean.Checked;
+                    cs.StandAloneObject = this.cbparent.Checked;
+                    cs.RemoveNonDefaultTextReferences = this.cbRemTxt.Checked;
+                    cs.KeepOriginalMesh = this.cbOrgGmdc.Checked;
+                    cs.PullResourcesByStr = this.cbstrlink.Checked;
 
-					cs.ChangeObjectDescription = cbDesc.Checked;
-					cs.Title = this.tbName.Text;
-					cs.Description = this.tbDesc.Text;
-					cs.Price = Helper.StringToInt16(this.tbPrice.Text, 0, 10);
+                    cs.ChangeObjectDescription = cbDesc.Checked;
+                    cs.Title = this.tbName.Text;
+                    cs.Description = this.tbDesc.Text;
+                    cs.Price = Helper.StringToInt16(this.tbPrice.Text, 0, 10);
 
-					settings = cs;
-				} 					
-				else  //Recolor a Object				
-					settings = new OWRecolorSettings();
-				
+                    settings = cs;
+                }
+                else
+                {
+                    //Recolor a Object				
+                    settings = new OWRecolorSettings();
+                    settings.RemoveNonDefaultTextReferences = false;
+                }
 
 				try 
 				{

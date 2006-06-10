@@ -16,6 +16,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Erforderliche Designervariable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
+        static Size ICON_SIZE = new Size(64, 64);
 
 		SimPe.ColumnsSorter s;
 		public SimListView()
@@ -32,7 +33,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 
 			LargeImageList.ColorDepth = ColorDepth.Depth32Bit;
-			LargeImageList.ImageSize = new Size(64, 64);
+            LargeImageList.ImageSize = ICON_SIZE;
 			
 			s = new SimPe.ColumnsSorter(new int[]{1,0});
 			this.ListViewItemSorter = s;
@@ -72,35 +73,24 @@ namespace SimPe.PackedFiles.Wrapper
 			this.ListViewItemSorter = s;
 		}
 
-		public SteepValley.Windows.Forms.XPListViewItem Add(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc)
+        public SteepValley.Windows.Forms.XPListViewItem Add(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc)
+        {
+            return Add(sdesc, SimPe.PackedFiles.Wrapper.SimPoolControl.GetImagePanelColor(sdesc));
+        }
+
+        public Image GetSimIcon(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc, Color bgcol)
+        {
+            return BuildSimPreviewImage(bgcol, sdesc.Image, sdesc.SimId);
+        }
+
+		public SteepValley.Windows.Forms.XPListViewItem Add(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc, Color bgcol)
 		{
-			//Image imgbig = SimPoolControl.CreateItem(sdesc).SourceImage;
-			Image imgbig = sdesc.Image;
-			if (imgbig != null) 
-				if (imgbig.Width<16) 
-					imgbig = null;
+            Image imgbig = BuildSimPreviewImage(bgcol, sdesc.Image, sdesc.SimId);
+            return Add(sdesc, imgbig);
+        }
 
-			if (imgbig!=null) 			
-				imgbig = Ambertation.Drawing.GraphicRoutines.KnockoutImage(imgbig, new Point(0, 0), Color.Magenta);								
-			else 
-				imgbig = Image.FromStream(
-					this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png")
-				);			
-
-			imgbig = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(
-				imgbig, 
-				this.LargeImageList.ImageSize, 
-				8, 
-				Color.FromArgb(90, Color.Black), 
-				SimPe.PackedFiles.Wrapper.SimPoolControl.GetImagePanelColor(sdesc), 
-				Color.White, 
-				Color.FromArgb(80, Color.White), 
-				true, 
-				0, 
-				0
-				);
-			//imgbig = Ambertation.Drawing.GraphicRoutines.ScaleImage(imgbig, this.LargeImageList.ImageSize.Width, this.LargeImageList.ImageSize.Height, true);
-
+        public SteepValley.Windows.Forms.XPListViewItem Add(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc, Image imgbig) 
+        {
 			SteepValley.Windows.Forms.XPListViewItem lvi = new SteepValley.Windows.Forms.XPListViewItem();
 			try 
 			{
@@ -122,7 +112,49 @@ namespace SimPe.PackedFiles.Wrapper
 			
 			this.Items.Add(lvi);
 			return lvi;
-		}		
+		}
+
+        static System.Collections.Generic.Dictionary<uint, Image> simicons = new System.Collections.Generic.Dictionary<uint, Image>();
+
+        public static Image BuildSimPreviewImage(SimPe.PackedFiles.Wrapper.ExtSDesc sdesc, Color bgcol)
+        {
+            return BuildSimPreviewImage(bgcol, sdesc.Image, sdesc.SimId);
+        }
+        protected static Image BuildSimPreviewImage(Color bgcol, Image imgbig, uint guid)
+        {
+            if (simicons.ContainsKey(guid))
+            {
+                Image img = simicons[guid];
+                if (img != null) return (Image)img.Clone();
+            }
+
+            if (imgbig != null)
+                if (imgbig.Width < 16)
+                    imgbig = null;
+
+            if (imgbig != null)
+                imgbig = Ambertation.Drawing.GraphicRoutines.KnockoutImage(imgbig, new Point(0, 0), Color.Magenta);
+            else
+                imgbig = Image.FromStream(
+                    typeof(SimListView).Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.noone.png")
+                );
+
+            imgbig = Ambertation.Windows.Forms.Graph.ImagePanel.CreateThumbnail(
+                imgbig,
+                ICON_SIZE,
+                8,
+                Color.FromArgb(90, Color.Black),
+                bgcol,
+                Color.White,
+                Color.FromArgb(80, Color.White),
+                true,
+                0,
+                0
+                );
+
+            simicons[guid] = imgbig;
+            return (Image)imgbig.Clone();
+        }		
 		
 		
 

@@ -21,6 +21,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace SimPe
 {
@@ -31,8 +32,7 @@ namespace SimPe
 	public class Wait
 	{
 		static IWaitingBarControl bar;
-		static Stack mystack = new Stack();
-		static object sync = new object();
+        static Stack<SessionData> mystack = new Stack<SessionData>();		
 		public const int TIMEOUT = 10000; 
 
 
@@ -68,16 +68,19 @@ namespace SimPe
 			}
 		}
 
+        static string m = "";
 		static string IntMessage
 		{
 			get 
-			{ 
-				if (bar!=null) return bar.Message; 
-				return "";
+			{
+                return m;
+				/*if (bar!=null) return bar.Message; 
+				return "";*/
 				
 			} 
 			set 
 			{
+                m = value;
 				if (bar!=null) bar.Message = value;								
 			}
 		}
@@ -113,18 +116,20 @@ namespace SimPe
 			}
 		}
 
-		public static int IntProgress
+        static int p = 0;
+		static int IntProgress
 		{
 			get 
-			{ 
-				if (bar!=null) return bar.Progress; 
-				return IntMaxProgress;
+			{
+                return p;
+				/*if (bar!=null) return bar.Progress; 
+				return IntMaxProgress;*/
 				
 			} 
 			set 
 			{
-				if (bar!=null) bar.Progress = value;				
-				
+                p = value;
+				if (bar!=null) bar.Progress = value;								
 			}
 		}
 
@@ -143,15 +148,18 @@ namespace SimPe
 			}
 		}
 
-		public static int IntMaxProgress
+        static int mp = 1;
+		static int IntMaxProgress
 		{
 			get 
 			{ 
-				if (bar!=null) return bar.MaxProgress; 
-				return 1;
+				/*if (bar!=null) return bar.MaxProgress; 
+				return 1;*/
+                return mp;
 			} 	
 			set 
 			{
+                mp = value;
 				if (bar!=null) bar.MaxProgress = value;		
 			}
 		}
@@ -192,17 +200,27 @@ namespace SimPe
 			
 		}
 
+        struct SessionData
+        {
+            public string Message;
+            public int Progress;
+            public int MaxProgress;
+        }
+
 		static object syncstart = 0;
 		static void SubStartCommon()
 		{
             Console.WriteLine("SubStartCommon 1");
-            lock (sync)
+            lock (mystack)
             {
                 Console.WriteLine("SubStartCommon 2");
+                SessionData sd = new SessionData();
+                sd.Message = IntMessage;
+                sd.Progress = IntProgress;
+                sd.MaxProgress = IntMaxProgress;                
+                
                 running++;
-                mystack.Push(Progress);
-                mystack.Push(MaxProgress);
-                mystack.Push(Message);
+                mystack.Push(sd);
             }
             Console.WriteLine("SubStartCommon 3");
 		}
@@ -225,7 +243,7 @@ namespace SimPe
 		public static void SubStop()
 		{
             Console.WriteLine("SubStop 1");
-            lock (sync)
+            lock (mystack)
             {
                 Console.WriteLine("SubStop 2");
                 if (running > 0) running--;
@@ -233,16 +251,15 @@ namespace SimPe
                 {
                     if (mystack.Count > 0)
                     {
-                        IntMessage = (string)mystack.Pop();
-                        //if (mystack.Count>0) 
-                        IntMaxProgress = (int)mystack.Pop();
-                        //if (mystack.Count>0) 
-                        IntProgress = (int)mystack.Pop();
+                        SessionData sd = mystack.Pop();
+                        IntMessage = sd.Message;
+                        IntMaxProgress = sd.MaxProgress;
+                        IntProgress = sd.Progress;
                     }
                 }
                 catch (Exception ex)
                 {
-                    if (Helper.DebugMode) Helper.ExceptionMessage(ex);
+                    if (Helper.DebugMode) Console.WriteLine(ex);
                 }
 
                 if (running == 0) Stop();
