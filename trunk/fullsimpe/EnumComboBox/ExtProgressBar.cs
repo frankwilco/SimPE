@@ -19,6 +19,7 @@
  ***************************************************************************/
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -49,6 +50,7 @@ namespace Ambertation.Windows.Forms
 
 		public ExtProgressBar()
 		{
+            
 			SetStyle(
 				ControlStyles.SupportsTransparentBackColor |
 				ControlStyles.AllPaintingInWmPaint |
@@ -66,6 +68,7 @@ namespace Ambertation.Windows.Forms
 			tw = 6;			
 			quality=true;
 
+            usetokenbuffer = true;
 			style = ProgresBarStyle.Flat;
 			startgradcol = Color.White;
 			endgradcol = Color.White;
@@ -80,7 +83,7 @@ namespace Ambertation.Windows.Forms
 			InitializeComponent();
 
 			this.OnResize(null);
-			CompleteRedraw();			
+			CompleteRedraw();            
 		}
 
 		/// <summary> 
@@ -99,6 +102,13 @@ namespace Ambertation.Windows.Forms
 		}
 
 		#region public Properties
+        bool usetokenbuffer;
+        public bool UseTokenBuffer
+        {
+            get { return usetokenbuffer; }
+            set { usetokenbuffer = value; }
+        }
+
 		ProgresBarStyle style;
 		//[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public ProgresBarStyle Style
@@ -385,29 +395,83 @@ namespace Ambertation.Windows.Forms
 			catch {}
 		}
 
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            if (needredraw && Visible) CompleteRedraw();
+            base.OnVisibleChanged(e);
+        }
+
+        bool needredraw;
 		void CompleteRedraw(Graphics g, Graphics gsel)
 		{
+            if (!Visible)
+            {
+                needredraw = true;
+                return;
+            }
+
 			SetGraphicsMode(g, true);						
 			SetGraphicsMode(gsel, true);		
 			g.FillRectangle(new SolidBrush(base.BackColor), 0, 0, Width, Height);
 			SetGraphicsMode(g, !quality);	
 			SetGraphicsMode(gsel, !quality);
-			
+            
 			if (style == ProgresBarStyle.Flat) UserDrawFlat(g, gsel);
 			else if (style == ProgresBarStyle.Simple) UserDrawSimple(g, gsel);
 			else if (style == ProgresBarStyle.Increase) UserDrawIncrease(g, gsel);
 			else if (style == ProgresBarStyle.Decrease) UserDrawDecrease(g, gsel);
 			else if (style == ProgresBarStyle.Balance) UserDrawBalance(g, gsel);
+            needredraw = false;
 		}
 
-		protected virtual void DrawTokens(Graphics g, Graphics gsel, int left, int top, int width, int height)
+
+        static Dictionary<Size, Image> tokenmap = new Dictionary<Size, Image>();
+        static Dictionary<Size, Image> seltokenmap = new Dictionary<Size, Image>();
+
+        protected  void DrawTokens(Graphics g, Graphics gsel, int left, int top, int width, int height)
+        {
+            if (!usetokenbuffer)
+            {
+                DoDrawTokens(g, gsel, left, top, width, height);
+                return;
+            }
+
+            Size sz = new Size(width, height);
+            UpdateTokenBuffer(width, height, sz);
+
+            Image i = tokenmap[sz];
+            Image si = seltokenmap[sz];
+
+            g.DrawImageUnscaled(i, left, top);
+            gsel.DrawImageUnscaled(si, left, top);            
+        }
+
+        private void UpdateTokenBuffer(int width, int height, Size sz)
+        {
+            if (!tokenmap.ContainsKey(sz))
+            {
+                Bitmap b1 = new Bitmap(width+1, height+1);
+                Graphics g1 = Graphics.FromImage(b1);
+                Bitmap b2 = new Bitmap(width+1, height+1);
+                Graphics g2 = Graphics.FromImage(b2);
+
+                DoDrawTokens(g1, g2, 0, 0, width, height);
+                g1.Dispose(); g2.Dispose();
+
+                tokenmap.Add(sz, b1);
+                seltokenmap.Add(sz, b2);
+            }
+        }
+        
+		protected virtual void DoDrawTokens(Graphics g, Graphics gsel, int left, int top, int width, int height)
 		{
 			
 			int rad = 2;
+            
+			Ambertation.Drawing.GraphicRoutines.FillRoundRect(g, new SolidBrush(this.UnselectedColor), left, top, width, height, rad);            
+            Ambertation.Drawing.GraphicRoutines.FillRoundRect(gsel, new SolidBrush(this.SelectedColor), left, top, width, height, rad);
 
-			Ambertation.Drawing.GraphicRoutines.FillRoundRect(g, new SolidBrush(this.UnselectedColor), left, top, width, height, rad);
-			Ambertation.Drawing.GraphicRoutines.FillRoundRect(gsel, new SolidBrush(this.SelectedColor), left, top, width, height, rad);
-
+            
 			//if ((this.TokenWidth>8 || this.Height>16)) 
 			{
 				SetGraphicsMode(g, true);						
@@ -435,7 +499,7 @@ namespace Ambertation.Windows.Forms
 		}	
 			
 		protected virtual void DrawTokenline(Graphics g, Graphics gsel, int left, int top, int width, int height)
-		{
+		{            
 			int rad = 2;
 			Ambertation.Drawing.GraphicRoutines.FillRoundRect(gsel, new SolidBrush(this.SelectedColor), left+1, top+1, width-1, height-1, rad);
 			CreateGlossyGradient(gsel, left, top, width, height, 3);	

@@ -252,6 +252,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SubsetSelectForm.resx">
       <DependentUpon>SubsetSelectForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="txtr.png" />
     <EmbeddedResource Include="TxtrForm.resx">

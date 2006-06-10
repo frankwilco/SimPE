@@ -138,6 +138,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			this.IncludeAnimationResources = false;
 			this.IncludeWallmask = false;
+            this.OnlyDefaultMmats = false;
 		}
 	}
 

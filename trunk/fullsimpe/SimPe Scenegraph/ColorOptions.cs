@@ -380,7 +380,7 @@ namespace SimPe.Plugin
 				Hashtable fullmap = Scenegraph.GetMMATMap(package);
 				Hashtable map = fullmap;
 				ArrayList allowedSubsets = Scenegraph.GetRecolorableSubsets(package);
-
+                
 				//Check if the User can select a Subset
 				bool userselect = false;
 				if (map.Count>1) userselect = true;

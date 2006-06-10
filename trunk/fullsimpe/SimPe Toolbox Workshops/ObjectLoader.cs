@@ -178,7 +178,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			Wait.Message = "Loading Objects";
 			Wait.MaxProgress = nrefitems.Length;
 			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem lnrefitem in nrefitems)
-			{
+			{                
 				ct++;
 				Interfaces.Scenegraph.IScenegraphFileIndexItem nrefitem = lnrefitem;
 				if (ct%134==1) Wait.Progress = ct;				

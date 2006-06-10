@@ -255,6 +255,12 @@
     <Compile Include="SimPoolControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="SimRelationPoolControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SimRelationPoolControl.Designer.cs">
+      <DependentUpon>SimRelationPoolControl.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CommonSrelUI.de.resx">
       <DependentUpon>CommonSrelUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +279,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExtSDescUI.resx">
       <DependentUpon>ExtSDescUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtSrelUI.de.resx">
       <DependentUpon>ExtSrelUI.cs</DependentUpon>
@@ -315,8 +322,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SimPoolControl.resx">
       <DependentUpon>SimPoolControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimRelationPoolControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SimRelationPoolControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="srel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="related.png" />
+    <EmbeddedResource Include="SimRelationPoolControl.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SimRelationPoolControl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
