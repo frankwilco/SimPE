@@ -200,7 +200,7 @@ namespace SimPe
 			
 		}
 
-        struct SessionData
+        class SessionData
         {
             public string Message;
             public int Progress;
@@ -240,31 +240,35 @@ namespace SimPe
 			
 		}
 
-		public static void SubStop()
-		{
+        public static void SubStop()
+        {
             Console.WriteLine("SubStop 1");
+            SessionData sd = null;
+            Console.WriteLine("SubStop 2");
+            if (running > 0) running--;
             lock (mystack)
             {
-                Console.WriteLine("SubStop 2");
-                if (running > 0) running--;
-                try
-                {
-                    if (mystack.Count > 0)
-                    {
-                        SessionData sd = mystack.Pop();
-                        IntMessage = sd.Message;
-                        IntMaxProgress = sd.MaxProgress;
-                        IntProgress = sd.Progress;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    if (Helper.DebugMode) Console.WriteLine(ex);
-                }
-
-                if (running == 0) Stop();
+                if (mystack.Count > 0)
+                    sd = mystack.Pop();
             }
+
+            try
+            {
+                if (sd!=null)
+                {                    
+                    IntMessage = sd.Message;
+                    IntMaxProgress = sd.MaxProgress;
+                    IntProgress = sd.Progress;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (Helper.DebugMode) Console.WriteLine(ex);
+            }
+
+            if (running == 0) Stop();
+
             Console.WriteLine("SubStop 3");
-		}
+        }
 	}
 }

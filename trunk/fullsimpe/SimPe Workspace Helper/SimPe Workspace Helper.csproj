@@ -182,6 +182,7 @@
     <Compile Include="FileTable.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GlossyRenderer.cs" />
     <Compile Include="IDockableTool.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -316,6 +317,9 @@
     <EmbeddedResource Include="WrapperBaseControl.resx">
       <DependentUpon>WrapperBaseControl.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="pattern.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

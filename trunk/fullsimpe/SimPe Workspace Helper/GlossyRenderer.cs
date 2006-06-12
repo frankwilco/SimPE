@@ -5,140 +5,143 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace SimPe
+namespace Ambertation.Renderer
 {
-
-
-    public class ToolStripProfessionalSquareRenderer : Ambertation.Renderer.AdvancedToolStripProfessionalRenderer
+    public class AdvancedToolStripProfessionalRenderer : ToolStripProfessionalRenderer
     {
-        public ToolStripProfessionalSquareRenderer(ProfessionalColorTable ct)
+        public AdvancedToolStripProfessionalRenderer(ProfessionalColorTable ct)
             : base(ct)
         {
-            this.RoundedEdges = false;
+
         }
 
-        public ToolStripProfessionalSquareRenderer()
+        public AdvancedToolStripProfessionalRenderer()
             : base()
         {
-            this.RoundedEdges = false;
+        }
+
+        protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+        {
+            if (e.Item.Enabled)
+                base.OnRenderMenuItemBackground(e);
+        }
+
+        static byte Interpolate(byte b1, byte b2, float p)
+        {
+            return (byte)(b1 * (1 - p) + b2 * (p));
+        }
+
+        public static Color InterpolateColors(Color c1, Color c2, float p)
+        {
+            return Color.FromArgb(
+                Interpolate(c1.R, c2.R, p),
+                Interpolate(c1.G, c2.G, p),
+                Interpolate(c1.B, c2.B, p)
+            );
         }
     }
 
-    public class MediaPlayerRenderer : ToolStripProfessionalSquareRenderer
+    public class GlossyRenderer : AdvancedToolStripProfessionalRenderer
     {
-        public MediaPlayerRenderer(ProfessionalColorTable ct)
-            : base(ct)
+       
+        public GlossyRenderer()
+            : base(GlossyColorTable.Global)
         {
+            this.RoundedEdges = false;
 
+            if (menupattern == null)
+                menupattern = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.pattern.gif"));            
         }
 
-        public MediaPlayerRenderer()
-            : base()
+        static Image menupattern;
+        protected static Image MenuPattern
         {
+            get { return GlossyRenderer.menupattern; }
         }
 
-        Color CheckedColor
+        protected GlossyColorTable Colors
         {
-            get { return Color.YellowGreen; }
+            get { return this.ColorTable as GlossyColorTable; }
         }
 
-        protected override void OnRenderButtonBackground(ToolStripItemRenderEventArgs e)
+        public bool RenderRoundedEdges
         {
-            Rectangle bounds = new Rectangle(Point.Empty, new Size(e.Item.Size.Width - 1, e.Item.Size.Height - 1));
-            if (e.Item is ToolStripMenuItem && e.Item.Selected && e.Item.Enabled)
-            {
-                SolidBrush background = new SolidBrush(Color.FromArgb(80, ColorTable.MenuItemBorder));
-                e.Graphics.FillRectangle(background, bounds);
-                background.Dispose();
-            }
-            else if (e.Item is ToolStripButton)
-            {
-                SolidBrush background;
-
-                // Create background brush
-                if (e.Item.Selected)
-                    background = new SolidBrush(Color.FromArgb(120, ColorTable.MenuItemBorder));
-                else if (e.Item.Pressed)
-                    background = new SolidBrush(Color.FromArgb(80, ColorTable.MenuItemBorder));
-                else if (((ToolStripButton)e.Item).Checked)
-                    background = new SolidBrush(Color.FromArgb(120, CheckedColor));
-                else
-                {
-                    background = new SolidBrush(Color.FromArgb(0, ColorTable.MenuItemBorder));
-                    base.OnRenderItemBackground(e);
-                    return;
-                }
-                e.Graphics.FillRectangle(background, bounds);
-                Pen pen = new Pen(ColorTable.ButtonSelectedBorder);
-                if (!((ToolStripButton)e.Item).Checked) e.Graphics.DrawRectangle(pen, bounds);
-                background.Dispose();
-
-
-            }
-            else base.OnRenderItemBackground(e);
+            get { return this.RoundedEdges; }
+            set { RoundedEdges = value; }
         }
 
+        protected override void OnRenderImageMargin(ToolStripRenderEventArgs e)
+        {
+            OnDrawToolStripDropDownMenu(e, true);
+        }
 
         protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
         {
-            Color color1, color2, color3, color4;
-
-            if (e.ToolStrip is MenuStrip)
-                base.OnRenderToolStripBackground(e);
+            if (e.ToolStrip is ToolStripDropDownMenu)
+            {
+                OnDrawToolStripDropDownMenu(e, false);
+            }
             else
             {
-                // Calculate colours used in gradient
-                color1 = this.ColorTable.ToolStripGradientBegin;
-                color2 = this.ColorTable.ToolStripGradientEnd;
-                color3 = InterpolateColors(color1, color2, 0.4F);
-                color4 = InterpolateColors(color1, color2, 0.8F);
-
-                bool vertical = false;
-
-                // Create linear gradient brush
-                LinearGradientMode direction = vertical ? LinearGradientMode.Horizontal : LinearGradientMode.Vertical;
-                using (LinearGradientBrush l = new LinearGradientBrush(e.AffectedBounds, color1, color2, direction))
+                LinearGradientMode direction = LinearGradientMode.Vertical;
+                Console.WriteLine(e.ToolStrip);
+                using (LinearGradientBrush l = new LinearGradientBrush(e.AffectedBounds, Colors.ToolStripGradientBegin, Colors.ToolStripGradientMiddle, direction))
                 {
                     // Set colour values
-                    ColorBlend cb = new ColorBlend(5);
-                    cb.Colors = new Color[] { color1, color2, color2, color3, color4 };
-                    cb.Positions = new float[] { 0F, 0.47F, 0.53F, 0.75F, 1F };
+                    ColorBlend cb = new ColorBlend(4);
+                    cb.Colors = new Color[] { 
+                    Colors.ToolStripGradientBegin, 
+                    Colors.ToolStripGradientMiddle, 
+                    Colors.ToolStripGradientMiddleEnd,
+                    Colors.ToolStripGradientEnd };
+                    cb.Positions = new float[] { 0F, 0.495F, 0.505F, 1F };
                     l.InterpolationColors = cb;
 
                     // Fill background
                     e.Graphics.FillRectangle(l, e.AffectedBounds);
+                    l.Dispose();
                 }
             }
         }
-    }
 
-    class MediaPlayerToolStripColorTable : ToolStripColorTable
-    {
-        public override Color ToolStripGradientBegin
+        private void OnDrawToolStripDropDownMenu(ToolStripRenderEventArgs e, bool overlay)
         {
-            get
-            {
-                return Color.FromArgb(0xFD, 0xFD, 0xFB);
-            }
-        }
-        public override Color ToolStripGradientEnd
-        {
-            get
-            {
-                return Color.FromArgb(0xB9, 0xB9, 0xA3);
-            }
+            TextureBrush t = new TextureBrush(menupattern);
+            t.WrapMode = WrapMode.TileFlipXY;
+            SolidBrush b = new SolidBrush(Color.FromArgb(50, Colors.ImageMarginGradientMiddle));
+            e.Graphics.FillRectangle(t, e.AffectedBounds);
+            if (overlay)
+                e.Graphics.FillRectangle(b, e.AffectedBounds);
+            b.Dispose();
+            t.Dispose();
         }
 
+        protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
+        {
+            if (e.ToolStrip is MenuStrip)
+            {
+                Pen pen = new Pen(Colors.ToolStripBorder);
+                e.Graphics.DrawLine(pen, new Point(0, e.ToolStrip.Height - 1), new Point(e.ToolStrip.Width, e.ToolStrip.Height - 1));
+                pen.Dispose();
+            }
+            else base.OnRenderToolStripBorder(e);
+        }
     }
 
-    class ToolStripColorTable : ProfessionalColorTable
+    public class GlossyColorTable : ProfessionalColorTable
     {
+        private static GlossyColorTable global = new GlossyColorTable();
+        public static GlossyColorTable Global
+        {
+            get { return GlossyColorTable.global; }
+        }
+
         #region Checker
         public override Color CheckBackground
         {
             get
             {
-                return Color.FromArgb(0xE1, 0xE6, 0xE8);
+                return Color.Transparent;
             }
         }
 
@@ -146,7 +149,7 @@ namespace SimPe
         {
             get
             {
-                return Color.FromArgb(0x31, 0x6A, 0xC5);
+                return Color.Transparent;
             }
         }
 
@@ -194,8 +197,7 @@ namespace SimPe
         {
             get
             {
-                //return Color.FromArgb(0xF3, 0xF2, 0xE7);
-                return Color.White;
+                return ToolStripGradientEnd;
             }
         }
 
@@ -203,41 +205,64 @@ namespace SimPe
         {
             get
             {
-                return Color.FromArgb(0x8A, 0x86, 0x7A);
+                return ToolStripBorder;
             }
         }
         #endregion
 
         #region ToolStrip
+        /// <summary>
+        /// 
+        /// </summary>
         public override System.Drawing.Color ToolStripGradientBegin
         {
             get
             {
-                return Color.FromArgb(0xFD, 0xFD, 0xFB);
+                return Color.White;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override System.Drawing.Color ToolStripGradientMiddle
         {
             get
-            {
-                return Color.FromArgb(0xEC, 0xEC, 0xE5);
+            {                
+                return Color.FromArgb(0xF1, 0xF1, 0xF1);
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.Drawing.Color ToolStripGradientMiddleEnd
+        {
+            get
+            {
+                return Color.FromArgb(0xE9, 0xE9, 0xE9);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public override System.Drawing.Color ToolStripGradientEnd
         {
             get
             {
-                return Color.FromArgb(0xBE, 0xBE, 0xA7);
+                return Color.FromArgb(0xFE, 0xFF, 0xFF);
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override Color ToolStripBorder
         {
             get
             {
-                return Color.FromArgb(0xA3, 0xA3, 0x7C);
+                return Color.FromArgb(0xB5, 0xC1, 0xC1);
             }
         }
         #endregion
@@ -273,7 +298,7 @@ namespace SimPe
         {
             get
             {
-                return Color.FromArgb(0xFE, 0xFE, 0xFB);
+                return Color.FromArgb(0x5E, 0x6A, 0x79);
             }
         }
 
@@ -281,7 +306,7 @@ namespace SimPe
         {
             get
             {
-                return Color.FromArgb(0xC4, 0xC3, 0xAC);
+                return ImageMarginGradientBegin;
             }
         }
 
@@ -289,7 +314,7 @@ namespace SimPe
         {
             get
             {
-                return Color.FromArgb(0xED, 0xE9, 0xE2);
+                return ImageMarginGradientBegin;
             }
         }
 

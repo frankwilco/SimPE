@@ -27,9 +27,9 @@ namespace SimPe
 	{
 		LoadedPackage lp;
 		SimPe.ResourceLoader rl;
-		TD.SandBar.MenuBarItem docs;
+		System.Windows.Forms.ToolStripMenuItem docs;
 		PluginManager plugger;
-		internal RemoteHandler(System.Windows.Forms.Form form, LoadedPackage lp, ResourceLoader rl, TD.SandBar.MenuBarItem docmenu) 
+        internal RemoteHandler(System.Windows.Forms.Form form, LoadedPackage lp, ResourceLoader rl, System.Windows.Forms.ToolStripMenuItem docmenu) 
 		{
 			this.lp = lp;
 			this.rl = rl;
@@ -128,7 +128,7 @@ namespace SimPe
 					plugger.ChangedGuiResourceEventHandler();				
 			}
 
-			foreach (TD.SandBar.MenuButtonItem mi in docs.Items)
+            foreach (System.Windows.Forms.ToolStripMenuItem mi in docs.DropDownItems)
 			{
 				if (mi.Tag == doc) 				
 					mi.Checked = doc.IsDocked || doc.IsFloating;				

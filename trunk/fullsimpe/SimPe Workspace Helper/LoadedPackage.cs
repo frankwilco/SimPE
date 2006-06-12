@@ -362,9 +362,9 @@ namespace SimPe
 		/// <param name="e"></param>
 		void OpenRecent(object sender, System.EventArgs e)
 		{
-			if (sender is TD.SandBar.MenuButtonItem) 
+			if (sender is ToolStripMenuItem) 
 			{
-				TD.SandBar.MenuButtonItem mbi = (TD.SandBar.MenuButtonItem)sender;
+                ToolStripMenuItem mbi = (ToolStripMenuItem)sender;
 
 				FileNameEventArg me = new FileNameEventArg(mbi.Tag.ToString());									
 				if (BeforeRecentFileLoad!=null) BeforeRecentFileLoad(this, me);				
@@ -412,9 +412,9 @@ namespace SimPe
 		/// Add a List of recently Opened Files to the Menu
 		/// </summary>
 		/// <param name="menu"></param>
-		public void UpdateRecentFileMenu(TD.SandBar.MenuButtonItem menu)
+        public void UpdateRecentFileMenu(System.Windows.Forms.ToolStripMenuItem menu)
 		{
-			menu.Items.Clear();
+			menu.DropDownItems.Clear();
 
 			string[] files = Helper.WindowsRegistry.GetRecentFiles();
 			foreach (string file in files)
@@ -424,13 +424,15 @@ namespace SimPe
 					string sname = file;
 					if (sname.Length>MAX_FILENAME_LENGTH) 
 						sname = "..."+sname.Substring(file.Length-MAX_FILENAME_LENGTH, MAX_FILENAME_LENGTH);
-					
-					TD.SandBar.MenuButtonItem mbi = new TD.SandBar.MenuButtonItem(sname);
+
+                    System.Windows.Forms.ToolStripMenuItem mbi = new System.Windows.Forms.ToolStripMenuItem(sname);
 					mbi.Tag = file;
-					mbi.Activate += new EventHandler(OpenRecent);
-					mbi.Shortcut = GetShortCut(menu.Items.Count+1);
+					mbi.Click += new EventHandler(OpenRecent);
+                    System.Windows.Forms.KeysConverter kc = new KeysConverter();                    
+                    
+					mbi.ShortcutKeys = Helper.ToKeys(GetShortCut(menu.DropDownItems.Count+1));
 					
-					menu.Items.Add(mbi);
+					menu.DropDownItems.Add(mbi);
 				}
 			}
 		}
