@@ -187,7 +187,6 @@ namespace SimPe.Events
 		{
 			get
 			{
-				// TODO:  Getter-Implementierung für ResourceEventArgs.ChangedAny hinzufügen
 				return false;
 			}
 		}

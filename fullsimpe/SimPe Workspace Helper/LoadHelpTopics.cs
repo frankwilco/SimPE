@@ -5,7 +5,7 @@ namespace SimPe
 	/// <summary>
 	/// An Item in the Help Menu
 	/// </summary>
-	class HelpTopicMenuItem : TD.SandBar.MenuButtonItem
+    class HelpTopicMenuItem : System.Windows.Forms.ToolStripMenuItem
 	{
 		SimPe.Interfaces.IHelp topic;
 		public HelpTopicMenuItem(SimPe.Interfaces.IHelp topic):base()
@@ -14,7 +14,7 @@ namespace SimPe
 			this.Text = GetName();
 			this.Image = topic.Icon;
 
-			this.Activate += new EventHandler(HelpTopicMenuItem_Activate);			
+			this.Click += new EventHandler(HelpTopicMenuItem_Activate);			
 		}	
 	
 		public string GetName()
@@ -40,17 +40,17 @@ namespace SimPe
 	/// </summary>
 	public class LoadHelpTopics
 	{
-		TD.SandBar.MenuItemBase mbi;
-		public LoadHelpTopics(TD.SandBar.MenuItemBase parentmenu)
+        System.Windows.Forms.ToolStripMenuItem mbi;
+        public LoadHelpTopics(System.Windows.Forms.ToolStripMenuItem parentmenu)
 		{
 			mbi = parentmenu;
 			AddItems(SimPe.FileTable.HelpTopicRegistry);
 			SetupImages(parentmenu);
 		}
 
-		void SetupImages(TD.SandBar.MenuItemBase parent)
+        void SetupImages(System.Windows.Forms.ToolStripMenuItem parent)
 		{
-			foreach (TD.SandBar.MenuItemBase m in parent.Items)
+            foreach (System.Windows.Forms.ToolStripMenuItem m in parent.DropDownItems)
 			{
 				SetupImages(m);
 				if (parent.Image==null && m.Image!=null)
@@ -72,13 +72,13 @@ namespace SimPe
 			HelpTopicMenuItem htmi = new HelpTopicMenuItem(topic);
 			string[] path = htmi.GetMenuPath();
 
-			TD.SandBar.MenuItemBase parent = mbi;
+            System.Windows.Forms.ToolStripMenuItem parent = mbi;
 			for (int i=0; i<path.Length-1; i++)
 			{
 				string n = SimPe.Localization.GetString(path[i]);
 
-				TD.SandBar.MenuButtonItem m = null;
-				foreach (TD.SandBar.MenuButtonItem item in parent.Items)
+                System.Windows.Forms.ToolStripMenuItem m = null;
+                foreach (System.Windows.Forms.ToolStripMenuItem item in parent.DropDownItems)
 				{
 					if (item.Text.Trim().ToLower()==n.Trim().ToLower()) 
 					{
@@ -88,12 +88,12 @@ namespace SimPe
 				}
 				if (m==null) 
 				{
-					m = new TD.SandBar.MenuButtonItem(n);
-					parent.Items.Add(m);
+                    m = new System.Windows.Forms.ToolStripMenuItem(n);
+					parent.DropDownItems.Add(m);
 				}
 				parent = m;
 			}
-			parent.Items.Add(htmi);
+			parent.DropDownItems.Add(htmi);
 		}
 	}
 }

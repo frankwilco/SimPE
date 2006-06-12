@@ -39,14 +39,14 @@ namespace SimPe.PackedFiles.UserInterface
 		//System.Windows.Forms.UserControl 
 		SimPe.Windows.Forms.WrapperBaseControl, IPackedFileUI
 	{
-		private TD.SandBar.ToolBar toolBar1;
-		private TD.SandBar.ButtonItem biEP1;
-		private TD.SandBar.ButtonItem biId;
-		private TD.SandBar.ButtonItem biRel;
-		private TD.SandBar.ButtonItem biInt;
-		private TD.SandBar.ButtonItem biChar;
-		private TD.SandBar.ButtonItem biSkill;
-		private TD.SandBar.ButtonItem biMisc;
+		private ToolStrip toolBar1;
+		private ToolStripButton biEP1;
+		private ToolStripButton biId;
+		private ToolStripButton biRel;
+		private ToolStripButton biInt;
+		private ToolStripButton biChar;
+		private ToolStripButton biSkill;
+		private ToolStripButton biMisc;
 		private System.Windows.Forms.Panel pnId;
 		internal System.Windows.Forms.TextBox tbsimdescfamname;
 		internal System.Windows.Forms.TextBox tbfaminst;
@@ -73,11 +73,11 @@ namespace SimPe.PackedFiles.UserInterface
 		private Ambertation.Windows.Forms.LabeledProgressBar pbMech;
 		private Ambertation.Windows.Forms.LabeledProgressBar pbLogic;
 		private Ambertation.Windows.Forms.LabeledProgressBar pbCooking;
-		private TD.SandBar.ButtonItem biMax;
+		private ToolStripButton biMax;
 		private System.Windows.Forms.Panel pnChar;
 		internal System.Windows.Forms.ComboBox cbzodiac;
 		private System.Windows.Forms.Label label47;
-		private TD.SandBar.ButtonItem biCareer;
+		private ToolStripButton biCareer;
 		private System.Windows.Forms.Panel pnCareer;
 		internal System.Windows.Forms.TextBox tbschooltype;
 		private System.Windows.Forms.Label label77;
@@ -159,7 +159,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label87;
 		internal System.Windows.Forms.TextBox tbautonomy;
 		private System.Windows.Forms.Label label86;
-		private TD.SandBar.ButtonItem biMore;
+		private ToolStripButton biMore;
 		internal System.Windows.Forms.TextBox tbinfluence;
 		internal System.Windows.Forms.TextBox tbsemester;
 		internal System.Windows.Forms.Label label103;
@@ -170,18 +170,17 @@ namespace SimPe.PackedFiles.UserInterface
 		internal System.Windows.Forms.TextBox tbmajor;
 		private Ambertation.Windows.Forms.LabeledProgressBar pbLastGrade;
 		private Ambertation.Windows.Forms.LabeledProgressBar pbEffort;
-		private Ambertation.Windows.Forms.LabeledProgressBar pbUniTime;
-		private TD.SandBar.MenuBar menuBar1;
-		private TD.SandBar.MenuButtonItem mbiMax;
-		private TD.SandBar.ContextMenuBarItem mbiLink;
-		private TD.SandBar.MenuButtonItem miRand;
-		private TD.SandBar.MenuButtonItem miOpenChar;
-		private TD.SandBar.MenuButtonItem miOpenDNA;
-		private TD.SandBar.MenuButtonItem miOpenFamily;
-		private TD.SandBar.MenuButtonItem miOpenCloth;
-		private TD.SandBar.MenuButtonItem miMore;
-		private TD.SandBar.MenuButtonItem miRelink;
-		private TD.SandBar.MenuButtonItem miOpenWf;
+        private Ambertation.Windows.Forms.LabeledProgressBar pbUniTime;
+		private ToolStripMenuItem mbiMax;
+		private ContextMenuStrip mbiLink;
+		private ToolStripMenuItem miRand;
+		private ToolStripMenuItem miOpenChar;
+		private ToolStripMenuItem miOpenDNA;
+		private ToolStripMenuItem miOpenFamily;
+		private ToolStripMenuItem miOpenCloth;
+		private ToolStripMenuItem miMore;
+		private ToolStripMenuItem miRelink;
+		private ToolStripMenuItem miOpenWf;
 		private System.Windows.Forms.Label label3;
 		internal System.Windows.Forms.TextBox tbstatmot;
         private System.Windows.Forms.Panel panel3;
@@ -189,11 +188,11 @@ namespace SimPe.PackedFiles.UserInterface
 		private SimPe.PackedFiles.UserInterface.CommonSrel dstRel;
 		private Ambertation.Windows.Forms.XPTaskBoxSimple srcTb;
         private Ambertation.Windows.Forms.XPTaskBoxSimple dstTb;
-		private TD.SandBar.ContextMenuBarItem miRel;
-		private TD.SandBar.MenuButtonItem miAddRelation;
-		private TD.SandBar.MenuButtonItem miRemRelation;
+		private ContextMenuStrip miRel;
+		private ToolStripMenuItem miAddRelation;
+		private ToolStripMenuItem miRemRelation;
         private System.ComponentModel.IContainer components;
-		private TD.SandBar.ButtonItem biEP2;
+		private ToolStripButton biEP2;
 		private System.Windows.Forms.CheckedListBox lbTraits;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.CheckedListBox lbTurnOn;
@@ -204,7 +203,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.TextBox tbNTPerfume;
 		private System.Windows.Forms.TextBox tbNTLove;
-		private TD.SandBar.ButtonItem biEP3;
+		private ToolStripButton biEP3;
 		private System.Windows.Forms.Panel pnEP3;
 		private System.Windows.Forms.TextBox tbEp3Flag;
 		private System.Windows.Forms.TextBox tbEp3Lot;
@@ -214,15 +213,18 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.TextBox tbEp3Salery;
 		private System.Windows.Forms.Label label14;
-		private TD.SandBar.MenuButtonItem miOpenMem;
-		private TD.SandBar.MenuButtonItem miOpenBadge;
+		private ToolStripMenuItem miOpenMem;
+		private ToolStripMenuItem miOpenBadge;
 		private SimPe.PackedFiles.Wrapper.SimBusinessList sblb;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.LinkLabel llep3openinfo;
 		private System.Windows.Forms.PictureBox pictureBox1;
-		private TD.SandBar.MenuButtonItem mbiMaxThisRel;
-		private TD.SandBar.MenuButtonItem mbiMaxKnownRel;
+		private ToolStripMenuItem mbiMaxThisRel;
+		private ToolStripMenuItem mbiMaxKnownRel;
         private SimPe.PackedFiles.Wrapper.SimRelationPoolControl lv;
+        private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripSeparator toolStripMenuItem2;
+        private ToolStripSeparator toolStripMenuItem3;
 
 		
 		System.Resources.ResourceManager strresources;
@@ -236,16 +238,17 @@ namespace SimPe.PackedFiles.UserInterface
 			InitializeComponent();	
 			Initialize();
 
-			toolBar1.Renderer = new TD.SandBar.MediaPlayerRenderer();
-			toolBar1.Overflow = TD.SandBar.ToolBarOverflow.Chevron;
+            toolBar1.Renderer = new SimPe.MediaPlayerRenderer();
+             			
 
-			ThemeManager.AddControl(this.toolBar1);
-			ThemeManager.AddControl(this.menuBar1);
+			ThemeManager.AddControl(this.toolBar1);			
 			ThemeManager.AddControl(this.srcTb);
 			ThemeManager.AddControl(this.dstTb);
 			ThemeManager.AddControl(this.xpTaskBoxSimple1);
 			ThemeManager.AddControl(this.xpTaskBoxSimple2);
 			ThemeManager.AddControl(this.xpTaskBoxSimple3);
+            ThemeManager.AddControl(this.miRel);
+            ThemeManager.AddControl(this.mbiLink);
 			this.biId.Tag = pnId;	
 			this.biSkill.Tag = pnSkill;
 			this.biChar.Tag = pnChar;
@@ -331,21 +334,22 @@ namespace SimPe.PackedFiles.UserInterface
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExtSDesc));
-            this.toolBar1 = new TD.SandBar.ToolBar();
-            this.biId = new TD.SandBar.ButtonItem();
-            this.biCareer = new TD.SandBar.ButtonItem();
-            this.biRel = new TD.SandBar.ButtonItem();
-            this.biInt = new TD.SandBar.ButtonItem();
-            this.biChar = new TD.SandBar.ButtonItem();
-            this.biSkill = new TD.SandBar.ButtonItem();
-            this.biMisc = new TD.SandBar.ButtonItem();
-            this.biEP1 = new TD.SandBar.ButtonItem();
-            this.biEP2 = new TD.SandBar.ButtonItem();
-            this.biEP3 = new TD.SandBar.ButtonItem();
-            this.biMore = new TD.SandBar.ButtonItem();
-            this.biMax = new TD.SandBar.ButtonItem();
-            this.mbiMax = new TD.SandBar.MenuButtonItem();
+            this.toolBar1 = new System.Windows.Forms.ToolStrip();
+            this.biId = new System.Windows.Forms.ToolStripButton();
+            this.biCareer = new System.Windows.Forms.ToolStripButton();
+            this.biRel = new System.Windows.Forms.ToolStripButton();
+            this.biInt = new System.Windows.Forms.ToolStripButton();
+            this.biChar = new System.Windows.Forms.ToolStripButton();
+            this.biSkill = new System.Windows.Forms.ToolStripButton();
+            this.biMisc = new System.Windows.Forms.ToolStripButton();
+            this.biEP1 = new System.Windows.Forms.ToolStripButton();
+            this.biEP2 = new System.Windows.Forms.ToolStripButton();
+            this.biEP3 = new System.Windows.Forms.ToolStripButton();
+            this.biMore = new System.Windows.Forms.ToolStripButton();
+            this.biMax = new System.Windows.Forms.ToolStripButton();
+            this.mbiMax = new System.Windows.Forms.ToolStripMenuItem();
             this.pnId = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -391,23 +395,26 @@ namespace SimPe.PackedFiles.UserInterface
             this.label69 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label70 = new System.Windows.Forms.Label();
-            this.menuBar1 = new TD.SandBar.MenuBar();
-            this.mbiLink = new TD.SandBar.ContextMenuBarItem();
-            this.miRand = new TD.SandBar.MenuButtonItem();
-            this.miOpenChar = new TD.SandBar.MenuButtonItem();
-            this.miOpenWf = new TD.SandBar.MenuButtonItem();
-            this.miOpenMem = new TD.SandBar.MenuButtonItem();
-            this.miOpenBadge = new TD.SandBar.MenuButtonItem();
-            this.miOpenDNA = new TD.SandBar.MenuButtonItem();
-            this.miOpenFamily = new TD.SandBar.MenuButtonItem();
-            this.miOpenCloth = new TD.SandBar.MenuButtonItem();
-            this.miMore = new TD.SandBar.MenuButtonItem();
-            this.miRelink = new TD.SandBar.MenuButtonItem();
-            this.miRel = new TD.SandBar.ContextMenuBarItem();
-            this.miAddRelation = new TD.SandBar.MenuButtonItem();
-            this.miRemRelation = new TD.SandBar.MenuButtonItem();
-            this.mbiMaxThisRel = new TD.SandBar.MenuButtonItem();
-            this.mbiMaxKnownRel = new TD.SandBar.MenuButtonItem();
+            this.mbiLink = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.miRand = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.miOpenChar = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenWf = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenMem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenBadge = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenDNA = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenFamily = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenCloth = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.miMore = new System.Windows.Forms.ToolStripMenuItem();
+            this.miRelink = new System.Windows.Forms.ToolStripMenuItem();
+            this.miRel = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.miAddRelation = new System.Windows.Forms.ToolStripMenuItem();
+            this.miRemRelation = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mbiMaxThisRel = new System.Windows.Forms.ToolStripMenuItem();
+            this.mbiMaxKnownRel = new System.Windows.Forms.ToolStripMenuItem();
+            this.lv = new SimPe.PackedFiles.Wrapper.SimRelationPoolControl();
             this.pnCareer = new System.Windows.Forms.Panel();
             this.pbAspBliz = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.label60 = new System.Windows.Forms.Label();
@@ -445,7 +452,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.pbParanormal = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbEnvironment = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pnRel = new System.Windows.Forms.Panel();
-            this.lv = new SimPe.PackedFiles.Wrapper.SimRelationPoolControl();
             this.panel3 = new System.Windows.Forms.Panel();
             this.srcTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.dstTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
@@ -513,10 +519,13 @@ namespace SimPe.PackedFiles.UserInterface
             this.tbEp3Lot = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.toolBar1.SuspendLayout();
             this.pnId.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.pnSkill.SuspendLayout();
             this.pnChar.SuspendLayout();
+            this.mbiLink.SuspendLayout();
+            this.miRel.SuspendLayout();
             this.pnCareer.SuspendLayout();
             this.pnInt.SuspendLayout();
             this.pnRel.SuspendLayout();
@@ -533,14 +542,10 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // toolBar1
             // 
-            this.toolBar1.AddRemoveButtonsVisible = false;
-            this.toolBar1.AllowVerticalDock = false;
-            this.toolBar1.Closable = false;
-            this.toolBar1.DrawActionsButton = false;
-            this.toolBar1.FlipLastItem = true;
             resources.ApplyResources(this.toolBar1, "toolBar1");
-            this.toolBar1.Guid = new System.Guid("c26fb528-33c1-46f9-bd39-8516b25c4289");
-            this.toolBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+            this.toolBar1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolBar1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolBar1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.biId,
             this.biCareer,
             this.biRel,
@@ -553,93 +558,87 @@ namespace SimPe.PackedFiles.UserInterface
             this.biEP3,
             this.biMore,
             this.biMax});
-            this.toolBar1.Movable = false;
+            this.toolBar1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolBar1.Name = "toolBar1";
-            this.toolBar1.Resizable = false;
-            this.toolBar1.ShowShortcutsInToolTips = true;
-            this.toolBar1.Tearable = false;
-            this.toolBar1.TextAlign = TD.SandBar.ToolBarTextAlign.Underneath;
             // 
             // biId
             // 
-            this.biId.Image = ((System.Drawing.Image)(resources.GetObject("biId.Image")));
             resources.ApplyResources(this.biId, "biId");
-            this.biId.Activate += new System.EventHandler(this.ChoosePage);
+            this.biId.Name = "biId";
+            this.biId.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biCareer
             // 
-            this.biCareer.Image = ((System.Drawing.Image)(resources.GetObject("biCareer.Image")));
             resources.ApplyResources(this.biCareer, "biCareer");
-            this.biCareer.Activate += new System.EventHandler(this.ChoosePage);
+            this.biCareer.Name = "biCareer";
+            this.biCareer.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biRel
             // 
-            this.biRel.Image = ((System.Drawing.Image)(resources.GetObject("biRel.Image")));
             resources.ApplyResources(this.biRel, "biRel");
-            this.biRel.Activate += new System.EventHandler(this.ChoosePage);
+            this.biRel.Name = "biRel";
+            this.biRel.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biInt
             // 
-            this.biInt.Image = ((System.Drawing.Image)(resources.GetObject("biInt.Image")));
             resources.ApplyResources(this.biInt, "biInt");
-            this.biInt.Activate += new System.EventHandler(this.ChoosePage);
+            this.biInt.Name = "biInt";
+            this.biInt.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biChar
             // 
-            this.biChar.Image = ((System.Drawing.Image)(resources.GetObject("biChar.Image")));
             resources.ApplyResources(this.biChar, "biChar");
-            this.biChar.Activate += new System.EventHandler(this.ChoosePage);
+            this.biChar.Name = "biChar";
+            this.biChar.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biSkill
             // 
-            this.biSkill.Image = ((System.Drawing.Image)(resources.GetObject("biSkill.Image")));
             resources.ApplyResources(this.biSkill, "biSkill");
-            this.biSkill.Activate += new System.EventHandler(this.ChoosePage);
+            this.biSkill.Name = "biSkill";
+            this.biSkill.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biMisc
             // 
-            this.biMisc.Image = ((System.Drawing.Image)(resources.GetObject("biMisc.Image")));
             resources.ApplyResources(this.biMisc, "biMisc");
-            this.biMisc.Activate += new System.EventHandler(this.ChoosePage);
+            this.biMisc.Name = "biMisc";
+            this.biMisc.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biEP1
             // 
-            this.biEP1.Enabled = false;
-            this.biEP1.Image = ((System.Drawing.Image)(resources.GetObject("biEP1.Image")));
             resources.ApplyResources(this.biEP1, "biEP1");
-            this.biEP1.Activate += new System.EventHandler(this.ChoosePage);
+            this.biEP1.Name = "biEP1";
+            this.biEP1.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biEP2
             // 
-            this.biEP2.Enabled = false;
-            this.biEP2.Image = ((System.Drawing.Image)(resources.GetObject("biEP2.Image")));
             resources.ApplyResources(this.biEP2, "biEP2");
-            this.biEP2.Activate += new System.EventHandler(this.ChoosePage);
+            this.biEP2.Name = "biEP2";
+            this.biEP2.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biEP3
             // 
-            this.biEP3.Enabled = false;
-            this.biEP3.Image = ((System.Drawing.Image)(resources.GetObject("biEP3.Image")));
             resources.ApplyResources(this.biEP3, "biEP3");
-            this.biEP3.Activate += new System.EventHandler(this.ChoosePage);
+            this.biEP3.Name = "biEP3";
+            this.biEP3.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biMore
             // 
-            this.biMore.Image = ((System.Drawing.Image)(resources.GetObject("biMore.Image")));
             resources.ApplyResources(this.biMore, "biMore");
-            this.biMore.Activate += new System.EventHandler(this.Activate_biMore);
+            this.biMore.Name = "biMore";
+            this.biMore.Click += new System.EventHandler(this.Activate_biMore);
             // 
             // biMax
             // 
-            this.biMax.BuddyMenu = this.mbiMax;
-            this.biMax.Image = ((System.Drawing.Image)(resources.GetObject("biMax.Image")));
+            this.biMax.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             resources.ApplyResources(this.biMax, "biMax");
+            this.biMax.Name = "biMax";
+            this.biMax.Click += new System.EventHandler(this.Activate_biMax);
             // 
             // mbiMax
             // 
-            this.mbiMax.Image = ((System.Drawing.Image)(resources.GetObject("mbiMax.Image")));
             resources.ApplyResources(this.mbiMax, "mbiMax");
-            this.mbiMax.Activate += new System.EventHandler(this.Activate_biMax);
+            this.mbiMax.Name = "mbiMax";
+            this.mbiMax.Click += new System.EventHandler(this.Activate_biMax);
             // 
             // pnId
             // 
@@ -938,7 +937,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnChar.Controls.Add(this.label69);
             this.pnChar.Controls.Add(this.panel1);
             this.pnChar.Controls.Add(this.label70);
-            this.pnChar.Controls.Add(this.menuBar1);
             this.pnChar.Name = "pnChar";
             // 
             // pbMan
@@ -1181,21 +1179,12 @@ namespace SimPe.PackedFiles.UserInterface
             resources.ApplyResources(this.label70, "label70");
             this.label70.Name = "label70";
             // 
-            // menuBar1
-            // 
-            resources.ApplyResources(this.menuBar1, "menuBar1");
-            this.menuBar1.Guid = new System.Guid("3f236769-07ab-43a2-b382-15b597af92c2");
-            this.menuBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
-            this.mbiLink,
-            this.miRel});
-            this.menuBar1.Name = "menuBar1";
-            this.menuBar1.OwnerForm = null;
-            // 
             // mbiLink
             // 
-            this.mbiLink.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+            this.mbiLink.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mbiMax,
             this.miRand,
+            this.toolStripMenuItem1,
             this.miOpenChar,
             this.miOpenWf,
             this.miOpenMem,
@@ -1203,107 +1192,140 @@ namespace SimPe.PackedFiles.UserInterface
             this.miOpenDNA,
             this.miOpenFamily,
             this.miOpenCloth,
+            this.toolStripMenuItem2,
             this.miMore,
             this.miRelink});
+            this.mbiLink.Name = "mbiLink";
             resources.ApplyResources(this.mbiLink, "mbiLink");
-            this.mbiLink.Visible = true;
             // 
             // miRand
             // 
-            this.miRand.Image = ((System.Drawing.Image)(resources.GetObject("miRand.Image")));
             resources.ApplyResources(this.miRand, "miRand");
-            this.miRand.Activate += new System.EventHandler(this.Activate_biRand);
+            this.miRand.Name = "miRand";
+            this.miRand.Click += new System.EventHandler(this.Activate_biRand);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
             // miOpenChar
             // 
-            this.miOpenChar.BeginGroup = true;
-            this.miOpenChar.Image = ((System.Drawing.Image)(resources.GetObject("miOpenChar.Image")));
             resources.ApplyResources(this.miOpenChar, "miOpenChar");
-            this.miOpenChar.Activate += new System.EventHandler(this.Activate_miOpenCHar);
+            this.miOpenChar.Name = "miOpenChar";
+            this.miOpenChar.Click += new System.EventHandler(this.Activate_miOpenCHar);
             // 
             // miOpenWf
             // 
-            this.miOpenWf.Image = ((System.Drawing.Image)(resources.GetObject("miOpenWf.Image")));
             resources.ApplyResources(this.miOpenWf, "miOpenWf");
-            this.miOpenWf.Activate += new System.EventHandler(this.Activate_miOpenWf);
+            this.miOpenWf.Name = "miOpenWf";
+            this.miOpenWf.Click += new System.EventHandler(this.Activate_miOpenWf);
             // 
             // miOpenMem
             // 
-            this.miOpenMem.Image = ((System.Drawing.Image)(resources.GetObject("miOpenMem.Image")));
             resources.ApplyResources(this.miOpenMem, "miOpenMem");
-            this.miOpenMem.Activate += new System.EventHandler(this.Activate_miOpenMem);
+            this.miOpenMem.Name = "miOpenMem";
+            this.miOpenMem.Click += new System.EventHandler(this.Activate_miOpenMem);
             // 
             // miOpenBadge
             // 
-            this.miOpenBadge.Image = ((System.Drawing.Image)(resources.GetObject("miOpenBadge.Image")));
             resources.ApplyResources(this.miOpenBadge, "miOpenBadge");
-            this.miOpenBadge.Activate += new System.EventHandler(this.Activate_miOpenBadge);
+            this.miOpenBadge.Name = "miOpenBadge";
+            this.miOpenBadge.Click += new System.EventHandler(this.Activate_miOpenBadge);
             // 
             // miOpenDNA
             // 
-            this.miOpenDNA.Image = ((System.Drawing.Image)(resources.GetObject("miOpenDNA.Image")));
             resources.ApplyResources(this.miOpenDNA, "miOpenDNA");
-            this.miOpenDNA.Activate += new System.EventHandler(this.Activate_miOpenDNA);
+            this.miOpenDNA.Name = "miOpenDNA";
+            this.miOpenDNA.Click += new System.EventHandler(this.Activate_miOpenDNA);
             // 
             // miOpenFamily
             // 
-            this.miOpenFamily.Image = ((System.Drawing.Image)(resources.GetObject("miOpenFamily.Image")));
             resources.ApplyResources(this.miOpenFamily, "miOpenFamily");
-            this.miOpenFamily.Activate += new System.EventHandler(this.Activate_miFamily);
+            this.miOpenFamily.Name = "miOpenFamily";
+            this.miOpenFamily.Click += new System.EventHandler(this.Activate_miFamily);
             // 
             // miOpenCloth
             // 
             this.miOpenCloth.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.miOpenCloth.Image = ((System.Drawing.Image)(resources.GetObject("miOpenCloth.Image")));
             resources.ApplyResources(this.miOpenCloth, "miOpenCloth");
-            this.miOpenCloth.Activate += new System.EventHandler(this.Activate_miOpenCloth);
+            this.miOpenCloth.Name = "miOpenCloth";
+            this.miOpenCloth.Click += new System.EventHandler(this.Activate_miOpenCloth);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
             // miMore
             // 
-            this.miMore.BeginGroup = true;
-            this.miMore.Image = ((System.Drawing.Image)(resources.GetObject("miMore.Image")));
             resources.ApplyResources(this.miMore, "miMore");
-            this.miMore.Activate += new System.EventHandler(this.Activate_miMore);
+            this.miMore.Name = "miMore";
+            this.miMore.Click += new System.EventHandler(this.Activate_miMore);
             // 
             // miRelink
             // 
-            this.miRelink.Image = ((System.Drawing.Image)(resources.GetObject("miRelink.Image")));
             resources.ApplyResources(this.miRelink, "miRelink");
-            this.miRelink.Activate += new System.EventHandler(this.Activate_miRelink);
+            this.miRelink.Name = "miRelink";
+            this.miRelink.Click += new System.EventHandler(this.Activate_miRelink);
             // 
             // miRel
             // 
-            this.miRel.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+            this.miRel.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miAddRelation,
             this.miRemRelation,
+            this.toolStripMenuItem3,
             this.mbiMaxThisRel,
             this.mbiMaxKnownRel});
+            this.miRel.Name = "miRel";
             resources.ApplyResources(this.miRel, "miRel");
-            this.miRel.Visible = true;
-            this.miRel.BeforePopup += new TD.SandBar.MenuItemBase.BeforePopupEventHandler(this.miRel_BeforePopup);
+            this.miRel.VisibleChanged += new System.EventHandler(this.miRel_BeforePopup);
             // 
             // miAddRelation
             // 
-            this.miAddRelation.Image = ((System.Drawing.Image)(resources.GetObject("miAddRelation.Image")));
             resources.ApplyResources(this.miAddRelation, "miAddRelation");
-            this.miAddRelation.Activate += new System.EventHandler(this.Activate_miAddRelation);
+            this.miAddRelation.Name = "miAddRelation";
+            this.miAddRelation.Click += new System.EventHandler(this.Activate_miAddRelation);
             // 
             // miRemRelation
             // 
-            this.miRemRelation.Image = ((System.Drawing.Image)(resources.GetObject("miRemRelation.Image")));
             resources.ApplyResources(this.miRemRelation, "miRemRelation");
-            this.miRemRelation.Activate += new System.EventHandler(this.Activate_miRemRelation);
+            this.miRemRelation.Name = "miRemRelation";
+            this.miRemRelation.Click += new System.EventHandler(this.Activate_miRemRelation);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             // 
             // mbiMaxThisRel
             // 
-            this.mbiMaxThisRel.BeginGroup = true;
+            this.mbiMaxThisRel.Name = "mbiMaxThisRel";
             resources.ApplyResources(this.mbiMaxThisRel, "mbiMaxThisRel");
-            this.mbiMaxThisRel.Activate += new System.EventHandler(this.Activate_mbiMaxThisRel);
+            this.mbiMaxThisRel.Click += new System.EventHandler(this.Activate_mbiMaxThisRel);
             // 
             // mbiMaxKnownRel
             // 
+            this.mbiMaxKnownRel.Name = "mbiMaxKnownRel";
             resources.ApplyResources(this.mbiMaxKnownRel, "mbiMaxKnownRel");
-            this.mbiMaxKnownRel.Activate += new System.EventHandler(this.Activate_mbiMaxKnownRel);
+            this.mbiMaxKnownRel.Click += new System.EventHandler(this.Activate_mbiMaxKnownRel);
+            // 
+            // lv
+            // 
+            this.lv.ContextMenuStrip = this.miRel;
+            resources.ApplyResources(this.lv, "lv");
+            this.lv.Name = "lv";
+            this.lv.Package = null;
+            this.lv.RightClickSelect = true;
+            this.lv.SelectedElement = null;
+            this.lv.SelectedSim = null;
+            this.lv.ShowNotRelatedSims = false;
+            this.lv.ShowRelatedSims = true;
+            this.lv.Sim = null;
+            this.lv.SimDetails = false;
+            this.lv.TileColumns = new int[] {
+        1};
+            this.lv.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.lv_SelectedSimChanged);
             // 
             // pnCareer
             // 
@@ -1807,22 +1829,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnRel.Controls.Add(this.panel3);
             this.pnRel.Name = "pnRel";
             this.pnRel.VisibleChanged += new System.EventHandler(this.pnRel_VisibleChanged);
-            // 
-            // lv
-            // 
-            resources.ApplyResources(this.lv, "lv");
-            this.lv.Name = "lv";
-            this.lv.Package = null;
-            this.menuBar1.SetSandBarMenu(this.lv, this.miRel);
-            this.lv.SelectedElement = null;
-            this.lv.SelectedSim = null;
-            this.lv.ShowNotRelatedSims = false;
-            this.lv.ShowRelatedSims = true;
-            this.lv.Sim = null;
-            this.lv.SimDetails = false;
-            this.lv.TileColumns = new int[] {
-        1};
-            this.lv.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.lv_SelectedSimChanged);
             // 
             // panel3
             // 
@@ -2393,11 +2399,15 @@ namespace SimPe.PackedFiles.UserInterface
             this.Controls.SetChildIndex(this.pnId, 0);
             this.Controls.SetChildIndex(this.pnRel, 0);
             this.Controls.SetChildIndex(this.toolBar1, 0);
+            this.toolBar1.ResumeLayout(false);
+            this.toolBar1.PerformLayout();
             this.pnId.ResumeLayout(false);
             this.pnId.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.pnSkill.ResumeLayout(false);
             this.pnChar.ResumeLayout(false);
+            this.mbiLink.ResumeLayout(false);
+            this.miRel.ResumeLayout(false);
             this.pnCareer.ResumeLayout(false);
             this.pnCareer.PerformLayout();
             this.pnInt.ResumeLayout(false);
@@ -2416,18 +2426,19 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnEP3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}        
 		#endregion
 
 
-		public void SelectButton(TD.SandBar.ButtonItem b)
+		public void SelectButton(ToolStripButton b)
 		{
 			for (int i=0; i<this.toolBar1.Items.Count; i++)
 			{
-				if (toolBar1.Items[i] is TD.SandBar.ButtonItem ) 
+				if (toolBar1.Items[i] is ToolStripButton ) 
 				{
-					TD.SandBar.ButtonItem item = (TD.SandBar.ButtonItem )toolBar1.Items[i];
+					ToolStripButton item = (ToolStripButton )toolBar1.Items[i];
 					item.Checked = (item==b);
 					
 					if (item.Tag!=null) 
@@ -2444,7 +2455,7 @@ namespace SimPe.PackedFiles.UserInterface
 		
 		private void ChoosePage(object sender, System.EventArgs e)
 		{
-			SelectButton((TD.SandBar.ButtonItem)sender);
+			SelectButton((ToolStripButton)sender);
 		}
 
 		void InitDropDowns()
@@ -3552,7 +3563,7 @@ namespace SimPe.PackedFiles.UserInterface
 		
 		
 
-		private void miRel_BeforePopup(object sender, TD.SandBar.MenuPopupEventArgs e)
+		private void miRel_BeforePopup(object sender, System.EventArgs e)
 		{
 			if (lv.SelectedItems.Count==1) 
 			{

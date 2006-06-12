@@ -46,7 +46,11 @@ namespace SimPe
 		/// <summary>
 		/// New look introduced by VS 2005
 		/// </summary>
-		Whidbey = 2
+		Whidbey = 2,
+        /// <summary>
+        /// Glossy looking controls
+        /// </summary>
+        Glossy = 3
 	}
 
 	/// <summary>
@@ -75,11 +79,27 @@ namespace SimPe
         System.Windows.Forms.ToolStripRenderer whidbey;
         System.Windows.Forms.ToolStripRenderer whidbeysquare;
         System.Windows.Forms.ToolStripRenderer square;
+        MediaPlayerRenderer mediaplayer;
+        MediaPlayerRenderer mediaplayerwhidbey;
+        ToolStripColorTable colortable;
+        MediaPlayerToolStripColorTable mpcolortable;
+
+        Ambertation.Renderer.GlossyRenderer glossy;
+        Ambertation.Renderer.GlossyRenderer glossysquare;
 		public ThemeManager(GuiTheme t) 
-		{           
-            whidbey = new System.Windows.Forms.ToolStripProfessionalRenderer(new ToolStripColorTable());
-            whidbeysquare = new ToolStripProfessionalSquareRenderer(new ToolStripColorTable());
+		{
+            colortable = new ToolStripColorTable();
+            mpcolortable = new MediaPlayerToolStripColorTable();
+
+            mediaplayer = new MediaPlayerRenderer();
+            mediaplayerwhidbey = new MediaPlayerRenderer(mpcolortable);
+            whidbey = new Ambertation.Renderer.AdvancedToolStripProfessionalRenderer(colortable);
+            whidbeysquare = new ToolStripProfessionalSquareRenderer(colortable);
             square = new ToolStripProfessionalSquareRenderer();
+
+            glossysquare = new Ambertation.Renderer.GlossyRenderer();
+            glossy = new Ambertation.Renderer.GlossyRenderer();
+            glossy.RenderRoundedEdges = true;
 
 			ctheme = t;
 			parent = null;
@@ -119,19 +139,45 @@ namespace SimPe
             {
                 if (ctheme == GuiTheme.Everett) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
                 else if (ctheme == GuiTheme.Office2003) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+                else if (ctheme == GuiTheme.Glossy) sdm.Renderer = glossy;
                 else sdm.Renderer = whidbey;
             }
             else
             {
-                if (ctheme == GuiTheme.Everett) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+                if (sdm.Renderer is MediaPlayerRenderer)
+                {
+                    if (ctheme == GuiTheme.Everett) sdm.Renderer = mediaplayerwhidbey;
+                    else if (ctheme == GuiTheme.Office2003) sdm.Renderer = mediaplayer;
+                    else if (ctheme == GuiTheme.Glossy) sdm.Renderer = glossy;
+                    else sdm.Renderer = mediaplayerwhidbey;
+                }
+                else if (ctheme == GuiTheme.Everett) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
                 else if (ctheme == GuiTheme.Office2003) sdm.Renderer = square;
+                else if (ctheme == GuiTheme.Glossy) sdm.Renderer = glossysquare;
                 else sdm.Renderer = whidbeysquare;
             }
         }
+
+        void SetTheme(System.Windows.Forms.MenuStrip sdm)
+        {
+            if (ctheme == GuiTheme.Everett) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            else if (ctheme == GuiTheme.Office2003) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            else if (ctheme == GuiTheme.Glossy) sdm.Renderer = glossy;
+            else sdm.Renderer = whidbey;            
+        }
+
+        void SetTheme(System.Windows.Forms.ContextMenuStrip sdm)
+        {
+            if (ctheme == GuiTheme.Everett) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            else if (ctheme == GuiTheme.Office2003) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            else if (ctheme == GuiTheme.Glossy) sdm.Renderer = glossy;
+            else sdm.Renderer = whidbey;
+        }
+
 		void SetTheme(TD.SandDock.SandDockManager sdm) 
 		{
 			if (ctheme == GuiTheme.Everett) sdm.Renderer = new TD.SandDock.Rendering.EverettRenderer();
-			else if (ctheme == GuiTheme.Office2003) sdm.Renderer = new TD.SandDock.Rendering.Office2003Renderer();
+			else if (ctheme == GuiTheme.Office2003) sdm.Renderer = new TD.SandDock.Rendering.Office2003Renderer();            
 			else sdm.Renderer = new TD.SandDock.Rendering.WhidbeyRenderer();
 		}
 
@@ -206,7 +252,9 @@ namespace SimPe
 			else if (o is SimPe.Windows.Forms.WrapperBaseControl) SetTheme((SimPe.Windows.Forms.WrapperBaseControl)o);
 			else if (o is System.Windows.Forms.Splitter) SetTheme((System.Windows.Forms.Splitter)o);
 			else if (o is Ambertation.Windows.Forms.XPTaskBoxSimple) SetTheme((Ambertation.Windows.Forms.XPTaskBoxSimple)o);
-            else if (o is System.Windows.Forms.ToolStrip) SetTheme((System.Windows.Forms.ToolStrip)o);
+            else if (o is System.Windows.Forms.ContextMenuStrip) SetTheme((System.Windows.Forms.ContextMenuStrip)o);
+            else if (o is System.Windows.Forms.MenuStrip) SetTheme((System.Windows.Forms.MenuStrip)o);
+            else if (o is System.Windows.Forms.ToolStrip) SetTheme((System.Windows.Forms.ToolStrip)o);            
 			else if (o is System.Windows.Forms.Control) SetTheme((System.Windows.Forms.Control)o);			
 		}
 		#endregion
@@ -218,6 +266,7 @@ namespace SimPe
 			{
 				if (ctheme == GuiTheme.Office2003) return SystemColors.InactiveCaption;
 				else if (ctheme == GuiTheme.Everett) return SystemColors.ControlDark;
+                else if (ctheme == GuiTheme.Glossy) return Color.FromArgb(0xAD, 0xBC, 0xCE);
 				else return c;
 			}
 		}
@@ -226,9 +275,10 @@ namespace SimPe
 		{
 			get 
 			{
-				if (ctheme == GuiTheme.Office2003) return SystemColors.InactiveCaptionText;
-				else if (ctheme == GuiTheme.Everett) return SystemColors.ControlLight;
-				else return clight;
+                if (ctheme == GuiTheme.Office2003) return SystemColors.InactiveCaptionText;
+                else if (ctheme == GuiTheme.Everett) return SystemColors.ControlLight;
+                else if (ctheme == GuiTheme.Glossy) return Color.FromArgb(0xDB, 0xE4, 0xEE);
+                else return clight;
 			}
 		}
 
@@ -238,6 +288,7 @@ namespace SimPe
 			{
 				if (ctheme == GuiTheme.Office2003) return SystemColors.Highlight;
 				else if (ctheme == GuiTheme.Everett) return SystemColors.ControlDarkDark;
+                else if (ctheme == GuiTheme.Glossy) return Color.FromArgb(0x75, 0x84, 0x97);
 				else return cdark;
 			}
 		}

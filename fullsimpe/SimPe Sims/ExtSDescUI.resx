@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="toolBar1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>107, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="toolBar1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -167,8 +170,15 @@
         YII=
 </value>
   </data>
+  <data name="biId.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 49</value>
+  </data>
   <data name="biId.Text" xml:space="preserve">
     <value>Overview</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="biId.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="biCareer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -224,8 +234,14 @@
         JJzej/9U+zdvHj48dVGglwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="biCareer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 49</value>
+  </data>
   <data name="biCareer.Text" xml:space="preserve">
     <value>Career</value>
+  </data>
+  <data name="biCareer.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="biRel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -270,8 +286,14 @@
         orO/natFvAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="biRel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 49</value>
+  </data>
   <data name="biRel.Text" xml:space="preserve">
     <value>Relations</value>
+  </data>
+  <data name="biRel.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="biInt.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -304,8 +326,14 @@
         rkJggg==
 </value>
   </data>
+  <data name="biInt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 49</value>
+  </data>
   <data name="biInt.Text" xml:space="preserve">
     <value>Interests</value>
+  </data>
+  <data name="biInt.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="biChar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -352,8 +380,14 @@
         6l9EzxP/AxvzEq4o8pT8AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="biChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 49</value>
+  </data>
   <data name="biChar.Text" xml:space="preserve">
     <value>Character</value>
+  </data>
+  <data name="biChar.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="biSkill.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -389,8 +423,14 @@
         /BfjFVdcraCeGwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="biSkill.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 49</value>
+  </data>
   <data name="biSkill.Text" xml:space="preserve">
     <value>Skills</value>
+  </data>
+  <data name="biSkill.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="biMisc.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -426,8 +466,18 @@
         gg==
 </value>
   </data>
+  <data name="biMisc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 49</value>
+  </data>
   <data name="biMisc.Text" xml:space="preserve">
     <value>Other</value>
+  </data>
+  <data name="biMisc.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="biEP1.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="biEP1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -459,8 +509,17 @@
         ZTHzKTZr/7mQ/QV/SURPTJLlCwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="biEP1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 49</value>
+  </data>
   <data name="biEP1.Text" xml:space="preserve">
     <value>University</value>
+  </data>
+  <data name="biEP1.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <data name="biEP2.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="biEP2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -499,8 +558,17 @@
         SUVORK5CYII=
 </value>
   </data>
+  <data name="biEP2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 49</value>
+  </data>
   <data name="biEP2.Text" xml:space="preserve">
     <value>Nightlife</value>
+  </data>
+  <data name="biEP2.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <data name="biEP3.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="biEP3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -544,8 +612,14 @@
         Js5deoZhsUY//30EoeDvleA0LD4GCfqNevb7CN//413/Da7xmzLILbZwAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="biEP3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 49</value>
+  </data>
   <data name="biEP3.Text" xml:space="preserve">
     <value>Business</value>
+  </data>
+  <data name="biEP3.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="biMore.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -603,27 +677,14 @@
         SUVORK5CYII=
 </value>
   </data>
+  <data name="biMore.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 49</value>
+  </data>
   <data name="biMore.Text" xml:space="preserve">
     <value>More</value>
   </data>
-  <data name="mbiMax.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAj9JREFUOE+Vk1tI
-        02EYh1/YcLtYIeQhtWkWkkRhqCChJCWiJAzU4Wy4eZiSx/1RsQmKeAAFCQ+goCAqQ9ELL0wYit4ZYpeR
-        4FWwrBDC00XF0g5Pf7errJZ98MLH9/3e533f78enkSArLTIyLVqvj9r1+XaD6f52p19paPB4bLZnqkD3
-        XwCDSPgLp3OD7W3Y2mLDal2/IHLpXJAkkTs7NTVeVlbA44G1NVhfZ8du9yaK3AoKydBosg7Lyo6YnISx
-        MZiYgOlpmJ2FpSX2KyoO7orc+yPkoUZT4DObT+jshPZ26OqC3l7o74eBARgehqkpPjkcX3JCQky/QOw6
-        3eOv2dk/cDigshJqa6GxEVwuaGuDjg784J4eGBzkODn5e7FIhR9yX61MUhJkZUFuLhQUgM0GVVVQXx8A
-        tbRAaysoSkAXEQGhoaizmCRHq33yKiqKrZgYXhuNfMvMBIsFSkuhuhrq6gJdFRZynJLCy9hYNuPieB4d
-        zQOttln0IrHXREqvi9hui9R9SE39jMkERUVQUgJWK5jNkJ/P+/T0jzdF6q+qWqOIXR0g5uyDGt5lZBxS
-        XByo6nRCczM0Nfn3XpNpX024GMzK8Ld5eUf+xFMnTh0YGgq40NeHt7z8QE2ODAp4Y7Ec0d0No6MwP+/3
-        n8VFmJvD63L9ExCx53CcMD4OCwuwugrLy/5kRkbYs9t9avXLwTrQPzIYnipG44ySkOBWEhPdSny8WwkL
-        cys63Yzqff95PtYVVXRDjYQzcXr226v/BCHkUAiUZ76rAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="mbiMax.Text" xml:space="preserve">
-    <value>Maximize</value>
+  <data name="biMore.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="biMax.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -656,8 +717,14 @@
         rlXI80ri/vdp/gDN6CP4OxjYVAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="biMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 49</value>
+  </data>
   <data name="biMax.Text" xml:space="preserve">
     <value>Maximize</value>
+  </data>
+  <data name="biMax.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="biMax.ToolTipText" xml:space="preserve">
     <value>Maximize all displayed Values</value>
@@ -666,9 +733,8 @@
     <value>0, 24</value>
   </data>
   <data name="toolBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>696, 54</value>
+    <value>696, 52</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="toolBar1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -679,15 +745,36 @@
     <value>toolBar1</value>
   </data>
   <data name="&gt;&gt;toolBar1.Type" xml:space="preserve">
-    <value>TD.SandBar.ToolBar, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolBar1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;toolBar1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mbiMax.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAj9JREFUOE+Vk1tI
+        02EYh1/YcLtYIeQhtWkWkkRhqCChJCWiJAzU4Wy4eZiSx/1RsQmKeAAFCQ+goCAqQ9ELL0wYit4ZYpeR
+        4FWwrBDC00XF0g5Pf7errJZ98MLH9/3e533f78enkSArLTIyLVqvj9r1+XaD6f52p19paPB4bLZnqkD3
+        XwCDSPgLp3OD7W3Y2mLDal2/IHLpXJAkkTs7NTVeVlbA44G1NVhfZ8du9yaK3AoKydBosg7Lyo6YnISx
+        MZiYgOlpmJ2FpSX2KyoO7orc+yPkoUZT4DObT+jshPZ26OqC3l7o74eBARgehqkpPjkcX3JCQky/QOw6
+        3eOv2dk/cDigshJqa6GxEVwuaGuDjg784J4eGBzkODn5e7FIhR9yX61MUhJkZUFuLhQUgM0GVVVQXx8A
+        tbRAaysoSkAXEQGhoaizmCRHq33yKiqKrZgYXhuNfMvMBIsFSkuhuhrq6gJdFRZynJLCy9hYNuPieB4d
+        zQOttln0IrHXREqvi9hui9R9SE39jMkERUVQUgJWK5jNkJ/P+/T0jzdF6q+qWqOIXR0g5uyDGt5lZBxS
+        XByo6nRCczM0Nfn3XpNpX024GMzK8Ld5eUf+xFMnTh0YGgq40NeHt7z8QE2ODAp4Y7Ec0d0No6MwP+/3
+        n8VFmJvD63L9ExCx53CcMD4OCwuwugrLy/5kRkbYs9t9avXLwTrQPzIYnipG44ySkOBWEhPdSny8WwkL
+        cys63Yzqff95PtYVVXRDjYQzcXr226v/BCHkUAiUZ76rAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="mbiMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="mbiMax.Text" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
   <data name="pnId.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -1145,7 +1232,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnId.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="pnSkill.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1496,7 +1583,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnSkill.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="pnChar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -2092,9 +2179,33 @@
   <data name="&gt;&gt;label70.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <data name="menuBar1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
+  <data name="pnChar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 80</value>
   </data>
+  <data name="pnChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>696, 264</value>
+  </data>
+  <data name="pnChar.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="pnChar.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;pnChar.Name" xml:space="preserve">
+    <value>pnChar</value>
+  </data>
+  <data name="&gt;&gt;pnChar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnChar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnChar.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <metadata name="mbiLink.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="miRand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -2116,8 +2227,14 @@
         9VD8Bzy7S0WtooDgAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="miRand.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
   <data name="miRand.Text" xml:space="preserve">
     <value>Randomize</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 6</value>
   </data>
   <data name="miOpenChar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2138,6 +2255,9 @@
         bAS6NwE3FGDZGKBqLtJuroq393VuVea9DN+excYfLA8WW7B3IDDina8HvAlYngnULgRKx8NSvcDcaF+f
         9mxVMo6bgXHKaHjP3B94F1C3CCjPAbZ/DvOnRkxUR6L+1/g6+B/JSu67p8ESOQAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="miOpenChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
   </data>
   <data name="miOpenChar.Text" xml:space="preserve">
     <value>Open Character File</value>
@@ -2163,6 +2283,9 @@
         RUTRiKHFfAN59dm+9fnwEy0fBIcbL1zHAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="miOpenWf.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
   <data name="miOpenWf.Text" xml:space="preserve">
     <value>Open Wants &amp;&amp; Fears</value>
   </data>
@@ -2183,6 +2306,9 @@
         V6CiehcEddqhvDrgRKKtp/R9+mHodDo0NzdDVCX788v+N9bcRE5DqknEDb3mIyf7Idur4aqPrQX4DbSk
         Pp87STS7AAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="miOpenMem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
   </data>
   <data name="miOpenMem.Text" xml:space="preserve">
     <value>Open Memories</value>
@@ -2205,6 +2331,9 @@
         uAZEeQNbmN38DrS+SNV4I5/3PedjiN/v//ATR/OvfKroog4AAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="miOpenBadge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
   <data name="miOpenBadge.Text" xml:space="preserve">
     <value>Open hidden Skills &amp;&amp; Badges</value>
   </data>
@@ -2222,6 +2351,9 @@
         L2nx+fw8PX8U5q/D0gP+vLlltGClYhP14hYdtxRp2j2SMzPM3h0gFb3P9MjVit6rCTboxTYdp98/TDye
         YHJ8nMEzKkPHOysWqEIgh1ei1rCsW1hXUG9Y1nfWv/EfDJGMzSzixsAAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="miOpenDNA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
   </data>
   <data name="miOpenDNA.Text" xml:space="preserve">
     <value>Open Sim DNA</value>
@@ -2246,6 +2378,9 @@
         848Eh5CodQh60XGLDoWygMIkwP4fFRkElOhFWJb1ifH7+AuhnZq03wBHWQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="miOpenFamily.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
   <data name="miOpenFamily.Text" xml:space="preserve">
     <value>Open Family</value>
   </data>
@@ -2266,8 +2401,14 @@
         RU5ErkJggg==
 </value>
   </data>
+  <data name="miOpenCloth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
   <data name="miOpenCloth.Text" xml:space="preserve">
     <value>Open Clothing</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 6</value>
   </data>
   <data name="miMore.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2283,6 +2424,9 @@
         Uu+lUgnFYlEdokyb3YM/6vOXD/2+hdXVe1hZuQuzN8ob0HWmWcQMj/qeJ5mqljFZygyt1imWl+9gaenW
         lYFcynUpFArf/vUnvPxpb1LnxgJt97/4Bbsk/Wmt6d3vAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="miMore.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
   </data>
   <data name="miMore.Text" xml:space="preserve">
     <value>Extended Browser...</value>
@@ -2305,12 +2449,27 @@
         lBANUrT3f69xI75FfuwxSYP2Kcr5/YpydocQR2Us9l/CXwy0Q68od02sAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="miRelink.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
   <data name="miRelink.Text" xml:space="preserve">
     <value>Relink Character</value>
   </data>
-  <data name="mbiLink.Text" xml:space="preserve">
-    <value>(More)</value>
+  <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 258</value>
   </data>
+  <data name="mbiLink.Text" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="&gt;&gt;mbiLink.Name" xml:space="preserve">
+    <value>mbiLink</value>
+  </data>
+  <data name="&gt;&gt;mbiLink.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="miRel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 17</value>
+  </metadata>
   <data name="miAddRelation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -2323,6 +2482,9 @@
         /v8Lz/n+zznl+191rhTCAIZ6hv/YcMUNm/9lNyyxyoHU441GkILqh1r/qx5qQAzAAggaUPOe4T8Ik23A
         2t/u/9f+cSffgM5HZv+7n5iRbwBKwOILA1BgkIvJ1gizEACvZ3uBZvX0gQAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="miAddRelation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 22</value>
   </data>
   <data name="miAddRelation.Text" xml:space="preserve">
     <value>Add</value>
@@ -2337,68 +2499,68 @@
         xdSJgVFTKA8BAJYAmayLGrILAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="miRemRelation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 22</value>
+  </data>
   <data name="miRemRelation.Text" xml:space="preserve">
     <value>Remove</value>
+  </data>
+  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 6</value>
+  </data>
+  <data name="mbiMaxThisRel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 22</value>
   </data>
   <data name="mbiMaxThisRel.Text" xml:space="preserve">
     <value>Max this Relation</value>
   </data>
+  <data name="mbiMaxKnownRel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 22</value>
+  </data>
   <data name="mbiMaxKnownRel.Text" xml:space="preserve">
     <value>Max Relations to known Sims</value>
+  </data>
+  <data name="miRel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 120</value>
   </data>
   <data name="miRel.Text" xml:space="preserve">
     <value>(Relation Menu)</value>
   </data>
-  <data name="menuBar1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="&gt;&gt;miRel.Name" xml:space="preserve">
+    <value>miRel</value>
+  </data>
+  <data name="&gt;&gt;miRel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lv.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lv.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="lv.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="menuBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>696, 22</value>
+  <data name="lv.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
   </data>
-  <data name="menuBar1.TabIndex" type="System.Int32, mscorlib">
-    <value>79</value>
+  <data name="lv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 264</value>
   </data>
-  <data name="menuBar1.Text" xml:space="preserve">
-    <value>menuBar1</value>
+  <data name="lv.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="menuBar1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;lv.Name" xml:space="preserve">
+    <value>lv</value>
   </data>
-  <data name="&gt;&gt;menuBar1.Name" xml:space="preserve">
-    <value>menuBar1</value>
+  <data name="&gt;&gt;lv.Type" xml:space="preserve">
+    <value>SimPe.PackedFiles.Wrapper.SimRelationPoolControl, simpe.sims, Version=1.0.2353.22984, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;menuBar1.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuBar, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+  <data name="&gt;&gt;lv.Parent" xml:space="preserve">
+    <value>pnRel</value>
   </data>
-  <data name="&gt;&gt;menuBar1.Parent" xml:space="preserve">
-    <value>pnChar</value>
-  </data>
-  <data name="&gt;&gt;menuBar1.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="pnChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 80</value>
-  </data>
-  <data name="pnChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>696, 264</value>
-  </data>
-  <data name="pnChar.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="pnChar.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;pnChar.Name" xml:space="preserve">
-    <value>pnChar</value>
-  </data>
-  <data name="&gt;&gt;pnChar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnChar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnChar.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;lv.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="pnCareer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -2917,7 +3079,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnCareer.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="pnInt.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -3592,40 +3754,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnInt.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="pnRel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="lv.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lv.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
-  </data>
-  <data name="lv.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="lv.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>1, 1, 1, 1</value>
-  </data>
-  <data name="lv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 264</value>
-  </data>
-  <data name="lv.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lv.Name" xml:space="preserve">
-    <value>lv</value>
-  </data>
-  <data name="&gt;&gt;lv.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.SimRelationPoolControl, simpe.sims, Version=1.0.2352.23421, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;lv.Parent" xml:space="preserve">
-    <value>pnRel</value>
-  </data>
-  <data name="&gt;&gt;lv.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="panel3.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3733,7 +3865,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnRel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="pnMisc.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -4540,7 +4672,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnMisc.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="pnEP1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -4906,7 +5038,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnEP1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="pnEP2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -5242,7 +5374,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnEP2.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="pnEP3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -5373,7 +5505,7 @@
     <value>sblb</value>
   </data>
   <data name="&gt;&gt;sblb.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.SimBusinessList, simpe.sims, Version=1.0.2352.23421, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.SimBusinessList, simpe.sims, Version=1.0.2353.22984, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;sblb.Parent" xml:space="preserve">
     <value>pnEP3</value>
@@ -5622,7 +5754,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnEP3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -5637,180 +5769,186 @@
     <value>biId</value>
   </data>
   <data name="&gt;&gt;biId.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biCareer.Name" xml:space="preserve">
     <value>biCareer</value>
   </data>
   <data name="&gt;&gt;biCareer.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biRel.Name" xml:space="preserve">
     <value>biRel</value>
   </data>
   <data name="&gt;&gt;biRel.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biInt.Name" xml:space="preserve">
     <value>biInt</value>
   </data>
   <data name="&gt;&gt;biInt.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biChar.Name" xml:space="preserve">
     <value>biChar</value>
   </data>
   <data name="&gt;&gt;biChar.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biSkill.Name" xml:space="preserve">
     <value>biSkill</value>
   </data>
   <data name="&gt;&gt;biSkill.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biMisc.Name" xml:space="preserve">
     <value>biMisc</value>
   </data>
   <data name="&gt;&gt;biMisc.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biEP1.Name" xml:space="preserve">
     <value>biEP1</value>
   </data>
   <data name="&gt;&gt;biEP1.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biEP2.Name" xml:space="preserve">
     <value>biEP2</value>
   </data>
   <data name="&gt;&gt;biEP2.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biEP3.Name" xml:space="preserve">
     <value>biEP3</value>
   </data>
   <data name="&gt;&gt;biEP3.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biMore.Name" xml:space="preserve">
     <value>biMore</value>
   </data>
   <data name="&gt;&gt;biMore.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;biMax.Name" xml:space="preserve">
     <value>biMax</value>
   </data>
   <data name="&gt;&gt;biMax.Type" xml:space="preserve">
-    <value>TD.SandBar.ButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mbiMax.Name" xml:space="preserve">
     <value>mbiMax</value>
   </data>
   <data name="&gt;&gt;mbiMax.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
-  </data>
-  <data name="&gt;&gt;mbiLink.Name" xml:space="preserve">
-    <value>mbiLink</value>
-  </data>
-  <data name="&gt;&gt;mbiLink.Type" xml:space="preserve">
-    <value>TD.SandBar.ContextMenuBarItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miRand.Name" xml:space="preserve">
     <value>miRand</value>
   </data>
   <data name="&gt;&gt;miRand.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
+    <value>toolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miOpenChar.Name" xml:space="preserve">
     <value>miOpenChar</value>
   </data>
   <data name="&gt;&gt;miOpenChar.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miOpenWf.Name" xml:space="preserve">
     <value>miOpenWf</value>
   </data>
   <data name="&gt;&gt;miOpenWf.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miOpenMem.Name" xml:space="preserve">
     <value>miOpenMem</value>
   </data>
   <data name="&gt;&gt;miOpenMem.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miOpenBadge.Name" xml:space="preserve">
     <value>miOpenBadge</value>
   </data>
   <data name="&gt;&gt;miOpenBadge.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miOpenDNA.Name" xml:space="preserve">
     <value>miOpenDNA</value>
   </data>
   <data name="&gt;&gt;miOpenDNA.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miOpenFamily.Name" xml:space="preserve">
     <value>miOpenFamily</value>
   </data>
   <data name="&gt;&gt;miOpenFamily.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miOpenCloth.Name" xml:space="preserve">
     <value>miOpenCloth</value>
   </data>
   <data name="&gt;&gt;miOpenCloth.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
+    <value>toolStripMenuItem2</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miMore.Name" xml:space="preserve">
     <value>miMore</value>
   </data>
   <data name="&gt;&gt;miMore.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miRelink.Name" xml:space="preserve">
     <value>miRelink</value>
   </data>
   <data name="&gt;&gt;miRelink.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
-  </data>
-  <data name="&gt;&gt;miRel.Name" xml:space="preserve">
-    <value>miRel</value>
-  </data>
-  <data name="&gt;&gt;miRel.Type" xml:space="preserve">
-    <value>TD.SandBar.ContextMenuBarItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miAddRelation.Name" xml:space="preserve">
     <value>miAddRelation</value>
   </data>
   <data name="&gt;&gt;miAddRelation.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;miRemRelation.Name" xml:space="preserve">
     <value>miRemRelation</value>
   </data>
   <data name="&gt;&gt;miRemRelation.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
+    <value>toolStripMenuItem3</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mbiMaxThisRel.Name" xml:space="preserve">
     <value>mbiMaxThisRel</value>
   </data>
   <data name="&gt;&gt;mbiMaxThisRel.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mbiMaxKnownRel.Name" xml:space="preserve">
     <value>mbiMaxKnownRel</value>
   </data>
   <data name="&gt;&gt;mbiMaxKnownRel.Type" xml:space="preserve">
-    <value>TD.SandBar.MenuButtonItem, SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ExtSDesc</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>SimPe.Windows.Forms.WrapperBaseControl, simpe.workspace, Version=1.0.2352.20754, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Windows.Forms.WrapperBaseControl, simpe.workspace, Version=1.0.2353.22501, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

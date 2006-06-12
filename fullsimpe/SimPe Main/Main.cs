@@ -37,12 +37,12 @@ namespace SimPe
 		private TD.SandBar.ToolBarContainer leftSandBarDock;
 		private TD.SandBar.ToolBarContainer rightSandBarDock;	
 		private TD.SandBar.ToolBarContainer topSandBarDock;
-		private TD.SandBar.MenuBar menuBar1;
-		private TD.SandBar.MenuBarItem menuBarItem1;
-		private TD.SandBar.MenuBarItem menuBarItem5;
+		private MenuStrip menuBar1;
+		private ToolStripMenuItem menuBarItem1;
+		private ToolStripMenuItem menuBarItem5;
 		private TD.SandBar.ToolBar toolBar1;
 		private TD.SandDock.DockableWindow dcFilter;
-		private TD.SandBar.MenuButtonItem miOpen;
+		private ToolStripMenuItem miOpen;
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
         private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon1;
         private ResourceListView lv;
@@ -63,50 +63,50 @@ namespace SimPe
 		private TD.SandBar.ButtonItem biInstanceList;
 		private TD.SandBar.ToolBar tbResource;
 		private TD.SandDock.DockableWindow dcResource;
-		private TD.SandBar.MenuButtonItem miRecent;
-		private TD.SandBar.MenuBarItem miExtra;
+		private ToolStripMenuItem miRecent;
+		private ToolStripMenuItem miExtra;
 		private TD.SandDock.DockableWindow dcAction;
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel2;
         private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel3;
         private System.Windows.Forms.ImageList iAnim;
-		private TD.SandBar.MenuBarItem miTools;
+		private ToolStripMenuItem miTools;
 		private TD.SandDock.DockContainer myrightSandDock;
 		private TD.SandDock.DockContainer mybottomSandDock;
 		private TD.SandBar.ToolBarContainer mybottomSandBarDock;
-		private TD.SandBar.MenuButtonItem miNewDc;
+		private ToolStripMenuItem miNewDc;
 		private TD.SandDock.DockableWindow dcPlugin;
-		private TD.SandBar.MenuButtonItem miMetaInfo;
-		private TD.SandBar.MenuButtonItem miFileNames;
-		private TD.SandBar.MenuButtonItem miExit;
+		private ToolStripMenuItem miMetaInfo;
+		private ToolStripMenuItem miFileNames;
+		private ToolStripMenuItem miExit;
 		private System.Windows.Forms.ColumnHeader clOffset;
 		private System.Windows.Forms.ColumnHeader clSize;
-		private TD.SandBar.MenuButtonItem miRunSims;
-		private TD.SandBar.MenuBarItem miWindow;
-		private TD.SandBar.MenuButtonItem miSave;
+		private ToolStripMenuItem miRunSims;
+		private ToolStripMenuItem miWindow;
+		private ToolStripMenuItem miSave;
 		private System.Windows.Forms.SaveFileDialog sfd;
-		private TD.SandBar.MenuButtonItem miSaveAs;
-		private TD.SandBar.MenuButtonItem miClose;
+		private ToolStripMenuItem miSaveAs;
+		private ToolStripMenuItem miClose;
 		private TD.SandBar.ButtonItem biSave;
 		private TD.SandBar.ButtonItem biClose;
 		private TD.SandBar.ButtonItem biSaveAs;
 		private SteepValley.Windows.Forms.ThemedControls.XPTaskBox tbDefaultAction;
-		private TD.SandBar.ContextMenuBarItem miAction;
+		private ContextMenuStrip miAction;
 		private TD.SandBar.ToolBar tbAction;
 		private TD.SandBar.ButtonItem biNewDc;
-		private TD.SandBar.MenuButtonItem miPref;
+		private ToolStripMenuItem miPref;
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel5;
-		private TD.SandBar.MenuButtonItem miNew;
+		private ToolStripMenuItem miNew;
 		private TD.SandBar.ButtonItem biNew;
 		private SteepValley.Windows.Forms.ThemedControls.XPTaskBox tbExtAction;
 		private SteepValley.Windows.Forms.ThemedControls.XPTaskBox tbPlugAction;
-		private TD.SandBar.MenuButtonItem miAbout;
-		private TD.SandBar.MenuButtonItem miUpdate;
-		private TD.SandBar.MenuButtonItem miTutorials;
+		private ToolStripMenuItem miAbout;
+		private ToolStripMenuItem miUpdate;
+		private ToolStripMenuItem miTutorials;
 		private TD.SandBar.ButtonItem biUpdate;
-		private TD.SandBar.MenuButtonItem miOpenIn;
-		private TD.SandBar.MenuButtonItem miOpenSimsRes;
-		private TD.SandBar.MenuButtonItem miOpenUniRes;
-		private TD.SandBar.MenuButtonItem miOpenDownloads;
+		private ToolStripMenuItem miOpenIn;
+		private ToolStripMenuItem miOpenSimsRes;
+		private ToolStripMenuItem miOpenUniRes;
+		private ToolStripMenuItem miOpenDownloads;
 		private System.Windows.Forms.TextBox tbRcolName;
 		private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon2;
 		private TD.SandBar.ToolBar tbTools;
@@ -116,13 +116,16 @@ namespace SimPe
 		private TD.SandDock.TabControl dc;
 		private TD.SandDock.DockContainer dockContainer1;
 		private System.Windows.Forms.Timer resourceSelectionTimer;
-		private TD.SandBar.MenuButtonItem miSaveCopyAs;
-		private TD.SandBar.MenuButtonItem miOpenNightlifeRes;
+		private ToolStripMenuItem miSaveCopyAs;
+		private ToolStripMenuItem miOpenNightlifeRes;
 		private TD.SandBar.ButtonItem biReset;
-		private TD.SandBar.MenuButtonItem miOpenBusinessRes;
-		private TD.SandBar.MenuButtonItem mbiTopics;
-		private TD.SandBar.MenuButtonItem miOpenFamilyFunRes;
+		private ToolStripMenuItem miOpenBusinessRes;
+		private ToolStripMenuItem mbiTopics;
+		private ToolStripMenuItem miOpenFamilyFunRes;
         internal WaitControl waitControl1;
+        private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripSeparator toolStripMenuItem2;
+        private ToolStripSeparator toolStripMenuItem3;
 		private System.ComponentModel.IContainer components;
 
 		public MainForm()
@@ -170,19 +173,22 @@ namespace SimPe
 			SetupResourceViewToolBar();
 			package.UpdateRecentFileMenu(this.miRecent);
 
-			InitThemer();
+            InitTheme();
+			
 			mybottomSandDock.Height = ((this.Height * 3) /4);			
 			this.Text += " (Version "+Helper.SimPeVersion.ProductVersion+")";
 
 			sdm.MaximumDockContainerSize = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width;
 			TD.SandDock.SandDockManager sdm2 = new TD.SandDock.SandDockManager();
 			sdm2.OwnerForm = this;
-			ThemeManager.Global.AddControl(sdm2);			
+            ThemeManager.Global.AddControl(sdm2);
+
 			this.dc.Manager = sdm2;	
 		
 			lv.SmallImageList = FileTable.WrapperRegistry.WrapperImageList;
 			this.tvType.ImageList = FileTable.WrapperRegistry.WrapperImageList;
 
+            
 			InitMenuItems();
 		}
 
@@ -227,47 +233,47 @@ namespace SimPe
             this.topSandBarDock = new TD.SandBar.ToolBarContainer();
             this.toolBar1 = new TD.SandBar.ToolBar();
             this.biNew = new TD.SandBar.ButtonItem();
-            this.miNew = new TD.SandBar.MenuButtonItem();
             this.biOpen = new TD.SandBar.ButtonItem();
-            this.miOpen = new TD.SandBar.MenuButtonItem();
             this.biSave = new TD.SandBar.ButtonItem();
-            this.miSave = new TD.SandBar.MenuButtonItem();
             this.biSaveAs = new TD.SandBar.ButtonItem();
-            this.miSaveAs = new TD.SandBar.MenuButtonItem();
             this.biClose = new TD.SandBar.ButtonItem();
-            this.miClose = new TD.SandBar.MenuButtonItem();
             this.biNewDc = new TD.SandBar.ButtonItem();
-            this.miNewDc = new TD.SandBar.MenuButtonItem();
             this.biUpdate = new TD.SandBar.ButtonItem();
-            this.miUpdate = new TD.SandBar.MenuButtonItem();
             this.biReset = new TD.SandBar.ButtonItem();
             this.tbAction = new TD.SandBar.ToolBar();
             this.tbTools = new TD.SandBar.ToolBar();
             this.tbWindow = new TD.SandBar.ToolBar();
-            this.menuBar1 = new TD.SandBar.MenuBar();
-            this.menuBarItem1 = new TD.SandBar.MenuBarItem();
-            this.miOpenIn = new TD.SandBar.MenuButtonItem();
-            this.miOpenSimsRes = new TD.SandBar.MenuButtonItem();
-            this.miOpenUniRes = new TD.SandBar.MenuButtonItem();
-            this.miOpenNightlifeRes = new TD.SandBar.MenuButtonItem();
-            this.miOpenBusinessRes = new TD.SandBar.MenuButtonItem();
-            this.miOpenFamilyFunRes = new TD.SandBar.MenuButtonItem();
-            this.miOpenDownloads = new TD.SandBar.MenuButtonItem();
-            this.miSaveCopyAs = new TD.SandBar.MenuButtonItem();
-            this.miRecent = new TD.SandBar.MenuButtonItem();
-            this.miExit = new TD.SandBar.MenuButtonItem();
-            this.miTools = new TD.SandBar.MenuBarItem();
-            this.miExtra = new TD.SandBar.MenuBarItem();
-            this.miMetaInfo = new TD.SandBar.MenuButtonItem();
-            this.miFileNames = new TD.SandBar.MenuButtonItem();
-            this.miRunSims = new TD.SandBar.MenuButtonItem();
-            this.miPref = new TD.SandBar.MenuButtonItem();
-            this.miWindow = new TD.SandBar.MenuBarItem();
-            this.menuBarItem5 = new TD.SandBar.MenuBarItem();
-            this.miTutorials = new TD.SandBar.MenuButtonItem();
-            this.mbiTopics = new TD.SandBar.MenuButtonItem();
-            this.miAbout = new TD.SandBar.MenuButtonItem();
-            this.miAction = new TD.SandBar.ContextMenuBarItem();
+            this.miNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.miSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.miSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.miClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.miNewDc = new System.Windows.Forms.ToolStripMenuItem();
+            this.miUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuBar1 = new System.Windows.Forms.MenuStrip();
+            this.menuBarItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenIn = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenSimsRes = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenUniRes = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenNightlifeRes = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenBusinessRes = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenFamilyFunRes = new System.Windows.Forms.ToolStripMenuItem();
+            this.miOpenDownloads = new System.Windows.Forms.ToolStripMenuItem();
+            this.miSaveCopyAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.miRecent = new System.Windows.Forms.ToolStripMenuItem();
+            this.miExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.miTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.miExtra = new System.Windows.Forms.ToolStripMenuItem();
+            this.miMetaInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.miFileNames = new System.Windows.Forms.ToolStripMenuItem();
+            this.miRunSims = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPref = new System.Windows.Forms.ToolStripMenuItem();
+            this.miWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuBarItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miTutorials = new System.Windows.Forms.ToolStripMenuItem();
+            this.mbiTopics = new System.Windows.Forms.ToolStripMenuItem();
+            this.miAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.miAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lv = new SimPe.ResourceListView();
             this.clType = new System.Windows.Forms.ColumnHeader();
             this.clGroup = new System.Windows.Forms.ColumnHeader();
@@ -301,9 +307,13 @@ namespace SimPe
             this.dockContainer1 = new TD.SandDock.DockContainer();
             this.resourceSelectionTimer = new System.Windows.Forms.Timer(this.components);
             this.waitControl1 = new SimPe.WaitControl();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mybottomSandDock.SuspendLayout();
             this.dcPlugin.SuspendLayout();
             this.topSandBarDock.SuspendLayout();
+            this.menuBar1.SuspendLayout();
             this.dcResource.SuspendLayout();
             this.myrightSandDock.SuspendLayout();
             this.dcFilter.SuspendLayout();
@@ -411,7 +421,6 @@ namespace SimPe
             this.topSandBarDock.Controls.Add(this.tbAction);
             this.topSandBarDock.Controls.Add(this.tbTools);
             this.topSandBarDock.Controls.Add(this.tbWindow);
-            this.topSandBarDock.Controls.Add(this.menuBar1);
             resources.ApplyResources(this.topSandBarDock, "topSandBarDock");
             this.topSandBarDock.Guid = new System.Guid("4e621434-1359-4257-9c51-7ad4b9ca98c9");
             this.topSandBarDock.Manager = this.sbm;
@@ -436,95 +445,53 @@ namespace SimPe
             // 
             // biNew
             // 
-            this.biNew.BuddyMenu = this.miNew;
             this.biNew.Image = ((System.Drawing.Image)(resources.GetObject("biNew.Image")));
             this.biNew.ItemImportance = TD.SandBar.ItemImportance.Low;
             resources.ApplyResources(this.biNew, "biNew");
-            // 
-            // miNew
-            // 
-            this.miNew.Image = ((System.Drawing.Image)(resources.GetObject("miNew.Image")));
-            resources.ApplyResources(this.miNew, "miNew");
-            this.miNew.Activate += new System.EventHandler(this.Activate_miNew);
+            this.biNew.Activate += new System.EventHandler(this.Activate_miNew);
             // 
             // biOpen
             // 
-            this.biOpen.BuddyMenu = this.miOpen;
             this.biOpen.Image = ((System.Drawing.Image)(resources.GetObject("biOpen.Image")));
             this.biOpen.ItemImportance = TD.SandBar.ItemImportance.Highest;
             resources.ApplyResources(this.biOpen, "biOpen");
-            // 
-            // miOpen
-            // 
-            this.miOpen.Image = ((System.Drawing.Image)(resources.GetObject("miOpen.Image")));
-            resources.ApplyResources(this.miOpen, "miOpen");
-            this.miOpen.Activate += new System.EventHandler(this.Activate_miOpen);
+            this.biOpen.Activate += new System.EventHandler(this.Activate_miOpen);
             // 
             // biSave
             // 
-            this.biSave.BuddyMenu = this.miSave;
             this.biSave.Image = ((System.Drawing.Image)(resources.GetObject("biSave.Image")));
             this.biSave.ItemImportance = TD.SandBar.ItemImportance.High;
             resources.ApplyResources(this.biSave, "biSave");
-            // 
-            // miSave
-            // 
-            this.miSave.Image = ((System.Drawing.Image)(resources.GetObject("miSave.Image")));
-            resources.ApplyResources(this.miSave, "miSave");
-            this.miSave.Activate += new System.EventHandler(this.Activate_miSave);
+            this.biSave.Activate += new System.EventHandler(this.Activate_miSave);
             // 
             // biSaveAs
             // 
-            this.biSaveAs.BuddyMenu = this.miSaveAs;
             this.biSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("biSaveAs.Image")));
             this.biSaveAs.ItemImportance = TD.SandBar.ItemImportance.Lowest;
             resources.ApplyResources(this.biSaveAs, "biSaveAs");
-            // 
-            // miSaveAs
-            // 
-            this.miSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("miSaveAs.Image")));
-            resources.ApplyResources(this.miSaveAs, "miSaveAs");
-            this.miSaveAs.Activate += new System.EventHandler(this.Activate_miSaveAs);
+            this.biSaveAs.Activate += new System.EventHandler(this.Activate_miSaveAs);
             // 
             // biClose
             // 
-            this.biClose.BuddyMenu = this.miClose;
             this.biClose.Image = ((System.Drawing.Image)(resources.GetObject("biClose.Image")));
             this.biClose.ItemImportance = TD.SandBar.ItemImportance.Low;
             resources.ApplyResources(this.biClose, "biClose");
-            // 
-            // miClose
-            // 
-            this.miClose.Image = ((System.Drawing.Image)(resources.GetObject("miClose.Image")));
-            resources.ApplyResources(this.miClose, "miClose");
-            this.miClose.Activate += new System.EventHandler(this.Activate_miClose);
+            this.biClose.Activate += new System.EventHandler(this.Activate_miClose);
             // 
             // biNewDc
             // 
             this.biNewDc.BeginGroup = true;
-            this.biNewDc.BuddyMenu = this.miNewDc;
             this.biNewDc.Image = ((System.Drawing.Image)(resources.GetObject("biNewDc.Image")));
             resources.ApplyResources(this.biNewDc, "biNewDc");
-            // 
-            // miNewDc
-            // 
-            this.miNewDc.Image = ((System.Drawing.Image)(resources.GetObject("miNewDc.Image")));
-            resources.ApplyResources(this.miNewDc, "miNewDc");
-            this.miNewDc.Activate += new System.EventHandler(this.CreateNewDocumentContainer);
+            this.biNewDc.Activate += new System.EventHandler(this.CreateNewDocumentContainer);
             // 
             // biUpdate
             // 
-            this.biUpdate.BuddyMenu = this.miUpdate;
             this.biUpdate.Image = ((System.Drawing.Image)(resources.GetObject("biUpdate.Image")));
             this.biUpdate.ItemImportance = TD.SandBar.ItemImportance.Lowest;
             resources.ApplyResources(this.biUpdate, "biUpdate");
             this.biUpdate.Visible = false;
-            // 
-            // miUpdate
-            // 
-            this.miUpdate.Image = ((System.Drawing.Image)(resources.GetObject("miUpdate.Image")));
-            resources.ApplyResources(this.miUpdate, "miUpdate");
-            this.miUpdate.Activate += new System.EventHandler(this.Activate_miUpdate);
+            this.biUpdate.Activate += new System.EventHandler(this.Activate_miUpdate);
             // 
             // biReset
             // 
@@ -559,23 +526,62 @@ namespace SimPe
             this.tbWindow.Name = "tbWindow";
             this.tbWindow.ShowShortcutsInToolTips = true;
             // 
+            // miNew
+            // 
+            resources.ApplyResources(this.miNew, "miNew");
+            this.miNew.Name = "miNew";
+            this.miNew.Click += new System.EventHandler(this.Activate_miNew);
+            // 
+            // miOpen
+            // 
+            resources.ApplyResources(this.miOpen, "miOpen");
+            this.miOpen.Name = "miOpen";
+            this.miOpen.Click += new System.EventHandler(this.Activate_miOpen);
+            // 
+            // miSave
+            // 
+            resources.ApplyResources(this.miSave, "miSave");
+            this.miSave.Name = "miSave";
+            this.miSave.Click += new System.EventHandler(this.Activate_miSave);
+            // 
+            // miSaveAs
+            // 
+            resources.ApplyResources(this.miSaveAs, "miSaveAs");
+            this.miSaveAs.Name = "miSaveAs";
+            this.miSaveAs.Click += new System.EventHandler(this.Activate_miSaveAs);
+            // 
+            // miClose
+            // 
+            resources.ApplyResources(this.miClose, "miClose");
+            this.miClose.Name = "miClose";
+            this.miClose.Click += new System.EventHandler(this.Activate_miClose);
+            // 
+            // miNewDc
+            // 
+            resources.ApplyResources(this.miNewDc, "miNewDc");
+            this.miNewDc.Name = "miNewDc";
+            this.miNewDc.Click += new System.EventHandler(this.CreateNewDocumentContainer);
+            // 
+            // miUpdate
+            // 
+            resources.ApplyResources(this.miUpdate, "miUpdate");
+            this.miUpdate.Name = "miUpdate";
+            this.miUpdate.Click += new System.EventHandler(this.Activate_miUpdate);
+            // 
             // menuBar1
             // 
-            this.menuBar1.Guid = new System.Guid("df109020-5454-48c9-aae5-28b65f95af1d");
-            this.menuBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+            this.menuBar1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuBarItem1,
             this.miTools,
             this.miExtra,
             this.miWindow,
-            this.menuBarItem5,
-            this.miAction});
+            this.menuBarItem5});
             resources.ApplyResources(this.menuBar1, "menuBar1");
             this.menuBar1.Name = "menuBar1";
-            this.menuBar1.OwnerForm = this;
             // 
             // menuBarItem1
             // 
-            this.menuBarItem1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+            this.menuBarItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miNew,
             this.miOpen,
             this.miOpenIn,
@@ -584,141 +590,158 @@ namespace SimPe
             this.miSaveCopyAs,
             this.miClose,
             this.miRecent,
+            this.toolStripMenuItem1,
             this.miExit});
+            this.menuBarItem1.Name = "menuBarItem1";
             resources.ApplyResources(this.menuBarItem1, "menuBarItem1");
             // 
             // miOpenIn
             // 
-            this.miOpenIn.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+            this.miOpenIn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miOpenSimsRes,
             this.miOpenUniRes,
             this.miOpenNightlifeRes,
             this.miOpenBusinessRes,
             this.miOpenFamilyFunRes,
             this.miOpenDownloads});
+            this.miOpenIn.Name = "miOpenIn";
             resources.ApplyResources(this.miOpenIn, "miOpenIn");
-            this.miOpenIn.ToolTipText = null;
             // 
             // miOpenSimsRes
             // 
+            this.miOpenSimsRes.Name = "miOpenSimsRes";
             resources.ApplyResources(this.miOpenSimsRes, "miOpenSimsRes");
-            this.miOpenSimsRes.ToolTipText = null;
-            this.miOpenSimsRes.Activate += new System.EventHandler(this.Activate_miOpenSimsRes);
+            this.miOpenSimsRes.Click += new System.EventHandler(this.Activate_miOpenSimsRes);
             // 
             // miOpenUniRes
             // 
+            this.miOpenUniRes.Name = "miOpenUniRes";
             resources.ApplyResources(this.miOpenUniRes, "miOpenUniRes");
-            this.miOpenUniRes.ToolTipText = null;
-            this.miOpenUniRes.Activate += new System.EventHandler(this.Activate_miOpenUniRes);
+            this.miOpenUniRes.Click += new System.EventHandler(this.Activate_miOpenUniRes);
             // 
             // miOpenNightlifeRes
             // 
+            this.miOpenNightlifeRes.Name = "miOpenNightlifeRes";
             resources.ApplyResources(this.miOpenNightlifeRes, "miOpenNightlifeRes");
-            this.miOpenNightlifeRes.Activate += new System.EventHandler(this.Activate_miOpenNightlifeRes);
+            this.miOpenNightlifeRes.Click += new System.EventHandler(this.Activate_miOpenNightlifeRes);
             // 
             // miOpenBusinessRes
             // 
+            this.miOpenBusinessRes.Name = "miOpenBusinessRes";
             resources.ApplyResources(this.miOpenBusinessRes, "miOpenBusinessRes");
-            this.miOpenBusinessRes.Activate += new System.EventHandler(this.Activate_miOpenBusinessRes);
+            this.miOpenBusinessRes.Click += new System.EventHandler(this.Activate_miOpenBusinessRes);
             // 
             // miOpenFamilyFunRes
             // 
+            this.miOpenFamilyFunRes.Name = "miOpenFamilyFunRes";
             resources.ApplyResources(this.miOpenFamilyFunRes, "miOpenFamilyFunRes");
-            this.miOpenFamilyFunRes.Activate += new System.EventHandler(this.Activate_miOpenFamilyFunRes);
+            this.miOpenFamilyFunRes.Click += new System.EventHandler(this.Activate_miOpenFamilyFunRes);
             // 
             // miOpenDownloads
             // 
+            this.miOpenDownloads.Name = "miOpenDownloads";
             resources.ApplyResources(this.miOpenDownloads, "miOpenDownloads");
-            this.miOpenDownloads.Activate += new System.EventHandler(this.Activate_miOpenDownloads);
+            this.miOpenDownloads.Click += new System.EventHandler(this.Activate_miOpenDownloads);
             // 
             // miSaveCopyAs
             // 
+            this.miSaveCopyAs.Name = "miSaveCopyAs";
             resources.ApplyResources(this.miSaveCopyAs, "miSaveCopyAs");
-            this.miSaveCopyAs.Activate += new System.EventHandler(this.Activate_miSaveCopyAs);
+            this.miSaveCopyAs.Click += new System.EventHandler(this.Activate_miSaveCopyAs);
             // 
             // miRecent
             // 
+            this.miRecent.Name = "miRecent";
             resources.ApplyResources(this.miRecent, "miRecent");
             // 
             // miExit
             // 
-            this.miExit.BeginGroup = true;
-            this.miExit.Image = ((System.Drawing.Image)(resources.GetObject("miExit.Image")));
             resources.ApplyResources(this.miExit, "miExit");
-            this.miExit.Activate += new System.EventHandler(this.Activate_miExit);
+            this.miExit.Name = "miExit";
+            this.miExit.Click += new System.EventHandler(this.Activate_miExit);
             // 
             // miTools
             // 
+            this.miTools.Name = "miTools";
             resources.ApplyResources(this.miTools, "miTools");
             // 
             // miExtra
             // 
-            this.miExtra.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+            this.miExtra.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miMetaInfo,
             this.miFileNames,
             this.miRunSims,
+            this.toolStripMenuItem2,
             this.miPref});
+            this.miExtra.Name = "miExtra";
             resources.ApplyResources(this.miExtra, "miExtra");
             // 
             // miMetaInfo
             // 
-            this.miMetaInfo.ItemImportance = TD.SandBar.ItemImportance.Low;
+            this.miMetaInfo.Name = "miMetaInfo";
             resources.ApplyResources(this.miMetaInfo, "miMetaInfo");
-            this.miMetaInfo.Activate += new System.EventHandler(this.Activate_miNoMeta);
+            this.miMetaInfo.Click += new System.EventHandler(this.Activate_miNoMeta);
             // 
             // miFileNames
             // 
             this.miFileNames.Checked = true;
+            this.miFileNames.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.miFileNames.Name = "miFileNames";
             resources.ApplyResources(this.miFileNames, "miFileNames");
-            this.miFileNames.Activate += new System.EventHandler(this.Activate_miFileNames);
+            this.miFileNames.Click += new System.EventHandler(this.Activate_miFileNames);
             // 
             // miRunSims
             // 
-            this.miRunSims.Image = ((System.Drawing.Image)(resources.GetObject("miRunSims.Image")));
             resources.ApplyResources(this.miRunSims, "miRunSims");
-            this.miRunSims.Activate += new System.EventHandler(this.Activate_miRunSims);
+            this.miRunSims.Name = "miRunSims";
+            this.miRunSims.Click += new System.EventHandler(this.Activate_miRunSims);
             // 
             // miPref
             // 
-            this.miPref.BeginGroup = true;
-            this.miPref.Image = ((System.Drawing.Image)(resources.GetObject("miPref.Image")));
             resources.ApplyResources(this.miPref, "miPref");
-            this.miPref.Activate += new System.EventHandler(this.ShowPreferences);
+            this.miPref.Name = "miPref";
+            this.miPref.Click += new System.EventHandler(this.ShowPreferences);
             // 
             // miWindow
             // 
-            this.miWindow.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+            this.miWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miNewDc});
-            this.miWindow.MdiWindowList = true;
+            this.miWindow.Name = "miWindow";
             resources.ApplyResources(this.miWindow, "miWindow");
             // 
             // menuBarItem5
             // 
-            this.menuBarItem5.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
+            this.menuBarItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miUpdate,
             this.miTutorials,
             this.mbiTopics,
+            this.toolStripMenuItem3,
             this.miAbout});
+            this.menuBarItem5.Name = "menuBarItem5";
             resources.ApplyResources(this.menuBarItem5, "menuBarItem5");
-            this.menuBarItem5.BeforePopup += new TD.SandBar.MenuItemBase.BeforePopupEventHandler(this.menuBarItem5_BeforePopup);
+            this.menuBarItem5.VisibleChanged += new System.EventHandler(this.menuBarItem5_VisibleChanged);
             // 
             // miTutorials
             // 
-            this.miTutorials.Image = ((System.Drawing.Image)(resources.GetObject("miTutorials.Image")));
             resources.ApplyResources(this.miTutorials, "miTutorials");
-            this.miTutorials.Activate += new System.EventHandler(this.Activate_miTutorials);
+            this.miTutorials.Name = "miTutorials";
+            this.miTutorials.Click += new System.EventHandler(this.Activate_miTutorials);
             // 
             // mbiTopics
             // 
-            this.mbiTopics.Image = ((System.Drawing.Image)(resources.GetObject("mbiTopics.Image")));
             resources.ApplyResources(this.mbiTopics, "mbiTopics");
+            this.mbiTopics.Name = "mbiTopics";
             // 
             // miAbout
             // 
-            this.miAbout.BeginGroup = true;
-            this.miAbout.Image = ((System.Drawing.Image)(resources.GetObject("miAbout.Image")));
             resources.ApplyResources(this.miAbout, "miAbout");
-            this.miAbout.Activate += new System.EventHandler(this.Activate_miAbout);
+            this.miAbout.Name = "miAbout";
+            this.miAbout.Click += new System.EventHandler(this.Activate_miAbout);
+            // 
+            // miAction
+            // 
+            this.miAction.Name = "miAction";
+            resources.ApplyResources(this.miAction, "miAction");
             // 
             // lv
             // 
@@ -732,18 +755,18 @@ namespace SimPe
             this.clInstance,
             this.clOffset,
             this.clSize});
+            this.lv.ContextMenuStrip = this.miAction;
             resources.ApplyResources(this.lv, "lv");
             this.lv.FullRowSelect = true;
             this.lv.HideSelection = false;
             this.lv.Name = "lv";
-            this.menuBar1.SetSandBarMenu(this.lv, this.miAction);
             this.lv.UseCompatibleStateImageBehavior = false;
             this.lv.View = System.Windows.Forms.View.Details;
             this.lv.VirtualMode = true;
+            this.lv.SyncedSelectionChanged += new System.EventHandler(this.SelectResource);
             this.lv.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnterFile);
             this.lv.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropFile);
             this.lv.DoubleClick += new System.EventHandler(this.SelectResourceDBClick);
-            this.lv.SyncedSelectionChanged += new System.EventHandler(this.SelectResource);
             this.lv.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SelectResource);
             this.lv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyDown);
             this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.SortResourceListClick);
@@ -1045,6 +1068,21 @@ namespace SimPe
             this.waitControl1.Value = 50;
             this.waitControl1.Waiting = false;
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1058,6 +1096,8 @@ namespace SimPe
             this.Controls.Add(this.myrightSandDock);
             this.Controls.Add(this.topSandBarDock);
             this.Controls.Add(this.waitControl1);
+            this.Controls.Add(this.menuBar1);
+            this.MainMenuStrip = this.menuBar1;
             this.Name = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Closing += new System.ComponentModel.CancelEventHandler(this.ClosingForm);
@@ -1065,6 +1105,8 @@ namespace SimPe
             this.mybottomSandDock.ResumeLayout(false);
             this.dcPlugin.ResumeLayout(false);
             this.topSandBarDock.ResumeLayout(false);
+            this.menuBar1.ResumeLayout(false);
+            this.menuBar1.PerformLayout();
             this.dcResource.ResumeLayout(false);
             this.myrightSandDock.ResumeLayout(false);
             this.dcFilter.ResumeLayout(false);
@@ -1074,8 +1116,11 @@ namespace SimPe
             this.xpGradientPanel2.ResumeLayout(false);
             this.dockContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
-		}       
+		}
+
+               
 		#endregion
 
 		static string[] pargs;
@@ -1383,7 +1428,7 @@ namespace SimPe
 		#endregion
 
 		#region Themes
-		void InitThemer()
+		void InitTheme()
 		{
 			//setup the Theme Manager
 			ThemeManager.Global.AddControl(this.sdm);			
@@ -1392,6 +1437,8 @@ namespace SimPe
 			ThemeManager.Global.AddControl(this.xpGradientPanel1);
 			ThemeManager.Global.AddControl(this.xpGradientPanel2);
 			ThemeManager.Global.AddControl(this.xpGradientPanel3);
+            ThemeManager.Global.AddControl(this.menuBar1);
+            ThemeManager.Global.AddControl(this.miAction);
 		}
 
 		void ChangedTheme(GuiTheme gt)
@@ -1474,24 +1521,23 @@ namespace SimPe
 		/// <param name="first"></param>
 		void AddDockItem(TD.SandDock.DockControl c, bool first)
 		{
-			TD.SandBar.MenuButtonItem mi = new TD.SandBar.MenuButtonItem(c.Text);
-			mi.BeginGroup = first;
+			ToolStripMenuItem mi = new ToolStripMenuItem(c.Text);
+            if (first) miWindow.DropDownItems.Add("-");
 			mi.Image = c.TabImage;
 			mi.Checked = c.IsDocked || c.IsFloating;
 
-			mi.Activate += new EventHandler(Activate_miWindowDocks);
-			mi.Tag = c;
-			mi.BeginGroup = first;
+			mi.Click += new EventHandler(Activate_miWindowDocks);
+			mi.Tag = c;			
 
 			if (c.Tag != null) 
 				if (c.Tag is System.Windows.Forms.Shortcut) 
-					mi.Shortcut = (System.Windows.Forms.Shortcut)c.Tag;
+					mi.ShortcutKeys = Helper.ToKeys((System.Windows.Forms.Shortcut)c.Tag);
 			
 
 			c.Closed += new EventHandler(CloseDockControl);
 			c.Tag = mi;
 
-			miWindow.Items.Add(mi);
+			miWindow.DropDownItems.Add(mi);
 		}
 
 		/// <summary>
@@ -1513,7 +1559,7 @@ namespace SimPe
 			foreach (TD.SandDock.DockControl c in ctrls) 
 			{
 				if (c.Tag==null) continue;
-				if (c.Tag is TD.SandBar.MenuButtonItem) continue;
+				if (c.Tag is ToolStripMenuItem) continue;
 				AddDockItem(c, first);				
 				first = false;
 			}
@@ -1524,8 +1570,10 @@ namespace SimPe
 		/// </summary>
 		void UpdateDockMenus()
 		{
-			foreach (TD.SandBar.MenuButtonItem mi in miWindow.Items) 
+			foreach (object o in miWindow.DropDownItems) 
 			{
+                ToolStripMenuItem mi = o as ToolStripMenuItem;
+                if (mi == null) continue;
 				if (mi.Tag is TD.SandDock.DockControl) 
 				{
 					TD.SandDock.DockControl c = (TD.SandDock.DockControl)mi.Tag;
@@ -1544,9 +1592,9 @@ namespace SimPe
 			if (sender is TD.SandDock.DockControl) 
 			{
 				TD.SandDock.DockControl c = (TD.SandDock.DockControl)sender;
-				if (c.Tag is TD.SandBar.MenuButtonItem) 
+				if (c.Tag is ToolStripMenuItem) 
 				{
-					TD.SandBar.MenuButtonItem mi = (TD.SandBar.MenuButtonItem)c.Tag;
+					ToolStripMenuItem mi = (ToolStripMenuItem)c.Tag;
 					mi.Checked = false;
 				}
 			}
@@ -1559,9 +1607,9 @@ namespace SimPe
 		/// <param name="e"></param>
 		private void Activate_miWindowDocks(object sender, EventArgs e)
 		{
-			if (sender is TD.SandBar.MenuButtonItem) 
+			if (sender is ToolStripMenuItem) 
 			{
-				TD.SandBar.MenuButtonItem mi = (TD.SandBar.MenuButtonItem)sender;
+				ToolStripMenuItem mi = (ToolStripMenuItem)sender;
 				
 				if (mi.Tag is TD.SandDock.DockControl) 
 				{
@@ -1594,7 +1642,7 @@ namespace SimPe
 
 			ArrayList exclude = new ArrayList();
 			exclude.Add(this.miNewDc);
-			SimPe.LoadFileWrappersExt.BuildToolBar(tbWindow, miWindow.Items, exclude);
+			SimPe.LoadFileWrappersExt.BuildToolBar(tbWindow, miWindow.DropDownItems, exclude);
 			this.dcPlugin.Open();
 		}
 
@@ -2082,7 +2130,7 @@ namespace SimPe
 
 		private void Activate_miNoMeta(object sender, System.EventArgs e)
 		{
-			TD.SandBar.MenuButtonItem mi = (TD.SandBar.MenuButtonItem)sender;
+			ToolStripMenuItem mi = (ToolStripMenuItem)sender;
 			mi.Checked = !mi.Checked;
 
 			Helper.WindowsRegistry.LoadMetaInfo = !mi.Checked;
@@ -2090,7 +2138,7 @@ namespace SimPe
 
 		private void Activate_miFileNames(object sender, System.EventArgs e)
 		{
-			TD.SandBar.MenuButtonItem mi = (TD.SandBar.MenuButtonItem)sender;
+			ToolStripMenuItem mi = (ToolStripMenuItem)sender;
 			mi.Checked = !mi.Checked;
 
 			Helper.WindowsRegistry.DecodeFilenamesState = mi.Checked;
@@ -2384,8 +2432,10 @@ namespace SimPe
 
 		void MakeFloatable(bool fl)
 		{
-			foreach (TD.SandBar.MenuItemBase mi in this.miWindow.Items)
+			foreach (object o in this.miWindow.DropDownItems)
 			{
+                ToolStripMenuItem mi = o as ToolStripMenuItem;
+                if (mi == null) continue;
 				if (mi.Tag==null) continue;
 				TD.SandDock.DockableWindow dw = mi.Tag as TD.SandDock.DockableWindow;
 
@@ -2407,18 +2457,17 @@ namespace SimPe
 		private void LockDocks(object sender, EventArgs e)
 		{
 			MakeFloatable(false);
-		}
-
-		private void menuBarItem5_BeforePopup(object sender, TD.SandBar.MenuPopupEventArgs e)
-		{
-			this.mbiTopics.Visible = mbiTopics.Items.Count>0;
-		}
+		}		
 
         private void dcFilter_SizeChanged(object sender, EventArgs e)
         {
             cbsemig.Width = dcFilter.Width - 24;
         }
 
+        void menuBarItem5_VisibleChanged(object sender, EventArgs e)
+        {
+            this.mbiTopics.Visible = mbiTopics.DropDownItems.Count > 0;
+        }
 		
 	}
 			

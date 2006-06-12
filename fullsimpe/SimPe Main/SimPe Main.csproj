@@ -297,7 +297,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OptionForm.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>

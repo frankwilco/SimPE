@@ -29,17 +29,18 @@ namespace SimPe
 		LoadFileWrappersExt wloader;
 		SimPe.LoadHelpTopics lht;
 		internal PluginManager(
-			TD.SandBar.MenuBarItem toolmenu, 
+            System.Windows.Forms.ToolStripMenuItem toolmenu, 
 			TD.SandBar.ToolBar tootoolbar,
 			TD.SandDock.TabControl dc, 
 			LoadedPackage lp,
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox defaultactiontaskbox,
-			TD.SandBar.MenuBarItem defaultactionmenu,
+            System.Windows.Forms.ContextMenuStrip defaultactionmenu,
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox toolactiontaskbox, 
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox extactiontaskbox,
 			TD.SandBar.ToolBar actiontoolbar,
 			TD.SandDock.DockControl docktooldc,
-			TD.SandBar.MenuItemBase helpmenu) : base(true)
+            System.Windows.Forms.ToolStripMenuItem helpmenu)
+            : base(true)
 		{
 			SimPe.PackedFiles.TypeRegistry tr = new SimPe.PackedFiles.TypeRegistry();
 
@@ -182,8 +183,8 @@ namespace SimPe
 		/// </summary>
 		void LoadActionTools(
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox taskbox, 
-			TD.SandBar.ToolBar tb, 
-			TD.SandBar.MenuBarItem mi, 
+			TD.SandBar.ToolBar tb,
+            System.Windows.Forms.ContextMenuStrip mi, 
 			SimPe.Interfaces.IToolAction[] tools)
 		{			
 			if (tools==null) tools = FileTable.ToolRegistry.Actions;
@@ -210,8 +211,11 @@ namespace SimPe
 
 				if (mi!=null) 
 				{
-					mi.Items.Add(atd.MenuButton);
-					atd.MenuButton.BeginGroup = (mfirst && mi.Items.Count!=0);
+                    bool beggrp = (mfirst && mi.Items.Count != 0);
+                    if (beggrp) mi.Items.Add("-");
+                    mi.Items.Add(atd.MenuButton);
+                    
+
 					mfirst = false;
 				}
 

@@ -100,12 +100,14 @@ namespace SimPe
         public MyButtonItem(string name)
             : this(null, name) { }
 
-        internal MyButtonItem(TD.SandBar.MenuButtonItem item)
+        internal MyButtonItem(ToolStripMenuItem item)
             : this(item, null) { }
 
-        MyButtonItem(TD.SandBar.MenuButtonItem item, string name)
+        ToolStripMenuItem refitem;
+        MyButtonItem(ToolStripMenuItem item, string name)
             : base()
         {
+            refitem = item;
             if (item != null)
             {
                 this.Image = item.Image;
@@ -113,8 +115,13 @@ namespace SimPe
                 if (this.Image == null) this.Text = item.Text;
                 this.ToolTipText = item.Text.Replace("&", "");
                 this.Enabled = item.Enabled;
-                this.BuddyMenu = item;
+                this.Activate += new EventHandler(MyButtonItem_Activate);
+                item.CheckedChanged += new EventHandler(item_CheckedChanged);
+                item.EnabledChanged += new EventHandler(item_EnabledChanged);
+                
                 this.ToolTipText = item.Text;
+                this.Enabled = item.Enabled;
+                this.Checked = item.Checked;
 
                 havedock = false;
                 ToolMenuItemExt tmie = item as ToolMenuItemExt;
@@ -140,8 +147,23 @@ namespace SimPe
 
             
         }
+
+        void item_EnabledChanged(object sender, EventArgs e)
+        {
+            this.Enabled = ((ToolStripMenuItem)sender).Enabled;
+        }
+
+        void item_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Checked = ((ToolStripMenuItem)sender).Checked;
+        }
+
+        void MyButtonItem_Activate(object sender, EventArgs e)
+        {
+            refitem.PerformClick();
+        }
     }
-	public class ToolMenuItemExt  : TD.SandBar.MenuButtonItem
+	public class ToolMenuItemExt  : ToolStripMenuItem
 	{
 		/// <summary>
 		/// Those delegates can be called when a Tool want's to notify the Host Application
@@ -213,8 +235,8 @@ namespace SimPe
 			this.tool = tool;
 			this.Text = text;
 			this.ToolTipText = text;
-			Activate += new EventHandler(LinkClicked);
-			Activate += new EventHandler(ClickItem);
+			Click += new EventHandler(LinkClicked);
+			Click += new EventHandler(ClickItem);
 			chghandler = chghnd;
 
             name = tool.GetType().Namespace + "." + tool.GetType().Name;
@@ -341,18 +363,18 @@ namespace SimPe
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="parts"></param>
-		public static void AddMenuItem(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuItemBase.MenuItemCollection parent, ToolMenuItemExt item, string[] parts)
+		public static void AddMenuItem(ref SimPe.Events.ChangedResourceEvent ev, ToolStripItemCollection parent, ToolMenuItemExt item, string[] parts)
 		{
 			System.Reflection.Assembly a = typeof(LoadFileWrappersExt).Assembly;
 
 			for (int i=0; i<parts.Length-1; i++) 
 			{
 				string name = SimPe.Localization.GetString(parts[i]);
-				TD.SandBar.MenuButtonItem mi = null;
+				ToolStripMenuItem mi = null;
 				//find an existing Menu Item
 				if (parent!=null) 
 				{
-					foreach (TD.SandBar.MenuButtonItem oi in parent) 
+					foreach (ToolStripMenuItem oi in parent) 
 					{
 						if (oi.Text.ToLower().Trim()==name.ToLower().Trim()) 
 						{
@@ -363,7 +385,7 @@ namespace SimPe
 				}
 				if (mi==null) 
 				{
-					mi = new TD.SandBar.MenuButtonItem(name);
+					mi = new ToolStripMenuItem(name);
 					
 					if (parent!=null) 
 					{						
@@ -374,12 +396,12 @@ namespace SimPe
 					
 				}
 
-				parent = mi.Items;
+				parent = mi.DropDownItems;
 			}
 
 			if (item.ToolExt!=null) 
 			{
-				item.Shortcut = item.ToolExt.Shortcut;
+				item.ShortcutKeys = Helper.ToKeys(item.ToolExt.Shortcut);                
 				item.Image = item.ToolExt.Icon;			
 				//item.ToolTipText = item.ToolExt.ToString();
 			}
@@ -395,17 +417,25 @@ namespace SimPe
 		/// <param name="tb"></param>
 		/// <param name="mi"></param>
 		/// <param name="exclude">List of <see cref="TD.SandBar.MenuButtonItem"/> that should be excluded</param>
-		public static void BuildToolBar(TD.SandBar.ToolBar tb, TD.SandBar.MenuItemBase.MenuItemCollection mi, ArrayList exclude)
+		public static void BuildToolBar(TD.SandBar.ToolBar tb, ToolStripItemCollection mi, ArrayList exclude)
 		{
-			ArrayList submenus = new ArrayList();
-			ArrayList items = new ArrayList();
+			System.Collections.Generic.List<ToolStripItemCollection> submenus = new System.Collections.Generic.List<ToolStripItemCollection>();
+            System.Collections.Generic.List<ToolStripMenuItem> items = new System.Collections.Generic.List<ToolStripMenuItem>();
+            System.Collections.Generic.List<ToolStripMenuItem> starters = new System.Collections.Generic.List<ToolStripMenuItem>();
 
 			for (int i=mi.Count-1; i>=0; i--)
 			{
-				if (mi[i].Items.Count>0) submenus.Add(mi[i].Items);
+                ToolStripMenuItem tsmi = mi[i] as ToolStripMenuItem;
+                if (tsmi == null)
+                {
+                    if (i < mi.Count - 1)
+                        starters.Add(mi[i + 1] as ToolStripMenuItem);
+                    continue;
+                }
+                if (tsmi.DropDownItems.Count > 0) submenus.Add(tsmi.DropDownItems);
 				else 
 				{
-					TD.SandBar.MenuButtonItem item = mi[i];
+                    ToolStripMenuItem item = tsmi;
 					if (exclude.Contains(item)) continue;
 					if (item.Image==null) items.Add(item);
 					else items.Insert(0, item);
@@ -414,25 +444,25 @@ namespace SimPe
 
 			for (int i=0; i<items.Count; i++)
 			{
-				TD.SandBar.MenuButtonItem item = (TD.SandBar.MenuButtonItem)items[i];				
-				TD.SandBar.ButtonItem bi = new MyButtonItem(item);				
-				bi.BeginGroup = (i==0 && tb.Items.Count>0) || item.BeginGroup;				                
+                ToolStripMenuItem item = items[i];				
+				TD.SandBar.ButtonItem bi = new MyButtonItem(item);
+                bi.BeginGroup = (i == 0 && tb.Items.Count > 0) || starters.Contains(item); ;				                
 
 				tb.Items.Add(bi);
 			}
 			
 
 			for (int i=0; i<submenus.Count; i++)
-				BuildToolBar(tb, (TD.SandBar.MenuItemBase.MenuItemCollection)submenus[i], exclude);			
+				BuildToolBar(tb, submenus[i], exclude);			
 		}
 
-		TD.SandBar.MenuBarItem mi;
+        ToolStripMenuItem mi;
 		/// <summary>
 		/// Adds the Tool Plugins to the passed menu
 		/// </summary>
 		/// <param name="mi">The Menu you want to add Items to</param>
 		/// <param name="chghandler">A Function to call when the Package was chaged by a Tool</param>
-		public static void AddMenuItems(IToolExt[] toolsp, ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuBarItem mi, ToolMenuItemExt.ExternalToolNotify chghandler) 
+        public static void AddMenuItems(IToolExt[] toolsp, ref SimPe.Events.ChangedResourceEvent ev, ToolStripMenuItem mi, ToolMenuItemExt.ExternalToolNotify chghandler) 
 		{			
 			foreach (IToolExt tool in toolsp)
 			{		
@@ -441,7 +471,7 @@ namespace SimPe
 				name = SimPe.Localization.GetString(parts[parts.Length-1]);
 				ToolMenuItemExt item = new ToolMenuItemExt(name, tool, chghandler);
 
-				AddMenuItem(ref ev, mi.Items, item, parts);
+				AddMenuItem(ref ev, mi.DropDownItems, item, parts);
 			}
 		}
 		/// <summary>
@@ -449,7 +479,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="mi">The Menu you want to add Items to</param>
 		/// <param name="chghandler">A Function to call when the Package was chaged by a Tool</param>
-		public void AddMenuItems(ref SimPe.Events.ChangedResourceEvent ev, TD.SandBar.MenuBarItem mi, TD.SandBar.ToolBar tb, ToolMenuItemExt.ExternalToolNotify chghandler) 
+		public void AddMenuItems(ref SimPe.Events.ChangedResourceEvent ev, ToolStripMenuItem mi, TD.SandBar.ToolBar tb, ToolMenuItemExt.ExternalToolNotify chghandler) 
 		{
 			this.mi = mi;
 			IToolExt[] toolsp = (IToolExt[])FileTable.ToolRegistry.ToolsPlus;
@@ -465,13 +495,13 @@ namespace SimPe
 				string[] parts = name.Split("\\".ToCharArray());
 				name = SimPe.Localization.GetString(parts[parts.Length-1]);
 				ToolMenuItemExt item = new ToolMenuItemExt(name, tool, chghandler);
-				
-				AddMenuItem(ref ev, mi.Items, item, parts);
+
+                AddMenuItem(ref ev, mi.DropDownItems, item, parts);
 			}
 
-			
 
-			BuildToolBar(tb, mi.Items, new ArrayList());
+
+            BuildToolBar(tb, mi.DropDownItems, new ArrayList());
 			//EnableMenuItems(null);
 		}
 

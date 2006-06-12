@@ -225,6 +225,11 @@
     <Compile Include="FamilyTiesForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ScorItem.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -331,6 +336,11 @@
     <EmbeddedResource Include="srel.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="related.png" />
     <EmbeddedResource Include="SimRelationPoolControl.de.resx">
       <SubType>Designer</SubType>

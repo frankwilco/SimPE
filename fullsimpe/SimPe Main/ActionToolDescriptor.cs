@@ -49,11 +49,11 @@ namespace SimPe
 			get {return bi; }
 		}
 
-		TD.SandBar.MenuButtonItem mi;
+        System.Windows.Forms.ToolStripMenuItem mi;
 		/// <summary>
 		/// Returns the generated MenuButtonItem 
 		/// </summary>
-		public TD.SandBar.MenuButtonItem MenuButton
+		public System.Windows.Forms.ToolStripMenuItem MenuButton
 		{
 			get {return mi; }
 		}
@@ -80,10 +80,12 @@ namespace SimPe
 
 			ll.LinkClicked += new EventHandler(LinkClicked);
 
-			mi = new TD.SandBar.MenuButtonItem(ll.Text);
-			mi.Activate += new EventHandler(LinkClicked);
+			mi = new System.Windows.Forms.ToolStripMenuItem(ll.Text);
+			mi.Click += new EventHandler(LinkClicked);
 			mi.Image = tool.Icon;
-			mi.Shortcut = tool.Shortcut;
+			mi.ShortcutKeys = Helper.ToKeys(tool.Shortcut);
+            mi.EnabledChanged += new EventHandler(mi_EnabledChanged);
+            mi.CheckedChanged += new EventHandler(mi_CheckedChanged);
 
 			if (tool.Icon!=null) 
 			{
@@ -91,14 +93,26 @@ namespace SimPe
 				bi.Text = "";
 				bi.ToolTipText = ll.Text;
 				bi.Image = tool.Icon;
-				bi.BuddyMenu = mi;
+				//bi.BuddyMenu = mi;
 
-				//bi.Activate += new EventHandler(LinkClicked);
+                bi.Checked = mi.Checked;
+                bi.Enabled = mi.Enabled;
+				bi.Activate += new EventHandler(LinkClicked);
 			}
 
 			//Make Sure the Action is disabled on StartUp
 			ChangeEnabledStateEventHandler(null, new SimPe.Events.ResourceEventArgs(lp));
 		}
+
+        void mi_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bi != null) bi.Checked = mi.Checked;
+        }
+
+        void mi_EnabledChanged(object sender, EventArgs e)
+        {
+            if (bi != null) bi.Enabled = mi.Enabled;
+        }
 
 		/// <summary>
 		/// Fired when a Resource was changed by a ToolPlugin and the Enabled state needs to be changed
