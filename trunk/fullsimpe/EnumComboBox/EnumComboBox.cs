@@ -62,7 +62,7 @@ namespace Ambertation.Windows.Forms
 	/// Zusammenfassung für UserControl1.
 	/// </summary>
 	[ToolboxBitmapAttribute(typeof(ComboBox))]
-	public class EnumComboBox : TD.SandBar.FlatComboBox
+	public class EnumComboBox : ComboBox
 	{
 		/// <summary>
 		/// Erforderliche Designervariable.
@@ -73,8 +73,7 @@ namespace Ambertation.Windows.Forms
 		{
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
 			InitializeComponent();
-
-			// TODO: Initialisierungen nach dem Aufruf von InitComponent hinzufügen
+			
 
 		}
 

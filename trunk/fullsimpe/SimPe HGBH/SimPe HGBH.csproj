@@ -108,10 +108,6 @@
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
     </Reference>
-    <Reference Include="SandBar">
-      <Name>SandBar</Name>
-      <HintPath>..\..\..\DivElements\SandBar\SandBar.dll</HintPath>
-    </Reference>
     <Reference Include="SandDock">
       <Name>sanddock</Name>
       <HintPath>..\..\..\divelements\sanddock\sanddock.dll</HintPath>

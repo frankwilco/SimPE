@@ -30,26 +30,24 @@ namespace SimPe.Plugin
 	/// Zusammenfassung für NgbhItemsListViewItem.
 	/// </summary>
 	public class NgbhItemsListView : System.Windows.Forms.UserControl
-	{
-		/// <summary> 
-		/// Erforderliche Designervariable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+    {
+        private IContainer components;
 		private System.Windows.Forms.Panel panel1;
-		private TD.SandBar.FlatComboBox cbadd;
+		private ComboBox cbadd;
 		private System.Windows.Forms.LinkLabel lladd;
 		private System.Windows.Forms.LinkLabel lldel;
 		private Button btUp;
 		private Button btDown;
-		private TD.SandBar.MenuBar menuBar1;
-		private TD.SandBar.MenuButtonItem miCopy;
-		private TD.SandBar.MenuButtonItem miPaste;
-		private TD.SandBar.ContextMenuBarItem menu;
-		private TD.SandBar.MenuButtonItem miPasteGossip;
-		private TD.SandBar.MenuButtonItem miClone;
-		private TD.SandBar.MenuButtonItem miDelCascade;
+		private ToolStripMenuItem miCopy;
+		private ToolStripMenuItem miPaste;
+		private ContextMenuStrip menu;
+		private ToolStripMenuItem miPasteGossip;
+		private ToolStripMenuItem miClone;
+		private ToolStripMenuItem miDelCascade;
+        private ToolStripSeparator toolStripMenuItem2;
 		private ListView lv;
 
+        ThemeManager tm;
 		public NgbhItemsListView()
 		{
 			SetStyle(
@@ -71,6 +69,8 @@ namespace SimPe.Plugin
 			
 			SlotType = Data.NeighborhoodSlots.Sims;
 
+            tm = ThemeManager.Global.CreateChild();
+            tm.AddControl(menu);
 			InitTheo();
 		}
 
@@ -81,6 +81,12 @@ namespace SimPe.Plugin
 		{
 			if( disposing )
 			{
+                if (tm != null)
+                {
+                    tm.Clear();
+                    tm.Parent = null;
+                    tm = null;
+                }
 				if (clipboard!=null) clipboard.Clear();
 				if(components != null)
 				{
@@ -97,301 +103,145 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(NgbhItemsListView));
-			this.lv = new System.Windows.Forms.ListView();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.lladd = new System.Windows.Forms.LinkLabel();
-			this.cbadd = new TD.SandBar.FlatComboBox();
-			this.lldel = new System.Windows.Forms.LinkLabel();
-			this.btUp = new System.Windows.Forms.Button();
-			this.btDown = new System.Windows.Forms.Button();
-			this.menuBar1 = new TD.SandBar.MenuBar();
-			this.menu = new TD.SandBar.ContextMenuBarItem();
-			this.miCopy = new TD.SandBar.MenuButtonItem();
-			this.miPaste = new TD.SandBar.MenuButtonItem();
-			this.miPasteGossip = new TD.SandBar.MenuButtonItem();
-			this.miClone = new TD.SandBar.MenuButtonItem();
-			this.miDelCascade = new TD.SandBar.MenuButtonItem();
-			this.panel1.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// lv
-			// 
-			this.lv.AccessibleDescription = resources.GetString("lv.AccessibleDescription");
-			this.lv.AccessibleName = resources.GetString("lv.AccessibleName");
-			this.lv.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lv.Alignment")));
-			this.lv.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lv.Anchor")));
-			this.lv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lv.BackgroundImage")));
-			this.lv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
-			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
-			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
-			this.lv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.lv.HideSelection = false;
-			this.lv.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lv.ImeMode")));
-			this.lv.LabelWrap = ((bool)(resources.GetObject("lv.LabelWrap")));
-			this.lv.Location = ((System.Drawing.Point)(resources.GetObject("lv.Location")));
-			this.lv.Name = "lv";
-			this.lv.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lv.RightToLeft")));
-			this.menuBar1.SetSandBarMenu(this.lv, this.menu);
-			this.lv.Size = ((System.Drawing.Size)(resources.GetObject("lv.Size")));
-			this.lv.TabIndex = ((int)(resources.GetObject("lv.TabIndex")));
-			this.lv.Text = resources.GetString("lv.Text");
-			this.lv.View = System.Windows.Forms.View.List;
-			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
-			this.lv.SelectedIndexChanged += new System.EventHandler(this.lv_SelectedIndexChanged_1);
-			// 
-			// panel1
-			// 
-			this.panel1.AccessibleDescription = resources.GetString("panel1.AccessibleDescription");
-			this.panel1.AccessibleName = resources.GetString("panel1.AccessibleName");
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("panel1.Anchor")));
-			this.panel1.AutoScroll = ((bool)(resources.GetObject("panel1.AutoScroll")));
-			this.panel1.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("panel1.AutoScrollMargin")));
-			this.panel1.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("panel1.AutoScrollMinSize")));
-			this.panel1.BackColor = System.Drawing.Color.Transparent;
-			this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-			this.panel1.Controls.Add(this.lladd);
-			this.panel1.Controls.Add(this.cbadd);
-			this.panel1.Controls.Add(this.lldel);
-			this.panel1.Controls.Add(this.btUp);
-			this.panel1.Controls.Add(this.btDown);
-			this.panel1.Controls.Add(this.menuBar1);
-			this.panel1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("panel1.Dock")));
-			this.panel1.Enabled = ((bool)(resources.GetObject("panel1.Enabled")));
-			this.panel1.Font = ((System.Drawing.Font)(resources.GetObject("panel1.Font")));
-			this.panel1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("panel1.ImeMode")));
-			this.panel1.Location = ((System.Drawing.Point)(resources.GetObject("panel1.Location")));
-			this.panel1.Name = "panel1";
-			this.panel1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("panel1.RightToLeft")));
-			this.panel1.Size = ((System.Drawing.Size)(resources.GetObject("panel1.Size")));
-			this.panel1.TabIndex = ((int)(resources.GetObject("panel1.TabIndex")));
-			this.panel1.Text = resources.GetString("panel1.Text");
-			this.panel1.Visible = ((bool)(resources.GetObject("panel1.Visible")));
-			// 
-			// lladd
-			// 
-			this.lladd.AccessibleDescription = resources.GetString("lladd.AccessibleDescription");
-			this.lladd.AccessibleName = resources.GetString("lladd.AccessibleName");
-			this.lladd.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lladd.Anchor")));
-			this.lladd.AutoSize = ((bool)(resources.GetObject("lladd.AutoSize")));
-			this.lladd.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lladd.Dock")));
-			this.lladd.Enabled = ((bool)(resources.GetObject("lladd.Enabled")));
-			this.lladd.Font = ((System.Drawing.Font)(resources.GetObject("lladd.Font")));
-			this.lladd.Image = ((System.Drawing.Image)(resources.GetObject("lladd.Image")));
-			this.lladd.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lladd.ImageAlign")));
-			this.lladd.ImageIndex = ((int)(resources.GetObject("lladd.ImageIndex")));
-			this.lladd.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lladd.ImeMode")));
-			this.lladd.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("lladd.LinkArea")));
-			this.lladd.Location = ((System.Drawing.Point)(resources.GetObject("lladd.Location")));
-			this.lladd.Name = "lladd";
-			this.lladd.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lladd.RightToLeft")));
-			this.lladd.Size = ((System.Drawing.Size)(resources.GetObject("lladd.Size")));
-			this.lladd.TabIndex = ((int)(resources.GetObject("lladd.TabIndex")));
-			this.lladd.TabStop = true;
-			this.lladd.Text = resources.GetString("lladd.Text");
-			this.lladd.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lladd.TextAlign")));
-			this.lladd.Visible = ((bool)(resources.GetObject("lladd.Visible")));
-			this.lladd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lladd_LinkClicked);
-			// 
-			// cbadd
-			// 
-			this.cbadd.AccessibleDescription = resources.GetString("cbadd.AccessibleDescription");
-			this.cbadd.AccessibleName = resources.GetString("cbadd.AccessibleName");
-			this.cbadd.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbadd.Anchor")));
-			this.cbadd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbadd.BackgroundImage")));
-			this.cbadd.DefaultText = resources.GetString("cbadd.DefaultText");
-			this.cbadd.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbadd.Dock")));
-			this.cbadd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbadd.Enabled = ((bool)(resources.GetObject("cbadd.Enabled")));
-			this.cbadd.Font = ((System.Drawing.Font)(resources.GetObject("cbadd.Font")));
-			this.cbadd.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cbadd.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("cbadd.ImeMode")));
-			this.cbadd.IntegralHeight = ((bool)(resources.GetObject("cbadd.IntegralHeight")));
-			this.cbadd.ItemHeight = ((int)(resources.GetObject("cbadd.ItemHeight")));
-			this.cbadd.Location = ((System.Drawing.Point)(resources.GetObject("cbadd.Location")));
-			this.cbadd.MaxDropDownItems = ((int)(resources.GetObject("cbadd.MaxDropDownItems")));
-			this.cbadd.MaxLength = ((int)(resources.GetObject("cbadd.MaxLength")));
-			this.cbadd.Name = "cbadd";
-			this.cbadd.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("cbadd.RightToLeft")));
-			this.cbadd.Size = ((System.Drawing.Size)(resources.GetObject("cbadd.Size")));
-			this.cbadd.TabIndex = ((int)(resources.GetObject("cbadd.TabIndex")));
-			this.cbadd.Text = resources.GetString("cbadd.Text");
-			this.cbadd.Visible = ((bool)(resources.GetObject("cbadd.Visible")));
-			this.cbadd.SelectedIndexChanged += new System.EventHandler(this.cbadd_SelectedIndexChanged);
-			// 
-			// lldel
-			// 
-			this.lldel.AccessibleDescription = resources.GetString("lldel.AccessibleDescription");
-			this.lldel.AccessibleName = resources.GetString("lldel.AccessibleName");
-			this.lldel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lldel.Anchor")));
-			this.lldel.AutoSize = ((bool)(resources.GetObject("lldel.AutoSize")));
-			this.lldel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lldel.Dock")));
-			this.lldel.Enabled = ((bool)(resources.GetObject("lldel.Enabled")));
-			this.lldel.Font = ((System.Drawing.Font)(resources.GetObject("lldel.Font")));
-			this.lldel.Image = ((System.Drawing.Image)(resources.GetObject("lldel.Image")));
-			this.lldel.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lldel.ImageAlign")));
-			this.lldel.ImageIndex = ((int)(resources.GetObject("lldel.ImageIndex")));
-			this.lldel.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lldel.ImeMode")));
-			this.lldel.LinkArea = ((System.Windows.Forms.LinkArea)(resources.GetObject("lldel.LinkArea")));
-			this.lldel.Location = ((System.Drawing.Point)(resources.GetObject("lldel.Location")));
-			this.lldel.Name = "lldel";
-			this.lldel.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lldel.RightToLeft")));
-			this.lldel.Size = ((System.Drawing.Size)(resources.GetObject("lldel.Size")));
-			this.lldel.TabIndex = ((int)(resources.GetObject("lldel.TabIndex")));
-			this.lldel.TabStop = true;
-			this.lldel.Text = resources.GetString("lldel.Text");
-			this.lldel.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lldel.TextAlign")));
-			this.lldel.Visible = ((bool)(resources.GetObject("lldel.Visible")));
-			this.lldel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lldel_LinkClicked);
-			// 
-			// btUp
-			// 
-			this.btUp.AccessibleDescription = resources.GetString("btUp.AccessibleDescription");
-			this.btUp.AccessibleName = resources.GetString("btUp.AccessibleName");
-			this.btUp.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btUp.Anchor")));
-			this.btUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btUp.BackgroundImage")));
-			this.btUp.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btUp.Dock")));
-			this.btUp.Enabled = ((bool)(resources.GetObject("btUp.Enabled")));
-			this.btUp.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btUp.FlatStyle")));
-			this.btUp.Font = ((System.Drawing.Font)(resources.GetObject("btUp.Font")));
-			this.btUp.Image = ((System.Drawing.Image)(resources.GetObject("btUp.Image")));
-			this.btUp.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btUp.ImageAlign")));
-			this.btUp.ImageIndex = ((int)(resources.GetObject("btUp.ImageIndex")));
-			this.btUp.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btUp.ImeMode")));
-			this.btUp.Location = ((System.Drawing.Point)(resources.GetObject("btUp.Location")));
-			this.btUp.Name = "btUp";
-			this.btUp.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btUp.RightToLeft")));
-			this.btUp.Size = ((System.Drawing.Size)(resources.GetObject("btUp.Size")));
-			this.btUp.TabIndex = ((int)(resources.GetObject("btUp.TabIndex")));
-			this.btUp.Text = resources.GetString("btUp.Text");
-			this.btUp.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btUp.TextAlign")));
-			this.btUp.Visible = ((bool)(resources.GetObject("btUp.Visible")));
-			this.btUp.Click += new System.EventHandler(this.btUp_Click);
-			// 
-			// btDown
-			// 
-			this.btDown.AccessibleDescription = resources.GetString("btDown.AccessibleDescription");
-			this.btDown.AccessibleName = resources.GetString("btDown.AccessibleName");
-			this.btDown.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btDown.Anchor")));
-			this.btDown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDown.BackgroundImage")));
-			this.btDown.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btDown.Dock")));
-			this.btDown.Enabled = ((bool)(resources.GetObject("btDown.Enabled")));
-			this.btDown.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btDown.FlatStyle")));
-			this.btDown.Font = ((System.Drawing.Font)(resources.GetObject("btDown.Font")));
-			this.btDown.Image = ((System.Drawing.Image)(resources.GetObject("btDown.Image")));
-			this.btDown.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btDown.ImageAlign")));
-			this.btDown.ImageIndex = ((int)(resources.GetObject("btDown.ImageIndex")));
-			this.btDown.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btDown.ImeMode")));
-			this.btDown.Location = ((System.Drawing.Point)(resources.GetObject("btDown.Location")));
-			this.btDown.Name = "btDown";
-			this.btDown.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btDown.RightToLeft")));
-			this.btDown.Size = ((System.Drawing.Size)(resources.GetObject("btDown.Size")));
-			this.btDown.TabIndex = ((int)(resources.GetObject("btDown.TabIndex")));
-			this.btDown.Text = resources.GetString("btDown.Text");
-			this.btDown.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btDown.TextAlign")));
-			this.btDown.Visible = ((bool)(resources.GetObject("btDown.Visible")));
-			this.btDown.Click += new System.EventHandler(this.btDown_Click);
-			// 
-			// menuBar1
-			// 
-			this.menuBar1.AccessibleDescription = resources.GetString("menuBar1.AccessibleDescription");
-			this.menuBar1.AccessibleName = resources.GetString("menuBar1.AccessibleName");
-			this.menuBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("menuBar1.Anchor")));
-			this.menuBar1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("menuBar1.BackgroundImage")));
-			this.menuBar1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("menuBar1.Dock")));
-			this.menuBar1.Enabled = ((bool)(resources.GetObject("menuBar1.Enabled")));
-			this.menuBar1.Font = ((System.Drawing.Font)(resources.GetObject("menuBar1.Font")));
-			this.menuBar1.Guid = new System.Guid("76f91bf3-cf27-473c-951c-2f9066087017");
-			this.menuBar1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("menuBar1.ImeMode")));
-			this.menuBar1.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
-																			  this.menu});
-			this.menuBar1.Location = ((System.Drawing.Point)(resources.GetObject("menuBar1.Location")));
-			this.menuBar1.Name = "menuBar1";
-			this.menuBar1.OwnerForm = null;
-			this.menuBar1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("menuBar1.RightToLeft")));
-			this.menuBar1.Size = ((System.Drawing.Size)(resources.GetObject("menuBar1.Size")));
-			this.menuBar1.TabIndex = ((int)(resources.GetObject("menuBar1.TabIndex")));
-			this.menuBar1.Text = resources.GetString("menuBar1.Text");
-			this.menuBar1.Visible = ((bool)(resources.GetObject("menuBar1.Visible")));
-			// 
-			// menu
-			// 
-			this.menu.Items.AddRange(new TD.SandBar.ToolbarItemBase[] {
-																		  this.miCopy,
-																		  this.miPaste,
-																		  this.miPasteGossip,
-																		  this.miClone,
-																		  this.miDelCascade});
-			this.menu.Text = resources.GetString("menu.Text");
-			this.menu.ToolTipText = resources.GetString("menu.ToolTipText");
-			this.menu.BeforePopup += new TD.SandBar.MenuItemBase.BeforePopupEventHandler(this.contextMenuBarItem1_BeforePopup);
-			// 
-			// miCopy
-			// 
-			this.miCopy.Image = ((System.Drawing.Image)(resources.GetObject("miCopy.Image")));
-			this.miCopy.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miCopy.Shortcut")));
-			this.miCopy.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miCopy.Shortcut2")));
-			this.miCopy.Text = resources.GetString("miCopy.Text");
-			this.miCopy.ToolTipText = resources.GetString("miCopy.ToolTipText");
-			this.miCopy.Activate += new System.EventHandler(this.CopyItems);
-			// 
-			// miPaste
-			// 
-			this.miPaste.Image = ((System.Drawing.Image)(resources.GetObject("miPaste.Image")));
-			this.miPaste.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miPaste.Shortcut")));
-			this.miPaste.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miPaste.Shortcut2")));
-			this.miPaste.Text = resources.GetString("miPaste.Text");
-			this.miPaste.ToolTipText = resources.GetString("miPaste.ToolTipText");
-			this.miPaste.Activate += new System.EventHandler(this.PasteItems);
-			// 
-			// miPasteGossip
-			// 
-			this.miPasteGossip.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miPasteGossip.Shortcut")));
-			this.miPasteGossip.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miPasteGossip.Shortcut2")));
-			this.miPasteGossip.Text = resources.GetString("miPasteGossip.Text");
-			this.miPasteGossip.ToolTipText = resources.GetString("miPasteGossip.ToolTipText");
-			this.miPasteGossip.Activate += new System.EventHandler(this.PasteItemsAsGossip);
-			// 
-			// miClone
-			// 
-			this.miClone.BeginGroup = true;
-			this.miClone.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miClone.Shortcut")));
-			this.miClone.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miClone.Shortcut2")));
-			this.miClone.Text = resources.GetString("miClone.Text");
-			this.miClone.ToolTipText = resources.GetString("miClone.ToolTipText");
-			this.miClone.Activate += new System.EventHandler(this.CloneItem);
-			// 
-			// miDelCascade
-			// 
-			this.miDelCascade.Image = ((System.Drawing.Image)(resources.GetObject("miDelCascade.Image")));
-			this.miDelCascade.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("miDelCascade.Shortcut")));
-			this.miDelCascade.Shortcut2 = ((System.Windows.Forms.Shortcut)(resources.GetObject("miDelCascade.Shortcut2")));
-			this.miDelCascade.Text = resources.GetString("miDelCascade.Text");
-			this.miDelCascade.ToolTipText = resources.GetString("miDelCascade.ToolTipText");
-			this.miDelCascade.Activate += new System.EventHandler(this.DeleteCascadeItems);
-			// 
-			// NgbhItemsListView
-			// 
-			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
-			this.AccessibleName = resources.GetString("$this.AccessibleName");
-			this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
-			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
-			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
-			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-			this.Controls.Add(this.lv);
-			this.Controls.Add(this.panel1);
-			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
-			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
-			this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
-			this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
-			this.Name = "NgbhItemsListView";
-			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
-			this.Size = ((System.Drawing.Size)(resources.GetObject("$this.Size")));
-			this.panel1.ResumeLayout(false);
-			this.ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NgbhItemsListView));
+            this.lv = new System.Windows.Forms.ListView();
+            this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.miCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPasteGossip = new System.Windows.Forms.ToolStripMenuItem();
+            this.miClone = new System.Windows.Forms.ToolStripMenuItem();
+            this.miDelCascade = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lladd = new System.Windows.Forms.LinkLabel();
+            this.cbadd = new ComboBox();
+            this.lldel = new System.Windows.Forms.LinkLabel();
+            this.btUp = new System.Windows.Forms.Button();
+            this.btDown = new System.Windows.Forms.Button();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menu.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // lv
+            // 
+            this.lv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lv.ContextMenuStrip = this.menu;
+            resources.ApplyResources(this.lv, "lv");
+            this.lv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lv.HideSelection = false;
+            this.lv.Name = "lv";
+            this.lv.UseCompatibleStateImageBehavior = false;
+            this.lv.View = System.Windows.Forms.View.List;
+            this.lv.SelectedIndexChanged += new System.EventHandler(this.lv_SelectedIndexChanged_1);
+            // 
+            // menu
+            // 
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miCopy,
+            this.miPaste,
+            this.miPasteGossip,
+            this.toolStripMenuItem2,
+            this.miClone,
+            this.miDelCascade});
+            this.menu.Name = "menu";
+            resources.ApplyResources(this.menu, "menu");
+            this.menu.VisibleChanged += new System.EventHandler(this.menu_VisibleChanged);
+            // 
+            // miCopy
+            // 
+            resources.ApplyResources(this.miCopy, "miCopy");
+            this.miCopy.Name = "miCopy";
+            this.miCopy.Click += new System.EventHandler(this.CopyItems);
+            // 
+            // miPaste
+            // 
+            resources.ApplyResources(this.miPaste, "miPaste");
+            this.miPaste.Name = "miPaste";
+            this.miPaste.Click += new System.EventHandler(this.PasteItems);
+            // 
+            // miPasteGossip
+            // 
+            this.miPasteGossip.Name = "miPasteGossip";
+            resources.ApplyResources(this.miPasteGossip, "miPasteGossip");
+            this.miPasteGossip.Click += new System.EventHandler(this.PasteItemsAsGossip);
+            // 
+            // miClone
+            // 
+            this.miClone.Name = "miClone";
+            resources.ApplyResources(this.miClone, "miClone");
+            this.miClone.Click += new System.EventHandler(this.CloneItem);
+            // 
+            // miDelCascade
+            // 
+            resources.ApplyResources(this.miDelCascade, "miDelCascade");
+            this.miDelCascade.Name = "miDelCascade";
+            this.miDelCascade.Click += new System.EventHandler(this.DeleteCascadeItems);
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.lladd);
+            this.panel1.Controls.Add(this.cbadd);
+            this.panel1.Controls.Add(this.lldel);
+            this.panel1.Controls.Add(this.btUp);
+            this.panel1.Controls.Add(this.btDown);
+            this.panel1.Name = "panel1";
+            // 
+            // lladd
+            // 
+            resources.ApplyResources(this.lladd, "lladd");
+            this.lladd.Name = "lladd";
+            this.lladd.TabStop = true;
+            this.lladd.UseCompatibleTextRendering = true;
+            this.lladd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lladd_LinkClicked);
+            // 
+            // cbadd
+            // 
+            resources.ApplyResources(this.cbadd, "cbadd");
+            this.cbadd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbadd.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbadd.Name = "cbadd";
+            this.cbadd.SelectedIndexChanged += new System.EventHandler(this.cbadd_SelectedIndexChanged);
+            // 
+            // lldel
+            // 
+            resources.ApplyResources(this.lldel, "lldel");
+            this.lldel.Name = "lldel";
+            this.lldel.TabStop = true;
+            this.lldel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lldel_LinkClicked);
+            // 
+            // btUp
+            // 
+            resources.ApplyResources(this.btUp, "btUp");
+            this.btUp.Name = "btUp";
+            this.btUp.Click += new System.EventHandler(this.btUp_Click);
+            // 
+            // btDown
+            // 
+            resources.ApplyResources(this.btDown, "btDown");
+            this.btDown.Name = "btDown";
+            this.btDown.Click += new System.EventHandler(this.btDown_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
+            // 
+            // NgbhItemsListView
+            // 
+            this.Controls.Add(this.lv);
+            this.Controls.Add(this.panel1);
+            resources.ApplyResources(this, "$this");
+            this.Name = "NgbhItemsListView";
+            this.menu.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.ResumeLayout(false);
 
 		}
+
+        
 		#endregion
 
 		SimPe.Data.NeighborhoodSlots st;
@@ -901,8 +751,9 @@ namespace SimPe.Plugin
 			}
 		}
 
-		private void contextMenuBarItem1_BeforePopup(object sender, TD.SandBar.MenuPopupEventArgs e)
-		{
+        void menu_VisibleChanged(object sender, EventArgs e)
+        {
+        
 			miCopy.Enabled = lv.SelectedItems.Count>0;
 			miClone.Enabled = miCopy.Enabled;			
 			miPaste.Enabled = clipboard.Count>0;
