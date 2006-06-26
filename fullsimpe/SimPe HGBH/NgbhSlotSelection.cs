@@ -97,8 +97,7 @@ namespace SimPe.Plugin
 			this.cb.AccessibleDescription = resources.GetString("cb.AccessibleDescription");
 			this.cb.AccessibleName = resources.GetString("cb.AccessibleName");
 			this.cb.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cb.Anchor")));
-			this.cb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cb.BackgroundImage")));
-			this.cb.DefaultText = resources.GetString("cb.DefaultText");
+			this.cb.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cb.BackgroundImage")));			
 			this.cb.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cb.Dock")));
 			this.cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cb.Enabled = ((bool)(resources.GetObject("cb.Enabled")));

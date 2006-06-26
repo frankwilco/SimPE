@@ -13,7 +13,7 @@ namespace SimPe.Plugin
 	[System.ComponentModel.DefaultEvent("SelectedDescriptorChanged")]
 	public class NgbhValueDescriptorSelection : System.Windows.Forms.UserControl
 	{
-		private TD.SandBar.FlatComboBox cb;
+		private ComboBox cb;
 		/// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -61,7 +61,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.cb = new TD.SandBar.FlatComboBox();
+			this.cb = new ComboBox();
 			this.SuspendLayout();
 			// 
 			// cb

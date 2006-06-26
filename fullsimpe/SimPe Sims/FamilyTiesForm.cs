@@ -380,8 +380,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbrel.AccessibleDescription = resources.GetString("cbrel.AccessibleDescription");
 			this.cbrel.AccessibleName = resources.GetString("cbrel.AccessibleName");
 			this.cbrel.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbrel.Anchor")));
-			this.cbrel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbrel.BackgroundImage")));
-			this.cbrel.DefaultText = resources.GetString("cbrel.DefaultText");
+			this.cbrel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbrel.BackgroundImage")));			
 			this.cbrel.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbrel.Dock")));
 			this.cbrel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbrel.Enabled = ((bool)(resources.GetObject("cbrel.Enabled")));
