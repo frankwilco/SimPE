@@ -3,7 +3,7 @@
   <!-- 
     Microsoft ResX Schema 
     
-    Version 1.3
+    Version 2.0
     
     The primary goals of this format is to allow a simple XML format 
     that is mostly human readable. The generation and parsing of the 
@@ -14,16 +14,17 @@
     
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">1.3</resheader>
+    <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1">this is my long string</data>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
     <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        [base64 mime encoded serialized .NET Framework object]
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
     <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        [base64 mime encoded string representing a byte array form of the .NET Framework object]
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
     </data>
                 
     There are any number of "resheader" rows that contain simple 
@@ -35,7 +36,7 @@
     Classes that don't support this are serialized and stored with the 
     mimetype set.
     
-    The mimetype is used forserialized objects, and tells the 
+    The mimetype is used for serialized objects, and tells the 
     ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
     
@@ -45,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -59,18 +60,37 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -89,105 +109,270 @@
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>1.3</value>
+    <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>System</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>474, 296</value>
   </data>
-  <data name="button1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <data name="&gt;&gt;button3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
+  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="$this.Name">
-    <value>NeighborhoodForm</value>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="button1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
+  <data name="pnBackup.HeaderText" xml:space="preserve">
+    <value>Backup</value>
   </data>
-  <data name="&gt;&gt;lv.Type">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pnOptions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>488, 128</value>
   </data>
-  <data name="button1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
+  <data name="pnBackup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>248, 114</value>
   </data>
-  <data name="button2.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>pnOptions</value>
   </data>
-  <data name="$this.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
+  <data name="&gt;&gt;pnBackup.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2314.23625, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="button2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>112, 23</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="button3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </data>
-  <data name="button1.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="&gt;&gt;button1.Name">
-    <value>button1</value>
-  </data>
-  <data name="button3.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>698, 342</value>
-  </data>
-  <data name="button1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="button1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="&gt;&gt;button3.Parent">
+  <data name="&gt;&gt;lv.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;ilist.Type">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="button1.Text">
-    <value>Open</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>748, 342</value>
   </data>
-  <data name="button3.Text">
-    <value>Backup Manager...</value>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
   </data>
-  <data name="button3.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="button2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
-  <data name="button2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
+  <data name="&gt;&gt;pnBackup.Name" xml:space="preserve">
+    <value>pnBackup</value>
   </data>
-  <data name="lv.Text">
-    <value />
+  <data name="pnOptions.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 44, 4, 4</value>
   </data>
-  <data name="$this.Text">
+  <data name="button1.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 53</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;pnBackup.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lv.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
     <value>Neighborhood Browser</value>
   </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>Verdana, 8.25pt</value>
+  <data name="&gt;&gt;pnOptions.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2314.23625, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;button2.Type">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="button3.Text" xml:space="preserve">
+    <value>Backup Manager...</value>
   </data>
-  <data name="ilist.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 23</value>
   </data>
-  <data name="button2.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>6, 14</value>
   </data>
-  <data name="button3.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="&gt;&gt;button2.Name" xml:space="preserve">
+    <value>button2</value>
   </data>
-  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="cbtypes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 21</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 13</value>
+  </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 82</value>
+  </data>
+  <data name="cbtypes.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="cbtypes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 67</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbtypes.Parent" xml:space="preserve">
+    <value>pnOptions</value>
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;button3.Name" xml:space="preserve">
+    <value>button3</value>
+  </data>
+  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;pnOptions.Name" xml:space="preserve">
+    <value>pnOptions</value>
+  </data>
+  <data name="lv.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="pnOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>248, 98</value>
+  </data>
+  <data name="&gt;&gt;ilist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ilist.ImageSize" type="System.Drawing.Size, System.Drawing">
+    <value>133, 100</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbtypes.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lv.Name" xml:space="preserve">
+    <value>lv</value>
+  </data>
+  <data name="pnBackup.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>NeighborhoodForm</value>
+  </data>
+  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+    <value>pnBackup</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Neighborhoods:</value>
+  </data>
+  <data name="&gt;&gt;cbtypes.Name" xml:space="preserve">
+    <value>cbtypes</value>
+  </data>
+  <data name="&gt;&gt;pnOptions.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;pnOptions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 51</value>
+  </data>
+  <data name="&gt;&gt;cbtypes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 23</value>
+  </data>
+  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;pnBackup.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="pnBackup.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
+    <value>pnBackup</value>
+  </data>
+  <data name="button3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="pnOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="pnOptions.HeaderText" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="&gt;&gt;lv.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lv.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAYAMDAAAAEACACoDgAAZgAAACAgAAABAAgAqAgAAA4PAAAQEAAAAQAgAGgEAAC2FwAAEBAAAAEA
         CABoBQAAHhwAABgYAAABAAgAyAYAAIYhAABAQAAAAQAIACgWAABOKAAAKAAAADAAAABgAAAAAQAIAAAA
@@ -458,256 +643,91 @@
         wAAAA//////wAAAP//////4AAH///////+AH////
 </value>
   </data>
-  <data name="$this.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="pnBackup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>488, 8</value>
   </data>
-  <data name="button2.Text">
-    <value>Create Backup</value>
-  </data>
-  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
-  <data name="$this.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </data>
-  <data name="&gt;&gt;button2.Name">
-    <value>button2</value>
-  </data>
-  <data name="button2.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;$this.Name">
-    <value>NeighborhoodForm</value>
-  </data>
-  <data name="&gt;&gt;button1.Parent">
-    <value>$this</value>
-  </data>
-  <data name="button3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>System</value>
-  </data>
-  <data name="button2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>System</value>
-  </data>
-  <data name="button3.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>3</value>
-  </data>
-  <data name="lv.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>0</value>
-  </data>
-  <data name="button2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="lv.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="lv.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="lv.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button3.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>613, 312</value>
-  </data>
-  <data name="lv.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="lv.Alignment" type="System.Windows.Forms.ListViewAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </data>
-  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>6, 14</value>
-  </data>
-  <data name="button3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="lv.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lv.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 8</value>
   </data>
-  <data name="lv.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button3.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button1.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>-1</value>
-  </data>
-  <data name="button1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>75, 23</value>
-  </data>
-  <data name="button2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>336, 312</value>
-  </data>
-  <data name="lv.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;button1.Type">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button2.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="button2.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button3.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="button2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="$this.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="button3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="button2.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="lv.LabelWrap" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="lv.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="$this.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="&gt;&gt;button3.Name">
-    <value>button3</value>
-  </data>
-  <data name="button3.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>-1</value>
-  </data>
-  <data name="&gt;&gt;button1.ZOrder">
-    <value>2</value>
-  </data>
-  <data name="button2.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;button2.ZOrder">
-    <value>1</value>
-  </data>
-  <data name="lv.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lv.Name">
-    <value>lv</value>
-  </data>
-  <data name="button3.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;$this.Type">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ilist.ImageSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>133, 100</value>
-  </data>
-  <data name="button3.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>1</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="button1.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="&gt;&gt;lv.ZOrder">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;button2.Parent">
-    <value>$this</value>
-  </data>
-  <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="$this.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </data>
-  <data name="button2.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="$this.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="lv.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="&gt;&gt;button3.Type">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="button1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="button2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>WindowsDefaultLocation</value>
-  </data>
-  <data name="button3.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>136, 23</value>
-  </data>
-  <data name="&gt;&gt;button3.ZOrder">
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="button3.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="button3.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="button2.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
+  <data name="button2.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="button3.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>456, 312</value>
+  <data name="button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
-  <data name="&gt;&gt;ilist.Name">
-    <value>ilist</value>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Create Backup</value>
   </data>
-  <data name="&gt;&gt;lv.Parent">
-    <value>$this</value>
+  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lv.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>680, 296</value>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
   </data>
-  <data name="lv.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="pnBackup.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 44, 4, 4</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="button2.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>-1</value>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>407, 310</value>
   </data>
+  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;ilist.Name" xml:space="preserve">
+    <value>ilist</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="pnOptions.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <metadata name="ilist.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

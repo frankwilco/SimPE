@@ -32,17 +32,25 @@ namespace SimPe.Plugin
 	/// </summary>
 	public class NeighborhoodForm : System.Windows.Forms.Form
 	{
-		
+        private Ambertation.Windows.Forms.XPTaskBoxSimple pnBackup;
+        private Ambertation.Windows.Forms.XPTaskBoxSimple pnOptions;
 		private System.Windows.Forms.ListView lv;
 		private System.Windows.Forms.ImageList ilist;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button3;
+        private ComboBox cbtypes;
+        private Label label1;
 		private System.ComponentModel.IContainer components;
+        ThemeManager tm;
 
 		public NeighborhoodForm()
 		{
 			InitializeComponent();
+
+            tm = ThemeManager.Global.CreateChild();
+            tm.AddControl(pnBackup);
+            tm.AddControl(pnOptions);
 		}
 
 		/// <summary>
@@ -52,6 +60,12 @@ namespace SimPe.Plugin
 		{
 			if( disposing )
 			{
+                if (tm != null)
+                {
+                    tm.Clear();
+                    tm.Parent = null;
+                    tm = null;
+                }
 				if (components != null) 
 				{
 					components.Dispose();
@@ -67,147 +81,149 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(NeighborhoodForm));
-			this.lv = new System.Windows.Forms.ListView();
-			this.ilist = new System.Windows.Forms.ImageList(this.components);
-			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.SuspendLayout();
-			// 
-			// lv
-			// 
-			this.lv.AccessibleDescription = resources.GetString("lv.AccessibleDescription");
-			this.lv.AccessibleName = resources.GetString("lv.AccessibleName");
-			this.lv.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lv.Alignment")));
-			this.lv.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lv.Anchor")));
-			this.lv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lv.BackgroundImage")));
-			this.lv.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lv.Dock")));
-			this.lv.Enabled = ((bool)(resources.GetObject("lv.Enabled")));
-			this.lv.Font = ((System.Drawing.Font)(resources.GetObject("lv.Font")));
-			this.lv.HideSelection = false;
-			this.lv.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lv.ImeMode")));
-			this.lv.LabelWrap = ((bool)(resources.GetObject("lv.LabelWrap")));
-			this.lv.LargeImageList = this.ilist;
-			this.lv.Location = ((System.Drawing.Point)(resources.GetObject("lv.Location")));
-			this.lv.MultiSelect = false;
-			this.lv.Name = "lv";
-			this.lv.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lv.RightToLeft")));
-			this.lv.Size = ((System.Drawing.Size)(resources.GetObject("lv.Size")));
-			this.lv.TabIndex = ((int)(resources.GetObject("lv.TabIndex")));
-			this.lv.Text = resources.GetString("lv.Text");
-			this.lv.Visible = ((bool)(resources.GetObject("lv.Visible")));
-			this.lv.DoubleClick += new System.EventHandler(this.NgbOpen);
-			this.lv.SelectedIndexChanged += new System.EventHandler(this.NgbSelect);
-			// 
-			// ilist
-			// 
-			this.ilist.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-			this.ilist.ImageSize = ((System.Drawing.Size)(resources.GetObject("ilist.ImageSize")));
-			this.ilist.TransparentColor = System.Drawing.Color.Transparent;
-			// 
-			// button1
-			// 
-			this.button1.AccessibleDescription = resources.GetString("button1.AccessibleDescription");
-			this.button1.AccessibleName = resources.GetString("button1.AccessibleName");
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("button1.Anchor")));
-			this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-			this.button1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("button1.Dock")));
-			this.button1.Enabled = ((bool)(resources.GetObject("button1.Enabled")));
-			this.button1.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("button1.FlatStyle")));
-			this.button1.Font = ((System.Drawing.Font)(resources.GetObject("button1.Font")));
-			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-			this.button1.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.ImageAlign")));
-			this.button1.ImageIndex = ((int)(resources.GetObject("button1.ImageIndex")));
-			this.button1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("button1.ImeMode")));
-			this.button1.Location = ((System.Drawing.Point)(resources.GetObject("button1.Location")));
-			this.button1.Name = "button1";
-			this.button1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("button1.RightToLeft")));
-			this.button1.Size = ((System.Drawing.Size)(resources.GetObject("button1.Size")));
-			this.button1.TabIndex = ((int)(resources.GetObject("button1.TabIndex")));
-			this.button1.Text = resources.GetString("button1.Text");
-			this.button1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button1.TextAlign")));
-			this.button1.Visible = ((bool)(resources.GetObject("button1.Visible")));
-			this.button1.Click += new System.EventHandler(this.NgbOpen);
-			// 
-			// button2
-			// 
-			this.button2.AccessibleDescription = resources.GetString("button2.AccessibleDescription");
-			this.button2.AccessibleName = resources.GetString("button2.AccessibleName");
-			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("button2.Anchor")));
-			this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-			this.button2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("button2.Dock")));
-			this.button2.Enabled = ((bool)(resources.GetObject("button2.Enabled")));
-			this.button2.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("button2.FlatStyle")));
-			this.button2.Font = ((System.Drawing.Font)(resources.GetObject("button2.Font")));
-			this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-			this.button2.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button2.ImageAlign")));
-			this.button2.ImageIndex = ((int)(resources.GetObject("button2.ImageIndex")));
-			this.button2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("button2.ImeMode")));
-			this.button2.Location = ((System.Drawing.Point)(resources.GetObject("button2.Location")));
-			this.button2.Name = "button2";
-			this.button2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("button2.RightToLeft")));
-			this.button2.Size = ((System.Drawing.Size)(resources.GetObject("button2.Size")));
-			this.button2.TabIndex = ((int)(resources.GetObject("button2.TabIndex")));
-			this.button2.Text = resources.GetString("button2.Text");
-			this.button2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button2.TextAlign")));
-			this.button2.Visible = ((bool)(resources.GetObject("button2.Visible")));
-			this.button2.Click += new System.EventHandler(this.NgbBackup);
-			// 
-			// button3
-			// 
-			this.button3.AccessibleDescription = resources.GetString("button3.AccessibleDescription");
-			this.button3.AccessibleName = resources.GetString("button3.AccessibleName");
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("button3.Anchor")));
-			this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-			this.button3.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("button3.Dock")));
-			this.button3.Enabled = ((bool)(resources.GetObject("button3.Enabled")));
-			this.button3.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("button3.FlatStyle")));
-			this.button3.Font = ((System.Drawing.Font)(resources.GetObject("button3.Font")));
-			this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-			this.button3.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button3.ImageAlign")));
-			this.button3.ImageIndex = ((int)(resources.GetObject("button3.ImageIndex")));
-			this.button3.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("button3.ImeMode")));
-			this.button3.Location = ((System.Drawing.Point)(resources.GetObject("button3.Location")));
-			this.button3.Name = "button3";
-			this.button3.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("button3.RightToLeft")));
-			this.button3.Size = ((System.Drawing.Size)(resources.GetObject("button3.Size")));
-			this.button3.TabIndex = ((int)(resources.GetObject("button3.TabIndex")));
-			this.button3.Text = resources.GetString("button3.Text");
-			this.button3.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("button3.TextAlign")));
-			this.button3.Visible = ((bool)(resources.GetObject("button3.Visible")));
-			this.button3.Click += new System.EventHandler(this.NgbRestoreBackup);
-			// 
-			// NeighborhoodForm
-			// 
-			this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
-			this.AccessibleName = resources.GetString("$this.AccessibleName");
-			this.AutoScaleBaseSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScaleBaseSize")));
-			this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
-			this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
-			this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
-			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-			this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
-			this.Controls.Add(this.button3);
-			this.Controls.Add(this.button2);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.lv);
-			this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
-			this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
-			this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
-			this.MaximizeBox = false;
-			this.MaximumSize = ((System.Drawing.Size)(resources.GetObject("$this.MaximumSize")));
-			this.MinimizeBox = false;
-			this.MinimumSize = ((System.Drawing.Size)(resources.GetObject("$this.MinimumSize")));
-			this.Name = "NeighborhoodForm";
-			this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
-			this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
-			this.Text = resources.GetString("$this.Text");
-			this.ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NeighborhoodForm));
+            this.lv = new System.Windows.Forms.ListView();
+            this.ilist = new System.Windows.Forms.ImageList(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.pnBackup = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+            this.pnOptions = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+            this.cbtypes = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pnBackup.SuspendLayout();
+            this.pnOptions.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // lv
+            // 
+            this.lv.AccessibleDescription = null;
+            this.lv.AccessibleName = null;
+            resources.ApplyResources(this.lv, "lv");
+            this.lv.BackgroundImage = null;
+            this.lv.Font = null;
+            this.lv.HideSelection = false;
+            this.lv.LargeImageList = this.ilist;
+            this.lv.MultiSelect = false;
+            this.lv.Name = "lv";
+            this.lv.UseCompatibleStateImageBehavior = false;
+            this.lv.DoubleClick += new System.EventHandler(this.NgbOpen);
+            this.lv.SelectedIndexChanged += new System.EventHandler(this.NgbSelect);
+            // 
+            // ilist
+            // 
+            this.ilist.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            resources.ApplyResources(this.ilist, "ilist");
+            this.ilist.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // button1
+            // 
+            this.button1.AccessibleDescription = null;
+            this.button1.AccessibleName = null;
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.BackgroundImage = null;
+            this.button1.Font = null;
+            this.button1.Name = "button1";
+            this.button1.Click += new System.EventHandler(this.NgbOpen);
+            // 
+            // button2
+            // 
+            this.button2.AccessibleDescription = null;
+            this.button2.AccessibleName = null;
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.BackgroundImage = null;
+            this.button2.Font = null;
+            this.button2.Name = "button2";
+            this.button2.Click += new System.EventHandler(this.NgbBackup);
+            // 
+            // button3
+            // 
+            this.button3.AccessibleDescription = null;
+            this.button3.AccessibleName = null;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.BackgroundImage = null;
+            this.button3.Font = null;
+            this.button3.Name = "button3";
+            this.button3.Click += new System.EventHandler(this.NgbRestoreBackup);
+            // 
+            // pnBackup
+            // 
+            this.pnBackup.AccessibleDescription = null;
+            this.pnBackup.AccessibleName = null;
+            resources.ApplyResources(this.pnBackup, "pnBackup");
+            this.pnBackup.BackColor = System.Drawing.Color.Transparent;
+            this.pnBackup.BackgroundImage = null;
+            this.pnBackup.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.pnBackup.BorderColor = System.Drawing.SystemColors.Window;
+            this.pnBackup.Controls.Add(this.button3);
+            this.pnBackup.Controls.Add(this.button2);
+            this.pnBackup.Font = null;
+            this.pnBackup.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
+            this.pnBackup.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pnBackup.IconLocation = new System.Drawing.Point(4, 12);
+            this.pnBackup.IconSize = new System.Drawing.Size(32, 32);
+            this.pnBackup.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
+            this.pnBackup.Name = "pnBackup";
+            this.pnBackup.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+            // 
+            // pnOptions
+            // 
+            this.pnOptions.AccessibleDescription = null;
+            this.pnOptions.AccessibleName = null;
+            resources.ApplyResources(this.pnOptions, "pnOptions");
+            this.pnOptions.BackColor = System.Drawing.Color.Transparent;
+            this.pnOptions.BackgroundImage = null;
+            this.pnOptions.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.pnOptions.BorderColor = System.Drawing.SystemColors.Window;
+            this.pnOptions.Controls.Add(this.cbtypes);
+            this.pnOptions.Controls.Add(this.label1);
+            this.pnOptions.Font = null;
+            this.pnOptions.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
+            this.pnOptions.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pnOptions.IconLocation = new System.Drawing.Point(4, 12);
+            this.pnOptions.IconSize = new System.Drawing.Size(32, 32);
+            this.pnOptions.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
+            this.pnOptions.Name = "pnOptions";
+            this.pnOptions.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+            // 
+            // cbtypes
+            // 
+            this.cbtypes.AccessibleDescription = null;
+            this.cbtypes.AccessibleName = null;
+            resources.ApplyResources(this.cbtypes, "cbtypes");
+            this.cbtypes.BackgroundImage = null;
+            this.cbtypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbtypes.Font = null;
+            this.cbtypes.FormattingEnabled = true;
+            this.cbtypes.Name = "cbtypes";
+            this.cbtypes.SelectedIndexChanged += new System.EventHandler(this.cbtypes_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AccessibleDescription = null;
+            this.label1.AccessibleName = null;
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // NeighborhoodForm
+            // 
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
+            resources.ApplyResources(this, "$this");
+            this.BackgroundImage = null;
+            this.Controls.Add(this.pnOptions);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lv);
+            this.Controls.Add(this.pnBackup);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "NeighborhoodForm";
+            this.pnBackup.ResumeLayout(false);
+            this.pnOptions.ResumeLayout(false);
+            this.pnOptions.PerformLayout();
+            this.ResumeLayout(false);
 
 		}
 		#endregion
@@ -262,21 +278,8 @@ namespace SimPe.Plugin
 				try 
 				{
 					SimPe.Packages.File pk = SimPe.Packages.File.LoadFromFile(name);
-					try 
-					{
-						SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pk.FindFile(0x43545353, 0, 0xffffffff, 1);
-						if (pfd!=null) 
-						{
-							SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
-							str.ProcessData(pfd, pk);
-							name = str.LanguageItems(new SimPe.PackedFiles.Wrapper.StrLanguage((byte)Data.MetaData.Languages.English))[0].Title;
-						}
-						//pk.Reader.Close();
-					} 
-					finally 
-					{
-						//pk.Reader.Close();
-					}
+                    NeighborhoodType t;
+                    name = LoadLabel(pk, out t);
 				} 
 				catch (Exception) {}
 				
@@ -292,6 +295,36 @@ namespace SimPe.Plugin
 
 			return ret;
 		}
+
+        private static string LoadLabel(SimPe.Packages.File pk, out NeighborhoodType type)
+        {
+            string name = SimPe.Localization.GetString("Unknown");
+            type = NeighborhoodType.Unknown;
+            try
+            {
+                SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pk.FindFile(0x43545353, 0, 0xffffffff, 1);
+                if (pfd != null)
+                {
+                    SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+                    str.ProcessData(pfd, pk);
+                    name = str.LanguageItems(new SimPe.PackedFiles.Wrapper.StrLanguage((byte)Data.MetaData.Languages.English))[0].Title;
+                }
+
+                pfd = pk.FindFile(0xAC8A7A2E, 0, 0xffffffff, 1);
+                if (pfd != null)
+                {
+                    SimPe.Plugin.Idno idno = new Idno();
+                    idno.ProcessData(pfd, pk);
+                    type = idno.Type;
+                }
+                //pk.Reader.Close();
+            }
+            finally
+            {
+                //pk.Reader.Close();
+            }
+            return name;
+        }
 
 		protected void UpdateList()
 		{
@@ -325,19 +358,65 @@ namespace SimPe.Plugin
 			return new Plugin.ToolResult(false, ((this.package!=null) || (changed)));
 		}
 
+        class NgbhType
+        {
+            string name, file; NeighborhoodType type;
+
+            public string FileName
+            {
+                get { return file; }
+            } 
+            public NgbhType(string file, string name, NeighborhoodType type)
+            {
+                this.name = name;
+                this.type = type;
+                this.file = file;
+            }
+
+            public override string ToString()
+            {
+                return type.ToString() + ": " + name;
+            }
+        }
+
 		private void NgbSelect(object sender, System.EventArgs e)
 		{
-			button1.Enabled = (lv.SelectedItems.Count>0);
-			button2.Enabled = button1.Enabled;
-			button3.Enabled = button1.Enabled;
-		}
+			//button1.Enabled = (lv.SelectedItems.Count>0);
+            button2.Enabled = (lv.SelectedItems.Count > 0);
+			button3.Enabled = button2.Enabled;
+
+            cbtypes.Items.Clear();
+            if (lv.SelectedItems.Count > 0)
+            {
+                string path = System.IO.Path.GetDirectoryName(lv.SelectedItems[0].SubItems[1].Text);
+                string[] files = System.IO.Directory.GetFiles(path, "*.package");
+
+                foreach (string file in files)
+                {
+                    SimPe.Packages.File pk = SimPe.Packages.File.LoadFromFile(file);
+                    NeighborhoodType type;
+                    string name = LoadLabel(pk, out type);
+                    NgbhType nt = new NgbhType(file, name, type);
+
+                    cbtypes.Items.Add(nt);
+                    if (Helper.EqualFileName(file, lv.SelectedItems[0].SubItems[1].Text))
+                        cbtypes.SelectedIndex = cbtypes.Items.Count - 1;
+                }
+                if (cbtypes.SelectedIndex < 0 && cbtypes.Items.Count > 0)
+                    cbtypes.SelectedIndex = 0;
+            }
+        }
 
 		private void NgbOpen(object sender, System.EventArgs e)
 		{
 			if (lv.SelectedItems.Count<=0) return;
 
-			package = SimPe.Packages.GeneratableFile.LoadFromFile(lv.SelectedItems[0].SubItems[1].Text);
-			Close();
+            NgbhType t = cbtypes.SelectedItem as NgbhType;
+            if (t != null)
+            {
+                package = SimPe.Packages.GeneratableFile.LoadFromFile(t.FileName);
+                Close();
+            }
 		}
 
 		protected void CloseIfOpened(string path)
@@ -409,5 +488,10 @@ namespace SimPe.Plugin
 			
 			UpdateList();
 		}
+
+        private void cbtypes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button1.Enabled = cbtypes.SelectedItem != null;
+        }
 	}
 }

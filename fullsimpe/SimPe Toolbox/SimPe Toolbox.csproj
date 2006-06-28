@@ -97,6 +97,14 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EnumComboBox, Version=1.0.2368.35756, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\EnumComboBox.dll</HintPath>
+    </Reference>
+    <Reference Include="graphcontrol, Version=1.0.2314.23625, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\graphcontrol.dll</HintPath>
+    </Reference>
     <Reference Include="simpe.3idr, Version=1.0.2305.30297, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.3idr.dll</HintPath>
@@ -230,6 +238,11 @@
     <EmbeddedResource Include="PhotoStudio.resx">
       <DependentUpon>PhotoStudio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="readonlyevent.png" />
     <EmbeddedResource Include="Search.resx">
       <DependentUpon>Search.cs</DependentUpon>
@@ -307,6 +320,11 @@
     </Compile>
     <Compile Include="PlasticSurgery.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Search.cs">
       <SubType>Form</SubType>
