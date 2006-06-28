@@ -128,8 +128,10 @@ namespace SimPe
 					plugger.ChangedGuiResourceEventHandler();				
 			}
 
-            foreach (System.Windows.Forms.ToolStripMenuItem mi in docs.DropDownItems)
+            foreach (object o in docs.DropDownItems)
 			{
+                System.Windows.Forms.ToolStripMenuItem mi = o as System.Windows.Forms.ToolStripMenuItem;
+                if (mi==null) continue;
 				if (mi.Tag == doc) 				
 					mi.Checked = doc.IsDocked || doc.IsFloating;				
 			}
