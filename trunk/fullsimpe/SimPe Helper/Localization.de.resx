@@ -1164,6 +1164,17 @@ Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
 
 Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
 	</data>
+  <data name="[Property:SP2Path]">
+    <value>2: Glamour Accessoires</value>
+  </data>
+  <data name="[Description:SP2Path]">
+    <value>
+      Hier sollte das Installationsverzeichnis von "Die Sims 2 - Glamour Accessoires" stehen.
+      Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+      Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
+    </value>
+  </data>
 	<data name="[Property:SaveGamePath]">
 		<value>Spielstände</value>
 	</data>	

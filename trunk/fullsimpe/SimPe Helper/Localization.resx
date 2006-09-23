@@ -906,6 +906,17 @@ The given Folder must contain a subfolder called "TSData".
 
 If this is empty, SimPE will use the default Folder.</value>
 	</data>
+  <data name="[Property:SP2Path]">
+    <value>2: Glamour Accessoires</value>
+  </data>
+  <data name="[Description:SP2Path]">
+    <value>
+      This should contain the installation directory of "The Sims 2 - Glamour Accessoires".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
 	<data name="[Property:SaveGamePath]">
 		<value>Savegame</value>
 	</data>	

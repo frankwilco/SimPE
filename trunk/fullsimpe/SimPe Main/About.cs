@@ -189,26 +189,46 @@ namespace SimPe
 
 			f.ShowDialog();
 		}
-		
+
+        static System.Threading.Thread uthread;
+
 		/// <summary>
 		/// Search for Updates in an async Thread
 		/// </summary>
 		public static void ShowUpdate()
 		{
-			System.Threading.Thread t = new System.Threading.Thread(
+            uthread = new System.Threading.Thread(
                 new System.Threading.ThreadStart(StartShowUpdate)
             );
-            t.SetApartmentState(System.Threading.ApartmentState.STA);
-			t.Start();
+            uthread.SetApartmentState(System.Threading.ApartmentState.STA);
+            uthread.Start();
 		}
+
+        /// <summary>
+        /// Force the Update Checker to Stop
+        /// </summary>
+        public static void StopUpdateCheck()
+        {
+            if (uthread == null) return;
+            if (uthread.IsAlive)
+            {
+                uthread.Abort();
+            }
+        }
 
 		/// <summary>
 		/// used to start the Check thread
 		/// </summary>
         [STAThread]
 		static void StartShowUpdate()
-		{            
-			ShowUpdate(false);
+		{
+            try
+            {
+                ShowUpdate(false);
+            }
+            catch (System.Threading.ThreadAbortException)
+            {
+            }
 		}
 
 		/// <summary>
