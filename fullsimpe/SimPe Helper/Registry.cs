@@ -816,12 +816,45 @@ namespace SimPe
 			}
 		}
 
+        /// <summary>
+        /// Name of the Sims Application
+        /// </summary>
+        public string SimsSP2Path
+        {
+            get
+            {
+                try
+                {
+                    XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                    object o = rkf.GetValue("SimsSP2Path");
+                    if (o == null) return this.RealSP2GamePath;
+                    else
+                    {
+                        string fl = o.ToString();
+
+                        if (!System.IO.Directory.Exists(fl)) return this.RealSP2GamePath;
+                        return fl;
+                    }
+                }
+                catch (Exception)
+                {
+                    return this.RealSP2GamePath;
+                }
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("SimsSP2Path", value);
+            }
+        }
+
 		protected static string[] EPExecutables = new string[] {
 			"Sims2.exe",
 			"Sims2EP1.exe",
 			"Sims2EP2.exe",
 			"Sims2EP3.exe",
-			"Sims2SP1.exe"
+			"Sims2SP1.exe",
+			"Sims2SP2.exe"
 		};
 		
 		public static string GetEpName(int index)
@@ -836,6 +869,7 @@ namespace SimPe
 
 		public static string GetExecutableName(int index)
 		{
+            if ((index & 0xFFFF0000) == 0x00020000) return EPExecutables[5];
 			if ((index & 0xFFFF0000) == 0x00010000) return EPExecutables[4];
 			if ((index & 0x0000FFFF) == 0x00000003) return EPExecutables[3];			
 			if ((index & 0x0000FFFF) == 0x00000002) return EPExecutables[2];
@@ -847,6 +881,7 @@ namespace SimPe
 		 
 		public string GetExecutableFolder(int index)
 		{
+            if ((index & 0xFFFF0000) == 0x00020000) return this.SimsSP2Path;
 			if ((index & 0xFFFF0000) == 0x00010000) return this.SimsSP1Path;
 			if ((index & 0x0000FFFF) == 0x00000003) return this.SimsEP3Path;			
 			if ((index & 0x0000FFFF) == 0x00000002) return this.SimsEP2Path;
@@ -1789,6 +1824,7 @@ namespace SimPe
 			this.SimsEP2Path = this.RealEP2GamePath;
 			this.SimsEP3Path = this.RealEP3GamePath;
 			this.SimsSP1Path = this.RealSP1GamePath;
+            this.SimsSP2Path = this.RealSP2GamePath;
 
 			this.SimSavegameFolder = this.RealSavegamePath;
 		}
@@ -1908,6 +1944,35 @@ namespace SimPe
 			}
 		}
 
+        /// <summary>
+        /// Returns the Real Instalation Folder
+        /// </summary>
+        public string RealSP2GamePath
+        {
+            get
+            {
+#if MAC
+				return "";
+#else
+                if (this.SPInstalled >= 2)
+                {
+                    try
+                    {
+                        RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 Glamour Life Stuff");
+                        object o = rk.GetValue("Install Dir");
+                        if (o == null) return "";
+                        else return Helper.ToLongPathName(o.ToString());
+                    }
+                    catch (Exception)
+                    {
+                        return "";
+                    }
+                }
+                return "";
+#endif
+            }
+        }
+
 		public int InstalledVersions
 		{
 			get 
@@ -1922,7 +1987,8 @@ namespace SimPe
 		{
 			get 
 			{
-				if (SPInstalled==1) return 4;
+                if (SPInstalled == 2) return 5;
+                if (SPInstalled == 1) return 4;
 				return EPInstalled;				
 			}
 		}
@@ -1966,6 +2032,7 @@ namespace SimPe
 					return 0;
 #else
 					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2");
+                    if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 Glamour Life Stuff", false) != null) return 2;
 					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 Family Fun Stuff", false)!=null) return 1;
 					return 0;					
 #endif

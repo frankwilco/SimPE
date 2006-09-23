@@ -536,12 +536,14 @@ namespace SimPe
             // 
             resources.ApplyResources(this.miOpen, "miOpen");
             this.miOpen.Name = "miOpen";
+            this.miOpen.ShortcutKeys = Keys.Control | Keys.O;
             this.miOpen.Click += new System.EventHandler(this.Activate_miOpen);
             // 
             // miSave
             // 
             resources.ApplyResources(this.miSave, "miSave");
             this.miSave.Name = "miSave";
+            this.miSave.ShortcutKeys = Keys.Control | Keys.S;
             this.miSave.Click += new System.EventHandler(this.Activate_miSave);
             // 
             // miSaveAs
@@ -554,6 +556,7 @@ namespace SimPe
             // 
             resources.ApplyResources(this.miClose, "miClose");
             this.miClose.Name = "miClose";
+            this.miClose.ShortcutKeys = Keys.Control | Keys.W;
             this.miClose.Click += new System.EventHandler(this.Activate_miClose);
             // 
             // miNewDc
@@ -694,6 +697,7 @@ namespace SimPe
             // 
             resources.ApplyResources(this.miRunSims, "miRunSims");
             this.miRunSims.Name = "miRunSims";
+            this.miRunSims.ShortcutKeys = Keys.Control | Keys.R;
             this.miRunSims.Click += new System.EventHandler(this.Activate_miRunSims);
             // 
             // miPref
