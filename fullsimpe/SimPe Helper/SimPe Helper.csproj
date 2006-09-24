@@ -97,6 +97,10 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ambertation.utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ambertation.utilities.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
     </Reference>
@@ -163,6 +167,8 @@
     <Compile Include="ExceptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PathProvider.cs" />
+    <Compile Include="ExpansionItem.cs" />
     <Compile Include="FlagBase.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -238,6 +244,7 @@
     <Compile Include="Registry.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RuntimeCompiler.cs" />
     <Compile Include="SelectSimFolder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,12 +289,15 @@
     </Compile>
     <EmbeddedResource Include="ExceptionForm.de.resx">
       <DependentUpon>ExceptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExceptionForm.pl.resx">
       <DependentUpon>ExceptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExceptionForm.resx">
       <DependentUpon>ExceptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization.de.resx">
       <DependentUpon>Localization.cs</DependentUpon>
@@ -304,6 +314,7 @@
     <EmbeddedResource Include="quaxi_ofb_censor_v1.package" />
     <EmbeddedResource Include="SelectSimFolder.resx">
       <DependentUpon>SelectSimFolder.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.de.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>

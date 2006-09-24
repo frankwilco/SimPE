@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<registry>
+  <key name="Expansions">
+    <!-- Information about the base Game -->
+    <key name="BaseGame">
+      <int name="Version">0</int>
+      <string name="RegKey">Software\EA Games\The Sims 2</string>
+      <int name="Flag">0</int>
+      <!-- Flag is a BitMask defining SimPE's behaviour if the given EP was found:
+        Bit 0: Is an ExpansionPack
+        Bit 1: Is a StuffPack (aka MiniExpansion)
+        Bit 2: Comes with a Lua Folder
+        Bit 3: Load additional W&F Texts from this Expansion (BaseGame is allways loaded!!)-->
+      <string name="ExeName">Sims2.exe</string>
+    </key>
+
+    <!-- Information about University -->
+    <key name="University">
+      <int name="Version">1</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 University</string>
+      <int name="Flag">9</int>
+      <string name="ExeName">Sims2EP1.exe</string>
+      <cilist name="SimNameDeepSearch">
+        <string name="0">TSData\Res\NeighborhoodTemplate\U001\Characters\</string>
+        <string name="1">TSData\Res\NeighborhoodTemplate\U002\Characters\</string>
+        <string name="2">TSData\Res\NeighborhoodTemplate\U003\Characters\</string>
+      </cilist>
+      <!-- SimNameDeepSearch: This is a list of additional Folders (in the EP's Folder), 
+      SimPE is using when it performs a 'Deep Search' for SimDescriptions-->
+    </key>
+
+    <!-- Information about Nightlife -->
+    <key name="Nightlife">
+      <int name="Version">2</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 Nightlife</string>
+      <int name="Flag">13</int>
+      <string name="ExeName">Sims2EP2.exe</string>
+      <string name="Censor">quaxi_nl_censor_v1.package</string>
+      <cilist name="SimNameDeepSearch">
+        <string name="0">TSData\Res\NeighborhoodTemplate\D001\Characters\</string>
+      </cilist>
+    </key>
+
+    <!-- Information about Business -->
+    <key name="Business">
+      <int name="Version">3</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 Open For Business</string>
+      <int name="Flag">13</int>
+      <string name="ExeName">Sims2EP3.exe</string>
+      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+      <cilist name="SimNameDeepSearch">
+        <string name="0">TSData\Res\NeighborhoodTemplate\B001\Characters\</string>
+      </cilist>
+    </key>
+
+    <!-- Information about FamilyFun Stuff-->
+    <key name="FamilyFun">
+      <int name="Version">4</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 Family Fun Stuff</string>
+      <int name="Flag">2</int>
+      <string name="ExeName">Sims2SP1.exe</string>
+      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+    </key>
+
+    <!-- Information about Glamour Stuff -->
+    <key name="Glamour">
+      <int name="Version">5</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 Glamour Life Stuff</string>
+      <int name="Flag">2</int>
+      <string name="ExeName">Sims2SP2.exe</string>
+      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+    </key>
+
+  </key>
+</registry>

@@ -135,15 +135,12 @@ namespace SimPe
         private System.Windows.Forms.Button btReload;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.CheckBox cbIncCep;
-        private System.Windows.Forms.CheckBox cbIncGame;
-        private System.Windows.Forms.CheckBox cbIncUni;
-        private System.Windows.Forms.CheckBox cbIncNightlife;
+        
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.LinkLabel linkLabel6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbReport;
         private System.Windows.Forms.CheckBox cbLock;
-        private System.Windows.Forms.CheckBox cbIncBusi;
         private MyPropertyGrid pgPaths;
         private Divelements.Navisight.NavigationButton nbCheck;
         private TD.Eyefinder.HeaderControl hcCheck;
@@ -152,8 +149,6 @@ namespace SimPe
         private Divelements.Navisight.NavigationButton nbCustom;
         private System.Windows.Forms.ComboBox cbCustom;
         private System.Windows.Forms.PropertyGrid pgcustom;
-        private System.Windows.Forms.CheckBox cbIncFF;
-        private CheckBox cbIncGA;
         private System.ComponentModel.IContainer components;
 
         public OptionForm()
@@ -163,7 +158,7 @@ namespace SimPe
             //
             InitializeComponent();
 
-            this.pgPaths.SelectedObject = new SimPe.PathSettings(Helper.WindowsRegistry);
+            this.pgPaths.SelectedObject = SimPe.PathSettings.Global;
 
 
             for (byte i = 1; i < 0x44; i++) this.cblang.Items.Add(new SimPe.PackedFiles.Wrapper.StrLanguage(i));
@@ -180,6 +175,46 @@ namespace SimPe
             foreach (SimPe.Interfaces.ISettings settings in FileTable.SettingsRegistry.Settings)
                 this.cbCustom.Items.Add(settings);
             if (cbCustom.Items.Count > 0) cbCustom.SelectedIndex = 0;
+
+            CreateFileTableCheckboxes();
+        }
+
+        private void CreateFileTableCheckboxes()
+        {
+            int cwd = cbIncCep.Parent.Width - 2 * cbIncCep.Left + 4;
+            cbIncCep.Width = (cwd / 4) - 4;
+            int left = cbIncCep.Right + 4;
+            int top = cbIncCep.Top;
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+            {
+                if (left + cbIncCep.Width > cbIncCep.Parent.Width -  cbIncCep.Left)
+                {
+                    left = cbIncCep.Left;
+                    top += cbIncCep.Height - 2;
+                }
+
+                CheckBox cb = new CheckBox();
+                cb.Parent = cbIncCep.Parent;
+                cb.SetBounds(left, top, cbIncCep.Width, cbIncCep.Height);
+                cb.Tag = ei;
+                cb.Text = SimPe.Localization.GetString("FileTableSectionInclude").Replace("{what}", ei.NameShort);
+                cb.Visible = true;
+                cb.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
+                cb.Font = cbIncCep.Font;
+
+                if (!ei.Exists)
+                {
+                    cb.CheckState = CheckState.Unchecked;
+                    cb.Enabled = false;
+                }
+
+                left += cb.Width + 4;                
+            }
+
+            top += cbIncCep.Height + 2;
+            groupBox8.Height = top;
+            groupBox9.Top = groupBox8.Bottom + 8;
+            groupBox9.Height = hcFileTable.Height - groupBox9.Top - 8;
         }
 
         /// <summary>
@@ -228,26 +263,30 @@ namespace SimPe
             this.button5 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.llsetep1 = new System.Windows.Forms.LinkLabel();
+            this.tbthumb = new System.Windows.Forms.TextBox();
+            this.cbLock = new System.Windows.Forms.CheckBox();
+            this.cbAsync = new System.Windows.Forms.CheckBox();
+            this.cbhidden = new System.Windows.Forms.CheckBox();
+            this.tbscale = new System.Windows.Forms.TextBox();
+            this.llNightlife = new System.Windows.Forms.LinkLabel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.lldds2 = new System.Windows.Forms.LinkLabel();
             this.lldds = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.llsetep1 = new System.Windows.Forms.LinkLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbow = new System.Windows.Forms.CheckBox();
             this.cbshowobjd = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.tbthumb = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbLock = new System.Windows.Forms.CheckBox();
             this.cbReport = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.cbAsync = new System.Windows.Forms.CheckBox();
             this.cbpkgmaint = new System.Windows.Forms.CheckBox();
             this.cbupdate = new System.Windows.Forms.CheckBox();
-            this.cbhidden = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbautobak = new System.Windows.Forms.CheckBox();
             this.cbcache = new System.Windows.Forms.CheckBox();
@@ -262,29 +301,20 @@ namespace SimPe
             this.lladd = new System.Windows.Forms.LinkLabel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.tbscale = new System.Windows.Forms.TextBox();
             this.cbjointname = new System.Windows.Forms.CheckBox();
             this.hcFolders = new TD.Eyefinder.HeaderControl();
             this.pgPaths = new SimPe.MyPropertyGrid();
             this.tbep2 = new System.Windows.Forms.TextBox();
             this.btNightlife = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
-            this.llNightlife = new System.Windows.Forms.LinkLabel();
             this.hcSettings = new TD.Eyefinder.HeaderControl();
-            this.button8 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cbFirefox = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cbThemes = new System.Windows.Forms.ComboBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.hcTools = new TD.Eyefinder.HeaderControl();
             this.hcFileTable = new TD.Eyefinder.HeaderControl();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.cbIncFF = new System.Windows.Forms.CheckBox();
-            this.cbIncBusi = new System.Windows.Forms.CheckBox();
-            this.cbIncNightlife = new System.Windows.Forms.CheckBox();
-            this.cbIncUni = new System.Windows.Forms.CheckBox();
-            this.cbIncGame = new System.Windows.Forms.CheckBox();
             this.cbIncCep = new System.Windows.Forms.CheckBox();
             this.btReload = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -329,7 +359,6 @@ namespace SimPe
             this.baloonTip = new SteepValley.Windows.Forms.XPBalloonTip(this.components);
             this.navigationButton1 = new Divelements.Navisight.NavigationButton();
             this.navigationButton2 = new Divelements.Navisight.NavigationButton();
-            this.cbIncGA = new System.Windows.Forms.CheckBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -352,17 +381,29 @@ namespace SimPe
             // 
             // button1
             // 
+            this.button1.AccessibleDescription = null;
+            this.button1.AccessibleName = null;
             resources.ApplyResources(this.button1, "button1");
+            this.button1.BackgroundImage = null;
+            this.button1.Font = null;
             this.button1.Name = "button1";
+            this.toolTip1.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
             this.button1.Click += new System.EventHandler(this.SaveOptionsClick);
             // 
             // tbgame
             // 
+            this.tbgame.AccessibleDescription = null;
+            this.tbgame.AccessibleName = null;
             resources.ApplyResources(this.tbgame, "tbgame");
+            this.tbgame.BackgroundImage = null;
+            this.tbgame.Font = null;
             this.tbgame.Name = "tbgame";
+            this.toolTip1.SetToolTip(this.tbgame, resources.GetString("tbgame.ToolTip"));
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = null;
+            this.label2.AccessibleName = null;
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             this.label2.TabStop = true;
@@ -372,77 +413,135 @@ namespace SimPe
             // 
             // tbsavegame
             // 
+            this.tbsavegame.AccessibleDescription = null;
+            this.tbsavegame.AccessibleName = null;
             resources.ApplyResources(this.tbsavegame, "tbsavegame");
+            this.tbsavegame.BackgroundImage = null;
+            this.tbsavegame.Font = null;
             this.tbsavegame.Name = "tbsavegame";
+            this.toolTip1.SetToolTip(this.tbsavegame, resources.GetString("tbsavegame.ToolTip"));
             // 
             // cbdebug
             // 
+            this.cbdebug.AccessibleDescription = null;
+            this.cbdebug.AccessibleName = null;
             resources.ApplyResources(this.cbdebug, "cbdebug");
+            this.cbdebug.BackgroundImage = null;
             this.cbdebug.Name = "cbdebug";
+            this.toolTip1.SetToolTip(this.cbdebug, resources.GetString("cbdebug.ToolTip"));
             // 
             // cbblur
             // 
+            this.cbblur.AccessibleDescription = null;
+            this.cbblur.AccessibleName = null;
             resources.ApplyResources(this.cbblur, "cbblur");
+            this.cbblur.BackgroundImage = null;
             this.cbblur.Name = "cbblur";
+            this.toolTip1.SetToolTip(this.cbblur, resources.GetString("cbblur.ToolTip"));
             this.cbblur.CheckedChanged += new System.EventHandler(this.cbblur_CheckedChanged);
             // 
             // cbsound
             // 
+            this.cbsound.AccessibleDescription = null;
+            this.cbsound.AccessibleName = null;
             resources.ApplyResources(this.cbsound, "cbsound");
+            this.cbsound.BackgroundImage = null;
             this.cbsound.Name = "cbsound";
+            this.toolTip1.SetToolTip(this.cbsound, resources.GetString("cbsound.ToolTip"));
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = null;
+            this.label1.AccessibleName = null;
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
+            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
             // 
             // lbext
             // 
+            this.lbext.AccessibleDescription = null;
+            this.lbext.AccessibleName = null;
             resources.ApplyResources(this.lbext, "lbext");
+            this.lbext.BackgroundImage = null;
+            this.lbext.Font = null;
             this.lbext.Name = "lbext";
+            this.toolTip1.SetToolTip(this.lbext, resources.GetString("lbext.ToolTip"));
             // 
             // linkLabel1
             // 
+            this.linkLabel1.AccessibleDescription = null;
+            this.linkLabel1.AccessibleName = null;
             resources.ApplyResources(this.linkLabel1, "linkLabel1");
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.TabStop = true;
+            this.toolTip1.SetToolTip(this.linkLabel1, resources.GetString("linkLabel1.ToolTip"));
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddExt);
             // 
             // linkLabel2
             // 
+            this.linkLabel2.AccessibleDescription = null;
+            this.linkLabel2.AccessibleName = null;
             resources.ApplyResources(this.linkLabel2, "linkLabel2");
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.TabStop = true;
+            this.toolTip1.SetToolTip(this.linkLabel2, resources.GetString("linkLabel2.ToolTip"));
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DeleteExt);
+            // 
+            // fbd
+            // 
+            resources.ApplyResources(this.fbd, "fbd");
             // 
             // button2
             // 
+            this.button2.AccessibleDescription = null;
+            this.button2.AccessibleName = null;
             resources.ApplyResources(this.button2, "button2");
+            this.button2.BackgroundImage = null;
+            this.button2.Font = null;
             this.button2.Name = "button2";
+            this.toolTip1.SetToolTip(this.button2, resources.GetString("button2.ToolTip"));
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
+            this.button3.AccessibleDescription = null;
+            this.button3.AccessibleName = null;
             resources.ApplyResources(this.button3, "button3");
+            this.button3.BackgroundImage = null;
+            this.button3.Font = null;
             this.button3.Name = "button3";
+            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
+            this.button4.AccessibleDescription = null;
+            this.button4.AccessibleName = null;
             resources.ApplyResources(this.button4, "button4");
+            this.button4.BackgroundImage = null;
+            this.button4.Font = null;
             this.button4.Name = "button4";
+            this.toolTip1.SetToolTip(this.button4, resources.GetString("button4.ToolTip"));
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // tbdds
             // 
+            this.tbdds.AccessibleDescription = null;
+            this.tbdds.AccessibleName = null;
             resources.ApplyResources(this.tbdds, "tbdds");
+            this.tbdds.BackgroundImage = null;
+            this.tbdds.Font = null;
             this.tbdds.Name = "tbdds";
+            this.toolTip1.SetToolTip(this.tbdds, resources.GetString("tbdds.ToolTip"));
             this.tbdds.TextChanged += new System.EventHandler(this.DDSChanged);
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = null;
+            this.label5.AccessibleName = null;
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
+            this.toolTip1.SetToolTip(this.label5, resources.GetString("label5.ToolTip"));
             // 
             // ofd
             // 
@@ -450,17 +549,29 @@ namespace SimPe
             // 
             // tbep1
             // 
+            this.tbep1.AccessibleDescription = null;
+            this.tbep1.AccessibleName = null;
             resources.ApplyResources(this.tbep1, "tbep1");
+            this.tbep1.BackgroundImage = null;
+            this.tbep1.Font = null;
             this.tbep1.Name = "tbep1";
+            this.toolTip1.SetToolTip(this.tbep1, resources.GetString("tbep1.ToolTip"));
             // 
             // button5
             // 
+            this.button5.AccessibleDescription = null;
+            this.button5.AccessibleName = null;
             resources.ApplyResources(this.button5, "button5");
+            this.button5.BackgroundImage = null;
+            this.button5.Font = null;
             this.button5.Name = "button5";
+            this.toolTip1.SetToolTip(this.button5, resources.GetString("button5.ToolTip"));
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // linkLabel4
             // 
+            this.linkLabel4.AccessibleDescription = null;
+            this.linkLabel4.AccessibleName = null;
             resources.ApplyResources(this.linkLabel4, "linkLabel4");
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.TabStop = true;
@@ -468,41 +579,10 @@ namespace SimPe
             this.linkLabel4.UseCompatibleTextRendering = true;
             this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
-            // lldds2
-            // 
-            this.lldds2.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.lldds2, "lldds2");
-            this.lldds2.ForeColor = System.Drawing.Color.Gray;
-            this.lldds2.LinkColor = System.Drawing.Color.Red;
-            this.lldds2.Name = "lldds2";
-            this.lldds2.TabStop = true;
-            this.lldds2.UseCompatibleTextRendering = true;
-            this.lldds2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LoadDDS);
-            // 
-            // lldds
-            // 
-            this.lldds.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.lldds, "lldds");
-            this.lldds.ForeColor = System.Drawing.Color.Gray;
-            this.lldds.Name = "lldds";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
             // llsetep1
             // 
+            this.llsetep1.AccessibleDescription = null;
+            this.llsetep1.AccessibleName = null;
             resources.ApplyResources(this.llsetep1, "llsetep1");
             this.llsetep1.Name = "llsetep1";
             this.llsetep1.TabStop = true;
@@ -510,46 +590,190 @@ namespace SimPe
             this.llsetep1.UseCompatibleTextRendering = true;
             this.llsetep1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.visualStyleLinkLabel1_LinkClicked);
             // 
+            // tbthumb
+            // 
+            this.tbthumb.AccessibleDescription = null;
+            this.tbthumb.AccessibleName = null;
+            resources.ApplyResources(this.tbthumb, "tbthumb");
+            this.tbthumb.BackgroundImage = null;
+            this.tbthumb.Name = "tbthumb";
+            this.toolTip1.SetToolTip(this.tbthumb, resources.GetString("tbthumb.ToolTip"));
+            // 
+            // cbLock
+            // 
+            this.cbLock.AccessibleDescription = null;
+            this.cbLock.AccessibleName = null;
+            resources.ApplyResources(this.cbLock, "cbLock");
+            this.cbLock.BackgroundImage = null;
+            this.cbLock.Name = "cbLock";
+            this.toolTip1.SetToolTip(this.cbLock, resources.GetString("cbLock.ToolTip"));
+            this.cbLock.CheckedChanged += new System.EventHandler(this.cbLock_CheckedChanged);
+            // 
+            // cbAsync
+            // 
+            this.cbAsync.AccessibleDescription = null;
+            this.cbAsync.AccessibleName = null;
+            resources.ApplyResources(this.cbAsync, "cbAsync");
+            this.cbAsync.BackgroundImage = null;
+            this.cbAsync.Name = "cbAsync";
+            this.toolTip1.SetToolTip(this.cbAsync, resources.GetString("cbAsync.ToolTip"));
+            // 
+            // cbhidden
+            // 
+            this.cbhidden.AccessibleDescription = null;
+            this.cbhidden.AccessibleName = null;
+            resources.ApplyResources(this.cbhidden, "cbhidden");
+            this.cbhidden.BackgroundImage = null;
+            this.cbhidden.Name = "cbhidden";
+            this.toolTip1.SetToolTip(this.cbhidden, resources.GetString("cbhidden.ToolTip"));
+            // 
+            // tbscale
+            // 
+            this.tbscale.AccessibleDescription = null;
+            this.tbscale.AccessibleName = null;
+            resources.ApplyResources(this.tbscale, "tbscale");
+            this.tbscale.BackgroundImage = null;
+            this.tbscale.Name = "tbscale";
+            this.toolTip1.SetToolTip(this.tbscale, resources.GetString("tbscale.ToolTip"));
+            // 
+            // llNightlife
+            // 
+            this.llNightlife.AccessibleDescription = null;
+            this.llNightlife.AccessibleName = null;
+            resources.ApplyResources(this.llNightlife, "llNightlife");
+            this.llNightlife.Name = "llNightlife";
+            this.llNightlife.TabStop = true;
+            this.toolTip1.SetToolTip(this.llNightlife, resources.GetString("llNightlife.ToolTip"));
+            this.llNightlife.UseCompatibleTextRendering = true;
+            this.llNightlife.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llNightlife_LinkClicked);
+            // 
+            // button8
+            // 
+            this.button8.AccessibleDescription = null;
+            this.button8.AccessibleName = null;
+            resources.ApplyResources(this.button8, "button8");
+            this.button8.BackgroundImage = null;
+            this.button8.Font = null;
+            this.button8.Name = "button8";
+            this.toolTip1.SetToolTip(this.button8, resources.GetString("button8.ToolTip"));
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button7
+            // 
+            this.button7.AccessibleDescription = null;
+            this.button7.AccessibleName = null;
+            resources.ApplyResources(this.button7, "button7");
+            this.button7.BackgroundImage = null;
+            this.button7.Name = "button7";
+            this.toolTip1.SetToolTip(this.button7, resources.GetString("button7.ToolTip"));
+            this.button7.Click += new System.EventHandler(this.ResetLayoutClick);
+            // 
+            // lldds2
+            // 
+            this.lldds2.AccessibleDescription = null;
+            this.lldds2.AccessibleName = null;
+            resources.ApplyResources(this.lldds2, "lldds2");
+            this.lldds2.BackColor = System.Drawing.SystemColors.Window;
+            this.lldds2.ForeColor = System.Drawing.Color.Gray;
+            this.lldds2.LinkColor = System.Drawing.Color.Red;
+            this.lldds2.Name = "lldds2";
+            this.lldds2.TabStop = true;
+            this.toolTip1.SetToolTip(this.lldds2, resources.GetString("lldds2.ToolTip"));
+            this.lldds2.UseCompatibleTextRendering = true;
+            this.lldds2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LoadDDS);
+            // 
+            // lldds
+            // 
+            this.lldds.AccessibleDescription = null;
+            this.lldds.AccessibleName = null;
+            resources.ApplyResources(this.lldds, "lldds");
+            this.lldds.BackColor = System.Drawing.SystemColors.Window;
+            this.lldds.ForeColor = System.Drawing.Color.Gray;
+            this.lldds.Name = "lldds";
+            this.toolTip1.SetToolTip(this.lldds, resources.GetString("lldds.ToolTip"));
+            // 
+            // label7
+            // 
+            this.label7.AccessibleDescription = null;
+            this.label7.AccessibleName = null;
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            this.toolTip1.SetToolTip(this.label7, resources.GetString("label7.ToolTip"));
+            // 
+            // label6
+            // 
+            this.label6.AccessibleDescription = null;
+            this.label6.AccessibleName = null;
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            this.toolTip1.SetToolTip(this.label6, resources.GetString("label6.ToolTip"));
+            // 
+            // label3
+            // 
+            this.label3.AccessibleDescription = null;
+            this.label3.AccessibleName = null;
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
+            // 
             // groupBox3
             // 
+            this.groupBox3.AccessibleDescription = null;
+            this.groupBox3.AccessibleName = null;
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.BackgroundImage = null;
             this.groupBox3.Controls.Add(this.cbow);
             this.groupBox3.Controls.Add(this.cbshowobjd);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.tbthumb);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox3, resources.GetString("groupBox3.ToolTip"));
             // 
             // cbow
             // 
+            this.cbow.AccessibleDescription = null;
+            this.cbow.AccessibleName = null;
             resources.ApplyResources(this.cbow, "cbow");
+            this.cbow.BackgroundImage = null;
             this.cbow.Name = "cbow";
+            this.toolTip1.SetToolTip(this.cbow, resources.GetString("cbow.ToolTip"));
             // 
             // cbshowobjd
             // 
+            this.cbshowobjd.AccessibleDescription = null;
+            this.cbshowobjd.AccessibleName = null;
             resources.ApplyResources(this.cbshowobjd, "cbshowobjd");
+            this.cbshowobjd.BackgroundImage = null;
             this.cbshowobjd.Name = "cbshowobjd";
+            this.toolTip1.SetToolTip(this.cbshowobjd, resources.GetString("cbshowobjd.ToolTip"));
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = null;
+            this.label8.AccessibleName = null;
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            // 
-            // tbthumb
-            // 
-            resources.ApplyResources(this.tbthumb, "tbthumb");
-            this.tbthumb.Name = "tbthumb";
-            this.toolTip1.SetToolTip(this.tbthumb, resources.GetString("tbthumb.ToolTip"));
+            this.toolTip1.SetToolTip(this.label8, resources.GetString("label8.ToolTip"));
             // 
             // button6
             // 
+            this.button6.AccessibleDescription = null;
+            this.button6.AccessibleName = null;
             resources.ApplyResources(this.button6, "button6");
+            this.button6.BackgroundImage = null;
+            this.button6.Font = null;
             this.button6.Name = "button6";
+            this.toolTip1.SetToolTip(this.button6, resources.GetString("button6.ToolTip"));
             this.button6.Click += new System.EventHandler(this.ClearCaches);
             // 
             // groupBox2
             // 
+            this.groupBox2.AccessibleDescription = null;
+            this.groupBox2.AccessibleName = null;
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.BackgroundImage = null;
             this.groupBox2.Controls.Add(this.cbLock);
             this.groupBox2.Controls.Add(this.cbReport);
             this.groupBox2.Controls.Add(this.label9);
@@ -564,152 +788,201 @@ namespace SimPe
             this.groupBox2.Controls.Add(this.cbsilent);
             this.groupBox2.Controls.Add(this.cbwait);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
-            // 
-            // cbLock
-            // 
-            resources.ApplyResources(this.cbLock, "cbLock");
-            this.cbLock.Name = "cbLock";
-            this.toolTip1.SetToolTip(this.cbLock, resources.GetString("cbLock.ToolTip"));
-            this.cbLock.CheckedChanged += new System.EventHandler(this.cbLock_CheckedChanged);
+            this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
             // 
             // cbReport
             // 
+            this.cbReport.AccessibleDescription = null;
+            this.cbReport.AccessibleName = null;
             resources.ApplyResources(this.cbReport, "cbReport");
+            this.cbReport.BackgroundImage = null;
             this.cbReport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbReport.Name = "cbReport";
+            this.toolTip1.SetToolTip(this.cbReport, resources.GetString("cbReport.ToolTip"));
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = null;
+            this.label9.AccessibleName = null;
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            // 
-            // cbAsync
-            // 
-            resources.ApplyResources(this.cbAsync, "cbAsync");
-            this.cbAsync.Name = "cbAsync";
-            this.toolTip1.SetToolTip(this.cbAsync, resources.GetString("cbAsync.ToolTip"));
+            this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
             // 
             // cbpkgmaint
             // 
+            this.cbpkgmaint.AccessibleDescription = null;
+            this.cbpkgmaint.AccessibleName = null;
             resources.ApplyResources(this.cbpkgmaint, "cbpkgmaint");
+            this.cbpkgmaint.BackgroundImage = null;
             this.cbpkgmaint.Name = "cbpkgmaint";
+            this.toolTip1.SetToolTip(this.cbpkgmaint, resources.GetString("cbpkgmaint.ToolTip"));
             // 
             // cbupdate
             // 
+            this.cbupdate.AccessibleDescription = null;
+            this.cbupdate.AccessibleName = null;
             resources.ApplyResources(this.cbupdate, "cbupdate");
+            this.cbupdate.BackgroundImage = null;
             this.cbupdate.Name = "cbupdate";
-            // 
-            // cbhidden
-            // 
-            resources.ApplyResources(this.cbhidden, "cbhidden");
-            this.cbhidden.Name = "cbhidden";
-            this.toolTip1.SetToolTip(this.cbhidden, resources.GetString("cbhidden.ToolTip"));
+            this.toolTip1.SetToolTip(this.cbupdate, resources.GetString("cbupdate.ToolTip"));
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = null;
+            this.label4.AccessibleName = null;
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
+            this.toolTip1.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
             // 
             // cbautobak
             // 
+            this.cbautobak.AccessibleDescription = null;
+            this.cbautobak.AccessibleName = null;
             resources.ApplyResources(this.cbautobak, "cbautobak");
+            this.cbautobak.BackgroundImage = null;
             this.cbautobak.Name = "cbautobak";
+            this.toolTip1.SetToolTip(this.cbautobak, resources.GetString("cbautobak.ToolTip"));
             // 
             // cbcache
             // 
+            this.cbcache.AccessibleDescription = null;
+            this.cbcache.AccessibleName = null;
             resources.ApplyResources(this.cbcache, "cbcache");
+            this.cbcache.BackgroundImage = null;
             this.cbcache.Name = "cbcache";
+            this.toolTip1.SetToolTip(this.cbcache, resources.GetString("cbcache.ToolTip"));
             // 
             // cblang
             // 
+            this.cblang.AccessibleDescription = null;
+            this.cblang.AccessibleName = null;
             resources.ApplyResources(this.cblang, "cblang");
+            this.cblang.BackgroundImage = null;
             this.cblang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cblang.Name = "cblang";
+            this.toolTip1.SetToolTip(this.cblang, resources.GetString("cblang.ToolTip"));
             // 
             // cbsilent
             // 
+            this.cbsilent.AccessibleDescription = null;
+            this.cbsilent.AccessibleName = null;
             resources.ApplyResources(this.cbsilent, "cbsilent");
+            this.cbsilent.BackgroundImage = null;
             this.cbsilent.Name = "cbsilent";
+            this.toolTip1.SetToolTip(this.cbsilent, resources.GetString("cbsilent.ToolTip"));
             // 
             // cbwait
             // 
+            this.cbwait.AccessibleDescription = null;
+            this.cbwait.AccessibleName = null;
             resources.ApplyResources(this.cbwait, "cbwait");
+            this.cbwait.BackgroundImage = null;
             this.cbwait.Name = "cbwait";
+            this.toolTip1.SetToolTip(this.cbwait, resources.GetString("cbwait.ToolTip"));
             // 
             // cbSimple
             // 
+            this.cbSimple.AccessibleDescription = null;
+            this.cbSimple.AccessibleName = null;
             resources.ApplyResources(this.cbSimple, "cbSimple");
+            this.cbSimple.BackgroundImage = null;
             this.cbSimple.Name = "cbSimple";
+            this.toolTip1.SetToolTip(this.cbSimple, resources.GetString("cbSimple.ToolTip"));
             // 
             // cbmulti
             // 
+            this.cbmulti.AccessibleDescription = null;
+            this.cbmulti.AccessibleName = null;
             resources.ApplyResources(this.cbmulti, "cbmulti");
+            this.cbmulti.BackgroundImage = null;
             this.cbmulti.Name = "cbmulti";
+            this.toolTip1.SetToolTip(this.cbmulti, resources.GetString("cbmulti.ToolTip"));
             this.cbmulti.CheckedChanged += new System.EventHandler(this.cbmulti_CheckedChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = null;
+            this.groupBox1.AccessibleName = null;
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.BackgroundImage = null;
             this.groupBox1.Controls.Add(this.cbdebug);
             this.groupBox1.Controls.Add(this.cbblur);
             this.groupBox1.Controls.Add(this.cbsound);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
             // 
             // lladddown
             // 
+            this.lladddown.AccessibleDescription = null;
+            this.lladddown.AccessibleName = null;
             resources.ApplyResources(this.lladddown, "lladddown");
             this.lladddown.Name = "lladddown";
             this.lladddown.TabStop = true;
+            this.toolTip1.SetToolTip(this.lladddown, resources.GetString("lladddown.ToolTip"));
             this.lladddown.UseCompatibleTextRendering = true;
             this.lladddown.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lladddown_LinkClicked);
             // 
             // lldel
             // 
+            this.lldel.AccessibleDescription = null;
+            this.lldel.AccessibleName = null;
             resources.ApplyResources(this.lldel, "lldel");
             this.lldel.Name = "lldel";
             this.lldel.TabStop = true;
+            this.toolTip1.SetToolTip(this.lldel, resources.GetString("lldel.ToolTip"));
             this.lldel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lldel_LinkClicked);
             // 
             // lladd
             // 
+            this.lladd.AccessibleDescription = null;
+            this.lladd.AccessibleName = null;
             resources.ApplyResources(this.lladd, "lladd");
             this.lladd.Name = "lladd";
             this.lladd.TabStop = true;
+            this.toolTip1.SetToolTip(this.lladd, resources.GetString("lladd.ToolTip"));
             this.lladd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lladd_LinkClicked);
             // 
             // groupBox4
             // 
+            this.groupBox4.AccessibleDescription = null;
+            this.groupBox4.AccessibleName = null;
             resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.BackgroundImage = null;
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.tbscale);
             this.groupBox4.Controls.Add(this.cbjointname);
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox4, resources.GetString("groupBox4.ToolTip"));
             // 
             // label10
             // 
+            this.label10.AccessibleDescription = null;
+            this.label10.AccessibleName = null;
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            // 
-            // tbscale
-            // 
-            resources.ApplyResources(this.tbscale, "tbscale");
-            this.tbscale.Name = "tbscale";
-            this.toolTip1.SetToolTip(this.tbscale, resources.GetString("tbscale.ToolTip"));
+            this.toolTip1.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
             // 
             // cbjointname
             // 
+            this.cbjointname.AccessibleDescription = null;
+            this.cbjointname.AccessibleName = null;
             resources.ApplyResources(this.cbjointname, "cbjointname");
+            this.cbjointname.BackgroundImage = null;
             this.cbjointname.Name = "cbjointname";
+            this.toolTip1.SetToolTip(this.cbjointname, resources.GetString("cbjointname.ToolTip"));
             // 
             // hcFolders
             // 
+            this.hcFolders.AccessibleDescription = null;
+            this.hcFolders.AccessibleName = null;
+            resources.ApplyResources(this.hcFolders, "hcFolders");
+            this.hcFolders.BackgroundImage = null;
             this.hcFolders.Controls.Add(this.pgPaths);
             this.hcFolders.Controls.Add(this.tbep2);
             this.hcFolders.Controls.Add(this.btNightlife);
@@ -732,45 +1005,59 @@ namespace SimPe
             this.hcFolders.Controls.Add(this.label3);
             this.hcFolders.Controls.Add(this.llsetep1);
             this.hcFolders.Controls.Add(this.label2);
+            this.hcFolders.Font = null;
             this.hcFolders.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.hcFolders, "hcFolders");
             this.hcFolders.Name = "hcFolders";
+            this.toolTip1.SetToolTip(this.hcFolders, resources.GetString("hcFolders.ToolTip"));
             // 
             // pgPaths
             // 
-            this.pgPaths.CommandsBackColor = System.Drawing.SystemColors.Window;
-            this.pgPaths.LineColor = System.Drawing.SystemColors.ScrollBar;
+            this.pgPaths.AccessibleDescription = null;
+            this.pgPaths.AccessibleName = null;
             resources.ApplyResources(this.pgPaths, "pgPaths");
+            this.pgPaths.BackgroundImage = null;
+            this.pgPaths.CommandsBackColor = System.Drawing.SystemColors.Window;
+            this.pgPaths.Font = null;
+            this.pgPaths.LineColor = System.Drawing.SystemColors.ScrollBar;
             this.pgPaths.Name = "pgPaths";
             this.pgPaths.ToolbarVisible = false;
+            this.toolTip1.SetToolTip(this.pgPaths, resources.GetString("pgPaths.ToolTip"));
             // 
             // tbep2
             // 
+            this.tbep2.AccessibleDescription = null;
+            this.tbep2.AccessibleName = null;
             resources.ApplyResources(this.tbep2, "tbep2");
+            this.tbep2.BackgroundImage = null;
+            this.tbep2.Font = null;
             this.tbep2.Name = "tbep2";
+            this.toolTip1.SetToolTip(this.tbep2, resources.GetString("tbep2.ToolTip"));
             // 
             // btNightlife
             // 
+            this.btNightlife.AccessibleDescription = null;
+            this.btNightlife.AccessibleName = null;
             resources.ApplyResources(this.btNightlife, "btNightlife");
+            this.btNightlife.BackgroundImage = null;
+            this.btNightlife.Font = null;
             this.btNightlife.Name = "btNightlife";
+            this.toolTip1.SetToolTip(this.btNightlife, resources.GetString("btNightlife.ToolTip"));
             this.btNightlife.Click += new System.EventHandler(this.btNightlife_Click);
             // 
             // label14
             // 
+            this.label14.AccessibleDescription = null;
+            this.label14.AccessibleName = null;
             resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
-            // 
-            // llNightlife
-            // 
-            resources.ApplyResources(this.llNightlife, "llNightlife");
-            this.llNightlife.Name = "llNightlife";
-            this.llNightlife.TabStop = true;
-            this.toolTip1.SetToolTip(this.llNightlife, resources.GetString("llNightlife.ToolTip"));
-            this.llNightlife.UseCompatibleTextRendering = true;
-            this.llNightlife.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llNightlife_LinkClicked);
+            this.toolTip1.SetToolTip(this.label14, resources.GetString("label14.ToolTip"));
             // 
             // hcSettings
             // 
+            this.hcSettings.AccessibleDescription = null;
+            this.hcSettings.AccessibleName = null;
+            resources.ApplyResources(this.hcSettings, "hcSettings");
+            this.hcSettings.BackgroundImage = null;
             this.hcSettings.Controls.Add(this.button8);
             this.hcSettings.Controls.Add(this.groupBox6);
             this.hcSettings.Controls.Add(this.groupBox5);
@@ -779,131 +1066,124 @@ namespace SimPe
             this.hcSettings.Controls.Add(this.groupBox1);
             this.hcSettings.Controls.Add(this.groupBox3);
             this.hcSettings.Controls.Add(this.button7);
+            this.hcSettings.Font = null;
             this.hcSettings.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.hcSettings, "hcSettings");
             this.hcSettings.Name = "hcSettings";
-            // 
-            // button8
-            // 
-            resources.ApplyResources(this.button8, "button8");
-            this.button8.Name = "button8";
-            this.toolTip1.SetToolTip(this.button8, resources.GetString("button8.ToolTip"));
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.toolTip1.SetToolTip(this.hcSettings, resources.GetString("hcSettings.ToolTip"));
             // 
             // groupBox6
             // 
+            this.groupBox6.AccessibleDescription = null;
+            this.groupBox6.AccessibleName = null;
             resources.ApplyResources(this.groupBox6, "groupBox6");
+            this.groupBox6.BackgroundImage = null;
             this.groupBox6.Controls.Add(this.cbFirefox);
             this.groupBox6.Controls.Add(this.cbSimple);
             this.groupBox6.Controls.Add(this.cbmulti);
             this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox6, resources.GetString("groupBox6.ToolTip"));
             // 
             // cbFirefox
             // 
+            this.cbFirefox.AccessibleDescription = null;
+            this.cbFirefox.AccessibleName = null;
             resources.ApplyResources(this.cbFirefox, "cbFirefox");
+            this.cbFirefox.BackgroundImage = null;
             this.cbFirefox.Name = "cbFirefox";
+            this.toolTip1.SetToolTip(this.cbFirefox, resources.GetString("cbFirefox.ToolTip"));
             // 
             // groupBox5
             // 
+            this.groupBox5.AccessibleDescription = null;
+            this.groupBox5.AccessibleName = null;
             resources.ApplyResources(this.groupBox5, "groupBox5");
+            this.groupBox5.BackgroundImage = null;
             this.groupBox5.Controls.Add(this.cbThemes);
             this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox5, resources.GetString("groupBox5.ToolTip"));
             // 
             // cbThemes
             // 
+            this.cbThemes.AccessibleDescription = null;
+            this.cbThemes.AccessibleName = null;
             resources.ApplyResources(this.cbThemes, "cbThemes");
+            this.cbThemes.BackgroundImage = null;
             this.cbThemes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbThemes.Name = "cbThemes";
+            this.toolTip1.SetToolTip(this.cbThemes, resources.GetString("cbThemes.ToolTip"));
             this.cbThemes.SelectedIndexChanged += new System.EventHandler(this.ChangedThemeHandler);
-            // 
-            // button7
-            // 
-            resources.ApplyResources(this.button7, "button7");
-            this.button7.Name = "button7";
-            this.toolTip1.SetToolTip(this.button7, resources.GetString("button7.ToolTip"));
-            this.button7.Click += new System.EventHandler(this.ResetLayoutClick);
             // 
             // hcTools
             // 
+            this.hcTools.AccessibleDescription = null;
+            this.hcTools.AccessibleName = null;
+            resources.ApplyResources(this.hcTools, "hcTools");
+            this.hcTools.BackgroundImage = null;
             this.hcTools.Controls.Add(this.lbext);
             this.hcTools.Controls.Add(this.linkLabel1);
             this.hcTools.Controls.Add(this.linkLabel2);
             this.hcTools.Controls.Add(this.label1);
+            this.hcTools.Font = null;
             this.hcTools.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.hcTools, "hcTools");
             this.hcTools.Name = "hcTools";
+            this.toolTip1.SetToolTip(this.hcTools, resources.GetString("hcTools.ToolTip"));
             // 
             // hcFileTable
             // 
+            this.hcFileTable.AccessibleDescription = null;
+            this.hcFileTable.AccessibleName = null;
+            resources.ApplyResources(this.hcFileTable, "hcFileTable");
+            this.hcFileTable.BackgroundImage = null;
             this.hcFileTable.Controls.Add(this.groupBox8);
             this.hcFileTable.Controls.Add(this.btReload);
             this.hcFileTable.Controls.Add(this.groupBox9);
+            this.hcFileTable.Font = null;
             this.hcFileTable.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.hcFileTable, "hcFileTable");
             this.hcFileTable.Name = "hcFileTable";
+            this.toolTip1.SetToolTip(this.hcFileTable, resources.GetString("hcFileTable.ToolTip"));
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.cbIncGA);
-            this.groupBox8.Controls.Add(this.cbIncFF);
-            this.groupBox8.Controls.Add(this.cbIncBusi);
-            this.groupBox8.Controls.Add(this.cbIncNightlife);
-            this.groupBox8.Controls.Add(this.cbIncUni);
-            this.groupBox8.Controls.Add(this.cbIncGame);
+            this.groupBox8.AccessibleDescription = null;
+            this.groupBox8.AccessibleName = null;
+            resources.ApplyResources(this.groupBox8, "groupBox8");
+            this.groupBox8.BackgroundImage = null;
             this.groupBox8.Controls.Add(this.cbIncCep);
             this.groupBox8.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(this.groupBox8, "groupBox8");
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.TabStop = false;
-            // 
-            // cbIncFF
-            // 
-            resources.ApplyResources(this.cbIncFF, "cbIncFF");
-            this.cbIncFF.Name = "cbIncFF";
-            this.cbIncFF.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
-            // 
-            // cbIncBusi
-            // 
-            resources.ApplyResources(this.cbIncBusi, "cbIncBusi");
-            this.cbIncBusi.Name = "cbIncBusi";
-            this.cbIncBusi.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
-            // 
-            // cbIncNightlife
-            // 
-            resources.ApplyResources(this.cbIncNightlife, "cbIncNightlife");
-            this.cbIncNightlife.Name = "cbIncNightlife";
-            this.cbIncNightlife.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
-            // 
-            // cbIncUni
-            // 
-            resources.ApplyResources(this.cbIncUni, "cbIncUni");
-            this.cbIncUni.Name = "cbIncUni";
-            this.cbIncUni.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
-            // 
-            // cbIncGame
-            // 
-            resources.ApplyResources(this.cbIncGame, "cbIncGame");
-            this.cbIncGame.Name = "cbIncGame";
-            this.cbIncGame.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
+            this.toolTip1.SetToolTip(this.groupBox8, resources.GetString("groupBox8.ToolTip"));
             // 
             // cbIncCep
             // 
+            this.cbIncCep.AccessibleDescription = null;
+            this.cbIncCep.AccessibleName = null;
             resources.ApplyResources(this.cbIncCep, "cbIncCep");
+            this.cbIncCep.BackgroundImage = null;
             this.cbIncCep.Name = "cbIncCep";
+            this.toolTip1.SetToolTip(this.cbIncCep, resources.GetString("cbIncCep.ToolTip"));
             this.cbIncCep.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
             // 
             // btReload
             // 
+            this.btReload.AccessibleDescription = null;
+            this.btReload.AccessibleName = null;
             resources.ApplyResources(this.btReload, "btReload");
+            this.btReload.BackgroundImage = null;
             this.btReload.Name = "btReload";
+            this.toolTip1.SetToolTip(this.btReload, resources.GetString("btReload.ToolTip"));
             this.btReload.Click += new System.EventHandler(this.btReload_Click);
             // 
             // groupBox9
             // 
+            this.groupBox9.AccessibleDescription = null;
+            this.groupBox9.AccessibleName = null;
+            resources.ApplyResources(this.groupBox9, "groupBox9");
+            this.groupBox9.BackgroundImage = null;
             this.groupBox9.Controls.Add(this.btup);
             this.groupBox9.Controls.Add(this.btdn);
             this.groupBox9.Controls.Add(this.linkLabel6);
@@ -912,75 +1192,113 @@ namespace SimPe
             this.groupBox9.Controls.Add(this.lbfolder);
             this.groupBox9.Controls.Add(this.llchg);
             this.groupBox9.Controls.Add(this.lladd);
-            resources.ApplyResources(this.groupBox9, "groupBox9");
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox9, resources.GetString("groupBox9.ToolTip"));
             // 
             // btup
             // 
+            this.btup.AccessibleDescription = null;
+            this.btup.AccessibleName = null;
             resources.ApplyResources(this.btup, "btup");
+            this.btup.BackgroundImage = null;
             this.btup.Name = "btup";
+            this.toolTip1.SetToolTip(this.btup, resources.GetString("btup.ToolTip"));
             this.btup.Click += new System.EventHandler(this.btup_Click);
             // 
             // btdn
             // 
+            this.btdn.AccessibleDescription = null;
+            this.btdn.AccessibleName = null;
             resources.ApplyResources(this.btdn, "btdn");
+            this.btdn.BackgroundImage = null;
             this.btdn.Name = "btdn";
+            this.toolTip1.SetToolTip(this.btdn, resources.GetString("btdn.ToolTip"));
             this.btdn.Click += new System.EventHandler(this.btdn_Click);
             // 
             // linkLabel6
             // 
+            this.linkLabel6.AccessibleDescription = null;
+            this.linkLabel6.AccessibleName = null;
             resources.ApplyResources(this.linkLabel6, "linkLabel6");
             this.linkLabel6.Name = "linkLabel6";
             this.linkLabel6.TabStop = true;
+            this.toolTip1.SetToolTip(this.linkLabel6, resources.GetString("linkLabel6.ToolTip"));
             this.linkLabel6.UseCompatibleTextRendering = true;
             this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
             // 
             // lbfolder
             // 
+            this.lbfolder.AccessibleDescription = null;
+            this.lbfolder.AccessibleName = null;
             resources.ApplyResources(this.lbfolder, "lbfolder");
+            this.lbfolder.BackgroundImage = null;
             this.lbfolder.Name = "lbfolder";
+            this.toolTip1.SetToolTip(this.lbfolder, resources.GetString("lbfolder.ToolTip"));
             this.lbfolder.SelectedIndexChanged += new System.EventHandler(this.lbfolder_SelectedIndexChanged);
             this.lbfolder.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lbfolder_ItemCheck);
             // 
             // llchg
             // 
+            this.llchg.AccessibleDescription = null;
+            this.llchg.AccessibleName = null;
             resources.ApplyResources(this.llchg, "llchg");
             this.llchg.Name = "llchg";
             this.llchg.TabStop = true;
+            this.toolTip1.SetToolTip(this.llchg, resources.GetString("llchg.ToolTip"));
             this.llchg.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llchg_LinkClicked);
             // 
             // hcSceneGraph
             // 
+            this.hcSceneGraph.AccessibleDescription = null;
+            this.hcSceneGraph.AccessibleName = null;
+            resources.ApplyResources(this.hcSceneGraph, "hcSceneGraph");
+            this.hcSceneGraph.BackgroundImage = null;
             this.hcSceneGraph.Controls.Add(this.groupBox7);
             this.hcSceneGraph.Controls.Add(this.groupBox4);
+            this.hcSceneGraph.Font = null;
             this.hcSceneGraph.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.hcSceneGraph, "hcSceneGraph");
             this.hcSceneGraph.Name = "hcSceneGraph";
+            this.toolTip1.SetToolTip(this.hcSceneGraph, resources.GetString("hcSceneGraph.ToolTip"));
             // 
             // groupBox7
             // 
+            this.groupBox7.AccessibleDescription = null;
+            this.groupBox7.AccessibleName = null;
             resources.ApplyResources(this.groupBox7, "groupBox7");
+            this.groupBox7.BackgroundImage = null;
             this.groupBox7.Controls.Add(this.cbSimTemp);
             this.groupBox7.Controls.Add(this.cbDeep);
             this.groupBox7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox7, resources.GetString("groupBox7.ToolTip"));
             // 
             // cbSimTemp
             // 
+            this.cbSimTemp.AccessibleDescription = null;
+            this.cbSimTemp.AccessibleName = null;
             resources.ApplyResources(this.cbSimTemp, "cbSimTemp");
+            this.cbSimTemp.BackgroundImage = null;
             this.cbSimTemp.Name = "cbSimTemp";
+            this.toolTip1.SetToolTip(this.cbSimTemp, resources.GetString("cbSimTemp.ToolTip"));
             // 
             // cbDeep
             // 
+            this.cbDeep.AccessibleDescription = null;
+            this.cbDeep.AccessibleName = null;
             resources.ApplyResources(this.cbDeep, "cbDeep");
+            this.cbDeep.BackgroundImage = null;
             this.cbDeep.Name = "cbDeep";
+            this.toolTip1.SetToolTip(this.cbDeep, resources.GetString("cbDeep.ToolTip"));
             this.cbDeep.CheckedChanged += new System.EventHandler(this.cbDeep_CheckedChanged);
             // 
             // bb
             // 
+            this.bb.AccessibleDescription = null;
+            this.bb.AccessibleName = null;
             resources.ApplyResources(this.bb, "bb");
+            this.bb.BackgroundImage = null;
             this.bb.Buttons.AddRange(new Divelements.Navisight.NavigationButton[] {
             this.nbFolders,
             this.nbCheck,
@@ -992,7 +1310,9 @@ namespace SimPe
             this.nbTools,
             this.nbIdent});
             this.bb.ButtonSpacing = 16;
+            this.bb.Font = null;
             this.bb.Name = "bb";
+            this.toolTip1.SetToolTip(this.bb, resources.GetString("bb.ToolTip"));
             // 
             // nbFolders
             // 
@@ -1051,33 +1371,57 @@ namespace SimPe
             // 
             // hcPlugins
             // 
+            this.hcPlugins.AccessibleDescription = null;
+            this.hcPlugins.AccessibleName = null;
+            resources.ApplyResources(this.hcPlugins, "hcPlugins");
+            this.hcPlugins.BackgroundImage = null;
             this.hcPlugins.Controls.Add(this.btpup);
             this.hcPlugins.Controls.Add(this.btpdown);
             this.hcPlugins.Controls.Add(this.cnt);
+            this.hcPlugins.Font = null;
             this.hcPlugins.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.hcPlugins, "hcPlugins");
             this.hcPlugins.Name = "hcPlugins";
+            this.toolTip1.SetToolTip(this.hcPlugins, resources.GetString("hcPlugins.ToolTip"));
             // 
             // btpup
             // 
+            this.btpup.AccessibleDescription = null;
+            this.btpup.AccessibleName = null;
             resources.ApplyResources(this.btpup, "btpup");
+            this.btpup.BackgroundImage = null;
+            this.btpup.Font = null;
             this.btpup.Name = "btpup";
+            this.toolTip1.SetToolTip(this.btpup, resources.GetString("btpup.ToolTip"));
             this.btpup.Click += new System.EventHandler(this.btpup_Click);
             // 
             // btpdown
             // 
+            this.btpdown.AccessibleDescription = null;
+            this.btpdown.AccessibleName = null;
             resources.ApplyResources(this.btpdown, "btpdown");
+            this.btpdown.BackgroundImage = null;
+            this.btpdown.Font = null;
             this.btpdown.Name = "btpdown";
+            this.toolTip1.SetToolTip(this.btpdown, resources.GetString("btpdown.ToolTip"));
             this.btpdown.Click += new System.EventHandler(this.btpdown_Click);
             // 
             // cnt
             // 
+            this.cnt.AccessibleDescription = null;
+            this.cnt.AccessibleName = null;
             resources.ApplyResources(this.cnt, "cnt");
             this.cnt.BackColor = System.Drawing.SystemColors.Window;
+            this.cnt.BackgroundImage = null;
+            this.cnt.Font = null;
             this.cnt.Name = "cnt";
+            this.toolTip1.SetToolTip(this.cnt, resources.GetString("cnt.ToolTip"));
             // 
             // hcIdent
             // 
+            this.hcIdent.AccessibleDescription = null;
+            this.hcIdent.AccessibleName = null;
+            resources.ApplyResources(this.hcIdent, "hcIdent");
+            this.hcIdent.BackgroundImage = null;
             this.hcIdent.Controls.Add(this.linkLabel5);
             this.hcIdent.Controls.Add(this.cbValid);
             this.hcIdent.Controls.Add(this.linkLabel3);
@@ -1087,113 +1431,180 @@ namespace SimPe
             this.hcIdent.Controls.Add(this.label12);
             this.hcIdent.Controls.Add(this.tbUsername);
             this.hcIdent.Controls.Add(this.label11);
+            this.hcIdent.Font = null;
             this.hcIdent.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.hcIdent, "hcIdent");
             this.hcIdent.Name = "hcIdent";
+            this.toolTip1.SetToolTip(this.hcIdent, resources.GetString("hcIdent.ToolTip"));
             // 
             // linkLabel5
             // 
+            this.linkLabel5.AccessibleDescription = null;
+            this.linkLabel5.AccessibleName = null;
             resources.ApplyResources(this.linkLabel5, "linkLabel5");
+            this.linkLabel5.Font = null;
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.TabStop = true;
+            this.toolTip1.SetToolTip(this.linkLabel5, resources.GetString("linkLabel5.ToolTip"));
             this.linkLabel5.UseCompatibleTextRendering = true;
             this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
             // 
             // cbValid
             // 
+            this.cbValid.AccessibleDescription = null;
+            this.cbValid.AccessibleName = null;
             resources.ApplyResources(this.cbValid, "cbValid");
+            this.cbValid.BackgroundImage = null;
+            this.cbValid.Font = null;
             this.cbValid.Name = "cbValid";
+            this.toolTip1.SetToolTip(this.cbValid, resources.GetString("cbValid.ToolTip"));
             // 
             // linkLabel3
             // 
+            this.linkLabel3.AccessibleDescription = null;
+            this.linkLabel3.AccessibleName = null;
             resources.ApplyResources(this.linkLabel3, "linkLabel3");
+            this.linkLabel3.Font = null;
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.TabStop = true;
+            this.toolTip1.SetToolTip(this.linkLabel3, resources.GetString("linkLabel3.ToolTip"));
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked_1);
             // 
             // tbUserId
             // 
+            this.tbUserId.AccessibleDescription = null;
+            this.tbUserId.AccessibleName = null;
             resources.ApplyResources(this.tbUserId, "tbUserId");
+            this.tbUserId.BackgroundImage = null;
+            this.tbUserId.Font = null;
             this.tbUserId.Name = "tbUserId";
             this.tbUserId.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.tbUserId, resources.GetString("tbUserId.ToolTip"));
             this.tbUserId.TextChanged += new System.EventHandler(this.tbUserId_TextChanged);
             // 
             // label13
             // 
+            this.label13.AccessibleDescription = null;
+            this.label13.AccessibleName = null;
             resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
+            this.toolTip1.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
             // 
             // tbPassword
             // 
+            this.tbPassword.AccessibleDescription = null;
+            this.tbPassword.AccessibleName = null;
             resources.ApplyResources(this.tbPassword, "tbPassword");
+            this.tbPassword.BackgroundImage = null;
+            this.tbPassword.Font = null;
             this.tbPassword.Name = "tbPassword";
+            this.toolTip1.SetToolTip(this.tbPassword, resources.GetString("tbPassword.ToolTip"));
             this.tbPassword.Leave += new System.EventHandler(this.tbPassword_Leave);
             // 
             // label12
             // 
+            this.label12.AccessibleDescription = null;
+            this.label12.AccessibleName = null;
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
+            this.toolTip1.SetToolTip(this.label12, resources.GetString("label12.ToolTip"));
             // 
             // tbUsername
             // 
+            this.tbUsername.AccessibleDescription = null;
+            this.tbUsername.AccessibleName = null;
             resources.ApplyResources(this.tbUsername, "tbUsername");
+            this.tbUsername.BackgroundImage = null;
+            this.tbUsername.Font = null;
             this.tbUsername.Name = "tbUsername";
+            this.toolTip1.SetToolTip(this.tbUsername, resources.GetString("tbUsername.ToolTip"));
             this.tbUsername.Leave += new System.EventHandler(this.tbPassword_Leave);
             // 
             // label11
             // 
+            this.label11.AccessibleDescription = null;
+            this.label11.AccessibleName = null;
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
+            this.toolTip1.SetToolTip(this.label11, resources.GetString("label11.ToolTip"));
             // 
             // hcCheck
             // 
-            this.hcCheck.Controls.Add(this.checkControl1);
-            this.hcCheck.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.hcCheck.AccessibleDescription = null;
+            this.hcCheck.AccessibleName = null;
             resources.ApplyResources(this.hcCheck, "hcCheck");
+            this.hcCheck.BackgroundImage = null;
+            this.hcCheck.Controls.Add(this.checkControl1);
+            this.hcCheck.Font = null;
+            this.hcCheck.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.hcCheck.Name = "hcCheck";
+            this.toolTip1.SetToolTip(this.hcCheck, resources.GetString("hcCheck.ToolTip"));
             // 
             // checkControl1
             // 
+            this.checkControl1.AccessibleDescription = null;
+            this.checkControl1.AccessibleName = null;
             resources.ApplyResources(this.checkControl1, "checkControl1");
+            this.checkControl1.BackgroundImage = null;
             this.checkControl1.Name = "checkControl1";
+            this.toolTip1.SetToolTip(this.checkControl1, resources.GetString("checkControl1.ToolTip"));
             this.checkControl1.FixedFileTable += new System.EventHandler(this.checkControl1_FixedFileTable);
             // 
             // hcCustom
             // 
+            this.hcCustom.AccessibleDescription = null;
+            this.hcCustom.AccessibleName = null;
+            resources.ApplyResources(this.hcCustom, "hcCustom");
+            this.hcCustom.BackgroundImage = null;
             this.hcCustom.Controls.Add(this.pgcustom);
             this.hcCustom.Controls.Add(this.cbCustom);
+            this.hcCustom.Font = null;
             this.hcCustom.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.hcCustom, "hcCustom");
             this.hcCustom.Name = "hcCustom";
+            this.toolTip1.SetToolTip(this.hcCustom, resources.GetString("hcCustom.ToolTip"));
             // 
             // pgcustom
             // 
+            this.pgcustom.AccessibleDescription = null;
+            this.pgcustom.AccessibleName = null;
             resources.ApplyResources(this.pgcustom, "pgcustom");
+            this.pgcustom.BackgroundImage = null;
             this.pgcustom.CommandsBackColor = System.Drawing.SystemColors.Window;
+            this.pgcustom.Font = null;
             this.pgcustom.LineColor = System.Drawing.SystemColors.ScrollBar;
             this.pgcustom.Name = "pgcustom";
+            this.toolTip1.SetToolTip(this.pgcustom, resources.GetString("pgcustom.ToolTip"));
             // 
             // cbCustom
             // 
+            this.cbCustom.AccessibleDescription = null;
+            this.cbCustom.AccessibleName = null;
             resources.ApplyResources(this.cbCustom, "cbCustom");
+            this.cbCustom.BackgroundImage = null;
             this.cbCustom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCustom.Font = null;
             this.cbCustom.Name = "cbCustom";
+            this.toolTip1.SetToolTip(this.cbCustom, resources.GetString("cbCustom.ToolTip"));
             this.cbCustom.SelectedIndexChanged += new System.EventHandler(this.cbCustom_SelectedIndexChanged);
             // 
             // baloonTip
             // 
             this.baloonTip.Enabled = true;
             // 
-            // cbIncGA
+            // navigationButton1
             // 
-            resources.ApplyResources(this.cbIncGA, "cbIncGA");
-            this.cbIncGA.Name = "cbIncGA";
-            this.cbIncGA.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
+            resources.ApplyResources(this.navigationButton1, "navigationButton1");
+            // 
+            // navigationButton2
+            // 
+            resources.ApplyResources(this.navigationButton2, "navigationButton2");
             // 
             // OptionForm
             // 
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackgroundImage = null;
             this.Controls.Add(this.bb);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.hcFileTable);
@@ -1209,6 +1620,7 @@ namespace SimPe
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "OptionForm";
+            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1242,12 +1654,12 @@ namespace SimPe
         {
             this.Tag = true;
             //linkLabel3.Enabled = (Helper.WindowsRegistry.EPInstalled>=1);
-            tbgame.Text = Helper.WindowsRegistry.SimsPath;
-            tbep1.Text = Helper.WindowsRegistry.SimsEP1Path;
-            tbep2.Text = Helper.WindowsRegistry.SimsEP2Path;
+            tbgame.Text = PathProvider.Global[Expansions.BaseGame].InstallFolder;
+            tbep1.Text = PathProvider.Global[Expansions.University].InstallFolder;
+            tbep2.Text = PathProvider.Global[Expansions.Business].InstallFolder;
             //tbep1.Text = Helper.WindowsRegistry.RealEP1GamePath;
-            tbsavegame.Text = Helper.WindowsRegistry.SimSavegameFolder;
-            tbdds.Text = Helper.WindowsRegistry.NvidiaDDSPath;
+            tbsavegame.Text = PathProvider.Global.SimSavegameFolder;
+            tbdds.Text = PathProvider.Global.NvidiaDDSPath;
             this.cbdebug.Checked = Helper.WindowsRegistry.GameDebug;
             cbautobak.Checked = Helper.WindowsRegistry.AutoBackup;
             cbblur.Checked = Helper.WindowsRegistry.BlurNudity;
@@ -1277,10 +1689,10 @@ namespace SimPe
             this.tbUsername.Text = Helper.WindowsRegistry.Username;
             this.tbPassword.Text = Helper.WindowsRegistry.Password;
 
-            this.tbep1.ReadOnly = (Helper.WindowsRegistry.EPInstalled < 1);
-            this.tbep2.ReadOnly = (Helper.WindowsRegistry.EPInstalled < 2);
-            this.button5.Enabled = (Helper.WindowsRegistry.EPInstalled >= 1);
-            this.btNightlife.Enabled = (Helper.WindowsRegistry.EPInstalled >= 2);
+            this.tbep1.ReadOnly = (PathProvider.Global.EPInstalled < 1);
+            this.tbep2.ReadOnly = (PathProvider.Global.EPInstalled < 2);
+            this.button5.Enabled = (PathProvider.Global.EPInstalled >= 1);
+            this.btNightlife.Enabled = (PathProvider.Global.EPInstalled >= 2);
             llsetep1.Enabled = button5.Enabled;
             llNightlife.Enabled = btNightlife.Enabled;
 
@@ -1327,7 +1739,7 @@ namespace SimPe
             Helper.WindowsRegistry.SimsEP1Path = this.tbep1.Text;
             Helper.WindowsRegistry.SimsEP2Path = this.tbep2.Text;
             Helper.WindowsRegistry.SimSavegameFolder = this.tbsavegame.Text;*/
-            Helper.WindowsRegistry.NvidiaDDSPath = tbdds.Text;
+            PathProvider.Global.NvidiaDDSPath = tbdds.Text;
             Helper.WindowsRegistry.LanguageCode = (Data.MetaData.Languages)cblang.SelectedIndex + 1;
             Helper.WindowsRegistry.GameDebug = cbdebug.Checked;
             Helper.WindowsRegistry.AutoBackup = cbautobak.Checked;
@@ -1412,17 +1824,17 @@ namespace SimPe
 
         private void label2_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            tbgame.Text = Helper.WindowsRegistry.RealGamePath;
+            tbgame.Text = PathProvider.Global[Expansions.BaseGame].RealInstallFolder;
         }
 
         private void linkLabel3_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            tbep1.Text = Helper.WindowsRegistry.RealEP1GamePath;
+            tbep1.Text = PathProvider.Global[Expansions.University].RealInstallFolder;
         }
 
         private void linkLabel4_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            tbsavegame.Text = Helper.WindowsRegistry.RealSavegamePath;
+            tbsavegame.Text = PathProvider.Global.RealSavegamePath;
         }
 
         private void button5_Click(object sender, System.EventArgs e)
@@ -1451,8 +1863,8 @@ namespace SimPe
         private void lladddown_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             FileTableItem fti = new FileTableItem("Downloads", true, false, -1);
-            fti.Name = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads");
-            fti.Type = FileTableItemType.SaveGameFolder;
+            fti.Name = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
+            fti.Type = FileTablePaths.SaveGameFolder;
             lbfolder.Items.Insert(0, fti);
             this.btReload.Enabled = true;
             SetupFileTableCheckboxes();
@@ -1523,61 +1935,45 @@ namespace SimPe
                         if (fti.IsFile) tw.Write("     <file");
                         else tw.Write("     <path");
 
-                        if (fti.Type != FileTableItemType.Absolute)
+                        if (fti.Type != FileTablePaths.Absolute)
                         {
-                            switch (fti.Type)
+                            bool ok = false;
+                            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
                             {
-                                case FileTableItemType.SP2GameFolder:
-                                    {
-                                        tw.Write(" root=\"sp2\"");
-                                        break;
-                                    }
-                                case FileTableItemType.SP1GameFolder:
-                                    {
-                                        tw.Write(" root=\"sp1\"");
-                                        break;
-                                    }
-                                case FileTableItemType.EP3GameFolder:
-                                    {
-                                        tw.Write(" root=\"ep3\"");
-                                        break;
-                                    }
-                                case FileTableItemType.EP2GameFolder:
-                                    {
-                                        tw.Write(" root=\"ep2\"");
-                                        break;
-                                    }
-                                case FileTableItemType.EP1GameFolder:
-                                    {
-                                        tw.Write(" root=\"ep1\"");
-                                        break;
-                                    }
-                                case FileTableItemType.GameFolder:
-                                    {
-                                        tw.Write(" root=\"game\"");
-                                        break;
-                                    }
-                                case FileTableItemType.SaveGameFolder:
-                                    {
-                                        tw.Write(" root=\"save\"");
-                                        break;
-                                    }
-                                case FileTableItemType.SimPEFolder:
-                                    {
-                                        tw.Write(" root=\"simpe\"");
-                                        break;
-                                    }
-                                case FileTableItemType.SimPEDataFolder:
-                                    {
-                                        tw.Write(" root=\"simpeData\"");
-                                        break;
-                                    }
-                                case FileTableItemType.SimPEPluginFolder:
-                                    {
-                                        tw.Write(" root=\"simpePlugin\"");
-                                        break;
-                                    }
-                            } //switch
+                                if (fti.Type == ei.Expansion)
+                                {
+                                    tw.Write(" root=\""+ei.ShortId.ToLower()+"\"");
+                                    ok = true;
+                                    break;
+                                }
+                            }
+                            if (!ok)
+                            {
+                                switch (fti.Type.AsUint)
+                                {
+
+                                    case (uint)FileTablePaths.SaveGameFolder:
+                                        {
+                                            tw.Write(" root=\"save\"");
+                                            break;
+                                        }
+                                    case (uint)FileTablePaths.SimPEFolder:
+                                        {
+                                            tw.Write(" root=\"simpe\"");
+                                            break;
+                                        }
+                                    case (uint)FileTablePaths.SimPEDataFolder:
+                                        {
+                                            tw.Write(" root=\"simpeData\"");
+                                            break;
+                                        }
+                                    case (uint)FileTablePaths.SimPEPluginFolder:
+                                        {
+                                            tw.Write(" root=\"simpePlugin\"");
+                                            break;
+                                        }
+                                } //switch
+                            }
                         }
 
                         if (fti.IsRecursive) tw.Write(" recursive=\"1\"");
@@ -1613,7 +2009,7 @@ namespace SimPe
 
         private void visualStyleLinkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            tbep1.Text = Helper.WindowsRegistry.RealEP1GamePath;
+            tbep1.Text = SimPe.PathProvider.Global[Expansions.University].RealInstallFolder;
         }
 
         void EnablePanel(Divelements.Navisight.NavigationButton panel)
@@ -2240,7 +2636,7 @@ namespace SimPe
 
         private void llNightlife_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            tbep2.Text = Helper.WindowsRegistry.RealEP2GamePath;
+            tbep2.Text = PathProvider.Global[Expansions.Nightlife].RealInstallFolder;
         }
 
         private void btNightlife_Click(object sender, System.EventArgs e)
@@ -2388,7 +2784,7 @@ namespace SimPe
                         fti.EpVersion = FileTableItem.GetEPVersion(fti.Type);
                     }
 
-                    if (FileTableItem.GetEPVersion(fti.Type) == Helper.WindowsRegistry.GameVersion)
+                    if (FileTableItem.GetEPVersion(fti.Type) == PathProvider.Global.GameVersion)
                         fti.EpVersion = FileTableItem.GetEPVersion(fti.Type);
 
                     lbfolder.Items[i] = fti;
@@ -2400,13 +2796,16 @@ namespace SimPe
 
         void SetupFileTableCheckboxes()
         {
-            SetupFileTableCheckboxe(this.cbIncGame, FileTableItemType.GameFolder, false);
-            SetupFileTableCheckboxe(this.cbIncUni, FileTableItemType.EP1GameFolder, false);
-            SetupFileTableCheckboxe(this.cbIncNightlife, FileTableItemType.EP2GameFolder, false);
-            SetupFileTableCheckboxe(this.cbIncBusi, FileTableItemType.EP3GameFolder, false);
-            SetupFileTableCheckboxe(this.cbIncFF, FileTableItemType.SP1GameFolder, false);
-            SetupFileTableCheckboxe(this.cbIncGA, FileTableItemType.SP2GameFolder, false);
-            SetupFileTableCheckboxe(this.cbIncCep, FileTableItemType.Absolute, true);
+            foreach (Control c in cbIncCep.Parent.Controls)
+            {
+                CheckBox cb = c as CheckBox;
+                if (cb == null) continue;
+                if (cb.Tag == null) continue;
+                ExpansionItem ei = cb.Tag as ExpansionItem;
+                SetupFileTableCheckboxe(cb, ei.Expansion, false);
+                
+            }
+            SetupFileTableCheckboxe(this.cbIncCep, FileTablePaths.Absolute, true);
         }
 
         private void cbIncNightlife_CheckedChanged(object sender, System.EventArgs e)
@@ -2415,13 +2814,12 @@ namespace SimPe
             if (this.cbIncCep.Tag != null) return;
 
             btReload.Enabled = true;
-            if (cb == this.cbIncCep) ChangeFileTable(cb, FileTableItemType.Absolute, true);
-            else if (cb == this.cbIncGame) ChangeFileTable(cb, FileTableItemType.GameFolder, false);
-            else if (cb == this.cbIncUni) ChangeFileTable(cb, FileTableItemType.EP1GameFolder, false);
-            else if (cb == this.cbIncNightlife) ChangeFileTable(cb, FileTableItemType.EP2GameFolder, false);
-            else if (cb == this.cbIncBusi) ChangeFileTable(cb, FileTableItemType.EP3GameFolder, false);
-            else if (cb == this.cbIncFF) ChangeFileTable(cb, FileTableItemType.SP1GameFolder, false);
-            else if (cb == this.cbIncGA) ChangeFileTable(cb, FileTableItemType.SP2GameFolder, false);
+            if (cb == this.cbIncCep) ChangeFileTable(cb, FileTablePaths.Absolute, true);
+            else
+            {
+                ExpansionItem ei = cb.Tag as ExpansionItem;
+                ChangeFileTable(cb, ei.Expansion, false);
+            } 
         }
 
         #endregion

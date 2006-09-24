@@ -149,6 +149,7 @@
     <Compile Include="FileTableItem.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FileTableItemType.cs" />
     <Compile Include="GeneratableFile.cs">
       <SubType>Code</SubType>
     </Compile>

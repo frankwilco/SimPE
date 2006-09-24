@@ -23,92 +23,77 @@ using System.ComponentModel;
 namespace SimPe
 {
 	/// <summary>
-	/// Zusammenfassung für PathSettings.
+	/// This is used to display Paths in the Options Dialog
 	/// </summary>
-	public class PathSettings : SimPe.GlobalizedObject
+    public class PathSettings : SimPe.GlobalizedObject
 	{
 		Registry r;
-		public PathSettings(Registry r)
+        static PathSettings ps;
+        public static PathSettings Global
+        {
+            get
+            {
+                if (ps == null) { ps = CreateInstance(); }
+                return ps;
+            }
+        }
+
+        static PathSettings CreateInstance()
+        {
+            string src = "using System;\n";
+            src += "using System.ComponentModel;\n";
+            src += "namespace SimPe{\n";
+            src += "public class RuntimePathSettings : PathSettings { \n";
+
+            src += "\tpublic RuntimePathSettings() : base(Helper.WindowsRegistry){\n";
+            src += "\t}\n\n\n";
+
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+            {
+                src += "\t[Category(\"" + ei.Flag.Class + "\"), System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]\n";
+                src += "\tpublic string "+ei.ShortId+"Path\n";
+                src += "\t{\n";
+                src += "\t\tget {\n";
+                src += "\t\t\treturn GetPath(@\""+ei.InstallFolder+"\", @\""+ei.RealInstallFolder+"\");\n";
+                src += "\t\t}\n";
+                src += "\t\tset {PathProvider.Global.GetExpansion(" + ei.Version + ").InstallFolder = value;}\n";
+                src += "\t}\n\n";
+            }        
+            
+            src += "}}\n";
+            //Console.WriteLine(src);
+
+            try
+            {
+                System.Reflection.Assembly a = Ambertation.RuntimeCompiler.Compile(src, new string[] { "SimPe.Helper.dll", "System.Drawing.dll" });
+                return (PathSettings)Ambertation.RuntimeCompiler.CreateInstance(a, "SimPe.RuntimePathSettings", new object[0]);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+		protected PathSettings(Registry r)
 		{
 			this.r = r;
 		}
 
-		string GetPath(string userpath, string defpath)
+		protected string GetPath(string userpath, string defpath)
 		{
 			if (userpath==null) userpath="";
 			if (userpath.Trim()=="") return defpath;
 			return userpath;
 		}
 
-		[Category("BasicGame"), Description("GamePath"), System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]
-		public string GamePath
-		{
-			get {
-				return GetPath(r.SimsPath, r.RealGamePath);
-			}
-			set {r.SimsPath = value;}
-		}
-
-		[Category("ExpansionPack"), System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]
-		public string EP1Path
-		{
-			get 
-			{
-				return GetPath(r.SimsEP1Path, r.RealEP1GamePath);
-			}
-			set {
-				r.SimsEP1Path = value;
-			}
-		}
-
-		[Category("ExpansionPack"),System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]
-		public string EP2Path
-		{
-			get 
-			{
-				return GetPath(r.SimsEP2Path, r.RealEP2GamePath);
-			}
-			set {r.SimsEP2Path = value;}
-		}
-
-		[Category("ExpansionPack"),System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]
-		public string EP3Path
-		{
-			get 
-			{
-				return GetPath(r.SimsEP3Path, r.RealEP3GamePath);
-			}
-			set {r.SimsEP3Path = value;}
-		}
-
-		[Category("SmallExpansionPack"),System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]
-		public string SP1Path
-		{
-			get 
-			{
-				return GetPath(r.SimsSP1Path, r.RealSP1GamePath);
-			}
-			set {r.SimsSP1Path = value;}
-		}
-
-        [Category("SmallExpansionPack"), System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        public string SP2Path
-        {
-            get
-            {
-                return GetPath(r.SimsSP2Path, r.RealSP2GamePath);
-            }
-            set { r.SimsSP2Path = value; }
-        }
-
-		[Category("BasicGame"),System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]
+		[Category("BaseGame"),System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]
 		public string SaveGamePath
 		{
 			get 
 			{
-				return GetPath(r.SimSavegameFolder, r.RealSavegamePath);
+                return GetPath(PathProvider.Global.SimSavegameFolder, PathProvider.Global.RealSavegamePath);
 			}
-			set {r.SimSavegameFolder = value;}
+            set { PathProvider.Global.SimSavegameFolder = value; }
 		}
 	}
 }

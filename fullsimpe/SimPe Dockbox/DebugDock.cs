@@ -172,8 +172,8 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		private void label1_Click(object sender, System.EventArgs e)
 		{		
-			System.IO.StreamWriter sw = System.IO.File.CreateText(@"i:\replicated.txt");			
-			string objname = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, @"TSData\Res\Objects\objects.package").Trim().ToLower();
+			System.IO.StreamWriter sw = System.IO.File.CreateText(@"i:\replicated.txt");
+            string objname = System.IO.Path.Combine(PathProvider.Global[Expansions.BaseGame].InstallFolder, @"TSData\Res\Objects\objects.package").Trim().ToLower();
 			sw.WriteLine(System.IO.Path.GetFileName(objname)+"----------------------------------------");
 			SimPe.Interfaces.Files.IPackageFile pkg = SimPe.Packages.File.LoadFromFile(objname);
 			FileTable.FileIndex.Load();

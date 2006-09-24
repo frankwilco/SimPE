@@ -276,33 +276,22 @@ namespace SimPe.Plugin
 		{
 			bool running = WaitingScreen.Running;
 			WaitingScreen.Wait();
-			txtpkg = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res\\Text\\Wants.package"));
+			txtpkg = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(SimPe.PathProvider.Global[Expansions.BaseGame].InstallFolder, "TSData\\Res\\Text\\Wants.package"));
 
-			//add names from University
-			if (Helper.WindowsRegistry.EPInstalled>=0x01) 
-			{
-				SimPe.Packages.File txtpkg2 = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, "TSData\\Res\\Text\\Wants.package"));			
-				txtpkg2.Persistent = true;
-				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in txtpkg2.Index)
-				{
-					pfd.UserData = txtpkg2.Read(pfd).UncompressedData;
-					txtpkg.Add(pfd);
-				}
-				txtpkg2.Persistent = false;				
-			}
-
-			//add names from Nightlife
-			if (Helper.WindowsRegistry.EPInstalled>=0x02) 
-			{
-				SimPe.Packages.File txtpkg2 = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP2Path, "TSData\\Res\\Text\\Wants.package"));			
-				txtpkg2.Persistent = true;
-				foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in txtpkg2.Index)
-				{
-					pfd.UserData = txtpkg2.Read(pfd).UncompressedData;
-					txtpkg.Add(pfd);
-				}
-				txtpkg2.Persistent = false;				
-			}
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions) {
+                if (ei.Exists && ei.Flag.LoadWantText)
+                {
+                    SimPe.Packages.File txtpkg2 = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(ei.InstallFolder, "TSData\\Res\\Text\\Wants.package"));
+                    txtpkg2.Persistent = true;
+                    foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in txtpkg2.Index)
+                    {
+                        pfd.UserData = txtpkg2.Read(pfd).UncompressedData;
+                        txtpkg.Add(pfd);
+                    }
+                    txtpkg2.Persistent = false;	                    
+                }
+        }
+			
 			if (!running) WaitingScreen.Stop();
 		}
 

@@ -12,18 +12,7 @@ namespace SimPe.Plugin.Tool.Dockable
 	/// </summary>
 	public class SimpleObjectPreview : System.Windows.Forms.UserControl
 	{
-		/// <summary>
-		/// Known Expansions
-		/// </summary>
-		public enum Expansion : ushort
-		{
-			Unknown = 0xFF,			
-			Original = 0x02,
-			University = 0x04,
-			Nightlife = 0x08,
-			Business = 0x10,
-			Custom = 0x01
-		}
+
 
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
@@ -508,7 +497,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			
 			if (thumbs==null) 
 			{
-				thumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
+				thumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
 				thumbs.Persistent = true;
 			}
 
@@ -590,17 +579,17 @@ namespace SimPe.Plugin.Tool.Dockable
 		/// </summary>
 		/// <param name="flname">The Filename</param>
 		/// <returns>The expansion which madkes this File available (<see cref="Expansion.Custom"/> marks a Custom File from the Downloads Folder)</returns>
-		public static Expansion FileFrom(string flname)
+		public static Expansions FileFrom(string flname)
 		{
 			if (flname==null) flname = "";
 			else flname = flname.Trim().ToLower();
 
-			if (flname.StartsWith(Helper.WindowsRegistry.SimsPath.Trim().ToLower())) return Expansion.Original;
-			if (flname.StartsWith(Helper.WindowsRegistry.SimsEP1Path.Trim().ToLower())) return Expansion.University;
-			if (flname.StartsWith(Helper.WindowsRegistry.SimsEP2Path.Trim().ToLower())) return Expansion.Nightlife;
-			if (flname.StartsWith(Helper.WindowsRegistry.SimsEP3Path.Trim().ToLower())) return Expansion.Business;
-			if (flname.StartsWith(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Donwloads"))) return Expansion.Custom;
-			return Expansion.Unknown;
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+            {
+                if (flname.StartsWith(ei.InstallFolder.Trim().ToLower())) return (ei.Expansion);
+            }
+            if (flname.StartsWith(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Donwloads"))) return Expansions.Custom;
+			return Expansions.None;
 		}
 
 		/// <summary>
@@ -608,21 +597,21 @@ namespace SimPe.Plugin.Tool.Dockable
 		/// </summary>
 		/// <param name="pfd">Resource Descriptor</param>
 		/// <returns>The expansion which madkes this File available (according to the FileTable, <see cref="Expansion.Custom"/> marks a Custom File from the Downloads Folder)</returns>
-		public static Expansion FileFrom(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
+		public static Expansions FileFrom(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
 		{
 			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] fiis = FileTable.FileIndex.FindFile(pfd, null);
-			ushort min = (ushort)(Expansion.Unknown);
+			uint min = (uint)(Expansions.None);
 			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii in fiis) 
 			{
 				try 
 				{
-					min = Math.Min((ushort)FileFrom(fii.Package.FileName), min);
+					min = Math.Min((uint)FileFrom(fii.Package.FileName), min);
 				} 
 				catch {}
 			}
 			
 
-			return (Expansion)min;
+			return (Expansions)min;
 		}
 
 		protected void SetupCategories(string[][] catss)

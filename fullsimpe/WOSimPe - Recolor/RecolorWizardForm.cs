@@ -702,7 +702,7 @@ namespace SimPe.Wizards
 			if (loaded) return;
 			
 
-			string sourcefile = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Objects"+Helper.PATH_SEP+"objects.package");
+			string sourcefile = System.IO.Path.Combine(PathProvider.Global[Expansions.BaseGame].InstallFolder, "TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Objects"+Helper.PATH_SEP+"objects.package");
 #if MAC
 			Console.WriteLine("Objects at: "+sourcefile);
 #endif
@@ -1010,7 +1010,7 @@ namespace SimPe.Wizards
 				id.BlockID = oldid.BlockID;
 				id.BlockName = oldid.BlockName;
 
-				if ((System.IO.File.Exists(Helper.WindowsRegistry.NvidiaDDSTool)) && ((oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT1Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT3Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT5Format)))
+                if ((System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool)) && ((oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT1Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT3Format) || (oldid.Format == SimPe.Plugin.ImageLoader.TxtrFormats.DXT5Format)))
 				{
 					SimPe.Commandline.LoadDDS(id, SimPe.Plugin.DDSTool.BuildDDS(ofd.FileName, (int)oldid.MipMapLevels, oldid.Format, "-sharpenMethod Smoothen"));
 				} 
@@ -1038,7 +1038,7 @@ namespace SimPe.Wizards
 		{
 			get
 			{
-				string down = System.IO.Path.Combine(SimPe.Helper.WindowsRegistry.SimSavegameFolder, "Downloads");
+                string down = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
 				down = System.IO.Path.Combine(down, tbflname.Text+".package");
 				return down;
 			}
@@ -1046,7 +1046,7 @@ namespace SimPe.Wizards
 
 		internal void SaveRecolor()
 		{
-			string down = System.IO.Path.Combine(SimPe.Helper.WindowsRegistry.SimSavegameFolder, "Downloads");
+            string down = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
 
 			if (System.IO.Directory.Exists(down)) 
 			{

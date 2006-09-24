@@ -71,21 +71,17 @@ namespace SimPe.Providers
 			this.opcodes = opcodes;
 
 			ArrayList folders = new ArrayList();
-			if (Helper.WindowsRegistry.EPInstalled>=1) 
-			{
-				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, @"TSData\Res\NeighborhoodTemplate\U001\Characters\")));
-				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, @"TSData\Res\NeighborhoodTemplate\U002\Characters\")));
-				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, @"TSData\Res\NeighborhoodTemplate\U003\Characters\")));
-			}
-			if (Helper.WindowsRegistry.EPInstalled>=2) 
-			{
-				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP2Path, @"TSData\Res\NeighborhoodTemplate\D001\Characters\")));				
-			}
+            foreach (SimPe.ExpansionItem ei in SimPe.PathProvider.Global.Expansions) {
+                if (!ei.Exists) continue;
 
-			if (Helper.WindowsRegistry.EPInstalled>=3) 
-			{
-				folders.Add(new SimPe.FileTableItem(System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP3Path, @"TSData\Res\NeighborhoodTemplate\B001\Characters\")));				
-			}
+                foreach (string s in ei.SimNameDeepSearch){
+                    string path = System.IO.Path.Combine(SimPe.PathProvider.Global.Latest.InstallFolder, s);
+                    if (!Directory.Exists(path)) path = System.IO.Path.Combine(ei.InstallFolder, s);
+                    if (Directory.Exists(path))
+                        folders.Add(new SimPe.FileTableItem(path));
+                }
+            }
+            
 			
 			characterfi = new SimPe.Plugin.FileIndex(folders);
 		}

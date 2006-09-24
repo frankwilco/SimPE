@@ -1035,14 +1035,7 @@ namespace SimPe
 		{
 			get 
 			{
-				if (Helper.WindowsRegistry.EPInstalled==0x01) 
-				{
-					return Helper.WindowsRegistry.SimsEP1Path;
-				} 
-				else 
-				{
-					return Helper.WindowsRegistry.SimsPath;
-				}
+                return PathProvider.Global.Latest.InstallFolder;
 			}
 		}
 

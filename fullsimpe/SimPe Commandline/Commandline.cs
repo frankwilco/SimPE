@@ -520,7 +520,7 @@ namespace SimPe
 			//build TXTR File
 			ImageData id = new SimPe.Plugin.ImageData(null);
 
-			if ((System.IO.File.Exists(Helper.WindowsRegistry.NvidiaDDSTool)) && ((format == ImageLoader.TxtrFormats.DXT1Format) || (format == ImageLoader.TxtrFormats.DXT3Format) || (format == ImageLoader.TxtrFormats.DXT5Format)))
+            if ((System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool)) && ((format == ImageLoader.TxtrFormats.DXT1Format) || (format == ImageLoader.TxtrFormats.DXT3Format) || (format == ImageLoader.TxtrFormats.DXT5Format)))
 			{
 				LoadDDS(id, DDSTool.BuildDDS(filename, levels, format, "-sharpenMethod Smoothen"));
 			} 
@@ -551,8 +551,8 @@ namespace SimPe
 			if (!System.IO.File.Exists(layoutname)) 
 				Commandline.MakeModern(null);
 
-						
-			if (Helper.WindowsRegistry.PreviousEp<3) 
+
+            if (Helper.WindowsRegistry.PreviousEpCount < 3) 
 				Helper.WindowsRegistry.BlurNudityUpdate();
 
 			if (Helper.WindowsRegistry.PreviousVersion<=244963700847) 
@@ -595,7 +595,7 @@ namespace SimPe
 			}*/
 
 			if (Helper.WindowsRegistry.FoundUnknownEP())
-				if (Message.Show(SimPe.Localization.GetString("Unknown EP found").Replace("{name}", SimPe.Registry.GetEpName(3)), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+				if (Message.Show(SimPe.Localization.GetString("Unknown EP found").Replace("{name}", SimPe.PathProvider.Global.GetExpansion(SimPe.PathProvider.Global.LastKnown).Name), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
 					return false;
 
 

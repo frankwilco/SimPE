@@ -758,24 +758,24 @@ namespace SimPe.Plugin
 		{
 			if (cbfolder.SelectedIndex==0) 
 			{
-				folder = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads");				
+                folder = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");				
 			} 
 			else if (cbfolder.SelectedIndex==1) 
 			{
-				folder = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Teleport");
+                folder = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Teleport");
 			} 
 			else if (cbfolder.SelectedIndex==2) 
 			{
-				folder = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Neighborhoods");
+                folder = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Neighborhoods");
 			} 
 			else if (cbfolder.SelectedIndex==3) 
 			{
-				folder = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "SavedSims");
+                folder = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "SavedSims");
 			} 
 			
 			else 
 			{
-				if (fbd.SelectedPath=="") fbd.SelectedPath = Helper.WindowsRegistry.SimSavegameFolder;
+                if (fbd.SelectedPath == "") fbd.SelectedPath = PathProvider.Global.SimSavegameFolder;
 				if (fbd.ShowDialog()==DialogResult.OK) folder = fbd.SelectedPath;
 			}
 		}

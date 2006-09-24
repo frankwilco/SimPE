@@ -41,6 +41,13 @@ namespace SimPe
 			tm.AddControl(this.xpGradientPanel1);
 
 			ofd.Filter = SimPe.ExtensionProvider.BuildFilterString(new SimPe.ExtensionType[] {SimPe.ExtensionType.Package, SimPe.ExtensionType.AllFiles});
+
+            this.cbEpVer.Items.Clear();
+            cbEpVer.Items.Add(SimPe.Localization.GetString("All"));
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+            {
+                cbEpVer.Items.Add(ei.Name);
+            }
 		}
 
 		/// <summary>
@@ -258,7 +265,7 @@ namespace SimPe
 
 			if (f.ok) 
 			{
-				fti.Type = FileTableItemType.Absolute;
+                fti.Type = FileTablePaths.Absolute;
 				fti.Name = f.tbName.Text;
 				fti.IsRecursive = f.cbRec.Checked;
 				fti.EpVersion = f.cbEpVer.SelectedIndex-1;

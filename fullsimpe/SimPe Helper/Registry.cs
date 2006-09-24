@@ -80,7 +80,7 @@ namespace SimPe
 			rk = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\\Ambertation\\SimPe");
 #endif
 			pver = this.GetPreviousVersion();
-			pep = this.GetPreviousEp();
+            pep = -1;
 			pepct = this.GetPreviousEpCount();
 			Reload();
 			if (Helper.QARelease) this.WasQAUser=true;
@@ -206,7 +206,7 @@ namespace SimPe
 			RegistryKey rkf = rk.CreateSubKey("Settings");	
 			int res = Convert.ToInt32(rkf.GetValue("LatestEP", 0));
 
-			rkf.SetValue("LatestEP", this.EPInstalled);
+			rkf.SetValue("LatestEP", PathProvider.Global.EPInstalled);
 			return res;
 #endif			
 		}		
@@ -222,17 +222,6 @@ namespace SimPe
 			}
 		}
 
-		/// <summary>
-		/// Returns the latest number of the Expansion used so far
-		/// </summary>
-		public int PreviousEp
-		{
-			get
-			{
-				return pep;
-			}
-		}
-
 		#region EP Handler
 		public bool FoundUnknownEP()
 		{
@@ -245,9 +234,9 @@ namespace SimPe
 			{
 				if (si=="") continue;
 				bool found = false;
-				foreach(string s in Registry.EPExecutables)		
+				foreach(ExpansionItem ei in PathProvider.Global.Expansions)		
 				{		
-					string n = s.ToLower().Trim();
+					string n = ei.ExeName.ToLower().Trim();
 					if (n=="") continue;
 					if (si==n)
 					{
@@ -265,10 +254,11 @@ namespace SimPe
 		/// <summary>
 		/// Returns the latest number of the Expansion used so far
 		/// </summary>
-		protected int PreviousEpCount
+		public int PreviousEpCount
 		{
 			get
 			{
+                if (pep == -1) pep = this.GetPreviousEp();
 				return pep;
 			}
 		}
@@ -620,326 +610,6 @@ namespace SimPe
 			{
 				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
 				rkf.SetValue("OWThumbSize", value);
-			}
-		}
-
-		
-
-		
-
-		
-
-		/// <summary>
-		/// Name of the Nvidia DDS Path
-		/// </summary>
-		public string NvidiaDDSPath
-		{
-			get 
-			{
-				try 
-				{
-					XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-					object o = rkf.GetValue("NvidiaDDS");
-					if (o==null) return "";
-					return o.ToString();
-				} 
-				catch (Exception) 
-				{
-					return "";
-				}
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				rkf.SetValue("NvidiaDDS", value);
-			}
-		}
-
-		
-
-		/// <summary>
-		/// Name of the Sims Application
-		/// </summary>
-		public string SimsPath
-		{
-			get 
-			{
-				try 
-				{
-					XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-					object o = rkf.GetValue("SimsPath");
-					if (o==null) return RealGamePath;
-					else 
-					{
-						string fl = o.ToString();						
-						if (!System.IO.Directory.Exists(fl)) return this.RealGamePath;
-						return fl;
-					}
-				} 
-				catch (Exception) 
-				{
-					return this.RealGamePath;;
-				}
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				rkf.SetValue("SimsPath", value);
-			}
-		}
-
-		/// <summary>
-		/// Name of the Sims Application
-		/// </summary>
-		public string SimsEP1Path
-		{
-			get 
-			{
-				try 
-				{
-					XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-					object o = rkf.GetValue("SimsEP1Path");
-					if (o==null) return this.RealEP1GamePath;
-					else 
-					{
-						string fl = o.ToString();
-
-						if (!System.IO.Directory.Exists(fl)) return this.RealEP1GamePath;
-						return fl;
-					}
-				} 
-				catch (Exception) 
-				{
-					return this.RealEP1GamePath;
-				}
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				rkf.SetValue("SimsEP1Path", value);
-			}
-		}
-
-		/// <summary>
-		/// Name of the Sims Application
-		/// </summary>
-		public string SimsEP2Path
-		{
-			get 
-			{
-				try 
-				{
-					XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-					object o = rkf.GetValue("SimsEP2Path");
-					if (o==null) return this.RealEP2GamePath;
-					else 
-					{
-						string fl = o.ToString();
-
-						if (!System.IO.Directory.Exists(fl)) return this.RealEP2GamePath;
-						return fl;
-					}
-				} 
-				catch (Exception) 
-				{
-					return this.RealEP2GamePath;
-				}
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				rkf.SetValue("SimsEP2Path", value);
-			}
-		}
-
-		/// <summary>
-		/// Name of the Sims Application
-		/// </summary>
-		public string SimsEP3Path
-		{
-			get 
-			{
-				try 
-				{
-					XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-					object o = rkf.GetValue("SimsEP3Path");
-					if (o==null) return this.RealEP3GamePath;
-					else 
-					{
-						string fl = o.ToString();
-
-						if (!System.IO.Directory.Exists(fl)) return this.RealEP3GamePath;
-						return fl;
-					}
-				} 
-				catch (Exception) 
-				{
-					return this.RealEP3GamePath;
-				}
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				rkf.SetValue("SimsEP3Path", value);
-			}
-		}
-
-		/// <summary>
-		/// Name of the Sims Application
-		/// </summary>
-		public string SimsSP1Path
-		{
-			get 
-			{
-				try 
-				{
-					XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-					object o = rkf.GetValue("SimsSP1Path");
-					if (o==null) return this.RealSP1GamePath;
-					else 
-					{
-						string fl = o.ToString();
-
-						if (!System.IO.Directory.Exists(fl)) return this.RealSP1GamePath;
-						return fl;
-					}
-				} 
-				catch (Exception) 
-				{
-					return this.RealSP1GamePath;
-				}
-			}
-			set
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				rkf.SetValue("SimsSP1Path", value);
-			}
-		}
-
-        /// <summary>
-        /// Name of the Sims Application
-        /// </summary>
-        public string SimsSP2Path
-        {
-            get
-            {
-                try
-                {
-                    XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-                    object o = rkf.GetValue("SimsSP2Path");
-                    if (o == null) return this.RealSP2GamePath;
-                    else
-                    {
-                        string fl = o.ToString();
-
-                        if (!System.IO.Directory.Exists(fl)) return this.RealSP2GamePath;
-                        return fl;
-                    }
-                }
-                catch (Exception)
-                {
-                    return this.RealSP2GamePath;
-                }
-            }
-            set
-            {
-                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-                rkf.SetValue("SimsSP2Path", value);
-            }
-        }
-
-		protected static string[] EPExecutables = new string[] {
-			"Sims2.exe",
-			"Sims2EP1.exe",
-			"Sims2EP2.exe",
-			"Sims2EP3.exe",
-			"Sims2SP1.exe",
-			"Sims2SP2.exe"
-		};
-		
-		public static string GetEpName(int index)
-		{
-			return SimPe.Localization.GetString("EP NAME "+index);			
-		}
-
-		public string CurrentEPName
-		{
-			get { return GetEpName(this.EPInstalled);}
-		}
-
-		public static string GetExecutableName(int index)
-		{
-            if ((index & 0xFFFF0000) == 0x00020000) return EPExecutables[5];
-			if ((index & 0xFFFF0000) == 0x00010000) return EPExecutables[4];
-			if ((index & 0x0000FFFF) == 0x00000003) return EPExecutables[3];			
-			if ((index & 0x0000FFFF) == 0x00000002) return EPExecutables[2];
-			if ((index & 0x0000FFFF) == 0x00000001) return EPExecutables[1];
-			
-			return EPExecutables[0];
-		}
-
-		 
-		public string GetExecutableFolder(int index)
-		{
-            if ((index & 0xFFFF0000) == 0x00020000) return this.SimsSP2Path;
-			if ((index & 0xFFFF0000) == 0x00010000) return this.SimsSP1Path;
-			if ((index & 0x0000FFFF) == 0x00000003) return this.SimsEP3Path;			
-			if ((index & 0x0000FFFF) == 0x00000002) return this.SimsEP2Path;
-			if ((index & 0x0000FFFF) == 0x00000001) return this.SimsEP1Path;
-						
-			return this.SimsPath;
-		}
-
-		/// <summary>
-		/// Name of the Sims Application
-		/// </summary>
-		public string SimsApplication
-		{
-			get 
-			{
-				try 
-				{
-					return System.IO.Path.Combine(GetExecutableFolder(this.InstalledVersions), "TSBin\\"+GetExecutableName(this.InstalledVersions));
-				} 
-				catch (Exception) 
-				{
-					return "";
-				}
-			}
-			
-		}
-
-		/// <summary>
-		/// This Folder contains al Sims User Data
-		/// </summary>
-		public string SimSavegameFolder 
-		{
-			get 
-			{
-				try 
-				{
-					XmlRegistryKey  rkf = xrk.CreateSubKey("Settings");
-					object o = rkf.GetValue("SavegamePath");
-					if (o==null) 
-					{
-						return this.RealSavegamePath;
-					}
-					else 
-					{
-						string fl = o.ToString();
-						if (!System.IO.Directory.Exists(fl)) return this.RealSavegamePath;
-						return fl;
-					}
-				} 
-				catch (Exception) 
-				{
-					return this.RealSavegamePath;
-				}
-			}
-			set 
-			{
-				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				rkf.SetValue("SavegamePath", value);
 			}
 		}
 
@@ -1485,11 +1155,11 @@ namespace SimPe
 		{
 			get 
 			{
-				if (!System.IO.File.Exists(this.StartupCheatFile)) return false;
+				if (!System.IO.File.Exists(PathProvider.Global.StartupCheatFile)) return false;
 
 				try 
 				{
-					System.IO.TextReader fs = System.IO.File.OpenText(this.StartupCheatFile);
+                    System.IO.TextReader fs = System.IO.File.OpenText(PathProvider.Global.StartupCheatFile);
 					string cont = fs.ReadToEnd();
 					fs.Close();
 					string[] lines = cont.Split("\n".ToCharArray());
@@ -1516,15 +1186,15 @@ namespace SimPe
 
 			set 
 			{
-				if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(this.StartupCheatFile))) return;
+                if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(PathProvider.Global.StartupCheatFile))) return;
 
 				try 
 				{
 					string newcont = "";
 					bool found = false;
-					if (System.IO.File.Exists(this.StartupCheatFile)) 
+                    if (System.IO.File.Exists(PathProvider.Global.StartupCheatFile)) 
 					{
-						System.IO.TextReader fs = System.IO.File.OpenText(this.StartupCheatFile);
+                        System.IO.TextReader fs = System.IO.File.OpenText(PathProvider.Global.StartupCheatFile);
 						string cont = fs.ReadToEnd();
 						fs.Close();
 						
@@ -1557,7 +1227,7 @@ namespace SimPe
 							newcont += Helper.lbr;
 						}
 
-						System.IO.File.Delete(this.StartupCheatFile);
+                        System.IO.File.Delete(PathProvider.Global.StartupCheatFile);
 					}
 
 					if (!found) 
@@ -1567,7 +1237,7 @@ namespace SimPe
 						newcont += Helper.lbr;
 					}
 
-					System.IO.TextWriter fw = System.IO.File.CreateText(this.StartupCheatFile);
+                    System.IO.TextWriter fw = System.IO.File.CreateText(PathProvider.Global.StartupCheatFile);
 					fw.Write(newcont.Trim());
 					fw.Close();
 				} 
@@ -1582,600 +1252,415 @@ namespace SimPe
 		/// </summary>
 		public bool BlurNudity 
 		{
-			get 
-			{
-				if (this.EPInstalled<=1) return BlurNudityPreEP2;
-				else if (this.EPInstalled>=2) return BlurNudityEP2;					
-				else return false;
-			}
-			set 
-			{
-				if (this.EPInstalled<=1) 
-				{
-					BlurNudityEP2 = false;
-					BlurNudityEP3 = false;
-					BlurNudityPreEP2 = value;
-				}
-				else if (this.EPInstalled==2) 
-				{
-					BlurNudityEP2 = value;
-				}
-				else if (this.EPInstalled>=3) 
-				{
-					BlurNudityEP3 = value;
-				}
-				else 
-				{
-					BlurNudityEP2 = false;
-					BlurNudityPreEP2 = false;
-				}
-			}
-		}
-
-		protected string[] CensorFiles
-		{
-			get 
-			{
-				return new string[]{				    
-					System.IO.Path.Combine(this.SimSavegameFolder, @"Config\quaxi_ofb_censor_v1.package"),
-				    System.IO.Path.Combine(this.SimSavegameFolder, @"Config\quaxi_nl_censor_v1.package"),
-					System.IO.Path.Combine(this.SimSavegameFolder, @"Downloads\quaxi_nl_censor_v1.package"),										
-					System.IO.Path.Combine(this.SimSavegameFolder, @"Downloads\quaxi_nl_censor.package")
-								   };
-			}
-		}
-
-		protected bool BlurNudityEP2 
-		{
-			get { return GetBlurNudity(); }
-			set { SetBlurNudity(value, "quaxi_nl_censor_v1.package", false);	}
-		}
-
-		protected bool BlurNudityEP3 
-		{
-			get { return GetBlurNudity(); }
-			set { SetBlurNudity(value, "quaxi_ofb_censor_v1.package", false);	}
+			get { return PathProvider.Global.BlurNudity; }
+			set { PathProvider.Global.BlurNudity = value; }
 		}
 
 		public void BlurNudityUpdate()
 		{
-			if (EPInstalled>=3 &&  !GetBlurNudity())
-			{
-				SetBlurNudity(true, System.IO.Path.GetFileName(CensorFiles[0]), true);
-				SetBlurNudity(false, System.IO.Path.GetFileName(CensorFiles[0]), true);
-			}
-		}
-
-		bool GetBlurNudity()
-		{
-			string[] fls = CensorFiles;
-			foreach (string fl in fls)
-				if (System.IO.File.Exists(fl)) return false;
-
-			return true;
-		}
-		void SetBlurNudity(bool value, string resname, bool silent)
-		{
-			string[] fls = CensorFiles;
-			if (!value) 
-			{					
-				string fl = fls[0];
-				string folder = System.IO.Path.GetDirectoryName(fl);
-
-				if (System.IO.File.Exists(fl)) return;
-
-				if (!silent)
-					if (System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("Censor_Install_Warn").Replace("{filename}", fl), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No)
-						return;
-
-				try 
-				{
-					if (!System.IO.Directory.Exists(folder))
-						System.IO.Directory.CreateDirectory(folder);
-
-					System.IO.Stream s = typeof(Helper).Assembly.GetManifestResourceStream("SimPe."+resname);
-					System.IO.BinaryReader br = new BinaryReader(s);
-					try 
-					{
-						System.IO.BinaryWriter bw = new BinaryWriter(System.IO.File.Create(fl));
-						try 
-						{
-
-							bw.Write(br.ReadBytes((int)br.BaseStream.Length));
-						} 
-						finally 
-						{
-							bw.Close();
-						}
-					} 
-					finally 
-					{
-						br.Close();
-					}
-				}
-				catch (Exception ex) 
-				{
-					Helper.ExceptionMessage(ex);
-				}
-			} 
-			else 
-			{					
-				foreach (string fl in fls)
-					if (System.IO.File.Exists(fl)) 
-					{
-						try 
-						{
-							if (!silent)
-								if (System.Windows.Forms.MessageBox.Show(SimPe.Localization.GetString("Censor_UnInstall_Warn").Replace("{filename}", fl), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.No)
-									return;
-							System.IO.File.Delete(fl);
-						} 
-						catch (Exception ex) 
-						{
-							Helper.ExceptionMessage(ex);
-						}
-					}
-			}		
-		}
-
-		protected bool BlurNudityPreEP2 {
-			get 
-			{
-				if (!System.IO.File.Exists(this.StartupCheatFile)) return true;
-
-				try 
-				{
-					System.IO.TextReader fs = System.IO.File.OpenText(this.StartupCheatFile);
-					string cont = fs.ReadToEnd();
-					fs.Close();
-					string[] lines = cont.Split("\n".ToCharArray());
-
-					foreach (string line in lines) 
-					{
-						string pline = line.ToLower().Trim();
-						while (pline.IndexOf("  ")!=-1) pline = pline.Replace("  ", " ");
-						string[] tokens = pline.Split(" ".ToCharArray());
-
-						if (tokens.Length==3) 
-						{
-							if ( (tokens[0]=="intprop") &&
-								(tokens[1]=="censorgridsize") 
-								) return (Convert.ToInt32(tokens[2])!=0);
-						}
-					}
-				} 
-				catch (Exception) {}
-
-				return true;
-			}
-
-			set 
-			{
-				if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(this.StartupCheatFile))) return;
-
-				try 
-				{
-					string newcont = "";
-					bool found = false;
-					if (System.IO.File.Exists(this.StartupCheatFile)) 
-					{
-						System.IO.TextReader fs = System.IO.File.OpenText(this.StartupCheatFile);
-						string cont = fs.ReadToEnd();
-						fs.Close();
-						
-						string[] lines = cont.Split("\n".ToCharArray());
-						
-
-						foreach (string line in lines) 
-						{
-							string pline = line.ToLower().Trim();
-							while (pline.IndexOf("  ")!=-1) pline = pline.Replace("  ", " ");
-							string[] tokens = pline.Split(" ".ToCharArray());
-
-							if (tokens.Length==3) 
-							{
-								if ( (tokens[0]=="intprop") &&
-									(tokens[1]=="censorgridsize") 
-									) 
-								{
-									if (!found) 
-									{
-										if (!value) 
-										{
-											newcont += "intprop censorgridsize 0";
-											newcont += Helper.lbr;
-										}
-										found = true;
-									}
-									continue;
-								}
-							}
-							newcont += line.Trim();
-							newcont += Helper.lbr;
-						}
-
-						System.IO.File.Delete(this.StartupCheatFile);
-					}
-
-					if (!found) 
-					{
-						if (!value) 
-						{
-							newcont += "intprop censorgridsize 0";
-							newcont += Helper.lbr;
-						}
-					}
-
-					System.IO.TextWriter fw = System.IO.File.CreateText(this.StartupCheatFile);
-					fw.Write(newcont.Trim());
-					fw.Close();
-				} 
-				catch (Exception) {}
-			}
+            PathProvider.Global.BlurNudityUpdate();
 		}
 		#endregion
 
 
-		#region Getters
-		public void SetDefaultPaths()
-		{
-			this.SimsPath = this.RealGamePath;
-			this.SimsEP1Path = this.RealEP1GamePath;
-			this.SimsEP2Path = this.RealEP2GamePath;
-			this.SimsEP3Path = this.RealEP3GamePath;
-			this.SimsSP1Path = this.RealSP1GamePath;
-            this.SimsSP2Path = this.RealSP2GamePath;
+		#region Obsolete
+        public class ObsoleteWarning : Warning
+        {
+            internal ObsoleteWarning(string message, string detail) : base(message, detail) { }
+        }
 
-			this.SimSavegameFolder = this.RealSavegamePath;
-		}
+        protected static void WarnObsolete()
+        {
+            if (Helper.DebugMode) throw new SimPe.Registry.ObsoleteWarning("This call is obsolete!", "The Call to this method is obsolete.\n\n Please use the matching version in SimPe.PathProvider.Global, or see http://ambertation.de/simpeforum/sims2/SimPE-Expansion-Management-PathProvider for details.");
+        }
+
 		/// <summary>
-		/// Returns the Real Instalation Folder
+		/// Obsolete! 
 		/// </summary>
 		public string RealEP1GamePath 
 		{
 			get 
 			{
-#if MAC
-				return "";
-#else
-				if (this.EPInstalled>=1) 
-				{
-					try 
-					{
-						RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 University");
-						object o = rk.GetValue("Install Dir");
-						if (o==null) return "";
-						else return Helper.ToLongPathName(o.ToString());
-					} 
-					catch (Exception) 
-					{
-						return "";
-					}
-				}
-				return "";
-#endif
+                WarnObsolete();
+                return SimPe.PathProvider.Global[Expansions.University].RealInstallFolder;
 			}
 		}
 
 		/// <summary>
-		/// Returns the Real Instalation Folder
+		/// Obsolete! 
 		/// </summary>
 		public string RealEP2GamePath 
 		{
 			get 
 			{
-#if MAC
-				return "";
-#else
-				if (this.EPInstalled>=2) 
-				{
-					try 
-					{
-						RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 Nightlife");
-						object o = rk.GetValue("Install Dir");
-						if (o==null) return "";
-						else return Helper.ToLongPathName(o.ToString());
-					} 
-					catch (Exception) 
-					{
-						return "";
-					}
-				}
-				return "";
-#endif
+                WarnObsolete();
+                return SimPe.PathProvider.Global[Expansions.Nightlife].RealInstallFolder;
 			}
 		}
 
 		/// <summary>
-		/// Returns the Real Instalation Folder
+		/// Obsolete! 
 		/// </summary>
 		public string RealEP3GamePath 
 		{
 			get 
 			{
-#if MAC
-				return "";
-#else
-				if (this.EPInstalled>=3) 
-				{
-					try 
-					{
-						RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 Open For Business");
-						object o = rk.GetValue("Install Dir");
-						if (o==null) return "";
-						else return Helper.ToLongPathName(o.ToString());
-					} 
-					catch (Exception) 
-					{
-						return "";
-					}
-				}
-				return "";
-#endif
+                WarnObsolete();
+                return SimPe.PathProvider.Global[Expansions.Business].RealInstallFolder;
 			}
 		}
 
 		/// <summary>
-		/// Returns the Real Instalation Folder
+		/// Obsolete!
 		/// </summary>
-		public string RealSP1GamePath 
+		public string RealSP1GamePath  
 		{
 			get 
 			{
-#if MAC
-				return "";
-#else
-				if (this.SPInstalled>=1) 
-				{
-					try 
-					{
-						RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 Family Fun Stuff");
-						object o = rk.GetValue("Install Dir");
-						if (o==null) return "";
-						else return Helper.ToLongPathName(o.ToString());
-					} 
-					catch (Exception) 
-					{
-						return "";
-					}
-				}
-				return "";
-#endif
+                WarnObsolete();
+                return SimPe.PathProvider.Global[Expansions.FamilyFun].RealInstallFolder;
 			}
 		}
 
         /// <summary>
-        /// Returns the Real Instalation Folder
+        /// Obsolete!
         /// </summary>
-        public string RealSP2GamePath
+        public string RealSP2GamePath 
         {
             get
             {
-#if MAC
-				return "";
-#else
-                if (this.SPInstalled >= 2)
-                {
-                    try
-                    {
-                        RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2 Glamour Life Stuff");
-                        object o = rk.GetValue("Install Dir");
-                        if (o == null) return "";
-                        else return Helper.ToLongPathName(o.ToString());
-                    }
-                    catch (Exception)
-                    {
-                        return "";
-                    }
-                }
-                return "";
-#endif
+                WarnObsolete();
+                return SimPe.PathProvider.Global[Expansions.Glamour].RealInstallFolder;
             }
         }
 
+        /// <summary>
+        /// Obsolete!
+        /// </summary>
 		public int InstalledVersions
 		{
-			get 
-			{
+			get
+            {
+                WarnObsolete();       
 				int ret = EPInstalled;
 				ret |= SPInstalled<<16;
 				return ret;
 			}
 		}
 
-		public int GameVersion
+        /// <summary>
+        /// Obsolete!
+        /// </summary>
+		public int GameVersion 
 		{
 			get 
 			{
-                if (SPInstalled == 2) return 5;
-                if (SPInstalled == 1) return 4;
-				return EPInstalled;				
+                WarnObsolete();
+                return SimPe.PathProvider.Global.GameVersion;			
 			}
 		}
 
 		/// <summary>
-		/// Returns the highest number of installed EPs
+		/// Obsolete!
 		/// </summary>
-		public int EPInstalled
+		public int EPInstalled 
 		{
-			get 
-			{
-				try 
-				{			
-#if MAC
-					return 0;
-#else
-					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2");
-					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 Open For Business", false)!=null) return 3;
-					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 Nightlife", false)!=null) return 2;
-					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 University", false)!=null) return 1;					
-					return 0;					
-#endif
-				} 
-				catch (Exception) 
-				{
-					return 4;
-				}
+			get
+            {
+                WarnObsolete();
+                return SimPe.PathProvider.Global.EPInstalled;
 			}
 		}
 
 		/// <summary>
-		/// Returns the highest number of installed mini-EPs
+		/// Obsolete!
 		/// </summary>
-		public int SPInstalled
+		public int SPInstalled 
 		{
 			get 
 			{
-				try 
-				{			
-#if MAC
-					return 0;
-#else
-					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2");
-                    if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 Glamour Life Stuff", false) != null) return 2;
-					if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EA GAMES\The Sims 2 Family Fun Stuff", false)!=null) return 1;
-					return 0;					
-#endif
-				} 
-				catch (Exception) 
-				{
-					return 1;
-				}
+                WarnObsolete();
+                return PathProvider.Global.SPInstalled;
 			}
 		}
 
-		public string RealSavegamePath
+        /// <summary>
+        /// Obsolete!
+        /// </summary>
+        public string RealSavegamePath 
 		{
 			get 
 			{
-				try 
-				{
-					string path = System.IO.Path.Combine(this.PersonalFolder, "EA Games");
-					path = System.IO.Path.Combine(path, this.DisplayedName);
-					return Helper.ToLongPathName(path);
-				} 
-				catch (Exception) 
-				{
-					return "";
-				}
+                WarnObsolete();
+				return SimPe.PathProvider.Global.RealSavegamePath;
 			}
 		}
-
+         
 		/// <summary>
-		/// Returns the Displayed Sims 2 name
-		/// </summary>
-		protected string DisplayedName 
-		{
-			get 
-			{
-				try 
-				{
-#if MAC
-					return "The Sims 2";
-#else
-					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2");
-					object o = rk.GetValue("DisplayName");
-					if (o==null) return "The Sims 2";
-					else return o.ToString();
-#endif
-				} 
-				catch (Exception) 
-				{
-					return "The Sims 2";
-				}
-			}
-		}
-
-		/// <summary>
-		/// Returns the Location of the Personal Folder
-		/// </summary>
-		protected string PersonalFolder 
-		{
-			get 
-			{
-				return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			}
-		}
-
-		/// <summary>
-		/// Returns the Real Instalation Folder
+		/// Obsolete!
 		/// </summary>
 		public string RealGamePath 
 		{
 			get 
 			{
-				try 
-				{
-#if MAC
-					return "";
-#else
-					RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\EA Games\\The Sims 2");
-					object o = rk.GetValue("Install Dir");
-					if (o==null) return "";
-					else return Helper.ToLongPathName(o.ToString());
-#endif
-				} 
-				catch (Exception) 
-				{
-					return "";
-				}
+                WarnObsolete();
+				return SimPe.PathProvider.Global[Expansions.BaseGame].RealInstallFolder;
 			}
 		}
 
+        /// <summary>
+        /// Obsolete!
+        /// </summary>
+        public string SimsPath
+        {
+            get
+            {
+                WarnObsolete();
+                return SimPe.PathProvider.Global[Expansions.BaseGame].InstallFolder;
+            }
+            set
+            {
+                 WarnObsolete();
+                SimPe.PathProvider.Global[Expansions.BaseGame].InstallFolder = value;
+            }
+        }
+
 		/// <summary>
-		/// The location of theNvidia Tool
+		/// Obsolete!
 		/// </summary>
 		public string NvidiaDDSTool 
 		{
 			get 
 			{
-				return System.IO.Path.Combine(NvidiaDDSPath, "nvdxt.exe");
+                WarnObsolete();
+				return PathProvider.Global.NvidiaDDSTool;
 			}
 		}
 
 		/// <summary>
-		/// Returns the Name of the Startup Cheat File
+		/// Obsolete!
 		/// </summary>
 		public string StartupCheatFile 
 		{
 			get 
 			{
-				return System.IO.Path.Combine(this.SimSavegameFolder, "Config\\userStartup.cheat");
+                WarnObsolete();
+				return PathProvider.Global.StartupCheatFile;
 			}
 		}
 		/// <summary>
-		/// returns the Fodler where the users Neighborhood is stored
+		/// Obsolete!
 		/// </summary>
 		public string NeighborhoodFolder 
 		{
-			get 
-			{
-				try 
-				{
-					return System.IO.Path.Combine(this.SimSavegameFolder, "Neighborhoods");
-				} 
-				catch (Exception) 
-				{
-					return "";
-				}
+			get
+            {
+                WarnObsolete();
+				return PathProvider.Global.NeighborhoodFolder;
 			}
 		}
 
 		/// <summary>
-		/// returns the Fodler where the Backups are stored
+		/// Obsolete!
 		/// </summary>
 		public string BackupFolder 
 		{
 			get 
 			{
-				try 
-				{
-					return System.IO.Path.Combine(System.IO.Path.Combine(this.PersonalFolder, "EA Games"), "SimPE Backup");
-				} 
-				catch (Exception) 
-				{
-					return "";
-				}
+                WarnObsolete();
+                return PathProvider.Global.BackupFolder;
+			}
+		}
+
+        /// <summary>
+		/// Obsolete!
+		/// </summary>
+		public string NvidiaDDSPath 
+		{
+			get 
+			{
+                WarnObsolete();
+                return PathProvider.Global.NvidiaDDSPath;
+			}
+			set
+			{
+                WarnObsolete();
+                PathProvider.Global.NvidiaDDSPath = value;
+			}
+		}
+
+		
+
+		
+		/// <summary>
+		/// Obsolete!
+		/// </summary>
+		public string SimsEP1Path 
+		{
+			get 
+			{
+                WarnObsolete();
+                return PathProvider.Global[Expansions.University].InstallFolder;
+			}
+			set
+			{
+                WarnObsolete();
+                PathProvider.Global[Expansions.University].InstallFolder = value;
+			}
+		}
+
+		/// <summary>
+		/// Obsolete!
+		/// </summary>
+		public string SimsEP2Path 
+		{
+			get 
+			{
+                WarnObsolete();
+                return PathProvider.Global[Expansions.Nightlife].InstallFolder;
+			}
+			set
+			{
+                WarnObsolete();
+                PathProvider.Global[Expansions.Nightlife].InstallFolder = value;
+			}
+		}
+
+		/// <summary>
+		/// Obsolete!
+		/// </summary>
+		public string SimsEP3Path 
+		{
+			get 
+			{
+                WarnObsolete();
+                return PathProvider.Global[Expansions.Business].InstallFolder;
+			}
+			set
+			{
+                WarnObsolete();
+                PathProvider.Global[Expansions.Business].InstallFolder = value;
+			}
+		}
+
+		/// <summary>
+		///Obsolete !
+		/// </summary>
+		public string SimsSP1Path 
+		{
+			get 
+			{
+                WarnObsolete();
+                return PathProvider.Global[Expansions.FamilyFun].InstallFolder;
+			}
+			set
+			{
+                WarnObsolete();
+                PathProvider.Global[Expansions.FamilyFun].InstallFolder = value;
+			}
+		}
+
+        /// <summary>
+        /// Obsolete!
+        /// </summary>
+        public string SimsSP2Path 
+        {
+            get 
+			{
+                WarnObsolete();
+                return PathProvider.Global[Expansions.Glamour].InstallFolder;
+			}
+			set
+			{
+                WarnObsolete();
+                PathProvider.Global[Expansions.Glamour].InstallFolder = value;
+			}  
+        }
+
+		protected static int GetVersion(int index) {
+            if ((index & 0xFFFF0000) == 0x00020000) return 5;
+			if ((index & 0xFFFF0000) == 0x00010000) return 4;
+			if ((index & 0x0000FFFF) == 0x00000003) return 3;			
+			if ((index & 0x0000FFFF) == 0x00000002) return 2;
+			if ((index & 0x0000FFFF) == 0x00000001) return 1;
+            return 0;
+        }
+		
+        /// <summary>
+        /// Obsolete!
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+		public static string GetEpName(int index)
+		{
+
+            WarnObsolete();
+            return PathProvider.Global[GetVersion(index)].Name;			
+		}
+
+
+        /// <summary>
+        /// Obsolete!
+        /// </summary>
+		public string CurrentEPName 
+		{
+            get
+            {
+                WarnObsolete();
+                return GetEpName(this.EPInstalled);
+            }
+		}
+
+        /// <summary>
+        /// Obsolete!
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+		public static string GetExecutableName(int index)
+		{
+            WarnObsolete();
+            return PathProvider.Global[GetVersion(index)].ExeName;	
+		}
+
+		 
+        /// <summary>
+        /// Obsolete!
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+		public string GetExecutableFolder(int index)
+		{
+            WarnObsolete();
+            return PathProvider.Global[GetVersion(index)].InstallFolder;
+		}
+
+		/// <summary>
+		/// Obsolete!
+		/// </summary>
+		public string SimsApplication 
+		{
+			get 
+			{
+                WarnObsolete();
+                return PathProvider.Global.SimsApplication;
+			}
+			
+		}
+
+		/// <summary>
+		/// Obsolete!
+		/// </summary>
+		public string SimSavegameFolder
+		{
+			get 
+			{
+                WarnObsolete();
+                return PathProvider.Global.SimSavegameFolder;
+			}
+			set 
+			{
+                WarnObsolete();
+                PathProvider.Global.SimSavegameFolder = value;
 			}
 		}
 		#endregion

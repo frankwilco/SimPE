@@ -39,8 +39,19 @@ namespace SimPe
 		{
 			pkg = SimPe.Packages.File.CreateNew();
 
-			LoadFromFolder(System.IO.Path.Combine(SimPe.Helper.WindowsRegistry.SimsEP2Path, "TSData/Res/ObjectScripts"), "globalObjLua", true);
-			LoadFromFolder(System.IO.Path.Combine(SimPe.Helper.WindowsRegistry.SimsEP2Path, "TSData/Res/ObjectScripts"), "ObjLua", false);
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+            {
+                if (ei.Flag.LuaFolders)
+                {
+                    string path = System.IO.Path.Combine(ei.InstallFolder, "TSData/Res/ObjectScripts");
+                    if (System.IO.Directory.Exists(path))
+                    {
+                        LoadFromFolder(path, "globalObjLua", true);
+                        LoadFromFolder(path, "ObjLua", false);
+                    }
+                }
+            }
+			
 		}
 
 		/// <summary>

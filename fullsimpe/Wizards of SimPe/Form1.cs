@@ -447,9 +447,9 @@ namespace SimPe.Wizards
 			Console.WriteLine(pndrop.Location);
 			Console.WriteLine(pndrop.Size);
 #else
-			op.tbsims.Text = Helper.WindowsRegistry.SimsPath;
-			op.tbsave.Text = Helper.WindowsRegistry.SimSavegameFolder;
-			op.tbdds.Text = Helper.WindowsRegistry.NvidiaDDSPath;
+            op.tbsims.Text = PathProvider.Global[Expansions.BaseGame].InstallFolder;
+            op.tbsave.Text = PathProvider.Global.SimSavegameFolder;
+            op.tbdds.Text = PathProvider.Global.NvidiaDDSPath;
 #endif
 
 			op.pnopt.Visible = true;

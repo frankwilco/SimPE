@@ -70,14 +70,11 @@ namespace SimPe
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
-			
-			this.tbFolder.Items.Add(new FolderWrapper("Original Game", SimPe.Helper.WindowsRegistry.RealGamePath));
-			this.tbFolder.Items.Add(new FolderWrapper("University", SimPe.Helper.WindowsRegistry.RealEP1GamePath));
-			this.tbFolder.Items.Add(new FolderWrapper("Nightlife", SimPe.Helper.WindowsRegistry.RealEP2GamePath));
-			this.tbFolder.Items.Add(new FolderWrapper("Open for Business", SimPe.Helper.WindowsRegistry.RealEP3GamePath));
-            this.tbFolder.Items.Add(new FolderWrapper("Family Fun Accesoires", SimPe.Helper.WindowsRegistry.RealSP1GamePath));
-            this.tbFolder.Items.Add(new FolderWrapper("Glamour Accesoires", SimPe.Helper.WindowsRegistry.RealSP1GamePath));
-			this.tbFolder.Items.Add(new FolderWrapper("Savegame", SimPe.Helper.WindowsRegistry.RealSavegamePath));
+
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+            {
+                this.tbFolder.Items.Add(new FolderWrapper(ei.Name, ei.RealInstallFolder));
+            }
 		}
 
 		/// <summary>

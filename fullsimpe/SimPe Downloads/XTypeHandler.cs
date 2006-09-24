@@ -211,7 +211,7 @@ namespace SimPe.Plugin.Downloads
         static SimPe.Packages.File xthumbs, nthumbs;
         public static Image GetXThumbnail(SimPe.PackedFiles.Wrapper.Cpf cpf)
         {
-            if (xthumbs == null) xthumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Thumbnails\\BuildModeThumbnails.package"));
+            if (xthumbs == null) xthumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Thumbnails\\BuildModeThumbnails.package"));
 
             SimPe.Packages.File tmbs = xthumbs;
             Data.XObjFunctionSubSort fss = GetFunctionSort(cpf);
@@ -239,7 +239,7 @@ namespace SimPe.Plugin.Downloads
             else if (cpf.FileDescriptor.Type == Data.MetaData.XNGB)
             {
                 types = new uint[] { 0x4D533EDD };
-                if (nthumbs == null) nthumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Thumbnails\\CANHObjectsThumbnails.package"));
+                if (nthumbs == null) nthumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Thumbnails\\CANHObjectsThumbnails.package"));
                 tmbs = nthumbs;
             }
 

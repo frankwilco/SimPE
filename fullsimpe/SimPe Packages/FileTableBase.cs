@@ -41,6 +41,10 @@ namespace SimPe
 
 				try 
 				{
+                    System.Collections.Generic.Dictionary<string, ExpansionItem> shortmap = new System.Collections.Generic.Dictionary<string, ExpansionItem>();
+                    foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+                        shortmap[ei.ShortId.ToLower()] = ei;
+
 					ArrayList folders = new ArrayList();
 
 					//read XML File
@@ -67,7 +71,7 @@ namespace SimPe
 									int ftiver = -1;
 									bool ftiignore = false;
 									bool ftirec = false;
-									FileTableItemType ftitype = FileTableItemType.Absolute;									
+                                    FileTableItemType ftitype = FileTablePaths.Absolute;									
 									
 									
 									
@@ -96,72 +100,34 @@ namespace SimPe
 
                                         if (a.Name == "root")
                                         {
-                                            string root = a.Value;
-                                            switch (root)
-                                            {
-                                                case "game":
-                                                    {
-                                                        root = Helper.WindowsRegistry.SimsPath;
-                                                        ftitype = FileTableItemType.GameFolder;
-                                                        break;
-                                                    }
-                                                case "ep1":
-                                                    {
-                                                        root = Helper.WindowsRegistry.SimsEP1Path;
-                                                        ftitype = FileTableItemType.EP1GameFolder;
-                                                        break;
-                                                    }
-                                                case "ep2":
-                                                    {
-                                                        root = Helper.WindowsRegistry.SimsEP2Path;
-                                                        ftitype = FileTableItemType.EP2GameFolder;
-                                                        break;
-                                                    }
-                                                case "ep3":
-                                                    {
-                                                        root = Helper.WindowsRegistry.SimsEP3Path;
-                                                        ftitype = FileTableItemType.EP3GameFolder;
-                                                        break;
-                                                    }
-                                                case "sp1":
-                                                    {
-                                                        root = Helper.WindowsRegistry.SimsSP1Path;
-                                                        ftitype = FileTableItemType.SP1GameFolder;
-                                                        break;
-                                                    }
-                                                case "sp2":
-                                                    {
-                                                        root = Helper.WindowsRegistry.SimsSP2Path;
-                                                        ftitype = FileTableItemType.SP2GameFolder;
-                                                        break;
-                                                    }
-                                                case "save":
-                                                    {
-                                                        root = Helper.WindowsRegistry.SimSavegameFolder;
-                                                        ftitype = FileTableItemType.SaveGameFolder;
-                                                        break;
-                                                    }
-                                                case "simpe":
-                                                    {
-                                                        root = Helper.SimPePath;
-                                                        ftitype = FileTableItemType.SimPEFolder;
-                                                        break;
-                                                    }
-                                                case "simpeData":
-                                                    {
-                                                        root = Helper.SimPeDataPath;
-                                                        ftitype = FileTableItemType.SimPEDataFolder;
-                                                        break;
-                                                    }
-                                                case "simpePlugin":
-                                                    {
-                                                        root = Helper.SimPePluginPath;
-                                                        ftitype = FileTableItemType.SimPEPluginFolder;
-                                                        break;
-                                                    }
-                                            }//switch
+                                            string root = a.Value.ToLower();
 
-                                            //name = System.IO.Path.Combine(root, name);
+                                            if (shortmap.ContainsKey(root))
+                                            {
+                                                ExpansionItem ei = shortmap[root];
+                                                ftitype = ei.Expansion;
+                                                root = ei.InstallFolder;
+                                            }
+                                            else if (root == "save")
+                                            {
+                                                root = PathProvider.Global.SimSavegameFolder;
+                                                ftitype = FileTablePaths.SaveGameFolder;
+                                            }
+                                            else if (root == "simpe")
+                                            {
+                                                root = Helper.SimPePath;
+                                                ftitype = FileTablePaths.SimPEFolder;
+                                            }
+                                            else if (root == "simpedata")
+                                            {
+                                                root = Helper.SimPeDataPath;
+                                                ftitype = FileTablePaths.SimPEDataFolder;
+                                            }
+                                            else if (root == "simpeplugin")
+                                            {
+                                                root = Helper.SimPePluginPath;
+                                                ftitype = FileTablePaths.SimPEPluginFolder;
+                                            }                                                                                       
                                         }
                                     } //foreach
 
@@ -209,7 +175,26 @@ namespace SimPe
 					tw.WriteLine("    <file root=\"save\">Downloads"+Helper.PATH_SEP+"_EnableColorOptionsGMND.package</file>");
 					tw.WriteLine("    <file root=\"game\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Sims3D"+Helper.PATH_SEP+"_EnableColorOptionsMMAT.package</file>");
 
-                    tw.WriteLine("    <path root=\"sp2\" version=\"5\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects</path>");
+
+                    for (int i=PathProvider.Global.Expansions.Count-1; i>=0; i--)
+                    {
+                        ExpansionItem ei = PathProvider.Global.Expansions[i];
+                        string s = ei.ShortId.ToLower();
+
+                        if (ei.Flag.Class == ExpansionItem.Classes.BaseGame) tw.WriteLine("    <path root=\""+s+"\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Bins</path>");
+                        tw.WriteLine("    <path root=\""+s+"\" version=\""+ei.Version+"\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects</path>");
+                        if (ei.Flag.Class == ExpansionItem.Classes.BaseGame) tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Sims3D</path>");
+                        else  tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "3D</path>");
+                        
+                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Materials</path>");
+                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Skins</path>");
+                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Patterns</path>");
+                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "CANHObjects</path>");
+                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Wants</path>");
+                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "UI</path>");
+
+                    }
+                    /*tw.WriteLine("    <path root=\"sp2\" version=\"5\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects</path>");
                     tw.WriteLine("    <path root=\"sp2\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "3D</path>");
                     tw.WriteLine("    <path root=\"sp2\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Materials</path>");
                     tw.WriteLine("    <path root=\"sp2\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Skins</path>");
@@ -262,7 +247,7 @@ namespace SimPe
 					tw.WriteLine("    <path root=\"game\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Catalog"+Helper.PATH_SEP+"Patterns</path>");
 					tw.WriteLine("    <path root=\"game\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Catalog"+Helper.PATH_SEP+"CANHObjects</path>");
 					tw.WriteLine("    <path root=\"game\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Wants</path>");					
-					tw.WriteLine("    <path root=\"game\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"UI</path>");
+					tw.WriteLine("    <path root=\"game\">TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"UI</path>");*/
 					tw.WriteLine("  </filetable>");
 					tw.WriteLine("</folders>");
 

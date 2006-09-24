@@ -148,7 +148,7 @@ namespace SimPe.Plugin
 		/// </remarks>
 		public static void MakeUnique(Idno idno, string filename, bool scanall) 
 		{
-			MakeUnique(idno, filename, Helper.WindowsRegistry.SimSavegameFolder, scanall);
+            MakeUnique(idno, filename, PathProvider.Global.SimSavegameFolder, scanall);
 		}
 
 		/// <summary>
@@ -165,7 +165,7 @@ namespace SimPe.Plugin
 		/// </remarks>
 		public static void MakeUnique(Idno idno, string filename, string folder, bool scanall) 
 		{
-			Hashtable ids = FindUids(Helper.WindowsRegistry.SimSavegameFolder, scanall);
+            Hashtable ids = FindUids(PathProvider.Global.SimSavegameFolder, scanall);
 			MakeUnique(idno, filename, ids);
 		}
 
@@ -323,7 +323,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		public Idno() : base()
 		{
-			if (Helper.WindowsRegistry.EPInstalled>=1) this.version = (uint)NeighborhoodVersion.Sims2_University;
+            if (SimPe.PathProvider.Global.EPInstalled >= 1) this.version = (uint)NeighborhoodVersion.Sims2_University;
 			else this.version = (uint)NeighborhoodVersion.Sims2;
 
 			this.type = NeighborhoodType.Normal;

@@ -897,6 +897,17 @@ The given Folder must contain a subfolder called "TSData".
 
 If this is empty, SimPE will use the default Folder.</value>
 	</data>
+  <data name="[Property:EP4Path]">
+    <value>4: Pets</value>
+  </data>
+  <data name="[Description:EP4Path]">
+    <value>
+      This should contain the installation directory of "The Sims 2 - Pets".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
 	<data name="[Property:SP1Path]">
 		<value>1: Family Fun Accessoires</value>
 	</data>
@@ -932,13 +943,13 @@ If this is empty, SimPE will use the default Folder.</value>
 	<data name="[Description:NvidadPath]">
 		<value>This should contain the Folder pointing to the Nivida DDS Tool.</value>
 	</data>
-	<data name="[Category:BasicGame]">
+	<data name="[Category:BaseGame]">
 		<value>1. Original Game</value>
 	</data>
 	<data name="[Category:ExpansionPack]">
 		<value>2. Expansion Packs</value>
 	</data>
-	<data name="[Category:SmallExpansionPack]">
+	<data name="[Category:StuffPack]">
 		<value>3. Mini Expansion Packs</value>
 	</data>
 	
@@ -1079,8 +1090,36 @@ Run SimPE anyway?</value>
 		<value>The Sims 2 - Open for Business</value>
     </data> 
     <data name="EP NAME 4">
-		<value>The Sims 2 - Family Fun Accesoires</value>
-    </data> 
+		<value>The Sims 2 - Family Fun Stuff</value>
+    </data>
+    <data name="EP NAME 5">
+    <value>The Sims 2 - Glamour Life Stuff</value>
+    </data>
+    <data name="EP NAME 6">
+    <value>The Sims 2 - Pets</value>
+    </data>
+
+  <data name="EP SNAME 0">
+    <value>Original</value>
+  </data>
+  <data name="EP SNAME 1">
+    <value>University</value>
+  </data>
+  <data name="EP SNAME 2">
+    <value>Nightlife</value>
+  </data>
+  <data name="EP SNAME 3">
+    <value>Business</value>
+  </data>
+  <data name="EP SNAME 4">
+    <value>Family Fun</value>
+  </data>
+  <data name="EP SNAME 5">
+    <value>Glamour</value>
+  </data>
+  <data name="EP SNAME 6">
+    <value>Pets</value>
+  </data>
     <data name="Check: Folder not found">
 		<value>Folder for "{name}" was not found.</value>
     </data> 
@@ -1116,4 +1155,10 @@ Run SimPE anyway?</value>
 
 This means, that SimPE is unable to build the Joint Hirarchy.</value>
 	</data>
+  <data name="OpenInCaption">
+    <value>{where}: TSData/Res...</value>
+  </data>
+  <data name="FileTableSectionInclude">
+    <value>Include {what}</value>
+  </data>
 </root>

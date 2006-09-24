@@ -183,9 +183,9 @@ namespace SimPe.PackedFiles.UserInterface
 		void LoadWantTable(SDescVersions version) 
 		{			
 			wnl = null;
-			if (version==SDescVersions.OriginalGame) 
+			if (version==SDescVersions.BaseGame) 
 			{				
-				string flname = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, @"TSData\Res\Objects\objects.package");
+				string flname = System.IO.Path.Combine(PathProvider.Global.GetExpansion(Expansions.BaseGame).InstallFolder, @"TSData\Res\Objects\objects.package");
 				if (System.IO.File.Exists(flname))
 				{
 					SimPe.Packages.File fl = SimPe.Packages.File.LoadFromFile(flname);

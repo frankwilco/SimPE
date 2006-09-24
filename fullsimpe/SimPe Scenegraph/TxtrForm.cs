@@ -1170,7 +1170,7 @@ namespace SimPe.Plugin
 		private void ContextPopUp(object sender, System.EventArgs e)
 		{
 			milifo.Enabled = false;
-			this.mibuild.Enabled = System.IO.File.Exists(Helper.WindowsRegistry.NvidiaDDSTool);
+            this.mibuild.Enabled = System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool);
 			if (lbimg.SelectedIndex<0) return;
 			try 
 			{
@@ -1184,7 +1184,7 @@ namespace SimPe.Plugin
 				{
 					milifo.Enabled = false;
 				}
-				mibuild.Enabled = (System.IO.File.Exists(Helper.WindowsRegistry.NvidiaDDSTool));
+                mibuild.Enabled = (System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool));
 			} 
 			catch (Exception ex) 
 			{

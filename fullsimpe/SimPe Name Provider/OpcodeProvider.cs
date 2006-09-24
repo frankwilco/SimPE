@@ -258,7 +258,7 @@ namespace SimPe.Providers
 			if (BasePackage==null) 
 			{
 				Registry reg = Helper.WindowsRegistry;
-				string file = System.IO.Path.Combine(reg.SimsPath, "TSData\\Res\\Objects\\objects.package");				
+				string file = System.IO.Path.Combine(SimPe.PathProvider.Global.GetExpansion(Expansions.BaseGame).InstallFolder, "TSData\\Res\\Objects\\objects.package");				
 				if (System.IO.File.Exists(file)) 
 				{
 					BasePackage = SimPe.Packages.File.LoadFromFile(file);
