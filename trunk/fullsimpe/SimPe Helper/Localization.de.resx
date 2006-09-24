@@ -1155,6 +1155,17 @@ Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
 
 Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
 	</data>
+  <data name="[Property:EP4Path]">
+    <value>4: Haustiere</value>
+  </data>
+  <data name="[Description:EP4Path]">
+    <value>
+      Hier sollte das Installationsverzeichnis von "Die Sims 2 - Haustiere" stehen.
+      Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+      Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
+    </value>
+  </data>
 	<data name="[Property:SP1Path]">
 		<value>1: Family Fun Accessoires</value>
 	</data>
@@ -1190,13 +1201,13 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
 	<data name="[Description:NvidadPath]">
 		<value>Hier sollte der Pfad zu den "Nvidia DDS-Tool" stehen</value>
 	</data>
-	<data name="[Category:BasicGame]">
+	<data name="[Category:BaseGame]">
 		<value>1. Original Spiel</value>
 	</data>
 	<data name="[Category:ExpansionPack]">
 		<value>2. Erweiterungen</value>
 	</data>
-	<data name="[Category:SmallExpansionPack]">
+	<data name="[Category:StuffPack]">
 		<value>3. Mini-Erweiterungen</value>
 	</data>
 	
@@ -1336,7 +1347,38 @@ Soll SimPE dennoch gestartet werden?</value>
     </data> 
     <data name="EP NAME 3">
 		<value>Die Sims 2 - Open for Business</value>
-    </data> 
+    </data>
+  <data name="EP NAME 4">
+    <value>The Sims 2 - Family Fun Accessoires</value>
+  </data>
+  <data name="EP NAME 5">
+    <value>The Sims 2 - Glamour Accessoires</value>
+  </data>
+  <data name="EP NAME 6">
+    <value>The Sims 2 - Hasutiere</value>
+  </data>
+
+  <data name="EP SNAME 0">
+    <value>Original</value>
+  </data>
+  <data name="EP SNAME 1">
+    <value>Campus</value>
+  </data>
+  <data name="EP SNAME 2">
+    <value>Nightlife</value>
+  </data>
+  <data name="EP SNAME 3">
+    <value>Business</value>
+  </data>
+  <data name="EP SNAME 4">
+    <value>Family Fun</value>
+  </data>
+  <data name="EP SNAME 5">
+    <value>Glamour</value>
+  </data>
+  <data name="EP SNAME 6">
+    <value>Hasutiere</value>
+  </data>
     <data name="Check: Folder not found">
 		<value>Verzeichniss für "{name}" wurde nicht gefunden.</value>
     </data> 
@@ -1370,4 +1412,7 @@ Soll SimPE dennoch gestartet werden?</value>
 Dies hat zur Folge, dass SimPE die Joint-Hierarchie nicht aufbauen kann.
 		</value>
 	</data>
+  <data name="FileTableSectionInclude">
+    <value>{what} laden</value>
+  </data>
 </root>

@@ -75,7 +75,7 @@ namespace SimPe.Plugin
 			biDebug.Visible = Helper.WindowsRegistry.HiddenMode;
 			this.SelectButton(biSim);
 
-			biBadge.Enabled = Helper.WindowsRegistry.EPInstalled>=3;
+            biBadge.Enabled = SimPe.PathProvider.Global.EPInstalled >= 3;
 
 			SimPe.RemoteControl.HookToMessageQueue(0x4E474248, new SimPe.RemoteControl.ControlEvent(ControlEvent));
 		}

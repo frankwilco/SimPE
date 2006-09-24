@@ -441,7 +441,7 @@ namespace SimPe.Plugin
 			arg += " -nmips "+levels.ToString();
 			arg += " "+parameters;
 
-			string flname = Helper.WindowsRegistry.NvidiaDDSTool;
+            string flname = PathProvider.Global.NvidiaDDSTool;
 
 			if (!System.IO.File.Exists(flname)) return new DDSData[0];
 

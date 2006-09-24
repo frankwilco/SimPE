@@ -56,9 +56,9 @@ namespace SimPe.Plugin
 
 		public Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)
 		{
-			if (!System.IO.Directory.Exists(registry.NeighborhoodFolder)) 
+            if (!System.IO.Directory.Exists(PathProvider.Global.NeighborhoodFolder)) 
 			{
-				System.Windows.Forms.MessageBox.Show("The Folder "+registry.NeighborhoodFolder+" was not found.\nPlease specify the correct SaveGame Folder in the Options Dialog.");
+                System.Windows.Forms.MessageBox.Show("The Folder " + PathProvider.Global.NeighborhoodFolder + " was not found.\nPlease specify the correct SaveGame Folder in the Options Dialog.");
 				return new ToolResult(false, false);
 			}
 
@@ -72,7 +72,7 @@ namespace SimPe.Plugin
 			NeighborhoodForm nf = new NeighborhoodForm();
 			nf.Text = Localization.Manager.GetString("neighborhoodbrowser");
 
-			Interfaces.Plugin.IToolResult ret = nf.Execute(registry.NeighborhoodFolder, ref package, prov);
+            Interfaces.Plugin.IToolResult ret = nf.Execute(PathProvider.Global.NeighborhoodFolder, ref package, prov);
 			if (ret.ChangedPackage) pfd = null;
 			return ret;
 		}

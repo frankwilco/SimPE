@@ -377,25 +377,25 @@ namespace SimPe.Wizards
 		internal Form1 form1;
 		private void Hide(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			Helper.WindowsRegistry.SimSavegameFolder = tbsave.Text;
-			Helper.WindowsRegistry.SimsPath = tbsims.Text;
-			Helper.WindowsRegistry.NvidiaDDSPath = tbdds.Text;
+            PathProvider.Global.SimSavegameFolder = tbsave.Text;
+            PathProvider.Global[Expansions.BaseGame].InstallFolder = tbsims.Text;
+            PathProvider.Global.NvidiaDDSPath = tbdds.Text;
 			form1.HideOptions(sender, e);
 		}
 
 		public static bool HaveObjects
 		{
-			get { return System.IO.File.Exists(System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData"+Helper.PATH_SEP+"Res"+Helper.PATH_SEP+"Objects"+Helper.PATH_SEP+"objects.package")); }
+            get { return System.IO.File.Exists(System.IO.Path.Combine(PathProvider.Global[Expansions.BaseGame].InstallFolder, "TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects" + Helper.PATH_SEP + "objects.package")); }
 		}
 
 		public static bool HaveSavefolder
 		{
-			get { return System.IO.Directory.Exists(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads")); }
+            get { return System.IO.Directory.Exists(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads")); }
 		}
 
 		public static bool HaveDDS
 		{
-			get {return System.IO.File.Exists(Helper.WindowsRegistry.NvidiaDDSTool);}
+            get { return System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool); }
 		}
 
 		private void Change(object sender, System.EventArgs e)
@@ -408,23 +408,23 @@ namespace SimPe.Wizards
 
 		private void SugSims(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			tbsims.Text = Helper.WindowsRegistry.RealGamePath;
+            tbsims.Text = PathProvider.Global[Expansions.BaseGame].RealInstallFolder;
 		}
 
 		private void SugSave(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			tbsave.Text = Helper.WindowsRegistry.RealSavegamePath;
+            tbsave.Text = PathProvider.Global.RealSavegamePath;
 		}
 
 		private void FldSims(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			if (System.IO.Directory.Exists(Helper.WindowsRegistry.RealGamePath)) fbd.SelectedPath = Helper.WindowsRegistry.RealGamePath;
+            if (System.IO.Directory.Exists(PathProvider.Global[Expansions.BaseGame].RealInstallFolder)) fbd.SelectedPath = PathProvider.Global[Expansions.BaseGame].RealInstallFolder;
 			if (fbd.ShowDialog()==DialogResult.OK) tbsims.Text = fbd.SelectedPath;
 		}
 
 		private void FldSave(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-			if (System.IO.Directory.Exists(Helper.WindowsRegistry.RealSavegamePath)) fbd.SelectedPath = Helper.WindowsRegistry.RealSavegamePath;
+            if (System.IO.Directory.Exists(PathProvider.Global.RealSavegamePath)) fbd.SelectedPath = PathProvider.Global.RealSavegamePath;
 			if (fbd.ShowDialog()==DialogResult.OK) tbsave.Text = fbd.SelectedPath;
 		}
 

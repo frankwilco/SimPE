@@ -9,19 +9,7 @@ namespace SimPe.Plugin.Downloads
 	public class PackageInfo : Downloads.IPackageInfo	, System.IDisposable
 	{
 		public const int IMAGESIZE = 128;
-		/// <summary>
-		/// Known Expansions
-		/// </summary>
-		public enum Expansion : ushort
-		{
-			Unknown = 0xFF,			
-			Original = 0x02,
-			University = 0x04,
-			Nightlife = 0x08,
-			Business = 0x10,
-			FamilyFun = 0x20,
-			Custom = 0x01
-		}
+		
 
 		protected static Image defimg;
 		public static Image DefaultImage
@@ -77,21 +65,21 @@ namespace SimPe.Plugin.Downloads
 		/// </summary>
 		/// <param name="pfd">Resource Descriptor</param>
 		/// <returns>The expansion which madkes this File available (according to the FileTable, <see cref="Expansion.Custom"/> marks a Custom File from the Downloads Folder)</returns>
-		public static Expansion FileFrom(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
+		public static Expansions FileFrom(SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
 		{
 			SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] fiis = FileTable.FileIndex.FindFile(pfd, null);
-			ushort min = (ushort)(Expansion.Unknown);
+			uint min = (uint)(Expansions.None);
 			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii in fiis) 
 			{
 				try 
 				{
-					min = Math.Min((ushort)FileFrom(fii.Package.FileName), min);
+					min = Math.Min((uint)FileFrom(fii.Package.FileName), min);
 				} 
 				catch {}
 			}
 			
 
-			return (Expansion)min;
+			return (Expansions)min;
 		}
 
 		/// <summary>
@@ -99,18 +87,17 @@ namespace SimPe.Plugin.Downloads
 		/// </summary>
 		/// <param name="flname">The Filename</param>
 		/// <returns>The expansion which madkes this File available (<see cref="Expansion.Custom"/> marks a Custom File from the Downloads Folder)</returns>
-		public static Expansion FileFrom(string flname)
+		public static Expansions FileFrom(string flname)
 		{
 			if (flname==null) flname = "";
 			else flname = Helper.CompareableFileName(flname);
 
-			if (flname.StartsWith(Helper.CompareableFileName(Helper.WindowsRegistry.SimsPath))) return Expansion.Original;
-			if (flname.StartsWith(Helper.CompareableFileName(Helper.WindowsRegistry.SimsEP1Path))) return Expansion.University;
-			if (flname.StartsWith(Helper.CompareableFileName(Helper.WindowsRegistry.SimsEP2Path))) return Expansion.Nightlife;
-			if (flname.StartsWith(Helper.CompareableFileName(Helper.WindowsRegistry.SimsEP3Path))) return Expansion.Business;
-			if (flname.StartsWith(Helper.CompareableFileName(Helper.WindowsRegistry.SimsSP1Path))) return Expansion.FamilyFun;
-			if (flname.StartsWith(Helper.CompareableFileName(System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Donwloads")))) return Expansion.Custom;
-			return Expansion.Unknown;
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+            {
+                if (flname.StartsWith(Helper.CompareableFileName(ei.InstallFolder))) return (ei.Expansion);
+            }
+            if (flname.StartsWith(Helper.CompareableFileName(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Donwloads")))) return Expansions.Custom;
+			return Expansions.None;
 		}
 
         string flname;
@@ -123,8 +110,8 @@ namespace SimPe.Plugin.Downloads
 			Reset();
 		}
 
-		Expansion exp;
-		public Expansion FirstExpansion
+		Expansions exp;
+		public Expansions FirstExpansion
 		{
 			get {return exp;}
 			set {exp = value;}
@@ -245,7 +232,7 @@ namespace SimPe.Plugin.Downloads
 			this.FaceCount = 0;
 			this.Image = null;	
 			type = SimPe.Cache.PackageType.Undefined;
-			exp = Expansion.Unknown;
+			exp = Expansions.None;
 			ClearGuidList();
 		}
 

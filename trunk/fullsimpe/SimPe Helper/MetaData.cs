@@ -442,8 +442,8 @@ namespace SimPe.Data
 		public const uint OLUA = 0x9012468B;
 
 
-		public static string GMND_PACKAGE = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads\\_EnableColorOptionsGMND.package");
-		public static string MMAT_PACKAGE = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res\\Sims3D\\_EnableColorOptionsMMAT.package");
+		public static string GMND_PACKAGE = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads\\_EnableColorOptionsGMND.package");
+		public static string MMAT_PACKAGE = System.IO.Path.Combine(PathProvider.Global.GetExpansion(Expansions.BaseGame).InstallFolder, "TSData\\Res\\Sims3D\\_EnableColorOptionsMMAT.package");
 		
 		#endregion
 

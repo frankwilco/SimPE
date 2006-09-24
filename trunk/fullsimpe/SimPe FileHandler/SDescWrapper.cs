@@ -32,7 +32,7 @@ namespace SimPe.PackedFiles.Wrapper
 	public enum SDescVersions : int
 	{
 		Unknown = 0,
-		OriginalGame = 0x20,
+		BaseGame = 0x20,
 		University = 0x22,
 		Nightlife = 0x29,
 		Business = 0x2a
@@ -2137,6 +2137,25 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 		#endregion
+
+        public static Expansions GetMinExpansion(SDescVersions ver){
+            string[] names = Enum.GetNames(typeof(Expansions));
+            string name = ver.ToString();
+            foreach (string n in names)
+                if (name == n) return (Expansions)Enum.Parse(typeof(Expansions), n);
+
+            return Expansions.BaseGame;
+        }
+
+        public static SDescVersions GetMinVersion(Expansions exp)
+        {
+            string[] names = Enum.GetNames(typeof(SDescVersions));
+            string name = exp.ToString();
+            foreach (string n in names)
+                if (name == n) return (SDescVersions)Enum.Parse(typeof(SDescVersions), n);
+
+            return SDescVersions.Unknown;
+        }
 
 		public override int GetHashCode()
 		{

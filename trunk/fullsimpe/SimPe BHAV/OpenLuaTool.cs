@@ -37,7 +37,7 @@ namespace SimPe.Plugin
 
 		public bool IsEnabled(SimPe.Interfaces.Files.IPackedFileDescriptor pfd, SimPe.Interfaces.Files.IPackageFile package)
 		{
-			return (Helper.WindowsRegistry.EPInstalled>=0x2);
+			return (SimPe.PathProvider.Global.EPInstalled>=0x2);
 		}
 
 		public SimPe.Interfaces.Plugin.IToolResult ShowDialog(ref SimPe.Interfaces.Files.IPackedFileDescriptor pfd, ref SimPe.Interfaces.Files.IPackageFile package)

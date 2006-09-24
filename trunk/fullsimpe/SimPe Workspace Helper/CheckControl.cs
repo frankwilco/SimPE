@@ -395,16 +395,16 @@ namespace SimPe
 			{
 				
 				string test, path;
-				for (int ep=0; ep<=Helper.WindowsRegistry.EPInstalled; ep++)
+				foreach (ExpansionItem ei in PathProvider.Global.Expansions)
 				{
-					path = Helper.WindowsRegistry.GetExecutableFolder(ep);
-					string name = Registry.GetExecutableName(ep);
+					path = ei.InstallFolder;//Helper.WindowsRegistry.GetExecutableFolder(ep);
+					string name = ei.ExeName;
 
 					test = System.IO.Path.Combine(path, "TSBin"+Helper.PATH_SEP+name);
 					if (!System.IO.File.Exists(test)) 
 					{
 						isok = CheckItemState.Fail;
-						ci.Details += SimPe.Localization.GetString("Check: Folder not found").Replace("{name}", Registry.GetEpName(ep))+Helper.lbr;
+						ci.Details += SimPe.Localization.GetString("Check: Folder not found").Replace("{name}", ei.Name)+Helper.lbr;
 						ci.Details += "    "+SimPe.Localization.GetString("Check: Unable to locate").Replace("{name}", test)+Helper.lbr+Helper.lbr;
 						continue;
 					}
@@ -413,13 +413,13 @@ namespace SimPe
 					if (!System.IO.File.Exists(test)) 
 					{
 						isok = CheckItemState.Fail;
-						ci.Details += SimPe.Localization.GetString("Check: Folder not found").Replace("{name}", Registry.GetEpName(ep))+Helper.lbr;
+						ci.Details += SimPe.Localization.GetString("Check: Folder not found").Replace("{name}", ei.Name)+Helper.lbr;
 						ci.Details += "    "+SimPe.Localization.GetString("Check: Unable to locate").Replace("{name}", test)+Helper.lbr+Helper.lbr;
 						continue;
 					}
 				}
 
-				path = Helper.WindowsRegistry.SimSavegameFolder;
+                path = PathProvider.Global.SimSavegameFolder;
 				test = System.IO.Path.Combine(path, "Neighborhoods");
 				if (!System.IO.Directory.Exists(test)) 
 				{
@@ -459,7 +459,7 @@ namespace SimPe
 		private SimPe.CheckItemState chkSimFolder_ClickedFix(object sender, SimPe.CheckItemState isok)
 		{
 			isok = CheckItemState.Unknown;
-			Helper.WindowsRegistry.SetDefaultPaths();
+            PathProvider.Global.SetDefaultPaths();
 			return isok;
 		}
 		#endregion

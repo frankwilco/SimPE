@@ -2507,7 +2507,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderPolitics));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderScience));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderSlacker));			
-			if ((Helper.WindowsRegistry.EPInstalled>=1) || (Helper.WindowsRegistry.HiddenMode))
+			if ((SimPe.PathProvider.Global.EPInstalled>=1) || (Helper.WindowsRegistry.HiddenMode))
 			{
 				this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Paranormal));
 				this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.NaturalScientist));

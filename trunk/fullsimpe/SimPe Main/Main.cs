@@ -105,7 +105,6 @@ namespace SimPe
 		private TD.SandBar.ButtonItem biUpdate;
 		private ToolStripMenuItem miOpenIn;
 		private ToolStripMenuItem miOpenSimsRes;
-		private ToolStripMenuItem miOpenUniRes;
 		private ToolStripMenuItem miOpenDownloads;
 		private System.Windows.Forms.TextBox tbRcolName;
 		private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon2;
@@ -117,11 +116,8 @@ namespace SimPe
 		private TD.SandDock.DockContainer dockContainer1;
 		private System.Windows.Forms.Timer resourceSelectionTimer;
 		private ToolStripMenuItem miSaveCopyAs;
-		private ToolStripMenuItem miOpenNightlifeRes;
 		private TD.SandBar.ButtonItem biReset;
-		private ToolStripMenuItem miOpenBusinessRes;
 		private ToolStripMenuItem mbiTopics;
-		private ToolStripMenuItem miOpenFamilyFunRes;
         internal WaitControl waitControl1;
         private ToolStripSeparator toolStripMenuItem1;
         private ToolStripSeparator toolStripMenuItem2;
@@ -254,10 +250,6 @@ namespace SimPe
             this.menuBarItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.miOpenIn = new System.Windows.Forms.ToolStripMenuItem();
             this.miOpenSimsRes = new System.Windows.Forms.ToolStripMenuItem();
-            this.miOpenUniRes = new System.Windows.Forms.ToolStripMenuItem();
-            this.miOpenNightlifeRes = new System.Windows.Forms.ToolStripMenuItem();
-            this.miOpenBusinessRes = new System.Windows.Forms.ToolStripMenuItem();
-            this.miOpenFamilyFunRes = new System.Windows.Forms.ToolStripMenuItem();
             this.miOpenDownloads = new System.Windows.Forms.ToolStripMenuItem();
             this.miSaveCopyAs = new System.Windows.Forms.ToolStripMenuItem();
             this.miRecent = new System.Windows.Forms.ToolStripMenuItem();
@@ -602,10 +594,6 @@ namespace SimPe
             // 
             this.miOpenIn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miOpenSimsRes,
-            this.miOpenUniRes,
-            this.miOpenNightlifeRes,
-            this.miOpenBusinessRes,
-            this.miOpenFamilyFunRes,
             this.miOpenDownloads});
             this.miOpenIn.Name = "miOpenIn";
             resources.ApplyResources(this.miOpenIn, "miOpenIn");
@@ -615,30 +603,7 @@ namespace SimPe
             this.miOpenSimsRes.Name = "miOpenSimsRes";
             resources.ApplyResources(this.miOpenSimsRes, "miOpenSimsRes");
             this.miOpenSimsRes.Click += new System.EventHandler(this.Activate_miOpenSimsRes);
-            // 
-            // miOpenUniRes
-            // 
-            this.miOpenUniRes.Name = "miOpenUniRes";
-            resources.ApplyResources(this.miOpenUniRes, "miOpenUniRes");
-            this.miOpenUniRes.Click += new System.EventHandler(this.Activate_miOpenUniRes);
-            // 
-            // miOpenNightlifeRes
-            // 
-            this.miOpenNightlifeRes.Name = "miOpenNightlifeRes";
-            resources.ApplyResources(this.miOpenNightlifeRes, "miOpenNightlifeRes");
-            this.miOpenNightlifeRes.Click += new System.EventHandler(this.Activate_miOpenNightlifeRes);
-            // 
-            // miOpenBusinessRes
-            // 
-            this.miOpenBusinessRes.Name = "miOpenBusinessRes";
-            resources.ApplyResources(this.miOpenBusinessRes, "miOpenBusinessRes");
-            this.miOpenBusinessRes.Click += new System.EventHandler(this.Activate_miOpenBusinessRes);
-            // 
-            // miOpenFamilyFunRes
-            // 
-            this.miOpenFamilyFunRes.Name = "miOpenFamilyFunRes";
-            resources.ApplyResources(this.miOpenFamilyFunRes, "miOpenFamilyFunRes");
-            this.miOpenFamilyFunRes.Click += new System.EventHandler(this.Activate_miOpenFamilyFunRes);
+            
             // 
             // miOpenDownloads
             // 
@@ -1136,7 +1101,10 @@ namespace SimPe
 		static void Main(string[] args) 
 		{
 			try 
-			{			
+			{
+               /*Console.WriteLine(ExpansionLoader.Global.EPInstalled+" "+ExpansionLoader.Global.SPInstalled+" "+ExpansionLoader.Global.GameVersion);
+                return;*/
+
 				Commandline.CheckFiles();
 			
 				//do the real Startup
@@ -1156,6 +1124,7 @@ namespace SimPe
                     
 					Helper.WindowsRegistry.Flush();
 					Helper.WindowsRegistry.Layout.Flush();
+                    //ExpansionLoader.Global.Flush(); SimPE should not edit this File!
 				}
 			} 
 			catch (Exception ex) 
@@ -1660,10 +1629,19 @@ namespace SimPe
 			this.miSaveAs.Enabled = package.Loaded;
 			this.miClose.Enabled = package.Loaded;
 
-			this.miOpenUniRes.Enabled = Helper.WindowsRegistry.EPInstalled>=1;
-			this.miOpenNightlifeRes.Enabled = Helper.WindowsRegistry.EPInstalled>=2;
-			this.miOpenBusinessRes.Enabled = Helper.WindowsRegistry.EPInstalled>=3;
-			this.miOpenFamilyFunRes.Enabled = Helper.WindowsRegistry.SPInstalled>=1;
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+            {
+                if (ei.Flag.Class != ExpansionItem.Classes.BaseGame)
+                {
+                    ToolStripMenuItem mi = new ToolStripMenuItem();
+                    mi.Text = SimPe.Localization.GetString("OpenInCaption").Replace("{where}", ei.Expansion.ToString());
+                    mi.Tag = ei;
+                    mi.Click += new EventHandler(this.Activate_miOpenInEp);
+                    mi.Enabled = ei.Exists;
+
+                    this.miOpenIn.DropDownItems.Insert(miOpenIn.DropDownItems.Count-1, mi);
+                }
+            }           
 		}
 		#endregion
 
@@ -2156,10 +2134,10 @@ namespace SimPe
 		private void Activate_miRunSims(object sender, System.EventArgs e)
 		{
 			
-			if (!System.IO.File.Exists(Helper.WindowsRegistry.SimsApplication)) return;
+			if (!System.IO.File.Exists(SimPe.PathProvider.Global.SimsApplication)) return;
 
 			System.Diagnostics.Process p = new System.Diagnostics.Process();
-			p.StartInfo.FileName = Helper.WindowsRegistry.SimsApplication;
+            p.StartInfo.FileName = SimPe.PathProvider.Global.SimsApplication;
 			if (Helper.WindowsRegistry.EnableSound) 
 			{
 				p.StartInfo.Arguments = "-w -r800x600 -skipintro -skipverify";
@@ -2249,44 +2227,33 @@ namespace SimPe
 			}
 		}
 
+        private void Activate_miOpenInEp(object sender, System.EventArgs e)
+        {
+            ToolStripMenuItem mi = sender as ToolStripMenuItem;
+            if (mi != null)
+            {
+                ExpansionItem ei = mi.Tag as ExpansionItem;
+                if (ei != null)
+                {
+                    ofd.InitialDirectory = System.IO.Path.Combine(ei.InstallFolder, "TSData\\Res");
+                    ofd.FileName = "";
+                    this.Activate_miOpen(sender, e);
+                }
+            }
+            
+            
+        }
+
 		private void Activate_miOpenSimsRes(object sender, System.EventArgs e)
 		{
-			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsPath, "TSData\\Res");
-			ofd.FileName = "";
-			this.Activate_miOpen(sender, e);
-		}
-
-		private void Activate_miOpenUniRes(object sender, System.EventArgs e)
-		{
-			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP1Path, "TSData\\Res");
-			ofd.FileName = "";
-			this.Activate_miOpen(sender, e);
-		}
-
-		private void Activate_miOpenNightlifeRes(object sender, System.EventArgs e)
-		{
-			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP2Path, "TSData\\Res");
-			ofd.FileName = "";
-			this.Activate_miOpen(sender, e);
-		}
-
-		private void Activate_miOpenBusinessRes(object sender, System.EventArgs e)
-		{
-			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsEP3Path, "TSData\\Res");
-			ofd.FileName = "";
-			this.Activate_miOpen(sender, e);
-		}
-
-		private void Activate_miOpenFamilyFunRes(object sender, System.EventArgs e)
-		{
-			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimsSP1Path, "TSData\\Res");
+			ofd.InitialDirectory = System.IO.Path.Combine(SimPe.PathProvider.Global[Expansions.BaseGame].InstallFolder, "TSData\\Res");
 			ofd.FileName = "";
 			this.Activate_miOpen(sender, e);
 		}
 
 		private void Activate_miOpenDownloads(object sender, System.EventArgs e)
 		{
-			ofd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads");
+            ofd.InitialDirectory = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
 			ofd.FileName = "";
 			this.Activate_miOpen(sender, e);
 		}

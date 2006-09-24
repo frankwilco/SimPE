@@ -101,10 +101,10 @@ namespace SimPe.Plugin
 			}
 			if (lvbase.Items.Count>0) lvbase.Items[0].Selected = true;
 
-			sfd.InitialDirectory = System.IO.Path.Combine(Helper.WindowsRegistry.SimSavegameFolder, "Downloads");
+            sfd.InitialDirectory = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
 
 			cbquality.SelectedIndex = 0;
-			if (System.IO.File.Exists(Helper.WindowsRegistry.NvidiaDDSTool)) 
+            if (System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool)) 
 			{
 				cbquality.Items.Add("Use Nvidia DDS Tools");
 				cbquality.SelectedIndex = cbquality.Items.Count-1;
@@ -888,9 +888,9 @@ namespace SimPe.Plugin
 				System.Drawing.Graphics g = Graphics.FromImage(mm.Texture);
 				g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
 				g.DrawImage(mmimg, template.TargetRectangle, rect, System.Drawing.GraphicsUnit.Pixel);
-				
 
-				if ((System.IO.File.Exists(Helper.WindowsRegistry.NvidiaDDSTool)) && (ddstool) && ((format==ImageLoader.TxtrFormats.DXT1Format) || (format==ImageLoader.TxtrFormats.DXT3Format) || (format==ImageLoader.TxtrFormats.DXT5Format)) )
+
+                if ((System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool)) && (ddstool) && ((format == ImageLoader.TxtrFormats.DXT1Format) || (format == ImageLoader.TxtrFormats.DXT3Format) || (format == ImageLoader.TxtrFormats.DXT5Format)))
 				{
 					DDSTool.AddDDsData(id, DDSTool.BuildDDS(mm.Texture, (int)id.MipMapLevels, format, "-sharpenMethod Smoothen"));
 				} 

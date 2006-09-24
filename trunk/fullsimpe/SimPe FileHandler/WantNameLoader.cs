@@ -111,12 +111,21 @@ namespace SimPe.Plugin
 		{
 			map = new Hashtable();			
 			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(0x00000000, 0xCDA53B6F, 0x2D7EE26B, null);
+
+            System.Collections.Generic.Dictionary<SimPe.PackedFiles.Wrapper.SDescVersions,string> vmap = new System.Collections.Generic.Dictionary<SimPe.PackedFiles.Wrapper.SDescVersions,string>();
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions) {
+                if (ei.Flag.Class == ExpansionItem.Classes.ExpansionPack) {
+                    vmap [SimPe.PackedFiles.Wrapper.SDesc.GetMinVersion(ei.Expansion)] = ei.InstallFolder.Trim().ToLower();
+                }
+            }
 			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 			
 			{
-				if (version==SimPe.PackedFiles.Wrapper.SDescVersions.Business && !item.Package.SaveFileName.Trim().ToLower().StartsWith(Helper.WindowsRegistry.SimsEP3Path.Trim().ToLower())) continue;
-				if (version==SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife && !item.Package.SaveFileName.Trim().ToLower().StartsWith(Helper.WindowsRegistry.SimsEP2Path.Trim().ToLower())) continue;
-				if (version==SimPe.PackedFiles.Wrapper.SDescVersions.University && !item.Package.SaveFileName.Trim().ToLower().StartsWith(Helper.WindowsRegistry.SimsEP1Path.Trim().ToLower())) continue;
-				SimPe.PackedFiles.Wrapper.Xml xml = new SimPe.PackedFiles.Wrapper.Xml();
+                string s = vmap[version];
+                if (s!=null && s!="") {
+                    if (item.Package.SaveFileName.Trim().ToLower().StartsWith(s)) continue;
+                }
+				
+                SimPe.PackedFiles.Wrapper.Xml xml = new SimPe.PackedFiles.Wrapper.Xml();
 				xml.ProcessData(item);
 
 				ParseXml(xml.Text);

@@ -70,9 +70,13 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <returns></returns>
 		string AbsoluteFileName(string flname)
 		{
-			flname = flname.Replace("%userdatadir%", Helper.WindowsRegistry.SimSavegameFolder.Trim().ToLower());
-			flname = flname.Replace("%gamedatadir1%", Helper.WindowsRegistry.SimsEP1Path.Trim().ToLower());
-			flname = flname.Replace("%gamedatadir%", Helper.WindowsRegistry.SimsPath.Trim().ToLower());
+            flname = flname.Replace("%userdatadir%", PathProvider.Global.SimSavegameFolder.Trim().ToLower());
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+            {
+                string add = ei.Version.ToString();
+                if (add == "0") add = "";
+                flname = flname.Replace("%gamedatadir"+add+"%", ei.InstallFolder.Trim().ToLower());
+            }
 
 			return flname;
 		}

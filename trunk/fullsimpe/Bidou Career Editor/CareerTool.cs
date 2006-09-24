@@ -34,7 +34,7 @@ namespace SimPe.Plugin
 		{
 			get 
 			{
-				if (Helper.WindowsRegistry.EPInstalled==1)
+                if (SimPe.PathProvider.Global.EPInstalled == 1)
 					return System.IO.Path.Combine(Helper.SimPeDataPath, "ep1base.career");
 				else
 					return System.IO.Path.Combine(Helper.SimPeDataPath, "base.career");

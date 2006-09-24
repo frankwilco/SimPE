@@ -5,21 +5,8 @@ using SimPe.Interfaces.Wrapper;
 
 namespace SimPe
 {
+    
 
-    public enum FileTableItemType
-    {
-        Absolute = 0x0,
-        GameFolder = 0x1,
-        EP1GameFolder = 0x2,
-        SaveGameFolder = 0x3,
-        SimPEFolder = 0x4,
-        SimPEDataFolder = 0x5,
-        SimPEPluginFolder = 0x6,
-        EP2GameFolder = 0x7,
-        EP3GameFolder = 0x8,
-        SP1GameFolder = 0x9,
-        SP2GameFolder = 0xA
-    }
     /// <summary>
     /// The type and location of a Folder/file
     /// </summary>
@@ -51,7 +38,7 @@ namespace SimPe
             this.path = path;
             this.relpath = path;
             this.ver = -1;
-            this.type = FileTableItemType.Absolute;
+            this.type = FileTablePaths.Absolute;
             this.ignore = false;
         }
 
@@ -71,7 +58,7 @@ namespace SimPe
         }
 
         public FileTableItem(string path, bool rec, bool fl, int ver, bool ign)
-            : this(path, FileTableItemType.Absolute, rec, fl, ver, ign)
+            : this(path, FileTablePaths.Absolute, rec, fl, ver, ign)
         {
         }
 
@@ -95,19 +82,11 @@ namespace SimPe
             this.file = state;
         }
 
+
         public static string GetRoot(FileTableItemType type)
         {
             string ret = null;
-            if (type == FileTableItemType.EP1GameFolder) ret = Helper.WindowsRegistry.SimsEP1Path;
-            else if (type == FileTableItemType.EP2GameFolder) ret = Helper.WindowsRegistry.SimsEP2Path;
-            else if (type == FileTableItemType.EP3GameFolder) ret = Helper.WindowsRegistry.SimsEP3Path;
-            else if (type == FileTableItemType.SP1GameFolder) ret = Helper.WindowsRegistry.SimsSP1Path;
-            else if (type == FileTableItemType.SP2GameFolder) ret = Helper.WindowsRegistry.SimsSP2Path;
-            else if (type == FileTableItemType.GameFolder) ret = Helper.WindowsRegistry.SimsPath;
-            else if (type == FileTableItemType.SaveGameFolder) ret = Helper.WindowsRegistry.SimSavegameFolder;
-            else if (type == FileTableItemType.SimPEDataFolder) ret = Helper.SimPeDataPath;
-            else if (type == FileTableItemType.SimPEFolder) ret = Helper.SimPePath;
-            else if (type == FileTableItemType.SimPEPluginFolder) ret = Helper.SimPePluginPath;
+            ret = type.GetRoot();
 
             if (ret != null)
                 if (!ret.EndsWith(Helper.PATH_SEP)) ret += Helper.PATH_SEP;
@@ -118,14 +97,7 @@ namespace SimPe
 
         public static int GetEPVersion(FileTableItemType type)
         {
-            if (type == FileTableItemType.EP1GameFolder) return 1;
-            else if (type == FileTableItemType.EP2GameFolder) return 2;
-            else if (type == FileTableItemType.EP3GameFolder) return 3;
-            else if (type == FileTableItemType.SP1GameFolder) return 4;
-            else if (type == FileTableItemType.SP2GameFolder) return 5;
-            else if (type == FileTableItemType.GameFolder) return 0;
-
-            return -1;
+            return type.GetEPVersion();
         }
 
         bool CutName(string name, FileTableItemType type)
@@ -178,16 +150,15 @@ namespace SimPe
         {
             string n = name;
 
-            if (CutName(n, FileTableItemType.GameFolder)) return;
-            if (CutName(n, FileTableItemType.EP1GameFolder)) return;
-            if (CutName(n, FileTableItemType.EP2GameFolder)) return;
-            if (CutName(n, FileTableItemType.EP3GameFolder)) return;
-            if (CutName(n, FileTableItemType.SP1GameFolder)) return;
-            if (CutName(n, FileTableItemType.SP2GameFolder)) return;
-            if (CutName(n, FileTableItemType.SaveGameFolder)) return;
-            if (CutName(n, FileTableItemType.SimPEDataFolder)) return;
-            if (CutName(n, FileTableItemType.SimPEFolder)) return;
-            if (CutName(n, FileTableItemType.SimPEPluginFolder)) return;
+            foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+            {
+                if (CutName(n, ei.Expansion)) return;
+            }
+            
+            if (CutName(n, FileTablePaths.SaveGameFolder)) return;
+            if (CutName(n, FileTablePaths.SimPEDataFolder)) return;
+            if (CutName(n, FileTablePaths.SimPEFolder)) return;
+            if (CutName(n, FileTablePaths.SimPEPluginFolder)) return;
 
             //if (Helper.IsAbsolutePath(name)) name = Helper.CompareableFileName(Helper.ToLongPathName(name));
             this.path = name;
@@ -213,7 +184,7 @@ namespace SimPe
 
         public bool IsUseable
         {
-            get { return ver == -1 || ver == Helper.WindowsRegistry.GameVersion; }
+            get { return ver == -1 || ver == PathProvider.Global.GameVersion; }
         }
 
         public int EpVersion

@@ -174,7 +174,7 @@ namespace SimPe.Plugin
 			bool chg = false;
 			try 
 			{
-				Hashtable ids = Idno.FindUids(Helper.WindowsRegistry.SimSavegameFolder, true);
+                Hashtable ids = Idno.FindUids(PathProvider.Global.SimSavegameFolder, true);
 				foreach (ScannerItem si in selection) 
 				{					
 					if (si.PackageCacheItem.Thumbnail!=null) WaitingScreen.Update(si.PackageCacheItem.Thumbnail, si.FileName);

@@ -38,7 +38,7 @@ namespace SimPe.Plugin
 				tm.AddControl(this.xpBadges);
 				tm.AddControl(this.xpSkills);
 
-				this.xpBadges.Visible = Helper.WindowsRegistry.EPInstalled>=3;
+                this.xpBadges.Visible = SimPe.PathProvider.Global.EPInstalled >= 3;
 				SetContent();
 			} 
 			catch {}
