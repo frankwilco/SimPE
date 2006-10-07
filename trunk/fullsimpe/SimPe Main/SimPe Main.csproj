@@ -133,10 +133,6 @@
       <Name>NewHexEdit</Name>
       <HintPath>..\HexEdit\bin\Release\NewHexEdit.dll</HintPath>
     </Reference>
-    <Reference Include="SandBar, Version=1.3.0.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SandBar.dll</HintPath>
-    </Reference>
     <Reference Include="SandDock">
       <Name>sanddock</Name>
       <HintPath>..\sanddock.dll</HintPath>
