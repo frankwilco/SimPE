@@ -278,7 +278,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		private void cbTask_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			TD.SandBar.FlatComboBox cb = sender as TD.SandBar.FlatComboBox;
+            Ambertation.Windows.Forms.FlatComboBox cb = sender as Ambertation.Windows.Forms.FlatComboBox;
 			LastOWAction = cb.SelectedIndex;
 		}
 

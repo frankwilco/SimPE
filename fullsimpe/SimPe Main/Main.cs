@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 using SimPe.Events;
+using Ambertation.Windows.Forms;
 
 namespace SimPe
 {
@@ -738,13 +739,13 @@ namespace SimPe
 		
 		private void CreateNewDocumentContainer(object sender, System.EventArgs e)
 		{
-			TD.SandDock.DockControl doc = new TD.SandDock.DockableWindow();
+            DockPanel doc = new DockPanel();
 			doc.Text = "Plugin";
+            manager.DockPanel(doc, DockStyle.Bottom);
 						
-			doc.Manager = sdm;			
-			//doc.PerformDock(dcPlugin.LayoutSystem);
+			
 			doc.OpenFloating();
-			doc.Closing += new TD.SandDock.DockControlClosingEventHandler(CloseAdditionalDocContainer);
+			doc.Closing += new DockPanel.ClosingHandler(CloseAdditionalDocContainer);
 			doc.TabImage = dcPlugin.TabImage;
 			doc.Text = dcPlugin.Text;
 			doc.TabText = dcPlugin.TabText;
@@ -759,7 +760,7 @@ namespace SimPe
 			
 		}
 
-		private void CloseAdditionalDocContainer(object sender, TD.SandDock.DockControlClosingEventArgs e)
+        private void CloseAdditionalDocContainer(object sender, DockPanel.DockPanelClosingEvent e)
 		{
 			if (sender is TD.SandDock.DockControl) 
 			{
@@ -1059,7 +1060,7 @@ namespace SimPe
 			
 		}
 
-		void MakeFloatable(TD.SandDock.DockableWindow dw, bool fl)
+		void MakeFloatable(Ambertation.Windows.Forms.DockPanel dw, bool fl)
 		{
 			dw.AllowFloat = fl;
 			dw.AllowDockBottom = fl;
@@ -1078,7 +1079,7 @@ namespace SimPe
                 ToolStripMenuItem mi = o as ToolStripMenuItem;
                 if (mi == null) continue;
 				if (mi.Tag==null) continue;
-				TD.SandDock.DockableWindow dw = mi.Tag as TD.SandDock.DockableWindow;
+				DockPanel dw = mi.Tag as DockPanel;
 
 				MakeFloatable(dw, fl);
 			}

@@ -10,7 +10,7 @@ namespace SimPe.Plugin.Tool.Dockable
 	/// <summary>
 	/// Summary description for DebugDock.
 	/// </summary>
-	public class DebugDock : TD.SandDock.UserDockableWindow, SimPe.Interfaces.IDockableTool
+	public class DebugDock : Ambertation.Windows.Forms.DockPanel, SimPe.Interfaces.IDockableTool
 	{
 		SimPe.ThemeManager tm;
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
@@ -29,10 +29,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			InitializeComponent();
 
 			tm = SimPe.ThemeManager.Global.CreateChild();
-			tm.AddControl(this.xpGradientPanel1);
-
-			
-			this.Guid = new System.Guid("23e35c0c-6364-4d00-9e60-3e9315e8d74c");
+			tm.AddControl(this.xpGradientPanel1);			
 		}
 
 		/// <summary> 
@@ -138,7 +135,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		}
 		#endregion
 
-		public TD.SandDock.DockControl GetDockableControl()
+        public Ambertation.Windows.Forms.DockPanel GetDockableControl()
 		{
 			return this;
 		}

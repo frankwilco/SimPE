@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
+# Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Interfaces", "..\SimPe Interfaces\SimPe Interfaces.csproj", "{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Helper", "..\SimPe Helper\SimPe Helper.csproj", "{59E3C353-1350-42D8-A045-CBBAD232F228}"
@@ -37,6 +37,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Main ResourceControl", "..\SimPe Main ResourceControl\SimPe Main ResourceControl.csproj", "{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Main", "..\SimPe Main\SimPe Main.csproj", "{7368AF5F-2C82-4750-A31F-63AA4432758C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDocks", "..\..\..\NetDocks\NetDocks\NetDocks.csproj", "{F65B296C-6435-4AA9-A5DF-188BE363C43E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,6 +161,12 @@ Global
 		{7368AF5F-2C82-4750-A31F-63AA4432758C}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
 		{7368AF5F-2C82-4750-A31F-63AA4432758C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7368AF5F-2C82-4750-A31F-63AA4432758C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

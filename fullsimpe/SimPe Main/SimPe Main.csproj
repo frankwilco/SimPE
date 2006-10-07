@@ -125,7 +125,7 @@
       <Name>navisight</Name>
       <HintPath>..\navisight.dll</HintPath>
     </Reference>
-    <Reference Include="NetDocks, Version=1.0.2467.27561, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NetDocks, Version=1.0.2471.34995, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NetDocks.dll</HintPath>
     </Reference>

@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using Ambertation.Windows.Forms;
 
 namespace SimPe.Plugin.Tool.Dockable
 {
@@ -34,7 +35,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		#region IDockableTool Member
 
-		public TD.SandDock.DockControl GetDockableControl()
+		public DockPanel GetDockableControl()
 		{
 			return rd.dcResource;
 		}

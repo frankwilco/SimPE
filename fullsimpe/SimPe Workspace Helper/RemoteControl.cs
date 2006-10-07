@@ -121,7 +121,7 @@ namespace SimPe
 		/// <summary>
 		/// Used to show/hide a Dock
 		/// </summary>
-		public delegate void ShowDockDelegate(TD.SandDock.DockControl doc, bool hide);
+        public delegate void ShowDockDelegate(Ambertation.Windows.Forms.DockPanel doc, bool hide);
 
 		#region Application Form
 		static System.Windows.Forms.Form appform;
@@ -234,7 +234,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="doc"></param>
 		/// <param name="hide"></param>
-		public static void ShowDock(TD.SandDock.DockControl doc, bool hide)
+		public static void ShowDock(Ambertation.Windows.Forms.DockPanel doc, bool hide)
 		{
 			if (sdd==null) return;
 			sdd(doc, hide);

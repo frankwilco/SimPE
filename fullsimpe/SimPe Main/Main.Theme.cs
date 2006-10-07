@@ -9,7 +9,7 @@ namespace SimPe
         void InitTheme()
         {
             //setup the Theme Manager
-            ThemeManager.Global.AddControl(this.sdm);
+            ThemeManager.Global.AddControl(this.manager);
             ThemeManager.Global.AddControl(this.tbResource);
             ThemeManager.Global.AddControl(this.xpGradientPanel1);
             ThemeManager.Global.AddControl(this.xpGradientPanel2);
@@ -28,9 +28,7 @@ namespace SimPe
         private void StoreLayout()
         {
             Ambertation.Windows.Forms.Serializer.Global.ToFile(SimPe.Helper.LayoutFileName);
-            ////RECHECK
-            Helper.WindowsRegistry.Layout.SandBarLayout = "";
-            Helper.WindowsRegistry.Layout.SandDockLayout = sdm.GetLayout();
+            
             MyButtonItem.SetLayoutInformations(this);
 
             Helper.WindowsRegistry.Layout.PluginActionBoxExpanded = this.tbPlugAction.IsExpanded;
@@ -54,8 +52,7 @@ namespace SimPe
         {
             ThemeManager.Global.CurrentTheme = gt;
         }
-
-        string sdmdef;
+        
         System.IO.Stream defaultlayout;
         /// <summary>
         /// Wrapper needed to call the Layout Change through an Event
@@ -63,9 +60,7 @@ namespace SimPe
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void ResetLayout(object sender, EventArgs e)
-        {
-            Helper.WindowsRegistry.Layout.SandBarLayout = "";
-            Helper.WindowsRegistry.Layout.SandDockLayout = sdmdef;
+        {            
             if (defaultlayout != null)
             {
                 Ambertation.Windows.Forms.Serializer.Global.FromStream(defaultlayout);
@@ -93,15 +88,13 @@ namespace SimPe
         /// </summary>
         void ReloadLayout()
         {
-            //store defaults
-            if (sdmdef == null) sdmdef = sdm.GetLayout();
+            //store defaults            
             if (defaultlayout == null) 
                 defaultlayout = Ambertation.Windows.Forms.Serializer.Global.ToStream();
 
             try
             {
-                Ambertation.Windows.Forms.Serializer.Global.FromFile(Helper.LayoutFileName);                
-                if (Helper.WindowsRegistry.Layout.SandDockLayout != "") sdm.SetLayout(Helper.WindowsRegistry.Layout.SandDockLayout);
+                Ambertation.Windows.Forms.Serializer.Global.FromFile(Helper.LayoutFileName);                                
             }
             catch (Exception ex)
             {

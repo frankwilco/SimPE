@@ -56,7 +56,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.cb = new TD.SandBar.FlatComboBox();
+            this.cb = new Ambertation.Windows.Forms.FlatComboBox();
 			this.SuspendLayout();
 			// 
 			// cb
@@ -80,7 +80,7 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 		#endregion
 
-		private TD.SandBar.FlatComboBox cb;
+        private Ambertation.Windows.Forms.FlatComboBox cb;
 
 		bool loaded;
 		LinkedSDesc sdsc;

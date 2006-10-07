@@ -97,6 +97,10 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdvancedForms, Version=1.0.2471.34995, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AdvancedForms.dll</HintPath>
+    </Reference>
     <Reference Include="ambertation.3D">
       <Name>ambertation.3D</Name>
       <HintPath>..\ambertation.3D.dll</HintPath>
@@ -131,13 +135,9 @@
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
     </Reference>
-    <Reference Include="SandBar">
-      <Name>SandBar</Name>
-      <HintPath>..\SandBar.dll</HintPath>
-    </Reference>
-    <Reference Include="SandDock">
-      <Name>SandDock</Name>
-      <HintPath>..\SandDock.dll</HintPath>
+    <Reference Include="NetDocks, Version=1.0.2471.34995, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NetDocks.dll</HintPath>
     </Reference>
     <Reference Include="simpe.cache, Version=1.0.2305.29249, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -249,7 +249,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ObjectsDock.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ObjectsTool.cs">
       <SubType>Code</SubType>
@@ -261,7 +261,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PackageDetailDock.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PackageDetailDockTool.cs">
       <SubType>Code</SubType>

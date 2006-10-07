@@ -10,7 +10,7 @@ namespace SimPe.Plugin.Tool.Dockable
 	/// <summary>
 	/// Summary description for DockableWindow1.
 	/// </summary>
-	public class dcPackageDetails : TD.SandDock.UserDockableWindow
+	public class dcPackageDetails : Ambertation.Windows.Forms.DockPanel
 	{
 		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
 		protected SimPe.Plugin.Tool.Dockable.NeighborhoodPreview np;
@@ -27,8 +27,6 @@ namespace SimPe.Plugin.Tool.Dockable
 
 			SimPe.ThemeManager tm = SimPe.ThemeManager.Global.CreateChild();
 			tm.AddControl(this.xpGradientPanel1);
-
-			this.Guid = new System.Guid("272cf68e-3128-415b-a1c3-ca8f1c75a0ec");
 		}
 
 		/// <summary> 
@@ -149,7 +147,6 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.TabImage = ((System.Drawing.Image)(resources.GetObject("$this.TabImage")));
 			this.TabText = resources.GetString("$this.TabText");
 			this.Text = resources.GetString("$this.Text");
-			this.ToolTipText = resources.GetString("$this.ToolTipText");
 			this.VisibleChanged += new System.EventHandler(this.dcPackageDetails_VisibleChanged);
 			this.xpGradientPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);

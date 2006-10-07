@@ -35,7 +35,7 @@ namespace SimPe
         /// </summary>
         /// <param name="c"></param>
         /// <param name="first"></param>
-        void AddDockItem(TD.SandDock.DockControl c, bool first)
+        void AddDockItem(Ambertation.Windows.Forms.DockPanel c, bool first)
         {
             ToolStripMenuItem mi = new ToolStripMenuItem(c.Text);
             if (first) miWindow.DropDownItems.Add("-");
@@ -61,10 +61,10 @@ namespace SimPe
         /// </summary>
         void AddDockMenus()
         {
-            TD.SandDock.DockControl[] ctrls = sdm.GetDockControls();
+            System.Collections.Generic.List<Ambertation.Windows.Forms.DockPanel> ctrls = manager.GetPanels();
 
             bool first = true;
-            foreach (TD.SandDock.DockControl c in ctrls)
+            foreach (Ambertation.Windows.Forms.DockPanel c in ctrls)
             {
                 if (c.Tag != null) continue;
                 AddDockItem(c, first);
@@ -72,7 +72,7 @@ namespace SimPe
             }
 
             first = true;
-            foreach (TD.SandDock.DockControl c in ctrls)
+            foreach (Ambertation.Windows.Forms.DockPanel c in ctrls)
             {
                 if (c.Tag == null) continue;
                 if (c.Tag is ToolStripMenuItem) continue;
@@ -127,9 +127,9 @@ namespace SimPe
             {
                 ToolStripMenuItem mi = (ToolStripMenuItem)sender;
 
-                if (mi.Tag is TD.SandDock.DockControl)
+                if (mi.Tag is Ambertation.Windows.Forms.DockPanel)
                 {
-                    TD.SandDock.DockControl c = (TD.SandDock.DockControl)mi.Tag;
+                    Ambertation.Windows.Forms.DockPanel c = (Ambertation.Windows.Forms.DockPanel)mi.Tag;
                     if (mi.Checked) c.Close();
                     else
                     {

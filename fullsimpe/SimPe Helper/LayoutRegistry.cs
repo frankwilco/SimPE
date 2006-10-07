@@ -127,39 +127,7 @@ namespace SimPe
 			{
 				xrk.SetValue("ThemeID", (int)value);
 			}
-		}
-
-		/// <summary>
-		/// Returns the SandBar layout Settings for the main GUI
-		/// </summary>
-		public string SandBarLayout 
-		{
-			get 
-			{
-				object o = xrk.GetValue("SandBar", "");
-				return o.ToString();
-			}
-			set
-			{
-				xrk.SetValue("SandBar", value);
-			}
-		}
-
-		/// <summary>
-		/// Returns the SandDock layout Settings for the main GUI
-		/// </summary>
-		public string SandDockLayout 
-		{
-			get 
-			{
-				object o = xrk.GetValue("SandDock", "");
-				return o.ToString();
-			}
-			set
-			{
-				xrk.SetValue("SandDock", value);
-			}
-		}	
+		}		
 		
 		/// <summary>
 		/// true if the taskBox should be presented expanded

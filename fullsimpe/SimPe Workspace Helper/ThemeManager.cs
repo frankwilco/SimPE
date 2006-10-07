@@ -105,10 +105,11 @@ namespace SimPe
 			parent = null;
 			ctrls = new System.Collections.ArrayList();
 
-			TD.SandBar.WhidbeyRenderer rend = new TD.SandBar.WhidbeyRenderer();
-			clight = rend.ToolBarGradientColor1;
-			c = Ambertation.Drawing.GraphicRoutines.InterpolateColors(rend.ToolBarGradientColor2, rend.BorderColor, 0.5f);;
-			cdark = rend.BorderColor;
+            Ambertation.Windows.Forms.WhidbeyColorTable rend = new Ambertation.Windows.Forms.WhidbeyColorTable();
+            
+			clight = rend.DockButtonHighlightBackgroundBottom;
+            c = Ambertation.Drawing.GraphicRoutines.InterpolateColors(rend.DockButtonBackgroundBottom, rend.DockBorderColor, 0.5f); ;
+            cdark = rend.DockBorderColor;
 		}
 
 		~ThemeManager()
@@ -221,34 +222,9 @@ namespace SimPe
 			sdm.BodyColor = this.ThemeColorLight;
 		}
 
-		void SetTheme(TD.SandBar.SandBarManager sbm) 
-		{
-			if (ctheme == GuiTheme.Everett) sbm.Renderer = new TD.SandBar.Office2002Renderer();
-			else if (ctheme == GuiTheme.Office2003) sbm.Renderer = new TD.SandBar.Office2003Renderer();
-			else sbm.Renderer = new TD.SandBar.WhidbeyRenderer();			
-		}
+		
 
-		void SetTheme(TD.SandBar.ToolBar tb) 
-		{			
-			if (tb.Renderer is TD.SandBar.MediaPlayerRenderer) 
-			{
-				if (ctheme == GuiTheme.Office2003) tb.Renderer = new TD.SandBar.MediaPlayerRenderer();
-				else 
-				{
-					
-					TD.SandBar.MediaPlayerRenderer r = (TD.SandBar.MediaPlayerRenderer)tb.Renderer;
-					r.ToolBarGradientColor1 = this.ThemeColorLight;
-					r.ToolBarGradientColor2 = this.ThemeColor;
-					r.BorderColor = this.ThemeColorDark;
-				} 				
-			} 
-			else 
-			{
-				if (ctheme == GuiTheme.Everett) tb.Renderer = new TD.SandBar.Office2002Renderer();
-				else if (ctheme == GuiTheme.Office2003) tb.Renderer = new TD.SandBar.Office2003Renderer();
-				else tb.Renderer = new TD.SandBar.WhidbeyRenderer();
-			}
-		}
+		
 
 		void SetTheme(System.Windows.Forms.Splitter tb) 
 		{			
@@ -278,9 +254,7 @@ namespace SimPe
 		/// <param name="o"></param>
 		public void Theme(object o) 
 		{
-			if (o is TD.SandDock.SandDockManager) SetTheme((TD.SandDock.SandDockManager)o);
-			else if (o is TD.SandBar.SandBarManager) SetTheme((TD.SandBar.SandBarManager)o);
-			else if (o is TD.SandBar.ToolBar) SetTheme((TD.SandBar.ToolBar)o);
+			if (o is TD.SandDock.SandDockManager) SetTheme((TD.SandDock.SandDockManager)o);			
 			else if (o is SteepValley.Windows.Forms.XPGradientPanel) SetTheme((SteepValley.Windows.Forms.XPGradientPanel)o);
 			else if (o is SimPe.Windows.Forms.WrapperBaseControl) SetTheme((SimPe.Windows.Forms.WrapperBaseControl)o);
 			else if (o is System.Windows.Forms.Splitter) SetTheme((System.Windows.Forms.Splitter)o);

@@ -22,7 +22,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		protected System.Windows.Forms.Label lbPrice;
 		protected System.Windows.Forms.PictureBox pb;
 		protected System.Windows.Forms.Label lbAbout;
-		protected TD.SandBar.FlatComboBox cbCat;
+		protected Ambertation.Windows.Forms.FlatComboBox cbCat;
 		private System.Windows.Forms.Label label5;
 		protected System.Windows.Forms.Label lbExpansion;
 		private System.Windows.Forms.Label label6;
@@ -83,7 +83,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.lbName = new System.Windows.Forms.Label();
 			this.lbPrice = new System.Windows.Forms.Label();
 			this.lbAbout = new System.Windows.Forms.Label();
-			this.cbCat = new TD.SandBar.FlatComboBox();
+            this.cbCat = new Ambertation.Windows.Forms.FlatComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.lbExpansion = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
@@ -272,7 +272,6 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.cbCat.AccessibleName = resources.GetString("cbCat.AccessibleName");
 			this.cbCat.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("cbCat.Anchor")));
 			this.cbCat.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbCat.BackgroundImage")));
-			this.cbCat.DefaultText = resources.GetString("cbCat.DefaultText");
 			this.cbCat.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("cbCat.Dock")));
 			this.cbCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbCat.Enabled = ((bool)(resources.GetObject("cbCat.Enabled")));
