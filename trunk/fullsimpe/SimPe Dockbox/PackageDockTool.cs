@@ -36,7 +36,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 		#region IDockableTool Member
 
-		public TD.SandDock.DockControl GetDockableControl()
+		public Ambertation.Windows.Forms.DockPanel GetDockableControl()
 		{
 			return rd.dcPackage;
 		}

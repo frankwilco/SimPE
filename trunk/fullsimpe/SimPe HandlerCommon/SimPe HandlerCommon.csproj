@@ -97,10 +97,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SandDock">
-      <Name>SandDock</Name>
-      <HintPath>..\SandDock.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>

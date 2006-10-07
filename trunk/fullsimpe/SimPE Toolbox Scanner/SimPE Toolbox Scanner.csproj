@@ -101,10 +101,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\EnumComboBox.dll</HintPath>
     </Reference>
-    <Reference Include="SandBar">
-      <Name>sandbar</Name>
-      <HintPath>..\sandbar.dll</HintPath>
-    </Reference>
     <Reference Include="simpe.3idr, Version=1.0.2305.29253, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.3idr.dll</HintPath>

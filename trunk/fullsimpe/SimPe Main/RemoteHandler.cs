@@ -118,7 +118,7 @@ namespace SimPe
 		/// Make a doc Visible or Hide it
 		/// </summary>
 		/// <param name="doc">The Doc you want to show/hide</param>
-		public void ShowDock(TD.SandDock.DockControl doc, bool hide)
+		public void ShowDock(Ambertation.Windows.Forms.DockPanel doc, bool hide)
 		{
 			if (hide && (doc.IsDocked || doc.IsFloating)) doc.Close();
 			if (!hide ) 

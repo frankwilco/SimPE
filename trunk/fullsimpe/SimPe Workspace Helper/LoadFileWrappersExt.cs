@@ -44,7 +44,7 @@ namespace SimPe
             foreach (Control c in b.Controls)
                 GetLayoutInformations(c, list);
 
-            TD.SandBar.ToolBar tb = b as TD.SandBar.ToolBar;
+            ToolStrip tb = b as ToolStrip;
             if (tb != null)
             {
                 foreach (object o in tb.Items)
@@ -70,7 +70,7 @@ namespace SimPe
             foreach (Control c in b.Controls)
                 SetLayoutInformations(c, list);
 
-            TD.SandBar.ToolBar tb = b as TD.SandBar.ToolBar;
+            ToolStrip tb = b as ToolStrip;
             if (tb != null)
             {
                 foreach (object o in tb.Items)

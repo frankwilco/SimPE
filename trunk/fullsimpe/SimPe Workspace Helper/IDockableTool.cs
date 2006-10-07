@@ -21,6 +21,7 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 using SimPe.Events;
+using Ambertation.Windows.Forms;
 
 namespace SimPe.Interfaces
 {	
@@ -40,7 +41,7 @@ namespace SimPe.Interfaces
 		/// <param name="package">The currently opened Package</param>
 		/// <param name="pfd">The currently selected File</param>
 		/// <returns>true, if the package was changed</returns>
-		TD.SandDock.DockControl GetDockableControl();
+		DockPanel GetDockableControl();
 
 		/// <summary>
 		/// This EventHandler will be connected to the ChangeResource Event of the Caller, you can set 

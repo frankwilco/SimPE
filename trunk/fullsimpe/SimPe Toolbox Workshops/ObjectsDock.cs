@@ -4,14 +4,14 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
-using TD.SandDock;
+using Ambertation.Windows.Forms;
 
 namespace SimPe.Plugin.Tool.Dockable
 {
 	/// <summary>
 	/// Summary description for DoackableObjectWorkshop.
 	/// </summary>
-	public class dcObjectWorkshop : TD.SandDock.UserDockableWindow
+    public class dcObjectWorkshop : Ambertation.Windows.Forms.DockPanel
 	{        
         class MyTreeView : System.Windows.Forms.TreeView
         {            
@@ -60,7 +60,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		internal Ambertation.Windows.Forms.TransparentCheckBox cbgid;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Button button3;
-		internal TD.SandBar.FlatComboBox cbTask;
+        internal Ambertation.Windows.Forms.FlatComboBox cbTask;
 		private System.Windows.Forms.Label label3;
 		private SimPe.Wizards.WizardStepPanel wizardStepPanel4;
 		private System.Windows.Forms.Panel pnWait;
@@ -165,7 +165,6 @@ namespace SimPe.Plugin.Tool.Dockable
 
 						
 			ilist.ImageSize = new Size(Helper.WindowsRegistry.OWThumbSize, Helper.WindowsRegistry.OWThumbSize);
-			this.Guid = new System.Guid("42807573-e8db-405b-95fa-28913d1e292a");
 
 			tv.ItemHeight = Helper.WindowsRegistry.OWThumbSize + 1;
 
@@ -237,7 +236,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.cbgid = new Ambertation.Windows.Forms.TransparentCheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
-            this.cbTask = new TD.SandBar.FlatComboBox();
+            this.cbTask = new Ambertation.Windows.Forms.FlatComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.wizardStepPanel5 = new SimPe.Wizards.WizardStepPanel();
             this.xpTaskBoxSimple3 = new Ambertation.Windows.Forms.XPTaskBoxSimple();

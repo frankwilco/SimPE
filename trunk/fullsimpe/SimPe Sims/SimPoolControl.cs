@@ -46,7 +46,7 @@ namespace SimPe.PackedFiles.Wrapper
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.ColumnHeader chHouse;
-		protected TD.SandBar.FlatComboBox cbhousehold;
+        protected Ambertation.Windows.Forms.FlatComboBox cbhousehold;
         private System.ComponentModel.IContainer components;
 
 		public SimPe.PackedFiles.Wrapper.SDesc SelectedElement
@@ -439,7 +439,7 @@ namespace SimPe.PackedFiles.Wrapper
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimPoolControl));
             SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup1 = new SteepValley.Windows.Forms.XPListViewGroup("Unrelated", 0);
             SteepValley.Windows.Forms.XPListViewGroup xpListViewGroup2 = new SteepValley.Windows.Forms.XPListViewGroup("Related", 1);
-            this.cbhousehold = new TD.SandBar.FlatComboBox();
+            this.cbhousehold = new Ambertation.Windows.Forms.FlatComboBox();
             this.gp = new SimPe.PackedFiles.Wrapper.SimListView();
             this.chHouse = new System.Windows.Forms.ColumnHeader();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();

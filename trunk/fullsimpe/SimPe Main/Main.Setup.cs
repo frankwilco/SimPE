@@ -59,7 +59,7 @@ namespace SimPe
                 tbExtAction,
                 tbPlugAction,
                 tbAction,
-                dcPlugin,
+                dockBottom,
                 this.mbiTopics);
             plugger.ClosedToolPlugin += new ToolMenuItemExt.ExternalToolNotify(ClosedToolPlugin);
             remote.SetPlugger(plugger);
@@ -72,10 +72,9 @@ namespace SimPe
 
             InitTheme();
 
-            mybottomSandDock.Height = ((this.Height * 3) / 4);
+            dockBottom.Height = ((this.Height * 3) / 4);
             this.Text += " (Version " + Helper.SimPeVersion.ProductVersion + ")";
-
-            sdm.MaximumDockContainerSize = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width;
+            
             TD.SandDock.SandDockManager sdm2 = new TD.SandDock.SandDockManager();
             sdm2.OwnerForm = this;
             ThemeManager.Global.AddControl(sdm2);
@@ -90,14 +89,17 @@ namespace SimPe
             Ambertation.Windows.Forms.ToolStripRuntimeDesigner.Add(tbContainer);
             Ambertation.Windows.Forms.ToolStripRuntimeDesigner.LineUpToolBars(tbContainer);
 
-            Ambertation.Windows.Forms.Serializer.Global.Register(tbContainer);            
+            Ambertation.Windows.Forms.Serializer.Global.Register(tbContainer);
+            Ambertation.Windows.Forms.Serializer.Global.Register(manager);
+
+            manager.ForceCleanUp();
         }
 
         void LoadForm(object sender, System.EventArgs e)
         {
             if (Helper.WindowsRegistry.PreviousVersion == 0) About.ShowWelcome();
 
-            dcFilter.LayoutSystem.Collapsed = true;
+            dcFilter.Collapse(false);
 
             if (!Helper.WindowsRegistry.HiddenMode)
             {

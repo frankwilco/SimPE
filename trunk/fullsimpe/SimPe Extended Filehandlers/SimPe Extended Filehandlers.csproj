@@ -105,10 +105,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\graphcontrol.dll</HintPath>
     </Reference>
-    <Reference Include="SandBar">
-      <Name>SandBar</Name>
-      <HintPath>..\SandBar.dll</HintPath>
-    </Reference>
     <Reference Include="sims.guid, Version=1.0.2305.27602, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\sims.guid.dll</HintPath>

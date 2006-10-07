@@ -74,6 +74,10 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdvancedForms, Version=1.0.2471.34995, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AdvancedForms.dll</HintPath>
+    </Reference>
     <Reference Include="EnumComboBox, Version=1.0.2301.39053, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\EnumComboBox.dll</HintPath>
@@ -84,14 +88,6 @@
     </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
-    </Reference>
-    <Reference Include="SandBar">
-      <Name>SandBar</Name>
-      <HintPath>..\SandBar.dll</HintPath>
-    </Reference>
-    <Reference Include="SandDock">
-      <Name>SandDock</Name>
-      <HintPath>..\SandDock.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>

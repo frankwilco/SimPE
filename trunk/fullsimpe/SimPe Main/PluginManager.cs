@@ -38,7 +38,7 @@ namespace SimPe
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox toolactiontaskbox, 
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox extactiontaskbox,
 			System.Windows.Forms.ToolStrip actiontoolbar,
-			TD.SandDock.DockControl docktooldc,
+			Ambertation.Windows.Forms.DockContainer docktooldc,
             System.Windows.Forms.ToolStripMenuItem helpmenu)
             : base(true)
 		{
@@ -251,16 +251,19 @@ namespace SimPe
 		#endregion
 
 		#region dockable Tools
-		void LoadDocks(TD.SandDock.DockControl dc, LoadedPackage lp)
+		void LoadDocks(Ambertation.Windows.Forms.DockContainer dc, LoadedPackage lp)
 		{
 			foreach (SimPe.Interfaces.IDockableTool idt in FileTable.ToolRegistry.Docks)
 			{
-				TD.SandDock.DockControl dctrl = idt.GetDockableControl();
+				Ambertation.Windows.Forms.DockPanel dctrl = idt.GetDockableControl();
+
+                
 				if (dctrl!=null) 
 				{
                     dctrl.Name = "dc."+idt.GetType().Namespace + "." + idt.GetType().Name;
 					dctrl.Manager = dc.Manager;
-					dctrl.DockNextTo(dc);
+                    dc.Controls.Add(dctrl);
+					//dctrl.DockNextTo(dc);
 
 					ChangedGuiResourceEvent += new SimPe.Events.ChangedResourceEvent(idt.RefreshDock);
 					dctrl.Tag = idt.Shortcut;

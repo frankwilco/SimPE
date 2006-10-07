@@ -97,6 +97,10 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdvancedForms, Version=1.0.2471.34995, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AdvancedForms.dll</HintPath>
+    </Reference>
     <Reference Include="graphcontrol, Version=1.0.2305.28723, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\graphcontrol.dll</HintPath>
@@ -104,17 +108,13 @@
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
     </Reference>
+    <Reference Include="NetDocks, Version=1.0.2471.34995, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NetDocks.dll</HintPath>
+    </Reference>
     <Reference Include="NewHexEdit, Version=1.0.2305.28723, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\NewHexEdit.dll</HintPath>
-    </Reference>
-    <Reference Include="SandBar">
-      <Name>sandbar</Name>
-      <HintPath>..\sandbar.dll</HintPath>
-    </Reference>
-    <Reference Include="SandDock">
-      <Name>SandDock</Name>
-      <HintPath>..\SandDock.dll</HintPath>
     </Reference>
     <Reference Include="simpe.3idr, Version=1.0.2305.28394, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -217,13 +217,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DebugDock.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Factory.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FinderDock.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FinderResultItem.cs">
       <SubType>Code</SubType>
@@ -281,6 +281,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceDock.resx">
       <DependentUpon>ResourceDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="selected.png" />
   </ItemGroup>

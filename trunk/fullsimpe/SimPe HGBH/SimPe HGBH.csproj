@@ -108,9 +108,9 @@
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
     </Reference>
-    <Reference Include="SandDock">
-      <Name>sanddock</Name>
-      <HintPath>..\sanddock.dll</HintPath>
+    <Reference Include="SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SandDock.dll</HintPath>
     </Reference>
     <Reference Include="simpe.3idr, Version=1.0.2305.29253, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

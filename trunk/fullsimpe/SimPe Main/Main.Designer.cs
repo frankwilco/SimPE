@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 using SimPe.Events;
+using Ambertation.Windows.Forms;
 
 namespace SimPe
 {
@@ -36,7 +37,6 @@ namespace SimPe
         private ToolStripMenuItem menuBarItem1;
         private ToolStripMenuItem menuBarItem5;
         private ToolStrip toolBar1;
-        private TD.SandDock.DockableWindow dcFilter;
         private ToolStripMenuItem miOpen;
         private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
         private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon1;
@@ -52,23 +52,18 @@ namespace SimPe
         private System.Windows.Forms.TextBox tbInst;
         private System.Windows.Forms.TextBox tbGrp;
         
-        private TD.SandDock.SandDockManager sdm;
         private ToolStripButton biTypeList;
         private ToolStripButton biGroupList;
         private ToolStripButton biInstanceList;
         private ToolStrip tbResource;
-        private TD.SandDock.DockableWindow dcResource;
         private ToolStripMenuItem miRecent;
         private ToolStripMenuItem miExtra;
-        private TD.SandDock.DockableWindow dcAction;
         private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel2;
         private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel3;
         private System.Windows.Forms.ImageList iAnim;
         private ToolStripMenuItem miTools;
-        private TD.SandDock.DockContainer myrightSandDock;
-        private TD.SandDock.DockContainer mybottomSandDock;
+        
         private ToolStripMenuItem miNewDc;
-        private TD.SandDock.DockableWindow dcPlugin;
         private ToolStripMenuItem miMetaInfo;
         private ToolStripMenuItem miFileNames;
         private ToolStripMenuItem miExit;
@@ -107,7 +102,6 @@ namespace SimPe
         private ComboBox cbsemig;
         private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon3;
         private TD.SandDock.TabControl dc;
-        private TD.SandDock.DockContainer dockContainer1;
         private System.Windows.Forms.Timer resourceSelectionTimer;
         private ToolStripMenuItem miSaveCopyAs;
         private ToolStripButton biReset;
@@ -116,6 +110,11 @@ namespace SimPe
         private ToolStripSeparator toolStripMenuItem1;
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripSeparator toolStripMenuItem3;
+        private DockManager manager;
+        private DockPanel dcPlugin;
+        private DockPanel dcAction;
+        private DockPanel dcFilter;
+        private DockPanel dcResource;
         private System.ComponentModel.IContainer components;
 
         /// <summary>
@@ -141,8 +140,10 @@ namespace SimPe
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Ambertation.Windows.Forms.WhidbeyRenderer whidbeyRenderer1 = new Ambertation.Windows.Forms.WhidbeyRenderer();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tbContainer = new System.Windows.Forms.ToolStripContainer();
+            this.manager = new Ambertation.Windows.Forms.DockManager();
             this.lv = new SimPe.ResourceListView();
             this.clType = new System.Windows.Forms.ColumnHeader();
             this.clGroup = new System.Windows.Forms.ColumnHeader();
@@ -151,8 +152,8 @@ namespace SimPe
             this.clOffset = new System.Windows.Forms.ColumnHeader();
             this.clSize = new System.Windows.Forms.ColumnHeader();
             this.miAction = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.dockContainer1 = new TD.SandDock.DockContainer();
-            this.dcResource = new TD.SandDock.DockableWindow();
+            this.dockLeft = new Ambertation.Windows.Forms.DockContainer();
+            this.dcResource = new Ambertation.Windows.Forms.DockPanel();
             this.tbResource = new System.Windows.Forms.ToolStrip();
             this.biInstanceList = new System.Windows.Forms.ToolStripButton();
             this.biGroupList = new System.Windows.Forms.ToolStripButton();
@@ -160,11 +161,24 @@ namespace SimPe
             this.tvType = new System.Windows.Forms.TreeView();
             this.tvGroup = new System.Windows.Forms.TreeView();
             this.tvInstance = new System.Windows.Forms.TreeView();
-            this.sdm = new TD.SandDock.SandDockManager();
-            this.mybottomSandDock = new TD.SandDock.DockContainer();
-            this.dcPlugin = new TD.SandDock.DockableWindow();
+            this.dockRight = new Ambertation.Windows.Forms.DockContainer();
+            this.dcFilter = new Ambertation.Windows.Forms.DockPanel();
+            this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
+            this.xpLinkedLabelIcon3 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
+            this.cbsemig = new System.Windows.Forms.ComboBox();
+            this.xpLinkedLabelIcon2 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
+            this.tbRcolName = new System.Windows.Forms.TextBox();
+            this.xpLinkedLabelIcon1 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
+            this.tbInst = new System.Windows.Forms.TextBox();
+            this.tbGrp = new System.Windows.Forms.TextBox();
+            this.dcAction = new Ambertation.Windows.Forms.DockPanel();
+            this.xpGradientPanel2 = new SteepValley.Windows.Forms.XPGradientPanel();
+            this.tbExtAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
+            this.tbPlugAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
+            this.tbDefaultAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
+            this.dockBottom = new Ambertation.Windows.Forms.DockContainer();
+            this.dcPlugin = new Ambertation.Windows.Forms.DockPanel();
             this.dc = new TD.SandDock.TabControl();
-            this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.toolBar1 = new System.Windows.Forms.ToolStrip();
             this.biNew = new System.Windows.Forms.ToolStripButton();
             this.biOpen = new System.Windows.Forms.ToolStripButton();
@@ -175,13 +189,10 @@ namespace SimPe
             this.biUpdate = new System.Windows.Forms.ToolStripButton();
             this.biReset = new System.Windows.Forms.ToolStripButton();
             this.tbTools = new System.Windows.Forms.ToolStrip();
+            this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.tbAction = new System.Windows.Forms.ToolStrip();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
-            this.tbInst = new System.Windows.Forms.TextBox();
-            this.tbGrp = new System.Windows.Forms.TextBox();
-            this.tbRcolName = new System.Windows.Forms.TextBox();
-            this.cbsemig = new ComboBox();
             this.miNew = new System.Windows.Forms.ToolStripMenuItem();
             this.miOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.miSave = new System.Windows.Forms.ToolStripMenuItem();
@@ -212,37 +223,31 @@ namespace SimPe
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.miAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.iAnim = new System.Windows.Forms.ImageList(this.components);
-            this.myrightSandDock = new TD.SandDock.DockContainer();
-            this.dcFilter = new TD.SandDock.DockableWindow();
-            this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
-            this.xpLinkedLabelIcon3 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
-            this.xpLinkedLabelIcon2 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
-            this.xpLinkedLabelIcon1 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
-            this.dcAction = new TD.SandDock.DockableWindow();
-            this.xpGradientPanel2 = new SteepValley.Windows.Forms.XPGradientPanel();
-            this.tbExtAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
-            this.tbPlugAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
-            this.tbDefaultAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
             this.xpGradientPanel3 = new SteepValley.Windows.Forms.XPGradientPanel();
             this.xpGradientPanel5 = new SteepValley.Windows.Forms.XPGradientPanel();
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.resourceSelectionTimer = new System.Windows.Forms.Timer(this.components);
             this.waitControl1 = new SimPe.WaitControl();
+            this.dockCenter = new Ambertation.Windows.Forms.DockContainer();
+            this.dcResourceList = new Ambertation.Windows.Forms.DockPanel();
             this.tbContainer.ContentPanel.SuspendLayout();
             this.tbContainer.TopToolStripPanel.SuspendLayout();
             this.tbContainer.SuspendLayout();
-            this.dockContainer1.SuspendLayout();
+            this.manager.SuspendLayout();
+            this.dockLeft.SuspendLayout();
             this.dcResource.SuspendLayout();
             this.tbResource.SuspendLayout();
-            this.mybottomSandDock.SuspendLayout();
-            this.dcPlugin.SuspendLayout();
-            this.toolBar1.SuspendLayout();
-            this.menuBar1.SuspendLayout();
-            this.myrightSandDock.SuspendLayout();
+            this.dockRight.SuspendLayout();
             this.dcFilter.SuspendLayout();
             this.xpGradientPanel1.SuspendLayout();
             this.dcAction.SuspendLayout();
             this.xpGradientPanel2.SuspendLayout();
+            this.dockBottom.SuspendLayout();
+            this.dcPlugin.SuspendLayout();
+            this.toolBar1.SuspendLayout();
+            this.menuBar1.SuspendLayout();
+            this.dockCenter.SuspendLayout();
+            this.dcResourceList.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbContainer
@@ -250,19 +255,33 @@ namespace SimPe
             // 
             // tbContainer.ContentPanel
             // 
-            this.tbContainer.ContentPanel.Controls.Add(this.lv);
-            this.tbContainer.ContentPanel.Controls.Add(this.dockContainer1);
-            this.tbContainer.ContentPanel.Controls.Add(this.mybottomSandDock);
+            this.tbContainer.ContentPanel.Controls.Add(this.manager);
             resources.ApplyResources(this.tbContainer.ContentPanel, "tbContainer.ContentPanel");
             resources.ApplyResources(this.tbContainer, "tbContainer");
             this.tbContainer.Name = "tbContainer";
             // 
             // tbContainer.TopToolStripPanel
             // 
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
+            // 
+            // manager
+            // 
+            this.manager.Controls.Add(this.dockCenter);
+            this.manager.Controls.Add(this.dockLeft);
+            this.manager.Controls.Add(this.dockRight);
+            this.manager.Controls.Add(this.dockBottom);
+            this.manager.DefaultSize = new System.Drawing.Size(100, 100);
+            resources.ApplyResources(this.manager, "manager");
+            this.manager.DragBorder = true;
+            this.manager.Manager = this.manager;
+            this.manager.Name = "manager";
+            this.manager.NoCleanup = false;
+            this.manager.Renderer = whidbeyRenderer1;
+            this.manager.TabImage = null;
+            this.manager.TabText = "";
             // 
             // lv
             // 
@@ -322,27 +341,42 @@ namespace SimPe
             this.miAction.Name = "miAction";
             resources.ApplyResources(this.miAction, "miAction");
             // 
-            // dockContainer1
+            // dockLeft
             // 
-            this.dockContainer1.Controls.Add(this.dcResource);
-            resources.ApplyResources(this.dockContainer1, "dockContainer1");
-            this.dockContainer1.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.ControlLayoutSystem(100, 423, new TD.SandDock.DockControl[] {
-                        ((TD.SandDock.DockControl)(this.dcResource))}, this.dcResource, false)))});
-            this.dockContainer1.Manager = this.sdm;
-            this.dockContainer1.Name = "dockContainer1";
+            this.dockLeft.Controls.Add(this.dcResource);
+            resources.ApplyResources(this.dockLeft, "dockLeft");
+            this.dockLeft.DragBorder = true;
+            this.dockLeft.Manager = this.manager;
+            this.dockLeft.Name = "dockLeft";
+            this.dockLeft.NoCleanup = false;
+            this.dockLeft.TabImage = null;
+            this.dockLeft.TabText = "";
             // 
             // dcResource
             // 
-            this.dcResource.AllowFloat = false;
+            this.dcResource.AllowClose = true;
+            this.dcResource.AllowDockBottom = true;
+            this.dcResource.AllowDockCenter = true;
+            this.dcResource.AllowDockLeft = true;
+            this.dcResource.AllowDockRight = true;
+            this.dcResource.AllowDockTop = true;
+            this.dcResource.AllowFloat = true;
+            resources.ApplyResources(this.dcResource, "dcResource");
+            this.dcResource.CanUndock = true;
             this.dcResource.Controls.Add(this.tbResource);
             this.dcResource.Controls.Add(this.tvType);
             this.dcResource.Controls.Add(this.tvGroup);
             this.dcResource.Controls.Add(this.tvInstance);
-            this.dcResource.Guid = new System.Guid("4eac3301-7437-4391-81dd-743cf8e38995");
-            resources.ApplyResources(this.dcResource, "dcResource");
+            this.dcResource.DockContainer = this.dockLeft;
+            this.dcResource.DragBorder = false;
+            this.dcResource.FloatingSize = new System.Drawing.Size(236, 377);
+            this.dcResource.Image = ((System.Drawing.Image)(resources.GetObject("dcResource.Image")));
+            this.dcResource.Manager = this.manager;
             this.dcResource.Name = "dcResource";
+            this.dcResource.ShowCloseButton = true;
+            this.dcResource.ShowCollapseButton = true;
             this.dcResource.TabImage = ((System.Drawing.Image)(resources.GetObject("dcResource.TabImage")));
+            this.dcResource.TabText = "Resource Tree";
             // 
             // tbResource
             // 
@@ -406,46 +440,243 @@ namespace SimPe
             this.tvInstance.Sorted = true;
             this.tvInstance.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SelectResourceNode);
             // 
-            // sdm
+            // dockRight
             // 
-            this.sdm.DockSystemContainer = this.tbContainer.ContentPanel;
-            this.sdm.OwnerForm = this;
-            this.sdm.Renderer = new TD.SandDock.Rendering.Office2003Renderer();
-            this.sdm.DockControlActivated += new TD.SandDock.DockControlEventHandler(this.sdm_DockControlActivated);
+            this.dockRight.Controls.Add(this.dcFilter);
+            this.dockRight.Controls.Add(this.dcAction);
+            resources.ApplyResources(this.dockRight, "dockRight");
+            this.dockRight.DragBorder = true;
+            this.dockRight.Manager = this.manager;
+            this.dockRight.Name = "dockRight";
+            this.dockRight.NoCleanup = false;
+            this.dockRight.TabImage = null;
+            this.dockRight.TabText = "";
             // 
-            // mybottomSandDock
+            // dcFilter
             // 
-            this.mybottomSandDock.Controls.Add(this.dcPlugin);
-            resources.ApplyResources(this.mybottomSandDock, "mybottomSandDock");
-            this.mybottomSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Vertical, new TD.SandDock.LayoutSystemBase[] {
-            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.ControlLayoutSystem(924, 100, new TD.SandDock.DockControl[] {
-                        ((TD.SandDock.DockControl)(this.dcPlugin))}, this.dcPlugin, false)))});
-            this.mybottomSandDock.Manager = this.sdm;
-            this.mybottomSandDock.Name = "mybottomSandDock";
+            this.dcFilter.AllowClose = true;
+            this.dcFilter.AllowDockBottom = true;
+            this.dcFilter.AllowDockCenter = true;
+            this.dcFilter.AllowDockLeft = true;
+            this.dcFilter.AllowDockRight = true;
+            this.dcFilter.AllowDockTop = true;
+            this.dcFilter.AllowFloat = true;
+            resources.ApplyResources(this.dcFilter, "dcFilter");
+            this.dcFilter.CanUndock = true;
+            this.dcFilter.Controls.Add(this.xpGradientPanel1);
+            this.dcFilter.DockContainer = this.dockRight;
+            this.dcFilter.DragBorder = false;
+            this.dcFilter.FloatingSize = new System.Drawing.Size(150, 352);
+            this.dcFilter.Image = ((System.Drawing.Image)(resources.GetObject("dcFilter.Image")));
+            this.dcFilter.Manager = this.manager;
+            this.dcFilter.Name = "dcFilter";
+            this.dcFilter.ShowCloseButton = true;
+            this.dcFilter.ShowCollapseButton = true;
+            this.dcFilter.TabImage = ((System.Drawing.Image)(resources.GetObject("dcFilter.TabImage")));
+            this.dcFilter.TabText = "Filter Resources";
+            this.dcFilter.SizeChanged += new System.EventHandler(this.dcFilter_SizeChanged);
+            // 
+            // xpGradientPanel1
+            // 
+            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon3);
+            this.xpGradientPanel1.Controls.Add(this.cbsemig);
+            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon2);
+            this.xpGradientPanel1.Controls.Add(this.tbRcolName);
+            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon1);
+            this.xpGradientPanel1.Controls.Add(this.tbInst);
+            this.xpGradientPanel1.Controls.Add(this.tbGrp);
+            resources.ApplyResources(this.xpGradientPanel1, "xpGradientPanel1");
+            this.xpGradientPanel1.Name = "xpGradientPanel1";
+            // 
+            // xpLinkedLabelIcon3
+            // 
+            resources.ApplyResources(this.xpLinkedLabelIcon3, "xpLinkedLabelIcon3");
+            this.xpLinkedLabelIcon3.BackColor = System.Drawing.Color.Transparent;
+            this.xpLinkedLabelIcon3.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
+            this.xpLinkedLabelIcon3.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
+            this.xpLinkedLabelIcon3.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.xpLinkedLabelIcon3.Name = "xpLinkedLabelIcon3";
+            this.xpLinkedLabelIcon3.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.xpLinkedLabelIcon3.LinkClicked += new System.EventHandler(this.SetSemiGlobalFilter);
+            // 
+            // cbsemig
+            // 
+            resources.ApplyResources(this.cbsemig, "cbsemig");
+            this.xpCueBannerExtender1.SetCueBannerText(this.cbsemig, "Semiglobal Group");
+            this.cbsemig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbsemig.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbsemig.Name = "cbsemig";
+            // 
+            // xpLinkedLabelIcon2
+            // 
+            resources.ApplyResources(this.xpLinkedLabelIcon2, "xpLinkedLabelIcon2");
+            this.xpLinkedLabelIcon2.BackColor = System.Drawing.Color.Transparent;
+            this.xpLinkedLabelIcon2.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
+            this.xpLinkedLabelIcon2.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
+            this.xpLinkedLabelIcon2.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.xpLinkedLabelIcon2.Name = "xpLinkedLabelIcon2";
+            this.xpLinkedLabelIcon2.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.xpLinkedLabelIcon2.LinkClicked += new System.EventHandler(this.SetRcolNameFilter);
+            // 
+            // tbRcolName
+            // 
+            resources.ApplyResources(this.tbRcolName, "tbRcolName");
+            this.xpCueBannerExtender1.SetCueBannerText(this.tbRcolName, "RCOL Filename");
+            this.tbRcolName.Name = "tbRcolName";
+            this.tbRcolName.SizeChanged += new System.EventHandler(this.tbRcolName_SizeChanged);
+            // 
+            // xpLinkedLabelIcon1
+            // 
+            this.xpLinkedLabelIcon1.BackColor = System.Drawing.Color.Transparent;
+            this.xpLinkedLabelIcon1.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
+            resources.ApplyResources(this.xpLinkedLabelIcon1, "xpLinkedLabelIcon1");
+            this.xpLinkedLabelIcon1.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
+            this.xpLinkedLabelIcon1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.xpLinkedLabelIcon1.Name = "xpLinkedLabelIcon1";
+            this.xpLinkedLabelIcon1.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.xpLinkedLabelIcon1.LinkClicked += new System.EventHandler(this.SetFilter);
+            // 
+            // tbInst
+            // 
+            this.xpCueBannerExtender1.SetCueBannerText(this.tbInst, "Instance Filter");
+            resources.ApplyResources(this.tbInst, "tbInst");
+            this.tbInst.Name = "tbInst";
+            // 
+            // tbGrp
+            // 
+            this.xpCueBannerExtender1.SetCueBannerText(this.tbGrp, "Group Filter");
+            resources.ApplyResources(this.tbGrp, "tbGrp");
+            this.tbGrp.Name = "tbGrp";
+            // 
+            // dcAction
+            // 
+            this.dcAction.AllowClose = true;
+            this.dcAction.AllowDockBottom = true;
+            this.dcAction.AllowDockCenter = true;
+            this.dcAction.AllowDockLeft = true;
+            this.dcAction.AllowDockRight = true;
+            this.dcAction.AllowDockTop = true;
+            this.dcAction.AllowFloat = true;
+            resources.ApplyResources(this.dcAction, "dcAction");
+            this.dcAction.CanUndock = true;
+            this.dcAction.Controls.Add(this.xpGradientPanel2);
+            this.dcAction.DockContainer = this.dockRight;
+            this.dcAction.DragBorder = false;
+            this.dcAction.FloatingSize = new System.Drawing.Size(246, 377);
+            this.dcAction.Image = ((System.Drawing.Image)(resources.GetObject("dcAction.Image")));
+            this.dcAction.Manager = this.manager;
+            this.dcAction.Name = "dcAction";
+            this.dcAction.ShowCloseButton = true;
+            this.dcAction.ShowCollapseButton = true;
+            this.dcAction.TabImage = ((System.Drawing.Image)(resources.GetObject("dcAction.TabImage")));
+            this.dcAction.TabText = "Resource Actions";
+            // 
+            // xpGradientPanel2
+            // 
+            resources.ApplyResources(this.xpGradientPanel2, "xpGradientPanel2");
+            this.xpGradientPanel2.Controls.Add(this.tbExtAction);
+            this.xpGradientPanel2.Controls.Add(this.tbPlugAction);
+            this.xpGradientPanel2.Controls.Add(this.tbDefaultAction);
+            this.xpGradientPanel2.Name = "xpGradientPanel2";
+            // 
+            // tbExtAction
+            // 
+            this.tbExtAction.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.tbExtAction, "tbExtAction");
+            this.tbExtAction.Name = "tbExtAction";
+            this.tbExtAction.ThemeFormat.BodyColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
+            this.tbExtAction.ThemeFormat.BodyFont = new System.Drawing.Font("Tahoma", 8F);
+            this.tbExtAction.ThemeFormat.BodyTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
+            this.tbExtAction.ThemeFormat.BorderColor = System.Drawing.Color.White;
+            this.tbExtAction.ThemeFormat.ChevronDown = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDown")));
+            this.tbExtAction.ThemeFormat.ChevronDownHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDownHighlight")));
+            this.tbExtAction.ThemeFormat.ChevronUp = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUp")));
+            this.tbExtAction.ThemeFormat.ChevronUpHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUpHighlight")));
+            this.tbExtAction.ThemeFormat.HeaderFont = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.tbExtAction.ThemeFormat.HeaderTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
+            this.tbExtAction.ThemeFormat.HeaderTextHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
+            this.tbExtAction.ThemeFormat.LeftHeaderColor = System.Drawing.Color.White;
+            this.tbExtAction.ThemeFormat.RightHeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
+            // 
+            // tbPlugAction
+            // 
+            this.tbPlugAction.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.tbPlugAction, "tbPlugAction");
+            this.tbPlugAction.Name = "tbPlugAction";
+            this.tbPlugAction.ThemeFormat.BodyColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
+            this.tbPlugAction.ThemeFormat.BodyFont = new System.Drawing.Font("Tahoma", 8F);
+            this.tbPlugAction.ThemeFormat.BodyTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
+            this.tbPlugAction.ThemeFormat.BorderColor = System.Drawing.Color.White;
+            this.tbPlugAction.ThemeFormat.ChevronDown = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDown1")));
+            this.tbPlugAction.ThemeFormat.ChevronDownHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDownHighlight1")));
+            this.tbPlugAction.ThemeFormat.ChevronUp = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUp1")));
+            this.tbPlugAction.ThemeFormat.ChevronUpHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUpHighlight1")));
+            this.tbPlugAction.ThemeFormat.HeaderFont = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.tbPlugAction.ThemeFormat.HeaderTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
+            this.tbPlugAction.ThemeFormat.HeaderTextHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
+            this.tbPlugAction.ThemeFormat.LeftHeaderColor = System.Drawing.Color.White;
+            this.tbPlugAction.ThemeFormat.RightHeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
+            // 
+            // tbDefaultAction
+            // 
+            this.tbDefaultAction.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.tbDefaultAction, "tbDefaultAction");
+            this.tbDefaultAction.Name = "tbDefaultAction";
+            this.tbDefaultAction.ThemeFormat.BodyColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
+            this.tbDefaultAction.ThemeFormat.BodyFont = new System.Drawing.Font("Tahoma", 8F);
+            this.tbDefaultAction.ThemeFormat.BodyTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
+            this.tbDefaultAction.ThemeFormat.BorderColor = System.Drawing.Color.White;
+            this.tbDefaultAction.ThemeFormat.ChevronDown = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDown2")));
+            this.tbDefaultAction.ThemeFormat.ChevronDownHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDownHighlight2")));
+            this.tbDefaultAction.ThemeFormat.ChevronUp = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUp2")));
+            this.tbDefaultAction.ThemeFormat.ChevronUpHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUpHighlight2")));
+            this.tbDefaultAction.ThemeFormat.HeaderFont = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.tbDefaultAction.ThemeFormat.HeaderTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
+            this.tbDefaultAction.ThemeFormat.HeaderTextHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
+            this.tbDefaultAction.ThemeFormat.LeftHeaderColor = System.Drawing.Color.White;
+            this.tbDefaultAction.ThemeFormat.RightHeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
+            // 
+            // dockBottom
+            // 
+            this.dockBottom.Controls.Add(this.dcPlugin);
+            resources.ApplyResources(this.dockBottom, "dockBottom");
+            this.dockBottom.DragBorder = true;
+            this.dockBottom.Manager = this.manager;
+            this.dockBottom.Name = "dockBottom";
+            this.dockBottom.NoCleanup = false;
+            this.dockBottom.TabImage = null;
+            this.dockBottom.TabText = "";
             // 
             // dcPlugin
             // 
-            this.dcPlugin.AllowClose = false;
+            this.dcPlugin.AllowClose = true;
+            this.dcPlugin.AllowDockBottom = true;
             this.dcPlugin.AllowDockCenter = true;
+            this.dcPlugin.AllowDockLeft = true;
+            this.dcPlugin.AllowDockRight = true;
+            this.dcPlugin.AllowDockTop = true;
+            this.dcPlugin.AllowFloat = true;
             resources.ApplyResources(this.dcPlugin, "dcPlugin");
+            this.dcPlugin.CanUndock = true;
             this.dcPlugin.Controls.Add(this.dc);
-            this.dcPlugin.FloatingSize = new System.Drawing.Size(800, 400);
-            this.dcPlugin.Guid = new System.Guid("1fc41585-f06c-418c-8226-523fdec0f9c4");
+            this.dcPlugin.DockContainer = this.dockBottom;
+            this.dcPlugin.DragBorder = false;
+            this.dcPlugin.FloatingSize = new System.Drawing.Size(924, 146);
+            this.dcPlugin.Image = ((System.Drawing.Image)(resources.GetObject("dcPlugin.Image")));
+            this.dcPlugin.Manager = this.manager;
             this.dcPlugin.Name = "dcPlugin";
+            this.dcPlugin.ShowCloseButton = true;
+            this.dcPlugin.ShowCollapseButton = true;
             this.dcPlugin.TabImage = ((System.Drawing.Image)(resources.GetObject("dcPlugin.TabImage")));
+            this.dcPlugin.TabText = "Plugin View";
             // 
             // dc
             // 
             resources.ApplyResources(this.dc, "dc");
             this.dc.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.DocumentLayoutSystem(905, 373, new TD.SandDock.DockControl[0], null)))});
+            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.DocumentLayoutSystem(903, 373, new TD.SandDock.DockControl[0], null)))});
             this.dc.Name = "dc";
             this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
-            // 
-            // tbWindow
-            // 
-            resources.ApplyResources(this.tbWindow, "tbWindow");
-            this.tbWindow.Name = "tbWindow";
             // 
             // toolBar1
             // 
@@ -514,6 +745,11 @@ namespace SimPe
             resources.ApplyResources(this.tbTools, "tbTools");
             this.tbTools.Name = "tbTools";
             // 
+            // tbWindow
+            // 
+            resources.ApplyResources(this.tbWindow, "tbWindow");
+            this.tbWindow.Name = "tbWindow";
+            // 
             // tbAction
             // 
             resources.ApplyResources(this.tbAction, "tbAction");
@@ -522,33 +758,6 @@ namespace SimPe
             // ofd
             // 
             resources.ApplyResources(this.ofd, "ofd");
-            // 
-            // tbInst
-            // 
-            this.xpCueBannerExtender1.SetCueBannerText(this.tbInst, "Instance Filter");
-            resources.ApplyResources(this.tbInst, "tbInst");
-            this.tbInst.Name = "tbInst";
-            // 
-            // tbGrp
-            // 
-            this.xpCueBannerExtender1.SetCueBannerText(this.tbGrp, "Group Filter");
-            resources.ApplyResources(this.tbGrp, "tbGrp");
-            this.tbGrp.Name = "tbGrp";
-            // 
-            // tbRcolName
-            // 
-            resources.ApplyResources(this.tbRcolName, "tbRcolName");
-            this.xpCueBannerExtender1.SetCueBannerText(this.tbRcolName, "RCOL Filename");
-            this.tbRcolName.Name = "tbRcolName";
-            this.tbRcolName.SizeChanged += new System.EventHandler(this.tbRcolName_SizeChanged);
-            // 
-            // cbsemig
-            // 
-            resources.ApplyResources(this.cbsemig, "cbsemig");
-            this.xpCueBannerExtender1.SetCueBannerText(this.cbsemig, "Semiglobal Group");
-            this.cbsemig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbsemig.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbsemig.Name = "cbsemig";
             // 
             // miNew
             // 
@@ -763,145 +972,6 @@ namespace SimPe
             this.iAnim.Images.SetKeyName(7, "");
             this.iAnim.Images.SetKeyName(8, "");
             // 
-            // myrightSandDock
-            // 
-            this.myrightSandDock.Controls.Add(this.dcFilter);
-            this.myrightSandDock.Controls.Add(this.dcAction);
-            resources.ApplyResources(this.myrightSandDock, "myrightSandDock");
-            this.myrightSandDock.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.ControlLayoutSystem(100, 525, new TD.SandDock.DockControl[] {
-                        ((TD.SandDock.DockControl)(this.dcFilter)),
-                        ((TD.SandDock.DockControl)(this.dcAction))}, this.dcFilter, false)))});
-            this.myrightSandDock.Manager = this.sdm;
-            this.myrightSandDock.Name = "myrightSandDock";
-            // 
-            // dcFilter
-            // 
-            this.dcFilter.Controls.Add(this.xpGradientPanel1);
-            this.dcFilter.Guid = new System.Guid("c59bd96f-14b3-4922-a956-28fb5a9aec97");
-            resources.ApplyResources(this.dcFilter, "dcFilter");
-            this.dcFilter.Name = "dcFilter";
-            this.dcFilter.TabImage = ((System.Drawing.Image)(resources.GetObject("dcFilter.TabImage")));
-            this.dcFilter.SizeChanged += new System.EventHandler(this.dcFilter_SizeChanged);
-            // 
-            // xpGradientPanel1
-            // 
-            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon3);
-            this.xpGradientPanel1.Controls.Add(this.cbsemig);
-            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon2);
-            this.xpGradientPanel1.Controls.Add(this.tbRcolName);
-            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon1);
-            this.xpGradientPanel1.Controls.Add(this.tbInst);
-            this.xpGradientPanel1.Controls.Add(this.tbGrp);
-            resources.ApplyResources(this.xpGradientPanel1, "xpGradientPanel1");
-            this.xpGradientPanel1.Name = "xpGradientPanel1";
-            // 
-            // xpLinkedLabelIcon3
-            // 
-            resources.ApplyResources(this.xpLinkedLabelIcon3, "xpLinkedLabelIcon3");
-            this.xpLinkedLabelIcon3.BackColor = System.Drawing.Color.Transparent;
-            this.xpLinkedLabelIcon3.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
-            this.xpLinkedLabelIcon3.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
-            this.xpLinkedLabelIcon3.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.xpLinkedLabelIcon3.Name = "xpLinkedLabelIcon3";
-            this.xpLinkedLabelIcon3.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.xpLinkedLabelIcon3.LinkClicked += new System.EventHandler(this.SetSemiGlobalFilter);
-            // 
-            // xpLinkedLabelIcon2
-            // 
-            resources.ApplyResources(this.xpLinkedLabelIcon2, "xpLinkedLabelIcon2");
-            this.xpLinkedLabelIcon2.BackColor = System.Drawing.Color.Transparent;
-            this.xpLinkedLabelIcon2.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
-            this.xpLinkedLabelIcon2.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
-            this.xpLinkedLabelIcon2.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.xpLinkedLabelIcon2.Name = "xpLinkedLabelIcon2";
-            this.xpLinkedLabelIcon2.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.xpLinkedLabelIcon2.LinkClicked += new System.EventHandler(this.SetRcolNameFilter);
-            // 
-            // xpLinkedLabelIcon1
-            // 
-            this.xpLinkedLabelIcon1.BackColor = System.Drawing.Color.Transparent;
-            this.xpLinkedLabelIcon1.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
-            resources.ApplyResources(this.xpLinkedLabelIcon1, "xpLinkedLabelIcon1");
-            this.xpLinkedLabelIcon1.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
-            this.xpLinkedLabelIcon1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.xpLinkedLabelIcon1.Name = "xpLinkedLabelIcon1";
-            this.xpLinkedLabelIcon1.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.xpLinkedLabelIcon1.LinkClicked += new System.EventHandler(this.SetFilter);
-            // 
-            // dcAction
-            // 
-            this.dcAction.Controls.Add(this.xpGradientPanel2);
-            this.dcAction.Guid = new System.Guid("8846d9fc-3828-4354-94b4-6a89120bbab3");
-            resources.ApplyResources(this.dcAction, "dcAction");
-            this.dcAction.Name = "dcAction";
-            this.dcAction.TabImage = ((System.Drawing.Image)(resources.GetObject("dcAction.TabImage")));
-            // 
-            // xpGradientPanel2
-            // 
-            resources.ApplyResources(this.xpGradientPanel2, "xpGradientPanel2");
-            this.xpGradientPanel2.Controls.Add(this.tbExtAction);
-            this.xpGradientPanel2.Controls.Add(this.tbPlugAction);
-            this.xpGradientPanel2.Controls.Add(this.tbDefaultAction);
-            this.xpGradientPanel2.Name = "xpGradientPanel2";
-            // 
-            // tbExtAction
-            // 
-            this.tbExtAction.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.tbExtAction, "tbExtAction");
-            this.tbExtAction.Name = "tbExtAction";
-            this.tbExtAction.ThemeFormat.BodyColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
-            this.tbExtAction.ThemeFormat.BodyFont = new System.Drawing.Font("Tahoma", 8F);
-            this.tbExtAction.ThemeFormat.BodyTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.tbExtAction.ThemeFormat.BorderColor = System.Drawing.Color.White;
-            this.tbExtAction.ThemeFormat.ChevronDown = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDown")));
-            this.tbExtAction.ThemeFormat.ChevronDownHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDownHighlight")));
-            this.tbExtAction.ThemeFormat.ChevronUp = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUp")));
-            this.tbExtAction.ThemeFormat.ChevronUpHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUpHighlight")));
-            this.tbExtAction.ThemeFormat.HeaderFont = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.tbExtAction.ThemeFormat.HeaderTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.tbExtAction.ThemeFormat.HeaderTextHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.tbExtAction.ThemeFormat.LeftHeaderColor = System.Drawing.Color.White;
-            this.tbExtAction.ThemeFormat.RightHeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
-            // 
-            // tbPlugAction
-            // 
-            this.tbPlugAction.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.tbPlugAction, "tbPlugAction");
-            this.tbPlugAction.Name = "tbPlugAction";
-            this.tbPlugAction.ThemeFormat.BodyColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
-            this.tbPlugAction.ThemeFormat.BodyFont = new System.Drawing.Font("Tahoma", 8F);
-            this.tbPlugAction.ThemeFormat.BodyTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.tbPlugAction.ThemeFormat.BorderColor = System.Drawing.Color.White;
-            this.tbPlugAction.ThemeFormat.ChevronDown = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDown1")));
-            this.tbPlugAction.ThemeFormat.ChevronDownHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDownHighlight1")));
-            this.tbPlugAction.ThemeFormat.ChevronUp = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUp1")));
-            this.tbPlugAction.ThemeFormat.ChevronUpHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUpHighlight1")));
-            this.tbPlugAction.ThemeFormat.HeaderFont = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.tbPlugAction.ThemeFormat.HeaderTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.tbPlugAction.ThemeFormat.HeaderTextHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.tbPlugAction.ThemeFormat.LeftHeaderColor = System.Drawing.Color.White;
-            this.tbPlugAction.ThemeFormat.RightHeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
-            // 
-            // tbDefaultAction
-            // 
-            this.tbDefaultAction.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.tbDefaultAction, "tbDefaultAction");
-            this.tbDefaultAction.Name = "tbDefaultAction";
-            this.tbDefaultAction.ThemeFormat.BodyColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
-            this.tbDefaultAction.ThemeFormat.BodyFont = new System.Drawing.Font("Tahoma", 8F);
-            this.tbDefaultAction.ThemeFormat.BodyTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.tbDefaultAction.ThemeFormat.BorderColor = System.Drawing.Color.White;
-            this.tbDefaultAction.ThemeFormat.ChevronDown = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDown2")));
-            this.tbDefaultAction.ThemeFormat.ChevronDownHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronDownHighlight2")));
-            this.tbDefaultAction.ThemeFormat.ChevronUp = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUp2")));
-            this.tbDefaultAction.ThemeFormat.ChevronUpHighlight = ((System.Drawing.Bitmap)(resources.GetObject("resource.ChevronUpHighlight2")));
-            this.tbDefaultAction.ThemeFormat.HeaderFont = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.tbDefaultAction.ThemeFormat.HeaderTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.tbDefaultAction.ThemeFormat.HeaderTextHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.tbDefaultAction.ThemeFormat.LeftHeaderColor = System.Drawing.Color.White;
-            this.tbDefaultAction.ThemeFormat.RightHeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
-            // 
             // xpGradientPanel3
             // 
             resources.ApplyResources(this.xpGradientPanel3, "xpGradientPanel3");
@@ -933,6 +1003,40 @@ namespace SimPe
             this.waitControl1.Value = 50;
             this.waitControl1.Waiting = false;
             // 
+            // dockCenter
+            // 
+            this.dockCenter.Controls.Add(this.dcResourceList);
+            resources.ApplyResources(this.dockCenter, "dockCenter");
+            this.dockCenter.DragBorder = true;
+            this.dockCenter.Manager = this.manager;
+            this.dockCenter.Name = "dockCenter";
+            this.dockCenter.NoCleanup = false;
+            this.dockCenter.TabImage = null;
+            this.dockCenter.TabText = "";
+            // 
+            // dcResourceList
+            // 
+            this.dcResourceList.AllowClose = true;
+            this.dcResourceList.AllowDockBottom = true;
+            this.dcResourceList.AllowDockCenter = true;
+            this.dcResourceList.AllowDockLeft = true;
+            this.dcResourceList.AllowDockRight = true;
+            this.dcResourceList.AllowDockTop = true;
+            this.dcResourceList.AllowFloat = true;
+            resources.ApplyResources(this.dcResourceList, "dcResourceList");
+            this.dcResourceList.CanUndock = true;
+            this.dcResourceList.Controls.Add(this.lv);
+            this.dcResourceList.DockContainer = this.dockCenter;
+            this.dcResourceList.DragBorder = false;
+            this.dcResourceList.FloatingSize = new System.Drawing.Size(434, 377);
+            this.dcResourceList.Image = ((System.Drawing.Image)(resources.GetObject("dcResourceList.Image")));
+            this.dcResourceList.Manager = this.manager;
+            this.dcResourceList.Name = "dcResourceList";
+            this.dcResourceList.ShowCloseButton = true;
+            this.dcResourceList.ShowCollapseButton = true;
+            this.dcResourceList.TabImage = ((System.Drawing.Image)(resources.GetObject("dcResourceList.TabImage")));
+            this.dcResourceList.TabText = "List";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -950,23 +1054,26 @@ namespace SimPe
             this.tbContainer.TopToolStripPanel.PerformLayout();
             this.tbContainer.ResumeLayout(false);
             this.tbContainer.PerformLayout();
-            this.dockContainer1.ResumeLayout(false);
+            this.manager.ResumeLayout(false);
+            this.dockLeft.ResumeLayout(false);
             this.dcResource.ResumeLayout(false);
             this.dcResource.PerformLayout();
             this.tbResource.ResumeLayout(false);
             this.tbResource.PerformLayout();
-            this.mybottomSandDock.ResumeLayout(false);
-            this.dcPlugin.ResumeLayout(false);
-            this.toolBar1.ResumeLayout(false);
-            this.toolBar1.PerformLayout();
-            this.menuBar1.ResumeLayout(false);
-            this.menuBar1.PerformLayout();
-            this.myrightSandDock.ResumeLayout(false);
+            this.dockRight.ResumeLayout(false);
             this.dcFilter.ResumeLayout(false);
             this.xpGradientPanel1.ResumeLayout(false);
             this.xpGradientPanel1.PerformLayout();
             this.dcAction.ResumeLayout(false);
             this.xpGradientPanel2.ResumeLayout(false);
+            this.dockBottom.ResumeLayout(false);
+            this.dcPlugin.ResumeLayout(false);
+            this.toolBar1.ResumeLayout(false);
+            this.toolBar1.PerformLayout();
+            this.menuBar1.ResumeLayout(false);
+            this.menuBar1.PerformLayout();
+            this.dockCenter.ResumeLayout(false);
+            this.dcResourceList.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -974,5 +1081,12 @@ namespace SimPe
 
 
         #endregion
+
+        private DockContainer dockLeft;
+        private DockContainer dockRight;
+        private DockContainer dockBottom;
+        private DockContainer dockCenter;
+        private DockPanel dcResourceList;
+
     }
 }
