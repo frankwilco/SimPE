@@ -513,5 +513,23 @@ namespace Ambertation.Renderer
             }
         }
         #endregion
+
+        #region ToolStripPanel
+        public override Color ToolStripPanelGradientBegin
+        {
+            get
+            {
+                return MenuStripGradientBegin;
+            }
+        }
+
+        public override Color ToolStripPanelGradientEnd
+        {
+            get
+            {
+                return MenuStripGradientBegin;
+            }
+        }
+        #endregion
     }
 }

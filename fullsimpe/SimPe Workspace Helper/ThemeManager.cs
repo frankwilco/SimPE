@@ -158,6 +158,39 @@ namespace SimPe
             }
         }
 
+        void SetTheme(System.Windows.Forms.ToolStripContainer sdm)
+        {
+            SetTheme(sdm.TopToolStripPanel);
+            SetTheme(sdm.RightToolStripPanel);
+            SetTheme(sdm.BottomToolStripPanel);
+            SetTheme(sdm.LeftToolStripPanel);
+        }
+
+        void SetTheme(System.Windows.Forms.ToolStripPanel sdm)
+        {
+            if (sdm.Parent is System.Windows.Forms.ToolStripContainer)
+            {
+                if (ctheme == GuiTheme.Everett) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+                else if (ctheme == GuiTheme.Office2003) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+                else if (ctheme == GuiTheme.Glossy) sdm.Renderer = glossy;
+                else sdm.Renderer = whidbey;
+            }
+            else
+            {
+                if (sdm.Renderer is MediaPlayerRenderer)
+                {
+                    if (ctheme == GuiTheme.Everett) sdm.Renderer = mediaplayerwhidbey;
+                    else if (ctheme == GuiTheme.Office2003) sdm.Renderer = mediaplayer;
+                    else if (ctheme == GuiTheme.Glossy) sdm.Renderer = glossy;
+                    else sdm.Renderer = mediaplayerwhidbey;
+                }
+                else if (ctheme == GuiTheme.Everett) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+                else if (ctheme == GuiTheme.Office2003) sdm.Renderer = square;
+                else if (ctheme == GuiTheme.Glossy) sdm.Renderer = glossysquare;
+                else sdm.Renderer = whidbeysquare;
+            }
+        }
+
         void SetTheme(System.Windows.Forms.MenuStrip sdm)
         {
             if (ctheme == GuiTheme.Everett) sdm.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -254,7 +287,8 @@ namespace SimPe
 			else if (o is Ambertation.Windows.Forms.XPTaskBoxSimple) SetTheme((Ambertation.Windows.Forms.XPTaskBoxSimple)o);
             else if (o is System.Windows.Forms.ContextMenuStrip) SetTheme((System.Windows.Forms.ContextMenuStrip)o);
             else if (o is System.Windows.Forms.MenuStrip) SetTheme((System.Windows.Forms.MenuStrip)o);
-            else if (o is System.Windows.Forms.ToolStrip) SetTheme((System.Windows.Forms.ToolStrip)o);            
+            else if (o is System.Windows.Forms.ToolStrip) SetTheme((System.Windows.Forms.ToolStrip)o);
+            else if (o is System.Windows.Forms.ToolStripContainer) SetTheme((System.Windows.Forms.ToolStripContainer)o); 
 			else if (o is System.Windows.Forms.Control) SetTheme((System.Windows.Forms.Control)o);			
 		}
 		#endregion

@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace SimPe
 {
-    public class MyButtonItem : TD.SandBar.ButtonItem
+    public class MyButtonItem : ToolStripButton
     {        
         static int counter = 0;
 
@@ -84,7 +84,7 @@ namespace SimPe
             
         }
         #endregion
-
+        static int namect = 0;
         string name;
         public string Name
         {
@@ -107,6 +107,12 @@ namespace SimPe
         MyButtonItem(ToolStripMenuItem item, string name)
             : base()
         {
+            if (name == "")
+            {
+                name = "AButtonItem_" + namect;
+                namect++;
+            }
+
             refitem = item;
             if (item != null)
             {
@@ -115,7 +121,7 @@ namespace SimPe
                 if (this.Image == null) this.Text = item.Text;
                 this.ToolTipText = item.Text.Replace("&", "");
                 this.Enabled = item.Enabled;
-                this.Activate += new EventHandler(MyButtonItem_Activate);
+                this.Click += new EventHandler(MyButtonItem_Activate);
                 item.CheckedChanged += new EventHandler(item_CheckedChanged);
                 item.EnabledChanged += new EventHandler(item_EnabledChanged);
                 
@@ -417,7 +423,7 @@ namespace SimPe
 		/// <param name="tb"></param>
 		/// <param name="mi"></param>
 		/// <param name="exclude">List of <see cref="TD.SandBar.MenuButtonItem"/> that should be excluded</param>
-		public static void BuildToolBar(TD.SandBar.ToolBar tb, ToolStripItemCollection mi, ArrayList exclude)
+		public static void BuildToolBar(ToolStrip tb, ToolStripItemCollection mi, ArrayList exclude)
 		{
 			System.Collections.Generic.List<ToolStripItemCollection> submenus = new System.Collections.Generic.List<ToolStripItemCollection>();
             System.Collections.Generic.List<ToolStripMenuItem> items = new System.Collections.Generic.List<ToolStripMenuItem>();
@@ -442,14 +448,22 @@ namespace SimPe
 				}
 			}
 
+            System.Collections.Generic.List<int> groupindices = new System.Collections.Generic.List<int>();
 			for (int i=0; i<items.Count; i++)
 			{
                 ToolStripMenuItem item = items[i];				
-				TD.SandBar.ButtonItem bi = new MyButtonItem(item);
-                bi.BeginGroup = (i == 0 && tb.Items.Count > 0) || starters.Contains(item); ;				                
-
+				ToolStripButton bi = new MyButtonItem(item);
+                bool beggroup = (i == 0 && tb.Items.Count > 0) || starters.Contains(item); ;
+                if (beggroup) groupindices.Add(i);
 				tb.Items.Add(bi);
 			}
+
+            //// RECHECK
+            foreach (int i in groupindices)
+            {
+                ToolStripMenuItem bi = new ToolStripMenuItem("--");
+                items.Insert(i, bi);
+            }
 			
 
 			for (int i=0; i<submenus.Count; i++)
@@ -479,7 +493,7 @@ namespace SimPe
 		/// </summary>
 		/// <param name="mi">The Menu you want to add Items to</param>
 		/// <param name="chghandler">A Function to call when the Package was chaged by a Tool</param>
-		public void AddMenuItems(ref SimPe.Events.ChangedResourceEvent ev, ToolStripMenuItem mi, TD.SandBar.ToolBar tb, ToolMenuItemExt.ExternalToolNotify chghandler) 
+		public void AddMenuItems(ref SimPe.Events.ChangedResourceEvent ev, ToolStripMenuItem mi, ToolStrip tb, ToolMenuItemExt.ExternalToolNotify chghandler) 
 		{
 			this.mi = mi;
 			IToolExt[] toolsp = (IToolExt[])FileTable.ToolRegistry.ToolsPlus;

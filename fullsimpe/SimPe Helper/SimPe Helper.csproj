@@ -127,7 +127,7 @@
     </Reference>
     <Reference Include="XPCommonControls">
       <Name>xpcommoncontrols</Name>
-      <HintPath>..\..\..\xpcommoncontrols\xpcommoncontrols.dll</HintPath>
+      <HintPath>..\xpcommoncontrols.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

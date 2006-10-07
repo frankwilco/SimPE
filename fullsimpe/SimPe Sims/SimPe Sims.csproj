@@ -87,11 +87,11 @@
     </Reference>
     <Reference Include="SandBar">
       <Name>SandBar</Name>
-      <HintPath>..\..\..\DivElements\SandBar\SandBar.dll</HintPath>
+      <HintPath>..\SandBar.dll</HintPath>
     </Reference>
     <Reference Include="SandDock">
       <Name>SandDock</Name>
-      <HintPath>..\..\..\DivElements\SandDock\SandDock.dll</HintPath>
+      <HintPath>..\SandDock.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -116,7 +116,7 @@
     </Reference>
     <Reference Include="XPCommonControls">
       <Name>xpcommoncontrols</Name>
-      <HintPath>..\..\..\xpcommoncontrols\xpcommoncontrols.dll</HintPath>
+      <HintPath>..\xpcommoncontrols.dll</HintPath>
     </Reference>
     <ProjectReference Include="..\SimPe 3IDR\SimPe 3IDR.csproj">
       <Name>SimPe 3IDR</Name>

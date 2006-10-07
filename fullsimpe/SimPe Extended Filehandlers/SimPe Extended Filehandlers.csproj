@@ -107,7 +107,7 @@
     </Reference>
     <Reference Include="SandBar">
       <Name>SandBar</Name>
-      <HintPath>..\..\..\DivElements\SandBar\SandBar.dll</HintPath>
+      <HintPath>..\SandBar.dll</HintPath>
     </Reference>
     <Reference Include="sims.guid, Version=1.0.2305.27602, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

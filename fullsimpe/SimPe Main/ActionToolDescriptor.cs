@@ -40,11 +40,11 @@ namespace SimPe
 			get {return ll; }
 		}
 
-		TD.SandBar.ButtonItem bi;
+		System.Windows.Forms.ToolStripButton bi;
 		/// <summary>
 		/// Returns the generated ToolBar ButtonItem (can be null)
 		/// </summary>
-		public TD.SandBar.ButtonItem ToolBarButton
+        public System.Windows.Forms.ToolStripButton ToolBarButton
 		{
 			get {return bi; }
 		}
@@ -97,7 +97,7 @@ namespace SimPe
 
                 bi.Checked = mi.Checked;
                 bi.Enabled = mi.Enabled;
-				bi.Activate += new EventHandler(LinkClicked);
+				bi.Click += new EventHandler(LinkClicked);
 			}
 
 			//Make Sure the Action is disabled on StartUp

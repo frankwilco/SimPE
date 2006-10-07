@@ -110,7 +110,7 @@
     </Reference>
     <Reference Include="SandDock">
       <Name>sanddock</Name>
-      <HintPath>..\..\..\divelements\sanddock\sanddock.dll</HintPath>
+      <HintPath>..\sanddock.dll</HintPath>
     </Reference>
     <Reference Include="simpe.3idr, Version=1.0.2305.29253, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -195,7 +195,7 @@
     </Reference>
     <Reference Include="XPCommonControls">
       <Name>xpcommoncontrols</Name>
-      <HintPath>..\..\..\xpcommoncontrols\xpcommoncontrols.dll</HintPath>
+      <HintPath>..\xpcommoncontrols.dll</HintPath>
     </Reference>
     <ProjectReference Include="..\SimPe Name Provider\SimPe Name Provider.csproj">
       <Name>SimPe Name Provider</Name>

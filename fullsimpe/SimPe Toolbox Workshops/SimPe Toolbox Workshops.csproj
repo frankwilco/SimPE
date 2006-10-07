@@ -133,11 +133,11 @@
     </Reference>
     <Reference Include="SandBar">
       <Name>SandBar</Name>
-      <HintPath>..\..\..\DivElements\SandBar\SandBar.dll</HintPath>
+      <HintPath>..\SandBar.dll</HintPath>
     </Reference>
     <Reference Include="SandDock">
       <Name>SandDock</Name>
-      <HintPath>..\..\..\DivElements\SandDock\SandDock.dll</HintPath>
+      <HintPath>..\SandDock.dll</HintPath>
     </Reference>
     <Reference Include="simpe.cache, Version=1.0.2305.29249, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -218,7 +218,7 @@
     </Reference>
     <Reference Include="XPCommonControls">
       <Name>xpcommoncontrols</Name>
-      <HintPath>..\..\..\xpcommoncontrols\xpcommoncontrols.dll</HintPath>
+      <HintPath>..\xpcommoncontrols.dll</HintPath>
     </Reference>
     <ProjectReference Include="..\SimPe Wizardbase\SimPe Wizardbase.csproj">
       <Name>SimPe Wizardbase</Name>
