@@ -99,7 +99,7 @@
   <ItemGroup>
     <Reference Include="SandDock">
       <Name>SandDock</Name>
-      <HintPath>..\..\..\divelements\sanddock\SandDock.dll</HintPath>
+      <HintPath>..\SandDock.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>

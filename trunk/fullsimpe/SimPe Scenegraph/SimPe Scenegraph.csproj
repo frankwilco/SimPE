@@ -126,7 +126,7 @@
     </Reference>
     <Reference Include="SandBar">
       <Name>sandbar</Name>
-      <HintPath>..\..\..\divelements\sandbar\sandbar.dll</HintPath>
+      <HintPath>..\sandbar.dll</HintPath>
     </Reference>
     <Reference Include="Skybound.VisualStyles">
       <Name>skybound.visualstyles</Name>

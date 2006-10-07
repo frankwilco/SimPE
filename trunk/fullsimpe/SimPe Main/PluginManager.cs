@@ -30,14 +30,14 @@ namespace SimPe
 		SimPe.LoadHelpTopics lht;
 		internal PluginManager(
             System.Windows.Forms.ToolStripMenuItem toolmenu, 
-			TD.SandBar.ToolBar tootoolbar,
+			System.Windows.Forms.ToolStrip tootoolbar,
 			TD.SandDock.TabControl dc, 
 			LoadedPackage lp,
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox defaultactiontaskbox,
             System.Windows.Forms.ContextMenuStrip defaultactionmenu,
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox toolactiontaskbox, 
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox extactiontaskbox,
-			TD.SandBar.ToolBar actiontoolbar,
+			System.Windows.Forms.ToolStrip actiontoolbar,
 			TD.SandDock.DockControl docktooldc,
             System.Windows.Forms.ToolStripMenuItem helpmenu)
             : base(true)
@@ -183,7 +183,7 @@ namespace SimPe
 		/// </summary>
 		void LoadActionTools(
 			SteepValley.Windows.Forms.ThemedControls.XPTaskBox taskbox, 
-			TD.SandBar.ToolBar tb,
+			System.Windows.Forms.ToolStrip tb,
             System.Windows.Forms.ContextMenuStrip mi, 
 			SimPe.Interfaces.IToolAction[] tools)
 		{			
@@ -221,8 +221,14 @@ namespace SimPe
 
 				if (tb!=null && atd.ToolBarButton!=null)
 				{
-					atd.ToolBarButton.BeginGroup = (tfirst && tb.Items.Count!=0);
-					tb.Items.Add(atd.ToolBarButton);
+                    ////RECHECK
+					//atd.ToolBarButton.BeginGroup = (tfirst && tb.Items.Count!=0);
+                    
+					
+                    if (tfirst && tb.Items.Count != 0)
+                        tb.Items.Add(new System.Windows.Forms.ToolStripSeparator());
+                    tb.Items.Add(atd.ToolBarButton);
+                    
 					tfirst = false;
 				}
 				

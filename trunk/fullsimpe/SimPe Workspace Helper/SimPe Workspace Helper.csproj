@@ -103,11 +103,11 @@
     </Reference>
     <Reference Include="SandBar">
       <Name>SandBar</Name>
-      <HintPath>..\..\..\DivElements\SandBar\SandBar.dll</HintPath>
+      <HintPath>..\SandBar.dll</HintPath>
     </Reference>
     <Reference Include="SandDock">
       <Name>SandDock</Name>
-      <HintPath>..\..\..\DivElements\SandDock\SandDock.dll</HintPath>
+      <HintPath>..\SandDock.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -126,7 +126,7 @@
     </Reference>
     <Reference Include="XPCommonControls">
       <Name>XPCommonControls</Name>
-      <HintPath>..\..\..\XPCommonControls\XPCommonControls.dll</HintPath>
+      <HintPath>..\XPCommonControls.dll</HintPath>
     </Reference>
     <ProjectReference Include="..\SimPe Cache\SimPe Cache.csproj">
       <Name>SimPe Cache</Name>

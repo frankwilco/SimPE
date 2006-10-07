@@ -473,6 +473,14 @@ namespace SimPe
 			}
 		}
 
+        /// <summary>
+        /// Returns the name of the file, that contains the Custom Layout
+        /// </summary>
+        public static string LayoutFileName
+        {
+            get { return System.IO.Path.Combine(Helper.SimPeDataPath, "simpe.layout"); }
+        }
+
 		/// <summary>
 		/// Returns the Path additional SimPe Files are located in
 		/// </summary>

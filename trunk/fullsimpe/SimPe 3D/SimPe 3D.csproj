@@ -154,7 +154,7 @@
     </Reference>
     <Reference Include="XPCommonControls">
       <Name>xpcommoncontrols</Name>
-      <HintPath>..\..\..\xpcommoncontrols\xpcommoncontrols.dll</HintPath>
+      <HintPath>..\xpcommoncontrols.dll</HintPath>
     </Reference>
     <ProjectReference Include="..\SimPe Geometry\SimPe Geometry.csproj">
       <Name>SimPe Geometry</Name>
