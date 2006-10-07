@@ -104,7 +104,7 @@ namespace SimPe
         private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon2;
         private ToolStrip tbTools;
         private ToolStrip tbWindow;
-        private TD.SandBar.FlatComboBox cbsemig;
+        private ComboBox cbsemig;
         private SteepValley.Windows.Forms.XPLinkedLabelIcon xpLinkedLabelIcon3;
         private TD.SandDock.TabControl dc;
         private TD.SandDock.DockContainer dockContainer1;
@@ -181,7 +181,7 @@ namespace SimPe
             this.tbInst = new System.Windows.Forms.TextBox();
             this.tbGrp = new System.Windows.Forms.TextBox();
             this.tbRcolName = new System.Windows.Forms.TextBox();
-            this.cbsemig = new TD.SandBar.FlatComboBox();
+            this.cbsemig = new ComboBox();
             this.miNew = new System.Windows.Forms.ToolStripMenuItem();
             this.miOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.miSave = new System.Windows.Forms.ToolStripMenuItem();
