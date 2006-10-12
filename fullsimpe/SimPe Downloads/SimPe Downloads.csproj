@@ -156,10 +156,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.rcol.dll</HintPath>
     </Reference>
-    <Reference Include="simpe.s2cp, Version=1.0.2305.28398, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.s2cp.dll</HintPath>
-    </Reference>
     <Reference Include="simpe.scenegraph, Version=1.0.2305.29254, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.scenegraph.dll</HintPath>
@@ -273,6 +269,10 @@
     <EmbeddedResource Include="setup.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimPe Sims2CommunityPack\SimPe Sims2CommunityPack.csproj">
+      <Project>{2EF93119-5C98-4167-B1AF-966E6A45AB79}</Project>
+      <Name>SimPe Sims2CommunityPack</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimPE Toolbox Scanner\SimPE Toolbox Scanner.csproj">
       <Project>{2EA51E60-64FA-4822-AE2A-A996BA79AA76}</Project>
       <Name>SimPE Toolbox Scanner</Name>

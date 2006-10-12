@@ -175,10 +175,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="simpe.ngbh.plugin, Version=1.0.2305.30043, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\Plugins\simpe.ngbh.plugin.dll</HintPath>
-    </Reference>
     <Reference Include="simpe.package, Version=1.0.2305.29249, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.package.dll</HintPath>
@@ -220,6 +216,10 @@
       <Name>xpcommoncontrols</Name>
       <HintPath>..\xpcommoncontrols.dll</HintPath>
     </Reference>
+    <ProjectReference Include="..\SimPe HGBH\SimPe HGBH.csproj">
+      <Project>{2A67C9C3-9577-4922-991F-291EAA6B4F2D}</Project>
+      <Name>SimPe HGBH</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimPe Wizardbase\SimPe Wizardbase.csproj">
       <Name>SimPe Wizardbase</Name>
       <Project>{B552AF25-66F1-4DFE-8760-2D3053F57E7C}</Project>
