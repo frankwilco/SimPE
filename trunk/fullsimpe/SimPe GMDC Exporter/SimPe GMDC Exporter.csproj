@@ -113,11 +113,6 @@
       <Name>xsi.lib</Name>
       <HintPath>..\xsi.lib.dll</HintPath>
     </Reference>
-    <ProjectReference Include="..\3DView\3DView.csproj">
-      <Name>3DView</Name>
-      <Project>{F2CCCDBC-B05F-4C9C-B57F-27A07ACEF9BE}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
     <ProjectReference Include="..\SimPe Geometry\SimPe Geometry.csproj">
       <Name>SimPe Geometry</Name>
       <Project>{60367A6D-8FF1-4289-B546-C68A2C395843}</Project>

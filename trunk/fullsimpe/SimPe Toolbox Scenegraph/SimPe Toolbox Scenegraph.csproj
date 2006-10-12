@@ -74,6 +74,10 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="graphcontrol, Version=1.0.2314.23625, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\graphcontrol.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -89,11 +93,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\GraphControl\GraphControl.csproj">
-      <Name>GraphControl</Name>
-      <Project>{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
     <ProjectReference Include="..\SimPe Clst\SimPe Clst.csproj">
       <Name>SimPe Clst</Name>
       <Project>{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}</Project>
