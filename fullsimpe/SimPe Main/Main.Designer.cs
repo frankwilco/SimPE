@@ -144,6 +144,8 @@ namespace SimPe
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tbContainer = new System.Windows.Forms.ToolStripContainer();
             this.manager = new Ambertation.Windows.Forms.DockManager();
+            this.dockCenter = new Ambertation.Windows.Forms.DockContainer();
+            this.dcResourceList = new Ambertation.Windows.Forms.DockPanel();
             this.lv = new SimPe.ResourceListView();
             this.clType = new System.Windows.Forms.ColumnHeader();
             this.clGroup = new System.Windows.Forms.ColumnHeader();
@@ -188,8 +190,8 @@ namespace SimPe
             this.biNewDc = new System.Windows.Forms.ToolStripButton();
             this.biUpdate = new System.Windows.Forms.ToolStripButton();
             this.biReset = new System.Windows.Forms.ToolStripButton();
-            this.tbTools = new System.Windows.Forms.ToolStrip();
             this.tbWindow = new System.Windows.Forms.ToolStrip();
+            this.tbTools = new System.Windows.Forms.ToolStrip();
             this.tbAction = new System.Windows.Forms.ToolStrip();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
@@ -228,12 +230,12 @@ namespace SimPe
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.resourceSelectionTimer = new System.Windows.Forms.Timer(this.components);
             this.waitControl1 = new SimPe.WaitControl();
-            this.dockCenter = new Ambertation.Windows.Forms.DockContainer();
-            this.dcResourceList = new Ambertation.Windows.Forms.DockPanel();
             this.tbContainer.ContentPanel.SuspendLayout();
             this.tbContainer.TopToolStripPanel.SuspendLayout();
             this.tbContainer.SuspendLayout();
             this.manager.SuspendLayout();
+            this.dockCenter.SuspendLayout();
+            this.dcResourceList.SuspendLayout();
             this.dockLeft.SuspendLayout();
             this.dcResource.SuspendLayout();
             this.tbResource.SuspendLayout();
@@ -246,8 +248,6 @@ namespace SimPe
             this.dcPlugin.SuspendLayout();
             this.toolBar1.SuspendLayout();
             this.menuBar1.SuspendLayout();
-            this.dockCenter.SuspendLayout();
-            this.dcResourceList.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbContainer
@@ -262,10 +262,10 @@ namespace SimPe
             // 
             // tbContainer.TopToolStripPanel
             // 
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
             // 
             // manager
             // 
@@ -277,11 +277,47 @@ namespace SimPe
             resources.ApplyResources(this.manager, "manager");
             this.manager.DragBorder = true;
             this.manager.Manager = this.manager;
+            this.manager.MinimumSize = new System.Drawing.Size(150, 150);
             this.manager.Name = "manager";
             this.manager.NoCleanup = false;
             this.manager.Renderer = whidbeyRenderer1;
             this.manager.TabImage = null;
             this.manager.TabText = "";
+            // 
+            // dockCenter
+            // 
+            this.dockCenter.Controls.Add(this.dcResourceList);
+            resources.ApplyResources(this.dockCenter, "dockCenter");
+            this.dockCenter.DragBorder = true;
+            this.dockCenter.Manager = this.manager;
+            this.dockCenter.MinimumSize = new System.Drawing.Size(150, 150);
+            this.dockCenter.Name = "dockCenter";
+            this.dockCenter.NoCleanup = false;
+            this.dockCenter.TabImage = null;
+            this.dockCenter.TabText = "";
+            // 
+            // dcResourceList
+            // 
+            this.dcResourceList.AllowClose = true;
+            this.dcResourceList.AllowDockBottom = true;
+            this.dcResourceList.AllowDockCenter = true;
+            this.dcResourceList.AllowDockLeft = true;
+            this.dcResourceList.AllowDockRight = true;
+            this.dcResourceList.AllowDockTop = true;
+            this.dcResourceList.AllowFloat = true;
+            resources.ApplyResources(this.dcResourceList, "dcResourceList");
+            this.dcResourceList.CanUndock = true;
+            this.dcResourceList.Controls.Add(this.lv);
+            this.dcResourceList.DockContainer = this.dockCenter;
+            this.dcResourceList.DragBorder = false;
+            this.dcResourceList.FloatingSize = new System.Drawing.Size(434, 377);
+            this.dcResourceList.Image = ((System.Drawing.Image)(resources.GetObject("dcResourceList.Image")));
+            this.dcResourceList.Manager = this.manager;
+            this.dcResourceList.Name = "dcResourceList";
+            this.dcResourceList.ShowCloseButton = true;
+            this.dcResourceList.ShowCollapseButton = true;
+            this.dcResourceList.TabImage = ((System.Drawing.Image)(resources.GetObject("dcResourceList.TabImage")));
+            this.dcResourceList.TabText = "List";
             // 
             // lv
             // 
@@ -347,6 +383,7 @@ namespace SimPe
             resources.ApplyResources(this.dockLeft, "dockLeft");
             this.dockLeft.DragBorder = true;
             this.dockLeft.Manager = this.manager;
+            this.dockLeft.MinimumSize = new System.Drawing.Size(150, 150);
             this.dockLeft.Name = "dockLeft";
             this.dockLeft.NoCleanup = false;
             this.dockLeft.TabImage = null;
@@ -447,6 +484,7 @@ namespace SimPe
             resources.ApplyResources(this.dockRight, "dockRight");
             this.dockRight.DragBorder = true;
             this.dockRight.Manager = this.manager;
+            this.dockRight.MinimumSize = new System.Drawing.Size(150, 150);
             this.dockRight.Name = "dockRight";
             this.dockRight.NoCleanup = false;
             this.dockRight.TabImage = null;
@@ -642,6 +680,7 @@ namespace SimPe
             resources.ApplyResources(this.dockBottom, "dockBottom");
             this.dockBottom.DragBorder = true;
             this.dockBottom.Manager = this.manager;
+            this.dockBottom.MinimumSize = new System.Drawing.Size(150, 150);
             this.dockBottom.Name = "dockBottom";
             this.dockBottom.NoCleanup = false;
             this.dockBottom.TabImage = null;
@@ -740,15 +779,15 @@ namespace SimPe
             this.biReset.Name = "biReset";
             this.biReset.Click += new System.EventHandler(this.Activate_biReset);
             // 
-            // tbTools
-            // 
-            resources.ApplyResources(this.tbTools, "tbTools");
-            this.tbTools.Name = "tbTools";
-            // 
             // tbWindow
             // 
             resources.ApplyResources(this.tbWindow, "tbWindow");
             this.tbWindow.Name = "tbWindow";
+            // 
+            // tbTools
+            // 
+            resources.ApplyResources(this.tbTools, "tbTools");
+            this.tbTools.Name = "tbTools";
             // 
             // tbAction
             // 
@@ -1003,40 +1042,6 @@ namespace SimPe
             this.waitControl1.Value = 50;
             this.waitControl1.Waiting = false;
             // 
-            // dockCenter
-            // 
-            this.dockCenter.Controls.Add(this.dcResourceList);
-            resources.ApplyResources(this.dockCenter, "dockCenter");
-            this.dockCenter.DragBorder = true;
-            this.dockCenter.Manager = this.manager;
-            this.dockCenter.Name = "dockCenter";
-            this.dockCenter.NoCleanup = false;
-            this.dockCenter.TabImage = null;
-            this.dockCenter.TabText = "";
-            // 
-            // dcResourceList
-            // 
-            this.dcResourceList.AllowClose = true;
-            this.dcResourceList.AllowDockBottom = true;
-            this.dcResourceList.AllowDockCenter = true;
-            this.dcResourceList.AllowDockLeft = true;
-            this.dcResourceList.AllowDockRight = true;
-            this.dcResourceList.AllowDockTop = true;
-            this.dcResourceList.AllowFloat = true;
-            resources.ApplyResources(this.dcResourceList, "dcResourceList");
-            this.dcResourceList.CanUndock = true;
-            this.dcResourceList.Controls.Add(this.lv);
-            this.dcResourceList.DockContainer = this.dockCenter;
-            this.dcResourceList.DragBorder = false;
-            this.dcResourceList.FloatingSize = new System.Drawing.Size(434, 377);
-            this.dcResourceList.Image = ((System.Drawing.Image)(resources.GetObject("dcResourceList.Image")));
-            this.dcResourceList.Manager = this.manager;
-            this.dcResourceList.Name = "dcResourceList";
-            this.dcResourceList.ShowCloseButton = true;
-            this.dcResourceList.ShowCollapseButton = true;
-            this.dcResourceList.TabImage = ((System.Drawing.Image)(resources.GetObject("dcResourceList.TabImage")));
-            this.dcResourceList.TabText = "List";
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1055,6 +1060,8 @@ namespace SimPe
             this.tbContainer.ResumeLayout(false);
             this.tbContainer.PerformLayout();
             this.manager.ResumeLayout(false);
+            this.dockCenter.ResumeLayout(false);
+            this.dcResourceList.ResumeLayout(false);
             this.dockLeft.ResumeLayout(false);
             this.dcResource.ResumeLayout(false);
             this.dcResource.PerformLayout();
@@ -1072,8 +1079,6 @@ namespace SimPe
             this.toolBar1.PerformLayout();
             this.menuBar1.ResumeLayout(false);
             this.menuBar1.PerformLayout();
-            this.dockCenter.ResumeLayout(false);
-            this.dcResourceList.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

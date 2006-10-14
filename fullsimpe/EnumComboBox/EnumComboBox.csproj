@@ -74,9 +74,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SandBar">
-      <Name>SandBar</Name>
-      <HintPath>SandBar.dll</HintPath>
+    <Reference Include="AdvancedForms, Version=1.0.2478.23375, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AdvancedForms.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
