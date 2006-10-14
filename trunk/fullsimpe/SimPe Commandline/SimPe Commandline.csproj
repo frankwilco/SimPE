@@ -163,6 +163,12 @@
     <EmbeddedResource Include="classic_layout.xreg" />
     <EmbeddedResource Include="modern_layout.xreg" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="modern.layout" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="classic.layout" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

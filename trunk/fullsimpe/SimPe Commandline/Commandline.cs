@@ -97,12 +97,14 @@ namespace SimPe
 
 		static void Overridelayout(string name)
 		{
+            
 			System.IO.Stream s = typeof(Commandline).Assembly.GetManifestResourceStream("SimPe."+name);
 			if (s!=null) 
 			{
 				try 
 				{
                     System.IO.StreamWriter sw = System.IO.File.CreateText(LayoutRegistry.LayoutFile);
+                    sw.BaseStream.SetLength(0);
 					try 
 					{
 						System.IO.StreamReader sr = new System.IO.StreamReader(s);
@@ -113,14 +115,39 @@ namespace SimPe
 					{
 						sw.Close();
 					}
-
-					Helper.WindowsRegistry.ReloadLayout();
 				} 
 				catch (Exception ex) 
 				{
 					Helper.ExceptionMessage(ex);
 				}
-			}					
+			}
+
+            string name2 = name.Replace("_layout.xreg", ".layout");
+            s = typeof(Commandline).Assembly.GetManifestResourceStream("SimPe." + name2);
+            if (s != null)
+            {
+                try
+                {
+                    System.IO.BinaryWriter sw = new System.IO.BinaryWriter(System.IO.File.OpenWrite(Helper.LayoutFileName));
+                    sw.BaseStream.SetLength(0);
+                    try
+                    {
+                        System.IO.BinaryReader sr = new System.IO.BinaryReader(s);                        
+                        sw.Write(sr.ReadBytes((int)sr.BaseStream.Length));
+                        sw.Flush();
+                    }
+                    finally
+                    {
+                        sw.Close();
+                    }
+
+                    Helper.WindowsRegistry.ReloadLayout();
+                }
+                catch (Exception ex)
+                {
+                    Helper.ExceptionMessage(ex);
+                }
+            }	
 		}
 		#endregion
 

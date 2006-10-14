@@ -31,6 +31,7 @@ namespace SimPe
     {
         private void SetupMainForm()
         {
+            manager.Visible = false;
             createdmenus = false;
             WaitBarControl wbc = new WaitBarControl(this);
             Wait.Bar = wbc;
@@ -93,6 +94,8 @@ namespace SimPe
             Ambertation.Windows.Forms.Serializer.Global.Register(manager);
 
             manager.ForceCleanUp();
+            //this.dcResource.BringToFront();
+            //this.dcResourceList.BringToFront();
         }
 
         void LoadForm(object sender, System.EventArgs e)
@@ -124,6 +127,10 @@ namespace SimPe
 
             //Set the Lock State of the Docks
             MakeFloatable(!Helper.WindowsRegistry.LockDocks);
+            
+            manager.Visible = true;
+
+            
         }
     }
 }

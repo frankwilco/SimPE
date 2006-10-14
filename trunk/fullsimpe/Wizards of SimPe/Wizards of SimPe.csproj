@@ -96,7 +96,11 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EnumComboBox, Version=1.0.2368.35756, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="AdvancedForms, Version=1.0.2478.23375, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AdvancedForms.dll</HintPath>
+    </Reference>
+    <Reference Include="EnumComboBox, Version=1.0.2478.24179, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="graphcontrol, Version=1.0.2314.23625, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="simpe.commonhandler, Version=1.0.2305.30291, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

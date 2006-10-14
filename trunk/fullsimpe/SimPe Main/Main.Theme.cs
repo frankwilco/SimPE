@@ -88,6 +88,7 @@ namespace SimPe
         /// </summary>
         void ReloadLayout()
         {
+            this.SuspendLayout();
             //store defaults            
             if (defaultlayout == null) 
                 defaultlayout = Ambertation.Windows.Forms.Serializer.Global.ToStream();
