@@ -132,7 +132,7 @@ namespace SimPe
 			{
                 System.Windows.Forms.ToolStripMenuItem mi = o as System.Windows.Forms.ToolStripMenuItem;
                 if (mi==null) continue;
-				if (mi.Tag == doc) 				
+                if (mi.Tag as Ambertation.Windows.Forms.DockPanel == doc) 				
 					mi.Checked = doc.IsDocked || doc.IsFloating;				
 			}
 		}

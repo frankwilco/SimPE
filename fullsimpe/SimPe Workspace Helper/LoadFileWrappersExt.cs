@@ -134,7 +134,7 @@ namespace SimPe
                 if (tmie != null) this.name = tmie.Name;
                 else
                 {
-                    TD.SandDock.DockableWindow dw = item.Tag as TD.SandDock.DockableWindow;
+                    Ambertation.Windows.Forms.DockPanel dw = item.Tag as Ambertation.Windows.Forms.DockPanel;
 
                     if (dw != null)
                     {

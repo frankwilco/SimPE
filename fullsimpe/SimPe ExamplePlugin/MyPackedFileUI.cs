@@ -6,55 +6,55 @@ namespace SimPe.Plugin
 	/// <summary>
 	/// This class is used to fill the UI for this FileType with Data
 	/// </summary>
-	public class MyPackedFileUI : IPackedFileUI
-	{
-		#region Code to Startup the UI
+    public partial class MyPackedFileUI :
+        SimPe.Windows.Forms.WrapperBaseControl,     //This gives your Plugin the right look (gradient background, commit button)
+        IPackedFileUI                              //This Interfaces is needed to provide a UI for your Wrapper
+    {
+        
 
-		/// <summary>
-		/// Holds a reference to the Form containing the UI Panel
-		/// </summary>
-		private MyPackedFileForm form;
+        protected new MyPackedFileWrapper Wrapper
+        {
+            get { return base.Wrapper as MyPackedFileWrapper; }
+        }
 
-		/// <summary>
-		/// Constructor for the Class
-		/// </summary>
-		public MyPackedFileUI()
-		{
-			form = new MyPackedFileForm();
+        #region WrapperBaseControl Member
+        protected override void RefreshGUI()
+        {
+            base.RefreshGUI();
+            ///
+            /// TODO: Do soemthing to show the Content of this.Wrapper on your UI
+            /// 
+        }
 
-			//
-			// TODO: Add your Contructor Stuff here (if needed)
-			//
-		}
-		#endregion
+        public override void OnCommit()
+        {
+            base.OnCommit();
+            ///
+            /// TODO: take the apropriate steps to commit the changes made on the GUI to the resource. 
+            /// You most likley want to call Wrapper.SynchronizeUserData();
+            /// 
+            
+        }
+        #endregion
 
-		#region IPackedFileUI Member
+        #region IPackedFileUI Member
 
-		/// <summary>
-		/// Returns the Panel that will be displayed within SimPe
-		/// </summary>
-		public System.Windows.Forms.Panel GUIHandle
-		{
-			get
-			{
-				return form.wrapperPanel;
-			}
-		}
+        System.Windows.Forms.Control IPackedFileUI.GUIHandle
+        {
+            get { return this; }
+        }        
 
-		/// <summary>
-		/// Is called by SimPe (through the Wrapper) when the Panel is going to be displayed, so
-		/// you should updatet the Data displayed by the Panel with the Attributes stored in the
-		/// passed Wrapper.
-		/// </summary>
-		/// <param name="wrapper">The Attributes of this Wrapper have to be displayed</param>
-		public void UpdateGUI(IFileWrapper wrapper)
-		{
-			form.wrapper = (IFileWrapperSaveExtension)wrapper;
+        #endregion
 
-			MyPackedFileWrapper mywrapper = (MyPackedFileWrapper) wrapper;
-			form.rtb.Text = mywrapper.Data;
-		}		
+        #region IDisposable Member
 
-		#endregion
-	}
+        void IDisposable.Dispose()
+        {
+            ///
+            /// TODO: Make sure all resources are disposed
+            /// 
+        }
+
+        #endregion                        
+    }
 }
