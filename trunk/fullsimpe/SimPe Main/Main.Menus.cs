@@ -39,17 +39,17 @@ namespace SimPe
         {
             ToolStripMenuItem mi = new ToolStripMenuItem(c.Text);
             if (first) miWindow.DropDownItems.Add("-");
-            mi.Image = c.TabImage;
-            mi.Checked = c.IsDocked || c.IsFloating;
+            mi.Image = c.TabImage;            
 
             mi.Click += new EventHandler(Activate_miWindowDocks);
             mi.Tag = c;
+            mi.Checked = c.IsOpen;
 
             if (c.Tag != null)
                 if (c.Tag is System.Windows.Forms.Shortcut)
                     mi.ShortcutKeys = Helper.ToKeys((System.Windows.Forms.Shortcut)c.Tag);
 
-
+            c.VisibleChanged += new EventHandler(CloseDockControl);
             c.Closed += new EventHandler(CloseDockControl);
             c.Tag = mi;
 
@@ -67,6 +67,7 @@ namespace SimPe
             foreach (Ambertation.Windows.Forms.DockPanel c in ctrls)
             {
                 if (c.Tag != null) continue;
+                System.Diagnostics.Debug.WriteLine("##1# "+c.ButtonText);
                 AddDockItem(c, first);
                 first = false;
             }
@@ -76,6 +77,7 @@ namespace SimPe
             {
                 if (c.Tag == null) continue;
                 if (c.Tag is ToolStripMenuItem) continue;
+                System.Diagnostics.Debug.WriteLine("##2# " + c.ButtonText);
                 AddDockItem(c, first);
                 first = false;
             }
@@ -90,9 +92,9 @@ namespace SimPe
             {
                 ToolStripMenuItem mi = o as ToolStripMenuItem;
                 if (mi == null) continue;
-                if (mi.Tag is TD.SandDock.DockControl)
+                if (mi.Tag is Ambertation.Windows.Forms.DockPanel)
                 {
-                    TD.SandDock.DockControl c = (TD.SandDock.DockControl)mi.Tag;
+                    Ambertation.Windows.Forms.DockPanel c = (Ambertation.Windows.Forms.DockPanel)mi.Tag;
                     mi.Checked = c.IsDocked || c.IsFloating;
                 }
             }
@@ -105,9 +107,9 @@ namespace SimPe
         /// <param name="e"></param>
         private void CloseDockControl(object sender, EventArgs e)
         {
-            if (sender is TD.SandDock.DockControl)
+            if (sender is Ambertation.Windows.Forms.DockPanel)
             {
-                TD.SandDock.DockControl c = (TD.SandDock.DockControl)sender;
+                Ambertation.Windows.Forms.DockPanel c = (Ambertation.Windows.Forms.DockPanel)sender;
                 if (c.Tag is ToolStripMenuItem)
                 {
                     ToolStripMenuItem mi = (ToolStripMenuItem)c.Tag;
@@ -130,10 +132,14 @@ namespace SimPe
                 if (mi.Tag is Ambertation.Windows.Forms.DockPanel)
                 {
                     Ambertation.Windows.Forms.DockPanel c = (Ambertation.Windows.Forms.DockPanel)mi.Tag;
-                    if (mi.Checked) c.Close();
+                    if (mi.Checked)
+                    {
+                        c.Close();
+                        mi.Checked = c.IsOpen;
+                    }
                     else
                     {
-                        c.OpenFloating();
+                        c.Open();
                         mi.Checked = c.IsOpen;
                         plugger.ChangedGuiResourceEventHandler();
                     }

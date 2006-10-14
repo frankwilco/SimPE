@@ -10,11 +10,13 @@ namespace SimPe.Plugin
 	/// The wrapper is used to (un)serialize the Data of a file into it's Attributes. So Basically it reads 
 	/// a BinaryStream and translates the data into some userdefine Attributes.
 	/// </remarks>
-	public class MyPackedFileWrapper
+	public class MyPackedFileWrapper        
 		: AbstractWrapper				//Implements some of the default Behaviur of a Handler, you can Implement yourself if you want more flexibility!
 		, IFileWrapper					//This Interface is used when loading a File
-		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File
-		//,IPackedFileProperties		//This Interface can be used by thirdparties to retrive the FIleproperties, however you don't have to implement it!
+		, IFileWrapperSaveExtension		//This Interface (if available) will be used to store a File        
+        //,IMultiplePackedFileWrapper		//Implement this Interface, if your Plugin allowws SimPE users to have multiple instances 
+                                        //opened. Tha means, if you do not implement this interface, a User can only have ONE resource of this type 
+                                        //open in the plugin view. if you implement it, there can me multiple open resources
 	{
 		#region Example Attribute
 		/// <summary>
@@ -48,21 +50,7 @@ namespace SimPe.Plugin
 			///
 			/// TODO: Add your Contructor Stuff here (if needed)
 			///
-		}
-
-		#region IWrapper member
-		public override bool CheckVersion(uint version) 
-		{
-			if ( (version==0009) //0.00
-				|| (version==0010) //0.10
-				) 
-			{
-				return true;
-			}
-
-			return false;
-		}
-		#endregion
+		}		
 		
 		#region AbstractWrapper Member
 		protected override IPackedFileUI CreateDefaultUIHandler()
@@ -82,7 +70,7 @@ namespace SimPe.Plugin
 				"Example Wrapper (Please Change!)",
 				"Quaxi",
 				"---",
-				1
+				2
 				); 
 		}
 
