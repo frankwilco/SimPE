@@ -1057,7 +1057,8 @@ namespace SimPe
 		private void Activate_biReset(object sender, System.EventArgs e)
 		{
 			ResetLayout(null, null);
-			
+            
+            
 		}
 
 		void MakeFloatable(Ambertation.Windows.Forms.DockPanel dw, bool fl)

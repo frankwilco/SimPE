@@ -181,6 +181,8 @@ namespace SimPe
             this.dockBottom = new Ambertation.Windows.Forms.DockContainer();
             this.dcPlugin = new Ambertation.Windows.Forms.DockPanel();
             this.dc = new TD.SandDock.TabControl();
+            this.tbAction = new System.Windows.Forms.ToolStrip();
+            this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.toolBar1 = new System.Windows.Forms.ToolStrip();
             this.biNew = new System.Windows.Forms.ToolStripButton();
             this.biOpen = new System.Windows.Forms.ToolStripButton();
@@ -190,9 +192,7 @@ namespace SimPe
             this.biNewDc = new System.Windows.Forms.ToolStripButton();
             this.biUpdate = new System.Windows.Forms.ToolStripButton();
             this.biReset = new System.Windows.Forms.ToolStripButton();
-            this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.tbTools = new System.Windows.Forms.ToolStrip();
-            this.tbAction = new System.Windows.Forms.ToolStrip();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
             this.miNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -262,10 +262,10 @@ namespace SimPe
             // 
             // tbContainer.TopToolStripPanel
             // 
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
             // 
             // manager
             // 
@@ -310,7 +310,7 @@ namespace SimPe
             this.dcResourceList.Controls.Add(this.lv);
             this.dcResourceList.DockContainer = this.dockCenter;
             this.dcResourceList.DragBorder = false;
-            this.dcResourceList.FloatingSize = new System.Drawing.Size(434, 377);
+            this.dcResourceList.FloatingSize = new System.Drawing.Size(434, 352);
             this.dcResourceList.Image = ((System.Drawing.Image)(resources.GetObject("dcResourceList.Image")));
             this.dcResourceList.Manager = this.manager;
             this.dcResourceList.Name = "dcResourceList";
@@ -406,7 +406,7 @@ namespace SimPe
             this.dcResource.Controls.Add(this.tvInstance);
             this.dcResource.DockContainer = this.dockLeft;
             this.dcResource.DragBorder = false;
-            this.dcResource.FloatingSize = new System.Drawing.Size(236, 377);
+            this.dcResource.FloatingSize = new System.Drawing.Size(236, 352);
             this.dcResource.Image = ((System.Drawing.Image)(resources.GetObject("dcResource.Image")));
             this.dcResource.Manager = this.manager;
             this.dcResource.Name = "dcResource";
@@ -600,7 +600,7 @@ namespace SimPe
             this.dcAction.Controls.Add(this.xpGradientPanel2);
             this.dcAction.DockContainer = this.dockRight;
             this.dcAction.DragBorder = false;
-            this.dcAction.FloatingSize = new System.Drawing.Size(246, 377);
+            this.dcAction.FloatingSize = new System.Drawing.Size(246, 352);
             this.dcAction.Image = ((System.Drawing.Image)(resources.GetObject("dcAction.Image")));
             this.dcAction.Manager = this.manager;
             this.dcAction.Name = "dcAction";
@@ -717,6 +717,16 @@ namespace SimPe
             this.dc.Name = "dc";
             this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
             // 
+            // tbAction
+            // 
+            resources.ApplyResources(this.tbAction, "tbAction");
+            this.tbAction.Name = "tbAction";
+            // 
+            // tbWindow
+            // 
+            resources.ApplyResources(this.tbWindow, "tbWindow");
+            this.tbWindow.Name = "tbWindow";
+            // 
             // toolBar1
             // 
             resources.ApplyResources(this.toolBar1, "toolBar1");
@@ -779,20 +789,10 @@ namespace SimPe
             this.biReset.Name = "biReset";
             this.biReset.Click += new System.EventHandler(this.Activate_biReset);
             // 
-            // tbWindow
-            // 
-            resources.ApplyResources(this.tbWindow, "tbWindow");
-            this.tbWindow.Name = "tbWindow";
-            // 
             // tbTools
             // 
             resources.ApplyResources(this.tbTools, "tbTools");
             this.tbTools.Name = "tbTools";
-            // 
-            // tbAction
-            // 
-            resources.ApplyResources(this.tbAction, "tbAction");
-            this.tbAction.Name = "tbAction";
             // 
             // ofd
             // 
