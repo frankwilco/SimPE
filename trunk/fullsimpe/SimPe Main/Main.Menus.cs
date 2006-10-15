@@ -49,8 +49,9 @@ namespace SimPe
                 if (c.Tag is System.Windows.Forms.Shortcut)
                     mi.ShortcutKeys = Helper.ToKeys((System.Windows.Forms.Shortcut)c.Tag);
 
-            c.VisibleChanged += new EventHandler(CloseDockControl);
-            c.Closed += new EventHandler(CloseDockControl);
+            /*c.VisibleChanged += new EventHandler(CloseDockControl);
+            c.Closed += new EventHandler(CloseDockControl);*/
+            c.OpenedStateChanged += new EventHandler(CloseDockControl);
             c.Tag = mi;
 
             miWindow.DropDownItems.Add(mi);
@@ -113,7 +114,7 @@ namespace SimPe
                 if (c.Tag is ToolStripMenuItem)
                 {
                     ToolStripMenuItem mi = (ToolStripMenuItem)c.Tag;
-                    mi.Checked = false;
+                    mi.Checked = c.IsOpen;
                 }
             }
         }

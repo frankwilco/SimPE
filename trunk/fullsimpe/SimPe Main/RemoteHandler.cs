@@ -120,11 +120,12 @@ namespace SimPe
 		/// <param name="doc">The Doc you want to show/hide</param>
 		public void ShowDock(Ambertation.Windows.Forms.DockPanel doc, bool hide)
 		{
-			if (hide && (doc.IsDocked || doc.IsFloating)) doc.Close();
+			if (hide && (doc.IsOpen)) doc.Close();
 			if (!hide ) 
 			{
 				doc.Open();
-				if (!(doc.IsDocked || doc.IsFloating)) 
+                if (doc.Collapsed) doc.Expand(false);
+				if (!(doc.IsOpen)) 
 					plugger.ChangedGuiResourceEventHandler();				
 			}
 
@@ -133,7 +134,7 @@ namespace SimPe
                 System.Windows.Forms.ToolStripMenuItem mi = o as System.Windows.Forms.ToolStripMenuItem;
                 if (mi==null) continue;
                 if (mi.Tag as Ambertation.Windows.Forms.DockPanel == doc) 				
-					mi.Checked = doc.IsDocked || doc.IsFloating;				
+					mi.Checked = doc.IsOpen;				
 			}
 		}
 	}

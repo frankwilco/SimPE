@@ -235,13 +235,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="LoadFileWrappersExt.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="LoadHelpTopics.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Message.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyButtonItem.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PackedFileDescriptorCollection.cs">
       <SubType>Code</SubType>
@@ -263,6 +265,9 @@
     </Compile>
     <Compile Include="ToolLoader.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ToolMenuItemExt.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ToolResult.cs">
       <SubType>Code</SubType>
