@@ -31,7 +31,9 @@ namespace SimPe
     {
         private void SetupMainForm()
         {
+            this.SuspendLayout();
             manager.Visible = false;
+            tbContainer.Visible = false;
             createdmenus = false;
             WaitBarControl wbc = new WaitBarControl(this);
             Wait.Bar = wbc;
@@ -100,7 +102,12 @@ namespace SimPe
 
         void LoadForm(object sender, System.EventArgs e)
         {
-            if (Helper.WindowsRegistry.PreviousVersion == 0) About.ShowWelcome();
+            this.ResumeLayout();
+            if (Helper.WindowsRegistry.PreviousVersion == 0)
+            {                
+                About.ShowWelcome();
+            }
+            this.SuspendLayout();
 
             dcFilter.Collapse(false);
 
@@ -118,19 +125,19 @@ namespace SimPe
             if (cbsemig.Items.Count > 0) cbsemig.SelectedIndex = 0;
 
             ReloadLayout();
+            
 
+            //Set the Lock State of the Docks
+            MakeFloatable(!Helper.WindowsRegistry.LockDocks);
+            this.ResumeLayout();
             if (Helper.WindowsRegistry.CheckForUpdates)
                 About.ShowUpdate();
 
             //load Files passed on the commandline
             package.LoadOrImportFiles(pargs, true);
 
-            //Set the Lock State of the Docks
-            MakeFloatable(!Helper.WindowsRegistry.LockDocks);
-            
             manager.Visible = true;
-
-            
+            tbContainer.Visible = true;
         }
     }
 }

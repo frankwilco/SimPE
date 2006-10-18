@@ -71,5 +71,13 @@
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
     </key>
 
+    <!-- Information about Pets-->
+    <key name="Pets">
+      <int name="Version">6</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 Pets</string>
+      <int name="Flag">13</int>
+      <string name="ExeName">Sims2EP4.exe</string>
+      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+    </key>
   </key>
 </registry>

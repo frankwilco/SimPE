@@ -154,6 +154,7 @@ namespace SimPe
                 if (dp != null)                
                     tsmi.Checked = dp.IsOpen;                                
             }
+            this.ResumeLayout();
         }
 
         private void FixCheckedState(System.Windows.Forms.ToolStrip ts)
