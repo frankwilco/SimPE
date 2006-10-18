@@ -1063,18 +1063,15 @@ namespace SimPe
 
 		void MakeFloatable(Ambertation.Windows.Forms.DockPanel dw, bool fl)
 		{
-			dw.AllowFloat = fl;
-			dw.AllowDockBottom = fl;
-			dw.AllowDockLeft = fl;
-			dw.AllowDockRight = fl;
-			dw.AllowDockTop = fl;
-			dw.AllowDockCenter = fl;
-
-			dw.AllowClose = fl;			
+            dw.ShowCloseButton = fl;
+            dw.ShowCollapseButton = fl;
+            dw.CanUndock = fl;
+            dw.CanResize = fl;
 		}
 
 		void MakeFloatable(bool fl)
 		{
+            manager.SuspendLayout();
 			foreach (object o in this.miWindow.DropDownItems)
 			{
                 ToolStripMenuItem mi = o as ToolStripMenuItem;
@@ -1090,6 +1087,7 @@ namespace SimPe
 			MakeFloatable(this.dcPlugin, fl);
 
 			this.dcPlugin.AllowClose = false;
+            manager.ResumeLayout();
 		}
 
 		private void UnLockDocks(object sender, EventArgs e)

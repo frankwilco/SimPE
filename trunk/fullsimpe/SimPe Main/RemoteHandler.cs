@@ -123,7 +123,7 @@ namespace SimPe
 			if (hide && (doc.IsOpen)) doc.Close();
 			if (!hide ) 
 			{
-				doc.Open();
+                if (!doc.IsOpen) doc.OpenFloating();
                 if (doc.Collapsed) doc.Expand(false);
 				if (!(doc.IsOpen)) 
 					plugger.ChangedGuiResourceEventHandler();				
