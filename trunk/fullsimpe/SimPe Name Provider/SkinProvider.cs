@@ -227,7 +227,7 @@ namespace SimPe.Providers
 		
 		protected void LoadUserPackages()
 		{
-            string path = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
+            string path = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads");
 			if (!System.IO.Directory.Exists(path)) return;
 
 			string[] files = System.IO.Directory.GetFiles(path, "*.package");
@@ -241,7 +241,7 @@ namespace SimPe.Providers
 
 		protected void LoadUserImagePackages()
 		{
-            string path = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
+            string path = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads");
 			if (!System.IO.Directory.Exists(path)) return;
 
 			string[] files = System.IO.Directory.GetFiles(path, "*.package");

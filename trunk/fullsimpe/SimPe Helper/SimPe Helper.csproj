@@ -330,6 +330,9 @@
     </EmbeddedResource>
     <Content Include="important.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="quaxi_pets_censor_v1.package" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>copy "$(ProjectDir)..\SimPe Main\AssemblyInfo.cs" "$(ProjectDir)AssemblyInfo.cs"</PreBuildEvent>

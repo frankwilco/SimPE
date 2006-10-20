@@ -108,6 +108,11 @@ namespace SimPe
         
 
         internal string CensorFile{
+            get { return System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Config\\"+censor); }
+        }
+
+        internal string CensorFileName
+        {
             get { return censor; }
         }
 

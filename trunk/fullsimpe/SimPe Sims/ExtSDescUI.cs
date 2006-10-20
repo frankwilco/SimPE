@@ -225,6 +225,8 @@ namespace SimPe.PackedFiles.UserInterface
         private ToolStripSeparator toolStripMenuItem1;
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripSeparator toolStripMenuItem3;
+        private Label label16;
+        internal TextBox tbpetclass;
 
 		
 		System.Resources.ResourceManager strresources;
@@ -367,11 +369,11 @@ namespace SimPe.PackedFiles.UserInterface
             this.label48 = new System.Windows.Forms.Label();
             this.cblifesection = new System.Windows.Forms.ComboBox();
             this.pnSkill = new System.Windows.Forms.Panel();
+            this.pbBody = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbRomance = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbFat = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbClean = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbCreative = new Ambertation.Windows.Forms.LabeledProgressBar();
-            this.pbBody = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbCharisma = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbMech = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbLogic = new Ambertation.Windows.Forms.LabeledProgressBar();
@@ -457,6 +459,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.dstTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.pnMisc = new System.Windows.Forms.Panel();
             this.xpTaskBoxSimple3 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tbpetclass = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbstatmot = new System.Windows.Forms.TextBox();
             this.label96 = new System.Windows.Forms.Label();
@@ -751,16 +755,33 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.pnSkill, "pnSkill");
             this.pnSkill.BackColor = System.Drawing.Color.Transparent;
+            this.pnSkill.Controls.Add(this.pbBody);
             this.pnSkill.Controls.Add(this.pbRomance);
             this.pnSkill.Controls.Add(this.pbFat);
             this.pnSkill.Controls.Add(this.pbClean);
             this.pnSkill.Controls.Add(this.pbCreative);
-            this.pnSkill.Controls.Add(this.pbBody);
             this.pnSkill.Controls.Add(this.pbCharisma);
             this.pnSkill.Controls.Add(this.pbMech);
             this.pnSkill.Controls.Add(this.pbLogic);
             this.pnSkill.Controls.Add(this.pbCooking);
             this.pnSkill.Name = "pnSkill";
+            // 
+            // pbBody
+            // 
+            this.pbBody.BackColor = System.Drawing.Color.Transparent;
+            this.pbBody.DisplayOffset = 0;
+            resources.ApplyResources(this.pbBody, "pbBody");
+            this.pbBody.Maximum = 1000;
+            this.pbBody.Name = "pbBody";
+            this.pbBody.NumberFormat = "N2";
+            this.pbBody.NumberOffset = 0;
+            this.pbBody.NumberScale = 0.01;
+            this.pbBody.SelectedColor = System.Drawing.Color.Lime;
+            this.pbBody.Style = Ambertation.Windows.Forms.ProgresBarStyle.Flat;
+            this.pbBody.TokenCount = 21;
+            this.pbBody.UnselectedColor = System.Drawing.Color.Black;
+            this.pbBody.Value = 500;
+            this.pbBody.Changed += new System.EventHandler(this.ChangedSkill);
             // 
             // pbRomance
             // 
@@ -829,23 +850,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.pbCreative.UnselectedColor = System.Drawing.Color.Black;
             this.pbCreative.Value = 500;
             this.pbCreative.Changed += new System.EventHandler(this.ChangedSkill);
-            // 
-            // pbBody
-            // 
-            this.pbBody.BackColor = System.Drawing.Color.Transparent;
-            this.pbBody.DisplayOffset = 0;
-            resources.ApplyResources(this.pbBody, "pbBody");
-            this.pbBody.Maximum = 1000;
-            this.pbBody.Name = "pbBody";
-            this.pbBody.NumberFormat = "N2";
-            this.pbBody.NumberOffset = 0;
-            this.pbBody.NumberScale = 0.01;
-            this.pbBody.SelectedColor = System.Drawing.Color.Lime;
-            this.pbBody.Style = Ambertation.Windows.Forms.ProgresBarStyle.Flat;
-            this.pbBody.TokenCount = 21;
-            this.pbBody.UnselectedColor = System.Drawing.Color.Black;
-            this.pbBody.Value = 500;
-            this.pbBody.Changed += new System.EventHandler(this.ChangedSkill);
             // 
             // pbCharisma
             // 
@@ -1879,6 +1883,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpTaskBoxSimple3.BackColor = System.Drawing.Color.Transparent;
             this.xpTaskBoxSimple3.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.xpTaskBoxSimple3.BorderColor = System.Drawing.SystemColors.Window;
+            this.xpTaskBoxSimple3.Controls.Add(this.label16);
+            this.xpTaskBoxSimple3.Controls.Add(this.tbpetclass);
             this.xpTaskBoxSimple3.Controls.Add(this.label3);
             this.xpTaskBoxSimple3.Controls.Add(this.tbstatmot);
             this.xpTaskBoxSimple3.Controls.Add(this.label96);
@@ -1901,6 +1907,18 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpTaskBoxSimple3.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
             this.xpTaskBoxSimple3.Name = "xpTaskBoxSimple3";
             this.xpTaskBoxSimple3.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // tbpetclass
+            // 
+            this.tbpetclass.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.tbpetclass, "tbpetclass");
+            this.tbpetclass.Name = "tbpetclass";
+            this.tbpetclass.TextChanged += new System.EventHandler(this.ChangedEP4);
             // 
             // label3
             // 
@@ -2374,12 +2392,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // ExtSDesc
             // 
+            this.Controls.Add(this.pnMisc);
             this.Controls.Add(this.toolBar1);
             this.Controls.Add(this.pnRel);
             this.Controls.Add(this.pnId);
             this.Controls.Add(this.pnCareer);
             this.Controls.Add(this.pnEP1);
-            this.Controls.Add(this.pnMisc);
             this.Controls.Add(this.pnEP3);
             this.Controls.Add(this.pnInt);
             this.Controls.Add(this.pnChar);
@@ -2393,12 +2411,12 @@ namespace SimPe.PackedFiles.UserInterface
             this.Controls.SetChildIndex(this.pnChar, 0);
             this.Controls.SetChildIndex(this.pnInt, 0);
             this.Controls.SetChildIndex(this.pnEP3, 0);
-            this.Controls.SetChildIndex(this.pnMisc, 0);
             this.Controls.SetChildIndex(this.pnEP1, 0);
             this.Controls.SetChildIndex(this.pnCareer, 0);
             this.Controls.SetChildIndex(this.pnId, 0);
             this.Controls.SetChildIndex(this.pnRel, 0);
             this.Controls.SetChildIndex(this.toolBar1, 0);
+            this.Controls.SetChildIndex(this.pnMisc, 0);
             this.toolBar1.ResumeLayout(false);
             this.toolBar1.PerformLayout();
             this.pnId.ResumeLayout(false);
@@ -2586,7 +2604,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 				this.biEP1.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.University;
 				this.biEP2.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife;
-				this.biEP3.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Business;
+				this.biEP3.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Business;                
 				if (pnEP1.Visible && !biEP1.Enabled) this.SelectButton(biId);
 				if (pnEP2.Visible && !biEP2.Enabled) this.SelectButton(biId);
 				if (pnEP3.Visible && !biEP3.Enabled) this.SelectButton(biId);
@@ -2594,6 +2612,7 @@ namespace SimPe.PackedFiles.UserInterface
 				if (biEP1.Enabled) RefreshEP1(Sdesc);
 				if (biEP2.Enabled) RefreshEP2(Sdesc);
 				if (biEP3.Enabled) RefreshEP3(Sdesc);
+                RefreshEP4(Sdesc);
 			} 
 			finally 
 			{
@@ -3759,6 +3778,13 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbEp3Asgn.SelectedValue = sdesc.Business.Assignment;
 			this.sblb.SimDescription = sdesc;
 		}
+
+        void RefreshEP4(Wrapper.ExtSDesc sdesc)
+        {
+            this.tbpetclass.Enabled = (int)sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Pets;
+
+            this.tbpetclass.Text = Helper.HexString(sdesc.Pets.PetClass);            
+        }
 		
 
 		private void lbTraits_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -3820,6 +3846,24 @@ namespace SimPe.PackedFiles.UserInterface
 				intern = false;
 			}
 		}
+
+        private void ChangedEP4(object sender, System.EventArgs e)
+        {
+            if (intern) return;
+            intern = true;
+            try
+            {
+                if ((int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Pets)
+                {
+                    Sdesc.Pets.PetClass = Helper.StringToUInt16(this.tbpetclass.Text, Sdesc.Pets.PetClass, 16);
+                    Sdesc.Changed = true;
+                }
+            }
+            finally
+            {
+                intern = false;
+            }
+        }
 
 		#endregion
 

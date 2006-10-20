@@ -70,7 +70,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <returns></returns>
 		string AbsoluteFileName(string flname)
 		{
-            flname = flname.Replace("%userdatadir%", PathProvider.Global.SimSavegameFolder.Trim().ToLower());
+            flname = flname.Replace("%userdatadir%", PathProvider.SimSavegameFolder.Trim().ToLower());
             foreach (ExpansionItem ei in PathProvider.Global.Expansions)
             {
                 string add = ei.Version.ToString();

@@ -201,6 +201,7 @@ namespace SimPe
                     SetUpdate(false, true);
             }
 
+            //this.Invoke(new System.EventHandler(ClearSelection), new object[] { this, null });
             this.VirtualListSize = this.items.Count;
         }        
 
@@ -217,6 +218,11 @@ namespace SimPe
                     e.Item = lvi;
                 }
             }
+        }
+
+        protected void ClearSelection(object sender, EventArgs e)
+        {
+            this.SelectedIndices.Clear();
         }
 
         public new ResoureListViewItemCollection Items

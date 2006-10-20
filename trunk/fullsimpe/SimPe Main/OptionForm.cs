@@ -1658,7 +1658,7 @@ namespace SimPe
             tbep1.Text = PathProvider.Global[Expansions.University].InstallFolder;
             tbep2.Text = PathProvider.Global[Expansions.Business].InstallFolder;
             //tbep1.Text = Helper.WindowsRegistry.RealEP1GamePath;
-            tbsavegame.Text = PathProvider.Global.SimSavegameFolder;
+            tbsavegame.Text = PathProvider.SimSavegameFolder;
             tbdds.Text = PathProvider.Global.NvidiaDDSPath;
             this.cbdebug.Checked = Helper.WindowsRegistry.GameDebug;
             cbautobak.Checked = Helper.WindowsRegistry.AutoBackup;
@@ -1834,7 +1834,7 @@ namespace SimPe
 
         private void linkLabel4_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            tbsavegame.Text = PathProvider.Global.RealSavegamePath;
+            tbsavegame.Text = PathProvider.RealSavegamePath;
         }
 
         private void button5_Click(object sender, System.EventArgs e)
@@ -1863,7 +1863,7 @@ namespace SimPe
         private void lladddown_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             FileTableItem fti = new FileTableItem("Downloads", true, false, -1);
-            fti.Name = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
+            fti.Name = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads");
             fti.Type = FileTablePaths.SaveGameFolder;
             lbfolder.Items.Insert(0, fti);
             this.btReload.Enabled = true;

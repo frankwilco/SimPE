@@ -277,6 +277,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExtSDescUI.pl.resx">
       <DependentUpon>ExtSDescUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtSDescUI.resx">
       <DependentUpon>ExtSDescUI.cs</DependentUpon>

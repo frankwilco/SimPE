@@ -35,7 +35,8 @@ namespace SimPe.PackedFiles.Wrapper
 		BaseGame = 0x20,
 		University = 0x22,
 		Nightlife = 0x29,
-		Business = 0x2a
+		Business = 0x2a,
+        Pets = 0x2c
 	}
 
 	/// <summary>
@@ -1120,6 +1121,40 @@ namespace SimPe.PackedFiles.Wrapper
 	}
 	#endregion
 
+    #region SdscPets
+    /// <summary>
+    /// Nightlife specific Data
+    /// </summary>
+    public class SdscPets : Serializer
+    {
+        internal SdscPets()
+        {
+
+        }
+
+        ushort petid;
+        public ushort PetClass
+        {
+            get { return petid; }
+            set { petid = value; }
+        }
+
+        
+
+        internal void Serialize(BinaryReader reader)
+        {
+            reader.BaseStream.Seek(0x19A, SeekOrigin.Begin);
+            this.petid = reader.ReadUInt16();
+        }
+
+        internal void Unserialize(BinaryWriter writer)
+        {
+            writer.BaseStream.Seek(0x19A, SeekOrigin.Begin);
+            writer.Write((ushort)this.petid);
+        }
+    }
+    #endregion
+
 	/// <summary>
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
@@ -1250,13 +1285,23 @@ namespace SimPe.PackedFiles.Wrapper
 
 		SdscBusiness business;
 		/// <summary>
-		/// Returns Nightlife Specific Data
+		/// Returns Business Specific Data
 		/// </summary>
 		/// <remarks>Only valid if Version == SDescVersions.Business</remarks>
 		public SdscBusiness Business
 		{
 			get { return business; }
 		}
+
+        SdscPets pets;
+        /// <summary>
+        /// Returns Pets Specific Data
+        /// </summary>
+        /// <remarks>Only valid if Version == SDescVersions.Pets</remarks>
+        public SdscPets Pets
+        {
+            get { return pets; }
+        }
 
 
 		/// <summary>
@@ -1685,6 +1730,7 @@ namespace SimPe.PackedFiles.Wrapper
 			uni = new SdscUniversity();
 			nightlife = new SdscNightlife();
 			business = new SdscBusiness();
+            pets = new SdscPets();
 
 			description.Aspiration = MetaData.AspirationTypes.Romance;
 			description.ZodiacSign = MetaData.ZodiacSignes.Virgo;
@@ -1718,6 +1764,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get 
 			{
+                if (version >= (int)SDescVersions.Pets) return 0x19C + 0xA;
 				if (version>=(int)SDescVersions.Business) return 0x19A+0xA;
 				if (version>=(int)SDescVersions.Nightlife) return 0x192+0xA;
 				if (version>=(int)SDescVersions.University) return 0x16A+0x12;
@@ -1896,6 +1943,10 @@ namespace SimPe.PackedFiles.Wrapper
 			if (version>=(int)SDescVersions.Business) 							
 				business.Serialize(reader);
 
+            //pets only Items
+            if (version >= (int)SDescVersions.Pets)
+                pets.Serialize(reader);
+
 			reader.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
 		}
 
@@ -2053,6 +2104,10 @@ namespace SimPe.PackedFiles.Wrapper
 			//business only Items
 			if (version>=(int)SDescVersions.Business) 							
 				business.Unserialize(writer);
+
+            //pets only Items
+            if (version >= (int)SDescVersions.Pets)
+                pets.Unserialize(writer);
 			
 
 			writer.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);

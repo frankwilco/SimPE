@@ -461,6 +461,9 @@ namespace SimPe.PackedFiles.Wrapper
 				if ((int)this.Version >= (int)SDescVersions.Business)
 					list.Add(SimPe.Serializer.SerializeTypeHeader(this.Business));
 
+                if ((int)this.Version >= (int)SDescVersions.Pets)
+                    list.Add(SimPe.Serializer.SerializeTypeHeader(this.Pets));
+
 				return Serializer.ConcatHeader(Serializer.ConvertArrayList(list));
 			}
 		}
@@ -476,6 +479,9 @@ namespace SimPe.PackedFiles.Wrapper
 
 				if ((int)this.Version >= (int)SDescVersions.Business)
 					list.Add(this.Business.ToString());
+
+                if ((int)this.Version >= (int)SDescVersions.Pets)
+                    list.Add(this.Pets.ToString());
 
 				return Serializer.Concat(Serializer.ConvertArrayList(list));
 			}

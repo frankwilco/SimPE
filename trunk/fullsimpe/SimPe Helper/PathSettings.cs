@@ -91,9 +91,9 @@ namespace SimPe
 		{
 			get 
 			{
-                return GetPath(PathProvider.Global.SimSavegameFolder, PathProvider.Global.RealSavegamePath);
+                return GetPath(PathProvider.SimSavegameFolder, PathProvider.RealSavegamePath);
 			}
-            set { PathProvider.Global.SimSavegameFolder = value; }
+            set { PathProvider.SimSavegameFolder = value; }
 		}
 	}
 }
