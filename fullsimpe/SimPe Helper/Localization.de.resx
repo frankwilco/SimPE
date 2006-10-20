@@ -910,8 +910,8 @@ Package: {filename}</value>
 	<data name="SimPe.Data.ObjFunctionSubSort.General_Child">
 		<value>Allgemein / Kinder</value>
 	</data>
-	<data name="SimPe.Data.ObjFunctionSubSort.General_UnknownD">
-		<value>Allgemein / Unbekannt IV</value>
+	<data name="SimPe.Data.ObjFunctionSubSort.General_Pets">
+		<value>Allgemein / Haustiere</value>
 	</data>
 	<data name="SimPe.Data.ObjFunctionSubSort.General_Car">
 		<value>Allgemein / Autos</value>

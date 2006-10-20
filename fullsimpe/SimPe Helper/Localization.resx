@@ -617,8 +617,8 @@ Package: {filename}</value>
 	<data name="SimPe.Data.ObjFunctionSubSort.General_Child">
 		<value>General / Child</value>
 	</data>
-	<data name="SimPe.Data.ObjFunctionSubSort.General_UnknownD">
-		<value>General / Unknown IV</value>
+	<data name="SimPe.Data.ObjFunctionSubSort.General_Pets">
+		<value>General / Pets</value>
 	</data>
 	<data name="SimPe.Data.ObjFunctionSubSort.General_Car">
 		<value>General / Cars</value>

@@ -110,7 +110,7 @@ namespace SimPe
                                             }
                                             else if (root == "save")
                                             {
-                                                root = PathProvider.Global.SimSavegameFolder;
+                                                root = PathProvider.SimSavegameFolder;
                                                 ftitype = FileTablePaths.SaveGameFolder;
                                             }
                                             else if (root == "simpe")

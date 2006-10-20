@@ -254,7 +254,7 @@ namespace SimPe.Data
 		General_Party = 0x4008,
 		General_Child = 0x4010,
 		General_Car = 0x4020,
-		General_UnknownD = 0x4040,
+		General_Pets = 0x4040,
 		General_Misc = 0x4080,
 				
 		AspirationRewards_UnknownA = 0x40001,
@@ -442,7 +442,7 @@ namespace SimPe.Data
 		public const uint OLUA = 0x9012468B;
 
 
-		public static string GMND_PACKAGE = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads\\_EnableColorOptionsGMND.package");
+		public static string GMND_PACKAGE = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads\\_EnableColorOptionsGMND.package");
 		public static string MMAT_PACKAGE = System.IO.Path.Combine(PathProvider.Global.GetExpansion(Expansions.BaseGame).InstallFolder, "TSData\\Res\\Sims3D\\_EnableColorOptionsMMAT.package");
 		
 		#endregion

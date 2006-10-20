@@ -1392,7 +1392,7 @@ namespace SimPe
 			get 
 			{
                 WarnObsolete();
-				return SimPe.PathProvider.Global.RealSavegamePath;
+				return SimPe.PathProvider.RealSavegamePath;
 			}
 		}
          
@@ -1655,12 +1655,12 @@ namespace SimPe
 			get 
 			{
                 WarnObsolete();
-                return PathProvider.Global.SimSavegameFolder;
+                return PathProvider.SimSavegameFolder;
 			}
 			set 
 			{
                 WarnObsolete();
-                PathProvider.Global.SimSavegameFolder = value;
+                PathProvider.SimSavegameFolder = value;
 			}
 		}
 		#endregion

@@ -55,7 +55,7 @@ namespace SimPe.Plugin
 			SimPe.PackedFiles.Wrapper.GroupCache gc = new SimPe.PackedFiles.Wrapper.GroupCache();
 			try 
 			{
-                string name = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Groups.cache");
+                string name = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Groups.cache");
 
 				if (System.IO.File.Exists(name))
 				{

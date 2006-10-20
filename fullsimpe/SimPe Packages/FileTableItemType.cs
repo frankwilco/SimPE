@@ -85,7 +85,7 @@ namespace SimPe
         {
             string ret = null;
             if (val <= 0x80000000) ret = PathProvider.Global.GetExpansion(AsExpansions).InstallFolder;
-            else if (this == FileTablePaths.SaveGameFolder) ret = PathProvider.Global.SimSavegameFolder;
+            else if (this == FileTablePaths.SaveGameFolder) ret = PathProvider.SimSavegameFolder;
             else if (this == FileTablePaths.SimPEDataFolder) ret = Helper.SimPeDataPath;
             else if (this == FileTablePaths.SimPEFolder) ret = Helper.SimPePath;
             else if (this == FileTablePaths.SimPEPluginFolder) ret = Helper.SimPePluginPath;

@@ -419,7 +419,7 @@ namespace SimPe
 					}
 				}
 
-                path = PathProvider.Global.SimSavegameFolder;
+                path = PathProvider.SimSavegameFolder;
 				test = System.IO.Path.Combine(path, "Neighborhoods");
 				if (!System.IO.Directory.Exists(test)) 
 				{

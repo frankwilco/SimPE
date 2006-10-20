@@ -122,7 +122,7 @@ namespace SimPe.Plugin
 			{
                 string s = vmap[version];
                 if (s!=null && s!="") {
-                    if (item.Package.SaveFileName.Trim().ToLower().StartsWith(s)) continue;
+                    if (!item.Package.SaveFileName.Trim().ToLower().StartsWith(s)) continue;
                 }
 				
                 SimPe.PackedFiles.Wrapper.Xml xml = new SimPe.PackedFiles.Wrapper.Xml();

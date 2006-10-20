@@ -79,8 +79,10 @@ namespace SimPe
                 exps.Add(i);
                 map[i.Expansion] = i;
                 if (i.CensorFile != ""){
-                    string fl = System.IO.Path.Combine(SimSavegameFolder, @"Downloads\" + i.CensorFile);
-                    if (!censorfiles.Contains(fl)) censorfiles.Add(fl);      
+                    string fl = System.IO.Path.Combine(SimSavegameFolder, @"Downloads\" + i.CensorFileName);
+                    if (!censorfiles.Contains(fl)) censorfiles.Add(fl);
+                    fl = System.IO.Path.Combine(SimSavegameFolder, @"Config\" + i.CensorFileName);
+                    if (!censorfiles.Contains(fl)) censorfiles.Add(fl);  
                 }
                 if (i.Version > ver)
                 {
@@ -154,7 +156,7 @@ namespace SimPe
             {
                 i.InstallFolder = i.RealInstallFolder;
             }
-            this.SimSavegameFolder = this.RealSavegamePath;
+            SimSavegameFolder = RealSavegamePath;
         }
 
         /// <summary>
@@ -273,7 +275,14 @@ namespace SimPe
                     if (!System.IO.Directory.Exists(folder))
                         System.IO.Directory.CreateDirectory(folder);
 
-                    System.IO.Stream s = typeof(Helper).Assembly.GetManifestResourceStream("SimPe." + resname);
+                    string[] names = typeof(Helper).Assembly.GetManifestResourceNames();
+                    System.IO.Stream s = null;
+                    foreach (string name in names)
+                    {
+                        if (name.Trim().ToLower().EndsWith(latest.CensorFileName.Trim().ToLower()))
+                        s = typeof(Helper).Assembly.GetManifestResourceStream(name);
+                    }
+
                     System.IO.BinaryReader br = new BinaryReader(s);
                     try
                     {
@@ -417,14 +426,14 @@ namespace SimPe
         #endregion
 
         #region Paths 
-        public string RealSavegamePath
+        public static string RealSavegamePath
         {
             get
             {
                 try
                 {
-                    string path = System.IO.Path.Combine(this.PersonalFolder, "EA Games");
-                    path = System.IO.Path.Combine(path, this.DisplayedName);
+                    string path = System.IO.Path.Combine(PersonalFolder, "EA Games");
+                    path = System.IO.Path.Combine(path, DisplayedName);
                     return Helper.ToLongPathName(path);
                 }
                 catch (Exception)
@@ -437,7 +446,7 @@ namespace SimPe
         /// <summary>
         /// This Folder contains al Sims User Data
         /// </summary>
-        public string SimSavegameFolder
+        public static string SimSavegameFolder
         {
             get
             {
@@ -447,18 +456,18 @@ namespace SimPe
                     object o = rkf.GetValue("SavegamePath");
                     if (o == null)
                     {
-                        return this.RealSavegamePath;
+                        return RealSavegamePath;
                     }
                     else
                     {
                         string fl = o.ToString();
-                        if (!System.IO.Directory.Exists(fl)) return this.RealSavegamePath;
+                        if (!System.IO.Directory.Exists(fl)) return RealSavegamePath;
                         return fl;
                     }
                 }
                 catch (Exception)
                 {
-                    return this.RealSavegamePath;
+                    return RealSavegamePath;
                 }
             }
             set
@@ -471,7 +480,7 @@ namespace SimPe
         /// <summary>
         /// Returns the Displayed Sims 2 name
         /// </summary>
-        protected string DisplayedName
+        protected static string DisplayedName
         {
             get
             {
@@ -480,7 +489,7 @@ namespace SimPe
 #if MAC
 					return "The Sims 2";
 #else
-                    Microsoft.Win32.RegistryKey rk = this[SimPe.Expansions.BaseGame].Registry;
+                    Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"Software\EA Games\The Sims 2");
                     object o = rk.GetValue("DisplayName");
                     if (o == null) return "The Sims 2";
                     else return o.ToString();
@@ -496,7 +505,7 @@ namespace SimPe
         /// <summary>
         /// Returns the Location of the Personal Folder
         /// </summary>
-        protected string PersonalFolder
+        protected static string PersonalFolder
         {
             get
             {
@@ -548,7 +557,7 @@ namespace SimPe
         {
             get
             {
-                return System.IO.Path.Combine(this.SimSavegameFolder, "Config\\userStartup.cheat");
+                return System.IO.Path.Combine(SimSavegameFolder, "Config\\userStartup.cheat");
             }
         }
         /// <summary>
@@ -560,7 +569,7 @@ namespace SimPe
             {
                 try
                 {
-                    return System.IO.Path.Combine(this.SimSavegameFolder, "Neighborhoods");
+                    return System.IO.Path.Combine(SimSavegameFolder, "Neighborhoods");
                 }
                 catch (Exception)
                 {
@@ -578,7 +587,7 @@ namespace SimPe
             {
                 try
                 {
-                    return System.IO.Path.Combine(System.IO.Path.Combine(this.PersonalFolder, "EA Games"), "SimPE Backup");
+                    return System.IO.Path.Combine(System.IO.Path.Combine(PersonalFolder, "EA Games"), "SimPE Backup");
                 }
                 catch (Exception)
                 {
