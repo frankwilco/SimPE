@@ -1161,4 +1161,13 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   <data name="FileTableSectionInclude">
     <value>Include {what}</value>
   </data>
+  <data name="All">
+    <value>All</value>
+  </data>
+  <data name="Loading embedded resource names...">
+    <value>Loading embedded resource names...</value>
+  </data>
+  <data name="Loading package...">
+    <value>Loading package...</value>
+  </data>
 </root>

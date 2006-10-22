@@ -107,7 +107,7 @@ namespace SimPe.Plugin.Scanner
 				this.tbname.Text = Helper.WindowsRegistry.Username+"-";
 
 			this.cbskins.SelectedIndex = 0;
-            sfd.InitialDirectory = PathProvider.Global.SimSavegameFolder;
+            sfd.InitialDirectory = PathProvider.SimSavegameFolder;
 
 			cbshelve.Enum = typeof(SimPe.PackedFiles.Wrapper.ShelveDimension);
 			cbshelve.ResourceManager = SimPe.Localization.Manager;

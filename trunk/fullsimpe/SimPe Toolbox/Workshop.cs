@@ -194,7 +194,7 @@ namespace SimPe.Plugin
 				if (name!=null) 
 				{
 					name = name.Trim().ToLower();
-                    if (name.StartsWith(PathProvider.Global.SimSavegameFolder.Trim().ToLower())) 
+                    if (name.StartsWith(PathProvider.SimSavegameFolder.Trim().ToLower())) 
 						node.ImageIndex = 2;
 				}
 				node.SelectedImageIndex = node.ImageIndex;
@@ -1153,7 +1153,7 @@ namespace SimPe.Plugin
 			uint inst = ThumbnailHash(group, modelname);
 			if (thumbs==null) 
 			{
-                thumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
+                thumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
 				thumbs.Persistent = true;
 			}
 

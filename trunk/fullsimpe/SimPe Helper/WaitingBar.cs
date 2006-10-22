@@ -53,34 +53,16 @@ namespace SimPe
 			}
 		}
 
-		public static string Message
-		{
-			get 
-			{ 
-				return IntMessage;
-			}
-			set 
-			{
-				//lock (sync) 
-				{
-					IntMessage = value;				
-				}
-			}
-		}
-
-        static string m = "";
-		static string IntMessage
+	
+        public static string Message
 		{
 			get 
 			{
-                return m;
-				/*if (bar!=null) return bar.Message; 
-				return "";*/
-				
+                if (bar != null) return bar.Message;
+                return "";				
 			} 
 			set 
 			{
-                m = value;
 				if (bar!=null) bar.Message = value;								
 			}
 		}
@@ -101,80 +83,61 @@ namespace SimPe
 			}
 		}
 
-		public static int Progress
-		{
-			get 
-			{ 
-				return IntProgress;
-			} 
-			set 
-			{
-				//lock (sync) 
-				{
-					IntProgress = value;
-				}
-			}
-		}
-
-        static int p = 0;
-		static int IntProgress
+		
+        public static int Progress
 		{
 			get 
 			{
-                return p;
+                if (bar != null) return bar.Progress;
+                return 0;
 				/*if (bar!=null) return bar.Progress; 
 				return IntMaxProgress;*/
 				
 			} 
 			set 
 			{
-                p = value;
-				if (bar!=null) bar.Progress = value;								
+                if (bar!=null) bar.Progress = value;								
 			}
 		}
 
 		public static int MaxProgress
 		{
 			get 
-			{ 
-				return IntMaxProgress;
+			{
+                if (bar != null) return bar.MaxProgress;
+                return 1;
 			} 	
 			set 
 			{
-				//lock (sync) 
-				{
-					IntMaxProgress = value;		
-				}
+                if (bar!=null) bar.MaxProgress = value;		
 			}
 		}
 
-        static int mp = 1;
-		static int IntMaxProgress
-		{
-			get 
-			{ 
-				/*if (bar!=null) return bar.MaxProgress; 
-				return 1;*/
-                return mp;
-			} 	
-			set 
-			{
-                mp = value;
-				if (bar!=null) bar.MaxProgress = value;		
-			}
-		}
+        
 
-		static int running = 0;
-		static void CommonStart()
-		{
-			running = Math.Max(running, 1);
-		}
+        public static void SubStart()
+        {
+            Start();
+        }
+
+        public static void SubStart(int max)
+        {
+            Start(max);
+        }
+
+        public static void SubStop()
+        {
+            Stop();
+        }
+
+		
 		public static void Start()
 		{
 			if (bar!=null) 
 			{
-				bar.Wait();
-				CommonStart();
+                CommonStart();                
+                if (!bar.Running) bar.Wait();
+				
 			}
 			
 		}		
@@ -184,21 +147,49 @@ namespace SimPe
 			
 			if (bar!=null) 
 			{
-				bar.Wait(max);
-				CommonStart();
+                CommonStart();
+                if (!bar.Running) bar.Wait(max);
+                else bar.MaxProgress = max;
 			}
 			
 		}
+        public static void Stop()
+        {
+            Stop(false);
+        }
 
-		public static void Stop()
+		public static void Stop(bool force)
 		{
-			if (bar!=null) 				
-				bar.Stop();					
-				
-			mystack.Clear();
-			running = 0;
-			
+            SessionData sd;
+            lock (mystack)
+            {
+                if (mystack.Count == 0)
+                {
+                    if (bar != null) bar.Stop();
+                    return;
+                }
+
+
+
+                sd = mystack.Pop();
+
+
+                if (mystack.Count == 0)
+                    if (bar != null) bar.Stop();
+
+                
+            }
+
+            if (force)
+                if (bar != null) bar.Stop();
+			ReloadSession(sd);			
 		}
+
+        static void CommonStart()
+        {
+            //bar.Message = SimPe.Localization.GetString("Please wait");
+            lock (mystack) { mystack.Push(BuildSessionData()); }
+        }
 
         class SessionData
         {
@@ -206,69 +197,32 @@ namespace SimPe
             public int Progress;
             public int MaxProgress;
         }
+		
 
-		static object syncstart = 0;
-		static void SubStartCommon()
-		{
-            Console.WriteLine("SubStartCommon 1");
-            lock (mystack)
-            {
-                Console.WriteLine("SubStartCommon 2");
-                SessionData sd = new SessionData();
-                sd.Message = IntMessage;
-                sd.Progress = IntProgress;
-                sd.MaxProgress = IntMaxProgress;                
-                
-                running++;
-                mystack.Push(sd);
-            }
-            Console.WriteLine("SubStartCommon 3");
-		}
-		public static void SubStart()
-		{			
-						
-			SubStartCommon();			
-			Start();
-			
-		}
-
-		public static void SubStart(int max)
-		{
-			
-			SubStartCommon();
-			Start(max);
-			
-		}
-
-        public static void SubStop()
+        private static SessionData BuildSessionData()
         {
-            Console.WriteLine("SubStop 1");
-            SessionData sd = null;
-            Console.WriteLine("SubStop 2");
-            if (running > 0) running--;
-            lock (mystack)
-            {
-                if (mystack.Count > 0)
-                    sd = mystack.Pop();
-            }
-
+            SessionData sd = new SessionData();
+            sd.Message = Message;
+            sd.Progress = Progress;
+            sd.MaxProgress = MaxProgress;
+            return sd;
+        }
+		
+        private static void ReloadSession(SessionData sd)
+        {
             try
             {
-                if (sd!=null)
-                {                    
-                    IntMessage = sd.Message;
-                    IntMaxProgress = sd.MaxProgress;
-                    IntProgress = sd.Progress;
+                if (sd != null)
+                {
+                    Message = sd.Message;
+                    MaxProgress = sd.MaxProgress;
+                    Progress = sd.Progress;
                 }
             }
             catch (Exception ex)
             {
                 if (Helper.DebugMode) Console.WriteLine(ex);
             }
-
-            if (running == 0) Stop();
-
-            Console.WriteLine("SubStop 3");
         }
 	}
 }

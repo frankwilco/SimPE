@@ -579,7 +579,7 @@ namespace SimPe.Plugin.Tool.Dockable
 					if (fii.Package.FileName!=null)
 						flname = fii.Package.FileName.Trim().ToLower();
 
-                if (flname.StartsWith(PathProvider.Global.SimSavegameFolder.Trim().ToLower())) 
+                if (flname.StartsWith(PathProvider.SimSavegameFolder.Trim().ToLower())) 
 				{
 					tn.ImageIndex = 2;
 				}

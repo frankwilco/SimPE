@@ -109,6 +109,10 @@
       <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
+    <ProjectReference Include="..\SimPe ResourceControls\SimPe ResourceControls.csproj">
+      <Project>{E4703C3D-A7CA-4E63-90A6-C6E58C121F1D}</Project>
+      <Name>SimPe ResourceControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimPe Scenegraph\SimPe Scenegraph.csproj">
       <Name>SimPe Scenegraph</Name>
       <Project>{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}</Project>

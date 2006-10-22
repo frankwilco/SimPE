@@ -496,7 +496,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			
 			if (thumbs==null) 
 			{
-				thumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
+				thumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
 				thumbs.Persistent = true;
 			}
 
@@ -587,7 +587,7 @@ namespace SimPe.Plugin.Tool.Dockable
             {
                 if (flname.StartsWith(ei.InstallFolder.Trim().ToLower())) return (ei.Expansion);
             }
-            if (flname.StartsWith(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Donwloads"))) return Expansions.Custom;
+            if (flname.StartsWith(System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Donwloads"))) return Expansions.Custom;
 			return Expansions.None;
 		}
 

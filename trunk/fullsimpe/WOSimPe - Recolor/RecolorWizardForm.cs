@@ -1038,7 +1038,7 @@ namespace SimPe.Wizards
 		{
 			get
 			{
-                string down = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
+                string down = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads");
 				down = System.IO.Path.Combine(down, tbflname.Text+".package");
 				return down;
 			}
@@ -1046,7 +1046,7 @@ namespace SimPe.Wizards
 
 		internal void SaveRecolor()
 		{
-            string down = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
+            string down = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads");
 
 			if (System.IO.Directory.Exists(down)) 
 			{

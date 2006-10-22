@@ -859,36 +859,44 @@ namespace SimPe.Packages
 		/// <returns>The plain Content of the File</returns>
 		public IPackedFile Read(IPackedFileDescriptor pfd)
 		{
-			if (pfd.HasUserdata) //Deliver Userdefined Data
-			{
-				IPackedFile pf = new PackedFile(pfd.UserData);
-				return pf;
-			} 
-			else //no Userdefine data available
-			{
-				#region Reload Stream
-				OpenReader();
-				
-				if (reader==null) return new PackedFile(new byte[0]);
-				if (reader.BaseStream==null) 
-				{
-					CloseReader();
-					return new PackedFile(new byte[0]);
-				}
-				#endregion
+            
+                if (pfd.HasUserdata) //Deliver Userdefined Data
+                {
+                    IPackedFile pf = new PackedFile(pfd.UserData);
+                    return pf;
+                }
+                else //no Userdefine data available
+                {
+                    lock (this)
+                    {
+                    #region Reload Stream
+                    OpenReader();
 
-				this.LockStream();
-				reader.BaseStream.Seek(pfd.Offset, System.IO.SeekOrigin.Begin);
-				byte[] data = null;
-				if (pfd.Size>0) data = reader.ReadBytes(pfd.Size);
-				else data = new byte[0];
-				
-				PackedFile pf = GetPackedFile(pfd, data);				
+                    if (reader == null) return new PackedFile(new byte[0]);
+                    if (reader.BaseStream == null)
+                    {
+                        CloseReader();
+                        return new PackedFile(new byte[0]);
+                    }
+                    #endregion
 
-				this.UnLockStream();
-				CloseReader();
-				return (IPackedFile)pf;
-			} // if HasUserdata
+                    
+                        this.LockStream();
+                        reader.BaseStream.Seek(pfd.Offset, System.IO.SeekOrigin.Begin);
+                        byte[] data = null;
+                        if (pfd.Size > 0) data = reader.ReadBytes(pfd.Size);
+                        else data = new byte[0];
+
+                        PackedFile pf = GetPackedFile(pfd, data);
+
+                        this.UnLockStream();
+                        CloseReader();
+
+
+                        return (IPackedFile)pf;
+                    }
+                } // if HasUserdata
+            
 		}
 
 		/// <summary>
@@ -1078,7 +1086,7 @@ namespace SimPe.Packages
 		/// </summary>
 		/// <param name="array">The Char Array</param>
 		/// <returns>The String represented by the Chars stored in the Array</returns>
-		public static string CharArrayToString(char[] array)
+		public string CharArrayToString(char[] array)
 		{
 			string s = "";
 			foreach(char c in array) s+=c.ToString();			

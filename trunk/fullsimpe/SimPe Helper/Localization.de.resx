@@ -1415,4 +1415,13 @@ Dies hat zur Folge, dass SimPE die Joint-Hierarchie nicht aufbauen kann.
   <data name="FileTableSectionInclude">
     <value>{what} laden</value>
   </data>
+  <data name="All">
+    <value>Alle</value>
+  </data>
+  <data name="Loading embedded resource names...">
+    <value>Lade eingebettete Resourcen...</value>
+  </data>
+  <data name="Loading package...">
+    <value>Lade Package...</value>
+  </data>
 </root>

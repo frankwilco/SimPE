@@ -14,7 +14,7 @@ namespace SimPe.Plugin
     public partial class MyWindowPluginForm : Form
     {
         public MyWindowPluginForm()
-        {
+        {             
             InitializeComponent();
         }
     }

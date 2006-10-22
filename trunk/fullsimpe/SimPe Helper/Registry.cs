@@ -960,6 +960,24 @@ namespace SimPe
 			}
 		}
 
+        /// <summary>
+        /// True, if you want to see the progress of a package loading
+        /// </summary>
+        public bool ShowProgressWhenPackageLoads
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("ShowProgressWhenPackageLoads", false);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("ShowProgressWhenPackageLoads", value);
+            }
+        }
+
 		/// <summary>
 		/// Should we load Stuff Asynchron to the main Thread?
 		/// </summary>
@@ -993,6 +1011,24 @@ namespace SimPe
             {
                 XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
                 rkf.SetValue("AsynchronSort", value);
+            }
+        }
+
+        /// <summary>
+        /// How many threads do we start when we sort by name?
+        /// </summary>
+        public int SortProcessCount
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("SortProcessCount", 16);
+                return Convert.ToInt32(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("SortProcessCount", value);
             }
         }
 

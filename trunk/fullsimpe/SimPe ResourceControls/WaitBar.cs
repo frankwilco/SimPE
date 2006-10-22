@@ -27,14 +27,12 @@ namespace SimPe
 	/// This calass can be used to interface the StatusBar of the Main GUI, which will display 
 	/// something like the WaitingScreen
 	/// </summary>
-	internal class WaitBarControl : IWaitingBarControl
+	public class WaitBarControl : IWaitingBarControl
 	{
-		MainForm f;
-        WaitControl wc;
-		public WaitBarControl(MainForm mf)
+		WaitControl wc;
+        public WaitBarControl(WaitControl wc)
 		{
-			f = mf;
-            wc = f.waitControl1;
+			this.wc = wc;
 			ShowProgress(false);
 		}
 
@@ -88,7 +86,7 @@ namespace SimPe
 		protected void SetProgress(object val)
 		{
 			int i = (int)val;
-            wc.Value = i;
+            wc.Progress = i;
 		}
 
 
@@ -96,7 +94,7 @@ namespace SimPe
 		protected void SetMaxProgress(object val)
 		{
 			int i = (int)val;
-            wc.Maximum = i;
+            wc.MaxProgress = i;
 		}
 
 		protected void StartAnimation(bool b)

@@ -448,7 +448,7 @@ namespace SimPe.Wizards
 			Console.WriteLine(pndrop.Size);
 #else
             op.tbsims.Text = PathProvider.Global[Expansions.BaseGame].InstallFolder;
-            op.tbsave.Text = PathProvider.Global.SimSavegameFolder;
+            op.tbsave.Text = PathProvider.SimSavegameFolder;
             op.tbdds.Text = PathProvider.Global.NvidiaDDSPath;
 #endif
 

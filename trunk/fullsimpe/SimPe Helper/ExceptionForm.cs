@@ -455,7 +455,7 @@ namespace SimPe
 		/// <param name="message">The Message you want to display</param>
 		/// <param name="ex">The Exception that as thrown</param>
 		public static void Execute(string message, Exception ex) 
-		{
+		{            
 			if (message==null) message = "";
 			if (message.Trim()=="") message = ex.Message;
 
