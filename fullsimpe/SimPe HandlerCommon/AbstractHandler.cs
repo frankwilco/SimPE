@@ -507,10 +507,13 @@ namespace SimPe.Interfaces.Plugin
 		{
 			if (Package==null) return null;
 			if (FileDescriptor==null) return null;
-			
-			if (ta.containsfilename) 
-				return Helper.ToString(Package.Read(FileDescriptor).GetUncompressedData(0x40));
-			else return null;
+
+            if (ta.containsfilename)
+            {
+                SimPe.Interfaces.Files.IPackedFile pf = Package.Read(FileDescriptor);
+                return Helper.ToString(pf.GetUncompressedData(0x40));                
+            }
+            else return null;
 		}
 
 		/// <summary>
@@ -532,13 +535,13 @@ namespace SimPe.Interfaces.Plugin
 			{		
 				string res = null;
 				if (FileDescriptor!=null) 
-				{
-					Data.TypeAlias ta = Helper.TGILoader.GetByType(FileDescriptor.Type);
-					res = GetResourceName(ta);
-					if (res==null) res = GetEmbeddedFileName(ta);
-					if (res==null) res = FileDescriptor.ToString();
-					else if (ta.Name==null) res = SimPe.Localization.GetString("Unknown")+": "+res;
-					else  res = ta.Name+": "+res;
+				{                    
+                        Data.TypeAlias ta = Helper.TGILoader.GetByType(FileDescriptor.Type);
+                        res = GetResourceName(ta);
+                        if (res == null) res = GetEmbeddedFileName(ta);
+                        if (res == null) res = FileDescriptor.ToString();
+                        else if (ta.Name == null) res = SimPe.Localization.GetString("Unknown") + ": " + res;
+                        else res = ta.Name + ": " + res;                    
 				} 
 				else 
 				{

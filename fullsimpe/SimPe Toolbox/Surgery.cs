@@ -1121,7 +1121,7 @@ namespace SimPe.Plugin
 				pfd2.Group = 0xffffffff; pfd2.SubType = 0x00000000; pfd2.Instance = 0xFF123456; pfd2.Type = 0x0C560F39; //BINX
 				pfd2.UserData = br2.ReadBytes((int)br2.BaseStream.Length);
 
-                sfd.InitialDirectory = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "SavedSims");
+                sfd.InitialDirectory = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "SavedSims");
 				sfd.FileName = System.IO.Path.GetFileNameWithoutExtension(spatient.CharacterFileName);
 
 				SimPe.Packages.GeneratableFile source = SimPe.Packages.GeneratableFile.LoadFromFile(spatient.CharacterFileName);

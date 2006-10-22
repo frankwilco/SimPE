@@ -213,11 +213,6 @@
       <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Main ResourceControl\SimPe Main ResourceControl.csproj">
-      <Name>SimPe Main ResourceControl</Name>
-      <Project>{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
     <ProjectReference Include="..\SimPe Name Provider\SimPe Name Provider.csproj">
       <Name>SimPe Name Provider</Name>
       <Project>{38259F2B-9C90-48BE-A519-E4EEC62C242C}</Project>
@@ -232,6 +227,10 @@
       <Name>SimPe RCOL</Name>
       <Project>{74517907-2236-4C45-80ED-E188D5E5CE0E}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe ResourceControls\SimPe ResourceControls.csproj">
+      <Project>{E4703C3D-A7CA-4E63-90A6-C6E58C121F1D}</Project>
+      <Name>SimPe ResourceControls</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Scenegraph\SimPe Scenegraph.csproj">
       <Name>SimPe Scenegraph</Name>
@@ -285,9 +284,6 @@
     <Compile Include="AddExtTool.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnimatedToolStripItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -313,7 +309,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OptionForm.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>
@@ -325,15 +321,6 @@
     </Compile>
     <Compile Include="RemoteHandler.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="WaitBar.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="WaitControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WaitControl.Designer.cs">
-      <DependentUpon>WaitControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="about-de.rtf" />
     <EmbeddedResource Include="about-en.rtf" />
@@ -399,10 +386,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="shrink.png" />
     <EmbeddedResource Include="smallmultienabled.png" />
-    <EmbeddedResource Include="WaitControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>WaitControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="welcome-de.rtf" />
     <EmbeddedResource Include="welcome-en.rtf" />
     <EmbeddedResource Include="1.png" />

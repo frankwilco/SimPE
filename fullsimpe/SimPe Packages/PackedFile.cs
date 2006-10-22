@@ -187,8 +187,12 @@ namespace SimPe.Packages
 		{
 			if (IsCompressed)
 			{
-				byte[] uncdata = Uncompress(data, UncompressedSize, this.headersize, maxsize);
-				return uncdata;
+                lock (data)
+                {
+                    byte[] uncdata = Uncompress(data, UncompressedSize, this.headersize, maxsize);
+                    return uncdata;
+                }
+				
 			}
 			else 
 			{
@@ -204,7 +208,10 @@ namespace SimPe.Packages
 		public byte[] Decompress(long size) 
 		{
 			size = Math.Max(size, UncompressedSize);
-			return Uncompress(data, (uint)size, this.headersize);
+            lock (data)
+            {
+                return Uncompress(data, (uint)size, this.headersize);
+            }
 		}
 
 		#region decompression	
@@ -215,7 +222,7 @@ namespace SimPe.Packages
 		/// <param name="targetSize">Size of the uncompressed Data</param>
 		/// <param name="offset">File offset, where we should start to decompress from</param>
 		/// <returns>The uncompressed FileData</returns>
-		public static Byte[] Uncompress(Byte[] data, uint targetSize, int offset){
+		public Byte[] Uncompress(Byte[] data, uint targetSize, int offset){
 			Byte[] uncdata = null;
 			int index = offset;			
 
@@ -307,9 +314,9 @@ namespace SimPe.Packages
 		/// <param name="size">Maximum number of Bytes that should be read from the Resource</param>
 		/// <param name="offset">File offset, where we should start to decompress from</param>
 		/// <returns>The uncompressed FileData</returns>
-		public static Byte[] Uncompress(Byte[] data, uint targetSize, int offset, int size)
+		public Byte[] Uncompress(Byte[] data, uint targetSize, int offset, int size)
 		{
-			Byte[] uncdata = null;
+            Byte[] uncdata = null;
 			int index = offset;			
 
 			try 

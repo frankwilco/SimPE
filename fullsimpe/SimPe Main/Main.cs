@@ -111,7 +111,7 @@ namespace SimPe
 			e.Cancel = !this.ClosePackage();
 			if (!e.Cancel) 
 			{
-				TreeBuilder.StopAll();
+                resourceViewManager1.CancelThreads();
 				Wait.Stop(); Wait.Bar = null;
 
                 StoreLayout();
@@ -122,9 +122,7 @@ namespace SimPe
 
 		#region Custom Attributes
 		LoadedPackage package;
-		TreeBuilder treebuilder;
 		ViewFilter filter;
-		TreeNodeTag lastusedtnt;
 		TreeView lasttreeview;
 		PluginManager plugger;
 		ResourceLoader resloader;
@@ -169,11 +167,11 @@ namespace SimPe
 			UpdateFileInfo();
 			package.UpdateProviders();
 
-			if (lasttreeview!=null) 
+			/*if (lasttreeview!=null) 
 			{
 				System.Windows.Forms.TreeViewEventArgs tvea = new TreeViewEventArgs(this.lasttreeview.SelectedNode, TreeViewAction.ByMouse);
 				SelectResourceNode(this.lasttreeview, tvea);
-			}
+			}*/
 		}
 
 		/// <summary>
@@ -184,18 +182,8 @@ namespace SimPe
 		private void ChangedActiveIndex(object sender, EventArgs e)
 		{
 			//ShowNewFile();
-			SelectResource(this.lv, false, true);
-		}
-
-		/// <summary>
-		/// Called, whenever the Index of a Package was changed
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void AddedRemovedIndexResource(object sender, EventArgs e)
-		{			
-			UpdateFileIndex();
-		}
+			//SelectResource(this.lv, false, true);
+		}		
 
 		/// <summary>
 		/// This Method displays the content of a File
@@ -204,103 +192,10 @@ namespace SimPe
 		{
 			if (package.Loaded) Text = "SimPe - "+package.FileName;
 			UpdateMenuItems();
-		}
+		}		
 
-		/// <summary>
-		/// Selects the <see cref="TreeNode"/> that has the same Name as the passed <see cref="TreeNodeTag"/>
-		/// </summary>
-		/// <param name="nodes">List of TreeNode Object</param>
-		/// <param name="tnt"><see cref="TreeNodeTag"/> that should be used to find the matching TreeNode</param>
-		/// <returns>true if a selection was made</returns>
-		/// <remarks>also sets <see cref="lastusedtnt"/> to the selected Node</remarks>
-		bool ReSelectTreeNode(TreeNodeCollection nodes, TreeNodeTag tnt)
-		{
-			if (this.lasttreeview==null || tnt==null || nodes==null) return false;
-
-			foreach (TreeNode node in nodes)	
-			{		
-				if (node.Tag is TreeNodeTag)				
-					if (((TreeNodeTag)node.Tag).Name == tnt.Name) 
-					{
-						node.TreeView.SelectedNode = node;
-						this.lastusedtnt = (TreeNodeTag)node.Tag;
-						return true;
-					}
-
-				if (ReSelectTreeNode(node.Nodes, tnt)) return true;
-			}
-			
-			return false;
-		}
-
-        delegate bool ReSelectTreeNodeHandler(TreeNodeCollection nodes, TreeNodeTag tnt);
+        		
 		
-        void InvokeReSelectTreeNode(TreeNodeTag tnt)
-        {
-            if (this.lasttreeview.InvokeRequired)
-                this.lasttreeview.Invoke(new ReSelectTreeNodeHandler(ReSelectTreeNode), new object[] { lasttreeview.Nodes, tnt });
-            else
-                ReSelectTreeNode(this.lasttreeview.Nodes, tnt);
-        }
-
-		TreeNodeTag reselecttnt;
-		SimPe.Collections.PackedFileDescriptors reselectlist;
-		private void TreeBuilder_Finished(object sender, EventArgs e)
-		{
-			if (sender == null) return;
-
-			if (sender is TreeBuilderBase)
-			{
-				if (reselecttnt!=null && lasttreeview!=null) 
-				{
-					reselecttnt.Refresh(lv);
-                    InvokeReSelectTreeNode(reselecttnt);				
-				}
-				
-				reselecttnt = null;
-			} 
-			else if (sender is ResourceListerBase)
-			{
-				if (reselectlist!=null) 
-				{
-					lock (lv)
-					{
-						foreach (ListViewItem lvi in lv.Items) 
-						{
-							if (lvi==null) continue;
-							if (lvi.Tag == null) continue;
-							ListViewTag lvt = (ListViewTag)lvi.Tag;
-							if (reselectlist.Contains(lvt.Resource.FileDescriptor)) lvi.Selected = true;
-						}
-
-						reselectlist.Clear();
-					}
-				}
-			}
-
-		}
-
-		/// <summary>
-		/// When adding removing a Resource, the ResourceList and ResourceTree need to be Updated.
-		/// That is done in this Method
-		/// </summary>
-		void UpdateFileIndex()
-		{			
-			if (reselectlist==null) reselectlist = new SimPe.Collections.PackedFileDescriptors();
-			foreach (ListViewItem lvi in lv.Items) 
-			{
-				ListViewTag lvt = (ListViewTag)lvi.Tag;
-				if (lvi.Selected)
-					reselectlist.Add(lvt.Resource.FileDescriptor);									
-			}
-
-			 //the TreeBuilder_Finished Event Handler is going to be called when ShowNewFile() finishes.
-			reselecttnt = lastusedtnt;			
-			ShowNewFile(false);							
-
-			
-			
-		}
 
 
 
@@ -310,19 +205,11 @@ namespace SimPe
 		void ShowNewFile(bool autoselect)
 		{
 			plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));
-			tvInstance.Nodes.Clear();
-			tvGroup.Nodes.Clear();
-			tvType.Nodes.Clear();
-
-			if (!Helper.WindowsRegistry.AsynchronLoad) lv.BeginUpdate();
-			TreeBuilder.ClearListView(lv);
-
-			
-			SetupActiveResourceView(autoselect);	
+            resourceViewManager1.Package = package.Package;
 			package.UpdateRecentFileMenu(this.miRecent);			
 
 			UpdateFileInfo();
-			if (!Helper.WindowsRegistry.AsynchronLoad) lv.EndUpdate();
+			
 		}
 
 		
@@ -339,97 +226,7 @@ namespace SimPe
 			plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));
 			return true;
 		}
-		#endregion
-
-		
-
-		
-
-		#region ResourceView Toolbar
-		/// <summary>
-		/// Setup the Buttons on the ToolBar to connect to the TreeView
-		/// </summary>
-		void SetupResourceViewToolBar()
-		{
-			TreeBuilderList.TreeBuilder = this.treebuilder;
-			TreeBuilderList.TreeBuilder.Finished += new EventHandler(TreeBuilder_Finished);
-			this.biGroupList.Tag = new TreeBuilderList(new TreeBuilderList.GenerateView(treebuilder.GroupView), tvGroup);
-			this.biInstanceList.Tag = new TreeBuilderList(new TreeBuilderList.GenerateView(treebuilder.InstanceView), tvInstance);
-			this.biTypeList.Tag = new TreeBuilderList(new TreeBuilderList.GenerateView(treebuilder.TypeView), tvType);			
-
-			foreach (ToolStripItem c in tbResource.Items) 
-			{
-				if (c is ToolStripButton) 
-				{
-					ToolStripButton bi = (ToolStripButton)c;					
-					TreeBuilderList tbl = (TreeBuilderList)bi.Tag;
-
-					tbl.TreeView.Visible = bi.Checked;
-					tbl.TreeView.BorderStyle = BorderStyle.None;
-					tbl.TreeView.Top = this.tbResource.Height;
-					tbl.TreeView.Left = 0;
-					tbl.TreeView.Width = dcResource.ClientRectangle.Width;
-					tbl.TreeView.Height = dcResource.ClientRectangle.Height - tbl.TreeView.Top;
-
-					tbl.TreeView.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Choose one special View
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		internal void SelectResourceView(object sender, System.EventArgs e)
-		{				
-			if (sender is ToolStripButton) 
-			{
-				ToolStripButton setbi = (ToolStripButton)sender;
-				setbi.Checked = true;
-			}
-
-			foreach (ToolStripItem c in tbResource.Items) 
-			{
-				if ((c is ToolStripButton) && (c!=sender))
-				{
-					ToolStripButton bi = (ToolStripButton)c;
-					bi.Checked = false;
-				}
-			}
-
-			SetupActiveResourceView(true);
-		}
-
-		/// <summary>
-		/// Display the content of the current package in the choosen TreeView
-		/// </summary>
-		void SetupActiveResourceView(bool autoselect)
-		{
-			foreach (ToolStripItem c in tbResource.Items) 
-			{
-				if (c is ToolStripButton) 
-				{
-					ToolStripButton bi = (ToolStripButton)c;					
-					TreeBuilderList tbl = (TreeBuilderList)bi.Tag;
-
-					tbl.TreeView.Visible = bi.Checked;
-					if (bi.Checked) 
-					{
-						if (tbl.TreeView.Nodes.Count==0)
-						{							
-							tbl.Generate(autoselect);							
-							if (tbl.TreeView.Nodes.Count>0) lastusedtnt = (TreeNodeTag)tbl.TreeView.Nodes[0].Tag;							
-						}
-
-						this.SelectResourceNode(tbl.TreeView, new TreeViewEventArgs(tbl.TreeView.SelectedNode, TreeViewAction.ByMouse));
-						//special Treatment for Neighborhood Files
-						if (Helper.IsNeighborhoodFile(package.FileName) && tbl.TreeView.Nodes.Count>0) tvType.SelectedNode = tbl.TreeView.Nodes[0];
-					}
-				}
-			}
-		}
-		#endregion
+		#endregion		
 
 		#region Drag&Drop
 
@@ -532,23 +329,7 @@ namespace SimPe
 			{
 				package.LoadFromFile(ofd.FileName);
 			}
-		}
-
-		void SelectResourceNode(object sender, System.Windows.Forms.TreeViewEventArgs e)
-		{
-			lastusedtnt = null;
-			if(sender==null) return;
-			lasttreeview = (TreeView)sender;
-			
-			if (e==null) return;
-			if (e.Node==null) return;
-			if (e.Node.Tag==null) return;
-			if (!(e.Node.Tag is TreeNodeTag)) return;
-
-			plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));			
-			lastusedtnt = (TreeNodeTag)e.Node.Tag;
-			lastusedtnt.Refresh(lv);		
-		}
+		}		
 
 		private void SetFilter(object sender, System.EventArgs e)
 		{
@@ -571,21 +352,8 @@ namespace SimPe
 			{
 				filter.FilterGroup = false;
 			}
-			if (lastusedtnt!=null) lastusedtnt.Refresh(lv);
-		}        
-		
-		//int ct = 0;
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e">null to indicate, that his Method was called internal, and should NOT open a Resource!</param>
-		private void SelectResource(object sender, System.EventArgs e)
-		{            
-			//ct++; this.Text=(ct/2).ToString();	//was used to test for a Bug related to opened Docks
-			if (lv.SelectedItems.Count<=2) SelectResource(sender, false, false);                
-			else DereferedResourceSelect();
-		}
+			//if (lastusedtnt!=null) lastusedtnt.Refresh(lv);
+		}        		
 
 		private void Activate_miUpdate(object sender, System.EventArgs e)
 		{
@@ -609,24 +377,9 @@ namespace SimPe
 				resloader.CloseDocument(dc.SelectedPage);
 			}
 		}		
-
-		bool pressedalt;
-		private void ResourceListKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			pressedalt = e.Alt;
-		}
-
+		
 		private void ResourceListKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			pressedalt = false;
-			if (e.KeyCode==Keys.A && e.Control) 
-			{
-				lv.Tag = true;
-				lv.BeginUpdate();
-				foreach (ListViewItem lvi in lv.Items) lvi.Selected = true;
-				lv.EndUpdate();
-				lv.Tag = null;
-			}
+		{			
 
 			if (e.KeyCode==Keys.H && e.Control && e.Alt && e.Shift) 
 			{
@@ -643,61 +396,34 @@ namespace SimPe
 			}
 		}
 
-		bool frommiddle = false;
-		
-		/// <summary>
-		/// Selected Resource did change
-		/// </summary>
-		/// <param name="sender">The ResourceListView</param>
-		/// <param name="fromdbl">Select was issued by a doubleClick</param>
-		/// <param name="fromchg">Select was issued by an internal Change of a pfd Resource</param>
-		/// <remarks>Uses the frommiddle field to determin if the middle Button was clicked</remarks>
-        private void SelectResource(object sender, bool fromdbl, bool fromchg)
+
+        private void lv_SelectionChanged(object sender, EventArgs e)
         {
-            bool fm = frommiddle;
-            if (!Helper.WindowsRegistry.FirefoxTabbing) fm = true;
-
-            ResourceListView lv = (ResourceListView)sender;
-
-
-            if (lv.SelectedItems.Count == 0)
-            {
-                plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));
-                return;
-            }
+            //plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));
+            
 
             SimPe.Events.ResourceEventArgs res = new SimPe.Events.ResourceEventArgs(package);
-            bool goon = (!fromdbl && !Helper.WindowsRegistry.SimpleResourceSelect && !frommiddle) || (lv.SelectedItems.Count > 1);
-
-            lock (ResourceListView.SYNC)
+            try
             {
-                try
-                {
-                    foreach (ListViewItem lvi in lv.SelectedItems)
-                    {
-                        ListViewTag lvt = (ListViewTag)lvi.Tag;
-                        if (lvt == null) continue;
-
-                        res.Items.Add(new SimPe.Events.ResourceContainer(lvt.Resource));
-
-                        if (goon) continue;
-
-                        //only the first one get's added to the Plugin View				
-                        if ((lv.SelectedItems.Count == 1 && !fromchg && lv.Tag == null))
-                            resloader.AddResource(lvt.Resource, !fm);
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
+                foreach (SimPe.Windows.Forms.NamedPackedFileDescriptor lvi in lv.SelectedItems)                
+                    res.Items.Add(new SimPe.Events.ResourceContainer(lvi.Resource));                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
 
-            //notify the Action Tools that the selection was changed
             plugger.ChangedGuiResourceEventHandler(this, res);
-            lv.Focus();
         }
+
+        private void lv_SelectResource(SimPe.Windows.Forms.ResourceListViewExt sender, SimPe.Windows.Forms.ResourceListViewExt.SelectResourceEventArgs e)
+        {
+            /*if (lv.SelectedItem == 0) plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));
+            else*/ resloader.AddResource(lv.SelectedItem, !e.CtrlDown);
+                   lv.Focus();
+        }
+
+		
 
 		private void ShowPreferences(object sender, System.EventArgs e)
 		{
@@ -850,51 +576,15 @@ namespace SimPe
 				this.ShowNewFile(true);
 			}							
 		}
-
-		private void SelectResourceDBClick(object sender, System.EventArgs e)
-		{			
-			SelectResource(sender, true, false);
-		}				
-
+						
 		
-		private void SortResourceListClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
-		{
-            ResourceColumnSorter sorter = ((ResourceListView)sender).ListViewItemSorter as ResourceColumnSorter;
-            if (sorter == null) return;
-
-            if (sorter.CurrentColumn == e.Column)
-                sorter.Asc=!sorter.Asc;
-            else
-                sorter.Asc = true;
-
-            sorter.CurrentColumn = e.Column;
-            ((ResourceListView)sender).Sort();			
-		}
-
-		private void SelectResource(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-			if ((e.Button == MouseButtons.Middle) || (e.Button == MouseButtons.Left && pressedalt))
-			{
-				ListViewItem lvi = lv.GetItemAt(e.X, e.Y);
-				if (lvi!=null) 
-				{
-					lv.BeginUpdate();
-					for (int i=lv.SelectedItems.Count-1; i>=0; i--)  lv.SelectedItems[i].Selected=false;
-
-					frommiddle = true;
-					lvi.Selected = true;
-					lv.EndUpdate();
-					frommiddle = false;
-				}
-			}
-		}
 
 		private void rh_LoadedResource(object sender, ResourceEventArgs es)
 		{
-			treebuilder.DeselectAll(lv);
+			
 			foreach (SimPe.Events.ResourceContainer e in es) 
 			{
-				if (e.HasResource) treebuilder.SelectResource(lv, e.Resource);	
+                if (e.HasResource) resourceViewManager1.SelectResource(e.Resource);
 			}
 		}
 
@@ -945,7 +635,7 @@ namespace SimPe
 				filter.FilterInstance = false;				
 			}
 			
-			if (lastusedtnt!=null) lastusedtnt.Refresh(lv);
+			//if (lastusedtnt!=null) lastusedtnt.Refresh(lv);
 		}
 
 		private void tbRcolName_SizeChanged(object sender, System.EventArgs e)
@@ -982,7 +672,7 @@ namespace SimPe
 				filter.FilterGroup = false;				
 			}
 			
-			if (lastusedtnt!=null) lastusedtnt.Refresh(lv);		
+			//if (lastusedtnt!=null) lastusedtnt.Refresh(lv);		
 		}
 
 		private void sdm_DockControlActivated(object sender, TD.SandDock.DockControlEventArgs e)
@@ -1014,26 +704,7 @@ namespace SimPe
 				lastfi = now;
 			}*/
 		}
-		#endregion
-
-		#region Dereffered ResourceSelection
-		byte rst = 0;
-		void DereferedResourceSelect()
-		{
-			rst = 0;
-			resourceSelectionTimer.Enabled = true;
-		}
-
-		private void resourceSelectionTimer_Tick(object sender, System.EventArgs e)
-		{
-			rst++;
-			if (rst==2) 
-			{
-				this.resourceSelectionTimer.Enabled = false;
-				SelectResource(lv, false, false);
-			}
-		}
-		#endregion
+		#endregion		
 
 		private void Activate_miSaveCopyAs(object sender, System.EventArgs e)
 		{
@@ -1109,6 +780,9 @@ namespace SimPe
         {
             this.mbiTopics.Visible = mbiTopics.DropDownItems.Count > 0;
         }
+        
+
+        
 		
 	}
 			

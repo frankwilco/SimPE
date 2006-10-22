@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
+# Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Interfaces", "..\SimPe Interfaces\SimPe Interfaces.csproj", "{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Helper", "..\SimPe Helper\SimPe Helper.csproj", "{59E3C353-1350-42D8-A045-CBBAD232F228}"
@@ -33,8 +33,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Workspace Helper", "..\SimPe Workspace Helper\SimPe Workspace Helper.csproj", "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims", "..\SimPe Sims\SimPe Sims.csproj", "{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Main ResourceControl", "..\SimPe Main ResourceControl\SimPe Main ResourceControl.csproj", "{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Main", "..\SimPe Main\SimPe Main.csproj", "{7368AF5F-2C82-4750-A31F-63AA4432758C}"
 EndProject
@@ -71,6 +69,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPE - Interfaces", "..\WOSimPE - Interfaces\WOSimPE - Interfaces.csproj", "{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPe - Recolor", "..\WOSimPe - Recolor\WOSimPe - Recolor.csproj", "{55A67A5D-43E8-4290-B52F-230233B1439D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe ResourceControls", "..\SimPe ResourceControls\SimPe ResourceControls.csproj", "{E4703C3D-A7CA-4E63-90A6-C6E58C121F1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -181,12 +181,6 @@ Global
 		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release MAC|Any CPU.Build.0 = Release|Any CPU
 		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
-		{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}.Release MAC|Any CPU.Build.0 = Release|Any CPU
-		{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{273792D6-4CB7-4ED5-A8FB-E213E7EE40AE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7368AF5F-2C82-4750-A31F-63AA4432758C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7368AF5F-2C82-4750-A31F-63AA4432758C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7368AF5F-2C82-4750-A31F-63AA4432758C}.Release MAC|Any CPU.ActiveCfg = Release MAC|Any CPU
@@ -295,6 +289,12 @@ Global
 		{55A67A5D-43E8-4290-B52F-230233B1439D}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
 		{55A67A5D-43E8-4290-B52F-230233B1439D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55A67A5D-43E8-4290-B52F-230233B1439D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4703C3D-A7CA-4E63-90A6-C6E58C121F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4703C3D-A7CA-4E63-90A6-C6E58C121F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4703C3D-A7CA-4E63-90A6-C6E58C121F1D}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{E4703C3D-A7CA-4E63-90A6-C6E58C121F1D}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{E4703C3D-A7CA-4E63-90A6-C6E58C121F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4703C3D-A7CA-4E63-90A6-C6E58C121F1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

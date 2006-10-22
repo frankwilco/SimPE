@@ -93,6 +93,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			tm.AddControl(this.xpGradientPanel3);
 			tm.AddControl(this.xpGradientPanel4);
 
+            this.lv.View = System.Windows.Forms.View.Details;
 			foreach (SimPe.Data.TypeAlias a in SimPe.Helper.TGILoader.FileTypes) 
 				cbtypes.Items.Add(a);			
 			cbtypes.Sorted = true;
@@ -542,7 +543,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.lv.HideSelection = false;
             this.lv.Name = "lv";
             this.lv.UseCompatibleStateImageBehavior = false;
-            this.lv.View = System.Windows.Forms.View.Details;
+            
             // 
             // clOffset
             // 

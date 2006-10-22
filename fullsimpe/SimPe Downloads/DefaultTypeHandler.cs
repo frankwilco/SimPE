@@ -108,7 +108,7 @@ namespace SimPe.Plugin.Downloads
 			
 			if (thumbs==null) 
 			{
-                thumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
+                thumbs = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Thumbnails\\ObjectThumbnails.package"));
 				thumbs.Persistent = true;
 			}
 

@@ -35,20 +35,20 @@ namespace SimPe
             manager.Visible = false;
             tbContainer.Visible = false;
             createdmenus = false;
-            WaitBarControl wbc = new WaitBarControl(this);
-            Wait.Bar = wbc;
+            
+            Wait.Bar = this.waitControl1;
 
+            
             package = new LoadedPackage();
             package.BeforeFileLoad += new PackageFileLoadEvent(BeforeFileLoad);
             package.AfterFileLoad += new PackageFileLoadedEvent(AfterFileLoad);
             package.BeforeFileSave += new PackageFileSaveEvent(BeforeFileSave);
             package.AfterFileSave += new PackageFileSavedEvent(AfterFileSave);
             package.IndexChanged += new EventHandler(ChangedActiveIndex);
-            package.AddedResource += new EventHandler(AddedRemovedIndexResource);
-            package.RemovedResource += new EventHandler(AddedRemovedIndexResource);
+            //package.AddedResource += new EventHandler(AddedRemovedIndexResource);
+            //package.RemovedResource += new EventHandler(AddedRemovedIndexResource);
 
-            filter = new ViewFilter();
-            treebuilder = new TreeBuilder(package, filter);
+            filter = new ViewFilter();            
             resloader = new ResourceLoader(dc, package);
             remote = new RemoteHandler(this, package, resloader, miWindow);
 
@@ -69,8 +69,7 @@ namespace SimPe
 
 
             remote.LoadedResource += new ChangedResourceEvent(rh_LoadedResource);
-
-            SetupResourceViewToolBar();
+            
             package.UpdateRecentFileMenu(this.miRecent);
 
             InitTheme();
@@ -82,10 +81,7 @@ namespace SimPe
             sdm2.OwnerForm = this;
             ThemeManager.Global.AddControl(sdm2);
 
-            this.dc.Manager = sdm2;
-
-            lv.SmallImageList = FileTable.WrapperRegistry.WrapperImageList;
-            this.tvType.ImageList = FileTable.WrapperRegistry.WrapperImageList;
+            this.dc.Manager = sdm2;            
 
 
             InitMenuItems();
@@ -98,6 +94,7 @@ namespace SimPe
             manager.ForceCleanUp();
             //this.dcResource.BringToFront();
             //this.dcResourceList.BringToFront();
+            lv.Filter = filter;
         }
 
         void LoadForm(object sender, System.EventArgs e)
@@ -109,13 +106,7 @@ namespace SimPe
             }
             this.SuspendLayout();
 
-            dcFilter.Collapse(false);
-
-            if (!Helper.WindowsRegistry.HiddenMode)
-            {
-                lv.Columns.RemoveAt(lv.Columns.Count - 1);
-                lv.Columns.RemoveAt(lv.Columns.Count - 1);
-            }
+            dcFilter.Collapse(false);            
 
             cbsemig.Items.Add("[Group Filter]");
             cbsemig.Items.Add(new SimPe.Data.SemiGlobalAlias(true, 0x7FD46CD0, "Globals"));

@@ -148,7 +148,7 @@ namespace SimPe.Plugin
 		/// </remarks>
 		public static void MakeUnique(Idno idno, string filename, bool scanall) 
 		{
-            MakeUnique(idno, filename, PathProvider.Global.SimSavegameFolder, scanall);
+            MakeUnique(idno, filename, PathProvider.SimSavegameFolder, scanall);
 		}
 
 		/// <summary>
@@ -165,7 +165,7 @@ namespace SimPe.Plugin
 		/// </remarks>
 		public static void MakeUnique(Idno idno, string filename, string folder, bool scanall) 
 		{
-            Hashtable ids = FindUids(PathProvider.Global.SimSavegameFolder, scanall);
+            Hashtable ids = FindUids(PathProvider.SimSavegameFolder, scanall);
 			MakeUnique(idno, filename, ids);
 		}
 

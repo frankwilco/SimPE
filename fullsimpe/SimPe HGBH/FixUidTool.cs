@@ -51,7 +51,7 @@ namespace SimPe.Plugin
 				WaitingScreen.Wait();
 				try 
 				{
-                    System.Collections.Hashtable ht = Idno.FindUids(PathProvider.Global.SimSavegameFolder, true);
+                    System.Collections.Hashtable ht = Idno.FindUids(PathProvider.SimSavegameFolder, true);
 					foreach (string file in ht.Keys) 
 					{
 						WaitingScreen.UpdateMessage(file);

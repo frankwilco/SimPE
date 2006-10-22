@@ -33,7 +33,6 @@ namespace SimPe
         {
             //setup the Theme Manager
             ThemeManager.Global.AddControl(this.manager);
-            ThemeManager.Global.AddControl(this.tbResource);
             ThemeManager.Global.AddControl(this.xpGradientPanel1);
             ThemeManager.Global.AddControl(this.xpGradientPanel2);
             ThemeManager.Global.AddControl(this.xpGradientPanel3);
@@ -44,7 +43,6 @@ namespace SimPe
             ThemeManager.Global.AddControl(tbTools);
             ThemeManager.Global.AddControl(tbWindow);
             ThemeManager.Global.AddControl(toolBar1);
-            ThemeManager.Global.AddControl(tbResource);
             ThemeManager.Global.AddControl(tbContainer);
         }
 
@@ -58,16 +56,7 @@ namespace SimPe
             Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded = this.tbDefaultAction.IsExpanded;
             Helper.WindowsRegistry.Layout.ToolActionBoxExpanded = this.tbExtAction.IsExpanded;
 
-            Helper.WindowsRegistry.Layout.TypeColumnWidth = this.lv.Columns[0].Width;
-            Helper.WindowsRegistry.Layout.GroupColumnWidth = this.lv.Columns[1].Width;
-            Helper.WindowsRegistry.Layout.InstanceHighColumnWidth = this.lv.Columns[2].Width;
-            Helper.WindowsRegistry.Layout.InstanceColumnWidth = this.lv.Columns[3].Width;
-
-            if (lv.Columns.Count > 4)
-            {
-                Helper.WindowsRegistry.Layout.OffsetColumnWidth = this.lv.Columns[4].Width;
-                Helper.WindowsRegistry.Layout.SizeColumnWidth = this.lv.Columns[5].Width;
-            }
+            resourceViewManager1.StoreLayout();
         }
 
 
@@ -123,26 +112,16 @@ namespace SimPe
             catch (Exception ex)
             {
                 Helper.ExceptionMessage(ex);
-            }           
-
-
-            this.lv.Columns[0].Width = Helper.WindowsRegistry.Layout.TypeColumnWidth;
-            this.lv.Columns[1].Width = Helper.WindowsRegistry.Layout.GroupColumnWidth;
-            this.lv.Columns[2].Width = Helper.WindowsRegistry.Layout.InstanceHighColumnWidth;
-            this.lv.Columns[3].Width = Helper.WindowsRegistry.Layout.InstanceColumnWidth;
-
-            if (this.lv.Columns.Count > 4)
-            {
-                this.lv.Columns[4].Width = Helper.WindowsRegistry.Layout.OffsetColumnWidth;
-                this.lv.Columns[5].Width = Helper.WindowsRegistry.Layout.SizeColumnWidth;
             }
+
+            resourceViewManager1.RestoreLayout();
+            
 
             UpdateDockMenus();
             MyButtonItem.GetLayoutInformations(this);
 
             FixCheckedState(tbTools);
-            FixCheckedState(toolBar1);
-            FixCheckedState(tbAction);
+            FixCheckedState(toolBar1);            
 
             foreach (ToolStripItem tsi in miWindow.DropDownItems)
             {

@@ -377,7 +377,7 @@ namespace SimPe.Wizards
 		internal Form1 form1;
 		private void Hide(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-            PathProvider.Global.SimSavegameFolder = tbsave.Text;
+            PathProvider.SimSavegameFolder = tbsave.Text;
             PathProvider.Global[Expansions.BaseGame].InstallFolder = tbsims.Text;
             PathProvider.Global.NvidiaDDSPath = tbdds.Text;
 			form1.HideOptions(sender, e);
@@ -390,7 +390,7 @@ namespace SimPe.Wizards
 
 		public static bool HaveSavefolder
 		{
-            get { return System.IO.Directory.Exists(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads")); }
+            get { return System.IO.Directory.Exists(System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads")); }
 		}
 
 		public static bool HaveDDS
@@ -413,7 +413,7 @@ namespace SimPe.Wizards
 
 		private void SugSave(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-            tbsave.Text = PathProvider.Global.RealSavegamePath;
+            tbsave.Text = PathProvider.RealSavegamePath;
 		}
 
 		private void FldSims(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
@@ -424,7 +424,7 @@ namespace SimPe.Wizards
 
 		private void FldSave(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-            if (System.IO.Directory.Exists(PathProvider.Global.RealSavegamePath)) fbd.SelectedPath = PathProvider.Global.RealSavegamePath;
+            if (System.IO.Directory.Exists(PathProvider.RealSavegamePath)) fbd.SelectedPath = PathProvider.RealSavegamePath;
 			if (fbd.ShowDialog()==DialogResult.OK) tbsave.Text = fbd.SelectedPath;
 		}
 

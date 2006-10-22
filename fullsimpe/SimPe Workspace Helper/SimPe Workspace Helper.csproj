@@ -129,9 +129,8 @@
       <HintPath>..\XPCommonControls.dll</HintPath>
     </Reference>
     <ProjectReference Include="..\SimPe Cache\SimPe Cache.csproj">
-      <Name>SimPe Cache</Name>
       <Project>{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Name>SimPe Cache</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
       <Name>SimPe HandlerCommon</Name>

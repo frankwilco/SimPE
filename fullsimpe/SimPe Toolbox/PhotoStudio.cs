@@ -101,7 +101,7 @@ namespace SimPe.Plugin
 			}
 			if (lvbase.Items.Count>0) lvbase.Items[0].Selected = true;
 
-            sfd.InitialDirectory = System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Downloads");
+            sfd.InitialDirectory = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Downloads");
 
 			cbquality.SelectedIndex = 0;
             if (System.IO.File.Exists(PathProvider.Global.NvidiaDDSTool)) 

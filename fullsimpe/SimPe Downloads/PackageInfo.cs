@@ -96,7 +96,7 @@ namespace SimPe.Plugin.Downloads
             {
                 if (flname.StartsWith(Helper.CompareableFileName(ei.InstallFolder))) return (ei.Expansion);
             }
-            if (flname.StartsWith(Helper.CompareableFileName(System.IO.Path.Combine(PathProvider.Global.SimSavegameFolder, "Donwloads")))) return Expansions.Custom;
+            if (flname.StartsWith(Helper.CompareableFileName(System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Donwloads")))) return Expansions.Custom;
 			return Expansions.None;
 		}
 

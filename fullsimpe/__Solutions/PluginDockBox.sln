@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Dockbox", "..\SimPe D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims2CommunityPack", "..\SimPe Sims2CommunityPack\SimPe Sims2CommunityPack.csproj", "{2EF93119-5C98-4167-B1AF-966E6A45AB79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDocks", "..\..\..\NetDocks\NetDocks\NetDocks.csproj", "{F65B296C-6435-4AA9-A5DF-188BE363C43E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,12 +23,6 @@ Global
 		{2EF93119-5C98-4167-B1AF-966E6A45AB79}.Release MAC|Any CPU.Build.0 = Release|Any CPU
 		{2EF93119-5C98-4167-B1AF-966E6A45AB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EF93119-5C98-4167-B1AF-966E6A45AB79}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
-		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Release MAC|Any CPU.Build.0 = Release|Any CPU
-		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F65B296C-6435-4AA9-A5DF-188BE363C43E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
