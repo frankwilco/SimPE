@@ -28,6 +28,11 @@ namespace SimPe.Windows.Forms
             get { return pfd; }
         }
 
+        public bool RealNameLoaded
+        {
+            get { return realname != null; }
+        }
+
         public void ResetRealName()
         {
             realname = null;
@@ -38,7 +43,7 @@ namespace SimPe.Windows.Forms
             if (realname == null)
             {
                 if (Helper.WindowsRegistry.DecodeFilenamesState)
-                {
+                {                    
                     SimPe.Interfaces.Plugin.Internal.IPackedFileWrapper wrp = FileTable.WrapperRegistry.FindHandler(pfd.Type);
                     if (wrp != null)
                     {      
