@@ -50,15 +50,19 @@ namespace SimPe.Windows.Forms
         }
 
         ResourceMaps last;
-        void SetResourceMaps()
+        void SetResourceMaps(bool nosave)
         {
             tv.Nodes.Clear();
-            if (last!=null) SetResourceMaps(last, true);
+            if (last != null) SetResourceMaps(last, true, nosave);
         }
 
         bool allowselectevent;
         TreeNode firstnode;
-        public void SetResourceMaps(ResourceMaps maps, bool selectevent)
+        public bool SetResourceMaps(ResourceMaps maps, bool selectevent)
+        {
+            return SetResourceMaps(maps, selectevent, false);
+        }
+        protected bool SetResourceMaps(ResourceMaps maps, bool selectevent, bool nosave)
         {
             last = maps;
             if (FileTable.WrapperRegistry != null)
@@ -66,14 +70,49 @@ namespace SimPe.Windows.Forms
                 tv.ImageList = FileTable.WrapperRegistry.WrapperImageList;
                 tv.StateImageList = tv.ImageList;
             }
+            if (!nosave) SaveLastSelection();
 
+            this.Clear();
             firstnode = builder.BuildNodes(maps);
             tv.Nodes.Add(firstnode);
             firstnode.Expand();
 
-            allowselectevent = selectevent;
-            SelectAll();            
-            allowselectevent = true;
+
+            if (!SelectID(firstnode, builder.LastSelectedId))
+            {
+                allowselectevent = selectevent;
+                SelectAll();
+                allowselectevent = true;
+                return false;
+            }
+
+            return true;
+        }
+
+        private void SaveLastSelection()
+        {
+            ResourceTreeNodeExt node = tv.SelectedNode as ResourceTreeNodeExt;
+            if (node != null) builder.LastSelectedId = node.ID;
+            else builder.LastSelectedId = 0;
+        }
+
+        protected bool SelectID(TreeNode node, ulong id)
+        {
+            ResourceTreeNodeExt rn = node as ResourceTreeNodeExt;
+            if (rn != null)
+            {
+                if (rn.ID == id)
+                {
+                    tv.SelectedNode = rn;
+                    rn.EnsureVisible();
+                    return true;
+                }
+            }
+
+            foreach (TreeNode sub in node.Nodes)
+                if (SelectID(sub, id)) return true;
+
+            return false;
         }
 
         public void SelectAll()
@@ -106,12 +145,14 @@ namespace SimPe.Windows.Forms
             tbGroup.Checked = sender == tbGroup;
             tbInst.Checked = sender == tbInst;
 
+            SaveLastSelection();
+
             IResourceTreeNodeBuilder old = builder;
             if (sender == tbInst) builder = instbuilder;
             else if (sender == tbGroup) builder = groupbuilder;
             else builder = typebuilder;
 
-            if (old != builder) SetResourceMaps();
+            if (old != builder) SetResourceMaps(true);
         }
 
         internal void RestoreLayout()

@@ -87,6 +87,8 @@ namespace SimPe.PackedFiles.UserInterface
 		internal System.Windows.Forms.CheckBox cblightning;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBox2;
+        internal TextBox tbdiag;
+        private Label label3;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -281,6 +283,7 @@ namespace SimPe.PackedFiles.UserInterface
 				this.tbguid.Text = "0x"+Helper.HexString(objd.Guid);
 				this.tbproxguid.Text = "0x"+Helper.HexString(objd.ProxyGuid);
 				this.tborgguid.Text = "0x"+Helper.HexString(objd.OriginalGuid);
+                this.tbdiag.Text = "0x" + Helper.HexString(objd.DiagonalGuid);
 
 				this.tbflname.Text = objd.FileName;
 
@@ -313,669 +316,707 @@ namespace SimPe.PackedFiles.UserInterface
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.pnobjd = new System.Windows.Forms.Panel();
-			this.btnUpdateMMAT = new System.Windows.Forms.Button();
-			this.label2 = new System.Windows.Forms.Label();
-			this.btnCommit = new System.Windows.Forms.Button();
-			this.lbIsOk = new System.Windows.Forms.Label();
-			this.cball = new System.Windows.Forms.CheckBox();
-			this.tc = new System.Windows.Forms.TabControl();
-			this.tpcatalogsort = new System.Windows.Forms.TabPage();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.cbaspiration = new System.Windows.Forms.CheckBox();
-			this.cbhobby = new System.Windows.Forms.CheckBox();
-			this.cbappliances = new System.Windows.Forms.CheckBox();
-			this.cbdecorative = new System.Windows.Forms.CheckBox();
-			this.cbelectronics = new System.Windows.Forms.CheckBox();
-			this.cbgeneral = new System.Windows.Forms.CheckBox();
-			this.cblightning = new System.Windows.Forms.CheckBox();
-			this.cbplumbing = new System.Windows.Forms.CheckBox();
-			this.cbseating = new System.Windows.Forms.CheckBox();
-			this.cbsurfaces = new System.Windows.Forms.CheckBox();
-			this.cbsort = new Ambertation.Windows.Forms.EnumComboBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.cbkids = new System.Windows.Forms.CheckBox();
-			this.cbbathroom = new System.Windows.Forms.CheckBox();
-			this.cbbedroom = new System.Windows.Forms.CheckBox();
-			this.cbdinigroom = new System.Windows.Forms.CheckBox();
-			this.cbkitchen = new System.Windows.Forms.CheckBox();
-			this.cbmisc = new System.Windows.Forms.CheckBox();
-			this.cboutside = new System.Windows.Forms.CheckBox();
-			this.cblivingroom = new System.Windows.Forms.CheckBox();
-			this.cbstudy = new System.Windows.Forms.CheckBox();
-			this.tpraw = new System.Windows.Forms.TabPage();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.rbhex = new System.Windows.Forms.RadioButton();
-			this.rbdec = new System.Windows.Forms.RadioButton();
-			this.rbbin = new System.Windows.Forms.RadioButton();
-			this.pg = new System.Windows.Forms.PropertyGrid();
-			this.tbtype = new System.Windows.Forms.TextBox();
-			this.cbtype = new System.Windows.Forms.ComboBox();
-			this.label63 = new System.Windows.Forms.Label();
-			this.tbproxguid = new System.Windows.Forms.TextBox();
-			this.label97 = new System.Windows.Forms.Label();
-			this.tborgguid = new System.Windows.Forms.TextBox();
-			this.llgetGUID = new System.Windows.Forms.LinkLabel();
-			this.label65 = new System.Windows.Forms.Label();
-			this.tbflname = new System.Windows.Forms.TextBox();
-			this.label9 = new System.Windows.Forms.Label();
-			this.tbguid = new System.Windows.Forms.TextBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.panel6 = new System.Windows.Forms.Panel();
-			this.label12 = new System.Windows.Forms.Label();
-			this.cbcareer = new System.Windows.Forms.CheckBox();
-			this.pnobjd.SuspendLayout();
-			this.tc.SuspendLayout();
-			this.tpcatalogsort.SuspendLayout();
-			this.groupBox2.SuspendLayout();
-			this.groupBox1.SuspendLayout();
-			this.tpraw.SuspendLayout();
-			this.panel1.SuspendLayout();
-			this.panel6.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// pnobjd
-			// 
-			this.pnobjd.AutoScroll = true;
-			this.pnobjd.Controls.Add(this.btnUpdateMMAT);
-			this.pnobjd.Controls.Add(this.label2);
-			this.pnobjd.Controls.Add(this.btnCommit);
-			this.pnobjd.Controls.Add(this.lbIsOk);
-			this.pnobjd.Controls.Add(this.cball);
-			this.pnobjd.Controls.Add(this.tc);
-			this.pnobjd.Controls.Add(this.tbtype);
-			this.pnobjd.Controls.Add(this.cbtype);
-			this.pnobjd.Controls.Add(this.label63);
-			this.pnobjd.Controls.Add(this.tbproxguid);
-			this.pnobjd.Controls.Add(this.label97);
-			this.pnobjd.Controls.Add(this.tborgguid);
-			this.pnobjd.Controls.Add(this.llgetGUID);
-			this.pnobjd.Controls.Add(this.label65);
-			this.pnobjd.Controls.Add(this.tbflname);
-			this.pnobjd.Controls.Add(this.label9);
-			this.pnobjd.Controls.Add(this.tbguid);
-			this.pnobjd.Controls.Add(this.label8);
-			this.pnobjd.Controls.Add(this.panel6);
-			this.pnobjd.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnobjd.Location = new System.Drawing.Point(0, 0);
-			this.pnobjd.Name = "pnobjd";
-			this.pnobjd.Size = new System.Drawing.Size(856, 245);
-			this.pnobjd.TabIndex = 6;
-			// 
-			// btnUpdateMMAT
-			// 
-			this.btnUpdateMMAT.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btnUpdateMMAT.Location = new System.Drawing.Point(56, 117);
-			this.btnUpdateMMAT.Name = "btnUpdateMMAT";
-			this.btnUpdateMMAT.Size = new System.Drawing.Size(56, 24);
-			this.btnUpdateMMAT.TabIndex = 32;
-			this.btnUpdateMMAT.Text = "Update";
-			this.btnUpdateMMAT.Click += new System.EventHandler(this.btnUpdateMMAT_Click);
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Verdana", 8.25F);
-			this.label2.Location = new System.Drawing.Point(114, 124);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(115, 17);
-			this.label2.TabIndex = 31;
-			this.label2.Text = "MMATs and commit";
-			// 
-			// btnCommit
-			// 
-			this.btnCommit.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btnCommit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-			this.btnCommit.Location = new System.Drawing.Point(36, 56);
-			this.btnCommit.Name = "btnCommit";
-			this.btnCommit.TabIndex = 30;
-			this.btnCommit.Text = "Commit";
-			this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
-			// 
-			// lbIsOk
-			// 
-			this.lbIsOk.Location = new System.Drawing.Point(112, 57);
-			this.lbIsOk.Name = "lbIsOk";
-			this.lbIsOk.Size = new System.Drawing.Size(176, 23);
-			this.lbIsOk.TabIndex = 29;
-			this.lbIsOk.Text = "Please commit!";
-			this.lbIsOk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.lbIsOk.Visible = false;
-			// 
-			// cball
-			// 
-			this.cball.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.cball.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cball.Location = new System.Drawing.Point(98, 142);
-			this.cball.Name = "cball";
-			this.cball.Size = new System.Drawing.Size(120, 21);
-			this.cball.TabIndex = 28;
-			this.cball.Text = "update all MMATs";
-			this.cball.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-			// 
-			// tc
-			// 
-			this.tc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tc.Controls.Add(this.tpcatalogsort);
-			this.tc.Controls.Add(this.tpraw);
-			this.tc.Location = new System.Drawing.Point(296, 56);
-			this.tc.Name = "tc";
-			this.tc.SelectedIndex = 0;
-			this.tc.Size = new System.Drawing.Size(560, 188);
-			this.tc.TabIndex = 26;
-			this.tc.SelectedIndexChanged += new System.EventHandler(this.CangedTab);
-			// 
-			// tpcatalogsort
-			// 
-			this.tpcatalogsort.Controls.Add(this.groupBox2);
-			this.tpcatalogsort.Controls.Add(this.groupBox1);
-			this.tpcatalogsort.Location = new System.Drawing.Point(4, 22);
-			this.tpcatalogsort.Name = "tpcatalogsort";
-			this.tpcatalogsort.Size = new System.Drawing.Size(552, 162);
-			this.tpcatalogsort.TabIndex = 0;
-			this.tpcatalogsort.Text = "Catalog Sort";
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Controls.Add(this.cbaspiration);
-			this.groupBox2.Controls.Add(this.cbhobby);
-			this.groupBox2.Controls.Add(this.cbappliances);
-			this.groupBox2.Controls.Add(this.cbdecorative);
-			this.groupBox2.Controls.Add(this.cbelectronics);
-			this.groupBox2.Controls.Add(this.cbgeneral);
-			this.groupBox2.Controls.Add(this.cblightning);
-			this.groupBox2.Controls.Add(this.cbplumbing);
-			this.groupBox2.Controls.Add(this.cbseating);
-			this.groupBox2.Controls.Add(this.cbsurfaces);
-			this.groupBox2.Controls.Add(this.cbsort);
-			this.groupBox2.Controls.Add(this.label1);
-			this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox2.Location = new System.Drawing.Point(208, 8);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(336, 144);
-			this.groupBox2.TabIndex = 17;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Function Sort";
-			// 
-			// cbaspiration
-			// 
-			this.cbaspiration.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbaspiration.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbaspiration.Location = new System.Drawing.Point(224, 44);
-			this.cbaspiration.Name = "cbaspiration";
-			this.cbaspiration.TabIndex = 17;
-			this.cbaspiration.Text = "Aspiration";
-			this.cbaspiration.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cbhobby
-			// 
-			this.cbhobby.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbhobby.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbhobby.Location = new System.Drawing.Point(224, 24);
-			this.cbhobby.Name = "cbhobby";
-			this.cbhobby.TabIndex = 16;
-			this.cbhobby.Text = "Hobbies";
-			this.cbhobby.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cbappliances
-			// 
-			this.cbappliances.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbappliances.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbappliances.Location = new System.Drawing.Point(16, 24);
-			this.cbappliances.Name = "cbappliances";
-			this.cbappliances.TabIndex = 8;
-			this.cbappliances.Text = "Appliances";
-			this.cbappliances.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cbdecorative
-			// 
-			this.cbdecorative.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbdecorative.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbdecorative.Location = new System.Drawing.Point(16, 44);
-			this.cbdecorative.Name = "cbdecorative";
-			this.cbdecorative.TabIndex = 9;
-			this.cbdecorative.Text = "Decorative";
-			this.cbdecorative.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cbelectronics
-			// 
-			this.cbelectronics.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbelectronics.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbelectronics.Location = new System.Drawing.Point(16, 64);
-			this.cbelectronics.Name = "cbelectronics";
-			this.cbelectronics.TabIndex = 10;
-			this.cbelectronics.Text = "Electronics";
-			this.cbelectronics.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cbgeneral
-			// 
-			this.cbgeneral.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbgeneral.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbgeneral.Location = new System.Drawing.Point(16, 84);
-			this.cbgeneral.Name = "cbgeneral";
-			this.cbgeneral.TabIndex = 11;
-			this.cbgeneral.Text = "General";
-			this.cbgeneral.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cblightning
-			// 
-			this.cblightning.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cblightning.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cblightning.Location = new System.Drawing.Point(120, 24);
-			this.cblightning.Name = "cblightning";
-			this.cblightning.TabIndex = 12;
-			this.cblightning.Text = "Lights";
-			this.cblightning.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cbplumbing
-			// 
-			this.cbplumbing.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbplumbing.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbplumbing.Location = new System.Drawing.Point(120, 44);
-			this.cbplumbing.Name = "cbplumbing";
-			this.cbplumbing.TabIndex = 13;
-			this.cbplumbing.Text = "Plumbing";
-			this.cbplumbing.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cbseating
-			// 
-			this.cbseating.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbseating.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbseating.Location = new System.Drawing.Point(120, 64);
-			this.cbseating.Name = "cbseating";
-			this.cbseating.TabIndex = 14;
-			this.cbseating.Text = "Seating";
-			this.cbseating.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cbsurfaces
-			// 
-			this.cbsurfaces.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbsurfaces.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbsurfaces.Location = new System.Drawing.Point(120, 84);
-			this.cbsurfaces.Name = "cbsurfaces";
-			this.cbsurfaces.TabIndex = 15;
-			this.cbsurfaces.Text = "Surfaces";
-			this.cbsurfaces.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// cbsort
-			// 
-			this.cbsort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbsort.Enum = null;
-			this.cbsort.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbsort.Location = new System.Drawing.Point(120, 112);
-			this.cbsort.Name = "cbsort";
-			this.cbsort.ResourceManager = null;
-			this.cbsort.Size = new System.Drawing.Size(208, 21);
-			this.cbsort.TabIndex = 19;
-			this.cbsort.SelectedIndexChanged += new System.EventHandler(this.cbsort_SelectedIndexChanged);
-			// 
-			// label1
-			// 
-			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label1.Location = new System.Drawing.Point(16, 112);
-			this.label1.Name = "label1";
-			this.label1.TabIndex = 18;
-			this.label1.Text = "Overall Sort:";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.Controls.Add(this.cbkids);
-			this.groupBox1.Controls.Add(this.cbbathroom);
-			this.groupBox1.Controls.Add(this.cbbedroom);
-			this.groupBox1.Controls.Add(this.cbdinigroom);
-			this.groupBox1.Controls.Add(this.cbkitchen);
-			this.groupBox1.Controls.Add(this.cbmisc);
-			this.groupBox1.Controls.Add(this.cboutside);
-			this.groupBox1.Controls.Add(this.cblivingroom);
-			this.groupBox1.Controls.Add(this.cbstudy);
-			this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.groupBox1.Location = new System.Drawing.Point(8, 8);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(192, 144);
-			this.groupBox1.TabIndex = 16;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Room Sort";
-			// 
-			// cbkids
-			// 
-			this.cbkids.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbkids.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbkids.Location = new System.Drawing.Point(120, 84);
-			this.cbkids.Name = "cbkids";
-			this.cbkids.Size = new System.Drawing.Size(64, 24);
-			this.cbkids.TabIndex = 8;
-			this.cbkids.Text = "Kids";
-			this.cbkids.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
-			// 
-			// cbbathroom
-			// 
-			this.cbbathroom.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbbathroom.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbbathroom.Location = new System.Drawing.Point(16, 24);
-			this.cbbathroom.Name = "cbbathroom";
-			this.cbbathroom.TabIndex = 0;
-			this.cbbathroom.Text = "Bathroom";
-			this.cbbathroom.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
-			// 
-			// cbbedroom
-			// 
-			this.cbbedroom.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbbedroom.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbbedroom.Location = new System.Drawing.Point(16, 44);
-			this.cbbedroom.Name = "cbbedroom";
-			this.cbbedroom.TabIndex = 1;
-			this.cbbedroom.Text = "Bedroom";
-			this.cbbedroom.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
-			// 
-			// cbdinigroom
-			// 
-			this.cbdinigroom.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbdinigroom.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbdinigroom.Location = new System.Drawing.Point(16, 64);
-			this.cbdinigroom.Name = "cbdinigroom";
-			this.cbdinigroom.TabIndex = 2;
-			this.cbdinigroom.Text = "Diningroom";
-			this.cbdinigroom.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
-			// 
-			// cbkitchen
-			// 
-			this.cbkitchen.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbkitchen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbkitchen.Location = new System.Drawing.Point(16, 84);
-			this.cbkitchen.Name = "cbkitchen";
-			this.cbkitchen.TabIndex = 3;
-			this.cbkitchen.Text = "Kitchen";
-			this.cbkitchen.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
-			// 
-			// cbmisc
-			// 
-			this.cbmisc.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbmisc.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbmisc.Location = new System.Drawing.Point(120, 24);
-			this.cbmisc.Name = "cbmisc";
-			this.cbmisc.Size = new System.Drawing.Size(64, 24);
-			this.cbmisc.TabIndex = 4;
-			this.cbmisc.Text = "Misc.";
-			this.cbmisc.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
-			// 
-			// cboutside
-			// 
-			this.cboutside.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cboutside.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cboutside.Location = new System.Drawing.Point(120, 44);
-			this.cboutside.Name = "cboutside";
-			this.cboutside.Size = new System.Drawing.Size(64, 24);
-			this.cboutside.TabIndex = 5;
-			this.cboutside.Text = "Outside";
-			this.cboutside.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
-			// 
-			// cblivingroom
-			// 
-			this.cblivingroom.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cblivingroom.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cblivingroom.Location = new System.Drawing.Point(16, 104);
-			this.cblivingroom.Name = "cblivingroom";
-			this.cblivingroom.TabIndex = 6;
-			this.cblivingroom.Text = "Livingroom";
-			this.cblivingroom.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
-			// 
-			// cbstudy
-			// 
-			this.cbstudy.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbstudy.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cbstudy.Location = new System.Drawing.Point(120, 64);
-			this.cbstudy.Name = "cbstudy";
-			this.cbstudy.Size = new System.Drawing.Size(64, 24);
-			this.cbstudy.TabIndex = 7;
-			this.cbstudy.Text = "Study";
-			this.cbstudy.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
-			// 
-			// tpraw
-			// 
-			this.tpraw.Controls.Add(this.panel1);
-			this.tpraw.Controls.Add(this.pg);
-			this.tpraw.Location = new System.Drawing.Point(4, 22);
-			this.tpraw.Name = "tpraw";
-			this.tpraw.Size = new System.Drawing.Size(552, 162);
-			this.tpraw.TabIndex = 1;
-			this.tpraw.Text = "RAW Data";
-			// 
-			// panel1
-			// 
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.panel1.Controls.Add(this.rbhex);
-			this.panel1.Controls.Add(this.rbdec);
-			this.panel1.Controls.Add(this.rbbin);
-			this.panel1.Location = new System.Drawing.Point(292, 6);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(256, 16);
-			this.panel1.TabIndex = 4;
-			// 
-			// rbhex
-			// 
-			this.rbhex.Location = new System.Drawing.Point(158, 1);
-			this.rbhex.Name = "rbhex";
-			this.rbhex.Size = new System.Drawing.Size(96, 16);
-			this.rbhex.TabIndex = 6;
-			this.rbhex.Text = "Hexadecimal";
-			this.rbhex.CheckedChanged += new System.EventHandler(this.DigitChanged);
-			// 
-			// rbdec
-			// 
-			this.rbdec.Location = new System.Drawing.Point(78, 1);
-			this.rbdec.Name = "rbdec";
-			this.rbdec.Size = new System.Drawing.Size(72, 16);
-			this.rbdec.TabIndex = 5;
-			this.rbdec.Text = "Decimal";
-			this.rbdec.CheckedChanged += new System.EventHandler(this.DigitChanged);
-			// 
-			// rbbin
-			// 
-			this.rbbin.Location = new System.Drawing.Point(6, 1);
-			this.rbbin.Name = "rbbin";
-			this.rbbin.Size = new System.Drawing.Size(64, 16);
-			this.rbbin.TabIndex = 4;
-			this.rbbin.Text = "Binary";
-			this.rbbin.CheckedChanged += new System.EventHandler(this.DigitChanged);
-			// 
-			// pg
-			// 
-			this.pg.CommandsVisibleIfAvailable = true;
-			this.pg.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pg.HelpVisible = false;
-			this.pg.LargeButtons = false;
-			this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
-			this.pg.Location = new System.Drawing.Point(0, 0);
-			this.pg.Name = "pg";
-			this.pg.Size = new System.Drawing.Size(552, 162);
-			this.pg.TabIndex = 0;
-			this.pg.Text = "RAW Items";
-			this.pg.ViewBackColor = System.Drawing.SystemColors.Window;
-			this.pg.ViewForeColor = System.Drawing.SystemColors.WindowText;
-			this.pg.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PropChanged);
-			// 
-			// tbtype
-			// 
-			this.tbtype.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbtype.Location = new System.Drawing.Point(792, 32);
-			this.tbtype.Name = "tbtype";
-			this.tbtype.ReadOnly = true;
-			this.tbtype.Size = new System.Drawing.Size(56, 21);
-			this.tbtype.TabIndex = 25;
-			this.tbtype.Text = "0xDDDD";
-			// 
-			// cbtype
-			// 
-			this.cbtype.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.cbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbtype.Location = new System.Drawing.Point(624, 32);
-			this.cbtype.Name = "cbtype";
-			this.cbtype.Size = new System.Drawing.Size(168, 21);
-			this.cbtype.TabIndex = 24;
-			this.cbtype.SelectedIndexChanged += new System.EventHandler(this.ChangeType);
-			// 
-			// label63
-			// 
-			this.label63.AutoSize = true;
-			this.label63.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-			this.label63.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label63.Location = new System.Drawing.Point(34, 187);
-			this.label63.Name = "label63";
-			this.label63.Size = new System.Drawing.Size(73, 17);
-			this.label63.TabIndex = 22;
-			this.label63.Text = "Orig. GUID";
-			// 
-			// tbproxguid
-			// 
-			this.tbproxguid.Location = new System.Drawing.Point(112, 216);
-			this.tbproxguid.Name = "tbproxguid";
-			this.tbproxguid.Size = new System.Drawing.Size(96, 21);
-			this.tbproxguid.TabIndex = 21;
-			this.tbproxguid.Text = "0xDDDDDDDD";
-			this.tbproxguid.TextChanged += new System.EventHandler(this.SetGuid);
-			// 
-			// label97
-			// 
-			this.label97.AutoSize = true;
-			this.label97.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-			this.label97.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label97.Location = new System.Drawing.Point(13, 219);
-			this.label97.Name = "label97";
-			this.label97.Size = new System.Drawing.Size(94, 17);
-			this.label97.TabIndex = 20;
-			this.label97.Text = "Fallback GUID";
-			// 
-			// tborgguid
-			// 
-			this.tborgguid.Location = new System.Drawing.Point(112, 184);
-			this.tborgguid.Name = "tborgguid";
-			this.tborgguid.Size = new System.Drawing.Size(96, 21);
-			this.tborgguid.TabIndex = 19;
-			this.tborgguid.Text = "0xDDDDDDDD";
-			this.tborgguid.TextChanged += new System.EventHandler(this.SetGuid);
-			// 
-			// llgetGUID
-			// 
-			this.llgetGUID.AutoSize = true;
-			this.llgetGUID.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.llgetGUID.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.llgetGUID.LinkArea = new System.Windows.Forms.LinkArea(0, 8);
-			this.llgetGUID.Location = new System.Drawing.Point(213, 99);
-			this.llgetGUID.Name = "llgetGUID";
-			this.llgetGUID.Size = new System.Drawing.Size(63, 17);
-			this.llgetGUID.TabIndex = 16;
-			this.llgetGUID.TabStop = true;
-			this.llgetGUID.Text = "get GUID";
-			this.llgetGUID.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GetGuid);
-			// 
-			// label65
-			// 
-			this.label65.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label65.AutoSize = true;
-			this.label65.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-			this.label65.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label65.Location = new System.Drawing.Point(554, 35);
-			this.label65.Name = "label65";
-			this.label65.Size = new System.Drawing.Size(65, 17);
-			this.label65.TabIndex = 12;
-			this.label65.Text = "Obj. Type";
-			// 
-			// tbflname
-			// 
-			this.tbflname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tbflname.Location = new System.Drawing.Point(112, 32);
-			this.tbflname.Name = "tbflname";
-			this.tbflname.Size = new System.Drawing.Size(432, 21);
-			this.tbflname.TabIndex = 11;
-			this.tbflname.Text = "";
-			this.tbflname.TextChanged += new System.EventHandler(this.SetFlName);
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-			this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label9.Location = new System.Drawing.Point(45, 35);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(62, 17);
-			this.label9.TabIndex = 10;
-			this.label9.Text = "Filename";
-			// 
-			// tbguid
-			// 
-			this.tbguid.Location = new System.Drawing.Point(112, 96);
-			this.tbguid.Name = "tbguid";
-			this.tbguid.Size = new System.Drawing.Size(96, 21);
-			this.tbguid.TabIndex = 9;
-			this.tbguid.Text = "0xDDDDDDDD";
-			this.tbguid.TextChanged += new System.EventHandler(this.SetGuid);
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-			this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label8.Location = new System.Drawing.Point(69, 99);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(38, 17);
-			this.label8.TabIndex = 8;
-			this.label8.Text = "GUID";
-			this.label8.Click += new System.EventHandler(this.label8_Click);
-			// 
-			// panel6
-			// 
-			this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.panel6.BackColor = System.Drawing.SystemColors.AppWorkspace;
-			this.panel6.Controls.Add(this.label12);
-			this.panel6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold);
-			this.panel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.panel6.Location = new System.Drawing.Point(0, 0);
-			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(856, 24);
-			this.panel6.TabIndex = 0;
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label12.Location = new System.Drawing.Point(0, 4);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(143, 19);
-			this.label12.TabIndex = 0;
-			this.label12.Text = "Object Data Editor";
-			// 
-			// cbcareer
-			// 
-			this.cbcareer.Location = new System.Drawing.Point(0, 0);
-			this.cbcareer.Name = "cbcareer";
-			this.cbcareer.TabIndex = 0;
-			this.cbcareer.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
-			// 
-			// ExtObjdForm
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-			this.ClientSize = new System.Drawing.Size(856, 245);
-			this.Controls.Add(this.pnobjd);
-			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.Name = "ExtObjdForm";
-			this.Text = "ExtObjdForm";
-			this.pnobjd.ResumeLayout(false);
-			this.tc.ResumeLayout(false);
-			this.tpcatalogsort.ResumeLayout(false);
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox1.ResumeLayout(false);
-			this.tpraw.ResumeLayout(false);
-			this.panel1.ResumeLayout(false);
-			this.panel6.ResumeLayout(false);
-			this.ResumeLayout(false);
+            this.pnobjd = new System.Windows.Forms.Panel();
+            this.btnUpdateMMAT = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnCommit = new System.Windows.Forms.Button();
+            this.lbIsOk = new System.Windows.Forms.Label();
+            this.cball = new System.Windows.Forms.CheckBox();
+            this.tc = new System.Windows.Forms.TabControl();
+            this.tpcatalogsort = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbaspiration = new System.Windows.Forms.CheckBox();
+            this.cbhobby = new System.Windows.Forms.CheckBox();
+            this.cbappliances = new System.Windows.Forms.CheckBox();
+            this.cbdecorative = new System.Windows.Forms.CheckBox();
+            this.cbelectronics = new System.Windows.Forms.CheckBox();
+            this.cbgeneral = new System.Windows.Forms.CheckBox();
+            this.cblightning = new System.Windows.Forms.CheckBox();
+            this.cbplumbing = new System.Windows.Forms.CheckBox();
+            this.cbseating = new System.Windows.Forms.CheckBox();
+            this.cbsurfaces = new System.Windows.Forms.CheckBox();
+            this.cbsort = new Ambertation.Windows.Forms.EnumComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbkids = new System.Windows.Forms.CheckBox();
+            this.cbbathroom = new System.Windows.Forms.CheckBox();
+            this.cbbedroom = new System.Windows.Forms.CheckBox();
+            this.cbdinigroom = new System.Windows.Forms.CheckBox();
+            this.cbkitchen = new System.Windows.Forms.CheckBox();
+            this.cbmisc = new System.Windows.Forms.CheckBox();
+            this.cboutside = new System.Windows.Forms.CheckBox();
+            this.cblivingroom = new System.Windows.Forms.CheckBox();
+            this.cbstudy = new System.Windows.Forms.CheckBox();
+            this.tpraw = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rbhex = new System.Windows.Forms.RadioButton();
+            this.rbdec = new System.Windows.Forms.RadioButton();
+            this.rbbin = new System.Windows.Forms.RadioButton();
+            this.pg = new System.Windows.Forms.PropertyGrid();
+            this.tbtype = new System.Windows.Forms.TextBox();
+            this.cbtype = new System.Windows.Forms.ComboBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.tbproxguid = new System.Windows.Forms.TextBox();
+            this.label97 = new System.Windows.Forms.Label();
+            this.tborgguid = new System.Windows.Forms.TextBox();
+            this.llgetGUID = new System.Windows.Forms.LinkLabel();
+            this.label65 = new System.Windows.Forms.Label();
+            this.tbflname = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbguid = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbcareer = new System.Windows.Forms.CheckBox();
+            this.tbdiag = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pnobjd.SuspendLayout();
+            this.tc.SuspendLayout();
+            this.tpcatalogsort.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tpraw.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // pnobjd
+            // 
+            this.pnobjd.AutoScroll = true;
+            this.pnobjd.Controls.Add(this.tbdiag);
+            this.pnobjd.Controls.Add(this.label3);
+            this.pnobjd.Controls.Add(this.btnUpdateMMAT);
+            this.pnobjd.Controls.Add(this.label2);
+            this.pnobjd.Controls.Add(this.btnCommit);
+            this.pnobjd.Controls.Add(this.lbIsOk);
+            this.pnobjd.Controls.Add(this.cball);
+            this.pnobjd.Controls.Add(this.tc);
+            this.pnobjd.Controls.Add(this.tbtype);
+            this.pnobjd.Controls.Add(this.cbtype);
+            this.pnobjd.Controls.Add(this.label63);
+            this.pnobjd.Controls.Add(this.tbproxguid);
+            this.pnobjd.Controls.Add(this.label97);
+            this.pnobjd.Controls.Add(this.tborgguid);
+            this.pnobjd.Controls.Add(this.llgetGUID);
+            this.pnobjd.Controls.Add(this.label65);
+            this.pnobjd.Controls.Add(this.tbflname);
+            this.pnobjd.Controls.Add(this.label9);
+            this.pnobjd.Controls.Add(this.tbguid);
+            this.pnobjd.Controls.Add(this.label8);
+            this.pnobjd.Controls.Add(this.panel6);
+            this.pnobjd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnobjd.Location = new System.Drawing.Point(0, 0);
+            this.pnobjd.Name = "pnobjd";
+            this.pnobjd.Size = new System.Drawing.Size(856, 325);
+            this.pnobjd.TabIndex = 6;
+            // 
+            // btnUpdateMMAT
+            // 
+            this.btnUpdateMMAT.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnUpdateMMAT.Location = new System.Drawing.Point(56, 117);
+            this.btnUpdateMMAT.Name = "btnUpdateMMAT";
+            this.btnUpdateMMAT.Size = new System.Drawing.Size(56, 24);
+            this.btnUpdateMMAT.TabIndex = 32;
+            this.btnUpdateMMAT.Text = "Update";
+            this.btnUpdateMMAT.Click += new System.EventHandler(this.btnUpdateMMAT_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this.label2.Location = new System.Drawing.Point(114, 124);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(117, 13);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "MMATs and commit";
+            // 
+            // btnCommit
+            // 
+            this.btnCommit.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnCommit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnCommit.Location = new System.Drawing.Point(36, 56);
+            this.btnCommit.Name = "btnCommit";
+            this.btnCommit.Size = new System.Drawing.Size(75, 23);
+            this.btnCommit.TabIndex = 30;
+            this.btnCommit.Text = "Commit";
+            this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
+            // 
+            // lbIsOk
+            // 
+            this.lbIsOk.Location = new System.Drawing.Point(112, 57);
+            this.lbIsOk.Name = "lbIsOk";
+            this.lbIsOk.Size = new System.Drawing.Size(176, 23);
+            this.lbIsOk.TabIndex = 29;
+            this.lbIsOk.Text = "Please commit!";
+            this.lbIsOk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbIsOk.Visible = false;
+            // 
+            // cball
+            // 
+            this.cball.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.cball.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cball.Location = new System.Drawing.Point(98, 142);
+            this.cball.Name = "cball";
+            this.cball.Size = new System.Drawing.Size(120, 21);
+            this.cball.TabIndex = 28;
+            this.cball.Text = "update all MMATs";
+            this.cball.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            // 
+            // tc
+            // 
+            this.tc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tc.Controls.Add(this.tpcatalogsort);
+            this.tc.Controls.Add(this.tpraw);
+            this.tc.Location = new System.Drawing.Point(296, 56);
+            this.tc.Name = "tc";
+            this.tc.SelectedIndex = 0;
+            this.tc.Size = new System.Drawing.Size(560, 268);
+            this.tc.TabIndex = 26;
+            this.tc.SelectedIndexChanged += new System.EventHandler(this.CangedTab);
+            // 
+            // tpcatalogsort
+            // 
+            this.tpcatalogsort.Controls.Add(this.groupBox2);
+            this.tpcatalogsort.Controls.Add(this.groupBox1);
+            this.tpcatalogsort.Location = new System.Drawing.Point(4, 22);
+            this.tpcatalogsort.Name = "tpcatalogsort";
+            this.tpcatalogsort.Size = new System.Drawing.Size(552, 242);
+            this.tpcatalogsort.TabIndex = 0;
+            this.tpcatalogsort.Text = "Catalog Sort";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cbaspiration);
+            this.groupBox2.Controls.Add(this.cbhobby);
+            this.groupBox2.Controls.Add(this.cbappliances);
+            this.groupBox2.Controls.Add(this.cbdecorative);
+            this.groupBox2.Controls.Add(this.cbelectronics);
+            this.groupBox2.Controls.Add(this.cbgeneral);
+            this.groupBox2.Controls.Add(this.cblightning);
+            this.groupBox2.Controls.Add(this.cbplumbing);
+            this.groupBox2.Controls.Add(this.cbseating);
+            this.groupBox2.Controls.Add(this.cbsurfaces);
+            this.groupBox2.Controls.Add(this.cbsort);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(208, 8);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(336, 144);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Function Sort";
+            // 
+            // cbaspiration
+            // 
+            this.cbaspiration.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbaspiration.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbaspiration.Location = new System.Drawing.Point(224, 44);
+            this.cbaspiration.Name = "cbaspiration";
+            this.cbaspiration.Size = new System.Drawing.Size(104, 24);
+            this.cbaspiration.TabIndex = 17;
+            this.cbaspiration.Text = "Aspiration";
+            this.cbaspiration.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // cbhobby
+            // 
+            this.cbhobby.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbhobby.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbhobby.Location = new System.Drawing.Point(224, 24);
+            this.cbhobby.Name = "cbhobby";
+            this.cbhobby.Size = new System.Drawing.Size(104, 24);
+            this.cbhobby.TabIndex = 16;
+            this.cbhobby.Text = "Hobbies";
+            this.cbhobby.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // cbappliances
+            // 
+            this.cbappliances.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbappliances.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbappliances.Location = new System.Drawing.Point(16, 24);
+            this.cbappliances.Name = "cbappliances";
+            this.cbappliances.Size = new System.Drawing.Size(104, 24);
+            this.cbappliances.TabIndex = 8;
+            this.cbappliances.Text = "Appliances";
+            this.cbappliances.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // cbdecorative
+            // 
+            this.cbdecorative.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbdecorative.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbdecorative.Location = new System.Drawing.Point(16, 44);
+            this.cbdecorative.Name = "cbdecorative";
+            this.cbdecorative.Size = new System.Drawing.Size(104, 24);
+            this.cbdecorative.TabIndex = 9;
+            this.cbdecorative.Text = "Decorative";
+            this.cbdecorative.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // cbelectronics
+            // 
+            this.cbelectronics.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbelectronics.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbelectronics.Location = new System.Drawing.Point(16, 64);
+            this.cbelectronics.Name = "cbelectronics";
+            this.cbelectronics.Size = new System.Drawing.Size(104, 24);
+            this.cbelectronics.TabIndex = 10;
+            this.cbelectronics.Text = "Electronics";
+            this.cbelectronics.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // cbgeneral
+            // 
+            this.cbgeneral.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbgeneral.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbgeneral.Location = new System.Drawing.Point(16, 84);
+            this.cbgeneral.Name = "cbgeneral";
+            this.cbgeneral.Size = new System.Drawing.Size(104, 24);
+            this.cbgeneral.TabIndex = 11;
+            this.cbgeneral.Text = "General";
+            this.cbgeneral.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // cblightning
+            // 
+            this.cblightning.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cblightning.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cblightning.Location = new System.Drawing.Point(120, 24);
+            this.cblightning.Name = "cblightning";
+            this.cblightning.Size = new System.Drawing.Size(104, 24);
+            this.cblightning.TabIndex = 12;
+            this.cblightning.Text = "Lights";
+            this.cblightning.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // cbplumbing
+            // 
+            this.cbplumbing.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbplumbing.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbplumbing.Location = new System.Drawing.Point(120, 44);
+            this.cbplumbing.Name = "cbplumbing";
+            this.cbplumbing.Size = new System.Drawing.Size(104, 24);
+            this.cbplumbing.TabIndex = 13;
+            this.cbplumbing.Text = "Plumbing";
+            this.cbplumbing.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // cbseating
+            // 
+            this.cbseating.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbseating.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbseating.Location = new System.Drawing.Point(120, 64);
+            this.cbseating.Name = "cbseating";
+            this.cbseating.Size = new System.Drawing.Size(104, 24);
+            this.cbseating.TabIndex = 14;
+            this.cbseating.Text = "Seating";
+            this.cbseating.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // cbsurfaces
+            // 
+            this.cbsurfaces.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbsurfaces.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbsurfaces.Location = new System.Drawing.Point(120, 84);
+            this.cbsurfaces.Name = "cbsurfaces";
+            this.cbsurfaces.Size = new System.Drawing.Size(104, 24);
+            this.cbsurfaces.TabIndex = 15;
+            this.cbsurfaces.Text = "Surfaces";
+            this.cbsurfaces.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // cbsort
+            // 
+            this.cbsort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbsort.Enum = null;
+            this.cbsort.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbsort.Location = new System.Drawing.Point(120, 112);
+            this.cbsort.Name = "cbsort";
+            this.cbsort.ResourceManager = null;
+            this.cbsort.Size = new System.Drawing.Size(208, 21);
+            this.cbsort.TabIndex = 19;
+            this.cbsort.SelectedIndexChanged += new System.EventHandler(this.cbsort_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(16, 112);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Overall Sort:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbkids);
+            this.groupBox1.Controls.Add(this.cbbathroom);
+            this.groupBox1.Controls.Add(this.cbbedroom);
+            this.groupBox1.Controls.Add(this.cbdinigroom);
+            this.groupBox1.Controls.Add(this.cbkitchen);
+            this.groupBox1.Controls.Add(this.cbmisc);
+            this.groupBox1.Controls.Add(this.cboutside);
+            this.groupBox1.Controls.Add(this.cblivingroom);
+            this.groupBox1.Controls.Add(this.cbstudy);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(8, 8);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(192, 144);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Room Sort";
+            // 
+            // cbkids
+            // 
+            this.cbkids.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbkids.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbkids.Location = new System.Drawing.Point(120, 84);
+            this.cbkids.Name = "cbkids";
+            this.cbkids.Size = new System.Drawing.Size(64, 24);
+            this.cbkids.TabIndex = 8;
+            this.cbkids.Text = "Kids";
+            this.cbkids.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
+            // 
+            // cbbathroom
+            // 
+            this.cbbathroom.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbbathroom.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbathroom.Location = new System.Drawing.Point(16, 24);
+            this.cbbathroom.Name = "cbbathroom";
+            this.cbbathroom.Size = new System.Drawing.Size(104, 24);
+            this.cbbathroom.TabIndex = 0;
+            this.cbbathroom.Text = "Bathroom";
+            this.cbbathroom.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
+            // 
+            // cbbedroom
+            // 
+            this.cbbedroom.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbbedroom.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbedroom.Location = new System.Drawing.Point(16, 44);
+            this.cbbedroom.Name = "cbbedroom";
+            this.cbbedroom.Size = new System.Drawing.Size(104, 24);
+            this.cbbedroom.TabIndex = 1;
+            this.cbbedroom.Text = "Bedroom";
+            this.cbbedroom.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
+            // 
+            // cbdinigroom
+            // 
+            this.cbdinigroom.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbdinigroom.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbdinigroom.Location = new System.Drawing.Point(16, 64);
+            this.cbdinigroom.Name = "cbdinigroom";
+            this.cbdinigroom.Size = new System.Drawing.Size(104, 24);
+            this.cbdinigroom.TabIndex = 2;
+            this.cbdinigroom.Text = "Diningroom";
+            this.cbdinigroom.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
+            // 
+            // cbkitchen
+            // 
+            this.cbkitchen.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbkitchen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbkitchen.Location = new System.Drawing.Point(16, 84);
+            this.cbkitchen.Name = "cbkitchen";
+            this.cbkitchen.Size = new System.Drawing.Size(104, 24);
+            this.cbkitchen.TabIndex = 3;
+            this.cbkitchen.Text = "Kitchen";
+            this.cbkitchen.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
+            // 
+            // cbmisc
+            // 
+            this.cbmisc.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbmisc.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbmisc.Location = new System.Drawing.Point(120, 24);
+            this.cbmisc.Name = "cbmisc";
+            this.cbmisc.Size = new System.Drawing.Size(64, 24);
+            this.cbmisc.TabIndex = 4;
+            this.cbmisc.Text = "Misc.";
+            this.cbmisc.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
+            // 
+            // cboutside
+            // 
+            this.cboutside.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboutside.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboutside.Location = new System.Drawing.Point(120, 44);
+            this.cboutside.Name = "cboutside";
+            this.cboutside.Size = new System.Drawing.Size(64, 24);
+            this.cboutside.TabIndex = 5;
+            this.cboutside.Text = "Outside";
+            this.cboutside.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
+            // 
+            // cblivingroom
+            // 
+            this.cblivingroom.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cblivingroom.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cblivingroom.Location = new System.Drawing.Point(16, 104);
+            this.cblivingroom.Name = "cblivingroom";
+            this.cblivingroom.Size = new System.Drawing.Size(104, 24);
+            this.cblivingroom.TabIndex = 6;
+            this.cblivingroom.Text = "Livingroom";
+            this.cblivingroom.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
+            // 
+            // cbstudy
+            // 
+            this.cbstudy.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbstudy.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbstudy.Location = new System.Drawing.Point(120, 64);
+            this.cbstudy.Name = "cbstudy";
+            this.cbstudy.Size = new System.Drawing.Size(64, 24);
+            this.cbstudy.TabIndex = 7;
+            this.cbstudy.Text = "Study";
+            this.cbstudy.CheckedChanged += new System.EventHandler(this.SetRoomFlags);
+            // 
+            // tpraw
+            // 
+            this.tpraw.Controls.Add(this.panel1);
+            this.tpraw.Controls.Add(this.pg);
+            this.tpraw.Location = new System.Drawing.Point(4, 22);
+            this.tpraw.Name = "tpraw";
+            this.tpraw.Size = new System.Drawing.Size(552, 162);
+            this.tpraw.TabIndex = 1;
+            this.tpraw.Text = "RAW Data";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.rbhex);
+            this.panel1.Controls.Add(this.rbdec);
+            this.panel1.Controls.Add(this.rbbin);
+            this.panel1.Location = new System.Drawing.Point(292, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(256, 16);
+            this.panel1.TabIndex = 4;
+            // 
+            // rbhex
+            // 
+            this.rbhex.Location = new System.Drawing.Point(158, 1);
+            this.rbhex.Name = "rbhex";
+            this.rbhex.Size = new System.Drawing.Size(96, 16);
+            this.rbhex.TabIndex = 6;
+            this.rbhex.Text = "Hexadecimal";
+            this.rbhex.CheckedChanged += new System.EventHandler(this.DigitChanged);
+            // 
+            // rbdec
+            // 
+            this.rbdec.Location = new System.Drawing.Point(78, 1);
+            this.rbdec.Name = "rbdec";
+            this.rbdec.Size = new System.Drawing.Size(72, 16);
+            this.rbdec.TabIndex = 5;
+            this.rbdec.Text = "Decimal";
+            this.rbdec.CheckedChanged += new System.EventHandler(this.DigitChanged);
+            // 
+            // rbbin
+            // 
+            this.rbbin.Location = new System.Drawing.Point(6, 1);
+            this.rbbin.Name = "rbbin";
+            this.rbbin.Size = new System.Drawing.Size(64, 16);
+            this.rbbin.TabIndex = 4;
+            this.rbbin.Text = "Binary";
+            this.rbbin.CheckedChanged += new System.EventHandler(this.DigitChanged);
+            // 
+            // pg
+            // 
+            this.pg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pg.HelpVisible = false;
+            this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
+            this.pg.Location = new System.Drawing.Point(0, 0);
+            this.pg.Name = "pg";
+            this.pg.Size = new System.Drawing.Size(552, 162);
+            this.pg.TabIndex = 0;
+            this.pg.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PropChanged);
+            // 
+            // tbtype
+            // 
+            this.tbtype.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbtype.Location = new System.Drawing.Point(792, 32);
+            this.tbtype.Name = "tbtype";
+            this.tbtype.ReadOnly = true;
+            this.tbtype.Size = new System.Drawing.Size(56, 21);
+            this.tbtype.TabIndex = 25;
+            this.tbtype.Text = "0xDDDD";
+            // 
+            // cbtype
+            // 
+            this.cbtype.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbtype.Location = new System.Drawing.Point(624, 32);
+            this.cbtype.Name = "cbtype";
+            this.cbtype.Size = new System.Drawing.Size(168, 21);
+            this.cbtype.TabIndex = 24;
+            this.cbtype.SelectedIndexChanged += new System.EventHandler(this.ChangeType);
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label63.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label63.Location = new System.Drawing.Point(34, 187);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(75, 13);
+            this.label63.TabIndex = 22;
+            this.label63.Text = "Orig. GUID";
+            // 
+            // tbproxguid
+            // 
+            this.tbproxguid.Location = new System.Drawing.Point(112, 211);
+            this.tbproxguid.Name = "tbproxguid";
+            this.tbproxguid.Size = new System.Drawing.Size(96, 21);
+            this.tbproxguid.TabIndex = 21;
+            this.tbproxguid.Text = "0xDDDDDDDD";
+            this.tbproxguid.TextChanged += new System.EventHandler(this.SetGuid);
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label97.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label97.Location = new System.Drawing.Point(13, 214);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(99, 13);
+            this.label97.TabIndex = 20;
+            this.label97.Text = "Fallback GUID";
+            // 
+            // tborgguid
+            // 
+            this.tborgguid.Location = new System.Drawing.Point(112, 184);
+            this.tborgguid.Name = "tborgguid";
+            this.tborgguid.Size = new System.Drawing.Size(96, 21);
+            this.tborgguid.TabIndex = 19;
+            this.tborgguid.Text = "0xDDDDDDDD";
+            this.tborgguid.TextChanged += new System.EventHandler(this.SetGuid);
+            // 
+            // llgetGUID
+            // 
+            this.llgetGUID.AutoSize = true;
+            this.llgetGUID.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llgetGUID.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.llgetGUID.LinkArea = new System.Windows.Forms.LinkArea(0, 8);
+            this.llgetGUID.Location = new System.Drawing.Point(213, 99);
+            this.llgetGUID.Name = "llgetGUID";
+            this.llgetGUID.Size = new System.Drawing.Size(65, 13);
+            this.llgetGUID.TabIndex = 16;
+            this.llgetGUID.TabStop = true;
+            this.llgetGUID.Text = "get GUID";
+            this.llgetGUID.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GetGuid);
+            // 
+            // label65
+            // 
+            this.label65.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label65.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label65.Location = new System.Drawing.Point(554, 35);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(69, 13);
+            this.label65.TabIndex = 12;
+            this.label65.Text = "Obj. Type";
+            // 
+            // tbflname
+            // 
+            this.tbflname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbflname.Location = new System.Drawing.Point(112, 32);
+            this.tbflname.Name = "tbflname";
+            this.tbflname.Size = new System.Drawing.Size(432, 21);
+            this.tbflname.TabIndex = 11;
+            this.tbflname.TextChanged += new System.EventHandler(this.SetFlName);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label9.Location = new System.Drawing.Point(45, 35);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Filename";
+            // 
+            // tbguid
+            // 
+            this.tbguid.Location = new System.Drawing.Point(112, 96);
+            this.tbguid.Name = "tbguid";
+            this.tbguid.Size = new System.Drawing.Size(96, 21);
+            this.tbguid.TabIndex = 9;
+            this.tbguid.Text = "0xDDDDDDDD";
+            this.tbguid.TextChanged += new System.EventHandler(this.SetGuid);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label8.Location = new System.Drawing.Point(69, 99);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "GUID";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel6.Controls.Add(this.label12);
+            this.panel6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold);
+            this.panel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(856, 24);
+            this.panel6.TabIndex = 0;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label12.Location = new System.Drawing.Point(0, 4);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(141, 16);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Object Data Editor";
+            // 
+            // cbcareer
+            // 
+            this.cbcareer.Location = new System.Drawing.Point(0, 0);
+            this.cbcareer.Name = "cbcareer";
+            this.cbcareer.Size = new System.Drawing.Size(104, 24);
+            this.cbcareer.TabIndex = 0;
+            this.cbcareer.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
+            // 
+            // tbdiag
+            // 
+            this.tbdiag.Location = new System.Drawing.Point(112, 238);
+            this.tbdiag.Name = "tbdiag";
+            this.tbdiag.Size = new System.Drawing.Size(96, 21);
+            this.tbdiag.TabIndex = 34;
+            this.tbdiag.Text = "0xDDDDDDDD";
+            this.tbdiag.TextChanged += new System.EventHandler(this.SetGuid);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(13, 241);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 13);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "Diagonal GUID";
+            // 
+            // ExtObjdForm
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
+            this.ClientSize = new System.Drawing.Size(856, 325);
+            this.Controls.Add(this.pnobjd);
+            this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Name = "ExtObjdForm";
+            this.Text = "ExtObjdForm";
+            this.pnobjd.ResumeLayout(false);
+            this.pnobjd.PerformLayout();
+            this.tc.ResumeLayout(false);
+            this.tpcatalogsort.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tpraw.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.ResumeLayout(false);
 
 		}
 		#endregion
@@ -1085,7 +1126,8 @@ namespace SimPe.PackedFiles.UserInterface
 			{
 				wrapper.Guid = Convert.ToUInt32(tbguid.Text, 16);
 				wrapper.ProxyGuid = Convert.ToUInt32(this.tbproxguid.Text, 16);
-				wrapper.OriginalGuid = Convert.ToUInt32(this.tborgguid.Text, 16);
+                wrapper.OriginalGuid = Convert.ToUInt32(this.tborgguid.Text, 16);
+                wrapper.DiagonalGuid = Convert.ToUInt32(this.tbdiag.Text, 16);
 				wrapper.Changed = true;
 			} 
 			catch (Exception){}

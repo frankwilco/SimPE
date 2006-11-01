@@ -67,6 +67,25 @@ namespace SimPe.Windows.Forms
             if (Helper.WindowsRegistry.SimpleResourceSelect) OnSelectResource();
         }
 
+        private void lv_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+            {
+                bool old = ctrldown;
+                ctrldown = true;
+                ListViewItem lvi = lv.GetItemAt(e.X, e.Y);
+
+                lv.BeginUpdate();
+                lv.EnsureVisible(lvi.Index);
+                lv.SelectedIndices.Clear();
+                lv.SelectedIndices.Add(lvi.Index);
+                OnSelectResource();
+                lv.EndUpdate();
+
+                ctrldown = old;
+            }
+        }
+
         private void lv_DoubleClick(object sender, EventArgs e)
         {
             if (!Helper.WindowsRegistry.SimpleResourceSelect) OnSelectResource();
@@ -107,9 +126,8 @@ namespace SimPe.Windows.Forms
                 lv.EndUpdate();
             }
         }
-
         protected void OnSelectResource()
-        {
+        {      
             bool rctrl = ctrldown;
             if (!Helper.WindowsRegistry.FirefoxTabbing) rctrl = false;
 

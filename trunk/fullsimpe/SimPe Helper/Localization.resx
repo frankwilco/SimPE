@@ -1161,13 +1161,25 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   <data name="FileTableSectionInclude">
     <value>Include {what}</value>
   </data>
-  <data name="All">
-    <value>All</value>
+  <data name="All Res">
+    <value>All Resources</value>
   </data>
   <data name="Loading embedded resource names...">
     <value>Loading embedded resource names...</value>
   </data>
   <data name="Loading package...">
     <value>Loading package...</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Human">
+    <value>Human</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.LargeDog">
+    <value>Large Dog</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.SmallDog">
+    <value>Small Dog</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Cat">
+    <value>Cat</value>
   </data>
 </root>

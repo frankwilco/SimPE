@@ -780,10 +780,13 @@ namespace SimPe
         {
             this.mbiTopics.Visible = mbiTopics.DropDownItems.Count > 0;
         }
-        
 
-        
-		
+
+
+        void tbDebug_Click(object sender, EventArgs e)
+        {
+            Ambertation.Windows.Forms.Debug.StructureTreeView.Execute(manager);
+        }
 	}
 			
 }

@@ -16,7 +16,7 @@ namespace SimPe.Windows.Forms
         public ResourceViewManager()
         {
             InitializeComponent();
-
+            
             maps = new ResourceMaps();
         }
 
@@ -63,6 +63,12 @@ namespace SimPe.Windows.Forms
 
 
         [System.ComponentModel.Browsable(false)]
+        public ResourceViewManager.ResourceNameList Everything
+        {
+            get { return maps.Everything; }
+        }
+
+        [System.ComponentModel.Browsable(false)]
         public SimPe.Interfaces.Files.IPackageFile Package
         {
             get { return pkg; }
@@ -80,6 +86,7 @@ namespace SimPe.Windows.Forms
         {
             lock (maps)
             {
+                if (lv != null) lv.BeginUpdate();
                 if (oldpkg != null)
                 {
                     oldpkg.SavedIndex -= new EventHandler(newpkg_SavedIndex);
@@ -88,12 +95,11 @@ namespace SimPe.Windows.Forms
                 }
                 maps.Clear();
 
-                if (lv != null) lv.Clear();
-                if (tv != null) tv.Clear();
+
 
                 if (newpkg != null)
                 {
-                    if (Helper.WindowsRegistry.ShowProgressWhenPackageLoads)
+                    if (Helper.WindowsRegistry.ShowProgressWhenPackageLoads || !Helper.WindowsRegistry.AsynchronSort)
                         Wait.Start(newpkg.Index.Length);
                     else Wait.Start();
                     Wait.Message = SimPe.Localization.GetString("Loading package...");
@@ -101,15 +107,16 @@ namespace SimPe.Windows.Forms
                     foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in newpkg.Index)
                     {
                         NamedPackedFileDescriptor npfd = new NamedPackedFileDescriptor(pfd, newpkg);
+                        if (!Helper.WindowsRegistry.AsynchronSort) npfd.GetRealName();
+
                         maps.Everything.Add(npfd);
                         AddResourceToMaps(npfd);
-                        if (Helper.WindowsRegistry.ShowProgressWhenPackageLoads) Wait.Progress = ct++;
+                        if (Helper.WindowsRegistry.ShowProgressWhenPackageLoads || !Helper.WindowsRegistry.AsynchronSort) Wait.Progress = ct++;
                     }
                     Wait.Stop();
                 }
 
-                if (lv != null) lv.SetResources(maps.Everything);
-                if (tv != null) tv.SetResourceMaps(maps, false);
+                UpdateContent();
 
                 if (newpkg != null)
                 {
@@ -117,17 +124,32 @@ namespace SimPe.Windows.Forms
                     newpkg.RemovedResource += new EventHandler(newpkg_RemovedResource);
                     newpkg.SavedIndex += new EventHandler(newpkg_SavedIndex);
                 }
+
+                if (lv != null) lv.EndUpdate();
             }
+        }
+
+        private void UpdateContent()
+        {
+            if (lv != null)
+            {
+                if (maps.Everything.Count > Helper.WindowsRegistry.BigPackageResourceCount)
+                    lv.SetResources(new ResourceNameList());
+                else 
+                    lv.SetResources(maps.Everything);
+            }
+            if (tv != null) tv.SetResourceMaps(maps, false);
         }
 
         void newpkg_SavedIndex(object sender, EventArgs e)
         {
-            if (lv != null) lv.Refresh();
+            OnChangedPackage(pkg, pkg);
         }
 
         void newpkg_RemovedResource(object sender, EventArgs e)
         {
-            OnChangedPackage(pkg, pkg);
+            //OnChangedPackage(pkg, pkg);
+            if (lv != null) lv.Refresh();
         }
 
         void newpkg_AddedResource(object sender, EventArgs e)

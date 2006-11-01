@@ -519,7 +519,7 @@ namespace Ambertation.Renderer
         {
             get
             {
-                return MenuStripGradientBegin;
+                return Color.White;
             }
         }
 
@@ -527,7 +527,7 @@ namespace Ambertation.Renderer
         {
             get
             {
-                return MenuStripGradientBegin;
+                return Color.FromArgb(0xef, 0xef, 0xef);
             }
         }
         #endregion

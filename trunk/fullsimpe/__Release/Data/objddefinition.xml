@@ -681,6 +681,7 @@
 			<name>diagonal selector guid 2 - Read Only</name>
 			<help>diagonal selector guid 2 - Read Only</help>
 			<default>0</default>
+      <readonly/>
 			<index type="0">22</index>
 			<index type="2">22</index>
 			<index type="4">22</index>
@@ -732,6 +733,7 @@
 			<name>Proxy GUID 2</name>
 			<help>Proxy GUID 2</help>
 			<default>0</default>
+      <readonly/>
 			<index type="0">30</index>
 			<index type="2">30</index>
 			<index type="4">30</index>
@@ -769,6 +771,7 @@
 			<name>Proxy GUID 1</name>
 			<help>Proxy GUID 1</help>
 			<default>0</default>
+      <readonly/>
 			<index type="0">29</index>
 			<index type="2">29</index>
 			<index type="4">29</index>
@@ -806,6 +809,7 @@
 			<name>diagonal selector guid 1 - Read Only</name>
 			<help>diagonal selector guid 1 - Read Only</help>
 			<default>0</default>
+      <readonly/>
 			<index type="0">21</index>
 			<index type="2">21</index>
 			<index type="4">21</index>
@@ -860,7 +864,6 @@
 			<name>object model guid 2 - Read Only</name>
 			<help>object model guid 2 - Read Only</help>
 			<default>0</default>
-			<readonly/>
 			<index type="0">73</index>
 			<index type="2">73</index>
 			<index type="4">73</index>
@@ -902,7 +905,6 @@
 			<name>object model guid 1 - Read Only</name>
 			<help>object model guid 1 - Read Only</help>
 			<default>0</default>
-			<readonly/>
 			<index type="0">72</index>
 			<index type="2">72</index>
 			<index type="4">72</index>

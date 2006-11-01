@@ -35,7 +35,7 @@
             this.clInst = new System.Windows.Forms.ColumnHeader();
             this.clOffset = new System.Windows.Forms.ColumnHeader();
             this.clSize = new System.Windows.Forms.ColumnHeader();
-            this.lv = new System.Windows.Forms.ListView();
+            this.lv = new ListViewDoubleBuffered();
             this.SuspendLayout();
             // 
             // clType
@@ -76,12 +76,14 @@
             this.lv.FullRowSelect = true;
             this.lv.HideSelection = false;
             this.lv.Name = "lv";
+            this.lv.ShowGroups = false;
             this.lv.UseCompatibleStateImageBehavior = false;
             this.lv.View = System.Windows.Forms.View.Details;
             this.lv.VirtualMode = true;
             this.lv.DoubleClick += new System.EventHandler(this.lv_DoubleClick);
             this.lv.VirtualItemsSelectionRangeChanged += new System.Windows.Forms.ListViewVirtualItemsSelectionRangeChangedEventHandler(this.lv_VirtualItemsSelectionRangeChanged);
             this.lv.SelectedIndexChanged += new System.EventHandler(this.lv_SelectedIndexChanged);
+            this.lv.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lv_MouseUp);
             this.lv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lv_KeyDown);
             this.lv.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_ColumnClick);
             this.lv.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lv_RetrieveVirtualItem);
@@ -107,7 +109,7 @@
         private System.Windows.Forms.ColumnHeader clInst;
         private System.Windows.Forms.ColumnHeader clOffset;
         private System.Windows.Forms.ColumnHeader clSize;
-        private System.Windows.Forms.ListView lv;
+        private ListViewDoubleBuffered lv;
 
     }
 }

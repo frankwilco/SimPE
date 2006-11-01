@@ -10,13 +10,13 @@ namespace SimPe
 {
     public partial class WaitControl : UserControl, IWaitingBarControl
     {
-        const uint WM_USER_CHANGED_MESSAGE = Ambertation.Windows.Forms.APIHelp.WM_USER | 0x0001;
-        const uint WM_USER_CHANGED_MAXPROGRESS = Ambertation.Windows.Forms.APIHelp.WM_USER | 0x0002;
-        const uint WM_USER_CHANGED_PROGRESS = Ambertation.Windows.Forms.APIHelp.WM_USER | 0x0003;
-        const uint WM_USER_SHOW_HIDE = Ambertation.Windows.Forms.APIHelp.WM_USER | 0x0004;
-        const uint WM_USER_SHOW_HIDE_PROGRESS = Ambertation.Windows.Forms.APIHelp.WM_USER | 0x0005;
-        const uint WM_USER_SHOW_HIDE_ANIMATION = Ambertation.Windows.Forms.APIHelp.WM_USER | 0x0006;
-        const uint WM_USER_SHOW_HIDE_TEXT = Ambertation.Windows.Forms.APIHelp.WM_USER | 0x0007;
+        const uint WM_USER_CHANGED_MESSAGE = Ambertation.Windows.Forms.APIHelp.WM_APP | 0x0001;
+        const uint WM_USER_CHANGED_MAXPROGRESS = Ambertation.Windows.Forms.APIHelp.WM_APP | 0x0002;
+        const uint WM_USER_CHANGED_PROGRESS = Ambertation.Windows.Forms.APIHelp.WM_APP | 0x0003;
+        const uint WM_USER_SHOW_HIDE = Ambertation.Windows.Forms.APIHelp.WM_APP | 0x0004;
+        const uint WM_USER_SHOW_HIDE_PROGRESS = Ambertation.Windows.Forms.APIHelp.WM_APP | 0x0005;
+        const uint WM_USER_SHOW_HIDE_ANIMATION = Ambertation.Windows.Forms.APIHelp.WM_APP | 0x0006;
+        const uint WM_USER_SHOW_HIDE_TEXT = Ambertation.Windows.Forms.APIHelp.WM_APP | 0x0007;
         IntPtr myhandle;
 
         public WaitControl()

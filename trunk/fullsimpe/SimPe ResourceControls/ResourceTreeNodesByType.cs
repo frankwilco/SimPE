@@ -5,13 +5,13 @@ using System.Windows.Forms;
 
 namespace SimPe.Windows.Forms
 {
-    class ResourceTreeNodesByType : IResourceTreeNodeBuilder
+    class ResourceTreeNodesByType : AResourceTreeNodeBuilder
     {
         #region IResourceTreeNodeBuilder Member
 
-        public ResourceTreeNodeExt BuildNodes(ResourceMaps maps)
+        public override ResourceTreeNodeExt BuildNodes(ResourceMaps maps)
         {
-            ResourceTreeNodeExt tn = new ResourceTreeNodeExt(maps.Everything, SimPe.Localization.GetString("All"));
+            ResourceTreeNodeExt tn = new ResourceTreeNodeExt(0, maps.Everything, SimPe.Localization.GetString("AllRes"));
 
             AddType(maps.ByType, tn);
 

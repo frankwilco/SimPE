@@ -60,7 +60,8 @@ namespace SimPe.Windows.Forms
                 {
                     if (names.Count == 0) break;
                     pfd = names.Pop();
-                    SimPe.Wait.Progress = counter++;
+                    if (Helper.WindowsRegistry.AsynchronSort)
+                        SimPe.Wait.Progress = counter++;
                 }
                 pfd.GetRealName();
             }

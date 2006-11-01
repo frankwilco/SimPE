@@ -47,13 +47,13 @@
 		<known/>
 	</type>
 	<type value="ABCB5DA4">
-		<name>2D Array</name>
-		<shortname>2ARY</shortname>
+		<name>Neighborhood Terrain Geometry</name>
+		<shortname>NHTG</shortname>
 		<known/>
 	</type>
 	<type value="6B943B43">
-		<name>2D Array</name>
-		<shortname>2ARY</shortname>
+		<name>Lot Terrain Geometry</name>
+		<shortname>LOTG</shortname>
 		<known/>
 	</type>
 	<type value="2A51171B">

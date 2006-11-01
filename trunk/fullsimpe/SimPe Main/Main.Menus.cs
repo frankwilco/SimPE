@@ -165,8 +165,7 @@ namespace SimPe
 
             ArrayList exclude = new ArrayList();
             exclude.Add(this.miNewDc);
-            SimPe.LoadFileWrappersExt.BuildToolBar(tbWindow, miWindow.DropDownItems, exclude);
-            this.dcPlugin.Open();
+            SimPe.LoadFileWrappersExt.BuildToolBar(tbWindow, miWindow.DropDownItems, exclude);            
         }
 
         bool createdmenus;

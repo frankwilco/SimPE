@@ -73,6 +73,25 @@
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdvancedForms, Version=1.0.2471.34995, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -209,6 +228,9 @@
     <Compile Include="ExtSDescUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ExtSDescUI.Designer.cs">
+      <DependentUpon>ExtSDescUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExtSrel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -220,6 +242,12 @@
     </Compile>
     <Compile Include="FamilyTiesForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PetTraitSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PetTraitSelect.Designer.cs">
+      <DependentUpon>PetTraitSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -274,6 +302,7 @@
     <EmbeddedResource Include="dna.png" />
     <EmbeddedResource Include="ExtSDescUI.de.resx">
       <DependentUpon>ExtSDescUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtSDescUI.pl.resx">
       <DependentUpon>ExtSDescUI.cs</DependentUpon>
@@ -334,6 +363,10 @@
     <EmbeddedResource Include="srel.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PetTraitSelect.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PetTraitSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>

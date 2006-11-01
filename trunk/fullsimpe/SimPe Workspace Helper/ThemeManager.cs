@@ -159,6 +159,13 @@ namespace SimPe
             }
         }
 
+        void SetTheme(Ambertation.Windows.Forms.DockManager mng)
+        {
+            if (ctheme == GuiTheme.Everett) mng.Renderer = new Ambertation.Windows.Forms.ClassicRenderer();
+            else if (ctheme == GuiTheme.Glossy) mng.Renderer = new Ambertation.Windows.Forms.GlossyRenderer();
+            else mng.Renderer = new Ambertation.Windows.Forms.WhidbeyRenderer();
+        }
+
         void SetTheme(System.Windows.Forms.ToolStripContainer sdm)
         {
             SetTheme(sdm.TopToolStripPanel);
@@ -254,16 +261,17 @@ namespace SimPe
 		/// <param name="o"></param>
 		public void Theme(object o) 
 		{
-			if (o is TD.SandDock.SandDockManager) SetTheme((TD.SandDock.SandDockManager)o);			
-			else if (o is SteepValley.Windows.Forms.XPGradientPanel) SetTheme((SteepValley.Windows.Forms.XPGradientPanel)o);
-			else if (o is SimPe.Windows.Forms.WrapperBaseControl) SetTheme((SimPe.Windows.Forms.WrapperBaseControl)o);
-			else if (o is System.Windows.Forms.Splitter) SetTheme((System.Windows.Forms.Splitter)o);
-			else if (o is Ambertation.Windows.Forms.XPTaskBoxSimple) SetTheme((Ambertation.Windows.Forms.XPTaskBoxSimple)o);
+            if (o is TD.SandDock.SandDockManager) SetTheme((TD.SandDock.SandDockManager)o);
+            else if (o is Ambertation.Windows.Forms.DockManager) SetTheme((Ambertation.Windows.Forms.DockManager)o);
+            else if (o is SteepValley.Windows.Forms.XPGradientPanel) SetTheme((SteepValley.Windows.Forms.XPGradientPanel)o);
+            else if (o is SimPe.Windows.Forms.WrapperBaseControl) SetTheme((SimPe.Windows.Forms.WrapperBaseControl)o);
+            else if (o is System.Windows.Forms.Splitter) SetTheme((System.Windows.Forms.Splitter)o);
+            else if (o is Ambertation.Windows.Forms.XPTaskBoxSimple) SetTheme((Ambertation.Windows.Forms.XPTaskBoxSimple)o);
             else if (o is System.Windows.Forms.ContextMenuStrip) SetTheme((System.Windows.Forms.ContextMenuStrip)o);
             else if (o is System.Windows.Forms.MenuStrip) SetTheme((System.Windows.Forms.MenuStrip)o);
             else if (o is System.Windows.Forms.ToolStrip) SetTheme((System.Windows.Forms.ToolStrip)o);
-            else if (o is System.Windows.Forms.ToolStripContainer) SetTheme((System.Windows.Forms.ToolStripContainer)o); 
-			else if (o is System.Windows.Forms.Control) SetTheme((System.Windows.Forms.Control)o);			
+            else if (o is System.Windows.Forms.ToolStripContainer) SetTheme((System.Windows.Forms.ToolStripContainer)o);
+            else if (o is System.Windows.Forms.Control) SetTheme((System.Windows.Forms.Control)o);			
 		}
 		#endregion
 

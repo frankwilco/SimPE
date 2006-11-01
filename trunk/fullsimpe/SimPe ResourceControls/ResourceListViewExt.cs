@@ -8,10 +8,13 @@ using System.Windows.Forms;
 
 namespace SimPe.Windows.Forms
 {
+    
+
     public partial class ResourceListViewExt : UserControl
     {
-        const uint WM_USER_SORTED_RESOURCES = Ambertation.Windows.Forms.APIHelp.WM_USER | 0x0001;
-        const uint WM_USER_FIRE_SELECTION = Ambertation.Windows.Forms.APIHelp.WM_USER | 0x0002;
+        const uint WM_USER_SORTED_RESOURCES = Ambertation.Windows.Forms.APIHelp.WM_APP | 0x0001;
+        const uint WM_USER_FIRE_SELECTION = Ambertation.Windows.Forms.APIHelp.WM_APP | 0x0002;
+
         
         
         ResourceViewManager.ResourceNameList names;
@@ -23,6 +26,9 @@ namespace SimPe.Windows.Forms
         
         public ResourceListViewExt()
         {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            cache = new Dictionary<int, ResourceListItemExt>();
+        
             lastresources = null;
             seltimer = new System.Threading.Timer(new System.Threading.TimerCallback(SelectionTimerCallback), Handle, System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
             sortticket = 0;
@@ -37,6 +43,17 @@ namespace SimPe.Windows.Forms
                 lv.Columns.Remove(clSize);
                 lv.Columns.Remove(clOffset);
             }
+            
+        }
+
+        public void BeginUpdate()
+        {
+            lv.BeginUpdate();
+        }
+
+        public void EndUpdate()
+        {
+            lv.EndUpdate();
         }
 
         public SimPe.Windows.Forms.IResourceViewFilter Filter
@@ -71,9 +88,11 @@ namespace SimPe.Windows.Forms
         {
             if (lastresources != null) SetResources(lastresources);
         }
+
         
         internal void SetResources(ResourceViewManager.ResourceNameList resources)
         {
+            this.Clear();
             seltimer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
             this.CancelThreads();
             lock (names)
@@ -87,6 +106,7 @@ namespace SimPe.Windows.Forms
                 }
 
                 names.Clear();
+                
                 if (FileTable.WrapperRegistry!=null) lv.SmallImageList = FileTable.WrapperRegistry.WrapperImageList;
                 //if (resources != this.resources)
                 {                    
@@ -115,9 +135,30 @@ namespace SimPe.Windows.Forms
             }
         }
 
+        public new void Refresh()
+        {
+            //Console.WriteLine("refreshing...");
+            //lv.Refresh();
+            lv.Update();
+            base.Refresh();
+        }
+
         void Descriptor_ChangedData(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
         {
+            if (manager != null)
+            {
+
+                foreach (NamedPackedFileDescriptor pfd in manager.Everything)
+                {
+                    if (pfd.Descriptor.Equals(sender))
+                    {
+                        pfd.ResetRealName();
+                        break;
+                    }
+                }
+            }
             this.Refresh();
+            
         }        
 
         void Descriptor_ChangedUserData(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
@@ -142,7 +183,9 @@ namespace SimPe.Windows.Forms
                         sortingthread = null;
                         DoTheSorting();
                         Refresh();
-                        Wait.SubStop();
+
+                        if (Helper.WindowsRegistry.AsynchronSort )
+                            Wait.SubStop();
                     
                     }
                 }
@@ -169,7 +212,11 @@ namespace SimPe.Windows.Forms
         }       
 
         public void Clear()
-        {            
+        {
+            foreach (ResourceListItemExt lvi in cache.Values)            
+                lvi.FreeResources();
+            
+            cache.Clear();
             lv.VirtualListSize = 0;            
             lv.Items.Clear();
         }
@@ -189,9 +236,13 @@ namespace SimPe.Windows.Forms
         
 
         CacheVirtualItemsEventArgs lastcache;
+        Dictionary<int, ResourceListItemExt> cache;
         private void lv_CacheVirtualItems(object sender, CacheVirtualItemsEventArgs e)
-        {
+        {            
             lastcache = e;
+            /*for (int i = e.StartIndex; i <= e.EndIndex; i++)            
+                CreateItem(i);*/
+            
             /*PrintStats("CacheVirtualItems");
             System.Diagnostics.Debug.WriteLine("    "+e.StartIndex + " - " + e.EndIndex);*/
         }
@@ -204,16 +255,32 @@ namespace SimPe.Windows.Forms
                 //System.Diagnostics.Debug.WriteLine("Reading " + e.ItemIndex);
                 lock (names)
                 {
-                    if (e.ItemIndex >= 0 && e.ItemIndex < names.Count)
-                    {
-                        NamedPackedFileDescriptor pfd = names[e.ItemIndex];
-                        if (lastcache != null)
-                            e.Item = new ResourceListItemExt(pfd, manager, e.ItemIndex >= lastcache.StartIndex && e.ItemIndex <= lastcache.EndIndex);
-                        else
-                            e.Item = new ResourceListItemExt(pfd, manager, false);
-                    }
+                    e.Item = CreateItem(e.ItemIndex);
                 }
             }
+        }
+
+        private ResourceListItemExt CreateItem(int index)
+        {
+            ResourceListItemExt ret = null;
+            if (index >= 0 && index < names.Count)
+            {
+                bool vis = false;
+                if (lastcache != null) vis = index >= lastcache.StartIndex && index <= lastcache.EndIndex;
+
+                if (cache.ContainsKey(index))                
+                    ret = cache[index];
+
+                if (ret == null)
+                {
+                    NamedPackedFileDescriptor pfd = names[index];
+                    ret = new ResourceListItemExt(pfd, manager, vis);
+                    //cache.Add(index, ret);
+                }
+                else ret.Visible = vis;
+            }
+
+            return ret;
         }
 
         private void lv_SearchForVirtualItem(object sender, SearchForVirtualItemEventArgs e)
@@ -248,5 +315,7 @@ namespace SimPe.Windows.Forms
             clOffset.Width = Helper.WindowsRegistry.Layout.OffsetColumnWidth;
             clSize.Width = Helper.WindowsRegistry.Layout.SizeColumnWidth;
         }
+
+        
     }
 }
