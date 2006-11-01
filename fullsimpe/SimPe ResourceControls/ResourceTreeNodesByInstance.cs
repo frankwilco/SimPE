@@ -5,13 +5,13 @@ using System.Windows.Forms;
 
 namespace SimPe.Windows.Forms
 {
-    class ResourceTreeNodesByInstance : IResourceTreeNodeBuilder
+    class ResourceTreeNodesByInstance : AResourceTreeNodeBuilder
     {
         #region IResourceTreeNodeBuilder Member
 
-        public virtual ResourceTreeNodeExt BuildNodes(ResourceMaps maps)
+        public override ResourceTreeNodeExt BuildNodes(ResourceMaps maps)
         {
-            ResourceTreeNodeExt tn = new ResourceTreeNodeExt(maps.Everything, SimPe.Localization.GetString("All"));
+            ResourceTreeNodeExt tn = new ResourceTreeNodeExt(0, maps.Everything, SimPe.Localization.GetString("AllRes"));
 
             AddInstances(maps.ByInstance, tn, true, true);
 
@@ -26,16 +26,16 @@ namespace SimPe.Windows.Forms
             foreach (ulong inst in map.Keys)
             {
                 ResourceViewManager.ResourceNameList list = map[inst];
-                ResourceTreeNodeExt node = new ResourceTreeNodeExt(list, "0x" + Helper.HexString(inst));
+                ResourceTreeNodeExt node = new ResourceTreeNodeExt(inst, list, "0x" + Helper.HexString(inst));
                 if (group)
                 {
-                    ResourceTreeNodeExt groupnode = new ResourceTreeNodeExt(list, "Groups");
+                    ResourceTreeNodeExt groupnode = new ResourceTreeNodeExt(inst, list, "Groups");
                     AddSubNodesForGroups(groupnode, list);
                     node.Nodes.Add(groupnode);
                 }
                 if (type)
                 {
-                    ResourceTreeNodeExt typenode = new ResourceTreeNodeExt(list, "Types");
+                    ResourceTreeNodeExt typenode = new ResourceTreeNodeExt(inst, list, "Types");
                     ResourceTreeNodesByGroup.AddSubNodesForTypes(typenode, list);
                     node.Nodes.Add(typenode);
                 }

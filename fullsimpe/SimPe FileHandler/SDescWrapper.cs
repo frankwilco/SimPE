@@ -144,6 +144,87 @@ namespace SimPe.PackedFiles.Wrapper
 	}
 	#endregion
 
+    #region Pet Traits
+    /// <summary>
+    /// Flags for PetTraits
+    /// </summary>
+    public class PetTraits : FlagBase
+    {
+        public PetTraits(ushort flags) : base(flags) { }
+        public PetTraits() : base(0) { }
+
+        public void SetTrait(int nr, bool val)
+        {
+            SetBit((byte)Math.Min(Math.Max(nr, 0), 9), val);
+        }
+
+        public bool GetTrait(int nr)
+        {
+            return GetBit((byte)Math.Min(Math.Max(nr, 0), 9));
+        }
+
+        public bool Gifted
+        {
+            get { return GetBit(0); }
+            set { SetBit(0, value); }
+        }
+
+        public bool Doofus
+        {
+            get { return GetBit(1); }
+            set { SetBit(1, value); }
+        }
+
+        public bool Hyper
+        {
+            get { return GetBit(2); }
+            set { SetBit(2, value); }
+        }
+
+        public bool Lazy
+        {
+            get { return GetBit(3); }
+            set { SetBit(3, value); }
+        }
+
+        public bool Independant
+        {
+            get { return GetBit(4); }
+            set { SetBit(4, value); }
+        }
+
+        public bool Friendly
+        {
+            get { return GetBit(5); }
+            set { SetBit(5, value); }
+        }
+
+        public bool Aggressive
+        {
+            get { return GetBit(6); }
+            set { SetBit(6, value); }
+        }
+
+        public bool Cowardly
+        {
+            get { return GetBit(7); }
+            set { SetBit(7, value); }
+        }
+
+        public bool Pigpen
+        {
+            get { return GetBit(8); }
+            set { SetBit(8, value); }
+        }
+
+        public bool Finicky
+        {
+            get { return GetBit(9); }
+            set { SetBit(9, value); }
+        }
+    }
+    #endregion
+
 	#region CharacterDescription 
 	/// <summary>
 	/// Holds some descriptive Properties about a Character
@@ -889,9 +970,16 @@ namespace SimPe.PackedFiles.Wrapper
 	/// </summary>
 	public class SdscNightlife : Serializer
 	{
+        public enum SpeciesType : ushort
+        {
+            Human = 0,
+            LargeDog = 1,
+            SmallDog = 2,
+            Cat = 3
+        }
 		internal SdscNightlife()
 		{
-			
+            species = SpeciesType.Human;
 		}
 
 		ushort route;
@@ -945,9 +1033,9 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
 
-		
-		ushort species;
-		public ushort Species
+
+        SpeciesType species;
+        public SpeciesType Species
 		{
 			get { return species; }			
 			set { species = value; }
@@ -1020,7 +1108,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.turnoff1 = reader.ReadUInt16();
 			this.turnoff2 = reader.ReadUInt16();
 
-			this.species = reader.ReadUInt16();
+			this.species = (SpeciesType)reader.ReadUInt16();
 			this.countdown = reader.ReadUInt16();
 			this.perfume = reader.ReadUInt16();
 
@@ -1129,14 +1217,13 @@ namespace SimPe.PackedFiles.Wrapper
     {
         internal SdscPets()
         {
-
+            pett = new PetTraits(0);
         }
 
-        ushort petid;
-        public ushort PetClass
+        PetTraits pett;
+        public PetTraits PetTraits
         {
-            get { return petid; }
-            set { petid = value; }
+            get { return pett; }
         }
 
         
@@ -1144,13 +1231,13 @@ namespace SimPe.PackedFiles.Wrapper
         internal void Serialize(BinaryReader reader)
         {
             reader.BaseStream.Seek(0x19A, SeekOrigin.Begin);
-            this.petid = reader.ReadUInt16();
+            this.pett.Value = reader.ReadUInt16();
         }
 
         internal void Unserialize(BinaryWriter writer)
         {
             writer.BaseStream.Seek(0x19A, SeekOrigin.Begin);
-            writer.Write((ushort)this.petid);
+            writer.Write((ushort)this.pett.Value);
         }
     }
     #endregion
@@ -1667,7 +1754,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Sim Description Wrapper",
 				"Quaxi",
 				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
-				11,
+				12,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.sdsc.png"))				
 				); 
 		}
@@ -2120,8 +2207,8 @@ namespace SimPe.PackedFiles.Wrapper
 			get
 			{
 				string s =  "GUID=0x"+Helper.HexString(this.SimId)+", Filename="+this.CharacterFileName+", Name="+this.SimName+" "+this.SimFamilyName+", Age="+this.CharacterDescription.LifeSection.ToString()+", Job="+this.CharacterDescription.Career.ToString()+", Zodiac="+this.CharacterDescription.ZodiacSign.ToString()+", Major="+this.University.Major+", Grade="+this.CharacterDescription.Grade.ToString();
-				if (this.Version == SDescVersions.Nightlife)
-					s += ", Species=0x"+Helper.HexString(Nightlife.Species);
+				if ((int)this.Version >= (int)SDescVersions.Nightlife)
+					s += ", Species="+Nightlife.Species.ToString();
 				return s;
 			}
 		}

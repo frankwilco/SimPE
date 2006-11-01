@@ -40,7 +40,9 @@ namespace SimPe.Windows.Forms
 
             if (sc == ResourceViewManager.SortColumn.Name)
             {
-                SimPe.Wait.SubStart(names.Count);
+                if (Helper.WindowsRegistry.AsynchronSort)
+                    SimPe.Wait.SubStart(names.Count);
+                
                 SimPe.Wait.Message = SimPe.Localization.GetString("Loading embedded resource names...");
                 sortingthread = new ResoureNameSorter(this, names, sortticket);
             }
@@ -72,7 +74,21 @@ namespace SimPe.Windows.Forms
         void DoTheSorting()
         {
             lv.BeginUpdate();
+
+            ResourceViewManager.ResourceNameList oldsel = this.SelectedItems;
+            lv.SelectedIndices.Clear();
             names.SortByColumn(sc, asc);
+            bool first = true;
+            foreach (NamedPackedFileDescriptor pfd in oldsel)
+            {
+                int i = names.IndexOf(pfd);
+                if (i > 0)
+                {
+                    if (first) lv.EnsureVisible(i);
+                    lv.SelectedIndices.Add(i);
+                    first = false;
+                }
+            }
             lv.EndUpdate();
         }
 

@@ -1415,13 +1415,25 @@ Dies hat zur Folge, dass SimPE die Joint-Hierarchie nicht aufbauen kann.
   <data name="FileTableSectionInclude">
     <value>{what} laden</value>
   </data>
-  <data name="All">
-    <value>Alle</value>
+  <data name="AllRes">
+    <value>Alle Resourcen</value>
   </data>
   <data name="Loading embedded resource names...">
     <value>Lade eingebettete Resourcen...</value>
   </data>
   <data name="Loading package...">
     <value>Lade Package...</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Human">
+    <value>Mensch</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.LargeDog">
+    <value>Großer Hund</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.SmallDog">
+    <value>Kleiner Hund</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Cat">
+    <value>Katze</value>
   </data>
 </root>

@@ -65,11 +65,12 @@ namespace SimPe
 
             try
             {
-                System.Reflection.Assembly a = Ambertation.RuntimeCompiler.Compile(src, new string[] { "SimPe.Helper.dll", "System.Drawing.dll" });
+                System.Reflection.Assembly a = Ambertation.RuntimeCompiler.Compile(src, new string[] { "simpe.helper.dll", "system.drawing.dll" });
                 return (PathSettings)Ambertation.RuntimeCompiler.CreateInstance(a, "SimPe.RuntimePathSettings", new object[0]);
             }
-            catch
+            catch (Exception ex)
             {
+                if (Helper.DebugMode) Helper.ExceptionMessage(ex);
                 return null;
             }
         }

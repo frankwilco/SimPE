@@ -9,11 +9,13 @@ namespace SimPe.Windows.Forms
         static System.Drawing.Font regular = null;
         static System.Drawing.Font strike = null;
 
+        bool vis;
         NamedPackedFileDescriptor pfd;
         ResourceViewManager manager;
         internal ResourceListItemExt(NamedPackedFileDescriptor pfd, ResourceViewManager manager, bool visible)
             : base()
         {
+            this.vis = visible;
             if (regular == null)
             {
                 regular = new System.Drawing.Font(Font.FontFamily, Font.Size, System.Drawing.FontStyle.Regular, Font.Unit);
@@ -35,13 +37,50 @@ namespace SimPe.Windows.Forms
 
             this.ImageIndex = ResourceViewManager.GetIndexForResourceType(pfd.Descriptor.Type);
 
+            /*pfd.Descriptor.ChangedData += new SimPe.Events.PackedFileChanged(Descriptor_ChangedData);
+            pfd.Descriptor.ChangedUserData += new SimPe.Events.PackedFileChanged(Descriptor_ChangedUserData);
+            pfd.Descriptor.DescriptionChanged += new EventHandler(Descriptor_DescriptionChanged);*/
+
             ChangeDescription(true);
+        }
+
+        void Descriptor_DescriptionChanged(object sender, EventArgs e)
+        {
+            ChangeDescription(false);
+        }
+
+        void Descriptor_ChangedUserData(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
+        {         
+            ChangeDescription(false);
+        }
+
+        void Descriptor_ChangedData(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
+        {            
+            ChangeDescription(false);
         }        
 
         ~ResourceListItemExt()
         {
-            
-        }                
+            FreeResources();
+        }
+
+        internal bool Visible
+        {
+            get { return vis; }
+            set
+            {
+                if (vis != value)
+                {
+                    vis = value;
+                    if (vis) ChangeDescription(false);
+                }
+            }
+        }
+        internal void FreeResources(){
+            /*pfd.Descriptor.ChangedData -= new SimPe.Events.PackedFileChanged(Descriptor_ChangedData);
+            pfd.Descriptor.ChangedUserData -= new SimPe.Events.PackedFileChanged(Descriptor_ChangedUserData);
+            pfd.Descriptor.DescriptionChanged -= new EventHandler(Descriptor_DescriptionChanged);*/
+        }
 
         /// <summary>
         /// Set the Description for this ListViewItem
@@ -50,6 +89,12 @@ namespace SimPe.Windows.Forms
         {
             if (!justfont)
             {
+                pfd.ResetRealName();
+                if (Visible)
+                    this.Text = pfd.GetRealName();
+                else
+                    this.Text = pfd.ToString();
+                
                 this.SubItems[1].Text = "0x" + Helper.HexString(pfd.Descriptor.Group);
                 this.SubItems[2].Text = "0x" + Helper.HexString(pfd.Descriptor.SubType);
                 this.SubItems[3].Text = "0x" + Helper.HexString(pfd.Descriptor.Instance);

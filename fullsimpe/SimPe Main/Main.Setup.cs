@@ -32,6 +32,14 @@ namespace SimPe
         private void SetupMainForm()
         {
             this.SuspendLayout();
+
+            if (Helper.DebugMode)
+            {
+                ToolStripButton tbDebug = new ToolStripButton();
+                tbDebug.Text = "Debug docks";
+                toolBar1.Items.Add(tbDebug);
+                tbDebug.Click += new EventHandler(tbDebug_Click);
+            }
             manager.Visible = false;
             tbContainer.Visible = false;
             createdmenus = false;
@@ -51,6 +59,7 @@ namespace SimPe
             filter = new ViewFilter();            
             resloader = new ResourceLoader(dc, package);
             remote = new RemoteHandler(this, package, resloader, miWindow);
+            
 
             plugger = new PluginManager(
                 miTools,
@@ -85,17 +94,20 @@ namespace SimPe
 
 
             InitMenuItems();
+            this.dcPlugin.Open();
             Ambertation.Windows.Forms.ToolStripRuntimeDesigner.Add(tbContainer);
             Ambertation.Windows.Forms.ToolStripRuntimeDesigner.LineUpToolBars(tbContainer);
+            this.menuBar1.ContextMenuStrip = tbContainer.TopToolStripPanel.ContextMenuStrip;
 
             Ambertation.Windows.Forms.Serializer.Global.Register(tbContainer);
             Ambertation.Windows.Forms.Serializer.Global.Register(manager);
 
+            manager.NoCleanup = false;
             manager.ForceCleanUp();
             //this.dcResource.BringToFront();
             //this.dcResourceList.BringToFront();
             lv.Filter = filter;
-        }
+        }        
 
         void LoadForm(object sender, System.EventArgs e)
         {
@@ -129,6 +141,8 @@ namespace SimPe
 
             manager.Visible = true;
             tbContainer.Visible = true;
+
+            
         }
     }
 }

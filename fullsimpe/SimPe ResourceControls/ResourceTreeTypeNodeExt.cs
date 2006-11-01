@@ -9,18 +9,21 @@ namespace SimPe.Windows.Forms
     {
         uint type;
         public ResourceTreeTypeNodeExt(ResourceViewManager.ResourceNameList list, uint type)
-            : base(list, "")
+            : base(type, list, "")
         {
             this.type = type;
             this.ImageIndex = ResourceViewManager.GetIndexForResourceType(type);
             this.SelectedImageIndex = this.ImageIndex;
-            this.Text = Data.MetaData.FindTypeAlias(type).Name + " (" + list.Count + ")";
+            SimPe.Data.TypeAlias ta = Data.MetaData.FindTypeAlias(type);
+            this.Text = ta.Name + " ("+ta.shortname+") (" + list.Count + ")";
         }       
 
         public uint Type
         {
             get { return type; }
         }
+
+       
 
 
         #region IComparable<ResResourceTreeNodeExt> Member

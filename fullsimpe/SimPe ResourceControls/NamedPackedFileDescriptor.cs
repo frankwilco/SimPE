@@ -28,6 +28,11 @@ namespace SimPe.Windows.Forms
             get { return pfd; }
         }
 
+        public void ResetRealName()
+        {
+            realname = null;
+        }
+
         public string GetRealName()
         {
             if (realname == null)

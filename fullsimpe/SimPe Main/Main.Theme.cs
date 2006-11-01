@@ -31,7 +31,10 @@ namespace SimPe
     {
         void InitTheme()
         {
+            this.dcResourceList.Visible = true;
+            this.dcResource.Visible = true;
             //setup the Theme Manager
+            
             ThemeManager.Global.AddControl(this.manager);
             ThemeManager.Global.AddControl(this.xpGradientPanel1);
             ThemeManager.Global.AddControl(this.xpGradientPanel2);
@@ -78,7 +81,7 @@ namespace SimPe
                 Ambertation.Windows.Forms.Serializer.Global.FromStream(defaultlayout);
                 Ambertation.Windows.Forms.Serializer.Global.ToFile(Helper.LayoutFileName);
             }
-            Commandline.ForceModernLayout();
+            
 
             Helper.WindowsRegistry.Layout.PluginActionBoxExpanded = false;
             Helper.WindowsRegistry.Layout.DefaultActionBoxExpanded = true;
@@ -92,6 +95,14 @@ namespace SimPe
             Helper.WindowsRegistry.Layout.SizeColumnWidth = 100;
 
             ReloadLayout();
+
+            tbTools.Visible = true;
+            tbAction.Visible = true;
+            toolBar1.Visible = true;
+            
+            
+            tbWindow.Visible = false;
+            this.dcResourceList.Visible = true;
         }
 
 

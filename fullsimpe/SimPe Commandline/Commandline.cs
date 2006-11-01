@@ -19,9 +19,9 @@ namespace SimPe
 		{		
 			if (args.Length<1) return false;
 
-			if (Help(args)) return true;
-			if (MakeClassic(args)) return true;
-			if (MakeModern(args)) return true;
+            if (Help(args)) return true;
+            if (MakeClassic(args)) return true;
+            if (MakeModern(args)) return true;
 			if (BuildPackage(args)) return true;
 			if (BuildTxtr(args)) return true;
 			if (FixPackage(args)) return true;
@@ -60,6 +60,7 @@ namespace SimPe
 			Helper.WindowsRegistry.FirefoxTabbing = false;
 
 			Helper.WindowsRegistry.LockDocks = true;
+            Helper.WindowsRegistry.Flush();
 
 			if (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetClassic")), SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
 				return false;
@@ -78,7 +79,7 @@ namespace SimPe
 			
 			Overridelayout("modern_layout.xreg");
 
-			Helper.WindowsRegistry.Layout.SelectedTheme = 2;
+			Helper.WindowsRegistry.Layout.SelectedTheme = 3;
 			Helper.WindowsRegistry.AsynchronLoad = false;
 			Helper.WindowsRegistry.DecodeFilenamesState = true;
 			Helper.WindowsRegistry.DeepSimScan = true;
@@ -89,6 +90,7 @@ namespace SimPe
 			Helper.WindowsRegistry.FirefoxTabbing = true;
 
 			Helper.WindowsRegistry.LockDocks = false;
+            Helper.WindowsRegistry.Flush();
 
 			if (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetModern")), SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
 				return false;
@@ -625,6 +627,7 @@ namespace SimPe
 				if (Message.Show(SimPe.Localization.GetString("Unknown EP found").Replace("{name}", SimPe.PathProvider.Global.GetExpansion(SimPe.PathProvider.Global.LastKnown).Name), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
 					return false;
 
+            if (!System.IO.File.Exists(Helper.LayoutFileName)) ForceModernLayout();
 
 			return true;
 		}

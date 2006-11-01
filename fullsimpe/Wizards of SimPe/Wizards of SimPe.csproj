@@ -100,8 +100,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\AdvancedForms.dll</HintPath>
     </Reference>
-    <Reference Include="EnumComboBox, Version=1.0.2478.24179, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="graphcontrol, Version=1.0.2314.23625, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="EnumComboBox, Version=1.0.2493.18216, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="graphcontrol, Version=1.0.2493.18216, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="simpe.commonhandler, Version=1.0.2305.30291, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.commonhandler.dll</HintPath>
