@@ -1094,6 +1094,17 @@ namespace SimPe.PackedFiles.Wrapper
 			set { scorelock = value; }
 		}
 
+        public bool IsHuman
+        {
+            get
+            {
+                if (Species == SpeciesType.Cat) return false;
+                if (Species == SpeciesType.SmallDog) return false;
+                if (Species == SpeciesType.LargeDog) return false;
+                return true;
+            }
+        }
+
 		internal void Serialize(BinaryReader reader)
 		{
 			reader.BaseStream.Seek(0x172, SeekOrigin.Begin);
@@ -1286,7 +1297,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Spaces of unknown Data
 		/// </summary>
-		private byte[] reserved_03;
+		private byte[] backupdata;
 
 		/// <summary>
 		/// Decay Values of the Sim
@@ -1369,6 +1380,8 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get { return nightlife; }
 		}
+
+        
 
 		SdscBusiness business;
 		/// <summary>
@@ -1795,13 +1808,13 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			reserved_01 = new byte[0xC2];
 			//reserved_02 = new byte[0x9A];
-			reserved_03 = new byte[0x9D];
+			backupdata = new byte[0x9D];
 
 			reserved_01[0x00] = 0x70;
 			reserved_01[0x04] = 0x20;
 			reserved_01[0x08] = 0x20;			
-			reserved_03[0x00] = 0x02;
-			reserved_03[0x08] = 0x01;
+			backupdata[0x00] = 0x02;
+			backupdata[0x08] = 0x01;
 
 			nameprovider = names;
 			familynameprovider = famnames;
@@ -1868,7 +1881,7 @@ namespace SimPe.PackedFiles.Wrapper
 			//reserved_02= reader.ReadBytes(0x9A);
 			//instancenumber = reader.ReadUInt16();
 			//simid = reader.ReadUInt32();
-			reserved_03 = reader.ReadBytes((int)(reader.BaseStream.Length - (reader.BaseStream.Position)));
+			backupdata = reader.ReadBytes((int)(reader.BaseStream.Length - (reader.BaseStream.Position)));
 			long endpos = reader.BaseStream.Position;
 
 			///
@@ -2046,7 +2059,7 @@ namespace SimPe.PackedFiles.Wrapper
 			//writer.Write(reserved_02);
 			//writer.Write(instancenumber);
 			//writer.Write(simid);
-			byte[] res03 = Helper.SetLength(reserved_03, (int)(this.RelationPosition-writer.BaseStream.Position));
+			byte[] res03 = Helper.SetLength(backupdata, (int)(this.RelationPosition-writer.BaseStream.Position));
 			writer.Write(res03);
 			while (writer.BaseStream.Length < 0x16D) writer.Write((byte)0);
 			long endpos = writer.BaseStream.Position;			

@@ -301,6 +301,11 @@ namespace SimPe.Interfaces.Files
 		/// </summary>
 		void EndUpdate();
 
+        /// <summary>
+        /// Triggered whenever EndUpdate is called an the package was changed
+        /// </summary>
+        event System.EventHandler EndedUpdate;
+
 		/// <summary>
 		/// Triggered whenever a new Resource was added
 		/// </summary>

@@ -191,7 +191,7 @@ namespace SimPe.Plugin
 				"Experimental TTAB Wrapper",
 				"Quaxi",
 				"---",
-				6
+				7
 				); 
 		}
 
@@ -224,6 +224,9 @@ namespace SimPe.Plugin
 			}
 
 			footer = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));
+
+            
+
 		}
 
 		/// <summary>

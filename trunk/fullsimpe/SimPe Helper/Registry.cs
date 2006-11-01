@@ -1033,9 +1033,9 @@ namespace SimPe
         }
 
         /// <summary>
-        /// True, if you want to see items added to the resoruceList at once (ie. no BeginUpdate)
+        /// oboslete??? True, if you want to see items added to the resoruceList at once (ie. no BeginUpdate)
         /// </summary>
-        public bool ShowResourceListContentAtOnce
+        private bool ShowResourceListContentAtOnce
         {
             get
             {
@@ -1047,6 +1047,25 @@ namespace SimPe
             {
                 XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
                 rkf.SetValue("ShowResourceListContentAtOnce", value);
+            }
+        }
+
+
+        /// <summary>
+        /// True, if you want to rebuild the ResourceTree whenever the type of a loaded Resource changes
+        /// </summary>
+        public  bool UpdateResourceListWhenTGIChanges
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("UpdateResourceListWhenTGIChanges", true);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("UpdateResourceListWhenTGIChanges", value);
             }
         }
 

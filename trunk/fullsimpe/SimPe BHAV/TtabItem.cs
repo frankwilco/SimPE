@@ -236,6 +236,13 @@ namespace SimPe.Plugin
 			set {groups = value;}
 		}
 
+        ArrayList[] petgroups;
+        public ArrayList[] PetGroups
+        {
+            get { return petgroups; }
+            set { petgroups = value; }
+        }
+
 		TtabFlags flags;
 		public TtabFlags Flags
 		{
@@ -346,6 +353,13 @@ namespace SimPe.Plugin
 			set {res9 = value;}
 		}
 
+        ushort res10;
+        public ushort Res10
+        {
+            get { return res10; }
+            set { res10 = value; }
+        }
+
 
 		Ttab parent;
 		public TtabItem(Ttab parent)
@@ -354,6 +368,7 @@ namespace SimPe.Plugin
 			flags = new TtabFlags(0);
 			guard = action = 0;
 			groups = new ArrayList[7];
+            petgroups = new ArrayList[0];
 
 			for (int j=0; j<groups.Length; j++)
 			{
@@ -395,11 +410,12 @@ namespace SimPe.Plugin
 			autonomy = reader.ReadUInt32();
 			joinindex = reader.ReadUInt32(); //0xffffffff
 			//if (joinindex!=0xffffffff) throw new Exception("Unknown TTAB Format 0x"+Helper.HexString(parent.Format)+".");
-			if (parent.Format >0x44) 
+			if (parent.Format > 0x44) 
 			{
-				if (parent.Format >= 0x46)
+                res5 = reader.ReadUInt32();
+                if (parent.Format >= 0x46)
 				{
-					res5 = reader.ReadUInt32();
+					
 					if (parent.Format >= 0x4a) 
 					{
 						res6 = reader.ReadUInt32();
@@ -413,9 +429,12 @@ namespace SimPe.Plugin
 				res9 = reader.ReadUInt16();
 			}
 
-			for (int k=0; k<counts.Length; k++) 
+            int mct = counts.Length;
+            if (parent.Format > 0x53) mct = reader.ReadInt32();
+			for (int k=0; k<mct; k++) 
 			{
 				int count  = counts[k];
+                if (parent.Format > 0x53) count = reader.ReadInt32();
 				for (int i=0; i< count; i++) 
 				{
 					TtabListItem listitem = new TtabListItem(i, parent.Opcodes);
@@ -473,9 +492,10 @@ namespace SimPe.Plugin
 			//if (joinindex!=0xffffffff) throw new Exception("Unknown TTAB Format 0x"+Helper.HexString(parent.Format)+".");
 			if (parent.Format >0x44) 
 			{
+                writer.Write(res5);
 				if (parent.Format >= 0x46)
 				{
-					writer.Write(res5);
+					
 					if (parent.Format >= 0x4a) 
 					{
 						writer.Write(res6);
@@ -489,9 +509,11 @@ namespace SimPe.Plugin
 				writer.Write(res9);
 			}
 
+            if (parent.Format > 0x53) writer.Write((int)groups.Length);
 			for (int k=0; k<groups.Length; k++) 
 			{
 				int count  = groups[k].Count;
+                if (parent.Format > 0x53) writer.Write((int)count);
 				for (int i=0; i< count; i++) 
 				{
 					TtabListItem listitem = (TtabListItem)groups[k][i];
