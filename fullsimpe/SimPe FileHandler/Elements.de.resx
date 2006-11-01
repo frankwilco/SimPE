@@ -3,7 +3,7 @@
   <!-- 
     Microsoft ResX Schema 
     
-    Version 1.3
+    Version 2.0
     
     The primary goals of this format is to allow a simple XML format 
     that is mostly human readable. The generation and parsing of the 
@@ -14,16 +14,17 @@
     
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">1.3</resheader>
+    <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1">this is my long string</data>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
     <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        [base64 mime encoded serialized .NET Framework object]
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
     <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        [base64 mime encoded string representing a byte array form of the .NET Framework object]
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
     </data>
                 
     There are any number of "resheader" rows that contain simple 
@@ -35,7 +36,7 @@
     Classes that don't support this are serialized and stored with the 
     mimetype set.
     
-    The mimetype is used forserialized objects, and tells the 
+    The mimetype is used for serialized objects, and tells the 
     ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
     
@@ -45,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -59,18 +60,37 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -89,1491 +109,1494 @@
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>1.3</value>
+    <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="banner.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="banner.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 19</value>
   </data>
-  <data name="banner.Text">
-    <value>Bild Betrachter</value>
+  <data name="banner.Text" xml:space="preserve">
+    <value>Bildbetrachter</value>
   </data>
-  <data name="visualStyleLinkLabel2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="visualStyleLinkLabel2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 10</value>
   </data>
-  <data name="visualStyleLinkLabel2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="visualStyleLinkLabel2.Location" type="System.Drawing.Point, System.Drawing">
     <value>216, 112</value>
   </data>
-  <data name="visualStyleLinkLabel2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="visualStyleLinkLabel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 17</value>
   </data>
-  <data name="visualStyleLinkLabel2.Text">
+  <data name="visualStyleLinkLabel2.Text" xml:space="preserve">
     <value>Übernehmen</value>
   </data>
-  <data name="objdPanel.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <assembly alias="mscorlib" name="mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="objdPanel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="objdPanel.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="objdPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>736, 248</value>
   </data>
-  <data name="label63.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label63.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
-  <data name="tbproxguid.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbproxguid.Location" type="System.Drawing.Point, System.Drawing">
     <value>640, 88</value>
   </data>
-  <data name="tbproxguid.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbproxguid.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 21</value>
   </data>
-  <data name="tbproxguid.ToolTip">
+  <data name="tbproxguid.ToolTip" xml:space="preserve">
     <value>GUID eines alternative Objektes. Diese GUID wird vom Siel verwendet wenn diese Objekt nichtmehr gefunden werden kann.</value>
   </data>
-  <data name="label97.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label97.Location" type="System.Drawing.Point, System.Drawing">
     <value>536, 96</value>
   </data>
-  <data name="tborgguid.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tborgguid.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 21</value>
   </data>
-  <data name="tborgguid.ToolTip">
+  <data name="tborgguid.ToolTip" xml:space="preserve">
     <value>Die GUID des Ausgangs Objektes (Das Template welches zum erstellen diese Objektes verwendet wurde)</value>
   </data>
-  <data name="lbtypename.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lbtypename.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 17</value>
   </data>
-  <data name="llgetGUID.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llgetGUID.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 17</value>
   </data>
-  <data name="gbelements.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="gbelements.Size" type="System.Drawing.Size, System.Drawing">
     <value>712, 96</value>
   </data>
-  <data name="gbelements.Text">
+  <data name="gbelements.Text" xml:space="preserve">
     <value>Elemente</value>
   </data>
-  <data name="pnelements.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pnelements.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 43</value>
   </data>
-  <data name="pnelements.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pnelements.Size" type="System.Drawing.Size, System.Drawing">
     <value>696, 45</value>
   </data>
-  <data name="llcommitobjd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="llcommitobjd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 10</value>
   </data>
-  <data name="llcommitobjd.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llcommitobjd.Location" type="System.Drawing.Point, System.Drawing">
     <value>651, 216</value>
   </data>
-  <data name="llcommitobjd.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llcommitobjd.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 17</value>
   </data>
-  <data name="llcommitobjd.Text">
+  <data name="llcommitobjd.Text" xml:space="preserve">
     <value>Übernehmen</value>
   </data>
-  <data name="tblottype.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tblottype.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 21</value>
   </data>
-  <data name="label65.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label65.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 96</value>
   </data>
-  <data name="label65.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label65.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 17</value>
   </data>
-  <data name="label65.Text">
+  <data name="label65.Text" xml:space="preserve">
     <value>Object Typ:</value>
   </data>
-  <data name="tbsimname.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="tbsimname.Enabled" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="tbsimname.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbsimname.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 21</value>
   </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 72</value>
   </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 17</value>
   </data>
-  <data name="label9.Text">
+  <data name="label9.Text" xml:space="preserve">
     <value>Dateiname:</value>
   </data>
-  <data name="tbsimid.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbsimid.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 21</value>
   </data>
-  <data name="tbsimid.ToolTip">
+  <data name="tbsimid.ToolTip" xml:space="preserve">
     <value>Die GUID diese Objektes</value>
   </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>58, 40</value>
   </data>
-  <data name="panel6.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="panel6.Size" type="System.Drawing.Size, System.Drawing">
     <value>736, 24</value>
   </data>
-  <data name="label12.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 19</value>
   </data>
-  <data name="label12.Text">
+  <data name="label12.Text" xml:space="preserve">
     <value>Objekt Beschreibungen</value>
   </data>
-  <data name="gbties.Text">
+  <data name="gbties.Text" xml:space="preserve">
     <value>Beziehungen</value>
   </data>
-  <data name="btnewtie.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btnewtie.Location" type="System.Drawing.Point, System.Drawing">
     <value>648, 72</value>
   </data>
-  <data name="btnewtie.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btnewtie.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 23</value>
   </data>
-  <data name="btnewtie.Text">
+  <data name="btnewtie.Text" xml:space="preserve">
     <value>Sim in Verwandschaftsliste aufnehmen</value>
   </data>
-  <data name="cballtieablesims.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cballtieablesims.Location" type="System.Drawing.Point, System.Drawing">
     <value>528, 48</value>
   </data>
-  <data name="cballtieablesims.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cballtieablesims.Size" type="System.Drawing.Size, System.Drawing">
     <value>360, 21</value>
   </data>
-  <data name="cbtietype.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbtietype.Location" type="System.Drawing.Point, System.Drawing">
     <value>528, 24</value>
   </data>
-  <data name="cbtietype.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbtietype.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 21</value>
   </data>
-  <data name="lbties.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lbties.Size" type="System.Drawing.Size, System.Drawing">
     <value>312, 248</value>
   </data>
-  <data name="btdeletetie.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btdeletetie.Location" type="System.Drawing.Point, System.Drawing">
     <value>344, 248</value>
   </data>
-  <data name="btdeletetie.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btdeletetie.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 23</value>
   </data>
-  <data name="btdeletetie.Text">
+  <data name="btdeletetie.Text" xml:space="preserve">
     <value>Verwandten löschen</value>
   </data>
-  <data name="btaddtie.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btaddtie.Location" type="System.Drawing.Point, System.Drawing">
     <value>344, 24</value>
   </data>
-  <data name="btaddtie.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btaddtie.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 23</value>
   </data>
-  <data name="btaddtie.Text">
+  <data name="btaddtie.Text" xml:space="preserve">
     <value>&lt;-- Verwandten hinzufügen</value>
   </data>
-  <data name="llcommitties.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="llcommitties.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>18, 27</value>
   </data>
-  <data name="llcommitties.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llcommitties.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 272</value>
   </data>
-  <data name="llcommitties.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llcommitties.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 17</value>
   </data>
-  <data name="llcommitties.Text">
+  <data name="llcommitties.Text" xml:space="preserve">
     <value>diese Beziehungen übernehmen</value>
   </data>
-  <data name="cbtiesims.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbtiesims.Location" type="System.Drawing.Point, System.Drawing">
     <value>168, 40</value>
   </data>
-  <data name="cbtiesims.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbtiesims.Size" type="System.Drawing.Size, System.Drawing">
     <value>744, 21</value>
   </data>
-  <data name="bttiecommit.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="bttiecommit.Location" type="System.Drawing.Point, System.Drawing">
     <value>800, 376</value>
   </data>
-  <data name="bttiecommit.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="bttiecommit.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 23</value>
   </data>
-  <data name="bttiecommit.Text">
-    <value>alle Übernehmen</value>
+  <data name="bttiecommit.Text" xml:space="preserve">
+    <value>alle übernehmen</value>
   </data>
-  <data name="label64.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label64.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 17</value>
   </data>
-  <data name="label64.Text">
+  <data name="label64.Text" xml:space="preserve">
     <value>Verwandschaftsliste:</value>
   </data>
-  <data name="label68.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
     <value>175, 19</value>
   </data>
-  <data name="label68.Text">
+  <data name="label68.Text" xml:space="preserve">
     <value>Verwandschafts Editor</value>
   </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 64</value>
   </data>
-  <data name="cbcomputer.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbcomputer.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 36</value>
   </data>
-  <data name="cbcomputer.Text">
+  <data name="cbcomputer.Text" xml:space="preserve">
     <value>Hat Computer</value>
   </data>
-  <data name="cblot.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cblot.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 16</value>
   </data>
-  <data name="cblot.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cblot.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 24</value>
   </data>
-  <data name="cblot.Text">
+  <data name="cblot.Text" xml:space="preserve">
     <value>Neues Grundstück</value>
   </data>
-  <data name="cbbaby.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbbaby.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 36</value>
   </data>
-  <data name="cbbaby.Text">
+  <data name="cbbaby.Text" xml:space="preserve">
     <value>Hat Baby</value>
   </data>
-  <data name="cbphone.Text">
+  <data name="cbphone.Text" xml:space="preserve">
     <value>Hat Telefon</value>
   </data>
-  <data name="tblotinst.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tblotinst.Location" type="System.Drawing.Point, System.Drawing">
     <value>600, 40</value>
   </data>
-  <data name="tblotinst.Text">
+  <data name="tblotinst.Text" xml:space="preserve">
     <value>0x00000000</value>
   </data>
-  <data name="llFamiDeleteSim.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llFamiDeleteSim.Location" type="System.Drawing.Point, System.Drawing">
     <value>296, 184</value>
   </data>
-  <data name="llFamiDeleteSim.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llFamiDeleteSim.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 23</value>
   </data>
-  <data name="llFamiDeleteSim.Text">
+  <data name="llFamiDeleteSim.Text" xml:space="preserve">
     <value>Sim löschen</value>
   </data>
-  <data name="llFamiAddSim.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llFamiAddSim.Location" type="System.Drawing.Point, System.Drawing">
     <value>296, 160</value>
   </data>
-  <data name="llFamiAddSim.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llFamiAddSim.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 23</value>
   </data>
-  <data name="llFamiAddSim.Text">
+  <data name="llFamiAddSim.Text" xml:space="preserve">
     <value>&lt;-- Sim aufnehmen</value>
   </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>824, 224</value>
   </data>
-  <data name="button1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 23</value>
   </data>
-  <data name="button1.Text">
+  <data name="button1.Text" xml:space="preserve">
     <value>Übernehmen</value>
   </data>
-  <data name="cbsims.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbsims.Location" type="System.Drawing.Point, System.Drawing">
     <value>296, 136</value>
   </data>
-  <data name="cbsims.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbsims.Size" type="System.Drawing.Size, System.Drawing">
     <value>616, 20</value>
   </data>
-  <data name="lbmembers.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lbmembers.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 136</value>
   </data>
-  <data name="tbname.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbname.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 40</value>
   </data>
-  <data name="tbname.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbname.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 20</value>
   </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>102, 48</value>
   </data>
-  <data name="tbfamily.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbfamily.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 96</value>
   </data>
-  <data name="tbfamily.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbfamily.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 20</value>
   </data>
-  <data name="tbmoney.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbmoney.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 72</value>
   </data>
-  <data name="tbmoney.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbmoney.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 20</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 144</value>
   </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>131, 17</value>
   </data>
-  <data name="label5.Text">
+  <data name="label5.Text" xml:space="preserve">
     <value>Familien Mitglieder:</value>
   </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>28, 104</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 17</value>
   </data>
-  <data name="label4.Text">
+  <data name="label4.Text" xml:space="preserve">
     <value>Familien Freunde:</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>77, 80</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 17</value>
   </data>
-  <data name="label3.Text">
+  <data name="label3.Text" xml:space="preserve">
     <value>Guthaben:</value>
   </data>
-  <data name="label15.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
     <value>488, 48</value>
   </data>
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 17</value>
   </data>
-  <data name="label15.Text">
+  <data name="label15.Text" xml:space="preserve">
     <value>Grunds. Instanz:</value>
   </data>
-  <data name="linkLabel6.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="linkLabel6.Location" type="System.Drawing.Point, System.Drawing">
     <value>61, 40</value>
   </data>
-  <data name="tcsdesc.ItemSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tcsdesc.ItemSize" type="System.Drawing.Size, System.Drawing">
     <value>58, 18</value>
   </data>
-  <data name="tpinterests.Text">
+  <data name="tpinterests.Text" xml:space="preserve">
     <value>Interessen</value>
   </data>
-  <data name="label70.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 16</value>
   </data>
-  <data name="label70.Text">
+  <data name="label70.Text" xml:space="preserve">
     <value>abstoßend</value>
   </data>
-  <data name="label69.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label69.Location" type="System.Drawing.Point, System.Drawing">
     <value>319, 136</value>
   </data>
-  <data name="label69.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label69.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 16</value>
   </data>
-  <data name="label69.Text">
+  <data name="label69.Text" xml:space="preserve">
     <value>anziehend</value>
   </data>
-  <data name="label67.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label67.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 168</value>
   </data>
-  <data name="label67.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label67.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 17</value>
   </data>
-  <data name="label67.Text">
+  <data name="label67.Text" xml:space="preserve">
     <value>Männer</value>
   </data>
-  <data name="label66.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label66.Location" type="System.Drawing.Point, System.Drawing">
     <value>63, 152</value>
   </data>
-  <data name="label66.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label66.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 17</value>
   </data>
-  <data name="label66.Text">
+  <data name="label66.Text" xml:space="preserve">
     <value>Frauen</value>
   </data>
-  <data name="pbsports.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbsports.Location" type="System.Drawing.Point, System.Drawing">
     <value>408, 64</value>
   </data>
-  <data name="pbfashion.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbfashion.Location" type="System.Drawing.Point, System.Drawing">
     <value>408, 48</value>
   </data>
-  <data name="label38.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label38.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 32</value>
   </data>
-  <data name="label38.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 17</value>
   </data>
-  <data name="label38.Text">
+  <data name="label38.Text" xml:space="preserve">
     <value>Übernatürliches</value>
   </data>
-  <data name="label37.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label37.Location" type="System.Drawing.Point, System.Drawing">
     <value>366, 64</value>
   </data>
-  <data name="label37.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 17</value>
   </data>
-  <data name="label37.Text">
+  <data name="label37.Text" xml:space="preserve">
     <value>Sport</value>
   </data>
-  <data name="label28.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
     <value>68, 96</value>
   </data>
-  <data name="label28.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 17</value>
   </data>
-  <data name="label28.Text">
+  <data name="label28.Text" xml:space="preserve">
     <value>Politik</value>
   </data>
-  <data name="label36.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label36.Location" type="System.Drawing.Point, System.Drawing">
     <value>367, 48</value>
   </data>
-  <data name="label36.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 17</value>
   </data>
-  <data name="label36.Text">
+  <data name="label36.Text" xml:space="preserve">
     <value>Mode</value>
   </data>
-  <data name="label35.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
     <value>332, 32</value>
   </data>
-  <data name="label35.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 17</value>
   </data>
-  <data name="label35.Text">
+  <data name="label35.Text" xml:space="preserve">
     <value>Gesundheit</value>
   </data>
-  <data name="pbhealth.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbhealth.Location" type="System.Drawing.Point, System.Drawing">
     <value>408, 32</value>
   </data>
-  <data name="label34.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
     <value>364, 16</value>
   </data>
-  <data name="label34.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 17</value>
   </data>
-  <data name="label34.Text">
+  <data name="label34.Text" xml:space="preserve">
     <value>Essen</value>
   </data>
-  <data name="pbfood.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbfood.Location" type="System.Drawing.Point, System.Drawing">
     <value>408, 16</value>
   </data>
-  <data name="label33.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
     <value>67, 64</value>
   </data>
-  <data name="label33.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 17</value>
   </data>
-  <data name="label33.Text">
+  <data name="label33.Text" xml:space="preserve">
     <value>Kultur</value>
   </data>
-  <data name="label29.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
     <value>76, 80</value>
   </data>
-  <data name="label29.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 17</value>
   </data>
-  <data name="label29.Text">
+  <data name="label29.Text" xml:space="preserve">
     <value>Geld</value>
   </data>
-  <data name="label43.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label43.Location" type="System.Drawing.Point, System.Drawing">
     <value>632, 64</value>
   </data>
-  <data name="label43.Text">
+  <data name="label43.Text" xml:space="preserve">
     <value>Schule</value>
   </data>
-  <data name="tbtravel.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbtravel.Location" type="System.Drawing.Point, System.Drawing">
     <value>584, 96</value>
   </data>
-  <data name="label42.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label42.Location" type="System.Drawing.Point, System.Drawing">
     <value>641, 48</value>
   </data>
-  <data name="label42.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label42.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 17</value>
   </data>
-  <data name="label42.Text">
+  <data name="label42.Text" xml:space="preserve">
     <value>Tiere</value>
   </data>
-  <data name="label40.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label40.Location" type="System.Drawing.Point, System.Drawing">
     <value>636, 16</value>
   </data>
-  <data name="label40.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 17</value>
   </data>
-  <data name="label40.Text">
+  <data name="label40.Text" xml:space="preserve">
     <value>Arbeit</value>
   </data>
-  <data name="label41.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label41.Location" type="System.Drawing.Point, System.Drawing">
     <value>631, 32</value>
   </data>
-  <data name="label41.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label41.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 17</value>
   </data>
-  <data name="label41.Text">
+  <data name="label41.Text" xml:space="preserve">
     <value>Wetter</value>
   </data>
-  <data name="tbcrime.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbcrime.Location" type="System.Drawing.Point, System.Drawing">
     <value>584, 80</value>
   </data>
-  <data name="tbsports.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbsports.Location" type="System.Drawing.Point, System.Drawing">
     <value>584, 64</value>
   </data>
-  <data name="tbfashion.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbfashion.Location" type="System.Drawing.Point, System.Drawing">
     <value>584, 48</value>
   </data>
-  <data name="tbhealth.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbhealth.Location" type="System.Drawing.Point, System.Drawing">
     <value>584, 32</value>
   </data>
-  <data name="tbfood.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbfood.Location" type="System.Drawing.Point, System.Drawing">
     <value>584, 16</value>
   </data>
-  <data name="label31.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
     <value>332, 80</value>
   </data>
-  <data name="label31.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 17</value>
   </data>
-  <data name="label31.Text">
+  <data name="label31.Text" xml:space="preserve">
     <value>Verbrechen</value>
   </data>
-  <data name="label30.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
     <value>40, 16</value>
   </data>
-  <data name="label30.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 17</value>
   </data>
-  <data name="label30.Text">
+  <data name="label30.Text" xml:space="preserve">
     <value>Umgebung</value>
   </data>
-  <data name="label45.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label45.Location" type="System.Drawing.Point, System.Drawing">
     <value>638, 96</value>
   </data>
-  <data name="label44.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label44.Location" type="System.Drawing.Point, System.Drawing">
     <value>615, 80</value>
   </data>
-  <data name="label44.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label44.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 17</value>
   </data>
-  <data name="label44.Text">
+  <data name="label44.Text" xml:space="preserve">
     <value>Spielzeug</value>
   </data>
-  <data name="label39.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
     <value>359, 96</value>
   </data>
-  <data name="label39.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 17</value>
   </data>
-  <data name="label39.Text">
+  <data name="label39.Text" xml:space="preserve">
     <value>Reisen</value>
   </data>
-  <data name="pbtravel.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbtravel.Location" type="System.Drawing.Point, System.Drawing">
     <value>408, 96</value>
   </data>
-  <data name="label32.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
     <value>27, 48</value>
   </data>
-  <data name="label32.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 17</value>
   </data>
-  <data name="label32.Text">
+  <data name="label32.Text" xml:space="preserve">
     <value>Unterhaltung</value>
   </data>
-  <data name="pbcrime.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbcrime.Location" type="System.Drawing.Point, System.Drawing">
     <value>408, 80</value>
   </data>
-  <data name="gbcareer.Text">
+  <data name="gbcareer.Text" xml:space="preserve">
     <value>Karriere</value>
   </data>
-  <data name="pbjobperformance.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbjobperformance.Location" type="System.Drawing.Point, System.Drawing">
     <value>80, 64</value>
   </data>
-  <data name="pbjobperformance.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbjobperformance.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 16</value>
   </data>
-  <data name="label88.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label88.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 17</value>
   </data>
-  <data name="label88.Text">
+  <data name="label88.Text" xml:space="preserve">
     <value>Leistung:</value>
   </data>
-  <data name="pbcarrerlevel.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbcarrerlevel.Location" type="System.Drawing.Point, System.Drawing">
     <value>80, 48</value>
   </data>
-  <data name="pbcarrerlevel.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbcarrerlevel.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 16</value>
   </data>
-  <data name="label61.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label61.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 48</value>
   </data>
-  <data name="label61.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label61.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 17</value>
   </data>
-  <data name="label61.Text">
+  <data name="label61.Text" xml:space="preserve">
     <value>Stufe:</value>
   </data>
-  <data name="cbcareer.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbcareer.Location" type="System.Drawing.Point, System.Drawing">
     <value>80, 16</value>
   </data>
-  <data name="cbcareer.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbcareer.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 21</value>
   </data>
-  <data name="label50.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label50.Location" type="System.Drawing.Point, System.Drawing">
     <value>39, 24</value>
   </data>
-  <data name="label50.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 17</value>
   </data>
-  <data name="label50.Text">
+  <data name="label50.Text" xml:space="preserve">
     <value>Pfad:</value>
   </data>
-  <data name="gblifeline.Text">
+  <data name="gblifeline.Text" xml:space="preserve">
     <value>Stimmung</value>
   </data>
-  <data name="pblifelinepoints.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pblifelinepoints.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 40</value>
   </data>
-  <data name="pblifelinepoints.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pblifelinepoints.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 16</value>
   </data>
-  <data name="label62.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label62.Location" type="System.Drawing.Point, System.Drawing">
     <value>39, 40</value>
   </data>
-  <data name="label62.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label62.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 17</value>
   </data>
-  <data name="label62.Text">
+  <data name="label62.Text" xml:space="preserve">
     <value>Gesamt:</value>
   </data>
-  <data name="tblifelinescore.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tblifelinescore.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 64</value>
   </data>
-  <data name="label60.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label60.Location" type="System.Drawing.Point, System.Drawing">
     <value>44, 64</value>
   </data>
-  <data name="label60.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label60.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 17</value>
   </data>
-  <data name="label60.Text">
+  <data name="label60.Text" xml:space="preserve">
     <value>Punkte:</value>
   </data>
-  <data name="pbblizlifelinepoints.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbblizlifelinepoints.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 24</value>
   </data>
-  <data name="pbblizlifelinepoints.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbblizlifelinepoints.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 16</value>
   </data>
-  <data name="label59.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label59.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 17</value>
   </data>
-  <data name="label59.Text">
+  <data name="label59.Text" xml:space="preserve">
     <value>Kurzfristig:</value>
   </data>
-  <data name="pbneat.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbneat.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 24</value>
   </data>
-  <data name="pbneat.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbneat.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="pbnice.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbnice.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 88</value>
   </data>
-  <data name="pbnice.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbnice.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="pbplayful.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbplayful.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 72</value>
   </data>
-  <data name="pbplayful.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbplayful.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="pbactive.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbactive.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 56</value>
   </data>
-  <data name="pbactive.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbactive.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="pboutgoing.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pboutgoing.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 40</value>
   </data>
-  <data name="pboutgoing.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pboutgoing.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="label20.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
     <value>56, 88</value>
   </data>
-  <data name="label20.Text">
+  <data name="label20.Text" xml:space="preserve">
     <value>Nett</value>
   </data>
-  <data name="label19.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
     <value>51, 56</value>
   </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 17</value>
   </data>
-  <data name="label19.Text">
+  <data name="label19.Text" xml:space="preserve">
     <value>Aktiv</value>
   </data>
-  <data name="label18.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
     <value>30, 72</value>
   </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 17</value>
   </data>
-  <data name="label18.Text">
+  <data name="label18.Text" xml:space="preserve">
     <value>Verspielt</value>
   </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 17</value>
   </data>
-  <data name="label17.Text">
+  <data name="label17.Text" xml:space="preserve">
     <value>Extrovertiert</value>
   </data>
-  <data name="label16.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 24</value>
   </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 17</value>
   </data>
-  <data name="label16.Text">
+  <data name="label16.Text" xml:space="preserve">
     <value>Ordentlich</value>
   </data>
-  <data name="linkLabel3.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="linkLabel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>74, 0</value>
   </data>
-  <data name="label71.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label71.Location" type="System.Drawing.Point, System.Drawing">
     <value>59, 88</value>
   </data>
-  <data name="label71.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label71.TabIndex" type="System.Int32, mscorlib">
     <value>62</value>
   </data>
-  <data name="label71.Text">
+  <data name="label71.Text" xml:space="preserve">
     <value>Nett</value>
   </data>
-  <data name="label72.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label72.Location" type="System.Drawing.Point, System.Drawing">
     <value>54, 56</value>
   </data>
-  <data name="label72.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label72.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 17</value>
   </data>
-  <data name="label72.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label72.TabIndex" type="System.Int32, mscorlib">
     <value>61</value>
   </data>
-  <data name="label72.Text">
+  <data name="label72.Text" xml:space="preserve">
     <value>Aktiv</value>
   </data>
-  <data name="label73.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label73.Location" type="System.Drawing.Point, System.Drawing">
     <value>33, 72</value>
   </data>
-  <data name="label73.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label73.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 17</value>
   </data>
-  <data name="label73.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label73.TabIndex" type="System.Int32, mscorlib">
     <value>60</value>
   </data>
-  <data name="label73.Text">
+  <data name="label73.Text" xml:space="preserve">
     <value>Verspielt</value>
   </data>
-  <data name="label74.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label74.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 40</value>
   </data>
-  <data name="label74.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label74.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 17</value>
   </data>
-  <data name="label74.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label74.TabIndex" type="System.Int32, mscorlib">
     <value>59</value>
   </data>
-  <data name="label74.Text">
+  <data name="label74.Text" xml:space="preserve">
     <value>Extrovertiert</value>
   </data>
-  <data name="label75.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label75.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 24</value>
   </data>
-  <data name="label75.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label75.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 17</value>
   </data>
-  <data name="label75.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label75.TabIndex" type="System.Int32, mscorlib">
     <value>58</value>
   </data>
-  <data name="label75.Text">
+  <data name="label75.Text" xml:space="preserve">
     <value>Ordentlich</value>
   </data>
-  <data name="pbgenneat.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbgenneat.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 24</value>
   </data>
-  <data name="pbgenneat.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbgenneat.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="pbgennice.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbgennice.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 88</value>
   </data>
-  <data name="pbgennice.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbgennice.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="pbgenplayful.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbgenplayful.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 72</value>
   </data>
-  <data name="pbgenplayful.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbgenplayful.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="pbgenactive.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbgenactive.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 56</value>
   </data>
-  <data name="pbgenactive.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbgenactive.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="pbgenoutgoing.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbgenoutgoing.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 40</value>
   </data>
-  <data name="pbgenoutgoing.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbgenoutgoing.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="gbschool.Text">
+  <data name="gbschool.Text" xml:space="preserve">
     <value>Schule</value>
   </data>
-  <data name="label77.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label77.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 52</value>
   </data>
-  <data name="label77.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label77.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 17</value>
   </data>
-  <data name="label77.Text">
+  <data name="label77.Text" xml:space="preserve">
     <value>Note:</value>
   </data>
-  <data name="label78.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label78.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 32</value>
   </data>
-  <data name="label78.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label78.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 17</value>
   </data>
-  <data name="label78.Text">
+  <data name="label78.Text" xml:space="preserve">
     <value>Art:</value>
   </data>
-  <data name="tbrelations.Text">
+  <data name="tbrelations.Text" xml:space="preserve">
     <value>Beziehungen</value>
   </data>
-  <data name="gb.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="gb.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 96</value>
   </data>
-  <data name="cballrelsims.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cballrelsims.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 21</value>
   </data>
-  <data name="btaddrelation.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btaddrelation.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 40</value>
   </data>
-  <data name="btaddrelation.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btaddrelation.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 23</value>
   </data>
-  <data name="btaddrelation.Text">
+  <data name="btaddrelation.Text" xml:space="preserve">
     <value>aufnehmen --&gt;</value>
   </data>
-  <data name="btdeleterelation.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btdeleterelation.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 64</value>
   </data>
-  <data name="btdeleterelation.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btdeleterelation.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 23</value>
   </data>
-  <data name="btdeleterelation.Text">
+  <data name="btdeleterelation.Text" xml:space="preserve">
     <value>entfernen</value>
   </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 40</value>
   </data>
-  <data name="label14.Text">
+  <data name="label14.Text" xml:space="preserve">
     <value>Änderungen sind sofort wirksam!</value>
   </data>
-  <data name="llsimrelcommit.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="llsimrelcommit.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>10, 25</value>
   </data>
-  <data name="llsimrelcommit.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llsimrelcommit.Location" type="System.Drawing.Point, System.Drawing">
     <value>728, 192</value>
   </data>
-  <data name="llsimrelcommit.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llsimrelcommit.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 17</value>
   </data>
-  <data name="llsimrelcommit.Text">
+  <data name="llsimrelcommit.Text" xml:space="preserve">
     <value>Beziehung übernehmen</value>
   </data>
-  <data name="gbout.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="gbout.Location" type="System.Drawing.Point, System.Drawing">
     <value>408, 8</value>
   </data>
-  <data name="gbout.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="gbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>472, 88</value>
   </data>
-  <data name="gbout.Text">
+  <data name="gbout.Text" xml:space="preserve">
     <value>Wie sehr dieser Sim ... mag</value>
   </data>
-  <data name="cboutfamtype.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutfamtype.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 21</value>
   </data>
-  <data name="cboutbest.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutbest.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="cboutbest.Text">
+  <data name="cboutbest.Text" xml:space="preserve">
     <value>Bekannt</value>
   </data>
-  <data name="cboutfamily.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutfamily.Location" type="System.Drawing.Point, System.Drawing">
     <value>376, 48</value>
   </data>
-  <data name="cboutfamily.Text">
+  <data name="cboutfamily.Text" xml:space="preserve">
     <value>Familie</value>
   </data>
-  <data name="cboutmarried.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutmarried.Location" type="System.Drawing.Point, System.Drawing">
     <value>376, 32</value>
   </data>
-  <data name="cboutmarried.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutmarried.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 16</value>
   </data>
-  <data name="cboutmarried.Text">
+  <data name="cboutmarried.Text" xml:space="preserve">
     <value>Verheiratet</value>
   </data>
-  <data name="cboutengaged.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutengaged.Location" type="System.Drawing.Point, System.Drawing">
     <value>376, 16</value>
   </data>
-  <data name="cboutengaged.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutengaged.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 16</value>
   </data>
-  <data name="cboutengaged.Text">
+  <data name="cboutengaged.Text" xml:space="preserve">
     <value>Verlobt</value>
   </data>
-  <data name="cboutsteady.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutsteady.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 16</value>
   </data>
-  <data name="cboutsteady.Text">
+  <data name="cboutsteady.Text" xml:space="preserve">
     <value>feste Bez.</value>
   </data>
-  <data name="cboutlove.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutlove.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 48</value>
   </data>
-  <data name="cboutlove.Text">
+  <data name="cboutlove.Text" xml:space="preserve">
     <value>Liebe</value>
   </data>
-  <data name="cboutcrush.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutcrush.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 16</value>
   </data>
-  <data name="cboutcrush.Text">
+  <data name="cboutcrush.Text" xml:space="preserve">
     <value>Schwärmerei</value>
   </data>
-  <data name="cboutbuddie.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutbuddie.Location" type="System.Drawing.Point, System.Drawing">
     <value>264, 32</value>
   </data>
-  <data name="cboutbuddie.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboutbuddie.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="cboutbuddie.Text">
+  <data name="cboutbuddie.Text" xml:space="preserve">
     <value>guter Freund</value>
   </data>
-  <data name="cboutfriend.Text">
+  <data name="cboutfriend.Text" xml:space="preserve">
     <value>Freund</value>
   </data>
-  <data name="cboutenemy.Text">
+  <data name="cboutenemy.Text" xml:space="preserve">
     <value>Feind</value>
   </data>
-  <data name="tboutrellong.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tboutrellong.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 40</value>
   </data>
-  <data name="tboutrellong.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tboutrellong.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 14</value>
   </data>
-  <data name="tboutrelshort.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tboutrelshort.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 24</value>
   </data>
-  <data name="tboutrelshort.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tboutrelshort.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 14</value>
   </data>
-  <data name="label53.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label53.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 17</value>
   </data>
-  <data name="label53.Text">
+  <data name="label53.Text" xml:space="preserve">
     <value>Gesamtanzeige:</value>
   </data>
-  <data name="label52.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label52.Location" type="System.Drawing.Point, System.Drawing">
     <value>27, 24</value>
   </data>
-  <data name="label52.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label52.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>
   </data>
-  <data name="label52.Text">
+  <data name="label52.Text" xml:space="preserve">
     <value>Tagesanzeige:</value>
   </data>
-  <data name="lbrelations.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lbrelations.Location" type="System.Drawing.Point, System.Drawing">
     <value>224, 8</value>
   </data>
-  <data name="lbrelations.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lbrelations.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 208</value>
   </data>
-  <data name="gbin.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="gbin.Location" type="System.Drawing.Point, System.Drawing">
     <value>408, 104</value>
   </data>
-  <data name="gbin.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="gbin.Size" type="System.Drawing.Size, System.Drawing">
     <value>472, 88</value>
   </data>
-  <data name="gbin.Text">
+  <data name="gbin.Text" xml:space="preserve">
     <value>Wie sehr ... diesen Sim mag</value>
   </data>
-  <data name="cbinfamtype.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbinfamtype.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 21</value>
   </data>
-  <data name="cbinbest.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbinbest.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="cbinbest.Text">
+  <data name="cbinbest.Text" xml:space="preserve">
     <value>Bekannt</value>
   </data>
-  <data name="cbinfamily.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbinfamily.Location" type="System.Drawing.Point, System.Drawing">
     <value>376, 48</value>
   </data>
-  <data name="cbinfamily.Text">
+  <data name="cbinfamily.Text" xml:space="preserve">
     <value>Familie</value>
   </data>
-  <data name="cbinmarried.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbinmarried.Location" type="System.Drawing.Point, System.Drawing">
     <value>376, 32</value>
   </data>
-  <data name="cbinmarried.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbinmarried.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 16</value>
   </data>
-  <data name="cbinmarried.Text">
+  <data name="cbinmarried.Text" xml:space="preserve">
     <value>Verheiratet</value>
   </data>
-  <data name="cbinengaged.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbinengaged.Location" type="System.Drawing.Point, System.Drawing">
     <value>376, 16</value>
   </data>
-  <data name="cbinengaged.Text">
+  <data name="cbinengaged.Text" xml:space="preserve">
     <value>Verlobt</value>
   </data>
-  <data name="cbinsteady.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbinsteady.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 16</value>
   </data>
-  <data name="cbinsteady.Text">
+  <data name="cbinsteady.Text" xml:space="preserve">
     <value>feste Bez.</value>
   </data>
-  <data name="cbinlove.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbinlove.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 48</value>
   </data>
-  <data name="cbinlove.Text">
+  <data name="cbinlove.Text" xml:space="preserve">
     <value>Liebe</value>
   </data>
-  <data name="cbincrush.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbincrush.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 16</value>
   </data>
-  <data name="cbincrush.Text">
+  <data name="cbincrush.Text" xml:space="preserve">
     <value>Schwärmerei</value>
   </data>
-  <data name="cbinbuddie.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbinbuddie.Location" type="System.Drawing.Point, System.Drawing">
     <value>264, 32</value>
   </data>
-  <data name="cbinbuddie.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbinbuddie.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 16</value>
   </data>
-  <data name="cbinbuddie.Text">
+  <data name="cbinbuddie.Text" xml:space="preserve">
     <value>guter Freund</value>
   </data>
-  <data name="cbinfriend.Text">
+  <data name="cbinfriend.Text" xml:space="preserve">
     <value>Freund</value>
   </data>
-  <data name="cbinenemy.Text">
+  <data name="cbinenemy.Text" xml:space="preserve">
     <value>Feind</value>
   </data>
-  <data name="tbinrellong.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbinrellong.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 40</value>
   </data>
-  <data name="tbinrellong.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbinrellong.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 14</value>
   </data>
-  <data name="tbinrelshort.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbinrelshort.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 24</value>
   </data>
-  <data name="tbinrelshort.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbinrelshort.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 14</value>
   </data>
-  <data name="label54.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label54.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 17</value>
   </data>
-  <data name="label54.Text">
+  <data name="label54.Text" xml:space="preserve">
     <value>Gesamtanzeige:</value>
   </data>
-  <data name="label55.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label55.Location" type="System.Drawing.Point, System.Drawing">
     <value>27, 24</value>
   </data>
-  <data name="label55.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label55.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>
   </data>
-  <data name="label55.Text">
+  <data name="label55.Text" xml:space="preserve">
     <value>Tagesanzeige:</value>
   </data>
-  <data name="tbskills.Text">
+  <data name="tbskills.Text" xml:space="preserve">
     <value>Fähigkeiten</value>
   </data>
-  <data name="gbskills.Text">
+  <data name="gbskills.Text" xml:space="preserve">
     <value>Fähigkeiten</value>
   </data>
-  <data name="label21.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
     <value>32, 32</value>
   </data>
-  <data name="label21.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 17</value>
   </data>
-  <data name="label21.Text">
+  <data name="label21.Text" xml:space="preserve">
     <value>Kochen</value>
   </data>
-  <data name="label51.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label51.Location" type="System.Drawing.Point, System.Drawing">
     <value>328, 80</value>
   </data>
-  <data name="label51.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label51.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 17</value>
   </data>
-  <data name="label51.Text">
+  <data name="label51.Text" xml:space="preserve">
     <value>Dickheit</value>
   </data>
-  <data name="label27.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>312, 64</value>
   </data>
-  <data name="label27.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 17</value>
   </data>
-  <data name="label27.Text">
+  <data name="label27.Text" xml:space="preserve">
     <value>Sauberkeit</value>
   </data>
-  <data name="label26.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
     <value>314, 48</value>
   </data>
-  <data name="label26.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 17</value>
   </data>
-  <data name="label26.Text">
+  <data name="label26.Text" xml:space="preserve">
     <value>Kreativität</value>
   </data>
-  <data name="label25.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
     <value>344, 32</value>
   </data>
-  <data name="label25.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 17</value>
   </data>
-  <data name="label25.Text">
+  <data name="label25.Text" xml:space="preserve">
     <value>Logik</value>
   </data>
-  <data name="label24.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
     <value>36, 80</value>
   </data>
-  <data name="label24.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 17</value>
   </data>
-  <data name="label24.Text">
+  <data name="label24.Text" xml:space="preserve">
     <value>Körper</value>
   </data>
-  <data name="label23.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 64</value>
   </data>
-  <data name="label22.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 48</value>
   </data>
-  <data name="label22.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 17</value>
   </data>
-  <data name="label22.Text">
+  <data name="label22.Text" xml:space="preserve">
     <value>Mechanik</value>
   </data>
-  <data name="linkLabel2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="linkLabel2.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 0</value>
   </data>
-  <data name="tbext.Text">
-    <value>Erweiter</value>
+  <data name="tbext.Text" xml:space="preserve">
+    <value>Erweitert</value>
   </data>
-  <data name="tbuni.Text">
+  <data name="tbuni.Text" xml:space="preserve">
     <value>Wilde Kampus-Jahre</value>
   </data>
-  <data name="pbunitime.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="pbunitime.Location" type="System.Drawing.Point, System.Drawing">
     <value>336, 104</value>
   </data>
-  <data name="tbunitime.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbunitime.Location" type="System.Drawing.Point, System.Drawing">
     <value>472, 104</value>
   </data>
-  <data name="tbsemester.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbsemester.Location" type="System.Drawing.Point, System.Drawing">
     <value>336, 144</value>
   </data>
-  <data name="label103.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label103.Location" type="System.Drawing.Point, System.Drawing">
     <value>320, 128</value>
   </data>
-  <data name="label102.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label102.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 17</value>
   </data>
-  <data name="label102.Text">
+  <data name="label102.Text" xml:space="preserve">
     <value>Zeit bis zur Abschlussprüfung:</value>
   </data>
-  <data name="label101.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label101.Location" type="System.Drawing.Point, System.Drawing">
     <value>64, 139</value>
   </data>
-  <data name="label101.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label101.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 17</value>
   </data>
-  <data name="label101.Text">
+  <data name="label101.Text" xml:space="preserve">
     <value>Einfluss:</value>
   </data>
-  <data name="label100.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label100.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 17</value>
   </data>
-  <data name="label100.Text">
+  <data name="label100.Text" xml:space="preserve">
     <value>letzte Note:</value>
   </data>
-  <data name="cboncampus.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cboncampus.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 24</value>
   </data>
-  <data name="cboncampus.Text">
+  <data name="cboncampus.Text" xml:space="preserve">
     <value>Ist Student (lebt auf dem Kampus)</value>
   </data>
-  <data name="label99.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label99.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 87</value>
   </data>
-  <data name="label99.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label99.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 17</value>
   </data>
-  <data name="label99.Text">
+  <data name="label99.Text" xml:space="preserve">
     <value>Leistung:</value>
   </data>
-  <data name="label98.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label98.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 56</value>
   </data>
-  <data name="label98.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label98.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 17</value>
   </data>
-  <data name="label98.Text">
+  <data name="label98.Text" xml:space="preserve">
     <value>Fachrichtung:</value>
   </data>
-  <data name="lldna.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="lldna.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 3</value>
   </data>
-  <data name="lldna.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lldna.Location" type="System.Drawing.Point, System.Drawing">
     <value>288, 112</value>
   </data>
-  <data name="lldna.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lldna.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 17</value>
   </data>
-  <data name="lldna.Text">
+  <data name="lldna.Text" xml:space="preserve">
     <value>DNS Anzeigen...</value>
   </data>
-  <data name="llcloth.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="llcloth.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 8</value>
   </data>
-  <data name="llcloth.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llcloth.Location" type="System.Drawing.Point, System.Drawing">
     <value>408, 112</value>
   </data>
-  <data name="llcloth.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llcloth.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 17</value>
   </data>
-  <data name="llcloth.Text">
+  <data name="llcloth.Text" xml:space="preserve">
     <value>Kleidung anzeigen...</value>
   </data>
-  <data name="llfam.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="llfam.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 8</value>
   </data>
-  <data name="llfam.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llfam.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 64</value>
   </data>
-  <data name="llfam.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llfam.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 17</value>
   </data>
-  <data name="llfam.Text">
+  <data name="llfam.Text" xml:space="preserve">
     <value>Familien Instanz:</value>
   </data>
-  <data name="tbfaminst.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbfaminst.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 56</value>
   </data>
-  <data name="label49.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label49.Location" type="System.Drawing.Point, System.Drawing">
     <value>504, 88</value>
   </data>
-  <data name="label49.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 17</value>
   </data>
-  <data name="label49.Text">
+  <data name="label49.Text" xml:space="preserve">
     <value>behandeln als</value>
   </data>
-  <data name="rbmale.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="rbmale.Location" type="System.Drawing.Point, System.Drawing">
     <value>664, 88</value>
   </data>
-  <data name="rbmale.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="rbmale.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 16</value>
   </data>
-  <data name="rbmale.Text">
+  <data name="rbmale.Text" xml:space="preserve">
     <value>Mann</value>
   </data>
-  <data name="rbfemale.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="rbfemale.Location" type="System.Drawing.Point, System.Drawing">
     <value>608, 88</value>
   </data>
-  <data name="rbfemale.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="rbfemale.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 16</value>
   </data>
-  <data name="rbfemale.Text">
+  <data name="rbfemale.Text" xml:space="preserve">
     <value>Frau</value>
   </data>
-  <data name="label48.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label48.Location" type="System.Drawing.Point, System.Drawing">
     <value>208, 64</value>
   </data>
-  <data name="label48.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label48.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 17</value>
   </data>
-  <data name="label48.Text">
+  <data name="label48.Text" xml:space="preserve">
     <value>Lebensabschnitt:</value>
   </data>
-  <data name="label47.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
     <value>504, 64</value>
   </data>
-  <data name="label47.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 17</value>
   </data>
-  <data name="label47.Text">
+  <data name="label47.Text" xml:space="preserve">
     <value>Sternzeichen:</value>
   </data>
-  <data name="label46.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
     <value>256, 88</value>
   </data>
-  <data name="label46.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 17</value>
   </data>
-  <data name="label46.Text">
+  <data name="label46.Text" xml:space="preserve">
     <value>Laufbahn:</value>
   </data>
-  <data name="llsdesccommit.Text">
+  <data name="llsdesccommit.Text" xml:space="preserve">
     <value>Übernehmen</value>
   </data>
-  <data name="tbsim.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbsim.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 32</value>
   </data>
-  <data name="tbage.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbage.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 80</value>
   </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 17</value>
   </data>
-  <data name="label10.Text">
+  <data name="label10.Text" xml:space="preserve">
     <value>Verbleibende Tage:</value>
   </data>
-  <data name="lbfilename.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lbfilename.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 8</value>
   </data>
-  <data name="lbfilename.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lbfilename.Size" type="System.Drawing.Size, System.Drawing">
     <value>760, 23</value>
   </data>
-  <data name="lbfilename.Text">
+  <data name="lbfilename.Text" xml:space="preserve">
     <value>keine Datei</value>
   </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 19</value>
   </data>
-  <data name="label11.Text">
+  <data name="label11.Text" xml:space="preserve">
     <value>Sim Beschreibung</value>
   </data>
-  <data name="linkLabel5.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="linkLabel5.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 18</value>
   </data>
-  <data name="linkLabel5.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="linkLabel5.Location" type="System.Drawing.Point, System.Drawing">
     <value>552, 112</value>
   </data>
-  <data name="linkLabel5.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="linkLabel5.Size" type="System.Drawing.Size, System.Drawing">
     <value>212, 17</value>
   </data>
-  <data name="linkLabel5.Text">
+  <data name="linkLabel5.Text" xml:space="preserve">
     <value>Wünsche und Ängste anzeigen...</value>
   </data>
-  <data name="tabPage3.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tabPage3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
-  <data name="realPanel.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="realPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>368, 232</value>
   </data>
-  <data name="cbfamtype.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbfamtype.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 80</value>
   </data>
-  <data name="cbfamtype.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbfamtype.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 21</value>
   </data>
-  <data name="llsrelcommit.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llsrelcommit.Location" type="System.Drawing.Point, System.Drawing">
     <value>266, 208</value>
   </data>
-  <data name="llsrelcommit.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="llsrelcommit.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>
   </data>
-  <data name="llsrelcommit.Text">
+  <data name="llsrelcommit.Text" xml:space="preserve">
     <value>Übernehmen</value>
   </data>
-  <data name="gbrelation.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="gbrelation.Size" type="System.Drawing.Size, System.Drawing">
     <value>344, 96</value>
   </data>
-  <data name="gbrelation.Text">
+  <data name="gbrelation.Text" xml:space="preserve">
     <value>Beziehungs Status</value>
   </data>
-  <data name="cbbest.Text">
+  <data name="cbbest.Text" xml:space="preserve">
     <value>Bekannt</value>
   </data>
-  <data name="cbfamily.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbfamily.Location" type="System.Drawing.Point, System.Drawing">
     <value>248, 56</value>
   </data>
-  <data name="cbfamily.Text">
+  <data name="cbfamily.Text" xml:space="preserve">
     <value>Familie</value>
   </data>
-  <data name="cbmarried.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbmarried.Location" type="System.Drawing.Point, System.Drawing">
     <value>248, 40</value>
   </data>
-  <data name="cbmarried.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbmarried.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 16</value>
   </data>
-  <data name="cbmarried.Text">
+  <data name="cbmarried.Text" xml:space="preserve">
     <value>Verheiratet</value>
   </data>
-  <data name="cbengaged.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbengaged.Location" type="System.Drawing.Point, System.Drawing">
     <value>248, 24</value>
   </data>
-  <data name="cbengaged.Text">
+  <data name="cbengaged.Text" xml:space="preserve">
     <value>Verlobt</value>
   </data>
-  <data name="cbsteady.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbsteady.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 56</value>
   </data>
-  <data name="cbsteady.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbsteady.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 16</value>
   </data>
-  <data name="cbsteady.Text">
+  <data name="cbsteady.Text" xml:space="preserve">
     <value>feste Beziehung</value>
   </data>
-  <data name="cblove.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cblove.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 40</value>
   </data>
-  <data name="cblove.Text">
+  <data name="cblove.Text" xml:space="preserve">
     <value>Liebe</value>
   </data>
-  <data name="cbcrush.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbcrush.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 24</value>
   </data>
-  <data name="cbcrush.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbcrush.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="cbcrush.Text">
+  <data name="cbcrush.Text" xml:space="preserve">
     <value>Schwärmerei</value>
   </data>
-  <data name="cbbuddie.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="cbbuddie.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 16</value>
   </data>
-  <data name="cbbuddie.Text">
+  <data name="cbbuddie.Text" xml:space="preserve">
     <value>guter Freund</value>
   </data>
-  <data name="cbfriend.Text">
+  <data name="cbfriend.Text" xml:space="preserve">
     <value>Freund</value>
   </data>
-  <data name="cbenemy.Text">
+  <data name="cbenemy.Text" xml:space="preserve">
     <value>Feind</value>
   </data>
-  <data name="tblongterm.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tblongterm.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 56</value>
   </data>
-  <data name="tblongterm.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tblongterm.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 21</value>
   </data>
-  <data name="tbshortterm.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbshortterm.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 32</value>
   </data>
-  <data name="tbshortterm.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbshortterm.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 21</value>
   </data>
-  <data name="label57.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label57.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 64</value>
   </data>
-  <data name="label57.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label57.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 17</value>
   </data>
-  <data name="label57.Text">
+  <data name="label57.Text" xml:space="preserve">
     <value>Gesamtanzeige:</value>
   </data>
-  <data name="label58.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
     <value>25, 40</value>
   </data>
-  <data name="label58.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label58.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 17</value>
   </data>
-  <data name="label58.Text">
+  <data name="label58.Text" xml:space="preserve">
     <value>Tagesanzeige:</value>
   </data>
-  <data name="panel7.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="panel7.Size" type="System.Drawing.Size, System.Drawing">
     <value>368, 24</value>
   </data>
-  <data name="label56.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
     <value>141, 19</value>
   </data>
-  <data name="label56.Text">
+  <data name="label56.Text" xml:space="preserve">
     <value>Beziehungs Editor</value>
   </data>
 </root>

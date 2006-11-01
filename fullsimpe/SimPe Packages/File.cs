@@ -1233,7 +1233,7 @@ namespace SimPe.Packages
 			pause = false;
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in Index)
 				pfd.EndUpdate();
-
+            if ((remevent || indexevent || addevent) && EndedUpdate != null) EndedUpdate(this, new EventArgs());
 			if (indexevent) FireIndexEvent();
 			if (remevent) FireRemoveEvent();
 			if (addevent) FireAddEvent();
@@ -1251,6 +1251,11 @@ namespace SimPe.Packages
 		{
 			if (ChangedResource!=null) ChangedResource(sender);
 		}
+
+        /// <summary>
+        /// Triggered whenever EndUpdate is called an the package was changed
+        /// </summary>
+        public event System.EventHandler EndedUpdate;
 
 		/// <summary>
 		/// Triggered whenever the Content of the Package was changed
