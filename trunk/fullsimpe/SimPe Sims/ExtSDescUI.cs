@@ -162,22 +162,17 @@ namespace SimPe.PackedFiles.UserInterface
             if (Sdesc == null)
             {
                 pnHumanChar.Visible = true;
-                pnPetChar.Visible = false;
+                
             }
             else
             {
 
-                if ((int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Pets)
-                {
-                    pnHumanChar.Visible = Sdesc.Nightlife.Species == SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Human;
-                    pnPetChar.Visible = !pnHumanChar.Visible;
-                }
-                else
-                {
-                    pnHumanChar.Visible = true;
-                    pnPetChar.Visible = false;
-                }
+                if ((int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Pets)               
+                    pnHumanChar.Visible = Sdesc.Nightlife.IsHuman;                                    
+                else pnHumanChar.Visible = true;                
             }
+
+            pnPetChar.Visible = !pnHumanChar.Visible;
         }
 		
 		private void ChoosePage(object sender, System.EventArgs e)
@@ -332,10 +327,11 @@ namespace SimPe.PackedFiles.UserInterface
 
                 this.cbSpecies.Enabled = biEP2.Enabled;
 
-                SetCharacterAttributesVisibility();
+                
 			} 
 			finally 
 			{
+                SetCharacterAttributesVisibility();
 				this.intern = false;
 			}
 		}
@@ -1614,6 +1610,11 @@ namespace SimPe.PackedFiles.UserInterface
 			
 			SimPe.RemoteControl.OpenPackedFile(sblb.SelectedBusiness.BnfoFileIndexItem);
 		}
+
+        private void pbGActive_ChangedValue(object sender, EventArgs e)
+        {
+
+        }
 
 		
 

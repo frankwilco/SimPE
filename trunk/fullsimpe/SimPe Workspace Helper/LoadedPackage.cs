@@ -450,24 +450,28 @@ namespace SimPe
 			if (!Loaded && create) this.LoadFromPackage(SimPe.Packages.GeneratableFile.CreateNew());
 
 			ExtensionType et = ExtensionProvider.GetExtension(names[0]);
-			if (names.Length==1 && (et == ExtensionType.Package || et == ExtensionType.DisabledPackage || et == ExtensionType.ExtrackedPackageDescriptor))
+			if (names.Length==1 && (et == ExtensionType.Package || et == ExtensionType.DisabledPackage ))
 			{				
 				if (System.IO.File.Exists(names[0])) this.LoadFromFile(names[0]);
 			}
-			else if (et == ExtensionType.ExtractedFile || et == ExtensionType.ExtractedFileDescriptor || names.Length>1)
+            else if (et == ExtensionType.ExtractedFile || et == ExtensionType.ExtractedFileDescriptor || names.Length > 1 || et == ExtensionType.ExtrackedPackageDescriptor)
 			{
 				this.PauseIndexChangedEvents();
+                this.Package.BeginUpdate();
 				try 
 				{
 					for (int i=0; i<names.Length; i++) 					
 						if (System.IO.File.Exists(names[i])) 
 						{
-							PackedFileDescriptors pfds = LoadDescriptorsFromDisk(names[i]);								
-							foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) this.Package.Add(pfd);						
+							PackedFileDescriptors pfds = LoadDescriptorsFromDisk(names[i]);
+                            
+							foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds) this.Package.Add(pfd);
+                            
 						}				
 				} 
 				finally 
 				{
+                    this.Package.EndUpdate();
 					this.RestartIndexChangedEvents();
 				}
 			}
@@ -516,14 +520,14 @@ namespace SimPe
 			{
 				if (flname.ToLower().EndsWith("package.xml")) 
 				{				
-					SimPe.Packages.File pkg = Packages.GeneratableFile.LoadFromStream(XmlPackageReader.OpenExtractedPackage(null, flname));						
-
-					foreach (Interfaces.Files.IPackedFileDescriptor pfd in pkg.Index) 
+					SimPe.Packages.File pkg = Packages.GeneratableFile.LoadFromStream(XmlPackageReader.OpenExtractedPackage(null, flname));
+                    foreach (Interfaces.Files.IPackedFileDescriptor pfd in pkg.Index) 
 					{
 						Interfaces.Files.IPackedFile file = pkg.Read(pfd);
 						pfd.UserData = file.UncompressedData;
 						if (!list.Contains(pfd)) list.Add(pfd);
 					}
+                    
 				} 
 				else if (flname.ToLower().EndsWith(".xml")) 
 				{		

@@ -102,17 +102,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.pbLogic = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbCooking = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pnChar = new System.Windows.Forms.Panel();
-            this.pnPetChar = new System.Windows.Forms.Panel();
-            this.ptPigpen = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptAggres = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptIndep = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptHyper = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptGifted = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.pnHumanChar = new System.Windows.Forms.Panel();
             this.pbNeat = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbOutgoing = new Ambertation.Windows.Forms.LabeledProgressBar();
@@ -132,6 +121,17 @@ namespace SimPe.PackedFiles.UserInterface
             this.label69 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label70 = new System.Windows.Forms.Label();
+            this.pnPetChar = new System.Windows.Forms.Panel();
+            this.ptPigpen = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptAggres = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptIndep = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptHyper = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptGifted = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.mbiLink = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.miRand = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -261,8 +261,8 @@ namespace SimPe.PackedFiles.UserInterface
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.pnSkill.SuspendLayout();
             this.pnChar.SuspendLayout();
-            this.pnPetChar.SuspendLayout();
             this.pnHumanChar.SuspendLayout();
+            this.pnPetChar.SuspendLayout();
             this.mbiLink.SuspendLayout();
             this.miRel.SuspendLayout();
             this.pnCareer.SuspendLayout();
@@ -801,7 +801,6 @@ namespace SimPe.PackedFiles.UserInterface
             resources.ApplyResources(this.pnChar, "pnChar");
             this.pnChar.BackColor = System.Drawing.Color.Transparent;
             this.pnChar.BackgroundImage = null;
-            this.pnChar.Controls.Add(this.pnPetChar);
             this.pnChar.Controls.Add(this.pnHumanChar);
             this.pnChar.Controls.Add(this.pbMan);
             this.pnChar.Controls.Add(this.pbWoman);
@@ -811,118 +810,9 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnChar.Controls.Add(this.label69);
             this.pnChar.Controls.Add(this.panel1);
             this.pnChar.Controls.Add(this.label70);
+            this.pnChar.Controls.Add(this.pnPetChar);
             this.pnChar.Font = null;
             this.pnChar.Name = "pnChar";
-            // 
-            // pnPetChar
-            // 
-            this.pnPetChar.AccessibleDescription = null;
-            this.pnPetChar.AccessibleName = null;
-            resources.ApplyResources(this.pnPetChar, "pnPetChar");
-            this.pnPetChar.BackColor = System.Drawing.Color.Transparent;
-            this.pnPetChar.BackgroundImage = null;
-            this.pnPetChar.Controls.Add(this.ptPigpen);
-            this.pnPetChar.Controls.Add(this.ptAggres);
-            this.pnPetChar.Controls.Add(this.ptIndep);
-            this.pnPetChar.Controls.Add(this.ptHyper);
-            this.pnPetChar.Controls.Add(this.ptGifted);
-            this.pnPetChar.Controls.Add(this.label21);
-            this.pnPetChar.Controls.Add(this.label20);
-            this.pnPetChar.Controls.Add(this.label19);
-            this.pnPetChar.Controls.Add(this.label18);
-            this.pnPetChar.Controls.Add(this.label17);
-            this.pnPetChar.Font = null;
-            this.pnPetChar.Name = "pnPetChar";
-            // 
-            // ptPigpen
-            // 
-            this.ptPigpen.AccessibleDescription = null;
-            this.ptPigpen.AccessibleName = null;
-            resources.ApplyResources(this.ptPigpen, "ptPigpen");
-            this.ptPigpen.BackgroundImage = null;
-            this.ptPigpen.Font = null;
-            this.ptPigpen.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            this.ptPigpen.Name = "ptPigpen";
-            this.ptPigpen.LevelChanged += new System.EventHandler(this.ChangedEP4);
-            // 
-            // ptAggres
-            // 
-            this.ptAggres.AccessibleDescription = null;
-            this.ptAggres.AccessibleName = null;
-            resources.ApplyResources(this.ptAggres, "ptAggres");
-            this.ptAggres.BackgroundImage = null;
-            this.ptAggres.Font = null;
-            this.ptAggres.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            this.ptAggres.Name = "ptAggres";
-            this.ptAggres.LevelChanged += new System.EventHandler(this.ChangedEP4);
-            // 
-            // ptIndep
-            // 
-            this.ptIndep.AccessibleDescription = null;
-            this.ptIndep.AccessibleName = null;
-            resources.ApplyResources(this.ptIndep, "ptIndep");
-            this.ptIndep.BackgroundImage = null;
-            this.ptIndep.Font = null;
-            this.ptIndep.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            this.ptIndep.Name = "ptIndep";
-            this.ptIndep.LevelChanged += new System.EventHandler(this.ChangedEP4);
-            // 
-            // ptHyper
-            // 
-            this.ptHyper.AccessibleDescription = null;
-            this.ptHyper.AccessibleName = null;
-            resources.ApplyResources(this.ptHyper, "ptHyper");
-            this.ptHyper.BackgroundImage = null;
-            this.ptHyper.Font = null;
-            this.ptHyper.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            this.ptHyper.Name = "ptHyper";
-            this.ptHyper.LevelChanged += new System.EventHandler(this.ChangedEP4);
-            // 
-            // ptGifted
-            // 
-            this.ptGifted.AccessibleDescription = null;
-            this.ptGifted.AccessibleName = null;
-            resources.ApplyResources(this.ptGifted, "ptGifted");
-            this.ptGifted.BackgroundImage = null;
-            this.ptGifted.Font = null;
-            this.ptGifted.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            this.ptGifted.Name = "ptGifted";
-            this.ptGifted.LevelChanged += new System.EventHandler(this.ChangedEP4);
-            // 
-            // label21
-            // 
-            this.label21.AccessibleDescription = null;
-            this.label21.AccessibleName = null;
-            resources.ApplyResources(this.label21, "label21");
-            this.label21.Name = "label21";
-            // 
-            // label20
-            // 
-            this.label20.AccessibleDescription = null;
-            this.label20.AccessibleName = null;
-            resources.ApplyResources(this.label20, "label20");
-            this.label20.Name = "label20";
-            // 
-            // label19
-            // 
-            this.label19.AccessibleDescription = null;
-            this.label19.AccessibleName = null;
-            resources.ApplyResources(this.label19, "label19");
-            this.label19.Name = "label19";
-            // 
-            // label18
-            // 
-            this.label18.AccessibleDescription = null;
-            this.label18.AccessibleName = null;
-            resources.ApplyResources(this.label18, "label18");
-            this.label18.Name = "label18";
-            // 
-            // label17
-            // 
-            this.label17.AccessibleDescription = null;
-            this.label17.AccessibleName = null;
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
             // 
             // pnHumanChar
             // 
@@ -1121,6 +1011,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.pbGActive.TokenCount = 10;
             this.pbGActive.UnselectedColor = System.Drawing.Color.Black;
             this.pbGActive.Value = 50;
+            this.pbGActive.ChangedValue += new System.EventHandler(this.pbGActive_ChangedValue);
             this.pbGActive.Changed += new System.EventHandler(this.ChangedChar);
             // 
             // pbGOutgoing
@@ -1237,6 +1128,116 @@ namespace SimPe.PackedFiles.UserInterface
             this.label70.Font = null;
             this.label70.ForeColor = System.Drawing.SystemColors.WindowText;
             this.label70.Name = "label70";
+            // 
+            // pnPetChar
+            // 
+            this.pnPetChar.AccessibleDescription = null;
+            this.pnPetChar.AccessibleName = null;
+            resources.ApplyResources(this.pnPetChar, "pnPetChar");
+            this.pnPetChar.BackColor = System.Drawing.Color.Transparent;
+            this.pnPetChar.BackgroundImage = null;
+            this.pnPetChar.Controls.Add(this.ptPigpen);
+            this.pnPetChar.Controls.Add(this.ptAggres);
+            this.pnPetChar.Controls.Add(this.ptIndep);
+            this.pnPetChar.Controls.Add(this.ptHyper);
+            this.pnPetChar.Controls.Add(this.ptGifted);
+            this.pnPetChar.Controls.Add(this.label21);
+            this.pnPetChar.Controls.Add(this.label20);
+            this.pnPetChar.Controls.Add(this.label19);
+            this.pnPetChar.Controls.Add(this.label18);
+            this.pnPetChar.Controls.Add(this.label17);
+            this.pnPetChar.Font = null;
+            this.pnPetChar.Name = "pnPetChar";
+            // 
+            // ptPigpen
+            // 
+            this.ptPigpen.AccessibleDescription = null;
+            this.ptPigpen.AccessibleName = null;
+            resources.ApplyResources(this.ptPigpen, "ptPigpen");
+            this.ptPigpen.BackgroundImage = null;
+            this.ptPigpen.Font = null;
+            this.ptPigpen.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            this.ptPigpen.Name = "ptPigpen";
+            this.ptPigpen.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptAggres
+            // 
+            this.ptAggres.AccessibleDescription = null;
+            this.ptAggres.AccessibleName = null;
+            resources.ApplyResources(this.ptAggres, "ptAggres");
+            this.ptAggres.BackgroundImage = null;
+            this.ptAggres.Font = null;
+            this.ptAggres.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            this.ptAggres.Name = "ptAggres";
+            this.ptAggres.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptIndep
+            // 
+            this.ptIndep.AccessibleDescription = null;
+            this.ptIndep.AccessibleName = null;
+            resources.ApplyResources(this.ptIndep, "ptIndep");
+            this.ptIndep.BackgroundImage = null;
+            this.ptIndep.Font = null;
+            this.ptIndep.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            this.ptIndep.Name = "ptIndep";
+            this.ptIndep.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptHyper
+            // 
+            this.ptHyper.AccessibleDescription = null;
+            this.ptHyper.AccessibleName = null;
+            resources.ApplyResources(this.ptHyper, "ptHyper");
+            this.ptHyper.BackgroundImage = null;
+            this.ptHyper.Font = null;
+            this.ptHyper.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            this.ptHyper.Name = "ptHyper";
+            this.ptHyper.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptGifted
+            // 
+            this.ptGifted.AccessibleDescription = null;
+            this.ptGifted.AccessibleName = null;
+            resources.ApplyResources(this.ptGifted, "ptGifted");
+            this.ptGifted.BackgroundImage = null;
+            this.ptGifted.Font = null;
+            this.ptGifted.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            this.ptGifted.Name = "ptGifted";
+            this.ptGifted.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // label21
+            // 
+            this.label21.AccessibleDescription = null;
+            this.label21.AccessibleName = null;
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
+            // 
+            // label20
+            // 
+            this.label20.AccessibleDescription = null;
+            this.label20.AccessibleName = null;
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
+            // 
+            // label19
+            // 
+            this.label19.AccessibleDescription = null;
+            this.label19.AccessibleName = null;
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // label18
+            // 
+            this.label18.AccessibleDescription = null;
+            this.label18.AccessibleName = null;
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // label17
+            // 
+            this.label17.AccessibleDescription = null;
+            this.label17.AccessibleName = null;
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
             // 
             // mbiLink
             // 
@@ -2851,8 +2852,8 @@ namespace SimPe.PackedFiles.UserInterface
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.pnSkill.ResumeLayout(false);
             this.pnChar.ResumeLayout(false);
-            this.pnPetChar.ResumeLayout(false);
             this.pnHumanChar.ResumeLayout(false);
+            this.pnPetChar.ResumeLayout(false);
             this.mbiLink.ResumeLayout(false);
             this.miRel.ResumeLayout(false);
             this.pnCareer.ResumeLayout(false);

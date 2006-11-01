@@ -758,47 +758,36 @@
   <data name="pbCooking.LabelText" xml:space="preserve">
     <value>Kochen:</value>
   </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Schlampig:</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Aggressiv:</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Unabhängig:</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Hyperaktiv:</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Schlau:</value>
-  </data>
   <data name="pbNeat.LabelText" xml:space="preserve">
     <value>Ordentlich:</value>
   </data>
   <data name="pbNeat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 56</value>
+    <value>18, 3</value>
   </data>
   <data name="pbOutgoing.LabelText" xml:space="preserve">
     <value>Extrovertiert:</value>
   </data>
   <data name="pbOutgoing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 80</value>
+    <value>10, 27</value>
   </data>
   <data name="pbActive.LabelText" xml:space="preserve">
     <value>Aktiv:</value>
   </data>
   <data name="pbActive.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 104</value>
+    <value>18, 51</value>
   </data>
   <data name="pbPlayful.LabelText" xml:space="preserve">
     <value>Verspielt:</value>
   </data>
   <data name="pbPlayful.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 128</value>
+    <value>18, 75</value>
   </data>
   <data name="pbGNice.LabelText" xml:space="preserve">
     <value>Genetisch Nett:</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pbGNice.LabelWidth" type="System.Int32, mscorlib">
+    <value>150</value>
   </data>
   <data name="pbGNice.Size" type="System.Drawing.Size, System.Drawing">
     <value>304, 20</value>
@@ -807,10 +796,13 @@
     <value>Nett:</value>
   </data>
   <data name="pbNice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 152</value>
+    <value>18, 99</value>
   </data>
   <data name="pbGPlayful.LabelText" xml:space="preserve">
     <value>Genetisch Verspielt:</value>
+  </data>
+  <data name="pbGPlayful.LabelWidth" type="System.Int32, mscorlib">
+    <value>150</value>
   </data>
   <data name="pbGPlayful.Size" type="System.Drawing.Size, System.Drawing">
     <value>304, 20</value>
@@ -818,11 +810,17 @@
   <data name="pbGNeat.LabelText" xml:space="preserve">
     <value>Genetisch Ordentlich:</value>
   </data>
+  <data name="pbGNeat.LabelWidth" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
   <data name="pbGNeat.Size" type="System.Drawing.Size, System.Drawing">
     <value>304, 20</value>
   </data>
   <data name="pbGActive.LabelText" xml:space="preserve">
     <value>Genetisch Aktiv:</value>
+  </data>
+  <data name="pbGActive.LabelWidth" type="System.Int32, mscorlib">
+    <value>150</value>
   </data>
   <data name="pbGActive.Size" type="System.Drawing.Size, System.Drawing">
     <value>304, 20</value>
@@ -830,8 +828,14 @@
   <data name="pbGOutgoing.LabelText" xml:space="preserve">
     <value>Genetisch Extrovertiert:</value>
   </data>
+  <data name="pbGOutgoing.LabelWidth" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
   <data name="pbGOutgoing.Size" type="System.Drawing.Size, System.Drawing">
     <value>304, 20</value>
+  </data>
+  <data name="pnHumanChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>584, 123</value>
   </data>
   <data name="pbMan.LabelText" xml:space="preserve">
     <value>Männer:</value>
@@ -877,6 +881,21 @@
   </data>
   <data name="label70.Text" xml:space="preserve">
     <value>abstoßend</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Schlampig:</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Aggressiv:</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Unabhängig:</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Hyperaktiv:</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Schlau:</value>
   </data>
   <data name="miRand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1125,7 +1144,7 @@
     <value>288, 22</value>
   </data>
   <data name="miRelink.Text" xml:space="preserve">
-    <value>Charakter neu Zuordnen</value>
+    <value>Charakter neu zuordnen</value>
   </data>
   <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 258</value>
@@ -1177,7 +1196,6 @@
   <data name="pbAspBliz.LabelText" xml:space="preserve">
     <value>Stimmung kurzfristig:</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pbAspBliz.LabelWidth" type="System.Int32, mscorlib">
     <value>136</value>
   </data>
@@ -1200,7 +1218,7 @@
     <value>200, 21</value>
   </data>
   <data name="pbAspCur.LabelText" xml:space="preserve">
-    <value>Stimmung Gesammt:</value>
+    <value>Stimmung gesamt:</value>
   </data>
   <data name="pbAspCur.LabelWidth" type="System.Int32, mscorlib">
     <value>136</value>
@@ -1227,7 +1245,7 @@
     <value>Leistung:</value>
   </data>
   <data name="pbCareerLevel.LabelText" xml:space="preserve">
-    <value>Kariere Stufe:</value>
+    <value>Karriere Stufe:</value>
   </data>
   <data name="label78.Text" xml:space="preserve">
     <value>Schultyp:</value>
@@ -1239,7 +1257,7 @@
     <value>51, 13</value>
   </data>
   <data name="label50.Text" xml:space="preserve">
-    <value>Kariere:</value>
+    <value>Karriere:</value>
   </data>
   <data name="pbSciFi.LabelText" xml:space="preserve">
     <value>Science-Fiction:</value>
