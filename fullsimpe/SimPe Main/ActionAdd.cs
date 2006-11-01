@@ -43,8 +43,10 @@ namespace SimPe.Actions.Default
 			if (!ChangeEnabledStateEventHandler(null, es)) return;
 
 			SimPe.Collections.PackedFileDescriptors pfds = this.LoadDescriptors(true);
+            es.LoadedPackage.Package.BeginUpdate();
 			foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pfds)
 				es.LoadedPackage.Package.Add(pfd);
+            es.LoadedPackage.Package.EndUpdate();
 		}
 
 		#endregion

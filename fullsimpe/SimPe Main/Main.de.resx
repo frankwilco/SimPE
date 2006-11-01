@@ -3,7 +3,7 @@
   <!-- 
     Microsoft ResX Schema 
     
-    Version 1.3
+    Version 2.0
     
     The primary goals of this format is to allow a simple XML format 
     that is mostly human readable. The generation and parsing of the 
@@ -14,16 +14,17 @@
     
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">1.3</resheader>
+    <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1">this is my long string</data>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
     <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        [base64 mime encoded serialized .NET Framework object]
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
     <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        [base64 mime encoded string representing a byte array form of the .NET Framework object]
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
     </data>
                 
     There are any number of "resheader" rows that contain simple 
@@ -35,7 +36,7 @@
     Classes that don't support this are serialized and stored with the 
     mimetype set.
     
-    The mimetype is used forserialized objects, and tells the 
+    The mimetype is used for serialized objects, and tells the 
     ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
     
@@ -45,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -59,18 +60,37 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -89,33 +109,34 @@
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>1.3</value>
+    <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="dcPlugin.TabText">
+  <data name="dcPlugin.TabText" xml:space="preserve">
     <value>Dokumente</value>
   </data>
-  <data name="dcPlugin.Text">
+  <data name="dcPlugin.Text" xml:space="preserve">
     <value>Dokumenten Ansicht</value>
   </data>
-  <data name="toolBar1.Text">
+  <data name="toolBar1.Text" xml:space="preserve">
     <value>Datei Toolbar</value>
   </data>
-  <data name="biNew.ToolTipText">
-    <value>Neue Package Datei erzeugen</value>
+  <data name="biNew.ToolTipText" xml:space="preserve">
+    <value>Neue Package-Datei erzeugen</value>
   </data>
-  <data name="miNew.Text">
+  <data name="miNew.Text" xml:space="preserve">
     <value>&amp;Neu</value>
   </data>
-  <data name="biOpen.ToolTipText">
+  <data name="biOpen.ToolTipText" xml:space="preserve">
     <value>Datei öffnen</value>
   </data>
-  <data name="miOpen.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="miOpen.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAA3RJREFUOE+lkWtM
@@ -136,10 +157,10 @@
         sbSCfrY1r5u9nGNmG3a3s+SdRqZKb2UUb/iRnhbmNQb6C4yYb1fAlmuqAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="miOpen.Text">
+  <data name="miOpen.Text" xml:space="preserve">
     <value>Ö&amp;ffnen...</value>
   </data>
-  <data name="biSave.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="biSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAidJREFUOE+lkz1r
@@ -155,10 +176,10 @@
         FyNqY/BfwoFrAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="biSave.ToolTipText">
-    <value>Datei Speichern</value>
+  <data name="biSave.ToolTipText" xml:space="preserve">
+    <value>Datei speichern</value>
   </data>
-  <data name="miSave.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="miSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAidJREFUOE+lkz1r
@@ -174,10 +195,10 @@
         FyNqY/BfwoFrAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="miSave.Text">
+  <data name="miSave.Text" xml:space="preserve">
     <value>&amp;Speichern</value>
   </data>
-  <data name="biSaveAs.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="biSaveAs.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
@@ -195,10 +216,10 @@
         cEkbGN/dyMjIe9HR0alRUVHnQmqkVjTGGBFi8A8Z1IEpRrZfUAAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="biSaveAs.ToolTipText">
-    <value>Datei Speichern unter</value>
+  <data name="biSaveAs.ToolTipText" xml:space="preserve">
+    <value>Datei speichern unter</value>
   </data>
-  <data name="miSaveAs.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="miSaveAs.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
@@ -216,10 +237,10 @@
         cEkbGN/dyMjIe9HR0alRUVHnQmqkVjTGGBFi8A8Z1IEpRrZfUAAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="miSaveAs.Text">
+  <data name="miSaveAs.Text" xml:space="preserve">
     <value>Speichern &amp;Unter...</value>
   </data>
-  <data name="biClose.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="biClose.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAxpJREFUOE9lU2tI
@@ -239,10 +260,10 @@
         MDv/ArNIDOffPRRJAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="biClose.ToolTipText">
-    <value>Datei Schließen</value>
+  <data name="biClose.ToolTipText" xml:space="preserve">
+    <value>Datei schließen</value>
   </data>
-  <data name="miClose.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="miClose.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAxpJREFUOE9lU2tI
@@ -262,40 +283,40 @@
         MDv/ArNIDOffPRRJAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="miClose.Text">
+  <data name="miClose.Text" xml:space="preserve">
     <value>S&amp;chließen</value>
   </data>
-  <data name="biNewDc.ToolTipText">
+  <data name="biNewDc.ToolTipText" xml:space="preserve">
     <value>Erzeuge neue Dokumenten Ansicht</value>
   </data>
-  <data name="miNewDc.Text">
+  <data name="miNewDc.Text" xml:space="preserve">
     <value>Neue &amp;Dokumenten Ansicht</value>
   </data>
-  <data name="biUpdate.ToolTipText">
+  <data name="biUpdate.ToolTipText" xml:space="preserve">
     <value>Updates suchen</value>
   </data>
-  <data name="miUpdate.Text">
+  <data name="miUpdate.Text" xml:space="preserve">
     <value>&amp;Updates suchen...</value>
   </data>
-  <data name="tbAction.Text">
+  <data name="tbAction.Text" xml:space="preserve">
     <value>Resourcen Aktionen</value>
   </data>
-  <data name="menuBarItem1.Text">
+  <data name="menuBarItem1.Text" xml:space="preserve">
     <value>&amp;Datei</value>
   </data>
-  <data name="miOpenIn.Text">
+  <data name="miOpenIn.Text" xml:space="preserve">
     <value>Öffne &amp;In</value>
   </data>
-  <data name="miOpenUniRes.Text">
+  <data name="miOpenUniRes.Text" xml:space="preserve">
     <value>WCJ: TSData/Res...</value>
   </data>
-  <data name="miSaveCopyAs.Text">
+  <data name="miSaveCopyAs.Text" xml:space="preserve">
     <value>&amp;Kopie Speichern Unter...</value>
   </data>
-  <data name="miRecent.Text">
+  <data name="miRecent.Text" xml:space="preserve">
     <value>&amp;Zuletzt geöffnete Dateien</value>
   </data>
-  <data name="miExit.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="miExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
@@ -314,25 +335,25 @@
         AAAASUVORK5CYII=
 </value>
   </data>
-  <data name="miExit.Text">
+  <data name="miExit.Text" xml:space="preserve">
     <value>&amp;Beenden</value>
   </data>
-  <data name="miTools.Text">
+  <data name="miTools.Text" xml:space="preserve">
     <value>&amp;Werkzeuge</value>
   </data>
-  <data name="miExtra.Text">
+  <data name="miExtra.Text" xml:space="preserve">
     <value>&amp;Extras</value>
   </data>
-  <data name="miMetaInfo.Text">
+  <data name="miMetaInfo.Text" xml:space="preserve">
     <value>Keine &amp;Meta Informationen</value>
   </data>
-  <data name="miFileNames.Text">
+  <data name="miFileNames.Text" xml:space="preserve">
     <value>&amp;Resourcenbezeichnung anzeigen</value>
   </data>
-  <data name="miRunSims.Text">
+  <data name="miRunSims.Text" xml:space="preserve">
     <value>Sims 2 &amp;Starten</value>
   </data>
-  <data name="miPref.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="miPref.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAA3RJREFUOE+Fk1tM
@@ -353,37 +374,37 @@
         +KKStDc8KvqdY7Gpbx+LSflfHI1JfeuDuJRXXttzeOft3yp72VqkwvCYAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="miPref.Text">
+  <data name="miPref.Text" xml:space="preserve">
     <value>&amp;Einstellungen..</value>
   </data>
-  <data name="miWindow.Text">
+  <data name="miWindow.Text" xml:space="preserve">
     <value>&amp;Fenster</value>
   </data>
-  <data name="menuBarItem5.Text">
+  <data name="menuBarItem5.Text" xml:space="preserve">
     <value>&amp;Hilfe</value>
   </data>
-  <data name="miTutorials.Text">
+  <data name="miTutorials.Text" xml:space="preserve">
     <value>&amp;Anleitungen...</value>
   </data>
-  <data name="mbiTopics.Text">
+  <data name="mbiTopics.Text" xml:space="preserve">
     <value>&amp;Themen</value>
   </data>
-  <data name="miAbout.Text">
+  <data name="miAbout.Text" xml:space="preserve">
     <value>&amp;Info...</value>
   </data>
-  <data name="clType.Text">
+  <data name="clType.Text" xml:space="preserve">
     <value>Typ</value>
   </data>
-  <data name="clGroup.Text">
+  <data name="clGroup.Text" xml:space="preserve">
     <value>Gruppe</value>
   </data>
-  <data name="clInstanceHigh.Text">
+  <data name="clInstanceHigh.Text" xml:space="preserve">
     <value>Instanz (höherwertig)</value>
   </data>
-  <data name="clInstance.Text">
+  <data name="clInstance.Text" xml:space="preserve">
     <value>Instanz</value>
   </data>
-  <data name="clSize.Text">
+  <data name="clSize.Text" xml:space="preserve">
     <value>Größe</value>
   </data>
   <data name="iAnim.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -587,31 +608,31 @@
         AQHgAQAB8AEDAcABAwHwAQMB8AEAAfwBDwHAAQ8B/AEPAfwBCAT/Af4BHwL/FgAL
 </value>
   </data>
-  <data name="dcResource.TabText">
+  <data name="dcResource.TabText" xml:space="preserve">
     <value>Resourcen</value>
   </data>
-  <data name="dcResource.Text">
+  <data name="dcResource.Text" xml:space="preserve">
     <value>Resourcen Baum</value>
   </data>
-  <data name="dcFilter.Text">
+  <data name="dcFilter.Text" xml:space="preserve">
     <value>Resourcen Filter</value>
   </data>
-  <data name="dcAction.TabText">
+  <data name="dcAction.TabText" xml:space="preserve">
     <value>Aktionen</value>
   </data>
-  <data name="dcAction.Text">
+  <data name="dcAction.Text" xml:space="preserve">
     <value>Aktionen</value>
   </data>
-  <data name="tbExtAction.HeaderText">
+  <data name="tbExtAction.HeaderText" xml:space="preserve">
     <value>Externe</value>
   </data>
-  <data name="tbExtAction.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbExtAction.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 128</value>
   </data>
-  <data name="tbExtAction.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbExtAction.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 128</value>
   </data>
-  <data name="resource.ChevronDown" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronDown" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -634,7 +655,7 @@
         l9Soh/4XEDdg4xXBkTm1NU7e7zRGmWjNT3PGw/8BTlMk4vqTPcgAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="resource.ChevronDownHighlight" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronDownHighlight" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -657,7 +678,7 @@
         uv9/AXEDNl4RHJlTW+PkPU5jlInW/DRnPPwNSeI7Mvl+smEAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="resource.ChevronUp" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronUp" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -680,7 +701,7 @@
         pEb94K+AuAEbrwiOzKmtcfJ1pzHKRGs+mjMe/geH4STkVJxKOQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="resource.ChevronUpHighlight" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronUpHighlight" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -706,10 +727,10 @@
         RK5CYII=
 </value>
   </data>
-  <data name="tbPlugAction.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbPlugAction.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 56</value>
   </data>
-  <data name="resource.ChevronDown1" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronDown1" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -732,7 +753,7 @@
         l9Soh/4XEDdg4xXBkTm1NU7e7zRGmWjNT3PGw/8BTlMk4vqTPcgAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="resource.ChevronDownHighlight1" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronDownHighlight1" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -755,7 +776,7 @@
         uv9/AXEDNl4RHJlTW+PkPU5jlInW/DRnPPwNSeI7Mvl+smEAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="resource.ChevronUp1" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronUp1" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -778,7 +799,7 @@
         pEb94K+AuAEbrwiOzKmtcfJ1pzHKRGs+mjMe/geH4STkVJxKOQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="resource.ChevronUpHighlight1" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronUpHighlight1" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -804,13 +825,13 @@
         RK5CYII=
 </value>
   </data>
-  <data name="tbDefaultAction.HeaderText">
+  <data name="tbDefaultAction.HeaderText" xml:space="preserve">
     <value>Standard</value>
   </data>
-  <data name="tbDefaultAction.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="tbDefaultAction.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 56</value>
   </data>
-  <data name="resource.ChevronDown2" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronDown2" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -833,7 +854,7 @@
         l9Soh/4XEDdg4xXBkTm1NU7e7zRGmWjNT3PGw/8BTlMk4vqTPcgAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="resource.ChevronDownHighlight2" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronDownHighlight2" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -856,7 +877,7 @@
         uv9/AXEDNl4RHJlTW+PkPU5jlInW/DRnPPwNSeI7Mvl+smEAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="resource.ChevronUp2" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronUp2" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -879,7 +900,7 @@
         pEb94K+AuAEbrwiOzKmtcfJ1pzHKRGs+mjMe/geH4STkVJxKOQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="resource.ChevronUpHighlight2" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="resource.ChevronUpHighlight2" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK7wAA
@@ -905,7 +926,8 @@
         RK5CYII=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>Inherit</value>
   </data>
 </root>
