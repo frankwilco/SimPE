@@ -28,12 +28,11 @@ namespace SimPe
 	/// <summary>
 	/// Zusammenfassung für About.
 	/// </summary>
-	public class About : System.Windows.Forms.Form
-	{
-		private System.Windows.Forms.PictureBox pbTop;
-		private System.Windows.Forms.PictureBox pbBottom;
+	public class About : SimPe.Windows.Forms.HelpForm
+    {
 		private System.Windows.Forms.RichTextBox rtb;
 		private System.Windows.Forms.Button button1;
+        private Button button2;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -45,7 +44,8 @@ namespace SimPe
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
 			InitializeComponent();
-
+            button2.BackColor = SystemColors.Control;
+            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
 			
 		}
 
@@ -71,76 +71,64 @@ namespace SimPe
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(About));
-			this.pbTop = new System.Windows.Forms.PictureBox();
-			this.pbBottom = new System.Windows.Forms.PictureBox();
-			this.rtb = new System.Windows.Forms.RichTextBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.SuspendLayout();
-			// 
-			// pbTop
-			// 
-			this.pbTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pbTop.Image = ((System.Drawing.Image)(resources.GetObject("pbTop.Image")));
-			this.pbTop.Location = new System.Drawing.Point(0, 0);
-			this.pbTop.Name = "pbTop";
-			this.pbTop.Size = new System.Drawing.Size(786, 124);
-			this.pbTop.TabIndex = 0;
-			this.pbTop.TabStop = false;
-			// 
-			// pbBottom
-			// 
-			this.pbBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pbBottom.Image = ((System.Drawing.Image)(resources.GetObject("pbBottom.Image")));
-			this.pbBottom.Location = new System.Drawing.Point(0, 406);
-			this.pbBottom.Name = "pbBottom";
-			this.pbBottom.Size = new System.Drawing.Size(786, 32);
-			this.pbBottom.TabIndex = 1;
-			this.pbBottom.TabStop = false;
-			// 
-			// rtb
-			// 
-			this.rtb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.rtb.BackColor = System.Drawing.Color.White;
-			this.rtb.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.rtb.Cursor = System.Windows.Forms.Cursors.Arrow;
-			this.rtb.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.rtb.Location = new System.Drawing.Point(32, 128);
-			this.rtb.Name = "rtb";
-			this.rtb.ReadOnly = true;
-			this.rtb.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-			this.rtb.Size = new System.Drawing.Size(722, 280);
-			this.rtb.TabIndex = 2;
-			this.rtb.Text = "";
-			this.rtb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtb_LinkClicked);
-			this.rtb.Enter += new System.EventHandler(this.rtb_Enter);
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(344, 80);
-			this.button1.Name = "button1";
-			this.button1.TabIndex = 3;
-			this.button1.Text = "button1";
-			// 
-			// About
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-			this.ClientSize = new System.Drawing.Size(786, 438);
-			this.Controls.Add(this.rtb);
-			this.Controls.Add(this.pbBottom);
-			this.Controls.Add(this.pbTop);
-			this.Controls.Add(this.button1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
-			this.Name = "About";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "About";
-			this.ResumeLayout(false);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
+            this.rtb = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // rtb
+            // 
+            this.rtb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtb.BackColor = System.Drawing.Color.White;
+            this.rtb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtb.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.rtb.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtb.Location = new System.Drawing.Point(33, 132);
+            this.rtb.Name = "rtb";
+            this.rtb.ReadOnly = true;
+            this.rtb.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.rtb.Size = new System.Drawing.Size(726, 295);
+            this.rtb.TabIndex = 2;
+            this.rtb.Text = "";
+            this.rtb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtb_LinkClicked);
+            this.rtb.Enter += new System.EventHandler(this.rtb_Enter);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(342, 170);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            // 
+            // button2
+            // 
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(695, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(64, 23);
+            this.button2.TabIndex = 4;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // About
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.ClientSize = new System.Drawing.Size(775, 443);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.rtb);
+            this.Controls.Add(this.button1);
+            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "About";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "About";
+            this.ResumeLayout(false);
 
 		}
 		#endregion
@@ -404,5 +392,10 @@ namespace SimPe
 		{
 			button1.Focus();
 		}
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 	}
 }

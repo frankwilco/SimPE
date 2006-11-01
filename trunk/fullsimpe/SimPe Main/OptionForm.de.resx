@@ -147,7 +147,7 @@
     <value>208, 24</value>
   </data>
   <data name="cbdebug.Text" xml:space="preserve">
-    <value>Spiel startet im  Debug Modus</value>
+    <value>Spiel startet im Debug Modus</value>
   </data>
   <data name="cbblur.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 24</value>
@@ -288,7 +288,7 @@
     <value>Asynchrones Laden</value>
   </data>
   <data name="cbAsync.ToolTip" xml:space="preserve">
-    <value>Ermöglicht das Laden der Resoures List und des Resourcen Baums im Hintergrund.</value>
+    <value>Ermöglicht das Laden der Resourcen Liste und des Resourcen Baums im Hintergrund.</value>
   </data>
   <data name="cbhidden.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 80</value>
@@ -297,7 +297,7 @@
     <value>Experten Modus</value>
   </data>
   <data name="cbhidden.ToolTip" xml:space="preserve">
-    <value>Nach dem Ändern dieser Einstellung mus SimPe neu gestartet werden</value>
+    <value>Nach dem Ändern dieser Einstellung muß SimPe neu gestartet werden</value>
   </data>
   <data name="tbscale.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
@@ -357,7 +357,7 @@
     <value>376, 16</value>
   </data>
   <data name="lldds.Text" xml:space="preserve">
-    <value>The Nvidia DDS Utilities wurden nicht gefunden.</value>
+    <value>Die Nvidia DDS Utilities wurden nicht gefunden.</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 216</value>
@@ -399,7 +399,7 @@
     <value>104, 13</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Vorschau Größe:</value>
+    <value>Vorschaugröße:</value>
   </data>
   <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 24</value>
@@ -414,7 +414,7 @@
     <value>176, 24</value>
   </data>
   <data name="cbpkgmaint.Text" xml:space="preserve">
-    <value>Verwende Pkg. Mainatiner</value>
+    <value>Verwende Pkg. Maintainer</value>
   </data>
   <data name="cbupdate.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 104</value>
@@ -423,7 +423,7 @@
     <value>208, 24</value>
   </data>
   <data name="cbupdate.Text" xml:space="preserve">
-    <value>Beim starten auf Updates prüfen</value>
+    <value>Beim Starten auf Updates prüfen</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 13</value>
@@ -462,7 +462,7 @@
     <value>8, 16</value>
   </data>
   <data name="cbSimple.Text" xml:space="preserve">
-    <value>kein Doppelclick zum öffnen</value>
+    <value>kein Doppelklick zum Öffnen</value>
   </data>
   <data name="cbmulti.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 40</value>
@@ -522,7 +522,7 @@
     <value>232, 80</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>Gmdc Einstellungen:</value>
+    <value>GMDC Einstellungen:</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 28</value>
@@ -546,7 +546,7 @@
     <value>120, 8</value>
   </data>
   <data name="hcFolders.Text" xml:space="preserve">
-    <value>System Verzeichnisse</value>
+    <value>Systemverzeichnisse</value>
   </data>
   <data name="tbep2.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 168</value>
@@ -579,7 +579,7 @@
     <value>336, 96</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
-    <value>Tabbed Borwsing:</value>
+    <value>Tabbed Browsing:</value>
   </data>
   <data name="cbFirefox.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 64</value>
@@ -588,7 +588,7 @@
     <value>240, 24</value>
   </data>
   <data name="cbFirefox.Text" xml:space="preserve">
-    <value>Firefox Stil zum öffnen neuer Tabs</value>
+    <value>Firefox Stil zum Öffnen neuer Tabs</value>
   </data>
   <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
     <value>432, 264</value>
