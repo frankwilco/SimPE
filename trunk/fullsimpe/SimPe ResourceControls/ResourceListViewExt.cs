@@ -127,7 +127,20 @@ namespace SimPe.Windows.Forms
                             pfd.Descriptor.ChangedUserData += new SimPe.Events.PackedFileChanged(Descriptor_ChangedUserData);
                         }
                     }
-                    lv.VirtualListSize = names.Count;
+
+                    try
+                    {
+                        lv.VirtualListSize = 0;
+                        lv.VirtualListSize = names.Count;
+                    }
+                    catch //this hack is required because whidbey (.NET 2) has a bug
+                    {
+                        System.Diagnostics.Debug.WriteLine("Suppressed VirtualListSize exception.");
+                    }
+
+
+
+                    
                     SortResources();
                 }
                 lastresources = resources;
@@ -145,30 +158,47 @@ namespace SimPe.Windows.Forms
 
         void Descriptor_ChangedData(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
         {
-            if (manager != null)
-            {
-
-                foreach (NamedPackedFileDescriptor pfd in manager.Everything)
-                {
-                    if (pfd.Descriptor.Equals(sender))
-                    {
-                        pfd.ResetRealName();
-                        break;
-                    }
-                }
-            }
+            System.Diagnostics.Debug.WriteLine("ChangedData: " + sender.ToString());
+            UpdateResourceItem(sender);
             this.Refresh();
             
         }        
 
         void Descriptor_ChangedUserData(SimPe.Interfaces.Files.IPackedFileDescriptor sender)
         {
+            System.Diagnostics.Debug.WriteLine("ChangedUserData: " + sender.ToString());
+            UpdateResourceItem(sender);
             this.Refresh();
         }
 
         void Descriptor_DescriptionChanged(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("DescriptionChanged: " + sender.ToString());
+            
+            if (UpdateResourceItem(sender))
+            {
+                if (manager != null && Helper.WindowsRegistry.UpdateResourceListWhenTGIChanges)                
+                    manager.UpdateTree();                
+            }
             this.Refresh();
+        }
+
+        private bool UpdateResourceItem(object sender)
+        {
+            if (manager != null)
+            {
+
+                foreach (NamedPackedFileDescriptor pfd in manager.Everything)
+                {
+                    if (pfd.Descriptor.Equals(sender))
+                    {                        
+                        pfd.ResetRealName();
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         public event EventHandler SelectionChanged;
@@ -213,12 +243,22 @@ namespace SimPe.Windows.Forms
 
         public void Clear()
         {
+            lv.SelectedIndices.Clear();
+            lv.FocusedItem = null;
+            lv.Items.Clear();
+
             foreach (ResourceListItemExt lvi in cache.Values)            
                 lvi.FreeResources();
             
             cache.Clear();
-            lv.VirtualListSize = 0;            
-            lv.Items.Clear();
+            try
+            {
+                lv.VirtualListSize = 0;
+            }
+            catch  //this hack is required because whidbey (.NET 2) has a bug
+            {
+                System.Diagnostics.Debug.WriteLine("Suppressed VirtualListSize exception.");
+            }                    
         }
 
        

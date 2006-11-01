@@ -129,6 +129,17 @@ namespace SimPe.Windows.Forms
             }
         }
 
+        internal void UpdateTree()
+        {
+            maps.Clear(false);
+            foreach (NamedPackedFileDescriptor npfd in maps.Everything)
+            {
+                if (!Helper.WindowsRegistry.AsynchronSort) npfd.GetRealName();
+                AddResourceToMaps(npfd);
+            }
+            if (tv != null) tv.SetResourceMaps(maps, false);
+        }
+
         private void UpdateContent()
         {
             if (lv != null)

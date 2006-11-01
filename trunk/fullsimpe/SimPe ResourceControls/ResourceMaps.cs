@@ -42,10 +42,15 @@ namespace SimPe.Windows.Forms
 
         public void Clear()
         {
+            Clear(true);
+        }
+
+        public void Clear(bool call)
+        {
             typemap.Clear();
             groupmap.Clear();
             instmap.Clear();
-            all.Clear();
+            if (call) all.Clear();
         }
     }
 }
