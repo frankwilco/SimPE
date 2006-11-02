@@ -183,6 +183,10 @@
       <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
+    <ProjectReference Include="..\SimPe Splash\SimPe Splash.csproj">
+      <Project>{6F0D2F45-62FD-4BF5-95C0-46D66C981034}</Project>
+      <Name>SimPe Splash</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractTool.cs">
@@ -290,6 +294,7 @@
     <Compile Include="ShowHelpEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SplashScreen.cs" />
     <Compile Include="ThemeManager.cs">
       <SubType>Code</SubType>
     </Compile>

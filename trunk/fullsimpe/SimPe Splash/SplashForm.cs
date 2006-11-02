@@ -24,60 +24,69 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
-using Ambertation.Windows.Forms;
 
 namespace SimPe.Windows.Forms
 {
-    public partial class HelpForm : TransparentForm //Ambertation.Windows.Forms.LayeredForm
+    public partial class SplashForm : HelpForm
     {
-        
-        static Image top, bottom, center;
-        Rectangle headerrect;
+        const uint WM_CHANGE_MESSAGE = Ambertation.Windows.Forms.APIHelp.WM_APP + 0x0001;
+        const uint WM_SHOW_HIDE = Ambertation.Windows.Forms.APIHelp.WM_APP + 0x0002;
+        IntPtr myhandle;
 
-        public HelpForm()
-            : base()//Color.Transparent, new Size(781, 475))
-        {            
-            this.MinimumSize = new Size(781, 475);
-            this.MaximumSize = new Size(781, 2048);
-            
-            InitializeComponent();            
+        public SplashForm()
+        {
+            InitializeComponent();
+            myhandle = Handle;
         }
 
-        protected override void OnCreateBitmap(Graphics g, Bitmap b)
+        string msg;
+        public string Message
         {
-            //base.OnCreateBitmap(g, b);
-
-            if (top == null)
+            get { return msg; }
+            set
             {
-
-                top = Image.FromStream(typeof(HelpForm).Assembly.GetManifestResourceStream("SimPe.Windows.Forms.img.top.png"));
-                center = Image.FromStream(typeof(HelpForm).Assembly.GetManifestResourceStream("SimPe.Windows.Forms.img.center.png"));
-                bottom = Image.FromStream(typeof(HelpForm).Assembly.GetManifestResourceStream("SimPe.Windows.Forms.img.bottom.png"));
-                headerrect = new Rectangle(0, 0, top.Width, top.Height);
+                lock (msg)
+                {
+                    if (msg != value)
+                    {
+                        msg = value;
+                        SendMessageChangeSignal();
+                    }
+                }
             }
-
-            g.DrawImage(top, new Point(0, 0));
-            int y = top.Height;
-            int my = b.Height - bottom.Height;
-            while (y < my)
-            {
-                g.DrawImage(center, new Point(0, y));
-                y += center.Height;
-            }
-            g.DrawImage(bottom, new Point(0, my));
-
-            g.Dispose();
         }
 
-        protected override Rectangle HeaderRect
+        protected void SendMessageChangeSignal()
         {
-            get
+            Ambertation.Windows.Forms.APIHelp.SendMessage(myhandle, WM_CHANGE_MESSAGE, 0, 0);
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.HWnd == Handle)
             {
-                return headerrect;
+                if (m.Msg == WM_CHANGE_MESSAGE)
+                {
+                    this.lbtxt.Text = Message;
+                }
+                else if (m.Msg == WM_SHOW_HIDE)
+                {
+                    int i = m.WParam.ToInt32();
+                    if (i == 1) this.ShowDialog();
+                    else this.Close();
+                }
             }
+            base.WndProc(ref m);
+        }
+
+        public void StartSplash()
+        {
+            Ambertation.Windows.Forms.APIHelp.SendMessage(myhandle, WM_SHOW_HIDE, 1, 0);
+        }
+
+        public void StopSplash()
+        {
+            Ambertation.Windows.Forms.APIHelp.SendMessage(myhandle, WM_SHOW_HIDE, 0, 0);
         }
     }
 }
