@@ -45,9 +45,8 @@ namespace SimPe
             SetupMainForm();
 		}
 
-        
 
-		
+        
 
 		static string[] pargs;
 		public static MainForm Global;
@@ -57,45 +56,50 @@ namespace SimPe
 		[STAThread]
 		static void Main(string[] args) 
 		{
-			try 
-			{
-               /*Console.WriteLine(ExpansionLoader.Global.EPInstalled+" "+ExpansionLoader.Global.SPInstalled+" "+ExpansionLoader.Global.GameVersion);
-                return;*/
+            try
+            {
+                SimPe.Splash.Screen.Start();
+                /*Console.WriteLine(ExpansionLoader.Global.EPInstalled+" "+ExpansionLoader.Global.SPInstalled+" "+ExpansionLoader.Global.GameVersion);
+                 return;*/
 
-				Commandline.CheckFiles();
-			
-				//do the real Startup
-				pargs = args;
-				//Application.EnableVisualStyles();
-				Application.DoEvents();		
-				Application.Idle += new EventHandler(Application_Idle);				
+                Commandline.CheckFiles();
 
-				if (!Commandline.ImportOldData()) return;
+                //do the real Startup
+                pargs = args;
+                //Application.EnableVisualStyles();
+                Application.DoEvents();
+                Application.Idle += new EventHandler(Application_Idle);
 
-				if (!Commandline.Start(args))  
-				{
-					Helper.WindowsRegistry.UpdateSimPEDirectory();
-					Global = new MainForm();
-					Application.Run(Global);
+                if (!Commandline.ImportOldData()) return;
 
-                    
-					Helper.WindowsRegistry.Flush();
-					Helper.WindowsRegistry.Layout.Flush();
+                if (!Commandline.Start(args))
+                {
+                    Helper.WindowsRegistry.UpdateSimPEDirectory();
+                    Global = new MainForm();
+                    Application.Run(Global);
+
+
+                    Helper.WindowsRegistry.Flush();
+                    Helper.WindowsRegistry.Layout.Flush();
                     //ExpansionLoader.Global.Flush(); SimPE should not edit this File!
-				}
-			} 
-			catch (Exception ex) 
-			{
-				try 
-				{
-					Helper.ExceptionMessage("SimPE will shutdown due to an unhandled Exception.", ex);
-				} 
-				catch (Exception ex2) 
-				{
-					
-					MessageBox.Show("SimPE will shutdown due to an unhandled Exception.\n\nMessage: "+ex2.Message);
-				}
-			}
+                }
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    Helper.ExceptionMessage("SimPE will shutdown due to an unhandled Exception.", ex);
+                }
+                catch (Exception ex2)
+                {
+
+                    MessageBox.Show("SimPE will shutdown due to an unhandled Exception.\n\nMessage: " + ex2.Message);
+                }
+            }
+            finally
+            {
+                
+            }
 
 			try 
 			{
