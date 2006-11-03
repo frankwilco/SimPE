@@ -1182,4 +1182,16 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Cat">
     <value>Cat</value>
   </data>
+  <data name="Starting SimPE...">
+    <value>Starting SimPE...</value>
+  </data>
+  <data name="Validating SimPE registry">
+    <value>Validating SimPE registry</value>
+  </data>
+  <data name="Checking commandline parameters">
+    <value>Checking commandline parameters</value>
+  </data>
+  <data name="Creating GUI">
+    <value>Creating GUI</value>
+  </data>
 </root>

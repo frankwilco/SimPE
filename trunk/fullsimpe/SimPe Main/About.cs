@@ -157,11 +157,12 @@ namespace SimPe
 		/// </summary>
 		public static void ShowAbout()
 		{
+           
 			About f = new About();
 			f.Text = SimPe.Localization.GetString("About");
 
 			f.LoadResource("about");
-
+            SimPe.Splash.Screen.Stop();
 			f.ShowDialog();
 		}
 
@@ -173,7 +174,8 @@ namespace SimPe
 			About f = new About();
 			f.Text = SimPe.Localization.GetString("Welcome");
 
-			f.LoadResource("welcome");
+            f.LoadResource("welcome");
+            SimPe.Splash.Screen.Stop();
 
 			f.ShowDialog();
 		}
@@ -223,57 +225,61 @@ namespace SimPe
 		/// Display the Update Screen
 		/// </summary>
 		/// <param name="show">true, if it should be visible even if no updates were found</param>
-		public static void ShowUpdate(bool show)
-		{
-			if (!show)
-			{
-				TimeSpan ts = DateTime.Now - Helper.WindowsRegistry.LastUpdateCheck;
-				//only check for new releases once a Day
-				if (!Helper.QARelease && !Helper.WindowsRegistry.WasQAUser) 
-				{
-					if (ts < new TimeSpan(1, 0, 0)) return;
-				} 
-				else if (Helper.WindowsRegistry.WasQAUser) 
-				{
-					if (ts < new TimeSpan(0, 4, 0)) return;
-				}
-				else if (ts < new TimeSpan(0, 1, 30)) return;
-			}
+        public static void ShowUpdate(bool show)
+        {
+            if (!show)
+            {
+                TimeSpan ts = DateTime.Now - Helper.WindowsRegistry.LastUpdateCheck;
+                //only check for new releases once a Day
+                if (!Helper.QARelease && !Helper.WindowsRegistry.WasQAUser)
+                {
+                    if (ts < new TimeSpan(1, 0, 0)) return;
+                }
+                else if (Helper.WindowsRegistry.WasQAUser)
+                {
+                    if (ts < new TimeSpan(0, 4, 0)) return;
+                }
+                else if (ts < new TimeSpan(0, 1, 30)) return;
+            }
 
-			//scan for an Update
-			Wait.SubStart();
-			About f = new About();
-			f.Text = SimPe.Localization.GetString("Updates");
-			long version = 0;
-			long qaversion = 0;
-			string text = "";
+            //scan for an Update
+            Wait.SubStart();
+            About f = new About();
+            f.Text = SimPe.Localization.GetString("Updates");
+            long version = 0;
+            long qaversion = 0;
+            string text = "";
 
-			SimPe.UpdateState res = WebUpdate.CheckUpdate(ref version, ref qaversion);
-			
-			
-			if (!show && (res != SimPe.UpdateState.Nothing)) 
-			{
-				DialogResult dr = Message.Show("A new SimPE Version is available. Should SimPE display the new Version Information?", "Updates", MessageBoxButtons.YesNo);
-				if (dr==DialogResult.No) res = SimPe.UpdateState.Nothing;
-			}
+            SimPe.UpdateState res = WebUpdate.CheckUpdate(ref version, ref qaversion);
 
-			text = "<h2><span class=\"highlight\">"+SimPe.Localization.GetString("Current Version")+":</span> "+Helper.SimPeVersionString;
-			if (Helper.DebugMode) text += " ("+Helper.SimPeVersionLong.ToString()+")";
-			text += "</h2>";
-			if (Helper.QARelease) text += "<h2><span class=\"highlight\">"+SimPe.Localization.GetString("Available QA-Version")+":</span> "+Helper.LongVersionToString(qaversion)+"</h2>";
-			text += "<h2><span class=\"highlight\">"+SimPe.Localization.GetString("Available Version")+":</span> "+Helper.LongVersionToString(version);
-			if ((res & SimPe.UpdateState.NewRelease) !=0) text += " ("+SimPe.Localization.GetString("download")+": <b>http://sims.ambertation.de/download.shtml</b>)";
-			text += "</h2>";
-			text += "<br /><br />";
 
-			if ((res & SimPe.UpdateState.NewQARelease) !=0) text += SimPe.Localization.GetString("get_qa_release");
-			else if ((res & SimPe.UpdateState.NewRelease) !=0) text += WebUpdate.GetChangeLog();			
-			else text += SimPe.Localization.GetString("no_new_version");
+            if (!show && (res != SimPe.UpdateState.Nothing))
+            {
+                DialogResult dr = Message.Show("A new SimPE Version is available. Should SimPE display the new Version Information?", "Updates", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.No) res = SimPe.UpdateState.Nothing;
+            }
 
-			f.rtb.Rtf = Ambertation.Html2Rtf.Convert(text);
-			Wait.SubStop();		
-			if (show || (res != SimPe.UpdateState.Nothing)) f.ShowDialog();
-		}
+            text = "<h2><span class=\"highlight\">" + SimPe.Localization.GetString("Current Version") + ":</span> " + Helper.SimPeVersionString;
+            if (Helper.DebugMode) text += " (" + Helper.SimPeVersionLong.ToString() + ")";
+            text += "</h2>";
+            if (Helper.QARelease) text += "<h2><span class=\"highlight\">" + SimPe.Localization.GetString("Available QA-Version") + ":</span> " + Helper.LongVersionToString(qaversion) + "</h2>";
+            text += "<h2><span class=\"highlight\">" + SimPe.Localization.GetString("Available Version") + ":</span> " + Helper.LongVersionToString(version);
+            if ((res & SimPe.UpdateState.NewRelease) != 0) text += " (" + SimPe.Localization.GetString("download") + ": <b>http://sims.ambertation.de/download.shtml</b>)";
+            text += "</h2>";
+            text += "<br /><br />";
+
+            if ((res & SimPe.UpdateState.NewQARelease) != 0) text += SimPe.Localization.GetString("get_qa_release");
+            else if ((res & SimPe.UpdateState.NewRelease) != 0) text += WebUpdate.GetChangeLog();
+            else text += SimPe.Localization.GetString("no_new_version");
+
+            f.rtb.Rtf = Ambertation.Html2Rtf.Convert(text);
+            Wait.SubStop();
+            if (show || (res != SimPe.UpdateState.Nothing))
+            {
+                SimPe.Splash.Screen.Stop();
+                f.ShowDialog();
+            }
+        }
 
 		static string TutorialTempFile
 		{
@@ -372,7 +378,8 @@ namespace SimPe
 				if (f.rtb.Rtf=="") f.rtb.Rtf = ex.Message;
 			}
 
-			Wait.SubStop();			
+            Wait.SubStop();
+            SimPe.Splash.Screen.Stop();		
 			f.ShowDialog();
 		}
 

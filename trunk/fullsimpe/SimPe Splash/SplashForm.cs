@@ -35,8 +35,11 @@ namespace SimPe.Windows.Forms
 
         public SplashForm()
         {
+            msg = "";            
             InitializeComponent();
             myhandle = Handle;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            lbtxt.Text = msg;
         }
 
         string msg;
@@ -49,7 +52,9 @@ namespace SimPe.Windows.Forms
                 {
                     if (msg != value)
                     {
-                        msg = value;
+                        if (value == null) msg = "";
+                        else msg = value;
+
                         SendMessageChangeSignal();
                     }
                 }

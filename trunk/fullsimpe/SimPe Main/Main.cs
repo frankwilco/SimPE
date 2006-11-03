@@ -56,8 +56,10 @@ namespace SimPe
 		[STAThread]
 		static void Main(string[] args) 
 		{
+
             try
             {
+                SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Starting SimPE..."));
                 SimPe.Splash.Screen.Start();
                 /*Console.WriteLine(ExpansionLoader.Global.EPInstalled+" "+ExpansionLoader.Global.SPInstalled+" "+ExpansionLoader.Global.GameVersion);
                  return;*/
@@ -70,7 +72,11 @@ namespace SimPe
                 Application.DoEvents();
                 Application.Idle += new EventHandler(Application_Idle);
 
-                if (!Commandline.ImportOldData()) return;
+                if (!Commandline.ImportOldData())
+                {
+                    SimPe.Splash.Screen.ShutDown();
+                    return;
+                }
 
                 if (!Commandline.Start(args))
                 {
@@ -79,15 +85,19 @@ namespace SimPe
                     Application.Run(Global);
 
 
+
                     Helper.WindowsRegistry.Flush();
                     Helper.WindowsRegistry.Layout.Flush();
                     //ExpansionLoader.Global.Flush(); SimPE should not edit this File!
+                    
                 }
+                
             }
             catch (Exception ex)
             {
                 try
                 {
+                    SimPe.Splash.Screen.Stop();
                     Helper.ExceptionMessage("SimPE will shutdown due to an unhandled Exception.", ex);
                 }
                 catch (Exception ex2)
@@ -98,7 +108,7 @@ namespace SimPe
             }
             finally
             {
-                
+                SimPe.Splash.Screen.ShutDown();
             }
 
 			try 

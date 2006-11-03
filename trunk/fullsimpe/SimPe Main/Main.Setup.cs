@@ -32,7 +32,7 @@ namespace SimPe
         private void SetupMainForm()
         {
             this.SuspendLayout();
-
+            SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Creating GUI"));
             if (Helper.DebugMode)
             {
                 ToolStripButton tbDebug = new ToolStripButton();
@@ -56,11 +56,14 @@ namespace SimPe
             //package.AddedResource += new EventHandler(AddedRemovedIndexResource);
             //package.RemovedResource += new EventHandler(AddedRemovedIndexResource);
 
-            filter = new ViewFilter();            
+            SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Building View Filter"));
+            filter = new ViewFilter();
+            SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Starting Resource Loader"));
             resloader = new ResourceLoader(dc, package);
+            SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Enabling RemoteControl"));
             remote = new RemoteHandler(this, package, resloader, miWindow);
-            
 
+            SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Loading Plugins..."));
             plugger = new PluginManager(
                 miTools,
                 tbTools,
@@ -111,6 +114,7 @@ namespace SimPe
 
         void LoadForm(object sender, System.EventArgs e)
         {
+            SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Starting Main Form"));
             this.ResumeLayout();
             if (Helper.WindowsRegistry.PreviousVersion == 0)
             {                
@@ -141,7 +145,7 @@ namespace SimPe
 
             manager.Visible = true;
             tbContainer.Visible = true;
-
+            SimPe.Splash.Screen.Stop();
             
         }
     }
