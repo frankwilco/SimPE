@@ -24,8 +24,12 @@ namespace SimPe
             mmsg = "";
             running = true;
             show = false;
-            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(StartThread));
-            t.Start();
+
+            if (Helper.WindowsRegistry.ShowStartupSplash)
+            {
+                System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(StartThread));
+                t.Start();
+            }
         }
 
         protected void StartThread()

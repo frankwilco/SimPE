@@ -360,6 +360,24 @@ namespace SimPe
 			}
 		}
 
+        /// <summary>
+        /// true, if user wants see the startup splash screen
+        /// </summary>
+        public bool ShowStartupSplash
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("ShowStartupSplash", true);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("ShowStartupSplash", value);
+            }
+        }
+
 		/// <summary>
 		/// true, if user wants to show the OBJD Filenames in OW
 		/// </summary>
