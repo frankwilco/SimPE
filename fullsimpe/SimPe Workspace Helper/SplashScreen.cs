@@ -18,30 +18,40 @@ namespace SimPe
 
         SimPe.Windows.Forms.SplashForm frm;
         bool running;
+        bool show;
         private Splash()
         {
+            mmsg = "";
             running = true;
-            System.Threading.Thread t = new System.Threading.Thread(System.Threading.ThreadStart(StartThread));            
+            show = false;
+            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(StartThread));
+            t.Start();
         }
 
         protected void StartThread()
         {
             frm = new SimPe.Windows.Forms.SplashForm();
+            if (show) Start();
+            SetMessage(mmsg);
         }
 
+        string mmsg;
         public void SetMessage(string msg)
         {
-            frm.Message = msg;
+            mmsg = msg;
+            if (frm!=null)frm.Message = msg;
         }
 
         public void Start()
         {
-            frm.StartSplash();
+            show = true;
+            if (frm!=null) frm.StartSplash();
         }
 
         public void Stop()
         {
-            frm.StopSplash();
+            show = false;
+            if (frm!=null) frm.StopSplash();
         }
 
         public void ShutDown()

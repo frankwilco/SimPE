@@ -16,7 +16,8 @@ namespace SimPe
 		/// <param name="args">Commandline Arguments</param>
 		/// <returns>true if simpe should stop now</returns>
 		public static bool Start(string[] args)
-		{		
+		{
+            SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Checking commandline parameters"));
 			if (args.Length<1) return false;
 
             if (Help(args)) return true;
@@ -62,6 +63,8 @@ namespace SimPe
 			Helper.WindowsRegistry.LockDocks = true;
             Helper.WindowsRegistry.Flush();
 
+
+            SimPe.Splash.Screen.Stop();
 			if (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetClassic")), SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
 				return false;
 			return true;
@@ -92,6 +95,7 @@ namespace SimPe
 			Helper.WindowsRegistry.LockDocks = false;
             Helper.WindowsRegistry.Flush();
 
+            SimPe.Splash.Screen.Stop();
 			if (Message.Show(SimPe.Localization.GetString("PresetChanged").Replace("{name}", SimPe.Localization.GetString("PresetModern")), SimPe.Localization.GetString("Information"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
 				return false;
 			return true;
@@ -589,6 +593,7 @@ namespace SimPe
 				string name = System.IO.Path.Combine(Helper.SimPeDataPath, "folders.xreg");
 				if (System.IO.File.Exists(name)) 
 				{
+                    SimPe.Splash.Screen.Stop();
 					if (Message.Show(SimPe.Localization.GetString("Reset Filetable").Replace("{flname}", name), "Update", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
 					{
 						try 
@@ -623,9 +628,12 @@ namespace SimPe
 				}
 			}*/
 
-			if (Helper.WindowsRegistry.FoundUnknownEP())
-				if (Message.Show(SimPe.Localization.GetString("Unknown EP found").Replace("{name}", SimPe.PathProvider.Global.GetExpansion(SimPe.PathProvider.Global.LastKnown).Name), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
-					return false;
+            if (Helper.WindowsRegistry.FoundUnknownEP())
+            {
+                SimPe.Splash.Screen.Stop();
+                if (Message.Show(SimPe.Localization.GetString("Unknown EP found").Replace("{name}", SimPe.PathProvider.Global.GetExpansion(SimPe.PathProvider.Global.LastKnown).Name), SimPe.Localization.GetString("Warning"), System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+                    return false;
+            }
 
             if (!System.IO.File.Exists(Helper.LayoutFileName)) ForceModernLayout();
 
@@ -645,6 +653,7 @@ namespace SimPe
 
 		public static void CheckFiles()
 		{
+            SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Validating SimPE registry"));
 			//check if the settings File is available
 			string file = System.IO.Path.Combine(Helper.SimPeDataPath, @"simpe.xreg");
 			try 
@@ -653,6 +662,7 @@ namespace SimPe
 			}
 			catch
 			{
+                SimPe.Splash.Screen.Stop();
 				if (System.Windows.Forms.MessageBox.Show("The Settings File was not readable. SimPE will generate a new one, which means that all your Settings made in \"Extra->Preferences\" get lost.\n\nShould SimPe reset the Settings File?", "Error", System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.Yes)
 					System.IO.File.Delete(file);
 			}
@@ -665,6 +675,7 @@ namespace SimPe
 			}
 			catch
 			{
+                SimPe.Splash.Screen.Stop();
 				if (System.Windows.Forms.MessageBox.Show("The Layout File was not readable. SimPE will generate a new one, which means that your Window Layout will be reset to the Default.\n\nShould SimPe reset the Settings File?", "Error", System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.Yes)
 					System.IO.File.Delete(file);
 			}
@@ -679,8 +690,9 @@ namespace SimPe
 			{
 				if (System.IO.Directory.Exists(Helper.WindowsRegistry.PreviousDataFolder))
 					if (Helper.WindowsRegistry.PreviousDataFolder.Trim().ToLower()!=Helper.SimPeDataPath.Trim().ToLower())
-						if (Helper.SimPeVersionLong>Helper.WindowsRegistry.PreviousVersion && Helper.WindowsRegistry.PreviousVersion>0) 
-						{
+						if (Helper.SimPeVersionLong>Helper.WindowsRegistry.PreviousVersion && Helper.WindowsRegistry.PreviousVersion>0)
+                        {
+                            SimPe.Splash.Screen.Stop();
 							if (Message.Show("Should SimPE import old Settings from \""+Helper.WindowsRegistry.PreviousDataFolder+"\"?", "Import Settings", System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.Yes) 
 							{
 								WaitingScreen.Wait();
