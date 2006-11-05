@@ -363,5 +363,12 @@ namespace SimPe
 			RemoteControl.ShowSubForm(f);
 			f.Dispose();
 		}
+
+        public delegate void ResourceListSelectionChangedHandler(object sender, SimPe.Events.ResourceEventArgs e);
+        public static void FireResourceListSelectionChangedHandler(object sender, SimPe.Events.ResourceEventArgs e)
+        {
+            if (ResourceListSelectionChanged != null) ResourceListSelectionChanged(sender, e);
+        }
+        public static event ResourceListSelectionChangedHandler ResourceListSelectionChanged;
 	}
 }

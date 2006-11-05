@@ -303,7 +303,7 @@ namespace Ambertation.Windows.Forms
 
 		public new void Invalidate()
 		{
-			if (this.DesignMode) CompleteRedraw();
+			if (DesignMode) CompleteRedraw();
 			base.Invalidate();
 		}
 

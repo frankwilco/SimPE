@@ -141,6 +141,7 @@ namespace SimPe
 		/// </summary>
 		public void ChangedGuiResourceEventHandler(object sender, SimPe.Events.ResourceEventArgs e)
 		{
+            RemoteControl.FireResourceListSelectionChangedHandler(sender, e);
 			if (ChangedGuiResourceEvent!=null) 
 			{
 				thsender = sender;

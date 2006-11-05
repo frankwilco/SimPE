@@ -27,7 +27,8 @@ namespace SimPe.Windows.Forms
 
         protected void SignalSelectionChanged()
         {
-            seltimer.Change(WAIT_SELECT, System.Threading.Timeout.Infinite);
+            if (noselectevent>0) DoSignalSelectionChanged(myhandle);
+            else seltimer.Change(WAIT_SELECT, System.Threading.Timeout.Infinite);
         }
 
         void DoSignalSelectionChanged(IntPtr handle)
@@ -57,8 +58,12 @@ namespace SimPe.Windows.Forms
 
         protected virtual void OnResourceSelectionChanged()
         {
-            if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
-            
+            resselchgea = new EventArgs();
+            if (SelectionChanged != null)
+            {
+                if (noselectevent==0) SelectionChanged(this, resselchgea);
+            }
+            if (noselectevent==0) resselchgea = null;
             //PrintStats("***OnResourceSelectionChanged");
         }
 
@@ -75,12 +80,12 @@ namespace SimPe.Windows.Forms
                 ctrldown = true;
                 ListViewItem lvi = lv.GetItemAt(e.X, e.Y);
 
-                lv.BeginUpdate();
+                BeginUpdate();
                 lv.EnsureVisible(lvi.Index);
                 lv.SelectedIndices.Clear();
                 lv.SelectedIndices.Add(lvi.Index);
                 OnSelectResource();
-                lv.EndUpdate();
+                EndUpdate();
 
                 ctrldown = old;
             }
@@ -119,11 +124,11 @@ namespace SimPe.Windows.Forms
         {
             lock (names)
             {
-                lv.BeginUpdate();
+                BeginUpdate();
                 lv.SelectedIndices.Clear();
                 for (int i = 0; i < names.Count; i++)
                     lv.SelectedIndices.Add(i);
-                lv.EndUpdate();
+                EndUpdate();
             }
         }
         protected void OnSelectResource()
@@ -131,7 +136,11 @@ namespace SimPe.Windows.Forms
             bool rctrl = ctrldown;
             if (!Helper.WindowsRegistry.FirefoxTabbing) rctrl = false;
 
-            if (SelectedResource != null) SelectedResource(this, new SelectResourceEventArgs(rctrl));
+            selresea = new SelectResourceEventArgs(rctrl);
+            if (SelectedResource != null) {
+                if (noselectevent==0) SelectedResource(this, selresea);
+            }
+            if (noselectevent==0) selresea = null;
             //System.Diagnostics.Debug.WriteLine("Selection changed " + rctrl);
         }
 
@@ -173,11 +182,11 @@ namespace SimPe.Windows.Forms
                 {
                     if (pfd.Resource.FileDescriptor.Equals(resource.FileDescriptor))
                     {
-                        lv.BeginUpdate();
+                        BeginUpdate();
                         lv.SelectedIndices.Clear();
                         lv.SelectedIndices.Add(ct);
                         lv.EnsureVisible(ct);
-                        lv.EndUpdate();
+                        EndUpdate();
                         return true;
                     }
                     ct++;

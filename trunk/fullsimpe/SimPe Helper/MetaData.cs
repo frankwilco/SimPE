@@ -800,9 +800,20 @@ namespace SimPe.Data
                                                 new SemiGlobalAlias(0x7FCDD99D, "small one something to do with roses"),
                                                 new SemiGlobalAlias(0x7FE6D20D, "playing with child")
                                             };	*/
-        public static Alias[] SemiGlobals = {
-    new SemiGlobalAlias(true, 0x7F60C397,"LampGlobals"),
-new SemiGlobalAlias(true, 0x7FF616D0,"Windowglobals"),
+        static System.Collections.Generic.List<SemiGlobalAlias> sgl;
+        public static System.Collections.Generic.List<SemiGlobalAlias> SemiGlobals{
+             get {
+                 if (sgl == null) LoadSemGlobList();
+                 return sgl;
+             }
+        }
+        static void LoadSemGlobList()
+        {
+            sgl = new System.Collections.Generic.List<SemiGlobalAlias>();
+            sgl.AddRange(
+                new SemiGlobalAlias[] {
+                    new SemiGlobalAlias(true, 0x7F60C397,"LampGlobals"),
+                    new SemiGlobalAlias(true, 0x7FF616D0,"Windowglobals"),
 new SemiGlobalAlias(true, 0x7FD0DEBA,"DoorGlobalsNew"),
 new SemiGlobalAlias(true, 0x7F84A9F4,"MirrorGlobals"),
 new SemiGlobalAlias(true, 0x7F18E0F0,"PaintingGlobals"),
@@ -938,7 +949,9 @@ new SemiGlobalAlias(true, 0x7F6E333B,"DishwasherGlobals"),
 new SemiGlobalAlias(true, 0x7F9EE20D,"ControllerGroupGlobals"),
 new SemiGlobalAlias(true, 0x7FB8B012,"LitterBoxGlobals"),
 new SemiGlobalAlias(true, 0x7F23B01B,"FoodProcessor_Globals")
-        };
+            });
+            sgl.Sort();
+        }
 
 
 

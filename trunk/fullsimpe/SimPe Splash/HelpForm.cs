@@ -40,10 +40,12 @@ namespace SimPe.Windows.Forms
         public HelpForm()
             : base()//Color.Transparent, new Size(781, 475))
         {            
+            
+            
+            InitializeComponent();
+
             this.MinimumSize = new Size(781, 475);
             this.MaximumSize = new Size(781, 2048);
-            
-            InitializeComponent();            
         }
 
         protected override void OnCreateBitmap(Graphics g, Bitmap b)

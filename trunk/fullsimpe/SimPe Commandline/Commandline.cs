@@ -59,6 +59,7 @@ namespace SimPe
 			Helper.WindowsRegistry.SimpleResourceSelect = true;
 			Helper.WindowsRegistry.MultipleFiles = false;
 			Helper.WindowsRegistry.FirefoxTabbing = false;
+            Helper.WindowsRegistry.ShowWaitBarPermanent = false;
 
 			Helper.WindowsRegistry.LockDocks = true;
             Helper.WindowsRegistry.Flush();
@@ -92,7 +93,8 @@ namespace SimPe
 			Helper.WindowsRegistry.MultipleFiles = true;
 			Helper.WindowsRegistry.FirefoxTabbing = true;
 
-			Helper.WindowsRegistry.LockDocks = false;
+            Helper.WindowsRegistry.LockDocks = false;
+            Helper.WindowsRegistry.ShowWaitBarPermanent = true;
             Helper.WindowsRegistry.Flush();
 
             SimPe.Splash.Screen.Stop();

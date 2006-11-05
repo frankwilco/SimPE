@@ -23,6 +23,7 @@ using SimPe.Interfaces;
 using SimPe.PackedFiles.Wrapper.Supporting;
 using SimPe.Data;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace SimPe.PackedFiles.Wrapper
 {
@@ -30,30 +31,83 @@ namespace SimPe.PackedFiles.Wrapper
 	/// An Item as stored in a Scor Resource
 	/// </summary>
 	public class ScorItem
-	{			
-		string name;
-		public string Name
-		{
-			get {return name;}
-			set {name = value;}
-		}
-		Scor parent;
+    {
+        #region GuiWrappers
+        static Dictionary<string, Type> guis;
+        protected static Dictionary<string, Type> GuiElements
+        {
+            get
+            {
+                if (guis == null) LoadGuielements();
+                return guis;
+            }
+        }
+
+        static void LoadGuielements(){
+            guis = new Dictionary<string, Type>();
+
+            guis.Add("Learned Behaviors", typeof(SCOR.ScoreItemLearnedBehaviour));
+        }
+
+        protected SCOR.AScorItem GetGuiElement(string name, byte[] data)
+        {
+            SCOR.AScorItem ret = null;
+            if (GuiElements.ContainsKey(name))
+            {
+                ret = System.Activator.CreateInstance(GuiElements[name], new object[] { this }) as SCOR.AScorItem;                
+            }
+            if (ret==null) ret = new SCOR.ScoreItemDefault(this);
+            if (data != null)
+            {
+                System.IO.BinaryReader br = new System.IO.BinaryReader(new System.IO.MemoryStream(data));
+                ret.SetData(name, br);
+                br.Close();
+            }
+
+            return ret;
+        }
+        #endregion
+        SCOR.AScorItem gui;
+        public SCOR.AScorItem Gui
+        {
+            get {
+                if (gui == null) SetGui("", new byte[0]);
+                return gui; 
+            }
+        }
+
+
+        Scor parent;
+        public Scor Parent
+        {
+            get { return parent; }
+        }
 		
-		byte[] data;
+		
 		/// <summary>
 		/// Constructor
 		/// </summary>
 		public ScorItem(string name, Scor parent) : this(parent)
 		{
-			if (name==null) name="";
-			this.name = name;
+			SetGui(name, new byte[0]);
 		}
 
 		internal ScorItem(Scor parent) 
 		{
-			this.data = new byte[0];
-			this.parent = parent;		
+			this.parent = parent;
+            SetGui("", new byte[0]);
 		}
+
+        ~ScorItem()
+        {
+            if (gui != null) gui.Dispose();
+        }
+
+        protected void SetGui(string name, byte[] data)
+        {
+            if (gui != null) gui.Dispose();
+            gui = GetGuiElement(name, data);
+        }
 						
 		/// <summary>
 		/// Unserializes a BinaryStream into the Attributes of this Instance
@@ -61,7 +115,8 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <param name="reader">The Stream that contains the FileData</param>
 		internal void Unserialize(System.IO.BinaryReader reader)
 		{
-			name = StreamHelper.ReadString(reader);			
+			string name = StreamHelper.ReadString(reader);
+            
 			if (reader.BaseStream.Position > reader.BaseStream.Length-1) return;
 			System.Collections.ArrayList bytes = new ArrayList();
 			
@@ -79,8 +134,10 @@ namespace SimPe.PackedFiles.Wrapper
 				if (bytes.Count>0) 
 					bytes.RemoveAt(bytes.Count-1);
 
-			data = new byte[bytes.Count];
+			byte[] data = new byte[bytes.Count];
 			bytes.CopyTo(data);
+
+            SetGui(name, data);
 		}
 
 		/// <summary>
@@ -93,27 +150,13 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </remarks>
 		internal  void Serialize(System.IO.BinaryWriter writer, bool last)
 		{
-			StreamHelper.WriteString(writer, name);
-			writer.Write(data);
+            Gui.Serialize(writer);
 			if (!last) writer.Write((ushort)0x0400);			
 		}		
 
 		public override string ToString()
 		{
-			if (Helper.WindowsRegistry.HiddenMode) 
-			{
-				string s = "";
-				s += Helper.BytesToHexList(data);
-				s +=  " [" + Name + "]";
-				return s;
-			} 
-			else 
-			{
-				string s = Name+ " [";
-				s += Helper.BytesToHexList(data);
-				s += "]";
-				return s;
-			}
+            return Gui.TokenName;
 		}
 
 	}
@@ -154,7 +197,7 @@ namespace SimPe.PackedFiles.Wrapper
 		protected int FindIndex(string name)
 		{
 			for (int i=0; i< list.Count; i++)
-				if (this[i].Name==name) return i;
+				if (this[i].Gui.Name==name) return i;
 
 			return -1;
 		}

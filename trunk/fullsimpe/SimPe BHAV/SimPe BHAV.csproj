@@ -183,12 +183,6 @@
     <Compile Include="Connector.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GlobUI.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GlobWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ImportSemi.cs">
       <SubType>Form</SubType>
     </Compile>

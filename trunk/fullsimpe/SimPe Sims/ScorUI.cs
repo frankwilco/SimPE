@@ -38,6 +38,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.TextBox tbunk2;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ListBox lb;
+        private Panel pnContainer;
 		/// <summary> 
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -51,7 +52,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Text = "Sim Scores";
 			this.Commited += new EventHandler(ScorUI_Commited);
 
-			this.CanCommit = false;
+			this.CanCommit = Helper.WindowsRegistry.HiddenMode;
 		}
 
 		/// <summary> 
@@ -76,87 +77,94 @@ namespace SimPe.PackedFiles.UserInterface
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.label1 = new System.Windows.Forms.Label();
-			this.tbunk1 = new System.Windows.Forms.TextBox();
-			this.tbunk2 = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.lb = new System.Windows.Forms.ListBox();
-			this.SuspendLayout();
-			// 
-			// label1
-			// 
-			this.label1.BackColor = System.Drawing.Color.Transparent;
-			this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label1.Location = new System.Drawing.Point(8, 40);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(80, 23);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Unknown 1:";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-			// 
-			// tbunk1
-			// 
-			this.tbunk1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tbunk1.Location = new System.Drawing.Point(96, 40);
-			this.tbunk1.Name = "tbunk1";
-			this.tbunk1.ReadOnly = true;
-			this.tbunk1.Size = new System.Drawing.Size(184, 21);
-			this.tbunk1.TabIndex = 1;
-			this.tbunk1.Text = "";
-			// 
-			// tbunk2
-			// 
-			this.tbunk2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tbunk2.Location = new System.Drawing.Point(96, 64);
-			this.tbunk2.Name = "tbunk2";
-			this.tbunk2.ReadOnly = true;
-			this.tbunk2.Size = new System.Drawing.Size(184, 21);
-			this.tbunk2.TabIndex = 3;
-			this.tbunk2.Text = "";
-			// 
-			// label2
-			// 
-			this.label2.BackColor = System.Drawing.Color.Transparent;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.label2.Location = new System.Drawing.Point(8, 64);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(80, 23);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "Unknown 2:";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-			// 
-			// lb
-			// 
-			this.lb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.lb.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.lb.HorizontalScrollbar = true;
-			this.lb.IntegralHeight = false;
-			this.lb.Location = new System.Drawing.Point(8, 96);
-			this.lb.Name = "lb";
-			this.lb.Size = new System.Drawing.Size(272, 172);
-			this.lb.TabIndex = 4;
-			// 
-			// ScorUI
-			// 
-			this.Controls.Add(this.lb);
-			this.Controls.Add(this.tbunk2);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.tbunk1);
-			this.Controls.Add(this.label1);
-			this.DockPadding.Top = 24;
-			this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.Name = "ScorUI";
-			this.Size = new System.Drawing.Size(288, 272);
-			this.Controls.SetChildIndex(this.label1, 0);
-			this.Controls.SetChildIndex(this.tbunk1, 0);
-			this.Controls.SetChildIndex(this.label2, 0);
-			this.Controls.SetChildIndex(this.tbunk2, 0);
-			this.Controls.SetChildIndex(this.lb, 0);
-			this.ResumeLayout(false);
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbunk1 = new System.Windows.Forms.TextBox();
+            this.tbunk2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lb = new System.Windows.Forms.ListBox();
+            this.pnContainer = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(8, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 23);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Unknown 1:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // tbunk1
+            // 
+            this.tbunk1.Location = new System.Drawing.Point(96, 40);
+            this.tbunk1.Name = "tbunk1";
+            this.tbunk1.ReadOnly = true;
+            this.tbunk1.Size = new System.Drawing.Size(141, 21);
+            this.tbunk1.TabIndex = 1;
+            // 
+            // tbunk2
+            // 
+            this.tbunk2.Location = new System.Drawing.Point(96, 64);
+            this.tbunk2.Name = "tbunk2";
+            this.tbunk2.ReadOnly = true;
+            this.tbunk2.Size = new System.Drawing.Size(141, 21);
+            this.tbunk2.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(8, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 23);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Unknown 2:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // lb
+            // 
+            this.lb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lb.HorizontalScrollbar = true;
+            this.lb.IntegralHeight = false;
+            this.lb.Location = new System.Drawing.Point(8, 96);
+            this.lb.Name = "lb";
+            this.lb.Size = new System.Drawing.Size(229, 172);
+            this.lb.TabIndex = 4;
+            this.lb.SelectedIndexChanged += new System.EventHandler(this.lb_SelectedIndexChanged);
+            // 
+            // pnContainer
+            // 
+            this.pnContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnContainer.Location = new System.Drawing.Point(243, 40);
+            this.pnContainer.Name = "pnContainer";
+            this.pnContainer.Size = new System.Drawing.Size(431, 228);
+            this.pnContainer.TabIndex = 5;
+            // 
+            // ScorUI
+            // 
+            this.Controls.Add(this.lb);
+            this.Controls.Add(this.pnContainer);
+            this.Controls.Add(this.tbunk2);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbunk1);
+            this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Name = "ScorUI";
+            this.Size = new System.Drawing.Size(678, 272);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.tbunk1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.tbunk2, 0);
+            this.Controls.SetChildIndex(this.pnContainer, 0);
+            this.Controls.SetChildIndex(this.lb, 0);
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 		#endregion
@@ -172,6 +180,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		protected override void RefreshGUI()
 		{
+            pnContainer.Controls.Clear();
 			this.tbunk1.Text = Helper.HexString(Scor.Unknown1);
 			this.tbunk2.Text = Helper.HexString(Scor.Unknown2);
 
@@ -186,5 +195,19 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			Scor.SynchronizeUserData();			
 		}
+
+        private void lb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Wrapper.ScorItem si = lb.SelectedItem as Wrapper.ScorItem;
+            pnContainer.Controls.Clear();
+            if (si != null)
+            {
+                if (si.Gui != null)
+                {
+                    pnContainer.Controls.Add(si.Gui);
+                    si.Gui.Dock = DockStyle.Fill;
+                }
+            }
+        }
 	}
 }

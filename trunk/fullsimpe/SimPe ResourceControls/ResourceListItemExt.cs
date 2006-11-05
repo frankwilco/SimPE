@@ -27,8 +27,9 @@ namespace SimPe.Windows.Forms
             if (visible)
                 this.Text = pfd.GetRealName();
             else
-                this.Text = pfd.ToString();
+                this.Text = pfd.Descriptor.ToResListString();
 
+            if (Helper.WindowsRegistry.ResourceListShowExtensions) this.SubItems.Add(GetExtText());
             this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Group));
             this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.SubType));
             this.SubItems.Add("0x" + Helper.HexString(pfd.Descriptor.Instance));
@@ -42,6 +43,18 @@ namespace SimPe.Windows.Forms
             pfd.Descriptor.DescriptionChanged += new EventHandler(Descriptor_DescriptionChanged);*/
 
             ChangeDescription(true);
+        }
+
+        string GetExtText()
+        {
+            if (Helper.WindowsRegistry.ResourceListExtensionFormat == Registry.ResourceListExtensionFormats.Short)
+                return pfd.Descriptor.TypeName.shortname;
+            if (Helper.WindowsRegistry.ResourceListExtensionFormat == Registry.ResourceListExtensionFormats.Long)
+                return pfd.Descriptor.TypeName.Name;
+            if (Helper.WindowsRegistry.ResourceListExtensionFormat == Registry.ResourceListExtensionFormats.Hex)
+                return "0x"+Helper.HexString(pfd.Descriptor.Type);
+
+            return "";
         }
 
         void Descriptor_DescriptionChanged(object sender, EventArgs e)
@@ -93,13 +106,14 @@ namespace SimPe.Windows.Forms
                 if (Visible)
                     this.Text = pfd.GetRealName();
                 else
-                    this.Text = pfd.ToString();
-                
-                this.SubItems[1].Text = "0x" + Helper.HexString(pfd.Descriptor.Group);
-                this.SubItems[2].Text = "0x" + Helper.HexString(pfd.Descriptor.SubType);
-                this.SubItems[3].Text = "0x" + Helper.HexString(pfd.Descriptor.Instance);
-                this.SubItems[4].Text = "0x" + Helper.HexString(pfd.Descriptor.Offset);
-                this.SubItems[5].Text = "0x" + Helper.HexString(pfd.Descriptor.Size);
+                    this.Text = pfd.Descriptor.ToResListString();
+
+                if (Helper.WindowsRegistry.ResourceListShowExtensions) this.SubItems[1].Text = GetExtText();
+                this.SubItems[2].Text = "0x" + Helper.HexString(pfd.Descriptor.Group);
+                this.SubItems[3].Text = "0x" + Helper.HexString(pfd.Descriptor.SubType);
+                this.SubItems[4].Text = "0x" + Helper.HexString(pfd.Descriptor.Instance);
+                this.SubItems[5].Text = "0x" + Helper.HexString(pfd.Descriptor.Offset);
+                this.SubItems[6].Text = "0x" + Helper.HexString(pfd.Descriptor.Size);
             }
 
             System.Drawing.Color fg = System.Drawing.SystemColors.WindowText;

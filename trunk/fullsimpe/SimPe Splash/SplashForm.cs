@@ -24,11 +24,13 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Ambertation.Windows.Forms;
 
 namespace SimPe.Windows.Forms
 {
-    public partial class SplashForm : HelpForm
+    public partial class SplashForm : TransparentForm
     {
+        static Image bg;
         const uint WM_CHANGE_MESSAGE = Ambertation.Windows.Forms.APIHelp.WM_APP + 0x0001;
         const uint WM_SHOW_HIDE = Ambertation.Windows.Forms.APIHelp.WM_APP + 0x0002;
         IntPtr myhandle;
@@ -37,9 +39,30 @@ namespace SimPe.Windows.Forms
         {
             msg = "";            
             InitializeComponent();
+            this.MinimumSize = new Size(461, 212);
+            this.MaximumSize = new Size(461, 212);
             myhandle = Handle;
             this.StartPosition = FormStartPosition.CenterScreen;
             lbtxt.Text = msg;
+            lbver.Text = SimPe.Helper.SimPeVersion.FileMajorPart + "." + SimPe.Helper.SimPeVersion.FileMinorPart + "." + SimPe.Helper.SimPeVersion.FileBuildPart;
+            
+            if (Helper.DebugMode && Helper.QARelease) lbver.Text +=" [Debug, QA]";
+            else if (Helper.DebugMode) lbver.Text += " [Debug]";           
+            else if (Helper.QARelease) lbver.Text += " [QA]";
+            
+        }
+
+        protected override void OnCreateBitmap(Graphics g, Bitmap b)
+        {
+            //base.OnCreateBitmap(g, b);
+
+            if (bg == null)
+            {
+                bg = Image.FromStream(typeof(HelpForm).Assembly.GetManifestResourceStream("SimPe.Windows.Forms.img.splash.png"));                
+            }
+
+            g.DrawImage(bg, new Point(0, 0));            
+            g.Dispose();
         }
 
         string msg;
@@ -53,7 +76,7 @@ namespace SimPe.Windows.Forms
                     if (msg != value)
                     {
                         if (value == null) msg = "";
-                        else msg = value;
+                        else msg = value;                        
 
                         SendMessageChangeSignal();
                     }

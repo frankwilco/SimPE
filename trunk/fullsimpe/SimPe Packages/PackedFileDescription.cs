@@ -333,6 +333,30 @@ namespace SimPe.Packages
 			return name;
 		}
 
+        string GetResDescString()
+        {
+            if (Helper.WindowsRegistry.ResourceListUnknownDescriptionFormat == Registry.ResourceListUnnamedFormats.FullTGI)
+            return Helper.HexString(this.Type) + " - " + Helper.HexString(this.SubType) +
+                " - " + Helper.HexString(this.Group) + " - " + Helper.HexString(this.Instance);
+
+            if (Helper.WindowsRegistry.ResourceListUnknownDescriptionFormat == Registry.ResourceListUnnamedFormats.Instance)
+                return Helper.HexString(this.SubType)+" - "+Helper.HexString(this.Instance);
+
+            return Helper.HexString(this.SubType) + " - " + Helper.HexString(this.Group) + " - " + Helper.HexString(this.Instance);
+        }
+
+        public string ToResListString()
+        {
+            if (Helper.WindowsRegistry.ResourceListFormat == Registry.ResourceListFormats.ShortTypeNames)
+                return this.TypeName.shortname + ": " + GetResDescString();
+
+            if (Helper.WindowsRegistry.ResourceListFormat == Registry.ResourceListFormats.JustNames)
+                return this.TypeName.ToString();
+
+            //if ((this.Size==0) && (this.Offset==0)) name += " [UserFile]";
+            return this.TypeName + ": " + GetResDescString();
+        }
+
 		#region Compare Methods
 		/// <summary>
 		/// Same Equals, except this Version is also checking the Offset

@@ -631,8 +631,8 @@
 		<known/>
 	</type>	
 	<type value="CC2A6A34">
-		<name>UNK: 0xCC2A6A34</name>
-		<shortname>UNK</shortname>
+		<name>Sim Creation Index</name>
+		<shortname>SCID</shortname>
 	</type>
 	<type value="00000000">
 		<name>UI Data</name>
@@ -766,6 +766,16 @@
 	<type value="2C310F46">
 		<name>Popups</name>
 		<shortname>POPS</shortname>
+		<known/>
+	</type>
+	<type value="D1954460">
+		<name>Pet Body Options</name>
+		<shortname>PBOP</shortname>
+		<known/>
+	</type>
+	<type value="7181C501">
+		<name>Pet Unknown</name>
+		<shortname>PUNK</shortname>
 		<known/>
 	</type>
 </tgi>

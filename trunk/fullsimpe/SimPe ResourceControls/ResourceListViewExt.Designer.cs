@@ -35,7 +35,8 @@
             this.clInst = new System.Windows.Forms.ColumnHeader();
             this.clOffset = new System.Windows.Forms.ColumnHeader();
             this.clSize = new System.Windows.Forms.ColumnHeader();
-            this.lv = new ListViewDoubleBuffered();
+            this.lv = new SimPe.Windows.Forms.ListViewDoubleBuffered();
+            this.clTName = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // clType
@@ -64,15 +65,20 @@
             // 
             // lv
             // 
+            this.lv.AccessibleDescription = null;
+            this.lv.AccessibleName = null;
+            resources.ApplyResources(this.lv, "lv");
+            this.lv.BackgroundImage = null;
             this.lv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.clType,
+            this.clTName,
             this.clGroup,
             this.clInstHi,
             this.clInst,
             this.clOffset,
             this.clSize});
-            resources.ApplyResources(this.lv, "lv");
+            this.lv.Font = null;
             this.lv.FullRowSelect = true;
             this.lv.HideSelection = false;
             this.lv.Name = "lv";
@@ -92,10 +98,17 @@
             this.lv.SearchForVirtualItem += new System.Windows.Forms.SearchForVirtualItemEventHandler(this.lv_SearchForVirtualItem);
             this.lv.Click += new System.EventHandler(this.lv_Click);
             // 
+            // clTName
+            // 
+            resources.ApplyResources(this.clTName, "clTName");
+            // 
             // ResourceListViewExt
             // 
-            this.Controls.Add(this.lv);
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
+            this.BackgroundImage = null;
+            this.Controls.Add(this.lv);
             this.Name = "ResourceListViewExt";
             this.ResumeLayout(false);
 
@@ -110,6 +123,7 @@
         private System.Windows.Forms.ColumnHeader clOffset;
         private System.Windows.Forms.ColumnHeader clSize;
         private ListViewDoubleBuffered lv;
+        private System.Windows.Forms.ColumnHeader clTName;
 
     }
 }

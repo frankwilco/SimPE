@@ -61,6 +61,8 @@ namespace SimPe
 		/// <returns></returns>
 		public SimPe.Interfaces.Plugin.IFileWrapper GetWrapper(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii)
 		{
+            if (fii == null) return null;
+
 			//try by Type
 			SimPe.Interfaces.Plugin.IFileWrapper wrapper = 
 				(SimPe.Interfaces.Plugin.IFileWrapper)FileTable.WrapperRegistry.FindHandler(fii.FileDescriptor.Type);
@@ -289,6 +291,8 @@ namespace SimPe
 		/// <returns>true, if that resource was found</returns>
 		public bool SelectResource(SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii)
 		{
+            if (fii == null) return false;
+
 			if (loaded.ContainsKey(fii))
 			{
 				TD.SandDock.DockControl doc = (TD.SandDock.DockControl)loaded[fii];					

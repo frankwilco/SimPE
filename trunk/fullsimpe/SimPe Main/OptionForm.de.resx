@@ -121,11 +121,17 @@
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>717, 392</value>
   </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tbgame.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 72</value>
   </data>
   <data name="tbgame.Size" type="System.Drawing.Size, System.Drawing">
     <value>360, 21</value>
+  </data>
+  <data name="tbgame.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
@@ -143,11 +149,17 @@
   <data name="tbsavegame.Size" type="System.Drawing.Size, System.Drawing">
     <value>360, 21</value>
   </data>
+  <data name="tbsavegame.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbdebug.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 24</value>
   </data>
   <data name="cbdebug.Text" xml:space="preserve">
     <value>Spiel startet im Debug Modus</value>
+  </data>
+  <data name="cbdebug.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbblur.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 24</value>
@@ -155,11 +167,17 @@
   <data name="cbblur.Text" xml:space="preserve">
     <value>Nackte Sims verpixeln</value>
   </data>
+  <data name="cbblur.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbsound.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 72</value>
   </data>
   <data name="cbsound.Text" xml:space="preserve">
     <value>Spiel mit Ton starten</value>
+  </data>
+  <data name="cbsound.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 13</value>
@@ -167,11 +185,17 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Externe Programme:</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lbext.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 48</value>
   </data>
   <data name="lbext.Size" type="System.Drawing.Size, System.Drawing">
     <value>552, 320</value>
+  </data>
+  <data name="lbext.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="linkLabel1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 10</value>
@@ -185,6 +209,9 @@
   <data name="linkLabel1.Text" xml:space="preserve">
     <value>hinzufügen</value>
   </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="linkLabel2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 7</value>
   </data>
@@ -197,6 +224,9 @@
   <data name="linkLabel2.Text" xml:space="preserve">
     <value>löschen</value>
   </data>
+  <data name="linkLabel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>568, 69</value>
   </data>
@@ -205,6 +235,9 @@
   </data>
   <data name="button2.Text" xml:space="preserve">
     <value>Durchsuchen...</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
     <value>568, 221</value>
@@ -215,6 +248,9 @@
   <data name="button3.Text" xml:space="preserve">
     <value>Durchsuchen...</value>
   </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
     <value>568, 269</value>
   </data>
@@ -224,11 +260,17 @@
   <data name="button4.Text" xml:space="preserve">
     <value>Durchsuchen...</value>
   </data>
+  <data name="button4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tbdds.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 272</value>
   </data>
   <data name="tbdds.Size" type="System.Drawing.Size, System.Drawing">
     <value>360, 21</value>
+  </data>
+  <data name="tbdds.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 272</value>
@@ -239,11 +281,17 @@
   <data name="label5.Text" xml:space="preserve">
     <value>Nvidia DDS Tool Verzeichnis:</value>
   </data>
+  <data name="label5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tbep1.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 120</value>
   </data>
   <data name="tbep1.Size" type="System.Drawing.Size, System.Drawing">
     <value>360, 21</value>
+  </data>
+  <data name="tbep1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
     <value>568, 117</value>
@@ -253,6 +301,9 @@
   </data>
   <data name="button5.Text" xml:space="preserve">
     <value>Durchsuchen...</value>
+  </data>
+  <data name="button5.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="linkLabel4.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 8</value>
@@ -282,7 +333,7 @@
     <value>Docks sperren</value>
   </data>
   <data name="cbAsync.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 128</value>
+    <value>327, 26</value>
   </data>
   <data name="cbAsync.Text" xml:space="preserve">
     <value>Asynchrones Laden</value>
@@ -338,6 +389,12 @@
   <data name="button7.ToolTip" xml:space="preserve">
     <value>Setzt die Layout Einstellungen des Hauptbildschirms zurück.</value>
   </data>
+  <data name="cbsplash.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 128</value>
+  </data>
+  <data name="cbsplash.Text" xml:space="preserve">
+    <value>Zeige Startbild</value>
+  </data>
   <data name="lldds2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>11, 4</value>
   </data>
@@ -350,6 +407,9 @@
   <data name="lldds2.Text" xml:space="preserve">
     <value>Sie stehen hier zum Download bereit.</value>
   </data>
+  <data name="lldds2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lldds.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 296</value>
   </data>
@@ -358,6 +418,9 @@
   </data>
   <data name="lldds.Text" xml:space="preserve">
     <value>Die Nvidia DDS Utilities wurden nicht gefunden.</value>
+  </data>
+  <data name="lldds.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 216</value>
@@ -368,6 +431,9 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Spielstand Verzeichnis:</value>
   </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 120</value>
   </data>
@@ -376,6 +442,9 @@
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Wilde Kampus-Jahre Verz.:</value>
+  </data>
+  <data name="label6.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 72</value>
@@ -386,20 +455,35 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Sims 2 Verzeichnis:</value>
   </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbow.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 24</value>
   </data>
   <data name="cbow.Text" xml:space="preserve">
     <value>schnell anzeigen</value>
   </data>
+  <data name="cbow.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbshowobjd.Text" xml:space="preserve">
     <value>zeige OBJd Dateinamen</value>
   </data>
+  <data name="cbshowobjd.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 13</value>
+    <value>98, 13</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Vorschaugröße:</value>
+  </data>
+  <data name="label8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox3.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 24</value>
@@ -407,14 +491,23 @@
   <data name="button6.Text" xml:space="preserve">
     <value>Cache leeren</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>SimPE Einstellungen:</value>
+  <data name="button6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbReport.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbpkgmaint.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 24</value>
   </data>
   <data name="cbpkgmaint.Text" xml:space="preserve">
     <value>Verwende Pkg. Maintainer</value>
+  </data>
+  <data name="cbpkgmaint.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbupdate.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 104</value>
@@ -425,11 +518,17 @@
   <data name="cbupdate.Text" xml:space="preserve">
     <value>Beim Starten auf Updates prüfen</value>
   </data>
+  <data name="cbupdate.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 13</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Standard Sprache:</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbautobak.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 24</value>
@@ -437,11 +536,17 @@
   <data name="cbautobak.Text" xml:space="preserve">
     <value>Automatisches Backup</value>
   </data>
+  <data name="cbautobak.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbcache.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 24</value>
   </data>
   <data name="cbcache.Text" xml:space="preserve">
     <value>Cache benutzen</value>
+  </data>
+  <data name="cbcache.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cblang.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 24</value>
@@ -449,20 +554,38 @@
   <data name="cblang.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 21</value>
   </data>
+  <data name="cblang.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbsilent.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 56</value>
   </data>
   <data name="cbsilent.Text" xml:space="preserve">
     <value>Leise (weniger Popups)</value>
   </data>
+  <data name="cbsilent.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbwait.Text" xml:space="preserve">
     <value>Wartebildschirm</value>
+  </data>
+  <data name="cbwait.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>SimPE Einstellungen:</value>
+  </data>
+  <data name="groupBox2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbSimple.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 16</value>
   </data>
   <data name="cbSimple.Text" xml:space="preserve">
     <value>kein Doppelklick zum Öffnen</value>
+  </data>
+  <data name="cbSimple.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbmulti.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 40</value>
@@ -473,11 +596,17 @@
   <data name="cbmulti.Text" xml:space="preserve">
     <value>Mehrere geöffnete Resourcen gleichzeitig zulassen</value>
   </data>
+  <data name="cbmulti.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 104</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Spiel Einstellungen:</value>
+  </data>
+  <data name="groupBox1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="lladddown.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>16, 9</value>
@@ -490,6 +619,9 @@
   </data>
   <data name="lladddown.Text" xml:space="preserve">
     <value>Downloads Verz. aufnehmen</value>
+  </data>
+  <data name="lladddown.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="lldel.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 7</value>
@@ -506,6 +638,9 @@
   <data name="lldel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
+  <data name="lldel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lladd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 10</value>
   </data>
@@ -518,14 +653,8 @@
   <data name="lladd.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
   </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 80</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>GMDC Einstellungen:</value>
-  </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 28</value>
+  <data name="lladd.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 13</value>
@@ -536,23 +665,38 @@
   <data name="label10.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomLeft</value>
   </data>
+  <data name="label10.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbjointname.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 24</value>
   </data>
   <data name="cbjointname.Text" xml:space="preserve">
     <value>GMDC: Zeige Joint-Bezeichnung</value>
   </data>
-  <data name="hcFolders.Location" type="System.Drawing.Point, System.Drawing">
-    <value>120, 8</value>
+  <data name="cbjointname.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="hcFolders.Text" xml:space="preserve">
-    <value>Systemverzeichnisse</value>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 80</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>GMDC Einstellungen:</value>
+  </data>
+  <data name="groupBox4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pgPaths.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="tbep2.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 168</value>
   </data>
   <data name="tbep2.Size" type="System.Drawing.Size, System.Drawing">
     <value>360, 21</value>
+  </data>
+  <data name="tbep2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btNightlife.Location" type="System.Drawing.Point, System.Drawing">
     <value>568, 165</value>
@@ -563,23 +707,26 @@
   <data name="btNightlife.Text" xml:space="preserve">
     <value>Durchsuchen...</value>
   </data>
+  <data name="btNightlife.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 168</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Nightlife Verzeichnis:</value>
   </data>
-  <data name="hcSettings.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="hcFolders.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 8</value>
   </data>
-  <data name="hcSettings.Text" xml:space="preserve">
-    <value>Einstellungen</value>
+  <data name="hcFolders.Text" xml:space="preserve">
+    <value>Systemverzeichnisse</value>
   </data>
-  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 96</value>
-  </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Tabbed Browsing:</value>
+  <data name="hcFolders.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbFirefox.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 64</value>
@@ -590,8 +737,35 @@
   <data name="cbFirefox.Text" xml:space="preserve">
     <value>Firefox Stil zum Öffnen neuer Tabs</value>
   </data>
+  <data name="cbFirefox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 96</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Tabbed Browsing:</value>
+  </data>
+  <data name="groupBox6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbThemes.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
     <value>432, 264</value>
+  </data>
+  <data name="groupBox5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="hcSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 8</value>
+  </data>
+  <data name="hcSettings.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="hcSettings.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="hcTools.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 8</value>
@@ -599,17 +773,20 @@
   <data name="hcTools.Text" xml:space="preserve">
     <value>Externe Programme</value>
   </data>
-  <data name="hcFileTable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>120, 8</value>
+  <data name="hcTools.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="hcFileTable.Text" xml:space="preserve">
-    <value>FileTable (Suchpfad)</value>
+  <data name="cbIncCep.Text" xml:space="preserve">
+    <value>CEP einbinden</value>
+  </data>
+  <data name="cbIncCep.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Einstellungen:</value>
   </data>
-  <data name="cbIncCep.Text" xml:space="preserve">
-    <value>CEP einbinden</value>
+  <data name="groupBox8.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btReload.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -636,8 +813,8 @@
   <data name="btReload.Text" xml:space="preserve">
     <value>neu laden  </value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Erweiterte Einstellungen:</value>
+  <data name="btReload.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btup.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -670,6 +847,9 @@
   <data name="btup.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
   </data>
+  <data name="btup.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="btdn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -701,6 +881,9 @@
   <data name="btdn.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
   </data>
+  <data name="btdn.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="linkLabel6.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 12</value>
   </data>
@@ -713,6 +896,9 @@
   <data name="linkLabel6.Text" xml:space="preserve">
     <value>zurücksetzen</value>
   </data>
+  <data name="linkLabel6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lbfolder.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -722,26 +908,143 @@
   <data name="lbfolder.Size" type="System.Drawing.Size, System.Drawing">
     <value>600, 216</value>
   </data>
+  <data name="lbfolder.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="llchg.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 240</value>
   </data>
   <data name="llchg.Text" xml:space="preserve">
     <value>ändern</value>
   </data>
-  <data name="hcSceneGraph.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="llchg.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Erweiterte Einstellungen:</value>
+  </data>
+  <data name="groupBox9.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="hcFileTable.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 8</value>
   </data>
-  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>248, 32</value>
+  <data name="hcFileTable.Text" xml:space="preserve">
+    <value>FileTable (Suchpfad)</value>
+  </data>
+  <data name="hcFileTable.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbAsyncSort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>327, 49</value>
+  </data>
+  <data name="cbAsyncSort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 24</value>
+  </data>
+  <data name="cbAsyncSort.Text" xml:space="preserve">
+    <value>Asynchrones sortieren</value>
+  </data>
+  <data name="cbAsyncSort.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbRLExt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 72</value>
+  </data>
+  <data name="cbRLExt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 21</value>
+  </data>
+  <data name="cbRLExt.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>80, 77</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 13</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Typ Format:</value>
+  </data>
+  <data name="label17.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbRLTGI.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 49</value>
+  </data>
+  <data name="cbRLTGI.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 21</value>
+  </data>
+  <data name="cbRLTGI.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 54</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 13</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>TGI Namenserweiterung:</value>
+  </data>
+  <data name="label16.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbRLNames.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 26</value>
+  </data>
+  <data name="cbRLNames.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 21</value>
+  </data>
+  <data name="cbRLNames.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>55, 31</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 13</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Namens Format:</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>488, 102</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Resource Liste:</value>
+  </data>
+  <data name="groupBox10.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbSimTemp.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbDeep.Text" xml:space="preserve">
     <value>Tiefensuche (by TazzMann)</value>
   </data>
+  <data name="cbDeep.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 32</value>
+  </data>
+  <data name="groupBox7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="hcSceneGraph.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 8</value>
+  </data>
+  <data name="hcSceneGraph.Text" xml:space="preserve">
+    <value>Verschiedenes</value>
+  </data>
+  <data name="hcSceneGraph.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="bb.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 648</value>
-  </data>
-  <data name="bb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 424</value>
   </data>
   <data name="nbFolders.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -937,6 +1240,9 @@
         eYGQmhQ2g2Z+CFxXQ32/xpj/BBBTZ00oZ9vtAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="nbSceneGraph.Text" xml:space="preserve">
+    <value>Verschiedenes</value>
+  </data>
   <data name="nbFileTable.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1091,11 +1397,11 @@
         D4oOhvPjAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="hcPlugins.Location" type="System.Drawing.Point, System.Drawing">
-    <value>120, 8</value>
+  <data name="bb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 424</value>
   </data>
-  <data name="hcPlugins.Text" xml:space="preserve">
-    <value>Erweiterungen</value>
+  <data name="bb.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btpup.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1113,6 +1419,9 @@
         ekbzaiye/3xkQbRpc9VfmZPJIpEyfz/LlO6k/5X/UiAlzw9idp1Q9EbgxwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="btpup.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="btpdown.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1128,11 +1437,74 @@
         jaGwVmMw12qMMyDyKr3ZmpZVaBGXo8P6XP/00DfK/FVG/vJmNAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="btpdown.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cnt.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="hcPlugins.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 8</value>
+  </data>
+  <data name="hcPlugins.Text" xml:space="preserve">
+    <value>Erweiterungen</value>
+  </data>
+  <data name="hcPlugins.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbValid.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbUserId.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbPassword.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label12.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbUsername.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="hcIdent.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 8</value>
   </data>
+  <data name="hcIdent.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkControl1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="hcCheck.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 8</value>
+  </data>
+  <data name="hcCheck.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pgcustom.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbCustom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 2</value>
+  </data>
+  <data name="cbCustom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>512, 21</value>
+  </data>
+  <data name="cbCustom.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="hcCustom.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 8</value>
@@ -1140,11 +1512,8 @@
   <data name="hcCustom.Text" xml:space="preserve">
     <value>Einstellungen für</value>
   </data>
-  <data name="cbCustom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 2</value>
-  </data>
-  <data name="cbCustom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>512, 21</value>
+  <data name="hcCustom.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>802, 424</value>
@@ -1711,10 +2080,10 @@
         AAD8GQAA/B8AAPwfAAD+PwAA
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Einstellungen</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

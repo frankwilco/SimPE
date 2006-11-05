@@ -110,6 +110,11 @@ namespace SimPe
             //this.dcResource.BringToFront();
             //this.dcResourceList.BringToFront();
             lv.Filter = filter;
+
+            waitControl1.ShowProgress = false;
+            waitControl1.Progress = 0;
+            waitControl1.Message = "";
+            waitControl1.Visible = Helper.WindowsRegistry.ShowWaitBarPermanent;
         }        
 
         void LoadForm(object sender, System.EventArgs e)

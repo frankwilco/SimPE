@@ -386,7 +386,8 @@ namespace SimPe.PackedFiles.Wrapper
 								   Data.MetaData.XROF, //Roofs
 								   Data.MetaData.XFLR, //Floors
 								   Data.MetaData.XFNC, // Fences
-								   Data.MetaData.XNGB  // Hood Objects
+								   Data.MetaData.XNGB,  // Hood Objects
+                                   0xD1954460 //Pet Body Options
 							   };
 			
 				return types;

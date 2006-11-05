@@ -918,11 +918,22 @@ The given Folder must contain a subfolder called "TSData".
 If this is empty, SimPE will use the default Folder.</value>
 	</data>
   <data name="[Property:SP2Path]">
-    <value>2: Glamour Accessoires</value>
+    <value>2: Glamour Stuff</value>
   </data>
   <data name="[Description:SP2Path]">
     <value>
-      This should contain the installation directory of "The Sims 2 - Glamour Accessoires".
+      This should contain the installation directory of "The Sims 2 - Glamour Stuff".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
+  <data name="[Property:SP3Path]">
+    <value>3: Christmas Stuff</value>
+  </data>
+  <data name="[Description:SP3Path]">
+    <value>
+      This should contain the installation directory of "The Sims 2 - Christmas Stuff".
       The given Folder must contain a subfolder called "TSData".
 
       If this is empty, SimPE will use the default Folder.
@@ -1098,6 +1109,9 @@ Run SimPE anyway?</value>
     <data name="EP NAME 6">
     <value>The Sims 2 - Pets</value>
     </data>
+  <data name="EP NAME 7">
+    <value>The Sims 2 - Christmas Stuff</value>
+  </data>
 
   <data name="EP SNAME 0">
     <value>Original</value>
@@ -1119,6 +1133,9 @@ Run SimPE anyway?</value>
   </data>
   <data name="EP SNAME 6">
     <value>Pets</value>
+  </data>
+  <data name="EP SNAME 7">
+    <value>Christmas</value>
   </data>
     <data name="Check: Folder not found">
 		<value>Folder for "{name}" was not found.</value>
@@ -1170,16 +1187,16 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   <data name="Loading package...">
     <value>Loading package...</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Human">
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.Human">
     <value>Human</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.LargeDog">
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.LargeDog">
     <value>Large Dog</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.SmallDog">
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.SmallDog">
     <value>Small Dog</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Cat">
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.Cat">
     <value>Cat</value>
   </data>
   <data name="Starting SimPE...">
@@ -1193,5 +1210,50 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   </data>
   <data name="Creating GUI">
     <value>Creating GUI</value>
+  </data>
+  <data name="Starting Main Form">
+    <value>Starting Main Form</value>
+  </data>
+  <data name="Loading Plugins...">
+    <value>Loading Plugins...</value>
+  </data>
+  <data name="Enabling RemoteControl">
+    <value>Enabling RemoteControl</value>
+  </data>
+  <data name="Starting Resource Loader">
+    <value>Starting Resource Loader</value>
+  </data>
+  <data name="Building View Filter">
+    <value>Building View Filter</value>
+  </data>
+  <data name="SimPe.ResourceListExtensionFormats.Hex">
+    <value>as hex number</value>
+  </data>
+  <data name="SimPe.ResourceListExtensionFormats.Short">
+    <value>as short string</value>
+  </data>
+  <data name="SimPe.ResourceListExtensionFormats.Long">
+    <value>as long string</value>
+  </data>
+  <data name="SimPe.ResourceListExtensionFormats.None">
+    <value>do not show</value>
+  </data>
+  <data name="SimPe.ResourceListFormats.LongTypeNames">
+    <value>long type + name</value>
+  </data>
+  <data name="SimPe.ResourceListFormats.ShortTypeNames">
+    <value>short type + name</value>
+  </data>
+  <data name="SimPe.ResourceListFormats.JustNames">
+    <value>name only</value>
+  </data>
+  <data name="SimPe.ResourceListUnnamedFormats.Instance">
+    <value>instance only</value>
+  </data>
+  <data name="SimPe.ResourceListUnnamedFormats.GroupInstance">
+    <value>group + instance</value>
+  </data>
+  <data name="SimPe.ResourceListUnnamedFormats.FullTGI">
+    <value>complete TGI</value>
   </data>
 </root>

@@ -118,7 +118,8 @@ namespace SimPe
 				if (subnode.Name=="extension") ext = subnode.InnerText;
 			}
 
-			Data.TypeAlias ta = new Data.TypeAlias(contfl, SimPe.Localization.GetString(shortname), type, SimPe.Localization.GetString(name), ext, known);
+			//Data.TypeAlias ta = new Data.TypeAlias(contfl, SimPe.Localization.GetString(shortname), type, SimPe.Localization.GetString(name), ext, known);
+            Data.TypeAlias ta = new Data.TypeAlias(contfl, shortname, type, SimPe.Localization.GetString(name), ext, known);
 			map[type] = ta;
 			alist.Add(ta);
 		}

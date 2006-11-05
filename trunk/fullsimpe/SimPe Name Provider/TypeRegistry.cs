@@ -116,24 +116,27 @@ namespace SimPe.PackedFiles
 		#region IWrapperRegistry Member
 		public void Register(IWrapper wrapper)
 		{
-			
-			if (wrapper!=null)
-				if (!handlers.Contains(wrapper)) 
-				{
-					((SimPe.Interfaces.IWrapper)wrapper).Priority = reg.GetWrapperPriority(((SimPe.Interfaces.IWrapper)wrapper).WrapperDescription.UID);
-					handlers.Add((SimPe.Interfaces.Plugin.IFileWrapper)wrapper);
-					if (wrapper.WrapperDescription is AbstractWrapperInfo) 
-					{
-						if (wrapper.WrapperDescription.Icon!=null) 
-						{
-						
-							((AbstractWrapperInfo)wrapper.WrapperDescription).IconIndex = il.Images.Count;
-							il.Images.Add(wrapper.WrapperDescription.Icon);
-						}
-						else 
-							((AbstractWrapperInfo)wrapper.WrapperDescription).IconIndex = 1;				
-					}
-				}
+
+            if (wrapper != null)
+            {
+                Splash.Screen.SetMessage(SimPe.Localization.GetString("Loading")+" " + wrapper.WrapperDescription.Name);
+                if (!handlers.Contains(wrapper))
+                {
+                    ((SimPe.Interfaces.IWrapper)wrapper).Priority = reg.GetWrapperPriority(((SimPe.Interfaces.IWrapper)wrapper).WrapperDescription.UID);
+                    handlers.Add((SimPe.Interfaces.Plugin.IFileWrapper)wrapper);
+                    if (wrapper.WrapperDescription is AbstractWrapperInfo)
+                    {
+                        if (wrapper.WrapperDescription.Icon != null)
+                        {
+
+                            ((AbstractWrapperInfo)wrapper.WrapperDescription).IconIndex = il.Images.Count;
+                            il.Images.Add(wrapper.WrapperDescription.Icon);
+                        }
+                        else
+                            ((AbstractWrapperInfo)wrapper.WrapperDescription).IconIndex = 1;
+                    }
+                }
+            }
 		}
 
 		public void Register(IWrapper[] wrappers, IWrapper[] guiwrappers)
@@ -354,33 +357,36 @@ namespace SimPe.PackedFiles
 		#region IToolRegistry Member
 		public void Register(IToolPlugin tool)
 		{
-			
-				if (tool!=null)
-					if (tool.GetType().GetInterface("SimPe.Interfaces.IDockableTool", true) == typeof(SimPe.Interfaces.IDockableTool)) 
-					{
-						if (!dtools.Contains(tool)) 					
-							dtools.Add((SimPe.Interfaces.IDockableTool)tool);	
-					} 
-					else if (tool.GetType().GetInterface("SimPe.Interfaces.IToolAction", true) == typeof(SimPe.Interfaces.IToolAction)) 
-					{
-						if (!atools.Contains(tool)) 					
-							atools.Add((SimPe.Interfaces.IToolAction)tool);	
-					} 					
-					else if  (tool.GetType().GetInterface("SimPe.Interfaces.IToolPlus", true) == typeof(SimPe.Interfaces.IToolPlus)) 
-					{
-						if (!toolsp.Contains(tool)) 					
-							toolsp.Add((SimPe.Interfaces.IToolPlus)tool);	
-					} 
-					else if (Helper.StartedGui != Executable.Classic && tool.GetType().GetInterface("SimPe.Interfaces.IListener", true) == typeof(SimPe.Interfaces.IListener)) 
-					{
-						if (!listeners.Contains((SimPe.Interfaces.IListener)tool)) 					
-							listeners.Add((SimPe.Interfaces.IListener)tool);	
-					} 
-					else if (tool.GetType().GetInterface("SimPe.Interfaces.ITool", true) == typeof(SimPe.Interfaces.ITool)) 
-					{
-						if (!tools.Contains(tool)) 					
-							tools.Add((SimPe.Interfaces.ITool)tool);										  
-					}
+
+            if (tool != null)
+            {
+                Splash.Screen.SetMessage(SimPe.Localization.GetString("Loading")+" " + tool.ToString());
+                if (tool.GetType().GetInterface("SimPe.Interfaces.IDockableTool", true) == typeof(SimPe.Interfaces.IDockableTool))
+                {
+                    if (!dtools.Contains(tool))
+                        dtools.Add((SimPe.Interfaces.IDockableTool)tool);
+                }
+                else if (tool.GetType().GetInterface("SimPe.Interfaces.IToolAction", true) == typeof(SimPe.Interfaces.IToolAction))
+                {
+                    if (!atools.Contains(tool))
+                        atools.Add((SimPe.Interfaces.IToolAction)tool);
+                }
+                else if (tool.GetType().GetInterface("SimPe.Interfaces.IToolPlus", true) == typeof(SimPe.Interfaces.IToolPlus))
+                {
+                    if (!toolsp.Contains(tool))
+                        toolsp.Add((SimPe.Interfaces.IToolPlus)tool);
+                }
+                else if (Helper.StartedGui != Executable.Classic && tool.GetType().GetInterface("SimPe.Interfaces.IListener", true) == typeof(SimPe.Interfaces.IListener))
+                {
+                    if (!listeners.Contains((SimPe.Interfaces.IListener)tool))
+                        listeners.Add((SimPe.Interfaces.IListener)tool);
+                }
+                else if (tool.GetType().GetInterface("SimPe.Interfaces.ITool", true) == typeof(SimPe.Interfaces.ITool))
+                {
+                    if (!tools.Contains(tool))
+                        tools.Add((SimPe.Interfaces.ITool)tool);
+                }
+            }
 					
 			
 		}		

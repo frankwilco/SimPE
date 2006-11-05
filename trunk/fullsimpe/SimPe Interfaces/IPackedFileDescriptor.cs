@@ -79,6 +79,12 @@ namespace SimPe.Interfaces.Files
 		/// Triggered whenever the Descriptor get's AMrked for Deletion
 		/// </summary>
 		event System.EventHandler Deleted;
+
+        /// <summary>
+        /// Returns the default string displayed in the ResourceList
+        /// </summary>
+        /// <returns></returns>
+        string ToResListString();
 		
 	}
 }

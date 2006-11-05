@@ -26,6 +26,7 @@ namespace SimPe.Windows.Forms
         
         public ResourceListViewExt()
         {
+            noselectevent = 0;
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             cache = new Dictionary<int, ResourceListItemExt>();
         
@@ -37,7 +38,8 @@ namespace SimPe.Windows.Forms
             InitializeComponent();
             names = new ResourceViewManager.ResourceNameList();
             myhandle = Handle;
-
+            
+            if (!Helper.WindowsRegistry.ResourceListShowExtensions) lv.Columns.Remove(clTName);
             if (!Helper.WindowsRegistry.HiddenMode)
             {
                 lv.Columns.Remove(clSize);
@@ -48,11 +50,32 @@ namespace SimPe.Windows.Forms
 
         public void BeginUpdate()
         {
+            noselectevent++;
+            selresea = null;
+            resselchgea = null;
             lv.BeginUpdate();
         }
 
         public void EndUpdate()
         {
+            EndUpdate(true);
+        }
+        
+
+        public void EndUpdate(bool fireevents)
+        {            
+            noselectevent--;
+            noselectevent = Math.Max(0, noselectevent);
+            if (noselectevent <= 0)
+            {
+
+                if (fireevents)
+                {
+                    if (resselchgea != null) SelectionChanged(this, resselchgea);
+                    if (selresea != null) SelectedResource(this, selresea);
+                }
+                resselchgea = null; selresea = null;                
+            }
             lv.EndUpdate();
         }
 
@@ -355,6 +378,8 @@ namespace SimPe.Windows.Forms
             clOffset.Width = Helper.WindowsRegistry.Layout.OffsetColumnWidth;
             clSize.Width = Helper.WindowsRegistry.Layout.SizeColumnWidth;
         }
+
+        
 
         
     }

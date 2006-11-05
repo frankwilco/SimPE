@@ -77,12 +77,12 @@ namespace SimPe.Windows.Forms
                 {
                     SimPe.Interfaces.Files.IPackageFile old = pkg;
                     pkg = value;
-                    OnChangedPackage(old, pkg);
+                    OnChangedPackage(old, pkg, true);
                 }
             }
         }
 
-        protected void OnChangedPackage(SimPe.Interfaces.Files.IPackageFile oldpkg, SimPe.Interfaces.Files.IPackageFile newpkg)
+        protected void OnChangedPackage(SimPe.Interfaces.Files.IPackageFile oldpkg, SimPe.Interfaces.Files.IPackageFile newpkg, bool lettreeviewselect)
         {
             lock (maps)
             {
@@ -116,7 +116,7 @@ namespace SimPe.Windows.Forms
                     Wait.Stop();
                 }
 
-                UpdateContent();
+                UpdateContent(lettreeviewselect);
 
                 if (newpkg != null)
                 {
@@ -131,30 +131,40 @@ namespace SimPe.Windows.Forms
 
         internal void UpdateTree()
         {
-            maps.Clear(false);
+            //lv.BeginUpdate();
+            maps.Clear(false);            
             foreach (NamedPackedFileDescriptor npfd in maps.Everything)
             {
                 if (!Helper.WindowsRegistry.AsynchronSort) npfd.GetRealName();
                 AddResourceToMaps(npfd);
             }
-            if (tv != null) tv.SetResourceMaps(maps, false);
+            if (tv != null) tv.SetResourceMaps(maps, false, false);
+            //lv.EndUpdate(false);
         }
 
-        private void UpdateContent()
+        private void UpdateContent(bool lettreeviewselect)
         {
-            if (lv != null)
+            bool donotselect = false;
+            if (maps.Everything.Count > Helper.WindowsRegistry.BigPackageResourceCount && !Helper.WindowsRegistry.ResoruceTreeAllwaysAutoselect)
+                donotselect = true;
+            
+            if (lv != null && !lettreeviewselect)
             {
-                if (maps.Everything.Count > Helper.WindowsRegistry.BigPackageResourceCount)
+                if (donotselect)
                     lv.SetResources(new ResourceNameList());
                 else 
                     lv.SetResources(maps.Everything);
             }
-            if (tv != null) tv.SetResourceMaps(maps, false);
+            if (tv != null) tv.SetResourceMaps(maps, lettreeviewselect, donotselect);
         }
 
         void newpkg_SavedIndex(object sender, EventArgs e)
         {
-            OnChangedPackage(pkg, pkg);
+            OnChangedPackage(pkg, pkg, true);
+        }
+
+        public void FakeSave(){
+            newpkg_SavedIndex(null, null);
         }
 
         void newpkg_RemovedResource(object sender, EventArgs e)
@@ -165,7 +175,7 @@ namespace SimPe.Windows.Forms
 
         void newpkg_AddedResource(object sender, EventArgs e)
         {
-            OnChangedPackage(pkg, pkg);
+            OnChangedPackage(pkg, pkg, true);
         }
 
         private void AddResourceToMaps(NamedPackedFileDescriptor npfd)

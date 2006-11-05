@@ -59,6 +59,10 @@ namespace SimPe
 
             try
             {
+                foreach (string arg in args) 
+                    if (arg == "--nosplash") Helper.WindowsRegistry.ShowStartupSplash = false;
+                    else if (arg == "--splash") Helper.WindowsRegistry.ShowStartupSplash = true;
+
                 SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Starting SimPE..."));
                 SimPe.Splash.Screen.Start();
                 /*Console.WriteLine(ExpansionLoader.Global.EPInstalled+" "+ExpansionLoader.Global.SPInstalled+" "+ExpansionLoader.Global.GameVersion);
@@ -432,9 +436,8 @@ namespace SimPe
 
         private void lv_SelectResource(SimPe.Windows.Forms.ResourceListViewExt sender, SimPe.Windows.Forms.ResourceListViewExt.SelectResourceEventArgs e)
         {
-            /*if (lv.SelectedItem == 0) plugger.ChangedGuiResourceEventHandler(this, new SimPe.Events.ResourceEventArgs(package));
-            else*/ resloader.AddResource(lv.SelectedItem, !e.CtrlDown);
-                   lv.Focus();
+            if (lv.SelectedItem!=null) resloader.AddResource(lv.SelectedItem, !e.CtrlDown);
+            lv.Focus();
         }
 
 		

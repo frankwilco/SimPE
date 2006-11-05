@@ -28,27 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashForm));
             this.lbtxt = new System.Windows.Forms.Label();
+            this.lbver = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbtxt
             // 
-            this.lbtxt.AutoSize = true;
-            this.lbtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtxt.Location = new System.Drawing.Point(34, 133);
+            this.lbtxt.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.lbtxt, "lbtxt");
             this.lbtxt.Name = "lbtxt";
-            this.lbtxt.Size = new System.Drawing.Size(70, 25);
-            this.lbtxt.TabIndex = 0;
-            this.lbtxt.Text = "label1";
+            // 
+            // lbver
+            // 
+            resources.ApplyResources(this.lbver, "lbver");
+            this.lbver.BackColor = System.Drawing.Color.White;
+            this.lbver.ForeColor = System.Drawing.Color.DimGray;
+            this.lbver.Name = "lbver";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.ForeColor = System.Drawing.Color.DimGray;
+            this.label2.Name = "label2";
             // 
             // SplashForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(773, 441);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbver);
             this.Controls.Add(this.lbtxt);
             this.Name = "SplashForm";
-            this.Text = "SplashForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -57,6 +70,8 @@
         #endregion
 
         private System.Windows.Forms.Label lbtxt;
+        private System.Windows.Forms.Label lbver;
+        private System.Windows.Forms.Label label2;
 
     }
 }
