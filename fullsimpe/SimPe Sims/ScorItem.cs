@@ -100,12 +100,12 @@ namespace SimPe.PackedFiles.Wrapper
 
         ~ScorItem()
         {
-            if (gui != null) gui.Dispose();
+            //if (gui != null) gui.Dispose();
         }
 
         protected void SetGui(string name, byte[] data)
         {
-            if (gui != null) gui.Dispose();
+            //if (gui != null) gui.Dispose();
             gui = GetGuiElement(name, data);
         }
 						

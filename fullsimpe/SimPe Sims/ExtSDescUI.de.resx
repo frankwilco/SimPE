@@ -1262,56 +1262,56 @@
   <data name="pbSciFi.LabelText" xml:space="preserve">
     <value>Science-Fiction:</value>
   </data>
+  <data name="pbTravel.LabelText" xml:space="preserve">
+    <value>Reisen:</value>
+  </data>
   <data name="pbToys.LabelText" xml:space="preserve">
     <value>Spielzeug:</value>
+  </data>
+  <data name="pbEnvironment.LabelText" xml:space="preserve">
+    <value>Umwelt:</value>
   </data>
   <data name="pbSchool.LabelText" xml:space="preserve">
     <value>Schule:</value>
   </data>
+  <data name="pbParanormal.LabelText" xml:space="preserve">
+    <value>Paranormales:</value>
+  </data>
   <data name="pbAnimals.LabelText" xml:space="preserve">
     <value>Tiere:</value>
-  </data>
-  <data name="pbWeather.LabelText" xml:space="preserve">
-    <value>Wetter:</value>
-  </data>
-  <data name="pbWork.LabelText" xml:space="preserve">
-    <value>Arbeit:</value>
-  </data>
-  <data name="pbTravel.LabelText" xml:space="preserve">
-    <value>Reisen:</value>
-  </data>
-  <data name="pbCrime.LabelText" xml:space="preserve">
-    <value>Kriminalität:</value>
-  </data>
-  <data name="pbSports.LabelText" xml:space="preserve">
-    <value>Sport:</value>
-  </data>
-  <data name="pbFashion.LabelText" xml:space="preserve">
-    <value>Mode:</value>
-  </data>
-  <data name="pbHealth.LabelText" xml:space="preserve">
-    <value>Gesundheit:</value>
-  </data>
-  <data name="pbFood.LabelText" xml:space="preserve">
-    <value>Nahrung:</value>
-  </data>
-  <data name="pbPolitics.LabelText" xml:space="preserve">
-    <value>Politik:</value>
-  </data>
-  <data name="pbMoney.LabelText" xml:space="preserve">
-    <value>Geld:</value>
-  </data>
-  <data name="pbCulture.LabelText" xml:space="preserve">
-    <value>Kultur:</value>
   </data>
   <data name="pbEntertainment.LabelText" xml:space="preserve">
     <value>Unterhaltung:</value>
   </data>
-  <data name="pbParanormal.LabelText" xml:space="preserve">
-    <value>Paranormales:</value>
+  <data name="pbWeather.LabelText" xml:space="preserve">
+    <value>Wetter:</value>
   </data>
-  <data name="pbEnvironment.LabelText" xml:space="preserve">
-    <value>Umwelt:</value>
+  <data name="pbCulture.LabelText" xml:space="preserve">
+    <value>Kultur:</value>
+  </data>
+  <data name="pbWork.LabelText" xml:space="preserve">
+    <value>Arbeit:</value>
+  </data>
+  <data name="pbMoney.LabelText" xml:space="preserve">
+    <value>Geld:</value>
+  </data>
+  <data name="pbPolitics.LabelText" xml:space="preserve">
+    <value>Politik:</value>
+  </data>
+  <data name="pbCrime.LabelText" xml:space="preserve">
+    <value>Kriminalität:</value>
+  </data>
+  <data name="pbFood.LabelText" xml:space="preserve">
+    <value>Nahrung:</value>
+  </data>
+  <data name="pbSports.LabelText" xml:space="preserve">
+    <value>Sport:</value>
+  </data>
+  <data name="pbHealth.LabelText" xml:space="preserve">
+    <value>Gesundheit:</value>
+  </data>
+  <data name="pbFashion.LabelText" xml:space="preserve">
+    <value>Mode:</value>
   </data>
   <data name="xpTaskBoxSimple3.HeaderText" xml:space="preserve">
     <value>Verschiedenes</value>
