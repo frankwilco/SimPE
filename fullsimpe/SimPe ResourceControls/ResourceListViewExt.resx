@@ -117,42 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;lv.Name" xml:space="preserve">
+    <value>lv</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ResourceListViewExt</value>
+  </data>
   <data name="clType.Text" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="clType.Width" type="System.Int32, mscorlib">
-    <value>331</value>
-  </data>
-  <data name="clGroup.Text" xml:space="preserve">
-    <value>Group</value>
-  </data>
-  <data name="clGroup.Width" type="System.Int32, mscorlib">
-    <value>75</value>
-  </data>
-  <data name="clInstHi.Text" xml:space="preserve">
-    <value>Instance (high)</value>
-  </data>
-  <data name="clInstHi.Width" type="System.Int32, mscorlib">
-    <value>75</value>
-  </data>
-  <data name="clInst.Text" xml:space="preserve">
-    <value>Instance</value>
-  </data>
-  <data name="clInst.Width" type="System.Int32, mscorlib">
-    <value>75</value>
-  </data>
-  <data name="clOffset.Text" xml:space="preserve">
-    <value>Offset</value>
-  </data>
-  <data name="clOffset.Width" type="System.Int32, mscorlib">
-    <value>75</value>
+    <value>Name</value>
   </data>
   <data name="clSize.Text" xml:space="preserve">
     <value>Size</value>
   </data>
-  <data name="clSize.Width" type="System.Int32, mscorlib">
-    <value>75</value>
+  <data name="&gt;&gt;lv.Type" xml:space="preserve">
+    <value>SimPe.Windows.Forms.ListViewDoubleBuffered, simpe.resourcecontrols, Version=1.0.2499.25246, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;clGroup.Name" xml:space="preserve">
+    <value>clGroup</value>
+  </data>
+  <data name="clInst.Text" xml:space="preserve">
+    <value>Instance</value>
+  </data>
+  <data name="&gt;&gt;clInstHi.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clOffset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lv.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -165,29 +155,63 @@
   <data name="lv.Size" type="System.Drawing.Size, System.Drawing">
     <value>723, 241</value>
   </data>
-  <data name="lv.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lv.Name" xml:space="preserve">
-    <value>lv</value>
-  </data>
-  <data name="&gt;&gt;lv.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lv.Parent" xml:space="preserve">
-    <value>$this</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="clInst.Width" type="System.Int32, mscorlib">
+    <value>75</value>
   </data>
   <data name="&gt;&gt;lv.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
+  <data name="clSize.Width" type="System.Int32, mscorlib">
+    <value>75</value>
+  </data>
+  <data name="clTName.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lv.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;clTName.Name" xml:space="preserve">
+    <value>clTName</value>
+  </data>
+  <data name="clType.Width" type="System.Int32, mscorlib">
+    <value>331</value>
+  </data>
+  <data name="clOffset.Width" type="System.Int32, mscorlib">
+    <value>75</value>
+  </data>
+  <data name="&gt;&gt;clSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clOffset.Name" xml:space="preserve">
+    <value>clOffset</value>
+  </data>
+  <data name="clGroup.Text" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="clInstHi.Width" type="System.Int32, mscorlib">
+    <value>75</value>
+  </data>
+  <data name="&gt;&gt;clInstHi.Name" xml:space="preserve">
+    <value>clInstHi</value>
+  </data>
+  <data name="clInstHi.Text" xml:space="preserve">
+    <value>Instance (high)</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>723, 241</value>
+  </data>
+  <data name="&gt;&gt;clTName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clInst.Name" xml:space="preserve">
+    <value>clInst</value>
+  </data>
+  <data name="lv.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;clType.Name" xml:space="preserve">
     <value>clType</value>
@@ -195,40 +219,25 @@
   <data name="&gt;&gt;clType.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;clGroup.Name" xml:space="preserve">
-    <value>clGroup</value>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="clGroup.Width" type="System.Int32, mscorlib">
+    <value>75</value>
   </data>
   <data name="&gt;&gt;clGroup.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;clInstHi.Name" xml:space="preserve">
-    <value>clInstHi</value>
-  </data>
-  <data name="&gt;&gt;clInstHi.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;clInst.Name" xml:space="preserve">
-    <value>clInst</value>
-  </data>
-  <data name="&gt;&gt;clInst.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;clOffset.Name" xml:space="preserve">
-    <value>clOffset</value>
-  </data>
-  <data name="&gt;&gt;clOffset.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;clSize.Name" xml:space="preserve">
     <value>clSize</value>
   </data>
-  <data name="&gt;&gt;clSize.Type" xml:space="preserve">
+  <data name="clOffset.Text" xml:space="preserve">
+    <value>Offset</value>
+  </data>
+  <data name="&gt;&gt;clInst.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ResourceListViewExt</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

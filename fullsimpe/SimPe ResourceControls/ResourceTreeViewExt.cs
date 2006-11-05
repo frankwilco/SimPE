@@ -58,11 +58,11 @@ namespace SimPe.Windows.Forms
 
         bool allowselectevent;
         TreeNode firstnode;
-        public bool SetResourceMaps(ResourceMaps maps, bool selectevent)
+        public bool SetResourceMaps(ResourceMaps maps, bool selectevent, bool dontselect)
         {
-            return SetResourceMaps(maps, selectevent, false);
+            return SetResourceMaps(maps, selectevent, dontselect, false);
         }
-        protected bool SetResourceMaps(ResourceMaps maps, bool selectevent, bool nosave)
+        protected bool SetResourceMaps(ResourceMaps maps, bool selectevent, bool dontselect, bool nosave)
         {
             last = maps;
             if (FileTable.WrapperRegistry != null)
@@ -77,15 +77,18 @@ namespace SimPe.Windows.Forms
             tv.Nodes.Add(firstnode);
             firstnode.Expand();
 
-
-            if (!SelectID(firstnode, builder.LastSelectedId))
+            allowselectevent = selectevent;
+            if (!dontselect && ((maps.Everything.Count <= Helper.WindowsRegistry.BigPackageResourceCount || Helper.WindowsRegistry.ResoruceTreeAllwaysAutoselect)))
             {
-                allowselectevent = selectevent;
-                SelectAll();
-                allowselectevent = true;
-                return false;
+                if (!SelectID(firstnode, builder.LastSelectedId))
+                {
+                    SelectAll();
+                    allowselectevent = true;
+                    return false;
+                }
             }
 
+            allowselectevent = true;
             return true;
         }
 

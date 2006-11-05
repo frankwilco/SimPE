@@ -157,23 +157,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.miRand.Enabled = mbiMax.Enabled;
 		}
 
-        private void SetCharacterAttributesVisibility()
-        {
-            if (Sdesc == null)
-            {
-                pnHumanChar.Visible = true;
-                
-            }
-            else
-            {
-
-                if ((int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Pets)               
-                    pnHumanChar.Visible = Sdesc.Nightlife.IsHuman;                                    
-                else pnHumanChar.Visible = true;                
-            }
-
-            pnPetChar.Visible = !pnHumanChar.Visible;
-        }
+        
 		
 		private void ChoosePage(object sender, System.EventArgs e)
 		{
@@ -269,6 +253,7 @@ namespace SimPe.PackedFiles.UserInterface
 
             this.cbSpecies.ResourceManager = SimPe.Localization.Manager;
             this.cbSpecies.Enum = typeof(SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType);
+            this.cbSpecies.ResourceManager = SimPe.Localization.Manager;
 		}
 
 		#region IPackedFileUI Member
@@ -537,7 +522,17 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbToys.Value = sdesc.Interests.Toys;
 			this.pbTravel.Value = sdesc.Interests.Travel;
 			this.pbWeather.Value = sdesc.Interests.Weather;
-			this.pbWork.Value = sdesc.Interests.Work;			
+			this.pbWork.Value = sdesc.Interests.Work;
+
+            this.pbPetEating.Value = sdesc.Interests.Environment;
+            this.pbPetWeather.Value = sdesc.Interests.Food;
+            this.pbPetPlaying.Value = sdesc.Interests.Culture;
+            this.pbPetSpooky.Value = sdesc.Interests.Money;
+            this.pbPetSleep.Value = sdesc.Interests.Entertainment;
+            this.pbPetToy.Value = sdesc.Interests.Health;
+            this.pbPetPets.Value = sdesc.Interests.Politics;
+            this.pbPetOutside.Value = sdesc.Interests.Crime;
+            this.pbPetAnimals.Value = sdesc.Interests.Fashion;
 		}
 
 		void RefreshCharcter(Wrapper.ExtSDesc sdesc)
@@ -802,24 +797,39 @@ namespace SimPe.PackedFiles.UserInterface
 			intern = true;
 			try 
 			{
-				Sdesc.Interests.Animals = (ushort)this.pbAnimals.Value;
-				Sdesc.Interests.Crime = (ushort)this.pbCrime.Value;
-				Sdesc.Interests.Culture = (ushort)this.pbCulture.Value;
-				Sdesc.Interests.Entertainment = (ushort)this.pbEntertainment.Value;
-				Sdesc.Interests.Environment = (ushort)this.pbEnvironment.Value; 
-				Sdesc.Interests.Fashion = (ushort)this.pbFashion.Value;
-				Sdesc.Interests.Food = (ushort)this.pbFood.Value;
-				Sdesc.Interests.Health = (ushort)this.pbHealth.Value;
-				Sdesc.Interests.Money = (ushort)this.pbMoney.Value;
-				Sdesc.Interests.Paranormal = (ushort)this.pbParanormal.Value;
-				Sdesc.Interests.Politics = (ushort)this.pbPolitics.Value;
-				Sdesc.Interests.School = (ushort)this.pbSchool.Value;
-				Sdesc.Interests.Scifi = (ushort)this.pbSciFi.Value;
-				Sdesc.Interests.Sports = (ushort)this.pbSports.Value;
-				Sdesc.Interests.Toys = (ushort)this.pbToys.Value;
-				Sdesc.Interests.Travel = (ushort)this.pbTravel.Value;
-				Sdesc.Interests.Weather = (ushort)this.pbWeather.Value;
-				Sdesc.Interests.Work = (ushort)this.pbWork.Value;	
+                if (IsHumanoid())
+                {
+                    Sdesc.Interests.Animals = (ushort)this.pbAnimals.Value;
+                    Sdesc.Interests.Crime = (ushort)this.pbCrime.Value;
+                    Sdesc.Interests.Culture = (ushort)this.pbCulture.Value;
+                    Sdesc.Interests.Entertainment = (ushort)this.pbEntertainment.Value;
+                    Sdesc.Interests.Environment = (ushort)this.pbEnvironment.Value;
+                    Sdesc.Interests.Fashion = (ushort)this.pbFashion.Value;
+                    Sdesc.Interests.Food = (ushort)this.pbFood.Value;
+                    Sdesc.Interests.Health = (ushort)this.pbHealth.Value;
+                    Sdesc.Interests.Money = (ushort)this.pbMoney.Value;
+                    Sdesc.Interests.Paranormal = (ushort)this.pbParanormal.Value;
+                    Sdesc.Interests.Politics = (ushort)this.pbPolitics.Value;
+                    Sdesc.Interests.School = (ushort)this.pbSchool.Value;
+                    Sdesc.Interests.Scifi = (ushort)this.pbSciFi.Value;
+                    Sdesc.Interests.Sports = (ushort)this.pbSports.Value;
+                    Sdesc.Interests.Toys = (ushort)this.pbToys.Value;
+                    Sdesc.Interests.Travel = (ushort)this.pbTravel.Value;
+                    Sdesc.Interests.Weather = (ushort)this.pbWeather.Value;
+                    Sdesc.Interests.Work = (ushort)this.pbWork.Value;
+                }
+                else
+                {
+                    Sdesc.Interests.Environment = (ushort)this.pbPetEating.Value;
+                    Sdesc.Interests.Food = (ushort)this.pbPetWeather.Value;
+                    Sdesc.Interests.Culture = (ushort)this.pbPetPlaying.Value;
+                    Sdesc.Interests.Money = (ushort)this.pbPetSpooky.Value;
+                    Sdesc.Interests.Entertainment = (ushort)this.pbPetSleep.Value;
+                    Sdesc.Interests.Health = (ushort)this.pbPetToy.Value;
+                    Sdesc.Interests.Politics = (ushort)this.pbPetPets.Value;
+                    Sdesc.Interests.Crime = (ushort)this.pbPetOutside.Value;
+                    Sdesc.Interests.Fashion = (ushort)this.pbPetAnimals.Value;
+                }
 
 				Sdesc.Changed = true;
 			} 
@@ -1611,10 +1621,56 @@ namespace SimPe.PackedFiles.UserInterface
 			SimPe.RemoteControl.OpenPackedFile(sblb.SelectedBusiness.BnfoFileIndexItem);
 		}
 
-        private void pbGActive_ChangedValue(object sender, EventArgs e)
+        private void cbSpecies_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            bool showsim = IsHumanoid();
+            pnSimInt.Visible = showsim;
+            pnHumanChar.Visible = showsim;
+            pnPetChar.Visible = !showsim;
+            pnPetInt.Visible = !showsim;            
         }
+
+        private bool IsHumanoid()
+        {
+            SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType sp = (SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType)cbSpecies.SelectedValue;
+            bool showsim = sp == SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Human;
+            return showsim;
+        }
+
+        private void SetCharacterAttributesVisibility()
+        {
+            return;
+            bool showsim = true;
+            if (Sdesc == null)
+            {
+                showsim = true;
+
+            }
+            else
+            {
+
+                if ((int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Pets)
+                    showsim = Sdesc.Nightlife.IsHuman;
+                else showsim = true;
+            }
+
+            pnHumanChar.Visible = showsim;
+            pnPetChar.Visible = !showsim;
+
+            this.pnSimInt.Visible = showsim;
+            this.pnPetInt.Visible = !showsim;
+        }
+
+        private void pnInt_VisibleChanged(object sender, EventArgs e)
+        {
+            cbSpecies_SelectedIndexChanged(null, null);
+        }
+
+        private void pnSimInt_VisibleChanged(object sender, EventArgs e)
+        {
+        }
+
+       
 
 		
 

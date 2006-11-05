@@ -172,7 +172,10 @@ namespace SimPe
             }
             else
             {
-                if (!this.DesignMode) this.Visible = false;
+                if (!this.DesignMode && !Helper.WindowsRegistry.ShowWaitBarPermanent) this.Visible = false;
+                this.Message = "";
+                this.Progress = 0;
+                this.ShowProgress = false;
                 this.tbWait.Stop();
             }
         }

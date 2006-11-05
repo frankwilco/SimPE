@@ -1313,6 +1313,16 @@ namespace SimPe.PackedFiles.Wrapper
 			get {return unlinked; }
 			set {unlinked = value;}
 		}
+
+        byte enddata;
+        /// <summary>
+        /// Don't know what this is :)
+        /// </summary>
+        public byte EndByte
+        {
+            get { return enddata; }
+            set { enddata = value; }
+        }
 		#endregion
 
 		#region External Attributes
@@ -1767,7 +1777,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Sim Description Wrapper",
 				"Quaxi",
 				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
-				12,
+				13,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.sdsc.png"))				
 				); 
 		}
@@ -1844,6 +1854,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 			skills.Fatness = 500;
 			version = 0x20;
+            enddata = 0x01;
 		}
 
 		/// <summary>
@@ -1995,6 +2006,10 @@ namespace SimPe.PackedFiles.Wrapper
 				relations.SimInstances = new ushort[ct];
 				for (int i=0; i<ct; i++) relations.SimInstances[i] = old[i];
 			}
+            if (reader.BaseStream.Length - reader.BaseStream.Position > 0)
+                enddata = reader.ReadByte();
+            else
+                enddata = 0x01;
 
 			//character (Genetic)
 			reader.BaseStream.Seek(startpos + 0x6A, System.IO.SeekOrigin.Begin);
@@ -2144,8 +2159,8 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write((uint)relations.SimInstances.Length);
 
 			for (int i=0; i<relations.SimInstances.Length; i++)											
-				writer.Write((uint)relations.SimInstances[i]);			
-			writer.Write((byte)0x01);
+				writer.Write((uint)relations.SimInstances[i]);
+            writer.Write((byte)enddata);
 
 			//skills
 			writer.BaseStream.Seek(startpos + 0x1E, System.IO.SeekOrigin.Begin);

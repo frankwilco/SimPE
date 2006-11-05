@@ -1264,6 +1264,17 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
   </data>
+  <data name="[Property:SP3Path]" xml:space="preserve">
+    <value>3: Weichnachts Accessoires</value>
+  </data>
+  <data name="[Description:SP3Path]" xml:space="preserve">
+    <value>
+      Hier sollte das Installationsverzeichnis von "Die Sims 2 - Weichnachts Accessoires" stehen.
+      Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+      Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
+    </value>
+  </data>
   <data name="[Property:SaveGamePath]" xml:space="preserve">
     <value>Spielstände</value>
   </data>
@@ -1433,6 +1444,9 @@ Soll SimPE dennoch gestartet werden?</value>
   <data name="EP NAME 6" xml:space="preserve">
     <value>The Sims 2 - Haustiere</value>
   </data>
+  <data name="EP NAME 7" xml:space="preserve">
+    <value>The Sims 2 - Weihnachst Accessoires</value>
+  </data>
   <data name="EP SNAME 0" xml:space="preserve">
     <value>Original</value>
   </data>
@@ -1454,6 +1468,9 @@ Soll SimPE dennoch gestartet werden?</value>
   <data name="EP SNAME 6" xml:space="preserve">
     <value>Haustiere</value>
   </data>
+  <data name="EP SNAME 7" xml:space="preserve">
+    <value>Weihnachten</value>
+  </data>
   <data name="Check: Folder not found" xml:space="preserve">
     <value>Verzeichnis für "{name}" wurde nicht gefunden.</value>
   </data>
@@ -1466,49 +1483,106 @@ Soll SimPE dennoch gestartet werden?</value>
   <data name="Check: Unable to load cache" xml:space="preserve">
     <value>Konnte den SimPE Cache nicht lesen.</value>
   </data>
-  <data name="Check: Error while load" xml:space="preserve">
+  <data name="Check: Error while load" >
     <value>Konnte "{name}" nicht laden.</value>
   </data>
-  <data name="Check: No Objects" xml:space="preserve">
+  <data name="Check: No Objects">
     <value>Konnte keine Objekte finden.</value>
   </data>
-  <data name="Check: No Textures" xml:space="preserve">
+  <data name="Check: No Textures">
     <value>Konnte keine Texturdaten finden.</value>
   </data>
-  <data name="Savegames" xml:space="preserve">
+  <data name="Savegames">
     <value>Spielstände</value>
   </data>
-  <data name="Max Relation to this Sim" xml:space="preserve">
+  <data name="Max Relation to this Sim" >
     <value>Beziehung zu {name} maximieren</value>
   </data>
-  <data name="NO_CRES_FOUND" xml:space="preserve">
+  <data name="NO_CRES_FOUND">
     <value>Die definierende CRES-Resource wurde nicht gefunden.
 
 Dies hat zur Folge, dass SimPE die Joint-Hierarchie nicht aufbauen kann.
 		</value>
   </data>
-  <data name="FileTableSectionInclude" xml:space="preserve">
+  <data name="FileTableSectionInclude" >
     <value>{what} laden</value>
   </data>
-  <data name="AllRes" xml:space="preserve">
+  <data name="AllRes">
     <value>Alle Resourcen</value>
   </data>
-  <data name="Loading embedded resource names..." xml:space="preserve">
+  <data name="Loading embedded resource names..." >
     <value>Lade eingebettete Resourcen...</value>
   </data>
-  <data name="Loading package..." xml:space="preserve">
+  <data name="Loading package...">
     <value>Lade Package...</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Human" xml:space="preserve">
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.Human">
     <value>Mensch</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.LargeDog" xml:space="preserve">
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.LargeDog" >
     <value>Großer Hund</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.SmallDog" xml:space="preserve">
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.SmallDog" >
     <value>Kleiner Hund</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Cat" xml:space="preserve">
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.Cat">
     <value>Katze</value>
+  </data>
+  <data name="Starting SimPE...">
+    <value>Starte SimPE...</value>
+  </data>
+  <data name="Validating SimPE registry">
+    <value>Verifiziere SimPE Registry</value>
+  </data>
+  <data name="Checking commandline parameters">
+    <value>Prüfe Kommandozeile</value>
+  </data>
+  <data name="Creating GUI">
+    <value>Erstelle GUI</value>
+  </data>
+  <data name="Starting Main Form">
+    <value>Starte SimPE Dialog</value>
+  </data>
+  <data name="Loading Plugins...">
+    <value>Lade Plugins...</value>
+  </data>
+  <data name="Enabling RemoteControl">
+    <value>Aktiviere Fernbedienung</value>
+  </data>
+  <data name="Starting Resource Loader">
+    <value>Starte ResourceLoader</value>
+  </data>
+  <data name="Building View Filter">
+    <value>Erstelle Anzeigefilter</value>
+  </data>
+  <data name="SimPe.ResourceListExtensionFormats.Hex">
+    <value>als Hex-Nummer</value>
+  </data>
+  <data name="SimPe.ResourceListExtensionFormats.Short">
+    <value>kurzer Text</value>
+  </data>
+  <data name="SimPe.ResourceListExtensionFormats.Long">
+    <value>langer Text</value>
+  </data>
+  <data name="SimPe.ResourceListExtensionFormats.None">
+    <value>verstecken</value>
+  </data>
+  <data name="SimPe.ResourceListFormats.LongTypeNames">
+    <value>langer Typ + Name</value>
+  </data>
+  <data name="SimPe.ResourceListFormats.ShortTypeNames">
+    <value>kurzer Type + Name</value>
+  </data>
+  <data name="SimPe.ResourceListFormats.JustNames">
+    <value>Nur Name</value>
+  </data>
+  <data name="SimPe.ResourceListUnnamedFormats.Instance">
+    <value>Nur Instanz</value>
+  </data>
+  <data name="SimPe.ResourceListUnnamedFormats.GroupInstance">
+    <value>Gruppe + Instanz</value>
+  </data>
+  <data name="SimPe.ResourceListUnnamedFormats.FullTGI">
+    <value>Alles</value>
   </data>
 </root>

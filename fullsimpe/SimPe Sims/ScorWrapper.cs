@@ -121,6 +121,8 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 
+        
+
 		/// <summary>
 		/// Serializes a the Attributes stored in this Instance to the BinaryStream
 		/// </summary>

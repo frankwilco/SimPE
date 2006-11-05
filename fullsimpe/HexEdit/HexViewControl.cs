@@ -766,9 +766,17 @@ namespace Ambertation.Windows.Forms
 			
 		}
 
-		public void AddHighlight(int start, int end)
+        public void AddHighlightInterval(int start, int end)
+        {
+            if (start < end)
+                AddHighlight(start, end - start);
+            else
+                AddHighlight(end, start - end);
+        }
+
+		public void AddHighlight(int start, int len)
 		{
-			highlights.Add(new Highlight(start, end, data.Length));
+			highlights.Add(new Highlight(start, len, data.Length));
 		}
 
 		public void ClearHighlights()
@@ -1798,6 +1806,23 @@ namespace Ambertation.Windows.Forms
 			if (highlights.Length>0) GoTo(highlights[0].Start);
 			Refresh(true);
 		}
+
+        public int HighlighCount
+        {
+            get { return highlights.Count; }
+        }
+
+        public void SelectNextHighlight()
+        {
+            foreach (Highlight h in highlights)
+                if (h.Start > this.SelectionStart)
+                {
+                    GoTo(h.Start);
+                    Select(h.Start, h.Length);
+                    return;
+                }
+
+        }
 		#endregion
 	}
 }

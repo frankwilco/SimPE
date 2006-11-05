@@ -539,9 +539,17 @@ namespace SimPe.Interfaces.Plugin
                         Data.TypeAlias ta = Helper.TGILoader.GetByType(FileDescriptor.Type);
                         res = GetResourceName(ta);
                         if (res == null) res = GetEmbeddedFileName(ta);
-                        if (res == null) res = FileDescriptor.ToString();
+                        if (res == null) res = FileDescriptor.ToResListString();
                         else if (ta.Name == null) res = SimPe.Localization.GetString("Unknown") + ": " + res;
-                        else res = ta.Name + ": " + res;                    
+                        else
+                        {
+                            if (Helper.WindowsRegistry.ResourceListFormat == Registry.ResourceListFormats.LongTypeNames)
+                                res = ta.Name + ": " + res;
+                            else if (Helper.WindowsRegistry.ResourceListFormat == Registry.ResourceListFormats.ShortTypeNames)
+                                res = ta.shortname + ": " + res;
+                            else if (res.Trim() == "")
+                                res = "[" + ta.Name + "]";
+                        }
 				} 
 				else 
 				{

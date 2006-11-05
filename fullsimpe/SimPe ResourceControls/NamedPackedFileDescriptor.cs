@@ -66,7 +66,7 @@ namespace SimPe.Windows.Forms
                             }
                             try
                             {
-                                realname = wrp.ResourceName;
+                                realname = wrp.ResourceName;                                
                             }
 #if DEBUG
                             catch (Exception ex)
@@ -74,7 +74,7 @@ namespace SimPe.Windows.Forms
                                 realname = ex.Message;
                             }
 #else
-					catch{ realname = pfd.ToString();}
+					catch{ realname = pfd.ToResListString();}
 #endif
                             finally
                             {
@@ -93,7 +93,7 @@ namespace SimPe.Windows.Forms
                     }
 
                 }
-                if (realname == null) realname = pfd.ToString();
+                if (realname == null) realname = pfd.ToResListString();
             }
 
             return realname;

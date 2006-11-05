@@ -149,6 +149,15 @@ namespace SimPe
         private Divelements.Navisight.NavigationButton nbCustom;
         private System.Windows.Forms.ComboBox cbCustom;
         private System.Windows.Forms.PropertyGrid pgcustom;
+        private CheckBox cbsplash;
+        private GroupBox groupBox10;
+        private CheckBox cbAsyncSort;
+        private Ambertation.Windows.Forms.EnumComboBox cbRLExt;
+        private Label label17;
+        private Ambertation.Windows.Forms.EnumComboBox cbRLTGI;
+        private Label label16;
+        private Ambertation.Windows.Forms.EnumComboBox cbRLNames;
+        private Label label15;
         private System.ComponentModel.IContainer components;
 
         public OptionForm()
@@ -158,6 +167,13 @@ namespace SimPe
             //
             InitializeComponent();
 
+            this.cbRLExt.ResourceManager = SimPe.Localization.Manager;
+            this.cbRLNames.ResourceManager = SimPe.Localization.Manager;
+            this.cbRLTGI.ResourceManager = SimPe.Localization.Manager;
+
+            this.cbRLExt.Enum = typeof(SimPe.Registry.ResourceListExtensionFormats);
+            this.cbRLNames.Enum = typeof(SimPe.Registry.ResourceListFormats);
+            this.cbRLTGI.Enum = typeof(SimPe.Registry.ResourceListUnnamedFormats);
             this.pgPaths.SelectedObject = SimPe.PathSettings.Global;
 
 
@@ -177,6 +193,7 @@ namespace SimPe
             if (cbCustom.Items.Count > 0) cbCustom.SelectedIndex = 0;
 
             CreateFileTableCheckboxes();
+
         }
 
         private void CreateFileTableCheckboxes()
@@ -272,6 +289,7 @@ namespace SimPe
             this.llNightlife = new System.Windows.Forms.LinkLabel();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.cbsplash = new System.Windows.Forms.CheckBox();
             this.lldds2 = new System.Windows.Forms.LinkLabel();
             this.lldds = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -324,6 +342,14 @@ namespace SimPe
             this.lbfolder = new System.Windows.Forms.CheckedListBox();
             this.llchg = new System.Windows.Forms.LinkLabel();
             this.hcSceneGraph = new TD.Eyefinder.HeaderControl();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.cbAsyncSort = new System.Windows.Forms.CheckBox();
+            this.cbRLExt = new Ambertation.Windows.Forms.EnumComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cbRLTGI = new Ambertation.Windows.Forms.EnumComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cbRLNames = new Ambertation.Windows.Forms.EnumComboBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.cbSimTemp = new System.Windows.Forms.CheckBox();
             this.cbDeep = new System.Windows.Forms.CheckBox();
@@ -372,6 +398,7 @@ namespace SimPe
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.hcSceneGraph.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.hcPlugins.SuspendLayout();
             this.hcIdent.SuspendLayout();
@@ -381,29 +408,17 @@ namespace SimPe
             // 
             // button1
             // 
-            this.button1.AccessibleDescription = null;
-            this.button1.AccessibleName = null;
             resources.ApplyResources(this.button1, "button1");
-            this.button1.BackgroundImage = null;
-            this.button1.Font = null;
             this.button1.Name = "button1";
-            this.toolTip1.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
             this.button1.Click += new System.EventHandler(this.SaveOptionsClick);
             // 
             // tbgame
             // 
-            this.tbgame.AccessibleDescription = null;
-            this.tbgame.AccessibleName = null;
             resources.ApplyResources(this.tbgame, "tbgame");
-            this.tbgame.BackgroundImage = null;
-            this.tbgame.Font = null;
             this.tbgame.Name = "tbgame";
-            this.toolTip1.SetToolTip(this.tbgame, resources.GetString("tbgame.ToolTip"));
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = null;
-            this.label2.AccessibleName = null;
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             this.label2.TabStop = true;
@@ -413,135 +428,77 @@ namespace SimPe
             // 
             // tbsavegame
             // 
-            this.tbsavegame.AccessibleDescription = null;
-            this.tbsavegame.AccessibleName = null;
             resources.ApplyResources(this.tbsavegame, "tbsavegame");
-            this.tbsavegame.BackgroundImage = null;
-            this.tbsavegame.Font = null;
             this.tbsavegame.Name = "tbsavegame";
-            this.toolTip1.SetToolTip(this.tbsavegame, resources.GetString("tbsavegame.ToolTip"));
             // 
             // cbdebug
             // 
-            this.cbdebug.AccessibleDescription = null;
-            this.cbdebug.AccessibleName = null;
             resources.ApplyResources(this.cbdebug, "cbdebug");
-            this.cbdebug.BackgroundImage = null;
             this.cbdebug.Name = "cbdebug";
-            this.toolTip1.SetToolTip(this.cbdebug, resources.GetString("cbdebug.ToolTip"));
             // 
             // cbblur
             // 
-            this.cbblur.AccessibleDescription = null;
-            this.cbblur.AccessibleName = null;
             resources.ApplyResources(this.cbblur, "cbblur");
-            this.cbblur.BackgroundImage = null;
             this.cbblur.Name = "cbblur";
-            this.toolTip1.SetToolTip(this.cbblur, resources.GetString("cbblur.ToolTip"));
             this.cbblur.CheckedChanged += new System.EventHandler(this.cbblur_CheckedChanged);
             // 
             // cbsound
             // 
-            this.cbsound.AccessibleDescription = null;
-            this.cbsound.AccessibleName = null;
             resources.ApplyResources(this.cbsound, "cbsound");
-            this.cbsound.BackgroundImage = null;
             this.cbsound.Name = "cbsound";
-            this.toolTip1.SetToolTip(this.cbsound, resources.GetString("cbsound.ToolTip"));
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = null;
-            this.label1.AccessibleName = null;
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
             // 
             // lbext
             // 
-            this.lbext.AccessibleDescription = null;
-            this.lbext.AccessibleName = null;
             resources.ApplyResources(this.lbext, "lbext");
-            this.lbext.BackgroundImage = null;
-            this.lbext.Font = null;
             this.lbext.Name = "lbext";
-            this.toolTip1.SetToolTip(this.lbext, resources.GetString("lbext.ToolTip"));
             // 
             // linkLabel1
             // 
-            this.linkLabel1.AccessibleDescription = null;
-            this.linkLabel1.AccessibleName = null;
             resources.ApplyResources(this.linkLabel1, "linkLabel1");
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkLabel1, resources.GetString("linkLabel1.ToolTip"));
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddExt);
             // 
             // linkLabel2
             // 
-            this.linkLabel2.AccessibleDescription = null;
-            this.linkLabel2.AccessibleName = null;
             resources.ApplyResources(this.linkLabel2, "linkLabel2");
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkLabel2, resources.GetString("linkLabel2.ToolTip"));
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DeleteExt);
-            // 
-            // fbd
-            // 
-            resources.ApplyResources(this.fbd, "fbd");
             // 
             // button2
             // 
-            this.button2.AccessibleDescription = null;
-            this.button2.AccessibleName = null;
             resources.ApplyResources(this.button2, "button2");
-            this.button2.BackgroundImage = null;
-            this.button2.Font = null;
             this.button2.Name = "button2";
-            this.toolTip1.SetToolTip(this.button2, resources.GetString("button2.ToolTip"));
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.AccessibleDescription = null;
-            this.button3.AccessibleName = null;
             resources.ApplyResources(this.button3, "button3");
-            this.button3.BackgroundImage = null;
-            this.button3.Font = null;
             this.button3.Name = "button3";
-            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.AccessibleDescription = null;
-            this.button4.AccessibleName = null;
             resources.ApplyResources(this.button4, "button4");
-            this.button4.BackgroundImage = null;
-            this.button4.Font = null;
             this.button4.Name = "button4";
-            this.toolTip1.SetToolTip(this.button4, resources.GetString("button4.ToolTip"));
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // tbdds
             // 
-            this.tbdds.AccessibleDescription = null;
-            this.tbdds.AccessibleName = null;
             resources.ApplyResources(this.tbdds, "tbdds");
-            this.tbdds.BackgroundImage = null;
-            this.tbdds.Font = null;
             this.tbdds.Name = "tbdds";
-            this.toolTip1.SetToolTip(this.tbdds, resources.GetString("tbdds.ToolTip"));
             this.tbdds.TextChanged += new System.EventHandler(this.DDSChanged);
             // 
             // label5
             // 
-            this.label5.AccessibleDescription = null;
-            this.label5.AccessibleName = null;
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.toolTip1.SetToolTip(this.label5, resources.GetString("label5.ToolTip"));
             // 
             // ofd
             // 
@@ -549,29 +506,17 @@ namespace SimPe
             // 
             // tbep1
             // 
-            this.tbep1.AccessibleDescription = null;
-            this.tbep1.AccessibleName = null;
             resources.ApplyResources(this.tbep1, "tbep1");
-            this.tbep1.BackgroundImage = null;
-            this.tbep1.Font = null;
             this.tbep1.Name = "tbep1";
-            this.toolTip1.SetToolTip(this.tbep1, resources.GetString("tbep1.ToolTip"));
             // 
             // button5
             // 
-            this.button5.AccessibleDescription = null;
-            this.button5.AccessibleName = null;
             resources.ApplyResources(this.button5, "button5");
-            this.button5.BackgroundImage = null;
-            this.button5.Font = null;
             this.button5.Name = "button5";
-            this.toolTip1.SetToolTip(this.button5, resources.GetString("button5.ToolTip"));
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // linkLabel4
             // 
-            this.linkLabel4.AccessibleDescription = null;
-            this.linkLabel4.AccessibleName = null;
             resources.ApplyResources(this.linkLabel4, "linkLabel4");
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.TabStop = true;
@@ -581,8 +526,6 @@ namespace SimPe
             // 
             // llsetep1
             // 
-            this.llsetep1.AccessibleDescription = null;
-            this.llsetep1.AccessibleName = null;
             resources.ApplyResources(this.llsetep1, "llsetep1");
             this.llsetep1.Name = "llsetep1";
             this.llsetep1.TabStop = true;
@@ -592,54 +535,37 @@ namespace SimPe
             // 
             // tbthumb
             // 
-            this.tbthumb.AccessibleDescription = null;
-            this.tbthumb.AccessibleName = null;
             resources.ApplyResources(this.tbthumb, "tbthumb");
-            this.tbthumb.BackgroundImage = null;
             this.tbthumb.Name = "tbthumb";
             this.toolTip1.SetToolTip(this.tbthumb, resources.GetString("tbthumb.ToolTip"));
             // 
             // cbLock
             // 
-            this.cbLock.AccessibleDescription = null;
-            this.cbLock.AccessibleName = null;
             resources.ApplyResources(this.cbLock, "cbLock");
-            this.cbLock.BackgroundImage = null;
             this.cbLock.Name = "cbLock";
             this.toolTip1.SetToolTip(this.cbLock, resources.GetString("cbLock.ToolTip"));
             this.cbLock.CheckedChanged += new System.EventHandler(this.cbLock_CheckedChanged);
             // 
             // cbAsync
             // 
-            this.cbAsync.AccessibleDescription = null;
-            this.cbAsync.AccessibleName = null;
             resources.ApplyResources(this.cbAsync, "cbAsync");
-            this.cbAsync.BackgroundImage = null;
             this.cbAsync.Name = "cbAsync";
             this.toolTip1.SetToolTip(this.cbAsync, resources.GetString("cbAsync.ToolTip"));
             // 
             // cbhidden
             // 
-            this.cbhidden.AccessibleDescription = null;
-            this.cbhidden.AccessibleName = null;
             resources.ApplyResources(this.cbhidden, "cbhidden");
-            this.cbhidden.BackgroundImage = null;
             this.cbhidden.Name = "cbhidden";
             this.toolTip1.SetToolTip(this.cbhidden, resources.GetString("cbhidden.ToolTip"));
             // 
             // tbscale
             // 
-            this.tbscale.AccessibleDescription = null;
-            this.tbscale.AccessibleName = null;
             resources.ApplyResources(this.tbscale, "tbscale");
-            this.tbscale.BackgroundImage = null;
             this.tbscale.Name = "tbscale";
             this.toolTip1.SetToolTip(this.tbscale, resources.GetString("tbscale.ToolTip"));
             // 
             // llNightlife
             // 
-            this.llNightlife.AccessibleDescription = null;
-            this.llNightlife.AccessibleName = null;
             resources.ApplyResources(this.llNightlife, "llNightlife");
             this.llNightlife.Name = "llNightlife";
             this.llNightlife.TabStop = true;
@@ -649,135 +575,95 @@ namespace SimPe
             // 
             // button8
             // 
-            this.button8.AccessibleDescription = null;
-            this.button8.AccessibleName = null;
             resources.ApplyResources(this.button8, "button8");
-            this.button8.BackgroundImage = null;
-            this.button8.Font = null;
             this.button8.Name = "button8";
             this.toolTip1.SetToolTip(this.button8, resources.GetString("button8.ToolTip"));
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
-            this.button7.AccessibleDescription = null;
-            this.button7.AccessibleName = null;
             resources.ApplyResources(this.button7, "button7");
-            this.button7.BackgroundImage = null;
             this.button7.Name = "button7";
             this.toolTip1.SetToolTip(this.button7, resources.GetString("button7.ToolTip"));
             this.button7.Click += new System.EventHandler(this.ResetLayoutClick);
             // 
+            // cbsplash
+            // 
+            resources.ApplyResources(this.cbsplash, "cbsplash");
+            this.cbsplash.Name = "cbsplash";
+            this.toolTip1.SetToolTip(this.cbsplash, resources.GetString("cbsplash.ToolTip"));
+            // 
             // lldds2
             // 
-            this.lldds2.AccessibleDescription = null;
-            this.lldds2.AccessibleName = null;
-            resources.ApplyResources(this.lldds2, "lldds2");
             this.lldds2.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.lldds2, "lldds2");
             this.lldds2.ForeColor = System.Drawing.Color.Gray;
             this.lldds2.LinkColor = System.Drawing.Color.Red;
             this.lldds2.Name = "lldds2";
             this.lldds2.TabStop = true;
-            this.toolTip1.SetToolTip(this.lldds2, resources.GetString("lldds2.ToolTip"));
             this.lldds2.UseCompatibleTextRendering = true;
             this.lldds2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LoadDDS);
             // 
             // lldds
             // 
-            this.lldds.AccessibleDescription = null;
-            this.lldds.AccessibleName = null;
-            resources.ApplyResources(this.lldds, "lldds");
             this.lldds.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.lldds, "lldds");
             this.lldds.ForeColor = System.Drawing.Color.Gray;
             this.lldds.Name = "lldds";
-            this.toolTip1.SetToolTip(this.lldds, resources.GetString("lldds.ToolTip"));
             // 
             // label7
             // 
-            this.label7.AccessibleDescription = null;
-            this.label7.AccessibleName = null;
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.toolTip1.SetToolTip(this.label7, resources.GetString("label7.ToolTip"));
             // 
             // label6
             // 
-            this.label6.AccessibleDescription = null;
-            this.label6.AccessibleName = null;
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            this.toolTip1.SetToolTip(this.label6, resources.GetString("label6.ToolTip"));
             // 
             // label3
             // 
-            this.label3.AccessibleDescription = null;
-            this.label3.AccessibleName = null;
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
             // 
             // groupBox3
             // 
-            this.groupBox3.AccessibleDescription = null;
-            this.groupBox3.AccessibleName = null;
-            resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.BackgroundImage = null;
             this.groupBox3.Controls.Add(this.cbow);
             this.groupBox3.Controls.Add(this.cbshowobjd);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.tbthumb);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox3, resources.GetString("groupBox3.ToolTip"));
             // 
             // cbow
             // 
-            this.cbow.AccessibleDescription = null;
-            this.cbow.AccessibleName = null;
             resources.ApplyResources(this.cbow, "cbow");
-            this.cbow.BackgroundImage = null;
             this.cbow.Name = "cbow";
-            this.toolTip1.SetToolTip(this.cbow, resources.GetString("cbow.ToolTip"));
             // 
             // cbshowobjd
             // 
-            this.cbshowobjd.AccessibleDescription = null;
-            this.cbshowobjd.AccessibleName = null;
             resources.ApplyResources(this.cbshowobjd, "cbshowobjd");
-            this.cbshowobjd.BackgroundImage = null;
             this.cbshowobjd.Name = "cbshowobjd";
-            this.toolTip1.SetToolTip(this.cbshowobjd, resources.GetString("cbshowobjd.ToolTip"));
             // 
             // label8
             // 
-            this.label8.AccessibleDescription = null;
-            this.label8.AccessibleName = null;
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            this.toolTip1.SetToolTip(this.label8, resources.GetString("label8.ToolTip"));
             // 
             // button6
             // 
-            this.button6.AccessibleDescription = null;
-            this.button6.AccessibleName = null;
             resources.ApplyResources(this.button6, "button6");
-            this.button6.BackgroundImage = null;
-            this.button6.Font = null;
             this.button6.Name = "button6";
-            this.toolTip1.SetToolTip(this.button6, resources.GetString("button6.ToolTip"));
             this.button6.Click += new System.EventHandler(this.ClearCaches);
             // 
             // groupBox2
             // 
-            this.groupBox2.AccessibleDescription = null;
-            this.groupBox2.AccessibleName = null;
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.BackgroundImage = null;
+            this.groupBox2.Controls.Add(this.cbsplash);
             this.groupBox2.Controls.Add(this.cbLock);
             this.groupBox2.Controls.Add(this.cbReport);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.cbAsync);
             this.groupBox2.Controls.Add(this.cbpkgmaint);
             this.groupBox2.Controls.Add(this.cbupdate);
             this.groupBox2.Controls.Add(this.cbhidden);
@@ -788,201 +674,127 @@ namespace SimPe
             this.groupBox2.Controls.Add(this.cbsilent);
             this.groupBox2.Controls.Add(this.cbwait);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
             // 
             // cbReport
             // 
-            this.cbReport.AccessibleDescription = null;
-            this.cbReport.AccessibleName = null;
             resources.ApplyResources(this.cbReport, "cbReport");
-            this.cbReport.BackgroundImage = null;
             this.cbReport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbReport.Name = "cbReport";
-            this.toolTip1.SetToolTip(this.cbReport, resources.GetString("cbReport.ToolTip"));
             // 
             // label9
             // 
-            this.label9.AccessibleDescription = null;
-            this.label9.AccessibleName = null;
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
             // 
             // cbpkgmaint
             // 
-            this.cbpkgmaint.AccessibleDescription = null;
-            this.cbpkgmaint.AccessibleName = null;
             resources.ApplyResources(this.cbpkgmaint, "cbpkgmaint");
-            this.cbpkgmaint.BackgroundImage = null;
             this.cbpkgmaint.Name = "cbpkgmaint";
-            this.toolTip1.SetToolTip(this.cbpkgmaint, resources.GetString("cbpkgmaint.ToolTip"));
             // 
             // cbupdate
             // 
-            this.cbupdate.AccessibleDescription = null;
-            this.cbupdate.AccessibleName = null;
             resources.ApplyResources(this.cbupdate, "cbupdate");
-            this.cbupdate.BackgroundImage = null;
             this.cbupdate.Name = "cbupdate";
-            this.toolTip1.SetToolTip(this.cbupdate, resources.GetString("cbupdate.ToolTip"));
             // 
             // label4
             // 
-            this.label4.AccessibleDescription = null;
-            this.label4.AccessibleName = null;
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.toolTip1.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
             // 
             // cbautobak
             // 
-            this.cbautobak.AccessibleDescription = null;
-            this.cbautobak.AccessibleName = null;
             resources.ApplyResources(this.cbautobak, "cbautobak");
-            this.cbautobak.BackgroundImage = null;
             this.cbautobak.Name = "cbautobak";
-            this.toolTip1.SetToolTip(this.cbautobak, resources.GetString("cbautobak.ToolTip"));
             // 
             // cbcache
             // 
-            this.cbcache.AccessibleDescription = null;
-            this.cbcache.AccessibleName = null;
             resources.ApplyResources(this.cbcache, "cbcache");
-            this.cbcache.BackgroundImage = null;
             this.cbcache.Name = "cbcache";
-            this.toolTip1.SetToolTip(this.cbcache, resources.GetString("cbcache.ToolTip"));
             // 
             // cblang
             // 
-            this.cblang.AccessibleDescription = null;
-            this.cblang.AccessibleName = null;
             resources.ApplyResources(this.cblang, "cblang");
-            this.cblang.BackgroundImage = null;
             this.cblang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cblang.Name = "cblang";
-            this.toolTip1.SetToolTip(this.cblang, resources.GetString("cblang.ToolTip"));
             // 
             // cbsilent
             // 
-            this.cbsilent.AccessibleDescription = null;
-            this.cbsilent.AccessibleName = null;
             resources.ApplyResources(this.cbsilent, "cbsilent");
-            this.cbsilent.BackgroundImage = null;
             this.cbsilent.Name = "cbsilent";
-            this.toolTip1.SetToolTip(this.cbsilent, resources.GetString("cbsilent.ToolTip"));
             // 
             // cbwait
             // 
-            this.cbwait.AccessibleDescription = null;
-            this.cbwait.AccessibleName = null;
             resources.ApplyResources(this.cbwait, "cbwait");
-            this.cbwait.BackgroundImage = null;
             this.cbwait.Name = "cbwait";
-            this.toolTip1.SetToolTip(this.cbwait, resources.GetString("cbwait.ToolTip"));
             // 
             // cbSimple
             // 
-            this.cbSimple.AccessibleDescription = null;
-            this.cbSimple.AccessibleName = null;
             resources.ApplyResources(this.cbSimple, "cbSimple");
-            this.cbSimple.BackgroundImage = null;
             this.cbSimple.Name = "cbSimple";
-            this.toolTip1.SetToolTip(this.cbSimple, resources.GetString("cbSimple.ToolTip"));
             // 
             // cbmulti
             // 
-            this.cbmulti.AccessibleDescription = null;
-            this.cbmulti.AccessibleName = null;
             resources.ApplyResources(this.cbmulti, "cbmulti");
-            this.cbmulti.BackgroundImage = null;
             this.cbmulti.Name = "cbmulti";
-            this.toolTip1.SetToolTip(this.cbmulti, resources.GetString("cbmulti.ToolTip"));
             this.cbmulti.CheckedChanged += new System.EventHandler(this.cbmulti_CheckedChanged);
             // 
             // groupBox1
             // 
-            this.groupBox1.AccessibleDescription = null;
-            this.groupBox1.AccessibleName = null;
             resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.BackgroundImage = null;
             this.groupBox1.Controls.Add(this.cbdebug);
             this.groupBox1.Controls.Add(this.cbblur);
             this.groupBox1.Controls.Add(this.cbsound);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
             // 
             // lladddown
             // 
-            this.lladddown.AccessibleDescription = null;
-            this.lladddown.AccessibleName = null;
             resources.ApplyResources(this.lladddown, "lladddown");
             this.lladddown.Name = "lladddown";
             this.lladddown.TabStop = true;
-            this.toolTip1.SetToolTip(this.lladddown, resources.GetString("lladddown.ToolTip"));
             this.lladddown.UseCompatibleTextRendering = true;
             this.lladddown.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lladddown_LinkClicked);
             // 
             // lldel
             // 
-            this.lldel.AccessibleDescription = null;
-            this.lldel.AccessibleName = null;
             resources.ApplyResources(this.lldel, "lldel");
             this.lldel.Name = "lldel";
             this.lldel.TabStop = true;
-            this.toolTip1.SetToolTip(this.lldel, resources.GetString("lldel.ToolTip"));
             this.lldel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lldel_LinkClicked);
             // 
             // lladd
             // 
-            this.lladd.AccessibleDescription = null;
-            this.lladd.AccessibleName = null;
             resources.ApplyResources(this.lladd, "lladd");
             this.lladd.Name = "lladd";
             this.lladd.TabStop = true;
-            this.toolTip1.SetToolTip(this.lladd, resources.GetString("lladd.ToolTip"));
             this.lladd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lladd_LinkClicked);
             // 
             // groupBox4
             // 
-            this.groupBox4.AccessibleDescription = null;
-            this.groupBox4.AccessibleName = null;
             resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.BackgroundImage = null;
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.tbscale);
             this.groupBox4.Controls.Add(this.cbjointname);
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox4, resources.GetString("groupBox4.ToolTip"));
             // 
             // label10
             // 
-            this.label10.AccessibleDescription = null;
-            this.label10.AccessibleName = null;
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            this.toolTip1.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
             // 
             // cbjointname
             // 
-            this.cbjointname.AccessibleDescription = null;
-            this.cbjointname.AccessibleName = null;
             resources.ApplyResources(this.cbjointname, "cbjointname");
-            this.cbjointname.BackgroundImage = null;
             this.cbjointname.Name = "cbjointname";
-            this.toolTip1.SetToolTip(this.cbjointname, resources.GetString("cbjointname.ToolTip"));
             // 
             // hcFolders
             // 
-            this.hcFolders.AccessibleDescription = null;
-            this.hcFolders.AccessibleName = null;
-            resources.ApplyResources(this.hcFolders, "hcFolders");
-            this.hcFolders.BackgroundImage = null;
             this.hcFolders.Controls.Add(this.pgPaths);
             this.hcFolders.Controls.Add(this.tbep2);
             this.hcFolders.Controls.Add(this.btNightlife);
@@ -1005,59 +817,36 @@ namespace SimPe
             this.hcFolders.Controls.Add(this.label3);
             this.hcFolders.Controls.Add(this.llsetep1);
             this.hcFolders.Controls.Add(this.label2);
-            this.hcFolders.Font = null;
             this.hcFolders.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            resources.ApplyResources(this.hcFolders, "hcFolders");
             this.hcFolders.Name = "hcFolders";
-            this.toolTip1.SetToolTip(this.hcFolders, resources.GetString("hcFolders.ToolTip"));
             // 
             // pgPaths
             // 
-            this.pgPaths.AccessibleDescription = null;
-            this.pgPaths.AccessibleName = null;
-            resources.ApplyResources(this.pgPaths, "pgPaths");
-            this.pgPaths.BackgroundImage = null;
             this.pgPaths.CommandsBackColor = System.Drawing.SystemColors.Window;
-            this.pgPaths.Font = null;
             this.pgPaths.LineColor = System.Drawing.SystemColors.ScrollBar;
+            resources.ApplyResources(this.pgPaths, "pgPaths");
             this.pgPaths.Name = "pgPaths";
             this.pgPaths.ToolbarVisible = false;
-            this.toolTip1.SetToolTip(this.pgPaths, resources.GetString("pgPaths.ToolTip"));
             // 
             // tbep2
             // 
-            this.tbep2.AccessibleDescription = null;
-            this.tbep2.AccessibleName = null;
             resources.ApplyResources(this.tbep2, "tbep2");
-            this.tbep2.BackgroundImage = null;
-            this.tbep2.Font = null;
             this.tbep2.Name = "tbep2";
-            this.toolTip1.SetToolTip(this.tbep2, resources.GetString("tbep2.ToolTip"));
             // 
             // btNightlife
             // 
-            this.btNightlife.AccessibleDescription = null;
-            this.btNightlife.AccessibleName = null;
             resources.ApplyResources(this.btNightlife, "btNightlife");
-            this.btNightlife.BackgroundImage = null;
-            this.btNightlife.Font = null;
             this.btNightlife.Name = "btNightlife";
-            this.toolTip1.SetToolTip(this.btNightlife, resources.GetString("btNightlife.ToolTip"));
             this.btNightlife.Click += new System.EventHandler(this.btNightlife_Click);
             // 
             // label14
             // 
-            this.label14.AccessibleDescription = null;
-            this.label14.AccessibleName = null;
             resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
-            this.toolTip1.SetToolTip(this.label14, resources.GetString("label14.ToolTip"));
             // 
             // hcSettings
             // 
-            this.hcSettings.AccessibleDescription = null;
-            this.hcSettings.AccessibleName = null;
-            resources.ApplyResources(this.hcSettings, "hcSettings");
-            this.hcSettings.BackgroundImage = null;
             this.hcSettings.Controls.Add(this.button8);
             this.hcSettings.Controls.Add(this.groupBox6);
             this.hcSettings.Controls.Add(this.groupBox5);
@@ -1066,124 +855,81 @@ namespace SimPe
             this.hcSettings.Controls.Add(this.groupBox1);
             this.hcSettings.Controls.Add(this.groupBox3);
             this.hcSettings.Controls.Add(this.button7);
-            this.hcSettings.Font = null;
             this.hcSettings.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            resources.ApplyResources(this.hcSettings, "hcSettings");
             this.hcSettings.Name = "hcSettings";
-            this.toolTip1.SetToolTip(this.hcSettings, resources.GetString("hcSettings.ToolTip"));
             // 
             // groupBox6
             // 
-            this.groupBox6.AccessibleDescription = null;
-            this.groupBox6.AccessibleName = null;
             resources.ApplyResources(this.groupBox6, "groupBox6");
-            this.groupBox6.BackgroundImage = null;
             this.groupBox6.Controls.Add(this.cbFirefox);
             this.groupBox6.Controls.Add(this.cbSimple);
             this.groupBox6.Controls.Add(this.cbmulti);
             this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox6, resources.GetString("groupBox6.ToolTip"));
             // 
             // cbFirefox
             // 
-            this.cbFirefox.AccessibleDescription = null;
-            this.cbFirefox.AccessibleName = null;
             resources.ApplyResources(this.cbFirefox, "cbFirefox");
-            this.cbFirefox.BackgroundImage = null;
             this.cbFirefox.Name = "cbFirefox";
-            this.toolTip1.SetToolTip(this.cbFirefox, resources.GetString("cbFirefox.ToolTip"));
             // 
             // groupBox5
             // 
-            this.groupBox5.AccessibleDescription = null;
-            this.groupBox5.AccessibleName = null;
             resources.ApplyResources(this.groupBox5, "groupBox5");
-            this.groupBox5.BackgroundImage = null;
             this.groupBox5.Controls.Add(this.cbThemes);
             this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox5, resources.GetString("groupBox5.ToolTip"));
             // 
             // cbThemes
             // 
-            this.cbThemes.AccessibleDescription = null;
-            this.cbThemes.AccessibleName = null;
             resources.ApplyResources(this.cbThemes, "cbThemes");
-            this.cbThemes.BackgroundImage = null;
             this.cbThemes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbThemes.Name = "cbThemes";
-            this.toolTip1.SetToolTip(this.cbThemes, resources.GetString("cbThemes.ToolTip"));
             this.cbThemes.SelectedIndexChanged += new System.EventHandler(this.ChangedThemeHandler);
             // 
             // hcTools
             // 
-            this.hcTools.AccessibleDescription = null;
-            this.hcTools.AccessibleName = null;
-            resources.ApplyResources(this.hcTools, "hcTools");
-            this.hcTools.BackgroundImage = null;
             this.hcTools.Controls.Add(this.lbext);
             this.hcTools.Controls.Add(this.linkLabel1);
             this.hcTools.Controls.Add(this.linkLabel2);
             this.hcTools.Controls.Add(this.label1);
-            this.hcTools.Font = null;
             this.hcTools.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            resources.ApplyResources(this.hcTools, "hcTools");
             this.hcTools.Name = "hcTools";
-            this.toolTip1.SetToolTip(this.hcTools, resources.GetString("hcTools.ToolTip"));
             // 
             // hcFileTable
             // 
-            this.hcFileTable.AccessibleDescription = null;
-            this.hcFileTable.AccessibleName = null;
-            resources.ApplyResources(this.hcFileTable, "hcFileTable");
-            this.hcFileTable.BackgroundImage = null;
             this.hcFileTable.Controls.Add(this.groupBox8);
             this.hcFileTable.Controls.Add(this.btReload);
             this.hcFileTable.Controls.Add(this.groupBox9);
-            this.hcFileTable.Font = null;
             this.hcFileTable.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            resources.ApplyResources(this.hcFileTable, "hcFileTable");
             this.hcFileTable.Name = "hcFileTable";
-            this.toolTip1.SetToolTip(this.hcFileTable, resources.GetString("hcFileTable.ToolTip"));
             // 
             // groupBox8
             // 
-            this.groupBox8.AccessibleDescription = null;
-            this.groupBox8.AccessibleName = null;
-            resources.ApplyResources(this.groupBox8, "groupBox8");
-            this.groupBox8.BackgroundImage = null;
             this.groupBox8.Controls.Add(this.cbIncCep);
             this.groupBox8.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            resources.ApplyResources(this.groupBox8, "groupBox8");
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox8, resources.GetString("groupBox8.ToolTip"));
             // 
             // cbIncCep
             // 
-            this.cbIncCep.AccessibleDescription = null;
-            this.cbIncCep.AccessibleName = null;
             resources.ApplyResources(this.cbIncCep, "cbIncCep");
-            this.cbIncCep.BackgroundImage = null;
             this.cbIncCep.Name = "cbIncCep";
-            this.toolTip1.SetToolTip(this.cbIncCep, resources.GetString("cbIncCep.ToolTip"));
             this.cbIncCep.CheckedChanged += new System.EventHandler(this.cbIncNightlife_CheckedChanged);
             // 
             // btReload
             // 
-            this.btReload.AccessibleDescription = null;
-            this.btReload.AccessibleName = null;
             resources.ApplyResources(this.btReload, "btReload");
-            this.btReload.BackgroundImage = null;
             this.btReload.Name = "btReload";
-            this.toolTip1.SetToolTip(this.btReload, resources.GetString("btReload.ToolTip"));
             this.btReload.Click += new System.EventHandler(this.btReload_Click);
             // 
             // groupBox9
             // 
-            this.groupBox9.AccessibleDescription = null;
-            this.groupBox9.AccessibleName = null;
-            resources.ApplyResources(this.groupBox9, "groupBox9");
-            this.groupBox9.BackgroundImage = null;
             this.groupBox9.Controls.Add(this.btup);
             this.groupBox9.Controls.Add(this.btdn);
             this.groupBox9.Controls.Add(this.linkLabel6);
@@ -1192,127 +938,152 @@ namespace SimPe
             this.groupBox9.Controls.Add(this.lbfolder);
             this.groupBox9.Controls.Add(this.llchg);
             this.groupBox9.Controls.Add(this.lladd);
+            resources.ApplyResources(this.groupBox9, "groupBox9");
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox9, resources.GetString("groupBox9.ToolTip"));
             // 
             // btup
             // 
-            this.btup.AccessibleDescription = null;
-            this.btup.AccessibleName = null;
             resources.ApplyResources(this.btup, "btup");
-            this.btup.BackgroundImage = null;
             this.btup.Name = "btup";
-            this.toolTip1.SetToolTip(this.btup, resources.GetString("btup.ToolTip"));
             this.btup.Click += new System.EventHandler(this.btup_Click);
             // 
             // btdn
             // 
-            this.btdn.AccessibleDescription = null;
-            this.btdn.AccessibleName = null;
             resources.ApplyResources(this.btdn, "btdn");
-            this.btdn.BackgroundImage = null;
             this.btdn.Name = "btdn";
-            this.toolTip1.SetToolTip(this.btdn, resources.GetString("btdn.ToolTip"));
             this.btdn.Click += new System.EventHandler(this.btdn_Click);
             // 
             // linkLabel6
             // 
-            this.linkLabel6.AccessibleDescription = null;
-            this.linkLabel6.AccessibleName = null;
             resources.ApplyResources(this.linkLabel6, "linkLabel6");
             this.linkLabel6.Name = "linkLabel6";
             this.linkLabel6.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkLabel6, resources.GetString("linkLabel6.ToolTip"));
             this.linkLabel6.UseCompatibleTextRendering = true;
             this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
             // 
             // lbfolder
             // 
-            this.lbfolder.AccessibleDescription = null;
-            this.lbfolder.AccessibleName = null;
             resources.ApplyResources(this.lbfolder, "lbfolder");
-            this.lbfolder.BackgroundImage = null;
             this.lbfolder.Name = "lbfolder";
-            this.toolTip1.SetToolTip(this.lbfolder, resources.GetString("lbfolder.ToolTip"));
             this.lbfolder.SelectedIndexChanged += new System.EventHandler(this.lbfolder_SelectedIndexChanged);
             this.lbfolder.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lbfolder_ItemCheck);
             // 
             // llchg
             // 
-            this.llchg.AccessibleDescription = null;
-            this.llchg.AccessibleName = null;
             resources.ApplyResources(this.llchg, "llchg");
             this.llchg.Name = "llchg";
             this.llchg.TabStop = true;
-            this.toolTip1.SetToolTip(this.llchg, resources.GetString("llchg.ToolTip"));
             this.llchg.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llchg_LinkClicked);
             // 
             // hcSceneGraph
             // 
-            this.hcSceneGraph.AccessibleDescription = null;
-            this.hcSceneGraph.AccessibleName = null;
-            resources.ApplyResources(this.hcSceneGraph, "hcSceneGraph");
-            this.hcSceneGraph.BackgroundImage = null;
+            this.hcSceneGraph.Controls.Add(this.groupBox10);
             this.hcSceneGraph.Controls.Add(this.groupBox7);
             this.hcSceneGraph.Controls.Add(this.groupBox4);
-            this.hcSceneGraph.Font = null;
             this.hcSceneGraph.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            resources.ApplyResources(this.hcSceneGraph, "hcSceneGraph");
             this.hcSceneGraph.Name = "hcSceneGraph";
-            this.toolTip1.SetToolTip(this.hcSceneGraph, resources.GetString("hcSceneGraph.ToolTip"));
+            // 
+            // groupBox10
+            // 
+            resources.ApplyResources(this.groupBox10, "groupBox10");
+            this.groupBox10.Controls.Add(this.cbAsyncSort);
+            this.groupBox10.Controls.Add(this.cbRLExt);
+            this.groupBox10.Controls.Add(this.cbAsync);
+            this.groupBox10.Controls.Add(this.label17);
+            this.groupBox10.Controls.Add(this.cbRLTGI);
+            this.groupBox10.Controls.Add(this.label16);
+            this.groupBox10.Controls.Add(this.cbRLNames);
+            this.groupBox10.Controls.Add(this.label15);
+            this.groupBox10.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.TabStop = false;
+            // 
+            // cbAsyncSort
+            // 
+            resources.ApplyResources(this.cbAsyncSort, "cbAsyncSort");
+            this.cbAsyncSort.Name = "cbAsyncSort";
+            // 
+            // cbRLExt
+            // 
+            this.cbRLExt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRLExt.Enum = null;
+            resources.ApplyResources(this.cbRLExt, "cbRLExt");
+            this.cbRLExt.FormattingEnabled = true;
+            this.cbRLExt.Name = "cbRLExt";
+            this.cbRLExt.ResourceManager = null;
+            this.cbRLExt.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
+            // cbRLTGI
+            // 
+            this.cbRLTGI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRLTGI.Enum = null;
+            resources.ApplyResources(this.cbRLTGI, "cbRLTGI");
+            this.cbRLTGI.FormattingEnabled = true;
+            this.cbRLTGI.Name = "cbRLTGI";
+            this.cbRLTGI.ResourceManager = null;
+            this.cbRLTGI.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // cbRLNames
+            // 
+            this.cbRLNames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRLNames.Enum = null;
+            resources.ApplyResources(this.cbRLNames, "cbRLNames");
+            this.cbRLNames.FormattingEnabled = true;
+            this.cbRLNames.Name = "cbRLNames";
+            this.cbRLNames.ResourceManager = null;
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
             // 
             // groupBox7
             // 
-            this.groupBox7.AccessibleDescription = null;
-            this.groupBox7.AccessibleName = null;
             resources.ApplyResources(this.groupBox7, "groupBox7");
-            this.groupBox7.BackgroundImage = null;
             this.groupBox7.Controls.Add(this.cbSimTemp);
             this.groupBox7.Controls.Add(this.cbDeep);
             this.groupBox7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox7, resources.GetString("groupBox7.ToolTip"));
             // 
             // cbSimTemp
             // 
-            this.cbSimTemp.AccessibleDescription = null;
-            this.cbSimTemp.AccessibleName = null;
             resources.ApplyResources(this.cbSimTemp, "cbSimTemp");
-            this.cbSimTemp.BackgroundImage = null;
             this.cbSimTemp.Name = "cbSimTemp";
-            this.toolTip1.SetToolTip(this.cbSimTemp, resources.GetString("cbSimTemp.ToolTip"));
             // 
             // cbDeep
             // 
-            this.cbDeep.AccessibleDescription = null;
-            this.cbDeep.AccessibleName = null;
             resources.ApplyResources(this.cbDeep, "cbDeep");
-            this.cbDeep.BackgroundImage = null;
             this.cbDeep.Name = "cbDeep";
-            this.toolTip1.SetToolTip(this.cbDeep, resources.GetString("cbDeep.ToolTip"));
             this.cbDeep.CheckedChanged += new System.EventHandler(this.cbDeep_CheckedChanged);
             // 
             // bb
             // 
-            this.bb.AccessibleDescription = null;
-            this.bb.AccessibleName = null;
             resources.ApplyResources(this.bb, "bb");
-            this.bb.BackgroundImage = null;
             this.bb.Buttons.AddRange(new Divelements.Navisight.NavigationButton[] {
             this.nbFolders,
             this.nbCheck,
             this.nbSettings,
-            this.nbCustom,
             this.nbSceneGraph,
+            this.nbCustom,
             this.nbFileTable,
             this.nbPlugins,
             this.nbTools,
             this.nbIdent});
             this.bb.ButtonSpacing = 16;
-            this.bb.Font = null;
             this.bb.Name = "bb";
-            this.toolTip1.SetToolTip(this.bb, resources.GetString("bb.ToolTip"));
             // 
             // nbFolders
             // 
@@ -1371,57 +1142,33 @@ namespace SimPe
             // 
             // hcPlugins
             // 
-            this.hcPlugins.AccessibleDescription = null;
-            this.hcPlugins.AccessibleName = null;
-            resources.ApplyResources(this.hcPlugins, "hcPlugins");
-            this.hcPlugins.BackgroundImage = null;
             this.hcPlugins.Controls.Add(this.btpup);
             this.hcPlugins.Controls.Add(this.btpdown);
             this.hcPlugins.Controls.Add(this.cnt);
-            this.hcPlugins.Font = null;
             this.hcPlugins.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            resources.ApplyResources(this.hcPlugins, "hcPlugins");
             this.hcPlugins.Name = "hcPlugins";
-            this.toolTip1.SetToolTip(this.hcPlugins, resources.GetString("hcPlugins.ToolTip"));
             // 
             // btpup
             // 
-            this.btpup.AccessibleDescription = null;
-            this.btpup.AccessibleName = null;
             resources.ApplyResources(this.btpup, "btpup");
-            this.btpup.BackgroundImage = null;
-            this.btpup.Font = null;
             this.btpup.Name = "btpup";
-            this.toolTip1.SetToolTip(this.btpup, resources.GetString("btpup.ToolTip"));
             this.btpup.Click += new System.EventHandler(this.btpup_Click);
             // 
             // btpdown
             // 
-            this.btpdown.AccessibleDescription = null;
-            this.btpdown.AccessibleName = null;
             resources.ApplyResources(this.btpdown, "btpdown");
-            this.btpdown.BackgroundImage = null;
-            this.btpdown.Font = null;
             this.btpdown.Name = "btpdown";
-            this.toolTip1.SetToolTip(this.btpdown, resources.GetString("btpdown.ToolTip"));
             this.btpdown.Click += new System.EventHandler(this.btpdown_Click);
             // 
             // cnt
             // 
-            this.cnt.AccessibleDescription = null;
-            this.cnt.AccessibleName = null;
             resources.ApplyResources(this.cnt, "cnt");
             this.cnt.BackColor = System.Drawing.SystemColors.Window;
-            this.cnt.BackgroundImage = null;
-            this.cnt.Font = null;
             this.cnt.Name = "cnt";
-            this.toolTip1.SetToolTip(this.cnt, resources.GetString("cnt.ToolTip"));
             // 
             // hcIdent
             // 
-            this.hcIdent.AccessibleDescription = null;
-            this.hcIdent.AccessibleName = null;
-            resources.ApplyResources(this.hcIdent, "hcIdent");
-            this.hcIdent.BackgroundImage = null;
             this.hcIdent.Controls.Add(this.linkLabel5);
             this.hcIdent.Controls.Add(this.cbValid);
             this.hcIdent.Controls.Add(this.linkLabel3);
@@ -1431,196 +1178,122 @@ namespace SimPe
             this.hcIdent.Controls.Add(this.label12);
             this.hcIdent.Controls.Add(this.tbUsername);
             this.hcIdent.Controls.Add(this.label11);
-            this.hcIdent.Font = null;
             this.hcIdent.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            resources.ApplyResources(this.hcIdent, "hcIdent");
             this.hcIdent.Name = "hcIdent";
-            this.toolTip1.SetToolTip(this.hcIdent, resources.GetString("hcIdent.ToolTip"));
             // 
             // linkLabel5
             // 
-            this.linkLabel5.AccessibleDescription = null;
-            this.linkLabel5.AccessibleName = null;
             resources.ApplyResources(this.linkLabel5, "linkLabel5");
-            this.linkLabel5.Font = null;
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkLabel5, resources.GetString("linkLabel5.ToolTip"));
             this.linkLabel5.UseCompatibleTextRendering = true;
             this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
             // 
             // cbValid
             // 
-            this.cbValid.AccessibleDescription = null;
-            this.cbValid.AccessibleName = null;
             resources.ApplyResources(this.cbValid, "cbValid");
-            this.cbValid.BackgroundImage = null;
-            this.cbValid.Font = null;
             this.cbValid.Name = "cbValid";
-            this.toolTip1.SetToolTip(this.cbValid, resources.GetString("cbValid.ToolTip"));
             // 
             // linkLabel3
             // 
-            this.linkLabel3.AccessibleDescription = null;
-            this.linkLabel3.AccessibleName = null;
             resources.ApplyResources(this.linkLabel3, "linkLabel3");
-            this.linkLabel3.Font = null;
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkLabel3, resources.GetString("linkLabel3.ToolTip"));
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked_1);
             // 
             // tbUserId
             // 
-            this.tbUserId.AccessibleDescription = null;
-            this.tbUserId.AccessibleName = null;
             resources.ApplyResources(this.tbUserId, "tbUserId");
-            this.tbUserId.BackgroundImage = null;
-            this.tbUserId.Font = null;
             this.tbUserId.Name = "tbUserId";
             this.tbUserId.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.tbUserId, resources.GetString("tbUserId.ToolTip"));
             this.tbUserId.TextChanged += new System.EventHandler(this.tbUserId_TextChanged);
             // 
             // label13
             // 
-            this.label13.AccessibleDescription = null;
-            this.label13.AccessibleName = null;
             resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
-            this.toolTip1.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
             // 
             // tbPassword
             // 
-            this.tbPassword.AccessibleDescription = null;
-            this.tbPassword.AccessibleName = null;
             resources.ApplyResources(this.tbPassword, "tbPassword");
-            this.tbPassword.BackgroundImage = null;
-            this.tbPassword.Font = null;
             this.tbPassword.Name = "tbPassword";
-            this.toolTip1.SetToolTip(this.tbPassword, resources.GetString("tbPassword.ToolTip"));
             this.tbPassword.Leave += new System.EventHandler(this.tbPassword_Leave);
             // 
             // label12
             // 
-            this.label12.AccessibleDescription = null;
-            this.label12.AccessibleName = null;
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
-            this.toolTip1.SetToolTip(this.label12, resources.GetString("label12.ToolTip"));
             // 
             // tbUsername
             // 
-            this.tbUsername.AccessibleDescription = null;
-            this.tbUsername.AccessibleName = null;
             resources.ApplyResources(this.tbUsername, "tbUsername");
-            this.tbUsername.BackgroundImage = null;
-            this.tbUsername.Font = null;
             this.tbUsername.Name = "tbUsername";
-            this.toolTip1.SetToolTip(this.tbUsername, resources.GetString("tbUsername.ToolTip"));
             this.tbUsername.Leave += new System.EventHandler(this.tbPassword_Leave);
             // 
             // label11
             // 
-            this.label11.AccessibleDescription = null;
-            this.label11.AccessibleName = null;
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            this.toolTip1.SetToolTip(this.label11, resources.GetString("label11.ToolTip"));
             // 
             // hcCheck
             // 
-            this.hcCheck.AccessibleDescription = null;
-            this.hcCheck.AccessibleName = null;
-            resources.ApplyResources(this.hcCheck, "hcCheck");
-            this.hcCheck.BackgroundImage = null;
             this.hcCheck.Controls.Add(this.checkControl1);
-            this.hcCheck.Font = null;
             this.hcCheck.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            resources.ApplyResources(this.hcCheck, "hcCheck");
             this.hcCheck.Name = "hcCheck";
-            this.toolTip1.SetToolTip(this.hcCheck, resources.GetString("hcCheck.ToolTip"));
             // 
             // checkControl1
             // 
-            this.checkControl1.AccessibleDescription = null;
-            this.checkControl1.AccessibleName = null;
             resources.ApplyResources(this.checkControl1, "checkControl1");
-            this.checkControl1.BackgroundImage = null;
             this.checkControl1.Name = "checkControl1";
-            this.toolTip1.SetToolTip(this.checkControl1, resources.GetString("checkControl1.ToolTip"));
             this.checkControl1.FixedFileTable += new System.EventHandler(this.checkControl1_FixedFileTable);
             // 
             // hcCustom
             // 
-            this.hcCustom.AccessibleDescription = null;
-            this.hcCustom.AccessibleName = null;
-            resources.ApplyResources(this.hcCustom, "hcCustom");
-            this.hcCustom.BackgroundImage = null;
             this.hcCustom.Controls.Add(this.pgcustom);
             this.hcCustom.Controls.Add(this.cbCustom);
-            this.hcCustom.Font = null;
             this.hcCustom.HeaderFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            resources.ApplyResources(this.hcCustom, "hcCustom");
             this.hcCustom.Name = "hcCustom";
-            this.toolTip1.SetToolTip(this.hcCustom, resources.GetString("hcCustom.ToolTip"));
             // 
             // pgcustom
             // 
-            this.pgcustom.AccessibleDescription = null;
-            this.pgcustom.AccessibleName = null;
             resources.ApplyResources(this.pgcustom, "pgcustom");
-            this.pgcustom.BackgroundImage = null;
             this.pgcustom.CommandsBackColor = System.Drawing.SystemColors.Window;
-            this.pgcustom.Font = null;
             this.pgcustom.LineColor = System.Drawing.SystemColors.ScrollBar;
             this.pgcustom.Name = "pgcustom";
-            this.toolTip1.SetToolTip(this.pgcustom, resources.GetString("pgcustom.ToolTip"));
             // 
             // cbCustom
             // 
-            this.cbCustom.AccessibleDescription = null;
-            this.cbCustom.AccessibleName = null;
             resources.ApplyResources(this.cbCustom, "cbCustom");
-            this.cbCustom.BackgroundImage = null;
             this.cbCustom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCustom.Font = null;
             this.cbCustom.Name = "cbCustom";
-            this.toolTip1.SetToolTip(this.cbCustom, resources.GetString("cbCustom.ToolTip"));
             this.cbCustom.SelectedIndexChanged += new System.EventHandler(this.cbCustom_SelectedIndexChanged);
             // 
             // baloonTip
             // 
             this.baloonTip.Enabled = true;
             // 
-            // navigationButton1
-            // 
-            resources.ApplyResources(this.navigationButton1, "navigationButton1");
-            // 
-            // navigationButton2
-            // 
-            resources.ApplyResources(this.navigationButton2, "navigationButton2");
-            // 
             // OptionForm
             // 
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.BackgroundImage = null;
             this.Controls.Add(this.bb);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.hcSettings);
+            this.Controls.Add(this.hcIdent);
+            this.Controls.Add(this.hcPlugins);
+            this.Controls.Add(this.hcTools);
             this.Controls.Add(this.hcFileTable);
             this.Controls.Add(this.hcCustom);
             this.Controls.Add(this.hcCheck);
             this.Controls.Add(this.hcFolders);
             this.Controls.Add(this.hcSceneGraph);
-            this.Controls.Add(this.hcSettings);
-            this.Controls.Add(this.hcIdent);
-            this.Controls.Add(this.hcPlugins);
-            this.Controls.Add(this.hcTools);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "OptionForm";
-            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1639,6 +1312,8 @@ namespace SimPe
             this.groupBox8.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.hcSceneGraph.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.hcPlugins.ResumeLayout(false);
             this.hcIdent.ResumeLayout(false);
@@ -1683,6 +1358,12 @@ namespace SimPe
             cbAsync.Checked = Helper.WindowsRegistry.AsynchronLoad;
 
             cbLock.Checked = Helper.WindowsRegistry.LockDocks;
+            cbsplash.Checked = Helper.WindowsRegistry.ShowStartupSplash;
+            cbAsyncSort.Checked = Helper.WindowsRegistry.AsynchronSort;
+            cbRLTGI.SelectedValue = Helper.WindowsRegistry.ResourceListUnknownDescriptionFormat;
+            cbRLNames.SelectedValue = Helper.WindowsRegistry.ResourceListFormat;
+            cbRLExt.SelectedValue = Helper.WindowsRegistry.ResourceListExtensionFormat;
+
             this.cbLock_CheckedChanged(cbLock, null);
 
             this.tbUserId.Text = "0x" + Helper.HexString(Helper.WindowsRegistry.CachedUserId);
@@ -1763,6 +1444,12 @@ namespace SimPe
             Helper.WindowsRegistry.AsynchronLoad = cbAsync.Checked;
             Helper.WindowsRegistry.ReportFormat = (Registry.ReportFormats)cbReport.SelectedItem;
             Helper.WindowsRegistry.LockDocks = cbLock.Checked;
+            Helper.WindowsRegistry.ShowStartupSplash = cbsplash.Checked;
+
+            Helper.WindowsRegistry.AsynchronSort = cbAsyncSort.Checked;
+            Helper.WindowsRegistry.ResourceListExtensionFormat = (Registry.ResourceListExtensionFormats)cbRLExt.SelectedValue;
+            Helper.WindowsRegistry.ResourceListFormat = (Registry.ResourceListFormats)cbRLNames.SelectedValue;
+            Helper.WindowsRegistry.ResourceListUnknownDescriptionFormat = (Registry.ResourceListUnnamedFormats)cbRLTGI.SelectedValue;
 
             Helper.WindowsRegistry.Username = tbUsername.Text;
             Helper.WindowsRegistry.Password = tbPassword.Text;
@@ -2599,6 +2286,7 @@ namespace SimPe
         private void cbmulti_CheckedChanged(object sender, System.EventArgs e)
         {
             cbFirefox.Enabled = cbmulti.Checked;
+            cbFirefox.Refresh();
         }
 
         private void button8_Click(object sender, System.EventArgs e)
@@ -2840,6 +2528,16 @@ namespace SimPe
         private void cbCustom_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             this.pgcustom.SelectedObject = cbCustom.SelectedItem;
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

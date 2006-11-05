@@ -143,6 +143,7 @@
       <Name>ambertation.utilities</Name>
       <HintPath>..\ambertation.utilities.dll</HintPath>
     </Reference>
+    <Reference Include="EnumComboBox, Version=1.0.2500.20313, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Eyefinder">
       <Name>eyefinder</Name>
       <HintPath>..\eyefinder.dll</HintPath>
@@ -346,7 +347,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OptionForm.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>
@@ -363,6 +364,7 @@
     <EmbeddedResource Include="about-en.rtf" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="actionclone.png" />
     <EmbeddedResource Include="actioncreate.png" />

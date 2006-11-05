@@ -21,7 +21,8 @@ namespace SimPe.Windows.Forms
             Offset = 4,
             Size = 5,
             Type = 6,
-            Instance = 7
+            Instance = 7,
+            Extension = 8,
         }
 
         public class ResourceList : List<SimPe.Interfaces.Files.IPackedFileDescriptor> { }
@@ -67,7 +68,7 @@ namespace SimPe.Windows.Forms
                     if (asc)
                     {
                         if (sc == SortColumn.Name) return x.GetRealName().CompareTo(y.GetRealName());
-                        if (sc == SortColumn.Type) return x.Descriptor.Type.CompareTo(y.Descriptor.Type);
+                        if (sc == SortColumn.Type || sc == SortColumn.Extension) return x.Descriptor.Type.CompareTo(y.Descriptor.Type);
                         if (sc == SortColumn.Group) return x.Descriptor.Group.CompareTo(y.Descriptor.Group);
                         if (sc == SortColumn.InstanceHi) return x.Descriptor.SubType.CompareTo(y.Descriptor.SubType);
                         if (sc == SortColumn.InstanceLo) return x.Descriptor.Instance.CompareTo(y.Descriptor.Instance);
@@ -78,7 +79,7 @@ namespace SimPe.Windows.Forms
                     else
                     {
                         if (sc == SortColumn.Name) return y.GetRealName().CompareTo(x.GetRealName());
-                        if (sc == SortColumn.Type) return y.Descriptor.Type.CompareTo(x.Descriptor.Type);
+                        if (sc == SortColumn.Type || sc == SortColumn.Extension) return y.Descriptor.Type.CompareTo(x.Descriptor.Type);
                         if (sc == SortColumn.Group) return y.Descriptor.Group.CompareTo(x.Descriptor.Group);
                         if (sc == SortColumn.InstanceHi) return y.Descriptor.SubType.CompareTo(x.Descriptor.SubType);
                         if (sc == SortColumn.InstanceLo) return y.Descriptor.Instance.CompareTo(x.Descriptor.Instance);

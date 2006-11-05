@@ -265,6 +265,27 @@
     <Compile Include="ScorWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SCOR\AScorItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SCOR\AScorItem.Designer.cs">
+      <DependentUpon>AScorItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCOR\ScoreItemDefault.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SCOR\ScoreItemDefault.Designer.cs">
+      <DependentUpon>ScoreItemDefault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCOR\ScoreItemLearnedBehaviour.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SCOR\ScoreItemLearnedBehaviour.Designer.cs">
+      <DependentUpon>ScoreItemLearnedBehaviour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCOR\ScoreItemLearnedBehaviour.Element.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="SimBusinessList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -375,6 +396,14 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="related.png" />
+    <EmbeddedResource Include="SCOR\ScoreItemDefault.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ScoreItemDefault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCOR\ScoreItemLearnedBehaviour.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ScoreItemLearnedBehaviour.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SimRelationPoolControl.de.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SimRelationPoolControl.cs</DependentUpon>

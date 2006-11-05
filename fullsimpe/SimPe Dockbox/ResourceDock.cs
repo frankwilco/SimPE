@@ -26,102 +26,102 @@ using Ambertation.Windows.Forms;
 
 namespace SimPe.Plugin.Tool.Dockable
 {
-	/// <summary>
-	/// Zusammenfassung für ResourceDock.
-	/// </summary>
-	public class ResourceDock : System.Windows.Forms.Form
-	{
-		private DockManager manager;
-		internal Ambertation.Windows.Forms.DockPanel dcWrapper;
-		internal Ambertation.Windows.Forms.DockPanel dcResource;
-		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
-		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel2;
-		internal System.Windows.Forms.Panel pntypes;
-		internal System.Windows.Forms.TextBox tbinstance;
-		private System.Windows.Forms.Label label11;
-		internal System.Windows.Forms.TextBox tbtype;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.Label label10;
-		internal System.Windows.Forms.TextBox tbgroup;
-		internal System.Windows.Forms.ComboBox cbtypes;
-		private System.Windows.Forms.Label label3;
-		internal System.Windows.Forms.ComboBox cbComp;
-		internal System.Windows.Forms.TextBox tbinstance2;
-		internal System.Windows.Forms.Label lbName;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label5;
-		internal System.Windows.Forms.Label lbAuthor;
-		internal System.Windows.Forms.Label lbVersion;
-		internal System.Windows.Forms.Label lbDesc;
-		internal System.Windows.Forms.Label lbComp;
-		internal Ambertation.Windows.Forms.DockPanel dcPackage;
-		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel3;
-		internal System.Windows.Forms.PropertyGrid pgHead;
-		private System.Windows.Forms.Label label4;
-		internal System.Windows.Forms.ListView lv;
-		private System.Windows.Forms.ColumnHeader clOffset;
-		private System.Windows.Forms.ColumnHeader clSize;
-		internal Ambertation.Windows.Forms.DockPanel dcConvert;
-		private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel4;
-		private SteepValley.Windows.Forms.XPCueBannerExtender xpCueBannerExtender1;
-		private System.Windows.Forms.TextBox tbHex;
-		private System.Windows.Forms.TextBox tbDec;
-		internal Ambertation.Windows.Forms.DockPanel dcHex;
-		internal Ambertation.Windows.Forms.HexViewControl hvc;
-		private System.Windows.Forms.TextBox tbBin;
-		internal System.Windows.Forms.Button button1;
-		private Ambertation.Windows.Forms.HexEditControl hexEditControl1;
-		private System.Windows.Forms.LinkLabel linkLabel1;
-		internal System.Windows.Forms.PictureBox pb;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.TextBox tbFloat;
+    /// <summary>
+    /// Zusammenfassung für ResourceDock.
+    /// </summary>
+    public class ResourceDock : System.Windows.Forms.Form
+    {
+        private DockManager manager;
+        internal Ambertation.Windows.Forms.DockPanel dcWrapper;
+        internal Ambertation.Windows.Forms.DockPanel dcResource;
+        private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel1;
+        private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel2;
+        internal System.Windows.Forms.Panel pntypes;
+        internal System.Windows.Forms.TextBox tbinstance;
+        private System.Windows.Forms.Label label11;
+        internal System.Windows.Forms.TextBox tbtype;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        internal System.Windows.Forms.TextBox tbgroup;
+        internal System.Windows.Forms.ComboBox cbtypes;
+        private System.Windows.Forms.Label label3;
+        internal System.Windows.Forms.ComboBox cbComp;
+        internal System.Windows.Forms.TextBox tbinstance2;
+        internal System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
+        internal System.Windows.Forms.Label lbAuthor;
+        internal System.Windows.Forms.Label lbVersion;
+        internal System.Windows.Forms.Label lbDesc;
+        internal System.Windows.Forms.Label lbComp;
+        internal Ambertation.Windows.Forms.DockPanel dcPackage;
+        private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel3;
+        internal System.Windows.Forms.PropertyGrid pgHead;
+        private System.Windows.Forms.Label label4;
+        internal System.Windows.Forms.ListView lv;
+        private System.Windows.Forms.ColumnHeader clOffset;
+        private System.Windows.Forms.ColumnHeader clSize;
+        internal Ambertation.Windows.Forms.DockPanel dcConvert;
+        private SteepValley.Windows.Forms.XPGradientPanel xpGradientPanel4;
+        private SteepValley.Windows.Forms.XPCueBannerExtender xpCueBannerExtender1;
+        private System.Windows.Forms.TextBox tbHex;
+        private System.Windows.Forms.TextBox tbDec;
+        internal Ambertation.Windows.Forms.DockPanel dcHex;
+        internal Ambertation.Windows.Forms.HexViewControl hvc;
+        private System.Windows.Forms.TextBox tbBin;
+        internal System.Windows.Forms.Button button1;
+        private Ambertation.Windows.Forms.HexEditControl hexEditControl1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        internal System.Windows.Forms.PictureBox pb;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox tbFloat;
         private DockContainer dockBottom;
-		private System.ComponentModel.IContainer components;
+        private System.ComponentModel.IContainer components;
 
-		public ResourceDock()
-		{
-			//
-			// Erforderlich für die Windows Form-Designerunterstützung
-			//
-			InitializeComponent();
+        public ResourceDock()
+        {
+            //
+            // Erforderlich für die Windows Form-Designerunterstützung
+            //
+            InitializeComponent();
 
-			ThemeManager tm = ThemeManager.Global.CreateChild();
-			tm.AddControl(this.xpGradientPanel1);
-			tm.AddControl(this.xpGradientPanel2);
-			tm.AddControl(this.xpGradientPanel3);
-			tm.AddControl(this.xpGradientPanel4);
+            ThemeManager tm = ThemeManager.Global.CreateChild();
+            tm.AddControl(this.xpGradientPanel1);
+            tm.AddControl(this.xpGradientPanel2);
+            tm.AddControl(this.xpGradientPanel3);
+            tm.AddControl(this.xpGradientPanel4);
 
             this.lv.View = System.Windows.Forms.View.Details;
-			foreach (SimPe.Data.TypeAlias a in SimPe.Helper.TGILoader.FileTypes) 
-				cbtypes.Items.Add(a);			
-			cbtypes.Sorted = true;
-			tbFloat.Width = tbBin.Width;
-		}
+            foreach (SimPe.Data.TypeAlias a in SimPe.Helper.TGILoader.FileTypes)
+                cbtypes.Items.Add(a);
+            cbtypes.Sorted = true;
+            tbFloat.Width = tbBin.Width;
+        }
 
-		/// <summary>
-		/// Die verwendeten Ressourcen bereinigen.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        /// <summary>
+        /// Die verwendeten Ressourcen bereinigen.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Vom Windows Form-Designer generierter Code
-		/// <summary>
-		/// Erforderliche Methode für die Designerunterstützung. 
-		/// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Vom Windows Form-Designer generierter Code
+        /// <summary>
+        /// Erforderliche Methode für die Designerunterstützung. 
+        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             Ambertation.Windows.Forms.WhidbeyRenderer whidbeyRenderer2 = new Ambertation.Windows.Forms.WhidbeyRenderer();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResourceDock));
@@ -543,7 +543,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.lv.HideSelection = false;
             this.lv.Name = "lv";
             this.lv.UseCompatibleStateImageBehavior = false;
-            
+
             // 
             // clOffset
             // 
@@ -684,322 +684,321 @@ namespace SimPe.Plugin.Tool.Dockable
             ((System.ComponentModel.ISupportInitialize)(this.pb)).EndInit();
             this.ResumeLayout(false);
 
-		}
-		#endregion
+        }
+        #endregion
 
-		internal SimPe.Events.ResourceEventArgs items;
-		internal LoadedPackage guipackage;
-		
-		private void ResourceDock_Load(object sender, System.EventArgs e)
-		{
-		
-		}
+        internal SimPe.Events.ResourceEventArgs items;
+        internal LoadedPackage guipackage;
 
-		private void cbtypes_SelectedIndexChanged(object sender, System.EventArgs e)
-		{			
-			if (cbtypes.Tag != null) return;
-			tbtype.Text = "0x"+Helper.HexString(((SimPe.Data.TypeAlias)cbtypes.Items[cbtypes.SelectedIndex]).Id);			
-			this.tbtype.Tag = true;
-			tbtype_TextChanged2(this.tbtype, e);
-		}
+        private void ResourceDock_Load(object sender, System.EventArgs e)
+        {
 
-		private void tbtype_TextChanged(object sender, System.EventArgs e)
-		{
-			cbtypes.Tag = true;
-			Data.TypeAlias a = Data.MetaData.FindTypeAlias(Helper.HexStringToUInt(tbtype.Text));
+        }
 
-			int ct=0;
-			foreach(Data.TypeAlias i in cbtypes.Items) 
-			{								
-				if (i==a) 
-				{
-					cbtypes.SelectedIndex = ct;
-					cbtypes.Tag = null;
-					return;
-				}
-				ct++;
-			}
+        private void cbtypes_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (cbtypes.Tag != null) return;
+            tbtype.Text = "0x" + Helper.HexString(((SimPe.Data.TypeAlias)cbtypes.Items[cbtypes.SelectedIndex]).Id);
+            this.tbtype.Tag = true;
+            tbtype_TextChanged2(this.tbtype, e);
+        }
 
-			cbtypes.SelectedIndex = -1;
-			cbtypes.Tag = null;	
-			TextChanged(sender, null);
-		}
+        private void tbtype_TextChanged(object sender, System.EventArgs e)
+        {
+            cbtypes.Tag = true;
+            Data.TypeAlias a = Data.MetaData.FindTypeAlias(Helper.HexStringToUInt(tbtype.Text));
 
-		private void tbtype_TextChanged2(object sender, System.EventArgs ea)
-		{
-			if (items==null || ((TextBox)sender).Tag==null) return;
-			((TextBox)sender).Tag = null;
-			guipackage.PauseIndexChangedEvents();
-			foreach (SimPe.Events.ResourceContainer e in items) 
-			{
-				if (!e.HasFileDescriptor) continue;
-				try
-				{
-					e.Resource.FileDescriptor.Type = Convert.ToUInt32(tbtype.Text, 16);
-					
-					e.Resource.FileDescriptor.Changed = true;
-				} 
-				catch {}
-			}			
-			guipackage.PauseIndexChangedEvents();
-			guipackage.RestartIndexChangedEvents();
-		}
+            int ct = 0;
+            foreach (Data.TypeAlias i in cbtypes.Items)
+            {
+                if (i == a)
+                {
+                    cbtypes.SelectedIndex = ct;
+                    cbtypes.Tag = null;
+                    return;
+                }
+                ct++;
+            }
 
-		private void tbgroup_TextChanged(object sender, System.EventArgs ea)
-		{
-			if (items==null || ((TextBox)sender).Tag==null) return;
-			((TextBox)sender).Tag = null;
+            cbtypes.SelectedIndex = -1;
+            cbtypes.Tag = null;
+            TextChanged(sender, null);
+        }
 
-			guipackage.PauseIndexChangedEvents();
-			foreach (SimPe.Events.ResourceContainer e in items) 
-			{
-				if (!e.HasFileDescriptor) continue;
-				try
-				{
-					e.Resource.FileDescriptor.Group = Convert.ToUInt32(tbgroup.Text, 16);
-					
-					e.Resource.FileDescriptor.Changed = true;
-				} 
-				catch {}
-			}
-			guipackage.PauseIndexChangedEvents();
-			guipackage.RestartIndexChangedEvents();
-		}
+        private void tbtype_TextChanged2(object sender, System.EventArgs ea)
+        {
+            if (items == null || ((TextBox)sender).Tag == null) return;
+            ((TextBox)sender).Tag = null;
+            guipackage.PauseIndexChangedEvents();
+            foreach (SimPe.Events.ResourceContainer e in items)
+            {
+                if (!e.HasFileDescriptor) continue;
+                try
+                {
+                    e.Resource.FileDescriptor.Type = Convert.ToUInt32(tbtype.Text, 16);
 
-		private void tbinstance_TextChanged(object sender, System.EventArgs ea)
-		{
-			if (items==null || ((TextBox)sender).Tag==null) return;
-			((TextBox)sender).Tag = null;
+                    e.Resource.FileDescriptor.Changed = true;
+                }
+                catch { }
+            }
+            guipackage.PauseIndexChangedEvents();
+            guipackage.RestartIndexChangedEvents();
+        }
 
-			guipackage.PauseIndexChangedEvents();
-			foreach (SimPe.Events.ResourceContainer e in items) 
-			{
-				if (!e.HasFileDescriptor) continue;
+        private void tbgroup_TextChanged(object sender, System.EventArgs ea)
+        {
+            if (items == null || ((TextBox)sender).Tag == null) return;
+            ((TextBox)sender).Tag = null;
 
+            guipackage.PauseIndexChangedEvents();
+            foreach (SimPe.Events.ResourceContainer e in items)
+            {
+                if (!e.HasFileDescriptor) continue;
+                try
+                {
+                    e.Resource.FileDescriptor.Group = Convert.ToUInt32(tbgroup.Text, 16);
 
-				try
-				{
-					e.Resource.FileDescriptor.Instance = Convert.ToUInt32(tbinstance.Text, 16);
+                    e.Resource.FileDescriptor.Changed = true;
+                }
+                catch { }
+            }
+            guipackage.PauseIndexChangedEvents();
+            guipackage.RestartIndexChangedEvents();
+        }
 
-					e.Resource.FileDescriptor.Changed = true;
-				} 
-				catch {}
-			}
-			
-			guipackage.PauseIndexChangedEvents();
-			guipackage.RestartIndexChangedEvents();
-			
-		}
+        private void tbinstance_TextChanged(object sender, System.EventArgs ea)
+        {
+            if (items == null || ((TextBox)sender).Tag == null) return;
+            ((TextBox)sender).Tag = null;
 
-		private void tbinstance2_TextChanged(object sender, System.EventArgs ea)
-		{
-			if (items==null || ((TextBox)sender).Tag==null) return;
-			((TextBox)sender).Tag = null;
-
-			guipackage.PauseIndexChangedEvents();
-			foreach (SimPe.Events.ResourceContainer e in items) 
-			{
-				if (!e.HasFileDescriptor) continue;
+            guipackage.PauseIndexChangedEvents();
+            foreach (SimPe.Events.ResourceContainer e in items)
+            {
+                if (!e.HasFileDescriptor) continue;
 
 
-				try
-				{
-					e.Resource.FileDescriptor.SubType = Convert.ToUInt32(tbinstance2.Text, 16);
-					e.Resource.FileDescriptor.Changed = true;
-				} 
-				catch {}
-			}
-			guipackage.PauseIndexChangedEvents();
-			guipackage.RestartIndexChangedEvents();
-		}
-		
+                try
+                {
+                    e.Resource.FileDescriptor.Instance = Convert.ToUInt32(tbinstance.Text, 16);
 
-		private void cbComp_SelectedIndexChanged(object sender, System.EventArgs ea)
-		{
-			if (this.cbComp.SelectedIndex<0) return;
-			if (this.cbComp.SelectedIndex>1) return;
-			if (items==null) return;
+                    e.Resource.FileDescriptor.Changed = true;
+                }
+                catch { }
+            }
 
-			guipackage.PauseIndexChangedEvents();
-			foreach (SimPe.Events.ResourceContainer e in items) 
-			{
-				if (!e.HasFileDescriptor) continue;
+            guipackage.PauseIndexChangedEvents();
+            guipackage.RestartIndexChangedEvents();
 
-				try
-				{
-					e.Resource.FileDescriptor.MarkForReCompress = (cbComp.SelectedIndex==1);
-					e.Resource.FileDescriptor.Changed = true;
-				} 
-				catch {}
-			}
-			guipackage.PauseIndexChangedEvents();
-			guipackage.RestartIndexChangedEvents();
-		}
+        }
 
-		private void tbtype_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (e.KeyCode ==  Keys.Enter) 
-			{
-				TextChanged(sender, null);
-				this.tbtype_TextChanged2(sender, null);
-			}
-		}
+        private void tbinstance2_TextChanged(object sender, System.EventArgs ea)
+        {
+            if (items == null || ((TextBox)sender).Tag == null) return;
+            ((TextBox)sender).Tag = null;
 
-		private void tbgroup_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (e.KeyCode ==  Keys.Enter) 
-			{
-				TextChanged(sender, null);
-				this.tbgroup_TextChanged(sender, null);
-			}
-		}
-
-		private void tbinstance_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (e.KeyCode ==  Keys.Enter) 
-			{
-				TextChanged(sender, null);
-				this.tbinstance_TextChanged(sender, null);
-			}
-		}
-
-		private void tbinstance2_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (e.KeyCode ==  Keys.Enter) 
-			{
-				TextChanged(sender, null);
-				this.tbinstance2_TextChanged(sender, null);
-			}
-		}
-
-		#region Hex <-> Dec Converter
-		bool sysupdate = false;
-		void SetConverted(object exclude, long val)
-		{
-			if (exclude!=this.tbDec) this.tbDec.Text = val.ToString();
-			if (exclude!=this.tbHex) this.tbHex.Text = Helper.HexString(val);		
-			if (exclude!=this.tbBin) this.tbBin.Text = Convert.ToString(val, 2);;	
-			if (exclude!=this.tbFloat) this.tbFloat.Text = BitConverter.ToSingle(BitConverter.GetBytes((int)val), 0).ToString();			
-		}
-		void ClearConverted(object exclude)
-		{
-			if (exclude!=this.tbDec) this.tbDec.Text = "";
-			if (exclude!=this.tbHex) this.tbHex.Text = "";	
-			if (exclude!=this.tbBin) this.tbBin.Text = "";	
-			if (exclude!=this.tbFloat) this.tbFloat.Text = "";	
-		}
-		private void FloatChanged(object sender, System.EventArgs e)
-		{
-			if (sysupdate) return;
-			sysupdate = true;
-			try 
-			{
-				float f = Convert.ToSingle(tbFloat.Text);
-				long val = BitConverter.ToInt32(BitConverter.GetBytes(f), 0);
-				SetConverted(this.tbFloat, val);
-			} 
-			catch 
-			{
-				ClearConverted(this.tbFloat);
-			}
-			sysupdate = false;
-		}
-		private void BinChanged(object sender, System.EventArgs e)
-		{
-			if (sysupdate) return;
-			sysupdate = true;
-			try 
-			{
-				long val = Convert.ToInt64(tbBin.Text.Replace(" ", ""), 2);
-				SetConverted(this.tbBin, val);
-			} 
-			catch
-			{
-				ClearConverted(this.tbBin);
-			}
-			sysupdate = false;
-		}
-		private void HexChanged(object sender, System.EventArgs e)
-		{
-			if (sysupdate) return;
-			sysupdate = true;
-			try 
-			{
-				long val = Convert.ToInt64(tbHex.Text.Replace(" ", ""), 16);				
-				SetConverted(this.tbHex, val);
-			} 
-			catch{
-				ClearConverted(this.tbHex);
-			}
-			sysupdate = false;
-		}
-
-		private void DecChanged(object sender, System.EventArgs e)
-		{
-			if (sysupdate) return;
-			sysupdate = true;
-			try 
-			{
-				long val = Convert.ToInt64(tbDec.Text);				
-				SetConverted(this.tbDec, val);
-			} 
-			catch (Exception) {
-				ClearConverted(this.tbDec);
-			}
-			sysupdate = false;
-		}
-		#endregion
-
-		internal SimPe.Interfaces.Files.IPackedFileDescriptor hexpfd;
-		private new void TextChanged(object sender, System.EventArgs e)
-		{
-			if (items==null) return;
-			((TextBox)sender).Tag = true;
-		}
-
-		private void button1_Click(object sender, System.EventArgs e)
-		{
-			hexpfd.UserData = hvc.Data;
-		}		
-
-		private void dcHex_VisibleChanged(object sender, System.EventArgs e)
-		{
-			this.hvc.Visible = dcHex.Visible;							
-			hvc.Refresh(true);
-		}
-
-		private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs ev)
-		{
-			if (items==null) return;			
-			guipackage.PauseIndexChangedEvents();
-			foreach (SimPe.Events.ResourceContainer e in items) 
-			{
-				if (!e.HasFileDescriptor) continue;
-				try
-				{
-					e.Resource.FileDescriptor.Type = Convert.ToUInt32(tbtype.Text, 16);
-					e.Resource.FileDescriptor.Group = Convert.ToUInt32(tbgroup.Text, 16);
-					e.Resource.FileDescriptor.Instance = Convert.ToUInt32(tbinstance.Text, 16);
-					e.Resource.FileDescriptor.SubType = Convert.ToUInt32(tbinstance2.Text, 16);
-					e.Resource.FileDescriptor.MarkForReCompress = (cbComp.SelectedIndex==1 && !e.Resource.FileDescriptor.WasCompressed);
-
-					e.Resource.FileDescriptor.Changed = true;
-				} 
-				catch {}
-			}
-			guipackage.RestartIndexChangedEvents();		
-		}
-
-		private void tbBin_SizeChanged(object sender, System.EventArgs e)
-		{
-			tbFloat.Width = tbBin.Width;
-		}
-
-		
-
-		
+            guipackage.PauseIndexChangedEvents();
+            foreach (SimPe.Events.ResourceContainer e in items)
+            {
+                if (!e.HasFileDescriptor) continue;
 
 
-		
-	}
+                try
+                {
+                    e.Resource.FileDescriptor.SubType = Convert.ToUInt32(tbinstance2.Text, 16);
+                    e.Resource.FileDescriptor.Changed = true;
+                }
+                catch { }
+            }
+            guipackage.PauseIndexChangedEvents();
+            guipackage.RestartIndexChangedEvents();
+        }
+
+
+        private void cbComp_SelectedIndexChanged(object sender, System.EventArgs ea)
+        {
+            if (this.cbComp.SelectedIndex < 0) return;
+            if (this.cbComp.SelectedIndex > 1) return;
+            if (items == null) return;
+
+            guipackage.PauseIndexChangedEvents();
+            foreach (SimPe.Events.ResourceContainer e in items)
+            {
+                if (!e.HasFileDescriptor) continue;
+
+                try
+                {
+                    e.Resource.FileDescriptor.MarkForReCompress = (cbComp.SelectedIndex == 1);
+                    if (!e.Resource.FileDescriptor.MarkForReCompress && e.Resource.FileDescriptor.WasCompressed)
+                    {
+                        e.Resource.FileDescriptor.UserData = e.Resource.Package.Read(e.Resource.FileDescriptor).UncompressedData;
+                    }
+                    e.Resource.FileDescriptor.Changed = true;
+                }
+                catch { }
+            }
+            guipackage.PauseIndexChangedEvents();
+            guipackage.RestartIndexChangedEvents();
+        }
+
+        private void tbtype_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                TextChanged(sender, null);
+                this.tbtype_TextChanged2(sender, null);
+            }
+        }
+
+        private void tbgroup_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                TextChanged(sender, null);
+                this.tbgroup_TextChanged(sender, null);
+            }
+        }
+
+        private void tbinstance_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                TextChanged(sender, null);
+                this.tbinstance_TextChanged(sender, null);
+            }
+        }
+
+        private void tbinstance2_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                TextChanged(sender, null);
+                this.tbinstance2_TextChanged(sender, null);
+            }
+        }
+
+        #region Hex <-> Dec Converter
+        bool sysupdate = false;
+        void SetConverted(object exclude, long val)
+        {
+            if (exclude != this.tbDec) this.tbDec.Text = val.ToString();
+            if (exclude != this.tbHex) this.tbHex.Text = Helper.HexString(val);
+            if (exclude != this.tbBin) this.tbBin.Text = Convert.ToString(val, 2); ;
+            if (exclude != this.tbFloat) this.tbFloat.Text = BitConverter.ToSingle(BitConverter.GetBytes((int)val), 0).ToString();
+        }
+        void ClearConverted(object exclude)
+        {
+            if (exclude != this.tbDec) this.tbDec.Text = "";
+            if (exclude != this.tbHex) this.tbHex.Text = "";
+            if (exclude != this.tbBin) this.tbBin.Text = "";
+            if (exclude != this.tbFloat) this.tbFloat.Text = "";
+        }
+        private void FloatChanged(object sender, System.EventArgs e)
+        {
+            if (sysupdate) return;
+            sysupdate = true;
+            try
+            {
+                float f = Convert.ToSingle(tbFloat.Text);
+                long val = BitConverter.ToInt32(BitConverter.GetBytes(f), 0);
+                SetConverted(this.tbFloat, val);
+            }
+            catch
+            {
+                ClearConverted(this.tbFloat);
+            }
+            sysupdate = false;
+        }
+        private void BinChanged(object sender, System.EventArgs e)
+        {
+            if (sysupdate) return;
+            sysupdate = true;
+            try
+            {
+                long val = Convert.ToInt64(tbBin.Text.Replace(" ", ""), 2);
+                SetConverted(this.tbBin, val);
+            }
+            catch
+            {
+                ClearConverted(this.tbBin);
+            }
+            sysupdate = false;
+        }
+        private void HexChanged(object sender, System.EventArgs e)
+        {
+            if (sysupdate) return;
+            sysupdate = true;
+            try
+            {
+                long val = Convert.ToInt64(tbHex.Text.Replace(" ", ""), 16);
+                SetConverted(this.tbHex, val);
+            }
+            catch
+            {
+                ClearConverted(this.tbHex);
+            }
+            sysupdate = false;
+        }
+
+        private void DecChanged(object sender, System.EventArgs e)
+        {
+            if (sysupdate) return;
+            sysupdate = true;
+            try
+            {
+                long val = Convert.ToInt64(tbDec.Text);
+                SetConverted(this.tbDec, val);
+            }
+            catch (Exception)
+            {
+                ClearConverted(this.tbDec);
+            }
+            sysupdate = false;
+        }
+        #endregion
+
+        internal SimPe.Interfaces.Files.IPackedFileDescriptor hexpfd;
+        private new void TextChanged(object sender, System.EventArgs e)
+        {
+            if (items == null) return;
+            ((TextBox)sender).Tag = true;
+        }
+
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            hexpfd.UserData = hvc.Data;
+        }
+
+        private void dcHex_VisibleChanged(object sender, System.EventArgs e)
+        {
+            this.hvc.Visible = dcHex.Visible;
+            hvc.Refresh(true);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs ev)
+        {
+            if (items == null) return;
+            guipackage.PauseIndexChangedEvents();
+            foreach (SimPe.Events.ResourceContainer e in items)
+            {
+                if (!e.HasFileDescriptor) continue;
+                try
+                {
+                    e.Resource.FileDescriptor.Type = Convert.ToUInt32(tbtype.Text, 16);
+                    e.Resource.FileDescriptor.Group = Convert.ToUInt32(tbgroup.Text, 16);
+                    e.Resource.FileDescriptor.Instance = Convert.ToUInt32(tbinstance.Text, 16);
+                    e.Resource.FileDescriptor.SubType = Convert.ToUInt32(tbinstance2.Text, 16);
+                    e.Resource.FileDescriptor.MarkForReCompress = (cbComp.SelectedIndex == 1 && !e.Resource.FileDescriptor.WasCompressed);
+
+                    e.Resource.FileDescriptor.Changed = true;
+                }
+                catch { }
+            }
+            guipackage.RestartIndexChangedEvents();
+        }
+
+        private void tbBin_SizeChanged(object sender, System.EventArgs e)
+        {
+            tbFloat.Width = tbBin.Width;
+        }
+    }
 }

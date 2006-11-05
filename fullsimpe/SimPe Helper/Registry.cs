@@ -342,6 +342,24 @@ namespace SimPe
 			}
 		}
 
+        /// <summary>
+        /// true, if the user wants the Pescado Mode
+        /// </summary>
+        public bool ShowWaitBarPermanent
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("ShowWaitBarPermanent", true);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("ShowWaitBarPermanent", value);
+            }
+        }
+
 		/// <summary>
 		/// true, if user wants to activate the Cache
 		/// </summary>
@@ -865,7 +883,7 @@ namespace SimPe
 			set
 			{
 				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
-				rkf.SetValue("BigPackageResourceCount", value);
+                rkf.SetValue("BigPackageResourceCount", value);
 			}
 		}
 
@@ -1033,6 +1051,24 @@ namespace SimPe
         }
 
         /// <summary>
+        /// True, if you allways want to select a type in a resource tree when a package is loaded
+        /// </summary>
+        public bool ResoruceTreeAllwaysAutoselect
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("ResoruceTreeAllwaysAutoselect", true);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("ResoruceTreeAllwaysAutoselect", value);
+            }
+        }
+
+        /// <summary>
         /// How many threads do we start when we sort by name?
         /// </summary>
         public int SortProcessCount
@@ -1121,10 +1157,99 @@ namespace SimPe
 				XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
 				rkf.SetValue("LastUpdateCheck", value);
 			}
-		}
+        }
 
-		#region Report Format
-		public enum ReportFormats : int
+        #region ResourceList
+        public enum ResourceListFormats : int
+        {          
+            LongTypeNames,
+            ShortTypeNames,
+            JustNames
+        }
+
+        public enum ResourceListUnnamedFormats : int
+        {
+            Instance,
+            GroupInstance,
+            FullTGI
+        }
+
+        public enum ResourceListExtensionFormats : int
+        {
+            Hex,
+            Short,
+            Long,
+            None
+        }
+
+        /// <summary>
+        /// How do we display the name column?
+        /// </summary>
+        public ResourceListFormats ResourceListFormat
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("ResourceListFormat", (int)ResourceListFormats.JustNames);
+                return (ResourceListFormats)Convert.ToInt32(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("ResourceListFormat", (int)value);
+            }
+        }
+
+        /// <summary>
+        /// How do we display the name column?
+        /// </summary>
+        public ResourceListUnnamedFormats ResourceListUnknownDescriptionFormat
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("ResourceListUnknownDescriptionFormat", (int)ResourceListUnnamedFormats.GroupInstance);
+                return (ResourceListUnnamedFormats)Convert.ToInt32(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("ResourceListUnknownDescriptionFormat", (int)value);
+            }
+        }
+
+        /// <summary>
+        /// How do we display the name column?
+        /// </summary>
+        public ResourceListExtensionFormats ResourceListExtensionFormat
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("ResourceListExtensionFormat", (int)ResourceListExtensionFormats.Short);
+                return (ResourceListExtensionFormats)Convert.ToInt32(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("ResourceListExtensionFormat", (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Schould we disaplay the resource extensions in the list?
+        /// </summary>
+        public bool ResourceListShowExtensions
+        {
+            get
+            {
+                return ResourceListExtensionFormat != ResourceListExtensionFormats.None;
+            }
+        }
+        #endregion
+
+        #region Report Format
+        public enum ReportFormats : int
 		{
 			Descriptive,
 			CSV
@@ -1323,6 +1448,7 @@ namespace SimPe
 		/// <summary>
 		/// Returns true if the Game will start in Debug Mode
 		/// </summary>
+        [System.ComponentModel.ReadOnly(true)]
 		public bool BlurNudity 
 		{
 			get { return PathProvider.Global.BlurNudity; }

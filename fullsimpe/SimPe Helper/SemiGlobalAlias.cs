@@ -24,7 +24,7 @@ namespace SimPe.Data
 	/// <summary>
 	/// Overrides the Alias class
 	/// </summary>
-	public class SemiGlobalAlias : Data.Alias 
+	public class SemiGlobalAlias : Data.Alias , IComparable<SemiGlobalAlias>
 	{
 		/// <summary>
 		/// true, if this can be used as a valid Global
@@ -54,5 +54,14 @@ namespace SimPe.Data
 			return this.Name;
 		}
 
-	}
+
+        #region IComparable<SemiGlobalAlias> Member
+
+        public int CompareTo(SemiGlobalAlias other)
+        {
+            return ToString().CompareTo(other.ToString());
+        }
+
+        #endregion
+    }
 }

@@ -71,11 +71,15 @@ namespace SimPe.Windows.Forms
             Ambertation.Windows.Forms.APIHelp.SendMessage(handle, WM_USER_SORTED_RESOURCES, ticket, 0);
         }
 
+        int noselectevent;
+        SelectResourceEventArgs selresea;
+        EventArgs resselchgea;
         void DoTheSorting()
         {
-            lv.BeginUpdate();
+            BeginUpdate();
 
             ResourceViewManager.ResourceNameList oldsel = this.SelectedItems;
+            
             lv.SelectedIndices.Clear();
             names.SortByColumn(sc, asc);
             bool first = true;
@@ -89,12 +93,20 @@ namespace SimPe.Windows.Forms
                     first = false;
                 }
             }
-            lv.EndUpdate();
+            EndUpdate(false);
         }
 
         private void lv_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            ResourceViewManager.SortColumn tmp = (ResourceViewManager.SortColumn)e.Column;
+            ResourceViewManager.SortColumn tmp = (ResourceViewManager.SortColumn.Offset);
+            if (lv.Columns[e.Column] == clType) tmp = ResourceViewManager.SortColumn.Name;
+            else if (lv.Columns[e.Column] == clTName) tmp = ResourceViewManager.SortColumn.Extension;
+            else if (lv.Columns[e.Column] == clGroup) tmp = ResourceViewManager.SortColumn.Group;
+            else if (lv.Columns[e.Column] == clInstHi) tmp = ResourceViewManager.SortColumn.InstanceHi;
+            else if (lv.Columns[e.Column] == clInst) tmp = ResourceViewManager.SortColumn.InstanceLo;
+            else if (lv.Columns[e.Column] == clSize) tmp = ResourceViewManager.SortColumn.Size;
+            else if (lv.Columns[e.Column] == clOffset) tmp = ResourceViewManager.SortColumn.Offset;
+
             if (tmp == SortedColumn) asc = !asc;
             SortedColumn = tmp;
         }

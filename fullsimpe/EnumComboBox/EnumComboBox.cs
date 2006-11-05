@@ -43,11 +43,17 @@ namespace Ambertation.Windows.Forms
 
 		internal EnumComboBoxItem(Type type, object obj, System.Resources.ResourceManager rm)
 		{
-			this.name = obj.ToString();
-			if (rm!=null) 			
+#if DEBUG
+            this.name = "(" + obj.ToString() + ")" + type.Namespace + "." + type.Name + "." + obj.ToString();			
+#else
+            this.name = obj.ToString();
+#endif
+            if (rm!=null) 			
 			{
-				string nname = rm.GetString(type.Namespace+"."+type.Name+"."+this.name);
-				if (nname!=null) name = nname;
+                string nname = rm.GetString(type.Namespace + "." + type.Name + "." + obj.ToString());
+                if (nname != null)
+                    name = nname;
+
 			}
 			this.obj = obj;
 		}

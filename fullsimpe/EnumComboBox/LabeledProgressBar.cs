@@ -384,7 +384,11 @@ namespace Ambertation.Windows.Forms
 			}
 
 		}
-
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            pb.Visible = this.Visible;            
+        }
 		
 
 		private void tb_TextChanged(object sender, System.EventArgs e)

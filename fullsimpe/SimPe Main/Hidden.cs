@@ -212,11 +212,16 @@ namespace SimPe
 
 		private void Hidden_Load(object sender, System.EventArgs e)
 		{
-			this.tbComp.Text = SimPe.Packages.PackedFile.CompressionStrength.ToString();
-			tbBig.Text = Helper.WindowsRegistry.BigPackageResourceCount.ToString();
-
-			this.lbMem.Text = GC.GetTotalMemory(false).ToString("N0") + " Byte";
+            UpdateDialog();
 		}
+
+        private void UpdateDialog()
+        {
+            this.tbComp.Text = SimPe.Packages.PackedFile.CompressionStrength.ToString();
+            tbBig.Text = Helper.WindowsRegistry.BigPackageResourceCount.ToString();
+
+            this.lbMem.Text = GC.GetTotalMemory(false).ToString("N0") + " Byte";
+        }
 
 		private void Hidden_Closed(object sender, System.EventArgs e)
 		{
@@ -259,6 +264,7 @@ namespace SimPe
 
             pg.SelectedObject = Helper.WindowsRegistry;
             f.ShowDialog();
+            UpdateDialog();
         }
 	}
 }

@@ -28,7 +28,7 @@
     </UpgradeBackupLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\__Release\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -112,6 +112,12 @@
     <Compile Include="LabeledProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProgressBar.Designer.cs">
+      <DependentUpon>ProgressBar.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="EnumComboBox.resx">
       <DependentUpon>EnumComboBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +126,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LabeledProgressBar.resx">
       <DependentUpon>LabeledProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressBar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProgressBar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
