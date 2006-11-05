@@ -19,6 +19,8 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
             textBox1.Text = name;
             base.SetData(name, reader);
             data = reader.ReadBytes((int)reader.BaseStream.Length);
+
+            tb.Text = Helper.BytesToHexList(data, 4);
         }
 
         byte[] data;

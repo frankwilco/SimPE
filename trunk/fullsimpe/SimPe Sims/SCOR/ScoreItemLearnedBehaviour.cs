@@ -64,7 +64,7 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
                 cb.Items.Add(e);
             }
 
-            if (cb.Items.Count>=0) cb.SelectedIndex = 0;
+            if (cb.Items.Count>0) cb.SelectedIndex = 0;
         }
 
         internal override void Serialize(System.IO.BinaryWriter writer)

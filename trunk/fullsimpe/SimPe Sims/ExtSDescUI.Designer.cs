@@ -132,6 +132,11 @@ namespace SimPe.PackedFiles.UserInterface
             this.panel1 = new System.Windows.Forms.Panel();
             this.label70 = new System.Windows.Forms.Label();
             this.pnPetChar = new System.Windows.Forms.Panel();
+            this.ptPigpen = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptAggres = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptIndep = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptHyper = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptGifted = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -194,6 +199,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.pbHealth = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbFashion = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pnRel = new System.Windows.Forms.Panel();
+            this.lv = new SimPe.PackedFiles.Wrapper.SimRelationPoolControl();
             this.panel3 = new System.Windows.Forms.Panel();
             this.srcTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.dstTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
@@ -252,6 +258,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.llep3openinfo = new System.Windows.Forms.LinkLabel();
             this.label15 = new System.Windows.Forms.Label();
+            this.sblb = new SimPe.PackedFiles.Wrapper.SimBusinessList();
             this.tbEp3Salery = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -260,13 +267,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.tbEp3Lot = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.ptPigpen = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptAggres = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptIndep = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptHyper = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptGifted = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.lv = new SimPe.PackedFiles.Wrapper.SimRelationPoolControl();
-            this.sblb = new SimPe.PackedFiles.Wrapper.SimBusinessList();
             this.pnPetInt.SuspendLayout();
             this.toolBar1.SuspendLayout();
             this.pnId.SuspendLayout();
@@ -294,7 +294,11 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pnPetInt
             // 
+            this.pnPetInt.AccessibleDescription = null;
+            this.pnPetInt.AccessibleName = null;
+            resources.ApplyResources(this.pnPetInt, "pnPetInt");
             this.pnPetInt.BackColor = System.Drawing.Color.Transparent;
+            this.pnPetInt.BackgroundImage = null;
             this.pnPetInt.Controls.Add(this.pbPetEating);
             this.pnPetInt.Controls.Add(this.pbPetOutside);
             this.pnPetInt.Controls.Add(this.pbPetPlaying);
@@ -304,15 +308,18 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnPetInt.Controls.Add(this.pbPetWeather);
             this.pnPetInt.Controls.Add(this.pbPetPets);
             this.pnPetInt.Controls.Add(this.pbPetAnimals);
-            resources.ApplyResources(this.pnPetInt, "pnPetInt");
+            this.pnPetInt.Font = null;
             this.pnPetInt.Name = "pnPetInt";
             this.pnPetInt.VisibleChanged += new System.EventHandler(this.pnSimInt_VisibleChanged);
             // 
             // pbPetEating
             // 
-            this.pbPetEating.BackColor = System.Drawing.Color.Transparent;
-            this.pbPetEating.DisplayOffset = 0;
+            this.pbPetEating.AccessibleDescription = null;
+            this.pbPetEating.AccessibleName = null;
             resources.ApplyResources(this.pbPetEating, "pbPetEating");
+            this.pbPetEating.BackColor = System.Drawing.Color.Transparent;
+            this.pbPetEating.BackgroundImage = null;
+            this.pbPetEating.DisplayOffset = 0;
             this.pbPetEating.Maximum = 1000;
             this.pbPetEating.Name = "pbPetEating";
             this.pbPetEating.NumberFormat = "N1";
@@ -326,9 +333,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbPetOutside
             // 
-            this.pbPetOutside.BackColor = System.Drawing.Color.Transparent;
-            this.pbPetOutside.DisplayOffset = 0;
+            this.pbPetOutside.AccessibleDescription = null;
+            this.pbPetOutside.AccessibleName = null;
             resources.ApplyResources(this.pbPetOutside, "pbPetOutside");
+            this.pbPetOutside.BackColor = System.Drawing.Color.Transparent;
+            this.pbPetOutside.BackgroundImage = null;
+            this.pbPetOutside.DisplayOffset = 0;
             this.pbPetOutside.Maximum = 1000;
             this.pbPetOutside.Name = "pbPetOutside";
             this.pbPetOutside.NumberFormat = "N1";
@@ -342,9 +352,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbPetPlaying
             // 
-            this.pbPetPlaying.BackColor = System.Drawing.Color.Transparent;
-            this.pbPetPlaying.DisplayOffset = 0;
+            this.pbPetPlaying.AccessibleDescription = null;
+            this.pbPetPlaying.AccessibleName = null;
             resources.ApplyResources(this.pbPetPlaying, "pbPetPlaying");
+            this.pbPetPlaying.BackColor = System.Drawing.Color.Transparent;
+            this.pbPetPlaying.BackgroundImage = null;
+            this.pbPetPlaying.DisplayOffset = 0;
             this.pbPetPlaying.Maximum = 1000;
             this.pbPetPlaying.Name = "pbPetPlaying";
             this.pbPetPlaying.NumberFormat = "N1";
@@ -358,9 +371,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbPetSpooky
             // 
-            this.pbPetSpooky.BackColor = System.Drawing.Color.Transparent;
-            this.pbPetSpooky.DisplayOffset = 0;
+            this.pbPetSpooky.AccessibleDescription = null;
+            this.pbPetSpooky.AccessibleName = null;
             resources.ApplyResources(this.pbPetSpooky, "pbPetSpooky");
+            this.pbPetSpooky.BackColor = System.Drawing.Color.Transparent;
+            this.pbPetSpooky.BackgroundImage = null;
+            this.pbPetSpooky.DisplayOffset = 0;
             this.pbPetSpooky.Maximum = 1000;
             this.pbPetSpooky.Name = "pbPetSpooky";
             this.pbPetSpooky.NumberFormat = "N1";
@@ -374,9 +390,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbPetSleep
             // 
-            this.pbPetSleep.BackColor = System.Drawing.Color.Transparent;
-            this.pbPetSleep.DisplayOffset = 0;
+            this.pbPetSleep.AccessibleDescription = null;
+            this.pbPetSleep.AccessibleName = null;
             resources.ApplyResources(this.pbPetSleep, "pbPetSleep");
+            this.pbPetSleep.BackColor = System.Drawing.Color.Transparent;
+            this.pbPetSleep.BackgroundImage = null;
+            this.pbPetSleep.DisplayOffset = 0;
             this.pbPetSleep.Maximum = 1000;
             this.pbPetSleep.Name = "pbPetSleep";
             this.pbPetSleep.NumberFormat = "N1";
@@ -390,9 +409,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbPetToy
             // 
-            this.pbPetToy.BackColor = System.Drawing.Color.Transparent;
-            this.pbPetToy.DisplayOffset = 0;
+            this.pbPetToy.AccessibleDescription = null;
+            this.pbPetToy.AccessibleName = null;
             resources.ApplyResources(this.pbPetToy, "pbPetToy");
+            this.pbPetToy.BackColor = System.Drawing.Color.Transparent;
+            this.pbPetToy.BackgroundImage = null;
+            this.pbPetToy.DisplayOffset = 0;
             this.pbPetToy.Maximum = 1000;
             this.pbPetToy.Name = "pbPetToy";
             this.pbPetToy.NumberFormat = "N1";
@@ -406,9 +428,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbPetWeather
             // 
-            this.pbPetWeather.BackColor = System.Drawing.Color.Transparent;
-            this.pbPetWeather.DisplayOffset = 0;
+            this.pbPetWeather.AccessibleDescription = null;
+            this.pbPetWeather.AccessibleName = null;
             resources.ApplyResources(this.pbPetWeather, "pbPetWeather");
+            this.pbPetWeather.BackColor = System.Drawing.Color.Transparent;
+            this.pbPetWeather.BackgroundImage = null;
+            this.pbPetWeather.DisplayOffset = 0;
             this.pbPetWeather.Maximum = 1000;
             this.pbPetWeather.Name = "pbPetWeather";
             this.pbPetWeather.NumberFormat = "N1";
@@ -422,9 +447,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbPetPets
             // 
-            this.pbPetPets.BackColor = System.Drawing.Color.Transparent;
-            this.pbPetPets.DisplayOffset = 0;
+            this.pbPetPets.AccessibleDescription = null;
+            this.pbPetPets.AccessibleName = null;
             resources.ApplyResources(this.pbPetPets, "pbPetPets");
+            this.pbPetPets.BackColor = System.Drawing.Color.Transparent;
+            this.pbPetPets.BackgroundImage = null;
+            this.pbPetPets.DisplayOffset = 0;
             this.pbPetPets.Maximum = 1000;
             this.pbPetPets.Name = "pbPetPets";
             this.pbPetPets.NumberFormat = "N1";
@@ -438,9 +466,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbPetAnimals
             // 
-            this.pbPetAnimals.BackColor = System.Drawing.Color.Transparent;
-            this.pbPetAnimals.DisplayOffset = 0;
+            this.pbPetAnimals.AccessibleDescription = null;
+            this.pbPetAnimals.AccessibleName = null;
             resources.ApplyResources(this.pbPetAnimals, "pbPetAnimals");
+            this.pbPetAnimals.BackColor = System.Drawing.Color.Transparent;
+            this.pbPetAnimals.BackgroundImage = null;
+            this.pbPetAnimals.DisplayOffset = 0;
             this.pbPetAnimals.Maximum = 1000;
             this.pbPetAnimals.Name = "pbPetAnimals";
             this.pbPetAnimals.NumberFormat = "N1";
@@ -454,7 +485,10 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // toolBar1
             // 
+            this.toolBar1.AccessibleDescription = null;
+            this.toolBar1.AccessibleName = null;
             resources.ApplyResources(this.toolBar1, "toolBar1");
+            this.toolBar1.BackgroundImage = null;
             this.toolBar1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolBar1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolBar1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -475,87 +509,130 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // biId
             // 
+            this.biId.AccessibleDescription = null;
+            this.biId.AccessibleName = null;
             resources.ApplyResources(this.biId, "biId");
+            this.biId.BackgroundImage = null;
             this.biId.Name = "biId";
             this.biId.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biCareer
             // 
+            this.biCareer.AccessibleDescription = null;
+            this.biCareer.AccessibleName = null;
             resources.ApplyResources(this.biCareer, "biCareer");
+            this.biCareer.BackgroundImage = null;
             this.biCareer.Name = "biCareer";
             this.biCareer.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biRel
             // 
+            this.biRel.AccessibleDescription = null;
+            this.biRel.AccessibleName = null;
             resources.ApplyResources(this.biRel, "biRel");
+            this.biRel.BackgroundImage = null;
             this.biRel.Name = "biRel";
             this.biRel.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biInt
             // 
+            this.biInt.AccessibleDescription = null;
+            this.biInt.AccessibleName = null;
             resources.ApplyResources(this.biInt, "biInt");
+            this.biInt.BackgroundImage = null;
             this.biInt.Name = "biInt";
             this.biInt.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biChar
             // 
+            this.biChar.AccessibleDescription = null;
+            this.biChar.AccessibleName = null;
             resources.ApplyResources(this.biChar, "biChar");
+            this.biChar.BackgroundImage = null;
             this.biChar.Name = "biChar";
             this.biChar.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biSkill
             // 
+            this.biSkill.AccessibleDescription = null;
+            this.biSkill.AccessibleName = null;
             resources.ApplyResources(this.biSkill, "biSkill");
+            this.biSkill.BackgroundImage = null;
             this.biSkill.Name = "biSkill";
             this.biSkill.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biMisc
             // 
+            this.biMisc.AccessibleDescription = null;
+            this.biMisc.AccessibleName = null;
             resources.ApplyResources(this.biMisc, "biMisc");
+            this.biMisc.BackgroundImage = null;
             this.biMisc.Name = "biMisc";
             this.biMisc.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biEP1
             // 
+            this.biEP1.AccessibleDescription = null;
+            this.biEP1.AccessibleName = null;
             resources.ApplyResources(this.biEP1, "biEP1");
+            this.biEP1.BackgroundImage = null;
             this.biEP1.Name = "biEP1";
             this.biEP1.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biEP2
             // 
+            this.biEP2.AccessibleDescription = null;
+            this.biEP2.AccessibleName = null;
             resources.ApplyResources(this.biEP2, "biEP2");
+            this.biEP2.BackgroundImage = null;
             this.biEP2.Name = "biEP2";
             this.biEP2.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biEP3
             // 
+            this.biEP3.AccessibleDescription = null;
+            this.biEP3.AccessibleName = null;
             resources.ApplyResources(this.biEP3, "biEP3");
+            this.biEP3.BackgroundImage = null;
             this.biEP3.Name = "biEP3";
             this.biEP3.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biMore
             // 
+            this.biMore.AccessibleDescription = null;
+            this.biMore.AccessibleName = null;
             resources.ApplyResources(this.biMore, "biMore");
+            this.biMore.BackgroundImage = null;
             this.biMore.Name = "biMore";
             this.biMore.Click += new System.EventHandler(this.Activate_biMore);
             // 
             // biMax
             // 
+            this.biMax.AccessibleDescription = null;
+            this.biMax.AccessibleName = null;
             this.biMax.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             resources.ApplyResources(this.biMax, "biMax");
+            this.biMax.BackgroundImage = null;
             this.biMax.Name = "biMax";
             this.biMax.Click += new System.EventHandler(this.Activate_biMax);
             // 
             // mbiMax
             // 
+            this.mbiMax.AccessibleDescription = null;
+            this.mbiMax.AccessibleName = null;
             resources.ApplyResources(this.mbiMax, "mbiMax");
+            this.mbiMax.BackgroundImage = null;
             this.mbiMax.Name = "mbiMax";
+            this.mbiMax.ShortcutKeyDisplayString = null;
             this.mbiMax.Click += new System.EventHandler(this.Activate_biMax);
             // 
             // pnId
             // 
+            this.pnId.AccessibleDescription = null;
+            this.pnId.AccessibleName = null;
             resources.ApplyResources(this.pnId, "pnId");
             this.pnId.BackColor = System.Drawing.Color.Transparent;
+            this.pnId.BackgroundImage = null;
             this.pnId.Controls.Add(this.label16);
             this.pnId.Controls.Add(this.cbSpecies);
             this.pnId.Controls.Add(this.label2);
@@ -573,18 +650,24 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnId.Controls.Add(this.tbage);
             this.pnId.Controls.Add(this.label48);
             this.pnId.Controls.Add(this.cblifesection);
+            this.pnId.Font = null;
             this.pnId.Name = "pnId";
             // 
             // label16
             // 
+            this.label16.AccessibleDescription = null;
+            this.label16.AccessibleName = null;
             resources.ApplyResources(this.label16, "label16");
             this.label16.Name = "label16";
             // 
             // cbSpecies
             // 
+            this.cbSpecies.AccessibleDescription = null;
+            this.cbSpecies.AccessibleName = null;
+            resources.ApplyResources(this.cbSpecies, "cbSpecies");
+            this.cbSpecies.BackgroundImage = null;
             this.cbSpecies.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSpecies.Enum = null;
-            resources.ApplyResources(this.cbSpecies, "cbSpecies");
             this.cbSpecies.Name = "cbSpecies";
             this.cbSpecies.ResourceManager = null;
             this.cbSpecies.SelectionChangeCommitted += new System.EventHandler(this.ChangedEP2);
@@ -592,94 +675,138 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = null;
+            this.label2.AccessibleName = null;
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = null;
+            this.label1.AccessibleName = null;
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
             // tbsimdescfamname
             // 
+            this.tbsimdescfamname.AccessibleDescription = null;
+            this.tbsimdescfamname.AccessibleName = null;
             resources.ApplyResources(this.tbsimdescfamname, "tbsimdescfamname");
+            this.tbsimdescfamname.BackgroundImage = null;
             this.tbsimdescfamname.Name = "tbsimdescfamname";
             this.tbsimdescfamname.TextChanged += new System.EventHandler(this.ChangedId);
             // 
             // tbfaminst
             // 
+            this.tbfaminst.AccessibleDescription = null;
+            this.tbfaminst.AccessibleName = null;
             resources.ApplyResources(this.tbfaminst, "tbfaminst");
+            this.tbfaminst.BackgroundImage = null;
             this.tbfaminst.Name = "tbfaminst";
             this.tbfaminst.TextChanged += new System.EventHandler(this.ChangedId);
             // 
             // label49
             // 
+            this.label49.AccessibleDescription = null;
+            this.label49.AccessibleName = null;
             resources.ApplyResources(this.label49, "label49");
             this.label49.Name = "label49";
             // 
             // rbmale
             // 
+            this.rbmale.AccessibleDescription = null;
+            this.rbmale.AccessibleName = null;
             resources.ApplyResources(this.rbmale, "rbmale");
+            this.rbmale.BackgroundImage = null;
             this.rbmale.Name = "rbmale";
             this.rbmale.CheckedChanged += new System.EventHandler(this.ChangedId);
             // 
             // rbfemale
             // 
+            this.rbfemale.AccessibleDescription = null;
+            this.rbfemale.AccessibleName = null;
             resources.ApplyResources(this.rbfemale, "rbfemale");
+            this.rbfemale.BackgroundImage = null;
             this.rbfemale.Name = "rbfemale";
             this.rbfemale.CheckedChanged += new System.EventHandler(this.ChangedId);
             // 
             // pbImage
             // 
-            this.pbImage.BackColor = System.Drawing.Color.Transparent;
+            this.pbImage.AccessibleDescription = null;
+            this.pbImage.AccessibleName = null;
             resources.ApplyResources(this.pbImage, "pbImage");
+            this.pbImage.BackColor = System.Drawing.Color.Transparent;
+            this.pbImage.BackgroundImage = null;
+            this.pbImage.Font = null;
+            this.pbImage.ImageLocation = null;
             this.pbImage.Name = "pbImage";
             this.pbImage.TabStop = false;
             // 
             // tbsimdescname
             // 
+            this.tbsimdescname.AccessibleDescription = null;
+            this.tbsimdescname.AccessibleName = null;
             resources.ApplyResources(this.tbsimdescname, "tbsimdescname");
+            this.tbsimdescname.BackgroundImage = null;
             this.tbsimdescname.Name = "tbsimdescname";
             this.tbsimdescname.TextChanged += new System.EventHandler(this.ChangedId);
             // 
             // label13
             // 
+            this.label13.AccessibleDescription = null;
+            this.label13.AccessibleName = null;
             resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
             // 
             // tbsim
             // 
+            this.tbsim.AccessibleDescription = null;
+            this.tbsim.AccessibleName = null;
             resources.ApplyResources(this.tbsim, "tbsim");
+            this.tbsim.BackgroundImage = null;
             this.tbsim.Name = "tbsim";
             this.tbsim.TextChanged += new System.EventHandler(this.ChangedId);
             // 
             // label10
             // 
+            this.label10.AccessibleDescription = null;
+            this.label10.AccessibleName = null;
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
             // 
             // tbage
             // 
+            this.tbage.AccessibleDescription = null;
+            this.tbage.AccessibleName = null;
             resources.ApplyResources(this.tbage, "tbage");
+            this.tbage.BackgroundImage = null;
             this.tbage.Name = "tbage";
             this.tbage.TextChanged += new System.EventHandler(this.ChangedId);
             // 
             // label48
             // 
+            this.label48.AccessibleDescription = null;
+            this.label48.AccessibleName = null;
             resources.ApplyResources(this.label48, "label48");
             this.label48.Name = "label48";
             // 
             // cblifesection
             // 
-            this.cblifesection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cblifesection.AccessibleDescription = null;
+            this.cblifesection.AccessibleName = null;
             resources.ApplyResources(this.cblifesection, "cblifesection");
+            this.cblifesection.BackgroundImage = null;
+            this.cblifesection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cblifesection.Name = "cblifesection";
             this.cblifesection.SelectedValueChanged += new System.EventHandler(this.ChangedId);
             // 
             // pnSkill
             // 
+            this.pnSkill.AccessibleDescription = null;
+            this.pnSkill.AccessibleName = null;
             resources.ApplyResources(this.pnSkill, "pnSkill");
             this.pnSkill.BackColor = System.Drawing.Color.Transparent;
+            this.pnSkill.BackgroundImage = null;
             this.pnSkill.Controls.Add(this.pbBody);
             this.pnSkill.Controls.Add(this.pbRomance);
             this.pnSkill.Controls.Add(this.pbFat);
@@ -689,13 +816,17 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnSkill.Controls.Add(this.pbMech);
             this.pnSkill.Controls.Add(this.pbLogic);
             this.pnSkill.Controls.Add(this.pbCooking);
+            this.pnSkill.Font = null;
             this.pnSkill.Name = "pnSkill";
             // 
             // pbBody
             // 
-            this.pbBody.BackColor = System.Drawing.Color.Transparent;
-            this.pbBody.DisplayOffset = 0;
+            this.pbBody.AccessibleDescription = null;
+            this.pbBody.AccessibleName = null;
             resources.ApplyResources(this.pbBody, "pbBody");
+            this.pbBody.BackColor = System.Drawing.Color.Transparent;
+            this.pbBody.BackgroundImage = null;
+            this.pbBody.DisplayOffset = 0;
             this.pbBody.Maximum = 1000;
             this.pbBody.Name = "pbBody";
             this.pbBody.NumberFormat = "N2";
@@ -710,9 +841,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbRomance
             // 
-            this.pbRomance.BackColor = System.Drawing.Color.Transparent;
-            this.pbRomance.DisplayOffset = 0;
+            this.pbRomance.AccessibleDescription = null;
+            this.pbRomance.AccessibleName = null;
             resources.ApplyResources(this.pbRomance, "pbRomance");
+            this.pbRomance.BackColor = System.Drawing.Color.Transparent;
+            this.pbRomance.BackgroundImage = null;
+            this.pbRomance.DisplayOffset = 0;
             this.pbRomance.Maximum = 1000;
             this.pbRomance.Name = "pbRomance";
             this.pbRomance.NumberFormat = "N1";
@@ -727,9 +861,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbFat
             // 
-            this.pbFat.BackColor = System.Drawing.Color.Transparent;
-            this.pbFat.DisplayOffset = 0;
+            this.pbFat.AccessibleDescription = null;
+            this.pbFat.AccessibleName = null;
             resources.ApplyResources(this.pbFat, "pbFat");
+            this.pbFat.BackColor = System.Drawing.Color.Transparent;
+            this.pbFat.BackgroundImage = null;
+            this.pbFat.DisplayOffset = 0;
             this.pbFat.Maximum = 1000;
             this.pbFat.Name = "pbFat";
             this.pbFat.NumberFormat = "N1";
@@ -744,9 +881,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbClean
             // 
-            this.pbClean.BackColor = System.Drawing.Color.Transparent;
-            this.pbClean.DisplayOffset = 0;
+            this.pbClean.AccessibleDescription = null;
+            this.pbClean.AccessibleName = null;
             resources.ApplyResources(this.pbClean, "pbClean");
+            this.pbClean.BackColor = System.Drawing.Color.Transparent;
+            this.pbClean.BackgroundImage = null;
+            this.pbClean.DisplayOffset = 0;
             this.pbClean.Maximum = 1000;
             this.pbClean.Name = "pbClean";
             this.pbClean.NumberFormat = "N2";
@@ -761,9 +901,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbCreative
             // 
-            this.pbCreative.BackColor = System.Drawing.Color.Transparent;
-            this.pbCreative.DisplayOffset = 0;
+            this.pbCreative.AccessibleDescription = null;
+            this.pbCreative.AccessibleName = null;
             resources.ApplyResources(this.pbCreative, "pbCreative");
+            this.pbCreative.BackColor = System.Drawing.Color.Transparent;
+            this.pbCreative.BackgroundImage = null;
+            this.pbCreative.DisplayOffset = 0;
             this.pbCreative.Maximum = 1000;
             this.pbCreative.Name = "pbCreative";
             this.pbCreative.NumberFormat = "N2";
@@ -778,9 +921,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbCharisma
             // 
-            this.pbCharisma.BackColor = System.Drawing.Color.Transparent;
-            this.pbCharisma.DisplayOffset = 0;
+            this.pbCharisma.AccessibleDescription = null;
+            this.pbCharisma.AccessibleName = null;
             resources.ApplyResources(this.pbCharisma, "pbCharisma");
+            this.pbCharisma.BackColor = System.Drawing.Color.Transparent;
+            this.pbCharisma.BackgroundImage = null;
+            this.pbCharisma.DisplayOffset = 0;
             this.pbCharisma.Maximum = 1000;
             this.pbCharisma.Name = "pbCharisma";
             this.pbCharisma.NumberFormat = "N2";
@@ -795,9 +941,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbMech
             // 
-            this.pbMech.BackColor = System.Drawing.Color.Transparent;
-            this.pbMech.DisplayOffset = 0;
+            this.pbMech.AccessibleDescription = null;
+            this.pbMech.AccessibleName = null;
             resources.ApplyResources(this.pbMech, "pbMech");
+            this.pbMech.BackColor = System.Drawing.Color.Transparent;
+            this.pbMech.BackgroundImage = null;
+            this.pbMech.DisplayOffset = 0;
             this.pbMech.Maximum = 1000;
             this.pbMech.Name = "pbMech";
             this.pbMech.NumberFormat = "N2";
@@ -812,9 +961,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbLogic
             // 
-            this.pbLogic.BackColor = System.Drawing.Color.Transparent;
-            this.pbLogic.DisplayOffset = 0;
+            this.pbLogic.AccessibleDescription = null;
+            this.pbLogic.AccessibleName = null;
             resources.ApplyResources(this.pbLogic, "pbLogic");
+            this.pbLogic.BackColor = System.Drawing.Color.Transparent;
+            this.pbLogic.BackgroundImage = null;
+            this.pbLogic.DisplayOffset = 0;
             this.pbLogic.Maximum = 1000;
             this.pbLogic.Name = "pbLogic";
             this.pbLogic.NumberFormat = "N2";
@@ -829,9 +981,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbCooking
             // 
-            this.pbCooking.BackColor = System.Drawing.Color.Transparent;
-            this.pbCooking.DisplayOffset = 0;
+            this.pbCooking.AccessibleDescription = null;
+            this.pbCooking.AccessibleName = null;
             resources.ApplyResources(this.pbCooking, "pbCooking");
+            this.pbCooking.BackColor = System.Drawing.Color.Transparent;
+            this.pbCooking.BackgroundImage = null;
+            this.pbCooking.DisplayOffset = 0;
             this.pbCooking.Maximum = 1000;
             this.pbCooking.Name = "pbCooking";
             this.pbCooking.NumberFormat = "N2";
@@ -846,8 +1001,11 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pnChar
             // 
+            this.pnChar.AccessibleDescription = null;
+            this.pnChar.AccessibleName = null;
             resources.ApplyResources(this.pnChar, "pnChar");
             this.pnChar.BackColor = System.Drawing.Color.Transparent;
+            this.pnChar.BackgroundImage = null;
             this.pnChar.Controls.Add(this.pnHumanChar);
             this.pnChar.Controls.Add(this.pbMan);
             this.pnChar.Controls.Add(this.pbWoman);
@@ -858,11 +1016,16 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnChar.Controls.Add(this.panel1);
             this.pnChar.Controls.Add(this.label70);
             this.pnChar.Controls.Add(this.pnPetChar);
+            this.pnChar.Font = null;
             this.pnChar.Name = "pnChar";
             this.pnChar.VisibleChanged += new System.EventHandler(this.pnInt_VisibleChanged);
             // 
             // pnHumanChar
             // 
+            this.pnHumanChar.AccessibleDescription = null;
+            this.pnHumanChar.AccessibleName = null;
+            resources.ApplyResources(this.pnHumanChar, "pnHumanChar");
+            this.pnHumanChar.BackgroundImage = null;
             this.pnHumanChar.Controls.Add(this.pbNeat);
             this.pnHumanChar.Controls.Add(this.pbOutgoing);
             this.pnHumanChar.Controls.Add(this.pbActive);
@@ -873,14 +1036,17 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnHumanChar.Controls.Add(this.pbGNeat);
             this.pnHumanChar.Controls.Add(this.pbGActive);
             this.pnHumanChar.Controls.Add(this.pbGOutgoing);
-            resources.ApplyResources(this.pnHumanChar, "pnHumanChar");
+            this.pnHumanChar.Font = null;
             this.pnHumanChar.Name = "pnHumanChar";
             // 
             // pbNeat
             // 
-            this.pbNeat.BackColor = System.Drawing.Color.Transparent;
-            this.pbNeat.DisplayOffset = 0;
+            this.pbNeat.AccessibleDescription = null;
+            this.pbNeat.AccessibleName = null;
             resources.ApplyResources(this.pbNeat, "pbNeat");
+            this.pbNeat.BackColor = System.Drawing.Color.Transparent;
+            this.pbNeat.BackgroundImage = null;
+            this.pbNeat.DisplayOffset = 0;
             this.pbNeat.Maximum = 1000;
             this.pbNeat.Name = "pbNeat";
             this.pbNeat.NumberFormat = "N1";
@@ -895,9 +1061,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbOutgoing
             // 
-            this.pbOutgoing.BackColor = System.Drawing.Color.Transparent;
-            this.pbOutgoing.DisplayOffset = 0;
+            this.pbOutgoing.AccessibleDescription = null;
+            this.pbOutgoing.AccessibleName = null;
             resources.ApplyResources(this.pbOutgoing, "pbOutgoing");
+            this.pbOutgoing.BackColor = System.Drawing.Color.Transparent;
+            this.pbOutgoing.BackgroundImage = null;
+            this.pbOutgoing.DisplayOffset = 0;
             this.pbOutgoing.Maximum = 1000;
             this.pbOutgoing.Name = "pbOutgoing";
             this.pbOutgoing.NumberFormat = "N1";
@@ -912,9 +1081,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbActive
             // 
-            this.pbActive.BackColor = System.Drawing.Color.Transparent;
-            this.pbActive.DisplayOffset = 0;
+            this.pbActive.AccessibleDescription = null;
+            this.pbActive.AccessibleName = null;
             resources.ApplyResources(this.pbActive, "pbActive");
+            this.pbActive.BackColor = System.Drawing.Color.Transparent;
+            this.pbActive.BackgroundImage = null;
+            this.pbActive.DisplayOffset = 0;
             this.pbActive.Maximum = 1000;
             this.pbActive.Name = "pbActive";
             this.pbActive.NumberFormat = "N1";
@@ -929,9 +1101,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbPlayful
             // 
-            this.pbPlayful.BackColor = System.Drawing.Color.Transparent;
-            this.pbPlayful.DisplayOffset = 0;
+            this.pbPlayful.AccessibleDescription = null;
+            this.pbPlayful.AccessibleName = null;
             resources.ApplyResources(this.pbPlayful, "pbPlayful");
+            this.pbPlayful.BackColor = System.Drawing.Color.Transparent;
+            this.pbPlayful.BackgroundImage = null;
+            this.pbPlayful.DisplayOffset = 0;
             this.pbPlayful.Maximum = 1000;
             this.pbPlayful.Name = "pbPlayful";
             this.pbPlayful.NumberFormat = "N1";
@@ -946,9 +1121,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbGNice
             // 
-            this.pbGNice.BackColor = System.Drawing.Color.Transparent;
-            this.pbGNice.DisplayOffset = 0;
+            this.pbGNice.AccessibleDescription = null;
+            this.pbGNice.AccessibleName = null;
             resources.ApplyResources(this.pbGNice, "pbGNice");
+            this.pbGNice.BackColor = System.Drawing.Color.Transparent;
+            this.pbGNice.BackgroundImage = null;
+            this.pbGNice.DisplayOffset = 0;
             this.pbGNice.Maximum = 1000;
             this.pbGNice.Name = "pbGNice";
             this.pbGNice.NumberFormat = "N1";
@@ -963,9 +1141,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbNice
             // 
-            this.pbNice.BackColor = System.Drawing.Color.Transparent;
-            this.pbNice.DisplayOffset = 0;
+            this.pbNice.AccessibleDescription = null;
+            this.pbNice.AccessibleName = null;
             resources.ApplyResources(this.pbNice, "pbNice");
+            this.pbNice.BackColor = System.Drawing.Color.Transparent;
+            this.pbNice.BackgroundImage = null;
+            this.pbNice.DisplayOffset = 0;
             this.pbNice.Maximum = 1000;
             this.pbNice.Name = "pbNice";
             this.pbNice.NumberFormat = "N1";
@@ -980,9 +1161,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbGPlayful
             // 
-            this.pbGPlayful.BackColor = System.Drawing.Color.Transparent;
-            this.pbGPlayful.DisplayOffset = 0;
+            this.pbGPlayful.AccessibleDescription = null;
+            this.pbGPlayful.AccessibleName = null;
             resources.ApplyResources(this.pbGPlayful, "pbGPlayful");
+            this.pbGPlayful.BackColor = System.Drawing.Color.Transparent;
+            this.pbGPlayful.BackgroundImage = null;
+            this.pbGPlayful.DisplayOffset = 0;
             this.pbGPlayful.Maximum = 1000;
             this.pbGPlayful.Name = "pbGPlayful";
             this.pbGPlayful.NumberFormat = "N1";
@@ -997,9 +1181,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbGNeat
             // 
-            this.pbGNeat.BackColor = System.Drawing.Color.Transparent;
-            this.pbGNeat.DisplayOffset = 0;
+            this.pbGNeat.AccessibleDescription = null;
+            this.pbGNeat.AccessibleName = null;
             resources.ApplyResources(this.pbGNeat, "pbGNeat");
+            this.pbGNeat.BackColor = System.Drawing.Color.Transparent;
+            this.pbGNeat.BackgroundImage = null;
+            this.pbGNeat.DisplayOffset = 0;
             this.pbGNeat.Maximum = 1000;
             this.pbGNeat.Name = "pbGNeat";
             this.pbGNeat.NumberFormat = "N1";
@@ -1014,9 +1201,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbGActive
             // 
-            this.pbGActive.BackColor = System.Drawing.Color.Transparent;
-            this.pbGActive.DisplayOffset = 0;
+            this.pbGActive.AccessibleDescription = null;
+            this.pbGActive.AccessibleName = null;
             resources.ApplyResources(this.pbGActive, "pbGActive");
+            this.pbGActive.BackColor = System.Drawing.Color.Transparent;
+            this.pbGActive.BackgroundImage = null;
+            this.pbGActive.DisplayOffset = 0;
             this.pbGActive.Maximum = 1000;
             this.pbGActive.Name = "pbGActive";
             this.pbGActive.NumberFormat = "N1";
@@ -1031,9 +1221,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbGOutgoing
             // 
-            this.pbGOutgoing.BackColor = System.Drawing.Color.Transparent;
-            this.pbGOutgoing.DisplayOffset = 0;
+            this.pbGOutgoing.AccessibleDescription = null;
+            this.pbGOutgoing.AccessibleName = null;
             resources.ApplyResources(this.pbGOutgoing, "pbGOutgoing");
+            this.pbGOutgoing.BackColor = System.Drawing.Color.Transparent;
+            this.pbGOutgoing.BackgroundImage = null;
+            this.pbGOutgoing.DisplayOffset = 0;
             this.pbGOutgoing.Maximum = 1000;
             this.pbGOutgoing.Name = "pbGOutgoing";
             this.pbGOutgoing.NumberFormat = "N1";
@@ -1048,9 +1241,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbMan
             // 
-            this.pbMan.BackColor = System.Drawing.Color.Transparent;
-            this.pbMan.DisplayOffset = 0;
+            this.pbMan.AccessibleDescription = null;
+            this.pbMan.AccessibleName = null;
             resources.ApplyResources(this.pbMan, "pbMan");
+            this.pbMan.BackColor = System.Drawing.Color.Transparent;
+            this.pbMan.BackgroundImage = null;
+            this.pbMan.DisplayOffset = 0;
             this.pbMan.Maximum = 2000;
             this.pbMan.Name = "pbMan";
             this.pbMan.NumberFormat = "N1";
@@ -1065,9 +1261,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbWoman
             // 
-            this.pbWoman.BackColor = System.Drawing.Color.Transparent;
-            this.pbWoman.DisplayOffset = 0;
+            this.pbWoman.AccessibleDescription = null;
+            this.pbWoman.AccessibleName = null;
             resources.ApplyResources(this.pbWoman, "pbWoman");
+            this.pbWoman.BackColor = System.Drawing.Color.Transparent;
+            this.pbWoman.BackgroundImage = null;
+            this.pbWoman.DisplayOffset = 0;
             this.pbWoman.Maximum = 2000;
             this.pbWoman.Name = "pbWoman";
             this.pbWoman.NumberFormat = "N1";
@@ -1082,44 +1281,66 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // cbzodiac
             // 
-            this.cbzodiac.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbzodiac.AccessibleDescription = null;
+            this.cbzodiac.AccessibleName = null;
             resources.ApplyResources(this.cbzodiac, "cbzodiac");
+            this.cbzodiac.BackgroundImage = null;
+            this.cbzodiac.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbzodiac.Name = "cbzodiac";
             this.cbzodiac.SelectedIndexChanged += new System.EventHandler(this.ChangedChar);
             // 
             // label47
             // 
+            this.label47.AccessibleDescription = null;
+            this.label47.AccessibleName = null;
             resources.ApplyResources(this.label47, "label47");
             this.label47.Name = "label47";
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.WindowText;
+            this.panel2.AccessibleDescription = null;
+            this.panel2.AccessibleName = null;
             resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.BackColor = System.Drawing.SystemColors.WindowText;
+            this.panel2.BackgroundImage = null;
+            this.panel2.Font = null;
             this.panel2.Name = "panel2";
             // 
             // label69
             // 
-            this.label69.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.label69.AccessibleDescription = null;
+            this.label69.AccessibleName = null;
             resources.ApplyResources(this.label69, "label69");
+            this.label69.Font = null;
+            this.label69.ForeColor = System.Drawing.SystemColors.WindowText;
             this.label69.Name = "label69";
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.WindowText;
+            this.panel1.AccessibleDescription = null;
+            this.panel1.AccessibleName = null;
             resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.BackColor = System.Drawing.SystemColors.WindowText;
+            this.panel1.BackgroundImage = null;
+            this.panel1.Font = null;
             this.panel1.Name = "panel1";
             // 
             // label70
             // 
-            this.label70.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.label70.AccessibleDescription = null;
+            this.label70.AccessibleName = null;
             resources.ApplyResources(this.label70, "label70");
+            this.label70.Font = null;
+            this.label70.ForeColor = System.Drawing.SystemColors.WindowText;
             this.label70.Name = "label70";
             // 
             // pnPetChar
             // 
+            this.pnPetChar.AccessibleDescription = null;
+            this.pnPetChar.AccessibleName = null;
             resources.ApplyResources(this.pnPetChar, "pnPetChar");
             this.pnPetChar.BackColor = System.Drawing.Color.Transparent;
+            this.pnPetChar.BackgroundImage = null;
             this.pnPetChar.Controls.Add(this.ptPigpen);
             this.pnPetChar.Controls.Add(this.ptAggres);
             this.pnPetChar.Controls.Add(this.ptIndep);
@@ -1130,35 +1351,106 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnPetChar.Controls.Add(this.label19);
             this.pnPetChar.Controls.Add(this.label18);
             this.pnPetChar.Controls.Add(this.label17);
+            this.pnPetChar.Font = null;
             this.pnPetChar.Name = "pnPetChar";
+            // 
+            // ptPigpen
+            // 
+            this.ptPigpen.AccessibleDescription = null;
+            this.ptPigpen.AccessibleName = null;
+            resources.ApplyResources(this.ptPigpen, "ptPigpen");
+            this.ptPigpen.BackgroundImage = null;
+            this.ptPigpen.Font = null;
+            this.ptPigpen.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            this.ptPigpen.Name = "ptPigpen";
+            this.ptPigpen.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptAggres
+            // 
+            this.ptAggres.AccessibleDescription = null;
+            this.ptAggres.AccessibleName = null;
+            resources.ApplyResources(this.ptAggres, "ptAggres");
+            this.ptAggres.BackgroundImage = null;
+            this.ptAggres.Font = null;
+            this.ptAggres.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            this.ptAggres.Name = "ptAggres";
+            this.ptAggres.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptIndep
+            // 
+            this.ptIndep.AccessibleDescription = null;
+            this.ptIndep.AccessibleName = null;
+            resources.ApplyResources(this.ptIndep, "ptIndep");
+            this.ptIndep.BackgroundImage = null;
+            this.ptIndep.Font = null;
+            this.ptIndep.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            this.ptIndep.Name = "ptIndep";
+            this.ptIndep.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptHyper
+            // 
+            this.ptHyper.AccessibleDescription = null;
+            this.ptHyper.AccessibleName = null;
+            resources.ApplyResources(this.ptHyper, "ptHyper");
+            this.ptHyper.BackgroundImage = null;
+            this.ptHyper.Font = null;
+            this.ptHyper.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            this.ptHyper.Name = "ptHyper";
+            this.ptHyper.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptGifted
+            // 
+            this.ptGifted.AccessibleDescription = null;
+            this.ptGifted.AccessibleName = null;
+            resources.ApplyResources(this.ptGifted, "ptGifted");
+            this.ptGifted.BackgroundImage = null;
+            this.ptGifted.Font = null;
+            this.ptGifted.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            this.ptGifted.Name = "ptGifted";
+            this.ptGifted.LevelChanged += new System.EventHandler(this.ChangedEP4);
             // 
             // label21
             // 
+            this.label21.AccessibleDescription = null;
+            this.label21.AccessibleName = null;
             resources.ApplyResources(this.label21, "label21");
             this.label21.Name = "label21";
             // 
             // label20
             // 
+            this.label20.AccessibleDescription = null;
+            this.label20.AccessibleName = null;
             resources.ApplyResources(this.label20, "label20");
             this.label20.Name = "label20";
             // 
             // label19
             // 
+            this.label19.AccessibleDescription = null;
+            this.label19.AccessibleName = null;
             resources.ApplyResources(this.label19, "label19");
             this.label19.Name = "label19";
             // 
             // label18
             // 
+            this.label18.AccessibleDescription = null;
+            this.label18.AccessibleName = null;
             resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
             // 
             // label17
             // 
+            this.label17.AccessibleDescription = null;
+            this.label17.AccessibleName = null;
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
             // 
             // mbiLink
             // 
+            this.mbiLink.AccessibleDescription = null;
+            this.mbiLink.AccessibleName = null;
+            resources.ApplyResources(this.mbiLink, "mbiLink");
+            this.mbiLink.BackgroundImage = null;
+            this.mbiLink.Font = null;
             this.mbiLink.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mbiMax,
             this.miRand,
@@ -1174,81 +1466,129 @@ namespace SimPe.PackedFiles.UserInterface
             this.miMore,
             this.miRelink});
             this.mbiLink.Name = "mbiLink";
-            resources.ApplyResources(this.mbiLink, "mbiLink");
             // 
             // miRand
             // 
+            this.miRand.AccessibleDescription = null;
+            this.miRand.AccessibleName = null;
             resources.ApplyResources(this.miRand, "miRand");
+            this.miRand.BackgroundImage = null;
             this.miRand.Name = "miRand";
+            this.miRand.ShortcutKeyDisplayString = null;
             this.miRand.Click += new System.EventHandler(this.Activate_biRand);
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.AccessibleDescription = null;
+            this.toolStripMenuItem1.AccessibleName = null;
             resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             // 
             // miOpenChar
             // 
+            this.miOpenChar.AccessibleDescription = null;
+            this.miOpenChar.AccessibleName = null;
             resources.ApplyResources(this.miOpenChar, "miOpenChar");
+            this.miOpenChar.BackgroundImage = null;
             this.miOpenChar.Name = "miOpenChar";
+            this.miOpenChar.ShortcutKeyDisplayString = null;
             this.miOpenChar.Click += new System.EventHandler(this.Activate_miOpenCHar);
             // 
             // miOpenWf
             // 
+            this.miOpenWf.AccessibleDescription = null;
+            this.miOpenWf.AccessibleName = null;
             resources.ApplyResources(this.miOpenWf, "miOpenWf");
+            this.miOpenWf.BackgroundImage = null;
             this.miOpenWf.Name = "miOpenWf";
+            this.miOpenWf.ShortcutKeyDisplayString = null;
             this.miOpenWf.Click += new System.EventHandler(this.Activate_miOpenWf);
             // 
             // miOpenMem
             // 
+            this.miOpenMem.AccessibleDescription = null;
+            this.miOpenMem.AccessibleName = null;
             resources.ApplyResources(this.miOpenMem, "miOpenMem");
+            this.miOpenMem.BackgroundImage = null;
             this.miOpenMem.Name = "miOpenMem";
+            this.miOpenMem.ShortcutKeyDisplayString = null;
             this.miOpenMem.Click += new System.EventHandler(this.Activate_miOpenMem);
             // 
             // miOpenBadge
             // 
+            this.miOpenBadge.AccessibleDescription = null;
+            this.miOpenBadge.AccessibleName = null;
             resources.ApplyResources(this.miOpenBadge, "miOpenBadge");
+            this.miOpenBadge.BackgroundImage = null;
             this.miOpenBadge.Name = "miOpenBadge";
+            this.miOpenBadge.ShortcutKeyDisplayString = null;
             this.miOpenBadge.Click += new System.EventHandler(this.Activate_miOpenBadge);
             // 
             // miOpenDNA
             // 
+            this.miOpenDNA.AccessibleDescription = null;
+            this.miOpenDNA.AccessibleName = null;
             resources.ApplyResources(this.miOpenDNA, "miOpenDNA");
+            this.miOpenDNA.BackgroundImage = null;
             this.miOpenDNA.Name = "miOpenDNA";
+            this.miOpenDNA.ShortcutKeyDisplayString = null;
             this.miOpenDNA.Click += new System.EventHandler(this.Activate_miOpenDNA);
             // 
             // miOpenFamily
             // 
+            this.miOpenFamily.AccessibleDescription = null;
+            this.miOpenFamily.AccessibleName = null;
             resources.ApplyResources(this.miOpenFamily, "miOpenFamily");
+            this.miOpenFamily.BackgroundImage = null;
             this.miOpenFamily.Name = "miOpenFamily";
+            this.miOpenFamily.ShortcutKeyDisplayString = null;
             this.miOpenFamily.Click += new System.EventHandler(this.Activate_miFamily);
             // 
             // miOpenCloth
             // 
-            this.miOpenCloth.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.miOpenCloth.AccessibleDescription = null;
+            this.miOpenCloth.AccessibleName = null;
             resources.ApplyResources(this.miOpenCloth, "miOpenCloth");
+            this.miOpenCloth.BackgroundImage = null;
+            this.miOpenCloth.ForeColor = System.Drawing.SystemColors.WindowText;
             this.miOpenCloth.Name = "miOpenCloth";
+            this.miOpenCloth.ShortcutKeyDisplayString = null;
             this.miOpenCloth.Click += new System.EventHandler(this.Activate_miOpenCloth);
             // 
             // toolStripMenuItem2
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.AccessibleDescription = null;
+            this.toolStripMenuItem2.AccessibleName = null;
             resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             // 
             // miMore
             // 
+            this.miMore.AccessibleDescription = null;
+            this.miMore.AccessibleName = null;
             resources.ApplyResources(this.miMore, "miMore");
+            this.miMore.BackgroundImage = null;
             this.miMore.Name = "miMore";
+            this.miMore.ShortcutKeyDisplayString = null;
             this.miMore.Click += new System.EventHandler(this.Activate_miMore);
             // 
             // miRelink
             // 
+            this.miRelink.AccessibleDescription = null;
+            this.miRelink.AccessibleName = null;
             resources.ApplyResources(this.miRelink, "miRelink");
+            this.miRelink.BackgroundImage = null;
             this.miRelink.Name = "miRelink";
+            this.miRelink.ShortcutKeyDisplayString = null;
             this.miRelink.Click += new System.EventHandler(this.Activate_miRelink);
             // 
             // miRel
             // 
+            this.miRel.AccessibleDescription = null;
+            this.miRel.AccessibleName = null;
+            resources.ApplyResources(this.miRel, "miRel");
+            this.miRel.BackgroundImage = null;
+            this.miRel.Font = null;
             this.miRel.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miAddRelation,
             this.miRemRelation,
@@ -1256,42 +1596,62 @@ namespace SimPe.PackedFiles.UserInterface
             this.mbiMaxThisRel,
             this.mbiMaxKnownRel});
             this.miRel.Name = "miRel";
-            resources.ApplyResources(this.miRel, "miRel");
             this.miRel.VisibleChanged += new System.EventHandler(this.miRel_BeforePopup);
             // 
             // miAddRelation
             // 
+            this.miAddRelation.AccessibleDescription = null;
+            this.miAddRelation.AccessibleName = null;
             resources.ApplyResources(this.miAddRelation, "miAddRelation");
+            this.miAddRelation.BackgroundImage = null;
             this.miAddRelation.Name = "miAddRelation";
+            this.miAddRelation.ShortcutKeyDisplayString = null;
             this.miAddRelation.Click += new System.EventHandler(this.Activate_miAddRelation);
             // 
             // miRemRelation
             // 
+            this.miRemRelation.AccessibleDescription = null;
+            this.miRemRelation.AccessibleName = null;
             resources.ApplyResources(this.miRemRelation, "miRemRelation");
+            this.miRemRelation.BackgroundImage = null;
             this.miRemRelation.Name = "miRemRelation";
+            this.miRemRelation.ShortcutKeyDisplayString = null;
             this.miRemRelation.Click += new System.EventHandler(this.Activate_miRemRelation);
             // 
             // toolStripMenuItem3
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.AccessibleDescription = null;
+            this.toolStripMenuItem3.AccessibleName = null;
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             // 
             // mbiMaxThisRel
             // 
-            this.mbiMaxThisRel.Name = "mbiMaxThisRel";
+            this.mbiMaxThisRel.AccessibleDescription = null;
+            this.mbiMaxThisRel.AccessibleName = null;
             resources.ApplyResources(this.mbiMaxThisRel, "mbiMaxThisRel");
+            this.mbiMaxThisRel.BackgroundImage = null;
+            this.mbiMaxThisRel.Name = "mbiMaxThisRel";
+            this.mbiMaxThisRel.ShortcutKeyDisplayString = null;
             this.mbiMaxThisRel.Click += new System.EventHandler(this.Activate_mbiMaxThisRel);
             // 
             // mbiMaxKnownRel
             // 
-            this.mbiMaxKnownRel.Name = "mbiMaxKnownRel";
+            this.mbiMaxKnownRel.AccessibleDescription = null;
+            this.mbiMaxKnownRel.AccessibleName = null;
             resources.ApplyResources(this.mbiMaxKnownRel, "mbiMaxKnownRel");
+            this.mbiMaxKnownRel.BackgroundImage = null;
+            this.mbiMaxKnownRel.Name = "mbiMaxKnownRel";
+            this.mbiMaxKnownRel.ShortcutKeyDisplayString = null;
             this.mbiMaxKnownRel.Click += new System.EventHandler(this.Activate_mbiMaxKnownRel);
             // 
             // pnCareer
             // 
+            this.pnCareer.AccessibleDescription = null;
+            this.pnCareer.AccessibleName = null;
             resources.ApplyResources(this.pnCareer, "pnCareer");
             this.pnCareer.BackColor = System.Drawing.Color.Transparent;
+            this.pnCareer.BackgroundImage = null;
             this.pnCareer.Controls.Add(this.pbAspBliz);
             this.pnCareer.Controls.Add(this.label60);
             this.pnCareer.Controls.Add(this.cbaspiration);
@@ -1308,13 +1668,17 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnCareer.Controls.Add(this.label50);
             this.pnCareer.Controls.Add(this.cbcareer);
             this.pnCareer.Controls.Add(this.tbcareervalue);
+            this.pnCareer.Font = null;
             this.pnCareer.Name = "pnCareer";
             // 
             // pbAspBliz
             // 
-            this.pbAspBliz.BackColor = System.Drawing.Color.Transparent;
-            this.pbAspBliz.DisplayOffset = 0;
+            this.pbAspBliz.AccessibleDescription = null;
+            this.pbAspBliz.AccessibleName = null;
             resources.ApplyResources(this.pbAspBliz, "pbAspBliz");
+            this.pbAspBliz.BackColor = System.Drawing.Color.Transparent;
+            this.pbAspBliz.BackgroundImage = null;
+            this.pbAspBliz.DisplayOffset = 0;
             this.pbAspBliz.Maximum = 1200;
             this.pbAspBliz.Name = "pbAspBliz";
             this.pbAspBliz.NumberFormat = "N0";
@@ -1329,21 +1693,29 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // label60
             // 
+            this.label60.AccessibleDescription = null;
+            this.label60.AccessibleName = null;
             resources.ApplyResources(this.label60, "label60");
             this.label60.Name = "label60";
             // 
             // cbaspiration
             // 
-            this.cbaspiration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbaspiration.AccessibleDescription = null;
+            this.cbaspiration.AccessibleName = null;
             resources.ApplyResources(this.cbaspiration, "cbaspiration");
+            this.cbaspiration.BackgroundImage = null;
+            this.cbaspiration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbaspiration.Name = "cbaspiration";
             this.cbaspiration.SelectedValueChanged += new System.EventHandler(this.ChangedCareer);
             // 
             // pbAspCur
             // 
-            this.pbAspCur.BackColor = System.Drawing.Color.Transparent;
-            this.pbAspCur.DisplayOffset = 0;
+            this.pbAspCur.AccessibleDescription = null;
+            this.pbAspCur.AccessibleName = null;
             resources.ApplyResources(this.pbAspCur, "pbAspCur");
+            this.pbAspCur.BackColor = System.Drawing.Color.Transparent;
+            this.pbAspCur.BackgroundImage = null;
+            this.pbAspCur.DisplayOffset = 0;
             this.pbAspCur.Maximum = 1200;
             this.pbAspCur.Name = "pbAspCur";
             this.pbAspCur.NumberFormat = "N0";
@@ -1358,21 +1730,30 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // label46
             // 
+            this.label46.AccessibleDescription = null;
+            this.label46.AccessibleName = null;
             resources.ApplyResources(this.label46, "label46");
             this.label46.Name = "label46";
             // 
             // tblifelinescore
             // 
-            this.tblifelinescore.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tblifelinescore.AccessibleDescription = null;
+            this.tblifelinescore.AccessibleName = null;
             resources.ApplyResources(this.tblifelinescore, "tblifelinescore");
+            this.tblifelinescore.BackgroundImage = null;
+            this.tblifelinescore.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tblifelinescore.Font = null;
             this.tblifelinescore.Name = "tblifelinescore";
             this.tblifelinescore.TextChanged += new System.EventHandler(this.ChangedCareer);
             // 
             // pbCareerPerformance
             // 
-            this.pbCareerPerformance.BackColor = System.Drawing.Color.Transparent;
-            this.pbCareerPerformance.DisplayOffset = 0;
+            this.pbCareerPerformance.AccessibleDescription = null;
+            this.pbCareerPerformance.AccessibleName = null;
             resources.ApplyResources(this.pbCareerPerformance, "pbCareerPerformance");
+            this.pbCareerPerformance.BackColor = System.Drawing.Color.Transparent;
+            this.pbCareerPerformance.BackgroundImage = null;
+            this.pbCareerPerformance.DisplayOffset = 0;
             this.pbCareerPerformance.Maximum = 1000;
             this.pbCareerPerformance.Name = "pbCareerPerformance";
             this.pbCareerPerformance.NumberFormat = "N0";
@@ -1387,9 +1768,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbCareerLevel
             // 
-            this.pbCareerLevel.BackColor = System.Drawing.Color.Transparent;
-            this.pbCareerLevel.DisplayOffset = 0;
+            this.pbCareerLevel.AccessibleDescription = null;
+            this.pbCareerLevel.AccessibleName = null;
             resources.ApplyResources(this.pbCareerLevel, "pbCareerLevel");
+            this.pbCareerLevel.BackColor = System.Drawing.Color.Transparent;
+            this.pbCareerLevel.BackgroundImage = null;
+            this.pbCareerLevel.DisplayOffset = 0;
             this.pbCareerLevel.Maximum = 10;
             this.pbCareerLevel.Name = "pbCareerLevel";
             this.pbCareerLevel.NumberFormat = "N0";
@@ -1404,66 +1788,95 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // label78
             // 
+            this.label78.AccessibleDescription = null;
+            this.label78.AccessibleName = null;
             resources.ApplyResources(this.label78, "label78");
             this.label78.Name = "label78";
             // 
             // tbschooltype
             // 
-            this.tbschooltype.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbschooltype.AccessibleDescription = null;
+            this.tbschooltype.AccessibleName = null;
             resources.ApplyResources(this.tbschooltype, "tbschooltype");
+            this.tbschooltype.BackgroundImage = null;
+            this.tbschooltype.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbschooltype.Name = "tbschooltype";
             this.tbschooltype.TextChanged += new System.EventHandler(this.ChangedCareer);
             // 
             // label77
             // 
+            this.label77.AccessibleDescription = null;
+            this.label77.AccessibleName = null;
             resources.ApplyResources(this.label77, "label77");
             this.label77.Name = "label77";
             // 
             // cbgrade
             // 
-            this.cbgrade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbgrade.AccessibleDescription = null;
+            this.cbgrade.AccessibleName = null;
             resources.ApplyResources(this.cbgrade, "cbgrade");
+            this.cbgrade.BackgroundImage = null;
+            this.cbgrade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbgrade.Name = "cbgrade";
             this.cbgrade.SelectedValueChanged += new System.EventHandler(this.ChangedCareer);
             // 
             // cbschooltype
             // 
-            this.cbschooltype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbschooltype.AccessibleDescription = null;
+            this.cbschooltype.AccessibleName = null;
             resources.ApplyResources(this.cbschooltype, "cbschooltype");
+            this.cbschooltype.BackgroundImage = null;
+            this.cbschooltype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbschooltype.Name = "cbschooltype";
             this.cbschooltype.SelectedIndexChanged += new System.EventHandler(this.cbschooltype_SelectedIndexChanged);
             // 
             // label50
             // 
+            this.label50.AccessibleDescription = null;
+            this.label50.AccessibleName = null;
             resources.ApplyResources(this.label50, "label50");
             this.label50.Name = "label50";
             // 
             // cbcareer
             // 
-            this.cbcareer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbcareer.AccessibleDescription = null;
+            this.cbcareer.AccessibleName = null;
             resources.ApplyResources(this.cbcareer, "cbcareer");
+            this.cbcareer.BackgroundImage = null;
+            this.cbcareer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbcareer.Name = "cbcareer";
             this.cbcareer.SelectedIndexChanged += new System.EventHandler(this.cbcareer_SelectedIndexChanged);
             // 
             // tbcareervalue
             // 
-            this.tbcareervalue.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbcareervalue.AccessibleDescription = null;
+            this.tbcareervalue.AccessibleName = null;
             resources.ApplyResources(this.tbcareervalue, "tbcareervalue");
+            this.tbcareervalue.BackgroundImage = null;
+            this.tbcareervalue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbcareervalue.Name = "tbcareervalue";
             this.tbcareervalue.TextChanged += new System.EventHandler(this.ChangedCareer);
             // 
             // pnInt
             // 
+            this.pnInt.AccessibleDescription = null;
+            this.pnInt.AccessibleName = null;
             resources.ApplyResources(this.pnInt, "pnInt");
             this.pnInt.BackColor = System.Drawing.Color.Transparent;
+            this.pnInt.BackgroundImage = null;
             this.pnInt.Controls.Add(this.pnPetInt);
             this.pnInt.Controls.Add(this.pnSimInt);
+            this.pnInt.Font = null;
             this.pnInt.Name = "pnInt";
             this.pnInt.VisibleChanged += new System.EventHandler(this.pnInt_VisibleChanged);
             // 
             // pnSimInt
             // 
+            this.pnSimInt.AccessibleDescription = null;
+            this.pnSimInt.AccessibleName = null;
+            resources.ApplyResources(this.pnSimInt, "pnSimInt");
             this.pnSimInt.BackColor = System.Drawing.Color.Transparent;
+            this.pnSimInt.BackgroundImage = null;
             this.pnSimInt.Controls.Add(this.pbSciFi);
             this.pnSimInt.Controls.Add(this.pbTravel);
             this.pnSimInt.Controls.Add(this.pbToys);
@@ -1482,15 +1895,18 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnSimInt.Controls.Add(this.pbSports);
             this.pnSimInt.Controls.Add(this.pbHealth);
             this.pnSimInt.Controls.Add(this.pbFashion);
-            resources.ApplyResources(this.pnSimInt, "pnSimInt");
+            this.pnSimInt.Font = null;
             this.pnSimInt.Name = "pnSimInt";
             this.pnSimInt.VisibleChanged += new System.EventHandler(this.pnSimInt_VisibleChanged);
             // 
             // pbSciFi
             // 
-            this.pbSciFi.BackColor = System.Drawing.Color.Transparent;
-            this.pbSciFi.DisplayOffset = 0;
+            this.pbSciFi.AccessibleDescription = null;
+            this.pbSciFi.AccessibleName = null;
             resources.ApplyResources(this.pbSciFi, "pbSciFi");
+            this.pbSciFi.BackColor = System.Drawing.Color.Transparent;
+            this.pbSciFi.BackgroundImage = null;
+            this.pbSciFi.DisplayOffset = 0;
             this.pbSciFi.Maximum = 1000;
             this.pbSciFi.Name = "pbSciFi";
             this.pbSciFi.NumberFormat = "N1";
@@ -1505,9 +1921,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbTravel
             // 
-            this.pbTravel.BackColor = System.Drawing.Color.Transparent;
-            this.pbTravel.DisplayOffset = 0;
+            this.pbTravel.AccessibleDescription = null;
+            this.pbTravel.AccessibleName = null;
             resources.ApplyResources(this.pbTravel, "pbTravel");
+            this.pbTravel.BackColor = System.Drawing.Color.Transparent;
+            this.pbTravel.BackgroundImage = null;
+            this.pbTravel.DisplayOffset = 0;
             this.pbTravel.Maximum = 1000;
             this.pbTravel.Name = "pbTravel";
             this.pbTravel.NumberFormat = "N1";
@@ -1522,9 +1941,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbToys
             // 
-            this.pbToys.BackColor = System.Drawing.Color.Transparent;
-            this.pbToys.DisplayOffset = 0;
+            this.pbToys.AccessibleDescription = null;
+            this.pbToys.AccessibleName = null;
             resources.ApplyResources(this.pbToys, "pbToys");
+            this.pbToys.BackColor = System.Drawing.Color.Transparent;
+            this.pbToys.BackgroundImage = null;
+            this.pbToys.DisplayOffset = 0;
             this.pbToys.Maximum = 1000;
             this.pbToys.Name = "pbToys";
             this.pbToys.NumberFormat = "N1";
@@ -1539,9 +1961,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbEnvironment
             // 
-            this.pbEnvironment.BackColor = System.Drawing.Color.Transparent;
-            this.pbEnvironment.DisplayOffset = 0;
+            this.pbEnvironment.AccessibleDescription = null;
+            this.pbEnvironment.AccessibleName = null;
             resources.ApplyResources(this.pbEnvironment, "pbEnvironment");
+            this.pbEnvironment.BackColor = System.Drawing.Color.Transparent;
+            this.pbEnvironment.BackgroundImage = null;
+            this.pbEnvironment.DisplayOffset = 0;
             this.pbEnvironment.Maximum = 1000;
             this.pbEnvironment.Name = "pbEnvironment";
             this.pbEnvironment.NumberFormat = "N1";
@@ -1556,9 +1981,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbSchool
             // 
-            this.pbSchool.BackColor = System.Drawing.Color.Transparent;
-            this.pbSchool.DisplayOffset = 0;
+            this.pbSchool.AccessibleDescription = null;
+            this.pbSchool.AccessibleName = null;
             resources.ApplyResources(this.pbSchool, "pbSchool");
+            this.pbSchool.BackColor = System.Drawing.Color.Transparent;
+            this.pbSchool.BackgroundImage = null;
+            this.pbSchool.DisplayOffset = 0;
             this.pbSchool.Maximum = 1000;
             this.pbSchool.Name = "pbSchool";
             this.pbSchool.NumberFormat = "N1";
@@ -1573,9 +2001,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbParanormal
             // 
-            this.pbParanormal.BackColor = System.Drawing.Color.Transparent;
-            this.pbParanormal.DisplayOffset = 0;
+            this.pbParanormal.AccessibleDescription = null;
+            this.pbParanormal.AccessibleName = null;
             resources.ApplyResources(this.pbParanormal, "pbParanormal");
+            this.pbParanormal.BackColor = System.Drawing.Color.Transparent;
+            this.pbParanormal.BackgroundImage = null;
+            this.pbParanormal.DisplayOffset = 0;
             this.pbParanormal.Maximum = 1000;
             this.pbParanormal.Name = "pbParanormal";
             this.pbParanormal.NumberFormat = "N1";
@@ -1590,9 +2021,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbAnimals
             // 
-            this.pbAnimals.BackColor = System.Drawing.Color.Transparent;
-            this.pbAnimals.DisplayOffset = 0;
+            this.pbAnimals.AccessibleDescription = null;
+            this.pbAnimals.AccessibleName = null;
             resources.ApplyResources(this.pbAnimals, "pbAnimals");
+            this.pbAnimals.BackColor = System.Drawing.Color.Transparent;
+            this.pbAnimals.BackgroundImage = null;
+            this.pbAnimals.DisplayOffset = 0;
             this.pbAnimals.Maximum = 1000;
             this.pbAnimals.Name = "pbAnimals";
             this.pbAnimals.NumberFormat = "N1";
@@ -1607,9 +2041,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbEntertainment
             // 
-            this.pbEntertainment.BackColor = System.Drawing.Color.Transparent;
-            this.pbEntertainment.DisplayOffset = 0;
+            this.pbEntertainment.AccessibleDescription = null;
+            this.pbEntertainment.AccessibleName = null;
             resources.ApplyResources(this.pbEntertainment, "pbEntertainment");
+            this.pbEntertainment.BackColor = System.Drawing.Color.Transparent;
+            this.pbEntertainment.BackgroundImage = null;
+            this.pbEntertainment.DisplayOffset = 0;
             this.pbEntertainment.Maximum = 1000;
             this.pbEntertainment.Name = "pbEntertainment";
             this.pbEntertainment.NumberFormat = "N1";
@@ -1624,9 +2061,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbWeather
             // 
-            this.pbWeather.BackColor = System.Drawing.Color.Transparent;
-            this.pbWeather.DisplayOffset = 0;
+            this.pbWeather.AccessibleDescription = null;
+            this.pbWeather.AccessibleName = null;
             resources.ApplyResources(this.pbWeather, "pbWeather");
+            this.pbWeather.BackColor = System.Drawing.Color.Transparent;
+            this.pbWeather.BackgroundImage = null;
+            this.pbWeather.DisplayOffset = 0;
             this.pbWeather.Maximum = 1000;
             this.pbWeather.Name = "pbWeather";
             this.pbWeather.NumberFormat = "N1";
@@ -1641,9 +2081,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbCulture
             // 
-            this.pbCulture.BackColor = System.Drawing.Color.Transparent;
-            this.pbCulture.DisplayOffset = 0;
+            this.pbCulture.AccessibleDescription = null;
+            this.pbCulture.AccessibleName = null;
             resources.ApplyResources(this.pbCulture, "pbCulture");
+            this.pbCulture.BackColor = System.Drawing.Color.Transparent;
+            this.pbCulture.BackgroundImage = null;
+            this.pbCulture.DisplayOffset = 0;
             this.pbCulture.Maximum = 1000;
             this.pbCulture.Name = "pbCulture";
             this.pbCulture.NumberFormat = "N1";
@@ -1658,9 +2101,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbWork
             // 
-            this.pbWork.BackColor = System.Drawing.Color.Transparent;
-            this.pbWork.DisplayOffset = 0;
+            this.pbWork.AccessibleDescription = null;
+            this.pbWork.AccessibleName = null;
             resources.ApplyResources(this.pbWork, "pbWork");
+            this.pbWork.BackColor = System.Drawing.Color.Transparent;
+            this.pbWork.BackgroundImage = null;
+            this.pbWork.DisplayOffset = 0;
             this.pbWork.Maximum = 1000;
             this.pbWork.Name = "pbWork";
             this.pbWork.NumberFormat = "N1";
@@ -1675,9 +2121,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbMoney
             // 
-            this.pbMoney.BackColor = System.Drawing.Color.Transparent;
-            this.pbMoney.DisplayOffset = 0;
+            this.pbMoney.AccessibleDescription = null;
+            this.pbMoney.AccessibleName = null;
             resources.ApplyResources(this.pbMoney, "pbMoney");
+            this.pbMoney.BackColor = System.Drawing.Color.Transparent;
+            this.pbMoney.BackgroundImage = null;
+            this.pbMoney.DisplayOffset = 0;
             this.pbMoney.Maximum = 1000;
             this.pbMoney.Name = "pbMoney";
             this.pbMoney.NumberFormat = "N1";
@@ -1692,9 +2141,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbPolitics
             // 
-            this.pbPolitics.BackColor = System.Drawing.Color.Transparent;
-            this.pbPolitics.DisplayOffset = 0;
+            this.pbPolitics.AccessibleDescription = null;
+            this.pbPolitics.AccessibleName = null;
             resources.ApplyResources(this.pbPolitics, "pbPolitics");
+            this.pbPolitics.BackColor = System.Drawing.Color.Transparent;
+            this.pbPolitics.BackgroundImage = null;
+            this.pbPolitics.DisplayOffset = 0;
             this.pbPolitics.Maximum = 1000;
             this.pbPolitics.Name = "pbPolitics";
             this.pbPolitics.NumberFormat = "N1";
@@ -1709,9 +2161,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbCrime
             // 
-            this.pbCrime.BackColor = System.Drawing.Color.Transparent;
-            this.pbCrime.DisplayOffset = 0;
+            this.pbCrime.AccessibleDescription = null;
+            this.pbCrime.AccessibleName = null;
             resources.ApplyResources(this.pbCrime, "pbCrime");
+            this.pbCrime.BackColor = System.Drawing.Color.Transparent;
+            this.pbCrime.BackgroundImage = null;
+            this.pbCrime.DisplayOffset = 0;
             this.pbCrime.Maximum = 1000;
             this.pbCrime.Name = "pbCrime";
             this.pbCrime.NumberFormat = "N1";
@@ -1726,9 +2181,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbFood
             // 
-            this.pbFood.BackColor = System.Drawing.Color.Transparent;
-            this.pbFood.DisplayOffset = 0;
+            this.pbFood.AccessibleDescription = null;
+            this.pbFood.AccessibleName = null;
             resources.ApplyResources(this.pbFood, "pbFood");
+            this.pbFood.BackColor = System.Drawing.Color.Transparent;
+            this.pbFood.BackgroundImage = null;
+            this.pbFood.DisplayOffset = 0;
             this.pbFood.Maximum = 1000;
             this.pbFood.Name = "pbFood";
             this.pbFood.NumberFormat = "N1";
@@ -1743,9 +2201,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbSports
             // 
-            this.pbSports.BackColor = System.Drawing.Color.Transparent;
-            this.pbSports.DisplayOffset = 0;
+            this.pbSports.AccessibleDescription = null;
+            this.pbSports.AccessibleName = null;
             resources.ApplyResources(this.pbSports, "pbSports");
+            this.pbSports.BackColor = System.Drawing.Color.Transparent;
+            this.pbSports.BackgroundImage = null;
+            this.pbSports.DisplayOffset = 0;
             this.pbSports.Maximum = 1000;
             this.pbSports.Name = "pbSports";
             this.pbSports.NumberFormat = "N1";
@@ -1760,9 +2221,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbHealth
             // 
-            this.pbHealth.BackColor = System.Drawing.Color.Transparent;
-            this.pbHealth.DisplayOffset = 0;
+            this.pbHealth.AccessibleDescription = null;
+            this.pbHealth.AccessibleName = null;
             resources.ApplyResources(this.pbHealth, "pbHealth");
+            this.pbHealth.BackColor = System.Drawing.Color.Transparent;
+            this.pbHealth.BackgroundImage = null;
+            this.pbHealth.DisplayOffset = 0;
             this.pbHealth.Maximum = 1000;
             this.pbHealth.Name = "pbHealth";
             this.pbHealth.NumberFormat = "N1";
@@ -1777,9 +2241,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbFashion
             // 
-            this.pbFashion.BackColor = System.Drawing.Color.Transparent;
-            this.pbFashion.DisplayOffset = 0;
+            this.pbFashion.AccessibleDescription = null;
+            this.pbFashion.AccessibleName = null;
             resources.ApplyResources(this.pbFashion, "pbFashion");
+            this.pbFashion.BackColor = System.Drawing.Color.Transparent;
+            this.pbFashion.BackgroundImage = null;
+            this.pbFashion.DisplayOffset = 0;
             this.pbFashion.Maximum = 1000;
             this.pbFashion.Name = "pbFashion";
             this.pbFashion.NumberFormat = "N1";
@@ -1794,28 +2261,60 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pnRel
             // 
+            this.pnRel.AccessibleDescription = null;
+            this.pnRel.AccessibleName = null;
             resources.ApplyResources(this.pnRel, "pnRel");
             this.pnRel.BackColor = System.Drawing.Color.Transparent;
+            this.pnRel.BackgroundImage = null;
             this.pnRel.Controls.Add(this.lv);
             this.pnRel.Controls.Add(this.panel3);
             this.pnRel.Name = "pnRel";
             this.pnRel.VisibleChanged += new System.EventHandler(this.pnRel_VisibleChanged);
             // 
+            // lv
+            // 
+            this.lv.AccessibleDescription = null;
+            this.lv.AccessibleName = null;
+            resources.ApplyResources(this.lv, "lv");
+            this.lv.BackgroundImage = null;
+            this.lv.ContextMenuStrip = this.miRel;
+            this.lv.Name = "lv";
+            this.lv.Package = null;
+            this.lv.RightClickSelect = true;
+            this.lv.SelectedElement = null;
+            this.lv.SelectedSim = null;
+            this.lv.ShowNotRelatedSims = false;
+            this.lv.ShowRelatedSims = true;
+            this.lv.Sim = null;
+            this.lv.SimDetails = false;
+            this.lv.TileColumns = new int[] {
+        1};
+            this.lv.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.lv_SelectedSimChanged);
+            // 
             // panel3
             // 
+            this.panel3.AccessibleDescription = null;
+            this.panel3.AccessibleName = null;
             resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.BackgroundImage = null;
             this.panel3.Controls.Add(this.srcTb);
             this.panel3.Controls.Add(this.dstTb);
+            this.panel3.Font = null;
             this.panel3.Name = "panel3";
             // 
             // srcTb
             // 
+            this.srcTb.AccessibleDescription = null;
+            this.srcTb.AccessibleName = null;
+            resources.ApplyResources(this.srcTb, "srcTb");
             this.srcTb.BackColor = System.Drawing.Color.Transparent;
+            this.srcTb.BackgroundImage = null;
             this.srcTb.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.srcTb.BorderColor = System.Drawing.SystemColors.Window;
+            this.srcTb.Font = null;
             this.srcTb.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.srcTb, "srcTb");
             this.srcTb.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.srcTb.Icon = null;
             this.srcTb.IconLocation = new System.Drawing.Point(4, 6);
             this.srcTb.IconSize = new System.Drawing.Size(48, 32);
             this.srcTb.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
@@ -1824,12 +2323,17 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // dstTb
             // 
+            this.dstTb.AccessibleDescription = null;
+            this.dstTb.AccessibleName = null;
+            resources.ApplyResources(this.dstTb, "dstTb");
             this.dstTb.BackColor = System.Drawing.Color.Transparent;
+            this.dstTb.BackgroundImage = null;
             this.dstTb.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.dstTb.BorderColor = System.Drawing.SystemColors.Window;
+            this.dstTb.Font = null;
             this.dstTb.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.dstTb, "dstTb");
             this.dstTb.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dstTb.Icon = null;
             this.dstTb.IconLocation = new System.Drawing.Point(4, 6);
             this.dstTb.IconSize = new System.Drawing.Size(48, 32);
             this.dstTb.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
@@ -1838,16 +2342,24 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pnMisc
             // 
+            this.pnMisc.AccessibleDescription = null;
+            this.pnMisc.AccessibleName = null;
             resources.ApplyResources(this.pnMisc, "pnMisc");
             this.pnMisc.BackColor = System.Drawing.Color.Transparent;
+            this.pnMisc.BackgroundImage = null;
             this.pnMisc.Controls.Add(this.xpTaskBoxSimple3);
             this.pnMisc.Controls.Add(this.xpTaskBoxSimple2);
             this.pnMisc.Controls.Add(this.xpTaskBoxSimple1);
+            this.pnMisc.Font = null;
             this.pnMisc.Name = "pnMisc";
             // 
             // xpTaskBoxSimple3
             // 
+            this.xpTaskBoxSimple3.AccessibleDescription = null;
+            this.xpTaskBoxSimple3.AccessibleName = null;
+            resources.ApplyResources(this.xpTaskBoxSimple3, "xpTaskBoxSimple3");
             this.xpTaskBoxSimple3.BackColor = System.Drawing.Color.Transparent;
+            this.xpTaskBoxSimple3.BackgroundImage = null;
             this.xpTaskBoxSimple3.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.xpTaskBoxSimple3.BorderColor = System.Drawing.SystemColors.Window;
             this.xpTaskBoxSimple3.Controls.Add(this.label3);
@@ -1864,9 +2376,10 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpTaskBoxSimple3.Controls.Add(this.label87);
             this.xpTaskBoxSimple3.Controls.Add(this.tbautonomy);
             this.xpTaskBoxSimple3.Controls.Add(this.label86);
+            this.xpTaskBoxSimple3.Font = null;
             this.xpTaskBoxSimple3.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.xpTaskBoxSimple3, "xpTaskBoxSimple3");
             this.xpTaskBoxSimple3.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.xpTaskBoxSimple3.Icon = null;
             this.xpTaskBoxSimple3.IconLocation = new System.Drawing.Point(4, 12);
             this.xpTaskBoxSimple3.IconSize = new System.Drawing.Size(32, 32);
             this.xpTaskBoxSimple3.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
@@ -1875,91 +2388,130 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = null;
+            this.label3.AccessibleName = null;
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
             // tbstatmot
             // 
-            this.tbstatmot.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbstatmot.AccessibleDescription = null;
+            this.tbstatmot.AccessibleName = null;
             resources.ApplyResources(this.tbstatmot, "tbstatmot");
+            this.tbstatmot.BackgroundImage = null;
+            this.tbstatmot.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbstatmot.Name = "tbstatmot";
             this.tbstatmot.TextChanged += new System.EventHandler(this.ChangedOther);
             // 
             // label96
             // 
+            this.label96.AccessibleDescription = null;
+            this.label96.AccessibleName = null;
             resources.ApplyResources(this.label96, "label96");
             this.label96.Name = "label96";
             // 
             // tbunlinked
             // 
-            this.tbunlinked.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbunlinked.AccessibleDescription = null;
+            this.tbunlinked.AccessibleName = null;
             resources.ApplyResources(this.tbunlinked, "tbunlinked");
+            this.tbunlinked.BackgroundImage = null;
+            this.tbunlinked.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbunlinked.Name = "tbunlinked";
             this.tbunlinked.TextChanged += new System.EventHandler(this.ChangedOther);
             // 
             // label95
             // 
+            this.label95.AccessibleDescription = null;
+            this.label95.AccessibleName = null;
             resources.ApplyResources(this.label95, "label95");
             this.label95.Name = "label95";
             // 
             // tbagedur
             // 
-            this.tbagedur.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbagedur.AccessibleDescription = null;
+            this.tbagedur.AccessibleName = null;
             resources.ApplyResources(this.tbagedur, "tbagedur");
+            this.tbagedur.BackgroundImage = null;
+            this.tbagedur.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbagedur.Name = "tbagedur";
             this.tbagedur.TextChanged += new System.EventHandler(this.ChangedOther);
             // 
             // tbprevdays
             // 
-            this.tbprevdays.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbprevdays.AccessibleDescription = null;
+            this.tbprevdays.AccessibleName = null;
             resources.ApplyResources(this.tbprevdays, "tbprevdays");
+            this.tbprevdays.BackgroundImage = null;
+            this.tbprevdays.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbprevdays.Name = "tbprevdays";
             this.tbprevdays.TextChanged += new System.EventHandler(this.ChangedOther);
             // 
             // label94
             // 
+            this.label94.AccessibleDescription = null;
+            this.label94.AccessibleName = null;
             resources.ApplyResources(this.label94, "label94");
             this.label94.Name = "label94";
             // 
             // tbvoice
             // 
-            this.tbvoice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbvoice.AccessibleDescription = null;
+            this.tbvoice.AccessibleName = null;
             resources.ApplyResources(this.tbvoice, "tbvoice");
+            this.tbvoice.BackgroundImage = null;
+            this.tbvoice.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbvoice.Name = "tbvoice";
             this.tbvoice.TextChanged += new System.EventHandler(this.ChangedOther);
             // 
             // label90
             // 
+            this.label90.AccessibleDescription = null;
+            this.label90.AccessibleName = null;
             resources.ApplyResources(this.label90, "label90");
             this.label90.Name = "label90";
             // 
             // tbnpc
             // 
-            this.tbnpc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbnpc.AccessibleDescription = null;
+            this.tbnpc.AccessibleName = null;
             resources.ApplyResources(this.tbnpc, "tbnpc");
+            this.tbnpc.BackgroundImage = null;
+            this.tbnpc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbnpc.Name = "tbnpc";
             this.tbnpc.TextChanged += new System.EventHandler(this.ChangedOther);
             // 
             // label87
             // 
+            this.label87.AccessibleDescription = null;
+            this.label87.AccessibleName = null;
             resources.ApplyResources(this.label87, "label87");
             this.label87.Name = "label87";
             // 
             // tbautonomy
             // 
-            this.tbautonomy.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbautonomy.AccessibleDescription = null;
+            this.tbautonomy.AccessibleName = null;
             resources.ApplyResources(this.tbautonomy, "tbautonomy");
+            this.tbautonomy.BackgroundImage = null;
+            this.tbautonomy.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbautonomy.Name = "tbautonomy";
             this.tbautonomy.TextChanged += new System.EventHandler(this.ChangedOther);
             // 
             // label86
             // 
+            this.label86.AccessibleDescription = null;
+            this.label86.AccessibleName = null;
             resources.ApplyResources(this.label86, "label86");
             this.label86.Name = "label86";
             // 
             // xpTaskBoxSimple2
             // 
+            this.xpTaskBoxSimple2.AccessibleDescription = null;
+            this.xpTaskBoxSimple2.AccessibleName = null;
+            resources.ApplyResources(this.xpTaskBoxSimple2, "xpTaskBoxSimple2");
             this.xpTaskBoxSimple2.BackColor = System.Drawing.Color.Transparent;
+            this.xpTaskBoxSimple2.BackgroundImage = null;
             this.xpTaskBoxSimple2.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.xpTaskBoxSimple2.BorderColor = System.Drawing.SystemColors.Window;
             this.xpTaskBoxSimple2.Controls.Add(this.cbfit);
@@ -1967,9 +2519,10 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpTaskBoxSimple2.Controls.Add(this.cbpreghalf);
             this.xpTaskBoxSimple2.Controls.Add(this.cbpregfull);
             this.xpTaskBoxSimple2.Controls.Add(this.cbfat);
+            this.xpTaskBoxSimple2.Font = null;
             this.xpTaskBoxSimple2.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.xpTaskBoxSimple2, "xpTaskBoxSimple2");
             this.xpTaskBoxSimple2.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.xpTaskBoxSimple2.Icon = null;
             this.xpTaskBoxSimple2.IconLocation = new System.Drawing.Point(4, 12);
             this.xpTaskBoxSimple2.IconSize = new System.Drawing.Size(32, 32);
             this.xpTaskBoxSimple2.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
@@ -1978,42 +2531,61 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // cbfit
             // 
+            this.cbfit.AccessibleDescription = null;
+            this.cbfit.AccessibleName = null;
             resources.ApplyResources(this.cbfit, "cbfit");
+            this.cbfit.BackgroundImage = null;
             this.cbfit.Name = "cbfit";
             this.cbfit.UseVisualStyleBackColor = false;
             this.cbfit.CheckedChanged += new System.EventHandler(this.ChangedOther);
             // 
             // cbpreginv
             // 
+            this.cbpreginv.AccessibleDescription = null;
+            this.cbpreginv.AccessibleName = null;
             resources.ApplyResources(this.cbpreginv, "cbpreginv");
+            this.cbpreginv.BackgroundImage = null;
             this.cbpreginv.Name = "cbpreginv";
             this.cbpreginv.UseVisualStyleBackColor = false;
             this.cbpreginv.CheckedChanged += new System.EventHandler(this.ChangedOther);
             // 
             // cbpreghalf
             // 
+            this.cbpreghalf.AccessibleDescription = null;
+            this.cbpreghalf.AccessibleName = null;
             resources.ApplyResources(this.cbpreghalf, "cbpreghalf");
+            this.cbpreghalf.BackgroundImage = null;
             this.cbpreghalf.Name = "cbpreghalf";
             this.cbpreghalf.UseVisualStyleBackColor = false;
             this.cbpreghalf.CheckedChanged += new System.EventHandler(this.ChangedOther);
             // 
             // cbpregfull
             // 
+            this.cbpregfull.AccessibleDescription = null;
+            this.cbpregfull.AccessibleName = null;
             resources.ApplyResources(this.cbpregfull, "cbpregfull");
+            this.cbpregfull.BackgroundImage = null;
             this.cbpregfull.Name = "cbpregfull";
             this.cbpregfull.UseVisualStyleBackColor = false;
             this.cbpregfull.CheckedChanged += new System.EventHandler(this.ChangedOther);
             // 
             // cbfat
             // 
+            this.cbfat.AccessibleDescription = null;
+            this.cbfat.AccessibleName = null;
             resources.ApplyResources(this.cbfat, "cbfat");
+            this.cbfat.BackgroundImage = null;
             this.cbfat.Name = "cbfat";
             this.cbfat.UseVisualStyleBackColor = false;
             this.cbfat.CheckedChanged += new System.EventHandler(this.ChangedOther);
             // 
             // xpTaskBoxSimple1
             // 
+            this.xpTaskBoxSimple1.AccessibleDescription = null;
+            this.xpTaskBoxSimple1.AccessibleName = null;
+            resources.ApplyResources(this.xpTaskBoxSimple1, "xpTaskBoxSimple1");
             this.xpTaskBoxSimple1.BackColor = System.Drawing.Color.Transparent;
+            this.xpTaskBoxSimple1.BackgroundImage = null;
             this.xpTaskBoxSimple1.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.xpTaskBoxSimple1.BorderColor = System.Drawing.SystemColors.Window;
             this.xpTaskBoxSimple1.Controls.Add(this.cbisghost);
@@ -2021,9 +2593,10 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpTaskBoxSimple1.Controls.Add(this.cbpasspeople);
             this.xpTaskBoxSimple1.Controls.Add(this.cbpasswalls);
             this.xpTaskBoxSimple1.Controls.Add(this.cbpassobject);
+            this.xpTaskBoxSimple1.Font = null;
             this.xpTaskBoxSimple1.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold);
-            resources.ApplyResources(this.xpTaskBoxSimple1, "xpTaskBoxSimple1");
             this.xpTaskBoxSimple1.HeaderTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.xpTaskBoxSimple1.Icon = null;
             this.xpTaskBoxSimple1.IconLocation = new System.Drawing.Point(4, 12);
             this.xpTaskBoxSimple1.IconSize = new System.Drawing.Size(32, 32);
             this.xpTaskBoxSimple1.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
@@ -2032,43 +2605,61 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // cbisghost
             // 
+            this.cbisghost.AccessibleDescription = null;
+            this.cbisghost.AccessibleName = null;
             resources.ApplyResources(this.cbisghost, "cbisghost");
+            this.cbisghost.BackgroundImage = null;
             this.cbisghost.Name = "cbisghost";
             this.cbisghost.UseVisualStyleBackColor = false;
             this.cbisghost.CheckedChanged += new System.EventHandler(this.ChangedOther);
             // 
             // cbignoretraversal
             // 
+            this.cbignoretraversal.AccessibleDescription = null;
+            this.cbignoretraversal.AccessibleName = null;
             resources.ApplyResources(this.cbignoretraversal, "cbignoretraversal");
+            this.cbignoretraversal.BackgroundImage = null;
             this.cbignoretraversal.Name = "cbignoretraversal";
             this.cbignoretraversal.UseVisualStyleBackColor = false;
             this.cbignoretraversal.CheckedChanged += new System.EventHandler(this.ChangedOther);
             // 
             // cbpasspeople
             // 
+            this.cbpasspeople.AccessibleDescription = null;
+            this.cbpasspeople.AccessibleName = null;
             resources.ApplyResources(this.cbpasspeople, "cbpasspeople");
+            this.cbpasspeople.BackgroundImage = null;
             this.cbpasspeople.Name = "cbpasspeople";
             this.cbpasspeople.UseVisualStyleBackColor = false;
             this.cbpasspeople.CheckedChanged += new System.EventHandler(this.ChangedOther);
             // 
             // cbpasswalls
             // 
+            this.cbpasswalls.AccessibleDescription = null;
+            this.cbpasswalls.AccessibleName = null;
             resources.ApplyResources(this.cbpasswalls, "cbpasswalls");
+            this.cbpasswalls.BackgroundImage = null;
             this.cbpasswalls.Name = "cbpasswalls";
             this.cbpasswalls.UseVisualStyleBackColor = false;
             this.cbpasswalls.CheckedChanged += new System.EventHandler(this.ChangedOther);
             // 
             // cbpassobject
             // 
+            this.cbpassobject.AccessibleDescription = null;
+            this.cbpassobject.AccessibleName = null;
             resources.ApplyResources(this.cbpassobject, "cbpassobject");
+            this.cbpassobject.BackgroundImage = null;
             this.cbpassobject.Name = "cbpassobject";
             this.cbpassobject.UseVisualStyleBackColor = false;
             this.cbpassobject.CheckedChanged += new System.EventHandler(this.ChangedOther);
             // 
             // pnEP1
             // 
+            this.pnEP1.AccessibleDescription = null;
+            this.pnEP1.AccessibleName = null;
             resources.ApplyResources(this.pnEP1, "pnEP1");
             this.pnEP1.BackColor = System.Drawing.Color.Transparent;
+            this.pnEP1.BackgroundImage = null;
             this.pnEP1.Controls.Add(this.pbLastGrade);
             this.pnEP1.Controls.Add(this.pbUniTime);
             this.pnEP1.Controls.Add(this.pbEffort);
@@ -2080,13 +2671,17 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnEP1.Controls.Add(this.cbmajor);
             this.pnEP1.Controls.Add(this.label98);
             this.pnEP1.Controls.Add(this.tbmajor);
+            this.pnEP1.Font = null;
             this.pnEP1.Name = "pnEP1";
             // 
             // pbLastGrade
             // 
-            this.pbLastGrade.BackColor = System.Drawing.Color.Transparent;
-            this.pbLastGrade.DisplayOffset = 0;
+            this.pbLastGrade.AccessibleDescription = null;
+            this.pbLastGrade.AccessibleName = null;
             resources.ApplyResources(this.pbLastGrade, "pbLastGrade");
+            this.pbLastGrade.BackColor = System.Drawing.Color.Transparent;
+            this.pbLastGrade.BackgroundImage = null;
+            this.pbLastGrade.DisplayOffset = 0;
             this.pbLastGrade.Maximum = 1000;
             this.pbLastGrade.Name = "pbLastGrade";
             this.pbLastGrade.NumberFormat = "N1";
@@ -2101,9 +2696,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbUniTime
             // 
-            this.pbUniTime.BackColor = System.Drawing.Color.Transparent;
-            this.pbUniTime.DisplayOffset = 0;
+            this.pbUniTime.AccessibleDescription = null;
+            this.pbUniTime.AccessibleName = null;
             resources.ApplyResources(this.pbUniTime, "pbUniTime");
+            this.pbUniTime.BackColor = System.Drawing.Color.Transparent;
+            this.pbUniTime.BackgroundImage = null;
+            this.pbUniTime.DisplayOffset = 0;
             this.pbUniTime.Maximum = 72;
             this.pbUniTime.Name = "pbUniTime";
             this.pbUniTime.NumberFormat = "N0";
@@ -2118,9 +2716,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pbEffort
             // 
-            this.pbEffort.BackColor = System.Drawing.Color.Transparent;
-            this.pbEffort.DisplayOffset = 0;
+            this.pbEffort.AccessibleDescription = null;
+            this.pbEffort.AccessibleName = null;
             resources.ApplyResources(this.pbEffort, "pbEffort");
+            this.pbEffort.BackColor = System.Drawing.Color.Transparent;
+            this.pbEffort.BackgroundImage = null;
+            this.pbEffort.DisplayOffset = 0;
             this.pbEffort.Maximum = 1000;
             this.pbEffort.Name = "pbEffort";
             this.pbEffort.NumberFormat = "N2";
@@ -2135,56 +2736,80 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // tbinfluence
             // 
+            this.tbinfluence.AccessibleDescription = null;
+            this.tbinfluence.AccessibleName = null;
             resources.ApplyResources(this.tbinfluence, "tbinfluence");
+            this.tbinfluence.BackgroundImage = null;
             this.tbinfluence.Name = "tbinfluence";
             this.tbinfluence.TextChanged += new System.EventHandler(this.ChangedEP1);
             // 
             // tbsemester
             // 
+            this.tbsemester.AccessibleDescription = null;
+            this.tbsemester.AccessibleName = null;
             resources.ApplyResources(this.tbsemester, "tbsemester");
+            this.tbsemester.BackgroundImage = null;
             this.tbsemester.Name = "tbsemester";
             this.tbsemester.TextChanged += new System.EventHandler(this.ChangedEP1);
             // 
             // label103
             // 
+            this.label103.AccessibleDescription = null;
+            this.label103.AccessibleName = null;
             resources.ApplyResources(this.label103, "label103");
             this.label103.Name = "label103";
             // 
             // label101
             // 
+            this.label101.AccessibleDescription = null;
+            this.label101.AccessibleName = null;
             resources.ApplyResources(this.label101, "label101");
             this.label101.Name = "label101";
             // 
             // cboncampus
             // 
+            this.cboncampus.AccessibleDescription = null;
+            this.cboncampus.AccessibleName = null;
             resources.ApplyResources(this.cboncampus, "cboncampus");
+            this.cboncampus.BackgroundImage = null;
             this.cboncampus.Name = "cboncampus";
             this.cboncampus.UseVisualStyleBackColor = false;
             this.cboncampus.CheckedChanged += new System.EventHandler(this.ChangedEP1);
             // 
             // cbmajor
             // 
-            this.cbmajor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbmajor.AccessibleDescription = null;
+            this.cbmajor.AccessibleName = null;
             resources.ApplyResources(this.cbmajor, "cbmajor");
+            this.cbmajor.BackgroundImage = null;
+            this.cbmajor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbmajor.Name = "cbmajor";
             this.cbmajor.SelectedIndexChanged += new System.EventHandler(this.cbmajor_SelectedIndexChanged);
             // 
             // label98
             // 
+            this.label98.AccessibleDescription = null;
+            this.label98.AccessibleName = null;
             resources.ApplyResources(this.label98, "label98");
             this.label98.Name = "label98";
             // 
             // tbmajor
             // 
-            this.tbmajor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbmajor.AccessibleDescription = null;
+            this.tbmajor.AccessibleName = null;
             resources.ApplyResources(this.tbmajor, "tbmajor");
+            this.tbmajor.BackgroundImage = null;
+            this.tbmajor.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbmajor.Name = "tbmajor";
             this.tbmajor.TextChanged += new System.EventHandler(this.ChangedEP1);
             // 
             // pnEP2
             // 
+            this.pnEP2.AccessibleDescription = null;
+            this.pnEP2.AccessibleName = null;
             resources.ApplyResources(this.pnEP2, "pnEP2");
             this.pnEP2.BackColor = System.Drawing.Color.Transparent;
+            this.pnEP2.BackgroundImage = null;
             this.pnEP2.Controls.Add(this.tbNTLove);
             this.pnEP2.Controls.Add(this.tbNTPerfume);
             this.pnEP2.Controls.Add(this.label8);
@@ -2199,63 +2824,93 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // tbNTLove
             // 
+            this.tbNTLove.AccessibleDescription = null;
+            this.tbNTLove.AccessibleName = null;
             resources.ApplyResources(this.tbNTLove, "tbNTLove");
+            this.tbNTLove.BackgroundImage = null;
+            this.tbNTLove.Font = null;
             this.tbNTLove.Name = "tbNTLove";
             this.tbNTLove.TextChanged += new System.EventHandler(this.ChangedEP2);
             // 
             // tbNTPerfume
             // 
+            this.tbNTPerfume.AccessibleDescription = null;
+            this.tbNTPerfume.AccessibleName = null;
             resources.ApplyResources(this.tbNTPerfume, "tbNTPerfume");
+            this.tbNTPerfume.BackgroundImage = null;
+            this.tbNTPerfume.Font = null;
             this.tbNTPerfume.Name = "tbNTPerfume";
             this.tbNTPerfume.TextChanged += new System.EventHandler(this.ChangedEP2);
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = null;
+            this.label8.AccessibleName = null;
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = null;
+            this.label7.AccessibleName = null;
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
             // 
             // lbTurnOff
             // 
+            this.lbTurnOff.AccessibleDescription = null;
+            this.lbTurnOff.AccessibleName = null;
             resources.ApplyResources(this.lbTurnOff, "lbTurnOff");
+            this.lbTurnOff.BackgroundImage = null;
             this.lbTurnOff.Name = "lbTurnOff";
             this.lbTurnOff.SelectedIndexChanged += new System.EventHandler(this.lbTurnOff_SelectedIndexChanged);
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = null;
+            this.label6.AccessibleName = null;
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
             // 
             // lbTurnOn
             // 
+            this.lbTurnOn.AccessibleDescription = null;
+            this.lbTurnOn.AccessibleName = null;
             resources.ApplyResources(this.lbTurnOn, "lbTurnOn");
+            this.lbTurnOn.BackgroundImage = null;
             this.lbTurnOn.Name = "lbTurnOn";
             this.lbTurnOn.SelectedIndexChanged += new System.EventHandler(this.lbTurnOn_SelectedIndexChanged);
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = null;
+            this.label5.AccessibleName = null;
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
             // lbTraits
             // 
+            this.lbTraits.AccessibleDescription = null;
+            this.lbTraits.AccessibleName = null;
             resources.ApplyResources(this.lbTraits, "lbTraits");
+            this.lbTraits.BackgroundImage = null;
             this.lbTraits.Name = "lbTraits";
             this.lbTraits.SelectedIndexChanged += new System.EventHandler(this.lbTraits_SelectedIndexChanged);
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = null;
+            this.label4.AccessibleName = null;
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
             // pnEP3
             // 
+            this.pnEP3.AccessibleDescription = null;
+            this.pnEP3.AccessibleName = null;
             resources.ApplyResources(this.pnEP3, "pnEP3");
             this.pnEP3.BackColor = System.Drawing.Color.Transparent;
+            this.pnEP3.BackgroundImage = null;
             this.pnEP3.Controls.Add(this.pictureBox1);
             this.pnEP3.Controls.Add(this.llep3openinfo);
             this.pnEP3.Controls.Add(this.label15);
@@ -2272,12 +2927,19 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pictureBox1
             // 
+            this.pictureBox1.AccessibleDescription = null;
+            this.pictureBox1.AccessibleName = null;
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.BackgroundImage = null;
+            this.pictureBox1.Font = null;
+            this.pictureBox1.ImageLocation = null;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
             // llep3openinfo
             // 
+            this.llep3openinfo.AccessibleDescription = null;
+            this.llep3openinfo.AccessibleName = null;
             resources.ApplyResources(this.llep3openinfo, "llep3openinfo");
             this.llep3openinfo.Name = "llep3openinfo";
             this.llep3openinfo.TabStop = true;
@@ -2285,142 +2947,122 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // label15
             // 
+            this.label15.AccessibleDescription = null;
+            this.label15.AccessibleName = null;
             resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
             // 
+            // sblb
+            // 
+            this.sblb.AccessibleDescription = null;
+            this.sblb.AccessibleName = null;
+            resources.ApplyResources(this.sblb, "sblb");
+            this.sblb.BackgroundImage = null;
+            this.sblb.Name = "sblb";
+            this.sblb.SimDescription = null;
+            this.sblb.SelectedBusinessChanged += new System.EventHandler(this.sblb_SelectedBusinessChanged);
+            // 
             // tbEp3Salery
             // 
+            this.tbEp3Salery.AccessibleDescription = null;
+            this.tbEp3Salery.AccessibleName = null;
             resources.ApplyResources(this.tbEp3Salery, "tbEp3Salery");
+            this.tbEp3Salery.BackgroundImage = null;
+            this.tbEp3Salery.Font = null;
             this.tbEp3Salery.Name = "tbEp3Salery";
             this.tbEp3Salery.TextChanged += new System.EventHandler(this.ChangedEP3);
             // 
             // label14
             // 
+            this.label14.AccessibleDescription = null;
+            this.label14.AccessibleName = null;
             resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
             // 
             // label12
             // 
+            this.label12.AccessibleDescription = null;
+            this.label12.AccessibleName = null;
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
             // 
             // cbEp3Asgn
             // 
+            this.cbEp3Asgn.AccessibleDescription = null;
+            this.cbEp3Asgn.AccessibleName = null;
+            resources.ApplyResources(this.cbEp3Asgn, "cbEp3Asgn");
+            this.cbEp3Asgn.BackgroundImage = null;
             this.cbEp3Asgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEp3Asgn.Enum = null;
+            this.cbEp3Asgn.Font = null;
             this.cbEp3Asgn.ForeColor = System.Drawing.SystemColors.ControlText;
-            resources.ApplyResources(this.cbEp3Asgn, "cbEp3Asgn");
             this.cbEp3Asgn.Name = "cbEp3Asgn";
             this.cbEp3Asgn.ResourceManager = null;
             this.cbEp3Asgn.SelectedValueChanged += new System.EventHandler(this.ChangedEP3);
             // 
             // tbEp3Flag
             // 
+            this.tbEp3Flag.AccessibleDescription = null;
+            this.tbEp3Flag.AccessibleName = null;
             resources.ApplyResources(this.tbEp3Flag, "tbEp3Flag");
+            this.tbEp3Flag.BackgroundImage = null;
+            this.tbEp3Flag.Font = null;
             this.tbEp3Flag.Name = "tbEp3Flag";
             this.tbEp3Flag.TextChanged += new System.EventHandler(this.ChangedEP3);
             // 
             // tbEp3Lot
             // 
+            this.tbEp3Lot.AccessibleDescription = null;
+            this.tbEp3Lot.AccessibleName = null;
             resources.ApplyResources(this.tbEp3Lot, "tbEp3Lot");
+            this.tbEp3Lot.BackgroundImage = null;
+            this.tbEp3Lot.Font = null;
             this.tbEp3Lot.Name = "tbEp3Lot";
             this.tbEp3Lot.TextChanged += new System.EventHandler(this.ChangedEP3);
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = null;
+            this.label9.AccessibleName = null;
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
             // 
             // label11
             // 
+            this.label11.AccessibleDescription = null;
+            this.label11.AccessibleName = null;
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
             // 
-            // ptPigpen
-            // 
-            this.ptPigpen.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            resources.ApplyResources(this.ptPigpen, "ptPigpen");
-            this.ptPigpen.Name = "ptPigpen";
-            this.ptPigpen.LevelChanged += new System.EventHandler(this.ChangedEP4);
-            // 
-            // ptAggres
-            // 
-            this.ptAggres.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            resources.ApplyResources(this.ptAggres, "ptAggres");
-            this.ptAggres.Name = "ptAggres";
-            this.ptAggres.LevelChanged += new System.EventHandler(this.ChangedEP4);
-            // 
-            // ptIndep
-            // 
-            this.ptIndep.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            resources.ApplyResources(this.ptIndep, "ptIndep");
-            this.ptIndep.Name = "ptIndep";
-            this.ptIndep.LevelChanged += new System.EventHandler(this.ChangedEP4);
-            // 
-            // ptHyper
-            // 
-            this.ptHyper.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            resources.ApplyResources(this.ptHyper, "ptHyper");
-            this.ptHyper.Name = "ptHyper";
-            this.ptHyper.LevelChanged += new System.EventHandler(this.ChangedEP4);
-            // 
-            // ptGifted
-            // 
-            this.ptGifted.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            resources.ApplyResources(this.ptGifted, "ptGifted");
-            this.ptGifted.Name = "ptGifted";
-            this.ptGifted.LevelChanged += new System.EventHandler(this.ChangedEP4);
-            // 
-            // lv
-            // 
-            this.lv.ContextMenuStrip = this.miRel;
-            resources.ApplyResources(this.lv, "lv");
-            this.lv.Name = "lv";
-            this.lv.Package = null;
-            this.lv.RightClickSelect = true;
-            this.lv.SelectedElement = null;
-            this.lv.SelectedSim = null;
-            this.lv.ShowNotRelatedSims = false;
-            this.lv.ShowRelatedSims = true;
-            this.lv.Sim = null;
-            this.lv.SimDetails = false;
-            this.lv.TileColumns = new int[] {
-        1};
-            this.lv.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.lv_SelectedSimChanged);
-            // 
-            // sblb
-            // 
-            resources.ApplyResources(this.sblb, "sblb");
-            this.sblb.Name = "sblb";
-            this.sblb.SimDescription = null;
-            this.sblb.SelectedBusinessChanged += new System.EventHandler(this.sblb_SelectedBusinessChanged);
-            // 
             // ExtSDesc
             // 
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
+            resources.ApplyResources(this, "$this");
+            this.BackgroundImage = null;
+            this.Controls.Add(this.toolBar1);
+            this.Controls.Add(this.pnSkill);
+            this.Controls.Add(this.pnEP2);
             this.Controls.Add(this.pnInt);
             this.Controls.Add(this.pnChar);
             this.Controls.Add(this.pnId);
             this.Controls.Add(this.pnMisc);
-            this.Controls.Add(this.toolBar1);
             this.Controls.Add(this.pnRel);
             this.Controls.Add(this.pnCareer);
             this.Controls.Add(this.pnEP1);
             this.Controls.Add(this.pnEP3);
-            this.Controls.Add(this.pnSkill);
-            this.Controls.Add(this.pnEP2);
-            resources.ApplyResources(this, "$this");
             this.Name = "ExtSDesc";
-            this.Controls.SetChildIndex(this.pnEP2, 0);
-            this.Controls.SetChildIndex(this.pnSkill, 0);
             this.Controls.SetChildIndex(this.pnEP3, 0);
             this.Controls.SetChildIndex(this.pnEP1, 0);
             this.Controls.SetChildIndex(this.pnCareer, 0);
             this.Controls.SetChildIndex(this.pnRel, 0);
-            this.Controls.SetChildIndex(this.toolBar1, 0);
             this.Controls.SetChildIndex(this.pnMisc, 0);
             this.Controls.SetChildIndex(this.pnId, 0);
             this.Controls.SetChildIndex(this.pnChar, 0);
             this.Controls.SetChildIndex(this.pnInt, 0);
+            this.Controls.SetChildIndex(this.pnEP2, 0);
+            this.Controls.SetChildIndex(this.pnSkill, 0);
+            this.Controls.SetChildIndex(this.toolBar1, 0);
             this.pnPetInt.ResumeLayout(false);
             this.toolBar1.ResumeLayout(false);
             this.toolBar1.PerformLayout();
