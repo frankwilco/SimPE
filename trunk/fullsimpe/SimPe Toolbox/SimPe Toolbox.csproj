@@ -110,10 +110,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.3idr.dll</HintPath>
     </Reference>
-    <Reference Include="simpe.bhav.plugin, Version=1.0.2305.30675, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\Plugins\simpe.bhav.plugin.dll</HintPath>
-    </Reference>
     <Reference Include="simpe.cache, Version=1.0.2305.30292, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.cache.dll</HintPath>
@@ -245,9 +241,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="readonlyevent.png" />
-    <EmbeddedResource Include="Search.resx">
-      <DependentUpon>Search.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="simbrowser.png" />
     <EmbeddedResource Include="Sims.de.resx">
       <DependentUpon>Sims.cs</DependentUpon>
@@ -326,15 +319,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Search.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SearchItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SearchTool.cs">
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Sims.cs">
       <SubType>Form</SubType>

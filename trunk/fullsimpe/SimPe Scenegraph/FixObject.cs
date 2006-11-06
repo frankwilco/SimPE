@@ -567,7 +567,7 @@ namespace SimPe.Plugin
 				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 				str.ProcessData(pfd, package);
 
-				foreach (SimPe.PackedFiles.Wrapper.StrItem i in str.Items) 
+				foreach (SimPe.PackedFiles.Wrapper.StrToken i in str.Items) 
 				{
 					string name = Hashes.StripHashFromName(i.Title.Trim().ToLower());					
 					

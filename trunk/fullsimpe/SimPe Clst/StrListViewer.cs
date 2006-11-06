@@ -308,7 +308,7 @@ namespace SimPe.PackedFiles.UserInterface
 			for (int i = 0; i < items.Length; i++) 
 			{
 			
-				StrItem s = items[i];
+				StrToken s = items[i];
 				string[] ss = new string[3];
 				ss[0] = i.ToString();
 				ss[1] = s.Title;

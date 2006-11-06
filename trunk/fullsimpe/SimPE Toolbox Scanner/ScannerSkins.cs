@@ -322,7 +322,7 @@ namespace SimPe.Plugin.Scanner
 				}			
 
 				SimPe.PackedFiles.Wrapper.Str str = new Str();
-				str.Add(new StrItem(0, 0, "SimPE Skin Override: "+skintone+" (from "+sitem.PackageCacheItem.Name+")", ""));
+                str.Add(new StrToken(0, 0, "SimPE Skin Override: " + skintone + " (from " + sitem.PackageCacheItem.Name + ")", ""));
 
 				str.FileDescriptor = new SimPe.Packages.PackedFileDescriptor();
 				str.FileDescriptor.Type = Data.MetaData.STRING_FILE;

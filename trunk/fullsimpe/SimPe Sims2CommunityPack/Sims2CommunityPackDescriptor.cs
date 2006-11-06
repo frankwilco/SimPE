@@ -356,9 +356,9 @@ namespace SimPe.Packages
 
 			if (guid==null) guid = System.Guid.NewGuid().ToString();
 			str.Items = new SimPe.PackedFiles.Wrapper.StrItemList();
-			str.Items.Add(new SimPe.PackedFiles.Wrapper.StrItem(0, lng[0], guid, gameguid));
-			str.Items.Add(new SimPe.PackedFiles.Wrapper.StrItem(1, lng[0], author, contact));
-			str.Items.Add(new SimPe.PackedFiles.Wrapper.StrItem(2, lng[0], name, ""));
+			str.Items.Add(new SimPe.PackedFiles.Wrapper.StrToken(0, lng[0], guid, gameguid));
+            str.Items.Add(new SimPe.PackedFiles.Wrapper.StrToken(1, lng[0], author, contact));
+            str.Items.Add(new SimPe.PackedFiles.Wrapper.StrToken(2, lng[0], name, ""));
 			
 			str.SynchronizeUserData();
 		}
@@ -413,10 +413,10 @@ namespace SimPe.Packages
 
 			SimPe.PackedFiles.Wrapper.StrItemList items = str.LanguageItems(1);
 			if (str.Items.Length>0)	str.Items[0].Title = title;
-			else					str.Add(new SimPe.PackedFiles.Wrapper.StrItem(0, lng[0], title, ""));
+            else str.Add(new SimPe.PackedFiles.Wrapper.StrToken(0, lng[0], title, ""));
 
 			if (str.Items.Length>1) str.Items[1].Title = description;
-			else					str.Add(new SimPe.PackedFiles.Wrapper.StrItem(1, lng[0], description, ""));
+            else str.Add(new SimPe.PackedFiles.Wrapper.StrToken(1, lng[0], description, ""));
 
 			str.SynchronizeUserData();
 		}

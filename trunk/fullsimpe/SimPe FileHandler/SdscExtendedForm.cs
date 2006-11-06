@@ -201,7 +201,7 @@ namespace SimPe.PackedFiles.UserInterface
 						xml += "  <persondata>"+Helper.lbr;
 						for (int sid=0; sid<list.Length; sid++)
 						{
-							SimPe.PackedFiles.Wrapper.StrItem si = list[sid];
+							SimPe.PackedFiles.Wrapper.StrToken si = list[sid];
 							xml += "    <persondata id=\""+(sid+1).ToString()+"\" name=\""+si.Title+"\" /> "+Helper.lbr;
 						}
 						xml += "  </persondata>"+Helper.lbr;

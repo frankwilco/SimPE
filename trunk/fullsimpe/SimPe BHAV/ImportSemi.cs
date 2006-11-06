@@ -396,7 +396,7 @@ namespace SimPe
 				//Relink all SemiGlobals in imported BHAV's
 				foreach (SimPe.Plugin.Bhav bhav in bhavs) 
 				{
-					foreach (SimPe.Plugin.Instruction i in bhav.Instructions)
+					foreach (SimPe.PackedFiles.Wrapper.Instruction i in bhav)
 					{
 						if (bhavalias.Contains(i.OpCode)) i.OpCode = (ushort)bhavalias[i.OpCode];
 					}
@@ -406,7 +406,7 @@ namespace SimPe
 				//Relink all TTAbs
 				foreach (SimPe.Plugin.Ttab ttab in ttabs) 
 				{
-					foreach (SimPe.Plugin.TtabItem item in ttab.Items)
+                    foreach (SimPe.PackedFiles.Wrapper.TtabItem item in ttab)
 					{
 						if (bhavalias.Contains(item.Guardian)) item.Guardian = (ushort)bhavalias[item.Guardian];
 						if (bhavalias.Contains(item.Action)) item.Action = (ushort)bhavalias[item.Action];

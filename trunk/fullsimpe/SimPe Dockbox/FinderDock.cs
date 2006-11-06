@@ -790,7 +790,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 					SimPe.PackedFiles.Wrapper.StrItemList sitems = str.Items;
 					//check all stored nMap entries for a match
-					foreach (SimPe.PackedFiles.Wrapper.StrItem item in sitems)
+                    foreach (SimPe.PackedFiles.Wrapper.StrToken item in sitems)
 					{
 						bool found = false;
 						string n = item.Title.Trim().ToLower();

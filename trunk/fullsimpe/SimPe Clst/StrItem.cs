@@ -180,7 +180,7 @@ namespace SimPe.PackedFiles.Wrapper
 	/// <summary>
 	/// An Item stored in a STR# File
 	/// </summary>
-	public class StrItem 
+	public class StrToken 
 	{
 		int index;
 		StrLanguage lid;
@@ -198,7 +198,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <param name="lid">Language ID (byte)</param>
 		/// <param name="title">Item Title</param>
 		/// <param name="desc">Item Description</param>
-		public StrItem(int index, byte lid, string title, string desc)
+		public StrToken(int index, byte lid, string title, string desc)
 		{
 			this.index = index;
 			this.lid = new StrLanguage(lid);
@@ -270,7 +270,7 @@ namespace SimPe.PackedFiles.Wrapper
 
 			if (lines[lid.Id] == null) lines[lid.Id] = new StrItemList(); // Add a new StrItemList if needed
 
-			((StrItemList)lines[lid.Id]).Add(new StrItem(((StrItemList)lines[lid.Id]).Count, lid, title, desc));
+			((StrItemList)lines[lid.Id]).Add(new StrToken(((StrItemList)lines[lid.Id]).Count, lid, title, desc));
 		}
 
 		internal static void SerializeStringZero(BinaryWriter w, string s)
@@ -304,34 +304,34 @@ namespace SimPe.PackedFiles.Wrapper
 	/// </summary>
 	public class StrItemList : ArrayList 
 	{
-		public new StrItem this[int index]
+		public new StrToken this[int index]
 		{
-			get { return ((StrItem)base[index]); }
+			get { return ((StrToken)base[index]); }
 			set { base[index] = value; }
 		}
 
-		public StrItem this[uint index]
+		public StrToken this[uint index]
 		{
-			get { return ((StrItem)base[(int)index]); }
+			get { return ((StrToken)base[(int)index]); }
 			set { base[(int)index] = value; }
 		}
 
-		public int Add(StrItem stritem)
+		public int Add(StrToken stritem)
 		{
 			return base.Add(stritem);
 		}
 
-		public void Insert(int index, StrItem stritem)
+		public void Insert(int index, StrToken stritem)
 		{
 			base.Insert(index, stritem);
 		}
 
-		public void Remove(StrItem stritem)
+		public void Remove(StrToken stritem)
 		{
 			base.Remove(stritem);
 		}
 
-		public bool Contains(StrItem stritem)
+		public bool Contains(StrToken stritem)
 		{
 			return base.Contains(stritem);
 		}		
@@ -344,7 +344,7 @@ namespace SimPe.PackedFiles.Wrapper
 		public override object Clone()
 		{
 			StrItemList sil = new StrItemList();
-			foreach (StrItem si in this) sil.Add(si);
+			foreach (StrToken si in this) sil.Add(si);
 
 			return sil;
 		}

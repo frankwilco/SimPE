@@ -273,8 +273,8 @@ namespace SimPe.Plugin.Tool.Dockable
 			if (!name.EndsWith("_cres")) name += "_cres";
 
 			str.FileName = "Model - Names";
-			str.Add(new SimPe.PackedFiles.Wrapper.StrItem(0, (byte)Data.MetaData.Languages.English, "", ""));
-			str.Add(new SimPe.PackedFiles.Wrapper.StrItem(1, (byte)Data.MetaData.Languages.English, name, ""));
+			str.Add(new SimPe.PackedFiles.Wrapper.StrToken(0, (byte)Data.MetaData.Languages.English, "", ""));
+            str.Add(new SimPe.PackedFiles.Wrapper.StrToken(1, (byte)Data.MetaData.Languages.English, name, ""));
 			str.SynchronizeUserData();
 
 			str.FileDescriptor.MarkForDelete = true;			
@@ -675,7 +675,7 @@ namespace SimPe.Plugin.Tool.Dockable
 		protected static void UpdateDescription(OWCloneSettings cs, SimPe.PackedFiles.Wrapper.Str str)
 		{
 			str.ClearNonDefault();
-			while (str.Items.Length<2) str.Add(new SimPe.PackedFiles.Wrapper.StrItem(str.Items.Length, 1, "", ""));
+            while (str.Items.Length < 2) str.Add(new SimPe.PackedFiles.Wrapper.StrToken(str.Items.Length, 1, "", ""));
 
 			str.Items[0].Title = cs.Title;
 			str.Items[1].Title = cs.Description;

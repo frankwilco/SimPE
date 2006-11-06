@@ -240,7 +240,7 @@ namespace SimPe.Providers
 			
 				for (ushort i=0; i<str.Items.Length; i++) 
 				{						
-					SimPe.PackedFiles.Wrapper.StrItem si = str.Items[i];
+					SimPe.PackedFiles.Wrapper.StrToken si = str.Items[i];
 
 					if (si.Language.Id==1) 
 					{

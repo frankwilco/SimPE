@@ -40,8 +40,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe ResourceControls", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Splash", "..\SimPe Splash\SimPe Splash.csproj", "{6F0D2F45-62FD-4BF5-95C0-46D66C981034}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe BHAV", "..\SimPe BHAV\SimPe BHAV.csproj", "{6AA664E9-B45F-4D61-9B9F-E68341C16473}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -169,12 +167,6 @@ Global
 		{6F0D2F45-62FD-4BF5-95C0-46D66C981034}.Release MAC|Any CPU.Build.0 = Release|Any CPU
 		{6F0D2F45-62FD-4BF5-95C0-46D66C981034}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F0D2F45-62FD-4BF5-95C0-46D66C981034}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6AA664E9-B45F-4D61-9B9F-E68341C16473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AA664E9-B45F-4D61-9B9F-E68341C16473}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6AA664E9-B45F-4D61-9B9F-E68341C16473}.Release MAC|Any CPU.ActiveCfg = Release MAC|Any CPU
-		{6AA664E9-B45F-4D61-9B9F-E68341C16473}.Release MAC|Any CPU.Build.0 = Release MAC|Any CPU
-		{6AA664E9-B45F-4D61-9B9F-E68341C16473}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6AA664E9-B45F-4D61-9B9F-E68341C16473}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

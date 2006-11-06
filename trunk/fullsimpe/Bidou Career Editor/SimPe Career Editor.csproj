@@ -75,6 +75,10 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="pjse.coder.plugin, Version=2.0.2499.27754, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\Plugins\pjse.coder.plugin.dll</HintPath>
+    </Reference>
     <Reference Include="Skybound.VisualStyles">
       <Name>Skybound.VisualStyles</Name>
       <HintPath>..\Skybound.VisualStyles.dll</HintPath>
@@ -102,15 +106,9 @@
       <Project>{37D97490-DC9F-4DB7-9215-998C6BC06078}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe BHAV\SimPe BHAV.csproj">
-      <Name>SimPe BHAV</Name>
-      <Project>{6AA664E9-B45F-4D61-9B9F-E68341C16473}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
     <ProjectReference Include="..\SimPe Clst\SimPe Clst.csproj">
-      <Name>SimPe Clst</Name>
       <Project>{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Name>SimPe Clst</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimPe FileHandler\SimPe FileHandlers.csproj">
       <Name>SimPe FileHandlers</Name>
