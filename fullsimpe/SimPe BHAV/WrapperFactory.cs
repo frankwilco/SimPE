@@ -35,7 +35,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Bhav Wizard
 		/// </summary>
-		static BhavWizard bw = null;
+		/*static BhavWizard bw = null;
 
 		/// <summary>
 		/// Returns a handle to the Bhav Wizard Window
@@ -47,7 +47,7 @@ namespace SimPe.Plugin
 				if (bw==null) bw = new BhavWizard();
 				return bw;
 			}
-		}
+		}*/
 
 		static IProviderRegistry provider;
 		public static IProviderRegistry Provider
@@ -70,7 +70,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Holds a reference to the Form containing the UI Panel
 		/// </summary>
-		internal static BhavForm form = new BhavForm();
+		//internal static BhavForm form = new BhavForm();
 		#region AbstractWrapperFactory Member
 		/// <summary>
 		/// Returns a List of all available Plugins in this Package
@@ -105,7 +105,8 @@ namespace SimPe.Plugin
 #if DEBUG
                                     new SimPe.Plugin.Tool.Action.ActionBuildGlobList(),
 #endif
-								    new OpenLuaTool()
+								    new OpenLuaTool(),
+                                    new SearchTool(this.LinkedRegistry, this.LinkedProvider),
 								};
 				return tools;
 			}

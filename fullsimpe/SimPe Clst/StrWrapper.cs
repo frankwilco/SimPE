@@ -130,7 +130,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Adds a new String Item
 		/// </summary>
 		/// <param name="item">The Item you want to add</param>
-		public void Add(StrItem item)
+		public void Add(StrToken item)
 		{
 			StrItemList lng = (StrItemList)lines[item.Language.Id];
 			if (lng == null) 
@@ -146,7 +146,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// Removes this Item From the List
 		/// </summary>
 		/// <param name="item">The Item you want to remove</param>
-		public void Remove(StrItem item)
+		public void Remove(StrToken item)
 		{
 			StrItemList lng = (StrItemList)lines[item.Language.Id];
 			if (lng != null) lng.Remove(item);
@@ -169,7 +169,7 @@ namespace SimPe.PackedFiles.Wrapper
 			set 
 			{
 				lines = new Hashtable();
-				foreach (StrItem i in value) this.Add(i);
+				foreach (StrToken i in value) this.Add(i);
 			}
 		}
 
@@ -204,12 +204,12 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		/// <param name="l">the Language</param>
 		/// <returns>List of Strings</returns>
-		public StrItem FallbackedLanguageItem(Data.MetaData.Languages l, int index)
+		public StrToken FallbackedLanguageItem(Data.MetaData.Languages l, int index)
 		{
 			StrItemList list = this.LanguageItems(l);
-			StrItem name;
+			StrToken name;
 			if (list.Length>index) name = list[index];
-			else name = new StrItem(0, 0, "", "");
+			else name = new StrToken(0, 0, "", "");
 			 
 			if (name.Title.Trim()=="") 
 			{
@@ -280,7 +280,7 @@ namespace SimPe.PackedFiles.Wrapper
 		public void ClearNonDefault()
 		{			
 			StrItemList sil = this.Items;
-			foreach (StrItem si in sil) 
+			foreach (StrToken si in sil) 
 				if (si.Language.Id!=1) 
 					this.Remove(si);
 		}
@@ -292,7 +292,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			StrItemList sil = this.Items;
 			StrItemList def = this.LanguageItems(new StrLanguage(1));
-			foreach (StrItem si in sil) 
+			foreach (StrToken si in sil) 
 				if (si.Language.Id!=1) 				
 					if (si.Index>0 && si.Index<def.Count)
 					{
@@ -350,7 +350,7 @@ namespace SimPe.PackedFiles.Wrapper
 			lines = new Hashtable();
 
 			if ((limit != 0) && (count > limit)) count = (ushort)limit;	// limit number of StrItem entries loaded
-			for (int i = 0; i < count; i++) StrItem.Unserialize(reader, lines);
+			for (int i = 0; i < count; i++) StrToken.Unserialize(reader, lines);
 		}
 
 		/// <summary>
@@ -371,7 +371,7 @@ namespace SimPe.PackedFiles.Wrapper
 			foreach (StrLanguage k in lngs) items.AddRange((ArrayList)lines[k.Id]);
 			writer.Write((ushort)items.Count);
 
-			foreach (StrItem i in items) 
+			foreach (StrToken i in items) 
 			{
 				i.Serialize(writer);
 			}//foreach language
@@ -388,7 +388,7 @@ namespace SimPe.PackedFiles.Wrapper
 			get
 			{
 				string n = "filename="+this.FileName+", languages="+this.Languages.Length.ToString()+", lines="+this.Items.Length.ToString();
-				foreach (StrItem i in this.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode))
+				foreach (StrToken i in this.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode))
 					if (i.Title != "")
 						return n + ", first=" + i.Title;
 				return n + " (no strings)";

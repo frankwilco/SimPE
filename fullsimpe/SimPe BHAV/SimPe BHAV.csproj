@@ -98,6 +98,18 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="pjse.coder.plugin, Version=2.0.2499.27754, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\Plugins\pjse.coder.plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="pjse.filetable.plugin, Version=2.0.2499.27753, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\Plugins\pjse.filetable.plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="pjse.localisation, Version=2.0.2499.27753, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\__Release\Plugins\pjse.localisation.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -114,9 +126,8 @@
       <Name>System.XML</Name>
     </Reference>
     <ProjectReference Include="..\SimPe Clst\SimPe Clst.csproj">
-      <Name>SimPe Clst</Name>
       <Project>{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Name>SimPe Clst</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Extended Filehandlers\SimPe Extended Filehandlers.csproj">
       <Name>SimPe Extended Filehandlers</Name>
@@ -148,6 +159,10 @@
       <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
+    <ProjectReference Include="..\SimPe RCOL\SimPe RCOL.csproj">
+      <Project>{74517907-2236-4C45-80ED-E188D5E5CE0E}</Project>
+      <Name>SimPe RCOL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
       <Name>SimPe Workspace Helper</Name>
       <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
@@ -159,28 +174,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BconItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="BconWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BhavBaseItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BhavHeader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BhavInstruction.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BhavWizard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BhavWizardForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Connector.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ImportSemi.cs">
@@ -189,23 +183,8 @@
     <Compile Include="ImportSemiTool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Instruction.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="InstructionName.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ObjfItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ObjfWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="OpenLuaTool.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PackedFileForm.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="PackedFileWrapper.cs">
       <SubType>Code</SubType>
@@ -213,45 +192,20 @@
     <Compile Include="Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TrcnItem.cs">
-      <SubType>Code</SubType>
+    <Compile Include="Search.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TrcnWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TtabItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="SearchItem.cs" />
+    <Compile Include="SearchTool.cs" />
     <Compile Include="TtabWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="WrapperFactory.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="bcon.png" />
-    <EmbeddedResource Include="bhav.png" />
-    <EmbeddedResource Include="BhavInstruction.resx">
-      <DependentUpon>BhavInstruction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BhavWizard.resx">
-      <DependentUpon>BhavWizard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BhavWizardForm.resx">
-      <DependentUpon>BhavWizardForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="button_cancel.png" />
-    <EmbeddedResource Include="button_ok.png" />
     <EmbeddedResource Include="ImportSemi.resx">
       <DependentUpon>ImportSemi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PackedFileForm.de.resx">
-      <DependentUpon>PackedFileForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PackedFileForm.es.resx">
-      <DependentUpon>PackedFileForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PackedFileForm.resx">
-      <DependentUpon>PackedFileForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Report.de.resx">
       <DependentUpon>Report.cs</DependentUpon>
@@ -263,6 +217,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report.resx">
       <DependentUpon>Report.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

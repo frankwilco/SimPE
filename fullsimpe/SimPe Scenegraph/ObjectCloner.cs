@@ -369,7 +369,7 @@ namespace SimPe.Plugin
 				{
 					SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 					str.ProcessData(pfd, Package);
-					foreach (SimPe.PackedFiles.Wrapper.StrItem si in str.Items) 
+					foreach (SimPe.PackedFiles.Wrapper.StrToken si in str.Items) 
 					{
 						string s = si.Title.Trim();
 						if (s!="") 

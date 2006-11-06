@@ -39,7 +39,7 @@ namespace SimPe.Plugin.Tool.Action
 			if (!ChangeEnabledStateEventHandler(null, e)) return;
 			
 			SimPe.FileTable.FileIndex.Load();
-			
+           
 			System.IO.StreamWriter sw = new System.IO.StreamWriter(new System.IO.MemoryStream());
 			try 
 			{

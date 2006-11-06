@@ -4,3 +4,6 @@ If you simply want to compile the main SimPE Application, you have to open __Sol
 with VisualStudio 2005 (Express) or SharpDevelop 2, and hit compile.
  
 !!!!! Remember, you need to Install the Microsoft MANAGED DirectX9 Summer 2004 SDK, in order to compile some parts of SimPE !!!!!
+
+
+When you want to compile the BHAV Plugin or the Career Editor, you have to put the current PJSE into your __Release/Plugins Folder!

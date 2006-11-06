@@ -115,7 +115,7 @@ namespace SimPe.Plugin
 					SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 					str.ProcessData(pfd, pkg);
 
-					foreach (SimPe.PackedFiles.Wrapper.StrItem item in str.Items) 
+					foreach (SimPe.PackedFiles.Wrapper.StrToken item in str.Items) 
 					{
 						string mname = Hashes.StripHashFromName(item.Title.Trim().ToLower());
 						if (!mname.EndsWith("_cres")) mname += "_cres";
@@ -757,7 +757,7 @@ namespace SimPe.Plugin
 			{
 				SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
 				str.ProcessData(pfd, pkg);
-				foreach (SimPe.PackedFiles.Wrapper.StrItem si in str.Items)
+				foreach (SimPe.PackedFiles.Wrapper.StrToken si in str.Items)
 				{
 					string name = Hashes.StripHashFromName(si.Title).Trim() ;
 					if (name=="") continue;

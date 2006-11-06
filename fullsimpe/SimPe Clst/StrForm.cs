@@ -897,7 +897,7 @@ namespace SimPe.PackedFiles.UserInterface
 			try 
 			{
 				Str wrp = (Str)wrapper;
-				StrItem item = (StrItem)lbtexts.Items[lbtexts.SelectedIndex];				
+				StrToken item = (StrToken)lbtexts.Items[lbtexts.SelectedIndex];				
 				wrp.Remove(item);
 
 				lbtexts.Items.Remove(item);
@@ -942,7 +942,7 @@ namespace SimPe.PackedFiles.UserInterface
 				string list = "";
 				for (int i=0; i < lbtexts.Items.Count; i++)
 				{
-					StrItem item = (StrItem)this.lbtexts.Items[i];
+					StrToken item = (StrToken)this.lbtexts.Items[i];
 					list += "0x" + i.ToString("X") +": " + item.Title + " ("+item.Description+")"+Helper.lbr;
 				}
 
@@ -983,7 +983,7 @@ namespace SimPe.PackedFiles.UserInterface
 			try 
 			{
 				Str wrp = (Str)wrapper;	
-				foreach (StrItem s in wrp.LanguageItems((StrLanguage)cblanguage.Items[cblanguage.SelectedIndex])) lbtexts.Items.Add(s);
+				foreach (StrToken s in wrp.LanguageItems((StrLanguage)cblanguage.Items[cblanguage.SelectedIndex])) lbtexts.Items.Add(s);
 			} 
 			catch (Exception ex) 
 			{
@@ -1004,7 +1004,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.Tag = true;
 			try 
 			{
-				StrItem s = (StrItem)lbtexts.Items[lbtexts.SelectedIndex];
+				StrToken s = (StrToken)lbtexts.Items[lbtexts.SelectedIndex];
 
 				rtbvalue.Text = s.Title;
 				rtbdesc.Text = s.Description;
@@ -1047,7 +1047,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 				if (lbtexts.SelectedIndex < 0)
 				{
-					StrItem s = new StrItem(lbtexts.Items.Count, (StrLanguage)cblanguage.Items[cblanguage.SelectedIndex]
+					StrToken s = new StrToken(lbtexts.Items.Count, (StrLanguage)cblanguage.Items[cblanguage.SelectedIndex]
 						,rtbvalue.Text
 						,rtbdesc.Text
 						);
@@ -1056,7 +1056,7 @@ namespace SimPe.PackedFiles.UserInterface
 				}
 				else
 				{
-					StrItem s = (StrItem)lbtexts.Items[lbtexts.SelectedIndex];
+					StrToken s = (StrToken)lbtexts.Items[lbtexts.SelectedIndex];
 					s.Title = rtbvalue.Text;
 					s.Description = rtbdesc.Text;
 					lbtexts.Items[lbtexts.SelectedIndex] = s;	// is that needed?
@@ -1097,7 +1097,7 @@ namespace SimPe.PackedFiles.UserInterface
 			try 
 			{
 				Str wrp = (Str)wrapper;
-				StrItem s = (StrItem)lbtexts.Items[curIndex];	// The StrItem in the current language (lbtexts.Items)
+				StrToken s = (StrToken)lbtexts.Items[curIndex];	// The StrItem in the current language (lbtexts.Items)
 			
 				s.Title = rtbvalue.Text;
 				s.Description = rtbdesc.Text;
@@ -1108,7 +1108,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 					// Add empty StrItem entries to pad to the string index we want to change, if needed
 					while (wrp.LanguageItems(lng).Length <= curIndex)
-						wrp.Add(new StrItem(wrp.LanguageItems(lng).Length, lng, "", ""));
+						wrp.Add(new StrToken(wrp.LanguageItems(lng).Length, lng, "", ""));
 
 					StrItemList sis = wrp.LanguageItems(lng);
 					sis[curIndex].Title = s.Title;
@@ -1138,9 +1138,9 @@ namespace SimPe.PackedFiles.UserInterface
 				{
 					if (lng == null) continue;
 					while (wrp.LanguageItems(lng).Length < count) 
-						wrp.Add(new StrItem(wrp.LanguageItems(lng).Length, lng, "", ""));
+						wrp.Add(new StrToken(wrp.LanguageItems(lng).Length, lng, "", ""));
 
-					wrp.Add(new StrItem(wrp.LanguageItems(lng).Length, lng, rtbvalue.Text, rtbdesc.Text));
+					wrp.Add(new StrToken(wrp.LanguageItems(lng).Length, lng, rtbvalue.Text, rtbdesc.Text));
 				}
 
 				LanguageChanged(null, null);

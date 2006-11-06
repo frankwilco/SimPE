@@ -4750,15 +4750,15 @@ namespace SimPe.Plugin
 
 				CareerTitle.Text = items[0].Title;
 
-				noLevelsChanged((ushort)tuning.Constants[0].Value);
+				noLevelsChanged((ushort)tuning[0]);
 
 				if(BHavReward.FileName == "CT - Career Reward")
 				{
 
-					byte a = BHavReward.Instructions[2].Operands[5];
-					byte b = BHavReward.Instructions[2].Operands[6];
-					byte c = BHavReward.Instructions[2].Operands[7];
-					byte d = BHavReward.Instructions[2].Reserved1[0];
+					byte a = BHavReward[2].Operands[5];
+					byte b = BHavReward[2].Operands[6];
+					byte c = BHavReward[2].Operands[7];
+					byte d = BHavReward[2].Reserved1[0];
 
 					hasReward = true;
 					CareerReward.DataSource = rewardStrings;
@@ -4767,10 +4767,10 @@ namespace SimPe.Plugin
 				}
 				else
 				{
-					byte a = BHavReward.Instructions[1].Operands[0];
-					byte b = BHavReward.Instructions[1].Operands[1];
-					byte c = BHavReward.Instructions[1].Operands[2];
-					byte d = BHavReward.Instructions[1].Operands[3];
+					byte a = BHavReward[1].Operands[0];
+					byte b = BHavReward[1].Operands[1];
+					byte c = BHavReward[1].Operands[2];
+					byte d = BHavReward[1].Operands[3];
 
 					hasReward = false;
 					CareerReward.DataSource = adultStrings;
@@ -4876,8 +4876,8 @@ namespace SimPe.Plugin
 				ListViewItem item1 = new ListViewItem(""+i,0);
 				item1.SubItems.Add(items[i * 2 - 1].Title);
 				item1.SubItems.Add(items[i * 2].Title);
-				item1.SubItems.Add(getOutfitTextFromGUID(outfitGUID.Constants[i * 2].Value, outfitGUID.Constants[i * 2 + 1].Value));
-				item1.SubItems.Add(getVehicleTextFromGUID(vehicleGUID.Constants[i * 2].Value, vehicleGUID.Constants[i * 2 + 1].Value));
+				item1.SubItems.Add(getOutfitTextFromGUID(outfitGUID[i * 2], outfitGUID[i * 2 + 1]));
+				item1.SubItems.Add(getVehicleTextFromGUID(vehicleGUID[i * 2], vehicleGUID[i * 2 + 1]));
 				JobDetailList.Items.Add(item1);
 			}
 		}
@@ -4889,12 +4889,12 @@ namespace SimPe.Plugin
 			{
 				ListViewItem item1 = new ListViewItem(""+i,0);
 
-				item1.SubItems.Add(""+startHour.Constants[i].Value);
-				item1.SubItems.Add(""+hoursWorked.Constants[i].Value);
-				item1.SubItems.Add(""+(startHour.Constants[i].Value + hoursWorked.Constants[i].Value) % 24);
-				item1.SubItems.Add(""+wages.Constants[i].Value);
+				item1.SubItems.Add(""+startHour[i]);
+				item1.SubItems.Add(""+hoursWorked[i]);
+				item1.SubItems.Add(""+(startHour[i] + hoursWorked[i]) % 24);
+				item1.SubItems.Add(""+wages[i]);
 
-				bool[] days = getDaysArray(daysWorked.Constants[i].Value);
+				bool[] days = getDaysArray(daysWorked[i]);
 				item1.SubItems.Add(""+days[SUNDAY]);
 				item1.SubItems.Add(""+days[MONDAY]);
 				item1.SubItems.Add(""+days[TUESDAY]);
@@ -4914,14 +4914,14 @@ namespace SimPe.Plugin
 			{
 				ListViewItem item1 = new ListViewItem(""+i,0);
 
-				item1.SubItems.Add(""+skillReq[COOKING].Constants[i].Value / 100);
-				item1.SubItems.Add(""+skillReq[MECHANICAL].Constants[i].Value / 100);
-				item1.SubItems.Add(""+skillReq[CHARISMA].Constants[i].Value / 100);
-				item1.SubItems.Add(""+skillReq[BODY].Constants[i].Value / 100);
-				item1.SubItems.Add(""+skillReq[CREATIVITY].Constants[i].Value / 100);
-				item1.SubItems.Add(""+skillReq[LOGIC].Constants[i].Value / 100);
-				item1.SubItems.Add(""+skillReq[CLEANING].Constants[i].Value / 100);
-				item1.SubItems.Add(""+friends.Constants[i].Value);
+				item1.SubItems.Add(""+skillReq[COOKING][i] / 100);
+				item1.SubItems.Add(""+skillReq[MECHANICAL][i] / 100);
+				item1.SubItems.Add(""+skillReq[CHARISMA][i] / 100);
+				item1.SubItems.Add(""+skillReq[BODY][i] / 100);
+				item1.SubItems.Add(""+skillReq[CREATIVITY][i] / 100);
+				item1.SubItems.Add(""+skillReq[LOGIC][i] / 100);
+				item1.SubItems.Add(""+skillReq[CLEANING][i] / 100);
+				item1.SubItems.Add(""+friends[i]);
 
 				PromoList.Items.Add(item1);
 			}
@@ -4936,70 +4936,70 @@ namespace SimPe.Plugin
 			ChanceTextMale.Text = items[currentLevel * 12 + 9].Title;
 			ChanceTextFemale.Text = items[currentLevel * 12 + 10].Title;
 
-			ChoiceACooking.Value = chanceASkills[COOKING].Constants[currentLevel].Value / 100;
-			ChoiceAMechanical.Value = chanceASkills[MECHANICAL].Constants[currentLevel].Value / 100;
-			ChoiceABody.Value = chanceASkills[BODY].Constants[currentLevel].Value / 100;
-			ChoiceACharisma.Value = chanceASkills[CHARISMA].Constants[currentLevel].Value / 100;
-			ChoiceACreativity.Value = chanceASkills[CREATIVITY].Constants[currentLevel].Value / 100;
-			ChoiceALogic.Value = chanceASkills[LOGIC].Constants[currentLevel].Value / 100;
-			ChoiceACleaning.Value = chanceASkills[CLEANING].Constants[currentLevel].Value / 100;
+			ChoiceACooking.Value = chanceASkills[COOKING][currentLevel] / 100;
+			ChoiceAMechanical.Value = chanceASkills[MECHANICAL][currentLevel] / 100;
+			ChoiceABody.Value = chanceASkills[BODY][currentLevel] / 100;
+			ChoiceACharisma.Value = chanceASkills[CHARISMA][currentLevel] / 100;
+			ChoiceACreativity.Value = chanceASkills[CREATIVITY][currentLevel] / 100;
+			ChoiceALogic.Value = chanceASkills[LOGIC][currentLevel] / 100;
+			ChoiceACleaning.Value = chanceASkills[CLEANING][currentLevel] / 100;
 
-			ChoiceBCooking.Value = chanceBSkills[COOKING].Constants[currentLevel].Value / 100;
-			ChoiceBMechanical.Value = chanceBSkills[MECHANICAL].Constants[currentLevel].Value / 100;
-			ChoiceBBody.Value = chanceBSkills[BODY].Constants[currentLevel].Value / 100;
-			ChoiceBCharisma.Value = chanceBSkills[CHARISMA].Constants[currentLevel].Value / 100;
-			ChoiceBCreativity.Value = chanceBSkills[CREATIVITY].Constants[currentLevel].Value / 100;
-			ChoiceBLogic.Value = chanceBSkills[LOGIC].Constants[currentLevel].Value / 100;
-			ChoiceBCleaning.Value = chanceBSkills[CLEANING].Constants[currentLevel].Value / 100;
+			ChoiceBCooking.Value = chanceBSkills[COOKING][currentLevel] / 100;
+			ChoiceBMechanical.Value = chanceBSkills[MECHANICAL][currentLevel] / 100;
+			ChoiceBBody.Value = chanceBSkills[BODY][currentLevel] / 100;
+			ChoiceBCharisma.Value = chanceBSkills[CHARISMA][currentLevel] / 100;
+			ChoiceBCreativity.Value = chanceBSkills[CREATIVITY][currentLevel] / 100;
+			ChoiceBLogic.Value = chanceBSkills[LOGIC][currentLevel] / 100;
+			ChoiceBCleaning.Value = chanceBSkills[CLEANING][currentLevel] / 100;
 
 			ChanceCurrentLevel.Value = currentLevel;
-			ChancePercent.Value = chanceChance.Constants[currentLevel].Value;
+			ChancePercent.Value = chanceChance[currentLevel];
 
-			PassACooking.Value = chanceAGood[COOKING].Constants[currentLevel].Value / 100;
-			PassAMechanical.Value = chanceAGood[MECHANICAL].Constants[currentLevel].Value / 100;
-			PassABody.Value = chanceAGood[BODY].Constants[currentLevel].Value / 100;
-			PassACharisma.Value = chanceAGood[CHARISMA].Constants[currentLevel].Value / 100;
-			PassACreativity.Value = chanceAGood[CREATIVITY].Constants[currentLevel].Value / 100;
-			PassALogic.Value = chanceAGood[LOGIC].Constants[currentLevel].Value / 100;
-			PassACleaning.Value = chanceAGood[CLEANING].Constants[currentLevel].Value / 100;
-			PassAMoney.Value = chanceAGood[MONEY].Constants[currentLevel].Value;
-			PassAJobLevel.Value = chanceAGood[JOB].Constants[currentLevel].Value;
+			PassACooking.Value = chanceAGood[COOKING][currentLevel] / 100;
+			PassAMechanical.Value = chanceAGood[MECHANICAL][currentLevel] / 100;
+			PassABody.Value = chanceAGood[BODY][currentLevel] / 100;
+			PassACharisma.Value = chanceAGood[CHARISMA][currentLevel] / 100;
+			PassACreativity.Value = chanceAGood[CREATIVITY][currentLevel] / 100;
+			PassALogic.Value = chanceAGood[LOGIC][currentLevel] / 100;
+			PassACleaning.Value = chanceAGood[CLEANING][currentLevel] / 100;
+			PassAMoney.Value = chanceAGood[MONEY][currentLevel];
+			PassAJobLevel.Value = chanceAGood[JOB][currentLevel];
 			PassAMaleText.Text = items[currentLevel * 12 + 11].Title;
 			PassAFemaleText.Text = items[currentLevel * 12 + 12].Title;
 
-			FailACooking.Value = chanceABad[COOKING].Constants[currentLevel].Value / 100;
-			FailAMechanical.Value = chanceABad[MECHANICAL].Constants[currentLevel].Value / 100;
-			FailABody.Value = chanceABad[BODY].Constants[currentLevel].Value / 100;
-			FailACharisma.Value = chanceABad[CHARISMA].Constants[currentLevel].Value / 100;
-			FailACreativity.Value = chanceABad[CREATIVITY].Constants[currentLevel].Value / 100;
-			FailALogic.Value = chanceABad[LOGIC].Constants[currentLevel].Value / 100;
-			FailACleaning.Value = chanceABad[CLEANING].Constants[currentLevel].Value / 100;
-			FailAMoney.Value = chanceABad[MONEY].Constants[currentLevel].Value;
-			FailAJobLevel.Value = chanceABad[JOB].Constants[currentLevel].Value;
+			FailACooking.Value = chanceABad[COOKING][currentLevel] / 100;
+			FailAMechanical.Value = chanceABad[MECHANICAL][currentLevel] / 100;
+			FailABody.Value = chanceABad[BODY][currentLevel] / 100;
+			FailACharisma.Value = chanceABad[CHARISMA][currentLevel] / 100;
+			FailACreativity.Value = chanceABad[CREATIVITY][currentLevel] / 100;
+			FailALogic.Value = chanceABad[LOGIC][currentLevel] / 100;
+			FailACleaning.Value = chanceABad[CLEANING][currentLevel] / 100;
+			FailAMoney.Value = chanceABad[MONEY][currentLevel];
+			FailAJobLevel.Value = chanceABad[JOB][currentLevel];
 			FailAMaleText.Text = items[currentLevel * 12 + 13].Title;
 			FailAFemaleText.Text = items[currentLevel * 12 + 14].Title;
 
-			PassBCooking.Value = chanceBGood[COOKING].Constants[currentLevel].Value / 100;
-			PassBMechanical.Value = chanceBGood[MECHANICAL].Constants[currentLevel].Value / 100;
-			PassBBody.Value = chanceBGood[BODY].Constants[currentLevel].Value / 100;
-			PassBCharisma.Value = chanceBGood[CHARISMA].Constants[currentLevel].Value / 100;
-			PassBCreativity.Value = chanceBGood[CREATIVITY].Constants[currentLevel].Value / 100;
-			PassBLogic.Value = chanceBGood[LOGIC].Constants[currentLevel].Value / 100;
-			PassBCleaning.Value = chanceBGood[CLEANING].Constants[currentLevel].Value / 100;
-			PassBMoney.Value = chanceBGood[MONEY].Constants[currentLevel].Value;
-			PassBJobLevel.Value = chanceBGood[JOB].Constants[currentLevel].Value;
+			PassBCooking.Value = chanceBGood[COOKING][currentLevel] / 100;
+			PassBMechanical.Value = chanceBGood[MECHANICAL][currentLevel] / 100;
+			PassBBody.Value = chanceBGood[BODY][currentLevel] / 100;
+			PassBCharisma.Value = chanceBGood[CHARISMA][currentLevel] / 100;
+			PassBCreativity.Value = chanceBGood[CREATIVITY][currentLevel] / 100;
+			PassBLogic.Value = chanceBGood[LOGIC][currentLevel] / 100;
+			PassBCleaning.Value = chanceBGood[CLEANING][currentLevel] / 100;
+			PassBMoney.Value = chanceBGood[MONEY][currentLevel];
+			PassBJobLevel.Value = chanceBGood[JOB][currentLevel];
 			PassBMaleText.Text = items[currentLevel * 12 + 15].Title;
 			PassBFemaleText.Text = items[currentLevel * 12 + 16].Title;
 
-			FailBCooking.Value = chanceBBad[COOKING].Constants[currentLevel].Value / 100;
-			FailBMechanical.Value = chanceBBad[MECHANICAL].Constants[currentLevel].Value / 100;
-			FailBBody.Value = chanceBBad[BODY].Constants[currentLevel].Value / 100;
-			FailBCharisma.Value = chanceBBad[CHARISMA].Constants[currentLevel].Value / 100;
-			FailBCreativity.Value = chanceBBad[CREATIVITY].Constants[currentLevel].Value / 100;
-			FailBLogic.Value = chanceBBad[LOGIC].Constants[currentLevel].Value / 100;
-			FailBCleaning.Value = chanceBBad[CLEANING].Constants[currentLevel].Value / 100;
-			FailBMoney.Value = chanceBBad[MONEY].Constants[currentLevel].Value;
-			FailBJobLevel.Value = chanceBBad[JOB].Constants[currentLevel].Value;
+			FailBCooking.Value = chanceBBad[COOKING][currentLevel] / 100;
+			FailBMechanical.Value = chanceBBad[MECHANICAL][currentLevel] / 100;
+			FailBBody.Value = chanceBBad[BODY][currentLevel] / 100;
+			FailBCharisma.Value = chanceBBad[CHARISMA][currentLevel] / 100;
+			FailBCreativity.Value = chanceBBad[CREATIVITY][currentLevel] / 100;
+			FailBLogic.Value = chanceBBad[LOGIC][currentLevel] / 100;
+			FailBCleaning.Value = chanceBBad[CLEANING][currentLevel] / 100;
+			FailBMoney.Value = chanceBBad[MONEY][currentLevel];
+			FailBJobLevel.Value = chanceBBad[JOB][currentLevel];
 			FailBMaleText.Text = items[currentLevel * 12 + 17].Title;
 			FailBFemaleText.Text = items[currentLevel * 12 + 18].Title;
 		}
@@ -5016,17 +5016,17 @@ namespace SimPe.Plugin
 			JobTitleFemale.Text = items[currentLevel * 2 - 1 + femaleOffset].Title;
 			JobDescFemale.Text = items[currentLevel * 2 + femaleOffset].Title;
 
-			setOutfitFromGUID(outfitGUID.Constants[currentLevel * 2].Value, outfitGUID.Constants[currentLevel * 2 + 1].Value);
-			setVehicleFromGUID(vehicleGUID.Constants[currentLevel * 2].Value, vehicleGUID.Constants[currentLevel * 2 + 1].Value);
+			setOutfitFromGUID(outfitGUID[currentLevel * 2], outfitGUID[currentLevel * 2 + 1]);
+			setVehicleFromGUID(vehicleGUID[currentLevel * 2], vehicleGUID[currentLevel * 2 + 1]);
 	
 			//hours & wages
-			WorkStartHour.Value = startHour.Constants[currentLevel].Value;
-			WorkHoursWorked.Value = hoursWorked.Constants[currentLevel].Value;
-			WorkFinishHour.Value = (startHour.Constants[currentLevel].Value + hoursWorked.Constants[currentLevel].Value) % 24;
+			WorkStartHour.Value = startHour[currentLevel];
+			WorkHoursWorked.Value = hoursWorked[currentLevel];
+			WorkFinishHour.Value = (startHour[currentLevel] + hoursWorked[currentLevel]) % 24;
 
-			WorkWages.Value = wages.Constants[currentLevel].Value;
+			WorkWages.Value = wages[currentLevel];
 
-			bool[] days = getDaysArray(daysWorked.Constants[currentLevel].Value);
+			bool[] days = getDaysArray(daysWorked[currentLevel]);
 			WorkSunday.Checked = days[SUNDAY];
 			WorkMonday.Checked = days[MONDAY];
 			WorkTuesday.Checked = days[TUESDAY];
@@ -5035,49 +5035,49 @@ namespace SimPe.Plugin
 			WorkFriday.Checked = days[FRIDAY];
 			WorkSaturday.Checked = days[SATURDAY];
 
-			HungerHours.Value = hoursWorked.Constants[currentLevel].Value;
-			ThirstHours.Value = hoursWorked.Constants[currentLevel].Value;
-			ComfortHours.Value = hoursWorked.Constants[currentLevel].Value;
-			HygieneHours.Value = hoursWorked.Constants[currentLevel].Value;
-			BladderHours.Value = hoursWorked.Constants[currentLevel].Value;
-			EnergyHours.Value = hoursWorked.Constants[currentLevel].Value;
-			FunHours.Value = hoursWorked.Constants[currentLevel].Value;
-			PublicHours.Value = hoursWorked.Constants[currentLevel].Value;
-			FamilyHours.Value = hoursWorked.Constants[currentLevel].Value;
-			EnvironmentHours.Value = hoursWorked.Constants[currentLevel].Value;
+			HungerHours.Value = hoursWorked[currentLevel];
+			ThirstHours.Value = hoursWorked[currentLevel];
+			ComfortHours.Value = hoursWorked[currentLevel];
+			HygieneHours.Value = hoursWorked[currentLevel];
+			BladderHours.Value = hoursWorked[currentLevel];
+			EnergyHours.Value = hoursWorked[currentLevel];
+			FunHours.Value = hoursWorked[currentLevel];
+			PublicHours.Value = hoursWorked[currentLevel];
+			FamilyHours.Value = hoursWorked[currentLevel];
+			EnvironmentHours.Value = hoursWorked[currentLevel];
 
-			WorkHunger.Value = motiveDeltas[HUNGER].Constants[currentLevel].Value;
-			WorkThirst.Value = motiveDeltas[THIRST].Constants[currentLevel].Value;
-			WorkComfort.Value = motiveDeltas[COMFORT].Constants[currentLevel].Value;
-			WorkHygiene.Value = motiveDeltas[HYGIENE].Constants[currentLevel].Value;
-			WorkBladder.Value = motiveDeltas[BLADDER].Constants[currentLevel].Value;
-			WorkEnergy.Value = motiveDeltas[ENERGY].Constants[currentLevel].Value;
-			WorkFun.Value = motiveDeltas[FUN].Constants[currentLevel].Value;
-			WorkPublic.Value = motiveDeltas[PUBLIC].Constants[currentLevel].Value;
-			WorkFamily.Value = motiveDeltas[FAMILY].Constants[currentLevel].Value;
-			WorkEnvironment.Value = motiveDeltas[ENVIRONMENT].Constants[currentLevel].Value;
+			WorkHunger.Value = motiveDeltas[HUNGER][currentLevel];
+			WorkThirst.Value = motiveDeltas[THIRST][currentLevel];
+			WorkComfort.Value = motiveDeltas[COMFORT][currentLevel];
+			WorkHygiene.Value = motiveDeltas[HYGIENE][currentLevel];
+			WorkBladder.Value = motiveDeltas[BLADDER][currentLevel];
+			WorkEnergy.Value = motiveDeltas[ENERGY][currentLevel];
+			WorkFun.Value = motiveDeltas[FUN][currentLevel];
+			WorkPublic.Value = motiveDeltas[PUBLIC][currentLevel];
+			WorkFamily.Value = motiveDeltas[FAMILY][currentLevel];
+			WorkEnvironment.Value = motiveDeltas[ENVIRONMENT][currentLevel];
 
-			HungerTotal.Value = motiveDeltas[HUNGER].Constants[currentLevel].Value * hoursWorked.Constants[currentLevel].Value;
-			ThirstTotal.Value = motiveDeltas[THIRST].Constants[currentLevel].Value * hoursWorked.Constants[currentLevel].Value;
-			ComfortTotal.Value = motiveDeltas[COMFORT].Constants[currentLevel].Value * hoursWorked.Constants[currentLevel].Value;
-			HygieneTotal.Value = motiveDeltas[HYGIENE].Constants[currentLevel].Value * hoursWorked.Constants[currentLevel].Value;
-			BladderTotal.Value = motiveDeltas[BLADDER].Constants[currentLevel].Value * hoursWorked.Constants[currentLevel].Value;
-			EnergyTotal.Value = motiveDeltas[ENERGY].Constants[currentLevel].Value * hoursWorked.Constants[currentLevel].Value;
-			FunTotal.Value = motiveDeltas[FUN].Constants[currentLevel].Value * hoursWorked.Constants[currentLevel].Value;
-			PublicTotal.Value = motiveDeltas[PUBLIC].Constants[currentLevel].Value * hoursWorked.Constants[currentLevel].Value;
-			FamilyTotal.Value = motiveDeltas[FAMILY].Constants[currentLevel].Value * hoursWorked.Constants[currentLevel].Value;
-			EnvironmentTotal.Value = motiveDeltas[ENVIRONMENT].Constants[currentLevel].Value * hoursWorked.Constants[currentLevel].Value;
+			HungerTotal.Value = motiveDeltas[HUNGER][currentLevel] * hoursWorked[currentLevel];
+			ThirstTotal.Value = motiveDeltas[THIRST][currentLevel] * hoursWorked[currentLevel];
+			ComfortTotal.Value = motiveDeltas[COMFORT][currentLevel] * hoursWorked[currentLevel];
+			HygieneTotal.Value = motiveDeltas[HYGIENE][currentLevel] * hoursWorked[currentLevel];
+			BladderTotal.Value = motiveDeltas[BLADDER][currentLevel] * hoursWorked[currentLevel];
+			EnergyTotal.Value = motiveDeltas[ENERGY][currentLevel] * hoursWorked[currentLevel];
+			FunTotal.Value = motiveDeltas[FUN][currentLevel] * hoursWorked[currentLevel];
+			PublicTotal.Value = motiveDeltas[PUBLIC][currentLevel] * hoursWorked[currentLevel];
+			FamilyTotal.Value = motiveDeltas[FAMILY][currentLevel] * hoursWorked[currentLevel];
+			EnvironmentTotal.Value = motiveDeltas[ENVIRONMENT][currentLevel] * hoursWorked[currentLevel];
 
 			//promotion
-			PromoCooking.Value = skillReq[COOKING].Constants[currentLevel].Value / 100;
-			PromoMechanical.Value = skillReq[MECHANICAL].Constants[currentLevel].Value / 100;
-			PromoBody.Value = skillReq[BODY].Constants[currentLevel].Value / 100;
-			PromoCharisma.Value = skillReq[CHARISMA].Constants[currentLevel].Value / 100;
-			PromoCreativity.Value = skillReq[CREATIVITY].Constants[currentLevel].Value / 100;
-			PromoLogic.Value = skillReq[LOGIC].Constants[currentLevel].Value / 100;
-			PromoCleaning.Value = skillReq[CLEANING].Constants[currentLevel].Value / 100;
+			PromoCooking.Value = skillReq[COOKING][currentLevel] / 100;
+			PromoMechanical.Value = skillReq[MECHANICAL][currentLevel] / 100;
+			PromoBody.Value = skillReq[BODY][currentLevel] / 100;
+			PromoCharisma.Value = skillReq[CHARISMA][currentLevel] / 100;
+			PromoCreativity.Value = skillReq[CREATIVITY][currentLevel] / 100;
+			PromoLogic.Value = skillReq[LOGIC][currentLevel] / 100;
+			PromoCleaning.Value = skillReq[CLEANING][currentLevel] / 100;
 
-			PromoFriends.Value = friends.Constants[currentLevel].Value;
+			PromoFriends.Value = friends[currentLevel];
 
 			JobDetailsBox.Text = "Current Level: " + currentLevel;
 			HoursWagesBox.Text = "Current Level: " + currentLevel;
@@ -5356,7 +5356,7 @@ namespace SimPe.Plugin
 			PTO = getBcon(0x1054);
 
 			Interfaces.Files.IPackedFileDescriptor pfd = package.FindFile(0x42484156, 0, groupId, 0x1001);
-			BHavReward = new Bhav(null);
+			BHavReward = new Bhav();
 			BHavReward.ProcessData(pfd, package);
 		}
 
@@ -5503,17 +5503,17 @@ namespace SimPe.Plugin
 
 			if (hasReward)
 			{
-				BHavReward.Instructions[2].Operands[5] = val1;
-				BHavReward.Instructions[2].Operands[6] = val2;
-				BHavReward.Instructions[2].Operands[7] = val3;
-				BHavReward.Instructions[2].Reserved1[0] = val4;
+				BHavReward[2].Operands[5] = val1;
+				BHavReward[2].Operands[6] = val2;
+				BHavReward[2].Operands[7] = val3;
+				BHavReward[2].Reserved1[0] = val4;
 			}
 			else
 			{
-				BHavReward.Instructions[1].Operands[0] = val1;
-				BHavReward.Instructions[1].Operands[1] = val2;
-				BHavReward.Instructions[1].Operands[2] = val3;
-				BHavReward.Instructions[1].Operands[3] = val4;
+				BHavReward[1].Operands[0] = val1;
+				BHavReward[1].Operands[1] = val2;
+				BHavReward[1].Operands[2] = val3;
+				BHavReward[1].Operands[3] = val4;
 			}
 		}
 
@@ -5528,8 +5528,8 @@ namespace SimPe.Plugin
 			ushort val1 = (ushort)(outfitGuids[index] % 65536);
 			ushort val2 = (ushort)(outfitGuids[index] / 65536);
 
-			outfitGUID.Constants[currentLevel * 2].Value = (short)val1;
-			outfitGUID.Constants[currentLevel * 2 + 1].Value = (short)val2;
+			outfitGUID[currentLevel * 2] = (short)val1;
+			outfitGUID[currentLevel * 2 + 1] = (short)val2;
 		}
 
 		private void Vehicle_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -5543,8 +5543,8 @@ namespace SimPe.Plugin
 			ushort val1 = (ushort)(vehicleGuids[index] % 65536);
 			ushort val2 = (ushort)(vehicleGuids[index] / 65536);
 
-			vehicleGUID.Constants[currentLevel * 2].Value = (short)val1;
-			vehicleGUID.Constants[currentLevel * 2 + 1].Value = (short)val2;
+			vehicleGUID[currentLevel * 2] = (short)val1;
+			vehicleGUID[currentLevel * 2 + 1] = (short)val2;
 		}
 
 		private void JobDescMale_TextChanged(object sender, System.EventArgs e)
@@ -5599,17 +5599,17 @@ namespace SimPe.Plugin
 		private void WorkChanged()
 		{
 			short val = (short)WorkStartHour.Value;
-			startHour.Constants[currentLevel].Value = val;
+			startHour[currentLevel] = val;
 
 			ListViewItem item = HoursWagesList.Items[currentLevel - 1];
 			item.SubItems[1].Text = ""+val;
 
 			val = (short)WorkHoursWorked.Value;
-			hoursWorked.Constants[currentLevel].Value = val;
-			WorkFinishHour.Value = (startHour.Constants[currentLevel].Value + val) % 24;
+			hoursWorked[currentLevel] = val;
+			WorkFinishHour.Value = (startHour[currentLevel] + val) % 24;
 
 			item.SubItems[2].Text = ""+val;
-			item.SubItems[3].Text = ""+(startHour.Constants[currentLevel].Value + val) % 24;
+			item.SubItems[3].Text = ""+(startHour[currentLevel] + val) % 24;
 
 			HungerHours.Value = val;
 			ThirstHours.Value = val;
@@ -5622,61 +5622,61 @@ namespace SimPe.Plugin
 			FamilyHours.Value = val;
 			EnvironmentHours.Value = val;
 
-			HungerTotal.Value = motiveDeltas[HUNGER].Constants[currentLevel].Value * val;
-			ThirstTotal.Value = motiveDeltas[THIRST].Constants[currentLevel].Value * val;
-			ComfortTotal.Value = motiveDeltas[COMFORT].Constants[currentLevel].Value * val;
-			HygieneTotal.Value = motiveDeltas[HYGIENE].Constants[currentLevel].Value * val;
-			BladderTotal.Value = motiveDeltas[BLADDER].Constants[currentLevel].Value * val;
-			EnergyTotal.Value = motiveDeltas[ENERGY].Constants[currentLevel].Value * val;
-			FunTotal.Value = motiveDeltas[FUN].Constants[currentLevel].Value * val;
-			PublicTotal.Value = motiveDeltas[PUBLIC].Constants[currentLevel].Value * val;
-			FamilyTotal.Value = motiveDeltas[FAMILY].Constants[currentLevel].Value * val;
-			EnvironmentTotal.Value = motiveDeltas[ENVIRONMENT].Constants[currentLevel].Value * val;
+			HungerTotal.Value = motiveDeltas[HUNGER][currentLevel] * val;
+			ThirstTotal.Value = motiveDeltas[THIRST][currentLevel] * val;
+			ComfortTotal.Value = motiveDeltas[COMFORT][currentLevel] * val;
+			HygieneTotal.Value = motiveDeltas[HYGIENE][currentLevel] * val;
+			BladderTotal.Value = motiveDeltas[BLADDER][currentLevel] * val;
+			EnergyTotal.Value = motiveDeltas[ENERGY][currentLevel] * val;
+			FunTotal.Value = motiveDeltas[FUN][currentLevel] * val;
+			PublicTotal.Value = motiveDeltas[PUBLIC][currentLevel] * val;
+			FamilyTotal.Value = motiveDeltas[FAMILY][currentLevel] * val;
+			EnvironmentTotal.Value = motiveDeltas[ENVIRONMENT][currentLevel] * val;
 
 			val = (short)WorkWages.Value;
-			wages.Constants[currentLevel].Value = val;
+			wages[currentLevel] = val;
 
 			item.SubItems[4].Text = ""+val;
 
 			val = (short)WorkHunger.Value;
-			motiveDeltas[HUNGER].Constants[currentLevel].Value = val;
-			HungerTotal.Value = val * hoursWorked.Constants[currentLevel].Value;
+			motiveDeltas[HUNGER][currentLevel] = val;
+			HungerTotal.Value = val * hoursWorked[currentLevel];
 
 			val = (short)WorkThirst.Value;
-			motiveDeltas[THIRST].Constants[currentLevel].Value = val;
-			ThirstTotal.Value = val * hoursWorked.Constants[currentLevel].Value;
+			motiveDeltas[THIRST][currentLevel] = val;
+			ThirstTotal.Value = val * hoursWorked[currentLevel];
 
 			val = (short)WorkComfort.Value;
-			motiveDeltas[COMFORT].Constants[currentLevel].Value = val;
-			ComfortTotal.Value = val * hoursWorked.Constants[currentLevel].Value;
+			motiveDeltas[COMFORT][currentLevel] = val;
+			ComfortTotal.Value = val * hoursWorked[currentLevel];
 
 			val = (short)WorkHygiene.Value;
-			motiveDeltas[HYGIENE].Constants[currentLevel].Value = val;
-			HygieneTotal.Value = val * hoursWorked.Constants[currentLevel].Value;
+			motiveDeltas[HYGIENE][currentLevel] = val;
+			HygieneTotal.Value = val * hoursWorked[currentLevel];
 
 			val = (short)WorkBladder.Value;
-			motiveDeltas[BLADDER].Constants[currentLevel].Value = val;
-			BladderTotal.Value = val * hoursWorked.Constants[currentLevel].Value;
+			motiveDeltas[BLADDER][currentLevel] = val;
+			BladderTotal.Value = val * hoursWorked[currentLevel];
 
 			val = (short)WorkEnergy.Value;
-			motiveDeltas[ENERGY].Constants[currentLevel].Value = val;
-			EnergyTotal.Value = val * hoursWorked.Constants[currentLevel].Value;
+			motiveDeltas[ENERGY][currentLevel] = val;
+			EnergyTotal.Value = val * hoursWorked[currentLevel];
 
 			val = (short)WorkFun.Value;
-			motiveDeltas[FUN].Constants[currentLevel].Value = val;
-			FunTotal.Value = val * hoursWorked.Constants[currentLevel].Value;
+			motiveDeltas[FUN][currentLevel] = val;
+			FunTotal.Value = val * hoursWorked[currentLevel];
 
 			val = (short)WorkPublic.Value;
-			motiveDeltas[PUBLIC].Constants[currentLevel].Value = val;
-			PublicTotal.Value = val * hoursWorked.Constants[currentLevel].Value;
+			motiveDeltas[PUBLIC][currentLevel] = val;
+			PublicTotal.Value = val * hoursWorked[currentLevel];
 
 			val = (short)WorkFamily.Value;
-			motiveDeltas[FAMILY].Constants[currentLevel].Value = val;
-			FamilyTotal.Value = val * hoursWorked.Constants[currentLevel].Value;
+			motiveDeltas[FAMILY][currentLevel] = val;
+			FamilyTotal.Value = val * hoursWorked[currentLevel];
 
 			val = (short)WorkEnvironment.Value;
-			motiveDeltas[ENVIRONMENT].Constants[currentLevel].Value = val;
-			EnvironmentTotal.Value = val * hoursWorked.Constants[currentLevel].Value;
+			motiveDeltas[ENVIRONMENT][currentLevel] = val;
+			EnvironmentTotal.Value = val * hoursWorked[currentLevel];
 		}
 
 		private void Workday_CheckedChanged(object sender, System.EventArgs e)
@@ -5698,7 +5698,7 @@ namespace SimPe.Plugin
 					val += 16;
 				if (WorkSaturday.Checked)
 					val += 32;
-				daysWorked.Constants[currentLevel].Value = val;
+				daysWorked[currentLevel] = val;
 
 				ListViewItem item = HoursWagesList.Items[currentLevel - 1];
 				item.SubItems[5].Text = ""+WorkSunday.Checked;
@@ -5719,36 +5719,36 @@ namespace SimPe.Plugin
 		private void PromoChanged()
 		{
 			short val = (short)PromoCooking.Value;
-			skillReq[COOKING].Constants[currentLevel].Value = (short)(val * 100);
+			skillReq[COOKING][currentLevel] = (short)(val * 100);
 			ListViewItem item = PromoList.Items[currentLevel - 1];
 			item.SubItems[1].Text = ""+val;
 
 			val = (short)PromoMechanical.Value;
-			skillReq[MECHANICAL].Constants[currentLevel].Value = (short)(val * 100);
+			skillReq[MECHANICAL][currentLevel] = (short)(val * 100);
 			item.SubItems[2].Text = ""+val;
 
 			val = (short)PromoBody.Value;
-			skillReq[BODY].Constants[currentLevel].Value = (short)(val * 100);
+			skillReq[BODY][currentLevel] = (short)(val * 100);
 			item.SubItems[4].Text = ""+val;
 
 			val = (short)PromoCharisma.Value;
-			skillReq[CHARISMA].Constants[currentLevel].Value = (short)(val * 100);
+			skillReq[CHARISMA][currentLevel] = (short)(val * 100);
 			item.SubItems[3].Text = ""+val;
 
 			val = (short)PromoCreativity.Value;
-			skillReq[CREATIVITY].Constants[currentLevel].Value = (short)(val * 100);
+			skillReq[CREATIVITY][currentLevel] = (short)(val * 100);
 			item.SubItems[5].Text = ""+val;
 
 			val = (short)PromoLogic.Value;
-			skillReq[LOGIC].Constants[currentLevel].Value = (short)(val * 100);
+			skillReq[LOGIC][currentLevel] = (short)(val * 100);
 			item.SubItems[6].Text = ""+val;
 
 			val = (short)PromoCleaning.Value;
-			skillReq[CLEANING].Constants[currentLevel].Value = (short)(val * 100);
+			skillReq[CLEANING][currentLevel] = (short)(val * 100);
 			item.SubItems[7].Text = ""+val;
 
 			val = (short)PromoFriends.Value;
-			friends.Constants[currentLevel].Value = val;
+			friends[currentLevel] = val;
 			item.SubItems[8].Text = ""+val;
 		}
 		private void Promo_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -5758,74 +5758,74 @@ namespace SimPe.Plugin
 		private void getChanceCardValues()
 		{
 			SimPe.PackedFiles.Wrapper.StrItemList items = chanceCardsText.LanguageItems(currentLanguage);
-			chanceChance.Constants[currentLevel].Value = (short)ChancePercent.Value;
+			chanceChance[currentLevel] = (short)ChancePercent.Value;
 
 			items[currentLevel * 12 + 7].Title = ChoiceA.Text;
-			chanceASkills[COOKING].Constants[currentLevel].Value = (short)(ChoiceACooking.Value * 100);
-			chanceASkills[MECHANICAL].Constants[currentLevel].Value = (short)(ChoiceAMechanical.Value * 100);
-			chanceASkills[CHARISMA].Constants[currentLevel].Value = (short)(ChoiceACharisma.Value * 100);
-			chanceASkills[BODY].Constants[currentLevel].Value = (short)(ChoiceABody.Value * 100);
-			chanceASkills[CREATIVITY].Constants[currentLevel].Value = (short)(ChoiceACreativity.Value * 100);
-			chanceASkills[LOGIC].Constants[currentLevel].Value = (short)(ChoiceALogic.Value * 100);
-			chanceASkills[CLEANING].Constants[currentLevel].Value = (short)(ChoiceACleaning.Value * 100);
+			chanceASkills[COOKING][currentLevel] = (short)(ChoiceACooking.Value * 100);
+			chanceASkills[MECHANICAL][currentLevel] = (short)(ChoiceAMechanical.Value * 100);
+			chanceASkills[CHARISMA][currentLevel] = (short)(ChoiceACharisma.Value * 100);
+			chanceASkills[BODY][currentLevel] = (short)(ChoiceABody.Value * 100);
+			chanceASkills[CREATIVITY][currentLevel] = (short)(ChoiceACreativity.Value * 100);
+			chanceASkills[LOGIC][currentLevel] = (short)(ChoiceALogic.Value * 100);
+			chanceASkills[CLEANING][currentLevel] = (short)(ChoiceACleaning.Value * 100);
 
 			items[currentLevel * 12 + 8].Title = ChoiceB.Text;
-			chanceBSkills[COOKING].Constants[currentLevel].Value = (short)(ChoiceBCooking.Value * 100);
-			chanceBSkills[MECHANICAL].Constants[currentLevel].Value = (short)(ChoiceBMechanical.Value * 100);
-			chanceBSkills[CHARISMA].Constants[currentLevel].Value = (short)(ChoiceBCharisma.Value * 100);
-			chanceBSkills[BODY].Constants[currentLevel].Value = (short)(ChoiceBBody.Value * 100);
-			chanceBSkills[CREATIVITY].Constants[currentLevel].Value = (short)(ChoiceBCreativity.Value * 100);
-			chanceBSkills[LOGIC].Constants[currentLevel].Value = (short)(ChoiceBLogic.Value * 100);
-			chanceBSkills[CLEANING].Constants[currentLevel].Value = (short)(ChoiceBCleaning.Value * 100);
+			chanceBSkills[COOKING][currentLevel] = (short)(ChoiceBCooking.Value * 100);
+			chanceBSkills[MECHANICAL][currentLevel] = (short)(ChoiceBMechanical.Value * 100);
+			chanceBSkills[CHARISMA][currentLevel] = (short)(ChoiceBCharisma.Value * 100);
+			chanceBSkills[BODY][currentLevel] = (short)(ChoiceBBody.Value * 100);
+			chanceBSkills[CREATIVITY][currentLevel] = (short)(ChoiceBCreativity.Value * 100);
+			chanceBSkills[LOGIC][currentLevel] = (short)(ChoiceBLogic.Value * 100);
+			chanceBSkills[CLEANING][currentLevel] = (short)(ChoiceBCleaning.Value * 100);
 
 			items[currentLevel * 12 + 9].Title = ChanceTextMale.Text;
 			items[currentLevel * 12 + 10].Title = ChanceTextFemale.Text;
 
-			chanceAGood[COOKING].Constants[currentLevel].Value = (short)(PassACooking.Value * 100);
-			chanceAGood[MECHANICAL].Constants[currentLevel].Value = (short)(PassAMechanical.Value * 100);
-			chanceAGood[CHARISMA].Constants[currentLevel].Value = (short)(PassACharisma.Value * 100);
-			chanceAGood[BODY].Constants[currentLevel].Value = (short)(PassABody.Value * 100);
-			chanceAGood[CREATIVITY].Constants[currentLevel].Value = (short)(PassACreativity.Value * 100);
-			chanceAGood[LOGIC].Constants[currentLevel].Value = (short)(PassALogic.Value * 100);
-			chanceAGood[CLEANING].Constants[currentLevel].Value = (short)(PassACleaning.Value * 100);
-			chanceAGood[MONEY].Constants[currentLevel].Value = (short)PassAMoney.Value;
-			chanceAGood[JOB].Constants[currentLevel].Value = (short)PassAJobLevel.Value;
+			chanceAGood[COOKING][currentLevel] = (short)(PassACooking.Value * 100);
+			chanceAGood[MECHANICAL][currentLevel] = (short)(PassAMechanical.Value * 100);
+			chanceAGood[CHARISMA][currentLevel] = (short)(PassACharisma.Value * 100);
+			chanceAGood[BODY][currentLevel] = (short)(PassABody.Value * 100);
+			chanceAGood[CREATIVITY][currentLevel] = (short)(PassACreativity.Value * 100);
+			chanceAGood[LOGIC][currentLevel] = (short)(PassALogic.Value * 100);
+			chanceAGood[CLEANING][currentLevel] = (short)(PassACleaning.Value * 100);
+			chanceAGood[MONEY][currentLevel] = (short)PassAMoney.Value;
+			chanceAGood[JOB][currentLevel] = (short)PassAJobLevel.Value;
 			items[currentLevel * 12 + 11].Title = PassAMaleText.Text;
 			items[currentLevel * 12 + 12].Title = PassAFemaleText.Text;
 
-			chanceABad[COOKING].Constants[currentLevel].Value = (short)(FailACooking.Value * 100);
-			chanceABad[MECHANICAL].Constants[currentLevel].Value = (short)(FailAMechanical.Value * 100);
-			chanceABad[CHARISMA].Constants[currentLevel].Value = (short)(FailACharisma.Value * 100);
-			chanceABad[BODY].Constants[currentLevel].Value = (short)(FailABody.Value * 100);
-			chanceABad[CREATIVITY].Constants[currentLevel].Value = (short)(FailACreativity.Value * 100);
-			chanceABad[LOGIC].Constants[currentLevel].Value = (short)(FailALogic.Value * 100);
-			chanceABad[CLEANING].Constants[currentLevel].Value = (short)(FailACleaning.Value * 100);
-			chanceABad[MONEY].Constants[currentLevel].Value = (short)FailAMoney.Value;
-			chanceABad[JOB].Constants[currentLevel].Value = (short)FailAJobLevel.Value;
+			chanceABad[COOKING][currentLevel] = (short)(FailACooking.Value * 100);
+			chanceABad[MECHANICAL][currentLevel] = (short)(FailAMechanical.Value * 100);
+			chanceABad[CHARISMA][currentLevel] = (short)(FailACharisma.Value * 100);
+			chanceABad[BODY][currentLevel] = (short)(FailABody.Value * 100);
+			chanceABad[CREATIVITY][currentLevel] = (short)(FailACreativity.Value * 100);
+			chanceABad[LOGIC][currentLevel] = (short)(FailALogic.Value * 100);
+			chanceABad[CLEANING][currentLevel] = (short)(FailACleaning.Value * 100);
+			chanceABad[MONEY][currentLevel] = (short)FailAMoney.Value;
+			chanceABad[JOB][currentLevel] = (short)FailAJobLevel.Value;
 			items[currentLevel * 12 + 13].Title = FailAMaleText.Text;
 			items[currentLevel * 12 + 14].Title = FailAFemaleText.Text;
 
-			chanceBGood[COOKING].Constants[currentLevel].Value = (short)(PassBCooking.Value * 100);
-			chanceBGood[MECHANICAL].Constants[currentLevel].Value = (short)(PassBMechanical.Value * 100);
-			chanceBGood[CHARISMA].Constants[currentLevel].Value = (short)(PassBCharisma.Value * 100);
-			chanceBGood[BODY].Constants[currentLevel].Value = (short)(PassBBody.Value * 100);
-			chanceBGood[CREATIVITY].Constants[currentLevel].Value = (short)(PassBCreativity.Value * 100);
-			chanceBGood[LOGIC].Constants[currentLevel].Value = (short)(PassBLogic.Value * 100);
-			chanceBGood[CLEANING].Constants[currentLevel].Value = (short)(PassBCleaning.Value * 100);
-			chanceBGood[MONEY].Constants[currentLevel].Value = (short)PassBMoney.Value;
-			chanceBGood[JOB].Constants[currentLevel].Value = (short)PassBJobLevel.Value;
+			chanceBGood[COOKING][currentLevel] = (short)(PassBCooking.Value * 100);
+			chanceBGood[MECHANICAL][currentLevel] = (short)(PassBMechanical.Value * 100);
+			chanceBGood[CHARISMA][currentLevel] = (short)(PassBCharisma.Value * 100);
+			chanceBGood[BODY][currentLevel] = (short)(PassBBody.Value * 100);
+			chanceBGood[CREATIVITY][currentLevel] = (short)(PassBCreativity.Value * 100);
+			chanceBGood[LOGIC][currentLevel] = (short)(PassBLogic.Value * 100);
+			chanceBGood[CLEANING][currentLevel] = (short)(PassBCleaning.Value * 100);
+			chanceBGood[MONEY][currentLevel] = (short)PassBMoney.Value;
+			chanceBGood[JOB][currentLevel] = (short)PassBJobLevel.Value;
 			items[currentLevel * 12 + 15].Title = PassBMaleText.Text;
 			items[currentLevel * 12 + 16].Title = PassBFemaleText.Text;
 
-			chanceBBad[COOKING].Constants[currentLevel].Value = (short)(FailBCooking.Value * 100);
-			chanceBBad[MECHANICAL].Constants[currentLevel].Value = (short)(FailBMechanical.Value * 100);
-			chanceBBad[CHARISMA].Constants[currentLevel].Value = (short)(FailBCharisma.Value * 100);
-			chanceBBad[BODY].Constants[currentLevel].Value = (short)(FailBBody.Value * 100);
-			chanceBBad[CREATIVITY].Constants[currentLevel].Value = (short)(FailBCreativity.Value * 100);
-			chanceBBad[LOGIC].Constants[currentLevel].Value = (short)(FailBLogic.Value * 100);
-			chanceBBad[CLEANING].Constants[currentLevel].Value = (short)(FailBCleaning.Value * 100);
-			chanceBBad[MONEY].Constants[currentLevel].Value = (short)FailBMoney.Value;
-			chanceBBad[JOB].Constants[currentLevel].Value = (short)FailBJobLevel.Value;
+			chanceBBad[COOKING][currentLevel] = (short)(FailBCooking.Value * 100);
+			chanceBBad[MECHANICAL][currentLevel] = (short)(FailBMechanical.Value * 100);
+			chanceBBad[CHARISMA][currentLevel] = (short)(FailBCharisma.Value * 100);
+			chanceBBad[BODY][currentLevel] = (short)(FailBBody.Value * 100);
+			chanceBBad[CREATIVITY][currentLevel] = (short)(FailBCreativity.Value * 100);
+			chanceBBad[LOGIC][currentLevel] = (short)(FailBLogic.Value * 100);
+			chanceBBad[CLEANING][currentLevel] = (short)(FailBCleaning.Value * 100);
+			chanceBBad[MONEY][currentLevel] = (short)FailBMoney.Value;
+			chanceBBad[JOB][currentLevel] = (short)FailBJobLevel.Value;
 			items[currentLevel * 12 + 17].Title = FailBMaleText.Text;
 			items[currentLevel * 12 + 18].Title = FailBFemaleText.Text;
 		}
@@ -5854,45 +5854,45 @@ namespace SimPe.Plugin
 		{
 			ushort newNoLevels = (ushort)(noLevels + 1);
 
-			tuning.Constants[0].Value = (short)newNoLevels;
+			tuning[0] = (short)newNoLevels;
 
-			if (PTO.Constants.Length < newNoLevels + 1)
+			if (PTO.Count < newNoLevels + 1)
 			{
-				PTO.Constants = (BconItem[])SimPe.Helper.Add(PTO.Constants, new BconItem(15, 0, PTO));
-				lifeScore.Constants = (BconItem[])SimPe.Helper.Add(lifeScore.Constants, new BconItem(0, 0, lifeScore));
+                PTO.Add(15);                
+				lifeScore.Add(0);
 
-				startHour.Constants = (BconItem[])SimPe.Helper.Add(startHour.Constants, new BconItem(0, 0, startHour));
-				hoursWorked.Constants = (BconItem[])SimPe.Helper.Add(hoursWorked.Constants, new BconItem(1, 0, hoursWorked));
-				daysWorked.Constants = (BconItem[])SimPe.Helper.Add(daysWorked.Constants, new BconItem(0, 0, daysWorked));
-				wages.Constants = (BconItem[])SimPe.Helper.Add(wages.Constants, new BconItem(0, 0, wages));
+                startHour.Add(0);
+                hoursWorked.Add(1);
+                daysWorked.Add(0);
+                wages.Add(0);
 
 				for (int i = 0; i < 8; i++)
 				{
-					skillReq[i].Constants = (BconItem[])SimPe.Helper.Add(skillReq[i].Constants, new BconItem(0, 0, skillReq[i]));
-					chanceASkills[i].Constants = (BconItem[])SimPe.Helper.Add(chanceASkills[i].Constants, new BconItem(0, 0, chanceASkills[i]));
-					chanceBSkills[i].Constants = (BconItem[])SimPe.Helper.Add(chanceBSkills[i].Constants, new BconItem(0, 0, chanceBSkills[i]));
+					skillReq[i].Add(0);
+                    chanceASkills[i].Add(0);
+                    chanceBSkills[i].Add(0); ;
 				}
 
-				friends.Constants = (BconItem[])SimPe.Helper.Add(friends.Constants, new BconItem(0, 0, friends));
+                friends.Add(0);
 
-				for (int i = 0; i < 11; i++)
-					motiveDeltas[i].Constants = (BconItem[])SimPe.Helper.Add(motiveDeltas[i].Constants, new BconItem(0, 0, motiveDeltas[i]));
+                for (int i = 0; i < 11; i++)
+                    motiveDeltas[i].Add(0);
 
 				for (int i = 0; i < 10; i++)
 				{
-					chanceAGood[i].Constants = (BconItem[])SimPe.Helper.Add(chanceAGood[i].Constants, new BconItem(0, 0, chanceAGood[i]));
-					chanceABad[i].Constants = (BconItem[])SimPe.Helper.Add(chanceABad[i].Constants, new BconItem(0, 0, chanceABad[i]));
-					chanceBGood[i].Constants = (BconItem[])SimPe.Helper.Add(chanceBGood[i].Constants, new BconItem(0, 0, chanceBGood[i]));
-					chanceBBad[i].Constants = (BconItem[])SimPe.Helper.Add(chanceBBad[i].Constants, new BconItem(0, 0, chanceBBad[i]));
+                    chanceAGood[i].Add(0);
+                    chanceABad[i].Add(0);
+                    chanceBGood[i].Add(0);
+                    chanceBBad[i].Add(0);
 				}
-				chanceChance.Constants = (BconItem[])SimPe.Helper.Add(chanceChance.Constants, new BconItem(0, 0, chanceChance));
+                chanceChance.Add(0);
 
-				outfitGUID.Constants = (BconItem[])SimPe.Helper.Add(outfitGUID.Constants, new BconItem(0, 0, outfitGUID));
-				outfitGUID.Constants = (BconItem[])SimPe.Helper.Add(outfitGUID.Constants, new BconItem(0, 0, outfitGUID));
+                outfitGUID.Add(0);
+                outfitGUID.Add(0);
 				unchecked
 				{
-					vehicleGUID.Constants = (BconItem[])SimPe.Helper.Add(vehicleGUID.Constants, new BconItem((short)0xAE14, 0, vehicleGUID));
-					vehicleGUID.Constants = (BconItem[])SimPe.Helper.Add(vehicleGUID.Constants, new BconItem((short)0x0C85, 0, vehicleGUID));
+                    vehicleGUID.Add((short)0xAE14);
+					vehicleGUID .Add((short)0x0C85);
 				}
 			}
 
@@ -5900,7 +5900,7 @@ namespace SimPe.Plugin
 			{
 				SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(jobTitles.Languages[i].Id);
 				for (int j = 0; j < 4; j++)
-					jobTitles.Add(new SimPe.PackedFiles.Wrapper.StrItem(j, l, "", ""));
+					jobTitles.Add(new SimPe.PackedFiles.Wrapper.StrToken(j, l, "", ""));
 				if ((l.Id != 2) && (l.Id != 12) && (l.Id != 13))
 				{
 					SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(l);
@@ -5925,7 +5925,7 @@ namespace SimPe.Plugin
 			{
 				SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(chanceCardsText.Languages[i].Id);
 				for (int j = 0; j < 12; j++)
-					chanceCardsText.Add(new SimPe.PackedFiles.Wrapper.StrItem(j, l, "", ""));
+					chanceCardsText.Add(new SimPe.PackedFiles.Wrapper.StrToken(j, l, "", ""));
 			}
 			usitems = chanceCardsText.LanguageItems(us);
 
@@ -5949,45 +5949,45 @@ namespace SimPe.Plugin
 		{
 			ushort newNoLevels = (ushort)(noLevels - 1);
 
-			tuning.Constants[0].Value = (short)newNoLevels;
+			tuning[0] = (short)newNoLevels;
 
-			if (PTO.Constants.Length > 11)
+			if (PTO.Count > 11)
 			{
-				PTO.Constants = (BconItem[])SimPe.Helper.Delete(PTO.Constants, PTO.Constants[noLevels]); 
-				lifeScore.Constants = (BconItem[])SimPe.Helper.Delete(lifeScore.Constants, lifeScore.Constants[noLevels]); 
+				PTO.RemoveAt(noLevels); 
+				lifeScore.RemoveAt(noLevels); 
 
-				startHour.Constants = (BconItem[])SimPe.Helper.Delete(startHour.Constants, startHour.Constants[noLevels]); 
-				hoursWorked.Constants = (BconItem[])SimPe.Helper.Delete(hoursWorked.Constants, hoursWorked.Constants[noLevels]); 
-				daysWorked.Constants = (BconItem[])SimPe.Helper.Delete(daysWorked.Constants, daysWorked.Constants[noLevels]); 
-				wages.Constants = (BconItem[])SimPe.Helper.Delete(wages.Constants, wages.Constants[noLevels]); 
+				startHour.RemoveAt(noLevels); 
+				hoursWorked.RemoveAt(noLevels); 
+				daysWorked .RemoveAt(noLevels); 
+				wages.RemoveAt(noLevels); 
 
 				for (int i = 0; i < 8; i++)
 				{
-					skillReq[i].Constants = (BconItem[])SimPe.Helper.Delete(skillReq[i].Constants, skillReq[i].Constants[noLevels]); 
-					chanceASkills[i].Constants = (BconItem[])SimPe.Helper.Delete(chanceASkills[i].Constants, chanceASkills[i].Constants[noLevels]); 
-					chanceBSkills[i].Constants = (BconItem[])SimPe.Helper.Delete(chanceBSkills[i].Constants, chanceBSkills[i].Constants[noLevels]); 
+					skillReq[i].RemoveAt(noLevels); 
+					chanceASkills[i].RemoveAt(noLevels); 
+					chanceBSkills[i].RemoveAt(noLevels); 
 				}
 
-				friends.Constants = (BconItem[])SimPe.Helper.Delete(friends.Constants, friends.Constants[noLevels]); 
+				friends.RemoveAt(noLevels); 
 
 				for (int i = 0; i < 11; i++)
-					motiveDeltas[i].Constants = (BconItem[])SimPe.Helper.Delete(motiveDeltas[i].Constants, motiveDeltas[i].Constants[noLevels]); 
+					motiveDeltas[i].RemoveAt(noLevels); 
 
 				for (int i = 0; i < 10; i++)
 				{
-					chanceAGood[i].Constants = (BconItem[])SimPe.Helper.Delete(chanceAGood[i].Constants, chanceAGood[i].Constants[noLevels]); 
-					chanceABad[i].Constants = (BconItem[])SimPe.Helper.Delete(chanceABad[i].Constants, chanceABad[i].Constants[noLevels]); 
-					chanceBGood[i].Constants = (BconItem[])SimPe.Helper.Delete(chanceBGood[i].Constants, chanceBGood[i].Constants[noLevels]); 
-					chanceBBad[i].Constants = (BconItem[])SimPe.Helper.Delete(chanceBBad[i].Constants, chanceBBad[i].Constants[noLevels]); 
+					chanceAGood[i].RemoveAt(noLevels); 
+					chanceABad[i].RemoveAt(noLevels); 
+					chanceBGood[i].RemoveAt(noLevels); 
+					chanceBBad[i].RemoveAt(noLevels); 
 				}
-				chanceChance.Constants = (BconItem[])SimPe.Helper.Delete(chanceChance.Constants, chanceChance.Constants[noLevels]); 
+				chanceChance.RemoveAt(noLevels); 
 
-				outfitGUID.Constants = (BconItem[])SimPe.Helper.Delete(outfitGUID.Constants, outfitGUID.Constants[noLevels * 2]); 
-				outfitGUID.Constants = (BconItem[])SimPe.Helper.Delete(outfitGUID.Constants, outfitGUID.Constants[noLevels * 2]); 
+				outfitGUID.RemoveAt(noLevels * 2); 
+				outfitGUID.RemoveAt(noLevels * 2); 
 				unchecked
 				{
-					vehicleGUID.Constants = (BconItem[])SimPe.Helper.Delete(vehicleGUID.Constants, vehicleGUID.Constants[noLevels * 2]); 
-					vehicleGUID.Constants = (BconItem[])SimPe.Helper.Delete(vehicleGUID.Constants, vehicleGUID.Constants[noLevels * 2]); 
+					vehicleGUID.RemoveAt(noLevels * 2); 
+					vehicleGUID.RemoveAt(noLevels * 2); 
 				}
 			}
 
