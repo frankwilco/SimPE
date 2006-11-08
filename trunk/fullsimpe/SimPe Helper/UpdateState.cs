@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace SimPe.Updates
 {
@@ -66,8 +67,21 @@ namespace SimPe.Updates
             state = UpdateStates.Nothing;
         }
 
+
+
         internal void CheckPluginUpdates(string content)
         {
+            XmlNodeList nodes = null;
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(content);
+                nodes = doc.SelectNodes("/SimPe_Elements");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
             list.Clear();
             if (ulist==null) return;
             foreach (IUpdatablePlugin up in ulist)
