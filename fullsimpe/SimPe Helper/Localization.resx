@@ -1256,4 +1256,23 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   <data name="SimPe.ResourceListUnnamedFormats.FullTGI">
     <value>complete TGI</value>
   </data>
+  <data name="UpdatesAvailable">
+    <value>There are new Updates available. Should SimPE display the Version Information?</value>
+  </data>
+  <data name="Updates">
+    <value>Updates</value>
+  </data>
+  <data name="Updateable Plugins">
+    <value>Updateable Plugins</value>
+  </data>
+  <data name="installed">
+    <value>Installed</value>
+  </data>
+
+  <data name="available">
+    <value>Available</value>
+  </data>
+  <data name="Download from">
+    <value>Download from</value>
+  </data>
 </root>

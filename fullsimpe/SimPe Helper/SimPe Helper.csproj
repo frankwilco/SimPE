@@ -366,6 +366,10 @@
     <Content Include="important.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ExceptionForm.it.resx">
+      <DependentUpon>ExceptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="quaxi_pets_censor_v1.package" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

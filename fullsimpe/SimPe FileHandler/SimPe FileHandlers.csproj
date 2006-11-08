@@ -315,6 +315,10 @@
     <EmbeddedResource Include="Elements.es.resx">
       <DependentUpon>Elements.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements.it.resx">
+      <DependentUpon>Elements.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements.pl.resx">
       <DependentUpon>Elements.cs</DependentUpon>
     </EmbeddedResource>
@@ -327,6 +331,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements2.es.resx">
       <DependentUpon>Elements2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements2.it.resx">
+      <DependentUpon>Elements2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements2.pl.resx">
       <DependentUpon>Elements2.cs</DependentUpon>

@@ -1585,4 +1585,23 @@ Dies hat zur Folge, dass SimPE die Joint-Hierarchie nicht aufbauen kann.
   <data name="SimPe.ResourceListUnnamedFormats.FullTGI">
     <value>Alles</value>
   </data>
+  <data name="UpdatesAvailable">
+    <value>Neue Updates stehen zur Verfügung. Soll SimPE die Versionsinformationen anzeigen?</value>
+  </data>
+  <data name="Updates">
+    <value>Aktualisierungen</value>
+  </data>
+  <data name="Aktualisierbare Plugins">
+    <value>Updateable Plugins</value>
+  </data>
+  <data name="installed">
+    <value>Installiert</value>
+  </data>
+
+  <data name="available">
+    <value>Verfügbar</value>
+  </data>
+  <data name="Download from">
+    <value>Download von</value>
+  </data>
 </root>
