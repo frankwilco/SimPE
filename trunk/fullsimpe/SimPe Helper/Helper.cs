@@ -1137,6 +1137,7 @@ namespace SimPe
 		/// <returns>A long name path string</returns>
 		public static string ToLongPathName(string shortName)
 		{
+            if (!System.IO.Directory.Exists(shortName)) return shortName.Trim().ToLower();
 			StringBuilder longNameBuffer = new StringBuilder(256);
 			uint bufferSize = (uint)longNameBuffer.Capacity;
 

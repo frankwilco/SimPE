@@ -7,19 +7,8 @@ using System.Runtime ;
 using System.Runtime.InteropServices ;
 #endif
 
-namespace SimPe
+namespace SimPe.Updates
 {
-	/// <summary>
-	/// Update availability state
-	/// </summary>
-	public enum UpdateState:byte
-	{
-		Nothing = 0,
-		NewRelease = 1,
-		NewQARelease = 2,
-		BothNew = 3
-	}
-
 	/// <summary>
 	/// Use this class to Download upDate content
 	/// </summary>
@@ -245,16 +234,20 @@ namespace SimPe
 			long version = 0;
 			long qaversion = 0;
 
-			return CheckUpdate(ref version, ref qaversion);
+			UpdateState ret = CheckUpdate(ref version, ref qaversion);
+            
+            return ret;
 		}
 
+        
+
 		/// <summary>
-		/// Install the Photostudio Templates
+		/// Check for SimPE Updates
 		/// </summary>
 		/// <returns>true if success</returns>
-		public static UpdateState CheckUpdate(ref long version, ref long qaversion)
+		static UpdateState CheckUpdate(ref long version, ref long qaversion)
 		{
-			if (!IsConnectedToInternet()) return UpdateState.Nothing;
+			if (!IsConnectedToInternet()) return new UpdateState(UpdateStates.Nothing);
 			Helper.WindowsRegistry.LastUpdateCheck = DateTime.Now;
 
 			WebClient Client = new WebClient ();
@@ -270,40 +263,49 @@ namespace SimPe
 				
 				WaitingScreen.UpdateMessage("Check for new Updates");
 				Wait.Message = "Check for new Updates";
-				WebClient cli = new WebClient();
-				byte[] data = cli.DownloadData("http://sims.ambertation.de/downloadnfo.txt?&browser=simpe");
-				MemoryStream ms = new MemoryStream(data);
-				StreamReader sr = new StreamReader(ms);
-				string content = sr.ReadToEnd();
+				
+                string content = DownloadContent("http://sims.ambertation.de/downloadnfo.txt?&browser=simpe");
 
 				//extract the Version String
 				WaitingScreen.UpdateMessage("read latest Version");
 				Wait.Message = "Reciving latest Version";
-				UpdateState res = UpdateState.Nothing;
+                UpdateState res = new UpdateState(UpdateStates.Nothing);
 				try 
 				{
 					version = GetVersion(content, "lversion");
 					qaversion = GetVersion(content, "qaversion");
 
 					if (version>Helper.SimPeVersionLong) 
-						res |= UpdateState.NewRelease;					
+						res.AddSimPeState(UpdateStates.NewRelease);					
 
 					if (Helper.QARelease || Helper.WindowsRegistry.WasQAUser) 
 						if (qaversion>Helper.SimPeVersionLong) 
-							res |= UpdateState.NewQARelease;					
+							res.AddSimPeState(UpdateStates.NewQARelease);					
 				} 
 				catch (Exception ex) 
 				{
-					if (!run) WaitingScreen.Stop();
+                    if (!run) { WaitingScreen.Stop(); run = false; }
 					Helper.ExceptionMessage("", ex);
 				}
+
+                try
+                {
+                    content = DownloadContent("http://sims.ambertation.de/pluginnfo.txt?&browser=simpe");
+                    res.CheckPluginUpdates(content);
+                }
+                catch (Exception ex)
+                {
+                    if (!run) { WaitingScreen.Stop(); run = false; }
+                    Helper.ExceptionMessage("", ex);
+                }
 
 				if (Helper.StartedGui==Executable.Classic) 
 				{
 					if (!run) WaitingScreen.Stop();
 				}
-				else Wait.SubStop();			 
-				
+				else Wait.SubStop();
+
+                
 				return res;
 
 			} 
@@ -320,8 +322,18 @@ namespace SimPe
 				else Wait.SubStop();
 			}
 
-			return UpdateState.Nothing;
+			return new UpdateState(UpdateStates.Nothing);
 		}
+
+        private static string DownloadContent(string url)
+        {
+            WebClient cli = new WebClient();
+            byte[] data = cli.DownloadData(url);
+            MemoryStream ms = new MemoryStream(data);
+            StreamReader sr = new StreamReader(ms);
+            string content = sr.ReadToEnd();
+            return content;
+        }
 
 		static string GetLanguageParameter()
 		{			
@@ -350,6 +362,34 @@ namespace SimPe
 			int Desc ;
 			return InternetGetConnectedState( out Desc, 0 ) ;
 		}
+
+        public enum NetState : int
+        {
+            /// <summary>
+            /// Local system has a valid connection to the Internet, but it might or might not be currently connected.
+            /// </summary>
+            INTERNET_CONNECTION_CONFIGURED = 0x40,
+            /// <summary>
+            /// Local system uses a local area network to connect to the Internet.
+            /// </summary>
+            INTERNET_CONNECTION_LAN = 0x02,
+            /// <summary>
+            /// Local system uses a modem to connect to the Internet.
+            /// </summary>
+            INTERNET_CONNECTION_MODEM = 0x01,
+            /// <summary>
+            /// No longer used.
+            /// </summary>
+            INTERNET_CONNECTION_MODEM_BUSY = 0x08,
+            /// <summary>
+            ///  	Local system is in offline mode.
+            /// </summary>
+            INTERNET_CONNECTION_OFFLINE = 0x20,
+            /// <summary>
+            /// Local system uses a proxy server to connect to the Internet.
+            /// </summary>
+            INTERNET_CONNECTION_PROXY = 0x04
+        };
 #endif
 	}
 }

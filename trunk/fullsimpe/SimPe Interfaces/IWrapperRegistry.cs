@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.Collections.Generic;
 
 namespace SimPe.Interfaces
 {
@@ -91,6 +92,12 @@ namespace SimPe.Interfaces
 		System.Windows.Forms.ImageList WrapperImageList
 		{
 			get;
-		}		
+		}
+
+        /// <summary>
+        /// Returns a list of all known plugins, that have an update location
+        /// </summary>
+        List<SimPe.Updates.IUpdatablePlugin> UpdatablePlugins
+        { get; }
 	}
 }

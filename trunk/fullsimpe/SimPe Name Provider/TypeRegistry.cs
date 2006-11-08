@@ -23,6 +23,7 @@ using SimPe.Interfaces.Plugin;
 using SimPe.Interfaces.Plugin.Internal;
 using SimPe.Interfaces;
 using SimPe.Interfaces.Files;
+using System.Collections.Generic;
 
 
 namespace SimPe.PackedFiles
@@ -83,11 +84,21 @@ namespace SimPe.PackedFiles
 		/// </summary>
 		System.Windows.Forms.ImageList il;
 
+        /// <summary>
+        /// Updateable plugins
+        /// </summary>
+        List<SimPe.Updates.IUpdatablePlugin> uplugins;
+        public List<SimPe.Updates.IUpdatablePlugin> UpdatablePlugins
+        {
+            get { return uplugins; }
+        }
+
 		/// <summary>
 		/// Constructor of the class
 		/// </summary>
 		public TypeRegistry()
 		{
+            uplugins = new List<SimPe.Updates.IUpdatablePlugin>();
 			reg = Helper.WindowsRegistry;
 			handlers = new ArrayList();		
 			opcodeprovider = new SimPe.Providers.Opcodes();
@@ -174,7 +185,18 @@ namespace SimPe.PackedFiles
 			
 			if (factory.GetType().GetInterface("SimPe.Interfaces.Plugin.ISettingsFactory", false) == typeof(SimPe.Interfaces.Plugin.ISettingsFactory))			
 				Register((factory as SimPe.Interfaces.Plugin.ISettingsFactory));
+
+            AddUpdatablePlugin(factory);
 		}
+
+        private void AddUpdatablePlugin(object factory)
+        {
+            if (factory == null) return;
+            SimPe.Updates.IUpdatablePlugin iup = factory as SimPe.Updates.IUpdatablePlugin;
+            if (iup != null)
+                if (!uplugins.Contains(iup))
+                    uplugins.Add(iup);
+        }
 
 		
 
@@ -411,6 +433,8 @@ namespace SimPe.PackedFiles
 			{
 				Helper.ExceptionMessage("Unable to load Tool \""+s+"\". You Probaly have a Plugin/Tool installed, that is not compatible with the current SimPE Release.", ex);
 			}
+
+            AddUpdatablePlugin(factory);
 		}
 
 		public SimPe.Collections.Listeners Listeners
@@ -504,6 +528,8 @@ namespace SimPe.PackedFiles
 		{
 			if (factory==null) return;
 			RegisterSettings(factory.KnownSettings);
+
+            AddUpdatablePlugin(factory);
 		}
 
 		public ISettings[] Settings
