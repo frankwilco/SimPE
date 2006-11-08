@@ -198,6 +198,7 @@
     <Compile Include="ExceptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="IUpdatablePlugin.cs" />
     <Compile Include="PathProvider.cs" />
     <Compile Include="ExpansionItem.cs" />
     <Compile Include="FlagBase.cs">
@@ -300,6 +301,9 @@
     <Compile Include="TypeAlias.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UpdateInfo.cs" />
+    <Compile Include="UpdateInfoList.cs" />
+    <Compile Include="UpdateState.cs" />
     <Compile Include="WaitingBar.cs">
       <SubType>Code</SubType>
     </Compile>

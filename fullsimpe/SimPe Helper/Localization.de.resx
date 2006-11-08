@@ -1265,11 +1265,11 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
     </value>
   </data>
   <data name="[Property:SP3Path]" xml:space="preserve">
-    <value>3: Weichnachts Accessoires</value>
+    <value>3: Weihnachtszeit-Accessoires</value>
   </data>
   <data name="[Description:SP3Path]" xml:space="preserve">
     <value>
-      Hier sollte das Installationsverzeichnis von "Die Sims 2 - Weichnachts Accessoires" stehen.
+      Hier sollte das Installationsverzeichnis von "Die Sims 2 - Weihnachtszeit-Accessoires" stehen.
       Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
 
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
@@ -1445,7 +1445,7 @@ Soll SimPE dennoch gestartet werden?</value>
     <value>The Sims 2 - Haustiere</value>
   </data>
   <data name="EP NAME 7" xml:space="preserve">
-    <value>The Sims 2 - Weihnachst Accessoires</value>
+    <value>The Sims 2 - Weihnachtszeit-Accessoires</value>
   </data>
   <data name="EP SNAME 0" xml:space="preserve">
     <value>Original</value>
@@ -1469,7 +1469,7 @@ Soll SimPE dennoch gestartet werden?</value>
     <value>Haustiere</value>
   </data>
   <data name="EP SNAME 7" xml:space="preserve">
-    <value>Weihnachten</value>
+    <value>Weihnachtszeit</value>
   </data>
   <data name="Check: Folder not found" xml:space="preserve">
     <value>Verzeichnis für "{name}" wurde nicht gefunden.</value>

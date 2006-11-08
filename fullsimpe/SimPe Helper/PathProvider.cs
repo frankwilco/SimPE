@@ -15,6 +15,7 @@ namespace SimPe
         FamilyFun = 0x10,
         Glamour = 0x20,
         Pets = 0x40,
+        HappyHoliday = 0x80,
         Custom = 0x80000000
     }
 

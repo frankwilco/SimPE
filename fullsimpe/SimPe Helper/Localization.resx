@@ -929,11 +929,11 @@ If this is empty, SimPE will use the default Folder.</value>
     </value>
   </data>
   <data name="[Property:SP3Path]">
-    <value>3: Christmas Stuff</value>
+    <value>3: Happy Holiday Stuff</value>
   </data>
   <data name="[Description:SP3Path]">
     <value>
-      This should contain the installation directory of "The Sims 2 - Christmas Stuff".
+      This should contain the installation directory of "The Sims 2 - Happy Holiday Stuff".
       The given Folder must contain a subfolder called "TSData".
 
       If this is empty, SimPE will use the default Folder.
@@ -1110,7 +1110,7 @@ Run SimPE anyway?</value>
     <value>The Sims 2 - Pets</value>
     </data>
   <data name="EP NAME 7">
-    <value>The Sims 2 - Christmas Stuff</value>
+    <value>The Sims 2 - Happy Holiday Stuff</value>
   </data>
 
   <data name="EP SNAME 0">
@@ -1135,7 +1135,7 @@ Run SimPE anyway?</value>
     <value>Pets</value>
   </data>
   <data name="EP SNAME 7">
-    <value>Christmas</value>
+    <value>Happy Holiday</value>
   </data>
     <data name="Check: Folder not found">
 		<value>Folder for "{name}" was not found.</value>

@@ -27,7 +27,7 @@ namespace SimPe.PackedFiles.Wrapper.Factory
 	/// <summary>
 	/// The Wrapper Factory for Default Wrappers that ship with SimPe
 	/// </summary>
-	public class DefaultWrapperFactory : AbstractWrapperFactory
+	public class DefaultWrapperFactory : AbstractWrapperFactory, SimPe.Updates.IUpdatablePlugin
 	{
 		#region AbstractWrapperFactory Member
 		public override SimPe.Interfaces.IWrapper[] KnownWrappers
@@ -71,5 +71,14 @@ namespace SimPe.PackedFiles.Wrapper.Factory
 
 		#endregion
 
-	}
+
+        #region IUpdatablePlugin Member
+
+        public SimPe.Updates.UpdateInfo GetUpdateInformation()
+        {
+            return new SimPe.Updates.UpdateInfo(10, "DefaultWrapperFactory", "Default SimPE Plugins");
+        }
+
+        #endregion
+    }
 }

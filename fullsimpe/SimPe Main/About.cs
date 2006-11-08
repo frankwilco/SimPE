@@ -22,6 +22,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using SimPe.Updates;
 
 namespace SimPe
 {
@@ -250,13 +251,14 @@ namespace SimPe
             long qaversion = 0;
             string text = "";
 
-            SimPe.UpdateState res = WebUpdate.CheckUpdate(ref version, ref qaversion);
+            SimPe.Updates.UpdateState.SetUpdatablePluginList(SimPe.FileTable.WrapperRegistry.UpdatablePlugins);
+            SimPe.Updates.UpdateState res = WebUpdate.CheckUpdate(ref version, ref qaversion);
 
 
-            if (!show && (res != SimPe.UpdateState.Nothing))
+            if (!show && (res.SimPeState != SimPe.Updates.UpdateStates.Nothing))
             {
                 DialogResult dr = Message.Show("A new SimPE Version is available. Should SimPE display the new Version Information?", "Updates", MessageBoxButtons.YesNo);
-                if (dr == DialogResult.No) res = SimPe.UpdateState.Nothing;
+                if (dr == DialogResult.No) res.Discard();
             }
 
             text = "<h2><span class=\"highlight\">" + SimPe.Localization.GetString("Current Version") + ":</span> " + Helper.SimPeVersionString;
@@ -264,17 +266,17 @@ namespace SimPe
             text += "</h2>";
             if (Helper.QARelease) text += "<h2><span class=\"highlight\">" + SimPe.Localization.GetString("Available QA-Version") + ":</span> " + Helper.LongVersionToString(qaversion) + "</h2>";
             text += "<h2><span class=\"highlight\">" + SimPe.Localization.GetString("Available Version") + ":</span> " + Helper.LongVersionToString(version);
-            if ((res & SimPe.UpdateState.NewRelease) != 0) text += " (" + SimPe.Localization.GetString("download") + ": <b>http://sims.ambertation.de/download.shtml</b>)";
+            if ((res.SimPeState & SimPe.Updates.UpdateStates.NewRelease) != 0) text += " (" + SimPe.Localization.GetString("download") + ": <b>http://sims.ambertation.de/download.shtml</b>)";
             text += "</h2>";
             text += "<br /><br />";
 
-            if ((res & SimPe.UpdateState.NewQARelease) != 0) text += SimPe.Localization.GetString("get_qa_release");
-            else if ((res & SimPe.UpdateState.NewRelease) != 0) text += WebUpdate.GetChangeLog();
+            if ((res.SimPeState & SimPe.Updates.UpdateStates.NewQARelease) != 0) text += SimPe.Localization.GetString("get_qa_release");
+            else if ((res.SimPeState & SimPe.Updates.UpdateStates.NewRelease) != 0) text += WebUpdate.GetChangeLog();
             else text += SimPe.Localization.GetString("no_new_version");
 
             f.rtb.Rtf = Ambertation.Html2Rtf.Convert(text);
             Wait.SubStop();
-            if (show || (res != SimPe.UpdateState.Nothing))
+            if (show || (res.SimPeState != SimPe.Updates.UpdateStates.Nothing))
             {
                 SimPe.Splash.Screen.Stop();
                 f.ShowDialog();

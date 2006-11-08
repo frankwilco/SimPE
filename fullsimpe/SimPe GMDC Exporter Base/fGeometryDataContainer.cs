@@ -26,6 +26,7 @@ using System.IO;
 using System.Globalization;
 using SimPe.Plugin.Gmdc;
 using SimPe.Geometry;
+using SimPe.Updates;
 
 namespace SimPe.Plugin
 {
