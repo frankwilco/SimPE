@@ -55,6 +55,7 @@ namespace SimPe.Updates
         {
             state = t;
             list = new UpdateInfoList();
+            updatedplugins = false;
         }
 
         internal void AddSimPeState(UpdateStates t)
@@ -65,30 +66,78 @@ namespace SimPe.Updates
         public void Discard()
         {
             state = UpdateStates.Nothing;
+            updatedplugins = false;
+        }
+
+        public int Count
+        {
+            get { return list.Count; }
         }
 
 
+        bool updatedplugins;
+        public bool PluginUpdatesAvailable
+        {
+            get { return updatedplugins; }
+        }
 
+        public bool SimPeUpdatesAvailable
+        {
+            get { return SimPeState != SimPe.Updates.UpdateStates.Nothing; }
+        }
+
+        public bool UpdatesAvailable
+        {
+            get { return PluginUpdatesAvailable || SimPeUpdatesAvailable; }
+        }
         internal void CheckPluginUpdates(string content)
         {
+            updatedplugins = false;
             XmlNodeList nodes = null;
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.LoadXml(content);
-                nodes = doc.SelectNodes("/SimPe_Elements");
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex);
-            }
+            nodes = LoadVersionXml(content, nodes);
+
+            
             list.Clear();
             if (ulist==null) return;
             foreach (IUpdatablePlugin up in ulist)
             {
                 UpdateInfo ui = up.GetUpdateInformation();
                 list.Add(ui);
+                LoadVersionInfo(nodes, ui);
+                if (ui.HasUpdate) updatedplugins = true;
             }
+        }
+
+        private static void LoadVersionInfo(XmlNodeList nodes, UpdateInfo ui)
+        {
+            if (nodes != null)
+            {
+                foreach (XmlNode n in nodes)
+                {
+                    if (n.SelectSingleNode("Key").InnerText == ui.Key)
+                    {
+                        ui.SetAvailVersion(
+                                Helper.StringToInt32(n.SelectSingleNode("Version").InnerText, 0, 10),
+                                n.SelectSingleNode("Url").InnerText
+                        );
+                    }
+                }
+            }
+        }
+
+        private static XmlNodeList LoadVersionXml(string content, XmlNodeList nodes)
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(content);
+                nodes = doc.SelectNodes("/SimPe/UpdateableElement");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+            return nodes;
         }
 
         

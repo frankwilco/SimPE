@@ -435,6 +435,10 @@
     <EmbeddedResource Include="NgbhForm.de.resx">
       <DependentUpon>NgbhForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NgbhForm.it.resx">
+      <DependentUpon>NgbhForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="NgbhForm.pl.resx">
       <DependentUpon>NgbhForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -500,10 +504,12 @@
 if not exist "$(SolutionDir)..\__Release\de\" mkdir "$(SolutionDir)..\__Release\de\"
 if not exist "$(SolutionDir)..\__Release\es\" mkdir "$(SolutionDir)..\__Release\es\"
 if not exist "$(SolutionDir)..\__Release\pl\" mkdir "$(SolutionDir)..\__Release\pl\"
+if not exist "$(SolutionDir)..\__Release\it\" mkdir "$(SolutionDir)..\__Release\it\"
 copy "$(TargetPath)" "$(SolutionDir)..\__Release\Plugins\$(TargetFileName)"
 copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\__Release\Plugins\"
 copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
 copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
-copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"</PostBuildEvent>
+copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"
+copy "$(TargetDir)it\*.dll" "$(SolutionDir)..\__Release\it\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

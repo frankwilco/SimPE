@@ -22,6 +22,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using SimPe.Updates;
 
 namespace SimPe.Plugin
 {
@@ -70,7 +71,7 @@ namespace SimPe.Plugin
 				SimPe.WaitingScreen.Stop();
 				if (MessageBox.Show("SimPE didn't find a PhotoStudio Template in the Data Folder. It can download and install the needed Files from the SimPE Homepage (1.9MB).\n\nDo you want SimPE to download and install the Templates?", "Information", MessageBoxButtons.YesNo)==DialogResult.Yes)
 				{
-					SimPe.WebUpdate.InstallTemplates();
+					WebUpdate.InstallTemplates();
 					files = System.IO.Directory.GetFiles(Helper.SimPeDataPath, "*.template");
 					SimPe.WaitingScreen.Wait();
 				}

@@ -255,9 +255,9 @@ namespace SimPe
             SimPe.Updates.UpdateState res = WebUpdate.CheckUpdate(ref version, ref qaversion);
 
 
-            if (!show && (res.SimPeState != SimPe.Updates.UpdateStates.Nothing))
+            if (!show && res.UpdatesAvailable)
             {
-                DialogResult dr = Message.Show("A new SimPE Version is available. Should SimPE display the new Version Information?", "Updates", MessageBoxButtons.YesNo);
+                DialogResult dr = Message.Show(SimPe.Localization.GetString("UpdatesAvailable"), SimPe.Localization.GetString("Updates"), MessageBoxButtons.YesNo);
                 if (dr == DialogResult.No) res.Discard();
             }
 
@@ -270,13 +270,30 @@ namespace SimPe
             text += "</h2>";
             text += "<br /><br />";
 
+            if (res.Count > 0)
+            {
+                text += "<h2><i>"+SimPe.Localization.GetString("Updateable Plugins")+"</i></h2><ul>";
+                foreach (SimPe.Updates.UpdateInfo ui in res)
+                {
+                    text += "<li>";
+                    text += "&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"highlight\">";
+                    if (ui.HasUpdate) text += "<i>";
+                    text += ui.DisplayName;
+                    if (ui.HasUpdate) text += "</i>";
+                    text += ":</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+SimPe.Localization.GetString("installed")+"=" + ui.CurrentVersion.ToString() + ", "+SimPe.Localization.GetString("available")+"=" + ui.AvailableVersion.ToString() + "<br />";
+                    if (ui.HasUpdate) text += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ SimPe.Localization.GetString("Download from")+": " + ui.DownloadUrl + "<br />";
+                    text += "</li>";
+                }
+
+                text += "</ul><br /><br />";
+            }
             if ((res.SimPeState & SimPe.Updates.UpdateStates.NewQARelease) != 0) text += SimPe.Localization.GetString("get_qa_release");
             else if ((res.SimPeState & SimPe.Updates.UpdateStates.NewRelease) != 0) text += WebUpdate.GetChangeLog();
             else text += SimPe.Localization.GetString("no_new_version");
 
             f.rtb.Rtf = Ambertation.Html2Rtf.Convert(text);
             Wait.SubStop();
-            if (show || (res.SimPeState != SimPe.Updates.UpdateStates.Nothing))
+            if (show || res.UpdatesAvailable)
             {
                 SimPe.Splash.Screen.Stop();
                 f.ShowDialog();

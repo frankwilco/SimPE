@@ -347,7 +347,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OptionForm.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>
@@ -385,6 +385,10 @@
       <DependentUpon>FileTableItemForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FileTableItemForm.it.resx">
+      <DependentUpon>FileTableItemForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileTableItemForm.resx">
       <DependentUpon>FileTableItemForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -395,6 +399,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.de.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.it.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.pl.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -410,6 +418,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OptionForm.es.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionForm.it.resx">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="OptionForm.pl.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
