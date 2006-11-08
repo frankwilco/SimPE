@@ -245,7 +245,7 @@ namespace SimPe.Updates
 		/// Check for SimPE Updates
 		/// </summary>
 		/// <returns>true if success</returns>
-		static UpdateState CheckUpdate(ref long version, ref long qaversion)
+		public static UpdateState CheckUpdate(ref long version, ref long qaversion)
 		{
 			if (!IsConnectedToInternet()) return new UpdateState(UpdateStates.Nothing);
 			Helper.WindowsRegistry.LastUpdateCheck = DateTime.Now;
@@ -290,7 +290,7 @@ namespace SimPe.Updates
 
                 try
                 {
-                    content = DownloadContent("http://sims.ambertation.de/pluginnfo.txt?&browser=simpe");
+                    content = DownloadContent("http://sims.ambertation.de/pluginnfo.xml?&browser=simpe");
                     res.CheckPluginUpdates(content);
                 }
                 catch (Exception ex)
