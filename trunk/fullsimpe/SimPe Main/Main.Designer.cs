@@ -126,6 +126,7 @@ namespace SimPe
             this.components = new System.ComponentModel.Container();
             Ambertation.Windows.Forms.WhidbeyRenderer whidbeyRenderer1 = new Ambertation.Windows.Forms.WhidbeyRenderer();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            
             this.tbContainer = new System.Windows.Forms.ToolStripContainer();
             this.manager = new Ambertation.Windows.Forms.DockManager();
             this.dcResourceList = new Ambertation.Windows.Forms.DockPanel();

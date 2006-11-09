@@ -1096,7 +1096,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;toolBar1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="mbiMax.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1637,7 +1637,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnId.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="pnSkill.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1988,7 +1988,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnSkill.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="pnChar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -2159,7 +2159,7 @@
     <value>ptPigpen</value>
   </data>
   <data name="&gt;&gt;ptPigpen.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2501.36719, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2503.21366, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ptPigpen.Parent" xml:space="preserve">
     <value>pnPetChar</value>
@@ -2180,7 +2180,7 @@
     <value>ptAggres</value>
   </data>
   <data name="&gt;&gt;ptAggres.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2501.36719, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2503.21366, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ptAggres.Parent" xml:space="preserve">
     <value>pnPetChar</value>
@@ -2201,7 +2201,7 @@
     <value>ptIndep</value>
   </data>
   <data name="&gt;&gt;ptIndep.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2501.36719, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2503.21366, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ptIndep.Parent" xml:space="preserve">
     <value>pnPetChar</value>
@@ -2222,7 +2222,7 @@
     <value>ptHyper</value>
   </data>
   <data name="&gt;&gt;ptHyper.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2501.36719, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2503.21366, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ptHyper.Parent" xml:space="preserve">
     <value>pnPetChar</value>
@@ -2243,7 +2243,7 @@
     <value>ptGifted</value>
   </data>
   <data name="&gt;&gt;ptGifted.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2501.36719, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2503.21366, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ptGifted.Parent" xml:space="preserve">
     <value>pnPetChar</value>
@@ -3071,7 +3071,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnChar.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="mbiLink.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -3228,6 +3228,12 @@
   <data name="miOpenDNA.Text" xml:space="preserve">
     <value>Open Sim DNA</value>
   </data>
+  <data name="miOpenSCOR.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="miOpenSCOR.Text" xml:space="preserve">
+    <value>Open Sim Score</value>
+  </data>
   <data name="miOpenFamily.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -3326,7 +3332,7 @@
     <value>Relink Character</value>
   </data>
   <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 258</value>
+    <value>220, 302</value>
   </data>
   <data name="mbiLink.Text" xml:space="preserve">
     <value>More</value>
@@ -3919,7 +3925,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnCareer.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="pnInt.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -4615,7 +4621,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnInt.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="pnRel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -4642,7 +4648,7 @@
     <value>lv</value>
   </data>
   <data name="&gt;&gt;lv.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.SimRelationPoolControl, simpe.sims, Version=1.0.2501.36719, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.SimRelationPoolControl, simpe.sims, Version=1.0.2503.21366, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lv.Parent" xml:space="preserve">
     <value>pnRel</value>
@@ -4756,7 +4762,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnRel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="pnMisc.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -5563,7 +5569,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnMisc.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="pnEP1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -5929,7 +5935,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnEP1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="pnEP2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -6265,7 +6271,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnEP2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="pnEP3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -6396,7 +6402,7 @@
     <value>sblb</value>
   </data>
   <data name="&gt;&gt;sblb.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.SimBusinessList, simpe.sims, Version=1.0.2501.36719, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.SimBusinessList, simpe.sims, Version=1.0.2503.21366, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;sblb.Parent" xml:space="preserve">
     <value>pnEP3</value>
@@ -6645,7 +6651,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnEP3.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -6836,10 +6842,16 @@
   <data name="&gt;&gt;mbiMaxKnownRel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;miOpenSCOR.Name" xml:space="preserve">
+    <value>miOpenSCOR</value>
+  </data>
+  <data name="&gt;&gt;miOpenSCOR.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ExtSDesc</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>SimPe.Windows.Forms.WrapperBaseControl, simpe.workspace, Version=1.0.2501.36714, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Windows.Forms.WrapperBaseControl, simpe.workspace, Version=1.0.2503.21358, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>
