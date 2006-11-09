@@ -272,6 +272,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.tbEp3Lot = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.miOpenSCOR = new System.Windows.Forms.ToolStripMenuItem();
             this.pnPetInt.SuspendLayout();
             this.toolBar1.SuspendLayout();
             this.pnId.SuspendLayout();
@@ -1238,6 +1239,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.miOpenMem,
             this.miOpenBadge,
             this.miOpenDNA,
+            this.miOpenSCOR,
             this.miOpenFamily,
             this.miOpenCloth,
             this.toolStripMenuItem2,
@@ -2430,6 +2432,12 @@ namespace SimPe.PackedFiles.UserInterface
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
             // 
+            // miOpenSCOR
+            // 
+            this.miOpenSCOR.Name = "miOpenSCOR";
+            resources.ApplyResources(this.miOpenSCOR, "miOpenSCOR");
+            this.miOpenSCOR.Click += new System.EventHandler(this.activate_miOpenScore);
+            // 
             // ExtSDesc
             // 
             this.Controls.Add(this.toolBar1);
@@ -2708,5 +2716,6 @@ namespace SimPe.PackedFiles.UserInterface
         private Label label24;
         private Label label23;
         private Label label22;
+        private ToolStripMenuItem miOpenSCOR;
     }
 }

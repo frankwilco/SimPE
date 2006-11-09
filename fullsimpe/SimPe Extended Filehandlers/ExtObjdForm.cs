@@ -89,6 +89,8 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.GroupBox groupBox2;
         internal TextBox tbdiag;
         private Label label3;
+        internal TextBox tbgrid;
+        private Label label4;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
@@ -284,6 +286,7 @@ namespace SimPe.PackedFiles.UserInterface
 				this.tbproxguid.Text = "0x"+Helper.HexString(objd.ProxyGuid);
 				this.tborgguid.Text = "0x"+Helper.HexString(objd.OriginalGuid);
                 this.tbdiag.Text = "0x" + Helper.HexString(objd.DiagonalGuid);
+                this.tbgrid.Text = "0x" + Helper.HexString(objd.GridAlignedGuid);
 
 				this.tbflname.Text = objd.FileName;
 
@@ -317,6 +320,8 @@ namespace SimPe.PackedFiles.UserInterface
 		private void InitializeComponent()
 		{
             this.pnobjd = new System.Windows.Forms.Panel();
+            this.tbdiag = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnUpdateMMAT = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCommit = new System.Windows.Forms.Button();
@@ -368,8 +373,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.panel6 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.cbcareer = new System.Windows.Forms.CheckBox();
-            this.tbdiag = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.tbgrid = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.pnobjd.SuspendLayout();
             this.tc.SuspendLayout();
             this.tpcatalogsort.SuspendLayout();
@@ -383,6 +388,8 @@ namespace SimPe.PackedFiles.UserInterface
             // pnobjd
             // 
             this.pnobjd.AutoScroll = true;
+            this.pnobjd.Controls.Add(this.tbgrid);
+            this.pnobjd.Controls.Add(this.label4);
             this.pnobjd.Controls.Add(this.tbdiag);
             this.pnobjd.Controls.Add(this.label3);
             this.pnobjd.Controls.Add(this.btnUpdateMMAT);
@@ -409,6 +416,26 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnobjd.Name = "pnobjd";
             this.pnobjd.Size = new System.Drawing.Size(856, 325);
             this.pnobjd.TabIndex = 6;
+            // 
+            // tbdiag
+            // 
+            this.tbdiag.Location = new System.Drawing.Point(127, 238);
+            this.tbdiag.Name = "tbdiag";
+            this.tbdiag.Size = new System.Drawing.Size(96, 21);
+            this.tbdiag.TabIndex = 34;
+            this.tbdiag.Text = "0xDDDDDDDD";
+            this.tbdiag.TextChanged += new System.EventHandler(this.SetGuid);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(13, 241);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 13);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "Diagonal GUID";
             // 
             // btnUpdateMMAT
             // 
@@ -766,7 +793,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.tpraw.Controls.Add(this.pg);
             this.tpraw.Location = new System.Drawing.Point(4, 22);
             this.tpraw.Name = "tpraw";
-            this.tpraw.Size = new System.Drawing.Size(552, 162);
+            this.tpraw.Size = new System.Drawing.Size(552, 242);
             this.tpraw.TabIndex = 1;
             this.tpraw.Text = "RAW Data";
             // 
@@ -815,7 +842,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.pg.LineColor = System.Drawing.SystemColors.ScrollBar;
             this.pg.Location = new System.Drawing.Point(0, 0);
             this.pg.Name = "pg";
-            this.pg.Size = new System.Drawing.Size(552, 162);
+            this.pg.Size = new System.Drawing.Size(552, 242);
             this.pg.TabIndex = 0;
             this.pg.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PropChanged);
             // 
@@ -852,7 +879,7 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // tbproxguid
             // 
-            this.tbproxguid.Location = new System.Drawing.Point(112, 211);
+            this.tbproxguid.Location = new System.Drawing.Point(127, 211);
             this.tbproxguid.Name = "tbproxguid";
             this.tbproxguid.Size = new System.Drawing.Size(96, 21);
             this.tbproxguid.TabIndex = 21;
@@ -872,7 +899,7 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // tborgguid
             // 
-            this.tborgguid.Location = new System.Drawing.Point(112, 184);
+            this.tborgguid.Location = new System.Drawing.Point(127, 184);
             this.tborgguid.Name = "tborgguid";
             this.tborgguid.Size = new System.Drawing.Size(96, 21);
             this.tborgguid.TabIndex = 19;
@@ -978,25 +1005,25 @@ namespace SimPe.PackedFiles.UserInterface
             this.cbcareer.TabIndex = 0;
             this.cbcareer.CheckedChanged += new System.EventHandler(this.SetFunctionFlags);
             // 
-            // tbdiag
+            // tbgrid
             // 
-            this.tbdiag.Location = new System.Drawing.Point(112, 238);
-            this.tbdiag.Name = "tbdiag";
-            this.tbdiag.Size = new System.Drawing.Size(96, 21);
-            this.tbdiag.TabIndex = 34;
-            this.tbdiag.Text = "0xDDDDDDDD";
-            this.tbdiag.TextChanged += new System.EventHandler(this.SetGuid);
+            this.tbgrid.Location = new System.Drawing.Point(127, 265);
+            this.tbgrid.Name = "tbgrid";
+            this.tbgrid.Size = new System.Drawing.Size(96, 21);
+            this.tbgrid.TabIndex = 36;
+            this.tbgrid.Text = "0xDDDDDDDD";
+            this.tbgrid.TextChanged += new System.EventHandler(this.SetGuid);
             // 
-            // label3
+            // label4
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(13, 241);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 13);
-            this.label3.TabIndex = 33;
-            this.label3.Text = "Diagonal GUID";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label4.Location = new System.Drawing.Point(13, 268);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(108, 13);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Grid Align GUID";
             // 
             // ExtObjdForm
             // 
@@ -1128,6 +1155,7 @@ namespace SimPe.PackedFiles.UserInterface
 				wrapper.ProxyGuid = Convert.ToUInt32(this.tbproxguid.Text, 16);
                 wrapper.OriginalGuid = Convert.ToUInt32(this.tborgguid.Text, 16);
                 wrapper.DiagonalGuid = Convert.ToUInt32(this.tbdiag.Text, 16);
+                wrapper.GridAlignedGuid = Convert.ToUInt32(this.tbgrid.Text, 16);
 				wrapper.Changed = true;
 			} 
 			catch (Exception){}

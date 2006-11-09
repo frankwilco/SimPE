@@ -155,6 +155,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 			mbiMax.Enabled = pnSkill.Visible || pnChar.Visible || pnInt.Visible || pnRel.Visible;
 			this.miRand.Enabled = mbiMax.Enabled;
+            this.miOpenSCOR.Enabled = (int)PathProvider.Global.Latest.Expansion >= (int)Expansions.Business;
 		}
 
         
@@ -581,7 +582,7 @@ namespace SimPe.PackedFiles.UserInterface
 			else if(this.pnChar.Visible) 
 			{
 				intern = true;
-				foreach (Control c in pnChar.Controls)
+				foreach (Control c in this.pnHumanChar.Controls)
 					if (c is LabeledProgressBar)
 						((LabeledProgressBar)c).Value = ((LabeledProgressBar)c).Maximum;
 				intern = false;	this.ChangedChar(null, null);
@@ -589,9 +590,12 @@ namespace SimPe.PackedFiles.UserInterface
 			else if(this.pnInt.Visible) 
 			{
 				intern = true;
-				foreach (Control c in pnInt.Controls)
+				foreach (Control c in this.pnPetInt.Controls)
 					if (c is LabeledProgressBar)
 						((LabeledProgressBar)c).Value = ((LabeledProgressBar)c).Maximum;
+                foreach (Control c in this.pnSimInt.Controls)
+                    if (c is LabeledProgressBar)
+                        ((LabeledProgressBar)c).Value = ((LabeledProgressBar)c).Maximum;
 				intern = false;	this.ChangedInt(null, null);
 			} 
 			else if (this.pnRel.Visible)
@@ -1668,6 +1672,20 @@ namespace SimPe.PackedFiles.UserInterface
 
         private void pnSimInt_VisibleChanged(object sender, EventArgs e)
         {
+        }
+
+        private void activate_miOpenScore(object sender, EventArgs e)
+        {
+            try
+            {
+                Interfaces.Files.IPackedFileDescriptor pfd = Sdesc.Package.NewDescriptor(0x3053CF74, Sdesc.FileDescriptor.SubType, Sdesc.FileDescriptor.Group, Sdesc.FileDescriptor.Instance); //try a SCOR File
+                pfd = Sdesc.Package.FindFile(pfd);
+                SimPe.RemoteControl.OpenPackedFile(pfd, Sdesc.Package);
+            }
+            catch (Exception ex)
+            {
+                Helper.ExceptionMessage(ex);
+            }
         }
 
        

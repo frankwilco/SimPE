@@ -52,7 +52,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </summary>
 		private short[] data = new short[0xdc];
 
-        uint guid, proxyguid, originalguid, diagonalguid;
+        uint guid, proxyguid, originalguid, diagonalguid, gridalignguid;
 
 		ObjRoomSort rsort = new ObjRoomSort(0);
 		ObjFunctionSort fsort = new ObjFunctionSort(0);
@@ -122,6 +122,15 @@ namespace SimPe.PackedFiles.Wrapper
         {
             get { return diagonalguid; }
             set { diagonalguid = value; }
+        }
+
+        /// <summary>
+        /// Returns the GUID of the Object
+        /// </summary>
+        public uint GridAlignedGuid
+        {
+            get { return gridalignguid; }
+            set { gridalignguid = value; }
         }
 		
 
@@ -283,7 +292,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Quaxi, Peter L Jones",
 				"This file is used to set up the basic catalog properties of an Object. " + 
 					"It also contains the unique ID for the Object (or part of the Object).",
-				6,
+				7,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.objd.png"))
 				); 
 		}
@@ -323,7 +332,7 @@ namespace SimPe.PackedFiles.Wrapper
             {
                 writer.BaseStream.Seek(0x6A, System.IO.SeekOrigin.Begin);
                 writer.Write(diagonalguid);
-            }
+            }           
 
 			if (Length>0x7a+4) 
 			{
