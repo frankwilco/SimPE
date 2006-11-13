@@ -309,14 +309,22 @@ namespace Ambertation.Windows.Forms
 
 		protected override void OnResize(EventArgs e)
 		{			
-			SetTokenCount(this.TokenCount);
-			CompleteRedraw();
+			/*SetTokenCount(this.TokenCount);
+			CompleteRedraw();*/
 		
 			base.OnResize (e);
 		}
 
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            SetTokenCount(this.TokenCount, true);
+            CompleteRedraw();
+            base.OnSizeChanged(e);
+        }
+
 		protected override void OnPaint(PaintEventArgs e)
 		{
+            System.Diagnostics.Debug.WriteLine("Painting " + Size + ", " + tw + ", " + tc + ", " + style);
 			double p = (float)(this.Value-this.Minimum) / (this.Maximum-this.Minimum);
 			int wd = (int)((this.SensitiveWidth) * p)+1;
 			if (p==0) wd=0;
@@ -410,6 +418,8 @@ namespace Ambertation.Windows.Forms
                 return;
             }
 
+            System.Diagnostics.Debug.WriteLine("Redraw " + Size + ", " + tw + ", " + tc + ", " + style);
+			
 			SetGraphicsMode(g, true);						
 			SetGraphicsMode(gsel, true);		
 			g.FillRectangle(new SolidBrush(base.BackColor), 0, 0, Width, Height);
@@ -424,19 +434,49 @@ namespace Ambertation.Windows.Forms
             needredraw = false;
 		}
 
+        class GraphicsId
+        {
+            int wd, hg;
+            Color cl;
+            public GraphicsId(int wd, int hg, Color cl)
+            {
+                this.wd = wd;
+                this.hg = hg;
+                this.cl = cl;
+            }
 
-        static Dictionary<Size, Image> tokenmap = new Dictionary<Size, Image>();
-        static Dictionary<Size, Image> seltokenmap = new Dictionary<Size, Image>();
+            public override int GetHashCode()
+            {
+                return wd;
+            }
+
+            public override bool Equals(object obj)
+            {
+                GraphicsId id = obj as GraphicsId;
+                if (id != null)
+                {
+                    if (id.wd != wd) return false;
+                    if (id.hg != hg) return false;
+                    if (id.cl != cl) return false;
+                    return true;
+                }
+                return base.Equals(obj);
+            }
+        }
+
+        static Dictionary<GraphicsId, Image> tokenmap = new Dictionary<GraphicsId, Image>();
+        static Dictionary<GraphicsId, Image> seltokenmap = new Dictionary<GraphicsId, Image>();
 
         protected  void DrawTokens(Graphics g, Graphics gsel, int left, int top, int width, int height)
         {
+            //System.Diagnostics.Debug.WriteLine("Tokens " + width + ", " + height);
             if (!usetokenbuffer)
             {
                 DoDrawTokens(g, gsel, left, top, width, height);
                 return;
             }
 
-            Size sz = new Size(width, height);
+            GraphicsId sz = new GraphicsId(width, height, SelectedColor);
             UpdateTokenBuffer(width, height, sz);
 
             Image i = tokenmap[sz];
@@ -446,10 +486,12 @@ namespace Ambertation.Windows.Forms
             gsel.DrawImageUnscaled(si, left, top);            
         }
 
-        private void UpdateTokenBuffer(int width, int height, Size sz)
+        private void UpdateTokenBuffer(int width, int height, GraphicsId sz)
         {
             if (!tokenmap.ContainsKey(sz))
             {
+                //System.Diagnostics.Debug.WriteLine("Buffering Token " + width + ", " + height);
+			
                 Bitmap b1 = new Bitmap(width+1, height+1);
                 Graphics g1 = Graphics.FromImage(b1);
                 Bitmap b2 = new Bitmap(width+1, height+1);
@@ -465,8 +507,9 @@ namespace Ambertation.Windows.Forms
         
 		protected virtual void DoDrawTokens(Graphics g, Graphics gsel, int left, int top, int width, int height)
 		{
-			
-			int rad = 2;
+
+            //System.Diagnostics.Debug.WriteLine("Drawing Token " + left + ", " + top + ", " + width + ", " + height);
+            int rad = 2;
             
 			Ambertation.Drawing.GraphicRoutines.FillRoundRect(g, new SolidBrush(this.UnselectedColor), left, top, width, height, rad);            
             Ambertation.Drawing.GraphicRoutines.FillRoundRect(gsel, new SolidBrush(this.SelectedColor), left, top, width, height, rad);
@@ -660,17 +703,14 @@ namespace Ambertation.Windows.Forms
 		public int TokenWidth
 		{
 			get { return tw; }
-			set
-			{
-				SetTokenWidth(value);									
-			}
 		}
 
 		int tc;
-		void SetTokenCount(int val)
+		void SetTokenCount(int val, bool force)
 		{
-			if (tc==val) return;				
-			tc = Math.Max(2, val);					
+			if (tc==val && !force) return;
+            //System.Diagnostics.Debug.WriteLine("Set Token Count from " + tc + " to " + val);
+            tc = Math.Max(2, val);					
 
 			tw =  Math.Max(4, ((Width-1) / tc)-2);
  			CompleteRedraw();		
@@ -684,7 +724,7 @@ namespace Ambertation.Windows.Forms
 			}
 			set 
 			{
-				SetTokenCount(value);							
+				SetTokenCount(value, false);							
 			}
 		}
 

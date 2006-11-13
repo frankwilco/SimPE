@@ -788,54 +788,6 @@
   <data name="label17.Text" xml:space="preserve">
     <value>Schlau</value>
   </data>
-  <data name="pnHumanChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 123</value>
-  </data>
-  <data name="pbMan.LabelText" xml:space="preserve">
-    <value>Männer:</value>
-  </data>
-  <data name="pbMan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 208</value>
-  </data>
-  <data name="pbWoman.LabelText" xml:space="preserve">
-    <value>Frauen:</value>
-  </data>
-  <data name="pbWoman.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 184</value>
-  </data>
-  <data name="cbzodiac.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 16</value>
-  </data>
-  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 17</value>
-  </data>
-  <data name="label47.Text" xml:space="preserve">
-    <value>Sternzeichen:</value>
-  </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>504, 176</value>
-  </data>
-  <data name="label69.Location" type="System.Drawing.Point, System.Drawing">
-    <value>440, 232</value>
-  </data>
-  <data name="label69.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 16</value>
-  </data>
-  <data name="label69.Text" xml:space="preserve">
-    <value>anziehend</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 176</value>
-  </data>
-  <data name="label70.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 232</value>
-  </data>
-  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 16</value>
-  </data>
-  <data name="label70.Text" xml:space="preserve">
-    <value>abstoßend</value>
-  </data>
   <data name="pbNeat.LabelText" xml:space="preserve">
     <value>Ordentlich:</value>
   </data>
@@ -912,8 +864,53 @@
   <data name="pbGOutgoing.Size" type="System.Drawing.Size, System.Drawing">
     <value>304, 20</value>
   </data>
-  <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 258</value>
+  <data name="pnHumanChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>584, 123</value>
+  </data>
+  <data name="pbMan.LabelText" xml:space="preserve">
+    <value>Männer:</value>
+  </data>
+  <data name="pbMan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 208</value>
+  </data>
+  <data name="pbWoman.LabelText" xml:space="preserve">
+    <value>Frauen:</value>
+  </data>
+  <data name="pbWoman.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 184</value>
+  </data>
+  <data name="cbzodiac.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 16</value>
+  </data>
+  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 17</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>Sternzeichen:</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>504, 176</value>
+  </data>
+  <data name="label69.Location" type="System.Drawing.Point, System.Drawing">
+    <value>440, 232</value>
+  </data>
+  <data name="label69.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 16</value>
+  </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>anziehend</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 176</value>
+  </data>
+  <data name="label70.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 232</value>
+  </data>
+  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 16</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>abstoßend</value>
   </data>
   <data name="miRand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1067,6 +1064,12 @@
   <data name="miOpenDNA.Text" xml:space="preserve">
     <value>Öffne Sim DNA</value>
   </data>
+  <data name="miOpenSCOR.Size" type="System.Drawing.Size, System.Drawing">
+    <value>288, 22</value>
+  </data>
+  <data name="miOpenSCOR.Text" xml:space="preserve">
+    <value>Öffne Sim Score</value>
+  </data>
   <data name="miOpenFamily.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1164,8 +1167,8 @@
   <data name="miRelink.Text" xml:space="preserve">
     <value>Charakter neu zuordnen</value>
   </data>
-  <data name="miRel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 98</value>
+  <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 280</value>
   </data>
   <data name="miAddRelation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1207,6 +1210,9 @@
   </data>
   <data name="mbiMaxKnownRel.Text" xml:space="preserve">
     <value>Beziehungen zu bekannten Sims maximieren</value>
+  </data>
+  <data name="miRel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 98</value>
   </data>
   <data name="pbAspBliz.LabelText" xml:space="preserve">
     <value>Stimmung kurzfristig:</value>
@@ -1331,12 +1337,6 @@
   <data name="xpTaskBoxSimple3.HeaderText" xml:space="preserve">
     <value>Verschiedenes</value>
   </data>
-  <data name="xpTaskBoxSimple2.HeaderText" xml:space="preserve">
-    <value>Körper Schalter</value>
-  </data>
-  <data name="xpTaskBoxSimple2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 184</value>
-  </data>
   <data name="cbfit.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 152</value>
   </data>
@@ -1358,11 +1358,11 @@
   <data name="cbfat.Text" xml:space="preserve">
     <value>Dick</value>
   </data>
-  <data name="xpTaskBoxSimple1.HeaderText" xml:space="preserve">
-    <value>Geist Schalter</value>
+  <data name="xpTaskBoxSimple2.HeaderText" xml:space="preserve">
+    <value>Körper Schalter</value>
   </data>
-  <data name="xpTaskBoxSimple1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 184</value>
+  <data name="xpTaskBoxSimple2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 184</value>
   </data>
   <data name="cbisghost.Text" xml:space="preserve">
     <value>Ist Geist</value>
@@ -1381,6 +1381,12 @@
   </data>
   <data name="cbpassobject.Text" xml:space="preserve">
     <value>Geht durch Objekte</value>
+  </data>
+  <data name="xpTaskBoxSimple1.HeaderText" xml:space="preserve">
+    <value>Geist Schalter</value>
+  </data>
+  <data name="xpTaskBoxSimple1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 184</value>
   </data>
   <data name="pbLastGrade.LabelText" xml:space="preserve">
     <value>Letzte Note:</value>

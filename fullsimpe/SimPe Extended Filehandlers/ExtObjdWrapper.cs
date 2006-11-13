@@ -328,10 +328,11 @@ namespace SimPe.PackedFiles.Wrapper
 				writer.Write(guid);
             } 
             
-            if (Length > 0x6A + 4)
+            if (Length > 0x6A + 8)
             {
                 writer.BaseStream.Seek(0x6A, System.IO.SeekOrigin.Begin);
                 writer.Write(diagonalguid);
+                writer.Write(gridalignguid);
             }           
 
 			if (Length>0x7a+4) 
@@ -371,10 +372,11 @@ namespace SimPe.PackedFiles.Wrapper
 				guid = reader.ReadUInt32();
 			}
 
-            if (Length > 0x6A + 4)
+            if (Length > 0x6A + 8)
             {
                 reader.BaseStream.Seek(0x6A, System.IO.SeekOrigin.Begin);
                 diagonalguid = reader.ReadUInt32();
+                gridalignguid = reader.ReadUInt32();
             }
 
 			if (Length>0x7a+4)

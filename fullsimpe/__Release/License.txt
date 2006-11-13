@@ -4,4 +4,4 @@ It might cause Problems for your Sims Game or the entire System. If you install 
 
 SimPE is using the 7-Zip commandline Utility to handle archives (like .7z, .rar...). The Software is distributed under GPL. For more Informations visit: http://www.7-zip.org.
 
-Most of the new GUI Controls were created by divElements (http://www.divil.co.uk/net/) and SteepValley (http://www.steepvalley.net/).
+Some GUI Controls were created by SteepValley (http://www.steepvalley.net/).

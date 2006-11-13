@@ -44,7 +44,7 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
                         if (obj.FileName.StartsWith("Learned Behavior"))
                         {
                             objds.Add(obj);
-                            Console.WriteLine(obj.ResourceName);
+                            //Console.WriteLine(obj.ResourceName);
                         }
                     }
                 }
