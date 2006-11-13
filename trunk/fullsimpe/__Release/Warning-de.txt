@@ -3,7 +3,7 @@ SimPE ist ein Tool das tief in die Interna von "Die Sims 2" eingreifen kann.
 Viele Anwender verwenden SimPE bereits ohne Probleme. Wenn es allerdings unsachgemäß verwendet wird können schäden am Spiel sowie am gesammten System entstehen. SimPE darf nur dann verwendet werden wenn sie diese Risiko akzeptieren. Bedenken sie dass SimPE noch im alpha Stadium ist!
 Es wird dringend empfohlen vor dem Start ein Backup des Verzeicnisses "Eigene Dateien\EA Games\Die Sims 2\" anzufertigen!
 
-Um SimPE ausführe zu können benötigt ihr Microsoft .NET 1.1 (http://www.microsoft.com/downloads/details.aspx?FamilyID=262d25e3-f589-4842-8157-034d1e7cf3a3&displaylang=de).
+Um SimPE ausführe zu können benötigt ihr Microsoft .NET 2.0 (http://www.microsoft.com/downloads/details.aspx?displaylang=de&FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5).
 
 Damit das "Photo Studio" und "Wizards of SimPE" korrekt funktionieren, muss zusätzlich das Colour Options Enabler Packet (http://sims.ambertation.de/cep.shtml) installiert werden.
 Seit dieser SimPE Version sind die standard PhotoStudio nicht mehr enthalten. SimPE wird allerdings anbieten die Vorlagen automatisch aus dem Internet zu installieren, sobald das PhotoStudio gestartet wird.

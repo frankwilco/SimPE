@@ -1678,7 +1678,7 @@ namespace SimPe.PackedFiles.UserInterface
         {
             try
             {
-                Interfaces.Files.IPackedFileDescriptor pfd = Sdesc.Package.NewDescriptor(0x3053CF74, Sdesc.FileDescriptor.SubType, Sdesc.FileDescriptor.Group, Sdesc.FileDescriptor.Instance); //try a SCOR File
+                Interfaces.Files.IPackedFileDescriptor pfd = Sdesc.Package.NewDescriptor(0x3053CF74, Sdesc.FileDescriptor.Type, Sdesc.FileDescriptor.Group, Sdesc.FileDescriptor.Instance); //try a SCOR File
                 pfd = Sdesc.Package.FindFile(pfd);
                 SimPe.RemoteControl.OpenPackedFile(pfd, Sdesc.Package);
             }

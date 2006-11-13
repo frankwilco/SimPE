@@ -93,12 +93,17 @@ namespace SimPe
             Helper.WindowsRegistry.Layout.InstanceColumnWidth = 100;
             Helper.WindowsRegistry.Layout.OffsetColumnWidth = 100;
             Helper.WindowsRegistry.Layout.SizeColumnWidth = 100;
+            FixVisibleState(tbTools);
+            FixVisibleState(tbAction);
+            FixVisibleState(toolBar1);
 
             ReloadLayout();
 
             tbTools.Visible = true;
             tbAction.Visible = true;
             toolBar1.Visible = true;
+
+           
             
             
             tbWindow.Visible = false;
@@ -155,6 +160,16 @@ namespace SimPe
                 if (tsb == null) continue;
                 if (tsb.Overflow != System.Windows.Forms.ToolStripItemOverflow.Always)
                     tsb.Checked = false;
+            }
+        }
+
+        private void FixVisibleState(System.Windows.Forms.ToolStrip ts)
+        {
+            foreach (System.Windows.Forms.ToolStripItem tsi in ts.Items)
+            {
+                System.Windows.Forms.ToolStripButton tsb = tsi as System.Windows.Forms.ToolStripButton;
+                if (tsb == null) continue;
+                if (tsb.Image!=null && tsb!=biUpdate) tsb.Visible = true;
             }
         }
     }

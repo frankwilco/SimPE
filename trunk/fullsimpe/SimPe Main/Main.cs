@@ -754,7 +754,7 @@ namespace SimPe
             dw.ShowCloseButton = fl;
             dw.ShowCollapseButton = fl;
             dw.CanUndock = fl;
-            dw.CanResize = fl;
+            dw.CanResize = true;
 		}
 
 		void MakeFloatable(bool fl)

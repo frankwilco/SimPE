@@ -83,13 +83,5 @@
       </cilist>
     </key>
 
-    <!-- Information about Happy Holiday Stuff -->
-    <key name="HappyHoliday">
-      <int name="Version">7</int>
-      <string name="RegKey">Software\\EA Games\\The Sims 2 Happy Holiday Stuff</string>
-      <int name="Flag">2</int>
-      <string name="ExeName">Sims2SP3.exe</string>
-      <string name="Censor">quaxi_pets_censor_v1.package</string>
-    </key>
   </key>
 </registry>

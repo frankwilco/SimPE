@@ -74,18 +74,21 @@ namespace SimPe.Windows.Forms
 
         private void lv_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Middle)
+            if (e.Button == MouseButtons.Middle /*&& names.Count>0*/)
             {
                 bool old = ctrldown;
                 ctrldown = true;
                 ListViewItem lvi = lv.GetItemAt(e.X, e.Y);
+                if (lvi != null)
+                {
 
-                BeginUpdate();
-                lv.EnsureVisible(lvi.Index);
-                lv.SelectedIndices.Clear();
-                lv.SelectedIndices.Add(lvi.Index);
-                OnSelectResource();
-                EndUpdate();
+                    BeginUpdate();
+                    lv.EnsureVisible(lvi.Index);
+                    lv.SelectedIndices.Clear();
+                    lv.SelectedIndices.Add(lvi.Index);
+                    OnSelectResource();
+                    EndUpdate();
+                }
 
                 ctrldown = old;
             }

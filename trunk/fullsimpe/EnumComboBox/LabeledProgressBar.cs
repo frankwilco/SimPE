@@ -68,7 +68,7 @@ namespace Ambertation.Windows.Forms
 			// Dieser Aufruf ist für den Windows Form-Designer erforderlich.
 			InitializeComponent();
 
-			pb.TokenWidth = 8;
+			pb.TokenCount = 10;
 			pb.Maximum = 100;
 			pb.Value = 0;
 			pb.TabStop = false;
@@ -107,11 +107,7 @@ namespace Ambertation.Windows.Forms
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public int TokenWidth
 		{
-			get {return pb.TokenWidth; }
-			set
-			{
-				pb.TokenWidth = value;
-			}
+			get {return pb.TokenWidth; }			
 		}
 
 		public int TokenCount
