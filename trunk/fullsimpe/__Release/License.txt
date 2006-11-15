@@ -1,7 +1,7 @@
-This Tool is in its Alpha Stages.
+This tool is in it's alpha stage.
 
-It might cause Problems for your Sims Game or the entire System. If you install this Software you accept that Risk and agree that the developers of this Software and it's Plugins can't be held responsible for any damage.
+The use of SimPE might cause problems to your "Sims 2" game or the entire system. If you install this software you accept that risk and agree that the developers of this software and it's plugins can't be held responsible for any damage.
 
-SimPE is using the 7-Zip commandline Utility to handle archives (like .7z, .rar...). The Software is distributed under GPL. For more Informations visit: http://www.7-zip.org.
+SimPE is using the 7-Zip commandline utility to handle archives (like .7z, .rar...). The software is distributed under the GPL. For more information visit: http://www.7-zip.org.
 
-Some GUI Controls were created by SteepValley (http://www.steepvalley.net/).
+Some GUI controls were created by SteepValley (http://www.steepvalley.net/).
