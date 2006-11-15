@@ -1,5 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Main", "..\SimPe Main\SimPe Main.csproj", "{7368AF5F-2C82-4750-A31F-63AA4432758C}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Interfaces", "..\SimPe Interfaces\SimPe Interfaces.csproj", "{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Helper", "..\SimPe Helper\SimPe Helper.csproj", "{59E3C353-1350-42D8-A045-CBBAD232F228}"
@@ -33,8 +35,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Workspace Helper", "..\SimPe Workspace Helper\SimPe Workspace Helper.csproj", "{45021667-BAD2-4ECA-8423-F4734F914CBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims", "..\SimPe Sims\SimPe Sims.csproj", "{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Main", "..\SimPe Main\SimPe Main.csproj", "{7368AF5F-2C82-4750-A31F-63AA4432758C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe 3D", "..\SimPe 3D\SimPe 3D.csproj", "{44911ACC-87B8-4FED-865C-1950F703C3D1}"
 EndProject

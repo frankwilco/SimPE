@@ -1,11 +1,11 @@
-SimPE ist ein Tool das tief in die Interna von "Die Sims 2" eingreifen kann.
+SimPE ist ein Werkzeug das tief in die Interna von "Die Sims 2" eingreifen kann.
 
-Viele Anwender verwenden SimPE bereits ohne Probleme. Wenn es allerdings unsachgemäß verwendet wird können schäden am Spiel sowie am gesammten System entstehen. SimPE darf nur dann verwendet werden wenn sie diese Risiko akzeptieren. Bedenken sie dass SimPE noch im alpha Stadium ist!
+Viele Anwender verwenden SimPE bereits ohne Probleme. Wenn es allerdings unsachgemäß verwendet wird, können Schäden am Spiel sowie am gesamten System entstehen. SimPE darf nur dann verwendet werden, wenn Sie dieses Risiko akzeptieren. Bedenken Sie, dass SimPE sich noch im Alpha-Stadium befindet!
 Es wird dringend empfohlen vor dem Start ein Backup des Verzeicnisses "Eigene Dateien\EA Games\Die Sims 2\" anzufertigen!
 
-Um SimPE ausführe zu können benötigt ihr Microsoft .NET 2.0 (http://www.microsoft.com/downloads/details.aspx?displaylang=de&FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5).
+Um SimPE ausführen zu können benötigen Sie das Microsoft .NET Framework 2.0 (http://www.microsoft.com/downloads/details.aspx?displaylang=de&FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5).
 
-Damit das "Photo Studio" und "Wizards of SimPE" korrekt funktionieren, muss zusätzlich das Colour Options Enabler Packet (http://sims.ambertation.de/cep.shtml) installiert werden.
-Seit dieser SimPE Version sind die standard PhotoStudio nicht mehr enthalten. SimPE wird allerdings anbieten die Vorlagen automatisch aus dem Internet zu installieren, sobald das PhotoStudio gestartet wird.
+Damit der Object Workshop, das "Photo Studio" und "Wizards of SimPE" korrekt funktionieren, muss zusätzlich das "Colour Options Enabler"-Paket ("CEP", http://sims.ambertation.de/cep.shtml) installiert werden.
+Die Standard PhotoStudio-Templates sind seit einigen Versionen nicht mehr im Installationspaket enthalten. SimPE wird allerdings anbieten, die Vorlagen automatisch aus dem Internet zu installieren, sobald das PhotoStudio gestartet wird.
 
-Um optimale Ergebnisse beim erstellen von Texturen zu erhalten, wird empfohlen die "Nvidia DDS utilities" (http://developer.nvidia.com/object/nv_texture_tools.html) zu instalieren.
+Um optimale Ergebnisse beim Erstellen von Texturen zu erhalten, wird empfohlen die "Nvidia DDS Utilities" (http://developer.nvidia.com/object/nv_texture_tools.html) zu installieren.
