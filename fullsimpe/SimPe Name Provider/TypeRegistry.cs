@@ -97,7 +97,7 @@ namespace SimPe.PackedFiles
 		/// Constructor of the class
 		/// </summary>
 		public TypeRegistry()
-		{
+		{            
             uplugins = new List<SimPe.Updates.IUpdatablePlugin>();
 			reg = Helper.WindowsRegistry;
 			handlers = new ArrayList();		
@@ -557,6 +557,26 @@ namespace SimPe.PackedFiles
 		}
 
 		#endregion
+
+        /// <summary>
+        /// This will perform some basic tasks, to bring the SimPE API into an useable state
+        /// </summary>
+        public static void InitDefaultFileTable()
+        {
+            SimPe.PackedFiles.TypeRegistry tr = new SimPe.PackedFiles.TypeRegistry();
+
+            SimPe.FileTable.ProviderRegistry = tr;
+            SimPe.FileTable.ToolRegistry = tr;
+            SimPe.FileTable.WrapperRegistry = tr;
+            SimPe.FileTable.HelpTopicRegistry = tr;
+            SimPe.FileTable.SettingsRegistry = tr;
+
+            SimPe.FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.SimFactory());
+            SimPe.FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ExtendedWrapperFactory());
+            SimPe.FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.DefaultWrapperFactory());
+            SimPe.FileTable.WrapperRegistry.Register(new SimPe.Plugin.ScenegraphWrapperFactory());
+            SimPe.FileTable.WrapperRegistry.Register(new SimPe.PackedFiles.Wrapper.Factory.ClstWrapperFactory());
+        }
 	}
 }
 

@@ -22,6 +22,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using SQLite.NET;
+using System.Data.SQLite;
 
 namespace SimPe.Database
 {
@@ -57,65 +58,74 @@ namespace SimPe.Database
             Console.WriteLine("Started sync Thread for " + flname);
             Running++;
             SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(flname);
-            db.BeginTransaction();
-            db.CleanupFileTgi(fid);
-
-
-            Wait.SubStart(pkg.Index.Length);
-            Wait.Message = flname;
-            int ct = 0;
-            bool done = true;
-            foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Index)
+            using (SQLiteTransaction transaction = db.BeginTransaction())
             {
-                string name = null;
-                object guid = null;
-                ct++;
-                if (!Database.CachedTypes.Contains(pfd.Type)) continue;
+                db.CleanupFileTgi(fid);
 
 
-                if (pfd.Type == Data.MetaData.OBJD_FILE)
+                Wait.SubStart(pkg.Index.Length);
+                Wait.Message = flname;
+                int ct = 0;
+                bool done = true;
+
+                using (SQLiteCommand cmd = db.CreateStorePfdCommand())
                 {
-                    SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
-                    objd.ProcessData(pfd, pkg);
+                    cmd.Prepare();
+                    using (SQLiteCommand cmdguid = db.CreateStoreGuidCommand())
+                    {
+                        cmdguid.Prepare();
+                        foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Index)
+                        {
+                            string name = null;
+                            object guid = null;
+                            ct++;
+                            if (!Database.CachedTypes.Contains(pfd.Type)) continue;
 
-                    guid = objd.Guid;
-                    name = objd.FileName;
+
+                            if (pfd.Type == Data.MetaData.OBJD_FILE)
+                            {
+                                SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
+                                objd.ProcessData(pfd, pkg);
+
+                                guid = objd.Guid;
+                                name = objd.FileName;
+                            }
+                            else if (SimPe.Data.MetaData.RcolList.Contains(pfd.Type))
+                            {
+                                SimPe.Plugin.GenericRcol rcol = new SimPe.Plugin.GenericRcol(SimPe.FileTable.ProviderRegistry, true);
+                                rcol.ProcessData(pfd, pkg);
+
+                                name = rcol.ResourceName;
+                            }
+
+
+                            db.StorePfd(cmd, fid, pfd, name);                            
+                            int id = db.Last();
+                            if (guid != null) db.StoreGuid(cmdguid, id, (uint)guid);
+
+
+                            Wait.Progress = ct;
+                            if (this.HaveToStop)
+                            {
+                                done = false;
+                                break;
+                            }
+                        }
+                    }
                 }
-                else if (SimPe.Data.MetaData.RcolList.Contains(pfd.Type))
-                {
-                    SimPe.Plugin.GenericRcol rcol = new SimPe.Plugin.GenericRcol();
-                    rcol.ProcessData(pfd, pkg);
+                Wait.SubStop();
+                pkg.Close();
 
-                    name = rcol.ResourceName;
+                if (done)
+                {
+                    db.QueryNr("UPDATE files SET modified=" + SQLiteClient.Quote(Database.ToTimeStamp(fi.LastWriteTime)) + " WHERE fid=" + fid);
+                    transaction.Commit();
                 }
-
-                
-                db.StorePfd(fid, pfd, name);    
-                int id = db.Last();
-
-                if (guid != null) db.StoreGuid(id, (uint)guid);
-                
-                            
-                Wait.Progress = ct;                                                    
-                if (this.HaveToStop)
+                else
                 {
-                    done = false;
-                    break;
+                    transaction.Rollback();
                 }
             }
-            Wait.SubStop();
-            pkg.Close();
-
-            if (done)
-            {
-                db.QueryNr("UPDATE files SET modified=" + SQLiteClient.Quote(Database.ToTimeStamp(fi.LastWriteTime)) + " WHERE fid=" + fid);
-                db.EndTransaction();                               
-            }
-            else
-            {
-                db.RollbackTransaction();
-            }
-
             Running--;
             Console.WriteLine("Stopped sync Thread for " + flname);
         }

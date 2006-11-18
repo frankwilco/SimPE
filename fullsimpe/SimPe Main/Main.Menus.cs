@@ -47,7 +47,7 @@ namespace SimPe
 
             if (c.Tag != null)
                 if (c.Tag is System.Windows.Forms.Shortcut)
-                    mi.ShortcutKeys = Helper.ToKeys((System.Windows.Forms.Shortcut)c.Tag);
+                    LoadFileWrappersExt.SetShurtcutKey(mi, (System.Windows.Forms.Shortcut)c.Tag);
 
             /*c.VisibleChanged += new EventHandler(CloseDockControl);
             c.Closed += new EventHandler(CloseDockControl);*/

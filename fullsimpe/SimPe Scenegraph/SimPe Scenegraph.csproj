@@ -159,10 +159,6 @@
       <HintPath>C:\WINDOWS\Microsoft.NET\Managed DirectX\v9.02.2904\Microsoft.DirectX.Direct3DX.dll</HintPath>
       <AssemblyFolderKey>hklm\current managed directx 9.2</AssemblyFolderKey>
     </Reference>
-    <Reference Include="Skybound.VisualStyles">
-      <Name>skybound.visualstyles</Name>
-      <HintPath>..\skybound.visualstyles.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>

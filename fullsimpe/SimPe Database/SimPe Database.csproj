@@ -28,9 +28,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SandDock, Version=2.0.2.1, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3">
+    <Reference Include="NetDocks, Version=1.0.2508.22415, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SandDock.dll</HintPath>
+      <HintPath>..\NetDocks.dll</HintPath>
     </Reference>
     <Reference Include="simpe.commonhandler, Version=1.0.2326.39102, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -68,9 +68,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.workspace.dll</HintPath>
     </Reference>
-    <Reference Include="SQLiteClient, Version=2.0.1.0, Culture=neutral" />
+    <Reference Include="SQLiteClient, Version=2.0.1.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SQLiteClient.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.36.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\System.Data.SQLite.DLL</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -78,7 +85,7 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="DatabaseDock.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DatabaseDock.Designer.cs">
       <DependentUpon>DatabaseDock.cs</DependentUpon>
@@ -91,6 +98,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TestClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DatabaseDock.resx">
@@ -102,6 +110,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="sqlite.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -113,15 +123,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)..\__Release\Plugins\" mkdir "$(SolutionDir)..\__Release\Plugins\"
-if not exist "$(SolutionDir)..\__Release\de\" mkdir "$(SolutionDir)..\__Release\de\"
-if not exist "$(SolutionDir)..\__Release\es\" mkdir "$(SolutionDir)..\__Release\es\"
-if not exist "$(SolutionDir)..\__Release\pl\" mkdir "$(SolutionDir)..\__Release\pl\"
-copy "$(TargetPath)" "$(SolutionDir)..\__Release\Plugins\$(TargetFileName)"
-copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\__Release\Plugins\"
-copy "$(TargetDir)SQLiteClient.dll" "$(SolutionDir)..\__Release\"
-REM copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
-REM copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
-REM copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

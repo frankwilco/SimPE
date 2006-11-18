@@ -55,8 +55,7 @@ namespace SimPe
 		/// </summary>
 		[STAThread]
 		static void Main(string[] args) 
-		{
-
+		{           
             try
             {
                 foreach (string arg in args) 

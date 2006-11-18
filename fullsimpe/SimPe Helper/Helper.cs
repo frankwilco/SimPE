@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace SimPe
 {
@@ -1155,14 +1156,15 @@ namespace SimPe
 		}
 
 		#endregion
+        
 
         public static System.Windows.Forms.Keys ToKeys(System.Windows.Forms.Shortcut sc)
-        {
+        {            
             System.Windows.Forms.Keys ret = System.Windows.Forms.Keys.None;
             string name = sc.ToString().ToLower();
 
             if (name == "none") return ret;
-
+            
             SetKey(ref ret, ref name, "ctrl", System.Windows.Forms.Keys.Control);
             SetKey(ref ret, ref name, "shift", System.Windows.Forms.Keys.Shift);
             SetKey(ref ret, ref name, "alt", System.Windows.Forms.Keys.Alt);
@@ -1240,6 +1242,7 @@ namespace SimPe
             }
 
             return false;
-        }
+        }        
+        
 	}
 }
