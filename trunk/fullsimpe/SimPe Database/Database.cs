@@ -22,30 +22,53 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using SQLite.NET;
+using System.Data.SQLite;
 
 namespace SimPe.Database
 {
     class Database 
     {        
-        SQLiteClient sql;
+        System.Data.SQLite.SQLiteConnection sql;
         internal static List<uint> CachedTypes = SimPe.Data.MetaData.CachedFileTypes;
         public Database()
         {
-            sql = new SQLite.NET.SQLiteClient(System.IO.Path.Combine(Helper.SimPeDataPath, "cache.db"));
+            System.Data.SQLite.SQLiteConnectionStringBuilder sb = new System.Data.SQLite.SQLiteConnectionStringBuilder();
+            sb.DataSource = System.IO.Path.Combine(SimPe.Helper.SimPeDataPath, "cache.db");
+            sql = new System.Data.SQLite.SQLiteConnection(sb.ConnectionString);
+
+            lastrowid = 0;
             PrepareDatabase();
 
-            
+            sql.Update += new SQLiteUpdateEventHandler(sql_Update);
+        }
+
+        long lastrowid;
+        void sql_Update(object sender, UpdateEventArgs e)
+        {
+            lastrowid = e.RowId;
         }
 
         ~Database()
         {
+            sql.Update -= new SQLiteUpdateEventHandler(sql_Update);
             sql.Close();
         }
 
         void PrepareDatabase()
         {
-            ArrayList tables = sql.GetColumn("SELECT name FROM sqlite_master WHERE type = 'table'");
+            sql.Open();
+            ArrayList tables = new ArrayList();
+            using (SQLiteCommand mycommand = new SQLiteCommand(sql))
+            {
+                mycommand.CommandText = String.Format("SELECT name FROM sqlite_master WHERE type = 'table'");
+                SQLiteDataReader res = mycommand.ExecuteReader();
+                while (res.Read())
+                {
+                    tables.Add(res["name"].ToString());
+                }
+            }
 
+            
             if (!tables.Contains("files")) CreateFilesTable();
             if (!tables.Contains("tgi")) CreateTGITable();
             if (!tables.Contains("guid")) CreateGuidTable();
@@ -53,11 +76,19 @@ namespace SimPe.Database
         }
 
         #region Creat Tables
+        void CreateTable(string name, string s)
+        {
+            using (SQLiteCommand mycommand = new SQLiteCommand(sql))
+            {
+                mycommand.CommandText = String.Format("CREATE TABLE '" + name + "' (" + s + ")");
+                mycommand.ExecuteNonQuery();                
+            }
+        }
         void CreateFilesTable()
         {
             try
             {
-                SQLiteResultSet res = QueryNr("CREATE TABLE 'files' ('fid' INTEGER NOT NULL PRIMARY KEY, 'filename' VARCHAR(255)  NOT NULL, 'modified' TIMESTAMP  NOT NULL)");
+                CreateTable("files", "'fid' INTEGER NOT NULL PRIMARY KEY, 'filename' VARCHAR(255)  NOT NULL, 'modified' TIMESTAMP  NOT NULL");                
             }
             catch (Exception ex)
             {
@@ -69,7 +100,7 @@ namespace SimPe.Database
         {
             try
             {
-                SQLiteResultSet res = QueryNr("CREATE TABLE 'tgi' ('id' INTEGER PRIMARY KEY NOT NULL, 't' INTEGER  NOT NULL, 'g' INTEGER  NOT NULL, 'ihi' INTEGER  NOT NULL, 'ilo' INTEGER  NOT NULL, 'name' VARCHAR(255)  NULL, 'fid' INTEGER  NOT NULL)");                
+                CreateTable("tgi", "'id' INTEGER PRIMARY KEY NOT NULL, 't' INTEGER  NOT NULL, 'g' INTEGER  NOT NULL, 'ihi' INTEGER  NOT NULL, 'ilo' INTEGER  NOT NULL, 'name' VARCHAR(255)  NULL, 'fid' INTEGER  NOT NULL");                
             }
             catch (Exception ex)
             {
@@ -81,7 +112,7 @@ namespace SimPe.Database
         {
             try
             {
-                SQLiteResultSet res = QueryNr("CREATE TABLE 'guid' ('id' INTEGER  NOT NULL PRIMARY KEY, 'guid' INTEGER  NOT NULL)");
+                CreateTable("guid", "'id' INTEGER  NOT NULL PRIMARY KEY, 'guid' INTEGER  NOT NULL");
             }
             catch (Exception ex)
             {
@@ -93,7 +124,7 @@ namespace SimPe.Database
         {
             try
             {
-                SQLiteResultSet res = QueryNr("CREATE TABLE 'thumbs' ('id' INTEGER  UNIQUE NOT NULL PRIMARY KEY, 'img' BLOB  NULL)");
+                CreateTable("thumbs", "'id' INTEGER  UNIQUE NOT NULL PRIMARY KEY, 'img' BLOB  NULL");                
             }
             catch (Exception ex)
             {
@@ -112,20 +143,32 @@ namespace SimPe.Database
             return ToTimeStamp(DateTime.Now);
         }
 
-        public List<Hashtable> Query(string s)
+        public SQLiteCommand CreateCommand(string cmd, List<SQLiteParameter>param)
+        {
+            SQLiteCommand mycommand = new SQLiteCommand(sql);
+            
+            mycommand.CommandText = cmd;
+            foreach (SQLiteParameter p in param)
+                mycommand.Parameters.Add(p);
+
+            return mycommand;
+        }
+
+        public List<Dictionary<string, object>> Query(string s)
         {
             return GetResultTable(QueryNr(s));
         }
 
-        public SQLiteResultSet QueryNr(string s)
+        public SQLiteDataReader QueryNr(string s)
         {
-            Console.WriteLine(s);
+            //Console.WriteLine(s);
             try
             {
                 lock (sql)
                 {
-                    SQLiteResultSet res = sql.Execute(s);
-                    return res;
+                    SQLiteCommand mycommand = new SQLiteCommand(sql);
+                    mycommand.CommandText = s;
+                    return mycommand.ExecuteReader();                    
                 }
             }
             catch (Exception ex)
@@ -136,13 +179,21 @@ namespace SimPe.Database
             return null;
         }
 
-        List<Hashtable> GetResultTable(SQLiteResultSet res)
+        List<Dictionary<string, object>> GetResultTable(SQLiteDataReader res)
         {
-            List<Hashtable> list = new List<Hashtable>();
+            List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
             if (res != null)
             {
-                for (int i = 0; i < res.Rows.Count; i++)
-                    list.Add(res.GetRowHash());
+                List<string> names = new List<string>();
+                for (int i=0; i<res.FieldCount; i++)
+                    names.Add(res.GetName(i));
+                while (res.Read())
+                {
+                    Dictionary<string, object> map = new Dictionary<string,object>();
+                    for (int i = 0; i < res.FieldCount; i++)
+                        map[names[i]] = res.GetValue(i);
+                    list.Add(map);
+                }
             }
 
             return list;
@@ -178,7 +229,7 @@ namespace SimPe.Database
             System.IO.FileInfo fi = new System.IO.FileInfo(flname);
             flname = Helper.CompareableFileName(flname);
 
-            List<Hashtable> tables = Query("SELECT * FROM files WHERE filename = " + SQLiteClient.Quote(flname));
+            List<Dictionary<string, object>> tables = Query("SELECT * FROM files WHERE filename = " + SQLiteClient.Quote(flname));
 
             int fid = -1;
             if (tables.Count == 0)
@@ -190,7 +241,7 @@ namespace SimPe.Database
                 DateTime tm = DateTime.Parse(tables[0]["modified"].ToString());
                 if (tm < fi.LastWriteTime) fid = Convert.ToInt32(tables[0]["fid"]);
             }
-
+           
             if (fid > 0)
             {
                 SyncFileContent(fid, flname, fi);
@@ -203,7 +254,7 @@ namespace SimPe.Database
         int AddFile(string flname)
         {
             QueryNr("INSERT INTO files (filename, modified) VALUES (" + SQLiteClient.Quote(flname) + ", " + SQLiteClient.Quote("1970-01-01 00:00:00") + ")");
-            return sql.LastInsertID();
+            return Last();  
         }
 
         void SyncFileContent(int fid, string flname, System.IO.FileInfo fi)
@@ -214,58 +265,68 @@ namespace SimPe.Database
         internal void CleanupFileTgi(int fid){
             QueryNr("DELETE FROM tgi WHERE fid=" + fid);
         }
-        
-        internal void StorePfd(int fid, SimPe.Interfaces.Files.IPackedFileDescriptor pfd, string name)
+
+        internal SQLiteCommand CreateStorePfdCommand()
         {
-            string q = "INSERT INTO tgi (t, g, ihi, ilo, name, fid) VALUES(";
-            q += pfd.Type + ", ";
-            q += pfd.Group + ", ";
-            q += pfd.SubType + ", ";
-            q += pfd.Instance + ", ";
-            if (name == null) q += "NULL, ";
-            else q += SQLiteClient.Quote(name) + ", ";
-            q += fid + " ";
-            q += ");\n";
-                        
-            QueryNr(q);
+            List<SQLiteParameter> pars = new List<SQLiteParameter>();
+            pars.Add(new SQLiteParameter("t"));
+            pars.Add(new SQLiteParameter("g"));
+            pars.Add(new SQLiteParameter("ihi"));
+            pars.Add(new SQLiteParameter("ilo"));
+            pars.Add(new SQLiteParameter("name"));
+            pars.Add(new SQLiteParameter("fid"));
+
+            return CreateCommand("INSERT INTO tgi (t, g, ihi, ilo, name, fid) VALUES(?, ?, ?, ?, ?, ?);", pars);
         }
 
-        public void BeginTransaction()
+        internal void StorePfd(SQLiteCommand cmd, int fid, SimPe.Interfaces.Files.IPackedFileDescriptor pfd, string name)
         {
-            QueryNr("BEGIN TRANSACTION mytrans");
-        }
-
-        public void EndTransaction()
-        {
-            QueryNr("END TRANSACTION mytrans");
-        }
-
-        public void CommitTransaction()
-        {
-            QueryNr("COMMIT TRANSACTION mytrans");          
-        }
-
-        public void RollbackTransaction()
-        {
-            QueryNr("ROLLBACK TRANSACTION mytrans");
-        }
-
-        public List<Hashtable> GetFileContent(int fid){
-            List<Hashtable> res = Query("SELECT * FROM tgi WHERE fid=" + fid);
-            return res;
-        }
-
-        public List<Hashtable> GetFileContent(int fid, uint type)
-        {
+            cmd.Parameters[0].Value = (Int32)pfd.Type;
+            cmd.Parameters[1].Value = (Int32)pfd.Group;
+            cmd.Parameters[2].Value = (Int32)pfd.SubType;
+            cmd.Parameters[3].Value = (Int32)pfd.Instance;
+            cmd.Parameters[4].Value = name;
+            cmd.Parameters[5].Value = fid;
             
-            List<Hashtable> res = Query("SELECT * FROM tgi WHERE fid=" + fid+" AND t="+type);
+            cmd.ExecuteNonQuery();
+            
+        }
+
+        public SQLiteTransaction BeginTransaction()
+        {
+            return sql.BeginTransaction();            
+        }
+
+        public List<Dictionary<string, object>> GetFileContent(int fid)
+        {
+            List<Dictionary<string, object>> res = Query("SELECT * FROM tgi WHERE fid=" + fid);
             return res;
         }
 
-        internal void StoreGuid(int id, uint guid)
+        public List<Dictionary<string, object>> GetFileContent(int fid, uint type)
         {
-            QueryNr("DELETE FROM guid WHERE id=" + id);
-            QueryNr("INSERT INTO guid (id, guid) VALUES (" + id + ", " + guid + ")");            
+
+            List<Dictionary<string, object>> res = Query("SELECT * FROM tgi WHERE fid=" + fid + " AND t=" + type);
+            return res;
+        }
+
+        internal SQLiteCommand CreateStoreGuidCommand()
+        {
+            List<SQLiteParameter> pars = new List<SQLiteParameter>();
+            pars.Add(new SQLiteParameter("id1"));
+            pars.Add(new SQLiteParameter("id2"));
+            pars.Add(new SQLiteParameter("guid"));
+
+            return CreateCommand("DELETE FROM guid WHERE id=?; INSERT INTO guid (id, guid) VALUES (?, ?)", pars);
+        }
+
+        internal void StoreGuid(SQLiteCommand cmd, int id, uint guid)
+        {
+            cmd.Parameters[0].Value = id;
+            cmd.Parameters[1].Value = id;
+            cmd.Parameters[2].Value = (Int32)guid;
+
+            cmd.ExecuteNonQuery();
         }
 
         internal SimPe.Interfaces.Files.IPackedFileDescriptor LoadPfd(SimPe.Interfaces.Files.IPackageFile pkg, Hashtable ht)
@@ -282,7 +343,8 @@ namespace SimPe.Database
 
         internal int Last()
         {
-            return sql.LastInsertID();
+
+            return  (int)lastrowid;
         }
     }
 }

@@ -166,10 +166,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.workspace.dll</HintPath>
     </Reference>
-    <Reference Include="Skybound.VisualStyles">
-      <Name>Skybound.VisualStyles</Name>
-      <HintPath>..\Skybound.VisualStyles.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>

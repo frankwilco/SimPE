@@ -27,7 +27,7 @@ using System.Windows.Forms;
 
 namespace SimPe.Database
 {
-    public partial class DatabaseDock : TD.SandDock.UserDockableWindow, SimPe.Interfaces.IDockableTool
+    public partial class DatabaseDock : Ambertation.Windows.Forms.DockPanel, SimPe.Interfaces.IDockableTool
     {
         Database db;
         public DatabaseDock()
@@ -40,7 +40,7 @@ namespace SimPe.Database
 
         #region IDockableTool Member
 
-        public TD.SandDock.DockControl GetDockableControl()
+        public Ambertation.Windows.Forms.DockPanel GetDockableControl()
         {
             return this;
         }

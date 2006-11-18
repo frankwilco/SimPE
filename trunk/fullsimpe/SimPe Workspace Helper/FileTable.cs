@@ -50,6 +50,8 @@ namespace SimPe
 			FileTable.FileIndex.BaseFolders = FileTable.DefaultFolders;
 			FileTable.FileIndex.ForceReload();
 		}
+
+       
 		
 	}
 }

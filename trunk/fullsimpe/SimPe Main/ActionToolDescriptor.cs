@@ -83,7 +83,7 @@ namespace SimPe
 			mi = new System.Windows.Forms.ToolStripMenuItem(ll.Text);
 			mi.Click += new EventHandler(LinkClicked);
 			mi.Image = tool.Icon;
-			mi.ShortcutKeys = Helper.ToKeys(tool.Shortcut);
+            LoadFileWrappersExt.SetShurtcutKey(mi, tool.Shortcut);
             mi.EnabledChanged += new EventHandler(mi_EnabledChanged);
             mi.CheckedChanged += new EventHandler(mi_CheckedChanged);
 
@@ -103,6 +103,8 @@ namespace SimPe
 			//Make Sure the Action is disabled on StartUp
 			ChangeEnabledStateEventHandler(null, new SimPe.Events.ResourceEventArgs(lp));
 		}
+
+        
 
         void mi_CheckedChanged(object sender, EventArgs e)
         {

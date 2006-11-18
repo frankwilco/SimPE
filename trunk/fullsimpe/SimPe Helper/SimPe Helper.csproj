@@ -304,6 +304,9 @@
     <Compile Include="UpdateInfo.cs" />
     <Compile Include="UpdateInfoList.cs" />
     <Compile Include="UpdateState.cs" />
+    <Compile Include="VisualStyleLinkLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WaitingBar.cs">
       <SubType>Code</SubType>
     </Compile>

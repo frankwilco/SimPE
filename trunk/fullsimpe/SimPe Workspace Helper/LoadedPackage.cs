@@ -428,9 +428,9 @@ namespace SimPe
                     System.Windows.Forms.ToolStripMenuItem mbi = new System.Windows.Forms.ToolStripMenuItem(sname);
 					mbi.Tag = file;
 					mbi.Click += new EventHandler(OpenRecent);
-                    System.Windows.Forms.KeysConverter kc = new KeysConverter();                    
-                    
-					mbi.ShortcutKeys = Helper.ToKeys(GetShortCut(menu.DropDownItems.Count+1));
+                    System.Windows.Forms.KeysConverter kc = new KeysConverter();
+
+                    LoadFileWrappersExt.SetShurtcutKey(mbi, GetShortCut(menu.DropDownItems.Count + 1));					
 					
 					menu.DropDownItems.Add(mbi);
 				}

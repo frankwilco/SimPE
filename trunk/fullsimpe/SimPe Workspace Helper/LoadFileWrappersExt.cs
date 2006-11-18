@@ -47,6 +47,12 @@ namespace SimPe
 		{
 		}
 
+        public static void SetShurtcutKey(System.Windows.Forms.ToolStripMenuItem mi, Shortcut sc)
+        {
+            try { mi.ShortcutKeys = Helper.ToKeys(sc); }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine("Conversion Error from " + sc); }
+        }
+
 		/// <summary>
 		/// Add one single MenuItem (and all needed Parents)
 		/// </summary>
@@ -90,7 +96,7 @@ namespace SimPe
 
 			if (item.ToolExt!=null) 
 			{
-				item.ShortcutKeys = Helper.ToKeys(item.ToolExt.Shortcut);                
+                LoadFileWrappersExt.SetShurtcutKey(item, item.ToolExt.Shortcut);				             
 				item.Image = item.ToolExt.Icon;			
 				//item.ToolTipText = item.ToolExt.ToString();
 			}
