@@ -34,12 +34,17 @@ namespace SimPe
 		private System.Windows.Forms.RichTextBox rtb;
 		private System.Windows.Forms.Button button1;
         private Button button2;
+        private WebBrowser wb;
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		public About()
+        public About() 
+            :this(false)
+		{
+        }
+		public About(bool html)
 		{
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
@@ -48,7 +53,16 @@ namespace SimPe
             button2.BackColor = SystemColors.Control;
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
 			
+            if (html) wb.Visible = true;
+            rtb.Visible = !wb.Visible;
+
+            wb.Navigating += new WebBrowserNavigatingEventHandler(wb_Navigating);
 		}
+
+        void wb_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
 
 		/// <summary>
 		/// Die verwendeten Ressourcen bereinigen.
@@ -76,6 +90,7 @@ namespace SimPe
             this.rtb = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.wb = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // rtb
@@ -91,7 +106,7 @@ namespace SimPe
             this.rtb.Name = "rtb";
             this.rtb.ReadOnly = true;
             this.rtb.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtb.Size = new System.Drawing.Size(726, 295);
+            this.rtb.Size = new System.Drawing.Size(724, 295);
             this.rtb.TabIndex = 2;
             this.rtb.Text = "";
             this.rtb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtb_LinkClicked);
@@ -115,14 +130,26 @@ namespace SimPe
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // wb
+            // 
+            this.wb.AllowNavigation = false;
+            this.wb.AllowWebBrowserDrop = false;
+            this.wb.IsWebBrowserContextMenuEnabled = false;
+            this.wb.Location = new System.Drawing.Point(33, 132);
+            this.wb.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wb.Name = "wb";
+            this.wb.Size = new System.Drawing.Size(728, 295);
+            this.wb.TabIndex = 5;
+            this.wb.WebBrowserShortcutsEnabled = false;
+            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(775, 443);
+            this.ClientSize = new System.Drawing.Size(773, 443);
+            this.Controls.Add(this.wb);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.rtb);
             this.Controls.Add(this.button1);
-            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -136,6 +163,7 @@ namespace SimPe
 
 		void LoadResource(string flname)
 		{
+            rtb.Visible = true;
 			System.Diagnostics.FileVersionInfo v = Helper.SimPeVersion;
 			System.IO.Stream s = this.GetType().Assembly.GetManifestResourceStream("SimPe."+flname+"-"+System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName+".rtf");
 			if (s==null) s = this.GetType().Assembly.GetManifestResourceStream("SimPe."+flname+"-en.rtf");
@@ -222,12 +250,15 @@ namespace SimPe
             }
 		}
 
+        
+
 		/// <summary>
 		/// Display the Update Screen
 		/// </summary>
 		/// <param name="show">true, if it should be visible even if no updates were found</param>
         public static void ShowUpdate(bool show)
         {
+
             if (!show)
             {
                 TimeSpan ts = DateTime.Now - Helper.WindowsRegistry.LastUpdateCheck;
@@ -245,7 +276,7 @@ namespace SimPe
 
             //scan for an Update
             Wait.SubStart();
-            About f = new About();
+            About f = new About(true);
             f.Text = SimPe.Localization.GetString("Updates");
             long version = 0;
             long qaversion = 0;
@@ -260,8 +291,9 @@ namespace SimPe
                 DialogResult dr = Message.Show(SimPe.Localization.GetString("UpdatesAvailable"), SimPe.Localization.GetString("Updates"), MessageBoxButtons.YesNo);
                 if (dr == DialogResult.No) res.Discard();
             }
+            string html = GetHtmlBase();
 
-            text = "<h2><span class=\"highlight\">" + SimPe.Localization.GetString("Current Version") + ":</span> " + Helper.SimPeVersionString;
+            text += "<h2><span class=\"highlight\">" + SimPe.Localization.GetString("Current Version") + ":</span> " + Helper.SimPeVersionString;
             if (Helper.DebugMode) text += " (" + Helper.SimPeVersionLong.ToString() + ")";
             text += "</h2>";
             if (Helper.QARelease) text += "<h2><span class=\"highlight\">" + SimPe.Localization.GetString("Available QA-Version") + ":</span> " + Helper.LongVersionToString(qaversion) + "</h2>";
@@ -291,6 +323,7 @@ namespace SimPe
             else if ((res.SimPeState & SimPe.Updates.UpdateStates.NewRelease) != 0) text += WebUpdate.GetChangeLog();
             else text += SimPe.Localization.GetString("no_new_version");
 
+            f.wb.DocumentText = html.Replace("{CONTENT}", text);            
             f.rtb.Rtf = Ambertation.Html2Rtf.Convert(text);
             Wait.SubStop();
             if (show || res.UpdatesAvailable)
@@ -298,6 +331,19 @@ namespace SimPe
                 SimPe.Splash.Screen.Stop();
                 f.ShowDialog();
             }
+        }
+
+        private static string GetHtmlBase()
+        {
+            System.IO.Stream s = typeof(About).Assembly.GetManifestResourceStream("SimPe.simpe.html");
+            string html = "{CONTENT}";
+            if (s != null)
+            {
+                System.IO.StreamReader sr = new System.IO.StreamReader(s);
+                html = sr.ReadToEnd();
+                sr.Close();
+            }
+            return html;
         }
 
 		static string TutorialTempFile
@@ -358,9 +404,9 @@ namespace SimPe
 		public static void ShowTutorials()
 		{
 			Wait.SubStart();
-			About f = new About();
+			About f = new About(true);
 			string text = "";
-			
+            string html = GetHtmlBase();
 			try 
 			{
 				f.Text = SimPe.Localization.GetString("Tutorials");			
@@ -379,22 +425,28 @@ namespace SimPe
 					text += "\n                    <a href=\""+TazzMannTutorial(false)+"\"><span class=\"serif\">TazzMann:</span> SimPE - From the Ground Up</a>";
 					text += "\n                </li>";
 				}
-				text += WebUpdate.GetTutorials().Replace("<ul>", "").Replace("</ul>", "");			
+				text += WebUpdate.GetTutorials().Replace("<ul>", "<ul class=\"nobullet\"");			
 				text += "</p>";
 
-				text = text.Replace("<li>", "");
-				text = text.Replace("</li>", "<br /><br />");
-				
+				//text = text.Replace("<li>", "");
+				//text = text.Replace("</li>", "<br /><br />");
 
+                f.wb.DocumentText = html.Replace("{CONTENT}", text);
+                SaveTutorials(text);
 				text = Ambertation.Html2Rtf.Convert(text);
 				text = text.Replace("(http://", @"\pard\par         (http://");
-				SaveTutorials(text);
+				
 				f.rtb.Rtf = text;
 			} 
 			catch (Exception ex)
 			{
+                f.wb.DocumentText = html.Replace("{CONTENT}", GetStoredTutorials());
 				f.rtb.Rtf = GetStoredTutorials();
-				if (f.rtb.Rtf=="") f.rtb.Rtf = ex.Message;
+                if (f.rtb.Rtf == "")
+                {
+                    f.rtb.Rtf = ex.Message;
+                    f.wb.DocumentText = html.Replace("{CONTENT}", ex.Message);
+                }
 			}
 
             Wait.SubStop();

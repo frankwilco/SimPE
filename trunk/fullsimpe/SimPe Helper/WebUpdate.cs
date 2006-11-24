@@ -168,7 +168,7 @@ namespace SimPe.Updates
 		/// <returns></returns>
 		public static string GetChangeLog()
 		{
-			return GetSite("rssengine.php?&show=latestplain&browser=simpe"+GetLanguageParameter(), true);
+			return GetSite("rssengine.php?&show=latest&browser=simpe"+GetLanguageParameter(), true);
 		}
 
 		/// <summary>

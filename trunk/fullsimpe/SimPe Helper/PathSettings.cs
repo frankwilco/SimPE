@@ -54,23 +54,29 @@ namespace SimPe
                 src += "\tpublic string "+ei.ShortId+"Path\n";
                 src += "\t{\n";
                 src += "\t\tget {\n";
-                src += "\t\t\treturn GetPath(@\""+ei.InstallFolder+"\", @\""+ei.RealInstallFolder+"\");\n";
+                src += "\t\t\treturn GetPath(PathProvider.Global.GetExpansion(" + ei.Version + "));\n";
                 src += "\t\t}\n";
                 src += "\t\tset {PathProvider.Global.GetExpansion(" + ei.Version + ").InstallFolder = value;}\n";
                 src += "\t}\n\n";
             }        
             
             src += "}}\n";
-            //Console.WriteLine(src);
 
             try
             {
-                System.Reflection.Assembly a = Ambertation.RuntimeCompiler.Compile(src, new string[] { "simpe.helper.dll", "system.drawing.dll" });
-                return (PathSettings)Ambertation.RuntimeCompiler.CreateInstance(a, "SimPe.RuntimePathSettings", new object[0]);
+                System.Reflection.Assembly a = SimPe.RuntimeCompiler.Compile(src, new string[] { "simpe.helper.dll", "system.drawing.dll" });
+                return (PathSettings)SimPe.RuntimeCompiler.CreateInstance(a, "SimPe.RuntimePathSettings", new object[0]);
             }
             catch (Exception ex)
             {
-                if (Helper.DebugMode) Helper.ExceptionMessage(ex);
+                if (Helper.DebugMode || Helper.QARelease)
+                {
+                    System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(Helper.SimPePath, "RuntimePathSettings.cs"));
+                    sw.Write(src);
+                    sw.Close();
+
+                    Helper.ExceptionMessage(ex);
+                }
                 return null;
             }
         }
@@ -79,6 +85,13 @@ namespace SimPe
 		{
 			this.r = r;
 		}
+
+        protected string GetPath(ExpansionItem ei)
+        {
+            if (ei.InstallFolder == null) return ei.RealInstallFolder;
+            if (ei.InstallFolder.Trim() == "") return ei.RealInstallFolder;
+            return ei.InstallFolder;
+        }
 
 		protected string GetPath(string userpath, string defpath)
 		{
