@@ -349,7 +349,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OptionForm.cs">
-      <SubType>Component</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="PluginManager.cs">
       <SubType>Code</SubType>
@@ -450,6 +450,7 @@
     <EmbeddedResource Include="7.png" />
     <EmbeddedResource Include="8.png" />
     <Content Include="App.ico" />
+    <EmbeddedResource Include="simpe.html" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

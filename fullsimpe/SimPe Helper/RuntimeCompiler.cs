@@ -58,10 +58,12 @@ namespace SimPe
 
             if (res.Errors.Count > 0)
             {
+                string errs = "";
                 foreach (object o in res.Errors)
-                    Console.WriteLine(o);
+                    if (o!=null)
+                        errs += o.ToString() + Helper.lbr;
 
-                return null;
+                throw new Exception("Failed to compile RuntimePathSettings", new Exception(errs));
             }
 
 
