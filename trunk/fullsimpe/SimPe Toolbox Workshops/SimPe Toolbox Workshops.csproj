@@ -303,6 +303,10 @@
     <EmbeddedResource Include="NeighborhoodPreview.resx">
       <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NeighborhoodPreview.ru.resx">
+      <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="nothumb.png" />
     <EmbeddedResource Include="ObjectPreview.de.resx">
       <DependentUpon>ObjectPreview.cs</DependentUpon>
@@ -318,6 +322,10 @@
       <DependentUpon>ObjectPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectPreview.resx">
+      <DependentUpon>ObjectPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectPreview.ru.resx">
       <DependentUpon>ObjectPreview.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -377,11 +385,12 @@ if not exist "$(SolutionDir)..\__Release\de\" mkdir "$(SolutionDir)..\__Release\
 if not exist "$(SolutionDir)..\__Release\es\" mkdir "$(SolutionDir)..\__Release\es\"
 if not exist "$(SolutionDir)..\__Release\pl\" mkdir "$(SolutionDir)..\__Release\pl\"
 if not exist "$(SolutionDir)..\__Release\it\" mkdir "$(SolutionDir)..\__Release\it\"
+if not exist "$(SolutionDir)..\__Release\ru\" mkdir "$(SolutionDir)..\__Release\ru\"
 copy "$(TargetPath)" "$(SolutionDir)..\__Release\Plugins\$(TargetFileName)"
 copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\__Release\Plugins\"
 copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
 copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
 copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"
-copy "$(TargetDir)it\*.dll" "$(SolutionDir)..\__Release\it\"</PostBuildEvent>
+copy "$(TargetDir)ru\*.dll" "$(SolutionDir)..\__Release\ru\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

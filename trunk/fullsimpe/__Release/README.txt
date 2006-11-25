@@ -101,3 +101,4 @@ Polish Translation by wlodi
 Spanish Translation by Malakun
 Italian translation by Sims2Cri
 German proofreading by Xanathon
+Russian translation by Necromante

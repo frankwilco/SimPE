@@ -645,7 +645,7 @@ namespace SimPe.PackedFiles.UserInterface
 			else if(this.pnChar.Visible) 
 			{
 				intern = true;
-				foreach (Control c in pnChar.Controls)
+                foreach (Control c in pnHumanChar.Controls)
 					if (c is LabeledProgressBar)
 						((LabeledProgressBar)c).Value = rnd.Next(((LabeledProgressBar)c).Maximum);
 				intern = false;	this.ChangedSkill(null, null);
@@ -653,9 +653,12 @@ namespace SimPe.PackedFiles.UserInterface
 			else if(this.pnInt.Visible) 
 			{
 				intern = true;
-				foreach (Control c in pnInt.Controls)
+                foreach (Control c in pnPetInt.Controls)
 					if (c is LabeledProgressBar)
 						((LabeledProgressBar)c).Value = rnd.Next(((LabeledProgressBar)c).Maximum);
+                foreach (Control c in pnSimInt.Controls)
+                    if (c is LabeledProgressBar)
+                        ((LabeledProgressBar)c).Value = rnd.Next(((LabeledProgressBar)c).Maximum);
 				intern = false;	this.ChangedSkill(null, null);
 			}
 			else if (this.pnRel.Visible)

@@ -198,7 +198,14 @@ namespace SimPe
             get
             {
                 if (!IsUseable) return false;
+                return Exists;
+            }
+        }
 
+        public bool Exists
+        {
+            get
+            {
                 if (IsFile) return System.IO.File.Exists(Name);
                 else return System.IO.Directory.Exists(Name);
             }

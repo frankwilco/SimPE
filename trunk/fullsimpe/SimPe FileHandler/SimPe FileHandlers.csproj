@@ -322,6 +322,10 @@
       <DependentUpon>Elements.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements.ru.resx">
+      <DependentUpon>Elements.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements2.de.resx">
       <DependentUpon>Elements2.cs</DependentUpon>
     </EmbeddedResource>
@@ -336,6 +340,10 @@
       <DependentUpon>Elements2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements2.resx">
+      <DependentUpon>Elements2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements2.ru.resx">
       <DependentUpon>Elements2.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
