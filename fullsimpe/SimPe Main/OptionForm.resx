@@ -2062,7 +2062,7 @@
     <value>pgPaths</value>
   </data>
   <data name="&gt;&gt;pgPaths.Type" xml:space="preserve">
-    <value>SimPe.MyPropertyGrid, SimPe, Version=0.59.21.26273, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.MyPropertyGrid, SimPe, Version=0.61.2.21910, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pgPaths.Parent" xml:space="preserve">
     <value>hcFolders</value>
@@ -2188,7 +2188,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcFolders.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>3</value>
   </data>
   <data name="groupBox6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -2338,7 +2338,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcSettings.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="hcTools.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 8</value>
@@ -2365,7 +2365,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcTools.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="cbIncCep.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -2727,7 +2727,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcFileTable.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="groupBox10.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -2781,7 +2781,7 @@
     <value>cbRLExt</value>
   </data>
   <data name="&gt;&gt;cbRLExt.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.2499.23193, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbRLExt.Parent" xml:space="preserve">
     <value>groupBox10</value>
@@ -2841,7 +2841,7 @@
     <value>cbRLTGI</value>
   </data>
   <data name="&gt;&gt;cbRLTGI.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.2499.23193, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbRLTGI.Parent" xml:space="preserve">
     <value>groupBox10</value>
@@ -2901,7 +2901,7 @@
     <value>cbRLNames</value>
   </data>
   <data name="&gt;&gt;cbRLNames.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.2499.23193, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbRLNames.Parent" xml:space="preserve">
     <value>groupBox10</value>
@@ -3093,7 +3093,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcSceneGraph.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>4</value>
   </data>
   <data name="bb.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 704</value>
@@ -3225,33 +3225,6 @@
   <data name="nbSettings.Text" xml:space="preserve">
     <value>SimPE Settings</value>
   </data>
-  <data name="nbCustom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAABBNJREFUWEfNV2lL
-        Y1cYno5+kcKk/gC/KG6I+APmF7T9DUPBr4LLiFFq25n5Mh0KZRgo+KHgEokLozGoqU5xAkqIG4kmJqZu
-        0axMlslNVFwu6tP3PfSmcSrJvdOm7QsP9yzvPee573bO/eTeHVJSUvLFXeNqx66vr39Rq/sXvUdfPXqN
-        vylNTU3PP5bAg97eXh/vH3QB/nVg1wZ43wIbc8CaGVgeA5aGgLc/A29+AmZ/BEzPgfEngEEPvH4KpN9f
-        yI2NjR9FQtfT3SMIhNzAoQPYsxMBK+B6AzimiQDZZ8kIWPuBX/sAyyvA/AMw8QwY+ZpI9ACZxDXOzk/l
-        hoYGzSR03QoBDxFwEoEVwLcEuBcAp4WsYALsZIVFQ44VXgJTL8gK9PXGb8gC8SvhxEwmwySeaXGHrlvf
-        LSwQj6WQiEmIvyNEJcQYEQnvGGEJ0RAhKCHCCEgI+pPwuUNYtXlp4+NsFEmSdFpXV/etWhI6vV4vCKRS
-        SUhS6k+kqf0B0tQXyPBcEqFwAG7PJvXTt8I4nU6rJpElQMxp8bQmxGIx+Hw+hMNhQYDSETc3N7i8vATN
-        ndbU1BS0RJYA+Q/Hx8eawKR58+3tbWxubmJtbQ3Ly8uw2WxYXV2F1+tNVVRUPM7nDl1XV5dwAW9+cnKi
-        GalUCpFIBPv7+7whNjY2sL6+LsiEQiFQUL5QReDs7AyMi4sLAaV/fn6eHVPmcp88z+QTiYQgcnh4KMjs
-        7e0hmUyivr7++7wEOjs7hQWURdms/FXcZ1+ya3hxXozBc3eBdaLRqAC34/E4mJxqArwZB5DZbIbRaIQs
-        yyKw2J99fX3o7+/HwMAAhoaGYDAYMDw8jJGREYyNjWF8fBwTExPiyaa/uroSH8CimgBvyC8uLi4KfNhX
-        xtU8ORsYqgh0dHQIF+S+dFf/VqIX6CjpqImAlg206NbW1uYPQsUCWhbVoquZgNVqxezsbHYPLjAclBxk
-        k5OTMJlMmJqawvT0tNCzWCwCc3Nz4slFKVc0E/B4PKKQKBIIBERQcoVbWVkR4CrH0c56DocDTqdTFCBu
-        K2VZeV8zAS3mVaNbXV2dPwba29tFFhRLChJoa2v7fxHg45UDTxH2qd1uz/qc/a74nP3Oui6XC263W7S5
-        FOeKZgssLCyIcqwILzo4OIjR0dFbZZczgrOBdTkjZmZmRJtPREW4tFdVVeWPgWK6gCtiQQKtra1FiwE+
-        T/5TAnzCVlZW5ndBS0tL0SzAR3IhAp9RHfitWDXgDxfkvZJ92tzcPMk3nGAwKFPZlY+OjgT8fr98cHAg
-        QFcsma5Y8u7urryzs5MF1X2ZQZEvUwkX2Nrakikteexmfn4+Vl5e/jDflayEJusJXxI+Ly0t/e4fxJOy
-        srIWWve+2p+Uf0Xvd3xD0rYC/dsXAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="nbCustom.Text" xml:space="preserve">
-    <value>Custom</value>
-  </data>
   <data name="nbSceneGraph.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -3297,6 +3270,33 @@
   </data>
   <data name="nbSceneGraph.Text" xml:space="preserve">
     <value>Various</value>
+  </data>
+  <data name="nbCustom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAABBNJREFUWEfNV2lL
+        Y1cYno5+kcKk/gC/KG6I+APmF7T9DUPBr4LLiFFq25n5Mh0KZRgo+KHgEokLozGoqU5xAkqIG4kmJqZu
+        0axMlslNVFwu6tP3PfSmcSrJvdOm7QsP9yzvPee573bO/eTeHVJSUvLFXeNqx66vr39Rq/sXvUdfPXqN
+        vylNTU3PP5bAg97eXh/vH3QB/nVg1wZ43wIbc8CaGVgeA5aGgLc/A29+AmZ/BEzPgfEngEEPvH4KpN9f
+        yI2NjR9FQtfT3SMIhNzAoQPYsxMBK+B6AzimiQDZZ8kIWPuBX/sAyyvA/AMw8QwY+ZpI9ACZxDXOzk/l
+        hoYGzSR03QoBDxFwEoEVwLcEuBcAp4WsYALsZIVFQ44VXgJTL8gK9PXGb8gC8SvhxEwmwySeaXGHrlvf
+        LSwQj6WQiEmIvyNEJcQYEQnvGGEJ0RAhKCHCCEgI+pPwuUNYtXlp4+NsFEmSdFpXV/etWhI6vV4vCKRS
+        SUhS6k+kqf0B0tQXyPBcEqFwAG7PJvXTt8I4nU6rJpElQMxp8bQmxGIx+Hw+hMNhQYDSETc3N7i8vATN
+        ndbU1BS0RJYA+Q/Hx8eawKR58+3tbWxubmJtbQ3Ly8uw2WxYXV2F1+tNVVRUPM7nDl1XV5dwAW9+cnKi
+        GalUCpFIBPv7+7whNjY2sL6+LsiEQiFQUL5QReDs7AyMi4sLAaV/fn6eHVPmcp88z+QTiYQgcnh4KMjs
+        7e0hmUyivr7++7wEOjs7hQWURdms/FXcZ1+ya3hxXozBc3eBdaLRqAC34/E4mJxqArwZB5DZbIbRaIQs
+        yyKw2J99fX3o7+/HwMAAhoaGYDAYMDw8jJGREYyNjWF8fBwTExPiyaa/uroSH8CimgBvyC8uLi4KfNhX
+        xtU8ORsYqgh0dHQIF+S+dFf/VqIX6CjpqImAlg206NbW1uYPQsUCWhbVoquZgNVqxezsbHYPLjAclBxk
+        k5OTMJlMmJqawvT0tNCzWCwCc3Nz4slFKVc0E/B4PKKQKBIIBERQcoVbWVkR4CrH0c56DocDTqdTFCBu
+        K2VZeV8zAS3mVaNbXV2dPwba29tFFhRLChJoa2v7fxHg45UDTxH2qd1uz/qc/a74nP3Oui6XC263W7S5
+        FOeKZgssLCyIcqwILzo4OIjR0dFbZZczgrOBdTkjZmZmRJtPREW4tFdVVeWPgWK6gCtiQQKtra1FiwE+
+        T/5TAnzCVlZW5ndBS0tL0SzAR3IhAp9RHfitWDXgDxfkvZJ92tzcPMk3nGAwKFPZlY+OjgT8fr98cHAg
+        QFcsma5Y8u7urryzs5MF1X2ZQZEvUwkX2Nrakikteexmfn4+Vl5e/jDflayEJusJXxI+Ly0t/e4fxJOy
+        srIWWve+2p+Uf0Xvd3xD0rYC/dsXAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="nbCustom.Text" xml:space="preserve">
+    <value>Custom</value>
   </data>
   <data name="nbFileTable.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3631,7 +3631,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcPlugins.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="linkLabel5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3934,7 +3934,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcIdent.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="checkControl1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -3952,7 +3952,7 @@
     <value>checkControl1</value>
   </data>
   <data name="&gt;&gt;checkControl1.Type" xml:space="preserve">
-    <value>SimPe.CheckControl, simpe.workspace, Version=1.0.2499.26244, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.CheckControl, simpe.workspace, Version=1.0.2520.21900, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;checkControl1.Parent" xml:space="preserve">
     <value>hcCheck</value>
@@ -3985,7 +3985,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcCheck.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>2</value>
   </data>
   <data name="pgcustom.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -4063,7 +4063,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcCustom.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <metadata name="baloonTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>243, 17</value>
@@ -4681,16 +4681,16 @@
   <data name="&gt;&gt;nbSettings.Type" xml:space="preserve">
     <value>Divelements.Navisight.NavigationButton, Navisight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
-  <data name="&gt;&gt;nbCustom.Name" xml:space="preserve">
-    <value>nbCustom</value>
-  </data>
-  <data name="&gt;&gt;nbCustom.Type" xml:space="preserve">
-    <value>Divelements.Navisight.NavigationButton, Navisight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
-  </data>
   <data name="&gt;&gt;nbSceneGraph.Name" xml:space="preserve">
     <value>nbSceneGraph</value>
   </data>
   <data name="&gt;&gt;nbSceneGraph.Type" xml:space="preserve">
+    <value>Divelements.Navisight.NavigationButton, Navisight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
+  </data>
+  <data name="&gt;&gt;nbCustom.Name" xml:space="preserve">
+    <value>nbCustom</value>
+  </data>
+  <data name="&gt;&gt;nbCustom.Type" xml:space="preserve">
     <value>Divelements.Navisight.NavigationButton, Navisight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=75b7ec17dd7c14c3</value>
   </data>
   <data name="&gt;&gt;nbFileTable.Name" xml:space="preserve">

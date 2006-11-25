@@ -397,6 +397,7 @@ namespace SimPe
 				string test, path;
 				foreach (ExpansionItem ei in PathProvider.Global.Expansions)
 				{
+                    if (!ei.Exists) continue;
 					path = ei.InstallFolder;//Helper.WindowsRegistry.GetExecutableFolder(ep);
 					string name = ei.ExeName;
 

@@ -258,6 +258,10 @@
     <EmbeddedResource Include="demo.png" />
     <EmbeddedResource Include="DownloadsSettings.de.resx" />
     <EmbeddedResource Include="DownloadsSettings.resx" />
+    <EmbeddedResource Include="DownloadsSettings.ru.resx">
+      <DependentUpon>DownloadsSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="InstallerControl.de.resx">
       <DependentUpon>InstallerControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -292,12 +296,14 @@ if not exist "$(SolutionDir)..\__Release\de\" mkdir "$(SolutionDir)..\__Release\
 if not exist "$(SolutionDir)..\__Release\es\" mkdir "$(SolutionDir)..\__Release\es\"
 if not exist "$(SolutionDir)..\__Release\pl\" mkdir "$(SolutionDir)..\__Release\pl\"
 if not exist "$(SolutionDir)..\__Release\it\" mkdir "$(SolutionDir)..\__Release\it\"
+if not exist "$(SolutionDir)..\__Release\ru\" mkdir "$(SolutionDir)..\__Release\ru\"
 copy "$(TargetPath)" "$(SolutionDir)..\__Release\Plugins\$(TargetFileName)"
 copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\__Release\Plugins\"
 copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
 copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
 copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"
 copy "$(TargetDir)it\*.dll" "$(SolutionDir)..\__Release\it\"
+copy "$(TargetDir)ru\*.dll" "$(SolutionDir)..\__Release\ru\"
 copy "$(TargetDir)7z.dll" "$(SolutionDir)..\__Release\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

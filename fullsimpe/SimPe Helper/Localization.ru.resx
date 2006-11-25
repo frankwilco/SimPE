@@ -1,0 +1,1319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="unknown" xml:space="preserve">
+    <value>Неизвестное</value>
+  </data>
+  <data name="unk" xml:space="preserve">
+    <value>UNK</value>
+  </data>
+  <data name="userdefined" xml:space="preserve">
+    <value>Пользовательский</value>
+  </data>
+  <data name="sdesc" xml:space="preserve">
+    <value>Описание Сима</value>
+  </data>
+  <data name="srel" xml:space="preserve">
+    <value>Отношения Симов</value>
+  </data>
+  <data name="famt" xml:space="preserve">
+    <value>Связи семьи</value>
+  </data>
+  <data name="str" xml:space="preserve">
+    <value>Текстовые списки</value>
+  </data>
+  <data name="realsize" xml:space="preserve">
+    <value>Реальный размер</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="err000" xml:space="preserve">
+    <value>Во время загрузки архива произошлка ошибка.</value>
+  </data>
+  <data name="proceed" xml:space="preserve">
+    <value>Proceed?</value>
+  </data>
+  <data name="ask000" xml:space="preserve">
+    <value>Вы хотите остановить извлечение?</value>
+  </data>
+  <data name="errwritingfile" xml:space="preserve">
+    <value>Во время записи в файл произошла ошибка.</value>
+  </data>
+  <data name="err001" xml:space="preserve">
+    <value>Во время записи дескриптора архива произошла ошибка</value>
+  </data>
+  <data name="nfo000" xml:space="preserve">
+    <value>Извлечено {0} файлов</value>
+  </data>
+  <data name="err002" xml:space="preserve">
+    <value>Невозможно извлечь в </value>
+  </data>
+  <data name="err003" xml:space="preserve">
+    <value>Во время попытки заменить файл архива на {0} произошла ошибка.</value>
+  </data>
+  <data name="erropenfile" xml:space="preserve">
+    <value>Во время попытки открытия произошла ошибка.</value>
+  </data>
+  <data name="err004" xml:space="preserve">
+    <value>Во время попытки открыть недавний файл произошла ошибка.</value>
+  </data>
+  <data name="errregistry" xml:space="preserve">
+    <value>Во время попытки доступа к реестру произошла ошибка.</value>
+  </data>
+  <data name="delete?" xml:space="preserve">
+    <value>Удалить?</value>
+  </data>
+  <data name="askdelete" xml:space="preserve">
+    <value>Вы действительно хотите удалить выделенные файлы?</value>
+  </data>
+  <data name="err005" xml:space="preserve">
+    <value>Во время попытки удалить файл архива произошла ошибка.</value>
+  </data>
+  <data name="err006" xml:space="preserve">
+    <value>Во время попытки добавления файла архива произошла ошибка.</value>
+  </data>
+  <data name="err007" xml:space="preserve">
+    <value>Не удалось максимизировать интересы всех Симов</value>
+  </data>
+  <data name="commited" xml:space="preserve">
+    <value>Изменения были внесены</value>
+  </data>
+  <data name="cantcommitfami" xml:space="preserve">
+    <value>Невозможно внести данные в файл семьи</value>
+  </data>
+  <data name="cantcommitsdesc" xml:space="preserve">
+    <value>Невозможно внести описание Сима.</value>
+  </data>
+  <data name="cantcommitfamt" xml:space="preserve">
+    <value>Невозможно внести данные в файл связей семьи.</value>
+  </data>
+  <data name="cantcommittie" xml:space="preserve">
+    <value>Невозможно внести изменения в текущую связь.</value>
+  </data>
+  <data name="cantaddrelation" xml:space="preserve">
+    <value>Невозможно добавить отношение</value>
+  </data>
+  <data name="cantcommitrelation" xml:space="preserve">
+    <value>Невозможно внести текущее отношение.</value>
+  </data>
+  <data name="cantdeleterelation" xml:space="preserve">
+    <value>Невозможно удалить отношение.</value>
+  </data>
+  <data name="filenotfound" xml:space="preserve">
+    <value>Файл не найден</value>
+  </data>
+  <data name="rightclickcopy" xml:space="preserve">
+    <value>Правый щелчок: копировать в буфер</value>
+  </data>
+  <data name="viewver" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
+  <data name="cantaddtie" xml:space="preserve">
+    <value>Невозможно добавить Сима в список связей</value>
+  </data>
+  <data name="MyMotherIs" xml:space="preserve">
+    <value>Родитель A:</value>
+  </data>
+  <data name="MyFatherIs" xml:space="preserve">
+    <value>Родитель B:</value>
+  </data>
+  <data name="ImMarriedTo" xml:space="preserve">
+    <value>Брак с</value>
+  </data>
+  <data name="MySiblingIs" xml:space="preserve">
+    <value>Мой брат\сестра:</value>
+  </data>
+  <data name="MyChildIs" xml:space="preserve">
+    <value>Мой ребенок:</value>
+  </data>
+  <data name="cantcommitobjd" xml:space="preserve">
+    <value>Невозможно внести изменения в файл данных объекта.</value>
+  </data>
+  <data name="unnamed" xml:space="preserve">
+    <value>Безымянный</value>
+  </data>
+  <data name="byteviewerror" xml:space="preserve">
+    <value>В режиме байтового просмотра произошла ошибка</value>
+  </data>
+  <data name="usebigfile?" xml:space="preserve">
+    <value>Этот файл занимает больше 10 кб, вы все равно хотите загрузить его? (на это потребуется некоторое время!)</value>
+  </data>
+  <data name="confirm" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="English_uk" xml:space="preserve">
+    <value>Английский (Великобритания)</value>
+  </data>
+  <data name="errconvert" xml:space="preserve">
+    <value>Ошибка назначения значения</value>
+  </data>
+  <data name="neighborhoodbrowser" xml:space="preserve">
+    <value>Обзор городков</value>
+  </data>
+  <data name="simsbrowser" xml:space="preserve">
+    <value>Обзор Симов</value>
+  </data>
+  <data name="backuprestore" xml:space="preserve">
+    <value>Создать копию текущего городка, прежде чем заменить его резервной копией?</value>
+  </data>
+  <data name="backupdelete" xml:space="preserve">
+    <value>Вы действительно хотите удалить все файлы, содержащиеся в {0}?</value>
+  </data>
+  <data name="backup?" xml:space="preserve">
+    <value>Создать копию?</value>
+  </data>
+  <data name="disclaimer" xml:space="preserve">
+    <value>SimPE является утилитой для изменения внутренних данных игры "The Sims 2". 
+		
+Большинство людей не сталкиваются с проблемами, при использовании SimPE, однако, если вы будите неосторожны, эта утилита может повредить вашу игру или даже вашу систему. Если вы не хотите рисковать, не используйте SimPe! Помните, что SimPE находится в стадии альфа-разработки!
+Убедитесь, что вы сделали резервную копию каталога "Мои документы\EA Games\The Sims 2\", прежде чем запускать SimPE.
+
+Запустить SimPE?</value>
+  </data>
+  <data name="savechanges?" xml:space="preserve">
+    <value>Сохранить изменения?</value>
+  </data>
+  <data name="savechanges" xml:space="preserve">
+    <value>Сохранить изменения в архиве "{filename}"?</value>
+  </data>
+  <data name="unsavedchanges" xml:space="preserve">
+    <value>Некоторые файлы в архиве не были сохранены, и все изменения будут утрачены при открытии нового городка. 
+		
+Вы все равно хотите продолжить?</value>
+  </data>
+  <data name="errunsupportedimage" xml:space="preserve">
+    <value>Тип изображения не поддерживается</value>
+  </data>
+  <data name="Brazilian" xml:space="preserve">
+    <value>Португальский (Бразилия)</value>
+  </data>
+  <data name="savewrapperchanges" xml:space="preserve">
+    <value>Вы хотите внести сделанные изменения в ресурс "{name}"?
+
+Архив: {filename}</value>
+  </data>
+  <data name="RT_Unset_Unknown" xml:space="preserve">
+    <value>Не указано или неизвестно</value>
+  </data>
+  <data name="RT_Nice_Nephew" xml:space="preserve">
+    <value>Племянник\племянница</value>
+  </data>
+  <data name="RT_Aunt" xml:space="preserve">
+    <value>Дядя\тетя</value>
+  </data>
+  <data name="OW_Warning" xml:space="preserve">
+    <value>Чтобы эта функция работала с объектами, расцветку которых нельзя выбирать, вам потребуется загрузить и установить модуль выбора расцветки (Colour Options Enabler), который можно найти по адресу: http://sims.ambertation.de/download.shtml .\n\nЭта функция все еще находится в стадии бета-тестирования, и может работать некорректно. Не распространяйте моды расцветок, без упоминания о том, что при их создании использовался бета-метод; и помните, что пользователи, загружающие эти моды должны также иметь модуль выбора расцветки (Colour Options Enabler)!\n\nВы хотите продолжить?</value>
+  </data>
+  <data name="YoungAdult" xml:space="preserve">
+    <value>Юношество</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="open_wnt_from_sdsc" xml:space="preserve">
+    <value>Вы хотите внести сделанные изменения для этого Сима, перед тем как открыть страхи и желания?"</value>
+  </data>
+  <data name="open_fami_from_sdsc" xml:space="preserve">
+    <value>Вы хотите внести сделанные изменения для этого Сима, перед тем как открыть информацию о семье?"</value>
+  </data>
+  <data name="open_dna_from_sdsc" xml:space="preserve">
+    <value>Вы хотите внести сделанные изменения для этого Сима, перед тем как открыть ДНК-информацию?"</value>
+  </data>
+  <data name="open_cloth_from_sdsc" xml:space="preserve">
+    <value>Вы хотите внести сделанные изменения для этого Сима, перед тем как открыть файл одежды?"</value>
+  </data>
+  <data name="question" xml:space="preserve">
+    <value>Вопрос</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="object tool" xml:space="preserve">
+    <value>Инструменты объекта</value>
+  </data>
+  <data name="changed?" xml:space="preserve">
+    <value>Ресурс изменен</value>
+  </data>
+  <data name="reschanged" xml:space="preserve">
+    <value>Ресурс "{name}" был изменен.  Перезагрузить его?
+
+Архив: {filename}</value>
+  </data>
+  <data name="SimPe.Data.FamilyTieTypes.MyMotherIs" xml:space="preserve">
+    <value>Родитель A</value>
+  </data>
+  <data name="SimPe.Data.FamilyTieTypes.MyFatherIs" xml:space="preserve">
+    <value>Родитель B</value>
+  </data>
+  <data name="SimPe.Data.FamilyTieTypes.ImMarriedTo" xml:space="preserve">
+    <value>Супруг</value>
+  </data>
+  <data name="SimPe.Data.FamilyTieTypes.MySiblingIs" xml:space="preserve">
+    <value>Брат\сестра</value>
+  </data>
+  <data name="SimPe.Data.FamilyTieTypes.MyChildIs" xml:space="preserve">
+    <value>Ребенок</value>
+  </data>
+  <data name="AddFamilyTieCaption" xml:space="preserve">
+    <value>Добавить персонажа "{name}" в семью "{tname}'</value>
+  </data>
+  <data name="OpenSDesc" xml:space="preserve">
+    <value>Открыть описание Сима: "{name}"</value>
+  </data>
+  <data name="AddRelationCaption" xml:space="preserve">
+    <value>Добавить отношение для персонажа "{name}"</value>
+  </data>
+  <data name="RemoveRelationCaption" xml:space="preserve">
+    <value>Удалить отношение: "{name}"</value>
+  </data>
+  <data name="Please Wait" xml:space="preserve">
+    <value>Подождите</value>
+  </data>
+  <data name="Current Version" xml:space="preserve">
+    <value>Текущая версия</value>
+  </data>
+  <data name="Available QA-Version" xml:space="preserve">
+    <value>Доступная QA-версия</value>
+  </data>
+  <data name="Available Version" xml:space="preserve">
+    <value>Доступная версия</value>
+  </data>
+  <data name="download" xml:space="preserve">
+    <value>загрузить</value>
+  </data>
+  <data name="get_qa_release" xml:space="preserve">
+    <value>Выпущена новая &lt;b&gt;QA-версия&lt;/b&gt;.&lt;br /&gt;Вы можете загрузить ее здесь: &lt;b&gt;http://ambertation.de/simpeforum/viewforum.php?f=14&lt;/b&gt;.</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="cache_cleared" xml:space="preserve">
+    <value>"Кеш был очищен. Для завершения операции вам нужно перезапустить SimPe!"</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Person" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.ArchitecturalSupport" xml:space="preserve">
+    <value>Архитектура</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.SimType" xml:space="preserve">
+    <value>Тип Сима</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Door" xml:space="preserve">
+    <value>Двери</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Window" xml:space="preserve">
+    <value>Окна</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Stairs" xml:space="preserve">
+    <value>Лестницы</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.ModularStairs" xml:space="preserve">
+    <value>Сложные лестницы</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.ModularStairsPortal" xml:space="preserve">
+    <value>Сложные лестницы - порталы</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Vehicle" xml:space="preserve">
+    <value>Транспорт</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Outfit" xml:space="preserve">
+    <value>Outfit</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Memory" xml:space="preserve">
+    <value>Memory</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Template" xml:space="preserve">
+    <value>Шаблон</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Unknown" xml:space="preserve">
+    <value>неизв</value>
+  </data>
+  <data name="SimPe.Data.ObjectTypes.Tiles" xml:space="preserve">
+    <value>Плитка</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Другое</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.Seating" xml:space="preserve">
+    <value>Сидения</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.Surfaces" xml:space="preserve">
+    <value>Столы и тумбы</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.Appliances" xml:space="preserve">
+    <value>Техника</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.Electronics" xml:space="preserve">
+    <value>Электроника</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.Plumbing" xml:space="preserve">
+    <value>Сантехника</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.Decorative" xml:space="preserve">
+    <value>Украшения</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.General" xml:space="preserve">
+    <value>Общее</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.Lighting" xml:space="preserve">
+    <value>Освещение</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.Hobbies" xml:space="preserve">
+    <value>Культтовары</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.AspirationRewards" xml:space="preserve">
+    <value>Награды за успех</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSortBits.CareerRewards" xml:space="preserve">
+    <value>Проф награды</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Seating_DiningroomChair" xml:space="preserve">
+    <value>Сидения / Столовая</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Seating_LivingroomChair" xml:space="preserve">
+    <value>Сидения / Гостиная</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Seating_Sofas" xml:space="preserve">
+    <value>Сидения / Софы и диваны</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Seating_Beds" xml:space="preserve">
+    <value>Сидения / Кровати</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Seating_Recreation" xml:space="preserve">
+    <value>Сидения / Отдых</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Seating_UnknownA" xml:space="preserve">
+    <value>Сидения / неизв I</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Seating_UnknownB" xml:space="preserve">
+    <value>Сидения / неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Seating_Misc" xml:space="preserve">
+    <value>Сидения / разное</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Counter" xml:space="preserve">
+    <value>Столы и тумбы / Стойки</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Table" xml:space="preserve">
+    <value>Столы и тумбы / Столы</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Surfaces_EndTable" xml:space="preserve">
+    <value>Столы и тумбы / Столики</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Desks" xml:space="preserve">
+    <value>Столы и тумбы / Письменные столы</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Coffeetable" xml:space="preserve">
+    <value>Столы и тумбы / Журнальные столики</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Business" xml:space="preserve">
+    <value>Столы и тумбы / Полки</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Surfaces_UnknownB" xml:space="preserve">
+    <value>Столы и тумбы / Неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Misc" xml:space="preserve">
+    <value>Столы и тумбы / Разное</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Decorative_Wall" xml:space="preserve">
+    <value>Украшения / Настенные</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Decorative_Sculpture" xml:space="preserve">
+    <value>Украшения / Скульптуры</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Decorative_Plants" xml:space="preserve">
+    <value>Украшения / Растения</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Decorative_Mirror" xml:space="preserve">
+    <value>Украшения / Зеркала</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Decorative_Curtain" xml:space="preserve">
+    <value>Украшения / Шторы</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Decorative_Rugs" xml:space="preserve">
+    <value>Украшения / Ковры</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Decorative_UnknownB" xml:space="preserve">
+    <value>Украшения / Неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Decorative_Misc" xml:space="preserve">
+    <value>Украшения / Разное</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Plumbing_Toilet" xml:space="preserve">
+    <value>Сантехника / Унитазы</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Plumbing_Shower" xml:space="preserve">
+    <value>Сантехника / Душевые</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Plumbing_Sink" xml:space="preserve">
+    <value>Сантехника / Раковины</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Plumbing_HotTub" xml:space="preserve">
+    <value>Сантехника / Бани</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Plumbing_UnknownC" xml:space="preserve">
+    <value>Сантехника / Неизв III</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Plumbing_UnknownA" xml:space="preserve">
+    <value>Сантехника / Неизв I</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Plumbing_UnknownB" xml:space="preserve">
+    <value>Сантехника / Неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Plumbing_Misc" xml:space="preserve">
+    <value>Сантехника / Разное</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Appliances_Cooking" xml:space="preserve">
+    <value>Техника / Печи</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Appliances_Refrigerator" xml:space="preserve">
+    <value>Техника / Холодильники</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Appliances_Small" xml:space="preserve">
+    <value>Техника / Мелкая</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Appliances_Large" xml:space="preserve">
+    <value>Техника / Крупная</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Appliances_UnknownC" xml:space="preserve">
+    <value>Техника / Неизв III</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Appliances_UnknownA" xml:space="preserve">
+    <value>Техника / Неизв I</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Appliances_UnknownB" xml:space="preserve">
+    <value>Техника / Неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Appliances_Misc" xml:space="preserve">
+    <value>Техника / Разное</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Electronics_Entertainment" xml:space="preserve">
+    <value>Электроника / Развлечения</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Electronics_TV_and_Computer" xml:space="preserve">
+    <value>Электроника / ТВ и компьютеры</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Electronics_Audio" xml:space="preserve">
+    <value>Электроника / Аудиотехника</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Electronics_Small" xml:space="preserve">
+    <value>Электроника / Мелкая электроника</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Electronics_UnknownC" xml:space="preserve">
+    <value>Электроника / Неизв III</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Electronics_UnknownA" xml:space="preserve">
+    <value>Электроника / Неизв I</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Electronics_UnknownB" xml:space="preserve">
+    <value>Электроника / Неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Electronics_Misc" xml:space="preserve">
+    <value>Электроника / Разное</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Lighting_TableLamp" xml:space="preserve">
+    <value>Освещение / Настольные лампы</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Lighting_FloorLamp" xml:space="preserve">
+    <value>Освещение / Торшеры</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Lighting_WallLamp" xml:space="preserve">
+    <value>Освещение / Бра</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Lighting_CeilingLamp" xml:space="preserve">
+    <value>Освещение / Люстры</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Lighting_Outdoor" xml:space="preserve">
+    <value>Освещение / Уличные фонари</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Lighting_UnknownA" xml:space="preserve">
+    <value>Освещение / Неизв I</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Lighting_UnknownB" xml:space="preserve">
+    <value>Освещение / Неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Lighting_Misc" xml:space="preserve">
+    <value>Освещение / Разное</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Hobbies_Creative" xml:space="preserve">
+    <value>Культтовары / Творчество</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Hobbies_Knowledge" xml:space="preserve">
+    <value>Культтовары / Знания</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Hobbies_Excerising" xml:space="preserve">
+    <value>Культтовары / Физкультура</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Hobbies_Recreation" xml:space="preserve">
+    <value>Культтовары / Отдых</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Hobbies_UnknownC" xml:space="preserve">
+    <value>Культтовары / Неизв III</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Hobbies_UnknownA" xml:space="preserve">
+    <value>Культтовары / Неизв I</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Hobbies_UnknownB" xml:space="preserve">
+    <value>Культтовары / Неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.Hobbies_Misc" xml:space="preserve">
+    <value>Культтовары / Разное</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.General_Dresser" xml:space="preserve">
+    <value>Культтовары / Гардеробы</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.General_Party" xml:space="preserve">
+    <value>Культтовары / Вечеринки</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.General_Child" xml:space="preserve">
+    <value>Культтовары / Дети</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.General_Pets" xml:space="preserve">
+    <value>Культтовары / Животные</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.General_Car" xml:space="preserve">
+    <value>Культтовары / Автомобили</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.General_UnknownA" xml:space="preserve">
+    <value>Культтовары / Неизв I</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.General_UnknownB" xml:space="preserve">
+    <value>Культтовары / Неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.General_Misc" xml:space="preserve">
+    <value>Культтовары / Разное</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownA" xml:space="preserve">
+    <value>Награды за успех / Неизв I</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownB" xml:space="preserve">
+    <value>Награды за успех / Неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownC" xml:space="preserve">
+    <value>Награды за успех / Неизв III</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownD" xml:space="preserve">
+    <value>Награды за успех / Неизв IV</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownE" xml:space="preserve">
+    <value>Награды за успех / Неизв V</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownF" xml:space="preserve">
+    <value>Награды за успех / Неизв VI</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownG" xml:space="preserve">
+    <value>Награды за успех / Неизв VII</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.AspirationRewards_UnknownH" xml:space="preserve">
+    <value>Награды за успех / Неизв VIII</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownA" xml:space="preserve">
+    <value>Проф награды / Неизв I</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownB" xml:space="preserve">
+    <value>Проф награды / Неизв II</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownC" xml:space="preserve">
+    <value>Проф награды / Неизв III</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownD" xml:space="preserve">
+    <value>Проф награды / Неизв IV</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownE" xml:space="preserve">
+    <value>Проф награды / Неизв V</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownF" xml:space="preserve">
+    <value>Проф награды / Неизв VI</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownG" xml:space="preserve">
+    <value>Проф награды / Неизв VII</value>
+  </data>
+  <data name="SimPe.Data.ObjFunctionSubSort.CareerRewards_UnknownH" xml:space="preserve">
+    <value>Проф награды / Неизв VIII</value>
+  </data>
+  <data name="Searching - Please Wait" xml:space="preserve">
+    <value>Идет поиск - подождите</value>
+  </data>
+  <data name="XObject" xml:space="preserve">
+    <value>Другое</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Roof" xml:space="preserve">
+    <value>Крыши</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Fence_Rail" xml:space="preserve">
+    <value>Изгороди и рельсы</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Fence_Halfwall" xml:space="preserve">
+    <value>Перегородки</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Terrain" xml:space="preserve">
+    <value>Ландшафт</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Floor_Brick" xml:space="preserve">
+    <value>Напольные покрытия / Кирпич</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Floor_Carpet" xml:space="preserve">
+    <value>Напольные покрытия / Ковер</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Floor_Lino" xml:space="preserve">
+    <value>Напольные покрытия / Линолеум</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Floor_Poured" xml:space="preserve">
+    <value>Напольные покрытия / Бетон</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Floor_Stone" xml:space="preserve">
+    <value>Напольные покрытия / Камень</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Floor_Tile" xml:space="preserve">
+    <value>Напольные покрытия / Плитка</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Floor_Wood" xml:space="preserve">
+    <value>Напольные покрытия / Древесина</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Floor_Other" xml:space="preserve">
+    <value>Напольные покрытия / Другое</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Wall_Brick" xml:space="preserve">
+    <value>Отделка стен / Кирпич</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Wall_Masonry" xml:space="preserve">
+    <value>Отделка стен / Каменная кладка</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Wall_Paint" xml:space="preserve">
+    <value>Отделка стен / Краска</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Wall_Paneling" xml:space="preserve">
+    <value>Отделка стен / Панели</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Wall_Poured" xml:space="preserve">
+    <value>Отделка стен / Штукатурка</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Wall_Siding" xml:space="preserve">
+    <value>Отделка стен / Сайдинг</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Wall_Tile" xml:space="preserve">
+    <value>Отделка стен / Плитка</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Wall_Wallpaper" xml:space="preserve">
+    <value>Отделка стен / Обои</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Wall_Other" xml:space="preserve">
+    <value>Отделка стен / Другое</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Hood_Landmark" xml:space="preserve">
+    <value>Городок / Инфраструктура</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Hood_Flora" xml:space="preserve">
+    <value>Городок / Зеленые насаждения</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Hood_Effects" xml:space="preserve">
+    <value>Городок / Спецэффекты</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Hood_Misc" xml:space="preserve">
+    <value>Городок / Разное</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Hood_Stone" xml:space="preserve">
+    <value>Городок / Камни</value>
+  </data>
+  <data name="SimPe.Data.XObjFunctionSubSort.Hood_Other" xml:space="preserve">
+    <value>Городок / Другое</value>
+  </data>
+  <data name="Fun" xml:space="preserve">
+    <value>Удовольствия</value>
+  </data>
+  <data name="Fix_Fence_Warning" xml:space="preserve">
+    <value>"Создание забора, совместимого с оригинальной игрой, является очень трудоемким процессом, который может вызвать конфликты файлов игры. Его создание не рекомендуется.
+
+Если вы все же хотите сделать забор для первоначальной версии игры, выпустите его в двух архивах, один из которых совместим с оригинальной игрой, а другой с версией "Университет" и более поздними.
+
+Вы все равно хотите создать забор для оригинальной версии?"</value>
+  </data>
+  <data name="Censor_Install_Warn" xml:space="preserve">
+    <value>Вы установили дополнение "Ночная жизнь" (или более новое). Это означает, что для удаления пятна цензуры, SimPe требуется копировать файл в вашу папку конфигурации.
+    
+Вы хотите продолжить?</value>
+  </data>
+  <data name="Censor_UnInstall_Warn" xml:space="preserve">
+    <value>Для восстановления пятна цензуры, SimPe требуется удалить файл {filename}.
+    
+Вы хотите продолжить?</value>
+  </data>
+  <data name="Check FileTable" xml:space="preserve">
+    <value>Проверить файловую таблицу</value>
+  </data>
+  <data name="Delete Sim" xml:space="preserve">
+    <value>Удалить Сима</value>
+  </data>
+  <data name="Nothing" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Romance" xml:space="preserve">
+    <value>Любовь</value>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>Семья</value>
+  </data>
+  <data name="Fortune" xml:space="preserve">
+    <value>Богатство</value>
+  </data>
+  <data name="Reputation" xml:space="preserve">
+    <value>Популярность</value>
+  </data>
+  <data name="Knowledge" xml:space="preserve">
+    <value>Знания</value>
+  </data>
+  <data name="Growup" xml:space="preserve">
+    <value>Взросление</value>
+  </data>
+  <data name="Chees" xml:space="preserve">
+    <value>Сыр</value>
+  </data>
+  <data name="PresetClassic" xml:space="preserve">
+    <value>classic</value>
+  </data>
+  <data name="PresetModern" xml:space="preserve">
+    <value>modern</value>
+  </data>
+  <data name="PresetChanged" xml:space="preserve">
+    <value>Внешний вид SimPe изменен на "{name}".
+
+Вы хотите запустить SimPe?</value>
+  </data>
+  <data name="ObsoleteOW" xml:space="preserve">
+    <value>The windowed ObjectWorkshop is obsololete. Please use the dockable ObjectWorkshop.
+
+You should use the dockable ObjectWorkshop, which can be activated with the "Windows-&gt;ObjectWorkshop" Menu.
+
+Continue anyway?
+		</value>
+  </data>
+  <data name="Package Tool" xml:space="preserve">
+    <value>Инструмент архивирования</value>
+  </data>
+  <data name="Repair Package..." xml:space="preserve">
+    <value>Починить архив...</value>
+  </data>
+  <data name="Open Sims2Pack..." xml:space="preserve">
+    <value>Открыть Sims2Pack...</value>
+  </data>
+  <data name="Create Sims2Pack..." xml:space="preserve">
+    <value>Создать Sims2Pack...</value>
+  </data>
+  <data name="FinishedPackageRepair" xml:space="preserve">
+    <value>Поиск ошибок завершен.</value>
+  </data>
+  <data name="[Property:GamePath]" xml:space="preserve">
+    <value>Sims 2</value>
+  </data>
+  <data name="[Description:GamePath]" xml:space="preserve">
+    <value>Это поле должно содержать папку с установленной игрой "The Sims 2".
+Полученный каталог должен содержать подкаталог "TSData".
+
+Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+  </data>
+  <data name="[Property:EP1Path]" xml:space="preserve">
+    <value>1: Университет</value>
+  </data>
+  <data name="[Description:EP1Path]" xml:space="preserve">
+    <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Университет".
+Полученный каталог должен содержать подкаталог "TSData".
+
+Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+  </data>
+  <data name="[Property:EP2Path]" xml:space="preserve">
+    <value>2: Ночная жизнь</value>
+  </data>
+  <data name="[Description:EP2Path]" xml:space="preserve">
+    <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Ночная жизнь".
+Полученный каталог должен содержать подкаталог "TSData".
+
+Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+  </data>
+  <data name="[Property:EP3Path]" xml:space="preserve">
+    <value>3: Бизнес</value>
+  </data>
+  <data name="[Description:EP3Path]" xml:space="preserve">
+    <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Бизнес".
+Полученный каталог должен содержать подкаталог "TSData".
+
+Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+  </data>
+  <data name="[Property:EP4Path]" xml:space="preserve">
+    <value>4: Питомцы</value>
+  </data>
+  <data name="[Description:EP4Path]" xml:space="preserve">
+    <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Питомцы".
+Полученный каталог должен содержать подкаталог "TSData".
+
+Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+  </data>
+  <data name="[Property:SP1Path]" xml:space="preserve">
+    <value>1: Каталог - Для дома и семьи</value>
+  </data>
+  <data name="[Description:SP1Path]" xml:space="preserve">
+    <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Каталог - Для дома и семьи".
+Полученный каталог должен содержать подкаталог "TSData".
+
+Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+  </data>
+  <data name="[Property:SP2Path]" xml:space="preserve">
+    <value>2: Каталог - Гламурная жизнь</value>
+  </data>
+  <data name="[Description:SP2Path]" xml:space="preserve">
+    <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Каталог - Гламурная жизнь".
+Полученный каталог должен содержать подкаталог "TSData".
+
+Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+  </data>
+  <data name="[Property:SaveGamePath]" xml:space="preserve">
+    <value>Сохранения</value>
+  </data>
+  <data name="[Description:SaveGamePath]" xml:space="preserve">
+    <value>Это поле должно содержать папку сохранений игры "The Sims 2".
+Полученный каталог должен содержать подкаталоги "Downloads" и "Neighborhoods".
+
+Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+  </data>
+  <data name="[Property:NvidadPath]" xml:space="preserve">
+    <value>Утилиты Nvidia DDS</value>
+  </data>
+  <data name="[Description:NvidadPath]" xml:space="preserve">
+    <value>Это поле должно содержать папку с утилитами Nvidia DDS.</value>
+  </data>
+  <data name="[Category:BaseGame]" xml:space="preserve">
+    <value>1. Оригинальная игра</value>
+  </data>
+  <data name="[Category:ExpansionPack]" xml:space="preserve">
+    <value>2. Дополнения</value>
+  </data>
+  <data name="[Category:StuffPack]" xml:space="preserve">
+    <value>3. Мини-дополнения</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Nothing" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Chef" xml:space="preserve">
+    <value>Шеф-повар</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Host" xml:space="preserve">
+    <value>Менеджер зала</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Server" xml:space="preserve">
+    <value>Официант</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Cashier" xml:space="preserve">
+    <value>Кассир</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Bartender" xml:space="preserve">
+    <value>Бармен</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Barista" xml:space="preserve">
+    <value>Бариста</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.DJ" xml:space="preserve">
+    <value>Ди Джей</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.SellLemonade" xml:space="preserve">
+    <value>Продавец лимонада</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Stylist" xml:space="preserve">
+    <value>Стилист</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Tidy" xml:space="preserve">
+    <value>Уборщик</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Restock" xml:space="preserve">
+    <value>Менеджер по закупкам</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Sales" xml:space="preserve">
+    <value>Продавец</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.MakeToys" xml:space="preserve">
+    <value>Кукольник</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.ArrangeFlowers" xml:space="preserve">
+    <value>Флорист</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.JobAssignment.BuildRobots" xml:space="preserve">
+    <value>Роботехник</value>
+  </data>
+  <data name="Reset Filetable" xml:space="preserve">
+    <value>SimPE требуется сбросить вашу файловую таблицу. Это означает, что SimPe удалит файл "{flname}".
+
+Вы хотите сбросить файловую таблицу?</value>
+  </data>
+  <data name="Reset Cache" xml:space="preserve">
+    <value>Формат кеша SimPe был расширен. Это сделано для поддержки новых функций дополнения "Бизнес". Для правильной работы, SimPe требуется сбросить кеш.
+Это означает, что SimPe удалит файл "{flname}".
+
+Вы хотите сбросить кеш?</value>
+  </data>
+  <data name="Unknown EP found" xml:space="preserve">
+    <value>Программа SimPE обнаружила новое дополнение к игре "The Sims 2".
+		
+Данная версия SimPE поддерживает только файлы "{name}". Новые файлы игры могут вызвать ошибки при открытии в этой версии SimPE!
+(для дополнительной информации, посетите http://sims.ambertation.de).
+
+Вы все равно хотите запустить SimPE?</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Внимание!</value>
+  </data>
+  <data name="[All Households]" xml:space="preserve">
+    <value>[все дома]</value>
+  </data>
+  <data name="SimPe.Data.NeighborhoodSlots.Sims" xml:space="preserve">
+    <value>Воспоминания</value>
+  </data>
+  <data name="SimPe.Data.NeighborhoodSlots.SimsIntern" xml:space="preserve">
+    <value>Символы (навыки, флажки, багаж...)</value>
+  </data>
+  <data name="SimPe.Data.NeighborhoodSlots.Lots" xml:space="preserve">
+    <value>Лоты</value>
+  </data>
+  <data name="SimPe.Data.NeighborhoodSlots.LotsIntern" xml:space="preserve">
+    <value>Lots Intern</value>
+  </data>
+  <data name="SimPe.Data.NeighborhoodSlots.Families" xml:space="preserve">
+    <value>Семьи</value>
+  </data>
+  <data name="SimPe.Data.NeighborhoodSlots.FamiliesIntern" xml:space="preserve">
+    <value>Families Intern</value>
+  </data>
+  <data name="Gossip about" xml:space="preserve">
+    <value>Сплетни о</value>
+  </data>
+  <data name="SimPe.Plugin.SimMemoryType.Memory" xml:space="preserve">
+    <value>Воспоминание</value>
+  </data>
+  <data name="SimPe.Plugin.SimMemoryType.Gossip" xml:space="preserve">
+    <value>Сплетни</value>
+  </data>
+  <data name="SimPe.Plugin.SimMemoryType.Skill" xml:space="preserve">
+    <value>Навык</value>
+  </data>
+  <data name="SimPe.Plugin.SimMemoryType.Inventory" xml:space="preserve">
+    <value>Багаж</value>
+  </data>
+  <data name="SimPe.Plugin.SimMemoryType.GossipInventory" xml:space="preserve">
+    <value>Багаж (сплетни)</value>
+  </data>
+  <data name="SimPe.Plugin.SimMemoryType.Token" xml:space="preserve">
+    <value>Символ</value>
+  </data>
+  <data name="SimPe.Plugin.SimMemoryType.ValueToken" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="SimPe.Plugin.SimMemoryType.Object" xml:space="preserve">
+    <value>Объект</value>
+  </data>
+  <data name="SimPe.Plugin.SimMemoryType.Aspiration" xml:space="preserve">
+    <value>Жизненная цель</value>
+  </data>
+  <data name="SimPe.Plugin.SimMemoryType.Badge" xml:space="preserve">
+    <value>Значок</value>
+  </data>
+  <data name="EP NAME 0" xml:space="preserve">
+    <value>The Sims 2</value>
+  </data>
+  <data name="EP NAME 1" xml:space="preserve">
+    <value>The Sims 2: Университет</value>
+  </data>
+  <data name="EP NAME 2" xml:space="preserve">
+    <value>The Sims 2: Ночная жизнь</value>
+  </data>
+  <data name="EP NAME 3" xml:space="preserve">
+    <value>The Sims 2: Бизнес</value>
+  </data>
+  <data name="EP NAME 4" xml:space="preserve">
+    <value>The Sims 2: Каталог - Для дома и семьи</value>
+  </data>
+  <data name="EP NAME 5" xml:space="preserve">
+    <value>The Sims 2: Каталог - Гламурная жизнь</value>
+  </data>
+  <data name="EP NAME 6" xml:space="preserve">
+    <value>The Sims 2: Питомцы</value>
+  </data>
+  <data name="EP SNAME 0" xml:space="preserve">
+    <value>Оригинал</value>
+  </data>
+  <data name="EP SNAME 1" xml:space="preserve">
+    <value>Университет</value>
+  </data>
+  <data name="EP SNAME 2" xml:space="preserve">
+    <value>Ночная жизнь</value>
+  </data>
+  <data name="EP SNAME 3" xml:space="preserve">
+    <value>Бизнес</value>
+  </data>
+  <data name="EP SNAME 4" xml:space="preserve">
+    <value>Для дома и семьи</value>
+  </data>
+  <data name="EP SNAME 5" xml:space="preserve">
+    <value>Гламур</value>
+  </data>
+  <data name="EP SNAME 6" xml:space="preserve">
+    <value>Питомцы</value>
+  </data>
+  <data name="Check: Folder not found" xml:space="preserve">
+    <value>Папка для "{name}" не найдена.</value>
+  </data>
+  <data name="Check: CEP not found" xml:space="preserve">
+    <value>CEP не найден.</value>
+  </data>
+  <data name="Check: Unable to locate" xml:space="preserve">
+    <value>Не удалось найти "{name}".</value>
+  </data>
+  <data name="Check: Error while load" xml:space="preserve">
+    <value>Не удалось загрузить "{name}".</value>
+  </data>
+  <data name="Check: Unable to load cache" xml:space="preserve">
+    <value>Не удалось загрузить кеш SimPe.</value>
+  </data>
+  <data name="Check: No Objects" xml:space="preserve">
+    <value>Не удалось найти объекты.</value>
+  </data>
+  <data name="Check: No Textures" xml:space="preserve">
+    <value>Не удалось найти текстуры.</value>
+  </data>
+  <data name="Savegames" xml:space="preserve">
+    <value>Сохранения</value>
+  </data>
+  <data name="Max Relation to this Sim" xml:space="preserve">
+    <value>Максимиз. отношение к {name}</value>
+  </data>
+  <data name="Economy" xml:space="preserve">
+    <value>Бизнес</value>
+  </data>
+  <data name="NO_CRES_FOUND" xml:space="preserve">
+    <value>Родительский CRES не найден.
+
+This means, that SimPE is unable to build the Joint Hirarchy.</value>
+  </data>
+  <data name="OpenInCaption" xml:space="preserve">
+    <value>{where}: TSData/Res...</value>
+  </data>
+  <data name="FileTableSectionInclude" xml:space="preserve">
+    <value>Включить {what}</value>
+  </data>
+  <data name="All Res" xml:space="preserve">
+    <value>Все ресурсы</value>
+  </data>
+  <data name="Loading embedded resource names..." xml:space="preserve">
+    <value>Загрузка вложенных имен ресурсов..</value>
+  </data>
+  <data name="Loading package..." xml:space="preserve">
+    <value>Загрузка архива...</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Human" xml:space="preserve">
+    <value>Человек</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.LargeDog" xml:space="preserve">
+    <value>Собака</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.SmallDog" xml:space="preserve">
+    <value>Щенок</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Cat" xml:space="preserve">
+    <value>Кошка</value>
+  </data>
+  <data name="Czech" xml:space="preserve">
+    <value>Чешский</value>
+  </data>
+  <data name="Danish" xml:space="preserve">
+    <value>Датский</value>
+  </data>
+  <data name="Dutch" xml:space="preserve">
+    <value>Голландский</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>Английский</value>
+  </data>
+  <data name="Finnish" xml:space="preserve">
+    <value>Финский</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>Французский</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>Немецкий</value>
+  </data>
+  <data name="Hebrew" xml:space="preserve">
+    <value>Иврит</value>
+  </data>
+  <data name="Italian" xml:space="preserve">
+    <value>Итальянский</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>Японский</value>
+  </data>
+  <data name="Korean" xml:space="preserve">
+    <value>Корейский</value>
+  </data>
+  <data name="Norwegian" xml:space="preserve">
+    <value>Норвежский</value>
+  </data>
+  <data name="Polish" xml:space="preserve">
+    <value>Польский</value>
+  </data>
+  <data name="Portuguese" xml:space="preserve">
+    <value>Португальский</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="SimplifiedChinese" xml:space="preserve">
+    <value>Китайский (упрощенный)</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Испанский</value>
+  </data>
+  <data name="Swedish" xml:space="preserve">
+    <value>Шведский</value>
+  </data>
+  <data name="Thai" xml:space="preserve">
+    <value>Тайский</value>
+  </data>
+  <data name="TraditionalChinese" xml:space="preserve">
+    <value>Китайский (традиционный)</value>
+  </data>
+  <data name="Teen" xml:space="preserve">
+    <value>Подросток</value>
+  </data>
+  <data name="Toddler" xml:space="preserve">
+    <value>Младенчество</value>
+  </data>
+  <data name="Tutorials" xml:space="preserve">
+    <value>Обучения</value>
+  </data>
+  <data name="Unemployed" xml:space="preserve">
+    <value>Без работы</value>
+  </data>
+</root>

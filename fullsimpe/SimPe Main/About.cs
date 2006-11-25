@@ -52,16 +52,30 @@ namespace SimPe
 			InitializeComponent();
             button2.BackColor = SystemColors.Control;
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-			
-            if (html) wb.Visible = true;
-            rtb.Visible = !wb.Visible;
-
+			           
             wb.Navigating += new WebBrowserNavigatingEventHandler(wb_Navigating);
+            wb.Navigated += new WebBrowserNavigatedEventHandler(wb_Navigated);
+            wb.IsWebBrowserContextMenuEnabled = Helper.QARelease;
+            wb.AllowNavigation = true;
+
+            wb.Visible = html;
+            rtb.Visible = !html;
 		}
+
+        void wb_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            
+        }
 
         void wb_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-            throw new Exception("The method or operation is not implemented.");
+            if (e.Url.OriginalString.StartsWith("about:")) return;
+            if (e.TargetFrameName != "_blank")
+            {
+                e.Cancel = true;
+                System.Windows.Forms.Help.ShowHelp(wb, e.Url.OriginalString);
+                //wb.Navigate(e.Url, true);
+            }
         }
 
 		/// <summary>
@@ -425,7 +439,7 @@ namespace SimPe
 					text += "\n                    <a href=\""+TazzMannTutorial(false)+"\"><span class=\"serif\">TazzMann:</span> SimPE - From the Ground Up</a>";
 					text += "\n                </li>";
 				}
-				text += WebUpdate.GetTutorials().Replace("<ul>", "<ul class=\"nobullet\"");			
+				text += WebUpdate.GetTutorials().Replace("<ul>", "<ul class=\"nobullet\">");			
 				text += "</p>";
 
 				//text = text.Replace("<li>", "");

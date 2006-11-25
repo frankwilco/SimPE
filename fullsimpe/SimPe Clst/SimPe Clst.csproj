@@ -201,6 +201,10 @@
     <EmbeddedResource Include="ClstForm.resx">
       <DependentUpon>ClstForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ClstForm.ru.resx">
+      <DependentUpon>ClstForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="StrForm.de.resx">
       <DependentUpon>StrForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +220,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StrForm.resx">
       <DependentUpon>StrForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StrForm.ru.resx">
+      <DependentUpon>StrForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="StrListViewer.resx">
       <DependentUpon>StrListViewer.cs</DependentUpon>
