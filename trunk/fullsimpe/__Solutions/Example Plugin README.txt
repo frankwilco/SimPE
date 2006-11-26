@@ -16,3 +16,6 @@ are not intending to use. (If you only offer a windowed Plugin, you should not p
 example packed file wrappers or the dock plugins.
 You can either remove the files and the the references in MyWrapperFactory, or you 
 can disable the apropriate lines on top of MyWrapperFactory.cs.
+
+
+If you need to compile the Plugin with VB.NET, you should use the VB Project stored in "SimPe ExamplePlugin\VB Project"

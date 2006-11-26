@@ -1,0 +1,184 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7D11D8BE-762E-452D-96FC-631A028E1787}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>simpe.example.plugin</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>simpe.example.plugin</RootNamespace>
+    <StartupObject>WindowsApplication1.Form1</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>Windows</MyType>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>simpe.example.plugin.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>simpe.example.plugin.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <Name>mscorlib</Name>
+      <HintPath>mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="NetDocks">
+      <Name>NetDocks</Name>
+      <HintPath>..\..\NetDocks.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.commonhandler">
+      <Name>simpe.commonhandler</Name>
+      <HintPath>simpe.commonhandler.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.helper">
+      <Name>simpe.helper</Name>
+      <HintPath>simpe.helper.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.interfaces">
+      <Name>simpe.interfaces</Name>
+      <HintPath>simpe.interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="simpe.workspace">
+      <Name>simpe.workspace</Name>
+      <HintPath>simpe.workspace.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+      <HintPath>System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+      <HintPath>System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+      <HintPath>System.Windows.Forms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimPe.Plugin\MyDockPlugin.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SimPe.Plugin\MyPackedFileUI.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SimPe.Plugin\MyPackedFileWrapper.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimPe.Plugin\MyWindowPlugin.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimPe.Plugin\MyWindowPluginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimPe.Plugin\MyWrapperFactory.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="SimPe.Plugin.MyDockPlugin.resx" />
+    <EmbeddedResource Include="SimPe.Plugin.MyPackedFileUI.resx" />
+    <EmbeddedResource Include="SimPe.Plugin.MyWindowPluginForm.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SimPe Cache\SimPe Cache.csproj">
+      <Project>{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}</Project>
+      <Name>SimPe Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SimPe Clst\SimPe Clst.csproj">
+      <Project>{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}</Project>
+      <Name>SimPe Clst</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
+      <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
+      <Name>SimPe HandlerCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SimPe Helper\SimPe Helper.csproj">
+      <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
+      <Name>SimPe Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SimPe Interfaces\SimPe Interfaces.csproj">
+      <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
+      <Name>SimPe Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SimPe Packages\SimPe Packages.csproj">
+      <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
+      <Name>SimPe Packages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
+      <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
+      <Name>SimPe Workspace Helper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
