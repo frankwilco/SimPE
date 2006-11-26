@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 using System;
+using System.Collections.Generic;
 
 namespace SimPe.Plugin.Gmdc
 {
@@ -50,6 +51,38 @@ namespace SimPe.Plugin.Gmdc
 				return importers; 
 			}
 		}
+
+        /// <summary>
+        /// Returns a list of Exporters stored in th epassed file
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public static List<IGmdcExporter> GetExporters(string file)
+        {
+            List<IGmdcExporter> list = new List<IGmdcExporter>();
+
+            object[] plugs = SimPe.LoadFileWrappers.LoadPlugins(file, typeof(SimPe.Plugin.Gmdc.IGmdcExporter));
+            foreach (IGmdcExporter p in plugs)            
+                list.Add(p);            
+
+            return list;
+        }
+
+        /// <summary>
+        /// Returns a list of Exporters stored in th epassed file
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public static List<IGmdcImporter> GetImporters(string file)
+        {
+            List<IGmdcImporter> list = new List<IGmdcImporter>();
+
+            object[] plugs = SimPe.LoadFileWrappers.LoadPlugins(file, typeof(SimPe.Plugin.Gmdc.IGmdcImporter));
+            foreach (IGmdcImporter p in plugs)
+                list.Add(p);
+
+            return list;
+        }
 
 		/// <summary>
 		/// Find all available Exporters in the Plugin Folder (everything with the Extension *.exporter.dll)

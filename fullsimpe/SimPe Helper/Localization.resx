@@ -1275,4 +1275,9 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   <data name="Download from">
     <value>Download from</value>
   </data>
+  <data name="NoDotNet">
+    <value>SimPE detected that you run .NET {VERSION} on your System. 
+    
+In order for SimPE to run correct, you need to install .NET 2.0.</value>
+  </data>
 </root>

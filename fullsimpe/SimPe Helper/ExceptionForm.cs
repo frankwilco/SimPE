@@ -524,6 +524,10 @@ namespace SimPe
 				}
 			}
 
+            text += @"\pard\par";
+            text += @"\b .NET Version:\par";
+            text += @"\pard\li284\b0 " + System.Environment.Version.ToString().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284") + @"\par";
+
 			text += @"}";
 
 			text = text.Replace("\n", @"\par\pard");

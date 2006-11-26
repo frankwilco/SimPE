@@ -1604,4 +1604,9 @@ Dies hat zur Folge, dass SimPE die Joint-Hierarchie nicht aufbauen kann.
   <data name="Download from">
     <value>Download von</value>
   </data>
+  <data name="NoDotNet">
+    <value>SimPE hat festgestellt, dass auf diesem System .NET {VERSION} installiert ist. 
+
+Damit SimPE korrekt funktioniert muss allerding .NET 2.0 installiert sein.</value>
+  </data>
 </root>
