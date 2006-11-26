@@ -1520,8 +1520,8 @@ namespace SimPe.PackedFiles.UserInterface
         {
             this.ptGifted.SetTraitLevel(0, 1, sdesc.Pets.PetTraits);
             this.ptHyper.SetTraitLevel(2, 3, sdesc.Pets.PetTraits);
-            this.ptIndep.SetTraitLevel(4, 7, sdesc.Pets.PetTraits);
-            this.ptAggres.SetTraitLevel(6, 5, sdesc.Pets.PetTraits);
+            this.ptIndep.SetTraitLevel(4, 5, sdesc.Pets.PetTraits);
+            this.ptAggres.SetTraitLevel(6, 7, sdesc.Pets.PetTraits);
             this.ptPigpen.SetTraitLevel(8, 9, sdesc.Pets.PetTraits);        
         }
 		
@@ -1597,8 +1597,8 @@ namespace SimPe.PackedFiles.UserInterface
                 {
                     this.ptGifted.UpdateTraits(0, 1, Sdesc.Pets.PetTraits);
                     this.ptHyper.UpdateTraits(2, 3, Sdesc.Pets.PetTraits);
-                    this.ptIndep.UpdateTraits(4, 7, Sdesc.Pets.PetTraits);
-                    this.ptAggres.UpdateTraits(6, 5, Sdesc.Pets.PetTraits);
+                    this.ptIndep.UpdateTraits(4, 5, Sdesc.Pets.PetTraits);
+                    this.ptAggres.UpdateTraits(6, 7, Sdesc.Pets.PetTraits);
                     this.ptPigpen.UpdateTraits(8, 9, Sdesc.Pets.PetTraits);
                     //Sdesc.Changed = true;
                 }
