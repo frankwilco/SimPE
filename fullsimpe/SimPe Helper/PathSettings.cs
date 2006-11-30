@@ -64,7 +64,9 @@ namespace SimPe
 
             try
             {
-                System.Reflection.Assembly a = SimPe.RuntimeCompiler.Compile(src, new string[] { "simpe.helper.dll", "system.drawing.dll" });
+                System.Reflection.Assembly a = SimPe.RuntimeCompiler.Compile(src, new string[] { 
+                    System.IO.Path.Combine(Helper.SimPePath, "simpe.helper.dll"), 
+                    "system.drawing.dll" });
                 return (PathSettings)SimPe.RuntimeCompiler.CreateInstance(a, "SimPe.RuntimePathSettings", new object[0]);
             }
             catch (Exception ex)
