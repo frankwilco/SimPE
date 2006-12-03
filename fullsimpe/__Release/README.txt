@@ -97,8 +97,9 @@ GMDC and ANIM decoding by Miche
 Xanathon for his valueable help
 Theo for revisions of some SimPE Plugins like Surgery (http://theos.chewbakkas.net/)
 
-Polish Translation by wlodi
-Spanish Translation by Malakun
+Polish translation by wlodi
+Spanish translation by Malakun
 Italian translation by Sims2Cri
 German proofreading by Xanathon
 Russian translation by Necromante
+French translation by deeVo

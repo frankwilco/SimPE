@@ -233,6 +233,10 @@
     <EmbeddedResource Include="CregUI.resx">
       <DependentUpon>CregUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExtObjdForm.fr.resx">
+      <DependentUpon>ExtObjdForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExtObjdForm.resx">
       <DependentUpon>ExtObjdForm.cs</DependentUpon>
       <SubType>Designer</SubType>

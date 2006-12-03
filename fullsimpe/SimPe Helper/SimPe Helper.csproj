@@ -369,6 +369,10 @@
     <Content Include="important.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ExceptionForm.fr.resx">
+      <DependentUpon>ExceptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExceptionForm.it.resx">
       <DependentUpon>ExceptionForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -377,11 +381,19 @@
       <DependentUpon>ExceptionForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization.fr.resx">
+      <DependentUpon>Localization.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Localization.ru.resx">
       <DependentUpon>Localization.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="quaxi_pets_censor_v1.package" />
+    <EmbeddedResource Include="WaitingForm.fr.resx">
+      <DependentUpon>WaitingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.it.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
       <SubType>Designer</SubType>

@@ -202,6 +202,10 @@
     <EmbeddedResource Include="Neighborhood.de.resx">
       <DependentUpon>Neighborhood.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Neighborhood.fr.resx">
+      <DependentUpon>Neighborhood.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Neighborhood.it.resx">
       <DependentUpon>Neighborhood.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -223,6 +227,10 @@
     <EmbeddedResource Include="NgbBackup.es.resx">
       <DependentUpon>NgbBackup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NgbBackup.fr.resx">
+      <DependentUpon>NgbBackup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="NgbBackup.it.resx">
       <DependentUpon>NgbBackup.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -240,6 +248,10 @@
     <EmbeddedResource Include="nothumb.png" />
     <EmbeddedResource Include="PhotoStudio.de.resx">
       <DependentUpon>PhotoStudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhotoStudio.fr.resx">
+      <DependentUpon>PhotoStudio.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PhotoStudio.it.resx">
       <DependentUpon>PhotoStudio.cs</DependentUpon>
@@ -260,6 +272,10 @@
     <EmbeddedResource Include="simbrowser.png" />
     <EmbeddedResource Include="Sims.de.resx">
       <DependentUpon>Sims.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sims.fr.resx">
+      <DependentUpon>Sims.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Sims.it.resx">
       <DependentUpon>Sims.cs</DependentUpon>
@@ -284,6 +300,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Surgery.es.resx">
       <DependentUpon>Surgery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery.fr.resx">
+      <DependentUpon>Surgery.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Surgery.it.resx">
       <DependentUpon>Surgery.cs</DependentUpon>
@@ -392,6 +412,8 @@ copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
 copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
 copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"
 copy "$(TargetDir)it\*.dll" "$(SolutionDir)..\__Release\it\"
-copy "$(TargetDir)ru\*.dll" "$(SolutionDir)..\__Release\ru\"</PostBuildEvent>
+copy "$(TargetDir)ru\*.dll" "$(SolutionDir)..\__Release\ru\"
+if not exist "$(SolutionDir)..\__Release\fr\" mkdir "$(SolutionDir)..\__Release\fr\"
+copy "$(TargetDir)fr\*.dll" "$(SolutionDir)..\__Release\fr\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

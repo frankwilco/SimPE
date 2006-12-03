@@ -76,6 +76,11 @@ namespace SimPe.Windows.Forms
 			//this.D = new Rectangle(0, 24, Width, Height-24);
 		}
 
+        ~WrapperBaseControl()
+        {
+            if (wrp != null) SetWrapper(null);
+        }
+
 		/// <summary> 
 		/// Die verwendeten Ressourcen bereinigen.
 		/// </summary>
@@ -83,12 +88,13 @@ namespace SimPe.Windows.Forms
 		{
 			if( disposing )
 			{
-				if (tm!=null) 
-				{
-					tm.Parent = null;
-					tm.CreateChild();
-					tm.Dispose();			
-				}
+                if (wrp != null) SetWrapper(null);
+                if (tm != null)
+                {
+                    tm.Parent = null;
+                    tm.CreateChild();
+                    tm.Dispose();
+                }
 				tm = null;
 				if(components != null)
 				{
@@ -231,6 +237,27 @@ namespace SimPe.Windows.Forms
 			get { return tm; }
 		}
 
+        public class WrapperChangedEventArgs : EventArgs{
+            SimPe.Interfaces.Plugin.IFileWrapper owrp, nwrp;
+            public WrapperChangedEventArgs(SimPe.Interfaces.Plugin.IFileWrapper owrp, SimPe.Interfaces.Plugin.IFileWrapper nwrp)
+            {
+                this.owrp = owrp;
+                this.nwrp = nwrp;
+            }
+
+            public SimPe.Interfaces.Plugin.IFileWrapper OldWrapper
+            {
+                get { return owrp; }
+            }
+
+            public SimPe.Interfaces.Plugin.IFileWrapper NewWrapper
+            {
+                get { return nwrp; }
+            }
+        }
+        public delegate void WrapperChangedHandle(object sender, WrapperChangedEventArgs e);
+        public event WrapperChangedHandle WrapperChanged; 
+
 		SimPe.Interfaces.Plugin.IFileWrapper wrp;
 		[Browsable(false)]
 		public SimPe.Interfaces.Plugin.IFileWrapper  Wrapper
@@ -347,6 +374,11 @@ namespace SimPe.Windows.Forms
 			get { return this; }
 		}
 
+        protected virtual void OnWrapperChanged(WrapperChangedEventArgs e)
+        {
+            
+        }
+
 		/// <summary>
 		/// Is called by SimPe (through the Wrapper) when the Panel is going to be displayed, so
 		/// you should updatet the Data displayed by the Panel with the Attributes stored in the
@@ -357,9 +389,19 @@ namespace SimPe.Windows.Forms
 		/// <param name="wrp">The Attributes of this Wrapper have to be displayed</param>
 		public void UpdateGUI(SimPe.Interfaces.Plugin.IFileWrapper wrp)
 		{
-			this.wrp = wrp;
+            SetWrapper(wrp);
 			RefreshGUI();
-		}	
+		}
+
+        private void SetWrapper(SimPe.Interfaces.Plugin.IFileWrapper wrp)
+        {
+            SimPe.Interfaces.Plugin.IFileWrapper old = this.wrp;
+            this.wrp = wrp;
+
+            WrapperChangedEventArgs e = new WrapperChangedEventArgs(old, wrp);
+            OnWrapperChanged(e);
+            if (WrapperChanged != null) WrapperChanged(this, e);
+        }	
 		#endregion
 
 		/// <summary>
