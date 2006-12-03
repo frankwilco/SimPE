@@ -10,6 +10,8 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
         {
             public Element()
             {
+                unk1 = 1;
+                unk3 = 1;
             }
 
             byte unk1;
@@ -60,7 +62,7 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
             public override string ToString()
             {
                 string s = "0x"+Helper.HexString(guid);;
-                foreach (ExtObjd objd in ScoreItemLearnedBehaviour.BehaviourObjds)
+                foreach (ExtObjd objd in LearnedBahaviourComboBox.BehaviourObjds)
                     if (objd.Guid == guid) s = objd.FileName;
                 s += "(" + Helper.HexString(unk1) + " " + Helper.HexString(val) + " " + Helper.HexString(unk3) + ")";
                 return s;

@@ -256,20 +256,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ScorItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ScorUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ScorWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="SCOR\AScorItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SCOR\AScorItem.Designer.cs">
       <DependentUpon>AScorItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCOR\LearnedBahaviourComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SCOR\LearnedBahaviourComboBox.Designer.cs">
+      <DependentUpon>LearnedBahaviourComboBox.cs</DependentUpon>
     </Compile>
     <Compile Include="SCOR\ScoreItemDefault.cs">
       <SubType>UserControl</SubType>
@@ -286,6 +283,11 @@
     <Compile Include="SCOR\ScoreItemLearnedBehaviour.Element.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="SCOR\ScorItem.cs" />
+    <Compile Include="SCOR\ScorUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SCOR\ScorWrapper.cs" />
     <Compile Include="SimBusinessList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -356,10 +358,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="noone.png" />
-    <EmbeddedResource Include="ScorUI.resx">
-      <DependentUpon>ScorUI.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="sdsc.png" />
     <EmbeddedResource Include="SimBusinessList.resx">
       <DependentUpon>SimBusinessList.cs</DependentUpon>
@@ -387,12 +385,20 @@
     <EmbeddedResource Include="srel.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CommonSrelUI.fr.resx">
+      <DependentUpon>CommonSrelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="CommonSrelUI.it.resx">
       <DependentUpon>CommonSrelUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CommonSrelUI.ru.resx">
       <DependentUpon>CommonSrelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtSDescUI.fr.resx">
+      <DependentUpon>ExtSDescUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtSDescUI.it.resx">
@@ -403,12 +409,20 @@
       <DependentUpon>ExtSDescUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExtSrelUI.fr.resx">
+      <DependentUpon>ExtSrelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExtSrelUI.it.resx">
       <DependentUpon>ExtSrelUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtSrelUI.ru.resx">
       <DependentUpon>ExtSrelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FamilyTiesForm.fr.resx">
+      <DependentUpon>FamilyTiesForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FamilyTiesForm.it.resx">
@@ -433,13 +447,29 @@
       <SubType>Designer</SubType>
       <DependentUpon>ScoreItemDefault.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SCOR\ScoreItemLearnedBehaviour.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ScoreItemLearnedBehaviour.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SCOR\ScoreItemLearnedBehaviour.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ScoreItemLearnedBehaviour.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SCOR\ScorUI.resx">
+      <DependentUpon>ScorUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimPoolControl.fr.resx">
+      <DependentUpon>SimPoolControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="SimRelationPoolControl.de.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SimRelationPoolControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimRelationPoolControl.fr.resx">
+      <DependentUpon>SimRelationPoolControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
