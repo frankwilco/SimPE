@@ -269,6 +269,10 @@
     <EmbeddedResource Include="Report.de.resx">
       <DependentUpon>Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report.fr.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report.it.resx">
       <DependentUpon>Report.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -281,6 +285,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceDock.de.resx">
       <DependentUpon>ResourceDock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceDock.fr.resx">
+      <DependentUpon>ResourceDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceDock.it.resx">
       <DependentUpon>ResourceDock.cs</DependentUpon>
@@ -311,6 +319,8 @@ copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
 copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
 copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"
 copy "$(TargetDir)it\*.dll" "$(SolutionDir)..\__Release\it\"
-copy "$(TargetDir)ru\*.dll" "$(SolutionDir)..\__Release\ru\"</PostBuildEvent>
+copy "$(TargetDir)ru\*.dll" "$(SolutionDir)..\__Release\ru\"
+if not exist "$(SolutionDir)..\__Release\fr\" mkdir "$(SolutionDir)..\__Release\fr\"
+copy "$(TargetDir)fr\*.dll" "$(SolutionDir)..\__Release\fr\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

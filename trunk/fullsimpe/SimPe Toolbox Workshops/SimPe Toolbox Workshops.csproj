@@ -293,6 +293,10 @@
     <EmbeddedResource Include="NeighborhoodPreview.de.resx">
       <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NeighborhoodPreview.fr.resx">
+      <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="NeighborhoodPreview.it.resx">
       <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -314,6 +318,10 @@
     <EmbeddedResource Include="ObjectPreview.es.resx">
       <DependentUpon>ObjectPreview.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ObjectPreview.fr.resx">
+      <DependentUpon>ObjectPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ObjectPreview.it.resx">
       <DependentUpon>ObjectPreview.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -332,6 +340,10 @@
     <EmbeddedResource Include="ObjectsDock.de.resx">
       <DependentUpon>ObjectsDock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ObjectsDock.fr.resx">
+      <DependentUpon>ObjectsDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ObjectsDock.it.resx">
       <DependentUpon>ObjectsDock.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -342,6 +354,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PackageDetailDock.de.resx">
       <DependentUpon>PackageDetailDock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackageDetailDock.fr.resx">
+      <DependentUpon>PackageDetailDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PackageDetailDock.it.resx">
       <DependentUpon>PackageDetailDock.cs</DependentUpon>
@@ -369,6 +385,10 @@
     <EmbeddedResource Include="XObjectPreview.de.resx">
       <DependentUpon>XObjectPreview.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="XObjectPreview.fr.resx">
+      <DependentUpon>XObjectPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="XObjectPreview.pl.resx">
       <DependentUpon>XObjectPreview.cs</DependentUpon>
     </EmbeddedResource>
@@ -391,6 +411,8 @@ copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\__Release\Plugins\"
 copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
 copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
 copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"
-copy "$(TargetDir)ru\*.dll" "$(SolutionDir)..\__Release\ru\"</PostBuildEvent>
+copy "$(TargetDir)ru\*.dll" "$(SolutionDir)..\__Release\ru\"
+if not exist "$(SolutionDir)..\__Release\fr\" mkdir "$(SolutionDir)..\__Release\fr\"
+copy "$(TargetDir)fr\*.dll" "$(SolutionDir)..\__Release\fr\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

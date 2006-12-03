@@ -358,8 +358,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CheckControl.fr.resx">
+      <DependentUpon>CheckControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="CheckControl.ru.resx">
       <DependentUpon>CheckControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckItem.fr.resx">
+      <DependentUpon>CheckItem.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CheckItem.ru.resx">
@@ -367,6 +375,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="pattern.gif" />
+    <EmbeddedResource Include="WrapperBaseControl.fr.resx">
+      <DependentUpon>WrapperBaseControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="WrapperBaseControl.it.resx">
       <DependentUpon>WrapperBaseControl.cs</DependentUpon>
       <SubType>Designer</SubType>
