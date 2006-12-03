@@ -22,10 +22,21 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
             get { return parent; }
         }
 
+        [DesignerSerializationVisibility( DesignerSerializationVisibility.Hidden), Browsable(false)]
         public bool Changed
         {
-            get { return parent.Parent.Changed; }
-            set { parent.Parent.Changed = value; }
+            get { 
+                if (parent!=null)
+                    if (parent.Parent !=null)
+                        return parent.Parent.Changed;
+
+                return false;
+            }
+            set {
+                if (parent != null)
+                    if (parent.Parent != null)                        
+                        parent.Parent.Changed = value; 
+            }
         }
 
         internal AScorItem()

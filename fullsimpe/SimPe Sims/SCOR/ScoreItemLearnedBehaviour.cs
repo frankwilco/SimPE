@@ -10,53 +10,21 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
             : base(si)
         {
             InitializeComponent();
+            llRemove.Enabled = false;
+
         }
 
-        #region Behaviours
-        static List<ExtObjd> objds;
-        protected static List<ExtObjd> BehaviourObjds
-        {
-            get
-            {
-                if (objds == null) GetPetBehaviours();
-                return objds;
-            }
-        }
-
-        private static void GetPetBehaviours()
-        {
-            if (objds != null) return;
-            objds = new List<ExtObjd>();
-
-            FileTable.FileIndex.Load();
-            SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] globs = FileTable.FileIndex.FindFile(Data.MetaData.GLOB_FILE, true);
-            foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii in globs)
-            {
-                SimPe.Plugin.Glob glb = new SimPe.Plugin.Glob();
-                glb.ProcessData(fii);
-                if (glb.SemiGlobalGroup == 0x7FD90EDB)
-                {
-                    SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] objs = FileTable.FileIndex.FindFile(Data.MetaData.OBJD_FILE, fii.FileDescriptor.Group);
-                    foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem ofii in objs)
-                    {
-                        ExtObjd obj = new ExtObjd();
-                        obj.ProcessData(ofii);
-                        if (obj.FileName.StartsWith("Learned Behavior"))
-                        {
-                            objds.Add(obj);
-                            //Console.WriteLine(obj.ResourceName);
-                        }
-                    }
-                }
-            }
-        }
-        #endregion
+        
 
         internal override void SetData(string name, System.IO.BinaryReader reader)
         {
             base.SetData(name, reader);
-            int ct = reader.ReadInt32();
             cb.Items.Clear();
+            if (reader.BaseStream.Length == 0)
+                return;
+
+            int ct = reader.ReadInt32();
+            
             for (int i = 0; i < ct; i++)
             {
                 Element e = new Element();
@@ -82,6 +50,7 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
         {
             intern = true;
             Element e = cb.SelectedItem as Element;
+            llRemove.Enabled = e != null;
             if (e != null)
             {
                 textBox1.Text = "0x" + Helper.HexString(e.Unknown1);
@@ -90,7 +59,8 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
                 textBox4.Text = "0x" + Helper.HexString(e.Unknown3);
 
                 textBox5.Text = BitConverter.ToSingle(BitConverter.GetBytes(e.Value), 0).ToString();
-                textBox6.Text = e.Value.ToString();
+                pbVal.Value = (int)e.Value;                
+                cbGuid.SelectedGuid = e.Guid;
             }
             intern = false;
         }
@@ -104,9 +74,48 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
                 e.Unknown1 = (byte)Helper.StringToInt16(textBox1.Text, e.Unknown1, 16);
                 e.Unknown3 = (byte)Helper.StringToInt16(textBox4.Text, e.Unknown3, 16);
                 e.Guid = Helper.StringToUInt32(textBox2.Text, e.Guid, 16);
-                e.Value = Helper.StringToUInt32(textBox6.Text, e.Value, 10);
+                e.Value = (uint)pbVal.Value;                
                 Changed = true;
+
+                cb.Items[cb.SelectedIndex] = e;
+                cb.Refresh();
             }
+        }
+
+        private void cbGuid_SelectedIndexChanged(object sender, EventArgs es)
+        {
+            Element e = cb.SelectedItem as Element;
+            
+            if (e != null)
+            {
+                textBox2.Text = "0x" + Helper.HexString(cbGuid.SelectedGuid);                
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs es)
+        {
+            Element e = cb.SelectedItem as Element;
+
+            if (e != null)
+            {
+                int index = Math.Max(0, cb.SelectedIndex);
+                cb.Items.Remove(e);
+                index = Math.Min(cb.Items.Count - 1, index);
+                cb.SelectedIndex = index;
+                if (ParentItem != null)
+                    if (ParentItem.Parent != null)
+                        ParentItem.Parent.Changed = true;
+            }
+        }
+
+        void llAdd_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs es)
+        {
+            Element e = new Element();
+            cb.Items.Add(e);
+            cb.SelectedIndex = cb.Items.Count - 1;
+            if (ParentItem != null)
+                if (ParentItem.Parent != null)
+                    ParentItem.Parent.Changed = true;
         }
     }
 }
