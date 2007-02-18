@@ -1244,6 +1244,18 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
   </data>
+
+  <data name="[Property:EP5Path]">
+    <value>5: Vier Jahreszeiten</value>
+  </data>
+  <data name="[Description:EP5Path]">
+    <value>
+      This should contain the installation directory of "The Sims 2 - Vier Jahreszeiten".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
   <data name="[Property:SP1Path]" xml:space="preserve">
     <value>1: Family Fun Accessoires</value>
   </data>
@@ -1274,6 +1286,17 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
 
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
+  </data>>
+  <data name="[Property:LIFESTORIESPath]">
+    <value>1: Life Stories</value>
+  </data>
+  <data name="[Description:LIFESTORIESPath]">
+    <value>
+      Hier sollte das Installationsverzeichnis von "Die Sims 2 Life Stories" stehen.
+      Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+      Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
+    </value>
   </data>
   <data name="[Property:SaveGamePath]" xml:space="preserve">
     <value>Spielstände</value>
@@ -1298,6 +1321,9 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
   </data>
   <data name="[Category:StuffPack]" xml:space="preserve">
     <value>3. Mini-Erweiterungen</value>
+  </data>
+  <data name="[Category:Story]">
+    <value>4. Sim Stories</value>
   </data>
   <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Nothing" xml:space="preserve">
     <value>Nichts</value>
@@ -1447,6 +1473,12 @@ Soll SimPE dennoch gestartet werden?</value>
   <data name="EP NAME 7" xml:space="preserve">
     <value>The Sims 2 - Weihnachtszeit-Accessoires</value>
   </data>
+  <data name="EP NAME 8" xml:space="preserve">
+    <value>The Sims 2 - Vier Jahreszeiten</value>
+  </data>
+  <data name="EP NAME 20">
+    <value>The Sims 2 - Life Stories</value>
+  </data>
   <data name="EP SNAME 0" xml:space="preserve">
     <value>Original</value>
   </data>
@@ -1470,6 +1502,12 @@ Soll SimPE dennoch gestartet werden?</value>
   </data>
   <data name="EP SNAME 7" xml:space="preserve">
     <value>Weihnachtszeit</value>
+  </data>
+  <data name="EP SNAME 8" xml:space="preserve">
+    <value>Jahreszeiten</value>
+  </data>
+  <data name="EP SNAME 20">
+    <value>Life Stories</value>
   </data>
   <data name="Check: Folder not found" xml:space="preserve">
     <value>Verzeichnis für "{name}" wurde nicht gefunden.</value>

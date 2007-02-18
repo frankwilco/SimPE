@@ -524,9 +524,23 @@ namespace SimPe
 				}
 			}
 
-            text += @"\pard\par";
-            text += @"\b .NET Version:\par";
-            text += @"\pard\li284\b0 " + System.Environment.Version.ToString().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284") + @"\par";
+            try
+            {
+                text += @"\pard\par";
+                text += @"\b Windows Version:\par";
+                text += @"\pard\li284\b0 " + Ambertation.Windows.Forms.APIHelp.GetVersionEx() + @"\par";
+            }
+            catch { }
+
+            try
+            {
+                text += @"\pard\par";
+                text += @"\b .NET Version:\par";
+                text += @"\pard\li284\b0 " + System.Environment.Version.ToString().Replace("\\", "\\\\").Replace("\n", @"\par\pard\li284") + @"\par";
+            }
+            catch { }
+
+           
 
 			text += @"}";
 

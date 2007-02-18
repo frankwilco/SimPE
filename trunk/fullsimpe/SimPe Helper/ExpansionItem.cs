@@ -7,7 +7,7 @@ namespace SimPe
     public class ExpansionItem : IComparable
     {
         public enum Classes {
-            BaseGame, ExpansionPack, StuffPack
+            BaseGame, ExpansionPack, StuffPack, Story
         }
        
         public class Flags : FlagBase
@@ -36,8 +36,9 @@ namespace SimPe
             {
                 get
                 {
-                    if (BaseGame) return Classes.BaseGame;
+                    if (SimStory) return Classes.Story;
                     if (RegularExpansion) return Classes.ExpansionPack;
+                    if (BaseGame) return Classes.BaseGame;
                     return Classes.StuffPack;
                 }
             }
@@ -50,6 +51,11 @@ namespace SimPe
             public bool LoadWantText
             {
                 get { return this.GetBit(3); }
+            }
+
+            public bool SimStory
+            {
+                get { return this.GetBit(4); }
             }
         }
 

@@ -2062,7 +2062,7 @@
     <value>pgPaths</value>
   </data>
   <data name="&gt;&gt;pgPaths.Type" xml:space="preserve">
-    <value>SimPe.MyPropertyGrid, SimPe, Version=0.61.2.21910, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.MyPropertyGrid, SimPe, Version=0.61.4.22576, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pgPaths.Parent" xml:space="preserve">
     <value>hcFolders</value>
@@ -2188,7 +2188,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcFolders.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="groupBox6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -2338,7 +2338,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcSettings.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="hcTools.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 8</value>
@@ -2365,7 +2365,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcTools.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="cbIncCep.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -2727,7 +2727,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcFileTable.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>2</value>
   </data>
   <data name="groupBox10.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3093,7 +3093,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcSceneGraph.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="bb.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 704</value>
@@ -3631,7 +3631,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcPlugins.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="linkLabel5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3934,7 +3934,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcIdent.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="checkControl1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -3952,7 +3952,7 @@
     <value>checkControl1</value>
   </data>
   <data name="&gt;&gt;checkControl1.Type" xml:space="preserve">
-    <value>SimPe.CheckControl, simpe.workspace, Version=1.0.2520.21900, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.CheckControl, simpe.workspace, Version=1.0.2605.22284, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;checkControl1.Parent" xml:space="preserve">
     <value>hcCheck</value>
@@ -3985,7 +3985,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcCheck.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="pgcustom.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -4063,7 +4063,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hcCustom.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>3</value>
   </data>
   <metadata name="baloonTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>243, 17</value>
