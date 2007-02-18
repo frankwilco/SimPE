@@ -908,6 +908,18 @@ If this is empty, SimPE will use the default Folder.</value>
       If this is empty, SimPE will use the default Folder.
     </value>
   </data>
+
+  <data name="[Property:EP5Path]">
+    <value>5: Seasons</value>
+  </data>
+  <data name="[Description:EP5Path]">
+    <value>
+      This should contain the installation directory of "The Sims 2 - Seasons".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
 	<data name="[Property:SP1Path]">
 		<value>1: Family Fun Accessoires</value>
 	</data>
@@ -939,6 +951,17 @@ If this is empty, SimPE will use the default Folder.</value>
       If this is empty, SimPE will use the default Folder.
     </value>
   </data>
+  <data name="[Property:LIFESTORIESPath]">
+    <value>1: Life Stories</value>
+  </data>
+  <data name="[Description:LIFESTORIESPath]">
+    <value>
+      This should contain the installation directory of "The Sims 2 Life Stories".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
 	<data name="[Property:SaveGamePath]">
 		<value>Savegame</value>
 	</data>	
@@ -963,6 +986,9 @@ If this is empty, SimPE will use the default Folder.</value>
 	<data name="[Category:StuffPack]">
 		<value>3. Mini Expansion Packs</value>
 	</data>
+  <data name="[Category:Story]">
+    <value>4. Sim Stories</value>
+  </data>
 	
 	<data name="SimPe.PackedFiles.Wrapper.JobAssignment.Nothing">
 		<value>Nothing</value>
@@ -1112,6 +1138,12 @@ Run SimPE anyway?</value>
   <data name="EP NAME 7">
     <value>The Sims 2 - Happy Holiday Stuff</value>
   </data>
+  <data name="EP NAME 8">
+    <value>The Sims 2 - Seasons</value>
+  </data>
+  <data name="EP NAME 20">
+    <value>The Sims 2 - Life Stories</value>
+  </data>
 
   <data name="EP SNAME 0">
     <value>Original</value>
@@ -1136,6 +1168,12 @@ Run SimPE anyway?</value>
   </data>
   <data name="EP SNAME 7">
     <value>Happy Holiday</value>
+  </data>
+  <data name="EP SNAME 8">
+    <value>Seasons</value>
+  </data>
+  <data name="EP SNAME 20">
+    <value>Life Stories</value>
   </data>
     <data name="Check: Folder not found">
 		<value>Folder for "{name}" was not found.</value>

@@ -124,6 +124,7 @@ namespace SimPe.Interfaces.Plugin
 	
 		private string ExceptionMessage(string msg)
 		{
+            if (msg == null) msg = "";
 			msg += "\n\nPackage: ";
 			if (this.Package != null)
 				msg += this.Package.FileName;

@@ -1205,6 +1205,8 @@ namespace SimPe
             this.BackColor = System.Drawing.SystemColors.Window;
             this.Controls.Add(this.bb);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.hcFileTable);
+            this.Controls.Add(this.hcCustom);
             this.Controls.Add(this.hcCheck);
             this.Controls.Add(this.hcFolders);
             this.Controls.Add(this.hcSceneGraph);
@@ -1212,8 +1214,6 @@ namespace SimPe
             this.Controls.Add(this.hcIdent);
             this.Controls.Add(this.hcPlugins);
             this.Controls.Add(this.hcTools);
-            this.Controls.Add(this.hcFileTable);
-            this.Controls.Add(this.hcCustom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

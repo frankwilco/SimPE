@@ -97,7 +97,9 @@ namespace SimPe
         public int GetEPVersion()
         {
             if (val > 0x80000000) return -1;
-            return PathProvider.Global[AsExpansions].Version;
+            ExpansionItem ei = PathProvider.Global[AsExpansions];
+            if (ei.Flag.SimStory) return -1;
+            return ei.Version;
 
             return -1;
         }

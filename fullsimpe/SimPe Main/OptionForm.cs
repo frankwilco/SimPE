@@ -1184,7 +1184,7 @@ namespace SimPe
         }
 
         #region Simple FileTable Settings
-        void SetupFileTableCheckboxe(CheckBox cb, FileTableItemType epver, bool cep)
+        void SetupFileTableCheckboxes(CheckBox cb, FileTableItemType epver, bool cep)
         {
             if (this.cbIncCep.Tag != null) return;
             int found = 0;
@@ -1274,10 +1274,10 @@ namespace SimPe
                 if (cb == null) continue;
                 if (cb.Tag == null) continue;
                 ExpansionItem ei = cb.Tag as ExpansionItem;
-                SetupFileTableCheckboxe(cb, ei.Expansion, false);
+                SetupFileTableCheckboxes(cb, ei.Expansion, false);
                 
             }
-            SetupFileTableCheckboxe(this.cbIncCep, FileTablePaths.Absolute, true);
+            SetupFileTableCheckboxes(this.cbIncCep, FileTablePaths.Absolute, true);
         }
 
         private void cbIncNightlife_CheckedChanged(object sender, System.EventArgs e)

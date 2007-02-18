@@ -10,7 +10,8 @@
         Bit 0: Is an ExpansionPack
         Bit 1: Is a StuffPack (aka MiniExpansion)
         Bit 2: Comes with a Lua Folder
-        Bit 3: Load additional W&F Texts from this Expansion (BaseGame is allways loaded!!)-->
+        Bit 3: Load additional W&F Texts from this Expansion (BaseGame is allways loaded!!)
+	Bit 4: Sim Story-->
       <string name="ExeName">Sims2.exe</string>
     </key>
 
@@ -81,6 +82,24 @@
       <cilist name="SimNameDeepSearch">
         <string name="0">TSData\Res\NeighborhoodTemplate\P001\Characters\</string>
       </cilist>
+    </key>
+
+    <!-- Information about Life Storeis (provided by Numenor) -->
+    <key name="LifeStories">
+      <int name="Version">20</int>
+      <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Life Stories</string>
+      <int name="Flag">20</int>
+      <string name="ExeName">Sims2LifeStories.exe</string>
+      <string name="Censor">quaxi_pets_censor_v1.package</string>
+    </key>
+
+    <!-- Information about Seasons -->
+    <key name="Seasons">
+      <int name="Version">8</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 Seasons</string>
+      <int name="Flag">13</int>
+      <string name="ExeName">Sims2EP5.exe</string>
+      <string name="Censor">quaxi_pets_censor_v1.package</string>
     </key>
 
   </key>

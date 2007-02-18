@@ -16,6 +16,8 @@ namespace SimPe
         Glamour = 0x20,
         Pets = 0x40,
         HappyHoliday = 0x80,
+        Seasons = 0x100,
+        LifeStories = 0x00100000,
         Custom = 0x80000000
     }
 
@@ -37,7 +39,7 @@ namespace SimPe
         }
 
         Dictionary<Expansions, ExpansionItem> map;
-        int spver, epver;
+        int spver, epver, stver;
         ExpansionItem latest;
         List<string> censorfiles;
         Expansions lastknown;
@@ -79,21 +81,25 @@ namespace SimPe
                 ExpansionItem i = new ExpansionItem(xrk.OpenSubKey(name, false));
                 exps.Add(i);
                 map[i.Expansion] = i;
+
+                if (i.Flag.SimStory) continue;
+
                 if (i.CensorFile != ""){
                     string fl = System.IO.Path.Combine(SimSavegameFolder, @"Downloads\" + i.CensorFileName);
                     if (!censorfiles.Contains(fl)) censorfiles.Add(fl);
                     fl = System.IO.Path.Combine(SimSavegameFolder, @"Config\" + i.CensorFileName);
                     if (!censorfiles.Contains(fl)) censorfiles.Add(fl);  
                 }
-                if (i.Version > ver)
+                if (i.Version > ver )
                 {
                     ver = i.Version;
                     lastknown = i.Expansion;
                 }
             }
 
-            spver = GetMaxVersion(true);
-            epver = GetMaxVersion(false);
+            spver = GetMaxVersion(ExpansionItem.Classes.StuffPack);
+            epver = GetMaxVersion(ExpansionItem.Classes.ExpansionPack);
+            stver = GetMaxVersion(ExpansionItem.Classes.Story);
             latest = this.GetLatestExpansion();
 
             exps.Sort();
@@ -105,14 +111,16 @@ namespace SimPe
                         paths.Add(ei.InstallFolder);        
         }
 
-        protected int GetMaxVersion(bool sp)
+
+
+        protected int GetMaxVersion(ExpansionItem.Classes sp)
         {
             int ret = 0;
             foreach (ExpansionItem i in exps)
             {
                 if (i.Exists)
                 {
-                    if ((sp && i.Flag.Class == ExpansionItem.Classes.StuffPack) || (!sp && i.Flag.Class == ExpansionItem.Classes.ExpansionPack))
+                    if (sp ==i.Flag.Class)
                     {
                         if (i.Version > ret) ret = i.Version;
                     }

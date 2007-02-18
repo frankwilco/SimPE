@@ -255,7 +255,21 @@ namespace SimPe
 			FileTableItemForm f = new FileTableItemForm();
 			f.tbName.Text = fti.Name;
 			f.tbRoot.Text = fti.Type.ToString();
-			f.cbEpVer.SelectedIndex = fti.EpVersion+1;
+            if (fti.EpVersion + 1 < f.cbEpVer.Items.Count)
+                f.cbEpVer.SelectedIndex = fti.EpVersion + 1;
+            else
+            {
+                ExpansionItem ei = PathProvider.Global[fti.EpVersion];
+                for (int i = 0; i < f.cbEpVer.Items.Count; i++)
+                {
+                    if (f.cbEpVer.Items[i].ToString() == ei.Name)
+                    {
+                        f.cbEpVer.SelectedIndex = i;
+                        break;
+                    }
+
+                }
+            }
 			f.cbRec.Checked = fti.IsRecursive;
 			f.ok = false;
 			f.file = fti.IsFile;
@@ -268,7 +282,10 @@ namespace SimPe
                 fti.Type = FileTablePaths.Absolute;
 				fti.Name = f.tbName.Text;
 				fti.IsRecursive = f.cbRec.Checked;
-				fti.EpVersion = f.cbEpVer.SelectedIndex-1;
+                string epname = f.cbEpVer.Text;
+                foreach (ExpansionItem ei in PathProvider.Global.Expansions)
+                    if (ei.Name == epname) fti.EpVersion = ei.Version;
+				
 				fti.IsFile = f.file;
 
 				return true;
