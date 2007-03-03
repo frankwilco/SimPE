@@ -852,6 +852,57 @@ namespace SimPe.Packages
 			return pf;
 		}
 
+        /// <summary>
+        /// the packed File Descriptor
+        /// </summary>
+        /// <param name="pfd"></param>
+        /// <returns></returns>
+        PackedFile GetStreamPackedFile(IPackedFileDescriptor pfd)
+        {
+            PackedFile pf = new PackedFile(reader.BaseStream);
+            try
+            {
+                pf.datastart = pfd.Offset;
+                pf.datasize = (uint)pfd.Size;
+                reader.BaseStream.Seek(pfd.Offset, System.IO.SeekOrigin.Begin);
+                pf.size = reader.ReadInt32();
+                pf.signature = reader.ReadUInt16();
+                Byte[] dummy = reader.ReadBytes(3);
+                pf.uncsize = (uint)((dummy[0] << 0x10) | (dummy[1] << 0x08) | +dummy[2]);
+                if (/*(pf.Size == pfd.Size) &&*/ (pf.Signature == MetaData.COMPRESS_SIGNATURE)) pf.headersize = 9;
+
+                if ((filelistfile != null) && (pfd.Type != File.FILELIST_TYPE))
+                {
+                    int pos = filelistfile.FindFile(pfd);
+                    if (pos != -1)
+                    {
+                        SimPe.PackedFiles.Wrapper.ClstItem fi = (ClstItem)filelistfile.Items[pos];
+                        if (header.Version == 0x100000001) pf.uncsize = fi.UncompressedSize;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                pf.size = 0;
+                pf.data = new byte[0];
+            }
+
+
+            reader.BaseStream.Seek(pfd.Offset, SeekOrigin.Begin);
+            return pf;
+        }
+
+        
+        /// <summary>
+        /// Returns the Stream that holds the given Resource
+        /// </summary>
+        /// <param name="pfd">The PackedFileDescriptor</param>
+        /// <returns>The PackedFile containing Stream Infos</returns>
+        public IPackedFile GetStream(IPackedFileDescriptor pfd)
+        {
+            return GetStreamPackedFile(pfd);
+        }
+
 		/// <summary>
 		/// Reads a File specified by a FileIndexItem
 		/// </summary>
@@ -883,6 +934,7 @@ namespace SimPe.Packages
                     
                         this.LockStream();
                         reader.BaseStream.Seek(pfd.Offset, System.IO.SeekOrigin.Begin);
+                        
                         byte[] data = null;
                         if (pfd.Size > 0) data = reader.ReadBytes(pfd.Size);
                         else data = new byte[0];

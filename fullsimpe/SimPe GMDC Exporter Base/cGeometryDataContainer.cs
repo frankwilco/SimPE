@@ -122,6 +122,15 @@ namespace SimPe.Plugin
 			sgres.Unserialize(reader);
 			sgres.BlockID = myid;
 
+            if (Parent.Fast)
+            {
+                elements.Clear();
+                links.Clear();
+                groups.Clear();
+                joints.Clear();
+                return;
+            }
+
 			int count = reader.ReadInt32();
 			elements.Clear();
 			for (int i=0; i<count; i++)

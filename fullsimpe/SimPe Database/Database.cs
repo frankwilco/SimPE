@@ -21,74 +21,91 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using SQLite.NET;
 using System.Data.SQLite;
+using System.Data.Common;
+using System.Data;
 
 namespace SimPe.Database
 {
-    class Database 
-    {        
-        System.Data.SQLite.SQLiteConnection sql;
-        internal static List<uint> CachedTypes = SimPe.Data.MetaData.CachedFileTypes;
+    class Database
+    {
+        SQLiteConnection sql;
+        System.IO.StreamWriter sw;
+
+
+        public string DatabaseName
+        {
+            get
+            {
+                return System.IO.Path.Combine(Helper.SimPeDataPath, "cache.db3");
+            }
+        }
+
+        Dictionary<uint, Performance> odict;
+        List<Performance> olist;
         public Database()
         {
-            System.Data.SQLite.SQLiteConnectionStringBuilder sb = new System.Data.SQLite.SQLiteConnectionStringBuilder();
-            sb.DataSource = System.IO.Path.Combine(SimPe.Helper.SimPeDataPath, "cache.db");
-            sql = new System.Data.SQLite.SQLiteConnection(sb.ConnectionString);
+            sql = new SQLiteConnection("Data Source=" + DatabaseName);
+            odict = new Dictionary<uint, Performance>();
+            olist = new List<Performance>();
+            sw = new System.IO.StreamWriter(System.IO.Path.Combine(SimPe.Helper.SimPeDataPath, "log.txt"), false);
 
-            lastrowid = 0;
+            sql.Open();
             PrepareDatabase();
-
-            sql.Update += new SQLiteUpdateEventHandler(sql_Update);
         }
 
-        long lastrowid;
-        void sql_Update(object sender, UpdateEventArgs e)
-        {
-            lastrowid = e.RowId;
-        }
 
         ~Database()
         {
-            sql.Update -= new SQLiteUpdateEventHandler(sql_Update);
             sql.Close();
+            sw.Close();
+        }
+        #region Commands
+        SqlCommands.CreateTable ctable;
+        SqlCommands.CreateTable CreateTableCmd
+        {
+            get
+            {
+                if (ctable == null) ctable = new SimPe.Database.SqlCommands.CreateTable(sql);
+                return ctable;
+            }
+        }
+        #endregion
+
+
+
+        #region Creat Tables
+        protected bool TableExists(string name)
+        {
+            CreateTableCmd.TableName = name;
+            SQLiteDataReader dr = CreateTableCmd.Command.ExecuteReader(CommandBehavior.SingleResult);
+            bool has = dr.HasRows;
+            dr.Close();
+            return has;
         }
 
         void PrepareDatabase()
         {
-            sql.Open();
-            ArrayList tables = new ArrayList();
-            using (SQLiteCommand mycommand = new SQLiteCommand(sql))
-            {
-                mycommand.CommandText = String.Format("SELECT name FROM sqlite_master WHERE type = 'table'");
-                SQLiteDataReader res = mycommand.ExecuteReader();
-                while (res.Read())
-                {
-                    tables.Add(res["name"].ToString());
-                }
-            }
-
-            
-            if (!tables.Contains("files")) CreateFilesTable();
-            if (!tables.Contains("tgi")) CreateTGITable();
-            if (!tables.Contains("guid")) CreateGuidTable();
-            if (!tables.Contains("thumbs")) CreateThumbsTable();
+            if (!TableExists("files")) CreateFilesTable();
+            if (!TableExists("tgi")) CreateTGITable();
+            if (!TableExists("guid")) CreateGuidTable();
+            if (!TableExists("thumb")) CreateThumbTable();
+            if (!TableExists("outlink")) CreateOutLinkTable();
         }
 
-        #region Creat Tables
         void CreateTable(string name, string s)
         {
             using (SQLiteCommand mycommand = new SQLiteCommand(sql))
             {
                 mycommand.CommandText = String.Format("CREATE TABLE '" + name + "' (" + s + ")");
-                mycommand.ExecuteNonQuery();                
+                mycommand.ExecuteNonQuery();
             }
         }
         void CreateFilesTable()
         {
             try
             {
-                CreateTable("files", "'fid' INTEGER NOT NULL PRIMARY KEY, 'filename' VARCHAR(255)  NOT NULL, 'modified' TIMESTAMP  NOT NULL");                
+                CreateTable("files", "'fid' INTEGER NOT NULL PRIMARY KEY, 'filename' VARCHAR(255)  NOT NULL, 'modified' TIMESTAMP  NOT NULL");
             }
             catch (Exception ex)
             {
@@ -100,7 +117,7 @@ namespace SimPe.Database
         {
             try
             {
-                CreateTable("tgi", "'id' INTEGER PRIMARY KEY NOT NULL, 't' INTEGER  NOT NULL, 'g' INTEGER  NOT NULL, 'ihi' INTEGER  NOT NULL, 'ilo' INTEGER  NOT NULL, 'name' VARCHAR(255)  NULL, 'fid' INTEGER  NOT NULL");                
+                CreateTable("tgi", "'rid' INTEGER PRIMARY KEY NOT NULL, 't' INTEGER  NOT NULL, 'g' INTEGER  NOT NULL, 'ihi' INTEGER  NOT NULL, 'ilo' INTEGER  NOT NULL, 'name' VARCHAR(255)  NULL, 'fid' INTEGER  NOT NULL");
             }
             catch (Exception ex)
             {
@@ -112,7 +129,7 @@ namespace SimPe.Database
         {
             try
             {
-                CreateTable("guid", "'id' INTEGER  NOT NULL PRIMARY KEY, 'guid' INTEGER  NOT NULL");
+                CreateTable("guid", "'rid' INTEGER  NOT NULL PRIMARY KEY, 'guid' INTEGER  NOT NULL");
             }
             catch (Exception ex)
             {
@@ -120,11 +137,23 @@ namespace SimPe.Database
             }
         }
 
-        void CreateThumbsTable()
+        void CreateOutLinkTable()
         {
             try
             {
-                CreateTable("thumbs", "'id' INTEGER  UNIQUE NOT NULL PRIMARY KEY, 'img' BLOB  NULL");                
+                CreateTable("outlink", "'rid' INTEGER  NOT NULL PRIMARY KEY, 'linkedrid' INTEGER  NOT NULL");
+            }
+            catch (Exception ex)
+            {
+                Helper.ExceptionMessage(ex);
+            }
+        }
+
+        void CreateThumbTable()
+        {
+            try
+            {
+                CreateTable("thumb", "'rid' INTEGER  UNIQUE NOT NULL PRIMARY KEY, 'img' BLOB  NULL");
             }
             catch (Exception ex)
             {
@@ -132,10 +161,298 @@ namespace SimPe.Database
             }
         }
         #endregion
+        public class FileList : List<string> { }
+        public void LoadUpdateableFiles(FileList list, SimPe.FileTableItem fti)
+        {
+            if (!fti.IsUseable || fti.Ignore || !fti.IsAvail) return;
+            if (fti.IsFile) list.Add(fti.Name);
+            else LoadDirectory(list, fti.Name, fti.IsRecursive); 
+
+        }
+
+        
+
+        /// <summary>
+        /// Addsall .package files in the given directory to the cache
+        /// </summary>
+        /// <param name="dir">Complete name of the directory</param>
+        /// <param name="rec">true, if you want to include subfolders</param>
+        /// <returns>true, if some contents had to be added</returns>
+        public void LoadDirectory(FileList list, string dir, bool rec)
+        {
+            //return false;
+            string[] files = System.IO.Directory.GetFiles(dir, "*.package");
+            
+            foreach (string file in files)
+            {
+                list.Add(file);
+            }
+
+            if (rec)
+            {
+                files = System.IO.Directory.GetDirectories(dir);
+                foreach (string d in files)
+                    LoadDirectory(list, dir, true);
+            }
+        }
+
+        class PerformanceTotalCompare : IComparer<Performance>
+        {
+            #region IComparer<Performance> Members
+
+            public int Compare(Performance x, Performance y)
+            {
+                if (x.Total() > y.Total()) return 1;
+                if (x.Total() < y.Total()) return -1;
+                return 0;
+            }
+
+            #endregion
+        }
+
+        class PerformanceAvgCompare : IComparer<Performance>
+        {
+            #region IComparer<Performance> Members
+
+            public int Compare(Performance x, Performance y)
+            {
+                if (x.Avarage() > y.Avarage()) return 1;
+                if (x.Avarage() < y.Avarage()) return -1;
+                return 0;
+            }
+
+            #endregion
+        }
+
+
+        class Performance : IComparable<Performance>
+        {
+            List<TimeSpan> spans;
+            uint t;
+            public Performance(uint type)
+            {
+                spans = new List<TimeSpan>();
+                t = type;
+            }
+
+            public void Add(TimeSpan ts)
+            {
+                spans.Add(ts);
+            }
+
+            public TimeSpan Total()
+            {
+                TimeSpan ts = new TimeSpan(0);
+                foreach (TimeSpan t in spans)
+                    ts += t;
+
+                return ts;
+            }
+
+            public TimeSpan Avarage()
+            {
+                return new TimeSpan(Total().Ticks / Count());
+            }
+
+            public int Count()
+            {
+                return spans.Count;
+            }
+
+            public override string ToString()
+            {
+                SimPe.Data.TypeAlias ta = Data.MetaData.FindTypeAlias(t);
+                return ta.shortname + ": Calls= " + Count() + ", Overall= " + Total().ToString() + ", Avg= " + Avarage().ToString();
+            }
+
+
+
+            #region IComparable<Performance> Members
+
+            public int CompareTo(Performance other)
+            {
+                if (Total() > other.Total()) return 1;
+                if (Total() < other.Total()) return -1;
+                return 0;
+            }
+
+            #endregion
+        }
+
+
+
+        /// <summary>
+        /// Adds the given .package file to the cache
+        /// </summary>
+        /// <param name="flname">Complete name of the .package file</param>
+        /// <returns>true, if the contents had to get updated</returns>
+        public bool AddPackageFile(string flname)
+        {
+            if (!System.IO.File.Exists(flname)) return false;
+            DateTime filemod = System.IO.File.GetLastWriteTime(flname);
+            bool mod = false;
+
+            SqlCommands.LoadFileRow lfr = new SimPe.Database.SqlCommands.LoadFileRow(sql);
+            lfr.FileName = flname;
+
+            SQLiteDataReader dr = AddPackageWhenNew(ref filemod, ref mod, lfr);
+            long fid = UpdatePackageModDate(flname, ref filemod, ref mod, lfr, dr);
+
+            if (mod)
+            {
+                SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(flname);
+                SqlCommands.AddResources ar = new SimPe.Database.SqlCommands.AddResources(sql);
+                ar.PrepareLoop(fid);
+                Dictionary<uint, Performance> dict = new Dictionary<uint, Performance>();
+                List<Performance> list = new List<Performance>();
+
+                foreach (SimPe.Packages.PackedFileDescriptor pfd in pkg.Index)
+                {
+                    Performance p, op;
+                    if (!dict.ContainsKey(pfd.Type))
+                    {
+                        p = new Performance(pfd.Type);
+                        list.Add(p);
+                        dict[pfd.Type] = p;
+                    }
+                    else p = dict[pfd.Type];
+
+                    if (!odict.ContainsKey(pfd.Type))
+                    {
+                        op = new Performance(pfd.Type);
+                        olist.Add(op);
+                        odict[pfd.Type] = op;
+                    }
+                    else op = odict[pfd.Type];
+                    DateTime start = DateTime.Now;
+
+                    SimPe.Interfaces.Plugin.Internal.IPackedFileWrapper wrp;
+                    if (pfd.Type == Data.MetaData.LIFO || pfd.Type == 0x4E524546 /*NREF*/ || pfd.Type == Data.MetaData.GMDC || pfd.Type == Data.MetaData.ANIM)
+                        wrp = null;
+                    else if (pfd.Type == Data.MetaData.LIFO || pfd.Type == Data.MetaData.GMDC)
+                        wrp = new SimPe.Plugin.GenericRcol(null, true);
+                    else
+                        wrp = SimPe.FileTable.WrapperRegistry.FindHandler(pfd.Type);
+
+                    if (wrp != null)
+                    {
+                        lock (wrp)
+                        {
+                            wrp.ProcessData(pfd, pkg, true);
+                            ar.AddResourceLoop(fid, pfd, wrp);
+
+                            wrp.Dispose();
+                        }
+                        wrp = null;
+                    }
+                    else ar.AddResourceLoop(fid, pfd, null);
+
+                    TimeSpan runtime = DateTime.Now - start;
+                    p.Add(runtime);
+                    op.Add(runtime);
+                }
+                ShowPerformance(list);
+                list.Clear();
+                list = null;
+
+                dict.Clear();
+                dict = null;
+
+                ar.FinishLoop();
+                pkg.Close();
+            }
+
+            lfr = null;
+            return mod;
+        }
+
+        public void Result()
+        {
+            sw.WriteLine(); sw.WriteLine(); sw.WriteLine();
+            sw.WriteLine("---------------------------------------OVERALL---------------------------------------");
+            ShowPerformance(olist);
+        }
+
+        private void ShowPerformance(List<Performance> list)
+        {
+            TimeSpan total = new TimeSpan(0);
+            PerformanceTotalCompare ptc = new PerformanceTotalCompare();
+            list.Sort(ptc);
+            foreach (Performance p in list)
+                sw.WriteLine(p.ToString());
+
+            sw.WriteLine("------------------------------------------------------");
+            PerformanceAvgCompare pac = new PerformanceAvgCompare();
+            list.Sort(pac);
+            foreach (Performance p in list)
+            {
+                sw.WriteLine(p.ToString());
+                total += p.Total();
+            }
+            sw.WriteLine();
+            sw.WriteLine("Total: " + total.ToString());
+            Console.WriteLine("    Total: " + total.ToString());
+
+           
+
+            sw.Flush();
+        }
+
+        private long UpdatePackageModDate(string flname, ref DateTime filemod, ref bool mod, SqlCommands.LoadFileRow lfr, SQLiteDataReader dr)
+        {
+            if (dr.HasRows)
+            {
+                dr.Read();
+                Console.WriteLine(dr[2]);
+                long fid = (long)dr[0];
+                DateTime modified = (DateTime)dr[2];
+
+
+                //if (filemod > modified)
+                {
+                    sw.WriteLine(); sw.WriteLine();
+                    sw.WriteLine("--> " + flname + " ---------------------------------------------------------------");
+                    Console.WriteLine("--> " + flname + " ---------------------------------------------------------------");
+                    mod = true;
+
+                    SqlCommands.UpdateFileModDate ufmd = new SimPe.Database.SqlCommands.UpdateFileModDate(sql);
+                    ufmd.FileName = lfr.FileName;
+                    ufmd.Modified = filemod;
+                    //ufmd.Command.ExecuteNonQuery();
+
+                    SqlCommands.RemoveResources rr = new SimPe.Database.SqlCommands.RemoveResources(sql);
+                    rr.FileId = fid;
+                    rr.CleanupPackageResources();
+                }
+
+                dr.Close();
+                return fid;
+            }
+
+            dr.Close();
+            return 0;
+        }
+
+        private SQLiteDataReader AddPackageWhenNew(ref DateTime filemod, ref bool mod, SqlCommands.LoadFileRow lfr)
+        {
+            SQLiteDataReader dr = lfr.Command.ExecuteReader(CommandBehavior.SingleResult);
+            if (!dr.HasRows)
+            {
+                dr.Close();
+
+                SqlCommands.AddFileRow afr = new SimPe.Database.SqlCommands.AddFileRow(sql);
+                afr.FileName = lfr.FileName;
+                afr.Modified = filemod;
+                afr.Command.ExecuteNonQuery();
+                dr = lfr.Command.ExecuteReader(CommandBehavior.SingleResult);
+                mod = true;
+            }
+            return dr;
+        }
 
         public static string ToTimeStamp(DateTime tm)
         {
-            return tm.ToString("u");
+            return tm.ToString("s", System.Globalization.DateTimeFormatInfo.InvariantInfo);
         }
 
         public static string Now()
@@ -143,208 +460,6 @@ namespace SimPe.Database
             return ToTimeStamp(DateTime.Now);
         }
 
-        public SQLiteCommand CreateCommand(string cmd, List<SQLiteParameter>param)
-        {
-            SQLiteCommand mycommand = new SQLiteCommand(sql);
-            
-            mycommand.CommandText = cmd;
-            foreach (SQLiteParameter p in param)
-                mycommand.Parameters.Add(p);
 
-            return mycommand;
-        }
-
-        public List<Dictionary<string, object>> Query(string s)
-        {
-            return GetResultTable(QueryNr(s));
-        }
-
-        public SQLiteDataReader QueryNr(string s)
-        {
-            //Console.WriteLine(s);
-            try
-            {
-                lock (sql)
-                {
-                    SQLiteCommand mycommand = new SQLiteCommand(sql);
-                    mycommand.CommandText = s;
-                    return mycommand.ExecuteReader();                    
-                }
-            }
-            catch (Exception ex)
-            {
-                Helper.ExceptionMessage(ex);
-            }
-
-            return null;
-        }
-
-        List<Dictionary<string, object>> GetResultTable(SQLiteDataReader res)
-        {
-            List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-            if (res != null)
-            {
-                List<string> names = new List<string>();
-                for (int i=0; i<res.FieldCount; i++)
-                    names.Add(res.GetName(i));
-                while (res.Read())
-                {
-                    Dictionary<string, object> map = new Dictionary<string,object>();
-                    for (int i = 0; i < res.FieldCount; i++)
-                        map[names[i]] = res.GetValue(i);
-                    list.Add(map);
-                }
-            }
-
-            return list;
-        }
-
-        public bool FileItemChanged(SimPe.FileTableItem f)
-        {
-            if (!f.IsUseable || !f.IsAvail || f.Ignore) return false;
-            if (f.IsFile) return FileChanged(f.Name);
-            else return FolderChanged(f.Name, f.IsRecursive);
-            
-        }
-
-        public bool FolderChanged(string dir, bool rec)
-        {
-            bool res = false;
-            string[] files = System.IO.Directory.GetFiles(dir, "*.package");
-            foreach (string file in files)            
-                res |= FileChanged(file);
-
-            if (rec)
-            {
-                files = System.IO.Directory.GetDirectories(dir);
-                foreach (string file in files)
-                    res |= FolderChanged(file, true);
-            }
-
-            return res;
-        }
-
-        public bool FileChanged(string flname)
-        {
-            System.IO.FileInfo fi = new System.IO.FileInfo(flname);
-            flname = Helper.CompareableFileName(flname);
-
-            List<Dictionary<string, object>> tables = Query("SELECT * FROM files WHERE filename = " + SQLiteClient.Quote(flname));
-
-            int fid = -1;
-            if (tables.Count == 0)
-            {
-                fid = AddFile(flname);                
-            }
-            else
-            {
-                DateTime tm = DateTime.Parse(tables[0]["modified"].ToString());
-                if (tm < fi.LastWriteTime) fid = Convert.ToInt32(tables[0]["fid"]);
-            }
-           
-            if (fid > 0)
-            {
-                SyncFileContent(fid, flname, fi);
-                return true;
-            }
-
-            return false;
-        }
-
-        int AddFile(string flname)
-        {
-            QueryNr("INSERT INTO files (filename, modified) VALUES (" + SQLiteClient.Quote(flname) + ", " + SQLiteClient.Quote("1970-01-01 00:00:00") + ")");
-            return Last();  
-        }
-
-        void SyncFileContent(int fid, string flname, System.IO.FileInfo fi)
-        {
-            DatabaseSyncThread dst = new DatabaseSyncThread(this, fid, flname, fi);                   
-        }
-
-        internal void CleanupFileTgi(int fid){
-            QueryNr("DELETE FROM tgi WHERE fid=" + fid);
-        }
-
-        internal SQLiteCommand CreateStorePfdCommand()
-        {
-            List<SQLiteParameter> pars = new List<SQLiteParameter>();
-            pars.Add(new SQLiteParameter("t"));
-            pars.Add(new SQLiteParameter("g"));
-            pars.Add(new SQLiteParameter("ihi"));
-            pars.Add(new SQLiteParameter("ilo"));
-            pars.Add(new SQLiteParameter("name"));
-            pars.Add(new SQLiteParameter("fid"));
-
-            return CreateCommand("INSERT INTO tgi (t, g, ihi, ilo, name, fid) VALUES(?, ?, ?, ?, ?, ?);", pars);
-        }
-
-        internal void StorePfd(SQLiteCommand cmd, int fid, SimPe.Interfaces.Files.IPackedFileDescriptor pfd, string name)
-        {
-            cmd.Parameters[0].Value = (Int32)pfd.Type;
-            cmd.Parameters[1].Value = (Int32)pfd.Group;
-            cmd.Parameters[2].Value = (Int32)pfd.SubType;
-            cmd.Parameters[3].Value = (Int32)pfd.Instance;
-            cmd.Parameters[4].Value = name;
-            cmd.Parameters[5].Value = fid;
-            
-            cmd.ExecuteNonQuery();
-            
-        }
-
-        public SQLiteTransaction BeginTransaction()
-        {
-            return sql.BeginTransaction();            
-        }
-
-        public List<Dictionary<string, object>> GetFileContent(int fid)
-        {
-            List<Dictionary<string, object>> res = Query("SELECT * FROM tgi WHERE fid=" + fid);
-            return res;
-        }
-
-        public List<Dictionary<string, object>> GetFileContent(int fid, uint type)
-        {
-
-            List<Dictionary<string, object>> res = Query("SELECT * FROM tgi WHERE fid=" + fid + " AND t=" + type);
-            return res;
-        }
-
-        internal SQLiteCommand CreateStoreGuidCommand()
-        {
-            List<SQLiteParameter> pars = new List<SQLiteParameter>();
-            pars.Add(new SQLiteParameter("id1"));
-            pars.Add(new SQLiteParameter("id2"));
-            pars.Add(new SQLiteParameter("guid"));
-
-            return CreateCommand("DELETE FROM guid WHERE id=?; INSERT INTO guid (id, guid) VALUES (?, ?)", pars);
-        }
-
-        internal void StoreGuid(SQLiteCommand cmd, int id, uint guid)
-        {
-            cmd.Parameters[0].Value = id;
-            cmd.Parameters[1].Value = id;
-            cmd.Parameters[2].Value = (Int32)guid;
-
-            cmd.ExecuteNonQuery();
-        }
-
-        internal SimPe.Interfaces.Files.IPackedFileDescriptor LoadPfd(SimPe.Interfaces.Files.IPackageFile pkg, Hashtable ht)
-        {
-            SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pkg.FindFile(
-                Convert.ToUInt32(ht["t"]),
-                Convert.ToUInt32(ht["g"]),
-                Convert.ToUInt32(ht["ihi"]),
-                Convert.ToUInt32(ht["ilo"])
-            );
-
-            return pfd;
-        }
-
-        internal int Last()
-        {
-
-            return  (int)lastrowid;
-        }
     }
 }

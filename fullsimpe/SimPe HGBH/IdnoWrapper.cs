@@ -45,7 +45,8 @@ namespace SimPe.Plugin
 		Sims2_University = 0x05,
 		Sims2_Nightlife = 0x07,
 		Sims2_Business = 0x08,
-        Sims2_Pets = 0x09
+        Sims2_Pets = 0x09,
+        Sims2_Seasons = 0x0A
 	}
 
 	/// <summary>

@@ -333,10 +333,13 @@ namespace SimPe.Plugin
 			lv.Items.Clear();
 			ilist.Images.Clear();
 			string[] dirs = System.IO.Directory.GetDirectories(sourcepath, "N*");
-			foreach (string dir in dirs) 
-			{				
+			foreach (string dir in dirs) 				
 				AddNeighborhood(dir);
-			}
+
+            dirs = System.IO.Directory.GetDirectories(sourcepath, "G*");
+            foreach (string dir in dirs)
+                AddNeighborhood(dir);
+			
 			WaitingScreen.Stop(this);				
 		}
 

@@ -345,6 +345,24 @@ namespace SimPe
         /// <summary>
         /// true, if the user wants the Pescado Mode
         /// </summary>
+        public bool FileTableSimpleSelectUseGroups
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("FileTableSimpleSelectUseGroups", true);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("FileTableSimpleSelectUseGroups", value);
+            }
+        }
+
+        /// <summary>
+        /// true, if the user wants the Pescado Mode
+        /// </summary>
         public bool ShowWaitBarPermanent
         {
             get

@@ -107,6 +107,11 @@ namespace SimPe.Interfaces.Files
 		/// </summary>
 		/// <param name="size">max number of bytes to decompress</param>
 		/// <returns>trhe decompressed Value</returns>
-		byte[] Decompress(long size);
+	    byte[] Decompress(long size);
+
+        /// <summary>
+        /// Returns the Plain File Data. If the Packed File is compress it will be decompressed
+        /// </summary>
+        System.IO.Stream UncompressedStream { get;}
 	}
 }

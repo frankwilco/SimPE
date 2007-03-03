@@ -242,6 +242,7 @@
     <EmbeddedResource Include="3didr.png" />
     <EmbeddedResource Include="FileSelect.resx">
       <DependentUpon>FileSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GroupCacheForm.resx">
       <DependentUpon>GroupCacheForm.cs</DependentUpon>
@@ -280,6 +281,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PackedFileForm.resx">
       <DependentUpon>PackedFileForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="RenameForm.resx">
       <DependentUpon>RenameForm.cs</DependentUpon>

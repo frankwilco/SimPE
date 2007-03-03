@@ -433,6 +433,9 @@ namespace SimPe.Interfaces.Plugin
 				{
 					IPackedFile file = package.Read(pfd);
 					return new System.IO.BinaryReader(new System.IO.MemoryStream(file.UncompressedData));
+                    
+                    /*IPackedFile file = package.GetStream(pfd);
+                    return new System.IO.BinaryReader(file.UncompressedStream);*/
 				} 
 				else 
 				{

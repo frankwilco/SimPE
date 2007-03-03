@@ -21,113 +21,69 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using SQLite.NET;
 using System.Data.SQLite;
+using System.Threading;
 
 namespace SimPe.Database
 {
-    class DatabaseSyncThread : Ambertation.Threading.StoppableThread
+    class DatabaseSyncThread
     {
-        internal static int Running = 0;
-        public static void WaitForFinish()
+        int Running = 0;
+        public void WaitForFinish()
         {
-            while (DatabaseSyncThread.Running > 0)
-                System.Threading.Thread.CurrentThread.Join(100);     
+            while (Running > 0)
+            {
+                Thread.CurrentThread.Join(1000);
+                System.Windows.Forms.Application.DoEvents();
+            }
+
+        }
+
+        public void Stop()
+        {
+            lock (list)
+            {
+                list.Clear();
+            }
+            WaitForFinish();
+
         }
 
         Database db;
-        int fid;
-        string flname;
-        System.IO.FileInfo fi;
-        public DatabaseSyncThread(Database parent, int fid, string flname, System.IO.FileInfo fi)
+        Database.FileList list;
+        Thread[] threads;
+        public DatabaseSyncThread(Database db, Database.FileList list)
         {
-            db = parent;
-            this.fid = fid;
-            this.flname = flname;
-            this.fi = fi;
+            this.db = db;
+            this.list = list;
 
-
-            this.ExecuteThread(System.Threading.ThreadPriority.Normal, "sync " + flname, true);
-            
+            threads = new Thread[Math.Max(1, SimPe.Helper.WindowsRegistry.SortProcessCount / 4)];
+            for (int i = 0; i < threads.Length; i++)
+            {
+                threads[i] = new Thread(new ThreadStart(StartThread));
+                threads[i].Name = "Sync " + i;
+                threads[i].Start();
+            }
+            while (Running==0)
+                Thread.CurrentThread.Join(100);
         }
 
-        protected override void StartThread()
+        protected void StartThread()
         {
-            while (Running > 4) System.Threading.Thread.CurrentThread.Join(100);
-
-            Console.WriteLine("Started sync Thread for " + flname);
             Running++;
-            SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(flname);
-            using (SQLiteTransaction transaction = db.BeginTransaction())
+            do
             {
-                db.CleanupFileTgi(fid);
-
-
-                Wait.SubStart(pkg.Index.Length);
-                Wait.Message = flname;
-                int ct = 0;
-                bool done = true;
-
-                using (SQLiteCommand cmd = db.CreateStorePfdCommand())
+                string flname;
+                lock (list)
                 {
-                    cmd.Prepare();
-                    using (SQLiteCommand cmdguid = db.CreateStoreGuidCommand())
-                    {
-                        cmdguid.Prepare();
-                        foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in pkg.Index)
-                        {
-                            string name = null;
-                            object guid = null;
-                            ct++;
-                            if (!Database.CachedTypes.Contains(pfd.Type)) continue;
-
-
-                            if (pfd.Type == Data.MetaData.OBJD_FILE)
-                            {
-                                SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd();
-                                objd.ProcessData(pfd, pkg);
-
-                                guid = objd.Guid;
-                                name = objd.FileName;
-                            }
-                            else if (SimPe.Data.MetaData.RcolList.Contains(pfd.Type))
-                            {
-                                SimPe.Plugin.GenericRcol rcol = new SimPe.Plugin.GenericRcol(SimPe.FileTable.ProviderRegistry, true);
-                                rcol.ProcessData(pfd, pkg);
-
-                                name = rcol.ResourceName;
-                            }
-
-
-                            db.StorePfd(cmd, fid, pfd, name);                            
-                            int id = db.Last();
-                            if (guid != null) db.StoreGuid(cmdguid, id, (uint)guid);
-
-
-                            Wait.Progress = ct;
-                            if (this.HaveToStop)
-                            {
-                                done = false;
-                                break;
-                            }
-                        }
-                    }
+                    if (list.Count == 0) break;
+                    flname = list[0];
+                    list.RemoveAt(0);
                 }
-                Wait.SubStop();
-                pkg.Close();
 
-                if (done)
-                {
-                    db.QueryNr("UPDATE files SET modified=" + SQLiteClient.Quote(Database.ToTimeStamp(fi.LastWriteTime)) + " WHERE fid=" + fid);
-                    transaction.Commit();
-                }
-                else
-                {
-                    transaction.Rollback();
-                }
-            }
+                db.AddPackageFile(flname);
+            } while (true);
             Running--;
-            Console.WriteLine("Stopped sync Thread for " + flname);
         }
 
     }
