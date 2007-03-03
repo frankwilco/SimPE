@@ -145,18 +145,25 @@ namespace SimPe.Plugin
 		uint flags2;
 		ushort[] data;
 
-		uint unknown;
+		uint invnr;
+        ushort unknown2;
 		public uint InventoryNumber
 		{
-			get {return unknown; }
+			get {return invnr; }
 			set { 
-				if (unknown!=value)
+				if (invnr!=value)
 				{
-					unknown = value; 
+					invnr = value; 
 					if (parent!=null) parent.Changed = true;
 				}
 			}
 		}
+
+        public ushort UnknownNumber
+        {
+            get { return unknown2; }
+            set { unknown2 = value; if (parent != null) parent.Changed = true; }
+        }
 
 		protected SimPe.PackedFiles.Wrapper.ExtObjd objd = null;
 
@@ -469,7 +476,13 @@ namespace SimPe.Plugin
 			flags = new NgbhItemFlags(reader.ReadUInt16());
 			if ((uint)parent.Version>=(uint)NgbhVersion.Business)
 				flags2 = new NgbhItemFlags(reader.ReadUInt16());
-			if ((uint)parent.Version>=(uint)NgbhVersion.Nightlife) unknown = reader.ReadUInt32();
+            if ((uint)parent.Version >= (uint)NgbhVersion.Nightlife) invnr = reader.ReadUInt32();
+            else invnr = 0;
+            if ((uint)parent.Version >= (uint)NgbhVersion.Seasons) unknown2 = reader.ReadUInt16();
+            else unknown2 = 0;
+
+
+
 			data = new ushort[reader.ReadInt32()];
 			for (int i=0; i<data.Length; i++) 
 			{
@@ -493,7 +506,8 @@ namespace SimPe.Plugin
 			writer.Write(flags.Value); 
 			if ((uint)parent.Version>=(uint)NgbhVersion.Business) 
 				writer.Write((ushort)flags2);
-			if ((uint)parent.Version>=(uint)NgbhVersion.Nightlife) writer.Write(unknown);
+			if ((uint)parent.Version>=(uint)NgbhVersion.Nightlife) writer.Write(invnr);
+            if ((uint)parent.Version >= (uint)NgbhVersion.Seasons) writer.Write(unknown2);
 			writer.Write((int)data.Length);
 			for (int i=0; i<data.Length; i++) 
 			{
@@ -639,7 +653,7 @@ namespace SimPe.Plugin
 			ret.flags = this.flags;
 			ret.flags2 = this.flags2;
 			ret.parent = parent;
-			ret.unknown = this.unknown;
+			ret.invnr = this.invnr;
 			return ret;
 		}
 	}

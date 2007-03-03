@@ -68,6 +68,7 @@ namespace SimPe
         Flags flag;
         string censor;
         Ambertation.CaseInvariantArrayList simnamedeep;
+        int group;
 
         
 
@@ -83,6 +84,7 @@ namespace SimPe
                 exe = (string)key.GetValue("ExeName", "Sims2.exe");
                 flag = new Flags((int)key.GetValue("Flag", 0));
                 censor = (string)key.GetValue("Censor", "");
+                group = (int)key.GetValue("Group", 1);
 
                 simnamedeep = (Ambertation.CaseInvariantArrayList)key.GetValue("SimNameDeepSearch", new Ambertation.CaseInvariantArrayList());
                 System.Diagnostics.Debug.WriteLine(this.ToString());
@@ -96,6 +98,7 @@ namespace SimPe
                 exp = (Expansions)0;
                 version = -1;
                 simnamedeep = new Ambertation.CaseInvariantArrayList();
+                group = 0;
             }
 
             sname = GetShortName();
@@ -124,7 +127,7 @@ namespace SimPe
 
         public bool Exists
         {
-            get { return rk != null; }
+            get { return true;  return rk != null; }
         }
 
         public int Version
@@ -145,6 +148,16 @@ namespace SimPe
         public string ExeName
         {
             get { return exe; }
+        }
+
+        public int Group
+        {
+            get { return group; }
+        }
+
+        public bool ShareOneGroup(ExpansionItem ei)
+        {
+            return (ei.Group & Group) != 0;
         }
 
         /// <summary>

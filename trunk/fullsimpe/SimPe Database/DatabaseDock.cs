@@ -34,8 +34,6 @@ namespace SimPe.Database
         {
             InitializeComponent();
             db = new Database();
-
-            
         }       
 
         #region IDockableTool Member
@@ -75,10 +73,10 @@ namespace SimPe.Database
             Wait.Message = "Sync. Database Cache...";
             foreach (SimPe.FileTableItem s in dirs)
             {
-                lb.Items.Add(s);
-                db.FileItemChanged(s);
+                //lb.Items.Add(s);
+                //db.FileItemChanged(s);
             }
-            DatabaseSyncThread.WaitForFinish();
+            //DatabaseSyncThread.WaitForFinish();
             Wait.Stop();
         }
         private void button1_Click(object sender, EventArgs e)

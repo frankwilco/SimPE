@@ -35,7 +35,8 @@ namespace SimPe.Packages
 	/// </summary>
 	public class PackedFile : IPackedFile, System.IDisposable
 	{
-
+        System.IO.Stream src;
+        System.IO.Stream dst;
 
 		/// <summary>
 		/// Constructor for the class
@@ -46,7 +47,18 @@ namespace SimPe.Packages
 			data = content;			
 			headersize = 0;
 			uncdata = null;
+            src = null;
 		}
+
+        internal PackedFile(System.IO.Stream s)
+        {
+            data = null;
+            headersize = 0;
+            uncdata = null;
+            datastart = 0;
+            src = s;
+            dst = null;
+        }
 		
 		/// <summary>
 		/// The Size of the PackedFile Header
@@ -98,23 +110,29 @@ namespace SimPe.Packages
 		}
 
 
+        internal uint datastart;
+        public uint DataStart
+        {
+            get { return datastart; }
+        }
+		
 
-		/// <summary>
-		/// Uncompressed Filesize
-		/// </summary>		
-		internal UInt32 uncsize;
 
-		/// <summary>
-		/// Returns the Uncompressed Filesize
-		/// </summary>
-		public uint UncompressedSize
-		{
-			get 
-			{
-				return uncsize;
-			}
-		}
+        /// <summary>
+        /// Filesize
+        /// </summary>		
+        internal UInt32 datasize;
 
+        /// <summary>
+        /// Returns the Filesize
+        /// </summary>
+        public uint DataSize
+        {
+            get
+            {
+                return datasize;
+            }
+        }
 
 
 		/// <summary>
@@ -126,6 +144,15 @@ namespace SimPe.Packages
 		/// the uncompressed Data
 		/// </summary>
 		internal Byte[] uncdata;
+
+        internal uint uncsize;
+        public uint UncompressedSize
+        {
+            get
+            {
+                return uncsize;
+            }
+        }
 
 		/// <summary>
 		/// Returns the Plain File Data (might be compressed)
@@ -159,6 +186,108 @@ namespace SimPe.Packages
 			get { return data; }
 		}
 
+        class OffsetStream : System.IO.Stream {
+            System.IO.Stream s;
+            int o;
+            int sz;
+            public OffsetStream(System.IO.Stream src, uint offset, int size)
+            {
+                o = (int)offset;
+                s = src;
+                sz = (int)size;
+            }
+
+            public override bool CanRead
+            {
+                get { return s.CanRead; }
+            }
+
+            public override bool CanSeek
+            {
+                get { return s.CanSeek; }
+            }
+
+            public override bool CanWrite
+            {
+                get { return s.CanWrite; }
+            }
+
+            public override void Flush()
+            {
+                s.Flush();
+            }
+
+            public override long Length
+            {
+                get { return sz;  }
+            }
+
+            public override long Position
+            {
+                get
+                {
+                    return s.Position - o;
+                }
+                set
+                {
+                    s.Position = value + o;
+                }
+            }
+
+            public override int Read(byte[] buffer, int offset, int count)
+            {
+                return s.Read(buffer, offset, count);
+            }
+
+            public override long Seek(long offset, System.IO.SeekOrigin origin)
+            {
+                if (origin == System.IO.SeekOrigin.Current) return s.Seek(offset, origin);
+                if (origin == System.IO.SeekOrigin.Begin) return s.Seek(offset + o, origin);
+                return s.Seek(sz - offset + 0, System.IO.SeekOrigin.Begin);
+            }
+
+            public override void SetLength(long value)
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+
+            public override void Write(byte[] buffer, int offset, int count)
+            {
+                Write(buffer, offset, count);
+            }
+        }
+
+        /// <summary>
+        /// Returns the Plain File Data. If the Packed File is compress it will be decompressed
+        /// </summary>
+        public System.IO.Stream UncompressedStream
+        {
+            get
+            {
+                if (dst == null)
+                {
+                    lock (src)
+                    {
+                        src.Seek(DataStart, System.IO.SeekOrigin.Begin);
+                        if (IsCompressed)
+                        {
+
+                            dst = UncompressStream(src, Size, UncompressedSize, this.headersize);
+                        }
+                        else
+                        {
+                            byte[] data = new byte[DataSize];
+                            src.Read(data, 0, (int)DataSize);
+                            dst = new System.IO.MemoryStream(data);
+                        }
+                    }
+                }
+
+                dst.Seek(0, System.IO.SeekOrigin.Begin);
+                return dst;
+            }
+        }	
+
 		/// <summary>
 		/// Returns the Plain File Data. If the Packed File is compress it will be decompressed
 		/// </summary>
@@ -169,7 +298,7 @@ namespace SimPe.Packages
 				if (IsCompressed)
 				{
 					if (uncdata==null)	uncdata = Uncompress(data, UncompressedSize, this.headersize);
-					return uncdata;
+                 	return uncdata;
 				}
 				else 
 				{
@@ -214,7 +343,101 @@ namespace SimPe.Packages
             }
 		}
 
-		#region decompression	
+		#region decompression
+        
+
+        /// <summary>
+        /// Uncompresses the File Data passed
+        /// </summary>
+        /// <param name="data">Relevant File Data</param>
+        /// <param name="targetSize">Size of the uncompressed Data</param>
+        /// <param name="offset">File offset, where we should start to decompress from</param>
+        /// <returns>The uncompressed FileData</returns>
+        public Byte[] Uncompress(Byte[] data, uint targetSize, int offset)
+        {
+            Byte[] uncdata = null;
+            int index = offset;
+
+            try
+            {
+                uncdata = new Byte[targetSize];
+            }
+            catch (Exception)
+            {
+                uncdata = new Byte[0];
+            }
+
+            int uncindex = 0;
+            int plaincount = 0;
+            int copycount = 0;
+            int copyoffset = 0;
+            Byte cc = 0;
+            Byte cc1 = 0;
+            Byte cc2 = 0;
+            Byte cc3 = 0;
+            int source;
+
+            try
+            {
+                while ((index < data.Length) && (data[index] < 0xfc))
+                {
+                    cc = data[index++];
+
+                    if ((cc & 0x80) == 0)
+                    {
+                        cc1 = data[index++];
+                        plaincount = (cc & 0x03);
+                        copycount = ((cc & 0x1C) >> 2) + 3;
+                        copyoffset = ((cc & 0x60) << 3) + cc1 + 1;
+                    }
+                    else if ((cc & 0x40) == 0)
+                    {
+                        cc1 = data[index++];
+                        cc2 = data[index++];
+                        plaincount = (cc1 & 0xC0) >> 6;
+                        copycount = (cc & 0x3F) + 4;
+                        copyoffset = ((cc1 & 0x3F) << 8) + cc2 + 1;
+                    }
+                    else if ((cc & 0x20) == 0)
+                    {
+                        cc1 = data[index++];
+                        cc2 = data[index++];
+                        cc3 = data[index++];
+                        plaincount = (cc & 0x03);
+                        copycount = ((cc & 0x0C) << 6) + cc3 + 5;
+                        copyoffset = ((cc & 0x10) << 12) + (cc1 << 8) + cc2 + 1;
+                    }
+                    else
+                    {
+                        plaincount = (cc - 0xDF) << 2;
+                        copycount = 0;
+                        copyoffset = 0;
+                    }
+
+                    for (int i = 0; i < plaincount; i++) uncdata[uncindex++] = data[index++];
+
+                    source = uncindex - copyoffset;
+                    for (int i = 0; i < copycount; i++) uncdata[uncindex++] = uncdata[source++];
+                }//while
+            } //try
+            catch (Exception ex)
+            {
+                //Helper.ExceptionMessage("", ex);
+                throw ex;
+            }
+
+
+            if (index < data.Length)
+            {
+                plaincount = (data[index++] & 0x03);
+                for (int i = 0; i < plaincount; i++)
+                {
+                    if (uncindex >= uncdata.Length) break;
+                    uncdata[uncindex++] = data[index++];
+                }
+            }
+            return uncdata;
+        }
 		/// <summary>
 		/// Uncompresses the File Data passed
 		/// </summary>
@@ -222,9 +445,9 @@ namespace SimPe.Packages
 		/// <param name="targetSize">Size of the uncompressed Data</param>
 		/// <param name="offset">File offset, where we should start to decompress from</param>
 		/// <returns>The uncompressed FileData</returns>
-		public Byte[] Uncompress(Byte[] data, uint targetSize, int offset){
+		public unsafe Byte[] UncompressUnsafe(Byte[] data, uint targetSize, int offset){
 			Byte[] uncdata = null;
-			int index = offset;			
+				
 
 			try 
 			{
@@ -234,78 +457,91 @@ namespace SimPe.Packages
 			{
 				uncdata = new Byte[0];
 			}
-			
-			int uncindex = 0;
-			int plaincount = 0;
-			int copycount = 0;
-			int copyoffset = 0;
-			Byte cc = 0;
-			Byte cc1 = 0;
-			Byte cc2 = 0;
-			Byte cc3 = 0;
-			int source;
-			
-			try 
-			{
-				while ((index<data.Length) && (data[index] < 0xfc))
-				{
-					cc = data[index++];
-				
-					if ((cc&0x80)==0)
-					{
-						cc1 = data[index++];
-						plaincount = (cc & 0x03);
-						copycount = ((cc & 0x1C) >> 2) + 3;
-						copyoffset = ((cc & 0x60) << 3) + cc1 +1;
-					} 
-					else if ((cc&0x40)==0)
-					{
-						cc1 = data[index++];
-						cc2 = data[index++];
-						plaincount = (cc1 & 0xC0) >> 6 ; 
-						copycount = (cc & 0x3F) + 4 ;
-						copyoffset = ((cc1 & 0x3F) << 8) + cc2 +1;							
-					} 
-					else if ((cc&0x20)==0)
-					{
-						cc1 = data[index++];
-						cc2 = data[index++];
-						cc3 = data[index++];
-						plaincount = (cc & 0x03);
-						copycount = ((cc & 0x0C) << 6) + cc3 + 5;
-						copyoffset = ((cc & 0x10) << 12) + (cc1 << 8) + cc2 +1;
-					} 
-					else 
-					{									
-						plaincount = (cc - 0xDF) << 2; 
-						copycount = 0;
-						copyoffset = 0;				
-					}
+            fixed (byte* uncdataarraystart = uncdata)
+            fixed (byte* dataarraystart = data)
+            {
+                int plaincount = 0;
+                int copycount = 0;
+                int copyoffset = 0;                
+                
 
-					for (int i=0; i<plaincount; i++) uncdata[uncindex++] = data[index++];
+                byte* datapt = dataarraystart + offset;
+                byte* dataarrayend = dataarraystart + data.Length;
 
-					source = uncindex - copyoffset;	
-					for (int i=0; i<copycount; i++) uncdata[uncindex++] = uncdata[source++];
-				}//while
-			} //try
-			catch(Exception ex)
-			{
-				//Helper.ExceptionMessage("", ex);
-				throw ex;
-			} 
-			
+                byte* uncdatapt = uncdataarraystart;
+                byte* uncdataarrayend = uncdataarraystart + targetSize;
 
-			if (index<data.Length) 
-			{
-				plaincount = (data[index++] & 0x03);
-				for (int i=0; i<plaincount; i++) 
-				{
-					if (uncindex>=uncdata.Length) break;
-					uncdata[uncindex++] = data[index++];
-				}
-			}
+                try
+                {
+                    while (datapt < dataarrayend && (*datapt < 0xfc))
+                    {
+                        if ((*datapt & 0x80) == 0)
+                        {
+                            plaincount = (*datapt & 0x03);
+                            copycount = ((*datapt & 0x1C) >> 2) + 3;
+                            copyoffset = ((*datapt & 0x60) << 3);
+                            datapt++;
+                            copyoffset += *datapt + 1;
+                        }
+                        else if ((*datapt & 0x40) == 0)
+                        {
+                            copycount = (*datapt & 0x3F) + 4;
+                            datapt++;
+                            plaincount = (*datapt & 0xC0) >> 6;
+                            copyoffset = ((*datapt & 0x3F) << 8);
+                            datapt++;
+                            copyoffset += *datapt + 1;
+                        }
+                        else if ((*datapt & 0x20) == 0)
+                        {
+                            plaincount = (*datapt & 0x03);
+                            copycount = ((*datapt & 0x0C) << 6);
+                            copyoffset = ((*datapt & 0x10) << 12);
+                            datapt++;
+                            copyoffset += (*datapt << 8);
+                            datapt++;
+                            copyoffset += *datapt + 1;
+                            datapt++;
+                            copycount += *datapt + 5;
+                        }
+                        else
+                        {
+                            plaincount = (*datapt - 0xDF) << 2;
+                            copycount = 0;
+                            copyoffset = 0;
+                        }
+
+                        datapt++;
+
+                        for (int i = 0; i < plaincount; i++) { *uncdatapt = *datapt; uncdatapt++; datapt++; }
+
+                        byte* source = uncdatapt - copyoffset;
+
+                        for (int i = 0; i < copycount; i++) { *uncdatapt = *source; uncdatapt++; source++; }
+                    }//while
+                } //try
+                catch (Exception ex)
+                {
+                    //Helper.ExceptionMessage("", ex);
+                    throw ex;
+                }
+
+
+                if (datapt < dataarrayend)
+                {
+                    plaincount = (*datapt & 0x03);
+                    datapt++;
+                    for (int i = 0; i < plaincount; i++)
+                    {
+                        if (uncdatapt>=uncdataarrayend) break;
+                        *uncdatapt = *datapt; datapt++; uncdatapt++;
+                    }
+                }
+            }
 			return uncdata;
-		}		
+		}
+        
+
 		/// <summary>
 		/// Uncompresses the File Data passed
 		/// </summary>
@@ -327,7 +563,8 @@ namespace SimPe.Packages
 			{
 				uncdata = new Byte[0];
 			}
-			
+
+            
 			int uncindex = 0;
 			int plaincount = 0;
 			int copycount = 0;
@@ -434,7 +671,107 @@ namespace SimPe.Packages
 				}
 			}
 			return uncdata;
-		}		
+		}
+
+        /// <summary>
+        /// Returns the Stream that holds the given Resource
+        /// </summary>
+        /// <param name="pfd">The PackedFileDescriptor</param>
+        /// <returns>The stream containing the resource. Be carfull, this is not at all Thread Save!!!</returns>
+        public static System.IO.MemoryStream UncompressStream(System.IO.Stream s, int datalength, uint targetSize, int offset)
+        {
+            byte[] uncdata;
+
+            int end = (int)(s.Position + datalength);
+            s.Seek(offset, System.IO.SeekOrigin.Current);
+
+
+            try
+            {
+                uncdata = new Byte[targetSize];
+            }
+            catch (Exception)
+            {
+                uncdata = new Byte[0];
+            }
+
+            int uncindex = 0;
+            int plaincount = 0;
+            int copycount = 0;
+            int copyoffset = 0;
+            Byte cc = 0;
+            Byte cc1 = 0;
+            Byte cc2 = 0;
+            Byte cc3 = 0;
+
+
+            try
+            {
+                while ((s.Position < end))
+                {
+                    cc = (byte)s.ReadByte();
+                    if (cc >= 0xfc)
+                    {
+                        s.Seek(-1, System.IO.SeekOrigin.Current);
+                        break;
+                    }
+
+                    if ((cc & 0x80) == 0)
+                    {
+                        cc1 = (byte)s.ReadByte();
+                        plaincount = (cc & 0x03);
+                        copycount = ((cc & 0x1C) >> 2) + 3;
+                        copyoffset = ((cc & 0x60) << 3) + cc1 + 1;
+                    }
+                    else if ((cc & 0x40) == 0)
+                    {
+                        cc1 = (byte)s.ReadByte();
+                        cc2 = (byte)s.ReadByte();
+                        plaincount = (cc1 & 0xC0) >> 6;
+                        copycount = (cc & 0x3F) + 4;
+                        copyoffset = ((cc1 & 0x3F) << 8) + cc2 + 1;
+                    }
+                    else if ((cc & 0x20) == 0)
+                    {
+                        cc1 = (byte)s.ReadByte();
+                        cc2 = (byte)s.ReadByte();
+                        cc3 = (byte)s.ReadByte();
+                        plaincount = (cc & 0x03);
+                        copycount = ((cc & 0x0C) << 6) + cc3 + 5;
+                        copyoffset = ((cc & 0x10) << 12) + (cc1 << 8) + cc2 + 1;
+                    }
+                    else
+                    {
+                        plaincount = (cc - 0xDF) << 2;
+                        copycount = 0;
+                        copyoffset = 0;
+                    }
+
+                    for (int i = 0; i < plaincount; i++) uncdata[uncindex++] = (byte)s.ReadByte();
+
+                    int source = uncindex - copyoffset;
+                    for (int i = 0; i < copycount; i++) uncdata[uncindex++] = uncdata[source++];
+                }//while
+            } //try
+            catch (Exception ex)
+            {
+                //Helper.ExceptionMessage("", ex);
+                throw ex;
+            }
+
+
+            if (s.Position < end)
+            {
+                plaincount = (s.ReadByte() & 0x03);
+                for (int i = 0; i < plaincount; i++)
+                {
+                    if (uncindex >= uncdata.Length) break;
+                    uncdata[uncindex++] = (byte)s.ReadByte();
+                }
+            }
+            return new System.IO.MemoryStream(uncdata);
+        }
+
 		#endregion		
 
 		#region compression		

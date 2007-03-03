@@ -266,7 +266,15 @@ namespace SimPe.Interfaces.Files
 		/// <param name="pfd">The PackedFileDescriptor</param>
 		/// <returns>The plain Content of the File</returns>
 		IPackedFile Read(IPackedFileDescriptor pfd);
+
+        /// <summary>
+        /// Returns the Stream that holds the given Resource
+        /// </summary>
+        /// <param name="pfd">The PackedFileDescriptor</param>
+        /// <returns>The PackedFile containing Stream Infos</returns>
+        IPackedFile GetStream(IPackedFileDescriptor pfd);
 		#endregion
+        
 
 		/// <summary>
 		/// Close this Instance, leaving the FileDescripors valid

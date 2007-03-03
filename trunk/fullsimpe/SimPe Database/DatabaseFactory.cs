@@ -35,7 +35,7 @@ namespace SimPe.Database
 		internal static IToolPlugin[] Last;
         public DatabaseFactory()
 		{
-            LoadExternData();
+            //LoadExternData();
         }
 
         #region Data preperation

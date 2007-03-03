@@ -117,19 +117,14 @@ namespace SimPe.Plugin
 		/// <param name="reader">The Stream that contains the FileData</param>
 		public override void Unserialize(System.IO.BinaryReader reader)
 		{
-			version = reader.ReadUInt32();
+            version = reader.ReadUInt32();
 			string s = reader.ReadString();
 
 			sgres.BlockID = reader.ReadUInt32();
 			sgres.Unserialize(reader);
 			
 
-			if (Parent.Fast) 
-			{
-				texturesize = new Size(0, 0);
-				img = null;
-				return;
-			}
+			
 
 			int w = reader.ReadInt32();
 			int h = reader.ReadInt32();
@@ -137,8 +132,14 @@ namespace SimPe.Plugin
 			zlevel = reader.ReadInt32();
 
 			int size = reader.ReadInt32();
-			
-			
+
+            if (Parent.Fast)
+            {
+                reader.BaseStream.Seek(size, System.IO.SeekOrigin.Current);
+                texturesize = new Size(0, 0);
+                img = null;
+                return;
+            }
 			/*if (size == w*h) format = ImageLoader.TxtrFormats.DXT3Format;
 			else*/ format = ImageLoader.TxtrFormats.DXT1Format;
 			//Pumckl Contribution

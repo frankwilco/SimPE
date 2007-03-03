@@ -27,7 +27,8 @@ namespace SimPe.Plugin
 	{
 		University = 0x70,
 		Nightlife = 0xbe,
-		Business = 0xc2
+		Business = 0xc2,
+        Seasons = 0xcb
 	}
 
 	/// <summary>
@@ -209,7 +210,7 @@ namespace SimPe.Plugin
 				"Neighborhood/Memory Wrapper",
 				"Quaxi",
 				"This File contains the Memories and Inventories of all Sims and Lots that Live in this Neighborhood.",
-				10,
+				11,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ngbh.png"))
 				); 
 		}

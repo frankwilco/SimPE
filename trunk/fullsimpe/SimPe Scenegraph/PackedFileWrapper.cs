@@ -127,9 +127,9 @@ namespace SimPe.Plugin
 				pfd.Instance = reader.ReadUInt32();
 				if(type==Data.MetaData.IndexTypes.ptLongFileIndex) pfd.SubType = reader.ReadUInt32();
 
-				Interfaces.Files.IPackedFileDescriptor ppfd = Package.FindFile(pfd.Type, pfd.SubType, pfd.Group, pfd.Instance);
+				/*Interfaces.Files.IPackedFileDescriptor ppfd = Package.FindFile(pfd.Type, pfd.SubType, pfd.Group, pfd.Instance);
 				if (ppfd!=null) items[i]=ppfd;					
-				else items[i] = pfd;
+				else*/ items[i] = pfd;
 			}
 		}
 

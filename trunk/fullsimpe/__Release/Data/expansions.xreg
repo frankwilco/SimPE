@@ -13,6 +13,7 @@
         Bit 3: Load additional W&F Texts from this Expansion (BaseGame is allways loaded!!)
 	Bit 4: Sim Story-->
       <string name="ExeName">Sims2.exe</string>
+      <int name="Group">1</int>
     </key>
 
     <!-- Information about University -->
@@ -28,6 +29,7 @@
       </cilist>
       <!-- SimNameDeepSearch: This is a list of additional Folders (in the EP's Folder), 
       SimPE is using when it performs a 'Deep Search' for SimDescriptions-->
+      <int name="Group">1</int>
     </key>
 
     <!-- Information about Nightlife -->
@@ -40,6 +42,7 @@
       <cilist name="SimNameDeepSearch">
         <string name="0">TSData\Res\NeighborhoodTemplate\D001\Characters\</string>
       </cilist>
+      <int name="Group">1</int>
     </key>
 
     <!-- Information about Business -->
@@ -52,6 +55,7 @@
       <cilist name="SimNameDeepSearch">
         <string name="0">TSData\Res\NeighborhoodTemplate\B001\Characters\</string>
       </cilist>
+      <int name="Group">1</int>
     </key>
 
     <!-- Information about FamilyFun Stuff-->
@@ -61,6 +65,7 @@
       <int name="Flag">2</int>
       <string name="ExeName">Sims2SP1.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
+      <int name="Group">1</int>
     </key>
 
     <!-- Information about Glamour Stuff -->
@@ -70,6 +75,7 @@
       <int name="Flag">2</int>
       <string name="ExeName">Sims2SP2.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
+      <int name="Group">1</int>
     </key>
 
     <!-- Information about Pets-->
@@ -82,6 +88,7 @@
       <cilist name="SimNameDeepSearch">
         <string name="0">TSData\Res\NeighborhoodTemplate\P001\Characters\</string>
       </cilist>
+      <int name="Group">1</int>
     </key>
 
     <!-- Information about Life Storeis (provided by Numenor) -->
@@ -89,8 +96,9 @@
       <int name="Version">20</int>
       <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Life Stories</string>
       <int name="Flag">20</int>
-      <string name="ExeName">Sims2LifeStories.exe</string>
+      <string name="ExeName">SimsLS.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
+      <int name="Group">2</int>
     </key>
 
     <!-- Information about Seasons -->
@@ -100,6 +108,7 @@
       <int name="Flag">13</int>
       <string name="ExeName">Sims2EP5.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
+      <int name="Group">1</int>
     </key>
 
   </key>

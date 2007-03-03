@@ -459,6 +459,12 @@ namespace SimPe
 			if (message==null) message = "";
 			if (message.Trim()=="") message = ex.Message;
 
+            if (message.Contains("Microsoft.DirectX"))
+            {
+                ex = new Warning("You need to installe MANAGED DirectX", "In order to perfrom some Operations, you need to install Managed DirectX (which is an additional set of libraries for the DirectX you installed with The Sims 2).\n\nPlease read http://ambertation.de/simpeforum/sims2/I-have-an-Error-mentioning-Direct3D,-what-should-I-do for more Details.", ex);
+                message = ex.Message;
+            }
+
 			Exception myex = ex;
 			string extrace = "";
 			while (myex!=null) 

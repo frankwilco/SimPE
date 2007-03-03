@@ -1290,6 +1290,19 @@ namespace SimPe
             else
             {
                 ExpansionItem ei = cb.Tag as ExpansionItem;
+                if (cb.Checked && Helper.WindowsRegistry.FileTableSimpleSelectUseGroups)
+                {
+                    foreach (Control c in groupBox8.Controls)
+                    {
+                        CheckBox cbs = c as CheckBox;
+                        if (cbs != null)
+                        {
+                            ExpansionItem eis = cbs.Tag as ExpansionItem;
+                            if (eis != null)
+                                if (cbs.Checked && !ei.ShareOneGroup(eis)) cbs.Checked = false;                            
+                        }
+                    } //foreach
+                }
                 ChangeFileTable(cb, ei.Expansion, false);
             } 
         }
