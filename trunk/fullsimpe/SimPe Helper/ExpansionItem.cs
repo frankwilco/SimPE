@@ -68,6 +68,8 @@ namespace SimPe
         Flags flag;
         string censor;
         Ambertation.CaseInvariantArrayList simnamedeep;
+        Ambertation.CaseInvariantArrayList savegames;
+        IList<long> groups;
         int group;
 
         
@@ -87,6 +89,7 @@ namespace SimPe
                 group = (int)key.GetValue("Group", 1);
 
                 simnamedeep = (Ambertation.CaseInvariantArrayList)key.GetValue("SimNameDeepSearch", new Ambertation.CaseInvariantArrayList());
+                savegames = (Ambertation.CaseInvariantArrayList)key.GetValue("SaveGameLocationsForGroup", new Ambertation.CaseInvariantArrayList());
                 System.Diagnostics.Debug.WriteLine(this.ToString());
             }
             else
@@ -98,10 +101,44 @@ namespace SimPe
                 exp = (Expansions)0;
                 version = -1;
                 simnamedeep = new Ambertation.CaseInvariantArrayList();
+                savegames = new Ambertation.CaseInvariantArrayList();
+                savegames.Add(PathProvider.SimSavegameFolder);
                 group = 0;
             }
 
+            BuildGroupList();
             sname = GetShortName();
+        }
+
+        private void BuildGroupList()
+        {
+            List<long> mylist = new List<long>();
+            
+            for (int i = 0; i < PathProvider.GROUP_COUNT; i++)
+            {
+                long grp = (long)Math.Pow(2, i);
+                if (this.ShareOneGroup(grp)) mylist.Add(grp);
+            }
+
+            groups = mylist.AsReadOnly();
+        }
+
+        internal void AddSaveGamePaths(Ambertation.CaseInvariantArrayList realsavegames)
+        {
+            foreach (string s in savegames)
+            {
+                string pt = s;
+                pt = pt.Replace("{MyDocuments}", PathProvider.PersonalFolder);
+                pt = pt.Replace("{DisplayName}", DisplayName);
+                pt = pt.Replace("{UserSaveGame}", PathProvider.SimSavegameFolder);
+
+                if (System.IO.Directory.Exists(pt)) realsavegames.Add(pt);
+            }
+        }
+
+        public string DisplayName
+        {
+            get { return PathProvider.GetDisplayedNameForExpansion(this); }
         }
 
         public Ambertation.CaseInvariantArrayList SimNameDeepSearch
@@ -150,6 +187,12 @@ namespace SimPe
             get { return exe; }
         }
 
+
+        public  IList<long> Groups
+        {
+            get { return groups; }
+        }
+
         public int Group
         {
             get { return group; }
@@ -158,6 +201,11 @@ namespace SimPe
         public bool ShareOneGroup(ExpansionItem ei)
         {
             return (ei.Group & Group) != 0;
+        }
+
+        public bool ShareOneGroup(long grp)
+        {
+            return (grp & Group) != 0;
         }
 
         /// <summary>

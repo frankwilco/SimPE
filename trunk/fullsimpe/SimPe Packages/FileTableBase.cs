@@ -180,20 +180,21 @@ namespace SimPe
                     {
                         ExpansionItem ei = PathProvider.Global.Expansions[i];
                         string s = ei.ShortId.ToLower();
+                        string ign = "";
+                        if ((ei.Group & 1) != 1) ign = " ignore=\"1\" ";
+                        if (ei.Flag.Class == ExpansionItem.Classes.BaseGame) tw.WriteLine("    <path " + ign + " root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Bins</path>");
 
-                        if (ei.Flag.Class == ExpansionItem.Classes.BaseGame) tw.WriteLine("    <path root=\""+s+"\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Bins</path>");
-
-                        if (ei.Flag.SimStory) tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects</path>");
-                        else tw.WriteLine("    <path root=\""+s+"\" version=\""+ei.Version+"\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects</path>");
-                        if (ei.Flag.Class == ExpansionItem.Classes.BaseGame) tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Sims3D</path>");
-                        else  tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "3D</path>");
+                        if (ei.Flag.SimStory) tw.WriteLine("    <path " + ign + " root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects</path>");
+                        else tw.WriteLine("    <path " + ign + " root=\"" + s + "\" version=\"" + ei.Version + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects</path>");
+                        if (ei.Flag.Class == ExpansionItem.Classes.BaseGame) tw.WriteLine("    <path " + ign + " root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Sims3D</path>");
+                        else tw.WriteLine("    <path " + ign + " root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "3D</path>");
                         
-                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Materials</path>");
-                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Skins</path>");
-                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Patterns</path>");
-                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "CANHObjects</path>");
-                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Wants</path>");
-                        tw.WriteLine("    <path root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "UI</path>");
+                        tw.WriteLine("    <path " + ign + " root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Materials</path>");
+                        tw.WriteLine("    <path " + ign + " root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Skins</path>");
+                        tw.WriteLine("    <path " + ign + " root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Patterns</path>");
+                        tw.WriteLine("    <path " + ign + " root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "CANHObjects</path>");
+                        tw.WriteLine("    <path " + ign + " root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Wants</path>");
+                        tw.WriteLine("    <path " + ign + " root=\"" + s + "\">TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "UI</path>");
 
                     }
              

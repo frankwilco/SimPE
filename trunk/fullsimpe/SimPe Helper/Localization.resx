@@ -951,10 +951,10 @@ If this is empty, SimPE will use the default Folder.</value>
       If this is empty, SimPE will use the default Folder.
     </value>
   </data>
-  <data name="[Property:LIFESTORIESPath]">
+  <data name="[Property:SIMSLSPath]">
     <value>1: Life Stories</value>
   </data>
-  <data name="[Description:LIFESTORIESPath]">
+  <data name="[Description:SIMSLSPath]">
     <value>
       This should contain the installation directory of "The Sims 2 Life Stories".
       The given Folder must contain a subfolder called "TSData".
