@@ -24,33 +24,48 @@ namespace SimPe.Plugin.Tool.Dockable
 			dock.cbgid.Checked = SetCustomGroup;
 			dock.cbgid.CheckedChanged += new EventHandler(cbgid_CheckedChanged);
 
-			dock.cbfix.Checked = FixCloned;
+            dock.cbfix.Checked = FixCloned;
 			dock.cbfix.CheckedChanged += new EventHandler(cbfix_CheckedChanged);
 
-			dock.cbclean.Checked = FixCloned;
+            dock.cbclean.Checked = FixCloned;
 			dock.cbclean.CheckedChanged += new EventHandler(cbclean_CheckedChanged);
 
-			dock.cbRemTxt.Checked = RemoveNoneDefaultLangaugeStrings;
+            dock.cbRemTxt.Checked = RemoveNoneDefaultLangaugeStrings;
 			dock.cbRemTxt.CheckedChanged += new EventHandler(cbRemTxt_CheckedChanged);
 
-			dock.cbparent.Checked = CreateStandAlone;
+            dock.cbparent.Checked = CreateStandAlone;
 			dock.cbparent.CheckedChanged += new EventHandler(cbparent_CheckedChanged);
 
-			dock.cbdefault.Checked = PullDefaultColorOnly;
+            dock.cbdefault.Checked = PullDefaultColorOnly;
 			dock.cbdefault.CheckedChanged += new EventHandler(cbdefault_CheckedChanged);
 
-			dock.cbwallmask.Checked = PullWallmasks;
+            dock.cbwallmask.Checked = PullWallmasks;
 			dock.cbwallmask.CheckedChanged += new EventHandler(cbwallmask_CheckedChanged);
 
-			dock.cbanim.Checked = PullAnimations;
+            dock.cbanim.Checked = PullAnimations;
 			dock.cbanim.CheckedChanged += new EventHandler(cbanim_CheckedChanged);
 
-			dock.cbstrlink.Checked = PullStrLinkedResources;
+            dock.cbstrlink.Checked = PullStrLinkedResources;
 			dock.cbstrlink.CheckedChanged += new EventHandler(cbstrlink_CheckedChanged);
 
-			dock.cbOrgGmdc.Checked = ReferenceOriginalMesh;
+            dock.cbOrgGmdc.Checked = ReferenceOriginalMesh;
 			dock.cbOrgGmdc.CheckedChanged += new EventHandler(cbOrgGmdc_CheckedChanged);
 		}
+
+        public void SetDefaults()
+        {
+            dock.cbDesc.Checked = true;
+            dock.cbgid.Checked = true;
+            dock.cbfix.Checked = true;
+            dock.cbclean.Checked = true;
+            dock.cbRemTxt.Checked = true;
+            dock.cbparent.Checked = false;
+            dock.cbdefault.Checked = true;
+            dock.cbwallmask.Checked = true;
+            dock.cbanim.Checked = false;
+            dock.cbstrlink.Checked = true;
+            dock.cbOrgGmdc.Checked = false;			
+        }
 
 		#region Properties
 		/// <summary>

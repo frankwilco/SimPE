@@ -203,6 +203,24 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Slacker));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Criminal));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Military));
+
+            if ((SimPe.PathProvider.Global.EPInstalled >= 1) || (Helper.WindowsRegistry.HiddenMode))
+            {
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Paranormal));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.NaturalScientist));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.ShowBiz));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Artist));
+            }
+
+            if ((SimPe.PathProvider.Global.EPInstalled >= 8) || (Helper.WindowsRegistry.HiddenMode))
+            {
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Adventurer));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Education));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Gamer));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Journalism));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Law));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Music));
+            }
 			
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderAthletic));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderBusiness));
@@ -213,14 +231,25 @@ namespace SimPe.PackedFiles.UserInterface
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderMilitary));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderPolitics));
 			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderScience));
-			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderSlacker));			
-			if ((SimPe.PathProvider.Global.EPInstalled>=1) || (Helper.WindowsRegistry.HiddenMode))
-			{
-				this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Paranormal));
-				this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.NaturalScientist));
-				this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.ShowBiz));
-				this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Artist));
-			}
+			this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderSlacker));
+
+            if ((SimPe.PathProvider.Global.EPInstalled >= 8) || (Helper.WindowsRegistry.HiddenMode))
+            {
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderAdventurer));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderEducation));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderGamer));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderJournalism));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderLaw));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderMusic));
+            }
+
+            if ((SimPe.PathProvider.Global.EPInstalled >= 6) || (Helper.WindowsRegistry.HiddenMode))
+            {
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.PetSecurity));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.PetService));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.PetService));
+            }
+			
 
 			this.cbgrade.Items.Clear();
 			this.cbgrade.Items.Add(new LocalizedGrades(Data.MetaData.Grades.Unknown));

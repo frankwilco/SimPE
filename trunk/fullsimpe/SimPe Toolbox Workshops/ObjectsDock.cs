@@ -99,6 +99,7 @@ namespace SimPe.Plugin.Tool.Dockable
         private ToolStripButton biFinish;
         private ToolStripButton biAbort;
         private ToolStripButton biCatalog;
+        private LinkLabel llCloneDef;
 
 		ObjectWorkshopRegistry registry;
 		public dcObjectWorkshop()
@@ -214,7 +215,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.label2 = new System.Windows.Forms.Label();
             this.wizardStepPanel2 = new SimPe.Wizards.WizardStepPanel();
             this.lb = new System.Windows.Forms.ListBox();
-            this.tv = new MyTreeView();
+            this.tv = new SimPe.Plugin.Tool.Dockable.dcObjectWorkshop.MyTreeView();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel1 = new System.Windows.Forms.Panel();
             this.xpTaskBoxSimple2 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
@@ -223,6 +224,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.gbRecolor = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.cbColorExt = new Ambertation.Windows.Forms.TransparentCheckBox();
             this.gbClone = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+            this.llCloneDef = new System.Windows.Forms.LinkLabel();
             this.cbstrlink = new Ambertation.Windows.Forms.TransparentCheckBox();
             this.cbDesc = new Ambertation.Windows.Forms.TransparentCheckBox();
             this.cbOrgGmdc = new Ambertation.Windows.Forms.TransparentCheckBox();
@@ -292,7 +294,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.wizard1.Controls.Add(this.wizardStepPanel3);
             this.wizard1.Controls.Add(this.wizardStepPanel5);
             this.wizard1.Controls.Add(this.wizardStepPanel4);
-            this.wizard1.CurrentStepNumber = 0;
+            this.wizard1.CurrentStepNumber = 2;
             resources.ApplyResources(this.wizard1, "wizard1");
             this.wizard1.FinishEnabled = false;
             this.wizard1.Image = null;
@@ -512,6 +514,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.gbClone.BackColor = System.Drawing.Color.Transparent;
             this.gbClone.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.gbClone.BorderColor = System.Drawing.SystemColors.Window;
+            this.gbClone.Controls.Add(this.llCloneDef);
             this.gbClone.Controls.Add(this.cbstrlink);
             this.gbClone.Controls.Add(this.cbDesc);
             this.gbClone.Controls.Add(this.cbOrgGmdc);
@@ -531,6 +534,14 @@ namespace SimPe.Plugin.Tool.Dockable
             this.gbClone.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
             this.gbClone.Name = "gbClone";
             this.gbClone.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+            // 
+            // llCloneDef
+            // 
+            resources.ApplyResources(this.llCloneDef, "llCloneDef");
+            this.llCloneDef.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.llCloneDef.Name = "llCloneDef";
+            this.llCloneDef.TabStop = true;
+            this.llCloneDef.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SetDefaultsForClone);
             // 
             // cbstrlink
             // 
@@ -766,7 +777,6 @@ namespace SimPe.Plugin.Tool.Dockable
             // 
             // toolStrip1
             // 
-            this.toolStrip1.ShowItemToolTips = false;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.biPrev,
@@ -776,34 +786,31 @@ namespace SimPe.Plugin.Tool.Dockable
             this.biCatalog});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             resources.ApplyResources(this.toolStrip1, "toolStrip1");
-            this.toolStrip1.Name = "toolStrip1";            
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.ShowItemToolTips = false;
             // 
             // biPrev
             // 
             resources.ApplyResources(this.biPrev, "biPrev");
             this.biPrev.Name = "biPrev";
-            this.biPrev.ToolTipText = "";
             this.biPrev.Click += new System.EventHandler(this.Activate_biPrev);
             // 
             // biNext
             // 
             resources.ApplyResources(this.biNext, "biNext");
             this.biNext.Name = "biNext";
-            this.biNext.ToolTipText = "";
             this.biNext.Click += new System.EventHandler(this.Activate_biNext);
             // 
             // biFinish
             // 
             resources.ApplyResources(this.biFinish, "biFinish");
             this.biFinish.Name = "biFinish";
-            this.biFinish.ToolTipText = "";
             this.biFinish.Click += new System.EventHandler(this.ActivateFinish);
             // 
             // biAbort
             // 
             resources.ApplyResources(this.biAbort, "biAbort");
             this.biAbort.Name = "biAbort";
-            this.biAbort.ToolTipText = "";
             this.biAbort.Click += new System.EventHandler(this.biAbort_Activate);
             // 
             // biCatalog
@@ -815,7 +822,6 @@ namespace SimPe.Plugin.Tool.Dockable
             this.biCatalog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             resources.ApplyResources(this.biCatalog, "biCatalog");
             this.biCatalog.Name = "biCatalog";
-            this.biCatalog.ToolTipText = "";
             this.biCatalog.Click += new System.EventHandler(this.Activate_biCatalog);
             // 
             // ilist
@@ -828,9 +834,11 @@ namespace SimPe.Plugin.Tool.Dockable
             // 
             resources.ApplyResources(this, "$this");
             this.Controls.Add(this.xpGradientPanel1);
-            this.FloatingSize = new System.Drawing.Size(300, 550);
+            this.FloatingSize = new System.Drawing.Size(306, 515);
+            this.Image = ((System.Drawing.Image)(resources.GetObject("$this.Image")));
             this.Name = "dcObjectWorkshop";
             this.TabImage = ((System.Drawing.Image)(resources.GetObject("$this.TabImage")));
+            this.TabText = "Object Workshop";
             this.xpGradientPanel1.ResumeLayout(false);
             this.xpGradientPanel1.PerformLayout();
             this.wizard1.ResumeLayout(false);
@@ -842,6 +850,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.wizardStepPanel3.ResumeLayout(false);
             this.gbRecolor.ResumeLayout(false);
             this.gbClone.ResumeLayout(false);
+            this.gbClone.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.wizardStepPanel5.ResumeLayout(false);
             this.xpTaskBoxSimple3.ResumeLayout(false);
@@ -1304,5 +1313,10 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			this.op1.Size = new System.Drawing.Size(this.xpTaskBoxSimple2.Width-16, this.xpTaskBoxSimple2.Height-56);
 		}
+
+        private void SetDefaultsForClone(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            registry.SetDefaults();
+        }
 	}
 }

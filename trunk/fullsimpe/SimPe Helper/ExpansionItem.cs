@@ -127,7 +127,7 @@ namespace SimPe
 
         public bool Exists
         {
-            get { return true;  return rk != null; }
+            get { return rk != null; }
         }
 
         public int Version

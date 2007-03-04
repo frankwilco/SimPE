@@ -1318,4 +1318,124 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
     
 In order for SimPE to run correct, you need to install .NET 2.0.</value>
   </data>
+  <data name="Unemployed" xml:space="preserve">
+    <value>Unemployed</value>
+  </data>
+  <data name="Military" xml:space="preserve">
+    <value>Military</value>
+  </data>
+  <data name="Politics" xml:space="preserve">
+    <value>Politics</value>
+  </data>
+  <data name="Science" xml:space="preserve">
+    <value>Science</value>
+  </data>
+  <data name="Medical" xml:space="preserve">
+    <value>Medical</value>
+  </data>
+  <data name="Athletic" xml:space="preserve">
+    <value>Athletic</value>
+  </data>
+  <data name="Economy" xml:space="preserve">
+    <value>Economy</value>
+  </data>
+  <data name="LawEnforcement" xml:space="preserve">
+    <value>Law Enforcement</value>
+  </data>
+  <data name="Culinary" xml:space="preserve">
+    <value>Culinary</value>
+  </data>
+  <data name="Slacker" xml:space="preserve">
+    <value>Slacker</value>
+  </data>
+  <data name="Criminal" xml:space="preserve">
+    <value>Criminal</value>
+  </data>
+  <data name="TeenElderAthletic" xml:space="preserve">
+    <value>Teen/Elder - Athletic</value>
+  </data>
+  <data name="TeenElderBusiness" xml:space="preserve">
+    <value>Teen/Elder - Business</value>
+  </data>
+  <data name="TeenElderCriminal" xml:space="preserve">
+    <value>Teen/Elder - Criminal</value>
+  </data>
+  <data name="TeenElderCulinary" xml:space="preserve">
+    <value>Teen/Elder - Culinary</value>
+  </data>
+  <data name="TeenElderLawEnforcement" xml:space="preserve">
+    <value>Teen/Elder - Enforcement</value>
+  </data>
+  <data name="TeenElderMedical" xml:space="preserve">
+    <value>Teen/Elder - Medical</value>
+  </data>
+  <data name="TeenElderMilitary" xml:space="preserve">
+    <value>Teen/Elder - Military</value>
+  </data>
+  <data name="TeenElderPolitics" xml:space="preserve">
+    <value>Teen/Elder - Politics</value>
+  </data>
+  <data name="TeenElderScience" xml:space="preserve">
+    <value>Teen/Elder - Science</value>
+  </data>
+  <data name="TeenElderSlacker" xml:space="preserve">
+    <value>Teen/Elder - Slacker</value>
+  </data>
+  <data name="Paranormal" xml:space="preserve">
+    <value>Paranormal</value>
+  </data>
+  <data name="NaturalScientist" xml:space="preserve">
+    <value>Natural Scientist</value>
+  </data>
+  <data name="ShowBiz" xml:space="preserve">
+    <value>Show Biz</value>
+  </data>
+  <data name="Artist" xml:space="preserve">
+    <value>Artist</value>
+  </data>
+  <data name="Adventurer" xml:space="preserve">
+    <value>Adventurer</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Eductaion</value>
+  </data>
+  <data name="Gamer" xml:space="preserve">
+    <value>Gamer</value>
+  </data>
+  <data name="Journalism" xml:space="preserve">
+    <value>Journalism</value>
+  </data>
+  <data name="Law" xml:space="preserve">
+    <value>Law</value>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>Music</value>
+  </data>
+  <data name="TeenElderAdventurer" xml:space="preserve">
+    <value>Teen/Elder - Adventurer</value>
+  </data>
+  <data name="TeenElderEducation" xml:space="preserve">
+    <value>Teen/Elder - Education</value>
+  </data>
+  <data name="TeenElderGamer" xml:space="preserve">
+    <value>Teen/Elder - Gamer</value>
+  </data>
+  <data name="TeenElderJournalism" xml:space="preserve">
+    <value>Teen/Elder - Journalism</value>
+  </data>
+  <data name="TeenElderLaw" xml:space="preserve">
+    <value>Teen/Elder - Law</value>
+  </data>
+  <data name="TeenElderMusic" xml:space="preserve">
+    <value>Teen/Elder - Music</value>
+  </data>
+  <data name="PetSecurity" xml:space="preserve">
+    <value>Pet - Security</value>
+  </data>
+  <data name="PetService" xml:space="preserve">
+    <value>Pet - Service</value>
+  </data>
+  <data name="PetShowBiz" xml:space="preserve">
+    <value>Pet - Show Biz</value>
+  </data>
 </root>
