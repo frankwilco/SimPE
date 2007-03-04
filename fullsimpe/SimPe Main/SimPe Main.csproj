@@ -349,7 +349,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OptionForm.cs">
-      <SubType>Component</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OptionForm.Designer.cs">
       <DependentUpon>OptionForm.cs</DependentUpon>
@@ -484,7 +484,6 @@
   <PropertyGroup>
     <PreBuildEvent>if not exist "$(SolutionDir)$(OutDir)Plugins\" mkdir "$(SolutionDir)$(OutDir)Plugins\"
 if not exist "$(SolutionDir)$(OutDir)Data\" mkdir "$(SolutionDir)$(OutDir)Data\"</PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>"$(SolutionDir)ReplaceVistaIcon.exe" "$(TargetPath)" "$(ProjectDir)img\Simpe2.ico" 0</PostBuildEvent>
   </PropertyGroup>
 </Project>

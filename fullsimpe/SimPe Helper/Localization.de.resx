@@ -330,6 +330,94 @@
   <data name="Criminal" xml:space="preserve">
     <value>Krimineller</value>
   </data>
+  <data name="TeenElderAthletic" xml:space="preserve">
+    <value>Teen/Rentner - Sport</value>
+  </data>
+  <data name="TeenElderBusiness" xml:space="preserve">
+    <value>Teen/Rentner - Wirtschaft</value>
+  </data>
+  <data name="TeenElderCriminal" xml:space="preserve">
+    <value>Teen/Rentner - Krimineller</value>
+  </data>
+  <data name="TeenElderCulinary" xml:space="preserve">
+    <value>Teen/Rentner - Koch</value>
+  </data>
+  <data name="TeenElderLawEnforcement" xml:space="preserve">
+    <value>Teen/Rentner - Gesetzeshüter</value>
+  </data>
+  <data name="TeenElderMedical" xml:space="preserve">
+    <value>Teen/Rentner - Medizin</value>
+  </data>
+  <data name="TeenElderMilitary" xml:space="preserve">
+    <value>Teen/Rentner - Militär</value>
+  </data>
+  <data name="TeenElderPolitics" xml:space="preserve">
+    <value>Teen/Rentner - Politik</value>
+  </data>
+  <data name="TeenElderScience" xml:space="preserve">
+    <value>Teen/Rentner - Wissenschaft</value>
+  </data>
+  <data name="TeenElderSlacker" xml:space="preserve">
+    <value>Teen/Rentner - Faulenzer</value>
+  </data>
+  <data name="Paranormal" xml:space="preserve">
+    <value>Paranormales</value>
+  </data>
+  <data name="NaturalScientist" xml:space="preserve">
+    <value>Natur-Wissenschaftler</value>
+  </data>
+  <data name="ShowBiz" xml:space="preserve">
+    <value>Unterhaltungs Industrie</value>
+  </data>
+  <data name="Artist" xml:space="preserve">
+    <value>Künstler</value>
+  </data>
+  <data name="Adventurer" xml:space="preserve">
+    <value>Abentuerer</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Lehre</value>
+  </data>
+  <data name="Gamer" xml:space="preserve">
+    <value>Gamer</value>
+  </data>
+  <data name="Journalism" xml:space="preserve">
+    <value>Journalismus</value>
+  </data>
+  <data name="Law" xml:space="preserve">
+    <value>Recht</value>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>Musik</value>
+  </data>
+  <data name="TeenElderAdventurer" xml:space="preserve">
+    <value>Teen/Rentner - Abenteurer</value>
+  </data>
+  <data name="TeenElderEducation" xml:space="preserve">
+    <value>Teen/Rentner - Lehre</value>
+  </data>
+  <data name="TeenElderGamer" xml:space="preserve">
+    <value>Teen/Rentner - Gamer</value>
+  </data>
+  <data name="TeenElderJournalism" xml:space="preserve">
+    <value>Teen/Rentner - Journalismus</value>
+  </data>
+  <data name="TeenElderLaw" xml:space="preserve">
+    <value>Teen/Rentner - Recht</value>
+  </data>
+  <data name="TeenElderMusic" xml:space="preserve">
+    <value>Teen/Rentner - Musik</value>
+  </data>
+  <data name="PetSecurity" xml:space="preserve">
+    <value>Haustier - Sicherheit</value>
+  </data>
+  <data name="PetService" xml:space="preserve">
+    <value>Haustier - Dienstleistung</value>
+  </data>
+  <data name="PetShowBiz" xml:space="preserve">
+    <value>Haustier - Unterhaltungs Industrie</value>
+  </data>
+
   <data name="cantaddtie" xml:space="preserve">
     <value>Dieser Sim kann nicht in die Verwandschaft aufgenommen werden.</value>
   </data>
