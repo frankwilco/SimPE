@@ -1375,12 +1375,12 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
   </data>>
-  <data name="[Property:LIFESTORIESPath]">
-    <value>1: Life Stories</value>
+  <data name="[Property:SIMSLSPath]">
+    <value>1: Lebensgeschichten</value>
   </data>
-  <data name="[Description:LIFESTORIESPath]">
+  <data name="[Description:SIMSLSPath]">
     <value>
-      Hier sollte das Installationsverzeichnis von "Die Sims 2 Life Stories" stehen.
+      Hier sollte das Installationsverzeichnis von "Die Sims 2 Lebensgeschichten" stehen.
       Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
 
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
@@ -1550,22 +1550,22 @@ Soll SimPE dennoch gestartet werden?</value>
     <value>Die Sims 2 - Open for Business</value>
   </data>
   <data name="EP NAME 4" xml:space="preserve">
-    <value>The Sims 2 - Family Fun Accessoires</value>
+    <value>Die Sims 2 - Family Fun Accessoires</value>
   </data>
   <data name="EP NAME 5" xml:space="preserve">
-    <value>The Sims 2 - Glamour Accessoires</value>
+    <value>Die Sims 2 - Glamour Accessoires</value>
   </data>
   <data name="EP NAME 6" xml:space="preserve">
-    <value>The Sims 2 - Haustiere</value>
+    <value>Die Sims 2 - Haustiere</value>
   </data>
   <data name="EP NAME 7" xml:space="preserve">
-    <value>The Sims 2 - Weihnachtszeit-Accessoires</value>
+    <value>Die Sims 2 - Weihnachtszeit-Accessoires</value>
   </data>
   <data name="EP NAME 8" xml:space="preserve">
-    <value>The Sims 2 - Vier Jahreszeiten</value>
+    <value>Die Sims 2 - Vier Jahreszeiten</value>
   </data>
   <data name="EP NAME 20">
-    <value>The Sims 2 - Life Stories</value>
+    <value>Die Sims 2 - Lebensgeschichten</value>
   </data>
   <data name="EP SNAME 0" xml:space="preserve">
     <value>Original</value>
@@ -1595,7 +1595,7 @@ Soll SimPE dennoch gestartet werden?</value>
     <value>Jahreszeiten</value>
   </data>
   <data name="EP SNAME 20">
-    <value>Life Stories</value>
+    <value>Lebensgeschichten</value>
   </data>
   <data name="Check: Folder not found" xml:space="preserve">
     <value>Verzeichnis für "{name}" wurde nicht gefunden.</value>

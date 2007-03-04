@@ -14,6 +14,9 @@
 	Bit 4: Sim Story-->
       <string name="ExeName">Sims2.exe</string>
       <int name="Group">1</int>
+      <cilist name="SaveGameLocationsForGroup">
+        <string name="0">{UserSaveGame}</string>
+      </cilist>
     </key>
 
     <!-- Information about University -->
@@ -91,7 +94,7 @@
       <int name="Group">1</int>
     </key>
 
-    <!-- Information about Life Storeis (provided by Numenor) -->
+    <!-- Information about Life Stories (provided by Numenor) -->
     <key name="LifeStories">
       <int name="Version">20</int>
       <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Life Stories</string>
@@ -99,6 +102,9 @@
       <string name="ExeName">SimsLS.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <int name="Group">2</int>
+      <cilist name="SaveGameLocationsForGroup">
+        <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
+      </cilist>
     </key>
 
     <!-- Information about Seasons -->

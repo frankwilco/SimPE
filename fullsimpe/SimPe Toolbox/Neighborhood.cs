@@ -332,25 +332,29 @@ namespace SimPe.Plugin
 				
 			lv.Items.Clear();
 			ilist.Images.Clear();
-			string[] dirs = System.IO.Directory.GetDirectories(sourcepath, "N*");
-			foreach (string dir in dirs) 				
-				AddNeighborhood(dir);
 
-            dirs = System.IO.Directory.GetDirectories(sourcepath, "G*");
-            foreach (string dir in dirs)
-                AddNeighborhood(dir);
-			
+            System.Collections.Generic.IList<string> savegames = PathProvider.Global.GetSaveGamePathForGroup();
+            foreach (string path in savegames)
+            {
+                string sourcepath = PathProvider.BuildNeighborhoodFolder(path);
+                string[] dirs = System.IO.Directory.GetDirectories(sourcepath, "N*");
+                foreach (string dir in dirs)
+                    AddNeighborhood(dir);
+
+                dirs = System.IO.Directory.GetDirectories(sourcepath, "G*");
+                foreach (string dir in dirs)
+                    AddNeighborhood(dir);
+            }
 			WaitingScreen.Stop(this);				
 		}
 
-		string sourcepath;
-		public IToolResult Execute(string path, ref SimPe.Interfaces.Files.IPackageFile package, Interfaces.IProviderRegistry prov)
+		
+		public IToolResult Execute(ref SimPe.Interfaces.Files.IPackageFile package, Interfaces.IProviderRegistry prov)
 		{
 			this.Cursor = Cursors.WaitCursor;
 			this.package = null;
 			this.prov = prov;
 			source_package = (SimPe.Packages.File)package;
-			sourcepath = path;
 			changed = false;
 			UpdateList();
 			this.Cursor = Cursors.Default;
