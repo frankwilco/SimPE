@@ -1967,4 +1967,19 @@
         AAD8GQAA/B8AAPwfAAD+PwAA
 </value>
   </data>
+  <data name="dcAction.ButtonText" xml:space="preserve">
+    <value>Actions de ressource</value>
+  </data>
+  <data name="dcFilter.ButtonText" xml:space="preserve">
+    <value>Filtre de ressources</value>
+  </data>
+  <data name="dcPlugin.ButtonText" xml:space="preserve">
+    <value>Aperçu Plugin</value>
+  </data>
+  <data name="dcResource.ButtonText" xml:space="preserve">
+    <value>Arbre de ressource</value>
+  </data>
+  <data name="dcResourceList.ButtonText" xml:space="preserve">
+    <value>Liste</value>
+  </data>
 </root>

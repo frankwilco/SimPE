@@ -677,9 +677,11 @@
 		<shortname>UNK</shortname>
 	</type>
 	<type value="ADEE8D84">
-		<name>UNK: 0xADEE8D84</name>
-		<shortname>UNK</shortname>
-	</type>
+        	<name>Light Override</name>
+        	<shortname>NLO</shortname>
+        	<extension>nlo</extension>
+        	<known/>
+    	</type>
 	<type value="4D51F042">
 		<name>Cinematic Scene</name>
 		<shortname>CINE</shortname>

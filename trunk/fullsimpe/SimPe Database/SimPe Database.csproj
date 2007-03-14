@@ -44,17 +44,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.filehandler.dll</HintPath>
     </Reference>
-    <Reference Include="simpe.helper, Version=0.59.5.39102, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.helper.dll</HintPath>
-    </Reference>
     <Reference Include="simpe.interfaces, Version=1.0.2326.39102, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.package, Version=1.0.2326.39103, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.package.dll</HintPath>
     </Reference>
     <Reference Include="simpe.rcol, Version=1.0.2327.28842, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -113,6 +105,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="sqlite.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimPe Helper\SimPe Helper.csproj">
+      <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
+      <Name>SimPe Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Packages\SimPe Packages.csproj">
+      <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
+      <Name>SimPe Packages</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

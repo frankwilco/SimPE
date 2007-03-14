@@ -480,6 +480,20 @@
     <Content Include="simpenew.ico" />
     <EmbeddedResource Include="simpe.html" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="about-fr.rtf" />
+    <EmbeddedResource Include="about-it.rtf" />
+    <EmbeddedResource Include="about-ru.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FileTableItemForm.ru.resx">
+      <DependentUpon>FileTableItemForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="welcome-fr.rtf" />
+    <EmbeddedResource Include="welcome-it.rtf" />
+    <EmbeddedResource Include="welcome-ru.rtf" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>if not exist "$(SolutionDir)$(OutDir)Plugins\" mkdir "$(SolutionDir)$(OutDir)Plugins\"

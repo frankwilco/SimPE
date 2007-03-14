@@ -189,6 +189,7 @@
     <Compile Include="IPackedFileDescriptor.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IPackedFileDescriptorSimple.cs" />
     <Compile Include="IPackedFileLoader.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -243,6 +244,7 @@
     <Compile Include="IWrapperInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IWrapperReferencedResources.cs" />
     <Compile Include="IWrapperRegistry.cs">
       <SubType>Code</SubType>
     </Compile>

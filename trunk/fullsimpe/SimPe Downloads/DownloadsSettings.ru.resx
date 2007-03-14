@@ -135,7 +135,7 @@
     <value>Если истина, то подключаемый модуль попытается загрузить базовый объект для перекраски и считать дополнительную информацию о нем.</value>
   </data>
   <data name="Content Plugin Preferences" xml:space="preserve">
-    <value>Содержимое подкл. модуля</value>
+    <value>Содержимое подключаемого модуля</value>
   </data>
   <data name="[Property:BuildPreviewForObjects]" xml:space="preserve">
     <value>Предварительный просмотр регулярных объектов</value>

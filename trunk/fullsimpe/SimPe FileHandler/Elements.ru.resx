@@ -124,17 +124,35 @@
   <data name="banner.Text" xml:space="preserve">
     <value>Просмотр изображения</value>
   </data>
+  <data name="banner.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="btPicExport.Location" type="System.Drawing.Point, System.Drawing">
     <value>362, 0</value>
   </data>
   <data name="btPicExport.Text" xml:space="preserve">
     <value>Экспорт...</value>
   </data>
+  <data name="btPicExport.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>442, 30</value>
   </data>
+  <data name="panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pb.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="JpegPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>310, 10</value>
+  </data>
+  <data name="JpegPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rtb.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 16</value>
@@ -142,11 +160,23 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Править XML</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="panel3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="visualStyleLinkLabel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 15</value>
   </data>
   <data name="visualStyleLinkLabel2.Text" xml:space="preserve">
     <value>ввести</value>
+  </data>
+  <data name="visualStyleLinkLabel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="xmlPanel.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbupdate.Location" type="System.Drawing.Point, System.Drawing">
     <value>288, 42</value>
@@ -156,6 +186,18 @@
   </data>
   <data name="cbupdate.Text" xml:space="preserve">
     <value>Обновить MMAT</value>
+  </data>
+  <data name="cbupdate.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label63.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label97.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbtypename.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="llgetGUID.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
@@ -167,14 +209,29 @@
   <data name="llgetGUID.Text" xml:space="preserve">
     <value>получить GUID</value>
   </data>
+  <data name="llgetGUID.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnelements.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="gbelements.Text" xml:space="preserve">
     <value>Элементы</value>
+  </data>
+  <data name="gbelements.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="llcommitobjd.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 15</value>
   </data>
   <data name="llcommitobjd.Text" xml:space="preserve">
     <value>ввести</value>
+  </data>
+  <data name="llcommitobjd.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tblottype.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label65.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 118</value>
@@ -185,6 +242,12 @@
   <data name="label65.Text" xml:space="preserve">
     <value>Тип объекта:</value>
   </data>
+  <data name="label65.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbsimname.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 83</value>
   </data>
@@ -194,11 +257,26 @@
   <data name="label9.Text" xml:space="preserve">
     <value>Имя файла:</value>
   </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 16</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
     <value>Просмотр описания объекта</value>
+  </data>
+  <data name="label12.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="panel6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="objdPanel.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnewtie.Location" type="System.Drawing.Point, System.Drawing">
     <value>652, 89</value>
@@ -209,20 +287,35 @@
   <data name="btnewtie.Text" xml:space="preserve">
     <value>создать новые связи для этого Сима</value>
   </data>
+  <data name="btnewtie.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cballtieablesims.Location" type="System.Drawing.Point, System.Drawing">
     <value>412, 59</value>
   </data>
   <data name="cballtieablesims.Size" type="System.Drawing.Size, System.Drawing">
     <value>476, 21</value>
   </data>
+  <data name="cballtieablesims.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbtietype.Location" type="System.Drawing.Point, System.Drawing">
     <value>412, 30</value>
+  </data>
+  <data name="cbtietype.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbties.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btdeletetie.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 29</value>
   </data>
   <data name="btdeletetie.Text" xml:space="preserve">
     <value>удалить связь</value>
+  </data>
+  <data name="btdeletetie.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btaddtie.Location" type="System.Drawing.Point, System.Drawing">
     <value>310, 30</value>
@@ -233,6 +326,9 @@
   <data name="btaddtie.Text" xml:space="preserve">
     <value>&lt;-- добавить связь</value>
   </data>
+  <data name="btaddtie.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="llcommitties.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 338</value>
   </data>
@@ -242,14 +338,29 @@
   <data name="llcommitties.Text" xml:space="preserve">
     <value>ввести связи для текущего сима</value>
   </data>
+  <data name="llcommitties.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="gbties.Text" xml:space="preserve">
     <value>Связи</value>
+  </data>
+  <data name="gbties.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbtiesims.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="bttiecommit.Text" xml:space="preserve">
     <value>Ввести</value>
   </data>
+  <data name="bttiecommit.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label64.Text" xml:space="preserve">
     <value>Сим:</value>
+  </data>
+  <data name="label64.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 16</value>
@@ -257,8 +368,23 @@
   <data name="label68.Text" xml:space="preserve">
     <value>Править связи семьи</value>
   </data>
+  <data name="label68.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="panel8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="familytiePanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Связи семьи</value>
+  </data>
+  <data name="tabPage4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbsubhood.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label89.Location" type="System.Drawing.Point, System.Drawing">
     <value>748, 59</value>
@@ -269,6 +395,9 @@
   <data name="label89.Text" xml:space="preserve">
     <value>Подгруппа:</value>
   </data>
+  <data name="label89.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbcomputer.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 39</value>
   </data>
@@ -277,6 +406,9 @@
   </data>
   <data name="cbcomputer.Text" xml:space="preserve">
     <value>есть компьютер</value>
+  </data>
+  <data name="cbcomputer.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cblot.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 20</value>
@@ -287,11 +419,17 @@
   <data name="cblot.Text" xml:space="preserve">
     <value>новый лот</value>
   </data>
+  <data name="cblot.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbbaby.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 30</value>
   </data>
   <data name="cbbaby.Text" xml:space="preserve">
     <value>есть ребенок</value>
+  </data>
+  <data name="cbbaby.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbphone.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 29</value>
@@ -299,11 +437,20 @@
   <data name="cbphone.Text" xml:space="preserve">
     <value>есть телефон</value>
   </data>
+  <data name="cbphone.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 79</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Флаги</value>
+  </data>
+  <data name="groupBox4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbalbum.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label93.Location" type="System.Drawing.Point, System.Drawing">
     <value>269, 128</value>
@@ -314,11 +461,23 @@
   <data name="label93.Text" xml:space="preserve">
     <value>Альбом GUID:</value>
   </data>
+  <data name="label93.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbflag.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label92.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 13</value>
   </data>
   <data name="label92.Text" xml:space="preserve">
     <value>Флаги:</value>
+  </data>
+  <data name="label92.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tblotinst.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="llFamiDeleteSim.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 29</value>
@@ -326,17 +485,35 @@
   <data name="llFamiDeleteSim.Text" xml:space="preserve">
     <value>удалить Сима</value>
   </data>
+  <data name="llFamiDeleteSim.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="llFamiAddSim.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 28</value>
   </data>
   <data name="llFamiAddSim.Text" xml:space="preserve">
     <value>&lt;-- добавить Сима</value>
   </data>
+  <data name="llFamiAddSim.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="button1.Text" xml:space="preserve">
     <value>Ввести</value>
   </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbsims.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbmembers.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tbname.Size" type="System.Drawing.Size, System.Drawing">
     <value>399, 23</value>
+  </data>
+  <data name="tbname.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>97, 59</value>
@@ -347,6 +524,15 @@
   <data name="label6.Text" xml:space="preserve">
     <value>Имя:</value>
   </data>
+  <data name="label6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbfamily.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbmoney.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>36, 167</value>
   </data>
@@ -355,6 +541,9 @@
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Члены семьи:</value>
+  </data>
+  <data name="label5.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 128</value>
@@ -365,17 +554,29 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Друзья семьи:</value>
   </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 13</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Деньги:</value>
   </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 16</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Править FAMi</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="panel4.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
     <value>541, 59</value>
@@ -386,8 +587,17 @@
   <data name="label15.Text" xml:space="preserve">
     <value>Экземпляр лота:</value>
   </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="famiPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Описание FAMi</value>
+  </data>
+  <data name="tabPage1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label91.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 106</value>
@@ -398,8 +608,26 @@
   <data name="label91.Text" xml:space="preserve">
     <value>Тип отношения:</value>
   </data>
+  <data name="label91.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbfamtype.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="llsrelcommit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 18</value>
+  </data>
+  <data name="llsrelcommit.Text" xml:space="preserve">
+    <value>ввести</value>
+  </data>
+  <data name="llsrelcommit.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbbest.Text" xml:space="preserve">
     <value>Знакомство</value>
+  </data>
+  <data name="cbbest.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbfamily.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 69</value>
@@ -407,11 +635,17 @@
   <data name="cbfamily.Text" xml:space="preserve">
     <value>Семья</value>
   </data>
+  <data name="cbfamily.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbmarried.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 49</value>
   </data>
   <data name="cbmarried.Text" xml:space="preserve">
     <value>Брак</value>
+  </data>
+  <data name="cbmarried.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbengaged.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 30</value>
@@ -422,29 +656,53 @@
   <data name="cbengaged.Text" xml:space="preserve">
     <value>Помолвка</value>
   </data>
+  <data name="cbengaged.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbsteady.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 20</value>
   </data>
   <data name="cbsteady.Text" xml:space="preserve">
     <value>Симпатия</value>
   </data>
+  <data name="cbsteady.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cblove.Text" xml:space="preserve">
     <value>Любовь</value>
+  </data>
+  <data name="cblove.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbcrush.Text" xml:space="preserve">
     <value>Страсть</value>
   </data>
+  <data name="cbcrush.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbbuddie.Text" xml:space="preserve">
     <value>Приятели</value>
+  </data>
+  <data name="cbbuddie.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbfriend.Text" xml:space="preserve">
     <value>Дружба</value>
   </data>
+  <data name="cbfriend.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbenemy.Text" xml:space="preserve">
     <value>Вражда</value>
   </data>
+  <data name="cbenemy.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="gbrelation.Text" xml:space="preserve">
     <value>Состояние отношений</value>
+  </data>
+  <data name="gbrelation.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="tblongterm.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 69</value>
@@ -452,11 +710,17 @@
   <data name="tblongterm.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 23</value>
   </data>
+  <data name="tblongterm.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tbshortterm.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 39</value>
   </data>
   <data name="tbshortterm.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 23</value>
+  </data>
+  <data name="tbshortterm.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label57.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 79</value>
@@ -467,6 +731,9 @@
   <data name="label57.Text" xml:space="preserve">
     <value>Долгосрочные:</value>
   </data>
+  <data name="label57.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 49</value>
   </data>
@@ -476,19 +743,40 @@
   <data name="label58.Text" xml:space="preserve">
     <value>Краткосрочные:</value>
   </data>
+  <data name="label58.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 16</value>
   </data>
   <data name="label56.Text" xml:space="preserve">
     <value>Править отношения</value>
   </data>
+  <data name="label56.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="panel7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="llrelcommit.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="realPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Другое</value>
+  </data>
+  <data name="tabPage3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabControl1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1028, 623</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

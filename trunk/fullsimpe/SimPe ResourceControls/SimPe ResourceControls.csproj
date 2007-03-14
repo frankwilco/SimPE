@@ -125,7 +125,15 @@
       <DependentUpon>ResourceListViewExt.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ResourceListViewExt.it.resx">
+      <DependentUpon>ResourceListViewExt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResourceListViewExt.resx">
+      <DependentUpon>ResourceListViewExt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceListViewExt.ru.resx">
       <DependentUpon>ResourceListViewExt.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -137,7 +145,15 @@
       <DependentUpon>ResourceTreeViewExt.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ResourceTreeViewExt.it.resx">
+      <DependentUpon>ResourceTreeViewExt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResourceTreeViewExt.resx">
+      <DependentUpon>ResourceTreeViewExt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceTreeViewExt.ru.resx">
       <DependentUpon>ResourceTreeViewExt.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

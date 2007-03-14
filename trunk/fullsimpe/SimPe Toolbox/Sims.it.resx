@@ -120,6 +120,12 @@
   <data name="button1.Text" xml:space="preserve">
     <value>Apri</value>
   </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>131, 13</value>
@@ -127,11 +133,20 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Personaggi Sconnessi</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Personaggi senza Dati</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="panel2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbdetail.Location" type="System.Drawing.Point, System.Drawing">
     <value>504, 8</value>
@@ -142,14 +157,32 @@
   <data name="cbdetail.Text" xml:space="preserve">
     <value>Mostra Dettagli Sim</value>
   </data>
+  <data name="cbdetail.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lbUbi.Text" xml:space="preserve">
-    <value>Questo è un File di un Università o di una Città, apri il quartiere e modifica la residenza di questo Sim.</value>
+    <value>Questo e' un File di un Universita' o di una Citta', apri il quartiere e modifica la residenza di questo Sim.</value>
+  </data>
+  <data name="lbUbi.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>354, 315</value>
   </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>330, 312</value>
+  </data>
+  <data name="panel3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbNpc.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbTownie.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -715,5 +748,8 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Esplora Sims</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

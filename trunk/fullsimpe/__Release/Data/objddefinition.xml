@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 U (http://www.altova.com) by Numenor (-) -->
 <properties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="propertydefinition.xsd">
 	<!-- ****************************************************************************** -->
 	<category name="Placement">
@@ -321,8 +322,8 @@
 			<index type="16">57</index>
 		</property>
 		<property type="short">
-			<name>Unused - shadow brightness (Sims1)</name>
-			<help>Unused - shadow brightness (Sims1)</help>
+			<name>Object size (for slots)</name>
+			<help>0=large 1=medium 2=small</help>
 			<default>0</default>
 			<index type="0">79</index>
 			<index type="2">79</index>
@@ -476,6 +477,25 @@
 			<index type="16">1</index>
 			<index type="12">1</index>
 			<index type="13">1</index>
+		</property>
+		<property type="short">
+			<name>Required Game id</name>
+			<help>ID of the game that this object was first released with</help>
+			<default>0</default>
+			<index type="0">64</index>
+			<index type="2">64</index>
+			<index type="4">64</index>
+			<index type="5">64</index>
+			<index type="7">64</index>
+			<index type="8">64</index>
+			<index type="9">64</index>
+			<index type="10">64</index>
+			<index type="11">64</index>
+			<index type="12">64</index>
+			<index type="13">64</index>
+			<index type="14">64</index>
+			<index type="15">64</index>
+			<index type="16">64</index>
 		</property>
 	</category>
 	<!-- ****************************************************************************** -->
@@ -681,7 +701,7 @@
 			<name>diagonal selector guid 2 - Read Only</name>
 			<help>diagonal selector guid 2 - Read Only</help>
 			<default>0</default>
-      <readonly/>
+			<readonly/>
 			<index type="0">22</index>
 			<index type="2">22</index>
 			<index type="4">22</index>
@@ -716,7 +736,7 @@
 			<name>grid-aligned selector guid 2 - Read Only</name>
 			<help>grid-aligned selector guid 2 - Read Only</help>
 			<default>0</default>
-      <readonly/>
+			<readonly/>
 			<index type="0">24</index>
 			<index type="2">24</index>
 			<index type="4">24</index>
@@ -734,7 +754,7 @@
 			<name>Proxy GUID 2</name>
 			<help>Proxy GUID 2</help>
 			<default>0</default>
-      <readonly/>
+			<readonly/>
 			<index type="0">30</index>
 			<index type="2">30</index>
 			<index type="4">30</index>
@@ -772,7 +792,7 @@
 			<name>Proxy GUID 1</name>
 			<help>Proxy GUID 1</help>
 			<default>0</default>
-      <readonly/>
+			<readonly/>
 			<index type="0">29</index>
 			<index type="2">29</index>
 			<index type="4">29</index>
@@ -810,7 +830,7 @@
 			<name>diagonal selector guid 1 - Read Only</name>
 			<help>diagonal selector guid 1 - Read Only</help>
 			<default>0</default>
-      <readonly/>
+			<readonly/>
 			<index type="0">21</index>
 			<index type="2">21</index>
 			<index type="4">21</index>
@@ -828,7 +848,7 @@
 			<name>grid-aligned selector guid 1 - Read Only</name>
 			<help>grid-aligned selector guid 1 - Read Only</help>
 			<default>0</default>
-      <readonly/>
+			<readonly/>
 			<index type="0">23</index>
 			<index type="2">23</index>
 			<index type="4">23</index>
@@ -940,7 +960,6 @@
 			<index type="12">70</index>
 			<index type="13">70</index>
 		</property>
-
 		<property type="short">
 			<name>Job Object GUID 1</name>
 			<help>Job Object GUID 1</help>
@@ -1296,13 +1315,6 @@
 			<index type="16">19</index>
 		</property>
 		<property type="short">
-			<name>dynamic sprites base id</name>
-			<help>dynamic sprites base id</help>
-			<default>0</default>
-			<index type="12">64</index>
-			<index type="13">64</index>
-		</property>
-		<property type="short">
 			<name>catalog popup id</name>
 			<help>catalog popup id</help>
 			<default>0</default>
@@ -1339,23 +1351,6 @@
 			<index type="14">20</index>
 			<index type="15">20</index>
 			<index type="16">20</index>
-		</property>
-		<property type="short">
-			<name>Unused - dynamic sprites base id (Sims1)</name>
-			<help>Unused - dynamic sprites base id (Sims1)</help>
-			<default>0</default>
-			<index type="0">64</index>
-			<index type="2">64</index>
-			<index type="4">64</index>
-			<index type="5">64</index>
-			<index type="7">64</index>
-			<index type="8">64</index>
-			<index type="9">64</index>
-			<index type="10">64</index>
-			<index type="11">64</index>
-			<index type="14">64</index>
-			<index type="15">64</index>
-			<index type="16">64</index>
 		</property>
 		<property type="short">
 			<name>Interaction Table ID</name>

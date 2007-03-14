@@ -136,6 +136,9 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Catalogo:</value>
   </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 137</value>
+  </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
@@ -157,7 +160,26 @@
   <data name="cbCat.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 21</value>
   </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 81</value>
+  </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Espansione:</value>
+  </data>
+  <data name="lbExpansion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 81</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 105</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 32</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Vertex Count
+(nr vertici):</value>
+  </data>
+  <data name="lbVert.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 105</value>
   </data>
 </root>

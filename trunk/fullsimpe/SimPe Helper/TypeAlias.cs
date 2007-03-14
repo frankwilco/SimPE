@@ -39,6 +39,7 @@ namespace SimPe.Data
 			this.extension = null;
 			knowntype = true;
 			this.containsfilename = containsflname;
+            this.nodecompforcache = false;
 		}
 
 		/// <summary>
@@ -50,7 +51,7 @@ namespace SimPe.Data
 		/// <param name="extension">proposed File Extension</param>
 		/// <param name="containsflname">true if the first 64 Bytes are the Filename</param>
 		/// <param name="known">true if the filetype is known(default)</param>
-		public TypeAlias(bool containsflname, string shortname, uint val, string name, string extension) : this(containsflname, shortname, val, name,extension, true)
+		public TypeAlias(bool containsflname, string shortname, uint val, string name, string extension) : this(containsflname, shortname, val, name,extension, true, false)
 		{
 		}
 
@@ -63,12 +64,14 @@ namespace SimPe.Data
 		/// <param name="extension">proposed File Extension</param>
 		/// <param name="containsflname">true if the first 64 Bytes are the Filename</param>
 		/// <param name="known">true if the filetype is known(default)</param>
-		public TypeAlias(bool containsflname, string shortname, uint val, string name, string extension, bool known) : base(val, name)
+        /// <param name="nodecompforcache">true, if this resource should not get decompressed during cache build/update</param>
+		public TypeAlias(bool containsflname, string shortname, uint val, string name, string extension, bool known, bool nodecompforcache) : base(val, name)
 		{
 			this.shortname = shortname;
 			this.extension = extension;
 			this.knowntype = known;
 			this.containsfilename = containsflname;
+            this.nodecompforcache = nodecompforcache;
 		}
 
 		/// <summary>
@@ -82,14 +85,17 @@ namespace SimPe.Data
 		/// <param name="shortname">The short name</param>
 		/// <param name="val">The id</param>
 		/// <param name="name">The name</param>
-		/// <param name="known">true if the filetype is known(default)</param>
-		public TypeAlias(bool containsflname, string shortname, uint val, string name, bool known) : base(val, name)
+        /// <param name="known">true if the filetype is known(default)</param>
+        /// <param name="nodecompforcache">true, if this resource should not get decompressed during cache build/update</param>
+        public TypeAlias(bool containsflname, string shortname, uint val, string name, bool known, bool nodecompforcache)
+            : base(val, name)
 		{
 
 			this.shortname = shortname;
 			this.extension = "";
 			knowntype = known;
-			this.containsfilename = containsflname;
+            this.containsfilename = containsflname;
+            this.nodecompforcache = nodecompforcache;
 		}
 
 		/// <summary>
@@ -106,6 +112,11 @@ namespace SimPe.Data
 		/// null, or a proposed File extension
 		/// </summary>
 		private string extension;
+
+        /// <summary>
+        /// if true, this resource will not get decompressed during cache building
+        /// </summary>
+        private bool nodecompforcache;
 
 		/// <summary>
 		/// Returns the default Extension
@@ -141,5 +152,12 @@ namespace SimPe.Data
 			}
 		}
 
+        /// <summary>
+        /// Returns true, if this resource should be ignored during the cache build phase
+        /// </summary>
+        public bool IgnoreDuringCacheBuild
+        {
+            get { return nodecompforcache; }
+        }
 	}
 }

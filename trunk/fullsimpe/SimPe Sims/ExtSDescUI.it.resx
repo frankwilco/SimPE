@@ -117,7 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="pbPetEating.LabelText" xml:space="preserve">
+    <value>Cibo:</value>
+  </data>
+  <data name="pbPetOutside.LabelText" xml:space="preserve">
+    <value>Ambiente:</value>
+  </data>
+  <data name="pbPetPlaying.LabelText" xml:space="preserve">
+    <value>Divertimento:</value>
+  </data>
+  <data name="pbPetSpooky.LabelText" xml:space="preserve">
+    <value>Pettegolezzi:</value>
+  </data>
+  <data name="pbPetSleep.LabelText" xml:space="preserve">
+    <value>Dormire:</value>
+  </data>
+  <data name="pbPetToy.LabelText" xml:space="preserve">
+    <value>Giocattoli:</value>
+  </data>
+  <data name="pbPetWeather.LabelText" xml:space="preserve">
+    <value>Meteo:</value>
+  </data>
+  <data name="pbPetAnimals.LabelText" xml:space="preserve">
+    <value>Animali:</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toolBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>699, 52</value>
+  </data>
   <data name="biId.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -163,6 +190,9 @@
         WLHuhKPj8pN07m0Ktn1+RjGX4vtJ/Bgk2QdIRwr2peJ/ky37ev5Dxj8AQBQ5EyY3cfoAAAAASUVORK5C
         YII=
 </value>
+  </data>
+  <data name="biId.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 49</value>
   </data>
   <data name="biId.Text" xml:space="preserve">
     <value>Descrizione</value>
@@ -221,6 +251,9 @@
         JJzej/9U+zdvHj48dVGglwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="biCareer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 49</value>
+  </data>
   <data name="biCareer.Text" xml:space="preserve">
     <value>Carriera</value>
   </data>
@@ -267,6 +300,9 @@
         orO/natFvAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="biRel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 49</value>
+  </data>
   <data name="biRel.Text" xml:space="preserve">
     <value>Relazioni</value>
   </data>
@@ -300,6 +336,9 @@
         hL2V90PF29v73F+J67mDei4+zhifQUaOAEBB8I/Cu/+SMIDsRfTm+c8j8Cfk13Btq+WuSgAAAABJRU5E
         rkJggg==
 </value>
+  </data>
+  <data name="biInt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 49</value>
   </data>
   <data name="biInt.Text" xml:space="preserve">
     <value>Interessi</value>
@@ -349,6 +388,9 @@
         6l9EzxP/AxvzEq4o8pT8AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="biChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 49</value>
+  </data>
   <data name="biChar.Text" xml:space="preserve">
     <value>Personalita'</value>
   </data>
@@ -386,6 +428,9 @@
         /BfjFVdcraCeGwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="biSkill.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 49</value>
+  </data>
   <data name="biSkill.Text" xml:space="preserve">
     <value>Abilita'</value>
   </data>
@@ -422,6 +467,9 @@
         f+RpKlzkZSrgMzveIJdTEy+nKbwbGtMilQhezfodRlyqQF+G//Xv/wBiw+l/7ZnhsQAAAABJRU5ErkJg
         gg==
 </value>
+  </data>
+  <data name="biMisc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 49</value>
   </data>
   <data name="biMisc.Text" xml:space="preserve">
     <value>Varie</value>
@@ -493,6 +541,48 @@
         SUVORK5CYII=
 </value>
   </data>
+  <data name="biEP3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
   <data name="biMore.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -552,22 +642,6 @@
   <data name="biMore.Text" xml:space="preserve">
     <value>Altro</value>
   </data>
-  <data name="mbiMax.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAj9JREFUOE+Vk1tI
-        02EYh1/YcLtYIeQhtWkWkkRhqCChJCWiJAzU4Wy4eZiSx/1RsQmKeAAFCQ+goCAqQ9ELL0wYit4ZYpeR
-        4FWwrBDC00XF0g5Pf7errJZ98MLH9/3e533f78enkSArLTIyLVqvj9r1+XaD6f52p19paPB4bLZnqkD3
-        XwCDSPgLp3OD7W3Y2mLDal2/IHLpXJAkkTs7NTVeVlbA44G1NVhfZ8du9yaK3AoKydBosg7Lyo6YnISx
-        MZiYgOlpmJ2FpSX2KyoO7orc+yPkoUZT4DObT+jshPZ26OqC3l7o74eBARgehqkpPjkcX3JCQky/QOw6
-        3eOv2dk/cDigshJqa6GxEVwuaGuDjg784J4eGBzkODn5e7FIhR9yX61MUhJkZUFuLhQUgM0GVVVQXx8A
-        tbRAaysoSkAXEQGhoaizmCRHq33yKiqKrZgYXhuNfMvMBIsFSkuhuhrq6gJdFRZynJLCy9hYNuPieB4d
-        zQOttln0IrHXREqvi9hui9R9SE39jMkERUVQUgJWK5jNkJ/P+/T0jzdF6q+qWqOIXR0g5uyDGt5lZBxS
-        XByo6nRCczM0Nfn3XpNpX024GMzK8Ld5eUf+xFMnTh0YGgq40NeHt7z8QE2ODAp4Y7Ec0d0No6MwP+/3
-        n8VFmJvD63L9ExCx53CcMD4OCwuwugrLy/5kRkbYs9t9avXLwTrQPzIYnipG44ySkOBWEhPdSny8WwkL
-        cys63Yzqff95PtYVVXRDjYQzcXr226v/BCHkUAiUZ76rAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="biMax.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -599,20 +673,192 @@
         rlXI80ri/vdp/gDN6CP4OxjYVAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="biMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 49</value>
+  </data>
   <data name="biMax.Text" xml:space="preserve">
     <value>Massimizza</value>
   </data>
   <data name="biMax.ToolTipText" xml:space="preserve">
     <value>Porta al massimo tutti i valori visualizzati</value>
   </data>
-  <data name="toolBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>699, 54</value>
+  <data name="mbiMax.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAj9JREFUOE+Vk1tI
+        02EYh1/YcLtYIeQhtWkWkkRhqCChJCWiJAzU4Wy4eZiSx/1RsQmKeAAFCQ+goCAqQ9ELL0wYit4ZYpeR
+        4FWwrBDC00XF0g5Pf7errJZ98MLH9/3e533f78enkSArLTIyLVqvj9r1+XaD6f52p19paPB4bLZnqkD3
+        XwCDSPgLp3OD7W3Y2mLDal2/IHLpXJAkkTs7NTVeVlbA44G1NVhfZ8du9yaK3AoKydBosg7Lyo6YnISx
+        MZiYgOlpmJ2FpSX2KyoO7orc+yPkoUZT4DObT+jshPZ26OqC3l7o74eBARgehqkpPjkcX3JCQky/QOw6
+        3eOv2dk/cDigshJqa6GxEVwuaGuDjg784J4eGBzkODn5e7FIhR9yX61MUhJkZUFuLhQUgM0GVVVQXx8A
+        tbRAaysoSkAXEQGhoaizmCRHq33yKiqKrZgYXhuNfMvMBIsFSkuhuhrq6gJdFRZynJLCy9hYNuPieB4d
+        zQOttln0IrHXREqvi9hui9R9SE39jMkERUVQUgJWK5jNkJ/P+/T0jzdF6q+qWqOIXR0g5uyDGt5lZBxS
+        XByo6nRCczM0Nfn3XpNpX024GMzK8Ld5eUf+xFMnTh0YGgq40NeHt7z8QE2ODAp4Y7Ec0d0No6MwP+/3
+        n8VFmJvD63L9ExCx53CcMD4OCwuwugrLy/5kRkbYs9t9avXLwTrQPzIYnipG44ySkOBWEhPdSny8WwkL
+        cys63Yzqff95PtYVVXRDjYQzcXr226v/BCHkUAiUZ76rAAAAAElFTkSuQmCC
+</value>
   </data>
   <data name="pnId.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
   </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Specie:</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Istanza Famiglia:</value>
+  </data>
+  <data name="label49.Location" type="System.Drawing.Point, System.Drawing">
+    <value>128, 96</value>
+  </data>
+  <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 17</value>
+  </data>
+  <data name="label49.Text" xml:space="preserve">
+    <value>Agisci come:</value>
+  </data>
+  <data name="rbmale.Location" type="System.Drawing.Point, System.Drawing">
+    <value>314, 96</value>
+  </data>
+  <data name="rbmale.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 16</value>
+  </data>
+  <data name="rbmale.Text" xml:space="preserve">
+    <value>Maschio</value>
+  </data>
+  <data name="rbfemale.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 96</value>
+  </data>
+  <data name="rbfemale.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 16</value>
+  </data>
+  <data name="rbfemale.Text" xml:space="preserve">
+    <value>Femmina</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Nome:</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Giorni Residui:</value>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>Eta':</value>
+  </data>
   <data name="pnSkill.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
+  </data>
+  <data name="pbBody.LabelText" xml:space="preserve">
+    <value>Fisico:</value>
+  </data>
+  <data name="pbRomance.LabelText" xml:space="preserve">
+    <value>Romanticismo:</value>
+  </data>
+  <data name="pbFat.LabelText" xml:space="preserve">
+    <value>Forma Fisica:</value>
+  </data>
+  <data name="pbClean.LabelText" xml:space="preserve">
+    <value>Pulizia:</value>
+  </data>
+  <data name="pbCreative.LabelText" xml:space="preserve">
+    <value>Creativita':</value>
+  </data>
+  <data name="pbCharisma.LabelText" xml:space="preserve">
+    <value>Carisma:</value>
+  </data>
+  <data name="pbMech.LabelText" xml:space="preserve">
+    <value>Meccanica:</value>
+  </data>
+  <data name="pbLogic.LabelText" xml:space="preserve">
+    <value>Logica:</value>
+  </data>
+  <data name="pbCooking.LabelText" xml:space="preserve">
+    <value>Cucina:</value>
+  </data>
+  <data name="pbMan.LabelText" xml:space="preserve">
+    <value>Maschi:</value>
+  </data>
+  <data name="pbWoman.LabelText" xml:space="preserve">
+    <value>Femmine:</value>
+  </data>
+  <data name="cbzodiac.Location" type="System.Drawing.Point, System.Drawing">
+    <value>123, 19</value>
+  </data>
+  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 17</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>Segno Zodiacale:</value>
+  </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>attratto</value>
+  </data>
+  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 16</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>disgustato</value>
+  </data>
+  <data name="pnChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>699, 264</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Schizzinosa</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Paurosa</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Amichevole</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Pigra</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Stupida</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Sciatta</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Aggressiva</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Independente</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Frenetica</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Geniale</value>
+  </data>
+  <data name="pbNeat.LabelText" xml:space="preserve">
+    <value>Ordinata:</value>
+  </data>
+  <data name="pbOutgoing.LabelText" xml:space="preserve">
+    <value>Estroversa:</value>
+  </data>
+  <data name="pbActive.LabelText" xml:space="preserve">
+    <value>Attiva:</value>
+  </data>
+  <data name="pbPlayful.LabelText" xml:space="preserve">
+    <value>Giocosa:</value>
+  </data>
+  <data name="pbGNice.LabelText" xml:space="preserve">
+    <value>Simpatica (Genetica):</value>
+  </data>
+  <data name="pbNice.LabelText" xml:space="preserve">
+    <value>Simpatica:</value>
+  </data>
+  <data name="pbGPlayful.LabelText" xml:space="preserve">
+    <value>Giocosa (Genetica):</value>
+  </data>
+  <data name="pbGNeat.LabelText" xml:space="preserve">
+    <value>Ordinata (Genetica):</value>
+  </data>
+  <data name="pbGActive.LabelText" xml:space="preserve">
+    <value>Attiva (Genetica):</value>
+  </data>
+  <data name="pbGOutgoing.LabelText" xml:space="preserve">
+    <value>Estroversa (Genetica):</value>
   </data>
   <data name="miRand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -653,6 +899,78 @@
         bgXzTqFok9myISH0FsBRBPz7E1C/AvguAxO69iV26FqB6kARJbxS7YvUns+++iz+VhDXMTMRKh3iIjdw
         bAS6NwE3FGDZGKBqLtJuroq393VuVea9DN+excYfLA8WW7B3IDDina8HvAlYngnULgRKx8NSvcDcaF+f
         9mxVMo6bgXHKaHjP3B94F1C3CCjPAbZ/DvOnRkxUR6L+1/g6+B/JSu67p8ESOQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="miOpenWf.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
+        CxABrSO9dQAAA01JREFUOE99k3lMk2kQxqcUkBhUNqhgjPuHboy4mHgbDdFNtG51LYiKB4QSQtQKSjg0
+        gtSry8oRYjyi4XLXBFZYL7T1ilWxEcWqtI1FgpyWowulKG2Rlvb7vsfPJkaTXZnkSWbemflN8r7vCGgM
+        QzbNJz/qtPxLM4LGU9e402Qfq96bM28XxA+LKA2ZfrO5dRM97BbKYXcE5rpFAVVjNo/G+UW71wvkbLrv
+        CnbDFCtKkh3Q5QLnlgGqVLCRvr1IFIiRQktHj/0PyrSPJg6sID2KtgLmCrBOFUZeJ8BeFw6XbjZQ8gNw
+        PhKIDGTex1LqfxAopElImPkCzxPhbpbB9fdCMEoxPFURsB4LhqkoGJxuOthY4lxSindL/bd5IWyUMI3d
+        MKmSy9s0hK6HYM1ZYNUSwFIEmI4CHdnAyyQM/h6KFjkBlwSALBTYNPmdF+BMoZn9UpK4d4wHmn4BU7sY
+        GCgEuhVAr5wHyeHsP4KLr9Q412ZDsd4I9d51w8443zAvYDQq4DAkQr1dFGDmSgnsnSWAtYAHyGHt+wNl
+        rRpk6DvxYJCBw+VGn92JA9c0TI1oTponSbiUeuIpDCfInxP7n8Vfc2C7FQHV2ypcb6xEfpMRb50cNGYH
+        npuHMeT4CIN5EDXvhqC8p4FSGiEhKCgIh30WQRZu1d2X4WBjF6r6WJxpcSDdMIQPLgYDtmHcNHZDbWhF
+        aX0zWi12qF+3Mz+uKUgiz2/CfKwONLh+HVd56Mo91jjCIU/Xi5jbjTil60GhugH/6DugbGjB6buvkHn5
+        KTKq67Eg8Wwbhez/mRgF+YwcIZ+48uKfkut7LW0fXHikb0fpzQZk/6mGtOAGlheoIErPxeYz55G5exek
+        23fXTZHkn+IBUyn4alPQZu3AoaxaA5uvNeEaf2FGUx+6+gfR1t0PfXsPVI0mZD1uxT5NJ3aevODpXh1Y
+        3iybsMx3WoaAwsqf7I2v1nYcVz77uLawghGn5iJaUWzfWlzDxZwoY6NLlO6063XIq32DFOULHFVpbfzk
+        uV9/Ysh+IX8QyiuE16KKVbOqefKMqHCx5O786Tb5qpV7IiKTcxS7pNqEWGmSYF7ORr5u8ncXi39SwZek
+        RUTRiKHFfAN59dm+9fnwEy0fBIcbL1zHAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="miOpenMem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
+        CxMBAJqcGAAAAodJREFUOE+Nk21IU1EYx+/mC1MUp0Vgas1q1ERztKCwKIdQOItp1JeEMaGyUURBUSbY
+        FkkQlGCBUh/8oh8KgqH0QhAjiF4w3MgaGmtztppubnfufbu7+3fu6kawCTvwcJ57z///e557zrkCABQ3
+        BAJBZo69pOQF6w/dEFbu6UzSrykm+IEqSCNQyMKINGUoaacWOB3vyyT8Q9hIaRn7ENJsHKmYDfEVI7wf
+        a7D8VgTPm2IEXwjBaXhAxscDVh9TrYlvxJwKIBW3I0FPIbr0AMHvPfBOVxBQOTzvSkE/KwCn/VeYTwJG
+        qZlNusEmnOQVi+Tqc0RcFxC0q0F/qYfPvA4rn8Twvi+Df0JgygL4piRI+J8gFbWAZdyI+0cRdqqwamtC
+        YL4OtLUa/s8bsDJTBe/TYuL/++l84pkk7VkliHkMYCKvyHwOocVGhJzbEHTUE9AmBOZqSDcb4Z0UZwN+
+        PSyiA/O1CC3IEF3uRMTdhMhSAwkZwj+3ExgB2XeQOAj3WDmd1YFzkNK6x8sQ/iHNGGO+nYjTcsT8JHwH
+        EPN2EXAPPEYFOG0WgDsa24Dwomu8MmNOhruQSlwlMQgmepPABuCa2E0TTe5jzNwiMmavFWnnhsUEogCT
+        PAw2NUI2dAS20X2O2b5COa/L2QG3WCo9LdYcVZse3evAyH019LdP4NLZDigUKj1vznmR+MXGtuutlq+L
+        iCeSmLFYcaX/Dva3HUfp5mOmvAAtnbdapy12MAwDs9kMg8EApVKJktr2/ABbWi5LVJq7jjO959Hd3U1a
+        V6CiehcEddqhvDrgRKKtp/R9+mHodDo0NzdDVCX788v+N9bcRE5DqknEDb3mIyf7Idur4aqPrQX4DbSk
+        Pp87STS7AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="miOpenBadge.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAArlJREFUOE+lk1tI
+        k2EYx//fljoz7KBWmmbkYWonpcKGKeGFpzJn1EVrBuoyMuvCQ6URomgUURdBlhIpETgzkm5UKEioZGJ0
+        MLJBzbRELVIMcc72+T4902Uz6qoXfryn5/l978f7vJK4CEAGyA7Yp7knnjubhwIPKjpgrOhE46+1/DDg
+        lJpjOb6kh1cdAlHNVADTpYC1mClhirBDNARRW7aqw02C0iFQSkBtLGBOA94nA1r/PwT2MmdyIfdnlA1i
+        tJBm7m3+sdMPuxwCjR/Qnwm8SPqX4OycYDIfIbb68HEhtCRGMqkmUXnHnb/eGA9YtH8TVEISZfCxlyB8
+        6iRiJwtQJ5vTSYgYZh+Zq9TjxljoLHsQ/TIRwd0JWPyeT5E5+wsX0Chu+vQKY3Sf3Bz1zd4aY5O700jM
+        JHPyRmYbn0JHthYNjdxQT/RXRwxZigPNn7XS24xV2I+Jcugn6wJsYiqXg1OYeGY7ielwEjY1E0ZC3sRr
+        GudeKsmNoXQ1WjJ5KbAVo+XA6xzEj51fZBHm1SRGA0gM+ZMYXuMCz4d4/UMQWS+pqFKNJjdg3ezVjvP1
+        dR0BHh/ABssJySQ/XELi3XISb1zo5fHTlTRY7DFZsBbXFIDvfLGM8dX15AEdB4FH6Ui0XpHsosuTE1Rz
+        PGFMPG9W0e1YdHList+lxqPhXGDE4CQXWbbrINGuINHC3FeSaOW+TSJxV0HtKfiokuCzQDCUA8ySzTID
+        auRaFtxiqkDfj4Gspc65ETSghy3SE1wNLu3TYcDBQBakL0dhEpWgmeOgpgQ8i/OBvjgU517txVeZRfY8
+        UNxSFCwQ9Ou5PBm2h1gNsD3PQF9GIIq4/gMcgeu9gCRfRF2ORP1gCj+bEDQvFOg4+RBLdAg2ROD0CnfE
+        uAZEeQNbmN38DrS+SNV4I5/3PedjiN/v//ATR/OvfKroog4AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="miOpenDNA.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
+        CxABrSO9dQAAAfZJREFUOE99k19IU2EYh7+TlhRrNAeaW0TRoAuJLqIou8wIJuJlnAq6CLqI6KaiC5NE
+        yEq6izVPK4cQraARrXDBRFKMNNxiYQoj5ipIqt1UF2NL93S+QzucuT8HHvg+znkffu/Le5TnR1y2oti4
+        t9X5u+OHt3co19Qq6j2RSERMTT1SzG9edW33Z8f6IHOaZLCLXC5XF1VVcbsRJcT82T1xwh4YE/x67WRp
+        YY50Ol1GKBSiGlImYvtEf+Fy419GFYpxhcSzXp68pwxZXC2ZIRj1KJ4vJzZl0Jog1sjPCQ++F9+5HcVE
+        CtamkndDAIiJjvW+wo3mVV7aKSQ3ow0O0H0xayIFa1PJuykI7hC7li+4PhPeBrNt5N8dJpf9asaWAmui
+        0tkUyBQfeuwPV4LtML2blcV2lt/eIf0pZUSXAmui0rlMMLJz3cFvNw/A5H6KqUNkop2Eh68RCAQMQc0h
+        CuGwNyiOBpkidqVbH6QXPnpZXThGfu6cUVh3iLqgTWerEFtsWt8l8o97YPGkLlApJE4ZLciotdA30uH6
+        L2nx+fw8PX8U5q/D0gP+vLlltGClYhP14hYdtxRp2j2SMzPM3h0gFb3P9MjVit6rCTboxTYdp98/TDye
+        YHJ8nMEzKkPHOysWqEIgh1ei1rCsW1hXUG9Y1nfWv/EfDJGMzSzixsAAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="miOpenFamily.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -748,20 +1066,98 @@
         xdSJgVFTKA8BAJYAmayLGrILAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="menuBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>699, 22</value>
+  <data name="pnCareer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>699, 264</value>
   </data>
-  <data name="pnChar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="label60.Text" xml:space="preserve">
+    <value>Punteggio:</value>
+  </data>
+  <data name="pbAspCur.LabelText" xml:space="preserve">
+    <value>Attuale:</value>
+  </data>
+  <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
+    <value>371, 24</value>
+  </data>
+  <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 17</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>Aspirazione:</value>
+  </data>
+  <data name="pbCareerLevel.LabelText" xml:space="preserve">
+    <value>Livello Carriera:</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Tipo Scuola:</value>
+  </data>
+  <data name="label77.Text" xml:space="preserve">
+    <value>Rendimento:</value>
+  </data>
+  <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 13</value>
+  </data>
+  <data name="label50.Text" xml:space="preserve">
+    <value>Carriera:</value>
+  </data>
+  <data name="pbSciFi.LabelText" xml:space="preserve">
+    <value>Scienza:</value>
+  </data>
+  <data name="pbTravel.LabelText" xml:space="preserve">
+    <value>Viaggi:</value>
+  </data>
+  <data name="pbToys.LabelText" xml:space="preserve">
+    <value>Giochi:</value>
+  </data>
+  <data name="pbEnvironment.LabelText" xml:space="preserve">
+    <value>Ambiente:</value>
+  </data>
+  <data name="pbSchool.LabelText" xml:space="preserve">
+    <value>Scuola:</value>
+  </data>
+  <data name="pbParanormal.LabelText" xml:space="preserve">
+    <value>Paranormale:</value>
+  </data>
+  <data name="pbAnimals.LabelText" xml:space="preserve">
+    <value>Animali:</value>
+  </data>
+  <data name="pbEntertainment.LabelText" xml:space="preserve">
+    <value>Divertimento:</value>
+  </data>
+  <data name="pbWeather.LabelText" xml:space="preserve">
+    <value>Meteo:</value>
+  </data>
+  <data name="pbCulture.LabelText" xml:space="preserve">
+    <value>Cultura:</value>
+  </data>
+  <data name="pbWork.LabelText" xml:space="preserve">
+    <value>Lavoro:</value>
+  </data>
+  <data name="pbMoney.LabelText" xml:space="preserve">
+    <value>Denaro:</value>
+  </data>
+  <data name="pbPolitics.LabelText" xml:space="preserve">
+    <value>Politica:</value>
+  </data>
+  <data name="pbCrime.LabelText" xml:space="preserve">
+    <value>Crimine:</value>
+  </data>
+  <data name="pbFood.LabelText" xml:space="preserve">
+    <value>Cibo:</value>
+  </data>
+  <data name="pbSports.LabelText" xml:space="preserve">
+    <value>Sport:</value>
+  </data>
+  <data name="pbHealth.LabelText" xml:space="preserve">
+    <value>Salute:</value>
+  </data>
+  <data name="pbFashion.LabelText" xml:space="preserve">
+    <value>Moda:</value>
+  </data>
+  <data name="pnInt.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
   </data>
   <data name="lv.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 264</value>
-  </data>
-  <data name="pnCareer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>699, 264</value>
-  </data>
-  <data name="pnInt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>699, 264</value>
   </data>
   <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>187, 0</value>
@@ -769,14 +1165,164 @@
   <data name="pnRel.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pnMisc.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
   <data name="pnMisc.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
+  </data>
+  <data name="xpTaskBoxSimple3.HeaderText" xml:space="preserve">
+    <value>Varie</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Bisogni Statici:</value>
+  </data>
+  <data name="label95.Text" xml:space="preserve">
+    <value>Durata Eta':</value>
+  </data>
+  <data name="label94.Text" xml:space="preserve">
+    <value>GG Eta' prec.:</value>
+  </data>
+  <data name="label90.Text" xml:space="preserve">
+    <value>Tipo di Voce:</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>Tipo NPC:</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Livello Autonomia:</value>
+  </data>
+  <data name="xpTaskBoxSimple2.HeaderText" xml:space="preserve">
+    <value>Fisico</value>
+  </data>
+  <data name="cbfit.Text" xml:space="preserve">
+    <value>Muscoloso</value>
+  </data>
+  <data name="cbpreginv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 24</value>
+  </data>
+  <data name="cbpreginv.Text" xml:space="preserve">
+    <value>Gravidanza (invisibile)</value>
+  </data>
+  <data name="cbpreghalf.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 24</value>
+  </data>
+  <data name="cbpreghalf.Text" xml:space="preserve">
+    <value>Gravidanza (Meta')</value>
+  </data>
+  <data name="cbpregfull.Text" xml:space="preserve">
+    <value>Gravidanza (Fine)</value>
+  </data>
+  <data name="cbfat.Text" xml:space="preserve">
+    <value>Grasso</value>
+  </data>
+  <data name="xpTaskBoxSimple1.HeaderText" xml:space="preserve">
+    <value>Indicatori Fantasma</value>
+  </data>
+  <data name="cbisghost.Text" xml:space="preserve">
+    <value>E' Fantasma</value>
+  </data>
+  <data name="cbignoretraversal.Text" xml:space="preserve">
+    <value>Ignora Costi Trasversali</value>
+  </data>
+  <data name="cbpasspeople.Text" xml:space="preserve">
+    <value>Passa attraverso Persone</value>
+  </data>
+  <data name="cbpasswalls.Text" xml:space="preserve">
+    <value>Passa attraverso Muri</value>
+  </data>
+  <data name="cbpassobject.Text" xml:space="preserve">
+    <value>Passa attraverso Oggetti</value>
   </data>
   <data name="pnEP1.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
   </data>
+  <data name="pbLastGrade.LabelText" xml:space="preserve">
+    <value>Ultimo Voto:</value>
+  </data>
+  <data name="pbUniTime.LabelText" xml:space="preserve">
+    <value>Tempo Residuo:</value>
+  </data>
+  <data name="pbEffort.LabelText" xml:space="preserve">
+    <value>Impegno:</value>
+  </data>
+  <data name="label103.Text" xml:space="preserve">
+    <value>Semestre:</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>Influenza:</value>
+  </data>
+  <data name="cboncampus.Text" xml:space="preserve">
+    <value>Al Campus (e' Giovane Adulto)</value>
+  </data>
+  <data name="label98.Text" xml:space="preserve">
+    <value>Corso:</value>
+  </data>
   <data name="pnEP2.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
+  </data>
+  <data name="tbNTLove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 240</value>
+  </data>
+  <data name="tbNTPerfume.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 216</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 20</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Durata Pozione d'Amore:</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 217</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Durata Profumo:</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 17</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Cose Deprimenti:</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 17</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Cose Stimolanti:</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 17</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Considera come:</value>
+  </data>
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDQAA
+        Cw0B7QfALAAAAPRJREFUOE+lk1sOgjAQRXVZbsVPP9gH/67EuCY/eQqlpTwCJVemUHmqQSaZkJLce+6U
+        4QjgsKvIYE9ruG3b2NoGqsX/lGVZJOvoVI7j4Ho5TZreua4Lz/MR+AHCMMQzisAYw8LAiPG4g5rOndhr
+        xb4WRySOGXjCpwZr4nkaQ06SBEKIpYEhL563syaTIZFFKpBJORuhjz2OP09AZyFSyCxDnhffDdBSqUkU
+        sxicE9mIc5Rl+cNgdJGcdzNLSeROXFXVyh301DFdz9zGztrYxUisavX5M5rZdWxNlsiLgVwrhUY1gwFt
+        Ey3F1n6v8p4fSa/yXoMXq2jgSOKYACkAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="llep3openinfo.Text" xml:space="preserve">
+    <value>apri Info...</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Proprietario Attivita':</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Salario:</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Mansione:</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Lotto Attivita':</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 344</value>

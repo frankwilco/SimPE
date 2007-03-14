@@ -133,6 +133,10 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Lingua:</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lldelall.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
   <data name="lldelall.Location" type="System.Drawing.Point, System.Drawing">
     <value>224, 192</value>
   </data>
@@ -146,10 +150,13 @@
     <value>224, 176</value>
   </data>
   <data name="lldelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+    <value>51, 18</value>
   </data>
   <data name="lldelete.Text" xml:space="preserve">
     <value>elimina</value>
+  </data>
+  <data name="llchangeall.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
   </data>
   <data name="llchangeall.Location" type="System.Drawing.Point, System.Drawing">
     <value>451, 192</value>
@@ -160,6 +167,9 @@
   <data name="llchangeall.Text" xml:space="preserve">
     <value>modifica in tutte</value>
   </data>
+  <data name="lladdall.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
   <data name="lladdall.Location" type="System.Drawing.Point, System.Drawing">
     <value>335, 192</value>
   </data>
@@ -169,20 +179,26 @@
   <data name="lladdall.Text" xml:space="preserve">
     <value>aggiungi in tutte</value>
   </data>
+  <data name="lladd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
   <data name="lladd.Location" type="System.Drawing.Point, System.Drawing">
     <value>335, 176</value>
   </data>
   <data name="lladd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 18</value>
+    <value>63, 13</value>
   </data>
   <data name="lladd.Text" xml:space="preserve">
     <value>aggiungi</value>
+  </data>
+  <data name="llcommit.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
   </data>
   <data name="llcommit.Location" type="System.Drawing.Point, System.Drawing">
     <value>451, 176</value>
   </data>
   <data name="llcommit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 18</value>
+    <value>63, 13</value>
   </data>
   <data name="llcommit.Text" xml:space="preserve">
     <value>modifica</value>
@@ -217,11 +233,17 @@
   <data name="banner.Text" xml:space="preserve">
     <value>Editor File di Testo</value>
   </data>
+  <data name="llcreate.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 4</value>
+  </data>
   <data name="llcreate.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 18</value>
   </data>
   <data name="llcreate.Text" xml:space="preserve">
     <value>crea File di Testo</value>
+  </data>
+  <data name="linkLabel1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
   </data>
   <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 18</value>

@@ -109,6 +109,7 @@ namespace SimPe
 			string shortname = "";
 			string ext = "";
 			bool contfl = false;
+            bool nodecomp = false;
 			foreach (XmlNode subnode in node) 
 			{
 				if (subnode.Name=="know") known = true;
@@ -116,10 +117,11 @@ namespace SimPe
 				if (subnode.Name=="name") name = subnode.InnerText;
 				if (subnode.Name=="shortname") shortname = subnode.InnerText;
 				if (subnode.Name=="extension") ext = subnode.InnerText;
+                if (subnode.Name == "nodecompressforcache") nodecomp = true;
 			}
 
 			//Data.TypeAlias ta = new Data.TypeAlias(contfl, SimPe.Localization.GetString(shortname), type, SimPe.Localization.GetString(name), ext, known);
-            Data.TypeAlias ta = new Data.TypeAlias(contfl, shortname, type, SimPe.Localization.GetString(name), ext, known);
+            Data.TypeAlias ta = new Data.TypeAlias(contfl, shortname, type, SimPe.Localization.GetString(name), ext, known, nodecomp);
 			map[type] = ta;
 			alist.Add(ta);
 		}
