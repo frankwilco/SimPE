@@ -130,23 +130,60 @@
   <data name="cbflip.Text" xml:space="preserve">
     <value>Rifletti Immagine:</value>
   </data>
+  <data name="lbsize.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbname.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pb.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lv.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabControl1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Quadro Base:</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="llcreate.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 4</value>
+  </data>
   <data name="llcreate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 18</value>
+    <value>36, 13</value>
   </data>
   <data name="llcreate.Text" xml:space="preserve">
     <value>crea</value>
   </data>
+  <data name="llcreate.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Qualità:</value>
   </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbprev.Text" xml:space="preserve">
     <value>Anteprima</value>
+  </data>
+  <data name="cbprev.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -419,8 +456,7 @@
         wAAAA//////wAAAP//////4AAH///////+AH////
 </value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

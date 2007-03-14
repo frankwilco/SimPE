@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="pbPetEating.LabelText" xml:space="preserve">
+    <value>Питание:</value>
+  </data>
+  <data name="pbPetOutside.LabelText" xml:space="preserve">
+    <value>Прогулки:</value>
+  </data>
+  <data name="pbPetPlaying.LabelText" xml:space="preserve">
+    <value>Игры:</value>
+  </data>
+  <data name="pbPetSleep.LabelText" xml:space="preserve">
+    <value>Сон:</value>
+  </data>
+  <data name="pbPetToy.LabelText" xml:space="preserve">
+    <value>Игрушки:</value>
+  </data>
+  <data name="pbPetWeather.LabelText" xml:space="preserve">
+    <value>Погода:</value>
+  </data>
+  <data name="pbPetPets.LabelText" xml:space="preserve">
+    <value>Питомцы:</value>
+  </data>
+  <data name="pbPetAnimals.LabelText" xml:space="preserve">
+    <value>Животные:</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="biId.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -692,74 +716,26 @@
   <data name="mbiMax.Text" xml:space="preserve">
     <value>Максимум</value>
   </data>
+  <data name="pnId.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 1</value>
+  </data>
+  <data name="pnId.Size" type="System.Drawing.Size, System.Drawing">
+    <value>684, 252</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 187</value>
+  </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Спец.:</value>
   </data>
-  <data name="pbNeat.LabelText" xml:space="preserve">
-    <value>Чистюля:</value>
-  </data>
-  <data name="pbOutgoing.LabelText" xml:space="preserve">
-    <value>Экстраверт:</value>
-  </data>
-  <data name="pbActive.LabelText" xml:space="preserve">
-    <value>Деятель:</value>
-  </data>
-  <data name="pbPlayful.LabelText" xml:space="preserve">
-    <value>Весельчак:</value>
-  </data>
-  <data name="pbGNice.LabelText" xml:space="preserve">
-    <value>Лапочка, ген:</value>
-  </data>
-  <data name="pbNice.LabelText" xml:space="preserve">
-    <value>Лапочка:</value>
-  </data>
-  <data name="pbGPlayful.LabelText" xml:space="preserve">
-    <value>Весельчак, ген:</value>
-  </data>
-  <data name="pbGNeat.LabelText" xml:space="preserve">
-    <value>Чистюля, ген:</value>
-  </data>
-  <data name="pbGActive.LabelText" xml:space="preserve">
-    <value>Деятель, ген:</value>
-  </data>
-  <data name="pbGOutgoing.LabelText" xml:space="preserve">
-    <value>Экстраверт, ген:</value>
-  </data>
-  <data name="pbMan.LabelText" xml:space="preserve">
-    <value>Мужчина:</value>
-  </data>
-  <data name="pbWoman.LabelText" xml:space="preserve">
-    <value>Женщина:</value>
-  </data>
-  <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 21</value>
-  </data>
-  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 17</value>
-  </data>
-  <data name="label47.Text" xml:space="preserve">
-    <value>Знак зодиака:</value>
-  </data>
-  <data name="label69.Text" xml:space="preserve">
-    <value>влечение</value>
-  </data>
-  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 16</value>
-  </data>
-  <data name="label70.Text" xml:space="preserve">
-    <value>неприязнь</value>
-  </data>
-  <data name="pnChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>514, 124</value>
-  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 23</value>
+    <value>133, 19</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>ID Сима:</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 72</value>
+    <value>117, 66</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 17</value>
@@ -801,7 +777,7 @@
     <value>210, 21</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 48</value>
+    <value>133, 43</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Имя:</value>
@@ -810,7 +786,7 @@
     <value>232, 16</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 168</value>
+    <value>3, 163</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 17</value>
@@ -818,8 +794,131 @@
   <data name="label10.Text" xml:space="preserve">
     <value>Дней осталось:</value>
   </data>
+  <data name="label48.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 139</value>
+  </data>
   <data name="label48.Text" xml:space="preserve">
     <value>Стадия жизни:</value>
+  </data>
+  <data name="pnSkill.Size" type="System.Drawing.Size, System.Drawing">
+    <value>692, 260</value>
+  </data>
+  <data name="pbBody.LabelText" xml:space="preserve">
+    <value>Культ. тела:</value>
+  </data>
+  <data name="pbRomance.LabelText" xml:space="preserve">
+    <value>Любовь:</value>
+  </data>
+  <data name="pbFat.LabelText" xml:space="preserve">
+    <value>Полнота:</value>
+  </data>
+  <data name="pbClean.LabelText" xml:space="preserve">
+    <value>Уборка:</value>
+  </data>
+  <data name="pbCreative.LabelText" xml:space="preserve">
+    <value>Творчество:</value>
+  </data>
+  <data name="pbCharisma.LabelText" xml:space="preserve">
+    <value>Обаяние:</value>
+  </data>
+  <data name="pbMech.LabelText" xml:space="preserve">
+    <value>Техника:</value>
+  </data>
+  <data name="pbLogic.LabelText" xml:space="preserve">
+    <value>Логика:</value>
+  </data>
+  <data name="pbCooking.LabelText" xml:space="preserve">
+    <value>Готовка:</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Боязливый</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Дружелюбный</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Ленивый</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Глупый</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Агрессивный</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Замкнутый</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Гиперактивный</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Гений</value>
+  </data>
+  <data name="pnPetChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>494, 96</value>
+  </data>
+  <data name="pbMan.LabelText" xml:space="preserve">
+    <value>Мужчина:</value>
+  </data>
+  <data name="pbWoman.LabelText" xml:space="preserve">
+    <value>Женщина:</value>
+  </data>
+  <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 21</value>
+  </data>
+  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 17</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>Знак зодиака:</value>
+  </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>влечение</value>
+  </data>
+  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 16</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>неприязнь</value>
+  </data>
+  <data name="pnChar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 76</value>
+  </data>
+  <data name="pnChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>680, 248</value>
+  </data>
+  <data name="pbNeat.LabelText" xml:space="preserve">
+    <value>Чистюля:</value>
+  </data>
+  <data name="pbOutgoing.LabelText" xml:space="preserve">
+    <value>Экстраверт:</value>
+  </data>
+  <data name="pbActive.LabelText" xml:space="preserve">
+    <value>Деятель:</value>
+  </data>
+  <data name="pbPlayful.LabelText" xml:space="preserve">
+    <value>Весельчак:</value>
+  </data>
+  <data name="pbGNice.LabelText" xml:space="preserve">
+    <value>Лапочка, ген:</value>
+  </data>
+  <data name="pbNice.LabelText" xml:space="preserve">
+    <value>Лапочка:</value>
+  </data>
+  <data name="pbGPlayful.LabelText" xml:space="preserve">
+    <value>Весельчак, ген:</value>
+  </data>
+  <data name="pbGNeat.LabelText" xml:space="preserve">
+    <value>Чистюля, ген:</value>
+  </data>
+  <data name="pbGActive.LabelText" xml:space="preserve">
+    <value>Деятель, ген:</value>
+  </data>
+  <data name="pbGOutgoing.LabelText" xml:space="preserve">
+    <value>Экстраверт, ген:</value>
+  </data>
+  <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 280</value>
   </data>
   <data name="miRand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -973,6 +1072,9 @@
   <data name="miOpenDNA.Text" xml:space="preserve">
     <value>Открыть ДНК Сима</value>
   </data>
+  <data name="miOpenSCOR.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 22</value>
+  </data>
   <data name="miOpenFamily.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1070,8 +1172,8 @@
   <data name="miRelink.Text" xml:space="preserve">
     <value>Пересоздать связи персонажа</value>
   </data>
-  <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 258</value>
+  <data name="miRel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 98</value>
   </data>
   <data name="miAddRelation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1123,8 +1225,119 @@
   <data name="mbiMaxKnownRel.Text" xml:space="preserve">
     <value>Максимиз. отношение к знакомому</value>
   </data>
-  <data name="miRel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 98</value>
+  <data name="pnCareer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>692, 260</value>
+  </data>
+  <data name="pbAspBliz.LabelText" xml:space="preserve">
+    <value>Счастье:</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>Баллы:</value>
+  </data>
+  <data name="pbAspCur.LabelText" xml:space="preserve">
+    <value>Текущее:</value>
+  </data>
+  <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
+    <value>326, 24</value>
+  </data>
+  <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 17</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>Жизненная цель:</value>
+  </data>
+  <data name="pbCareerPerformance.LabelText" xml:space="preserve">
+    <value>Мотивация:</value>
+  </data>
+  <data name="pbCareerLevel.LabelText" xml:space="preserve">
+    <value>Ступень карьеры:</value>
+  </data>
+  <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 13</value>
+  </data>
+  <data name="label50.Text" xml:space="preserve">
+    <value>Карьера:</value>
+  </data>
+  <data name="pnInt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>692, 260</value>
+  </data>
+  <data name="pbSciFi.LabelText" xml:space="preserve">
+    <value>Наука:</value>
+  </data>
+  <data name="pbTravel.LabelText" xml:space="preserve">
+    <value>Путешествия:</value>
+  </data>
+  <data name="pbToys.LabelText" xml:space="preserve">
+    <value>Игрушки:</value>
+  </data>
+  <data name="pbEnvironment.LabelText" xml:space="preserve">
+    <value>Экология:</value>
+  </data>
+  <data name="pbSchool.LabelText" xml:space="preserve">
+    <value>Учеба:</value>
+  </data>
+  <data name="pbParanormal.LabelText" xml:space="preserve">
+    <value>Мистика:</value>
+  </data>
+  <data name="pbAnimals.LabelText" xml:space="preserve">
+    <value>Животные:</value>
+  </data>
+  <data name="pbEntertainment.LabelText" xml:space="preserve">
+    <value>Развлечения:</value>
+  </data>
+  <data name="pbWeather.LabelText" xml:space="preserve">
+    <value>Погода:</value>
+  </data>
+  <data name="pbCulture.LabelText" xml:space="preserve">
+    <value>Культура:</value>
+  </data>
+  <data name="pbWork.LabelText" xml:space="preserve">
+    <value>Работа:</value>
+  </data>
+  <data name="pbMoney.LabelText" xml:space="preserve">
+    <value>Финансы:</value>
+  </data>
+  <data name="pbPolitics.LabelText" xml:space="preserve">
+    <value>Политика:</value>
+  </data>
+  <data name="pbCrime.LabelText" xml:space="preserve">
+    <value>Преступность:</value>
+  </data>
+  <data name="pbFood.LabelText" xml:space="preserve">
+    <value>Еда:</value>
+  </data>
+  <data name="pbSports.LabelText" xml:space="preserve">
+    <value>Спорт:</value>
+  </data>
+  <data name="pbHealth.LabelText" xml:space="preserve">
+    <value>Здоровье:</value>
+  </data>
+  <data name="pbFashion.LabelText" xml:space="preserve">
+    <value>Мода:</value>
+  </data>
+  <data name="pnRel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>692, 260</value>
+  </data>
+  <data name="lv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 260</value>
+  </data>
+  <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 0</value>
+  </data>
+  <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>512, 260</value>
+  </data>
+  <data name="pnMisc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pnMisc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>688, 256</value>
+  </data>
+  <data name="xpTaskBoxSimple3.HeaderText" xml:space="preserve">
+    <value>Разное</value>
+  </data>
+  <data name="xpTaskBoxSimple3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 176</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 144</value>
@@ -1201,11 +1414,8 @@
   <data name="label86.Text" xml:space="preserve">
     <value>Уровень самостоят.:</value>
   </data>
-  <data name="xpTaskBoxSimple3.HeaderText" xml:space="preserve">
-    <value>Разное</value>
-  </data>
-  <data name="xpTaskBoxSimple3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 176</value>
+  <data name="xpTaskBoxSimple2.HeaderText" xml:space="preserve">
+    <value>Флаги тела</value>
   </data>
   <data name="cbfit.Text" xml:space="preserve">
     <value>Стройность</value>
@@ -1228,8 +1438,8 @@
   <data name="cbfat.Text" xml:space="preserve">
     <value>Полнота</value>
   </data>
-  <data name="xpTaskBoxSimple2.HeaderText" xml:space="preserve">
-    <value>Флаги тела</value>
+  <data name="xpTaskBoxSimple1.HeaderText" xml:space="preserve">
+    <value>Флаги призрака</value>
   </data>
   <data name="cbisghost.Text" xml:space="preserve">
     <value>Призрак</value>
@@ -1252,11 +1462,62 @@
   <data name="cbpassobject.Text" xml:space="preserve">
     <value>Проход сквозь объекты</value>
   </data>
-  <data name="xpTaskBoxSimple1.HeaderText" xml:space="preserve">
-    <value>Флаги призрака</value>
+  <data name="pnEP1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>692, 260</value>
+  </data>
+  <data name="pbLastGrade.LabelText" xml:space="preserve">
+    <value>Оценка:</value>
+  </data>
+  <data name="pbUniTime.LabelText" xml:space="preserve">
+    <value>Осталось времени:</value>
+  </data>
+  <data name="label103.Text" xml:space="preserve">
+    <value>Семестр:</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>Авторитет:</value>
   </data>
   <data name="cboncampus.Text" xml:space="preserve">
     <value>В университете (юность)</value>
+  </data>
+  <data name="pnEP2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>692, 260</value>
+  </data>
+  <data name="tbNTLove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 232</value>
+  </data>
+  <data name="tbNTPerfume.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 208</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 232</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 208</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 20</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Долгодействие парфюма:</value>
+  </data>
+  <data name="lbTurnOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 160</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Стоп-сигналы:</value>
+  </data>
+  <data name="lbTurnOn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 160</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Фетиши:</value>
+  </data>
+  <data name="lbTraits.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 160</value>
+  </data>
+  <data name="pnEP3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>692, 260</value>
   </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1272,7 +1533,25 @@
   <data name="llep3openinfo.Text" xml:space="preserve">
     <value>откр. инфо...</value>
   </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 152</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 20</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Имеющ. бизнес:</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Продажи:</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Деятельность:</value>
+  </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Флаги:</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Бизнес-лот:</value>
   </data>
 </root>

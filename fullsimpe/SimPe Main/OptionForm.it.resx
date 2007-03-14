@@ -119,22 +119,26 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tbgame.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 56</value>
+    <value>214, 56</value>
   </data>
   <data name="tbgame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 21</value>
+    <value>354, 21</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 36</value>
+    <value>216, 39</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>imposta Predefinita:</value>
   </data>
   <data name="tbsavegame.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 208</value>
+    <value>214, 208</value>
   </data>
   <data name="tbsavegame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 21</value>
+    <value>354, 21</value>
   </data>
   <data name="cbdebug.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 24</value>
@@ -144,9 +148,6 @@
   </data>
   <data name="cbblur.Text" xml:space="preserve">
     <value>Togli Censura</value>
-  </data>
-  <data name="cbsound.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 24</value>
   </data>
   <data name="cbsound.Text" xml:space="preserve">
     <value>Abilita Suono all'apertura del Gioco</value>
@@ -166,14 +167,20 @@
   <data name="lbext.Size" type="System.Drawing.Size, System.Drawing">
     <value>469, 328</value>
   </data>
+  <data name="linkLabel1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
   <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 18</value>
+    <value>63, 13</value>
   </data>
   <data name="linkLabel1.Text" xml:space="preserve">
     <value>aggiungi</value>
   </data>
+  <data name="linkLabel2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
   <data name="linkLabel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 18</value>
+    <value>57, 13</value>
   </data>
   <data name="linkLabel2.Text" xml:space="preserve">
     <value>rimuovi</value>
@@ -203,22 +210,28 @@
     <value>Cartella Nvidia DDS Tool:</value>
   </data>
   <data name="tbep1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 104</value>
+    <value>214, 104</value>
   </data>
   <data name="tbep1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 21</value>
+    <value>354, 21</value>
   </data>
   <data name="button5.Text" xml:space="preserve">
     <value>Sfoglia...</value>
   </data>
+  <data name="linkLabel4.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
   <data name="linkLabel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 188</value>
+    <value>216, 191</value>
   </data>
   <data name="linkLabel4.Text" xml:space="preserve">
     <value>imposta Predefinita:</value>
   </data>
+  <data name="llsetep1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
   <data name="llsetep1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 84</value>
+    <value>216, 87</value>
   </data>
   <data name="llsetep1.Text" xml:space="preserve">
     <value>imposta Predefinita:</value>
@@ -226,8 +239,11 @@
   <data name="tbthumb.Location" type="System.Drawing.Point, System.Drawing">
     <value>156, 24</value>
   </data>
+  <data name="cbLock.Text" xml:space="preserve">
+    <value>Blocca Finestre</value>
+  </data>
   <data name="cbAsync.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 24</value>
+    <value>157, 24</value>
   </data>
   <data name="cbAsync.Text" xml:space="preserve">
     <value>Caricamento Asincrono</value>
@@ -235,8 +251,11 @@
   <data name="cbhidden.Text" xml:space="preserve">
     <value>Modalità Avanzata</value>
   </data>
+  <data name="llNightlife.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
   <data name="llNightlife.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 132</value>
+    <value>216, 135</value>
   </data>
   <data name="llNightlife.Text" xml:space="preserve">
     <value>imposta Predefinita:</value>
@@ -259,6 +278,9 @@
   <data name="button7.Text" xml:space="preserve">
     <value>ripristina Layout</value>
   </data>
+  <data name="cbsplash.Text" xml:space="preserve">
+    <value>Mostra Maschera di Avvio</value>
+  </data>
   <data name="lldds2.Text" xml:space="preserve">
     <value>Puoi scaricarle da qui</value>
   </data>
@@ -266,7 +288,7 @@
     <value>Nvidia DDS Utilities non sono state trovate.</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 201</value>
+    <value>14, 201</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 23</value>
@@ -275,7 +297,7 @@
     <value>Cartella Salvataggi del Gioco:</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 92</value>
+    <value>13, 92</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 29</value>
@@ -299,7 +321,7 @@
     <value>212, 24</value>
   </data>
   <data name="cbshowobjd.Text" xml:space="preserve">
-    <value>mostra Nome del file dell'Oggetto</value>
+    <value>Mostra Nome del file dell'Oggetto</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 13</value>
@@ -313,8 +335,14 @@
   <data name="button6.Text" xml:space="preserve">
     <value>svuota Cache</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Impostazioni SimPE:</value>
+  <data name="cbReport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 175</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 13</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Formato Report:</value>
   </data>
   <data name="cbpkgmaint.Text" xml:space="preserve">
     <value>Usa Pkg. Maintainer</value>
@@ -346,6 +374,9 @@
   <data name="cbwait.Text" xml:space="preserve">
     <value>Schermo di attesa</value>
   </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Impostazioni SimPE:</value>
+  </data>
   <data name="cbSimple.Text" xml:space="preserve">
     <value>Semplice Click per aprire Risorse</value>
   </data>
@@ -358,6 +389,9 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Impostazioni di Gioco:</value>
   </data>
+  <data name="lladddown.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
   <data name="lladddown.Location" type="System.Drawing.Point, System.Drawing">
     <value>414, 240</value>
   </data>
@@ -366,6 +400,9 @@
   </data>
   <data name="lladddown.Text" xml:space="preserve">
     <value>aggiungi Cartella Downloads</value>
+  </data>
+  <data name="lldel.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
   </data>
   <data name="lldel.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 240</value>
@@ -376,14 +413,14 @@
   <data name="lldel.Text" xml:space="preserve">
     <value>elimina</value>
   </data>
+  <data name="lladd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
   <data name="lladd.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 16</value>
   </data>
   <data name="lladd.Text" xml:space="preserve">
     <value>aggiungi</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Impostazioni Gmdc:</value>
   </data>
   <data name="cbjointname.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 48</value>
@@ -394,14 +431,14 @@
   <data name="cbjointname.Text" xml:space="preserve">
     <value>GMDC: Mostra nomi dei Joint</value>
   </data>
-  <data name="hcFolders.Text" xml:space="preserve">
-    <value>Cartelle di Sistema</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Impostazioni Gmdc:</value>
   </data>
   <data name="tbep2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 152</value>
+    <value>214, 152</value>
   </data>
   <data name="tbep2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 21</value>
+    <value>354, 21</value>
   </data>
   <data name="btNightlife.Text" xml:space="preserve">
     <value>Sfoglia...</value>
@@ -412,14 +449,17 @@
   <data name="label14.Text" xml:space="preserve">
     <value>Cartella Sims 2 Nightlife:</value>
   </data>
-  <data name="hcSettings.Text" xml:space="preserve">
-    <value>Impostazioni</value>
+  <data name="pgPaths.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 32</value>
   </data>
-  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 104</value>
+  <data name="pgPaths.Size" type="System.Drawing.Size, System.Drawing">
+    <value>654, 216</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Navigazione fra Schede:</value>
+  <data name="hcFolders.Text" xml:space="preserve">
+    <value>Cartelle di Sistema</value>
+  </data>
+  <data name="cbFirefox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 74</value>
   </data>
   <data name="cbFirefox.Size" type="System.Drawing.Size, System.Drawing">
     <value>253, 24</value>
@@ -427,26 +467,26 @@
   <data name="cbFirefox.Text" xml:space="preserve">
     <value>Usa lo stile di Firefox per aprire Schede</value>
   </data>
+  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 104</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Navigazione fra Schede:</value>
+  </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Tema:</value>
+  </data>
+  <data name="hcSettings.Text" xml:space="preserve">
+    <value>Impostazioni</value>
   </data>
   <data name="hcTools.Text" xml:space="preserve">
     <value>Strumenti Esterni</value>
   </data>
-  <data name="hcFileTable.Text" xml:space="preserve">
-    <value>Tabella dei File (cerca Percorso)</value>
-  </data>
-  <data name="cbIncNightlife.Text" xml:space="preserve">
-    <value>Includi File di Nightlife</value>
-  </data>
-  <data name="cbIncUni.Text" xml:space="preserve">
-    <value>Includi File di University</value>
-  </data>
-  <data name="cbIncGame.Text" xml:space="preserve">
-    <value>Includi File Sims 2 base</value>
-  </data>
   <data name="cbIncCep.Text" xml:space="preserve">
     <value>Includi CEP</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Impostazioni Semplici:</value>
   </data>
   <data name="btReload.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -466,9 +506,6 @@
   </data>
   <data name="btReload.Text" xml:space="preserve">
     <value>Ricarica</value>
-  </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Impostazioni Avanzate:</value>
   </data>
   <data name="btup.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -501,6 +538,9 @@
         ekbzaiye/3xkQbRpc9VfmZPJIpEyfz/LlO6k/5X/UiAlzw9idp1Q9EbgxwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="linkLabel6.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
   <data name="linkLabel6.Location" type="System.Drawing.Point, System.Drawing">
     <value>328, 240</value>
   </data>
@@ -509,6 +549,9 @@
   </data>
   <data name="linkLabel6.Text" xml:space="preserve">
     <value>cancella</value>
+  </data>
+  <data name="llchg.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
   </data>
   <data name="llchg.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 240</value>
@@ -519,8 +562,38 @@
   <data name="llchg.Text" xml:space="preserve">
     <value>modifica</value>
   </data>
-  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 72</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Impostazioni Avanzate:</value>
+  </data>
+  <data name="hcFileTable.Text" xml:space="preserve">
+    <value>Tabella dei File (cerca Percorso)</value>
+  </data>
+  <data name="cbAsyncSort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 24</value>
+  </data>
+  <data name="cbAsyncSort.Text" xml:space="preserve">
+    <value>Ordinamento Asincrono</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 13</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Formato Tipo-Colonna:</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 13</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>TGI nome estensione:</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 13</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Formato Nome:</value>
+  </data>
+  <data name="groupBox10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>491, 102</value>
   </data>
   <data name="cbSimTemp.Text" xml:space="preserve">
     <value>includi Templates</value>
@@ -531,8 +604,14 @@
   <data name="cbDeep.Text" xml:space="preserve">
     <value>Ricerca avanzata (by TazzMann)</value>
   </data>
+  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 72</value>
+  </data>
+  <data name="hcSceneGraph.Text" xml:space="preserve">
+    <value>Varie</value>
+  </data>
   <data name="bb.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 560</value>
+    <value>0, 718</value>
   </data>
   <data name="nbFolders.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -587,6 +666,41 @@
   <data name="nbFolders.Text" xml:space="preserve">
     <value>Cartelle di Sistema</value>
   </data>
+  <data name="nbCheck.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        3677z5/Az1RYSAQE6XdrAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="nbCheck.Text" xml:space="preserve">
+    <value>Controllo Sistema</value>
+  </data>
   <data name="nbSettings.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -625,86 +739,6 @@
   </data>
   <data name="nbSettings.Text" xml:space="preserve">
     <value>Impostazioni di SimPE </value>
-  </data>
-  <data name="nbTools.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAABvVJREFUWEe9V3lQ
-        znkY71JUKh1TIscmiQgh69ZQGEvOUu77PnNkC9OKNrmtesvILGmbYWIzzf4ja2cMM03MIEeUlC6VV0VJ
-        9OzneezvrbfpzW6zu7+Zz/zu7/P5Pt/Pc3z1x48fPyYqKiqoY8eO5p8/fzbQ03EQka5X/+i5kZFRw9u3
-        b2t27tyZePPmzd/1cnNzf6qrq/ujsrKyuqamprYpanEo93zd2vHhw4farwF2aqurq6sw0fS7d+/GgLm1
-        3uvXr2MrKioq379/T2/evNFArVYTmBKIUVVVFeFHwbt37wQgpgGIEYwLYIQ+fvwoqK+vF3z69EkAw3Ak
-        8X9l2dnZcSYmJs56RUVFKhhSFxcX06hRo6hHjx7UuXNncnFxoUGDBtHw4cNp3LhxNGnSJJo+fTrNnTuX
-        Fi5cSCtWrKB169bRtm3bKCQkhPbt20cHDx6kw4cP06lTpyguLo7OnTtHFy9epEuXLtGVK1foxo0bCrHS
-        x48fxxsbG7sIAcxcCNjY2IjxBQsWUPv27XnRydDQUJ537dpVSA0YMICGDRtGY8eOFVJ+fn4UEBBAixcv
-        pjVr1tDmzZtp165dGkJHjx6l06dPU3x8PKWkpCjeaSQAwyosgRBQZp6fn0/Pnj2j/fv3U9++fcnCwoK6
-        dOlCvXr1Ind3dxo6dCiNHj2afHx8aNq0aRqvrFy5kjZu3Ejbt2+nsLAwioiIoOjoaDp58iTFxsaKJ3iJ
-        AG0CZWVl6pKSEnJ2dpZZW1tbU2JioqxXamqqPFO80Lt3by0v+Pr6anlh9erVtGnTJoLKae/evXTgwAE6
-        cuQIHT9+nJKTk1smUFpaKgScnJxkljk5OfT8+XNCeJKbm5sQ6NChgxDjb1xdXWngwIGiD4QxTZ48mWbM
-        mEHz5s2jJUuWyFJs2bJFo43IyEjxxIULF4QAxKrtARgXAizAnj170tq1a2XGbJhhaWkp92y8e/fuAibG
-        Ih0xYgR5e3vTlClTaNasWRQUFETLli0TgW7dupV2795N4eHh4omEhISWCUCIQqBPnz4ao4pxW1tbUqlU
-        oujz58/T8uXLycrKSoiyPjw9PWnkyJE0YcIEmjp1Ks2ePZvmz58v361fv56Cg4MpNDRUluPMmTNCAGGr
-        7YHCwkI1lkHjbn19fVJgYGBAiFcNzMzMqFOnTuTo6CiaYVEOGTJERDlx4kSdouRQZSFyrkAeaCQAw6qC
-        ggIh0K9fP/FAUwJ8rXhDeWdqaqozNFmUnC/8/f1p0aJFtGrVKhEl5wuOBiaApKdN4OXLl0KAZ9MSgeaE
-        ODewJ+zs7Khbt24iSg8PD03SairKpUuX0oYNG0QPJ06ckCyKvKNNAPVAjZRM/fv318y2udHm9ygqhAJG
-        9vb2Il5FD5xNlaVgPXDmZI94eXmJUDnfYMlLnz59+iUTIgeoFAIcWk3d3dz1zUm0a9eOzM3NZTkcHBy0
-        ooQzJwuYw1cZh5eYxf7q1SttAoh58QCHlS4C/8ZzHp8JQHPaBJB2hQCH1L9hSNcYPD4TQKrXJvDkyRMh
-        wOH0XxLg8VkDeXl52gRQGv83DzABaE6bQFZWlhDglMqVry3gdN0aeEwenwmg1jQSKC8vVz148KAKbiGc
-        Ca1Sq8jMzKS24v79+zx7QjdUDnwJQ6TF2IcPH2bzS8Qmv2wV3CdwpWTw9de+b/qex2c7+C8LQowDAVe9
-        tLS0OJT939D35SNLlbQE9ILFQCEUXAHBiqeU2SCmObGwsAjLWIHvinSNw89hJw/20lDYfobgHfSQ1z3Q
-        UoWjx4tC2oxuCtT2Q6jxP8yZMycMZXbPsWPHfoVeKD09na5fvy4eQCKTZhVdFTcdqagBYfx9YGBgBP/f
-        fEx0TYeQISNR4LxBwJR7ekPAErAXRo2wwbUVspfvjh07oi9fvpx+7969Im5W7ty5Q7du3aIXL16IYc7v
-        HN+3b98uOHv2bCqMhiJFe+F/c8Cu2bhswxYwA/SZQIsHUqvd1atXf4G76qU3+9JOi7uZBM8eGY24iDEJ
-        vmYiygGvqFH9fsTgJjqNtPYCnWwCD8b7BR6Y9wa8zjxrPitAJRXjf6lbs3fgvQIfaM9C2kQgKSkpg7sX
-        jlvukhEplJGRISHYUqjyc37/6NEj8RIvCW9K0IqlgIDOLZ9OcjNnzgxnw7w74lmyyzmMGBwJyrVyz88U
-        8H8sTGiGBg8evAdGjNviBTtsQMJjYmJyefasdibD2zfOmjxD9JJy5ne8hWOPNTQ0iAewO8pBo8IacAOM
-        2kKAFWoBfIvaHoxmIgl9XQZ2OAXXrl1TY2dbg2ioA2pwrcamowDbskyEXzK65u/xnw/g1NbZNyXM68ch
-        4wi4A2OA79Cs+qMhCcQ5APd+AMe1J/ANwCH8t9T/J8otFR7FCvw1AAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="nbTools.Text" xml:space="preserve">
-    <value>Strumenti Esterni</value>
-  </data>
-  <data name="nbFileTable.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-</value>
-  </data>
-  <data name="nbFileTable.Text" xml:space="preserve">
-    <value>Tabella dei File</value>
   </data>
   <data name="nbSceneGraph.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -748,6 +782,77 @@
         hmHOwIMHEjBgQOAvMZA1knxucDUJrLhJTEcGqgLmGFTQCRT8CxWx5byiZcgQwRYzYGnMFSSBoEhIqP3/
         eYGQmhQ2g2Z+CFxXQ32/xpj/BBBTZ00oZ9vtAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="nbSceneGraph.Text" xml:space="preserve">
+    <value>Varie</value>
+  </data>
+  <data name="nbCustom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAABBNJREFUWEfNV2lL
+        Y1cYno5+kcKk/gC/KG6I+APmF7T9DUPBr4LLiFFq25n5Mh0KZRgo+KHgEokLozGoqU5xAkqIG4kmJqZu
+        0axMlslNVFwu6tP3PfSmcSrJvdOm7QsP9yzvPee573bO/eTeHVJSUvLFXeNqx66vr39Rq/sXvUdfPXqN
+        vylNTU3PP5bAg97eXh/vH3QB/nVg1wZ43wIbc8CaGVgeA5aGgLc/A29+AmZ/BEzPgfEngEEPvH4KpN9f
+        yI2NjR9FQtfT3SMIhNzAoQPYsxMBK+B6AzimiQDZZ8kIWPuBX/sAyyvA/AMw8QwY+ZpI9ACZxDXOzk/l
+        hoYGzSR03QoBDxFwEoEVwLcEuBcAp4WsYALsZIVFQ44VXgJTL8gK9PXGb8gC8SvhxEwmwySeaXGHrlvf
+        LSwQj6WQiEmIvyNEJcQYEQnvGGEJ0RAhKCHCCEgI+pPwuUNYtXlp4+NsFEmSdFpXV/etWhI6vV4vCKRS
+        SUhS6k+kqf0B0tQXyPBcEqFwAG7PJvXTt8I4nU6rJpElQMxp8bQmxGIx+Hw+hMNhQYDSETc3N7i8vATN
+        ndbU1BS0RJYA+Q/Hx8eawKR58+3tbWxubmJtbQ3Ly8uw2WxYXV2F1+tNVVRUPM7nDl1XV5dwAW9+cnKi
+        GalUCpFIBPv7+7whNjY2sL6+LsiEQiFQUL5QReDs7AyMi4sLAaV/fn6eHVPmcp88z+QTiYQgcnh4KMjs
+        7e0hmUyivr7++7wEOjs7hQWURdms/FXcZ1+ya3hxXozBc3eBdaLRqAC34/E4mJxqArwZB5DZbIbRaIQs
+        yyKw2J99fX3o7+/HwMAAhoaGYDAYMDw8jJGREYyNjWF8fBwTExPiyaa/uroSH8CimgBvyC8uLi4KfNhX
+        xtU8ORsYqgh0dHQIF+S+dFf/VqIX6CjpqImAlg206NbW1uYPQsUCWhbVoquZgNVqxezsbHYPLjAclBxk
+        k5OTMJlMmJqawvT0tNCzWCwCc3Nz4slFKVc0E/B4PKKQKBIIBERQcoVbWVkR4CrH0c56DocDTqdTFCBu
+        K2VZeV8zAS3mVaNbXV2dPwba29tFFhRLChJoa2v7fxHg45UDTxH2qd1uz/qc/a74nP3Oui6XC263W7S5
+        FOeKZgssLCyIcqwILzo4OIjR0dFbZZczgrOBdTkjZmZmRJtPREW4tFdVVeWPgWK6gCtiQQKtra1FiwE+
+        T/5TAnzCVlZW5ndBS0tL0SzAR3IhAp9RHfitWDXgDxfkvZJ92tzcPMk3nGAwKFPZlY+OjgT8fr98cHAg
+        QFcsma5Y8u7urryzs5MF1X2ZQZEvUwkX2Nrakikteexmfn4+Vl5e/jDflayEJusJXxI+Ly0t/e4fxJOy
+        srIWWve+2p+Uf0Xvd3xD0rYC/dsXAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="nbCustom.Text" xml:space="preserve">
+    <value>Personale</value>
+  </data>
+  <data name="nbFileTable.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="nbFileTable.Text" xml:space="preserve">
+    <value>Tabella dei File</value>
   </data>
   <data name="nbPlugins.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -795,6 +900,45 @@
   </data>
   <data name="nbPlugins.Text" xml:space="preserve">
     <value>Plugin Installati</value>
+  </data>
+  <data name="nbTools.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="nbTools.Text" xml:space="preserve">
+    <value>Strumenti Esterni</value>
   </data>
   <data name="nbIdent.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -863,6 +1007,9 @@
   <data name="hcPlugins.Text" xml:space="preserve">
     <value>Plugin</value>
   </data>
+  <data name="linkLabel5.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
   <data name="linkLabel5.Location" type="System.Drawing.Point, System.Drawing">
     <value>422, 94</value>
   </data>
@@ -872,11 +1019,32 @@
   <data name="linkLabel5.Text" xml:space="preserve">
     <value>Elimina</value>
   </data>
+  <data name="cbValid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 24</value>
+  </data>
+  <data name="cbValid.Text" xml:space="preserve">
+    <value>Valido</value>
+  </data>
+  <data name="linkLabel3.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 26</value>
+  </data>
   <data name="linkLabel3.Text" xml:space="preserve">
     <value>Aggiorna dal GUID Database</value>
   </data>
   <data name="hcIdent.Text" xml:space="preserve">
     <value>Identità</value>
+  </data>
+  <data name="hcCheck.Text" xml:space="preserve">
+    <value>Controllo Sistema</value>
+  </data>
+  <data name="cbCustom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 2</value>
+  </data>
+  <data name="cbCustom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 21</value>
+  </data>
+  <data name="hcCustom.Text" xml:space="preserve">
+    <value>Impostazioni Personali per</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

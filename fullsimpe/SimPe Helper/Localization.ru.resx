@@ -148,7 +148,7 @@
     <value>Во время загрузки архива произошлка ошибка.</value>
   </data>
   <data name="proceed" xml:space="preserve">
-    <value>Proceed?</value>
+    <value>Продолжить?</value>
   </data>
   <data name="ask000" xml:space="preserve">
     <value>Вы хотите остановить извлечение?</value>
@@ -280,10 +280,10 @@
     <value>Создать копию?</value>
   </data>
   <data name="disclaimer" xml:space="preserve">
-    <value>SimPE является утилитой для изменения внутренних данных игры "The Sims 2". 
+    <value>SimPE является утилитой для изменения внутренних данных игры The Sims 2. 
 		
-Большинство людей не сталкиваются с проблемами, при использовании SimPE, однако, если вы будите неосторожны, эта утилита может повредить вашу игру или даже вашу систему. Если вы не хотите рисковать, не используйте SimPe! Помните, что SimPE находится в стадии альфа-разработки!
-Убедитесь, что вы сделали резервную копию каталога "Мои документы\EA Games\The Sims 2\", прежде чем запускать SimPE.
+У большинства пользователей не возникает проблем при использовании SimPE. Однако, если вы не будете проявлять осторожность, эта утилита может повредить вашу игру или даже систему. Помните, что вы используете SimPE на свой страх и риск! SimPE все еще находится в стадии альфа-тестирования!
+Убедитесь, что у вас имеется резервная копия папки "Мои документы\EA Games\The Sims 2\" перед запуском SimPE.
 
 Запустить SimPE?</value>
   </data>
@@ -447,7 +447,7 @@
     <value>Outfit</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.Memory" xml:space="preserve">
-    <value>Memory</value>
+    <value>Память</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.Template" xml:space="preserve">
     <value>Шаблон</value>
@@ -896,10 +896,10 @@
     <value>Сыр</value>
   </data>
   <data name="PresetClassic" xml:space="preserve">
-    <value>classic</value>
+    <value>классический</value>
   </data>
   <data name="PresetModern" xml:space="preserve">
-    <value>modern</value>
+    <value>современный</value>
   </data>
   <data name="PresetChanged" xml:space="preserve">
     <value>Внешний вид SimPe изменен на "{name}".
@@ -930,7 +930,7 @@ Continue anyway?
     <value>Поиск ошибок завершен.</value>
   </data>
   <data name="[Property:GamePath]" xml:space="preserve">
-    <value>Sims 2</value>
+    <value>The Sims 2</value>
   </data>
   <data name="[Description:GamePath]" xml:space="preserve">
     <value>Это поле должно содержать папку с установленной игрой "The Sims 2".
@@ -1099,13 +1099,13 @@ Continue anyway?
     <value>Лоты</value>
   </data>
   <data name="SimPe.Data.NeighborhoodSlots.LotsIntern" xml:space="preserve">
-    <value>Lots Intern</value>
+    <value>Внешние лоты</value>
   </data>
   <data name="SimPe.Data.NeighborhoodSlots.Families" xml:space="preserve">
     <value>Семьи</value>
   </data>
   <data name="SimPe.Data.NeighborhoodSlots.FamiliesIntern" xml:space="preserve">
-    <value>Families Intern</value>
+    <value>Внешние семьи</value>
   </data>
   <data name="Gossip about" xml:space="preserve">
     <value>Сплетни о</value>
@@ -1315,5 +1315,131 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   </data>
   <data name="Unemployed" xml:space="preserve">
     <value>Без работы</value>
+  </data>
+  <data name="Aries" xml:space="preserve">
+    <value>Овен</value>
+  </data>
+  <data name="Capricorn" xml:space="preserve">
+    <value>Козерог</value>
+  </data>
+  <data name="EP NAME 7" xml:space="preserve">
+    <value>The Sims 2: Каталог - Все для праздника</value>
+  </data>
+  <data name="EP SNAME 7" xml:space="preserve">
+    <value>Все для праздника</value>
+  </data>
+  <data name="Grade_A" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Grade_AMinus" xml:space="preserve">
+    <value>5-</value>
+  </data>
+  <data name="Grade_APlus" xml:space="preserve">
+    <value>5+</value>
+  </data>
+  <data name="Grade_B" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Grade_BMinus" xml:space="preserve">
+    <value>4-</value>
+  </data>
+  <data name="Grade_BPlus" xml:space="preserve">
+    <value>4+</value>
+  </data>
+  <data name="Grade_C" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Grade_CMinus" xml:space="preserve">
+    <value>3-</value>
+  </data>
+  <data name="Grade_CPlus" xml:space="preserve">
+    <value>3+</value>
+  </data>
+  <data name="Grade_D" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Grade_DMinus" xml:space="preserve">
+    <value>2-</value>
+  </data>
+  <data name="Grade_DPlus" xml:space="preserve">
+    <value>2+</value>
+  </data>
+  <data name="Grade_F" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Leo" xml:space="preserve">
+    <value>Лев</value>
+  </data>
+  <data name="Libra" xml:space="preserve">
+    <value>Весы</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Загрузка</value>
+  </data>
+  <data name="Loading Plugins..." xml:space="preserve">
+    <value>Загрузка модулей...</value>
+  </data>
+  <data name="Medical" xml:space="preserve">
+    <value>Медицина</value>
+  </data>
+  <data name="Military" xml:space="preserve">
+    <value>Милитаристика</value>
+  </data>
+  <data name="Pisces" xml:space="preserve">
+    <value>Рыбы</value>
+  </data>
+  <data name="Politics" xml:space="preserve">
+    <value>Политика</value>
+  </data>
+  <data name="PrivateSchool" xml:space="preserve">
+    <value>Частная школа</value>
+  </data>
+  <data name="PublicSchool" xml:space="preserve">
+    <value>Обычная школа</value>
+  </data>
+  <data name="Replace..." xml:space="preserve">
+    <value>Замена...</value>
+  </data>
+  <data name="RT_Child" xml:space="preserve">
+    <value>Ребенок</value>
+  </data>
+  <data name="RT_Cousin" xml:space="preserve">
+    <value>Двоюродный брат\сестра</value>
+  </data>
+  <data name="RT_Gradparent" xml:space="preserve">
+    <value>Дедушка\бабушка</value>
+  </data>
+  <data name="RT_Grandchild" xml:space="preserve">
+    <value>Внук\внучка</value>
+  </data>
+  <data name="RT_Parent" xml:space="preserve">
+    <value>Родитель</value>
+  </data>
+  <data name="RT_Sibling" xml:space="preserve">
+    <value>Родной брат\сестра</value>
+  </data>
+  <data name="RT_Spouses" xml:space="preserve">
+    <value>Супруг\а</value>
+  </data>
+  <data name="Sagittarius" xml:space="preserve">
+    <value>Стрелец</value>
+  </data>
+  <data name="Science" xml:space="preserve">
+    <value>Наука</value>
+  </data>
+  <data name="Scorpio" xml:space="preserve">
+    <value>Скорпион</value>
+  </data>
+  <data name="Starting Main Form" xml:space="preserve">
+    <value>Запуск главных диалогов</value>
+  </data>
+  <data name="Starting Resource Loader" xml:space="preserve">
+    <value>Запуск загрузчика ресурсов</value>
+  </data>
+  <data name="Starting SimPE..." xml:space="preserve">
+    <value>Запуск SimPE...</value>
+  </data>
+  <data name="Taurus" xml:space="preserve">
+    <value>Телец</value>
   </data>
 </root>

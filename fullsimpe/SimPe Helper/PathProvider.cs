@@ -484,11 +484,8 @@ namespace SimPe
         {
             List<string> list = new List<string>();
 
-            for (int i = 0; i < GROUP_COUNT; i++)
+            foreach (long g in savgamemap.Keys)
             {
-                long g = (long)Math.Pow(2, i);
-
-                if (!savgamemap.ContainsKey(g)) continue;
                 Ambertation.CaseInvariantArrayList ps = savgamemap[g];
                 if (ps == null) continue;
                 foreach (string s in ps)
@@ -496,6 +493,19 @@ namespace SimPe
             }
 
             return list.AsReadOnly();
+        }
+
+        public long SaveGamePathProvidedByGroup(string path)
+        {
+            path = Helper.CompareableFileName(path);
+            foreach (long grp in savgamemap.Keys)
+            {
+                Ambertation.CaseInvariantArrayList ps = savgamemap[grp];
+                foreach (string s in ps)
+                    if (path.StartsWith(Helper.CompareableFileName(s))) return grp;
+            }
+
+            return 0;
         }
 
 

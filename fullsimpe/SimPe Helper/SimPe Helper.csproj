@@ -389,6 +389,10 @@
       <DependentUpon>Localization.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization.it.resx">
+      <DependentUpon>Localization.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Localization.ru.resx">
       <DependentUpon>Localization.cs</DependentUpon>
       <SubType>Designer</SubType>

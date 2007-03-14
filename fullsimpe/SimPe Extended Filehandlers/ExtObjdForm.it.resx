@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnUpdateMMAT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 118</value>
+  </data>
+  <data name="btnUpdateMMAT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 24</value>
+  </data>
+  <data name="btnUpdateMMAT.Text" xml:space="preserve">
+    <value>Aggiorna</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 13</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>MMATs e conferma</value>
+  </data>
+  <data name="btnCommit.Text" xml:space="preserve">
+    <value>Conferma</value>
+  </data>
+  <data name="lbIsOk.Text" xml:space="preserve">
+    <value>Confermare Prego!</value>
+  </data>
+  <data name="cball.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 150</value>
+  </data>
+  <data name="cball.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="cball.Text" xml:space="preserve">
+    <value>aggiorna tutti MMATs</value>
+  </data>
+  <data name="cbaspiration.Location" type="System.Drawing.Point, System.Drawing">
+    <value>220, 44</value>
+  </data>
+  <data name="cbaspiration.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 24</value>
+  </data>
+  <data name="cbaspiration.Text" xml:space="preserve">
+    <value>Aspirazione</value>
+  </data>
+  <data name="cbhobby.Location" type="System.Drawing.Point, System.Drawing">
+    <value>220, 24</value>
+  </data>
+  <data name="cbhobby.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 24</value>
+  </data>
+  <data name="cbhobby.Text" xml:space="preserve">
+    <value>Hobby</value>
+  </data>
+  <data name="cbappliances.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="cbappliances.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 24</value>
+  </data>
+  <data name="cbappliances.Text" xml:space="preserve">
+    <value>Elettrodomestici</value>
+  </data>
+  <data name="cbdecorative.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 44</value>
+  </data>
+  <data name="cbdecorative.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 24</value>
+  </data>
+  <data name="cbdecorative.Text" xml:space="preserve">
+    <value>Decorazioni</value>
+  </data>
+  <data name="cbelectronics.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 64</value>
+  </data>
+  <data name="cbelectronics.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 24</value>
+  </data>
+  <data name="cbelectronics.Text" xml:space="preserve">
+    <value>Elettronica</value>
+  </data>
+  <data name="cbgeneral.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 84</value>
+  </data>
+  <data name="cbgeneral.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 24</value>
+  </data>
+  <data name="cbgeneral.Text" xml:space="preserve">
+    <value>Varie</value>
+  </data>
+  <data name="cblightning.Text" xml:space="preserve">
+    <value>Illuminazione</value>
+  </data>
+  <data name="cbplumbing.Text" xml:space="preserve">
+    <value>Sanitari</value>
+  </data>
+  <data name="cbseating.Text" xml:space="preserve">
+    <value>Comfort</value>
+  </data>
+  <data name="cbsurfaces.Text" xml:space="preserve">
+    <value>Superfici</value>
+  </data>
+  <data name="cbsort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>131, 112</value>
+  </data>
+  <data name="cbsort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 21</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 106</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 23</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Sotto Ordinamenti</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>235, 8</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 144</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Ordina per Funzione</value>
+  </data>
+  <data name="cbkids.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 84</value>
+  </data>
+  <data name="cbkids.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 24</value>
+  </data>
+  <data name="cbkids.Text" xml:space="preserve">
+    <value>Camera dei Bambini</value>
+  </data>
+  <data name="cbbathroom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="cbbathroom.Text" xml:space="preserve">
+    <value>Bagno</value>
+  </data>
+  <data name="cbbedroom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 44</value>
+  </data>
+  <data name="cbbedroom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 24</value>
+  </data>
+  <data name="cbbedroom.Text" xml:space="preserve">
+    <value>Camera da Letto</value>
+  </data>
+  <data name="cbdinigroom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 64</value>
+  </data>
+  <data name="cbdinigroom.Text" xml:space="preserve">
+    <value>Sala da Pranzo</value>
+  </data>
+  <data name="cbkitchen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 84</value>
+  </data>
+  <data name="cbkitchen.Text" xml:space="preserve">
+    <value>Cucina</value>
+  </data>
+  <data name="cbmisc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 24</value>
+  </data>
+  <data name="cbmisc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 24</value>
+  </data>
+  <data name="cbmisc.Text" xml:space="preserve">
+    <value>Varie</value>
+  </data>
+  <data name="cboutside.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 44</value>
+  </data>
+  <data name="cboutside.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 24</value>
+  </data>
+  <data name="cboutside.Text" xml:space="preserve">
+    <value>Esterno</value>
+  </data>
+  <data name="cblivingroom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 104</value>
+  </data>
+  <data name="cblivingroom.Text" xml:space="preserve">
+    <value>Soggiorno</value>
+  </data>
+  <data name="cbstudy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 64</value>
+  </data>
+  <data name="cbstudy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 24</value>
+  </data>
+  <data name="cbstudy.Text" xml:space="preserve">
+    <value>Studio</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 144</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Ordina per Stanza</value>
+  </data>
+  <data name="rbhex.Location" type="System.Drawing.Point, System.Drawing">
+    <value>171, 1</value>
+  </data>
+  <data name="rbhex.Text" xml:space="preserve">
+    <value>Esadecimale</value>
+  </data>
+  <data name="rbdec.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 16</value>
+  </data>
+  <data name="rbdec.Text" xml:space="preserve">
+    <value>Decimale</value>
+  </data>
+  <data name="rbbin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 16</value>
+  </data>
+  <data name="rbbin.Text" xml:space="preserve">
+    <value>Binario</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>261, 6</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>287, 16</value>
+  </data>
+  <data name="cbtype.Location" type="System.Drawing.Point, System.Drawing">
+    <value>628, 32</value>
+  </data>
+  <data name="cbtype.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 21</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="llgetGUID.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
+  <data name="llgetGUID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>201, 99</value>
+  </data>
+  <data name="llgetGUID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 18</value>
+  </data>
+  <data name="llgetGUID.Text" xml:space="preserve">
+    <value>ottieni GUID</value>
+  </data>
+  <data name="label65.Location" type="System.Drawing.Point, System.Drawing">
+    <value>532, 35</value>
+  </data>
+  <data name="label65.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 13</value>
+  </data>
+  <data name="label65.Text" xml:space="preserve">
+    <value>Tipo Oggetto</value>
+  </data>
+  <data name="tbflname.Size" type="System.Drawing.Size, System.Drawing">
+    <value>405, 21</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 35</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 13</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Nome del File</value>
+  </data>
+  <data name="tbguid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 96</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 99</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 16</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Editor dei Dati degli Oggetti</value>
+  </data>
+</root>

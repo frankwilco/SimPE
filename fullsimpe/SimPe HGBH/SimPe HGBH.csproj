@@ -425,6 +425,10 @@
       <DependentUpon>ExtNgbhUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExtNgbhUI.it.resx">
+      <DependentUpon>ExtNgbhUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExtNgbhUI.resx">
       <DependentUpon>ExtNgbhUI.cs</DependentUpon>
     </EmbeddedResource>

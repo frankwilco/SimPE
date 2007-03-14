@@ -451,6 +451,14 @@ namespace SimPe.Interfaces.Plugin
 				return (GetType().GetInterface("SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper", false)==typeof(SimPe.Interfaces.Plugin.IMultiplePackedFileWrapper));
 			}
 		}
+
+        public virtual bool ReferencesResources
+        {
+            get
+            {
+                return (GetType().GetInterface("SimPe.Interfaces.Plugin.IWrapperReferencedResources", false) == typeof(SimPe.Interfaces.Plugin.IWrapperReferencedResources));
+            }
+        }
 		
 
 		public void RefreshUI() 

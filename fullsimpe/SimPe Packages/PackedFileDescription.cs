@@ -26,10 +26,141 @@ using SimPe.Events;
 
 namespace SimPe.Packages
 {
+    public class PackedFileDescriptorSimple : SimPe.Interfaces.Files.IPackedFileDescriptorSimple
+    {
+        public PackedFileDescriptorSimple() : this(0, 0, 0, 0)
+        {
+        }
+
+        public PackedFileDescriptorSimple(uint type, uint grp, uint ihi, uint ilo)
+        {
+            this.type = type;
+            this.group = grp;
+            this.subtype = ihi;
+            this.instance = ilo;
+        }
+
+        /// <summary>
+        /// Type of the referenced File
+        /// </summary>
+        internal UInt32 type;
+
+        /// <summary>
+        /// Returns/Sets the Type of the referenced File
+        /// </summary>
+        public UInt32 Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                if (type != value)
+                {
+                    type = value;
+                    DescriptionChangedFkt();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the Name of the represented Type
+        /// </summary>
+        public Data.TypeAlias TypeName
+        {
+            get
+            {
+                return Data.MetaData.FindTypeAlias(Type);
+            }
+        }
+
+        /// <summary>
+        /// Group the referenced file is assigned to
+        /// </summary>
+        internal UInt32 group;
+
+        /// <summary>
+        /// Returns/Sets the Group the referenced file is assigned to
+        /// </summary>
+        public UInt32 Group
+        {
+            get
+            {
+                return group;
+            }
+            set
+            {
+                if (group != value)
+                {
+                    group = value;
+                    DescriptionChangedFkt();
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// Instance Data
+        /// </summary>
+        internal UInt32 instance;
+
+        /// <summary>
+        /// Returns or sets the Instance Data
+        /// </summary>
+        public UInt32 Instance
+        {
+            get
+            {
+                return instance;
+            }
+            set
+            {
+                if (instance != value)
+                {
+                    instance = value;
+                    DescriptionChangedFkt();
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// An yet unknown Type
+        /// </summary>
+        /// <remarks>Only in Version 1.1 of package Files</remarks>
+        internal UInt32 subtype;
+
+        /// <summary>
+        /// Returns/Sets an yet unknown Type
+        /// </summary>		
+        /// <remarks>Only in Version 1.1 of package Files</remarks>
+        public UInt32 SubType
+        {
+            get
+            {
+                return subtype;
+            }
+            set
+            {
+                if (subtype != value)
+                {
+                    subtype = value;
+                    DescriptionChangedFkt();
+                }
+            }
+        }
+
+        protected virtual void DescriptionChangedFkt()
+        {
+        }
+    }
 	/// <summary>
 	/// Structure of a FileIndex Item
 	/// </summary>
-	public class PackedFileDescriptor : HoleIndexItem, IPackedFileDescriptor, System.IDisposable
+    public class PackedFileDescriptor : PackedFileDescriptorSimple, IPackedFileDescriptor, System.IDisposable
 	{
 
 		/// <summary>
@@ -50,7 +181,7 @@ namespace SimPe.Packages
 			pfd.wascomp = this.wascomp;	
 		
 			pfd.markcompress = this.markcompress;
-			pfd.markdeleted = this.markdeleted;
+            pfd.markdeleted = this.markdeleted;
 
 			return (IPackedFileDescriptor)pfd;
 		}
@@ -66,12 +197,14 @@ namespace SimPe.Packages
 			changed = false;
 			valid = true;
 			wascomp = false;
+            offset = 0;
+            size = 0;
 		}
 
 		/// <summary>
 		/// Returns the Size of the File
 		/// </summary>
-		public override int Size
+		public int Size
 		{
 			get 
 			{
@@ -79,7 +212,8 @@ namespace SimPe.Packages
 					return size;
 				else
 					return (int)userdata.Length;
-			}
+            }
+            set { size = value; }
 		}
 
 		/// <summary>
@@ -93,118 +227,33 @@ namespace SimPe.Packages
 			}
 		}
 
-		/// <summary>
-		/// Type of the referenced File
-		/// </summary>
-		internal UInt32 type;
 
-		/// <summary>
-		/// Returns/Sets the Type of the referenced File
-		/// </summary>
-		public UInt32 Type
-		{
-			get 
-			{
-				return type;
-			}
-			set 
-			{
-				if (type!=value)
-				{
-					type = value;
-					DescriptionChangedFkt();
-				}
-			}
-		}
+        /// <summary>
+        /// Location of the File within the Package
+        /// </summary>
+        internal uint offset;
 
-		/// <summary>
-		/// Returns the Name of the represented Type
-		/// </summary>
-		public Data.TypeAlias TypeName 
-		{
-			get 
-			{
-				return Data.MetaData.FindTypeAlias(Type);
-			}
-		}
-
-		/// <summary>
-		/// Group the referenced file is assigned to
-		/// </summary>
-		internal UInt32 group;
-
-		/// <summary>
-		/// Returns/Sets the Group the referenced file is assigned to
-		/// </summary>
-		public UInt32 Group
-		{
-			get 
-			{
-				return group;
-			}
-			set 
-			{
-				if (group!=value) 
-				{
-					group = value;
-					DescriptionChangedFkt();
-				}
-			}
-		}
+        /// <summary>
+        /// Returns the Location of the File within the Package
+        /// </summary>
+        public uint Offset
+        {
+            get
+            {
+                return offset;
+            }
+            set { offset = value; }
+        }
 
 
 
-		/// <summary>
-		/// Instance Data
-		/// </summary>
-		internal UInt32 instance;
+        /// <summary>
+        /// Size of the compressed File
+        /// </summary>		
+        internal int size;
+		
 
-		/// <summary>
-		/// Returns or sets the Instance Data
-		/// </summary>
-		public UInt32 Instance
-		{
-			get 
-			{
-				return instance;
-			}
-			set 
-			{
-				if (instance!=value) 
-				{					
-					instance = value;
-					DescriptionChangedFkt();
-				}
-			}
-		}
-
-
-
-		/// <summary>
-		/// An yet unknown Type
-		/// </summary>
-		/// <remarks>Only in Version 1.1 of package Files</remarks>
-		internal UInt32 subtype;
-
-		/// <summary>
-		/// Returns/Sets an yet unknown Type
-		/// </summary>		
-		/// <remarks>Only in Version 1.1 of package Files</remarks>
-		public UInt32 SubType
-		{
-			get 
-			{
-				return subtype;
-			}
-			set 
-			{
-				if (subtype!=value) 
-				{					
-					subtype = value;
-					DescriptionChangedFkt();
-				}
-			}
-		}
+		
 
 		/// <summary>
 		/// Returns the Long Instance
@@ -666,7 +715,7 @@ namespace SimPe.Packages
 			if (ChangedData !=null ) ChangedData(this);
 		}
 
-		void DescriptionChangedFkt()
+		protected override void DescriptionChangedFkt()
 		{
 			if (pause)
 			{

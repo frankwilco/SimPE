@@ -214,31 +214,44 @@
   <data name="NrefPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 17</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="llcpfadd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
   <data name="llcpfadd.Location" type="System.Drawing.Point, System.Drawing">
     <value>528, 262</value>
   </data>
   <data name="llcpfadd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 18</value>
+    <value>63, 13</value>
   </data>
   <data name="llcpfadd.Text" xml:space="preserve">
     <value>aggiungi</value>
+  </data>
+  <data name="llcpfchange.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
   </data>
   <data name="llcpfchange.Location" type="System.Drawing.Point, System.Drawing">
     <value>463, 262</value>
   </data>
   <data name="llcpfchange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 18</value>
+    <value>63, 13</value>
   </data>
   <data name="llcpfchange.Text" xml:space="preserve">
     <value>modifica</value>
+  </data>
+  <data name="linkLabel1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
   </data>
   <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>593, 262</value>
   </data>
   <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 18</value>
+    <value>61, 13</value>
   </data>
   <data name="linkLabel1.Text" xml:space="preserve">
     <value>cancella</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
   </data>
 </root>

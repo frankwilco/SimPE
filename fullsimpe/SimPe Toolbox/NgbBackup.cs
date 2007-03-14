@@ -206,6 +206,8 @@ namespace SimPe.Plugin
 			this.prov = prov;
 
 			string name = System.IO.Path.GetFileName(path);
+            long grp = PathProvider.Global.SaveGamePathProvidedByGroup(path);
+            if (grp > 1) name = grp.ToString() + "_" + name;
             backuppath = System.IO.Path.Combine(PathProvider.Global.BackupFolder, name);
 
 			UpdateList();

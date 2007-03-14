@@ -141,7 +141,7 @@ namespace SimPe.Database
         {
             try
             {
-                CreateTable("outlink", "'rid' INTEGER  NOT NULL PRIMARY KEY, 'linkedrid' INTEGER  NOT NULL");
+                CreateTable("outlink", "'rid' INTEGER  NOT NULL PRIMARY KEY, 't' INTEGER  NOT NULL, 'g' INTEGER  NOT NULL, 'ihi' INTEGER  NOT NULL, 'ilo' INTEGER  NOT NULL");
             }
             catch (Exception ex)
             {
@@ -326,8 +326,9 @@ namespace SimPe.Database
                     else op = odict[pfd.Type];
                     DateTime start = DateTime.Now;
 
+                    SimPe.Data.TypeAlias ta = pfd.TypeName;
                     SimPe.Interfaces.Plugin.Internal.IPackedFileWrapper wrp;
-                    if (pfd.Type == Data.MetaData.LIFO || pfd.Type == 0x4E524546 /*NREF*/ || pfd.Type == Data.MetaData.GMDC || pfd.Type == Data.MetaData.ANIM)
+                    if (ta.IgnoreDuringCacheBuild)
                         wrp = null;
                     else if (pfd.Type == Data.MetaData.LIFO || pfd.Type == Data.MetaData.GMDC)
                         wrp = new SimPe.Plugin.GenericRcol(null, true);

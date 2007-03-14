@@ -58,7 +58,7 @@ namespace SimPe
 			{
 				if (a.Id==0xffffffff) 
 				{
-					SimPe.Data.TypeAlias an = new SimPe.Data.TypeAlias(false, "ALL", 0xffffffff, "---  All Types ---", true);
+					SimPe.Data.TypeAlias an = new SimPe.Data.TypeAlias(false, "ALL", 0xffffffff, "---  All Types ---", true, true);
 					cbtypes.Items.Add(an);
 				} else  cbtypes.Items.Add(a);
 			}

@@ -127,11 +127,20 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Elenco Sim:</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>198, 17</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>L'aspetto di questo Sim è stato modificato.</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbeye.Text" xml:space="preserve">
     <value>Solo Occhi</value>
@@ -139,11 +148,18 @@
   <data name="cbmakeup.Text" xml:space="preserve">
     <value>Solo Trucco</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="llexport.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
+  <data name="llexport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 0</value>
+  </data>
   <data name="llexport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 18</value>
+    <value>184, 18</value>
   </data>
   <data name="llexport.Text" xml:space="preserve">
-    <value>Esporta(thanks to Pinhead)</value>
+    <value>Esporta (thanks to Pinhead)</value>
   </data>
   <data name="llexport.ToolTip" xml:space="preserve">
     <value>I Sim esportati appariranno in Bodyshop e nel catalogo di Sim selezionabili dal CAS</value>
@@ -151,8 +167,17 @@
   <data name="lbpatlife.Text" xml:space="preserve">
     <value>Eta'</value>
   </data>
+  <data name="lbpatlife.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lbpatname.Text" xml:space="preserve">
     <value>Nome</value>
+  </data>
+  <data name="lbpatname.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pbpatient.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="llusepatient.Text" xml:space="preserve">
     <value>usa</value>
@@ -163,14 +188,26 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Sim Paziente</value>
   </data>
+  <data name="groupBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lbarchlife.Text" xml:space="preserve">
     <value>Eta'</value>
+  </data>
+  <data name="lbarchlife.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="lbarchname.Text" xml:space="preserve">
     <value>Nome</value>
   </data>
+  <data name="lbarchname.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="llusearche.Text" xml:space="preserve">
     <value>usa</value>
+  </data>
+  <data name="pbarche.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 13</value>
@@ -178,14 +215,26 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Come apparirà il Sim dopo le modifiche.</value>
   </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Sim Archetipo (Modello)</value>
+  </data>
+  <data name="groupBox2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbskin.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 24</value>
   </data>
   <data name="cbskin.Text" xml:space="preserve">
     <value>Solo Skintone (Carnagione)</value>
+  </data>
+  <data name="lvskin.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox3.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -458,11 +507,10 @@
         wAAAA//////wAAAP//////4AAH///////+AH////
 </value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Strumento di Chirugia per Sim</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

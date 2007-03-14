@@ -119,10 +119,10 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbwait.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 18</value>
+    <value>94, 18</value>
   </data>
   <data name="lbwait.Text" xml:space="preserve">
-    <value>Attendi...</value>
+    <value>Attendi ...</value>
   </data>
   <data name="pbsimpe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -123,16 +123,22 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="listBanner.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 16</value>
+    <value>83, 16</value>
+  </data>
+  <data name="listBanner.Text" xml:space="preserve">
+    <value>etichetta1</value>
   </data>
   <data name="lllvcommit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="lllvcommit.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
   </data>
   <data name="lllvcommit.Location" type="System.Drawing.Point, System.Drawing">
     <value>493, 223</value>
   </data>
   <data name="lllvcommit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 17</value>
+    <value>51, 13</value>
   </data>
   <data name="lllvcommit.Text" xml:space="preserve">
     <value>conferma</value>
@@ -141,9 +147,12 @@
     <value>NoControl</value>
   </data>
   <data name="treeBanner.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 16</value>
+    <value>83, 16</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="treeBanner.Text" xml:space="preserve">
+    <value>etichetta1</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Elementi</value>
   </data>
 </root>

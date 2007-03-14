@@ -130,17 +130,18 @@
   <data name="btPicExport.Text" xml:space="preserve">
     <value>Esporta...</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="visualStyleLinkLabel2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
   <data name="visualStyleLinkLabel2.Location" type="System.Drawing.Point, System.Drawing">
     <value>237, 115</value>
   </data>
   <data name="visualStyleLinkLabel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 17</value>
+    <value>51, 13</value>
   </data>
   <data name="visualStyleLinkLabel2.Text" xml:space="preserve">
     <value>conferma</value>
-  </data>
-  <data name="objdPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>310, 3</value>
   </data>
   <data name="cbupdate.Location" type="System.Drawing.Point, System.Drawing">
     <value>288, 35</value>
@@ -157,20 +158,41 @@
   <data name="label63.Text" xml:space="preserve">
     <value>GUID Originale:</value>
   </data>
+  <data name="tbproxguid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>619, 88</value>
+  </data>
+  <data name="tbproxguid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 20</value>
+  </data>
+  <data name="label97.Location" type="System.Drawing.Point, System.Drawing">
+    <value>518, 95</value>
+  </data>
+  <data name="llgetGUID.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
   <data name="llgetGUID.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 17</value>
   </data>
   <data name="llgetGUID.Text" xml:space="preserve">
     <value>ottieni GUID</value>
   </data>
+  <data name="pnelements.Size" type="System.Drawing.Size, System.Drawing">
+    <value>660, 72</value>
+  </data>
+  <data name="gbelements.Size" type="System.Drawing.Size, System.Drawing">
+    <value>676, 96</value>
+  </data>
   <data name="gbelements.Text" xml:space="preserve">
     <value>Elementi</value>
   </data>
+  <data name="llcommitobjd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
   <data name="llcommitobjd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>629, 219</value>
+    <value>641, 219</value>
   </data>
   <data name="llcommitobjd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 17</value>
+    <value>51, 13</value>
   </data>
   <data name="llcommitobjd.Text" xml:space="preserve">
     <value>conferma</value>
@@ -183,6 +205,9 @@
   </data>
   <data name="label65.Text" xml:space="preserve">
     <value>Tipo Oggetto:</value>
+  </data>
+  <data name="tbsimname.Size" type="System.Drawing.Size, System.Drawing">
+    <value>593, 20</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 67</value>
@@ -199,329 +224,26 @@
   <data name="label12.Text" xml:space="preserve">
     <value>Descrizione Oggetto</value>
   </data>
-  <data name="gb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 72</value>
+  <data name="panel6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>700, 24</value>
   </data>
-  <data name="gb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 144</value>
+  <data name="objdPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>310, 3</value>
   </data>
-  <data name="llsimrelcommit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 195</value>
+  <data name="objdPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>700, 248</value>
   </data>
-  <data name="llsimrelcommit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 18</value>
+  <data name="realPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 150</value>
   </data>
-  <data name="llsimrelcommit.Text" xml:space="preserve">
-    <value>conferma relazioni</value>
+  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1013, 422</value>
   </data>
-  <data name="cboutbest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 64</value>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1021, 448</value>
   </data>
-  <data name="cboutbest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 16</value>
-  </data>
-  <data name="cboutbest.Text" xml:space="preserve">
-    <value>Conoscente</value>
-  </data>
-  <data name="cboutfamily.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 48</value>
-  </data>
-  <data name="cboutfamily.Text" xml:space="preserve">
-    <value>Familiare</value>
-  </data>
-  <data name="cboutmarried.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 32</value>
-  </data>
-  <data name="cboutmarried.Text" xml:space="preserve">
-    <value>Coniuge</value>
-  </data>
-  <data name="cboutengaged.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 16</value>
-  </data>
-  <data name="cboutengaged.Text" xml:space="preserve">
-    <value>Fidanzato</value>
-  </data>
-  <data name="cboutsteady.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 48</value>
-  </data>
-  <data name="cboutsteady.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
-  <data name="cboutsteady.Text" xml:space="preserve">
-    <value>Coppia</value>
-  </data>
-  <data name="cboutlove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 32</value>
-  </data>
-  <data name="cboutlove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
-  <data name="cboutlove.Text" xml:space="preserve">
-    <value>Amore</value>
-  </data>
-  <data name="cboutcrush.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 16</value>
-  </data>
-  <data name="cboutcrush.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
-  <data name="cboutcrush.Text" xml:space="preserve">
-    <value>Infatuato</value>
-  </data>
-  <data name="cboutbuddie.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 48</value>
-  </data>
-  <data name="cboutbuddie.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 16</value>
-  </data>
-  <data name="cboutbuddie.Text" xml:space="preserve">
-    <value>Migliore Amico</value>
-  </data>
-  <data name="cboutfriend.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 32</value>
-  </data>
-  <data name="cboutfriend.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 16</value>
-  </data>
-  <data name="cboutfriend.Text" xml:space="preserve">
-    <value>Amico</value>
-  </data>
-  <data name="cboutenemy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 16</value>
-  </data>
-  <data name="cboutenemy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 16</value>
-  </data>
-  <data name="cboutenemy.Text" xml:space="preserve">
-    <value>Nemico</value>
-  </data>
-  <data name="label53.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 41</value>
-  </data>
-  <data name="label53.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="label53.Text" xml:space="preserve">
-    <value>Globale:</value>
-  </data>
-  <data name="label52.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 24</value>
-  </data>
-  <data name="label52.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 13</value>
-  </data>
-  <data name="label52.Text" xml:space="preserve">
-    <value>Quotidiano:</value>
-  </data>
-  <data name="gbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 88</value>
-  </data>
-  <data name="gbout.Text" xml:space="preserve">
-    <value>Cosa prova questo Sim per ...</value>
-  </data>
-  <data name="cbinbest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 64</value>
-  </data>
-  <data name="cbinbest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 16</value>
-  </data>
-  <data name="cbinbest.Text" xml:space="preserve">
-    <value>Conoscente</value>
-  </data>
-  <data name="cbinfamily.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 48</value>
-  </data>
-  <data name="cbinfamily.Text" xml:space="preserve">
-    <value>Familiare</value>
-  </data>
-  <data name="cbinmarried.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 32</value>
-  </data>
-  <data name="cbinmarried.Text" xml:space="preserve">
-    <value>Coniuge</value>
-  </data>
-  <data name="cbinengaged.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 16</value>
-  </data>
-  <data name="cbinengaged.Text" xml:space="preserve">
-    <value>Fidanzato</value>
-  </data>
-  <data name="cbinsteady.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 48</value>
-  </data>
-  <data name="cbinsteady.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
-  <data name="cbinsteady.Text" xml:space="preserve">
-    <value>Coppia</value>
-  </data>
-  <data name="cbinlove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 32</value>
-  </data>
-  <data name="cbinlove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
-  <data name="cbinlove.Text" xml:space="preserve">
-    <value>Amore</value>
-  </data>
-  <data name="cbincrush.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 16</value>
-  </data>
-  <data name="cbincrush.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
-  <data name="cbincrush.Text" xml:space="preserve">
-    <value>Infatuato</value>
-  </data>
-  <data name="cbinbuddie.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 48</value>
-  </data>
-  <data name="cbinbuddie.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 16</value>
-  </data>
-  <data name="cbinbuddie.Text" xml:space="preserve">
-    <value>Migliore Amico</value>
-  </data>
-  <data name="cbinfriend.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 32</value>
-  </data>
-  <data name="cbinfriend.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 16</value>
-  </data>
-  <data name="cbinfriend.Text" xml:space="preserve">
-    <value>Amico</value>
-  </data>
-  <data name="cbinenemy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 16</value>
-  </data>
-  <data name="cbinenemy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 16</value>
-  </data>
-  <data name="cbinenemy.Text" xml:space="preserve">
-    <value>Nemico</value>
-  </data>
-  <data name="label54.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 40</value>
-  </data>
-  <data name="label54.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="label54.Text" xml:space="preserve">
-    <value>Globale:</value>
-  </data>
-  <data name="label55.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 24</value>
-  </data>
-  <data name="label55.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 13</value>
-  </data>
-  <data name="label55.Text" xml:space="preserve">
-    <value>Quotidiano:</value>
-  </data>
-  <data name="gbin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 88</value>
-  </data>
-  <data name="gbin.Text" xml:space="preserve">
-    <value>Cosa ... prova per questo Sim</value>
-  </data>
-  <data name="lldna.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 18</value>
-  </data>
-  <data name="lldna.Text" xml:space="preserve">
-    <value>Mostra DNA...</value>
-  </data>
-  <data name="llcloth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 18</value>
-  </data>
-  <data name="llcloth.Text" xml:space="preserve">
-    <value>Mostra Vestiti...</value>
-  </data>
-  <data name="llfam.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 18</value>
-  </data>
-  <data name="llfam.Text" xml:space="preserve">
-    <value>Istanza Famiglia:</value>
-  </data>
-  <data name="tbsimdescfamname.Location" type="System.Drawing.Point, System.Drawing">
-    <value>568, 32</value>
-  </data>
-  <data name="tbfaminst.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 56</value>
-  </data>
-  <data name="cbzodiac.Location" type="System.Drawing.Point, System.Drawing">
-    <value>616, 56</value>
-  </data>
-  <data name="label49.Location" type="System.Drawing.Point, System.Drawing">
-    <value>519, 88</value>
-  </data>
-  <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 13</value>
-  </data>
-  <data name="label49.Text" xml:space="preserve">
-    <value>Agisci come</value>
-  </data>
-  <data name="rbmale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>692, 88</value>
-  </data>
-  <data name="rbmale.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
-  </data>
-  <data name="rbmale.Text" xml:space="preserve">
-    <value>Maschio</value>
-  </data>
-  <data name="rbfemale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>616, 88</value>
-  </data>
-  <data name="rbfemale.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 16</value>
-  </data>
-  <data name="rbfemale.Text" xml:space="preserve">
-    <value>Femmina</value>
-  </data>
-  <data name="label48.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 64</value>
-  </data>
-  <data name="label48.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 13</value>
-  </data>
-  <data name="label48.Text" xml:space="preserve">
-    <value>Eta':</value>
-  </data>
-  <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
-    <value>494, 64</value>
-  </data>
-  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 13</value>
-  </data>
-  <data name="label47.Text" xml:space="preserve">
-    <value>Segno Zodiacale:</value>
-  </data>
-  <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
-    <value>234, 88</value>
-  </data>
-  <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 13</value>
-  </data>
-  <data name="label46.Text" xml:space="preserve">
-    <value>Aspirazione:</value>
-  </data>
-  <data name="llsdesccommit.Text" xml:space="preserve">
-    <value>Conferma</value>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>Nome:</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 13</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Giorni Residui:</value>
-  </data>
-  <data name="linkLabel5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 18</value>
-  </data>
-  <data name="linkLabel5.Text" xml:space="preserve">
-    <value>Vai a Desideri e Paure...</value>
+  <data name="gbties.Text" xml:space="preserve">
+    <value>Parentele</value>
   </data>
   <data name="btnewtie.Location" type="System.Drawing.Point, System.Drawing">
     <value>639, 72</value>
@@ -562,6 +284,9 @@
   <data name="btaddtie.Text" xml:space="preserve">
     <value>&lt;-- aggiungi Parentela</value>
   </data>
+  <data name="llcommitties.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
   <data name="llcommitties.Location" type="System.Drawing.Point, System.Drawing">
     <value>75, 275</value>
   </data>
@@ -579,15 +304,6 @@
   </data>
   <data name="label68.Text" xml:space="preserve">
     <value>Editor delle Parentele</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 139</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 13</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Membri della famiglia:</value>
   </data>
   <data name="cbcomputer.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 38</value>
@@ -667,6 +383,15 @@
   <data name="tbmoney.Location" type="System.Drawing.Point, System.Drawing">
     <value>161, 73</value>
   </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 139</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 13</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Membri della famiglia:</value>
+  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>35, 103</value>
   </data>
@@ -699,732 +424,6 @@
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Istanza del Lotto:</value>
-  </data>
-  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="label70.Text" xml:space="preserve">
-    <value>disgustato</value>
-  </data>
-  <data name="label69.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 13</value>
-  </data>
-  <data name="label69.Text" xml:space="preserve">
-    <value>attratto</value>
-  </data>
-  <data name="label67.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 168</value>
-  </data>
-  <data name="label67.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 13</value>
-  </data>
-  <data name="label67.Text" xml:space="preserve">
-    <value>Maschi</value>
-  </data>
-  <data name="label66.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 13</value>
-  </data>
-  <data name="label66.Text" xml:space="preserve">
-    <value>Femmine</value>
-  </data>
-  <data name="label38.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 32</value>
-  </data>
-  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 13</value>
-  </data>
-  <data name="label38.Text" xml:space="preserve">
-    <value>Paranormale</value>
-  </data>
-  <data name="label37.Location" type="System.Drawing.Point, System.Drawing">
-    <value>346, 64</value>
-  </data>
-  <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
-  </data>
-  <data name="label37.Text" xml:space="preserve">
-    <value>Sport</value>
-  </data>
-  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 96</value>
-  </data>
-  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="label28.Text" xml:space="preserve">
-    <value>Politica</value>
-  </data>
-  <data name="label36.Location" type="System.Drawing.Point, System.Drawing">
-    <value>347, 48</value>
-  </data>
-  <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
-  </data>
-  <data name="label36.Text" xml:space="preserve">
-    <value>Moda</value>
-  </data>
-  <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
-    <value>341, 32</value>
-  </data>
-  <data name="label35.Text" xml:space="preserve">
-    <value>Salute</value>
-  </data>
-  <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 16</value>
-  </data>
-  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 13</value>
-  </data>
-  <data name="label34.Text" xml:space="preserve">
-    <value>Cibo</value>
-  </data>
-  <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 64</value>
-  </data>
-  <data name="label33.Text" xml:space="preserve">
-    <value>Cultura</value>
-  </data>
-  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 80</value>
-  </data>
-  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 13</value>
-  </data>
-  <data name="label29.Text" xml:space="preserve">
-    <value>Soldi</value>
-  </data>
-  <data name="label43.Location" type="System.Drawing.Point, System.Drawing">
-    <value>629, 64</value>
-  </data>
-  <data name="label43.Text" xml:space="preserve">
-    <value>Scuola</value>
-  </data>
-  <data name="label42.Location" type="System.Drawing.Point, System.Drawing">
-    <value>624, 48</value>
-  </data>
-  <data name="label42.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 13</value>
-  </data>
-  <data name="label42.Text" xml:space="preserve">
-    <value>Animali</value>
-  </data>
-  <data name="label40.Location" type="System.Drawing.Point, System.Drawing">
-    <value>627, 16</value>
-  </data>
-  <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 13</value>
-  </data>
-  <data name="label40.Text" xml:space="preserve">
-    <value>Lavoro</value>
-  </data>
-  <data name="label41.Location" type="System.Drawing.Point, System.Drawing">
-    <value>627, 32</value>
-  </data>
-  <data name="label41.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 13</value>
-  </data>
-  <data name="label41.Text" xml:space="preserve">
-    <value>Tempo</value>
-  </data>
-  <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 80</value>
-  </data>
-  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 13</value>
-  </data>
-  <data name="label31.Text" xml:space="preserve">
-    <value>Crimine</value>
-  </data>
-  <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 16</value>
-  </data>
-  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
-  </data>
-  <data name="label30.Text" xml:space="preserve">
-    <value>Ambiente</value>
-  </data>
-  <data name="label45.Location" type="System.Drawing.Point, System.Drawing">
-    <value>624, 96</value>
-  </data>
-  <data name="label45.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 13</value>
-  </data>
-  <data name="label45.Text" xml:space="preserve">
-    <value>Scienza</value>
-  </data>
-  <data name="label44.Location" type="System.Drawing.Point, System.Drawing">
-    <value>629, 80</value>
-  </data>
-  <data name="label44.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 13</value>
-  </data>
-  <data name="label44.Text" xml:space="preserve">
-    <value>Giochi</value>
-  </data>
-  <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
-    <value>341, 96</value>
-  </data>
-  <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 13</value>
-  </data>
-  <data name="label39.Text" xml:space="preserve">
-    <value>Viaggi</value>
-  </data>
-  <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 48</value>
-  </data>
-  <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 13</value>
-  </data>
-  <data name="label32.Text" xml:space="preserve">
-    <value>Divertimento</value>
-  </data>
-  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>793, 191</value>
-  </data>
-  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 18</value>
-  </data>
-  <data name="linkLabel1.Text" xml:space="preserve">
-    <value>massimizza</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Forma Fisica</value>
-  </data>
-  <data name="cbfit.Text" xml:space="preserve">
-    <value>In Forma</value>
-  </data>
-  <data name="cbpreginv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 24</value>
-  </data>
-  <data name="cbpreginv.Text" xml:space="preserve">
-    <value>Gravidanza (invisibile)</value>
-  </data>
-  <data name="cbpreghalf.Text" xml:space="preserve">
-    <value>Gravidanza (Metà)</value>
-  </data>
-  <data name="cbpregfull.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 24</value>
-  </data>
-  <data name="cbpregfull.Text" xml:space="preserve">
-    <value>Gravidanza (completa)</value>
-  </data>
-  <data name="cbfat.Text" xml:space="preserve">
-    <value>Grasso</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Varie</value>
-  </data>
-  <data name="label95.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 88</value>
-  </data>
-  <data name="label95.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
-  </data>
-  <data name="label95.Text" xml:space="preserve">
-    <value>Durata Età</value>
-  </data>
-  <data name="label94.Text" xml:space="preserve">
-    <value>Giorni in età prec.</value>
-  </data>
-  <data name="label90.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 56</value>
-  </data>
-  <data name="label90.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 13</value>
-  </data>
-  <data name="label90.Text" xml:space="preserve">
-    <value>Tipo di voce</value>
-  </data>
-  <data name="label87.Location" type="System.Drawing.Point, System.Drawing">
-    <value>55, 40</value>
-  </data>
-  <data name="label87.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 13</value>
-  </data>
-  <data name="label87.Text" xml:space="preserve">
-    <value>Tipo NPC</value>
-  </data>
-  <data name="label86.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 24</value>
-  </data>
-  <data name="label86.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 13</value>
-  </data>
-  <data name="label86.Text" xml:space="preserve">
-    <value>Livello Autonomia</value>
-  </data>
-  <data name="llmore.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 18</value>
-  </data>
-  <data name="llmore.Text" xml:space="preserve">
-    <value>altro...</value>
-  </data>
-  <data name="gbdecay.Text" xml:space="preserve">
-    <value>Bisogni</value>
-  </data>
-  <data name="pbfun.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 120</value>
-  </data>
-  <data name="pbfun.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 16</value>
-  </data>
-  <data name="label85.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 120</value>
-  </data>
-  <data name="label85.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 13</value>
-  </data>
-  <data name="label85.Text" xml:space="preserve">
-    <value>Divertimento</value>
-  </data>
-  <data name="pbsocial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 104</value>
-  </data>
-  <data name="pbsocial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 16</value>
-  </data>
-  <data name="label84.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 105</value>
-  </data>
-  <data name="label84.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="label84.Text" xml:space="preserve">
-    <value>Socialità</value>
-  </data>
-  <data name="pbhygiene.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 88</value>
-  </data>
-  <data name="pbhygiene.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 16</value>
-  </data>
-  <data name="label83.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 88</value>
-  </data>
-  <data name="label83.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 13</value>
-  </data>
-  <data name="label83.Text" xml:space="preserve">
-    <value>Igiene</value>
-  </data>
-  <data name="pbenergy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 72</value>
-  </data>
-  <data name="pbenergy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 16</value>
-  </data>
-  <data name="label82.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 72</value>
-  </data>
-  <data name="label82.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
-  </data>
-  <data name="label82.Text" xml:space="preserve">
-    <value>Energia</value>
-  </data>
-  <data name="pbbladder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 56</value>
-  </data>
-  <data name="pbbladder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 16</value>
-  </data>
-  <data name="label81.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 56</value>
-  </data>
-  <data name="label81.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
-  </data>
-  <data name="label81.Text" xml:space="preserve">
-    <value>Vescica</value>
-  </data>
-  <data name="pbcomfort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 40</value>
-  </data>
-  <data name="pbcomfort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 16</value>
-  </data>
-  <data name="label80.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 40</value>
-  </data>
-  <data name="pbhunger.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 24</value>
-  </data>
-  <data name="pbhunger.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 16</value>
-  </data>
-  <data name="label79.Location" type="System.Drawing.Point, System.Drawing">
-    <value>41, 24</value>
-  </data>
-  <data name="label79.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
-  </data>
-  <data name="label79.Text" xml:space="preserve">
-    <value>Fame</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Fantasma</value>
-  </data>
-  <data name="cbignoretraversal.Text" xml:space="preserve">
-    <value>Ignora Costi</value>
-  </data>
-  <data name="cbpasspeople.Text" xml:space="preserve">
-    <value>Passa attraverso Persone</value>
-  </data>
-  <data name="cbpasswalls.Text" xml:space="preserve">
-    <value>Passa attraverso Muri</value>
-  </data>
-  <data name="cbpassobject.Text" xml:space="preserve">
-    <value>Passa attraverso Oggetti</value>
-  </data>
-  <data name="cbisghost.Text" xml:space="preserve">
-    <value>E' fantasma</value>
-  </data>
-  <data name="gbcareer.Text" xml:space="preserve">
-    <value>Carriera</value>
-  </data>
-  <data name="label88.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 64</value>
-  </data>
-  <data name="label61.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 48</value>
-  </data>
-  <data name="label61.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 13</value>
-  </data>
-  <data name="label61.Text" xml:space="preserve">
-    <value>Livello Carriera</value>
-  </data>
-  <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="label50.Text" xml:space="preserve">
-    <value>Carriera</value>
-  </data>
-  <data name="gblifeline.Text" xml:space="preserve">
-    <value>Aspirazione</value>
-  </data>
-  <data name="label62.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 40</value>
-  </data>
-  <data name="label62.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="label62.Text" xml:space="preserve">
-    <value>Attuale</value>
-  </data>
-  <data name="label60.Text" xml:space="preserve">
-    <value>Premi</value>
-  </data>
-  <data name="label59.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 13</value>
-  </data>
-  <data name="label59.Text" xml:space="preserve">
-    <value>Stadio</value>
-  </data>
-  <data name="gbcharacter.Text" xml:space="preserve">
-    <value>Personalità</value>
-  </data>
-  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 88</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 13</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Simpatico</value>
-  </data>
-  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 56</value>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 13</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Attivo</value>
-  </data>
-  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 72</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 13</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Giocoso</value>
-  </data>
-  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 40</value>
-  </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Estroverso</value>
-  </data>
-  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 24</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 13</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Ordinato</value>
-  </data>
-  <data name="linkLabel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 0</value>
-  </data>
-  <data name="gbgencharacter.Text" xml:space="preserve">
-    <value>Personalità Genetica</value>
-  </data>
-  <data name="label71.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 88</value>
-  </data>
-  <data name="label71.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 13</value>
-  </data>
-  <data name="label71.Text" xml:space="preserve">
-    <value>Simpatico</value>
-  </data>
-  <data name="label72.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 56</value>
-  </data>
-  <data name="label72.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 13</value>
-  </data>
-  <data name="label72.Text" xml:space="preserve">
-    <value>Attivo</value>
-  </data>
-  <data name="label73.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 72</value>
-  </data>
-  <data name="label73.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 13</value>
-  </data>
-  <data name="label73.Text" xml:space="preserve">
-    <value>Giocoso</value>
-  </data>
-  <data name="label74.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 40</value>
-  </data>
-  <data name="label74.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
-  </data>
-  <data name="label74.Text" xml:space="preserve">
-    <value>Estroverso</value>
-  </data>
-  <data name="label75.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 24</value>
-  </data>
-  <data name="label75.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 13</value>
-  </data>
-  <data name="label75.Text" xml:space="preserve">
-    <value>Ordinato</value>
-  </data>
-  <data name="linkLabel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 0</value>
-  </data>
-  <data name="gbschool.Text" xml:space="preserve">
-    <value>Scuola</value>
-  </data>
-  <data name="label77.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 56</value>
-  </data>
-  <data name="label77.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
-  </data>
-  <data name="label77.Text" xml:space="preserve">
-    <value>Livello:</value>
-  </data>
-  <data name="label78.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 13</value>
-  </data>
-  <data name="label78.Text" xml:space="preserve">
-    <value>Tipo:</value>
-  </data>
-  <data name="btaddrelation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>62, 80</value>
-  </data>
-  <data name="btaddrelation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 23</value>
-  </data>
-  <data name="btaddrelation.Text" xml:space="preserve">
-    <value>aggiungi Relazione --&gt;</value>
-  </data>
-  <data name="btdeleterelation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>62, 110</value>
-  </data>
-  <data name="btdeleterelation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 23</value>
-  </data>
-  <data name="btdeleterelation.Text" xml:space="preserve">
-    <value>cancella Relazione</value>
-  </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 29</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Le modifiche sono confermate in automatico</value>
-  </data>
-  <data name="gbskills.Text" xml:space="preserve">
-    <value>Abilita'</value>
-  </data>
-  <data name="tbromance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 104</value>
-  </data>
-  <data name="pbromance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 104</value>
-  </data>
-  <data name="label76.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 107</value>
-  </data>
-  <data name="label76.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 13</value>
-  </data>
-  <data name="label76.Text" xml:space="preserve">
-    <value>Romanticismo</value>
-  </data>
-  <data name="pbcooking.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 32</value>
-  </data>
-  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 33</value>
-  </data>
-  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 13</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Cucina</value>
-  </data>
-  <data name="label51.Location" type="System.Drawing.Point, System.Drawing">
-    <value>310, 83</value>
-  </data>
-  <data name="label51.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 13</value>
-  </data>
-  <data name="label51.Text" xml:space="preserve">
-    <value>Forma fisica</value>
-  </data>
-  <data name="tbbody.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 80</value>
-  </data>
-  <data name="tbcharisma.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 64</value>
-  </data>
-  <data name="tbmechanical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 48</value>
-  </data>
-  <data name="tbcooking.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 32</value>
-  </data>
-  <data name="pbbody.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 80</value>
-  </data>
-  <data name="pbcharisma.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 64</value>
-  </data>
-  <data name="pbmechanical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 48</value>
-  </data>
-  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
-    <value>343, 64</value>
-  </data>
-  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 13</value>
-  </data>
-  <data name="label27.Text" xml:space="preserve">
-    <value>Pulizia</value>
-  </data>
-  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 13</value>
-  </data>
-  <data name="label26.Text" xml:space="preserve">
-    <value>Creativita'</value>
-  </data>
-  <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
-    <value>343, 32</value>
-  </data>
-  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 13</value>
-  </data>
-  <data name="label25.Text" xml:space="preserve">
-    <value>Logica</value>
-  </data>
-  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 83</value>
-  </data>
-  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 13</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Corpo</value>
-  </data>
-  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 64</value>
-  </data>
-  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="label23.Text" xml:space="preserve">
-    <value>Carisma</value>
-  </data>
-  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 48</value>
-  </data>
-  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
-  </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>Meccanica</value>
-  </data>
-  <data name="label103.Text" xml:space="preserve">
-    <value>Semestre:</value>
-  </data>
-  <data name="label102.Text" xml:space="preserve">
-    <value>Tempo Rimasto:</value>
-  </data>
-  <data name="label101.Text" xml:space="preserve">
-    <value>Influenza:</value>
-  </data>
-  <data name="label100.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 112</value>
-  </data>
-  <data name="label100.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 13</value>
-  </data>
-  <data name="label100.Text" xml:space="preserve">
-    <value>ultimo Voto:</value>
-  </data>
-  <data name="cboncampus.Text" xml:space="preserve">
-    <value>Al Campus (E' Giovane Adulto)</value>
-  </data>
-  <data name="label99.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 88</value>
-  </data>
-  <data name="label99.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 13</value>
-  </data>
-  <data name="label99.Text" xml:space="preserve">
-    <value>Rendimento:</value>
-  </data>
-  <data name="label98.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 13</value>
-  </data>
-  <data name="label98.Text" xml:space="preserve">
-    <value>Corso:</value>
-  </data>
-  <data name="lbfilename.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 6</value>
-  </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 16</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Editor Caratteristiche dei Sim</value>
-  </data>
-  <data name="realPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 150</value>
   </data>
   <data name="label91.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 88</value>
@@ -1537,8 +536,7 @@
   <data name="label56.Text" xml:space="preserve">
     <value>Editor delle Relazioni</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
+    <value>NoControl</value>
   </data>
 </root>

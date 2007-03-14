@@ -51,7 +51,7 @@ namespace SimPe
 			//
 			InitializeComponent();
             button2.BackColor = SystemColors.Control;
-            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = FormBorderStyle.None;
 			           
             wb.Navigating += new WebBrowserNavigatingEventHandler(wb_Navigating);
             wb.Navigated += new WebBrowserNavigatedEventHandler(wb_Navigated);

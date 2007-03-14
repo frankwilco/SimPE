@@ -128,13 +128,50 @@
     <value>Пятно цензуры</value>
   </data>
   <data name="cbsound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-2, 74</value>
+    <value>8, 72</value>
   </data>
   <data name="cbsound.Size" type="System.Drawing.Size, System.Drawing">
     <value>228, 24</value>
   </data>
   <data name="cbsound.Text" xml:space="preserve">
     <value>Включить звуки при запуске игры</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 13</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Внешние утилиты:</value>
+  </data>
+  <data name="lbext.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 48</value>
+  </data>
+  <data name="lbext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>488, 320</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="linkLabel1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
+  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>593, 334</value>
+  </data>
+  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 13</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>добавить</value>
+  </data>
+  <data name="linkLabel2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
+  <data name="linkLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>593, 350</value>
+  </data>
+  <data name="linkLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="linkLabel2.Text" xml:space="preserve">
+    <value>удалить</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
     <value>Обзор...</value>
@@ -145,8 +182,26 @@
   <data name="button4.Text" xml:space="preserve">
     <value>Обзор...</value>
   </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 262</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 13</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Папка утилит Nvidia DDS:</value>
+  </data>
   <data name="button5.Text" xml:space="preserve">
     <value>Обзор...</value>
+  </data>
+  <data name="cbLock.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 24</value>
+  </data>
+  <data name="cbLock.Text" xml:space="preserve">
+    <value>Закрепить все панели</value>
+  </data>
+  <data name="cbAsync.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 24</value>
   </data>
   <data name="cbAsync.Text" xml:space="preserve">
     <value>Асинхронная загрузка</value>
@@ -160,6 +215,9 @@
   <data name="cbhidden.ToolTip" xml:space="preserve">
     <value>При изменении этой настройки потребуется перезапуск SimPE</value>
   </data>
+  <data name="button8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>267, 347</value>
+  </data>
   <data name="button8.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 24</value>
   </data>
@@ -169,11 +227,14 @@
   <data name="button8.ToolTip" xml:space="preserve">
     <value>Очистить список недавних файлов.</value>
   </data>
+  <data name="button7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 347</value>
+  </data>
   <data name="button7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 24</value>
+    <value>121, 24</value>
   </data>
   <data name="button7.Text" xml:space="preserve">
-    <value>сбросить раб. область</value>
+    <value>сбросить лист</value>
   </data>
   <data name="button7.ToolTip" xml:space="preserve">
     <value>Эта функция сбрасывает настройки рабочей области основного интерфейсам по умолчанию.</value>
@@ -181,47 +242,161 @@
   <data name="cbsplash.Text" xml:space="preserve">
     <value>Стартовая заставка</value>
   </data>
+  <data name="lldds2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>23, 5</value>
+  </data>
+  <data name="lldds2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 23</value>
+  </data>
+  <data name="lldds2.Text" xml:space="preserve">
+    <value>Вы можете загрузить их здесь</value>
+  </data>
+  <data name="lldds.Text" xml:space="preserve">
+    <value>Утилиты Nvidia DDS не найдены.</value>
+  </data>
+  <data name="cbow.Text" xml:space="preserve">
+    <value>отображать быстрые диалоги</value>
+  </data>
+  <data name="cbshowobjd.Text" xml:space="preserve">
+    <value>отображать имя файла OBJd</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 27</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 13</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Размер эскиза:</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>419, 36</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 112</value>
+  </data>
   <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 24</value>
   </data>
   <data name="button6.Text" xml:space="preserve">
     <value>очистить кеш</value>
   </data>
+  <data name="cbReport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 177</value>
+  </data>
+  <data name="cbReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 21</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 180</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 13</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Фотрмат отчета:</value>
+  </data>
   <data name="cbupdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 24</value>
+    <value>220, 24</value>
   </data>
   <data name="cbupdate.Text" xml:space="preserve">
     <value>Проверять обновления при запуске</value>
   </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 27</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 13</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Язык игры по умолчанию:</value>
+  </data>
   <data name="cbautobak.Text" xml:space="preserve">
     <value>Авто-откат</value>
+  </data>
+  <data name="cbcache.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 24</value>
   </data>
   <data name="cbcache.Text" xml:space="preserve">
     <value>Кеширование</value>
   </data>
+  <data name="cblang.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 24</value>
+  </data>
+  <data name="cblang.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 21</value>
+  </data>
   <data name="cbsilent.Text" xml:space="preserve">
-    <value>Тихий (меньше вспл. окон)</value>
+    <value>Тихий режим (меньше всплывающих окон)</value>
   </data>
   <data name="cbwait.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 24</value>
+    <value>136, 24</value>
   </data>
   <data name="cbwait.Text" xml:space="preserve">
     <value>Экран ожидания</value>
   </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>402, 200</value>
+  </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Настройки SimPE:</value>
+  </data>
+  <data name="cbSimple.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 24</value>
   </data>
   <data name="cbSimple.Text" xml:space="preserve">
     <value>Простой щелчок для открытия ресурсов</value>
   </data>
   <data name="cbmulti.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 24</value>
+    <value>266, 24</value>
   </data>
   <data name="cbmulti.Text" xml:space="preserve">
-    <value>Вкл одновременное открытие нескольких ресурсов</value>
+    <value>Позволить одновременное открытие нескольких ресурсов</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>419, 156</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 102</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Настройки игры:</value>
+  </data>
+  <data name="lladddown.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
+  <data name="lladddown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 240</value>
+  </data>
+  <data name="lladddown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 16</value>
+  </data>
+  <data name="lladddown.Text" xml:space="preserve">
+    <value>добавить Папку закачек</value>
+  </data>
+  <data name="lldel.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
+  </data>
+  <data name="lldel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 240</value>
+  </data>
+  <data name="lldel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 16</value>
+  </data>
+  <data name="lldel.Text" xml:space="preserve">
+    <value>удалить</value>
+  </data>
+  <data name="lladd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
+  <data name="lladd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 240</value>
+  </data>
+  <data name="lladd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 16</value>
+  </data>
+  <data name="lladd.Text" xml:space="preserve">
+    <value>добавить</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Настройки Gmdc:</value>
@@ -229,20 +404,38 @@
   <data name="btNightlife.Text" xml:space="preserve">
     <value>Обзор...</value>
   </data>
+  <data name="hcFolders.Text" xml:space="preserve">
+    <value>Системные папки</value>
+  </data>
   <data name="cbFirefox.Text" xml:space="preserve">
     <value>Использовать стиль Firefox для открытых вкладок</value>
+  </data>
+  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 104</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Обзор вкладок:</value>
   </data>
+  <data name="cbThemes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 21</value>
+  </data>
+  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>419, 264</value>
+  </data>
+  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 56</value>
+  </data>
   <data name="groupBox5.Text" xml:space="preserve">
-    <value>Тема:</value>
+    <value>Тема оформления:</value>
   </data>
   <data name="hcSettings.Text" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="hcTools.Text" xml:space="preserve">
+    <value>Внешние утилиты</value>
+  </data>
   <data name="cbIncCep.Text" xml:space="preserve">
-    <value>Включать CEP</value>
+    <value>Включить CEP</value>
   </data>
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Простые настройки:</value>
@@ -303,11 +496,68 @@
         ekbzaiye/3xkQbRpc9VfmZPJIpEyfz/LlO6k/5X/UiAlzw9idp1Q9EbgxwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="linkLabel6.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
+  <data name="linkLabel6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 240</value>
+  </data>
+  <data name="linkLabel6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 16</value>
+  </data>
+  <data name="linkLabel6.Text" xml:space="preserve">
+    <value>сбросить</value>
+  </data>
+  <data name="llchg.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
+  <data name="llchg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 240</value>
+  </data>
+  <data name="llchg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 16</value>
+  </data>
+  <data name="llchg.Text" xml:space="preserve">
+    <value>изменить</value>
+  </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Расширенные настройки:</value>
   </data>
+  <data name="hcFileTable.Text" xml:space="preserve">
+    <value>Файловая таблица (поиск путей)</value>
+  </data>
+  <data name="cbAsyncSort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 24</value>
+  </data>
   <data name="cbAsyncSort.Text" xml:space="preserve">
-    <value>Асинхронная сорт.</value>
+    <value>Асинхронная сортировка</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 77</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 13</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Формат вида столбцов:</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 53</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 13</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Расширение имени TGI:</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 13</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Формат имени:</value>
+  </data>
+  <data name="groupBox10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>504, 102</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
     <value>Список ресурсов:</value>
@@ -318,8 +568,11 @@
   <data name="cbDeep.Text" xml:space="preserve">
     <value>Глубокий поиск (TazzMann)</value>
   </data>
+  <data name="hcSceneGraph.Text" xml:space="preserve">
+    <value>Разное</value>
+  </data>
   <data name="bb.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 718</value>
+    <value>0, 746</value>
   </data>
   <data name="nbFolders.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -519,7 +772,7 @@
 </value>
   </data>
   <data name="nbCustom.Text" xml:space="preserve">
-    <value>Оформление</value>
+    <value>Выборочные параметры</value>
   </data>
   <data name="nbFileTable.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -679,7 +932,7 @@
 </value>
   </data>
   <data name="nbIdent.Text" xml:space="preserve">
-    <value>Идентифик.</value>
+    <value>Идентифи-кация</value>
   </data>
   <data name="btpup.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -712,14 +965,83 @@
         jaGwVmMw12qMMyDyKr3ZmpZVaBGXo8P6XP/00DfK/FVG/vJmNAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="hcPlugins.Text" xml:space="preserve">
+    <value>Подключаемые модули</value>
+  </data>
+  <data name="linkLabel5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>462, 96</value>
+  </data>
+  <data name="linkLabel5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 23</value>
+  </data>
+  <data name="linkLabel5.Text" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="cbValid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 120</value>
+  </data>
   <data name="cbValid.Text" xml:space="preserve">
     <value>Валидность</value>
+  </data>
+  <data name="linkLabel3.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 28</value>
+  </data>
+  <data name="linkLabel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>259, 94</value>
+  </data>
+  <data name="linkLabel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 23</value>
+  </data>
+  <data name="linkLabel3.Text" xml:space="preserve">
+    <value>Обновить из базы данных GUID</value>
+  </data>
+  <data name="tbUserId.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 96</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 90</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 23</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>ID пользователя:</value>
+  </data>
+  <data name="tbPassword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 64</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 58</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Пароль:</value>
+  </data>
+  <data name="tbUsername.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 40</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 34</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 23</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Имя пользователя:</value>
+  </data>
+  <data name="hcIdent.Text" xml:space="preserve">
+    <value>Идентификация</value>
   </data>
   <data name="hcCheck.Text" xml:space="preserve">
     <value>Проверка системы</value>
   </data>
+  <data name="cbCustom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 2</value>
+  </data>
+  <data name="cbCustom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 21</value>
+  </data>
   <data name="hcCustom.Text" xml:space="preserve">
-    <value>Пользовательские настройки</value>
+    <value>Выборочные параметры</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
