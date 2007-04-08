@@ -148,4 +148,7 @@
   <data name="Label5.Text" xml:space="preserve">
     <value>Disque additionnel :</value>
   </data>
+  <data name="Label6.Text" xml:space="preserve">
+    <value>Nombre de Vertex :</value>
+  </data>
 </root>

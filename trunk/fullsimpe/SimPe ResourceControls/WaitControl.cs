@@ -59,6 +59,7 @@ namespace SimPe
                 {
                     this.pb.Value = this.pb.Minimum;
                     this.pb.Maximum = Math.Max(Math.Max(1, pb.Minimum), m.WParam.ToInt32());
+                    DoShowProgress(this.pb.Maximum>1);
                 }
                 else if (m.Msg == WM_USER_CHANGED_PROGRESS)
                 {

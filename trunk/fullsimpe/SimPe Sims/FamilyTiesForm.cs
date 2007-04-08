@@ -84,6 +84,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.panel1 = new System.Windows.Forms.Panel();
             this.ties = new SimPe.PackedFiles.Wrapper.FamilyTieGraph();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cbLock = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
@@ -112,25 +113,37 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // pnfamt
             // 
+            this.pnfamt.AccessibleDescription = null;
+            this.pnfamt.AccessibleName = null;
+            resources.ApplyResources(this.pnfamt, "pnfamt");
             this.pnfamt.BackColor = System.Drawing.SystemColors.Control;
+            this.pnfamt.BackgroundImage = null;
             this.pnfamt.Controls.Add(this.panel1);
             this.pnfamt.Controls.Add(this.panel4);
             this.pnfamt.Controls.Add(this.panel3);
             this.pnfamt.Controls.Add(this.panel2);
-            resources.ApplyResources(this.pnfamt, "pnfamt");
+            this.pnfamt.Font = null;
             this.pnfamt.Name = "pnfamt";
             // 
             // panel1
             // 
+            this.panel1.AccessibleDescription = null;
+            this.panel1.AccessibleName = null;
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.BackgroundImage = null;
             this.panel1.Controls.Add(this.ties);
+            this.panel1.Font = null;
             this.panel1.Name = "panel1";
             // 
             // ties
             // 
+            this.ties.AccessibleDescription = null;
+            this.ties.AccessibleName = null;
             resources.ApplyResources(this.ties, "ties");
             this.ties.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ties.BackgroundImage = null;
+            this.ties.Font = null;
             this.ties.LineMode = Ambertation.Windows.Forms.Graph.LinkControlLineMode.Bezier;
             this.ties.LockItems = false;
             this.ties.MinHeight = 296;
@@ -144,27 +157,51 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.panel4.Controls.Add(this.label1);
+            this.panel4.AccessibleDescription = null;
+            this.panel4.AccessibleName = null;
             resources.ApplyResources(this.panel4, "panel4");
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panel4.BackgroundImage = null;
+            this.panel4.Controls.Add(this.cbLock);
+            this.panel4.Controls.Add(this.label1);
             this.panel4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel4.Name = "panel4";
             // 
+            // cbLock
+            // 
+            this.cbLock.AccessibleDescription = null;
+            this.cbLock.AccessibleName = null;
+            resources.ApplyResources(this.cbLock, "cbLock");
+            this.cbLock.BackColor = System.Drawing.Color.Transparent;
+            this.cbLock.BackgroundImage = null;
+            this.cbLock.Name = "cbLock";
+            this.cbLock.UseVisualStyleBackColor = false;
+            // 
             // label1
             // 
+            this.label1.AccessibleDescription = null;
+            this.label1.AccessibleName = null;
             resources.ApplyResources(this.label1, "label1");
             this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = null;
             this.label1.Name = "label1";
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.xpGradientPanel1);
+            this.panel3.AccessibleDescription = null;
+            this.panel3.AccessibleName = null;
             resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.BackgroundImage = null;
+            this.panel3.Controls.Add(this.xpGradientPanel1);
+            this.panel3.Font = null;
             this.panel3.Name = "panel3";
             // 
             // xpGradientPanel1
             // 
+            this.xpGradientPanel1.AccessibleDescription = null;
+            this.xpGradientPanel1.AccessibleName = null;
             resources.ApplyResources(this.xpGradientPanel1, "xpGradientPanel1");
+            this.xpGradientPanel1.BackgroundImage = null;
             this.xpGradientPanel1.Controls.Add(this.xpLine1);
             this.xpGradientPanel1.Controls.Add(this.button1);
             this.xpGradientPanel1.Controls.Add(this.cbkeep);
@@ -173,12 +210,18 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpGradientPanel1.Controls.Add(this.label3);
             this.xpGradientPanel1.Controls.Add(this.lbname);
             this.xpGradientPanel1.Controls.Add(this.label2);
+            this.xpGradientPanel1.Font = null;
             this.xpGradientPanel1.Name = "xpGradientPanel1";
+            this.xpGradientPanel1.Watermark = null;
             // 
             // xpLine1
             // 
+            this.xpLine1.AccessibleDescription = null;
+            this.xpLine1.AccessibleName = null;
             resources.ApplyResources(this.xpLine1, "xpLine1");
             this.xpLine1.BackColor = System.Drawing.Color.Transparent;
+            this.xpLine1.BackgroundImage = null;
+            this.xpLine1.Font = null;
             this.xpLine1.ForeColor = System.Drawing.Color.Transparent;
             this.xpLine1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.xpLine1.Name = "xpLine1";
@@ -186,14 +229,20 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // button1
             // 
+            this.button1.AccessibleDescription = null;
+            this.button1.AccessibleName = null;
             resources.ApplyResources(this.button1, "button1");
+            this.button1.BackgroundImage = null;
             this.button1.Name = "button1";
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cbkeep
             // 
+            this.cbkeep.AccessibleDescription = null;
+            this.cbkeep.AccessibleName = null;
             resources.ApplyResources(this.cbkeep, "cbkeep");
             this.cbkeep.BackColor = System.Drawing.Color.Transparent;
+            this.cbkeep.BackgroundImage = null;
             this.cbkeep.Checked = true;
             this.cbkeep.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbkeep.Name = "cbkeep";
@@ -201,9 +250,12 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // cbrel
             // 
+            this.cbrel.AccessibleDescription = null;
+            this.cbrel.AccessibleName = null;
+            resources.ApplyResources(this.cbrel, "cbrel");
+            this.cbrel.BackgroundImage = null;
             this.cbrel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbrel.Enum = null;
-            resources.ApplyResources(this.cbrel, "cbrel");
             this.cbrel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cbrel.Name = "cbrel";
             this.cbrel.ResourceManager = null;
@@ -211,42 +263,57 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // llrem
             // 
-            this.llrem.BackColor = System.Drawing.Color.Transparent;
+            this.llrem.AccessibleDescription = null;
+            this.llrem.AccessibleName = null;
             resources.ApplyResources(this.llrem, "llrem");
+            this.llrem.BackColor = System.Drawing.Color.Transparent;
             this.llrem.Name = "llrem";
             this.llrem.TabStop = true;
             this.llrem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llrem_LinkClicked);
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.AccessibleDescription = null;
+            this.label3.AccessibleName = null;
             resources.ApplyResources(this.label3, "label3");
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Name = "label3";
             // 
             // lbname
             // 
+            this.lbname.AccessibleDescription = null;
+            this.lbname.AccessibleName = null;
             resources.ApplyResources(this.lbname, "lbname");
             this.lbname.BackColor = System.Drawing.Color.Transparent;
             this.lbname.Name = "lbname";
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.AccessibleDescription = null;
+            this.label2.AccessibleName = null;
             resources.ApplyResources(this.label2, "label2");
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Name = "label2";
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Info;
-            this.panel2.Controls.Add(this.pool);
+            this.panel2.AccessibleDescription = null;
+            this.panel2.AccessibleName = null;
             resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.BackColor = System.Drawing.SystemColors.Info;
+            this.panel2.BackgroundImage = null;
+            this.panel2.Controls.Add(this.pool);
+            this.panel2.Font = null;
             this.panel2.Name = "panel2";
             // 
             // pool
             // 
-            this.pool.BackColor = System.Drawing.SystemColors.Info;
-            this.pool.ContextMenuStrip = this.miTies;
+            this.pool.AccessibleDescription = null;
+            this.pool.AccessibleName = null;
             resources.ApplyResources(this.pool, "pool");
+            this.pool.BackColor = System.Drawing.SystemColors.Info;
+            this.pool.BackgroundImage = null;
+            this.pool.ContextMenuStrip = this.miTies;
             this.pool.Name = "pool";
             this.pool.Package = null;
             this.pool.RightClickSelect = false;
@@ -260,35 +327,55 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // miTies
             // 
+            this.miTies.AccessibleDescription = null;
+            this.miTies.AccessibleName = null;
+            resources.ApplyResources(this.miTies, "miTies");
+            this.miTies.BackgroundImage = null;
+            this.miTies.Font = null;
             this.miTies.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miAddTie,
             this.miOpenSdesc});
             this.miTies.Name = "miTies";
-            resources.ApplyResources(this.miTies, "miTies");
             this.miTies.VisibleChanged += new System.EventHandler(this.miAddTie_BeforePopup);
             // 
             // miAddTie
             // 
-            this.miAddTie.Name = "miAddTie";
+            this.miAddTie.AccessibleDescription = null;
+            this.miAddTie.AccessibleName = null;
             resources.ApplyResources(this.miAddTie, "miAddTie");
+            this.miAddTie.BackgroundImage = null;
+            this.miAddTie.Name = "miAddTie";
+            this.miAddTie.ShortcutKeyDisplayString = null;
             this.miAddTie.Tag = "\"{name}\" in die Familie von \"{gname}\" aufnehmen";
             this.miAddTie.Click += new System.EventHandler(this.Activate_miAddTie);
             // 
             // miOpenSdesc
             // 
+            this.miOpenSdesc.AccessibleDescription = null;
+            this.miOpenSdesc.AccessibleName = null;
             resources.ApplyResources(this.miOpenSdesc, "miOpenSdesc");
+            this.miOpenSdesc.BackgroundImage = null;
             this.miOpenSdesc.Name = "miOpenSdesc";
+            this.miOpenSdesc.ShortcutKeyDisplayString = null;
             this.miOpenSdesc.Click += new System.EventHandler(this.Activate_miOpenSDesc);
             // 
             // label12
             // 
+            this.label12.AccessibleDescription = null;
+            this.label12.AccessibleName = null;
             resources.ApplyResources(this.label12, "label12");
+            this.label12.Font = null;
             this.label12.Name = "label12";
             // 
             // FamilyTiesForm
             // 
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
+            this.BackgroundImage = null;
             this.Controls.Add(this.pnfamt);
+            this.Font = null;
+            this.Icon = null;
             this.Name = "FamilyTiesForm";
             this.pnfamt.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -330,9 +417,12 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.CheckBox cbkeep;
         private ToolStripMenuItem miOpenSdesc;
 		private SteepValley.Windows.Forms.XPLine xpLine1;
+        private CheckBox cbLock;
 		Image thumb;
 		internal void pool_SelectedSimChanged(object sender, System.Drawing.Image thumb, SimPe.PackedFiles.Wrapper.SDesc sdesc)
 		{
+            if (cbLock.Checked) return;
+
 			thumb = null;
 			lastsdsc = null;
 			currentsdsc = sdesc;

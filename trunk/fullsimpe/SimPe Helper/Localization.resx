@@ -951,6 +951,17 @@ If this is empty, SimPE will use the default Folder.</value>
       If this is empty, SimPE will use the default Folder.
     </value>
   </data>
+  <data name="[Property:SP4Path]">
+    <value>3: Celebration! Stuff</value>
+  </data>
+  <data name="[Description:SP4Path]">
+    <value>
+      This should contain the installation directory of "The Sims 2 - Celebration! Stuff".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
   <data name="[Property:SIMSLSPath]">
     <value>1: Life Stories</value>
   </data>
@@ -1141,6 +1152,9 @@ Run SimPE anyway?</value>
   <data name="EP NAME 8">
     <value>The Sims 2 - Seasons</value>
   </data>
+  <data name="EP NAME 9">
+    <value>The Sims 2 - Celebration! Stuff </value>
+  </data>
   <data name="EP NAME 20">
     <value>The Sims 2 - Life Stories</value>
   </data>
@@ -1171,6 +1185,9 @@ Run SimPE anyway?</value>
   </data>
   <data name="EP SNAME 8">
     <value>Seasons</value>
+  </data>
+  <data name="EP SNAME 9">
+    <value>Celebrations</value>
   </data>
   <data name="EP SNAME 20">
     <value>Life Stories</value>

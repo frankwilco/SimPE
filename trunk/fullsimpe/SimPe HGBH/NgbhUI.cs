@@ -64,7 +64,7 @@ namespace SimPe.Plugin
 				form.cbguid.Items.Add(new Data.Alias(0, "-: "+Localization.Manager.GetString("Unknown"), "{name}"));
 							
 
-				WaitingScreen.UpdateMessage("Load Memories from Cache");
+				Wait.Message = ("Load Memories from Cache");
 				foreach (MemoryCacheItem mci in ObjectCache.List) 
 				{
 					Data.Alias a = new SimPe.Data.Alias(mci.Guid, mci.Name);
@@ -131,8 +131,8 @@ namespace SimPe.Plugin
 			foreach(Interfaces.Files.IPackedFileDescriptor spfd in pfds) 
 			{
 				PackedFiles.Wrapper.SDesc sdesc = new SimPe.PackedFiles.Wrapper.SDesc(wrp.Provider.SimNameProvider, wrp.Provider.SimFamilynameProvider, null);
-				
-				if (!WaitingScreen.Running) WaitingScreen.Wait();
+
+                Wait.SubStart();
 				
 				
 				sdesc.ProcessData(spfd, wrp.Package);
@@ -213,8 +213,8 @@ namespace SimPe.Plugin
 			
 
 			form.lv.EndUpdate();
-			
-			WaitingScreen.Stop();
+
+            Wait.SubStop();
 		}		
 
 		#endregion

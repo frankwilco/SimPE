@@ -133,15 +133,18 @@ namespace SimPe.Plugin
 			if (cachefile!=null) return;
 
 			cachefile = new WantCacheFile();
+            Wait.SubStart();
+            Wait.Message = "Loading Cache";
 			if (!Helper.WindowsRegistry.UseCache) return;
 			try 
 			{
-				cachefile.Load(Helper.SimPeLanguageCache);
+				cachefile.Load(Helper.SimPeLanguageCache, true);
 			} 
 			catch (Exception ex)
 			{
 				Helper.ExceptionMessage("", ex);
 			}
+            Wait.SubStop();
 		}
 
 		/// <summary>
@@ -152,7 +155,10 @@ namespace SimPe.Plugin
 			if (!Helper.WindowsRegistry.UseCache) return;
 			if (cachefile==null) return;
 
+            Wait.SubStart();
+            Wait.Message = "Saveing Cache";
 			cachefile.Save(Helper.SimPeLanguageCache);
+            Wait.SubStop();
 		}
 		#endregion
 
@@ -274,8 +280,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		static void LoadTextPackage()
 		{
-			bool running = WaitingScreen.Running;
-			WaitingScreen.Wait();
+            Wait.SubStart();
 			txtpkg = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(SimPe.PathProvider.Global[Expansions.BaseGame].InstallFolder, "TSData\\Res\\Text\\Wants.package"));
 
             foreach (ExpansionItem ei in PathProvider.Global.Expansions) {
@@ -291,8 +296,8 @@ namespace SimPe.Plugin
                     txtpkg2.Persistent = false;	                    
                 }
         }
-			
-			if (!running) WaitingScreen.Stop();
+
+        Wait.SubStop();
 		}
 
 		/// <summary>
@@ -300,8 +305,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		static void LoadWants()
 		{
-			bool running = WaitingScreen.Running;
-			WaitingScreen.Wait();
+            Wait.SubStart();
 			wants = new Hashtable();
 
 			FileTable.FileIndex.Load();
@@ -312,7 +316,7 @@ namespace SimPe.Plugin
 				wants[wts.FileDescriptor.Instance] = wts;
 			}
 
-			if (!running) WaitingScreen.Stop();
+            Wait.SubStop();
 		}
 
 		/// <summary>

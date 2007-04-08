@@ -159,6 +159,9 @@
   <data name="lldetail.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 8</value>
   </data>
+  <data name="lldetail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 23</value>
+  </data>
   <data name="lldetail.Text" xml:space="preserve">
     <value>Dettagli</value>
   </data>

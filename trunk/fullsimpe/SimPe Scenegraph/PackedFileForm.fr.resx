@@ -124,6 +124,12 @@
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>325, 28</value>
   </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 21</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Emballage</value>
+  </data>
   <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
     <value>293, 28</value>
   </data>
@@ -138,6 +144,9 @@
   </data>
   <data name="button1.Text" xml:space="preserve">
     <value>Appliquer</value>
+  </data>
+  <data name="gbtypes.Text" xml:space="preserve">
+    <value>Propriétés du fichier</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lladd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
@@ -194,9 +203,6 @@ Class ID :</value>
   </data>
   <data name="llcommit.Text" xml:space="preserve">
     <value>modifier</value>
-  </data>
-  <data name="gbtypes.Text" xml:space="preserve">
-    <value>Propriétés du fichier</value>
   </data>
   <data name="miAdd.Text" xml:space="preserve">
     <value>&amp;Ajouter</value>

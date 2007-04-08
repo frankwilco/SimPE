@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,121 +117,102 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="rbObjs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 4</value>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Архив</value>
   </data>
-  <data name="rbObjs.Text" xml:space="preserve">
-    <value>Objets</value>
+  <data name="btdown.Text" xml:space="preserve">
+    <value>вниз</value>
   </data>
-  <data name="rbToks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 24</value>
+  <data name="btup.Text" xml:space="preserve">
+    <value>вверх</value>
   </data>
-  <data name="rbToks.Text" xml:space="preserve">
-    <value>Souvenirs</value>
-  </data>
-  <data name="rbMems.Text" xml:space="preserve">
-    <value>Mémoires</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Liste :</value>
-  </data>
-  <data name="cbVis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 8</value>
-  </data>
-  <data name="cbCtrl.Text" xml:space="preserve">
-    <value>Contrôleur</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Marqueurs :</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 23</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Propriétés</value>
-  </data>
-  <data name="tabPage4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>Donnée brut</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Objet :</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Sim :</value>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Ввести</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="llme2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
-    <value>0, 3</value>
+  <data name="lladd.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
   </data>
-  <data name="llme2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>408, 8</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lladd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>330, 80</value>
   </data>
-  <data name="llme2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 16</value>
+  <data name="lladd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 13</value>
   </data>
-  <data name="llme2.Text" xml:space="preserve">
-    <value>Moi</value>
+  <data name="lladd.Text" xml:space="preserve">
+    <value>добавить</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Sujet...</value>
+  <data name="lldelete.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 7</value>
   </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Valeur :</value>
+  <data name="lldelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>402, 80</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="lldelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Inventaire # :</value>
+  <data name="lldelete.Text" xml:space="preserve">
+    <value>удалить</value>
   </data>
-  <data name="llme.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
-    <value>0, 3</value>
-  </data>
-  <data name="llme.Text" xml:space="preserve">
-    <value>Moi</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Propriétaire :</value>
-  </data>
-  <data name="lbtype.Text" xml:space="preserve">
-    <value>Type :</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Nom :</value>
-  </data>
-  <data name="llSetRawLength.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
-    <value>0, 9</value>
-  </data>
-  <data name="llSetRawLength.Text" xml:space="preserve">
-    <value>Appliquer</value>
-  </data>
-  <data name="llSetRawLength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 23</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Longueur :</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 23</value>
-  </data>
-  <data name="tabPage3.TabText" xml:space="preserve">
-    <value>Propriétés</value>
-  </data>
-  <data name="tabPage3.ToolTipText" xml:space="preserve">
-    <value>Propriétés</value>
-  </data>
-  <data name="tabPage4.TabText" xml:space="preserve">
-    <value>Donnée brut</value>
-  </data>
-  <data name="tabPage4.ToolTipText" xml:space="preserve">
-    <value>Donnée brut</value>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 72</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>Inconnu :</value>
+    <value>Экземпляр:</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 0</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Тип файла:</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-3, 24</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 17</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Подтип/ID класса:</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 48</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Группа:</value>
+  </data>
+  <data name="cbtypes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>237, 0</value>
+  </data>
+  <data name="cbtypes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
+  </data>
+  <data name="llcommit.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
+    <value>0, 8</value>
+  </data>
+  <data name="llcommit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>260, 80</value>
+  </data>
+  <data name="llcommit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
+  </data>
+  <data name="llcommit.Text" xml:space="preserve">
+    <value>изменить</value>
+  </data>
+  <data name="gbtypes.Text" xml:space="preserve">
+    <value>Свойства файла</value>
+  </data>
+  <data name="miAdd.Text" xml:space="preserve">
+    <value>&amp;Добавить</value>
+  </data>
+  <data name="miRem.Text" xml:space="preserve">
+    <value>&amp;Удалить</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 16</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Редактор файлов 3D-ссылок</value>
   </data>
 </root>

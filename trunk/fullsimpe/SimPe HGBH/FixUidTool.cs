@@ -48,13 +48,13 @@ namespace SimPe.Plugin
 
 			if (dr == System.Windows.Forms.DialogResult.Yes) 
 			{
-				WaitingScreen.Wait();
+                Wait.SubStop();
 				try 
 				{
                     System.Collections.Hashtable ht = Idno.FindUids(PathProvider.SimSavegameFolder, true);
 					foreach (string file in ht.Keys) 
 					{
-						WaitingScreen.UpdateMessage(file);
+						Wait.Message = file;
 
 						SimPe.Packages.GeneratableFile fl = SimPe.Packages.GeneratableFile.LoadFromFile(file);
 						SimPe.Interfaces.Files.IPackedFileDescriptor[] pfds = fl.FindFiles(Data.MetaData.IDNO);
@@ -76,7 +76,7 @@ namespace SimPe.Plugin
 				}
 				finally 
 				{
-					WaitingScreen.Stop();
+                    Wait.SubStop();
 				}
 			}
 			return new ToolResult(false, false);

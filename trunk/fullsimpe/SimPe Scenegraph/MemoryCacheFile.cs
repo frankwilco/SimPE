@@ -46,14 +46,14 @@ namespace SimPe.Cache
 		/// <returns></returns>
 		public static MemoryCacheFile InitCacheFile(SimPe.Interfaces.Scenegraph.IScenegraphFileIndex fileindex) 
 		{
-			bool running = WaitingScreen.Running;
-			if (!running) WaitingScreen.Wait();
-			WaitingScreen.UpdateMessage("Loading Cache");
+            Wait.SubStart();
+			Wait.Message = "Loading Memorycache" ;
 
 			MemoryCacheFile cachefile = new MemoryCacheFile();
-			cachefile.Load(Helper.SimPeLanguageCache);
+            
+			cachefile.Load(Helper.SimPeLanguageCache, true);
 			cachefile.ReloadCache(fileindex, true);
-			if (!running) WaitingScreen.Stop();
+            Wait.SubStop();
 
 			return cachefile;
 		}
@@ -74,23 +74,28 @@ namespace SimPe.Cache
 			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = fileindex.FindFile(Data.MetaData.OBJD_FILE, true);
 			
 			bool added = false;
+            Wait.MaxProgress = items.Length;
+            Wait.Message = "Updating Cache";
+            int ct = 0;
 			foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
 			{
 				Interfaces.Scenegraph.IScenegraphFileIndexItem[] citems = this.FileIndex.FindFile(item.GetLocalFileDescriptor(), null);
 				if (citems.Length==0) 
 				{
-					WaitingScreen.UpdateMessage("Updating Cache");
+					
 					SimPe.PackedFiles.Wrapper.ExtObjd objd = new SimPe.PackedFiles.Wrapper.ExtObjd(null);
 					objd.ProcessData(item);
 
 					this.AddItem(objd);					
 					added = true;
 				}
+                Wait.Progress = ct++;
 			}
 
 			if (added) 
 			{
 				this.map = null;
+                Wait.Message = "Saving Chache";
 				if (save) this.Save(this.FileName);				
 				this.LoadMemTable();
 				this.LoadMemList();
@@ -168,10 +173,10 @@ namespace SimPe.Cache
 			{
 				pic.ProcessData(iitems[0]);
 				mci.Icon = pic.Image;
-				WaitingScreen.UpdateImage(mci.Icon);
+				Wait.Image = mci.Icon;
 			}
 
-			WaitingScreen.UpdateMessage(mci.Name);
+			Wait.Message = mci.Name;
 			//mci.ParentCacheContainer = mycc; //why was this disbaled?
 			mycc.Items.Add(mci);
 

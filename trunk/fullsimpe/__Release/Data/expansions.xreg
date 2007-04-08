@@ -106,6 +106,7 @@
         <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
       </cilist>
     </key>
+    <!-- Version 7 is inetrnally used for the Happy Hollidays SP, which is not a real SP -->
 
     <!-- Information about Seasons -->
     <key name="Seasons">
@@ -120,5 +121,14 @@
       </cilist>
     </key>
 
+    <!-- Information about Celebration! Stuff  (provided by Numenor) -->
+    <key name="Celebration">
+      <int name="Version">9</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 Celebration Stuff</string>
+      <int name="Flag">2</int>
+      <string name="ExeName">Sims2SP4.exe</string>
+      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+      <int name="Group">1</int>
+    </key>
   </key>
 </registry>

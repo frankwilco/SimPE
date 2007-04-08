@@ -711,7 +711,7 @@
 </value>
   </data>
   <data name="mbiMax.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="mbiMax.Text" xml:space="preserve">
     <value>Максимум</value>
@@ -830,6 +830,21 @@
   <data name="pbCooking.LabelText" xml:space="preserve">
     <value>Готовка:</value>
   </data>
+  <data name="pnChar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 76</value>
+  </data>
+  <data name="pnChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>680, 248</value>
+  </data>
+  <data name="pnPetChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>494, 96</value>
+  </data>
+  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 17</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Привередливый</value>
+  </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Боязливый</value>
   </data>
@@ -842,6 +857,15 @@
   <data name="label22.Text" xml:space="preserve">
     <value>Глупый</value>
   </data>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-3, 97</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 17</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Грязнуля, ген</value>
+  </data>
   <data name="label20.Text" xml:space="preserve">
     <value>Агрессивный</value>
   </data>
@@ -853,39 +877,6 @@
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Гений</value>
-  </data>
-  <data name="pnPetChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>494, 96</value>
-  </data>
-  <data name="pbMan.LabelText" xml:space="preserve">
-    <value>Мужчина:</value>
-  </data>
-  <data name="pbWoman.LabelText" xml:space="preserve">
-    <value>Женщина:</value>
-  </data>
-  <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 21</value>
-  </data>
-  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 17</value>
-  </data>
-  <data name="label47.Text" xml:space="preserve">
-    <value>Знак зодиака:</value>
-  </data>
-  <data name="label69.Text" xml:space="preserve">
-    <value>влечение</value>
-  </data>
-  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 16</value>
-  </data>
-  <data name="label70.Text" xml:space="preserve">
-    <value>неприязнь</value>
-  </data>
-  <data name="pnChar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 76</value>
-  </data>
-  <data name="pnChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>680, 248</value>
   </data>
   <data name="pbNeat.LabelText" xml:space="preserve">
     <value>Чистюля:</value>
@@ -917,8 +908,32 @@
   <data name="pbGOutgoing.LabelText" xml:space="preserve">
     <value>Экстраверт, ген:</value>
   </data>
+  <data name="pbMan.LabelText" xml:space="preserve">
+    <value>Мужчина:</value>
+  </data>
+  <data name="pbWoman.LabelText" xml:space="preserve">
+    <value>Женщина:</value>
+  </data>
+  <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 21</value>
+  </data>
+  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 17</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>Знак зодиака:</value>
+  </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>влечение</value>
+  </data>
+  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 16</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>неприязнь</value>
+  </data>
   <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 280</value>
+    <value>253, 280</value>
   </data>
   <data name="miRand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -942,13 +957,13 @@
 </value>
   </data>
   <data name="miRand.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miRand.Text" xml:space="preserve">
     <value>Случайно</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 6</value>
+    <value>249, 6</value>
   </data>
   <data name="miOpenChar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -971,7 +986,7 @@
 </value>
   </data>
   <data name="miOpenChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miOpenChar.Text" xml:space="preserve">
     <value>Открыть файл персонажа</value>
@@ -998,7 +1013,7 @@
 </value>
   </data>
   <data name="miOpenWf.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miOpenWf.Text" xml:space="preserve">
     <value>Открыть страхи и желания</value>
@@ -1022,7 +1037,7 @@
 </value>
   </data>
   <data name="miOpenMem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miOpenMem.Text" xml:space="preserve">
     <value>Открыть воспоминания</value>
@@ -1046,7 +1061,7 @@
 </value>
   </data>
   <data name="miOpenBadge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miOpenBadge.Text" xml:space="preserve">
     <value>Открыть скрытые навыки и флаги</value>
@@ -1067,13 +1082,13 @@
 </value>
   </data>
   <data name="miOpenDNA.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miOpenDNA.Text" xml:space="preserve">
     <value>Открыть ДНК Сима</value>
   </data>
   <data name="miOpenSCOR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miOpenFamily.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1096,7 +1111,7 @@
 </value>
   </data>
   <data name="miOpenFamily.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miOpenFamily.Text" xml:space="preserve">
     <value>Открыть семью</value>
@@ -1119,13 +1134,13 @@
 </value>
   </data>
   <data name="miOpenCloth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miOpenCloth.Text" xml:space="preserve">
     <value>Открыть одежду</value>
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 6</value>
+    <value>249, 6</value>
   </data>
   <data name="miMore.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1143,7 +1158,7 @@
 </value>
   </data>
   <data name="miMore.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miMore.Text" xml:space="preserve">
     <value>Расширенный обзор...</value>
@@ -1167,13 +1182,13 @@
 </value>
   </data>
   <data name="miRelink.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="miRelink.Text" xml:space="preserve">
     <value>Пересоздать связи персонажа</value>
   </data>
   <data name="miRel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 98</value>
+    <value>251, 98</value>
   </data>
   <data name="miAddRelation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1189,7 +1204,7 @@
 </value>
   </data>
   <data name="miAddRelation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="miAddRelation.Text" xml:space="preserve">
     <value>Добавить</value>
@@ -1205,22 +1220,22 @@
 </value>
   </data>
   <data name="miRemRelation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="miRemRelation.Text" xml:space="preserve">
     <value>Удалить</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 6</value>
+    <value>247, 6</value>
   </data>
   <data name="mbiMaxThisRel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="mbiMaxThisRel.Text" xml:space="preserve">
     <value>Максимиз. это отношение</value>
   </data>
   <data name="mbiMaxKnownRel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="mbiMaxKnownRel.Text" xml:space="preserve">
     <value>Максимиз. отношение к знакомому</value>
@@ -1251,6 +1266,12 @@
   </data>
   <data name="pbCareerLevel.LabelText" xml:space="preserve">
     <value>Ступень карьеры:</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Тип школы:</value>
+  </data>
+  <data name="label77.Text" xml:space="preserve">
+    <value>Оценка:</value>
   </data>
   <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
@@ -1462,9 +1483,6 @@
   <data name="cbpassobject.Text" xml:space="preserve">
     <value>Проход сквозь объекты</value>
   </data>
-  <data name="pnEP1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>692, 260</value>
-  </data>
   <data name="pbLastGrade.LabelText" xml:space="preserve">
     <value>Оценка:</value>
   </data>
@@ -1480,7 +1498,10 @@
   <data name="cboncampus.Text" xml:space="preserve">
     <value>В университете (юность)</value>
   </data>
-  <data name="pnEP2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="label98.Text" xml:space="preserve">
+    <value>Специальность:</value>
+  </data>
+  <data name="pnEP1.Size" type="System.Drawing.Size, System.Drawing">
     <value>692, 260</value>
   </data>
   <data name="tbNTLove.Location" type="System.Drawing.Point, System.Drawing">
@@ -1489,8 +1510,17 @@
   <data name="tbNTPerfume.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 208</value>
   </data>
+  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 6.75pt, style=Bold</value>
+  </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 232</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 20</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Продолжительность люб. зелья:</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 208</value>
@@ -1515,6 +1545,12 @@
   </data>
   <data name="lbTraits.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 160</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Черты:</value>
+  </data>
+  <data name="pnEP2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>692, 260</value>
   </data>
   <data name="pnEP3.Size" type="System.Drawing.Size, System.Drawing">
     <value>692, 260</value>

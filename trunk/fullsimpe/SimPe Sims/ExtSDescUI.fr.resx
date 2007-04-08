@@ -1528,4 +1528,56 @@ des commerces :</value>
   <data name="mbiLink.Text" xml:space="preserve">
     <value>Plus</value>
   </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Génie</value>
+    <comment>Est un petit Génie?</comment>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Hyperactif</value>
+    <comment>!61c  Hyper? Chercher ces termes ds les res du jeu</comment>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Indépendant</value>
+    <comment>!61c ?</comment>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Paresseux</value>
+    <comment>!61c ?</comment>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Porcherie</value>
+    <comment>!61c ?</comment>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Stupid</value>
+    <comment>!61c ?</comment>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Amical</value>
+    <comment>!61c ?</comment>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Lâche</value>
+    <comment>!61c ?</comment>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Méticuleux</value>
+    <comment>!61c ?</comment>
+  </data>
+  <data name="pbPetOutside.LabelText" xml:space="preserve">
+    <value>À l'extérieur :</value>
+  </data>
+  <data name="pbPetPets.LabelText" xml:space="preserve">
+    <value>Animaux :</value>
+  </data>
+  <data name="pbPetPlaying.LabelText" xml:space="preserve">
+    <value>Joue :</value>
+  </data>
+  <data name="pbPetSleep.LabelText" xml:space="preserve">
+    <value>Dort :</value>
+  </data>
+  <data name="pbPetSpooky.LabelText" xml:space="preserve">
+    <value>Choses sinistres</value>
+    <comment>??? effrayantes ???</comment>
+  </data>
 </root>

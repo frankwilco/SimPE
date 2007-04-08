@@ -149,4 +149,10 @@
   <data name="llAdd.Text" xml:space="preserve">
     <value>Créer</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Code temporel :</value>
+  </data>
+  <data name="cbParentLock.Text" xml:space="preserve">
+    <value>Rétrécissement parent</value>
+  </data>
 </root>

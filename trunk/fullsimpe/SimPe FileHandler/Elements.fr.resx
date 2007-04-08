@@ -625,7 +625,7 @@ relation  :</value>
     <value>Le GUID de l'objet de base (Modèle prédéfini utilisé pour créer cet objet)</value>
   </data>
   <data name="tbproxguid.ToolTip" xml:space="preserve">
-    <value>GUID d'un objet alternatif (L'objet (doit être un objet d'origine de Les Sims 2)  qui sera utilisé par ce jeu si l'utilisateur décide de supprimer cet objet)</value>
+    <value>GUID d'un objet alternatif (L'objet doit être un objet d'origine de Les Sims 2)  qui sera utilisé par ce jeu si l'utilisateur décide de supprimer cet objet)</value>
   </data>
   <data name="tbsimid.ToolTip" xml:space="preserve">
     <value>Le GUID de cet objet</value>

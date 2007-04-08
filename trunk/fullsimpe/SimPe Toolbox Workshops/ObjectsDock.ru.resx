@@ -199,14 +199,8 @@
         TkSuQmCC
 </value>
   </data>
-  <data name="xpAdvanced.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 152</value>
-  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 376</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 48</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Большое спасибо пользователям Numenor и RGiles, за идею Мастерской предметов и их помощь в процессе разработки.</value>
@@ -214,23 +208,20 @@
   <data name="button2.Text" xml:space="preserve">
     <value>Открыть...</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 32</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Добро пожаловать в мастерскую новых предметов.</value>
   </data>
   <data name="button1.Text" xml:space="preserve">
     <value>Начать</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 60</value>
-  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Данные о предметах еще не загружены. Выберите "Начать", для обзора предметов. Или щелкните "Открыть...", для загрузки вашего архива.</value>
   </data>
   <data name="wizardStepPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>282, 424</value>
+  </data>
+  <data name="xpTaskBoxSimple2.HeaderText" xml:space="preserve">
+    <value>Выбранный предмет</value>
   </data>
   <data name="xpTaskBoxSimple2.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -272,6 +263,9 @@
         iTixgp+MAnA9+ZzHwe+Xv6BYTsGvaHwEn/Rl9b/oUzqeo+815gAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="xpTaskBoxSimple1.HeaderText" xml:space="preserve">
+    <value>Выбранный предмет</value>
+  </data>
   <data name="xpTaskBoxSimple1.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -311,6 +305,12 @@
         Usyn4GP++O8HU0wFM7aZ/XJ4/KwtiZj5SjysN8di+sYYWDkEVFuscDtC11+meJ6CT8F8+uGnHr+4Prba
         iTixgp+MAnA9+ZzHwe+Xv6BYTsGvaHwEn/Rl9b/oUzqeo+815gAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="cbColorExt.Text" xml:space="preserve">
+    <value>Создать Пакет дополнительных цветов</value>
+  </data>
+  <data name="gbRecolor.HeaderText" xml:space="preserve">
+    <value>Перекраска</value>
   </data>
   <data name="gbRecolor.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -355,6 +355,21 @@
         vMpj3BPIz/IILu95NvHL/GUsuf8DN8BMrN2hzw0AAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="cbDesc.Text" xml:space="preserve">
+    <value>Изменить описание</value>
+  </data>
+  <data name="cbOrgGmdc.Text" xml:space="preserve">
+    <value>Ссылаться на оригинальный меш</value>
+  </data>
+  <data name="cbfix.Text" xml:space="preserve">
+    <value>Починить клонированные файлы</value>
+  </data>
+  <data name="cbgid.Text" xml:space="preserve">
+    <value>Изменить ID группы (0x1c050000)</value>
+  </data>
+  <data name="gbClone.HeaderText" xml:space="preserve">
+    <value>Клонирование</value>
+  </data>
   <data name="gbClone.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -384,6 +399,27 @@
         Kyur1XD0Lgh9ADKWALFBNhxo8+TsCEiyeLeOxOeBV5oCbu4t/U9//wKo0lBNZPiCcAAAAABJRU5ErkJg
         gg==
 </value>
+  </data>
+  <data name="cbTask.Items" xml:space="preserve">
+    <value>Перекраска</value>
+  </data>
+  <data name="cbTask.Items1" xml:space="preserve">
+    <value>Клонирование</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Задание:</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Цена:</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Описание:</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Заголовок:</value>
+  </data>
+  <data name="xpTaskBoxSimple3.HeaderText" xml:space="preserve">
+    <value>Описание</value>
   </data>
   <data name="xpTaskBoxSimple3.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -554,27 +590,32 @@
         SUVORK5CYII=
 </value>
   </data>
-  <data name="pnWait.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 136</value>
+  <data name="lbfinished.Text" xml:space="preserve">
+    <value>Предмет создан.</value>
   </data>
-  <data name="wizardStepPanel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 424</value>
+  <data name="lberr.Text" xml:space="preserve">
+    <value>SimPE не удалось создать предмет. Возможно, был выбран предмет, который не поддерживает CEP (пакеты дополнительных цветов), или вы допустили ошибку в процессе создания.
+
+Другая возможная причина, это выбор текстур из родительского предмета. В этом случае вам нужно работать с родительским объектом.</value>
   </data>
-  <data name="wizard1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>298, 440</value>
+  <data name="lbfinload.Text" xml:space="preserve">
+    <value>Предмет создан и загружен.</value>
+  </data>
+  <data name="lbwait.Text" xml:space="preserve">
+    <value>Подождите</value>
   </data>
   <data name="biPrev.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAcNJREFUOE9jYBgF
-        mCFgWCpll3dgddLk29e5RLUkkBXw598XsCy/Nie1//4jaW0vRxTNnNEnZHSLr7anz7//euHpH//X3vj6
-        xSltWj1YkV8nr0bntayEtZ/vzTz6+f/yo5//OSZNXwyW49RPlxbKuN8tV3H7bdKqD/8r937/33D05//+
-        01//Otdv2yVavTleYfGHK/GHvv6pOv7nf83uL/97dn/9716++zxQOyODbOiMJX6Lfv3fcOvX/ykXf/8P
-        2vP3f+zx//8LLvz/H3b469/go1//rXrw9d+Me///Bx38/z9y39//Gbt+//eYcf9z9aKLNQxsBsm1EpXX
-        fxmv+/vf99T//4ue/v+/7Nn//+33///3P/rpn+qWt1+tz/39H3gHKPfi//+lT/7/b7wClNv7/79WSn8n
-        yBesDKwC+mzm4dX8FauOy2169svp7v//Ma/+/1/+7f9/heTyXiYt23iRyvm7lda++mJ96f//AKABzUAL
+        mCFgWCpll3dgddLk29e5RLUkkBXw598XsCy/Nie1//4jaW0vRxTNnNEnZHSLr7anz7//euHpH//X3vjy
+        xSltWj1YkV8nr0bntayEtZ/vzTz6+f+yI5/+OSZNXwyW49RPlxbKuN8tV3H7bdKqD/8r937/33D05//+
+        U1/+Otdv2yVavTleYfGHK/GHvvypOv7nf83uL/97dn/9716++zxQOyODbOiMJX6Lfv3fcOvX/ykXf/8P
+        2vP3f+zx//8LLvz/H3roy9/gI1/+rbz/5d+Me///Bx38/z9y39//Gbt+//eYcf9z9aKLNQxsBsm1EpXX
+        fxmv+/vf99T//4ue/v+/7Nn//+33///3P/Lxn+qWt1+tz/39H3gHKPfi//+lT/7/b7wClNv7/79WSn8n
+        yBesDKwC+mzm4dX8FauOy256+svp7v//Ma/+/1/+7f9/heTyXiYt23iRyvm7lda++mJ96f//AKABzUAL
         jLIXnkKPBW4GERk7vuC8Xul5B6/Zvvv/X664oR2qiI2BX8SYyy2hXrRx02mN7f/+q1ZsPo4vIYuwqRuH
-        2sQ0l2FRxGvsX95gHFzVOJoTGBgA8AnpR0QnGjsAAAAASUVORK5CYII=
+        2sQ0l2FRxGvsX95gHFzVOJoTGBgAxejpNFwCt4QAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="biPrev.Size" type="System.Drawing.Size, System.Drawing">
@@ -586,17 +627,17 @@
   <data name="biNext.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAhlJREFUOE/dk99L
-        k2EUxx+wuaw3nE1NsVZtuCbGRhKJoYJEkOZ6rRxKY4kJdVM2VrHRiojmkNFNoFvQyC6yBf0yJkub89Wo
-        6S7mjyB/QIRoZSY5ocbbGL7fnl2si7R/wAeem+dz+J7zPec8hKyPs11Te/yo0eclkr3qfx2Js/PlOlt4
-        hFHWsP91W66z2gMfAbPnaySftV4lTG5mMliqPqL1TQuwvVwQ9p1qu0cYpWqVEGt50v1gMIr2IR62MFD9
-        cGaaOXTmZCJQrbda7k8CrhAPx5sVnHDNLWWVm80UbUoKMQbnxNytnl+49DqK5rcrqB8GFD5A1tLXxXaM
-        DDsmAEswjgu9PAzPothtX0Z2IxfeoqysJCJFUVFD53z8nD+OOk5A9SBgGgfcs8CrJaDpPWAcAwxUVNsn
-        oJmL4elUDMEvAvacfe4nW6vON7EBoGYAsNFSPfOALwKU0awF74BjowLqqWDHZ8C/CAxRVuwF8m7zSDvc
-        +ogoTe47CRhaBnQfgAP0yl9856WX7/bITM4u5+xPYeo3cJo2uZRWI+tcFDKueMfFmtoWQlJVZL8r2Fsx
-        ChSGgG2emYik4cbjFOkOLW1Qqsp47XodgIPfaEZuIZZ50dUv2qlppCzv7ySybnIBqT3waXOFvpVszCih
-        QJyEOWaHXcFN/pDoTe6UHHkVfU9fvQsiSWJ5CtdcEnH6LrIhrZgy0fr4Mmu6+AMtAhLcf+9aqwAAAABJ
-        RU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAhhJREFUOE/dk99L
+        k1Ecxg/YXNYbzqZmWas2XBNjI4kkKUEiSHO9Vg6lsUSFuikb09hoRYhzyOgmSBc0sovRgn4NFkub682o
+        6S6mGeQPiLAsMyMn4Xgdw/fp7GJdpP0DHjg35/PlOd/ne55DyNpY2zU1J48b/T4i2av+15E4t0Cus0WG
+        GWU1+1+3ZTqrPfgRMHtmogWs9QphtmaniqXqY1r/pIB276yw78ytO4RRqlYIsZaHz+4NxNA1yMMWAarc
+        U5PMkcbTyUK13mq5Ow44wzwcr5dxyjk9n1NmNlO0ISXEGLrHptt7F9HyIobmN8uoGwIUfkDW0e9le4aH
+        HGOAJZTAxT4ehscx7LYvILeBi2xSVlQQkaK4uN49kzgfSKCWE1A1AJhGAdcX4Pk80PQeML4DDFRU2y+g
+        mYvj0UQcoW8C9px7EiCbKy80sUGg+hVgo616vgP+KHCY3lr4FjgxIqCOCvZ8BQI/gUHKSnxA/g0eGUc7
+        7xOlyXUzCcMLgO4DcIBu+dM5Xtp6u1dm6vZ2ff4tTCwBZ+mQD9FuZO45Ieuyb1SsqekgJF1F9jtDfeUj
+        QFEY2OKZikrqrz9Ik+7Q0gGlq4xXr9UCKJ0FtnE/4tmXnC9FOzUNlOX/fYmcNi4otQc/bSzXd5L1WQcp
+        EKdgntlhV3DjvyR6kystT15JzzNXZkEkSYanaNWQiDN3kXUZJZSJ1saXWdXFHxZiEtH+c7XyAAAAAElF
+        TkSuQmCC
 </value>
   </data>
   <data name="biNext.Size" type="System.Drawing.Size, System.Drawing">
@@ -611,13 +652,13 @@
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAgVJREFUOE9jYKA7
         4GdQYuBnUCDXXvGQHpezXm0Wp4EGiJJmiAiDWvoc/+sf/rz+//Tb/f+Rk9yvsQkzaMANYZNg0ASaqYLN
         VE4FFvPS9WHPbn+88P/Gy3P/H7y7+X/FzQn/5eJ4doHV8yiy2GYvC/iUscr5NacsiwmyIaKGzB71+wO/
-        nHq+7f/hBxv+H3245f/MM2X/9dqE/7PosCxkEDZk88vabP9z2+15/zfdmva/aIf9VzEDZleQIcouXLEt
-        h6L/7bw/8/+mm5P/b7455X/vqej/xh1AzdosG4BK+Bn08vguxW1V+d+4P/j/7HPF/5ddq/tfvN/+p3u9
+        nHq+7f/hBxv+H3245f/MM2X/9dqE/7PosCxkEDZk88vabP9z2+15/zfdmva/aIf9VzEDZleQIcouXLHN
+        B6P/7bw/8/+mm5P/b7455X/vqej/xh1AzdosG4BK+Bn08vguxW1V+d+4P/j/7HPF/5ddq/tftN/+p3u9
         6IqJ58P/r75Z/3/JlbL/8y/n/W897fDfvEvkP7MS8xygZmawS5nVmGda94r8T9oh9T9tm9z/8gMG/9tP
         Ov/vuej8v/+81//207b/a49r/685pfzfpkPsP7MEcxt6OLEyyzNPcZ4o/r/8uPz//IPS/0uPyvyvOC7z
-        v+qk7P/qM7L/O6/o/HdqU/3PIMCUjzPqWGRY6kLmqAIVa/9vOCf7v+WC3P+2K3L/Z91z+O/faPCDgY8h
-        imC8s0sxZYYvMvw7+4HN//7b8v9XPQv5H9lv+Rao2Z2gZpgCDimmsJz5pp+3vsz6H9dv+oCBk8GcaM0w
-        hVwSzF4mKfxbGFgZtEnWDNXACKTJzjAkWQoAfRLT2+vsLusAAAAASUVORK5CYII=
+        v+qk7P/qM7L/O6/o/HdqU/3PIMCUjzPqWGRY6kLmqAIVa/9vOCf7v+WC3P+2K3L/Z91z+O/fYPCDgY8h
+        imC8s0sxZYYtMvw7+4HN//7b8v9XPQv5H9lv+Rao2Z2gZpgCDimmsJz5pp+3vsz6H9dv+oCBk8GcaM0w
+        hVwSzF4mKfxbGFgZtEnWDNXACKTJzjAkWQoAc3nT1pZ/S50AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="biFinish.Size" type="System.Drawing.Size, System.Drawing">
@@ -629,19 +670,19 @@
   <data name="biAbort.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAqJJREFUOE+VkwtI
-        U1EYx785nziTJuUj8AVNy4JqWQmpQ0QzLMoojVCpDEtHUmIvy7SyqIWlvQjLCrJh+MB3atFm2bYyE/MF
-        5ShSCqMFjfKR7t+3JVJRaAd+nHO/x+/cwz1XSFOMIF/HsKD5s0LsTUaH90Ya5PLxqXp+y9eejtUBBuBj
-        K7rKjr3aFuKR8l+C0uMxKoz1A597gG9veNagSB5UwhLhtESl6UtUeH0DeNfI3Af6HwIDFUiL8Mi0CJZ7
-        CWVRAbbRjkSufzPeXEuaoUzCUL4EeK4Aum8BfUp8UqZ+dbUjH7qe5F2DnlwYKpO+qHOkmoxI8aGF7iRl
-        mYNZ6GJHsjUSyq+PIcP3C95A2yngGdOWhbhA0U46u05UDN0eQHeYE5nA073Ag0T0FYb3l+/3r0yJEMvn
-        utE8G6KAsgRBLx4nAC1pXJ+KjCixgnYECrJRtxq4t4WJ4+ZYoHkzoOXnF1zctR4dJ2YMmN8mRmoth4Zr
-        1RuBWgn2hVMehXpRHG4vAKrCgRoZ0BDKkmCWhACqZRi95ITCSNJyv3NTrrsa2hVAtRtQRkgPIwV5OpP0
-        wxmrcRS7AOWeQJ0P0OTLAl+Yqpygz6GRvHhBZfsV+05oZwKNQqCeACUhWkKWOzG7M4sGcYeDd5kaAQu4
-        SM1orYFWnjusgHaOP+G8GRVBf5CGRbbkbxYIG3ZTKyrMzUwV08y0Me3MS6aL6WZ6fwpM5wnJUro4+dnP
-        baJiNHKyiGA8QBg5yWs+o0WgZ95ONPMmw0cJR2RUzc2iSUFqMGXjGqFTTmPxi+ly3ipq0csJowpuNB+t
-        hNcFBF0iGRMWWXbme/fLCPam2EfbadDPjTZMhG3mOFNYtD9lJQfS1a1LqWClF+2yJfL71/134oTntH6O
-        P4p+ABipkynIh2OxAAAAAElFTkSuQmCC
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAqFJREFUOE+VkwtI
+        U1EYx785nziTlHIa+IKmZUG1rITUIaIZFmWURqhUhqUjKbGXZVpZ1MLSXoRmBakYTvGdWrRZtq3MxJwK
+        5ShSBCODRvlI/fdtiVQU2oEf59zv8Tv3cM8V0gwjwNs+JGDxvCDbSaPdgJEGuXxipp7f8rXno3XAEPCx
+        FXrlqTe7gtyS/ktQdjpKhfE+4HM38O0dzxoUygNKWSKclagsdYUKb28DHxqZh0DfY6C/AilhbulmwWoP
+        oSzCzzrSnsjlb8Y7G0kznE4YzpUALxVA112gtwSfipO/utiQF91K8KxBdzaGKhO+qLOkmrRwp2NLXUnK
+        MjuT0NmGZBsklFsfRUPfr3gCbeeAF0xbBmL8RXvp4iZREXQHAN1xTqQDzw8Cj+LRmx/aV37YtzIpzEm+
+        UEyLrIj8lHGCHjyNA1pSuD4ZaRFOCtrjL8hE3XrgwQ4mhpujgebtgJafX3GxfjM6zszpN71NlNRSDg3X
+        qrcCtRIcCqUcCvagGNxbAlSFAjUyoCGYJYEsCQJUqzB2zQH54aTlfsembFc1tGuAajGgJKSGkILcHUk6
+        cMFiAkXOQLk7UOcFNHmzwBuTVQ4wZNFoTqygsv2GbSe0c4FGIVBPQAkhUkLmOzG/M4MGUczB+0yNgAVc
+        pGa0lkArzx0WQDvHn3HehIpgOEojImvyNQmEDfupFRWmZqaKaWbamHbmNaNnupien4LJy4REKV2d/uyX
+        tlERGjlZSDAeIYye5TWf0SwwMO+nmnmTkZOEEzKq5mbRtCA5kDJRQOiU03jscrqes45aDHLCmIIbTUcr
+        5XUeQRdPxrhl5p353v0yAj0p+sluGvQR05apsNUCRwqJ9KWMRH+6uXMl5a31oH3WRD7/uv8OnHCf1c/x
+        R9EPFBWTJ/62OIQAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="biAbort.Size" type="System.Drawing.Size, System.Drawing">
@@ -665,11 +706,11 @@
         s1c0gHPmbrPTpHNJKOCo2G1mZs20zcwUJ5yp1AB5+8/zEwgF5GMVDxh4AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>298, 25</value>
+  <data name="biCatalog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
   </data>
-  <data name="xpGradientPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>298, 465</value>
+  <data name="biCatalog.Text" xml:space="preserve">
+    <value>Каталог</value>
   </data>
   <data name="$this.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -693,7 +734,7 @@
 </value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 429</value>
+    <value>236, 386</value>
   </data>
   <data name="$this.TabImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -715,73 +756,5 @@
         +XEOmATMNnx8fMqFAt7XoKXzDWFrlmjD1y9rCQ9d3hIeQuoQSYMprWTt0uZtUTuSGf93UbQg/1mLFU0A
         AAAASUVORK5CYII=
 </value>
-  </data>
-  <data name="biCatalog.Text" xml:space="preserve">
-    <value>Каталог</value>
-  </data>
-  <data name="cbColorExt.Text" xml:space="preserve">
-    <value>Создать Пакет дополнительных цветов</value>
-  </data>
-  <data name="cbDesc.Text" xml:space="preserve">
-    <value>Изменить описание</value>
-  </data>
-  <data name="cbfix.Text" xml:space="preserve">
-    <value>Починить клонированные файлы</value>
-  </data>
-  <data name="cbgid.Text" xml:space="preserve">
-    <value>Изменить ID группы (0x1c050000)</value>
-  </data>
-  <data name="cbOrgGmdc.Text" xml:space="preserve">
-    <value>Ссылаться на оригинальный меш</value>
-  </data>
-  <data name="cbTask.Items" xml:space="preserve">
-    <value>Перекраска</value>
-  </data>
-  <data name="cbTask.Items1" xml:space="preserve">
-    <value>Клонирование</value>
-  </data>
-  <data name="gbClone.HeaderText" xml:space="preserve">
-    <value>Клонирование</value>
-  </data>
-  <data name="gbRecolor.HeaderText" xml:space="preserve">
-    <value>Перекраска</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Задание:</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Заголовок:</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Описание:</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Цена:</value>
-  </data>
-  <data name="lberr.Text" xml:space="preserve">
-    <value>SimPE не удалось создать предмет. Возможно, был выбран предмет, который не поддерживает CEP (пакеты дополнительных цветов), или вы допустили ошибку в процессе создания.
-
-Другая возможная причина, это выбор текстур из родительского предмета. В этом случае вам нужно работать с родительским объектом.</value>
-  </data>
-  <data name="lbfinished.Text" xml:space="preserve">
-    <value>Предмет создан.</value>
-  </data>
-  <data name="lbfinload.Text" xml:space="preserve">
-    <value>Предмет создан и загружен.</value>
-  </data>
-  <data name="lbwait.Text" xml:space="preserve">
-    <value>Подождите</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value>Добро пожаловать в новую Мастерскую предметов.</value>
-  </data>
-  <data name="xpTaskBoxSimple1.HeaderText" xml:space="preserve">
-    <value>Выбранный предмет</value>
-  </data>
-  <data name="xpTaskBoxSimple2.HeaderText" xml:space="preserve">
-    <value>Выбранный предмет</value>
-  </data>
-  <data name="xpTaskBoxSimple3.HeaderText" xml:space="preserve">
-    <value>Описание</value>
   </data>
 </root>

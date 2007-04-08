@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="JpegPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>377, 61</value>
-  </data>
   <data name="banner.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 16</value>
   </data>
@@ -129,6 +126,9 @@
   </data>
   <data name="btPicExport.Text" xml:space="preserve">
     <value>Esporta...</value>
+  </data>
+  <data name="JpegPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>377, 61</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="visualStyleLinkLabel2.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
@@ -233,18 +233,6 @@
   <data name="objdPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>700, 248</value>
   </data>
-  <data name="realPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 150</value>
-  </data>
-  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1013, 422</value>
-  </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1021, 448</value>
-  </data>
-  <data name="gbties.Text" xml:space="preserve">
-    <value>Parentele</value>
-  </data>
   <data name="btnewtie.Location" type="System.Drawing.Point, System.Drawing">
     <value>639, 72</value>
   </data>
@@ -296,6 +284,9 @@
   <data name="llcommitties.Text" xml:space="preserve">
     <value>conferma Parentele per questo Sim</value>
   </data>
+  <data name="gbties.Text" xml:space="preserve">
+    <value>Parentele</value>
+  </data>
   <data name="bttiecommit.Text" xml:space="preserve">
     <value>Conferma</value>
   </data>
@@ -304,6 +295,19 @@
   </data>
   <data name="label68.Text" xml:space="preserve">
     <value>Editor delle Parentele</value>
+  </data>
+  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1013, 422</value>
+  </data>
+  <data name="label89.Location" type="System.Drawing.Point, System.Drawing">
+    <value>754, 35</value>
+  </data>
+  <data name="label89.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 26</value>
+  </data>
+  <data name="label89.Text" xml:space="preserve">
+    <value>Sotto
+quartiere:</value>
   </data>
   <data name="cbcomputer.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 38</value>
@@ -425,6 +429,9 @@
   <data name="label15.Text" xml:space="preserve">
     <value>Istanza del Lotto:</value>
   </data>
+  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1013, 422</value>
+  </data>
   <data name="label91.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 88</value>
   </data>
@@ -442,9 +449,6 @@
   </data>
   <data name="llsrelcommit.Text" xml:space="preserve">
     <value>conferma</value>
-  </data>
-  <data name="gbrelation.Text" xml:space="preserve">
-    <value>Stato Relazione</value>
   </data>
   <data name="cbbest.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 74</value>
@@ -512,6 +516,9 @@
   <data name="cbenemy.Text" xml:space="preserve">
     <value>Nemici</value>
   </data>
+  <data name="gbrelation.Text" xml:space="preserve">
+    <value>Stato Relazione</value>
+  </data>
   <data name="label57.Location" type="System.Drawing.Point, System.Drawing">
     <value>22, 63</value>
   </data>
@@ -536,7 +543,13 @@
   <data name="label56.Text" xml:space="preserve">
     <value>Editor delle Relazioni</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="realPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 150</value>
+  </data>
+  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1013, 422</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1021, 448</value>
   </data>
 </root>

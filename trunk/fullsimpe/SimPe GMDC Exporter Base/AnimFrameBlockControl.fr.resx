@@ -179,4 +179,7 @@
   <data name="llClear.Text" xml:space="preserve">
     <value>Effacer</value>
   </data>
+  <data name="lbTimeCode.Text" xml:space="preserve">
+    <value>Code temporel :</value>
+  </data>
 </root>

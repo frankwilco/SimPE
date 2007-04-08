@@ -127,8 +127,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Groupe de Sim :</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Sim (Patient)</value>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>225, 16</value>
@@ -138,6 +138,9 @@
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>L'apparence de ce Sim sera modifiée.</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbeye.Text" xml:space="preserve">
     <value>Yeux seulement</value>
@@ -167,8 +170,17 @@
   <data name="lbpatlife.Text" xml:space="preserve">
     <value>Âge</value>
   </data>
+  <data name="lbpatlife.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lbpatname.Text" xml:space="preserve">
     <value>Nom</value>
+  </data>
+  <data name="lbpatname.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pbpatient.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="llusepatient.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 8</value>
@@ -191,14 +203,23 @@
   <data name="cbface.ToolTip" xml:space="preserve">
     <value>Copier uniquement le visage de l'Archétype vers le Patient</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Sim (Archétype)</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Sim (Patient)</value>
+  </data>
+  <data name="groupBox1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="lbarchlife.Text" xml:space="preserve">
     <value>Âge</value>
   </data>
+  <data name="lbarchlife.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lbarchname.Text" xml:space="preserve">
     <value>Nom</value>
+  </data>
+  <data name="lbarchname.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="llusearche.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 8</value>
@@ -215,6 +236,9 @@
   <data name="llusearche.ToolTip" xml:space="preserve">
     <value>Utiliser le Sim sélectionné comme Archétype</value>
   </data>
+  <data name="pbarche.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>245, 16</value>
   </data>
@@ -224,8 +248,17 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Voici ce à quoi resemblera le Sim.</value>
   </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Sim (Archétype)</value>
+  </data>
+  <data name="groupBox2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="sfd.Filter" xml:space="preserve">
-    <value>Package de Sims (*.package)|*.package|Tous les fichiers (*.*)|*.*</value>
+    <value>Emballage de Sims (Package)|*.package|Tous les fichiers (*.*)|*.*</value>
   </data>
   <data name="sfd.Title" xml:space="preserve">
     <value>Exporter les CAS du Sim</value>
@@ -235,6 +268,12 @@
   </data>
   <data name="cbskin.ToolTip" xml:space="preserve">
     <value>Copier uniquement la peau de l'Archétype vers le Patientt</value>
+  </data>
+  <data name="lvskin.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox3.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -507,10 +546,10 @@
         wAAAA//////wAAAP//////4AAH///////+AH////
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Outil chirurgicale pour Sims</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

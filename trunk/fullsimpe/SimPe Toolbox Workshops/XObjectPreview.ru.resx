@@ -129,4 +129,7 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Вид:</value>
   </data>
+  <data name="Label5.Text" xml:space="preserve">
+    <value>Дополнение:</value>
+  </data>
 </root>

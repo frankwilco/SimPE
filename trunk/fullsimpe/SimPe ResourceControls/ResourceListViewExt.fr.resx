@@ -126,4 +126,7 @@
   <data name="clSize.Text" xml:space="preserve">
     <value>Taille</value>
   </data>
+  <data name="clOffset.Text" xml:space="preserve">
+    <value>Position</value>
+  </data>
 </root>

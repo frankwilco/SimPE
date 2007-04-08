@@ -61,5 +61,7 @@ namespace SimPe
 		void Wait();
 		void Wait(int max);
 		void Stop();
+
+        bool ShowProgress { get; set; }
 	}
 }

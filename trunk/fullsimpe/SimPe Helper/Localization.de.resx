@@ -1229,7 +1229,7 @@ Package: {filename}</value>
   <data name="Fix_Fence_Warning" xml:space="preserve">
     <value>"Zäune mit dem original Spiel kompatibel zu machen basiert auf einem unschönen Hack, der zu Konflikten im Spiel führen kann. Ich würde nicht Empfehlen, einen derartigen Zaun zu veröffentlichen!
 
-Soll er der Zaun dennoch auch im original Spiel verfügbar sein, sollte er in zwei Versionen angeboten werden. Einmal als Zaun für das original Spiel und einmal in einer Variante ab "Wilde Kampus-Jahre". 
+Soll er der Zaun dennoch auch im original Spiel verfügbar sein, sollte er in zwei Versionen angeboten werden. Einmal als Zaun für das original Spiel und einmal in einer Variante ab "Wilde Campus-Jahre". 
 Die Wahrscheinlichkeit für einen Konflikt, wenn ihr den Zaun nur für euren persönlichen Gebrauch in das Format des orginal Spieles umwandelt ist gering.
 
 Soll der Zaun in das Format des original Spieles umgewandelt werden?"</value>
@@ -1295,10 +1295,10 @@ Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
 Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
   </data>
   <data name="[Property:EP1Path]" xml:space="preserve">
-    <value>1: Wilde Kampus-Jahre</value>
+    <value>1: Wilde Campus-Jahre</value>
   </data>
   <data name="[Description:EP1Path]" xml:space="preserve">
-    <value>Hier sollte das Installationsverzeichnis von "Die Sims 2 - Wilde Kampus-Jahre" stehen. 
+    <value>Hier sollte das Installationsverzeichnis von "Die Sims 2 - Wilde Campus-Jahre" stehen. 
 Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
 
 Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
@@ -1374,7 +1374,18 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
 
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
-  </data>>
+  </data>
+  <data name="[Property:SP4Path]">
+    <value>3: Party-Accessoires</value>
+  </data>
+  <data name="[Description:SP4Path]">
+    <value>
+      This should contain the installation directory of "Die Sims 2 - Party-Accessoires".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
   <data name="[Property:SIMSLSPath]">
     <value>1: Lebensgeschichten</value>
   </data>
@@ -1564,6 +1575,9 @@ Soll SimPE dennoch gestartet werden?</value>
   <data name="EP NAME 8" xml:space="preserve">
     <value>Die Sims 2 - Vier Jahreszeiten</value>
   </data>
+  <data name="EP NAME 9" xml:space="preserve">
+    <value>Die Sims 2 - Party-Accessoires</value>
+  </data>
   <data name="EP NAME 20">
     <value>Die Sims 2 - Lebensgeschichten</value>
   </data>
@@ -1593,6 +1607,9 @@ Soll SimPE dennoch gestartet werden?</value>
   </data>
   <data name="EP SNAME 8" xml:space="preserve">
     <value>Jahreszeiten</value>
+  </data>
+  <data name="EP SNAME 9" xml:space="preserve">
+    <value>Party</value>
   </data>
   <data name="EP SNAME 20">
     <value>Lebensgeschichten</value>

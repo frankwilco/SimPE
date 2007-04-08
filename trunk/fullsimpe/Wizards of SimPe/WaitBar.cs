@@ -45,7 +45,7 @@ namespace SimPe.Wizards
 		}
 		
 
-		protected void ShowProgress(bool visible)
+		protected void DoShowProgress(bool visible)
 		{
 			f.pbP.Visible = visible;			
 		}
@@ -81,6 +81,12 @@ namespace SimPe.Wizards
 
 		
 		#endregion
+
+        public bool ShowProgress
+        {
+            get { return f.pbP.Visible;  }
+            set { DoShowProgress(value); }
+        }
 
 		public bool Running
 		{
@@ -130,7 +136,7 @@ namespace SimPe.Wizards
 			{
 				if (value!=f.pbP.Maximum)
 				{
-					f.Invoke(new ShowStuff(ShowProgress), new object[] {true});
+                    f.Invoke(new ShowStuff(DoShowProgress), new object[] { true });
 					//f.pb.Invoke(new SetStuff(SetMaxProgress), new object[] { value });
 					f.pbP.Maximum = value;
 				}
@@ -163,8 +169,8 @@ namespace SimPe.Wizards
 		{	
 			try  
 			{ 		
-				f.pnP.Invoke(new ShowStuff(ShowMain), new object[] {false});							
-				f.Invoke(new ShowStuff(ShowProgress), new object[] {false});
+				f.pnP.Invoke(new ShowStuff(ShowMain), new object[] {false});
+                f.Invoke(new ShowStuff(DoShowProgress), new object[] { false });
 				Application.DoEvents();
 			} 
 			catch {}

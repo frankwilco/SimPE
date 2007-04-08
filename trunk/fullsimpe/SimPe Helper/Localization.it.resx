@@ -390,7 +390,7 @@ Package: {filename}</value>
     <value>Elimina Relazione a "{name}"</value>
   </data>
   <data name="Please Wait" xml:space="preserve">
-    <value>Attendere Preto</value>
+    <value>Attendere Prego</value>
   </data>
   <data name="Current Version" xml:space="preserve">
     <value>Versione attuale</value>
@@ -456,7 +456,7 @@ Package: {filename}</value>
     <value>Sconosciuto</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.Tiles" xml:space="preserve">
-    <value>Tegole del Tetto</value>
+    <value>Tappeti</value>
   </data>
   <data name="Other" xml:space="preserve">
     <value>Altro</value>
@@ -804,7 +804,7 @@ Package: {filename}</value>
     <value>Rivestimenti Murari / Mattone</value>
   </data>
   <data name="SimPe.Data.XObjFunctionSubSort.Wall_Masonry" xml:space="preserve">
-    <value>Rivestimenti Murari / Muratore</value>
+    <value>Rivestimenti Murari / Muratura</value>
   </data>
   <data name="SimPe.Data.XObjFunctionSubSort.Wall_Paint" xml:space="preserve">
     <value>Rivestimenti Murari / Vernice</value>
@@ -828,7 +828,7 @@ Package: {filename}</value>
     <value>Rivestimenti Murari / Altro</value>
   </data>
   <data name="SimPe.Data.XObjFunctionSubSort.Hood_Landmark" xml:space="preserve">
-    <value>Neighborhood / Landmark</value>
+    <value>Quartiere / Elementi caratteristici</value>
   </data>
   <data name="SimPe.Data.XObjFunctionSubSort.Hood_Flora" xml:space="preserve">
     <value>Quartiere / Flora</value>
@@ -837,13 +837,13 @@ Package: {filename}</value>
     <value>Quartiere / Effetti</value>
   </data>
   <data name="SimPe.Data.XObjFunctionSubSort.Hood_Misc" xml:space="preserve">
-    <value>Neighborhood / Misc</value>
+    <value>Quartiere / Varie</value>
   </data>
   <data name="SimPe.Data.XObjFunctionSubSort.Hood_Stone" xml:space="preserve">
-    <value>Quartiere / Pietre</value>
+    <value>Quartiere / Massi</value>
   </data>
   <data name="SimPe.Data.XObjFunctionSubSort.Hood_Other" xml:space="preserve">
-    <value>Neighborhood / Other</value>
+    <value>Quartiere / Altro</value>
   </data>
   <data name="Fun" xml:space="preserve">
     <value>Divertimento</value>
@@ -907,10 +907,10 @@ Vuoi riavviare SimPE adesso?</value>
   <data name="ObsoleteOW" xml:space="preserve">
     <value>L'ObjectWorkshop a finestra e' obsoleto. Siete pregati di usare la modalita' interna a SimPE dell'ObjectWorkshop.
 
-You should use the dockable ObjectWorkshop, which can be activated with the "Windows-&gt;ObjectWorkshop" Menu.
+Dovreste usare la finestra mobile dell'Object Workshop, attivabile dal menu' Finestra-&gt;ObjectWorkshop""."
 
-Continue anyway?
-		</value>
+Continuare ugualmente?
+</value>
   </data>
   <data name="Package Tool" xml:space="preserve">
     <value>Package Tool</value>
@@ -934,7 +934,7 @@ Continue anyway?
     <value>Questo campo deve contenere la cartella di installazione di  "The Sims 2". 
 Il percorso fornito deve contenere la sottocartella "TSData".
 
-Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
+Se vuoto, Simpe utilizzera' la cartella di default per l'installazione.</value>
   </data>
   <data name="[Property:EP1Path]" xml:space="preserve">
     <value>1: University</value>
@@ -943,7 +943,7 @@ Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
     <value>Questo campo deve contenere la cartella di installazione di  "The Sims 2 - University". 
 Il percorso fornito deve contenere la sottocartella "TSData".
 
-Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
+Se vuoto, Simpe utilizzera' la cartella di default per l'installazione.</value>
   </data>
   <data name="[Property:EP2Path]" xml:space="preserve">
     <value>2: Nightlife</value>
@@ -952,7 +952,7 @@ Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
     <value>Questo campo deve contenere la cartella di installazione di  "The Sims 2 - Nightlife". 
 Il percorso fornito deve contenere la sottocartella "TSData".
 
-Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
+Se vuoto, Simpe utilizzera' la cartella di default per l'installazione.</value>
   </data>
   <data name="[Property:EP3Path]" xml:space="preserve">
     <value>3: Funky Business</value>
@@ -961,7 +961,7 @@ Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
     <value>Questo campo deve contenere la cartella di installazione di  "The Sims 2 - Funky Business". 
 Il percorso fornito deve contenere la sottocartella "TSData".
 
-Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
+Se vuoto, Simpe utilizzera' la cartella di default per l'installazione.</value>
   </data>
   <data name="[Property:EP4Path]" xml:space="preserve">
     <value>4: Pets</value>
@@ -970,7 +970,7 @@ Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
     <value>Questo campo deve contenere la cartella di installazione di  "The Sims 2 - Pets". 
 Il percorso fornito deve contenere la sottocartella "TSData".
 
-Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
+Se vuoto, Simpe utilizzera' la cartella di default per l'installazione.</value>
   </data>
   <data name="[Property:SP1Path]" xml:space="preserve">
     <value>1: Family Fun Stuff</value>
@@ -1004,7 +1004,7 @@ Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
   </data>
   <data name="[Description:SaveGamePath]" xml:space="preserve">
     <value>Questo campo deve contenere il percorso della cartella dei salvataggi di "The Sims 2". 
-Il percorso fornito deve contenere la sottocartella "Downloads".
+Il percorso fornito deve contenere le sottocartelle "Downloads" e "Neightborhoods".
 
 Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
   </data>
@@ -1088,7 +1088,7 @@ Vuoi resettare la Cache di SimPE?</value>
 Questa versione di SimPE funziona unicamente con versioni del gioco fino a "{name}". File del gioco piu' recenti potrebbero causare errori se aperti con questa versione di SimPE!
 Per informazioni aggiuntive visitate http://sims.ambertation.de/en/.
 
-Run SimPE anyway?</value>
+Avviare SimPE ugualmente?</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Attenzione!</value>
@@ -1223,7 +1223,7 @@ Run SimPE anyway?</value>
     <value>Massimizza relazioni a {name}</value>
   </data>
   <data name="Economy" xml:space="preserve">
-    <value>Business</value>
+    <value>Affari</value>
   </data>
   <data name="NO_CRES_FOUND" xml:space="preserve">
     <value>Il Parent CRES non e' stato trovato.
@@ -1243,7 +1243,7 @@ Questo significa che SimPE non e' in grado di caricare la Gerarchia dei Joint.</
     <value>Loading embedded resource names...</value>
   </data>
   <data name="Loading package..." xml:space="preserve">
-    <value>Loading package...</value>
+    <value>Caricamento package...</value>
   </data>
   <data name="SimPe.PackedFiles.Wrapper.SpeciesType.Human" xml:space="preserve">
     <value>Umano</value>
@@ -1273,7 +1273,7 @@ Questo significa che SimPE non e' in grado di caricare la Gerarchia dei Joint.</
     <value>Inizializzazione Maschera principale</value>
   </data>
   <data name="Loading Plugins..." xml:space="preserve">
-    <value>Loading Plugins...</value>
+    <value>Caricamento Plugins...</value>
   </data>
   <data name="Enabling RemoteControl" xml:space="preserve">
     <value>Enabling RemoteControl</value>
@@ -1336,5 +1336,154 @@ Questo significa che SimPE non e' in grado di caricare la Gerarchia dei Joint.</
     <value>SimPE ha riscontrato che sul tuo sistema gira .NET {VERSION}.
     
 Per far funzionare correttamente SimPE, e' necessario installare .NET 2.0.</value>
+  </data>
+  <data name="[Property:EP5Path]" xml:space="preserve">
+    <value>5: Seasons</value>
+  </data>
+  <data name="Adventurer" xml:space="preserve">
+    <value>Avventura</value>
+  </data>
+  <data name="EP NAME 20" xml:space="preserve">
+    <value>The Sims 2 - Life Stories</value>
+  </data>
+  <data name="EP NAME 8" xml:space="preserve">
+    <value>The Sims 2 - Seasons</value>
+  </data>
+  <data name="EP SNAME 20" xml:space="preserve">
+    <value>Life Stories</value>
+  </data>
+  <data name="EP SNAME 8" xml:space="preserve">
+    <value>Seasons</value>
+  </data>
+  <data name="Journalism" xml:space="preserve">
+    <value>Giornalismo</value>
+  </data>
+  <data name="Law" xml:space="preserve">
+    <value>Legge</value>
+  </data>
+  <data name="LawEnforcement" xml:space="preserve">
+    <value>Polizia</value>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>Musica</value>
+  </data>
+  <data name="[Category:Story]" xml:space="preserve">
+    <value>4. Sim Stories</value>
+  </data>
+  <data name="[Description:EP5Path]" xml:space="preserve">
+    <value>Questo campo deve contenere la cartella di installazione di  "The Sims 2 - Seasons".
+Il percorso fornito deve contenere la sottocartella "TSData".
+Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
+  </data>
+  <data name="[Description:SIMSLSPath]" xml:space="preserve">
+    <value>Questo campo deve contenere la cartella di installazione di  The Sims 2 Life Stories". 
+Il percorso fornito deve contenere la sottocartella "TSData".
+
+Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
+  </data>
+  <data name="[Property:SIMSLSPath]" xml:space="preserve">
+    <value>1: Life Stories</value>
+  </data>
+  <data name="Artist" xml:space="preserve">
+    <value>Artista</value>
+  </data>
+  <data name="Athletic" xml:space="preserve">
+    <value>Sport</value>
+  </data>
+  <data name="Criminal" xml:space="preserve">
+    <value>Criminale</value>
+  </data>
+  <data name="Culinary" xml:space="preserve">
+    <value>Cucina</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Educazione</value>
+  </data>
+  <data name="Gamer" xml:space="preserve">
+    <value>Videogiochi</value>
+  </data>
+  <data name="Medical" xml:space="preserve">
+    <value>Medicina</value>
+  </data>
+  <data name="Military" xml:space="preserve">
+    <value>Militare</value>
+  </data>
+  <data name="NaturalScientist" xml:space="preserve">
+    <value>Naturalista</value>
+  </data>
+  <data name="Paranormal" xml:space="preserve">
+    <value>Paranormale</value>
+  </data>
+  <data name="PetSecurity" xml:space="preserve">
+    <value>Pet - Sicurezza</value>
+  </data>
+  <data name="PetService" xml:space="preserve">
+    <value>Pet - Servizi pubblici</value>
+  </data>
+  <data name="PetShowBiz" xml:space="preserve">
+    <value>Pet - Spettacolo</value>
+  </data>
+  <data name="Politics" xml:space="preserve">
+    <value>Politica</value>
+  </data>
+  <data name="Science" xml:space="preserve">
+    <value>Scientifica</value>
+  </data>
+  <data name="ShowBiz" xml:space="preserve">
+    <value>Spettacolo</value>
+  </data>
+  <data name="Slacker" xml:space="preserve">
+    <value>Lavori Alternativi</value>
+  </data>
+  <data name="TeenElderAdventurer" xml:space="preserve">
+    <value>Teen/Anziano - Avventura</value>
+  </data>
+  <data name="TeenElderAthletic" xml:space="preserve">
+    <value>Teen/Anziano - Sport</value>
+  </data>
+  <data name="TeenElderBusiness" xml:space="preserve">
+    <value>Teen/Anziano - Affari</value>
+  </data>
+  <data name="TeenElderCriminal" xml:space="preserve">
+    <value>Teen/Anziano - Criminale</value>
+  </data>
+  <data name="TeenElderCulinary" xml:space="preserve">
+    <value>Teen/Anziano - Cucina</value>
+  </data>
+  <data name="TeenElderEducation" xml:space="preserve">
+    <value>Teen/Anziano - Istruzione</value>
+  </data>
+  <data name="TeenElderGamer" xml:space="preserve">
+    <value>Teen/Anziano - Videogiochi</value>
+  </data>
+  <data name="TeenElderJournalism" xml:space="preserve">
+    <value>Teen/Anziano - Giornalismo</value>
+  </data>
+  <data name="TeenElderLaw" xml:space="preserve">
+    <value>Teen/Anziano - Legge</value>
+  </data>
+  <data name="TeenElderLawEnforcement" xml:space="preserve">
+    <value>Teen/Anziano - Polizia</value>
+  </data>
+  <data name="TeenElderMedical" xml:space="preserve">
+    <value>Teen/Anziano - Medicina</value>
+  </data>
+  <data name="TeenElderMilitary" xml:space="preserve">
+    <value>Teen/Anziano - Militare</value>
+  </data>
+  <data name="TeenElderMusic" xml:space="preserve">
+    <value>Teen/Anziano - Musica</value>
+  </data>
+  <data name="TeenElderPolitics" xml:space="preserve">
+    <value>Teen/Anziano - Politica</value>
+  </data>
+  <data name="TeenElderScience" xml:space="preserve">
+    <value>Teen/Anziano - Scientifica</value>
+  </data>
+  <data name="TeenElderSlacker" xml:space="preserve">
+    <value>Teen/Anziano - Lavori alternativi</value>
+  </data>
+  <data name="Unemployed" xml:space="preserve">
+    <value>Senza lavoro</value>
   </data>
 </root>
