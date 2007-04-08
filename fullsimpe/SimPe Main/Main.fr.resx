@@ -722,7 +722,7 @@
 </value>
   </data>
   <data name="biSave.ToolTipText" xml:space="preserve">
-    <value>Enregistrer le Package</value>
+    <value>Enregistrer l'Emballage</value>
   </data>
   <data name="biSaveAs.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -842,7 +842,7 @@
     <value>Outils</value>
   </data>
   <data name="ofd.Title" xml:space="preserve">
-    <value>Ouvrir un package</value>
+    <value>Ouvrir un Emballage</value>
   </data>
   <data name="miNew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1074,7 +1074,7 @@
     <value>203, 22</value>
   </data>
   <data name="miFileNames.Text" xml:space="preserve">
-    <value>Afficher le nom des &amp;fichiers</value>
+    <value>Afficher les noms de &amp;fichier</value>
   </data>
   <data name="miRunSims.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1403,7 +1403,7 @@
 </value>
   </data>
   <data name="sfd.Title" xml:space="preserve">
-    <value>Enregistrer le package</value>
+    <value>Enregistrer l'Emballage</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1981,5 +1981,14 @@
   </data>
   <data name="dcResourceList.ButtonText" xml:space="preserve">
     <value>Liste</value>
+  </data>
+  <data name="mbiTopics.Text" xml:space="preserve">
+    <value>&amp;Topiques</value>
+  </data>
+  <data name="ofd.Filter" xml:space="preserve">
+    <value>Emballage (Package)|*.package</value>
+  </data>
+  <data name="sfd.Filter" xml:space="preserve">
+    <value>Emballage (Package)|*.package</value>
   </data>
 </root>

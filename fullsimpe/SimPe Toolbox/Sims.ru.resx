@@ -144,8 +144,17 @@
   <data name="columnHeader8.Text" xml:space="preserve">
     <value>Размер файла</value>
   </data>
+  <data name="lv.ToolTip" xml:space="preserve">
+    <value>Синий=Несвязанный Сим; Красный=Нет данных персонажа</value>
+  </data>
   <data name="button1.Text" xml:space="preserve">
     <value>Открыть</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="panel1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
@@ -153,6 +162,9 @@
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Несвязанный персонаж</value>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>202, 315</value>
@@ -163,8 +175,14 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Нет данных персонажа</value>
   </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
     <value>178, 312</value>
+  </data>
+  <data name="panel2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbdetail.Location" type="System.Drawing.Point, System.Drawing">
     <value>612, 8</value>
@@ -175,20 +193,53 @@
   <data name="cbdetail.Text" xml:space="preserve">
     <value>Показывать детали Сима</value>
   </data>
+  <data name="cbdetail.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbUbi.Text" xml:space="preserve">
+    <value>Это особый вложенный городок, откройте главный городок, чтобы редактировать живущих в нем Симов.</value>
+  </data>
+  <data name="lbUbi.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>376, 315</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 13</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Не играбельный (NPC)</value>
+  </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>350, 312</value>
   </data>
+  <data name="panel3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbNpc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 24</value>
+  </data>
   <data name="cbNpc.Text" xml:space="preserve">
-    <value>NPC</value>
+    <value>Не играбельные (NPC)</value>
+  </data>
+  <data name="cbNpc.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbTownie.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 8</value>
   </data>
   <data name="cbTownie.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 24</value>
   </data>
   <data name="cbTownie.Text" xml:space="preserve">
     <value>Городские</value>
+  </data>
+  <data name="cbTownie.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -754,5 +805,8 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Обзор Симов</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

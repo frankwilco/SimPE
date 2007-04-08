@@ -53,14 +53,25 @@ namespace SimPe.Cache
 		{
 			version = VERSION;
 			containers = new CacheContainers();
-		}		
+		}	
+	
+        /// <summary>
+		/// Load a Cache File from the Disk
+		/// </summary>
+		/// <param name="flname">the name of the File</param>
+		/// <exception cref="CacheException">Thrown if the File is not readable (ie, wrong Version or Signature)</exception>
+        public void Load(string flname)
+        {
+            Load(flname, false);
+        }
 
 		/// <summary>
 		/// Load a Cache File from the Disk
 		/// </summary>
 		/// <param name="flname">the name of the File</param>
+        /// <param name="withprogress">true if you want  to set the Progress in the current Wait control</param>
 		/// <exception cref="CacheException">Thrown if the File is not readable (ie, wrong Version or Signature)</exception>
-		public void Load(string flname) 
+		public void Load(string flname, bool withprogress) 
 		{
 			this.filename = flname;
 			containers.Clear();
@@ -81,12 +92,14 @@ namespace SimPe.Cache
 					if (version>VERSION) throw new CacheException("Unable to read Cache", flname, version);
 
 					int count = reader.ReadInt32();
-
+                    if (withprogress) Wait.MaxProgress = count;
 					for (int i=0; i<count; i++) 
 					{
 						CacheContainer cc = new CacheContainer(DEFAULT_TYPE);
 						cc.Load(reader);
 						containers.Add(cc);
+                        if (withprogress) Wait.Progress = i;
+                        if (i % 10 == 0) System.Windows.Forms.Application.DoEvents();
 					}
 				} 
 				finally 

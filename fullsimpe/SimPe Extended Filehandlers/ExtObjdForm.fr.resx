@@ -208,7 +208,7 @@ appliquer !</value>
     <value>114, 24</value>
   </data>
   <data name="cbseating.Text" xml:space="preserve">
-    <value>Confort (Siège)</value>
+    <value>Confort (Siège, lit)</value>
   </data>
   <data name="cbsurfaces.Location" type="System.Drawing.Point, System.Drawing">
     <value>136, 84</value>
@@ -319,5 +319,8 @@ GUID</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
     <value>Éditeur de donnée d'objet</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Trie général :</value>
   </data>
 </root>

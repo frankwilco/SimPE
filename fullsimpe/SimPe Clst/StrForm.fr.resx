@@ -203,6 +203,12 @@
   <data name="llcommit.Text" xml:space="preserve">
     <value>modifier</value>
   </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 13</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Description :</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
   </data>

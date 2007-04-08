@@ -904,14 +904,15 @@ namespace SimPe.Plugin.Tool.Dockable
 
         delegate void TreeViewSetUpdateHandler(TreeView tv, bool begin);
 
-       
+        protected TreeNode RootNode;
 		private void wizardStepPanel2_Prepare(SimPe.Wizards.Wizard sender, SimPe.Wizards.WizardStepPanel step, int target)
 		{
 			if (target==step.Index) 
 			{
 				onlybase = false;
 				if (lb.Items.Count==0 && tv.Nodes.Count==0) 
-				{			
+				{
+                    if (RootNode == null) RootNode = new TreeNode();
 					tv.Enabled = false;
 					lb.Enabled = false;
 					lastselected = null;
@@ -922,6 +923,7 @@ namespace SimPe.Plugin.Tool.Dockable
 
 					lb.Items.Clear();
 					lb.Sorted = false;
+                    RootNode.Nodes.Clear();
 					tv.Nodes.Clear();
 					tv.Sorted = true;
 					tv.ImageList = ilist;
@@ -948,7 +950,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			string[][] cats = oci.ObjectCategory;			
 			foreach (string[] ss in cats)				
 			{			
-				this.tv.Invoke(new GetParentNodeHandler(ObjectLoader.GetParentNode), new object[] {tv.Nodes, ss, 0, oci, a, ilist});				
+				this.tv.Invoke(new GetParentNodeHandler(ObjectLoader.GetParentNode), new object[] {RootNode.Nodes, ss, 0, oci, a, ilist});				
 			}
 
 			//if (oci.Thumbnail!=null) a.Name = "* "+a.Name;				
@@ -970,6 +972,21 @@ namespace SimPe.Plugin.Tool.Dockable
 		{
 			lb.Sorted = true;	
 			tv.Enabled = true;
+
+            Wait.SubStart(RootNode.Nodes.Count);
+            Wait.Message = "Building List";
+            int ct = 0;
+            for (int i = RootNode.Nodes.Count - 1; i >= 0; i--)
+            {
+                Wait.Progress = ct++;
+                TreeNode node = RootNode.Nodes[0];
+                RootNode.Nodes.RemoveAt(0);
+                tv.Nodes.Add(node);
+            }
+
+            tv.EndUpdate();
+            Wait.SubStop();
+
 			lb.Enabled = true;
 
             tv.DoEndUpdate(biCatalog.Checked);

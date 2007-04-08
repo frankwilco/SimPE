@@ -117,7 +117,11 @@ namespace SimPe
 
         public static void SubStart()
         {
-            Start();
+            if (bar != null)
+            {
+                CommonStart();
+                if (!bar.Running) bar.Wait();
+            }
         }
 
         public static void SubStart(int max)
@@ -135,7 +139,8 @@ namespace SimPe
 		{
 			if (bar!=null) 
 			{
-                CommonStart();                
+                CommonStart();
+                bar.ShowProgress = false;
                 if (!bar.Running) bar.Wait();
 				
 			}
@@ -182,7 +187,12 @@ namespace SimPe
 
             if (force)
                 if (bar != null) bar.Stop();
-			ReloadSession(sd);			
+			ReloadSession(sd);
+
+            if (bar != null)
+            {
+                if (!bar.Running) bar.ShowProgress = false;
+            }
 		}
 
         static void CommonStart()

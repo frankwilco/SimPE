@@ -414,10 +414,10 @@
     <value>"Кеш был очищен. Для завершения операции вам нужно перезапустить SimPe!"</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.Person" xml:space="preserve">
-    <value>Person</value>
+    <value>Личность</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.Normal" xml:space="preserve">
-    <value>Normal</value>
+    <value>Обычный</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.ArchitecturalSupport" xml:space="preserve">
     <value>Архитектура</value>
@@ -444,7 +444,7 @@
     <value>Транспорт</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.Outfit" xml:space="preserve">
-    <value>Outfit</value>
+    <value>Одежда</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.Memory" xml:space="preserve">
     <value>Память</value>
@@ -453,7 +453,7 @@
     <value>Шаблон</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.Unknown" xml:space="preserve">
-    <value>неизв</value>
+    <value>?неизв?</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.Tiles" xml:space="preserve">
     <value>Плитка</value>
@@ -907,11 +907,9 @@
 Вы хотите запустить SimPe?</value>
   </data>
   <data name="ObsoleteOW" xml:space="preserve">
-    <value>The windowed ObjectWorkshop is obsololete. Please use the dockable ObjectWorkshop.
+    <value>Оконный Object Workshop устарел. Воспользуйтесь Object Workshop с панельным интерфейсом.
 
-You should use the dockable ObjectWorkshop, which can be activated with the "Windows-&gt;ObjectWorkshop" Menu.
-
-Continue anyway?
+Вы должны использовать панельный Object Workshop, который может быть включен через меню: "Окно-&gt;Object Workshop".
 		</value>
   </data>
   <data name="Package Tool" xml:space="preserve">
@@ -936,7 +934,7 @@ Continue anyway?
     <value>Это поле должно содержать папку с установленной игрой "The Sims 2".
 Полученный каталог должен содержать подкаталог "TSData".
 
-Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
   </data>
   <data name="[Property:EP1Path]" xml:space="preserve">
     <value>1: Университет</value>
@@ -945,7 +943,7 @@ Continue anyway?
     <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Университет".
 Полученный каталог должен содержать подкаталог "TSData".
 
-Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
   </data>
   <data name="[Property:EP2Path]" xml:space="preserve">
     <value>2: Ночная жизнь</value>
@@ -954,7 +952,7 @@ Continue anyway?
     <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Ночная жизнь".
 Полученный каталог должен содержать подкаталог "TSData".
 
-Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
   </data>
   <data name="[Property:EP3Path]" xml:space="preserve">
     <value>3: Бизнес</value>
@@ -963,7 +961,7 @@ Continue anyway?
     <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Бизнес".
 Полученный каталог должен содержать подкаталог "TSData".
 
-Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
   </data>
   <data name="[Property:EP4Path]" xml:space="preserve">
     <value>4: Питомцы</value>
@@ -972,7 +970,7 @@ Continue anyway?
     <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Питомцы".
 Полученный каталог должен содержать подкаталог "TSData".
 
-Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
   </data>
   <data name="[Property:SP1Path]" xml:space="preserve">
     <value>1: Каталог - Для дома и семьи</value>
@@ -981,7 +979,7 @@ Continue anyway?
     <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Каталог - Для дома и семьи".
 Полученный каталог должен содержать подкаталог "TSData".
 
-Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
   </data>
   <data name="[Property:SP2Path]" xml:space="preserve">
     <value>2: Каталог - Гламурная жизнь</value>
@@ -990,7 +988,7 @@ Continue anyway?
     <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Каталог - Гламурная жизнь".
 Полученный каталог должен содержать подкаталог "TSData".
 
-Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
   </data>
   <data name="[Property:SaveGamePath]" xml:space="preserve">
     <value>Сохранения</value>
@@ -999,7 +997,7 @@ Continue anyway?
     <value>Это поле должно содержать папку сохранений игры "The Sims 2".
 Полученный каталог должен содержать подкаталоги "Downloads" и "Neighborhoods".
 
-Если оно пустое, SimPe будет использовать папку по умолчанию.</value>
+Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
   </data>
   <data name="[Property:NvidadPath]" xml:space="preserve">
     <value>Утилиты Nvidia DDS</value>
@@ -1441,5 +1439,113 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   </data>
   <data name="Taurus" xml:space="preserve">
     <value>Телец</value>
+  </data>
+  <data name="[Description:SIMSLSPath]" xml:space="preserve">
+    <value>Это поле должно содержать папку с установленной игрой "The Sims 2: Житейские истории".
+Полученный каталог должен содержать подкаталог "TSData".
+
+Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
+  </data>
+  <data name="[Property:EP5Path]" xml:space="preserve">
+    <value>5: Времена года</value>
+  </data>
+  <data name="[Property:SIMSLSPath]" xml:space="preserve">
+    <value>1: Житейские истории</value>
+  </data>
+  <data name="EP NAME 8" xml:space="preserve">
+    <value>The Sims 2: Времена года</value>
+  </data>
+  <data name="EP SNAME 8" xml:space="preserve">
+    <value>Времена года</value>
+  </data>
+  <data name="PetSecurity" xml:space="preserve">
+    <value>Питомец - Охрана</value>
+  </data>
+  <data name="PetService" xml:space="preserve">
+    <value>Питомец - Услуги</value>
+  </data>
+  <data name="PetShowBiz" xml:space="preserve">
+    <value>Питомец - Шоу-бизнес</value>
+  </data>
+  <data name="Creating GUI" xml:space="preserve">
+    <value>Создание GUI</value>
+  </data>
+  <data name="Criminal" xml:space="preserve">
+    <value>Преступность</value>
+  </data>
+  <data name="Culinary" xml:space="preserve">
+    <value>Кулинария</value>
+  </data>
+  <data name="--- User Defined ---" xml:space="preserve">
+    <value>--- Определено пользователем ---</value>
+  </data>
+  <data name="&amp;Object Finder" xml:space="preserve">
+    <value>Найти объект</value>
+  </data>
+  <data name="Extract..." xml:space="preserve">
+    <value>Извлечь...</value>
+  </data>
+  <data name="Extracting stage" xml:space="preserve">
+    <value>Процесс извлечения</value>
+  </data>
+  <data name="Facial Structure" xml:space="preserve">
+    <value>Структура лица</value>
+  </data>
+  <data name="TeenElderAdventurer" xml:space="preserve">
+    <value>Подросток/Старик - Искатель приключений</value>
+  </data>
+  <data name="TeenElderAthletic" xml:space="preserve">
+    <value>Подросток/Старик - Атлетика</value>
+  </data>
+  <data name="TeenElderBusiness" xml:space="preserve">
+    <value>Подросток/Старик - Бизнес</value>
+  </data>
+  <data name="TeenElderCriminal" xml:space="preserve">
+    <value>Подросток/Старик - Преступность</value>
+  </data>
+  <data name="TeenElderCulinary" xml:space="preserve">
+    <value>Подросток/Старик - Кулинария</value>
+  </data>
+  <data name="TeenElderEducation" xml:space="preserve">
+    <value>Подросток/Старик - Образование</value>
+  </data>
+  <data name="TeenElderGamer" xml:space="preserve">
+    <value>Подросток/Старик - Геймер</value>
+  </data>
+  <data name="TeenElderJournalism" xml:space="preserve">
+    <value>Подросток/Старик - Журналистика</value>
+  </data>
+  <data name="TeenElderLaw" xml:space="preserve">
+    <value>Подросток/Старик - Закон</value>
+  </data>
+  <data name="TeenElderLawEnforcement" xml:space="preserve">
+    <value>Подросток/Старик - Правоохранение</value>
+  </data>
+  <data name="TeenElderMedical" xml:space="preserve">
+    <value>Подросток/Старик - Медицина</value>
+  </data>
+  <data name="TeenElderMilitary" xml:space="preserve">
+    <value>Подросток/Старик - Военная сфера</value>
+  </data>
+  <data name="TeenElderMusic" xml:space="preserve">
+    <value>Подросток/Старик - Музыка</value>
+  </data>
+  <data name="TeenElderPolitics" xml:space="preserve">
+    <value>Подросток/Старик - Политика</value>
+  </data>
+  <data name="TeenElderScience" xml:space="preserve">
+    <value>Подросток/Старик - Наука</value>
+  </data>
+  <data name="TeenElderSlacker" xml:space="preserve">
+    <value>Подросток/Старик - Бездельник</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Добро пожаловать</value>
+  </data>
+  <data name="Windowed Object Workshop..." xml:space="preserve">
+    <value>Оконный Object Workshop</value>
+  </data>
+  <data name="World Database" xml:space="preserve">
+    <value>Мировая база данных</value>
   </data>
 </root>

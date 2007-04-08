@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="dcPackage.CaptionText" xml:space="preserve">
-    <value>Information de l'Emballage</value>
-  </data>
-  <data name="clSize.Text" xml:space="preserve">
-    <value>Taille</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Индекс дыр:</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 16</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Index du point :</value>
-  </data>
   <data name="dcPackage.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -170,39 +161,20 @@
         9mxVMo6bgXHKaHjP3B94F1C3CCjPAbZ/DvOnRkxUR6L+1/g6+B/JSu67p8ESOQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dcResource.ButtonText" xml:space="preserve">
-    <value>Ressource</value>
-  </data>
-  <data name="dcResource.CaptionText" xml:space="preserve">
-    <value>Information de la ressource</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="linkLabel1.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
-    <value>10, 12</value>
-  </data>
   <data name="linkLabel1.Text" xml:space="preserve">
-    <value>forcer la modification</value>
+    <value>Форс. ввод</value>
   </data>
   <data name="lbComp.Text" xml:space="preserve">
-    <value>Compressé :</value>
+    <value>Сжато:</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>Instance :</value>
+    <value>Экземпляр:</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Type :</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 48</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 17</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Instance (High) :</value>
+    <value>Тип:</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Groupe :</value>
+    <value>Группа:</value>
   </data>
   <data name="dcResource.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -236,47 +208,38 @@
         dF8Hy/V6XV6zvr6l/YmMxGT6O+jFKhH7uP8ZPwARpiDTAjyqFwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="dcWrapper.CaptionText" xml:space="preserve">
-    <value>Information du Wrapper</value>
-  </data>
   <data name="lbName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 13</value>
+    <value>45, 13</value>
   </data>
   <data name="lbName.Text" xml:space="preserve">
-    <value>inc.</value>
+    <value>неизв.</value>
   </data>
   <data name="lbDesc.Text" xml:space="preserve">
-    <value>inc.</value>
+    <value>неизв.</value>
   </data>
   <data name="lbVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 13</value>
+    <value>45, 13</value>
   </data>
   <data name="lbVersion.Text" xml:space="preserve">
-    <value>inc.</value>
+    <value>неизв.</value>
   </data>
   <data name="lbAuthor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 13</value>
+    <value>45, 13</value>
   </data>
   <data name="lbAuthor.Text" xml:space="preserve">
-    <value>inc.</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 64</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 16</value>
+    <value>неизв.</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Description :</value>
+    <value>Описание:</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Version :</value>
+    <value>Версия:</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Auteur :</value>
+    <value>Автор:</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Nom :</value>
+    <value>Имя:</value>
   </data>
   <data name="dcWrapper.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -314,14 +277,11 @@
         w8u00W39C4ufXGLchCBVAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="dcHex.CaptionText" xml:space="preserve">
-    <value>Éditeur Hex</value>
-  </data>
   <data name="button1.Text" xml:space="preserve">
-    <value>Appliquer</value>
+    <value>Ввести</value>
   </data>
   <data name="hexEditControl1.Text" xml:space="preserve">
-    <value>Valeurs / Navigation :</value>
+    <value>Значения / Навигация:</value>
   </data>
   <data name="dcHex.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -353,12 +313,6 @@
         AmKMDAUASCPFukBLbxoAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="dcConvert.ButtonText" xml:space="preserve">
-    <value>Convertisseur</value>
-  </data>
-  <data name="dcConvert.CaptionText" xml:space="preserve">
-    <value>Convertisseur de nombre</value>
-  </data>
   <data name="dcConvert.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -384,15 +338,51 @@
 </value>
   </data>
   <data name="cbComp.Items" xml:space="preserve">
-    <value>non</value>
+    <value>нет</value>
   </data>
   <data name="cbComp.Items1" xml:space="preserve">
-    <value>oui</value>
+    <value>да</value>
   </data>
   <data name="cbComp.Items2" xml:space="preserve">
-    <value>oui et non</value>
+    <value>оба</value>
   </data>
   <data name="clOffset.Text" xml:space="preserve">
-    <value>Position</value>
+    <value>Смещение</value>
+  </data>
+  <data name="clSize.Text" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="dcConvert.ButtonText" xml:space="preserve">
+    <value>Конвертор</value>
+  </data>
+  <data name="dcConvert.CaptionText" xml:space="preserve">
+    <value>Конвертор чисел</value>
+  </data>
+  <data name="dcHex.ButtonText" xml:space="preserve">
+    <value>Hex</value>
+  </data>
+  <data name="dcHex.CaptionText" xml:space="preserve">
+    <value>РедакторHex</value>
+  </data>
+  <data name="dcPackage.ButtonText" xml:space="preserve">
+    <value>Архив</value>
+  </data>
+  <data name="dcPackage.CaptionText" xml:space="preserve">
+    <value>Информация об архиве</value>
+  </data>
+  <data name="dcResource.ButtonText" xml:space="preserve">
+    <value>Ресурс</value>
+  </data>
+  <data name="dcResource.CaptionText" xml:space="preserve">
+    <value>Информация о ресурсе</value>
+  </data>
+  <data name="dcWrapper.ButtonText" xml:space="preserve">
+    <value>Обложка</value>
+  </data>
+  <data name="dcWrapper.CaptionText" xml:space="preserve">
+    <value>Информация об обложке</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Экземпляр (выс):</value>
   </data>
 </root>

@@ -781,7 +781,7 @@
 </value>
   </data>
   <data name="biUpdate.ToolTipText" xml:space="preserve">
-    <value>Проверить на наличие обновлений</value>
+    <value>Проверить наличие обновлений</value>
   </data>
   <data name="biReset.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

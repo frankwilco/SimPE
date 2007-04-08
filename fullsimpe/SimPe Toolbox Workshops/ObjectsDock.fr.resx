@@ -221,7 +221,7 @@
     <value>297, 60</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Les données d'objet ne sont pas encore chargées.  Veuillez cliquer sur "Commencer", pour charger l'explorateur d'objet.  Ou cliquer "Ouvrir...", pour charger un Package personnalisé.</value>
+    <value>Les données d'objet ne sont pas encore chargées.  Veuillez cliquer sur "Commencer", pour charger l'explorateur d'objet.  Ou cliquer "Ouvrir...", pour charger un Emballage personnalisé.</value>
   </data>
   <data name="wizardStepPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>297, 438</value>
@@ -313,7 +313,7 @@
 </value>
   </data>
   <data name="cbColorExt.Text" xml:space="preserve">
-    <value>Créer un Package pour les couleurs additionnelles</value>
+    <value>Créer un Emballage pour les couleurs additionnelles</value>
   </data>
   <data name="gbRecolor.HeaderText" xml:space="preserve">
     <value>Recolorer</value>
@@ -808,5 +808,8 @@
   </data>
   <data name="cbTask.Items1" xml:space="preserve">
     <value>Cloner</value>
+  </data>
+  <data name="llCloneDef.Text" xml:space="preserve">
+    <value>Définir par défaut</value>
   </data>
 </root>

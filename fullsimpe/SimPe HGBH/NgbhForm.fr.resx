@@ -158,11 +158,15 @@
   <data name="linkLabel2.Text" xml:space="preserve">
     <value>moi</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 76</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 13</value>
+    <value>85, 26</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Propriétaire d'événement :</value>
@@ -232,5 +236,8 @@
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Éditeur de mémoire expérimental</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
 </root>

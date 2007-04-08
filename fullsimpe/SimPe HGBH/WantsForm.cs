@@ -711,7 +711,8 @@ namespace SimPe.Plugin
 			{
 				lvi.ImageIndex = il.Images.Count;
 				il.Images.Add(wnt.Information.Icon);
-				WaitingScreen.Update(wnt.Information.Icon, wnt.ToString());
+                Wait.Message = wnt.ToString();
+                Wait.Image = wnt.Information.Icon;
 			}
 			
 			lv.Items.Add(lvi);
@@ -720,11 +721,11 @@ namespace SimPe.Plugin
 		void LoadHistory() 
 		{
 			lasttve = null;
-			WaitingScreen.Wait();
+            Wait.SubStart();
 			tvhist.BeginUpdate();
 			foreach (WantItemContainer wic in wrapper.History) this.AddWant(tvhist, wic);
 			tvhist.EndUpdate();
-			WaitingScreen.Stop();
+            Wait.SubStop();
 		}
 
 		internal void AddWant(TreeView tv, WantItemContainer wc)
@@ -737,7 +738,8 @@ namespace SimPe.Plugin
 				parent.ImageIndex = ihist.Images.Count;
 				ihist.Images.Add(wc.Information.Icon);
 
-				WaitingScreen.Update(wc.Information.Icon, wc.ToString());
+                Wait.Message = wc.ToString();
+                Wait.Image = wc.Information.Icon;
 			}
 
 			foreach (WantItem wi in wc.Items) 
@@ -948,11 +950,12 @@ namespace SimPe.Plugin
 
 			itv.Images.Add(new System.Drawing.Bitmap(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.subitems.png")));
 			itv.Images.Add(new System.Drawing.Bitmap(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.nothumb.png")));
-			bool running = WaitingScreen.Running;
-			WaitingScreen.Wait();
+            Wait.SubStart();
 			System.Collections.Hashtable ht = new Hashtable();
 			string max = " / "+WantLoader.Wants.Keys.Count.ToString();
 			int ct = 0;
+            Wait.MaxProgress = WantLoader.Wants.Keys.Count;
+            Wait.Message = "Loading Wants";
 			foreach (uint guid in WantLoader.Wants.Keys)
 			{
 				ct++;
@@ -967,7 +970,11 @@ namespace SimPe.Plugin
 				wi.prefix = "    ";
 				al.Add(wi);
 
-				if ((ct%3)==1) WaitingScreen.Update(wi.Icon, ct.ToString()+max);
+                if ((ct % 3) == 1)
+                {
+                    Wait.Image = wi.Icon;
+                    Wait.Progress = ct;
+                }
 
 				//if ((Helper.DebugMode) && (ct>200)) break;
 			}
@@ -997,7 +1004,7 @@ namespace SimPe.Plugin
 			}
 			tv.Sorted = true;
 
-			if (!running) WaitingScreen.Stop();
+            Wait.SubStop();
 		}
 
 		private void SelectWant(object sender, System.Windows.Forms.TreeViewEventArgs e)

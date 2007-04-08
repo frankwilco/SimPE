@@ -60,7 +60,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			Wait.Message = "Loading Cache";
 			try 
 			{
-				cachefile.Load(CacheFileName);
+				cachefile.Load(CacheFileName, true);
 			} 
 			catch (Exception ex) 
 			{

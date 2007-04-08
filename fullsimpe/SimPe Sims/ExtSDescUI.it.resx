@@ -142,9 +142,6 @@
     <value>Animali:</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="toolBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>699, 52</value>
-  </data>
   <data name="biId.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -682,6 +679,9 @@
   <data name="biMax.ToolTipText" xml:space="preserve">
     <value>Porta al massimo tutti i valori visualizzati</value>
   </data>
+  <data name="toolBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>699, 52</value>
+  </data>
   <data name="mbiMax.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -697,9 +697,6 @@
         n8VFmJvD63L9ExCx53CcMD4OCwuwugrLy/5kRkbYs9t9avXLwTrQPzIYnipG44ySkOBWEhPdSny8WwkL
         cys63Yzqff95PtYVVXRDjYQzcXr226v/BCHkUAiUZ76rAAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="pnId.Size" type="System.Drawing.Size, System.Drawing">
-    <value>699, 264</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Specie:</value>
@@ -743,7 +740,7 @@
   <data name="label48.Text" xml:space="preserve">
     <value>Eta':</value>
   </data>
-  <data name="pnSkill.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="pnId.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
   </data>
   <data name="pbBody.LabelText" xml:space="preserve">
@@ -751,6 +748,10 @@
   </data>
   <data name="pbRomance.LabelText" xml:space="preserve">
     <value>Romanticismo:</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pbRomance.LabelWidth" type="System.Int32, mscorlib">
+    <value>90</value>
   </data>
   <data name="pbFat.LabelText" xml:space="preserve">
     <value>Forma Fisica:</value>
@@ -772,6 +773,9 @@
   </data>
   <data name="pbCooking.LabelText" xml:space="preserve">
     <value>Cucina:</value>
+  </data>
+  <data name="pnSkill.Size" type="System.Drawing.Size, System.Drawing">
+    <value>699, 264</value>
   </data>
   <data name="pbMan.LabelText" xml:space="preserve">
     <value>Maschi:</value>
@@ -796,9 +800,6 @@
   </data>
   <data name="label70.Text" xml:space="preserve">
     <value>disgustato</value>
-  </data>
-  <data name="pnChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>699, 264</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Schizzinosa</value>
@@ -859,6 +860,9 @@
   </data>
   <data name="pbGOutgoing.LabelText" xml:space="preserve">
     <value>Estroversa (Genetica):</value>
+  </data>
+  <data name="pnChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>699, 264</value>
   </data>
   <data name="miRand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1066,9 +1070,6 @@
         xdSJgVFTKA8BAJYAmayLGrILAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="pnCareer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>699, 264</value>
-  </data>
   <data name="label60.Text" xml:space="preserve">
     <value>Punteggio:</value>
   </data>
@@ -1090,6 +1091,12 @@
   <data name="label78.Text" xml:space="preserve">
     <value>Tipo Scuola:</value>
   </data>
+  <data name="label77.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 48</value>
+  </data>
+  <data name="label77.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 17</value>
+  </data>
   <data name="label77.Text" xml:space="preserve">
     <value>Rendimento:</value>
   </data>
@@ -1098,6 +1105,9 @@
   </data>
   <data name="label50.Text" xml:space="preserve">
     <value>Carriera:</value>
+  </data>
+  <data name="pnCareer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>699, 264</value>
   </data>
   <data name="pbSciFi.LabelText" xml:space="preserve">
     <value>Scienza:</value>
@@ -1156,11 +1166,11 @@
   <data name="pnInt.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
   </data>
-  <data name="lv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 264</value>
-  </data>
   <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>187, 0</value>
+  </data>
+  <data name="lv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>699, 264</value>
   </data>
   <data name="pnRel.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
@@ -1168,12 +1178,6 @@
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pnMisc.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left</value>
-  </data>
-  <data name="pnMisc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>699, 264</value>
-  </data>
-  <data name="xpTaskBoxSimple3.HeaderText" xml:space="preserve">
-    <value>Varie</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Bisogni Statici:</value>
@@ -1193,8 +1197,8 @@
   <data name="label86.Text" xml:space="preserve">
     <value>Livello Autonomia:</value>
   </data>
-  <data name="xpTaskBoxSimple2.HeaderText" xml:space="preserve">
-    <value>Fisico</value>
+  <data name="xpTaskBoxSimple3.HeaderText" xml:space="preserve">
+    <value>Varie</value>
   </data>
   <data name="cbfit.Text" xml:space="preserve">
     <value>Muscoloso</value>
@@ -1217,8 +1221,8 @@
   <data name="cbfat.Text" xml:space="preserve">
     <value>Grasso</value>
   </data>
-  <data name="xpTaskBoxSimple1.HeaderText" xml:space="preserve">
-    <value>Indicatori Fantasma</value>
+  <data name="xpTaskBoxSimple2.HeaderText" xml:space="preserve">
+    <value>Fisico</value>
   </data>
   <data name="cbisghost.Text" xml:space="preserve">
     <value>E' Fantasma</value>
@@ -1235,7 +1239,10 @@
   <data name="cbpassobject.Text" xml:space="preserve">
     <value>Passa attraverso Oggetti</value>
   </data>
-  <data name="pnEP1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="xpTaskBoxSimple1.HeaderText" xml:space="preserve">
+    <value>Indicatori Fantasma</value>
+  </data>
+  <data name="pnMisc.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
   </data>
   <data name="pbLastGrade.LabelText" xml:space="preserve">
@@ -1259,7 +1266,7 @@
   <data name="label98.Text" xml:space="preserve">
     <value>Corso:</value>
   </data>
-  <data name="pnEP2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="pnEP1.Size" type="System.Drawing.Size, System.Drawing">
     <value>699, 264</value>
   </data>
   <data name="tbNTLove.Location" type="System.Drawing.Point, System.Drawing">
@@ -1298,6 +1305,9 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Considera come:</value>
   </data>
+  <data name="pnEP2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>699, 264</value>
+  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1311,6 +1321,9 @@
   </data>
   <data name="llep3openinfo.Text" xml:space="preserve">
     <value>apri Info...</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 149</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Proprietario Attivita':</value>

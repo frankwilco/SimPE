@@ -117,7 +117,7 @@ namespace SimPe.Plugin
 				form.lastwi = null;
 				form.lastlvi = null;
 
-				WaitingScreen.Wait();			
+                Wait.SubStart();			
 				form.lvwant.Items.Clear();
 				form.iwant.Images.Clear();
 				foreach (WantItem wi in wrp.Wants) form.AddWantToList(form.lvwant, form.iwant, wi);
@@ -162,7 +162,7 @@ namespace SimPe.Plugin
 			finally 
 			{
 				form.Tag = null;
-				WaitingScreen.Stop();				
+                Wait.SubStop();				
 			}
 		}		
 

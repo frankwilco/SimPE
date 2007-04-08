@@ -145,7 +145,7 @@
     <value>Aucun</value>
   </data>
   <data name="err000" xml:space="preserve">
-    <value>Erreur lors du chargement d'un fichier Packed.</value>
+    <value>Erreur lors du chargement d'un fichier emballé.</value>
   </data>
   <data name="proceed" xml:space="preserve">
     <value>Procéder ?</value>
@@ -157,16 +157,16 @@
     <value>Erreur lors de l'écriture dans le fichier</value>
   </data>
   <data name="err001" xml:space="preserve">
-    <value>Erreur lors de l'écriture du Descripteur de Package.</value>
+    <value>Erreur lors de l'écriture du Descripteur d'Emballage.</value>
   </data>
   <data name="nfo000" xml:space="preserve">
-    <value>{0} fichiers extraits</value>
+    <value>{0} fichier(s) extrait(s)</value>
   </data>
   <data name="err002" xml:space="preserve">
     <value>Impossible d'extraire vers </value>
   </data>
   <data name="err003" xml:space="preserve">
-    <value>Erreur durant le remplacement d'un fichier Packed avec {0}.</value>
+    <value>Erreur durant le remplacement d'un fichier emballé avec {0}.</value>
   </data>
   <data name="erropenfile" xml:space="preserve">
     <value>Erreur lors de l'ouverture </value>
@@ -187,7 +187,7 @@
     <value>Erreur durant la suppression d'un fichier Packed</value>
   </data>
   <data name="err006" xml:space="preserve">
-    <value>Erreur durant l'ajout d'un fichier Packed</value>
+    <value>Erreur durant l'ajout d'un fichier emballé</value>
   </data>
   <data name="err007" xml:space="preserve">
     <value>Impossible de maximiser les intérêts de tous les Sims</value>
@@ -238,7 +238,8 @@
     <value>Je suis marié(e) à</value>
   </data>
   <data name="MySiblingIs" xml:space="preserve">
-    <value>Mon frère/Ma soeur est</value>
+    <value>Mon frangin(e) est</value>
+    <comment>Mon frère/soeur est</comment>
   </data>
   <data name="MyChildIs" xml:space="preserve">
     <value>Mon enfant est</value>
@@ -259,7 +260,7 @@
     <value>Confirmation</value>
   </data>
   <data name="English_uk" xml:space="preserve">
-    <value>Anglais (uk)</value>
+    <value>Anglais (RU)</value>
   </data>
   <data name="errconvert" xml:space="preserve">
     <value>Impossible d'assigner une valeur</value>
@@ -291,7 +292,7 @@ Lancer SimPE maintenant ?</value>
     <value>Enregistrer les changements ?</value>
   </data>
   <data name="savechanges" xml:space="preserve">
-    <value>Voulez-vous appliquer les changements apportés au Package "{filename}" ?</value>
+    <value>Voulez-vous appliquer les changements apportés à l'Emballage "{filename}" ?</value>
   </data>
   <data name="unsavedchanges" xml:space="preserve">
     <value>Certains fichiers du Package ont été modifiés mes ces modifications n'ont pas été enregistrées, ces changements seront perdus lors de l'ouverture d'un autre quartier. 
@@ -307,7 +308,7 @@ Voulez-vous continuer ?</value>
   <data name="savewrapperchanges" xml:space="preserve">
     <value>Voulez-vous appliquer les changements apportés à la ressource "{name}" ?
 
-Package :  {filename}</value>
+Emballage :  {filename}</value>
   </data>
   <data name="RT_Unset_Unknown" xml:space="preserve">
     <value>Non défini ou inconnu</value>
@@ -341,6 +342,7 @@ Package :  {filename}</value>
   </data>
   <data name="open_cloth_from_sdsc" xml:space="preserve">
     <value>Voulez-vous appliquer les changements de ce Sim avant d'ouvrir le fichier de vêtement ?"</value>
+    <comment>ne devrait-il pas être tenue</comment>
   </data>
   <data name="question" xml:space="preserve">
     <value>Question</value>
@@ -364,15 +366,18 @@ Package :  {filename}</value>
   </data>
   <data name="SimPe.Data.FamilyTieTypes.MyMotherIs" xml:space="preserve">
     <value>Parent A</value>
+    <comment>maman</comment>
   </data>
   <data name="SimPe.Data.FamilyTieTypes.MyFatherIs" xml:space="preserve">
     <value>Parent B</value>
+    <comment>papa</comment>
   </data>
   <data name="SimPe.Data.FamilyTieTypes.ImMarriedTo" xml:space="preserve">
     <value>Marié(e)</value>
   </data>
   <data name="SimPe.Data.FamilyTieTypes.MySiblingIs" xml:space="preserve">
-    <value>frère/soeur</value>
+    <value>frangin(e)</value>
+    <comment>était frère/soeur</comment>
   </data>
   <data name="SimPe.Data.FamilyTieTypes.MyChildIs" xml:space="preserve">
     <value>Enfant</value>
@@ -381,13 +386,13 @@ Package :  {filename}</value>
     <value>Ajouter "{name}" à la famille de "{gname}"                         </value>
   </data>
   <data name="OpenSDesc" xml:space="preserve">
-    <value>Ouvrir Description du Sim pour "{name}"</value>
+    <value>Ouvrir Description du Sim de "{name}"</value>
   </data>
   <data name="AddRelationCaption" xml:space="preserve">
     <value>Ajouter une relation à{name}</value>
   </data>
   <data name="RemoveRelationCaption" xml:space="preserve">
-    <value>Supprimer la relation de{name}</value>
+    <value>Supprimer la relation de {name}</value>
   </data>
   <data name="Please Wait" xml:space="preserve">
     <value>Veuillez patienter...</value>
@@ -405,7 +410,7 @@ Package :  {filename}</value>
     <value>télécharger</value>
   </data>
   <data name="get_qa_release" xml:space="preserve">
-    <value>Une nouvelle &lt;b&gt;QA Version&lt;/b&gt; a été trouvée.&lt;br /&gt;Vous pouvez la télécharger ici &lt;b&gt;http://ambertation.de/simpeforum/viewforum.php?f=14&lt;/b&gt;.</value>
+    <value>Une nouvelle &lt;b&gt;Version QA&lt;/b&gt; a été trouvée.&lt;br /&gt;Vous pouvez la télécharger ici &lt;b&gt;&lt;a href="http://ambertation.de/simpeforum/forum/viewforum/14" target="_blank"&gt;http://ambertation.de/simpeforum/forum/viewforum/14&lt;/a&gt;&lt;/b&gt;.</value>
   </data>
   <data name="cache_cleared" xml:space="preserve">
     <value>"La mémoire-cache a été effacée.  SimPE doit être relancé pour terminer l'opération!"</value>
@@ -432,16 +437,19 @@ Package :  {filename}</value>
     <value>Escaliers</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.ModularStairs" xml:space="preserve">
-    <value>Escaliers</value>
+    <value>Escaliers modulaires</value>
+    <comment>était simplement Escaliers</comment>
   </data>
   <data name="SimPe.Data.ObjectTypes.ModularStairsPortal" xml:space="preserve">
     <value>Rampes pour escaliers</value>
+    <comment>modulaires?</comment>
   </data>
   <data name="SimPe.Data.ObjectTypes.Vehicle" xml:space="preserve">
     <value>Vehicle</value>
   </data>
   <data name="SimPe.Data.ObjectTypes.Outfit" xml:space="preserve">
     <value>Costume</value>
+    <comment>Tenue?</comment>
   </data>
   <data name="SimPe.Data.ObjectTypes.Memory" xml:space="preserve">
     <value>Mémoire</value>
@@ -459,7 +467,7 @@ Package :  {filename}</value>
     <value>Autre</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSortBits.Seating" xml:space="preserve">
-    <value>Confort (Siège)</value>
+    <value>Confort (Siège, lit)</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSortBits.Surfaces" xml:space="preserve">
     <value>Surfaces</value>
@@ -492,28 +500,28 @@ Package :  {filename}</value>
     <value>Récompenses professionnelles</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSubSort.Seating_DiningroomChair" xml:space="preserve">
-    <value>Confort (Siège) / Sièges de salle à manger</value>
+    <value>Confort (Siège, lit) / Sièges de salle à manger</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSubSort.Seating_LivingroomChair" xml:space="preserve">
-    <value>Confort (Siège) / Sièges de salon</value>
+    <value>Confort (Siège, lit) / Sièges de salon</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSubSort.Seating_Sofas" xml:space="preserve">
-    <value>Confort (Siège) / Sofas &amp; causeuses</value>
+    <value>Confort (Siège, lit) / Sofas &amp; causeuses</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSubSort.Seating_Beds" xml:space="preserve">
-    <value>Confort (Siège) / Lits</value>
+    <value>Confort (Siège, lit) / Lits</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSubSort.Seating_Recreation" xml:space="preserve">
-    <value>Confort (Siège) / Relax (Fauteuil)</value>
+    <value>Confort (Siège, lit) / Relax (Fauteuil)</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSubSort.Seating_UnknownA" xml:space="preserve">
-    <value>Confort (Siège) / Inconnu I</value>
+    <value>Confort (Siège, lit) / Inconnu I</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSubSort.Seating_UnknownB" xml:space="preserve">
-    <value>Confort (Siège) / Inconnu II</value>
+    <value>Confort (Siège, lit) / Inconnu II</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSubSort.Seating_Misc" xml:space="preserve">
-    <value>Confort (Siège) / Divers</value>
+    <value>Confort (Siège, lit) / Divers</value>
   </data>
   <data name="SimPe.Data.ObjFunctionSubSort.Surfaces_Counter" xml:space="preserve">
     <value>Surfaces / Bars</value>
@@ -756,7 +764,7 @@ Package :  {filename}</value>
     <value>Récompenses professionnelles / Inconnu VIII</value>
   </data>
   <data name="Searching - Please Wait" xml:space="preserve">
-    <value>Recherche - Patientez</value>
+    <value>Recherche en cours - Patientez</value>
   </data>
   <data name="XObject" xml:space="preserve">
     <value>Autre</value>
@@ -843,7 +851,8 @@ Package :  {filename}</value>
     <value>Quartier (Décorations) / Autre</value>
   </data>
   <data name="Fun" xml:space="preserve">
-    <value>Plaisir</value>
+    <value>Divertissement</value>
+    <comment>était Plaisir</comment>
   </data>
   <data name="Fix_Fence_Warning" xml:space="preserve">
     <value>"Créer une clôture compatible avec la version originale du jeu, n'est pas une mince affaire qui peut causer des conflits dans le jeu.  Je ne le recommande pas si vous avez en tête de distribuer la clôture !
@@ -912,16 +921,16 @@ Continuer ?
 		</value>
   </data>
   <data name="Package Tool" xml:space="preserve">
-    <value>Outil Package</value>
+    <value>Outil d'Emballage</value>
   </data>
   <data name="Repair Package..." xml:space="preserve">
-    <value>Réparer le Package...</value>
+    <value>Réparer l'Emballage...</value>
   </data>
   <data name="Open Sims2Pack..." xml:space="preserve">
-    <value>Ouvrir un Sims2Pack...</value>
+    <value>Ouvrir un Emballage auto. extractible (Sims2Pack)...</value>
   </data>
   <data name="Create Sims2Pack..." xml:space="preserve">
-    <value>Créer un Sims2Pack...</value>
+    <value>Créer un Emballage auto. extractible (Sims2Pack)...</value>
   </data>
   <data name="FinishedPackageRepair" xml:space="preserve">
     <value>Recherche d'erreurs terminée.</value>
@@ -987,7 +996,7 @@ Si aucun chemin n'est spécifié, SimPE utilisera le dossier par défaut.</value
     <value>Ceci devrait contenir le dossier d'installation de "Les Sims 2 - Kit Glamour".
 Le dossier spécifié doit contenir un dossier nommé "TSData".
 
-Si aucun chemin n'est spécifié, SimPE utilisera le dossier par </value>
+Si aucun chemin n'est spécifié, SimPE utilisera le dossier par défaut.</value>
   </data>
   <data name="[Property:SP3Path]" xml:space="preserve">
     <value>3: Kit Joyeux Noël</value>
@@ -996,7 +1005,7 @@ Si aucun chemin n'est spécifié, SimPE utilisera le dossier par </value>
     <value>Ceci devrait contenir le dossier d'installation de "Les Sims 2 - Kit Joyeux Noël".
 Le dossier spécifié doit contenir un dossier nommé "TSData".
 
-Si aucun chemin n'est spécifié, SimPE utilisera le dossier par </value>
+Si aucun chemin n'est spécifié, SimPE utilisera le dossier par défaut.</value>
   </data>
   <data name="[Property:SaveGamePath]" xml:space="preserve">
     <value>Partie sauvegardée</value>
@@ -1216,12 +1225,13 @@ Run SimPE anyway?</value>
   </data>
   <data name="Savegames" xml:space="preserve">
     <value>Savegames</value>
+    <comment>à traduire ?</comment>
   </data>
   <data name="Max Relation to this Sim" xml:space="preserve">
-    <value>Maximiser la relation avec{name}</value>
+    <value>Maximiser la relation avec {name}</value>
   </data>
   <data name="Economy" xml:space="preserve">
-    <value>La bonne affaire</value>
+    <value>Affaires</value>
   </data>
   <data name="NO_CRES_FOUND" xml:space="preserve">
     <value>Le CRES parent est introuvable.
@@ -1241,7 +1251,7 @@ SimPE est dans l'impossibilité de construitre la hiérarchie des articulations.
     <value>Chargement des noms de ressource imbriquée...</value>
   </data>
   <data name="Loading package..." xml:space="preserve">
-    <value>Chargement du package...</value>
+    <value>Chargement de l'emballage...</value>
   </data>
   <data name="SimPe.PackedFiles.Wrapper.SpeciesType.Human" xml:space="preserve">
     <value>Humain</value>
@@ -1400,7 +1410,7 @@ SimPE est dans l'impossibilité de construitre la hiérarchie des articulations.
     <value>Français</value>
   </data>
   <data name="from Package..." xml:space="preserve">
-    <value>à partir du Package...</value>
+    <value>à partir de l'Emballage...</value>
   </data>
   <data name="from Selection..." xml:space="preserve">
     <value>à partir de la sélection...</value>
@@ -1625,7 +1635,7 @@ SimPE est dans l'impossibilité de construitre la hiérarchie des articulations.
     <value>Drame</value>
   </data>
   <data name="Economics" xml:space="preserve">
-    <value>Économie</value>
+    <value>Économiques</value>
   </data>
   <data name="Extracting stage" xml:space="preserve">
     <value>Stade d'extraction</value>
@@ -1656,9 +1666,10 @@ SimPE est dans l'impossibilité de construitre la hiérarchie des articulations.
   </data>
   <data name="NaturalScientist" xml:space="preserve">
     <value>Naturaliste</value>
+    <comment>ou Sciences Naturelles</comment>
   </data>
   <data name="Open virtual LUA package" xml:space="preserve">
-    <value>Ouvrir un package virtuel LUA</value>
+    <value>Ouvrir un emballage virtuel LUA</value>
   </data>
   <data name="Physics" xml:space="preserve">
     <value>Athlétisme</value>
@@ -1838,7 +1849,7 @@ SimPE est dans l'impossibilité de construitre la hiérarchie des articulations.
     <value>Donnée globale</value>
   </data>
   <data name="Lighting (Point Light)" xml:space="preserve">
-    <value>Éclairage (lumière ponctuelle)</value>
+    <value>Éclairage (Lumière ponctuelle)</value>
   </data>
   <data name="Loading Cache" xml:space="preserve">
     <value>Chargement de la mémoire-cache</value>
@@ -1916,7 +1927,7 @@ SimPE est dans l'impossibilité de construitre la hiérarchie des articulations.
     <value>Image sur plusieurs couches</value>
   </data>
   <data name="Package Text" xml:space="preserve">
-    <value>Texte du Package</value>
+    <value>Texte de l'Emballage</value>
   </data>
   <data name="Stack Script" xml:space="preserve">
     <value>Script de pile</value>
@@ -2150,7 +2161,7 @@ SimPE est dans l'impossibilité de construitre la hiérarchie des articulations.
     <value>Base de donnée du monde</value>
   </data>
   <data name="Dormer Thmdnail" xml:space="preserve">
-    <value>Dormer - Aperçu</value>
+    <value>Dortoir - Aperçu</value>
   </data>
   <data name="SimPe.PackedFiles.Wrapper.SDescVersions.BaseGame" xml:space="preserve">
     <value>Jeu original</value>
@@ -2181,5 +2192,98 @@ SimPE est dans l'impossibilité de construitre la hiérarchie des articulations.
   </data>
   <data name="Sub Array Editor" xml:space="preserve">
     <value>Éditeur de sous-collection</value>
+  </data>
+  <data name="[Category:Story]" xml:space="preserve">
+    <value>4. Les Sims Histoires</value>
+  </data>
+  <data name="[Description:EP5Path]" xml:space="preserve">
+    <value>Doit contenir le dossier d'installation de "Les Sims 2 - Au fil des saisons".
+Le dossier spécifié doit contenir un dossier nommé "TSData".
+
+Si aucun chemin n'est spécifié, SimPE utilisera le dossier par défaut.</value>
+  </data>
+  <data name="[Description:SIMSLSPath]" xml:space="preserve">
+    <value>Doit contenir le dossier d'installation de "Les Sims 2 - Histoires".
+Le dossier spécifié doit contenir un dossier nommé "TSData".
+
+Si aucun chemin n'est spécifié, SimPE utilisera le dossier par défaut.</value>
+  </data>
+  <data name="[Property:EP5Path]" xml:space="preserve">
+    <value>5: Au fil des saisons</value>
+  </data>
+  <data name="[Property:SIMSLSPath]" xml:space="preserve">
+    <value>1: Histoires</value>
+  </data>
+  <data name="[Property:SP4Path]" xml:space="preserve">
+    <value>4: Kit Jour de Fête</value>
+  </data>
+  <data name="[Description:SP4Path]" xml:space="preserve">
+    <value>Ceci devrait contenir le dossier d'installation de "Les Sims 2 - Kit Jour de Fête".
+Le dossier spécifié doit contenir un dossier nommé "TSData".
+
+Si aucun chemin n'est spécifié, SimPE utilisera le dossier par défaut.</value>
+  </data>
+  <data name="Adventurer" xml:space="preserve">
+    <value>Aventurier</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Éducation</value>
+  </data>
+  <data name="EP NAME 20" xml:space="preserve">
+    <value>Les Sims 2 - Histoires</value>
+  </data>
+  <data name="EP NAME 8" xml:space="preserve">
+    <value>Les Sims 2 - Au fil des saisons</value>
+  </data>
+  <data name="EP SNAME 8" xml:space="preserve">
+    <value>Saisons</value>
+  </data>
+  <data name="EP SNAME 20" xml:space="preserve">
+    <value>Histoires</value>
+  </data>
+  <data name="Gamer" xml:space="preserve">
+    <value>Testeur de jeu</value>
+  </data>
+  <data name="Journalism" xml:space="preserve">
+    <value>Journalisme</value>
+  </data>
+  <data name="Law" xml:space="preserve">
+    <value>Droits</value>
+    <comment>est-ce le même que pour LawEnforcement</comment>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>Musique</value>
+  </data>
+  <data name="NoDotNet" xml:space="preserve">
+    <value>SimPE a détecté l'installation de .NET {VERSION} sur votre système. 
+    
+Pour que SimPE fonctionne correctement, vous devez installer .NET 2.0.</value>
+  </data>
+  <data name="PetSecurity" xml:space="preserve">
+    <value>Animal - Sécurité</value>
+  </data>
+  <data name="PetService" xml:space="preserve">
+    <value>Animal - Service</value>
+  </data>
+  <data name="PetShowBiz" xml:space="preserve">
+    <value>Animal - Show Biz</value>
+  </data>
+  <data name="TeenElderAdventurer" xml:space="preserve">
+    <value>Aventurier (Ado/Aîné)</value>
+  </data>
+  <data name="TeenElderGamer" xml:space="preserve">
+    <value>Testeur de jeu (Ado/Aîné)</value>
+  </data>
+  <data name="TeenElderJournalism" xml:space="preserve">
+    <value>Journalisme (Ado/Aîné)</value>
+  </data>
+  <data name="TeenElderLaw" xml:space="preserve">
+    <value>Droits (Ado/Aîné)</value>
+  </data>
+  <data name="TeenElderMusic" xml:space="preserve">
+    <value>Musique (Ado/Aîné)</value>
+  </data>
+  <data name="TeenElderEducation" xml:space="preserve">
+    <value>Éducation (Ado/Aîné)</value>
   </data>
 </root>

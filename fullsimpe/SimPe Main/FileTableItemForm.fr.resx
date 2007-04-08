@@ -722,4 +722,10 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Élément de la table de fichier</value>
   </data>
+  <data name="cbEpVer.Items5" xml:space="preserve">
+    <value>Kit Fun en famille</value>
+  </data>
+  <data name="cbEpVer.Items6" xml:space="preserve">
+    <value>Kit Glamour</value>
+  </data>
 </root>

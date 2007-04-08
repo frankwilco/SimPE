@@ -128,7 +128,7 @@
     <value>283, 216</value>
   </data>
   <data name="$this.CaptionText" xml:space="preserve">
-    <value>Détails du Package</value>
+    <value>Détails de l'Emballage</value>
   </data>
   <data name="$this.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -173,5 +173,8 @@
   </data>
   <data name="$this.TabText" xml:space="preserve">
     <value>Détails</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Détails de l'Emballage</value>
   </data>
 </root>
