@@ -61,7 +61,9 @@ namespace SimPe
 
         string name;
         string sname;
+        string objfolder;
         int version;
+        int runtimeversion;
         Expansions exp;
         Microsoft.Win32.RegistryKey rk;
         string exe;
@@ -69,27 +71,105 @@ namespace SimPe
         string censor;
         Ambertation.CaseInvariantArrayList simnamedeep;
         Ambertation.CaseInvariantArrayList savegames;
+
+        Ambertation.CaseInvariantArrayList preobjectfiltablefolders;
+        Ambertation.CaseInvariantArrayList filtablefolders;
         IList<long> groups;
         int group;
 
-        
+        void SetDefaultFileTableFolders()
+        {
+            if (preobjectfiltablefolders.Count == 0)
+            {
+                if (Flag.Class == ExpansionItem.Classes.BaseGame) AddFileTableFolder("!TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Bins");
+            }
+
+            if (filtablefolders.Count == 0)
+            {
+                if (Flag.Class == ExpansionItem.Classes.BaseGame) AddFileTableFolder("TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Sims3D");
+                else AddFileTableFolder("TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "3D");
+
+                AddFileTableFolder("TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Materials");
+                AddFileTableFolder("TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Skins");
+                AddFileTableFolder("TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "Patterns");
+                AddFileTableFolder("TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Catalog" + Helper.PATH_SEP + "CANHObjects");
+                AddFileTableFolder("TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Wants");
+                AddFileTableFolder("TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "UI");
+            }
+        }
+
+        /// <summary>
+        /// Adds a Folder to the list of FileTable Folders
+        /// </summary>
+        /// <param name="fodler">The folder to add</param>
+        /// <remarks>Use <code>!</code> to specifiy a folder that has to be included before the objects.packages, 
+        /// use <code>&lt;</code> to insert a folder at the beginning of the specific list</remarks>
+        /// <param name="folder"></param>
+        void AddFileTableFolder(string folder)
+        {
+            if (folder.StartsWith("!"))
+            {
+                AddFileTableFolder(preobjectfiltablefolders, folder.Substring(1));
+            }
+            else if (!filtablefolders.Contains(folder))
+            {
+                AddFileTableFolder(filtablefolders, folder);
+            }
+        }
+
+        /// <summary>
+        /// Adds a Folder to the list of FileTable Folders
+        /// </summary>
+        /// <param name="list">List to add to</param>
+        /// <param name="fodler">The folder to add</param>
+        /// <remarks>Use <code>&lt;</code> to insert a folder at the beginning of the specific list</remarks>
+        /// <param name="folder"></param>
+        void AddFileTableFolder(Ambertation.CaseInvariantArrayList list, string folder)
+        {
+            bool begin = false;
+            if (folder.StartsWith("<"))
+            {
+                folder = folder.Substring(1);
+                begin = true;
+            }
+
+            if (!list.Contains(folder))
+            {
+                if (begin) list.Insert(0, folder);
+                else list.Add(folder);
+            }
+        }
 
         internal ExpansionItem(XmlRegistryKey key)
         {
+            filtablefolders = new Ambertation.CaseInvariantArrayList();
+            preobjectfiltablefolders = new Ambertation.CaseInvariantArrayList();
+
             if (key != null)
             {
                 name = key.Name;
 
                 version = (int)key.GetValue("Version", 0);
+                runtimeversion = (int)key.GetValue("PreferedRuntimeVersion", version);
                 exp = (Expansions)(Math.Pow(2, version));
                 rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey((string)key.GetValue("RegKey", "Software"), false);
                 exe = (string)key.GetValue("ExeName", "Sims2.exe");
                 flag = new Flags((int)key.GetValue("Flag", 0));
                 censor = (string)key.GetValue("Censor", "");
                 group = (int)key.GetValue("Group", 1);
+                objfolder = (string)key.GetValue("ObjectsFolder", "TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects");
 
                 simnamedeep = (Ambertation.CaseInvariantArrayList)key.GetValue("SimNameDeepSearch", new Ambertation.CaseInvariantArrayList());
                 savegames = (Ambertation.CaseInvariantArrayList)key.GetValue("SaveGameLocationsForGroup", new Ambertation.CaseInvariantArrayList());
+                savegames.Add(PathProvider.SimSavegameFolder);
+
+                Ambertation.CaseInvariantArrayList ftf = (Ambertation.CaseInvariantArrayList)key.GetValue("FileTableFolders", new Ambertation.CaseInvariantArrayList());
+                if (ftf.Count == 0) SetDefaultFileTableFolders();
+                else foreach (string folder in ftf) AddFileTableFolder(folder);
+                
+                ftf = (Ambertation.CaseInvariantArrayList)key.GetValue("AdditionalFileTableFolders", new Ambertation.CaseInvariantArrayList());
+                foreach (string folder in ftf) AddFileTableFolder(folder);
+
                 System.Diagnostics.Debug.WriteLine(this.ToString());
             }
             else
@@ -100,11 +180,18 @@ namespace SimPe
                 exe = "";
                 exp = (Expansions)0;
                 version = -1;
+                runtimeversion = -1;
                 simnamedeep = new Ambertation.CaseInvariantArrayList();
                 savegames = new Ambertation.CaseInvariantArrayList();
                 savegames.Add(PathProvider.SimSavegameFolder);
+
+                
+                SetDefaultFileTableFolders();
+                objfolder = "TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects";
                 group = 0;
             }
+
+            
 
             BuildGroupList();
             sname = GetShortName();
@@ -151,7 +238,15 @@ namespace SimPe
             get { return SimPe.Localization.GetString("EP NAME " + version); }
         }
 
-        
+        public Ambertation.CaseInvariantArrayList FileTableFolders
+        {
+            get { return filtablefolders; }
+        }
+
+        public Ambertation.CaseInvariantArrayList PreObjectFileTableFolders
+        {
+            get { return preobjectfiltablefolders; }
+        }
 
         internal string CensorFile{
             get { return System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Config\\"+censor); }
@@ -170,6 +265,11 @@ namespace SimPe
         public int Version
         {
             get { return version;  }
+        }
+
+        public int PreferedRuntimeVersion
+        {
+            get { return runtimeversion; }
         }
 
         public Expansions Expansion
@@ -223,6 +323,17 @@ namespace SimPe
                 {
                     return "";
                 }
+            }
+        }
+
+        /// <summary>
+        /// Folder where the objects.package is located
+        /// </summary>
+        public string ObjectsSubFolder
+        {
+            get
+            {
+                return objfolder;
             }
 
         }

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Text = "HelpForm";
         }
 

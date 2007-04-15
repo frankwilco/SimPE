@@ -52,7 +52,8 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			Wrapper.ExtFamilyTies famt = (Wrapper.ExtFamilyTies)wrapper;
 			form.wrapper = famt;
-			
+
+            form.cbLock.Checked = false;
 			form.pool.SelectedElement = null;
 			form.pool.Package = null;
 			form.pool_SelectedSimChanged(null, null, null);				

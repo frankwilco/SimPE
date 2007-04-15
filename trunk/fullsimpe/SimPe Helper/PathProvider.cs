@@ -16,8 +16,8 @@ namespace SimPe
         Glamour = 0x20,
         Pets = 0x40,
         HappyHoliday = 0x80,
-        Seasons = 0x100,
         Celebrations = 0x200,
+        Seasons = 0x100,
         LifeStories = 0x00100000,
         Custom = 0x80000000
     }
@@ -188,7 +188,14 @@ namespace SimPe
         /// </summary>
         public string SimsApplication
         {
-            get { return Latest.ApplicationPath; }
+            get {
+                if (Latest.Version != Latest.PreferedRuntimeVersion)
+                {
+                    ExpansionItem ei = GetHighestAvailableExpansion(Latest.PreferedRuntimeVersion, Latest.Version);
+                    return ei.ApplicationPath;
+                }
+                return Latest.ApplicationPath; 
+            }
 
         }
 
@@ -226,6 +233,29 @@ namespace SimPe
         {
             Expansions exp = (Expansions)Math.Pow(2, version);
             return GetExpansion(exp);
+        }
+
+        /// <summary>
+        /// Returns the object describing the highest Expansion in the interval [minver, maxver[
+        /// </summary>
+        /// <param name="minver"></param>
+        /// <param name="maxver"> not including this version</param>
+        /// <returns>null will be returned, if the passed Expansion is not yet defined. If it is just not installed on
+        /// the users Nil, a valid object will be returned, but the <see cref="ExoansionItem.Exists"/> property 
+        /// returns false.</returns>
+        public ExpansionItem GetHighestAvailableExpansion(int minver, int maxver)
+        {
+            ExpansionItem exp = null;
+            ExpansionItem t = null;
+            int v = minver;
+            while (v < maxver)
+            {
+                t = GetExpansion(v++);
+                if (t != null)
+                    if (t.Exists)
+                        exp = t;
+            }
+            return exp;
         }
 
         /// <summary>

@@ -417,7 +417,7 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.CheckBox cbkeep;
         private ToolStripMenuItem miOpenSdesc;
 		private SteepValley.Windows.Forms.XPLine xpLine1;
-        private CheckBox cbLock;
+        internal CheckBox cbLock;
 		Image thumb;
 		internal void pool_SelectedSimChanged(object sender, System.Drawing.Image thumb, SimPe.PackedFiles.Wrapper.SDesc sdesc)
 		{
