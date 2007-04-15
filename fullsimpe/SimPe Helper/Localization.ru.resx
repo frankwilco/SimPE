@@ -990,6 +990,17 @@
 
 Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
   </data>
+  <data name="[Property:SP4Path]">
+    <value>4: Каталог - Торжество</value>
+  </data>
+  <data name="[Description:SP4Path]">
+    <value>
+      Это поле должно содержать папку с установленной игрой "The Sims 2 Торжество! - Каталог".
+      Полученный каталог должен содержать подкаталог "TSData".
+
+      Если оно пустое, SimPE будет использовать папку по умолчанию.
+    </value>
+  </data>
   <data name="[Property:SaveGamePath]" xml:space="preserve">
     <value>Сохранения</value>
   </data>
@@ -1159,6 +1170,9 @@
   <data name="EP NAME 6" xml:space="preserve">
     <value>The Sims 2: Питомцы</value>
   </data>
+  <data name="EP NAME 9" xml:space="preserve">
+    <value>The Sims 2: Торжество! - Каталог</value>
+  </data>
   <data name="EP SNAME 0" xml:space="preserve">
     <value>Оригинал</value>
   </data>
@@ -1179,6 +1193,9 @@
   </data>
   <data name="EP SNAME 6" xml:space="preserve">
     <value>Питомцы</value>
+  </data>
+  <data name="EP SNAME 9" xml:space="preserve">
+    <value>Торжество!</value>
   </data>
   <data name="Check: Folder not found" xml:space="preserve">
     <value>Папка для "{name}" не найдена.</value>

@@ -999,6 +999,17 @@ Il percorso fornito deve contenere la sottocartella "TSData".
 
 Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
   </data>
+  <data name="[Property:SP4Path]">
+    <value>4: Celebration! Stuff</value>
+  </data>
+  <data name="[Description:SP4Path]">
+    <value>
+      Questo campo deve contenere la cartella di installazione di  "The Sims 2 - Celebration! Stuff".
+      Il percorso fornito deve contenere la sottocartella "TSData".
+
+      Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.
+    </value>
+  </data>
   <data name="[Property:SaveGamePath]" xml:space="preserve">
     <value>Salvataggi del Gioco</value>
   </data>
@@ -1171,6 +1182,12 @@ Avviare SimPE ugualmente?</value>
   <data name="EP NAME 7" xml:space="preserve">
     <value>The Sims 2 - Happy Holiday Stuff</value>
   </data>
+  <data name="EP NAME 8" xml:space="preserve">
+    <value>The Sims 2 - Seasons</value>
+  </data>
+  <data name="EP NAME 9" xml:space="preserve">
+    <value>The Sims 2 - Celebration! Stuff</value>
+  </data>
   <data name="EP SNAME 0" xml:space="preserve">
     <value>Original</value>
   </data>
@@ -1194,6 +1211,12 @@ Avviare SimPE ugualmente?</value>
   </data>
   <data name="EP SNAME 7" xml:space="preserve">
     <value>Happy Holiday</value>
+  </data>
+  <data name="EP SNAME 8" xml:space="preserve">
+    <value>Season</value>
+  </data>
+  <data name="EP SNAME 9" xml:space="preserve">
+    <value>Celebration!</value>
   </data>
   <data name="Check: Folder not found" xml:space="preserve">
     <value>La cartella "{name}" non e' stata trovata.</value>
