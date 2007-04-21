@@ -62,6 +62,8 @@ namespace SimPe.Plugin.Tool.Dockable
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox tbCpfVal;
 		private System.ComponentModel.IContainer components;
+        private Label label6;
+        private Label label5;
 
 		FinderThread thread;
 		public FinderDock()
@@ -146,6 +148,8 @@ namespace SimPe.Plugin.Tool.Dockable
             this.biDetail = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.xpGradientPanel1.SuspendLayout();
             this.tbResult.SuspendLayout();
             this.tbCpf.SuspendLayout();
@@ -166,7 +170,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.xpGradientPanel1.Location = new System.Drawing.Point(0, 25);
             this.xpGradientPanel1.Name = "xpGradientPanel1";
             this.xpGradientPanel1.Padding = new System.Windows.Forms.Padding(8);
-            this.xpGradientPanel1.Size = new System.Drawing.Size(256, 487);
+            this.xpGradientPanel1.Size = new System.Drawing.Size(244, 461);
             this.xpGradientPanel1.TabIndex = 0;
             // 
             // tbResult
@@ -187,7 +191,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.tbResult.Name = "tbResult";
             this.tbResult.Padding = new System.Windows.Forms.Padding(4, 44, 4, 4);
             this.tbResult.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-            this.tbResult.Size = new System.Drawing.Size(240, 23);
+            this.tbResult.Size = new System.Drawing.Size(228, 0);
             this.tbResult.TabIndex = 4;
             // 
             // lv
@@ -199,7 +203,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.lv.Location = new System.Drawing.Point(8, 48);
             this.lv.MultiSelect = false;
             this.lv.Name = "lv";
-            this.lv.Size = new System.Drawing.Size(224, 0);
+            this.lv.Size = new System.Drawing.Size(212, 0);
             this.lv.TabIndex = 0;
             this.lv.TileColumns = new int[] {
         1};
@@ -214,6 +218,8 @@ namespace SimPe.Plugin.Tool.Dockable
             this.tbCpf.BackColor = System.Drawing.Color.Transparent;
             this.tbCpf.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.tbCpf.BorderColor = System.Drawing.SystemColors.Window;
+            this.tbCpf.Controls.Add(this.label6);
+            this.tbCpf.Controls.Add(this.label5);
             this.tbCpf.Controls.Add(this.tbCpfVal);
             this.tbCpf.Controls.Add(this.button3);
             this.tbCpf.Controls.Add(this.tbCpfName);
@@ -231,7 +237,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.tbCpf.Name = "tbCpf";
             this.tbCpf.Padding = new System.Windows.Forms.Padding(4, 44, 4, 4);
             this.tbCpf.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-            this.tbCpf.Size = new System.Drawing.Size(240, 168);
+            this.tbCpf.Size = new System.Drawing.Size(228, 168);
             this.tbCpf.TabIndex = 7;
             this.tbCpf.Visible = false;
             // 
@@ -240,16 +246,16 @@ namespace SimPe.Plugin.Tool.Dockable
             this.tbCpfVal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.xpCueBannerExtender1.SetCueBannerText(this.tbCpfVal, "Property Value");
-            this.tbCpfVal.Location = new System.Drawing.Point(16, 96);
+            this.tbCpfVal.Location = new System.Drawing.Point(57, 96);
             this.tbCpfVal.Name = "tbCpfVal";
-            this.tbCpfVal.Size = new System.Drawing.Size(216, 21);
+            this.tbCpfVal.Size = new System.Drawing.Size(163, 21);
             this.tbCpfVal.TabIndex = 7;
             // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button3.Location = new System.Drawing.Point(157, 136);
+            this.button3.Location = new System.Drawing.Point(145, 136);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 8;
@@ -261,9 +267,9 @@ namespace SimPe.Plugin.Tool.Dockable
             this.tbCpfName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.xpCueBannerExtender1.SetCueBannerText(this.tbCpfName, "Property Name");
-            this.tbCpfName.Location = new System.Drawing.Point(16, 72);
+            this.tbCpfName.Location = new System.Drawing.Point(57, 72);
             this.tbCpfName.Name = "tbCpfName";
-            this.tbCpfName.Size = new System.Drawing.Size(216, 21);
+            this.tbCpfName.Size = new System.Drawing.Size(163, 21);
             this.tbCpfName.TabIndex = 6;
             // 
             // cbCpfMatch
@@ -280,14 +286,14 @@ namespace SimPe.Plugin.Tool.Dockable
             "Regular Expression"});
             this.cbCpfMatch.Location = new System.Drawing.Point(64, 48);
             this.cbCpfMatch.Name = "cbCpfMatch";
-            this.cbCpfMatch.Size = new System.Drawing.Size(168, 21);
+            this.cbCpfMatch.Size = new System.Drawing.Size(156, 21);
             this.cbCpfMatch.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(8, 48);
+            this.label4.Location = new System.Drawing.Point(8, 42);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 23);
             this.label4.TabIndex = 4;
@@ -314,7 +320,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.tbTGI.Name = "tbTGI";
             this.tbTGI.Padding = new System.Windows.Forms.Padding(4, 44, 4, 4);
             this.tbTGI.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-            this.tbTGI.Size = new System.Drawing.Size(240, 112);
+            this.tbTGI.Size = new System.Drawing.Size(228, 112);
             this.tbTGI.TabIndex = 6;
             this.tbTGI.Visible = false;
             // 
@@ -322,7 +328,7 @@ namespace SimPe.Plugin.Tool.Dockable
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(149, 80);
+            this.button2.Location = new System.Drawing.Point(137, 80);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 7;
@@ -336,14 +342,14 @@ namespace SimPe.Plugin.Tool.Dockable
             this.xpCueBannerExtender1.SetCueBannerText(this.tbType, "Resource Type");
             this.tbType.Location = new System.Drawing.Point(64, 48);
             this.tbType.Name = "tbType";
-            this.tbType.Size = new System.Drawing.Size(160, 21);
+            this.tbType.Size = new System.Drawing.Size(148, 21);
             this.tbType.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(8, 48);
+            this.label3.Location = new System.Drawing.Point(8, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 23);
             this.label3.TabIndex = 4;
@@ -371,7 +377,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.tbNmap.Name = "tbNmap";
             this.tbNmap.Padding = new System.Windows.Forms.Padding(4, 44, 4, 4);
             this.tbNmap.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-            this.tbNmap.Size = new System.Drawing.Size(240, 144);
+            this.tbNmap.Size = new System.Drawing.Size(228, 144);
             this.tbNmap.TabIndex = 2;
             this.tbNmap.Visible = false;
             // 
@@ -379,7 +385,7 @@ namespace SimPe.Plugin.Tool.Dockable
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Location = new System.Drawing.Point(157, 112);
+            this.button1.Location = new System.Drawing.Point(145, 112);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 7;
@@ -393,7 +399,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.xpCueBannerExtender1.SetCueBannerText(this.tbNmapName, "ResourceName");
             this.tbNmapName.Location = new System.Drawing.Point(16, 72);
             this.tbNmapName.Name = "tbNmapName";
-            this.tbNmapName.Size = new System.Drawing.Size(216, 21);
+            this.tbNmapName.Size = new System.Drawing.Size(204, 21);
             this.tbNmapName.TabIndex = 6;
             // 
             // cbNmapMatch
@@ -410,14 +416,14 @@ namespace SimPe.Plugin.Tool.Dockable
             "Regular Expression"});
             this.cbNmapMatch.Location = new System.Drawing.Point(64, 48);
             this.cbNmapMatch.Name = "cbNmapMatch";
-            this.cbNmapMatch.Size = new System.Drawing.Size(168, 21);
+            this.cbNmapMatch.Size = new System.Drawing.Size(156, 21);
             this.cbNmapMatch.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 48);
+            this.label2.Location = new System.Drawing.Point(8, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 23);
             this.label2.TabIndex = 4;
@@ -432,7 +438,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(8, 8);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(240, 24);
+            this.panel1.Size = new System.Drawing.Size(228, 24);
             this.panel1.TabIndex = 3;
             // 
             // cbTask
@@ -448,7 +454,7 @@ namespace SimPe.Plugin.Tool.Dockable
             "in Property Sets"});
             this.cbTask.Location = new System.Drawing.Point(48, 0);
             this.cbTask.Name = "cbTask";
-            this.cbTask.Size = new System.Drawing.Size(192, 21);
+            this.cbTask.Size = new System.Drawing.Size(180, 21);
             this.cbTask.TabIndex = 3;
             this.cbTask.SelectedIndexChanged += new System.EventHandler(this.cbTask_SelectedIndexChanged);
             // 
@@ -471,7 +477,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.biDetail});
             this.toolBar1.Location = new System.Drawing.Point(0, 0);
             this.toolBar1.Name = "toolBar1";
-            this.toolBar1.Size = new System.Drawing.Size(256, 25);
+            this.toolBar1.Size = new System.Drawing.Size(244, 25);
             this.toolBar1.TabIndex = 1;
             this.toolBar1.Text = "toolBar1";
             // 
@@ -509,6 +515,26 @@ namespace SimPe.Plugin.Tool.Dockable
             this.panel2.Size = new System.Drawing.Size(304, 402);
             this.panel2.TabIndex = 5;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label5.Location = new System.Drawing.Point(13, 75);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Name:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label6.Location = new System.Drawing.Point(14, 99);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Value:";
+            // 
             // FinderDock
             // 
             this.AutoScroll = true;
@@ -517,11 +543,11 @@ namespace SimPe.Plugin.Tool.Dockable
             this.CaptionText = "Resource Finder";
             this.Controls.Add(this.xpGradientPanel1);
             this.Controls.Add(this.toolBar1);
-            this.FloatingSize = new System.Drawing.Size(268, 538);
+            this.FloatingSize = new System.Drawing.Size(256, 512);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Image = ((System.Drawing.Image)(resources.GetObject("$this.Image")));
             this.Name = "FinderDock";
-            this.Size = new System.Drawing.Size(256, 512);
+            this.Size = new System.Drawing.Size(244, 486);
             this.TabImage = ((System.Drawing.Image)(resources.GetObject("$this.TabImage")));
             this.TabText = "Finder";
             this.xpGradientPanel1.ResumeLayout(false);

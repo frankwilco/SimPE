@@ -315,13 +315,13 @@
     <value>240, 20</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple2.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbRomance.Name" xml:space="preserve">
     <value>pbRomance</value>
   </data>
   <data name="&gt;&gt;pbNice.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbCareerLevel.Name" xml:space="preserve">
     <value>pbCareerLevel</value>
@@ -366,7 +366,7 @@
     <value>35</value>
   </data>
   <data name="&gt;&gt;pbPetSpooky.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cboncampus.TabIndex" type="System.Int32, mscorlib">
     <value>58</value>
@@ -390,7 +390,7 @@
     <value>pnId</value>
   </data>
   <data name="&gt;&gt;pbCrime.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="miOpenWf.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -468,7 +468,7 @@
     <value>7</value>
   </data>
   <data name="&gt;&gt;pbPetPlaying.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pnSkill.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -519,13 +519,13 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbpasswalls.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbPetPlaying.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="&gt;&gt;cbpregfull.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbPetPets.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 20</value>
@@ -558,7 +558,7 @@
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="&gt;&gt;pnSkill.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;label23.Name" xml:space="preserve">
     <value>label23</value>
@@ -639,7 +639,7 @@
     <value>Last Grade:</value>
   </data>
   <data name="&gt;&gt;pbCharisma.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbBody.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 112</value>
@@ -666,7 +666,7 @@
     <value>64</value>
   </data>
   <data name="&gt;&gt;pnEP3.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="cblifesection.ItemHeight" type="System.Int32, mscorlib">
     <value>13</value>
@@ -741,7 +741,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pbToys.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label70.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -771,7 +771,7 @@
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pbCareerPerformance.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="llep3openinfo.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 12</value>
@@ -945,7 +945,7 @@
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="&gt;&gt;pbCreative.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>68</value>
@@ -1104,7 +1104,7 @@
     <value>xpTaskBoxSimple2</value>
   </data>
   <data name="&gt;&gt;pbHealth.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbpasswalls.Name" xml:space="preserve">
     <value>cbpasswalls</value>
@@ -1173,7 +1173,7 @@
     <value>1</value>
   </data>
   <data name="&gt;&gt;pbSchool.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="biChar.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageAboveText</value>
@@ -1287,7 +1287,7 @@
     <value>label69</value>
   </data>
   <data name="&gt;&gt;pbPlayful.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tbautonomy.Name" xml:space="preserve">
     <value>tbautonomy</value>
@@ -1323,7 +1323,7 @@
     <value>pnSkill</value>
   </data>
   <data name="&gt;&gt;pbSciFi.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pnSimInt.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 16</value>
@@ -1338,7 +1338,7 @@
     <value>100, 17</value>
   </data>
   <data name="&gt;&gt;pnRel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="pbLastGrade.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 104</value>
@@ -1585,7 +1585,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pbRomance.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>696, 344</value>
@@ -1594,7 +1594,7 @@
     <value>pbGActive</value>
   </data>
   <data name="&gt;&gt;pbFat.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbCareerPerformance.Parent" xml:space="preserve">
     <value>pnCareer</value>
@@ -1830,7 +1830,7 @@
     <value>45</value>
   </data>
   <data name="&gt;&gt;pnEP2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="tblifelinescore.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 13</value>
@@ -1839,7 +1839,7 @@
     <value>toolBar1</value>
   </data>
   <data name="&gt;&gt;dstTb.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="tbsimdescname.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -1981,7 +1981,7 @@
     <value>16, 96</value>
   </data>
   <data name="&gt;&gt;pbPetPets.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbParanormal.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -1996,7 +1996,7 @@
     <value>0, 0, 0, 5</value>
   </data>
   <data name="&gt;&gt;pbNeat.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="toolBar1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -2023,7 +2023,7 @@
     <value>pnChar</value>
   </data>
   <data name="&gt;&gt;pbCareerLevel.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="llep3openinfo.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt, style=Bold</value>
@@ -2032,7 +2032,7 @@
     <value>496, 140</value>
   </data>
   <data name="&gt;&gt;ptPigpen.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2508.22456, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2667.39678, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbEffort.Parent" xml:space="preserve">
     <value>pnEP1</value>
@@ -2056,7 +2056,7 @@
     <value>miRemRelation</value>
   </data>
   <data name="&gt;&gt;pbPetEating.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="label47.TabIndex" type="System.Int32, mscorlib">
     <value>61</value>
@@ -2086,7 +2086,7 @@
     <value>3, 74</value>
   </data>
   <data name="&gt;&gt;srcTb.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbLastGrade.LabelWidth" type="System.Int32, mscorlib">
     <value>104</value>
@@ -2258,7 +2258,7 @@
     <value>240, 20</value>
   </data>
   <data name="&gt;&gt;pbGNice.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbGNice.Location" type="System.Drawing.Point, System.Drawing">
     <value>267, 99</value>
@@ -2423,7 +2423,7 @@
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pnChar.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;ptPigpen.Name" xml:space="preserve">
     <value>ptPigpen</value>
@@ -2538,7 +2538,7 @@
     <value>3, 51</value>
   </data>
   <data name="&gt;&gt;pbUniTime.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="biEP1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2656,7 +2656,7 @@
     <value>320, 20</value>
   </data>
   <data name="&gt;&gt;cbpreginv.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="label60.Text" xml:space="preserve">
     <value>Score:</value>
@@ -2701,7 +2701,7 @@
     <value>16, 96</value>
   </data>
   <data name="&gt;&gt;pbAnimals.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label14.Name" xml:space="preserve">
     <value>label14</value>
@@ -2722,7 +2722,7 @@
     <value>0, 0, 0, 5</value>
   </data>
   <data name="&gt;&gt;pbCooking.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbBody.LabelText" xml:space="preserve">
     <value>Body:</value>
@@ -2743,7 +2743,7 @@
     <value>pbLogic</value>
   </data>
   <data name="&gt;&gt;cbSpecies.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="tbEp3Flag.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 21</value>
@@ -2854,10 +2854,10 @@
     <value>pnChar</value>
   </data>
   <data name="&gt;&gt;pbEffort.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbGOutgoing.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbCulture.LabelWidth" type="System.Int32, mscorlib">
     <value>100</value>
@@ -2926,7 +2926,7 @@
     <value>14</value>
   </data>
   <data name="&gt;&gt;pbGActive.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbNeat.Parent" xml:space="preserve">
     <value>pnHumanChar</value>
@@ -2959,7 +2959,7 @@
     <value>62</value>
   </data>
   <data name="&gt;&gt;pbMoney.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pnPetChar.Name" xml:space="preserve">
     <value>pnPetChar</value>
@@ -3160,7 +3160,7 @@
     <value>35</value>
   </data>
   <data name="&gt;&gt;pbSports.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
@@ -3178,7 +3178,7 @@
     <value>344, 96</value>
   </data>
   <data name="&gt;&gt;cboncampus.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="xpTaskBoxSimple1.HeaderText" xml:space="preserve">
     <value>Ghost Flags</value>
@@ -3217,7 +3217,7 @@
     <value>80, 17</value>
   </data>
   <data name="&gt;&gt;pnCareer.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="label96.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 128</value>
@@ -3265,7 +3265,7 @@
     <value>label103</value>
   </data>
   <data name="&gt;&gt;pnInt.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;panel3.Parent" xml:space="preserve">
     <value>pnRel</value>
@@ -3295,7 +3295,7 @@
     <value>112, 72</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple3.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label19.Name" xml:space="preserve">
     <value>label19</value>
@@ -3304,7 +3304,7 @@
     <value>16, 144</value>
   </data>
   <data name="&gt;&gt;pbEnvironment.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="miRel.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 98</value>
@@ -3430,7 +3430,7 @@
     <value>pnPetChar</value>
   </data>
   <data name="&gt;&gt;cbfat.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="miOpenFamily.Text" xml:space="preserve">
     <value>Open Family</value>
@@ -3463,7 +3463,7 @@
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="&gt;&gt;cbEp3Asgn.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.EnumComboBox, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbPetEating.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 20</value>
@@ -3499,7 +3499,7 @@
     <value>6</value>
   </data>
   <data name="&gt;&gt;pbWeather.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cblifesection.Name" xml:space="preserve">
     <value>cblifesection</value>
@@ -3547,7 +3547,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ptAggres.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2508.22456, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2667.39678, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mbiMaxThisRel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -3607,7 +3607,7 @@
     <value>239, 20</value>
   </data>
   <data name="&gt;&gt;pbAspBliz.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbMech.LabelWidth" type="System.Int32, mscorlib">
     <value>80</value>
@@ -3631,7 +3631,7 @@
     <value>Playing:</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>SimPe.Windows.Forms.WrapperBaseControl, simpe.workspace, Version=1.0.2508.22451, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Windows.Forms.WrapperBaseControl, simpe.workspace, Version=1.0.2667.39248, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbaspiration.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -3655,7 +3655,7 @@
     <value>0, 80</value>
   </data>
   <data name="&gt;&gt;pnEP1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="label94.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3667,7 +3667,7 @@
     <value>5</value>
   </data>
   <data name="&gt;&gt;cbpasspeople.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbpreghalf.Text" xml:space="preserve">
     <value>Pregnant (Half)</value>
@@ -3679,13 +3679,13 @@
     <value>216, 21</value>
   </data>
   <data name="&gt;&gt;pbPolitics.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbpasswalls.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 24</value>
   </data>
   <data name="&gt;&gt;pbEntertainment.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbpasspeople.Name" xml:space="preserve">
     <value>cbpasspeople</value>
@@ -3898,7 +3898,7 @@
     <value>100</value>
   </data>
   <data name="&gt;&gt;pbActive.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pnInt.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -4033,7 +4033,7 @@
     <value>Toys:</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple1.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.XPTaskBoxSimple, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>pnId</value>
@@ -4093,7 +4093,7 @@
     <value>40</value>
   </data>
   <data name="&gt;&gt;pnMisc.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="pnEP3.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -4222,7 +4222,7 @@
     <value>160, 21</value>
   </data>
   <data name="&gt;&gt;pbLastGrade.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="label7.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
@@ -4282,7 +4282,7 @@
     <value>5</value>
   </data>
   <data name="&gt;&gt;cbisghost.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 16</value>
@@ -4303,7 +4303,7 @@
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pbClean.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbmajor.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -4410,7 +4410,7 @@
     <value>xpTaskBoxSimple3</value>
   </data>
   <data name="&gt;&gt;pbParanormal.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="rbfemale.Location" type="System.Drawing.Point, System.Drawing">
     <value>224, 96</value>
@@ -4446,7 +4446,7 @@
     <value>3, 122</value>
   </data>
   <data name="&gt;&gt;pbBody.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbfit.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 24</value>
@@ -4596,7 +4596,7 @@
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="&gt;&gt;pnId.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;pbEnvironment.Parent" xml:space="preserve">
     <value>pnSimInt</value>
@@ -4632,7 +4632,7 @@
     <value>0, 0, 0, 5</value>
   </data>
   <data name="&gt;&gt;pbFashion.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="mbiLink.Text" xml:space="preserve">
     <value>More</value>
@@ -4641,7 +4641,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pbAspCur.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbCooking.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 24</value>
@@ -4671,7 +4671,7 @@
     <value>34</value>
   </data>
   <data name="&gt;&gt;pbTravel.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;panel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -4683,7 +4683,7 @@
     <value>False</value>
   </data>
   <data name="&gt;&gt;lv.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.SimRelationPoolControl, simpe.sims, Version=1.0.2508.22456, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.SimRelationPoolControl, simpe.sims, Version=1.0.2667.39678, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;miOpenDNA.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -4809,7 +4809,7 @@
     <value>ImageAboveText</value>
   </data>
   <data name="&gt;&gt;pbGNeat.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbEnvironment.TextboxWidth" type="System.Int32, mscorlib">
     <value>40</value>
@@ -5043,7 +5043,7 @@
     <value>pnEP1</value>
   </data>
   <data name="&gt;&gt;sblb.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.SimBusinessList, simpe.sims, Version=1.0.2508.22456, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.SimBusinessList, simpe.sims, Version=1.0.2667.39678, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mbiLink.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5301,7 +5301,7 @@
     <value>514, 116</value>
   </data>
   <data name="&gt;&gt;pbLogic.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbParanormal.TextboxWidth" type="System.Int32, mscorlib">
     <value>40</value>
@@ -5604,7 +5604,7 @@
     <value>41</value>
   </data>
   <data name="&gt;&gt;cbpassobject.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="srcTb.Size" type="System.Drawing.Size, System.Drawing">
     <value>496, 140</value>
@@ -5760,7 +5760,7 @@
     <value>TopRight</value>
   </data>
   <data name="&gt;&gt;ptGifted.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2508.22456, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2667.39678, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbPetPets.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -5808,7 +5808,7 @@
     <value>pbPlayful</value>
   </data>
   <data name="&gt;&gt;pbWoman.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="biMore.Text" xml:space="preserve">
     <value>More</value>
@@ -5838,7 +5838,7 @@
     <value>160, 168</value>
   </data>
   <data name="&gt;&gt;pbPetToy.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;biChar.Name" xml:space="preserve">
     <value>biChar</value>
@@ -5847,7 +5847,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pbPetAnimals.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbPetEating.LabelText" xml:space="preserve">
     <value>Eating:</value>
@@ -5996,7 +5996,7 @@
     <value>78</value>
   </data>
   <data name="&gt;&gt;pbCulture.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbPetOutside.Parent" xml:space="preserve">
     <value>pnPetInt</value>
@@ -6159,7 +6159,7 @@
     <value>240, 20</value>
   </data>
   <data name="&gt;&gt;pbPetOutside.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="label87.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 64</value>
@@ -6264,7 +6264,7 @@
     <value>128, 20</value>
   </data>
   <data name="&gt;&gt;pbWork.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="tbunlinked.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 14</value>
@@ -6312,7 +6312,7 @@
     <value>1</value>
   </data>
   <data name="&gt;&gt;pbPetWeather.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbPetEating.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 5</value>
@@ -6321,7 +6321,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ptHyper.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2508.22456, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2667.39678, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbAnimals.LabelWidth" type="System.Int32, mscorlib">
     <value>100</value>
@@ -6498,7 +6498,7 @@
     <value>tbsimdescfamname</value>
   </data>
   <data name="&gt;&gt;pbPetSleep.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tbschooltype.Name" xml:space="preserve">
     <value>tbschooltype</value>
@@ -6573,10 +6573,10 @@
     <value>11</value>
   </data>
   <data name="&gt;&gt;cbfit.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbMech.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbAspBliz.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -6621,7 +6621,7 @@
     <value>pnEP3</value>
   </data>
   <data name="&gt;&gt;pbOutgoing.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbLogic.Location" type="System.Drawing.Point, System.Drawing">
     <value>352, 16</value>
@@ -6654,7 +6654,7 @@
     <value>78</value>
   </data>
   <data name="&gt;&gt;ptIndep.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2508.22456, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2667.39678, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pnEP3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -6687,7 +6687,7 @@
     <value>Right</value>
   </data>
   <data name="&gt;&gt;pbFood.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbSports.LabelWidth" type="System.Int32, mscorlib">
     <value>100</value>
@@ -6705,7 +6705,7 @@
     <value>16, 72</value>
   </data>
   <data name="&gt;&gt;pbGPlayful.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbUniTime.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 5</value>
@@ -6765,7 +6765,7 @@
     <value>0</value>
   </data>
   <data name="&gt;&gt;cbignoretraversal.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbCrime.TabIndex" type="System.Int32, mscorlib">
     <value>74</value>
@@ -6789,13 +6789,13 @@
     <value>128, 184</value>
   </data>
   <data name="&gt;&gt;cbpreghalf.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2508.22160, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbzodiac.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="&gt;&gt;pbMan.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2508.22216, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="dstTb.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>

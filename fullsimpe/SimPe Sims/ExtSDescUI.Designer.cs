@@ -3000,6 +3000,7 @@ namespace SimPe.PackedFiles.UserInterface
             resources.ApplyResources(this.llep3openinfo, "llep3openinfo");
             this.llep3openinfo.Name = "llep3openinfo";
             this.llep3openinfo.TabStop = true;
+            this.llep3openinfo.UseCompatibleTextRendering = true;
             this.llep3openinfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llep3openinfo_LinkClicked);
             // 
             // label15
@@ -3098,8 +3099,6 @@ namespace SimPe.PackedFiles.UserInterface
             resources.ApplyResources(this, "$this");
             this.BackgroundImage = null;
             this.Controls.Add(this.toolBar1);
-            this.Controls.Add(this.pnChar);
-            this.Controls.Add(this.pnId);
             this.Controls.Add(this.pnMisc);
             this.Controls.Add(this.pnRel);
             this.Controls.Add(this.pnCareer);
@@ -3108,8 +3107,12 @@ namespace SimPe.PackedFiles.UserInterface
             this.Controls.Add(this.pnSkill);
             this.Controls.Add(this.pnEP2);
             this.Controls.Add(this.pnInt);
+            this.Controls.Add(this.pnChar);
+            this.Controls.Add(this.pnId);
             this.HeaderText = null;
             this.Name = "ExtSDesc";
+            this.Controls.SetChildIndex(this.pnId, 0);
+            this.Controls.SetChildIndex(this.pnChar, 0);
             this.Controls.SetChildIndex(this.pnInt, 0);
             this.Controls.SetChildIndex(this.pnEP2, 0);
             this.Controls.SetChildIndex(this.pnSkill, 0);
@@ -3118,8 +3121,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.Controls.SetChildIndex(this.pnCareer, 0);
             this.Controls.SetChildIndex(this.pnRel, 0);
             this.Controls.SetChildIndex(this.pnMisc, 0);
-            this.Controls.SetChildIndex(this.pnId, 0);
-            this.Controls.SetChildIndex(this.pnChar, 0);
             this.Controls.SetChildIndex(this.toolBar1, 0);
             this.pnPetInt.ResumeLayout(false);
             this.toolBar1.ResumeLayout(false);
