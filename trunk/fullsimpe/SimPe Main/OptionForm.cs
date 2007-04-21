@@ -1244,7 +1244,7 @@ namespace SimPe
 
                 fti.Ignore = !lbfolder.GetItemChecked(i);
 
-                if (fti.Exists && !fti.Ignore && (Helper.CompareableFileName(fti.Name).EndsWith("tsdata\\res\\objects") || Helper.CompareableFileName(fti.Name).EndsWith("tsdata\\res\\objects\\")))
+                if (fti.Exists && !fti.Ignore && (Helper.CompareableFileName(fti.Name).EndsWith("\\objects") || Helper.CompareableFileName(fti.Name).EndsWith("\\objects\\")))
                 {
                     if (firstobjpkg)
                     {
@@ -1274,6 +1274,7 @@ namespace SimPe
                 if (cb == null) continue;
                 if (cb.Tag == null) continue;
                 ExpansionItem ei = cb.Tag as ExpansionItem;
+                if (ei == null) continue;
                 SetupFileTableCheckboxes(cb, ei.Expansion, false);
                 
             }

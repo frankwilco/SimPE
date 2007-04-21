@@ -259,6 +259,7 @@ namespace SimPe
 
         public bool Exists
         {
+
             get { return rk != null; }
         }
 
