@@ -187,7 +187,7 @@ namespace SimPe
                             tw.WriteLine("    <path " + ign + " root=\"" + s + "\">"+folder+"</path>");
                         }
 
-                        if (ei.Flag.SimStory) tw.WriteLine("    <path " + ign + " root=\"" + s + "\">" + ei.ObjectsSubFolder.Replace("\\\\", "\\") + "</path>");
+                        if (ei.Flag.SimStory || !ei.Flag.FullObjectsPackage) tw.WriteLine("    <path " + ign + " root=\"" + s + "\">" + ei.ObjectsSubFolder.Replace("\\\\", "\\") + "</path>");
                         else tw.WriteLine("    <path " + ign + " root=\"" + s + "\" version=\"" + ei.Version + "\">"+ei.ObjectsSubFolder.Replace("\\\\", "\\")+"</path>");
                         
                         foreach (string folder in ei.FileTableFolders)

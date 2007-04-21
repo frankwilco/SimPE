@@ -126,7 +126,6 @@ namespace SimPe
             this.components = new System.ComponentModel.Container();
             Ambertation.Windows.Forms.WhidbeyRenderer whidbeyRenderer1 = new Ambertation.Windows.Forms.WhidbeyRenderer();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            
             this.tbContainer = new System.Windows.Forms.ToolStripContainer();
             this.manager = new Ambertation.Windows.Forms.DockManager();
             this.dcResourceList = new Ambertation.Windows.Forms.DockPanel();
@@ -136,8 +135,17 @@ namespace SimPe
             this.dcResource = new Ambertation.Windows.Forms.DockPanel();
             this.tv = new SimPe.Windows.Forms.ResourceTreeViewExt();
             this.dockRight = new Ambertation.Windows.Forms.DockContainer();
+            this.dcAction = new Ambertation.Windows.Forms.DockPanel();
+            this.xpGradientPanel2 = new SteepValley.Windows.Forms.XPGradientPanel();
+            this.tbExtAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
+            this.tbPlugAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
+            this.tbDefaultAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
             this.dcFilter = new Ambertation.Windows.Forms.DockPanel();
             this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.xpLinkedLabelIcon3 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
             this.cbsemig = new System.Windows.Forms.ComboBox();
             this.xpLinkedLabelIcon2 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
@@ -145,14 +153,10 @@ namespace SimPe
             this.xpLinkedLabelIcon1 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
             this.tbInst = new System.Windows.Forms.TextBox();
             this.tbGrp = new System.Windows.Forms.TextBox();
-            this.dcAction = new Ambertation.Windows.Forms.DockPanel();
-            this.xpGradientPanel2 = new SteepValley.Windows.Forms.XPGradientPanel();
-            this.tbExtAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
-            this.tbPlugAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
-            this.tbDefaultAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
             this.dockBottom = new Ambertation.Windows.Forms.DockContainer();
             this.dcPlugin = new Ambertation.Windows.Forms.DockPanel();
             this.dc = new TD.SandDock.TabControl();
+            this.tbAction = new System.Windows.Forms.ToolStrip();
             this.toolBar1 = new System.Windows.Forms.ToolStrip();
             this.biNew = new System.Windows.Forms.ToolStripButton();
             this.biOpen = new System.Windows.Forms.ToolStripButton();
@@ -162,9 +166,8 @@ namespace SimPe
             this.biNewDc = new System.Windows.Forms.ToolStripButton();
             this.biUpdate = new System.Windows.Forms.ToolStripButton();
             this.biReset = new System.Windows.Forms.ToolStripButton();
-            this.tbWindow = new System.Windows.Forms.ToolStrip();
-            this.tbAction = new System.Windows.Forms.ToolStrip();
             this.tbTools = new System.Windows.Forms.ToolStrip();
+            this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.dockCenter = new Ambertation.Windows.Forms.DockContainer();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
@@ -211,10 +214,10 @@ namespace SimPe
             this.dockLeft.SuspendLayout();
             this.dcResource.SuspendLayout();
             this.dockRight.SuspendLayout();
-            this.dcFilter.SuspendLayout();
-            this.xpGradientPanel1.SuspendLayout();
             this.dcAction.SuspendLayout();
             this.xpGradientPanel2.SuspendLayout();
+            this.dcFilter.SuspendLayout();
+            this.xpGradientPanel1.SuspendLayout();
             this.dockBottom.SuspendLayout();
             this.dcPlugin.SuspendLayout();
             this.toolBar1.SuspendLayout();
@@ -271,7 +274,7 @@ namespace SimPe
             this.dcResourceList.Controls.Add(this.lv);
             this.dcResourceList.DockContainer = this.manager;
             this.dcResourceList.DragBorder = false;
-            this.dcResourceList.FloatingSize = new System.Drawing.Size(434, 327);
+            this.dcResourceList.FloatingSize = new System.Drawing.Size(434, 377);
             this.dcResourceList.Image = ((System.Drawing.Image)(resources.GetObject("dcResourceList.Image")));
             this.dcResourceList.Manager = this.manager;
             this.dcResourceList.Name = "dcResourceList";
@@ -279,6 +282,7 @@ namespace SimPe
             this.dcResourceList.ShowCollapseButton = true;
             this.dcResourceList.TabImage = ((System.Drawing.Image)(resources.GetObject("dcResourceList.TabImage")));
             this.dcResourceList.TabText = "List";
+            this.dcResourceList.UndockByCaptionThreshold = 150;
             // 
             // lv
             // 
@@ -328,7 +332,7 @@ namespace SimPe
             this.dcResource.Controls.Add(this.tv);
             this.dcResource.DockContainer = this.dockLeft;
             this.dcResource.DragBorder = false;
-            this.dcResource.FloatingSize = new System.Drawing.Size(236, 327);
+            this.dcResource.FloatingSize = new System.Drawing.Size(236, 377);
             this.dcResource.Image = ((System.Drawing.Image)(resources.GetObject("dcResource.Image")));
             this.dcResource.Manager = this.manager;
             this.dcResource.Name = "dcResource";
@@ -336,6 +340,7 @@ namespace SimPe
             this.dcResource.ShowCollapseButton = true;
             this.dcResource.TabImage = ((System.Drawing.Image)(resources.GetObject("dcResource.TabImage")));
             this.dcResource.TabText = "Resource Tree";
+            this.dcResource.UndockByCaptionThreshold = 150;
             // 
             // tv
             // 
@@ -357,104 +362,6 @@ namespace SimPe
             this.dockRight.NoCleanup = false;
             this.dockRight.TabImage = null;
             this.dockRight.TabText = "";
-            // 
-            // dcFilter
-            // 
-            this.dcFilter.AllowClose = true;
-            this.dcFilter.AllowCollapse = true;
-            this.dcFilter.AllowDockBottom = true;
-            this.dcFilter.AllowDockCenter = true;
-            this.dcFilter.AllowDockLeft = true;
-            this.dcFilter.AllowDockRight = true;
-            this.dcFilter.AllowDockTop = true;
-            this.dcFilter.AllowFloat = true;
-            resources.ApplyResources(this.dcFilter, "dcFilter");
-            this.dcFilter.CanResize = true;
-            this.dcFilter.CanUndock = true;
-            this.dcFilter.Controls.Add(this.xpGradientPanel1);
-            this.dcFilter.DockContainer = this.dockRight;
-            this.dcFilter.DragBorder = false;
-            this.dcFilter.FloatingSize = new System.Drawing.Size(246, 327);
-            this.dcFilter.Image = ((System.Drawing.Image)(resources.GetObject("dcFilter.Image")));
-            this.dcFilter.Manager = this.manager;
-            this.dcFilter.Name = "dcFilter";
-            this.dcFilter.ShowCloseButton = true;
-            this.dcFilter.ShowCollapseButton = true;
-            this.dcFilter.TabImage = ((System.Drawing.Image)(resources.GetObject("dcFilter.TabImage")));
-            this.dcFilter.TabText = "Filter Resources";
-            this.dcFilter.SizeChanged += new System.EventHandler(this.dcFilter_SizeChanged);
-            // 
-            // xpGradientPanel1
-            // 
-            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon3);
-            this.xpGradientPanel1.Controls.Add(this.cbsemig);
-            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon2);
-            this.xpGradientPanel1.Controls.Add(this.tbRcolName);
-            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon1);
-            this.xpGradientPanel1.Controls.Add(this.tbInst);
-            this.xpGradientPanel1.Controls.Add(this.tbGrp);
-            resources.ApplyResources(this.xpGradientPanel1, "xpGradientPanel1");
-            this.xpGradientPanel1.Name = "xpGradientPanel1";
-            // 
-            // xpLinkedLabelIcon3
-            // 
-            resources.ApplyResources(this.xpLinkedLabelIcon3, "xpLinkedLabelIcon3");
-            this.xpLinkedLabelIcon3.BackColor = System.Drawing.Color.Transparent;
-            this.xpLinkedLabelIcon3.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
-            this.xpLinkedLabelIcon3.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
-            this.xpLinkedLabelIcon3.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.xpLinkedLabelIcon3.Name = "xpLinkedLabelIcon3";
-            this.xpLinkedLabelIcon3.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.xpLinkedLabelIcon3.LinkClicked += new System.EventHandler(this.SetSemiGlobalFilter);
-            // 
-            // cbsemig
-            // 
-            resources.ApplyResources(this.cbsemig, "cbsemig");
-            this.xpCueBannerExtender1.SetCueBannerText(this.cbsemig, "Semiglobal Group");
-            this.cbsemig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbsemig.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbsemig.Name = "cbsemig";
-            // 
-            // xpLinkedLabelIcon2
-            // 
-            resources.ApplyResources(this.xpLinkedLabelIcon2, "xpLinkedLabelIcon2");
-            this.xpLinkedLabelIcon2.BackColor = System.Drawing.Color.Transparent;
-            this.xpLinkedLabelIcon2.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
-            this.xpLinkedLabelIcon2.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
-            this.xpLinkedLabelIcon2.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.xpLinkedLabelIcon2.Name = "xpLinkedLabelIcon2";
-            this.xpLinkedLabelIcon2.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.xpLinkedLabelIcon2.LinkClicked += new System.EventHandler(this.SetRcolNameFilter);
-            // 
-            // tbRcolName
-            // 
-            resources.ApplyResources(this.tbRcolName, "tbRcolName");
-            this.xpCueBannerExtender1.SetCueBannerText(this.tbRcolName, "RCOL Filename");
-            this.tbRcolName.Name = "tbRcolName";
-            this.tbRcolName.SizeChanged += new System.EventHandler(this.tbRcolName_SizeChanged);
-            // 
-            // xpLinkedLabelIcon1
-            // 
-            this.xpLinkedLabelIcon1.BackColor = System.Drawing.Color.Transparent;
-            this.xpLinkedLabelIcon1.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
-            resources.ApplyResources(this.xpLinkedLabelIcon1, "xpLinkedLabelIcon1");
-            this.xpLinkedLabelIcon1.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
-            this.xpLinkedLabelIcon1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.xpLinkedLabelIcon1.Name = "xpLinkedLabelIcon1";
-            this.xpLinkedLabelIcon1.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.xpLinkedLabelIcon1.LinkClicked += new System.EventHandler(this.SetFilter);
-            // 
-            // tbInst
-            // 
-            this.xpCueBannerExtender1.SetCueBannerText(this.tbInst, "Instance Filter");
-            resources.ApplyResources(this.tbInst, "tbInst");
-            this.tbInst.Name = "tbInst";
-            // 
-            // tbGrp
-            // 
-            this.xpCueBannerExtender1.SetCueBannerText(this.tbGrp, "Group Filter");
-            resources.ApplyResources(this.tbGrp, "tbGrp");
-            this.tbGrp.Name = "tbGrp";
             // 
             // dcAction
             // 
@@ -480,6 +387,7 @@ namespace SimPe
             this.dcAction.ShowCollapseButton = true;
             this.dcAction.TabImage = ((System.Drawing.Image)(resources.GetObject("dcAction.TabImage")));
             this.dcAction.TabText = "Resource Actions";
+            this.dcAction.UndockByCaptionThreshold = 150;
             // 
             // xpGradientPanel2
             // 
@@ -546,6 +454,137 @@ namespace SimPe
             this.tbDefaultAction.ThemeFormat.LeftHeaderColor = System.Drawing.Color.White;
             this.tbDefaultAction.ThemeFormat.RightHeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
             // 
+            // dcFilter
+            // 
+            this.dcFilter.AllowClose = true;
+            this.dcFilter.AllowCollapse = true;
+            this.dcFilter.AllowDockBottom = true;
+            this.dcFilter.AllowDockCenter = true;
+            this.dcFilter.AllowDockLeft = true;
+            this.dcFilter.AllowDockRight = true;
+            this.dcFilter.AllowDockTop = true;
+            this.dcFilter.AllowFloat = true;
+            resources.ApplyResources(this.dcFilter, "dcFilter");
+            this.dcFilter.CanResize = true;
+            this.dcFilter.CanUndock = true;
+            this.dcFilter.Controls.Add(this.xpGradientPanel1);
+            this.dcFilter.DockContainer = this.dockRight;
+            this.dcFilter.DragBorder = false;
+            this.dcFilter.FloatingSize = new System.Drawing.Size(246, 377);
+            this.dcFilter.Image = ((System.Drawing.Image)(resources.GetObject("dcFilter.Image")));
+            this.dcFilter.Manager = this.manager;
+            this.dcFilter.Name = "dcFilter";
+            this.dcFilter.ShowCloseButton = true;
+            this.dcFilter.ShowCollapseButton = true;
+            this.dcFilter.TabImage = ((System.Drawing.Image)(resources.GetObject("dcFilter.TabImage")));
+            this.dcFilter.TabText = "Filter Resources";
+            this.dcFilter.UndockByCaptionThreshold = 150;
+            this.dcFilter.SizeChanged += new System.EventHandler(this.dcFilter_SizeChanged);
+            // 
+            // xpGradientPanel1
+            // 
+            this.xpGradientPanel1.Controls.Add(this.label1);
+            this.xpGradientPanel1.Controls.Add(this.label5);
+            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon3);
+            this.xpGradientPanel1.Controls.Add(this.cbsemig);
+            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon2);
+            this.xpGradientPanel1.Controls.Add(this.tbRcolName);
+            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon1);
+            this.xpGradientPanel1.Controls.Add(this.tbInst);
+            this.xpGradientPanel1.Controls.Add(this.tbGrp);
+            this.xpGradientPanel1.Controls.Add(this.label3);
+            this.xpGradientPanel1.Controls.Add(this.label2);
+            resources.ApplyResources(this.xpGradientPanel1, "xpGradientPanel1");
+            this.xpGradientPanel1.Name = "xpGradientPanel1";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label3.Name = "label3";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Name = "label2";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Name = "label1";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label5.Name = "label5";
+            // 
+            // xpLinkedLabelIcon3
+            // 
+            resources.ApplyResources(this.xpLinkedLabelIcon3, "xpLinkedLabelIcon3");
+            this.xpLinkedLabelIcon3.BackColor = System.Drawing.Color.Transparent;
+            this.xpLinkedLabelIcon3.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
+            this.xpLinkedLabelIcon3.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
+            this.xpLinkedLabelIcon3.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.xpLinkedLabelIcon3.Name = "xpLinkedLabelIcon3";
+            this.xpLinkedLabelIcon3.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.xpLinkedLabelIcon3.LinkClicked += new System.EventHandler(this.SetSemiGlobalFilter);
+            // 
+            // cbsemig
+            // 
+            resources.ApplyResources(this.cbsemig, "cbsemig");
+            this.xpCueBannerExtender1.SetCueBannerText(this.cbsemig, "Semiglobal Group");
+            this.cbsemig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbsemig.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbsemig.Name = "cbsemig";
+            // 
+            // xpLinkedLabelIcon2
+            // 
+            resources.ApplyResources(this.xpLinkedLabelIcon2, "xpLinkedLabelIcon2");
+            this.xpLinkedLabelIcon2.BackColor = System.Drawing.Color.Transparent;
+            this.xpLinkedLabelIcon2.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
+            this.xpLinkedLabelIcon2.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
+            this.xpLinkedLabelIcon2.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.xpLinkedLabelIcon2.Name = "xpLinkedLabelIcon2";
+            this.xpLinkedLabelIcon2.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.xpLinkedLabelIcon2.LinkClicked += new System.EventHandler(this.SetRcolNameFilter);
+            // 
+            // tbRcolName
+            // 
+            resources.ApplyResources(this.tbRcolName, "tbRcolName");
+            this.xpCueBannerExtender1.SetCueBannerText(this.tbRcolName, "RCOL Filename");
+            this.tbRcolName.Name = "tbRcolName";
+            this.tbRcolName.SizeChanged += new System.EventHandler(this.tbRcolName_SizeChanged);
+            // 
+            // xpLinkedLabelIcon1
+            // 
+            this.xpLinkedLabelIcon1.BackColor = System.Drawing.Color.Transparent;
+            this.xpLinkedLabelIcon1.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
+            resources.ApplyResources(this.xpLinkedLabelIcon1, "xpLinkedLabelIcon1");
+            this.xpLinkedLabelIcon1.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
+            this.xpLinkedLabelIcon1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.xpLinkedLabelIcon1.Name = "xpLinkedLabelIcon1";
+            this.xpLinkedLabelIcon1.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.xpLinkedLabelIcon1.LinkClicked += new System.EventHandler(this.SetFilter);
+            // 
+            // tbInst
+            // 
+            this.xpCueBannerExtender1.SetCueBannerText(this.tbInst, "Instance Filter");
+            resources.ApplyResources(this.tbInst, "tbInst");
+            this.tbInst.Name = "tbInst";
+            // 
+            // tbGrp
+            // 
+            this.xpCueBannerExtender1.SetCueBannerText(this.tbGrp, "Group Filter");
+            resources.ApplyResources(this.tbGrp, "tbGrp");
+            this.tbGrp.Name = "tbGrp";
+            // 
             // dockBottom
             // 
             this.dockBottom.Controls.Add(this.dcPlugin);
@@ -582,6 +621,7 @@ namespace SimPe
             this.dcPlugin.ShowCollapseButton = true;
             this.dcPlugin.TabImage = ((System.Drawing.Image)(resources.GetObject("dcPlugin.TabImage")));
             this.dcPlugin.TabText = "Plugin View";
+            this.dcPlugin.UndockByCaptionThreshold = 150;
             // 
             // dc
             // 
@@ -590,6 +630,11 @@ namespace SimPe
             ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.DocumentLayoutSystem(903, 373, new TD.SandDock.DockControl[0], null)))});
             this.dc.Name = "dc";
             this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
+            // 
+            // tbAction
+            // 
+            resources.ApplyResources(this.tbAction, "tbAction");
+            this.tbAction.Name = "tbAction";
             // 
             // toolBar1
             // 
@@ -653,20 +698,15 @@ namespace SimPe
             this.biReset.Name = "biReset";
             this.biReset.Click += new System.EventHandler(this.Activate_biReset);
             // 
-            // tbWindow
-            // 
-            resources.ApplyResources(this.tbWindow, "tbWindow");
-            this.tbWindow.Name = "tbWindow";
-            // 
-            // tbAction
-            // 
-            resources.ApplyResources(this.tbAction, "tbAction");
-            this.tbAction.Name = "tbAction";
-            // 
             // tbTools
             // 
             resources.ApplyResources(this.tbTools, "tbTools");
             this.tbTools.Name = "tbTools";
+            // 
+            // tbWindow
+            // 
+            resources.ApplyResources(this.tbWindow, "tbWindow");
+            this.tbWindow.Name = "tbWindow";
             // 
             // dockCenter
             // 
@@ -915,11 +955,11 @@ namespace SimPe
             resources.ApplyResources(this.waitControl1, "waitControl1");
             this.waitControl1.Image = null;
             this.waitControl1.MaxProgress = 1000;
-            this.waitControl1.Message = "Hello";
+            this.waitControl1.Message = "";
             this.waitControl1.Name = "waitControl1";
-            this.waitControl1.Progress = 50;
+            this.waitControl1.Progress = 0;
             this.waitControl1.ShowAnimation = true;
-            this.waitControl1.ShowProgress = true;
+            this.waitControl1.ShowProgress = false;
             this.waitControl1.ShowText = true;
             this.waitControl1.Waiting = false;
             // 
@@ -951,11 +991,11 @@ namespace SimPe
             this.dockLeft.ResumeLayout(false);
             this.dcResource.ResumeLayout(false);
             this.dockRight.ResumeLayout(false);
+            this.dcAction.ResumeLayout(false);
+            this.xpGradientPanel2.ResumeLayout(false);
             this.dcFilter.ResumeLayout(false);
             this.xpGradientPanel1.ResumeLayout(false);
             this.xpGradientPanel1.PerformLayout();
-            this.dcAction.ResumeLayout(false);
-            this.xpGradientPanel2.ResumeLayout(false);
             this.dockBottom.ResumeLayout(false);
             this.dcPlugin.ResumeLayout(false);
             this.toolBar1.ResumeLayout(false);
@@ -978,6 +1018,10 @@ namespace SimPe
         private SimPe.Windows.Forms.ResourceListViewExt lv;
         private SimPe.Windows.Forms.ResourceTreeViewExt tv;
         private SimPe.Windows.Forms.ResourceViewManager resourceViewManager1;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private Label label5;
 
     }
 }

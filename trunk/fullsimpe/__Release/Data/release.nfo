@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<simperelease version="261993755819">
+<simperelease version="261993832224">
 	<file name="3dview.dll">
 		<version>281475129306773</version>
 		<size>40960</size>
@@ -76,92 +76,92 @@
 	</file>
 
 	<file name="simpe.3idr.dll">
-		<version>281475151131825</version>
+		<version>281475151535914</version>
 		<size>122880</size>
 	</file>
 
 	<file name="simpe.cache.dll">
-		<version>281475151131821</version>
+		<version>281475151535906</version>
 		<size>36864</size>
 	</file>
 
 	<file name="simpe.clst.dll">
-		<version>281475151131820</version>
+		<version>281475151535906</version>
 		<size>204800</size>
 	</file>
 
 	<file name="simpe.commandline.dll">
-		<version>281475151131827</version>
+		<version>281475151535917</version>
 		<size>36864</size>
 	</file>
 
 	<file name="simpe.commonhandler.dll">
-		<version>281475151131820</version>
+		<version>281475151535905</version>
 		<size>24576</size>
 	</file>
 
 	<file name="simpe.extfilehandler.dll">
-		<version>281475151131824</version>
+		<version>281475151535913</version>
 		<size>126976</size>
 	</file>
 
 	<file name="simpe.filehandler.dll">
-		<version>281475151131823</version>
+		<version>281475151535910</version>
 		<size>413696</size>
 	</file>
 
 	<file name="simpe.geometry.dll">
-		<version>281475151131821</version>
+		<version>281475151535907</version>
 		<size>40960</size>
 	</file>
 
 	<file name="simpe.gmdc.exporter.base.dll">
-		<version>281475151131826</version>
+		<version>281475151535915</version>
 		<size>589824</size>
 	</file>
 
 	<file name="simpe.helper.dll">
-		<version>261993755819</version>
+		<version>261993832224</version>
 		<size>442368</size>
 	</file>
 
 	<file name="simpe.interfaces.dll">
-		<version>281475151131820</version>
+		<version>281475151535905</version>
 		<size>32768</size>
 	</file>
 
 	<file name="simpe.names.dll">
-		<version>281475151131829</version>
+		<version>281475151535920</version>
 		<size>49152</size>
 	</file>
 
 	<file name="simpe.package.dll">
-		<version>281475151131821</version>
+		<version>281475151535906</version>
 		<size>110592</size>
 	</file>
 
 	<file name="simpe.rcol.dll">
-		<version>281475151131822</version>
+		<version>281475151535909</version>
 		<size>475136</size>
 	</file>
 
 	<file name="simpe.resourcecontrols.dll">
-		<version>281475151131837</version>
+		<version>281475151535935</version>
 		<size>69632</size>
 	</file>
 
 	<file name="simpe.s2cp.dll">
-		<version>281475151131836</version>
+		<version>281475151535934</version>
 		<size>131072</size>
 	</file>
 
 	<file name="simpe.scenegraph.dll">
-		<version>281475151131827</version>
+		<version>281475151535916</version>
 		<size>372736</size>
 	</file>
 
 	<file name="simpe.sims.dll">
-		<version>281475151131829</version>
+		<version>281475151535918</version>
 		<size>688128</size>
 	</file>
 
@@ -171,12 +171,12 @@
 	</file>
 
 	<file name="simpe.wizardbase.dll">
-		<version>281475151131830</version>
+		<version>281475151535920</version>
 		<size>28672</size>
 	</file>
 
 	<file name="simpe.workspace.dll">
-		<version>281475151131822</version>
+		<version>281475151535908</version>
 		<size>245760</size>
 	</file>
 
@@ -201,7 +201,7 @@
 	</file>
 
 	<file name="wosimpe.interfaces.dll">
-		<version>281475151131836</version>
+		<version>281475151535933</version>
 		<size>16384</size>
 	</file>
 
@@ -226,12 +226,12 @@
 	</file>
 
 	<file name="simpe.exe">
-		<version>261993755844</version>
-		<size>909312</size>
+		<version>261993832263</version>
+		<size>913408</size>
 	</file>
 
 	<file name="wizards of simpe.exe">
-		<version>257872458944</version>
+		<version>257872863042</version>
 		<size>360448</size>
 	</file>
 
@@ -246,7 +246,7 @@
 	</file>
 
 	<file name="plugins\optional.simpe.3d.plugin.dll">
-		<version>281475151131838</version>
+		<version>281475151535935</version>
 		<size>73728</size>
 	</file>
 
@@ -286,47 +286,47 @@
 	</file>
 
 	<file name="plugins\simpe.default.gmdc.exporter.dll">
-		<version>281475151131838</version>
+		<version>281475151535936</version>
 		<size>45056</size>
 	</file>
 
 	<file name="plugins\simpe.dockbox.plugin.dll">
-		<version>281475151131841</version>
+		<version>281475151535939</version>
 		<size>225280</size>
 	</file>
 
 	<file name="plugins\simpe.downloads.plugin.dll">
-		<version>281475151131839</version>
+		<version>281475151535937</version>
 		<size>307200</size>
 	</file>
 
 	<file name="plugins\simpe.ngbh.plugin.dll">
-		<version>281475151131831</version>
+		<version>281475151535925</version>
 		<size>655360</size>
 	</file>
 
 	<file name="plugins\simpe.ngbh.scanner.plugin.dll">
-		<version>281475151131842</version>
+		<version>281475151535941</version>
 		<size>20480</size>
 	</file>
 
 	<file name="plugins\simpe.scanfolder.plugin.dll">
-		<version>281475151131836</version>
+		<version>281475151535933</version>
 		<size>98304</size>
 	</file>
 
 	<file name="plugins\simpe.scenegrapher.plugin.dll">
-		<version>281475151131838</version>
+		<version>281475151535935</version>
 		<size>61440</size>
 	</file>
 
 	<file name="plugins\simpe.toolbox.plugin.dll">
-		<version>281475151131835</version>
+		<version>281475151535932</version>
 		<size>626688</size>
 	</file>
 
 	<file name="plugins\simpe.workshop.plugin.dll">
-		<version>281475151131833</version>
+		<version>281475151535930</version>
 		<size>458752</size>
 	</file>
 
@@ -341,7 +341,7 @@
 	</file>
 
 	<file name="plugins\wosimpe.recolor.wizard.dll">
-		<version>281475151131842</version>
+		<version>281475151535940</version>
 		<size>118784</size>
 	</file>
 

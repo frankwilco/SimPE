@@ -1000,9 +1000,9 @@ namespace SimPe
             this.nbFolders,
             this.nbCheck,
             this.nbSettings,
-            this.nbSceneGraph,
-            this.nbCustom,
             this.nbFileTable,
+            this.nbCustom,
+            this.nbSceneGraph,
             this.nbPlugins,
             this.nbTools,
             this.nbIdent});

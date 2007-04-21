@@ -1243,8 +1243,15 @@ namespace SimPe
                 }
 
                 fti.Ignore = !lbfolder.GetItemChecked(i);
-
-                if (fti.Exists && !fti.Ignore && (Helper.CompareableFileName(fti.Name).EndsWith("\\objects") || Helper.CompareableFileName(fti.Name).EndsWith("\\objects\\")))
+                ExpansionItem ei = null;
+                bool fullobj = true;
+                int thisepver = FileTableItem.GetEPVersion(fti.Type);
+                if (thisepver > 0)
+                {
+                    ei = PathProvider.Global.GetExpansion(thisepver);
+                    fullobj = ei.Flag.FullObjectsPackage;
+                }
+                if (fti.Exists && !fti.Ignore && fullobj && (Helper.CompareableFileName(fti.Name).EndsWith("\\objects") || Helper.CompareableFileName(fti.Name).EndsWith("\\objects\\")))
                 {
                     if (firstobjpkg)
                     {

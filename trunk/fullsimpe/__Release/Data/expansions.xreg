@@ -11,7 +11,8 @@
         Bit 1: Is a StuffPack (aka MiniExpansion)
         Bit 2: Comes with a Lua Folder
         Bit 3: Load additional W&F Texts from this Expansion (BaseGame is allways loaded!!)
-	Bit 4: Sim Story-->
+	Bit 4: Sim Story
+	Bit 5: Objects.package does only contain additional objects-->
       <string name="ExeName">Sims2.exe</string>
       <int name="Group">1</int>
       <cilist name="SaveGameLocationsForGroup">
@@ -124,9 +125,9 @@
     <!-- Information about Celebration! Stuff  (provided by Numenor) -->
     <key name="Celebration">
       <int name="Version">9</int>
-      <int name="PreferedRuntimeVersion">8</int>	
+      <int name="PreferedRuntimeVersion">8</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Celebration Stuff</string>
-      <int name="Flag">2</int>
+      <int name="Flag">34</int>
       <string name="ExeName">Sims2SP4.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string> <!-- Provided by Carrigon -->

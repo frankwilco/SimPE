@@ -57,6 +57,11 @@ namespace SimPe
             {
                 get { return this.GetBit(4); }
             }
+
+            public bool FullObjectsPackage
+            {
+                get { return !this.GetBit(5); }
+            }
         }
 
         string name;
