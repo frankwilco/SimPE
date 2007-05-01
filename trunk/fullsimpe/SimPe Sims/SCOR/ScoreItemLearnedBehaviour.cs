@@ -1,3 +1,23 @@
+/***************************************************************************
+ *   Copyright (C) 2007 by Ambertation                                     *
+ *   quaxi@ambertation.de                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,9 +36,8 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
 
         
 
-        internal override void SetData(string name, System.IO.BinaryReader reader)
+        protected override void DoSetData(string name, System.IO.BinaryReader reader)
         {
-            base.SetData(name, reader);
             cb.Items.Clear();
             if (reader.BaseStream.Length == 0)
                 return;
@@ -35,9 +54,9 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
             if (cb.Items.Count>0) cb.SelectedIndex = 0;
         }
 
-        internal override void Serialize(System.IO.BinaryWriter writer)
+        internal override void Serialize(System.IO.BinaryWriter writer, bool last)
         {
-            base.Serialize(writer);
+            base.Serialize(writer, last);
             writer.Write(cb.Items.Count);
             foreach (Element e in cb.Items)
             {

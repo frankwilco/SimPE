@@ -43,6 +43,7 @@ namespace SimPe.Windows.Forms
             this.MaximumSize = new Size(461, 212);
             myhandle = Handle;
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.None;
             lbtxt.Text = msg;
             lbver.Text = SimPe.Helper.SimPeVersion.FileMajorPart + "." + SimPe.Helper.SimPeVersion.FileMinorPart + "." + SimPe.Helper.SimPeVersion.FileBuildPart;
             

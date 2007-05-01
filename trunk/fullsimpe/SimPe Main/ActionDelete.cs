@@ -49,8 +49,14 @@ namespace SimPe.Actions.Default
 		{
 			if (!ChangeEnabledStateEventHandler(null, es)) return;
 
-			foreach (SimPe.Events.ResourceContainer e in es) 
-				e.Resource.FileDescriptor.MarkForDelete = true;				
+            if (es.Loaded) es.LoadedPackage.Package.BeginUpdate();
+            foreach (SimPe.Events.ResourceContainer e in es)
+            {
+                if (es.Loaded) es.LoadedPackage.Package.ForgetUpdate();
+                e.Resource.FileDescriptor.MarkForDelete = true;
+            }
+
+            if (es.Loaded) es.LoadedPackage.Package.EndUpdate();
 		}
 
 		#endregion

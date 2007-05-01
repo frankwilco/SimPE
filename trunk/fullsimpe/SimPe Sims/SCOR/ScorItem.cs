@@ -24,16 +24,19 @@ using SimPe.PackedFiles.Wrapper.Supporting;
 using SimPe.Data;
 using System.Collections;
 using System.Collections.Generic;
+using SimPe.PackedFiles.Wrapper.SCOR;
 
 namespace SimPe.PackedFiles.Wrapper
 {
 	/// <summary>
 	/// An Item as stored in a Scor Resource
 	/// </summary>
-	public class ScorItem
+    public class ScorItem
     {
         #region GuiWrappers
         static Dictionary<string, Type> guis;
+        static Dictionary<string, IScorItemToken> readers;
+        static IScorItemToken deftoken;
         internal static Dictionary<string, Type> GuiElements
         {
             get
@@ -43,10 +46,33 @@ namespace SimPe.PackedFiles.Wrapper
             }
         }
 
+        internal static Dictionary<string, IScorItemToken> Readers
+        {
+            get
+            {
+                if (guis == null) LoadGuielements();
+                return readers;
+            }
+        }
+
+        internal static IScorItemToken DefaultTokenParser
+        {
+            get {
+                if (guis == null) LoadGuielements();
+                return deftoken;
+            }
+        }
+
         static void LoadGuielements(){
             guis = new Dictionary<string, Type>();
+            readers = new Dictionary<string, IScorItemToken>();
+
+            deftoken = new SCOR.ScorItemTokenDefault();
 
             guis.Add("Learned Behaviors", typeof(SCOR.ScoreItemLearnedBehaviour));
+            guis.Add("Business Rewards", typeof(SCOR.ScoreItemBusinessRewards));
+
+            readers.Add("Business Rewards", new SCOR.ScorItemTokenBusinessRewards());
         }
 
         internal void LoadGuiElement(string name)            
@@ -70,6 +96,12 @@ namespace SimPe.PackedFiles.Wrapper
             }
 
             return ret;
+        }
+
+        internal SCOR.IScorItemToken GetTokenParser(string name)
+        {
+            if (Readers.ContainsKey(name)) return Readers[name];
+            return DefaultTokenParser;
         }
         #endregion
 
@@ -122,29 +154,46 @@ namespace SimPe.PackedFiles.Wrapper
 		internal void Unserialize(System.IO.BinaryReader reader)
 		{
 			string name = StreamHelper.ReadString(reader);
-            
-			if (reader.BaseStream.Position > reader.BaseStream.Length-1) return;
-			System.Collections.ArrayList bytes = new ArrayList();
-			
-			byte test = reader.ReadByte();			
-			byte last = test;
-			while (last!=0x00 || test!=0x04) 
-			{				
-				bytes.Add(test);
-				if (reader.BaseStream.Position > reader.BaseStream.Length-1) break;
-				last = test;
-				test = reader.ReadByte();
-			}		
-	
-			if (reader.BaseStream.Position <= reader.BaseStream.Length-1)
-				if (bytes.Count>0) 
-					bytes.RemoveAt(bytes.Count-1);
 
-			byte[] data = new byte[bytes.Count];
-			bytes.CopyTo(data);
+            SCOR.IScorItemToken tp = GetTokenParser(name);
 
-            SetGui(name, data);
+            lock (tp)
+            {
+                byte[] data = tp.UnserializeToken(this, reader);
+
+                if (tp.ActivatedGUI == null) SetGui(name, data);
+                else
+                {
+                    gui = tp.ActivatedGUI;
+                    gui.SetData(name, null);
+                }
+            }
 		}
+
+        internal static byte[] UnserializeDefaultToken(System.IO.BinaryReader reader)
+        {
+            if (reader.BaseStream.Position > reader.BaseStream.Length - 1) return new byte[0];
+            System.Collections.ArrayList bytes = new ArrayList();
+
+            byte test = reader.ReadByte();
+            byte last = test;
+            while (last != 0x00 || test != 0x04)
+            {
+                bytes.Add(test);
+                if (reader.BaseStream.Position > reader.BaseStream.Length - 1) break;
+                last = test;
+                test = reader.ReadByte();
+            }
+
+            if (reader.BaseStream.Position <= reader.BaseStream.Length - 1)
+                if (bytes.Count > 0)
+                    bytes.RemoveAt(bytes.Count - 1);
+
+            byte[] data = new byte[bytes.Count];
+            bytes.CopyTo(data);
+
+            return data;
+        }
 
 		/// <summary>
 		/// Serializes a the Attributes stored in this Instance to the BinaryStream
@@ -156,9 +205,14 @@ namespace SimPe.PackedFiles.Wrapper
 		/// </remarks>
 		internal  void Serialize(System.IO.BinaryWriter writer, bool last)
 		{
-            Gui.Serialize(writer);
-			if (!last) writer.Write((ushort)0x0400);			
-		}		
+            Gui.Serialize(writer, last);
+            SerializeDefaultToken(writer, last);			
+		}
+
+        internal static void SerializeDefaultToken(System.IO.BinaryWriter writer, bool last)
+        {            
+            if (!last) writer.Write((ushort)0x0400);
+        }		
 
 		public override string ToString()
 		{

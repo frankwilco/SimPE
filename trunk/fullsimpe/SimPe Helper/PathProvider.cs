@@ -153,7 +153,7 @@ namespace SimPe
             {
                 if (i.Exists)
                 {
-                    if (sp ==i.Flag.Class)
+                    if (sp ==i.Flag.Class && i.Flag.FullObjectsPackage)
                     {
                         if (i.Version > ret) ret = i.Version;
                     }

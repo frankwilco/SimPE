@@ -290,8 +290,18 @@ namespace SimPe.Updates
 
                 try
                 {
-                    content = DownloadContent("http://sims.ambertation.de/pluginnfo.xml?&browser=simpe");
-                    res.CheckPluginUpdates(content);
+                    bool first = true;
+                    System.Collections.Generic.List<string> urls = new System.Collections.Generic.List<string>();
+                    foreach(IUpdatablePlugin pl in UpdateState.UpdateablePluginList) {
+                        string url = pl.GetUpdateInformation().VersionCheckUrl;
+                        if (urls.Contains(url.ToLower())) continue;
+                        urls.Add(url.ToLower());
+
+                        content = DownloadContent(url);
+                        res.CheckPluginUpdates(content, first);
+
+                        first = false;
+                    }
                 }
                 catch (Exception ex)
                 {

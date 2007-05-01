@@ -226,8 +226,48 @@
     <Compile Include="FinderDock.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FinderDock.Designer.cs">
+      <DependentUpon>FinderDock.cs</DependentUpon>
+    </Compile>
     <Compile Include="FinderResultItem.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finder\AFinderTool.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Finder\AFinderTool.Designer.cs">
+      <DependentUpon>AFinderTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finder\FinderToolRegistry.cs" />
+    <Compile Include="Finder\FindInCpf.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Finder\FindInCpf.Designer.cs">
+      <DependentUpon>FindInCpf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finder\FindInStr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Finder\FindInStr.Designer.cs">
+      <DependentUpon>FindInStr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finder\FindInNmap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Finder\FindInNmap.Designer.cs">
+      <DependentUpon>FindInNmap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finder\FindObj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Finder\FindObj.Designer.cs">
+      <DependentUpon>FindObj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finder\FindTGI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Finder\FindTGI.Designer.cs">
+      <DependentUpon>FindTGI.cs</DependentUpon>
     </Compile>
     <Compile Include="HexDecConverterTool.cs">
       <SubType>Code</SubType>
@@ -235,6 +275,7 @@
     <Compile Include="HexDockTool.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Finder\IFinderResultGui.cs" />
     <Compile Include="LoadSims2PackTool.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -263,6 +304,54 @@
     <EmbeddedResource Include="FinderDock.resx">
       <DependentUpon>FinderDock.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\AFinderTool.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AFinderTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\AFinderTool.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AFinderTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindInCpf.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInCpf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindInCpf.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInCpf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindInNmap.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInNmap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindInNmap.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInNmap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindInStr.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInStr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindInStr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInStr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindObj.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindObj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindObj.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindObj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindTGI.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindTGI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindTGI.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindTGI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="package.png" />
     <EmbeddedResource Include="recur.png" />
@@ -298,6 +387,10 @@
       <DependentUpon>ResourceDock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceDock.resx">
+      <DependentUpon>ResourceDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceDock.ru.resx">
       <DependentUpon>ResourceDock.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

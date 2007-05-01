@@ -262,11 +262,21 @@
     <Compile Include="SCOR\AScorItem.Designer.cs">
       <DependentUpon>AScorItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="SCOR\IScorItemToken.cs" />
     <Compile Include="SCOR\LearnedBahaviourComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SCOR\LearnedBahaviourComboBox.Designer.cs">
       <DependentUpon>LearnedBahaviourComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCOR\ScoreItemBusinessRewards.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SCOR\ScoreItemBusinessRewards.Designer.cs">
+      <DependentUpon>ScoreItemBusinessRewards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCOR\ScoreItemBusinessRewards.Element.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SCOR\ScoreItemDefault.cs">
       <SubType>UserControl</SubType>
@@ -284,6 +294,8 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SCOR\ScorItem.cs" />
+    <Compile Include="SCOR\ScorItemTokenBusinessRewards.cs" />
+    <Compile Include="SCOR\ScorItemTokenDefault.cs" />
     <Compile Include="SCOR\ScorUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -444,6 +456,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="related.png" />
+    <EmbeddedResource Include="SCOR\ScoreItemBusinessRewards.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ScoreItemBusinessRewards.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SCOR\ScoreItemDefault.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ScoreItemDefault.cs</DependentUpon>

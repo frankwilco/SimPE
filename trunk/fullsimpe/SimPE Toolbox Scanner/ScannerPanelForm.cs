@@ -76,8 +76,9 @@ namespace SimPe.Plugin.Scanner
 		internal System.Windows.Forms.Panel pnShelve;
 		private System.Windows.Forms.Label label5;
 		internal Ambertation.Windows.Forms.EnumComboBox cbshelve;
-		private Skybound.VisualStyles.VisualStyleLinkLabel llShelve;		
-		internal System.Windows.Forms.CheckBox[] cbcategories = new CheckBox[8];
+		private Skybound.VisualStyles.VisualStyleLinkLabel llShelve;
+        private CheckBox cbout;		
+		internal System.Windows.Forms.CheckBox[] cbcategories = new CheckBox[9];
 		public ScannerPanelForm()
 		{
 			//
@@ -101,6 +102,7 @@ namespace SimPe.Plugin.Scanner
 			cbcategories[5] = cbskin; cbskin.Tag = Data.SkinCategories.Skin;
 			cbcategories[6] = cbswim; cbswim.Tag = Data.SkinCategories.Swimmwear;
 			cbcategories[7] = cbundies; cbundies.Tag = Data.SkinCategories.Undies;
+            cbcategories[8] = cbout; cbout.Tag = Data.SkinCategories.Outerwear;
 
 			if (Helper.WindowsRegistry.Username.Trim()!="")
 				this.tbname.Text = Helper.WindowsRegistry.Username+"-";
@@ -185,6 +187,7 @@ namespace SimPe.Plugin.Scanner
             this.visualStyleLinkLabel2 = new Skybound.VisualStyles.VisualStyleLinkLabel();
             this.cbref = new System.Windows.Forms.CheckBox();
             this.sfd = new System.Windows.Forms.SaveFileDialog();
+            this.cbout = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.pnep.SuspendLayout();
@@ -272,6 +275,7 @@ namespace SimPe.Plugin.Scanner
             // 
             this.pncloth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.pncloth.Controls.Add(this.cbout);
             this.pncloth.Controls.Add(this.llsetcat);
             this.pncloth.Controls.Add(this.llsetage);
             this.pncloth.Controls.Add(this.cbswim);
@@ -326,15 +330,15 @@ namespace SimPe.Plugin.Scanner
             this.cbswim.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbswim.Location = new System.Drawing.Point(16, 112);
             this.cbswim.Name = "cbswim";
-            this.cbswim.Size = new System.Drawing.Size(96, 24);
+            this.cbswim.Size = new System.Drawing.Size(80, 24);
             this.cbswim.TabIndex = 36;
-            this.cbswim.Text = "Swimmwear";
+            this.cbswim.Text = "Swimm";
             // 
             // cbact
             // 
             this.cbact.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbact.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbact.Location = new System.Drawing.Point(256, 112);
+            this.cbact.Location = new System.Drawing.Point(234, 112);
             this.cbact.Name = "cbact";
             this.cbact.Size = new System.Drawing.Size(64, 24);
             this.cbact.TabIndex = 35;
@@ -344,7 +348,7 @@ namespace SimPe.Plugin.Scanner
             // 
             this.cbskin.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbskin.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbskin.Location = new System.Drawing.Point(112, 112);
+            this.cbskin.Location = new System.Drawing.Point(102, 112);
             this.cbskin.Name = "cbskin";
             this.cbskin.Size = new System.Drawing.Size(56, 24);
             this.cbskin.TabIndex = 34;
@@ -354,7 +358,7 @@ namespace SimPe.Plugin.Scanner
             // 
             this.cbformal.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbformal.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbformal.Location = new System.Drawing.Point(176, 112);
+            this.cbformal.Location = new System.Drawing.Point(164, 112);
             this.cbformal.Name = "cbformal";
             this.cbformal.Size = new System.Drawing.Size(64, 24);
             this.cbformal.TabIndex = 33;
@@ -364,7 +368,7 @@ namespace SimPe.Plugin.Scanner
             // 
             this.cbpreg.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbpreg.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbpreg.Location = new System.Drawing.Point(256, 88);
+            this.cbpreg.Location = new System.Drawing.Point(234, 88);
             this.cbpreg.Name = "cbpreg";
             this.cbpreg.Size = new System.Drawing.Size(80, 24);
             this.cbpreg.TabIndex = 32;
@@ -374,7 +378,7 @@ namespace SimPe.Plugin.Scanner
             // 
             this.cbundies.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbundies.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbundies.Location = new System.Drawing.Point(176, 88);
+            this.cbundies.Location = new System.Drawing.Point(164, 88);
             this.cbundies.Name = "cbundies";
             this.cbundies.Size = new System.Drawing.Size(64, 24);
             this.cbundies.TabIndex = 31;
@@ -384,7 +388,7 @@ namespace SimPe.Plugin.Scanner
             // 
             this.cbpj.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbpj.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbpj.Location = new System.Drawing.Point(112, 88);
+            this.cbpj.Location = new System.Drawing.Point(102, 88);
             this.cbpj.Name = "cbpj";
             this.cbpj.Size = new System.Drawing.Size(56, 24);
             this.cbpj.TabIndex = 30;
@@ -641,6 +645,16 @@ namespace SimPe.Plugin.Scanner
             // 
             this.sfd.Filter = "Package File (*.package)|*.package|All Files (*.*)|*.*";
             this.sfd.Title = "Skin Override";
+            // 
+            // cbout
+            // 
+            this.cbout.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbout.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbout.Location = new System.Drawing.Point(320, 88);
+            this.cbout.Name = "cbout";
+            this.cbout.Size = new System.Drawing.Size(48, 24);
+            this.cbout.TabIndex = 39;
+            this.cbout.Text = "Out";
             // 
             // ScannerPanelForm
             // 

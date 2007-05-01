@@ -1752,4 +1752,7 @@ Dies hat zur Folge, dass SimPE die Joint-Hierarchie nicht aufbauen kann.
 
 Damit SimPE korrekt funktioniert muss allerding .NET 2.0 installiert sein.</value>
   </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Durchsuche</value>
+  </data>
 </root>

@@ -41,7 +41,19 @@ namespace SimPe.Updates
         public static void SetUpdatablePluginList(List<IUpdatablePlugin> list)
         {
             ulist = list;
+           
         }
+
+
+        public static System.Collections.ObjectModel.ReadOnlyCollection<IUpdatablePlugin> UpdateablePluginList
+        {
+            get {
+                if (ulist == null) return null;
+                return ulist.AsReadOnly(); 
+            }
+        }
+
+
 
         UpdateInfoList list;
         UpdateStates state;
@@ -90,14 +102,15 @@ namespace SimPe.Updates
         {
             get { return PluginUpdatesAvailable || SimPeUpdatesAvailable; }
         }
-        internal void CheckPluginUpdates(string content)
+
+        internal void CheckPluginUpdates(string content, bool clear)
         {
             updatedplugins = false;
             XmlNodeList nodes = null;
             nodes = LoadVersionXml(content, nodes);
 
             
-            list.Clear();
+            if (clear) list.Clear();
             if (ulist==null) return;
             foreach (IUpdatablePlugin up in ulist)
             {
