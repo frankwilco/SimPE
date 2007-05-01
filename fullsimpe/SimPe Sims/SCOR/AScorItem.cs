@@ -51,12 +51,17 @@ namespace SimPe.PackedFiles.Wrapper.SCOR
             InitializeComponent();
         }
 
-        internal virtual void SetData(string name, System.IO.BinaryReader reader)
+        internal void SetData(string name, System.IO.BinaryReader reader)
         {
             this.name = name;
+            if (reader != null) DoSetData(name, reader);
         }
 
-        internal virtual void Serialize(System.IO.BinaryWriter writer)
+        protected virtual void DoSetData(string name, System.IO.BinaryReader reader)
+        {
+        }
+
+        internal virtual void Serialize(System.IO.BinaryWriter writer, bool last)
         {
             StreamHelper.WriteString(writer, name);
         }

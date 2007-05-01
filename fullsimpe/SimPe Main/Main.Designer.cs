@@ -142,21 +142,21 @@ namespace SimPe
             this.tbDefaultAction = new SteepValley.Windows.Forms.ThemedControls.XPTaskBox();
             this.dcFilter = new Ambertation.Windows.Forms.DockPanel();
             this.xpGradientPanel1 = new SteepValley.Windows.Forms.XPGradientPanel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.xpLinkedLabelIcon3 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
             this.cbsemig = new System.Windows.Forms.ComboBox();
-            this.xpLinkedLabelIcon2 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
             this.tbRcolName = new System.Windows.Forms.TextBox();
-            this.xpLinkedLabelIcon1 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
             this.tbInst = new System.Windows.Forms.TextBox();
             this.tbGrp = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.xpLinkedLabelIcon3 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
+            this.xpLinkedLabelIcon2 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
+            this.xpLinkedLabelIcon1 = new SteepValley.Windows.Forms.XPLinkedLabelIcon();
             this.dockBottom = new Ambertation.Windows.Forms.DockContainer();
             this.dcPlugin = new Ambertation.Windows.Forms.DockPanel();
             this.dc = new TD.SandDock.TabControl();
-            this.tbAction = new System.Windows.Forms.ToolStrip();
+            this.tbTools = new System.Windows.Forms.ToolStrip();
             this.toolBar1 = new System.Windows.Forms.ToolStrip();
             this.biNew = new System.Windows.Forms.ToolStripButton();
             this.biOpen = new System.Windows.Forms.ToolStripButton();
@@ -166,7 +166,7 @@ namespace SimPe
             this.biNewDc = new System.Windows.Forms.ToolStripButton();
             this.biUpdate = new System.Windows.Forms.ToolStripButton();
             this.biReset = new System.Windows.Forms.ToolStripButton();
-            this.tbTools = new System.Windows.Forms.ToolStrip();
+            this.tbAction = new System.Windows.Forms.ToolStrip();
             this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.dockCenter = new Ambertation.Windows.Forms.DockContainer();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
@@ -236,10 +236,10 @@ namespace SimPe
             // 
             // tbContainer.TopToolStripPanel
             // 
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
             // 
             // manager
             // 
@@ -485,31 +485,17 @@ namespace SimPe
             // 
             this.xpGradientPanel1.Controls.Add(this.label1);
             this.xpGradientPanel1.Controls.Add(this.label5);
-            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon3);
             this.xpGradientPanel1.Controls.Add(this.cbsemig);
-            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon2);
             this.xpGradientPanel1.Controls.Add(this.tbRcolName);
-            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon1);
             this.xpGradientPanel1.Controls.Add(this.tbInst);
             this.xpGradientPanel1.Controls.Add(this.tbGrp);
             this.xpGradientPanel1.Controls.Add(this.label3);
             this.xpGradientPanel1.Controls.Add(this.label2);
+            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon3);
+            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon2);
+            this.xpGradientPanel1.Controls.Add(this.xpLinkedLabelIcon1);
             resources.ApplyResources(this.xpGradientPanel1, "xpGradientPanel1");
             this.xpGradientPanel1.Name = "xpGradientPanel1";
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Name = "label3";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Name = "label2";
             // 
             // label1
             // 
@@ -525,17 +511,6 @@ namespace SimPe
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label5.Name = "label5";
             // 
-            // xpLinkedLabelIcon3
-            // 
-            resources.ApplyResources(this.xpLinkedLabelIcon3, "xpLinkedLabelIcon3");
-            this.xpLinkedLabelIcon3.BackColor = System.Drawing.Color.Transparent;
-            this.xpLinkedLabelIcon3.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
-            this.xpLinkedLabelIcon3.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
-            this.xpLinkedLabelIcon3.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.xpLinkedLabelIcon3.Name = "xpLinkedLabelIcon3";
-            this.xpLinkedLabelIcon3.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.xpLinkedLabelIcon3.LinkClicked += new System.EventHandler(this.SetSemiGlobalFilter);
-            // 
             // cbsemig
             // 
             resources.ApplyResources(this.cbsemig, "cbsemig");
@@ -544,34 +519,12 @@ namespace SimPe
             this.cbsemig.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cbsemig.Name = "cbsemig";
             // 
-            // xpLinkedLabelIcon2
-            // 
-            resources.ApplyResources(this.xpLinkedLabelIcon2, "xpLinkedLabelIcon2");
-            this.xpLinkedLabelIcon2.BackColor = System.Drawing.Color.Transparent;
-            this.xpLinkedLabelIcon2.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
-            this.xpLinkedLabelIcon2.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
-            this.xpLinkedLabelIcon2.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.xpLinkedLabelIcon2.Name = "xpLinkedLabelIcon2";
-            this.xpLinkedLabelIcon2.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.xpLinkedLabelIcon2.LinkClicked += new System.EventHandler(this.SetRcolNameFilter);
-            // 
             // tbRcolName
             // 
             resources.ApplyResources(this.tbRcolName, "tbRcolName");
             this.xpCueBannerExtender1.SetCueBannerText(this.tbRcolName, "RCOL Filename");
             this.tbRcolName.Name = "tbRcolName";
             this.tbRcolName.SizeChanged += new System.EventHandler(this.tbRcolName_SizeChanged);
-            // 
-            // xpLinkedLabelIcon1
-            // 
-            this.xpLinkedLabelIcon1.BackColor = System.Drawing.Color.Transparent;
-            this.xpLinkedLabelIcon1.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
-            resources.ApplyResources(this.xpLinkedLabelIcon1, "xpLinkedLabelIcon1");
-            this.xpLinkedLabelIcon1.LinkArea = new System.Windows.Forms.LinkArea(0, 3);
-            this.xpLinkedLabelIcon1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.xpLinkedLabelIcon1.Name = "xpLinkedLabelIcon1";
-            this.xpLinkedLabelIcon1.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.xpLinkedLabelIcon1.LinkClicked += new System.EventHandler(this.SetFilter);
             // 
             // tbInst
             // 
@@ -584,6 +537,53 @@ namespace SimPe
             this.xpCueBannerExtender1.SetCueBannerText(this.tbGrp, "Group Filter");
             resources.ApplyResources(this.tbGrp, "tbGrp");
             this.tbGrp.Name = "tbGrp";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label3.Name = "label3";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Name = "label2";
+            // 
+            // xpLinkedLabelIcon3
+            // 
+            resources.ApplyResources(this.xpLinkedLabelIcon3, "xpLinkedLabelIcon3");
+            this.xpLinkedLabelIcon3.BackColor = System.Drawing.Color.Transparent;
+            this.xpLinkedLabelIcon3.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
+            this.xpLinkedLabelIcon3.LinkArea = new System.Windows.Forms.LinkArea(0, 7);
+            this.xpLinkedLabelIcon3.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.xpLinkedLabelIcon3.Name = "xpLinkedLabelIcon3";
+            this.xpLinkedLabelIcon3.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.xpLinkedLabelIcon3.LinkClicked += new System.EventHandler(this.SetSemiGlobalFilter);
+            // 
+            // xpLinkedLabelIcon2
+            // 
+            resources.ApplyResources(this.xpLinkedLabelIcon2, "xpLinkedLabelIcon2");
+            this.xpLinkedLabelIcon2.BackColor = System.Drawing.Color.Transparent;
+            this.xpLinkedLabelIcon2.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
+            this.xpLinkedLabelIcon2.LinkArea = new System.Windows.Forms.LinkArea(0, 7);
+            this.xpLinkedLabelIcon2.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.xpLinkedLabelIcon2.Name = "xpLinkedLabelIcon2";
+            this.xpLinkedLabelIcon2.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.xpLinkedLabelIcon2.LinkClicked += new System.EventHandler(this.SetRcolNameFilter);
+            // 
+            // xpLinkedLabelIcon1
+            // 
+            this.xpLinkedLabelIcon1.BackColor = System.Drawing.Color.Transparent;
+            this.xpLinkedLabelIcon1.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
+            resources.ApplyResources(this.xpLinkedLabelIcon1, "xpLinkedLabelIcon1");
+            this.xpLinkedLabelIcon1.LinkArea = new System.Windows.Forms.LinkArea(0, 7);
+            this.xpLinkedLabelIcon1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.xpLinkedLabelIcon1.Name = "xpLinkedLabelIcon1";
+            this.xpLinkedLabelIcon1.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.xpLinkedLabelIcon1.LinkClicked += new System.EventHandler(this.SetFilter);
             // 
             // dockBottom
             // 
@@ -631,10 +631,10 @@ namespace SimPe
             this.dc.Name = "dc";
             this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
             // 
-            // tbAction
+            // tbTools
             // 
-            resources.ApplyResources(this.tbAction, "tbAction");
-            this.tbAction.Name = "tbAction";
+            resources.ApplyResources(this.tbTools, "tbTools");
+            this.tbTools.Name = "tbTools";
             // 
             // toolBar1
             // 
@@ -698,10 +698,10 @@ namespace SimPe
             this.biReset.Name = "biReset";
             this.biReset.Click += new System.EventHandler(this.Activate_biReset);
             // 
-            // tbTools
+            // tbAction
             // 
-            resources.ApplyResources(this.tbTools, "tbTools");
-            this.tbTools.Name = "tbTools";
+            resources.ApplyResources(this.tbAction, "tbAction");
+            this.tbAction.Name = "tbAction";
             // 
             // tbWindow
             // 

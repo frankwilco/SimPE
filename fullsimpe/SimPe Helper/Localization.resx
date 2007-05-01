@@ -1455,4 +1455,7 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
   <data name="PetShowBiz" xml:space="preserve">
     <value>Pet - Show Biz</value>
   </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Searching</value>
+  </data>
 </root>

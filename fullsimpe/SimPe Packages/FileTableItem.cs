@@ -170,6 +170,14 @@ namespace SimPe
             set { this.type = value; }
         }
 
+        /// <summary>
+        /// Check this to determin if this item should be used in the FileTable
+        /// </summary>
+        public bool Use
+        {
+            get { return IsAvail && !Ignore && IsUseable; }
+        }
+
         public bool IsRecursive
         {
             get { return recursive; }

@@ -54,5 +54,34 @@ namespace SimPe
 				writer.Write((uint)0);
 			}
 		}
+
+        /// <summary>
+        /// Reads a 0-terminated string
+        /// </summary>
+        /// <param name="r"></param>
+        /// <returns></returns>
+        public static string ReadPChar(System.IO.BinaryReader r)        
+        {
+            
+            char b = r.ReadChar();
+            string s = "";
+            while (b != 0 && r.BaseStream.Position <= r.BaseStream.Length)
+            {
+                s += b;
+                b = r.ReadChar();
+            }
+            return s;
+        }
+
+        /// <summary>
+        /// Reads a 0-terminated string
+        /// </summary>
+        /// <param name="w"></param>
+        /// <param name="s"></param>
+        public static void WritePChar(System.IO.BinaryWriter w, string s)
+        {
+            foreach (char c in s) w.Write(c);
+            w.Write((char)0);
+        }
 	}
 }

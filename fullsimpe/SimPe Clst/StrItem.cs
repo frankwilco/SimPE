@@ -249,41 +249,24 @@ namespace SimPe.PackedFiles.Wrapper
 		 * byte - Language ID
 		 * char[]\0 - Title
 		 * char[]\0 - Description
-		 */
-		internal static string UnserializeStringZero(BinaryReader r)
-		// This should be in Helpers - it's a function, not a method
-		{
-			char b = r.ReadChar();
-			string s = "";
-			while (b != 0 && r.BaseStream.Position <= r.BaseStream.Length)
-			{
-				s += b;
-				b = r.ReadChar();
-			}
-			return s;
-		}
+		 */		
 		internal static void Unserialize(BinaryReader reader, Hashtable lines)
 		{
 			StrLanguage lid = new StrLanguage(reader.ReadByte());
-			string title = UnserializeStringZero(reader);
-			string desc = UnserializeStringZero(reader);
+			string title = StreamHelper.ReadPChar(reader);
+			string desc = StreamHelper.ReadPChar(reader);
 
 			if (lines[lid.Id] == null) lines[lid.Id] = new StrItemList(); // Add a new StrItemList if needed
 
 			((StrItemList)lines[lid.Id]).Add(new StrToken(((StrItemList)lines[lid.Id]).Count, lid, title, desc));
 		}
 
-		internal static void SerializeStringZero(BinaryWriter w, string s)
-		// This should be in Helpers - it's a function, not a method
-		{
-			foreach (char c in s) w.Write(c);
-			w.Write((char)0);
-		}
+		
 		internal void Serialize(BinaryWriter writer)
 		{
 			if (lid   != null) writer.Write(lid.Id); else writer.Write((byte)0);
-			if (title != null) SerializeStringZero(writer, title); else SerializeStringZero(writer, "");
-			if (desc  != null) SerializeStringZero(writer, desc); else SerializeStringZero(writer, "");
+            if (title != null) StreamHelper.WritePChar(writer, title); else StreamHelper.WritePChar(writer, "");
+            if (desc != null) StreamHelper.WritePChar(writer, desc); else StreamHelper.WritePChar(writer, "");
 //			dirty = false;
 			// Mmm, "dirty" means what?  OK, so I added it...
 		}
