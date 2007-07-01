@@ -347,6 +347,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Localization.pl.resx">
       <DependentUpon>Localization.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization.resx">
       <DependentUpon>Localization.cs</DependentUpon>
@@ -360,15 +361,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.de.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.es.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.pl.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingForm.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="important.png" />
   </ItemGroup>

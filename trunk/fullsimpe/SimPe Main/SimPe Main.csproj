@@ -290,6 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbstractActionDefault.cs">
       <SubType>Code</SubType>
@@ -383,6 +384,7 @@
     <EmbeddedResource Include="actionstart.png" />
     <EmbeddedResource Include="AddExtTool.resx">
       <DependentUpon>AddExtTool.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="disabled.png" />
     <EmbeddedResource Include="enabled.png" />
@@ -410,6 +412,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.de.resx">
       <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.fr.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -421,6 +424,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.pl.resx">
       <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -437,6 +441,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OptionForm.es.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="OptionForm.fr.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
@@ -448,6 +453,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OptionForm.pl.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="OptionForm.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>

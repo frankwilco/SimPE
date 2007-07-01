@@ -317,6 +317,7 @@
     <EmbeddedResource Include="agt_support.png" />
     <EmbeddedResource Include="CheckControl.de.resx">
       <DependentUpon>CheckControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CheckControl.resx">
       <DependentUpon>CheckControl.cs</DependentUpon>
@@ -324,6 +325,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CheckItem.de.resx">
       <DependentUpon>CheckItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CheckItem.resx">
       <DependentUpon>CheckItem.cs</DependentUpon>
@@ -333,6 +335,7 @@
     <EmbeddedResource Include="fail.png" />
     <EmbeddedResource Include="LoadFileWrappers.resx">
       <DependentUpon>LoadFileWrappers.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadFileWrappersExt.resx">
       <DependentUpon>LoadFileWrappersExt.cs</DependentUpon>
@@ -340,6 +343,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Message.resx">
       <DependentUpon>Message.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Neighborhood.png" />
     <EmbeddedResource Include="Object Creation.png" />
@@ -349,12 +353,15 @@
     <EmbeddedResource Include="unk.png" />
     <EmbeddedResource Include="WrapperBaseControl.de.resx">
       <DependentUpon>WrapperBaseControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WrapperBaseControl.pl.resx">
       <DependentUpon>WrapperBaseControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WrapperBaseControl.resx">
       <DependentUpon>WrapperBaseControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

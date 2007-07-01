@@ -18,7 +18,9 @@ namespace SimPe
         HappyHoliday = 0x80,
         Celebrations = 0x200,
         Seasons = 0x100,
+        Fashion = 0x400,
         LifeStories = 0x00100000,
+        PetStories = 0x00200000,
         Custom = 0x80000000
     }
 

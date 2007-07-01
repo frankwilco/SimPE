@@ -349,6 +349,7 @@
     </Compile>
     <EmbeddedResource Include="AnimAxisTransformControl.de.resx">
       <DependentUpon>AnimAxisTransformControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AnimAxisTransformControl.fr.resx">
       <DependentUpon>AnimAxisTransformControl.cs</DependentUpon>
@@ -368,6 +369,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AnimFrameBlockControl.de.resx">
       <DependentUpon>AnimFrameBlockControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AnimFrameBlockControl.fr.resx">
       <DependentUpon>AnimFrameBlockControl.cs</DependentUpon>
@@ -379,6 +381,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AnimFrameBlockControl.resx">
       <DependentUpon>AnimFrameBlockControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AnimFrameBlockControl.ru.resx">
       <DependentUpon>AnimFrameBlockControl.cs</DependentUpon>
@@ -386,6 +389,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AnimMeshBlockControl.resx">
       <DependentUpon>AnimMeshBlockControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="fAnimResourceConst.resx">
       <DependentUpon>fAnimResourceConst.cs</DependentUpon>
@@ -397,12 +401,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenericImport.resx">
       <DependentUpon>GenericImport.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportGmdcGroups.resx">
       <DependentUpon>ImportGmdcGroups.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportJointAnim.resx">
       <DependentUpon>ImportJointAnim.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

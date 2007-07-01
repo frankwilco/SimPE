@@ -230,7 +230,9 @@ namespace SimPe
 
         public string DisplayName
         {
-            get { return PathProvider.GetDisplayedNameForExpansion(this); }
+            get { 
+                return PathProvider.GetDisplayedNameForExpansion(this); 
+            }
         }
 
         public Ambertation.CaseInvariantArrayList SimNameDeepSearch
@@ -240,7 +242,10 @@ namespace SimPe
 
         public string Name
         {
-            get { return SimPe.Localization.GetString("EP NAME " + version); }
+            get {
+                string res = SimPe.Localization.GetString("EP NAME " + version);
+                return res;
+            }
         }
 
         public Ambertation.CaseInvariantArrayList FileTableFolders
@@ -365,9 +370,14 @@ namespace SimPe
             get { return sname;  }
         }
 
-        public string NameShort {
-            get { return SimPe.Localization.GetString("EP SNAME " + version); }
-    }
+        public string NameShort
+        {
+            get
+            {
+                string res = SimPe.Localization.GetString("EP SNAME " + version);
+                return res;
+            }
+        }
 
         public Flags Flag {
             get { return flag; }

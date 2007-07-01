@@ -400,6 +400,7 @@
     </Compile>
     <EmbeddedResource Include="DDSTool.resx">
       <DependentUpon>DDSTool.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="RcolForm.resx">
       <DependentUpon>RcolForm.cs</DependentUpon>
@@ -416,30 +417,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="tExtension.resx">
       <DependentUpon>tExtension.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tGenericRcol.resx">
       <DependentUpon>tGenericRcol.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tGeometryNode.resx">
       <DependentUpon>tGeometryNode.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tLightT.resx">
       <DependentUpon>tLightT.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tMaterialDefinition.resx">
       <DependentUpon>tMaterialDefinition.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tMaterialDefinitionCategories.resx">
       <DependentUpon>tMaterialDefinitionCategories.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tMaterialDefinitionFiles.resx">
       <DependentUpon>tMaterialDefinitionFiles.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tMaterialDefinitionProperties.resx">
       <DependentUpon>tMaterialDefinitionProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tObjectGraphNode.resx">
       <DependentUpon>tObjectGraphNode.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tResourceNode.resx">
       <DependentUpon>tResourceNode.cs</DependentUpon>
@@ -447,18 +457,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="tShapeRefNode.resx">
       <DependentUpon>tShapeRefNode.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tShpeItems.resx">
       <DependentUpon>tShpeItems.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tShpeLod.resx">
       <DependentUpon>tShpeLod.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tShpeParts.resx">
       <DependentUpon>tShpeParts.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="tTransformNode.resx">
       <DependentUpon>tTransformNode.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

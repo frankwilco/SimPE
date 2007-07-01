@@ -962,12 +962,34 @@ If this is empty, SimPE will use the default Folder.</value>
       If this is empty, SimPE will use the default Folder.
     </value>
   </data>
+  <data name="[Property:SP5Path]">
+    <value>4: H&amp;M Fashion Stuff</value>
+  </data>
+  <data name="[Description:SP5Path]">
+    <value>
+      This should contain the installation directory of "The Sims 2 - H&amp;M Fashion Stuff".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
   <data name="[Property:SIMSLSPath]">
     <value>1: Life Stories</value>
   </data>
   <data name="[Description:SIMSLSPath]">
     <value>
       This should contain the installation directory of "The Sims 2 Life Stories".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
+  <data name="[Property:SIMSPSPath]">
+    <value>2: Pet Stories</value>
+  </data>
+  <data name="[Description:SIMSPSPath]">
+    <value>
+      This should contain the installation directory of "The Sims 2 Pet Stories".
       The given Folder must contain a subfolder called "TSData".
 
       If this is empty, SimPE will use the default Folder.
@@ -1155,8 +1177,14 @@ Run SimPE anyway?</value>
   <data name="EP NAME 9">
     <value>The Sims 2 - Celebration! Stuff </value>
   </data>
+  <data name="EP NAME 10">
+    <value>The Sims 2 - H&amp;M Fashion Stuff </value>
+  </data>
   <data name="EP NAME 20">
     <value>The Sims 2 - Life Stories</value>
+  </data>
+  <data name="EP NAME 20">
+    <value>The Sims 2 - Pet Stories</value>
   </data>
 
   <data name="EP SNAME 0">
@@ -1189,8 +1217,14 @@ Run SimPE anyway?</value>
   <data name="EP SNAME 9">
     <value>Celebrations</value>
   </data>
+  <data name="EP SNAME 10">
+    <value>Fashion</value>
+  </data>
   <data name="EP SNAME 20">
     <value>Life Stories</value>
+  </data>
+  <data name="EP SNAME 21">
+    <value>Pet Stories</value>
   </data>
     <data name="Check: Folder not found">
 		<value>Folder for "{name}" was not found.</value>
