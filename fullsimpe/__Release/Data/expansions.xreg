@@ -133,5 +133,31 @@
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string> <!-- Provided by Carrigon -->
       <int name="Group">1</int>
     </key>
+
+    <!-- Information about H&M Fashion Stuff  (provided by Numenor) -->
+    <key name="Fashion">
+      <int name="Version">10</int>
+      <int name="PreferedRuntimeVersion">8</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 H M Fashion Stuff</string>
+      <int name="Flag">34</int>
+      <string name="ExeName">Sims2SP5.exe</string>
+      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+      <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
+      <int name="Group">1</int>
+    </key>
+  
+    <!-- Information about Pet Stories (provided by Numenor) -->
+    <key name="PetStories">
+      <int name="Version">21</int>
+      <string name="RegKey">SOFTWARE\Electronic Arts\The Sims Pet Stories</string>
+      <int name="Flag">20</int>
+      <string name="ExeName">SimsPS.exe</string>
+      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+      <int name="Group">3</int>
+      <cilist name="SaveGameLocationsForGroup">
+        <string name="0">{MyDocuments}\Electronic Arts\{DisplayName}</string>
+      </cilist>	
+    </key>
   </key>
+
 </registry>

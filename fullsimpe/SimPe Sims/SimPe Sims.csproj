@@ -329,12 +329,15 @@
     </Compile>
     <EmbeddedResource Include="CommonSrelUI.de.resx">
       <DependentUpon>CommonSrelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CommonSrelUI.pL.resx">
       <DependentUpon>CommonSrelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CommonSrelUI.resx">
       <DependentUpon>CommonSrelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="dna.png" />
     <EmbeddedResource Include="ExtSDescUI.de.resx">
@@ -351,12 +354,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExtSrelUI.de.resx">
       <DependentUpon>ExtSrelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtSrelUI.pl.resx">
       <DependentUpon>ExtSrelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtSrelUI.resx">
       <DependentUpon>ExtSrelUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="familyties.png" />
     <EmbeddedResource Include="FamilyTiesForm.de.resx">
@@ -365,6 +371,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FamilyTiesForm.pl.resx">
       <DependentUpon>FamilyTiesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FamilyTiesForm.resx">
       <DependentUpon>FamilyTiesForm.cs</DependentUpon>
@@ -374,18 +381,23 @@
     <EmbeddedResource Include="sdsc.png" />
     <EmbeddedResource Include="SimBusinessList.resx">
       <DependentUpon>SimBusinessList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SimComboBox.resx">
       <DependentUpon>SimComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SimDNAUI.resx">
       <DependentUpon>SimDNAUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SimListView.resx">
       <DependentUpon>SimListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SimPoolControl.de.resx">
       <DependentUpon>SimPoolControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SimPoolControl.resx">
       <DependentUpon>SimPoolControl.cs</DependentUpon>

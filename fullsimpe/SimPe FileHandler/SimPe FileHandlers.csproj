@@ -307,9 +307,11 @@
     <EmbeddedResource Include="cpf.png" />
     <EmbeddedResource Include="Elements.de.resx">
       <DependentUpon>Elements.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements.es.resx">
       <DependentUpon>Elements.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements.fr.resx">
       <DependentUpon>Elements.cs</DependentUpon>
@@ -321,6 +323,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements.pl.resx">
       <DependentUpon>Elements.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements.resx">
       <DependentUpon>Elements.cs</DependentUpon>
@@ -332,9 +335,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements2.de.resx">
       <DependentUpon>Elements2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements2.es.resx">
       <DependentUpon>Elements2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements2.fr.resx">
       <DependentUpon>Elements2.cs</DependentUpon>
@@ -346,6 +351,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements2.pl.resx">
       <DependentUpon>Elements2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements2.resx">
       <DependentUpon>Elements2.cs</DependentUpon>
@@ -364,9 +370,11 @@
     <EmbeddedResource Include="sdsc.png" />
     <EmbeddedResource Include="SdscExtendedForm.resx">
       <DependentUpon>SdscExtendedForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SimRelinkForm.resx">
       <DependentUpon>SimRelinkForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="srel.png" />
   </ItemGroup>

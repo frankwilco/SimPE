@@ -246,23 +246,29 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GroupCacheForm.resx">
       <DependentUpon>GroupCacheForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageSize.resx">
       <DependentUpon>ImageSize.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LifoForm.resx">
       <DependentUpon>LifoForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Listing.resx">
       <DependentUpon>Listing.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="mmat.png" />
     <EmbeddedResource Include="mmat.simpe" />
     <EmbeddedResource Include="ObjectComboBox.resx">
       <DependentUpon>ObjectComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PackedFileForm.de.resx">
       <DependentUpon>PackedFileForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PackedFileForm.es.resx">
       <DependentUpon>PackedFileForm.cs</DependentUpon>
@@ -278,6 +284,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PackedFileForm.pl.resx">
       <DependentUpon>PackedFileForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PackedFileForm.resx">
       <DependentUpon>PackedFileForm.cs</DependentUpon>
@@ -285,6 +292,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RenameForm.resx">
       <DependentUpon>RenameForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="slot.png" />
     <EmbeddedResource Include="SlotForm.resx">
@@ -298,6 +306,7 @@
     <EmbeddedResource Include="txtr.png" />
     <EmbeddedResource Include="TxtrForm.resx">
       <DependentUpon>TxtrForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>

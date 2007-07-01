@@ -685,50 +685,59 @@ namespace SimPe
 
 		public static bool ImportOldData()
 		{
-			if (!System.IO.Directory.Exists(Helper.SimPeDataPath)) 
-				System.IO.Directory.CreateDirectory(Helper.SimPeDataPath);
+            try
+            {
+                if (!System.IO.Directory.Exists(Helper.SimPeDataPath))
+                    System.IO.Directory.CreateDirectory(Helper.SimPeDataPath);
 
-			if (!System.IO.File.Exists(System.IO.Path.Combine(Helper.SimPeDataPath, "simpe.xreg")))
-			{
-				if (System.IO.Directory.Exists(Helper.WindowsRegistry.PreviousDataFolder))
-					if (Helper.WindowsRegistry.PreviousDataFolder.Trim().ToLower()!=Helper.SimPeDataPath.Trim().ToLower())
-						if (Helper.SimPeVersionLong>Helper.WindowsRegistry.PreviousVersion && Helper.WindowsRegistry.PreviousVersion>0)
-                        {
-                            SimPe.Splash.Screen.Stop();
-							if (Message.Show("Should SimPE import old Settings from \""+Helper.WindowsRegistry.PreviousDataFolder+"\"?", "Import Settings", System.Windows.Forms.MessageBoxButtons.YesNo)==System.Windows.Forms.DialogResult.Yes) 
-							{
-								WaitingScreen.Wait();
-								try 
-								{
-									int ct = 0;
-									string[] files = System.IO.Directory.GetFiles(Helper.WindowsRegistry.PreviousDataFolder, "*.*");
-									foreach (string file in files) 
-									{
-										string name = System.IO.Path.GetFileName(file).Trim().ToLower();
-										if (name=="tgi.xml") continue;
+                if (!System.IO.File.Exists(System.IO.Path.Combine(Helper.SimPeDataPath, "simpe.xreg")))
+                {
+                    if (System.IO.Directory.Exists(Helper.WindowsRegistry.PreviousDataFolder))
+                        if (Helper.WindowsRegistry.PreviousDataFolder.Trim().ToLower() != Helper.SimPeDataPath.Trim().ToLower())
+                            if (Helper.SimPeVersionLong > Helper.WindowsRegistry.PreviousVersion && Helper.WindowsRegistry.PreviousVersion > 0)
+                            {
+                                SimPe.Splash.Screen.Stop();
+                                if (Message.Show("Should SimPE import old Settings from \"" + Helper.WindowsRegistry.PreviousDataFolder + "\"?", "Import Settings", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                                {
+                                    WaitingScreen.Wait();
+                                    try
+                                    {
+                                        int ct = 0;
+                                        string[] files = System.IO.Directory.GetFiles(Helper.WindowsRegistry.PreviousDataFolder, "*.*");
+                                        foreach (string file in files)
+                                        {
+                                            string name = System.IO.Path.GetFileName(file).Trim().ToLower();
+                                            if (name == "tgi.xml") continue;
 
-										string newfile = file.Trim().ToLower().Replace(Helper.WindowsRegistry.PreviousDataFolder.Trim().ToLower(),Helper.SimPeDataPath.Trim()); 
-										WaitingScreen.UpdateMessage((ct++).ToString()+" / "+files.Length);
-										System.IO.File.Copy(file, newfile, true);
-									}
+                                            string newfile = file.Trim().ToLower().Replace(Helper.WindowsRegistry.PreviousDataFolder.Trim().ToLower(), Helper.SimPeDataPath.Trim());
+                                            WaitingScreen.UpdateMessage((ct++).ToString() + " / " + files.Length);
+                                            System.IO.File.Copy(file, newfile, true);
+                                        }
 
-									Helper.WindowsRegistry.Reload();
-									ThemeManager.Global.CurrentTheme = (SimPe.GuiTheme)Helper.WindowsRegistry.Layout.SelectedTheme;
-								} 
-								catch (Exception ex) 
-								{
-									Helper.ExceptionMessage(new Warning("Unable to import Settings.", ex.Message, ex));
-								}
-								finally 
-								{
-									WaitingScreen.Stop();
-								}
-							}
-						}
-			}
+                                        Helper.WindowsRegistry.Reload();
+                                        ThemeManager.Global.CurrentTheme = (SimPe.GuiTheme)Helper.WindowsRegistry.Layout.SelectedTheme;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Helper.ExceptionMessage(new Warning("Unable to import Settings.", ex.Message, ex));
+                                    }
+                                    finally
+                                    {
+                                        WaitingScreen.Stop();
+                                    }
+                                }
+                            }
+                }
 
-			return ConvertData();
-		}
+                return ConvertData();
+            }
+            finally
+            {
+
+            }
+
+            return true;
+        }
 		#endregion
 	}
 }

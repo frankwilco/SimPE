@@ -1386,12 +1386,34 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       If this is empty, SimPE will use the default Folder.
     </value>
   </data>
+  <data name="[Property:SP5Path]">
+    <value>4: H&amp;M-Fashion-Accessoires</value>
+  </data>
+  <data name="[Description:SP4Path]">
+    <value>
+      This should contain the installation directory of "Die Sims 2 - H&amp;M-Fashion-Accessoires".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
   <data name="[Property:SIMSLSPath]">
     <value>1: Lebensgeschichten</value>
   </data>
   <data name="[Description:SIMSLSPath]">
     <value>
       Hier sollte das Installationsverzeichnis von "Die Sims 2 Lebensgeschichten" stehen.
+      Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+      Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
+    </value>
+  </data>
+  <data name="[Property:SIMSPSPath]">
+    <value>2: Tiergeschichten</value>
+  </data>
+  <data name="[Description:SIMSPSPath]">
+    <value>
+      Hier sollte das Installationsverzeichnis von "Die Sims 2 Tiergeschichten" stehen.
       Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
 
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
@@ -1578,8 +1600,14 @@ Soll SimPE dennoch gestartet werden?</value>
   <data name="EP NAME 9" xml:space="preserve">
     <value>Die Sims 2 - Party-Accessoires</value>
   </data>
+  <data name="EP NAME 10" xml:space="preserve">
+    <value>Die Sims 2 - H&amp;M-Fashion-Accessoires</value>
+  </data>
   <data name="EP NAME 20">
     <value>Die Sims 2 - Lebensgeschichten</value>
+  </data>
+  <data name="EP NAME 21">
+    <value>Die Sims 2 - Tiergeschichten</value>
   </data>
   <data name="EP SNAME 0" xml:space="preserve">
     <value>Original</value>
@@ -1611,8 +1639,14 @@ Soll SimPE dennoch gestartet werden?</value>
   <data name="EP SNAME 9" xml:space="preserve">
     <value>Party</value>
   </data>
+  <data name="EP SNAME 10" xml:space="preserve">
+    <value>Fashion</value>
+  </data>
   <data name="EP SNAME 20">
     <value>Lebensgeschichten</value>
+  </data>
+  <data name="EP SNAME 21">
+    <value>Tiergeschichten</value>
   </data>
   <data name="Check: Folder not found" xml:space="preserve">
     <value>Verzeichnis für "{name}" wurde nicht gefunden.</value>
