@@ -153,7 +153,7 @@
       <int name="Flag">20</int>
       <string name="ExeName">SimsPS.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
-      <int name="Group">3</int>
+      <int name="Group">4</int>
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{MyDocuments}\Electronic Arts\{DisplayName}</string>
       </cilist>	
