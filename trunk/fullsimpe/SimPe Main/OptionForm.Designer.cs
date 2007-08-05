@@ -245,7 +245,7 @@ namespace SimPe
             this.label10 = new System.Windows.Forms.Label();
             this.cbjointname = new System.Windows.Forms.CheckBox();
             this.hcFolders = new TD.Eyefinder.HeaderControl();
-            this.pgPaths = new SimPe.MyPropertyGrid();
+            this.pgPaths = new MyPropertyGrid();
             this.tbep2 = new System.Windows.Forms.TextBox();
             this.btNightlife = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
