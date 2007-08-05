@@ -73,9 +73,8 @@ namespace SimPe
                 {
                     Helper.WindowsRegistry.UpdateSimPEDirectory();
                     Global = new MainForm();
-                    Application.Run(Global);
-
-
+                    if (!Commandline.FullEnvStart(args)) Application.Run(Global);
+                    
 
                     Helper.WindowsRegistry.Flush();
                     Helper.WindowsRegistry.Layout.Flush();

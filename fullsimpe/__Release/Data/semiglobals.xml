@@ -1,0 +1,747 @@
+<semiglobals>
+  <semiglobal>
+    <known />
+    <group>7FF616D0</group>
+    <name>Windowglobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FD0DEBA</group>
+    <name>DoorGlobalsNew</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F383346</group>
+    <name>GardenGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F60C397</group>
+    <name>LampGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F84A9F4</group>
+    <name>MirrorGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F18E0F0</group>
+    <name>PaintingGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FD90EDB</group>
+    <name>SocialGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F7FA83D</group>
+    <name>IdleGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FE10572</group>
+    <name>ShoppingRackGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F3C9675</group>
+    <name>Food_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F4EA230</group>
+    <name>CarGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F0B61F3</group>
+    <name>ChairGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F8F4EB6</group>
+    <name>JobDataGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F2B6F4B</group>
+    <name>RugGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F48CA31</group>
+    <name>PlantGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FE69D2A</group>
+    <name>TelevisionChannelGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F67DD1B</group>
+    <name>PetGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F491269</group>
+    <name>OrchardTreeGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F575EBF</group>
+    <name>MemoryGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FE6EE0D</group>
+    <name>Accessory_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F6E998E</group>
+    <name>GrandfatherClockGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F117CD9</group>
+    <name>StairModularGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F85C391</group>
+    <name>TableCoffee_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F01EC29</group>
+    <name>PersonGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FD2752D</group>
+    <name>SignGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F723E9D</group>
+    <name>VanityGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FCE2168</group>
+    <name>HarvestableGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F7BA762</group>
+    <name>ReactionGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F6AB593</group>
+    <name>SnowManGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FBD3903</group>
+    <name>PhoneCallGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F6B7BD0</group>
+    <name>TreeGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FF941DF</group>
+    <name>EmitterGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FD178FF</group>
+    <name>TableEnd_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F0B2AE7</group>
+    <name>VideoGame_CD_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FE49F9B</group>
+    <name>Pool_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FA815EA</group>
+    <name>DeskGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F4437F2</group>
+    <name>BedGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FDFFE55</group>
+    <name>DiningGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F033984</group>
+    <name>Stove_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FC6FC76</group>
+    <name>urtainGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F74C118</group>
+    <name>ArcadeGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F759586</group>
+    <name>WaterPlantGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F38B8A7</group>
+    <name>UrnStoneGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FD18CCD</group>
+    <name>ClimateGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F9A5330</group>
+    <name>FridgeGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F7234D0</group>
+    <name>TableDining_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F1A9ECC</group>
+    <name>ShrubGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FDC2970</group>
+    <name>Displayglobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F20C1E4</group>
+    <name>MagazineGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F675EF2</group>
+    <name>SocialMarkerGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F1CEB97</group>
+    <name>SnowballFightGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F496A24</group>
+    <name>DanceGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F347DAB</group>
+    <name>FoodContainer_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FAE06B0</group>
+    <name>SofaGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F16556B</group>
+    <name>ToiletGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FDA22BB</group>
+    <name>StoveGrill_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FA3FCFE</group>
+    <name>TrashGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F67FE05</group>
+    <name>BarGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FD05A1E</group>
+    <name>PetBedGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F12A804</group>
+    <name>CounterGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F9BFA55</group>
+    <name>RobotGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FC9DC08</group>
+    <name>PinballMachineGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F7638B3</group>
+    <name>SinkGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F553580</group>
+    <name>PersonalityGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F4F06CA</group>
+    <name>StereoGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FE64A8D</group>
+    <name>BookGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FAF5F74</group>
+    <name>Aspiration_CoolShadesGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FEABABA</group>
+    <name>HottubGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FDB80FC</group>
+    <name>StuffedAnimal_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FE1C9FB</group>
+    <name>MicrowaveGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F3A03A4</group>
+    <name>MailBoxGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F62606D</group>
+    <name>WeatherGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FFD4F2D</group>
+    <name>FireplaceGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FB8B012</group>
+    <name>LitterBoxGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FB208FA</group>
+    <name>PhoneGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F9CE3AF</group>
+    <name>juicerglobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F61CD20</group>
+    <name>VideoGame_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F441294</group>
+    <name>ComputerGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F92832C</group>
+    <name>TelevisionGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F293E85</group>
+    <name>PuddleGlobal</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F327BCE</group>
+    <name>BookCaseGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F8834C8</group>
+    <name>FoodDish_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F449F3B</group>
+    <name>MusicGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F1059B4</group>
+    <name>ToastingSetGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FB01AF3</group>
+    <name>Clock_Alarm_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F8A5209</group>
+    <name>FlowerGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F0AB421</group>
+    <name>DateRewardGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F3B9D51</group>
+    <name>CurtainGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F63E3F2</group>
+    <name>TutorialScriptingGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FE69E23</group>
+    <name>TubAndShowerGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F8EC725</group>
+    <name>ConnectedColumnGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FDDAB2B</group>
+    <name>ContainedPetGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F92C7E1</group>
+    <name>DrivewayGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F38969E</group>
+    <name>KegGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F067AA0</group>
+    <name>CraftingGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F5BB15F</group>
+    <name>RouteBehaviorGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F9AB517</group>
+    <name>ExercisemachineGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F020C14</group>
+    <name>PetFoodDishGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F376D8B</group>
+    <name>EaselGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F277790</group>
+    <name>ToyBoxGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FDE81DC</group>
+    <name>CashRegisterGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F83411E</group>
+    <name>HighChairGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F25E399</group>
+    <name>EffectHolderGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F281D4B</group>
+    <name>AutoSprinklerGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FEC2140</group>
+    <name>RoachGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F0C60C8</group>
+    <name>StairsStraightGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F119F0A</group>
+    <name>ToyboxToysGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F9A625F</group>
+    <name>AquariumGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FA083E3</group>
+    <name>DisplayPetGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F05E901</group>
+    <name>ToyWaterWiggleSprinklerGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FE1FE8A</group>
+    <name>ToyJackInTheBoxGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FFEA664</group>
+    <name>TelescopeGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FA1DF44</group>
+    <name>ChessGlobal</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F026EBD</group>
+    <name>DartboardGlobal</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F8FA50E</group>
+    <name>AspirationsHatGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FD0A90D</group>
+    <name>CakeGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F074B38</group>
+    <name>ConversationPersonalityGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FBE051B</group>
+    <name>JobDataSchoolGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F2FEFCC</group>
+    <name>CoffeeMachineGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FA6640C</group>
+    <name>RemoteControlCarGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F6E333B</group>
+    <name>DishwasherGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F17E3A4</group>
+    <name>MajorGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FEF86EB</group>
+    <name>ToyKiteGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F8B4A08</group>
+    <name>SofaSocialGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F5A0600</group>
+    <name>PhotoBoothGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F7D730B</group>
+    <name>ToasterOvenGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F890CAC</group>
+    <name>CribGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F0136DC</group>
+    <name>LotTransitionGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F011198</group>
+    <name>RinkGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FE6B74C</group>
+    <name>ElevatorGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F545E8D</group>
+    <name>DollHouseGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FCFF92E</group>
+    <name>FlamingoGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F9A5831</group>
+    <name>VideoGame_Controller_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F48AF7A</group>
+    <name>ClothingBoothGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FF9DF6B</group>
+    <name>BuffetGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FACC12B</group>
+    <name>TriggerHandler_Global</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F56BB72</group>
+    <name>CarGlobalsNew</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F1BFB16</group>
+    <name>BigRinkGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F084A90</group>
+    <name>DirtPile_Globals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F8C6EDA</group>
+    <name>CareerCandyFactoryGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F6662D5</group>
+    <name>ightGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F71C68E</group>
+    <name>PokerTableGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FD3AF67</group>
+    <name>ThoughtGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F28EEB6</group>
+    <name>ToyLanguageGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F7A8450</group>
+    <name>Career_FingerprintGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F39D7FB</group>
+    <name>ToyXylophoneGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F9EE20D</group>
+    <name>ControllerGroupGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7FEB25E9</group>
+    <name>WishingWellGlobals</name>
+  </semiglobal>
+  <semiglobal>
+    <known />
+    <group>7F23B01B</group>
+    <name>FoodProcessor_Globals</name>
+  </semiglobal>
+</semiglobals>

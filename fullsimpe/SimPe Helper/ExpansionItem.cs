@@ -82,6 +82,11 @@ namespace SimPe
         IList<long> groups;
         int group;
 
+        string shortname;
+        string shortername;
+        string longname;
+        string namelistnr; 
+
         void SetDefaultFileTableFolders()
         {
             if (preobjectfiltablefolders.Count == 0)
@@ -150,9 +155,18 @@ namespace SimPe
             filtablefolders = new Ambertation.CaseInvariantArrayList();
             preobjectfiltablefolders = new Ambertation.CaseInvariantArrayList();
 
+
+            shortname = "Unk.";
+            shortername = "Unknown";
+            longname = "The Sims 2 - Unknown";
+            namelistnr = "0";
             if (key != null)
             {
                 name = key.Name;
+                ;
+                XmlRegistryKey lang = key.OpenSubKey(System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLower(), false);
+                if (lang == null) lang = key.OpenSubKey(System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName.ToLower(), false);
+                
 
                 version = (int)key.GetValue("Version", 0);
                 runtimeversion = (int)key.GetValue("PreferedRuntimeVersion", version);
@@ -171,11 +185,41 @@ namespace SimPe
                 Ambertation.CaseInvariantArrayList ftf = (Ambertation.CaseInvariantArrayList)key.GetValue("FileTableFolders", new Ambertation.CaseInvariantArrayList());
                 if (ftf.Count == 0) SetDefaultFileTableFolders();
                 else foreach (string folder in ftf) AddFileTableFolder(folder);
-                
+
                 ftf = (Ambertation.CaseInvariantArrayList)key.GetValue("AdditionalFileTableFolders", new Ambertation.CaseInvariantArrayList());
                 foreach (string folder in ftf) AddFileTableFolder(folder);
 
                 System.Diagnostics.Debug.WriteLine(this.ToString());
+
+                namelistnr = (string)key.GetValue("namelistnr", "0");
+                string dname = name;
+                if (lang != null)
+                {
+                    shortname = (string)lang.GetValue("short", name);
+                    shortername = (string)lang.GetValue("name", shortname);
+                    if (rk != null) dname = (string)rk.GetValue("DisplayName", shortername);
+                    longname = (string)lang.GetValue("long", dname);
+                }
+                else //1. check the resource files, the try default language, then set to defaults
+                {
+                    if (lang == null) lang = key.OpenSubKey("en", false);
+                    shortname = SimPe.Localization.GetString("EP SNAME " + version);
+                    shortername = shortname;
+
+                    if (shortname == "EP SNAME " + version && lang != null)
+                    {
+                        shortname = (string)lang.GetValue("short", name);
+                        shortername = (string)lang.GetValue("name", shortname);
+                    }
+                    if (shortname == "EP SNAME " + version) shortname = name;
+
+                    if (rk != null) dname = (string)rk.GetValue("DisplayName", shortername);
+
+                    longname = SimPe.Localization.GetString("EP NAME " + version);
+                    if (longname == "EP NAME " + version && lang!=null) longname = (string)lang.GetValue("long", dname);
+                    if (longname == "EP NAME " + version) longname = dname;
+                    
+                }
             }
             else
             {
@@ -190,13 +234,14 @@ namespace SimPe
                 savegames = new Ambertation.CaseInvariantArrayList();
                 savegames.Add(PathProvider.SimSavegameFolder);
 
-                
+
                 SetDefaultFileTableFolders();
                 objfolder = "TSData" + Helper.PATH_SEP + "Res" + Helper.PATH_SEP + "Objects";
                 group = 0;
+
             }
 
-            
+
 
             BuildGroupList();
             sname = GetShortName();
@@ -243,6 +288,7 @@ namespace SimPe
         public string Name
         {
             get {
+                return longname;
                 string res = SimPe.Localization.GetString("EP NAME " + version);
                 return res;
             }
@@ -374,8 +420,25 @@ namespace SimPe
         {
             get
             {
+                return shortname;
                 string res = SimPe.Localization.GetString("EP SNAME " + version);
                 return res;
+            }
+        }
+
+        public string NameSortNumber
+        {
+            get
+            {
+                return namelistnr;
+            }
+        }
+
+        public string NameShorter
+        {
+            get
+            {
+                return shortername;
             }
         }
 

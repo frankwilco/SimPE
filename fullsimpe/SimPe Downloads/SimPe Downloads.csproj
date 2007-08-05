@@ -256,18 +256,23 @@
       <SubType>Code</SubType>
     </Compile>
     <EmbeddedResource Include="demo.png" />
-    <EmbeddedResource Include="DownloadsSettings.de.resx" />
+    <EmbeddedResource Include="DownloadsSettings.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownloadsSettings.fr.resx">
       <DependentUpon>DownloadsSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DownloadsSettings.resx" />
+    <EmbeddedResource Include="DownloadsSettings.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownloadsSettings.ru.resx">
       <DependentUpon>DownloadsSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="InstallerControl.de.resx">
       <DependentUpon>InstallerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="InstallerControl.fr.resx">
       <DependentUpon>InstallerControl.cs</DependentUpon>
@@ -275,6 +280,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InstallerControl.resx">
       <DependentUpon>InstallerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="InstallerForm.fr.resx">
       <DependentUpon>InstallerForm.cs</DependentUpon>
@@ -282,6 +288,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InstallerForm.resx">
       <DependentUpon>InstallerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="setup.png" />
   </ItemGroup>

@@ -300,6 +300,7 @@
     <EmbeddedResource Include="agent.png" />
     <EmbeddedResource Include="DebugDock.resx">
       <DependentUpon>DebugDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FinderDock.resx">
       <DependentUpon>FinderDock.cs</DependentUpon>
@@ -357,6 +358,7 @@
     <EmbeddedResource Include="recur.png" />
     <EmbeddedResource Include="Report.de.resx">
       <DependentUpon>Report.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Report.fr.resx">
       <DependentUpon>Report.cs</DependentUpon>
@@ -368,12 +370,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report.pl.resx">
       <DependentUpon>Report.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Report.resx">
       <DependentUpon>Report.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceDock.de.resx">
       <DependentUpon>ResourceDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceDock.fr.resx">
       <DependentUpon>ResourceDock.cs</DependentUpon>
@@ -385,6 +390,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceDock.pl.resx">
       <DependentUpon>ResourceDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceDock.resx">
       <DependentUpon>ResourceDock.cs</DependentUpon>

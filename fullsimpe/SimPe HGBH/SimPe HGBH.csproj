@@ -391,9 +391,11 @@
     </Compile>
     <EmbeddedResource Include="BnfoCustomerItemsUI.resx">
       <DependentUpon>BnfoCustomerItemsUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BnfoCustomerItemUI.de.resx">
       <DependentUpon>BnfoCustomerItemUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BnfoCustomerItemUI.fr.resx">
       <DependentUpon>BnfoCustomerItemUI.cs</DependentUpon>
@@ -401,6 +403,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BnfoCustomerItemUI.resx">
       <DependentUpon>BnfoCustomerItemUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BnfoCustomerItemUI.ru.resx">
       <DependentUpon>BnfoCustomerItemUI.cs</DependentUpon>
@@ -408,6 +411,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BnfoUI.de.resx">
       <DependentUpon>BnfoUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BnfoUI.fr.resx">
       <DependentUpon>BnfoUI.cs</DependentUpon>
@@ -415,11 +419,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BnfoUI.resx">
       <DependentUpon>BnfoUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="bookmark.png" />
     <EmbeddedResource Include="emoticon.png" />
     <EmbeddedResource Include="ExtNgbhUI.de.resx">
       <DependentUpon>ExtNgbhUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtNgbhUI.fr.resx">
       <DependentUpon>ExtNgbhUI.cs</DependentUpon>
@@ -431,6 +437,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExtNgbhUI.resx">
       <DependentUpon>ExtNgbhUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="idno.png" />
     <EmbeddedResource Include="IdnoForm.resx">
@@ -441,9 +448,11 @@
     <EmbeddedResource Include="ltxt.png" />
     <EmbeddedResource Include="LtxtForm.resx">
       <DependentUpon>LtxtForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MemoryProperties.de.resx">
       <DependentUpon>MemoryProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MemoryProperties.fr.resx">
       <DependentUpon>MemoryProperties.cs</DependentUpon>
@@ -451,10 +460,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MemoryProperties.resx">
       <DependentUpon>MemoryProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ngbh.png" />
     <EmbeddedResource Include="NgbhForm.de.resx">
       <DependentUpon>NgbhForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhForm.fr.resx">
       <DependentUpon>NgbhForm.cs</DependentUpon>
@@ -466,12 +477,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhForm.pl.resx">
       <DependentUpon>NgbhForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhForm.resx">
       <DependentUpon>NgbhForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhItemsListView.de.resx">
       <DependentUpon>NgbhItemsListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhItemsListView.fr.resx">
       <DependentUpon>NgbhItemsListView.cs</DependentUpon>
@@ -479,9 +493,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhItemsListView.resx">
       <DependentUpon>NgbhItemsListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhSkillHelper.de.resx">
       <DependentUpon>NgbhSkillHelper.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhSkillHelper.fr.resx">
       <DependentUpon>NgbhSkillHelper.cs</DependentUpon>
@@ -489,15 +505,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhSkillHelper.resx">
       <DependentUpon>NgbhSkillHelper.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhSkillHelperElement.resx">
       <DependentUpon>NgbhSkillHelperElement.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhSlotListView.resx">
       <DependentUpon>NgbhSlotListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhSlotSelection.de.resx">
       <DependentUpon>NgbhSlotSelection.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhSlotSelection.fr.resx">
       <DependentUpon>NgbhSlotSelection.cs</DependentUpon>
@@ -505,12 +525,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhSlotSelection.resx">
       <DependentUpon>NgbhSlotSelection.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhValueDescriptorSelection.resx">
       <DependentUpon>NgbhValueDescriptorSelection.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhValueDescriptorUI.de.resx">
       <DependentUpon>NgbhValueDescriptorUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhValueDescriptorUI.fr.resx">
       <DependentUpon>NgbhValueDescriptorUI.cs</DependentUpon>
@@ -518,20 +541,25 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NgbhValueDescriptorUI.resx">
       <DependentUpon>NgbhValueDescriptorUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NhtrUI.resx">
       <DependentUpon>NhtrUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="nothumb.png" />
     <EmbeddedResource Include="RoadTextureControl.resx">
       <DependentUpon>RoadTextureControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SlotUI.resx">
       <DependentUpon>SlotUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="subitems.png" />
     <EmbeddedResource Include="TattUI.resx">
       <DependentUpon>TattUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WantsForm.resx">
       <DependentUpon>WantsForm.cs</DependentUpon>

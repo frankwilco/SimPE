@@ -70,6 +70,8 @@ namespace SimPe.Plugin
 		public RefFile() : base()
 		{
 			items = new Interfaces.Files.IPackedFileDescriptor[0];
+            id = 0xDEADBEEF;
+            type = Data.MetaData.IndexTypes.ptLongFileIndex;
 		}
 
 		#region IWrapper member

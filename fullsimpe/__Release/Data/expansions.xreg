@@ -18,6 +18,15 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{UserSaveGame}</string>
       </cilist>
+      <string name="namelistnr">1</string>
+      <key name="en">
+          <string name="short">Original</string>
+      	  <string name="long">The Sims 2</string>
+      </key>
+      <key name="de">
+          <string name="short">Original</string>
+      	  <string name="long">Die Sims 2</string>
+      </key>
     </key>
 
     <!-- Information about University -->
@@ -34,6 +43,15 @@
       <!-- SimNameDeepSearch: This is a list of additional Folders (in the EP's Folder), 
       SimPE is using when it performs a 'Deep Search' for SimDescriptions-->
       <int name="Group">1</int>
+      <string name="namelistnr">1</string>
+      <key name="en">
+      	  <string name="long">The Sims 2 - University</string>
+      </key>
+      <key name="de">
+          <string name="short">Campus</string>
+          <string name="name">Wilde Campus Jahre</string>
+      	  <string name="long">Die Sims 2 - Wilde Campus Jahre</string>
+      </key>
     </key>
 
     <!-- Information about Nightlife -->
@@ -47,6 +65,13 @@
         <string name="0">TSData\Res\NeighborhoodTemplate\D001\Characters\</string>
       </cilist>
       <int name="Group">1</int>
+      <string name="namelistnr">2</string>
+      <key name="en">
+      	  <string name="long">The Sims 2 - Nightlife</string>
+      </key>
+      <key name="de">
+      	  <string name="long">Die Sims 2 - Nightlife</string>
+      </key>
     </key>
 
     <!-- Information about Business -->
@@ -60,6 +85,13 @@
         <string name="0">TSData\Res\NeighborhoodTemplate\B001\Characters\</string>
       </cilist>
       <int name="Group">1</int>
+      <string name="namelistnr">3</string>
+      <key name="en">
+      	  <string name="long">The Sims 2 - Open For Business</string>
+      </key>
+      <key name="de">
+      	  <string name="long">Die Sims 2 - Open For Business</string>
+      </key>
     </key>
 
     <!-- Information about FamilyFun Stuff-->
@@ -70,6 +102,17 @@
       <string name="ExeName">Sims2SP1.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <int name="Group">1</int>
+      <string name="namelistnr">1</string>
+      <key name="en">
+	  <string name="short">Family Fun</string>
+          <string name="name">Family Fun Stuff</string>
+      	  <string name="long">The Sims 2 - Family Fun Stuff</string>
+      </key>
+      <key name="de">
+          <string name="short">Family Fun</string>
+          <string name="name">Family Fun Accessoires</string>
+      	  <string name="long">Die Sims 2 - Family Fun Accessoires</string>
+      </key>
     </key>
 
     <!-- Information about Glamour Stuff -->
@@ -80,6 +123,15 @@
       <string name="ExeName">Sims2SP2.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <int name="Group">1</int>
+      <string name="namelistnr">2</string>
+      <key name="en">
+          <string name="name">Glamour Stuff</string>
+      	  <string name="long">The Sims 2 - Glamour Stuff</string>
+      </key>
+      <key name="de">
+          <string name="name">Glamour Accessoires</string>
+      	  <string name="long">Die Sims 2 - Glamour Accessoires</string>
+      </key>
     </key>
 
     <!-- Information about Pets-->
@@ -93,6 +145,14 @@
         <string name="0">TSData\Res\NeighborhoodTemplate\P001\Characters\</string>
       </cilist>
       <int name="Group">1</int>
+      <string name="namelistnr">4</string>
+      <key name="en">
+      	  <string name="long">The Sims 2 - Pets</string>
+      </key>
+      <key name="de">
+          <string name="short">Haustiere</string>
+      	  <string name="long">Die Sims 2 - Haustiere</string>
+      </key>
     </key>
 
     <!-- Information about Life Stories (provided by Numenor) -->
@@ -106,7 +166,13 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
       </cilist>
+      <string name="namelistnr">1</string>
+      <key name="en">
+	  <string name="short">Life Stories</string>
+      	  <string name="long">The Sims 2 - Life Stories</string>
+      </key>
     </key>
+
     <!-- Version 7 is inetrnally used for the Happy Hollidays SP, which is not a real SP -->
 
     <!-- Information about Seasons -->
@@ -120,6 +186,15 @@
       <cilist name="SimNameDeepSearch">
         <string name="0">TSData\Res\NeighborhoodTemplate\G002\Characters\</string>
       </cilist>
+      <string name="namelistnr">5</string>
+      <key name="en">
+      	  <string name="long">The Sims 2 - Seasons</string>
+      </key>
+      <key name="de">
+          <string name="short">Jahreszeiten</string>
+          <string name="name">Vier Jahreszeiten</string>
+      	  <string name="long">Die Sims 2 - Vier Jahreszeiten</string>
+      </key>
     </key>
 
     <!-- Information about Celebration! Stuff  (provided by Numenor) -->
@@ -132,6 +207,17 @@
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string> <!-- Provided by Carrigon -->
       <int name="Group">1</int>
+      <string name="namelistnr">3</string>
+      <key name="en">
+	  <string name="short">Celebration!</string>
+          <string name="name">Celebration! Stuff</string>
+      	  <string name="long">The Sims 2 - Celebration! Stuff</string>
+      </key>
+      <key name="de">
+          <string name="short">Party</string>
+          <string name="name">Party-Accessoires</string>
+      	  <string name="long">Die Sims 2 - Party-Accessoires</string>
+      </key>
     </key>
 
     <!-- Information about H&M Fashion Stuff  (provided by Numenor) -->
@@ -144,6 +230,17 @@
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
       <int name="Group">1</int>
+      <string name="namelistnr">4</string>
+      <key name="en">
+	  <string name="short">Fashion</string>
+          <string name="name">H&amp;M Fashion Stuff</string>
+      	  <string name="long">The Sims 2 - H&amp;M Fashion Stuff</string>
+      </key>
+      <key name="de">
+          <string name="short">Fashion</string>
+          <string name="name">H&amp;M Fashion-Accessoires</string>
+      	  <string name="long">Die Sims 2 - H&amp;M Fashion-Accessoires</string>
+      </key>
     </key>
   
     <!-- Information about Pet Stories (provided by Numenor) -->
@@ -157,6 +254,15 @@
       <cilist name="SaveGameLocationsForGroup">
         <string name="0">{MyDocuments}\Electronic Arts\{DisplayName}</string>
       </cilist>	
+      <string name="namelistnr">2</string>
+      <key name="en">
+	  <string name="short">Pet Stories</string>
+      	  <string name="long">The Sims 2 - Pet Stories</string>
+      </key>
+      <key name="de">
+          <string name="short">Tiergeschichten</string>
+      	  <string name="long">Die Sims 2 - Tiergeschichten</string>
+      </key>
     </key>
   </key>
 

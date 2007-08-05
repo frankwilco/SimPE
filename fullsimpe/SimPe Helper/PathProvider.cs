@@ -7,21 +7,23 @@ namespace SimPe
 {
     public enum Expansions : uint
     {
-        None = 0x0,
-        BaseGame = 0x1,
-        University = 0x2,
-        Nightlife = 0x4,
-        Business = 0x8,
-        FamilyFun = 0x10,
-        Glamour = 0x20,
-        Pets = 0x40,
-        HappyHoliday = 0x80,
-        Celebrations = 0x200,
-        Seasons = 0x100,
-        Fashion = 0x400,
-        LifeStories = 0x00100000,
-        PetStories = 0x00200000,
-        Custom = 0x80000000
+        None =              0x0,
+        BaseGame =          0x1,
+        University =        0x2,
+        Nightlife =         0x4,
+        Business =          0x8,
+        FamilyFun =         0x10,
+        Glamour =           0x20,
+        Pets =              0x40,
+        HappyHoliday =      0x80,
+        Celebrations =      0x200,
+        Seasons =           0x100,
+        Fashion =           0x400,
+        BonVoyage =         0x800,
+        LifeStories =       0x00100000,
+        PetStories =        0x00200000,
+        IslandStories =     0x00400000,
+        Custom =            0x80000000
     }
 
 
