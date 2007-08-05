@@ -104,34 +104,43 @@
     <Reference Include="EnumComboBox, Version=1.0.2500.20313, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="graphcontrol, Version=1.0.2493.18216, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="graphcontrol, Version=1.0.2509.16636, Culture=neutral, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="simpe.commonhandler, Version=1.0.2305.30291, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.commonhandler.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.helper, Version=0.59.0.30250, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.helper.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.interfaces, Version=1.0.2305.30290, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.interfaces.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.package, Version=1.0.2305.30291, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.package.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.rcol, Version=1.0.2305.30294, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.rcol.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.scenegraph, Version=1.0.2305.30299, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.scenegraph.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.workspace, Version=1.0.2305.30293, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.workspace.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -152,6 +161,7 @@
       <Name>WOSimPE - Interfaces</Name>
       <Project>{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
