@@ -1344,10 +1344,10 @@ namespace SimPe
         {
 
         }
-    }
 
-    class MyPropertyGrid : PropertyGrid
-    {
+        class MyPropertyGrid : PropertyGrid
+        {
 
+        }
     }
 }
