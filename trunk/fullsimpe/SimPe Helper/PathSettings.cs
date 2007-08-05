@@ -38,6 +38,7 @@ namespace SimPe
             }
         }
 
+       
         static PathSettings CreateInstance()
         {
             string src = "using System;\n";
@@ -50,7 +51,9 @@ namespace SimPe
 
             foreach (ExpansionItem ei in PathProvider.Global.Expansions)
             {
-                src += "\t[Category(\"" + ei.Flag.Class + "\"), System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor))]\n";
+                src += "\t[Category(\"" + ei.Flag.Class + "\"), System.ComponentModel.Editor(typeof(SimPe.SelectSimFolderUITypeEditor), typeof(System.Drawing.Design.UITypeEditor)),\n";
+                src += "\tDescription(\""+SimPe.Localization.GetString("[Description:]").Replace("{LongName}", ei.Name).Trim().Replace(Helper.lbr, "\\n")+"\"), ";
+                src += "DisplayName(\""+ei.NameSortNumber+": "+ei.NameShorter+"\")]\n";
                 src += "\tpublic string "+ei.ShortId+"Path\n";
                 src += "\t{\n";
                 src += "\t\tget {\n";

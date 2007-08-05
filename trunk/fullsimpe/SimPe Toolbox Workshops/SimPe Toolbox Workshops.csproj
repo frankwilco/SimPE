@@ -292,6 +292,7 @@
     <EmbeddedResource Include="demo.png" />
     <EmbeddedResource Include="NeighborhoodPreview.de.resx">
       <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NeighborhoodPreview.fr.resx">
       <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
@@ -303,9 +304,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NeighborhoodPreview.pl.resx">
       <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NeighborhoodPreview.resx">
       <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NeighborhoodPreview.ru.resx">
       <DependentUpon>NeighborhoodPreview.cs</DependentUpon>
@@ -314,9 +317,11 @@
     <EmbeddedResource Include="nothumb.png" />
     <EmbeddedResource Include="ObjectPreview.de.resx">
       <DependentUpon>ObjectPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectPreview.es.resx">
       <DependentUpon>ObjectPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectPreview.fr.resx">
       <DependentUpon>ObjectPreview.cs</DependentUpon>
@@ -328,6 +333,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectPreview.pl.resx">
       <DependentUpon>ObjectPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectPreview.resx">
       <DependentUpon>ObjectPreview.cs</DependentUpon>
@@ -339,6 +345,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectsDock.de.resx">
       <DependentUpon>ObjectsDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectsDock.fr.resx">
       <DependentUpon>ObjectsDock.cs</DependentUpon>
@@ -354,6 +361,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PackageDetailDock.de.resx">
       <DependentUpon>PackageDetailDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PackageDetailDock.fr.resx">
       <DependentUpon>PackageDetailDock.cs</DependentUpon>
@@ -365,15 +373,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PackageDetailDock.pl.resx">
       <DependentUpon>PackageDetailDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PackageDetailDock.resx">
       <DependentUpon>PackageDetailDock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PackageRepairForm.resx">
       <DependentUpon>PackageRepairForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PreviewForm.resx">
       <DependentUpon>PreviewForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
@@ -384,6 +396,7 @@
     <EmbeddedResource Include="subitems.png" />
     <EmbeddedResource Include="XObjectPreview.de.resx">
       <DependentUpon>XObjectPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="XObjectPreview.fr.resx">
       <DependentUpon>XObjectPreview.cs</DependentUpon>
@@ -391,9 +404,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XObjectPreview.pl.resx">
       <DependentUpon>XObjectPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="XObjectPreview.resx">
       <DependentUpon>XObjectPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

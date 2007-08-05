@@ -20,6 +20,7 @@ namespace SimPe
             SimPe.Splash.Screen.SetMessage(SimPe.Localization.GetString("Checking commandline parameters"));
 			if (args.Length<1) return false;
 
+            
             if (Help(args)) return true;
             if (MakeClassic(args)) return true;
             if (MakeModern(args)) return true;
@@ -28,6 +29,18 @@ namespace SimPe
 			if (FixPackage(args)) return true;
 			return false;
 		}
+
+        /// <summary>
+        /// Loaded just befor the GUI is started
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns>true if the GUI should <b>NOT</b> show up</returns>
+        public static bool FullEnvStart(string[] args)
+        {
+            if (args.Length < 1) return false;
+            if (GenerateSemiGlobals(args)) return true;
+            return false;
+        }
 
 		static bool Help(string[] args) 
 		{
@@ -40,7 +53,8 @@ namespace SimPe
 			Console.WriteLine("  -modernpreset");
 			Console.WriteLine("  -build -desc [packag.xml] -out [output].package");
 			Console.WriteLine("  -txtr -image [imgfile] -out [output].package -name [textureNam] -format [dxt1|dxt3|dxt5|raw8|raw24|raw32] -levels [nr] -width [max. Width] -height [max. Height]");
-			return true;
+            Console.WriteLine("  -gensemiglob");
+            return true;
 		}
 
 		#region Theme Presets
@@ -739,5 +753,54 @@ namespace SimPe
             return true;
         }
 		#endregion
-	}
+
+        #region Semiglobals
+        static bool GenerateSemiGlobals(string[] args)
+        {
+            if (args[0] != "-gensemiglob") return false;
+
+            System.Collections.Generic.List<uint> added = new System.Collections.Generic.List<uint>();
+            Console.WriteLine("Loading FileTable...");
+            SimPe.FileTable.FileIndex.Load();
+            Console.WriteLine("Looking for GLOB Resources...");
+            SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] resources = SimPe.FileTable.FileIndex.FindFile(SimPe.Data.MetaData.GLOB_FILE, true);
+
+            Console.WriteLine("Found " + resources.Length + " GLOB Resources");
+            string fl = Helper.SimPeSemiGlobalFile;
+            Console.WriteLine("Opening "+fl);
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(fl, false);
+            sw.WriteLine("<semiglobals>");
+
+            int ct = 0;
+            int unq = 0;
+            foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in resources)
+            {
+                if (ct % 23 == 0) Console.WriteLine("Wrote " + ct + " ("+unq+" unique) entries");
+                ct++;
+
+                SimPe.Plugin.Glob glb = new SimPe.Plugin.Glob();
+                glb.ProcessData(item);
+
+                if (!added.Contains(glb.SemiGlobalGroup))
+                {
+                    sw.WriteLine("  <semiglobal>");
+                    sw.WriteLine("    <known />");
+                    sw.WriteLine("    <group>" + Helper.HexString(glb.SemiGlobalGroup) + "</group>");
+                    sw.WriteLine("    <name>" + glb.SemiGlobalName + "</name>");
+                    sw.WriteLine("  </semiglobal>");
+                    added.Add(glb.SemiGlobalGroup);
+                    unq++;
+                }
+            }
+            Console.WriteLine("Wrote " + ct + " (" + unq + " unique) entries");
+            sw.WriteLine("</semiglobals>");
+            Console.WriteLine("Finished writing to "+fl);
+            sw.Close();
+            Console.WriteLine("Closed File");
+            Console.WriteLine("DONE!");
+
+            return true;
+        }
+        #endregion
+    }
 }

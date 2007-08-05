@@ -511,6 +511,13 @@ namespace SimPe
 			}
 		}
 
+        public static string SimPeSemiGlobalFile
+        {
+            get
+            {
+                return System.IO.Path.Combine(SimPe.Helper.SimPeDataPath, "semiglobals.xml");
+            }
+        }
 		/// <summary>
 		/// Returns the Version Information for the started Executable
 		/// </summary>

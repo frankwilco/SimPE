@@ -861,143 +861,17 @@ Continue anyway?
 		<value>Finished search for Errors.</value>
 	</data>
 	
-	<data name="[Property:GamePath]">
-		<value>Sims 2</value>
-	</data>
-	<data name="[Description:GamePath]">
-		<value>This should contain the installation directory of "The Sims 2". 
-The given Folder must contain a subfolder called "TSData".
-
-If this is empty, SimPE will use the default Folder.</value>
-	</data>
-	<data name="[Property:EP1Path]">
-		<value>1: University</value>
-	</data>
-	<data name="[Description:EP1Path]">
-		<value>This should contain the installation directory of "The Sims 2 - University". 
-The given Folder must contain a subfolder called "TSData".
-
-If this is empty, SimPE will use the default Folder.</value>
-	</data>
-	<data name="[Property:EP2Path]">
-		<value>2: Nightlife</value>
-	</data>
-	<data name="[Description:EP2Path]">
-		<value>This should contain the installation directory of "The Sims 2 - Nightlife". 
-The given Folder must contain a subfolder called "TSData".
-
-If this is empty, SimPE will use the default Folder.</value>
-	</data>
-	<data name="[Property:EP3Path]">
-		<value>3: Open for Business</value>
-	</data>
-	<data name="[Description:EP3Path]">
-		<value>This should contain the installation directory of "The Sims 2 - Open for Business". 
-The given Folder must contain a subfolder called "TSData".
-
-If this is empty, SimPE will use the default Folder.</value>
-	</data>
-  <data name="[Property:EP4Path]">
-    <value>4: Pets</value>
-  </data>
-  <data name="[Description:EP4Path]">
-    <value>
-      This should contain the installation directory of "The Sims 2 - Pets".
-      The given Folder must contain a subfolder called "TSData".
-
-      If this is empty, SimPE will use the default Folder.
-    </value>
-  </data>
-
-  <data name="[Property:EP5Path]">
-    <value>5: Seasons</value>
-  </data>
-  <data name="[Description:EP5Path]">
-    <value>
-      This should contain the installation directory of "The Sims 2 - Seasons".
-      The given Folder must contain a subfolder called "TSData".
-
-      If this is empty, SimPE will use the default Folder.
-    </value>
-  </data>
-	<data name="[Property:SP1Path]">
-		<value>1: Family Fun Accessoires</value>
-	</data>
-	<data name="[Description:SP1Path]">
-		<value>This should contain the installation directory of "The Sims 2 - Family Fun Accessoires". 
-The given Folder must contain a subfolder called "TSData".
-
-If this is empty, SimPE will use the default Folder.</value>
-	</data>
-  <data name="[Property:SP2Path]">
-    <value>2: Glamour Stuff</value>
-  </data>
-  <data name="[Description:SP2Path]">
-    <value>
-      This should contain the installation directory of "The Sims 2 - Glamour Stuff".
-      The given Folder must contain a subfolder called "TSData".
-
-      If this is empty, SimPE will use the default Folder.
-    </value>
-  </data>
-  <data name="[Property:SP3Path]">
-    <value>3: Happy Holiday Stuff</value>
-  </data>
-  <data name="[Description:SP3Path]">
-    <value>
-      This should contain the installation directory of "The Sims 2 - Happy Holiday Stuff".
-      The given Folder must contain a subfolder called "TSData".
-
-      If this is empty, SimPE will use the default Folder.
-    </value>
-  </data>
-  <data name="[Property:SP4Path]">
-    <value>3: Celebration! Stuff</value>
-  </data>
-  <data name="[Description:SP4Path]">
-    <value>
-      This should contain the installation directory of "The Sims 2 - Celebration! Stuff".
-      The given Folder must contain a subfolder called "TSData".
-
-      If this is empty, SimPE will use the default Folder.
-    </value>
-  </data>
-  <data name="[Property:SP5Path]">
-    <value>4: H&amp;M Fashion Stuff</value>
-  </data>
-  <data name="[Description:SP5Path]">
-    <value>
-      This should contain the installation directory of "The Sims 2 - H&amp;M Fashion Stuff".
-      The given Folder must contain a subfolder called "TSData".
-
-      If this is empty, SimPE will use the default Folder.
-    </value>
-  </data>
-  <data name="[Property:SIMSLSPath]">
-    <value>1: Life Stories</value>
-  </data>
-  <data name="[Description:SIMSLSPath]">
-    <value>
-      This should contain the installation directory of "The Sims 2 Life Stories".
-      The given Folder must contain a subfolder called "TSData".
-
-      If this is empty, SimPE will use the default Folder.
-    </value>
-  </data>
-  <data name="[Property:SIMSPSPath]">
-    <value>2: Pet Stories</value>
-  </data>
-  <data name="[Description:SIMSPSPath]">
-    <value>
-      This should contain the installation directory of "The Sims 2 Pet Stories".
-      The given Folder must contain a subfolder called "TSData".
-
-      If this is empty, SimPE will use the default Folder.
-    </value>
-  </data>
 	<data name="[Property:SaveGamePath]">
 		<value>Savegame</value>
-	</data>	
+	</data>
+  <data name="[Description:]">
+    <value>
+      This should contain the installation directory of '{LongName}'.
+      The given Folder must contain a subfolder called 'TSData'.
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
 	<data name="[Description:SaveGamePath]">
 		<value>This should contain the savegame directory of "The Sims 2". 
 The given Folder must contain subfolders called "Downloads" and "Neighborhoods".
@@ -1147,85 +1021,7 @@ Run SimPE anyway?</value>
     <data name="SimPe.Plugin.SimMemoryType.Badge">
 		<value>Badge</value>
     </data> 
-    <data name="EP NAME 0">
-		<value>The Sims 2</value>
-    </data> 
-    <data name="EP NAME 1">
-		<value>The Sims 2 - University</value>
-    </data> 
-    <data name="EP NAME 2">
-		<value>The Sims 2 - Nightlife</value>
-    </data> 
-    <data name="EP NAME 3">
-		<value>The Sims 2 - Open for Business</value>
-    </data> 
-    <data name="EP NAME 4">
-		<value>The Sims 2 - Family Fun Stuff</value>
-    </data>
-    <data name="EP NAME 5">
-    <value>The Sims 2 - Glamour Life Stuff</value>
-    </data>
-    <data name="EP NAME 6">
-    <value>The Sims 2 - Pets</value>
-    </data>
-  <data name="EP NAME 7">
-    <value>The Sims 2 - Happy Holiday Stuff</value>
-  </data>
-  <data name="EP NAME 8">
-    <value>The Sims 2 - Seasons</value>
-  </data>
-  <data name="EP NAME 9">
-    <value>The Sims 2 - Celebration! Stuff </value>
-  </data>
-  <data name="EP NAME 10">
-    <value>The Sims 2 - H&amp;M Fashion Stuff </value>
-  </data>
-  <data name="EP NAME 20">
-    <value>The Sims 2 - Life Stories</value>
-  </data>
-  <data name="EP NAME 20">
-    <value>The Sims 2 - Pet Stories</value>
-  </data>
-
-  <data name="EP SNAME 0">
-    <value>Original</value>
-  </data>
-  <data name="EP SNAME 1">
-    <value>University</value>
-  </data>
-  <data name="EP SNAME 2">
-    <value>Nightlife</value>
-  </data>
-  <data name="EP SNAME 3">
-    <value>Business</value>
-  </data>
-  <data name="EP SNAME 4">
-    <value>Family Fun</value>
-  </data>
-  <data name="EP SNAME 5">
-    <value>Glamour</value>
-  </data>
-  <data name="EP SNAME 6">
-    <value>Pets</value>
-  </data>
-  <data name="EP SNAME 7">
-    <value>Happy Holiday</value>
-  </data>
-  <data name="EP SNAME 8">
-    <value>Seasons</value>
-  </data>
-  <data name="EP SNAME 9">
-    <value>Celebrations</value>
-  </data>
-  <data name="EP SNAME 10">
-    <value>Fashion</value>
-  </data>
-  <data name="EP SNAME 20">
-    <value>Life Stories</value>
-  </data>
-  <data name="EP SNAME 21">
-    <value>Pet Stories</value>
-  </data>
+    
     <data name="Check: Folder not found">
 		<value>Folder for "{name}" was not found.</value>
     </data> 

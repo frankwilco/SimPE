@@ -1294,10 +1294,10 @@ Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
 
 Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
   </data>
-  <data name="[Property:EP1Path]" xml:space="preserve">
+  <data name="[aProperty:EP1Path]" xml:space="preserve">
     <value>1: Wilde Campus-Jahre</value>
   </data>
-  <data name="[Description:EP1Path]" xml:space="preserve">
+  <data name="[aDescription:EP1Path]" xml:space="preserve">
     <value>Hier sollte das Installationsverzeichnis von "Die Sims 2 - Wilde Campus-Jahre" stehen. 
 Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
 
@@ -1339,6 +1339,18 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
   <data name="[Description:EP5Path]">
     <value>
       This should contain the installation directory of "The Sims 2 - Vier Jahreszeiten".
+      The given Folder must contain a subfolder called "TSData".
+
+      If this is empty, SimPE will use the default Folder.
+    </value>
+  </data>
+
+  <data name="[Property:EP6Path]">
+    <value>6: Gute Reise</value>
+  </data>
+  <data name="[Description:EP6Path]">
+    <value>
+      This should contain the installation directory of "The Sims 2 - Gute Reise".
       The given Folder must contain a subfolder called "TSData".
 
       If this is empty, SimPE will use the default Folder.
@@ -1415,6 +1427,25 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
     <value>
       Hier sollte das Installationsverzeichnis von "Die Sims 2 Tiergeschichten" stehen.
       Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+      Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
+    </value>
+  </data>
+  <data name="[Property:SIMSISPath]">
+    <value>3: Inselgeschichten</value>
+  </data>
+  <data name="[Description:SIMSISPath]">
+    <value>
+      Hier sollte das Installationsverzeichnis von "Die Sims 2 Inselgeschichten" stehen.
+      Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
+
+      Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
+    </value>
+  </data>
+  <data name="[Description:]">
+    <value>
+      Hier sollte das Installationsverzeichnis von '{LongName}' stehen.
+      Das angegebene Verzeichnis muss den Unterordner 'TSData' enthalten.
 
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
@@ -1570,84 +1601,7 @@ Soll SimPE dennoch gestartet werden?</value>
   <data name="SimPe.Plugin.SimMemoryType.Badge" xml:space="preserve">
     <value>Abzeichen</value>
   </data>
-  <data name="EP NAME 0" xml:space="preserve">
-    <value>Die Sims 2</value>
-  </data>
-  <data name="EP NAME 1" xml:space="preserve">
-    <value>Die Sims 2 - University</value>
-  </data>
-  <data name="EP NAME 2" xml:space="preserve">
-    <value>Die Sims 2 - Nightlife</value>
-  </data>
-  <data name="EP NAME 3" xml:space="preserve">
-    <value>Die Sims 2 - Open for Business</value>
-  </data>
-  <data name="EP NAME 4" xml:space="preserve">
-    <value>Die Sims 2 - Family Fun Accessoires</value>
-  </data>
-  <data name="EP NAME 5" xml:space="preserve">
-    <value>Die Sims 2 - Glamour Accessoires</value>
-  </data>
-  <data name="EP NAME 6" xml:space="preserve">
-    <value>Die Sims 2 - Haustiere</value>
-  </data>
-  <data name="EP NAME 7" xml:space="preserve">
-    <value>Die Sims 2 - Weihnachtszeit-Accessoires</value>
-  </data>
-  <data name="EP NAME 8" xml:space="preserve">
-    <value>Die Sims 2 - Vier Jahreszeiten</value>
-  </data>
-  <data name="EP NAME 9" xml:space="preserve">
-    <value>Die Sims 2 - Party-Accessoires</value>
-  </data>
-  <data name="EP NAME 10" xml:space="preserve">
-    <value>Die Sims 2 - H&amp;M-Fashion-Accessoires</value>
-  </data>
-  <data name="EP NAME 20">
-    <value>Die Sims 2 - Lebensgeschichten</value>
-  </data>
-  <data name="EP NAME 21">
-    <value>Die Sims 2 - Tiergeschichten</value>
-  </data>
-  <data name="EP SNAME 0" xml:space="preserve">
-    <value>Original</value>
-  </data>
-  <data name="EP SNAME 1" xml:space="preserve">
-    <value>Campus</value>
-  </data>
-  <data name="EP SNAME 2" xml:space="preserve">
-    <value>Nightlife</value>
-  </data>
-  <data name="EP SNAME 3" xml:space="preserve">
-    <value>Business</value>
-  </data>
-  <data name="EP SNAME 4" xml:space="preserve">
-    <value>Family Fun</value>
-  </data>
-  <data name="EP SNAME 5" xml:space="preserve">
-    <value>Glamour</value>
-  </data>
-  <data name="EP SNAME 6" xml:space="preserve">
-    <value>Haustiere</value>
-  </data>
-  <data name="EP SNAME 7" xml:space="preserve">
-    <value>Weihnachtszeit</value>
-  </data>
-  <data name="EP SNAME 8" xml:space="preserve">
-    <value>Jahreszeiten</value>
-  </data>
-  <data name="EP SNAME 9" xml:space="preserve">
-    <value>Party</value>
-  </data>
-  <data name="EP SNAME 10" xml:space="preserve">
-    <value>Fashion</value>
-  </data>
-  <data name="EP SNAME 20">
-    <value>Lebensgeschichten</value>
-  </data>
-  <data name="EP SNAME 21">
-    <value>Tiergeschichten</value>
-  </data>
+  
   <data name="Check: Folder not found" xml:space="preserve">
     <value>Verzeichnis für "{name}" wurde nicht gefunden.</value>
   </data>
