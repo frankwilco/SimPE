@@ -116,58 +116,72 @@
     <Reference Include="simpe.3idr, Version=1.0.2305.29253, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.3idr.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.cache, Version=1.0.2305.29249, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.cache.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.clst, Version=1.0.2305.29249, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.clst.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.commonhandler, Version=1.0.2305.29248, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.commonhandler.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.extfilehandler, Version=1.0.2305.29252, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.extfilehandler.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.filehandler, Version=1.0.2305.29252, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.filehandler.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.geometry, Version=1.0.2305.28882, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.geometry.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.gmdc.exporter.base, Version=1.0.2305.29253, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.gmdc.exporter.base.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.helper, Version=0.59.0.28882, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.helper.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.interfaces, Version=1.0.2305.29248, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.interfaces.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.package, Version=1.0.2305.29249, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.package.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.rcol, Version=1.0.2305.29251, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.rcol.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.scenegraph, Version=1.0.2305.29254, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.scenegraph.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="simpe.workspace, Version=1.0.2305.29250, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\simpe.workspace.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
