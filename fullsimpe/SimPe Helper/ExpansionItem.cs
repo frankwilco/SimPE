@@ -200,7 +200,7 @@ namespace SimPe
                     if (rk != null) dname = (string)rk.GetValue("DisplayName", shortername);
                     longname = (string)lang.GetValue("long", dname);
                 }
-                else //1. check the resource files, the try default language, then set to defaults
+                else //1. check the resource files, then try default language, then set to defaults
                 {
                     if (lang == null) lang = key.OpenSubKey("en", false);
                     shortname = SimPe.Localization.GetString("EP SNAME " + version);

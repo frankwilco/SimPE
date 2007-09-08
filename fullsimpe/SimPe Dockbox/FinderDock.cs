@@ -79,7 +79,7 @@ namespace SimPe.Plugin.Tool.Dockable
             {
                 threads[ct] = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadRunner));
                 threads[ct].Name = "Search Thread " + (ct);
-                threads[ct].Start();
+                if (start) threads[ct].Start();
             }
         }
 

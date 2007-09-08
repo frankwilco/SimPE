@@ -1038,7 +1038,8 @@ namespace SimPe
 			if (filename.EndsWith("neighborhood.package")) return true;
 			if ((filename.IndexOf("_university")!=-1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
 			if ((filename.IndexOf("_downtown")!=-1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
-			if ((filename.IndexOf("_suburb")!=-1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
+            if ((filename.IndexOf("_suburb") != -1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
+            if ((filename.IndexOf("_vacation") != -1) && filename.EndsWith(".package") && filename.StartsWith("n")) return true;
 
 			return false;
 		}

@@ -130,6 +130,8 @@ namespace SimPe.PackedFiles.UserInterface
 		internal System.Windows.Forms.TextBox tbsubhood;
         private System.Windows.Forms.Label label89;
 		private System.Windows.Forms.Button btPicExport;
+        internal TextBox tbvac;
+        private Label label7;
 
 
 		internal SimPe.Interfaces.Plugin.IFileWrapperSaveExtension wrapper = null;
@@ -213,6 +215,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.label68 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.famiPanel = new System.Windows.Forms.Panel();
+            this.tbvac = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tbsubhood = new System.Windows.Forms.TextBox();
             this.label89 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -289,75 +293,124 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // JpegPanel
             // 
+            this.JpegPanel.AccessibleDescription = null;
+            this.JpegPanel.AccessibleName = null;
+            resources.ApplyResources(this.JpegPanel, "JpegPanel");
+            this.JpegPanel.BackgroundImage = null;
             this.JpegPanel.Controls.Add(this.panel2);
             this.JpegPanel.Controls.Add(this.pb);
-            resources.ApplyResources(this.JpegPanel, "JpegPanel");
+            this.JpegPanel.Font = null;
             this.JpegPanel.Name = "JpegPanel";
+            this.toolTip1.SetToolTip(this.JpegPanel, resources.GetString("JpegPanel.ToolTip"));
             // 
             // panel2
             // 
+            this.panel2.AccessibleDescription = null;
+            this.panel2.AccessibleName = null;
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel2.BackgroundImage = null;
             this.panel2.Controls.Add(this.banner);
             this.panel2.Controls.Add(this.btPicExport);
             this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel2.Name = "panel2";
+            this.toolTip1.SetToolTip(this.panel2, resources.GetString("panel2.ToolTip"));
             // 
             // banner
             // 
+            this.banner.AccessibleDescription = null;
+            this.banner.AccessibleName = null;
             resources.ApplyResources(this.banner, "banner");
+            this.banner.Font = null;
             this.banner.Name = "banner";
+            this.toolTip1.SetToolTip(this.banner, resources.GetString("banner.ToolTip"));
             // 
             // btPicExport
             // 
+            this.btPicExport.AccessibleDescription = null;
+            this.btPicExport.AccessibleName = null;
             resources.ApplyResources(this.btPicExport, "btPicExport");
             this.btPicExport.BackColor = System.Drawing.SystemColors.Control;
+            this.btPicExport.BackgroundImage = null;
             this.btPicExport.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btPicExport.Name = "btPicExport";
+            this.toolTip1.SetToolTip(this.btPicExport, resources.GetString("btPicExport.ToolTip"));
             this.btPicExport.UseVisualStyleBackColor = false;
             this.btPicExport.Click += new System.EventHandler(this.btPicExport_Click);
             // 
             // pb
             // 
+            this.pb.AccessibleDescription = null;
+            this.pb.AccessibleName = null;
             resources.ApplyResources(this.pb, "pb");
+            this.pb.BackgroundImage = null;
+            this.pb.Font = null;
+            this.pb.ImageLocation = null;
             this.pb.Name = "pb";
             this.pb.TabStop = false;
+            this.toolTip1.SetToolTip(this.pb, resources.GetString("pb.ToolTip"));
             // 
             // xmlPanel
             // 
+            this.xmlPanel.AccessibleDescription = null;
+            this.xmlPanel.AccessibleName = null;
+            resources.ApplyResources(this.xmlPanel, "xmlPanel");
+            this.xmlPanel.BackgroundImage = null;
             this.xmlPanel.Controls.Add(this.rtb);
             this.xmlPanel.Controls.Add(this.panel3);
             this.xmlPanel.Controls.Add(this.visualStyleLinkLabel2);
-            resources.ApplyResources(this.xmlPanel, "xmlPanel");
+            this.xmlPanel.Font = null;
             this.xmlPanel.Name = "xmlPanel";
+            this.toolTip1.SetToolTip(this.xmlPanel, resources.GetString("xmlPanel.ToolTip"));
             // 
             // rtb
             // 
+            this.rtb.AccessibleDescription = null;
+            this.rtb.AccessibleName = null;
             resources.ApplyResources(this.rtb, "rtb");
+            this.rtb.BackgroundImage = null;
+            this.rtb.Font = null;
             this.rtb.Name = "rtb";
+            this.toolTip1.SetToolTip(this.rtb, resources.GetString("rtb.ToolTip"));
             // 
             // panel3
             // 
+            this.panel3.AccessibleDescription = null;
+            this.panel3.AccessibleName = null;
             resources.ApplyResources(this.panel3, "panel3");
             this.panel3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel3.BackgroundImage = null;
             this.panel3.Controls.Add(this.label1);
             this.panel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel3.Name = "panel3";
+            this.toolTip1.SetToolTip(this.panel3, resources.GetString("panel3.ToolTip"));
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = null;
+            this.label1.AccessibleName = null;
             resources.ApplyResources(this.label1, "label1");
+            this.label1.Font = null;
             this.label1.Name = "label1";
+            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
             // 
             // visualStyleLinkLabel2
             // 
+            this.visualStyleLinkLabel2.AccessibleDescription = null;
+            this.visualStyleLinkLabel2.AccessibleName = null;
             resources.ApplyResources(this.visualStyleLinkLabel2, "visualStyleLinkLabel2");
+            this.visualStyleLinkLabel2.Font = null;
             this.visualStyleLinkLabel2.Name = "visualStyleLinkLabel2";
             this.visualStyleLinkLabel2.TabStop = true;
+            this.toolTip1.SetToolTip(this.visualStyleLinkLabel2, resources.GetString("visualStyleLinkLabel2.ToolTip"));
             this.visualStyleLinkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CommitXmlClick);
             // 
             // objdPanel
             // 
+            this.objdPanel.AccessibleDescription = null;
+            this.objdPanel.AccessibleName = null;
+            resources.ApplyResources(this.objdPanel, "objdPanel");
+            this.objdPanel.BackgroundImage = null;
             this.objdPanel.Controls.Add(this.cbupdate);
             this.objdPanel.Controls.Add(this.label63);
             this.objdPanel.Controls.Add(this.tbproxguid);
@@ -374,142 +427,233 @@ namespace SimPe.PackedFiles.UserInterface
             this.objdPanel.Controls.Add(this.tbsimid);
             this.objdPanel.Controls.Add(this.label8);
             this.objdPanel.Controls.Add(this.panel6);
-            resources.ApplyResources(this.objdPanel, "objdPanel");
+            this.objdPanel.Font = null;
             this.objdPanel.Name = "objdPanel";
+            this.toolTip1.SetToolTip(this.objdPanel, resources.GetString("objdPanel.ToolTip"));
             // 
             // cbupdate
             // 
+            this.cbupdate.AccessibleDescription = null;
+            this.cbupdate.AccessibleName = null;
+            resources.ApplyResources(this.cbupdate, "cbupdate");
+            this.cbupdate.BackgroundImage = null;
             this.cbupdate.Checked = true;
             this.cbupdate.CheckState = System.Windows.Forms.CheckState.Checked;
-            resources.ApplyResources(this.cbupdate, "cbupdate");
+            this.cbupdate.Font = null;
             this.cbupdate.Name = "cbupdate";
+            this.toolTip1.SetToolTip(this.cbupdate, resources.GetString("cbupdate.ToolTip"));
             // 
             // label63
             // 
+            this.label63.AccessibleDescription = null;
+            this.label63.AccessibleName = null;
             resources.ApplyResources(this.label63, "label63");
             this.label63.Name = "label63";
+            this.toolTip1.SetToolTip(this.label63, resources.GetString("label63.ToolTip"));
             // 
             // tbproxguid
             // 
+            this.tbproxguid.AccessibleDescription = null;
+            this.tbproxguid.AccessibleName = null;
             resources.ApplyResources(this.tbproxguid, "tbproxguid");
+            this.tbproxguid.BackgroundImage = null;
+            this.tbproxguid.Font = null;
             this.tbproxguid.Name = "tbproxguid";
             this.toolTip1.SetToolTip(this.tbproxguid, resources.GetString("tbproxguid.ToolTip"));
             // 
             // label97
             // 
+            this.label97.AccessibleDescription = null;
+            this.label97.AccessibleName = null;
             resources.ApplyResources(this.label97, "label97");
             this.label97.Name = "label97";
+            this.toolTip1.SetToolTip(this.label97, resources.GetString("label97.ToolTip"));
             // 
             // tborgguid
             // 
+            this.tborgguid.AccessibleDescription = null;
+            this.tborgguid.AccessibleName = null;
             resources.ApplyResources(this.tborgguid, "tborgguid");
+            this.tborgguid.BackgroundImage = null;
+            this.tborgguid.Font = null;
             this.tborgguid.Name = "tborgguid";
             this.toolTip1.SetToolTip(this.tborgguid, resources.GetString("tborgguid.ToolTip"));
             // 
             // lbtypename
             // 
+            this.lbtypename.AccessibleDescription = null;
+            this.lbtypename.AccessibleName = null;
             resources.ApplyResources(this.lbtypename, "lbtypename");
+            this.lbtypename.Font = null;
             this.lbtypename.Name = "lbtypename";
+            this.toolTip1.SetToolTip(this.lbtypename, resources.GetString("lbtypename.ToolTip"));
             // 
             // llgetGUID
             // 
+            this.llgetGUID.AccessibleDescription = null;
+            this.llgetGUID.AccessibleName = null;
             resources.ApplyResources(this.llgetGUID, "llgetGUID");
+            this.llgetGUID.Font = null;
             this.llgetGUID.Name = "llgetGUID";
             this.llgetGUID.TabStop = true;
+            this.toolTip1.SetToolTip(this.llgetGUID, resources.GetString("llgetGUID.ToolTip"));
             this.llgetGUID.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GetGUIDClicked);
             // 
             // gbelements
             // 
+            this.gbelements.AccessibleDescription = null;
+            this.gbelements.AccessibleName = null;
             resources.ApplyResources(this.gbelements, "gbelements");
+            this.gbelements.BackgroundImage = null;
             this.gbelements.Controls.Add(this.pnelements);
             this.gbelements.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.gbelements.Font = null;
             this.gbelements.Name = "gbelements";
             this.gbelements.TabStop = false;
+            this.toolTip1.SetToolTip(this.gbelements, resources.GetString("gbelements.ToolTip"));
             // 
             // pnelements
             // 
+            this.pnelements.AccessibleDescription = null;
+            this.pnelements.AccessibleName = null;
             resources.ApplyResources(this.pnelements, "pnelements");
+            this.pnelements.BackgroundImage = null;
+            this.pnelements.Font = null;
             this.pnelements.Name = "pnelements";
+            this.toolTip1.SetToolTip(this.pnelements, resources.GetString("pnelements.ToolTip"));
             // 
             // llcommitobjd
             // 
+            this.llcommitobjd.AccessibleDescription = null;
+            this.llcommitobjd.AccessibleName = null;
             resources.ApplyResources(this.llcommitobjd, "llcommitobjd");
+            this.llcommitobjd.Font = null;
             this.llcommitobjd.Name = "llcommitobjd";
             this.llcommitobjd.TabStop = true;
+            this.toolTip1.SetToolTip(this.llcommitobjd, resources.GetString("llcommitobjd.ToolTip"));
             this.llcommitobjd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CommitObjdClicked);
             // 
             // tblottype
             // 
+            this.tblottype.AccessibleDescription = null;
+            this.tblottype.AccessibleName = null;
             resources.ApplyResources(this.tblottype, "tblottype");
+            this.tblottype.BackgroundImage = null;
+            this.tblottype.Font = null;
             this.tblottype.Name = "tblottype";
+            this.toolTip1.SetToolTip(this.tblottype, resources.GetString("tblottype.ToolTip"));
             // 
             // label65
             // 
+            this.label65.AccessibleDescription = null;
+            this.label65.AccessibleName = null;
             resources.ApplyResources(this.label65, "label65");
             this.label65.Name = "label65";
+            this.toolTip1.SetToolTip(this.label65, resources.GetString("label65.ToolTip"));
             // 
             // tbsimname
             // 
+            this.tbsimname.AccessibleDescription = null;
+            this.tbsimname.AccessibleName = null;
             resources.ApplyResources(this.tbsimname, "tbsimname");
+            this.tbsimname.BackgroundImage = null;
+            this.tbsimname.Font = null;
             this.tbsimname.Name = "tbsimname";
+            this.toolTip1.SetToolTip(this.tbsimname, resources.GetString("tbsimname.ToolTip"));
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = null;
+            this.label9.AccessibleName = null;
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
+            this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
             // 
             // tbsimid
             // 
+            this.tbsimid.AccessibleDescription = null;
+            this.tbsimid.AccessibleName = null;
             resources.ApplyResources(this.tbsimid, "tbsimid");
+            this.tbsimid.BackgroundImage = null;
+            this.tbsimid.Font = null;
             this.tbsimid.Name = "tbsimid";
             this.toolTip1.SetToolTip(this.tbsimid, resources.GetString("tbsimid.ToolTip"));
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = null;
+            this.label8.AccessibleName = null;
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
+            this.toolTip1.SetToolTip(this.label8, resources.GetString("label8.ToolTip"));
             // 
             // panel6
             // 
+            this.panel6.AccessibleDescription = null;
+            this.panel6.AccessibleName = null;
             resources.ApplyResources(this.panel6, "panel6");
             this.panel6.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel6.BackgroundImage = null;
             this.panel6.Controls.Add(this.label12);
             this.panel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel6.Name = "panel6";
+            this.toolTip1.SetToolTip(this.panel6, resources.GetString("panel6.ToolTip"));
             // 
             // label12
             // 
+            this.label12.AccessibleDescription = null;
+            this.label12.AccessibleName = null;
             resources.ApplyResources(this.label12, "label12");
+            this.label12.Font = null;
             this.label12.Name = "label12";
+            this.toolTip1.SetToolTip(this.label12, resources.GetString("label12.ToolTip"));
             // 
             // tabControl1
             // 
+            this.tabControl1.AccessibleDescription = null;
+            this.tabControl1.AccessibleName = null;
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.BackgroundImage = null;
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
-            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Font = null;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
+            this.toolTip1.SetToolTip(this.tabControl1, resources.GetString("tabControl1.ToolTip"));
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.familytiePanel);
+            this.tabPage4.AccessibleDescription = null;
+            this.tabPage4.AccessibleName = null;
             resources.ApplyResources(this.tabPage4, "tabPage4");
+            this.tabPage4.BackgroundImage = null;
+            this.tabPage4.Controls.Add(this.familytiePanel);
+            this.tabPage4.Font = null;
             this.tabPage4.Name = "tabPage4";
+            this.toolTip1.SetToolTip(this.tabPage4, resources.GetString("tabPage4.ToolTip"));
             // 
             // familytiePanel
             // 
+            this.familytiePanel.AccessibleDescription = null;
+            this.familytiePanel.AccessibleName = null;
             resources.ApplyResources(this.familytiePanel, "familytiePanel");
+            this.familytiePanel.BackgroundImage = null;
             this.familytiePanel.Controls.Add(this.gbties);
             this.familytiePanel.Controls.Add(this.cbtiesims);
             this.familytiePanel.Controls.Add(this.bttiecommit);
             this.familytiePanel.Controls.Add(this.label64);
             this.familytiePanel.Controls.Add(this.panel8);
+            this.familytiePanel.Font = null;
             this.familytiePanel.Name = "familytiePanel";
+            this.toolTip1.SetToolTip(this.familytiePanel, resources.GetString("familytiePanel.ToolTip"));
             // 
             // gbties
             // 
+            this.gbties.AccessibleDescription = null;
+            this.gbties.AccessibleName = null;
             resources.ApplyResources(this.gbties, "gbties");
+            this.gbties.BackgroundImage = null;
             this.gbties.Controls.Add(this.btnewtie);
             this.gbties.Controls.Add(this.cballtieablesims);
             this.gbties.Controls.Add(this.cbtietype);
@@ -520,92 +664,152 @@ namespace SimPe.PackedFiles.UserInterface
             this.gbties.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.gbties.Name = "gbties";
             this.gbties.TabStop = false;
+            this.toolTip1.SetToolTip(this.gbties, resources.GetString("gbties.ToolTip"));
             // 
             // btnewtie
             // 
+            this.btnewtie.AccessibleDescription = null;
+            this.btnewtie.AccessibleName = null;
             resources.ApplyResources(this.btnewtie, "btnewtie");
+            this.btnewtie.BackgroundImage = null;
             this.btnewtie.Name = "btnewtie";
+            this.toolTip1.SetToolTip(this.btnewtie, resources.GetString("btnewtie.ToolTip"));
             this.btnewtie.Click += new System.EventHandler(this.AddSimToTiesClick);
             // 
             // cballtieablesims
             // 
+            this.cballtieablesims.AccessibleDescription = null;
+            this.cballtieablesims.AccessibleName = null;
             resources.ApplyResources(this.cballtieablesims, "cballtieablesims");
+            this.cballtieablesims.BackgroundImage = null;
             this.cballtieablesims.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cballtieablesims.Name = "cballtieablesims";
+            this.toolTip1.SetToolTip(this.cballtieablesims, resources.GetString("cballtieablesims.ToolTip"));
             this.cballtieablesims.SelectedIndexChanged += new System.EventHandler(this.AllTieableSimsIndexChanged);
             // 
             // cbtietype
             // 
-            this.cbtietype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbtietype.AccessibleDescription = null;
+            this.cbtietype.AccessibleName = null;
             resources.ApplyResources(this.cbtietype, "cbtietype");
+            this.cbtietype.BackgroundImage = null;
+            this.cbtietype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbtietype.Name = "cbtietype";
+            this.toolTip1.SetToolTip(this.cbtietype, resources.GetString("cbtietype.ToolTip"));
             // 
             // lbties
             // 
+            this.lbties.AccessibleDescription = null;
+            this.lbties.AccessibleName = null;
             resources.ApplyResources(this.lbties, "lbties");
+            this.lbties.BackgroundImage = null;
             this.lbties.Name = "lbties";
+            this.toolTip1.SetToolTip(this.lbties, resources.GetString("lbties.ToolTip"));
             this.lbties.SelectedIndexChanged += new System.EventHandler(this.TieIndexChanged);
             // 
             // btdeletetie
             // 
+            this.btdeletetie.AccessibleDescription = null;
+            this.btdeletetie.AccessibleName = null;
             resources.ApplyResources(this.btdeletetie, "btdeletetie");
+            this.btdeletetie.BackgroundImage = null;
             this.btdeletetie.Name = "btdeletetie";
+            this.toolTip1.SetToolTip(this.btdeletetie, resources.GetString("btdeletetie.ToolTip"));
             this.btdeletetie.Click += new System.EventHandler(this.DeleteTieClick);
             // 
             // btaddtie
             // 
+            this.btaddtie.AccessibleDescription = null;
+            this.btaddtie.AccessibleName = null;
             resources.ApplyResources(this.btaddtie, "btaddtie");
+            this.btaddtie.BackgroundImage = null;
             this.btaddtie.Name = "btaddtie";
+            this.toolTip1.SetToolTip(this.btaddtie, resources.GetString("btaddtie.ToolTip"));
             this.btaddtie.Click += new System.EventHandler(this.AddTieClick);
             // 
             // llcommitties
             // 
+            this.llcommitties.AccessibleDescription = null;
+            this.llcommitties.AccessibleName = null;
             resources.ApplyResources(this.llcommitties, "llcommitties");
+            this.llcommitties.Font = null;
             this.llcommitties.Name = "llcommitties";
             this.llcommitties.TabStop = true;
+            this.toolTip1.SetToolTip(this.llcommitties, resources.GetString("llcommitties.ToolTip"));
             this.llcommitties.UseCompatibleTextRendering = true;
             this.llcommitties.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CommitSimTieClicked);
             // 
             // cbtiesims
             // 
+            this.cbtiesims.AccessibleDescription = null;
+            this.cbtiesims.AccessibleName = null;
             resources.ApplyResources(this.cbtiesims, "cbtiesims");
+            this.cbtiesims.BackgroundImage = null;
             this.cbtiesims.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbtiesims.Font = null;
             this.cbtiesims.Name = "cbtiesims";
+            this.toolTip1.SetToolTip(this.cbtiesims, resources.GetString("cbtiesims.ToolTip"));
             this.cbtiesims.SelectedIndexChanged += new System.EventHandler(this.FamilyTieSimIndexChanged);
             // 
             // bttiecommit
             // 
+            this.bttiecommit.AccessibleDescription = null;
+            this.bttiecommit.AccessibleName = null;
             resources.ApplyResources(this.bttiecommit, "bttiecommit");
+            this.bttiecommit.BackgroundImage = null;
+            this.bttiecommit.Font = null;
             this.bttiecommit.Name = "bttiecommit";
+            this.toolTip1.SetToolTip(this.bttiecommit, resources.GetString("bttiecommit.ToolTip"));
             this.bttiecommit.Click += new System.EventHandler(this.CommitTieClick);
             // 
             // label64
             // 
+            this.label64.AccessibleDescription = null;
+            this.label64.AccessibleName = null;
             resources.ApplyResources(this.label64, "label64");
             this.label64.Name = "label64";
+            this.toolTip1.SetToolTip(this.label64, resources.GetString("label64.ToolTip"));
             // 
             // panel8
             // 
+            this.panel8.AccessibleDescription = null;
+            this.panel8.AccessibleName = null;
             resources.ApplyResources(this.panel8, "panel8");
             this.panel8.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel8.BackgroundImage = null;
             this.panel8.Controls.Add(this.label68);
             this.panel8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel8.Name = "panel8";
+            this.toolTip1.SetToolTip(this.panel8, resources.GetString("panel8.ToolTip"));
             // 
             // label68
             // 
+            this.label68.AccessibleDescription = null;
+            this.label68.AccessibleName = null;
             resources.ApplyResources(this.label68, "label68");
+            this.label68.Font = null;
             this.label68.Name = "label68";
+            this.toolTip1.SetToolTip(this.label68, resources.GetString("label68.ToolTip"));
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.famiPanel);
+            this.tabPage1.AccessibleDescription = null;
+            this.tabPage1.AccessibleName = null;
             resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.BackgroundImage = null;
+            this.tabPage1.Controls.Add(this.famiPanel);
+            this.tabPage1.Font = null;
             this.tabPage1.Name = "tabPage1";
+            this.toolTip1.SetToolTip(this.tabPage1, resources.GetString("tabPage1.ToolTip"));
             // 
             // famiPanel
             // 
+            this.famiPanel.AccessibleDescription = null;
+            this.famiPanel.AccessibleName = null;
             resources.ApplyResources(this.famiPanel, "famiPanel");
+            this.famiPanel.BackgroundImage = null;
+            this.famiPanel.Controls.Add(this.tbvac);
+            this.famiPanel.Controls.Add(this.label7);
             this.famiPanel.Controls.Add(this.tbsubhood);
             this.famiPanel.Controls.Add(this.label89);
             this.famiPanel.Controls.Add(this.groupBox4);
@@ -628,174 +832,315 @@ namespace SimPe.PackedFiles.UserInterface
             this.famiPanel.Controls.Add(this.label3);
             this.famiPanel.Controls.Add(this.panel4);
             this.famiPanel.Controls.Add(this.label15);
+            this.famiPanel.Font = null;
             this.famiPanel.Name = "famiPanel";
+            this.toolTip1.SetToolTip(this.famiPanel, resources.GetString("famiPanel.ToolTip"));
+            // 
+            // tbvac
+            // 
+            this.tbvac.AccessibleDescription = null;
+            this.tbvac.AccessibleName = null;
+            resources.ApplyResources(this.tbvac, "tbvac");
+            this.tbvac.BackgroundImage = null;
+            this.tbvac.Font = null;
+            this.tbvac.Name = "tbvac";
+            this.toolTip1.SetToolTip(this.tbvac, resources.GetString("tbvac.ToolTip"));
+            // 
+            // label7
+            // 
+            this.label7.AccessibleDescription = null;
+            this.label7.AccessibleName = null;
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            this.toolTip1.SetToolTip(this.label7, resources.GetString("label7.ToolTip"));
             // 
             // tbsubhood
             // 
+            this.tbsubhood.AccessibleDescription = null;
+            this.tbsubhood.AccessibleName = null;
             resources.ApplyResources(this.tbsubhood, "tbsubhood");
+            this.tbsubhood.BackgroundImage = null;
+            this.tbsubhood.Font = null;
             this.tbsubhood.Name = "tbsubhood";
+            this.toolTip1.SetToolTip(this.tbsubhood, resources.GetString("tbsubhood.ToolTip"));
             // 
             // label89
             // 
+            this.label89.AccessibleDescription = null;
+            this.label89.AccessibleName = null;
             resources.ApplyResources(this.label89, "label89");
             this.label89.Name = "label89";
+            this.toolTip1.SetToolTip(this.label89, resources.GetString("label89.ToolTip"));
             // 
             // groupBox4
             // 
+            this.groupBox4.AccessibleDescription = null;
+            this.groupBox4.AccessibleName = null;
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.BackgroundImage = null;
             this.groupBox4.Controls.Add(this.cbcomputer);
             this.groupBox4.Controls.Add(this.cblot);
             this.groupBox4.Controls.Add(this.cbbaby);
             this.groupBox4.Controls.Add(this.cbphone);
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox4, resources.GetString("groupBox4.ToolTip"));
             // 
             // cbcomputer
             // 
+            this.cbcomputer.AccessibleDescription = null;
+            this.cbcomputer.AccessibleName = null;
             resources.ApplyResources(this.cbcomputer, "cbcomputer");
+            this.cbcomputer.BackgroundImage = null;
             this.cbcomputer.Name = "cbcomputer";
+            this.toolTip1.SetToolTip(this.cbcomputer, resources.GetString("cbcomputer.ToolTip"));
             this.cbcomputer.CheckedChanged += new System.EventHandler(this.ChangeFlags);
             // 
             // cblot
             // 
+            this.cblot.AccessibleDescription = null;
+            this.cblot.AccessibleName = null;
             resources.ApplyResources(this.cblot, "cblot");
+            this.cblot.BackgroundImage = null;
             this.cblot.Name = "cblot";
+            this.toolTip1.SetToolTip(this.cblot, resources.GetString("cblot.ToolTip"));
             this.cblot.CheckedChanged += new System.EventHandler(this.ChangeFlags);
             // 
             // cbbaby
             // 
+            this.cbbaby.AccessibleDescription = null;
+            this.cbbaby.AccessibleName = null;
             resources.ApplyResources(this.cbbaby, "cbbaby");
+            this.cbbaby.BackgroundImage = null;
             this.cbbaby.Name = "cbbaby";
+            this.toolTip1.SetToolTip(this.cbbaby, resources.GetString("cbbaby.ToolTip"));
             this.cbbaby.CheckedChanged += new System.EventHandler(this.ChangeFlags);
             // 
             // cbphone
             // 
+            this.cbphone.AccessibleDescription = null;
+            this.cbphone.AccessibleName = null;
             resources.ApplyResources(this.cbphone, "cbphone");
+            this.cbphone.BackgroundImage = null;
             this.cbphone.Name = "cbphone";
+            this.toolTip1.SetToolTip(this.cbphone, resources.GetString("cbphone.ToolTip"));
             this.cbphone.CheckedChanged += new System.EventHandler(this.ChangeFlags);
             // 
             // tbalbum
             // 
+            this.tbalbum.AccessibleDescription = null;
+            this.tbalbum.AccessibleName = null;
             resources.ApplyResources(this.tbalbum, "tbalbum");
+            this.tbalbum.BackgroundImage = null;
+            this.tbalbum.Font = null;
             this.tbalbum.Name = "tbalbum";
+            this.toolTip1.SetToolTip(this.tbalbum, resources.GetString("tbalbum.ToolTip"));
             // 
             // label93
             // 
+            this.label93.AccessibleDescription = null;
+            this.label93.AccessibleName = null;
             resources.ApplyResources(this.label93, "label93");
             this.label93.Name = "label93";
+            this.toolTip1.SetToolTip(this.label93, resources.GetString("label93.ToolTip"));
             // 
             // tbflag
             // 
+            this.tbflag.AccessibleDescription = null;
+            this.tbflag.AccessibleName = null;
             resources.ApplyResources(this.tbflag, "tbflag");
+            this.tbflag.BackgroundImage = null;
+            this.tbflag.Font = null;
             this.tbflag.Name = "tbflag";
+            this.toolTip1.SetToolTip(this.tbflag, resources.GetString("tbflag.ToolTip"));
             this.tbflag.TextChanged += new System.EventHandler(this.FlagChanged);
             // 
             // label92
             // 
+            this.label92.AccessibleDescription = null;
+            this.label92.AccessibleName = null;
             resources.ApplyResources(this.label92, "label92");
             this.label92.Name = "label92";
+            this.toolTip1.SetToolTip(this.label92, resources.GetString("label92.ToolTip"));
             // 
             // tblotinst
             // 
+            this.tblotinst.AccessibleDescription = null;
+            this.tblotinst.AccessibleName = null;
             resources.ApplyResources(this.tblotinst, "tblotinst");
+            this.tblotinst.BackgroundImage = null;
+            this.tblotinst.Font = null;
             this.tblotinst.Name = "tblotinst";
+            this.toolTip1.SetToolTip(this.tblotinst, resources.GetString("tblotinst.ToolTip"));
             // 
             // llFamiDeleteSim
             // 
+            this.llFamiDeleteSim.AccessibleDescription = null;
+            this.llFamiDeleteSim.AccessibleName = null;
             resources.ApplyResources(this.llFamiDeleteSim, "llFamiDeleteSim");
+            this.llFamiDeleteSim.BackgroundImage = null;
+            this.llFamiDeleteSim.Font = null;
             this.llFamiDeleteSim.Name = "llFamiDeleteSim";
+            this.toolTip1.SetToolTip(this.llFamiDeleteSim, resources.GetString("llFamiDeleteSim.ToolTip"));
             this.llFamiDeleteSim.Click += new System.EventHandler(this.FamiDeleteSimClick);
             // 
             // llFamiAddSim
             // 
+            this.llFamiAddSim.AccessibleDescription = null;
+            this.llFamiAddSim.AccessibleName = null;
             resources.ApplyResources(this.llFamiAddSim, "llFamiAddSim");
+            this.llFamiAddSim.BackgroundImage = null;
+            this.llFamiAddSim.Font = null;
             this.llFamiAddSim.Name = "llFamiAddSim";
+            this.toolTip1.SetToolTip(this.llFamiAddSim, resources.GetString("llFamiAddSim.ToolTip"));
             this.llFamiAddSim.Click += new System.EventHandler(this.FamiSimAddClick);
             // 
             // button1
             // 
+            this.button1.AccessibleDescription = null;
+            this.button1.AccessibleName = null;
             resources.ApplyResources(this.button1, "button1");
+            this.button1.BackgroundImage = null;
+            this.button1.Font = null;
             this.button1.Name = "button1";
+            this.toolTip1.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
             this.button1.Click += new System.EventHandler(this.CommitFamiClick);
             // 
             // cbsims
             // 
+            this.cbsims.AccessibleDescription = null;
+            this.cbsims.AccessibleName = null;
             resources.ApplyResources(this.cbsims, "cbsims");
+            this.cbsims.BackgroundImage = null;
             this.cbsims.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbsims.Font = null;
             this.cbsims.Name = "cbsims";
+            this.toolTip1.SetToolTip(this.cbsims, resources.GetString("cbsims.ToolTip"));
             this.cbsims.SelectedIndexChanged += new System.EventHandler(this.SimSelectionChange);
             // 
             // lbmembers
             // 
+            this.lbmembers.AccessibleDescription = null;
+            this.lbmembers.AccessibleName = null;
             resources.ApplyResources(this.lbmembers, "lbmembers");
+            this.lbmembers.BackgroundImage = null;
+            this.lbmembers.Font = null;
             this.lbmembers.Name = "lbmembers";
+            this.toolTip1.SetToolTip(this.lbmembers, resources.GetString("lbmembers.ToolTip"));
             this.lbmembers.SelectedIndexChanged += new System.EventHandler(this.FamiMemberSelectionClick);
             // 
             // tbname
             // 
+            this.tbname.AccessibleDescription = null;
+            this.tbname.AccessibleName = null;
             resources.ApplyResources(this.tbname, "tbname");
+            this.tbname.BackgroundImage = null;
+            this.tbname.Font = null;
             this.tbname.Name = "tbname";
+            this.toolTip1.SetToolTip(this.tbname, resources.GetString("tbname.ToolTip"));
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = null;
+            this.label6.AccessibleName = null;
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
+            this.toolTip1.SetToolTip(this.label6, resources.GetString("label6.ToolTip"));
             // 
             // tbfamily
             // 
+            this.tbfamily.AccessibleDescription = null;
+            this.tbfamily.AccessibleName = null;
             resources.ApplyResources(this.tbfamily, "tbfamily");
+            this.tbfamily.BackgroundImage = null;
+            this.tbfamily.Font = null;
             this.tbfamily.Name = "tbfamily";
+            this.toolTip1.SetToolTip(this.tbfamily, resources.GetString("tbfamily.ToolTip"));
             // 
             // tbmoney
             // 
+            this.tbmoney.AccessibleDescription = null;
+            this.tbmoney.AccessibleName = null;
             resources.ApplyResources(this.tbmoney, "tbmoney");
+            this.tbmoney.BackgroundImage = null;
+            this.tbmoney.Font = null;
             this.tbmoney.Name = "tbmoney";
+            this.toolTip1.SetToolTip(this.tbmoney, resources.GetString("tbmoney.ToolTip"));
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = null;
+            this.label5.AccessibleName = null;
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
+            this.toolTip1.SetToolTip(this.label5, resources.GetString("label5.ToolTip"));
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = null;
+            this.label4.AccessibleName = null;
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
+            this.toolTip1.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = null;
+            this.label3.AccessibleName = null;
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
+            this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
             // 
             // panel4
             // 
+            this.panel4.AccessibleDescription = null;
+            this.panel4.AccessibleName = null;
             resources.ApplyResources(this.panel4, "panel4");
             this.panel4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel4.BackgroundImage = null;
             this.panel4.Controls.Add(this.label2);
             this.panel4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel4.Name = "panel4";
+            this.toolTip1.SetToolTip(this.panel4, resources.GetString("panel4.ToolTip"));
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = null;
+            this.label2.AccessibleName = null;
             resources.ApplyResources(this.label2, "label2");
+            this.label2.Font = null;
             this.label2.Name = "label2";
+            this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
             // 
             // label15
             // 
+            this.label15.AccessibleDescription = null;
+            this.label15.AccessibleName = null;
             resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
+            this.toolTip1.SetToolTip(this.label15, resources.GetString("label15.ToolTip"));
+            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = null;
+            this.tabPage3.AccessibleName = null;
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.BackgroundImage = null;
             this.tabPage3.Controls.Add(this.realPanel);
             this.tabPage3.Controls.Add(this.JpegPanel);
             this.tabPage3.Controls.Add(this.objdPanel);
             this.tabPage3.Controls.Add(this.xmlPanel);
-            resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
+            this.toolTip1.SetToolTip(this.tabPage3, resources.GetString("tabPage3.ToolTip"));
             // 
             // realPanel
             // 
+            this.realPanel.AccessibleDescription = null;
+            this.realPanel.AccessibleName = null;
+            resources.ApplyResources(this.realPanel, "realPanel");
+            this.realPanel.BackgroundImage = null;
             this.realPanel.Controls.Add(this.label91);
             this.realPanel.Controls.Add(this.cbfamtype);
             this.realPanel.Controls.Add(this.llsrelcommit);
@@ -806,30 +1151,45 @@ namespace SimPe.PackedFiles.UserInterface
             this.realPanel.Controls.Add(this.label58);
             this.realPanel.Controls.Add(this.panel7);
             this.realPanel.Controls.Add(this.llrelcommit);
-            resources.ApplyResources(this.realPanel, "realPanel");
+            this.realPanel.Font = null;
             this.realPanel.Name = "realPanel";
+            this.toolTip1.SetToolTip(this.realPanel, resources.GetString("realPanel.ToolTip"));
             // 
             // label91
             // 
+            this.label91.AccessibleDescription = null;
+            this.label91.AccessibleName = null;
             resources.ApplyResources(this.label91, "label91");
             this.label91.Name = "label91";
+            this.toolTip1.SetToolTip(this.label91, resources.GetString("label91.ToolTip"));
             // 
             // cbfamtype
             // 
-            this.cbfamtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbfamtype.AccessibleDescription = null;
+            this.cbfamtype.AccessibleName = null;
             resources.ApplyResources(this.cbfamtype, "cbfamtype");
+            this.cbfamtype.BackgroundImage = null;
+            this.cbfamtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbfamtype.Name = "cbfamtype";
+            this.toolTip1.SetToolTip(this.cbfamtype, resources.GetString("cbfamtype.ToolTip"));
             // 
             // llsrelcommit
             // 
+            this.llsrelcommit.AccessibleDescription = null;
+            this.llsrelcommit.AccessibleName = null;
             resources.ApplyResources(this.llsrelcommit, "llsrelcommit");
             this.llsrelcommit.Name = "llsrelcommit";
             this.llsrelcommit.TabStop = true;
+            this.toolTip1.SetToolTip(this.llsrelcommit, resources.GetString("llsrelcommit.ToolTip"));
             this.llsrelcommit.UseCompatibleTextRendering = true;
             this.llsrelcommit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RelationshipFileCommit);
             // 
             // gbrelation
             // 
+            this.gbrelation.AccessibleDescription = null;
+            this.gbrelation.AccessibleName = null;
+            resources.ApplyResources(this.gbrelation, "gbrelation");
+            this.gbrelation.BackgroundImage = null;
             this.gbrelation.Controls.Add(this.cbbest);
             this.gbrelation.Controls.Add(this.cbfamily);
             this.gbrelation.Controls.Add(this.cbmarried);
@@ -841,103 +1201,177 @@ namespace SimPe.PackedFiles.UserInterface
             this.gbrelation.Controls.Add(this.cbfriend);
             this.gbrelation.Controls.Add(this.cbenemy);
             this.gbrelation.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(this.gbrelation, "gbrelation");
             this.gbrelation.Name = "gbrelation";
             this.gbrelation.TabStop = false;
+            this.toolTip1.SetToolTip(this.gbrelation, resources.GetString("gbrelation.ToolTip"));
             // 
             // cbbest
             // 
+            this.cbbest.AccessibleDescription = null;
+            this.cbbest.AccessibleName = null;
             resources.ApplyResources(this.cbbest, "cbbest");
+            this.cbbest.BackgroundImage = null;
             this.cbbest.Name = "cbbest";
+            this.toolTip1.SetToolTip(this.cbbest, resources.GetString("cbbest.ToolTip"));
             // 
             // cbfamily
             // 
+            this.cbfamily.AccessibleDescription = null;
+            this.cbfamily.AccessibleName = null;
             resources.ApplyResources(this.cbfamily, "cbfamily");
+            this.cbfamily.BackgroundImage = null;
             this.cbfamily.Name = "cbfamily";
+            this.toolTip1.SetToolTip(this.cbfamily, resources.GetString("cbfamily.ToolTip"));
             // 
             // cbmarried
             // 
+            this.cbmarried.AccessibleDescription = null;
+            this.cbmarried.AccessibleName = null;
             resources.ApplyResources(this.cbmarried, "cbmarried");
+            this.cbmarried.BackgroundImage = null;
             this.cbmarried.Name = "cbmarried";
+            this.toolTip1.SetToolTip(this.cbmarried, resources.GetString("cbmarried.ToolTip"));
             // 
             // cbengaged
             // 
+            this.cbengaged.AccessibleDescription = null;
+            this.cbengaged.AccessibleName = null;
             resources.ApplyResources(this.cbengaged, "cbengaged");
+            this.cbengaged.BackgroundImage = null;
             this.cbengaged.Name = "cbengaged";
+            this.toolTip1.SetToolTip(this.cbengaged, resources.GetString("cbengaged.ToolTip"));
             // 
             // cbsteady
             // 
+            this.cbsteady.AccessibleDescription = null;
+            this.cbsteady.AccessibleName = null;
             resources.ApplyResources(this.cbsteady, "cbsteady");
+            this.cbsteady.BackgroundImage = null;
             this.cbsteady.Name = "cbsteady";
+            this.toolTip1.SetToolTip(this.cbsteady, resources.GetString("cbsteady.ToolTip"));
             // 
             // cblove
             // 
+            this.cblove.AccessibleDescription = null;
+            this.cblove.AccessibleName = null;
             resources.ApplyResources(this.cblove, "cblove");
+            this.cblove.BackgroundImage = null;
             this.cblove.Name = "cblove";
+            this.toolTip1.SetToolTip(this.cblove, resources.GetString("cblove.ToolTip"));
             // 
             // cbcrush
             // 
+            this.cbcrush.AccessibleDescription = null;
+            this.cbcrush.AccessibleName = null;
             resources.ApplyResources(this.cbcrush, "cbcrush");
+            this.cbcrush.BackgroundImage = null;
             this.cbcrush.Name = "cbcrush";
+            this.toolTip1.SetToolTip(this.cbcrush, resources.GetString("cbcrush.ToolTip"));
             // 
             // cbbuddie
             // 
+            this.cbbuddie.AccessibleDescription = null;
+            this.cbbuddie.AccessibleName = null;
             resources.ApplyResources(this.cbbuddie, "cbbuddie");
+            this.cbbuddie.BackgroundImage = null;
             this.cbbuddie.Name = "cbbuddie";
+            this.toolTip1.SetToolTip(this.cbbuddie, resources.GetString("cbbuddie.ToolTip"));
             // 
             // cbfriend
             // 
+            this.cbfriend.AccessibleDescription = null;
+            this.cbfriend.AccessibleName = null;
             resources.ApplyResources(this.cbfriend, "cbfriend");
+            this.cbfriend.BackgroundImage = null;
             this.cbfriend.Name = "cbfriend";
+            this.toolTip1.SetToolTip(this.cbfriend, resources.GetString("cbfriend.ToolTip"));
             // 
             // cbenemy
             // 
+            this.cbenemy.AccessibleDescription = null;
+            this.cbenemy.AccessibleName = null;
             resources.ApplyResources(this.cbenemy, "cbenemy");
+            this.cbenemy.BackgroundImage = null;
             this.cbenemy.Name = "cbenemy";
+            this.toolTip1.SetToolTip(this.cbenemy, resources.GetString("cbenemy.ToolTip"));
             // 
             // tblongterm
             // 
+            this.tblongterm.AccessibleDescription = null;
+            this.tblongterm.AccessibleName = null;
             resources.ApplyResources(this.tblongterm, "tblongterm");
+            this.tblongterm.BackgroundImage = null;
+            this.tblongterm.Font = null;
             this.tblongterm.Name = "tblongterm";
+            this.toolTip1.SetToolTip(this.tblongterm, resources.GetString("tblongterm.ToolTip"));
             // 
             // tbshortterm
             // 
+            this.tbshortterm.AccessibleDescription = null;
+            this.tbshortterm.AccessibleName = null;
             resources.ApplyResources(this.tbshortterm, "tbshortterm");
+            this.tbshortterm.BackgroundImage = null;
+            this.tbshortterm.Font = null;
             this.tbshortterm.Name = "tbshortterm";
+            this.toolTip1.SetToolTip(this.tbshortterm, resources.GetString("tbshortterm.ToolTip"));
             // 
             // label57
             // 
+            this.label57.AccessibleDescription = null;
+            this.label57.AccessibleName = null;
             resources.ApplyResources(this.label57, "label57");
             this.label57.Name = "label57";
+            this.toolTip1.SetToolTip(this.label57, resources.GetString("label57.ToolTip"));
             // 
             // label58
             // 
+            this.label58.AccessibleDescription = null;
+            this.label58.AccessibleName = null;
             resources.ApplyResources(this.label58, "label58");
             this.label58.Name = "label58";
+            this.toolTip1.SetToolTip(this.label58, resources.GetString("label58.ToolTip"));
             // 
             // panel7
             // 
+            this.panel7.AccessibleDescription = null;
+            this.panel7.AccessibleName = null;
             resources.ApplyResources(this.panel7, "panel7");
             this.panel7.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel7.BackgroundImage = null;
             this.panel7.Controls.Add(this.label56);
             this.panel7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel7.Name = "panel7";
+            this.toolTip1.SetToolTip(this.panel7, resources.GetString("panel7.ToolTip"));
             // 
             // label56
             // 
+            this.label56.AccessibleDescription = null;
+            this.label56.AccessibleName = null;
             resources.ApplyResources(this.label56, "label56");
+            this.label56.Font = null;
             this.label56.Name = "label56";
+            this.toolTip1.SetToolTip(this.label56, resources.GetString("label56.ToolTip"));
             // 
             // llrelcommit
             // 
+            this.llrelcommit.AccessibleDescription = null;
+            this.llrelcommit.AccessibleName = null;
             resources.ApplyResources(this.llrelcommit, "llrelcommit");
+            this.llrelcommit.Font = null;
             this.llrelcommit.Name = "llrelcommit";
+            this.toolTip1.SetToolTip(this.llrelcommit, resources.GetString("llrelcommit.ToolTip"));
             // 
             // Elements
             // 
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
+            this.BackgroundImage = null;
             this.Controls.Add(this.tabControl1);
+            this.Font = null;
+            this.Icon = null;
             this.Name = "Elements";
+            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.JpegPanel.ResumeLayout(false);
             this.JpegPanel.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -990,6 +1424,7 @@ namespace SimPe.PackedFiles.UserInterface
 					fami.Flags = Convert.ToUInt32(tbflag.Text, 16);
 					fami.AlbumGUID = Convert.ToUInt32(tbalbum.Text, 16);
 					fami.SubHoodNumber = Convert.ToUInt32(tbsubhood.Text, 16);
+                    fami.VacationLotInstance = Helper.StringToUInt32(tbvac.Text, fami.VacationLotInstance, 16);
 
 					uint[] members = new uint[lbmembers.Items.Count];
 					for (int i=0; i< members.Length; i++) 
@@ -1512,6 +1947,11 @@ namespace SimPe.PackedFiles.UserInterface
 				}
 			}
 		}
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
 
 		
 

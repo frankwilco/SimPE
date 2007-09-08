@@ -38,7 +38,8 @@ namespace SimPe.PackedFiles.Wrapper
 	{
 		Original = 0x4e,
 		University = 0x4f,
-		Business = 0x51
+		Business = 0x51,
+        Voyage = 0x55
 	}
 
 	public class FamiFlags : FlagBase 
@@ -82,7 +83,7 @@ namespace SimPe.PackedFiles.Wrapper
 		/// <summary>
 		/// Instance Number of the Lot this Familie lives in
 		/// </summary>
-		private uint lotinstance, businesslot;
+		private uint lotinstance, businesslot, vacationlot;
 
 		/// <summary>
 		/// Money of the Family
@@ -209,6 +210,15 @@ namespace SimPe.PackedFiles.Wrapper
 			get { return lotinstance; }
 			set { lotinstance = value; }
 		}
+
+        /// <summary>
+        /// Returns a Descriptor for the Lot where the family stays for vacation
+        /// </summary>
+        public uint VacationLotInstance
+        {
+            get { return vacationlot; }
+            set { vacationlot = value; }
+        }
 
 		/// <summary>
 		/// Returns the INstance of the Lot, where the Player last left the Family
@@ -351,7 +361,8 @@ namespace SimPe.PackedFiles.Wrapper
 			version = (FamiVersions)reader.ReadUInt32();
 			unknown = reader.ReadUInt32();
 			lotinstance = reader.ReadUInt32();
-			if ((int)version>=(int)FamiVersions.Business) businesslot = reader.ReadUInt32();
+            if ((int)version >= (int)FamiVersions.Business) businesslot = reader.ReadUInt32();
+            if ((int)version >= (int)FamiVersions.Voyage) vacationlot = reader.ReadUInt32();
 			strinstance = reader.ReadUInt32();
 			money = reader.ReadInt32();
 			friends = reader.ReadUInt32();
@@ -374,7 +385,8 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write((uint)version);
 			writer.Write(unknown);
 			writer.Write(lotinstance);
-			if ((int)version>=(int)FamiVersions.Business) writer.Write(businesslot);
+            if ((int)version >= (int)FamiVersions.Business) writer.Write(businesslot);
+            if ((int)version >= (int)FamiVersions.Voyage) writer.Write(vacationlot);
 			writer.Write(strinstance);
 			writer.Write(money);
 			writer.Write(friends);

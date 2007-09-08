@@ -36,7 +36,9 @@ namespace SimPe.PackedFiles.Wrapper
 		University = 0x22,
 		Nightlife = 0x29,
 		Business = 0x2a,
-        Pets = 0x2c
+        Pets = 0x2c,
+        Voyage = 0x2e,
+        VoyageB = 0x2f
 	}
 
 	/// <summary>
@@ -1253,6 +1255,39 @@ namespace SimPe.PackedFiles.Wrapper
     }
     #endregion
 
+    #region SdscVoyage
+    /// <summary>
+    /// Nightlife specific Data
+    /// </summary>
+    public class SdscVoyage : Serializer
+    {
+        internal SdscVoyage()
+        {
+            daysleft = 0;
+        }
+
+        ushort daysleft;
+        public ushort DaysLeft
+        {
+            get { return daysleft; }
+            set { daysleft = value; }
+        }
+
+
+        internal void Serialize(BinaryReader reader)
+        {
+            reader.BaseStream.Seek(0x19C, SeekOrigin.Begin);
+            this.daysleft = reader.ReadUInt16();
+        }
+
+        internal void Unserialize(BinaryWriter writer)
+        {
+            writer.BaseStream.Seek(0x19C, SeekOrigin.Begin);
+            writer.Write((ushort)this.daysleft);
+        }
+    }
+    #endregion
+
 	/// <summary>
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
@@ -1411,6 +1446,16 @@ namespace SimPe.PackedFiles.Wrapper
         public SdscPets Pets
         {
             get { return pets; }
+        }
+
+        SdscVoyage voyage;
+        /// <summary>
+        /// Returns Voyage Specific Data
+        /// </summary>
+        /// <remarks>Only valid if Version == SDescVersions.Voyage</remarks>
+        public SdscVoyage Voyage
+        {
+            get { return voyage; }
         }
 
 
@@ -1841,6 +1886,7 @@ namespace SimPe.PackedFiles.Wrapper
 			nightlife = new SdscNightlife();
 			business = new SdscBusiness();
             pets = new SdscPets();
+            voyage = new SdscVoyage();
 
 			description.Aspiration = MetaData.AspirationTypes.Romance;
 			description.ZodiacSign = MetaData.ZodiacSignes.Virgo;
@@ -1875,6 +1921,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get 
 			{
+                if (version >= (int)SDescVersions.Voyage) return 0x1A4 + 0xA; //0x19e + 0xa?
                 if (version >= (int)SDescVersions.Pets) return 0x19C + 0xA;
 				if (version>=(int)SDescVersions.Business) return 0x19A+0xA;
 				if (version>=(int)SDescVersions.Nightlife) return 0x192+0xA;
@@ -1883,7 +1930,8 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 		}
 		protected override void Unserialize(System.IO.BinaryReader reader)
-		{					
+        {
+            
 			//the formula offset = 0x0a + 2*pid
 			long startpos = reader.BaseStream.Position;
 			reserved_01 = reader.ReadBytes(0xC2);						
@@ -2062,6 +2110,10 @@ namespace SimPe.PackedFiles.Wrapper
             if (version >= (int)SDescVersions.Pets)
                 pets.Serialize(reader);
 
+            //pets only Items
+            if (version >= (int)SDescVersions.Voyage)
+                voyage.Serialize(reader);
+
 			reader.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
 		}
 
@@ -2223,6 +2275,10 @@ namespace SimPe.PackedFiles.Wrapper
             //pets only Items
             if (version >= (int)SDescVersions.Pets)
                 pets.Unserialize(writer);
+
+            //voyage only Items
+            if (version >= (int)SDescVersions.Voyage)
+                voyage.Unserialize(writer);
 			
 
 			writer.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
