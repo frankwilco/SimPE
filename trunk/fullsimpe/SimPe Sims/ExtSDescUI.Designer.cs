@@ -211,6 +211,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.dstTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.pnMisc = new System.Windows.Forms.Panel();
             this.xpTaskBoxSimple3 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+            this.label27 = new System.Windows.Forms.Label();
+            this.tbhdaysleft = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbstatmot = new System.Windows.Forms.TextBox();
             this.label96 = new System.Windows.Forms.Label();
@@ -2419,6 +2421,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpTaskBoxSimple3.BackgroundImage = null;
             this.xpTaskBoxSimple3.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.xpTaskBoxSimple3.BorderColor = System.Drawing.SystemColors.Window;
+            this.xpTaskBoxSimple3.Controls.Add(this.label27);
+            this.xpTaskBoxSimple3.Controls.Add(this.tbhdaysleft);
             this.xpTaskBoxSimple3.Controls.Add(this.label3);
             this.xpTaskBoxSimple3.Controls.Add(this.tbstatmot);
             this.xpTaskBoxSimple3.Controls.Add(this.label96);
@@ -2442,6 +2446,22 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpTaskBoxSimple3.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
             this.xpTaskBoxSimple3.Name = "xpTaskBoxSimple3";
             this.xpTaskBoxSimple3.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+            // 
+            // label27
+            // 
+            this.label27.AccessibleDescription = null;
+            this.label27.AccessibleName = null;
+            resources.ApplyResources(this.label27, "label27");
+            this.label27.Name = "label27";
+            // 
+            // tbhdaysleft
+            // 
+            this.tbhdaysleft.AccessibleDescription = null;
+            this.tbhdaysleft.AccessibleName = null;
+            resources.ApplyResources(this.tbhdaysleft, "tbhdaysleft");
+            this.tbhdaysleft.BackgroundImage = null;
+            this.tbhdaysleft.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbhdaysleft.Name = "tbhdaysleft";
             // 
             // label3
             // 
@@ -3375,5 +3395,7 @@ namespace SimPe.PackedFiles.UserInterface
         private Label label23;
         private Label label22;
         private ToolStripMenuItem miOpenSCOR;
+        private Label label27;
+        internal TextBox tbhdaysleft;
     }
 }

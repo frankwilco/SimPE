@@ -52,6 +52,7 @@ namespace SimPe.PackedFiles.UserInterface
 			form.tbalbum.Text = "0x"+Helper.HexString(fami.AlbumGUID);
 			form.tbflag.Text = "0x"+Helper.HexString(fami.Flags);
 			form.tbsubhood.Text = "0x"+Helper.HexString(fami.SubHoodNumber);
+            form.tbvac.Text = "0x" + Helper.HexString(fami.VacationLotInstance);
 			form.lbmembers.Items.Clear();
 
 			string[] names = fami.SimNames;

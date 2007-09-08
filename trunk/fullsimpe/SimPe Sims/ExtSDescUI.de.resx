@@ -121,8 +121,8 @@
   <data name="biId.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAACQdJREFUWEfFVwlUVOcVfigKBpeKjamFaktiAzFFq/WoaWrMcmLwZCmmybGx1j2N0qrH
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEgAA
+        CxIB0t1+/AAACQdJREFUWEfFVwlUVOcVfigKBpeKjamFaktiAzFFq/WoaWrMcmLwZCmmybGx1j2N0qrH
         5eQYBQ2gBjGCJqIsFhwVkF1AmIFhHbYBhp3ZYDaGgWGdgWHfvt73Emk5mLQmbTPn3PMOMz/v++53v3vv
         e1YAmB/0w+fnM0JhMcPnFzKpqSImLi6LSUzMZxIS8pjoaCFz+7aA4fEy6JrFhIWlMTdvCpiQED5z/foD
         5sqVZCYw8D5z+XIyc/FiInP+fBzj4xM76+zZmKdOn4465uOTHL5ixW+f/9YE/9sEvL1jfu3pee+El9e9
@@ -173,8 +173,8 @@
   <data name="biCareer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAACwFJREFUWEfFlwdQVNcaxy9gD4kTy1hjRNSnKE26UiKgQKSoIAiIChqDKKIUQWQpKkWB
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEgAA
+        CxIB0t1+/AAACwFJREFUWEfFlwdQVNcaxy9gD4kTy1hjRNSnKE26UiKgQKSoIAiIChqDKKIUQWQpKkWB
         wAKyLgIKAlKWBVYEpCm9d2FhqSsCgmCkxNTJ/x3Ie4w4yeTlTWZyZ87suXvvOd/v+853/t89AgCof/Sa
         BmDKUFT0ngVU1O751J1dFMWUFZjpT//PlKVm+7d3kvtdgh+nWXxum+Uim53tKJmfar4mJEJeSJq+g6LC
         ydjpxiDt9n/6M/dknv/+Tj8T++Q3l2ec/1OAGQghiiFOzcswXW1RE67DTfbThp+1AlKDrdBWEIha5sF3
@@ -407,8 +407,8 @@
   <data name="biMisc.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAABjZJREFUWEfFV3lQlGUc/lwOQRExRFA0KY+p6WKyY2zKcXKqsZxi+qfpj2YchThMoDKP
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEgAA
+        CxIB0t1+/AAABjZJREFUWEfFV3lQlGUc/lwOQRExRFA0KY+p6WKyY2zKcXKqsZxi+qfpj2YchThMoDKP
         KW0trTGn8ch0UglLR01N0MAjddYcpURgEQQE5XA5kkNWkGuX3e/p+X0fKEeMu2ITM7/5Pl7YfZ7f8T7P
         +w4BoPyvP0KgZ9yNzF/RSlhGtGI8G62YCr8ONBUwTr2vmE5EKYnHo5Swu32+H56rBLJilIDMGCW59Jtg
         tJycBfXqIqiVnwKVCUDRLDQffRL5a4JxJFJZlx6pBAxE5J4I5BC8eLm/uTV9OtTaPfyOdkYDVDULqmMH
@@ -483,8 +483,8 @@
   <data name="biEP2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAABvFJREFUWEe9lwtQVFUcxhUfiEDgYGaahpWmCeZbNCbANI0UwbcmJGYoIKCRsJQaKGjG
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEgAA
+        CxIB0t1+/AAABvFJREFUWEe9lwtQVFUcxhUfiEDgYGaahpWmCeZbNCbANI0UwbcmJGYoIKCRsJQaKGjG
         Q0B210Vc9i6wC4Esb0EUhpeuq6ksEsgg+BhGBQMFgQZn/DrnCIbOoojlnTlz7869e7/f+f6v3X4A+nWt
         fr08Tp48M76Xj/b42FPNvgDk5irtyZu1XweizwBnz5aa5eerPIi40RsHUKurzM6dK4tISsr6ioiPeKMA
         tbV1K8rLqyOKii6ITE2nTiDi+m8EoKWlVaehoZF3/XpdhEqlPpqQkLKdCI8lS+t/B3j8+LFOe/vfvPr6
@@ -675,7 +675,7 @@
 </value>
   </data>
   <data name="mbiMax.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="mbiMax.Text" xml:space="preserve">
     <value>Maximieren</value>
@@ -915,8 +915,8 @@
   <data name="miRand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAAA0FJREFUOE+lk39M1HUYx78uln9kzYk0uLMSJPmNDWlKTk6zsvlHQCiJQQgqceFxl9TA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEgAA
+        CxIB0t1+/AAAA0FJREFUOE+lk39M1HUYx78uln9kzYk0uLMSJPmNDWlKTk6zsvlHQCiJQQgqceFxl9TA
         CDrh+JXU+WODIwQHelfm6YEn13mAGMdxGjAPEiUkbgfGDP4oalSL2qtv52yuf31v733ez/P5PJ/nx/Ys
         AoSHwiIfIThLHTOVJA93pqiindvzwpyJyiDnDuVq5468KHt2VczUbnWkO7M0yp1eEu7eq4lxZ5REu1XH
         nv9LTCwRpGGPKP/kO65PtDM9P4Sp/xB9w1as3+jo/0HP9M83sN/6nP7xVhw39Yz/OMDQhI15Rnl8hZAl
@@ -934,13 +934,13 @@
 </value>
   </data>
   <data name="miRand.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miRand.Text" xml:space="preserve">
     <value>Zufällig</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 6</value>
+    <value>293, 6</value>
   </data>
   <data name="miOpenChar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -963,7 +963,7 @@
 </value>
   </data>
   <data name="miOpenChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miOpenChar.Text" xml:space="preserve">
     <value>Öffne Charakter Datei</value>
@@ -971,8 +971,8 @@
   <data name="miOpenWf.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAAA01JREFUOE99k3lMk2kQxqcUkBhUNqhgjPuHboy4mHgbDdFNtG51LYiKB4QSQtQKSjg0
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDwAA
+        Cw8BkvkDpQAAA01JREFUOE99k3lMk2kQxqcUkBhUNqhgjPuHboy4mHgbDdFNtG51LYiKB4QSQtQKSjg0
         gtSry8oRYjyi4XLXBFZYL7T1ilWxEcWqtI1FgpyWowulKG2Rlvb7vsfPJkaTXZnkSWbemflN8r7vCGgM
         QzbNJz/qtPxLM4LGU9e402Qfq96bM28XxA+LKA2ZfrO5dRM97BbKYXcE5rpFAVVjNo/G+UW71wvkbLrv
         CnbDFCtKkh3Q5QLnlgGqVLCRvr1IFIiRQktHj/0PyrSPJg6sID2KtgLmCrBOFUZeJ8BeFw6XbjZQ8gNw
@@ -990,7 +990,7 @@
 </value>
   </data>
   <data name="miOpenWf.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miOpenWf.Text" xml:space="preserve">
     <value>Öffne Wünsche &amp;&amp; Ängste</value>
@@ -998,8 +998,8 @@
   <data name="miOpenMem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAAAodJREFUOE+Nk21IU1EYx+/mC1MUp0Vgas1q1ERztKCwKIdQOItp1JeEMaGyUURBUSbY
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEgAA
+        CxIB0t1+/AAAAodJREFUOE+Nk21IU1EYx+/mC1MUp0Vgas1q1ERztKCwKIdQOItp1JeEMaGyUURBUSbY
         FkkQlGCBUh/8oh8KgqH0QhAjiF4w3MgaGmtztppubnfufbu7+3fu6kawCTvwcJ57z///e557zrkCABQ3
         BAJBZo69pOQF6w/dEFbu6UzSrykm+IEqSCNQyMKINGUoaacWOB3vyyT8Q9hIaRn7ENJsHKmYDfEVI7wf
         a7D8VgTPm2IEXwjBaXhAxscDVh9TrYlvxJwKIBW3I0FPIbr0AMHvPfBOVxBQOTzvSkE/KwCn/VeYTwJG
@@ -1014,7 +1014,7 @@
 </value>
   </data>
   <data name="miOpenMem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miOpenMem.Text" xml:space="preserve">
     <value>Öffne Erinnerungen</value>
@@ -1038,7 +1038,7 @@
 </value>
   </data>
   <data name="miOpenBadge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miOpenBadge.Text" xml:space="preserve">
     <value>Öffne verst. Fähigkeiten &amp;&amp; Auszeichungen</value>
@@ -1046,8 +1046,8 @@
   <data name="miOpenDNA.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAAAfZJREFUOE99k19IU2EYh7+TlhRrNAeaW0TRoAuJLqIou8wIJuJlnAq6CLqI6KaiC5NE
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDwAA
+        Cw8BkvkDpQAAAfZJREFUOE99k19IU2EYh7+TlhRrNAeaW0TRoAuJLqIou8wIJuJlnAq6CLqI6KaiC5NE
         yEq6izVPK4cQraARrXDBRFKMNNxiYQoj5ipIqt1UF2NL93S+QzucuT8HHvg+znkffu/Le5TnR1y2oti4
         t9X5u+OHt3co19Qq6j2RSERMTT1SzG9edW33Z8f6IHOaZLCLXC5XF1VVcbsRJcT82T1xwh4YE/x67WRp
         YY50Ol1GKBSiGlImYvtEf+Fy419GFYpxhcSzXp68pwxZXC2ZIRj1KJ4vJzZl0Jog1sjPCQ++F9+5HcVE
@@ -1059,13 +1059,13 @@
 </value>
   </data>
   <data name="miOpenDNA.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miOpenDNA.Text" xml:space="preserve">
     <value>Öffne Sim DNA</value>
   </data>
   <data name="miOpenSCOR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miOpenSCOR.Text" xml:space="preserve">
     <value>Öffne Sim Score</value>
@@ -1073,8 +1073,8 @@
   <data name="miOpenFamily.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAAAyRJREFUOE+lk31MWwUUxU9f3xNaaN8bWbHA01JBlPLVtcBGdB0FKRShupl0YpVNkblB
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEgAA
+        CxIB0t1+/AAAAyRJREFUOE+lk31MWwUUxU9f3xNaaN8bWbHA01JBlPLVtcBGdB0FKRShupl0YpVNkblB
         BthuGDMWkOFCI7oN2Rbj/CBRwaw4hAAtm24zEj8SzdiyqPtjiYnRTTOMRkdcHMfVGGPmn9zkJOef+0vu
         PfdqSGJZFQcsR8gISUh/WoK6Swv3KTOK383Eg5370RScwIHhC1u7h+b3ZTi3pEK/Cn5fHThVjxMNJvQW
         aLHXLuF/AGfkdug2KbAX9vX5/KNX13lfZ6YzNKik1SYe7KwHx28CqDulvyFqlwD3yTS1OJJZkvSkjNzc
@@ -1091,7 +1091,7 @@
 </value>
   </data>
   <data name="miOpenFamily.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miOpenFamily.Text" xml:space="preserve">
     <value>Öffne Familie</value>
@@ -1114,19 +1114,19 @@
 </value>
   </data>
   <data name="miOpenCloth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miOpenCloth.Text" xml:space="preserve">
     <value>Öffne Kleidung</value>
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 6</value>
+    <value>293, 6</value>
   </data>
   <data name="miMore.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAAAe5JREFUOE+lk81u00AUhVuk7HidSrxAEUv6APQFskLd5QVAQiUNRQKpKwqUFSahqA0h
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEgAA
+        CxIB0t1+/AAAAe5JREFUOE+lk81u00AUhVuk7HidSrxAEUv6APQFskLd5QVAQiUNRQKpKwqUFSahqA0h
         ICpRS90SVQpNVbmJHSXBP5PYHk9c24c7g5rKQSwKV/o8Y889Z37ueHGBorzegGyvG/fXbi8qsetGaa/H
         +DymybjEshg/O7P58XH/ksgw3EhNLB+OHeLw0Jih613o+jkODn4odN1As3kK7W0L77QWtd9xdDTAzKBS
         bqL8+BM2CNlff/QRDx9s4enmKzx/9gYb5W2V/KTyWbFZ+UJ8vTLAXOzsvIbv+8iyDEmSIooi1Ov782l5
@@ -1138,7 +1138,7 @@
 </value>
   </data>
   <data name="miMore.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miMore.Text" xml:space="preserve">
     <value>Erweiterte Ansicht...</value>
@@ -1162,19 +1162,19 @@
 </value>
   </data>
   <data name="miRelink.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>296, 22</value>
   </data>
   <data name="miRelink.Text" xml:space="preserve">
     <value>Charakter neu zuordnen</value>
   </data>
   <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 280</value>
+    <value>297, 280</value>
   </data>
   <data name="miAddRelation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAAAYBJREFUOE9j/P//PwMjIyMDOuAsYt3Jx88jCRL/9PHr8+99v9zR1YD0MoAJLMCmyfRM
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEgAA
+        CxIB0t1+/AAAAYBJREFUOE9j/P//PwMjIyMDOuAsYt3Jx88jCRL/9PHr8+99v9zR1YD0MoAJLMCmyfRM
         27Gm/y3HG/47NFmcwqYGrwGOk+xuzrwz6//U29P/u050uk6yATYTTW90Xmn733a56b/dBAvSDbCepH+t
         +Ur5/4bLxf9tJxhdxesC1hqmDZyN7Fs5G1i3cDezbuGoYN3itdj0Re3ljP/Vl1L+ey+yeM5RzrqZEyjH
         2QTEzaxbWRuYNsHDQGeu+v/6i4X/ay9m/a+/lPG/6Uba/+rLMf/LLoT8Lz4f+L/sYuj/8quR/wvOhv3P
@@ -1184,7 +1184,7 @@
 </value>
   </data>
   <data name="miAddRelation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 22</value>
+    <value>309, 22</value>
   </data>
   <data name="miRemRelation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1197,22 +1197,22 @@
 </value>
   </data>
   <data name="miRemRelation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 22</value>
+    <value>309, 22</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 6</value>
+    <value>306, 6</value>
   </data>
   <data name="mbiMaxThisRel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 22</value>
+    <value>309, 22</value>
   </data>
   <data name="mbiMaxKnownRel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 22</value>
+    <value>309, 22</value>
   </data>
   <data name="mbiMaxKnownRel.Text" xml:space="preserve">
     <value>Beziehungen zu bekannten Sims maximieren</value>
   </data>
   <data name="miRel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 98</value>
+    <value>310, 98</value>
   </data>
   <data name="pbAspBliz.LabelText" xml:space="preserve">
     <value>Stimmung kurzfristig:</value>
@@ -1334,6 +1334,9 @@
   <data name="pbFashion.LabelText" xml:space="preserve">
     <value>Mode:</value>
   </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Urlaubstage:</value>
+  </data>
   <data name="xpTaskBoxSimple3.HeaderText" xml:space="preserve">
     <value>Verschiedenes</value>
   </data>
@@ -1445,8 +1448,8 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDQAA
-        Cw0B7QfALAAAAPRJREFUOE+lk1sOgjAQRXVZbsVPP9gH/67EuCY/eQqlpTwCJVemUHmqQSaZkJLce+6U
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDAAA
+        CwwBP0AiyAAAAPRJREFUOE+lk1sOgjAQRXVZbsVPP9gH/67EuCY/eQqlpTwCJVemUHmqQSaZkJLce+6U
         4QjgsKvIYE9ruG3b2NoGqsX/lGVZJOvoVI7j4Ho5TZreua4Lz/MR+AHCMMQzisAYw8LAiPG4g5rOndhr
         xb4WRySOGXjCpwZr4nkaQ06SBEKIpYEhL563syaTIZFFKpBJORuhjz2OP09AZyFSyCxDnhffDdBSqUkU
         sxicE9mIc5Rl+cNgdJGcdzNLSeROXFXVyh301DFdz9zGztrYxUisavX5M5rZdWxNlsiLgVwrhUY1gwFt

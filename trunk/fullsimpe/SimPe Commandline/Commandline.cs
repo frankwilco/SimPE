@@ -604,7 +604,7 @@ namespace SimPe
             if (Helper.WindowsRegistry.PreviousEpCount < 3) 
 				Helper.WindowsRegistry.BlurNudityUpdate();
 
-            if (Helper.WindowsRegistry.PreviousVersion < 261993875416) 
+            if (Helper.WindowsRegistry.PreviousVersion < 270583234199) 
 			{
 				string name = System.IO.Path.Combine(Helper.SimPeDataPath, "folders.xreg");
 				if (System.IO.File.Exists(name)) 

@@ -419,6 +419,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbautonomy.Text = "0x"+Helper.HexString(sdesc.CharacterDescription.AutonomyLevel);
 			this.tbnpc.Text = "0x"+Helper.HexString(sdesc.CharacterDescription.NPCType);
 			tbstatmot.Text = "0x"+Helper.HexString(sdesc.CharacterDescription.MotivesStatic);
+
+            tbhdaysleft.Text = sdesc.Voyage.DaysLeft.ToString();
 		}
 
 		void RefreshId(Wrapper.ExtSDesc sdesc)
@@ -995,6 +997,7 @@ namespace SimPe.PackedFiles.UserInterface
 				Sdesc.CharacterDescription.NPCType = Helper.StringToUInt16(this.tbnpc.Text, Sdesc.CharacterDescription.NPCType, 16);
 				Sdesc.CharacterDescription.MotivesStatic = Helper.StringToUInt16(this.tbstatmot.Text, Sdesc.CharacterDescription.MotivesStatic, 16);
 
+                Sdesc.Voyage.DaysLeft = Helper.StringToUInt16(tbhdaysleft.Text, Sdesc.Voyage.DaysLeft, 10);
 				Sdesc.Changed = true;
 			} 
 			finally 

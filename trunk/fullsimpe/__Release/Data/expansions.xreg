@@ -264,6 +264,33 @@
       	  <string name="long">Die Sims 2 - Tiergeschichten</string>
       </key>
     </key>
+
+    <!-- Information about Bon Voyage -->
+    <key name="Voyage">
+      <int name="Version">11</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 Bon Voyage</string>
+      <int name="Flag">13</int>
+      <string name="ExeName">Sims2EP6.exe</string>
+      <string name="Censor">quaxi_pets_censor_v1.package</string>
+      <int name="Group">1</int>
+      <cilist name="SimNameDeepSearch">
+        <string name="0">TSData\Res\NeighborhoodTemplate\A001\Characters\</string>
+        <string name="0">TSData\Res\NeighborhoodTemplate\M001\Characters\</string>
+        <string name="0">TSData\Res\NeighborhoodTemplate\T001\Characters\</string>
+        <string name="0">TSData\Res\NeighborhoodTemplate\V001\Characters\</string>
+ 
+      </cilist>
+      <string name="namelistnr">6</string>
+      <key name="en">
+            <string name="name">Bon Voyage</string>
+	    <string name="long">The Sims 2 - Bon Voyage</string>
+      </key>
+      <key name="de">
+          <string name="short">Reise</string>
+          <string name="name">Gute Reise</string>
+      	  <string name="long">Die Sims 2 - Gute Reise</string>
+      </key>
+    </key>
   </key>
 
 </registry>

@@ -187,7 +187,7 @@ namespace SimPe
                     {
                         ToolStripMenuItem mi = new ToolStripMenuItem();
                         //mi.Text = SimPe.Localization.GetString("OpenInCaption").Replace("{where}", ei.Expansion.ToString());
-                        mi.Text = SimPe.Localization.GetString("OpenInCaption").Replace("{where}", SimPe.Localization.GetString("EP SNAME " + ei.Version));
+                        mi.Text = SimPe.Localization.GetString("OpenInCaption").Replace("{where}", ei.NameShort);
                         mi.Tag = ei;
                         mi.Click += new EventHandler(this.Activate_miOpenInEp);
                         mi.Enabled = ei.Exists;
