@@ -30,6 +30,12 @@ namespace SimPe.Plugin
 		Business = 0x000E
 	}
 
+    public enum LtxtSubVersion : ushort
+    {
+        Original = 0x0006,
+        Voyage = 0x0007
+    }
+
 	public enum LotOrientation : byte
 	{
 		Below = 0,
@@ -57,6 +63,8 @@ namespace SimPe.Plugin
 			Dorm = 0x02,
 			Greek = 0x03,
 			Secret = 0x04,
+            Hotel = 0x05,
+            Appartements = 0x06,
 			Unknown = 0xff
 		}
 
@@ -70,6 +78,7 @@ namespace SimPe.Plugin
 		ushort ver;
 		float groundlevel;
 		uint inst, owner;
+        Single unknown_5;
 
 		public SimPe.Interfaces.Providers.ILotItem LotDescription
 		{
@@ -247,7 +256,7 @@ namespace SimPe.Plugin
 				"Lot Description Wrapper",
 				"Quaxi",
 				"This File contains the Description for a Lot.",
-				5,
+				6,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ltxt.png"))
 				); 
 		}
@@ -276,7 +285,9 @@ namespace SimPe.Plugin
 			this.unknown_3.Clear();
 			int len = reader.ReadInt32();			
 			for (int i=0; i<len; i++) 			
-				this.unknown_3.Add(reader.ReadInt32());			
+				this.unknown_3.Add(reader.ReadInt32());
+
+            if (unknown_2 >= (UInt16)LtxtSubVersion.Voyage) unknown_5 = reader.ReadSingle();
 
 			int y = reader.ReadInt32();
 			int x = reader.ReadInt32();
@@ -321,6 +332,7 @@ namespace SimPe.Plugin
 			foreach (int i in unknown_3)
 				writer.Write(i);
 
+            if (unknown_2 >= (UInt16)LtxtSubVersion.Voyage) writer.Write(unknown_5);
 			writer.Write((int)loc.Y);
 			writer.Write((int)loc.X);			
 			writer.Write(groundlevel);

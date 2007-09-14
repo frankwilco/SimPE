@@ -44,7 +44,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Extended Sim Description Wrapper",
 				"Quaxi",
 				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
-				3,
+				4,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.sdsc.png"))				
 				); 
 		}
@@ -464,6 +464,9 @@ namespace SimPe.PackedFiles.Wrapper
                 if ((int)this.Version >= (int)SDescVersions.Pets)
                     list.Add(SimPe.Serializer.SerializeTypeHeader(this.Pets));
 
+                if ((int)this.Version >= (int)SDescVersions.Voyage)
+                    list.Add(SimPe.Serializer.SerializeTypeHeader(this.Voyage));
+
 				return Serializer.ConcatHeader(Serializer.ConvertArrayList(list));
 			}
 		}
@@ -483,7 +486,10 @@ namespace SimPe.PackedFiles.Wrapper
                 if ((int)this.Version >= (int)SDescVersions.Pets)
                     list.Add(this.Pets.ToString());
 
-				return Serializer.Concat(Serializer.ConvertArrayList(list));
+                if ((int)this.Version >= (int)SDescVersions.Voyage)
+                    list.Add(this.Voyage.ToString());
+				
+                return Serializer.Concat(Serializer.ConvertArrayList(list));
 			}
 		}
 

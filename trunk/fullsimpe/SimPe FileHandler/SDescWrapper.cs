@@ -1264,8 +1264,10 @@ namespace SimPe.PackedFiles.Wrapper
         internal SdscVoyage()
         {
             daysleft = 0;
+            fl1 = 0; fl2 = 0;
         }
 
+        UInt32 fl1, fl2;
         ushort daysleft;
         public ushort DaysLeft
         {
@@ -1284,6 +1286,22 @@ namespace SimPe.PackedFiles.Wrapper
         {
             writer.BaseStream.Seek(0x19C, SeekOrigin.Begin);
             writer.Write((ushort)this.daysleft);
+        }
+
+        internal void UnserializeMem(BinaryReader reader)
+        {
+            fl1 = 0; fl2 = 0;
+            while (reader.BaseStream.Position < reader.BaseStream.Length-2)
+            {
+                fl1 = reader.ReadUInt32();
+                fl2 = reader.ReadUInt32();
+            }
+        }
+
+        internal void SerializeMem(BinaryWriter writer)
+        {
+            writer.Write(fl1);
+            writer.Write(fl2);
         }
     }
     #endregion
@@ -1822,7 +1840,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Sim Description Wrapper",
 				"Quaxi",
 				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
-				13,
+				14,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.sdsc.png"))				
 				); 
 		}
@@ -1921,6 +1939,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get 
 			{
+                if (version >= (int)SDescVersions.VoyageB) return 0x1A4 + 0xA; //0x19e + 0xa?
                 if (version >= (int)SDescVersions.Voyage) return 0x1A4 + 0xA; //0x19e + 0xa?
                 if (version >= (int)SDescVersions.Pets) return 0x19C + 0xA;
 				if (version>=(int)SDescVersions.Business) return 0x19A+0xA;
@@ -2054,10 +2073,15 @@ namespace SimPe.PackedFiles.Wrapper
 				relations.SimInstances = new ushort[ct];
 				for (int i=0; i<ct; i++) relations.SimInstances[i] = old[i];
 			}
+
             if (reader.BaseStream.Length - reader.BaseStream.Position > 0)
                 enddata = reader.ReadByte();
             else
                 enddata = 0x01;
+
+            if (version >= (int)SDescVersions.Voyage) voyage.UnserializeMem(reader);
+            
+            
 
 			//character (Genetic)
 			reader.BaseStream.Seek(startpos + 0x6A, System.IO.SeekOrigin.Begin);
@@ -2110,7 +2134,7 @@ namespace SimPe.PackedFiles.Wrapper
             if (version >= (int)SDescVersions.Pets)
                 pets.Serialize(reader);
 
-            //pets only Items
+            //voyage only Items
             if (version >= (int)SDescVersions.Voyage)
                 voyage.Serialize(reader);
 
@@ -2212,7 +2236,10 @@ namespace SimPe.PackedFiles.Wrapper
 
 			for (int i=0; i<relations.SimInstances.Length; i++)											
 				writer.Write((uint)relations.SimInstances[i]);
+            
             writer.Write((byte)enddata);
+            if (version >= (int)SDescVersions.Voyage) voyage.SerializeMem(writer);
+            
 
 			//skills
 			writer.BaseStream.Seek(startpos + 0x1E, System.IO.SeekOrigin.Begin);

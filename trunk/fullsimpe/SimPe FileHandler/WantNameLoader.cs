@@ -115,7 +115,10 @@ namespace SimPe.Plugin
             System.Collections.Generic.Dictionary<SimPe.PackedFiles.Wrapper.SDescVersions,string> vmap = new System.Collections.Generic.Dictionary<SimPe.PackedFiles.Wrapper.SDescVersions,string>();
             foreach (ExpansionItem ei in PathProvider.Global.Expansions) {
                 if (ei.Flag.Class == ExpansionItem.Classes.ExpansionPack) {
-                    vmap [SimPe.PackedFiles.Wrapper.SDesc.GetMinVersion(ei.Expansion)] = ei.InstallFolder.Trim().ToLower();
+                    SimPe.PackedFiles.Wrapper.SDescVersions ver = SimPe.PackedFiles.Wrapper.SDesc.GetMinVersion(ei.Expansion);
+                    vmap [ver] = ei.InstallFolder.Trim().ToLower();
+                    if (ver == SimPe.PackedFiles.Wrapper.SDescVersions.Voyage) 
+                        vmap[SimPe.PackedFiles.Wrapper.SDescVersions.VoyageB] = ei.InstallFolder.Trim().ToLower(); 
                 }
             }
 			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 			
