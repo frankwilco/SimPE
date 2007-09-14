@@ -242,6 +242,23 @@ namespace SimPe.PackedFiles.UserInterface
 			this.groupBox2.Refresh();
 		}
 
+        static string subKey = "ExtObdjForm";
+        private int InitialTab
+        {
+            get
+            {
+                XmlRegistryKey rkf = Helper.WindowsRegistry.RegistryKey.CreateSubKey(subKey);
+                object o = rkf.GetValue("initialTab", 0);
+                return Convert.ToInt16(o);
+            }
+
+            set
+            {
+                XmlRegistryKey rkf = Helper.WindowsRegistry.RegistryKey.CreateSubKey(subKey);
+                rkf.SetValue("initialTab", value);
+            }
+
+        }
 		#endregion
 
 		#region IPackedFileUI Member
@@ -267,7 +284,8 @@ namespace SimPe.PackedFiles.UserInterface
 				if (Helper.WindowsRegistry.HiddenMode) 
 					this.lbIsOk.Text = "Please commit! ("+objd.Ok.ToString()+")";				
 				this.pg.SelectedObject = null;
-				this.tc.SelectedTab = this.tpcatalogsort;				
+				//this.tc.SelectedTab = this.tpcatalogsort;	
+                this.tc.SelectedIndex = InitialTab;
 
 				this.cbtype.SelectedIndex = 0;
 				for (int i=0; i<this.cbtype.Items.Count; i++)
@@ -1198,6 +1216,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 		private void CangedTab(object sender, System.EventArgs e)
 		{
+            InitialTab = tc.SelectedIndex;
 			if (tc.SelectedTab == tpraw)
 			{
 				rbhex.Checked = (Ambertation.BaseChangeableNumber.DigitBase==16);

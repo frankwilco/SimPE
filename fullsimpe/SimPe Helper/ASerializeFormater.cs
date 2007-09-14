@@ -63,7 +63,7 @@ namespace SimPe
 		
 		public virtual string SerializeTGIHeader()
 		{
-			return "Name"+Seperator+"Type"+Seperator+"Group"+Seperator+"Instance (Hi)"+Seperator+"Instance"+Seperator;
+			return "Name"+Seperator+"Type"+Seperator+"Group"+Seperator+"InstanceHi"+Seperator+"Instance"+Seperator;
 		}
 
 		public virtual string SerializeHeader(Object o, Type t, PropertyInfo[] ps)

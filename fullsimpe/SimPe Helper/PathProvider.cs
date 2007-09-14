@@ -19,7 +19,7 @@ namespace SimPe
         Celebrations =      0x200,
         Seasons =           0x100,
         Fashion =           0x400,
-        BonVoyage =         0x800,
+        Voyage =            0x800,
         LifeStories =       0x00100000,
         PetStories =        0x00200000,
         IslandStories =     0x00400000,
