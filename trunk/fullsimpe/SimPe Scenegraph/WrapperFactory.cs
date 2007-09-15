@@ -43,16 +43,31 @@ namespace SimPe.Plugin
 				inited = true;
 			}
 		}
+        /// <summary>
+		/// Loads the GroupCache
+		/// </summary>
+        public static void LoadGroupCache()
+        {
+            LoadGroupCache(false);
+        }
 
 		/// <summary>
 		/// Loads the GroupCache
 		/// </summary>
-		public static void LoadGroupCache()
+        /// <param name="force">Will force the load of the GroupsCache even 
+        /// if <see cref="Helper.WindowsRegistry.UseMaxisGroupsCache"/> is set to false</param>
+		public static void LoadGroupCache(bool force)
 		{
-			if (FileTable.GroupCache!=null) return;
+            if (FileTable.GroupCache != null ) return;
 
 
 			SimPe.PackedFiles.Wrapper.GroupCache gc = new SimPe.PackedFiles.Wrapper.GroupCache();
+
+            if (!Helper.WindowsRegistry.UseMaxisGroupsCache && !force)
+            {
+                FileTable.GroupCache = gc;
+                return;
+            }
 			try 
 			{
                 string name = System.IO.Path.Combine(PathProvider.SimSavegameFolder, "Groups.cache");

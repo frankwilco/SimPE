@@ -22,6 +22,7 @@ using System.Collections;
 using SimPe.Interfaces.Providers;
 using SimPe.Interfaces.Files;
 using SimPe.PackedFiles.Wrapper;
+using System.Xml;
 
 namespace SimPe.Providers
 {
@@ -233,14 +234,14 @@ namespace SimPe.Providers
 
 		public uint BuildTurnOnIndex(ushort val1, ushort val2)
 		{
-			return (uint)((val2 << 14) + val1);
+			return (uint)((val2 << 16) + val1); //14
 		}
 
 		public ushort[] GetFromTurnOnIndex(uint index)
 		{
 			ushort[] ret = new ushort[2];
-			ret[1] = (ushort)(index >> 14);
-			ret[0] = (ushort)(index & 0x3FFF);
+			ret[1] = (ushort)(index >> 16); //14
+			ret[0] = (ushort)(index & 0xFFFF); //0x3FFF
 			
 			return ret;
 		}
@@ -270,6 +271,192 @@ namespace SimPe.Providers
 			return ret;
 		}
 		#endregion
+
+        #region Voyage Vacation Collectibles
+        System.Collections.Generic.Dictionary<int, CollectibleAlias> collectibles;
+        void LoadCollectibles()
+        {
+            if (collectibles != null) return;
+            collectibles = new System.Collections.Generic.Dictionary<int, CollectibleAlias>();
+            if (SimPe.PathProvider.Global.EPInstalled < 11) return;
+            
+            SimPe.Packages.File pkg = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.Global.Latest.InstallFolder, @"TSData\Res\Text\UIText.package"));
+            SimPe.PackedFiles.Wrapper.Str str = new Str();
+            SimPe.Interfaces.Files.IPackedFileDescriptor pfd = pkg.FindFile(Data.MetaData.STRING_FILE, 0, Data.MetaData.LOCAL_GROUP, 0xb7);
+            if (pfd != null)
+            {
+                str.ProcessData(pfd, pkg);
+                SimPe.PackedFiles.Wrapper.StrItemList strs = str.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode);
+
+                
+                    
+                pkg = SimPe.Packages.File.LoadFromFile(System.IO.Path.Combine(PathProvider.Global.Latest.InstallFolder, @"TSData\Res\UI\ui.package"));
+                pfd = pkg.FindFile(0, 0, 0xA99D8A11, 0xACDC6300);
+                if (pfd != null)
+                {
+                    try
+                    {
+                        SimPe.PackedFiles.Wrapper.Xml xml = new SimPe.PackedFiles.Wrapper.Xml();
+                        xml.ProcessData(pfd, pkg);
+
+
+                        string[] lines = xml.Text.Split(new char[] { '\r' });
+                        SimPe.PackedFiles.Wrapper.Picture pic = new Picture();
+                        SimPe.FileTable.FileIndex.Load();
+                        foreach (string fulline in lines)
+                        {
+                            string line = fulline.ToLower().Trim();
+                            if (line.StartsWith("<legacy") && line.IndexOf("enabled\"") > 0 && line.IndexOf("tipres=") >= 0)
+                            {
+                                line = line.Replace("<legacy", "").Replace(">", "").Trim();
+                                string tipres = GetUIListAttribute(line, "tipres");
+                                int index = Helper.StringToInt32(tipres.Split(new char[] { ',' })[1], 0, 16) & 0xFFFF;
+                                int testnr = (int)((Helper.StringToInt32(tipres.Split(new char[] { ',' })[1], 0, 16) & 0xFFFF0000) >> 16);
+
+                                if (index > 0 && testnr == 0xb7)
+                                {
+                                    index = CreateCollectibleAlias(strs, pic, line, index);
+                                }
+                            }
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        System.Diagnostics.Debug.WriteLine("ERROR during Voyage Collectible Image Parsing:\n" + e.ToString());
+                        if (Helper.DebugMode) Helper.ExceptionMessage(e);
+                    }
+                }
+            }
+        }
+
+        private int CreateCollectibleAlias(SimPe.PackedFiles.Wrapper.StrItemList strs, SimPe.PackedFiles.Wrapper.Picture pic, string line, int index)
+        {
+            index--;
+            string image = GetUIListAttribute(line, "image");
+            string id = GetUIAttribute(line, "id");
+            int nr = Helper.StringToInt32(id, 0, 16) / 2 - 1;
+            string[] stgi = image.Split(new char[] { ',' });
+            UInt32 g = Helper.StringToUInt32(stgi[0], 0, 16);
+            UInt32 i = Helper.StringToUInt32(stgi[1], 0, 16);
+            string name = GetUITextAttribute(line, "tiptext");
+            if (index < strs.Count) name = strs[index].Title;
+
+            System.Drawing.Image img = null;
+
+            img = LoadCollectibleIcon(pic, g, i);
+
+            collectibles[nr] = new CollectibleAlias((ulong)Math.Pow(2, nr), nr, name, img);
+            return index;
+        }
+
+        private static System.Drawing.Image LoadCollectibleIcon(SimPe.PackedFiles.Wrapper.Picture pic, UInt32 g, UInt32 i)
+        {
+            SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = SimPe.FileTable.FileIndex.FindFileByGroupAndInstance(g, i);
+            if (items.Length > 0)
+            {
+                pic.ProcessData(items[0]);
+                System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(pic.Image.Width / 4, pic.Image.Height);
+                System.Drawing.Graphics gr = System.Drawing.Graphics.FromImage(bmp);
+                gr.DrawImage(pic.Image, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), System.Drawing.GraphicsUnit.Pixel);
+                gr.Dispose();
+                return bmp;
+            }
+            return null;
+        }
+
+        private static string GetUIListAttribute(string line, string name)
+        {
+            line = " " + line+" ";
+            int p = line.IndexOf(" "+name+"={");
+            string tipres = line.Substring(p+(" "+name+"={").Length);
+            p = tipres.IndexOf("} ");
+            tipres = tipres.Substring(0, p);
+
+            return tipres;
+        }
+
+        private static string GetUIAttribute(string line, string name)
+        {
+            line = " " + line + " ";
+            int p = line.IndexOf(" "+name + "=");
+            string tipres = line.Substring(p + (" "+name + "=").Length);
+            p = tipres.IndexOf(' ');
+            tipres = tipres.Substring(0, p);
+
+            return tipres;
+        }
+
+        private static string GetUITextAttribute(string line, string name)
+        {
+            line = " " + line + " ";
+            int p = line.IndexOf(" "+name + "=\"");
+            string tipres = line.Substring(p + (" "+name + "=\"").Length);
+            p = tipres.IndexOf("\" ");
+            tipres = tipres.Substring(0, p);
+
+            return tipres;
+        }
+
+        
+
+
+
+        public SimPe.Providers.CollectibleAlias[] GetAllCollectibles()
+        {
+            if (collectibles == null) LoadCollectibles();
+            SimPe.Providers.CollectibleAlias[] a = new SimPe.Providers.CollectibleAlias[collectibles.Count];
+
+            int ct = 0;
+            foreach (int k in collectibles.Keys)
+            {
+                a[ct++] = collectibles[k];
+            }
+
+            return a;
+        }
+
+        public ulong BuildCollectibleIndex(ushort val1, ushort val2, ushort val3, ushort val4)
+        {
+            return (uint)(((((val4 << 16) + val3) << 16) + val2) << 16) +val1;
+        }
+
+        public ushort[] GetFromCollectibleIndex(ulong index)
+        {
+            ushort[] ret = new ushort[2];
+            ret[3] = (ushort)((index >> 48) & 0xFFFF);
+            ret[2] = (ushort)((index >> 32) & 0xFFFF);
+            ret[1] = (ushort)((index >> 16) & 0xFFFF);
+            ret[0] = (ushort)((index & 0xFFFF));
+
+            return ret;
+        }
+
+
+        public string GetCollectibleName(ushort val1, ushort val2, ushort val3, ushort val4)
+        {
+            if (collectibles == null) LoadCollectibles();
+
+            ulong v = BuildCollectibleIndex(val1, val2, val3, val4);
+            string ret = "";
+            int ct = 0;
+            while (v > 0)
+            {
+                ulong s = v & 1;
+                if (s == 1)
+                {
+                    object o = collectibles[ct];
+                    if (o == null) return SimPe.Localization.GetString("Unknown");
+                    if (ret != "") ret += ", ";
+                    ret += o.ToString();
+                }
+
+                v = v >> 1;
+            }
+
+            return ret;
+        }
+        #endregion
 
 		/// <summary>
 		/// Called if the BaseBackae was changed

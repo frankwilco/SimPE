@@ -1264,15 +1264,21 @@ namespace SimPe.PackedFiles.Wrapper
         internal SdscVoyage()
         {
             daysleft = 0;
-            fl1 = 0; fl2 = 0;
+            collect = 0;
         }
 
-        UInt32 fl1, fl2;
+        UInt64 collect;
         ushort daysleft;
         public ushort DaysLeft
         {
             get { return daysleft; }
             set { daysleft = value; }
+        }
+
+        public ulong CollectiblesPlain
+        {
+            get { return collect; }
+            set { collect = value; }
         }
 
 
@@ -1290,18 +1296,16 @@ namespace SimPe.PackedFiles.Wrapper
 
         internal void UnserializeMem(BinaryReader reader)
         {
-            fl1 = 0; fl2 = 0;
-            while (reader.BaseStream.Position < reader.BaseStream.Length-2)
+            collect = 0; 
+            if (reader.BaseStream.Position <= reader.BaseStream.Length-8)
             {
-                fl1 = reader.ReadUInt32();
-                fl2 = reader.ReadUInt32();
+                collect = reader.ReadUInt64();
             }
         }
 
         internal void SerializeMem(BinaryWriter writer)
         {
-            writer.Write(fl1);
-            writer.Write(fl2);
+            writer.Write(collect);
         }
     }
     #endregion

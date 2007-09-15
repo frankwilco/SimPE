@@ -524,6 +524,25 @@ namespace SimPe
 			}
 		}
 
+        /// <summary>
+        /// true, if Groups cache is going to be used
+        /// </summary>
+        [System.ComponentModel.Description("Enable this if some thumbnails from custom packages do not load right. This will slow down the loading of the first package in a SimPE Session")]
+        public bool UseMaxisGroupsCache
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("UseMaxisGroupsCache", false);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("UseMaxisGroupsCache", value);
+            }
+        }
+
 		/// <summary>
 		/// true, if the user wanted to decode Filenames
 		/// </summary>
