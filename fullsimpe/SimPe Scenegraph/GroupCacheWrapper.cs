@@ -156,6 +156,7 @@ namespace SimPe.PackedFiles.Wrapper
 			maxgroup = 0x6f000000;
 			items.Clear();
 			map.Clear();
+            //return;
 			id = reader.ReadUInt32();
 			uint ct = reader.ReadUInt32();
 			

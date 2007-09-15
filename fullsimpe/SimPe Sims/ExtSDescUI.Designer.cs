@@ -80,6 +80,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.biEP1 = new System.Windows.Forms.ToolStripButton();
             this.biEP2 = new System.Windows.Forms.ToolStripButton();
             this.biEP3 = new System.Windows.Forms.ToolStripButton();
+            this.biEP6 = new System.Windows.Forms.ToolStripButton();
             this.biMore = new System.Windows.Forms.ToolStripButton();
             this.biMax = new System.Windows.Forms.ToolStripButton();
             this.mbiMax = new System.Windows.Forms.ToolStripMenuItem();
@@ -211,8 +212,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.dstTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.pnMisc = new System.Windows.Forms.Panel();
             this.xpTaskBoxSimple3 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
-            this.label27 = new System.Windows.Forms.Label();
-            this.tbhdaysleft = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbstatmot = new System.Windows.Forms.TextBox();
             this.label96 = new System.Windows.Forms.Label();
@@ -275,6 +274,12 @@ namespace SimPe.PackedFiles.UserInterface
             this.tbEp3Lot = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.pnVoyage = new System.Windows.Forms.Panel();
+            this.lvCollectibles = new System.Windows.Forms.ListView();
+            this.ilCollectibles = new System.Windows.Forms.ImageList(this.components);
+            this.tbhdaysleft = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.labelcol = new System.Windows.Forms.Label();
             this.pnPetInt.SuspendLayout();
             this.toolBar1.SuspendLayout();
             this.pnId.SuspendLayout();
@@ -298,6 +303,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnEP2.SuspendLayout();
             this.pnEP3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pnVoyage.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnPetInt
@@ -510,6 +516,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.biEP1,
             this.biEP2,
             this.biEP3,
+            this.biEP6,
             this.biMore,
             this.biMax});
             this.toolBar1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
@@ -604,6 +611,15 @@ namespace SimPe.PackedFiles.UserInterface
             this.biEP3.BackgroundImage = null;
             this.biEP3.Name = "biEP3";
             this.biEP3.Click += new System.EventHandler(this.ChoosePage);
+            // 
+            // biEP6
+            // 
+            this.biEP6.AccessibleDescription = null;
+            this.biEP6.AccessibleName = null;
+            resources.ApplyResources(this.biEP6, "biEP6");
+            this.biEP6.BackgroundImage = null;
+            this.biEP6.Name = "biEP6";
+            this.biEP6.Click += new System.EventHandler(this.ChoosePage);
             // 
             // biMore
             // 
@@ -2421,8 +2437,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpTaskBoxSimple3.BackgroundImage = null;
             this.xpTaskBoxSimple3.BodyColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.xpTaskBoxSimple3.BorderColor = System.Drawing.SystemColors.Window;
-            this.xpTaskBoxSimple3.Controls.Add(this.label27);
-            this.xpTaskBoxSimple3.Controls.Add(this.tbhdaysleft);
             this.xpTaskBoxSimple3.Controls.Add(this.label3);
             this.xpTaskBoxSimple3.Controls.Add(this.tbstatmot);
             this.xpTaskBoxSimple3.Controls.Add(this.label96);
@@ -2446,22 +2460,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpTaskBoxSimple3.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
             this.xpTaskBoxSimple3.Name = "xpTaskBoxSimple3";
             this.xpTaskBoxSimple3.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-            // 
-            // label27
-            // 
-            this.label27.AccessibleDescription = null;
-            this.label27.AccessibleName = null;
-            resources.ApplyResources(this.label27, "label27");
-            this.label27.Name = "label27";
-            // 
-            // tbhdaysleft
-            // 
-            this.tbhdaysleft.AccessibleDescription = null;
-            this.tbhdaysleft.AccessibleName = null;
-            resources.ApplyResources(this.tbhdaysleft, "tbhdaysleft");
-            this.tbhdaysleft.BackgroundImage = null;
-            this.tbhdaysleft.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbhdaysleft.Name = "tbhdaysleft";
             // 
             // label3
             // 
@@ -3112,36 +3110,101 @@ namespace SimPe.PackedFiles.UserInterface
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
             // 
+            // pnVoyage
+            // 
+            this.pnVoyage.AccessibleDescription = null;
+            this.pnVoyage.AccessibleName = null;
+            resources.ApplyResources(this.pnVoyage, "pnVoyage");
+            this.pnVoyage.BackColor = System.Drawing.Color.Transparent;
+            this.pnVoyage.BackgroundImage = null;
+            this.pnVoyage.Controls.Add(this.lvCollectibles);
+            this.pnVoyage.Controls.Add(this.tbhdaysleft);
+            this.pnVoyage.Controls.Add(this.label29);
+            this.pnVoyage.Controls.Add(this.labelcol);
+            this.pnVoyage.Name = "pnVoyage";
+            // 
+            // lvCollectibles
+            // 
+            this.lvCollectibles.AccessibleDescription = null;
+            this.lvCollectibles.AccessibleName = null;
+            resources.ApplyResources(this.lvCollectibles, "lvCollectibles");
+            this.lvCollectibles.BackgroundImage = null;
+            this.lvCollectibles.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvCollectibles.CheckBoxes = true;
+            this.lvCollectibles.Font = null;
+            this.lvCollectibles.HideSelection = false;
+            this.lvCollectibles.LargeImageList = this.ilCollectibles;
+            this.lvCollectibles.MultiSelect = false;
+            this.lvCollectibles.Name = "lvCollectibles";
+            this.lvCollectibles.ShowGroups = false;
+            this.lvCollectibles.SmallImageList = this.ilCollectibles;
+            this.lvCollectibles.UseCompatibleStateImageBehavior = false;
+            this.lvCollectibles.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvCollectibles_ItemChecked);
+            this.lvCollectibles.SelectedIndexChanged += new System.EventHandler(this.ChangedEP6);
+            // 
+            // ilCollectibles
+            // 
+            this.ilCollectibles.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            resources.ApplyResources(this.ilCollectibles, "ilCollectibles");
+            this.ilCollectibles.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // tbhdaysleft
+            // 
+            this.tbhdaysleft.AccessibleDescription = null;
+            this.tbhdaysleft.AccessibleName = null;
+            resources.ApplyResources(this.tbhdaysleft, "tbhdaysleft");
+            this.tbhdaysleft.BackgroundImage = null;
+            this.tbhdaysleft.Font = null;
+            this.tbhdaysleft.Name = "tbhdaysleft";
+            this.tbhdaysleft.TextChanged += new System.EventHandler(this.ChangedEP6);
+            // 
+            // label29
+            // 
+            this.label29.AccessibleDescription = null;
+            this.label29.AccessibleName = null;
+            resources.ApplyResources(this.label29, "label29");
+            this.label29.Name = "label29";
+            // 
+            // labelcol
+            // 
+            this.labelcol.AccessibleDescription = null;
+            this.labelcol.AccessibleName = null;
+            resources.ApplyResources(this.labelcol, "labelcol");
+            this.labelcol.Name = "labelcol";
+            this.labelcol.Click += new System.EventHandler(this.lbcollectibles_Click);
+            // 
             // ExtSDesc
             // 
             this.AccessibleDescription = null;
             this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.BackgroundImage = null;
+            this.Controls.Add(this.pnVoyage);
+            this.Controls.Add(this.pnEP2);
             this.Controls.Add(this.toolBar1);
             this.Controls.Add(this.pnMisc);
             this.Controls.Add(this.pnRel);
             this.Controls.Add(this.pnCareer);
             this.Controls.Add(this.pnEP1);
-            this.Controls.Add(this.pnEP3);
             this.Controls.Add(this.pnSkill);
-            this.Controls.Add(this.pnEP2);
             this.Controls.Add(this.pnInt);
             this.Controls.Add(this.pnChar);
             this.Controls.Add(this.pnId);
+            this.Controls.Add(this.pnEP3);
             this.HeaderText = null;
             this.Name = "ExtSDesc";
+            this.Controls.SetChildIndex(this.pnEP3, 0);
             this.Controls.SetChildIndex(this.pnId, 0);
             this.Controls.SetChildIndex(this.pnChar, 0);
             this.Controls.SetChildIndex(this.pnInt, 0);
-            this.Controls.SetChildIndex(this.pnEP2, 0);
             this.Controls.SetChildIndex(this.pnSkill, 0);
-            this.Controls.SetChildIndex(this.pnEP3, 0);
             this.Controls.SetChildIndex(this.pnEP1, 0);
             this.Controls.SetChildIndex(this.pnCareer, 0);
             this.Controls.SetChildIndex(this.pnRel, 0);
             this.Controls.SetChildIndex(this.pnMisc, 0);
             this.Controls.SetChildIndex(this.toolBar1, 0);
+            this.Controls.SetChildIndex(this.pnEP2, 0);
+            this.Controls.SetChildIndex(this.pnVoyage, 0);
             this.pnPetInt.ResumeLayout(false);
             this.toolBar1.ResumeLayout(false);
             this.toolBar1.PerformLayout();
@@ -3172,6 +3235,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnEP3.ResumeLayout(false);
             this.pnEP3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.pnVoyage.ResumeLayout(false);
+            this.pnVoyage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3395,7 +3460,12 @@ namespace SimPe.PackedFiles.UserInterface
         private Label label23;
         private Label label22;
         private ToolStripMenuItem miOpenSCOR;
-        private Label label27;
-        internal TextBox tbhdaysleft;
+        private ToolStripButton biEP6;
+        private Panel pnVoyage;
+        private TextBox tbhdaysleft;
+        private Label label29;
+        private Label labelcol;
+        private ListView lvCollectibles;
+        private ImageList ilCollectibles;
     }
 }

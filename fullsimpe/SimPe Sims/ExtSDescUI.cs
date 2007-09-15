@@ -71,6 +71,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.biEP1.Tag = pnEP1;
 			this.biEP2.Tag = pnEP2;
 			this.biEP3.Tag = pnEP3;
+            this.biEP6.Tag = pnVoyage;
 			this.biInt.Tag = pnInt;
 			this.biRel.Tag = pnRel;
 			this.biMisc.Tag = pnMisc;
@@ -328,10 +329,12 @@ namespace SimPe.PackedFiles.UserInterface
 
 				this.biEP1.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.University;
 				this.biEP2.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife;
-				this.biEP3.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Business;                
+                this.biEP3.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Business;
+                this.biEP6.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Voyage;                 
 				if (pnEP1.Visible && !biEP1.Enabled) this.SelectButton(biId);
 				if (pnEP2.Visible && !biEP2.Enabled) this.SelectButton(biId);
-				if (pnEP3.Visible && !biEP3.Enabled) this.SelectButton(biId);
+                if (pnEP3.Visible && !biEP3.Enabled) this.SelectButton(biId);
+                if (pnVoyage.Visible && !biEP6.Enabled) this.SelectButton(biId);
 
                 
 				if (biEP1.Enabled) RefreshEP1(Sdesc);
@@ -339,6 +342,7 @@ namespace SimPe.PackedFiles.UserInterface
                 else cbSpecies.SelectedValue = SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType.Human;
 				if (biEP3.Enabled) RefreshEP3(Sdesc);
                 RefreshEP4(Sdesc);
+                if (biEP6.Enabled) RefreshEP6(Sdesc);
 
                 this.cbSpecies.Enabled = biEP2.Enabled;
 
@@ -420,7 +424,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbnpc.Text = "0x"+Helper.HexString(sdesc.CharacterDescription.NPCType);
 			tbstatmot.Text = "0x"+Helper.HexString(sdesc.CharacterDescription.MotivesStatic);
 
-            tbhdaysleft.Text = sdesc.Voyage.DaysLeft.ToString();
+            
 		}
 
 		void RefreshId(Wrapper.ExtSDesc sdesc)
@@ -997,7 +1001,7 @@ namespace SimPe.PackedFiles.UserInterface
 				Sdesc.CharacterDescription.NPCType = Helper.StringToUInt16(this.tbnpc.Text, Sdesc.CharacterDescription.NPCType, 16);
 				Sdesc.CharacterDescription.MotivesStatic = Helper.StringToUInt16(this.tbstatmot.Text, Sdesc.CharacterDescription.MotivesStatic, 16);
 
-                Sdesc.Voyage.DaysLeft = Helper.StringToUInt16(tbhdaysleft.Text, Sdesc.Voyage.DaysLeft, 10);
+                
 				Sdesc.Changed = true;
 			} 
 			finally 
@@ -1512,7 +1516,7 @@ namespace SimPe.PackedFiles.UserInterface
 			for (int i=0; i<clb.Items.Count; i++)
 			{
 				uint val = ((SimPe.Interfaces.IAlias)clb.Items[i]).Id;
-				clb.SetItemChecked(i, ((cur&val)==val));
+				clb.SetItemChecked(i, ((cur&val)==val)&&val!=0);
 			}
 		}
 
@@ -1534,11 +1538,106 @@ namespace SimPe.PackedFiles.UserInterface
 
 			this.tbNTPerfume.Text = sdesc.Nightlife.PerfumeDuration.ToString();
 			this.tbNTLove.Text = sdesc.Nightlife.LovePotionDuration.ToString();
-            cbSpecies.SelectedValue = sdesc.Nightlife.Species;            
+            cbSpecies.SelectedValue = sdesc.Nightlife.Species;
 
-		}
+        }
+        private void lbTraits_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (intern) return;
+            ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTraits));
+            Sdesc.Nightlife.AttractionTraits1 = v[0];
+            Sdesc.Nightlife.AttractionTraits2 = v[1];
+        }
 
-		void RefreshEP3(Wrapper.ExtSDesc sdesc)
+        private void lbTurnOn_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (intern) return;
+            ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOn));
+            Sdesc.Nightlife.AttractionTurnOns1 = v[0];
+            Sdesc.Nightlife.AttractionTurnOns2 = v[1];
+        }
+
+        private void lbTurnOff_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (intern) return;
+            ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOff));
+            Sdesc.Nightlife.AttractionTurnOffs1 = v[0];
+            Sdesc.Nightlife.AttractionTurnOffs2 = v[1];
+        }
+
+        private void ChangedEP2(object sender, System.EventArgs e)
+        {
+            if (intern) return;
+            intern = true;
+            try
+            {
+                Sdesc.Nightlife.PerfumeDuration = Helper.StringToUInt16(this.tbNTPerfume.Text, Sdesc.Nightlife.PerfumeDuration, 10);
+                Sdesc.Nightlife.LovePotionDuration = Helper.StringToUInt16(this.tbNTLove.Text, Sdesc.Nightlife.LovePotionDuration, 10);
+                Sdesc.Nightlife.Species = (SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType)cbSpecies.SelectedValue;
+
+                Sdesc.Changed = true;
+            }
+            finally
+            {
+                intern = false;
+            }
+        }
+
+        #endregion
+
+        #region Bon Voyage
+        void ShowAllCollectibles()
+        {
+            if (lvCollectibles.Items.Count > 0) return;
+            SimPe.Providers.CollectibleAlias[] al = FileTable.ProviderRegistry.SimDescriptionProvider.GetAllCollectibles();
+            foreach (SimPe.Providers.CollectibleAlias a in al)
+            {
+                ilCollectibles.Images.Add(a.Image);
+                ListViewItem lvi = new ListViewItem(a.ToString(), ilCollectibles.Images.Count-1);
+                lvi.Tag = a;
+                lvCollectibles.Items.Add(lvi);
+            }
+        }
+
+
+        void RefreshEP6(Wrapper.ExtSDesc sdesc)
+        {
+            ShowAllCollectibles();
+            tbhdaysleft.Text = sdesc.Voyage.DaysLeft.ToString();
+
+            foreach (ListViewItem lvi in lvCollectibles.Items){
+                SimPe.Providers.CollectibleAlias a = (SimPe.Providers.CollectibleAlias)lvi.Tag;
+                lvi.Checked = (a.Id & sdesc.Voyage.CollectiblesPlain) == a.Id;
+            }
+        }
+
+        private void ChangedEP6(object sender, System.EventArgs e)
+        {
+            if (intern) return;
+            intern = true;
+            try
+            {
+                if ((int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Voyage)
+                {
+                    Sdesc.Voyage.CollectiblesPlain = 0;
+                    Sdesc.Voyage.DaysLeft = Helper.StringToUInt16(tbhdaysleft.Text, Sdesc.Voyage.DaysLeft, 10);
+                    foreach (ListViewItem lvi in lvCollectibles.Items)
+                    {
+                        SimPe.Providers.CollectibleAlias a = (SimPe.Providers.CollectibleAlias)lvi.Tag;
+                        if (lvi.Checked) Sdesc.Voyage.CollectiblesPlain = Sdesc.Voyage.CollectiblesPlain | a.Id;
+                    }
+
+                    Sdesc.Changed = true;
+                }
+            }
+            finally
+            {
+                intern = false;
+            }
+        }
+        #endregion
+
+        void RefreshEP3(Wrapper.ExtSDesc sdesc)
 		{
 			this.tbEp3Flag.Text = Helper.MinStrLength(Convert.ToString(sdesc.Business.Flags, 2), 16);
 			this.tbEp3Lot.Text = Helper.HexString(sdesc.Business.LotID);
@@ -1556,50 +1655,11 @@ namespace SimPe.PackedFiles.UserInterface
             this.ptAggres.SetTraitLevel(6, 7, sdesc.Pets.PetTraits);
             this.ptPigpen.SetTraitLevel(8, 9, sdesc.Pets.PetTraits);        
         }
+
+        
 		
 
-		private void lbTraits_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
-			if (intern) return;
-			ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTraits));
-			Sdesc.Nightlife.AttractionTraits1 = v[0];
-			Sdesc.Nightlife.AttractionTraits2 = v[1];
-		}
-
-		private void lbTurnOn_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
-			if (intern) return;
-			ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOn));
-			Sdesc.Nightlife.AttractionTurnOns1 = v[0];
-			Sdesc.Nightlife.AttractionTurnOns2 = v[1];
-		}
-
-		private void lbTurnOff_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
-			if (intern) return;
-			ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOff));
-			Sdesc.Nightlife.AttractionTurnOffs1 = v[0];
-			Sdesc.Nightlife.AttractionTurnOffs2 = v[1];
-		}
-
-		private void ChangedEP2(object sender, System.EventArgs e)
-		{
-			if (intern) return;
-			intern = true;
-			try 
-			{								
-				Sdesc.Nightlife.PerfumeDuration = Helper.StringToUInt16(this.tbNTPerfume.Text, Sdesc.Nightlife.PerfumeDuration, 10);
-				Sdesc.Nightlife.LovePotionDuration = Helper.StringToUInt16(this.tbNTLove.Text, Sdesc.Nightlife.LovePotionDuration, 10);
-                Sdesc.Nightlife.Species = (SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType)cbSpecies.SelectedValue;
-
-				Sdesc.Changed = true;
-			} 
-			finally 
-			{
-				intern = false;
-			}
-		}
-
+		
 		private void ChangedEP3(object sender, System.EventArgs e)
 		{
 			if (intern) return;
@@ -1641,7 +1701,10 @@ namespace SimPe.PackedFiles.UserInterface
             }
         }
 
-		#endregion
+        
+		
+
+
 
 		private void sblb_SelectedBusinessChanged(object sender, System.EventArgs e)
 		{
@@ -1721,6 +1784,16 @@ namespace SimPe.PackedFiles.UserInterface
             {
                 Helper.ExceptionMessage(ex);
             }
+        }
+
+        private void lbcollectibles_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvCollectibles_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            ChangedEP6(sender, e);
         }
 
        

@@ -121,8 +121,8 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALCgAA
-        CwoBv0NmUwAAAPRJREFUOE+lk1sOgjAQRXVZbsVPP9gH/67EuCY/eQqlpTwCJVemUHmqQSaZkJLce+6U
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK/gAA
+        Cv4B5iV4ZgAAAPRJREFUOE+lk1sOgjAQRXVZbsVPP9gH/67EuCY/eQqlpTwCJVemUHmqQSaZkJLce+6U
         4QjgsKvIYE9ruG3b2NoGqsX/lGVZJOvoVI7j4Ho5TZreua4Lz/MR+AHCMMQzisAYw8LAiPG4g5rOndhr
         xb4WRySOGXjCpwZr4nkaQ06SBEKIpYEhL563syaTIZFFKpBJORuhjz2OP09AZyFSyCxDnhffDdBSqUkU
         sxicE9mIc5Rl+cNgdJGcdzNLSeROXFXVyh301DFdz9zGztrYxUisavX5M5rZdWxNlsiLgVwrhUY1gwFt
@@ -142,8 +142,8 @@
   <data name="miOpenMem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAAAodJREFUOE+Nk21IU1EYx+/mC1MUp0Vgas1q1ERztKCwKIdQOItp1JeEMaGyUURBUSbY
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAAodJREFUOE+Nk21IU1EYx+/mC1MUp0Vgas1q1ERztKCwKIdQOItp1JeEMaGyUURBUSbY
         FkkQlGCBUh/8oh8KgqH0QhAjiF4w3MgaGmtztppubnfufbu7+3fu6kawCTvwcJ57z///e557zrkCABQ3
         BAJBZo69pOQF6w/dEFbu6UzSrykm+IEqSCNQyMKINGUoaacWOB3vyyT8Q9hIaRn7ENJsHKmYDfEVI7wf
         a7D8VgTPm2IEXwjBaXhAxscDVh9TrYlvxJwKIBW3I0FPIbr0AMHvPfBOVxBQOTzvSkE/KwCn/VeYTwJG
@@ -193,6 +193,9 @@
   </data>
   <data name="pnEP1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 80</value>
+  </data>
+  <data name="cbpregfull.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 72</value>
   </data>
   <data name="&gt;&gt;label22.Name" xml:space="preserve">
     <value>label22</value>
@@ -323,6 +326,9 @@
   <data name="&gt;&gt;pbCareerLevel.Name" xml:space="preserve">
     <value>pbCareerLevel</value>
   </data>
+  <data name="&gt;&gt;label29.Name" xml:space="preserve">
+    <value>label29</value>
+  </data>
   <data name="&gt;&gt;label26.Name" xml:space="preserve">
     <value>label26</value>
   </data>
@@ -377,11 +383,11 @@
   <data name="pnRel.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;label27.Name" xml:space="preserve">
-    <value>label27</value>
+  <data name="biInt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 49</value>
   </data>
-  <data name="pbPetAnimals.LabelText" xml:space="preserve">
-    <value>Animals:</value>
+  <data name="label101.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 136</value>
   </data>
   <data name="&gt;&gt;rbmale.Parent" xml:space="preserve">
     <value>pnId</value>
@@ -392,8 +398,8 @@
   <data name="miOpenWf.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDQAA
-        Cw0B7QfALAAAA01JREFUOE99k3lMk2kQxqcUkBhUNqhgjPuHboy4mHgbDdFNtG51LYiKB4QSQtQKSjg0
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALAQAA
+        CwEBNnBPWwAAA01JREFUOE99k3lMk2kQxqcUkBhUNqhgjPuHboy4mHgbDdFNtG51LYiKB4QSQtQKSjg0
         gtSry8oRYjyi4XLXBFZYL7T1ilWxEcWqtI1FgpyWowulKG2Rlvb7vsfPJkaTXZnkSWbemflN8r7vCGgM
         QzbNJz/qtPxLM4LGU9e402Qfq96bM28XxA+LKA2ZfrO5dRM97BbKYXcE5rpFAVVjNo/G+UW71wvkbLrv
         CnbDFCtKkh3Q5QLnlgGqVLCRvr1IFIiRQktHj/0PyrSPJg6sID2KtgLmCrBOFUZeJ8BeFw6XbjZQ8gNw
@@ -417,7 +423,7 @@
     <value>40</value>
   </data>
   <data name="&gt;&gt;toolBar1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 17</value>
@@ -428,8 +434,8 @@
   <data name="&gt;&gt;cbcareer.Parent" xml:space="preserve">
     <value>pnCareer</value>
   </data>
-  <data name="pbGPlayful.TextboxWidth" type="System.Int32, mscorlib">
-    <value>40</value>
+  <data name="biEP6.ToolTipText" xml:space="preserve">
+    <value>Bon Voyage</value>
   </data>
   <data name="&gt;&gt;pbToys.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -527,6 +533,9 @@
   <data name="pbPetPets.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 20</value>
   </data>
+  <data name="labelcol.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 17</value>
+  </data>
   <data name="&gt;&gt;tbinfluence.Name" xml:space="preserve">
     <value>tbinfluence</value>
   </data>
@@ -555,7 +564,10 @@
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="&gt;&gt;pnSkill.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;labelcol.Name" xml:space="preserve">
+    <value>labelcol</value>
   </data>
   <data name="&gt;&gt;label23.Name" xml:space="preserve">
     <value>label23</value>
@@ -663,7 +675,7 @@
     <value>64</value>
   </data>
   <data name="&gt;&gt;pnEP3.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>11</value>
   </data>
   <data name="cblifesection.ItemHeight" type="System.Int32, mscorlib">
     <value>13</value>
@@ -692,8 +704,8 @@
   <data name="&gt;&gt;cboncampus.Name" xml:space="preserve">
     <value>cboncampus</value>
   </data>
-  <data name="label27.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="pnEP2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
   </data>
   <data name="pbFat.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 32</value>
@@ -803,9 +815,6 @@
   <data name="label98.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 56</value>
   </data>
-  <data name="label11.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt, style=Bold</value>
-  </data>
   <data name="pbRomance.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 168</value>
   </data>
@@ -848,6 +857,9 @@
   <data name="lbTurnOff.HorizontalScrollbar" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;miOpenBadge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
@@ -876,7 +888,7 @@
     <value>label60</value>
   </data>
   <data name="&gt;&gt;tbagedur.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>pnId</value>
@@ -905,8 +917,8 @@
   <data name="ptGifted.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
   </data>
-  <data name="tbhdaysleft.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
+  <data name="biEP6.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;pbPetOutside.Name" xml:space="preserve">
     <value>pbPetOutside</value>
@@ -943,6 +955,9 @@
   </data>
   <data name="pbSchool.LabelWidth" type="System.Int32, mscorlib">
     <value>100</value>
+  </data>
+  <data name="&gt;&gt;cbfit.Type" xml:space="preserve">
+    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="lbTurnOn.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -1032,7 +1047,7 @@
     <value>pbParanormal</value>
   </data>
   <data name="&gt;&gt;tbunlinked.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="pbEffort.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -1154,8 +1169,11 @@
   <data name="ptIndep.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 20</value>
   </data>
-  <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="lvCollectibles.TabIndex" type="System.Int32, mscorlib">
+    <value>70</value>
+  </data>
+  <data name="pnEP2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="&gt;&gt;label21.Parent" xml:space="preserve">
     <value>pnPetChar</value>
@@ -1185,7 +1203,7 @@
     <value>Neat:</value>
   </data>
   <data name="&gt;&gt;tbnpc.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;label46.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1257,7 +1275,7 @@
     <value>biEP2</value>
   </data>
   <data name="&gt;&gt;label86.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>13</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 17</value>
@@ -1296,7 +1314,7 @@
     <value>tbautonomy</value>
   </data>
   <data name="&gt;&gt;label87.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -1331,11 +1349,11 @@
   <data name="pnSimInt.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 16</value>
   </data>
-  <data name="label27.Text" xml:space="preserve">
-    <value>Holidays left:</value>
-  </data>
   <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="pnVoyage.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
   <data name="pnSkill.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 80</value>
@@ -1344,7 +1362,7 @@
     <value>100, 17</value>
   </data>
   <data name="&gt;&gt;pnRel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="pbLastGrade.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 104</value>
@@ -1370,8 +1388,8 @@
   <data name="&gt;&gt;pnEP2.Name" xml:space="preserve">
     <value>pnEP2</value>
   </data>
-  <data name="&gt;&gt;label98.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="biEP6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 49</value>
   </data>
   <data name="label95.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
@@ -1411,6 +1429,9 @@
   </data>
   <data name="miOpenDNA.Text" xml:space="preserve">
     <value>Open Sim DNA</value>
+  </data>
+  <data name="&gt;&gt;label29.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;biRel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1581,6 +1602,9 @@
   <data name="&gt;&gt;tbstatmot.Parent" xml:space="preserve">
     <value>xpTaskBoxSimple3</value>
   </data>
+  <data name="lvCollectibles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 32</value>
+  </data>
   <data name="label87.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
   </data>
@@ -1736,8 +1760,8 @@
   <data name="&gt;&gt;dstTb.Name" xml:space="preserve">
     <value>dstTb</value>
   </data>
-  <data name="label27.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
+  <data name="&gt;&gt;toolStripMenuItem2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 17</value>
@@ -1802,8 +1826,8 @@
   <data name="pbCareerPerformance.LabelWidth" type="System.Int32, mscorlib">
     <value>88</value>
   </data>
-  <data name="&gt;&gt;tbhdaysleft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt, style=Bold</value>
   </data>
   <data name="pbActive.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 5</value>
@@ -1813,6 +1837,9 @@
   </data>
   <data name="pbOutgoing.LabelText" xml:space="preserve">
     <value>Outgoing:</value>
+  </data>
+  <data name="&gt;&gt;biEP1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label70.Name" xml:space="preserve">
     <value>label70</value>
@@ -1829,6 +1856,9 @@
   <data name="tbEp3Flag.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 32</value>
   </data>
+  <data name="&gt;&gt;tbhdaysleft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="pbActive.LabelWidth" type="System.Int32, mscorlib">
     <value>80</value>
   </data>
@@ -1839,7 +1869,7 @@
     <value>45</value>
   </data>
   <data name="&gt;&gt;pnEP2.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>1</value>
   </data>
   <data name="tblifelinescore.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 13</value>
@@ -2041,7 +2071,7 @@
     <value>496, 140</value>
   </data>
   <data name="&gt;&gt;ptPigpen.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2806.36910, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2814.24058, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbEffort.Parent" xml:space="preserve">
     <value>pnEP1</value>
@@ -2106,6 +2136,9 @@
   <data name="&gt;&gt;tbschooltype.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 20</value>
+  </data>
   <data name="pbCooking.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
   </data>
@@ -2130,6 +2163,12 @@
   <data name="label10.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt, style=Bold</value>
   </data>
+  <data name="&gt;&gt;ilCollectibles.Name" xml:space="preserve">
+    <value>ilCollectibles</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Love Potion Duration:</value>
+  </data>
   <data name="&gt;&gt;biSkill.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -2143,7 +2182,7 @@
     <value>Zodiac Sign:</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;pbPetSleep.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -2193,8 +2232,8 @@
   <data name="biMisc.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAABjZJREFUWEfFV3lQlGUc/lwOQRExRFA0KY+p6WKyY2zKcXKqsZxi+qfpj2YchThMoDKP
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAABjZJREFUWEfFV3lQlGUc/lwOQRExRFA0KY+p6WKyY2zKcXKqsZxi+qfpj2YchThMoDKP
         KW0trTGn8ch0UglLR01N0MAjddYcpURgEQQE5XA5kkNWkGuX3e/p+X0fKEeMu2ITM7/5Pl7YfZ7f8T7P
         +w4BoPyvP0KgZ9yNzF/RSlhGtGI8G62YCr8ONBUwTr2vmE5EKYnHo5Swu32+H56rBLJilIDMGCW59Jtg
         tJycBfXqIqiVnwKVCUDRLDQffRL5a4JxJFJZlx6pBAxE5J4I5BC8eLm/uTV9OtTaPfyOdkYDVDULqmMH
@@ -2338,6 +2377,92 @@
   <data name="cblifesection.TabIndex" type="System.Int32, mscorlib">
     <value>44</value>
   </data>
+  <data name="biEP6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
   <data name="&gt;&gt;pbGNeat.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
@@ -2355,6 +2480,9 @@
   </data>
   <data name="&gt;&gt;tbNTLove.Parent" xml:space="preserve">
     <value>pnEP2</value>
+  </data>
+  <data name="label29.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt, style=Bold</value>
   </data>
   <data name="tbunlinked.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -2425,6 +2553,9 @@
   <data name="tbschooltype.Location" type="System.Drawing.Point, System.Drawing">
     <value>240, 24</value>
   </data>
+  <data name="tbhdaysleft.TabIndex" type="System.Int32, mscorlib">
+    <value>69</value>
+  </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Hyper</value>
   </data>
@@ -2439,6 +2570,9 @@
   </data>
   <data name="&gt;&gt;label101.Name" xml:space="preserve">
     <value>label101</value>
+  </data>
+  <data name="&gt;&gt;labelcol.Parent" xml:space="preserve">
+    <value>pnVoyage</value>
   </data>
   <data name="xpTaskBoxSimple3.Location" type="System.Drawing.Point, System.Drawing">
     <value>352, 0</value>
@@ -2460,6 +2594,9 @@
   </data>
   <data name="cbaspiration.Location" type="System.Drawing.Point, System.Drawing">
     <value>472, 16</value>
+  </data>
+  <data name="&gt;&gt;label98.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2491,8 +2628,8 @@
   <data name="biEP2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAABvFJREFUWEe9lwtQVFUcxhUfiEDgYGaahpWmCeZbNCbANI0UwbcmJGYoIKCRsJQaKGjG
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAABvFJREFUWEe9lwtQVFUcxhUfiEDgYGaahpWmCeZbNCbANI0UwbcmJGYoIKCRsJQaKGjG
         Q0B210Vc9i6wC4Esb0EUhpeuq6ksEsgg+BhGBQMFgQZn/DrnCIbOoojlnTlz7869e7/f+f6v3X4A+nWt
         fr08Tp48M76Xj/b42FPNvgDk5irtyZu1XweizwBnz5aa5eerPIi40RsHUKurzM6dK4tISsr6ioiPeKMA
         tbV1K8rLqyOKii6ITE2nTiDi+m8EoKWlVaehoZF3/XpdhEqlPpqQkLKdCI8lS+t/B3j8+LFOe/vfvPr6
@@ -2540,6 +2677,9 @@
   <data name="pbAnimals.Location" type="System.Drawing.Point, System.Drawing">
     <value>267, 98</value>
   </data>
+  <data name="pnVoyage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 79</value>
+  </data>
   <data name="pbPetPlaying.TextboxWidth" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
@@ -2582,6 +2722,9 @@
   <data name="&gt;&gt;pbWeather.Name" xml:space="preserve">
     <value>pbWeather</value>
   </data>
+  <data name="labelcol.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
   <data name="pbPolitics.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
   </data>
@@ -2596,6 +2739,9 @@
   </data>
   <data name="&gt;&gt;pbOutgoing.Name" xml:space="preserve">
     <value>pbOutgoing</value>
+  </data>
+  <data name="label29.TabIndex" type="System.Int32, mscorlib">
+    <value>67</value>
   </data>
   <data name="label94.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -2621,8 +2767,8 @@
   <data name="miAddRelation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAAAYBJREFUOE9j/P//PwMjIyMDOuAsYt3Jx88jCRL/9PHr8+99v9zR1YD0MoAJLMCmyfRM
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAAYBJREFUOE9j/P//PwMjIyMDOuAsYt3Jx88jCRL/9PHr8+99v9zR1YD0MoAJLMCmyfRM
         27Gm/y3HG/47NFmcwqYGrwGOk+xuzrwz6//U29P/u050uk6yATYTTW90Xmn733a56b/dBAvSDbCepH+t
         +Ur5/4bLxf9tJxhdxesC1hqmDZyN7Fs5G1i3cDezbuGoYN3itdj0Re3ljP/Vl1L+ey+yeM5RzrqZEyjH
         2QTEzaxbWRuYNsHDQGeu+v/6i4X/ay9m/a+/lPG/6Uba/+rLMf/LLoT8Lz4f+L/sYuj/8quR/wvOhv3P
@@ -2790,6 +2936,9 @@
   <data name="&gt;&gt;tbnpc.Name" xml:space="preserve">
     <value>tbnpc</value>
   </data>
+  <data name="labelcol.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 16</value>
+  </data>
   <data name="&gt;&gt;pnEP1.Name" xml:space="preserve">
     <value>pnEP1</value>
   </data>
@@ -2916,6 +3065,9 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Sim ID:</value>
   </data>
+  <data name="label29.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="&gt;&gt;cbcareer.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -2942,6 +3094,9 @@
   </data>
   <data name="&gt;&gt;pbActive.Parent" xml:space="preserve">
     <value>pnHumanChar</value>
+  </data>
+  <data name="lvCollectibles.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="&gt;&gt;cbfat.Parent" xml:space="preserve">
     <value>xpTaskBoxSimple2</value>
@@ -2985,6 +3140,9 @@
   <data name="&gt;&gt;pnInt.Name" xml:space="preserve">
     <value>pnInt</value>
   </data>
+  <data name="pnVoyage.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
+  </data>
   <data name="biRel.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageAboveText</value>
   </data>
@@ -3005,6 +3163,12 @@
   </data>
   <data name="&gt;&gt;tbunlinked.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="biEP6.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="label29.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomRight</value>
   </data>
   <data name="biEP1.Text" xml:space="preserve">
     <value>University</value>
@@ -3121,7 +3285,7 @@
     <value>Tahoma, 8.25pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;tbautonomy.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;xpTaskBoxSimple3.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -3198,17 +3362,14 @@
   <data name="label24.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="biInt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 49</value>
-  </data>
   <data name="tbage.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 160</value>
   </data>
   <data name="tbNTLove.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Love Potion Duration:</value>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 17</value>
   </data>
   <data name="cbEp3Asgn.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 104</value>
@@ -3232,7 +3393,7 @@
     <value>80, 17</value>
   </data>
   <data name="&gt;&gt;pnCareer.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="label96.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 128</value>
@@ -3327,14 +3488,20 @@
   <data name="cbpasswalls.Text" xml:space="preserve">
     <value>Can Pass Through Walls</value>
   </data>
-  <data name="&gt;&gt;miRand.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pnVoyage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="label29.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="tbprevdays.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 14</value>
   </data>
   <data name="&gt;&gt;tbsimdescname.Parent" xml:space="preserve">
     <value>pnId</value>
+  </data>
+  <data name="labelcol.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;pbAnimals.Name" xml:space="preserve">
     <value>pbAnimals</value>
@@ -3398,6 +3565,9 @@
   </data>
   <data name="pbFat.LabelText" xml:space="preserve">
     <value>Fatness:</value>
+  </data>
+  <data name="&gt;&gt;labelcol.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ptPigpen.TabIndex" type="System.Int32, mscorlib">
     <value>45</value>
@@ -3562,7 +3732,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ptAggres.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2806.36910, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2814.24058, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mbiMaxThisRel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -3633,8 +3803,8 @@
   <data name="&gt;&gt;pbCharisma.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="pbNeat.TabIndex" type="System.Int32, mscorlib">
-    <value>63</value>
+  <data name="biMisc.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="pbGNeat.TabIndex" type="System.Int32, mscorlib">
     <value>68</value>
@@ -3646,7 +3816,7 @@
     <value>Playing:</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>SimPe.Windows.Forms.WrapperBaseControl, simpe.workspace, Version=1.0.2806.35881, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Windows.Forms.WrapperBaseControl, simpe.workspace, Version=1.0.2814.23070, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbaspiration.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
@@ -3666,11 +3836,14 @@
   <data name="miOpenSCOR.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 22</value>
   </data>
+  <data name="&gt;&gt;ilCollectibles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="pnChar.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 80</value>
   </data>
   <data name="&gt;&gt;pnEP1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="label94.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3786,9 +3959,6 @@
   <data name="&gt;&gt;label18.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label27.Parent" xml:space="preserve">
-    <value>xpTaskBoxSimple3</value>
-  </data>
   <data name="cboncampus.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 16</value>
   </data>
@@ -3846,6 +4016,9 @@
   <data name="&gt;&gt;rbmale.Name" xml:space="preserve">
     <value>rbmale</value>
   </data>
+  <data name="&gt;&gt;lvCollectibles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="pbCareerPerformance.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
   </data>
@@ -3899,6 +4072,9 @@
   </data>
   <data name="tbsimdescname.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="&gt;&gt;miRand.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="pbPetPlaying.Location" type="System.Drawing.Point, System.Drawing">
     <value>-7, 50</value>
@@ -3960,9 +4136,6 @@
   <data name="&gt;&gt;pnPetInt.Parent" xml:space="preserve">
     <value>pnInt</value>
   </data>
-  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 17</value>
-  </data>
   <data name="&gt;&gt;pnEP2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -3974,6 +4147,9 @@
   </data>
   <data name="pnPetChar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="pbPetAnimals.LabelText" xml:space="preserve">
+    <value>Animals:</value>
   </data>
   <data name="tbmajor.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4050,6 +4226,9 @@
   <data name="pbToys.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 5</value>
   </data>
+  <data name="&gt;&gt;pnVoyage.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="pbToys.LabelText" xml:space="preserve">
     <value>Toys:</value>
   </data>
@@ -4070,9 +4249,6 @@
   </data>
   <data name="mbiMaxThisRel.Text" xml:space="preserve">
     <value>Max this Relation</value>
-  </data>
-  <data name="tbfaminst.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 21</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Perfume Duration:</value>
@@ -4114,7 +4290,7 @@
     <value>40</value>
   </data>
   <data name="&gt;&gt;pnMisc.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="pnEP3.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -4182,8 +4358,8 @@
   <data name="miRand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAAA0FJREFUOE+lk39M1HUYx78uln9kzYk0uLMSJPmNDWlKTk6zsvlHQCiJQQgqceFxl9TA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAA0FJREFUOE+lk39M1HUYx78uln9kzYk0uLMSJPmNDWlKTk6zsvlHQCiJQQgqceFxl9TA
         CDrh+JXU+WODIwQHelfm6YEn13mAGMdxGjAPEiUkbgfGDP4oalSL2qtv52yuf31v733ez/P5PJ/nx/Ys
         AoSHwiIfIThLHTOVJA93pqiindvzwpyJyiDnDuVq5468KHt2VczUbnWkO7M0yp1eEu7eq4lxZ5REu1XH
         nv9LTCwRpGGPKP/kO65PtDM9P4Sp/xB9w1as3+jo/0HP9M83sN/6nP7xVhw39Yz/OMDQhI15Rnl8hZAl
@@ -4233,8 +4409,8 @@
   <data name="pbSchool.TextboxWidth" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 17</value>
+  <data name="pbGPlayful.TextboxWidth" type="System.Int32, mscorlib">
+    <value>40</value>
   </data>
   <data name="biCareer.Text" xml:space="preserve">
     <value>Career</value>
@@ -4247,6 +4423,9 @@
   </data>
   <data name="label7.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="&gt;&gt;biEP6.Name" xml:space="preserve">
+    <value>biEP6</value>
   </data>
   <data name="label101.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 24</value>
@@ -4261,7 +4440,7 @@
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;tbstatmot.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;label69.Parent" xml:space="preserve">
     <value>pnChar</value>
@@ -4451,8 +4630,8 @@
   <data name="miOpenDNA.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDQAA
-        Cw0B7QfALAAAAfZJREFUOE99k19IU2EYh7+TlhRrNAeaW0TRoAuJLqIou8wIJuJlnAq6CLqI6KaiC5NE
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALAQAA
+        CwEBNnBPWwAAAfZJREFUOE99k19IU2EYh7+TlhRrNAeaW0TRoAuJLqIou8wIJuJlnAq6CLqI6KaiC5NE
         yEq6izVPK4cQraARrXDBRFKMNNxiYQoj5ipIqt1UF2NL93S+QzucuT8HHvg+znkffu/Le5TnR1y2oti4
         t9X5u+OHt3co19Qq6j2RSERMTT1SzG9edW33Z8f6IHOaZLCLXC5XF1VVcbsRJcT82T1xwh4YE/x67WRp
         YY50Ol1GKBSiGlImYvtEf+Fy419GFYpxhcSzXp68pwxZXC2ZIRj1KJ4vJzZl0Jog1sjPCQ++F9+5HcVE
@@ -4532,8 +4711,8 @@
   <data name="biCareer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAACwFJREFUWEfFlwdQVNcaxy9gD4kTy1hjRNSnKE26UiKgQKSoIAiIChqDKKIUQWQpKkWB
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAACwFJREFUWEfFlwdQVNcaxy9gD4kTy1hjRNSnKE26UiKgQKSoIAiIChqDKKIUQWQpKkWB
         wAKyLgIKAlKWBVYEpCm9d2FhqSsCgmCkxNTJ/x3Ie4w4yeTlTWZyZ87suXvvOd/v+853/t89AgCof/Sa
         BmDKUFT0ngVU1O751J1dFMWUFZjpT//PlKVm+7d3kvtdgh+nWXxum+Uim53tKJmfar4mJEJeSJq+g6LC
         ydjpxiDt9n/6M/dknv/+Tj8T++Q3l2ec/1OAGQghiiFOzcswXW1RE67DTfbThp+1AlKDrdBWEIha5sF3
@@ -4587,9 +4766,6 @@
     <value>152, 216</value>
   </data>
   <data name="pbFood.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
-  </data>
-  <data name="pnEP2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="miOpenMem.Size" type="System.Drawing.Size, System.Drawing">
@@ -4676,8 +4852,8 @@
   <data name="pbCareerLevel.LabelWidth" type="System.Int32, mscorlib">
     <value>88</value>
   </data>
-  <data name="cbpregfull.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 72</value>
+  <data name="pbNeat.TabIndex" type="System.Int32, mscorlib">
+    <value>63</value>
   </data>
   <data name="&gt;&gt;pbTravel.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -4690,6 +4866,9 @@
   </data>
   <data name="lbTraits.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="pnVoyage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>696, 264</value>
   </data>
   <data name="tbnpc.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
@@ -4707,7 +4886,7 @@
     <value>False</value>
   </data>
   <data name="&gt;&gt;lv.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.SimRelationPoolControl, simpe.sims, Version=1.0.2806.36910, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.SimRelationPoolControl, simpe.sims, Version=1.0.2814.24058, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;miOpenDNA.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -4728,7 +4907,7 @@
     <value>BottomRight</value>
   </data>
   <data name="&gt;&gt;label94.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>53</value>
@@ -4767,7 +4946,7 @@
     <value>226, 22</value>
   </data>
   <data name="&gt;&gt;label95.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;pbCulture.Parent" xml:space="preserve">
     <value>pnSimInt</value>
@@ -4817,9 +4996,6 @@
   <data name="cblifesection.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
   </data>
-  <data name="rbmale.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
-  </data>
   <data name="&gt;&gt;cbgrade.Name" xml:space="preserve">
     <value>cbgrade</value>
   </data>
@@ -4850,8 +5026,8 @@
   <data name="biId.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAACQdJREFUWEfFVwlUVOcVfigKBpeKjamFaktiAzFFq/WoaWrMcmLwZCmmybGx1j2N0qrH
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAACQdJREFUWEfFVwlUVOcVfigKBpeKjamFaktiAzFFq/WoaWrMcmLwZCmmybGx1j2N0qrH
         5eQYBQ2gBjGCJqIsFhwVkF1AmIFhHbYBhp3ZYDaGgWGdgWHfvt73Emk5mLQmbTPn3PMOMz/v++53v3vv
         e1YAmB/0w+fnM0JhMcPnFzKpqSImLi6LSUzMZxIS8pjoaCFz+7aA4fEy6JrFhIWlMTdvCpiQED5z/foD
         5sqVZCYw8D5z+XIyc/FiInP+fBzj4xM76+zZmKdOn4465uOTHL5ixW+f/9YE/9sEvL1jfu3pee+El9e9
@@ -4917,8 +5093,8 @@
   <data name="miMore.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAAAe5JREFUOE+lk81u00AUhVuk7HidSrxAEUv6APQFskLd5QVAQiUNRQKpKwqUFSahqA0h
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAAe5JREFUOE+lk81u00AUhVuk7HidSrxAEUv6APQFskLd5QVAQiUNRQKpKwqUFSahqA0h
         ICpRS90SVQpNVbmJHSXBP5PYHk9c24c7g5rKQSwKV/o8Y889Z37ueHGBorzegGyvG/fXbi8qsetGaa/H
         +DymybjEshg/O7P58XH/ksgw3EhNLB+OHeLw0Jih613o+jkODn4odN1As3kK7W0L77QWtd9xdDTAzKBS
         bqL8+BM2CNlff/QRDx9s4enmKzx/9gYb5W2V/KTyWbFZ+UJ8vTLAXOzsvIbv+8iyDEmSIooi1Ov782l5
@@ -4945,7 +5121,7 @@
     <value>Genetic Nice:</value>
   </data>
   <data name="&gt;&gt;label90.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>9</value>
   </data>
   <data name="label49.Text" xml:space="preserve">
     <value>Treat as:</value>
@@ -5011,9 +5187,6 @@
   <data name="label86.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 48</value>
   </data>
-  <data name="biMisc.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageAboveText</value>
-  </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 20</value>
   </data>
@@ -5063,9 +5236,6 @@
   <data name="pnSimInt.Size" type="System.Drawing.Size, System.Drawing">
     <value>627, 216</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;miOpenWf.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -5076,7 +5246,7 @@
     <value>pnEP1</value>
   </data>
   <data name="&gt;&gt;sblb.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.SimBusinessList, simpe.sims, Version=1.0.2806.36910, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.SimBusinessList, simpe.sims, Version=1.0.2814.24058, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mbiLink.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5094,7 +5264,7 @@
     <value>16, 144</value>
   </data>
   <data name="&gt;&gt;label96.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 17</value>
@@ -5120,11 +5290,17 @@
   <data name="pbPetAnimals.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 20</value>
   </data>
+  <data name="&gt;&gt;pbFashion.Name" xml:space="preserve">
+    <value>pbFashion</value>
+  </data>
   <data name="biEP3.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageAboveText</value>
   </data>
   <data name="pbClean.TextboxWidth" type="System.Int32, mscorlib">
     <value>40</value>
+  </data>
+  <data name="&gt;&gt;lvCollectibles.Parent" xml:space="preserve">
+    <value>pnVoyage</value>
   </data>
   <data name="pnPetChar.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 48</value>
@@ -5198,8 +5374,14 @@
   <data name="&gt;&gt;label25.Parent" xml:space="preserve">
     <value>pnPetChar</value>
   </data>
+  <data name="tbhdaysleft.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="&gt;&gt;label11.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ilCollectibles.ImageSize" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
   </data>
   <data name="tblifelinescore.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -5249,6 +5431,9 @@
   <data name="lbTurnOn.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="&gt;&gt;pnVoyage.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;label94.Name" xml:space="preserve">
     <value>label94</value>
   </data>
@@ -5275,9 +5460,6 @@
   </data>
   <data name="pbToys.LabelWidth" type="System.Int32, mscorlib">
     <value>100</value>
-  </data>
-  <data name="label27.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
   </data>
   <data name="cbmajor.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 48</value>
@@ -5421,8 +5603,8 @@
   <data name="miOpenFamily.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAAAyRJREFUOE+lk31MWwUUxU9f3xNaaN8bWbHA01JBlPLVtcBGdB0FKRShupl0YpVNkblB
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAAyRJREFUOE+lk31MWwUUxU9f3xNaaN8bWbHA01JBlPLVtcBGdB0FKRShupl0YpVNkblB
         BthuGDMWkOFCI7oN2Rbj/CBRwaw4hAAtm24zEj8SzdiyqPtjiYnRTTOMRkdcHMfVGGPmn9zkJOef+0vu
         PfdqSGJZFQcsR8gISUh/WoK6Swv3KTOK383Eg5370RScwIHhC1u7h+b3ZTi3pEK/Cn5fHThVjxMNJvQW
         aLHXLuF/AGfkdug2KbAX9vX5/KNX13lfZ6YzNKik1SYe7KwHx28CqDulvyFqlwD3yTS1OJJZkvSkjNzc
@@ -5508,7 +5690,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tbhdaysleft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 14</value>
+    <value>100, 21</value>
   </data>
   <data name="pbSciFi.LabelText" xml:space="preserve">
     <value>ScienceFiction:</value>
@@ -5567,6 +5749,9 @@
   <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;biEP6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;lbTraits.Name" xml:space="preserve">
     <value>lbTraits</value>
   </data>
@@ -5578,9 +5763,6 @@
   </data>
   <data name="&gt;&gt;label78.Name" xml:space="preserve">
     <value>label78</value>
-  </data>
-  <data name="label27.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
   </data>
   <data name="pbCareerLevel.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 136</value>
@@ -5596,9 +5778,6 @@
   </data>
   <data name="label10.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
-  </data>
-  <data name="&gt;&gt;label103.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="&gt;&gt;label22.Parent" xml:space="preserve">
     <value>pnPetChar</value>
@@ -5639,8 +5818,8 @@
   <data name="tbfaminst.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
   </data>
-  <data name="tbhdaysleft.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+  <data name="rbmale.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
   </data>
   <data name="pbImage.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -5650,6 +5829,9 @@
   </data>
   <data name="srcTb.Size" type="System.Drawing.Size, System.Drawing">
     <value>496, 140</value>
+  </data>
+  <data name="&gt;&gt;lvCollectibles.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="cbpasspeople.Text" xml:space="preserve">
     <value>Can Pass Through People</value>
@@ -5702,20 +5884,23 @@
   <data name="&gt;&gt;pbTravel.Parent" xml:space="preserve">
     <value>pnSimInt</value>
   </data>
-  <data name="label101.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 136</value>
-  </data>
   <data name="&gt;&gt;tbstatmot.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tbschooltype.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 14</value>
   </data>
+  <data name="&gt;&gt;label29.Parent" xml:space="preserve">
+    <value>pnVoyage</value>
+  </data>
   <data name="pbFat.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 17</value>
+  </data>
+  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 238</value>
   </data>
   <data name="label20.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
@@ -5802,7 +5987,7 @@
     <value>TopRight</value>
   </data>
   <data name="&gt;&gt;ptGifted.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2806.36910, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2814.24058, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbPetPets.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -5948,6 +6133,9 @@
   <data name="pbFood.LabelWidth" type="System.Int32, mscorlib">
     <value>100</value>
   </data>
+  <data name="biEP6.Text" xml:space="preserve">
+    <value>Voyage</value>
+  </data>
   <data name="&gt;&gt;pbFat.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
@@ -5983,6 +6171,9 @@
   <data name="&gt;&gt;tbEp3Salery.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;lvCollectibles.Name" xml:space="preserve">
+    <value>lvCollectibles</value>
+  </data>
   <data name="cbignoretraversal.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
@@ -5990,7 +6181,7 @@
     <value>40</value>
   </data>
   <data name="&gt;&gt;tbhdaysleft.Parent" xml:space="preserve">
-    <value>xpTaskBoxSimple3</value>
+    <value>pnVoyage</value>
   </data>
   <data name="pnMisc.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -6009,6 +6200,9 @@
   </data>
   <data name="pbPlayful.TabIndex" type="System.Int32, mscorlib">
     <value>66</value>
+  </data>
+  <data name="&gt;&gt;pnVoyage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="pbFat.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 5</value>
@@ -6054,6 +6248,9 @@
   </data>
   <data name="&gt;&gt;label15.Name" xml:space="preserve">
     <value>label15</value>
+  </data>
+  <data name="&gt;&gt;labelcol.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;miOpenCloth.Name" xml:space="preserve">
     <value>miOpenCloth</value>
@@ -6203,9 +6400,6 @@
   <data name="pbPlayful.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 20</value>
   </data>
-  <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 280</value>
-  </data>
   <data name="&gt;&gt;pbPetOutside.Type" xml:space="preserve">
     <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
   </data>
@@ -6248,11 +6442,11 @@
   <data name="dstTb.HeaderText" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;pbFashion.Name" xml:space="preserve">
-    <value>pbFashion</value>
+  <data name="&gt;&gt;label103.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;miOpenBadge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="labelcol.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="cboncampus.Text" xml:space="preserve">
     <value>On Campus (Is young Adult)</value>
@@ -6296,6 +6490,9 @@
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>448, 16</value>
   </data>
+  <data name="&gt;&gt;pnVoyage.Name" xml:space="preserve">
+    <value>pnVoyage</value>
+  </data>
   <data name="pbMoney.LabelText" xml:space="preserve">
     <value>Money:</value>
   </data>
@@ -6307,6 +6504,9 @@
   </data>
   <data name="&gt;&gt;pbPetPets.Name" xml:space="preserve">
     <value>pbPetPets</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Days left in Vacation:</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 20</value>
@@ -6369,7 +6569,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ptHyper.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2806.36910, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2814.24058, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pbAnimals.LabelWidth" type="System.Int32, mscorlib">
     <value>100</value>
@@ -6377,11 +6577,8 @@
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;biEP1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pnEP2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="biEP6.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
   <data name="&gt;&gt;cbcareer.Name" xml:space="preserve">
     <value>cbcareer</value>
@@ -6485,8 +6682,8 @@
   <data name="pnSimInt.TabIndex" type="System.Int32, mscorlib">
     <value>82</value>
   </data>
-  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 168</value>
+  <data name="&gt;&gt;label29.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolBar1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -6507,7 +6704,7 @@
     <value>37</value>
   </data>
   <data name="&gt;&gt;tbvoice.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>8</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
     <value>Lazy</value>
@@ -6542,8 +6739,8 @@
   <data name="pnCareer.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 80</value>
   </data>
-  <data name="&gt;&gt;label27.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mbiLink.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 280</value>
   </data>
   <data name="label49.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
@@ -6576,7 +6773,7 @@
     <value>Weather:</value>
   </data>
   <data name="xpTaskBoxSimple3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 193</value>
+    <value>216, 168</value>
   </data>
   <data name="label103.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 17</value>
@@ -6602,8 +6799,11 @@
   <data name="cbSpecies.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 21</value>
   </data>
+  <data name="labelcol.Text" xml:space="preserve">
+    <value>Collectibles:</value>
+  </data>
   <data name="tbhdaysleft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>120, 168</value>
+    <value>152, 237</value>
   </data>
   <data name="&gt;&gt;label47.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -6629,8 +6829,8 @@
   <data name="&gt;&gt;cbgrade.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;cbfit.Type" xml:space="preserve">
-    <value>Ambertation.Windows.Forms.TransparentCheckBox, graphcontrol, Version=1.0.2509.16636, Culture=neutral, PublicKeyToken=null</value>
+  <data name="tbfaminst.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
   </data>
   <data name="&gt;&gt;pbMech.Type" xml:space="preserve">
     <value>Ambertation.Windows.Forms.LabeledProgressBar, EnumComboBox, Version=1.0.2509.16637, Culture=neutral, PublicKeyToken=null</value>
@@ -6648,7 +6848,7 @@
     <value>biEP1</value>
   </data>
   <data name="&gt;&gt;tbprevdays.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -6658,6 +6858,9 @@
   </data>
   <data name="&gt;&gt;cbpasswalls.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="lvCollectibles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>662, 198</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6711,7 +6914,7 @@
     <value>78</value>
   </data>
   <data name="&gt;&gt;ptIndep.Type" xml:space="preserve">
-    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2806.36910, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.PackedFiles.Wrapper.PetTraitSelect, simpe.sims, Version=1.0.2814.24058, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pnEP3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -6899,6 +7102,9 @@
   <data name="&gt;&gt;miRelink.Name" xml:space="preserve">
     <value>miRelink</value>
   </data>
+  <metadata name="ilCollectibles.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>282, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

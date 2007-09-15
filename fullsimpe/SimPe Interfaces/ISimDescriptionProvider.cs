@@ -115,5 +115,41 @@ namespace SimPe.Interfaces.Providers
 		/// <returns></returns>
 		SimPe.Interfaces.IAlias[] GetAllTurnOns();
 		#endregion
+
+        #region BonVoyage
+        /// <summary>
+        /// Returns the name of a Vacation Collectibles
+        /// </summary>		
+        /// <param name="val1">stored Number for Collectible1</param>
+        /// <param name="val2">stored Number for Collectible2</param>
+        /// <param name="val3">stored Number for Collectible3</param>
+        /// <param name="val4">stored Number for Collectible4</param>
+        /// <returns></returns>
+        string GetCollectibleName(ushort val1, ushort val2, ushort val3, ushort val4);
+
+        /// <summary>
+        /// Create the Index from the passed Numbers
+        /// </summary>
+        /// <param name="val1"></param>
+        /// <param name="val2"></param>
+        /// <param name="val3"></param>
+        /// <param name="val4"></param>
+        /// <returns></returns>
+        ulong BuildCollectibleIndex(ushort val1, ushort val2, ushort val3, ushort val4);
+
+        /// <summary>
+        /// Invers Operation to <see cref="BuildCollectibleIndex"/>
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="nr"></param>
+        /// <returns>val1 - val4</returns>
+        ushort[] GetFromCollectibleIndex(ulong index);
+
+        /// <summary>
+        /// Returns a List of all available Collectibles
+        /// </summary>
+        /// <returns></returns>
+        SimPe.Providers.CollectibleAlias[] GetAllCollectibles();
+        #endregion
 	}
 }

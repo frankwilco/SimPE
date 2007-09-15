@@ -275,10 +275,13 @@
       <int name="Group">1</int>
       <cilist name="SimNameDeepSearch">
         <string name="0">TSData\Res\NeighborhoodTemplate\A001\Characters\</string>
-        <string name="0">TSData\Res\NeighborhoodTemplate\M001\Characters\</string>
-        <string name="0">TSData\Res\NeighborhoodTemplate\T001\Characters\</string>
-        <string name="0">TSData\Res\NeighborhoodTemplate\V001\Characters\</string>
+        <string name="1">TSData\Res\NeighborhoodTemplate\M001\Characters\</string>
+        <string name="2">TSData\Res\NeighborhoodTemplate\T001\Characters\</string>
+        <string name="3">TSData\Res\NeighborhoodTemplate\V001\Characters\</string>
  
+      </cilist>
+      <cilist name="AdditionalFileTableFolders">
+        <string name="0">!TSData\Res\Overrides\</string>
       </cilist>
       <string name="namelistnr">6</string>
       <key name="en">
