@@ -234,14 +234,14 @@ namespace SimPe.Providers
 
 		public uint BuildTurnOnIndex(ushort val1, ushort val2)
 		{
-			return (uint)((val2 << 16) + val1); //14
+			return (uint)((val2 << 14) + val1); //14
 		}
 
 		public ushort[] GetFromTurnOnIndex(uint index)
 		{
 			ushort[] ret = new ushort[2];
-			ret[1] = (ushort)(index >> 16); //14
-			ret[0] = (ushort)(index & 0xFFFF); //0x3FFF
+			ret[1] = (ushort)(index >> 14); //14
+			ret[0] = (ushort)(index & 0x3FFF); //0x3FFF
 			
 			return ret;
 		}
