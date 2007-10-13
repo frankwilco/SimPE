@@ -89,31 +89,32 @@ namespace SimPe.Interfaces.Providers
 		/// Returns the name of a Turnon/Turnoff
 		/// </summary>		
 		/// <param name="val1">stored Number for TurnOns1</param>
-		/// <param name="val1">stored Number for TurnOns2</param>
+        /// <param name="val2">stored Number for TurnOns2</param>
+        /// <param name="val3">stored Number for TurnOns3</param>
 		/// <returns></returns>
-		string GetTurnOnName(ushort val1, ushort val2);
+		string GetTurnOnName(ushort val1, ushort val2, ushort val3);
 
 		/// <summary>
 		/// Create the Index from the passed Numbers
 		/// </summary>
 		/// <param name="val1"></param>
 		/// <param name="val2"></param>
+        /// <param name="val3"></param>
 		/// <returns></returns>
-		uint BuildTurnOnIndex(ushort val1, ushort val2);
+		ulong BuildTurnOnIndex(ushort val1, ushort val2, ushort val3);
 
 		/// <summary>
 		/// Invers Operation to <see cref="BuildTurnOnIndex"/>
 		/// </summary>
 		/// <param name="index"></param>
-		/// <param name="nr"></param>
-		/// <returns>val1 and val2</returns>
-		ushort[] GetFromTurnOnIndex(uint index);
+		/// <returns>val1, val2 and val3</returns>
+		ushort[] GetFromTurnOnIndex(ulong index);
 
 		/// <summary>
 		/// Returns a List of all available TurnOns
 		/// </summary>
 		/// <returns></returns>
-		SimPe.Interfaces.IAlias[] GetAllTurnOns();
+		SimPe.Providers.TraitAlias[] GetAllTurnOns();
 		#endregion
 
         #region BonVoyage

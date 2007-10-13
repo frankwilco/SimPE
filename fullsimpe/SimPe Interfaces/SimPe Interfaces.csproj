@@ -249,6 +249,7 @@
     <Compile Include="IWrapperRegistry.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TraitAlias.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

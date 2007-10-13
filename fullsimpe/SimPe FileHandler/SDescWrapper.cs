@@ -928,7 +928,7 @@ namespace SimPe.PackedFiles.Wrapper
 			set { major = value; }
 		}
 
-		internal void Serialize(BinaryReader reader)
+		internal void Unserialize(BinaryReader reader)
 		{
 			reader.BaseStream.Seek(0x014, SeekOrigin.Begin);
 			effort = reader.ReadUInt16();
@@ -946,7 +946,7 @@ namespace SimPe.PackedFiles.Wrapper
 			influence = reader.ReadUInt16();			
 		}
 
-		internal void Unserialize(BinaryWriter writer)
+		internal void Serialize(BinaryWriter writer)
 		{
 			writer.BaseStream.Seek(0x014, SeekOrigin.Begin);
 			writer.Write(effort);
@@ -982,6 +982,16 @@ namespace SimPe.PackedFiles.Wrapper
 		internal SdscNightlife()
 		{
             species = SpeciesType.Human;
+            turnoff3 = 0;
+            turnon3 = 0;
+            traits3 = 0;
+
+            turnoff1 = 0;
+            turnoff2 = 0;
+            turnon1 = 0;
+            turnon2 = 0;
+            traits1 = 0;
+            traits2 = 0;
 		}
 
 		ushort route;
@@ -1005,6 +1015,13 @@ namespace SimPe.PackedFiles.Wrapper
 			get { return traits2; }			
 			set { traits2 = value; }
 		}
+
+        ushort traits3;
+        public ushort AttractionTraits3
+        {
+            get { return traits3; }
+            set { traits3 = value; }
+        }
 
 		ushort turnon1;
 		public ushort AttractionTurnOns1
@@ -1032,7 +1049,21 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get { return turnoff2; }			
 			set { turnoff2 = value; }
-		}
+        }
+
+        ushort turnon3;
+        public ushort AttractionTurnOns3
+        {
+            get { return turnon3; }
+            set { turnon3 = value; }
+        }
+
+        ushort turnoff3;
+        public ushort AttractionTurnOffs3
+        {
+            get { return turnoff3; }
+            set { turnoff3 = value; }
+        }
 
 
 
@@ -1107,7 +1138,7 @@ namespace SimPe.PackedFiles.Wrapper
             }
         }
 
-		internal void Serialize(BinaryReader reader)
+        internal void Unserialize(BinaryReader reader, SDescVersions ver)
 		{
 			reader.BaseStream.Seek(0x172, SeekOrigin.Begin);
 			this.route = reader.ReadUInt16();		
@@ -1131,9 +1162,18 @@ namespace SimPe.PackedFiles.Wrapper
 
 			this.potion = reader.ReadUInt16();
 			this.scorelock = reader.ReadUInt16();
+
+            if ((int)ver >= (int)SDescVersions.Voyage)
+            {
+                reader.BaseStream.Seek(0x19e, SeekOrigin.Begin);
+                
+                turnon3 = reader.ReadUInt16();
+                turnoff3 = reader.ReadUInt16();
+                traits3 = reader.ReadUInt16();
+            }
 		}
 
-		internal void Unserialize(BinaryWriter writer)
+		internal void Serialize(BinaryWriter writer, SDescVersions ver)
 		{
 			writer.BaseStream.Seek(0x172, SeekOrigin.Begin);
 			writer.Write((ushort)this.route);		
@@ -1157,6 +1197,15 @@ namespace SimPe.PackedFiles.Wrapper
 		
 			writer.Write((ushort)this.potion);
 			writer.Write((ushort)this.scorelock);
+
+            if ((int)ver >= (int)SDescVersions.Voyage)
+            {
+                writer.BaseStream.Seek(0x19e, SeekOrigin.Begin);
+
+                writer.Write((ushort)turnon3);
+                writer.Write((ushort)turnoff3);
+                writer.Write((ushort)traits3);
+            }
 		}
 	}
 	#endregion
@@ -1202,7 +1251,7 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 		
 
-		internal void Serialize(BinaryReader reader)
+		internal void Unserialize(BinaryReader reader)
 		{
 			reader.BaseStream.Seek(0x192, SeekOrigin.Begin);
 			this.lotid = reader.ReadUInt16();					
@@ -1211,7 +1260,7 @@ namespace SimPe.PackedFiles.Wrapper
 			this.assignment = reader.ReadUInt16();			
 		}
 
-		internal void Unserialize(BinaryWriter writer)
+		internal void Serialize(BinaryWriter writer)
 		{
 			writer.BaseStream.Seek(0x192, SeekOrigin.Begin);
 			writer.Write((ushort)this.lotid);					
@@ -1241,13 +1290,13 @@ namespace SimPe.PackedFiles.Wrapper
 
         
 
-        internal void Serialize(BinaryReader reader)
+        internal void Unserialize(BinaryReader reader)
         {
             reader.BaseStream.Seek(0x19A, SeekOrigin.Begin);
             this.pett.Value = reader.ReadUInt16();
         }
 
-        internal void Unserialize(BinaryWriter writer)
+        internal void Serialize(BinaryWriter writer)
         {
             writer.BaseStream.Seek(0x19A, SeekOrigin.Begin);
             writer.Write((ushort)this.pett.Value);
@@ -1282,13 +1331,13 @@ namespace SimPe.PackedFiles.Wrapper
         }
 
 
-        internal void Serialize(BinaryReader reader)
+        internal void Unserialize(BinaryReader reader)
         {
             reader.BaseStream.Seek(0x19C, SeekOrigin.Begin);
             this.daysleft = reader.ReadUInt16();
         }
 
-        internal void Unserialize(BinaryWriter writer)
+        internal void Serialize(BinaryWriter writer)
         {
             writer.BaseStream.Seek(0x19C, SeekOrigin.Begin);
             writer.Write((ushort)this.daysleft);
@@ -2124,23 +2173,23 @@ namespace SimPe.PackedFiles.Wrapper
 
 			//university only Items
 			if (version>=(int)SDescVersions.University) 							
-				uni.Serialize(reader);
+				uni.Unserialize(reader);
 
 			//nightlife only Items
 			if (version>=(int)SDescVersions.Nightlife) 							
-				nightlife.Serialize(reader);
+				nightlife.Unserialize(reader, (SDescVersions)version);
 
 			//business only Items
 			if (version>=(int)SDescVersions.Business) 							
-				business.Serialize(reader);
+				business.Unserialize(reader);
 
             //pets only Items
             if (version >= (int)SDescVersions.Pets)
-                pets.Serialize(reader);
+                pets.Unserialize(reader);
 
             //voyage only Items
             if (version >= (int)SDescVersions.Voyage)
-                voyage.Serialize(reader);
+                voyage.Unserialize(reader);
 
 			reader.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
 		}
@@ -2293,23 +2342,23 @@ namespace SimPe.PackedFiles.Wrapper
 
 			//university only Items
 			if (version>=(int)SDescVersions.University) 							
-				uni.Unserialize(writer);
+				uni.Serialize(writer);
 
 			//nightlife only Items
 			if (version>=(int)SDescVersions.Nightlife) 							
-				nightlife.Unserialize(writer);
+				nightlife.Serialize(writer, (SDescVersions)version);
 
 			//business only Items
 			if (version>=(int)SDescVersions.Business) 							
-				business.Unserialize(writer);
+				business.Serialize(writer);
 
             //pets only Items
             if (version >= (int)SDescVersions.Pets)
-                pets.Unserialize(writer);
+                pets.Serialize(writer);
 
             //voyage only Items
             if (version >= (int)SDescVersions.Voyage)
-                voyage.Unserialize(writer);
+                voyage.Serialize(writer);
 			
 
 			writer.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
