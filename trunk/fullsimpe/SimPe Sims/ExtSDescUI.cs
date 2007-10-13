@@ -1503,38 +1503,38 @@ namespace SimPe.PackedFiles.UserInterface
 		{
 			if (clb.Items.Count>0) return;
 
-			SimPe.Interfaces.IAlias[] al = FileTable.ProviderRegistry.SimDescriptionProvider.GetAllTurnOns();
-			foreach (SimPe.Interfaces.IAlias a in al)
+			SimPe.Providers.TraitAlias[] al = FileTable.ProviderRegistry.SimDescriptionProvider.GetAllTurnOns();
+			foreach (SimPe.Providers.TraitAlias a in al)
 				clb.Items.Add(a);
 		}
 
-		void SelectNightlifeItems(System.Windows.Forms.CheckedListBox clb, ushort v1, ushort v2)
+		void SelectNightlifeItems(System.Windows.Forms.CheckedListBox clb, ushort v1, ushort v2, ushort v3)
 		{
 			FillNightlifeListBox(clb);
 
-			uint cur = FileTable.ProviderRegistry.SimDescriptionProvider.BuildTurnOnIndex(v1, v2);
+			ulong cur = FileTable.ProviderRegistry.SimDescriptionProvider.BuildTurnOnIndex(v1, v2, v3);
 			for (int i=0; i<clb.Items.Count; i++)
 			{
-				uint val = ((SimPe.Interfaces.IAlias)clb.Items[i]).Id;
+				ulong val = ((SimPe.Providers.TraitAlias)clb.Items[i]).Id;
 				clb.SetItemChecked(i, ((cur&val)==val)&&val!=0);
 			}
 		}
 
-		uint SumSelection(System.Windows.Forms.CheckedListBox clb)
+		ulong SumSelection(System.Windows.Forms.CheckedListBox clb)
 		{
-			uint val = 0;
+			ulong val = 0;
 			for (int i=0; i<clb.Items.Count; i++)
 				if (clb.GetItemChecked(i))
-					val += ((SimPe.Interfaces.IAlias)clb.Items[i]).Id;
+					val += ((SimPe.Providers.TraitAlias)clb.Items[i]).Id;
 
 			return val;
 		}
 
 		void RefreshEP2(Wrapper.ExtSDesc sdesc)
 		{
-			SelectNightlifeItems(this.lbTraits, sdesc.Nightlife.AttractionTraits1, sdesc.Nightlife.AttractionTraits2);
-			SelectNightlifeItems(this.lbTurnOn, sdesc.Nightlife.AttractionTurnOns1, sdesc.Nightlife.AttractionTurnOns2);
-			SelectNightlifeItems(this.lbTurnOff, sdesc.Nightlife.AttractionTurnOffs1, sdesc.Nightlife.AttractionTurnOffs2);
+			SelectNightlifeItems(this.lbTraits, sdesc.Nightlife.AttractionTraits1, sdesc.Nightlife.AttractionTraits2, sdesc.Nightlife.AttractionTraits3);
+			SelectNightlifeItems(this.lbTurnOn, sdesc.Nightlife.AttractionTurnOns1, sdesc.Nightlife.AttractionTurnOns2, sdesc.Nightlife.AttractionTurnOns3);
+			SelectNightlifeItems(this.lbTurnOff, sdesc.Nightlife.AttractionTurnOffs1, sdesc.Nightlife.AttractionTurnOffs2, sdesc.Nightlife.AttractionTurnOffs3);
 
 			this.tbNTPerfume.Text = sdesc.Nightlife.PerfumeDuration.ToString();
 			this.tbNTLove.Text = sdesc.Nightlife.LovePotionDuration.ToString();
@@ -1547,6 +1547,7 @@ namespace SimPe.PackedFiles.UserInterface
             ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTraits));
             Sdesc.Nightlife.AttractionTraits1 = v[0];
             Sdesc.Nightlife.AttractionTraits2 = v[1];
+            Sdesc.Nightlife.AttractionTraits3 = v[2];
         }
 
         private void lbTurnOn_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -1555,6 +1556,7 @@ namespace SimPe.PackedFiles.UserInterface
             ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOn));
             Sdesc.Nightlife.AttractionTurnOns1 = v[0];
             Sdesc.Nightlife.AttractionTurnOns2 = v[1];
+            Sdesc.Nightlife.AttractionTurnOns3 = v[2];
         }
 
         private void lbTurnOff_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -1563,6 +1565,7 @@ namespace SimPe.PackedFiles.UserInterface
             ushort[] v = FileTable.ProviderRegistry.SimDescriptionProvider.GetFromTurnOnIndex(SumSelection(this.lbTurnOff));
             Sdesc.Nightlife.AttractionTurnOffs1 = v[0];
             Sdesc.Nightlife.AttractionTurnOffs2 = v[1];
+            Sdesc.Nightlife.AttractionTurnOffs3 = v[2];
         }
 
         private void ChangedEP2(object sender, System.EventArgs e)

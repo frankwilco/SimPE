@@ -189,11 +189,11 @@ namespace SimPe.Providers
 
 
 		#region Nightlife Turn On/Off Extension
-		Hashtable turnons;
+		System.Collections.Generic.Dictionary<int, string> turnons;
 		void LoadTurnOns()
 		{
 			if (turnons!=null) return;
-			turnons = new Hashtable();
+            turnons = new System.Collections.Generic.Dictionary<int, string>();
 
             if (SimPe.PathProvider.Global.EPInstalled < 2) return;
 
@@ -211,58 +211,59 @@ namespace SimPe.Providers
 			}
 		}
 
-		public SimPe.Interfaces.IAlias[] GetAllTurnOns()
+        public TraitAlias[] GetAllTurnOns()
 		{
 			if (turnons==null) LoadTurnOns();
-			SimPe.Interfaces.IAlias[] a = new SimPe.Interfaces.IAlias[turnons.Count];
+            TraitAlias[] a = new TraitAlias[turnons.Count];
 
 			int ct = 0;
 			foreach (int k in turnons.Keys)
 			{
-				string s = (string)turnons[k];
+				string s = turnons[k];
 				int e = k;
-				//if (e>=0xE) e+=2;
+				if (e>0xD) e+=2;
 #if DEBUG
-				a[ct++] = new SimPe.Data.Alias((uint)Math.Pow(2, e), s);
+				a[ct++] = new TraitAlias((ulong)Math.Pow(2, e), s);
 #else
-				a[ct++] = new SimPe.Data.Alias((uint)Math.Pow(2, e), s, "{name}");
+				a[ct++] = new TraitAlias((ulong)Math.Pow(2, e), s, "{name}");
 #endif
-			}
+            }
 
 			return a;
 		}
 
-		public uint BuildTurnOnIndex(ushort val1, ushort val2)
+		public ulong BuildTurnOnIndex(ushort val1, ushort val2, ushort val3)
 		{
-			return (uint)((val2 << 14) + val1); //14
+			return (ulong)((((((ulong)val3 << 16) | (ulong)val2) << 16) | (ulong)(val1 & 0x3FFF))); //14
 		}
 
-		public ushort[] GetFromTurnOnIndex(uint index)
+		public ushort[] GetFromTurnOnIndex(ulong index)
 		{
-			ushort[] ret = new ushort[2];
-			ret[1] = (ushort)(index >> 14); //14
+			ushort[] ret = new ushort[3];
+            ret[2] = (ushort)((index >> 32) & 0x0007);
+			ret[1] = (ushort)((index >> 16) & 0xFFFF); //14
 			ret[0] = (ushort)(index & 0x3FFF); //0x3FFF
 			
 			return ret;
 		}
 		
 
-		public string GetTurnOnName(ushort val1, ushort val2)
+		public string GetTurnOnName(ushort val1, ushort val2, ushort val3)
 		{
 			if (turnons==null) LoadTurnOns();
 
-			uint v = BuildTurnOnIndex(val1, val2);
+			ulong v = BuildTurnOnIndex(val1, val2, val3);
 			string ret = "";			
 			int ct = 0;
 			while (v>0) 
 			{
-				uint s = v&1;
+				ulong s = v&1;
 				if (s==1) 
 				{
-					object o = turnons[ct];
+					string o = turnons[ct];
 					if (o==null) return SimPe.Localization.GetString("Unknown");
 					if (ret!="") ret+= ", ";
-					ret += o.ToString();
+					ret += o;
 				}
 
 				v = v>>1;
