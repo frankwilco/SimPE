@@ -222,11 +222,7 @@ namespace SimPe.Providers
 				string s = turnons[k];
 				int e = k;
 				if (e>0xD) e+=2;
-#if DEBUG
 				a[ct++] = new TraitAlias((ulong)Math.Pow(2, e), s);
-#else
-				a[ct++] = new TraitAlias((ulong)Math.Pow(2, e), s, "{name}");
-#endif
             }
 
 			return a;
