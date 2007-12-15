@@ -52,7 +52,7 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\__Release\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -128,11 +128,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="graphcontrol, Version=1.0.2301.39046, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\graphcontrol.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="NetDocks, Version=1.0.2471.34995, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NetDocks.dll</HintPath>
@@ -163,6 +158,10 @@
       <HintPath>..\XPCommonControls.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <ProjectReference Include="..\GraphControl\GraphControl.csproj">
+      <Project>{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}</Project>
+      <Name>GraphControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimPe Cache\SimPe Cache.csproj">
       <Project>{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}</Project>
       <Name>SimPe Cache</Name>
