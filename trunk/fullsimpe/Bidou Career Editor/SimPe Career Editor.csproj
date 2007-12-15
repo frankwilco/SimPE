@@ -78,10 +78,7 @@
     <Reference Include="pjse.coder.plugin, Version=2.0.2499.27754, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\Plugins\pjse.coder.plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Skybound.VisualStyles">
-      <Name>Skybound.VisualStyles</Name>
-      <HintPath>..\Skybound.VisualStyles.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -105,45 +102,48 @@
       <Name>SimPe 3IDR</Name>
       <Project>{37D97490-DC9F-4DB7-9215-998C6BC06078}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Clst\SimPe Clst.csproj">
       <Project>{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}</Project>
       <Name>SimPe Clst</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe FileHandler\SimPe FileHandlers.csproj">
       <Name>SimPe FileHandlers</Name>
       <Project>{97551C0A-6295-4E32-8E15-A4FF456E65A6}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
       <Name>SimPe HandlerCommon</Name>
       <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Helper\SimPe Helper.csproj">
       <Name>SimPe Helper</Name>
       <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Interfaces\SimPe Interfaces.csproj">
       <Name>SimPe Interfaces</Name>
       <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Packages\SimPe Packages.csproj">
       <Name>SimPe Packages</Name>
       <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
       <Name>SimPe Workspace Helper</Name>
       <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
-    <ProjectReference Include="..\TGA_View\TGA_View.csproj">
-      <Name>TGA_View</Name>
-      <Project>{320E7C5E-60E6-4069-9852-D296DB688F5D}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -167,14 +167,9 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>if not exist "$(SolutionDir)..\__Release\Plugins\" mkdir "$(SolutionDir)..\__Release\Plugins\"
-if not exist "$(SolutionDir)..\__Release\de\" mkdir "$(SolutionDir)..\__Release\de\"
-if not exist "$(SolutionDir)..\__Release\es\" mkdir "$(SolutionDir)..\__Release\es\"
-if not exist "$(SolutionDir)..\__Release\pl\" mkdir "$(SolutionDir)..\__Release\pl\"
+    <PostBuildEvent>if not exist "$(SolutionDir)..\__Release\Plugins\" mkdir "$(SolutionDir)..\__Release\Plugins"
+
 copy "$(TargetPath)" "$(SolutionDir)..\__Release\Plugins\$(TargetFileName)"
-copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\__Release\Plugins\"
-copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
-copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
-copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
