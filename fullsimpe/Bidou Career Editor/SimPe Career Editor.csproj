@@ -28,7 +28,7 @@
     </UpgradeBackupLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\__Debug\Plugins\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -75,9 +75,9 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="pjse.coder.plugin, Version=2.0.2499.27754, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="pjse.coder.plugin, Version=4.0.2884.30745, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\Plugins\pjse.coder.plugin.dll</HintPath>
+      <HintPath>..\..\pjseCoderPlugin-cvs\SimPe BHAV\Plugins\pjse.coder.plugin.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -167,9 +167,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>if not exist "$(SolutionDir)..\__Release\Plugins\" mkdir "$(SolutionDir)..\__Release\Plugins"
-
-copy "$(TargetPath)" "$(SolutionDir)..\__Release\Plugins\$(TargetFileName)"
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

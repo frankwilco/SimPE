@@ -1,0 +1,2125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 U (http://www.altova.com) by Numenor (-) -->
+<properties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="propertydefinition.xsd">
+	<!-- ****************************************************************************** -->
+	<category name="Placement">
+		<property type="short">
+			<name>Default Wall Adjacent Flags</name>
+			<help>Default Wall Adjacent Flags</help>
+			<default>0</default>
+			<index type="0">3</index>
+			<index type="2">3</index>
+			<index type="4">3</index>
+			<index type="5">3</index>
+			<index type="7">3</index>
+			<index type="8">3</index>
+			<index type="9">3</index>
+			<index type="10">3</index>
+			<index type="11">3</index>
+			<index type="14">3</index>
+			<index type="15">3</index>
+			<index type="16">3</index>
+		</property>
+		<property type="short">
+			<name>Default Allowed Height Flags</name>
+			<help>Default Allowed Height Flags</help>
+			<default>0</default>
+			<index type="0">6</index>
+			<index type="2">6</index>
+			<index type="4">6</index>
+			<index type="5">6</index>
+			<index type="7">6</index>
+			<index type="8">6</index>
+			<index type="9">6</index>
+			<index type="10">6</index>
+			<index type="11">6</index>
+			<index type="14">6</index>
+			<index type="15">6</index>
+			<index type="16">6</index>
+		</property>
+		<property type="short">
+			<name>Multi-Tile master id</name>
+			<help>Multi-Tile master id</help>
+			<default>0</default>
+			<index type="0">10</index>
+			<index type="2">10</index>
+			<index type="4">10</index>
+			<index type="5">10</index>
+			<index type="7">10</index>
+			<index type="8">10</index>
+			<index type="9">10</index>
+			<index type="10">10</index>
+			<index type="11">10</index>
+			<index type="14">10</index>
+			<index type="15">10</index>
+			<index type="16">10</index>
+		</property>
+		<property type="short">
+			<name>front direction</name>
+			<help>front direction</help>
+			<default>0</default>
+			<index type="0">61</index>
+			<index type="2">61</index>
+			<index type="4">61</index>
+			<index type="5">61</index>
+			<index type="7">61</index>
+			<index type="8">61</index>
+			<index type="9">61</index>
+			<index type="10">61</index>
+			<index type="11">61</index>
+			<index type="12">61</index>
+			<index type="13">61</index>
+			<index type="14">61</index>
+			<index type="15">61</index>
+			<index type="16">61</index>
+		</property>
+		<property type="short">
+			<name>chair entry flags</name>
+			<help>chair entry flags</help>
+			<default>0</default>
+			<index type="0">66</index>
+			<index type="2">66</index>
+			<index type="4">66</index>
+			<index type="5">66</index>
+			<index type="7">66</index>
+			<index type="8">66</index>
+			<index type="9">66</index>
+			<index type="10">66</index>
+			<index type="11">66</index>
+			<index type="12">66</index>
+			<index type="13">66</index>
+			<index type="14">66</index>
+			<index type="15">66</index>
+			<index type="16">66</index>
+		</property>
+		<property type="short">
+			<name>Multi-Tile sub index</name>
+			<help>Multi-Tile sub index</help>
+			<default>0</default>
+			<index type="0">11</index>
+			<index type="2">11</index>
+			<index type="4">11</index>
+			<index type="5">11</index>
+			<index type="7">11</index>
+			<index type="8">11</index>
+			<index type="9">11</index>
+			<index type="10">11</index>
+			<index type="11">11</index>
+			<index type="14">11</index>
+			<index type="15">11</index>
+			<index type="16">11</index>
+		</property>
+		<property type="short">
+			<name>tile width</name>
+			<help>tile width</help>
+			<default>0</default>
+			<index type="0">67</index>
+			<index type="2">67</index>
+			<index type="4">67</index>
+			<index type="5">67</index>
+			<index type="7">67</index>
+			<index type="8">67</index>
+			<index type="9">67</index>
+			<index type="10">67</index>
+			<index type="11">67</index>
+			<index type="12">67</index>
+			<index type="13">67</index>
+			<index type="14">67</index>
+			<index type="15">67</index>
+			<index type="16">67</index>
+		</property>
+		<property type="short">
+			<name>Use Default Placement flags</name>
+			<help>Use Default Placement flags</help>
+			<default>0</default>
+			<index type="0">12</index>
+			<index type="2">12</index>
+			<index type="4">12</index>
+			<index type="5">12</index>
+			<index type="7">12</index>
+			<index type="8">12</index>
+			<index type="9">12</index>
+			<index type="10">12</index>
+			<index type="11">12</index>
+			<index type="14">12</index>
+			<index type="15">12</index>
+			<index type="16">12</index>
+		</property>
+		<property type="short">
+			<name>Default Placement Flags</name>
+			<help>Default Placement Flags</help>
+			<default>0</default>
+			<index type="0">4</index>
+			<index type="2">4</index>
+			<index type="4">4</index>
+			<index type="5">4</index>
+			<index type="7">4</index>
+			<index type="8">4</index>
+			<index type="9">4</index>
+			<index type="10">4</index>
+			<index type="11">4</index>
+			<index type="14">4</index>
+			<index type="15">4</index>
+			<index type="16">4</index>
+		</property>
+		<property type="short">
+			<name>Multi-Tile lead object</name>
+			<help>Multi-Tile lead object</help>
+			<default>0</default>
+			<index type="0">63</index>
+			<index type="2">63</index>
+			<index type="4">63</index>
+			<index type="5">63</index>
+			<index type="7">63</index>
+			<index type="8">63</index>
+			<index type="9">63</index>
+			<index type="10">63</index>
+			<index type="11">63</index>
+			<index type="14">63</index>
+			<index type="15">63</index>
+			<index type="16">63</index>
+		</property>
+		<property type="short">
+			<name>Default Wall Placement Flags</name>
+			<help>Default Wall Placement Flags</help>
+			<default>0</default>
+			<index type="0">5</index>
+			<index type="2">5</index>
+			<index type="4">5</index>
+			<index type="5">5</index>
+			<index type="7">5</index>
+			<index type="8">5</index>
+			<index type="9">5</index>
+			<index type="10">5</index>
+			<index type="11">5</index>
+			<index type="14">5</index>
+			<index type="15">5</index>
+			<index type="16">5</index>
+		</property>
+		<property type="short">
+			<name>No Duplicate On Placement</name>
+			<help>No Duplicate On Placement</help>
+			<default>0</default>
+			<index type="0">46</index>
+			<index type="2">46</index>
+			<index type="4">46</index>
+			<index type="5">46</index>
+			<index type="7">46</index>
+			<index type="8">46</index>
+			<index type="9">46</index>
+			<index type="10">46</index>
+			<index type="11">46</index>
+			<index type="14">46</index>
+			<index type="15">46</index>
+			<index type="16">46</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="Mesh &amp; Graphics">
+		<property type="short">
+			<name>level offset</name>
+			<help>level offset</help>
+			<default>0</default>
+			<index type="0">56</index>
+			<index type="2">56</index>
+			<index type="4">56</index>
+			<index type="5">56</index>
+			<index type="7">56</index>
+			<index type="8">56</index>
+			<index type="9">56</index>
+			<index type="10">56</index>
+			<index type="11">56</index>
+			<index type="12">56</index>
+			<index type="13">56</index>
+			<index type="14">56</index>
+			<index type="15">56</index>
+			<index type="16">56</index>
+		</property>
+		<property type="short">
+			<name>shadow</name>
+			<help>shadow</help>
+			<default>0</default>
+			<index type="12">57</index>
+			<index type="13">57</index>
+		</property>
+		<property type="short">
+			<name>Unused - thumbnail graphic (Sims1)</name>
+			<help>Unused - thumbnail graphic (Sims1)</help>
+			<default>0</default>
+			<index type="0">75</index>
+			<index type="2">75</index>
+			<index type="4">75</index>
+			<index type="5">75</index>
+			<index type="7">75</index>
+			<index type="8">75</index>
+			<index type="9">75</index>
+			<index type="10">75</index>
+			<index type="11">75</index>
+			<index type="14">75</index>
+			<index type="15">75</index>
+			<index type="16">75</index>
+			<index type="12">75</index>
+			<index type="13">75</index>
+		</property>
+		<property type="short">
+			<name>Unused - shadow flags (Sims1)</name>
+			<help>Unused - shadow flags (Sims1)</help>
+			<default>0</default>
+			<index type="0">76</index>
+			<index type="2">76</index>
+			<index type="4">76</index>
+			<index type="5">76</index>
+			<index type="7">76</index>
+			<index type="8">76</index>
+			<index type="9">76</index>
+			<index type="10">76</index>
+			<index type="11">76</index>
+			<index type="14">76</index>
+			<index type="15">76</index>
+			<index type="16">76</index>
+			<index type="12">76</index>
+			<index type="13">76</index>
+		</property>
+		<property type="short">
+			<name>base graphic</name>
+			<help>base graphic</help>
+			<default>0</default>
+			<index type="12">3</index>
+			<index type="13">3</index>
+		</property>
+		<property type="short">
+			<name>3D Object Type</name>
+			<help>3D Object Type</help>
+			<default>0</default>
+			<index type="0">99</index>
+			<index type="2">99</index>
+			<index type="4">99</index>
+			<index type="5">99</index>
+			<index type="7">99</index>
+			<index type="8">99</index>
+			<index type="9">99</index>
+			<index type="10">99</index>
+			<index type="11">99</index>
+			<index type="14">99</index>
+			<index type="15">99</index>
+			<index type="16">99</index>
+		</property>
+		<property type="short">
+			<name>shadow type</name>
+			<help>shadow type</help>
+			<default>0</default>
+			<index type="0">57</index>
+			<index type="2">57</index>
+			<index type="4">57</index>
+			<index type="5">57</index>
+			<index type="7">57</index>
+			<index type="8">57</index>
+			<index type="9">57</index>
+			<index type="10">57</index>
+			<index type="11">57</index>
+			<index type="14">57</index>
+			<index type="15">57</index>
+			<index type="16">57</index>
+		</property>
+		<property type="short">
+			<name>Object size (for slots)</name>
+			<help>0=large 1=medium 2=small</help>
+			<default>0</default>
+			<index type="0">79</index>
+			<index type="2">79</index>
+			<index type="4">79</index>
+			<index type="5">79</index>
+			<index type="7">79</index>
+			<index type="8">79</index>
+			<index type="9">79</index>
+			<index type="10">79</index>
+			<index type="11">79</index>
+			<index type="14">79</index>
+			<index type="15">79</index>
+			<index type="16">79</index>
+			<index type="12">79</index>
+			<index type="13">79</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="OBJd File">
+		<property type="short">
+			<name>ToolTip Name Type - 0 default</name>
+			<help>ToolTip Name Type - 0 default</help>
+			<default>0</default>
+			<index type="0">43</index>
+			<index type="2">43</index>
+			<index type="4">43</index>
+			<index type="5">43</index>
+			<index type="7">43</index>
+			<index type="8">43</index>
+			<index type="9">43</index>
+			<index type="10">43</index>
+			<index type="11">43</index>
+			<index type="14">43</index>
+			<index type="15">43</index>
+			<index type="16">43</index>
+		</property>
+		<property type="bool">
+			<name>Hauntable</name>
+			<help>Hauntable</help>
+			<default>0</default>
+			<index type="0">28</index>
+			<index type="2">28</index>
+			<index type="4">28</index>
+			<index type="5">28</index>
+			<index type="7">28</index>
+			<index type="8">28</index>
+			<index type="9">28</index>
+			<index type="10">28</index>
+			<index type="11">28</index>
+			<index type="14">28</index>
+			<index type="15">28</index>
+			<index type="16">28</index>
+		</property>
+		<property type="bool">
+			<name>disabled</name>
+			<help>disabled</help>
+			<default>0</default>
+			<index type="12">16</index>
+			<index type="13">16</index>
+		</property>
+		<property type="short">
+			<name>type</name>
+			<help>type</help>
+			<default>0</default>
+			<index type="0">9</index>
+			<index type="2">9</index>
+			<index type="4">9</index>
+			<index type="5">9</index>
+			<index type="7">9</index>
+			<index type="8">9</index>
+			<index type="9">9</index>
+			<index type="10">9</index>
+			<index type="11">9</index>
+			<index type="12">9</index>
+			<index type="13">9</index>
+			<index type="14">9</index>
+			<index type="15">9</index>
+			<index type="16">9</index>
+		</property>
+		<property type="short">
+			<name>object version</name>
+			<help>object version</help>
+			<default>0</default>
+			<index type="0">49</index>
+			<index type="2">49</index>
+			<index type="4">49</index>
+			<index type="5">49</index>
+			<index type="7">49</index>
+			<index type="8">49</index>
+			<index type="9">49</index>
+			<index type="10">49</index>
+			<index type="11">49</index>
+			<index type="12">49</index>
+			<index type="13">49</index>
+			<index type="14">49</index>
+			<index type="15">49</index>
+			<index type="16">49</index>
+		</property>
+		<property type="short">
+			<name>Template Version</name>
+			<help>Template Version</help>
+			<default>0</default>
+			<index type="0">44</index>
+			<index type="2">44</index>
+			<index type="4">44</index>
+			<index type="5">44</index>
+			<index type="7">44</index>
+			<index type="8">44</index>
+			<index type="9">44</index>
+			<index type="10">44</index>
+			<index type="11">44</index>
+			<index type="14">44</index>
+			<index type="15">44</index>
+			<index type="16">44</index>
+		</property>
+		<property type="short">
+			<name>version_1 - Read Only</name>
+			<help>version_1 - Read Only</help>
+			<default>0</default>
+			<index type="0">0</index>
+			<index type="2">0</index>
+			<index type="4">0</index>
+			<index type="5">0</index>
+			<index type="7">0</index>
+			<index type="8">0</index>
+			<index type="9">0</index>
+			<index type="10">0</index>
+			<index type="11">0</index>
+			<index type="14">0</index>
+			<index type="15">0</index>
+			<index type="16">0</index>
+			<index type="12">0</index>
+			<index type="13">0</index>
+		</property>
+		<property type="short">
+			<name>version_2 - Read Only</name>
+			<help>version_2 - Read Only</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">1</index>
+			<index type="2">1</index>
+			<index type="4">1</index>
+			<index type="5">1</index>
+			<index type="7">1</index>
+			<index type="8">1</index>
+			<index type="9">1</index>
+			<index type="10">1</index>
+			<index type="11">1</index>
+			<index type="14">1</index>
+			<index type="15">1</index>
+			<index type="16">1</index>
+			<index type="12">1</index>
+			<index type="13">1</index>
+		</property>
+		<property type="short">
+			<name>Required Game id</name>
+			<help>ID of the game that this object was first released with</help>
+			<default>0</default>
+			<index type="0">64</index>
+			<index type="2">64</index>
+			<index type="4">64</index>
+			<index type="5">64</index>
+			<index type="7">64</index>
+			<index type="8">64</index>
+			<index type="9">64</index>
+			<index type="10">64</index>
+			<index type="11">64</index>
+			<index type="12">64</index>
+			<index type="13">64</index>
+			<index type="14">64</index>
+			<index type="15">64</index>
+			<index type="16">64</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="Catalog Money">
+		<property type="short">
+			<name>daily depreciation</name>
+			<help>daily depreciation</help>
+			<default>0</default>
+			<index type="0">36</index>
+			<index type="2">36</index>
+			<index type="4">36</index>
+			<index type="5">36</index>
+			<index type="7">36</index>
+			<index type="8">36</index>
+			<index type="9">36</index>
+			<index type="10">36</index>
+			<index type="11">36</index>
+			<index type="12">36</index>
+			<index type="13">36</index>
+			<index type="14">36</index>
+			<index type="15">36</index>
+			<index type="16">36</index>
+		</property>
+		<property type="short">
+			<name>self depreciating</name>
+			<help>self depreciating</help>
+			<default>0</default>
+			<index type="0">37</index>
+			<index type="2">37</index>
+			<index type="4">37</index>
+			<index type="5">37</index>
+			<index type="7">37</index>
+			<index type="8">37</index>
+			<index type="9">37</index>
+			<index type="10">37</index>
+			<index type="11">37</index>
+			<index type="12">37</index>
+			<index type="13">37</index>
+			<index type="14">37</index>
+			<index type="15">37</index>
+			<index type="16">37</index>
+		</property>
+		<property type="short">
+			<name>depreciation limit</name>
+			<help>depreciation limit</help>
+			<default>0</default>
+			<index type="0">38</index>
+			<index type="2">38</index>
+			<index type="4">38</index>
+			<index type="5">38</index>
+			<index type="7">38</index>
+			<index type="8">38</index>
+			<index type="9">38</index>
+			<index type="10">38</index>
+			<index type="11">38</index>
+			<index type="12">38</index>
+			<index type="13">38</index>
+			<index type="14">38</index>
+			<index type="15">38</index>
+			<index type="16">38</index>
+		</property>
+		<property type="short">
+			<name>price</name>
+			<help>price</help>
+			<default>0</default>
+			<index type="0">18</index>
+			<index type="2">18</index>
+			<index type="4">18</index>
+			<index type="5">18</index>
+			<index type="7">18</index>
+			<index type="8">18</index>
+			<index type="9">18</index>
+			<index type="10">18</index>
+			<index type="11">18</index>
+			<index type="12">18</index>
+			<index type="13">18</index>
+			<index type="14">18</index>
+			<index type="15">18</index>
+			<index type="16">18</index>
+		</property>
+		<property type="short">
+			<name>sale price</name>
+			<help>sale price</help>
+			<default>0</default>
+			<index type="0">34</index>
+			<index type="2">34</index>
+			<index type="4">34</index>
+			<index type="5">34</index>
+			<index type="7">34</index>
+			<index type="8">34</index>
+			<index type="9">34</index>
+			<index type="10">34</index>
+			<index type="11">34</index>
+			<index type="12">34</index>
+			<index type="13">34</index>
+			<index type="14">34</index>
+			<index type="15">34</index>
+			<index type="16">34</index>
+		</property>
+		<property type="short">
+			<name>initial depreciation</name>
+			<help>initial depreciation</help>
+			<default>0</default>
+			<index type="0">35</index>
+			<index type="2">35</index>
+			<index type="4">35</index>
+			<index type="5">35</index>
+			<index type="7">35</index>
+			<index type="8">35</index>
+			<index type="9">35</index>
+			<index type="10">35</index>
+			<index type="11">35</index>
+			<index type="12">35</index>
+			<index type="13">35</index>
+			<index type="14">35</index>
+			<index type="15">35</index>
+			<index type="16">35</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="Object Attributes">
+		<property type="short">
+			<name>initial stack size</name>
+			<help>initial stack size</help>
+			<default>0</default>
+			<index type="0">2</index>
+			<index type="2">2</index>
+			<index type="4">2</index>
+			<index type="5">2</index>
+			<index type="7">2</index>
+			<index type="8">2</index>
+			<index type="9">2</index>
+			<index type="10">2</index>
+			<index type="11">2</index>
+			<index type="12">2</index>
+			<index type="13">2</index>
+			<index type="14">2</index>
+			<index type="15">2</index>
+			<index type="16">2</index>
+		</property>
+		<property type="short">
+			<name>num type attributes</name>
+			<help>num type attributes</help>
+			<default>0</default>
+			<index type="0">90</index>
+			<index type="2">90</index>
+			<index type="4">90</index>
+			<index type="5">90</index>
+			<index type="7">90</index>
+			<index type="8">90</index>
+			<index type="9">90</index>
+			<index type="10">90</index>
+			<index type="11">90</index>
+			<index type="12">90</index>
+			<index type="13">90</index>
+			<index type="14">90</index>
+			<index type="15">90</index>
+			<index type="16">90</index>
+		</property>
+		<property type="short">
+			<name>num attributes</name>
+			<help>num attributes</help>
+			<default>0</default>
+			<index type="0">58</index>
+			<index type="2">58</index>
+			<index type="4">58</index>
+			<index type="5">58</index>
+			<index type="7">58</index>
+			<index type="8">58</index>
+			<index type="9">58</index>
+			<index type="10">58</index>
+			<index type="11">58</index>
+			<index type="12">58</index>
+			<index type="13">58</index>
+			<index type="14">58</index>
+			<index type="15">58</index>
+			<index type="16">58</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="GUIDs">
+		<property type="short">
+			<name>guid_1 - Read Only</name>
+			<help>guid_1 - Read Only</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">14</index>
+			<index type="2">14</index>
+			<index type="4">14</index>
+			<index type="5">14</index>
+			<index type="7">14</index>
+			<index type="8">14</index>
+			<index type="9">14</index>
+			<index type="10">14</index>
+			<index type="11">14</index>
+			<index type="14">14</index>
+			<index type="15">14</index>
+			<index type="16">14</index>
+			<index type="12">14</index>
+			<index type="13">14</index>
+		</property>
+		<property type="short">
+			<name>diagonal selector guid 2 - Read Only</name>
+			<help>diagonal selector guid 2 - Read Only</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">22</index>
+			<index type="2">22</index>
+			<index type="4">22</index>
+			<index type="5">22</index>
+			<index type="7">22</index>
+			<index type="8">22</index>
+			<index type="9">22</index>
+			<index type="10">22</index>
+			<index type="11">22</index>
+			<index type="14">22</index>
+			<index type="15">22</index>
+			<index type="16">22</index>
+		</property>
+		<property type="short">
+			<name>Unused - type attr guid 1 (Sims1)</name>
+			<help>Unused - type attr guid 1 (Sims1)</help>
+			<default>0</default>
+			<index type="0">92</index>
+			<index type="2">92</index>
+			<index type="4">92</index>
+			<index type="5">92</index>
+			<index type="7">92</index>
+			<index type="8">92</index>
+			<index type="9">92</index>
+			<index type="10">92</index>
+			<index type="11">92</index>
+			<index type="14">92</index>
+			<index type="15">92</index>
+			<index type="16">92</index>
+		</property>
+		<property type="short">
+			<name>grid-aligned selector guid 2 - Read Only</name>
+			<help>grid-aligned selector guid 2 - Read Only</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">24</index>
+			<index type="2">24</index>
+			<index type="4">24</index>
+			<index type="5">24</index>
+			<index type="7">24</index>
+			<index type="8">24</index>
+			<index type="9">24</index>
+			<index type="10">24</index>
+			<index type="11">24</index>
+			<index type="14">24</index>
+			<index type="15">24</index>
+			<index type="16">24</index>
+		</property>
+		<property type="short">
+			<name>Proxy GUID 2</name>
+			<help>Proxy GUID 2</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">30</index>
+			<index type="2">30</index>
+			<index type="4">30</index>
+			<index type="5">30</index>
+			<index type="7">30</index>
+			<index type="8">30</index>
+			<index type="9">30</index>
+			<index type="10">30</index>
+			<index type="11">30</index>
+			<index type="14">30</index>
+			<index type="15">30</index>
+			<index type="16">30</index>
+		</property>
+		<property type="short">
+			<name>original guid 2 - Read Only</name>
+			<help>original guid 2 - Read Only</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">71</index>
+			<index type="2">71</index>
+			<index type="4">71</index>
+			<index type="5">71</index>
+			<index type="7">71</index>
+			<index type="8">71</index>
+			<index type="9">71</index>
+			<index type="10">71</index>
+			<index type="11">71</index>
+			<index type="14">71</index>
+			<index type="15">71</index>
+			<index type="16">71</index>
+			<index type="12">71</index>
+			<index type="13">71</index>
+		</property>
+		<property type="short">
+			<name>Proxy GUID 1</name>
+			<help>Proxy GUID 1</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">29</index>
+			<index type="2">29</index>
+			<index type="4">29</index>
+			<index type="5">29</index>
+			<index type="7">29</index>
+			<index type="8">29</index>
+			<index type="9">29</index>
+			<index type="10">29</index>
+			<index type="11">29</index>
+			<index type="14">29</index>
+			<index type="15">29</index>
+			<index type="16">29</index>
+		</property>
+		<property type="short">
+			<name>suit guid 1</name>
+			<help>suit guid 1</help>
+			<default>0</default>
+			<index type="12">72</index>
+			<index type="13">72</index>
+		</property>
+		<property type="short">
+			<name>suit guid 2</name>
+			<help>suit guid 2</help>
+			<default>0</default>
+			<index type="12">73</index>
+			<index type="13">73</index>
+		</property>
+		<property type="short">
+			<name>Job Object GUID 2</name>
+			<help>Job Object GUID 2</help>
+			<default>0</default>
+			<index type="0">53</index>
+		</property>
+		<property type="short">
+			<name>diagonal selector guid 1 - Read Only</name>
+			<help>diagonal selector guid 1 - Read Only</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">21</index>
+			<index type="2">21</index>
+			<index type="4">21</index>
+			<index type="5">21</index>
+			<index type="7">21</index>
+			<index type="8">21</index>
+			<index type="9">21</index>
+			<index type="10">21</index>
+			<index type="11">21</index>
+			<index type="14">21</index>
+			<index type="15">21</index>
+			<index type="16">21</index>
+		</property>
+		<property type="short">
+			<name>grid-aligned selector guid 1 - Read Only</name>
+			<help>grid-aligned selector guid 1 - Read Only</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">23</index>
+			<index type="2">23</index>
+			<index type="4">23</index>
+			<index type="5">23</index>
+			<index type="7">23</index>
+			<index type="8">23</index>
+			<index type="9">23</index>
+			<index type="10">23</index>
+			<index type="11">23</index>
+			<index type="14">23</index>
+			<index type="15">23</index>
+			<index type="16">23</index>
+		</property>
+		<property type="short">
+			<name>guid_2 - Read Only</name>
+			<help>guid_2 - Read Only</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">15</index>
+			<index type="2">15</index>
+			<index type="4">15</index>
+			<index type="5">15</index>
+			<index type="7">15</index>
+			<index type="8">15</index>
+			<index type="9">15</index>
+			<index type="10">15</index>
+			<index type="11">15</index>
+			<index type="14">15</index>
+			<index type="15">15</index>
+			<index type="16">15</index>
+			<index type="12">15</index>
+			<index type="13">15</index>
+		</property>
+		<property type="short">
+			<name>object model guid 2 - Read Only</name>
+			<help>object model guid 2 - Read Only</help>
+			<default>0</default>
+			<index type="0">73</index>
+			<index type="2">73</index>
+			<index type="4">73</index>
+			<index type="5">73</index>
+			<index type="7">73</index>
+			<index type="8">73</index>
+			<index type="9">73</index>
+			<index type="10">73</index>
+			<index type="11">73</index>
+			<index type="14">73</index>
+			<index type="15">73</index>
+			<index type="16">73</index>
+		</property>
+		<property type="short">
+			<name>type attr guid 1</name>
+			<help>type attr guid 1</help>
+			<default>0</default>
+			<index type="12">92</index>
+			<index type="13">92</index>
+		</property>
+		<property type="short">
+			<name>Unused - type attr guid 2 (Sims1)</name>
+			<help>Unused - type attr guid 2 (Sims1)</help>
+			<default>0</default>
+			<index type="0">93</index>
+			<index type="2">93</index>
+			<index type="4">93</index>
+			<index type="5">93</index>
+			<index type="7">93</index>
+			<index type="8">93</index>
+			<index type="9">93</index>
+			<index type="10">93</index>
+			<index type="11">93</index>
+			<index type="14">93</index>
+			<index type="15">93</index>
+			<index type="16">93</index>
+		</property>
+		<property type="short">
+			<name>object model guid 1 - Read Only</name>
+			<help>object model guid 1 - Read Only</help>
+			<default>0</default>
+			<index type="0">72</index>
+			<index type="2">72</index>
+			<index type="4">72</index>
+			<index type="5">72</index>
+			<index type="7">72</index>
+			<index type="8">72</index>
+			<index type="9">72</index>
+			<index type="10">72</index>
+			<index type="11">72</index>
+			<index type="14">72</index>
+			<index type="15">72</index>
+			<index type="16">72</index>
+		</property>
+		<property type="short">
+			<name>original guid 1 - Read Only</name>
+			<help>original guid 1 - Read Only</help>
+			<default>0</default>
+			<readonly/>
+			<index type="0">70</index>
+			<index type="2">70</index>
+			<index type="4">70</index>
+			<index type="5">70</index>
+			<index type="7">70</index>
+			<index type="8">70</index>
+			<index type="9">70</index>
+			<index type="10">70</index>
+			<index type="11">70</index>
+			<index type="14">70</index>
+			<index type="15">70</index>
+			<index type="16">70</index>
+			<index type="12">70</index>
+			<index type="13">70</index>
+		</property>
+		<property type="short">
+			<name>Job Object GUID 1</name>
+			<help>Job Object GUID 1</help>
+			<default>0</default>
+			<index type="0">52</index>
+		</property>
+		<property type="short">
+			<name>original guid 1</name>
+			<help>original guid 1</help>
+			<default>0</default>
+		</property>
+		<property type="short">
+			<name>type attr guid 2</name>
+			<help>type attr guid 2</help>
+			<default>0</default>
+			<index type="12">93</index>
+			<index type="13">93</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="Old Tree">
+		<property type="short">
+			<name>old tree id (user pickup)</name>
+			<help>old tree id (user pickup)</help>
+			<default>0</default>
+			<index type="12">45</index>
+			<index type="13">45</index>
+		</property>
+		<property type="short">
+			<name>old tree id (pickup from slot)</name>
+			<help>old tree id (pickup from slot)</help>
+			<default>0</default>
+			<index type="12">29</index>
+			<index type="13">29</index>
+		</property>
+		<property type="short">
+			<name>old tree id (clean)</name>
+			<help>old tree id (clean)</help>
+			<default>0</default>
+			<index type="12">59</index>
+			<index type="13">59</index>
+		</property>
+		<property type="short">
+			<name>old tree id (dynamic multi-tile update)</name>
+			<help>old tree id (dynamic multi-tile update)</help>
+			<default>0</default>
+			<index type="12">78</index>
+			<index type="13">78</index>
+		</property>
+		<property type="short">
+			<name>old tree id (place)</name>
+			<help>old tree id (place)</help>
+			<default>0</default>
+			<index type="12">44</index>
+			<index type="13">44</index>
+		</property>
+		<property type="short">
+			<name>old tree id (allow intersection)</name>
+			<help>old tree id (allow intersection)</help>
+			<default>0</default>
+			<index type="12">21</index>
+			<index type="13">21</index>
+		</property>
+		<property type="short">
+			<name>old tree id (wash hands)</name>
+			<help>old tree id (wash hands)</help>
+			<default>0</default>
+			<index type="12">12</index>
+			<index type="13">12</index>
+		</property>
+		<property type="short">
+			<name>old tree id (stand)</name>
+			<help>old tree id (stand)</help>
+			<default>0</default>
+			<index type="12">33</index>
+			<index type="13">33</index>
+		</property>
+		<property type="short">
+			<name>old tree id (user place)</name>
+			<help>old tree id (user place)</help>
+			<default>0</default>
+			<index type="12">48</index>
+			<index type="13">48</index>
+		</property>
+		<property type="short">
+			<name>old tree id (eating surface)</name>
+			<help>old tree id (eating surface)</help>
+			<default>0</default>
+			<index type="12">31</index>
+			<index type="13">31</index>
+		</property>
+		<property type="short">
+			<name>old tree id (gardening)</name>
+			<help>old tree id (gardening)</help>
+			<default>0</default>
+			<index type="12">6</index>
+			<index type="13">6</index>
+		</property>
+		<property type="short">
+			<name>old tree id (place on surface)</name>
+			<help>old tree id (place on surface)</help>
+			<default>0</default>
+			<index type="12">26</index>
+			<index type="13">26</index>
+		</property>
+		<property type="short">
+			<name>old tree id (cook food)</name>
+			<help>old tree id (cook food)</help>
+			<default>0</default>
+			<index type="12">25</index>
+			<index type="13">25</index>
+		</property>
+		<property type="short">
+			<name>old tree id (load)</name>
+			<help>old tree id (load)</help>
+			<default>0</default>
+			<index type="12">47</index>
+			<index type="13">47</index>
+		</property>
+		<property type="short">
+			<name>old tree id (prepare food)</name>
+			<help>old tree id (prepare food)</help>
+			<default>0</default>
+			<index type="12">24</index>
+			<index type="13">24</index>
+		</property>
+		<property type="short">
+			<name>old tree id (sit)</name>
+			<help>old tree id (sit)</help>
+			<default>0</default>
+			<index type="12">32</index>
+			<index type="13">32</index>
+		</property>
+		<property type="short">
+			<name>old tree id (queue skipped)</name>
+			<help>old tree id (queue skipped)</help>
+			<default>0</default>
+			<index type="12">60</index>
+			<index type="13">60</index>
+		</property>
+		<property type="short">
+			<name>old tree id (wash dish)</name>
+			<help>old tree id (wash dish)</help>
+			<default>0</default>
+			<index type="12">30</index>
+			<index type="13">30</index>
+		</property>
+		<property type="short">
+			<name>old tree id (level info request)</name>
+			<help>old tree id (level info request)</help>
+			<default>0</default>
+			<index type="12">53</index>
+			<index type="13">53</index>
+		</property>
+		<property type="short">
+			<name>old tree id (wall adjacency changed)</name>
+			<help>old tree id (wall adjacency changed)</help>
+			<default>0</default>
+			<index type="12">62</index>
+			<index type="13">62</index>
+		</property>
+		<property type="short">
+			<name>old tree id (cleanup)</name>
+			<help>old tree id (cleanup)</help>
+			<default>0</default>
+			<index type="12">52</index>
+			<index type="13">52</index>
+		</property>
+		<property type="short">
+			<name>old tree id (portal)</name>
+			<help>old tree id (portal)</help>
+			<default>0</default>
+			<index type="12">17</index>
+			<index type="13">17</index>
+		</property>
+		<property type="short">
+			<name>old tree id (serving surface)</name>
+			<help>old tree id (serving surface)</help>
+			<default>0</default>
+			<index type="12">55</index>
+			<index type="13">55</index>
+		</property>
+		<property type="short">
+			<name>old tree id (init)</name>
+			<help>old tree id (init)</help>
+			<default>0</default>
+			<index type="12">43</index>
+			<index type="13">43</index>
+		</property>
+		<property type="short">
+			<name>old tree id (eat food)</name>
+			<help>old tree id (eat food)</help>
+			<default>0</default>
+			<index type="12">28</index>
+			<index type="13">28</index>
+		</property>
+		<property type="short">
+			<name>old tree id (dispose)</name>
+			<help>old tree id (dispose)</help>
+			<default>0</default>
+			<index type="12">27</index>
+			<index type="13">27</index>
+		</property>
+		<property type="short">
+			<name>old tree id (pickup)</name>
+			<help>old tree id (pickup)</help>
+			<default>0</default>
+			<index type="12">74</index>
+			<index type="13">74</index>
+		</property>
+		<property type="short">
+			<name>old tree id (room changed)</name>
+			<help>old tree id (room changed)</help>
+			<default>0</default>
+			<index type="12">50</index>
+			<index type="13">50</index>
+		</property>
+		<property type="short">
+			<name>old tree id (main)</name>
+			<help>old tree id (main)</help>
+			<default>0</default>
+			<index type="12">5</index>
+			<index type="13">5</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="TGI">
+		<property type="short">
+			<name>anim table id</name>
+			<help>anim table id</help>
+			<default>0</default>
+			<index type="12">13</index>
+			<index type="13">13</index>
+		</property>
+		<property type="short">
+			<name>master id</name>
+			<help>master id</help>
+			<default>0</default>
+			<index type="12">10</index>
+			<index type="13">10</index>
+		</property>
+		<property type="short">
+			<name>slot group</name>
+			<help>slot group</help>
+			<default>0</default>
+			<index type="0">31</index>
+			<index type="2">31</index>
+			<index type="4">31</index>
+			<index type="5">31</index>
+			<index type="7">31</index>
+			<index type="8">31</index>
+			<index type="9">31</index>
+			<index type="10">31</index>
+			<index type="11">31</index>
+			<index type="14">31</index>
+			<index type="15">31</index>
+			<index type="16">31</index>
+		</property>
+		<property type="short">
+			<name>interaction group</name>
+			<help>interaction group</help>
+			<default>0</default>
+			<index type="0">8</index>
+			<index type="2">8</index>
+			<index type="4">8</index>
+			<index type="5">8</index>
+			<index type="7">8</index>
+			<index type="8">8</index>
+			<index type="9">8</index>
+			<index type="10">8</index>
+			<index type="11">8</index>
+			<index type="12">8</index>
+			<index type="13">8</index>
+			<index type="14">8</index>
+			<index type="15">8</index>
+			<index type="16">8</index>
+		</property>
+		<property type="short">
+			<name>tree table id</name>
+			<help>tree table id</help>
+			<default>0</default>
+			<index type="12">7</index>
+			<index type="13">7</index>
+		</property>
+		<property type="short">
+			<name>old tree id (repair)</name>
+			<help>old tree id (repair)</help>
+			<default>0</default>
+			<index type="12">80</index>
+			<index type="13">80</index>
+		</property>
+		<property type="short">
+			<name>catalog strings id</name>
+			<help>catalog strings id</help>
+			<default>0</default>
+			<index type="0">41</index>
+			<index type="2">41</index>
+			<index type="4">41</index>
+			<index type="5">41</index>
+			<index type="7">41</index>
+			<index type="8">41</index>
+			<index type="9">41</index>
+			<index type="10">41</index>
+			<index type="11">41</index>
+			<index type="12">41</index>
+			<index type="13">41</index>
+			<index type="14">41</index>
+			<index type="15">41</index>
+			<index type="16">41</index>
+		</property>
+		<property type="short">
+			<name>Default Thumbnail ID</name>
+			<help>Default Thumbnail ID</help>
+			<default>0</default>
+			<index type="0">50</index>
+		</property>
+		<property type="short">
+			<name>motive effects id</name>
+			<help>motive effects id</help>
+			<default>0</default>
+			<index type="0">51</index>
+			<index type="2">51</index>
+			<index type="4">51</index>
+			<index type="5">51</index>
+			<index type="7">51</index>
+			<index type="8">51</index>
+			<index type="9">51</index>
+			<index type="10">51</index>
+			<index type="11">51</index>
+			<index type="12">51</index>
+			<index type="13">51</index>
+			<index type="14">51</index>
+			<index type="15">51</index>
+			<index type="16">51</index>
+		</property>
+		<property type="short">
+			<name>body strings id</name>
+			<help>body strings id</help>
+			<default>0</default>
+			<index type="0">19</index>
+			<index type="2">19</index>
+			<index type="4">19</index>
+			<index type="5">19</index>
+			<index type="7">19</index>
+			<index type="8">19</index>
+			<index type="9">19</index>
+			<index type="10">19</index>
+			<index type="11">19</index>
+			<index type="12">19</index>
+			<index type="13">19</index>
+			<index type="14">19</index>
+			<index type="15">19</index>
+			<index type="16">19</index>
+		</property>
+		<property type="short">
+			<name>catalog popup id</name>
+			<help>catalog popup id</help>
+			<default>0</default>
+			<index type="0">54</index>
+			<index type="2">54</index>
+			<index type="4">54</index>
+			<index type="5">54</index>
+			<index type="7">54</index>
+			<index type="8">54</index>
+			<index type="9">54</index>
+			<index type="10">54</index>
+			<index type="11">54</index>
+			<index type="12">54</index>
+			<index type="13">54</index>
+			<index type="14">54</index>
+			<index type="15">54</index>
+			<index type="16">54</index>
+		</property>
+		<property type="short">
+			<name>slots id</name>
+			<help>slots id</help>
+			<default>0</default>
+			<index type="0">20</index>
+			<index type="2">20</index>
+			<index type="4">20</index>
+			<index type="5">20</index>
+			<index type="7">20</index>
+			<index type="8">20</index>
+			<index type="9">20</index>
+			<index type="10">20</index>
+			<index type="11">20</index>
+			<index type="12">20</index>
+			<index type="13">20</index>
+			<index type="14">20</index>
+			<index type="15">20</index>
+			<index type="16">20</index>
+		</property>
+		<property type="short">
+			<name>Interaction Table ID</name>
+			<help>Interaction Table ID</help>
+			<default>0</default>
+			<index type="0">7</index>
+			<index type="2">7</index>
+			<index type="4">7</index>
+			<index type="5">7</index>
+			<index type="7">7</index>
+			<index type="8">7</index>
+			<index type="9">7</index>
+			<index type="10">7</index>
+			<index type="11">7</index>
+			<index type="14">7</index>
+			<index type="15">7</index>
+			<index type="16">7</index>
+		</property>
+		<property type="short">
+			<name>Unused - wall style sprite id (Sims1)</name>
+			<help>Unused - wall style sprite id (Sims1)</help>
+			<default>0</default>
+			<index type="0">81</index>
+			<index type="2">81</index>
+			<index type="4">81</index>
+			<index type="5">81</index>
+			<index type="7">81</index>
+			<index type="8">81</index>
+			<index type="9">81</index>
+			<index type="10">81</index>
+			<index type="11">81</index>
+			<index type="14">81</index>
+			<index type="15">81</index>
+			<index type="16">81</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="Catalog">
+		<property type="short">
+			<name>build mode type</name>
+			<help>build mode type</help>
+			<default>0</default>
+			<index type="0">69</index>
+			<index type="2">69</index>
+			<index type="4">69</index>
+			<index type="5">69</index>
+			<index type="7">69</index>
+			<index type="8">69</index>
+			<index type="9">69</index>
+			<index type="10">69</index>
+			<index type="11">69</index>
+			<index type="12">69</index>
+			<index type="13">69</index>
+			<index type="14">69</index>
+			<index type="15">69</index>
+			<index type="16">69</index>
+		</property>
+		<property type="bool">
+			<name>Keep Buying ( Hot Date )</name>
+			<help>Keep Buying ( Hot Date )</help>
+			<default>0</default>
+			<index type="12">96</index>
+			<index type="13">96</index>
+		</property>
+		<property type="bool">
+			<name>Keep Buying</name>
+			<help>Keep Buying</help>
+			<default>0</default>
+			<index type="0">96</index>
+			<index type="2">96</index>
+			<index type="4">96</index>
+			<index type="5">96</index>
+			<index type="7">96</index>
+			<index type="8">96</index>
+			<index type="9">96</index>
+			<index type="10">96</index>
+			<index type="11">96</index>
+			<index type="14">96</index>
+			<index type="15">96</index>
+			<index type="16">96</index>
+		</property>
+		<property type="short">
+			<name>Catalog Use Flags</name>
+			<help>Catalog Use Flags</help>
+			<default>0</default>
+			<index type="0">17</index>
+			<index type="2">17</index>
+			<index type="4">17</index>
+			<index type="5">17</index>
+			<index type="7">17</index>
+			<index type="8">17</index>
+			<index type="9">17</index>
+			<index type="10">17</index>
+			<index type="11">17</index>
+			<index type="14">17</index>
+			<index type="15">17</index>
+			<index type="16">17</index>
+		</property>
+		<property type="short">
+			<name>Downtown Sort</name>
+			<help>Downtown Sort</help>
+			<default>0</default>
+			<index type="0">95</index>
+			<index type="2">95</index>
+			<index type="4">95</index>
+			<index type="5">95</index>
+			<index type="7">95</index>
+			<index type="8">95</index>
+			<index type="9">95</index>
+			<index type="10">95</index>
+			<index type="11">95</index>
+			<index type="14">95</index>
+			<index type="15">95</index>
+			<index type="16">95</index>
+		</property>
+		<property type="short">
+			<name>room sort</name>
+			<help>room sort</help>
+			<default>0</default>
+			<index type="12">39</index>
+			<index type="13">39</index>
+		</property>
+		<property type="short">
+			<name>Function Sub-Sort</name>
+			<help>Function Sub-Sort</help>
+			<default>0</default>
+			<index type="0">94</index>
+			<index type="2">94</index>
+			<index type="4">94</index>
+			<index type="5">94</index>
+			<index type="7">94</index>
+			<index type="8">94</index>
+			<index type="9">94</index>
+			<index type="10">94</index>
+			<index type="11">94</index>
+			<index type="14">94</index>
+			<index type="15">94</index>
+			<index type="16">94</index>
+		</property>
+		<property type="short">
+			<name>Community Sort</name>
+			<help>Community Sort</help>
+			<default>0</default>
+			<index type="0">100</index>
+			<index type="2">100</index>
+			<index type="4">100</index>
+			<index type="5">100</index>
+			<index type="7">100</index>
+			<index type="8">100</index>
+			<index type="9">100</index>
+			<index type="10">100</index>
+			<index type="11">100</index>
+			<index type="12">100</index>
+			<index type="13">100</index>
+			<index type="14">100</index>
+			<index type="15">100</index>
+			<index type="16">100</index>
+		</property>
+		<property type="short">
+			<name>Function Sub-Sort ( Hot Date )</name>
+			<help>Function Sub-Sort ( Hot Date )</help>
+			<default>0</default>
+			<index type="12">94</index>
+			<index type="13">94</index>
+		</property>
+		<property type="short">
+			<name>function sort</name>
+			<help>function sort</help>
+			<default>2</default>
+			<index type="12">40</index>
+			<index type="13">40</index>
+		</property>
+		<property type="short">
+			<name>build Mode Subsort</name>
+			<help>build Mode Subsort</help>
+			<default>0</default>
+			<index type="0">74</index>
+			<index type="2">74</index>
+			<index type="4">74</index>
+			<index type="5">74</index>
+			<index type="7">74</index>
+			<index type="8">74</index>
+			<index type="9">74</index>
+			<index type="10">74</index>
+			<index type="11">74</index>
+			<index type="14">74</index>
+			<index type="15">74</index>
+			<index type="16">74</index>
+		</property>
+		<property type="class:SimPe.PackedFiles.Wrapper.ObjRoomSort">
+			<name>room sort flags</name>
+			<help>room sort flags</help>
+			<default>0</default>
+			<index type="0">39</index>
+			<index type="2">39</index>
+			<index type="4">39</index>
+			<index type="5">39</index>
+			<index type="7">39</index>
+			<index type="8">39</index>
+			<index type="9">39</index>
+			<index type="10">39</index>
+			<index type="11">39</index>
+			<index type="14">39</index>
+			<index type="15">39</index>
+			<index type="16">39</index>
+		</property>
+		<property type="class:SimPe.PackedFiles.Wrapper.ObjFunctionSort">
+			<name>function sort flags</name>
+			<help>function sort flags</help>
+			<default>0</default>
+			<index type="0">40</index>
+			<index type="2">40</index>
+			<index type="4">40</index>
+			<index type="5">40</index>
+			<index type="7">40</index>
+			<index type="8">40</index>
+			<index type="9">40</index>
+			<index type="10">40</index>
+			<index type="11">40</index>
+			<index type="14">40</index>
+			<index type="15">40</index>
+			<index type="16">40</index>
+		</property>
+		<property type="short">
+			<name>Vacation Sort</name>
+			<help>Vacation Sort</help>
+			<default>0</default>
+			<index type="0">97</index>
+			<index type="2">97</index>
+			<index type="4">97</index>
+			<index type="5">97</index>
+			<index type="7">97</index>
+			<index type="8">97</index>
+			<index type="9">97</index>
+			<index type="10">97</index>
+			<index type="11">97</index>
+			<index type="12">97</index>
+			<index type="13">97</index>
+			<index type="14">97</index>
+			<index type="15">97</index>
+			<index type="16">97</index>
+		</property>
+		<property type="short">
+			<name>Downtown Sort ( Hot Date )</name>
+			<help>Downtown Sort ( Hot Date )</help>
+			<default>0</default>
+			<index type="12">95</index>
+			<index type="13">95</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="Memories &amp; Wants">
+		<property type="short">
+			<name>Memory Nice/Bad</name>
+			<help>Memory Nice/Bad</help>
+			<default>0</default>
+			<index type="0">33</index>
+			<index type="2">33</index>
+			<index type="4">33</index>
+			<index type="5">33</index>
+			<index type="7">33</index>
+			<index type="8">33</index>
+			<index type="9">33</index>
+			<index type="10">33</index>
+			<index type="11">33</index>
+			<index type="14">33</index>
+			<index type="15">33</index>
+			<index type="16">33</index>
+		</property>
+		<property type="short">
+			<name>Want Category</name>
+			<help>Want Category</help>
+			<default>0</default>
+			<index type="0">47</index>
+			<index type="2">47</index>
+			<index type="4">47</index>
+			<index type="5">47</index>
+			<index type="7">47</index>
+			<index type="8">47</index>
+			<index type="9">47</index>
+			<index type="10">47</index>
+			<index type="11">47</index>
+			<index type="14">47</index>
+			<index type="15">47</index>
+			<index type="16">47</index>
+		</property>
+		<property type="short">
+			<name>Aspiration Flags</name>
+			<help>Aspiration Flags</help>
+			<default>0</default>
+			<index type="0">32</index>
+			<index type="2">32</index>
+			<index type="4">32</index>
+			<index type="5">32</index>
+			<index type="7">32</index>
+			<index type="8">32</index>
+			<index type="9">32</index>
+			<index type="10">32</index>
+			<index type="11">32</index>
+			<index type="14">32</index>
+			<index type="15">32</index>
+			<index type="16">32</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="Motives">
+		<property type="short">
+			<name>Look At Score</name>
+			<help>Look At Score</help>
+			<default>0</default>
+			<index type="0">13</index>
+			<index type="2">13</index>
+			<index type="4">13</index>
+			<index type="5">13</index>
+			<index type="7">13</index>
+			<index type="8">13</index>
+			<index type="9">13</index>
+			<index type="10">13</index>
+			<index type="11">13</index>
+			<index type="14">13</index>
+			<index type="15">13</index>
+			<index type="16">13</index>
+		</property>
+		<property type="short">
+			<name>Niceness Multiplier</name>
+			<help>Niceness Multiplier</help>
+			<default>0</default>
+			<index type="0">45</index>
+			<index type="2">45</index>
+			<index type="4">45</index>
+			<index type="5">45</index>
+			<index type="7">45</index>
+			<index type="8">45</index>
+			<index type="9">45</index>
+			<index type="10">45</index>
+			<index type="11">45</index>
+			<index type="14">45</index>
+			<index type="15">45</index>
+			<index type="16">45</index>
+		</property>
+		<property type="short">
+			<name>ratingRoom</name>
+			<help>ratingRoom</help>
+			<default>0</default>
+			<index type="0">88</index>
+			<index type="2">88</index>
+			<index type="4">88</index>
+			<index type="5">88</index>
+			<index type="7">88</index>
+			<index type="8">88</index>
+			<index type="9">88</index>
+			<index type="10">88</index>
+			<index type="11">88</index>
+			<index type="12">88</index>
+			<index type="13">88</index>
+			<index type="14">88</index>
+			<index type="15">88</index>
+			<index type="16">88</index>
+		</property>
+		<property type="short">
+			<name>ratingHygiene</name>
+			<help>ratingHygiene</help>
+			<default>0</default>
+			<index type="0">84</index>
+			<index type="2">84</index>
+			<index type="4">84</index>
+			<index type="5">84</index>
+			<index type="7">84</index>
+			<index type="8">84</index>
+			<index type="9">84</index>
+			<index type="10">84</index>
+			<index type="11">84</index>
+			<index type="12">84</index>
+			<index type="13">84</index>
+			<index type="14">84</index>
+			<index type="15">84</index>
+			<index type="16">84</index>
+		</property>
+		<property type="short">
+			<name>ratingComfort</name>
+			<help>ratingComfort</help>
+			<default>0</default>
+			<index type="0">83</index>
+			<index type="2">83</index>
+			<index type="4">83</index>
+			<index type="5">83</index>
+			<index type="7">83</index>
+			<index type="8">83</index>
+			<index type="9">83</index>
+			<index type="10">83</index>
+			<index type="11">83</index>
+			<index type="12">83</index>
+			<index type="13">83</index>
+			<index type="14">83</index>
+			<index type="15">83</index>
+			<index type="16">83</index>
+		</property>
+		<property type="short">
+			<name>ratingBladder</name>
+			<help>ratingBladder</help>
+			<default>0</default>
+			<index type="0">85</index>
+			<index type="2">85</index>
+			<index type="4">85</index>
+			<index type="5">85</index>
+			<index type="7">85</index>
+			<index type="8">85</index>
+			<index type="9">85</index>
+			<index type="10">85</index>
+			<index type="11">85</index>
+			<index type="12">85</index>
+			<index type="13">85</index>
+			<index type="14">85</index>
+			<index type="15">85</index>
+			<index type="16">85</index>
+		</property>
+		<property type="short">
+			<name>ratingSkillFlags</name>
+			<help>ratingSkillFlags</help>
+			<default>0</default>
+			<index type="0">89</index>
+			<index type="2">89</index>
+			<index type="4">89</index>
+			<index type="5">89</index>
+			<index type="7">89</index>
+			<index type="8">89</index>
+			<index type="9">89</index>
+			<index type="10">89</index>
+			<index type="11">89</index>
+			<index type="12">89</index>
+			<index type="13">89</index>
+			<index type="14">89</index>
+			<index type="15">89</index>
+			<index type="16">89</index>
+		</property>
+		<property type="short">
+			<name>ratingHunger</name>
+			<help>ratingHunger</help>
+			<default>0</default>
+			<index type="0">82</index>
+			<index type="2">82</index>
+			<index type="4">82</index>
+			<index type="5">82</index>
+			<index type="7">82</index>
+			<index type="8">82</index>
+			<index type="9">82</index>
+			<index type="10">82</index>
+			<index type="11">82</index>
+			<index type="12">82</index>
+			<index type="13">82</index>
+			<index type="14">82</index>
+			<index type="15">82</index>
+			<index type="16">82</index>
+		</property>
+		<property type="short">
+			<name>ratingEnergy</name>
+			<help>ratingEnergy</help>
+			<default>0</default>
+			<index type="0">86</index>
+			<index type="2">86</index>
+			<index type="4">86</index>
+			<index type="5">86</index>
+			<index type="7">86</index>
+			<index type="8">86</index>
+			<index type="9">86</index>
+			<index type="10">86</index>
+			<index type="11">86</index>
+			<index type="12">86</index>
+			<index type="13">86</index>
+			<index type="14">86</index>
+			<index type="15">86</index>
+			<index type="16">86</index>
+		</property>
+		<property type="short">
+			<name>ratingFun</name>
+			<help>ratingFun</help>
+			<default>0</default>
+			<index type="0">87</index>
+			<index type="2">87</index>
+			<index type="4">87</index>
+			<index type="5">87</index>
+			<index type="7">87</index>
+			<index type="8">87</index>
+			<index type="9">87</index>
+			<index type="10">87</index>
+			<index type="11">87</index>
+			<index type="12">87</index>
+			<index type="13">87</index>
+			<index type="14">87</index>
+			<index type="15">87</index>
+			<index type="16">87</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="">
+		<property type="short">
+			<name>sub index</name>
+			<help>sub index</help>
+			<default>0</default>
+			<index type="12">11</index>
+			<index type="13">11</index>
+		</property>
+		<property type="short">
+			<name>num dynamic sprites</name>
+			<help>num dynamic sprites</help>
+			<default>0</default>
+			<index type="12">65</index>
+			<index type="13">65</index>
+		</property>
+		<property type="short">
+			<name>num graphics</name>
+			<help>num graphics</help>
+			<default>0</default>
+			<index type="12">4</index>
+			<index type="13">4</index>
+		</property>
+		<property type="short">
+			<name>Item Is Unlockable</name>
+			<help>Item Is Unlockable</help>
+			<default>0</default>
+			<index type="0">16</index>
+			<index type="2">16</index>
+			<index type="4">16</index>
+			<index type="5">16</index>
+			<index type="7">16</index>
+			<index type="8">16</index>
+			<index type="9">16</index>
+			<index type="10">16</index>
+			<index type="11">16</index>
+			<index type="14">16</index>
+			<index type="15">16</index>
+			<index type="16">16</index>
+		</property>
+		<property type="short">
+			<name>misc flags</name>
+			<help>misc flags</help>
+			<default>0</default>
+			<index type="0">91</index>
+			<index type="2">91</index>
+			<index type="4">91</index>
+			<index type="5">91</index>
+			<index type="7">91</index>
+			<index type="8">91</index>
+			<index type="9">91</index>
+			<index type="10">91</index>
+			<index type="11">91</index>
+			<index type="12">91</index>
+			<index type="13">91</index>
+			<index type="14">91</index>
+			<index type="15">91</index>
+			<index type="16">91</index>
+		</property>
+		<property type="short">
+			<name>Reset Lot Action</name>
+			<help>Reset Lot Action</help>
+			<default>0</default>
+			<index type="0">98</index>
+			<index type="2">98</index>
+			<index type="4">98</index>
+			<index type="5">98</index>
+			<index type="7">98</index>
+			<index type="8">98</index>
+			<index type="9">98</index>
+			<index type="10">98</index>
+			<index type="11">98</index>
+			<index type="12">98</index>
+			<index type="13">98</index>
+			<index type="14">98</index>
+			<index type="15">98</index>
+			<index type="16">98</index>
+		</property>
+		<property type="short">
+			<name>is global sim object</name>
+			<help>is global sim object</help>
+			<default>0</default>
+			<index type="0">42</index>
+			<index type="2">42</index>
+			<index type="4">42</index>
+			<index type="5">42</index>
+			<index type="7">42</index>
+			<index type="8">42</index>
+			<index type="9">42</index>
+			<index type="10">42</index>
+			<index type="11">42</index>
+			<index type="12">42</index>
+			<index type="13">42</index>
+			<index type="14">42</index>
+			<index type="15">42</index>
+			<index type="16">42</index>
+		</property>
+		<property type="short">
+			<name>mt lead object</name>
+			<help>mt lead object</help>
+			<default>0</default>
+			<index type="12">63</index>
+			<index type="13">63</index>
+		</property>
+		<property type="short">
+			<name>Unused - num dynamic sprites (Sims1)</name>
+			<help>Unused - num dynamic sprites (Sims1)</help>
+			<default>0</default>
+			<index type="0">65</index>
+			<index type="2">65</index>
+			<index type="4">65</index>
+			<index type="5">65</index>
+			<index type="7">65</index>
+			<index type="8">65</index>
+			<index type="9">65</index>
+			<index type="10">65</index>
+			<index type="11">65</index>
+			<index type="14">65</index>
+			<index type="15">65</index>
+			<index type="16">65</index>
+		</property>
+		<property type="short">
+			<name>number of object arrays</name>
+			<help>number of object arrays</help>
+			<default>0</default>
+			<index type="0">59</index>
+			<index type="2">59</index>
+			<index type="4">59</index>
+			<index type="5">59</index>
+			<index type="7">59</index>
+			<index type="8">59</index>
+			<index type="9">59</index>
+			<index type="10">59</index>
+			<index type="11">59</index>
+			<index type="14">59</index>
+			<index type="15">59</index>
+			<index type="16">59</index>
+		</property>
+		<property type="short">
+			<name>wall style</name>
+			<help>wall style</help>
+			<default>0</default>
+			<index type="12">46</index>
+			<index type="13">46</index>
+		</property>
+		<property type="short">
+			<name>Object ownership flags</name>
+			<help>Object ownership flags</help>
+			<default>0</default>
+			<index type="0">25</index>
+			<index type="2">25</index>
+			<index type="4">25</index>
+			<index type="5">25</index>
+			<index type="7">25</index>
+			<index type="8">25</index>
+			<index type="9">25</index>
+			<index type="10">25</index>
+			<index type="11">25</index>
+			<index type="14">25</index>
+			<index type="15">25</index>
+			<index type="16">25</index>
+		</property>
+		<property type="short">
+			<name>Object Locomotable, Animatible, static, or Person</name>
+			<help>Object Locomotable, Animatible, static, or Person</help>
+			<default>0</default>
+			<index type="12">99</index>
+			<index type="13">99</index>
+		</property>
+		<property type="short">
+			<name>No New Name from Template</name>
+			<help>No New Name from Template</help>
+			<default>0</default>
+			<index type="0">48</index>
+		</property>
+		<property type="short">
+			<name>inhibit suit copying</name>
+			<help>inhibit suit copying</help>
+			<default>0</default>
+			<index type="0">68</index>
+			<index type="2">68</index>
+			<index type="4">68</index>
+			<index type="5">68</index>
+			<index type="7">68</index>
+			<index type="8">68</index>
+			<index type="9">68</index>
+			<index type="10">68</index>
+			<index type="11">68</index>
+			<index type="12">68</index>
+			<index type="13">68</index>
+			<index type="14">68</index>
+			<index type="15">68</index>
+			<index type="16">68</index>
+		</property>
+		<property type="short">
+			<name>Ignore Current Model Index In Icons</name>
+			<help>Ignore Current Model Index In Icons</help>
+			<default>0</default>
+			<index type="0">55</index>
+		</property>
+		<property type="short">
+			<name>Ignore GlobalSim field in CAS Lot</name>
+			<help>Ignore GlobalSim field in CAS Lot</help>
+			<default>0</default>
+			<index type="0">26</index>
+			<index type="2">26</index>
+			<index type="4">26</index>
+			<index type="5">26</index>
+			<index type="7">26</index>
+			<index type="8">26</index>
+			<index type="9">26</index>
+			<index type="10">26</index>
+			<index type="11">26</index>
+			<index type="14">26</index>
+			<index type="15">26</index>
+			<index type="16">26</index>
+		</property>
+		<property type="short">
+			<name>Cannot Move Out With</name>
+			<help>Cannot Move Out With</help>
+			<default>0</default>
+			<index type="0">27</index>
+			<index type="2">27</index>
+			<index type="4">27</index>
+			<index type="5">27</index>
+			<index type="7">27</index>
+			<index type="8">27</index>
+			<index type="9">27</index>
+			<index type="10">27</index>
+			<index type="11">27</index>
+			<index type="14">27</index>
+			<index type="15">27</index>
+			<index type="16">27</index>
+		</property>
+		<property type="short">
+			<name>footprint mask</name>
+			<help>footprint mask</help>
+			<default>0</default>
+			<index type="0">77</index>
+			<index type="2">77</index>
+			<index type="4">77</index>
+			<index type="5">77</index>
+			<index type="7">77</index>
+			<index type="8">77</index>
+			<index type="9">77</index>
+			<index type="10">77</index>
+			<index type="11">77</index>
+			<index type="12">77</index>
+			<index type="13">77</index>
+			<index type="14">77</index>
+			<index type="15">77</index>
+			<index type="16">77</index>
+		</property>
+		<property type="short">
+			<name>Dream Flags</name>
+			<help>Dream Flags</help>
+			<default>0</default>
+			<index type="0">101</index>
+			<index type="2">101</index>
+			<index type="4">101</index>
+			<index type="5">101</index>
+			<index type="7">101</index>
+			<index type="8">101</index>
+			<index type="9">101</index>
+			<index type="10">101</index>
+			<index type="11">101</index>
+			<index type="14">101</index>
+			<index type="15">101</index>
+			<index type="16">101</index>
+		</property>
+		<property type="short">
+			<name>wall style sprite id</name>
+			<help>wall style sprite id</help>
+			<default>0</default>
+			<index type="12">81</index>
+			<index type="13">81</index>
+		</property>
+	</category>
+</properties>

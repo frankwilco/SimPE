@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <registry>
   <key name="Expansions">
+  
     <!-- Information about the base Game -->
     <key name="BaseGame">
       <int name="Version">0</int>
@@ -155,24 +156,6 @@
       </key>
     </key>
 
-    <!-- Information about Life Stories (provided by Numenor) -->
-    <key name="LifeStories">
-      <int name="Version">20</int>
-      <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Life Stories</string>
-      <int name="Flag">20</int>
-      <string name="ExeName">SimsLS.exe</string>
-      <string name="Censor">quaxi_pets_censor_v1.package</string>
-      <int name="Group">2</int>
-      <cilist name="SaveGameLocationsForGroup">
-        <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
-      </cilist>
-      <string name="namelistnr">1</string>
-      <key name="en">
-	  <string name="short">Life Stories</string>
-      	  <string name="long">The Sims 2 - Life Stories</string>
-      </key>
-    </key>
-
     <!-- Version 7 is inetrnally used for the Happy Hollidays SP, which is not a real SP -->
 
     <!-- Information about Seasons -->
@@ -243,28 +226,6 @@
       </key>
     </key>
   
-    <!-- Information about Pet Stories (provided by Numenor) -->
-    <key name="PetStories">
-      <int name="Version">21</int>
-      <string name="RegKey">SOFTWARE\Electronic Arts\The Sims Pet Stories</string>
-      <int name="Flag">20</int>
-      <string name="ExeName">SimsPS.exe</string>
-      <string name="Censor">quaxi_ofb_censor_v1.package</string>
-      <int name="Group">4</int>
-      <cilist name="SaveGameLocationsForGroup">
-        <string name="0">{MyDocuments}\Electronic Arts\{DisplayName}</string>
-      </cilist>	
-      <string name="namelistnr">2</string>
-      <key name="en">
-	  <string name="short">Pet Stories</string>
-      	  <string name="long">The Sims 2 - Pet Stories</string>
-      </key>
-      <key name="de">
-          <string name="short">Tiergeschichten</string>
-      	  <string name="long">Die Sims 2 - Tiergeschichten</string>
-      </key>
-    </key>
-
     <!-- Information about Bon Voyage -->
     <key name="Voyage">
       <int name="Version">11</int>
@@ -294,6 +255,46 @@
       	  <string name="long">Die Sims 2 - Gute Reise</string>
       </key>
     </key>
-  </key>
 
+    <!-- Information about Life Stories (provided by Numenor) -->
+    <key name="LifeStories">
+      <int name="Version">20</int>
+      <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Life Stories</string>
+      <int name="Flag">20</int>
+      <string name="ExeName">SimsLS.exe</string>
+      <string name="Censor">quaxi_pets_censor_v1.package</string>
+      <int name="Group">2</int>
+      <cilist name="SaveGameLocationsForGroup">
+        <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
+      </cilist>
+      <string name="namelistnr">1</string>
+      <key name="en">
+	  <string name="short">Life Stories</string>
+      	  <string name="long">The Sims 2 - Life Stories</string>
+      </key>
+    </key>
+
+    <!-- Information about Pet Stories (provided by Numenor) -->
+    <key name="PetStories">
+      <int name="Version">21</int>
+      <string name="RegKey">SOFTWARE\Electronic Arts\The Sims Pet Stories</string>
+      <int name="Flag">20</int>
+      <string name="ExeName">SimsPS.exe</string>
+      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+      <int name="Group">4</int>
+      <cilist name="SaveGameLocationsForGroup">
+        <string name="0">{MyDocuments}\Electronic Arts\{DisplayName}</string>
+      </cilist>	
+      <string name="namelistnr">2</string>
+      <key name="en">
+	  <string name="short">Pet Stories</string>
+      	  <string name="long">The Sims 2 - Pet Stories</string>
+      </key>
+      <key name="de">
+          <string name="short">Tiergeschichten</string>
+      	  <string name="long">Die Sims 2 - Tiergeschichten</string>
+      </key>
+    </key>
+
+  </key>
 </registry>

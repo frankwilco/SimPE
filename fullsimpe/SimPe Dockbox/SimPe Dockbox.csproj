@@ -28,7 +28,7 @@
     </UpgradeBackupLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\__Debug\Plugins\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -101,10 +101,7 @@
     <Reference Include="AdvancedForms, Version=1.0.2471.34995, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\AdvancedForms.dll</HintPath>
-    </Reference>
-    <Reference Include="graphcontrol, Version=1.0.2305.28723, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\graphcontrol.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
@@ -112,54 +109,7 @@
     <Reference Include="NetDocks, Version=1.0.2471.34995, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NetDocks.dll</HintPath>
-    </Reference>
-    <Reference Include="NewHexEdit, Version=1.0.2305.28723, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\NewHexEdit.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.3idr, Version=1.0.2305.28394, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.3idr.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.clst, Version=1.0.2305.28390, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.clst.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.commonhandler, Version=1.0.2305.28389, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.commonhandler.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.extfilehandler, Version=1.0.2305.28393, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.extfilehandler.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.filehandler, Version=1.0.2305.28392, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.filehandler.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.helper, Version=0.59.0.1182, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.helper.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.interfaces, Version=1.0.2305.27921, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.package, Version=1.0.2305.28390, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.package.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.rcol, Version=1.0.2305.28391, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.rcol.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.scenegraph, Version=1.0.2305.28395, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.scenegraph.dll</HintPath>
-    </Reference>
-    <Reference Include="simpe.workspace, Version=1.0.2305.28391, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\simpe.workspace.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -185,11 +135,77 @@
     <Reference Include="XPCommonControls">
       <Name>xpcommoncontrols</Name>
       <HintPath>..\xpcommoncontrols.dll</HintPath>
+      <Private>False</Private>
     </Reference>
+    <ProjectReference Include="..\GraphControl\GraphControl.csproj">
+      <Project>{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}</Project>
+      <Name>GraphControl</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\HexEdit\NewHexEdit.csproj">
+      <Project>{57FB03C0-014D-4347-BF66-16E62ECA1EFF}</Project>
+      <Name>NewHexEdit</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe 3IDR\SimPe 3IDR.csproj">
+      <Project>{37D97490-DC9F-4DB7-9215-998C6BC06078}</Project>
+      <Name>SimPe 3IDR</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Clst\SimPe Clst.csproj">
+      <Project>{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}</Project>
+      <Name>SimPe Clst</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Extended Filehandlers\SimPe Extended Filehandlers.csproj">
+      <Project>{7EF7C30C-2968-46E8-AA74-79EDB0FE8F2A}</Project>
+      <Name>SimPe Extended Filehandlers</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe FileHandler\SimPe FileHandlers.csproj">
+      <Project>{97551C0A-6295-4E32-8E15-A4FF456E65A6}</Project>
+      <Name>SimPe FileHandlers</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
+      <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
+      <Name>SimPe HandlerCommon</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Helper\SimPe Helper.csproj">
+      <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
+      <Name>SimPe Helper</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Interfaces\SimPe Interfaces.csproj">
+      <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
+      <Name>SimPe Interfaces</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Packages\SimPe Packages.csproj">
+      <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
+      <Name>SimPe Packages</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe RCOL\SimPe RCOL.csproj">
+      <Project>{74517907-2236-4C45-80ED-E188D5E5CE0E}</Project>
+      <Name>SimPe RCOL</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Scenegraph\SimPe Scenegraph.csproj">
+      <Project>{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}</Project>
+      <Name>SimPe Scenegraph</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\SimPe Sims2CommunityPack\SimPe Sims2CommunityPack.csproj">
-      <Name>SimPe Sims2CommunityPack</Name>
       <Project>{2EF93119-5C98-4167-B1AF-966E6A45AB79}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Name>SimPe Sims2CommunityPack</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
+      <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
+      <Name>SimPe Workspace Helper</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -406,20 +422,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>if not exist "$(SolutionDir)..\__Release\Plugins\" mkdir "$(SolutionDir)..\__Release\Plugins\"
-if not exist "$(SolutionDir)..\__Release\de\" mkdir "$(SolutionDir)..\__Release\de\"
-if not exist "$(SolutionDir)..\__Release\es\" mkdir "$(SolutionDir)..\__Release\es\"
-if not exist "$(SolutionDir)..\__Release\pl\" mkdir "$(SolutionDir)..\__Release\pl\"
-if not exist "$(SolutionDir)..\__Release\it\" mkdir "$(SolutionDir)..\__Release\it\"
-if not exist "$(SolutionDir)..\__Release\ru\" mkdir "$(SolutionDir)..\__Release\ru\"
-copy "$(TargetPath)" "$(SolutionDir)..\__Release\Plugins\$(TargetFileName)"
-copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\__Release\Plugins\"
-copy "$(TargetDir)de\*.dll" "$(SolutionDir)..\__Release\de\"
-copy "$(TargetDir)pl\*.dll" "$(SolutionDir)..\__Release\pl\"
-copy "$(TargetDir)es\*.dll" "$(SolutionDir)..\__Release\es\"
-copy "$(TargetDir)it\*.dll" "$(SolutionDir)..\__Release\it\"
-copy "$(TargetDir)ru\*.dll" "$(SolutionDir)..\__Release\ru\"
-if not exist "$(SolutionDir)..\__Release\fr\" mkdir "$(SolutionDir)..\__Release\fr\"
-copy "$(TargetDir)fr\*.dll" "$(SolutionDir)..\__Release\fr\"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

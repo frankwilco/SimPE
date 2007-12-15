@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tgi xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="tgi.xsd">
+	<type value="FFFFFFFF">
+		<name>--- User Defined ---</name>
+		<shortname>----</shortname>
+	</type>
+	<type value="61754C1B"> 
+		<name>SimPE Object Lua</name>
+		<shortname>SLUA</shortname>
+		<known/>
+		<embeddedfilename/>
+		<!-- This is a SimPE Custom Format! And is now obsolete since Maxis introduced their own LUA .packahe Formats-->
+	</type>
+	<type value="ABD0DC63">
+		<name>Neighborhood Terrain</name>
+		<shortname>NHTR</shortname>
+		<known/>
+	</type>
+	<type value="104F6A6E">
+		<name>Business Info</name>
+		<shortname>BNFO</shortname>
+		<known/>
+	</type>
+	<type value="CDB467B8">
+		<name>Content Registry</name>
+		<shortname>CREG</shortname>
+		<known/>
+	</type>
+	<type value="4F6FD33D">
+		<name>Inventory Item</name>
+		<shortname>INIT</shortname>
+		<known/>
+	</type>
+        <type value="3053CF74"> 
+		<name>Sim: Scores</name>
+		<shortname>SCOR</shortname>
+		<known/>
+	</type>
+	<type value="9012468B"> 
+		<name>Object Lua</name>
+		<shortname>OLUA</shortname>
+		<known/>
+	</type>
+	<type value="9012468A"> 
+		<name>Global Object Lua</name>
+		<shortname>GLUA</shortname>
+		<known/>
+	</type>
+	<type value="ABCB5DA4">
+		<name>Neighborhood Terrain Geometry</name>
+		<shortname>NHTG</shortname>
+		<known/>
+	</type>
+	<type value="6B943B43">
+		<name>Lot Terrain Geometry</name>
+		<shortname>LOTG</shortname>
+		<known/>
+	</type>
+	<type value="2A51171B">
+		<name>3D Array</name>
+		<shortname>3ARY</shortname>
+		<known/>
+	</type>
+	<type value="AC598EAC">
+		<name>Age Data</name>
+		<shortname>AGED</shortname>
+		<known/>
+	</type>
+	<type value="FB00791E">
+		<name>Animation Resource</name>
+		<shortname>ANIM</shortname>
+		<extension>5an</extension>
+		<known/>
+	</type>
+	<type value="EBFEE345">
+		<name>Audio Test</name>
+		<shortname>AUDT</shortname>
+		<known/>
+	</type>
+	<type value="42434F4E">
+		<name>Behaviour Constant</name>
+		<shortname>BCON</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="42484156">
+		<name>Behaviour Function</name>
+		<shortname>BHAV</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="0C560F39">
+		<name>Binary Index</name>
+		<shortname>BINX</shortname>
+		<known/>
+	</type>
+	<type value="424D505F">
+		<name>Bitmap Image</name>
+		<shortname>BMP</shortname>
+		<extension>bmp</extension>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="43415453">
+		<name>Catalog String</name>
+		<shortname>CATS</shortname>
+		<known/>
+	</type>
+	<type value="6C4F359D">
+		<name>Collection</name>
+		<shortname>COLL</shortname>
+		<known/>
+	</type>
+	<type value="E519C933">
+		<name>Resource Node</name>
+		<shortname>CRES</shortname>
+		<extension>5cr</extension>
+		<known/>
+	</type>
+	<type value="43545353">
+		<name>Catalog Description</name>
+		<shortname>CTSS</shortname>
+		<known/>
+	</type>
+	<type value="CCCEF852">
+		<name>Facial Structure</name>
+		<shortname>LxNR</shortname>
+		<known/>
+	</type>
+	<type value="44475250">
+		<name>Layered Image</name>
+		<shortname>DGRP</shortname>
+		<known/>
+	</type>
+	<type value="EA5118B0">
+		<name>Effects List</name>
+		<shortname>FX</shortname>
+		<extension>fx</extension>
+		<known/>
+	</type>
+	<type value="46414345">
+		<name>Face Properties</name>
+		<shortname>FACE</shortname>
+		<known/>
+	</type>
+	<type value="46414D49">
+		<name>Family Information</name>
+		<shortname>FAMI</shortname>
+		<known/>
+	</type>
+	<type value="46434E53">
+		<name>Function</name>
+		<shortname>FCNS</shortname>
+		<known/>
+	</type>
+	<type value="CD95548E">
+		<name>Sim Wants and Fears</name>
+		<shortname>SWAF</shortname>
+		<known/>
+	</type>
+	<type value="AB4BA572">
+		<name>Fence Post Layer</name>
+		<shortname>FPST</shortname>
+		<known/>
+	</type>
+	<type value="46574156">
+		<name>Audio Reference</name>
+		<shortname>FWAV</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="8DB5E4C2">
+		<name>FX Sound</name>
+		<shortname>FXSD</shortname>
+		<known/>
+	</type>
+	<type value="474C4F42">
+		<name>Global Data</name>
+		<shortname>GLOB</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="AC4F8687">
+		<name>Geometric Data Container</name>
+		<shortname>GMDC</shortname>
+		<extension>5gd</extension>
+		<known/>
+	</type>
+	<type value="7BA3838C">
+		<name>Geometric Node</name>
+		<shortname>GMND</shortname>
+		<extension>5gn</extension>
+		<known/>
+	</type>
+	<type value="EBCF3E27">
+		<name>Property Set</name>
+		<shortname>GZPS</shortname>
+		<known/>
+	</type>
+	<type value="484F5553">
+		<name>House Descriptor</name>
+		<shortname>HOUS</shortname>
+		<known/>
+	</type>
+	<type value="AC8A7A2E">
+		<name>ID Number</name>
+		<shortname>IDNO</shortname>
+		<known/>
+	</type>
+	<type value="0C7E9A76">
+		<name>JPEG Image</name>
+		<shortname>JPG</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="4D533EDD">
+		<name>JPEG Image</name>
+		<shortname>JPG</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="8C3CE95A">
+		<name>JPEG Image</name>
+		<shortname>JPG</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="856DDBAC">
+		<name>jpg/tga/png Image</name>
+		<shortname>IMG</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="C9C81BA3">
+		<name>Lighting (Ambient Light)</name>
+		<shortname>LGHT</shortname>
+		<extension>5al</extension>
+		<known/>
+	</type>
+	<type value="C9C81B9B">
+		<name>Lighting (Directional Light)</name>
+		<shortname>LGHT</shortname>
+		<extension>5dl</extension>
+		<known/>
+	</type>
+	<type value="C9C81BA9">
+		<name>Lighting (Point Light)</name>
+		<shortname>LGHT</shortname>
+		<extension>5pl</extension>
+		<known/>
+	</type>
+	<type value="C9C81BAD">
+		<name>Lighting (Spot Light)</name>
+		<shortname>LGHT</shortname>
+		<extension>5sl</extension>
+		<known/>
+	</type>
+	<type value="AC06A676">
+		<name>Lighting (Draw State Light)</name>
+		<shortname>LGHT</shortname>
+		<extension>5ds</extension>
+		<known/>
+	</type>
+	<type value="6A97042F">
+		<name>Lighting (Environment Cube Light)</name>
+		<shortname>LGHT</shortname>
+		<extension>5el</extension>
+		<known/>
+	</type>
+	<type value="AC06A66F">
+		<name>Lighting (Linear Fog Light)</name>
+		<shortname>LGHT</shortname>
+		<extension>5lf</extension>
+		<known/>
+	</type>
+	<type value="ED534136">
+		<name>Large Image File</name>
+		<shortname>LIFO</shortname>
+		<extension>6li</extension>
+		<known/>
+	</type>
+	<type value="4E6D6150">
+		<name>Name Map</name>
+		<shortname>NMAP</shortname>
+		<known/>
+	</type>
+	<type value="E86B1EEF">
+		<name>Directory of Compressed Files</name>
+		<shortname>CLST</shortname>
+		<extension>dir</extension>
+		<known/>
+	</type>
+	<type value="0BF999E7">
+		<name>Lot Description</name>
+		<shortname>LTXT</shortname>
+		<known/>
+	</type>
+	<type value="4B58975B">
+		<name>Lot Texture</name>
+		<shortname>LTTX</shortname>
+		<known/>
+	</type>
+	<type value="49596978">
+		<name>Material Definition</name>
+		<shortname>TXMT</shortname>
+		<extension>5tm</extension>
+		<known/>
+	</type>
+	<type value="4C697E5A">
+		<name>Material Override</name>
+		<shortname>MMAT</shortname>
+		<known/>
+	</type>
+	<type value="4E474248">
+		<name>Neighborhood/Memory</name>
+		<shortname>NGBH</shortname>
+		<known/>
+	</type>
+	<type value="4E524546">
+		<name>Name Reference</name>
+		<shortname>NREF</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="4F424A44">
+		<name>Object Data</name>
+		<shortname>OBJD</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="4F424A66">
+		<name>Object Functions</name>
+		<shortname>OBJf</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="4F626A4D">
+		<name>Object Material?</name>
+		<shortname>OBJM</shortname>
+		<known/>
+	</type>
+	<type value="6F626A74">
+		<name>Object</name>
+		<shortname>OBJT</shortname>
+		<known/>
+	</type>
+	<type value="FA1C39F7">
+		<name>Object</name>
+		<shortname>OBJT</shortname>
+		<known/>
+	</type>
+	<type value="50414C54">
+		<name>Image Color Palette (Version 1)</name>
+		<shortname>PALT</shortname>
+		<known/>
+	</type>
+	<type value="AC506764">
+		<name>3D ID Referencing File</name>
+		<shortname>3IDR</shortname>
+		<known/>
+	</type>
+	<type value="504F5349">
+		<name>Stack Script</name>
+		<shortname>POSI</shortname>
+		<known/>
+	</type>
+	<type value="CD7FE87A">
+		<name>Maxis Material Shader</name>
+		<shortname>MATSHAD</shortname>
+		<extension>matshad</extension>
+		<known/>
+	</type>
+	<type value="50544250">
+		<name>Package Text</name>
+		<shortname>PTBP</shortname>
+		<known/>
+	</type>
+	<type value="ACE46235">
+		<name>Road Texture</name>
+		<shortname>RTEX</shortname>
+		<known/>
+	</type>
+	<type value="8CC0A14B">
+		<name>UNK: 0x8CC0A14B</name>
+		<shortname>SDBA</shortname>
+	</type>
+	<type value="EBFEE33F">
+		<name>Sim DNA</name>
+		<shortname>SDNA</shortname>
+		<known/>
+	</type>
+	<type value="FC6EB1F7">
+		<name>Shape</name>
+		<shortname>SHPE</shortname>
+		<extension>5sh</extension>
+		<known/>
+	</type>
+	<type value="53494D49">
+		<name>Sim Information</name>
+		<shortname>SIMI</shortname>
+		<known/>
+	</type>
+	<type value="534C4F54">
+		<name>Slot File</name>
+		<shortname>SLOT</shortname>
+		<embeddedfilename/>
+	</type>
+	<type value="CAC4FC40">
+		<name>String Map</name>
+		<shortname>SMAP</shortname>
+		<known/>
+	</type>
+	<type value="53505232">
+		<name>Sprites</name>
+		<shortname>SPR2</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="2026960B">
+		<name>mp3 or xa Sound File</name>
+		<shortname>MP3</shortname>
+		<extension>mp3</extension>
+		<known/>
+	</type>
+	<type value="53545223">
+		<name>Text Lists</name>
+		<shortname>STR#</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="54415454">
+		<name>TATT</name>		
+		<shortname>TATT</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="54505250">
+		<name>Edith Simantics Behaviour Labels</name>
+		<shortname>TPRP</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="54524545">
+		<name>Edith Flowchart Trees</name>
+		<shortname>TREE</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="0B9EB87E">
+		<name>Track Settings</name>
+		<shortname>TRKS</shortname>
+		<known/>
+	</type>
+	<type value="BA353CE1">
+		<name>TSSG System</name>
+		<shortname>TSSG</shortname>
+		<known/>
+	</type>
+	<type value="54544142">
+		<name>Pie Menu Functions</name>
+		<shortname>TTAB</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="54544173">
+		<name>Pie Menu Strings</name>
+		<shortname>TTAs</shortname>
+		<known/>
+		<embeddedfilename/>
+	</type>
+	<type value="1C4A276C">
+		<name>Texture Image</name>
+		<shortname>TXTR</shortname>
+		<extension>6tx</extension>
+		<known/>
+	</type>
+	<type value="EBFEE342">
+		<name>Version Information</name>
+		<shortname>VERS</shortname>
+		<known/>
+	</type>
+	<type value="CB4387A1">
+		<name>Vertex</name>
+		<shortname>VERT</shortname>
+		<known/>
+	</type>
+	<type value="0A284D0B">
+		<name>Wall Graph</name>
+		<shortname>WGRA</shortname>
+		<known/>
+	</type>
+	<type value="8A84D7B0">
+		<name>Wall Layer</name>
+		<shortname>WLAY</shortname>
+		<known/>
+	</type>
+	<type value="49FF7D76">
+		<name>World Database</name>
+		<shortname>WRLD</shortname>
+		<known/>
+	</type>
+	<type value="8C93E35C">
+		<name>Face Arch XML</name>
+		<shortname>XFCH</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="4DCADB7E">
+		<name>Floor XML</name>
+		<shortname>XFLR</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="0C93E3DE">
+		<name>Face Modifier XML</name>
+		<shortname>XFMD</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="2CB230B8">
+		<name>Fence XML</name>
+		<shortname>XFNC</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="6C93B566">
+		<name>Face Neural XML</name>
+		<shortname>XFNU</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="8C93BF6C">
+		<name>Face Region XML</name>
+		<shortname>XFRG</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="8C1580B5">
+		<name>Hair Tone XML</name>
+		<shortname>XHTN</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="0C1FE246">
+		<name>Mesh Overlay XML</name>
+		<shortname>XMOL</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="584D544F">
+		<name>Material Object?</name>
+		<shortname>XMTO</shortname>
+		<known/>
+	</type>
+	<type value="6D619378">
+		<name>Neighborhood Object XML</name>
+		<shortname>XNGB</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="CCA8E925">
+		<name>Object XML</name>
+		<shortname>XOBJ</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="584F424A">
+		<name>Object XML</name>
+		<shortname>XOBJ</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="ACA8EA06">
+		<name>Roof XML</name>
+		<shortname>XROF</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="4C158081">
+		<name>Skin Tone XML</name>
+		<shortname>XSTN</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="2C1FD8A1">
+		<name>Texture Overlay XML</name>
+		<shortname>XTOL</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="6C589723">
+		<name>UNK: 0x6C589723</name>
+		<shortname>UNK</shortname>
+	</type>
+	<type value="CD8B6498">
+		<name>UNK: 0xCD8B6498</name>
+		<shortname>UNK</shortname>
+	</type>
+	<type value="AB9406AA">
+		<name>UNK: 0xAB9406AA</name>
+		<shortname>UNK</shortname>
+	</type>
+	<type value="0C900FDB">
+		<name>UNK: 0x0C900FDB</name>
+		<shortname>UNK</shortname>
+	</type>
+	<type value="CC364C2A">
+		<name>Sim Relations</name>
+		<shortname>SREL</shortname>
+		<known/>
+	</type>
+	<type value="8B0C79D6">
+		<name>UNK: 0x8B0C79D6</name>
+		<shortname>UNK</shortname>
+	</type>
+	<type value="50455253">
+		<name>UNK: 0x50455253</name>
+		<shortname>UNK</shortname>
+	</type>
+	<type value="BC66BAEC">
+		<name>UNK: 0xBC66BAEC</name>
+		<shortname>UNK</shortname>
+	</type>
+	<type value="EC44BDDC">
+		<name>UNK: 0xEC44BDDC</name>
+		<shortname>UNK</shortname>
+	</type>
+	<type value="8C870743">
+		<name>Family Ties</name>
+		<shortname>FAMT</shortname>
+		<known/>
+	</type>	
+	<type value="CC2A6A34">
+		<name>Sim Creation Index</name>
+		<shortname>SCID</shortname>
+	</type>
+	<type value="00000000">
+		<name>UI Data</name>
+		<shortname>UI</shortname>
+		<extension>uiScript</extension>
+		<known/>
+	</type>
+	<type value="A2E3D533">
+		<name>Accelerator Key Definitions</name>
+		<shortname>KEYD</shortname>
+		<known/>
+	</type>
+	<type value="AACE2EFB">
+		<name>Sim Description</name>
+		<shortname>SDSC</shortname>
+		<known/>
+	</type>
+	<type value="5452434E">
+		<name>Behaviour Constant Labels</name>
+		<shortname>TRCN</shortname>
+		<embeddedfilename/>
+	</type>
+	<type value="46414D68">
+		<name>Family Unknown</name>
+		<shortname>FAMH</shortname>
+		<known/>
+	</type>
+	<type value="ED7D7B4D">
+		<name>Wants XML</name>
+		<shortname>XWNT</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="6D814AFE">
+		<name>Wants Tree Item</name>
+		<shortname>WNTT</shortname>
+		<extension>xml</extension>
+		<known/>
+	</type>
+	<type value="7B1ACFCD">
+		<name>UNK: 0x7B1ACFCD</name>
+		<shortname>UNK</shortname>
+	</type>
+	<type value="ADEE8D84">
+        	<name>Light Override</name>
+        	<shortname>NLO</shortname>
+        	<extension>nlo</extension>
+        	<known/>
+    	</type>
+	<type value="4D51F042">
+		<name>Cinematic Scene</name>
+		<shortname>CINE</shortname>
+		<extension>5cs</extension>
+		<known/>
+	</type>
+	<type value="EC3126C4">
+		<name>Terrain Thumbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="AC2950C1">
+		<name>Thumbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="25232B11">
+		<name>Scene Node</name>
+		<shortname>SCEN</shortname>
+		<extension>5sc</extension>
+		<known/>
+	</type>
+	<type value="2C30E040">
+		<name>Fence Arch Thumbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="2C43CBD4">
+		<name>Foundation or Pool Thumbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="2C488BCA">
+		<name>Dormer Thmbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="8C31125E">
+		<name>Wall Thumbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="8C311262">
+		<name>Floor Thumbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="CC30CDF8">
+		<name>Fence Thumbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="CC44B5EC">
+		<name>Modular Stair Thumbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="CC489E46">
+		<name>Roof Thumbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="CC48C51F">
+		<name>Chimney Thumbnail</name>
+		<shortname>THUB</shortname>
+		<extension>jpg</extension>
+		<known/>
+	</type>
+	<type value="54535053">
+		<name>Groups Cache</name>
+		<shortname>GROP</shortname>
+		<known/>
+	</type>
+	<type value="2C310F46">
+		<name>Popups</name>
+		<shortname>POPS</shortname>
+		<known/>
+	</type>
+	<type value="D1954460">
+		<name>Pet Body Options</name>
+		<shortname>PBOP</shortname>
+		<known/>
+	</type>
+	<type value="7181C501">
+		<name>Pet Unknown</name>
+		<shortname>PUNK</shortname>
+		<known/>
+	</type>
+</tgi>

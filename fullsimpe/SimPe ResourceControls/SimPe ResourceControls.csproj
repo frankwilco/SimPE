@@ -14,7 +14,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\__Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -49,10 +49,12 @@
     <Reference Include="graphcontrol, Version=1.0.2478.24178, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\__Release\graphcontrol.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NetDocks, Version=1.0.2485.27487, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NetDocks.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -166,26 +168,32 @@
     <ProjectReference Include="..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
       <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
       <Name>SimPe HandlerCommon</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Helper\SimPe Helper.csproj">
       <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
       <Name>SimPe Helper</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Interfaces\SimPe Interfaces.csproj">
       <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
       <Name>SimPe Interfaces</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Packages\SimPe Packages.csproj">
       <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
       <Name>SimPe Packages</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Scenegraph\SimPe Scenegraph.csproj">
       <Project>{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}</Project>
       <Name>SimPe Scenegraph</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
       <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
       <Name>SimPe Workspace Helper</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
