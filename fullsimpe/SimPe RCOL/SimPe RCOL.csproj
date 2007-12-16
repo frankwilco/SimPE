@@ -138,11 +138,6 @@
       <HintPath>..\ambertation.utilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="graphcontrol, Version=1.0.2301.39046, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\__Release\graphcontrol.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
     </Reference>
@@ -172,6 +167,11 @@
       <HintPath>..\XPCommonControls.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <ProjectReference Include="..\GraphControl\GraphControl.csproj">
+      <Project>{7D2EE6ED-78C1-4738-9AE1-E3C165A81E3D}</Project>
+      <Name>GraphControl</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\SimPe Geometry\SimPe Geometry.csproj">
       <Project>{60367A6D-8FF1-4289-B546-C68A2C395843}</Project>
       <Name>SimPe Geometry</Name>
