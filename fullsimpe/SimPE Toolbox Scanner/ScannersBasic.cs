@@ -776,7 +776,7 @@ namespace SimPe.Plugin.Scanner
 	/// </summary>
 	internal class MeshScanner : AbstractScanner, IScanner
 	{
-		static SimPe.Cache.MemoryCacheFile cachefile;
+		//static SimPe.Cache.MemoryCacheFile cachefile;
 
 		public MeshScanner () : base () 
 		{		

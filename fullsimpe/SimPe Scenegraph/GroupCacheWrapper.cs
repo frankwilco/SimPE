@@ -167,14 +167,18 @@ namespace SimPe.PackedFiles.Wrapper
 					GroupCacheItem gci = new GroupCacheItem();
 					gci.Unserialize(reader);
 					Add(gci);
-				} 
-				catch (Exception ex) 
-				{
-#if DEBUG
-					Helper.ExceptionMessage("", ex);
-#endif
 				}
-			}
+#if DEBUG
+                catch (Exception ex) 
+				{
+					Helper.ExceptionMessage("", ex);
+                }
+#else
+                catch (Exception) 
+				{
+                }
+#endif
+            }
 
 			over = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));
 		}

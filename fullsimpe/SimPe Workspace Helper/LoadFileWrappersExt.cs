@@ -50,7 +50,7 @@ namespace SimPe
         public static void SetShurtcutKey(System.Windows.Forms.ToolStripMenuItem mi, Shortcut sc)
         {
             try { mi.ShortcutKeys = Helper.ToKeys(sc); }
-            catch (Exception ex) { System.Diagnostics.Debug.WriteLine("Conversion Error from " + sc); }
+            catch (Exception) { System.Diagnostics.Debug.WriteLine("Conversion Error from " + sc); }
         }
 
 		/// <summary>

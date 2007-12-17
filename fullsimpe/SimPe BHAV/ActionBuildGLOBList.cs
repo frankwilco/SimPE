@@ -49,7 +49,7 @@ namespace SimPe.Plugin.Tool.Action
 				sw.WriteLine("");
 				sw.Write("    ");
 				Wait.SubStart(items.Length);
-				int ct = 0;
+				//int ct = 0;
 				foreach (SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 
 				{
 

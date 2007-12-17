@@ -80,7 +80,8 @@ namespace SimPe.Plugin
                 list.CopyTo(Last);
                 return Last;
 
-				if (Helper.WindowsRegistry.HiddenMode) 
+#if UNREACHABLE
+                if (Helper.WindowsRegistry.HiddenMode) 
 				{
 					Last = new IToolPlugin[]{
 											  new SimPe.Plugin.Tool.Dockable.ObectWorkshopDockTool(),
@@ -100,7 +101,8 @@ namespace SimPe.Plugin
 										  };
 				}
 				return Last;
-			}
+#endif
+            }
 		}
 		#endregion
 	}

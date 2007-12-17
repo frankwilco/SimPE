@@ -58,7 +58,7 @@ namespace SimPe.Plugin.Anim
 			get {return parent;}
 		}
 
-		short tc;
+		ushort tc;
 		/// <summary>
 		/// The TimeCode for this Frame
 		/// </summary>
@@ -71,7 +71,7 @@ namespace SimPe.Plugin.Anim
 			}
 			set 
 			{
-				tc = (short)((tc & 0x8000) | (value & 0x7fff));
+				tc = (ushort)( (tc & 0x8000) | (ushort)(value & 0x7fff) );
 			}
 		}
 
@@ -87,8 +87,8 @@ namespace SimPe.Plugin.Anim
 			}
 			set
 			{
-				tc = (short)(tc & 0x7fff);
-				if (value) tc = (short)(tc | 0x8000);
+				tc = (ushort)(tc & 0x7fff);
+				if (value) tc = (ushort)(tc | 0x8000);
 			}
 		}
 
@@ -215,13 +215,13 @@ namespace SimPe.Plugin.Anim
 			} 
 			else if (parent.Type == AnimationTokenType.SixByte) 
 			{
-				tc = datas[0];
+				tc = (ushort)datas[0];
 				param = datas[1];
 				u1 = datas[2];
 			} 
 			else 
 			{
-				tc = datas[0];
+				tc = (ushort)datas[0];
 				param = datas[1];
 				u1 = datas[2];
 				u2 = datas[3];
@@ -242,13 +242,13 @@ namespace SimPe.Plugin.Anim
 			} 
 			else if (parent.Type == AnimationTokenType.SixByte) 
 			{
-				datas[0] = tc;
+				datas[0] = (short)tc;
 				datas[1] = param;
 				datas[2] = u1;
 			} 
 			else 
 			{
-				datas[0] = tc;
+				datas[0] = (short)tc;
 				datas[1] = param;
 				datas[2] = u1;
 				datas[3] = u2;

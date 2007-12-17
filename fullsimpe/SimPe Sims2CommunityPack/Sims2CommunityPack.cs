@@ -445,7 +445,7 @@ namespace SimPe.Packages
 
 			ArrayList list = new ArrayList();
 			//Alle Eintr&auml;ge im Root Node verarbeiten
-			Data.MetaData.IndexTypes type = Data.MetaData.IndexTypes.ptShortFileIndex;
+			//Data.MetaData.IndexTypes type = Data.MetaData.IndexTypes.ptShortFileIndex;
 			for (int i=0; i<XMLData.Count; i++)
 			{
 				XmlNode node = XMLData.Item(i);

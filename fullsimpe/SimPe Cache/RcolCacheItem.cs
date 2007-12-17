@@ -52,7 +52,7 @@ namespace SimPe.Cache
 		byte version;
 		string modelname;
 		string resourcename;
-		RcolCacheItemType type;
+		//RcolCacheItemType type;
 		Interfaces.Files.IPackedFileDescriptor pfd;
 
 		/// <summary>

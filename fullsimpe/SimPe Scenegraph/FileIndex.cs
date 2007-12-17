@@ -264,7 +264,7 @@ namespace SimPe.Plugin
 		/// <summary>
 		/// Contains the next number the Core can assign as a localGroup
 		/// </summary>
-		static uint lastLocalGroup = 0x6f000000;
+		//static uint lastLocalGroup = 0x6f000000;
 
 		/// <summary>
 		/// Contains a Listing of all alternate Groups SimPe should check if the first try was no success

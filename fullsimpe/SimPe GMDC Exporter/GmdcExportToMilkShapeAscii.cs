@@ -352,7 +352,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 							if (ab.AxisSet[0].Locked) ct += 2;						
 							writer.WriteLine(ct.ToString());	
 								
-							bool first = true;
+							//bool first = true;
 							foreach (AnimationFrame af in afs)
 							{
 								Vector3f v = af.Vector;
@@ -374,7 +374,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 									writer.WriteLine("0 0 0 0");
 									writer.WriteLine("1 0 0 0");
 								}
-								first = false;
+								//first = false;
 							}
 						
 						}

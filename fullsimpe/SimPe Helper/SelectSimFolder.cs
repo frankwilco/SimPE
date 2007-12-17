@@ -47,7 +47,7 @@ namespace SimPe
 			public override string ToString()
 			{
 				return folder;
-				return name+": "+folder;
+				//return name+": "+folder;
 			}
 
 		}

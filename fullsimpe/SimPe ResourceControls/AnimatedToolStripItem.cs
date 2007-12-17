@@ -35,11 +35,11 @@ namespace Ambertation.Windows.Forms
 
         System.Timers.Timer timer;
         System.Timers.ElapsedEventHandler ih;
-        bool init;
+        //bool init;
         public AnimatedToolstripItem()
             : base()
         {
-            init = true;
+            //init = true;
             index = 0;
             timer = new System.Timers.Timer(40);
             timer.Enabled = false;
@@ -51,7 +51,7 @@ namespace Ambertation.Windows.Forms
 
 
             list = new Images();
-            init = false;
+            //init = false;
         }
 
         void InvokeTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -69,6 +69,7 @@ namespace Ambertation.Windows.Forms
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             return;
+#if UNREACHABLE
             if (init) return;
             //lock (timer)
             {
@@ -77,6 +78,7 @@ namespace Ambertation.Windows.Forms
                         this.Parent.Invoke(ih, new object[] { sender, e });                                     
                 //if (doevents) Application.DoEvents();
             }
+#endif
         }
 
 
