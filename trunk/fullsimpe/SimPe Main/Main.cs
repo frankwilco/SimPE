@@ -67,7 +67,7 @@ namespace SimPe
 		#region Custom Attributes
 		LoadedPackage package;
 		ViewFilter filter;
-		TreeView lasttreeview;
+		//TreeView lasttreeview;
 		PluginManager plugger;
 		ResourceLoader resloader;
 		RemoteHandler remote;

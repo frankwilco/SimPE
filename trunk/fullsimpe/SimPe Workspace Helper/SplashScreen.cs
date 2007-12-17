@@ -17,12 +17,12 @@ namespace SimPe
         }
 
         SimPe.Windows.Forms.SplashForm frm;
-        bool running;
+        //bool running;
         bool show;
         private Splash()
         {
             mmsg = "";
-            running = true;
+            //running = true;
             show = false;
 
             if (Helper.WindowsRegistry.ShowStartupSplash)
@@ -61,7 +61,7 @@ namespace SimPe
         public void ShutDown()
         {
             Stop();
-            running = false;
+            //running = false;
         }
     }
 }

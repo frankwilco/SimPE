@@ -60,7 +60,8 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			SimPe.PackedFiles.Wrapper.ExtSDesc ret = (SimPe.PackedFiles.Wrapper.ExtSDesc)FileTable.ProviderRegistry.SimDescriptionProvider.FindSim((ushort)inst);
 			return ret;
-			if (ret==null) 
+#if UNREACHABLE
+            if (ret==null) 
 			{
 				if (Package==null) return null;
 				if (this.FileDescriptor==null) return null;
@@ -71,7 +72,8 @@ namespace SimPe.PackedFiles.Wrapper
 				ret.ProcessData(pfd, Package);
 			}
 			return ret;
-		}
+#endif
+        }
 
 		public uint TargetSimInstance
 		{

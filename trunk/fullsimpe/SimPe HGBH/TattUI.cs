@@ -322,12 +322,12 @@ namespace SimPe.Plugin
 			get { return (Tatt)Wrapper ; }
 		}
 
-		bool inter;
+		//bool inter;
 		protected override void RefreshGUI()
 		{
 			base.RefreshGUI ();
 
-			inter =true;
+			//inter =true;
 			this.tbFlname.Text =  Tatt.FileName;
 			this.tbRes.Text = "0x"+Helper.HexString(Tatt.Reserved);
 			this.tbVer.Text = "0x"+Helper.HexString(Tatt.Version);
@@ -336,7 +336,7 @@ namespace SimPe.Plugin
 			foreach (TattItem ti in Tatt)
 				lb.Items.Add(ti);
 
-			inter = false;
+			//inter = false;
 		}
 
 		private void TattUI_Commited(object sender, System.EventArgs e)

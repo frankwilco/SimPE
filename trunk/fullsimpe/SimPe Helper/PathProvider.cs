@@ -108,7 +108,7 @@ namespace SimPe
                     lastknown = i.Expansion;
                 }
 
-                avlgrp = avlgrp | i.Group;
+                avlgrp = avlgrp | (uint)i.Group;
             }
 
             

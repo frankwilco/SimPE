@@ -49,7 +49,7 @@ namespace SimPe.Plugin.Gmdc.Exporter
 		/// <remarks>The export has to be started Manual through a call to <see cref="AbstractGmdcExporter.Process"/></remarks>
 		public GmdcExportToXSI() : base()  {}
 
-		System.Collections.ArrayList modelnames;
+		//System.Collections.ArrayList modelnames;
 		/// <summary>
 		/// Returns a unique Modelname
 		/// </summary>

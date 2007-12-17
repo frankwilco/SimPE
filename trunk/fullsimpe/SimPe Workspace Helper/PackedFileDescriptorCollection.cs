@@ -89,7 +89,7 @@ namespace SimPe.Collections
 			}
 
 			return false;
-			return base.Contains(item);
+			//return base.Contains(item);
 		}		
 
 		/// <summary>

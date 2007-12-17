@@ -332,7 +332,7 @@ namespace SimPe.Plugin
 			inter = false;
 		}
 
-		Ambertation.Graphics.MeshBox lastmb;
+		//Ambertation.Graphics.MeshBox lastmb;
 		private void tv_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		{
 			if (e.Node==null) return;

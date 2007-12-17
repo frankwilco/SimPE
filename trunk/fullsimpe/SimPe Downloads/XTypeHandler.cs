@@ -245,7 +245,7 @@ namespace SimPe.Plugin.Downloads
 
 
             return GetThumbnail(cpf.GetSaveItem("name").StringValue, types, grp, inst, tmbs);
-            tmbs = null;
+            //tmbs = null;
         }
         #endregion
     }

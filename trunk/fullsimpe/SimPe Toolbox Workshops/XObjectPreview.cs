@@ -268,7 +268,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			
 			
 			return GetThumbnail(cpf.GetSaveItem("name").StringValue, types, grp, inst, tmbs);
-			tmbs = null;
+			//tmbs = null;
 			/*ArrayList types = new ArrayList();			
 			types.Add(0xEC3126C4); // Terrain
 			types.Add(0xCC30CDF8); //fences

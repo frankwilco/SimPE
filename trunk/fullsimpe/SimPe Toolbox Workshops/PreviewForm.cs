@@ -155,56 +155,56 @@ namespace SimPe.Plugin
 			{				
 				FileTable.FileIndex.RemoveChild(fii);				
 				Wait.Stop();
-			}
+            }
 			
-			return null;
+			//return null;
 		}
 
 		public static Ambertation.Scenes.Scene BuildScene(SimPe.Interfaces.Scenegraph.IScenegraphFileIndex fii, MmatWrapper mmat, SimPe.Interfaces.Files.IPackageFile package, out SimPe.Interfaces.Files.IPackageFile npkg)
 		{
 			npkg = null;
-			try 
-			{
-				FileTable.FileIndex.Load();
-				if (System.IO.File.Exists(package.SaveFileName))
-					fii.AddIndexFromFolder(System.IO.Path.GetDirectoryName(package.SaveFileName));
+            try
+            {
+                FileTable.FileIndex.Load();
+                if (System.IO.File.Exists(package.SaveFileName))
+                    fii.AddIndexFromFolder(System.IO.Path.GetDirectoryName(package.SaveFileName));
 
-				npkg = SimPe.Plugin.Tool.Dockable.ObjectWorkshopHelper.CreatCloneByCres(mmat.ModelName);
-				try 
-				{
-					foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in package.Index)
-					{
-						SimPe.Interfaces.Files.IPackedFileDescriptor npfd = pfd.Clone();
-						npfd.UserData = package.Read(pfd).UncompressedData;
-						if (pfd==mmat.FileDescriptor) 						
-							mmat.ProcessData(npfd, npkg);
-						
-						npkg.Add(npfd, true);
-					}
-					
-					fii.AddIndexFromPackage(npkg, true);
-					//fii.WriteContentToConsole();
+                npkg = SimPe.Plugin.Tool.Dockable.ObjectWorkshopHelper.CreatCloneByCres(mmat.ModelName);
+                try
+                {
+                    foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in package.Index)
+                    {
+                        SimPe.Interfaces.Files.IPackedFileDescriptor npfd = pfd.Clone();
+                        npfd.UserData = package.Read(pfd).UncompressedData;
+                        if (pfd == mmat.FileDescriptor)
+                            mmat.ProcessData(npfd, npkg);
 
-					return RenderScene(mmat);
-				} 
-				finally 
-				{
-					
-				}
-			}
-			catch (System.IO.FileNotFoundException)
-			{
-				Wait.Stop();
-				if (MessageBox.Show("The Microsoft Managed DirectX Extensions were not found on your System. Without them, the Preview is not available.\n\nYou can install them manually, by extracting the content of the DirectX\\ManagedDX.CAB on your Sims 2 Installation CD #1. If you double click on the extracted msi File, all needed Files will be installed.\n\nYou can also let SimPE install it automatically. SimPE will download the needed Files (3.5MB) from the SimPE Homepage and install them. Do you want SimPE to download and install the Files?", "Warning", MessageBoxButtons.YesNo)==DialogResult.Yes)
-				{
-					if (WebUpdate.InstallMDX()) MessageBox.Show("Managed DirectX Extension were installed succesfully!");
-				}
-					
-				return null;
-			}
-			
+                        npkg.Add(npfd, true);
+                    }
 
-			return null;
+                    fii.AddIndexFromPackage(npkg, true);
+                    //fii.WriteContentToConsole();
+
+                    return RenderScene(mmat);
+                }
+                finally
+                {
+
+                }
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                Wait.Stop();
+                if (MessageBox.Show("The Microsoft Managed DirectX Extensions were not found on your System. Without them, the Preview is not available.\n\nYou can install them manually, by extracting the content of the DirectX\\ManagedDX.CAB on your Sims 2 Installation CD #1. If you double click on the extracted msi File, all needed Files will be installed.\n\nYou can also let SimPE install it automatically. SimPE will download the needed Files (3.5MB) from the SimPE Homepage and install them. Do you want SimPE to download and install the Files?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (WebUpdate.InstallMDX()) MessageBox.Show("Managed DirectX Extension were installed succesfully!");
+                }
+
+                return null;
+            }
+
+
+            //return null;
 		}
 
 		public static Ambertation.Scenes.Scene RenderScene(MmatWrapper mmat)

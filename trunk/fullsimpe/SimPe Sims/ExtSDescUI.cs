@@ -1745,6 +1745,7 @@ namespace SimPe.PackedFiles.UserInterface
         private void SetCharacterAttributesVisibility()
         {
             return;
+#if UNREACHABLE
             bool showsim = true;
             if (Sdesc == null)
             {
@@ -1764,6 +1765,7 @@ namespace SimPe.PackedFiles.UserInterface
 
             this.pnSimInt.Visible = showsim;
             this.pnPetInt.Visible = !showsim;
+#endif
         }
 
         private void pnInt_VisibleChanged(object sender, EventArgs e)

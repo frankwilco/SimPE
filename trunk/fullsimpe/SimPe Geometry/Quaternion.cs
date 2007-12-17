@@ -691,9 +691,9 @@ namespace SimPe.Geometry
 			vq = this * vq * this.Conjugate;
 			return new Vector3f(vq.X, vq.Y, vq.Z);
 
-			SimPe.Geometry.Vector4f v4 = new SimPe.Geometry.Vector4f(v.X, v.Y, v.Z, 0);
-			v4 = Matrix*v4;
-			return new SimPe.Geometry.Vector3f(v4.X, v4.Y, v4.Z);
+			//SimPe.Geometry.Vector4f v4 = new SimPe.Geometry.Vector4f(v.X, v.Y, v.Z, 0);
+			//v4 = Matrix*v4;
+			//return new SimPe.Geometry.Vector3f(v4.X, v4.Y, v4.Z);
 		}
 
 		/// <summary>

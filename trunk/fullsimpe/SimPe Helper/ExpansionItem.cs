@@ -289,8 +289,8 @@ namespace SimPe
         {
             get {
                 return longname;
-                string res = SimPe.Localization.GetString("EP NAME " + version);
-                return res;
+                //string res = SimPe.Localization.GetString("EP NAME " + version);
+                //return res;
             }
         }
 
@@ -421,8 +421,8 @@ namespace SimPe
             get
             {
                 return shortname;
-                string res = SimPe.Localization.GetString("EP SNAME " + version);
-                return res;
+                //string res = SimPe.Localization.GetString("EP SNAME " + version);
+                //return res;
             }
         }
 

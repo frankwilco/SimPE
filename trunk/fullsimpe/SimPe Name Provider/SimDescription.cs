@@ -230,7 +230,7 @@ namespace SimPe.Providers
 
 		public ulong BuildTurnOnIndex(ushort val1, ushort val2, ushort val3)
 		{
-			return (ulong)((((((ulong)val3 << 16) | (ulong)val2) << 16) | (ulong)(val1 & 0x3FFF))); //14
+			return (ulong)( ((uint)(val3 << 16)) | ((uint)(val2 << 16)) | ((uint)(val1 & 0x3FFF)) ); //14
 		}
 
 		public ushort[] GetFromTurnOnIndex(ulong index)

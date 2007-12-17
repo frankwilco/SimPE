@@ -2449,11 +2449,11 @@ namespace SimPe.Plugin
 						g.UsedJoints.Add(j.Index);
 						this.lb_itemsc3.Items.Add(j.Index);
 					}
-					int id = 0;
+					uint id = 0;
 					for (int i=0; i<g.UsedJoints.Count; i++)
 						if (g.UsedJoints[i]==j.Index) 
 						{
-							id = i;
+							id = (uint)i;
 							break;
 						}
 
@@ -2469,7 +2469,7 @@ namespace SimPe.Plugin
 					//create an assignment for each Vertex
 					for (int i=0; i<v.Values.Length; i++)
 					{
-						ba.Values.Add(new GmdcElementValueOneInt((int)(id | 0xffffff00)));
+						ba.Values.Add(new GmdcElementValueOneInt((int)((uint)id | 0xffffff00)));
 						bw.Values.Add(new GmdcElementValueOneFloat(1.0f));
 					}
 				}

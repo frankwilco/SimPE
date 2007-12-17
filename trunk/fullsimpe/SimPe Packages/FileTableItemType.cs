@@ -101,7 +101,7 @@ namespace SimPe
             if (ei.Flag.SimStory) return -1;
             return ei.Version;
 
-            return -1;
+            //return -1;
         }
 
         #region IComparable Member
