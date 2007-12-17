@@ -47,7 +47,10 @@ namespace SimPe.Plugin.TabPage
 		private System.Windows.Forms.GroupBox gbstr;
 		private System.Windows.Forms.GroupBox gbar;
 		private System.Windows.Forms.Button btedit;
+		private System.Windows.Forms.GroupBox gfootprintbar;
+		private System.Windows.Forms.Button btfootprintedit;
 		internal System.Windows.Forms.GroupBox gbIems;
+		internal System.Windows.Forms.TextBox tbFootprint;
 		private System.Windows.Forms.ComboBox cbtype;
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.LinkLabel lldel;
@@ -94,9 +97,9 @@ namespace SimPe.Plugin.TabPage
 			cbtype.Items.Add(ExtensionItem.ItemTypes.String);
 			cbtype.Items.Add(ExtensionItem.ItemTypes.Translation);
 			cbtype.Items.Add(ExtensionItem.ItemTypes.Value);
-            cbtype.SelectedIndex = 0;
+			cbtype.SelectedIndex = 0;
 
-            this.UseVisualStyleBackColor = true;
+			this.UseVisualStyleBackColor = true;
 		}
 
 		/// <summary>
@@ -122,8 +125,9 @@ namespace SimPe.Plugin.TabPage
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Extension));
 			this.gbIems = new System.Windows.Forms.GroupBox();
+			this.gbfloat = new System.Windows.Forms.GroupBox();
+			this.tbfloat = new System.Windows.Forms.TextBox();
 			this.gbval = new System.Windows.Forms.GroupBox();
 			this.tbval = new System.Windows.Forms.TextBox();
 			this.tb_itemname = new System.Windows.Forms.TextBox();
@@ -133,6 +137,8 @@ namespace SimPe.Plugin.TabPage
 			this.cbtype = new System.Windows.Forms.ComboBox();
 			this.gbar = new System.Windows.Forms.GroupBox();
 			this.btedit = new System.Windows.Forms.Button();
+			this.gfootprintbar = new System.Windows.Forms.GroupBox();
+			this.btfootprintedit = new System.Windows.Forms.Button();
 			this.gbstr = new System.Windows.Forms.GroupBox();
 			this.tbstr = new System.Windows.Forms.TextBox();
 			this.gbbin = new System.Windows.Forms.GroupBox();
@@ -147,6 +153,7 @@ namespace SimPe.Plugin.TabPage
 			this.tbtrans3 = new System.Windows.Forms.TextBox();
 			this.tbtrans2 = new System.Windows.Forms.TextBox();
 			this.lb_items = new System.Windows.Forms.ListBox();
+			this.tbFootprint = new System.Windows.Forms.TextBox();
 			this.groupBox10 = new System.Windows.Forms.GroupBox();
 			this.tb_name = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -154,36 +161,23 @@ namespace SimPe.Plugin.TabPage
 			this.label1 = new System.Windows.Forms.Label();
 			this.tb_ver = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
-			this.gbfloat = new System.Windows.Forms.GroupBox();
-			this.tbfloat = new System.Windows.Forms.TextBox();			
 			this.gbIems.SuspendLayout();
+			this.gbfloat.SuspendLayout();
 			this.gbval.SuspendLayout();
 			this.gbar.SuspendLayout();
+			this.gfootprintbar.SuspendLayout();
 			this.gbstr.SuspendLayout();
 			this.gbbin.SuspendLayout();
 			this.gbrot.SuspendLayout();
 			this.gbtrans.SuspendLayout();
 			this.groupBox10.SuspendLayout();
-			this.gbfloat.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// 
-			// tExtension
-			// 
-			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.Controls.Add(this.gbIems);
-			this.Controls.Add(this.groupBox10);
-			this.Location = new System.Drawing.Point(4, 22);
-			this.Name = "tExtension";
-			this.Size = new System.Drawing.Size(792, 302);
-			this.TabIndex = 0;
-			this.Text = "Extension";
 			// 
 			// gbIems
 			// 
-			this.gbIems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
+			this.gbIems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.gbIems.Controls.Add(this.gbfloat);
 			this.gbIems.Controls.Add(this.gbval);
 			this.gbIems.Controls.Add(this.tb_itemname);
@@ -192,19 +186,42 @@ namespace SimPe.Plugin.TabPage
 			this.gbIems.Controls.Add(this.linkLabel1);
 			this.gbIems.Controls.Add(this.cbtype);
 			this.gbIems.Controls.Add(this.gbar);
+			this.gbIems.Controls.Add(this.gfootprintbar);
 			this.gbIems.Controls.Add(this.gbstr);
 			this.gbIems.Controls.Add(this.gbbin);
 			this.gbIems.Controls.Add(this.gbrot);
 			this.gbIems.Controls.Add(this.gbtrans);
 			this.gbIems.Controls.Add(this.lb_items);
 			this.gbIems.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.gbIems.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.gbIems.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.gbIems.Location = new System.Drawing.Point(248, 8);
 			this.gbIems.Name = "gbIems";
 			this.gbIems.Size = new System.Drawing.Size(536, 288);
 			this.gbIems.TabIndex = 13;
 			this.gbIems.TabStop = false;
 			this.gbIems.Text = "Items";
+			// 
+			// gbfloat
+			// 
+			this.gbfloat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.gbfloat.Controls.Add(this.tbfloat);
+			this.gbfloat.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.gbfloat.Location = new System.Drawing.Point(416, 128);
+			this.gbfloat.Name = "gbfloat";
+			this.gbfloat.Size = new System.Drawing.Size(120, 56);
+			this.gbfloat.TabIndex = 2;
+			this.gbfloat.TabStop = false;
+			this.gbfloat.Text = "Float Value";
+			// 
+			// tbfloat
+			// 
+			this.tbfloat.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbfloat.Location = new System.Drawing.Point(16, 24);
+			this.tbfloat.Name = "tbfloat";
+			this.tbfloat.Size = new System.Drawing.Size(88, 21);
+			this.tbfloat.TabIndex = 0;
+			this.tbfloat.Text = "0";
+			this.tbfloat.TextChanged += new System.EventHandler(this.FloatChange);
 			// 
 			// gbval
 			// 
@@ -220,7 +237,7 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tbval
 			// 
-			this.tbval.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbval.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbval.Location = new System.Drawing.Point(16, 24);
 			this.tbval.Name = "tbval";
 			this.tbval.Size = new System.Drawing.Size(88, 21);
@@ -231,22 +248,21 @@ namespace SimPe.Plugin.TabPage
 			// tb_itemname
 			// 
 			this.tb_itemname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.tb_itemname.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_itemname.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tb_itemname.Location = new System.Drawing.Point(288, 40);
 			this.tb_itemname.Name = "tb_itemname";
 			this.tb_itemname.Size = new System.Drawing.Size(240, 21);
 			this.tb_itemname.TabIndex = 11;
-			this.tb_itemname.Text = "";
 			this.tb_itemname.TextChanged += new System.EventHandler(this.ChangeName);
 			// 
 			// label3
 			// 
 			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.Location = new System.Drawing.Point(280, 24);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(45, 17);
+			this.label3.Size = new System.Drawing.Size(48, 13);
 			this.label3.TabIndex = 10;
 			this.label3.Text = "Name:";
 			// 
@@ -256,7 +272,7 @@ namespace SimPe.Plugin.TabPage
 			this.lldel.AutoSize = true;
 			this.lldel.Location = new System.Drawing.Point(488, 264);
 			this.lldel.Name = "lldel";
-			this.lldel.Size = new System.Drawing.Size(44, 17);
+			this.lldel.Size = new System.Drawing.Size(48, 13);
 			this.lldel.TabIndex = 9;
 			this.lldel.TabStop = true;
 			this.lldel.Text = "delete";
@@ -268,7 +284,7 @@ namespace SimPe.Plugin.TabPage
 			this.linkLabel1.AutoSize = true;
 			this.linkLabel1.Location = new System.Drawing.Point(456, 264);
 			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.Size = new System.Drawing.Size(28, 17);
+			this.linkLabel1.Size = new System.Drawing.Size(31, 13);
 			this.linkLabel1.TabIndex = 8;
 			this.linkLabel1.TabStop = true;
 			this.linkLabel1.Text = "add";
@@ -278,7 +294,7 @@ namespace SimPe.Plugin.TabPage
 			// 
 			this.cbtype.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbtype.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cbtype.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cbtype.Location = new System.Drawing.Point(280, 240);
 			this.cbtype.Name = "cbtype";
 			this.cbtype.Size = new System.Drawing.Size(248, 21);
@@ -287,7 +303,6 @@ namespace SimPe.Plugin.TabPage
 			// gbar
 			// 
 			this.gbar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.gbar.Controls.Add(this.btedit);
 			this.gbar.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.gbar.Location = new System.Drawing.Point(16, 216);
 			this.gbar.Name = "gbar";
@@ -299,13 +314,35 @@ namespace SimPe.Plugin.TabPage
 			// btedit
 			// 
 			this.btedit.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btedit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.btedit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btedit.Location = new System.Drawing.Point(16, 24);
 			this.btedit.Name = "btedit";
 			this.btedit.Size = new System.Drawing.Size(104, 23);
 			this.btedit.TabIndex = 0;
 			this.btedit.Text = "Edit";
 			this.btedit.Click += new System.EventHandler(this.OpenArrayEditor);
+			// 
+			// gfootprintbar
+			// 
+			this.gfootprintbar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.gfootprintbar.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.gfootprintbar.Location = new System.Drawing.Point(16, 216);
+			this.gfootprintbar.Name = "gfootprintbar";
+			this.gfootprintbar.Size = new System.Drawing.Size(136, 90);
+			this.gfootprintbar.TabIndex = 6;
+			this.gfootprintbar.TabStop = false;
+			this.gfootprintbar.Text = "Footprint";
+			// 
+			// btfootprintedit
+			// 
+			this.btfootprintedit.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.btfootprintedit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btfootprintedit.Location = new System.Drawing.Point(16, 55);
+			this.btfootprintedit.Name = "btfootprintedit";
+			this.btfootprintedit.Size = new System.Drawing.Size(104, 23);
+			this.btfootprintedit.TabIndex = 0;
+			this.btfootprintedit.Text = "Draw";
+			this.btfootprintedit.Click += new System.EventHandler(this.OpenFootprintEditor);
 			// 
 			// gbstr
 			// 
@@ -321,14 +358,13 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tbstr
 			// 
-			this.tbstr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tbstr.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbstr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.tbstr.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbstr.Location = new System.Drawing.Point(16, 24);
 			this.tbstr.Name = "tbstr";
 			this.tbstr.Size = new System.Drawing.Size(216, 21);
 			this.tbstr.TabIndex = 1;
-			this.tbstr.Text = "";
 			this.tbstr.TextChanged += new System.EventHandler(this.StrChange);
 			// 
 			// gbbin
@@ -345,16 +381,15 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tbbin
 			// 
-			this.tbbin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.tbbin.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbbin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.tbbin.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbbin.Location = new System.Drawing.Point(16, 26);
 			this.tbbin.Multiline = true;
 			this.tbbin.Name = "tbbin";
 			this.tbbin.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.tbbin.Size = new System.Drawing.Size(216, 40);
 			this.tbbin.TabIndex = 2;
-			this.tbbin.Text = "";
 			this.tbbin.TextChanged += new System.EventHandler(this.BinChange);
 			// 
 			// gbrot
@@ -374,7 +409,7 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tbrot4
 			// 
-			this.tbrot4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbrot4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbrot4.Location = new System.Drawing.Point(120, 48);
 			this.tbrot4.Name = "tbrot4";
 			this.tbrot4.Size = new System.Drawing.Size(88, 21);
@@ -384,7 +419,7 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tbrot1
 			// 
-			this.tbrot1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbrot1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbrot1.Location = new System.Drawing.Point(16, 24);
 			this.tbrot1.Name = "tbrot1";
 			this.tbrot1.Size = new System.Drawing.Size(88, 21);
@@ -394,7 +429,7 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tbrot3
 			// 
-			this.tbrot3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbrot3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbrot3.Location = new System.Drawing.Point(16, 48);
 			this.tbrot3.Name = "tbrot3";
 			this.tbrot3.Size = new System.Drawing.Size(88, 21);
@@ -404,7 +439,7 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tbrot2
 			// 
-			this.tbrot2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbrot2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbrot2.Location = new System.Drawing.Point(120, 24);
 			this.tbrot2.Name = "tbrot2";
 			this.tbrot2.Size = new System.Drawing.Size(88, 21);
@@ -428,7 +463,7 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tbtrans1
 			// 
-			this.tbtrans1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbtrans1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbtrans1.Location = new System.Drawing.Point(16, 24);
 			this.tbtrans1.Name = "tbtrans1";
 			this.tbtrans1.Size = new System.Drawing.Size(88, 21);
@@ -438,7 +473,7 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tbtrans3
 			// 
-			this.tbtrans3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbtrans3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbtrans3.Location = new System.Drawing.Point(16, 48);
 			this.tbtrans3.Name = "tbtrans3";
 			this.tbtrans3.Size = new System.Drawing.Size(88, 21);
@@ -448,7 +483,7 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tbtrans2
 			// 
-			this.tbtrans2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tbtrans2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbtrans2.Location = new System.Drawing.Point(120, 24);
 			this.tbtrans2.Name = "tbtrans2";
 			this.tbtrans2.Size = new System.Drawing.Size(88, 21);
@@ -458,10 +493,10 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// lb_items
 			// 
-			this.lb_items.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.lb_items.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lb_items.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.lb_items.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lb_items.HorizontalScrollbar = true;
 			this.lb_items.IntegralHeight = false;
 			this.lb_items.Location = new System.Drawing.Point(8, 24);
@@ -469,6 +504,14 @@ namespace SimPe.Plugin.TabPage
 			this.lb_items.Size = new System.Drawing.Size(264, 256);
 			this.lb_items.TabIndex = 0;
 			this.lb_items.SelectedIndexChanged += new System.EventHandler(this.SelectItem);
+			// 
+			// tbFootprint
+			// 
+			this.tbFootprint.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbFootprint.Location = new System.Drawing.Point(0, 0);
+			this.tbFootprint.Name = "tbFootprint";
+			this.tbFootprint.Size = new System.Drawing.Size(100, 20);
+			this.tbFootprint.TabIndex = 0;
 			// 
 			// groupBox10
 			// 
@@ -479,7 +522,7 @@ namespace SimPe.Plugin.TabPage
 			this.groupBox10.Controls.Add(this.tb_ver);
 			this.groupBox10.Controls.Add(this.label28);
 			this.groupBox10.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.groupBox10.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.groupBox10.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox10.Location = new System.Drawing.Point(8, 8);
 			this.groupBox10.Name = "groupBox10";
 			this.groupBox10.Size = new System.Drawing.Size(232, 112);
@@ -489,7 +532,7 @@ namespace SimPe.Plugin.TabPage
 			// 
 			// tb_name
 			// 
-			this.tb_name.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_name.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tb_name.Location = new System.Drawing.Point(16, 80);
 			this.tb_name.Name = "tb_name";
 			this.tb_name.Size = new System.Drawing.Size(200, 21);
@@ -500,16 +543,16 @@ namespace SimPe.Plugin.TabPage
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.Location = new System.Drawing.Point(8, 64);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(37, 17);
+			this.label2.Size = new System.Drawing.Size(40, 13);
 			this.label2.TabIndex = 27;
 			this.label2.Text = "Name";
 			// 
 			// tb_type
 			// 
-			this.tb_type.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_type.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tb_type.Location = new System.Drawing.Point(128, 40);
 			this.tb_type.Name = "tb_type";
 			this.tb_type.Size = new System.Drawing.Size(88, 21);
@@ -520,16 +563,16 @@ namespace SimPe.Plugin.TabPage
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(120, 24);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(63, 17);
+			this.label1.Size = new System.Drawing.Size(67, 13);
 			this.label1.TabIndex = 25;
 			this.label1.Text = "Typecode:";
 			// 
 			// tb_ver
 			// 
-			this.tb_ver.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.tb_ver.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tb_ver.Location = new System.Drawing.Point(16, 40);
 			this.tb_ver.Name = "tb_ver";
 			this.tb_ver.Size = new System.Drawing.Size(88, 21);
@@ -540,46 +583,40 @@ namespace SimPe.Plugin.TabPage
 			// label28
 			// 
 			this.label28.AutoSize = true;
-			this.label28.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label28.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label28.Location = new System.Drawing.Point(8, 24);
 			this.label28.Name = "label28";
-			this.label28.Size = new System.Drawing.Size(52, 17);
+			this.label28.Size = new System.Drawing.Size(55, 13);
 			this.label28.TabIndex = 23;
 			this.label28.Text = "Version:";
 			// 
-			// gbfloat
+			// Extension
 			// 
-			this.gbfloat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.gbfloat.Controls.Add(this.tbfloat);
-			this.gbfloat.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.gbfloat.Location = new System.Drawing.Point(416, 128);
-			this.gbfloat.Name = "gbfloat";
-			this.gbfloat.Size = new System.Drawing.Size(120, 56);
-			this.gbfloat.TabIndex = 2;
-			this.gbfloat.TabStop = false;
-			this.gbfloat.Text = "Float Value";
-			// 
-			// tbfloat
-			// 
-			this.tbfloat.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.tbfloat.Location = new System.Drawing.Point(16, 24);
-			this.tbfloat.Name = "tbfloat";
-			this.tbfloat.Size = new System.Drawing.Size(88, 21);
-			this.tbfloat.TabIndex = 0;
-			this.tbfloat.Text = "0";
-			this.tbfloat.TextChanged += new System.EventHandler(this.FloatChange);
-			// 
-			// fExtension
-			// 			
+			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.Controls.Add(this.gbIems);
+			this.Controls.Add(this.groupBox10);
+			this.Location = new System.Drawing.Point(4, 22);
+			this.Name = "tExtension";
+			this.Size = new System.Drawing.Size(792, 302);
+			this.Text = "Extension";
 			this.gbIems.ResumeLayout(false);
-			this.gbval.ResumeLayout(false);
-			this.gbar.ResumeLayout(false);
-			this.gbstr.ResumeLayout(false);
-			this.gbbin.ResumeLayout(false);
-			this.gbrot.ResumeLayout(false);
-			this.gbtrans.ResumeLayout(false);
-			this.groupBox10.ResumeLayout(false);
+			this.gbIems.PerformLayout();
 			this.gbfloat.ResumeLayout(false);
+			this.gbfloat.PerformLayout();
+			this.gbval.ResumeLayout(false);
+			this.gbval.PerformLayout();
+			this.gbar.ResumeLayout(false);
+			this.gfootprintbar.ResumeLayout(false);
+			this.gbstr.ResumeLayout(false);
+			this.gbstr.PerformLayout();
+			this.gbbin.ResumeLayout(false);
+			this.gbbin.PerformLayout();
+			this.gbrot.ResumeLayout(false);
+			this.gbrot.PerformLayout();
+			this.gbtrans.ResumeLayout(false);
+			this.gbtrans.PerformLayout();
+			this.groupBox10.ResumeLayout(false);
+			this.groupBox10.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -608,6 +645,7 @@ namespace SimPe.Plugin.TabPage
 		{
 			this.gbval.Visible = false;
 			this.gbar.Visible = false;
+			this.gfootprintbar.Visible = false;
 			this.gbfloat.Visible = false;
 			this.gbbin.Visible = false;
 			this.gbrot.Visible = false;
@@ -679,7 +717,19 @@ namespace SimPe.Plugin.TabPage
 					}
 					case ExtensionItem.ItemTypes.Array: 
 					{
-						ShowGroup(this.gbar);
+						SimPe.Plugin.Extension ext = (SimPe.Plugin.Extension)Tag;
+
+						if(ext.VarName.Equals("footprint"))
+						{
+							this.gfootprintbar.Controls.Add(this.btfootprintedit);
+							this.gfootprintbar.Controls.Add(this.btedit);
+							ShowGroup(this.gfootprintbar);
+						}
+						else
+						{
+							this.gbar.Controls.Add(this.btedit);
+							ShowGroup(this.gbar);
+						}
 						break;
 					}
 				} //switch
@@ -730,6 +780,185 @@ namespace SimPe.Plugin.TabPage
 			{
 				Helper.ExceptionMessage("", ex);
 			}
+		}
+
+		private void OpenFootprintEditor(object sender, System.EventArgs e)
+		{
+			try
+			{
+				Extension fe = new Extension();
+				Form f = new Form();
+				f.Text = SimPe.Localization.GetString("Sub Array Editor");
+				f.ShowInTaskbar = false;
+				f.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+
+				ExtensionItem ei = (ExtensionItem)lb_items.Items[lb_items.SelectedIndex];
+
+				int boxsize = 225;
+
+				int minx = ei.Items[0].Value;
+				int maxx = ei.Items[1].Value;
+				int miny = ei.Items[2].Value;
+				int maxy = ei.Items[3].Value;
+
+				int windowHeight = 0;
+				int windowWidth = 0;
+
+				if (maxx - minx <= 3)
+				{
+					windowWidth = boxsize * (maxx - minx + 1) + 6;
+				}
+				else
+				{
+					windowWidth = 702;
+					windowHeight += 22;
+				}
+				if (maxy - miny <= 3)
+				{
+					windowHeight += boxsize * (maxy - miny + 1) + 23;
+				}
+				else
+				{
+					windowHeight += 702;
+					windowWidth += 22;
+				}
+
+
+				f.Size = new Size(windowWidth,windowHeight);
+				Panel scroller = new Panel();
+				scroller.Height = f.Height - 22;
+				scroller.Width = f.Width - 5;
+				scroller.AutoScroll = true;
+				f.Controls.Add(scroller);
+
+				for (int i = 4; i< ei.Items.Length; i++)
+				{
+					ExtensionItem item = ei.Items[i];
+					String[] a = item.Name.Split(new char[] { '(', ',',')' });
+
+					int tilex = int.Parse(a[1]) - minx;
+					int tiley = int.Parse(a[2]) - miny;
+
+					GroupBox gb = new GroupBox();
+					gb.Left = tilex * boxsize;
+					gb.Top = tiley * boxsize;
+					gb.Width = boxsize;
+					gb.Height = boxsize;
+					gb.Name = item.Name;
+
+					UnPackFootprint(gb, item);
+					scroller.Controls.Add(gb);
+				}
+
+				f.ShowDialog();
+
+				for (int i = 4; i < ei.Items.Length; i++)
+				{
+					ExtensionItem item = ei.Items[i];
+					int index = scroller.Controls.IndexOfKey(item.Name);
+					GroupBox gb = (GroupBox)scroller.Controls[index];
+					RePackFootprint(gb, item);
+				}
+
+				//ei.Items = (ExtensionItem[])fe.gbIems.Tag;
+				lb_items.Items[lb_items.SelectedIndex] = ei;
+
+				f.Dispose();
+			}
+			catch (Exception ex)
+			{
+				Helper.ExceptionMessage("", ex);
+			}
+		}
+
+		private void UnPackFootprint(GroupBox gb, ExtensionItem item)
+		{
+
+			for (int j = 0; j < 32; j += 2)
+			{
+				int part2 = item.Data[j];
+				int part1 = item.Data[j + 1];
+				for (int k = 0; k < 8; k++)
+				{
+					CheckBox cb = new CheckBox();
+					cb.Width = 14;
+					cb.Height = 14;
+					cb.Left = k * cb.Width;
+					cb.Top = j * 7;
+					cb.Name = "cb." + j + "." + k + ".2";
+					int isSet = (part2 & 1);
+					if (isSet == 1)
+					{
+						cb.Checked = true;
+					}
+					else
+					{
+						cb.Checked = false;
+					}
+					gb.Controls.Add(cb);
+					part2 = part2 >> 1;
+				}
+				for (int k = 0; k < 8; k++)
+				{
+					CheckBox cb = new CheckBox();
+					cb.Width = 14;
+					cb.Height = 14;
+					cb.Left = 8 * cb.Width + k * cb.Width;
+					cb.Top = j * 7;
+					cb.Name = "cb." + j + "." + k + ".1";
+					int isSet = (part1 & 1);
+					if (isSet == 1)
+					{
+						cb.Checked = true;
+					}
+					else
+					{
+						cb.Checked = false;
+					}
+					gb.Controls.Add(cb);
+					part1 = part1 >> 1;
+				}
+
+			}
+					
+		}
+
+		private void RePackFootprint(GroupBox gb, ExtensionItem item)
+		{
+			for (int j = 0; j < 32; j += 2)
+			{
+				int part1 = 0;
+				int part2 = 0;
+
+				for (int k = 0; k < 8; k++)
+				{
+					String name = "cb." + j + "." + (7-k) + ".1";
+					int index = gb.Controls.IndexOfKey(name);
+					CheckBox cb = (CheckBox)gb.Controls[index];
+
+					part1 = part1 << 1;
+					if (cb.Checked == true)
+					{
+						part1 = part1 | 1;
+					}
+				}
+				for (int k = 0; k < 8; k++)
+				{
+					String name = "cb." + j + "." + (7-k) + ".2";
+					int index = gb.Controls.IndexOfKey(name);
+					CheckBox cb = (CheckBox)gb.Controls[index];
+
+					part2 = part2 << 1;
+					if (cb.Checked == true)
+					{
+						part2 = part2 | 1;
+					}
+				}
+				item.Data[j + 1] = (byte)part1;
+				item.Data[j] = (byte)part2;
+
+			}
+
 		}
 
 		private void DeleteItem(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)

@@ -74,10 +74,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SandBar">
-      <Name>SandBar</Name>
-      <HintPath>..\SimPe\bin\Release\SandBar.dll</HintPath>
-    </Reference>
     <Reference Include="SandDock">
       <Name>SandDock</Name>
       <HintPath>..\SimPe\bin\Release\SandDock.dll</HintPath>
