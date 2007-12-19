@@ -678,6 +678,7 @@ namespace SimPe.Plugin
             this.ChancePercent = new System.Windows.Forms.NumericUpDown();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.PromoBox = new System.Windows.Forms.GroupBox();
+            this.label101 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
@@ -686,6 +687,7 @@ namespace SimPe.Plugin
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
+            this.nudPromoTricks = new System.Windows.Forms.NumericUpDown();
             this.PromoFriends = new System.Windows.Forms.NumericUpDown();
             this.PromoCleaning = new System.Windows.Forms.NumericUpDown();
             this.PromoLogic = new System.Windows.Forms.NumericUpDown();
@@ -705,6 +707,7 @@ namespace SimPe.Plugin
             this.PrLogic = new System.Windows.Forms.ColumnHeader();
             this.PrCleaning = new System.Windows.Forms.ColumnHeader();
             this.PrFriends = new System.Windows.Forms.ColumnHeader();
+            this.PrTricks = new System.Windows.Forms.ColumnHeader();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.HoursWagesBox = new System.Windows.Forms.GroupBox();
             this.WorkSaturday = new System.Windows.Forms.CheckBox();
@@ -830,9 +833,6 @@ namespace SimPe.Plugin
             this.menuItem3 = new System.Windows.Forms.MenuItem();
             this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
-            this.nudPromoTricks = new System.Windows.Forms.NumericUpDown();
-            this.label101 = new System.Windows.Forms.Label();
-            this.PrTricks = new System.Windows.Forms.ColumnHeader();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChanceCurrentLevel)).BeginInit();
             this.tabControl2.SuspendLayout();
@@ -893,6 +893,7 @@ namespace SimPe.Plugin
             ((System.ComponentModel.ISupportInitialize)(this.ChancePercent)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.PromoBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPromoTricks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PromoFriends)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PromoCleaning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PromoLogic)).BeginInit();
@@ -947,7 +948,6 @@ namespace SimPe.Plugin
             this.JobDetailsBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CareerLvls)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPromoTricks)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage4
@@ -1477,9 +1477,9 @@ namespace SimPe.Plugin
             this.tabPage6.Controls.Add(this.FailACharisma);
             this.tabPage6.Controls.Add(this.FailAMechanical);
             this.tabPage6.Controls.Add(this.FailACooking);
-            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Location = new System.Drawing.Point(4, 26);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1134, 320);
+            this.tabPage6.Size = new System.Drawing.Size(1134, 319);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Fail A";
             // 
@@ -1783,9 +1783,9 @@ namespace SimPe.Plugin
             this.tabPage7.Controls.Add(this.PassBCharisma);
             this.tabPage7.Controls.Add(this.PassBMechanical);
             this.tabPage7.Controls.Add(this.PassBCooking);
-            this.tabPage7.Location = new System.Drawing.Point(4, 25);
+            this.tabPage7.Location = new System.Drawing.Point(4, 26);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1134, 320);
+            this.tabPage7.Size = new System.Drawing.Size(1134, 319);
             this.tabPage7.TabIndex = 2;
             this.tabPage7.Text = "Pass B";
             // 
@@ -2089,9 +2089,9 @@ namespace SimPe.Plugin
             this.tabPage8.Controls.Add(this.FailBCharisma);
             this.tabPage8.Controls.Add(this.FailBMechanical);
             this.tabPage8.Controls.Add(this.FailBCooking);
-            this.tabPage8.Location = new System.Drawing.Point(4, 25);
+            this.tabPage8.Location = new System.Drawing.Point(4, 26);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1134, 320);
+            this.tabPage8.Size = new System.Drawing.Size(1134, 319);
             this.tabPage8.TabIndex = 3;
             this.tabPage8.Text = "Fail B";
             // 
@@ -2617,6 +2617,15 @@ namespace SimPe.Plugin
             this.PromoBox.TabStop = false;
             this.PromoBox.Text = "Current Level";
             // 
+            // label101
+            // 
+            this.label101.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label101.Location = new System.Drawing.Point(207, 51);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(149, 20);
+            this.label101.TabIndex = 25;
+            this.label101.Text = "Needed Commands";
+            // 
             // label41
             // 
             this.label41.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2688,6 +2697,21 @@ namespace SimPe.Plugin
             this.label34.Size = new System.Drawing.Size(85, 20);
             this.label34.TabIndex = 18;
             this.label34.Text = "Cooking";
+            // 
+            // nudPromoTricks
+            // 
+            this.nudPromoTricks.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudPromoTricks.Location = new System.Drawing.Point(362, 49);
+            this.nudPromoTricks.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudPromoTricks.Name = "nudPromoTricks";
+            this.nudPromoTricks.Size = new System.Drawing.Size(64, 24);
+            this.nudPromoTricks.TabIndex = 17;
+            this.nudPromoTricks.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
+            this.nudPromoTricks.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
             // 
             // PromoFriends
             // 
@@ -2894,6 +2918,11 @@ namespace SimPe.Plugin
             // 
             this.PrFriends.Text = "Family Friends";
             this.PrFriends.Width = 115;
+            // 
+            // PrTricks
+            // 
+            this.PrTricks.Text = "Needed Commands";
+            this.PrTricks.Width = 148;
             // 
             // tabPage2
             // 
@@ -4309,7 +4338,7 @@ namespace SimPe.Plugin
             // CareerLvls
             // 
             this.CareerLvls.Enabled = false;
-            this.CareerLvls.Location = new System.Drawing.Point(437, 0);
+            this.CareerLvls.Location = new System.Drawing.Point(437, 1);
             this.CareerLvls.Name = "CareerLvls";
             this.CareerLvls.ReadOnly = true;
             this.CareerLvls.Size = new System.Drawing.Size(64, 24);
@@ -4317,7 +4346,7 @@ namespace SimPe.Plugin
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(341, 10);
+            this.label1.Location = new System.Drawing.Point(345, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 19);
             this.label1.TabIndex = 12;
@@ -4333,7 +4362,7 @@ namespace SimPe.Plugin
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(21, 10);
+            this.label3.Location = new System.Drawing.Point(15, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 19);
             this.label3.TabIndex = 10;
@@ -4350,7 +4379,7 @@ namespace SimPe.Plugin
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(843, 10);
+            this.label10.Location = new System.Drawing.Point(837, 3);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(85, 19);
             this.label10.TabIndex = 16;
@@ -4358,7 +4387,7 @@ namespace SimPe.Plugin
             // 
             // label102
             // 
-            this.label102.Location = new System.Drawing.Point(533, 10);
+            this.label102.Location = new System.Drawing.Point(538, 3);
             this.label102.Name = "label102";
             this.label102.Size = new System.Drawing.Size(64, 19);
             this.label102.TabIndex = 18;
@@ -4440,38 +4469,11 @@ namespace SimPe.Plugin
             this.menuItem5.Index = 3;
             this.menuItem5.Text = "&Copy...";
             // 
-            // nudPromoTricks
-            // 
-            this.nudPromoTricks.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudPromoTricks.Location = new System.Drawing.Point(362, 49);
-            this.nudPromoTricks.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.nudPromoTricks.Name = "nudPromoTricks";
-            this.nudPromoTricks.Size = new System.Drawing.Size(64, 24);
-            this.nudPromoTricks.TabIndex = 17;
-            this.nudPromoTricks.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
-            this.nudPromoTricks.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
-            // 
-            // label101
-            // 
-            this.label101.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label101.Location = new System.Drawing.Point(207, 51);
-            this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(149, 20);
-            this.label101.TabIndex = 25;
-            this.label101.Text = "Needed Commands";
-            // 
-            // PrTricks
-            // 
-            this.PrTricks.Text = "Needed Commands";
-            this.PrTricks.Width = 148;
-            // 
             // CareerEditor
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(8, 17);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1200, 774);
             this.Controls.Add(this.CareerTitle);
             this.Controls.Add(this.label102);
@@ -4554,6 +4556,7 @@ namespace SimPe.Plugin
             ((System.ComponentModel.ISupportInitialize)(this.ChancePercent)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.PromoBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudPromoTricks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PromoFriends)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PromoCleaning)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PromoLogic)).EndInit();
@@ -4609,7 +4612,6 @@ namespace SimPe.Plugin
             this.JobDetailsBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CareerLvls)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPromoTricks)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
