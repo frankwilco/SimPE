@@ -4474,7 +4474,7 @@ namespace SimPe.Plugin
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1200, 774);
+            this.ClientSize = new System.Drawing.Size(1220, 772);
             this.Controls.Add(this.CareerTitle);
             this.Controls.Add(this.label102);
             this.Controls.Add(this.CareerReward);
@@ -4485,7 +4485,7 @@ namespace SimPe.Plugin
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CareerLvls);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Menu = this.mainMenu1;
             this.Name = "CareerEditor";
             this.Padding = new System.Windows.Forms.Padding(8);
