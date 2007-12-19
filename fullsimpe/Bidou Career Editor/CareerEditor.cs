@@ -1,3 +1,23 @@
+/***************************************************************************
+ *   Original (C) Bidou, assumed to be licenced as part of SimPE           *
+ *   Pet updates copyright (C) 2007 by Peter L Jones                       *
+ *   pljones@users.sf.net                                                  *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 using System;
 using System.Drawing;
 using System.Collections;
@@ -240,7 +260,9 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ColumnHeader HwHours;
 		private System.Windows.Forms.ColumnHeader HwEnd;
 		private System.Windows.Forms.ColumnHeader HwWages;
-		private System.Windows.Forms.ColumnHeader HwSun;
+        private ColumnHeader HwCatWages;
+        private ColumnHeader HwDogWages;
+        private System.Windows.Forms.ColumnHeader HwSun;
 		private System.Windows.Forms.ColumnHeader HwMon;
 		private System.Windows.Forms.ColumnHeader HwTue;
 		private System.Windows.Forms.ColumnHeader HwWed;
@@ -303,9 +325,16 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.MenuItem menuItem8;
 		private System.Windows.Forms.MenuItem menuItem9;
         private System.Windows.Forms.MenuItem menuItem5;
-		#endregion
-        private IContainer components;
+        private Label label99;
+        private NumericUpDown nudWagesDog;
+        private Label label100;
+        private Label label101;
+        private NumericUpDown nudPromoTricks;
+        private NumericUpDown nudWagesCat;
 
+        #endregion
+
+        private IContainer components;
 
 		private ushort femaleOffset, noLevels, currentLevel;
 		
@@ -324,10 +353,13 @@ namespace SimPe.Plugin
 		private Bcon startHour;
 		private Bcon hoursWorked;
 		private Bcon daysWorked;
-		private Bcon wages;
+        private Bcon wages;
+        private Bcon wagesCat;
+        private Bcon wagesDog;
 
 		private Bcon[] skillReq;
 		private Bcon friends;
+        private Bcon tricks;
 
 		private Bcon[] motiveDeltas;
 
@@ -470,7 +502,7 @@ namespace SimPe.Plugin
 
 
 		private bool oneEnglish, englishOnly;
-		//private Skybound.VisualStyles.VisualStyleProvider visualStyleProvider1;
+        private ColumnHeader PrTricks;
 
 		public CareerEditor()
 		{
@@ -667,8 +699,8 @@ namespace SimPe.Plugin
             this.PrLvl = new System.Windows.Forms.ColumnHeader();
             this.PrCooking = new System.Windows.Forms.ColumnHeader();
             this.PrMechanical = new System.Windows.Forms.ColumnHeader();
-            this.PrCharisma = new System.Windows.Forms.ColumnHeader();
             this.PrBody = new System.Windows.Forms.ColumnHeader();
+            this.PrCharisma = new System.Windows.Forms.ColumnHeader();
             this.PrCreativity = new System.Windows.Forms.ColumnHeader();
             this.PrLogic = new System.Windows.Forms.ColumnHeader();
             this.PrCleaning = new System.Windows.Forms.ColumnHeader();
@@ -682,10 +714,14 @@ namespace SimPe.Plugin
             this.WorkTuesday = new System.Windows.Forms.CheckBox();
             this.WorkMonday = new System.Windows.Forms.CheckBox();
             this.WorkSunday = new System.Windows.Forms.CheckBox();
+            this.label100 = new System.Windows.Forms.Label();
+            this.label99 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.nudWagesCat = new System.Windows.Forms.NumericUpDown();
+            this.nudWagesDog = new System.Windows.Forms.NumericUpDown();
             this.WorkWages = new System.Windows.Forms.NumericUpDown();
             this.WorkFinishHour = new System.Windows.Forms.NumericUpDown();
             this.WorkHoursWorked = new System.Windows.Forms.NumericUpDown();
@@ -744,6 +780,8 @@ namespace SimPe.Plugin
             this.HwHours = new System.Windows.Forms.ColumnHeader();
             this.HwEnd = new System.Windows.Forms.ColumnHeader();
             this.HwWages = new System.Windows.Forms.ColumnHeader();
+            this.HwDogWages = new System.Windows.Forms.ColumnHeader();
+            this.HwCatWages = new System.Windows.Forms.ColumnHeader();
             this.HwSun = new System.Windows.Forms.ColumnHeader();
             this.HwMon = new System.Windows.Forms.ColumnHeader();
             this.HwTue = new System.Windows.Forms.ColumnHeader();
@@ -792,6 +830,9 @@ namespace SimPe.Plugin
             this.menuItem3 = new System.Windows.Forms.MenuItem();
             this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
+            this.nudPromoTricks = new System.Windows.Forms.NumericUpDown();
+            this.label101 = new System.Windows.Forms.Label();
+            this.PrTricks = new System.Windows.Forms.ColumnHeader();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChanceCurrentLevel)).BeginInit();
             this.tabControl2.SuspendLayout();
@@ -863,6 +904,8 @@ namespace SimPe.Plugin
             this.groupBox6.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.HoursWagesBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWagesCat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWagesDog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WorkWages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WorkFinishHour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WorkHoursWorked)).BeginInit();
@@ -904,6 +947,7 @@ namespace SimPe.Plugin
             this.JobDetailsBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CareerLvls)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPromoTricks)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage4
@@ -2546,6 +2590,7 @@ namespace SimPe.Plugin
             // 
             // PromoBox
             // 
+            this.PromoBox.Controls.Add(this.label101);
             this.PromoBox.Controls.Add(this.label41);
             this.PromoBox.Controls.Add(this.label40);
             this.PromoBox.Controls.Add(this.label39);
@@ -2554,6 +2599,7 @@ namespace SimPe.Plugin
             this.PromoBox.Controls.Add(this.label36);
             this.PromoBox.Controls.Add(this.label35);
             this.PromoBox.Controls.Add(this.label34);
+            this.PromoBox.Controls.Add(this.nudPromoTricks);
             this.PromoBox.Controls.Add(this.PromoFriends);
             this.PromoBox.Controls.Add(this.PromoCleaning);
             this.PromoBox.Controls.Add(this.PromoLogic);
@@ -2574,7 +2620,7 @@ namespace SimPe.Plugin
             // label41
             // 
             this.label41.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(213, 19);
+            this.label41.Location = new System.Drawing.Point(207, 21);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(118, 20);
             this.label41.TabIndex = 25;
@@ -2646,7 +2692,7 @@ namespace SimPe.Plugin
             // PromoFriends
             // 
             this.PromoFriends.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PromoFriends.Location = new System.Drawing.Point(331, 19);
+            this.PromoFriends.Location = new System.Drawing.Point(362, 19);
             this.PromoFriends.Maximum = new decimal(new int[] {
             99,
             0,
@@ -2786,7 +2832,8 @@ namespace SimPe.Plugin
             this.PrCreativity,
             this.PrLogic,
             this.PrCleaning,
-            this.PrFriends});
+            this.PrFriends,
+            this.PrTricks});
             this.PromoList.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PromoList.FullRowSelect = true;
             this.PromoList.GridLines = true;
@@ -2814,19 +2861,19 @@ namespace SimPe.Plugin
             // PrMechanical
             // 
             this.PrMechanical.Text = "Mechanical";
-            this.PrMechanical.Width = 80;
+            this.PrMechanical.Width = 89;
+            // 
+            // PrBody
+            // 
+            this.PrBody.DisplayIndex = 4;
+            this.PrBody.Text = "Body";
+            this.PrBody.Width = 63;
             // 
             // PrCharisma
             // 
             this.PrCharisma.DisplayIndex = 3;
             this.PrCharisma.Text = "Charisma";
             this.PrCharisma.Width = 80;
-            // 
-            // PrBody
-            // 
-            this.PrBody.DisplayIndex = 4;
-            this.PrBody.Text = "Body";
-            this.PrBody.Width = 80;
             // 
             // PrCreativity
             // 
@@ -2836,7 +2883,7 @@ namespace SimPe.Plugin
             // PrLogic
             // 
             this.PrLogic.Text = "Logic";
-            this.PrLogic.Width = 80;
+            this.PrLogic.Width = 64;
             // 
             // PrCleaning
             // 
@@ -2846,7 +2893,7 @@ namespace SimPe.Plugin
             // PrFriends
             // 
             this.PrFriends.Text = "Family Friends";
-            this.PrFriends.Width = 100;
+            this.PrFriends.Width = 115;
             // 
             // tabPage2
             // 
@@ -2867,10 +2914,14 @@ namespace SimPe.Plugin
             this.HoursWagesBox.Controls.Add(this.WorkTuesday);
             this.HoursWagesBox.Controls.Add(this.WorkMonday);
             this.HoursWagesBox.Controls.Add(this.WorkSunday);
+            this.HoursWagesBox.Controls.Add(this.label100);
+            this.HoursWagesBox.Controls.Add(this.label99);
             this.HoursWagesBox.Controls.Add(this.label16);
             this.HoursWagesBox.Controls.Add(this.label15);
             this.HoursWagesBox.Controls.Add(this.label14);
             this.HoursWagesBox.Controls.Add(this.label13);
+            this.HoursWagesBox.Controls.Add(this.nudWagesCat);
+            this.HoursWagesBox.Controls.Add(this.nudWagesDog);
             this.HoursWagesBox.Controls.Add(this.WorkWages);
             this.HoursWagesBox.Controls.Add(this.WorkFinishHour);
             this.HoursWagesBox.Controls.Add(this.WorkHoursWorked);
@@ -2889,7 +2940,7 @@ namespace SimPe.Plugin
             // 
             this.WorkSaturday.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.WorkSaturday.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkSaturday.Location = new System.Drawing.Point(395, 87);
+            this.WorkSaturday.Location = new System.Drawing.Point(395, 116);
             this.WorkSaturday.Name = "WorkSaturday";
             this.WorkSaturday.Size = new System.Drawing.Size(64, 20);
             this.WorkSaturday.TabIndex = 19;
@@ -2900,7 +2951,7 @@ namespace SimPe.Plugin
             // 
             this.WorkFriday.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.WorkFriday.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkFriday.Location = new System.Drawing.Point(331, 87);
+            this.WorkFriday.Location = new System.Drawing.Point(331, 116);
             this.WorkFriday.Name = "WorkFriday";
             this.WorkFriday.Size = new System.Drawing.Size(64, 20);
             this.WorkFriday.TabIndex = 18;
@@ -2911,7 +2962,7 @@ namespace SimPe.Plugin
             // 
             this.WorkThursday.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.WorkThursday.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkThursday.Location = new System.Drawing.Point(267, 87);
+            this.WorkThursday.Location = new System.Drawing.Point(267, 116);
             this.WorkThursday.Name = "WorkThursday";
             this.WorkThursday.Size = new System.Drawing.Size(64, 20);
             this.WorkThursday.TabIndex = 17;
@@ -2922,7 +2973,7 @@ namespace SimPe.Plugin
             // 
             this.WorkWednesday.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.WorkWednesday.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkWednesday.Location = new System.Drawing.Point(203, 87);
+            this.WorkWednesday.Location = new System.Drawing.Point(203, 116);
             this.WorkWednesday.Name = "WorkWednesday";
             this.WorkWednesday.Size = new System.Drawing.Size(64, 20);
             this.WorkWednesday.TabIndex = 16;
@@ -2933,7 +2984,7 @@ namespace SimPe.Plugin
             // 
             this.WorkTuesday.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.WorkTuesday.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkTuesday.Location = new System.Drawing.Point(139, 87);
+            this.WorkTuesday.Location = new System.Drawing.Point(139, 116);
             this.WorkTuesday.Name = "WorkTuesday";
             this.WorkTuesday.Size = new System.Drawing.Size(64, 20);
             this.WorkTuesday.TabIndex = 15;
@@ -2944,7 +2995,7 @@ namespace SimPe.Plugin
             // 
             this.WorkMonday.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.WorkMonday.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkMonday.Location = new System.Drawing.Point(75, 87);
+            this.WorkMonday.Location = new System.Drawing.Point(75, 116);
             this.WorkMonday.Name = "WorkMonday";
             this.WorkMonday.Size = new System.Drawing.Size(64, 20);
             this.WorkMonday.TabIndex = 14;
@@ -2955,17 +3006,35 @@ namespace SimPe.Plugin
             // 
             this.WorkSunday.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.WorkSunday.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkSunday.Location = new System.Drawing.Point(11, 87);
+            this.WorkSunday.Location = new System.Drawing.Point(11, 116);
             this.WorkSunday.Name = "WorkSunday";
             this.WorkSunday.Size = new System.Drawing.Size(64, 20);
             this.WorkSunday.TabIndex = 13;
             this.WorkSunday.Text = "Sun";
             this.WorkSunday.CheckedChanged += new System.EventHandler(this.Workday_CheckedChanged);
             // 
+            // label100
+            // 
+            this.label100.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label100.Location = new System.Drawing.Point(254, 81);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(103, 20);
+            this.label100.TabIndex = 12;
+            this.label100.Text = "Wages (Cat)";
+            // 
+            // label99
+            // 
+            this.label99.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label99.Location = new System.Drawing.Point(11, 81);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(105, 20);
+            this.label99.TabIndex = 12;
+            this.label99.Text = "Wages (Dog)";
+            // 
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(11, 58);
+            this.label16.Location = new System.Drawing.Point(11, 51);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(64, 20);
             this.label16.TabIndex = 12;
@@ -2974,7 +3043,7 @@ namespace SimPe.Plugin
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(352, 29);
+            this.label15.Location = new System.Drawing.Point(348, 21);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(53, 20);
             this.label15.TabIndex = 11;
@@ -2983,7 +3052,7 @@ namespace SimPe.Plugin
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(203, 29);
+            this.label14.Location = new System.Drawing.Point(200, 21);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(53, 20);
             this.label14.TabIndex = 10;
@@ -2992,11 +3061,41 @@ namespace SimPe.Plugin
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(11, 29);
+            this.label13.Location = new System.Drawing.Point(11, 21);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(74, 20);
             this.label13.TabIndex = 9;
             this.label13.Text = "Start";
+            // 
+            // nudWagesCat
+            // 
+            this.nudWagesCat.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudWagesCat.Location = new System.Drawing.Point(356, 79);
+            this.nudWagesCat.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudWagesCat.Name = "nudWagesCat";
+            this.nudWagesCat.Size = new System.Drawing.Size(112, 24);
+            this.nudWagesCat.TabIndex = 8;
+            this.nudWagesCat.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
+            this.nudWagesCat.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
+            // 
+            // nudWagesDog
+            // 
+            this.nudWagesDog.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudWagesDog.Location = new System.Drawing.Point(122, 79);
+            this.nudWagesDog.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudWagesDog.Name = "nudWagesDog";
+            this.nudWagesDog.Size = new System.Drawing.Size(112, 24);
+            this.nudWagesDog.TabIndex = 8;
+            this.nudWagesDog.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
+            this.nudWagesDog.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
             // 
             // WorkWages
             // 
@@ -3008,7 +3107,7 @@ namespace SimPe.Plugin
             0,
             0});
             this.WorkWages.Name = "WorkWages";
-            this.WorkWages.Size = new System.Drawing.Size(171, 24);
+            this.WorkWages.Size = new System.Drawing.Size(112, 24);
             this.WorkWages.TabIndex = 8;
             this.WorkWages.ValueChanged += new System.EventHandler(this.Work_ValueChanged);
             this.WorkWages.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Work_KeyUp);
@@ -3887,6 +3986,8 @@ namespace SimPe.Plugin
             this.HwHours,
             this.HwEnd,
             this.HwWages,
+            this.HwDogWages,
+            this.HwCatWages,
             this.HwSun,
             this.HwMon,
             this.HwTue,
@@ -3931,7 +4032,17 @@ namespace SimPe.Plugin
             // HwWages
             // 
             this.HwWages.Text = "Wages";
-            this.HwWages.Width = 100;
+            this.HwWages.Width = 65;
+            // 
+            // HwDogWages
+            // 
+            this.HwDogWages.Text = "Wages (Dog)";
+            this.HwDogWages.Width = 107;
+            // 
+            // HwCatWages
+            // 
+            this.HwCatWages.Text = "Wages (Cat)";
+            this.HwCatWages.Width = 104;
             // 
             // HwSun
             // 
@@ -4329,10 +4440,39 @@ namespace SimPe.Plugin
             this.menuItem5.Index = 3;
             this.menuItem5.Text = "&Copy...";
             // 
+            // nudPromoTricks
+            // 
+            this.nudPromoTricks.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudPromoTricks.Location = new System.Drawing.Point(362, 49);
+            this.nudPromoTricks.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudPromoTricks.Name = "nudPromoTricks";
+            this.nudPromoTricks.Size = new System.Drawing.Size(64, 24);
+            this.nudPromoTricks.TabIndex = 17;
+            this.nudPromoTricks.ValueChanged += new System.EventHandler(this.Promo_ValueChanged);
+            this.nudPromoTricks.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Promo_KeyUp);
+            // 
+            // label101
+            // 
+            this.label101.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label101.Location = new System.Drawing.Point(207, 51);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(149, 20);
+            this.label101.TabIndex = 25;
+            this.label101.Text = "Needed Commands";
+            // 
+            // PrTricks
+            // 
+            this.PrTricks.Text = "Needed Commands";
+            this.PrTricks.Width = 148;
+            // 
             // CareerEditor
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(8, 17);
-            this.ClientSize = new System.Drawing.Size(906, 620);
+            this.ClientSize = new System.Drawing.Size(1200, 774);
             this.Controls.Add(this.CareerTitle);
             this.Controls.Add(this.label102);
             this.Controls.Add(this.CareerReward);
@@ -4425,6 +4565,8 @@ namespace SimPe.Plugin
             this.groupBox6.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.HoursWagesBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudWagesCat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWagesDog)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WorkWages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WorkFinishHour)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WorkHoursWorked)).EndInit();
@@ -4467,6 +4609,7 @@ namespace SimPe.Plugin
             this.JobDetailsBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CareerLvls)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPromoTricks)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4665,7 +4808,18 @@ namespace SimPe.Plugin
 				item1.SubItems.Add(""+startHour[i]);
 				item1.SubItems.Add(""+hoursWorked[i]);
 				item1.SubItems.Add(""+(startHour[i] + hoursWorked[i]) % 24);
-				item1.SubItems.Add(""+wages[i]);
+                if (wages != null)
+                {
+				    item1.SubItems.Add(""+wages[i]);
+                    item1.SubItems.Add("");
+                    item1.SubItems.Add("");
+                }
+                else
+                {
+                    item1.SubItems.Add("");
+                    item1.SubItems.Add("" + wagesDog[i]);
+                    item1.SubItems.Add("" + wagesCat[i]);
+                }
 
 				bool[] days = getDaysArray(daysWorked[i]);
 				item1.SubItems.Add(""+days[SUNDAY]);
@@ -4696,6 +4850,8 @@ namespace SimPe.Plugin
                     item1.SubItems.Add("" + skillReq[CREATIVITY][i] / 100);
                     item1.SubItems.Add("" + skillReq[LOGIC][i] / 100);
                     item1.SubItems.Add("" + skillReq[CLEANING][i] / 100);
+                    item1.SubItems.Add("" + friends[i]);
+                    item1.SubItems.Add("");
                 }
                 else
                 {
@@ -4706,8 +4862,9 @@ namespace SimPe.Plugin
                     item1.SubItems.Add("");
                     item1.SubItems.Add("");
                     item1.SubItems.Add("");
+                    item1.SubItems.Add("" + friends[i]);
+                    item1.SubItems.Add("" + tricks[i]);
                 }
-                item1.SubItems.Add("" + friends[i]);
 
 				PromoList.Items.Add(item1);
 			}
@@ -4884,7 +5041,17 @@ namespace SimPe.Plugin
 			WorkHoursWorked.Value = hoursWorked[currentLevel];
 			WorkFinishHour.Value = (startHour[currentLevel] + hoursWorked[currentLevel]) % 24;
 
-			WorkWages.Value = wages[currentLevel];
+            if (wages != null)
+            {
+                WorkWages.Value = wages[currentLevel];
+                nudWagesDog.Enabled = nudWagesCat.Enabled = false;
+            }
+            else
+            {
+                WorkWages.Enabled = false;
+                nudWagesDog.Value = wagesDog[currentLevel];
+                nudWagesCat.Value = wagesCat[currentLevel];
+            }
 
 			bool[] days = getDaysArray(daysWorked[currentLevel]);
 			WorkSunday.Checked = days[SUNDAY];
@@ -4938,6 +5105,7 @@ namespace SimPe.Plugin
                 PromoCreativity.Value = skillReq[CREATIVITY][currentLevel] / 100;
                 PromoLogic.Value = skillReq[LOGIC][currentLevel] / 100;
                 PromoCleaning.Value = skillReq[CLEANING][currentLevel] / 100;
+                nudPromoTricks.Enabled = false;
             }
             else
             {
@@ -4949,6 +5117,7 @@ namespace SimPe.Plugin
                 PromoLogic.Enabled =
                 PromoCleaning.Enabled =
                 false;
+                nudPromoTricks.Value = tricks[currentLevel];
             }
 
 			PromoFriends.Value = friends[currentLevel];
@@ -5129,7 +5298,6 @@ namespace SimPe.Plugin
 			startHour  = getBcon(0x1001);
 			hoursWorked = getBcon(0x1002);
 			daysWorked = getBcon(0x101A);
-			wages = getBcon(0x1000);
 
 			skillReq = new Bcon[8]; // not pets
 			skillReq[COOKING] = getBcon(0x1004);
@@ -5140,6 +5308,19 @@ namespace SimPe.Plugin
 			skillReq[LOGIC] = getBcon(0x1009);
 			skillReq[GARDENING] = getBcon(0x100A);
 			skillReq[CLEANING] = getBcon(0x100B);
+
+            if (skillReq[2] != null)
+            {
+                wages = getBcon(0x1000);
+                tricks = wagesDog = wagesCat = null;
+            }
+            else
+            {
+                wagesDog = getBcon(0x1000);
+                wagesCat = getBcon(0x1005);
+                tricks = getBcon(0x1004);
+                wages = null;
+            }
 
 			friends = getBcon(0x1003);
 
@@ -5257,7 +5438,17 @@ namespace SimPe.Plugin
 			startHour.SynchronizeUserData();
 			hoursWorked.SynchronizeUserData();
 			daysWorked.SynchronizeUserData();
-			wages.SynchronizeUserData();
+
+            if (wages != null)
+            {
+                wages.SynchronizeUserData();
+            }
+            else
+            {
+                wagesDog.SynchronizeUserData();
+                wagesCat.SynchronizeUserData();
+                tricks.SynchronizeUserData();
+            }
 
             if (chanceASkills[0] != null)
             {
@@ -5537,8 +5728,16 @@ namespace SimPe.Plugin
 			FamilyTotal.Value = motiveDeltas[FAMILY][currentLevel] * val;
 			EnvironmentTotal.Value = motiveDeltas[ENVIRONMENT][currentLevel] * val;
 
-			val = (short)WorkWages.Value;
-			wages[currentLevel] = val;
+            if (wages != null)
+            {
+                val = (short)WorkWages.Value;
+                wages[currentLevel] = val;
+            }
+            else
+            {
+                wagesDog[currentLevel] = (short)nudWagesDog.Value;
+                wagesCat[currentLevel] = (short)nudWagesCat.Value;
+            }
 
 			item.SubItems[4].Text = ""+val;
 
@@ -5632,8 +5831,10 @@ namespace SimPe.Plugin
             item.SubItems[i + 1].Text = "" + val;
             if (i < 7)
                 skillReq[i][currentLevel] = (short)(val * 100);
-            else
+            else if (i == 8)
                 friends[currentLevel] = val;
+            else if (i == 9)
+                tricks[currentLevel] = val;
         }
 		private void Promo_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
@@ -5768,7 +5969,16 @@ namespace SimPe.Plugin
                 startHour.Add(0);
                 hoursWorked.Add(1);
                 daysWorked.Add(0);
-                wages.Add(0);
+                if (wages != null)
+                {
+                    wages.Add(0);
+                }
+                else
+                {
+                    wagesDog.Add(0);
+                    wagesCat.Add(0);
+                    tricks.Add(0);
+                }
 
 				for (int i = 0; i < 8; i++)
 				{
@@ -5862,8 +6072,17 @@ namespace SimPe.Plugin
 
 				startHour.RemoveAt(noLevels); 
 				hoursWorked.RemoveAt(noLevels); 
-				daysWorked .RemoveAt(noLevels); 
-				wages.RemoveAt(noLevels); 
+				daysWorked .RemoveAt(noLevels);
+                if (wages != null)
+                {
+                    wages.RemoveAt(noLevels);
+                }
+                else
+                {
+                    wagesDog.RemoveAt(noLevels);
+                    wagesCat.RemoveAt(noLevels);
+                    tricks.RemoveAt(noLevels);
+                }
 
 				for (int i = 0; i < 8; i++)
 				{
