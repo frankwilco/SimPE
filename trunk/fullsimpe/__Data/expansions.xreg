@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <registry>
   <key name="Expansions">
-  
     <!-- Information about the base Game -->
     <key name="BaseGame">
       <int name="Version">0</int>
@@ -256,6 +255,29 @@
       </key>
     </key>
 
+    <!-- Information about The Sims 2 Teen Style Stuff -->
+    <key name="Teen">
+      <int name="Version">12</int>
+      <int name="PreferedRuntimeVersion">11</int>
+      <string name="RegKey">Software\\EA Games\\The Sims 2 Teen Style Stuff</string>
+      <int name="Flag">34</int>
+      <string name="ExeName">Sims2SP6.exe</string>
+      <string name="Censor">quaxi_ofb_censor_v1.package</string>
+      <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
+      <int name="Group">1</int>
+      <string name="namelistnr">5</string>
+      <key name="en">
+	  <string name="short">Teen</string>
+          <string name="name">Teen Style Stuff</string>
+      	  <string name="long">The Sims 2 - Teen Style Stuff</string>
+      </key>
+      <key name="de">
+          <string name="short">Teen</string>
+          <string name="name">Teen Style Stuff</string>
+      	  <string name="long">Die Sims 2 - Teen Style Stuff</string>
+      </key>
+    </key>
+
     <!-- Information about Life Stories (provided by Numenor) -->
     <key name="LifeStories">
       <int name="Version">20</int>
@@ -297,4 +319,5 @@
     </key>
 
   </key>
+
 </registry>
