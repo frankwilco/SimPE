@@ -45,7 +45,7 @@ namespace SimPe.Windows.Forms
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.None;
             lbtxt.Text = msg;
-            lbver.Text = SimPe.Helper.SimPeVersion.FileMajorPart + "." + SimPe.Helper.SimPeVersion.FileMinorPart + "." + SimPe.Helper.SimPeVersion.FileBuildPart;
+            lbver.Text = Helper.VersionToString(Helper.SimPeVersion); //SimPe.Helper.SimPeVersion.FileMajorPart + "." + SimPe.Helper.SimPeVersion.FileMinorPart + "." + SimPe.Helper.SimPeVersion.FileBuildPart;
             
             if (Helper.DebugMode && Helper.QARelease) lbver.Text +=" [Debug, QA]";
             else if (Helper.DebugMode) lbver.Text += " [Debug]";           

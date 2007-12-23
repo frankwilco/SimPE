@@ -184,7 +184,7 @@ namespace SimPe
 			if (s!=null) 
 			{
 				System.IO.StreamReader sr = new System.IO.StreamReader(s);
-				string vtext = v.FileMajorPart +"."+v.FileMinorPart;
+				string vtext = Helper.VersionToString(v); //v.FileMajorPart +"."+v.FileMinorPart;
 				if (Helper.QARelease) vtext = "QA " + vtext;
 				if (Helper.DebugMode) vtext += " [debug]";
 				rtb.Rtf = sr.ReadToEnd().Replace("\\{Version\\}", vtext);
