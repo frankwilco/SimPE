@@ -131,9 +131,11 @@
     <EmbeddedResource Include="br.png" />
     <EmbeddedResource Include="HexEditControl.resx">
       <DependentUpon>HexEditControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="HexViewControl.resx">
       <DependentUpon>HexViewControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="l.png" />
     <EmbeddedResource Include="r.png" />

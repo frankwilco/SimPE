@@ -98,9 +98,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="pjse.coder.plugin, Version=4.0.2884.30745, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="pjse.coder.plugin, Version=4.0.2914.24864, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\pjseCoderPlugin-cvs\SimPe BHAV\Plugins\pjse.coder.plugin.dll</HintPath>
+      <HintPath>..\..\SimPe\Plugins\pjse.coder.plugin.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
