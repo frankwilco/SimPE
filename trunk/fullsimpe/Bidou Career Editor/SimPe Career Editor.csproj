@@ -75,9 +75,9 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="pjse.coder.plugin, Version=4.0.2912.26164, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="pjse.coder.plugin, Version=4.0.2915.16274, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\pjseCoderPlugin-cvs\SimPe BHAV\Plugins\pjse.coder.plugin.dll</HintPath>
+      <HintPath>..\..\SimPe\Plugins\pjse.coder.plugin.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">

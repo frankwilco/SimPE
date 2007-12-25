@@ -168,15 +168,19 @@
     </Compile>
     <EmbeddedResource Include="AnimatedImagelist.resx">
       <DependentUpon>AnimatedImagelist.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GraphPanel.resx">
       <DependentUpon>GraphPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="XpTaskBoxSelector.resx">
       <DependentUpon>XpTaskBoxSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="XpTaskBoxSimple.resx">
       <DependentUpon>XpTaskBoxSimple.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
