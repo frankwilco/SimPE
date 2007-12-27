@@ -145,7 +145,7 @@
     <value>60, 22</value>
   </data>
   <data name="lbChoice.TabIndex" type="System.Int32, mscorlib">
-    <value>145</value>
+    <value>1</value>
   </data>
   <data name="lbChoice.Text" xml:space="preserve">
     <value>ChoiceX</value>
@@ -172,7 +172,7 @@
     <value>100, 22</value>
   </data>
   <data name="tbChoice.TabIndex" type="System.Int32, mscorlib">
-    <value>168</value>
+    <value>2</value>
   </data>
   <data name="tbChoice.Text" xml:space="preserve">
     <value>ChoiceX</value>
@@ -205,13 +205,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudCooking.TabIndex" type="System.Int32, mscorlib">
-    <value>161</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;lnudCooking.Name" xml:space="preserve">
     <value>lnudCooking</value>
   </data>
   <data name="&gt;&gt;lnudCooking.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2916.28453, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.33720, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudCooking.Parent" xml:space="preserve">
     <value>flpChoice</value>
@@ -235,13 +235,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudMechanical.TabIndex" type="System.Int32, mscorlib">
-    <value>162</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;lnudMechanical.Name" xml:space="preserve">
     <value>lnudMechanical</value>
   </data>
   <data name="&gt;&gt;lnudMechanical.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2916.28453, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.33720, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudMechanical.Parent" xml:space="preserve">
     <value>flpChoice</value>
@@ -265,13 +265,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudCharisma.TabIndex" type="System.Int32, mscorlib">
-    <value>163</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;lnudCharisma.Name" xml:space="preserve">
     <value>lnudCharisma</value>
   </data>
   <data name="&gt;&gt;lnudCharisma.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2916.28453, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.33720, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudCharisma.Parent" xml:space="preserve">
     <value>flpChoice</value>
@@ -295,13 +295,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudBody.TabIndex" type="System.Int32, mscorlib">
-    <value>164</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;lnudBody.Name" xml:space="preserve">
     <value>lnudBody</value>
   </data>
   <data name="&gt;&gt;lnudBody.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2916.28453, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.33720, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudBody.Parent" xml:space="preserve">
     <value>flpChoice</value>
@@ -325,13 +325,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudCreativity.TabIndex" type="System.Int32, mscorlib">
-    <value>165</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;lnudCreativity.Name" xml:space="preserve">
     <value>lnudCreativity</value>
   </data>
   <data name="&gt;&gt;lnudCreativity.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2916.28453, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.33720, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudCreativity.Parent" xml:space="preserve">
     <value>flpChoice</value>
@@ -355,13 +355,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudLogic.TabIndex" type="System.Int32, mscorlib">
-    <value>166</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;lnudLogic.Name" xml:space="preserve">
     <value>lnudLogic</value>
   </data>
   <data name="&gt;&gt;lnudLogic.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2916.28453, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.33720, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudLogic.Parent" xml:space="preserve">
     <value>flpChoice</value>
@@ -385,13 +385,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudCleaning.TabIndex" type="System.Int32, mscorlib">
-    <value>167</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;lnudCleaning.Name" xml:space="preserve">
     <value>lnudCleaning</value>
   </data>
   <data name="&gt;&gt;lnudCleaning.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2916.28453, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.33720, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudCleaning.Parent" xml:space="preserve">
     <value>flpChoice</value>

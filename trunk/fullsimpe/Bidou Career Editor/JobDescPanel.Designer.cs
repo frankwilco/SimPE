@@ -62,7 +62,7 @@ namespace SimPe.Plugin
             this.tbDesc.Multiline = true;
             this.tbDesc.Name = "tbDesc";
             this.tbDesc.Size = new System.Drawing.Size(308, 158);
-            this.tbDesc.TabIndex = 3;
+            this.tbDesc.TabIndex = 4;
             this.tbDesc.Text = "Desc X";
             this.tbDesc.TextChanged += new System.EventHandler(this.tbDesc_TextChanged);
             // 
@@ -74,7 +74,7 @@ namespace SimPe.Plugin
             this.lbDesc.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.lbDesc.Name = "lbDesc";
             this.lbDesc.Size = new System.Drawing.Size(53, 17);
-            this.lbDesc.TabIndex = 2;
+            this.lbDesc.TabIndex = 3;
             this.lbDesc.Text = "Desc X";
             // 
             // lbTitle
@@ -85,7 +85,7 @@ namespace SimPe.Plugin
             this.lbTitle.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Size = new System.Drawing.Size(48, 17);
-            this.lbTitle.TabIndex = 0;
+            this.lbTitle.TabIndex = 1;
             this.lbTitle.Text = "Title X";
             // 
             // tbTitle
@@ -93,7 +93,7 @@ namespace SimPe.Plugin
             this.tbTitle.Location = new System.Drawing.Point(56, 3);
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(308, 22);
-            this.tbTitle.TabIndex = 1;
+            this.tbTitle.TabIndex = 2;
             this.tbTitle.Text = "Title X";
             this.tbTitle.TextChanged += new System.EventHandler(this.tbTitle_TextChanged);
             // 

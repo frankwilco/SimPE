@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="flowLayoutPanel3.AutoSize" type="System.Boolean, mscorlib">
+  <data name="flpMain.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="flowLayoutPanel3.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="flpMain.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
   <data name="flpEffect.AutoSize" type="System.Boolean, mscorlib">
@@ -132,20 +132,23 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="lbEffect.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left</value>
+    <value>Bottom, Left</value>
   </data>
   <data name="lbEffect.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbEffect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 18</value>
+    <value>0, 33</value>
+  </data>
+  <data name="lbEffect.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 4</value>
   </data>
   <data name="lbEffect.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 17</value>
   </data>
   <data name="lbEffect.TabIndex" type="System.Int32, mscorlib">
-    <value>145</value>
+    <value>1</value>
   </data>
   <data name="lbEffect.Text" xml:space="preserve">
     <value>Effect</value>
@@ -169,7 +172,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="lnudCooking.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 0</value>
+    <value>44, 0</value>
   </data>
   <data name="lnudCooking.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -178,13 +181,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudCooking.TabIndex" type="System.Int32, mscorlib">
-    <value>161</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;lnudCooking.Name" xml:space="preserve">
     <value>lnudCooking</value>
   </data>
   <data name="&gt;&gt;lnudCooking.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2915.28531, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.34063, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudCooking.Parent" xml:space="preserve">
     <value>flpEffect</value>
@@ -199,7 +202,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="lnudMechanical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 0</value>
+    <value>130, 0</value>
   </data>
   <data name="lnudMechanical.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -208,13 +211,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudMechanical.TabIndex" type="System.Int32, mscorlib">
-    <value>162</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;lnudMechanical.Name" xml:space="preserve">
     <value>lnudMechanical</value>
   </data>
   <data name="&gt;&gt;lnudMechanical.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2915.28531, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.34063, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudMechanical.Parent" xml:space="preserve">
     <value>flpEffect</value>
@@ -229,7 +232,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="lnudCharisma.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 0</value>
+    <value>216, 0</value>
   </data>
   <data name="lnudCharisma.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -238,13 +241,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudCharisma.TabIndex" type="System.Int32, mscorlib">
-    <value>163</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;lnudCharisma.Name" xml:space="preserve">
     <value>lnudCharisma</value>
   </data>
   <data name="&gt;&gt;lnudCharisma.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2915.28531, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.34063, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudCharisma.Parent" xml:space="preserve">
     <value>flpEffect</value>
@@ -259,7 +262,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="lnudBody.Location" type="System.Drawing.Point, System.Drawing">
-    <value>308, 0</value>
+    <value>302, 0</value>
   </data>
   <data name="lnudBody.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -268,13 +271,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudBody.TabIndex" type="System.Int32, mscorlib">
-    <value>164</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;lnudBody.Name" xml:space="preserve">
     <value>lnudBody</value>
   </data>
   <data name="&gt;&gt;lnudBody.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2915.28531, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.34063, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudBody.Parent" xml:space="preserve">
     <value>flpEffect</value>
@@ -289,7 +292,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="lnudCreativity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>394, 0</value>
+    <value>388, 0</value>
   </data>
   <data name="lnudCreativity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -298,13 +301,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudCreativity.TabIndex" type="System.Int32, mscorlib">
-    <value>165</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;lnudCreativity.Name" xml:space="preserve">
     <value>lnudCreativity</value>
   </data>
   <data name="&gt;&gt;lnudCreativity.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2915.28531, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.34063, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudCreativity.Parent" xml:space="preserve">
     <value>flpEffect</value>
@@ -319,7 +322,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="lnudLogic.Location" type="System.Drawing.Point, System.Drawing">
-    <value>480, 0</value>
+    <value>474, 0</value>
   </data>
   <data name="lnudLogic.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -328,13 +331,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudLogic.TabIndex" type="System.Int32, mscorlib">
-    <value>166</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;lnudLogic.Name" xml:space="preserve">
     <value>lnudLogic</value>
   </data>
   <data name="&gt;&gt;lnudLogic.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2915.28531, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.34063, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudLogic.Parent" xml:space="preserve">
     <value>flpEffect</value>
@@ -349,7 +352,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="lnudCleaning.Location" type="System.Drawing.Point, System.Drawing">
-    <value>566, 0</value>
+    <value>560, 0</value>
   </data>
   <data name="lnudCleaning.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -358,13 +361,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudCleaning.TabIndex" type="System.Int32, mscorlib">
-    <value>167</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;lnudCleaning.Name" xml:space="preserve">
     <value>lnudCleaning</value>
   </data>
   <data name="&gt;&gt;lnudCleaning.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2915.28531, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.34063, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudCleaning.Parent" xml:space="preserve">
     <value>flpEffect</value>
@@ -379,7 +382,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="lnudMoney.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 0</value>
+    <value>646, 0</value>
   </data>
   <data name="lnudMoney.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -388,13 +391,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudMoney.TabIndex" type="System.Int32, mscorlib">
-    <value>168</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;lnudMoney.Name" xml:space="preserve">
     <value>lnudMoney</value>
   </data>
   <data name="&gt;&gt;lnudMoney.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2915.28531, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.34063, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudMoney.Parent" xml:space="preserve">
     <value>flpEffect</value>
@@ -409,7 +412,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="lnudJobLevels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>738, 0</value>
+    <value>732, 0</value>
   </data>
   <data name="lnudJobLevels.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -418,13 +421,13 @@
     <value>86, 54</value>
   </data>
   <data name="lnudJobLevels.TabIndex" type="System.Int32, mscorlib">
-    <value>169</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;lnudJobLevels.Name" xml:space="preserve">
     <value>lnudJobLevels</value>
   </data>
   <data name="&gt;&gt;lnudJobLevels.Type" xml:space="preserve">
-    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2915.28531, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.LabelledNumericUpDown, bidou.career.plugin, Version=1.0.2917.34063, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;lnudJobLevels.Parent" xml:space="preserve">
     <value>flpEffect</value>
@@ -439,10 +442,10 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="flpEffect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>824, 54</value>
+    <value>818, 54</value>
   </data>
   <data name="flpEffect.TabIndex" type="System.Int32, mscorlib">
-    <value>164</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;flpEffect.Name" xml:space="preserve">
     <value>flpEffect</value>
@@ -451,7 +454,7 @@
     <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;flpEffect.Parent" xml:space="preserve">
-    <value>flowLayoutPanel3</value>
+    <value>flpMain</value>
   </data>
   <data name="&gt;&gt;flpEffect.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -544,7 +547,7 @@
     <value>379, 77</value>
   </data>
   <data name="flpMale.TabIndex" type="System.Int32, mscorlib">
-    <value>162</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;flpMale.Name" xml:space="preserve">
     <value>flpMale</value>
@@ -571,7 +574,7 @@
     <value>57, 17</value>
   </data>
   <data name="llCopy.TabIndex" type="System.Int32, mscorlib">
-    <value>163</value>
+    <value>3</value>
   </data>
   <data name="llCopy.Text" xml:space="preserve">
     <value>Copy -&gt;</value>
@@ -670,7 +673,7 @@
     <value>379, 77</value>
   </data>
   <data name="flpFemale.TabIndex" type="System.Int32, mscorlib">
-    <value>164</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;flpFemale.Name" xml:space="preserve">
     <value>flpFemale</value>
@@ -685,16 +688,16 @@
     <value>2</value>
   </data>
   <data name="flpText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 54</value>
+    <value>0, 56</value>
   </data>
   <data name="flpText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
+    <value>0, 2, 0, 0</value>
   </data>
   <data name="flpText.Size" type="System.Drawing.Size, System.Drawing">
     <value>821, 77</value>
   </data>
   <data name="flpText.TabIndex" type="System.Int32, mscorlib">
-    <value>165</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;flpText.Name" xml:space="preserve">
     <value>flpText</value>
@@ -703,36 +706,36 @@
     <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;flpText.Parent" xml:space="preserve">
-    <value>flowLayoutPanel3</value>
+    <value>flpMain</value>
   </data>
   <data name="&gt;&gt;flpText.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="flowLayoutPanel3.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+  <data name="flpMain.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
     <value>TopDown</value>
   </data>
-  <data name="flowLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="flpMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="flowLayoutPanel3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="flpMain.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
-  <data name="flowLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>824, 131</value>
+  <data name="flpMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>821, 133</value>
   </data>
-  <data name="flowLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
-    <value>164</value>
+  <data name="flpMain.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel3.Name" xml:space="preserve">
-    <value>flowLayoutPanel3</value>
+  <data name="&gt;&gt;flpMain.Name" xml:space="preserve">
+    <value>flpMain</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel3.Type" xml:space="preserve">
+  <data name="&gt;&gt;flpMain.Type" xml:space="preserve">
     <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;flpMain.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;flpMain.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -751,7 +754,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>824, 131</value>
+    <value>824, 133</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>EffectPanel</value>

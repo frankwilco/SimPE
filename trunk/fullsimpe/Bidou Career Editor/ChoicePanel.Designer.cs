@@ -31,6 +31,7 @@ namespace SimPe.Plugin
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChoicePanel));
             this.flpChoice = new System.Windows.Forms.FlowLayoutPanel();
             this.lbChoice = new System.Windows.Forms.Label();
+            this.tbChoice = new System.Windows.Forms.TextBox();
             this.lnudCooking = new SimPe.Plugin.LabelledNumericUpDown();
             this.lnudMechanical = new SimPe.Plugin.LabelledNumericUpDown();
             this.lnudCharisma = new SimPe.Plugin.LabelledNumericUpDown();
@@ -38,7 +39,6 @@ namespace SimPe.Plugin
             this.lnudCreativity = new SimPe.Plugin.LabelledNumericUpDown();
             this.lnudLogic = new SimPe.Plugin.LabelledNumericUpDown();
             this.lnudCleaning = new SimPe.Plugin.LabelledNumericUpDown();
-            this.tbChoice = new System.Windows.Forms.TextBox();
             this.flpChoice.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +61,11 @@ namespace SimPe.Plugin
             resources.ApplyResources(this.lbChoice, "lbChoice");
             this.lbChoice.Name = "lbChoice";
             // 
+            // tbChoice
+            // 
+            resources.ApplyResources(this.tbChoice, "tbChoice");
+            this.tbChoice.Name = "tbChoice";
+            // 
             // lnudCooking
             // 
             resources.ApplyResources(this.lnudCooking, "lnudCooking");
@@ -78,6 +83,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudCooking.Name = "lnudCooking";
+            this.lnudCooking.NoLabel = false;
+            this.lnudCooking.ReadOnly = false;
             this.lnudCooking.Value = new decimal(new int[] {
             0,
             0,
@@ -102,6 +109,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudMechanical.Name = "lnudMechanical";
+            this.lnudMechanical.NoLabel = false;
+            this.lnudMechanical.ReadOnly = false;
             this.lnudMechanical.Value = new decimal(new int[] {
             0,
             0,
@@ -126,6 +135,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudCharisma.Name = "lnudCharisma";
+            this.lnudCharisma.NoLabel = false;
+            this.lnudCharisma.ReadOnly = false;
             this.lnudCharisma.Value = new decimal(new int[] {
             0,
             0,
@@ -150,6 +161,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudBody.Name = "lnudBody";
+            this.lnudBody.NoLabel = false;
+            this.lnudBody.ReadOnly = false;
             this.lnudBody.Value = new decimal(new int[] {
             0,
             0,
@@ -174,6 +187,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudCreativity.Name = "lnudCreativity";
+            this.lnudCreativity.NoLabel = false;
+            this.lnudCreativity.ReadOnly = false;
             this.lnudCreativity.Value = new decimal(new int[] {
             0,
             0,
@@ -198,6 +213,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudLogic.Name = "lnudLogic";
+            this.lnudLogic.NoLabel = false;
+            this.lnudLogic.ReadOnly = false;
             this.lnudLogic.Value = new decimal(new int[] {
             0,
             0,
@@ -222,17 +239,14 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudCleaning.Name = "lnudCleaning";
+            this.lnudCleaning.NoLabel = false;
+            this.lnudCleaning.ReadOnly = false;
             this.lnudCleaning.Value = new decimal(new int[] {
             0,
             0,
             0,
             0});
             this.lnudCleaning.ValueSize = new System.Drawing.Size(80, 22);
-            // 
-            // tbChoice
-            // 
-            resources.ApplyResources(this.tbChoice, "tbChoice");
-            this.tbChoice.Name = "tbChoice";
             // 
             // ChoicePanel
             // 
