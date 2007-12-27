@@ -46,8 +46,21 @@ namespace SimPe.Plugin
         private bool noLabel = false;
         public bool NoLabel
         {
-            get { return !lbLabel.Visible; }
-            set { lbLabel.Visible = !value; }
+            get { return noLabel; }
+            set
+            {
+                if (noLabel != value)
+                {
+                    noLabel = value;
+                    if (noLabel)
+                        flpMain.Controls.Remove(lbLabel);
+                    else
+                    {
+                        flpMain.Controls.Add(lbLabel);
+                        flpMain.Controls.SetChildIndex(lbLabel, 0);
+                    }
+                }
+            }
         }
 
         public String Label
@@ -73,6 +86,8 @@ namespace SimPe.Plugin
             get { return nudValue.Size; }
             set { nudValue.Size = value; }
         }
+
+        public bool ReadOnly { get { return nudValue.ReadOnly; } set { nudValue.ReadOnly = value; } }
 
         public decimal Maximum
         {

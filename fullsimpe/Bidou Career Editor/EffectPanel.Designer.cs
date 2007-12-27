@@ -29,7 +29,7 @@ namespace SimPe.Plugin
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EffectPanel));
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpMain = new System.Windows.Forms.FlowLayoutPanel();
             this.flpEffect = new System.Windows.Forms.FlowLayoutPanel();
             this.lbEffect = new System.Windows.Forms.Label();
             this.lnudCooking = new SimPe.Plugin.LabelledNumericUpDown();
@@ -49,19 +49,19 @@ namespace SimPe.Plugin
             this.flpFemale = new System.Windows.Forms.FlowLayoutPanel();
             this.lbFemale = new System.Windows.Forms.Label();
             this.tbFemale = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel3.SuspendLayout();
+            this.flpMain.SuspendLayout();
             this.flpEffect.SuspendLayout();
             this.flpText.SuspendLayout();
             this.flpMale.SuspendLayout();
             this.flpFemale.SuspendLayout();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel3
+            // flpMain
             // 
-            resources.ApplyResources(this.flowLayoutPanel3, "flowLayoutPanel3");
-            this.flowLayoutPanel3.Controls.Add(this.flpEffect);
-            this.flowLayoutPanel3.Controls.Add(this.flpText);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            resources.ApplyResources(this.flpMain, "flpMain");
+            this.flpMain.Controls.Add(this.flpEffect);
+            this.flpMain.Controls.Add(this.flpText);
+            this.flpMain.Name = "flpMain";
             // 
             // flpEffect
             // 
@@ -100,6 +100,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudCooking.Name = "lnudCooking";
+            this.lnudCooking.NoLabel = false;
+            this.lnudCooking.ReadOnly = false;
             this.lnudCooking.Value = new decimal(new int[] {
             0,
             0,
@@ -124,6 +126,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudMechanical.Name = "lnudMechanical";
+            this.lnudMechanical.NoLabel = false;
+            this.lnudMechanical.ReadOnly = false;
             this.lnudMechanical.Value = new decimal(new int[] {
             0,
             0,
@@ -148,6 +152,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudCharisma.Name = "lnudCharisma";
+            this.lnudCharisma.NoLabel = false;
+            this.lnudCharisma.ReadOnly = false;
             this.lnudCharisma.Value = new decimal(new int[] {
             0,
             0,
@@ -172,6 +178,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudBody.Name = "lnudBody";
+            this.lnudBody.NoLabel = false;
+            this.lnudBody.ReadOnly = false;
             this.lnudBody.Value = new decimal(new int[] {
             0,
             0,
@@ -196,6 +204,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudCreativity.Name = "lnudCreativity";
+            this.lnudCreativity.NoLabel = false;
+            this.lnudCreativity.ReadOnly = false;
             this.lnudCreativity.Value = new decimal(new int[] {
             0,
             0,
@@ -220,6 +230,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudLogic.Name = "lnudLogic";
+            this.lnudLogic.NoLabel = false;
+            this.lnudLogic.ReadOnly = false;
             this.lnudLogic.Value = new decimal(new int[] {
             0,
             0,
@@ -244,6 +256,8 @@ namespace SimPe.Plugin
             0,
             -2147483648});
             this.lnudCleaning.Name = "lnudCleaning";
+            this.lnudCleaning.NoLabel = false;
+            this.lnudCleaning.ReadOnly = false;
             this.lnudCleaning.Value = new decimal(new int[] {
             0,
             0,
@@ -258,16 +272,18 @@ namespace SimPe.Plugin
             this.lnudMoney.Label = "Money";
             this.lnudMoney.LabelAnchor = System.Windows.Forms.AnchorStyles.Top;
             this.lnudMoney.Maximum = new decimal(new int[] {
-																	   32767,
-																	   0,
-																	   0,
-																	   0});
+            32767,
+            0,
+            0,
+            0});
             this.lnudMoney.Minimum = new decimal(new int[] {
-																	   32768,
-																	   0,
-																	   0,
-																	   -2147483648});
+            32768,
+            0,
+            0,
+            -2147483648});
             this.lnudMoney.Name = "lnudMoney";
+            this.lnudMoney.NoLabel = false;
+            this.lnudMoney.ReadOnly = false;
             this.lnudMoney.Value = new decimal(new int[] {
             0,
             0,
@@ -281,12 +297,19 @@ namespace SimPe.Plugin
             this.lnudJobLevels.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.lnudJobLevels.Label = "Job Levels";
             this.lnudJobLevels.LabelAnchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lnudJobLevels.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.lnudJobLevels.Minimum = new decimal(new int[] {
             100,
             0,
             0,
             -2147483648});
             this.lnudJobLevels.Name = "lnudJobLevels";
+            this.lnudJobLevels.NoLabel = false;
+            this.lnudJobLevels.ReadOnly = false;
             this.lnudJobLevels.Value = new decimal(new int[] {
             0,
             0,
@@ -347,11 +370,11 @@ namespace SimPe.Plugin
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.flowLayoutPanel3);
+            this.Controls.Add(this.flpMain);
             this.MinimumSize = new System.Drawing.Size(824, 131);
             this.Name = "EffectPanel";
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel3.PerformLayout();
+            this.flpMain.ResumeLayout(false);
+            this.flpMain.PerformLayout();
             this.flpEffect.ResumeLayout(false);
             this.flpEffect.PerformLayout();
             this.flpText.ResumeLayout(false);
@@ -367,7 +390,7 @@ namespace SimPe.Plugin
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel flpMain;
         private System.Windows.Forms.FlowLayoutPanel flpEffect;
         private System.Windows.Forms.Label lbEffect;
         private LabelledNumericUpDown lnudCooking;
