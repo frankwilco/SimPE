@@ -274,7 +274,7 @@ namespace SimPe
             this.dcResourceList.Controls.Add(this.lv);
             this.dcResourceList.DockContainer = this.manager;
             this.dcResourceList.DragBorder = false;
-            this.dcResourceList.FloatingSize = new System.Drawing.Size(238, 313);
+            this.dcResourceList.FloatingSize = new System.Drawing.Size(329, 313);
             this.dcResourceList.Image = ((System.Drawing.Image)(resources.GetObject("dcResourceList.Image")));
             this.dcResourceList.Manager = this.manager;
             this.dcResourceList.Name = "dcResourceList";
@@ -470,7 +470,7 @@ namespace SimPe
             this.dcFilter.Controls.Add(this.xpGradientPanel1);
             this.dcFilter.DockContainer = this.dockRight;
             this.dcFilter.DragBorder = false;
-            this.dcFilter.FloatingSize = new System.Drawing.Size(346, 313);
+            this.dcFilter.FloatingSize = new System.Drawing.Size(255, 313);
             this.dcFilter.Image = ((System.Drawing.Image)(resources.GetObject("dcFilter.Image")));
             this.dcFilter.Manager = this.manager;
             this.dcFilter.Name = "dcFilter";
@@ -528,14 +528,14 @@ namespace SimPe
             // 
             // tbInst
             // 
-            this.xpCueBannerExtender1.SetCueBannerText(this.tbInst, "Instance Filter");
             resources.ApplyResources(this.tbInst, "tbInst");
+            this.xpCueBannerExtender1.SetCueBannerText(this.tbInst, "Instance Filter");
             this.tbInst.Name = "tbInst";
             // 
             // tbGrp
             // 
-            this.xpCueBannerExtender1.SetCueBannerText(this.tbGrp, "Group Filter");
             resources.ApplyResources(this.tbGrp, "tbGrp");
+            this.xpCueBannerExtender1.SetCueBannerText(this.tbGrp, "Group Filter");
             this.tbGrp.Name = "tbGrp";
             // 
             // label3
@@ -579,9 +579,9 @@ namespace SimPe
             // xpLinkedLabelIcon1
             // 
             this.xpLinkedLabelIcon1.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.xpLinkedLabelIcon1, "xpLinkedLabelIcon1");
             this.xpLinkedLabelIcon1.BackColor = System.Drawing.Color.Transparent;
             this.xpLinkedLabelIcon1.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
-            resources.ApplyResources(this.xpLinkedLabelIcon1, "xpLinkedLabelIcon1");
             this.xpLinkedLabelIcon1.LinkArea = new System.Windows.Forms.LinkArea(0, 7);
             this.xpLinkedLabelIcon1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.xpLinkedLabelIcon1.Name = "xpLinkedLabelIcon1";
