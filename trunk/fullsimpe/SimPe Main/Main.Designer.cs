@@ -156,7 +156,6 @@ namespace SimPe
             this.dockBottom = new Ambertation.Windows.Forms.DockContainer();
             this.dcPlugin = new Ambertation.Windows.Forms.DockPanel();
             this.dc = new TD.SandDock.TabControl();
-            this.tbTools = new System.Windows.Forms.ToolStrip();
             this.toolBar1 = new System.Windows.Forms.ToolStrip();
             this.biNew = new System.Windows.Forms.ToolStripButton();
             this.biOpen = new System.Windows.Forms.ToolStripButton();
@@ -167,6 +166,7 @@ namespace SimPe
             this.biUpdate = new System.Windows.Forms.ToolStripButton();
             this.biReset = new System.Windows.Forms.ToolStripButton();
             this.tbAction = new System.Windows.Forms.ToolStrip();
+            this.tbTools = new System.Windows.Forms.ToolStrip();
             this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.dockCenter = new Ambertation.Windows.Forms.DockContainer();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
@@ -236,10 +236,10 @@ namespace SimPe
             // 
             // tbContainer.TopToolStripPanel
             // 
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
             // 
             // manager
             // 
@@ -274,7 +274,7 @@ namespace SimPe
             this.dcResourceList.Controls.Add(this.lv);
             this.dcResourceList.DockContainer = this.manager;
             this.dcResourceList.DragBorder = false;
-            this.dcResourceList.FloatingSize = new System.Drawing.Size(434, 377);
+            this.dcResourceList.FloatingSize = new System.Drawing.Size(238, 313);
             this.dcResourceList.Image = ((System.Drawing.Image)(resources.GetObject("dcResourceList.Image")));
             this.dcResourceList.Manager = this.manager;
             this.dcResourceList.Name = "dcResourceList";
@@ -292,12 +292,12 @@ namespace SimPe
             this.lv.Filter = null;
             this.lv.Name = "lv";
             this.lv.SortedColumn = SimPe.Windows.Forms.ResourceViewManager.SortColumn.Offset;
-            this.lv.ListViewKeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
             this.lv.SelectionChanged += new System.EventHandler(this.lv_SelectionChanged);
-            this.lv.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropFile);
-            this.lv.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnterFile);
-            this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
+            this.lv.ListViewKeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
             this.lv.SelectedResource += new SimPe.Windows.Forms.ResourceListViewExt.SelectResourceHandler(this.lv_SelectResource);
+            this.lv.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropFile);
+            this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
+            this.lv.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnterFile);
             // 
             // miAction
             // 
@@ -332,7 +332,7 @@ namespace SimPe
             this.dcResource.Controls.Add(this.tv);
             this.dcResource.DockContainer = this.dockLeft;
             this.dcResource.DragBorder = false;
-            this.dcResource.FloatingSize = new System.Drawing.Size(236, 377);
+            this.dcResource.FloatingSize = new System.Drawing.Size(332, 313);
             this.dcResource.Image = ((System.Drawing.Image)(resources.GetObject("dcResource.Image")));
             this.dcResource.Manager = this.manager;
             this.dcResource.Name = "dcResource";
@@ -379,7 +379,7 @@ namespace SimPe
             this.dcAction.Controls.Add(this.xpGradientPanel2);
             this.dcAction.DockContainer = this.dockRight;
             this.dcAction.DragBorder = false;
-            this.dcAction.FloatingSize = new System.Drawing.Size(246, 327);
+            this.dcAction.FloatingSize = new System.Drawing.Size(344, 397);
             this.dcAction.Image = ((System.Drawing.Image)(resources.GetObject("dcAction.Image")));
             this.dcAction.Manager = this.manager;
             this.dcAction.Name = "dcAction";
@@ -470,7 +470,7 @@ namespace SimPe
             this.dcFilter.Controls.Add(this.xpGradientPanel1);
             this.dcFilter.DockContainer = this.dockRight;
             this.dcFilter.DragBorder = false;
-            this.dcFilter.FloatingSize = new System.Drawing.Size(246, 377);
+            this.dcFilter.FloatingSize = new System.Drawing.Size(346, 313);
             this.dcFilter.Image = ((System.Drawing.Image)(resources.GetObject("dcFilter.Image")));
             this.dcFilter.Manager = this.manager;
             this.dcFilter.Name = "dcFilter";
@@ -554,6 +554,7 @@ namespace SimPe
             // 
             // xpLinkedLabelIcon3
             // 
+            this.xpLinkedLabelIcon3.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             resources.ApplyResources(this.xpLinkedLabelIcon3, "xpLinkedLabelIcon3");
             this.xpLinkedLabelIcon3.BackColor = System.Drawing.Color.Transparent;
             this.xpLinkedLabelIcon3.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
@@ -565,6 +566,7 @@ namespace SimPe
             // 
             // xpLinkedLabelIcon2
             // 
+            this.xpLinkedLabelIcon2.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             resources.ApplyResources(this.xpLinkedLabelIcon2, "xpLinkedLabelIcon2");
             this.xpLinkedLabelIcon2.BackColor = System.Drawing.Color.Transparent;
             this.xpLinkedLabelIcon2.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
@@ -576,6 +578,7 @@ namespace SimPe
             // 
             // xpLinkedLabelIcon1
             // 
+            this.xpLinkedLabelIcon1.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.xpLinkedLabelIcon1.BackColor = System.Drawing.Color.Transparent;
             this.xpLinkedLabelIcon1.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(99)))), ((int)(((byte)(50)))));
             resources.ApplyResources(this.xpLinkedLabelIcon1, "xpLinkedLabelIcon1");
@@ -613,7 +616,7 @@ namespace SimPe
             this.dcPlugin.Controls.Add(this.dc);
             this.dcPlugin.DockContainer = this.dockBottom;
             this.dcPlugin.DragBorder = false;
-            this.dcPlugin.FloatingSize = new System.Drawing.Size(924, 146);
+            this.dcPlugin.FloatingSize = new System.Drawing.Size(924, 178);
             this.dcPlugin.Image = ((System.Drawing.Image)(resources.GetObject("dcPlugin.Image")));
             this.dcPlugin.Manager = this.manager;
             this.dcPlugin.Name = "dcPlugin";
@@ -627,14 +630,9 @@ namespace SimPe
             // 
             resources.ApplyResources(this.dc, "dc");
             this.dc.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.DocumentLayoutSystem(903, 373, new TD.SandDock.DockControl[0], null)))});
+            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.DocumentLayoutSystem(900, 373, new TD.SandDock.DockControl[0], null)))});
             this.dc.Name = "dc";
             this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
-            // 
-            // tbTools
-            // 
-            resources.ApplyResources(this.tbTools, "tbTools");
-            this.tbTools.Name = "tbTools";
             // 
             // toolBar1
             // 
@@ -702,6 +700,11 @@ namespace SimPe
             // 
             resources.ApplyResources(this.tbAction, "tbAction");
             this.tbAction.Name = "tbAction";
+            // 
+            // tbTools
+            // 
+            resources.ApplyResources(this.tbTools, "tbTools");
+            this.tbTools.Name = "tbTools";
             // 
             // tbWindow
             // 
@@ -979,8 +982,8 @@ namespace SimPe
             this.MainMenuStrip = this.menuBar1;
             this.Name = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Closing += new System.ComponentModel.CancelEventHandler(this.ClosingForm);
             this.Load += new System.EventHandler(this.LoadForm);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.ClosingForm);
             this.tbContainer.ContentPanel.ResumeLayout(false);
             this.tbContainer.TopToolStripPanel.ResumeLayout(false);
             this.tbContainer.TopToolStripPanel.PerformLayout();
