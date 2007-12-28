@@ -159,7 +159,7 @@
     <value>0, 0</value>
   </data>
   <data name="lv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 295</value>
+    <value>327, 295</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lv.TabIndex" type="System.Int32, mscorlib">
@@ -197,7 +197,7 @@
     <value>336, 0</value>
   </data>
   <data name="dcResourceList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 313</value>
+    <value>329, 313</value>
   </data>
   <data name="dcResourceList.TabImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -832,6 +832,9 @@
   <data name="dcFilter.CaptionText" xml:space="preserve">
     <value>Filter Resources</value>
   </data>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -839,13 +842,13 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 43</value>
+    <value>19, 48</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 17</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>3</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Instance:</value>
@@ -862,17 +865,20 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 7</value>
+    <value>33, 13</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 17</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>1</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Group:</value>
@@ -899,13 +905,13 @@
     <value>17</value>
   </data>
   <data name="cbsemig.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 203</value>
+    <value>11, 147</value>
   </data>
   <data name="cbsemig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>310, 25</value>
+    <value>231, 25</value>
   </data>
   <data name="cbsemig.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;cbsemig.Name" xml:space="preserve">
     <value>cbsemig</value>
@@ -923,13 +929,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="tbRcolName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 123</value>
+    <value>11, 97</value>
   </data>
   <data name="tbRcolName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>310, 24</value>
+    <value>231, 24</value>
   </data>
   <data name="tbRcolName.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;tbRcolName.Name" xml:space="preserve">
     <value>tbRcolName</value>
@@ -943,14 +949,17 @@
   <data name="&gt;&gt;tbRcolName.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="tbInst.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="tbInst.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 39</value>
+    <value>90, 45</value>
   </data>
   <data name="tbInst.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 24</value>
   </data>
   <data name="tbInst.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;tbInst.Name" xml:space="preserve">
     <value>tbInst</value>
@@ -964,14 +973,17 @@
   <data name="&gt;&gt;tbInst.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="tbGrp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="tbGrp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 4</value>
+    <value>90, 10</value>
   </data>
   <data name="tbGrp.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 24</value>
   </data>
   <data name="tbGrp.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;tbGrp.Name" xml:space="preserve">
     <value>tbGrp</value>
@@ -992,13 +1004,13 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 183</value>
+    <value>8, 127</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 17</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>9</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Semiglobal Group:</value>
@@ -1022,13 +1034,13 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 103</value>
+    <value>8, 77</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 17</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>6</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>RCOL Name:</value>
@@ -1052,13 +1064,13 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="xpLinkedLabelIcon3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 232</value>
+    <value>213, 127</value>
   </data>
   <data name="xpLinkedLabelIcon3.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 22</value>
   </data>
   <data name="xpLinkedLabelIcon3.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>11</value>
   </data>
   <data name="xpLinkedLabelIcon3.Text" xml:space="preserve">
     <value>set</value>
@@ -1082,13 +1094,13 @@
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="xpLinkedLabelIcon2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 152</value>
+    <value>213, 77</value>
   </data>
   <data name="xpLinkedLabelIcon2.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 22</value>
   </data>
   <data name="xpLinkedLabelIcon2.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>8</value>
   </data>
   <data name="xpLinkedLabelIcon2.Text" xml:space="preserve">
     <value>set</value>
@@ -1105,17 +1117,20 @@
   <data name="&gt;&gt;xpLinkedLabelIcon2.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="xpLinkedLabelIcon1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="xpLinkedLabelIcon1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="xpLinkedLabelIcon1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>169, 72</value>
+    <value>213, 49</value>
   </data>
   <data name="xpLinkedLabelIcon1.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 22</value>
   </data>
   <data name="xpLinkedLabelIcon1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="xpLinkedLabelIcon1.Text" xml:space="preserve">
     <value>set</value>
@@ -1139,7 +1154,7 @@
     <value>0, 0</value>
   </data>
   <data name="xpGradientPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>344, 268</value>
+    <value>253, 268</value>
   </data>
   <data name="xpGradientPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1183,7 +1198,7 @@
     <value>0, 0</value>
   </data>
   <data name="dcFilter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>346, 313</value>
+    <value>255, 313</value>
   </data>
   <data name="dcFilter.TabImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1227,10 +1242,10 @@
     <value>Right</value>
   </data>
   <data name="dockRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>574, 0</value>
+    <value>665, 0</value>
   </data>
   <data name="dockRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>350, 313</value>
+    <value>259, 313</value>
   </data>
   <data name="dockRight.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -1259,9 +1274,6 @@
   <data name="dcPlugin.CaptionText" xml:space="preserve">
     <value>Plugin View</value>
   </data>
-  <metadata name="dc.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="dc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
