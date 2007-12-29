@@ -1,0 +1,14 @@
+open www.ambertation.de
+publicrelease@ambertation.de
+r;kl.t76werw
+quote pasv
+cd files/
+rename Preview_{fullsetupname} {fullsetupname}
+rename Preview_SimPE-Setup.exe SimPE-Setup.exe
+rename Preview_{lightsetupname} {lightsetupname}
+cd /
+put "X:\SimPE\downloadnfo.txt"
+put "X:\SimPE\downloadlightnfo.txt"
+dir
+close
+quit

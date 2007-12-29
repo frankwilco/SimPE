@@ -1,0 +1,11 @@
+open www.ambertation.de
+publicrelease@ambertation.de
+r;kl.t76werw
+quote pasv
+cd files/
+put "{fullsetuppath}" Preview_{fullsetupname}
+put "{fullsetuppath}" Preview_SimPE-Setup.exe
+put "{lightsetuppath}" Preview_{lightsetupname}.exe
+dir
+close
+quit

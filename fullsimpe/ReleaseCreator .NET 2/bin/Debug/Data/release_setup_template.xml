@@ -1,0 +1,13 @@
+
+<releasesetup>
+  <ReleasePath>C:\Users\...\fullsimpe\__Release</ReleasePath>
+  <UpdateInfoPath>C:\Users\...\fullsimpe\__Release</UpdateInfoPath>
+  <InnoPath>C:\Program Files\Inno Setup 5\iscc.exe</InnoPath>
+  
+    <FTPServer></FTPServer>
+    <FTPUser></FTPUser>
+    <FTPPassword></FTPPassword>
+    <FTPPath></FTPPath>
+  
+  <AutoSetLetterForQA />
+ </releasesetup>
