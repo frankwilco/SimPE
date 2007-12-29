@@ -1,0 +1,40 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseCreator", "ReleaseCreator.csproj", "{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ftp", "Ftp\Ftp\Ftp.csproj", "{807EA345-BE77-43E7-B137-67594E0823CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Txtr|Any CPU = Debug Txtr|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release Mac|Any CPU = Release Mac|Any CPU
+		Release PLJ|Any CPU = Release PLJ|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}.Debug Txtr|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}.Debug Txtr|Any CPU.Build.0 = Debug|Any CPU
+		{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}.Release Mac|Any CPU.ActiveCfg = Release|Any CPU
+		{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}.Release Mac|Any CPU.Build.0 = Release|Any CPU
+		{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}.Release PLJ|Any CPU.ActiveCfg = Release|Any CPU
+		{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}.Release PLJ|Any CPU.Build.0 = Release|Any CPU
+		{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4FBD23A-BA7F-4885-9A4A-995E346DBA94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{807EA345-BE77-43E7-B137-67594E0823CD}.Debug Txtr|Any CPU.ActiveCfg = Debug|Any CPU
+		{807EA345-BE77-43E7-B137-67594E0823CD}.Debug Txtr|Any CPU.Build.0 = Debug|Any CPU
+		{807EA345-BE77-43E7-B137-67594E0823CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{807EA345-BE77-43E7-B137-67594E0823CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{807EA345-BE77-43E7-B137-67594E0823CD}.Release Mac|Any CPU.ActiveCfg = Release|Any CPU
+		{807EA345-BE77-43E7-B137-67594E0823CD}.Release Mac|Any CPU.Build.0 = Release|Any CPU
+		{807EA345-BE77-43E7-B137-67594E0823CD}.Release PLJ|Any CPU.ActiveCfg = Release|Any CPU
+		{807EA345-BE77-43E7-B137-67594E0823CD}.Release PLJ|Any CPU.Build.0 = Release|Any CPU
+		{807EA345-BE77-43E7-B137-67594E0823CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{807EA345-BE77-43E7-B137-67594E0823CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

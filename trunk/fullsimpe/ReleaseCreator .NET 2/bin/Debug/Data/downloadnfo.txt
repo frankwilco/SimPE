@@ -1,0 +1,11 @@
+<li>
+    <a href="http://downloads.sourceforge.net/simpe/{setupname}?use_mirror=auto_select">{setupname} ({shortver}, {size} mb)</a><br />
+    <i><strong>If you don't know what File you require, this is the right one</strong></i>
+    <ul>
+        <li>Setup created by Uecasm</li>
+        <li>Windows 2000, Windows XP, Windows Vista</li>
+        <li>Requires the .NET Framework 2.0 (and managed DirectX 9c for Preview)</li>
+        <li>Version {shortver} German/English (alpha, <!--version-->{longver}<!--version-->)</li>
+        <li>Just start the Setup Application <!--lversion:{releasever}--><!--qaversion:{qaver}--></li>
+    </ul>
+</li>
