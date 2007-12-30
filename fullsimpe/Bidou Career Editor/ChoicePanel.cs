@@ -47,21 +47,22 @@ namespace SimPe.Plugin
         private const byte JOB = 9;
 #endif
         #endregion
+        private const int mm = 1;
         public void setValues(bool labels, string label, string value, SimPe.PackedFiles.Wrapper.Bcon[] bcon, ushort level)
         {
             Labels = labels;
             lbChoice.Text = label;
             tbChoice.Text = value;
-            if (bcon[0] != null)
+            if (bcon != null)
             {
-                lnudCooking.Value = bcon[0][level] / 100;
-                lnudMechanical.Value = bcon[1][level] / 100;
-                lnudBody.Value = bcon[2][level] / 100;
-                lnudCharisma.Value = bcon[3][level] / 100;
-                lnudCreativity.Value = bcon[4][level] / 100;
-                lnudLogic.Value = bcon[5][level] / 100;
-                //lnudGardening.Value = bcon[6][level] / 100;
-                lnudCleaning.Value = bcon[7][level] / 100;
+                lnudCooking.Value = bcon[0][level] / mm;
+                lnudMechanical.Value = bcon[1][level] / mm;
+                lnudBody.Value = bcon[2][level] / mm;
+                lnudCharisma.Value = bcon[3][level] / mm;
+                lnudCreativity.Value = bcon[4][level] / mm;
+                lnudLogic.Value = bcon[5][level] / mm;
+                //lnudGardening.Value = bcon[6][level] / mm;
+                lnudCleaning.Value = bcon[7][level] / mm;
             }
             else
             {
@@ -71,14 +72,14 @@ namespace SimPe.Plugin
         }
         public void getValues(SimPe.PackedFiles.Wrapper.Bcon[] bcon, ushort level)
         {
-            bcon[0][level] = (short)(lnudCooking.Value * 100);
-            bcon[1][level] = (short)(lnudMechanical.Value * 100);
-            bcon[2][level] = (short)(lnudBody.Value * 100);
-            bcon[3][level] = (short)(lnudCharisma.Value * 100);
-            bcon[4][level] = (short)(lnudCreativity.Value * 100);
-            bcon[5][level] = (short)(lnudLogic.Value * 100);
-            //bcon[6][level] = (short)(lnudGardening.Value * 100);
-            bcon[7][level] = (short)(lnudCleaning.Value * 100);
+            bcon[0][level] = (short)(lnudCooking.Value * mm);
+            bcon[1][level] = (short)(lnudMechanical.Value * mm);
+            bcon[2][level] = (short)(lnudBody.Value * mm);
+            bcon[3][level] = (short)(lnudCharisma.Value * mm);
+            bcon[4][level] = (short)(lnudCreativity.Value * mm);
+            bcon[5][level] = (short)(lnudLogic.Value * mm);
+            //bcon[6][level] = (short)(lnudGardening.Value * mm);
+            bcon[7][level] = (short)(lnudCleaning.Value * mm);
         }
 
         private bool labels = true;
