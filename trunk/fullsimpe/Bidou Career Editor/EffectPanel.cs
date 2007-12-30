@@ -62,9 +62,14 @@ namespace SimPe.Plugin
                 lnudCleaning.Value = bcon[7][level] / 100;
             }
             lnudMoney.Value = bcon[8][level];
-            lnudJobLevels.Minimum = 0 - level;
+            lnudJobLevels.Minimum = level * -1;
             lnudJobLevels.Maximum = maxLevel - level;
-            lnudJobLevels.Value = bcon[9][level];
+            if (bcon[9][level] < lnudJobLevels.Minimum)
+                lnudJobLevels.Value = lnudJobLevels.Minimum;
+            else if (bcon[9][level] > lnudJobLevels.Maximum)
+                lnudJobLevels.Value = lnudJobLevels.Maximum;
+            else
+                lnudJobLevels.Value = bcon[9][level];
             tbMale.Text = male;
             tbFemale.Text = female;
         }
