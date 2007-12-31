@@ -85,6 +85,46 @@
       <HintPath>..\..\..\SimPe\Plugins\pjse.SystemClasses.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="simpe.3idr, Version=1.0.2842.29026, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SimPe\simpe.3idr.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="simpe.clst, Version=1.0.2842.29008, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SimPe\simpe.clst.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="simpe.commonhandler, Version=1.0.2842.29005, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SimPe\simpe.commonhandler.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="simpe.filehandler, Version=1.0.2842.29021, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SimPe\simpe.filehandler.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="simpe.helper, Version=0.63.8.28998, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SimPe\simpe.helper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="simpe.interfaces, Version=1.0.2842.29003, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SimPe\simpe.interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="simpe.package, Version=1.0.2842.29010, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SimPe\simpe.package.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="simpe.workspace, Version=1.0.2842.29014, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SimPe\simpe.workspace.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -161,48 +201,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>LabelledNumericUpDown.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\SimPe 3IDR\SimPe 3IDR.csproj">
-      <Project>{37D97490-DC9F-4DB7-9215-998C6BC06078}</Project>
-      <Name>SimPe 3IDR</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SimPe Clst\SimPe Clst.csproj">
-      <Project>{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}</Project>
-      <Name>SimPe Clst</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SimPe FileHandler\SimPe FileHandlers.csproj">
-      <Project>{97551C0A-6295-4E32-8E15-A4FF456E65A6}</Project>
-      <Name>SimPe FileHandlers</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
-      <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
-      <Name>SimPe HandlerCommon</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SimPe Helper\SimPe Helper.csproj">
-      <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
-      <Name>SimPe Helper</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SimPe Interfaces\SimPe Interfaces.csproj">
-      <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
-      <Name>SimPe Interfaces</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SimPe Packages\SimPe Packages.csproj">
-      <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
-      <Name>SimPe Packages</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
-      <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
-      <Name>SimPe Workspace Helper</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
