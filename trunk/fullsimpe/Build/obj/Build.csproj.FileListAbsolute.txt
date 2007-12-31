@@ -1,4 +1,0 @@
-J:\Dynamic\Projects\SimPE\fullsimpe-svn\Build\bin\Build\Build.dll
-J:\Dynamic\Projects\SimPE\fullsimpe-svn\Build\bin\Build\Build.pdb
-J:\Dynamic\Projects\SimPE\fullsimpe-svn\Build\obj\Debug\Build.dll
-J:\Dynamic\Projects\SimPE\fullsimpe-svn\Build\obj\Debug\Build.pdb
