@@ -1,14 +1,14 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual C# Express 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe 3D", "..\SimPe 3D\SimPe 3D.csproj", "{44911ACC-87B8-4FED-865C-1950F703C3D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe 3D", "..\..\__NonCore\SimPe 3D\SimPe 3D.csproj", "{44911ACC-87B8-4FED-865C-1950F703C3D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Geometry", "..\SimPe Geometry\SimPe Geometry.csproj", "{60367A6D-8FF1-4289-B546-C68A2C395843}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Geometry", "..\..\SimPe Geometry\SimPe Geometry.csproj", "{60367A6D-8FF1-4289-B546-C68A2C395843}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Helper", "..\SimPe Helper\SimPe Helper.csproj", "{59E3C353-1350-42D8-A045-CBBAD232F228}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Helper", "..\..\SimPe Helper\SimPe Helper.csproj", "{59E3C353-1350-42D8-A045-CBBAD232F228}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DView", "..\3DView\3DView.csproj", "{F2CCCDBC-B05F-4C9C-B57F-27A07ACEF9BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DView", "..\..\3DView\3DView.csproj", "{F2CCCDBC-B05F-4C9C-B57F-27A07ACEF9BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe GMDC Exporter", "..\SimPe GMDC Exporter\SimPe GMDC Exporter.csproj", "{F7DD4A1A-8C32-4247-9AE9-AE4372455A24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe GMDC Exporter", "..\..\SimPe GMDC Exporter\SimPe GMDC Exporter.csproj", "{F7DD4A1A-8C32-4247-9AE9-AE4372455A24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

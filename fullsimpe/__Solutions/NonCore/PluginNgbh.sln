@@ -1,12 +1,12 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual C# Express 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe HGBH", "..\SimPe HGBH\SimPe HGBH.csproj", "{2A67C9C3-9577-4922-991F-291EAA6B4F2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe NGBH Scanner", "..\..\__NonCore\SimPe NGBH Scanner\SimPe NGBH Scanner.csproj", "{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims", "..\SimPe Sims\SimPe Sims.csproj", "{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe HGBH", "..\..\SimPe HGBH\SimPe HGBH.csproj", "{2A67C9C3-9577-4922-991F-291EAA6B4F2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe NGBH Scanner", "..\SimPe NGBH Scanner\SimPe NGBH Scanner.csproj", "{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims", "..\..\SimPe Sims\SimPe Sims.csproj", "{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Name Provider", "..\SimPe Name Provider\SimPe Name Provider.csproj", "{38259F2B-9C90-48BE-A519-E4EEC62C242C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Name Provider", "..\..\SimPe Name Provider\SimPe Name Provider.csproj", "{38259F2B-9C90-48BE-A519-E4EEC62C242C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -533,22 +533,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>copy "$(SolutionDir)..\*.dll" "$(TargetDir)"
-
-if not exist "$(TargetDir)Data" mkdir "$(TargetDir)Data"
-copy "$(SolutionDir)..\__Data\*.*" "$(TargetDir)Data\"
-
-if not exist "$(TargetDir)Doc" mkdir "$(TargetDir)Doc"
-if not exist "$(TargetDir)Doc\de" mkdir "$(TargetDir)Doc\de"
-if not exist "$(TargetDir)Doc\en" mkdir "$(TargetDir)Doc\en"
-copy "$(SolutionDir)..\*.pdf" "$(TargetDir)Doc\en\"
-
-rem if not exist "$(TargetDir)Teleport" mkdir "$(TargetDir)Teleport"
-if not exist "$(TargetDir)Plugins\Data" mkdir "$(TargetDir)Plugins\Data"
-
-copy "$(SolutionDir)..\__etc\*.*" "$(TargetDir)"
-
-"$(SolutionDir)ReplaceVistaIcon.exe" "$(TargetPath)" "$(ProjectDir)img\Simpe2.ico" 0
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
