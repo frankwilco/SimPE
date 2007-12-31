@@ -28,7 +28,7 @@
     </UpgradeBackupLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\__Debug\Plugins\</OutputPath>
+    <OutputPath>..\..\__Debug\Plugins\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -51,7 +51,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\__Release\Plugins\</OutputPath>
+    <OutputPath>..\..\__Release\Plugins\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -100,7 +100,7 @@
   <ItemGroup>
     <Reference Include="pjse.coder.plugin, Version=4.0.2914.24864, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\Plugins\pjse.coder.plugin.dll</HintPath>
+      <HintPath>..\..\..\SimPe\Plugins\pjse.coder.plugin.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -118,53 +118,53 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\SimPe Clst\SimPe Clst.csproj">
+    <ProjectReference Include="..\..\SimPe Clst\SimPe Clst.csproj">
       <Project>{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}</Project>
       <Name>SimPe Clst</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Extended Filehandlers\SimPe Extended Filehandlers.csproj">
+    <ProjectReference Include="..\..\SimPe Extended Filehandlers\SimPe Extended Filehandlers.csproj">
       <Name>SimPe Extended Filehandlers</Name>
       <Project>{7EF7C30C-2968-46E8-AA74-79EDB0FE8F2A}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe FileHandler\SimPe FileHandlers.csproj">
+    <ProjectReference Include="..\..\SimPe FileHandler\SimPe FileHandlers.csproj">
       <Name>SimPe FileHandlers</Name>
       <Project>{97551C0A-6295-4E32-8E15-A4FF456E65A6}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
+    <ProjectReference Include="..\..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
       <Name>SimPe HandlerCommon</Name>
       <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Helper\SimPe Helper.csproj">
+    <ProjectReference Include="..\..\SimPe Helper\SimPe Helper.csproj">
       <Name>SimPe Helper</Name>
       <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Interfaces\SimPe Interfaces.csproj">
+    <ProjectReference Include="..\..\SimPe Interfaces\SimPe Interfaces.csproj">
       <Name>SimPe Interfaces</Name>
       <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Packages\SimPe Packages.csproj">
+    <ProjectReference Include="..\..\SimPe Packages\SimPe Packages.csproj">
       <Name>SimPe Packages</Name>
       <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe RCOL\SimPe RCOL.csproj">
+    <ProjectReference Include="..\..\SimPe RCOL\SimPe RCOL.csproj">
       <Project>{74517907-2236-4C45-80ED-E188D5E5CE0E}</Project>
       <Name>SimPe RCOL</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
+    <ProjectReference Include="..\..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
       <Name>SimPe Workspace Helper</Name>
       <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
