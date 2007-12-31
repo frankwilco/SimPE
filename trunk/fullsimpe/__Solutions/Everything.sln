@@ -64,7 +64,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGA_View", "..\TGA_View\TGA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewHexEdit", "..\HexEdit\NewHexEdit.csproj", "{57FB03C0-014D-4347-BF66-16E62ECA1EFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bidou Career Editor", "..\__NonCore\Bidou Career Editor\Bidou Career Editor.csproj", "{3D13FA23-1B13-4FA8-8654-D5E7C1BAD823}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Career Editor", "..\__NonCore\Bidou Career Editor\SimPe Career Editor.csproj", "{3D13FA23-1B13-4FA8-8654-D5E7C1BAD823}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe 3D", "..\__NonCore\SimPe 3D\SimPe 3D.csproj", "{44911ACC-87B8-4FED-865C-1950F703C3D1}"
 EndProject
