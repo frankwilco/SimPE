@@ -28,7 +28,7 @@
     </UpgradeBackupLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\__Debug\Plugins\</OutputPath>
+    <OutputPath>..\..\__Debug\Plugins\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -51,7 +51,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\__Release\Plugins\</OutputPath>
+    <OutputPath>..\..\__Release\Plugins\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -90,48 +90,48 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\SimPe Cache\SimPe Cache.csproj">
+    <ProjectReference Include="..\..\SimPe Cache\SimPe Cache.csproj">
       <Project>{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}</Project>
       <Name>SimPe Cache</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
+    <ProjectReference Include="..\..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
       <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
       <Name>SimPe HandlerCommon</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Helper\SimPe Helper.csproj">
+    <ProjectReference Include="..\..\SimPe Helper\SimPe Helper.csproj">
       <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
       <Name>SimPe Helper</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe HGBH\SimPe HGBH.csproj">
+    <ProjectReference Include="..\..\SimPe HGBH\SimPe HGBH.csproj">
       <Name>SimPe HGBH</Name>
       <Project>{2A67C9C3-9577-4922-991F-291EAA6B4F2D}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Interfaces\SimPe Interfaces.csproj">
+    <ProjectReference Include="..\..\SimPe Interfaces\SimPe Interfaces.csproj">
       <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
       <Name>SimPe Interfaces</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Packages\SimPe Packages.csproj">
+    <ProjectReference Include="..\..\SimPe Packages\SimPe Packages.csproj">
       <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
       <Name>SimPe Packages</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe RCOL\SimPe RCOL.csproj">
+    <ProjectReference Include="..\..\SimPe RCOL\SimPe RCOL.csproj">
       <Project>{74517907-2236-4C45-80ED-E188D5E5CE0E}</Project>
       <Name>SimPe RCOL</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Scenegraph\SimPe Scenegraph.csproj">
+    <ProjectReference Include="..\..\SimPe Scenegraph\SimPe Scenegraph.csproj">
       <Project>{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}</Project>
       <Name>SimPe Scenegraph</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPE Toolbox Scanner\SimPE Toolbox Scanner.csproj">
+    <ProjectReference Include="..\..\SimPE Toolbox Scanner\SimPE Toolbox Scanner.csproj">
       <Project>{2EA51E60-64FA-4822-AE2A-A996BA79AA76}</Project>
       <Name>SimPE Toolbox Scanner</Name>
       <Private>False</Private>

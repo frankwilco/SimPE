@@ -28,7 +28,7 @@
     </UpgradeBackupLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\__Debug\Plugins\</OutputPath>
+    <OutputPath>..\..\__Debug\Plugins\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -51,7 +51,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\__Release\Plugins\</OutputPath>
+    <OutputPath>..\..\__Release\Plugins\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -77,12 +77,12 @@
   <ItemGroup>
     <Reference Include="ambertation.3D">
       <Name>ambertation.3D</Name>
-      <HintPath>..\ambertation.3D.dll</HintPath>
+      <HintPath>..\..\ambertation.3D.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ambertation.utilities">
       <Name>ambertation.utilities</Name>
-      <HintPath>..\ambertation.utilities.dll</HintPath>
+      <HintPath>..\..\ambertation.utilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -99,37 +99,37 @@
     </Reference>
     <Reference Include="xsi.lib">
       <Name>xsi.lib</Name>
-      <HintPath>..\xsi.lib.dll</HintPath>
+      <HintPath>..\..\xsi.lib.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <ProjectReference Include="..\SimPe Geometry\SimPe Geometry.csproj">
+    <ProjectReference Include="..\..\SimPe Geometry\SimPe Geometry.csproj">
       <Name>SimPe Geometry</Name>
       <Project>{60367A6D-8FF1-4289-B546-C68A2C395843}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe GMDC Exporter Base\SimPe GMDC Exporter Base.csproj">
+    <ProjectReference Include="..\..\SimPe GMDC Exporter Base\SimPe GMDC Exporter Base.csproj">
       <Project>{76D6A8B3-10DF-4948-9028-C63A416AB00E}</Project>
       <Name>SimPe GMDC Exporter Base</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
+    <ProjectReference Include="..\..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
       <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
       <Name>SimPe HandlerCommon</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Helper\SimPe Helper.csproj">
+    <ProjectReference Include="..\..\SimPe Helper\SimPe Helper.csproj">
       <Name>SimPe Helper</Name>
       <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe Interfaces\SimPe Interfaces.csproj">
+    <ProjectReference Include="..\..\SimPe Interfaces\SimPe Interfaces.csproj">
       <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
       <Name>SimPe Interfaces</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SimPe RCOL\SimPe RCOL.csproj">
+    <ProjectReference Include="..\..\SimPe RCOL\SimPe RCOL.csproj">
       <Project>{74517907-2236-4C45-80ED-E188D5E5CE0E}</Project>
       <Name>SimPe RCOL</Name>
       <Private>False</Private>
