@@ -28,7 +28,7 @@
     </UpgradeBackupLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\__Debug\Plugins\</OutputPath>
+    <OutputPath>..\..\__Debug\Plugins\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -51,7 +51,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\__Release\Plugins\</OutputPath>
+    <OutputPath>..\..\__Release\Plugins\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -77,52 +77,52 @@
   <ItemGroup>
     <Reference Include="pjse.coder.plugin, Version=4.0.2915.16274, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\Plugins\pjse.coder.plugin.dll</HintPath>
+      <HintPath>..\..\..\SimPe\Plugins\pjse.coder.plugin.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="pjse.SystemClasses, Version=1.0.2857.22031, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\Plugins\pjse.SystemClasses.dll</HintPath>
+      <HintPath>..\..\..\SimPe\Plugins\pjse.SystemClasses.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="simpe.3idr, Version=1.0.2842.29026, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\simpe.3idr.dll</HintPath>
+      <HintPath>..\..\..\SimPe\simpe.3idr.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="simpe.clst, Version=1.0.2842.29008, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\simpe.clst.dll</HintPath>
+      <HintPath>..\..\..\SimPe\simpe.clst.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="simpe.commonhandler, Version=1.0.2842.29005, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\simpe.commonhandler.dll</HintPath>
+      <HintPath>..\..\..\SimPe\simpe.commonhandler.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="simpe.filehandler, Version=1.0.2842.29021, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\simpe.filehandler.dll</HintPath>
+      <HintPath>..\..\..\SimPe\simpe.filehandler.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="simpe.helper, Version=0.63.8.28998, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\simpe.helper.dll</HintPath>
+      <HintPath>..\..\..\SimPe\simpe.helper.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="simpe.interfaces, Version=1.0.2842.29003, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\simpe.interfaces.dll</HintPath>
+      <HintPath>..\..\..\SimPe\simpe.interfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="simpe.package, Version=1.0.2842.29010, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\simpe.package.dll</HintPath>
+      <HintPath>..\..\..\SimPe\simpe.package.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="simpe.workspace, Version=1.0.2842.29014, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SimPe\simpe.workspace.dll</HintPath>
+      <HintPath>..\..\..\SimPe\simpe.workspace.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
