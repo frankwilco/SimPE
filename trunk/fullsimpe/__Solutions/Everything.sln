@@ -36,25 +36,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Workspace Helper", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims", "..\SimPe Sims\SimPe Sims.csproj", "{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe 3D", "..\SimPe 3D\SimPe 3D.csproj", "{44911ACC-87B8-4FED-865C-1950F703C3D1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Dockbox", "..\SimPe Dockbox\SimPe Dockbox.csproj", "{5C259432-EF3E-4BAA-BB2F-28E1459FD0D9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Downloads", "..\SimPe Downloads\SimPe Downloads.csproj", "{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe GMDC Exporter", "..\SimPe GMDC Exporter\SimPe GMDC Exporter.csproj", "{F7DD4A1A-8C32-4247-9AE9-AE4372455A24}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe HGBH", "..\SimPe HGBH\SimPe HGBH.csproj", "{2A67C9C3-9577-4922-991F-291EAA6B4F2D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe NGBH Scanner", "..\SimPe NGBH Scanner\SimPe NGBH Scanner.csproj", "{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Sims2CommunityPack", "..\SimPe Sims2CommunityPack\SimPe Sims2CommunityPack.csproj", "{2EF93119-5C98-4167-B1AF-966E6A45AB79}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Toolbox", "..\SimPe Toolbox\SimPe Toolbox.csproj", "{4B573801-C012-4C34-88A8-3D4CE694C905}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPE Toolbox Scanner", "..\SimPE Toolbox Scanner\SimPE Toolbox Scanner.csproj", "{2EA51E60-64FA-4822-AE2A-A996BA79AA76}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Toolbox Scenegraph", "..\SimPe Toolbox Scenegraph\SimPe Toolbox Scenegraph.csproj", "{4A0695E9-8C32-4F70-B7C7-B7F2EF7E38B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Toolbox Workshops", "..\SimPe Toolbox Workshops\SimPe Toolbox Workshops.csproj", "{8886DFAA-51F0-4E64-A754-EF4FCB9CCA4B}"
 EndProject
@@ -64,15 +52,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards of SimPe", "..\Wiza
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPE - Interfaces", "..\WOSimPE - Interfaces\WOSimPE - Interfaces.csproj", "{833C3B98-5A2D-476B-8B4B-C9548C1C99B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPe - Recolor", "..\WOSimPe - Recolor\WOSimPe - Recolor.csproj", "{55A67A5D-43E8-4290-B52F-230233B1439D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe ResourceControls", "..\SimPe ResourceControls\SimPe ResourceControls.csproj", "{E4703C3D-A7CA-4E63-90A6-C6E58C121F1D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Splash", "..\SimPe Splash\SimPe Splash.csproj", "{6F0D2F45-62FD-4BF5-95C0-46D66C981034}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe BHAV", "..\SimPe BHAV\SimPe BHAV.csproj", "{6AA664E9-B45F-4D61-9B9F-E68341C16473}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Career Editor", "..\Bidou Career Editor\SimPe Career Editor.csproj", "{3D13FA23-1B13-4FA8-8654-D5E7C1BAD823}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumComboBox", "..\EnumComboBox\EnumComboBox.csproj", "{5C663721-B4E3-43F7-A39F-9E6060FA5433}"
 EndProject
@@ -81,6 +63,39 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGA_View", "..\TGA_View\TGA_View.csproj", "{320E7C5E-60E6-4069-9852-D296DB688F5D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewHexEdit", "..\HexEdit\NewHexEdit.csproj", "{57FB03C0-014D-4347-BF66-16E62ECA1EFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bidou Career Editor", "..\__NonCore\Bidou Career Editor\Bidou Career Editor.csproj", "{3D13FA23-1B13-4FA8-8654-D5E7C1BAD823}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe 3D", "..\__NonCore\SimPe 3D\SimPe 3D.csproj", "{44911ACC-87B8-4FED-865C-1950F703C3D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe BHAV", "..\__NonCore\SimPe BHAV\SimPe BHAV.csproj", "{6AA664E9-B45F-4D61-9B9F-E68341C16473}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Dockbox", "..\__NonCore\SimPe Dockbox\SimPe Dockbox.csproj", "{5C259432-EF3E-4BAA-BB2F-28E1459FD0D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Downloads", "..\__NonCore\SimPe Downloads\SimPe Downloads.csproj", "{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe GMDC Exporter", "..\__NonCore\SimPe GMDC Exporter\SimPe GMDC Exporter.csproj", "{F7DD4A1A-8C32-4247-9AE9-AE4372455A24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe NGBH Scanner", "..\__NonCore\SimPe NGBH Scanner\SimPe NGBH Scanner.csproj", "{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Toolbox Scenegraph", "..\__NonCore\SimPe Toolbox Scenegraph\SimPe Toolbox Scenegraph.csproj", "{4A0695E9-8C32-4F70-B7C7-B7F2EF7E38B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOSimPe - Recolor", "..\__NonCore\WOSimPe - Recolor\WOSimPe - Recolor.csproj", "{55A67A5D-43E8-4290-B52F-230233B1439D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "..\Build\Build.csproj", "{BA6E610A-3015-4536-99CD-D73892E9BD1E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7DD4A1A-8C32-4247-9AE9-AE4372455A24} = {F7DD4A1A-8C32-4247-9AE9-AE4372455A24}
+		{3D13FA23-1B13-4FA8-8654-D5E7C1BAD823} = {3D13FA23-1B13-4FA8-8654-D5E7C1BAD823}
+		{9C10B224-7ABC-46D1-9ADC-58A817D6AF59} = {9C10B224-7ABC-46D1-9ADC-58A817D6AF59}
+		{5C259432-EF3E-4BAA-BB2F-28E1459FD0D9} = {5C259432-EF3E-4BAA-BB2F-28E1459FD0D9}
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B} = {E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}
+		{55A67A5D-43E8-4290-B52F-230233B1439D} = {55A67A5D-43E8-4290-B52F-230233B1439D}
+		{7368AF5F-2C82-4750-A31F-63AA4432758C} = {7368AF5F-2C82-4750-A31F-63AA4432758C}
+		{DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD} = {DE27E48A-F5C1-4AE4-A50D-FFA0FFF4CFFD}
+		{44911ACC-87B8-4FED-865C-1950F703C3D1} = {44911ACC-87B8-4FED-865C-1950F703C3D1}
+		{6AA664E9-B45F-4D61-9B9F-E68341C16473} = {6AA664E9-B45F-4D61-9B9F-E68341C16473}
+		{4A0695E9-8C32-4F70-B7C7-B7F2EF7E38B6} = {4A0695E9-8C32-4F70-B7C7-B7F2EF7E38B6}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -335,6 +350,12 @@ Global
 		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release MAC|Any CPU.Build.0 = Release Mac|Any CPU
 		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57FB03C0-014D-4347-BF66-16E62ECA1EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA6E610A-3015-4536-99CD-D73892E9BD1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA6E610A-3015-4536-99CD-D73892E9BD1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA6E610A-3015-4536-99CD-D73892E9BD1E}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{BA6E610A-3015-4536-99CD-D73892E9BD1E}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{BA6E610A-3015-4536-99CD-D73892E9BD1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA6E610A-3015-4536-99CD-D73892E9BD1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

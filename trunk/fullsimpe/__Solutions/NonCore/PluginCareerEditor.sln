@@ -1,16 +1,12 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Career Editor", "..\Bidou Career Editor\SimPe Career Editor.csproj", "{3D13FA23-1B13-4FA8-8654-D5E7C1BAD823}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Career Editor", "..\..\__NonCore\Bidou Career Editor\Bidou Career Editor.csproj", "{3D13FA23-1B13-4FA8-8654-D5E7C1BAD823}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe BHAV", "..\SimPe BHAV\SimPe BHAV.csproj", "{6AA664E9-B45F-4D61-9B9F-E68341C16473}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Interfaces", "..\..\SimPe Interfaces\SimPe Interfaces.csproj", "{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPE PJSE Simantic Wrappers", "..\SimPE PJSE Simantic Wrappers\SimPE PJSE Simantic Wrappers.csproj", "{D9490E96-C7B1-4024-A976-306A7472B2D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Helper", "..\..\SimPe Helper\SimPe Helper.csproj", "{59E3C353-1350-42D8-A045-CBBAD232F228}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Interfaces", "..\SimPe Interfaces\SimPe Interfaces.csproj", "{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Helper", "..\SimPe Helper\SimPe Helper.csproj", "{59E3C353-1350-42D8-A045-CBBAD232F228}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe HandlerCommon", "..\SimPe HandlerCommon\SimPe HandlerCommon.csproj", "{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe HandlerCommon", "..\..\SimPe HandlerCommon\SimPe HandlerCommon.csproj", "{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
