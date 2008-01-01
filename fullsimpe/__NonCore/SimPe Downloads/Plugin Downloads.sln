@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin Downloads", "Plugin Downloads.csproj", "{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E76F963C-9EA2-430C-B3C9-0DA06B49EA3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

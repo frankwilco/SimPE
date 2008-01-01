@@ -1,0 +1,43 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <EnableASPDebugging>false</EnableASPDebugging>
+    <EnableASPXDebugging>false</EnableASPXDebugging>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <EnableSQLServerDebugging>false</EnableSQLServerDebugging>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+    <RemoteDebugMachine>
+    </RemoteDebugMachine>
+    <StartAction>Program</StartAction>
+    <StartProgram>J:\Dynamic\Projects\SimPE\fullsimpe-svn\__Debug\SimPe.exe</StartProgram>
+    <StartWorkingDirectory>J:\Dynamic\Projects\SimPE\fullsimpe-svn\__Debug\</StartWorkingDirectory>
+    <StartArguments>
+    </StartArguments>
+    <StartPage>
+    </StartPage>
+    <StartURL>
+    </StartURL>
+    <StartWithIE>false</StartWithIE>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <EnableASPDebugging>false</EnableASPDebugging>
+    <EnableASPXDebugging>false</EnableASPXDebugging>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <EnableSQLServerDebugging>false</EnableSQLServerDebugging>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+    <RemoteDebugMachine>
+    </RemoteDebugMachine>
+    <StartAction>Program</StartAction>
+    <StartProgram>J:\Dynamic\Projects\SimPE\SimPe\SimPe.exe</StartProgram>
+    <StartWorkingDirectory>J:\Dynamic\Projects\SimPE\SimPe\</StartWorkingDirectory>
+    <StartArguments>
+    </StartArguments>
+    <StartPage>
+    </StartPage>
+    <StartURL>
+    </StartURL>
+    <StartWithIE>false</StartWithIE>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ReferencePath>J:\Dynamic\Projects\SimPE\SimPe\</ReferencePath>
+  </PropertyGroup>
+</Project>
