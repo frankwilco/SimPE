@@ -38,7 +38,10 @@ namespace SimPe.Plugin.Tool.Action
 		{
 			if (!ChangeEnabledStateEventHandler(null, e)) return;
 			
+            SimPe.Helper.RunModes old = SimPe.Helper.LocalMode;
+            SimPe.Helper.LocalMode = SimPe.Helper.RunModes.Normal;
 			SimPe.FileTable.FileIndex.ForceReload();
+            SimPe.Helper.LocalMode = old;
 		}
 
 		#endregion		

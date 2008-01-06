@@ -518,6 +518,25 @@ namespace SimPe
                 return System.IO.Path.Combine(SimPe.Helper.SimPeDataPath, "semiglobals.xml");
             }
         }
+
+
+        public enum RunModes { Normal, Local, LocalNoPlugins };
+
+        static RunModes localmode = RunModes.Normal;
+        public static RunModes LocalMode
+        {
+            get { return localmode;  }
+            set { localmode = value; }
+        }
+
+        public static bool CanLoadPlugin(string flname)
+        {
+            if (LocalMode != RunModes.LocalNoPlugins) return true;
+            flname = flname.Trim().ToLower();
+            if (flname.Contains("\\pj")) return true;
+            if (flname.Contains("simpe.dockbox")) return true;
+            return false;
+        }
 		/// <summary>
 		/// Returns the Version Information for the started Executable
 		/// </summary>
