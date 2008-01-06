@@ -27,6 +27,7 @@ namespace SimPe
 			if (BuildPackage(args)) return true;
 			if (BuildTxtr(args)) return true;
 			if (FixPackage(args)) return true;
+            if (LocalMode(args)) return true;
 			return false;
 		}
 
@@ -54,11 +55,31 @@ namespace SimPe
 			Console.WriteLine("  -build -desc [packag.xml] -out [output].package");
 			Console.WriteLine("  -txtr -image [imgfile] -out [output].package -name [textureNam] -format [dxt1|dxt3|dxt5|raw8|raw24|raw32] -levels [nr] -width [max. Width] -height [max. Height]");
             Console.WriteLine("  -gensemiglob");
+            Console.WriteLine("  -localmode [-noplugins]");
             return true;
-		}
+        }
 
-		#region Theme Presets
-		static bool MakeClassic(string[] args) 
+        #region Local Mode
+        static bool LocalMode(string[] args)
+        {
+            if (args[0] != "-localmode") return false;
+
+            if (args[1] == "-noplugins") Helper.LocalMode = Helper.RunModes.LocalNoPlugins;
+            else Helper.LocalMode = Helper.RunModes.Local;
+
+            SimPe.Splash.Screen.Stop();
+            string s = Localization.GetString("InLocalMode");
+            if (Helper.LocalMode == Helper.RunModes.LocalNoPlugins)
+                s += Helper.lbr + Helper.lbr + Localization.GetString("NoPlugins");
+            Message.Show(s, "Notice", System.Windows.Forms.MessageBoxButtons.OK);
+            SimPe.Splash.Screen.Start();
+
+            return false;
+        }
+        #endregion
+
+        #region Theme Presets
+        static bool MakeClassic(string[] args) 
 		{
 			if (args[0]!="-classicpreset") return false;			
 			

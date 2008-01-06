@@ -1288,4 +1288,13 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
   <data name="Searching" xml:space="preserve">
     <value>Searching</value>
   </data>
+  <data name="InLocalMode" xml:space="preserve">
+    <value>This SimPE Session is running in local Mode. That means SimPE will never load the FileTable by itself, making small changes to packages much faster.
+    
+    You can force SimPE to load the Filetable by clicking on the "Reload FileTable" Button.</value>
+  </data>
+  <data name="NoPlugins" xml:space="preserve">
+    <value>You also set SimPE to not load Plugins.
+    </value>
+  </data>
 </root>

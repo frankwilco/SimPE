@@ -471,6 +471,9 @@ namespace SimPe.Plugin
 		/// </remarks>
 		public void ForceReload()
 		{
+            //We do NOT use the Filetable in LocalMode!
+            if (Helper.LocalMode != Helper.RunModes.Normal) return;
+
 			//this.WaitForEnd();
 			loaded = true;
 			
