@@ -90,11 +90,6 @@
       <HintPath>..\..\..\SimPe\simpe.3idr.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="simpe.clst, Version=1.0.2842.29008, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\SimPe\simpe.clst.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="simpe.commonhandler, Version=1.0.2842.29005, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SimPe\simpe.commonhandler.dll</HintPath>
@@ -169,6 +164,12 @@
     <Compile Include="Factory.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GUIDChooser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIDChooser.Designer.cs">
+      <DependentUpon>GUIDChooser.cs</DependentUpon>
+    </Compile>
     <Compile Include="JobDescPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -192,6 +193,10 @@
     <EmbeddedResource Include="EffectPanel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EffectPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIDChooser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GUIDChooser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JobDescPanel.resx">
       <SubType>Designer</SubType>

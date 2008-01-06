@@ -50,10 +50,6 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.NumericUpDown CareerLvls;
         private System.Windows.Forms.GroupBox gbJLDetails;
-		private System.Windows.Forms.ComboBox Vehicle;
-		private System.Windows.Forms.ComboBox Outfit;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.ComboBox Language;
         private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.GroupBox gbJLHoursWages;
@@ -74,8 +70,6 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.Label label39;
 		private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label41;
-		private System.Windows.Forms.Label label102;
-		private System.Windows.Forms.ComboBox CareerReward;
 		private System.Windows.Forms.ListView JobDetailList;
 		private System.Windows.Forms.ColumnHeader JdLvl;
 		private System.Windows.Forms.ColumnHeader JdJobTitle;
@@ -115,7 +109,7 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.MenuItem miEnglishOnly;
 		private System.Windows.Forms.MenuItem menuItem4;
 		private System.Windows.Forms.MenuItem menuItem6;
-		private System.Windows.Forms.MenuItem miInsertLvl;
+		private System.Windows.Forms.MenuItem miAddLvl;
 		private System.Windows.Forms.MenuItem miRemoveLvl;
 		private System.Windows.Forms.MenuItem menuItem9;
         private System.Windows.Forms.MenuItem menuItem5;
@@ -213,8 +207,12 @@ namespace SimPe.Plugin
         private NumericUpDown FamilyHours;
         private NumericUpDown EnvironmentHours;
         private NumericUpDown ThirstTotal;
-        private ComboBox cbUpgrade;
-        private Label label2;
+        private Label lbPTO;
+        private Label lbLS;
+        private GUIDChooser gcReward;
+        private GUIDChooser gcUpgrade;
+        private GUIDChooser gcOutfit;
+        private GUIDChooser gcVehicle;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -243,16 +241,23 @@ namespace SimPe.Plugin
 			// Required for Windows Form Designer support
 			//
 			InitializeComponent();
-            //this.lnudChanceCurrentLevel.NoLabel = false;
-            //this.lnudChancePercent.NoLabel = false;
 
 			XmlRegistryKey rk = Helper.WindowsRegistry.PluginRegistryKey.CreateSubKey("CareerEditor");
-
 			oneEnglish = (rk.GetValue("oneEnglish", "True").ToString()) == "True";
 			englishOnly = (rk.GetValue("englishOnly", "False").ToString()) == "True";
-            loadRewards();
-            loadUpgrades();
-		}
+
+            internalchg = true;
+            gcReward.KnownObjects = new object[] { new List<String>(rewardName), new List<UInt32>(rewardGUID) };
+            gcUpgrade.KnownObjects = new object[] { new List<String>(upgradeName), new List<UInt32>(upgradeGUID) };
+            gcOutfit.KnownObjects = new object[] { new List<String>(outfitName), new List<UInt32>(outfitGUID) };
+            gcVehicle.KnownObjects = new object[] { new List<String>(vehicleName), new List<UInt32>(vehicleGUID) };
+            internalchg = false;
+
+#if DEBUG
+#else
+            lbLS.Visible = lbPTO.Visible = false;
+#endif
+        }
 
 		#region Windows Form Designer generated code
 		/// <summary>
@@ -265,6 +270,10 @@ namespace SimPe.Plugin
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.flpChanceCards = new System.Windows.Forms.FlowLayoutPanel();
             this.flpChanceHeader = new System.Windows.Forms.FlowLayoutPanel();
+            this.lnudChanceCurrentLevel = new SimPe.Plugin.LabelledNumericUpDown();
+            this.lnudChancePercent = new SimPe.Plugin.LabelledNumericUpDown();
+            this.cpChoiceA = new SimPe.Plugin.ChoicePanel();
+            this.cpChoiceB = new SimPe.Plugin.ChoicePanel();
             this.flpChanceText = new System.Windows.Forms.FlowLayoutPanel();
             this.flpCTMale = new System.Windows.Forms.FlowLayoutPanel();
             this.label51 = new System.Windows.Forms.Label();
@@ -275,9 +284,13 @@ namespace SimPe.Plugin
             this.ChanceTextFemale = new System.Windows.Forms.TextBox();
             this.tcChanceOutcome = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.epPassA = new SimPe.Plugin.EffectPanel();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.epFailA = new SimPe.Plugin.EffectPanel();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.epPassB = new SimPe.Plugin.EffectPanel();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.epFailB = new SimPe.Plugin.EffectPanel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.gbJLPromo = new System.Windows.Forms.GroupBox();
             this.PromoList = new System.Windows.Forms.ListView();
@@ -314,7 +327,13 @@ namespace SimPe.Plugin
             this.gbHoursWages = new System.Windows.Forms.GroupBox();
             this.flpHoursWages = new System.Windows.Forms.FlowLayoutPanel();
             this.flpWork = new System.Windows.Forms.FlowLayoutPanel();
+            this.lnudWorkStart = new SimPe.Plugin.LabelledNumericUpDown();
+            this.lnudWorkHours = new SimPe.Plugin.LabelledNumericUpDown();
+            this.lnudWorkFinish = new SimPe.Plugin.LabelledNumericUpDown();
             this.flpWages = new System.Windows.Forms.FlowLayoutPanel();
+            this.lnudWages = new SimPe.Plugin.LabelledNumericUpDown();
+            this.lnudWagesDog = new SimPe.Plugin.LabelledNumericUpDown();
+            this.lnudWagesCat = new SimPe.Plugin.LabelledNumericUpDown();
             this.flpWorkDays = new System.Windows.Forms.FlowLayoutPanel();
             this.WorkMonday = new System.Windows.Forms.CheckBox();
             this.WorkTuesday = new System.Windows.Forms.CheckBox();
@@ -389,11 +408,11 @@ namespace SimPe.Plugin
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gbJobDetails = new System.Windows.Forms.GroupBox();
+            this.gcVehicle = new SimPe.Plugin.GUIDChooser();
+            this.gcOutfit = new SimPe.Plugin.GUIDChooser();
             this.JobDetailsCopy = new System.Windows.Forms.LinkLabel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.Vehicle = new System.Windows.Forms.ComboBox();
-            this.Outfit = new System.Windows.Forms.ComboBox();
+            this.jdpFemale = new SimPe.Plugin.JobDescPanel();
+            this.jdpMale = new SimPe.Plugin.JobDescPanel();
             this.gbJLDetails = new System.Windows.Forms.GroupBox();
             this.JobDetailList = new System.Windows.Forms.ListView();
             this.JdLvl = new System.Windows.Forms.ColumnHeader();
@@ -407,11 +426,9 @@ namespace SimPe.Plugin
             this.label3 = new System.Windows.Forms.Label();
             this.Language = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label102 = new System.Windows.Forms.Label();
-            this.CareerReward = new System.Windows.Forms.ComboBox();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem6 = new System.Windows.Forms.MenuItem();
-            this.miInsertLvl = new System.Windows.Forms.MenuItem();
+            this.miAddLvl = new System.Windows.Forms.MenuItem();
             this.miRemoveLvl = new System.Windows.Forms.MenuItem();
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem1 = new System.Windows.Forms.MenuItem();
@@ -419,24 +436,10 @@ namespace SimPe.Plugin
             this.miEnglishOnly = new System.Windows.Forms.MenuItem();
             this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
-            this.cbUpgrade = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.jdpFemale = new SimPe.Plugin.JobDescPanel();
-            this.jdpMale = new SimPe.Plugin.JobDescPanel();
-            this.lnudWorkStart = new SimPe.Plugin.LabelledNumericUpDown();
-            this.lnudWorkHours = new SimPe.Plugin.LabelledNumericUpDown();
-            this.lnudWorkFinish = new SimPe.Plugin.LabelledNumericUpDown();
-            this.lnudWages = new SimPe.Plugin.LabelledNumericUpDown();
-            this.lnudWagesDog = new SimPe.Plugin.LabelledNumericUpDown();
-            this.lnudWagesCat = new SimPe.Plugin.LabelledNumericUpDown();
-            this.lnudChanceCurrentLevel = new SimPe.Plugin.LabelledNumericUpDown();
-            this.lnudChancePercent = new SimPe.Plugin.LabelledNumericUpDown();
-            this.cpChoiceA = new SimPe.Plugin.ChoicePanel();
-            this.cpChoiceB = new SimPe.Plugin.ChoicePanel();
-            this.epPassA = new SimPe.Plugin.EffectPanel();
-            this.epFailA = new SimPe.Plugin.EffectPanel();
-            this.epPassB = new SimPe.Plugin.EffectPanel();
-            this.epFailB = new SimPe.Plugin.EffectPanel();
+            this.lbPTO = new System.Windows.Forms.Label();
+            this.lbLS = new System.Windows.Forms.Label();
+            this.gcReward = new SimPe.Plugin.GUIDChooser();
+            this.gcUpgrade = new SimPe.Plugin.GUIDChooser();
             this.tabPage4.SuspendLayout();
             this.flpChanceCards.SuspendLayout();
             this.flpChanceHeader.SuspendLayout();
@@ -538,6 +541,167 @@ namespace SimPe.Plugin
             this.flpChanceHeader.Size = new System.Drawing.Size(392, 28);
             this.flpChanceHeader.TabIndex = 1;
             // 
+            // lnudChanceCurrentLevel
+            // 
+            this.lnudChanceCurrentLevel.AutoSize = true;
+            this.lnudChanceCurrentLevel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnudChanceCurrentLevel.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.lnudChanceCurrentLevel.Label = "Current Level";
+            this.lnudChanceCurrentLevel.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.lnudChanceCurrentLevel.Location = new System.Drawing.Point(0, 0);
+            this.lnudChanceCurrentLevel.Margin = new System.Windows.Forms.Padding(0);
+            this.lnudChanceCurrentLevel.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.lnudChanceCurrentLevel.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.lnudChanceCurrentLevel.Name = "lnudChanceCurrentLevel";
+            this.lnudChanceCurrentLevel.NoLabel = false;
+            this.lnudChanceCurrentLevel.ReadOnly = false;
+            this.lnudChanceCurrentLevel.Size = new System.Drawing.Size(162, 28);
+            this.lnudChanceCurrentLevel.TabIndex = 1;
+            this.lnudChanceCurrentLevel.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.lnudChanceCurrentLevel.ValueSize = new System.Drawing.Size(57, 22);
+            this.lnudChanceCurrentLevel.ValueChanged += new System.EventHandler(this.lnudChanceCurrentLevel_ValueChanged);
+            // 
+            // lnudChancePercent
+            // 
+            this.lnudChancePercent.AutoSize = true;
+            this.lnudChancePercent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnudChancePercent.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.lnudChancePercent.Label = "Chance of Happening %";
+            this.lnudChancePercent.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.lnudChancePercent.Location = new System.Drawing.Point(162, 0);
+            this.lnudChancePercent.Margin = new System.Windows.Forms.Padding(0);
+            this.lnudChancePercent.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.lnudChancePercent.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudChancePercent.Name = "lnudChancePercent";
+            this.lnudChancePercent.NoLabel = false;
+            this.lnudChancePercent.ReadOnly = false;
+            this.lnudChancePercent.Size = new System.Drawing.Size(230, 28);
+            this.lnudChancePercent.TabIndex = 2;
+            this.lnudChancePercent.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudChancePercent.ValueSize = new System.Drawing.Size(57, 22);
+            // 
+            // cpChoiceA
+            // 
+            this.cpChoiceA.AutoSize = true;
+            this.cpChoiceA.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.cpChoiceA.Body = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceA.Charisma = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceA.Cleaning = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceA.Cooking = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceA.Creativity = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceA.Label = "ChoiceA";
+            this.cpChoiceA.Labels = true;
+            this.cpChoiceA.Location = new System.Drawing.Point(0, 28);
+            this.cpChoiceA.Logic = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceA.Margin = new System.Windows.Forms.Padding(0);
+            this.cpChoiceA.Mechanical = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceA.Name = "cpChoiceA";
+            this.cpChoiceA.Size = new System.Drawing.Size(974, 54);
+            this.cpChoiceA.TabIndex = 2;
+            this.cpChoiceA.Value = "ChoiceA";
+            this.cpChoiceA.ValueWidth = 300;
+            // 
+            // cpChoiceB
+            // 
+            this.cpChoiceB.AutoSize = true;
+            this.cpChoiceB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.cpChoiceB.Body = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceB.Charisma = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceB.Cleaning = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceB.Cooking = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceB.Creativity = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceB.Label = "ChoiceB";
+            this.cpChoiceB.Labels = false;
+            this.cpChoiceB.Location = new System.Drawing.Point(0, 82);
+            this.cpChoiceB.Logic = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceB.Margin = new System.Windows.Forms.Padding(0);
+            this.cpChoiceB.Mechanical = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.cpChoiceB.Name = "cpChoiceB";
+            this.cpChoiceB.Size = new System.Drawing.Size(974, 28);
+            this.cpChoiceB.TabIndex = 3;
+            this.cpChoiceB.Value = "ChoiceB";
+            this.cpChoiceB.ValueWidth = 300;
+            // 
             // flpChanceText
             // 
             this.flpChanceText.AutoSize = true;
@@ -593,6 +757,7 @@ namespace SimPe.Plugin
             this.ChanceCopy.TabIndex = 3;
             this.ChanceCopy.TabStop = true;
             this.ChanceCopy.Text = "Copy ->";
+            this.ChanceCopy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ChanceCopy_LinkClicked);
             // 
             // flpCTFemale
             // 
@@ -636,7 +801,7 @@ namespace SimPe.Plugin
             this.tcChanceOutcome.Location = new System.Drawing.Point(3, 278);
             this.tcChanceOutcome.Name = "tcChanceOutcome";
             this.tcChanceOutcome.SelectedIndex = 0;
-            this.tcChanceOutcome.Size = new System.Drawing.Size(972, 313);
+            this.tcChanceOutcome.Size = new System.Drawing.Size(972, 309);
             this.tcChanceOutcome.TabIndex = 5;
             // 
             // tabPage5
@@ -644,36 +809,276 @@ namespace SimPe.Plugin
             this.tabPage5.Controls.Add(this.epPassA);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(964, 284);
+            this.tabPage5.Size = new System.Drawing.Size(964, 280);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "Pass A";
+            // 
+            // epPassA
+            // 
+            this.epPassA.AutoSize = true;
+            this.epPassA.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.epPassA.Body = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassA.Charisma = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassA.Cleaning = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassA.Cooking = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassA.Creativity = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassA.Female = "textBox2";
+            this.epPassA.IsPetCareer = false;
+            this.epPassA.JobLevels = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassA.Location = new System.Drawing.Point(0, 0);
+            this.epPassA.Logic = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassA.Male = "textBox1";
+            this.epPassA.Margin = new System.Windows.Forms.Padding(0);
+            this.epPassA.Mechanical = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassA.MinimumSize = new System.Drawing.Size(824, 131);
+            this.epPassA.Money = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassA.Name = "epPassA";
+            this.epPassA.Size = new System.Drawing.Size(963, 275);
+            this.epPassA.TabIndex = 0;
+            this.epPassA.TextSize = new System.Drawing.Size(450, 202);
             // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.epFailA);
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(964, 284);
+            this.tabPage6.Size = new System.Drawing.Size(964, 280);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Fail A";
+            // 
+            // epFailA
+            // 
+            this.epFailA.AutoSize = true;
+            this.epFailA.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.epFailA.Body = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailA.Charisma = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailA.Cleaning = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailA.Cooking = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailA.Creativity = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailA.Female = "textBox2";
+            this.epFailA.IsPetCareer = false;
+            this.epFailA.JobLevels = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailA.Location = new System.Drawing.Point(0, 0);
+            this.epFailA.Logic = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailA.Male = "textBox1";
+            this.epFailA.Margin = new System.Windows.Forms.Padding(0);
+            this.epFailA.Mechanical = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailA.MinimumSize = new System.Drawing.Size(824, 131);
+            this.epFailA.Money = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailA.Name = "epFailA";
+            this.epFailA.Size = new System.Drawing.Size(963, 273);
+            this.epFailA.TabIndex = 1;
+            this.epFailA.TextSize = new System.Drawing.Size(450, 200);
             // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.epPassB);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(964, 284);
+            this.tabPage7.Size = new System.Drawing.Size(964, 280);
             this.tabPage7.TabIndex = 2;
             this.tabPage7.Text = "Pass B";
+            // 
+            // epPassB
+            // 
+            this.epPassB.AutoSize = true;
+            this.epPassB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.epPassB.Body = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassB.Charisma = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassB.Cleaning = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassB.Cooking = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassB.Creativity = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassB.Female = "textBox2";
+            this.epPassB.IsPetCareer = false;
+            this.epPassB.JobLevels = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassB.Location = new System.Drawing.Point(0, 0);
+            this.epPassB.Logic = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassB.Male = "textBox1";
+            this.epPassB.Margin = new System.Windows.Forms.Padding(0);
+            this.epPassB.Mechanical = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassB.MinimumSize = new System.Drawing.Size(824, 131);
+            this.epPassB.Money = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epPassB.Name = "epPassB";
+            this.epPassB.Size = new System.Drawing.Size(963, 273);
+            this.epPassB.TabIndex = 1;
+            this.epPassB.TextSize = new System.Drawing.Size(450, 200);
             // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.epFailB);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(964, 284);
+            this.tabPage8.Size = new System.Drawing.Size(964, 280);
             this.tabPage8.TabIndex = 3;
             this.tabPage8.Text = "Fail B";
+            // 
+            // epFailB
+            // 
+            this.epFailB.AutoSize = true;
+            this.epFailB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.epFailB.Body = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailB.Charisma = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailB.Cleaning = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailB.Cooking = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailB.Creativity = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailB.Female = "textBox2";
+            this.epFailB.IsPetCareer = false;
+            this.epFailB.JobLevels = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailB.Location = new System.Drawing.Point(0, 0);
+            this.epFailB.Logic = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailB.Male = "textBox1";
+            this.epFailB.Margin = new System.Windows.Forms.Padding(0);
+            this.epFailB.Mechanical = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailB.MinimumSize = new System.Drawing.Size(824, 131);
+            this.epFailB.Money = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.epFailB.Name = "epFailB";
+            this.epFailB.Size = new System.Drawing.Size(963, 273);
+            this.epFailB.TabIndex = 1;
+            this.epFailB.TextSize = new System.Drawing.Size(450, 200);
             // 
             // tabPage3
             // 
@@ -1059,6 +1464,104 @@ namespace SimPe.Plugin
             this.flpWork.Size = new System.Drawing.Size(348, 28);
             this.flpWork.TabIndex = 1;
             // 
+            // lnudWorkStart
+            // 
+            this.lnudWorkStart.AutoSize = true;
+            this.lnudWorkStart.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnudWorkStart.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.lnudWorkStart.Label = "Start";
+            this.lnudWorkStart.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnudWorkStart.Location = new System.Drawing.Point(0, 0);
+            this.lnudWorkStart.Margin = new System.Windows.Forms.Padding(0);
+            this.lnudWorkStart.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.lnudWorkStart.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudWorkStart.Name = "lnudWorkStart";
+            this.lnudWorkStart.NoLabel = false;
+            this.lnudWorkStart.ReadOnly = false;
+            this.lnudWorkStart.Size = new System.Drawing.Size(107, 28);
+            this.lnudWorkStart.TabIndex = 1;
+            this.lnudWorkStart.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudWorkStart.ValueSize = new System.Drawing.Size(57, 22);
+            this.lnudWorkStart.ValueChanged += new System.EventHandler(this.lnudWork_ValueChanged);
+            this.lnudWorkStart.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lnudWork_KeyUp);
+            // 
+            // lnudWorkHours
+            // 
+            this.lnudWorkHours.AutoSize = true;
+            this.lnudWorkHours.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnudWorkHours.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.lnudWorkHours.Label = "Hours";
+            this.lnudWorkHours.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnudWorkHours.Location = new System.Drawing.Point(113, 0);
+            this.lnudWorkHours.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.lnudWorkHours.Maximum = new decimal(new int[] {
+            22,
+            0,
+            0,
+            0});
+            this.lnudWorkHours.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.lnudWorkHours.Name = "lnudWorkHours";
+            this.lnudWorkHours.NoLabel = false;
+            this.lnudWorkHours.ReadOnly = false;
+            this.lnudWorkHours.Size = new System.Drawing.Size(115, 28);
+            this.lnudWorkHours.TabIndex = 2;
+            this.lnudWorkHours.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.lnudWorkHours.ValueSize = new System.Drawing.Size(57, 22);
+            this.lnudWorkHours.ValueChanged += new System.EventHandler(this.lnudWork_ValueChanged);
+            this.lnudWorkHours.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lnudWork_KeyUp);
+            // 
+            // lnudWorkFinish
+            // 
+            this.lnudWorkFinish.AutoSize = true;
+            this.lnudWorkFinish.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnudWorkFinish.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.lnudWorkFinish.Label = "Finish";
+            this.lnudWorkFinish.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnudWorkFinish.Location = new System.Drawing.Point(234, 0);
+            this.lnudWorkFinish.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.lnudWorkFinish.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.lnudWorkFinish.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudWorkFinish.Name = "lnudWorkFinish";
+            this.lnudWorkFinish.NoLabel = false;
+            this.lnudWorkFinish.ReadOnly = true;
+            this.lnudWorkFinish.Size = new System.Drawing.Size(114, 28);
+            this.lnudWorkFinish.TabIndex = 0;
+            this.lnudWorkFinish.TabStop = false;
+            this.lnudWorkFinish.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.lnudWorkFinish.ValueSize = new System.Drawing.Size(57, 22);
+            // 
             // flpWages
             // 
             this.flpWages.AutoSize = true;
@@ -1071,6 +1574,108 @@ namespace SimPe.Plugin
             this.flpWages.Name = "flpWages";
             this.flpWages.Size = new System.Drawing.Size(204, 84);
             this.flpWages.TabIndex = 2;
+            // 
+            // lnudWages
+            // 
+            this.lnudWages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnudWages.AutoSize = true;
+            this.lnudWages.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnudWages.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.lnudWages.Label = "Wages";
+            this.lnudWages.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnudWages.Location = new System.Drawing.Point(40, 0);
+            this.lnudWages.Margin = new System.Windows.Forms.Padding(0);
+            this.lnudWages.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.lnudWages.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudWages.Name = "lnudWages";
+            this.lnudWages.NoLabel = false;
+            this.lnudWages.ReadOnly = false;
+            this.lnudWages.Size = new System.Drawing.Size(164, 28);
+            this.lnudWages.TabIndex = 1;
+            this.lnudWages.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudWages.ValueSize = new System.Drawing.Size(100, 22);
+            this.lnudWages.ValueChanged += new System.EventHandler(this.lnudWork_ValueChanged);
+            this.lnudWages.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lnudWork_KeyUp);
+            // 
+            // lnudWagesDog
+            // 
+            this.lnudWagesDog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnudWagesDog.AutoSize = true;
+            this.lnudWagesDog.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnudWagesDog.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.lnudWagesDog.Label = "Wages (Dog)";
+            this.lnudWagesDog.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.lnudWagesDog.Location = new System.Drawing.Point(0, 28);
+            this.lnudWagesDog.Margin = new System.Windows.Forms.Padding(0);
+            this.lnudWagesDog.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.lnudWagesDog.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudWagesDog.Name = "lnudWagesDog";
+            this.lnudWagesDog.NoLabel = false;
+            this.lnudWagesDog.ReadOnly = false;
+            this.lnudWagesDog.Size = new System.Drawing.Size(204, 28);
+            this.lnudWagesDog.TabIndex = 2;
+            this.lnudWagesDog.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudWagesDog.ValueSize = new System.Drawing.Size(100, 22);
+            this.lnudWagesDog.ValueChanged += new System.EventHandler(this.lnudWork_ValueChanged);
+            this.lnudWagesDog.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lnudWork_KeyUp);
+            // 
+            // lnudWagesCat
+            // 
+            this.lnudWagesCat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnudWagesCat.AutoSize = true;
+            this.lnudWagesCat.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnudWagesCat.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.lnudWagesCat.Label = "Wages (Cat)";
+            this.lnudWagesCat.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.lnudWagesCat.Location = new System.Drawing.Point(5, 56);
+            this.lnudWagesCat.Margin = new System.Windows.Forms.Padding(0);
+            this.lnudWagesCat.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.lnudWagesCat.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudWagesCat.Name = "lnudWagesCat";
+            this.lnudWagesCat.NoLabel = false;
+            this.lnudWagesCat.ReadOnly = false;
+            this.lnudWagesCat.Size = new System.Drawing.Size(199, 28);
+            this.lnudWagesCat.TabIndex = 3;
+            this.lnudWagesCat.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.lnudWagesCat.ValueSize = new System.Drawing.Size(100, 22);
+            this.lnudWagesCat.ValueChanged += new System.EventHandler(this.lnudWork_ValueChanged);
+            this.lnudWagesCat.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lnudWork_KeyUp);
             // 
             // flpWorkDays
             // 
@@ -1996,7 +2601,7 @@ namespace SimPe.Plugin
             this.gbJLHoursWages.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.gbJLHoursWages.Location = new System.Drawing.Point(10, 9);
             this.gbJLHoursWages.Name = "gbJLHoursWages";
-            this.gbJLHoursWages.Size = new System.Drawing.Size(960, 339);
+            this.gbJLHoursWages.Size = new System.Drawing.Size(960, 323);
             this.gbJLHoursWages.TabIndex = 1;
             this.gbJLHoursWages.TabStop = false;
             this.gbJLHoursWages.Text = "Job Levels";
@@ -2126,19 +2731,49 @@ namespace SimPe.Plugin
             // gbJobDetails
             // 
             this.gbJobDetails.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gbJobDetails.Controls.Add(this.gcVehicle);
+            this.gbJobDetails.Controls.Add(this.gcOutfit);
             this.gbJobDetails.Controls.Add(this.JobDetailsCopy);
             this.gbJobDetails.Controls.Add(this.jdpFemale);
             this.gbJobDetails.Controls.Add(this.jdpMale);
-            this.gbJobDetails.Controls.Add(this.label9);
-            this.gbJobDetails.Controls.Add(this.label8);
-            this.gbJobDetails.Controls.Add(this.Vehicle);
-            this.gbJobDetails.Controls.Add(this.Outfit);
             this.gbJobDetails.Location = new System.Drawing.Point(10, 356);
             this.gbJobDetails.Name = "gbJobDetails";
             this.gbJobDetails.Size = new System.Drawing.Size(960, 231);
             this.gbJobDetails.TabIndex = 2;
             this.gbJobDetails.TabStop = false;
             this.gbJobDetails.Text = "Current Level";
+            // 
+            // gcVehicle
+            // 
+            this.gcVehicle.AutoSize = true;
+            this.gcVehicle.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gcVehicle.ComboBoxWidth = 228;
+            this.gcVehicle.DropDownHeight = 106;
+            this.gcVehicle.DropDownWidth = 228;
+            this.gcVehicle.Label = "Vehicle";
+            this.gcVehicle.Location = new System.Drawing.Point(478, 189);
+            this.gcVehicle.Margin = new System.Windows.Forms.Padding(0);
+            this.gcVehicle.Name = "gcVehicle";
+            this.gcVehicle.Size = new System.Drawing.Size(394, 28);
+            this.gcVehicle.TabIndex = 5;
+            this.gcVehicle.Value = ((uint)(3722304989u));
+            this.gcVehicle.GUIDChooserValueChanged += new System.EventHandler(this.gcVehicle_GUIDChooserValueChanged);
+            // 
+            // gcOutfit
+            // 
+            this.gcOutfit.AutoSize = true;
+            this.gcOutfit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gcOutfit.ComboBoxWidth = 228;
+            this.gcOutfit.DropDownHeight = 106;
+            this.gcOutfit.DropDownWidth = 228;
+            this.gcOutfit.Label = "Outfit";
+            this.gcOutfit.Location = new System.Drawing.Point(6, 189);
+            this.gcOutfit.Margin = new System.Windows.Forms.Padding(0);
+            this.gcOutfit.Name = "gcOutfit";
+            this.gcOutfit.Size = new System.Drawing.Size(382, 28);
+            this.gcOutfit.TabIndex = 4;
+            this.gcOutfit.Value = ((uint)(3722304989u));
+            this.gcOutfit.GUIDChooserValueChanged += new System.EventHandler(this.gcOutfit_GUIDChooserValueChanged);
             // 
             // JobDetailsCopy
             // 
@@ -2151,41 +2786,37 @@ namespace SimPe.Plugin
             this.JobDetailsCopy.Text = "Copy ->";
             this.JobDetailsCopy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.JobDetailsCopy_LinkClicked);
             // 
-            // label9
+            // jdpFemale
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(512, 196);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 17);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Vehicle";
+            this.jdpFemale.AutoSize = true;
+            this.jdpFemale.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.jdpFemale.DescLabel = "Desc Female";
+            this.jdpFemale.DescSize = new System.Drawing.Size(382, 136);
+            this.jdpFemale.DescValue = "JobDescFemale";
+            this.jdpFemale.Location = new System.Drawing.Point(478, 18);
+            this.jdpFemale.Name = "jdpFemale";
+            this.jdpFemale.Size = new System.Drawing.Size(478, 170);
+            this.jdpFemale.TabIndex = 2;
+            this.jdpFemale.TitleLabel = "Title Female";
+            this.jdpFemale.TitleValue = "JobTitleFemale";
+            this.jdpFemale.TitleValueChanged += new System.EventHandler(this.jdpFemale_TitleValueChanged);
+            this.jdpFemale.DescValueChanged += new System.EventHandler(this.jdpFemale_DescValueChanged);
             // 
-            // label8
+            // jdpMale
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 196);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 17);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Outfit";
-            // 
-            // Vehicle
-            // 
-            this.Vehicle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Vehicle.Location = new System.Drawing.Point(572, 193);
-            this.Vehicle.Name = "Vehicle";
-            this.Vehicle.Size = new System.Drawing.Size(228, 24);
-            this.Vehicle.TabIndex = 7;
-            this.Vehicle.SelectedIndexChanged += new System.EventHandler(this.Vehicle_SelectedIndexChanged);
-            // 
-            // Outfit
-            // 
-            this.Outfit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Outfit.Location = new System.Drawing.Point(83, 193);
-            this.Outfit.Name = "Outfit";
-            this.Outfit.Size = new System.Drawing.Size(228, 24);
-            this.Outfit.TabIndex = 5;
-            this.Outfit.SelectedIndexChanged += new System.EventHandler(this.Outfit_SelectedIndexChanged);
+            this.jdpMale.AutoSize = true;
+            this.jdpMale.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.jdpMale.DescLabel = "Desc Male";
+            this.jdpMale.DescSize = new System.Drawing.Size(382, 136);
+            this.jdpMale.DescValue = "JobDescMale";
+            this.jdpMale.Location = new System.Drawing.Point(6, 18);
+            this.jdpMale.Name = "jdpMale";
+            this.jdpMale.Size = new System.Drawing.Size(462, 170);
+            this.jdpMale.TabIndex = 1;
+            this.jdpMale.TitleLabel = "Title Male";
+            this.jdpMale.TitleValue = "JobTitleMale";
+            this.jdpMale.TitleValueChanged += new System.EventHandler(this.jdpMale_TitleValueChanged);
+            this.jdpMale.DescValueChanged += new System.EventHandler(this.jdpMale_DescValueChanged);
             // 
             // gbJLDetails
             // 
@@ -2298,24 +2929,6 @@ namespace SimPe.Plugin
             this.label10.TabIndex = 5;
             this.label10.Text = "Language";
             // 
-            // label102
-            // 
-            this.label102.AutoSize = true;
-            this.label102.Location = new System.Drawing.Point(33, 37);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(56, 17);
-            this.label102.TabIndex = 7;
-            this.label102.Text = "Reward";
-            // 
-            // CareerReward
-            // 
-            this.CareerReward.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CareerReward.Location = new System.Drawing.Point(95, 34);
-            this.CareerReward.Name = "CareerReward";
-            this.CareerReward.Size = new System.Drawing.Size(190, 24);
-            this.CareerReward.TabIndex = 8;
-            this.CareerReward.SelectedIndexChanged += new System.EventHandler(this.CareerReward_SelectedIndexChanged);
-            // 
             // mainMenu1
             // 
             this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
@@ -2326,16 +2939,16 @@ namespace SimPe.Plugin
             // 
             this.menuItem6.Index = 0;
             this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miInsertLvl,
+            this.miAddLvl,
             this.miRemoveLvl,
             this.menuItem9});
             this.menuItem6.Text = "&Levels";
             // 
-            // miInsertLvl
+            // miAddLvl
             // 
-            this.miInsertLvl.Index = 0;
-            this.miInsertLvl.Text = "&Insert Level";
-            this.miInsertLvl.Click += new System.EventHandler(this.miInsertLvl_Click);
+            this.miAddLvl.Index = 0;
+            this.miAddLvl.Text = "&Add Level";
+            this.miAddLvl.Click += new System.EventHandler(this.miAddLvl_Click);
             // 
             // miRemoveLvl
             // 
@@ -2383,667 +2996,64 @@ namespace SimPe.Plugin
             this.menuItem5.Index = 3;
             this.menuItem5.Text = "&Copy...";
             // 
-            // cbUpgrade
+            // lbPTO
             // 
-            this.cbUpgrade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUpgrade.Location = new System.Drawing.Point(360, 34);
-            this.cbUpgrade.Name = "cbUpgrade";
-            this.cbUpgrade.Size = new System.Drawing.Size(190, 24);
-            this.cbUpgrade.TabIndex = 10;
-            this.cbUpgrade.SelectedIndexChanged += new System.EventHandler(this.cbUpgrade_SelectedIndexChanged);
+            this.lbPTO.AutoSize = true;
+            this.lbPTO.Location = new System.Drawing.Point(805, 35);
+            this.lbPTO.Name = "lbPTO";
+            this.lbPTO.Size = new System.Drawing.Size(48, 17);
+            this.lbPTO.TabIndex = 11;
+            this.lbPTO.Text = "lbPTO";
             // 
-            // label2
+            // lbLS
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(291, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 17);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Upgrade";
+            this.lbLS.AutoSize = true;
+            this.lbLS.Location = new System.Drawing.Point(918, 35);
+            this.lbLS.Name = "lbLS";
+            this.lbLS.Size = new System.Drawing.Size(36, 17);
+            this.lbLS.TabIndex = 11;
+            this.lbLS.Text = "lbLS";
             // 
-            // jdpFemale
+            // gcReward
             // 
-            this.jdpFemale.AutoSize = true;
-            this.jdpFemale.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.jdpFemale.DescLabel = "Desc Female";
-            this.jdpFemale.DescSize = new System.Drawing.Size(382, 136);
-            this.jdpFemale.DescValue = "JobDescFemale";
-            this.jdpFemale.Location = new System.Drawing.Point(478, 18);
-            this.jdpFemale.Name = "jdpFemale";
-            this.jdpFemale.Size = new System.Drawing.Size(478, 170);
-            this.jdpFemale.TabIndex = 2;
-            this.jdpFemale.TitleLabel = "Title Female";
-            this.jdpFemale.TitleValue = "JobTitleFemale";
-            this.jdpFemale.TitleValueChanged += new System.EventHandler(this.jdpFemale_TitleValueChanged);
-            this.jdpFemale.DescValueChanged += new System.EventHandler(this.jdpFemale_DescValueChanged);
+            this.gcReward.AutoSize = true;
+            this.gcReward.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gcReward.ComboBoxWidth = 190;
+            this.gcReward.DropDownHeight = 106;
+            this.gcReward.DropDownWidth = 190;
+            this.gcReward.Label = "Reward";
+            this.gcReward.Location = new System.Drawing.Point(5, 32);
+            this.gcReward.Margin = new System.Windows.Forms.Padding(0);
+            this.gcReward.Name = "gcReward";
+            this.gcReward.Size = new System.Drawing.Size(358, 28);
+            this.gcReward.TabIndex = 12;
+            this.gcReward.Value = ((uint)(3722304989u));
             // 
-            // jdpMale
+            // gcUpgrade
             // 
-            this.jdpMale.AutoSize = true;
-            this.jdpMale.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.jdpMale.DescLabel = "Desc Male";
-            this.jdpMale.DescSize = new System.Drawing.Size(382, 136);
-            this.jdpMale.DescValue = "JobDescMale";
-            this.jdpMale.Location = new System.Drawing.Point(6, 18);
-            this.jdpMale.Name = "jdpMale";
-            this.jdpMale.Size = new System.Drawing.Size(462, 170);
-            this.jdpMale.TabIndex = 1;
-            this.jdpMale.TitleLabel = "Title Male";
-            this.jdpMale.TitleValue = "JobTitleMale";
-            this.jdpMale.TitleValueChanged += new System.EventHandler(this.jdpMale_TitleValueChanged);
-            this.jdpMale.DescValueChanged += new System.EventHandler(this.jdpMale_DescValueChanged);
-            // 
-            // lnudWorkStart
-            // 
-            this.lnudWorkStart.AutoSize = true;
-            this.lnudWorkStart.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnudWorkStart.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
-            this.lnudWorkStart.Label = "Start";
-            this.lnudWorkStart.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnudWorkStart.Location = new System.Drawing.Point(0, 0);
-            this.lnudWorkStart.Margin = new System.Windows.Forms.Padding(0);
-            this.lnudWorkStart.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.lnudWorkStart.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudWorkStart.Name = "lnudWorkStart";
-            this.lnudWorkStart.NoLabel = false;
-            this.lnudWorkStart.ReadOnly = false;
-            this.lnudWorkStart.Size = new System.Drawing.Size(107, 28);
-            this.lnudWorkStart.TabIndex = 1;
-            this.lnudWorkStart.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudWorkStart.ValueSize = new System.Drawing.Size(57, 22);
-            this.lnudWorkStart.ValueChanged += new System.EventHandler(this.lnudWork_ValueChanged);
-            this.lnudWorkStart.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lnudWork_KeyUp);
-            // 
-            // lnudWorkHours
-            // 
-            this.lnudWorkHours.AutoSize = true;
-            this.lnudWorkHours.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnudWorkHours.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
-            this.lnudWorkHours.Label = "Hours";
-            this.lnudWorkHours.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnudWorkHours.Location = new System.Drawing.Point(113, 0);
-            this.lnudWorkHours.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.lnudWorkHours.Maximum = new decimal(new int[] {
-            22,
-            0,
-            0,
-            0});
-            this.lnudWorkHours.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.lnudWorkHours.Name = "lnudWorkHours";
-            this.lnudWorkHours.NoLabel = false;
-            this.lnudWorkHours.ReadOnly = false;
-            this.lnudWorkHours.Size = new System.Drawing.Size(115, 28);
-            this.lnudWorkHours.TabIndex = 2;
-            this.lnudWorkHours.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.lnudWorkHours.ValueSize = new System.Drawing.Size(57, 22);
-            this.lnudWorkHours.ValueChanged += new System.EventHandler(this.lnudWork_ValueChanged);
-            this.lnudWorkHours.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lnudWork_KeyUp);
-            // 
-            // lnudWorkFinish
-            // 
-            this.lnudWorkFinish.AutoSize = true;
-            this.lnudWorkFinish.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnudWorkFinish.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
-            this.lnudWorkFinish.Label = "Finish";
-            this.lnudWorkFinish.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnudWorkFinish.Location = new System.Drawing.Point(234, 0);
-            this.lnudWorkFinish.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.lnudWorkFinish.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.lnudWorkFinish.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudWorkFinish.Name = "lnudWorkFinish";
-            this.lnudWorkFinish.NoLabel = false;
-            this.lnudWorkFinish.ReadOnly = true;
-            this.lnudWorkFinish.Size = new System.Drawing.Size(114, 28);
-            this.lnudWorkFinish.TabIndex = 0;
-            this.lnudWorkFinish.TabStop = false;
-            this.lnudWorkFinish.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.lnudWorkFinish.ValueSize = new System.Drawing.Size(57, 22);
-            // 
-            // lnudWages
-            // 
-            this.lnudWages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnudWages.AutoSize = true;
-            this.lnudWages.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnudWages.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
-            this.lnudWages.Label = "Wages";
-            this.lnudWages.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnudWages.Location = new System.Drawing.Point(40, 0);
-            this.lnudWages.Margin = new System.Windows.Forms.Padding(0);
-            this.lnudWages.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.lnudWages.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudWages.Name = "lnudWages";
-            this.lnudWages.NoLabel = false;
-            this.lnudWages.ReadOnly = false;
-            this.lnudWages.Size = new System.Drawing.Size(164, 28);
-            this.lnudWages.TabIndex = 1;
-            this.lnudWages.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudWages.ValueSize = new System.Drawing.Size(100, 22);
-            this.lnudWages.ValueChanged += new System.EventHandler(this.lnudWork_ValueChanged);
-            this.lnudWages.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lnudWork_KeyUp);
-            // 
-            // lnudWagesDog
-            // 
-            this.lnudWagesDog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnudWagesDog.AutoSize = true;
-            this.lnudWagesDog.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnudWagesDog.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
-            this.lnudWagesDog.Label = "Wages (Dog)";
-            this.lnudWagesDog.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.lnudWagesDog.Location = new System.Drawing.Point(0, 28);
-            this.lnudWagesDog.Margin = new System.Windows.Forms.Padding(0);
-            this.lnudWagesDog.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.lnudWagesDog.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudWagesDog.Name = "lnudWagesDog";
-            this.lnudWagesDog.NoLabel = false;
-            this.lnudWagesDog.ReadOnly = false;
-            this.lnudWagesDog.Size = new System.Drawing.Size(204, 28);
-            this.lnudWagesDog.TabIndex = 2;
-            this.lnudWagesDog.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudWagesDog.ValueSize = new System.Drawing.Size(100, 22);
-            this.lnudWagesDog.ValueChanged += new System.EventHandler(this.lnudWork_ValueChanged);
-            this.lnudWagesDog.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lnudWork_KeyUp);
-            // 
-            // lnudWagesCat
-            // 
-            this.lnudWagesCat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnudWagesCat.AutoSize = true;
-            this.lnudWagesCat.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnudWagesCat.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
-            this.lnudWagesCat.Label = "Wages (Cat)";
-            this.lnudWagesCat.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.lnudWagesCat.Location = new System.Drawing.Point(5, 56);
-            this.lnudWagesCat.Margin = new System.Windows.Forms.Padding(0);
-            this.lnudWagesCat.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.lnudWagesCat.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudWagesCat.Name = "lnudWagesCat";
-            this.lnudWagesCat.NoLabel = false;
-            this.lnudWagesCat.ReadOnly = false;
-            this.lnudWagesCat.Size = new System.Drawing.Size(199, 28);
-            this.lnudWagesCat.TabIndex = 3;
-            this.lnudWagesCat.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudWagesCat.ValueSize = new System.Drawing.Size(100, 22);
-            this.lnudWagesCat.ValueChanged += new System.EventHandler(this.lnudWork_ValueChanged);
-            this.lnudWagesCat.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lnudWork_KeyUp);
-            // 
-            // lnudChanceCurrentLevel
-            // 
-            this.lnudChanceCurrentLevel.AutoSize = true;
-            this.lnudChanceCurrentLevel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnudChanceCurrentLevel.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
-            this.lnudChanceCurrentLevel.Label = "Current Level";
-            this.lnudChanceCurrentLevel.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.lnudChanceCurrentLevel.Location = new System.Drawing.Point(0, 0);
-            this.lnudChanceCurrentLevel.Margin = new System.Windows.Forms.Padding(0);
-            this.lnudChanceCurrentLevel.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.lnudChanceCurrentLevel.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.lnudChanceCurrentLevel.Name = "lnudChanceCurrentLevel";
-            this.lnudChanceCurrentLevel.NoLabel = false;
-            this.lnudChanceCurrentLevel.ReadOnly = false;
-            this.lnudChanceCurrentLevel.Size = new System.Drawing.Size(162, 28);
-            this.lnudChanceCurrentLevel.TabIndex = 1;
-            this.lnudChanceCurrentLevel.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.lnudChanceCurrentLevel.ValueSize = new System.Drawing.Size(57, 22);
-            this.lnudChanceCurrentLevel.ValueChanged += new System.EventHandler(this.lnudChanceCurrentLevel_ValueChanged);
-            // 
-            // lnudChancePercent
-            // 
-            this.lnudChancePercent.AutoSize = true;
-            this.lnudChancePercent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnudChancePercent.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
-            this.lnudChancePercent.Label = "Chance of Happening %";
-            this.lnudChancePercent.LabelAnchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.lnudChancePercent.Location = new System.Drawing.Point(162, 0);
-            this.lnudChancePercent.Margin = new System.Windows.Forms.Padding(0);
-            this.lnudChancePercent.Maximum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.lnudChancePercent.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudChancePercent.Name = "lnudChancePercent";
-            this.lnudChancePercent.NoLabel = false;
-            this.lnudChancePercent.ReadOnly = false;
-            this.lnudChancePercent.Size = new System.Drawing.Size(230, 28);
-            this.lnudChancePercent.TabIndex = 2;
-            this.lnudChancePercent.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.lnudChancePercent.ValueSize = new System.Drawing.Size(57, 22);
-            // 
-            // cpChoiceA
-            // 
-            this.cpChoiceA.AutoSize = true;
-            this.cpChoiceA.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.cpChoiceA.Body = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceA.Charisma = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceA.Cleaning = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceA.Cooking = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceA.Creativity = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceA.Label = "ChoiceA";
-            this.cpChoiceA.Labels = true;
-            this.cpChoiceA.Location = new System.Drawing.Point(0, 28);
-            this.cpChoiceA.Logic = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceA.Margin = new System.Windows.Forms.Padding(0);
-            this.cpChoiceA.Mechanical = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceA.Name = "cpChoiceA";
-            this.cpChoiceA.Size = new System.Drawing.Size(974, 54);
-            this.cpChoiceA.TabIndex = 2;
-            this.cpChoiceA.Value = "ChoiceA";
-            this.cpChoiceA.ValueWidth = 300;
-            // 
-            // cpChoiceB
-            // 
-            this.cpChoiceB.AutoSize = true;
-            this.cpChoiceB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.cpChoiceB.Body = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceB.Charisma = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceB.Cleaning = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceB.Cooking = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceB.Creativity = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceB.Label = "ChoiceB";
-            this.cpChoiceB.Labels = false;
-            this.cpChoiceB.Location = new System.Drawing.Point(0, 82);
-            this.cpChoiceB.Logic = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceB.Margin = new System.Windows.Forms.Padding(0);
-            this.cpChoiceB.Mechanical = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.cpChoiceB.Name = "cpChoiceB";
-            this.cpChoiceB.Size = new System.Drawing.Size(974, 28);
-            this.cpChoiceB.TabIndex = 3;
-            this.cpChoiceB.Value = "ChoiceB";
-            this.cpChoiceB.ValueWidth = 300;
-            // 
-            // epPassA
-            // 
-            this.epPassA.AutoSize = true;
-            this.epPassA.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.epPassA.Body = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassA.Charisma = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassA.Cleaning = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassA.Cooking = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassA.Creativity = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassA.Female = "textBox2";
-            this.epPassA.IsPetCareer = false;
-            this.epPassA.JobLevels = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassA.Location = new System.Drawing.Point(0, 0);
-            this.epPassA.Logic = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassA.Male = "textBox1";
-            this.epPassA.Margin = new System.Windows.Forms.Padding(0);
-            this.epPassA.Mechanical = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassA.MinimumSize = new System.Drawing.Size(824, 131);
-            this.epPassA.Money = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassA.Name = "epPassA";
-            this.epPassA.Size = new System.Drawing.Size(963, 281);
-            this.epPassA.TabIndex = 0;
-            this.epPassA.TextSize = new System.Drawing.Size(450, 208);
-            // 
-            // epFailA
-            // 
-            this.epFailA.AutoSize = true;
-            this.epFailA.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.epFailA.Body = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailA.Charisma = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailA.Cleaning = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailA.Cooking = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailA.Creativity = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailA.Female = "textBox2";
-            this.epFailA.IsPetCareer = false;
-            this.epFailA.JobLevels = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailA.Location = new System.Drawing.Point(0, 0);
-            this.epFailA.Logic = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailA.Male = "textBox1";
-            this.epFailA.Margin = new System.Windows.Forms.Padding(0);
-            this.epFailA.Mechanical = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailA.MinimumSize = new System.Drawing.Size(824, 131);
-            this.epFailA.Money = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailA.Name = "epFailA";
-            this.epFailA.Size = new System.Drawing.Size(963, 273);
-            this.epFailA.TabIndex = 1;
-            this.epFailA.TextSize = new System.Drawing.Size(450, 200);
-            // 
-            // epPassB
-            // 
-            this.epPassB.AutoSize = true;
-            this.epPassB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.epPassB.Body = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassB.Charisma = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassB.Cleaning = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassB.Cooking = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassB.Creativity = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassB.Female = "textBox2";
-            this.epPassB.IsPetCareer = false;
-            this.epPassB.JobLevels = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassB.Location = new System.Drawing.Point(0, 0);
-            this.epPassB.Logic = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassB.Male = "textBox1";
-            this.epPassB.Margin = new System.Windows.Forms.Padding(0);
-            this.epPassB.Mechanical = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassB.MinimumSize = new System.Drawing.Size(824, 131);
-            this.epPassB.Money = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epPassB.Name = "epPassB";
-            this.epPassB.Size = new System.Drawing.Size(963, 273);
-            this.epPassB.TabIndex = 1;
-            this.epPassB.TextSize = new System.Drawing.Size(450, 200);
-            // 
-            // epFailB
-            // 
-            this.epFailB.AutoSize = true;
-            this.epFailB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.epFailB.Body = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailB.Charisma = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailB.Cleaning = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailB.Cooking = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailB.Creativity = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailB.Female = "textBox2";
-            this.epFailB.IsPetCareer = false;
-            this.epFailB.JobLevels = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailB.Location = new System.Drawing.Point(0, 0);
-            this.epFailB.Logic = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailB.Male = "textBox1";
-            this.epFailB.Margin = new System.Windows.Forms.Padding(0);
-            this.epFailB.Mechanical = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailB.MinimumSize = new System.Drawing.Size(824, 131);
-            this.epFailB.Money = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.epFailB.Name = "epFailB";
-            this.epFailB.Size = new System.Drawing.Size(963, 273);
-            this.epFailB.TabIndex = 1;
-            this.epFailB.TextSize = new System.Drawing.Size(450, 200);
+            this.gcUpgrade.AutoSize = true;
+            this.gcUpgrade.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gcUpgrade.ComboBoxWidth = 190;
+            this.gcUpgrade.DropDownHeight = 106;
+            this.gcUpgrade.DropDownWidth = 190;
+            this.gcUpgrade.Label = "Upgrade";
+            this.gcUpgrade.Location = new System.Drawing.Point(369, 31);
+            this.gcUpgrade.Margin = new System.Windows.Forms.Padding(0);
+            this.gcUpgrade.Name = "gcUpgrade";
+            this.gcUpgrade.Size = new System.Drawing.Size(365, 28);
+            this.gcUpgrade.TabIndex = 13;
+            this.gcUpgrade.Value = ((uint)(3722304989u));
             // 
             // CareerEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(990, 715);
+            this.Controls.Add(this.gcUpgrade);
+            this.Controls.Add(this.gcReward);
+            this.Controls.Add(this.lbLS);
+            this.Controls.Add(this.lbPTO);
             this.Controls.Add(this.CareerTitle);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cbUpgrade);
-            this.Controls.Add(this.label102);
-            this.Controls.Add(this.CareerReward);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.Language);
             this.Controls.Add(this.tabControl1);
@@ -3151,123 +3161,88 @@ namespace SimPe.Plugin
 
 
         #region Global
-        private ushort femaleOffset;
-        private Str catalogueDesc;
         private SimPe.Packages.GeneratableFile package;
+        private uint groupId;
+        private StrWrapper catalogueDesc;
         private Bcon tuning;
         private Bcon lifeScore;
         private Bcon PTO;
-        private uint groupId;
 
-        private class GuidName
-        {
-            public UInt32 guid = 0;
-            public String name = "";
-            public GuidName(UInt32 guid, String name) { this.guid = guid; this.name = name; }
-            public static int byName(GuidName a, GuidName b) { return a.name.CompareTo(b.name); }
-            public override string ToString() { return this.name; }
-        }
-
+        #region Reward
         private Instruction AddRewardToInventory = null;
-        private List<GuidName> rewards = null;
-        private void loadRewards()
-        {
-            rewards = new List<GuidName>(new GuidName[] {
-                new GuidName(0x0C6E194A, "Biotech Station"),
-                new GuidName(0xAEB9F591, "Camera"),
-                new GuidName(0x8C4D2997, "Candy Factory"),
-                new GuidName(0xCEA505BB, "Cow Plant"),
-                new GuidName(0xD1CD15C8, "Fingerprint Kit"),
-                new GuidName(0x4E9FBE5D, "Home Plastic Surgery Kit"),
-                new GuidName(0xCC58DF85, "Hydroponic Garden"),
-                new GuidName(0x6C2979FB, "Obstacle Course"),
-                new GuidName(0xCC16D816, "Polygraph"),
-                new GuidName(0xCC20426A, "Putting Green"),
-                new GuidName(0x4C2148B0, "Punching Bag"),
-                new GuidName(0xAE8D50B2, "Resurrectonomitron"),
-                new GuidName(0x6C6CE31F, "Surgical Dummy"),
-                new GuidName(0xAC314A3A, "Teleprompter"),
-                });
-            loadComboBox(CareerReward, rewards);
-        }
-        private void setRewardFromGUID()
-        {
-            setFromGUID(CareerReward, AddRewardToInventory, 5, rewards);
-        }
-        private void getGUIDFromReward()
-        {
-            getGUID(CareerReward, AddRewardToInventory, 5, rewards);
-        }
+        private static String[] rewardName = new String[] {
+                "Biotech Station",
+                "Camera",
+                "Candy Factory",
+                "Cow Plant",
+                "Fingerprint Kit",
+                "Home Plastic Surgery Kit",
+                "Hydroponic Garden",
+                "Obstacle Course",
+                "Polygraph",
+                "Putting Green",
+                "Punching Bag",
+                "Resurrectonomitron",
+                "Surgical Dummy",
+                "Teleprompter",
+        };
+        private static UInt32[] rewardGUID = new UInt32[] {
+                0x0C6E194A, 0xAEB9F591, 0x8C4D2997, 0xCEA505BB,
+                0xD1CD15C8, 0x4E9FBE5D, 0xCC58DF85, 0x6C2979FB,
+                0xCC16D816, 0xCC20426A, 0x4C2148B0, 0xAE8D50B2,
+                0x6C6CE31F, 0xAC314A3A,
+        }; // Alphabetic by rewardname
 
+        private void setRewardFromGUID() { setGCFromIns(gcReward, AddRewardToInventory, 5); }
+        private void getGUIDFromReward() { setInsFromGC(gcReward, AddRewardToInventory, 5); }
+        #endregion
+        #region Upgrade
         private Instruction JobUpgrade = null;
-        private List<GuidName> upgrades = null;
-        private void loadUpgrades()
-        {
-            upgrades = new List<GuidName>(new GuidName[] {
-                new GuidName(0x2C89E95F, "Athletics"),
-                new GuidName(0x45196555, "Business"),
-                new GuidName(0x6C9EBD0E, "Criminal"),
-                new GuidName(0xEC9EBD5F, "Culinary"),
-                new GuidName(0xAC9EBCE3, "Law Enforcement"),
-                new GuidName(0x0C7761FD, "Medicine"),
-                new GuidName(0x6C9EBD32, "Military"),
-                new GuidName(0xD08F400A, "Owned Business"),//?
-                new GuidName(0x2C945B14, "Politics"),
-                new GuidName(0x0C9EBD47, "Science"),
-                new GuidName(0xEC77620B, "Slacker"),
-                });
-            loadComboBox(cbUpgrade, upgrades);
-        }
-        private void setUpgradeFromGUID()
-        {
-            setFromGUID(cbUpgrade, JobUpgrade, 0, upgrades);
-        }
-        private void getGUIDFromUpgrade()
-        {
-            getGUID(cbUpgrade, JobUpgrade, 0, upgrades);
-        }
+        private static String[] upgradeName = new String[] {
+                "Athletics",
+                "Business",
+                "Criminal",
+                "Culinary",
+                "Law Enforcement",
+                "Medicine",
+                "Military",
+                "Owned Business",//?
+                "Politics",
+                "Science",
+                "Slacker",
+        };
+        private static UInt32[] upgradeGUID = new UInt32[] {
+                0x2C89E95F, 0x45196555, 0x6C9EBD0E, 0xEC9EBD5F,
+                0xAC9EBCE3, 0x0C7761FD, 0x6C9EBD32, 0xD08F400A,
+                0x2C945B14, 0x0C9EBD47, 0xEC77620B,
+        }; // Alphabetic by upgradename
+        private void setUpgradeFromGUID() { setGCFromIns(gcUpgrade, JobUpgrade, 0); }
+        private void getGUIDFromUpgrade() { setInsFromGC(gcUpgrade, JobUpgrade, 0); }
+        #endregion
 
-        private void loadComboBox(ComboBox cb, List<GuidName> items)
-        {
-            cb.Items.Clear();
-            cb.Items.Add("None");
-            cb.Items.Add("Unknown");
-            cb.Items.AddRange(items.ToArray());
-        }
-        private void setFromGUID(ComboBox cb, Instruction ins, int op, List<GuidName> items)
+        private void setGCFromIns(GUIDChooser gc, Instruction ins, int op)
         {
             if (ins == null)
             {
-                cb.SelectedIndex = 0;
-                cb.Enabled = false;
+                gc.Value = 0;
+                gc.Enabled = false;
                 return;
             }
             byte[] o = new byte[16];
             ((byte[])ins.Operands).CopyTo(o, 0);
             ((byte[])ins.Reserved1).CopyTo(o, 8);
-            UInt32 guid = (UInt32)(o[op] | (o[op + 1] << 8) | (o[op + 2] << 16) | (o[op + 3] << 24));
-            for (int i = 0; i < items.Count; i++)
-                if (items[i].guid == guid)
-                {
-                    cb.SelectedIndex = i + 2;
-                    cb.Enabled = true;
-                    return;
-                }
-            cb.SelectedIndex = 1;
-            cb.Enabled = false;
-            return;
+            gc.Value = (UInt32)(o[op] | (o[op + 1] << 8) | (o[op + 2] << 16) | (o[op + 3] << 24));
         }
-        private void getGUID(ComboBox cb, Instruction ins, int op, List<GuidName> items)
+        private void setInsFromGC(GUIDChooser gc, Instruction ins, int op)
         {
             if (ins == null) return; // Should never happen
-            if (cb.SelectedIndex < 1) // Was something, now "None"
+            if (gc.Value == 0) // Was something, now "None"
             {
                 ins.Parent.FileDescriptor.MarkForDelete = true;
                 ins.Parent.Changed = true;
                 return;
             }
-            if (cb.SelectedIndex == 1) return; // Unknown, leave alone
-            UInt32 guid = items[cb.SelectedIndex - 2].guid;
+            UInt32 guid = gc.Value;
             for (int i = 0; i < 4; i++)
                 if (op + i < 8) ins.Operands[op + i] = (byte)((guid >> (i * 8)) & 0xff);
                 else ins.Reserved1[op + i - 8] = (byte)((guid >> (i * 8)) & 0xff);
@@ -3276,20 +3251,28 @@ namespace SimPe.Plugin
         private bool isPetCareer = false;
 
         private ushort noLevels;
+        private ushort femaleOffset;
         private void noLevelsChanged(ushort l)
         {
+            ushort oldNoLevels = noLevels;
+            ushort oldLevel = currentLevel;
+            if (l > oldNoLevels) oldLevel++; else if (oldLevel > 1) oldLevel--;
+
             noLevels = l;
             femaleOffset = (ushort)(2 * noLevels);
-            CareerLvls.Value = noLevels;
 
-            lnudChanceCurrentLevel.Maximum = noLevels;
-
-            miInsertLvl.Enabled = (noLevels < 100);
+            miAddLvl.Enabled = (noLevels < 100);
             miRemoveLvl.Enabled = (noLevels > 1);
+
+            CareerLvls.Value = noLevels;
 
             fillJobDetails();
             fillHoursAndWages();
             fillPromotionDetails();
+            lnudChanceCurrentLevel.Maximum = noLevels;
+
+            currentLevel = 0;
+            levelChanged(oldLevel > noLevels ? noLevels : oldLevel);
         }
 
         private ushort currentLevel;
@@ -3299,24 +3282,28 @@ namespace SimPe.Plugin
             if (levelChanging || newLevel == currentLevel) return;
 			internalchg = levelChanging = true;
 
+            lbPTO.Text = "" + PTO[newLevel];
+            if (lifeScore!=null) lbLS.Text = "" + lifeScore[newLevel];
+            else lbLS.Text = "";
+
             #region job details
             JobDetailList.SelectedIndices.Clear();
-            JobDetailList.SelectedIndices.Add(newLevel - 1);
+            JobDetailList.Items[newLevel-1].Selected = true;
             gbJobDetails.Text = "Current Level: " + newLevel;
 
-            SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(currentLanguage);
-            jdpMale.TitleValue = items[newLevel * 2 - 1].Title;
-            jdpMale.DescValue = items[newLevel * 2].Title;
-            jdpFemale.TitleValue = items[newLevel * 2 - 1 + femaleOffset].Title;
-            jdpFemale.DescValue = items[newLevel * 2 + femaleOffset].Title;
+            StrItem[] items = jobTitles[currentLanguage];
+            jdpMale.TitleValue = items[(newLevel - 1) * 2 + 1].Title;
+            jdpMale.DescValue = items[(newLevel - 1) * 2 + 2].Title;
+            jdpFemale.TitleValue = items[femaleOffset + (newLevel - 1) * 2 + 1].Title;
+            jdpFemale.DescValue = items[femaleOffset + (newLevel - 1) * 2 + 2].Title;
 
-            setOutfitFromGUID(outfitGUID[newLevel * 2], outfitGUID[newLevel * 2 + 1]);
-            setVehicleFromGUID(vehicleGUID[newLevel * 2], vehicleGUID[newLevel * 2 + 1]);
+            setOutfitFromGUID(newLevel);
+            setVehicleFromGUID(newLevel);
             #endregion
 
             #region hours & wages
             HoursWagesList.SelectedIndices.Clear();
-            HoursWagesList.SelectedIndices.Add(newLevel - 1);
+            HoursWagesList.Items[newLevel - 1].Selected = true;
             gbHoursWages.Text = "Current Level: " + newLevel;
             lnudWorkStart.Value = startHour[newLevel];
             lnudWorkHours.Value = hoursWorked[newLevel];
@@ -3359,7 +3346,7 @@ namespace SimPe.Plugin
 
             #region promotion
             PromoList.SelectedIndices.Clear();
-            PromoList.SelectedIndices.Add(newLevel - 1);
+            PromoList.Items[newLevel - 1].Selected = true;
             gbPromo.Text = "Current Level: " + newLevel;
             if (!isPetCareer) // people
             {
@@ -3398,143 +3385,128 @@ namespace SimPe.Plugin
             internalchg = levelChanging = false;
 		}
 
-        private StrLanguage currentLanguage;
-        private ArrayList languageString, languageID;
+        private byte currentLanguage;
+        private List<String> languageString;
         private bool oneEnglish, englishOnly;
-        private void removeEnglishInternational()
+        private void removeLanguage(byte lid)
         {
-            SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(2);
-            SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(l);
-            for (int j = 0; j < items.Length; j++)
-            {
-                items[j].Title = "";
-            }
-
-            items = chanceCardsText.LanguageItems(l);
-            for (int j = 0; j < items.Length; j++)
-            {
-                items[j].Title = "";
-            }
-
-            items = catalogueDesc.LanguageItems(l);
-            for (int j = 0; j < items.Length; j++)
-            {
-                items[j].Title = "";
-            }
+            foreach (StrItem i in (StrItem[])jobTitles[lid]) jobTitles.Remove(i);
+            foreach (StrItem i in (StrItem[])chanceCardsText[lid]) chanceCardsText.Remove(i);
+            foreach (StrItem i in (StrItem[])catalogueDesc[lid]) catalogueDesc.Remove(i);
         }
-        private void removeOtherLanguages()
-        {
-            for (int i = 0; i < jobTitles.Languages.Length; i++)
-                if (jobTitles.Languages[i].Id > 2)
-                {
-                    SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(jobTitles.Languages[i].Id);
-                    SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(l);
-                    for (int j = 0; j < items.Length; j++)
-                    {
-                        items[j].Title = "";
-                    }
-                }
-
-            for (int i = 0; i < chanceCardsText.Languages.Length; i++)
-                if (chanceCardsText.Languages[i].Id > 2)
-                {
-                    SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(chanceCardsText.Languages[i].Id);
-                    SimPe.PackedFiles.Wrapper.StrItemList items = chanceCardsText.LanguageItems(l);
-                    for (int j = 0; j < items.Length; j++)
-                    {
-                        items[j].Title = "";
-                    }
-                }
-
-            for (int i = 0; i < catalogueDesc.Languages.Length; i++)
-                if (catalogueDesc.Languages[i].Id > 2)
-                {
-                    SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(catalogueDesc.Languages[i].Id);
-                    SimPe.PackedFiles.Wrapper.StrItemList items = catalogueDesc.LanguageItems(l);
-                    for (int j = 0; j < items.Length; j++)
-                    {
-                        items[j].Title = "";
-                    }
-                }
-        }
+        private void removeEnglishInternational() { removeLanguage(2); }
+        private void removeOtherLanguages() { for (byte l = 3; l <= languageString.Count; l++) removeLanguage(l); }
 
         #endregion
 
 
         #region Job Details
-        private Str jobTitles;
-        private Bcon vehicleGUID;
-        private Bcon outfitGUID;
-
+        #region Job Titles
+        private StrWrapper jobTitles;
         private void fillJobDetails()
         {
             JobDetailList.Items.Clear();
-            SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(currentLanguage);
-            for (ushort i = 1; i <= noLevels; i++)
+            for (int i = ((StrItem[])jobTitles[currentLanguage]).Length; i < noLevels * 4 + 1; i++) jobTitles.Add(currentLanguage, "", "");
+            StrItem[] items = jobTitles[currentLanguage];
+            for (ushort i = 0; i < noLevels; i++)
             {
-                ListViewItem item1 = new ListViewItem("" + i, 0);
-                item1.SubItems.Add(items[i * 2 - 1].Title);
-                item1.SubItems.Add(items[i * 2].Title);
-                item1.SubItems.Add(getOutfitTextFromGUID(outfitGUID[i * 2], outfitGUID[i * 2 + 1]));
-                item1.SubItems.Add(getVehicleTextFromGUID(vehicleGUID[i * 2], vehicleGUID[i * 2 + 1]));
+                ListViewItem item1 = new ListViewItem("" + (i + 1), 0);
+                item1.SubItems.Add(items[(i * 2) + 1].Title);
+                item1.SubItems.Add(items[(i * 2) + 2].Title);
+                item1.SubItems.Add(getOutfitTextFromGUIDAt(i + 1));
+                item1.SubItems.Add(getVehicleTextFromGUID(i + 1));
                 JobDetailList.Items.Add(item1);
             }
         }
+        #endregion
 
-        private string getOutfitTextFromGUID(short val1, short val2)
+        #region Outfits
+        private Bcon outfit;
+        private string getOutfitTextFromGUIDAt(int i) { return StringFromGUID(GUIDfromBCON(outfit, i), outfitGUID, outfitName); }
+        private void setOutfitFromGUID(int i) { gcOutfit.Value = GUIDfromBCON(outfit, i); }
+        private static UInt32[] outfitGUID = {
+			0x0CC8FB0A, 0x6CF36A28, 0xACCFBA59, 0x4CC8D355,
+			0x6CC1394A, 0x6CDB4D89, 0xACCFB5BA, 0x6CE5E896,
+            0x2DC106EF, 0x8CC8D510, 0xACCFB61B, 0xCCC8FA1E,
+            0x0CCFB4F4, 0x4CF368BE, 0x8CCFA3D8, 0x8CCFA130,
+
+            0x8CCFA223, 0xCCE5E90F, 0x8CCFA318, 0x2CD4EE5D,
+            0x8CE5EA26, 0xCCCF9FA7, 0xECE5EB2F, 0x8CCFA387,
+			0x6CC13C27, 0xACD4EEE6, 0xACC8EE11, 0x6CC8CFBD,
+            0x0DCC7C4D, 0xACCFB97C, 0xACE5EB8C, 0x0CCFA643,
+
+            0xECCFA694, 0xECCFB386, 0xEDED8493, 0x6DD1D04B,
+            0xECA45D6D, 0x2CA45AE2, 0x0DB8AE38, 0x8CC13127,
+            0x2CD89D6B, 0x2DC0FCD7, 0x8DC3893C, 0x0CA45C86,
+			0xCDC38723, 0x8CDA36DA, 0xCD65FD9F, 0x6CC13409,
+
+            0x6DC38A6C, 0xECD0F3FC, 0xCCD0F227, 0x6CC1322B,
+            0xACD0F47C, 0x6CD0F537, 0x0CA45C32, 0x6CC130A6,
+            0xECD7C130, 0xCE029001, 0x2E02903A, 0x6CD4EDE8,
+            0xEE028B7C, 0x2E028C23, 0xAE028CB9, 0x6D771A13,
+            
+            0x4CBC4BB4, 0x8CBC0B19, 0x0C91A937,
+        };
+        private static String[] outfitName = new String[] {
+			"Astronaut", "BlueScrubs", "Burglar", "CaptHero",
+            "CheapSuit", "Chef", "Clerk", "Coach",
+            "Cop", "EMT", "FastFood", "Fatigues",
+            "GasStation", "GreenScrubs", "HighRank", "LabCoat1",
+            
+            "LabCoat2", "LeatherJacket", "LowRank", "MadLab",
+            "Mascot", "MastEvil", "Mayor", "MidRank",
+            "PowerSuit", "Restaurant", "Scrubs", "SecurityGuard",
+			"SlickSuit", "SuperChef", "Swat", "Sweatsuit",
+            
+            "Tracksuit", "TweedJacket", "Electrocution", "Maternity",
+            "NPC - Ambulance Driver (Paramedic)", "NPC - Bartender", "NPC_Burglar", "NPC - BusDriver",
+            "NPC Clerk Outfit", "NPC Cop", "NPC DeliveryPerson", "NPC Exterminator",
+            "NPC FireFighter", "New Gardener Outfit", "NPC HandyPerson", "NPC HeadMaster",
+            
+            "NPC Maid", "NPC Mail Outfit", "NPC Nanny", "NPC PaperDelivery",
+			"NPC Pizza Outfit", "NPC Repo Outfit", "NPC Salesperson", "NPC SocialWorker",
+			"PrivateSchool", "Reaper Lei", "Reaper NoLei", "SkeletonGlow",
+            "SocialBunny Blue", "SocialBunny Pink", "SocialBunny Yellow", "Wedding Outfit",
+
+			"MaternityShirtPants", "BodyShirtUntuckedOxford", "Outfit - Template",
+        };
+        #endregion
+        #region Vehicles
+        private Bcon vehicle;
+        private string getVehicleTextFromGUID(int i) { return StringFromGUID(GUIDfromBCON(vehicle, i), vehicleGUID, vehicleName); }
+        private void setVehicleFromGUID(int i) { gcVehicle.Value = GUIDfromBCON(vehicle, i); }
+        private static UInt32[] vehicleGUID = new UInt32[] {
+			0xAD0AB49C, 0x0D099B93, 0xAC43E058, 0x4CA1487C,
+            0x6C6CDEC6, 0xCC69FDA3, 0xEC860630, 0x0CA42373,
+            0x8C5A4D9E, 0x4D50E553, 0x4C03451A, 0x6CA4110A,
+            0x4C413B80, 0x0C85AE14, 0xCD08624E, 0x4D09B954,
+        };
+        private static String[] vehicleName = new String[] {
+			"Captain Hero Flyaway", "Helicopter - Executive", "Helicopter - Army", "Town Car",
+			"Sports Car - Super", "Sports Car - Mid", "Sports Car - Low", "Sports Team Bus",
+			"Sedan", "Taxi", "Minivan", "Limo", 
+            "HMV", "Hatchback", "Police", "Ambulance",
+		};
+        #endregion
+
+        private uint GUIDfromBCON(Bcon bcon, int i)
         {
-            uint guid = ((uint)((ushort)val2) * 65536) + ((ushort)val1);
-            int index = 0;
-
-            while (index < outfitGuids.Length)
-            {
-                if (outfitGuids[index] == guid)
-                    break;
-                index++;
-            }
-            return outfitStrings[index];
+            return (uint)(((ushort)bcon[i * 2 + 1] << 16) | ((ushort)bcon[i * 2]));
         }
-
-        private string getVehicleTextFromGUID(short val1, short val2)
+        private string StringFromGUID(uint guid, UInt32[] guids, String[] strings)
         {
-            uint guid = ((uint)((ushort)val2) * 65536) + ((ushort)val1);
-            int index = 0;
-
-            while (index < vehicleGuids.Length)
-            {
-                if (vehicleGuids[index] == guid)
-                    break;
-                index++;
-            }
-            return vehicleStrings[index];
+            if (guid == 0) return "";
+            int index = (new List<uint>(guids)).IndexOf(guid);
+            return index >= 0 ? strings[index] : "Other";
         }
-
-        private void setOutfitFromGUID(short val1, short val2)
+        private void insertGuid(Bcon bcon, int index, uint guid)
         {
-            uint guid = ((uint)((ushort)val2) * 65536) + ((ushort)val1);
-            int index = 0;
-
-            while (index < outfitGuids.Length)
-            {
-                if (outfitGuids[index] == guid)
-                    break;
-                index++;
-            }
-            Outfit.SelectedIndex = index;
-        }
-
-        private void setVehicleFromGUID(short val1, short val2)
-        {
-            uint guid = ((uint)((ushort)val2) * 65536) + ((ushort)val1);
-            int index = 0;
-
-            while (index < vehicleGuids.Length)
-            {
-                if (vehicleGuids[index] == guid)
-                    break;
-                index++;
-            }
-            Vehicle.SelectedIndex = index;
+            List<short> bconItem = new List<short>();
+            foreach (short i in bcon) bconItem.Add(i);
+            bconItem.Insert((index + 1) * 2, (short)(guid & 0xffff));
+            bconItem.Insert((index + 1) * 2 + 1, (short)(guid >> 16 & 0xffff));
+            bcon.Clear();
+            foreach (short i in bconItem) bcon.Add(i);
         }
         #endregion
 
@@ -3663,7 +3635,7 @@ namespace SimPe.Plugin
 
 
         #region Chance Cards
-        private Str chanceCardsText;
+        private StrWrapper chanceCardsText;
         private Bcon[] chanceASkills;
         private Bcon[] chanceAGood;
         private Bcon[] chanceABad;
@@ -3676,12 +3648,14 @@ namespace SimPe.Plugin
 
         private void chanceCardsLevelChanged(ushort newLevel)
         {
-            if (currentLevel != 0) chanceCardsToFiles();
+            if (currentLevel != 0 && currentLevel <= noLevels) chanceCardsToFiles();
 
             lnudChanceCurrentLevel.Value = newLevel;
             lnudChancePercent.Value = chanceChance[newLevel];
 
-            SimPe.PackedFiles.Wrapper.StrItemList items = chanceCardsText.LanguageItems(currentLanguage);
+            for (int i = ((StrItem[])chanceCardsText[currentLanguage]).Length; i < newLevel * 12 + 19; i++)
+                chanceCardsText.Add(currentLanguage, "", "");
+            StrItem[] items = chanceCardsText[currentLanguage];
 
             cpChoiceA.setValues(true, cpChoiceA.Label, items[newLevel * 12 + 7].Title, chanceASkills, newLevel);
             cpChoiceB.setValues(false, cpChoiceB.Label, items[newLevel * 12 + 8].Title, chanceBSkills, newLevel);
@@ -3696,7 +3670,7 @@ namespace SimPe.Plugin
         }
         private void chanceCardsToFiles()
         {
-            SimPe.PackedFiles.Wrapper.StrItemList items = chanceCardsText.LanguageItems(currentLanguage);
+            StrItem[] items = chanceCardsText[currentLanguage];
             chanceChance[currentLevel] = (short)lnudChancePercent.Value;
 
             items[currentLevel * 12 + 7].Title = cpChoiceA.Value;
@@ -3762,71 +3736,6 @@ namespace SimPe.Plugin
         private const byte FRIDAY = 4;
         private const byte SATURDAY = 5;
         private const byte SUNDAY = 6;
-
-        private string[] languageStringsMaster = new string[]
-			{
-					"0x00 - None",
-				"0x01 - English (US)","0x02 - English (Int)","0x03 - French","0x04 - German","0x05 - Italian",
-				"0x06 - Spanish","0x07 - Dutch","0x08 - Danish","0x09 - Swedish","0x0A - Norwegian",
-				"0x0B - Finish","0x0C - Hebrew","0x0D - Russian","0x0E - Portuguese","0x0F - Japanese",
-				"0x10 - Polish","0x11 - SimplifiedChinese","0x12 - TraditionalChinese","0x13 - Thai","0x14 - Korean",
-				"0x15 - 21","0x16 - 22","0x17 - 23","0x18 - 24","0x19 - 25",
-				"0x1A - 26",
-				"0x1B - 27","0x1C - 28","0x1D - 29","0x1E - 30","0x1F - 31","0x20 - 32","0x21 - 33","0x22 - 34",
-				"0x23 - Portuguese (Brazil)","0x24 - 36","0x25 - 37","0x26 - 38","0x27 - 39","0x28 - 40",
-				"0x29 - 41","0x2A - 42","0x2B - 43","0x2C - 44" };
-
-        private string[] outfitStrings = new string[]
-				{
-						"None","Astronaut","BlueScrubs","Burglar","CaptHero","CheapSuit","Chef",
-					"Clerk","Coach","Cop","EMT","FastFood","Fatigues","GasStation","GreenScrubs",
-					"HighRank","LabCoat1","LabCoat2","LeatherJacket","LowRank","MadLab","Mascot",
-					"MastEvil","Mayor","MidRank","PowerSuit","Restaurant","Scrubs","SecurityGuard",
-					"SlickSuit","SuperChef","Swat","Sweatsuit","Tracksuit","TweedJacket",
-		
-					"Electrocution", "Maternity", "NPC - Ambulance Driver (Paramedic)","NPC - Bartender",
-					"NPC_Burglar", "NPC - BusDriver","NPC Clerk Outfit","NPC Cop","NPC DeliveryPerson",
-					"NPC Exterminator","NPC FireFighter","New Gardener Outfit","NPC HandyPerson",
-					"NPC HeadMaster","NPC Maid","NPC Mail Outfit","NPC Nanny","NPC PaperDelivery",
-					"NPC Pizza Outfit","NPC Repo Outfit","NPC Salesperson","NPC SocialWorker",
-					"PrivateSchool","Reaper Lei","Reaper NoLei","SkeletonGlow","SocialBunny Blue",
-					"SocialBunny Pink","SocialBunny Yellow","Wedding Outfit",
-
-					"MaternityShirtPants","BodyShirtUntuckedOxford","Outfit - Template",
-					
-					"Unknown"};
-
-        private uint[] outfitGuids = new uint[]
-				{
-					0, 0x0CC8FB0A, 0x6CF36A28, 0xACCFBA59, 0x4CC8D355,
-					0x6CC1394A, 0x6CDB4D89, 0xACCFB5BA, 0x6CE5E896, 0x2DC106EF,
-					0x8CC8D510, 0xACCFB61B, 0xCCC8FA1E, 0x0CCFB4F4, 0x4CF368BE,
-					0x8CCFA3D8, 0x8CCFA130, 0x8CCFA223, 0xCCE5E90F, 0x8CCFA318,
-					0x2CD4EE5D, 0x8CE5EA26, 0xCCCF9FA7, 0xECE5EB2F, 0x8CCFA387,
-					0x6CC13C27, 0xACD4EEE6, 0xACC8EE11, 0x6CC8CFBD, 0x0DCC7C4D,
-					0xACCFB97C, 0xACE5EB8C, 0x0CCFA643, 0xECCFA694, 0xECCFB386,
-
-					0xEDED8493, 0x6DD1D04B, 0xECA45D6D, 0x2CA45AE2, 0x0DB8AE38,
-					0x8CC13127, 0x2CD89D6B, 0x2DC0FCD7, 0x8DC3893C, 0x0CA45C86,
-					0xCDC38723, 0x8CDA36DA, 0xCD65FD9F, 0x6CC13409, 0x6DC38A6C,
-					0xECD0F3FC, 0xCCD0F227, 0x6CC1322B, 0xACD0F47C, 0x6CD0F537,
-					0x0CA45C32, 0x6CC130A6, 0xECD7C130, 0xCE029001, 0x2E02903A,
-					0x6CD4EDE8, 0xEE028B7C, 0x2E028C23, 0xAE028CB9, 0x6D771A13,
-
-					0x4CBC4BB4, 0x8CBC0B19, 0x0C91A937	};
-
-        private uint[] vehicleGuids = new uint[]
-				{
-					0xAD0AB49C, 0x0D099B93, 0xAC43E058, 0x4CA1487C, 0x6C6CDEC6,
-					0xCC69FDA3, 0xEC860630, 0x0CA42373, 0x8C5A4D9E, 0x4D50E553,
-					0x4C03451A, 0x6CA4110A, 0x4C413B80, 0x0C85AE14, 0xCD08624E,
-					0x4D09B954 };
-        private string[] vehicleStrings = new string[]
-				{
-					"Captain Hero Flyaway","Helicopter - Executive","Helicopter - Army","Town Car",
-					"Sports Car - Super","Sports Car - Mid","Sports Car - Low","Sports Team Bus",
-					"Sedan","Taxi","Minivan","Limo","HMV","Hatchback","Police","Ambulance",
-					"Unknown" };
         #endregion
 
 
@@ -3847,25 +3756,16 @@ namespace SimPe.Plugin
 					this.package = (SimPe.Packages.GeneratableFile)this.package.Clone();
 				}
 
+                languageString = pjse.BhavWiz.readStr(pjse.GS.BhavStr.Languages);
+                languageString.RemoveAt(0);
+
                 loadFiles();
 
                 menuItem6.Enabled = !isPetCareer;
 				//menuItem2.Checked = oneEnglish;
 				miEnglishOnly.Checked = englishOnly;
 
-                languageString = new ArrayList();
-				languageID = new ArrayList();
-				for (int i = 0; i < catalogueDesc.Languages.Length; i++)
-				{
-					SimPe.PackedFiles.Wrapper.StrLanguage l = catalogueDesc.Languages[i];
-					if (l.Id != 2)
-					{
-						languageString.Insert(0, languageStringsMaster[l.Id]);
-						languageID.Insert(0, l.Id);
-					}
-				}
-
-                currentLanguage = new SimPe.PackedFiles.Wrapper.StrLanguage(1);
+                currentLanguage = 1;
 
                 internalchg = true;
 
@@ -3873,20 +3773,12 @@ namespace SimPe.Plugin
                 setUpgradeFromGUID();
 
                 Language.DataSource = languageString;
-                Outfit.DataSource = outfitStrings;
-				Vehicle.DataSource = vehicleStrings;
 
-				//SimPe.PackedFiles.Wrapper.StrItem[] items = catalogueDesc.FallbackedLanguageItems(Helper.WindowsRegistry.LanguageCode);
-				SimPe.PackedFiles.Wrapper.StrItemList items = catalogueDesc.LanguageItems(currentLanguage);
-
-				CareerTitle.Text = items[0].Title;
+				CareerTitle.Text = catalogueDesc[currentLanguage][0].Title;
 
                 internalchg = false;
 
                 noLevelsChanged((ushort)tuning[0]);
-                currentLevel = 0;
-
-                levelChanged(1);
 			}
 			catch (Exception e)
 			{
@@ -3930,27 +3822,42 @@ namespace SimPe.Plugin
 			bcon.ProcessData(pfd, package);
 			return bcon;
 		}
-		private SimPe.PackedFiles.Wrapper.Str getStr(uint instance)
+        private void insertBcon(Bcon bcon, int index, short value)
+        {
+            List<short> bconItem = new List<short>();
+            foreach (short i in bcon) bconItem.Add(i);
+            bconItem.Insert(index, value);
+            bcon.Clear();
+            foreach (short i in bconItem) bcon.Add(i);
+        }
+
+        private SimPe.PackedFiles.Wrapper.StrWrapper getCtss() { return getStr(package.FindFiles(Data.MetaData.CTSS_FILE)[0]); }
+        private SimPe.PackedFiles.Wrapper.StrWrapper getStr(uint instance) { return getStr(package.FindFile(0x53545223, 0, groupId, instance)); }
+        private SimPe.PackedFiles.Wrapper.StrWrapper getStr(Interfaces.Files.IPackedFileDescriptor pfd)
 		{
-			Interfaces.Files.IPackedFileDescriptor pfd  = package.FindFile(0x53545223, 0, groupId, instance);
             if (pfd == null) return null;
 
-            SimPe.PackedFiles.Wrapper.Str str = new SimPe.PackedFiles.Wrapper.Str();
+            SimPe.PackedFiles.Wrapper.StrWrapper str = new SimPe.PackedFiles.Wrapper.StrWrapper();
 			str.ProcessData(pfd, package);
-			return str;
+
+            // This makes sure US English is as long the longest str[lng] array
+            int count = 0;
+            for (byte i = 1; i <= languageString.Count; i++) count = Math.Max(count, ((StrItem[])str[i]).Length);
+            while (count > 0 && str[1, count - 1] == null && str.Add(1, "", "") >= 0) ;
+
+            return str;
 		}
-		private void loadFiles()
+
+        private void loadFiles()
 		{
-			Interfaces.Files.IPackedFileDescriptor[] ctss  = package.FindFiles(Data.MetaData.CTSS_FILE);
-			groupId = ctss[0].Group;
-            catalogueDesc = new SimPe.PackedFiles.Wrapper.Str();
-            catalogueDesc.ProcessData(ctss[0], package);
+            catalogueDesc = getCtss();
+            groupId = catalogueDesc.FileDescriptor.Group;
 
             lifeScore = getBcon(0x100D); // not pets
             PTO = getBcon(0x1054);
 
-            CareerReward.SelectedIndex = 0;
-            CareerReward.Enabled = false;
+            //CareerReward.SelectedIndex = 0;
+            //CareerReward.Enabled = false;
 
             Bhav bhav;
 
@@ -4000,8 +3907,8 @@ namespace SimPe.Plugin
 
             // Job Details
 			jobTitles = getStr(0x0093);
-			vehicleGUID = getBcon(0x100C);
-			outfitGUID = getBcon(0x1055);
+			outfit = getBcon(0x1055);
+            vehicle = getBcon(0x100C);
 
             // Promotion
             if (!isPetCareer)
@@ -4145,8 +4052,8 @@ namespace SimPe.Plugin
 
             // Job Details
             if (jobTitles.Changed) jobTitles.SynchronizeUserData();
-            if (vehicleGUID.Changed) vehicleGUID.SynchronizeUserData();
-			if (outfitGUID.Changed) outfitGUID.SynchronizeUserData();
+            if (vehicle.Changed) vehicle.SynchronizeUserData();
+			if (outfit.Changed) outfit.SynchronizeUserData();
 
             // Hours & Wages
             if (startHour.Changed) startHour.SynchronizeUserData();
@@ -4217,212 +4124,280 @@ namespace SimPe.Plugin
 		}
 
 
-        private void miInsertLvl_Click(object sender, System.EventArgs e)
+        private void miAddLvl_Click(object sender, System.EventArgs e)
         {
-            SimPe.PackedFiles.Wrapper.StrLanguage us = new SimPe.PackedFiles.Wrapper.StrLanguage(1);
+            if (internalchg) return;
+            internalchg = true;
+
+            byte us = 1;
+            StrItem[] usitems = null;
             ushort newNoLevels = (ushort)(noLevels + 1);
+            ushort newLevel = (ushort)(currentLevel + 1);
             tuning[0] = (short)newNoLevels;
 
-            if (PTO.Count < newNoLevels + 1)
+            //if (PTO.Count <= newNoLevels)
+            //{
+            //}
+            insertBcon(PTO, newLevel, 15);
+            if (lifeScore != null)
+                insertBcon(lifeScore, newLevel, 0);
+
+            #region Job Details
+            // 0 - "Unemployed"
+            // 1, 2 - Male level 1
+            // (n-1)*2+1, (n-1)*2+2 - Male level n
+            // (nl-1)*2+1, (nl-1)*2+2 - Male level nl
+            // (nl*2)+(n-1)*2+1, (nl*2)+(n-1)*2+2 - Female level n
+            // (nl*2)+(nl-1)*2+1, (nl*2)+(nl-1)*2+2 - Female level nl
+
+            ushort newFemaleOffset = (ushort)(newNoLevels * 2);
+            for (byte l = 1; l <= languageString.Count; l++)
             {
-                PTO.Add(15);
-                if (lifeScore != null)
-                    lifeScore.Add(0);
-
-                // Job Details
-                SimPe.PackedFiles.Wrapper.StrItemList usitems = jobTitles.LanguageItems(us);
-                usitems[newNoLevels * 2 - 1].Title = "New Male Job Title";
-                usitems[newNoLevels * 2].Title = "New Male Job Desc";
-                usitems[newNoLevels * 2 - 1 + femaleOffset + 2].Title = "New Female Job Title";
-                usitems[newNoLevels * 2 + femaleOffset + 2].Title = "New Female Job Desc";
-                for (int i = 0; i < jobTitles.Languages.Length; i++)
+                // Make safe for empty languages
+                for (int i = ((StrItem[])jobTitles[l]).Length; i < newNoLevels * 4 + 1; i++) jobTitles.Add(l, "", "");
+                StrItem[] items = jobTitles[l];
+                // Shift all female entries up to free male entries
+                for (int i = noLevels - 1; i > 0; i--)
                 {
-                    SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(jobTitles.Languages[i].Id);
-                    for (int j = 0; j < 4; j++)
-                        jobTitles.Add(new SimPe.PackedFiles.Wrapper.StrToken(j, l, "", ""));
-                    if ((l.Id != 2) && (l.Id != 12) && (l.Id != 13))
-                    {
-                        SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(l);
-                        for (int j = noLevels; j > 0; j--)
-                        {
-                            items[j * 2 + 1 + femaleOffset].Title = items[j * 2 - 1 + femaleOffset].Title;
-                            items[j * 2 + 2 + femaleOffset].Title = items[j * 2 + femaleOffset].Title;
-                        }
-                        items[1 + femaleOffset].Title = "";
-                        items[2 + femaleOffset].Title = "";
-                    }
+                    items[newFemaleOffset + (i * 2) + 1].Title = items[femaleOffset + (i * 2) + 1].Title;
+                    items[newFemaleOffset + (i * 2) + 2].Title = items[femaleOffset + (i * 2) + 2].Title;
                 }
-                outfitGUID.Add(0);
-                outfitGUID.Add(0);
-                unchecked
+                // Shift female entries up to free new level
+                for (int i = newNoLevels - 1; i > currentLevel; i--)
                 {
-                    vehicleGUID.Add((short)0xAE14);
-                    vehicleGUID.Add((short)0x0C85);
+                    items[newFemaleOffset + (i * 2) + 1].Title = items[newFemaleOffset + (i - 1) * 2 + 1].Title;
+                    items[newFemaleOffset + (i * 2) + 2].Title = items[newFemaleOffset + (i - 1) * 2 + 2].Title;
                 }
-
-                // Hours & Wages
-                startHour.Add(0);
-                hoursWorked.Add(1);
-                if (!isPetCareer)
+                // Shift male entries up to free new level
+                for (int i = newNoLevels - 1; i > currentLevel; i--)
                 {
-                    wages.Add(0);
+                    items[i * 2 + 1].Title = items[(i - 1) * 2 + 1].Title;
+                    items[i * 2 + 2].Title = items[(i - 1) * 2 + 2].Title;
                 }
-                else
-                {
-                    wagesDog.Add(0);
-                    wagesCat.Add(0);
-                }
-                daysWorked.Add(0);
-
-                for (int i = 0; i < motiveDeltas.Length; i++)
-                    motiveDeltas[i].Add(0);
-
-                // Promotion
-                if (!isPetCareer) // people
-                    for (int i = 0; i < skillReq.Length; i++)
-                        skillReq[i].Add(0);
-                // nothing to do for Pets
-                friends.Add(0);
-
-                // Chance Cards
-                if (!isPetCareer)
-                    for (int i = 0; i < chanceASkills.Length; i++)
-                    {
-                        skillReq[i].Add(0);
-                        chanceASkills[i].Add(0);
-                        chanceBSkills[i].Add(0); ;
-                    }
-
-                if (!isPetCareer)
-                    for (int i = 0; i < 8; i++)
-                    {
-                        chanceAGood[i].Add(0);
-                        chanceABad[i].Add(0);
-                        chanceBGood[i].Add(0);
-                        chanceBBad[i].Add(0);
-                    }
-                for (int i = 8; i < chanceAGood.Length; i++)
-                {
-                    chanceAGood[i].Add(0);
-                    chanceABad[i].Add(0);
-                    chanceBGood[i].Add(0);
-                    chanceBBad[i].Add(0);
-                }
-                chanceChance.Add(0);
-
-                for (int i = 0; i < chanceCardsText.Languages.Length; i++)
-                {
-                    SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(chanceCardsText.Languages[i].Id);
-                    for (int j = 0; j < 12; j++)
-                        chanceCardsText.Add(new SimPe.PackedFiles.Wrapper.StrToken(j, l, "", ""));
-                }
-                usitems = chanceCardsText.LanguageItems(us);
-                usitems[newNoLevels * 12 + 7].Title = "Choice A";
-                usitems[newNoLevels * 12 + 8].Title = "Choice B";
-                usitems[newNoLevels * 12 + 9].Title = "Male Text";
-                usitems[newNoLevels * 12 + 10].Title = "Female Text";
-                usitems[newNoLevels * 12 + 11].Title = "Pass A Male";
-                usitems[newNoLevels * 12 + 12].Title = "Pass A Female";
-                usitems[newNoLevels * 12 + 13].Title = "Fail A Male";
-                usitems[newNoLevels * 12 + 14].Title = "Fail A Female";
-                usitems[newNoLevels * 12 + 15].Title = "Pass B Male";
-                usitems[newNoLevels * 12 + 16].Title = "Pass B Female";
-                usitems[newNoLevels * 12 + 17].Title = "Fail B Male";
-                usitems[newNoLevels * 12 + 18].Title = "Fail B Female";
-
-                noLevelsChanged(newNoLevels);
+                // Clear text out of new level fields
+                // (new level is currentLevel + 1, index is that - 1, so just use currentLevel)
+                items[currentLevel * 2 + 1].Title = "";
+                items[currentLevel * 2 + 2].Title = "";
+                items[newFemaleOffset + currentLevel * 2 + 1].Title = "";
+                items[newFemaleOffset + currentLevel * 2 + 2].Title = "";
             }
+            usitems = jobTitles[us];
+            // (new level is currentLevel + 1, index is that - 1, so just use currentLevel)
+            usitems[currentLevel * 2 + 1].Title = "New Male Job Title";
+            usitems[currentLevel * 2 + 2].Title = "New Male Job Desc";
+            usitems[newFemaleOffset + currentLevel * 2 + 1].Title = "New Female Job Title";
+            usitems[newFemaleOffset + currentLevel * 2 + 2].Title = "New Female Job Desc";
+
+            insertGuid(outfit, currentLevel, 0);
+            insertGuid(vehicle, currentLevel, 0x0C85AE14);
+            #endregion
+
+            #region Hours & Wages
+            insertBcon(startHour, currentLevel + 1, 0);
+            insertBcon(hoursWorked, currentLevel + 1, 1);
+            if (!isPetCareer)
+            {
+                insertBcon(wages, currentLevel + 1, 0);
+            }
+            else
+            {
+                insertBcon(wagesDog, currentLevel + 1, 0);
+                insertBcon(wagesCat, currentLevel + 1, 0);
+            }
+            insertBcon(daysWorked, currentLevel + 1, 0);
+
+            for (int i = 0; i < motiveDeltas.Length; i++)
+                insertBcon(motiveDeltas[i], currentLevel + 1, 0);
+            #endregion
+
+            #region Promotion
+            if (!isPetCareer) // people
+                for (int i = 0; i < skillReq.Length; i++)
+                    insertBcon(skillReq[i], currentLevel + 1, 0);
+            // nothing to do for Pets
+            insertBcon(friends, currentLevel + 1, 0);
+            #endregion
+
+            #region Chance Cards
+            insertBcon(chanceChance, currentLevel + 1, 0);
+            if (!isPetCareer)
+                for (int i = 0; i < chanceASkills.Length; i++)
+                {
+                    insertBcon(chanceASkills[i], currentLevel + 1, 0);
+                    insertBcon(chanceBSkills[i], currentLevel + 1, 0);
+                }
+
+            if (!isPetCareer)
+                for (int i = 0; i < 8; i++)
+                {
+                    insertBcon(chanceAGood[i], currentLevel + 1, 0);
+                    insertBcon(chanceABad[i], currentLevel + 1, 0);
+                    insertBcon(chanceBGood[i], currentLevel + 1, 0);
+                    insertBcon(chanceBBad[i], currentLevel + 1, 0);
+                }
+            for (int i = 8; i < chanceAGood.Length; i++)
+            {
+                insertBcon(chanceAGood[i], currentLevel + 1, 0);
+                insertBcon(chanceABad[i], currentLevel + 1, 0);
+                insertBcon(chanceBGood[i], currentLevel + 1, 0);
+                insertBcon(chanceBBad[i], currentLevel + 1, 0);
+            }
+
+            for (byte i = 1; i <= languageString.Count; i++)
+            {
+                for (int k = ((StrItem[])chanceCardsText[i]).Length; k < newNoLevels * 12 + 19; k++)
+                    chanceCardsText.Add(i, "", "");
+                StrItem[] items = chanceCardsText[i];
+                for (int j = newNoLevels; j > newLevel; j--)
+                    for (int k = 7; k < 19; k++)
+                        items[j * 12 + k].Title = items[(j - 1) * 12 + k].Title;
+                for (int k = 7; k < 19; k++)
+                    items[newLevel * 12 + k].Title = "";
+            }
+
+            usitems = chanceCardsText[us];
+            usitems[newLevel * 12 + 7].Title = "Choice A";
+            usitems[newLevel * 12 + 8].Title = "Choice B";
+            usitems[newLevel * 12 + 9].Title = "Male Text";
+            usitems[newLevel * 12 + 10].Title = "Female Text";
+            usitems[newLevel * 12 + 11].Title = "Pass A Male";
+            usitems[newLevel * 12 + 12].Title = "Pass A Female";
+            usitems[newLevel * 12 + 13].Title = "Fail A Male";
+            usitems[newLevel * 12 + 14].Title = "Fail A Female";
+            usitems[newLevel * 12 + 15].Title = "Pass B Male";
+            usitems[newLevel * 12 + 16].Title = "Pass B Female";
+            usitems[newLevel * 12 + 17].Title = "Fail B Male";
+            usitems[newLevel * 12 + 18].Title = "Fail B Female";
+            #endregion
+
+            noLevelsChanged(newNoLevels);
+
+            internalchg = false;
         }
         private void miRemoveLvl_Click(object sender, System.EventArgs e)
         {
+            if (internalchg) return;
+            internalchg = true;
+
             ushort newNoLevels = (ushort)(noLevels - 1);
 
             tuning[0] = (short)newNoLevels;
 
-            if (PTO.Count > 11)
+            //if (PTO.Count > 11)
+            //{
+            //}
+            PTO.RemoveAt(currentLevel);
+            if (lifeScore != null)
+                lifeScore.RemoveAt(currentLevel);
+
+            #region Job Details
+            ushort newFemaleOffset = (ushort)(newNoLevels * 2);
+            for (byte l = 1; l <= languageString.Count; l++)
             {
-                PTO.RemoveAt(noLevels);
-                lifeScore.RemoveAt(noLevels);
-
-                startHour.RemoveAt(noLevels);
-                hoursWorked.RemoveAt(noLevels);
-                daysWorked.RemoveAt(noLevels);
-                if (!isPetCareer)
+                // Make safe for empty languages
+                for (int i = ((StrItem[])jobTitles[l]).Length; i < noLevels * 4 + 1; i++) jobTitles.Add(l, "", "");
+                StrItem[] items = jobTitles[l];
+                // Shift male entries down over removed level
+                for (int i = currentLevel; i < noLevels; i++)
                 {
-                    wages.RemoveAt(noLevels);
+                    items[(i - 1) * 2 + 1].Title = items[i * 2 + 1].Title;
+                    items[(i - 1) * 2 + 2].Title = items[i * 2 + 2].Title;
                 }
-                else
+                // Shift all female entries down over male entries
+                for (int i = 1; i < noLevels; i++)
                 {
-                    wagesDog.RemoveAt(noLevels);
-                    wagesCat.RemoveAt(noLevels);
+                    items[newFemaleOffset + (i * 2) + 1].Title = items[femaleOffset + (i * 2) + 1].Title;
+                    items[newFemaleOffset + (i * 2) + 2].Title = items[femaleOffset + (i * 2) + 2].Title;
                 }
-
-                if (!isPetCareer)
-                    for (int i = 0; i < 8; i++)
-                    {
-                        skillReq[i].RemoveAt(noLevels);
-                        chanceASkills[i].RemoveAt(noLevels);
-                        chanceBSkills[i].RemoveAt(noLevels);
-                    }
-
-                friends.RemoveAt(noLevels);
-
-                for (int i = 0; i < 11; i++)
-                    motiveDeltas[i].RemoveAt(noLevels);
-
-                if (!isPetCareer)
-                    for (int i = 0; i < 8; i++)
-                    {
-                        chanceAGood[i].RemoveAt(noLevels);
-                        chanceABad[i].RemoveAt(noLevels);
-                        chanceBGood[i].RemoveAt(noLevels);
-                        chanceBBad[i].RemoveAt(noLevels);
-                    }
-                for (int i = 8; i < 10; i++)
+                // Shift female entries down over removed level
+                for (int i = currentLevel; i < noLevels; i++)
                 {
-                    chanceAGood[i].RemoveAt(noLevels);
-                    chanceABad[i].RemoveAt(noLevels);
-                    chanceBGood[i].RemoveAt(noLevels);
-                    chanceBBad[i].RemoveAt(noLevels);
+                    items[newFemaleOffset + (i - 1) * 2 + 1].Title = items[newFemaleOffset + (i * 2) + 1].Title;
+                    items[newFemaleOffset + (i - 1) * 2 + 2].Title = items[newFemaleOffset + (i * 2) + 2].Title;
                 }
-                chanceChance.RemoveAt(noLevels);
-
-                outfitGUID.RemoveAt(noLevels * 2);
-                outfitGUID.RemoveAt(noLevels * 2);
-                unchecked
-                {
-                    vehicleGUID.RemoveAt(noLevels * 2);
-                    vehicleGUID.RemoveAt(noLevels * 2);
-                }
+                // Remove unused entries
+                for (int i = items.Length - 4; i < items.Length; i++)
+                    jobTitles.Remove(items[i]);
             }
 
-            for (int i = 0; i < jobTitles.Languages.Length; i++)
+            outfit.RemoveAt(currentLevel - 1);
+            outfit.RemoveAt(currentLevel - 1);
+            vehicle.RemoveAt(currentLevel - 1);
+            vehicle.RemoveAt(currentLevel - 1);
+            #endregion
+
+            #region Hours & Wages
+            startHour.RemoveAt(currentLevel);
+            hoursWorked.RemoveAt(currentLevel);
+            if (!isPetCareer)
             {
-                SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(jobTitles.Languages[i].Id);
-                SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(l);
-                if ((l.Id != 2) && (l.Id != 12) && (l.Id != 13))
+                wages.RemoveAt(currentLevel);
+            }
+            else
+            {
+                wagesDog.RemoveAt(currentLevel);
+                wagesCat.RemoveAt(currentLevel);
+            }
+            daysWorked.RemoveAt(currentLevel);
+
+            for (int i = 0; i < 11; i++)
+                motiveDeltas[i].RemoveAt(currentLevel);
+            #endregion
+
+            #region Promotion
+            if (!isPetCareer)
+                for (int i = 0; i < skillReq.Length; i++)
+                    skillReq[i].RemoveAt(currentLevel);
+            // nothing to do for Pets
+            friends.RemoveAt(currentLevel);
+            #endregion
+
+            #region Chance Cards
+            chanceChance.RemoveAt(currentLevel);
+            if (!isPetCareer)
+                for (int i = 0; i < chanceASkills.Length; i++)
                 {
-                    for (int j = 0; j < noLevels; j++)
-                    {
-                        items[j * 2 - 1 + femaleOffset].Title = items[j * 2 + 1 + femaleOffset].Title;
-                        items[j * 2 + femaleOffset].Title = items[j * 2 + 2 + femaleOffset].Title;
-                    }
+                    chanceASkills[i].RemoveAt(currentLevel);
+                    chanceBSkills[i].RemoveAt(currentLevel);
                 }
 
-                for (int j = 0; j < 4; j++)
-                    items.Remove(items[items.Length - 1]);
+            if (!isPetCareer)
+                for (int i = 0; i < 8; i++)
+                {
+                    chanceAGood[i].RemoveAt(currentLevel);
+                    chanceABad[i].RemoveAt(currentLevel);
+                    chanceBGood[i].RemoveAt(currentLevel);
+                    chanceBBad[i].RemoveAt(currentLevel);
+                }
+            for (int i = 8; i < chanceAGood.Length; i++)
+            {
+                chanceAGood[i].RemoveAt(currentLevel);
+                chanceABad[i].RemoveAt(currentLevel);
+                chanceBGood[i].RemoveAt(currentLevel);
+                chanceBBad[i].RemoveAt(currentLevel);
             }
 
-            for (int i = 0; i < chanceCardsText.Languages.Length; i++)
+            for (byte i = 1; i <= languageString.Count; i++)
             {
-                SimPe.PackedFiles.Wrapper.StrLanguage l = new SimPe.PackedFiles.Wrapper.StrLanguage(chanceCardsText.Languages[i].Id);
-                SimPe.PackedFiles.Wrapper.StrItemList items = chanceCardsText.LanguageItems(l);
-                for (int j = 0; j < 12; j++)
-                    items.Remove(items[items.Length - 1]);
+                // Make safe for empty languages
+                for (int k = ((StrItem[])chanceCardsText[i]).Length; k < noLevels * 12 + 19; k++)
+                    chanceCardsText.Add(i, "", "");
+                StrItem[] items = chanceCardsText[i];
+                // Shift entries down over removed level
+                for (int j = currentLevel; j < noLevels; j++)
+                    for (int k = 7; k < 19; k++)
+                        items[j * 12 + k].Title = items[(j + 1) * 12 + k].Title;
+                // Remove unused entries
+                for (int k = 7; k < 19; k++)
+                    chanceCardsText.Remove(items[noLevels * 12 + k]);
             }
+            #endregion
 
             noLevelsChanged(newNoLevels);
+
+            internalchg = false;
         }
+
         private void miEnglishOnly_Click(object sender, System.EventArgs e)
         {
             englishOnly = !englishOnly;
@@ -4433,31 +4408,19 @@ namespace SimPe.Plugin
 		{
             if (internalchg) return;
 			string text = ((System.Windows.Forms.TextBox)sender).Text;
-			SimPe.PackedFiles.Wrapper.StrItemList items = catalogueDesc.LanguageItems(currentLanguage);
-			items[0].Title = text;
+            catalogueDesc[currentLanguage][0].Title = text;
 		}
-        private void CareerReward_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CareerReward.SelectedIndex < 2)
-                CareerReward.Enabled = false;
-        }
-        private void cbUpgrade_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbUpgrade.SelectedIndex < 2)
-                cbUpgrade.Enabled = false;
-        }
         private void Language_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (internalchg) return;
             levelChanging = true;
 
             int index = ((System.Windows.Forms.ComboBox)sender).SelectedIndex;
-            currentLanguage = new SimPe.PackedFiles.Wrapper.StrLanguage((byte)languageID[index]);
+            currentLanguage = (byte)(index + 1);
             JobDetailList.Items.Clear();
             fillJobDetails();
 
-            SimPe.PackedFiles.Wrapper.StrItemList items = catalogueDesc.LanguageItems(currentLanguage);
-            CareerTitle.Text = items[0].Title;
+            CareerTitle.Text = catalogueDesc[currentLanguage][0].Title;
             levelChanging = false;
 
             ushort newLevel = currentLevel;
@@ -4482,8 +4445,7 @@ namespace SimPe.Plugin
             string text = jdpMale.TitleValue;
             ListViewItem item = JobDetailList.Items[currentLevel - 1];
             item.SubItems[1].Text = text;
-            SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(currentLanguage);
-            items[currentLevel * 2 - 1].Title = text;
+            jobTitles[currentLanguage][currentLevel * 2 - 1].Title = text;
         }
         private void jdpMale_DescValueChanged(object sender, EventArgs e)
         {
@@ -4491,54 +4453,39 @@ namespace SimPe.Plugin
             string text = jdpMale.DescValue;
             ListViewItem item = JobDetailList.Items[currentLevel - 1];
             item.SubItems[2].Text = text;
-            SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(currentLanguage);
-            items[currentLevel * 2].Title = text;
+            jobTitles[currentLanguage][currentLevel * 2].Title = text;
         }
         private void jdpFemale_TitleValueChanged(object sender, EventArgs e)
         {
             if (internalchg) return;
             string text = jdpFemale.TitleValue;
-			SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(currentLanguage);
-			items[currentLevel * 2 - 1 + femaleOffset].Title = text;
+            jobTitles[currentLanguage][currentLevel * 2 - 1 + femaleOffset].Title = text;
 		}
         private void jdpFemale_DescValueChanged(object sender, EventArgs e)
         {
             if (internalchg) return;
             string text = jdpFemale.DescValue;
-			SimPe.PackedFiles.Wrapper.StrItemList items = jobTitles.LanguageItems(currentLanguage);
-			items[currentLevel * 2  + femaleOffset].Title = text;
+            jobTitles[currentLanguage][currentLevel * 2 + femaleOffset].Title = text;
 		}
-        private void Outfit_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void gcOutfit_GUIDChooserValueChanged(object sender, EventArgs e)
         {
             if (internalchg) return;
 
-            int index = ((System.Windows.Forms.ComboBox)sender).SelectedIndex;
             ListViewItem item = JobDetailList.Items[currentLevel - 1];
-            item.SubItems[3].Text = outfitStrings[index];
-            if (index == outfitGuids.Length) // unknown
-                return;
+            item.SubItems[3].Text = StringFromGUID(gcOutfit.Value, outfitGUID, outfitName);
 
-            ushort val1 = (ushort)(outfitGuids[index] % 65536);
-            ushort val2 = (ushort)(outfitGuids[index] / 65536);
-
-            outfitGUID[currentLevel * 2] = (short)val1;
-            outfitGUID[currentLevel * 2 + 1] = (short)val2;
+            outfit[currentLevel * 2] = (short)(gcOutfit.Value & 0xffff);
+            outfit[currentLevel * 2 + 1] = (short)(gcOutfit.Value >> 16 & 0xffff);
         }
-        private void Vehicle_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void gcVehicle_GUIDChooserValueChanged(object sender, EventArgs e)
         {
             if (internalchg) return;
 
-            int index = ((System.Windows.Forms.ComboBox)sender).SelectedIndex;
             ListViewItem item = JobDetailList.Items[currentLevel - 1];
-            item.SubItems[4].Text = vehicleStrings[index];
-            if (index == vehicleGuids.Length) // unknown
-                return;
+            item.SubItems[4].Text = StringFromGUID(gcVehicle.Value, vehicleGUID, vehicleName);
 
-            ushort val1 = (ushort)(vehicleGuids[index] % 65536);
-            ushort val2 = (ushort)(vehicleGuids[index] / 65536);
-
-            vehicleGUID[currentLevel * 2] = (short)val1;
-            vehicleGUID[currentLevel * 2 + 1] = (short)val2;
+            vehicle[currentLevel * 2] = (short)(gcVehicle.Value & 0xffff);
+            vehicle[currentLevel * 2 + 1] = (short)(gcVehicle.Value >> 16 & 0xffff);
         }
 
         private void HoursWagesList_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -4706,7 +4653,7 @@ namespace SimPe.Plugin
 
         private void lnudChanceCurrentLevel_ValueChanged(object sender, EventArgs e)
         {
-            if (levelChanging) return;
+            if (levelChanging || internalchg) return;
             levelChanged((ushort)lnudChanceCurrentLevel.Value);
         }
         private void ChanceCopy_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
