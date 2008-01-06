@@ -1861,7 +1861,7 @@
 </value>
   </data>
   <data name="miOpen.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Strg+O</value>
+    <value>Ctrl+O</value>
   </data>
   <data name="miOpen.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 22</value>
@@ -1886,7 +1886,7 @@
 </value>
   </data>
   <data name="miSave.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Strg+S</value>
+    <value>Ctrl+S</value>
   </data>
   <data name="miSave.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 22</value>
@@ -1939,7 +1939,7 @@
 </value>
   </data>
   <data name="miClose.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Strg+W</value>
+    <value>Ctrl+W</value>
   </data>
   <data name="miClose.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 22</value>
@@ -2096,7 +2096,7 @@
 </value>
   </data>
   <data name="miRunSims.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Strg+R</value>
+    <value>Ctrl+R</value>
   </data>
   <data name="miRunSims.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 22</value>
