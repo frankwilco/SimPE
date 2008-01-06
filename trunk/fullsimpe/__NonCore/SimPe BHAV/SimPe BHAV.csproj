@@ -98,11 +98,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="pjse.coder.plugin, Version=4.0.2914.24864, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\SimPe\Plugins\pjse.coder.plugin.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -118,6 +113,11 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
+    <ProjectReference Include="..\..\..\pjseCoderPlugin-cvs\SimPe BHAV\SimPe pjse coder plugin.csproj">
+      <Project>{19BF4C91-3A16-41D2-A7F0-2DE5BD7E13CF}</Project>
+      <Name>SimPe pjse coder plugin</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\SimPe Clst\SimPe Clst.csproj">
       <Project>{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}</Project>
       <Name>SimPe Clst</Name>
