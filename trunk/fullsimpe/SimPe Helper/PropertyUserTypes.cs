@@ -394,7 +394,7 @@ namespace Ambertation
 			} 
 			else if (digitbase==2) 
 			{
-				return "b"+SimPe.Helper.StrLength(System.Convert.ToString(val, 2), len);
+				return "b"+SimPe.Helper.StrLength(System.Convert.ToString(val, 2), len, false);
 			}
 			else 
 			{
