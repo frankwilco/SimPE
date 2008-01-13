@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>Theo's Shack</title>
+  <link rel="Stylesheet" type="text/css" href="../textbook.css" />
+	<style type="text/css">
+	td, th{ font: 9pt Tahoma; color: black; border: 1px solid gray;}
+	th { font-style: italic; background-color: #CCCCCC; }
+	td { text-align: right; background-color: #EEEEEE; padding-right: 5px}
+	table { border-collapse:collapse; border: 2px solid gray; }
+	</style>
+	
+	<script language="javascript" type="text/javascript">
+	
+	function OpenWindow(url, width, height) {
+		window.open(url, "W1", "width="+width+",height="+height+",scrollbars=no");
+	}
+	
+	</script>
+</head>
+
+<body>
+<h1>/doc</h1>
+<h2>The AGED resource</h2>
+<div class="Panel">
+<p>Here are a few notes about the AGED resource that is found on each sim character package.</p>
+<p>The listcnt property is the length of a list of items defined by the properties <strong>ls</strong><em>n</em>, <strong>lk</strong><em>n</em> and <strong>le</strong><em>n</em><strong>_0</strong>, where <em>n</em> falls into the range from 0 to the value of the <strong>listcnt</strong> property minus 1.</p>
+<p>Each item corresponds to this structure:</p>
+<ul>
+  <li><strong>S</strong>; unknown purpose, always &quot;1&quot;</li>
+  <li><strong>K</strong>; formatted as string, but always parsed as a 32 bit integer.
+		<div>The high 16 bits define the <a href="http://www.sims2wiki.info/GZPS" onclick="OpenWindow('gzps_category.html', 716, 96); return false;">SkinCategory</a>, while the low 16 bits define the OutfitType.</div>
+		<div>The OutfitType enumeration has the following values: <em>Hair</em> (0x01), <em>Face</em> (0x02),  <em>Top</em> (0x04), <em>FullBody</em> (0x08) and <em>Bottom</em> (0x10)</div>
+	</li>
+  <li><strong>E0</strong>; index in the 3IDR resource that points to the Cpf.</li>
+</ul>
+</div>
+
+<div class="Panel">
+
+<p>Here is an actual example (the S values have been omitted):</p>
+<pre>listcnt = 0x0000001C
+lk0     = &quot;65537&quot;
+le0_0   = 0x0000000B
+lk1     = &quot;65538&quot;
+le1_0   = 0x0000000C
+lk2     = &quot;65540&quot;
+le2_0   = 0x0000000D
+lk3     = &quot;65552&quot;
+le3_0   = 0x0000000E
+lk4     = &quot;524289&quot;
+le4_0   = 0x0000000B
+lk5     = &quot;524290&quot;
+le5_0   = 0x0000000C
+lk6     = &quot;524296&quot;
+le6_0   = 0x00000012
+lk7     = &quot;1048577&quot;
+le7_0   = 0x0000000B
+lk8     = &quot;1048578&quot;
+le8_0   = 0x0000000C
+lk9     = &quot;1048584&quot;
+le9_0   = 0x00000013
+lk10    = &quot;2097153&quot;
+le10_0  = 0x0000000B
+lk11    = &quot;2097154&quot;
+le11_0  = 0x0000000C
+lk12    = &quot;2097160&quot;
+le12_0  = 0x00000014
+lk13    = &quot;4194305&quot;
+le13_0  = 0x0000000B
+lk14    = &quot;4194306&quot;
+le14_0  = 0x0000000C
+lk15    = &quot;4194312&quot;
+le15_0  = 0x00000015
+lk16    = &quot;8388609&quot;
+le16_0  = 0x00000016
+lk17    = &quot;8388610&quot;
+le17_0  = 0x00000017
+lk18    = &quot;8388612&quot;
+le18_0  = 0x00000018
+lk19    = &quot;8388624&quot;
+le19_0  = 0x00000019
+lk20    = &quot;16777217&quot;
+le20_0  = 0x0000000B
+lk21    = &quot;16777218&quot;
+le21_0  = 0x0000000C
+lk22    = &quot;33554433&quot;
+le22_0  = 0x0000000B
+lk23    = &quot;33554434&quot;
+le23_0  = 0x0000000C
+lk24    = &quot;33554440&quot;
+le24_0  = 0x0000001A
+lk25    = &quot;67108865&quot;
+le25_0  = 0x0000000B
+lk26    = &quot;67108866&quot;
+le26_0  = 0x0000000C
+lk27    = &quot;67108872&quot;
+le27_0  = 0x00000005</pre>
+
+
+<p>By parsing the <strong>K</strong> value, the following index table is built:</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th></th>
+			<th width="64">Everyday</th>
+			<th width="64">Swimwear</th>
+			<th width="64">PJ</th>
+			<th width="64">Formal</th>
+			<th width="64">Undies</th>
+			<th width="64">Skin</th>
+			<th width="64">Pregnant</th>
+			<th width="64">Activewear</th>
+			<th width="64">Unknown</th>
+		</tr>
+		<tr>
+			<th>Hair</th>
+			<td>11</td> <!--Everyday -->
+			<td>11</td> <!--Swimwear -->
+			<td>11</td> <!--PJ -->
+			<td>11</td> <!--Formal -->
+			<td>11</td> <!--Undies -->
+			<td>22</td> <!--Skin -->
+			<td>11</td> <!--Pregnant -->
+			<td>11</td> <!--Activewear -->
+			<td>11</td> <!--Unknown -->
+		</tr>
+		<tr>
+			<th>Face</th>
+			<td>12</td> <!--Everyday -->
+			<td>12</td> <!--Swimwear -->
+			<td>12</td> <!--PJ -->
+			<td>12</td> <!--Formal -->
+			<td>12</td> <!--Undies -->
+			<td>23</td> <!--Skin -->
+			<td>12</td> <!--Pregnant -->
+			<td>12</td> <!--Activewear -->
+			<td>12</td> <!--Unknown -->
+		</tr>
+		<tr>
+			<th>Top</th>
+			<td>13</td> <!--Everyday -->
+			<td>&nbsp;</td> <!--Swimwear -->
+			<td>&nbsp;</td> <!--PJ -->
+			<td>&nbsp;</td> <!--Formal -->
+			<td>&nbsp;</td> <!--Undies -->
+			<td>24</td> <!--Skin -->
+			<td>&nbsp;</td> <!--Pregnant -->
+			<td>&nbsp;</td> <!--Activewear -->
+			<td>&nbsp;</td> <!--Unknown -->
+		</tr>
+		<tr>
+			<th>Body</th>
+			<td>&nbsp;</td> <!--Everyday -->
+			<td>18</td> <!--Swimwear -->
+			<td>19</td> <!--PJ -->
+			<td>20</td> <!--Formal -->
+			<td>21</td> <!--Undies -->
+			<td>&nbsp;</td> <!--Skin -->
+			<td>&nbsp;</td> <!--Pregnant -->
+			<td>26</td> <!--Activewear -->
+			<td>5</td> <!--Unknown -->
+		</tr>
+		<tr>
+			<th>Bottom</th>
+			<td>14</td> <!--Everyday -->
+			<td>&nbsp;</td> <!--Swimwear -->
+			<td>&nbsp;</td> <!--PJ -->
+			<td>&nbsp;</td> <!--Formal -->
+			<td>&nbsp;</td> <!--Undies -->
+			<td>25</td> <!--Skin -->
+			<td>&nbsp;</td> <!--Pregnant -->
+			<td>&nbsp;</td> <!--Activewear -->
+			<td>&nbsp;</td> <!--Unknown -->
+		</tr>
+	</tbody>
+</table>
+
+<p>Using each index on the 3IDR item array, it's possible to determine the sim's current clothing.</p>
+</div>
+
+<div class="Panel">
+<p>However, there are a few quirks regarding the SkinCategory:</p>
+<ul>
+	<li>The <em>Everyday</em> category uses the value 0x0001 instead of 0x0007.</li>
+	<li>The <em>Unknown</em> category has the value 0x0400.</li>
+</ul>
+
+<p>It should also be noted that the items that correspond to the OutfitType <em>Face</em> point to the local Cpf in the sim character package.</p>
+
+<p>However, this "clothing" table is not related to the sim's wardrobe, it contains only the items that the sim is actually "wearing".</p>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,300 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9563298C-FC55-4B98-A9E7-AC71E026E16A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimPe.Plugin</RootNamespace>
+    <AssemblyName>theos.simsurgery.plugin</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\__Debug\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\__Release\Plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="UI\Controls\PackageSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\PackageSelector.Designer.cs">
+      <DependentUpon>PackageSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wrapper\AbstractCpfInfo.cs" />
+    <Compile Include="Wrapper\AbstractRcolInfo.cs" />
+    <Compile Include="Helper\FileDatabase.cs" />
+    <Compile Include="Wrapper\AbstractRefInfo.cs" />
+    <Compile Include="Wrapper\SkinReferenceTable.cs" />
+    <Compile Include="Wrapper\GenericCpfInfo.cs" />
+    <Compile Include="Helper\EventLog.cs" />
+    <Compile Include="Helper\Localizable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrapper\MaterialDefinitionInfo.cs" />
+    <Compile Include="Scenegraph\MeshChain.cs" />
+    <Compile Include="PackageBrowserSettings.cs" />
+    <Compile Include="Properties\SwatchIcons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwatchIcons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Wrapper\AgeData.cs" />
+    <Compile Include="Wrapper\SkinInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Wrapper\TextureOverlayInfo.cs" />
+    <Compile Include="Sims\SimInfo.cs" />
+    <Compile Include="Sims\SimsRegistry.cs" />
+    <Compile Include="Surgery\CloneAccessory.cs" />
+    <Compile Include="Surgery\CloneClothing.cs" />
+    <Compile Include="Surgery\CloneEyes.cs" />
+    <Compile Include="Surgery\CloneFace.cs" />
+    <Compile Include="Surgery\Finalize.cs" />
+    <Compile Include="Surgery\CloneHair.cs" />
+    <Compile Include="Surgery\CloneMakeup.cs" />
+    <Compile Include="Surgery\GeneticProcedure.cs" />
+    <Compile Include="Surgery\OperationRoom.cs" />
+    <Compile Include="Surgery\Procedure.cs" />
+    <Compile Include="Surgery\CloneSkin.cs" />
+    <Compile Include="UI\PackageBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PackageBrowser.Designer.cs">
+      <DependentUpon>PackageBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EyeBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EyeBrowser.Designer.cs">
+      <DependentUpon>EyeBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SkinBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SkinBrowser.Designer.cs">
+      <DependentUpon>SkinBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SimBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SurgeryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SurgeryForm.Designer.cs">
+      <DependentUpon>SurgeryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SurgeryToolExt.cs" />
+    <Compile Include="Helper\Utility.cs" />
+    <Compile Include="Helper\EnumLocalizer.cs" />
+    <Compile Include="UI\Controls\WarningPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\WarningPanel.Designer.cs">
+      <DependentUpon>WarningPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WrapperFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\3d.simpe" />
+    <Content Include="Resources\bin.simpe" />
+    <EmbeddedResource Include="PackageBrowserSettings.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PackageBrowserSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\SwatchIcons.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SwatchIcons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery\CloneAccessory.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CloneAccessory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery\CloneClothing.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CloneClothing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery\CloneEyes.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CloneEyes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery\CloneFace.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CloneFace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery\Finalize.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Finalize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery\CloneHair.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CloneHair.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery\CloneMakeup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CloneMakeup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery\CloneSkin.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CloneSkin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surgery\OperationRoom.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OperationRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\PackageSelector.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PackageSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PackageBrowser.resx">
+      <DependentUpon>PackageBrowser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EyeBrowser.resx">
+      <DependentUpon>EyeBrowser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SkinBrowser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SkinBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SimBrowser.resx">
+      <DependentUpon>SimBrowser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SurgeryForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SurgeryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helper\EnumLocalizer.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EnumLocalizer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\WarningPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WarningPanel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\mr_pearhead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="doc\aged_resource.html" />
+    <Content Include="doc\gzps_category.html" />
+    <Content Include="Resources\eye.alien.png" />
+    <Content Include="Resources\eye.dkblue.png" />
+    <Content Include="Resources\eye.dkbrown.png" />
+    <Content Include="Resources\eye.gray.png" />
+    <Content Include="Resources\eye.green.png" />
+    <Content Include="Resources\eye.ltblue.png" />
+    <Content Include="Resources\itemClear.png" />
+    <Content Include="Resources\itemFind.png" />
+    <Content Include="Resources\skin.alien.png" />
+    <Content Include="Resources\skin.dark.png" />
+    <Content Include="Resources\skin.light.png" />
+    <Content Include="Resources\skin.mannequin.png" />
+    <Content Include="Resources\skin.medium.png" />
+    <Content Include="Resources\skin.tan.png" />
+    <Content Include="Resources\skin.zombie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SimPe Cache\SimPe Cache.csproj">
+      <Project>{C949FB46-0C06-4C5D-92AE-5DD7F6E53364}</Project>
+      <Name>SimPe Cache</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SimPe FileHandler\SimPe FileHandlers.csproj">
+      <Project>{97551C0A-6295-4E32-8E15-A4FF456E65A6}</Project>
+      <Name>SimPe FileHandlers</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SimPe HandlerCommon\SimPe HandlerCommon.csproj">
+      <Project>{A4CC48FD-9574-4F0B-B721-9E8C1B1E6A8A}</Project>
+      <Name>SimPe HandlerCommon</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SimPe Helper\SimPe Helper.csproj">
+      <Project>{59E3C353-1350-42D8-A045-CBBAD232F228}</Project>
+      <Name>SimPe Helper</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SimPe Interfaces\SimPe Interfaces.csproj">
+      <Project>{74FCBBEC-105A-4006-A1FC-8EF4F80FD2D7}</Project>
+      <Name>SimPe Interfaces</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SimPe Packages\SimPe Packages.csproj">
+      <Project>{1C6C45BF-FE19-4C23-B327-01F45B0F269C}</Project>
+      <Name>SimPe Packages</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SimPe RCOL\SimPe RCOL.csproj">
+      <Project>{74517907-2236-4C45-80ED-E188D5E5CE0E}</Project>
+      <Name>SimPe RCOL</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SimPe Scenegraph\SimPe Scenegraph.csproj">
+      <Project>{1151A88B-47AF-41DA-BCDF-DEFED0CC326E}</Project>
+      <Name>SimPe Scenegraph</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SimPe Sims\SimPe Sims.csproj">
+      <Project>{9877B092-C8C0-4B84-B5A0-F9A68AA1C0E4}</Project>
+      <Name>SimPe Sims</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SimPe Workspace Helper\SimPe Workspace Helper.csproj">
+      <Project>{45021667-BAD2-4ECA-8423-F4734F914CBB}</Project>
+      <Name>SimPe Workspace Helper</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

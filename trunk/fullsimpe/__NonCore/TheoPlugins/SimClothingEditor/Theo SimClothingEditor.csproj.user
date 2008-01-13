@@ -1,0 +1,10 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\SimPE\SimPe.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ReferencePath>C:\Program Files\SimPE\</ReferencePath>
+    <ProjectView>ProjectFiles</ProjectView>
+  </PropertyGroup>
+</Project>
