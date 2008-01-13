@@ -126,6 +126,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Theo SimClothingEdito
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe Theo SimSurgery", "..\__NonCore\TheoPlugins\SimSurgery\SimPe Theo SimSurgery.csproj", "{9563298C-FC55-4B98-A9E7-AC71E026E16A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe pjObjKeyTool", "..\..\pjObjKeyTool-cvs\pjObjKeyTool\SimPe pjObjKeyTool.csproj", "{DA114369-0A54-42A9-A3B0-F48FC5EA4F7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPe pjBodyMeshTool", "..\..\pjBodyMeshTool-cvs\pjBodyMeshTool\SimPe pjBodyMeshTool.csproj", "{0E0A4A2C-1BAE-4659-9511-5C089FA4E154}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -539,6 +543,22 @@ Global
 		{9563298C-FC55-4B98-A9E7-AC71E026E16A}.Release MAC|Any CPU.Build.0 = Release|Any CPU
 		{9563298C-FC55-4B98-A9E7-AC71E026E16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9563298C-FC55-4B98-A9E7-AC71E026E16A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA114369-0A54-42A9-A3B0-F48FC5EA4F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA114369-0A54-42A9-A3B0-F48FC5EA4F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA114369-0A54-42A9-A3B0-F48FC5EA4F7D}.InProgress|Any CPU.ActiveCfg = Release|Any CPU
+		{DA114369-0A54-42A9-A3B0-F48FC5EA4F7D}.InProgress|Any CPU.Build.0 = Release|Any CPU
+		{DA114369-0A54-42A9-A3B0-F48FC5EA4F7D}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{DA114369-0A54-42A9-A3B0-F48FC5EA4F7D}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{DA114369-0A54-42A9-A3B0-F48FC5EA4F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA114369-0A54-42A9-A3B0-F48FC5EA4F7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0A4A2C-1BAE-4659-9511-5C089FA4E154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E0A4A2C-1BAE-4659-9511-5C089FA4E154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0A4A2C-1BAE-4659-9511-5C089FA4E154}.InProgress|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0A4A2C-1BAE-4659-9511-5C089FA4E154}.InProgress|Any CPU.Build.0 = Release|Any CPU
+		{0E0A4A2C-1BAE-4659-9511-5C089FA4E154}.Release MAC|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0A4A2C-1BAE-4659-9511-5C089FA4E154}.Release MAC|Any CPU.Build.0 = Release|Any CPU
+		{0E0A4A2C-1BAE-4659-9511-5C089FA4E154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0A4A2C-1BAE-4659-9511-5C089FA4E154}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
