@@ -4596,22 +4596,31 @@ namespace SimPe.Plugin
         }
 		private void Promo_ValueChanged(object sender, System.EventArgs e)
 		{
-            if (levelChanging || internalchg) return;
+            if (levelChanging || internalchg || sender == null) return;
 
-            ArrayList foo = new ArrayList(new NumericUpDown[] {
+            ArrayList alNud = new ArrayList(new NumericUpDown[] {
                 PromoCooking, PromoMechanical, PromoBody, PromoCharisma,
-                PromoCreativity, PromoLogic, PromoCleaning, PromoFriends
+                PromoCreativity, PromoLogic, null/*PromoGardening*/, PromoCleaning,
+                PromoFriends,
             });
-            int i = foo.IndexOf((NumericUpDown)sender);
+            int i = alNud.IndexOf((NumericUpDown)sender);
             if (i == -1) return; // crash!
-            ListViewItem item = PromoList.Items[currentLevel - 1];
 
+            ListViewItem item = PromoList.Items[currentLevel - 1];
             short val = (short)((NumericUpDown)sender).Value;
-            item.SubItems[i + 1].Text = "" + val;
-            if (i < 7)
+            if (i < 6) // Gardening not displayed, so don't need to shift up one after that point
+                item.SubItems[i + 1].Text = "" + val;
+            else
+                item.SubItems[i].Text = "" + val;
+
+            if (i < skillReq.Length)
                 skillReq[i][currentLevel] = (short)(val * 100);
-            else if (i == 7)
-                friends[currentLevel] = val;
+            else switch (i - skillReq.Length)
+                {
+                    case 0:
+                        friends[currentLevel] = val;
+                        break;
+                }
         }
 		private void Promo_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
