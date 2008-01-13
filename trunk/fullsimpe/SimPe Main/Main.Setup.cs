@@ -136,7 +136,10 @@ namespace SimPe
                 if (sga.Known) this.cbsemig.Items.Add(sga);
             if (cbsemig.Items.Count > 0) cbsemig.SelectedIndex = 0;
 
-            ReloadLayout();
+            if (!System.IO.File.Exists(SimPe.Helper.LayoutFileName))
+                ResetLayout(this, null);
+            else
+                ReloadLayout();
             
 
             //Set the Lock State of the Docks
