@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -114,276 +117,279 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="unknown">
-    <value xml:space="preserve">Nieznany</value>
+  <data name="unknown" xml:space="preserve">
+    <value>Nieznany</value>
   </data>
-  <data name="unk">
-    <value xml:space="preserve">NZN</value>
+  <data name="unk" xml:space="preserve">
+    <value>NZN</value>
   </data>
-  <data name="userdefined">
-    <value xml:space="preserve">Zdefiniowany przez użytkownika</value>
+  <data name="userdefined" xml:space="preserve">
+    <value>Zdefiniowany przez użytkownika</value>
   </data>
-  <data name="sdesc">
-    <value xml:space="preserve">Opis Sima</value>
+  <data name="sdesc" xml:space="preserve">
+    <value>Opis Sima</value>
   </data>
-  <data name="srel">
-    <value xml:space="preserve">Związki Simów</value>
+  <data name="srel" xml:space="preserve">
+    <value>Związki Simów</value>
   </data>
-  <data name="famt">
-    <value xml:space="preserve">Związki rodzinne</value>
+  <data name="famt" xml:space="preserve">
+    <value>Związki rodzinne</value>
   </data>
-  <data name="str">
-    <value xml:space="preserve">Listy tekstowe</value>
+  <data name="str" xml:space="preserve">
+    <value>Listy tekstowe</value>
   </data>
-  <data name="realsize">
-    <value xml:space="preserve">Prawdziwa wielkość</value>
+  <data name="realsize" xml:space="preserve">
+    <value>Prawdziwa wielkość</value>
   </data>
-  <data name="none">
-    <value xml:space="preserve">Brak</value>
+  <data name="none" xml:space="preserve">
+    <value>Brak</value>
   </data>
-  <data name="err000">
-    <value xml:space="preserve">Błąd podczas wczytywania spakowanego pliku.</value>
+  <data name="err000" xml:space="preserve">
+    <value>Błąd podczas wczytywania spakowanego pliku.</value>
   </data>
-  <data name="proceed">
-    <value xml:space="preserve">Kontynuować?</value>
+  <data name="proceed" xml:space="preserve">
+    <value>Kontynuować?</value>
   </data>
-  <data name="ask000">
-    <value xml:space="preserve">Czy chcesz zatrzymać rozpakowywanie?</value>
+  <data name="ask000" xml:space="preserve">
+    <value>Czy chcesz zatrzymać rozpakowywanie?</value>
   </data>
-  <data name="errwritingfile">
-    <value xml:space="preserve">Błąd podczas zapisywania do pliku</value>
+  <data name="errwritingfile" xml:space="preserve">
+    <value>Błąd podczas zapisywania do pliku</value>
   </data>
-  <data name="err001">
-    <value xml:space="preserve">Błąd podczas zapisywania deskryptora pakietu.</value>
+  <data name="err001" xml:space="preserve">
+    <value>Błąd podczas zapisywania deskryptora pakietu.</value>
   </data>
-  <data name="nfo000">
-    <value xml:space="preserve">Rozpakowano plików: {0}</value>
+  <data name="nfo000" xml:space="preserve">
+    <value>Rozpakowano plików: {0}</value>
   </data>
-  <data name="err002">
-    <value xml:space="preserve">Nie można rozpakować do katalogu  </value>
+  <data name="err002" xml:space="preserve">
+    <value>Nie można rozpakować do katalogu  </value>
   </data>
-  <data name="err003">
-    <value xml:space="preserve">Błąd podczas próby zamiany pliku spakowanego plikiem {0}.</value>
+  <data name="err003" xml:space="preserve">
+    <value>Błąd podczas próby zamiany pliku spakowanego plikiem {0}.</value>
   </data>
-  <data name="erropenfile">
-    <value xml:space="preserve">Błąd podczas próby otwarcia</value>
+  <data name="erropenfile" xml:space="preserve">
+    <value>Błąd podczas próby otwarcia</value>
   </data>
-  <data name="err004">
-    <value xml:space="preserve">Błąd podczas próby otwarcia ostatnio używanego pliku.</value>
+  <data name="err004" xml:space="preserve">
+    <value>Błąd podczas próby otwarcia ostatnio używanego pliku.</value>
   </data>
-  <data name="errregistry">
-    <value xml:space="preserve">Błąd podczas próby uzyskania dostępu do rejestru</value>
+  <data name="errregistry" xml:space="preserve">
+    <value>Błąd podczas próby uzyskania dostępu do rejestru</value>
   </data>
-  <data name="delete?">
-    <value xml:space="preserve">Usunąć?</value>
+  <data name="delete?" xml:space="preserve">
+    <value>Usunąć?</value>
   </data>
-  <data name="askdelete">
-    <value xml:space="preserve">Czy na pewno chcesz usunąć zaznaczone pliki?</value>
+  <data name="askdelete" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć zaznaczone pliki?</value>
   </data>
-  <data name="err005">
-    <value xml:space="preserve">Błąd podczas próby usunięcia spakowanego pliku</value>
+  <data name="err005" xml:space="preserve">
+    <value>Błąd podczas próby usunięcia spakowanego pliku</value>
   </data>
-  <data name="err006">
-    <value xml:space="preserve">Błąd podczas próby dodania do spakowanego pliku</value>
+  <data name="err006" xml:space="preserve">
+    <value>Błąd podczas próby dodania do spakowanego pliku</value>
   </data>
-  <data name="err007">
-    <value xml:space="preserve">Maksymalne zwiększenie zainteresowań wszystkich Simów jest niemożliwe</value>
+  <data name="err007" xml:space="preserve">
+    <value>Maksymalne zwiększenie zainteresowań wszystkich Simów jest niemożliwe</value>
   </data>
-  <data name="commited">
-    <value xml:space="preserve">Zmiany zostały zatwierdzone</value>
+  <data name="commited" xml:space="preserve">
+    <value>Zmiany zostały zatwierdzone</value>
   </data>
-  <data name="cantcommitfami">
-    <value xml:space="preserve">Nie można zatwierdzić pliku rodziny.</value>
+  <data name="cantcommitfami" xml:space="preserve">
+    <value>Nie można zatwierdzić pliku rodziny.</value>
   </data>
-  <data name="cantcommitsdesc">
-    <value xml:space="preserve">Nie można zatwierdzić opisu Sima.</value>
+  <data name="cantcommitsdesc" xml:space="preserve">
+    <value>Nie można zatwierdzić opisu Sima.</value>
   </data>
-  <data name="cantcommitfamt">
-    <value xml:space="preserve">Nie można zatwierdzić pliku związków rodzinnych.</value>
+  <data name="cantcommitfamt" xml:space="preserve">
+    <value>Nie można zatwierdzić pliku związków rodzinnych.</value>
   </data>
-  <data name="cantcommittie">
-    <value xml:space="preserve">Nie można zatwierdzić zmian aktualnego związku.</value>
+  <data name="cantcommittie" xml:space="preserve">
+    <value>Nie można zatwierdzić zmian aktualnego związku.</value>
   </data>
-  <data name="cantaddrelation">
-    <value xml:space="preserve">Nie można dodać tego związku</value>
+  <data name="cantaddrelation" xml:space="preserve">
+    <value>Nie można dodać tego związku</value>
   </data>
-  <data name="cantcommitrelation">
-    <value xml:space="preserve">Nie można zatwierdzić aktualnego związku.</value>
+  <data name="cantcommitrelation" xml:space="preserve">
+    <value>Nie można zatwierdzić aktualnego związku.</value>
   </data>
-  <data name="cantdeleterelation">
-    <value xml:space="preserve">Nie można usunąć związku.</value>
+  <data name="cantdeleterelation" xml:space="preserve">
+    <value>Nie można usunąć związku.</value>
   </data>
-  <data name="filenotfound">
-    <value xml:space="preserve">Nie znaleziono pliku</value>
+  <data name="filenotfound" xml:space="preserve">
+    <value>Nie znaleziono pliku</value>
   </data>
-  <data name="rightclickcopy">
-    <value xml:space="preserve">Prawe kliknięcie: skopiuj do schowka</value>
+  <data name="rightclickcopy" xml:space="preserve">
+    <value>Prawe kliknięcie: skopiuj do schowka</value>
   </data>
-  <data name="viewver">
-    <value xml:space="preserve">Przeglądarka</value>
+  <data name="viewver" xml:space="preserve">
+    <value>Przeglądarka</value>
   </data>
-  <data name="cantaddtie">
-    <value xml:space="preserve">Nie można dodać tego Sima do listy związków</value>
+  <data name="cantaddtie" xml:space="preserve">
+    <value>Nie można dodać tego Sima do listy związków</value>
   </data>
-  <data name="MyMotherIs">
-    <value xml:space="preserve">Rodzic A to</value>
+  <data name="MyMotherIs" xml:space="preserve">
+    <value>Rodzic A to</value>
   </data>
-  <data name="MyFatherIs">
-    <value xml:space="preserve">Rodzic B to</value>
+  <data name="MyFatherIs" xml:space="preserve">
+    <value>Rodzic B to</value>
   </data>
-  <data name="ImMarriedTo">
-    <value xml:space="preserve">Jestem w związku małżeńskim z</value>
+  <data name="ImMarriedTo" xml:space="preserve">
+    <value>Jestem w związku małżeńskim z</value>
   </data>
-  <data name="MySiblingIs">
-    <value xml:space="preserve">Mój brat/siostra to</value>
+  <data name="MySiblingIs" xml:space="preserve">
+    <value>Mój brat/siostra to</value>
   </data>
-  <data name="MyChildIs">
-    <value xml:space="preserve">Moje dziecko to</value>
+  <data name="MyChildIs" xml:space="preserve">
+    <value>Moje dziecko to</value>
   </data>
-  <data name="cantcommitobjd">
-    <value xml:space="preserve">Nie można zatwierdzić zmian do pliku danych obiektu.</value>
+  <data name="cantcommitobjd" xml:space="preserve">
+    <value>Nie można zatwierdzić zmian do pliku danych obiektu.</value>
   </data>
-  <data name="unnamed">
-    <value xml:space="preserve">Bez nazwy</value>
+  <data name="unnamed" xml:space="preserve">
+    <value>Bez nazwy</value>
   </data>
-  <data name="byteviewerror">
-    <value xml:space="preserve">Błąd podczas wyświetlania widoku bajtów</value>
+  <data name="byteviewerror" xml:space="preserve">
+    <value>Błąd podczas wyświetlania widoku bajtów</value>
   </data>
-  <data name="usebigfile?">
-    <value xml:space="preserve">Ten plik jest większy niż 10kb. Czy pomimo to chcesz go wczytać? (to może trochę potrwać!)</value>
+  <data name="usebigfile?" xml:space="preserve">
+    <value>Ten plik jest większy niż 10kb. Czy pomimo to chcesz go wczytać? (to może trochę potrwać!)</value>
   </data>
-  <data name="confirm">
-    <value xml:space="preserve">Potwierdzenie</value>
+  <data name="confirm" xml:space="preserve">
+    <value>Potwierdzenie</value>
   </data>
-  <data name="English_uk">
-    <value xml:space="preserve">Angielski (Wielka Brytania)</value>
+  <data name="English_uk" xml:space="preserve">
+    <value>Angielski (Wielka Brytania)</value>
   </data>
-  <data name="errconvert">
-    <value xml:space="preserve">Błąd przypisywania wartości</value>
+  <data name="errconvert" xml:space="preserve">
+    <value>Błąd przypisywania wartości</value>
   </data>
-  <data name="neighborhoodbrowser">
-    <value xml:space="preserve">Przeglądarka otoczeń</value>
+  <data name="neighborhoodbrowser" xml:space="preserve">
+    <value>Przeglądarka otoczeń</value>
   </data>
-  <data name="simsbrowser">
-    <value xml:space="preserve">Przeglądarka Simów</value>
+  <data name="simsbrowser" xml:space="preserve">
+    <value>Przeglądarka Simów</value>
   </data>
-  <data name="backuprestore">
-    <value xml:space="preserve">Czy chcesz stworzyć kopię aktualnego otoczenia przed przywróceniem jego kopii zapasowej?</value>
+  <data name="backuprestore" xml:space="preserve">
+    <value>Czy chcesz stworzyć kopię aktualnego otoczenia przed przywróceniem jego kopii zapasowej?</value>
   </data>
-  <data name="backupdelete">
-    <value xml:space="preserve">Czy na pewno chcesz usunąć wszystkie pliki przechowywane w {0}?</value>
+  <data name="backupdelete" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć wszystkie pliki przechowywane w {0}?</value>
   </data>
-  <data name="backup?">
-    <value xml:space="preserve">Stworzyć kopię?</value>
+  <data name="backup?" xml:space="preserve">
+    <value>Stworzyć kopię?</value>
   </data>
-  <data name="disclaimer">
-    <value xml:space="preserve">SimPE to narzędzie, które umożliwia zmiany wewnętrznych danych gry "The Sims 2".
+  <data name="disclaimer" xml:space="preserve">
+    <value>SimPE to narzędzie, które umożliwia zmiany wewnętrznych danych gry "The Sims 2".
 
 Wielu ludzi używa SimPE bez problemów. Jeśli jednak nie będziesz ostrożny, SimPE może uszkodzić dane gry lub nawet twój system. Nie używaj programu SimPE, jeśli nie chcesz podejmować ryzyka! Pamiętaj, że SimPE jest w wersji alfa!
 Najlepiej upewnij się, że posiadasz działającą kopię zapasową katalogu "Moje dokumenty\EA Games\The Sims 2\" przed uruchomieniem SimPE.
 
 Czy chcesz uruchomić SimPE?</value>
   </data>
-  <data name="savechanges?">
-    <value xml:space="preserve">Zapisać zmiany?</value>
+  <data name="savechanges?" xml:space="preserve">
+    <value>Zapisać zmiany?</value>
   </data>
-  <data name="savechanges">
-    <value xml:space="preserve">Czy chcesz zapisać dokonane zmiany do pakietu "{filename}"?</value>
+  <data name="savechanges" xml:space="preserve">
+    <value>Czy chcesz zapisać dokonane zmiany do pakietu "{filename}"?</value>
   </data>
-  <data name="unsavedchanges">
-    <value xml:space="preserve">Są pliki w pakiecie Package, których zmiany nie zostały zapisane i które zostaną stracone po otworzeniu nowego otoczenia. 
+  <data name="unsavedchanges" xml:space="preserve">
+    <value>Są pliki w pakiecie Package, których zmiany nie zostały zapisane i które zostaną stracone po otworzeniu nowego otoczenia. 
 		
 Czy pomimo to chcesz kontynuować?</value>
   </data>
-  <data name="errunsupportedimage">
-    <value xml:space="preserve">Ten typ obrazu nie jest obsługiwany</value>
+  <data name="errunsupportedimage" xml:space="preserve">
+    <value>Ten typ obrazu nie jest obsługiwany</value>
   </data>
-  <data name="Brazilian">
-    <value xml:space="preserve">Portugalski (Brazylia)</value>
+  <data name="Brazilian" xml:space="preserve">
+    <value>Portugalski (Brazylia)</value>
   </data>
-  <data name="savewrapperchanges">
-    <value xml:space="preserve">Czy chcesz zatwierdzić zmiany w zasobie "{name}"?
+  <data name="savewrapperchanges" xml:space="preserve">
+    <value>Czy chcesz zatwierdzić zmiany w zasobie "{name}"?
 
 Pakiet: {filename}</value>
   </data>
-  <data name="RT_Unset_Unknown">
-    <value xml:space="preserve">Nieokreślony lub nieznany</value>
+  <data name="RT_Unset_Unknown" xml:space="preserve">
+    <value>Nieokreślony lub nieznany</value>
   </data>
-  <data name="RT_Nice_Nephew">
-    <value xml:space="preserve">Siostrzeniec/a lub bratanek/a</value>
+  <data name="RT_Nice_Nephew" xml:space="preserve">
+    <value>Siostrzeniec/a lub bratanek/a</value>
   </data>
-  <data name="RT_Aunt">
-    <value xml:space="preserve">Ciocia lub wujek</value>
+  <data name="RT_Aunt" xml:space="preserve">
+    <value>Ciocia lub wujek</value>
   </data>
-  <data name="OW_Warning">
-    <value xml:space="preserve">Aby użyć tej możliwości i pracować z obiektami, które standardowo nie obsługują wielu wersji kolorystycznych, musisz pobrać i zainstalować pakiet Colour Options Enabler ze strony http://sims.ambertation.de/download.shtml.\n\nPamiętaj, że jest to wciąż testowa wersja beta i mogą występować błędy. Nie rozpowszechniaj rekolorów stworzonych tym narzędziem bez powiadamiania, że jest to wciąż wersja testowa lub beta. Nie zapomnij, że użytkownicy stworzonych rekolorów także muszą zainstalować pakiet Colour Options Enabler!\n\nKontynuować?</value>
+  <data name="OW_Warning" xml:space="preserve">
+    <value>Aby użyć tej możliwości i pracować z obiektami, które standardowo nie obsługują wielu wersji kolorystycznych, musisz pobrać i zainstalować pakiet Colour Options Enabler ze strony http://sims.ambertation.de/download.shtml.\n\nPamiętaj, że jest to wciąż testowa wersja beta i mogą występować błędy. Nie rozpowszechniaj rekolorów stworzonych tym narzędziem bez powiadamiania, że jest to wciąż wersja testowa lub beta. Nie zapomnij, że użytkownicy stworzonych rekolorów także muszą zainstalować pakiet Colour Options Enabler!\n\nKontynuować?</value>
   </data>
-  <data name="YoungAdult">
-    <value xml:space="preserve">Młody dorosły</value>
+  <data name="YoungAdult" xml:space="preserve">
+    <value>Młody dorosły</value>
   </data>
-  <data name="yes">
-    <value xml:space="preserve">Tak</value>
+  <data name="yes" xml:space="preserve">
+    <value>Tak</value>
   </data>
-  <data name="no">
-    <value xml:space="preserve">Nie</value>
+  <data name="no" xml:space="preserve">
+    <value>Nie</value>
   </data>
-  <data name="open_wnt_from_sdsc">
-    <value xml:space="preserve">Czy chcesz zatwierdzić zmiany tego Sima przed otwarciem pragnień i obaw?"</value>
+  <data name="open_wnt_from_sdsc" xml:space="preserve">
+    <value>Czy chcesz zatwierdzić zmiany tego Sima przed otwarciem pragnień i obaw?"</value>
   </data>
-  <data name="open_fami_from_sdsc">
-    <value xml:space="preserve">Czy chcesz zatwierdzić zmiany tego Sima przed otwarciem informacji o rodzinie?"</value>
+  <data name="open_fami_from_sdsc" xml:space="preserve">
+    <value>Czy chcesz zatwierdzić zmiany tego Sima przed otwarciem informacji o rodzinie?"</value>
   </data>
-  <data name="open_dna_from_sdsc">
-    <value xml:space="preserve">Czy chcesz zatwierdzić zmiany tego Sima przed otwarciem informacji DNA?"</value>
+  <data name="open_dna_from_sdsc" xml:space="preserve">
+    <value>Czy chcesz zatwierdzić zmiany tego Sima przed otwarciem informacji DNA?"</value>
   </data>
-  <data name="open_cloth_from_sdsc">
-    <value xml:space="preserve">Czy chcesz zatwierdzić zmiany tego Sima przed otwarciem pliku ubrań?"</value>
+  <data name="open_cloth_from_sdsc" xml:space="preserve">
+    <value>Czy chcesz zatwierdzić zmiany tego Sima przed otwarciem pliku ubrań?"</value>
   </data>
-  <data name="question">
-    <value xml:space="preserve">Pytanie</value>
+  <data name="question" xml:space="preserve">
+    <value>Pytanie</value>
   </data>
-  <data name="cancel">
-    <value xml:space="preserve">Anuluj</value>
+  <data name="cancel" xml:space="preserve">
+    <value>Anuluj</value>
   </data>
-  <data name="ok">
-    <value xml:space="preserve">OK</value>
+  <data name="ok" xml:space="preserve">
+    <value>OK</value>
   </data>
-  <data name="object tool">
-    <value xml:space="preserve">Narzędzia obiektów</value>
+  <data name="object tool" xml:space="preserve">
+    <value>Narzędzia obiektów</value>
   </data>
-  <data name="changed?">
-    <value xml:space="preserve">Zasób zmieniony</value>
+  <data name="changed?" xml:space="preserve">
+    <value>Zasób zmieniony</value>
   </data>
-  <data name="reschanged">
-    <value xml:space="preserve">Zasób "{name}" został zmieniony. Czy SimPe powinien go wczytać ponownie?
+  <data name="reschanged" xml:space="preserve">
+    <value>Zasób "{name}" został zmieniony. Czy SimPe powinien go wczytać ponownie?
 
 Package: {filename}</value>
   </data>
-  <data name="SimPe.Data.FamilyTieTypes.MyMotherIs">
-    <value xml:space="preserve">Rodzic A</value>
+  <data name="SimPe.Data.FamilyTieTypes.MyMotherIs" xml:space="preserve">
+    <value>Rodzic A</value>
   </data>
-  <data name="SimPe.Data.FamilyTieTypes.MyFatherIs">
-    <value xml:space="preserve">Rodzic B</value>
+  <data name="SimPe.Data.FamilyTieTypes.MyFatherIs" xml:space="preserve">
+    <value>Rodzic B</value>
   </data>
-  <data name="SimPe.Data.FamilyTieTypes.ImMarriedTo">
-    <value xml:space="preserve">Małżonek</value>
+  <data name="SimPe.Data.FamilyTieTypes.ImMarriedTo" xml:space="preserve">
+    <value>Małżonek</value>
   </data>
-  <data name="SimPe.Data.FamilyTieTypes.MySiblingIs">
-    <value xml:space="preserve">Rodzeństwo</value>
+  <data name="SimPe.Data.FamilyTieTypes.MySiblingIs" xml:space="preserve">
+    <value>Rodzeństwo</value>
   </data>
-  <data name="SimPe.Data.FamilyTieTypes.MyChildIs">
-    <value xml:space="preserve">Dziecko</value>
+  <data name="SimPe.Data.FamilyTieTypes.MyChildIs" xml:space="preserve">
+    <value>Dziecko</value>
   </data>
-  <data name="AddFamilyTieCaption">
-    <value xml:space="preserve">Dodaj "{name}" do rodziny Sima "{gname}"</value>
+  <data name="AddFamilyTieCaption" xml:space="preserve">
+    <value>Dodaj "{name}" do rodziny Sima "{gname}"</value>
   </data>
-  <data name="OpenSDesc">
-    <value xml:space="preserve">Otwórz opis Sima dla: "{name}"</value>
+  <data name="OpenSDesc" xml:space="preserve">
+    <value>Otwórz opis Sima dla: "{name}"</value>
   </data>
-  <data name="AddRelationCaption">
-    <value xml:space="preserve">Dodaj związek do "{name}"</value>
+  <data name="AddRelationCaption" xml:space="preserve">
+    <value>Dodaj związek do "{name}"</value>
   </data>
-  <data name="RemoveRelationCaption">
-    <value xml:space="preserve">Usuń związek z: "{name}"</value>
+  <data name="RemoveRelationCaption" xml:space="preserve">
+    <value>Usuń związek z: "{name}"</value>
+  </data>
+  <data name="URLKnowledgeBase" xml:space="preserve">
+    <value>http://sims.ambertation.de/en/kb/</value>
   </data>
 </root>

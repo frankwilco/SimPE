@@ -990,10 +990,10 @@
 
 Если оно пустое, SimPE будет использовать папку по умолчанию.</value>
   </data>
-  <data name="[Property:SP4Path]">
+  <data name="[Property:SP4Path]" xml:space="preserve">
     <value>4: Каталог - Торжество</value>
   </data>
-  <data name="[Description:SP4Path]">
+  <data name="[Description:SP4Path]" xml:space="preserve">
     <value>
       Это поле должно содержать папку с установленной игрой "The Sims 2 Торжество! - Каталог".
       Полученный каталог должен содержать подкаталог "TSData".
@@ -1564,5 +1564,8 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   </data>
   <data name="World Database" xml:space="preserve">
     <value>Мировая база данных</value>
+  </data>
+  <data name="URLKnowledgeBase" xml:space="preserve">
+    <value>http://sims.ambertation.de/en/kb/</value>
   </data>
 </root>

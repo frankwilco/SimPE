@@ -999,10 +999,10 @@ Il percorso fornito deve contenere la sottocartella "TSData".
 
 Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
   </data>
-  <data name="[Property:SP4Path]">
+  <data name="[Property:SP4Path]" xml:space="preserve">
     <value>4: Celebration! Stuff</value>
   </data>
-  <data name="[Description:SP4Path]">
+  <data name="[Description:SP4Path]" xml:space="preserve">
     <value>
       Questo campo deve contenere la cartella di installazione di  "The Sims 2 - Celebration! Stuff".
       Il percorso fornito deve contenere la sottocartella "TSData".
@@ -1213,7 +1213,7 @@ Avviare SimPE ugualmente?</value>
     <value>Happy Holiday</value>
   </data>
   <data name="EP SNAME 8" xml:space="preserve">
-    <value>Season</value>
+    <value>Seasons</value>
   </data>
   <data name="EP SNAME 9" xml:space="preserve">
     <value>Celebration!</value>
@@ -1369,14 +1369,8 @@ Per far funzionare correttamente SimPE, e' necessario installare .NET 2.0.</valu
   <data name="EP NAME 20" xml:space="preserve">
     <value>The Sims 2 - Life Stories</value>
   </data>
-  <data name="EP NAME 8" xml:space="preserve">
-    <value>The Sims 2 - Seasons</value>
-  </data>
   <data name="EP SNAME 20" xml:space="preserve">
     <value>Life Stories</value>
-  </data>
-  <data name="EP SNAME 8" xml:space="preserve">
-    <value>Seasons</value>
   </data>
   <data name="Journalism" xml:space="preserve">
     <value>Giornalismo</value>
@@ -1508,5 +1502,8 @@ Se vuoto,Simpe utilizzera' la cartella di default per l'installazione.</value>
   </data>
   <data name="Unemployed" xml:space="preserve">
     <value>Senza lavoro</value>
+  </data>
+  <data name="URLKnowledgeBase" xml:space="preserve">
+    <value>http://sims.ambertation.de/en/kb/</value>
   </data>
 </root>

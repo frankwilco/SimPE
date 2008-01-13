@@ -417,7 +417,6 @@
   <data name="PetShowBiz" xml:space="preserve">
     <value>Haustier - Unterhaltungs Industrie</value>
   </data>
-
   <data name="cantaddtie" xml:space="preserve">
     <value>Dieser Sim kann nicht in die Verwandschaft aufgenommen werden.</value>
   </data>
@@ -1332,11 +1331,10 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
   </data>
-
-  <data name="[Property:EP5Path]">
+  <data name="[Property:EP5Path]" xml:space="preserve">
     <value>5: Vier Jahreszeiten</value>
   </data>
-  <data name="[Description:EP5Path]">
+  <data name="[Description:EP5Path]" xml:space="preserve">
     <value>
       This should contain the installation directory of "The Sims 2 - Vier Jahreszeiten".
       The given Folder must contain a subfolder called "TSData".
@@ -1344,11 +1342,10 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       If this is empty, SimPE will use the default Folder.
     </value>
   </data>
-
-  <data name="[Property:EP6Path]">
+  <data name="[Property:EP6Path]" xml:space="preserve">
     <value>6: Gute Reise</value>
   </data>
-  <data name="[Description:EP6Path]">
+  <data name="[Description:EP6Path]" xml:space="preserve">
     <value>
       This should contain the installation directory of "The Sims 2 - Gute Reise".
       The given Folder must contain a subfolder called "TSData".
@@ -1387,21 +1384,10 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
   </data>
-  <data name="[Property:SP4Path]">
+  <data name="[Property:SP4Path]" xml:space="preserve">
     <value>3: Party-Accessoires</value>
   </data>
-  <data name="[Description:SP4Path]">
-    <value>
-      This should contain the installation directory of "Die Sims 2 - Party-Accessoires".
-      The given Folder must contain a subfolder called "TSData".
-
-      If this is empty, SimPE will use the default Folder.
-    </value>
-  </data>
-  <data name="[Property:SP5Path]">
-    <value>4: H&amp;M-Fashion-Accessoires</value>
-  </data>
-  <data name="[Description:SP4Path]">
+  <data name="[Description:SP4Path]" xml:space="preserve">
     <value>
       This should contain the installation directory of "Die Sims 2 - H&amp;M-Fashion-Accessoires".
       The given Folder must contain a subfolder called "TSData".
@@ -1409,10 +1395,13 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       If this is empty, SimPE will use the default Folder.
     </value>
   </data>
-  <data name="[Property:SIMSLSPath]">
+  <data name="[Property:SP5Path]" xml:space="preserve">
+    <value>4: H&amp;M-Fashion-Accessoires</value>
+  </data>
+  <data name="[Property:SIMSLSPath]" xml:space="preserve">
     <value>1: Lebensgeschichten</value>
   </data>
-  <data name="[Description:SIMSLSPath]">
+  <data name="[Description:SIMSLSPath]" xml:space="preserve">
     <value>
       Hier sollte das Installationsverzeichnis von "Die Sims 2 Lebensgeschichten" stehen.
       Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
@@ -1420,10 +1409,10 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
   </data>
-  <data name="[Property:SIMSPSPath]">
+  <data name="[Property:SIMSPSPath]" xml:space="preserve">
     <value>2: Tiergeschichten</value>
   </data>
-  <data name="[Description:SIMSPSPath]">
+  <data name="[Description:SIMSPSPath]" xml:space="preserve">
     <value>
       Hier sollte das Installationsverzeichnis von "Die Sims 2 Tiergeschichten" stehen.
       Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
@@ -1431,10 +1420,10 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
   </data>
-  <data name="[Property:SIMSISPath]">
+  <data name="[Property:SIMSISPath]" xml:space="preserve">
     <value>3: Inselgeschichten</value>
   </data>
-  <data name="[Description:SIMSISPath]">
+  <data name="[Description:SIMSISPath]" xml:space="preserve">
     <value>
       Hier sollte das Installationsverzeichnis von "Die Sims 2 Inselgeschichten" stehen.
       Das angegebene Verzeichnis muss den Unterordner "TSData" enthalten.
@@ -1442,7 +1431,7 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
       Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.
     </value>
   </data>
-  <data name="[Description:]">
+  <data name="[Description:]" xml:space="preserve">
     <value>
       Hier sollte das Installationsverzeichnis von '{LongName}' stehen.
       Das angegebene Verzeichnis muss den Unterordner 'TSData' enthalten.
@@ -1474,7 +1463,7 @@ Wenn kein Verzeichnis angegeben wurde, wird der Standardpfad gesetzt.</value>
   <data name="[Category:StuffPack]" xml:space="preserve">
     <value>3. Mini-Erweiterungen</value>
   </data>
-  <data name="[Category:Story]">
+  <data name="[Category:Story]" xml:space="preserve">
     <value>4. Sim Stories</value>
   </data>
   <data name="SimPe.PackedFiles.Wrapper.JobAssignment.Nothing" xml:space="preserve">
@@ -1601,7 +1590,6 @@ Soll SimPE dennoch gestartet werden?</value>
   <data name="SimPe.Plugin.SimMemoryType.Badge" xml:space="preserve">
     <value>Abzeichen</value>
   </data>
-  
   <data name="Check: Folder not found" xml:space="preserve">
     <value>Verzeichnis für "{name}" wurde nicht gefunden.</value>
   </data>
@@ -1614,133 +1602,132 @@ Soll SimPE dennoch gestartet werden?</value>
   <data name="Check: Unable to load cache" xml:space="preserve">
     <value>Konnte den SimPE Cache nicht lesen.</value>
   </data>
-  <data name="Check: Error while load" >
+  <data name="Check: Error while load" xml:space="preserve">
     <value>Konnte "{name}" nicht laden.</value>
   </data>
-  <data name="Check: No Objects">
+  <data name="Check: No Objects" xml:space="preserve">
     <value>Konnte keine Objekte finden.</value>
   </data>
-  <data name="Check: No Textures">
+  <data name="Check: No Textures" xml:space="preserve">
     <value>Konnte keine Texturdaten finden.</value>
   </data>
-  <data name="Savegames">
+  <data name="Savegames" xml:space="preserve">
     <value>Spielstände</value>
   </data>
-  <data name="Max Relation to this Sim" >
+  <data name="Max Relation to this Sim" xml:space="preserve">
     <value>Beziehung zu {name} maximieren</value>
   </data>
-  <data name="NO_CRES_FOUND">
+  <data name="NO_CRES_FOUND" xml:space="preserve">
     <value>Die definierende CRES-Resource wurde nicht gefunden.
 
 Dies hat zur Folge, dass SimPE die Joint-Hierarchie nicht aufbauen kann.
 		</value>
   </data>
-  <data name="FileTableSectionInclude" >
+  <data name="FileTableSectionInclude" xml:space="preserve">
     <value>{what} laden</value>
   </data>
-  <data name="AllRes">
+  <data name="AllRes" xml:space="preserve">
     <value>Alle Resourcen</value>
   </data>
-  <data name="Loading embedded resource names..." >
+  <data name="Loading embedded resource names..." xml:space="preserve">
     <value>Lade eingebettete Resourcen...</value>
   </data>
-  <data name="Loading package...">
+  <data name="Loading package..." xml:space="preserve">
     <value>Lade Package...</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.Human">
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.Human" xml:space="preserve">
     <value>Mensch</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.LargeDog" >
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.LargeDog" xml:space="preserve">
     <value>Großer Hund</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.SmallDog" >
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.SmallDog" xml:space="preserve">
     <value>Kleiner Hund</value>
   </data>
-  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.Cat">
+  <data name="SimPe.PackedFiles.Wrapper.SpeciesType.Cat" xml:space="preserve">
     <value>Katze</value>
   </data>
-  <data name="Starting SimPE...">
+  <data name="Starting SimPE..." xml:space="preserve">
     <value>Starte SimPE...</value>
   </data>
-  <data name="Validating SimPE registry">
+  <data name="Validating SimPE registry" xml:space="preserve">
     <value>Verifiziere SimPE Registry</value>
   </data>
-  <data name="Checking commandline parameters">
+  <data name="Checking commandline parameters" xml:space="preserve">
     <value>Prüfe Kommandozeile</value>
   </data>
-  <data name="Creating GUI">
+  <data name="Creating GUI" xml:space="preserve">
     <value>Erstelle GUI</value>
   </data>
-  <data name="Starting Main Form">
+  <data name="Starting Main Form" xml:space="preserve">
     <value>Starte SimPE Dialog</value>
   </data>
-  <data name="Loading Plugins...">
+  <data name="Loading Plugins..." xml:space="preserve">
     <value>Lade Plugins...</value>
   </data>
-  <data name="Enabling RemoteControl">
+  <data name="Enabling RemoteControl" xml:space="preserve">
     <value>Aktiviere Fernbedienung</value>
   </data>
-  <data name="Starting Resource Loader">
+  <data name="Starting Resource Loader" xml:space="preserve">
     <value>Starte ResourceLoader</value>
   </data>
-  <data name="Building View Filter">
+  <data name="Building View Filter" xml:space="preserve">
     <value>Erstelle Anzeigefilter</value>
   </data>
-  <data name="SimPe.ResourceListExtensionFormats.Hex">
+  <data name="SimPe.ResourceListExtensionFormats.Hex" xml:space="preserve">
     <value>als Hex-Nummer</value>
   </data>
-  <data name="SimPe.ResourceListExtensionFormats.Short">
+  <data name="SimPe.ResourceListExtensionFormats.Short" xml:space="preserve">
     <value>kurzer Text</value>
   </data>
-  <data name="SimPe.ResourceListExtensionFormats.Long">
+  <data name="SimPe.ResourceListExtensionFormats.Long" xml:space="preserve">
     <value>langer Text</value>
   </data>
-  <data name="SimPe.ResourceListExtensionFormats.None">
+  <data name="SimPe.ResourceListExtensionFormats.None" xml:space="preserve">
     <value>verstecken</value>
   </data>
-  <data name="SimPe.ResourceListFormats.LongTypeNames">
+  <data name="SimPe.ResourceListFormats.LongTypeNames" xml:space="preserve">
     <value>langer Typ + Name</value>
   </data>
-  <data name="SimPe.ResourceListFormats.ShortTypeNames">
+  <data name="SimPe.ResourceListFormats.ShortTypeNames" xml:space="preserve">
     <value>kurzer Type + Name</value>
   </data>
-  <data name="SimPe.ResourceListFormats.JustNames">
+  <data name="SimPe.ResourceListFormats.JustNames" xml:space="preserve">
     <value>Nur Name</value>
   </data>
-  <data name="SimPe.ResourceListUnnamedFormats.Instance">
+  <data name="SimPe.ResourceListUnnamedFormats.Instance" xml:space="preserve">
     <value>Nur Instanz</value>
   </data>
-  <data name="SimPe.ResourceListUnnamedFormats.GroupInstance">
+  <data name="SimPe.ResourceListUnnamedFormats.GroupInstance" xml:space="preserve">
     <value>Gruppe + Instanz</value>
   </data>
-  <data name="SimPe.ResourceListUnnamedFormats.FullTGI">
+  <data name="SimPe.ResourceListUnnamedFormats.FullTGI" xml:space="preserve">
     <value>Alles</value>
   </data>
-  <data name="UpdatesAvailable">
+  <data name="UpdatesAvailable" xml:space="preserve">
     <value>Neue Updates stehen zur Verfügung. Soll SimPE die Versionsinformationen anzeigen?</value>
   </data>
-  <data name="Updates">
-    <value>Aktualisierungen</value>
-  </data>
-  <data name="Aktualisierbare Plugins">
+  <data name="Aktualisierbare Plugins" xml:space="preserve">
     <value>Updateable Plugins</value>
   </data>
-  <data name="installed">
+  <data name="installed" xml:space="preserve">
     <value>Installiert</value>
   </data>
-
-  <data name="available">
+  <data name="available" xml:space="preserve">
     <value>Verfügbar</value>
   </data>
-  <data name="Download from">
+  <data name="Download from" xml:space="preserve">
     <value>Download von</value>
   </data>
-  <data name="NoDotNet">
+  <data name="NoDotNet" xml:space="preserve">
     <value>SimPE hat festgestellt, dass auf diesem System .NET {VERSION} installiert ist. 
 
 Damit SimPE korrekt funktioniert muss allerding .NET 2.0 installiert sein.</value>
   </data>
   <data name="Searching" xml:space="preserve">
     <value>Durchsuche</value>
+  </data>
+  <data name="URLKnowledgeBase" xml:space="preserve">
+    <value>http://sims.ambertation.de/en/kb/</value>
   </data>
 </root>

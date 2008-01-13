@@ -304,14 +304,14 @@ namespace SimPe
 			About.ShowUpdate(true);
 		}
 
+        private void miKBase_Clicked(object sender, EventArgs e)
+        {
+            SimPe.RemoteControl.ShowHelp(SimPe.Localization.GetString("URLKnowledgeBase"));
+        }
+
 		private void Activate_miAbout(object sender, System.EventArgs e)
 		{
 			About.ShowAbout();
-		}
-
-		private void Activate_miTutorials(object sender, System.EventArgs e)
-		{
-			About.ShowTutorials();
 		}
 
 		private void dc_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)

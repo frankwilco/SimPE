@@ -2286,4 +2286,7 @@ Pour que SimPE fonctionne correctement, vous devez installer .NET 2.0.</value>
   <data name="TeenElderEducation" xml:space="preserve">
     <value>Éducation (Ado/Aîné)</value>
   </data>
+  <data name="URLKnowledgeBase" xml:space="preserve">
+    <value>http://sims.ambertation.de/en/kb/</value>
+  </data>
 </root>

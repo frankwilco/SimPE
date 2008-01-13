@@ -75,7 +75,7 @@ namespace SimPe
         private SteepValley.Windows.Forms.ThemedControls.XPTaskBox tbPlugAction;
         private ToolStripMenuItem miAbout;
         private ToolStripMenuItem miUpdate;
-        private ToolStripMenuItem miTutorials;
+        private ToolStripMenuItem miKBase;
         private ToolStripButton biUpdate;
         private ToolStripMenuItem miOpenIn;
         private ToolStripMenuItem miOpenSimsRes;
@@ -124,7 +124,7 @@ namespace SimPe
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Ambertation.Windows.Forms.WhidbeyRenderer whidbeyRenderer1 = new Ambertation.Windows.Forms.WhidbeyRenderer();
+            Ambertation.Windows.Forms.WhidbeyRenderer whidbeyRenderer2 = new Ambertation.Windows.Forms.WhidbeyRenderer();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tbContainer = new System.Windows.Forms.ToolStripContainer();
             this.manager = new Ambertation.Windows.Forms.DockManager();
@@ -156,7 +156,9 @@ namespace SimPe
             this.dockBottom = new Ambertation.Windows.Forms.DockContainer();
             this.dcPlugin = new Ambertation.Windows.Forms.DockPanel();
             this.dc = new TD.SandDock.TabControl();
+            this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.tbTools = new System.Windows.Forms.ToolStrip();
+            this.tbAction = new System.Windows.Forms.ToolStrip();
             this.toolBar1 = new System.Windows.Forms.ToolStrip();
             this.biNew = new System.Windows.Forms.ToolStripButton();
             this.biOpen = new System.Windows.Forms.ToolStripButton();
@@ -166,8 +168,6 @@ namespace SimPe
             this.biNewDc = new System.Windows.Forms.ToolStripButton();
             this.biUpdate = new System.Windows.Forms.ToolStripButton();
             this.biReset = new System.Windows.Forms.ToolStripButton();
-            this.tbWindow = new System.Windows.Forms.ToolStrip();
-            this.tbAction = new System.Windows.Forms.ToolStrip();
             this.dockCenter = new Ambertation.Windows.Forms.DockContainer();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.xpCueBannerExtender1 = new SteepValley.Windows.Forms.XPCueBannerExtender(this.components);
@@ -196,7 +196,7 @@ namespace SimPe
             this.miPref = new System.Windows.Forms.ToolStripMenuItem();
             this.miWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBarItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.miTutorials = new System.Windows.Forms.ToolStripMenuItem();
+            this.miKBase = new System.Windows.Forms.ToolStripMenuItem();
             this.mbiTopics = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.miAbout = new System.Windows.Forms.ToolStripMenuItem();
@@ -236,9 +236,9 @@ namespace SimPe
             // 
             // tbContainer.TopToolStripPanel
             // 
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
             // 
             // manager
@@ -254,7 +254,7 @@ namespace SimPe
             this.manager.MinimumSize = new System.Drawing.Size(150, 150);
             this.manager.Name = "manager";
             this.manager.NoCleanup = true;
-            this.manager.Renderer = whidbeyRenderer1;
+            this.manager.Renderer = whidbeyRenderer2;
             this.manager.TabImage = null;
             this.manager.TabText = "";
             // 
@@ -634,10 +634,20 @@ namespace SimPe
             this.dc.Name = "dc";
             this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
             // 
+            // tbWindow
+            // 
+            resources.ApplyResources(this.tbWindow, "tbWindow");
+            this.tbWindow.Name = "tbWindow";
+            // 
             // tbTools
             // 
             resources.ApplyResources(this.tbTools, "tbTools");
             this.tbTools.Name = "tbTools";
+            // 
+            // tbAction
+            // 
+            resources.ApplyResources(this.tbAction, "tbAction");
+            this.tbAction.Name = "tbAction";
             // 
             // toolBar1
             // 
@@ -700,16 +710,6 @@ namespace SimPe
             resources.ApplyResources(this.biReset, "biReset");
             this.biReset.Name = "biReset";
             this.biReset.Click += new System.EventHandler(this.Activate_biReset);
-            // 
-            // tbWindow
-            // 
-            resources.ApplyResources(this.tbWindow, "tbWindow");
-            this.tbWindow.Name = "tbWindow";
-            // 
-            // tbAction
-            // 
-            resources.ApplyResources(this.tbAction, "tbAction");
-            this.tbAction.Name = "tbAction";
             // 
             // dockCenter
             // 
@@ -895,7 +895,7 @@ namespace SimPe
             // 
             this.menuBarItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miUpdate,
-            this.miTutorials,
+            this.miKBase,
             this.mbiTopics,
             this.toolStripMenuItem3,
             this.miAbout});
@@ -903,11 +903,11 @@ namespace SimPe
             resources.ApplyResources(this.menuBarItem5, "menuBarItem5");
             this.menuBarItem5.VisibleChanged += new System.EventHandler(this.menuBarItem5_VisibleChanged);
             // 
-            // miTutorials
+            // miKBase
             // 
-            resources.ApplyResources(this.miTutorials, "miTutorials");
-            this.miTutorials.Name = "miTutorials";
-            this.miTutorials.Click += new System.EventHandler(this.Activate_miTutorials);
+            resources.ApplyResources(this.miKBase, "miKBase");
+            this.miKBase.Name = "miKBase";
+            this.miKBase.Click += new System.EventHandler(this.miKBase_Clicked);
             // 
             // mbiTopics
             // 
