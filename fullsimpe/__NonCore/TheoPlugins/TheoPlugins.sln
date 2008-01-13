@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "Build\Build.csproj", "{C2FEE951-1F24-42AC-9B8A-A7FBE023A1C0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5C5E0341-A026-45E7-997E-0AA352B02160} = {5C5E0341-A026-45E7-997E-0AA352B02160}
+		{EFE33E8E-59EA-46E8-A4EB-4B91843F2278} = {EFE33E8E-59EA-46E8-A4EB-4B91843F2278}
+		{5DF4BE5E-DC97-48DC-8C07-830F38643742} = {5DF4BE5E-DC97-48DC-8C07-830F38643742}
+		{248523A6-3A03-484F-A17C-C2566A1F30FD} = {248523A6-3A03-484F-A17C-C2566A1F30FD}
+		{9563298C-FC55-4B98-A9E7-AC71E026E16A} = {9563298C-FC55-4B98-A9E7-AC71E026E16A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theo ActionDeleteSim", "ActionDeleteSim\Theo ActionDeleteSim.csproj", "{248523A6-3A03-484F-A17C-C2566A1F30FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theo ColorBinningTool", "ColorBinningTool\Theo ColorBinningTool.csproj", "{5C5E0341-A026-45E7-997E-0AA352B02160}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theo OrphanMeshScanner", "OrphanMeshScanner\Theo OrphanMeshScanner.csproj", "{5DF4BE5E-DC97-48DC-8C07-830F38643742}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theo SimSurgery", "SimSurgery\Theo SimSurgery.csproj", "{9563298C-FC55-4B98-A9E7-AC71E026E16A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theo SimClothingEditor", "SimClothingEditor\Theo SimClothingEditor.csproj", "{EFE33E8E-59EA-46E8-A4EB-4B91843F2278}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2FEE951-1F24-42AC-9B8A-A7FBE023A1C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2FEE951-1F24-42AC-9B8A-A7FBE023A1C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2FEE951-1F24-42AC-9B8A-A7FBE023A1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2FEE951-1F24-42AC-9B8A-A7FBE023A1C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{248523A6-3A03-484F-A17C-C2566A1F30FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{248523A6-3A03-484F-A17C-C2566A1F30FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{248523A6-3A03-484F-A17C-C2566A1F30FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{248523A6-3A03-484F-A17C-C2566A1F30FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C5E0341-A026-45E7-997E-0AA352B02160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C5E0341-A026-45E7-997E-0AA352B02160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C5E0341-A026-45E7-997E-0AA352B02160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C5E0341-A026-45E7-997E-0AA352B02160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF4BE5E-DC97-48DC-8C07-830F38643742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF4BE5E-DC97-48DC-8C07-830F38643742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF4BE5E-DC97-48DC-8C07-830F38643742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF4BE5E-DC97-48DC-8C07-830F38643742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9563298C-FC55-4B98-A9E7-AC71E026E16A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9563298C-FC55-4B98-A9E7-AC71E026E16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9563298C-FC55-4B98-A9E7-AC71E026E16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9563298C-FC55-4B98-A9E7-AC71E026E16A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFE33E8E-59EA-46E8-A4EB-4B91843F2278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFE33E8E-59EA-46E8-A4EB-4B91843F2278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFE33E8E-59EA-46E8-A4EB-4B91843F2278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFE33E8E-59EA-46E8-A4EB-4B91843F2278}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
