@@ -70,7 +70,7 @@ namespace SimPe.Plugin.Tool
 		{
 			get
 			{
-				return System.Windows.Forms.Shortcut.CtrlW;
+				return System.Windows.Forms.Shortcut.CtrlShiftW;
 			}
 		}
 
