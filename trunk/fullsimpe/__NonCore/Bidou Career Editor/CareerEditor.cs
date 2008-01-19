@@ -247,6 +247,9 @@ namespace SimPe.Plugin
 			englishOnly = (rk.GetValue("englishOnly", "False").ToString()) == "True";
 
             internalchg = true;
+            languageString = new List<string>(pjse.BhavWiz.readStr(pjse.GS.BhavStr.Languages));
+            languageString.RemoveAt(0);
+
             gcReward.KnownObjects = new object[] { new List<String>(rewardName), new List<UInt32>(rewardGUID) };
             gcUpgrade.KnownObjects = new object[] { new List<String>(upgradeName), new List<UInt32>(upgradeGUID) };
             gcOutfit.KnownObjects = new object[] { new List<String>(outfitName), new List<UInt32>(outfitGUID) };
@@ -3755,9 +3758,6 @@ namespace SimPe.Plugin
 					newpackage = true;
 					this.package = (SimPe.Packages.GeneratableFile)this.package.Clone();
 				}
-
-                languageString = pjse.BhavWiz.readStr(pjse.GS.BhavStr.Languages);
-                languageString.RemoveAt(0);
 
                 loadFiles();
 
