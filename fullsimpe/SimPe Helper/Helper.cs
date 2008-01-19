@@ -648,8 +648,7 @@ namespace SimPe
 		{
 			get 
 			{
-			// for non-Quaxi releases, this is never true
-				return false; //((SimPeVersion.ProductMinorPart % 2)==1);
+				return ((SimPeVersion.ProductMinorPart % 2)==1);
 			}
 		}
 
