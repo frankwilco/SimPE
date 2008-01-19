@@ -1781,7 +1781,7 @@ namespace SimPe.PackedFiles.UserInterface
 
 
 					wrapper.SynchronizeUserData();
-					MessageBox.Show("Changes were comitted!");
+					MessageBox.Show(Localization.Manager.GetString("commited"));
 				} 
 				catch (Exception ex) 
 				{

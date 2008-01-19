@@ -193,7 +193,7 @@
     <value>Unable to Maximize Interesst of all Sims</value>
   </data>
   <data name="commited" xml:space="preserve">
-    <value>Changes were comitted</value>
+    <value>Changes were committed</value>
   </data>
   <data name="cantcommitfami" xml:space="preserve">
     <value>Can't commit the Family File</value>
