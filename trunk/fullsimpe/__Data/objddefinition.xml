@@ -243,25 +243,6 @@
 			<index type="13">57</index>
 		</property>
 		<property type="short">
-			<name>Unused - thumbnail graphic (Sims1)</name>
-			<help>Unused - thumbnail graphic (Sims1)</help>
-			<default>0</default>
-			<index type="0">75</index>
-			<index type="2">75</index>
-			<index type="4">75</index>
-			<index type="5">75</index>
-			<index type="7">75</index>
-			<index type="8">75</index>
-			<index type="9">75</index>
-			<index type="10">75</index>
-			<index type="11">75</index>
-			<index type="14">75</index>
-			<index type="15">75</index>
-			<index type="16">75</index>
-			<index type="12">75</index>
-			<index type="13">75</index>
-		</property>
-		<property type="short">
 			<name>Unused - shadow flags (Sims1)</name>
 			<help>Unused - shadow flags (Sims1)</help>
 			<default>0</default>
@@ -2120,6 +2101,25 @@
 			<default>0</default>
 			<index type="12">81</index>
 			<index type="13">81</index>
+		</property>
+		<property type="short">
+			<name>Selector Category</name>
+			<help>Selector Category</help>
+			<default>0</default>
+			<index type="0">75</index>
+			<index type="2">75</index>
+			<index type="4">75</index>
+			<index type="5">75</index>
+			<index type="7">75</index>
+			<index type="8">75</index>
+			<index type="9">75</index>
+			<index type="10">75</index>
+			<index type="11">75</index>
+			<index type="14">75</index>
+			<index type="15">75</index>
+			<index type="16">75</index>
+			<index type="12">75</index>
+			<index type="13">75</index>
 		</property>
 	</category>
 </properties>
