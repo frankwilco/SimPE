@@ -167,7 +167,7 @@ namespace SimPe.Interfaces.Files
 		/// <returns>The descriptor for the matching Dile or null</returns>
 		IPackedFileDescriptor FindFile(Interfaces.Files.IPackedFileDescriptor pfd);
 
-		// <summary>
+		/// <summary>
 		/// Returns the first File matching 
 		/// </summary>
 		/// <param name="type">Type you want to look for</param>

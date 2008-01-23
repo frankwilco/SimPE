@@ -158,6 +158,11 @@
       <Name>GraphControl</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\SimPe Clst\SimPe Clst.csproj">
+      <Project>{5DD89FD7-1E89-49D4-B48D-CC605D767C3B}</Project>
+      <Name>SimPe Clst</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\SimPe FileHandler\SimPe FileHandlers.csproj">
       <Project>{97551C0A-6295-4E32-8E15-A4FF456E65A6}</Project>
       <Name>SimPe FileHandlers</Name>

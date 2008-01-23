@@ -21,11 +21,13 @@
  ***************************************************************************/
 using System;
 using System.Drawing;
+using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using SimPe.Interfaces.Plugin;
 using SimPe.PackedFiles.Wrapper;
+using SimPe.Interfaces.Files;
 
 namespace SimPe.PackedFiles.UserInterface
 {
@@ -151,39 +153,28 @@ namespace SimPe.PackedFiles.UserInterface
 		internal ExtObjd wrapper = null;
 		internal uint initialguid;
 		Ambertation.PropertyObjectBuilderExt pob;
-		ArrayList names;
 		bool propchanged;
-		string GetName(int i)
-		{
-			string name = "0x"+Helper.HexString((ushort)i) + ": ";
-			name += (string)names[i];
 
-			return name;
-		}
+        void ShowData()
+        {
+            propchanged = false;
+            this.pg.SelectedObject = null;
 
-		void ShowData()
-		{
-			propchanged = false;
-			this.pg.SelectedObject = null;
-			
-			names = new ArrayList();
-			names = wrapper.Opcodes.OBJDDescription((ushort)wrapper.Type);
+            Hashtable ht = new Hashtable();
+            for (int i = 0; i < wrapper.Data.Length; i++)
+            {
+                Ambertation.PropertyDescription pf = ExtObjd.PropertyParser.GetDescriptor((ushort)i);
+                if (pf == null)
+                    pf = new Ambertation.PropertyDescription("Unknown", null, wrapper.Data[i]);
+                else
+                    pf.Property = wrapper.Data[i];
 
-			Hashtable ht = new Hashtable();
-			for (int i=0; i<Math.Min(names.Count, wrapper.Data.Length); i++)
-			{
-				Ambertation.PropertyDescription pf = ExtObjd.PropertyParser.GetDescriptor((ushort)wrapper.Type, (ushort)i);
-				if (pf==null) 
-					pf = new Ambertation.PropertyDescription("Unknown", null, wrapper.Data[i]);
-				else 					
-					pf.Property = wrapper.Data[i];				
+                ht[GetName(i)] = pf;
+            }
 
-				ht[GetName(i)] = pf;				
-			}
-
-			pob = new Ambertation.PropertyObjectBuilderExt(ht);
-			this.pg.SelectedObject = pob.Instance;
-		}
+            pob = new Ambertation.PropertyObjectBuilderExt(ht);
+            this.pg.SelectedObject = pob.Instance;
+        }
 
 		void UpdateData()
 		{
@@ -194,15 +185,15 @@ namespace SimPe.PackedFiles.UserInterface
 			{
 				Hashtable ht = pob.Properties;
 
-				for (int i=0; i<Math.Min(names.Count, wrapper.Data.Length); i++)
-				{
-					string name = GetName(i);	
-					try 
+                for (int i = 0; i < wrapper.Data.Length; i++)
+                {
+                    string name = GetName(i);
+                    try 
 					{
-						if (ht.Contains(name)) 
+                        if (ht.Contains(name)) 
 						{
 							object o = ht[name];
-							if (o is SimPe.FlagBase) 
+							if (o is SimPe.FlagBase)
 								wrapper.Data[i] = ((SimPe.FlagBase)ht[name]);
 							else
 								wrapper.Data[i] = Convert.ToInt16(ht[name]);
@@ -225,7 +216,114 @@ namespace SimPe.PackedFiles.UserInterface
 
 		}
 
-		internal void SetFunctionCb(Wrapper.ExtObjd objd)
+        private static Dictionary<int, string> names = null;
+        private string GetName(int i)
+        {
+            string name = null;
+            if (names == null) readPJSEGlobalStringObjDef();
+            if (names == null) readGLUAObjDef();
+            if (names == null || names[i] == null)
+            {
+                Ambertation.PropertyDescription pf = ExtObjd.PropertyParser.GetDescriptor((ushort)i);
+                name = pf == null ? null : pf.Description;
+            }
+            else
+                name = names[i];
+            return ((name != null) ? name + " " : "") + "(0x" + Helper.HexString((ushort)i) + "): ";
+        }
+
+        private static void readGLUAObjDef()
+        {
+            names = null;
+            string objDefGLUAFile = System.IO.Path.Combine(
+                SimPe.PathProvider.Global.Latest.InstallFolder,
+                "TSData\\Res\\ObjectScripts\\ObjectScripts.package");
+            if (!System.IO.File.Exists(objDefGLUAFile))
+            {
+                return;
+            }
+            IPackageFile glua = SimPe.Packages.File.LoadFromFile(objDefGLUAFile);
+            if (glua == null)
+            {
+                return;
+            }
+            IPackedFileDescriptor objDefPFD = glua.FindFile(Data.MetaData.GLUA, 0x49fa1f15, 0xffffffff, 0xff89f911);
+            if (objDefPFD == null)
+            {
+                return;
+            }
+            SimPe.PackedFiles.Wrapper.ObjLua objDef = new SimPe.PackedFiles.Wrapper.ObjLua();
+            objDef.ProcessData(objDefPFD, glua);
+
+            List<ObjLuaConstant> loc = new List<ObjLuaConstant>((ObjLuaConstant[])objDef.Root.Constants.ToArray(typeof(ObjLuaConstant)));
+            if (loc[0].String != "ObjDef")
+            {
+                return;
+            }
+            loc.RemoveAt(0);
+
+            names = new Dictionary<int, string>();
+
+            bool started = false;
+            while (loc.Count > 0)
+            {
+                string value = loc[0].String;
+                loc.RemoveAt(0);
+                int key = Convert.ToInt32(loc[0].Value);
+                loc.RemoveAt(0);
+                if (started)
+                    names[key] = value;
+                else if (key == 0)
+                {
+                    started = true;
+                    names[key] = value;
+                }
+            }
+        }
+
+        private static void readPJSEGlobalStringObjDef()
+        {
+            names = null;
+            string pjseGlobalStringFile = System.IO.Path.Combine(
+                SimPe.Helper.SimPePluginPath,
+                "pjse.coder.plugin\\GlobalStrings.package");
+            if (!System.IO.File.Exists(pjseGlobalStringFile))
+            {
+                return;
+            }
+            IPackageFile gs = SimPe.Packages.File.LoadFromFile(pjseGlobalStringFile);
+            if (gs == null)
+            {
+                return;
+            }
+            IPackedFileDescriptor objDefPFD = gs.FindFile(0x53545223, 0, 0xfeedf00d, 0xcc);
+            if (objDefPFD == null)
+            {
+                return;
+            }
+            Str objDef = new SimPe.PackedFiles.Wrapper.Str();
+            objDef.ProcessData(objDefPFD, gs);
+            if (objDef.LanguageItems(1) == null)
+            {
+                return;
+            }
+
+            List<StrToken> lST = new List<StrToken>((StrToken[])objDef.LanguageItems(1).ToArray(typeof(StrToken)));
+            names = new Dictionary<int, string>();
+            for (int i = 0; i < lST.Count; i++)
+                names[i] = lST[i].Title;
+
+        }
+
+        private static void readXMLObjDef()
+        {
+            names = null;
+            foreach (Ambertation.PropertyDescription pf in ExtObjd.PropertyParser.Properties.Values)
+            {
+            }
+        }
+
+        internal void SetFunctionCb(Wrapper.ExtObjd objd)
 		{			
 			this.cbappliances.Checked = objd.FunctionSort.InAppliances;
 			this.cbdecorative.Checked = objd.FunctionSort.InDecorative;
@@ -990,7 +1088,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 8;
             this.label8.Text = "GUID";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // panel6
             // 
@@ -1097,12 +1194,6 @@ namespace SimPe.PackedFiles.UserInterface
 
 				wrapper.Type = ot;
 				wrapper.Changed = true;
-
-				if (this.pg.SelectedObject!=null) 
-				{
-					UpdateData();
-					ShowData();
-				}
 			} 
 			finally 
 			{
@@ -1252,50 +1343,6 @@ namespace SimPe.PackedFiles.UserInterface
 			else Ambertation.BaseChangeableNumber.DigitBase = 10;
 
 			this.pg.Refresh();		
-		}
-
-		private void label8_Click(object sender, System.EventArgs e)
-		{
-			SimPe.Data.ObjectTypes[] ts = (SimPe.Data.ObjectTypes[])System.Enum.GetValues(typeof(SimPe.Data.ObjectTypes));
-			System.IO.StreamWriter sw = System.IO.File.CreateText(@"h:\objd.xml");
-			Hashtable have = new Hashtable();
-			try
-			{
-				sw.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-				sw.WriteLine("<properties xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"propertydefinition.xsd\">");
-				foreach (SimPe.Data.ObjectTypes t in ts)
-				{
-					names = wrapper.Opcodes.OBJDDescription((ushort)t);
-					for (int i=0; i<names.Count; i++)
-					{
-						string k = (string)names[i];
-						string cont = (string)have[k.Trim().ToLower()];
-						if (cont==null) 
-						{					
-							cont += "<property type=\"short\">" + Helper.lbr;
-							cont += "    <name>"+k.Trim()+"</name>" + Helper.lbr;
-							cont += "    <help>"+k.Trim()+"</help>" + Helper.lbr;
-							cont += "    <default>0</default>" + Helper.lbr;
-							if (k.Trim().ToLower().IndexOf("read_only")!=-1 || k.Trim().ToLower().IndexOf("readonly")!=-1 || k.Trim().ToLower().IndexOf("read only")!=-1) 
-								cont += "    <readonly />" + Helper.lbr;
-						}
-						cont += "    <index type=\""+((ushort)t).ToString()+"\">"+i.ToString()+"</index>" + Helper.lbr;						
-
-						have[k.Trim().ToLower()] = cont;
-					}
-				}
-
-				foreach (string v in have.Values)
-				{
-					sw.Write(v);
-					sw.WriteLine("</property>");
-				}
-				sw.WriteLine("</properties>");
-			} 
-			finally 
-			{
-				sw.Close();
-			}
 		}
 
 		private void cbsort_SelectedIndexChanged(object sender, System.EventArgs e)
