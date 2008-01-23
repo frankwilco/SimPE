@@ -48,27 +48,10 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 		
 		Hashtable typemap;
-		/// <summary>
-		/// Returns a unique Integer for the given type and index
-		/// </summary>
-		/// <param name="type"></param>
-		/// <param name="index"></param>
-		/// <returns></returns>
-		int TypeIndexValue(ushort type, ushort index)
-		{
-			return (type << 16) | index;
-		}
-
-		void AddType(ushort type, ushort index, PropertyDescription pd)
-		{
-			typemap[TypeIndexValue(type, index)] = pd;
-		}
-
-		public PropertyDescription GetDescriptor(ushort type, ushort index)
+		public PropertyDescription GetDescriptor(ushort index)
 		{
 			if (props==null) this.Load();
-			object o = typemap[TypeIndexValue(type, index)];
-			return (PropertyDescription)o;
+            return (PropertyDescription)typemap[index];
 		}
 
 		/// <summary>
@@ -94,10 +77,9 @@ namespace SimPe.PackedFiles.Wrapper
 					try
 					{
 						ushort index = Convert.ToUInt16(subnode.InnerText);
-						ushort type = Convert.ToUInt16(subnode.Attributes["type"].Value);
-
-						this.AddType(type, index, pd);
-					}
+                        if (!typemap.Contains(index))
+                            typemap[index] = pd;
+                    }
 					catch {}
 				}
 					

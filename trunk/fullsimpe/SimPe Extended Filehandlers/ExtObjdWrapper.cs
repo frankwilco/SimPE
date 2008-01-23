@@ -57,7 +57,6 @@ namespace SimPe.PackedFiles.Wrapper
 		ObjRoomSort rsort = new ObjRoomSort(0);
 		ObjFunctionSort fsort = new ObjFunctionSort(0);
 
-		Interfaces.Providers.IOpcodeProvider opcodes = null;
 		ObjdHealth ok;
 		static SimPe.PackedFiles.Wrapper.ObjdPropertyParser tpp;
 		#endregion
@@ -243,14 +242,6 @@ namespace SimPe.PackedFiles.Wrapper
 			get { return (int)(data.Length*2 + 0x40); }
 		}
 
-		/// <summary>
-		/// Null or an Opcode Provider
-		/// </summary>
-		public Interfaces.Providers.IOpcodeProvider Opcodes
-		{
-			get { return opcodes; }
-		}		
-
 		public ObjdHealth Ok
 		{
 			get {return ok; }
@@ -271,10 +262,15 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 		#endregion
 
-		public ExtObjd() : this(FileTable.ProviderRegistry.OpcodeProvider) {}
-		public ExtObjd(Interfaces.Providers.IOpcodeProvider opcodes) : base()
+        /// <summary>
+        /// Deprecated constructor, use zero-arg version
+        /// </summary>
+        /// <param name="o">Must be null</param>
+        [Obsolete("Use zero-argument constructor", false)]
+        public ExtObjd(object o) : this() { if (o != null) { throw new ArgumentException(); } }
+
+        public ExtObjd() : base()
 		{			
-			this.opcodes = opcodes;
 			Type = SimPe.Data.ObjectTypes.Normal;
 		}
 
@@ -469,9 +465,8 @@ namespace SimPe.PackedFiles.Wrapper
 
 		public override object[] GetConstructorArguments()
 		{
-			
-			return new object[] {this.opcodes};
-		}		
+            return new object[0];
+        }		
 
 		#endregion
 	}
