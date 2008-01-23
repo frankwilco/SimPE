@@ -229,7 +229,7 @@ namespace SimPe.PackedFiles.UserInterface
             }
             else
                 name = names[i];
-            return ((name != null) ? name + " " : "") + "(0x" + Helper.HexString((ushort)i) + "): ";
+            return "0x" + Helper.HexString((ushort)i) + ((name != null) ? ": " + name : "") + " ";
         }
 
         private static void readGLUAObjDef()
@@ -313,14 +313,6 @@ namespace SimPe.PackedFiles.UserInterface
             for (int i = 0; i < lST.Count; i++)
                 names[i] = lST[i].Title;
 
-        }
-
-        private static void readXMLObjDef()
-        {
-            names = null;
-            foreach (Ambertation.PropertyDescription pf in ExtObjd.PropertyParser.Properties.Values)
-            {
-            }
         }
 
         internal void SetFunctionCb(Wrapper.ExtObjd objd)
