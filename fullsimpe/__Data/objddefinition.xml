@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2006 U (http://www.altova.com) by Numenor (-) -->
 <properties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="propertydefinition.xsd">
 	<!-- ****************************************************************************** -->
-	<category name="01. Catalog Money">
+	<category name="01. OBJd File">
+		<property type="short">
+			<name>version_1 - Read Only</name>
+			<help>version_1 - Read Only</help>
+			<default>0</default>
+			<index>0</index>
+		</property>
+		<property type="short">
+			<name>version_2 - Read Only</name>
+			<help>version_2 - Read Only</help>
+			<default>0</default>
+			<readonly/>
+			<index>1</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="02. Catalog Price">
 		<property type="short">
 			<name>daily depreciation</name>
 			<help>daily depreciation</help>
@@ -41,7 +56,7 @@
 		</property>
 	</category>
 	<!-- ****************************************************************************** -->
-	<category name="02. Catalog sorting">
+	<category name="03. Catalog Sorting">
 		<property type="short">
 			<name>build mode type</name>
 			<help>build mode type</help>
@@ -96,9 +111,21 @@
 			<default>0</default>
 			<index>97</index>
 		</property>
+		<property type="short">
+			<name>Valid EP Flags 1</name>
+			<help>Valid EP Flags 1</help>
+			<default>0</default>
+			<index>64</index>
+		</property>
+		<property type="short">
+			<name>Valid EP Flags 2</name>
+			<help>Valid EP Flags 2</help>
+			<default>0</default>
+			<index>65</index>
+		</property>
 	</category>
 	<!-- ****************************************************************************** -->
-	<category name="03. Motives for catalog">
+	<category name="04. Catalog Ratings">
 		<property type="short">
 			<name>ratingRoom</name>
 			<help>ratingRoom</help>
@@ -147,9 +174,21 @@
 			<default>0</default>
 			<index>87</index>
 		</property>
+		<property type="short">
+			<name>ratingScratch</name>
+			<help>ratingScratch</help>
+			<default>0</default>
+			<index>103</index>
+		</property>
+		<property type="short">
+			<name>ratingChew</name>
+			<help>ratingChew</help>
+			<default>0</default>
+			<index>104</index>
+		</property>
 	</category>
 	<!-- ****************************************************************************** -->
-	<category name="04. User placement">
+	<category name="05. User placement">
 		<property type="bool">
 			<name>Keep Buying</name>
 			<help>Keep Buying</help>
@@ -194,7 +233,7 @@
 		</property>
 	</category>
 	<!-- ****************************************************************************** -->
-	<category name="05. Mesh &amp; Graphics">
+	<category name="06. Mesh &amp; Graphics">
 		<property type="short">
 			<name>Multi-Tile lead object</name>
 			<help>Multi-Tile lead object</help>
@@ -255,9 +294,78 @@
 			<default>0</default>
 			<index>79</index>
 		</property>
+		<property type="short">
+			<name>footprint mask</name>
+			<help>footprint mask</help>
+			<default>0</default>
+			<index>77</index>
+		</property>
+		<property type="short">
+			<name>extend footprint</name>
+			<help>extend footprint</help>
+			<default>0</default>
+			<index>78</index>
+		</property>
 	</category>
 	<!-- ****************************************************************************** -->
-	<category name="06. GUIDs">
+	<category name="07. Resource cross-refs">
+		<property type="short">
+			<name>slot group</name>
+			<help>slot group</help>
+			<default>0</default>
+			<index>31</index>
+		</property>
+		<property type="short">
+			<name>interaction group</name>
+			<help>interaction group</help>
+			<default>0</default>
+			<index>8</index>
+		</property>
+		<property type="short">
+			<name>catalog strings id</name>
+			<help>catalog strings id</help>
+			<default>0</default>
+			<index>41</index>
+		</property>
+		<property type="short">
+			<name>Default Thumbnail ID</name>
+			<help>Default Thumbnail ID</help>
+			<default>0</default>
+			<index>50</index>
+		</property>
+		<property type="short">
+			<name>motive effects id</name>
+			<help>motive effects id</help>
+			<default>0</default>
+			<index>51</index>
+		</property>
+		<property type="short">
+			<name>body strings id</name>
+			<help>body strings id</help>
+			<default>0</default>
+			<index>19</index>
+		</property>
+		<property type="short">
+			<name>catalog popup id</name>
+			<help>catalog popup id</help>
+			<default>0</default>
+			<index>54</index>
+		</property>
+		<property type="short">
+			<name>slots id</name>
+			<help>slots id</help>
+			<default>0</default>
+			<index>20</index>
+		</property>
+		<property type="short">
+			<name>Interaction Table ID</name>
+			<help>Interaction Table ID</help>
+			<default>0</default>
+			<index>7</index>
+		</property>
+	</category>
+	<!-- ****************************************************************************** -->
+	<category name="08. GUIDs">
 		<property type="short">
 			<name>guid_1 - Read Only</name>
 			<help>guid_1 - Read Only</help>
@@ -271,12 +379,6 @@
 			<default>0</default>
 			<readonly/>
 			<index>22</index>
-		</property>
-		<property type="short">
-			<name>Unused</name>
-			<help>Unused</help>
-			<default>0</default>
-			<index>92</index>
 		</property>
 		<property type="short">
 			<name>grid-aligned selector guid 2 - Read Only</name>
@@ -340,12 +442,6 @@
 			<index>73</index>
 		</property>
 		<property type="short">
-			<name>Unused</name>
-			<help>Unused</help>
-			<default>0</default>
-			<index>93</index>
-		</property>
-		<property type="short">
 			<name>object model guid 1 - Read Only</name>
 			<help>object model guid 1 - Read Only</help>
 			<default>0</default>
@@ -371,122 +467,34 @@
 		</property>
 	</category>
 	<!-- ****************************************************************************** -->
-	<category name="07. OBJd File">
+	<category name="09. Data Space">
 		<property type="short">
-			<name>ToolTip Name Type - 0 default</name>
-			<help>ToolTip Name Type - 0 default</help>
+			<name>number of object arrays</name>
+			<help>number of object arrays</help>
 			<default>0</default>
-			<index>43</index>
-		</property>
-		<property type="bool">
-			<name>Hauntable</name>
-			<help>Hauntable</help>
-			<default>0</default>
-			<index>28</index>
+			<index>59</index>
 		</property>
 		<property type="short">
-			<name>type</name>
-			<help>type</help>
+			<name>Num attributes</name>
+			<help>Num attributes</help>
 			<default>0</default>
-			<index>9</index>
+			<index>58</index>
 		</property>
 		<property type="short">
-			<name>object version</name>
-			<help>object version</help>
+			<name>Num type attributes</name>
+			<help>Num type attributes</help>
 			<default>0</default>
-			<index>49</index>
+			<index>90</index>
 		</property>
 		<property type="short">
-			<name>Template Version</name>
-			<help>Template Version</help>
+			<name>Initial stack size</name>
+			<help>Initial stack size</help>
 			<default>0</default>
-			<index>44</index>
-		</property>
-		<property type="short">
-			<name>version_1 - Read Only</name>
-			<help>version_1 - Read Only</help>
-			<default>0</default>
-			<index>0</index>
-		</property>
-		<property type="short">
-			<name>version_2 - Read Only</name>
-			<help>version_2 - Read Only</help>
-			<default>0</default>
-			<readonly/>
-			<index>1</index>
-		</property>
-		<property type="short">
-			<name>Valid EP Flags 1</name>
-			<help>Valid EP Flags 1</help>
-			<default>0</default>
-			<index>64</index>
+			<index>2</index>
 		</property>
 	</category>
 	<!-- ****************************************************************************** -->
-	<category name="08. Resource cross-refs">
-		<property type="short">
-			<name>slot group</name>
-			<help>slot group</help>
-			<default>0</default>
-			<index>31</index>
-		</property>
-		<property type="short">
-			<name>interaction group</name>
-			<help>interaction group</help>
-			<default>0</default>
-			<index>8</index>
-		</property>
-		<property type="short">
-			<name>catalog strings id</name>
-			<help>catalog strings id</help>
-			<default>0</default>
-			<index>41</index>
-		</property>
-		<property type="short">
-			<name>Default Thumbnail ID</name>
-			<help>Default Thumbnail ID</help>
-			<default>0</default>
-			<index>50</index>
-		</property>
-		<property type="short">
-			<name>motive effects id</name>
-			<help>motive effects id</help>
-			<default>0</default>
-			<index>51</index>
-		</property>
-		<property type="short">
-			<name>body strings id</name>
-			<help>body strings id</help>
-			<default>0</default>
-			<index>19</index>
-		</property>
-		<property type="short">
-			<name>catalog popup id</name>
-			<help>catalog popup id</help>
-			<default>0</default>
-			<index>54</index>
-		</property>
-		<property type="short">
-			<name>slots id</name>
-			<help>slots id</help>
-			<default>0</default>
-			<index>20</index>
-		</property>
-		<property type="short">
-			<name>Interaction Table ID</name>
-			<help>Interaction Table ID</help>
-			<default>0</default>
-			<index>7</index>
-		</property>
-		<property type="short">
-			<name>Unused</name>
-			<help>Unused</help>
-			<default>0</default>
-			<index>81</index>
-		</property>
-	</category>
-	<!-- ****************************************************************************** -->
-	<category name="09. Memories &amp; Wants">
+	<category name="10. Memories &amp; Wants">
 		<property type="short">
 			<name>Memory Nice/Bad</name>
 			<help>Memory Nice/Bad</help>
@@ -507,7 +515,7 @@
 		</property>
 	</category>
 	<!-- ****************************************************************************** -->
-	<category name="10. Miscellaneous">
+	<category name="11. Miscellaneous">
 		<property type="short">
 			<name>Item Is Unlockable</name>
 			<help>Item Is Unlockable</help>
@@ -531,18 +539,6 @@
 			<help>is global sim object</help>
 			<default>0</default>
 			<index>42</index>
-		</property>
-		<property type="short">
-			<name>Valid EP Flags 2</name>
-			<help>Valid EP Flags 2</help>
-			<default>0</default>
-			<index>65</index>
-		</property>
-		<property type="short">
-			<name>number of object arrays</name>
-			<help>number of object arrays</help>
-			<default>0</default>
-			<index>59</index>
 		</property>
 		<property type="short">
 			<name>Object ownership flags</name>
@@ -581,12 +577,6 @@
 			<index>27</index>
 		</property>
 		<property type="short">
-			<name>footprint mask</name>
-			<help>footprint mask</help>
-			<default>0</default>
-			<index>77</index>
-		</property>
-		<property type="short">
 			<name>Dream Flags</name>
 			<help>Dream Flags</help>
 			<default>0</default>
@@ -617,44 +607,48 @@
 			<index>45</index>
 		</property>
 		<property type="short">
-			<name>Num attributes</name>
-			<help>Num attributes</help>
+			<name>ToolTip Name Type - 0 default</name>
+			<help>ToolTip Name Type - 0 default</help>
 			<default>0</default>
-			<index>58</index>
+			<index>43</index>
+		</property>
+		<property type="bool">
+			<name>Hauntable</name>
+			<help>Hauntable</help>
+			<default>0</default>
+			<index>28</index>
 		</property>
 		<property type="short">
-			<name>Num type attributes</name>
-			<help>Num type attributes</help>
+			<name>type</name>
+			<help>type</help>
 			<default>0</default>
-			<index>90</index>
+			<index>9</index>
 		</property>
 		<property type="short">
-			<name>Initial stack size</name>
-			<help>Initial stack size</help>
+			<name>object version</name>
+			<help>object version</help>
 			<default>0</default>
-			<index>2</index>
+			<index>49</index>
+		</property>
+		<property type="short">
+			<name>Template Version</name>
+			<help>Template Version</help>
+			<default>0</default>
+			<index>44</index>
+		</property>
+		<property type="short">
+			<name>For Sale flags</name>
+			<help>For Sale flags</help>
+			<default>0</default>
+			<index>60</index>
+		</property>
+		<property type="short">
+			<name>Thumbnail flags</name>
+			<help>Thumbnail flags</help>
+			<default>0</default>
+			<index>102</index>
 		</property>
 	</category>
 	<!-- ****************************************************************************** -->
-	<category name="11. Unused">
-		<property type="short">
-			<name>Unused</name>
-			<help>Unused</help>
-			<default>0</default>
-			<index>48</index>
-		</property>
-		<property type="short">
-			<name>Unused</name>
-			<help>Unused</help>
-			<default>0</default>
-			<index>50</index>
-		</property>
-		<property type="short">
-			<name>Unused</name>
-			<help>Unused</help>
-			<default>0</default>
-			<index>52</index>
-		</property>
-	</category>
 	<!-- ****************************************************************************** -->
 </properties>
