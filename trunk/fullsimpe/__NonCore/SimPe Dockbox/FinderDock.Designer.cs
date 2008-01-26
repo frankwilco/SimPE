@@ -251,7 +251,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.AutoScroll = true;
             this.AutoScrollMinSize = new System.Drawing.Size(208, 288);
             this.ButtonText = "Finder";
-            this.CaptionText = "Resource Finder";
+            this.CaptionText = "Scenegraph Resource Finder";
             this.Controls.Add(this.xpGradientPanel1);
             this.Controls.Add(this.toolBar1);
             this.FloatingSize = new System.Drawing.Size(266, 502);
