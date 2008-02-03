@@ -62,6 +62,8 @@ namespace SimPe
             {
                 get { return !this.GetBit(5); }
             }
+
+            public bool HasNgbhProfiles { get { return this.GetBit(6); } }
         }
 
         string name;

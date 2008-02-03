@@ -205,6 +205,7 @@
     <Compile Include="ExceptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="IniRegistry.cs" />
     <Compile Include="IUpdatablePlugin.cs" />
     <Compile Include="PathProvider.cs" />
     <Compile Include="ExpansionItem.cs" />
