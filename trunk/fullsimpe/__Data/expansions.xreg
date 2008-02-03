@@ -11,8 +11,10 @@
         Bit 1: Is a StuffPack (aka MiniExpansion)
         Bit 2: Comes with a Lua Folder
         Bit 3: Load additional W&F Texts from this Expansion (BaseGame is allways loaded!!)
-	Bit 4: Sim Story
-	Bit 5: Objects.package does only contain additional objects-->
+        Bit 4: Sim Story
+        Bit 5: Objects.package does only contain additional objects
+        Bit 6: Neighborhoods folder contains profiles.ini
+	  -->
       <string name="ExeName">Sims2.exe</string>
       <int name="Group">1</int>
       <cilist name="SaveGameLocationsForGroup">
@@ -155,7 +157,7 @@
       </key>
     </key>
 
-    <!-- Version 7 is inetrnally used for the Happy Hollidays SP, which is not a real SP -->
+    <!-- Version 7 is internally used for the Happy Holidays SP, which is not a real SP -->
 
     <!-- Information about Seasons -->
     <key name="Seasons">
@@ -315,6 +317,24 @@
       <key name="de">
           <string name="short">Tiergeschichten</string>
       	  <string name="long">Die Sims 2 - Tiergeschichten</string>
+      </key>
+    </key>
+
+    <!-- Information about Castaway Stories (provided by Numenor) -->
+    <key name="CastawayStories">
+      <int name="Version">22</int>
+      <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Castaway Stories</string>
+      <int name="Flag">84</int>
+      <string name="ExeName">SimsCS.exe</string>
+      <string name="Censor">quaxi_pets_censor_v1.package</string>
+      <int name="Group">2</int>
+      <cilist name="SaveGameLocationsForGroup">
+        <string name="0">{MyDocuments}\\Electronic Arts\\{DisplayName}</string>
+      </cilist>
+      <string name="namelistnr">3</string>
+      <key name="en">
+	  <string name="short">Castaway Stories</string>
+      	  <string name="long">The Sims 2 - Castaway Stories</string>
       </key>
     </key>
 

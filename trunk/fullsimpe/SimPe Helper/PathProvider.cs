@@ -728,9 +728,15 @@ namespace SimPe
         /// </summary>
         /// <param name="path">Base Path</param>
         /// <returns>the suggested neighborhood folder</returns>
+        private static IniRegistry ngbhReg = null;
         public static string BuildNeighborhoodFolder(string path)
         {
-            return System.IO.Path.Combine(path, "Neighborhoods");
+            if (!Global.Latest.Flag.HasNgbhProfiles)
+                return System.IO.Path.Combine(path, "Neighborhoods");
+
+            if (ngbhReg == null) ngbhReg = new IniRegistry(System.IO.Path.Combine(path, "Neighborhoods" + Path.PathSeparator + "profiles.ini"));
+            string latest = ngbhReg["State"]["LastSaved"];
+            return System.IO.Path.Combine(path, "Neighborhoods" + Path.PathSeparator + latest);
         }
 
         /// <summary>
