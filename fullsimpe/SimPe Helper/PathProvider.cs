@@ -735,7 +735,7 @@ namespace SimPe
                 return System.IO.Path.Combine(path, "Neighborhoods");
 
             if (ngbhReg == null) ngbhReg = new IniRegistry(System.IO.Path.Combine(path, "Neighborhoods" + Path.PathSeparator + "profiles.ini"));
-            string latest = ngbhReg["State"]["LastSaved"];
+            string latest = ngbhReg["State"]["LastSaved"].Substring(3);
             return System.IO.Path.Combine(path, "Neighborhoods" + Path.PathSeparator + latest);
         }
 
