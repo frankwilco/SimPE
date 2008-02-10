@@ -3294,7 +3294,7 @@ namespace SimPe.Plugin
             JobDetailList.Items[newLevel-1].Selected = true;
             gbJobDetails.Text = "Current Level: " + newLevel;
 
-            StrItem[] items = jobTitles[currentLanguage];
+            List<StrItem> items = jobTitles[currentLanguage];
             jdpMale.TitleValue = items[(newLevel - 1) * 2 + 1].Title;
             jdpMale.DescValue = items[(newLevel - 1) * 2 + 2].Title;
             jdpFemale.TitleValue = items[femaleOffset + (newLevel - 1) * 2 + 1].Title;
@@ -3393,9 +3393,9 @@ namespace SimPe.Plugin
         private bool oneEnglish, englishOnly;
         private void removeLanguage(byte lid)
         {
-            foreach (StrItem i in (StrItem[])jobTitles[lid]) jobTitles.Remove(i);
-            foreach (StrItem i in (StrItem[])chanceCardsText[lid]) chanceCardsText.Remove(i);
-            foreach (StrItem i in (StrItem[])catalogueDesc[lid]) catalogueDesc.Remove(i);
+            foreach (StrItem i in jobTitles[lid]) jobTitles.Remove(i);
+            foreach (StrItem i in chanceCardsText[lid]) chanceCardsText.Remove(i);
+            foreach (StrItem i in catalogueDesc[lid]) catalogueDesc.Remove(i);
         }
         private void removeEnglishInternational() { removeLanguage(2); }
         private void removeOtherLanguages() { for (byte l = 3; l <= languageString.Count; l++) removeLanguage(l); }
@@ -3409,8 +3409,8 @@ namespace SimPe.Plugin
         private void fillJobDetails()
         {
             JobDetailList.Items.Clear();
-            for (int i = ((StrItem[])jobTitles[currentLanguage]).Length; i < noLevels * 4 + 1; i++) jobTitles.Add(currentLanguage, "", "");
-            StrItem[] items = jobTitles[currentLanguage];
+            for (int i = jobTitles[currentLanguage].Count; i < noLevels * 4 + 1; i++) jobTitles.Add(currentLanguage, "", "");
+            List<StrItem> items = jobTitles[currentLanguage];
             for (ushort i = 0; i < noLevels; i++)
             {
                 ListViewItem item1 = new ListViewItem("" + (i + 1), 0);
@@ -3656,9 +3656,9 @@ namespace SimPe.Plugin
             lnudChanceCurrentLevel.Value = newLevel;
             lnudChancePercent.Value = chanceChance[newLevel];
 
-            for (int i = ((StrItem[])chanceCardsText[currentLanguage]).Length; i < newLevel * 12 + 19; i++)
+            for (int i = chanceCardsText[currentLanguage].Count; i < newLevel * 12 + 19; i++)
                 chanceCardsText.Add(currentLanguage, "", "");
-            StrItem[] items = chanceCardsText[currentLanguage];
+            List<StrItem> items = chanceCardsText[currentLanguage];
 
             cpChoiceA.setValues(true, cpChoiceA.Label, items[newLevel * 12 + 7].Title, chanceASkills, newLevel);
             cpChoiceB.setValues(false, cpChoiceB.Label, items[newLevel * 12 + 8].Title, chanceBSkills, newLevel);
@@ -3673,7 +3673,7 @@ namespace SimPe.Plugin
         }
         private void chanceCardsToFiles()
         {
-            StrItem[] items = chanceCardsText[currentLanguage];
+            List<StrItem> items = chanceCardsText[currentLanguage];
             chanceChance[currentLevel] = (short)lnudChancePercent.Value;
 
             items[currentLevel * 12 + 7].Title = cpChoiceA.Value;
@@ -3842,8 +3842,8 @@ namespace SimPe.Plugin
 
             // This makes sure US English is as long the longest str[lng] array
             int count = 0;
-            for (byte i = 1; i <= languageString.Count; i++) count = Math.Max(count, ((StrItem[])str[i]).Length);
-            while (count > 0 && str[1, count - 1] == null && str.Add(1, "", "") >= 0) ;
+            for (byte i = 1; i <= languageString.Count; i++) count = Math.Max(count, str[i].Count);
+            while (count > 0 && str[1, count - 1] == null) str.Add(1, "", "");
 
             return str;
 		}
@@ -4130,7 +4130,7 @@ namespace SimPe.Plugin
             internalchg = true;
 
             byte us = 1;
-            StrItem[] usitems = null;
+            List<StrItem> usitems = null;
             ushort newNoLevels = (ushort)(noLevels + 1);
             ushort newLevel = (ushort)(currentLevel + 1);
             tuning[0] = (short)newNoLevels;
@@ -4154,8 +4154,8 @@ namespace SimPe.Plugin
             for (byte l = 1; l <= languageString.Count; l++)
             {
                 // Make safe for empty languages
-                for (int i = ((StrItem[])jobTitles[l]).Length; i < newNoLevels * 4 + 1; i++) jobTitles.Add(l, "", "");
-                StrItem[] items = jobTitles[l];
+                for (int i = jobTitles[l].Count; i < newNoLevels * 4 + 1; i++) jobTitles.Add(l, "", "");
+                List<StrItem> items = jobTitles[l];
                 // Shift all female entries up to free male entries
                 for (int i = noLevels - 1; i > 0; i--)
                 {
@@ -4245,9 +4245,9 @@ namespace SimPe.Plugin
 
             for (byte i = 1; i <= languageString.Count; i++)
             {
-                for (int k = ((StrItem[])chanceCardsText[i]).Length; k < newNoLevels * 12 + 19; k++)
+                for (int k = chanceCardsText[i].Count; k < newNoLevels * 12 + 19; k++)
                     chanceCardsText.Add(i, "", "");
-                StrItem[] items = chanceCardsText[i];
+                List<StrItem> items = chanceCardsText[i];
                 for (int j = newNoLevels; j > newLevel; j--)
                     for (int k = 7; k < 19; k++)
                         items[j * 12 + k].Title = items[(j - 1) * 12 + k].Title;
@@ -4295,8 +4295,8 @@ namespace SimPe.Plugin
             for (byte l = 1; l <= languageString.Count; l++)
             {
                 // Make safe for empty languages
-                for (int i = ((StrItem[])jobTitles[l]).Length; i < noLevels * 4 + 1; i++) jobTitles.Add(l, "", "");
-                StrItem[] items = jobTitles[l];
+                for (int i = jobTitles[l].Count; i < noLevels * 4 + 1; i++) jobTitles.Add(l, "", "");
+                List<StrItem> items = jobTitles[l];
                 // Shift male entries down over removed level
                 for (int i = currentLevel; i < noLevels; i++)
                 {
@@ -4316,7 +4316,7 @@ namespace SimPe.Plugin
                     items[newFemaleOffset + (i - 1) * 2 + 2].Title = items[newFemaleOffset + (i * 2) + 2].Title;
                 }
                 // Remove unused entries
-                for (int i = items.Length - 4; i < items.Length; i++)
+                for (int i = items.Count - 4; i < items.Count; i++)
                     jobTitles.Remove(items[i]);
             }
 
@@ -4380,9 +4380,9 @@ namespace SimPe.Plugin
             for (byte i = 1; i <= languageString.Count; i++)
             {
                 // Make safe for empty languages
-                for (int k = ((StrItem[])chanceCardsText[i]).Length; k < noLevels * 12 + 19; k++)
+                for (int k = chanceCardsText[i].Count; k < noLevels * 12 + 19; k++)
                     chanceCardsText.Add(i, "", "");
-                StrItem[] items = chanceCardsText[i];
+                List<StrItem> items = chanceCardsText[i];
                 // Shift entries down over removed level
                 for (int j = currentLevel; j < noLevels; j++)
                     for (int k = 7; k < 19; k++)
@@ -4550,7 +4550,7 @@ namespace SimPe.Plugin
 
             Boolset dw = new Boolset((byte)daysWorked[currentLevel]);
             dw[index] = ((CheckBox)sender).Checked;
-            daysWorked[currentLevel] = dw;
+            daysWorked[currentLevel] = (byte)dw;
 
             ListViewItem item = HoursWagesList.Items[currentLevel - 1];
             item.SubItems[index + 7].Text = "" + ((CheckBox)sender).Checked;
