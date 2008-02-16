@@ -1211,10 +1211,12 @@ namespace SimPe.PackedFiles.Wrapper
 			{
 				Nref wrp = (Nref)wrapper;
 				tbnrefhash.Text = "0x"+Helper.HexString(wrp.Group);
-
-				if (tbNref.Tag!=null) return;
-				wrp.FileName = tbNref.Text;
-				wrp.Changed = true;
+				if (tbNref.Tag == null) // allow event execution
+				{
+					wrp.FileName = tbNref.Text;
+        			wrp.Changed = true;
+				}
+				tbnrefhash.Text = "0x" + Helper.HexString(wrp.Group);
 			} 
 			catch (Exception ex)
 			{
