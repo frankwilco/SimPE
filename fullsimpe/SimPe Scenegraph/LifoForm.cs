@@ -71,7 +71,7 @@ namespace SimPe.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(LifoForm));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LifoForm));
 			this.LifoPanel = new System.Windows.Forms.Panel();
 			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -91,7 +91,6 @@ namespace SimPe.Plugin
 			this.contextMenu1 = new System.Windows.Forms.ContextMenu();
 			this.menuItem1 = new System.Windows.Forms.MenuItem();
 			this.menuItem4 = new System.Windows.Forms.MenuItem();
-			this.menuItem3 = new System.Windows.Forms.MenuItem();
 			this.menuItem2 = new System.Windows.Forms.MenuItem();
 			this.menuItem5 = new System.Windows.Forms.MenuItem();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -101,8 +100,12 @@ namespace SimPe.Plugin
 			this.btcommit = new System.Windows.Forms.Button();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
+			this.menuItem3 = new System.Windows.Forms.MenuItem();
+			this.menuItem6 = new System.Windows.Forms.MenuItem();
+			this.menuItem7 = new System.Windows.Forms.MenuItem();
 			this.LifoPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pb)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -131,10 +134,10 @@ namespace SimPe.Plugin
 			// linkLabel2
 			// 
 			this.linkLabel2.AutoSize = true;
-			this.linkLabel2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.linkLabel2.Location = new System.Drawing.Point(288, 80);
 			this.linkLabel2.Name = "linkLabel2";
-			this.linkLabel2.Size = new System.Drawing.Size(47, 17);
+			this.linkLabel2.Size = new System.Drawing.Size(51, 13);
 			this.linkLabel2.TabIndex = 19;
 			this.linkLabel2.TabStop = true;
 			this.linkLabel2.Text = "fix TGI";
@@ -143,10 +146,10 @@ namespace SimPe.Plugin
 			// linkLabel1
 			// 
 			this.linkLabel1.AutoSize = true;
-			this.linkLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.linkLabel1.Location = new System.Drawing.Point(343, 80);
 			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.Size = new System.Drawing.Size(81, 17);
+			this.linkLabel1.Size = new System.Drawing.Size(85, 13);
 			this.linkLabel1.TabIndex = 18;
 			this.linkLabel1.TabStop = true;
 			this.linkLabel1.Text = "assign Hash";
@@ -156,10 +159,10 @@ namespace SimPe.Plugin
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(248, 136);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(56, 17);
+			this.label1.Size = new System.Drawing.Size(60, 13);
 			this.label1.TabIndex = 17;
 			this.label1.Text = "Z-Level:";
 			// 
@@ -169,16 +172,15 @@ namespace SimPe.Plugin
 			this.tbz.Name = "tbz";
 			this.tbz.Size = new System.Drawing.Size(56, 21);
 			this.tbz.TabIndex = 16;
-			this.tbz.Text = "";
 			this.tbz.TextChanged += new System.EventHandler(this.ChangeZLevel);
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label5.Location = new System.Drawing.Point(141, 136);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(12, 17);
+			this.label5.Size = new System.Drawing.Size(15, 13);
 			this.label5.TabIndex = 15;
 			this.label5.Text = "x";
 			// 
@@ -189,7 +191,6 @@ namespace SimPe.Plugin
 			this.tbheight.ReadOnly = true;
 			this.tbheight.Size = new System.Drawing.Size(56, 21);
 			this.tbheight.TabIndex = 14;
-			this.tbheight.Text = "";
 			// 
 			// tbwidth
 			// 
@@ -198,25 +199,24 @@ namespace SimPe.Plugin
 			this.tbwidth.ReadOnly = true;
 			this.tbwidth.Size = new System.Drawing.Size(56, 21);
 			this.tbwidth.TabIndex = 13;
-			this.tbwidth.Text = "";
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label4.Location = new System.Drawing.Point(43, 136);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(35, 17);
+			this.label4.Size = new System.Drawing.Size(38, 13);
 			this.label4.TabIndex = 12;
 			this.label4.Text = "Size:";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.Location = new System.Drawing.Point(24, 112);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(54, 17);
+			this.label3.Size = new System.Drawing.Size(58, 13);
 			this.label3.TabIndex = 11;
 			this.label3.Text = "Format:";
 			// 
@@ -235,16 +235,15 @@ namespace SimPe.Plugin
 			this.tbflname.Name = "tbflname";
 			this.tbflname.Size = new System.Drawing.Size(344, 21);
 			this.tbflname.TabIndex = 9;
-			this.tbflname.Text = "";
 			this.tbflname.TextChanged += new System.EventHandler(this.FileNameChanged);
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.Location = new System.Drawing.Point(11, 40);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(67, 17);
+			this.label2.Size = new System.Drawing.Size(71, 13);
 			this.label2.TabIndex = 8;
 			this.label2.Text = "Filename:";
 			// 
@@ -259,9 +258,9 @@ namespace SimPe.Plugin
 			// 
 			// panel1
 			// 
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+									| System.Windows.Forms.AnchorStyles.Left)
+									| System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.AutoScroll = true;
 			this.panel1.Controls.Add(this.pb);
 			this.panel1.Location = new System.Drawing.Point(432, 32);
@@ -276,6 +275,7 @@ namespace SimPe.Plugin
 			this.pb.ContextMenu = this.contextMenu1;
 			this.pb.Location = new System.Drawing.Point(0, 0);
 			this.pb.Name = "pb";
+			this.pb.Size = new System.Drawing.Size(100, 50);
 			this.pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
 			this.pb.TabIndex = 5;
 			this.pb.TabStop = false;
@@ -283,11 +283,13 @@ namespace SimPe.Plugin
 			// contextMenu1
 			// 
 			this.contextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																						 this.menuItem1,
-																						 this.menuItem4,
-																						 this.menuItem3,
-																						 this.menuItem2,
-																						 this.menuItem5});
+            this.menuItem1,
+            this.menuItem4,
+            this.menuItem3,
+            this.menuItem6,
+            this.menuItem7,
+            this.menuItem2,
+            this.menuItem5});
 			// 
 			// menuItem1
 			// 
@@ -301,27 +303,22 @@ namespace SimPe.Plugin
 			this.menuItem4.Text = "Import &Alpha Channel...";
 			this.menuItem4.Click += new System.EventHandler(this.ImportAlpha);
 			// 
-			// menuItem3
-			// 
-			this.menuItem3.Index = 2;
-			this.menuItem3.Text = "-";
-			// 
 			// menuItem2
 			// 
-			this.menuItem2.Index = 3;
+			this.menuItem2.Index = 5;
 			this.menuItem2.Text = "&Export...";
 			this.menuItem2.Click += new System.EventHandler(this.btex_Click);
 			// 
 			// menuItem5
 			// 
-			this.menuItem5.Index = 4;
+			this.menuItem5.Index = 6;
 			this.menuItem5.Text = "Export Alpha &Channel...";
 			this.menuItem5.Click += new System.EventHandler(this.ExportAlpha);
 			// 
 			// panel2
 			// 
-			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
+			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+									| System.Windows.Forms.AnchorStyles.Right)));
 			this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
 			this.panel2.Controls.Add(this.btex);
 			this.panel2.Controls.Add(this.btim);
@@ -338,7 +335,7 @@ namespace SimPe.Plugin
 			// 
 			this.btex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btex.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btex.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.btex.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btex.Location = new System.Drawing.Point(584, 0);
 			this.btex.Name = "btex";
 			this.btex.Size = new System.Drawing.Size(80, 23);
@@ -350,9 +347,10 @@ namespace SimPe.Plugin
 			// 
 			this.btim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btim.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btim.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.btim.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btim.Location = new System.Drawing.Point(504, 0);
 			this.btim.Name = "btim";
+			this.btim.Size = new System.Drawing.Size(75, 23);
 			this.btim.TabIndex = 7;
 			this.btim.Text = "Import...";
 			this.btim.Click += new System.EventHandler(this.btim_Click);
@@ -363,7 +361,7 @@ namespace SimPe.Plugin
 			this.label27.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.label27.Location = new System.Drawing.Point(0, 4);
 			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(82, 19);
+			this.label27.Size = new System.Drawing.Size(81, 16);
 			this.label27.TabIndex = 0;
 			this.label27.Text = "Lifo Editor";
 			// 
@@ -371,9 +369,10 @@ namespace SimPe.Plugin
 			// 
 			this.btcommit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btcommit.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btcommit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.btcommit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btcommit.Location = new System.Drawing.Point(688, 0);
 			this.btcommit.Name = "btcommit";
+			this.btcommit.Size = new System.Drawing.Size(75, 23);
 			this.btcommit.TabIndex = 6;
 			this.btcommit.Text = "Save";
 			this.btcommit.Click += new System.EventHandler(this.btcommit_Click);
@@ -381,27 +380,48 @@ namespace SimPe.Plugin
 			// sfd
 			// 
 			this.sfd.Filter = "Png (*.png)|*.png|Bitmap (*.bmp)|*.bmp|Gif (*.gif)|*.gif|JPEG File (*.jpg)|*.jpg|" +
-				"All Files (*.*)|*.*";
+					"All Files (*.*)|*.*";
 			this.sfd.Title = "Export Image";
 			// 
 			// ofd
 			// 
 			this.ofd.Filter = "Alle Image Files (*.jpg;*.bmp;*.gif;*.png)|*.jpg;*.bmp;*.gif;*.png|Bitmap (*.bmp)" +
-				"|*.bmp|Gif (*.gif)|*.gif|JPEG File (*.jpg)|*.jpg|Png (*.png)|*.png|All Files (*." +
-				"*)|*.*";
+					"|*.bmp|Gif (*.gif)|*.gif|JPEG File (*.jpg)|*.jpg|Png (*.png)|*.png|All Files (*." +
+					"*)|*.*";
 			this.ofd.FilterIndex = 5;
+			// 
+			// menuItem3
+			// 
+			this.menuItem3.Index = 2;
+			this.menuItem3.Text = "Import &DDS...";
+			this.menuItem3.Click += new System.EventHandler(this.ImportDDS);
+			// 
+			// menuItem6
+			// 
+			this.menuItem6.Index = 3;
+			this.menuItem6.Text = "Build DXT...";
+			this.menuItem6.Click += new System.EventHandler(this.BuildDXT);
+			// 
+			// menuItem7
+			// 
+			this.menuItem7.Index = 4;
+			this.menuItem7.Text = "-";
 			// 
 			// LifoForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
 			this.ClientSize = new System.Drawing.Size(792, 310);
 			this.Controls.Add(this.LifoPanel);
-			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "LifoForm";
 			this.Text = "LifoForm";
 			this.LifoPanel.ResumeLayout(false);
+			this.LifoPanel.PerformLayout();
 			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pb)).EndInit();
 			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -431,11 +451,13 @@ namespace SimPe.Plugin
 		private System.Windows.Forms.ContextMenu contextMenu1;
 		private System.Windows.Forms.MenuItem menuItem1;
 		private System.Windows.Forms.MenuItem menuItem4;
-		private System.Windows.Forms.MenuItem menuItem3;
 		private System.Windows.Forms.MenuItem menuItem2;
 		private System.Windows.Forms.MenuItem menuItem5;
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.LinkLabel linkLabel2;
+		private MenuItem menuItem3;
+		private MenuItem menuItem6;
+		private MenuItem menuItem7;
 
 		internal Lifo wrapper = null;
 
@@ -740,6 +762,106 @@ namespace SimPe.Plugin
 			wrapper.FileDescriptor.Instance = Hashes.InstanceHash(fl);
 			wrapper.FileDescriptor.SubType = Hashes.SubTypeHash(fl);
 		}
+
+		private void BuildDXT(object sender, System.EventArgs e)
+		{
+			DDSTool dds = new DDSTool();
+
+			LevelInfo id = SelectedImageData();
+			LoadDDS(dds.Execute(1, id.TextureSize, id.Format));
+			//id.Refresh();
+		}
+
+
+		private void ImportDDS(object sender, System.EventArgs e)
+		{
+			ofd.Filter = "NVIDIA DDS File (*.dds)|*.dds|All Files (*.*)|*.*";
+			if (ofd.ShowDialog() == DialogResult.OK)
+			{
+				try
+				{
+					cbitem.Tag = true;
+					//ImageData id = SelectedImageData();
+					DDSData[] data = ImageLoader.ParesDDS(ofd.FileName);
+
+					LoadDDS(data);
+				}
+				catch (Exception ex)
+				{
+					Helper.ExceptionMessage("", ex);
+				}
+				finally
+				{
+					cbitem.Tag = null;
+				}
+			}
+		}
+
+
+		void LoadDDS(DDSData[] data)
+		{
+			if (data == null) return;
+			if (data.Length > 0)
+			{
+				try
+				{
+					cbitem.Tag = true;
+
+					LevelInfo id = SelectedImageData();
+					id.Format = data[0].Format;
+					id.Data = data[0].Data;
+					pb.Image = data[0].Texture;
+
+					tbwidth.Text = id.TextureSize.Width.ToString();
+					tbheight.Text = id.TextureSize.Height.ToString();
+
+					this.cbformats.SelectedIndex = 0;
+					for (int i = 0; i < cbformats.Items.Count; i++)
+					{
+						if ((ImageLoader.TxtrFormats)cbformats.Items[i] == id.Format)
+						{
+							cbformats.SelectedIndex = i;
+							break;
+						}
+					}
+				}
+				finally
+				{
+					cbitem.Tag = null;
+				}
+
+
+			}
+
+			
+		}
+
+		protected LevelInfo SelectedImageData()
+		{
+			//add a MipMapBlock if it doesnt already exist
+			LevelInfo id = null;
+			if (cbitem.SelectedIndex < 0)
+			{
+				Lifo wrp = (Lifo)wrapper;
+				id = new LevelInfo(wrp);
+				id.NameResource.FileName = "Unknown";
+				id.Format = (ImageLoader.TxtrFormats)cbformats.SelectedItem;
+
+				IRcolBlock[] irc = new IRcolBlock[wrp.Blocks.Length + 1];
+				wrp.Blocks.CopyTo(irc, 0);
+				irc[irc.Length - 1] = id;
+				wrp.Blocks = irc;
+				cbitem.Items.Add(id);
+				cbitem.SelectedIndex = cbitem.Items.Count - 1;
+			}
+			else
+			{
+				id = (LevelInfo)cbitem.Items[cbitem.SelectedIndex];
+			}
+
+			return id;
+		}
+
 
 	}
 }
