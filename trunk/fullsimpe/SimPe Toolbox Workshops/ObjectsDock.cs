@@ -112,6 +112,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			//init the preview manually since the designer is way to stupid to do so >:-|
 			this.op1 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
 			this.op2 = new SimPe.Plugin.Tool.Dockable.ObjectPreview();
+            op1.SuspendLayout();
 
 			// 
 			// op1
@@ -129,6 +130,7 @@ namespace SimPe.Plugin.Tool.Dockable
 			this.op1.TabIndex = 0;
 			this.xpTaskBoxSimple2.Controls.Add(this.op1);
 			this.xpTaskBoxSimple2.Resize += new EventHandler(xpTaskBoxSimple2_Resize);
+            op2.ResumeLayout();
 			// 
 			// op2
 			// 
@@ -188,6 +190,15 @@ namespace SimPe.Plugin.Tool.Dockable
 			}
 			base.Dispose( disposing );
 		}
+
+        //make sure that this order is maintained after each edit of teh GUI
+        /*
+         *  this.wizard1.Controls.Add(this.wizardStepPanel1);
+            this.wizard1.Controls.Add(this.wizardStepPanel2);
+            this.wizard1.Controls.Add(this.wizardStepPanel3);
+            this.wizard1.Controls.Add(this.wizardStepPanel5);
+            this.wizard1.Controls.Add(this.wizardStepPanel4);
+         */
 
 		#region Vom Windows Form-Designer generierter Code
 		/// <summary>
@@ -318,7 +329,7 @@ namespace SimPe.Plugin.Tool.Dockable
             this.wizardStepPanel1.Controls.Add(this.button1);
             this.wizardStepPanel1.Controls.Add(this.label2);
             resources.ApplyResources(this.wizardStepPanel1, "wizardStepPanel1");
-            this.wizardStepPanel1.First = false;
+            this.wizardStepPanel1.First = true;
             this.wizardStepPanel1.Last = false;
             this.wizardStepPanel1.Name = "wizardStepPanel1";
             // 
@@ -834,7 +845,7 @@ namespace SimPe.Plugin.Tool.Dockable
             // 
             resources.ApplyResources(this, "$this");
             this.Controls.Add(this.xpGradientPanel1);
-            this.FloatingSize = new System.Drawing.Size(306, 515);
+            this.FloatingSize = new System.Drawing.Size(319, 573);
             this.Image = ((System.Drawing.Image)(resources.GetObject("$this.Image")));
             this.Name = "dcObjectWorkshop";
             this.TabImage = ((System.Drawing.Image)(resources.GetObject("$this.TabImage")));
