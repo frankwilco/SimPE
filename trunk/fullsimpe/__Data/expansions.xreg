@@ -35,7 +35,7 @@
     <key name="University">
       <int name="Version">1</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 University</string>
-      <int name="Flag">9</int>
+      <int name="Flag">9</int><!-- 00001001 -->
       <string name="ExeName">Sims2EP1.exe</string>
       <cilist name="SimNameDeepSearch">
         <string name="0">TSData\Res\NeighborhoodTemplate\U001\Characters\</string>
@@ -60,7 +60,7 @@
     <key name="Nightlife">
       <int name="Version">2</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Nightlife</string>
-      <int name="Flag">13</int>
+      <int name="Flag">13</int><!-- 00001101 -->
       <string name="ExeName">Sims2EP2.exe</string>
       <string name="Censor">quaxi_nl_censor_v1.package</string>
       <cilist name="SimNameDeepSearch">
@@ -80,7 +80,7 @@
     <key name="Business">
       <int name="Version">3</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Open For Business</string>
-      <int name="Flag">13</int>
+      <int name="Flag">13</int><!-- 00001101 -->
       <string name="ExeName">Sims2EP3.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <cilist name="SimNameDeepSearch">
@@ -100,7 +100,7 @@
     <key name="FamilyFun">
       <int name="Version">4</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Family Fun Stuff</string>
-      <int name="Flag">2</int>
+      <int name="Flag">2</int><!-- 00000010 -->
       <string name="ExeName">Sims2SP1.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <int name="Group">1</int>
@@ -121,7 +121,7 @@
     <key name="Glamour">
       <int name="Version">5</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Glamour Life Stuff</string>
-      <int name="Flag">2</int>
+      <int name="Flag">2</int><!-- 00000010 -->
       <string name="ExeName">Sims2SP2.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <int name="Group">1</int>
@@ -140,7 +140,7 @@
     <key name="Pets">
       <int name="Version">6</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Pets</string>
-      <int name="Flag">13</int>
+      <int name="Flag">13</int><!-- 00001101 -->
       <string name="ExeName">Sims2EP4.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <cilist name="SimNameDeepSearch">
@@ -163,7 +163,7 @@
     <key name="Seasons">
       <int name="Version">8</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Seasons</string>
-      <int name="Flag">13</int>
+      <int name="Flag">13</int><!-- 00001101 -->
       <string name="ExeName">Sims2EP5.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <int name="Group">1</int>
@@ -186,7 +186,7 @@
       <int name="Version">9</int>
       <int name="PreferedRuntimeVersion">8</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Celebration Stuff</string>
-      <int name="Flag">34</int>
+      <int name="Flag">34</int><!-- 00100010 -->
       <string name="ExeName">Sims2SP4.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string> <!-- Provided by Carrigon -->
@@ -209,7 +209,7 @@
       <int name="Version">10</int>
       <int name="PreferedRuntimeVersion">8</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 H M Fashion Stuff</string>
-      <int name="Flag">34</int>
+      <int name="Flag">34</int><!-- 00100010 -->
       <string name="ExeName">Sims2SP5.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
@@ -231,7 +231,7 @@
     <key name="Voyage">
       <int name="Version">11</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Bon Voyage</string>
-      <int name="Flag">13</int>
+      <int name="Flag">13</int><!-- 00001101 -->
       <string name="ExeName">Sims2EP6.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <int name="Group">1</int>
@@ -262,7 +262,7 @@
       <int name="Version">12</int>
       <int name="PreferedRuntimeVersion">11</int>
       <string name="RegKey">Software\\EA Games\\The Sims 2 Teen Style Stuff</string>
-      <int name="Flag">34</int>
+      <int name="Flag">34</int><!-- 00100010 -->
       <string name="ExeName">Sims2SP6.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <string name="ObjectsFolder">TSData\\Res\\StuffPack\\Objects</string>
@@ -284,7 +284,7 @@
     <key name="LifeStories">
       <int name="Version">20</int>
       <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Life Stories</string>
-      <int name="Flag">20</int>
+      <int name="Flag">20</int><!-- 00100000 -->
       <string name="ExeName">SimsLS.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <int name="Group">2</int>
@@ -302,7 +302,7 @@
     <key name="PetStories">
       <int name="Version">21</int>
       <string name="RegKey">SOFTWARE\Electronic Arts\The Sims Pet Stories</string>
-      <int name="Flag">20</int>
+      <int name="Flag">20</int><!-- 00100000 -->
       <string name="ExeName">SimsPS.exe</string>
       <string name="Censor">quaxi_ofb_censor_v1.package</string>
       <int name="Group">4</int>
@@ -324,7 +324,7 @@
     <key name="CastawayStories">
       <int name="Version">22</int>
       <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Castaway Stories</string>
-      <int name="Flag">84</int>
+      <int name="Flag">100</int><!-- 01100100 -->
       <string name="ExeName">SimsCS.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <int name="Group">2</int>
