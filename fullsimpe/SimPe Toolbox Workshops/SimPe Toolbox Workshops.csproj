@@ -337,10 +337,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="nothumb.png" />
-    <EmbeddedResource Include="ObjectPreview.de-DE.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ObjectPreview.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ObjectPreview.de.resx">
       <DependentUpon>ObjectPreview.cs</DependentUpon>
       <SubType>Designer</SubType>
