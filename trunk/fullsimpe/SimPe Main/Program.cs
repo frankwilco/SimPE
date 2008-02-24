@@ -39,8 +39,10 @@ namespace SimPe
         static void Main(string[] args)
         {
             
+#if !DEBUG
             try
             {
+#endif
                 if (System.Environment.Version.Major < 2)
                 {
                     Message.Show(SimPe.Localization.GetString("NoDotNet").Replace("{VERSION}",System.Environment.Version.ToString()));
@@ -82,6 +84,7 @@ namespace SimPe
 
                 }
 
+#if !DEBUG
             }
             catch (Exception ex)
             {
@@ -98,8 +101,11 @@ namespace SimPe
             }
             finally
             {
+#endif
                 SimPe.Splash.Screen.ShutDown();
+#if !DEBUG
             }
+#endif
 
             try
             {
