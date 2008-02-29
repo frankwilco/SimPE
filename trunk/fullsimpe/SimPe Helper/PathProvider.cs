@@ -21,6 +21,7 @@ namespace SimPe
         Fashion =           0x400,
         Voyage =            0x800,
         Teen =              0x1000,
+        FreeTime =          0x2000,
         LifeStories =       0x00100000,
         PetStories =        0x00200000,
         IslandStories =     0x00400000,
