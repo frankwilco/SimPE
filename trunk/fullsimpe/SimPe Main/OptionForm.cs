@@ -176,6 +176,7 @@ namespace SimPe
             {
                 lbfolder.Items.Add(fti, !fti.Ignore);
             }
+            lbfolder.SelectedIndex = lbfolder.Items.Count > 0 ? 0 : -1;
 
             //Favorite Theme
             GuiTheme gt = (GuiTheme)Helper.WindowsRegistry.Layout.SelectedTheme;
