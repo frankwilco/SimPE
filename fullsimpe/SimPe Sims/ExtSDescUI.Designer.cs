@@ -120,6 +120,11 @@ namespace SimPe.PackedFiles.UserInterface
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.ptPigpen = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptAggres = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptIndep = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptHyper = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
+            this.ptGifted = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -205,6 +210,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.panel3 = new System.Windows.Forms.Panel();
             this.srcTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.dstTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
+            this.lv = new SimPe.PackedFiles.Wrapper.SimRelationPoolControl();
             this.pnMisc = new System.Windows.Forms.Panel();
             this.xpTaskBoxSimple3 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.label3 = new System.Windows.Forms.Label();
@@ -246,47 +252,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.label98 = new System.Windows.Forms.Label();
             this.tbmajor = new System.Windows.Forms.TextBox();
             this.pnEP7 = new System.Windows.Forms.Panel();
-            this.pnEP2 = new System.Windows.Forms.Panel();
-            this.tbNTLove = new System.Windows.Forms.TextBox();
-            this.tbNTPerfume = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbTurnOff = new System.Windows.Forms.CheckedListBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbTurnOn = new System.Windows.Forms.CheckedListBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lbTraits = new System.Windows.Forms.CheckedListBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pnEP3 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.llep3openinfo = new System.Windows.Forms.LinkLabel();
-            this.label15 = new System.Windows.Forms.Label();
-            this.tbEp3Salery = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cbEp3Asgn = new Ambertation.Windows.Forms.EnumComboBox();
-            this.tbEp3Flag = new System.Windows.Forms.TextBox();
-            this.tbEp3Lot = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.pnVoyage = new System.Windows.Forms.Panel();
-            this.lvCollectibles = new System.Windows.Forms.ListView();
-            this.ilCollectibles = new System.Windows.Forms.ImageList(this.components);
-            this.tbhdaysleft = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.labelcol = new System.Windows.Forms.Label();
-            this.cbHobbyEnth = new System.Windows.Forms.ComboBox();
-            this.tbHobbyEnth = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.tbHobbyPre = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.tbLtAsp = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.tbUnlockPts = new System.Windows.Forms.TextBox();
-            this.tbUnlocksUsed = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.tbBugColl = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
             this.xpTaskBoxSimple4 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.label33 = new System.Windows.Forms.Label();
             this.tb7social = new System.Windows.Forms.TextBox();
@@ -302,14 +268,48 @@ namespace SimPe.PackedFiles.UserInterface
             this.label38 = new System.Windows.Forms.Label();
             this.tb7hunger = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.ptPigpen = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptAggres = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptIndep = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptHyper = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.ptGifted = new SimPe.PackedFiles.Wrapper.PetTraitSelect();
-            this.lv = new SimPe.PackedFiles.Wrapper.SimRelationPoolControl();
+            this.tbBugColl = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.tbUnlocksUsed = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.tbUnlockPts = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.tbLtAsp = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.tbHobbyPre = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.tbHobbyEnth = new System.Windows.Forms.TextBox();
+            this.cbHobbyEnth = new System.Windows.Forms.ComboBox();
+            this.pnEP2 = new System.Windows.Forms.Panel();
+            this.tbNTLove = new System.Windows.Forms.TextBox();
+            this.tbNTPerfume = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbTurnOff = new System.Windows.Forms.CheckedListBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbTurnOn = new System.Windows.Forms.CheckedListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbTraits = new System.Windows.Forms.CheckedListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pnEP3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.llep3openinfo = new System.Windows.Forms.LinkLabel();
+            this.label15 = new System.Windows.Forms.Label();
             this.sblb = new SimPe.PackedFiles.Wrapper.SimBusinessList();
+            this.tbEp3Salery = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbEp3Asgn = new Ambertation.Windows.Forms.EnumComboBox();
+            this.tbEp3Flag = new System.Windows.Forms.TextBox();
+            this.tbEp3Lot = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.pnVoyage = new System.Windows.Forms.Panel();
+            this.lvCollectibles = new System.Windows.Forms.ListView();
+            this.ilCollectibles = new System.Windows.Forms.ImageList(this.components);
+            this.tbhdaysleft = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.labelcol = new System.Windows.Forms.Label();
             this.pnPetInt.SuspendLayout();
             this.toolBar1.SuspendLayout();
             this.pnId.SuspendLayout();
@@ -331,11 +331,11 @@ namespace SimPe.PackedFiles.UserInterface
             this.xpTaskBoxSimple1.SuspendLayout();
             this.pnEP1.SuspendLayout();
             this.pnEP7.SuspendLayout();
+            this.xpTaskBoxSimple4.SuspendLayout();
             this.pnEP2.SuspendLayout();
             this.pnEP3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnVoyage.SuspendLayout();
-            this.xpTaskBoxSimple4.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnPetInt
@@ -966,6 +966,41 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.label22, "label22");
             this.label22.Name = "label22";
+            // 
+            // ptPigpen
+            // 
+            this.ptPigpen.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            resources.ApplyResources(this.ptPigpen, "ptPigpen");
+            this.ptPigpen.Name = "ptPigpen";
+            this.ptPigpen.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptAggres
+            // 
+            this.ptAggres.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            resources.ApplyResources(this.ptAggres, "ptAggres");
+            this.ptAggres.Name = "ptAggres";
+            this.ptAggres.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptIndep
+            // 
+            this.ptIndep.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            resources.ApplyResources(this.ptIndep, "ptIndep");
+            this.ptIndep.Name = "ptIndep";
+            this.ptIndep.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptHyper
+            // 
+            this.ptHyper.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            resources.ApplyResources(this.ptHyper, "ptHyper");
+            this.ptHyper.Name = "ptHyper";
+            this.ptHyper.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            // 
+            // ptGifted
+            // 
+            this.ptGifted.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
+            resources.ApplyResources(this.ptGifted, "ptGifted");
+            this.ptGifted.Name = "ptGifted";
+            this.ptGifted.LevelChanged += new System.EventHandler(this.ChangedEP4);
             // 
             // label21
             // 
@@ -1893,8 +1928,8 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.pnRel, "pnRel");
             this.pnRel.BackColor = System.Drawing.Color.Transparent;
-            this.pnRel.Controls.Add(this.panel3);
             this.pnRel.Controls.Add(this.lv);
+            this.pnRel.Controls.Add(this.panel3);
             this.pnRel.Name = "pnRel";
             this.pnRel.VisibleChanged += new System.EventHandler(this.pnRel_VisibleChanged);
             // 
@@ -1932,6 +1967,23 @@ namespace SimPe.PackedFiles.UserInterface
             this.dstTb.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
             this.dstTb.Name = "dstTb";
             this.dstTb.RightHeaderColor = System.Drawing.SystemColors.Highlight;
+            // 
+            // lv
+            // 
+            this.lv.ContextMenuStrip = this.miRel;
+            resources.ApplyResources(this.lv, "lv");
+            this.lv.Name = "lv";
+            this.lv.Package = null;
+            this.lv.RightClickSelect = true;
+            this.lv.SelectedElement = null;
+            this.lv.SelectedSim = null;
+            this.lv.ShowNotRelatedSims = false;
+            this.lv.ShowRelatedSims = true;
+            this.lv.Sim = null;
+            this.lv.SimDetails = false;
+            this.lv.TileColumns = new int[] {
+        1};
+            this.lv.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.lv_SelectedSimChanged);
             // 
             // pnMisc
             // 
@@ -2298,290 +2350,10 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnEP7.Controls.Add(this.cbHobbyEnth);
             this.pnEP7.Name = "pnEP7";
             // 
-            // pnEP2
+            // label40
             // 
-            resources.ApplyResources(this.pnEP2, "pnEP2");
-            this.pnEP2.BackColor = System.Drawing.Color.Transparent;
-            this.pnEP2.Controls.Add(this.tbNTLove);
-            this.pnEP2.Controls.Add(this.tbNTPerfume);
-            this.pnEP2.Controls.Add(this.label8);
-            this.pnEP2.Controls.Add(this.label7);
-            this.pnEP2.Controls.Add(this.lbTurnOff);
-            this.pnEP2.Controls.Add(this.label6);
-            this.pnEP2.Controls.Add(this.lbTurnOn);
-            this.pnEP2.Controls.Add(this.label5);
-            this.pnEP2.Controls.Add(this.lbTraits);
-            this.pnEP2.Controls.Add(this.label4);
-            this.pnEP2.Name = "pnEP2";
-            // 
-            // tbNTLove
-            // 
-            resources.ApplyResources(this.tbNTLove, "tbNTLove");
-            this.tbNTLove.Name = "tbNTLove";
-            this.tbNTLove.TextChanged += new System.EventHandler(this.ChangedEP2);
-            // 
-            // tbNTPerfume
-            // 
-            resources.ApplyResources(this.tbNTPerfume, "tbNTPerfume");
-            this.tbNTPerfume.Name = "tbNTPerfume";
-            this.tbNTPerfume.TextChanged += new System.EventHandler(this.ChangedEP2);
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // lbTurnOff
-            // 
-            resources.ApplyResources(this.lbTurnOff, "lbTurnOff");
-            this.lbTurnOff.Name = "lbTurnOff";
-            this.lbTurnOff.SelectedIndexChanged += new System.EventHandler(this.lbTurnOff_SelectedIndexChanged);
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // lbTurnOn
-            // 
-            resources.ApplyResources(this.lbTurnOn, "lbTurnOn");
-            this.lbTurnOn.Name = "lbTurnOn";
-            this.lbTurnOn.SelectedIndexChanged += new System.EventHandler(this.lbTurnOn_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            // 
-            // lbTraits
-            // 
-            resources.ApplyResources(this.lbTraits, "lbTraits");
-            this.lbTraits.Name = "lbTraits";
-            this.lbTraits.SelectedIndexChanged += new System.EventHandler(this.lbTraits_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
-            // pnEP3
-            // 
-            resources.ApplyResources(this.pnEP3, "pnEP3");
-            this.pnEP3.BackColor = System.Drawing.Color.Transparent;
-            this.pnEP3.Controls.Add(this.pictureBox1);
-            this.pnEP3.Controls.Add(this.llep3openinfo);
-            this.pnEP3.Controls.Add(this.label15);
-            this.pnEP3.Controls.Add(this.sblb);
-            this.pnEP3.Controls.Add(this.tbEp3Salery);
-            this.pnEP3.Controls.Add(this.label14);
-            this.pnEP3.Controls.Add(this.label12);
-            this.pnEP3.Controls.Add(this.cbEp3Asgn);
-            this.pnEP3.Controls.Add(this.tbEp3Flag);
-            this.pnEP3.Controls.Add(this.tbEp3Lot);
-            this.pnEP3.Controls.Add(this.label9);
-            this.pnEP3.Controls.Add(this.label11);
-            this.pnEP3.Name = "pnEP3";
-            // 
-            // pictureBox1
-            // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            // 
-            // llep3openinfo
-            // 
-            resources.ApplyResources(this.llep3openinfo, "llep3openinfo");
-            this.llep3openinfo.Name = "llep3openinfo";
-            this.llep3openinfo.TabStop = true;
-            this.llep3openinfo.UseCompatibleTextRendering = true;
-            this.llep3openinfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llep3openinfo_LinkClicked);
-            // 
-            // label15
-            // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
-            // 
-            // tbEp3Salery
-            // 
-            resources.ApplyResources(this.tbEp3Salery, "tbEp3Salery");
-            this.tbEp3Salery.Name = "tbEp3Salery";
-            this.tbEp3Salery.TextChanged += new System.EventHandler(this.ChangedEP3);
-            // 
-            // label14
-            // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.Name = "label14";
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            // 
-            // cbEp3Asgn
-            // 
-            this.cbEp3Asgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEp3Asgn.Enum = null;
-            this.cbEp3Asgn.ForeColor = System.Drawing.SystemColors.ControlText;
-            resources.ApplyResources(this.cbEp3Asgn, "cbEp3Asgn");
-            this.cbEp3Asgn.Name = "cbEp3Asgn";
-            this.cbEp3Asgn.ResourceManager = null;
-            this.cbEp3Asgn.SelectedValueChanged += new System.EventHandler(this.ChangedEP3);
-            // 
-            // tbEp3Flag
-            // 
-            resources.ApplyResources(this.tbEp3Flag, "tbEp3Flag");
-            this.tbEp3Flag.Name = "tbEp3Flag";
-            this.tbEp3Flag.TextChanged += new System.EventHandler(this.ChangedEP3);
-            // 
-            // tbEp3Lot
-            // 
-            resources.ApplyResources(this.tbEp3Lot, "tbEp3Lot");
-            this.tbEp3Lot.Name = "tbEp3Lot";
-            this.tbEp3Lot.TextChanged += new System.EventHandler(this.ChangedEP3);
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
-            // pnVoyage
-            // 
-            resources.ApplyResources(this.pnVoyage, "pnVoyage");
-            this.pnVoyage.BackColor = System.Drawing.Color.Transparent;
-            this.pnVoyage.Controls.Add(this.lvCollectibles);
-            this.pnVoyage.Controls.Add(this.tbhdaysleft);
-            this.pnVoyage.Controls.Add(this.label29);
-            this.pnVoyage.Controls.Add(this.labelcol);
-            this.pnVoyage.Name = "pnVoyage";
-            // 
-            // lvCollectibles
-            // 
-            resources.ApplyResources(this.lvCollectibles, "lvCollectibles");
-            this.lvCollectibles.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvCollectibles.CheckBoxes = true;
-            this.lvCollectibles.HideSelection = false;
-            this.lvCollectibles.LargeImageList = this.ilCollectibles;
-            this.lvCollectibles.MultiSelect = false;
-            this.lvCollectibles.Name = "lvCollectibles";
-            this.lvCollectibles.ShowGroups = false;
-            this.lvCollectibles.SmallImageList = this.ilCollectibles;
-            this.lvCollectibles.UseCompatibleStateImageBehavior = false;
-            this.lvCollectibles.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvCollectibles_ItemChecked);
-            this.lvCollectibles.SelectedIndexChanged += new System.EventHandler(this.ChangedEP6);
-            // 
-            // ilCollectibles
-            // 
-            this.ilCollectibles.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            resources.ApplyResources(this.ilCollectibles, "ilCollectibles");
-            this.ilCollectibles.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // tbhdaysleft
-            // 
-            resources.ApplyResources(this.tbhdaysleft, "tbhdaysleft");
-            this.tbhdaysleft.Name = "tbhdaysleft";
-            this.tbhdaysleft.TextChanged += new System.EventHandler(this.ChangedEP6);
-            // 
-            // label29
-            // 
-            resources.ApplyResources(this.label29, "label29");
-            this.label29.Name = "label29";
-            // 
-            // labelcol
-            // 
-            resources.ApplyResources(this.labelcol, "labelcol");
-            this.labelcol.Name = "labelcol";
-            this.labelcol.Click += new System.EventHandler(this.lbcollectibles_Click);
-            // 
-            // cbHobbyEnth
-            // 
-            this.cbHobbyEnth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbHobbyEnth.FormattingEnabled = true;
-            this.cbHobbyEnth.Items.AddRange(new object[] {
-            resources.GetString("cbHobbyEnth.Items"),
-            resources.GetString("cbHobbyEnth.Items1"),
-            resources.GetString("cbHobbyEnth.Items2"),
-            resources.GetString("cbHobbyEnth.Items3"),
-            resources.GetString("cbHobbyEnth.Items4"),
-            resources.GetString("cbHobbyEnth.Items5"),
-            resources.GetString("cbHobbyEnth.Items6"),
-            resources.GetString("cbHobbyEnth.Items7"),
-            resources.GetString("cbHobbyEnth.Items8"),
-            resources.GetString("cbHobbyEnth.Items9"),
-            resources.GetString("cbHobbyEnth.Items10")});
-            resources.ApplyResources(this.cbHobbyEnth, "cbHobbyEnth");
-            this.cbHobbyEnth.Name = "cbHobbyEnth";
-            this.cbHobbyEnth.SelectedIndexChanged += new System.EventHandler(this.EnthusiasmIndexChanged);
-            // 
-            // tbHobbyEnth
-            // 
-            resources.ApplyResources(this.tbHobbyEnth, "tbHobbyEnth");
-            this.tbHobbyEnth.Name = "tbHobbyEnth";
-            this.tbHobbyEnth.TextChanged += new System.EventHandler(this.ChangedEP7);
-            // 
-            // label27
-            // 
-            resources.ApplyResources(this.label27, "label27");
-            this.label27.Name = "label27";
-            // 
-            // tbHobbyPre
-            // 
-            resources.ApplyResources(this.tbHobbyPre, "tbHobbyPre");
-            this.tbHobbyPre.Name = "tbHobbyPre";
-            this.tbHobbyPre.TextChanged += new System.EventHandler(this.ChangedEP7);
-            // 
-            // label28
-            // 
-            resources.ApplyResources(this.label28, "label28");
-            this.label28.Name = "label28";
-            // 
-            // tbLtAsp
-            // 
-            resources.ApplyResources(this.tbLtAsp, "tbLtAsp");
-            this.tbLtAsp.Name = "tbLtAsp";
-            this.tbLtAsp.TextChanged += new System.EventHandler(this.ChangedEP7);
-            // 
-            // label30
-            // 
-            resources.ApplyResources(this.label30, "label30");
-            this.label30.Name = "label30";
-            // 
-            // tbUnlockPts
-            // 
-            resources.ApplyResources(this.tbUnlockPts, "tbUnlockPts");
-            this.tbUnlockPts.Name = "tbUnlockPts";
-            this.tbUnlockPts.TextChanged += new System.EventHandler(this.ChangedEP7);
-            // 
-            // tbUnlocksUsed
-            // 
-            resources.ApplyResources(this.tbUnlocksUsed, "tbUnlocksUsed");
-            this.tbUnlocksUsed.Name = "tbUnlocksUsed";
-            this.tbUnlocksUsed.TextChanged += new System.EventHandler(this.ChangedEP7);
-            // 
-            // label31
-            // 
-            resources.ApplyResources(this.label31, "label31");
-            this.label31.Name = "label31";
-            // 
-            // tbBugColl
-            // 
-            resources.ApplyResources(this.tbBugColl, "tbBugColl");
-            this.tbBugColl.Name = "tbBugColl";
-            this.tbBugColl.TextChanged += new System.EventHandler(this.ChangedEP7);
-            // 
-            // label32
-            // 
-            resources.ApplyResources(this.label32, "label32");
-            this.label32.Name = "label32";
+            resources.ApplyResources(this.label40, "label40");
+            this.label40.Name = "label40";
             // 
             // xpTaskBoxSimple4
             // 
@@ -2695,62 +2467,194 @@ namespace SimPe.PackedFiles.UserInterface
             resources.ApplyResources(this.label39, "label39");
             this.label39.Name = "label39";
             // 
-            // label40
+            // tbBugColl
             // 
-            resources.ApplyResources(this.label40, "label40");
-            this.label40.Name = "label40";
+            resources.ApplyResources(this.tbBugColl, "tbBugColl");
+            this.tbBugColl.Name = "tbBugColl";
+            this.tbBugColl.TextChanged += new System.EventHandler(this.ChangedEP7);
             // 
-            // ptPigpen
+            // label32
             // 
-            this.ptPigpen.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            resources.ApplyResources(this.ptPigpen, "ptPigpen");
-            this.ptPigpen.Name = "ptPigpen";
-            this.ptPigpen.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            resources.ApplyResources(this.label32, "label32");
+            this.label32.Name = "label32";
             // 
-            // ptAggres
+            // tbUnlocksUsed
             // 
-            this.ptAggres.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            resources.ApplyResources(this.ptAggres, "ptAggres");
-            this.ptAggres.Name = "ptAggres";
-            this.ptAggres.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            resources.ApplyResources(this.tbUnlocksUsed, "tbUnlocksUsed");
+            this.tbUnlocksUsed.Name = "tbUnlocksUsed";
+            this.tbUnlocksUsed.TextChanged += new System.EventHandler(this.ChangedEP7);
             // 
-            // ptIndep
+            // label31
             // 
-            this.ptIndep.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            resources.ApplyResources(this.ptIndep, "ptIndep");
-            this.ptIndep.Name = "ptIndep";
-            this.ptIndep.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            resources.ApplyResources(this.label31, "label31");
+            this.label31.Name = "label31";
             // 
-            // ptHyper
+            // tbUnlockPts
             // 
-            this.ptHyper.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            resources.ApplyResources(this.ptHyper, "ptHyper");
-            this.ptHyper.Name = "ptHyper";
-            this.ptHyper.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            resources.ApplyResources(this.tbUnlockPts, "tbUnlockPts");
+            this.tbUnlockPts.Name = "tbUnlockPts";
+            this.tbUnlockPts.TextChanged += new System.EventHandler(this.ChangedEP7);
             // 
-            // ptGifted
+            // label30
             // 
-            this.ptGifted.Level = SimPe.PackedFiles.Wrapper.PetTraitSelect.Levels.Normal;
-            resources.ApplyResources(this.ptGifted, "ptGifted");
-            this.ptGifted.Name = "ptGifted";
-            this.ptGifted.LevelChanged += new System.EventHandler(this.ChangedEP4);
+            resources.ApplyResources(this.label30, "label30");
+            this.label30.Name = "label30";
             // 
-            // lv
+            // tbLtAsp
             // 
-            this.lv.ContextMenuStrip = this.miRel;
-            resources.ApplyResources(this.lv, "lv");
-            this.lv.Name = "lv";
-            this.lv.Package = null;
-            this.lv.RightClickSelect = true;
-            this.lv.SelectedElement = null;
-            this.lv.SelectedSim = null;
-            this.lv.ShowNotRelatedSims = false;
-            this.lv.ShowRelatedSims = true;
-            this.lv.Sim = null;
-            this.lv.SimDetails = false;
-            this.lv.TileColumns = new int[] {
-        1};
-            this.lv.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.lv_SelectedSimChanged);
+            resources.ApplyResources(this.tbLtAsp, "tbLtAsp");
+            this.tbLtAsp.Name = "tbLtAsp";
+            this.tbLtAsp.TextChanged += new System.EventHandler(this.ChangedEP7);
+            // 
+            // label28
+            // 
+            resources.ApplyResources(this.label28, "label28");
+            this.label28.Name = "label28";
+            // 
+            // tbHobbyPre
+            // 
+            resources.ApplyResources(this.tbHobbyPre, "tbHobbyPre");
+            this.tbHobbyPre.Name = "tbHobbyPre";
+            this.tbHobbyPre.TextChanged += new System.EventHandler(this.ChangedEP7);
+            // 
+            // label27
+            // 
+            resources.ApplyResources(this.label27, "label27");
+            this.label27.Name = "label27";
+            // 
+            // tbHobbyEnth
+            // 
+            resources.ApplyResources(this.tbHobbyEnth, "tbHobbyEnth");
+            this.tbHobbyEnth.Name = "tbHobbyEnth";
+            this.tbHobbyEnth.TextChanged += new System.EventHandler(this.ChangedEP7);
+            // 
+            // cbHobbyEnth
+            // 
+            this.cbHobbyEnth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHobbyEnth.FormattingEnabled = true;
+            this.cbHobbyEnth.Items.AddRange(new object[] {
+            resources.GetString("cbHobbyEnth.Items"),
+            resources.GetString("cbHobbyEnth.Items1"),
+            resources.GetString("cbHobbyEnth.Items2"),
+            resources.GetString("cbHobbyEnth.Items3"),
+            resources.GetString("cbHobbyEnth.Items4"),
+            resources.GetString("cbHobbyEnth.Items5"),
+            resources.GetString("cbHobbyEnth.Items6"),
+            resources.GetString("cbHobbyEnth.Items7"),
+            resources.GetString("cbHobbyEnth.Items8"),
+            resources.GetString("cbHobbyEnth.Items9"),
+            resources.GetString("cbHobbyEnth.Items10")});
+            resources.ApplyResources(this.cbHobbyEnth, "cbHobbyEnth");
+            this.cbHobbyEnth.Name = "cbHobbyEnth";
+            this.cbHobbyEnth.SelectedIndexChanged += new System.EventHandler(this.EnthusiasmIndexChanged);
+            // 
+            // pnEP2
+            // 
+            resources.ApplyResources(this.pnEP2, "pnEP2");
+            this.pnEP2.BackColor = System.Drawing.Color.Transparent;
+            this.pnEP2.Controls.Add(this.tbNTLove);
+            this.pnEP2.Controls.Add(this.tbNTPerfume);
+            this.pnEP2.Controls.Add(this.label8);
+            this.pnEP2.Controls.Add(this.label7);
+            this.pnEP2.Controls.Add(this.lbTurnOff);
+            this.pnEP2.Controls.Add(this.label6);
+            this.pnEP2.Controls.Add(this.lbTurnOn);
+            this.pnEP2.Controls.Add(this.label5);
+            this.pnEP2.Controls.Add(this.lbTraits);
+            this.pnEP2.Controls.Add(this.label4);
+            this.pnEP2.Name = "pnEP2";
+            // 
+            // tbNTLove
+            // 
+            resources.ApplyResources(this.tbNTLove, "tbNTLove");
+            this.tbNTLove.Name = "tbNTLove";
+            this.tbNTLove.TextChanged += new System.EventHandler(this.ChangedEP2);
+            // 
+            // tbNTPerfume
+            // 
+            resources.ApplyResources(this.tbNTPerfume, "tbNTPerfume");
+            this.tbNTPerfume.Name = "tbNTPerfume";
+            this.tbNTPerfume.TextChanged += new System.EventHandler(this.ChangedEP2);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // lbTurnOff
+            // 
+            resources.ApplyResources(this.lbTurnOff, "lbTurnOff");
+            this.lbTurnOff.Name = "lbTurnOff";
+            this.lbTurnOff.SelectedIndexChanged += new System.EventHandler(this.lbTurnOff_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // lbTurnOn
+            // 
+            resources.ApplyResources(this.lbTurnOn, "lbTurnOn");
+            this.lbTurnOn.Name = "lbTurnOn";
+            this.lbTurnOn.SelectedIndexChanged += new System.EventHandler(this.lbTurnOn_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // lbTraits
+            // 
+            resources.ApplyResources(this.lbTraits, "lbTraits");
+            this.lbTraits.Name = "lbTraits";
+            this.lbTraits.SelectedIndexChanged += new System.EventHandler(this.lbTraits_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // pnEP3
+            // 
+            resources.ApplyResources(this.pnEP3, "pnEP3");
+            this.pnEP3.BackColor = System.Drawing.Color.Transparent;
+            this.pnEP3.Controls.Add(this.pictureBox1);
+            this.pnEP3.Controls.Add(this.llep3openinfo);
+            this.pnEP3.Controls.Add(this.label15);
+            this.pnEP3.Controls.Add(this.sblb);
+            this.pnEP3.Controls.Add(this.tbEp3Salery);
+            this.pnEP3.Controls.Add(this.label14);
+            this.pnEP3.Controls.Add(this.label12);
+            this.pnEP3.Controls.Add(this.cbEp3Asgn);
+            this.pnEP3.Controls.Add(this.tbEp3Flag);
+            this.pnEP3.Controls.Add(this.tbEp3Lot);
+            this.pnEP3.Controls.Add(this.label9);
+            this.pnEP3.Controls.Add(this.label11);
+            this.pnEP3.Name = "pnEP3";
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
+            // llep3openinfo
+            // 
+            resources.ApplyResources(this.llep3openinfo, "llep3openinfo");
+            this.llep3openinfo.Name = "llep3openinfo";
+            this.llep3openinfo.TabStop = true;
+            this.llep3openinfo.UseCompatibleTextRendering = true;
+            this.llep3openinfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llep3openinfo_LinkClicked);
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
             // 
             // sblb
             // 
@@ -2759,14 +2663,110 @@ namespace SimPe.PackedFiles.UserInterface
             this.sblb.SimDescription = null;
             this.sblb.SelectedBusinessChanged += new System.EventHandler(this.sblb_SelectedBusinessChanged);
             // 
+            // tbEp3Salery
+            // 
+            resources.ApplyResources(this.tbEp3Salery, "tbEp3Salery");
+            this.tbEp3Salery.Name = "tbEp3Salery";
+            this.tbEp3Salery.TextChanged += new System.EventHandler(this.ChangedEP3);
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // cbEp3Asgn
+            // 
+            this.cbEp3Asgn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEp3Asgn.Enum = null;
+            this.cbEp3Asgn.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.cbEp3Asgn, "cbEp3Asgn");
+            this.cbEp3Asgn.Name = "cbEp3Asgn";
+            this.cbEp3Asgn.ResourceManager = null;
+            this.cbEp3Asgn.SelectedValueChanged += new System.EventHandler(this.ChangedEP3);
+            // 
+            // tbEp3Flag
+            // 
+            resources.ApplyResources(this.tbEp3Flag, "tbEp3Flag");
+            this.tbEp3Flag.Name = "tbEp3Flag";
+            this.tbEp3Flag.TextChanged += new System.EventHandler(this.ChangedEP3);
+            // 
+            // tbEp3Lot
+            // 
+            resources.ApplyResources(this.tbEp3Lot, "tbEp3Lot");
+            this.tbEp3Lot.Name = "tbEp3Lot";
+            this.tbEp3Lot.TextChanged += new System.EventHandler(this.ChangedEP3);
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // pnVoyage
+            // 
+            resources.ApplyResources(this.pnVoyage, "pnVoyage");
+            this.pnVoyage.BackColor = System.Drawing.Color.Transparent;
+            this.pnVoyage.Controls.Add(this.lvCollectibles);
+            this.pnVoyage.Controls.Add(this.tbhdaysleft);
+            this.pnVoyage.Controls.Add(this.label29);
+            this.pnVoyage.Controls.Add(this.labelcol);
+            this.pnVoyage.Name = "pnVoyage";
+            // 
+            // lvCollectibles
+            // 
+            resources.ApplyResources(this.lvCollectibles, "lvCollectibles");
+            this.lvCollectibles.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvCollectibles.CheckBoxes = true;
+            this.lvCollectibles.HideSelection = false;
+            this.lvCollectibles.LargeImageList = this.ilCollectibles;
+            this.lvCollectibles.MultiSelect = false;
+            this.lvCollectibles.Name = "lvCollectibles";
+            this.lvCollectibles.ShowGroups = false;
+            this.lvCollectibles.SmallImageList = this.ilCollectibles;
+            this.lvCollectibles.UseCompatibleStateImageBehavior = false;
+            this.lvCollectibles.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvCollectibles_ItemChecked);
+            this.lvCollectibles.SelectedIndexChanged += new System.EventHandler(this.ChangedEP6);
+            // 
+            // ilCollectibles
+            // 
+            this.ilCollectibles.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            resources.ApplyResources(this.ilCollectibles, "ilCollectibles");
+            this.ilCollectibles.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // tbhdaysleft
+            // 
+            resources.ApplyResources(this.tbhdaysleft, "tbhdaysleft");
+            this.tbhdaysleft.Name = "tbhdaysleft";
+            this.tbhdaysleft.TextChanged += new System.EventHandler(this.ChangedEP6);
+            // 
+            // label29
+            // 
+            resources.ApplyResources(this.label29, "label29");
+            this.label29.Name = "label29";
+            // 
+            // labelcol
+            // 
+            resources.ApplyResources(this.labelcol, "labelcol");
+            this.labelcol.Name = "labelcol";
+            this.labelcol.Click += new System.EventHandler(this.lbcollectibles_Click);
+            // 
             // ExtSDesc
             // 
+            this.Controls.Add(this.pnRel);
             this.Controls.Add(this.pnEP7);
             this.Controls.Add(this.pnMisc);
             this.Controls.Add(this.pnSkill);
             this.Controls.Add(this.pnEP2);
             this.Controls.Add(this.toolBar1);
-            this.Controls.Add(this.pnRel);
             this.Controls.Add(this.pnCareer);
             this.Controls.Add(this.pnEP1);
             this.Controls.Add(this.pnInt);
@@ -2784,12 +2784,12 @@ namespace SimPe.PackedFiles.UserInterface
             this.Controls.SetChildIndex(this.pnInt, 0);
             this.Controls.SetChildIndex(this.pnEP1, 0);
             this.Controls.SetChildIndex(this.pnCareer, 0);
-            this.Controls.SetChildIndex(this.pnRel, 0);
             this.Controls.SetChildIndex(this.toolBar1, 0);
             this.Controls.SetChildIndex(this.pnEP2, 0);
             this.Controls.SetChildIndex(this.pnSkill, 0);
             this.Controls.SetChildIndex(this.pnMisc, 0);
             this.Controls.SetChildIndex(this.pnEP7, 0);
+            this.Controls.SetChildIndex(this.pnRel, 0);
             this.pnPetInt.ResumeLayout(false);
             this.toolBar1.ResumeLayout(false);
             this.toolBar1.PerformLayout();
@@ -2817,6 +2817,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnEP1.PerformLayout();
             this.pnEP7.ResumeLayout(false);
             this.pnEP7.PerformLayout();
+            this.xpTaskBoxSimple4.ResumeLayout(false);
+            this.xpTaskBoxSimple4.PerformLayout();
             this.pnEP2.ResumeLayout(false);
             this.pnEP2.PerformLayout();
             this.pnEP3.ResumeLayout(false);
@@ -2824,8 +2826,6 @@ namespace SimPe.PackedFiles.UserInterface
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnVoyage.ResumeLayout(false);
             this.pnVoyage.PerformLayout();
-            this.xpTaskBoxSimple4.ResumeLayout(false);
-            this.xpTaskBoxSimple4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

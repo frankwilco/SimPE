@@ -123,6 +123,8 @@ namespace SimPe.Plugin
             }
 			foreach (Interfaces.Scenegraph.IScenegraphFileIndexItem item in items) 			
 			{
+                if (!vmap.ContainsKey(version)) continue;
+
                 string s = vmap[version];
                 if (s!=null && s!="") {
                     if (!item.Package.SaveFileName.Trim().ToLower().StartsWith(s)) continue;

@@ -42,7 +42,7 @@ namespace ReleaseCreator
                 else if (n.Name == "FTPUser") ftpu = n.InnerText.Trim();
                 else if (n.Name == "FTPPassword") ftpp = n.InnerText.Trim();
                 else if (n.Name == "FTPPath") ftpd = n.InnerText.Trim();
-                else if (n.Name == "<AutoSetLetterForQA") autoletter = true;
+                else if (n.Name == "AutoSetLetterForQA") autoletter = true;
             }
         }
 
