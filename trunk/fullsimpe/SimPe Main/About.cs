@@ -279,13 +279,13 @@ namespace SimPe
                 //only check for new releases once a Day
                 if (!Helper.QARelease && !Helper.WindowsRegistry.WasQAUser)
                 {
-                    if (ts < new TimeSpan(1, 0, 0)) return;
+                    if (ts < new TimeSpan(7, 0, 0, 0)) return;
                 }
                 else if (Helper.WindowsRegistry.WasQAUser)
                 {
-                    if (ts < new TimeSpan(0, 4, 0)) return;
+                    if (ts < new TimeSpan(3, 12, 0, 0)) return;
                 }
-                else if (ts < new TimeSpan(0, 1, 30)) return;
+                else if (ts < new TimeSpan(1, 12, 0, 0)) return;
             }
 
             //scan for an Update

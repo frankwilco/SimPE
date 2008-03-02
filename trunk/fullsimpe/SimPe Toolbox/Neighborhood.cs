@@ -259,7 +259,12 @@ namespace SimPe.Plugin
 			{
 				i++;
 			}*/
-		}
+        }
+
+        protected string NeighborhoodIdentifier(string flname)
+        {
+            return System.IO.Path.GetFileNameWithoutExtension(flname).Replace("_Neighborhood", "");
+        }
 
 		protected bool AddNeighborhood(string path, string filename) 
 		{
@@ -273,7 +278,9 @@ namespace SimPe.Plugin
 			bool ret = false;
 			if (System.IO.File.Exists(name)) 
 			{
-				actime = " ("+System.IO.File.GetLastWriteTime(name).ToString()+")";
+                actime = " (" + System.IO.File.GetLastWriteTime(name).ToString();
+                if (Helper.WindowsRegistry.HiddenMode) actime += ", " + NeighborhoodIdentifier(flname);
+                actime += ")";
 				ret = true;
 				try 
 				{
@@ -290,6 +297,7 @@ namespace SimPe.Plugin
 			lvi.ImageIndex = ilist.Images.Count -1;
 			lvi.SubItems.Add(flname);
 			lvi.SubItems.Add(name);
+            if (Helper.WindowsRegistry.HiddenMode) lvi.ToolTipText = flname;
 
 			lv.Items.Add(lvi);
 
@@ -342,6 +350,10 @@ namespace SimPe.Plugin
                     AddNeighborhood(dir);
 
                 dirs = System.IO.Directory.GetDirectories(sourcepath, "G*");
+                foreach (string dir in dirs)
+                    AddNeighborhood(dir);
+
+                dirs = System.IO.Directory.GetDirectories(sourcepath, "F*");
                 foreach (string dir in dirs)
                     AddNeighborhood(dir);
             }
@@ -489,7 +501,9 @@ namespace SimPe.Plugin
 			
 
 			NgbBackup nb = new NgbBackup();
-			nb.Text += " ("+lv.SelectedItems[0].SubItems[2].Text.Trim()+")";
+            nb.Text += " (" + lv.SelectedItems[0].SubItems[2].Text.Trim();
+            if (Helper.WindowsRegistry.HiddenMode) nb.Text += ", " + NeighborhoodIdentifier(path);
+            nb.Text += ")";
 			nb.Execute(path, package, prov);
 
 			
