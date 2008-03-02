@@ -72,12 +72,16 @@ namespace SimPe.PackedFiles.UserInterface
 			this.biEP2.Tag = pnEP2;
 			this.biEP3.Tag = pnEP3;
             this.biEP6.Tag = pnVoyage;
+            this.biEP7.Tag = pnEP7;
 			this.biInt.Tag = pnInt;
 			this.biRel.Tag = pnRel;
 			this.biMisc.Tag = pnMisc;
 		
 			this.tbsim.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
 			this.miRelink.Enabled = Helper.WindowsRegistry.HiddenMode;
+            this.tbBugColl.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
+            this.tbHobbyEnth.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
+            this.tbHobbyPre.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
 
 			
 			InitDropDowns();
@@ -330,11 +334,13 @@ namespace SimPe.PackedFiles.UserInterface
 				this.biEP1.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.University;
 				this.biEP2.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Nightlife;
                 this.biEP3.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Business;
-                this.biEP6.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Voyage;                 
+                this.biEP6.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Voyage;
+                this.biEP7.Enabled = (int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Freetime; 
 				if (pnEP1.Visible && !biEP1.Enabled) this.SelectButton(biId);
 				if (pnEP2.Visible && !biEP2.Enabled) this.SelectButton(biId);
                 if (pnEP3.Visible && !biEP3.Enabled) this.SelectButton(biId);
                 if (pnVoyage.Visible && !biEP6.Enabled) this.SelectButton(biId);
+                if (pnEP7.Visible && !biEP7.Enabled) this.SelectButton(biId);
 
                 
 				if (biEP1.Enabled) RefreshEP1(Sdesc);
@@ -343,6 +349,7 @@ namespace SimPe.PackedFiles.UserInterface
 				if (biEP3.Enabled) RefreshEP3(Sdesc);
                 RefreshEP4(Sdesc);
                 if (biEP6.Enabled) RefreshEP6(Sdesc);
+                if (biEP7.Enabled) RefreshEP7(Sdesc);
 
                 this.cbSpecies.Enabled = biEP2.Enabled;
 
@@ -1704,12 +1711,80 @@ namespace SimPe.PackedFiles.UserInterface
             }
         }
 
-        
-		
+
+        #region Freetime
+        void RefreshEP7(Wrapper.ExtSDesc sdesc)
+        {
+            intern = true;
+            if (cbHobbyEnth.SelectedIndex<0) cbHobbyEnth.SelectedIndex = 0;
+            else this.EnthusiasmIndexChanged(cbHobbyEnth, null);
+            this.tbHobbyPre.Text = "0x"+Helper.HexString(sdesc.Freetime.HobbyPredistined);
+            this.tbBugColl.Text = "0x" + Helper.HexString(sdesc.Freetime.BugCollection);
+            this.tbLtAsp.Text = "0x" + Helper.HexString(sdesc.Freetime.LongtermAspiration);
+            this.tbUnlockPts.Text = sdesc.Freetime.LongtermAspirationUnlockPoints.ToString();
+            this.tbUnlocksUsed.Text = sdesc.Freetime.LongtermAspirationUnlocksSpent.ToString();
+
+            this.tb7hunger.Text = sdesc.Freetime.HungerDecayModifier.ToString();
+            this.tb7comfort.Text = sdesc.Freetime.ComfortDecayModifier.ToString();
+            this.tb7bladder.Text = sdesc.Freetime.BladderDecayModifier.ToString();
+            this.tb7energy.Text = sdesc.Freetime.EnergyDecayModifier.ToString();
+            this.tb7hygiene.Text = sdesc.Freetime.HygieneDecayModifier.ToString();
+            this.tb7fun.Text = sdesc.Freetime.FunDecayModifier.ToString();
+            this.tb7social.Text = sdesc.Freetime.SocialPublicDecayModifier.ToString();
+            intern = false;
+        }
+
+        private void ChangedEP7(object sender, System.EventArgs e)
+        {
+            if (intern) return;
+            intern = true;
+            try
+            {
+                if ((int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Freetime)
+                {
+                    if (cbHobbyEnth.SelectedIndex >= 0 && cbHobbyEnth.SelectedIndex < Sdesc.Freetime.HobbyEnthusiasm.Count)
+                        Sdesc.Freetime.HobbyEnthusiasm[cbHobbyEnth.SelectedIndex] = Helper.StringToUInt16(this.tbHobbyEnth.Text, Sdesc.Freetime.HobbyEnthusiasm[cbHobbyEnth.SelectedIndex], 16);
+                    Sdesc.Freetime.HobbyPredistined = Helper.StringToUInt16(this.tbHobbyPre.Text, Sdesc.Freetime.HobbyPredistined, 16);
+                    Sdesc.Freetime.BugCollection = Helper.StringToUInt32(this.tbBugColl.Text, Sdesc.Freetime.BugCollection, 16);
+                    Sdesc.Freetime.LongtermAspiration = Helper.StringToUInt16(this.tbLtAsp.Text, Sdesc.Freetime.LongtermAspiration, 16);
+                    Sdesc.Freetime.LongtermAspirationUnlockPoints = Helper.StringToUInt16(this.tbUnlockPts.Text, Sdesc.Freetime.LongtermAspirationUnlockPoints, 10);
+                    Sdesc.Freetime.LongtermAspirationUnlocksSpent = Helper.StringToUInt16(this.tbUnlocksUsed.Text, Sdesc.Freetime.LongtermAspirationUnlocksSpent, 10);
+
+                    Sdesc.Freetime.HungerDecayModifier = Helper.StringToUInt16(this.tb7hunger.Text, Sdesc.Freetime.HungerDecayModifier, 10);
+                    Sdesc.Freetime.ComfortDecayModifier = Helper.StringToUInt16(this.tb7comfort.Text, Sdesc.Freetime.ComfortDecayModifier, 10);
+                    Sdesc.Freetime.BladderDecayModifier = Helper.StringToUInt16(this.tb7bladder.Text, Sdesc.Freetime.BladderDecayModifier, 10);
+                    Sdesc.Freetime.EnergyDecayModifier = Helper.StringToUInt16(this.tb7energy.Text, Sdesc.Freetime.EnergyDecayModifier, 10);
+                    Sdesc.Freetime.HygieneDecayModifier = Helper.StringToUInt16(this.tb7hygiene.Text, Sdesc.Freetime.HygieneDecayModifier, 10);
+                    Sdesc.Freetime.FunDecayModifier = Helper.StringToUInt16(this.tb7fun.Text, Sdesc.Freetime.FunDecayModifier, 10);
+                    Sdesc.Freetime.SocialPublicDecayModifier = Helper.StringToUInt16(this.tb7social.Text, Sdesc.Freetime.SocialPublicDecayModifier, 10);
+                    Sdesc.Changed = true;
+                }
+            }
+            finally
+            {
+                intern = false;
+            }
+        }
+
+        private void EnthusiasmIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (cbHobbyEnth.SelectedIndex >= 0 && cbHobbyEnth.SelectedIndex < Sdesc.Freetime.HobbyEnthusiasm.Count)
+            {
+                this.tbHobbyEnth.Text = "0x" + Helper.HexString(Sdesc.Freetime.HobbyEnthusiasm[cbHobbyEnth.SelectedIndex]);
+                this.tbHobbyEnth.Enabled = true;
+            }
+            else
+            {
+                this.tbHobbyEnth.Text = "";
+                this.tbHobbyEnth.Enabled = false;
+            }
+        }
+        #endregion
 
 
 
-		private void sblb_SelectedBusinessChanged(object sender, System.EventArgs e)
+        private void sblb_SelectedBusinessChanged(object sender, System.EventArgs e)
 		{
 			this.llep3openinfo.Enabled = (sblb.SelectedBusiness!=null);
 			if (sblb.SelectedBusiness!=null)
@@ -1800,6 +1875,8 @@ namespace SimPe.PackedFiles.UserInterface
         {
             ChangedEP6(sender, e);
         }
+
+        
 
        
 

@@ -124,7 +124,7 @@ namespace SimPe
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Ambertation.Windows.Forms.WhidbeyRenderer whidbeyRenderer2 = new Ambertation.Windows.Forms.WhidbeyRenderer();
+            Ambertation.Windows.Forms.WhidbeyRenderer whidbeyRenderer1 = new Ambertation.Windows.Forms.WhidbeyRenderer();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tbContainer = new System.Windows.Forms.ToolStripContainer();
             this.manager = new Ambertation.Windows.Forms.DockManager();
@@ -156,9 +156,9 @@ namespace SimPe
             this.dockBottom = new Ambertation.Windows.Forms.DockContainer();
             this.dcPlugin = new Ambertation.Windows.Forms.DockPanel();
             this.dc = new TD.SandDock.TabControl();
+            this.tbAction = new System.Windows.Forms.ToolStrip();
             this.tbWindow = new System.Windows.Forms.ToolStrip();
             this.tbTools = new System.Windows.Forms.ToolStrip();
-            this.tbAction = new System.Windows.Forms.ToolStrip();
             this.toolBar1 = new System.Windows.Forms.ToolStrip();
             this.biNew = new System.Windows.Forms.ToolStripButton();
             this.biOpen = new System.Windows.Forms.ToolStripButton();
@@ -236,10 +236,10 @@ namespace SimPe
             // 
             // tbContainer.TopToolStripPanel
             // 
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
-            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
             this.tbContainer.TopToolStripPanel.Controls.Add(this.toolBar1);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbWindow);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbAction);
+            this.tbContainer.TopToolStripPanel.Controls.Add(this.tbTools);
             // 
             // manager
             // 
@@ -254,7 +254,7 @@ namespace SimPe
             this.manager.MinimumSize = new System.Drawing.Size(150, 150);
             this.manager.Name = "manager";
             this.manager.NoCleanup = true;
-            this.manager.Renderer = whidbeyRenderer2;
+            this.manager.Renderer = whidbeyRenderer1;
             this.manager.TabImage = null;
             this.manager.TabText = "";
             // 
@@ -274,7 +274,7 @@ namespace SimPe
             this.dcResourceList.Controls.Add(this.lv);
             this.dcResourceList.DockContainer = this.manager;
             this.dcResourceList.DragBorder = false;
-            this.dcResourceList.FloatingSize = new System.Drawing.Size(329, 288);
+            this.dcResourceList.FloatingSize = new System.Drawing.Size(499, 352);
             this.dcResourceList.Image = ((System.Drawing.Image)(resources.GetObject("dcResourceList.Image")));
             this.dcResourceList.Manager = this.manager;
             this.dcResourceList.Name = "dcResourceList";
@@ -292,12 +292,12 @@ namespace SimPe
             this.lv.Filter = null;
             this.lv.Name = "lv";
             this.lv.SortedColumn = SimPe.Windows.Forms.ResourceViewManager.SortColumn.Offset;
-            this.lv.SelectionChanged += new System.EventHandler(this.lv_SelectionChanged);
             this.lv.ListViewKeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
-            this.lv.SelectedResource += new SimPe.Windows.Forms.ResourceListViewExt.SelectResourceHandler(this.lv_SelectResource);
+            this.lv.SelectionChanged += new System.EventHandler(this.lv_SelectionChanged);
             this.lv.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropFile);
-            this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
             this.lv.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnterFile);
+            this.lv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResourceListKeyUp);
+            this.lv.SelectedResource += new SimPe.Windows.Forms.ResourceListViewExt.SelectResourceHandler(this.lv_SelectResource);
             // 
             // miAction
             // 
@@ -332,7 +332,7 @@ namespace SimPe
             this.dcResource.Controls.Add(this.tv);
             this.dcResource.DockContainer = this.dockLeft;
             this.dcResource.DragBorder = false;
-            this.dcResource.FloatingSize = new System.Drawing.Size(332, 288);
+            this.dcResource.FloatingSize = new System.Drawing.Size(236, 352);
             this.dcResource.Image = ((System.Drawing.Image)(resources.GetObject("dcResource.Image")));
             this.dcResource.Manager = this.manager;
             this.dcResource.Name = "dcResource";
@@ -379,7 +379,7 @@ namespace SimPe
             this.dcAction.Controls.Add(this.xpGradientPanel2);
             this.dcAction.DockContainer = this.dockRight;
             this.dcAction.DragBorder = false;
-            this.dcAction.FloatingSize = new System.Drawing.Size(344, 397);
+            this.dcAction.FloatingSize = new System.Drawing.Size(246, 327);
             this.dcAction.Image = ((System.Drawing.Image)(resources.GetObject("dcAction.Image")));
             this.dcAction.Manager = this.manager;
             this.dcAction.Name = "dcAction";
@@ -470,7 +470,7 @@ namespace SimPe
             this.dcFilter.Controls.Add(this.xpGradientPanel1);
             this.dcFilter.DockContainer = this.dockRight;
             this.dcFilter.DragBorder = false;
-            this.dcFilter.FloatingSize = new System.Drawing.Size(255, 288);
+            this.dcFilter.FloatingSize = new System.Drawing.Size(181, 352);
             this.dcFilter.Image = ((System.Drawing.Image)(resources.GetObject("dcFilter.Image")));
             this.dcFilter.Manager = this.manager;
             this.dcFilter.Name = "dcFilter";
@@ -616,7 +616,7 @@ namespace SimPe
             this.dcPlugin.Controls.Add(this.dc);
             this.dcPlugin.DockContainer = this.dockBottom;
             this.dcPlugin.DragBorder = false;
-            this.dcPlugin.FloatingSize = new System.Drawing.Size(924, 178);
+            this.dcPlugin.FloatingSize = new System.Drawing.Size(924, 146);
             this.dcPlugin.Image = ((System.Drawing.Image)(resources.GetObject("dcPlugin.Image")));
             this.dcPlugin.Manager = this.manager;
             this.dcPlugin.Name = "dcPlugin";
@@ -630,9 +630,14 @@ namespace SimPe
             // 
             resources.ApplyResources(this.dc, "dc");
             this.dc.LayoutSystem = new TD.SandDock.SplitLayoutSystem(250, 400, System.Windows.Forms.Orientation.Horizontal, new TD.SandDock.LayoutSystemBase[] {
-            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.DocumentLayoutSystem(900, 373, new TD.SandDock.DockControl[0], null)))});
+            ((TD.SandDock.LayoutSystemBase)(new TD.SandDock.DocumentLayoutSystem(903, 373, new TD.SandDock.DockControl[0], null)))});
             this.dc.Name = "dc";
             this.dc.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dc_MouseUp);
+            // 
+            // tbAction
+            // 
+            resources.ApplyResources(this.tbAction, "tbAction");
+            this.tbAction.Name = "tbAction";
             // 
             // tbWindow
             // 
@@ -643,11 +648,6 @@ namespace SimPe
             // 
             resources.ApplyResources(this.tbTools, "tbTools");
             this.tbTools.Name = "tbTools";
-            // 
-            // tbAction
-            // 
-            resources.ApplyResources(this.tbAction, "tbAction");
-            this.tbAction.Name = "tbAction";
             // 
             // toolBar1
             // 
@@ -983,8 +983,8 @@ namespace SimPe
             this.MainMenuStrip = this.menuBar1;
             this.Name = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.LoadForm);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.ClosingForm);
+            this.Load += new System.EventHandler(this.LoadForm);
             this.tbContainer.ContentPanel.ResumeLayout(false);
             this.tbContainer.TopToolStripPanel.ResumeLayout(false);
             this.tbContainer.TopToolStripPanel.PerformLayout();

@@ -23,6 +23,7 @@ using SimPe.Interfaces.Files;
 using SimPe.Data;
 using SimPe.PackedFiles.Wrapper.Supporting;
 using System.IO;
+using System.Collections.Generic;
 
 namespace SimPe.PackedFiles.Wrapper
 {
@@ -38,7 +39,8 @@ namespace SimPe.PackedFiles.Wrapper
 		Business = 0x2a,
         Pets = 0x2c,
         Voyage = 0x2e,
-        VoyageB = 0x2f
+        VoyageB = 0x2f,
+        Freetime = 0x30 //not yet known!!
 	}
 
 	/// <summary>
@@ -1017,6 +1019,9 @@ namespace SimPe.PackedFiles.Wrapper
 		}
 
         ushort traits3;
+        /// <remarks>
+        /// This is only valid if the SDSC Version is at least SDescVersions.Voyage
+        /// </remarks>
         public ushort AttractionTraits3
         {
             get { return traits3; }
@@ -1052,6 +1057,9 @@ namespace SimPe.PackedFiles.Wrapper
         }
 
         ushort turnon3;
+        /// <remarks>
+        /// This is only valid if the SDSC Version is at least SDescVersions.Voyage
+        /// </remarks>
         public ushort AttractionTurnOns3
         {
             get { return turnon3; }
@@ -1059,6 +1067,9 @@ namespace SimPe.PackedFiles.Wrapper
         }
 
         ushort turnoff3;
+        /// <remarks>
+        /// This is only valid if the SDSC Version is at least SDescVersions.Voyage
+        /// </remarks>
         public ushort AttractionTurnOffs3
         {
             get { return turnoff3; }
@@ -1359,6 +1370,162 @@ namespace SimPe.PackedFiles.Wrapper
     }
     #endregion
 
+    #region SdscFreetime
+    /// <summary>
+    /// Nightlife specific Data
+    /// </summary>
+    public class SdscFreetime : Serializer
+    {
+        internal SdscFreetime()
+        {
+            enthusiasm = new List<ushort>();
+            decays = new List<ushort>();
+
+            for (int i = 0; i < 11; i++) enthusiasm.Add(0);
+            for (int i = 0; i < 7; i++) decays.Add(0);
+
+            predestined = 0;
+            ltasp = 0;
+            unlockpts = 0;
+            unlocksspent = 0;
+            bugcollection = 0;
+        }
+
+        List<ushort> enthusiasm;
+        ushort predestined;
+        ushort ltasp;
+        ushort unlockpts;
+        ushort unlocksspent;
+        List<ushort> decays;
+        uint bugcollection;
+
+        public List<ushort> HobbyEnthusiasm
+        {
+            get { return enthusiasm; }
+        }
+
+        public ushort HobbyPredistined
+        {
+            get { return predestined; }
+            set { predestined = value; }
+        }
+
+        public ushort LongtermAspiration
+        {
+            get { return ltasp; }
+            set { ltasp = value; }
+        }
+
+        public ushort LongtermAspirationUnlockPoints
+        {
+            get { return unlockpts; }
+            set { unlockpts = value; }
+        }
+
+        public ushort LongtermAspirationUnlocksSpent
+        {
+            get { return unlocksspent; }
+            set { unlocksspent = value; }
+        }
+
+
+
+        public ushort HungerDecayModifier
+        {
+            get { return decays[0]; }
+            set { decays[0] = value; }
+        }
+
+        public ushort ComfortDecayModifier
+        {
+            get { return decays[1]; }
+            set { decays[1] = value; }
+        }
+
+        public ushort BladderDecayModifier
+        {
+            get { return decays[2]; }
+            set { decays[2] = value; }
+        }
+
+        public ushort EnergyDecayModifier
+        {
+            get { return decays[3]; }
+            set { decays[3] = value; }
+        }
+
+        public ushort HygieneDecayModifier
+        {
+            get { return decays[4]; }
+            set { decays[4] = value; }
+        }
+
+        public ushort FunDecayModifier
+        {
+            get { return decays[5]; }
+            set { decays[5] = value; }
+        }
+
+        public ushort SocialPublicDecayModifier
+        {
+            get { return decays[6]; }
+            set { decays[6] = value; }
+        }
+
+
+
+        public uint BugCollection
+        {
+            get { return bugcollection; }
+            set { bugcollection = value; }
+        }
+        
+
+
+        internal void Unserialize(BinaryReader reader)
+        {
+            reader.BaseStream.Seek(0x1A4, SeekOrigin.Begin);
+            for (int i = 0; i < enthusiasm.Count; i++){
+                enthusiasm[i] = reader.ReadUInt16();
+            }
+            
+            predestined = reader.ReadUInt16();
+            ltasp = reader.ReadUInt16();
+            unlockpts = reader.ReadUInt16();
+            unlocksspent = reader.ReadUInt16();
+
+            for (int i = 0; i < decays.Count; i++)
+            {
+                decays[i] = reader.ReadUInt16();
+            }
+
+            bugcollection = reader.ReadUInt32();
+        }
+
+        internal void Serialize(BinaryWriter writer)
+        {
+            writer.BaseStream.Seek(0x1A4, SeekOrigin.Begin);
+
+            for (int i = 0; i < enthusiasm.Count; i++)
+            {
+                writer.Write((ushort)enthusiasm[i]);
+            }
+
+            writer.Write((ushort)predestined);
+            writer.Write((ushort)ltasp);
+            writer.Write((ushort)unlockpts);
+            writer.Write((ushort)unlocksspent);
+
+            for (int i = 0; i < decays.Count; i++)
+            {
+                writer.Write((ushort)decays[i]);
+            }
+
+            writer.Write((uint)bugcollection);
+        }
+    }
+    #endregion
+
 	/// <summary>
 	/// Represents a PackedFile in SDsc Format
 	/// </summary>
@@ -1530,7 +1697,18 @@ namespace SimPe.PackedFiles.Wrapper
         }
 
 
-		/// <summary>
+        SdscFreetime freetime;
+        /// <summary>
+        /// Returns Freetime Specific Data
+        /// </summary>
+        /// <remarks>Only valid if Version == SDescVersions.Freetime</remarks>
+        public SdscFreetime Freetime
+        {
+            get { return freetime; }
+        }
+
+
+        /// <summary>
 		/// Character Attributes
 		/// </summary>
 		private CharacterAttributes character;
@@ -1958,6 +2136,7 @@ namespace SimPe.PackedFiles.Wrapper
 			business = new SdscBusiness();
             pets = new SdscPets();
             voyage = new SdscVoyage();
+            freetime = new SdscFreetime();
 
 			description.Aspiration = MetaData.AspirationTypes.Romance;
 			description.ZodiacSign = MetaData.ZodiacSignes.Virgo;
@@ -1992,6 +2171,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get 
 			{
+                if (version >= (int)SDescVersions.Freetime) return 0x1D4 + 0xA;
                 if (version >= (int)SDescVersions.VoyageB) return 0x1A4 + 0xA; //0x19e + 0xa?
                 if (version >= (int)SDescVersions.Voyage) return 0x1A4 + 0xA; //0x19e + 0xa?
                 if (version >= (int)SDescVersions.Pets) return 0x19C + 0xA;
@@ -2191,6 +2371,10 @@ namespace SimPe.PackedFiles.Wrapper
             if (version >= (int)SDescVersions.Voyage)
                 voyage.Unserialize(reader);
 
+            //freetime only Items
+            if (version >= (int)SDescVersions.Freetime)
+                freetime.Unserialize(reader);
+
 			reader.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
 		}
 
@@ -2359,6 +2543,10 @@ namespace SimPe.PackedFiles.Wrapper
             //voyage only Items
             if (version >= (int)SDescVersions.Voyage)
                 voyage.Serialize(writer);
+
+            //voyage only Items
+            if (version >= (int)SDescVersions.Freetime)
+                freetime.Serialize(writer);
 			
 
 			writer.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);
