@@ -351,7 +351,7 @@
     <key name="CastawayStories">
       <int name="Version">22</int>
       <string name="RegKey">SOFTWARE\\Electronic Arts\\The Sims Castaway Stories</string>
-      <int name="Flag">20</int><!-- 00100000 -->
+      <int name="Flag">96</int><!-- 01100000 -->
       <string name="ExeName">SimsCS.exe</string>
       <string name="Censor">quaxi_pets_censor_v1.package</string>
       <int name="Group">8</int>
