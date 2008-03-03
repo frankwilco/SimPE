@@ -549,12 +549,15 @@ namespace SimPe.Interfaces.Plugin
 				if (FileDescriptor!=null) 
 				{                    
                         Data.TypeAlias ta = Helper.TGILoader.GetByType(FileDescriptor.Type);
-                        res = GetResourceName(ta);
+                                  
+                        if (Helper.WindowsRegistry.ResourceListFormat == Registry.ResourceListFormats.JustLongType) {res  = ta.Name; if (res=="") res = null; }
+                        else res = GetResourceName(ta);
                         if (res == null) res = GetEmbeddedFileName(ta);
                         if (res == null) res = FileDescriptor.ToResListString();
                         else if (ta.Name == null) res = SimPe.Localization.GetString("Unknown") + ": " + res;
                         else
                         {
+                            
                             if (Helper.WindowsRegistry.ResourceListFormat == Registry.ResourceListFormats.LongTypeNames)
                                 res = ta.Name + ": " + res;
                             else if (Helper.WindowsRegistry.ResourceListFormat == Registry.ResourceListFormats.ShortTypeNames)

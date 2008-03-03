@@ -1226,7 +1226,8 @@ namespace SimPe
         {          
             LongTypeNames,
             ShortTypeNames,
-            JustNames
+            JustNames,
+            JustLongType
         }
 
         public enum ResourceListUnnamedFormats : int

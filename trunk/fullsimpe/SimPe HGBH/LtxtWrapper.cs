@@ -33,7 +33,8 @@ namespace SimPe.Plugin
     public enum LtxtSubVersion : ushort
     {
         Original = 0x0006,
-        Voyage = 0x0007
+        Voyage = 0x0007,
+        Freetime = 0x0008
     }
 
 	public enum LotOrientation : byte
@@ -73,12 +74,13 @@ namespace SimPe.Plugin
 		Size sz;
 		Point loc;
 		byte orient;
-		ushort unknown_2;
+		ushort subver;
 		byte unknown_4;
 		ushort ver;
 		float groundlevel;
 		uint inst, owner;
         Single unknown_5;
+        uint unknown_6;
 
 		public SimPe.Interfaces.Providers.ILotItem LotDescription
 		{
@@ -88,10 +90,10 @@ namespace SimPe.Plugin
 			}
 		}
 
-		internal ushort Unknown2 
+        internal LtxtSubVersion SubVersion 
 		{
-			get {return  unknown_2;}
-			set {unknown_2 = value;}
+			get {return  (LtxtSubVersion)subver;}
+			set {subver = (ushort)value;}
 		}
 
 		internal byte Unknown4 
@@ -99,6 +101,18 @@ namespace SimPe.Plugin
 			get {return  unknown_4;}
 			set {unknown_4 = value;}
 		}
+
+        internal Single Unknown5
+        {
+            get { return unknown_5; }
+            set { unknown_5 = value; }
+        }
+
+        internal uint Unknown6
+        {
+            get { return unknown_6; }
+            set { unknown_6 = value; }
+        }
 
 		internal uint Unknown0
 		{
@@ -221,7 +235,9 @@ namespace SimPe.Plugin
 			this.provider = provider;
 
 			unknown_3 = new IntArrayList();
-			unknown_2 = 0;
+			subver = 0;
+            unknown_5 = 0;
+            unknown_6 = 0;
 			this.ver = (ushort)LtxtVersion.Original;
 			orient = (byte)LotOrientation.Below;
 			sz = new Size(1, 1);
@@ -256,7 +272,7 @@ namespace SimPe.Plugin
 				"Lot Description Wrapper",
 				"Quaxi",
 				"This File contains the Description for a Lot.",
-				6,
+				7,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ltxt.png"))
 				); 
 		}
@@ -267,8 +283,9 @@ namespace SimPe.Plugin
 		/// <param name="reader">The Stream that contains the FileData</param>
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{			
+            
 			ver = reader.ReadUInt16();
-			unknown_2 = reader.ReadUInt16();
+			subver = reader.ReadUInt16();
 			sz.Width = reader.ReadInt32();
 			sz.Height = reader.ReadInt32();			
 			type = (LotType)reader.ReadByte();
@@ -287,11 +304,13 @@ namespace SimPe.Plugin
 			for (int i=0; i<len; i++) 			
 				this.unknown_3.Add(reader.ReadInt32());
 
-            if (unknown_2 >= (UInt16)LtxtSubVersion.Voyage) unknown_5 = reader.ReadSingle();
+            if (subver >= (UInt16)LtxtSubVersion.Voyage) unknown_5 = reader.ReadSingle();
+            if (subver >= (UInt16)LtxtSubVersion.Freetime) unknown_6 = reader.ReadUInt32();
 
 			int y = reader.ReadInt32();
 			int x = reader.ReadInt32();
-			loc = new Point(x, y);			
+			loc = new Point(x, y);
+            
 			groundlevel = reader.ReadSingle();
 			inst = reader.ReadUInt32();
 			orient = reader.ReadByte();
@@ -316,7 +335,7 @@ namespace SimPe.Plugin
 		protected override void Serialize(System.IO.BinaryWriter writer)
 		{			
 			writer.Write((ushort)ver);
-			writer.Write((ushort)this.unknown_2);
+			writer.Write((ushort)this.subver);
 			writer.Write((int)sz.Width);
 			writer.Write((int)sz.Height);			
 			writer.Write((byte)type);
@@ -332,9 +351,12 @@ namespace SimPe.Plugin
 			foreach (int i in unknown_3)
 				writer.Write(i);
 
-            if (unknown_2 >= (UInt16)LtxtSubVersion.Voyage) writer.Write(unknown_5);
+            if (subver >= (UInt16)LtxtSubVersion.Voyage) writer.Write(unknown_5);
+            if (subver >= (UInt16)LtxtSubVersion.Freetime) writer.Write(unknown_6);
 			writer.Write((int)loc.Y);
-			writer.Write((int)loc.X);			
+			writer.Write((int)loc.X);
+
+            
 			writer.Write(groundlevel);
 			writer.Write(inst);
 			writer.Write((byte)orient);

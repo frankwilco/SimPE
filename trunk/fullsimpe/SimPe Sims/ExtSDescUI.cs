@@ -81,7 +81,7 @@ namespace SimPe.PackedFiles.UserInterface
 			this.miRelink.Enabled = Helper.WindowsRegistry.HiddenMode;
             this.tbBugColl.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
             this.tbHobbyEnth.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
-            this.tbHobbyPre.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
+            this.tbHobbyPre.Visible = Helper.WindowsRegistry.HiddenMode;
 
 			
 			InitDropDowns();
@@ -289,12 +289,22 @@ namespace SimPe.PackedFiles.UserInterface
             this.cbSpecies.ResourceManager = SimPe.Localization.Manager;
             this.cbSpecies.Enum = typeof(SimPe.PackedFiles.Wrapper.SdscNightlife.SpeciesType);
             this.cbSpecies.ResourceManager = SimPe.Localization.Manager;
+
+            for (int i = 0; i < cbHobbyEnth.Items.Count; i++)
+            {
+                SimPe.PackedFiles.Wrapper.Hobbies hb = SimPe.PackedFiles.Wrapper.SdscFreetime.IndexToHobbies((ushort)i);
+                Type type = typeof(SimPe.PackedFiles.Wrapper.Hobbies);
+                cbHobbyEnth.Items[i] = SimPe.Localization.GetString(type.Namespace + "." + type.Name + "." + hb.ToString());
+            }
+
+            cbHobbyPre.ResourceManager = SimPe.Localization.Manager;
+            cbHobbyPre.Enum = typeof(SimPe.PackedFiles.Wrapper.Hobbies);
 		}
 
-		#region IPackedFileUI Member
+        #region IPackedFileUI Member
 
-		
-		public Wrapper.ExtSDesc Sdesc
+
+        public Wrapper.ExtSDesc Sdesc
 		{
 			get { return (SimPe.PackedFiles.Wrapper.ExtSDesc)Wrapper; }
 		}
@@ -1718,7 +1728,10 @@ namespace SimPe.PackedFiles.UserInterface
             intern = true;
             if (cbHobbyEnth.SelectedIndex<0) cbHobbyEnth.SelectedIndex = 0;
             else this.EnthusiasmIndexChanged(cbHobbyEnth, null);
-            this.tbHobbyPre.Text = "0x"+Helper.HexString(sdesc.Freetime.HobbyPredistined);
+
+            cbHobbyPre.SelectedValue = sdesc.Freetime.HobbyPredistined;
+
+            this.tbHobbyPre.Text = "0x"+Helper.HexString((ushort)sdesc.Freetime.HobbyPredistined);
             this.tbBugColl.Text = "0x" + Helper.HexString(sdesc.Freetime.BugCollection);
             this.tbLtAsp.Text = "0x" + Helper.HexString(sdesc.Freetime.LongtermAspiration);
             this.tbUnlockPts.Text = sdesc.Freetime.LongtermAspirationUnlockPoints.ToString();
@@ -1744,7 +1757,7 @@ namespace SimPe.PackedFiles.UserInterface
                 {
                     if (cbHobbyEnth.SelectedIndex >= 0 && cbHobbyEnth.SelectedIndex < Sdesc.Freetime.HobbyEnthusiasm.Count)
                         Sdesc.Freetime.HobbyEnthusiasm[cbHobbyEnth.SelectedIndex] = Helper.StringToUInt16(this.tbHobbyEnth.Text, Sdesc.Freetime.HobbyEnthusiasm[cbHobbyEnth.SelectedIndex], 16);
-                    Sdesc.Freetime.HobbyPredistined = Helper.StringToUInt16(this.tbHobbyPre.Text, Sdesc.Freetime.HobbyPredistined, 16);
+                     
                     Sdesc.Freetime.BugCollection = Helper.StringToUInt32(this.tbBugColl.Text, Sdesc.Freetime.BugCollection, 16);
                     Sdesc.Freetime.LongtermAspiration = Helper.StringToUInt16(this.tbLtAsp.Text, Sdesc.Freetime.LongtermAspiration, 16);
                     Sdesc.Freetime.LongtermAspirationUnlockPoints = Helper.StringToUInt16(this.tbUnlockPts.Text, Sdesc.Freetime.LongtermAspirationUnlockPoints, 10);
@@ -1757,6 +1770,10 @@ namespace SimPe.PackedFiles.UserInterface
                     Sdesc.Freetime.HygieneDecayModifier = Helper.StringToUInt16(this.tb7hygiene.Text, Sdesc.Freetime.HygieneDecayModifier, 10);
                     Sdesc.Freetime.FunDecayModifier = Helper.StringToUInt16(this.tb7fun.Text, Sdesc.Freetime.FunDecayModifier, 10);
                     Sdesc.Freetime.SocialPublicDecayModifier = Helper.StringToUInt16(this.tb7social.Text, Sdesc.Freetime.SocialPublicDecayModifier, 10);
+
+                    Sdesc.Freetime.HobbyPredistined = SimPe.PackedFiles.Wrapper.SdscFreetime.IndexToHobbies(cbHobbyPre.SelectedIndex);
+
+
                     Sdesc.Changed = true;
                 }
             }
@@ -1764,6 +1781,14 @@ namespace SimPe.PackedFiles.UserInterface
             {
                 intern = false;
             }
+        }
+
+        private void PredistinedHobbyIndexChanged(object sender, EventArgs e)
+        {
+            SimPe.PackedFiles.Wrapper.Hobbies hb = SimPe.PackedFiles.Wrapper.SdscFreetime.IndexToHobbies(cbHobbyPre.SelectedIndex);
+            tbHobbyPre.Text = "0x" + Helper.HexString((ushort)hb);
+
+            ChangedEP7(sender, e);
         }
 
         private void EnthusiasmIndexChanged(object sender, EventArgs e)

@@ -40,7 +40,7 @@ namespace SimPe.PackedFiles.Wrapper
         Pets = 0x2c,
         Voyage = 0x2e,
         VoyageB = 0x2f,
-        Freetime = 0x30 //not yet known!!
+        Freetime = 0x33 
 	}
 
 	/// <summary>
@@ -65,6 +65,21 @@ namespace SimPe.PackedFiles.Wrapper
 		ArrangeFlowers = 0x0E,
 		BuildRobots = 0x0F
 	}
+    
+    public enum Hobbies : ushort
+    {
+        Cuisine = 0xCC,
+        Arts = 0xCD,
+        Film = 0xCE,
+        Sport = 0xCF,
+        Games = 0xD0,
+        Nature = 0xD1,
+        Tinkering = 0xD2,
+        Fitness = 0xD3,
+        Science = 0xD4,
+        Music = 0xD5,
+        Secret = 0xD6
+    }
 
 	#region Ghost Flags
 	/// <summary>
@@ -1404,10 +1419,25 @@ namespace SimPe.PackedFiles.Wrapper
             get { return enthusiasm; }
         }
 
-        public ushort HobbyPredistined
+        public static ushort HobbiesToIndex(Hobbies hb)
         {
-            get { return predestined; }
-            set { predestined = value; }
+            return (ushort)(((ushort)hb) - 0xcc);
+        }
+
+        public static Hobbies IndexToHobbies(int us)
+        {
+            return IndexToHobbies((ushort)us);
+        }
+
+        public static Hobbies IndexToHobbies(ushort us)
+        {
+            return (Hobbies)(us + 0xcc);
+        }
+
+        public Hobbies HobbyPredistined
+        {
+            get { return (Hobbies)predestined; }
+            set { predestined = (ushort)value; }
         }
 
         public ushort LongtermAspiration
@@ -2071,7 +2101,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Sim Description Wrapper",
 				"Quaxi",
 				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
-				14,
+				16,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.sdsc.png"))				
 				); 
 		}

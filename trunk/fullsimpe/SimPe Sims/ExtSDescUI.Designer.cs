@@ -207,10 +207,10 @@ namespace SimPe.PackedFiles.UserInterface
             this.pbHealth = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pbFashion = new Ambertation.Windows.Forms.LabeledProgressBar();
             this.pnRel = new System.Windows.Forms.Panel();
+            this.lv = new SimPe.PackedFiles.Wrapper.SimRelationPoolControl();
             this.panel3 = new System.Windows.Forms.Panel();
             this.srcTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.dstTb = new Ambertation.Windows.Forms.XPTaskBoxSimple();
-            this.lv = new SimPe.PackedFiles.Wrapper.SimRelationPoolControl();
             this.pnMisc = new System.Windows.Forms.Panel();
             this.xpTaskBoxSimple3 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.label3 = new System.Windows.Forms.Label();
@@ -252,6 +252,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.label98 = new System.Windows.Forms.Label();
             this.tbmajor = new System.Windows.Forms.TextBox();
             this.pnEP7 = new System.Windows.Forms.Panel();
+            this.cbHobbyPre = new Ambertation.Windows.Forms.EnumComboBox();
             this.label40 = new System.Windows.Forms.Label();
             this.xpTaskBoxSimple4 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
             this.label33 = new System.Windows.Forms.Label();
@@ -1933,6 +1934,23 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnRel.Name = "pnRel";
             this.pnRel.VisibleChanged += new System.EventHandler(this.pnRel_VisibleChanged);
             // 
+            // lv
+            // 
+            this.lv.ContextMenuStrip = this.miRel;
+            resources.ApplyResources(this.lv, "lv");
+            this.lv.Name = "lv";
+            this.lv.Package = null;
+            this.lv.RightClickSelect = true;
+            this.lv.SelectedElement = null;
+            this.lv.SelectedSim = null;
+            this.lv.ShowNotRelatedSims = false;
+            this.lv.ShowRelatedSims = true;
+            this.lv.Sim = null;
+            this.lv.SimDetails = false;
+            this.lv.TileColumns = new int[] {
+        1};
+            this.lv.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.lv_SelectedSimChanged);
+            // 
             // panel3
             // 
             resources.ApplyResources(this.panel3, "panel3");
@@ -1967,23 +1985,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.dstTb.LeftHeaderColor = System.Drawing.SystemColors.InactiveCaption;
             this.dstTb.Name = "dstTb";
             this.dstTb.RightHeaderColor = System.Drawing.SystemColors.Highlight;
-            // 
-            // lv
-            // 
-            this.lv.ContextMenuStrip = this.miRel;
-            resources.ApplyResources(this.lv, "lv");
-            this.lv.Name = "lv";
-            this.lv.Package = null;
-            this.lv.RightClickSelect = true;
-            this.lv.SelectedElement = null;
-            this.lv.SelectedSim = null;
-            this.lv.ShowNotRelatedSims = false;
-            this.lv.ShowRelatedSims = true;
-            this.lv.Sim = null;
-            this.lv.SimDetails = false;
-            this.lv.TileColumns = new int[] {
-        1};
-            this.lv.SelectedSimChanged += new SimPe.PackedFiles.Wrapper.SimPoolControl.SelectedSimHandler(this.lv_SelectedSimChanged);
             // 
             // pnMisc
             // 
@@ -2334,6 +2335,7 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.pnEP7, "pnEP7");
             this.pnEP7.BackColor = System.Drawing.Color.Transparent;
+            this.pnEP7.Controls.Add(this.cbHobbyPre);
             this.pnEP7.Controls.Add(this.label40);
             this.pnEP7.Controls.Add(this.xpTaskBoxSimple4);
             this.pnEP7.Controls.Add(this.tbBugColl);
@@ -2349,6 +2351,16 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnEP7.Controls.Add(this.tbHobbyEnth);
             this.pnEP7.Controls.Add(this.cbHobbyEnth);
             this.pnEP7.Name = "pnEP7";
+            // 
+            // cbHobbyPre
+            // 
+            this.cbHobbyPre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHobbyPre.Enum = null;
+            this.cbHobbyPre.FormattingEnabled = true;
+            resources.ApplyResources(this.cbHobbyPre, "cbHobbyPre");
+            this.cbHobbyPre.Name = "cbHobbyPre";
+            this.cbHobbyPre.ResourceManager = null;
+            this.cbHobbyPre.SelectedIndexChanged += new System.EventHandler(this.PredistinedHobbyIndexChanged);
             // 
             // label40
             // 
@@ -2515,6 +2527,7 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.tbHobbyPre, "tbHobbyPre");
             this.tbHobbyPre.Name = "tbHobbyPre";
+            this.tbHobbyPre.ReadOnly = true;
             this.tbHobbyPre.TextChanged += new System.EventHandler(this.ChangedEP7);
             // 
             // label27
@@ -2761,8 +2774,8 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             // ExtSDesc
             // 
-            this.Controls.Add(this.pnRel);
             this.Controls.Add(this.pnEP7);
+            this.Controls.Add(this.pnRel);
             this.Controls.Add(this.pnMisc);
             this.Controls.Add(this.pnSkill);
             this.Controls.Add(this.pnEP2);
@@ -2788,8 +2801,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.Controls.SetChildIndex(this.pnEP2, 0);
             this.Controls.SetChildIndex(this.pnSkill, 0);
             this.Controls.SetChildIndex(this.pnMisc, 0);
-            this.Controls.SetChildIndex(this.pnEP7, 0);
             this.Controls.SetChildIndex(this.pnRel, 0);
+            this.Controls.SetChildIndex(this.pnEP7, 0);
             this.pnPetInt.ResumeLayout(false);
             this.toolBar1.ResumeLayout(false);
             this.toolBar1.PerformLayout();
@@ -3086,5 +3099,6 @@ namespace SimPe.PackedFiles.UserInterface
         internal TextBox tb7hunger;
         private Label label39;
         private Label label40;
+        private EnumComboBox cbHobbyPre;
     }
 }

@@ -402,6 +402,9 @@ namespace SimPe.Packages
             if (Helper.WindowsRegistry.ResourceListFormat == Registry.ResourceListFormats.JustNames)
                 return this.TypeName.ToString();
 
+            if (Helper.WindowsRegistry.ResourceListFormat == Registry.ResourceListFormats.JustLongType)
+                return this.TypeName.ToString();
+
             //if ((this.Size==0) && (this.Offset==0)) name += " [UserFile]";
             return this.TypeName + ": " + GetResDescString();
         }
