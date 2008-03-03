@@ -1690,10 +1690,17 @@ Dies hat zur Folge, dass SimPE die Joint-Hierarchie nicht aufbauen kann.
     <value>langer Typ + Name</value>
   </data>
   <data name="SimPe.ResourceListFormats.ShortTypeNames" xml:space="preserve">
-    <value>kurzer Type + Name</value>
+    <value>kurzer Typ + Name</value>
   </data>
   <data name="SimPe.ResourceListFormats.JustNames" xml:space="preserve">
     <value>Nur Name</value>
+  </data>
+  <data name="SimPe.ResourceListFormats.JustLongType" xml:space="preserve">
+    <value>Nur langer Typ</value>
+  </data>
+
+  <data name="SimPe.ResourceListFormats.JustShortType" xml:space="preserve">
+    <value>Nur kurzer Typ</value>
   </data>
   <data name="SimPe.ResourceListUnnamedFormats.Instance" xml:space="preserve">
     <value>Nur Instanz</value>
@@ -1729,5 +1736,39 @@ Damit SimPE korrekt funktioniert muss allerding .NET 2.0 installiert sein.</valu
   </data>
   <data name="URLKnowledgeBase" xml:space="preserve">
     <value>http://sims.ambertation.de/en/kb/</value>
+  </data>
+
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Cuisine" xml:space="preserve">
+    <value>Kochen</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Arts" xml:space="preserve">
+    <value>Kunst</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Film" xml:space="preserve">
+    <value>Filme</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Sport" xml:space="preserve">
+    <value>Sport</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Games" xml:space="preserve">
+    <value>Spiele</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Nature" xml:space="preserve">
+    <value>Natur</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Tinkering" xml:space="preserve">
+    <value>Heimwerken</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Fitness" xml:space="preserve">
+    <value>Fitness</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Science" xml:space="preserve">
+    <value>Wissenschaft</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Music" xml:space="preserve">
+    <value>Musik</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Secret" xml:space="preserve">
+    <value>Geheim ???</value>
   </data>
 </root>

@@ -1198,6 +1198,13 @@ This means, that SimPE is unable to build the Joint Hirarchy.</value>
   <data name="SimPe.ResourceListFormats.JustNames" xml:space="preserve">
     <value>name only</value>
   </data>
+  <data name="SimPe.ResourceListFormats.JustLongType" xml:space="preserve">
+    <value>long type</value>
+  </data>
+
+  <data name="SimPe.ResourceListFormats.JustShortType" xml:space="preserve">
+    <value>short type</value>
+  </data>
   <data name="SimPe.ResourceListUnnamedFormats.Instance" xml:space="preserve">
     <value>instance only</value>
   </data>
@@ -1361,5 +1368,52 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
   </data>
   <data name="URLKnowledgeBase" xml:space="preserve">
     <value>http://sims.ambertation.de/en/kb/</value>
+  </data>
+  
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Cuisine" xml:space="preserve">
+    <value>Cuisine</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Arts" xml:space="preserve">
+    <value>Arts &amp; Craft</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Film" xml:space="preserve">
+    <value>Film</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Sport" xml:space="preserve">
+    <value>Sport</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Games" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Nature" xml:space="preserve">
+    <value>Nature</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Tinkering" xml:space="preserve">
+    <value>Tinkering</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Fitness" xml:space="preserve">
+    <value>Fitness</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Science" xml:space="preserve">
+    <value>Science</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Music" xml:space="preserve">
+    <value>Music</value>
+  </data>
+  <data name="SimPe.PackedFiles.Wrapper.Hobbies.Secret" xml:space="preserve">
+    <value>Secret ???</value>
+  </data>
+
+  <data name="SimPe.Plugin.LotOrientation.Below" xml:space="preserve">
+    <value>Below</value>
+  </data>
+  <data name="SimPe.Plugin.LotOrientation.Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="SimPe.Plugin.LotOrientation.Above" xml:space="preserve">
+    <value>Above</value>
+  </data>
+  <data name="SimPe.Plugin.LotOrientation.Right" xml:space="preserve">
+    <value>Right</value>
   </data>
 </root>

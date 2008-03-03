@@ -1489,8 +1489,15 @@ namespace Ambertation.Windows.Forms
 
 			if (row<this.CurrentRow || row>this.CurrentRow+this.GetHexBoxRowsPerPage())
 			{
-				sb.Value = row;
-				this.CurrentRow = row;
+                try
+                {
+                    if (row > sb.Maximum) row = sb.Maximum;
+                    if (row < sb.Minimum) row = sb.Minimum;
+                    sb.Value = row;
+                    this.CurrentRow = row;
+                }
+                catch { 
+                }
 			}
 		}
 
