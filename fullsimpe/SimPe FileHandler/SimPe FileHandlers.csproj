@@ -259,6 +259,7 @@
     </Compile>
     <Compile Include="GlobUI.cs" />
     <Compile Include="GlobWrapper.cs" />
+    <Compile Include="IAspirationEditor.cs" />
     <Compile Include="NrefUI.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -283,6 +284,7 @@
     <Compile Include="SdscExtendedForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SdscFreetime.cs" />
     <Compile Include="SimRelations.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -407,6 +407,11 @@ namespace SimPe.Data
         /// </summary>
         public const UInt32 NAME_MAP = 0x4E6D6150;
 
+        /// <summary>
+        /// Neighborhood/Memory File Typesss
+        /// </summary>
+        public const UInt32 MEMORIES = 0x4E474248;
+
 
         /// <summary>
         /// Sim DNA
