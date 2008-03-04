@@ -170,18 +170,38 @@ namespace SimPe.PackedFiles.UserInterface
 			SelectButton((ToolStripButton)sender);
 		}
 
+        void SetAspirations(ComboBox cb)
+        {
+            cb.Items.Clear();
+            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Nothing));
+            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Fortune));
+            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Family));
+            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Knowledge));
+            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Reputation));
+            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Romance));
+            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Growup));
+            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Fun));
+            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Chees));
+        }
+
+        void SelectAspiration(ComboBox cb, Data.MetaData.AspirationTypes val)
+        {
+            cb.SelectedIndex = 0;
+            for (int i = 0; i < cb.Items.Count; i++)
+            {
+                Data.MetaData.AspirationTypes at = (LocalizedAspirationTypes)cb.Items[i];
+                if (at == val)
+                {
+                    cb.SelectedIndex = i;
+                    break;
+                }
+            }	
+        }
+
 		void InitDropDowns()
 		{
-			this.cbaspiration.Items.Clear();
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Nothing));
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Fortune));
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Family));
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Knowledge));
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Reputation));
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Romance));
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Growup));			
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Fun));			
-			this.cbaspiration.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Chees));
+            SetAspirations(cbaspiration);
+            SetAspirations(cbaspiration2);
 
 			
 			this.cblifesection.Items.Clear();
@@ -542,17 +562,8 @@ namespace SimPe.PackedFiles.UserInterface
 			this.pbAspBliz.Value = sdesc.CharacterDescription.BlizLifelinePoints;
 			this.pbAspCur.Value = sdesc.CharacterDescription.LifelinePoints;
 
-			
-			this.cbaspiration.SelectedIndex = 0;
-			for (int i=0;i<this.cbaspiration.Items.Count;i++)
-			{
-				Data.MetaData.AspirationTypes at = (LocalizedAspirationTypes)this.cbaspiration.Items[i];
-				if (at==sdesc.CharacterDescription.Aspiration) 
-				{
-					this.cbaspiration.SelectedIndex = i;
-					break;
-				}
-			}			
+            SelectAspiration(cbaspiration, sdesc.Freetime.PrimaryAspiration);
+					
 			this.tblifelinescore.Text = sdesc.CharacterDescription.LifelineScore.ToString();
 		}
 
@@ -922,7 +933,7 @@ namespace SimPe.PackedFiles.UserInterface
 				Sdesc.CharacterDescription.LifelinePoints = (short)this.pbAspCur.Value;
 
 			
-				Sdesc.CharacterDescription.Aspiration = (LocalizedAspirationTypes)this.cbaspiration.SelectedItem;				
+				Sdesc.Freetime.PrimaryAspiration = (LocalizedAspirationTypes)this.cbaspiration.SelectedItem;				
 				Sdesc.CharacterDescription.LifelineScore = Helper.StringToUInt32(this.tblifelinescore.Text, (uint)Sdesc.CharacterDescription.LifelineScore, 10);
 
 				Sdesc.Changed = true;
@@ -1744,6 +1755,14 @@ namespace SimPe.PackedFiles.UserInterface
             this.tb7hygiene.Text = sdesc.Freetime.HygieneDecayModifier.ToString();
             this.tb7fun.Text = sdesc.Freetime.FunDecayModifier.ToString();
             this.tb7social.Text = sdesc.Freetime.SocialPublicDecayModifier.ToString();
+
+            if (!Helper.WindowsRegistry.HiddenMode)
+            {
+                this.cbaspiration.Enabled = (int)sdesc.Version < (int)SimPe.PackedFiles.Wrapper.SDescVersions.Freetime;
+                this.cbaspiration2.Enabled = false;
+            }
+            SelectAspiration(cbaspiration2, sdesc.Freetime.SecondaryAspiration);
+            
             intern = false;
         }
 
@@ -1772,7 +1791,8 @@ namespace SimPe.PackedFiles.UserInterface
                     Sdesc.Freetime.SocialPublicDecayModifier = Helper.StringToUInt16(this.tb7social.Text, Sdesc.Freetime.SocialPublicDecayModifier, 10);
 
                     Sdesc.Freetime.HobbyPredistined = SimPe.PackedFiles.Wrapper.SdscFreetime.IndexToHobbies(cbHobbyPre.SelectedIndex);
-
+                    Sdesc.Freetime.SecondaryAspiration = (LocalizedAspirationTypes)this.cbaspiration2.SelectedItem;				
+				
 
                     Sdesc.Changed = true;
                 }

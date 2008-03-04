@@ -33,6 +33,8 @@ namespace SimPe.Plugin
 	public class WrapperFactory : SimPe.Interfaces.Plugin.AbstractWrapperFactory, SimPe.Interfaces.Plugin.IToolFactory
 	{
 		#region AbstractWrapperFactory Member
+
+
 		/// <summary>
 		/// Returns a List of all available Plugins in this Package
 		/// </summary>
@@ -41,6 +43,7 @@ namespace SimPe.Plugin
 		{
 			get 
 			{
+                SimPe.PackedFiles.Wrapper.SdscFreetime.RegisterAsAspirationEditor(new SimPe.Plugin.SimAspirationEditor());
 				FileTable.ProviderRegistry.LotProvider.LoadingLot += new SimPe.Interfaces.Providers.LoadLotData(LotProvider_LoadingLot);
 				IWrapper[] wrappers = {
 										  new Plugin.EnhancedNgbh(),

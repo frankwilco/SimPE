@@ -311,6 +311,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.tbhdaysleft = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.labelcol = new System.Windows.Forms.Label();
+            this.cbaspiration2 = new System.Windows.Forms.ComboBox();
+            this.label41 = new System.Windows.Forms.Label();
             this.pnPetInt.SuspendLayout();
             this.toolBar1.SuspendLayout();
             this.pnId.SuspendLayout();
@@ -2335,6 +2337,8 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.pnEP7, "pnEP7");
             this.pnEP7.BackColor = System.Drawing.Color.Transparent;
+            this.pnEP7.Controls.Add(this.label41);
+            this.pnEP7.Controls.Add(this.cbaspiration2);
             this.pnEP7.Controls.Add(this.cbHobbyPre);
             this.pnEP7.Controls.Add(this.label40);
             this.pnEP7.Controls.Add(this.xpTaskBoxSimple4);
@@ -2772,6 +2776,17 @@ namespace SimPe.PackedFiles.UserInterface
             this.labelcol.Name = "labelcol";
             this.labelcol.Click += new System.EventHandler(this.lbcollectibles_Click);
             // 
+            // cbaspiration2
+            // 
+            this.cbaspiration2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cbaspiration2, "cbaspiration2");
+            this.cbaspiration2.Name = "cbaspiration2";
+            // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.Name = "label41";
+            // 
             // ExtSDesc
             // 
             this.Controls.Add(this.pnEP7);
@@ -3100,5 +3115,7 @@ namespace SimPe.PackedFiles.UserInterface
         private Label label39;
         private Label label40;
         private EnumComboBox cbHobbyPre;
+        private Label label41;
+        internal ComboBox cbaspiration2;
     }
 }
