@@ -30,8 +30,6 @@ namespace SimPe.PackedFiles.Wrapper
             unlockpts = 0;
             unlocksspent = 0;
             bugcollection = 0;
-
-            LoadMemoryResource();
         }
 
         SDesc parent;
@@ -188,25 +186,7 @@ namespace SimPe.PackedFiles.Wrapper
             StoreAspirations();
         }
 
-        SimPe.Interfaces.Files.IPackedFileDescriptor mempfd = null;
-        protected void LoadMemoryResource()
-        {
-            mempfd = null;
-            if (parent==null) return;
-            if (parent.Package == null) return;
-
-            SimPe.Interfaces.Plugin.IFileWrapper wrapper =
-                (SimPe.Interfaces.Plugin.IFileWrapper)FileTable.WrapperRegistry.FindHandler(SimPe.Data.MetaData.MEMORIES);
-
-            if (wrapper == null) return;
-
-            SimPe.Interfaces.Files.IPackedFileDescriptor[] mems = parent.Package.FindFiles(SimPe.Data.MetaData.MEMORIES);
-            foreach (SimPe.Interfaces.Files.IPackedFileDescriptor pfd in mems)
-            {
-                mempfd = pfd;
-                return;
-            }
-        }
+        
 
         SimPe.Data.MetaData.AspirationTypes pa, sa;
         protected void LoadAspirations()

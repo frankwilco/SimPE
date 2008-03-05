@@ -871,28 +871,28 @@
   <data name="Delete Sim" xml:space="preserve">
     <value>Удалить Сима</value>
   </data>
-  <data name="Nothing" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Nothing" xml:space="preserve">
     <value>Нет</value>
   </data>
-  <data name="Romance" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Romance" xml:space="preserve">
     <value>Любовь</value>
   </data>
-  <data name="Family" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Family" xml:space="preserve">
     <value>Семья</value>
   </data>
-  <data name="Fortune" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Fortune" xml:space="preserve">
     <value>Богатство</value>
   </data>
-  <data name="Reputation" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Reputation" xml:space="preserve">
     <value>Популярность</value>
   </data>
-  <data name="Knowledge" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Knowledge" xml:space="preserve">
     <value>Знания</value>
   </data>
-  <data name="Growup" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Growup" xml:space="preserve">
     <value>Взросление</value>
   </data>
-  <data name="Chees" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Chees" xml:space="preserve">
     <value>Сыр</value>
   </data>
   <data name="PresetClassic" xml:space="preserve">

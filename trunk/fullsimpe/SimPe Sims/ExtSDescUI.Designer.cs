@@ -252,6 +252,9 @@ namespace SimPe.PackedFiles.UserInterface
             this.label98 = new System.Windows.Forms.Label();
             this.tbmajor = new System.Windows.Forms.TextBox();
             this.pnEP7 = new System.Windows.Forms.Panel();
+            this.pbhbenth = new Ambertation.Windows.Forms.LabeledProgressBar();
+            this.label41 = new System.Windows.Forms.Label();
+            this.cbaspiration2 = new System.Windows.Forms.ComboBox();
             this.cbHobbyPre = new Ambertation.Windows.Forms.EnumComboBox();
             this.label40 = new System.Windows.Forms.Label();
             this.xpTaskBoxSimple4 = new Ambertation.Windows.Forms.XPTaskBoxSimple();
@@ -279,7 +282,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.label28 = new System.Windows.Forms.Label();
             this.tbHobbyPre = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.tbHobbyEnth = new System.Windows.Forms.TextBox();
             this.cbHobbyEnth = new System.Windows.Forms.ComboBox();
             this.pnEP2 = new System.Windows.Forms.Panel();
             this.tbNTLove = new System.Windows.Forms.TextBox();
@@ -311,8 +313,6 @@ namespace SimPe.PackedFiles.UserInterface
             this.tbhdaysleft = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.labelcol = new System.Windows.Forms.Label();
-            this.cbaspiration2 = new System.Windows.Forms.ComboBox();
-            this.label41 = new System.Windows.Forms.Label();
             this.pnPetInt.SuspendLayout();
             this.toolBar1.SuspendLayout();
             this.pnId.SuspendLayout();
@@ -1472,7 +1472,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.cbaspiration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cbaspiration, "cbaspiration");
             this.cbaspiration.Name = "cbaspiration";
-            this.cbaspiration.SelectedValueChanged += new System.EventHandler(this.ChangedCareer);
+            this.cbaspiration.SelectedValueChanged += new System.EventHandler(this.ChangedAspiration);
             // 
             // pbAspCur
             // 
@@ -2337,6 +2337,7 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.pnEP7, "pnEP7");
             this.pnEP7.BackColor = System.Drawing.Color.Transparent;
+            this.pnEP7.Controls.Add(this.pbhbenth);
             this.pnEP7.Controls.Add(this.label41);
             this.pnEP7.Controls.Add(this.cbaspiration2);
             this.pnEP7.Controls.Add(this.cbHobbyPre);
@@ -2352,9 +2353,37 @@ namespace SimPe.PackedFiles.UserInterface
             this.pnEP7.Controls.Add(this.label28);
             this.pnEP7.Controls.Add(this.tbHobbyPre);
             this.pnEP7.Controls.Add(this.label27);
-            this.pnEP7.Controls.Add(this.tbHobbyEnth);
             this.pnEP7.Controls.Add(this.cbHobbyEnth);
             this.pnEP7.Name = "pnEP7";
+            // 
+            // pbhbenth
+            // 
+            this.pbhbenth.BackColor = System.Drawing.Color.Transparent;
+            this.pbhbenth.DisplayOffset = 0;
+            resources.ApplyResources(this.pbhbenth, "pbhbenth");
+            this.pbhbenth.Maximum = 1000;
+            this.pbhbenth.Name = "pbhbenth";
+            this.pbhbenth.NumberFormat = "N0";
+            this.pbhbenth.NumberOffset = 0;
+            this.pbhbenth.NumberScale = 1;
+            this.pbhbenth.SelectedColor = System.Drawing.Color.YellowGreen;
+            this.pbhbenth.Style = Ambertation.Windows.Forms.ProgresBarStyle.Increase;
+            this.pbhbenth.TokenCount = 14;
+            this.pbhbenth.UnselectedColor = System.Drawing.Color.Black;
+            this.pbhbenth.Value = 500;
+            this.pbhbenth.ChangedValue += new System.EventHandler(this.ChangedHobbyEnthProgress);
+            // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.Name = "label41";
+            // 
+            // cbaspiration2
+            // 
+            this.cbaspiration2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cbaspiration2, "cbaspiration2");
+            this.cbaspiration2.Name = "cbaspiration2";
+            this.cbaspiration2.SelectedIndexChanged += new System.EventHandler(this.ChangedEP7);
             // 
             // cbHobbyPre
             // 
@@ -2538,12 +2567,6 @@ namespace SimPe.PackedFiles.UserInterface
             // 
             resources.ApplyResources(this.label27, "label27");
             this.label27.Name = "label27";
-            // 
-            // tbHobbyEnth
-            // 
-            resources.ApplyResources(this.tbHobbyEnth, "tbHobbyEnth");
-            this.tbHobbyEnth.Name = "tbHobbyEnth";
-            this.tbHobbyEnth.TextChanged += new System.EventHandler(this.ChangedEP7);
             // 
             // cbHobbyEnth
             // 
@@ -2775,17 +2798,6 @@ namespace SimPe.PackedFiles.UserInterface
             resources.ApplyResources(this.labelcol, "labelcol");
             this.labelcol.Name = "labelcol";
             this.labelcol.Click += new System.EventHandler(this.lbcollectibles_Click);
-            // 
-            // cbaspiration2
-            // 
-            this.cbaspiration2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cbaspiration2, "cbaspiration2");
-            this.cbaspiration2.Name = "cbaspiration2";
-            // 
-            // label41
-            // 
-            resources.ApplyResources(this.label41, "label41");
-            this.label41.Name = "label41";
             // 
             // ExtSDesc
             // 
@@ -3086,7 +3098,6 @@ namespace SimPe.PackedFiles.UserInterface
         private ListView lvCollectibles;
         private ImageList ilCollectibles;
         private ToolStripButton biEP7;
-        private TextBox tbHobbyEnth;
         private ComboBox cbHobbyEnth;
         private Label label27;
         private TextBox tbUnlocksUsed;
@@ -3117,5 +3128,6 @@ namespace SimPe.PackedFiles.UserInterface
         private EnumComboBox cbHobbyPre;
         private Label label41;
         internal ComboBox cbaspiration2;
+        private LabeledProgressBar pbhbenth;
     }
 }

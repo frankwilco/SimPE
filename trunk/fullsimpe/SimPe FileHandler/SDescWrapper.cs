@@ -2272,6 +2272,10 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write(character.Outgoing); //Outgoing
 			writer.Write(character.Neat); //Neat
 
+            //freetime only Items (has to get processed before the aspiration filed is written)
+            if (version >= (int)SDescVersions.Freetime)
+                freetime.Serialize(writer);
+
 			//random Data			
 			writer.BaseStream.Seek(startpos + 0x46, System.IO.SeekOrigin.Begin);
 			writer.Write((ushort)description.MotivesStatic);
@@ -2403,9 +2407,7 @@ namespace SimPe.PackedFiles.Wrapper
             if (version >= (int)SDescVersions.Voyage)
                 voyage.Serialize(writer);
 
-            //voyage only Items
-            if (version >= (int)SDescVersions.Freetime)
-                freetime.Serialize(writer);
+            
 			
 
 			writer.BaseStream.Seek(endpos, System.IO.SeekOrigin.Begin);

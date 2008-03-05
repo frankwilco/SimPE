@@ -48,6 +48,8 @@ namespace SimPe.Plugin.Tool.Dockable.Finder
             Add(typeof(FindInStr));
             Add(typeof(FindInCpf));
             Add(typeof(FindTGI));
+            Add(typeof(FindInNref));
+            Add(typeof(FindInSG));
         }
 
         public void Add(Type tool)

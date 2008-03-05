@@ -877,28 +877,28 @@ Voulez-vous continuer ?</value>
   <data name="Delete Sim" xml:space="preserve">
     <value>Supprimer le Sim</value>
   </data>
-  <data name="Nothing" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Nothing" xml:space="preserve">
     <value>Aucun(e)</value>
   </data>
-  <data name="Romance" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Romance" xml:space="preserve">
     <value>Amour</value>
   </data>
-  <data name="Family" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Family" xml:space="preserve">
     <value>Famille</value>
   </data>
-  <data name="Fortune" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Fortune" xml:space="preserve">
     <value>Richesse</value>
   </data>
-  <data name="Reputation" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Reputation" xml:space="preserve">
     <value>Réputation</value>
   </data>
-  <data name="Knowledge" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Knowledge" xml:space="preserve">
     <value>Connaissance</value>
   </data>
-  <data name="Growup" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Growup" xml:space="preserve">
     <value>Grandir</value>
   </data>
-  <data name="Chees" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Chees" xml:space="preserve">
     <value>Fromage</value>
   </data>
   <data name="PresetClassic" xml:space="preserve">
