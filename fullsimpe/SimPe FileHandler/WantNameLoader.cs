@@ -111,11 +111,15 @@ namespace SimPe.Plugin
 		{
 			map = new Hashtable();			
 			Interfaces.Scenegraph.IScenegraphFileIndexItem[] items = FileTable.FileIndex.FindFile(0x00000000, 0xCDA53B6F, 0x2D7EE26B, null);
-
+            
             System.Collections.Generic.Dictionary<SimPe.PackedFiles.Wrapper.SDescVersions,string> vmap = new System.Collections.Generic.Dictionary<SimPe.PackedFiles.Wrapper.SDescVersions,string>();
+
+            vmap[version] = PathProvider.Global.Latest.InstallFolder.Trim().ToLower();
             foreach (ExpansionItem ei in PathProvider.Global.Expansions) {
                 if (ei.Flag.Class == ExpansionItem.Classes.ExpansionPack) {
+                    
                     SimPe.PackedFiles.Wrapper.SDescVersions ver = SimPe.PackedFiles.Wrapper.SDesc.GetMinVersion(ei.Expansion);
+
                     vmap [ver] = ei.InstallFolder.Trim().ToLower();
                     if (ver == SimPe.PackedFiles.Wrapper.SDescVersions.Voyage) 
                         vmap[SimPe.PackedFiles.Wrapper.SDescVersions.VoyageB] = ei.InstallFolder.Trim().ToLower(); 

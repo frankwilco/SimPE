@@ -222,31 +222,31 @@
   <data name="viewer" xml:space="preserve">
     <value>Betrachter</value>
   </data>
-  <data name="Nothing" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Nothing" xml:space="preserve">
     <value>Nichts</value>
   </data>
-  <data name="Romance" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Romance" xml:space="preserve">
     <value>Romantik</value>
   </data>
-  <data name="Family" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Family" xml:space="preserve">
     <value>Familie</value>
   </data>
-  <data name="Fortune" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Fortune" xml:space="preserve">
     <value>Berühmt sein</value>
   </data>
-  <data name="Reputation" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Reputation" xml:space="preserve">
     <value>Ruf</value>
   </data>
-  <data name="Knowledge" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Knowledge" xml:space="preserve">
     <value>Wissen</value>
   </data>
-  <data name="Growup" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Growup" xml:space="preserve">
     <value>Groß werden</value>
   </data>
-  <data name="Fun" xml:space="preserve">
+  <data name="SimPe.Data.MetaData.AspirationTypes.Fun" xml:space="preserve">
     <value>Spaß</value>
   </data>
-  <data name="Chees" xml:space="preserve">
+  <data name="Data.MetaData.AspirationTypes.Chees" xml:space="preserve">
     <value>Käse</value>
   </data>
   <data name="Aries" xml:space="preserve">

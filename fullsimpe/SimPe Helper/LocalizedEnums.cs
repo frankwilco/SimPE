@@ -373,7 +373,7 @@ namespace SimPe.Data
 		/// <returns></returns>
 		public override string ToString()
 		{
-			string s = Localization.Manager.GetString(data.ToString());
+			string s = Localization.Manager.GetString("SimPe.Data.MetaData.AspirationTypes."+data.ToString());
 			if (s!=null) return s;
 			else return data.ToString();
 		}

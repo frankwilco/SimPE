@@ -599,6 +599,7 @@ namespace SimPe.Plugin
 				name += "}";
 			}
 
+            if (SimPe.Helper.WindowsRegistry.HiddenMode) name += " [GUID=0x" + Helper.HexString(this.guid) + "]";
 			return /*data.Length.ToString()+" "+*/name;
 		}		
 

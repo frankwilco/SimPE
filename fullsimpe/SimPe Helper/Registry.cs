@@ -432,6 +432,24 @@ namespace SimPe
 			}
 		}
 
+        /// <summary>
+        /// true, if we allow Users to change the secondary aspiraions.
+        /// </summary>
+        public bool AllowChangeOfSecondaryAspiration
+        {
+            get
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                object o = rkf.GetValue("AllowChangeOfSecondaryAspiration", true);
+                return Convert.ToBoolean(o);
+            }
+            set
+            {
+                XmlRegistryKey rkf = xrk.CreateSubKey("Settings");
+                rkf.SetValue("AllowChangeOfSecondaryAspiration", value);
+            }
+        }
+
 		
 
 		/// <summary>

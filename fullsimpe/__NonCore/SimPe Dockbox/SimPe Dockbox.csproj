@@ -260,6 +260,18 @@
     <Compile Include="Finder\FindInCpf.Designer.cs">
       <DependentUpon>FindInCpf.cs</DependentUpon>
     </Compile>
+    <Compile Include="Finder\FindInNref.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Finder\FindInNref.Designer.cs">
+      <DependentUpon>FindInNref.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finder\FindInSG.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Finder\FindInSG.Designer.cs">
+      <DependentUpon>FindInSG.cs</DependentUpon>
+    </Compile>
     <Compile Include="Finder\FindInStr.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -344,6 +356,22 @@
     <EmbeddedResource Include="Finder\FindInNmap.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FindInNmap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindInNref.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInNref.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindInNref.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInNref.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindInSG.de.resx">
+      <DependentUpon>FindInSG.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finder\FindInSG.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInSG.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Finder\FindInStr.de.resx">
       <SubType>Designer</SubType>

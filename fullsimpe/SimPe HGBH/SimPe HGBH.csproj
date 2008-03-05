@@ -248,6 +248,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="BnfoUI.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="BnfoWrapper.cs">
       <SubType>Code</SubType>
@@ -256,6 +257,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ExtNgbhUI.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FixUidTool.cs">
       <SubType>Code</SubType>
@@ -357,8 +359,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="NhtrUI.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="RoadTextureControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="RoadTextureWrapper.cs">
       <SubType>Code</SubType>
@@ -371,6 +375,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TattUI.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TattWrapper.cs">
       <SubType>Code</SubType>

@@ -80,7 +80,6 @@ namespace SimPe.PackedFiles.UserInterface
 			this.tbsim.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
 			this.miRelink.Enabled = Helper.WindowsRegistry.HiddenMode;
             this.tbBugColl.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
-            this.tbHobbyEnth.ReadOnly = !Helper.WindowsRegistry.HiddenMode;
             this.tbHobbyPre.Visible = Helper.WindowsRegistry.HiddenMode;
 
 			
@@ -170,22 +169,36 @@ namespace SimPe.PackedFiles.UserInterface
 			SelectButton((ToolStripButton)sender);
 		}
 
+        void AddAspiration(ComboBox cb, Data.MetaData.AspirationTypes exclude, Data.MetaData.AspirationTypes asp)
+        {
+            if ((ushort)exclude == 0xFFFF || asp != exclude)
+                cb.Items.Add(new LocalizedAspirationTypes(asp));
+        }
+
         void SetAspirations(ComboBox cb)
         {
+            SetAspirations(cb, (Data.MetaData.AspirationTypes)0xffff);
+        }
+
+        void SetAspirations(ComboBox cb, Data.MetaData.AspirationTypes exclude)
+        {
+            
             cb.Items.Clear();
-            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Nothing));
-            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Fortune));
-            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Family));
-            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Knowledge));
-            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Reputation));
-            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Romance));
-            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Growup));
-            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Fun));
-            cb.Items.Add(new LocalizedAspirationTypes(Data.MetaData.AspirationTypes.Chees));
+            
+            AddAspiration(cb, exclude, Data.MetaData.AspirationTypes.Nothing);
+            AddAspiration(cb, exclude, MetaData.AspirationTypes.Fortune);
+            AddAspiration(cb, exclude, Data.MetaData.AspirationTypes.Family);
+            AddAspiration(cb, exclude, Data.MetaData.AspirationTypes.Knowledge);
+            AddAspiration(cb, exclude, Data.MetaData.AspirationTypes.Reputation);
+            AddAspiration(cb, exclude, Data.MetaData.AspirationTypes.Romance);
+            AddAspiration(cb, exclude, Data.MetaData.AspirationTypes.Growup);
+            AddAspiration(cb, exclude, Data.MetaData.AspirationTypes.Fun);
+            AddAspiration(cb, exclude, Data.MetaData.AspirationTypes.Chees);
         }
 
         void SelectAspiration(ComboBox cb, Data.MetaData.AspirationTypes val)
         {
+            if (cb.Items.Count == 0) return;
             cb.SelectedIndex = 0;
             for (int i = 0; i < cb.Items.Count; i++)
             {
@@ -1737,6 +1750,11 @@ namespace SimPe.PackedFiles.UserInterface
         void RefreshEP7(Wrapper.ExtSDesc sdesc)
         {
             intern = true;
+            
+            if ((int)sdesc.Version < (int)SimPe.PackedFiles.Wrapper.SDescVersions.Freetime) cbaspiration.Enabled = true;
+            else cbaspiration.Enabled = Helper.WindowsRegistry.AllowChangeOfSecondaryAspiration;
+            cbaspiration2.Enabled = Helper.WindowsRegistry.AllowChangeOfSecondaryAspiration;
+            
             if (cbHobbyEnth.SelectedIndex<0) cbHobbyEnth.SelectedIndex = 0;
             else this.EnthusiasmIndexChanged(cbHobbyEnth, null);
 
@@ -1755,6 +1773,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.tb7hygiene.Text = sdesc.Freetime.HygieneDecayModifier.ToString();
             this.tb7fun.Text = sdesc.Freetime.FunDecayModifier.ToString();
             this.tb7social.Text = sdesc.Freetime.SocialPublicDecayModifier.ToString();
+           
 
             if (!Helper.WindowsRegistry.HiddenMode)
             {
@@ -1766,6 +1785,22 @@ namespace SimPe.PackedFiles.UserInterface
             intern = false;
         }
 
+        void UpdateSecAspDropDown()
+        {
+            SetAspirations(cbaspiration2, Sdesc.Freetime.PrimaryAspiration);
+        }
+
+        void ChangedAspiration(object sender, EventArgs e){
+            ChangedCareer(sender, e);
+            UpdateSecAspDropDown();
+            SelectAspiration(cbaspiration2, Sdesc.Freetime.SecondaryAspiration);
+        }
+
+        private void ChangedHobbyEnthProgress(object sender, EventArgs e)
+        {
+            ChangedEP7(sender, e);
+        }
+
         private void ChangedEP7(object sender, System.EventArgs e)
         {
             if (intern) return;
@@ -1775,7 +1810,7 @@ namespace SimPe.PackedFiles.UserInterface
                 if ((int)Sdesc.Version >= (int)SimPe.PackedFiles.Wrapper.SDescVersions.Freetime)
                 {
                     if (cbHobbyEnth.SelectedIndex >= 0 && cbHobbyEnth.SelectedIndex < Sdesc.Freetime.HobbyEnthusiasm.Count)
-                        Sdesc.Freetime.HobbyEnthusiasm[cbHobbyEnth.SelectedIndex] = Helper.StringToUInt16(this.tbHobbyEnth.Text, Sdesc.Freetime.HobbyEnthusiasm[cbHobbyEnth.SelectedIndex], 16);
+                        Sdesc.Freetime.HobbyEnthusiasm[cbHobbyEnth.SelectedIndex] = (ushort)pbhbenth.Value;
                      
                     Sdesc.Freetime.BugCollection = Helper.StringToUInt32(this.tbBugColl.Text, Sdesc.Freetime.BugCollection, 16);
                     Sdesc.Freetime.LongtermAspiration = Helper.StringToUInt16(this.tbLtAsp.Text, Sdesc.Freetime.LongtermAspiration, 16);
@@ -1813,16 +1848,16 @@ namespace SimPe.PackedFiles.UserInterface
 
         private void EnthusiasmIndexChanged(object sender, EventArgs e)
         {
-            
             if (cbHobbyEnth.SelectedIndex >= 0 && cbHobbyEnth.SelectedIndex < Sdesc.Freetime.HobbyEnthusiasm.Count)
             {
-                this.tbHobbyEnth.Text = "0x" + Helper.HexString(Sdesc.Freetime.HobbyEnthusiasm[cbHobbyEnth.SelectedIndex]);
-                this.tbHobbyEnth.Enabled = true;
+
+                this.pbhbenth.Value = Sdesc.Freetime.HobbyEnthusiasm[cbHobbyEnth.SelectedIndex];
+                this.pbhbenth.Enabled = true;
             }
             else
             {
-                this.tbHobbyEnth.Text = "";
-                this.tbHobbyEnth.Enabled = false;
+                this.pbhbenth.Value = 0;
+                this.pbhbenth.Enabled = false;
             }
         }
         #endregion
@@ -1920,6 +1955,8 @@ namespace SimPe.PackedFiles.UserInterface
         {
             ChangedEP6(sender, e);
         }
+
+        
 
         
 
