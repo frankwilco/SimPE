@@ -47,13 +47,28 @@ namespace SimPe.PackedFiles.UserInterface
 
 			form.tbname.Text = fami.Name;
 			form.tbmoney.Text = fami.Money.ToString();
+            
 			form.tbfamily.Text = fami.Friends.ToString();
 			form.tblotinst.Text = "0x"+Helper.HexString(fami.LotInstance);
 			form.tbalbum.Text = "0x"+Helper.HexString(fami.AlbumGUID);
 			form.tbflag.Text = "0x"+Helper.HexString(fami.Flags);
 			form.tbsubhood.Text = "0x"+Helper.HexString(fami.SubHoodNumber);
             form.tbvac.Text = "0x" + Helper.HexString(fami.VacationLotInstance);
+            form.tbblot.Text = "0x" + Helper.HexString(fami.CurrentlyOnLotInstance);
+            form.tbbmoney.Text = fami.BusinessMoney.ToString();
 			form.lbmembers.Items.Clear();
+
+
+            form.tbcafood1.Text = fami.CastAwayFood.ToString();
+            form.tbcares.Text = fami.CastAwayResources.ToString();
+            form.tbcaunk.Text = "0x"+Helper.HexString(fami.CastAwayUnk);
+            form.tbcaunk.ReadOnly = !SimPe.Helper.WindowsRegistry.HiddenMode;
+
+            form.tbbmoney.Enabled = (int)fami.Version >= (int)SimPe.PackedFiles.Wrapper.FamiVersions.Business;
+            form.tbblot.Enabled = (int)fami.Version >= (int)SimPe.PackedFiles.Wrapper.FamiVersions.Business;
+            form.tbvac.Enabled = (int)fami.Version >= (int)SimPe.PackedFiles.Wrapper.FamiVersions.Voyage;
+            form.tbsubhood.Enabled = (int)fami.Version >= (int)SimPe.PackedFiles.Wrapper.FamiVersions.University;
+            form.gbCastaway.Visible = (int)fami.Version >= (int)SimPe.PackedFiles.Wrapper.FamiVersions.Castaway;
 
 			string[] names = fami.SimNames;
 			for(int i=0; i<fami.Members.Length; i++) 

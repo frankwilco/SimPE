@@ -117,20 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="llFamiDeleteSim.Text" xml:space="preserve">
-    <value>delete Sim</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tblotinst.Location" type="System.Drawing.Point, System.Drawing">
+    <value>664, 45</value>
+  </data>
   <data name="cblove.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cbcrush.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="tbblot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
   </data>
   <data name="btPicExport.Location" type="System.Drawing.Point, System.Drawing">
     <value>328, 0</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label91.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -144,8 +144,17 @@
   <data name="label64.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 48</value>
   </data>
+  <data name="&gt;&gt;cbphone.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="label93.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="tbcaunk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="cbfriend.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 16</value>
@@ -155,9 +164,6 @@
   </data>
   <data name="&gt;&gt;btnewtie.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label97.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>32, 67</value>
@@ -169,19 +175,25 @@
     <value>11</value>
   </data>
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>504, 64</value>
+    <value>688, 72</value>
   </data>
   <data name="&gt;&gt;cbsims.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>18</value>
   </data>
   <data name="banner.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 4</value>
   </data>
   <data name="&gt;&gt;lbmembers.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>19</value>
+  </data>
+  <data name="tblongterm.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="&gt;&gt;cbsims.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;llcommitobjd.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -191,6 +203,9 @@
   </data>
   <data name="realPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>296, 232</value>
+  </data>
+  <data name="llsrelcommit.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;tborgguid.Name" xml:space="preserve">
     <value>tborgguid</value>
@@ -213,20 +228,29 @@
   <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
     <value>toolTip1</value>
   </data>
+  <data name="label16.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="famiPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 8</value>
   </data>
-  <data name="cbmarried.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 40</value>
+  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="cbfamtype.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="label91.Text" xml:space="preserve">
-    <value>Relation Type:</value>
+  <data name="cballtieablesims.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbcares.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 50</value>
+  </data>
+  <data name="&gt;&gt;tbblot.Name" xml:space="preserve">
+    <value>tbblot</value>
   </data>
   <data name="&gt;&gt;llFamiAddSim.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>16</value>
   </data>
   <data name="panel6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 9.75pt, style=Bold</value>
@@ -243,8 +267,8 @@
   <data name="&gt;&gt;cballtieablesims.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="cbmarried.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
+  <data name="JpegPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>408, 312</value>
   </data>
   <data name="&gt;&gt;llrelcommit.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -255,17 +279,26 @@
   <data name="tblottype.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 93</value>
   </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Resources:</value>
+  </data>
   <data name="&gt;&gt;lbtypename.Name" xml:space="preserve">
     <value>lbtypename</value>
   </data>
-  <data name="tblongterm.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="llFamiDeleteSim.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 196</value>
+    <value>280, 202</value>
+  </data>
+  <data name="&gt;&gt;label91.Parent" xml:space="preserve">
+    <value>realPanel</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
+  </data>
+  <data name="pnelements.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="label92.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -279,20 +312,23 @@
   <data name="cbphone.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btdeletetie.ToolTip" xml:space="preserve">
-    <value />
+  <data name="label56.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 4</value>
   </data>
-  <data name="llgetGUID.Text" xml:space="preserve">
-    <value>get GUID</value>
+  <data name="llFamiAddSim.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 104</value>
+    <value>23, 104</value>
   </data>
   <data name="gbrelation.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
-  <data name="&gt;&gt;lbties.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cbmarried.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="cblot.ToolTip" xml:space="preserve">
     <value />
@@ -303,20 +339,23 @@
   <data name="&gt;&gt;label58.Parent" xml:space="preserve">
     <value>realPanel</value>
   </data>
-  <data name="lbtypename.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 13</value>
+  <data name="btPicExport.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="&gt;&gt;label91.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;tbflag.Name" xml:space="preserve">
-    <value>tbflag</value>
+  <data name="&gt;&gt;tbbmoney.Name" xml:space="preserve">
+    <value>tbbmoney</value>
   </data>
   <data name="label89.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="panel3.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;tbshortterm.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="panel7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -324,20 +363,26 @@
   <data name="cbmarried.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
+  <data name="tbcafood1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label58.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="&gt;&gt;cbmarried.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="cbengaged.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+  <data name="cbtiesims.ItemHeight" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
-  <data name="&gt;&gt;cbbest.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;visualStyleLinkLabel2.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="label64.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="cbfamtype.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 80</value>
   </data>
   <data name="tbmoney.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -361,13 +406,13 @@
     <value />
   </data>
   <data name="tbflag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>368, 72</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>571, 77</value>
   </data>
   <data name="gbelements.Size" type="System.Drawing.Size, System.Drawing">
     <value>664, 96</value>
+  </data>
+  <data name="tbblot.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btaddtie.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -393,8 +438,8 @@
   <data name="&gt;&gt;label56.Name" xml:space="preserve">
     <value>label56</value>
   </data>
-  <data name="&gt;&gt;pb.Name" xml:space="preserve">
-    <value>pb</value>
+  <data name="label14.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;label97.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -405,17 +450,20 @@
   <data name="pnelements.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 16</value>
   </data>
+  <data name="tbcares.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
   <data name="cbtiesims.Location" type="System.Drawing.Point, System.Drawing">
     <value>64, 40</value>
+  </data>
+  <data name="label11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
   </data>
   <data name="btaddtie.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 23</value>
   </data>
   <data name="&gt;&gt;lbtypename.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="llFamiAddSim.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
   </data>
   <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -426,8 +474,14 @@
   <data name="cbmarried.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
   </data>
+  <data name="panel4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="&gt;&gt;llsrelcommit.Type" xml:space="preserve">
-    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.63.4.35875, Culture=neutral, PublicKeyToken=null</value>
+    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.65.27.38111, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 13</value>
   </data>
   <data name="label56.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -440,6 +494,12 @@
   </data>
   <data name="panel4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;pb.Name" xml:space="preserve">
+    <value>pb</value>
+  </data>
+  <data name="btdeletetie.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btdeletetie.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -459,8 +519,8 @@
   <data name="&gt;&gt;label57.Name" xml:space="preserve">
     <value>label57</value>
   </data>
-  <data name="cbengaged.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>famiPanel</value>
   </data>
   <data name="label97.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -468,8 +528,11 @@
   <data name="&gt;&gt;cbfamily.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 16</value>
+  <data name="gbCastaway.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="tbshortterm.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -477,11 +540,17 @@
   <data name="&gt;&gt;label9.Parent" xml:space="preserve">
     <value>objdPanel</value>
   </data>
+  <data name="&gt;&gt;label64.Parent" xml:space="preserve">
+    <value>familytiePanel</value>
+  </data>
   <data name="&gt;&gt;label65.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;llgetGUID.Type" xml:space="preserve">
-    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.63.4.35875, Culture=neutral, PublicKeyToken=null</value>
+  <data name="label65.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="tbbmoney.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
   </data>
   <data name="tbfamily.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -501,20 +570,14 @@
   <data name="cbcomputer.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>famiPanel</value>
-  </data>
   <data name="llcommitties.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 18</value>
-  </data>
-  <data name="cbphone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 24</value>
   </data>
   <data name="cbphone.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 148</value>
+    <value>13, 154</value>
   </data>
   <data name="&gt;&gt;tbsimname.Name" xml:space="preserve">
     <value>tbsimname</value>
@@ -531,26 +594,35 @@
   <data name="lbties.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 24</value>
   </data>
+  <data name="&gt;&gt;label93.Parent" xml:space="preserve">
+    <value>famiPanel</value>
+  </data>
   <data name="cbphone.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 16</value>
   </data>
   <data name="&gt;&gt;label92.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>13</value>
   </data>
   <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
     <value>928, 422</value>
   </data>
   <data name="&gt;&gt;tbmoney.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>23</value>
   </data>
   <data name="&gt;&gt;gbelements.Parent" xml:space="preserve">
     <value>objdPanel</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 13</value>
   </data>
-  <data name="&gt;&gt;panel8.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="cbbest.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 13</value>
   </data>
   <data name="&gt;&gt;llcommitobjd.Name" xml:space="preserve">
     <value>llcommitobjd</value>
@@ -573,11 +645,11 @@
   <data name="label89.Location" type="System.Drawing.Point, System.Drawing">
     <value>760, 48</value>
   </data>
-  <data name="btdeletetie.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;label97.Name" xml:space="preserve">
+    <value>label97</value>
   </data>
   <data name="&gt;&gt;label93.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>11</value>
   </data>
   <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
@@ -594,11 +666,14 @@
   <data name="cbfamily.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label8.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tbsimid.Parent" xml:space="preserve">
     <value>objdPanel</value>
+  </data>
+  <data name="btdeletetie.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;banner.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -612,11 +687,14 @@
   <data name="&gt;&gt;llgetGUID.Name" xml:space="preserve">
     <value>llgetGUID</value>
   </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 13</value>
+  </data>
   <data name="llgetGUID.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="&gt;&gt;tborgguid.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;btPicExport.Parent" xml:space="preserve">
+    <value>panel2</value>
   </data>
   <data name="&gt;&gt;llgetGUID.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -633,11 +711,11 @@
   <data name="&gt;&gt;cbbaby.Name" xml:space="preserve">
     <value>cbbaby</value>
   </data>
-  <data name="&gt;&gt;cbbuddie.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="tblottype.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 20</value>
   </data>
-  <data name="&gt;&gt;cbmarried.Parent" xml:space="preserve">
-    <value>gbrelation</value>
+  <data name="cbphone.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 24</value>
   </data>
   <data name="objdPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>176, 24</value>
@@ -648,14 +726,17 @@
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="cbsims.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;lbtypename.Parent" xml:space="preserve">
+    <value>objdPanel</value>
   </data>
   <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;label58.Name" xml:space="preserve">
-    <value>label58</value>
+  <data name="cbsteady.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cbmarried.Text" xml:space="preserve">
+    <value>Married</value>
   </data>
   <data name="&gt;&gt;cbfamily.Name" xml:space="preserve">
     <value>cbfamily</value>
@@ -666,6 +747,9 @@
   <data name="&gt;&gt;tblottype.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="JpegPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cbcomputer.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 24</value>
   </data>
@@ -675,26 +759,23 @@
   <data name="gbties.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 72</value>
   </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="tbmoney.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 72</value>
+    <value>137, 77</value>
   </data>
   <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
     <value>296, 24</value>
   </data>
-  <data name="tbname.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 40</value>
-  </data>
-  <data name="tborgguid.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 20</value>
+  <data name="btaddtie.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cballtieablesims.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="cbmarried.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="cbbaby.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;lbties.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label1.ToolTip" xml:space="preserve">
     <value />
@@ -705,11 +786,8 @@
   <data name="label9.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="llFamiDeleteSim.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tbsubhood.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 20</value>
+  <data name="&gt;&gt;tbcares.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label92.Name" xml:space="preserve">
     <value>label92</value>
@@ -717,14 +795,23 @@
   <data name="&gt;&gt;familytiePanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="gbCastaway.Location" type="System.Drawing.Point, System.Drawing">
+    <value>688, 148</value>
+  </data>
+  <data name="&gt;&gt;tbblot.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="&gt;&gt;tbproxguid.Parent" xml:space="preserve">
     <value>objdPanel</value>
+  </data>
+  <data name="cbengaged.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
   </data>
   <data name="&gt;&gt;tbshortterm.Name" xml:space="preserve">
     <value>tbshortterm</value>
   </data>
-  <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 40</value>
+  <data name="cbfriend.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
   <data name="cbcrush.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
@@ -738,11 +825,14 @@
   <data name="cbtiesims.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="panel3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tbsubhood.Text" xml:space="preserve">
     <value>0x00000000</value>
   </data>
-  <data name="label65.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>famiPanel</value>
   </data>
   <data name="&gt;&gt;rtb.Type" xml:space="preserve">
     <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -768,11 +858,23 @@
   <data name="&gt;&gt;llFamiAddSim.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;tblotinst.Name" xml:space="preserve">
     <value>tblotinst</value>
   </data>
   <data name="label89.Text" xml:space="preserve">
     <value>Subhood:</value>
+  </data>
+  <data name="&gt;&gt;cbmarried.Parent" xml:space="preserve">
+    <value>gbrelation</value>
+  </data>
+  <data name="&gt;&gt;tbblot.Parent" xml:space="preserve">
+    <value>famiPanel</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 80</value>
   </data>
   <data name="btPicExport.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -780,14 +882,26 @@
   <data name="tbproxguid.ToolTip" xml:space="preserve">
     <value>GUID of a Fallback Object (The Object (should be an original Sims 2 Object)  that should be used by this game if the user decided to delete this Object)</value>
   </data>
+  <data name="label13.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
+  </data>
   <data name="lbties.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
   <data name="label63.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label56.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>259, 78</value>
+  </data>
   <data name="label58.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btPicExport.Name" xml:space="preserve">
     <value>btPicExport</value>
@@ -798,17 +912,8 @@
   <data name="panel3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 9.75pt, style=Bold</value>
   </data>
-  <data name="cbfriend.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="bttiecommit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
   <data name="&gt;&gt;panel8.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btdeletetie.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="cbtietype.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
@@ -819,14 +924,14 @@
   <data name="label56.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="btdeletetie.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="&gt;&gt;label89.Parent" xml:space="preserve">
-    <value>famiPanel</value>
+  <data name="tbflag.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
   </data>
   <data name="&gt;&gt;gbties.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;llgetGUID.Type" xml:space="preserve">
+    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.65.27.38111, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="btaddtie.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -839,9 +944,6 @@
   </data>
   <data name="&gt;&gt;pnelements.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>famiPanel</value>
   </data>
   <data name="label56.ToolTip" xml:space="preserve">
     <value />
@@ -858,11 +960,14 @@
   <data name="&gt;&gt;cbtietype.Parent" xml:space="preserve">
     <value>gbties</value>
   </data>
+  <data name="&gt;&gt;gbCastaway.Name" xml:space="preserve">
+    <value>gbCastaway</value>
+  </data>
   <data name="rtb.Text" xml:space="preserve">
     <value />
   </data>
   <data name="cbsims.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 148</value>
+    <value>280, 154</value>
   </data>
   <data name="cbcrush.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -870,8 +975,14 @@
   <data name="&gt;&gt;label65.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <data name="panel7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
   <data name="panel3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
+  </data>
+  <data name="lbties.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;label5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -894,8 +1005,8 @@
   <data name="cblot.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
+  <data name="lbtypename.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 13</value>
   </data>
   <data name="tbsimid.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 20</value>
@@ -918,8 +1029,8 @@
   <data name="tborgguid.Location" type="System.Drawing.Point, System.Drawing">
     <value>424, 88</value>
   </data>
-  <data name="label57.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 4</value>
   </data>
   <data name="panel8.Size" type="System.Drawing.Size, System.Drawing">
     <value>920, 24</value>
@@ -930,8 +1041,8 @@
   <data name="label63.Location" type="System.Drawing.Point, System.Drawing">
     <value>320, 96</value>
   </data>
-  <data name="bttiecommit.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="label57.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;btaddtie.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -941,6 +1052,9 @@
   </data>
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 40</value>
   </data>
   <data name="label65.ToolTip" xml:space="preserve">
     <value />
@@ -978,8 +1092,17 @@
   <data name="llFamiDeleteSim.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="gbCastaway.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbblot.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
   <data name="tborgguid.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
+  </data>
+  <data name="cbmarried.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
   </data>
   <data name="&gt;&gt;pnelements.Parent" xml:space="preserve">
     <value>gbelements</value>
@@ -999,6 +1122,9 @@
   <data name="tbshortterm.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 20</value>
   </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="label97.ToolTip" xml:space="preserve">
     <value />
   </data>
@@ -1011,8 +1137,8 @@
   <data name="tbalbum.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
-  <data name="label58.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tblottype.Name" xml:space="preserve">
     <value>tblottype</value>
@@ -1021,24 +1147,36 @@
     <value>10</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>6</value>
   </data>
   <data name="llcommitties.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 272</value>
   </data>
-  <data name="cbfamtype.Location" type="System.Drawing.Point, System.Drawing">
-    <value>120, 80</value>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label68.Parent" xml:space="preserve">
+    <value>panel8</value>
   </data>
   <data name="tbsubhood.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
+  <data name="&gt;&gt;JpegPanel.Name" xml:space="preserve">
+    <value>JpegPanel</value>
+  </data>
   <data name="cbbuddie.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 128</value>
   </data>
   <data name="&gt;&gt;llFamiDeleteSim.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label92.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label10.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="&gt;&gt;panel8.Name" xml:space="preserve">
@@ -1059,17 +1197,26 @@
   <data name="panel7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 9.75pt, style=Bold</value>
   </data>
+  <data name="&gt;&gt;tbcaunk.Parent" xml:space="preserve">
+    <value>gbCastaway</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>40, 129</value>
+  </data>
   <data name="&gt;&gt;rtb.Parent" xml:space="preserve">
     <value>xmlPanel</value>
   </data>
-  <data name="JpegPanel.ToolTip" xml:space="preserve">
-    <value />
+  <data name="cbfriend.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
   </data>
-  <data name="panel4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 9.75pt, style=Bold</value>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;cbengaged.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
@@ -1077,11 +1224,14 @@
   <data name="llcommitties.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="label4.ToolTip" xml:space="preserve">
-    <value />
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>83, 48</value>
   </data>
   <data name="gbrelation.Text" xml:space="preserve">
     <value>Relationship State</value>
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbbuddie.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1104,11 +1254,20 @@
   <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label15.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt, style=Bold</value>
+  <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cbengaged.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pb.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>AutoSize</value>
   </data>
   <data name="label65.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;tblongterm.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1122,23 +1281,23 @@
   <data name="cbupdate.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;panel6.ZOrder" xml:space="preserve">
-    <value>15</value>
+  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>20</value>
+  <data name="gbCastaway.Text" xml:space="preserve">
+    <value>Castaway</value>
   </data>
-  <data name="&gt;&gt;label56.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tbsubhood.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+  <data name="&gt;&gt;cblot.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;btaddtie.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 13</value>
+  </data>
+  <data name="&gt;&gt;tbcafood1.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="tbvac.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -1164,20 +1323,23 @@
   <data name="lbmembers.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
   </data>
-  <data name="tblottype.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 20</value>
-  </data>
   <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label57.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="cbtietype.ItemHeight" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 13</value>
+  </data>
+  <data name="cbsteady.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
   <data name="llcommitobjd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1185,11 +1347,14 @@
   <data name="label97.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="tbflag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
   <data name="btaddtie.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="panel7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="cbsims.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
     <value>tabPage1</value>
@@ -1200,6 +1365,9 @@
   <data name="&gt;&gt;tbvac.Parent" xml:space="preserve">
     <value>famiPanel</value>
   </data>
+  <data name="lbtypename.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lbmembers.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
@@ -1209,8 +1377,8 @@
   <data name="cbengaged.Text" xml:space="preserve">
     <value>Engaged</value>
   </data>
-  <data name="&gt;&gt;cbsims.Parent" xml:space="preserve">
-    <value>famiPanel</value>
+  <data name="cbfamtype.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 21</value>
   </data>
   <data name="panel6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1218,14 +1386,14 @@
   <data name="&gt;&gt;tbname.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;llgetGUID.Parent" xml:space="preserve">
-    <value>objdPanel</value>
-  </data>
   <data name="btnewtie.Text" xml:space="preserve">
     <value>create new ties for this Sim</value>
   </data>
   <data name="tabPage1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="&gt;&gt;cbenemy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label97.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1236,20 +1404,29 @@
   <data name="label56.Text" xml:space="preserve">
     <value>Relationship Editor</value>
   </data>
-  <data name="&gt;&gt;label64.Parent" xml:space="preserve">
-    <value>familytiePanel</value>
+  <data name="&gt;&gt;cbphone.Name" xml:space="preserve">
+    <value>cbphone</value>
   </data>
   <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
     <value>tabControl1</value>
   </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tbfamily.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>panel4</value>
   </data>
   <data name="&gt;&gt;tbmoney.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label92.Text" xml:space="preserve">
     <value>Flags:</value>
+  </data>
+  <data name="&gt;&gt;label13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label63.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1266,8 +1443,8 @@
   <data name="label64.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
-  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Commit</value>
   </data>
   <data name="cblove.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -1287,11 +1464,11 @@
   <data name="&gt;&gt;label65.Parent" xml:space="preserve">
     <value>objdPanel</value>
   </data>
-  <data name="&gt;&gt;tbshortterm.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="&gt;&gt;cblove.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label91.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="panel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1314,8 +1491,8 @@
   <data name="&gt;&gt;btdeletetie.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tbshortterm.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="cbbest.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1325,6 +1502,12 @@
   </data>
   <data name="&gt;&gt;xmlPanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cbbuddie.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="btnewtie.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -1339,10 +1522,10 @@
     <value>648, 72</value>
   </data>
   <data name="&gt;&gt;visualStyleLinkLabel2.Type" xml:space="preserve">
-    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.63.4.35875, Culture=neutral, PublicKeyToken=null</value>
+    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.65.27.38111, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="label91.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 13</value>
+  <data name="btdeletetie.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 249</value>
   </data>
   <data name="&gt;&gt;tbsubhood.Parent" xml:space="preserve">
     <value>famiPanel</value>
@@ -1356,8 +1539,8 @@
   <data name="label6.Text" xml:space="preserve">
     <value>Name:</value>
   </data>
-  <data name="llsrelcommit.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt, style=Bold</value>
+  <data name="tbname.Location" type="System.Drawing.Point, System.Drawing">
+    <value>136, 45</value>
   </data>
   <data name="label57.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 64</value>
@@ -1371,20 +1554,26 @@
   <data name="cblove.Text" xml:space="preserve">
     <value>Love</value>
   </data>
-  <data name="cbfamtype.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 21</value>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 81</value>
   </data>
   <data name="cbbuddie.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 16</value>
   </data>
-  <data name="&gt;&gt;cballtieablesims.Parent" xml:space="preserve">
-    <value>gbties</value>
+  <data name="label93.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>FAMi Editor</value>
   </data>
   <data name="&gt;&gt;cbfriend.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="gbCastaway.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="tbblot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>381, 126</value>
   </data>
   <data name="realPanel.ToolTip" xml:space="preserve">
     <value />
@@ -1399,31 +1588,31 @@
     <value>tabPage4</value>
   </data>
   <data name="&gt;&gt;tbfamily.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>22</value>
   </data>
   <data name="pb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;famiPanel.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+  <data name="&gt;&gt;bttiecommit.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="cbcomputer.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="tbfamily.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 20</value>
+  <data name="lbmembers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>136, 154</value>
   </data>
   <data name="lbtypename.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="cbtietype.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;famiPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="llFamiAddSim.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;label58.ZOrder" xml:space="preserve">
     <value>7</value>
-  </data>
-  <data name="&gt;&gt;llFamiDeleteSim.Name" xml:space="preserve">
-    <value>llFamiDeleteSim</value>
   </data>
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1434,9 +1623,6 @@
   <data name="&gt;&gt;lbmembers.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label56.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 4</value>
-  </data>
   <data name="visualStyleLinkLabel2.Text" xml:space="preserve">
     <value>commit</value>
   </data>
@@ -1446,14 +1632,14 @@
   <data name="cbfamily.Text" xml:space="preserve">
     <value>Family</value>
   </data>
-  <data name="cbtiesims.ItemHeight" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="label57.Text" xml:space="preserve">
+    <value>Lifetime:</value>
   </data>
   <data name="&gt;&gt;xmlPanel.Name" xml:space="preserve">
     <value>xmlPanel</value>
   </data>
-  <data name="label58.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>568, 48</value>
   </data>
   <data name="panel8.ToolTip" xml:space="preserve">
     <value />
@@ -1467,6 +1653,9 @@
   <data name="&gt;&gt;cblot.Parent" xml:space="preserve">
     <value>groupBox4</value>
   </data>
+  <data name="&gt;&gt;famiPanel.Name" xml:space="preserve">
+    <value>famiPanel</value>
+  </data>
   <data name="gbties.Text" xml:space="preserve">
     <value>Ties </value>
   </data>
@@ -1479,17 +1668,20 @@
   <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label68.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="bttiecommit.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cbbuddie.ToolTip" xml:space="preserve">
-    <value />
+  <data name="btdeletetie.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="pnelements.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="llgetGUID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 41</value>
   </data>
   <data name="label68.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1500,20 +1692,26 @@
   <data name="cbupdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="llFamiDeleteSim.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;tbcaunk.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cbcrush.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 16</value>
   </data>
   <data name="&gt;&gt;tbvac.Name" xml:space="preserve">
     <value>tbvac</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbalbum.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;tbblot.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;tbcafood1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cbupdate.Location" type="System.Drawing.Point, System.Drawing">
     <value>264, 34</value>
@@ -1539,29 +1737,23 @@
   <data name="label93.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;label91.Parent" xml:space="preserve">
-    <value>realPanel</value>
-  </data>
-  <data name="pb.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>AutoSize</value>
+  <data name="llFamiAddSim.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
   </data>
   <data name="tbshortterm.Location" type="System.Drawing.Point, System.Drawing">
     <value>88, 32</value>
   </data>
-  <data name="JpegPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 8</value>
+  <data name="&gt;&gt;panel8.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 4</value>
+  <data name="&gt;&gt;tbcares.Name" xml:space="preserve">
+    <value>tbcares</value>
   </data>
-  <data name="&gt;&gt;label92.Type" xml:space="preserve">
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 13</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btdeletetie.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="&gt;&gt;cbtietype.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cbcrush.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
@@ -1575,11 +1767,17 @@
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
   </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>12</value>
+  <data name="cballtieablesims.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
   </data>
-  <data name="&gt;&gt;cbenemy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="cblot.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="panel4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 9.75pt, style=Bold</value>
+  </data>
+  <data name="tbalbum.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label89.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -1593,11 +1791,11 @@
   <data name="&gt;&gt;gbelements.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label93.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lbmembers.Name" xml:space="preserve">
+    <value>lbmembers</value>
   </data>
-  <data name="llrelcommit.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+  <data name="&gt;&gt;cblot.Name" xml:space="preserve">
+    <value>cblot</value>
   </data>
   <data name="btaddtie.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
@@ -1608,20 +1806,26 @@
   <data name="lbties.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 248</value>
   </data>
-  <data name="&gt;&gt;cbcomputer.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>famiPanel</value>
+  </data>
+  <data name="&gt;&gt;label63.Name" xml:space="preserve">
+    <value>label63</value>
   </data>
   <data name="&gt;&gt;cballtieablesims.Name" xml:space="preserve">
     <value>cballtieablesims</value>
   </data>
+  <data name="&gt;&gt;label92.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;label97.Parent" xml:space="preserve">
     <value>objdPanel</value>
   </data>
-  <data name="tblotinst.Location" type="System.Drawing.Point, System.Drawing">
-    <value>664, 40</value>
-  </data>
   <data name="&gt;&gt;cbbuddie.Parent" xml:space="preserve">
     <value>gbrelation</value>
+  </data>
+  <data name="tbsubhood.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
   </data>
   <data name="cbengaged.Location" type="System.Drawing.Point, System.Drawing">
     <value>176, 24</value>
@@ -1635,20 +1839,26 @@
   <data name="&gt;&gt;gbrelation.Name" xml:space="preserve">
     <value>gbrelation</value>
   </data>
-  <data name="&gt;&gt;JpegPanel.Name" xml:space="preserve">
-    <value>JpegPanel</value>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 55</value>
   </data>
   <data name="&gt;&gt;llFamiDeleteSim.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>15</value>
   </data>
-  <data name="&gt;&gt;cbbest.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="llcommitobjd.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;label68.Name" xml:space="preserve">
+    <value>label68</value>
   </data>
   <data name="&gt;&gt;tbfamily.Parent" xml:space="preserve">
     <value>famiPanel</value>
   </data>
-  <data name="label56.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="tbproxguid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 20</value>
+  </data>
+  <data name="label13.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="llsrelcommit.Location" type="System.Drawing.Point, System.Drawing">
     <value>228, 208</value>
@@ -1656,14 +1866,17 @@
   <data name="visualStyleLinkLabel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 13</value>
   </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;cbtiesims.Name" xml:space="preserve">
     <value>cbtiesims</value>
   </data>
+  <data name="label58.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 13</value>
+  </data>
   <data name="pnelements.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;tbbmoney.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="panel6.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1680,6 +1893,9 @@
   <data name="&gt;&gt;label8.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="label15.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
   <data name="llFamiAddSim.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
@@ -1692,8 +1908,8 @@
   <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;cbbuddie.Name" xml:space="preserve">
-    <value>cbbuddie</value>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label64.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 13</value>
@@ -1716,8 +1932,8 @@
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
     <value>famiPanel</value>
   </data>
-  <data name="cbbaby.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;label68.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="rtb.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 32</value>
@@ -1726,7 +1942,7 @@
     <value />
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>28</value>
   </data>
   <data name="llrelcommit.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -1734,8 +1950,8 @@
   <data name="llsrelcommit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;llsrelcommit.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;tblotinst.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;llcommitties.Parent" xml:space="preserve">
     <value>gbties</value>
@@ -1745,9 +1961,6 @@
   </data>
   <data name="&gt;&gt;tabPage3.Parent" xml:space="preserve">
     <value>tabControl1</value>
-  </data>
-  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>568, 48</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -1776,50 +1989,53 @@
   <data name="&gt;&gt;cbphone.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="&gt;&gt;tbname.Name" xml:space="preserve">
+    <value>tbname</value>
+  </data>
   <data name="&gt;&gt;visualStyleLinkLabel2.Parent" xml:space="preserve">
     <value>xmlPanel</value>
   </data>
-  <data name="&gt;&gt;label93.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
     <value>famiPanel</value>
+  </data>
+  <data name="llcommitobjd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 13</value>
   </data>
   <data name="&gt;&gt;label65.Name" xml:space="preserve">
     <value>label65</value>
   </data>
-  <data name="label57.Text" xml:space="preserve">
-    <value>Lifetime:</value>
+  <data name="&gt;&gt;tbshortterm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label68.Parent" xml:space="preserve">
-    <value>panel8</value>
+  <data name="label91.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 88</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="&gt;&gt;cbsims.Name" xml:space="preserve">
     <value>cbsims</value>
   </data>
-  <data name="&gt;&gt;lbtypename.Parent" xml:space="preserve">
-    <value>objdPanel</value>
-  </data>
-  <data name="label93.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+  <data name="btdeletetie.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
   </data>
   <data name="label93.Location" type="System.Drawing.Point, System.Drawing">
-    <value>272, 104</value>
+    <value>284, 104</value>
   </data>
   <data name="label93.Text" xml:space="preserve">
     <value>Album GUID:</value>
   </data>
-  <data name="lbties.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cbsteady.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 16</value>
+  <data name="&gt;&gt;cbfamtype.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tabPage3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Elements</value>
+  <data name="&gt;&gt;cballtieablesims.Parent" xml:space="preserve">
+    <value>gbties</value>
   </data>
-  <data name="&gt;&gt;visualStyleLinkLabel2.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="llsrelcommit.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;label15.Parent" xml:space="preserve">
     <value>famiPanel</value>
@@ -1831,22 +2047,25 @@
     <value>New Lot</value>
   </data>
   <data name="&gt;&gt;llcommitobjd.Type" xml:space="preserve">
-    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.63.4.35875, Culture=neutral, PublicKeyToken=null</value>
+    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.65.27.38111, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>famiPanel</value>
   </data>
-  <data name="btPicExport.ToolTip" xml:space="preserve">
-    <value />
+  <data name="llrelcommit.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
-  <data name="&gt;&gt;label97.Name" xml:space="preserve">
-    <value>label97</value>
+  <data name="btdeletetie.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="tbmoney.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="llrelcommit.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 0</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Food decay:</value>
   </data>
   <data name="&gt;&gt;visualStyleLinkLabel2.Name" xml:space="preserve">
     <value>visualStyleLinkLabel2</value>
@@ -1863,11 +2082,17 @@
   <data name="bttiecommit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="&gt;&gt;famiPanel.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
   <data name="&gt;&gt;gbrelation.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label97.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
   </data>
   <data name="panel4.Size" type="System.Drawing.Size, System.Drawing">
     <value>920, 24</value>
@@ -1875,11 +2100,8 @@
   <data name="&gt;&gt;tbsubhood.Name" xml:space="preserve">
     <value>tbsubhood</value>
   </data>
-  <data name="btdeletetie.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
   <data name="&gt;&gt;tbname.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>20</value>
   </data>
   <data name="panel3.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1890,6 +2112,9 @@
   <data name="cbengaged.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
+  <data name="label8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label89.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
@@ -1897,12 +2122,9 @@
     <value>True</value>
   </data>
   <data name="cbsims.Size" type="System.Drawing.Size, System.Drawing">
-    <value>632, 21</value>
+    <value>272, 21</value>
   </data>
-  <data name="tbproxguid.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 20</value>
-  </data>
-  <data name="tbshortterm.ToolTip" xml:space="preserve">
+  <data name="famiPanel.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="label89.Size" type="System.Drawing.Size, System.Drawing">
@@ -1911,8 +2133,8 @@
   <data name="cbfriend.Text" xml:space="preserve">
     <value>Friends</value>
   </data>
-  <data name="btdeletetie.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 249</value>
+  <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 16</value>
   </data>
   <data name="&gt;&gt;tbname.Parent" xml:space="preserve">
     <value>famiPanel</value>
@@ -1923,8 +2145,17 @@
   <data name="label8.Text" xml:space="preserve">
     <value>GUID:</value>
   </data>
-  <data name="llFamiDeleteSim.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="llFamiDeleteSim.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tbcares.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="gbCastaway.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 107</value>
   </data>
   <data name="&gt;&gt;realPanel.Name" xml:space="preserve">
     <value>realPanel</value>
@@ -1938,8 +2169,8 @@
   <data name="panel8.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 9.75pt, style=Bold</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 129</value>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 13</value>
   </data>
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1957,7 +2188,7 @@
     <value>0</value>
   </data>
   <data name="&gt;&gt;llrelcommit.Type" xml:space="preserve">
-    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.63.4.35875, Culture=neutral, PublicKeyToken=null</value>
+    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.65.27.38111, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbenemy.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -1965,8 +2196,11 @@
   <data name="cbupdate.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
-  <data name="panel4.ToolTip" xml:space="preserve">
-    <value />
+  <data name="tbsubhood.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 20</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="cblot.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1974,14 +2208,17 @@
   <data name="cblove.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
-  <data name="&gt;&gt;tbname.Name" xml:space="preserve">
-    <value>tbname</value>
+  <data name="tbcafood1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+  <data name="tbbmoney.AccessibleDescription" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>gbCastaway</value>
   </data>
   <data name="pnelements.ToolTip" xml:space="preserve">
     <value />
@@ -1995,17 +2232,23 @@
   <data name="gbrelation.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
-  <data name="&gt;&gt;tborgguid.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Elements</value>
   </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;panel6.ZOrder" xml:space="preserve">
+    <value>15</value>
   </data>
   <data name="label92.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;cbmarried.Name" xml:space="preserve">
     <value>cbmarried</value>
+  </data>
+  <data name="&gt;&gt;tbcares.Parent" xml:space="preserve">
+    <value>gbCastaway</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
@@ -2016,26 +2259,35 @@
   <data name="gbrelation.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 96</value>
   </data>
+  <data name="&gt;&gt;label14.Name" xml:space="preserve">
+    <value>label14</value>
+  </data>
   <data name="&gt;&gt;cbupdate.Name" xml:space="preserve">
     <value>cbupdate</value>
   </data>
   <data name="cbmarried.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>gbCastaway</value>
+  </data>
   <data name="llsrelcommit.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
-  <data name="&gt;&gt;JpegPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;llgetGUID.Parent" xml:space="preserve">
+    <value>objdPanel</value>
   </data>
   <data name="lbties.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
   </data>
-  <data name="btaddtie.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;tborgguid.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbtiesims.Parent" xml:space="preserve">
     <value>familytiePanel</value>
+  </data>
+  <data name="&gt;&gt;llrelcommit.Parent" xml:space="preserve">
+    <value>realPanel</value>
   </data>
   <data name="gbelements.ToolTip" xml:space="preserve">
     <value />
@@ -2046,14 +2298,17 @@
   <data name="label64.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="panel4.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;tbalbum.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="&gt;&gt;panel4.Parent" xml:space="preserve">
     <value>famiPanel</value>
   </data>
   <data name="&gt;&gt;label15.Name" xml:space="preserve">
     <value>label15</value>
+  </data>
+  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="tbalbum.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 20</value>
@@ -2066,6 +2321,9 @@
   </data>
   <data name="&gt;&gt;banner.Parent" xml:space="preserve">
     <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>famiPanel</value>
   </data>
   <data name="&gt;&gt;label6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2088,6 +2346,9 @@
   <data name="cbbest.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Lot Instance:</value>
+  </data>
   <data name="label57.ToolTip" xml:space="preserve">
     <value />
   </data>
@@ -2098,13 +2359,16 @@
     <value>False</value>
   </data>
   <data name="tbfamily.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 96</value>
+    <value>137, 101</value>
   </data>
   <data name="&gt;&gt;cbbest.Parent" xml:space="preserve">
     <value>gbrelation</value>
   </data>
   <data name="cbfamtype.ItemHeight" type="System.Int32, mscorlib">
     <value>13</value>
+  </data>
+  <data name="label58.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="groupBox4.ToolTip" xml:space="preserve">
     <value />
@@ -2121,6 +2385,9 @@
   <data name="gbelements.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 120</value>
   </data>
+  <data name="&gt;&gt;tbcares.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="&gt;&gt;cbfamtype.Parent" xml:space="preserve">
     <value>realPanel</value>
   </data>
@@ -2132,6 +2399,9 @@
   </data>
   <data name="cbbaby.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -2145,14 +2415,14 @@
   <data name="cbengaged.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cbfamily.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Business Money:</value>
   </data>
   <data name="&gt;&gt;tblotinst.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>14</value>
   </data>
-  <data name="tbalbum.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;tbcaunk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbengaged.Name" xml:space="preserve">
     <value>cbengaged</value>
@@ -2178,14 +2448,14 @@
   <data name="xmlPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 8</value>
   </data>
-  <data name="cbfriend.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
+  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="lbties.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;famiPanel.Name" xml:space="preserve">
-    <value>famiPanel</value>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
   </data>
   <data name="cballtieablesims.Size" type="System.Drawing.Size, System.Drawing">
     <value>488, 21</value>
@@ -2193,11 +2463,17 @@
   <data name="tblottype.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="cballtieablesims.ToolTip" xml:space="preserve">
+  <data name="cbtietype.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;gbrelation.Parent" xml:space="preserve">
-    <value>realPanel</value>
+  <data name="cbbaby.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="cbmarried.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 40</value>
+  </data>
+  <data name="label16.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;cbtietype.Name" xml:space="preserve">
     <value>cbtietype</value>
@@ -2206,7 +2482,7 @@
     <value>realPanel</value>
   </data>
   <data name="tbalbum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>368, 96</value>
+    <value>381, 101</value>
   </data>
   <data name="&gt;&gt;tbalbum.Parent" xml:space="preserve">
     <value>famiPanel</value>
@@ -2214,8 +2490,8 @@
   <data name="llsrelcommit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;bttiecommit.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;btPicExport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tbfamily.Name" xml:space="preserve">
     <value>tbfamily</value>
@@ -2226,11 +2502,8 @@
   <data name="visualStyleLinkLabel2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;cblot.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
   </data>
   <data name="&gt;&gt;cbupdate.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2238,8 +2511,11 @@
   <data name="objdPanel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;label63.Name" xml:space="preserve">
-    <value>label63</value>
+  <data name="panel4.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnewtie.Name" xml:space="preserve">
+    <value>btnewtie</value>
   </data>
   <data name="btPicExport.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -2259,8 +2535,8 @@
   <data name="llFamiAddSim.Text" xml:space="preserve">
     <value>&lt;-- add Sim</value>
   </data>
-  <data name="tbflag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 20</value>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
   </data>
   <data name="pb.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2274,17 +2550,23 @@
   <data name="xmlPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>296, 136</value>
   </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>Lot Instance:</value>
+  <data name="llFamiDeleteSim.Text" xml:space="preserve">
+    <value>delete Sim</value>
   </data>
-  <data name="&gt;&gt;label68.Name" xml:space="preserve">
-    <value>label68</value>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
   </data>
   <data name="label63.Text" xml:space="preserve">
     <value>Original GUID:</value>
   </data>
-  <data name="&gt;&gt;cbcomputer.Name" xml:space="preserve">
-    <value>cbcomputer</value>
+  <data name="tbcaunk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 76</value>
+  </data>
+  <data name="&gt;&gt;tborgguid.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
+    <value>gbCastaway</value>
   </data>
   <data name="llcommitobjd.Text" xml:space="preserve">
     <value>commit</value>
@@ -2294,9 +2576,6 @@
   </data>
   <data name="cbbuddie.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
-    <value>famiPanel</value>
   </data>
   <data name="famiPanel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2314,16 +2593,16 @@
     <value>Top, Right</value>
   </data>
   <data name="llFamiAddSim.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 172</value>
+    <value>280, 178</value>
   </data>
-  <data name="label93.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="tborgguid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 20</value>
   </data>
   <data name="JpegPanel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 13</value>
+  <data name="label97.Location" type="System.Drawing.Point, System.Drawing">
+    <value>528, 96</value>
   </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
@@ -2331,17 +2610,23 @@
   <data name="pb.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 216</value>
   </data>
-  <data name="cbmarried.Text" xml:space="preserve">
-    <value>Married</value>
+  <data name="label93.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;tbalbum.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cbcomputer.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="llcommitties.Text" xml:space="preserve">
     <value>commit Ties for current Sim</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
+  </data>
+  <data name="cbfamily.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
   </data>
   <data name="lbtypename.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2352,8 +2637,8 @@
   <data name="cbenemy.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
-  <data name="btdeletetie.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
+  <data name="btdeletetie.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
   </data>
   <data name="&gt;&gt;cblot.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2376,8 +2661,11 @@
   <data name="&gt;&gt;cbenemy.Name" xml:space="preserve">
     <value>cbenemy</value>
   </data>
-  <data name="cbbest.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="&gt;&gt;gbCastaway.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;cbbuddie.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="panel8.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2394,17 +2682,20 @@
   <data name="cbcomputer.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 35</value>
   </data>
+  <data name="llgetGUID.Text" xml:space="preserve">
+    <value>get GUID</value>
+  </data>
   <data name="gbties.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
-  <data name="panel6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="&gt;&gt;btdeletetie.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="label68.ToolTip" xml:space="preserve">
-    <value />
+  <data name="cbsteady.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 16</value>
   </data>
-  <data name="famiPanel.ToolTip" xml:space="preserve">
-    <value />
+  <data name="tbbmoney.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
   </data>
   <data name="groupBox4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
@@ -2415,8 +2706,8 @@
   <data name="lbmembers.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 147</value>
   </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;label89.Parent" xml:space="preserve">
+    <value>famiPanel</value>
   </data>
   <data name="btnewtie.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -2472,10 +2763,10 @@
   <data name="llsrelcommit.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 18</value>
   </data>
-  <data name="&gt;&gt;btnewtie.Name" xml:space="preserve">
-    <value>btnewtie</value>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>26</value>
   </data>
-  <data name="tabControl1.ToolTip" xml:space="preserve">
+  <data name="label91.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="panel4.Location" type="System.Drawing.Point, System.Drawing">
@@ -2502,11 +2793,17 @@
   <data name="&gt;&gt;btaddtie.Name" xml:space="preserve">
     <value>btaddtie</value>
   </data>
-  <data name="cbbaby.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
+  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;pnelements.Name" xml:space="preserve">
     <value>pnelements</value>
+  </data>
+  <data name="tbfamily.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Now On Lot:</value>
   </data>
   <data name="&gt;&gt;label56.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2517,17 +2814,14 @@
   <data name="label9.Text" xml:space="preserve">
     <value>Filename:</value>
   </data>
-  <data name="&gt;&gt;label68.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tbflag.Name" xml:space="preserve">
+    <value>tbflag</value>
   </data>
   <data name="tabPage4.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
-    <value>famiPanel</value>
-  </data>
-  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="label11.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -2538,9 +2832,6 @@
   <data name="gbrelation.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 112</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Family Members:</value>
   </data>
@@ -2548,22 +2839,28 @@
     <value>9</value>
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>9</value>
   </data>
   <data name="tbvac.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 20</value>
   </data>
-  <data name="JpegPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>408, 312</value>
+  <data name="&gt;&gt;cbenemy.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="cbtietype.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 21</value>
+  </data>
+  <data name="&gt;&gt;tbcafood1.Parent" xml:space="preserve">
+    <value>gbCastaway</value>
   </data>
   <data name="objdPanel.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="&gt;&gt;llFamiAddSim.Name" xml:space="preserve">
     <value>llFamiAddSim</value>
+  </data>
+  <data name="label91.Text" xml:space="preserve">
+    <value>Relation Type:</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -2574,14 +2871,14 @@
   <data name="&gt;&gt;familytiePanel.Name" xml:space="preserve">
     <value>familytiePanel</value>
   </data>
-  <data name="&gt;&gt;cbphone.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label10.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
   </data>
-  <data name="cbsims.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="llsrelcommit.Text" xml:space="preserve">
+    <value>commit</value>
   </data>
-  <data name="cbsteady.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Food:</value>
   </data>
   <data name="cbenemy.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -2589,14 +2886,14 @@
   <data name="label7.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="label91.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;cbsims.Parent" xml:space="preserve">
+    <value>famiPanel</value>
   </data>
   <data name="tabControl1.ItemSize" type="System.Drawing.Size, System.Drawing">
     <value>61, 18</value>
   </data>
-  <data name="&gt;&gt;tblotinst.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tbproxguid.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
   </data>
   <data name="label65.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2610,23 +2907,20 @@
   <data name="&gt;&gt;tabPage3.Name" xml:space="preserve">
     <value>tabPage3</value>
   </data>
-  <data name="llgetGUID.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="tblotinst.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 13</value>
+  <data name="JpegPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 8</value>
   </data>
   <data name="llgetGUID.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 13</value>
   </data>
   <data name="&gt;&gt;label89.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>8</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -2640,20 +2934,20 @@
   <data name="btaddtie.Text" xml:space="preserve">
     <value>&lt;-- add Tie</value>
   </data>
-  <data name="&gt;&gt;panel4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tbcares.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label12.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>832, 280</value>
+  <data name="&gt;&gt;lbties.Name" xml:space="preserve">
+    <value>lbties</value>
   </data>
   <data name="&gt;&gt;label8.Name" xml:space="preserve">
     <value>label8</value>
   </data>
-  <data name="&gt;&gt;cbengaged.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;llsrelcommit.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;tblongterm.Name" xml:space="preserve">
     <value>tblongterm</value>
@@ -2664,17 +2958,20 @@
   <data name="&gt;&gt;panel4.Name" xml:space="preserve">
     <value>panel4</value>
   </data>
-  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="cbcrush.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;cbenemy.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="label13.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="tbcaunk.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="label97.Text" xml:space="preserve">
     <value>Fallback GUID:</value>
   </data>
-  <data name="&gt;&gt;cbphone.Name" xml:space="preserve">
-    <value>cbphone</value>
+  <data name="gbCastaway.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="&gt;&gt;pnelements.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2685,8 +2982,8 @@
   <data name="llrelcommit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="cbsteady.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="&gt;&gt;panel4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tbvac.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2703,23 +3000,29 @@
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
   </data>
+  <data name="&gt;&gt;label14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="label57.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="realPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="tbbmoney.Location" type="System.Drawing.Point, System.Drawing">
+    <value>381, 75</value>
   </data>
   <data name="&gt;&gt;btdeletetie.Name" xml:space="preserve">
     <value>btdeletetie</value>
   </data>
   <data name="tbsubhood.Location" type="System.Drawing.Point, System.Drawing">
-    <value>832, 40</value>
+    <value>832, 45</value>
   </data>
   <data name="&gt;&gt;panel6.Parent" xml:space="preserve">
     <value>objdPanel</value>
+  </data>
+  <data name="&gt;&gt;cbbest.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnewtie.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -2734,16 +3037,13 @@
     <value>gbelements</value>
   </data>
   <data name="&gt;&gt;tbflag.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>12</value>
   </data>
   <data name="btnewtie.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
   <data name="pb.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="llcommitties.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="tblottype.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -2769,17 +3069,23 @@
   <data name="label15.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
+  <data name="tbcafood1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>57, 24</value>
+  </data>
   <data name="&gt;&gt;banner.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="label68.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 4</value>
   </data>
-  <data name="&gt;&gt;famiPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;llFamiDeleteSim.Name" xml:space="preserve">
+    <value>llFamiDeleteSim</value>
   </data>
   <data name="btPicExport.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;tbbmoney.Parent" xml:space="preserve">
+    <value>famiPanel</value>
   </data>
   <data name="gbties.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -2787,8 +3093,8 @@
   <data name="&gt;&gt;label63.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="llcommitobjd.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+  <data name="&gt;&gt;tbbmoney.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="btPicExport.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -2805,8 +3111,8 @@
   <data name="&gt;&gt;tblotinst.Parent" xml:space="preserve">
     <value>famiPanel</value>
   </data>
-  <data name="llsrelcommit.Text" xml:space="preserve">
-    <value>commit</value>
+  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="cbupdate.Text" xml:space="preserve">
     <value>Update MMAT</value>
@@ -2825,9 +3131,6 @@
   </data>
   <data name="gbelements.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
-    <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;bttiecommit.Name" xml:space="preserve">
     <value>bttiecommit</value>
@@ -2862,11 +3165,14 @@
   <data name="banner.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="llgetGUID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 41</value>
-  </data>
   <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
     <value>5, 13</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
   </data>
   <data name="label58.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -2889,8 +3195,17 @@
   <data name="&gt;&gt;panel7.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="&gt;&gt;cbbuddie.Name" xml:space="preserve">
+    <value>cbbuddie</value>
+  </data>
   <data name="cbbuddie.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="&gt;&gt;cbbest.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbties.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -2901,8 +3216,11 @@
   <data name="&gt;&gt;panel6.Name" xml:space="preserve">
     <value>panel6</value>
   </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>Commit</value>
+  <data name="tbcafood1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="realPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
   <data name="visualStyleLinkLabel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -2910,14 +3228,20 @@
   <data name="famiPanel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;label91.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="bttiecommit.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
   <data name="&gt;&gt;llcommitobjd.Parent" xml:space="preserve">
     <value>objdPanel</value>
   </data>
+  <data name="&gt;&gt;gbrelation.Parent" xml:space="preserve">
+    <value>realPanel</value>
+  </data>
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="tbcares.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2937,8 +3261,8 @@
   <data name="cbtietype.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="cbcomputer.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
   </data>
   <data name="label63.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2958,17 +3282,11 @@
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
     <value>936, 448</value>
   </data>
-  <data name="llFamiDeleteSim.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
   <data name="&gt;&gt;cbsteady.Parent" xml:space="preserve">
     <value>gbrelation</value>
   </data>
-  <data name="llFamiAddSim.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;btPicExport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cbtiesims.Size" type="System.Drawing.Size, System.Drawing">
     <value>848, 21</value>
@@ -2976,14 +3294,26 @@
   <data name="gbelements.Text" xml:space="preserve">
     <value>Elements</value>
   </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cbsims.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="visualStyleLinkLabel2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btdeletetie.Text" xml:space="preserve">
     <value>delete Tie</value>
   </data>
   <data name="cbtiesims.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;gbCastaway.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 27</value>
   </data>
   <data name="&gt;&gt;cbcomputer.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2997,17 +3327,14 @@
   <data name="label58.Text" xml:space="preserve">
     <value>Daily:</value>
   </data>
-  <data name="&gt;&gt;label97.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 48</value>
+  <data name="&gt;&gt;cbtietype.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tbsubhood.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>7</value>
   </data>
-  <data name="&gt;&gt;lbmembers.Name" xml:space="preserve">
-    <value>lbmembers</value>
+  <data name="llgetGUID.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;xmlPanel.Parent" xml:space="preserve">
     <value>tabPage3</value>
@@ -3027,23 +3354,26 @@
   <data name="cbfamily.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="visualStyleLinkLabel2.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="gbrelation.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="&gt;&gt;label13.Name" xml:space="preserve">
+    <value>label13</value>
+  </data>
   <data name="cballtieablesims.Location" type="System.Drawing.Point, System.Drawing">
     <value>400, 48</value>
   </data>
   <data name="&gt;&gt;tbvac.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
-  </data>
-  <data name="llFamiAddSim.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
   </data>
   <data name="gbties.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -3054,14 +3384,17 @@
   <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
     <value>tabControl1</value>
   </data>
-  <data name="cbbest.ToolTip" xml:space="preserve">
-    <value />
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;label97.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lbtypename.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;tbsubhood.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="gbties.ToolTip" xml:space="preserve">
     <value />
@@ -3075,14 +3408,14 @@
   <data name="tbsimname.Size" type="System.Drawing.Size, System.Drawing">
     <value>576, 20</value>
   </data>
-  <data name="cblot.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
+  <data name="label14.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tbcaunk.Name" xml:space="preserve">
+    <value>tbcaunk</value>
   </data>
   <data name="label3.ToolTip" xml:space="preserve">
     <value />
-  </data>
-  <data name="&gt;&gt;btPicExport.Parent" xml:space="preserve">
-    <value>panel2</value>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>FamilyTies</value>
@@ -3096,11 +3429,14 @@
   <data name="&gt;&gt;gbrelation.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;cblot.Name" xml:space="preserve">
-    <value>cblot</value>
+  <data name="tbcaunk.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
-  <data name="&gt;&gt;lbties.Name" xml:space="preserve">
-    <value>lbties</value>
+  <data name="&gt;&gt;gbCastaway.Parent" xml:space="preserve">
+    <value>famiPanel</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
   </data>
   <data name="cblove.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 40</value>
@@ -3114,8 +3450,8 @@
   <data name="cbfamily.Location" type="System.Drawing.Point, System.Drawing">
     <value>176, 56</value>
   </data>
-  <data name="cballtieablesims.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt</value>
+  <data name="&gt;&gt;JpegPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;tbalbum.Name" xml:space="preserve">
     <value>tbalbum</value>
@@ -3127,7 +3463,7 @@
     <value>cbbest</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>21</value>
   </data>
   <data name="&gt;&gt;cbfamtype.Name" xml:space="preserve">
     <value>cbfamtype</value>
@@ -3135,41 +3471,32 @@
   <data name="tblottype.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
   <data name="&gt;&gt;cbcrush.Parent" xml:space="preserve">
     <value>gbrelation</value>
   </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>832, 280</value>
+  </data>
   <data name="tborgguid.ToolTip" xml:space="preserve">
     <value>The GUID of the Base Object (Template that was used to create this Object)</value>
   </data>
   <data name="&gt;&gt;panel4.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>27</value>
   </data>
   <data name="label64.Text" xml:space="preserve">
     <value>Sim:</value>
   </data>
-  <data name="&gt;&gt;llrelcommit.Parent" xml:space="preserve">
-    <value>realPanel</value>
-  </data>
-  <data name="llcommitobjd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 13</value>
-  </data>
-  <data name="tbproxguid.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>famiPanel</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
   <data name="label2.ToolTip" xml:space="preserve">
     <value />
-  </data>
-  <data name="&gt;&gt;tbsubhood.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;banner.Name" xml:space="preserve">
     <value>banner</value>
@@ -3180,6 +3507,9 @@
   <data name="&gt;&gt;label8.Parent" xml:space="preserve">
     <value>objdPanel</value>
   </data>
+  <data name="&gt;&gt;tbcafood1.Name" xml:space="preserve">
+    <value>tbcafood1</value>
+  </data>
   <data name="&gt;&gt;label12.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -3187,13 +3517,13 @@
     <value />
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>24</value>
   </data>
   <data name="cbsteady.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label92.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 80</value>
+    <value>517, 80</value>
   </data>
   <data name="label65.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3201,8 +3531,8 @@
   <data name="banner.Text" xml:space="preserve">
     <value>Picture Viewer</value>
   </data>
-  <data name="lbmembers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 148</value>
+  <data name="&gt;&gt;label93.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;bttiecommit.Parent" xml:space="preserve">
     <value>familytiePanel</value>
@@ -3210,17 +3540,20 @@
   <data name="&gt;&gt;llcommitties.Name" xml:space="preserve">
     <value>llcommitties</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 80</value>
+  <data name="llcommitties.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="visualStyleLinkLabel2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="tbcafood1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="tabControl1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
   </data>
-  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 8.25pt, style=Bold</value>
+  <data name="&gt;&gt;cbcomputer.Parent" xml:space="preserve">
+    <value>groupBox4</value>
   </data>
   <data name="banner.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3240,8 +3573,8 @@
   <data name="&gt;&gt;llcommitties.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="tbflag.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+  <data name="&gt;&gt;label58.Name" xml:space="preserve">
+    <value>label58</value>
   </data>
   <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -3255,14 +3588,17 @@
   <data name="&gt;&gt;label89.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="llsrelcommit.ToolTip" xml:space="preserve">
-    <value />
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
   </data>
   <data name="objdPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>688, 248</value>
   </data>
   <data name="llgetGUID.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
     <value>0, 8</value>
+  </data>
+  <data name="label91.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 13</value>
   </data>
   <data name="&gt;&gt;cbsteady.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -3285,11 +3621,20 @@
   <data name="&gt;&gt;cbcrush.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label91.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 88</value>
+  <data name="&gt;&gt;cbcomputer.Name" xml:space="preserve">
+    <value>cbcomputer</value>
+  </data>
+  <data name="bttiecommit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>17</value>
   </data>
   <data name="cbbuddie.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 56</value>
+  </data>
+  <data name="tbcaunk.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cblove.ToolTip" xml:space="preserve">
     <value />
@@ -3300,7 +3645,13 @@
   <data name="&gt;&gt;xmlPanel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="panel6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
   <data name="llgetGUID.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tbbmoney.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="&gt;&gt;lbties.Parent" xml:space="preserve">
@@ -3310,16 +3661,13 @@
     <value>rtb</value>
   </data>
   <data name="&gt;&gt;llcommitties.Type" xml:space="preserve">
-    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.63.4.35875, Culture=neutral, PublicKeyToken=null</value>
+    <value>Skybound.VisualStyles.VisualStyleLinkLabel, simpe.helper, Version=0.65.27.38111, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 16</value>
   </data>
-  <data name="label97.Location" type="System.Drawing.Point, System.Drawing">
-    <value>528, 96</value>
-  </data>
-  <data name="&gt;&gt;cbfamtype.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label56.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;cbbaby.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -3331,10 +3679,10 @@
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="tbvac.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 122</value>
+    <value>137, 127</value>
   </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>panel4</value>
+  <data name="llFamiDeleteSim.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

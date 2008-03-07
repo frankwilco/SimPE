@@ -38,38 +38,26 @@ namespace SimPe.Plugin.Tool.Dockable.Finder
             // 
             // content
             // 
-            this.content.AccessibleDescription = null;
-            this.content.AccessibleName = null;
-            resources.ApplyResources(this.content, "content");
-            this.content.BackgroundImage = null;
             this.content.Controls.Add(this.tbMatch);
             this.content.Controls.Add(this.cbType);
             this.content.Controls.Add(this.label2);
             this.content.Controls.Add(this.label1);
-            this.content.Font = null;
+            resources.ApplyResources(this.content, "content");
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = null;
-            this.label1.AccessibleName = null;
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = null;
-            this.label2.AccessibleName = null;
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
             // cbType
             // 
-            this.cbType.AccessibleDescription = null;
-            this.cbType.AccessibleName = null;
             resources.ApplyResources(this.cbType, "cbType");
-            this.cbType.BackgroundImage = null;
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbType.Font = null;
             this.cbType.FormattingEnabled = true;
             this.cbType.Items.AddRange(new object[] {
             resources.GetString("cbType.Items"),
@@ -81,21 +69,13 @@ namespace SimPe.Plugin.Tool.Dockable.Finder
             // 
             // tbMatch
             // 
-            this.tbMatch.AccessibleDescription = null;
-            this.tbMatch.AccessibleName = null;
             resources.ApplyResources(this.tbMatch, "tbMatch");
-            this.tbMatch.BackgroundImage = null;
-            this.tbMatch.Font = null;
             this.tbMatch.Name = "tbMatch";
             // 
             // FindInStr
             // 
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = null;
-            this.Font = null;
             this.Name = "FindInStr";
             this.content.ResumeLayout(false);
             this.content.PerformLayout();

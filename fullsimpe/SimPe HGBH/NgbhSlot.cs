@@ -123,6 +123,7 @@ namespace SimPe.Plugin
 		internal virtual void Unserialize(System.IO.BinaryReader reader)
 		{
 			if ((uint)parent.Version>=(uint)NgbhVersion.Nightlife) version = reader.ReadUInt32();
+            
 			uint ct = reader.ReadUInt32();
 			itemsa.Clear();			
 			for (int j=0; j<ct; j++) 

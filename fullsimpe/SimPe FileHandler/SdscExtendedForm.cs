@@ -174,7 +174,9 @@ namespace SimPe.PackedFiles.UserInterface
 		string GetName(int i)
 		{
 			//string name = Helper.MinStrLength(i.ToString(), 4) + ": ";
-            string name = Helper.HexString(0x0a + 2 * i) + "; "+(i)+": ";
+            string name = Helper.HexString(0x0a + 2 * i);
+            if (i>0) name += "; 0x" + (Helper.HexString((ushort)(i-1)));
+            name += ": ";
 			name += ((string)names[i]);
 
 			return name;

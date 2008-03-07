@@ -481,8 +481,6 @@ namespace SimPe.Plugin
             if ((uint)parent.Version >= (uint)NgbhVersion.Seasons) unknown2 = reader.ReadUInt16();
             else unknown2 = 0;
 
-
-
 			data = new ushort[reader.ReadInt32()];
 			for (int i=0; i<data.Length; i++) 
 			{

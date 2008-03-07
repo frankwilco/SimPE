@@ -38,6 +38,7 @@ namespace SimPe.PackedFiles.Wrapper
 		Nightlife = 0x29,
 		Business = 0x2a,
         Pets = 0x2c,
+        Castaway = 0x2d,
         Voyage = 0x2e,
         VoyageB = 0x2f,
         Freetime = 0x33 
@@ -1930,7 +1931,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Sim Description Wrapper",
 				"Quaxi",
 				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
-				16,
+				17,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.sdsc.png"))				
 				); 
 		}
@@ -2030,6 +2031,7 @@ namespace SimPe.PackedFiles.Wrapper
 		{
 			get 
 			{
+                if (version == (int)SDescVersions.Castaway) return 0x19E + 0XA;
                 if (version >= (int)SDescVersions.Freetime) return 0x1D4 + 0xA;
                 if (version >= (int)SDescVersions.VoyageB) return 0x1A4 + 0xA; //0x19e + 0xa?
                 if (version >= (int)SDescVersions.Voyage) return 0x1A4 + 0xA; //0x19e + 0xa?

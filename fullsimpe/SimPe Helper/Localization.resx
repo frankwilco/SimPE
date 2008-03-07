@@ -1350,9 +1350,42 @@ In order for SimPE to run correct, you need to install .NET 2.0.</value>
   </data>
   <data name="PetService" xml:space="preserve">
     <value>Pet - Service</value>
-  </data>
+  </data>s
   <data name="PetShowBiz" xml:space="preserve">
     <value>Pet - Show Biz</value>
+  </data>
+
+  <data name="TeenElderConstruction" xml:space="preserve">
+    <value>Teen/Elder - Construction</value>
+  </data>
+  <data name="TeenElderDance" xml:space="preserve">
+    <value>Teen/Elder - Dance</value>
+  </data>
+  <data name="TeenElderEntertainment" xml:space="preserve">
+    <value>Teen/Elder - Entertainment</value>
+  </data>
+  <data name="TeenElderIntelligence" xml:space="preserve">
+    <value>Teen/Elder - Intelligence</value>
+  </data>
+  <data name="TeenElderOcenography" xml:space="preserve">
+    <value>Teen/Elder - Ocenography</value>
+  </data>
+
+
+  <data name="Construction" xml:space="preserve">
+    <value>Construction</value>
+  </data>
+  <data name="Dance" xml:space="preserve">
+    <value>Dance</value>
+  </data>
+  <data name="Entertainment" xml:space="preserve">
+    <value>Entertainment</value>
+  </data>
+  <data name="Intelligence" xml:space="preserve">
+    <value>Intelligence</value>
+  </data>
+  <data name="Ocenography" xml:space="preserve">
+    <value>Ocenography</value>
   </data>
   <data name="Searching" xml:space="preserve">
     <value>Searching</value>

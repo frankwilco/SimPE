@@ -149,6 +149,9 @@
   <data name="tbType.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
+  <data name="tbType.Text" xml:space="preserve">
+    <value>0x00000000</value>
+  </data>
   <data name="&gt;&gt;tbType.Name" xml:space="preserve">
     <value>tbType</value>
   </data>
@@ -252,6 +255,6 @@
     <value>FindInCpf</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>SimPe.Plugin.Tool.Dockable.Finder.FindInStr, simpe.dockbox.plugin, Version=1.0.2677.34030, Culture=neutral, PublicKeyToken=null</value>
+    <value>SimPe.Plugin.Tool.Dockable.Finder.FindInStr, simpe.dockbox.plugin, Version=1.0.2987.1315, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

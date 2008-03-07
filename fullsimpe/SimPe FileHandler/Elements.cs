@@ -132,6 +132,17 @@ namespace SimPe.PackedFiles.UserInterface
 		private System.Windows.Forms.Button btPicExport;
         internal TextBox tbvac;
         private Label label7;
+        internal GroupBox gbCastaway;
+        internal TextBox tbcaunk;
+        private Label label13;
+        internal TextBox tbcares;
+        private Label label11;
+        internal TextBox tbcafood1;
+        private Label label10;
+        internal TextBox tbblot;
+        private Label label14;
+        internal TextBox tbbmoney;
+        private Label label16;
 
 
 		internal SimPe.Interfaces.Plugin.IFileWrapperSaveExtension wrapper = null;
@@ -215,6 +226,17 @@ namespace SimPe.PackedFiles.UserInterface
             this.label68 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.famiPanel = new System.Windows.Forms.Panel();
+            this.tbbmoney = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tbblot = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.gbCastaway = new System.Windows.Forms.GroupBox();
+            this.tbcaunk = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbcares = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbcafood1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.tbvac = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tbsubhood = new System.Windows.Forms.TextBox();
@@ -283,6 +305,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.panel8.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.famiPanel.SuspendLayout();
+            this.gbCastaway.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -808,6 +831,11 @@ namespace SimPe.PackedFiles.UserInterface
             this.famiPanel.AccessibleName = null;
             resources.ApplyResources(this.famiPanel, "famiPanel");
             this.famiPanel.BackgroundImage = null;
+            this.famiPanel.Controls.Add(this.tbbmoney);
+            this.famiPanel.Controls.Add(this.label16);
+            this.famiPanel.Controls.Add(this.tbblot);
+            this.famiPanel.Controls.Add(this.label14);
+            this.famiPanel.Controls.Add(this.gbCastaway);
             this.famiPanel.Controls.Add(this.tbvac);
             this.famiPanel.Controls.Add(this.label7);
             this.famiPanel.Controls.Add(this.tbsubhood);
@@ -835,6 +863,112 @@ namespace SimPe.PackedFiles.UserInterface
             this.famiPanel.Font = null;
             this.famiPanel.Name = "famiPanel";
             this.toolTip1.SetToolTip(this.famiPanel, resources.GetString("famiPanel.ToolTip"));
+            // 
+            // tbbmoney
+            // 
+            resources.ApplyResources(this.tbbmoney, "tbbmoney");
+            this.tbbmoney.AccessibleName = null;
+            this.tbbmoney.BackgroundImage = null;
+            this.tbbmoney.Font = null;
+            this.tbbmoney.Name = "tbbmoney";
+            this.toolTip1.SetToolTip(this.tbbmoney, resources.GetString("tbbmoney.ToolTip"));
+            this.tbbmoney.TextChanged += new System.EventHandler(this.ChangedBMoney);
+            // 
+            // label16
+            // 
+            this.label16.AccessibleDescription = null;
+            this.label16.AccessibleName = null;
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            this.toolTip1.SetToolTip(this.label16, resources.GetString("label16.ToolTip"));
+            // 
+            // tbblot
+            // 
+            this.tbblot.AccessibleDescription = null;
+            this.tbblot.AccessibleName = null;
+            resources.ApplyResources(this.tbblot, "tbblot");
+            this.tbblot.BackgroundImage = null;
+            this.tbblot.Font = null;
+            this.tbblot.Name = "tbblot";
+            this.toolTip1.SetToolTip(this.tbblot, resources.GetString("tbblot.ToolTip"));
+            // 
+            // label14
+            // 
+            this.label14.AccessibleDescription = null;
+            this.label14.AccessibleName = null;
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            this.toolTip1.SetToolTip(this.label14, resources.GetString("label14.ToolTip"));
+            // 
+            // gbCastaway
+            // 
+            this.gbCastaway.AccessibleDescription = null;
+            this.gbCastaway.AccessibleName = null;
+            resources.ApplyResources(this.gbCastaway, "gbCastaway");
+            this.gbCastaway.BackgroundImage = null;
+            this.gbCastaway.Controls.Add(this.tbcaunk);
+            this.gbCastaway.Controls.Add(this.label13);
+            this.gbCastaway.Controls.Add(this.tbcares);
+            this.gbCastaway.Controls.Add(this.label11);
+            this.gbCastaway.Controls.Add(this.tbcafood1);
+            this.gbCastaway.Controls.Add(this.label10);
+            this.gbCastaway.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.gbCastaway.Name = "gbCastaway";
+            this.gbCastaway.TabStop = false;
+            this.toolTip1.SetToolTip(this.gbCastaway, resources.GetString("gbCastaway.ToolTip"));
+            // 
+            // tbcaunk
+            // 
+            this.tbcaunk.AccessibleDescription = null;
+            this.tbcaunk.AccessibleName = null;
+            resources.ApplyResources(this.tbcaunk, "tbcaunk");
+            this.tbcaunk.BackgroundImage = null;
+            this.tbcaunk.Name = "tbcaunk";
+            this.toolTip1.SetToolTip(this.tbcaunk, resources.GetString("tbcaunk.ToolTip"));
+            this.tbcaunk.TextChanged += new System.EventHandler(this.ChangedBMoney);
+            // 
+            // label13
+            // 
+            this.label13.AccessibleDescription = null;
+            this.label13.AccessibleName = null;
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            this.toolTip1.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
+            // 
+            // tbcares
+            // 
+            this.tbcares.AccessibleDescription = null;
+            this.tbcares.AccessibleName = null;
+            resources.ApplyResources(this.tbcares, "tbcares");
+            this.tbcares.BackgroundImage = null;
+            this.tbcares.Name = "tbcares";
+            this.toolTip1.SetToolTip(this.tbcares, resources.GetString("tbcares.ToolTip"));
+            // 
+            // label11
+            // 
+            this.label11.AccessibleDescription = null;
+            this.label11.AccessibleName = null;
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            this.toolTip1.SetToolTip(this.label11, resources.GetString("label11.ToolTip"));
+            // 
+            // tbcafood1
+            // 
+            this.tbcafood1.AccessibleDescription = null;
+            this.tbcafood1.AccessibleName = null;
+            resources.ApplyResources(this.tbcafood1, "tbcafood1");
+            this.tbcafood1.BackgroundImage = null;
+            this.tbcafood1.Name = "tbcafood1";
+            this.toolTip1.SetToolTip(this.tbcafood1, resources.GetString("tbcafood1.ToolTip"));
+            this.tbcafood1.TextChanged += new System.EventHandler(this.ChangedMoney);
+            // 
+            // label10
+            // 
+            this.label10.AccessibleDescription = null;
+            this.label10.AccessibleName = null;
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            this.toolTip1.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
             // 
             // tbvac
             // 
@@ -1067,6 +1201,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.tbmoney.Font = null;
             this.tbmoney.Name = "tbmoney";
             this.toolTip1.SetToolTip(this.tbmoney, resources.GetString("tbmoney.ToolTip"));
+            this.tbmoney.TextChanged += new System.EventHandler(this.ChangedMoney);
             // 
             // label5
             // 
@@ -1397,6 +1532,8 @@ namespace SimPe.PackedFiles.UserInterface
             this.tabPage1.ResumeLayout(false);
             this.famiPanel.ResumeLayout(false);
             this.famiPanel.PerformLayout();
+            this.gbCastaway.ResumeLayout(false);
+            this.gbCastaway.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -1425,6 +1562,12 @@ namespace SimPe.PackedFiles.UserInterface
 					fami.AlbumGUID = Convert.ToUInt32(tbalbum.Text, 16);
 					fami.SubHoodNumber = Convert.ToUInt32(tbsubhood.Text, 16);
                     fami.VacationLotInstance = Helper.StringToUInt32(tbvac.Text, fami.VacationLotInstance, 16);
+                    fami.CurrentlyOnLotInstance = Helper.StringToUInt32(tbblot.Text, fami.CurrentlyOnLotInstance, 16);
+                    fami.BusinessMoney = Helper.StringToInt32(this.tbbmoney.Text, fami.BusinessMoney, 10);
+
+                    fami.CastAwayFood = Helper.StringToInt32(this.tbcafood1.Text, fami.CastAwayFood, 10);
+                    fami.CastAwayResources = Helper.StringToInt32(tbcares.Text, fami.CastAwayResources, 10);
+                    fami.CastAwayUnk = Helper.StringToInt32(tbcaunk.Text, fami.CastAwayUnk, 16);
 
 					uint[] members = new uint[lbmembers.Items.Count];
 					for (int i=0; i< members.Length; i++) 
@@ -1951,6 +2094,35 @@ namespace SimPe.PackedFiles.UserInterface
         private void label15_Click(object sender, EventArgs e)
         {
 
+        }
+
+        bool intern = false;
+        private void ChangedMoney(object sender, EventArgs e)
+        {
+            if (intern) return;
+            intern = true;
+            SimPe.PackedFiles.Wrapper.Fami fami = (Wrapper.Fami)wrapper;
+            TextBox tb = (TextBox)sender;
+            fami.Money = Helper.StringToInt32(tb.Text, fami.Money, 10);
+            fami.CastAwayFood = fami.Money;
+
+            if (tb!=tbmoney) tbmoney.Text = fami.Money.ToString();
+            if (tb != tbcafood1) tbcafood1.Text = fami.CastAwayFood.ToString();
+            intern = false;
+        }
+
+        private void ChangedBMoney(object sender, EventArgs e)
+        {
+            if (intern) return;
+            intern = true;
+            SimPe.PackedFiles.Wrapper.Fami fami = (Wrapper.Fami)wrapper;
+            TextBox tb = (TextBox)sender;
+            fami.BusinessMoney = Helper.StringToInt32(tb.Text, fami.BusinessMoney, 10);
+            fami.CastAwayUnk = fami.BusinessMoney;
+
+            if (tb != tbbmoney) tbbmoney.Text = fami.BusinessMoney.ToString();
+            if (tb != tbcaunk) tbcaunk.Text = fami.CastAwayUnk.ToString();
+            intern = false;
         }
 
 		
