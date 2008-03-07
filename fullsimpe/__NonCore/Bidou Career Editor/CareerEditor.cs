@@ -3202,23 +3202,25 @@ namespace SimPe.Plugin
         #region Upgrade
         private Instruction JobUpgrade = null;
         private static String[] upgradeName = new String[] {
-                "Athletics",
-                "Business",
-                "Criminal",
-                "Culinary",
-                "Law Enforcement",
-                "Medicine",
-                "Military",
-                "Owned Business",//?
-                "Politics",
-                "Science",
-                "Slacker",
+            "Adventurer", "Artist", "Athletics", "Business",
+            "Construction", "Criminal", "Culinary", "Dance",
+            "Economy", "Entertainment", "Education", "Gamer",
+            "Intelligence", "Journalism", "Law", "Law Enforcement",
+            "Medicine", "Military", "Music", "NaturalScientist",
+            "Ocenography", "Paranormal", "Politics", "Science",
+            "ShowBiz", "Slacker",
+            "Owned Business",//?
         };
         private static UInt32[] upgradeGUID = new UInt32[] {
-                0x2C89E95F, 0x45196555, 0x6C9EBD0E, 0xEC9EBD5F,
-                0xAC9EBCE3, 0x0C7761FD, 0x6C9EBD32, 0xD08F400A,
-                0x2C945B14, 0x0C9EBD47, 0xEC77620B,
-        }; // Alphabetic by upgradename
+            0x3240CBA5, 0x4E6FFFBC, 0x2C89E95F, 0x45196555,
+            0xF3E1C301, 0x6C9EBD0E, 0xEC9EBD5F, 0xD3E09422,
+            0x45196555, 0xB3E09417, 0x72428B30, 0xF240C306,
+            0x33E0940E, 0x7240D944, 0x12428B19, 0xAC9EBCE3,
+            0x0C7761FD, 0x6C9EBD32, 0xB2428B0C, 0xEE70001C,
+            0x73E09404, 0x2E6FFF87, 0x2C945B14, 0x0C9EBD47,
+            0xAE6FFFB0, 0xEC77620B,
+            0xD08F400A, //? OwnedBusiness
+        }; // Alphabetic by upgradename, except OwnedBusiness at the end
         private void setUpgradeFromGUID() { setGCFromIns(gcUpgrade, JobUpgrade, 0); }
         private void getGUIDFromUpgrade() { setInsFromGC(gcUpgrade, JobUpgrade, 0); }
         #endregion
