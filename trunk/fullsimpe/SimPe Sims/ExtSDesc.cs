@@ -44,7 +44,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"Extended Sim Description Wrapper",
 				"Quaxi",
 				"This File contains Settings (like interests, friendships, money, age, gender...) for one Sim.",
-				6,
+				7,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Wrapper.sdsc.png"))				
 				); 
 		}

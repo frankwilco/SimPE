@@ -28,7 +28,9 @@ namespace SimPe.Plugin
 		University = 0x70,
 		Nightlife = 0xbe,
 		Business = 0xc2,
-        Seasons = 0xcb
+        Seasons = 0xcb,
+        Castaway = 0xce,
+        CastawayItem = 0x100
 	}
 
 	/// <summary>
@@ -210,7 +212,7 @@ namespace SimPe.Plugin
 				"Neighborhood/Memory Wrapper",
 				"Quaxi",
 				"This File contains the Memories and Inventories of all Sims and Lots that Live in this Neighborhood.",
-				11,
+				12,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.Plugin.ngbh.png"))
 				); 
 		}
@@ -253,8 +255,9 @@ namespace SimPe.Plugin
 
 			id = reader.ReadBytes(id.Length);
 			version = reader.ReadUInt32();
+            if (version == (uint)NgbhVersion.Castaway) header = new byte[12 + 32];
 			header = reader.ReadBytes(header.Length);
-
+            
 			int textlen = reader.ReadInt32();
 			zonename = reader.ReadBytes(textlen);			
 			if (version>=(uint)NgbhVersion.Nightlife) zero = reader.ReadBytes(0x14);

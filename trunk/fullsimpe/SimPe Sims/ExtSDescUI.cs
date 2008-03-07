@@ -285,7 +285,23 @@ namespace SimPe.PackedFiles.UserInterface
             {
                 this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.PetSecurity));
                 this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.PetService));
-                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.PetService));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.PetShowBiz));
+            }
+
+            if ((SimPe.PathProvider.Global.EPInstalled >= 13) || (Helper.WindowsRegistry.HiddenMode))
+            {
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Construction));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Dance));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Entertainment));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Intelligence));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.Ocenography));
+
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderConstruction));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderDance));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderEntertainment));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderIntelligence));
+                this.cbcareer.Items.Add(new LocalizedCareers(Data.MetaData.Careers.TeenElderOcenography));
+                
             }
 			
 
@@ -1750,9 +1766,8 @@ namespace SimPe.PackedFiles.UserInterface
         void RefreshEP7(Wrapper.ExtSDesc sdesc)
         {
             intern = true;
-            
-            if ((int)sdesc.Version < (int)SimPe.PackedFiles.Wrapper.SDescVersions.Freetime) cbaspiration.Enabled = true;
-            else cbaspiration.Enabled = Helper.WindowsRegistry.AllowChangeOfSecondaryAspiration;
+            /*if ((int)sdesc.Version < (int)SimPe.PackedFiles.Wrapper.SDescVersions.Freetime) cbaspiration.Enabled = true;
+            else cbaspiration.Enabled = Helper.WindowsRegistry.AllowChangeOfSecondaryAspiration;*/
             cbaspiration2.Enabled = Helper.WindowsRegistry.AllowChangeOfSecondaryAspiration;
             
             if (cbHobbyEnth.SelectedIndex<0) cbHobbyEnth.SelectedIndex = 0;
@@ -1775,11 +1790,7 @@ namespace SimPe.PackedFiles.UserInterface
             this.tb7social.Text = sdesc.Freetime.SocialPublicDecayModifier.ToString();
            
 
-            if (!Helper.WindowsRegistry.HiddenMode)
-            {
-                this.cbaspiration.Enabled = (int)sdesc.Version < (int)SimPe.PackedFiles.Wrapper.SDescVersions.Freetime;
-                this.cbaspiration2.Enabled = false;
-            }
+            
             SelectAspiration(cbaspiration2, sdesc.Freetime.SecondaryAspiration);
             
             intern = false;

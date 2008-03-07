@@ -417,6 +417,39 @@
   <data name="PetShowBiz" xml:space="preserve">
     <value>Haustier - Unterhaltungs Industrie</value>
   </data>
+
+  <data name="TeenElderConstruction" xml:space="preserve">
+    <value>Teen/Rentner - Architekt</value>
+  </data>
+  <data name="TeenElderDance" xml:space="preserve">
+    <value>Teen/Rentner - Tänzer</value>
+  </data>
+  <data name="TeenElderEntertainment" xml:space="preserve">
+    <value>Teen/Rentner - Entertainer</value>
+  </data>
+  <data name="TeenElderIntelligence" xml:space="preserve">
+    <value>Teen/Rentner - Gehimdienst</value>
+  </data>
+  <data name="TeenElderOcenography" xml:space="preserve">
+    <value>Teen/Rentner - Meeresforscher</value>
+  </data>
+
+
+  <data name="Construction" xml:space="preserve">
+    <value>Architekts</value>
+  </data>
+  <data name="Dance" xml:space="preserve">
+    <value>Tänzer</value>
+  </data>
+  <data name="Entertainment" xml:space="preserve">
+    <value>Entertainer</value>
+  </data>
+  <data name="Intelligence" xml:space="preserve">
+    <value>Gehimdienst</value>
+  </data>
+  <data name="Ocenography" xml:space="preserve">
+    <value>Meeresforscher</value>
+  </data>
   <data name="cantaddtie" xml:space="preserve">
     <value>Dieser Sim kann nicht in die Verwandschaft aufgenommen werden.</value>
   </data>

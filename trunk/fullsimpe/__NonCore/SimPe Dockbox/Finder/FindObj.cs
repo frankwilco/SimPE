@@ -34,10 +34,14 @@ namespace SimPe.Plugin.Tool.Dockable.Finder
         public override void SearchPackage(SimPe.Interfaces.Files.IPackageFile pkg, SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
         {
             if (pfd.Type != Data.MetaData.OBJD_FILE) return;
+            DoSearchPackage(pkg, pfd);
+        }
 
+        public void DoSearchPackage(SimPe.Interfaces.Files.IPackageFile pkg, SimPe.Interfaces.Files.IPackedFileDescriptor pfd)
+        {
             SimPe.PackedFiles.Wrapper.ExtObjd obj = new SimPe.PackedFiles.Wrapper.ExtObjd();
             obj.ProcessData(pfd, pkg);
-
+            
             bool found = false;
 
             if (name != "")

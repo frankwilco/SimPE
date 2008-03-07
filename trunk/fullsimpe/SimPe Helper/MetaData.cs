@@ -658,6 +658,10 @@ namespace SimPe.Data
             Female = 0x01
         }
 
+        /// <summary>
+        /// The Jobs known by SimPE
+        /// </summary>
+        /// <remarks>Use finder dock object search for JobData*</remarks>
         public enum Careers : uint
         {
             Unknown = 0xFFFFFFFF,
@@ -700,7 +704,18 @@ namespace SimPe.Data
             TeenElderMusic = 0xB243BBD2,
             PetSecurity = 0xD188A400,
             PetService = 0xB188A4C1,
-            PetShowBiz = 0xD175CC2D
+            PetShowBiz = 0xD175CC2D,
+            TeenElderConstruction = 0x53E1C30F,
+            TeenElderDance = 0xD3E094A5,
+            TeenElderEntertainment = 0x53E09494,
+            TeenElderIntelligence = 0x93E094C0,
+            TeenElderOcenography = 0x13E09443,
+            Construction = 0xF3E1C301,
+            Dance = 0xD3E09422,
+            Entertainment = 0xB3E09417,
+            Intelligence = 0x33E0940E,
+            Ocenography = 0x73E09404
+
         }
         #endregion
 

@@ -39,7 +39,8 @@ namespace SimPe.PackedFiles.Wrapper
 		Original = 0x4e,
 		University = 0x4f,
 		Business = 0x51,
-        Voyage = 0x55
+        Voyage = 0x55,
+        Castaway = 0x56
 	}
 
 	public class FamiFlags : FlagBase 
@@ -108,6 +109,9 @@ namespace SimPe.PackedFiles.Wrapper
 		private uint flags;
 		private uint albumGUID;
 
+        private int ca_resources;
+        private int ca_food, ca3;
+
 		public FamiVersions Version
 		{
 			get {return version;}
@@ -154,6 +158,26 @@ namespace SimPe.PackedFiles.Wrapper
 				money = value;
 			}
 		}
+
+        public int CastAwayResources
+        {
+            get { return ca_resources; }
+            set { ca_resources = value; }
+        }
+
+        
+
+        public int CastAwayFood
+        {
+            get { return ca_food; }
+            set { ca_food = value; }
+        }
+
+        public int CastAwayUnk
+        {
+            get { return ca3; }
+            set { ca3 = value; }
+        }
 
 		/// <summary>
 		/// Returns the Number of Family friends
@@ -363,8 +387,10 @@ namespace SimPe.PackedFiles.Wrapper
 			lotinstance = reader.ReadUInt32();
             if ((int)version >= (int)FamiVersions.Business) businesslot = reader.ReadUInt32();
             if ((int)version >= (int)FamiVersions.Voyage) vacationlot = reader.ReadUInt32();
+            
 			strinstance = reader.ReadUInt32();
 			money = reader.ReadInt32();
+            if ((int)version >= (int)FamiVersions.Castaway) ca3 = reader.ReadInt32();
 			friends = reader.ReadUInt32();
 			this.flags = reader.ReadUInt32();
 			uint count = reader.ReadUInt32();
@@ -376,7 +402,13 @@ namespace SimPe.PackedFiles.Wrapper
 			}
 			this.albumGUID = reader.ReadUInt32(); //relations??
 			if ((int)version>=(int)FamiVersions.University) this.subhood = reader.ReadUInt32();
-			if ((int)version>=(int)FamiVersions.Business) businessmoney = reader.ReadInt32();
+            if ((int)version >= (int)FamiVersions.Castaway)
+            {
+                ca_resources = reader.ReadInt32();
+                ca_food = reader.ReadInt32();
+            }
+
+            if ((int)version >= (int)FamiVersions.Business) businessmoney = reader.ReadInt32();
 		}
 
 		protected override void Serialize(System.IO.BinaryWriter writer) 
@@ -389,6 +421,7 @@ namespace SimPe.PackedFiles.Wrapper
             if ((int)version >= (int)FamiVersions.Voyage) writer.Write(vacationlot);
 			writer.Write(strinstance);
 			writer.Write(money);
+            if ((int)version >= (int)FamiVersions.Castaway) writer.Write(ca3);
 			writer.Write(friends);
 			writer.Write((uint)this.Flags);
 			writer.Write((uint)sims.Length);
@@ -400,7 +433,13 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write(this.albumGUID);
 
 			if ((int)version>=(int)FamiVersions.University) writer.Write(this.subhood);
-			if ((int)version>=(int)FamiVersions.Business) writer.Write(businessmoney);
+            if ((int)version >= (int)FamiVersions.Castaway)
+            {
+                writer.Write(ca_resources);
+                writer.Write(ca_food);
+            }
+
+            if ((int)version >= (int)FamiVersions.Business) writer.Write(businessmoney);
 		}
 		#endregion
 
@@ -411,7 +450,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"FAMi Wrapper",
 				"Quaxi",
 				"This File contains Informations about one Sim Family.",
-				4,
+				6,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.fami.png"))				
 				); 
 		}
