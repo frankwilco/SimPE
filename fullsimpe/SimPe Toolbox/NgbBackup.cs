@@ -199,13 +199,14 @@ namespace SimPe.Plugin
 
 		SimPe.Interfaces.Files.IPackageFile package;
 		Interfaces.IProviderRegistry prov;
-		public void Execute(string path, SimPe.Interfaces.Files.IPackageFile package, Interfaces.IProviderRegistry prov)
+		public void Execute(string path, SimPe.Interfaces.Files.IPackageFile package, Interfaces.IProviderRegistry prov, string lable)
 		{
 			this.path = path;
 			this.package = package;
 			this.prov = prov;
 
 			string name = System.IO.Path.GetFileName(path);
+            if (lable != "") name = lable + "_" + name;
             long grp = PathProvider.Global.SaveGamePathProvidedByGroup(path);
             if (grp > 1) name = grp.ToString() + "_" + name;
             backuppath = System.IO.Path.Combine(PathProvider.Global.BackupFolder, name);

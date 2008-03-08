@@ -182,7 +182,7 @@ namespace SimPe
 
                 simnamedeep = (Ambertation.CaseInvariantArrayList)key.GetValue("SimNameDeepSearch", new Ambertation.CaseInvariantArrayList());
                 savegames = (Ambertation.CaseInvariantArrayList)key.GetValue("SaveGameLocationsForGroup", new Ambertation.CaseInvariantArrayList());
-                savegames.Add(PathProvider.SimSavegameFolder);
+                if (savegames.Count==0) savegames.Add(PathProvider.SimSavegameFolder);
 
                 Ambertation.CaseInvariantArrayList ftf = (Ambertation.CaseInvariantArrayList)key.GetValue("FileTableFolders", new Ambertation.CaseInvariantArrayList());
                 if (ftf.Count == 0) SetDefaultFileTableFolders();
@@ -262,17 +262,108 @@ namespace SimPe
             groups = mylist.AsReadOnly();
         }
 
+        #region Neighborhood Path
+        private IniRegistry profilesini = null;
+        public class NeighborhoodPaths : List<NeighborhoodPath> { }
+        public class NeighborhoodPath
+        {
+            string name;
+            string path;
+            ExpansionItem ei;
+            bool def;
+            internal NeighborhoodPath(string name, string path, ExpansionItem ei, bool def)
+            {
+                this.name = name;
+                this.path = path;
+                this.ei = ei;
+                this.def = def;
+            }
+
+            public string Lable { get { return name; } }
+            public string Path { get { return path; } }
+            public ExpansionItem Expansion { get { return ei; } }
+            public bool Default { get { return def; } }
+
+            public override int GetHashCode()
+            {
+                if (ei == null) return 0;
+                return ei.Version;
+            }
+            public override bool Equals(object obj)
+            {
+                if (obj.GetType() == typeof(NeighborhoodPath))
+                {
+                    NeighborhoodPath np = (NeighborhoodPath)obj;
+                    return Helper.CompareableFileName(np.Path) == Helper.CompareableFileName(Path);
+                }
+                return base.Equals(obj);
+            }
+        }
+
+        internal void AddNeighborhoodPaths(NeighborhoodPaths hoods)
+        {
+            foreach (string s in savegames)
+            {
+                string pt = System.IO.Path.Combine(GetRealPath(s), "Neighborhoods");
+
+                if (System.IO.Directory.Exists(pt))
+                {
+                    if (flag.HasNgbhProfiles)
+                    {
+                        string profiles = System.IO.Path.Combine(pt, "Profiles.ini");
+                        try
+                        {
+                            if (System.IO.File.Exists(profiles))
+                            {
+                                profilesini = new IniRegistry(profiles, true);
+                                string defaulthood = profilesini.GetValue("State", "LastSaved", "");
+                                defaulthood = defaulthood.ToUpper().Trim();
+
+                                IniRegistry.SectionContent sec = profilesini.Section("Profiles");
+                                foreach (string k in sec)
+                                {
+                                    string hood = sec.GetValue(k);
+                                    if (hood == null) continue;
+                                    hood = hood.ToUpper().Trim();
+                                    string path = System.IO.Path.Combine(pt, hood.Replace("0X", ""));
+                                    if (System.IO.Directory.Exists(path))
+                                    {
+                                        NeighborhoodPath np = new NeighborhoodPath(k, path, this, hood == defaulthood);
+                                        if (!hoods.Contains(np)) hoods.Add(np);
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            if (Helper.DebugMode) Helper.ExceptionMessage(ex);
+                        }
+                    }
+                    else
+                    {
+                        NeighborhoodPath np = new NeighborhoodPath("", pt, this, true);
+                        if (!hoods.Contains(np)) hoods.Add(np);
+                    }
+                }
+            }
+        }
+        #endregion
+
         internal void AddSaveGamePaths(Ambertation.CaseInvariantArrayList realsavegames)
         {
             foreach (string s in savegames)
             {
-                string pt = s;
-                pt = pt.Replace("{MyDocuments}", PathProvider.PersonalFolder);
-                pt = pt.Replace("{DisplayName}", DisplayName);
-                pt = pt.Replace("{UserSaveGame}", PathProvider.SimSavegameFolder);
-
+                string pt = GetRealPath(s);
                 if (System.IO.Directory.Exists(pt)) realsavegames.Add(pt);
             }
+        }
+
+        private string GetRealPath(string pt)
+        {
+            pt = pt.Replace("{MyDocuments}", PathProvider.PersonalFolder);
+            pt = pt.Replace("{DisplayName}", DisplayName);
+            pt = pt.Replace("{UserSaveGame}", PathProvider.SimSavegameFolder);
+            return pt;
         }
 
         public string DisplayName

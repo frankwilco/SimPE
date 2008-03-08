@@ -251,9 +251,9 @@ namespace SimPe.Plugin
 			}
 		}
 
-		protected void AddNeighborhood(string path) 
+		protected void AddNeighborhood(ExpansionItem.NeighborhoodPath np, string path) 
 		{
-			AddNeighborhood(path, "_Neighborhood.package");
+			AddNeighborhood(np, path, "_Neighborhood.package");
 			/*int i=1;
 			while (AddNeighborhood(path, "_University"+Helper.MinStrLength(i.ToString(), 3)+".package")) 
 			{
@@ -266,7 +266,7 @@ namespace SimPe.Plugin
             return System.IO.Path.GetFileNameWithoutExtension(flname).Replace("_Neighborhood", "");
         }
 
-		protected bool AddNeighborhood(string path, string filename) 
+		protected bool AddNeighborhood(ExpansionItem.NeighborhoodPath np, string path, string filename) 
 		{
 			string flname = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(path), System.IO.Path.Combine(System.IO.Path.GetFileName(path), System.IO.Path.GetFileName(path)+filename));
 			if (!System.IO.File.Exists(flname)) return false;
@@ -294,10 +294,13 @@ namespace SimPe.Plugin
 
 			ListViewItem lvi = new ListViewItem();
 			lvi.Text = name+actime;
+            if (np.Lable != "") lvi.Text = np.Lable + ": " + lvi.Text;
 			lvi.ImageIndex = ilist.Images.Count -1;
 			lvi.SubItems.Add(flname);
 			lvi.SubItems.Add(name);
-            if (Helper.WindowsRegistry.HiddenMode) lvi.ToolTipText = flname;
+            lvi.SubItems.Add(np.Lable);
+            if (Helper.WindowsRegistry.HiddenMode) 
+                lvi.ToolTipText = flname;
 
 			lv.Items.Add(lvi);
 
@@ -341,21 +344,21 @@ namespace SimPe.Plugin
 			lv.Items.Clear();
 			ilist.Images.Clear();
 
-            System.Collections.Generic.IList<string> savegames = PathProvider.Global.GetSaveGamePathForGroup();
-            foreach (string path in savegames)
+            ExpansionItem.NeighborhoodPaths paths = PathProvider.Global.GetNeighborhoodsForGroup();
+            foreach (ExpansionItem.NeighborhoodPath path in paths)
             {
-                string sourcepath = PathProvider.BuildNeighborhoodFolder(path);
+                string sourcepath = path.Path;
                 string[] dirs = System.IO.Directory.GetDirectories(sourcepath, "N*");
                 foreach (string dir in dirs)
-                    AddNeighborhood(dir);
+                    AddNeighborhood(path, dir);
 
                 dirs = System.IO.Directory.GetDirectories(sourcepath, "G*");
                 foreach (string dir in dirs)
-                    AddNeighborhood(dir);
+                    AddNeighborhood(path, dir);
 
                 dirs = System.IO.Directory.GetDirectories(sourcepath, "F*");
                 foreach (string dir in dirs)
-                    AddNeighborhood(dir);
+                    AddNeighborhood(path, dir);
             }
 			WaitingScreen.Stop(this);				
 		}
@@ -460,6 +463,7 @@ namespace SimPe.Plugin
 
 			SimPe.Packages.StreamFactory.CloseAll();
 			string path = System.IO.Path.GetDirectoryName(lv.SelectedItems[0].SubItems[1].Text).Trim();
+            string lable = lv.SelectedItems[0].SubItems[3].Text;
 			
 			//if a File in the current Neighborhood is opened - close it!
 			CloseIfOpened(path);
@@ -470,6 +474,9 @@ namespace SimPe.Plugin
 			{
 				//create a Backup Folder
 				string name = System.IO.Path.GetFileName(path);
+                if (lable != "") name = lable + "_" + name;
+                long grp = PathProvider.Global.SaveGamePathProvidedByGroup(path);
+                if (grp > 1) name = grp.ToString() + "_" + name;
 
                 string backuppath = System.IO.Path.Combine(PathProvider.Global.BackupFolder, name);
 				string subname = DateTime.Now.ToString();
@@ -501,10 +508,12 @@ namespace SimPe.Plugin
 			
 
 			NgbBackup nb = new NgbBackup();
-            nb.Text += " (" + lv.SelectedItems[0].SubItems[2].Text.Trim();
+            nb.Text += " (";
+            if (lv.SelectedItems[0].SubItems[3].Text != "") nb.Text += lv.SelectedItems[0].SubItems[3].Text + ": ";
+            nb.Text += lv.SelectedItems[0].SubItems[2].Text.Trim();
             if (Helper.WindowsRegistry.HiddenMode) nb.Text += ", " + NeighborhoodIdentifier(path);
             nb.Text += ")";
-			nb.Execute(path, package, prov);
+            nb.Execute(path, package, prov, lv.SelectedItems[0].SubItems[3].Text);
 
 			
 			UpdateList();
