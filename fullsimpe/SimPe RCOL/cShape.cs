@@ -413,6 +413,8 @@ namespace SimPe.Plugin
 			if (tObjectGraphNode==null) tObjectGraphNode= new SimPe.Plugin.TabPage.ObjectGraphNode();
 			tObjectGraphNode.Tag = this.GraphNode;
 			tc.TabPages.Add(tObjectGraphNode);
+
+            tc.SelectedTab = tShpeParts;
 		}
 
 		#region IScenegraphItem Member
