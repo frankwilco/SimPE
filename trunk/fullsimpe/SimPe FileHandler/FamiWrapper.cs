@@ -110,13 +110,13 @@ namespace SimPe.PackedFiles.Wrapper
 		private uint albumGUID;
 
         private int ca_resources;
-        private int ca_food, ca3;
+        private int ca_food, ca_food_decay;
 
 		public FamiVersions Version
 		{
 			get {return version;}
 		}
-		
+
 		/// <summary>
 		/// Returns/Sets the Flags
 		/// </summary>
@@ -173,10 +173,10 @@ namespace SimPe.PackedFiles.Wrapper
             set { ca_food = value; }
         }
 
-        public int CastAwayUnk
+        public int CastAwayFoodDecay
         {
-            get { return ca3; }
-            set { ca3 = value; }
+            get { return ca_food_decay; }
+            set { ca_food_decay = value; }
         }
 
 		/// <summary>
@@ -388,9 +388,9 @@ namespace SimPe.PackedFiles.Wrapper
             if ((int)version >= (int)FamiVersions.Business) businesslot = reader.ReadUInt32();
             if ((int)version >= (int)FamiVersions.Voyage) vacationlot = reader.ReadUInt32();
             
-			strinstance = reader.ReadUInt32();
+            strinstance = reader.ReadUInt32();
 			money = reader.ReadInt32();
-            if ((int)version >= (int)FamiVersions.Castaway) ca3 = reader.ReadInt32();
+            if ((int)version >= (int)FamiVersions.Castaway) ca_food_decay = reader.ReadInt32();
 			friends = reader.ReadUInt32();
 			this.flags = reader.ReadUInt32();
 			uint count = reader.ReadUInt32();
@@ -419,9 +419,17 @@ namespace SimPe.PackedFiles.Wrapper
 			writer.Write(lotinstance);
             if ((int)version >= (int)FamiVersions.Business) writer.Write(businesslot);
             if ((int)version >= (int)FamiVersions.Voyage) writer.Write(vacationlot);
-			writer.Write(strinstance);
-			writer.Write(money);
-            if ((int)version >= (int)FamiVersions.Castaway) writer.Write(ca3);
+            if ((int)version >= (int)FamiVersions.Castaway)
+            {
+                writer.Write(ca_resources);
+                writer.Write(ca_food);
+                writer.Write(ca_food_decay);
+            }
+            else
+            {
+                writer.Write(strinstance);
+                writer.Write(money);
+            }
 			writer.Write(friends);
 			writer.Write((uint)this.Flags);
 			writer.Write((uint)sims.Length);
@@ -437,9 +445,8 @@ namespace SimPe.PackedFiles.Wrapper
             {
                 writer.Write(ca_resources);
                 writer.Write(ca_food);
-            }
-
-            if ((int)version >= (int)FamiVersions.Business) writer.Write(businessmoney);
+                writer.Write(ca_food_decay);
+            } else if ((int)version >= (int)FamiVersions.Business) writer.Write(businessmoney);
 		}
 		#endregion
 
@@ -450,7 +457,7 @@ namespace SimPe.PackedFiles.Wrapper
 				"FAMi Wrapper",
 				"Quaxi",
 				"This File contains Informations about one Sim Family.",
-				6,
+				7,
 				System.Drawing.Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("SimPe.PackedFiles.Handlers.fami.png"))				
 				); 
 		}

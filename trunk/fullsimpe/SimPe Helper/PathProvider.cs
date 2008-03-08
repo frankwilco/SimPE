@@ -289,7 +289,7 @@ namespace SimPe
         /// <summary>
         /// Returns the number containing all available Game Groups
         /// </summary>
-        public long AvailableGroup
+        public long AvailableGroups
         {
             get { return avlgrp;}
         }
@@ -514,7 +514,7 @@ namespace SimPe
         #region Paths 
         public IList<string> GetSaveGamePathForGroup()
         {
-            return GetSaveGamePathForGroup(AvailableGroup);
+            return GetSaveGamePathForGroup(AvailableGroups);
         }
 
         public IList<string> GetSaveGamePathForGroup(long grp)
@@ -523,6 +523,7 @@ namespace SimPe
 
             foreach (long g in savgamemap.Keys)
             {
+                if ((g & grp) == 0) continue;
                 Ambertation.CaseInvariantArrayList ps = savgamemap[g];
                 if (ps == null) continue;
                 foreach (string s in ps)
@@ -530,6 +531,24 @@ namespace SimPe
             }
 
             return list.AsReadOnly();
+        }
+
+        public ExpansionItem.NeighborhoodPaths GetNeighborhoodsForGroup()
+        {
+            return GetNeighborhoodsForGroup(AvailableGroups);
+        }
+
+        public ExpansionItem.NeighborhoodPaths GetNeighborhoodsForGroup(long grp)
+        {
+            ExpansionItem.NeighborhoodPaths hoods = new ExpansionItem.NeighborhoodPaths();
+            ExpansionItem.NeighborhoodPath def = new ExpansionItem.NeighborhoodPath("", NeighborhoodFolder, this[SimPe.Expansions.BaseGame], true);
+            hoods.Add(def);
+            foreach (ExpansionItem ei in Expansions)
+            {
+                ei.AddNeighborhoodPaths(hoods);
+            }
+
+            return hoods;
         }
 
         public long SaveGamePathProvidedByGroup(string path)
@@ -729,19 +748,13 @@ namespace SimPe
         /// </summary>
         /// <param name="path">Base Path</param>
         /// <returns>the suggested neighborhood folder</returns>
-        private static IniRegistry ngbhReg = null;
-        public static string BuildNeighborhoodFolder(string path)
+        protected static string BuildNeighborhoodFolder(string path)
         {
-            if (!Global.Latest.Flag.HasNgbhProfiles)
-                return System.IO.Path.Combine(path, "Neighborhoods");
-
-            if (ngbhReg == null) ngbhReg = new IniRegistry(System.IO.Path.Combine(path, "Neighborhoods" + Path.PathSeparator + "profiles.ini"));
-            string latest = ngbhReg["State"]["LastSaved"].Substring(3);
-            return System.IO.Path.Combine(path, "Neighborhoods" + Path.PathSeparator + latest);
+            return System.IO.Path.Combine(path, "Neighborhoods");
         }
 
         /// <summary>
-        /// returns the Fodler where the users Neighborhood is stored
+        /// returns the Fldeer where the users default Neighborhood is stored
         /// </summary>
         public string NeighborhoodFolder
         {

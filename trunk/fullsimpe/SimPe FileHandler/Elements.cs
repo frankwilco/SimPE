@@ -1567,7 +1567,8 @@ namespace SimPe.PackedFiles.UserInterface
 
                     fami.CastAwayFood = Helper.StringToInt32(this.tbcafood1.Text, fami.CastAwayFood, 10);
                     fami.CastAwayResources = Helper.StringToInt32(tbcares.Text, fami.CastAwayResources, 10);
-                    fami.CastAwayUnk = Helper.StringToInt32(tbcaunk.Text, fami.CastAwayUnk, 16);
+                    fami.CastAwayFoodDecay = Helper.StringToInt32(tbcaunk.Text, fami.CastAwayFoodDecay, 16);
+
 
 					uint[] members = new uint[lbmembers.Items.Count];
 					for (int i=0; i< members.Length; i++) 
@@ -2118,10 +2119,10 @@ namespace SimPe.PackedFiles.UserInterface
             SimPe.PackedFiles.Wrapper.Fami fami = (Wrapper.Fami)wrapper;
             TextBox tb = (TextBox)sender;
             fami.BusinessMoney = Helper.StringToInt32(tb.Text, fami.BusinessMoney, 10);
-            fami.CastAwayUnk = fami.BusinessMoney;
+            fami.CastAwayFoodDecay = fami.BusinessMoney;
 
             if (tb != tbbmoney) tbbmoney.Text = fami.BusinessMoney.ToString();
-            if (tb != tbcaunk) tbcaunk.Text = fami.CastAwayUnk.ToString();
+            if (tb != tbcaunk) tbcaunk.Text = fami.CastAwayFoodDecay.ToString();
             intern = false;
         }
 

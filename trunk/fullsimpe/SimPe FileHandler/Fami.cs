@@ -61,7 +61,7 @@ namespace SimPe.PackedFiles.UserInterface
 
             form.tbcafood1.Text = fami.CastAwayFood.ToString();
             form.tbcares.Text = fami.CastAwayResources.ToString();
-            form.tbcaunk.Text = "0x"+Helper.HexString(fami.CastAwayUnk);
+            form.tbcaunk.Text = "0x"+Helper.HexString(fami.CastAwayFoodDecay);
             form.tbcaunk.ReadOnly = !SimPe.Helper.WindowsRegistry.HiddenMode;
 
             form.tbbmoney.Enabled = (int)fami.Version >= (int)SimPe.PackedFiles.Wrapper.FamiVersions.Business;
@@ -69,6 +69,9 @@ namespace SimPe.PackedFiles.UserInterface
             form.tbvac.Enabled = (int)fami.Version >= (int)SimPe.PackedFiles.Wrapper.FamiVersions.Voyage;
             form.tbsubhood.Enabled = (int)fami.Version >= (int)SimPe.PackedFiles.Wrapper.FamiVersions.University;
             form.gbCastaway.Visible = (int)fami.Version >= (int)SimPe.PackedFiles.Wrapper.FamiVersions.Castaway;
+
+            form.tbmoney.Enabled = (int)fami.Version < (int)SimPe.PackedFiles.Wrapper.FamiVersions.Castaway;
+            form.tbbmoney.Enabled = (int)fami.Version < (int)SimPe.PackedFiles.Wrapper.FamiVersions.Castaway;
 
 			string[] names = fami.SimNames;
 			for(int i=0; i<fami.Members.Length; i++) 
