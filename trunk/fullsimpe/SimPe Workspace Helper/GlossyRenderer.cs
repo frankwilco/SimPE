@@ -84,7 +84,7 @@ namespace Ambertation.Renderer
             else
             {
                 LinearGradientMode direction = LinearGradientMode.Vertical;
-                Console.WriteLine(e.ToolStrip);
+                //Console.WriteLine(e.ToolStrip);
                 using (LinearGradientBrush l = new LinearGradientBrush(e.AffectedBounds, Colors.ToolStripGradientBegin, Colors.ToolStripGradientMiddle, direction))
                 {
                     // Set colour values

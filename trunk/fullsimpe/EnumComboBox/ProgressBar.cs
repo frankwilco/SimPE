@@ -20,7 +20,7 @@ namespace Ambertation.Windows.Forms
         {
             base.OnPaint(e);
             DateTime dt = DateTime.Now;
-            Console.WriteLine("Start");
+            //Console.WriteLine("Start");
             LinearGradientBrush b
                     = new LinearGradientBrush(
                     Bounds,
@@ -32,7 +32,7 @@ namespace Ambertation.Windows.Forms
                 DoThePainting(e, b);
             
             TimeSpan ts = DateTime.Now - dt;
-            Console.WriteLine("End: "+ts);
+            //Console.WriteLine("End: "+ts);
         }
 
         private void DoThePainting(PaintEventArgs e, Brush b)

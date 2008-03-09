@@ -119,7 +119,7 @@ namespace SimPe
             {                
                 if (!Helper.WindowsRegistry.WaitingScreen) return;
                 run.Set();
-                Console.WriteLine("starting...");
+                //Console.WriteLine("starting...");
 
                 if (!Running)
                 {
@@ -129,7 +129,7 @@ namespace SimPe
                     thread.IsBackground = true;
                     thread.SetApartmentState(ApartmentState.STA);
                     thread.Start();
-                    Console.WriteLine("Started thread");
+                    //Console.WriteLine("Started thread");
                 }
             }
         }
@@ -153,7 +153,7 @@ namespace SimPe
             if (!run.WaitOne(250, false)) return;
             lock (wait)
             {
-                Console.WriteLine("stopping...");
+                //Console.WriteLine("stopping...");
 
                 stop.Set();
                 ended.WaitOne(5000, false);
@@ -164,7 +164,7 @@ namespace SimPe
 
                 thread = null;
                 state = WSState.Inactive;
-                Console.WriteLine("Stopped thread");
+                //Console.WriteLine("Stopped thread");
             }
         }
 		
@@ -183,10 +183,10 @@ namespace SimPe
             WaitingForm wf = new WaitingForm();
             lock (wait)
             {
-                Console.WriteLine("In Thread");
+                //Console.WriteLine("In Thread");
                 ended.Reset();
 
-                Console.WriteLine("Init...");
+                //Console.WriteLine("Init...");
                 state = WSState.Running;                
                 
                 wf.timer1.Enabled = true;
@@ -216,7 +216,7 @@ namespace SimPe
 		/// </summary>
         internal static void StartUpdates(WaitingForm wf)
         {
-            Console.WriteLine("Launched");
+            //Console.WriteLine("Launched");
             while (true)
             {
                 ended.Reset();
@@ -242,7 +242,7 @@ namespace SimPe
 
                 if (stop.WaitOne(ts, false))
                 {
-                    Console.WriteLine("Stopped");
+                    //Console.WriteLine("Stopped");
                     return;
                 }
             }

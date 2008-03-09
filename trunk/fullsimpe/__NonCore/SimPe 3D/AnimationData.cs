@@ -14,7 +14,7 @@ namespace SimPe.Plugin
 		SimPe.Geometry.Vectors3f frames;
 		public AnimationData(SimPe.Plugin.Anim.AnimationFrameBlock afb, Ambertation.Graphics.MeshBox mb, int framecount)
 		{
-			Console.WriteLine(mb.ToString());
+			//Console.WriteLine(mb.ToString());
 			this.afb = afb;
 			this.mb = mb;
 			this.fct = framecount;

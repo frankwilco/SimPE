@@ -2,8 +2,8 @@
 
 REM - The root folder it the one where the .bat resides
 SET SRC={simpedir}
-SET SRC2={simpedir}\__Installer\LatestWorkingAppfiles
-SET DST={simpedir}\__Installer\AppFiles
+SET SRC2={simpedir}\..\__Installer\LatestWorkingAppfiles
+SET DST={simpedir}\..\__Installer\AppFiles
 
 REM - Deletes the existing AppFiles folder so to provide a clean environment
 RD /S /Q %DST%

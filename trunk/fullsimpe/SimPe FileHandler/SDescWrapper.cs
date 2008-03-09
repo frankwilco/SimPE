@@ -1959,6 +1959,7 @@ namespace SimPe.PackedFiles.Wrapper
 			familynameprovider = prov.SimFamilynameProvider;
 			sdescprovider = prov.SimDescriptionProvider;
 		}
+        
 
 		public SDesc() : this(FileTable.ProviderRegistry.SimNameProvider, FileTable.ProviderRegistry.SimFamilynameProvider, FileTable.ProviderRegistry.SimDescriptionProvider) {}
 

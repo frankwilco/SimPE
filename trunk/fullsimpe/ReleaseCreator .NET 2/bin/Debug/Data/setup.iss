@@ -14,11 +14,11 @@ AppVerName=SimPE {shortver} (alpha)
 DefaultDirName={pf}\SimPE
 OutputBaseFilename={setupname}
 Compression=lzma
-WizardImageFile=__Installer\embedded\WizardImage.bmp
-WizardSmallImageFile=__Installer\embedded\WizardSmallImage.bmp
+WizardImageFile=..\__Installer\embedded\WizardImage.bmp
+WizardSmallImageFile=..\__Installer\embedded\WizardSmallImage.bmp
 InternalCompressLevel=ultra
 DisableReadyPage=false
-SetupIconFile=__Installer\embedded\SimPE.ico
+SetupIconFile=..\__Installer\embedded\SimPE.ico
 AppID=SimPE
 UninstallDisplayIcon={app}\SimPe.exe
 OutputDir=.
@@ -38,12 +38,12 @@ Name: {app}\Teleport; Components: core\simpe
 ; ===========================================================================================================
 ; |   COMMON COMPONENTS    |=================================================================================
 ; ===========================================================================================================
-Source: __Installer\AppFiles\Core\Readme.txt; DestDir: {app}; Flags: ignoreversion isreadme
+Source: ..\__Installer\AppFiles\Core\Readme.txt; DestDir: {app}; Flags: ignoreversion isreadme
 ; ===========================================================================================================
 ; |   *CORE* COMPONENTS    |=================================================================================
 ; ===========================================================================================================
 ; Component: core\simpe (i.e. "Core")
-Source: __Installer\AppFiles\Core\SimPE\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: core\simpe
+Source: ..\__Installer\AppFiles\Core\SimPE\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: core\simpe
 ; NOTE: the "Core" is composed by files in {app}, {app}\Data and {app}\Plugins
 ; (the "recursesubdirs" flag takes care of writing each file to the correct destination).
 ; Here are listed only the files created by Quaxi for the SimPE; the core files for the PJSE are listed below
@@ -119,7 +119,7 @@ Source: __Installer\AppFiles\Core\SimPE\*.*; DestDir: {app}; Flags: overwriterea
 ; simpe.workshop.plugin.dll
 ; ===========================================================================================================
 ; Component: ThirdParty\PLJones (PJSE Core Files = PLJones Coder) (CORE files!)
-Source: __Installer\AppFiles\Core\PJSE\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: core\pljones
+Source: ..\__Installer\AppFiles\Core\PJSE\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: core\pljones
 ; Files in the CORE\PJSE\PLUGINS section (copied to {app}\Plugins);
 ; pjse.coder.plugin.dll
 ; pjse.coder.plugin\*.* (incl. PJSE_Help subfolder)
@@ -131,7 +131,7 @@ Source: __Installer\AppFiles\Core\PJSE\*.*; DestDir: {app}; Flags: overwriteread
 ; |   *PLUGIN* COMPONENTS    |===============================================================================
 ; ===========================================================================================================
 ; Component: Plugins\3D
-Source: __Installer\AppFiles\Non-Core\SimPE-3D\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: Plugins\3D
+Source: ..\__Installer\AppFiles\Non-Core\SimPE-3D\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: Plugins\3D
 ; Files in the NON-CORE\SIMPE-3D\PLUGINS section (copied to {app}\Plugins);
 ; optional.simpe.3d.plugin.dll
 ; + SimPE Core Files: ambertation.3D, ambertation.3D.mdx.binding, ambertation.utilities, simpe.commonhandlersimpe.geometry, simpe.gmdc.exporter.base, simpe.helper, simpe.interfaces, simpe.package, simpe.rcol, simpe.workspace, XPCommonControls
@@ -139,84 +139,84 @@ Source: __Installer\AppFiles\Non-Core\SimPE-3D\*.*; DestDir: {app}; Flags: overw
 ; + Microsoft VisualBasic (not included)
 ; ===========================================================================================================
 ; Component: SimpeGmdcExporter (adds formats .OBJ, .TXT, .X, .XSI to the GMDC import/export window)
-Source: __Installer\AppFiles\Non-Core\SimPE-GmdcExporter\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\SimpeGMDC
+Source: ..\__Installer\AppFiles\Non-Core\SimPE-GmdcExporter\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\SimpeGMDC
 ; Files in the NON-CORE\SIMPE-GMDCEXPORTER\PLUGINS section (copied to {app}\Plugins);
 ; simpe.default.gmdc.exporter.dll
 ; + SimPE Core Files: ambertation.3D, ambertation.utilities, simpe.commonhandler, simpe.geometry, simpe.gmdc.exporter.base, simpe.helper, simpe.interfaces, simpe.rcol, xsi.lib
 ; ===========================================================================================================
 ; Component: SimpeNHscanner
-Source: __Installer\AppFiles\Non-Core\SimPE-NHscanner\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\SimpeNHscanner
+Source: ..\__Installer\AppFiles\Non-Core\SimPE-NHscanner\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\SimpeNHscanner
 ; Files in the NON-CORE\SIMPE-NHSCANNER\PLUGINS section (copied to {app}\Plugins);
 ; simpe.ngbh.scanner.plugin.dll
 ; + SimPE Core Files: simpe.cache, simpe.commonhandler, simpe.helper, simpe.interfaces, simpe.ngbh.plugin, simpe.package, simpe.rcol, simpe.scanfolder.plugin
 ; ===========================================================================================================
 ; Component: SimpeScenegrapher
-Source: __Installer\AppFiles\Non-Core\SimPE-Scenegrapher\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\SimpeScenegrapher
+Source: ..\__Installer\AppFiles\Non-Core\SimPE-Scenegrapher\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\SimpeScenegrapher
 ; Files in the NON-CORE\SIMPE-SCENEGRAPHER\PLUGINS section (copied to {app}\Plugins);
 ; simpe.scenegrapher.plugin.dll
 ; + SimPE Core Files: graphcontrol, simpe.clst, simpe.commonhandler, simpe.filehandler, simpe.helper, simpe.interfaces, simpe.package, simpe.rcol, simpe.scenegraph, simpe.workspace
 ; ===========================================================================================================
 ; Component: ThirdParty\CareerEditor (Requires the PJSE Common Files in order to work)
-Source: __Installer\AppFiles\Non-Core\Bidou-CareerEditor\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\careereditor
+Source: ..\__Installer\AppFiles\Non-Core\Bidou-CareerEditor\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\careereditor
 ; Files in the NON-CORE\BIDOU-CAREEREDITOR\PLUGINS section (copied to {app}\Plugins);
 ; bidou.career.plugin.dll
 ; + SimPE Core Files: simpe.3idr, simpe.clst, simpe.commonhandler, simpe.filehandler, simpe.helper, simpe.interfaces, simpe.package, simpe.workspace
 ; + PJSE  Core Files: pjse.coder.plugin, pjse.SystemClasses
 ; ===========================================================================================================
 ; Component: ThirdParty\PLJonesObj (Object Finder)
-Source: __Installer\AppFiles\Non-Core\PLJones-ObjectFinder\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\pljonesobj
+Source: ..\__Installer\AppFiles\Non-Core\PLJones-ObjectFinder\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\pljonesobj
 ; Files in the NON-CORE\PLJONES-OBJECTFINDER\PLUGINS section (copied to {app}\Plugins);
 ; pjse.guidtool.plugin.dll
 ; + PJSE Common Files (see above)
 ; ===========================================================================================================
 ; Component: ThirdParty\PLJonesBody (Body Mesh Tool)
-Source: __Installer\AppFiles\Non-Core\PLJones-BodyMeshTool\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\pljonesbody
+Source: ..\__Installer\AppFiles\Non-Core\PLJones-BodyMeshTool\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\pljonesbody
 ; Files in the NON-CORE\PLJONES-BODYMESHTOOL\PLUGINS section (copied to {app}\Plugins);
 ; pjBodyMeshTool.plugin.dll
 ; pjBodyMeshTool.plugin\*.*
 ; + SimPE Core Files: simpe.3idr, simpe.commonhandler, simpe.filehandler, simpe.helper, simpe.interfaces, simpe.package, simpe.scenegraph, simpe.workspace
 ; ===========================================================================================================
 ; Component: ThirdParty\PLJonesObjKey (ObjKey [3IDR] Tool)
-Source: __Installer\AppFiles\Non-Core\PLJones-ObjKey\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\pljonesobjkey
+Source: ..\__Installer\AppFiles\Non-Core\PLJones-ObjKey\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\pljonesobjkey
 ; Files in the NON-CORE\PLJONES-OBJKEY\PLUGINS section (copied to {app}\Plugins);
 ; pjObjKeyTool.plugin.dll
 ; pjObjKeyTool.plugin\*.*
 ; + PJSE Common Files (see above)
 ; ===========================================================================================================
 ; Component: ThirdParty\Includes (PJSE 'Includes' + GUID list)
-Source: __Installer\AppFiles\Non-Core\Numenor\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\Includes
+Source: ..\__Installer\AppFiles\Non-Core\Numenor\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\Includes
 ; Files in the NON-CORE\NUMENOR\PLUGINS section (copied to {app}\Plugins);
 ; pjse.coder.plugin\Includes\*.*
 ; pjse.coder.plugin\guidindex.txt
 ; ===========================================================================================================
 ; Component: ThirdParty\SimDeleter
-Source: __Installer\AppFiles\Non-Core\SimPE-SimDeleter\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\simdeleter
+Source: ..\__Installer\AppFiles\Non-Core\SimPE-SimDeleter\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\simdeleter
 ; Files in the NON-CORE\SIMPE-SIMDELETER\PLUGINS section (copied to {app}\Plugins);
 ; simpe.actiondeletesim.plugin.dll
 ; ===========================================================================================================
 ; Component: ThirdParty\SkankyBoy
-Source: __Installer\AppFiles\Non-Core\SkankyBoy\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\skankyboy
+Source: ..\__Installer\AppFiles\Non-Core\SkankyBoy\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\skankyboy
 ; Files in the NON-CORE\SKANKYBOY\PLUGINS section (copied to {app}\Plugins);
 ; skankyboy.mesh.importer.exporter.dll
 ; skankyboy.smd.importer.exporter.dll
 ; ===========================================================================================================
 ; Component: ThirdParty\TheoScanner
-Source: __Installer\AppFiles\Non-Core\Theo-MeshScanner\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoScanner
+Source: ..\__Installer\AppFiles\Non-Core\Theo-MeshScanner\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoScanner
 ; Files in the NON-CORE\THEO-MESHSCANNER\PLUGINS section (copied to {app}\Plugins);
 ; theo.meshscanner.plugin.dll
 ; ===========================================================================================================
 ; Component: ThirdParty\TheoBinningTool
-Source: __Installer\AppFiles\Non-Core\Theo-BinningTool\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoBinningTool
+Source: ..\__Installer\AppFiles\Non-Core\Theo-BinningTool\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoBinningTool
 ; Files in the NON-CORE\THEO-BINNINGTOOL\PLUGINS section (copied to {app}\Plugins);
 ; theos.gbct.plugin.dll
 ; ===========================================================================================================
 ; Component: ThirdParty\TheoClothingEditor
-Source: __Installer\AppFiles\Non-Core\Theo-ClothingEditor\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoClothingEditor
+Source: ..\__Installer\AppFiles\Non-Core\Theo-ClothingEditor\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoClothingEditor
 ; Files in the NON-CORE\THEO-CLOTHINGEDITOR\PLUGINS section (copied to {app}\Plugins);
 ; theos.sim-clothing-editor.plugin.dll
 ; ===========================================================================================================
 ; Component: SimpeBHAV (SimPE built-in BHAV editor)
-Source: __Installer\AppFiles\Non-Core\SimPE-BHAV\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\SimpeBHAV
+Source: ..\__Installer\AppFiles\Non-Core\SimPE-BHAV\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\SimpeBHAV
 ; Files in the NON-CORE\SIMPE-BHAV section (copied to {app});
 ; simpe.bhav.plugin.dll
 ; + SimPE Core Files: simpe.clst, simpe.commonhandler, simpe.extfilehandler, simpe.filehandler, simpe.helper, simpe.interfaces, simpe.package, simpe.rcol, simpe.workspace
@@ -225,21 +225,21 @@ Source: __Installer\AppFiles\Non-Core\SimPE-BHAV\*.*; DestDir: {app}; Flags: ove
 ; |   *EXTRA* COMPONENTS    |================================================================================
 ; ===========================================================================================================
 ; Component: SimpeDockBox
-Source: __Installer\AppFiles\Extra\SimPE-DockBox\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: extra\SimpeDockBox
+Source: ..\__Installer\AppFiles\Extra\SimPE-DockBox\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: extra\SimpeDockBox
 ; Files in the NON-CORE\SIMPE-DOCKBOX\PLUGINS section (copied to {app}\Plugins);
 ; simpe.dockbox.plugin.dll
 ; + SimPE Core Files: AdvancedForms, graphcontrol, NetDocks, NewHexEdit, simpe.3idr, simpe.clst, simpe.commonhandler, simpe.extfilehandler, simpe.filehandler, simpe.helper, simpe.interfaces, simpe.package, simpe.rcol, simpe.s2cp, simpe.scenegraph, simpe.workspace, XPCommonControls
 ; + Microsoft VisualBasic
 ; ===========================================================================================================
 ; Component: SimpeDownloads
-Source: __Installer\AppFiles\Extra\SimPE-Downloads\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: extra\SimpeDownloads
+Source: ..\__Installer\AppFiles\Extra\SimPE-Downloads\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: extra\SimpeDownloads
 ; Files in the NON-CORE\SIMPE-DOWNLOADS\PLUGINS section (copied to {app}\Plugins);
 ; simpe.downloads.plugin.dll
 ; + SimPE Core Files: 7z.dll, ambertation.3D, ambertation.3D.mdx.binding, ambertation.utilities, EnumComboBox, graphcontrol, simpe.3idr, simpe.cache, simpe.clst, simpe.commonhandler, simpe.extfilehandler, simpe.filehandler, simpe.gmdc.exporter.base, simpe.helper, simpe.interfaces, simpe.package, simpe.rcol, simpe.s2cp, simpe.scanfolder.plugin, simpe.scenegraph, simpe.workshop.plugin, simpe.workspace
 ; + Microsoft DirectX
 ; ===========================================================================================================
 ; Component: wos (Wizards of SimPE - Includes files in {app} and in {app}\Plugins)
-Source: __Installer\AppFiles\Extra\SimPE-WOS\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: extra\wos
+Source: ..\__Installer\AppFiles\Extra\SimPE-WOS\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: extra\wos
 ; Files in the NON-CORE\SIMPE-WOS section (copied to {app});
 ; Wizards of SimPE.exe
 ; Wizards of SimPE.exe.manifest
@@ -249,7 +249,7 @@ Source: __Installer\AppFiles\Extra\SimPE-WOS\*.*; DestDir: {app}; Flags: overwri
 ; + SimPE Core Files: graphcontrol, simpe.cache, simpe.commandline, simpe.extfilehandler, simpe.filehandler, simpe.helper, simpe.interfaces, simpe.package, simpe.rcol, simpe.scenegraph, simpe.workshop.plugin, simpe.toolbox.plugin, simpe.workspace
 ; ===========================================================================================================
 ; Component: debug
-Source: __Installer\AppFiles\Extra\SimPE-Debug\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: extra\debug
+Source: ..\__Installer\AppFiles\Extra\SimPE-Debug\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: extra\debug
 ; Files in the NON-CORE\SIMPE-DEBUG section (copied to {app});
 ; CacheBrowser.exe
 ; NET Test.exe
@@ -258,16 +258,16 @@ Source: __Installer\AppFiles\Extra\SimPE-Debug\*.*; DestDir: {app}; Flags: overw
 ; Data\release.nfo
 ; ===========================================================================================================
 ; Component: Doc\...
-Source: __Installer\AppFiles\Extra\Doc\de\*.*; DestDir: {app}\Doc\de; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Components: extra\doc\de
-Source: __Installer\AppFiles\Extra\Doc\en\*.*; DestDir: {app}\Doc\en; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Components: extra\doc\en
+Source: ..\__Installer\AppFiles\Extra\Doc\de\*.*; DestDir: {app}\Doc\de; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Components: extra\doc\de
+Source: ..\__Installer\AppFiles\Extra\Doc\en\*.*; DestDir: {app}\Doc\en; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Components: extra\doc\en
 ; ===========================================================================================================
 ; Task: lang\...
-Source: __Installer\AppFiles\Extra\LanguagePacks\de\*.*; DestDir: {app}\de; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langDE
-Source: __Installer\AppFiles\Extra\LanguagePacks\es\*.*; DestDir: {app}\es; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langES
-Source: __Installer\AppFiles\Extra\LanguagePacks\fr\*.*; DestDir: {app}\fr; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langFR
-Source: __Installer\AppFiles\Extra\LanguagePacks\it\*.*; DestDir: {app}\it; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langIT
-Source: __Installer\AppFiles\Extra\LanguagePacks\pl\*.*; DestDir: {app}\pl; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langPL
-Source: __Installer\AppFiles\Extra\LanguagePacks\ru\*.*; DestDir: {app}\ru; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langRU
+Source: ..\__Installer\AppFiles\Extra\LanguagePacks\de\*.*; DestDir: {app}\de; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langDE
+Source: ..\__Installer\AppFiles\Extra\LanguagePacks\es\*.*; DestDir: {app}\es; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langES
+Source: ..\__Installer\AppFiles\Extra\LanguagePacks\fr\*.*; DestDir: {app}\fr; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langFR
+Source: ..\__Installer\AppFiles\Extra\LanguagePacks\it\*.*; DestDir: {app}\it; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langIT
+Source: ..\__Installer\AppFiles\Extra\LanguagePacks\pl\*.*; DestDir: {app}\pl; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langPL
+Source: ..\__Installer\AppFiles\Extra\LanguagePacks\ru\*.*; DestDir: {app}\ru; Flags: overwritereadonly ignoreversion recursesubdirs createallsubdirs; Tasks: langRU
 ; ===========================================================================================================
 ; ===========================================================================================================
 
@@ -539,10 +539,10 @@ de.C_PLJones_objkey=PLJones ObjKey (3idr) Tool
 
 [Languages]
 ; Note: When adding a new language here, please include also a translation of all the 'Custom Messages'
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: __Installer\embedded\enLicense.txt; InfoBeforeFile: __Installer\embedded\enInfoBefore.txt
-Name: de; MessagesFile: compiler:Languages\German.isl; LicenseFile: __Installer\embedded\deLicense.txt; InfoBeforeFile: __Installer\embedded\deInfoBefore.txt
-Name: pl; MessagesFile: compiler:Languages\Polish.isl; LicenseFile: __Installer\embedded\plLicense.txt; InfoBeforeFile: __Installer\embedded\plInfoBefore.txt
-Name: it; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: __Installer\embedded\itLicense.txt; InfoBeforeFile: __Installer\embedded\itInfoBefore.txt
+Name: en; MessagesFile: compiler:Default.isl; LicenseFile: ..\__Installer\embedded\enLicense.txt; InfoBeforeFile: ..\__Installer\embedded\enInfoBefore.txt
+Name: de; MessagesFile: compiler:Languages\German.isl; LicenseFile: ..\__Installer\embedded\deLicense.txt; InfoBeforeFile: ..\__Installer\embedded\deInfoBefore.txt
+Name: pl; MessagesFile: compiler:Languages\Polish.isl; LicenseFile: ..\__Installer\embedded\plLicense.txt; InfoBeforeFile: ..\__Installer\embedded\plInfoBefore.txt
+Name: it; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\__Installer\embedded\itLicense.txt; InfoBeforeFile: ..\__Installer\embedded\itInfoBefore.txt
 
 
 [UninstallDelete]
@@ -561,7 +561,7 @@ ComponentsDiskSpaceMBLabel=
 ; The expected folder structure is:
 ;    (Folder where this script resides)
 ;    (it also contains the files sent by Peter, unsorted, as the CVS creates them)
-;                 |------> __Installer
+;                 |------> ..\__Installer
 ;                              |------> LatestWorkingAppFiles (it's the AppFiles from the latest working release: needed to get the documentation and few other files, always missing from the QA releases provided by Peter)
 ;                              |------> Embedded (contains Licence, icon and language files: they never change)
 ;
@@ -573,7 +573,7 @@ ComponentsDiskSpaceMBLabel=
 ;                                           |------> Extras (created by this script during copy)
 ;
 ; called by the release Creator now
-; Name: __Installer\___COPY-files-to-Release.bat; Flags: abortonerror
+; Name: ..\__Installer\___COPY-files-to-Release.bat; Flags: abortonerror
 
 [Code]
 //================================================================================================
