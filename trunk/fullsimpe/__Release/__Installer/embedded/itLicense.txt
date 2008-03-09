@@ -1,7 +1,0 @@
-Queto tool è in fase di sviluppo (fase "alpha").
-
-L'uso di SimPe può avere potenziali rischi per l'integrità dei file di gioco e del sistema. Installando questo software accettate il rischio connesso al suo utilizzo, liberando da ogni responsabilità gli sviluppatori del software e dei relativi plugin.
-
-SimPE utilizza l'utilità linea di comando di 7-zip (per gli archivi .7z, .rar ecc.). Detto software è distribuito sotto licenza GPL. Per maggiorni informazioni visitate: http://www.7-zip.org
-
-Alcuni controlli dell'interfaccia grafica sono stati creati da SteepValley (http://www.steepvalley.net/).
