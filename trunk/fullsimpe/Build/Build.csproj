@@ -46,12 +46,7 @@ copy "$(SolutionDir)..\*.dll" "%25TargetDir%25"
 if not exist "%25TargetDir%25Data" mkdir "%25TargetDir%25Data"
 copy "$(SolutionDir)..\__Data\*.*" "%25TargetDir%25Data\"
 
-if not exist "%25TargetDir%25Doc" mkdir "%25TargetDir%25Doc"
-if not exist "%25TargetDir%25Doc\de" mkdir "%25TargetDir%25Doc\de"
-if not exist "%25TargetDir%25Doc\en" mkdir "%25TargetDir%25Doc\en"
-copy "$(SolutionDir)..\*.pdf" "%25TargetDir%25Doc\en\"
-
-if not exist "%25TargetDir%25Plugins\Data" mkdir "%25TargetDir%25Plugins\Data"
+if not exist "%25TargetDir%25Data\Plugins" mkdir "%25TargetDir%25Data\Plugins"
 
 copy "$(SolutionDir)..\__etc\*.*" "%25TargetDir%25"
 
