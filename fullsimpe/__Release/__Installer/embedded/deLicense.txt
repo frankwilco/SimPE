@@ -1,9 +1,0 @@
-Diese Software befindet sich im Alpha Stadium!
-
-SimPe kann Probleme in "Die Sims 2" oder am gesamten System verursachen. Wenn Sie diese Software installieren, akzeptieren Sie, dass die Entwickler in keiner Form für durch die Software verursachte Schäden verantwortlich sind.
-
-SimPe verwendet die 7-Zip Kommandozeilenversion um Archive (wie z.B. .7z, .rar...) zu entpacken oder zu erstellen. 7-Zip wurde unter der GPL veröffentlicht. Nähere Informationen gibt es auf der Seite http://www.7-zip.org/.
-
-Einige der GUI-Elemente wurden von SteepValley (http://www.steepvalley.net/) programmiert.
-
-In der Standardeinstellung wird SimPe gelegentlich nach aktuelleren Versionen suchen. Dazu wird eine Internetverbindung aufgebaut und unsere Infoseite aufgerufen. Es werden keine persönlichen Daten oder Ähnliches übertragen oder gespeichert. Diese Funktion kann in SimPE unter Extras->Einstellungen deaktiviert werden (Eintrag "Beim Start auf Updates prüfen").
