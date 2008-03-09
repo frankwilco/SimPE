@@ -139,9 +139,9 @@ namespace SimPe.PackedFiles.Wrapper
 		protected override void Unserialize(System.IO.BinaryReader reader)
 		{
             
-            lock (SimPe.Helper.WindowsRegistry)
+            //lock (SimPe.Helper.WindowsRegistry)
             {
-                //if (locked) { Console.WriteLine("uLock problem for " + this.SimName); return; }
+                if (locked) { return; }
                 base.Unserialize(reader);
                 chgname = false;
                 crmap.Clear();
@@ -153,9 +153,9 @@ namespace SimPe.PackedFiles.Wrapper
 		protected override void Serialize(System.IO.BinaryWriter writer)
 		{
 
-            lock (SimPe.Helper.WindowsRegistry)
+            //lock (SimPe.Helper.WindowsRegistry)
             {
-                //if (locked) { Console.WriteLine("sLock problem for " + this.SimName); return; }
+                if (locked) { return; }
                 base.Serialize(writer);
                 if (chgname) ChangeName();
                 SaveRelations();
@@ -224,39 +224,52 @@ namespace SimPe.PackedFiles.Wrapper
 		Hashtable crmap;
         void SaveRelations()
         {
+            if (locked) return;
             SimPe.Collections.PackedFileDescriptors pfds = new SimPe.Collections.PackedFileDescriptors();
-            //locked = true;
+            locked = true;
 
-
-            foreach (ExtSrel srel in crmap.Values)
+            try
             {
-                if (srel.Package != null) srel.SynchronizeUserData();
-                else
+                foreach (ExtSrel srel in crmap.Values)
                 {
-                    srel.Package = this.Package;
-                    srel.SynchronizeUserData();
-                    pfds.Add(srel.FileDescriptor);
+                    if (srel.Package != null) srel.SynchronizeUserData();
+                    else
+                    {
+                        srel.Package = this.Package;
+                        srel.SynchronizeUserData();
+                        pfds.Add(srel.FileDescriptor);
+                    }
+
+                    if (!this.Equals(srel.SourceSim))
+                    {
+                        if (srel.SourceSim != null)
+                            if (srel.SourceSim.Changed)
+                                srel.SourceSim.SynchronizeUserData();
+                    }
                 }
 
-                if (!this.Equals(srel.SourceSim))
+                crmap.Clear();
+
+                locked = false;
+
+                this.Package.BeginUpdate();
+                try
                 {
-                    if (srel.SourceSim != null)
-                        if (srel.SourceSim.Changed)
-                            srel.SourceSim.SynchronizeUserData();
+                    for (int i = pfds.Count - 1; i >= 0; i--)
+                    {
+                        if (i == 0) this.Package.ForgetUpdate();
+                        this.Package.Add(pfds[i], true);
+                    }
+                }
+                finally
+                {
+                    this.Package.EndUpdate();
                 }
             }
-
-            crmap.Clear();
-
-            locked = false;
-
-            this.Package.BeginUpdate();
-            for (int i = pfds.Count - 1; i >= 0; i--)
+            finally
             {
-                if (i == 0) this.Package.ForgetUpdate();
-                this.Package.Add(pfds[i], true);
+                locked = false;
             }
-            this.Package.EndUpdate();
         }
 
 		internal ExtSrel GetCachedRelation(uint inst)

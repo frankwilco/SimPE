@@ -200,6 +200,11 @@ Source: ..\__Installer\AppFiles\Non-Core\SkankyBoy\*.*; DestDir: {app}; Flags: o
 ; skankyboy.mesh.importer.exporter.dll
 ; skankyboy.smd.importer.exporter.dll
 ; ===========================================================================================================
+; Component: ThirdParty\TheoSurgery
+Source: ..\__Installer\AppFiles\Non-Core\Theo-Surgery\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoSurgery
+; Files in the NON-CORE\THEO-SUERGERY\PLUGINS section (copied to {app}\Plugins);
+; theo.surgery.plugin.dll
+; ===========================================================================================================
 ; Component: ThirdParty\TheoScanner
 Source: ..\__Installer\AppFiles\Non-Core\Theo-MeshScanner\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\TheoScanner
 ; Files in the NON-CORE\THEO-MESHSCANNER\PLUGINS section (copied to {app}\Plugins);
@@ -216,7 +221,7 @@ Source: ..\__Installer\AppFiles\Non-Core\Theo-ClothingEditor\*.*; DestDir: {app}
 ; theos.sim-clothing-editor.plugin.dll
 ; ===========================================================================================================
 ; Component: SimpeBHAV (SimPE built-in BHAV editor)
-Source: ..\__Installer\AppFiles\Non-Core\SimPE-BHAV\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: plugins\SimpeBHAV
+Source: ..\__Installer\AppFiles\Non-Core\SimPE-BHAV\*.*; DestDir: {app}; Flags: overwritereadonly ignoreversion recursesubdirs; Components: core\simpe
 ; Files in the NON-CORE\SIMPE-BHAV section (copied to {app});
 ; simpe.bhav.plugin.dll
 ; + SimPE Core Files: simpe.clst, simpe.commonhandler, simpe.extfilehandler, simpe.filehandler, simpe.helper, simpe.interfaces, simpe.package, simpe.rcol, simpe.workspace
@@ -290,8 +295,8 @@ Filename: {app}\SimPe.exe; Description: {cm:LaunchProgram,SimPE}; Components: co
 ;Filename: {app}\Readme.txt; Description: {cm:ViewReadme}; Flags: postinstall nowait shellexec
 
 [Icons]
-Name: {group}\{cm:C_Doc}\SimPE Einfhrung (bersetzt von Rado); Filename: {app}\Doc\Einleitung.pdf; Components: extra\doc\de
-Name: {group}\{cm:C_Doc}\TazzMann's SimPE von Grund auf (bersetzt von Rado); Filename: {app}\Doc\SimPE_VGA.pdf; Components: extra\doc\de
+Name: {group}\{cm:C_Doc}\SimPE Einfhrung (Übersetzt von Rado); Filename: {app}\Doc\Einleitung.pdf; Components: extra\doc\de
+Name: {group}\{cm:C_Doc}\TazzMann's SimPE von Grund auf (Übersetzt von Rado); Filename: {app}\Doc\SimPE_VGA.pdf; Components: extra\doc\de
 Name: {group}\{cm:C_Doc}\SimPE Introduction; Filename: {app}\Doc\Introduction.pdf; Components: extra\doc\en
 Name: {group}\{cm:C_Doc}\TazzMann's SimPE from the Group up; Filename: {app}\Doc\SimPE_FTGU.pdf; Components: extra\doc\en
 Name: {group}\{cm:C_Theme}\{cm:C_classic_look}; Filename: {app}\SimPe.exe; Parameters: -classicpreset
@@ -329,7 +334,7 @@ Name: extra\doc\en; Description: {cm:C_doc_en}; Types: full custom; Flags: disab
 Name: extra\doc\de; Description: {cm:C_doc_de}; Types: full custom; Flags: disablenouninstallwarning
 Name: plugins; Description: {cm:C_Plugins}; Types: full custom; Flags: disablenouninstallwarning
 Name: plugins\3d; Description: {cm:C_3D_Plugins}; Types: full custom; Flags: disablenouninstallwarning
-Name: plugins\SimpeBHAV; Description: {cm:C_SimpeBHAV}; Types: full custom min; Flags: disablenouninstallwarning
+;Name: plugins\SimpeBHAV; Description: {cm:C_SimpeBHAV}; Types: full custom min; Flags: disablenouninstallwarning
 Name: plugins\SimpeGMDC; Description: {cm:C_SimpeGMDC}; Types: full custom min; Flags: disablenouninstallwarning
 Name: plugins\SimpeNHscanner; Description: {cm:C_SimpeNHscanner}; Types: full custom; Flags: disablenouninstallwarning
 Name: plugins\SimpeScenegrapher; Description: {cm:C_SimpeScenegrapher}; Types: full custom; Flags: disablenouninstallwarning
@@ -341,6 +346,7 @@ Name: plugins\pljonesobjkey; Description: {cm:C_PLJones_objkey}; Types: full cus
 Name: plugins\simdeleter; Description: {cm:C_SimDeleter}; Types: full custom; Flags: disablenouninstallwarning
 Name: plugins\skankyboy; Description: {cm:C_SkankyBoy}; Types: full custom; Flags: disablenouninstallwarning
 Name: plugins\TheoScanner; Description: {cm:C_TheoScanner}; Types: full custom; Flags: disablenouninstallwarning
+Name: plugins\TheoSurgery; Description: {cm:C_TheoSurgery}; Types: full custom; Flags: disablenouninstallwarning
 Name: plugins\TheoBinningTool; Description: {cm:C_TheoBinningTool}; Types: full custom; Flags: disablenouninstallwarning
 Name: plugins\TheoClothingEditor; Description: {cm:C_TheoClothingEditor}; Types: full custom; Flags: disablenouninstallwarning
 
@@ -409,7 +415,7 @@ it.C_Wos=Wizards of SimPE
 de.C_Wos=Wizards of SimPE
 C_LangEN=(Option not available on this system)
 it.C_LangEN=(Opzione non disponibile su questo sistema)
-de.C_LangEN=(Option ist nicht verfügbar auf diesem System)
+de.C_LangEN=(Option ist auf diesem System nicht verfügbar)
 C_LangDE=German
 it.C_LangDE=Tedesco
 de.C_LangDE=Deutsch
@@ -433,7 +439,7 @@ it.C_Debug=Componenti per il debug
 de.C_Debug=Komponenten zur Fehlersuche
 C_PsTemplate=Photo Studio Templates
 it.C_PsTemplate=Templates per Photo Studio
-de.C_PsTemplate=Vorlagen fr Photo Studio
+de.C_PsTemplate=Vorlagen für Photo Studio
 UninstallPrevious=Uninstalling the previous version of SimPE...
 it.UninstallPrevious=Disinstallazione versioni precedenti di SimPE...
 de.UninstallPrevious=Eine bestehende Version von SimPE deinstallieren...
@@ -442,7 +448,7 @@ it.UninstallPreviousFailed=La disinstallazione delle precedenti versioni di SimP
 de.UninstallPreviousFailed=Die Deinstallation von SimPE schlug fehl.%n%nSoll dieser Fehler ignoriert und SimPE dennoch installiert werden?
 C_ThirdParty=ThirdParty SimPE Plugins
 it.C_ThirdParty=Plugins di terze parti
-de.C_ThirdParty=Zustzliche Erweiterungen
+de.C_ThirdParty=Zusätzliche Erweiterungen
 C_CareerEditor=Bidou's Career Editor
 it.C_CareerEditor=Editor delle Carriere (by Bidou)
 de.C_CareerEditor=Bidou's Kariere Editor
@@ -457,10 +463,10 @@ it.C_doc_de=Documentazione in tedesco
 de.C_doc_de=Deutsche Anleitungen
 C_Lang=Language Files (Translations)
 it.C_Lang=Lingue alternative di SimPE (Traduzioni)
-de.C_Lang=Sprachpakete (bersetzungen)
+de.C_Lang=Sprachpakete (Übersetzungen)
 C_Complete=Complete
 it.C_Complete=Installazione completa
-de.C_Complete=Vollstndig
+de.C_Complete=Vollständig
 C_Custom=Custom
 it.C_Custom=Installazione personalizzata
 de.C_Custom=Benutzerdefiniert
@@ -478,7 +484,7 @@ it.C_SkankyBoy=Mesh Importer/Exporter (3DS, SMD) (by SkankyBoys)
 de.C_SkankyBoy=SkankyBoys Mesh Importer/Exporter (3DS, SMD)
 C_Plugins=Additional Plugins (optional)
 it.C_Plugins=Plugin aggiuntivi (opzionali)
-de.C_Plugins=Zustzliche Erweiterungen
+de.C_Plugins=Zusätzliche Erweiterungen
 C_3D_Plugins=3D Preview for ANIM files
 it.C_3D_Plugins=Anteprima 3D di file ANIM
 de.C_3D_Plugins=3D Werkzeuge
@@ -493,10 +499,13 @@ it.C_LangRU=Russo (by Necromante)
 de.C_LangRU=Russisch (von Necromante)
 C_LangFR=French (by DeeVo)
 it.C_LangFR=Francese (by DeeVo)
-de.C_LangFR=Franzsisch (von DeeVo)
+de.C_LangFR=Französisch (von DeeVo)
 C_LangTask=Install OPTIONAL interface translation:
 it.C_LangTask=Installa traduzione OPZIONALE per l'interfaccia:
-de.C_LangTask=Installieren OPTIONAL Schnittstelle Übersetzung:
+de.C_LangTask=Installiere OPTIONALE Übersetzungen:
+C_TheoSurgery=Theo's Sim Surgery
+it.C_TheoSurgery=Sim Surgery (by Theo)
+de.C_TheoSurgery=Sim Surgery (von Theo)
 C_TheoScanner=Theo's Mesh Scanner
 it.C_TheoScanner=Mesh Scanner (by Theo)
 de.C_TheoScanner=Mesh Scanner (von Theo)
@@ -506,9 +515,9 @@ de.C_TheoBinningTool=Binning Tool (von Theo)
 C_TheoClothingEditor=Theo's Clothing Editor
 it.C_TheoClothingEditor=Clothing Editor (by Theo)
 de.C_TheoClothingEditor=Clothing Editor (von Theo)
-C_Includes=Optional TRCN, TPRP and GUID list for SimAntics Editor
-it.C_Includes=File TRCN/TPRP e lista GUID opzionali per il SimAntics Editor
-de.C_Includes=Optional TRCN, TPRP und GUID Dateien für SimAntics Editor
+C_Includes=Optional TRCN and TPRP list for SimAntics Editor
+it.C_Includes=File TRCN/TPRP opzionali per il SimAntics Editor
+de.C_Includes=Optional TRCN und TPRP für SimAntics Editor
 C_SimDeleter=Sim Deleter Tool (by Quaxi)
 it.C_SimDeleter=Sim Deleter Tool (by Quaxi)
 de.C_SimDeleter=Sim Deleter Tool (von Quaxi)
@@ -517,16 +526,16 @@ it.C_Extra=Componenti aggiuntivi
 de.C_Extra=Extras
 C_SimpeBHAV=SimPE built-in BHAV editor
 it.C_SimpeBHAV=Editor BHAV standard
-de.C_SimpeBHAV=SimPE BHAV editor
+de.C_SimpeBHAV=SimPE BHAV Editor
 C_SimpeDockBox=Support for dockable windows
 it.C_SimpeDockBox=Supporto per la personalizz. delle finestre
-de.C_SimpeDockBox=Support für Windows dockingfähigen
+de.C_SimpeDockBox=Support für dockbare Fenster
 C_SimpeDownloads=Support for external downloads
 it.C_SimpeDownloads=Supporto per downloads esterni
 de.C_SimpeDownloads=Support für die externen Downloads
 C_SimpeGMDC=Support for mesh in OBJ, TXT, X, XSI formats
 it.C_SimpeGMDC=Supporto per mesh in formato OBJ, TXT, X, XSI
-de.C_SimpeGMDC=Support für die Maschen in OBJ, TXT, X, XSI Formate
+de.C_SimpeGMDC=Support für 3D-Formate in OBJ, TXT, X, XSI
 C_SimpeNHscanner=Neighborhood Scanner
 it.C_SimpeNHscanner=Scanner dei quartieri
 de.C_SimpeNHscanner=Nachbarschafts-Scanner
