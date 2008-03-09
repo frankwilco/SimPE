@@ -98,7 +98,7 @@ namespace SimPe.Plugin
 				list.Unserialize(reader);
 			}
 			
-			Console.WriteLine(reader.BaseStream.Position - reader.BaseStream.Length);			
+			//Console.WriteLine(reader.BaseStream.Position - reader.BaseStream.Length);			
 		}
 
 		protected override void Serialize(System.IO.BinaryWriter writer) 

@@ -147,7 +147,7 @@ namespace SimPe.Plugin
 		{
 			string old = Hashes.StripHashFromName(txtr.FileName.Trim().ToLower());
 			if (old.EndsWith("_txtr")) old = old.Substring(0, old.Length-5);
-			Console.WriteLine("Adding Texture: "+old);
+			//Console.WriteLine("Adding Texture: "+old);
 
 			string name = txtr.FileName.Trim();
 			if (name.ToLower().EndsWith("_txtr")) name = name.Substring(0, name.Length-5);
@@ -166,13 +166,13 @@ namespace SimPe.Plugin
 			foreach (string k in txmt.ReferenceChains.Keys) 
 			{
 				if (k=="TXTR" || k=="Generic") continue;
-				Console.WriteLine("    Checking Property "+k);						
+				//Console.WriteLine("    Checking Property "+k);						
 				string thisname = Hashes.StripHashFromName(md.FindProperty(k).Value.Trim().ToLower());
 				
 				if (thisname==old) 
 				{
 					string nname = "##0x"+Helper.HexString(Data.MetaData.CUSTOM_GROUP)+"!"+tname;
-					Console.WriteLine("    --> Updating to "+nname);
+					//Console.WriteLine("    --> Updating to "+nname);
 					md.FindProperty(k).Value = nname;
 				}
 			}	
@@ -234,7 +234,7 @@ namespace SimPe.Plugin
 						}*/
 
 
-						Console.WriteLine();
+						//Console.WriteLine();
 					}
 				}
 			}

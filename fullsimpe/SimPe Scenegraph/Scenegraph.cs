@@ -763,11 +763,11 @@ namespace SimPe.Plugin
 					if (name=="") continue;
 
 					name += instance.Extension;
-					Console.WriteLine("Str Linked: "+name);
+					//Console.WriteLine("Str Linked: "+name);
 					SimPe.Interfaces.Scenegraph.IScenegraphFileIndexItem fii = FileTable.FileIndex.FindFileByName(name, instance.Type, Hashes.GetHashGroupFromName(si.Title, Data.MetaData.GLOBAL_GROUP), true);
 					if (fii!=null)
 					{
-						Console.WriteLine("    --> found");
+						//Console.WriteLine("    --> found");
 						list.Add(fii);
 					}
 				}
