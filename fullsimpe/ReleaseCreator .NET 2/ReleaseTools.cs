@@ -116,6 +116,9 @@ namespace ReleaseCreator
             System.IO.File.Delete(outputname);
         }
 
+        
+
+
         private void Cleanup()
         {
             string letter = set.ReleaseDir;
@@ -135,6 +138,25 @@ namespace ReleaseCreator
             System.IO.File.Delete(outputname);
         }
 
+        private void Precopy()
+        {
+            string letter = set.ReleaseDir;
+            letter = letter.Substring(0, 2);
+            string outputname = System.IO.Path.Combine(set.ReleaseDir, "__Installer\\___COPY-files-to-Release.bat");
+            Hashtable map = new Hashtable();
+            map["simpedrive"] = letter;
+            map["simpedir"] = set.ReleaseDir;
+            CreateTemplate("___COPY-files-to-Release.bat", outputname, map);
+
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.FileName = outputname;
+
+            Process p = Process.Start(psi);
+            p.WaitForExit();
+
+            System.IO.File.Delete(outputname);
+        }
+
         private void BuildSetup(string setupbasename, string setupver, string templname)
         {
             string setupname = GetVersionedSetupName(setupbasename, setupver);
@@ -143,30 +165,50 @@ namespace ReleaseCreator
             Hashtable map = new Hashtable();
             map["shortver"] = setupver;
             map["setupname"] = setupname;
+            map["simpedir"] = set.ReleaseDir;
             CreateTemplate(templname, outputname, map);
 
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.FileName = set.InnoDir;
             psi.Arguments = outputname;
-
+            //psi.RedirectStandardOutput = true;
+            psi.UseShellExecute = true;
+            //psi.RedirectStandardOutput = true;
+            psi.WorkingDirectory = set.ReleaseDir;
             Process p = Process.Start(psi);
+            Console.WriteLine("\"" + set.InnoDir + "\"" + " \"" + outputname + "\"");
+            
             p.WaitForExit();
+            //Console.WriteLine(p.StandardOutput.ReadToEnd());
+            //Console.WriteLine(p.StandardError.ReadToEnd());
 
-            System.IO.File.Delete(outputname);
+            //System.IO.File.Delete(outputname);
         }
 
         private static void CreateTemplate(string templname, string outputname, Hashtable map)
         {
-            System.IO.StreamReader sr = System.IO.File.OpenText(@"Data\" + templname);
+            Encoding src = Encoding.GetEncoding("iso-8859-1");
+            System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.File.Open(@"Data\" + templname, System.IO.FileMode.Open), src);
+            
             try
             {
                 string setup = sr.ReadToEnd();
-                System.IO.StreamWriter sw = System.IO.File.CreateText(outputname);
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.File.Create(outputname), src);
+
+                if (sr.CurrentEncoding != sw.Encoding)
+                {
+                    byte[] sb = Encoding.Convert(sr.CurrentEncoding, sw.Encoding, sr.CurrentEncoding.GetBytes(setup));
+                    char[] chars = new char[sw.Encoding.GetCharCount(sb, 0, sb.Length)];
+                    sw.Encoding.GetChars(sb, 0, sb.Length, chars, 0);
+                    setup = new string(chars);
+                }
+                
                 try
                 {
                     foreach (string key in map.Keys)
                         setup = setup.Replace("{" + key + "}", map[key].ToString());
 
+                    
                     sw.Write(setup);
                 }
                 finally
@@ -305,11 +347,15 @@ namespace ReleaseCreator
         {
             //get Size of the primary Setup
             string setupname; string realname;
+            long csize = 0;
             BuildSetupName(setupver, setupbasename, out setupname, out realname);
-            System.IO.Stream st = System.IO.File.OpenRead(realname);
-            long csize = st.Length;
-            st.Close();
+            try
+            {
+                System.IO.Stream st = System.IO.File.OpenRead(realname);
+                csize = st.Length;
 
+                st.Close();
+            } catch  {}
             ftppub = ftppub.Replace("{" + ftpid + "setuppath}", realname);
             ftppub = ftppub.Replace("{" + ftpid + "setupname}", setupname);
             ftpprev = ftpprev.Replace("{" + ftpid + "setuppath}", realname);
@@ -489,6 +535,7 @@ namespace ReleaseCreator
             {
                 if (!isqa)
                 {
+                    Precopy();
                     BuildSetup("SimPE-Setup", setupver, "setup.iss");
                     BuildSetup("SimPE-Setup-Light", setupver, "setup-light.iss");
                 }
