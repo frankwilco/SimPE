@@ -142,7 +142,7 @@ namespace ReleaseCreator
         {
             string letter = set.ReleaseDir;
             letter = letter.Substring(0, 2);
-            string outputname = System.IO.Path.Combine(set.ReleaseDir, "__Installer\\___COPY-files-to-Release.bat");
+            string outputname = System.IO.Path.Combine(set.ReleaseDir, "..\\__Installer\\___COPY-files-to-Release.bat");
             Hashtable map = new Hashtable();
             map["simpedrive"] = letter;
             map["simpedir"] = set.ReleaseDir;
