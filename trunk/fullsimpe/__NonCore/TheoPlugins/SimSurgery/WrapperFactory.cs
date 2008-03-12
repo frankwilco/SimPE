@@ -6,40 +6,30 @@ using System.Collections;
 
 namespace SimPe.Plugin
 {
-	public class WrapperFactory : AbstractWrapperFactory, IToolFactory, ISettingsFactory
-	{
-		public WrapperFactory()
-		{
-		}
+    public class WrapperFactory3 : AbstractWrapperFactory, IToolFactory
+    {
+        public WrapperFactory3()
+        {
+        }
 
-		public override IWrapper[] KnownWrappers
-		{
-			get { return new IWrapper[0]; }
+        public override SimPe.Interfaces.IWrapper[] KnownWrappers
+        {
+            get
+            {
+                return new IWrapper[0];
+            }
 
-		}
+        }
+				
+				public IToolPlugin[] KnownTools
+				{
+				      get
+				      {
+					      return new IToolPlugin[] { new SimPe.Plugin.SurgeryTool2(this.LinkedProvider) }; 
+				      }
+				
+				 
+				}
 
-		public IToolPlugin[] KnownTools
-		{
-			get
-			{
-				return new IToolPlugin[] {
-					new SurgeryToolExt(this.LinkedRegistry, this.LinkedProvider)
-				};
 			}
-		}
-
-
-		public ISettings[] KnownSettings
-		{
-			get {
-				return new ISettings[] {
-					PackageBrowserSettings.Instance
-				};
-			}
-		}
-
-
-	}
-
-
 }
